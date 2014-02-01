@@ -14,6 +14,8 @@ To keep the sprite sharp at any rotation, all ship sprites are twice as big as t
 
 https://endless-sky.googlecode.com/svn/trunk/images/ship/sparrow.png
 
+If you are creating a human ship, it should be mostly shades of grey with some highlights in red, orange, and yellow. Depending on the government, the colors will be "swizzled" to green and yellow for the Free Worlds, blue and cyan for civilians, etc.
+
 To create a new ship sprite, just add a PNG file to the images/ship/ directory. Everything in the images directory is automatically loaded when the game launches; no need to add it to a list anywhere.
 
 For collision detection, for all images in images/ship/ and images/asteroid/, or one of their sub-folders, a polygonal outline is generated when the sprite is loaded. This means that it's important for your ship image to be in that folder, so the game knows to calculate its outline.
@@ -44,3 +46,29 @@ The data files use indentation, like in the Python language, to define sub-entri
   * "turret": the (x, y) coordinates of any turrets. The number of turret outfits cannot exceed the number of turret locations listed here.
 
   * "explode": an effect to create when the ship is dying, and the number of them to create. These effects are created randomly at an increasing rate until the ship finally explodes in one big explosion (e.g. `explode "small explosion" 10`).
+
+The "attributes" key should be followed by a list of ship attributes, which include:
+
+  * "required crew": the number of crew members needed to operate the ship without anything failing.
+
+  * "bunks": the maximum number of people on the ship, including crew and passengers.
+
+  * "drag": the maximum speed of the ship will be equal to "thrust" / "drag".
+
+  * "mass": the mass of the ship's chassis, without any outfits or cargo. The higher the mass, the more thrust is needed in order to turn or accelerate at a certain rate.
+
+  * "shields": maximum shield capacity. When a ship is hit, if it has any shields left they absorb the damage; otherwise the hull is damaged. Shields can recharge, whereas hulls generally can only be repaired when landing on a planet.
+
+  * "hull": maximum hull strength. A ship is disabled when either it is reduced to 10% hull, or to the minimum of 25% hull or 100. (That is, small ships are disabled at 25%, and large ones at 10%.)
+
+  * "cargo space": the amount of cargo that can be carried.
+
+  * "outfit space": the amount of outfits (weapons, generators, engines, etc.) that can be installed.
+
+  * "engine capacity": the amount of that outfit space which is suitable for installing engines. Some ships have lots of engine capacity but not much weapon capacity, or vice versa.
+
+  * "weapon capacity": the amount of outfit space that can be occupied by weapons.
+
+  * "fuel capacity": the amount of fuel (one jump = 100) that this ship can carry.
+
+Outfits work by adding or subtracting to these same attributes.
