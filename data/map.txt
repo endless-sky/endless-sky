@@ -1,0 +1,8340 @@
+system "Acamar"
+	pos -284 -3
+	habitable 5000
+	link "Diphda"
+	link "Aldebaran"
+	link "Elnath"
+	asteroids "medium rock" 2 2.352
+	asteroids "large rock" 1 1.4952
+	asteroids "small metal" 3 1.9488
+	asteroids "medium metal" 19 2.2848
+	asteroids "large metal" 12 2.352
+	trade "Clothing" 297
+	trade "Electronics" 620
+	trade "Equipment" 581
+	trade "Food" 390
+	trade "Heavy Metals" 875
+	trade "Industrial" 694
+	trade "Luxury Goods" 1395
+	trade "Medical" 576
+	trade "Metal" 249
+	trade "Plastic" 483
+	object
+		sprite "star/a0"
+		period 10
+	object
+		sprite "planet/dust5"
+		distance 154
+		period 10.8108
+	object
+		sprite "planet/desert2"
+		distance 523.16
+		period 67.6904
+		object
+			sprite "planet/lava1"
+			distance 189
+			period 27.0719
+	object
+		sprite "planet/gas0"
+		distance 1292.65
+		period 262.904
+		object
+			sprite "planet/io"
+			distance 287
+			period 13.5253
+	object
+		sprite "planet/tethys"
+		distance 2900.06
+		period 883.457
+
+system "Achernar"
+	pos -93 154
+	habitable 3015.62
+	link "Al Dhanab"
+	link "Alpheratz"
+	link "Schedar"
+	link "Polaris"
+	asteroids "medium metal" 27 1.8676
+	asteroids "large metal" 2 4.7334
+	trade "Clothing" 263
+	trade "Electronics" 742
+	trade "Equipment" 618
+	trade "Food" 264
+	trade "Heavy Metals" 749
+	trade "Industrial" 711
+	trade "Luxury Goods" 964
+	trade "Medical" 775
+	trade "Metal" 289
+	trade "Plastic" 337
+	object
+		sprite "star/f0"
+		distance 20.3213
+		period 11.362
+		offset 180
+	object
+		sprite "star/k0"
+		distance 114.179
+		period 11.362
+	object
+		sprite "planet/ice3"
+		distance 414.489
+		period 61.4668
+	object
+		sprite "planet/rock1"
+		distance 830.379
+		period 174.295
+		object
+			sprite "planet/lava2"
+			distance 180
+			period 25.1614
+	object
+		sprite "planet/gas2"
+		distance 1415.34
+		period 387.848
+		object
+			sprite "planet/rock0"
+			distance 196
+			period 12.1956
+	object
+		sprite "planet/dust7"
+		distance 2304.55
+		period 805.842
+
+system "Acrux"
+	pos -808 192
+	habitable 839.375
+	link "Minkar"
+	link "Zeta Centauri"
+	link "Izar"
+	asteroids "small rock" 82 6.7183
+	asteroids "medium rock" 91 3.4385
+	asteroids "large rock" 17 4.8139
+	asteroids "medium metal" 44 4.3378
+	asteroids "large metal" 19 4.8139
+	trade "Clothing" 313
+	trade "Electronics" 655
+	trade "Equipment" 580
+	trade "Food" 164
+	trade "Heavy Metals" 891
+	trade "Industrial" 792
+	trade "Luxury Goods" 1072
+	trade "Medical" 565
+	trade "Metal" 456
+	trade "Plastic" 448
+	object
+		sprite "star/g5"
+		distance 29.7539
+		period 17.3608
+	object
+		sprite "star/m0"
+		distance 86.7461
+		period 17.3608
+		offset 180
+	object
+		sprite "planet/rock13"
+		distance 353.136
+		period 91.621
+	object
+		sprite "planet/gas9"
+		distance 959.896
+		period 410.599
+		object
+			sprite "planet/rock14"
+			distance 244
+			period 13.4426
+		object
+			sprite "planet/desert4"
+			distance 362
+			period 24.2918
+	object
+		sprite "planet/gas14"
+		distance 2287.46
+		period 1510.47
+		object
+			sprite "planet/dust3"
+			distance 222
+			period 12.7426
+		object
+			sprite "planet/lava0"
+			distance 356
+			period 25.8764
+		object
+			sprite "planet/ganymede"
+			distance 512
+			period 44.6307
+		object
+			sprite "planet/dust7"
+			distance 644
+			period 62.9589
+
+system "Adhara"
+	pos -669 -200
+	habitable 320
+	link "Epsilon Leonis"
+	link "Gomeisa"
+	asteroids "small rock" 5 3.705
+	asteroids "medium rock" 3 5.3675
+	asteroids "large rock" 9 5.3675
+	asteroids "medium metal" 9 7.125
+	asteroids "large metal" 1 4.9875
+	trade "Clothing" 349
+	trade "Electronics" 692
+	trade "Equipment" 439
+	trade "Food" 544
+	trade "Heavy Metals" 1137
+	trade "Industrial" 625
+	trade "Luxury Goods" 1310
+	trade "Medical" 608
+	trade "Metal" 210
+	trade "Plastic" 440
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/desert6"
+		distance 198.44
+		period 62.507
+	object
+		sprite "planet/lava1"
+		distance 474.69
+		period 231.26
+	object
+		sprite "planet/rock17"
+		distance 981.45
+		period 687.523
+	object
+		sprite "planet/gas1"
+		distance 2480.49
+		period 2762.43
+		object
+			sprite "planet/oberon"
+			distance 251
+			period 14.0252
+		object
+			sprite "planet/io"
+			distance 373
+			period 25.4074
+
+system "Al Dhanab"
+	pos -177 207
+	habitable 775.625
+	link "Scheat"
+	link "Mirach"
+	link "Alpheratz"
+	link "Achernar"
+	asteroids "small rock" 65 3.45
+	asteroids "medium rock" 24 1.6008
+	asteroids "large rock" 6 1.6008
+	asteroids "small metal" 94 2.7324
+	asteroids "medium metal" 36 4.14
+	asteroids "large metal" 116 3.2016
+	trade "Clothing" 232
+	trade "Electronics" 809
+	trade "Equipment" 573
+	trade "Food" 318
+	trade "Heavy Metals" 674
+	trade "Industrial" 655
+	trade "Luxury Goods" 1009
+	trade "Medical" 718
+	trade "Metal" 262
+	trade "Plastic" 317
+	object
+		sprite "star/k0"
+		distance 35.2748
+		period 11.3549
+		offset 180
+	object
+		sprite "star/k5"
+		distance 50.2252
+		period 11.3549
+	object
+		sprite "planet/lava0"
+		distance 246.235
+		period 55.4957
+	object
+		sprite "planet/rock6"
+		distance 561.485
+		period 191.092
+	object
+		sprite "planet/forest4"
+		distance 1261.53
+		period 643.544
+	object
+		sprite "planet/miranda"
+		distance 1830.22
+		period 1124.57
+	object
+		sprite "planet/gas15"
+		distance 2406.06
+		period 1695.09
+		object
+			sprite "planet/dust3"
+			distance 197
+			period 13.6289
+
+system "Albaldah"
+	pos -350 484
+	habitable 945
+	link "Albireo"
+	link "Girtab"
+	link "Nunki"
+	link "Eltanin"
+	asteroids "small rock" 1 8.82
+	asteroids "medium rock" 20 5.4
+	asteroids "large rock" 9 7.02
+	asteroids "medium metal" 86 3.18
+	asteroids "large metal" 5 4.2
+	trade "Clothing" 218
+	trade "Electronics" 772
+	trade "Equipment" 534
+	trade "Food" 180
+	trade "Heavy Metals" 989
+	trade "Industrial" 834
+	trade "Luxury Goods" 1274
+	trade "Medical" 801
+	trade "Metal" 266
+	trade "Plastic" 343
+	object
+		sprite "star/g5"
+		distance 31.4921
+		period 11.6699
+	object
+		sprite "star/k5"
+		distance 61.5079
+		period 11.6699
+		offset 180
+	object
+		sprite "planet/water0"
+		distance 254.468
+		period 52.8194
+	object
+		sprite "planet/gas9"
+		distance 1041.28
+		period 437.214
+		object
+			sprite "planet/io"
+			distance 227
+			period 12.0625
+		object
+			sprite "planet/ice8"
+			distance 340
+			period 22.1114
+		object
+			sprite "planet/dust0"
+			distance 430
+			period 31.4485
+		object
+			sprite "planet/lava2"
+			distance 580
+			period 49.2651
+	object
+		sprite "planet/venus"
+		distance 1971.29
+		period 1138.86
+
+system "Albireo"
+	pos -270 503
+	habitable 320
+	link "Tarazed"
+	link "Albaldah"
+	link "Sadr"
+	asteroids "small rock" 2 3.57
+	asteroids "medium rock" 4 2.5466
+	asteroids "large rock" 4 3.1654
+	asteroids "medium metal" 52 1.9992
+	asteroids "large metal" 9 3.5224
+	trade "Clothing" 262
+	trade "Electronics" 790
+	trade "Equipment" 483
+	trade "Food" 191
+	trade "Heavy Metals" 959
+	trade "Industrial" 869
+	trade "Luxury Goods" 1251
+	trade "Medical" 844
+	trade "Metal" 237
+	trade "Plastic" 387
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/lava1"
+		distance 161
+		period 45.6798
+	object
+		sprite "planet/desert9"
+		distance 429.89
+		period 199.306
+	object
+		sprite "planet/rock18"
+		distance 842.93
+		period 547.233
+		object
+			sprite "planet/dust2"
+			distance 153
+			period 21.5952
+	object
+		sprite "planet/oberon"
+		distance 1252.93
+		period 991.688
+	object
+		sprite "planet/dust4"
+		distance 2868.74
+		period 3435.75
+
+system "Alcyone"
+	pos -80 -144
+	habitable 1080
+	link "Zaurak"
+	asteroids "small rock" 4 1.62
+	asteroids "medium rock" 16 1.3176
+	asteroids "large rock" 16 1.08
+	asteroids "medium metal" 11 2.5272
+	asteroids "large metal" 2 2.0736
+	trade "Clothing" 322
+	trade "Electronics" 699
+	trade "Equipment" 658
+	trade "Food" 197
+	trade "Heavy Metals" 868
+	trade "Industrial" 714
+	trade "Luxury Goods" 1042
+	trade "Medical" 705
+	trade "Metal" 249
+	trade "Plastic" 439
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/forest3"
+		distance 266.25
+		period 52.8789
+		object
+			sprite "planet/europa"
+			distance 131
+			period 18.8482
+	object
+		sprite "planet/lava5"
+		distance 592.49
+		period 175.537
+	object
+		sprite "planet/desert7"
+		distance 1026.38
+		period 400.231
+	object
+		sprite "planet/gas12"
+		distance 1603.79
+		period 781.753
+		object
+			sprite "planet/lava0"
+			distance 285
+			period 12.0389
+	object
+		sprite "planet/rock7"
+		distance 2917.48
+		period 1918.05
+
+system "Aldebaran"
+	pos -356 -26
+	habitable 1080.62
+	link "Capella"
+	link "Acamar"
+	link "Elnath"
+	link "Kursa"
+	asteroids "large metal" 1 2.8322
+	trade "Clothing" 227
+	trade "Electronics" 637
+	trade "Equipment" 654
+	trade "Food" 436
+	trade "Heavy Metals" 955
+	trade "Industrial" 716
+	trade "Luxury Goods" 1426
+	trade "Medical" 514
+	trade "Metal" 265
+	trade "Plastic" 479
+	object
+		sprite "star/g5"
+		distance 51.6498
+		period 16.4978
+	object
+		sprite "star/k0"
+		distance 70.8502
+		period 16.4978
+		offset 180
+	object
+		sprite "planet/desert2"
+		distance 280.04
+		period 57.0234
+	object
+		sprite "planet/gas12"
+		distance 879.08
+		period 317.15
+	object
+		sprite "planet/rock0"
+		distance 1252.08
+		period 539.102
+	object
+		sprite "planet/uranus"
+		distance 2413.29
+		period 1442.57
+		object
+			sprite "planet/lava0"
+			distance 216
+			period 12.8072
+		object
+			sprite "planet/dust2"
+			distance 388
+			period 30.8334
+		object
+			sprite "planet/ice0"
+			distance 556
+			period 52.8916
+
+system "Alderamin"
+	pos -272 258
+	habitable 1080
+	link "Alnair"
+	link "Delta Capricorni"
+	asteroids "small rock" 1 9.5472
+	asteroids "medium rock" 3 8.5644
+	asteroids "large rock" 1 10.3896
+	asteroids "small metal" 87 9.9684
+	asteroids "medium metal" 31 9.9684
+	asteroids "large metal" 58 7.4412
+	trade "Clothing" 302
+	trade "Electronics" 726
+	trade "Equipment" 401
+	trade "Food" 573
+	trade "Heavy Metals" 753
+	trade "Industrial" 671
+	trade "Luxury Goods" 1065
+	trade "Medical" 475
+	trade "Metal" 237
+	trade "Plastic" 373
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/rock19"
+		distance 271
+		period 54.3003
+		object
+			sprite "planet/dust5"
+			distance 132
+			period 19.0644
+	object
+		sprite "planet/rock10"
+		distance 644.56
+		period 199.179
+	object
+		sprite "planet/gas6"
+		distance 1493.32
+		period 702.389
+		object
+			sprite "planet/dust2"
+			distance 297
+			period 11.6008
+		object
+			sprite "planet/lava0"
+			distance 428
+			period 20.0687
+	object
+		sprite "planet/europa"
+		distance 2330.57
+		period 1369.43
+
+system "Aldhibain"
+	pos -659 451
+	habitable 1080
+	link "Kornephoros"
+	link "Sabik"
+	link "Alniyat"
+	link "Dschubba"
+	asteroids "small rock" 1 2.574
+	asteroids "medium rock" 5 2.0592
+	asteroids "large rock" 1 4.1184
+	asteroids "small metal" 39 3.8412
+	asteroids "medium metal" 72 3.8412
+	asteroids "large metal" 3 5.2668
+	trade "Clothing" 294
+	trade "Electronics" 736
+	trade "Equipment" 408
+	trade "Food" 146
+	trade "Heavy Metals" 1158
+	trade "Industrial" 586
+	trade "Luxury Goods" 1040
+	trade "Medical" 806
+	trade "Metal" 534
+	trade "Plastic" 360
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/desert10"
+		distance 171.69
+		period 27.382
+	object
+		sprite "planet/rock10"
+		distance 643.33
+		period 198.609
+	object
+		sprite "planet/rock7"
+		distance 919.34
+		period 339.283
+	object
+		sprite "planet/jupiter"
+		distance 1850.78
+		period 969.126
+		object
+			sprite "planet/callisto"
+			distance 261
+			period 12.1722
+		object
+			sprite "planet/rock3"
+			distance 381
+			period 21.4683
+		object
+			sprite "planet/rock0"
+			distance 498
+			period 32.0814
+
+system "Algenib"
+	pos -118 341
+	habitable 1929.38
+	link "Gienah"
+	asteroids "large metal" 1 6.7392
+	trade "Clothing" 357
+	trade "Electronics" 660
+	trade "Equipment" 386
+	trade "Food" 538
+	trade "Heavy Metals" 798
+	trade "Industrial" 606
+	trade "Luxury Goods" 1078
+	trade "Medical" 607
+	trade "Metal" 293
+	trade "Plastic" 423
+	object
+		sprite "star/f5"
+		distance 10.7222
+		period 8.63262
+		offset 180
+	object
+		sprite "star/m0"
+		distance 85.7778
+		period 8.63262
+	object
+		sprite "planet/rock11"
+		distance 291.368
+		period 45.2912
+	object
+		sprite "planet/lava2"
+		distance 482.808
+		period 96.608
+	object
+		sprite "planet/ice5"
+		distance 944.058
+		period 264.149
+		object
+			sprite "planet/dust2"
+			distance 197
+			period 24.3819
+	object
+		sprite "planet/gas3"
+		distance 1780.1
+		period 683.939
+		object
+			sprite "planet/tethys"
+			distance 270
+			period 10.7331
+		object
+			sprite "planet/europa"
+			distance 358
+			period 16.3872
+
+system "Algieba"
+	pos -691 -52
+	habitable 2560
+	link "Tania Australis"
+	link "Alphard"
+	link "Zosma"
+	asteroids "small rock" 7 7.236
+	asteroids "medium rock" 1 3.726
+	asteroids "large rock" 4 5.238
+	asteroids "small metal" 2 3.564
+	asteroids "medium metal" 5 4.482
+	asteroids "large metal" 2 5.724
+	trade "Clothing" 332
+	trade "Electronics" 714
+	trade "Equipment" 616
+	trade "Food" 485
+	trade "Heavy Metals" 1071
+	trade "Industrial" 607
+	trade "Luxury Goods" 1392
+	trade "Medical" 621
+	trade "Metal" 251
+	trade "Plastic" 476
+	object
+		sprite "star/f0"
+		period 10
+	object
+		sprite "planet/ice1"
+		distance 197.25
+		period 21.9011
+	object
+		sprite "planet/rock18"
+		distance 565.41
+		period 106.288
+	object
+		sprite "planet/gas15"
+		distance 927.66
+		period 223.369
+	object
+		sprite "planet/desert4"
+		distance 1458.35
+		period 440.284
+	object
+		sprite "planet/gas3"
+		distance 3863.76
+		period 1898.7
+		object
+			sprite "planet/lava0"
+			distance 296
+			period 12.3202
+
+system "Algol"
+	pos -210 17
+	habitable 455.625
+	link "Ruchbah"
+	asteroids "large metal" 1 1.35
+	trade "Clothing" 219
+	trade "Electronics" 672
+	trade "Equipment" 643
+	trade "Food" 254
+	trade "Heavy Metals" 688
+	trade "Industrial" 870
+	trade "Luxury Goods" 1162
+	trade "Medical" 560
+	trade "Metal" 322
+	trade "Plastic" 309
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/desert7"
+		distance 157.71
+		period 37.1146
+	object
+		sprite "planet/gas2"
+		distance 749.71
+		period 384.677
+		object
+			sprite "planet/oberon"
+			distance 221
+			period 14.6018
+	object
+		sprite "planet/neptune"
+		distance 1653.96
+		period 1260.5
+		object
+			sprite "planet/ganymede"
+			distance 214
+			period 13.9136
+	object
+		sprite "planet/gas9"
+		distance 3153.96
+		period 3319.25
+		object
+			sprite "planet/dust5"
+			distance 229
+			period 12.2222
+
+system "Algorel"
+	pos -631 145
+	habitable 2170.62
+	link "Cor Caroli"
+	link "Turais"
+	link "Mizar"
+	link "Phecda"
+	asteroids "small rock" 2 3.094
+	asteroids "medium rock" 5 2.142
+	asteroids "large rock" 2 1.768
+	asteroids "small metal" 7 4.998
+	asteroids "medium metal" 75 3.434
+	asteroids "large metal" 27 3.4
+	trade "Clothing" 256
+	trade "Electronics" 821
+	trade "Equipment" 490
+	trade "Food" 336
+	trade "Heavy Metals" 799
+	trade "Industrial" 606
+	trade "Luxury Goods" 1094
+	trade "Medical" 758
+	trade "Metal" 490
+	trade "Plastic" 427
+	object
+		sprite "star/f5"
+		distance 25.7134
+		period 11.6405
+	object
+		sprite "star/k0"
+		distance 96.7866
+		period 11.6405
+		offset 180
+	object
+		sprite "planet/ice6"
+		distance 299.377
+		period 44.4728
+	object
+		sprite "planet/ice1"
+		distance 584.377
+		period 121.285
+	object
+		sprite "planet/gas0"
+		distance 1328.42
+		period 415.689
+		object
+			sprite "planet/lava2"
+			distance 305
+			period 14.8174
+		object
+			sprite "planet/ganymede"
+			distance 445
+			period 26.1134
+	object
+		sprite "planet/gas16"
+		distance 3079.18
+		period 1466.96
+		object
+			sprite "planet/ice0"
+			distance 227
+			period 16.8578
+		object
+			sprite "planet/tethys"
+			distance 302
+			period 25.8686
+
+system "Alheka"
+	pos -350 -271
+	habitable 625
+	link "Betelgeuse"
+	link "Canopus"
+	asteroids "small rock" 3 6.24
+	asteroids "medium rock" 11 9.906
+	asteroids "large rock" 5 8.892
+	asteroids "small metal" 14 8.19
+	asteroids "medium metal" 47 11.466
+	asteroids "large metal" 11 7.566
+	trade "Clothing" 181
+	trade "Electronics" 663
+	trade "Equipment" 697
+	trade "Food" 509
+	trade "Heavy Metals" 1066
+	trade "Industrial" 618
+	trade "Luxury Goods" 1422
+	trade "Medical" 531
+	trade "Metal" 388
+	trade "Plastic" 477
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/lava5"
+		distance 338.21
+		period 99.5175
+		object
+			sprite "planet/dust2"
+			distance 171
+			period 28.1097
+	object
+		sprite "planet/ice3"
+		distance 748.65
+		period 327.747
+	object
+		sprite "planet/ice0"
+		distance 1105.9
+		period 588.429
+	object
+		sprite "planet/europa"
+		distance 1382.54
+		period 822.501
+	object
+		sprite "planet/oberon"
+		distance 2623.7
+		period 2150.26
+
+system "Alhena"
+	pos -430 -80
+	habitable 455.625
+	link "Menkalinan"
+	link "Wazn"
+	asteroids "small rock" 21 8.7906
+	asteroids "medium rock" 14 5.98
+	asteroids "large rock" 1 6.3986
+	asteroids "medium metal" 6 5.5614
+	asteroids "large metal" 1 6.6976
+	trade "Clothing" 315
+	trade "Electronics" 788
+	trade "Equipment" 654
+	trade "Food" 455
+	trade "Heavy Metals" 1071
+	trade "Industrial" 792
+	trade "Luxury Goods" 1427
+	trade "Medical" 567
+	trade "Metal" 313
+	trade "Plastic" 415
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/lava3"
+		distance 161.86
+		period 38.5892
+	object
+		sprite "planet/rock15"
+		distance 375.86
+		period 136.551
+	object
+		sprite "planet/dust1"
+		distance 895.62
+		period 502.275
+	object
+		sprite "planet/lava5"
+		distance 1191.46
+		period 770.682
+	object
+		sprite "planet/ice8"
+		distance 1844.07
+		period 1483.96
+	object
+		sprite "planet/dust0"
+		distance 2388.11
+		period 2186.94
+
+system "Alioth"
+	pos -620 315
+	habitable 5360
+	link "Wei"
+	link "Vindemiatrix"
+	link "Alphecca"
+	asteroids "small metal" 5 4.0832
+	asteroids "medium metal" 2 4.048
+	asteroids "large metal" 4 3.7664
+	trade "Clothing" 293
+	trade "Electronics" 795
+	trade "Equipment" 446
+	trade "Food" 143
+	trade "Heavy Metals" 1075
+	trade "Industrial" 618
+	trade "Luxury Goods" 1126
+	trade "Medical" 791
+	trade "Metal" 537
+	trade "Plastic" 458
+	object
+		sprite "star/a5"
+		distance 45.7547
+		period 9.3429
+	object
+		sprite "star/f5"
+		distance 97.2453
+		period 9.3429
+		offset 180
+	object
+		sprite "planet/ice5"
+		distance 424.245
+		period 47.7423
+		object
+			sprite "planet/ice0"
+			distance 143
+			period 15.079
+	object
+		sprite "planet/dust0"
+		distance 754.495
+		period 113.23
+	object
+		sprite "planet/gas14"
+		distance 1369.74
+		period 276.97
+		object
+			sprite "planet/desert4"
+			distance 201
+			period 10.978
+		object
+			sprite "planet/rock0"
+			distance 294
+			period 19.42
+	object
+		sprite "planet/dust4"
+		distance 1940.75
+		period 467.122
+	object
+		sprite "planet/gas0"
+		distance 3115.19
+		period 949.956
+		object
+			sprite "planet/dust3"
+			distance 249
+			period 10.9301
+		object
+			sprite "planet/rock7"
+			distance 393
+			period 21.6727
+
+system "Alkaid"
+	pos -825 318
+	habitable 320
+	link "Hadar"
+	asteroids "medium rock" 7 5.2164
+	asteroids "large rock" 3 3.1464
+	asteroids "medium metal" 13 3.9744
+	asteroids "large metal" 2 4.8852
+	trade "Clothing" 329
+	trade "Electronics" 720
+	trade "Equipment" 632
+	trade "Food" 154
+	trade "Heavy Metals" 1023
+	trade "Industrial" 833
+	trade "Luxury Goods" 1114
+	trade "Medical" 624
+	trade "Metal" 535
+	trade "Plastic" 305
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/ice4"
+		distance 171.16
+		period 50.0712
+	object
+		sprite "planet/rock13"
+		distance 406.16
+		period 183.034
+	object
+		sprite "planet/desert5"
+		distance 1141.12
+		period 861.95
+	object
+		sprite "planet/europa"
+		distance 2024.48
+		period 2036.83
+
+system "Almaaz"
+	pos -349 -538
+	habitable 625
+	link "Hatysa"
+	link "Mintaka"
+	asteroids "small rock" 34 4.8195
+	asteroids "medium rock" 17 6.5772
+	asteroids "large rock" 33 4.3659
+	asteroids "small metal" 1 3.6288
+	asteroids "large metal" 1 7.2576
+	trade "Clothing" 253
+	trade "Electronics" 841
+	trade "Equipment" 511
+	trade "Food" 226
+	trade "Heavy Metals" 1142
+	trade "Industrial" 754
+	trade "Luxury Goods" 1073
+	trade "Medical" 814
+	trade "Metal" 523
+	trade "Plastic" 308
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/rock1"
+		distance 167.84
+		period 34.7907
+	object
+		sprite "planet/rock5"
+		distance 393.84
+		period 125.055
+	object
+		sprite "planet/dust3"
+		distance 611.2
+		period 241.766
+	object
+		sprite "planet/gas3"
+		distance 1353.96
+		period 797.129
+	object
+		sprite "planet/rock0"
+		distance 1922.8
+		period 1349.03
+	object
+		sprite "planet/dust7"
+		distance 2663.04
+		period 2198.8
+
+system "Almach"
+	pos -7 232
+	habitable 320
+	link "Schedar"
+	asteroids "small rock" 105 2.2763
+	asteroids "medium rock" 54 1.5028
+	asteroids "large rock" 47 1.6133
+	asteroids "small metal" 20 1.4365
+	asteroids "medium metal" 4 3.0719
+	asteroids "large metal" 5 1.5249
+	trade "Clothing" 364
+	trade "Electronics" 664
+	trade "Equipment" 601
+	trade "Food" 298
+	trade "Heavy Metals" 889
+	trade "Industrial" 754
+	trade "Luxury Goods" 962
+	trade "Medical" 746
+	trade "Metal" 338
+	trade "Plastic" 266
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/oberon"
+		distance 168.89
+		period 49.0785
+	object
+		sprite "planet/lava7"
+		distance 513.13
+		period 259.912
+	object
+		sprite "planet/rock17"
+		distance 1062.38
+		period 774.292
+	object
+		sprite "planet/gas14"
+		distance 2558.39
+		period 2893.58
+		object
+			sprite "planet/rock7"
+			distance 204
+			period 11.2247
+		object
+			sprite "planet/dust4"
+			distance 323
+			period 22.3631
+		object
+			sprite "planet/dust2"
+			distance 455
+			period 37.3891
+		object
+			sprite "planet/dust3"
+			distance 628
+			period 60.6273
+
+system "Alnair"
+	pos -272 314
+	habitable 455.625
+	link "Persian"
+	link "Alderamin"
+	asteroids "small rock" 20 6.825
+	asteroids "medium rock" 242 4.355
+	asteroids "large rock" 19 8.32
+	asteroids "medium metal" 34 6.695
+	asteroids "large metal" 28 5.72
+	trade "Clothing" 294
+	trade "Electronics" 711
+	trade "Equipment" 381
+	trade "Food" 529
+	trade "Heavy Metals" 866
+	trade "Industrial" 718
+	trade "Luxury Goods" 1033
+	trade "Medical" 494
+	trade "Metal" 241
+	trade "Plastic" 467
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/rock13"
+		distance 202.91
+		period 54.1641
+	object
+		sprite "planet/rock19"
+		distance 677.15
+		period 330.205
+		object
+			sprite "planet/ice8"
+			distance 140
+			period 20.8235
+	object
+		sprite "planet/gas4"
+		distance 1428.4
+		period 1011.65
+		object
+			sprite "planet/rock14"
+			distance 277
+			period 15.5871
+	object
+		sprite "planet/gas7"
+		distance 2119.96
+		period 1829.14
+
+system "Alnasl"
+	pos -553 380
+	habitable 640
+	link "Seginus"
+	link "Wei"
+	link "Kaus Borealis"
+	asteroids "medium rock" 1 1.4784
+	asteroids "large rock" 1 3.5112
+	asteroids "small metal" 15 3.2208
+	asteroids "medium metal" 10 3.3528
+	asteroids "large metal" 4 1.7688
+	trade "Clothing" 296
+	trade "Electronics" 655
+	trade "Equipment" 398
+	trade "Food" 236
+	trade "Heavy Metals" 1084
+	trade "Industrial" 650
+	trade "Luxury Goods" 1073
+	trade "Medical" 740
+	trade "Metal" 460
+	trade "Plastic" 459
+	object
+		sprite "star/k5"
+		distance 41.5
+		period 11.956
+		offset 180
+	object
+		sprite "star/k5"
+		distance 41.5
+		period 11.956
+	object
+		sprite "planet/gas16"
+		distance 764.39
+		period 334.151
+		object
+			sprite "planet/lava1"
+			distance 226
+			period 16.7465
+		object
+			sprite "planet/dust1"
+			distance 386
+			period 37.3803
+		object
+			sprite "planet/rock14"
+			distance 508
+			period 56.4362
+	object
+		sprite "planet/gas3"
+		distance 1788.8
+		period 1196.22
+
+system "Alnilam"
+	pos -487 -513
+	habitable 320
+	link "Hatysa"
+	asteroids "small rock" 1 2.166
+	asteroids "medium rock" 30 1.6245
+	asteroids "large rock" 1 3.192
+	asteroids "small metal" 42 1.5675
+	asteroids "medium metal" 15 3.3345
+	asteroids "large metal" 11 3.363
+	trade "Clothing" 264
+	trade "Electronics" 707
+	trade "Equipment" 537
+	trade "Food" 154
+	trade "Heavy Metals" 1231
+	trade "Industrial" 739
+	trade "Luxury Goods" 946
+	trade "Medical" 880
+	trade "Metal" 520
+	trade "Plastic" 334
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock4"
+		distance 170.81
+		period 49.9177
+	object
+		sprite "planet/forest6"
+		distance 696.42
+		period 410.953
+		object
+			sprite "planet/europa"
+			distance 144
+			period 21.7223
+	object
+		sprite "planet/ice8"
+		distance 1439.51
+		period 1221.26
+	object
+		sprite "planet/gas1"
+		distance 2473.75
+		period 2751.18
+		object
+			sprite "planet/dust2"
+			distance 233
+			period 12.5439
+
+system "Alnitak"
+	pos -331 -412
+	habitable 320
+	link "Rigel"
+	link "Mintaka"
+	link "Saiph"
+	asteroids "small rock" 1 5.4375
+	asteroids "medium rock" 24 4.6875
+	asteroids "large rock" 14 9.25
+	asteroids "small metal" 34 6.5
+	asteroids "medium metal" 42 6.75
+	asteroids "large metal" 12 4
+	trade "Clothing" 314
+	trade "Electronics" 805
+	trade "Equipment" 595
+	trade "Food" 445
+	trade "Heavy Metals" 1186
+	trade "Industrial" 656
+	trade "Luxury Goods" 1188
+	trade "Medical" 809
+	trade "Metal" 318
+	trade "Plastic" 452
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock12"
+		distance 165.76
+		period 47.7205
+	object
+		sprite "planet/desert2"
+		distance 521.85
+		period 266.565
+		object
+			sprite "planet/rock7"
+			distance 134
+			period 16.1616
+	object
+		sprite "planet/venus"
+		distance 1380.69
+		period 1147.17
+	object
+		sprite "planet/dust1"
+		distance 2308.7
+		period 2480.48
+
+system "Alniyat"
+	pos -691 501
+	habitable 2160
+	link "Pherkad"
+	link "Graffias"
+	link "Antares"
+	link "Han"
+	link "Dschubba"
+	link "Aldhibain"
+	asteroids "small rock" 19 10.368
+	asteroids "medium rock" 148 6.156
+	asteroids "large rock" 37 4.455
+	asteroids "small metal" 2 9.072
+	asteroids "medium metal" 4 4.941
+	asteroids "large metal" 1 4.455
+	trade "Clothing" 314
+	trade "Electronics" 768
+	trade "Equipment" 413
+	trade "Food" 170
+	trade "Heavy Metals" 1042
+	trade "Industrial" 662
+	trade "Luxury Goods" 1057
+	trade "Medical" 880
+	trade "Metal" 467
+	trade "Plastic" 372
+	object
+		sprite "star/g0"
+		distance 51.5
+		period 8.99682
+		offset 180
+	object
+		sprite "star/g0"
+		distance 51.5
+		period 8.99682
+	object
+		sprite "planet/desert6"
+		distance 359.86
+		period 58.7535
+	object
+		sprite "planet/gas14"
+		distance 1098.3
+		period 313.267
+		object
+			sprite "planet/lava1"
+			distance 245
+			period 14.7733
+		object
+			sprite "planet/miranda"
+			distance 366
+			period 26.9743
+		object
+			sprite "planet/mercury"
+			distance 517
+			period 45.286
+	object
+		sprite "planet/dust7"
+		distance 1954.55
+		period 743.709
+	object
+		sprite "planet/gas9"
+		distance 2893.16
+		period 1339.34
+		object
+			sprite "planet/rock17"
+			distance 227
+			period 12.0625
+		object
+			sprite "planet/dust2"
+			distance 348
+			period 22.8963
+
+system "Alpha Arae"
+	pos -481 394
+	habitable 1215
+	link "Delta Sagittarii"
+	link "Rastaban"
+	link "Kaus Borealis"
+	asteroids "small rock" 1 1.302
+	asteroids "medium rock" 26 3.129
+	asteroids "large rock" 28 1.974
+	asteroids "small metal" 33 2.058
+	asteroids "medium metal" 18 1.68
+	asteroids "large metal" 9 1.932
+	trade "Clothing" 245
+	trade "Electronics" 707
+	trade "Equipment" 483
+	trade "Food" 298
+	trade "Heavy Metals" 982
+	trade "Industrial" 752
+	trade "Luxury Goods" 1175
+	trade "Medical" 723
+	trade "Metal" 395
+	trade "Plastic" 314
+	object
+		sprite "star/g0"
+		distance 11
+		period 11.3038
+	object
+		sprite "star/m4"
+		distance 88
+		period 11.3038
+		offset 180
+	object
+		sprite "planet/fog0"
+		distance 361.56
+		period 78.8937
+	object
+		sprite "planet/rock5"
+		distance 678.97
+		period 203.024
+	object
+		sprite "planet/ice4"
+		distance 1228.38
+		period 494.05
+	object
+		sprite "planet/gas9"
+		distance 1680.54
+		period 790.579
+	object
+		sprite "planet/io"
+		distance 3637.5
+		period 2517.54
+
+system "Alpha Centauri"
+	pos -429 125
+	habitable 320
+	link "Sol"
+	asteroids "small rock" 1 1.944
+	asteroids "medium rock" 2 5.04
+	asteroids "large rock" 1 1.8
+	asteroids "medium metal" 10 4.428
+	asteroids "large metal" 1 3.168
+	trade "Clothing" 262
+	trade "Electronics" 695
+	trade "Equipment" 523
+	trade "Food" 550
+	trade "Heavy Metals" 874
+	trade "Industrial" 667
+	trade "Luxury Goods" 1094
+	trade "Medical" 498
+	trade "Metal" 393
+	trade "Plastic" 253
+	object
+		sprite "star/k5"
+		distance 26.7033
+		period 16.011
+		offset 180
+	object
+		sprite "star/m4"
+		distance 63.2967
+		period 16.011
+	object "Chiron"
+		sprite "planet/forest1"
+		distance 346.547
+		period 120.975
+		object
+			sprite "planet/rock17"
+			distance 126
+			period 14.7361
+	object
+		sprite "planet/desert2"
+		distance 749.037
+		period 384.423
+	object
+		sprite "planet/oberon"
+		distance 976.197
+		period 571.953
+	object
+		sprite "planet/rock15"
+		distance 1718.2
+		period 1335.56
+	object
+		sprite "planet/gas13"
+		distance 4080.61
+		period 4888.11
+
+system "Alpha Hydri"
+	pos -97 98
+	habitable 1715
+	link "Ruchbah"
+	asteroids "medium rock" 1 7.467
+	asteroids "large rock" 1 7.125
+	asteroids "large metal" 1 7.752
+	trade "Clothing" 352
+	trade "Electronics" 721
+	trade "Equipment" 555
+	trade "Food" 236
+	trade "Heavy Metals" 714
+	trade "Industrial" 859
+	trade "Luxury Goods" 1132
+	trade "Medical" 531
+	trade "Metal" 324
+	trade "Plastic" 390
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/desert1"
+		distance 231.24
+		period 33.9643
+	object
+		sprite "planet/titan"
+		distance 576.49
+		period 133.695
+	object
+		sprite "planet/desert2"
+		distance 892.78
+		period 257.659
+	object
+		sprite "planet/rock7"
+		distance 1295.27
+		period 450.265
+	object
+		sprite "planet/gas9"
+		distance 2356.36
+		period 1104.82
+		object
+			sprite "planet/rhea"
+			distance 262
+			period 14.9572
+		object
+			sprite "planet/oberon"
+			distance 356
+			period 23.6904
+
+system "Alphard"
+	pos -588 -47
+	habitable 320
+	link "Algieba"
+	link "Zosma"
+	link "Miaplacidus"
+	link "Talita"
+	asteroids "small rock" 2 7.7896
+	asteroids "medium rock" 33 8.8088
+	asteroids "large rock" 2 7.4984
+	asteroids "small metal" 5 5.3872
+	asteroids "medium metal" 83 10.2648
+	asteroids "large metal" 6 6.9888
+	trade "Clothing" 326
+	trade "Electronics" 673
+	trade "Equipment" 682
+	trade "Food" 565
+	trade "Heavy Metals" 1048
+	trade "Industrial" 629
+	trade "Luxury Goods" 1461
+	trade "Medical" 665
+	trade "Metal" 284
+	trade "Plastic" 496
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock6"
+		distance 275.76
+		period 102.396
+		object
+			sprite "planet/rock17"
+			distance 121
+			period 15.1879
+	object
+		sprite "planet/oberon"
+		distance 753.77
+		period 462.747
+	object
+		sprite "planet/gas1"
+		distance 1228.01
+		period 962.25
+		object
+			sprite "planet/lava2"
+			distance 231
+			period 12.3827
+	object
+		sprite "planet/gas9"
+		distance 2614.57
+		period 2989.41
+		object
+			sprite "planet/mercury"
+			distance 269
+			period 15.5606
+		object
+			sprite "planet/dust2"
+			distance 427
+			period 31.12
+		object
+			sprite "planet/rock7"
+			distance 559
+			period 46.6139
+
+system "Alphecca"
+	pos -546 308
+	habitable 670
+	link "Alioth"
+	link "Seginus"
+	asteroids "large metal" 1 4.3296
+	trade "Clothing" 343
+	trade "Electronics" 799
+	trade "Equipment" 399
+	trade "Food" 171
+	trade "Heavy Metals" 1092
+	trade "Industrial" 581
+	trade "Luxury Goods" 1093
+	trade "Medical" 816
+	trade "Metal" 543
+	trade "Plastic" 498
+	object
+		sprite "star/k0"
+		distance 32.6362
+		period 15.9193
+	object
+		sprite "star/m0"
+		distance 69.3638
+		period 15.9193
+		offset 180
+	object
+		sprite "planet/gas15"
+		distance 678.424
+		period 273.07
+		object
+			sprite "planet/dust0"
+			distance 192
+			period 13.1134
+		object
+			sprite "planet/luna"
+			distance 276
+			period 22.6009
+		object
+			sprite "planet/callisto"
+			distance 398
+			period 39.1369
+	object
+		sprite "planet/gas5"
+		distance 1550.18
+		period 943.186
+	object
+		sprite "planet/io"
+		distance 2281.34
+		period 1683.87
+
+system "Alpheratz"
+	pos -176 125
+	habitable 625
+	link "Al Dhanab"
+	link "Ruchbah"
+	link "Achernar"
+	asteroids "small rock" 8 5.44
+	asteroids "medium rock" 5 4.12
+	asteroids "large rock" 1 3.48
+	asteroids "small metal" 1 2.28
+	asteroids "medium metal" 6 3.88
+	asteroids "large metal" 1 3.8
+	trade "Clothing" 205
+	trade "Electronics" 751
+	trade "Equipment" 567
+	trade "Food" 240
+	trade "Heavy Metals" 694
+	trade "Industrial" 759
+	trade "Luxury Goods" 1072
+	trade "Medical" 713
+	trade "Metal" 340
+	trade "Plastic" 293
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/rock18"
+		distance 199.89
+		period 45.2175
+	object
+		sprite "planet/rock2"
+		distance 470.9
+		period 163.498
+	object
+		sprite "planet/gas16"
+		distance 1449.91
+		period 883.347
+		object
+			sprite "planet/callisto"
+			distance 212
+			period 15.2148
+		object
+			sprite "planet/ice7"
+			distance 323
+			period 28.6132
+	object
+		sprite "planet/dust4"
+		distance 2210.15
+		period 1662.47
+
+system "Altair"
+	pos -357 161
+	habitable 700
+	link "Vega"
+	link "Sol"
+	link "Delta Capricorni"
+	link "Fomalhaut"
+	asteroids "large metal" 1 4.6748
+	trade "Clothing" 378
+	trade "Electronics" 806
+	trade "Equipment" 500
+	trade "Food" 472
+	trade "Heavy Metals" 781
+	trade "Industrial" 605
+	trade "Luxury Goods" 1048
+	trade "Medical" 534
+	trade "Metal" 335
+	trade "Plastic" 274
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/lava5"
+		distance 812
+		period 360
+		offset 0
+	object "L3"
+		sprite "planet/station0"
+		distance 812
+		period 360
+		offset 180
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset -30
+	object
+		sprite "planet/ringworld"
+		distance 812
+		period 360
+		offset -50
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset -70
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset -90
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset -110
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 40
+	object
+		sprite "planet/ringworld"
+		distance 812
+		period 360
+		offset 60
+	object
+		sprite "planet/ringworld"
+		distance 812
+		period 360
+		offset 80
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 100
+
+system "Aludra"
+	pos -606 -374
+	habitable 320
+	link "Naos"
+	asteroids "small rock" 2 3.8394
+	asteroids "large rock" 7 2.4786
+	asteroids "small metal" 2 7.1442
+	asteroids "large metal" 6 3.402
+	trade "Clothing" 227
+	trade "Electronics" 683
+	trade "Equipment" 454
+	trade "Food" 385
+	trade "Heavy Metals" 986
+	trade "Industrial" 788
+	trade "Luxury Goods" 1046
+	trade "Medical" 703
+	trade "Metal" 392
+	trade "Plastic" 289
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/dust4"
+		distance 159.89
+		period 45.2082
+	object
+		sprite "planet/jupiter"
+		distance 968.53
+		period 673.992
+		object
+			sprite "planet/dust7"
+			distance 246
+			period 11.1381
+		object
+			sprite "planet/rock17"
+			distance 337
+			period 17.8589
+		object
+			sprite "planet/miranda"
+			distance 418
+			period 24.6703
+		object
+			sprite "planet/rock0"
+			distance 532
+			period 35.4223
+	object
+		sprite "planet/rock3"
+		distance 1843.82
+		period 1770.36
+	object
+		sprite "planet/oberon"
+		distance 2086.23
+		period 2130.73
+
+system "Ankaa"
+	pos -230 100
+	habitable 625
+	link "Markab"
+	link "Diphda"
+	link "Ruchbah"
+	asteroids "medium rock" 1 2.016
+	asteroids "large rock" 1 1.664
+	asteroids "small metal" 1 4.352
+	asteroids "medium metal" 7 2.176
+	asteroids "large metal" 1 2.912
+	trade "Clothing" 296
+	trade "Electronics" 671
+	trade "Equipment" 467
+	trade "Food" 359
+	trade "Heavy Metals" 650
+	trade "Industrial" 783
+	trade "Luxury Goods" 1176
+	trade "Medical" 596
+	trade "Metal" 278
+	trade "Plastic" 353
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/rock4"
+		distance 214.69
+		period 50.3312
+	object
+		sprite "planet/rock18"
+		distance 563.78
+		period 214.183
+	object
+		sprite "planet/dust3"
+		distance 997.42
+		period 504.008
+	object
+		sprite "planet/ice0"
+		distance 1347.43
+		period 791.369
+	object
+		sprite "planet/rock0"
+		distance 2059.68
+		period 1495.61
+
+system "Antares"
+	pos -711 541
+	habitable 1715
+	link "Alniyat"
+	asteroids "small rock" 10 3.8556
+	asteroids "medium rock" 17 1.89
+	asteroids "large rock" 5 3.0996
+	asteroids "small metal" 1 3.1752
+	asteroids "medium metal" 4 3.0996
+	asteroids "large metal" 3 5.1786
+	trade "Clothing" 242
+	trade "Electronics" 804
+	trade "Equipment" 432
+	trade "Food" 190
+	trade "Heavy Metals" 1034
+	trade "Industrial" 622
+	trade "Luxury Goods" 1058
+	trade "Medical" 896
+	trade "Metal" 473
+	trade "Plastic" 403
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/rock9"
+		distance 287.49
+		period 47.0828
+		object
+			sprite "planet/ice0"
+			distance 144
+			period 19.718
+	object
+		sprite "planet/rock4"
+		distance 648.18
+		period 159.394
+	object
+		sprite "planet/uranus"
+		distance 1282.47
+		period 443.607
+		object
+			sprite "planet/rock0"
+			distance 231
+			period 14.1642
+	object
+		sprite "planet/luna"
+		distance 1762.28
+		period 714.563
+	object
+		sprite "planet/dust3"
+		distance 4030.28
+		period 2471.33
+
+system "Arcturus"
+	pos -590 224
+	habitable 455.625
+	link "Mizar"
+	link "Rutilicus"
+	asteroids "small rock" 4 2.86
+	asteroids "medium rock" 3 2.508
+	asteroids "large rock" 5 2.288
+	asteroids "small metal" 4 3.234
+	asteroids "medium metal" 5 1.848
+	asteroids "large metal" 4 1.892
+	trade "Clothing" 202
+	trade "Electronics" 833
+	trade "Equipment" 562
+	trade "Food" 289
+	trade "Heavy Metals" 918
+	trade "Industrial" 773
+	trade "Luxury Goods" 1231
+	trade "Medical" 637
+	trade "Metal" 416
+	trade "Plastic" 461
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/forest0"
+		distance 174.75
+		period 43.2894
+	object
+		sprite "planet/ice6"
+		distance 635.75
+		period 300.39
+		object
+			sprite "planet/rock17"
+			distance 156
+			period 22.2334
+	object
+		sprite "planet/gas8"
+		distance 1130
+		period 711.826
+	object
+		sprite "planet/dust1"
+		distance 2098.04
+		period 1800.85
+
+system "Arneb"
+	pos -523 -580
+	habitable 455.625
+	link "Hatysa"
+	asteroids "large rock" 1 5.3055
+	asteroids "small metal" 2 5.2245
+	asteroids "medium metal" 9 4.7385
+	asteroids "large metal" 1 6.0345
+	trade "Clothing" 365
+	trade "Electronics" 800
+	trade "Equipment" 583
+	trade "Food" 135
+	trade "Heavy Metals" 1210
+	trade "Industrial" 636
+	trade "Luxury Goods" 1012
+	trade "Medical" 890
+	trade "Metal" 566
+	trade "Plastic" 358
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/lava4"
+		distance 204.34
+		period 54.7377
+	object
+		sprite "planet/rhea"
+		distance 421.98
+		period 162.44
+	object
+		sprite "planet/europa"
+		distance 671.74
+		period 326.256
+	object
+		sprite "planet/ice0"
+		distance 1376.99
+		period 957.53
+	object
+		sprite "planet/gas1"
+		distance 2204.68
+		period 1939.88
+		object
+			sprite "planet/dust5"
+			distance 232
+			period 12.4632
+		object
+			sprite "planet/callisto"
+			distance 358
+			period 23.8903
+
+system "Ascella"
+	pos -376 328
+	habitable 135
+	link "Peacock"
+	link "Zeta Aquilae"
+	link "Tais"
+	link "Rasalhague"
+	asteroids "small rock" 3 1.3328
+	asteroids "medium rock" 258 1.5708
+	asteroids "large rock" 6 1.547
+	asteroids "small metal" 5 2.023
+	asteroids "medium metal" 84 1.19
+	asteroids "large metal" 6 2.6894
+	trade "Clothing" 337
+	trade "Electronics" 750
+	trade "Equipment" 636
+	trade "Food" 467
+	trade "Heavy Metals" 863
+	trade "Industrial" 826
+	trade "Luxury Goods" 1363
+	trade "Medical" 827
+	trade "Metal" 450
+	trade "Plastic" 295
+	object
+		sprite "star/m4"
+		period 10
+	object
+		sprite "planet/desert7"
+		distance 150.21
+		period 63.3784
+	object
+		sprite "planet/lava7"
+		distance 362.17
+		period 237.28
+	object
+		sprite "planet/lava6"
+		distance 645.41
+		period 564.478
+	object
+		sprite "planet/rock10"
+		distance 1411.05
+		period 1824.76
+	object
+		sprite "planet/gas5"
+		distance 1975.3
+		period 3022.34
+
+system "Aspidiske"
+	pos -690 -282
+	habitable 1080
+	link "Avior"
+	link "Regor"
+	link "Epsilon Leonis"
+	asteroids "large metal" 1 3.7422
+	trade "Clothing" 276
+	trade "Electronics" 642
+	trade "Equipment" 426
+	trade "Food" 446
+	trade "Heavy Metals" 992
+	trade "Industrial" 786
+	trade "Luxury Goods" 1203
+	trade "Medical" 678
+	trade "Metal" 247
+	trade "Plastic" 295
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/rock15"
+		distance 153.69
+		period 23.1908
+	object
+		sprite "planet/desert5"
+		distance 444.25
+		period 113.97
+	object
+		sprite "planet/forest5"
+		distance 980.89
+		period 373.92
+	object
+		sprite "planet/ice4"
+		distance 1768.33
+		period 905.093
+	object
+		sprite "planet/desert4"
+		distance 2157.42
+		period 1219.69
+
+system "Atria"
+	pos -551 532
+	habitable 320
+	link "Han"
+	link "Lesath"
+	link "Dschubba"
+	asteroids "small rock" 18 2.376
+	asteroids "medium rock" 16 2.781
+	asteroids "large rock" 37 3.888
+	asteroids "small metal" 1 3.429
+	asteroids "medium metal" 26 2.7
+	asteroids "large metal" 2 1.431
+	trade "Clothing" 347
+	trade "Electronics" 749
+	trade "Equipment" 476
+	trade "Food" 159
+	trade "Heavy Metals" 968
+	trade "Industrial" 580
+	trade "Luxury Goods" 1059
+	trade "Medical" 881
+	trade "Metal" 565
+	trade "Plastic" 291
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock10"
+		distance 354.24
+		period 149.084
+		object
+			sprite "planet/dust2"
+			distance 183
+			period 18.7866
+	object
+		sprite "planet/ice4"
+		distance 960.4
+		period 665.523
+	object
+		sprite "planet/dust7"
+		distance 1523.64
+		period 1329.87
+	object
+		sprite "planet/miranda"
+		distance 2042.2
+		period 2063.63
+
+system "Avior"
+	pos -658 -317
+	habitable 1705
+	link "Aspidiske"
+	link "Naos"
+	link "Markeb"
+	asteroids "medium rock" 10 7.0875
+	asteroids "large rock" 1 5.7834
+	asteroids "medium metal" 1 5.8968
+	asteroids "large metal" 1 7.4844
+	trade "Clothing" 319
+	trade "Electronics" 657
+	trade "Equipment" 426
+	trade "Food" 440
+	trade "Heavy Metals" 866
+	trade "Industrial" 802
+	trade "Luxury Goods" 1182
+	trade "Medical" 741
+	trade "Metal" 331
+	trade "Plastic" 299
+	object
+		sprite "star/g0"
+		distance 42.1554
+		period 11.9466
+	object
+		sprite "star/g5"
+		distance 72.8446
+		period 11.9466
+		offset 180
+	object
+		sprite "planet/rock14"
+		distance 253.135
+		period 39.0144
+	object
+		sprite "planet/rock16"
+		distance 532.345
+		period 118.984
+	object
+		sprite "planet/rock2"
+		distance 829.595
+		period 231.471
+	object
+		sprite "planet/dust1"
+		distance 1342.84
+		period 476.69
+	object
+		sprite "planet/gas15"
+		distance 2622.09
+		period 1300.68
+		object
+			sprite "planet/io"
+			distance 186
+			period 12.5035
+
+system "Bellatrix"
+	pos -225 -82
+	habitable 625
+	link "Menkar"
+	link "Mirfak"
+	asteroids "small rock" 6 4.8438
+	asteroids "medium rock" 4 8.97
+	asteroids "large rock" 4 5.7408
+	asteroids "small metal" 6 3.289
+	asteroids "medium metal" 31 8.372
+	asteroids "large metal" 22 7.8338
+	trade "Clothing" 369
+	trade "Electronics" 707
+	trade "Equipment" 661
+	trade "Food" 167
+	trade "Heavy Metals" 981
+	trade "Industrial" 845
+	trade "Luxury Goods" 968
+	trade "Medical" 846
+	trade "Metal" 422
+	trade "Plastic" 274
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/rock11"
+		distance 179.89
+		period 38.6038
+	object
+		sprite "planet/desert6"
+		distance 687.7
+		period 288.548
+		object
+			sprite "planet/europa"
+			distance 139
+			period 15.6716
+	object
+		sprite "planet/desert4"
+		distance 1145.59
+		period 620.389
+	object
+		sprite "planet/gas12"
+		distance 2278.55
+		period 1740.23
+		object
+			sprite "planet/dust2"
+			distance 318
+			period 14.1893
+
+system "Beta Lupi"
+	pos -851 417
+	habitable 320
+	link "Pherkad"
+	link "Kappa Centauri"
+	link "Men"
+	asteroids "small rock" 12 4.1272
+	asteroids "medium rock" 124 2.2484
+	asteroids "large rock" 14 2.5564
+	asteroids "small metal" 2 3.6036
+	asteroids "medium metal" 4 2.4332
+	asteroids "large metal" 25 3.4496
+	trade "Clothing" 325
+	trade "Electronics" 855
+	trade "Equipment" 383
+	trade "Food" 212
+	trade "Heavy Metals" 982
+	trade "Industrial" 811
+	trade "Luxury Goods" 1242
+	trade "Medical" 883
+	trade "Metal" 310
+	trade "Plastic" 298
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/lava7"
+		distance 210.69
+		period 68.3834
+	object
+		sprite "planet/forest1"
+		distance 586.98
+		period 317.995
+	object
+		sprite "planet/forest5"
+		distance 1173.27
+		period 898.632
+	object
+		sprite "planet/ice8"
+		distance 1573.28
+		period 1395.38
+	object
+		sprite "planet/rock0"
+		distance 2853.92
+		period 3409.16
+
+system "Betelgeuse"
+	pos -384 -322
+	habitable 1715
+	link "Mirzam"
+	link "Alheka"
+	link "Rigel"
+	asteroids "medium rock" 21 1.86
+	asteroids "large rock" 7 1.65
+	asteroids "small metal" 78 2.7
+	asteroids "medium metal" 19 3.18
+	asteroids "large metal" 56 4.38
+	trade "Clothing" 226
+	trade "Electronics" 647
+	trade "Equipment" 681
+	trade "Food" 482
+	trade "Heavy Metals" 1140
+	trade "Industrial" 635
+	trade "Luxury Goods" 1344
+	trade "Medical" 568
+	trade "Metal" 384
+	trade "Plastic" 470
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/water0"
+		distance 202.76
+		period 27.887
+	object
+		sprite "planet/desert0"
+		distance 630.92
+		period 153.07
+	object
+		sprite "planet/rock9"
+		distance 951.92
+		period 283.68
+	object
+		sprite "planet/gas5"
+		distance 2253.68
+		period 1033.39
+		object
+			sprite "planet/tethys"
+			distance 255
+			period 12.2099
+		object
+			sprite "planet/dust5"
+			distance 376
+			period 21.8617
+		object
+			sprite "planet/dust1"
+			distance 507
+			period 34.2306
+
+system "Canopus"
+	pos -421 -225
+	habitable 625
+	link "Phurad"
+	link "Mirzam"
+	link "Alheka"
+	link "Phact"
+	asteroids "large metal" 1 6.8264
+	trade "Clothing" 237
+	trade "Electronics" 738
+	trade "Equipment" 688
+	trade "Food" 453
+	trade "Heavy Metals" 968
+	trade "Industrial" 616
+	trade "Luxury Goods" 1369
+	trade "Medical" 512
+	trade "Metal" 323
+	trade "Plastic" 485
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/rock10"
+		distance 292.81
+		period 80.1676
+		object
+			sprite "planet/dust3"
+			distance 177
+			period 17.8702
+	object
+		sprite "planet/forest4"
+		distance 745.65
+		period 325.779
+	object
+		sprite "planet/desert1"
+		distance 1515.61
+		period 944.063
+	object
+		sprite "planet/europa"
+		distance 2458.7
+		period 1950.65
+
+system "Capella"
+	pos -378 -13
+	habitable 1715
+	link "Procyon"
+	link "Aldebaran"
+	link "Menkalinan"
+	asteroids "small rock" 175 2.1204
+	asteroids "medium rock" 62 1.482
+	asteroids "large rock" 8 2.3712
+	asteroids "small metal" 10 1.8696
+	asteroids "medium metal" 3 2.9412
+	asteroids "large metal" 15 1.2996
+	trade "Clothing" 253
+	trade "Electronics" 705
+	trade "Equipment" 582
+	trade "Food" 481
+	trade "Heavy Metals" 1067
+	trade "Industrial" 742
+	trade "Luxury Goods" 1425
+	trade "Medical" 519
+	trade "Metal" 336
+	trade "Plastic" 499
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/dust2"
+		distance 161.16
+		period 19.7612
+	object
+		sprite "planet/rock19"
+		distance 646.57
+		period 158.8
+		object
+			sprite "planet/luna"
+			distance 149
+			period 22.8635
+	object
+		sprite "planet/desert4"
+		distance 1328.53
+		period 467.719
+	object
+		sprite "planet/gas6"
+		distance 2277.09
+		period 1049.54
+		object
+			sprite "planet/lava0"
+			distance 304
+			period 12.0133
+		object
+			sprite "planet/dust3"
+			distance 409
+			period 18.7472
+		object
+			sprite "planet/ice7"
+			distance 531
+			period 27.7328
+		object
+			sprite "planet/rock7"
+			distance 699
+			period 41.8859
+
+system "Caph"
+	pos -295 77
+	habitable 670
+	link "Sol"
+	link "Diphda"
+	asteroids "small rock" 19 4.14
+	asteroids "medium rock" 15 2.925
+	asteroids "large rock" 104 3.6
+	asteroids "small metal" 12 6.03
+	asteroids "medium metal" 49 3.465
+	asteroids "large metal" 72 6.345
+	trade "Clothing" 328
+	trade "Electronics" 702
+	trade "Equipment" 440
+	trade "Food" 422
+	trade "Heavy Metals" 800
+	trade "Industrial" 682
+	trade "Luxury Goods" 1253
+	trade "Medical" 532
+	trade "Metal" 323
+	trade "Plastic" 299
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/desert0"
+		distance 160.16
+		period 24.6706
+	object
+		sprite "planet/lava3"
+		distance 479.25
+		period 127.7
+	object "Reunion"
+		sprite "planet/forest2"
+		distance 885.61
+		period 320.783
+		object
+			sprite "planet/mercury"
+			distance 169
+			period 19.3731
+	object
+		sprite "planet/gas6"
+		distance 1666.37
+		period 827.952
+	object
+		sprite "planet/gas10"
+		distance 2434.98
+		period 1462.48
+
+system "Castor"
+	pos -452 -17
+	habitable 1715
+	link "Pollux"
+	link "Talita"
+	link "Menkalinan"
+	asteroids "small rock" 3 3.5154
+	asteroids "medium rock" 9 4.8762
+	asteroids "large rock" 10 7.7679
+	asteroids "small metal" 5 7.6545
+	asteroids "medium metal" 27 6.5205
+	asteroids "large metal" 1 6.4638
+	trade "Clothing" 223
+	trade "Electronics" 786
+	trade "Equipment" 659
+	trade "Food" 481
+	trade "Heavy Metals" 1022
+	trade "Industrial" 807
+	trade "Luxury Goods" 1423
+	trade "Medical" 677
+	trade "Metal" 275
+	trade "Plastic" 467
+	object
+		sprite "star/g5"
+		distance 52.9147
+		period 17.1076
+	object
+		sprite "star/k0"
+		distance 72.5853
+		period 17.1076
+		offset 180
+	object
+		sprite "planet/ice5"
+		distance 455.085
+		period 118.13
+		object
+			sprite "planet/dust3"
+			distance 139
+			period 14.4508
+	object
+		sprite "planet/rock0"
+		distance 758.695
+		period 254.287
+	object "Geminus"
+		sprite "planet/rock18"
+		distance 994.305
+		period 381.507
+	object
+		sprite "planet/uranus"
+		distance 1759.55
+		period 898.097
+		object
+			sprite "planet/desert4"
+			distance 200
+			period 11.4109
+	object
+		sprite "planet/gas8"
+		distance 5273.71
+		period 4660.11
+		object
+			sprite "planet/lava2"
+			distance 229
+			period 17.0811
+		object
+			sprite "planet/dust0"
+			distance 381
+			period 36.6564
+		object
+			sprite "planet/dust5"
+			distance 517
+			period 57.9426
+
+system "Cebalrai"
+	pos -461 282
+	habitable 455.625
+	link "Rutilicus"
+	link "Kaus Borealis"
+	link "Rasalhague"
+	link "Menkent"
+	asteroids "small rock" 3 4.5
+	asteroids "medium rock" 9 1.77
+	asteroids "large rock" 18 3.63
+	asteroids "small metal" 2 4.14
+	asteroids "medium metal" 15 3.87
+	asteroids "large metal" 22 3.15
+	trade "Clothing" 208
+	trade "Electronics" 821
+	trade "Equipment" 584
+	trade "Food" 418
+	trade "Heavy Metals" 888
+	trade "Industrial" 822
+	trade "Luxury Goods" 1188
+	trade "Medical" 692
+	trade "Metal" 514
+	trade "Plastic" 351
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/fog0"
+		distance 248.34
+		period 73.3375
+	object
+		sprite "planet/io"
+		distance 487.95
+		period 201.985
+	object
+		sprite "planet/rock9"
+		distance 982.39
+		period 577.008
+	object
+		sprite "planet/lava6"
+		distance 1319.55
+		period 898.245
+	object
+		sprite "planet/ice8"
+		distance 1672.76
+		period 1282.06
+	object
+		sprite "planet/rock3"
+		distance 5199.92
+		period 7026.7
+
+system "Cor Caroli"
+	pos -682 201
+	habitable 214.375
+	link "Vindemiatrix"
+	link "Gacrux"
+	link "Algorel"
+	link "Mizar"
+	asteroids "small rock" 24 3.2472
+	asteroids "medium rock" 20 1.4784
+	asteroids "large rock" 5 2.7456
+	asteroids "small metal" 6 2.376
+	asteroids "medium metal" 1 1.5576
+	asteroids "large metal" 8 1.3992
+	trade "Clothing" 236
+	trade "Electronics" 785
+	trade "Equipment" 513
+	trade "Food" 270
+	trade "Heavy Metals" 853
+	trade "Industrial" 590
+	trade "Luxury Goods" 1075
+	trade "Medical" 806
+	trade "Metal" 517
+	trade "Plastic" 485
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/rock1"
+		distance 163.39
+		period 57.0573
+	object
+		sprite "planet/ice6"
+		distance 433.64
+		period 246.699
+	object
+		sprite "planet/titan"
+		distance 713.73
+		period 520.923
+	object
+		sprite "planet/tethys"
+		distance 973.17
+		period 829.385
+	object
+		sprite "planet/gas16"
+		distance 1495.17
+		period 1579.46
+	object
+		sprite "planet/rhea"
+		distance 6257.21
+		period 13522.1
+
+system "Dabih"
+	pos -253 427
+	habitable 945
+	link "Tarazed"
+	link "Eltanin"
+	link "Kaus Australis"
+	asteroids "small rock" 1 3.456
+	asteroids "medium rock" 9 2.976
+	asteroids "large rock" 1 2.784
+	asteroids "large metal" 4 1.848
+	trade "Clothing" 232
+	trade "Electronics" 792
+	trade "Equipment" 454
+	trade "Food" 209
+	trade "Heavy Metals" 964
+	trade "Industrial" 709
+	trade "Luxury Goods" 1432
+	trade "Medical" 898
+	trade "Metal" 264
+	trade "Plastic" 312
+	object
+		sprite "star/g5"
+		distance 30.8148
+		period 11.2955
+	object
+		sprite "star/k5"
+		distance 60.1852
+		period 11.2955
+		offset 180
+	object
+		sprite "planet/rock13"
+		distance 316.435
+		period 73.2439
+	object
+		sprite "planet/rock11"
+		distance 586.195
+		period 184.675
+	object
+		sprite "planet/rock16"
+		distance 1161.2
+		period 514.875
+		object
+			sprite "planet/rock17"
+			distance 117
+			period 15.9089
+	object
+		sprite "planet/jupiter"
+		distance 2637.2
+		period 1762.21
+		object
+			sprite "planet/rock3"
+			distance 280
+			period 13.5253
+
+system "Delta Capricorni"
+	pos -285 202
+	habitable 455.625
+	link "Alderamin"
+	link "Altair"
+	link "Markab"
+	link "Scheat"
+	asteroids "small rock" 4 9.744
+	asteroids "medium rock" 54 12.516
+	asteroids "large rock" 9 10.08
+	asteroids "medium metal" 11 11.76
+	asteroids "large metal" 1 6.636
+	trade "Clothing" 300
+	trade "Electronics" 752
+	trade "Equipment" 444
+	trade "Food" 534
+	trade "Heavy Metals" 689
+	trade "Industrial" 605
+	trade "Luxury Goods" 1032
+	trade "Medical" 492
+	trade "Metal" 269
+	trade "Plastic" 292
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/dust5"
+		distance 194.75
+		period 50.9299
+	object
+		sprite "planet/ice5"
+		distance 668.71
+		period 324.051
+		object
+			sprite "planet/rock3"
+			distance 179
+			period 21.1178
+	object
+		sprite "planet/rock7"
+		distance 1268.8
+		period 846.927
+	object
+		sprite "planet/rock17"
+		distance 1673.41
+		period 1282.8
+	object
+		sprite "planet/neptune"
+		distance 4168.41
+		period 5043.27
+		object
+			sprite "planet/ice0"
+			distance 192
+			period 11.8241
+		object
+			sprite "planet/rock0"
+			distance 306
+			period 23.7903
+		object
+			sprite "planet/luna"
+			distance 409
+			period 36.7623
+
+system "Delta Sagittarii"
+	pos -414 416
+	habitable 320
+	link "Rastaban"
+	link "Alpha Arae"
+	link "Eltanin"
+	link "Tais"
+	asteroids "small rock" 35 4.914
+	asteroids "medium rock" 14 4.4577
+	asteroids "large rock" 8 2.5623
+	asteroids "small metal" 43 5.1597
+	asteroids "medium metal" 45 2.1762
+	asteroids "large metal" 16 4.0716
+	trade "Clothing" 283
+	trade "Electronics" 731
+	trade "Equipment" 568
+	trade "Food" 264
+	trade "Heavy Metals" 1012
+	trade "Industrial" 799
+	trade "Luxury Goods" 1264
+	trade "Medical" 794
+	trade "Metal" 366
+	trade "Plastic" 369
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/desert9"
+		distance 170.25
+		period 49.6725
+	object
+		sprite "planet/gas15"
+		distance 886.54
+		period 590.245
+		object
+			sprite "planet/rock17"
+			distance 219
+			period 15.9745
+		object
+			sprite "planet/dust0"
+			distance 329
+			period 29.4141
+		object
+			sprite "planet/rhea"
+			distance 467
+			period 49.7436
+	object
+		sprite "planet/gas1"
+		distance 2020.23
+		period 2030.42
+		object
+			sprite "planet/rock14"
+			distance 272
+			period 15.8216
+
+system "Delta Velorum"
+	pos -740 90
+	habitable 455.625
+	link "Turais"
+	asteroids "small rock" 6 2.775
+	asteroids "medium rock" 39 2.8875
+	asteroids "large rock" 6 3.45
+	asteroids "small metal" 11 3.6
+	asteroids "medium metal" 54 5.4375
+	asteroids "large metal" 5 3.8625
+	trade "Clothing" 317
+	trade "Electronics" 672
+	trade "Equipment" 468
+	trade "Food" 205
+	trade "Heavy Metals" 815
+	trade "Industrial" 644
+	trade "Luxury Goods" 927
+	trade "Medical" 717
+	trade "Metal" 577
+	trade "Plastic" 481
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/desert0"
+		distance 162.74
+		period 38.9043
+	object
+		sprite "planet/rock14"
+		distance 563.74
+		period 250.827
+	object
+		sprite "planet/earth"
+		distance 857.99
+		period 470.955
+	object
+		sprite "planet/oberon"
+		distance 1864.23
+		period 1508.36
+	object
+		sprite "planet/gas13"
+		distance 2412.48
+		period 2220.51
+
+system "Denebola"
+	pos -478 70
+	habitable 1080
+	link "Sol"
+	link "Merak"
+	asteroids "small rock" 23 8.91
+	asteroids "medium rock" 13 5.1084
+	asteroids "large rock" 15 4.6926
+	asteroids "medium metal" 13 6.831
+	asteroids "large metal" 1 8.019
+	trade "Clothing" 271
+	trade "Electronics" 673
+	trade "Equipment" 409
+	trade "Food" 568
+	trade "Heavy Metals" 856
+	trade "Industrial" 590
+	trade "Luxury Goods" 1201
+	trade "Medical" 477
+	trade "Metal" 489
+	trade "Plastic" 253
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/mars"
+		distance 228.96
+		period 42.1684
+	object
+		sprite "planet/gas14"
+		distance 737.17
+		period 243.613
+	object
+		sprite "planet/desert6"
+		distance 1228.98
+		period 524.403
+		object
+			sprite "planet/rock14"
+			distance 164
+			period 20.0843
+	object
+		sprite "planet/rock7"
+		distance 1661.98
+		period 824.683
+	object
+		sprite "planet/io"
+		distance 2079.23
+		period 1153.99
+
+system "Diphda"
+	pos -262 61
+	habitable 1215
+	link "Ankaa"
+	link "Caph"
+	link "Acamar"
+	asteroids "small rock" 22 4.536
+	asteroids "medium rock" 23 7.7112
+	asteroids "large rock" 29 6.0264
+	asteroids "small metal" 34 5.3136
+	asteroids "medium metal" 25 8.2296
+	asteroids "large metal" 38 4.7304
+	trade "Clothing" 323
+	trade "Electronics" 642
+	trade "Equipment" 465
+	trade "Food" 359
+	trade "Heavy Metals" 763
+	trade "Industrial" 714
+	trade "Luxury Goods" 1284
+	trade "Medical" 600
+	trade "Metal" 277
+	trade "Plastic" 392
+	object
+		sprite "star/g0"
+		distance 13.2222
+		period 14.8968
+	object
+		sprite "star/m4"
+		distance 105.778
+		period 14.8968
+		offset 180
+	object
+		sprite "planet/lava4"
+		distance 336.778
+		period 70.923
+	object
+		sprite "planet/forest0"
+		distance 710.588
+		period 217.369
+	object
+		sprite "planet/dust1"
+		distance 1469.35
+		period 646.337
+	object
+		sprite "planet/rhea"
+		distance 1727.39
+		period 823.866
+	object
+		sprite "planet/ice8"
+		distance 2064.88
+		period 1076.75
+
+system "Dschubba"
+	pos -598 501
+	habitable 839.375
+	link "Atria"
+	link "Lesath"
+	link "Alniyat"
+	link "Aldhibain"
+	asteroids "small rock" 20 1.85
+	asteroids "medium rock" 66 2.85
+	asteroids "large rock" 11 2.375
+	asteroids "small metal" 57 2.075
+	asteroids "medium metal" 51 2.3
+	asteroids "large metal" 68 3.5
+	trade "Clothing" 360
+	trade "Electronics" 698
+	trade "Equipment" 461
+	trade "Food" 171
+	trade "Heavy Metals" 1043
+	trade "Industrial" 579
+	trade "Luxury Goods" 1049
+	trade "Medical" 866
+	trade "Metal" 546
+	trade "Plastic" 326
+	object
+		sprite "star/g5"
+		distance 25.9229
+		period 14.1183
+	object
+		sprite "star/m0"
+		distance 75.5771
+		period 14.1183
+		offset 180
+	object
+		sprite "planet/lava0"
+		distance 252.687
+		period 55.457
+	object
+		sprite "planet/lava3"
+		distance 643.687
+		period 225.473
+	object
+		sprite "planet/rock0"
+		distance 1144.58
+		period 534.625
+	object
+		sprite "planet/dust4"
+		distance 2192.82
+		period 1417.7
+
+system "Dubhe"
+	pos -577 -103
+	habitable 625
+	link "Zosma"
+	asteroids "medium rock" 12 3.5496
+	asteroids "large rock" 1 3.48
+	asteroids "small metal" 1 3.9672
+	asteroids "medium metal" 45 1.8792
+	asteroids "large metal" 2 5.0112
+	trade "Clothing" 386
+	trade "Electronics" 779
+	trade "Equipment" 541
+	trade "Food" 507
+	trade "Heavy Metals" 1249
+	trade "Industrial" 526
+	trade "Luxury Goods" 1357
+	trade "Medical" 521
+	trade "Metal" 262
+	trade "Plastic" 489
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/lava7"
+		distance 196.25
+		period 43.988
+	object
+		sprite "planet/forest3"
+		distance 424.21
+		period 139.795
+	object
+		sprite "planet/mercury"
+		distance 919.02
+		period 445.766
+	object
+		sprite "planet/rock17"
+		distance 1454.26
+		period 887.326
+	object
+		sprite "planet/dust1"
+		distance 4133.51
+		period 4252.05
+
+system "Elnath"
+	pos -288 -77
+	habitable 2560
+	link "Acamar"
+	link "Aldebaran"
+	link "Nihal"
+	link "Kursa"
+	asteroids "medium rock" 8 4.998
+	asteroids "large rock" 1 4.6452
+	asteroids "small metal" 9 7.2912
+	asteroids "medium metal" 11 4.7628
+	asteroids "large metal" 2 4.2924
+	trade "Clothing" 277
+	trade "Electronics" 620
+	trade "Equipment" 629
+	trade "Food" 376
+	trade "Heavy Metals" 919
+	trade "Industrial" 724
+	trade "Luxury Goods" 1434
+	trade "Medical" 556
+	trade "Metal" 244
+	trade "Plastic" 476
+	object
+		sprite "star/f0"
+		period 10
+	object
+		sprite "planet/desert5"
+		distance 181.25
+		period 19.2911
+	object
+		sprite "planet/dust4"
+		distance 402.25
+		period 63.7799
+	object
+		sprite "planet/luna"
+		distance 609.49
+		period 118.957
+	object
+		sprite "planet/ice0"
+		distance 899.74
+		period 213.361
+	object
+		sprite "planet/gas7"
+		distance 2138.5
+		period 781.815
+
+system "Eltanin"
+	pos -328 433
+	habitable 455.625
+	link "Dabih"
+	link "Delta Sagittarii"
+	link "Albaldah"
+	asteroids "small rock" 34 1.904
+	asteroids "medium rock" 12 4.896
+	asteroids "large rock" 6 3.298
+	asteroids "medium metal" 7 3.094
+	asteroids "large metal" 2 4.658
+	trade "Clothing" 211
+	trade "Electronics" 783
+	trade "Equipment" 491
+	trade "Food" 233
+	trade "Heavy Metals" 1035
+	trade "Industrial" 778
+	trade "Luxury Goods" 1370
+	trade "Medical" 859
+	trade "Metal" 284
+	trade "Plastic" 335
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/ice0"
+		distance 128.5
+		period 27.2967
+	object
+		sprite "planet/lava7"
+		distance 353.39
+		period 124.491
+	object
+		sprite "planet/lava0"
+		distance 684.43
+		period 335.544
+	object
+		sprite "planet/rhea"
+		distance 1363.59
+		period 943.587
+	object
+		sprite "planet/europa"
+		distance 2001.84
+		period 1678.42
+
+system "Enif"
+	pos -177 498
+	habitable 1715
+	link "Sadalmelik"
+	link "Sadalsuud"
+	link "Tarazed"
+	asteroids "small rock" 1 6.3336
+	asteroids "medium rock" 14 5.1968
+	asteroids "large rock" 17 12.0176
+	asteroids "small metal" 4 4.1412
+	asteroids "medium metal" 11 6.2524
+	asteroids "large metal" 2 8.0388
+	trade "Clothing" 361
+	trade "Electronics" 800
+	trade "Equipment" 485
+	trade "Food" 335
+	trade "Heavy Metals" 806
+	trade "Industrial" 838
+	trade "Luxury Goods" 1456
+	trade "Medical" 914
+	trade "Metal" 297
+	trade "Plastic" 412
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/rock15"
+		distance 157.25
+		period 19.0464
+	object
+		sprite "planet/gas11"
+		distance 904.41
+		period 262.71
+		object
+			sprite "planet/ice0"
+			distance 240
+			period 11.5915
+		object
+			sprite "planet/dust4"
+			distance 330
+			period 18.6894
+		object
+			sprite "planet/luna"
+			distance 480
+			period 32.7858
+	object
+		sprite "planet/ice8"
+		distance 1583.17
+		period 608.442
+	object
+		sprite "planet/rock17"
+		distance 1933.53
+		period 821.21
+	object
+		sprite "planet/dust3"
+		distance 3056.42
+		period 1632.1
+
+system "Epsilon Leonis"
+	pos -619 -229
+	habitable 1080
+	link "Gomeisa"
+	link "Aspidiske"
+	link "Adhara"
+	asteroids "small rock" 34 3.888
+	asteroids "medium rock" 66 1.836
+	asteroids "large rock" 24 2.376
+	asteroids "small metal" 13 2.052
+	asteroids "medium metal" 39 3.96
+	asteroids "large metal" 1 3.816
+	trade "Clothing" 297
+	trade "Electronics" 650
+	trade "Equipment" 447
+	trade "Food" 539
+	trade "Heavy Metals" 1090
+	trade "Industrial" 662
+	trade "Luxury Goods" 1304
+	trade "Medical" 599
+	trade "Metal" 216
+	trade "Plastic" 389
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/desert6"
+		distance 216.24
+		period 38.7037
+	object
+		sprite "planet/mercury"
+		distance 440.24
+		period 112.43
+	object
+		sprite "planet/rock13"
+		distance 1145.2
+		period 471.705
+	object
+		sprite "planet/ice8"
+		distance 2438.09
+		period 1465.29
+
+system "Fomalhaut"
+	pos -314 124
+	habitable 320
+	link "Altair"
+	link "Markab"
+	asteroids "small rock" 3 7.1415
+	asteroids "medium rock" 2 9.2529
+	asteroids "large rock" 1 4.2228
+	asteroids "small metal" 16 4.7817
+	asteroids "medium metal" 19 7.0173
+	asteroids "large metal" 2 6.4584
+	trade "Clothing" 336
+	trade "Electronics" 735
+	trade "Equipment" 401
+	trade "Food" 527
+	trade "Heavy Metals" 713
+	trade "Industrial" 626
+	trade "Luxury Goods" 1047
+	trade "Medical" 531
+	trade "Metal" 285
+	trade "Plastic" 267
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock19"
+		distance 153.41
+		period 42.4879
+	object
+		sprite "planet/rock17"
+		distance 518.37
+		period 263.903
+	object
+		sprite "planet/rock3"
+		distance 808.53
+		period 514.078
+	object
+		sprite "planet/ice5"
+		distance 1702.02
+		period 1570.12
+	object
+		sprite "planet/gas9"
+		distance 2337.11
+		period 2526.41
+		object
+			sprite "planet/rock0"
+			distance 248
+			period 13.7745
+
+system "Gacrux"
+	pos -713 184
+	habitable 945
+	link "Cor Caroli"
+	link "Muhlifain"
+	link "Turais"
+	asteroids "medium rock" 20 1.8354
+	asteroids "large rock" 1 2.2862
+	asteroids "small metal" 7 2.8336
+	asteroids "medium metal" 143 3.5742
+	asteroids "large metal" 30 4.7656
+	trade "Clothing" 266
+	trade "Electronics" 786
+	trade "Equipment" 533
+	trade "Food" 240
+	trade "Heavy Metals" 926
+	trade "Industrial" 670
+	trade "Luxury Goods" 984
+	trade "Medical" 848
+	trade "Metal" 542
+	trade "Plastic" 491
+	object
+		sprite "star/g5"
+		distance 37.5873
+		period 15.217
+	object
+		sprite "star/k5"
+		distance 73.4127
+		period 15.217
+		offset 180
+	object
+		sprite "planet/forest6"
+		distance 292.423
+		period 65.067
+	object
+		sprite "planet/titan"
+		distance 540.863
+		period 163.672
+	object
+		sprite "planet/uranus"
+		distance 1153.11
+		period 509.509
+		object
+			sprite "planet/dust1"
+			distance 213
+			period 12.5413
+	object
+		sprite "planet/gas8"
+		distance 2508.72
+		period 1635.02
+
+system "Gamma Cassiopeiae"
+	pos -116 293
+	habitable 214.375
+	link "Mirach"
+	asteroids "small rock" 17 7.4936
+	asteroids "medium rock" 64 2.8101
+	asteroids "large rock" 3 5.0692
+	asteroids "small metal" 5 2.9203
+	asteroids "medium metal" 6 6.9977
+	asteroids "large metal" 42 3.4713
+	trade "Clothing" 252
+	trade "Electronics" 672
+	trade "Equipment" 540
+	trade "Food" 419
+	trade "Heavy Metals" 804
+	trade "Industrial" 658
+	trade "Luxury Goods" 1068
+	trade "Medical" 694
+	trade "Metal" 261
+	trade "Plastic" 284
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/lava6"
+		distance 130.74
+		period 40.84
+	object
+		sprite "planet/uranus"
+		distance 434.15
+		period 247.134
+	object
+		sprite "planet/dust1"
+		distance 758.99
+		period 571.251
+	object
+		sprite "planet/neptune"
+		distance 1829.15
+		period 2137.21
+		object
+			sprite "planet/rock7"
+			distance 217
+			period 14.2072
+
+system "Gamma Corvi"
+	pos -906 64
+	habitable 135
+	link "Spica"
+	asteroids "small rock" 20 1.5168
+	asteroids "medium rock" 59 2.8608
+	asteroids "large rock" 17 2.1696
+	asteroids "small metal" 29 1.3248
+	asteroids "medium metal" 48 1.9968
+	asteroids "large metal" 36 1.6704
+	trade "Clothing" 203
+	trade "Electronics" 763
+	trade "Equipment" 366
+	trade "Food" 227
+	trade "Heavy Metals" 953
+	trade "Industrial" 725
+	trade "Luxury Goods" 1106
+	trade "Medical" 590
+	trade "Metal" 473
+	trade "Plastic" 510
+	object
+		sprite "star/m4"
+		period 10
+	object
+		sprite "planet/water0"
+		distance 132.29
+		period 52.3822
+	object
+		sprite "planet/rock9"
+		distance 480.9
+		period 363.057
+		object
+			sprite "planet/rhea"
+			distance 165
+			period 24.185
+	object
+		sprite "planet/lava7"
+		distance 892.9
+		period 918.538
+	object
+		sprite "planet/dust0"
+		distance 1973.86
+		period 3019.03
+
+system "Gienah"
+	pos -176 354
+	habitable 214.375
+	link "Persian"
+	link "Algenib"
+	asteroids "small rock" 1 2.574
+	asteroids "medium rock" 4 2.448
+	asteroids "large rock" 16 2.16
+	asteroids "small metal" 29 1.89
+	asteroids "medium metal" 203 0.972
+	asteroids "large metal" 37 2.304
+	trade "Clothing" 320
+	trade "Electronics" 648
+	trade "Equipment" 387
+	trade "Food" 504
+	trade "Heavy Metals" 849
+	trade "Industrial" 632
+	trade "Luxury Goods" 1043
+	trade "Medical" 600
+	trade "Metal" 245
+	trade "Plastic" 460
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/desert7"
+		distance 225.86
+		period 92.7325
+	object
+		sprite "planet/rock9"
+		distance 483.35
+		period 290.312
+	object
+		sprite "planet/rock16"
+		distance 1022.6
+		period 893.37
+	object
+		sprite "planet/gas10"
+		distance 1797.61
+		period 2082.17
+		object
+			sprite "planet/dust5"
+			distance 222
+			period 16.3039
+		object
+			sprite "planet/dust3"
+			distance 336
+			period 30.3579
+		object
+			sprite "planet/miranda"
+			distance 471
+			period 50.3841
+
+system "Girtab"
+	pos -430 481
+	habitable 1080
+	link "Lesath"
+	link "Rastaban"
+	link "Albaldah"
+	asteroids "large rock" 1 7.695
+	asteroids "small metal" 9 3.648
+	asteroids "medium metal" 1 5.7
+	asteroids "large metal" 5 3.876
+	trade "Clothing" 206
+	trade "Electronics" 758
+	trade "Equipment" 494
+	trade "Food" 157
+	trade "Heavy Metals" 999
+	trade "Industrial" 741
+	trade "Luxury Goods" 1187
+	trade "Medical" 716
+	trade "Metal" 366
+	trade "Plastic" 301
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/water1"
+		distance 224.89
+		period 41.0491
+	object
+		sprite "planet/dust2"
+		distance 462.18
+		period 120.939
+	object
+		sprite "planet/ice6"
+		distance 714.47
+		period 232.447
+	object
+		sprite "planet/europa"
+		distance 1001.47
+		period 385.749
+	object
+		sprite "planet/rock10"
+		distance 1775.47
+		period 910.58
+		object
+			sprite "planet/rock0"
+			distance 158
+			period 15.0715
+	object
+		sprite "planet/gas12"
+		distance 8226.51
+		period 9081.79
+
+system "Gomeisa"
+	pos -600 -161
+	habitable 214.375
+	link "Zosma"
+	link "Epsilon Leonis"
+	link "Adhara"
+	asteroids "small rock" 44 4.956
+	asteroids "medium rock" 13 3.78
+	asteroids "large rock" 1 3.024
+	asteroids "large metal" 3 4.536
+	trade "Clothing" 345
+	trade "Electronics" 681
+	trade "Equipment" 480
+	trade "Food" 563
+	trade "Heavy Metals" 1140
+	trade "Industrial" 612
+	trade "Luxury Goods" 1361
+	trade "Medical" 585
+	trade "Metal" 228
+	trade "Plastic" 451
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/dust6"
+		distance 127.86
+		period 39.498
+	object
+		sprite "planet/desert2"
+		distance 430.67
+		period 244.169
+	object
+		sprite "planet/rock5"
+		distance 701.67
+		period 507.776
+	object
+		sprite "planet/gas10"
+		distance 1639.43
+		period 1813.48
+		object
+			sprite "planet/ganymede"
+			distance 222
+			period 16.3039
+		object
+			sprite "planet/dust0"
+			distance 365
+			period 34.3717
+
+system "Graffias"
+	pos -784 517
+	habitable 1715
+	link "Alniyat"
+	asteroids "small rock" 15 3.069
+	asteroids "medium rock" 45 1.749
+	asteroids "large rock" 40 2.574
+	asteroids "small metal" 8 4.257
+	asteroids "medium metal" 24 2.145
+	asteroids "large metal" 4 2.343
+	trade "Clothing" 314
+	trade "Electronics" 799
+	trade "Equipment" 416
+	trade "Food" 151
+	trade "Heavy Metals" 986
+	trade "Industrial" 748
+	trade "Luxury Goods" 1014
+	trade "Medical" 824
+	trade "Metal" 404
+	trade "Plastic" 426
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/gas4"
+		distance 557.49
+		period 127.14
+		object
+			sprite "planet/ganymede"
+			distance 244
+			period 12.8864
+		object
+			sprite "planet/ice8"
+			distance 346
+			period 21.76
+	object
+		sprite "planet/luna"
+		distance 1058.5
+		period 332.632
+	object
+		sprite "planet/rock0"
+		distance 1321.06
+		period 463.78
+	object
+		sprite "planet/jupiter"
+		distance 2429.31
+		period 1156.52
+		object
+			sprite "planet/dust7"
+			distance 260
+			period 12.1023
+
+system "Hadar"
+	pos -788 283
+	habitable 1535.62
+	link "Zeta Centauri"
+	link "Izar"
+	link "Zubeneschamali"
+	link "Alkaid"
+	asteroids "small rock" 37 3.5226
+	asteroids "medium rock" 22 3.9672
+	asteroids "large rock" 7 4.9248
+	asteroids "medium metal" 25 4.5144
+	asteroids "large metal" 12 2.1204
+	trade "Clothing" 338
+	trade "Electronics" 700
+	trade "Equipment" 579
+	trade "Food" 155
+	trade "Heavy Metals" 977
+	trade "Industrial" 779
+	trade "Luxury Goods" 1068
+	trade "Medical" 624
+	trade "Metal" 572
+	trade "Plastic" 307
+	object
+		sprite "star/g0"
+		distance 35.1593
+		period 13.1672
+		offset 180
+	object
+		sprite "star/k0"
+		distance 83.3407
+		period 13.1672
+	object
+		sprite "planet/rock5"
+		distance 271.651
+		period 45.7018
+	object
+		sprite "planet/mercury"
+		distance 475.651
+		period 105.889
+	object
+		sprite "planet/lava3"
+		distance 1073.65
+		period 359.097
+	object
+		sprite "planet/dust7"
+		distance 2263.69
+		period 1099.37
+
+system "Hamal"
+	pos -129 24
+	habitable 1080
+	link "Ruchbah"
+	asteroids "small rock" 3 2.7552
+	asteroids "medium rock" 3 3.9648
+	asteroids "large rock" 1 3.9312
+	asteroids "small metal" 1 2.1504
+	asteroids "large metal" 2 3.2928
+	trade "Clothing" 359
+	trade "Electronics" 690
+	trade "Equipment" 533
+	trade "Food" 199
+	trade "Heavy Metals" 640
+	trade "Industrial" 821
+	trade "Luxury Goods" 1162
+	trade "Medical" 633
+	trade "Metal" 332
+	trade "Plastic" 404
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/callisto"
+		distance 160.25
+		period 24.6914
+	object
+		sprite "planet/lava1"
+		distance 423.06
+		period 105.913
+	object
+		sprite "planet/lava2"
+		distance 879.15
+		period 317.28
+	object
+		sprite "planet/dust0"
+		distance 1269.04
+		period 550.251
+	object
+		sprite "planet/gas6"
+		distance 2570.04
+		period 1585.83
+
+system "Han"
+	pos -610 561
+	habitable 1400
+	link "Alniyat"
+	link "Atria"
+	asteroids "large metal" 1 2.85
+	trade "Clothing" 337
+	trade "Electronics" 762
+	trade "Equipment" 407
+	trade "Food" 156
+	trade "Heavy Metals" 986
+	trade "Industrial" 593
+	trade "Luxury Goods" 1019
+	trade "Medical" 896
+	trade "Metal" 541
+	trade "Plastic" 329
+	object
+		sprite "star/g0"
+		distance 28.1143
+		period 14.5832
+		offset 180
+	object
+		sprite "star/k5"
+		distance 94.8857
+		period 14.5832
+	object
+		sprite "planet/callisto"
+		distance 268.886
+		period 47.1354
+	object
+		sprite "planet/rock7"
+		distance 501.136
+		period 119.93
+	object
+		sprite "planet/rock17"
+		distance 1149.03
+		period 416.381
+	object
+		sprite "planet/gas8"
+		distance 1976.59
+		period 939.441
+		object
+			sprite "planet/dust0"
+			distance 202
+			period 14.1511
+		object
+			sprite "planet/lava0"
+			distance 304
+			period 26.126
+
+system "Hassaleh"
+	pos -291 -287
+	habitable 670
+	link "Rigel"
+	asteroids "small rock" 6 1.9305
+	asteroids "medium rock" 75 4.4928
+	asteroids "large rock" 14 2.8782
+	asteroids "small metal" 9 2.457
+	asteroids "medium metal" 9 5.1597
+	asteroids "large metal" 28 3.5802
+	trade "Clothing" 338
+	trade "Electronics" 760
+	trade "Equipment" 641
+	trade "Food" 538
+	trade "Heavy Metals" 1221
+	trade "Industrial" 608
+	trade "Luxury Goods" 1258
+	trade "Medical" 721
+	trade "Metal" 265
+	trade "Plastic" 462
+	object
+		sprite "star/k0"
+		distance 36.1558
+		period 18.5627
+	object
+		sprite "star/m0"
+		distance 76.8442
+		period 18.5627
+		offset 180
+	object
+		sprite "planet/desert8"
+		distance 278.344
+		period 71.7622
+	object
+		sprite "planet/desert9"
+		distance 640.234
+		period 250.34
+	object
+		sprite "planet/dust5"
+		distance 1164.64
+		period 614.204
+	object
+		sprite "planet/rhea"
+		distance 2183.89
+		period 1577.14
+
+system "Hatysa"
+	pos -474 -542
+	habitable 625
+	link "Arneb"
+	link "Alnilam"
+	link "Almaaz"
+	asteroids "small rock" 19 0.858
+	asteroids "large rock" 3 1.0296
+	asteroids "small metal" 13 1.0153
+	asteroids "medium metal" 102 1.3585
+	asteroids "large metal" 14 1.9448
+	trade "Clothing" 298
+	trade "Electronics" 774
+	trade "Equipment" 552
+	trade "Food" 157
+	trade "Heavy Metals" 1211
+	trade "Industrial" 702
+	trade "Luxury Goods" 990
+	trade "Medical" 863
+	trade "Metal" 546
+	trade "Plastic" 330
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/desert9"
+		distance 162.64
+		period 33.1865
+	object
+		sprite "planet/rock5"
+		distance 482.89
+		period 169.782
+	object
+		sprite "planet/desert5"
+		distance 772.98
+		period 343.853
+	object
+		sprite "planet/jupiter"
+		distance 2067.62
+		period 1504.27
+		object
+			sprite "planet/io"
+			distance 247
+			period 11.2061
+		object
+			sprite "planet/rock0"
+			distance 336
+			period 17.7794
+
+system "Izar"
+	pos -784 231
+	habitable 320
+	link "Acrux"
+	link "Hadar"
+	asteroids "small rock" 7 3.822
+	asteroids "medium rock" 37 5.343
+	asteroids "large rock" 19 4.719
+	asteroids "small metal" 35 3.822
+	asteroids "medium metal" 97 4.875
+	asteroids "large metal" 27 2.145
+	trade "Clothing" 347
+	trade "Electronics" 687
+	trade "Equipment" 531
+	trade "Food" 144
+	trade "Heavy Metals" 915
+	trade "Industrial" 842
+	trade "Luxury Goods" 1134
+	trade "Medical" 638
+	trade "Metal" 542
+	trade "Plastic" 359
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock12"
+		distance 302.61
+		period 117.709
+		object
+			sprite "planet/dust5"
+			distance 173
+			period 21.76
+	object
+		sprite "planet/uranus"
+		distance 793.1
+		period 499.433
+	object
+		sprite "planet/rock4"
+		distance 1775.66
+		period 1673.11
+		object
+			sprite "planet/lava2"
+			distance 189
+			period 21.2152
+
+system "Kappa Centauri"
+	pos -867 480
+	habitable 1080.62
+	link "Pherkad"
+	link "Beta Lupi"
+	asteroids "large metal" 1 3.9349
+	trade "Clothing" 356
+	trade "Electronics" 855
+	trade "Equipment" 380
+	trade "Food" 208
+	trade "Heavy Metals" 1049
+	trade "Industrial" 784
+	trade "Luxury Goods" 1174
+	trade "Medical" 891
+	trade "Metal" 293
+	trade "Plastic" 281
+	object
+		sprite "star/g5"
+		distance 47.0119
+		period 14.3263
+	object
+		sprite "star/k0"
+		distance 64.4881
+		period 14.3263
+		offset 180
+	object
+		sprite "planet/forest3"
+		distance 268.238
+		period 53.4568
+	object
+		sprite "planet/rock15"
+		distance 502.248
+		period 136.962
+	object
+		sprite "planet/oberon"
+		distance 1024.66
+		period 399.109
+	object
+		sprite "planet/europa"
+		distance 2386.62
+		period 1418.72
+
+system "Kaus Australis"
+	pos -284 395
+	habitable 292.5
+	link "Dabih"
+	link "Tais"
+	link "Peacock"
+	asteroids "small rock" 2 4.7628
+	asteroids "medium rock" 39 4.9518
+	asteroids "large rock" 1 3.8556
+	asteroids "small metal" 4 3.1752
+	asteroids "medium metal" 36 4.8006
+	asteroids "large metal" 3 2.7594
+	trade "Clothing" 279
+	trade "Electronics" 717
+	trade "Equipment" 591
+	trade "Food" 249
+	trade "Heavy Metals" 945
+	trade "Industrial" 775
+	trade "Luxury Goods" 1387
+	trade "Medical" 849
+	trade "Metal" 270
+	trade "Plastic" 366
+	object
+		sprite "star/m0"
+		distance 27.5107
+		period 24.4485
+		offset 180
+	object
+		sprite "star/m8"
+		distance 75.4893
+		period 24.4485
+	object
+		sprite "planet/forest1"
+		distance 297.989
+		period 120.309
+	object
+		sprite "planet/luna"
+		distance 542.879
+		period 295.837
+	object
+		sprite "planet/ice0"
+		distance 735.129
+		period 466.168
+	object
+		sprite "planet/titan"
+		distance 1419.29
+		period 1250.56
+	object
+		sprite "planet/gas10"
+		distance 1995.53
+		period 2084.9
+		object
+			sprite "planet/dust2"
+			distance 206
+			period 14.5735
+
+system "Kaus Borealis"
+	pos -456 350
+	habitable 320
+	link "Cebalrai"
+	link "Alpha Arae"
+	link "Alnasl"
+	asteroids "small rock" 1 4.2504
+	asteroids "medium rock" 10 4.1888
+	asteroids "large rock" 4 3.388
+	asteroids "small metal" 2 8.2544
+	asteroids "large metal" 4 4.7432
+	trade "Clothing" 251
+	trade "Electronics" 728
+	trade "Equipment" 469
+	trade "Food" 352
+	trade "Heavy Metals" 953
+	trade "Industrial" 744
+	trade "Luxury Goods" 1152
+	trade "Medical" 741
+	trade "Metal" 435
+	trade "Plastic" 350
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock9"
+		distance 163.69
+		period 46.8294
+	object
+		sprite "planet/desert9"
+		distance 394.94
+		period 175.502
+	object
+		sprite "planet/forest1"
+		distance 755.15
+		period 464.018
+		object
+			sprite "planet/miranda"
+			distance 142
+			period 17.6303
+	object
+		sprite "planet/ice0"
+		distance 1296.4
+		period 1043.74
+	object
+		sprite "planet/gas9"
+		distance 1815.24
+		period 1729.36
+	object
+		sprite "planet/gas4"
+		distance 3674.49
+		period 4980.59
+		object
+			sprite "planet/rhea"
+			distance 249
+			period 13.2845
+		object
+			sprite "planet/tethys"
+			distance 336
+			period 20.8235
+		object
+			sprite "planet/oberon"
+			distance 464
+			period 33.7927
+
+system "Kochab"
+	pos -731 279
+	habitable 3015.62
+	link "Zubeneschamali"
+	asteroids "large metal" 1 6.9552
+	trade "Clothing" 382
+	trade "Electronics" 668
+	trade "Equipment" 647
+	trade "Food" 167
+	trade "Heavy Metals" 1059
+	trade "Industrial" 792
+	trade "Luxury Goods" 968
+	trade "Medical" 529
+	trade "Metal" 528
+	trade "Plastic" 309
+	object
+		sprite "star/f0"
+		distance 20.7746
+		period 11.7443
+		offset 180
+	object
+		sprite "star/k0"
+		distance 116.725
+		period 11.7443
+	object
+		sprite "planet/desert2"
+		distance 499.235
+		period 81.2511
+		object
+			sprite "planet/rock17"
+			distance 132
+			period 15.8011
+	object
+		sprite "planet/rock9"
+		distance 854.675
+		period 182.001
+	object
+		sprite "planet/desert10"
+		distance 1346.93
+		period 360.07
+	object
+		sprite "planet/gas3"
+		distance 2239.49
+		period 771.958
+		object
+			sprite "planet/io"
+			distance 270
+			period 10.7331
+		object
+			sprite "planet/ice7"
+			distance 405
+			period 19.718
+
+system "Kornephoros"
+	pos -612 424
+	habitable 911.25
+	link "Sabik"
+	link "Aldhibain"
+	link "Sargas"
+	link "Wei"
+	asteroids "small rock" 127 10.44
+	asteroids "medium rock" 96 8.787
+	asteroids "large rock" 24 12.528
+	asteroids "small metal" 4 7.221
+	asteroids "medium metal" 143 8.352
+	asteroids "large metal" 7 11.745
+	trade "Clothing" 311
+	trade "Electronics" 797
+	trade "Equipment" 439
+	trade "Food" 146
+	trade "Heavy Metals" 1179
+	trade "Industrial" 615
+	trade "Luxury Goods" 977
+	trade "Medical" 724
+	trade "Metal" 540
+	trade "Plastic" 381
+	object
+		sprite "star/k0"
+		distance 59.5
+		period 17.2013
+		offset 180
+	object
+		sprite "star/k0"
+		distance 59.5
+		period 17.2013
+	object
+		sprite "planet/forest3"
+		distance 319.41
+		period 75.6422
+	object
+		sprite "planet/desert9"
+		distance 645.5
+		period 217.313
+	object
+		sprite "planet/callisto"
+		distance 878.14
+		period 344.816
+	object
+		sprite "planet/gas11"
+		distance 2587.75
+		period 1744.31
+		object
+			sprite "planet/mercury"
+			distance 272
+			period 13.9855
+		object
+			sprite "planet/rock7"
+			distance 373
+			period 22.4588
+		object
+			sprite "planet/oberon"
+			distance 475
+			period 32.2749
+		object
+			sprite "planet/dust5"
+			distance 652
+			period 51.9033
+
+system "Kraz"
+	pos -876 204
+	habitable 214.375
+	link "Mimosa"
+	asteroids "small rock" 1 7.2072
+	asteroids "medium rock" 38 6.7536
+	asteroids "large rock" 4 4.6872
+	asteroids "small metal" 6 4.1328
+	asteroids "medium metal" 57 3.3264
+	asteroids "large metal" 7 2.9232
+	trade "Clothing" 256
+	trade "Electronics" 758
+	trade "Equipment" 617
+	trade "Food" 239
+	trade "Heavy Metals" 811
+	trade "Industrial" 890
+	trade "Luxury Goods" 967
+	trade "Medical" 507
+	trade "Metal" 436
+	trade "Plastic" 306
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/rock11"
+		distance 165.94
+		period 58.3982
+	object
+		sprite "planet/lava6"
+		distance 577.03
+		period 378.678
+	object
+		sprite "planet/ice0"
+		distance 840.87
+		period 666.141
+	object
+		sprite "planet/gas15"
+		distance 1235.11
+		period 1185.85
+	object
+		sprite "planet/oberon"
+		distance 3154.8
+		period 4840.95
+
+system "Kursa"
+	pos -366 -105
+	habitable 428.75
+	link "Elnath"
+	link "Aldebaran"
+	link "Wazn"
+	asteroids "large metal" 1 3.87
+	trade "Clothing" 253
+	trade "Electronics" 692
+	trade "Equipment" 620
+	trade "Food" 457
+	trade "Heavy Metals" 963
+	trade "Industrial" 743
+	trade "Luxury Goods" 1430
+	trade "Medical" 539
+	trade "Metal" 285
+	trade "Plastic" 441
+	object
+		sprite "star/m0"
+		distance 41.5
+		period 14.6075
+		offset 180
+	object
+		sprite "star/m0"
+		distance 41.5
+		period 14.6075
+	object
+		sprite "planet/lava5"
+		distance 332.01
+		period 116.865
+	object
+		sprite "planet/ice2"
+		distance 775.17
+		period 416.921
+	object
+		sprite "planet/dust1"
+		distance 1294.41
+		period 899.634
+	object
+		sprite "planet/forest6"
+		distance 1659.85
+		period 1306.35
+	object
+		sprite "planet/miranda"
+		distance 2356.74
+		period 2210.17
+
+system "Lesath"
+	pos -516 485
+	habitable 1715
+	link "Atria"
+	link "Shaula"
+	link "Girtab"
+	link "Dschubba"
+	link "Sargas"
+	link "Rastaban"
+	asteroids "medium rock" 9 4.8384
+	asteroids "large rock" 21 7.2
+	asteroids "medium metal" 8 4.3776
+	asteroids "large metal" 1 5.4144
+	trade "Clothing" 285
+	trade "Electronics" 759
+	trade "Equipment" 540
+	trade "Food" 190
+	trade "Heavy Metals" 1011
+	trade "Industrial" 629
+	trade "Luxury Goods" 1070
+	trade "Medical" 797
+	trade "Metal" 495
+	trade "Plastic" 271
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/desert3"
+		distance 245.56
+		period 37.1676
+	object
+		sprite "planet/mars"
+		distance 724
+		period 188.164
+		object
+			sprite "planet/rock7"
+			distance 153
+			period 23.7903
+	object
+		sprite "planet/rock4"
+		distance 1488.81
+		period 554.864
+	object
+		sprite "planet/gas14"
+		distance 2478.77
+		period 1192.02
+
+system "Markab"
+	pos -241 168
+	habitable 2560
+	link "Delta Capricorni"
+	link "Scheat"
+	link "Ankaa"
+	link "Fomalhaut"
+	asteroids "small rock" 11 4.4863
+	asteroids "medium rock" 54 5.2403
+	asteroids "large rock" 8 2.0358
+	asteroids "small metal" 2 3.5815
+	asteroids "medium metal" 4 5.0895
+	asteroids "large metal" 2 3.9962
+	trade "Clothing" 274
+	trade "Electronics" 704
+	trade "Equipment" 400
+	trade "Food" 498
+	trade "Heavy Metals" 656
+	trade "Industrial" 660
+	trade "Luxury Goods" 1081
+	trade "Medical" 515
+	trade "Metal" 251
+	trade "Plastic" 281
+	object
+		sprite "star/f0"
+		period 10
+	object
+		sprite "planet/rock2"
+		distance 187.29
+		period 20.2634
+	object
+		sprite "planet/lava5"
+		distance 479.13
+		period 82.9125
+	object
+		sprite "planet/forest3"
+		distance 743.38
+		period 160.235
+	object
+		sprite "planet/gas14"
+		distance 1579.87
+		period 496.446
+	object
+		sprite "planet/gas7"
+		distance 4425.87
+		period 2327.76
+		object
+			sprite "planet/luna"
+			distance 244
+			period 12.3675
+		object
+			sprite "planet/rhea"
+			distance 359
+			period 22.0718
+
+system "Markeb"
+	pos -602 -305
+	habitable 625
+	link "Avior"
+	asteroids "small rock" 23 5.0895
+	asteroids "medium rock" 4 2.2815
+	asteroids "large rock" 35 3.9312
+	asteroids "small metal" 29 3.159
+	asteroids "medium metal" 10 5.1948
+	asteroids "large metal" 20 4.6332
+	trade "Clothing" 308
+	trade "Electronics" 674
+	trade "Equipment" 468
+	trade "Food" 508
+	trade "Heavy Metals" 809
+	trade "Industrial" 809
+	trade "Luxury Goods" 1180
+	trade "Medical" 787
+	trade "Metal" 389
+	trade "Plastic" 306
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/desert8"
+		distance 175.25
+		period 37.1199
+	object
+		sprite "planet/ice6"
+		distance 606.25
+		period 238.835
+	object
+		sprite "planet/forest3"
+		distance 1132.46
+		period 609.753
+	object
+		sprite "planet/gas10"
+		distance 2422.82
+		period 1908.1
+		object
+			sprite "planet/rock17"
+			distance 200
+			period 13.9414
+		object
+			sprite "planet/ganymede"
+			distance 301
+			period 25.7402
+		object
+			sprite "planet/rock7"
+			distance 417
+			period 41.9727
+
+system "Matar"
+	pos -218 272
+	habitable 135
+	link "Persian"
+	link "Scheat"
+	asteroids "large metal" 1 3.0888
+	trade "Clothing" 223
+	trade "Electronics" 686
+	trade "Equipment" 433
+	trade "Food" 453
+	trade "Heavy Metals" 823
+	trade "Industrial" 609
+	trade "Luxury Goods" 937
+	trade "Medical" 641
+	trade "Metal" 209
+	trade "Plastic" 407
+	object
+		sprite "star/m4"
+		period 10
+	object
+		sprite "planet/water1"
+		distance 235.56
+		period 124.464
+	object
+		sprite "planet/lava2"
+		distance 645.12
+		period 564.097
+	object
+		sprite "planet/gas3"
+		distance 1911.41
+		period 2876.89
+		object
+			sprite "planet/oberon"
+			distance 282
+			period 11.4566
+		object
+			sprite "planet/dust5"
+			distance 428
+			period 21.4213
+		object
+			sprite "planet/lava0"
+			distance 552
+			period 31.3754
+
+system "Mebsuta"
+	pos -482 -394
+	habitable 78.125
+	link "Mirzam"
+	asteroids "small rock" 1 4.1412
+	asteroids "large rock" 2 3.7961
+	asteroids "small metal" 2 2.8101
+	asteroids "medium metal" 17 2.7115
+	asteroids "large metal" 9 4.6342
+	trade "Clothing" 369
+	trade "Electronics" 734
+	trade "Equipment" 676
+	trade "Food" 371
+	trade "Heavy Metals" 1107
+	trade "Industrial" 616
+	trade "Luxury Goods" 1218
+	trade "Medical" 457
+	trade "Metal" 385
+	trade "Plastic" 420
+	object
+		sprite "star/m8"
+		period 10
+	object
+		sprite "planet/callisto"
+		distance 112.86
+		period 54.2594
+	object
+		sprite "planet/forest0"
+		distance 373.86
+		period 327.136
+	object
+		sprite "planet/rhea"
+		distance 710.07
+		period 856.282
+	object
+		sprite "planet/oberon"
+		distance 1977.07
+		period 3978.3
+
+system "Men"
+	pos -888 361
+	habitable 214.375
+	link "Beta Lupi"
+	asteroids "small rock" 9 3.504
+	asteroids "medium rock" 2 5.376
+	asteroids "large rock" 5 5.952
+	asteroids "small metal" 8 3.648
+	asteroids "medium metal" 7 4.992
+	asteroids "large metal" 27 3.072
+	trade "Clothing" 299
+	trade "Electronics" 842
+	trade "Equipment" 425
+	trade "Food" 203
+	trade "Heavy Metals" 922
+	trade "Industrial" 841
+	trade "Luxury Goods" 1294
+	trade "Medical" 885
+	trade "Metal" 285
+	trade "Plastic" 300
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/mars"
+		distance 294.5
+		period 138.07
+		object
+			sprite "planet/dust0"
+			distance 148
+			period 22.6337
+	object
+		sprite "planet/rock9"
+		distance 659.99
+		period 463.211
+	object
+		sprite "planet/dust3"
+		distance 894.88
+		period 731.341
+	object
+		sprite "planet/dust7"
+		distance 1463.29
+		period 1529.21
+	object
+		sprite "planet/uranus"
+		distance 2425.9
+		period 3264.24
+		object
+			sprite "planet/oberon"
+			distance 235
+			period 14.5337
+		object
+			sprite "planet/rock7"
+			distance 308
+			period 21.8072
+
+system "Menkalinan"
+	pos -400 -61
+	habitable 3430
+	link "Capella"
+	link "Castor"
+	link "Alhena"
+	asteroids "small rock" 17 2.7216
+	asteroids "medium rock" 19 4.9086
+	asteroids "large rock" 1 2.8674
+	asteroids "small metal" 33 2.43
+	asteroids "medium metal" 63 2.7216
+	asteroids "large metal" 3 3.2076
+	trade "Clothing" 286
+	trade "Electronics" 789
+	trade "Equipment" 605
+	trade "Food" 450
+	trade "Heavy Metals" 1124
+	trade "Industrial" 802
+	trade "Luxury Goods" 1418
+	trade "Medical" 602
+	trade "Metal" 324
+	trade "Plastic" 472
+	object
+		sprite "star/f5"
+		distance 58.5
+		period 8.64354
+		offset 180
+	object
+		sprite "star/f5"
+		distance 58.5
+		period 8.64354
+	object
+		sprite "planet/desert8"
+		distance 280.26
+		period 32.0446
+	object
+		sprite "planet/rock1"
+		distance 662.22
+		period 116.39
+		object
+			sprite "planet/callisto"
+			distance 164
+			period 21.8822
+	object
+		sprite "planet/gas7"
+		distance 1830.22
+		period 534.771
+		object
+			sprite "planet/mercury"
+			distance 286
+			period 15.6944
+		object
+			sprite "planet/europa"
+			distance 407
+			period 26.6433
+
+system "Menkar"
+	pos -183 -52
+	habitable 78.125
+	link "Zaurak"
+	link "Mirfak"
+	link "Bellatrix"
+	asteroids "small rock" 109 4.3
+	asteroids "medium rock" 33 7.45
+	asteroids "large rock" 44 6.45
+	asteroids "small metal" 33 3.2
+	asteroids "medium metal" 57 5.95
+	asteroids "large metal" 25 5.9
+	trade "Clothing" 327
+	trade "Electronics" 743
+	trade "Equipment" 662
+	trade "Food" 158
+	trade "Heavy Metals" 971
+	trade "Industrial" 833
+	trade "Luxury Goods" 963
+	trade "Medical" 769
+	trade "Metal" 396
+	trade "Plastic" 285
+	object
+		sprite "star/m8"
+		period 10
+	object
+		sprite "planet/forest2"
+		distance 161.11
+		period 92.5441
+	object
+		sprite "planet/gas2"
+		distance 527.35
+		period 548.041
+	object
+		sprite "planet/gas0"
+		distance 1119.64
+		period 1695.44
+		object
+			sprite "planet/rock7"
+			distance 288
+			period 13.596
+	object
+		sprite "planet/europa"
+		distance 1755.89
+		period 3329.74
+	object
+		sprite "planet/gas8"
+		distance 2813.14
+		period 6752.3
+		object
+			sprite "planet/dust5"
+			distance 204
+			period 14.3618
+		object
+			sprite "planet/rhea"
+			distance 345
+			period 31.5857
+
+system "Menkent"
+	pos -495 218
+	habitable 455
+	link "Vega"
+	link "Rutilicus"
+	link "Cebalrai"
+	link "Muphrid"
+	asteroids "small rock" 33 2.9328
+	asteroids "medium rock" 44 1.4144
+	asteroids "large rock" 32 1.04
+	asteroids "small metal" 5 1.2688
+	asteroids "medium metal" 3 2.4128
+	asteroids "large metal" 10 2.2256
+	trade "Clothing" 296
+	trade "Electronics" 773
+	trade "Equipment" 569
+	trade "Food" 356
+	trade "Heavy Metals" 938
+	trade "Industrial" 757
+	trade "Luxury Goods" 1079
+	trade "Medical" 553
+	trade "Metal" 444
+	trade "Plastic" 412
+	object
+		sprite "star/k5"
+		distance 32.9341
+		period 21.93
+		offset 180
+	object
+		sprite "star/m4"
+		distance 78.0659
+		period 21.93
+	object
+		sprite "planet/lava1"
+		distance 253.356
+		period 75.6225
+	object
+		sprite "planet/earth"
+		distance 695.606
+		period 344.032
+		object
+			sprite "planet/io"
+			distance 140
+			period 15.841
+	object
+		sprite "planet/rock11"
+		distance 1173.05
+		period 753.402
+	object
+		sprite "planet/rock7"
+		distance 1498.46
+		period 1087.73
+	object
+		sprite "planet/gas11"
+		distance 2247.46
+		period 1997.98
+		object
+			sprite "planet/callisto"
+			distance 247
+			period 12.1023
+		object
+			sprite "planet/dust5"
+			distance 411
+			period 25.9769
+
+system "Merak"
+	pos -553 60
+	habitable 135
+	link "Phecda"
+	link "Porrima"
+	link "Denebola"
+	link "Regulus"
+	asteroids "small rock" 1 4.1847
+	asteroids "medium rock" 87 5.6173
+	asteroids "large rock" 1 4.9764
+	asteroids "medium metal" 10 4.2224
+	asteroids "large metal" 1 2.639
+	trade "Clothing" 310
+	trade "Electronics" 689
+	trade "Equipment" 394
+	trade "Food" 538
+	trade "Heavy Metals" 931
+	trade "Industrial" 602
+	trade "Luxury Goods" 1168
+	trade "Medical" 547
+	trade "Metal" 457
+	trade "Plastic" 291
+	object
+		sprite "star/m4"
+		period 10
+	object
+		sprite "planet/ice7"
+		distance 120.29
+		period 45.419
+	object
+		sprite "planet/mars"
+		distance 334.73
+		period 210.831
+	object
+		sprite "planet/europa"
+		distance 972.89
+		period 1044.69
+	object
+		sprite "planet/lava3"
+		distance 1297.73
+		period 1609.42
+	object
+		sprite "planet/gas6"
+		distance 3425.42
+		period 6901.82
+		object
+			sprite "planet/io"
+			distance 282
+			period 10.7331
+		object
+			sprite "planet/lava1"
+			distance 433
+			period 20.4213
+
+system "Miaplacidus"
+	pos -524 -69
+	habitable 1080
+	link "Tejat"
+	link "Alphard"
+	link "Talita"
+	asteroids "small rock" 25 6.902
+	asteroids "medium rock" 8 3.2844
+	asteroids "large rock" 52 2.38
+	asteroids "small metal" 1 5.5692
+	asteroids "medium metal" 19 5.3788
+	asteroids "large metal" 10 3.8556
+	trade "Clothing" 283
+	trade "Electronics" 668
+	trade "Equipment" 664
+	trade "Food" 531
+	trade "Heavy Metals" 1012
+	trade "Industrial" 684
+	trade "Luxury Goods" 1461
+	trade "Medical" 653
+	trade "Metal" 344
+	trade "Plastic" 489
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/desert5"
+		distance 291.01
+		period 60.4241
+		object
+			sprite "planet/dust1"
+			distance 140
+			period 17.2591
+	object
+		sprite "planet/gas11"
+		distance 972.26
+		period 368.996
+		object
+			sprite "planet/rhea"
+			distance 244
+			period 11.8825
+	object
+		sprite "planet/lava0"
+		distance 1672.9
+		period 832.824
+	object
+		sprite "planet/gas9"
+		distance 3097.99
+		period 2098.79
+		object
+			sprite "planet/lava1"
+			distance 234
+			period 12.6247
+
+system "Mimosa"
+	pos -895 168
+	habitable 455.625
+	link "Minkar"
+	link "Kraz"
+	asteroids "medium rock" 22 3.3698
+	asteroids "large rock" 3 5.4404
+	asteroids "small metal" 2 3.3292
+	asteroids "medium metal" 3 2.7608
+	asteroids "large metal" 1 4.9532
+	trade "Clothing" 247
+	trade "Electronics" 740
+	trade "Equipment" 577
+	trade "Food" 218
+	trade "Heavy Metals" 839
+	trade "Industrial" 862
+	trade "Luxury Goods" 973
+	trade "Medical" 502
+	trade "Metal" 404
+	trade "Plastic" 370
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/lava5"
+		distance 148.94
+		period 34.0622
+	object
+		sprite "planet/ice6"
+		distance 525.35
+		period 225.647
+	object
+		sprite "planet/dust1"
+		distance 961.16
+		period 558.406
+	object
+		sprite "planet/dust0"
+		distance 1814.25
+		period 1448.11
+	object
+		sprite "planet/gas7"
+		distance 3659.61
+		period 4148.67
+		object
+			sprite "planet/desert4"
+			distance 261
+			period 13.6823
+
+system "Minkar"
+	pos -823 138
+	habitable 534.375
+	link "Acrux"
+	link "Spica"
+	link "Mimosa"
+	asteroids "medium rock" 5 8.97
+	asteroids "large rock" 9 6.63
+	asteroids "small metal" 1 4.42
+	asteroids "medium metal" 40 8.385
+	asteroids "large metal" 10 9.295
+	trade "Clothing" 253
+	trade "Electronics" 691
+	trade "Equipment" 522
+	trade "Food" 167
+	trade "Heavy Metals" 885
+	trade "Industrial" 799
+	trade "Luxury Goods" 1046
+	trade "Medical" 525
+	trade "Metal" 367
+	trade "Plastic" 485
+	object
+		sprite "star/k5"
+		distance 33.4977
+		period 13.2028
+	object
+		sprite "star/m0"
+		distance 50.0023
+		period 13.2028
+		offset 180
+	object
+		sprite "planet/desert8"
+		distance 323.192
+		period 100.538
+	object
+		sprite "planet/ganymede"
+		distance 592.482
+		period 249.546
+	object
+		sprite "planet/dust6"
+		distance 821.442
+		period 407.383
+	object
+		sprite "planet/gas15"
+		distance 1475.05
+		period 980.275
+	object
+		sprite "planet/europa"
+		distance 2802.05
+		period 2566.56
+
+system "Mintaka"
+	pos -304 -462
+	habitable 1929.38
+	link "Almaaz"
+	link "Alnitak"
+	asteroids "small rock" 34 6.935
+	asteroids "medium rock" 1 4.6075
+	asteroids "large rock" 23 5.985
+	asteroids "small metal" 46 6.6025
+	asteroids "large metal" 5 3.61
+	trade "Clothing" 265
+	trade "Electronics" 851
+	trade "Equipment" 501
+	trade "Food" 314
+	trade "Heavy Metals" 1107
+	trade "Industrial" 747
+	trade "Luxury Goods" 1164
+	trade "Medical" 826
+	trade "Metal" 432
+	trade "Plastic" 370
+	object
+		sprite "star/f5"
+		distance 11.0556
+		period 9.03829
+	object
+		sprite "star/m0"
+		distance 88.4444
+		period 9.03829
+		offset 180
+	object
+		sprite "planet/rock5"
+		distance 368.954
+		period 64.5373
+	object
+		sprite "planet/forest3"
+		distance 851.914
+		period 226.436
+		object
+			sprite "planet/mercury"
+			distance 158
+			period 24.966
+	object
+		sprite "planet/gas9"
+		distance 1638.67
+		period 604.075
+		object
+			sprite "planet/rock14"
+			distance 258
+			period 14.6159
+	object
+		sprite "planet/gas8"
+		distance 2804.67
+		period 1352.62
+		object
+			sprite "planet/dust0"
+			distance 196
+			period 13.5253
+		object
+			sprite "planet/ice7"
+			distance 299
+			period 25.4841
+		object
+			sprite "planet/ice8"
+			distance 425
+			period 43.1863
+
+system "Mirach"
+	pos -166 250
+	habitable 320
+	link "Al Dhanab"
+	link "Scheat"
+	link "Gamma Cassiopeiae"
+	link "Schedar"
+	asteroids "small rock" 84 3.4884
+	asteroids "medium rock" 64 3.1518
+	asteroids "large rock" 6 4.0698
+	asteroids "small metal" 2 4.0392
+	asteroids "medium metal" 62 2.2644
+	asteroids "large metal" 7 3.213
+	trade "Clothing" 296
+	trade "Electronics" 729
+	trade "Equipment" 552
+	trade "Food" 373
+	trade "Heavy Metals" 733
+	trade "Industrial" 655
+	trade "Luxury Goods" 1029
+	trade "Medical" 686
+	trade "Metal" 267
+	trade "Plastic" 299
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/forest3"
+		distance 237.16
+		period 81.6671
+	object
+		sprite "planet/rock2"
+		distance 592.92
+		period 322.834
+		object
+			sprite "planet/dust0"
+			distance 169
+			period 21.0097
+	object
+		sprite "planet/forest0"
+		distance 1037.56
+		period 747.317
+	object
+		sprite "planet/rock0"
+		distance 1714.2
+		period 1587
+	object
+		sprite "planet/gas9"
+		distance 3465.76
+		period 4562.29
+		object
+			sprite "planet/rock14"
+			distance 259
+			period 14.701
+		object
+			sprite "planet/rock3"
+			distance 393
+			period 27.4781
+		object
+			sprite "planet/miranda"
+			distance 502
+			period 39.6691
+		object
+			sprite "planet/dust3"
+			distance 613
+			period 53.5289
+
+system "Mirfak"
+	pos -187 -128
+	habitable 1715
+	link "Menkar"
+	link "Bellatrix"
+	asteroids "small rock" 3 3.3592
+	asteroids "medium rock" 5 4.6436
+	asteroids "large rock" 5 3.5568
+	asteroids "small metal" 1 3.2604
+	asteroids "medium metal" 9 5.4834
+	asteroids "large metal" 2 6.1256
+	trade "Clothing" 339
+	trade "Electronics" 681
+	trade "Equipment" 650
+	trade "Food" 180
+	trade "Heavy Metals" 1023
+	trade "Industrial" 827
+	trade "Luxury Goods" 1015
+	trade "Medical" 811
+	trade "Metal" 451
+	trade "Plastic" 267
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/rock4"
+		distance 213.09
+		period 30.045
+	object
+		sprite "planet/water0"
+		distance 575.78
+		period 133.448
+	object
+		sprite "planet/gas15"
+		distance 1616.87
+		period 627.972
+		object
+			sprite "planet/callisto"
+			distance 213
+			period 15.3226
+		object
+			sprite "planet/lava1"
+			distance 329
+			period 29.4141
+		object
+			sprite "planet/desert4"
+			distance 422
+			period 42.7298
+
+system "Mirzam"
+	pos -498 -301
+	habitable 214.375
+	link "Canopus"
+	link "Betelgeuse"
+	link "Mebsuta"
+	asteroids "small rock" 24 3.402
+	asteroids "medium rock" 42 4.4712
+	asteroids "large rock" 6 1.6848
+	asteroids "small metal" 17 2.8836
+	asteroids "large metal" 14 4.374
+	trade "Clothing" 313
+	trade "Electronics" 706
+	trade "Equipment" 672
+	trade "Food" 396
+	trade "Heavy Metals" 1079
+	trade "Industrial" 615
+	trade "Luxury Goods" 1293
+	trade "Medical" 495
+	trade "Metal" 363
+	trade "Plastic" 463
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/forest5"
+		distance 269.59
+		period 120.928
+		object
+			sprite "planet/lava2"
+			distance 147
+			period 17.0438
+	object
+		sprite "planet/io"
+		distance 596.2
+		period 397.705
+	object
+		sprite "planet/gas13"
+		distance 1115.04
+		period 1017.21
+		object
+			sprite "planet/lava0"
+			distance 309
+			period 14.5735
+	object
+		sprite "planet/gas14"
+		distance 2907.6
+		period 4283.26
+		object
+			sprite "planet/rock14"
+			distance 217
+			period 12.3145
+
+system "Mizar"
+	pos -579 184
+	habitable 455.625
+	link "Arcturus"
+	link "Cor Caroli"
+	link "Algorel"
+	asteroids "large metal" 1 2.6304
+	trade "Clothing" 187
+	trade "Electronics" 784
+	trade "Equipment" 560
+	trade "Food" 282
+	trade "Heavy Metals" 859
+	trade "Industrial" 664
+	trade "Luxury Goods" 1157
+	trade "Medical" 715
+	trade "Metal" 442
+	trade "Plastic" 486
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/mercury"
+		distance 143.5
+		period 32.2132
+	object
+		sprite "planet/mars"
+		distance 590.51
+		period 268.904
+		object
+			sprite "planet/rock14"
+			distance 165
+			period 26.6433
+	object
+		sprite "planet/gas5"
+		distance 1318.51
+		period 897.184
+		object
+			sprite "planet/dust3"
+			distance 240
+			period 11.1486
+	object
+		sprite "planet/gas12"
+		distance 2421.55
+		period 2233.04
+		object
+			sprite "planet/dust0"
+			distance 282
+			period 11.8493
+		object
+			sprite "planet/dust1"
+			distance 393
+			period 19.4944
+		object
+			sprite "planet/ice7"
+			distance 509
+			period 28.7341
+
+system "Muhlifain"
+	pos -702 242
+	habitable 1080
+	link "Vindemiatrix"
+	link "Gacrux"
+	asteroids "large metal" 1 2.1186
+	trade "Clothing" 236
+	trade "Electronics" 816
+	trade "Equipment" 566
+	trade "Food" 157
+	trade "Heavy Metals" 957
+	trade "Industrial" 729
+	trade "Luxury Goods" 974
+	trade "Medical" 825
+	trade "Metal" 525
+	trade "Plastic" 441
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/fog0"
+		distance 270.69
+		period 54.2071
+	object
+		sprite "planet/desert4"
+		distance 649.45
+		period 201.45
+	object
+		sprite "planet/gas4"
+		distance 1207.81
+		period 510.912
+		object
+			sprite "planet/mercury"
+			distance 268
+			period 14.8336
+	object
+		sprite "planet/rock3"
+		distance 2115.17
+		period 1184.04
+
+system "Muphrid"
+	pos -495 152
+	habitable 625
+	link "Menkent"
+	link "Porrima"
+	asteroids "small rock" 10 4.7348
+	asteroids "medium rock" 7 3.192
+	asteroids "large rock" 8 3.4048
+	asteroids "small metal" 1 7.182
+	asteroids "large metal" 1 5.1072
+	trade "Clothing" 330
+	trade "Electronics" 755
+	trade "Equipment" 553
+	trade "Food" 437
+	trade "Heavy Metals" 978
+	trade "Industrial" 731
+	trade "Luxury Goods" 1053
+	trade "Medical" 510
+	trade "Metal" 478
+	trade "Plastic" 455
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/ganymede"
+		distance 155
+		period 30.8758
+	object
+		sprite "planet/desert6"
+		distance 537.89
+		period 199.6
+		object
+			sprite "planet/lava2"
+			distance 153
+			period 18.0979
+	object
+		sprite "planet/desert8"
+		distance 1041.85
+		period 538.056
+		object
+			sprite "planet/dust0"
+			distance 152
+			period 21.3838
+	object
+		sprite "planet/gas4"
+		distance 2692.26
+		period 2235.09
+		object
+			sprite "planet/rock3"
+			distance 230
+			period 11.7934
+
+system "Naos"
+	pos -653 -396
+	habitable 625
+	link "Regor"
+	link "Wezen"
+	link "Avior"
+	link "Aludra"
+	asteroids "medium rock" 167 3.8976
+	asteroids "large rock" 1 6.3168
+	asteroids "large metal" 1 6.1824
+	trade "Clothing" 272
+	trade "Electronics" 694
+	trade "Equipment" 427
+	trade "Food" 386
+	trade "Heavy Metals" 958
+	trade "Industrial" 774
+	trade "Luxury Goods" 1079
+	trade "Medical" 750
+	trade "Metal" 339
+	trade "Plastic" 297
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/dust2"
+		distance 176.24
+		period 37.4349
+	object
+		sprite "planet/rock9"
+		distance 396.48
+		period 126.314
+	object
+		sprite "planet/dust3"
+		distance 720.64
+		period 309.526
+	object
+		sprite "planet/miranda"
+		distance 1613.89
+		period 1037.36
+	object
+		sprite "planet/dust0"
+		distance 3444.1
+		period 3233.95
+
+system "Nihal"
+	pos -280 -120
+	habitable 945
+	link "Elnath"
+	asteroids "small rock" 18 3.1668
+	asteroids "medium rock" 3 4.0131
+	asteroids "large rock" 119 3.9858
+	asteroids "small metal" 1 1.365
+	asteroids "medium metal" 10 3.1395
+	asteroids "large metal" 37 3.276
+	trade "Clothing" 255
+	trade "Electronics" 600
+	trade "Equipment" 641
+	trade "Food" 297
+	trade "Heavy Metals" 928
+	trade "Industrial" 717
+	trade "Luxury Goods" 1452
+	trade "Medical" 522
+	trade "Metal" 232
+	trade "Plastic" 481
+	object
+		sprite "star/g5"
+		distance 29.7989
+		period 10.7416
+	object
+		sprite "star/k5"
+		distance 58.2011
+		period 10.7416
+		offset 180
+	object
+		sprite "planet/gas0"
+		distance 749.491
+		period 266.989
+		object
+			sprite "planet/dust4"
+			distance 272
+			period 12.4789
+		object
+			sprite "planet/callisto"
+			distance 382
+			period 20.7691
+		object
+			sprite "planet/ice8"
+			distance 478
+			period 29.0714
+	object
+		sprite "planet/io"
+		distance 1413.85
+		period 691.751
+	object
+		sprite "planet/gas9"
+		distance 2014.54
+		period 1176.54
+		object
+			sprite "planet/rhea"
+			distance 252
+			period 14.1091
+		object
+			sprite "planet/desert4"
+			distance 338
+			period 21.9166
+
+system "Nunki"
+	pos -393 537
+	habitable 670
+	link "Albaldah"
+	asteroids "small rock" 15 3.3516
+	asteroids "medium rock" 77 1.8144
+	asteroids "large rock" 15 1.9908
+	asteroids "small metal" 6 3.4272
+	asteroids "medium metal" 1 1.8648
+	asteroids "large metal" 1 1.9152
+	trade "Clothing" 259
+	trade "Electronics" 789
+	trade "Equipment" 624
+	trade "Food" 212
+	trade "Heavy Metals" 946
+	trade "Industrial" 840
+	trade "Luxury Goods" 1239
+	trade "Medical" 844
+	trade "Metal" 241
+	trade "Plastic" 321
+	object
+		sprite "star/k0"
+		distance 36.7957
+		period 19.0577
+	object
+		sprite "star/m0"
+		distance 78.2043
+		period 19.0577
+		offset 180
+	object
+		sprite "planet/gas6"
+		distance 497.944
+		period 171.709
+	object
+		sprite "planet/gas9"
+		distance 1136.7
+		period 592.235
+	object
+		sprite "planet/gas0"
+		distance 2061.34
+		period 1446.27
+
+system "Peacock"
+	pos -307 350
+	habitable 839.375
+	link "Tais"
+	link "Kaus Australis"
+	link "Ascella"
+	asteroids "small rock" 18 3.06
+	asteroids "medium rock" 79 3.312
+	asteroids "large rock" 29 5.4
+	asteroids "small metal" 101 5.004
+	asteroids "medium metal" 72 5.328
+	asteroids "large metal" 2 2.772
+	trade "Clothing" 334
+	trade "Electronics" 700
+	trade "Equipment" 633
+	trade "Food" 337
+	trade "Heavy Metals" 941
+	trade "Industrial" 809
+	trade "Luxury Goods" 1409
+	trade "Medical" 804
+	trade "Metal" 338
+	trade "Plastic" 312
+	object
+		sprite "star/g5"
+		distance 28.4769
+		period 16.2553
+	object
+		sprite "star/m0"
+		distance 83.0231
+		period 16.2553
+		offset 180
+	object
+		sprite "planet/desert0"
+		distance 465.483
+		period 138.656
+		object
+			sprite "planet/dust5"
+			distance 174
+			period 26.1905
+	object
+		sprite "planet/gas12"
+		distance 1048.48
+		period 468.731
+	object
+		sprite "planet/gas16"
+		distance 2135.49
+		period 1362.48
+		object
+			sprite "planet/ice0"
+			distance 201
+			period 14.0461
+		object
+			sprite "planet/europa"
+			distance 316
+			period 27.6881
+
+system "Persian"
+	pos -203 331
+	habitable 3859.38
+	link "Alnair"
+	link "Gienah"
+	link "Matar"
+	asteroids "small rock" 6 3.887
+	asteroids "medium rock" 25 8.671
+	asteroids "large rock" 34 4.9634
+	asteroids "small metal" 1 6.4584
+	asteroids "medium metal" 3 6.6976
+	asteroids "large metal" 2 4.1262
+	trade "Clothing" 260
+	trade "Electronics" 661
+	trade "Equipment" 400
+	trade "Food" 471
+	trade "Heavy Metals" 919
+	trade "Industrial" 661
+	trade "Luxury Goods" 977
+	trade "Medical" 582
+	trade "Metal" 216
+	trade "Plastic" 502
+	object
+		sprite "star/a5"
+		distance 7.52656
+		period 10.1557
+	object
+		sprite "star/m0"
+		distance 127.973
+		period 10.1557
+		offset 180
+	object
+		sprite "planet/earth"
+		distance 358.513
+		period 43.7079
+	object
+		sprite "planet/gas16"
+		distance 880.513
+		period 168.231
+		object
+			sprite "planet/luna"
+			distance 186
+			period 12.5035
+		object
+			sprite "planet/dust4"
+			distance 276
+			period 22.6009
+	object
+		sprite "planet/dust1"
+		distance 1799.51
+		period 491.512
+	object
+		sprite "planet/io"
+		distance 2760.07
+		period 933.646
+
+system "Phact"
+	pos -375 -191
+	habitable 4100.62
+	link "Wazn"
+	link "Canopus"
+	asteroids "small rock" 1 1.0816
+	asteroids "medium rock" 71 2.3153
+	asteroids "large rock" 2 1.8421
+	asteroids "small metal" 8 1.1999
+	asteroids "medium metal" 56 0.8619
+	asteroids "large metal" 17 1.6393
+	trade "Clothing" 258
+	trade "Electronics" 784
+	trade "Equipment" 687
+	trade "Food" 460
+	trade "Heavy Metals" 892
+	trade "Industrial" 660
+	trade "Luxury Goods" 1321
+	trade "Medical" 492
+	trade "Metal" 252
+	trade "Plastic" 460
+	object
+		sprite "star/a5"
+		distance 15.5
+		period 10.2919
+		offset 180
+	object
+		sprite "star/k0"
+		distance 124
+		period 10.2919
+	object
+		sprite "planet/rock16"
+		distance 321.51
+		period 36.0103
+	object
+		sprite "planet/rock6"
+		distance 553.76
+		period 81.3987
+	object
+		sprite "planet/rock4"
+		distance 1082.92
+		period 222.602
+	object
+		sprite "planet/rock17"
+		distance 1393.17
+		period 324.819
+	object
+		sprite "planet/dust3"
+		distance 3943.01
+		period 1546.6
+
+system "Phecda"
+	pos -607 88
+	habitable 455.625
+	link "Algorel"
+	link "Tania Australis"
+	link "Merak"
+	asteroids "small rock" 182 3.2
+	asteroids "medium rock" 57 6.95
+	asteroids "large rock" 40 3.75
+	asteroids "small metal" 17 6.85
+	asteroids "medium metal" 40 2.7
+	asteroids "large metal" 5 5.55
+	trade "Clothing" 349
+	trade "Electronics" 787
+	trade "Equipment" 423
+	trade "Food" 449
+	trade "Heavy Metals" 879
+	trade "Industrial" 589
+	trade "Luxury Goods" 1169
+	trade "Medical" 684
+	trade "Metal" 413
+	trade "Plastic" 326
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/rock6"
+		distance 260.51
+		period 78.7939
+		object
+			sprite "planet/desert4"
+			distance 129
+			period 16.7188
+	object
+		sprite "planet/rock10"
+		distance 660.76
+		period 318.289
+	object
+		sprite "planet/oberon"
+		distance 1193.37
+		period 772.536
+	object
+		sprite "planet/desert3"
+		distance 1885.38
+		period 1534.1
+	object
+		sprite "planet/europa"
+		distance 2265.27
+		period 2020.39
+
+system "Pherkad"
+	pos -798 451
+	habitable 135
+	link "Beta Lupi"
+	link "Kappa Centauri"
+	link "Alniyat"
+	link "Yed Prior"
+	asteroids "large metal" 1 2.6884
+	trade "Clothing" 325
+	trade "Electronics" 846
+	trade "Equipment" 378
+	trade "Food" 223
+	trade "Heavy Metals" 1041
+	trade "Industrial" 759
+	trade "Luxury Goods" 1147
+	trade "Medical" 896
+	trade "Metal" 350
+	trade "Plastic" 311
+	object
+		sprite "star/m4"
+		period 10
+	object
+		sprite "planet/forest5"
+		distance 161.25
+		period 70.4925
+	object
+		sprite "planet/rock12"
+		distance 585.25
+		period 487.422
+	object
+		sprite "planet/rock15"
+		distance 848.25
+		period 850.509
+	object
+		sprite "planet/gas1"
+		distance 1543.81
+		period 2088.26
+		object
+			sprite "planet/mercury"
+			distance 274
+			period 15.9964
+		object
+			sprite "planet/lava2"
+			distance 410
+			period 29.2801
+
+system "Phurad"
+	pos -494 -153
+	habitable 2170.62
+	link "Tejat"
+	link "Canopus"
+	link "Wazn"
+	asteroids "small rock" 78 11.907
+	asteroids "medium rock" 1 9.801
+	asteroids "large rock" 5 6.237
+	asteroids "small metal" 2 9.234
+	asteroids "medium metal" 12 11.178
+	asteroids "large metal" 17 5.751
+	trade "Clothing" 235
+	trade "Electronics" 795
+	trade "Equipment" 652
+	trade "Food" 453
+	trade "Heavy Metals" 911
+	trade "Industrial" 685
+	trade "Luxury Goods" 1381
+	trade "Medical" 513
+	trade "Metal" 279
+	trade "Plastic" 476
+	object
+		sprite "star/f5"
+		distance 26.553
+		period 12.2153
+		offset 180
+	object
+		sprite "star/k0"
+		distance 99.947
+		period 12.2153
+	object
+		sprite "planet/lava2"
+		distance 312.257
+		period 47.3735
+	object
+		sprite "planet/fog0"
+		distance 767.507
+		period 182.554
+	object
+		sprite "planet/rhea"
+		distance 1041.76
+		period 288.68
+	object
+		sprite "planet/rock18"
+		distance 1339.6
+		period 420.948
+	object
+		sprite "planet/rock17"
+		distance 2571.85
+		period 1119.79
+
+system "Polaris"
+	pos -35 126
+	habitable 625
+	link "Achernar"
+	asteroids "small rock" 1 7.67
+	asteroids "medium rock" 3 7.93
+	asteroids "large rock" 2 4.16
+	asteroids "large metal" 4 3.77
+	trade "Clothing" 280
+	trade "Electronics" 705
+	trade "Equipment" 638
+	trade "Food" 209
+	trade "Heavy Metals" 769
+	trade "Industrial" 673
+	trade "Luxury Goods" 943
+	trade "Medical" 822
+	trade "Metal" 255
+	trade "Plastic" 418
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/lava2"
+		distance 151.16
+		period 29.7355
+	object
+		sprite "planet/mars"
+		distance 522.57
+		period 191.133
+	object
+		sprite "planet/dust6"
+		distance 821.41
+		period 376.669
+	object
+		sprite "planet/ice0"
+		distance 1873.41
+		period 1297.39
+	object
+		sprite "planet/dust1"
+		distance 4076.65
+		period 4164.62
+
+system "Pollux"
+	pos -465 4
+	habitable 5000
+	link "Procyon"
+	link "Castor"
+	link "Talita"
+	asteroids "small rock" 2 8.94
+	asteroids "medium rock" 8 3.48
+	asteroids "large rock" 1 6.48
+	asteroids "medium metal" 2 8.1
+	asteroids "large metal" 1 7.56
+	trade "Clothing" 197
+	trade "Electronics" 747
+	trade "Equipment" 619
+	trade "Food" 475
+	trade "Heavy Metals" 977
+	trade "Industrial" 750
+	trade "Luxury Goods" 1438
+	trade "Medical" 669
+	trade "Metal" 346
+	trade "Plastic" 481
+	object
+		sprite "star/a0"
+		period 10
+	object
+		sprite "planet/ice3"
+		distance 196.21
+		period 15.5474
+	object
+		sprite "planet/desert7"
+		distance 441.97
+		period 52.5611
+	object
+		sprite "planet/gas9"
+		distance 1353.98
+		period 281.834
+		object
+			sprite "planet/rock0"
+			distance 221
+			period 11.5874
+		object
+			sprite "planet/dust0"
+			distance 301
+			period 18.4182
+		object
+			sprite "planet/ice7"
+			distance 458
+			period 34.5697
+	object
+		sprite "planet/oberon"
+		distance 2064.39
+		period 530.594
+
+system "Porrima"
+	pos -556 123
+	habitable 5320
+	link "Muphrid"
+	link "Merak"
+	asteroids "small rock" 20 4.7334
+	asteroids "medium rock" 35 3.0429
+	asteroids "large rock" 5 2.5116
+	asteroids "small metal" 1 5.9892
+	asteroids "medium metal" 14 3.4776
+	asteroids "large metal" 6 6.1341
+	trade "Clothing" 348
+	trade "Electronics" 716
+	trade "Equipment" 479
+	trade "Food" 537
+	trade "Heavy Metals" 955
+	trade "Industrial" 666
+	trade "Luxury Goods" 1094
+	trade "Medical" 510
+	trade "Metal" 490
+	trade "Plastic" 381
+	object
+		sprite "star/a0"
+		distance 7.15789
+		period 7.11909
+	object
+		sprite "star/k5"
+		distance 111.842
+		period 7.11909
+		offset 180
+	object
+		sprite "planet/desert2"
+		distance 318.282
+		period 31.1403
+	object
+		sprite "planet/forest2"
+		distance 609.282
+		period 82.4768
+	object
+		sprite "planet/europa"
+		distance 1223.77
+		period 234.777
+	object
+		sprite "planet/dust1"
+		distance 2312.77
+		period 609.963
+
+system "Procyon"
+	pos -411 23
+	habitable 320
+	link "Sirius"
+	link "Pollux"
+	link "Capella"
+	asteroids "small rock" 9 4.4226
+	asteroids "medium rock" 16 2.7594
+	asteroids "large rock" 157 4.4604
+	asteroids "small metal" 11 2.9862
+	asteroids "medium metal" 126 2.6838
+	asteroids "large metal" 5 4.347
+	trade "Clothing" 197
+	trade "Electronics" 691
+	trade "Equipment" 500
+	trade "Food" 487
+	trade "Heavy Metals" 1023
+	trade "Industrial" 664
+	trade "Luxury Goods" 1404
+	trade "Medical" 540
+	trade "Metal" 429
+	trade "Plastic" 472
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock19"
+		distance 298.64
+		period 115.4
+		object
+			sprite "planet/dust5"
+			distance 145
+			period 21.949
+	object
+		sprite "planet/forest3"
+		distance 675
+		period 392.14
+	object
+		sprite "planet/europa"
+		distance 959.41
+		period 664.494
+	object
+		sprite "planet/io"
+		distance 1618.57
+		period 1456.07
+	object
+		sprite "planet/gas15"
+		distance 3692.73
+		period 5017.72
+		object
+			sprite "planet/ice8"
+			distance 198
+			period 13.7328
+		object
+			sprite "planet/rock0"
+			distance 332
+			period 29.8174
+		object
+			sprite "planet/desert4"
+			distance 494
+			period 54.1194
+
+system "Rasalhague"
+	pos -413 246
+	habitable 703.125
+	link "Zeta Aquilae"
+	link "Cebalrai"
+	link "Ascella"
+	asteroids "small rock" 2 1.9
+	asteroids "medium rock" 32 2.546
+	asteroids "large rock" 1 1.292
+	asteroids "small metal" 10 2.204
+	asteroids "medium metal" 8 2.698
+	asteroids "large metal" 2 2.489
+	trade "Clothing" 258
+	trade "Electronics" 783
+	trade "Equipment" 657
+	trade "Food" 505
+	trade "Heavy Metals" 794
+	trade "Industrial" 826
+	trade "Luxury Goods" 1303
+	trade "Medical" 782
+	trade "Metal" 516
+	trade "Plastic" 332
+	object
+		sprite "star/g5"
+		distance 12.8333
+		period 18.7248
+	object
+		sprite "star/m8"
+		distance 102.667
+		period 18.7248
+		offset 180
+	object
+		sprite "planet/desert8"
+		distance 377.977
+		period 110.851
+	object
+		sprite "planet/rock18"
+		distance 699.467
+		period 279.058
+	object
+		sprite "planet/rock8"
+		distance 1105.47
+		period 554.45
+	object
+		sprite "planet/rock17"
+		distance 1417.03
+		period 804.657
+	object
+		sprite "planet/neptune"
+		distance 2517.79
+		period 1905.78
+		object
+			sprite "planet/miranda"
+			distance 197
+			period 12.289
+		object
+			sprite "planet/lava1"
+			distance 334
+			period 27.1292
+		object
+			sprite "planet/rhea"
+			distance 471
+			period 45.4306
+
+system "Rastaban"
+	pos -463 446
+	habitable 5455.62
+	link "Girtab"
+	link "Lesath"
+	link "Delta Sagittarii"
+	link "Alpha Arae"
+	asteroids "small rock" 2 3.8766
+	asteroids "medium rock" 60 7.6986
+	asteroids "large rock" 3 6.9888
+	asteroids "medium metal" 6 4.095
+	asteroids "large metal" 2 7.371
+	trade "Clothing" 255
+	trade "Electronics" 750
+	trade "Equipment" 493
+	trade "Food" 229
+	trade "Heavy Metals" 1006
+	trade "Industrial" 750
+	trade "Luxury Goods" 1168
+	trade "Medical" 728
+	trade "Metal" 412
+	trade "Plastic" 314
+	object
+		sprite "star/a0"
+		distance 12.6525
+		period 10.0985
+		offset 180
+	object
+		sprite "star/k0"
+		distance 138.848
+		period 10.0985
+	object
+		sprite "planet/rock15"
+		distance 388.588
+		period 41.4831
+	object
+		sprite "planet/ice6"
+		distance 611.998
+		period 81.9903
+	object
+		sprite "planet/ice7"
+		distance 946.158
+		period 157.61
+	object
+		sprite "planet/earth"
+		distance 1533.41
+		period 325.18
+		object
+			sprite "planet/dust7"
+			distance 173
+			period 21.76
+	object
+		sprite "planet/gas7"
+		distance 3246.65
+		period 1001.82
+		object
+			sprite "planet/lava2"
+			distance 245
+			period 12.4436
+		object
+			sprite "planet/dust2"
+			distance 398
+			period 25.7645
+
+system "Regor"
+	pos -702 -335
+	habitable 1400
+	link "Aspidiske"
+	link "Naos"
+	link "Suhail"
+	asteroids "large metal" 1 2.2968
+	trade "Clothing" 232
+	trade "Electronics" 720
+	trade "Equipment" 445
+	trade "Food" 395
+	trade "Heavy Metals" 1045
+	trade "Industrial" 820
+	trade "Luxury Goods" 1066
+	trade "Medical" 753
+	trade "Metal" 255
+	trade "Plastic" 277
+	object
+		sprite "star/g0"
+		distance 26.5143
+		period 13.3562
+	object
+		sprite "star/k5"
+		distance 89.4857
+		period 13.3562
+		offset 180
+	object
+		sprite "planet/lava1"
+		distance 264.646
+		period 46.0249
+	object
+		sprite "planet/rock3"
+		distance 439.936
+		period 98.6461
+	object
+		sprite "planet/gas13"
+		distance 1182.19
+		period 434.535
+	object
+		sprite "planet/luna"
+		distance 1774.43
+		period 799.066
+	object
+		sprite "planet/gas16"
+		distance 2971.04
+		period 1731.24
+		object
+			sprite "planet/lava0"
+			distance 230
+			period 17.1931
+		object
+			sprite "planet/ice0"
+			distance 385
+			period 37.2352
+
+system "Regulus"
+	pos -544 25
+	habitable 8640
+	link "Merak"
+	asteroids "small rock" 31 3.7752
+	asteroids "medium rock" 47 2.145
+	asteroids "large rock" 6 2.9172
+	asteroids "small metal" 3 1.573
+	asteroids "medium metal" 27 2.3166
+	asteroids "large metal" 15 4.0898
+	trade "Clothing" 249
+	trade "Electronics" 703
+	trade "Equipment" 417
+	trade "Food" 501
+	trade "Heavy Metals" 1007
+	trade "Industrial" 615
+	trade "Luxury Goods" 1187
+	trade "Medical" 537
+	trade "Metal" 406
+	trade "Plastic" 318
+	object
+		sprite "star/b5"
+		period 10
+	object
+		sprite "planet/gas15"
+		distance 774.96
+		period 92.8372
+		object
+			sprite "planet/rock3"
+			distance 186
+			period 12.5035
+		object
+			sprite "planet/dust1"
+			distance 317
+			period 27.8196
+		object
+			sprite "planet/io"
+			distance 472
+			period 50.5447
+		object
+			sprite "planet/rock0"
+			distance 584
+			period 69.5635
+	object
+		sprite "planet/dust7"
+		distance 1570.21
+		period 267.756
+	object
+		sprite "planet/gas11"
+		distance 2327.7
+		period 483.274
+		object
+			sprite "planet/miranda"
+			distance 248
+			period 12.1759
+		object
+			sprite "planet/lava2"
+			distance 346
+			period 20.065
+
+system "Rigel"
+	pos -324 -363
+	habitable 625
+	link "Saiph"
+	link "Alnitak"
+	link "Betelgeuse"
+	link "Hassaleh"
+	asteroids "small rock" 12 11.076
+	asteroids "medium rock" 42 3.9
+	asteroids "large rock" 37 10.53
+	asteroids "small metal" 88 5.382
+	asteroids "medium metal" 28 6.63
+	asteroids "large metal" 32 11.7
+	trade "Clothing" 311
+	trade "Electronics" 732
+	trade "Equipment" 665
+	trade "Food" 528
+	trade "Heavy Metals" 1230
+	trade "Industrial" 627
+	trade "Luxury Goods" 1243
+	trade "Medical" 721
+	trade "Metal" 302
+	trade "Plastic" 472
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/ice7"
+		distance 219.09
+		period 51.8864
+	object
+		sprite "planet/desert10"
+		distance 456.18
+		period 155.892
+	object
+		sprite "planet/gas2"
+		distance 1178.19
+		period 647.058
+		object
+			sprite "planet/rock7"
+			distance 225
+			period 15
+		object
+			sprite "planet/miranda"
+			distance 305
+			period 23.6738
+		object
+			sprite "planet/mercury"
+			distance 465
+			period 44.5653
+	object
+		sprite "planet/io"
+		distance 3015.08
+		period 2648.92
+
+system "Ruchbah"
+	pos -174 69
+	habitable 214.375
+	link "Ankaa"
+	link "Alpheratz"
+	link "Sheratan"
+	link "Hamal"
+	link "Alpha Hydri"
+	link "Algol"
+	asteroids "small rock" 6 4.8412
+	asteroids "medium rock" 17 2.1476
+	asteroids "large rock" 57 4.7684
+	asteroids "small metal" 1 3.6036
+	asteroids "medium metal" 13 2.0384
+	asteroids "large metal" 27 4.914
+	trade "Clothing" 293
+	trade "Electronics" 706
+	trade "Equipment" 576
+	trade "Food" 232
+	trade "Heavy Metals" 675
+	trade "Industrial" 848
+	trade "Luxury Goods" 1155
+	trade "Medical" 597
+	trade "Metal" 334
+	trade "Plastic" 353
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/desert5"
+		distance 305.86
+		period 146.136
+		object
+			sprite "planet/ganymede"
+			distance 183
+			period 25.793
+	object
+		sprite "planet/lava5"
+		distance 858.62
+		period 687.344
+		object
+			sprite "planet/io"
+			distance 142
+			period 21.2713
+	object
+		sprite "planet/gas12"
+		distance 1882.31
+		period 2231.05
+		object
+			sprite "planet/dust2"
+			distance 304
+			period 13.2627
+		object
+			sprite "planet/rock0"
+			distance 413
+			period 21.0013
+		object
+			sprite "planet/oberon"
+			distance 540
+			period 31.3987
+		object
+			sprite "planet/lava2"
+			distance 673
+			period 43.6861
+
+system "Rutilicus"
+	pos -535 273
+	habitable 455.625
+	link "Arcturus"
+	link "Cebalrai"
+	link "Menkent"
+	asteroids "small rock" 1 1.9188
+	asteroids "medium rock" 10 1.9656
+	asteroids "large rock" 1 2.0358
+	asteroids "small metal" 13 1.4742
+	asteroids "medium metal" 50 1.2168
+	asteroids "large metal" 1 2.2932
+	trade "Clothing" 224
+	trade "Electronics" 838
+	trade "Equipment" 560
+	trade "Food" 335
+	trade "Heavy Metals" 916
+	trade "Industrial" 792
+	trade "Luxury Goods" 1171
+	trade "Medical" 590
+	trade "Metal" 468
+	trade "Plastic" 415
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/rock14"
+		distance 132.74
+		period 28.6589
+	object
+		sprite "planet/jupiter"
+		distance 570.1
+		period 255.084
+	object
+		sprite "planet/ice2"
+		distance 983.26
+		period 577.775
+	object
+		sprite "planet/rock3"
+		distance 1412.87
+		period 995.198
+	object
+		sprite "planet/dust3"
+		distance 3409.51
+		period 3730.73
+
+system "Sabik"
+	pos -675 379
+	habitable 625
+	link "Unukalhai"
+	link "Zubenelgenubi"
+	link "Kornephoros"
+	link "Aldhibain"
+	asteroids "small rock" 2 5.684
+	asteroids "medium rock" 1 4.669
+	asteroids "large rock" 5 5.5622
+	asteroids "small metal" 7 5.0344
+	asteroids "medium metal" 29 5.481
+	asteroids "large metal" 2 2.233
+	trade "Clothing" 312
+	trade "Electronics" 787
+	trade "Equipment" 383
+	trade "Food" 170
+	trade "Heavy Metals" 1207
+	trade "Industrial" 607
+	trade "Luxury Goods" 994
+	trade "Medical" 697
+	trade "Metal" 512
+	trade "Plastic" 300
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/fog0"
+		distance 221.36
+		period 52.6949
+	object
+		sprite "planet/lava3"
+		distance 482.36
+		period 169.503
+	object
+		sprite "planet/dust6"
+		distance 733.36
+		period 317.758
+	object
+		sprite "planet/luna"
+		distance 1401.36
+		period 839.353
+	object
+		sprite "planet/gas7"
+		distance 3910.17
+		period 3912.13
+		object
+			sprite "planet/tethys"
+			distance 242
+			period 12.2157
+
+system "Sadalmelik"
+	pos -145 472
+	habitable 1929.38
+	link "Enif"
+	link "Sadalsuud"
+	asteroids "small rock" 1 3.38
+	asteroids "medium rock" 220 3.0082
+	asteroids "large rock" 1 2.9744
+	asteroids "medium metal" 3 3.4138
+	asteroids "large metal" 1 5.07
+	trade "Clothing" 375
+	trade "Electronics" 852
+	trade "Equipment" 569
+	trade "Food" 385
+	trade "Heavy Metals" 801
+	trade "Industrial" 812
+	trade "Luxury Goods" 1468
+	trade "Medical" 915
+	trade "Metal" 297
+	trade "Plastic" 454
+	object
+		sprite "star/f5"
+		distance 10.7222
+		period 8.63262
+	object
+		sprite "star/m0"
+		distance 85.7778
+		period 8.63262
+		offset 180
+	object
+		sprite "planet/rock5"
+		distance 272.278
+		period 40.9138
+	object
+		sprite "planet/europa"
+		distance 618.888
+		period 140.207
+	object
+		sprite "planet/forest6"
+		distance 841.888
+		period 222.45
+	object
+		sprite "planet/dust7"
+		distance 2142.5
+		period 903.093
+
+system "Sadalsuud"
+	pos -134 508
+	habitable 455.625
+	link "Enif"
+	link "Sadalmelik"
+	asteroids "small rock" 1 4.116
+	asteroids "large rock" 3 1.5876
+	asteroids "large metal" 1 3.1458
+	trade "Clothing" 353
+	trade "Electronics" 849
+	trade "Equipment" 561
+	trade "Food" 388
+	trade "Heavy Metals" 824
+	trade "Industrial" 796
+	trade "Luxury Goods" 1484
+	trade "Medical" 911
+	trade "Metal" 320
+	trade "Plastic" 447
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/rock11"
+		distance 177.39
+		period 44.2741
+	object
+		sprite "planet/ice1"
+		distance 571.15
+		period 255.789
+	object
+		sprite "planet/lava7"
+		distance 877.16
+		period 486.827
+	object
+		sprite "planet/rock17"
+		distance 2202.92
+		period 1937.56
+
+system "Sadr"
+	pos -287 543
+	habitable 3859.38
+	link "Albireo"
+	asteroids "small rock" 48 4.9932
+	asteroids "medium rock" 19 4.5828
+	asteroids "large rock" 11 5.0958
+	asteroids "small metal" 9 3.3516
+	asteroids "medium metal" 9 3.1464
+	asteroids "large metal" 57 2.5308
+	trade "Clothing" 231
+	trade "Electronics" 812
+	trade "Equipment" 543
+	trade "Food" 207
+	trade "Heavy Metals" 986
+	trade "Industrial" 885
+	trade "Luxury Goods" 1196
+	trade "Medical" 856
+	trade "Metal" 208
+	trade "Plastic" 458
+	object
+		sprite "star/a5"
+		distance 5.86016
+		period 6.97718
+	object
+		sprite "star/m0"
+		distance 99.6398
+		period 6.97718
+		offset 180
+	object
+		sprite "planet/callisto"
+		distance 280.83
+		period 30.3017
+	object
+		sprite "planet/rock3"
+		distance 543.84
+		period 81.6597
+	object
+		sprite "planet/desert6"
+		distance 876.65
+		period 167.125
+		object
+			sprite "planet/rock17"
+			distance 150
+			period 17.5682
+	object
+		sprite "planet/desert5"
+		distance 1311.09
+		period 305.668
+	object
+		sprite "planet/miranda"
+		distance 2553.34
+		period 830.739
+
+system "Saiph"
+	pos -375 -390
+	habitable 455.625
+	link "Rigel"
+	link "Alnitak"
+	asteroids "small rock" 103 6.4974
+	asteroids "medium rock" 69 5.4054
+	asteroids "large rock" 13 3.003
+	asteroids "small metal" 5 6.9342
+	asteroids "large metal" 3 3.9858
+	trade "Clothing" 323
+	trade "Electronics" 802
+	trade "Equipment" 640
+	trade "Food" 530
+	trade "Heavy Metals" 1210
+	trade "Industrial" 611
+	trade "Luxury Goods" 1173
+	trade "Medical" 786
+	trade "Metal" 281
+	trade "Plastic" 473
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/desert10"
+		distance 202.19
+		period 53.876
+	object
+		sprite "planet/dust5"
+		distance 449.68
+		period 178.695
+	object
+		sprite "planet/rock10"
+		distance 1205.09
+		period 783.945
+	object
+		sprite "planet/gas7"
+		distance 3257.34
+		period 3483.78
+		object
+			sprite "planet/tethys"
+			distance 218
+			period 10.4444
+		object
+			sprite "planet/lava0"
+			distance 353
+			period 21.5208
+		object
+			sprite "planet/ganymede"
+			distance 495
+			period 35.7359
+		object
+			sprite "planet/dust3"
+			distance 683
+			period 57.9199
+
+system "Sargas"
+	pos -542 445
+	habitable 590.625
+	link "Kornephoros"
+	link "Lesath"
+	asteroids "large metal" 1 2.6656
+	trade "Clothing" 290
+	trade "Electronics" 807
+	trade "Equipment" 494
+	trade "Food" 206
+	trade "Heavy Metals" 1116
+	trade "Industrial" 615
+	trade "Luxury Goods" 962
+	trade "Medical" 753
+	trade "Metal" 518
+	trade "Plastic" 298
+	object
+		sprite "star/k0"
+		distance 21.8286
+		period 15.3606
+	object
+		sprite "star/m4"
+		distance 73.6714
+		period 15.3606
+		offset 180
+	object
+		sprite "planet/desert3"
+		distance 401.881
+		period 132.602
+		object
+			sprite "planet/dust5"
+			distance 148
+			period 17.218
+	object
+		sprite "planet/rock18"
+		distance 992.091
+		period 514.318
+		object
+			sprite "planet/rock14"
+			distance 144
+			period 19.718
+	object
+		sprite "planet/gas10"
+		distance 1730.5
+		period 1184.85
+	object
+		sprite "planet/rock3"
+		distance 2090.06
+		period 1572.69
+
+system "Sarin"
+	pos -670 293
+	habitable 1535.62
+	link "Vindemiatrix"
+	asteroids "large metal" 1 1.74
+	trade "Clothing" 305
+	trade "Electronics" 808
+	trade "Equipment" 437
+	trade "Food" 158
+	trade "Heavy Metals" 939
+	trade "Industrial" 635
+	trade "Luxury Goods" 1077
+	trade "Medical" 824
+	trade "Metal" 531
+	trade "Plastic" 349
+	object
+		sprite "star/g0"
+		distance 34.8626
+		period 13.0009
+		offset 180
+	object
+		sprite "star/k0"
+		distance 82.6374
+		period 13.0009
+	object
+		sprite "planet/rhea"
+		distance 250.227
+		period 40.4036
+	object
+		sprite "planet/forest4"
+		distance 616.637
+		period 156.301
+	object
+		sprite "planet/rock9"
+		distance 1040.89
+		period 342.786
+	object
+		sprite "planet/uranus"
+		distance 2251.93
+		period 1090.81
+		object
+			sprite "planet/ice0"
+			distance 234
+			period 14.441
+		object
+			sprite "planet/dust2"
+			distance 332
+			period 24.4052
+		object
+			sprite "planet/lava1"
+			distance 500
+			period 45.1055
+
+system "Scheat"
+	pos -205 233
+	habitable 625
+	link "Markab"
+	link "Delta Capricorni"
+	link "Al Dhanab"
+	link "Mirach"
+	link "Matar"
+	asteroids "large metal" 1 5.0547
+	trade "Clothing" 279
+	trade "Electronics" 757
+	trade "Equipment" 474
+	trade "Food" 434
+	trade "Heavy Metals" 780
+	trade "Industrial" 623
+	trade "Luxury Goods" 1036
+	trade "Medical" 573
+	trade "Metal" 259
+	trade "Plastic" 312
+	object
+		sprite "star/g5"
+		period 10
+	object
+		sprite "planet/desert8"
+		distance 209.76
+		period 48.6076
+	object
+		sprite "planet/forest6"
+		distance 439.8
+		period 147.572
+	object
+		sprite "planet/desert2"
+		distance 932.29
+		period 455.456
+		object
+			sprite "planet/europa"
+			distance 156
+			period 20.3008
+	object
+		sprite "planet/forest2"
+		distance 1721.18
+		period 1142.51
+	object
+		sprite "planet/rock0"
+		distance 2109.62
+		period 1550.34
+
+system "Schedar"
+	pos -93 229
+	habitable 1535.62
+	link "Mirach"
+	link "Achernar"
+	link "Almach"
+	asteroids "small rock" 10 1.736
+	asteroids "medium rock" 2 0.896
+	asteroids "large rock" 3 1.148
+	asteroids "small metal" 5 1.96
+	asteroids "medium metal" 1 0.966
+	asteroids "large metal" 12 1.12
+	trade "Clothing" 344
+	trade "Electronics" 694
+	trade "Equipment" 616
+	trade "Food" 324
+	trade "Heavy Metals" 816
+	trade "Industrial" 743
+	trade "Luxury Goods" 965
+	trade "Medical" 743
+	trade "Metal" 325
+	trade "Plastic" 279
+	object
+		sprite "star/g0"
+		distance 29.8187
+		period 10.2841
+		offset 180
+	object
+		sprite "star/k0"
+		distance 70.6813
+		period 10.2841
+	object
+		sprite "planet/desert9"
+		distance 272.791
+		period 45.99
+	object
+		sprite "planet/dust7"
+		distance 457.801
+		period 99.9846
+	object
+		sprite "planet/ice0"
+		distance 826.691
+		period 242.623
+	object
+		sprite "planet/rock6"
+		distance 1333.73
+		period 497.187
+	object
+		sprite "planet/gas14"
+		distance 2271.73
+		period 1105.23
+
+system "Seginus"
+	pos -557 356
+	habitable 320
+	link "Alnasl"
+	link "Wei"
+	link "Alphecca"
+	asteroids "small rock" 11 5.5188
+	asteroids "medium rock" 3 6.2748
+	asteroids "large rock" 1 4.6116
+	asteroids "large metal" 1 8.7696
+	trade "Clothing" 330
+	trade "Electronics" 712
+	trade "Equipment" 371
+	trade "Food" 193
+	trade "Heavy Metals" 1146
+	trade "Industrial" 603
+	trade "Luxury Goods" 1047
+	trade "Medical" 776
+	trade "Metal" 532
+	trade "Plastic" 503
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/rock4"
+		distance 172.89
+		period 50.8323
+	object
+		sprite "planet/desert10"
+		distance 475.1
+		period 231.559
+	object
+		sprite "planet/gas9"
+		distance 1441.71
+		period 1224.06
+		object
+			sprite "planet/dust1"
+			distance 258
+			period 14.6159
+		object
+			sprite "planet/miranda"
+			distance 402
+			period 28.4274
+	object
+		sprite "planet/gas13"
+		distance 3310.92
+		period 4259.98
+		object
+			sprite "planet/rock3"
+			distance 257
+			period 11.0541
+
+system "Shaula"
+	pos -460 527
+	habitable 455.625
+	link "Lesath"
+	asteroids "small rock" 1 3.2016
+	asteroids "medium rock" 2 3.5496
+	asteroids "large rock" 2 3.8628
+	asteroids "small metal" 47 4.9764
+	asteroids "medium metal" 208 4.002
+	asteroids "large metal" 45 4.4196
+	trade "Clothing" 232
+	trade "Electronics" 727
+	trade "Equipment" 606
+	trade "Food" 196
+	trade "Heavy Metals" 991
+	trade "Industrial" 582
+	trade "Luxury Goods" 1039
+	trade "Medical" 793
+	trade "Metal" 533
+	trade "Plastic" 249
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/mars"
+		distance 283.86
+		period 89.6216
+		object
+			sprite "planet/europa"
+			distance 145
+			period 21.949
+	object
+		sprite "planet/ice5"
+		distance 847.07
+		period 461.993
+		object
+			sprite "planet/dust4"
+			distance 184
+			period 22.0088
+	object
+		sprite "planet/gas7"
+		distance 1951.83
+		period 1615.92
+		object
+			sprite "planet/oberon"
+			distance 232
+			period 11.4664
+
+system "Sheratan"
+	pos -40 46
+	habitable 670
+	link "Ruchbah"
+	link "Zaurak"
+	asteroids "large rock" 1 1.358
+	asteroids "large metal" 2 1.218
+	trade "Clothing" 304
+	trade "Electronics" 759
+	trade "Equipment" 653
+	trade "Food" 179
+	trade "Heavy Metals" 755
+	trade "Industrial" 816
+	trade "Luxury Goods" 1096
+	trade "Medical" 596
+	trade "Metal" 306
+	trade "Plastic" 355
+	object
+		sprite "star/k0"
+		distance 30.0765
+		period 14.0836
+	object
+		sprite "star/m0"
+		distance 63.9235
+		period 14.0836
+		offset 180
+	object
+		sprite "planet/lava2"
+		distance 244.834
+		period 59.201
+	object
+		sprite "planet/tethys"
+		distance 427.874
+		period 136.772
+	object
+		sprite "planet/rock17"
+		distance 1032.51
+		period 512.703
+	object
+		sprite "planet/desert8"
+		distance 1498.51
+		period 896.424
+		object
+			sprite "planet/dust0"
+			distance 157
+			period 22.4475
+	object
+		sprite "planet/gas1"
+		distance 2479.72
+		period 1908.22
+		object
+			sprite "planet/dust1"
+			distance 230
+			period 12.3024
+		object
+			sprite "planet/rock7"
+			distance 311
+			period 19.3436
+		object
+			sprite "planet/dust2"
+			distance 486
+			period 37.7878
+
+system "Sirius"
+	pos -378 44
+	habitable 1800
+	link "Sol"
+	link "Procyon"
+	asteroids "small rock" 1 5.225
+	asteroids "medium rock" 6 4.565
+	asteroids "large rock" 6 7.645
+	asteroids "small metal" 34 8.085
+	asteroids "medium metal" 3 4.565
+	asteroids "large metal" 51 7.535
+	trade "Clothing" 186
+	trade "Electronics" 699
+	trade "Equipment" 424
+	trade "Food" 497
+	trade "Heavy Metals" 940
+	trade "Industrial" 602
+	trade "Luxury Goods" 1297
+	trade "Medical" 477
+	trade "Metal" 480
+	trade "Plastic" 366
+	object
+		sprite "star/f5"
+		distance 3.94301
+		period 8.13257
+		offset 180
+	object
+		sprite "star/m8"
+		distance 86.557
+		period 8.13257
+	object
+		sprite "planet/lava4"
+		distance 338.347
+		period 58.7893
+	object
+		sprite "planet/rock6"
+		distance 640.587
+		period 153.152
+	object
+		sprite "planet/dust3"
+		distance 1158.2
+		period 372.33
+	object "Relic"
+		sprite "planet/dust4"
+		distance 1807.21
+		period 725.716
+	object
+		sprite "planet/tethys"
+		distance 2162.3
+		period 949.79
+
+system "Sol"
+	pos -400 100
+	habitable 1080
+	link "Vega"
+	link "Alpha Centauri"
+	link "Altair"
+	link "Sirius"
+	link "Denebola"
+	link "Caph"
+	asteroids "small rock" 30 2.691
+	asteroids "large rock" 50 5.0508
+	asteroids "medium metal" 4 2.8566
+	asteroids "large metal" 1 2.2356
+	trade "Clothing" 282
+	trade "Electronics" 745
+	trade "Equipment" 491
+	trade "Food" 505
+	trade "Heavy Metals" 849
+	trade "Industrial" 635
+	trade "Luxury Goods" 1159
+	trade "Medical" 480
+	trade "Metal" 402
+	trade "Plastic" 272
+	object
+		sprite "star/g0"
+		period 25.38
+	object
+		sprite "planet/mercury"
+		distance 289.647
+		period 60
+	object
+		sprite "planet/venus"
+		distance 533.534
+		period 150
+	object "Earth"
+		sprite "planet/earth"
+		distance 965.669
+		period 365.25
+		object "Luna"
+			sprite "planet/luna"
+			distance 201.24
+			period 27.3
+	object "Mars"
+		sprite "planet/mars"
+		distance 1471.43
+		period 687
+	object
+		sprite "planet/jupiter"
+		distance 3000
+		period 2000
+		object
+			sprite "planet/io"
+			distance 238.221
+			period 10.614
+		object
+			sprite "planet/europa"
+			distance 379.078
+			period 21.306
+		object
+			sprite "planet/ganymede"
+			distance 604.739
+			period 42.93
+		object
+			sprite "planet/callisto"
+			distance 811.717
+			period 66.76
+
+system "Spica"
+	pos -906 120
+	habitable 1400
+	link "Minkar"
+	link "Gamma Corvi"
+	asteroids "medium rock" 28 1.386
+	asteroids "large rock" 4 1.554
+	asteroids "small metal" 7 1.533
+	asteroids "medium metal" 5 3.129
+	asteroids "large metal" 5 1.953
+	trade "Clothing" 228
+	trade "Electronics" 735
+	trade "Equipment" 412
+	trade "Food" 191
+	trade "Heavy Metals" 938
+	trade "Industrial" 747
+	trade "Luxury Goods" 1099
+	trade "Medical" 574
+	trade "Metal" 417
+	trade "Plastic" 518
+	object
+		sprite "star/g0"
+		distance 24.2286
+		period 11.6669
+	object
+		sprite "star/k5"
+		distance 81.7714
+		period 11.6669
+		offset 180
+	object
+		sprite "planet/lava1"
+		distance 261.611
+		period 45.2357
+	object
+		sprite "planet/ice4"
+		distance 620.451
+		period 165.218
+	object
+		sprite "planet/rhea"
+		distance 974.091
+		period 325.009
+	object
+		sprite "planet/gas1"
+		distance 2260.09
+		period 1148.64
+		object
+			sprite "planet/dust7"
+			distance 249
+			period 13.8579
+
+system "Suhail"
+	pos -774 -338
+	habitable 3645
+	link "Regor"
+	asteroids "small rock" 2 2.8224
+	asteroids "medium rock" 1 4.48
+	asteroids "large rock" 1 2.5088
+	asteroids "small metal" 5 5.7344
+	asteroids "medium metal" 3 3.4944
+	asteroids "large metal" 17 4.5696
+	trade "Clothing" 234
+	trade "Electronics" 755
+	trade "Equipment" 442
+	trade "Food" 413
+	trade "Heavy Metals" 1056
+	trade "Industrial" 819
+	trade "Luxury Goods" 986
+	trade "Medical" 774
+	trade "Metal" 259
+	trade "Plastic" 277
+	object
+		sprite "star/a5"
+		period 10
+	object
+		sprite "planet/ice7"
+		distance 154
+		period 12.6617
+	object
+		sprite "planet/ice3"
+		distance 572.81
+		period 90.8295
+	object
+		sprite "planet/gas16"
+		distance 1253.1
+		period 293.893
+		object
+			sprite "planet/tethys"
+			distance 171
+			period 11.0219
+		object
+			sprite "planet/lava1"
+			distance 257
+			period 20.3078
+	object
+		sprite "planet/gas12"
+		distance 2255.1
+		period 709.512
+		object
+			sprite "planet/rock14"
+			distance 317
+			period 14.1224
+		object
+			sprite "planet/dust3"
+			distance 457
+			period 24.4453
+
+system "Tais"
+	pos -346 381
+	habitable 3645
+	link "Delta Sagittarii"
+	link "Kaus Australis"
+	link "Peacock"
+	link "Ascella"
+	asteroids "medium rock" 7 6.65
+	asteroids "large rock" 2 7
+	asteroids "small metal" 1 10.15
+	asteroids "medium metal" 7 10.43
+	asteroids "large metal" 2 9.94
+	trade "Clothing" 346
+	trade "Electronics" 703
+	trade "Equipment" 653
+	trade "Food" 340
+	trade "Heavy Metals" 935
+	trade "Industrial" 838
+	trade "Luxury Goods" 1361
+	trade "Medical" 856
+	trade "Metal" 362
+	trade "Plastic" 339
+	object
+		sprite "star/a5"
+		period 10
+	object
+		sprite "planet/venus"
+		distance 259.21
+		period 27.6496
+	object
+		sprite "planet/water0"
+		distance 525.45
+		period 79.801
+	object
+		sprite "planet/rock16"
+		distance 814.7
+		period 154.066
+	object
+		sprite "planet/rock3"
+		distance 1915.66
+		period 555.506
+	object
+		sprite "planet/dust7"
+		distance 2265.3
+		period 714.332
+
+system "Talita"
+	pos -519 -26
+	habitable 214.375
+	link "Miaplacidus"
+	link "Alphard"
+	link "Castor"
+	link "Pollux"
+	asteroids "small rock" 73 2.128
+	asteroids "medium rock" 8 2.94
+	asteroids "large rock" 20 3.388
+	asteroids "small metal" 12 1.624
+	asteroids "medium metal" 65 1.596
+	asteroids "large metal" 33 1.512
+	trade "Clothing" 258
+	trade "Electronics" 717
+	trade "Equipment" 678
+	trade "Food" 552
+	trade "Heavy Metals" 967
+	trade "Industrial" 730
+	trade "Luxury Goods" 1451
+	trade "Medical" 718
+	trade "Metal" 290
+	trade "Plastic" 469
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/rock9"
+		distance 224.94
+		period 92.1665
+	object
+		sprite "planet/desert3"
+		distance 619.15
+		period 420.888
+		object
+			sprite "planet/rock3"
+			distance 162
+			period 19.718
+	object
+		sprite "planet/rock13"
+		distance 1032.51
+		period 906.388
+	object
+		sprite "planet/gas12"
+		distance 1514.95
+		period 1610.91
+	object
+		sprite "planet/gas16"
+		distance 3331.04
+		period 5252.22
+
+system "Tania Australis"
+	pos -671 7
+	habitable 1715
+	link "Phecda"
+	link "Algieba"
+	asteroids "medium rock" 4 4.6656
+	asteroids "large rock" 13 5.2704
+	asteroids "medium metal" 1 2.5488
+	asteroids "large metal" 7 5.9616
+	trade "Clothing" 348
+	trade "Electronics" 774
+	trade "Equipment" 501
+	trade "Food" 421
+	trade "Heavy Metals" 974
+	trade "Industrial" 625
+	trade "Luxury Goods" 1264
+	trade "Medical" 677
+	trade "Metal" 311
+	trade "Plastic" 390
+	object
+		sprite "star/f5"
+		period 10
+	object
+		sprite "planet/rock11"
+		distance 222.44
+		period 32.044
+	object
+		sprite "planet/gas16"
+		distance 506.44
+		period 110.083
+	object
+		sprite "planet/gas1"
+		distance 1181.44
+		period 392.234
+		object
+			sprite "planet/miranda"
+			distance 223
+			period 11.745
+		object
+			sprite "planet/rock0"
+			distance 347
+			period 22.7977
+	object
+		sprite "planet/oberon"
+		distance 1908.05
+		period 805.031
+	object
+		sprite "planet/dust4"
+		distance 2265.3
+		period 1041.4
+
+system "Tarazed"
+	pos -194 448
+	habitable 320
+	link "Enif"
+	link "Albireo"
+	link "Dabih"
+	asteroids "small rock" 2 2.2968
+	asteroids "medium rock" 1 2.1978
+	asteroids "large rock" 8 1.0692
+	asteroids "small metal" 1 1.8216
+	asteroids "large metal" 5 1.6632
+	trade "Clothing" 305
+	trade "Electronics" 761
+	trade "Equipment" 395
+	trade "Food" 238
+	trade "Heavy Metals" 881
+	trade "Industrial" 795
+	trade "Luxury Goods" 1377
+	trade "Medical" 891
+	trade "Metal" 276
+	trade "Plastic" 315
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/desert3"
+		distance 233.96
+		period 80.0198
+	object
+		sprite "planet/forest5"
+		distance 804
+		period 509.764
+		object
+			sprite "planet/dust3"
+			distance 146
+			period 16.8702
+	object
+		sprite "planet/miranda"
+		distance 1160.04
+		period 883.475
+	object
+		sprite "planet/dust4"
+		distance 1776.68
+		period 1674.55
+	object
+		sprite "planet/io"
+		distance 4563.93
+		period 6894.35
+
+system "Tejat"
+	pos -489 -107
+	habitable 1929.38
+	link "Phurad"
+	link "Miaplacidus"
+	asteroids "small rock" 5 4.5675
+	asteroids "medium rock" 5 3.1755
+	asteroids "large rock" 5 4.959
+	asteroids "small metal" 11 3.741
+	asteroids "medium metal" 49 4.263
+	asteroids "large metal" 22 4.5675
+	trade "Clothing" 264
+	trade "Electronics" 721
+	trade "Equipment" 614
+	trade "Food" 448
+	trade "Heavy Metals" 966
+	trade "Industrial" 709
+	trade "Luxury Goods" 1420
+	trade "Medical" 561
+	trade "Metal" 345
+	trade "Plastic" 492
+	object
+		sprite "star/f5"
+		distance 13.5
+		period 12.196
+		offset 180
+	object
+		sprite "star/m0"
+		distance 108
+		period 12.196
+	object
+		sprite "planet/desert6"
+		distance 359.06
+		period 61.9587
+	object
+		sprite "planet/earth"
+		distance 742.7
+		period 184.32
+		object
+			sprite "planet/rock3"
+			distance 145
+			period 16.6972
+	object
+		sprite "planet/gas14"
+		distance 1968.7
+		period 795.465
+		object
+			sprite "planet/lava2"
+			distance 268
+			period 16.9017
+		object
+			sprite "planet/lava1"
+			distance 417
+			period 32.8044
+		object
+			sprite "planet/oberon"
+			distance 549
+			period 49.5549
+		object
+			sprite "planet/ganymede"
+			distance 649
+			period 63.6936
+
+system "Turais"
+	pos -691 134
+	habitable 1080
+	link "Gacrux"
+	link "Delta Velorum"
+	link "Algorel"
+	asteroids "small rock" 16 3.075
+	asteroids "medium rock" 37 4.2
+	asteroids "large rock" 7 4.35
+	asteroids "small metal" 1 2.775
+	asteroids "medium metal" 25 4.65
+	asteroids "large metal" 6 3.4125
+	trade "Clothing" 290
+	trade "Electronics" 746
+	trade "Equipment" 482
+	trade "Food" 263
+	trade "Heavy Metals" 855
+	trade "Industrial" 663
+	trade "Luxury Goods" 968
+	trade "Medical" 781
+	trade "Metal" 559
+	trade "Plastic" 473
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/rock12"
+		distance 249.21
+		period 47.8846
+	object
+		sprite "planet/ganymede"
+		distance 583.7
+		period 171.646
+	object
+		sprite "planet/lava1"
+		distance 805.7
+		period 278.361
+	object
+		sprite "planet/gas10"
+		distance 2185.7
+		period 1243.75
+		object
+			sprite "planet/lava0"
+			distance 227
+			period 16.8578
+		object
+			sprite "planet/tethys"
+			distance 343
+			period 31.3115
+
+system "Unukalhai"
+	pos -710 405
+	habitable 320
+	link "Zubenelgenubi"
+	link "Sabik"
+	asteroids "small rock" 9 4.5864
+	asteroids "medium rock" 35 2.9484
+	asteroids "large rock" 23 3.7856
+	asteroids "small metal" 42 1.8564
+	asteroids "medium metal" 190 4.55
+	asteroids "large metal" 25 2.0748
+	trade "Clothing" 315
+	trade "Electronics" 758
+	trade "Equipment" 376
+	trade "Food" 218
+	trade "Heavy Metals" 1221
+	trade "Industrial" 619
+	trade "Luxury Goods" 987
+	trade "Medical" 665
+	trade "Metal" 458
+	trade "Plastic" 277
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/forest4"
+		distance 249.21
+		period 87.9697
+	object
+		sprite "planet/ice1"
+		distance 539.45
+		period 280.164
+	object
+		sprite "planet/ice7"
+		distance 908.46
+		period 612.271
+	object
+		sprite "planet/gas12"
+		distance 1560.67
+		period 1378.64
+		object
+			sprite "planet/io"
+			distance 271
+			period 11.1628
+	object
+		sprite "planet/rock7"
+		distance 4247.16
+		period 6189.18
+
+system "Vega"
+	pos -402 182
+	habitable 1080.62
+	link "Altair"
+	link "Sol"
+	link "Menkent"
+	asteroids "small rock" 2 5.7596
+	asteroids "medium rock" 1 6.4736
+	asteroids "large rock" 1 6.5688
+	asteroids "small metal" 3 3.332
+	asteroids "medium metal" 51 6.8068
+	asteroids "large metal" 3 6.426
+	trade "Clothing" 375
+	trade "Electronics" 797
+	trade "Equipment" 571
+	trade "Food" 414
+	trade "Heavy Metals" 858
+	trade "Industrial" 674
+	trade "Luxury Goods" 1058
+	trade "Medical" 496
+	trade "Metal" 356
+	trade "Plastic" 315
+	object
+		sprite "star/g5"
+		distance 37.3143
+		period 10.1307
+		offset 180
+	object
+		sprite "star/k0"
+		distance 51.1857
+		period 10.1307
+	object
+		sprite "planet/desert2"
+		distance 278.046
+		period 56.4153
+	object
+		sprite "planet/dust1"
+		distance 636.806
+		period 195.539
+	object
+		sprite "planet/desert8"
+		distance 1069.81
+		period 425.775
+	object
+		sprite "planet/miranda"
+		distance 1420.05
+		period 651.142
+	object
+		sprite "planet/gas6"
+		distance 2277.29
+		period 1322.36
+		object
+			sprite "planet/rock3"
+			distance 279
+			period 10.5623
+		object
+			sprite "planet/dust5"
+			distance 381
+			period 16.8554
+
+system "Vindemiatrix"
+	pos -635 257
+	habitable 320
+	link "Alioth"
+	link "Muhlifain"
+	link "Cor Caroli"
+	link "Sarin"
+	asteroids "small rock" 150 4.446
+	asteroids "medium rock" 90 4.0716
+	asteroids "large rock" 2 6.6456
+	asteroids "small metal" 8 3.1356
+	asteroids "medium metal" 1 5.4288
+	asteroids "large metal" 2 6.2712
+	trade "Clothing" 263
+	trade "Electronics" 798
+	trade "Equipment" 494
+	trade "Food" 160
+	trade "Heavy Metals" 962
+	trade "Industrial" 655
+	trade "Luxury Goods" 1060
+	trade "Medical" 824
+	trade "Metal" 535
+	trade "Plastic" 408
+	object
+		sprite "star/k5"
+		period 10
+	object
+		sprite "planet/desert7"
+		distance 140.36
+		period 37.1835
+	object
+		sprite "planet/mars"
+		distance 378
+		period 164.332
+	object
+		sprite "planet/dust6"
+		distance 897.25
+		period 600.973
+	object
+		sprite "planet/miranda"
+		distance 1161.69
+		period 885.361
+	object
+		sprite "planet/gas6"
+		distance 4133.94
+		period 5943.35
+
+system "Wazn"
+	pos -385 -131
+	habitable 214.375
+	link "Alhena"
+	link "Kursa"
+	link "Phact"
+	link "Phurad"
+	asteroids "small metal" 9 2.6048
+	asteroids "medium metal" 3 4.4704
+	asteroids "large metal" 9 1.9008
+	trade "Clothing" 286
+	trade "Electronics" 800
+	trade "Equipment" 662
+	trade "Food" 479
+	trade "Heavy Metals" 941
+	trade "Industrial" 736
+	trade "Luxury Goods" 1388
+	trade "Medical" 506
+	trade "Metal" 246
+	trade "Plastic" 433
+	object
+		sprite "star/m0"
+		period 10
+	object
+		sprite "planet/rock15"
+		distance 137.74
+		period 44.1635
+	object
+		sprite "planet/rock3"
+		distance 322.98
+		period 158.576
+	object
+		sprite "planet/miranda"
+		distance 882.47
+		period 716.181
+	object
+		sprite "planet/dust7"
+		distance 1414.47
+		period 1453.33
+	object
+		sprite "planet/europa"
+		distance 4026.31
+		period 6979.65
+
+system "Wei"
+	pos -598 369
+	habitable 455.625
+	link "Seginus"
+	link "Alnasl"
+	link "Kornephoros"
+	link "Alioth"
+	asteroids "large metal" 1 3.1824
+	trade "Clothing" 319
+	trade "Electronics" 718
+	trade "Equipment" 391
+	trade "Food" 162
+	trade "Heavy Metals" 1140
+	trade "Industrial" 619
+	trade "Luxury Goods" 1074
+	trade "Medical" 731
+	trade "Metal" 516
+	trade "Plastic" 486
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/dust2"
+		distance 145.14
+		period 32.767
+	object
+		sprite "planet/lava1"
+		distance 334.14
+		period 114.459
+	object
+		sprite "planet/desert8"
+		distance 605.15
+		period 278.966
+	object
+		sprite "planet/gas3"
+		distance 2438.44
+		period 2256.44
+		object
+			sprite "planet/lava0"
+			distance 290
+			period 11.9475
+		object
+			sprite "planet/tethys"
+			distance 384
+			period 18.2044
+		object
+			sprite "planet/rock14"
+			distance 492
+			period 26.4015
+
+system "Wezen"
+	pos -664 -433
+	habitable 455.625
+	link "Naos"
+	asteroids "small rock" 6 2.6418
+	asteroids "medium rock" 68 2.2372
+	asteroids "large rock" 22 1.3328
+	asteroids "small metal" 3 2.5228
+	asteroids "medium metal" 6 1.9992
+	asteroids "large metal" 4 2.7132
+	trade "Clothing" 310
+	trade "Electronics" 700
+	trade "Equipment" 398
+	trade "Food" 414
+	trade "Heavy Metals" 921
+	trade "Industrial" 710
+	trade "Luxury Goods" 1033
+	trade "Medical" 796
+	trade "Metal" 365
+	trade "Plastic" 306
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/rock9"
+		distance 181.66
+		period 45.8823
+	object
+		sprite "planet/ice2"
+		distance 421.95
+		period 162.423
+	object
+		sprite "planet/rock11"
+		distance 801.64
+		period 425.329
+	object
+		sprite "planet/gas10"
+		distance 1588.05
+		period 1185.91
+		object
+			sprite "planet/dust3"
+			distance 204
+			period 14.3618
+		object
+			sprite "planet/dust5"
+			distance 312
+			period 27.164
+		object
+			sprite "planet/io"
+			distance 420
+			period 42.4264
+		object
+			sprite "planet/dust4"
+			distance 509
+			period 56.6029
+
+system "Yed Prior"
+	pos -810 374
+	habitable 455.625
+	link "Pherkad"
+	asteroids "small rock" 12 5.0784
+	asteroids "medium rock" 1 2.9072
+	asteroids "large rock" 5 3.7904
+	asteroids "small metal" 2 5.1888
+	asteroids "medium metal" 55 1.84
+	asteroids "large metal" 6 5.0416
+	trade "Clothing" 283
+	trade "Electronics" 864
+	trade "Equipment" 368
+	trade "Food" 205
+	trade "Heavy Metals" 1027
+	trade "Industrial" 777
+	trade "Luxury Goods" 1119
+	trade "Medical" 902
+	trade "Metal" 333
+	trade "Plastic" 307
+	object
+		sprite "star/k0"
+		period 10
+	object
+		sprite "planet/venus"
+		distance 158.94
+		period 37.5497
+	object
+		sprite "planet/forest1"
+		distance 626.15
+		period 293.612
+		object
+			sprite "planet/rhea"
+			distance 139
+			period 17.0745
+	object
+		sprite "planet/desert3"
+		distance 1173.44
+		period 753.265
+	object
+		sprite "planet/gas8"
+		distance 1690.25
+		period 1302.21
+	object
+		sprite "planet/gas10"
+		distance 2803.26
+		period 2781.32
+		object
+			sprite "planet/mercury"
+			distance 198
+			period 13.7328
+		object
+			sprite "planet/rock14"
+			distance 331
+			period 29.6828
+		object
+			sprite "planet/europa"
+			distance 463
+			period 49.1059
+		object
+			sprite "planet/dust2"
+			distance 564
+			period 66.0208
+
+system "Zaurak"
+	pos -109 -34
+	habitable 2035
+	link "Sheratan"
+	link "Alcyone"
+	link "Menkar"
+	asteroids "small rock" 30 5.0232
+	asteroids "medium rock" 34 5.2052
+	asteroids "large rock" 11 1.82
+	asteroids "small metal" 4 4.6228
+	asteroids "medium metal" 199 2.4024
+	asteroids "large metal" 46 4.4044
+	trade "Clothing" 310
+	trade "Electronics" 750
+	trade "Equipment" 673
+	trade "Food" 174
+	trade "Heavy Metals" 860
+	trade "Industrial" 774
+	trade "Luxury Goods" 1013
+	trade "Medical" 671
+	trade "Metal" 292
+	trade "Plastic" 376
+	object
+		sprite "star/f5"
+		distance 19.9705
+		period 12.6906
+	object
+		sprite "star/k5"
+		distance 107.029
+		period 12.6906
+		offset 180
+	object
+		sprite "planet/rock10"
+		distance 371.719
+		period 63.5478
+	object
+		sprite "planet/rock13"
+		distance 656.719
+		period 149.227
+	object
+		sprite "planet/gas10"
+		distance 1455.28
+		period 492.263
+	object
+		sprite "planet/miranda"
+		distance 2500.53
+		period 1108.73
+
+system "Zeta Aquilae"
+	pos -369 276
+	habitable 945
+	link "Ascella"
+	link "Rasalhague"
+	asteroids "small rock" 5 7.695
+	asteroids "medium rock" 11 4.536
+	asteroids "large rock" 2 10.611
+	asteroids "large metal" 1 10.125
+	trade "Clothing" 306
+	trade "Electronics" 755
+	trade "Equipment" 639
+	trade "Food" 533
+	trade "Heavy Metals" 786
+	trade "Industrial" 787
+	trade "Luxury Goods" 1351
+	trade "Medical" 790
+	trade "Metal" 510
+	trade "Plastic" 361
+	object
+		sprite "star/g5"
+		distance 32.5079
+		period 12.2391
+		offset 180
+	object
+		sprite "star/k5"
+		distance 63.4921
+		period 12.2391
+	object
+		sprite "planet/rock14"
+		distance 233.852
+		period 46.5324
+	object
+		sprite "planet/rock8"
+		distance 483.612
+		period 138.385
+	object
+		sprite "planet/ganymede"
+		distance 986.302
+		period 403.05
+	object
+		sprite "planet/gas10"
+		distance 2419.79
+		period 1548.86
+		object
+			sprite "planet/rhea"
+			distance 213
+			period 15.3226
+		object
+			sprite "planet/tethys"
+			distance 322
+			period 28.4804
+
+system "Zeta Centauri"
+	pos -835 257
+	habitable 135
+	link "Acrux"
+	link "Hadar"
+	asteroids "large rock" 1 1.13
+	asteroids "large metal" 5 0.66
+	trade "Clothing" 328
+	trade "Electronics" 678
+	trade "Equipment" 604
+	trade "Food" 198
+	trade "Heavy Metals" 931
+	trade "Industrial" 715
+	trade "Luxury Goods" 1008
+	trade "Medical" 585
+	trade "Metal" 542
+	trade "Plastic" 386
+	object
+		sprite "star/m4"
+		period 10
+	object
+		sprite "planet/rock16"
+		distance 142.56
+		period 58.5989
+	object
+		sprite "planet/rock6"
+		distance 413.52
+		period 289.493
+	object
+		sprite "planet/rock7"
+		distance 953.81
+		period 1014.11
+	object
+		sprite "planet/ice1"
+		distance 1561.1
+		period 2123.44
+	object
+		sprite "planet/gas2"
+		distance 3860.86
+		period 8258.84
+		object
+			sprite "planet/lava1"
+			distance 236
+			period 16.1133
+		object
+			sprite "planet/io"
+			distance 355
+			period 29.7276
+		object
+			sprite "planet/dust0"
+			distance 514
+			period 51.7919
+
+system "Zosma"
+	pos -640 -123
+	habitable 1080
+	link "Algieba"
+	link "Dubhe"
+	link "Alphard"
+	link "Gomeisa"
+	asteroids "small rock" 17 3.2175
+	asteroids "medium rock" 1 3.77
+	asteroids "large rock" 39 3.445
+	asteroids "small metal" 5 4.0625
+	asteroids "medium metal" 14 3.8025
+	asteroids "large metal" 9 3.2175
+	trade "Clothing" 360
+	trade "Electronics" 726
+	trade "Equipment" 589
+	trade "Food" 537
+	trade "Heavy Metals" 1166
+	trade "Industrial" 561
+	trade "Luxury Goods" 1404
+	trade "Medical" 567
+	trade "Metal" 271
+	trade "Plastic" 498
+	object
+		sprite "star/g0"
+		period 10
+	object
+		sprite "planet/lava7"
+		distance 191.24
+		period 32.1896
+	object
+		sprite "planet/earth"
+		distance 423.8
+		period 106.191
+	object
+		sprite "planet/rock2"
+		distance 755.49
+		period 252.75
+	object
+		sprite "planet/gas8"
+		distance 1562.7
+		period 751.903
+		object
+			sprite "planet/rhea"
+			distance 226
+			period 16.7465
+		object
+			sprite "planet/lava1"
+			distance 371
+			period 35.2227
+	object
+		sprite "planet/jupiter"
+		distance 3011.91
+		period 2011.92
+
+system "Zubenelgenubi"
+	pos -710 353
+	habitable 945
+	link "Zubeneschamali"
+	link "Unukalhai"
+	link "Sabik"
+	asteroids "medium rock" 2 2.5344
+	asteroids "large rock" 1 3.2076
+	asteroids "small metal" 10 4.9104
+	asteroids "medium metal" 39 5.7816
+	asteroids "large metal" 6 5.5836
+	trade "Clothing" 375
+	trade "Electronics" 725
+	trade "Equipment" 455
+	trade "Food" 182
+	trade "Heavy Metals" 1170
+	trade "Industrial" 673
+	trade "Luxury Goods" 996
+	trade "Medical" 615
+	trade "Metal" 506
+	trade "Plastic" 303
+	object
+		sprite "star/g5"
+		distance 35.8942
+		period 14.2005
+	object
+		sprite "star/k5"
+		distance 70.1058
+		period 14.2005
+		offset 180
+	object
+		sprite "planet/rock4"
+		distance 337.716
+		period 80.7553
+	object
+		sprite "planet/miranda"
+		distance 549.966
+		period 167.822
+	object
+		sprite "planet/ice3"
+		distance 798.216
+		period 293.444
+	object
+		sprite "planet/ice5"
+		distance 1827.03
+		period 1016.16
+	object
+		sprite "planet/europa"
+		distance 3548.59
+		period 2750.6
+
+system "Zubeneschamali"
+	pos -759 338
+	habitable 775.625
+	link "Hadar"
+	link "Zubenelgenubi"
+	link "Kochab"
+	asteroids "small rock" 9 1.9344
+	asteroids "medium rock" 57 1.7784
+	asteroids "large rock" 33 2.496
+	asteroids "small metal" 29 2.964
+	asteroids "medium metal" 41 3.0576
+	asteroids "large metal" 72 3.7752
+	trade "Clothing" 376
+	trade "Electronics" 673
+	trade "Equipment" 592
+	trade "Food" 146
+	trade "Heavy Metals" 1056
+	trade "Industrial" 755
+	trade "Luxury Goods" 994
+	trade "Medical" 567
+	trade "Metal" 554
+	trade "Plastic" 303
+	object
+		sprite "star/k0"
+		distance 48.8896
+		period 18.5273
+	object
+		sprite "star/k5"
+		distance 69.6104
+		period 18.5273
+		offset 180
+	object
+		sprite "planet/desert8"
+		distance 383.25
+		period 107.76
+		object
+			sprite "planet/ice8"
+			distance 153
+			period 21.5952
+	object
+		sprite "planet/desert1"
+		distance 956.61
+		period 424.949
+		object
+			sprite "planet/rock7"
+			distance 182
+			period 20.0476
+	object
+		sprite "planet/gas1"
+		distance 1739.5
+		period 1042.01
+	object
+		sprite "planet/dust4"
+		distance 2188.34
+		period 1470.3
+
+planet "Chiron"
+	landscape "land/city9"
+	description "Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem."
+	spaceport "There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships."
+	spaceport "	The New Port, on the other hand, is in the center of New Sidney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous."
+
+planet "Earth"
+	landscape "land/city3"
+	description "The ancestral home world of humanity, Earth has a population ten times that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sort to see this planet that once cradled the entirety of the human species."
+	description "	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single Senator between them - a source of much frustration in the frontier worlds."
+	spaceport "Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound."
+	spaceport "	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras."
+
+planet "Geminus"
+	landscape "land/fog5"
+	description "Geminus, although not the most hospitable of planets, is a young enough planet that large stores of iron, titatium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here."
+	spaceport "Like everything else on Geminus, the spaceport is not terribly pretty, but is functional and efficient. Each of the wide hallways is marked out like a road, with space in the center for electric carts carrying cargo, while pedestrians are relegated to the edges."
+	spacesport "	The hub of the spaceport is a food court with a ring of shops in the center and seating on the outside, where you can look out of plate glass windows at the lava fields and caldera outside. By night, you cn see the volcanic glow all around the horizon."
+
+planet "L3"
+	landscape "land/sky2"
+	description "This space station was built by the aliens as a first step in harvesting metal from the planet to form the ringworld."
+
+planet "Luna"
+	landscape "land/earthrise"
+	description "In the early days of space travel, back when engines were still so inefficient that escaping from a planet's gravity was costly and difficult, an enormous shipyard was built on the Moon where asteroids, harvested from the asteroid belt, were mined for raw materials for ships."
+	description "	The facility is still in operation, although it is now overshadowed by the far more advanced shipbuilding centers like Geminus in the Castor system."
+
+planet "Mars"
+	landscape "land/desert0"
+	description "Mars was humanity's first attempt at terraforming. Although it remains a dry, cold desert, the air is now breathable without an oxygen tank, and there are sections of the planet where a fair number of plants can grow. Because far more hospitable planets are available to those with enough money to pay for interstellar travel, the farms and ranches of Mars are run mostly by poorer Earth families who want to escape the pollution and congestion, along with some young adults who do farm work to help finance their once-in-a-lifetime opportunity to stand on another world."
+	spaceport "The spaceport on Mars is situated next to the northern Polar Basin, one of the few places where, post-terraforming, a natural lake exists. Here, far more trees grow than elsewhere on the planet, and in the few warm months when the lake is not frozen, Mars almost looks like a friendly place."
+
+planet "Relic"
+	landscape "land/valley4"
+	description "As a borderline-habitable planet in one of the systems neighboring Sol, Relic was colonized hundreds of years ago in the early years of the space race. Because of its low gravity and limited natural resources, only a few minor settlements are left."
+	spaceport "The spaceport on Relic consists of one low building surrounded by open-air concrete slabs for ships to land on. If rain were more common here, you would worry about your ship rusting, but in this environment the only threat to it is the infrequent sand storms."
+
+planet "Reunion"
+	landscape "land/city5"
+	description "Reunion is one of the most earth-like planets found by the early settlers, all the way down to its moon and tides. It has grown into a mostly urban world, which supplies manufactured goods of all sorts to the neighboring systems."
+	spaceport "The spaceport, although designed as a clean and modern building, is a place of barely controlled chaos: vendors selling food on the sides of the hallways, tourist families with young children, and even a few farmers driving cattle. People of every age and race and occupation rub shoulders here, but there is no sign of the extreme sort of poverty that you have seen on some other worlds."
+

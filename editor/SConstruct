@@ -1,0 +1,7 @@
+env = Environment()
+env.Append(CCFLAGS = ["-std=c++0x", "-msse4.1"])
+env.Append(LIBS = ["SDL", "SDL_image", "GL", "GLEW"]);
+
+VariantDir("build", ".", duplicate = 0)
+
+sky = env.Program("editor", Glob("build/*.cpp"))

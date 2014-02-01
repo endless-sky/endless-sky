@@ -1,0 +1,311 @@
+ship "Star Barge"
+	sprite "ship/star barge"
+	attributes
+		"required crew" 1
+		"bunks" 4
+		"drag" 1.1
+		"mass" 70
+		"shields" 80
+		"hull" 120
+		"cargo space" 60
+		"outfit space" 100
+		"weapon capacity" 10
+		"engine capacity" 60
+		"fuel capacity" 300
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+	engine -9 -38
+	engine 9 -38
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+
+ship "Freighter"
+	sprite "ship/freighter"
+	attributes
+		"required crew" 1
+		"bunks" 4
+		"drag" 1.4
+		"mass" 70
+		"shields" 400
+		"hull" 200
+		"cargo space" 60
+		"outfit space" 100
+		"weapon capacity" 10
+		"engine capacity" 60
+		"fuel capacity" 300
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+		"Heavy Anti-Missile Turret"
+	engine -12 -105
+	engine 12 -105
+	turret 0 0
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
+
+ship "Shuttle"
+	sprite "ship/shuttle"
+	attributes
+		"required crew" 1
+		"bunks" 8
+		"drag" .8
+		"mass" 40
+		"shields" 100
+		"hull" 40
+		"cargo space" 20
+		"outfit space" 80
+		"weapon capacity" 5
+		"engine capacity" 50
+		"fuel capacity" 400
+	outfits
+		"Tiny Ion Thruster"
+		"Tiny Ion Steering"
+		"Tiny Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+	engine 6 -30
+	engine -6 -30
+	gun 0 30
+	explode "tiny explosion" 10
+	explode "small explosion" 5
+
+ship "Scout"
+	sprite "ship/scout"
+	attributes
+		"required crew" 1
+		"bunks" 3
+		"drag" .6
+		"mass" 20
+		"shields" 300
+		"hull" 60
+		"cargo space" 15
+		"outfit space" 90
+		"weapon capacity" 0
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+	engine -8 -53
+	engine 8 -53
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 10
+
+ship "Clipper"
+	sprite "ship/clipper"
+	attributes
+		"required crew" 1
+		"bunks" 3
+		"drag" .6
+		"mass" 20
+		"shields" 500
+		"hull" 90
+		"cargo space" 15
+		"outfit space" 90
+		"weapon capacity" 0
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+	engine -27 -53
+	engine 27 -53
+	explode "small explosion" 20
+	explode "medium explosion" 25
+	explode "big explosion" 5
+
+ship "Argosy"
+	sprite "ship/argosy"
+	attributes
+		"required crew" 1
+		"bunks" 3
+		"drag" 1.3
+		"mass" 20
+		"shields" 800
+		"hull" 400
+		"cargo space" 15
+		"outfit space" 90
+		"weapon capacity" 0
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+		"Anti-Missile Turret" 2
+	engine -34 -85
+	engine -24 -87
+	engine 34 -85
+	engine 24 -87
+	turret 0 -1
+	turret 0 -26
+	explode "small explosion" 40
+	explode "medium explosion" 50
+	explode "big explosion" 10
+
+ship "Corvette"
+	sprite "ship/corvette"
+	attributes
+		"required crew" 17
+		"bunks" 28
+		"drag" 1.6
+		"mass" 120
+		"shields" 450
+		"hull" 100
+		"cargo space" 40
+		"outfit space" 180
+		"weapon capacity" 80
+		"engine capacity" 90
+		"fuel capacity" 400
+	outfits
+		"Small Ion Thruster"
+		"Small Ion Steering"
+		"Fission Reactor"
+		"Water Coolant System"
+		"Tiny Battery Pack"
+		"Energy Blaster" 2
+		"Sidewinder Missile Launcher" 2
+		"Laser Turret" 2
+		"Tiny Shield Generator"
+	engine -26 -106
+	engine 26 -106
+	gun -12 78
+	gun 12 78
+	gun -16 72
+	gun 16 72
+	turret 0 30
+	turret 0 -74
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 40
+	explode "big explosion" 20
+
+ship "Sparrow"
+	sprite "ship/sparrow"
+	attributes
+		"required crew" 1
+		"bunks" 3
+		"drag" .5
+		"mass" 20
+		"shields" 150
+		"hull" 30
+		"cargo space" 15
+		"outfit space" 90
+		"weapon capacity" 10
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Tiny Ion Thruster"
+		"Tiny Ion Steering"
+		"Tiny Fuel Cell"
+		"Tiny Battery Pack"
+		"Beam Laser" 2
+		"Tiny Shield Generator"
+	engine -4 -35
+	engine 4 -35
+	gun -7 9
+	gun 7 9
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
+	description "	Reports estimate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it."
+
+ship "Fury"
+	sprite "ship/fury"
+	attributes
+		"required crew" 1
+		"bunks" 3
+		"drag" .6
+		"mass" 20
+		"shields" 200
+		"hull" 40
+		"cargo space" 15
+		"outfit space" 90
+		"weapon capacity" 0
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+	engine -20 -36
+	engine 20 -36
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+
+ship "Destroyer"
+	sprite "ship/destroyer"
+	attributes
+		"required crew" 1
+		"bunks" 3
+		"drag" 1.8
+		"mass" 20
+		"shields" 1000
+		"hull" 500
+		"cargo space" 15
+		"outfit space" 90
+		"weapon capacity" 0
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Small Ion Thruster"
+		"Tiny Ion Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Tiny Shield Generator"
+		"Heavy Anti-Missile Turret"
+	engine -27 -108
+	engine 27 -108
+	turret 0 0
+	explode "small explosion" 40
+	explode "medium explosion" 60
+	explode "big explosion" 60
+
+ship "Cruiser"
+	sprite "ship/big"
+	attributes
+		"required crew" 300
+		"bunks" 500
+		"drag" 4.3
+		"mass" 300
+		"shields" 2500
+		"hull" 800
+		"cargo space" 40
+		"outfit space" 400
+		"weapon capacity" 0
+		"engine capacity" 50
+		"fuel capacity" 600
+	outfits
+		"Medium Ion Thruster"
+		"Medium Ion Steering"
+		"Medium Fuel Cell"
+		"Medium Battery Pack"
+		"Tiny Shield Generator"
+		"Heavy Anti-Missile Turret"
+	engine -39 -118
+	engine 39 -118
+	turret 0 0
+	explode "small explosion" 60
+	explode "medium explosion" 100
+	explode "big explosion" 30
+	explode "huge explosion" 10
+

@@ -1,0 +1,3 @@
+name "Plastic"
+base 240
+bins 70 40 70

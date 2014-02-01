@@ -1,0 +1,4 @@
+env = Environment()
+env.Append(CCFLAGS = ["-std=c++0x"])
+
+commerce = env.Program("commerce", Glob("*.cpp"))
