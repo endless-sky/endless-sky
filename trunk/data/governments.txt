@@ -1,0 +1,44 @@
+government "Escort"
+	color 5
+	enemy "Pirate"
+
+government "Merchant"
+	color 5
+
+government "Republic"
+	color 0
+	ally "Escort"
+	ally "Merchant"
+	ally "Syndicate"
+	ally "Militia"
+	enemy "Pirate"
+	enemy "Free Worlds"
+
+government "Free Worlds"
+	color 2
+	ally "Escort"
+	ally "Merchant"
+	ally "Syndicate"
+	ally "Militia"
+	enemy "Pirate"
+	enemy "Republic"
+
+government "Militia"
+	color 2
+	ally "Escort"
+	ally "Merchant"
+	ally "Syndicate"
+	ally "Free Worlds"
+	enemy "Pirate"
+
+government "Syndicate"
+	color 4
+	ally "Escort"
+	ally "Merchant"
+	enemy "Pirate"
+
+government "Pirate"
+	color 6
+	enemy "Escort"
+	enemy "Merchant"
+	enemy "Syndicate"

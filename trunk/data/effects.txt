@@ -1,0 +1,94 @@
+effect "beam laser impact"
+	sprite "effect/laser impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"velocity scale" -.005
+
+effect "heavy laser impact"
+	sprite "effect/heavy laser impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"velocity scale" -.005
+
+effect "blaster impact"
+	sprite "effect/blaster impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 7
+	"random angle" 40
+	"velocity scale" -.05
+
+effect "tiny explosion"
+	sprite "effect/explosion/tiny"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 20
+	"random angle" 360
+	"random velocity" .2
+	"random spin" 1
+	"velocity scale" .4
+
+effect "small explosion"
+	sprite "effect/explosion/small"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 24
+	"random angle" 360
+	"random velocity" .4
+	"random spin" 2
+	"velocity scale" .4
+
+effect "medium explosion"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"velocity scale" .4
+
+effect "big explosion"
+	sprite "effect/explosion/big"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 32
+	"random angle" 360
+	"random velocity" .8
+	"random spin" 4
+	"velocity scale" .4
+
+effect "huge explosion"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 36
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 5
+	"velocity scale" .4
+
+effect "missile death"
+	sprite "effect/missile death"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 10
+	"velocity scale" .8
+
+effect "small anti-missile"
+	sprite "effect/small anti missile"
+		"no repeat"
+		"frame rate" 3
+	"lifetime" 21
+	"velocity scale" 1
+
+effect "large anti-missile"
+	sprite "effect/large anti missile"
+		"no repeat"
+		"frame rate" 2
+	"lifetime" 31
+	"velocity scale" 1

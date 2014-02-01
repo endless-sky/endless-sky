@@ -1,0 +1,3 @@
+name "Medical"
+base 430
+bins 40 35 30 35 40

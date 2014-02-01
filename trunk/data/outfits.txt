@@ -1,0 +1,141 @@
+outfit "Tiny Ion Thruster"
+	category "Engines"
+	"cost" 10000
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 4.0
+	"thrusting energy" 1
+	"thrusting heat" 2
+	"flare sprite" "effect/tiny ion flare"
+
+outfit "Small Ion Thruster"
+	category "Engines"
+	"cost" 25000
+	"mass" 40
+	"outfit space" -40
+	"engine capacity" -40
+	"thrust" 8.8
+	"thrusting energy" 2
+	"thrusting heat" 4
+	"flare sprite" "effect/small ion flare"
+
+outfit "Medium Ion Thruster"
+	category "Engines"
+	"cost" 25000
+	"mass" 80
+	"outfit space" -80
+	"engine capacity" -80
+	"thrust" 19.2
+	"thrusting energy" 4
+	"thrusting heat" 8
+	"flare sprite" "effect/medium ion flare"
+
+outfit "Tiny Ion Steering"
+	category "Engines"
+	"cost" 10000
+	"mass" 15
+	"outfit space" -15
+	"engine capacity" -15
+	"turn" 220
+	"turning energy" .5
+	"turning heat" 1
+
+outfit "Small Ion Steering"
+	category "Engines"
+	"cost" 25000
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 480
+	"turning energy" 1
+	"turning heat" 2
+
+outfit "Medium Ion Steering"
+	category "Engines"
+	"cost" 25000
+	"mass" 60
+	"outfit space" -60
+	"engine capacity" -60
+	"turn" 1000
+	"turning energy" 2
+	"turning heat" 4
+
+outfit "Tiny Battery Pack"
+	category "Systems"
+	"mass" 10
+	"outfit space" -10
+	"energy capacity" 1000
+
+outfit "Small Battery Pack"
+	category "Systems"
+	"mass" 20
+	"outfit space" -20
+	"energy capacity" 2200
+
+outfit "Medium Battery Pack"
+	category "Systems"
+	"mass" 40
+	"outfit space" -40
+	"energy capacity" 4800
+
+outfit "Tiny Fuel Cell"
+	category "Systems"
+	"mass" 20
+	"outfit space" -20
+	"energy generation" 1
+	"heat generation" 5
+
+outfit "Small Fuel Cell"
+	category "Systems"
+	"mass" 40
+	"outfit space" -40
+	"energy generation" 2.2
+	"heat generation" 10
+
+outfit "Medium Fuel Cell"
+	category "Systems"
+	"mass" 80
+	"outfit space" -80
+	"energy generation" 4.8
+	"heat generation" 20
+
+outfit "Fission Reactor"
+	category "Systems"
+	"mass" 25
+	"outfit space" -25
+	"energy generation" 2.5
+	"heat generation" 25
+
+outfit "Fusion Reactor"
+	category "Systems"
+	"mass" 35
+	"outfit space" -35
+	"energy generation" 4
+	"heat generation" 50
+
+outfit "Water Coolant System"
+	category "Systems"
+	"mass" 5
+	"outfit space" 5
+	"energy generation" -.1
+	"heat generation" -10
+
+outfit "Liquid Nitrogen Coolant System"
+	category "Systems"
+	"mass" 10
+	"outfit space" 10
+	"energy generation" -.2
+	"heat generation" -30
+
+outfit "Tiny Shield Generator"
+	category "Systems"
+	"mass" 15
+	"outfit space" -15
+	"shield generation" .2
+
+outfit "Ramscoop"
+	category "Systems"
+	"mass" 10
+	"outfit space" -10
+	"ramscoop" 1

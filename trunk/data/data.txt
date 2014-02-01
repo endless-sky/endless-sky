@@ -1,0 +1,169 @@
+trade
+	commodity "Food" 100 600
+	commodity "Clothing" 140 440
+	commodity "Metal" 190 590
+	commodity "Plastic" 240 440
+	commodity "Equipment" 330 730
+	commodity "Medical" 430 930
+	commodity "Industrial" 520 920
+	commodity "Electronics" 590 890
+	commodity "Heavy Metals" 610 1310
+	commodity "Luxury Goods" 920 1520
+
+color "grey" .5 .5 .5 1.
+color "shields" .43 .55 .70 .75
+color "hull" .70 .62 .43 .75
+color "heat" .70 .43 .43 .75
+color "energy" .6 .6 .6 .75
+color "fuel" .70 .62 .43 .75
+color "light grey" .8 .8 .8 1.
+
+interface "main menu"
+	sprite "ui/compass" 0 0
+
+interface "preload"
+	sprite "ui/galaxy.jpg" 0 0
+	sprite "ui/map system" 0 0
+	sprite "ui/map planet" 0 0
+	sprite "ui/map trade" 0 0
+	sprite "ui/orbits" 0 0
+	sprite "ui/conversation" 0 0
+
+interface "status"
+	position top right
+	sprite "ui/status" 0 0
+	outline "player sprite" -40 120 dynamic
+		size 70 70
+	string "location" -20 18
+		color "grey"
+	string "date" -20 38
+		color "grey"
+	string "credits" -20 58
+		color "grey"
+	ring "shields" -15 95
+		size 120 120
+		color "shields"
+		width 2
+	ring "hull" -20 100
+		size 110 110
+		color "hull"
+		width 2
+	bar "fuel" -53.5 425
+		size 0 -192
+		color "fuel"
+		width 2
+	bar "energy" -33.5 415
+		size 0 -192
+		color "energy"
+		width 2
+	bar "heat" -13.5 403
+		size 0 -192
+		color "heat"
+		width 2
+
+interface "targets"
+	position top left
+	sprite "ui/radar" 0 0
+	radar 128 128
+		scale .025
+		radius 110
+		pointerRadius 130
+	sprite "ui/navigation" 200 0
+	sprite "ui/target" 0 240
+	string "navigation mode" 215 12
+		color "grey"
+	string "destination" 230 30
+		color "grey"
+	outline "target sprite" 40 280 dynamic
+		size 70 70
+	string "target name" 75 385
+		align center
+		color "grey"
+	string "target type" 75 405
+		align center
+		color "grey"
+	string "target government" 75 425
+		align center
+		color "grey"
+	ring "target shields" 15 255
+		size 120 120
+		color "shields"
+		width 2
+	ring "target hull" 20 260
+		size 110 110
+		color "hull"
+		width 2
+
+interface "planet"
+	sprite "land" -60 -141 dynamic
+	sprite "ui/planet dialog" -60 0
+	button l -60 -141
+		size 720 360
+	
+	if "has shipyard"
+	sprite "ui/planet dialog button" 280 90
+	label "Shipyard" 340 82
+		size 18
+		color "light grey"
+		align right
+	button s 280 90
+		size 140 40
+	
+	if "has outfitter"
+	sprite "ui/planet dialog button" 280 150
+	label "Outfitter" 340 142
+		size 18
+		color "light grey"
+		align right
+	button o 280 150
+		size 140 40
+	
+	if "has spaceport"
+	sprite "ui/planet dialog button" -400 150
+	label "Job Board" -460 142
+		size 18
+		color "light grey"
+		align left
+	button j -400 150
+		size 140 40
+	
+	sprite "ui/planet dialog button" -400 90
+	label "Trading" -460 82
+		size 18
+		color "light grey"
+		align left
+	button t -400 90
+		size 140 40
+	
+	sprite "ui/planet dialog button" -400 210
+	label "Bank" -460 202
+		size 18
+		color "light grey"
+		align left
+	button b -400 210
+		size 140 40
+	
+	sprite "ui/planet dialog button" 280 210
+	label "Hire Crew" 340 202
+		size 18
+		color "light grey"
+		align right
+	button h 280 210
+		size 140 40
+	
+	sprite "ui/planet dialog button" -400 270
+	label "Space Port" -460 262
+		size 18
+		color "light grey"
+		align left
+	button p -400 270
+		size 140 40
+	
+	endif
+	sprite "ui/planet dialog button" 280 270
+	label "Depart" 340 262
+		size 18
+		color "light grey"
+		align right
+	button d 280 270
+		size 140 40
