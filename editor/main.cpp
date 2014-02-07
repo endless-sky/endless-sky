@@ -14,6 +14,7 @@ Main function for the Endless Sky editor.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "DotShader.h"
+#include "GameData.h"
 #include "LineShader.h"
 
 #include <GL/glew.h>
@@ -65,13 +66,13 @@ int main(int argc, char *argv[])
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
+		GameData data;
+		
 		const char *path[] = {"..", nullptr};
-		SpriteSet::SetPath(path);
+		data.BeginLoad(path);
+		data.LoadShaders();
+		data.Finish();
 		System::Init();
-		FontSet::Add("../images/font/ubuntu14r.png", 14);
-		SpriteShader::Init();
-		DotShader::Init();
-		LineShader::Init();
 		
 		Panel::Push(new MapPanel(argv[1] ? argv[1] : "map.txt"));
 		
@@ -98,8 +99,6 @@ int main(int argc, char *argv[])
 				break;
 			
 			Panel::StepAll();
-		
-			glClear(GL_COLOR_BUFFER_BIT);
 		
 			// Find the last panel that is full screen.
 			Panel::DrawAll();

@@ -36,9 +36,6 @@ MapPanel::MapPanel(const char *path)
 		else
 			unrecognized.push_back(node);
 	}
-	
-	SpriteSet::Get("ui/galaxy.jpg");
-	SpriteSet::Finish();
 }
 
 
@@ -61,7 +58,9 @@ MapPanel::~MapPanel()
 // Draw this panel.
 void MapPanel::Draw() const
 {
-	const Sprite *galaxy = SpriteSet::Get("ui/galaxy.jpg");
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	const Sprite *galaxy = SpriteSet::Get("ui/galaxy");
 	SpriteShader::Draw(galaxy, position);
 	
 	float white[] = {1., 1., 1., 1.};
