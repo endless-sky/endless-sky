@@ -383,7 +383,7 @@ system "Albireo"
 
 system "Alcyone"
 	pos -80 -144
-	habitable 1080
+	habitable 270
 	link "Zaurak"
 	asteroids "small rock" 4 1.62
 	asteroids "medium rock" 16 1.3176
@@ -401,36 +401,42 @@ system "Alcyone"
 	trade "Metal" 249
 	trade "Plastic" 439
 	object
-		sprite "star/g0"
-		period 10
+		sprite "star/m4"
+		distance 45.5
+		period 21.132
+		offset 180
 	object
-		sprite "planet/forest3"
-		distance 266.25
-		period 52.8789
+		sprite "star/m4"
+		distance 45.5
+		period 21.132
+	object "Stormhold"
+		sprite "planet/ocean0"
+		distance 302.91
+		period 128.336
+	object
+		sprite "planet/gas4"
+		distance 894.47
+		period 651.219
 		object
-			sprite "planet/europa"
-			distance 131
-			period 18.8482
+			sprite "planet/ice7"
+			distance 252
+			period 13.5253
 	object
-		sprite "planet/lava5"
-		distance 592.49
-		period 175.537
+		sprite "planet/rock13"
+		distance 1855.03
+		period 1944.93
 	object
-		sprite "planet/desert7"
-		distance 1026.38
-		period 400.231
-	object
-		sprite "planet/gas12"
-		distance 1603.79
-		period 781.753
+		sprite "planet/neptune"
+		distance 3456.59
+		period 4947.09
 		object
-			sprite "planet/lava0"
-			distance 285
-			period 12.0389
-	object
-		sprite "planet/rock7"
-		distance 2917.48
-		period 1918.05
+			sprite "planet/rock0"
+			distance 216
+			period 14.1091
+		object
+			sprite "planet/rock3"
+			distance 315
+			period 24.8475
 
 system "Aldebaran"
 	pos -356 -26
@@ -598,7 +604,7 @@ system "Aldhibain"
 
 system "Algenib"
 	pos -118 341
-	habitable 1929.38
+	habitable 455.625
 	link "Gienah"
 	asteroids "large metal" 1 6.7392
 	trade "Clothing" 357
@@ -612,42 +618,40 @@ system "Algenib"
 	trade "Metal" 293
 	trade "Plastic" 423
 	object
-		sprite "star/f5"
-		distance 10.7222
-		period 8.63262
-		offset 180
-	object
-		sprite "star/m0"
-		distance 85.7778
-		period 8.63262
-	object
-		sprite "planet/rock11"
-		distance 291.368
-		period 45.2912
-	object
-		sprite "planet/lava2"
-		distance 482.808
-		period 96.608
-	object
-		sprite "planet/ice5"
-		distance 944.058
-		period 264.149
+		sprite "star/k0"
+		period 10
+	object "Buccaneer Bay"
+		sprite "planet/ocean6"
+		distance 267.91
+		period 82.175
 		object
-			sprite "planet/dust2"
-			distance 197
-			period 24.3819
+			sprite "planet/dust7"
+			distance 147
+			period 13.5253
 	object
-		sprite "planet/gas3"
-		distance 1780.1
-		period 683.939
+		sprite "planet/ice7"
+		distance 579.92
+		period 261.703
+	object
+		sprite "planet/callisto"
+		distance 887.96
+		period 495.845
+	object
+		sprite "planet/gas14"
+		distance 2108.2
+		period 1813.94
 		object
-			sprite "planet/tethys"
-			distance 270
-			period 10.7331
+			sprite "planet/rock0"
+			distance 237
+			period 14.0557
 		object
-			sprite "planet/europa"
-			distance 358
-			period 16.3872
+			sprite "planet/luna"
+			distance 348
+			period 25.0091
+		object
+			sprite "planet/dust0"
+			distance 497
+			period 42.6838
 
 system "Algieba"
 	pos -691 -52
@@ -1017,7 +1021,7 @@ system "Alkaid"
 
 system "Almaaz"
 	pos -349 -538
-	habitable 625
+	habitable 1080
 	link "Hatysa"
 	link "Mintaka"
 	asteroids "small rock" 34 4.8195
@@ -1036,32 +1040,36 @@ system "Almaaz"
 	trade "Metal" 523
 	trade "Plastic" 308
 	object
-		sprite "star/g5"
+		sprite "star/g0"
 		period 10
 	object
-		sprite "planet/rock1"
-		distance 167.84
-		period 34.7907
+		sprite "planet/rock10"
+		distance 186.96
+		period 31.1151
 	object
-		sprite "planet/rock5"
-		distance 393.84
-		period 125.055
+		sprite "planet/ganymede"
+		distance 588.37
+		period 173.71
+	object "Freedom"
+		sprite "planet/cloud2"
+		distance 930.93
+		period 345.719
 	object
-		sprite "planet/dust3"
-		distance 611.2
-		period 241.766
-	object
-		sprite "planet/gas3"
-		distance 1353.96
-		period 797.129
-	object
-		sprite "planet/rock0"
-		distance 1922.8
-		period 1349.03
-	object
-		sprite "planet/dust7"
-		distance 2663.04
-		period 2198.8
+		sprite "planet/ringworld left"
+		distance 2617.09
+		period 1629.58
+		object
+			sprite "planet/miranda"
+			distance 231
+			period 15.604
+		object
+			sprite "planet/mercury"
+			distance 340
+			period 27.8635
+		object
+			sprite "planet/lava2"
+			distance 482
+			period 47.0314
 
 system "Almach"
 	pos -7 232
@@ -1087,37 +1095,33 @@ system "Almach"
 		sprite "star/k5"
 		period 10
 	object
-		sprite "planet/oberon"
-		distance 168.89
-		period 49.0785
-	object
-		sprite "planet/lava7"
-		distance 513.13
-		period 259.912
-	object
-		sprite "planet/rock17"
-		distance 1062.38
-		period 774.292
-	object
-		sprite "planet/gas14"
-		distance 2558.39
-		period 2893.58
+		sprite "planet/desert8"
+		distance 197.61
+		period 62.1153
+	object "Deadman's Cove"
+		sprite "planet/ocean9"
+		distance 639.82
+		period 361.886
 		object
-			sprite "planet/rock7"
-			distance 204
-			period 11.2247
+			sprite "planet/ice8"
+			distance 168
+			period 20.8235
+	object
+		sprite "planet/jupiter"
+		distance 1628.43
+		period 1469.4
 		object
-			sprite "planet/dust4"
-			distance 323
-			period 22.3631
+			sprite "planet/luna"
+			distance 253
+			period 11.6169
+		object
+			sprite "planet/europa"
+			distance 352
+			period 19.0644
 		object
 			sprite "planet/dust2"
-			distance 455
-			period 37.3891
-		object
-			sprite "planet/dust3"
-			distance 628
-			period 60.6273
+			distance 442
+			period 26.8252
 
 system "Alnair"
 	pos -272 314
@@ -1220,7 +1224,7 @@ system "Alnasl"
 
 system "Alnilam"
 	pos -487 -513
-	habitable 320
+	habitable 1715
 	link "Hatysa"
 	asteroids "small rock" 1 2.166
 	asteroids "medium rock" 30 1.6245
@@ -1239,32 +1243,52 @@ system "Alnilam"
 	trade "Metal" 520
 	trade "Plastic" 334
 	object
-		sprite "star/k5"
+		sprite "star/f5"
 		period 10
 	object
-		sprite "planet/rock4"
-		distance 170.81
-		period 49.9177
+		sprite "planet/desert1"
+		distance 224.69
+		period 32.5315
 	object
-		sprite "planet/forest6"
-		distance 696.42
-		period 410.953
+		sprite "planet/gas7"
+		distance 966.7
+		period 290.312
 		object
-			sprite "planet/europa"
-			distance 144
-			period 21.7223
-	object
-		sprite "planet/ice8"
-		distance 1439.51
-		period 1221.26
-	object
-		sprite "planet/gas1"
-		distance 2473.75
-		period 2751.18
+			sprite "planet/miranda"
+			distance 220
+			period 10.5884
 		object
-			sprite "planet/dust2"
-			distance 233
-			period 12.5439
+			sprite "planet/luna"
+			distance 305
+			period 17.2841
+	object "Zenith"
+		sprite "planet/ocean7"
+		distance 1776.59
+		period 723.284
+		object
+			sprite "planet/ice8"
+			distance 136
+			period 16.5247
+	object
+		sprite "planet/gas2"
+		distance 2758.68
+		period 1399.52
+		object
+			sprite "planet/dust1"
+			distance 200
+			period 12.5708
+		object
+			sprite "planet/lava0"
+			distance 330
+			period 26.6433
+		object
+			sprite "planet/dust7"
+			distance 440
+			period 41.0201
+		object
+			sprite "planet/desert4"
+			distance 575
+			period 61.2801
 
 system "Alnitak"
 	pos -331 -412
@@ -1725,7 +1749,6 @@ system "Altair"
 		sprite "planet/lava5"
 		distance 812
 		period 360
-		offset 0
 	object "L3"
 		sprite "planet/station0"
 		distance 812
@@ -1878,7 +1901,7 @@ system "Ankaa"
 
 system "Antares"
 	pos -711 541
-	habitable 1715
+	habitable 455.625
 	link "Alniyat"
 	asteroids "small rock" 10 3.8556
 	asteroids "medium rock" 17 1.89
@@ -1897,36 +1920,36 @@ system "Antares"
 	trade "Metal" 473
 	trade "Plastic" 403
 	object
-		sprite "star/f5"
+		sprite "star/k0"
 		period 10
 	object
-		sprite "planet/rock9"
-		distance 287.49
-		period 47.0828
-		object
-			sprite "planet/ice0"
-			distance 144
-			period 19.718
+		sprite "planet/ice5"
+		distance 195.59
+		period 51.2597
+	object "Bloodsea"
+		sprite "planet/cloud7"
+		distance 440.84
+		period 173.451
 	object
-		sprite "planet/rock4"
-		distance 648.18
-		period 159.394
+		sprite "planet/gas11"
+		distance 1239.6
+		period 817.859
+		object
+			sprite "planet/dust1"
+			distance 266
+			period 13.5253
+		object
+			sprite "planet/lava1"
+			distance 407
+			period 25.5986
+		object
+			sprite "planet/desert4"
+			distance 571
+			period 42.5381
 	object
 		sprite "planet/uranus"
-		distance 1282.47
-		period 443.607
-		object
-			sprite "planet/rock0"
-			distance 231
-			period 14.1642
-	object
-		sprite "planet/luna"
-		distance 1762.28
-		period 714.563
-	object
-		sprite "planet/dust3"
-		distance 4030.28
-		period 2471.33
+		distance 2778.76
+		period 2744.94
 
 system "Arcturus"
 	pos -590 224
@@ -1975,7 +1998,7 @@ system "Arcturus"
 
 system "Arneb"
 	pos -523 -580
-	habitable 455.625
+	habitable 1715
 	link "Hatysa"
 	asteroids "large rock" 1 5.3055
 	asteroids "small metal" 2 5.2245
@@ -1992,36 +2015,28 @@ system "Arneb"
 	trade "Metal" 566
 	trade "Plastic" 358
 	object
-		sprite "star/k0"
+		sprite "star/f5"
 		period 10
 	object
-		sprite "planet/lava4"
-		distance 204.34
-		period 54.7377
+		sprite "planet/venus"
+		distance 206
+		period 28.5581
 	object
-		sprite "planet/rhea"
-		distance 421.98
-		period 162.44
+		sprite "planet/cloud6"
+		distance 546.25
+		period 123.315
 	object
-		sprite "planet/europa"
-		distance 671.74
-		period 326.256
+		sprite "planet/desert8"
+		distance 829.46
+		period 230.739
+	object "Haven"
+		sprite "planet/forest6"
+		distance 1264.82
+		period 434.481
 	object
-		sprite "planet/ice0"
-		distance 1376.99
-		period 957.53
-	object
-		sprite "planet/gas1"
-		distance 2204.68
-		period 1939.88
-		object
-			sprite "planet/dust5"
-			distance 232
-			period 12.4632
-		object
-			sprite "planet/callisto"
-			distance 358
-			period 23.8903
+		sprite "planet/io"
+		distance 4062.31
+		period 2500.85
 
 system "Ascella"
 	pos -376 328
@@ -3186,7 +3201,7 @@ system "Eltanin"
 
 system "Enif"
 	pos -177 498
-	habitable 1715
+	habitable 700
 	link "Sadalmelik"
 	link "Sadalsuud"
 	link "Tarazed"
@@ -3207,40 +3222,62 @@ system "Enif"
 	trade "Metal" 297
 	trade "Plastic" 412
 	object
-		sprite "star/f5"
+		sprite "star/g5"
 		period 10
 	object
-		sprite "planet/rock15"
-		distance 157.25
-		period 19.0464
+		sprite "planet/lava5"
+		distance 812
+		period 360
+	object "Lagrange"
+		sprite "planet/station0"
+		distance 812
+		period 360
+		offset 180
 	object
-		sprite "planet/gas11"
-		distance 904.41
-		period 262.71
-		object
-			sprite "planet/ice0"
-			distance 240
-			period 11.5915
-		object
-			sprite "planet/dust4"
-			distance 330
-			period 18.6894
-		object
-			sprite "planet/luna"
-			distance 480
-			period 32.7858
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset -30
 	object
-		sprite "planet/ice8"
-		distance 1583.17
-		period 608.442
+		sprite "planet/ringworld"
+		distance 812
+		period 360
+		offset -50
 	object
-		sprite "planet/rock17"
-		distance 1933.53
-		period 821.21
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset -70
 	object
-		sprite "planet/dust3"
-		distance 3056.42
-		period 1632.1
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset -90
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset -110
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 40
+	object
+		sprite "planet/ringworld"
+		distance 812
+		period 360
+		offset 60
+	object
+		sprite "planet/ringworld"
+		distance 812
+		period 360
+		offset 80
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 100
 
 system "Epsilon Leonis"
 	pos -619 -229
@@ -3474,7 +3511,7 @@ system "Gamma Corvi"
 
 system "Gienah"
 	pos -176 354
-	habitable 214.375
+	habitable 534.375
 	link "Persian"
 	link "Algenib"
 	asteroids "small rock" 1 2.574
@@ -3494,36 +3531,38 @@ system "Gienah"
 	trade "Metal" 245
 	trade "Plastic" 460
 	object
+		sprite "star/k5"
+		distance 31.893
+		period 12.2656
+		offset 180
+	object
 		sprite "star/m0"
-		period 10
-	object
-		sprite "planet/desert7"
-		distance 225.86
-		period 92.7325
-	object
-		sprite "planet/rock9"
-		distance 483.35
-		period 290.312
-	object
-		sprite "planet/rock16"
-		distance 1022.6
-		period 893.37
-	object
-		sprite "planet/gas10"
-		distance 1797.61
-		period 2082.17
+		distance 47.607
+		period 12.2656
+	object "Covert"
+		sprite "planet/cloud4"
+		distance 355.717
+		period 116.09
 		object
-			sprite "planet/dust5"
-			distance 222
-			period 16.3039
+			sprite "planet/rock0"
+			distance 147
+			period 15.7161
+	object "Mutiny"
+		sprite "planet/ice4"
+		distance 814.357
+		period 402.123
+	object
+		sprite "planet/desert5"
+		distance 1189.57
+		period 709.938
 		object
-			sprite "planet/dust3"
-			distance 336
-			period 30.3579
-		object
-			sprite "planet/miranda"
-			distance 471
-			period 50.3841
+			sprite "planet/dust7"
+			distance 142
+			period 17.6303
+	object
+		sprite "planet/dust1"
+		distance 2108.98
+		period 1675.89
 
 system "Girtab"
 	pos -430 481
@@ -3866,7 +3905,7 @@ system "Hassaleh"
 
 system "Hatysa"
 	pos -474 -542
-	habitable 625
+	habitable 533.75
 	link "Arneb"
 	link "Alnilam"
 	link "Almaaz"
@@ -3886,32 +3925,34 @@ system "Hatysa"
 	trade "Metal" 546
 	trade "Plastic" 330
 	object
-		sprite "star/g5"
-		period 10
+		sprite "star/k0"
+		distance 13.6124
+		period 15.528
 	object
-		sprite "planet/desert9"
-		distance 162.64
-		period 33.1865
+		sprite "star/m8"
+		distance 79.3876
+		period 15.528
+		offset 180
 	object
-		sprite "planet/rock5"
-		distance 482.89
-		period 169.782
-	object
-		sprite "planet/desert5"
-		distance 772.98
-		period 343.853
-	object
-		sprite "planet/jupiter"
-		distance 2067.62
-		period 1504.27
+		sprite "planet/rock2"
+		distance 420.978
+		period 149.548
 		object
-			sprite "planet/io"
-			distance 247
-			period 11.2061
-		object
-			sprite "planet/rock0"
-			distance 336
-			period 17.7794
+			sprite "planet/dust2"
+			distance 174
+			period 21.949
+	object
+		sprite "planet/ocean4"
+		distance 897.418
+		period 465.461
+	object
+		sprite "planet/gas11"
+		distance 1294.67
+		period 806.545
+	object
+		sprite "planet/io"
+		distance 2814.92
+		period 2585.77
 
 system "Izar"
 	pos -784 231
@@ -5501,7 +5542,7 @@ system "Nihal"
 
 system "Nunki"
 	pos -393 537
-	habitable 670
+	habitable 214.375
 	link "Albaldah"
 	asteroids "small rock" 15 3.3516
 	asteroids "medium rock" 77 1.8144
@@ -5520,26 +5561,44 @@ system "Nunki"
 	trade "Metal" 241
 	trade "Plastic" 321
 	object
-		sprite "star/k0"
-		distance 36.7957
-		period 19.0577
-	object
 		sprite "star/m0"
-		distance 78.2043
-		period 19.0577
-		offset 180
+		period 10
+	object "Albatross"
+		sprite "planet/cloud8"
+		distance 272.14
+		period 122.648
+		object
+			sprite "planet/europa"
+			distance 136
+			period 18.0979
 	object
-		sprite "planet/gas6"
-		distance 497.944
-		period 171.709
+		sprite "planet/ice8"
+		distance 639.14
+		period 441.435
 	object
-		sprite "planet/gas9"
-		distance 1136.7
-		period 592.235
+		sprite "planet/rock2"
+		distance 1205.14
+		period 1142.96
 	object
-		sprite "planet/gas0"
-		distance 2061.34
-		period 1446.27
+		sprite "planet/gas17"
+		distance 2240.14
+		period 2896.58
+		object
+			sprite "planet/dust0"
+			distance 237
+			period 14.7196
+		object
+			sprite "planet/rock7"
+			distance 345
+			period 25.8525
+		object
+			sprite "planet/desert4"
+			distance 491
+			period 43.8931
+		object
+			sprite "planet/ice7"
+			distance 646
+			period 66.2404
 
 system "Peacock"
 	pos -307 350
@@ -6518,7 +6577,7 @@ system "Sabik"
 
 system "Sadalmelik"
 	pos -145 472
-	habitable 1929.38
+	habitable 1715
 	link "Enif"
 	link "Sadalsuud"
 	asteroids "small rock" 1 3.38
@@ -6538,33 +6597,35 @@ system "Sadalmelik"
 	trade "Plastic" 454
 	object
 		sprite "star/f5"
-		distance 10.7222
-		period 8.63262
+		period 10
 	object
-		sprite "star/m0"
-		distance 85.7778
-		period 8.63262
-		offset 180
+		sprite "planet/callisto"
+		distance 138.24
+		period 15.6992
 	object
-		sprite "planet/rock5"
-		distance 272.278
-		period 40.9138
+		sprite "planet/ganymede"
+		distance 500.49
+		period 108.149
 	object
-		sprite "planet/europa"
-		distance 618.888
-		period 140.207
+		sprite "planet/cloud4"
+		distance 836.45
+		period 233.662
+	object "Humanika"
+		sprite "planet/ocean7"
+		distance 1298.94
+		period 452.18
 	object
-		sprite "planet/forest6"
-		distance 841.888
-		period 222.45
-	object
-		sprite "planet/dust7"
-		distance 2142.5
-		period 903.093
+		sprite "planet/uranus"
+		distance 1947.35
+		period 830.03
+		object "Grakhord"
+			sprite "planet/ice7"
+			distance 253
+			period 16.2351
 
 system "Sadalsuud"
 	pos -134 508
-	habitable 455.625
+	habitable 1400
 	link "Enif"
 	link "Sadalmelik"
 	asteroids "small rock" 1 4.116
@@ -6581,24 +6642,42 @@ system "Sadalsuud"
 	trade "Metal" 320
 	trade "Plastic" 447
 	object
-		sprite "star/k0"
-		period 10
+		sprite "star/g0"
+		distance 26.9714
+		period 13.7031
 	object
-		sprite "planet/rock11"
-		distance 177.39
-		period 44.2741
+		sprite "star/k5"
+		distance 91.0286
+		period 13.7031
+		offset 180
 	object
-		sprite "planet/ice1"
-		distance 571.15
-		period 255.789
+		sprite "planet/ice3"
+		distance 307.989
+		period 57.7827
 	object
-		sprite "planet/lava7"
-		distance 877.16
-		period 486.827
+		sprite "planet/lava2"
+		distance 583.399
+		period 150.641
 	object
-		sprite "planet/rock17"
-		distance 2202.92
-		period 1937.56
+		sprite "planet/cloud0"
+		distance 1021.4
+		period 348.971
+		object
+			sprite "planet/ice8"
+			distance 131
+			period 17.1091
+	object
+		sprite "planet/jupiter"
+		distance 1668.01
+		period 728.272
+		object "Forpelog"
+			sprite "planet/rock17"
+			distance 274
+			period 13.0929
+	object
+		sprite "planet/rock7"
+		distance 4591.9
+		period 3326.48
 
 system "Sadr"
 	pos -287 543
@@ -6966,7 +7045,7 @@ system "Seginus"
 
 system "Shaula"
 	pos -460 527
-	habitable 455.625
+	habitable 625
 	link "Lesath"
 	asteroids "small rock" 1 3.2016
 	asteroids "medium rock" 2 3.5496
@@ -6985,32 +7064,40 @@ system "Shaula"
 	trade "Metal" 533
 	trade "Plastic" 249
 	object
-		sprite "star/k0"
+		sprite "star/g5"
 		period 10
 	object
-		sprite "planet/mars"
-		distance 283.86
-		period 89.6216
-		object
-			sprite "planet/europa"
-			distance 145
-			period 21.949
+		sprite "planet/desert3"
+		distance 230.61
+		period 56.0321
+	object "Greenrock"
+		sprite "planet/cloud1"
+		distance 502.57
+		period 180.266
 	object
-		sprite "planet/ice5"
-		distance 847.07
-		period 461.993
+		sprite "planet/ocean8"
+		distance 861.82
+		period 404.804
+	object
+		sprite "planet/rock1"
+		distance 1374.03
+		period 814.919
 		object
-			sprite "planet/dust4"
-			distance 184
-			period 22.0088
+			sprite "planet/dust0"
+			distance 135
+			period 16.3428
 	object
 		sprite "planet/gas7"
-		distance 1951.83
-		period 1615.92
+		distance 2840.12
+		period 2421.73
 		object
-			sprite "planet/oberon"
-			distance 232
-			period 11.4664
+			sprite "planet/miranda"
+			distance 257
+			period 13.3689
+		object
+			sprite "planet/lava0"
+			distance 359
+			period 22.0718
 
 system "Sheratan"
 	pos -40 46
@@ -8295,11 +8382,35 @@ system "Zubeneschamali"
 		distance 2188.34
 		period 1470.3
 
+planet "Albatross"
+	landscape "land/snow6"
+	description "Albatross is a cold ocean world orbiting a small, cold sun. The continents near the equator, where it is warmer, are home to anarchist farming communes, each operating independently but trading with outsiders to gain necessary supplies. Even there, winter lasts for nearly half the year, and the growing season is short."
+	description "	Because the anarchists will trade with anyone regardless of legal status or government affiliation, Albatross has become a haven for pirates, as well."
+
+planet "Bloodsea"
+	landscape "land/beach5"
+	description "Bloodsea is nearly uninhabited, except for a few pirate outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming."
+	description "	The pirates have no industry of their own, but instead make a living by reselling stolen cargo from raids on merchant fleets."
+
+planet "Buccaneer Bay"
+	landscape "land/beach0"
+	description "Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed."
+	description "	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards."
+
 planet "Chiron"
 	landscape "land/city9"
 	description "Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem."
 	spaceport "There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships."
 	spaceport "	The New Port, on the other hand, is in the center of New Sidney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous."
+
+planet "Covert"
+	landscape "land/valley1"
+	description "Covert is home to a powerful mining cartel, operating outside the control of Republic law or any other external authority. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A massive pirate fleet is docked on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel."
+
+planet "Deadman's Cove"
+	landscape "land/sea1"
+	description "Deadman's Cove is an ocean planet; the continents take up only a fifth of its land mass. Legends tell of massive sea creatures hiding in the deeps: serpents hundreds of meters long; colossal sea turtles; strange tentacled monsters and exotic fish."
+	description "	One island archipelago is home to the spaceport, the only part of the planet where it is safe to land uninvited. The other islands - even some that seem from a distance to be uninhabited - are often used as staging bases for pirate fleets, who guard their secrets closely."
 
 planet "Earth"
 	landscape "land/city3"
@@ -8308,15 +8419,45 @@ planet "Earth"
 	spaceport "Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound."
 	spaceport "	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras."
 
+planet "Forpelog"
+	landscape "land/badlands4"
+	description "Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, for the atmosphere is too thin to breathe and contains almost no oxygen."
+
+planet "Freedom"
+	landscape "land/desert2"
+	description "Freedom is home to the oldest and largest anarchist colonies in human history. The original settlers arrived in the first century after the discovery of spaceflight, coming with the goal of simply getting as far away from civilization as possible. The colony has reinvented itself countless times since then as different leaders have taken control, and in fact at present it is split into two separate towns, East Mesa and West Mesa."
+	description "	The environment is a mix of deserts and brackish oceans, with a fair amount of native wildlife and good potential for farming. Anywhere else in human space, this planet would have become densely settled, but out here it has remained mostly empty."
+
 planet "Geminus"
 	landscape "land/fog5"
-	description "Geminus, although not the most hospitable of planets, is a young enough planet that large stores of iron, titatium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here."
+	description "Geminus, although not the most hospitable of planets, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here."
 	spaceport "Like everything else on Geminus, the spaceport is not terribly pretty, but is functional and efficient. Each of the wide hallways is marked out like a road, with space in the center for electric carts carrying cargo, while pedestrians are relegated to the edges."
-	spacesport "	The hub of the spaceport is a food court with a ring of shops in the center and seating on the outside, where you can look out of plate glass windows at the lava fields and caldera outside. By night, you cn see the volcanic glow all around the horizon."
+	spaceport "	The hub of the spaceport is a food court with a ring of shops in the center and seating on the outside, where you can look out of plate glass windows at the lava fields and caldera outside. By night, you can see the volcanic glow all around the horizon."
+
+planet "Grakhord"
+	landscape "land/water9"
+	description "Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. Although the full extent of the Quarg mining operations here are not known, rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits."
+
+planet "Greenrock"
+	landscape "land/sky0"
+	description "Greenrock is the closest thing that the pirates in southern human space have to a center of government, but taking the form of large, powerful corporations rather than elected officials. When rival pirate bands seek to negotiate on neutral territory, this is where they meet. Nearly everything is for sale here: illegal weapons, ships customized for pirating, and even slaves."
+
+planet "Haven"
+	landscape "land/dune1"
+	description "Haven was founded by a highly successful ''privateers'' nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold."
+	description "	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers."
+
+planet "Humanika"
+	landscape "land/beach2"
+	description "The gravity is too strong on this planet for the Quarg to inhabit it, so they have welcomed human settlers instead. Many people who want freedom from the dangers of human space and the endless instability of human government have settled here. Although the regions near the equator are far too warm to be comfortable, the climate closer to the poles is almost ideal; the only reason Humanika is not as densely populated as some of the worlds farther to the galactic north is the distrust with which most humans view the Quarg."
 
 planet "L3"
 	landscape "land/sky2"
 	description "This space station was built by the aliens as a first step in harvesting metal from the planet to form the ringworld."
+
+planet "Lagrange"
+	landscape "land/sky2"
+	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view at this engineering feat that is so far beyond what anything human beings have ever attempted to build."
 
 planet "Luna"
 	landscape "land/earthrise"
@@ -8328,6 +8469,10 @@ planet "Mars"
 	description "Mars was humanity's first attempt at terraforming. Although it remains a dry, cold desert, the air is now breathable without an oxygen tank, and there are sections of the planet where a fair number of plants can grow. Because far more hospitable planets are available to those with enough money to pay for interstellar travel, the farms and ranches of Mars are run mostly by poorer Earth families who want to escape the pollution and congestion, along with some young adults who do farm work to help finance their once-in-a-lifetime opportunity to stand on another world."
 	spaceport "The spaceport on Mars is situated next to the northern Polar Basin, one of the few places where, post-terraforming, a natural lake exists. Here, far more trees grow than elsewhere on the planet, and in the few warm months when the lake is not frozen, Mars almost looks like a friendly place."
 
+planet "Mutiny"
+	landscape "land/sky6"
+	description "Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value."
+
 planet "Relic"
 	landscape "land/valley4"
 	description "As a borderline-habitable planet in one of the systems neighboring Sol, Relic was colonized hundreds of years ago in the early years of the space race. Because of its low gravity and limited natural resources, only a few minor settlements are left."
@@ -8338,3 +8483,12 @@ planet "Reunion"
 	description "Reunion is one of the most earth-like planets found by the early settlers, all the way down to its moon and tides. It has grown into a mostly urban world, which supplies manufactured goods of all sorts to the neighboring systems."
 	spaceport "The spaceport, although designed as a clean and modern building, is a place of barely controlled chaos: vendors selling food on the sides of the hallways, tourist families with young children, and even a few farmers driving cattle. People of every age and race and occupation rub shoulders here, but there is no sign of the extreme sort of poverty that you have seen on some other worlds."
 
+planet "Stormhold"
+	landscape "land/fog3"
+	description "A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices."
+	description "	The largest town, also called Stormhold, has a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise."
+
+planet "Zenith"
+	landscape "land/water4"
+	description "Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it."
+	description "	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous cement fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown."
