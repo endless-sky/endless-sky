@@ -4610,7 +4610,7 @@ system "Mebsuta"
 
 system "Men"
 	pos -888 361
-	habitable 214.375
+	habitable 320
 	link "Beta Lupi"
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
@@ -4629,40 +4629,40 @@ system "Men"
 	trade "Metal" 285
 	trade "Plastic" 300
 	object
-		sprite "star/m0"
+		sprite "star/k5"
 		period 10
+	object "Thule"
+		sprite "planet/forest4"
+		distance 203.64
+		period 64.98
 	object
-		sprite "planet/mars"
-		distance 294.5
-		period 138.07
+		sprite "planet/ocean0"
+		distance 473.08
+		period 230.084
+	object
+		sprite "planet/gas9"
+		distance 1265.37
+		period 1006.49
 		object
-			sprite "planet/dust0"
-			distance 148
-			period 22.6337
-	object
-		sprite "planet/rock9"
-		distance 659.99
-		period 463.211
-	object
-		sprite "planet/dust3"
-		distance 894.88
-		period 731.341
-	object
-		sprite "planet/dust7"
-		distance 1463.29
-		period 1529.21
-	object
-		sprite "planet/uranus"
-		distance 2425.9
-		period 3264.24
+			sprite "planet/dust2"
+			distance 253
+			period 14.1931
 		object
-			sprite "planet/oberon"
-			distance 235
-			period 14.5337
+			sprite "planet/callisto"
+			distance 377
+			period 25.8172
 		object
-			sprite "planet/rock7"
-			distance 308
-			period 21.8072
+			sprite "planet/io"
+			distance 555
+			period 46.1144
+	object
+		sprite "planet/gas13"
+		distance 2504.61
+		period 2802.82
+		object
+			sprite "planet/rhea"
+			distance 292
+			period 13.3875
 
 system "Menkalinan"
 	pos -400 -61
@@ -8386,16 +8386,20 @@ planet "Albatross"
 	landscape "land/snow6"
 	description "Albatross is a cold ocean world orbiting a small, cold sun. The continents near the equator, where it is warmer, are home to anarchist farming communes, each operating independently but trading with outsiders to gain necessary supplies. Even there, winter lasts for nearly half the year, and the growing season is short."
 	description "	Because the anarchists will trade with anyone regardless of legal status or government affiliation, Albatross has become a haven for pirates, as well."
+	spaceport "You are glad you put on a warm coat before leaving your ship. The wind blows in stong gusts down the streets of this small spaceport town. You pass by ranchers herding cattle, a few farmers driving old, rusted-out trucks full of produce, and a couple of shady figures huddled in an alleyway negotiating what looks like a drug deal. In the center of town is a small merchant's exchange and a couple of greasy spoon diners."
+	spaceport "The sign over the spaceport bar reads, ''No Gods, No Masters.'' Below it in slightly smaller writing is another sign which reads, ''No Cybernetic Implants. No Badgers, Weasels, Or Polecats.'' You have no idea what a ''polecat'' is."
 
 planet "Bloodsea"
 	landscape "land/beach5"
 	description "Bloodsea is nearly uninhabited, except for a few pirate outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming."
 	description "	The pirates have no industry of their own, but instead make a living by reselling stolen cargo from raids on merchant fleets."
+	spaceport "When you landed your ship near one of the larger outposts, no one even came out to greet you or to check your paperwork - not that anyone on a pirate world would care about such things. In the center of town is an open-air marketplace where large men armed with large guns stand guard over piles of crates, while others examine the wares that are for sale and haggle over prices."
 
 planet "Buccaneer Bay"
 	landscape "land/beach0"
 	description "Pirates who have struck it rich dream of retiring on Buccaneer Bay. It is a warm ocean planet, with many places reminiscent of the islands in the ancient Caribbean where humanity's first pirate fleets sailed."
 	description "	Many of the inhabitants are in fact not pirates, but their descendants, and these children and grand-children of anarchist outlaws have built a system of regional government that oversees hospitals, schools, and other public services, all created without funding from the Republic or taxes paid to it. The planet even sports its own shipyard, although many of the ships built here are, not surprisingly, based on designs pirated from the Syndicate and Republic shipyards."
+	spaceport "This is the sort of spaceport you picture in your head when you think of pirates. Half the storefronts are bars, and rum seems to be on the menu everywhere. It is almost like the stories of ancient Earth, except that the eye patches are cybernetic implants and the peg legs are motorized prosthetics. Swarthy, dangerous-looking women glance at you as you pass by, and scantily clad men crowd around the bars, which is what you seem to remember the stories said it was like on Earth, too, although there it may have been the other way around."
 
 planet "Chiron"
 	landscape "land/city9"
@@ -8406,11 +8410,13 @@ planet "Chiron"
 planet "Covert"
 	landscape "land/valley1"
 	description "Covert is home to a powerful mining cartel, operating outside the control of Republic law or any other external authority. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A massive pirate fleet is docked on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel."
+	spaceport "From the moment you landed, you have been followed by a pair of security guards with earpieces and laser guns. The spaceport is one enormous building, with square, straight hallways and featureless walls, and nearly every door you pass is locked. Cameras at each hallway intersection pivot to watch as you approach. This is simultaneously one of the most secure spaceports you have visited, and one of the most dangerous, although if you do not do anything to provoke the animosity of the cartel, you will probably be able to leave in peace."
 
 planet "Deadman's Cove"
 	landscape "land/sea1"
 	description "Deadman's Cove is an ocean planet; the continents take up only a fifth of its land mass. Legends tell of massive sea creatures hiding in the deeps: serpents hundreds of meters long; colossal sea turtles; strange tentacled monsters and exotic fish."
 	description "	One island archipelago is home to the spaceport, the only part of the planet where it is safe to land uninvited. The other islands - even some that seem from a distance to be uninhabited - are often used as staging bases for pirate fleets, who guard their secrets closely."
+	spaceport "Your ship is on a landing pad only a few meters above the pounding surf, and you can't help worrying about what might happen if the tide rises any higher. If nothing else, the salt water is bound to corrode your hull if you stay here too long. You make your way to a bar where a cage hanging from the ceiling holds an actual parrot. After trying for a while to get it to talk to you, you realize that it is dead, stuffed and nailed to its perch."
 
 planet "Earth"
 	landscape "land/city3"
@@ -8422,11 +8428,15 @@ planet "Earth"
 planet "Forpelog"
 	landscape "land/badlands4"
 	description "Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, for the atmosphere is too thin to breathe and contains almost no oxygen."
+	spaceport "Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight."
 
 planet "Freedom"
 	landscape "land/desert2"
 	description "Freedom is home to the oldest and largest anarchist colonies in human history. The original settlers arrived in the first century after the discovery of spaceflight, coming with the goal of simply getting as far away from civilization as possible. The colony has reinvented itself countless times since then as different leaders have taken control, and in fact at present it is split into two separate towns, East Mesa and West Mesa."
 	description "	The environment is a mix of deserts and brackish oceans, with a fair amount of native wildlife and good potential for farming. Anywhere else in human space, this planet would have become densely settled, but out here it has remained mostly empty."
+	spaceport "Apparently anarchists are not opposed to commerce as long as no one is regulating it. Half of the landing pads in the spaceport are available for ships; the other half have been taken over by farmers busy selling their produce, or merchants buying from incoming ships and piling crates into large trucks."
+	spaceport "A sign above the entrance to the spaceport bar reads, ''Fine home-brewed whisky! Get smashed without getting taxed!'' Further down the street, a sign over what appears to be a real estate office reads, ''Why not settle where The Man can't reach you?''
+	spaceport "Inexplicably, the only advertising on the seafood restaurant across the street is an enormous banner proclaiming, ''We have brown rice.''"
 
 planet "Geminus"
 	landscape "land/fog5"
@@ -8436,20 +8446,25 @@ planet "Geminus"
 
 planet "Grakhord"
 	landscape "land/water9"
-	description "Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. Although the full extent of the Quarg mining operations here are not known, rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits."
+	description "Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits."
+	spaceport "Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quargs have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards."
 
 planet "Greenrock"
 	landscape "land/sky0"
 	description "Greenrock is the closest thing that the pirates in southern human space have to a center of government, but taking the form of large, powerful corporations rather than elected officials. When rival pirate bands seek to negotiate on neutral territory, this is where they meet. Nearly everything is for sale here: illegal weapons, ships customized for pirating, and even slaves."
+	spaceport "You have heard enough about this port's reputation that you are not surprised to see the slave markets, heavily guarded in case any visitors happen to find themselves in possession of a conscience. Nor are you shocked by the shady establishments catering to all manner of prurient interests. This is, after all, a pirate port, and everything is for sale here."
+	spaceport "Everything, in fact, including the very bizarre. At the end of one dark alley you see a shop called ''Mike's Mustelids,'' with weasels and ferrets in cages in the window. Beside them, a fully-grown wolverine glares at you from behind the bars of a large and sturdy cage."
 
 planet "Haven"
 	landscape "land/dune1"
 	description "Haven was founded by a highly successful ''privateers'' nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold."
 	description "	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers."
+	spaceport "The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper. This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet."
 
 planet "Humanika"
 	landscape "land/beach2"
 	description "The gravity is too strong on this planet for the Quarg to inhabit it, so they have welcomed human settlers instead. Many people who want freedom from the dangers of human space and the endless instability of human government have settled here. Although the regions near the equator are far too warm to be comfortable, the climate closer to the poles is almost ideal; the only reason Humanika is not as densely populated as some of the worlds farther to the galactic north is the distrust with which most humans view the Quarg."
+	spaceport "The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcertin proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quargs in orbit. It is a clear reminder of who owns this planet."
 
 planet "L3"
 	landscape "land/sky2"
@@ -8458,6 +8473,7 @@ planet "L3"
 planet "Lagrange"
 	landscape "land/sky2"
 	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view at this engineering feat that is so far beyond what anything human beings have ever attempted to build."
+	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station is a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
 
 planet "Luna"
 	landscape "land/earthrise"
@@ -8486,9 +8502,16 @@ planet "Reunion"
 planet "Stormhold"
 	landscape "land/fog3"
 	description "A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices."
-	description "	The largest town, also called Stormhold, has a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise."
+	spaceport "The spaceport is a large town, with a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise."
+
+planet "Thule"
+	landscape "land/valley3"
+	description "Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so. It is well-known that the planet sponsors pirate fleets which bring it cheap materials to bolster its economy, but the planet is so far from the center of Republic space that fighting a war here would be prohibitively expensive, and so they remain unopposed."
+	spaceport "The inhabitants of Thule are notoriously suspicious of strangers. They all seem to immediately recognize you as an off-worlder, perhaps by your clothing or your accent. The food sold in the shops is like nothing you have seen elsewhere, and the natives' accents are so strong that they almost seem to be speaking a different language. You feel as if you are visiting an alien world; centuries of separation has created a culture here that is very different from your own."
 
 planet "Zenith"
 	landscape "land/water4"
 	description "Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it."
 	description "	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous cement fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown."
+	spaceport "To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here."
+

@@ -98,14 +98,8 @@ void MapPanel::Draw() const
 		if(!player.HasSeen(&system))
 			continue;
 		
-		float color[4] = {.4f, .4f, .4f, .2f};
-		/*bool hasTrade = it->IsInhabited();
-		if(!hasTrade)
-			color[0] = color[1] = color[2] = .5f;*/
-		// TODO: Mark which systems have trade. But right now almost none of
-		// them have planets you can land on.
-		
-		if(player.HasVisited(&system))
+		float color[4] = {.2f, .2f, .2f, .2f};
+		if(system.IsInhabited() && player.HasVisited(&system))
 		{
 			const Trade::Commodity &com = data.Commodities()[commodity];
 			float value = (2.f * (system.Trade(com.name) - com.low))
