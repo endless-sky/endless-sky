@@ -41,6 +41,15 @@ void DrawList::Add(const Animation &animation, Point pos, Point unit, double cli
 
 
 
+// Add a single sprite.
+void DrawList::Add(const Sprite *sprite, Point pos, Point unit)
+{
+	Animation animation(sprite, 1.f);
+	Add(animation, pos, unit);
+}
+
+
+
 // Draw all the items in this list.
 void DrawList::Draw() const
 {
