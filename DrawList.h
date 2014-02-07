@@ -31,6 +31,9 @@ public:
 	// Add an animation.
 	void Add(const Animation &animation, Point pos, Point unit, double clip = 1.);
 	
+	// Add a single sprite.
+	void Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.));
+	
 	// Draw all the items in this list. The shader object may be shared between
 	// multiple DrawLists, so pass it in here.
 	void Draw() const;
