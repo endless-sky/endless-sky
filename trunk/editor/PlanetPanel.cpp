@@ -32,7 +32,7 @@ namespace {
 		if(ui)
 			return;
 		
-		ui = SpriteSet::Get("ui/planet dialog.png");
+		ui = SpriteSet::Get("ui/planet dialog");
 		
 		DirIt it("../images/land/");
 		while(true)
@@ -44,10 +44,9 @@ namespace {
 				continue;
 			
 			path = path.substr(10);
+			path = path.substr(0, path.length() - 4);
 			gallery[path] = SpriteSet::Get(path);
 		}
-		
-		SpriteSet::Finish();
 	}
 }
 
@@ -75,7 +74,7 @@ void PlanetPanel::Draw() const
 		{
 			int x = ((i % 15) - 7) * (720 / 16 + 3) + 1;
 			int y = (i / 15 - 7) * (360 / 16. + 2.5) - 130;
-			draw.Add(it.second, Point(x, y), 1. / 16., Point(0., -1.));
+			draw.Add(it.second, Point(x, y), 1. / 16. * Point(0., -1.));
 			++i;
 		}
 	}

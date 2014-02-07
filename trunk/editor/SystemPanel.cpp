@@ -7,6 +7,7 @@ Function definitions for the SystemPanel class.
 #include "SystemPanel.h"
 
 #include "Angle.h"
+#include "Sprite.h"
 #include "SpriteShader.h"
 #include "SpriteSet.h"
 #include "FontSet.h"
@@ -50,6 +51,8 @@ void SystemPanel::Step(bool isActive)
 // Draw this panel.
 void SystemPanel::Draw() const
 {
+	glClear(GL_COLOR_BUFFER_BIT);
+	
 	draw.Clear();
 	drawn.clear();
 	Draw(system.root);
@@ -178,7 +181,7 @@ void SystemPanel::Draw(const System::Object &object, Point center) const
 	if(!object.sprite.empty())
 	{
 		const Sprite *sprite = SpriteSet::Get(object.sprite);
-		draw.Add(sprite, center + position, 1., unit);
+		draw.Add(sprite, center + position, unit);
 		drawn[&object] = center + position;
 		
 		if(&object == selected)

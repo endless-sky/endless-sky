@@ -43,7 +43,7 @@ void System::Init()
 				continue;
 			
 			path = path.substr(10);
-			SpriteSet::Get(path);
+			path = path.substr(0, path.length() - 4);
 			stars.push_back(path);
 		}
 	}
@@ -57,13 +57,14 @@ void System::Init()
 				break;
 			if(path.length() < 4 || path.substr(path.length() - 4) != ".png")
 				continue;
+			if(path.find("ringworld") != string::npos || path.find("station") != string::npos)
+				continue;
 			
 			path = path.substr(10);
-			SpriteSet::Get(path);
+			path = path.substr(0, path.length() - 4);
 			allPlanets.push_back(path);
 		}
 	}
-	SpriteSet::Finish();
 	for(const string &path : allPlanets)
 	{
 		const Sprite *sprite = SpriteSet::Get(path);
@@ -265,18 +266,18 @@ void System::Randomize()
 	{
 		root = System::Object();
 		static const string starTypes[] = {
-			"star/b5.png",
-			"star/a0.png",
-			"star/a5.png",
-			"star/f0.png",
-			"star/f5.png",
-			"star/g0.png",
-			"star/g5.png",
-			"star/k0.png",
-			"star/k5.png",
-			"star/m0.png",
-			"star/m4.png",
-			"star/m8.png"};
+			"star/b5",
+			"star/a0",
+			"star/a5",
+			"star/f0",
+			"star/f5",
+			"star/g0",
+			"star/g5",
+			"star/k0",
+			"star/k5",
+			"star/m0",
+			"star/m4",
+			"star/m8"};
 		static const int probability[] = {
 			1,
 			1,
@@ -450,7 +451,7 @@ void System::Sol()
 {
 	// Generate our own solar system, modified slightly to make it more compact
 	// and to match the orbital parameters used elsewhere.
-	root.children.push_back(System::Object(0., 25.38, "star/g0.png"));
+	root.children.push_back(System::Object(0., 25.38, "star/g0"));
 	double mass = 27000.;
 	habitable = mass / 25.;
 	double massScale = sqrt(mass * .25);
@@ -461,34 +462,34 @@ void System::Sol()
 	// period = sqrt(d^3 / (m * .25)) = d^1.5 / sqrt(m * .25)
 	// (p * massScale)^(2/3) = d
 	double dM = pow(pM * massScale, 2. / 3.);
-	root.children.push_back(System::Object(dM, pM, "planet/mercury.png"));
+	root.children.push_back(System::Object(dM, pM, "planet/mercury"));
 	
 	//double pV = 224.7;
 	// To avoid colliding with the moon:
 	double pV = 150.;
 	double dV = pow(pV * massScale, 2. / 3.);
-	root.children.push_back(System::Object(dV, pV, "planet/venus.png"));
+	root.children.push_back(System::Object(dV, pV, "planet/venus"));
 	
 	double pE = 365.25;
 	double dE = pow(pE * massScale, 2. / 3.);
-	root.children.push_back(System::Object(dE, pE, "planet/earth.png"));
+	root.children.push_back(System::Object(dE, pE, "planet/earth"));
 	
-	double mE = pow(SpriteSet::Get("planet/earth.png")->Width() * .5, 3.) * .015;
+	double mE = pow(SpriteSet::Get("planet/earth")->Width() * .5, 3.) * .015;
 	double pEm = 27.3;
 	double dEm = pow(pEm * sqrt(mE), 2. / 3.);
-	root.children.back().children.push_back(System::Object(dEm, pEm, "planet/luna.png"));
+	root.children.back().children.push_back(System::Object(dEm, pEm, "planet/luna"));
 	
 	double pA = 687.0;
 	double dA = pow(pA * massScale, 2. / 3.);
-	root.children.push_back(System::Object(dA, pA, "planet/mars.png"));
+	root.children.push_back(System::Object(dA, pA, "planet/mars"));
 	
 	//double pJ = 4333.;
 	// Moving Jupiter in unrealistically close:
 	double pJ = 2000.;
 	double dJ = pow(pJ * massScale, 2. / 3.);
-	root.children.push_back(System::Object(dJ, pJ, "planet/jupiter.png"));
+	root.children.push_back(System::Object(dJ, pJ, "planet/jupiter"));
 	
-	double mJ = pow(SpriteSet::Get("planet/jupiter.png")->Width() * .5, 3.) * .015;
+	double mJ = pow(SpriteSet::Get("planet/jupiter")->Width() * .5, 3.) * .015;
 	double msJ = sqrt(mJ);
 	
 	// Incorrectly scaled so they won't overlap the planet:
@@ -503,10 +504,10 @@ void System::Sol()
 	double dJg = pow(pJg * msJ, 2. / 3.);
 	double dJc = pow(pJc * msJ, 2. / 3.);
 	
-	root.children.back().children.push_back(System::Object(dJi, pJi, "planet/io.png"));
-	root.children.back().children.push_back(System::Object(dJe, pJe, "planet/europa.png"));
-	root.children.back().children.push_back(System::Object(dJg, pJg, "planet/ganymede.png"));
-	root.children.back().children.push_back(System::Object(dJc, pJc, "planet/callisto.png"));
+	root.children.back().children.push_back(System::Object(dJi, pJi, "planet/io"));
+	root.children.back().children.push_back(System::Object(dJe, pJe, "planet/europa"));
+	root.children.back().children.push_back(System::Object(dJg, pJg, "planet/ganymede"));
+	root.children.back().children.push_back(System::Object(dJc, pJc, "planet/callisto"));
 }
 
 
