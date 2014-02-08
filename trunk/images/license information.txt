@@ -1,0 +1,48 @@
+All images not listed below are created by Michael Zahniser and are released
+under the Creative Commons Attribution-ShareAlike 4.0 International license
+(CC BY-SA 4.0). For more information, see:
+
+http://creativecommons.org/licenses/by-sa/4.0/deed.en_US
+
+
+
+land/:
+	Unless otherwise noted, public domain, from www.morguefile.com.
+	The following are public domain images from the US government:
+		canyon2.jpg (USGS)
+		earthrise.jpg (NASA)
+		snow9.jpg (USGS)
+		mountain8.jpg (USGS)
+		mountain9.jpg (USGS)
+	The following are licensed CC BY-SA 4.0 by Michael Zahniser:
+		forest4.jpg
+		forest5.jpg
+		lava4.jpg
+		lava5.jpg
+		lava6.jpg
+		lava7.jpg
+		lava8.jpg
+
+planet/:
+	The following are adapted from public domain NASA images:
+		callisto.png
+		earth.png
+		europa.png
+		ganymede.png
+		io.png
+		jupiter.png
+		luna.png
+		mars.png
+		mercury.png
+		miranda.png
+		neptune.png
+		oberon.png
+		rhea.png
+		tethys.png
+		titan.png
+		uranus.png
+		venus.png
+
+ui/:
+	The following are adapted from public domain NASA images:
+		galaxy.jpg
