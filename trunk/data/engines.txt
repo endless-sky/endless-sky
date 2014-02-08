@@ -1,0 +1,221 @@
+outfit "XD1200 Ion Thruster"
+	category "Engines"
+	"cost" 16000
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 12.0
+	"thrusting energy" 1
+	"thrusting heat" 1.6
+	"flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+
+outfit "XD2200 Ion Thruster"
+	category "Engines"
+	"cost" 40000
+	"mass" 40
+	"outfit space" -40
+	"engine capacity" -40
+	"thrust" 26.4
+	"thrusting energy" 2
+	"thrusting heat" 3.2
+	"flare sprite" "effect/ion flare/small"
+		"frame rate" 1.2
+
+outfit "XD3200 Ion Thruster"
+	category "Engines"
+	"cost" 100000
+	"mass" 80
+	"outfit space" -80
+	"engine capacity" -80
+	"thrust" 58.1
+	"thrusting energy" 4
+	"thrusting heat" 6.4
+	"flare sprite" "effect/ion flare/medium"
+		"frame rate" 1.2
+
+outfit "XD4200 Ion Thruster"
+	category "Engines"
+	"cost" 250000
+	"mass" 160
+	"outfit space" -160
+	"engine capacity" -160
+	"thrust" 127.8
+	"thrusting energy" 8
+	"thrusting heat" 12.8
+	"flare sprite" "effect/ion flare/big"
+		"frame rate" 1.2
+
+outfit "XD5200 Ion Thruster"
+	category "Engines"
+	"cost" 650000
+	"mass" 160
+	"outfit space" -160
+	"engine capacity" -160
+	"thrust" 281.1
+	"thrusting energy" 8
+	"thrusting heat" 25.6
+	"flare sprite" "effect/ion flare/huge"
+		"frame rate" 1.2
+
+outfit "XT1700 Ion Steering"
+	category "Engines"
+	"cost" 10000
+	"mass" 15
+	"outfit space" -15
+	"engine capacity" -15
+	"turn" 320
+	"turning energy" .5
+	"turning heat" .8
+
+outfit "XT2700 Ion Steering"
+	category "Engines"
+	"cost" 25000
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 704
+	"turning energy" 1
+	"turning heat" 1.6
+
+outfit "XT3700 Ion Steering"
+	category "Engines"
+	"cost" 60000
+	"mass" 60
+	"outfit space" -60
+	"engine capacity" -60
+	"turn" 1549
+	"turning energy" 2
+	"turning heat" 3.2
+
+outfit "XT4700 Ion Steering"
+	category "Engines"
+	"cost" 150000
+	"mass" 120
+	"outfit space" -120
+	"engine capacity" -120
+	"turn" 3407
+	"turning energy" 4
+	"turning heat" 6.4
+
+outfit "XT5700 Ion Steering"
+	category "Engines"
+	"cost" 380000
+	"mass" 60
+	"outfit space" -240
+	"engine capacity" -240
+	"turn" 7496
+	"turning energy" 8
+	"turning heat" 12.8
+
+
+outfit "Chipmunk Class Plasma Thruster"
+	category "Engines"
+	"cost" 20000
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 15.6
+	"thrusting energy" 1.5
+	"thrusting heat" 2.9
+	"flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+
+outfit "Greyhound Class Plasma Thruster"
+	category "Engines"
+	"cost" 50000
+	"mass" 40
+	"outfit space" -40
+	"engine capacity" -40
+	"thrust" 34.3
+	"thrusting energy" 3.0
+	"thrusting heat" 5.8
+	"flare sprite" "effect/plasma flare/small"
+		"frame rate" 6
+
+outfit "Impala Class Plasma Thruster"
+	category "Engines"
+	"cost" 130000
+	"mass" 80
+	"outfit space" -80
+	"engine capacity" -80
+	"thrust" 75.5
+	"thrusting energy" 6.0
+	"thrusting heat" 11.6
+	"flare sprite" "effect/plasma flare/medium"
+		"frame rate" 7
+
+outfit "Orca Class Plasma Thruster"
+	category "Engines"
+	"cost" 310000
+	"mass" 160
+	"outfit space" -160
+	"engine capacity" -160
+	"thrust" 166.1
+	"thrusting energy" 12.0
+	"thrusting heat" 23.2
+	"flare sprite" "effect/plasma flare/big"
+		"frame rate" 8
+
+outfit "Tyrant Class Plasma Thruster"
+	category "Engines"
+	"cost" 780000
+	"mass" 160
+	"outfit space" -160
+	"engine capacity" -160
+	"thrust" 365.4
+	"thrusting energy" 24.0
+	"thrusting heat" 46.4
+	"flare sprite" "effect/plasma flare/huge"
+		"frame rate" 9
+
+outfit "Chipmunk Class Plasma Steering"
+	category "Engines"
+	"cost" 12000
+	"mass" 15
+	"outfit space" -15
+	"engine capacity" -15
+	"turn" 416
+	"turning energy" .5
+	"turning heat" .8
+
+outfit "Greyhound Class Plasma Steering"
+	category "Engines"
+	"cost" 30000
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 915
+	"turning energy" 1
+	"turning heat" 1.6
+
+outfit "Impala Class Plasma Steering"
+	category "Engines"
+	"cost" 75000
+	"mass" 60
+	"outfit space" -60
+	"engine capacity" -60
+	"turn" 2013
+	"turning energy" 2
+	"turning heat" 3.2
+
+outfit "Orca Class Plasma Steering"
+	category "Engines"
+	"cost" 190000
+	"mass" 120
+	"outfit space" -120
+	"engine capacity" -120
+	"turn" 4430
+	"turning energy" 4
+	"turning heat" 6.4
+
+outfit "Tyrant Class Plasma Steering"
+	category "Engines"
+	"cost" 470000
+	"mass" 60
+	"outfit space" -240
+	"engine capacity" -240
+	"turn" 9745
+	"turning energy" 8
+	"turning heat" 12.8
+
