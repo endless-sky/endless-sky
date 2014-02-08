@@ -269,10 +269,14 @@ void GameData::FindFiles(const string &path)
 				interfaces.Get(node.Token(1))->Load(node, colors);
 			else if(key == "outfit" && node.Size() >= 2)
 				outfits.Get(node.Token(1))->Load(node, outfits, effects);
+			else if(key == "outfitter" && node.Size() >= 2)
+				outfitSales.Get(node.Token(1))->Load(node, outfits);
 			else if(key == "planet" && node.Size() >= 2)
-				planets.Get(node.Token(1))->Load(node);
+				planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
 			else if(key == "ship" && node.Size() >= 2)
 				ships.Get(node.Token(1))->Load(node, outfits, effects);
+			else if(key == "shipyard" && node.Size() >= 2)
+				shipSales.Get(node.Token(1))->Load(node, ships);
 			else if(key == "shipName" && node.Size() >= 2)
 				shipNames.Get(node.Token(1))->Load(node);
 			else if(key == "system" && node.Size() >= 2)

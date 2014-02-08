@@ -111,6 +111,14 @@ const std::string &Ship::Description() const
 
 
 
+// Get this ship's cost.
+int Ship::Cost() const
+{
+	return attributes.Cost();
+}
+
+
+
 void Ship::Place(Point position, Point velocity, Angle angle)
 {
 	this->position = position;

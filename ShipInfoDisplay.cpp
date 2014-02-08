@@ -212,7 +212,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeValues.push_back(string());
 	attributesHeight += 10;
 	attributeLabels.push_back("cost:");
-	attributeValues.push_back(Round(attributes.Cost()));
+	attributeValues.push_back(Round(ship.Cost()));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());

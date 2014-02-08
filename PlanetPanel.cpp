@@ -38,10 +38,11 @@ void PlanetPanel::Draw() const
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	if(planet.HasSpaceport())
-	{
 		info.SetCondition("has spaceport");
+	if(planet.HasShipyard())
 		info.SetCondition("has shipyard");
-	}
+	if(planet.HasOutfitter())
+		info.SetCondition("has outfitter");
 	
 	ui.Draw(info);
 	
@@ -75,12 +76,17 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 		selectedPanel = &spaceport;
 		Push(selectedPanel);
 	}
-	else if(key == 's' && planet.HasSpaceport())
+	else if(key == 's' && planet.HasShipyard())
 	{
 		Push(new ShipyardPanel(data, player));
 		return true;
 	}
-	else if(key == 'j' || key == 'h' || key == 'l')
+	else if(key == 'o' && planet.HasOutfitter())
+	{
+		// TODO: outfitter panel.
+		selectedPanel = nullptr;
+	}
+	else if(key == 'j' || key == 'h')
 		selectedPanel = nullptr;
 	else
 		return true;

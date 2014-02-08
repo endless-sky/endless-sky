@@ -6,6 +6,8 @@ Function definitions for the Planet class.
 
 #include "Planet.h"
 
+#include "Outfit.h"
+#include "Ship.h"
 #include "SpriteSet.h"
 
 using namespace std;
@@ -21,7 +23,7 @@ Planet::Planet()
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataFile::Node &node)
+void Planet::Load(const DataFile::Node &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits)
 {
 	if(node.Size() < 2)
 		return;
@@ -41,6 +43,10 @@ void Planet::Load(const DataFile::Node &node)
 			spaceport += child.Token(1);
 			spaceport += '\n';
 		}
+		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
+			shipSales.push_back(ships.Get(child.Token(1)));
+		else if(child.Token(0) == "outfitter" && child.Size() >= 2)
+			outfitSales.push_back(outfits.Get(child.Token(1)));
 	}
 }
 
@@ -83,4 +89,52 @@ bool Planet::HasSpaceport() const
 const string &Planet::SpaceportDescription() const
 {
 	return spaceport;
+}
+
+
+	
+// Check if this planet has a shipyard.
+bool Planet::HasShipyard() const
+{
+	return !Shipyard().empty();
+}
+
+
+
+// Get the list of ships in the shipyard.
+const std::vector<const Ship *> &Planet::Shipyard() const
+{
+	if(shipyard.empty() && !shipSales.empty())
+	{
+		Sale<Ship> ships;
+		for(const Sale<Ship> *sale : shipSales)
+			ships.Add(*sale);
+		ships.StoreList(&shipyard);
+	}
+	
+	return shipyard;
+}
+
+
+
+// Check if this planet has an outfitter.
+bool Planet::HasOutfitter() const
+{
+	return !Outfitter().empty();
+}
+
+
+
+// Get the list of outfits available from the outfitter.
+const std::vector<const Outfit *> &Planet::Outfitter() const
+{
+	if(outfitter.empty() && !outfitSales.empty())
+	{
+		Sale<Outfit> outfits;
+		for(const Sale<Outfit> *sale : outfitSales)
+			outfits.Add(*sale);
+		outfits.StoreList(&outfitter);
+	}
+	
+	return outfitter;
 }
