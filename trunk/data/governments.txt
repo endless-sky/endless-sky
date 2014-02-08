@@ -1,12 +1,13 @@
 government "Escort"
-	color 5
+	swizzle 5
 	enemy "Pirate"
 
 government "Merchant"
-	color 5
+	swizzle 5
 
 government "Republic"
-	color 0
+	swizzle 0
+	color 1 .2 0
 	ally "Escort"
 	ally "Merchant"
 	ally "Syndicate"
@@ -15,7 +16,8 @@ government "Republic"
 	enemy "Free Worlds"
 
 government "Free Worlds"
-	color 2
+	swizzle 2
+	color .4 .8 0
 	ally "Escort"
 	ally "Merchant"
 	ally "Syndicate"
@@ -24,7 +26,8 @@ government "Free Worlds"
 	enemy "Republic"
 
 government "Militia"
-	color 2
+	swizzle 2
+	color .4 .8 0
 	ally "Escort"
 	ally "Merchant"
 	ally "Syndicate"
@@ -32,13 +35,22 @@ government "Militia"
 	enemy "Pirate"
 
 government "Syndicate"
-	color 4
+	swizzle 4
+	color .5 0 1
 	ally "Escort"
 	ally "Merchant"
 	enemy "Pirate"
 
 government "Pirate"
-	color 6
+	swizzle 6
+	color .5 .1 .1
 	enemy "Escort"
 	enemy "Merchant"
 	enemy "Syndicate"
+
+government "Quarg"
+	swizzle 0
+	color .3 .6 .8
+	ally "Escort"
+	ally "Merchant"
+	enemy "Pirate"

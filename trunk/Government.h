@@ -13,6 +13,7 @@ Free Worlds ships.
 #ifndef GOVERNMENT_H_INCLUDED
 #define GOVERNMENT_H_INCLUDED
 
+#include "Color.h"
 #include "DataFile.h"
 #include "Set.h"
 
@@ -32,7 +33,9 @@ public:
 	// Get the name of this government.
 	const std::string &GetName() const;
 	// Get the color swizzle to use for ships of this government.
-	int GetColor() const;
+	int GetSwizzle() const;
+	// Get the color to use for displaying this government on the map.
+	const Color &GetColor() const;
 	
 	// Check whether ships of this government will come to the aid of ships of
 	// the given government that are under attack.
@@ -52,7 +55,8 @@ public:
 	
 private:
 	std::string name;
-	int color;
+	int swizzle;
+	Color color;
 	
 	std::set<const Government *> allies;
 	std::set<const Government *> enemies;

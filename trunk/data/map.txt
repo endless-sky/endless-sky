@@ -102,6 +102,7 @@ system "Achernar"
 
 system "Acrux"
 	pos -808 192
+	government "Free Worlds"
 	habitable 590.625
 	link "Minkar"
 	link "Zeta Centauri"
@@ -383,6 +384,7 @@ system "Albireo"
 
 system "Alcyone"
 	pos -80 -144
+	government "Pirate"
 	habitable 270
 	link "Zaurak"
 	asteroids "small rock" 4 1.62
@@ -604,6 +606,7 @@ system "Aldhibain"
 
 system "Algenib"
 	pos -118 341
+	government "Pirate"
 	habitable 455.625
 	link "Gienah"
 	asteroids "large metal" 1 6.7392
@@ -1021,6 +1024,7 @@ system "Alkaid"
 
 system "Almaaz"
 	pos -349 -538
+	government "Pirate"
 	habitable 1080
 	link "Hatysa"
 	link "Mintaka"
@@ -1073,6 +1077,7 @@ system "Almaaz"
 
 system "Almach"
 	pos -7 232
+	government "Pirate"
 	habitable 320
 	link "Schedar"
 	asteroids "small rock" 105 2.2763
@@ -1224,6 +1229,7 @@ system "Alnasl"
 
 system "Alnilam"
 	pos -487 -513
+	government "Pirate"
 	habitable 1715
 	link "Hatysa"
 	asteroids "small rock" 1 2.166
@@ -1338,6 +1344,7 @@ system "Alnitak"
 
 system "Alniyat"
 	pos -691 501
+	government "Free Worlds"
 	habitable 534.375
 	link "Pherkad"
 	link "Graffias"
@@ -1453,6 +1460,7 @@ system "Alpha Arae"
 
 system "Alpha Centauri"
 	pos -429 125
+	government "Republic"
 	habitable 320
 	link "Sol"
 	asteroids "small rock" 1 1.944
@@ -1718,6 +1726,7 @@ system "Alpheratz"
 
 system "Altair"
 	pos -357 161
+	government "Republic"
 	habitable 700
 	link "Vega"
 	link "Sol"
@@ -1893,6 +1902,7 @@ system "Ankaa"
 
 system "Antares"
 	pos -711 541
+	government "Pirate"
 	habitable 455.625
 	link "Alniyat"
 	asteroids "small rock" 10 3.8556
@@ -1990,6 +2000,7 @@ system "Arcturus"
 
 system "Arneb"
 	pos -523 -580
+	government "Pirate"
 	habitable 1715
 	link "Hatysa"
 	asteroids "large rock" 1 5.3055
@@ -2472,6 +2483,7 @@ system "Capella"
 
 system "Caph"
 	pos -295 77
+	government "Republic"
 	habitable 670
 	link "Sol"
 	link "Diphda"
@@ -2521,6 +2533,7 @@ system "Caph"
 
 system "Castor"
 	pos -452 -17
+	government "Republic"
 	habitable 1715
 	link "Pollux"
 	link "Talita"
@@ -3193,6 +3206,7 @@ system "Eltanin"
 
 system "Enif"
 	pos -177 498
+	government "Quarg"
 	habitable 700
 	link "Sadalmelik"
 	link "Sadalsuud"
@@ -3459,6 +3473,7 @@ system "Gamma Cassiopeiae"
 
 system "Gamma Corvi"
 	pos -906 64
+	government "Free Worlds"
 	habitable 1535.62
 	link "Spica"
 	asteroids "small rock" 20 1.5168
@@ -3513,6 +3528,7 @@ system "Gamma Corvi"
 
 system "Gienah"
 	pos -176 354
+	government "Pirate"
 	habitable 534.375
 	link "Persian"
 	link "Algenib"
@@ -3668,6 +3684,7 @@ system "Gomeisa"
 
 system "Graffias"
 	pos -784 517
+	government "Republic"
 	habitable 911.25
 	link "Alniyat"
 	asteroids "small rock" 15 3.069
@@ -4005,6 +4022,7 @@ system "Izar"
 
 system "Kappa Centauri"
 	pos -867 480
+	government "Free Worlds"
 	habitable 1215
 	link "Pherkad"
 	link "Beta Lupi"
@@ -4298,6 +4316,7 @@ system "Kornephoros"
 
 system "Kraz"
 	pos -876 204
+	government "Free Worlds"
 	habitable 1080
 	link "Mimosa"
 	asteroids "small rock" 1 7.2072
@@ -4638,6 +4657,7 @@ system "Mebsuta"
 
 system "Men"
 	pos -888 361
+	government "Pirate"
 	habitable 320
 	link "Beta Lupi"
 	asteroids "small rock" 9 3.504
@@ -4981,6 +5001,7 @@ system "Miaplacidus"
 
 system "Mimosa"
 	pos -895 168
+	government "Free Worlds"
 	habitable 320
 	link "Minkar"
 	link "Kraz"
@@ -5566,6 +5587,7 @@ system "Nihal"
 
 system "Nunki"
 	pos -393 537
+	government "Pirate"
 	habitable 214.375
 	link "Albaldah"
 	asteroids "small rock" 15 3.3516
@@ -5839,6 +5861,7 @@ system "Phecda"
 
 system "Pherkad"
 	pos -798 451
+	government "Free Worlds"
 	habitable 135
 	link "Beta Lupi"
 	link "Kappa Centauri"
@@ -6601,6 +6624,7 @@ system "Sabik"
 
 system "Sadalmelik"
 	pos -145 472
+	government "Quarg"
 	habitable 1715
 	link "Enif"
 	link "Sadalsuud"
@@ -6649,6 +6673,7 @@ system "Sadalmelik"
 
 system "Sadalsuud"
 	pos -134 508
+	government "Quarg"
 	habitable 1400
 	link "Enif"
 	link "Sadalmelik"
@@ -7069,6 +7094,7 @@ system "Seginus"
 
 system "Shaula"
 	pos -460 527
+	government "Pirate"
 	habitable 625
 	link "Lesath"
 	asteroids "small rock" 1 3.2016
@@ -7188,6 +7214,7 @@ system "Sheratan"
 
 system "Sirius"
 	pos -378 44
+	government "Republic"
 	habitable 1800
 	link "Sol"
 	link "Procyon"
@@ -7239,6 +7266,7 @@ system "Sirius"
 
 system "Sol"
 	pos -400 100
+	government "Republic"
 	habitable 1080
 	link "Vega"
 	link "Alpha Centauri"
@@ -7306,6 +7334,7 @@ system "Sol"
 
 system "Spica"
 	pos -906 120
+	government "Free Worlds"
 	habitable 625
 	link "Minkar"
 	link "Gamma Corvi"
@@ -8026,6 +8055,7 @@ system "Wezen"
 
 system "Yed Prior"
 	pos -810 374
+	government "Free Worlds"
 	habitable 455.625
 	link "Pherkad"
 	asteroids "small rock" 12 5.0784

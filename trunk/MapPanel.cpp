@@ -101,21 +101,30 @@ void MapPanel::Draw() const
 		float color[4] = {.2f, .2f, .2f, .2f};
 		if(system.IsInhabited() && player.HasVisited(&system))
 		{
-			float value = 0.f;
-			if(commodity >= 0)
+			if(commodity != -3)
 			{
-				const Trade::Commodity &com = data.Commodities()[commodity];
-				value = (2.f * (system.Trade(com.name) - com.low))
-					/ (com.high - com.low) - 1.f;
+				float value = 0.f;
+				if(commodity >= 0)
+				{
+					const Trade::Commodity &com = data.Commodities()[commodity];
+					value = (2.f * (system.Trade(com.name) - com.low))
+						/ (com.high - com.low) - 1.f;
+				}
+				else if(commodity == -1)
+					value = system.HasShipyard();
+				else if(commodity == -2)
+					value = system.HasOutfitter();
+				color[0] = .6f * (1.f - max(-value, 0.f));
+				color[1] = .6f * (1.f - abs(value));
+				color[2] = .6f * (1.f - max(value, 0.f));
+				color[3] = .4f;
 			}
-			else if(commodity == -1)
-				value = system.HasShipyard();
-			else if(commodity == -2)
-				value = system.HasOutfitter();
-			color[0] = .6f * (1.f - max(-value, 0.f));
-			color[1] = .6f * (1.f - abs(value));
-			color[2] = .6f * (1.f - max(value, 0.f));
-			color[3] = .4f;
+			else
+			{
+				for(int i = 0; i < 3; ++i)
+					color[i] = .6f * system.GetGovernment().GetColor().Get()[i];
+				color[3] = .4;
+			}
 		}
 		
 		DotShader::Draw(system.Position() + center, 6., 3.5, color);
@@ -158,9 +167,13 @@ void MapPanel::Draw() const
 	font.Draw(selected->Name(),
 		uiPoint + Point(-90., -7.),
 		closeColor);
-	font.Draw("Republic",
+	governmentY = uiPoint.Y() + 10.;
+	font.Draw(selected->GetGovernment().GetName(),
 		uiPoint + Point(-90., 13.),
-		farColor);
+		(commodity == -3) ? closeColor : farColor);
+	if(commodity == -3)
+		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
+			10., 10., 0., closeColor);
 	
 	uiPoint.Y() += 105.;
 	
@@ -323,6 +336,8 @@ bool MapPanel::Click(int x, int y)
 			commodity = (y - tradeY) / 20;
 			return true;
 		}
+		else if(y >= governmentY && y < governmentY + 20)
+			commodity = -3;
 		else
 		{
 			for(const auto &it : planetY)

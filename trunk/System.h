@@ -15,6 +15,7 @@ star and planet positions on a given date.
 #include "StellarObject.h"
 
 class Date;
+class Government;
 class Planet;
 
 #include <string>
@@ -40,8 +41,10 @@ public:
 	
 	
 public:
+	System();
+	
 	// Load a system's description.
-	void Load(const DataFile::Node &node, const Set<System> &systems, const Set<Planet> &planets);
+	void Load(const DataFile::Node &node, const Set<System> &systems, const Set<Planet> &planets, const Set<Government> &governments);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
@@ -49,6 +52,8 @@ public:
 	// Get this system's name and position (in the star map).
 	const std::string &Name() const;
 	const Point &Position() const;
+	// Get this system's government.
+	const Government &GetGovernment() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::vector<const System *> &Links() const;
@@ -85,6 +90,7 @@ private:
 	// Name and position (within the star map) of this system.
 	std::string name;
 	Point position;
+	const Government *government;
 	// Hyperspace links to other systems.
 	std::vector<const System *> links;
 	std::vector<const System *> neighbors;
