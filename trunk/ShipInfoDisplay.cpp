@@ -242,12 +242,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributeValues.push_back(Round(attributes.Get("hull")));
 	}
 	attributesHeight += 20;
-	attributeLabels.push_back("crew / bunks:");
-	attributeValues.push_back(Round(attributes.Get("required crew"))
-		+ " / " + Round(attributes.Get("bunks")));
+	double emptyMass = attributes.Get("mass");
+	attributeLabels.push_back("empty mass:");
+	attributeValues.push_back(Round(emptyMass));
 	attributesHeight += 20;
 	attributeLabels.push_back("cargo space:");
 	attributeValues.push_back(Round(attributes.Get("cargo space")));
+	attributesHeight += 20;
+	attributeLabels.push_back("crew / bunks:");
+	attributeValues.push_back(Round(attributes.Get("required crew"))
+		+ " / " + Round(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back("fuel:");
 	attributeValues.push_back(Round(attributes.Get("fuel capacity")));
@@ -259,14 +263,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeLabels.push_back("movement, full / no cargo:");
 	attributeValues.push_back(string());
 	attributesHeight += 20;
-	double emptyMass = attributes.Get("mass");
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	attributeLabels.push_back("max speed");
 	attributeValues.push_back(Round(60. * attributes.Get("thrust") / attributes.Get("drag")));
 	attributesHeight += 20;
 	attributeLabels.push_back("acceleration");
-	attributeValues.push_back(Round(60. * attributes.Get("thrust") / fullMass)
-		+ " / " + Round(60. * attributes.Get("thrust") / emptyMass));
+	attributeValues.push_back(Round(3600. * attributes.Get("thrust") / fullMass)
+		+ " / " + Round(3600. * attributes.Get("thrust") / emptyMass));
 	attributesHeight += 20;
 	attributeLabels.push_back("turning:");
 	attributeValues.push_back(Round(60. * attributes.Get("turn") / fullMass)
