@@ -280,7 +280,7 @@ void GameData::FindFiles(const string &path)
 			else if(key == "shipName" && node.Size() >= 2)
 				shipNames.Get(node.Token(1))->Load(node);
 			else if(key == "system" && node.Size() >= 2)
-				systems.Get(node.Token(1))->Load(node, systems, planets);
+				systems.Get(node.Token(1))->Load(node, systems, planets, governments);
 			else if(key == "trade")
 				trade.Load(node);
 		}

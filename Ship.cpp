@@ -150,7 +150,7 @@ void Ship::SetSystem(const System *system)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		sprite.SetSwizzle(government->GetColor());
+		sprite.SetSwizzle(government->GetSwizzle());
 	this->government = government;
 }
 

@@ -12,7 +12,7 @@ using namespace std;
 
 // Default constructor.
 Government::Government()
-	: name("Unknown Government"), color(0)
+	: name("Uninhabited"), swizzle(0), color(1.)
 {
 }
 
@@ -26,8 +26,10 @@ void Government::Load(const DataFile::Node &node, const Set<Government> &others)
 	
 	for(const DataFile::Node &child : node)
 	{
-		if(child.Token(0) == "color" && child.Size() >= 2)
-			color = child.Value(1);
+		if(child.Token(0) == "swizzle" && child.Size() >= 2)
+			swizzle = child.Value(1);
+		else if(child.Token(0) == "color" && child.Size() >= 4)
+			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "ally" && child.Size() >= 2)
 			allies.insert(others.Get(child.Token(1)));
 		else if(child.Token(0) == "enemy" && child.Size() >= 2)
@@ -46,7 +48,15 @@ const string &Government::GetName() const
 
 
 // Get the color swizzle to use for ships of this government.
-int Government::GetColor() const
+int Government::GetSwizzle() const
+{
+	return swizzle;
+}
+
+
+
+// Get the color to use for displaying this government on the map.
+const Color &Government::GetColor() const
 {
 	return color;
 }

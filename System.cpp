@@ -8,6 +8,7 @@ Function definitions for the System class.
 
 #include "Angle.h"
 #include "Date.h"
+#include "Government.h"
 #include "Planet.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -48,8 +49,15 @@ double System::Asteroid::Energy() const
 
 
 
+System::System()
+	: government(nullptr)
+{
+}
+
+
+
 // Load a system's description.
-void System::Load(const DataFile::Node &node, const Set<System> &systems, const Set<Planet> &planets)
+void System::Load(const DataFile::Node &node, const Set<System> &systems, const Set<Planet> &planets, const Set<Government> &governments)
 {
 	if(node.Size() < 2)
 		return;
@@ -60,6 +68,8 @@ void System::Load(const DataFile::Node &node, const Set<System> &systems, const 
 	{
 		if(child.Token(0) == "pos" && child.Size() >= 3)
 			position.Set(child.Value(1), child.Value(2));
+		else if(child.Token(0) == "government" && child.Size() >= 2)
+			government = governments.Get(child.Token(1));
 		else if(child.Token(0) == "link" && child.Size() >= 2)
 			links.push_back(systems.Get(child.Token(1)));
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
@@ -133,6 +143,15 @@ const string &System::Name() const
 const Point &System::Position() const
 {
 	return position;
+}
+
+
+
+// Get this system's government.
+const Government &System::GetGovernment() const
+{
+	static const Government empty;
+	return government ? *government : empty;
 }
 
 

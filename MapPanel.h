@@ -48,6 +48,8 @@ private:
 	
 	std::map<const System *, int> distance;
 	
+	mutable int governmentY;
+	
 	Point center;
 	mutable int tradeY;
 	int commodity;
