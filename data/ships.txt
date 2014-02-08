@@ -200,20 +200,23 @@ ship "Corvette"
 ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
+		cost 85000
 		"required crew" 1
 		"bunks" 3
-		"drag" .5
-		"mass" 20
+		"drag" 1.4
+		"mass" 90
 		"shields" 150
 		"hull" 30
 		"cargo space" 15
-		"outfit space" 90
-		"weapon capacity" 10
+		"outfit space" 100
+		"weapon capacity" 20
 		"engine capacity" 50
-		"fuel capacity" 600
+		"fuel capacity" 300
 	outfits
-		"Tiny Ion Thruster"
-		"Tiny Ion Steering"
+		"XD1200 Ion Thruster"
+		"XT1700 Ion Steering"
+#		"Chipmunk Class Plasma Thruster"
+#		"Chipmunk Class Plasma Steering"
 		"Tiny Fuel Cell"
 		"Tiny Battery Pack"
 		"Beam Laser" 2
