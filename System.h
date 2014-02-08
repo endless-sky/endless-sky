@@ -65,6 +65,10 @@ public:
 	double HabitableZone() const;
 	// Check if this system is inhabited.
 	bool IsInhabited() const;
+	// Check whether you can buy or sell ships in this system.
+	bool HasShipyard() const;
+	// Check whether you can buy or sell ship outfits in this system.
+	bool HasOutfitter() const;
 	
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;

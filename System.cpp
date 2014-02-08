@@ -204,6 +204,30 @@ bool System::IsInhabited() const
 
 
 
+// Check whether you can buy or sell ships in this system.
+bool System::HasShipyard() const
+{
+	for(const StellarObject &object : objects)
+		if(object.GetPlanet() && object.GetPlanet()->HasShipyard())
+			return true;
+	
+	return false;
+}
+
+
+
+// Check whether you can buy or sell ship outfits in this system.
+bool System::HasOutfitter() const
+{
+	for(const StellarObject &object : objects)
+		if(object.GetPlanet() && object.GetPlanet()->HasOutfitter())
+			return true;
+	
+	return false;
+}
+
+
+
 // Get the specification of how many asteroids of each type there are.
 const vector<System::Asteroid> &System::Asteroids() const
 {

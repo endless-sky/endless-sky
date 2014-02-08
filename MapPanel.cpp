@@ -101,9 +101,17 @@ void MapPanel::Draw() const
 		float color[4] = {.2f, .2f, .2f, .2f};
 		if(system.IsInhabited() && player.HasVisited(&system))
 		{
-			const Trade::Commodity &com = data.Commodities()[commodity];
-			float value = (2.f * (system.Trade(com.name) - com.low))
-				/ (com.high - com.low) - 1.f;
+			float value = 0.f;
+			if(commodity >= 0)
+			{
+				const Trade::Commodity &com = data.Commodities()[commodity];
+				value = (2.f * (system.Trade(com.name) - com.low))
+					/ (com.high - com.low) - 1.f;
+			}
+			else if(commodity == -1)
+				value = system.HasShipyard();
+			else if(commodity == -2)
+				value = system.HasOutfitter();
 			color[0] = .6f * (1.f - max(-value, 0.f));
 			color[1] = .6f * (1.f - abs(value));
 			color[2] = .6f * (1.f - max(value, 0.f));
@@ -172,10 +180,16 @@ void MapPanel::Draw() const
 				object.GetPlanet()->HasSpaceport() ? closeColor : dimColor);
 			font.Draw("Shipyard",
 				uiPoint + Point(-60., -2.),
-				dimColor);
+				object.GetPlanet()->HasShipyard() ? closeColor : dimColor);
+			if(commodity == -1)
+				PointerShader::Draw(uiPoint + Point(-60., 5.), Point(1., 0.),
+					10., 10., 0., closeColor);
 			font.Draw("Outfitter",
 				uiPoint + Point(-60., 18.),
-				dimColor);
+				object.GetPlanet()->HasOutfitter() ? closeColor : dimColor);
+			if(commodity == -2)
+				PointerShader::Draw(uiPoint + Point(-60., 25.), Point(1., 0.),
+					10., 10., 0., closeColor);
 			
 			uiPoint.Y() += 110.;
 		}
@@ -315,6 +329,10 @@ bool MapPanel::Click(int x, int y)
 				if(y >= it.second && y < it.second + 90)
 				{
 					selectedPlanet = it.first;
+					if(y >= it.second + 50 && y < it.second + 70)
+						commodity = -1;
+					else if(y >= it.second + 70 && y < it.second + 90)
+						commodity = -2;
 					return true;
 				}
 		}
