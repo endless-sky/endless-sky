@@ -62,6 +62,7 @@ outfit "Medium Ion Steering"
 	"turning heat" 4
 
 outfit "Tiny Battery Pack"
+	cost 8000
 	category "Systems"
 	"mass" 10
 	"outfit space" -10
@@ -80,6 +81,7 @@ outfit "Medium Battery Pack"
 	"energy capacity" 4800
 
 outfit "Tiny Fuel Cell"
+	cost 30000
 	category "Systems"
 	"mass" 20
 	"outfit space" -20
@@ -129,6 +131,7 @@ outfit "Liquid Nitrogen Coolant System"
 	"heat generation" -30
 
 outfit "Tiny Shield Generator"
+	cost 20000
 	category "Systems"
 	"mass" 15
 	"outfit space" -15

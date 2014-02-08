@@ -1,0 +1,13 @@
+shipyard "Basic Ships"
+	"Shuttle"
+	"Star Barge"
+	"Sparrow"
+
+outfitter "Basic Weapons"
+	"Energy Blaster"
+	"Beam Laser"
+	"Javelin"
+	"Javelin Pod"
+	"Meteor Missile"
+	"Meteor Missile Launcher"
+

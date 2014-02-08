@@ -54,6 +54,7 @@ outfit "Quad Blaster Turret"
 
 outfit "Beam Laser"
 	category "Guns"
+	cost 29000
 	"mass" 8
 	"outfit space" -8
 	"weapon capacity" -8
@@ -173,6 +174,10 @@ outfit "Particle Cannon"
 		"firing heat" 100
 		"hit force" 80
 
+outfit "Meteor Missile"
+	category "Missile"
+	cost 1200
+
 outfit "Meteor Missile Launcher"
 	category "Missiles"
 	"mass" 5
@@ -226,6 +231,10 @@ outfit "Sidewinder Missile Launcher"
 		"hull damage" 24
 		"hit force" 100
 		"missile strength" 5
+
+outfit "Javelin"
+	category "Missile"
+	cost 100
 
 outfit "Javelin Pod"
 	category "Missile"
