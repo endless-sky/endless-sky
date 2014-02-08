@@ -14,6 +14,7 @@ Class storing all the data used in the game: sprites, data files, etc.
 #include "Interface.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "Sale.h"
 #include "Set.h"
 #include "Ship.h"
 #include "ShipName.h"
@@ -67,6 +68,9 @@ private:
 	Set<Ship> ships;
 	Set<ShipName> shipNames;
 	Set<System> systems;
+	
+	Set<Sale<Ship>> shipSales;
+	Set<Sale<Outfit>> outfitSales;
 	
 	Trade trade;
 	
