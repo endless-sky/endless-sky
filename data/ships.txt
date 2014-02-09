@@ -40,12 +40,15 @@ ship "Freighter"
 	outfits
 		"Small Ion Thruster"
 		"Tiny Ion Steering"
-		"Small Fuel Cell"
+		"Medium Fuel Cell"
 		"Tiny Battery Pack"
 		"Tiny Shield Generator"
+		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 	engine -12 -105
 	engine 12 -105
+	turret 0 40
+	turret 0 -40
 	turret 0 0
 	explode "tiny explosion" 10
 	explode "small explosion" 30
@@ -123,8 +126,11 @@ ship "Clipper"
 		"Small Fuel Cell"
 		"Tiny Battery Pack"
 		"Tiny Shield Generator"
+		"Energy Blaster" 2
 	engine -27 -53
 	engine 27 -53
+	gun -13 17
+	gun 13 17
 	explode "small explosion" 20
 	explode "medium explosion" 25
 	explode "big explosion" 5
@@ -135,7 +141,7 @@ ship "Argosy"
 		"required crew" 1
 		"bunks" 3
 		"drag" 1.3
-		"mass" 20
+		"mass" 220
 		"shields" 800
 		"hull" 400
 		"cargo space" 15
@@ -146,10 +152,11 @@ ship "Argosy"
 	outfits
 		"Small Ion Thruster"
 		"Tiny Ion Steering"
-		"Small Fuel Cell"
+		"Fission Reactor"
 		"Tiny Battery Pack"
 		"Tiny Shield Generator"
-		"Anti-Missile Turret" 2
+		"Water Coolant System"
+		"Heavy Laser Turret" 2
 	engine -34 -85
 	engine -24 -87
 	engine 34 -85
@@ -250,8 +257,13 @@ ship "Fury"
 		"Small Fuel Cell"
 		"Tiny Battery Pack"
 		"Tiny Shield Generator"
+		"Energy Blaster" 4
 	engine -20 -36
 	engine 20 -36
+	gun -10 32
+	gun 10 32
+	gun -16 22
+	gun 16 22
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 
@@ -272,13 +284,21 @@ ship "Destroyer"
 	outfits
 		"Small Ion Thruster"
 		"Tiny Ion Steering"
-		"Small Fuel Cell"
-		"Tiny Battery Pack"
+		"Fusion Reactor"
+		"Medium Battery Pack"
 		"Tiny Shield Generator"
 		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret" 2
+		"Particle Cannon" 3
+		"Liquid Nitrogen Coolant System"
 	engine -27 -108
 	engine 27 -108
-	turret 0 0
+	turret 0 25
+	turret -23 -38
+	turret 23 -38
+	gun 0 50
+	gun 10 40
+	gun -10 40
 	explode "small explosion" 40
 	explode "medium explosion" 60
 	explode "big explosion" 60
@@ -289,7 +309,7 @@ ship "Cruiser"
 		"required crew" 300
 		"bunks" 500
 		"drag" 4.3
-		"mass" 300
+		"mass" 800
 		"shields" 2500
 		"hull" 800
 		"cargo space" 40
@@ -300,13 +320,22 @@ ship "Cruiser"
 	outfits
 		"Medium Ion Thruster"
 		"Medium Ion Steering"
-		"Medium Fuel Cell"
+		"Fusion Reactor"
 		"Medium Battery Pack"
 		"Tiny Shield Generator"
 		"Heavy Anti-Missile Turret"
+		"Particle Cannon" 4
+		"Torpedo Launcher" 2
+		"Liquid Nitrogen Coolant System"
 	engine -39 -118
 	engine 39 -118
 	turret 0 0
+	gun -72 18
+	gun 72 18
+	gun -72 18
+	gun 72 18
+	gun -60 0
+	gun 60 0
 	explode "small explosion" 60
 	explode "medium explosion" 100
 	explode "big explosion" 30

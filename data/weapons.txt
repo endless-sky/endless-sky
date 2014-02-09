@@ -173,6 +173,8 @@ outfit "Particle Cannon"
 		"firing force" 10
 		"firing heat" 100
 		"hit force" 80
+		"shield damage" 25
+		"hull damage" 38
 
 outfit "Meteor Missile"
 	category "Missile"

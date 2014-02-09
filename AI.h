@@ -23,6 +23,8 @@ class PlayerInfo;
 
 class AI {
 public:
+	AI();
+	
 	void UpdateKeys();
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
 	
@@ -31,6 +33,9 @@ public:
 	
 	
 private:
+	// Pick a new target for the given ship.
+	std::weak_ptr<const Ship> FindTarget(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships);
+	
 	void MoveIndependent(Controllable &control, const Ship &ship);
 	void MoveEscort(Controllable &control, const Ship &ship);
 	
@@ -39,6 +44,7 @@ private:
 	void MoveToPlanet(Controllable &control, const Ship &ship);
 	void PrepareForHyperspace(Controllable &control, const Ship &ship);
 	void CircleAround(Controllable &control, const Ship &ship, const Ship &target);
+	void Attack(Controllable &control, const Ship &ship, const Ship &target);
 	
 	Point StoppingPoint(const Ship &ship);
 	
@@ -46,6 +52,8 @@ private:
 	
 	
 private:
+	int step;
+	
 	KeyStatus keys;
 	mutable KeyStatus sticky;
 	

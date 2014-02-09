@@ -63,6 +63,13 @@ public:
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(Projectile &projectile, std::list<Effect> &effects);
 	
+	// Get a vector giving the direction this ship should aim in in order to do
+	// maximum damaged to a target at the given position with its non-turret,
+	// non-homing weapons.
+	Point AimAt(const Ship &other) const;
+	// Check if I am in firing range for any other weapons.
+	bool IsInRange(const Ship &other) const;
+	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
 	
