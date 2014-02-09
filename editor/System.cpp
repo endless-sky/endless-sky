@@ -115,6 +115,8 @@ void System::Load(const DataFile::Node &node, const Set<System> &systems)
 			assert(child.Size() >= 3);
 			pos = Point(child.Value(1), child.Value(2));
 		}
+		else if(child.Token(0) == "government")
+			government = child.Token(1);
 		else if(child.Token(0) == "link")
 		{
 			assert(child.Size() >= 2);
@@ -539,6 +541,8 @@ void System::Write(ostream &out) const
 {
 	out << "system \"" << name << "\"\n";
 	out << "\tpos " << pos.X() << " " << pos.Y() << "\n";
+	if(!government.empty())
+		out << "\tgovernment \"" << government << "\"\n";
 	out << "\thabitable " << habitable << "\n";
 	for(const System *link : links)
 		out << "\tlink \"" << link->name << "\"\n";

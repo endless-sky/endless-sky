@@ -71,6 +71,7 @@ public:
 	
 public:
 	std::string name;
+	std::string government;
 	Point pos;
 	
 	Object root;
