@@ -181,7 +181,7 @@ ship "Corvette"
 		"Water Coolant System"
 		"Tiny Battery Pack"
 		"Energy Blaster" 2
-		"Sidewinder Missile Launcher" 2
+		"Heavy Rocket Launcher" 1
 		"Laser Turret" 2
 		"Tiny Shield Generator"
 	engine -26 -106

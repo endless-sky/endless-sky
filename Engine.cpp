@@ -459,8 +459,6 @@ void Engine::CalculateStep()
 		// shields the ship (unless the projectile has  blast radius).
 		double closestHit = asteroids.Collide(projectile, step);
 		Ship *hit = nullptr;
-		vector<Ship *> inBlastRadius;
-		vector<Ship *> inAntiMissileRange;
 		const Government *gov = projectile.GetGovernment();
 		
 		// Projectiles can only collide with ships that are in the current
@@ -479,10 +477,6 @@ void Engine::CalculateStep()
 					closestHit = range;
 					hit = ship.get();
 				}
-				// InBlastRadius() returns false if the projectile has no blast
-				// radius.
-				if(projectile.InBlastRadius(*ship, step))
-					inBlastRadius.push_back(ship.get());
 			}
 		
 		if(closestHit < 1.)
@@ -491,16 +485,18 @@ void Engine::CalculateStep()
 			// motion path for this step.
 			projectile.Explode(effects, closestHit);
 			
-			// Note: it is possible the projectile hit an asteroid, in which
-			// case it didn't hit any ship directly and there may not be any
-			// ships within its blast radius either.
-			if(hit && inBlastRadius.empty())
-				projectile.Hit(*hit);
-			else
+			// If this projectile has a blast radius, find all ships within its
+			// radius. Otherwise, only one is damaged.
+			if(projectile.HasBlastRadius())
 			{
-				for(Ship *target : inBlastRadius)
-					projectile.Hit(*target);
+				// Even friendly ships can be hit by the blast.
+				for(shared_ptr<Ship> &ship : ships)
+					if(ship->GetSystem() == player->GetSystem() && !ship->IsLanding())
+						if(projectile.InBlastRadius(*ship, step))
+							projectile.Hit(*ship);
 			}
+			else if(hit)
+				projectile.Hit(*hit);
 		}
 		else if(projectile.MissileStrength())
 		{

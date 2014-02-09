@@ -317,9 +317,11 @@ outfit "sub: Nuclear 1"
 		"inaccuracy" 360
 		"velocity" 10
 		"lifetime" 2
+		"trigger radius" 30
+		"blast radius" 50
 		"shield damage" 20
 		"hull damage" 12
-		"hit force" 10
+		"hit force" 50
 		"submunition" "sub: Nuclear 2" 6 
 
 outfit "sub: Nuclear 2"
@@ -330,9 +332,11 @@ outfit "sub: Nuclear 2"
 		"velocity" 10
 		"acceleration" -1
 		"lifetime" 8
+		"trigger radius" 30
+		"blast radius" 50
 		"shield damage" 20
 		"hull damage" 12
-		"hit force" 10
+		"hit force" 50
 		"submunition" "sub: Nuclear 3" 3
 		"submunition" "sub: Nuclear 4" 3 
 
@@ -344,9 +348,11 @@ outfit "sub: Nuclear 3"
 		"velocity" 6
 		"acceleration" -.5
 		"lifetime" 16
+		"trigger radius" 30
+		"blast radius" 50
 		"shield damage" 20
 		"hull damage" 12
-		"hit force" 10
+		"hit force" 50
 
 outfit "sub: Nuclear 4"
 	weapon
@@ -356,7 +362,9 @@ outfit "sub: Nuclear 4"
 		"velocity" 6
 		"acceleration" -.5
 		"lifetime" 8
+		"trigger radius" 30
+		"blast radius" 50
 		"shield damage" 20
 		"hull damage" 12
-		"hit force" 10
+		"hit force" 50
 
