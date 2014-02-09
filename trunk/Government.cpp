@@ -87,7 +87,8 @@ bool Government::IsEnemy(const Government *other) const
 // a ship of that government attacked it or one of its allies.
 void Government::Provoke(const Government *other)
 {
-	provoked.insert(other);
+	if(other != this)
+		provoked.insert(other);
 }
 
 

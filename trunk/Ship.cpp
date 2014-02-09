@@ -610,7 +610,7 @@ const System *Ship::GetSystem() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate);
+	return (zoom == 1. && !explosionRate && forget < 2);
 }
 
 

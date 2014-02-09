@@ -19,7 +19,6 @@ using namespace std;
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon)
 	: weapon(weapon), animation(weapon->WeaponSprite()),
-	system(parent.GetSystem()),
 	position(position), velocity(parent.Velocity()), angle(angle),
 	targetShip(parent.GetTargetShip()), government(parent.GetGovernment()),
 	lifetime(weapon->WeaponGet("lifetime"))
@@ -35,7 +34,6 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 
 Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 	: weapon(weapon), animation(weapon->WeaponSprite()),
-	system(parent.system),
 	position(parent.position), velocity(parent.velocity), angle(parent.angle),
 	targetShip(parent.targetShip), government(parent.government),
 	lifetime(weapon->WeaponGet("lifetime"))
@@ -67,7 +65,7 @@ bool Projectile::Move(list<Effect> &effects)
 	
 	// If the target has left the system, stop following it.
 	const Ship *target = Target();
-	if(target && target->GetSystem() != system)
+	if(target && !target->IsTargetable())
 	{
 		targetShip.reset();
 		target = nullptr;
@@ -164,16 +162,20 @@ double Projectile::CheckCollision(const Ship &ship, int step) const
 
 
 
+// Check if this projectile has a blast radius.
+bool Projectile::HasBlastRadius() const
+{
+	return (weapon->WeaponGet("blast radius") > 0.);
+}
+
+
+
 // Check if the given ship is within this projectile's blast radius. (The
 // projectile will not explode unless it is also within the trigger radius.)
 bool Projectile::InBlastRadius(const Ship &ship, int step) const
 {
-	double radius = weapon->WeaponGet("blast radius");
-	if(radius <= 0.)
-		return false;
-	
 	return ship.GetSprite().GetMask(step).WithinRange(
-		position - ship.Position(), angle, radius);
+		position - ship.Position(), angle,  weapon->WeaponGet("blast radius"));
 }
 
 

@@ -36,6 +36,8 @@ public:
 	// Check if this projectile collides with the given step, with the animation
 	// frame for the given step.
 	double CheckCollision(const Ship &ship, int step) const;
+	// Check if this projectile has a blast radius.
+	bool HasBlastRadius() const;
 	// Check if the given ship is within this projectile's blast radius. (The
 	// projectile will not explode unless it is also within the trigger radius.)
 	bool InBlastRadius(const Ship &ship, int step) const;
@@ -69,7 +71,6 @@ private:
 	const Outfit *weapon;
 	Animation animation;
 	
-	const System *system;
 	Point position;
 	Point velocity;
 	Angle angle;
