@@ -497,6 +497,10 @@ void Engine::CalculateStep()
 			}
 			else if(hit)
 				projectile.Hit(*hit);
+			
+			// Whatever ship you hit directly is provoked against you.
+			if(hit)
+				hit->GetGovernment()->Provoke(gov);
 		}
 		else if(projectile.MissileStrength())
 		{

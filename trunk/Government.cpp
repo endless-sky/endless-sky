@@ -85,7 +85,7 @@ bool Government::IsEnemy(const Government *other) const
 // Mark that this government is, for the moment, fighting the given
 // government, which is not necessarily one of its normal enemies, because
 // a ship of that government attacked it or one of its allies.
-void Government::Provoke(const Government *other)
+void Government::Provoke(const Government *other) const
 {
 	if(other != this)
 		provoked.insert(other);
