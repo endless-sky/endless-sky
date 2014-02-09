@@ -6,6 +6,7 @@ Function definitions for the AI class.
 
 #include "AI.h"
 
+#include "Government.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -16,6 +17,13 @@ Function definitions for the AI class.
 #include <cmath>
 
 using namespace std;
+
+
+
+AI::AI()
+	: step(0)
+{
+}
 
 
 
@@ -30,6 +38,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 {
 	const Ship *player = info.GetShip();
 	
+	step = (step + 1) & 31;
+	int targetTurn = 0;
 	for(const auto &it : ships)
 	{
 		if(it.get() == player)
@@ -37,7 +47,16 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		else if(it->GetParent().lock())
 			MoveEscort(*it, *it);
 		else
+		{
+			// Each ship only switches targets twice a second. Stagger which
+			// ships pick a target at each step to avoid having one frame take
+			// much longer when there are many ships.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step)
+				it->SetTargetShip(FindTarget(*it, ships));
+			
 			MoveIndependent(*it, *it);
+		}
 	}
 }
 
@@ -51,9 +70,42 @@ const string &AI::Message() const
 
 
 
+// Pick a new target for the given ship.
+weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships)
+{
+	double closest = numeric_limits<double>::infinity();
+	weak_ptr<const Ship> target;
+	const Government *gov = ship.GetGovernment();
+	if(!gov)
+		return target;
+	const System *system = ship.GetSystem();
+	
+	for(const auto &it : ships)
+		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
+		{
+			double range = it->Position().Distance(ship.Position());
+			if(range < closest)
+			{
+				closest = range;
+				target = it;
+			}
+		}
+	
+	return target;
+}
+
+
+
 void AI::MoveIndependent(Controllable &control, const Ship &ship)
 {
 	control.ResetCommands();
+	
+	auto target = ship.GetTargetShip().lock();
+	if(target)
+	{
+		Attack(control, ship, *target);
+		return;
+	}
 	
 	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
 	{
@@ -129,13 +181,7 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
 	control.ResetCommands();
 	
-	shared_ptr<const Ship> parentPtr = ship.GetParent().lock();
-	if(!parentPtr)
-	{
-		MoveIndependent(control, ship);
-		return;
-	}
-	const Ship &parent = *parentPtr;
+	const Ship &parent = *ship.GetParent().lock();
 	if(ship.GetSystem() != parent.GetSystem())
 	{
 		control.SetTargetSystem(parent.GetSystem());
@@ -278,6 +324,30 @@ void AI::CircleAround(Controllable &control, const Ship &ship, const Ship &targe
 
 
 
+void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
+{
+	Point direction = target.Position() - ship.Position();
+	
+	// First of all, aim in the direction that will hit this target.
+	Point aim = ship.AimAt(target);
+	if(aim)
+	{
+		control.SetTurnCommand(TurnToward(ship, aim));
+		control.SetFireCommand(0);
+	}
+	else
+	{
+		control.SetTurnCommand(TurnToward(ship, direction));
+		if(ship.IsInRange(target))
+			control.SetFireCommand(0);
+	}
+	
+	// This is not the behavior I want, but it's reasonable.
+	control.SetThrustCommand(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.);
+}
+
+
+
 Point AI::StoppingPoint(const Ship &ship)
 {
 	const Point &position = ship.Position();
@@ -317,15 +387,18 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	if(keys.Status() & KeyStatus::TARGET_NEAR)
 	{
 		double closest = numeric_limits<double>::infinity();
+		bool sawEnemy = false;
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->GetSystem() == ship.GetSystem() && other->IsTargetable())
 			{
 				double d = other->Position().Distance(ship.Position());
-				if(d < closest)
+				bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
+				if((isEnemy && !sawEnemy) || ((isEnemy == sawEnemy) && d < closest))
 				{
 					control.SetTargetShip(other);
 					closest = d;
 				}
+				sawEnemy |= isEnemy;
 			}
 	}
 	

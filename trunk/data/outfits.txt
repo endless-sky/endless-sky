@@ -128,7 +128,7 @@ outfit "Liquid Nitrogen Coolant System"
 	"mass" 10
 	"outfit space" 10
 	"energy generation" -.2
-	"heat generation" -30
+	"heat generation" -40
 
 outfit "Tiny Shield Generator"
 	cost 20000

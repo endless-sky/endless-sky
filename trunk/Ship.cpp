@@ -184,6 +184,8 @@ bool Ship::Move(std::list<Effect> &effects)
 	heat *= .999;
 	if(heat > Mass() * 100.)
 		isOverheated = true;
+	else if(heat < Mass() * 90.)
+		isOverheated = false;
 	
 	shields = min(shields, attributes.Get("shields"));
 	
@@ -386,7 +388,7 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 {
 	forget = 0;
 	
-	if(zoom != 1. || isDisabled)
+	if(zoom != 1. || isDisabled || hyperspaceCount)
 		return false;
 	
 	bool hasAntiMissile = false;
@@ -594,6 +596,87 @@ bool Ship::FireAntiMissile(Projectile &projectile, std::list<Effect> &effects)
 			}
 		}
 		turret += count;
+	}
+	
+	return false;
+}
+
+
+
+// Get a vector giving the direction this ship should aim in in order to do
+// maximum damaged to a target at the given position with its non-turret,
+// non-homing weapons.
+Point Ship::AimAt(const Ship &other) const
+{
+	Point result;
+	
+	for(auto &it : outfits)
+	{
+		int count = it.second;
+		if(!count || !it.first->IsWeapon() || it.first->Get("turret mounts")
+				|| it.first->WeaponGet("homing"))
+			continue;
+		
+		Point p = other.position - position;
+		Point v = other.velocity - velocity;
+		double vp = it.first->WeaponGet("velocity");
+		
+		// How many steps will it take this projectile
+		// to intersect the target?
+		// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
+		// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
+		//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
+		//    - vp^2*t^2 = 0
+		// (v.x^2 + v.y^2 - vp^2) * t^2
+		//    + (2 * (p.x * v.x + p.y * v.y)) * t
+		//    + (p.x^2 + p.y^2) = 0
+		double a = v.Dot(v) - vp * vp;
+		double b = 2. * p.Dot(v);
+		double c = p.Dot(p);
+		double discriminant = b * b - 4 * a * c;
+		double steps = 0.;
+		if(discriminant > 0.)
+		{
+			discriminant = sqrt(discriminant);
+			
+			// The solutions are b +- discriminant.
+			// But it's not a solution if it's negative.
+			double r1 = (-b + discriminant) / (2. * a);
+			double r2 = (-b - discriminant) / (2. * a);
+			if(r1 > 0. && r2 > 0.)
+				steps = min(r1, r2);
+			else if(r1 > 0. || r2 > 0.)
+				steps = max(r1, r2);
+			
+			if(steps < it.first->WeaponGet("lifetime"))
+			{
+				// Figure out where the target will be after
+				// the calculated time has elapsed.
+				p += steps * v;
+			
+				double damage = (it.first->WeaponGet("shield damage")
+					+ it.first->WeaponGet("hull damage")) * count;
+				result += p.Unit() * damage;
+			}
+		}
+	}
+	
+	return result;
+}
+
+
+
+// Check if I am in firing range for any other weapons.
+bool Ship::IsInRange(const Ship &other) const
+{
+	for(auto &it : outfits)
+	{
+		int count = it.second;
+		if(!count || !it.first->IsWeapon())
+			continue;
+		
+		if(position.Distance(other.position) < it.first->WeaponGet("range"))
+			return true;
 	}
 	
 	return false;

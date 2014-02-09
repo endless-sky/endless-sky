@@ -47,7 +47,7 @@ Engine::Engine(const GameData &data)
 		if(object.Name() == "Earth")
 			player->Place(object.Position());
 	
-	ships.push_back(make_shared<Ship>(*data.Ships().Get("Argosy")));
+	/*ships.push_back(make_shared<Ship>(*data.Ships().Get("Argosy")));
 	Ship &sidekick = *ships.back();
 	sidekick.Place(player->Position() + Point(200., 0.));
 	sidekick.SetSystem(player->GetSystem());
@@ -56,7 +56,7 @@ Engine::Engine(const GameData &data)
 	sidekick.SetIsSpecial();
 	sidekick.SetParent(ships.front());
 	player->AddEscort(ships.back());
-	playerInfo.AddShip(&sidekick);
+	playerInfo.AddShip(&sidekick);*/
 	
 	// TODO: don't automatically visit the whole galaxy.
 	for(const auto &it : data.Systems())
@@ -442,9 +442,12 @@ void Engine::CalculateStep()
 				ship->GetSprite(),
 				position,
 				ship->Unit());
+			
+			auto target = ship->GetTargetShip().lock();
 			radar[calcTickTock].Add(
 				ship->GetGovernment() == playerGovernment ? Radar::PLAYER :
 					ship->IsDisabled() ? Radar::INACTIVE :
+					(target && target->GetGovernment() == playerGovernment) ? Radar::HOSTILE :
 					ship->GetGovernment()->IsEnemy(playerGovernment) ?
 						Radar::UNFRIENDLY : Radar::FRIENDLY,
 				position,
@@ -558,13 +561,12 @@ void Engine::CalculateStep()
 		ships.back()->Place();
 		ships.back()->SetSystem(source);
 		ships.back()->SetTargetSystem(player->GetSystem());
-		static const std::string GOV[5] = {
+		static const std::string GOV[4] = {
 			"Merchant",
 			"Republic",
-			"Free Worlds",
-			"Syndicate",
+			"Militia",
 			"Pirate"};
-		ships.back()->SetGovernment(data.Governments().Get(GOV[rand() % 5]));
+		ships.back()->SetGovernment(data.Governments().Get(GOV[rand() % 4]));
 		ships.back()->SetName(data.ShipNames().Get("civilian")->Get());
 	}
 	
