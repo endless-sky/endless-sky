@@ -551,7 +551,7 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(Projectile &projectile, std::list<Effect> &effects)
+bool Ship::FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects)
 {
 	int turret = 0;
 	for(auto &it : outfits)
@@ -590,8 +590,7 @@ bool Ship::FireAntiMissile(Projectile &projectile, std::list<Effect> &effects)
 						}
 					
 					if(rand() % strength > rand() % projectile.MissileStrength())
-						projectile.Kill();
-					return true;
+						return true;
 				}
 			}
 		}
@@ -951,8 +950,15 @@ double Ship::MaxVelocity() const
 
 
 
-void Ship::TakeDamage(double shieldDamage, double hullDamage, Point force) const
+// This ship just got hit by the given projectile. Take damage according to
+// what sort of weapon the projectile it.
+void Ship::TakeDamage(const Projectile &projectile)
 {
+	const Outfit &weapon = projectile.GetWeapon();
+	double shieldDamage = weapon.WeaponGet("shield damage");
+	double hullDamage = weapon.WeaponGet("hull damage");
+	double hitForce =  weapon.WeaponGet("hit force");
+	
 	if(shields > shieldDamage)
 		shields -= shieldDamage;
 	else
@@ -961,8 +967,9 @@ void Ship::TakeDamage(double shieldDamage, double hullDamage, Point force) const
 		shields = 0.;
 	}
 	
-	if(force)
+	if(hitForce)
 	{
+		Point force = hitForce * projectile.Velocity().Unit();
 		double currentMass = Mass();
 		velocity += force / currentMass;
 		velocity *= 1. - attributes.Get("drag") / currentMass;
@@ -1023,6 +1030,25 @@ const map<const Outfit *, int> &Ship::Outfits() const
 const Outfit &Ship::Attributes() const
 {
 	return attributes;
+}
+
+
+
+// Add or remove outfits. (To remove, pass a negative number.)
+void Ship::AddOutfit(const Outfit *outfit, int count)
+{
+	if(count)
+	{
+		auto it = outfits.find(outfit);
+		if(it == outfits.end())
+			outfits[outfit] = count;
+		else
+		{
+			it->second += count;
+			if(!it->second)
+				outfits.erase(it);
+		}
+	}
 }
 
 

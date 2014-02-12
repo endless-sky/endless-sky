@@ -61,7 +61,7 @@ public:
 	// collision detection finds a missile in range.
 	bool Fire(std::list<Projectile> &projectiles);
 	// Fire an anti-missile. Returns true if the missile was killed.
-	bool FireAntiMissile(Projectile &projectile, std::list<Effect> &effects);
+	bool FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects);
 	
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damaged to a target at the given position with its non-turret,
@@ -126,9 +126,9 @@ public:
 	double Acceleration() const;
 	double MaxVelocity() const;
 	
-	// TODO: This should be called by Engine, not by Projectile. That would
-	// allow shields and hull to not be mutable and this to not be const.
-	void TakeDamage(double shieldDamage, double hullDamage, Point force) const;
+	// This ship just got hit by the given projectile. Take damage according to
+	// what sort of weapon the projectile it.
+	void TakeDamage(const Projectile &projectile);
 	
 	// Get cargo information.
 	int Cargo(const std::string &type) const;
@@ -138,6 +138,8 @@ public:
 	// Get outfit information.
 	const std::map<const Outfit *, int> &Outfits() const;
 	const Outfit &Attributes() const;
+	// Add or remove outfits. (To remove, pass a negative number.)
+	void AddOutfit(const Outfit *outfit, int count);
 	
 	
 private:
@@ -182,8 +184,8 @@ private:
 	std::vector<Point> turretPoints;
 	
 	// Various energy levels:
-	mutable double shields;
-	mutable double hull;
+	double shields;
+	double hull;
 	double fuel;
 	double energy;
 	double heat;
@@ -191,7 +193,7 @@ private:
 	// Current status of this particular ship:
 	const System *currentSystem;
 	Point position;
-	mutable Point velocity;
+	Point velocity;
 	Angle angle;
 	
 	// A Ship can be locked into one of three special states: landing,

@@ -196,17 +196,6 @@ void Projectile::Explode(std::list<Effect> &effects, double intersection)
 
 
 
-// This projectile hit the given ship. Damage that ship.
-void Projectile::Hit(Ship &ship) const
-{
-	ship.TakeDamage(
-		weapon->WeaponGet("shield damage"),
-		weapon->WeaponGet("hull damage"),
-		velocity.Unit() * weapon->WeaponGet("hit force"));
-}
-
-
-
 // This projectile was killed, e.g. by an anti-missile system.
 void Projectile::Kill()
 {
@@ -220,6 +209,14 @@ void Projectile::Kill()
 int Projectile::MissileStrength() const
 {
 	return static_cast<int>(weapon->WeaponGet("missile strength"));
+}
+
+
+
+// Get information on the weapon that fired this projectile.
+const Outfit &Projectile::GetWeapon() const
+{
+	return *weapon;
 }
 
 

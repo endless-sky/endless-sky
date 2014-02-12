@@ -496,10 +496,10 @@ void Engine::CalculateStep()
 				for(shared_ptr<Ship> &ship : ships)
 					if(ship->GetSystem() == player->GetSystem() && !ship->IsLanding())
 						if(projectile.InBlastRadius(*ship, step))
-							projectile.Hit(*ship);
+							ship->TakeDamage(projectile);
 			}
 			else if(hit)
-				projectile.Hit(*hit);
+				hit->TakeDamage(projectile);
 			
 			// Whatever ship you hit directly is provoked against you.
 			if(hit)
@@ -517,7 +517,10 @@ void Engine::CalculateStep()
 						|| gov->IsEnemy(ship->GetGovernment())
 						|| ship->GetGovernment()->IsEnemy(gov))
 					if(ship->FireAntiMissile(projectile, effects))
+					{
+						projectile.Kill();
 						break;
+					}
 		}
 		
 		// Now, we can draw the projectile.
