@@ -15,7 +15,6 @@ land/:
 		mountain8.jpg (USGS)
 		mountain9.jpg (USGS)
 	The following are licensed CC BY-SA 4.0 by Michael Zahniser:
-		forest4.jpg
 		forest5.jpg
 		lava4.jpg
 		lava5.jpg

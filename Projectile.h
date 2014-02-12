@@ -44,14 +44,14 @@ public:
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
 	void Explode(std::list<Effect> &effects, double intersection);
-	// This projectile hit the given ship. Damage that ship.
-	void Hit(Ship &ship) const;
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
 	
 	// Find out if this is a missile, and if so, how strong it is (i.e. what
 	// chance an anti-missile shot has of destroying it).
 	int MissileStrength() const;
+	// Get information on the weapon that fired this projectile.
+	const Outfit &GetWeapon() const;
 	
 	// Get the projectiles characteristics, for drawing.
 	const Animation &GetSprite() const;
