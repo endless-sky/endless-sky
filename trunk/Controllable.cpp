@@ -117,6 +117,13 @@ void Controllable::SetFireCommand(int index)
 
 
 
+void Controllable::FireAll()
+{
+	commands |= 0xFFFFFFFF << WEAPON_SHIFT;
+}
+
+
+
 // Each ship can have a target system (to travel to), a target planet (to
 // land on) and a target ship (to move to, and attack if hostile).
 const std::weak_ptr<const Ship> &Controllable::GetTargetShip() const

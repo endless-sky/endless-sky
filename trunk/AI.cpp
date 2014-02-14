@@ -333,13 +333,13 @@ void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 	if(aim)
 	{
 		control.SetTurnCommand(TurnToward(ship, aim));
-		control.SetFireCommand(0);
+		control.FireAll();
 	}
 	else
 	{
 		control.SetTurnCommand(TurnToward(ship, direction));
 		if(ship.IsInRange(target))
-			control.SetFireCommand(0);
+			control.FireAll();
 	}
 	
 	// This is not the behavior I want, but it's reasonable.
@@ -439,7 +439,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keys.Status() & KeyStatus::THRUST)
 			control.SetThrustCommand(keys.Thrust());
 		if(keys.Status() & KeyStatus::PRIMARY)
-			control.SetFireCommand(0);
+			control.FireAll();
 		
 		sticky = keys;
 	}
