@@ -21,7 +21,7 @@ using namespace std;
 
 
 Ship::Ship()
-	: government(nullptr),
+	: government(nullptr), isInSystem(true),
 	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
 	cargoMass(0),
 	shields(0.), hull(0.), energy(0.), fuel(0.), heat(0.),
@@ -174,8 +174,10 @@ bool Ship::Move(std::list<Effect> &effects)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten."
-	if(!isSpecial && ++forget >= 1000)
+	forget += !isInSystem;
+	if(!isSpecial && forget >= 1000)
 		return false;
+	isInSystem = false;
 	
 	
 	// When ships recharge, what actually happens is that they can exceed their
@@ -378,6 +380,7 @@ void Ship::Launch(std::list<std::shared_ptr<Ship>> &ships)
 // collision detection finds a missile in range.
 bool Ship::Fire(std::list<Projectile> &projectiles)
 {
+	isInSystem = true;
 	forget = 0;
 	
 	if(zoom != 1. || isDisabled || hyperspaceCount)
@@ -431,7 +434,7 @@ const System *Ship::GetSystem() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && forget < 2);
+	return (zoom == 1. && !explosionRate && !forget);
 }
 
 
@@ -718,7 +721,10 @@ void Ship::ApplyForce(const Point &force)
 {
 	double currentMass = Mass();
 	velocity += force / currentMass;
-	velocity *= 1. - attributes.Get("drag") / currentMass;
+	double maxVelocity = MaxVelocity();
+	double currentVelocity = velocity.Length();
+	if(currentVelocity > maxVelocity)
+		velocity *= maxVelocity / currentVelocity;
 }
 
 

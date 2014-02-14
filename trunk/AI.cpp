@@ -484,7 +484,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		double closest = numeric_limits<double>::infinity();
 		bool sawEnemy = false;
 		for(const shared_ptr<Ship> &other : ships)
-			if(other.get() != &ship && other->GetSystem() == ship.GetSystem() && other->IsTargetable())
+			if(other.get() != &ship && other->IsTargetable())
 			{
 				double d = other->Position().Distance(ship.Position());
 				bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
