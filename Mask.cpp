@@ -257,11 +257,8 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 {
 	// Bail out if we're too far away to possibly be touching.
 	double distance = sA.Length();
-	if(outline.empty() || sA.Length() > radius + vA.Length())
+	if(outline.empty() || distance > radius + vA.Length())
 		return 1.;
-	
-	if(Contains(sA, facing))
-		return 0.;
 	
 	// Rotate into the mask's frame of reference.
 	sA = (-facing).Rotate(sA);
@@ -274,26 +271,76 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 	
 	// For simplicity, use a ray pointing straight downwards. A segment then
 	// intersects only if its x coordinates span the point's coordinates.
-	if(distance <= radius)
-	{
-		int intersections = 0;
-		Point prev = outline.back();
-		for(const Point &next : outline)
-		{
-			if(prev.X() != next.X())
-				if((prev.X() <= sA.X()) == (sA.X() < next.X()))
-				{
-					double y = prev.Y() + (next.Y() - prev.Y()) *
-						(sA.X() - prev.X()) / (next.X() - prev.X());
-					intersections += (y >= sA.Y());
-				}
-			prev = next;
-		}
-		// If the number of intersections is odd, the point is within the mask.
-		if(intersections & 1)
-			return 0.;
-	}
+	if(distance <= radius && Contains(sA))
+		return 0.;
 	
+	return Intersection(sA, vA);
+}
+
+
+
+// Check whether the given vector intersects this object, and if it does,
+// find the closest point of intersection. The mask is assumed to be
+// rotated and scaled according to the given unit vector. The vector start
+// should be translated so that this object's center is the origin.
+bool Mask::Intersects(Point sA, Point vA, Angle facing, Point *result) const
+{
+	// Bail out if we're too far away to possibly be touching.
+	if(outline.empty() || sA.Length() > radius + vA.Length())
+		return false;
+	
+	// Rotate into the mask's frame of reference.
+	sA = (-facing).Rotate(sA);
+	vA = (-facing).Rotate(vA);
+	
+	// Keep track of the closest intersection point found.
+	double closest = Intersection(sA, vA);
+	if(closest == 1.)
+		return false;
+	
+	if(result)
+		*result = facing.Rotate(sA + closest * vA);
+	return true;
+}
+
+
+
+// Check whether the mask contains the given point.
+bool Mask::Contains(Point point, Angle facing) const
+{
+	if(outline.empty() || point.Length() > radius)
+		return false;
+	
+	// Rotate into the mask's frame of reference.
+	return Contains((-facing).Rotate(point));
+}
+
+
+
+// Find out how close this mask is to the given point. Again, the mask is
+// assumed to be rotated and scaled according to the given unit vector.
+bool Mask::WithinRange(Point point, Angle facing, double range) const
+{
+	// Bail out if the object is too far away to possible be touched.
+	if(outline.empty() || range > point.Length() + radius)
+		return false;
+	
+	// Rotate into the mask's frame of reference.
+	point = (-facing).Rotate(point);
+	// For efficiency, compare to range^2 instead of range.
+	range *= range;
+	
+	for(const Point &p : outline)
+		if(p.DistanceSquared(point) < range)
+			return true;
+	
+	return false;
+}
+
+
+
+double Mask::Intersection(Point sA, Point vA) const
+{
 	// Keep track of the closest intersection point found.
 	double closest = 1.;
 	
@@ -324,64 +371,8 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 
 
 
-// Check whether the given vector intersects this object, and if it does,
-// find the closest point of intersection. The mask is assumed to be
-// rotated and scaled according to the given unit vector. The vector start
-// should be translated so that this object's center is the origin.
-bool Mask::Intersects(Point sA, Point vA, Angle facing, Point *result) const
+bool Mask::Contains(Point point) const
 {
-	// Bail out if we're too far away to possibly be touching.
-	if(outline.empty() || sA.Length() > radius + vA.Length())
-		return false;
-	
-	// Rotate into the mask's frame of reference.
-	sA = (-facing).Rotate(sA);
-	vA = (-facing).Rotate(vA);
-	
-	// Keep track of the closest intersection point found.
-	double closest = 1.;
-	
-	Point prev = outline.back();
-	for(const Point &next : outline)
-	{
-		// Check if there is an intersection. (If not, the cross would be 0.) If
-		// there is, handle it only if it is a point where the segment is
-		// entering the polygon rather than exiting it (i.e. cross > 0).
-		Point vB = next - prev;
-		double cross = vB.Cross(vA);
-		if(cross > 0.)
-		{
-			Point vS = prev - sA;
-			double uB = vA.Cross(vS);
-			double uA = vB.Cross(vS);
-			// If the intersection occurs somewhere within this segment of the
-			// outline, find out how far along the query vector it occurs and
-			// remember it if it is the closest so far.
-			if((uB >= 0.) & (uB < cross) & (uA >= 0.))
-				closest = min(closest, uA / cross);
-		}
-		
-		prev = next;
-	}
-	if(closest == 1.)
-		return false;
-	
-	if(result)
-		*result = facing.Rotate(sA + closest * vA);
-	return true;
-}
-
-
-
-// Check whether the mask contains the given point.
-bool Mask::Contains(Point point, Angle facing) const
-{
-	if(outline.empty() || point.Length() > radius)
-		return false;
-	
-	// Rotate into the mask's frame of reference.
-	point = (-facing).Rotate(point);
-	
 	// If this point is contained within the mask, a ray drawn out from it will
 	// intersect the mask an even number of times. If that ray coincides with an
 	// edge, ignore that edge, and count all segments as closed at the start and
@@ -394,38 +385,14 @@ bool Mask::Contains(Point point, Angle facing) const
 	for(const Point &next : outline)
 	{
 		if(prev.X() != next.X())
-		{
-			if((prev.X() <= point.X() && point.X() < next.X())
-					|| (next.X() < point.X() && point.X() <= prev.X()))
+			if((prev.X() <= point.X()) == (point.X() < next.X()))
 			{
 				double y = prev.Y() + (next.Y() - prev.Y()) *
 					(point.X() - prev.X()) / (next.X() - prev.X());
 				intersections += (y >= point.Y());
 			}
-		}
 		prev = next;
 	}
+	// If the number of intersections is odd, the point is within the mask.
 	return (intersections & 1);
-}
-
-
-
-// Find out how close this mask is to the given point. Again, the mask is
-// assumed to be rotated and scaled according to the given unit vector.
-bool Mask::WithinRange(Point point, Angle facing, double range) const
-{
-	// Bail out if the object is too far away to possible be touched.
-	if(outline.empty() || range > point.Length() + radius)
-		return false;
-	
-	// Rotate into the mask's frame of reference.
-	point = (-facing).Rotate(point);
-	// For efficiency, compare to range^2 instead of range.
-	range *= range;
-	
-	for(const Point &p : outline)
-		if(p.DistanceSquared(point) < range)
-			return true;
-	
-	return false;
 }
