@@ -9,6 +9,7 @@ Class representing a ship.
 
 #include "Angle.h"
 #include "Animation.h"
+#include "Armament.h"
 #include "Controllable.h"
 #include "DataFile.h"
 #include "Outfit.h"
@@ -56,6 +57,7 @@ public:
 	bool Move(std::list<Effect> &effects);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
+	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
 	// collision detection finds a missile in range.
@@ -129,6 +131,9 @@ public:
 	// This ship just got hit by the given projectile. Take damage according to
 	// what sort of weapon the projectile it.
 	void TakeDamage(const Projectile &projectile);
+	// Apply a force to this ship, accelerating it. This might be from a weapon
+	// impact, or from firing a weapon, for example.
+	void ApplyForce(const Point &force);
 	
 	// Get cargo information.
 	int Cargo(const std::string &type) const;
@@ -137,9 +142,17 @@ public:
 	
 	// Get outfit information.
 	const std::map<const Outfit *, int> &Outfits() const;
+	int OutfitCount(const Outfit *outfit) const;
 	const Outfit &Attributes() const;
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
+	
+	// Check if we are able to fire the given weapon (i.e. there is enough
+	// energy, ammo, and fuel to fire it).
+	bool CanFire(const Outfit *outfit);
+	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
+	// and add whatever heat it generates. Assume that CanFire() is true.
+	void ExpendAmmo(const Outfit *outfit);
 	
 	
 private:
@@ -182,6 +195,8 @@ private:
 	std::vector<Point> enginePoints;
 	std::vector<Point> gunPoints;
 	std::vector<Point> turretPoints;
+	
+	Armament armament;
 	
 	// Various energy levels:
 	double shields;

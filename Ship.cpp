@@ -52,12 +52,12 @@ void Ship::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Se
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
 		else if(token == "gun" && child.Size() >= 3)
 		{
-			gunPoints.emplace_back(child.Value(1), child.Value(2));
+			armament.AddGunPort(Point(child.Value(1), child.Value(2)));
 			attributes.Add("gun ports");
 		}
 		else if(token == "turret" && child.Size() >= 3)
 		{
-			turretPoints.emplace_back(child.Value(1), child.Value(2));
+			armament.AddTurret(Point(child.Value(1), child.Value(2)));
 			attributes.Add("turret mounts");
 		}
 		else if(token == "explode" && child.Size() >= 2)
@@ -89,7 +89,11 @@ void Ship::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Se
 void Ship::FinishLoading()
 {
 	for(const auto &it : outfits)
+	{
 		attributes.Add(*it.first, it.second);
+		if(it.first->IsWeapon())
+			armament.Add(it.first, it.second);
+	}
 	
 	Recharge();
 }
@@ -392,158 +396,21 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 		return false;
 	
 	bool hasAntiMissile = false;
-	int gun = 0;
-	int turret = 0;
-	shared_ptr<const Ship> target = GetTargetShip().lock();
-	for(auto &it : outfits)
+	
+	const vector<Armament::Weapon> &weapons = armament.Get();
+	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
-		int count = it.second;
-		if(!count || !it.first->IsWeapon())
-			continue;
-		
-		Weapon &weapon = weapons[it.first];
-		bool isGun = it.first->Get("gun ports");
-		bool isTurret = it.first->Get("turret mounts");
-		while(weapon.reload <= 0)
+		const Outfit *outfit = weapons[i].GetOutfit();
+		if(HasFireCommand(i) && outfit && CanFire(outfit))
 		{
-			if(it.first->WeaponGet("anti-missile"))
-			{
+			if(outfit->WeaponGet("anti-missile"))
 				hasAntiMissile = true;
-				break;
-			}
-			// TODO: match this to whatever fire command this particular
-			// weapon is tied to.
-			if(!HasFireCommand(0))
-				break;
-			
-			int cluster = it.first->WeaponGet("missile strength") ? count : 1;
-			
-			// Find out how many projectiles we are able to fire.
-			if(it.first->Ammo())
-				cluster = min(cluster, outfits[it.first->Ammo()]);
-			if(it.first->WeaponGet("firing energy"))
-				cluster = min(cluster, static_cast<int>(
-					energy / it.first->WeaponGet("firing energy")));
-			if(it.first->WeaponGet("firing fuel"))
-				cluster = min(cluster, static_cast<int>(
-					fuel / it.first->WeaponGet("firing fuel")));
-			
-			if(!cluster)
-				break;
-			
-			// Subtract whatever it cost to fire this projectile.
-			if(it.first->Ammo())
-			{
-				outfits[it.first->Ammo()] -= cluster;
-				attributes.Add(*it.first->Ammo(), -cluster);
-			}
-			energy -= it.first->WeaponGet("firing energy") * cluster;
-			fuel -= it.first->WeaponGet("firing fuel") * cluster;
-			heat += it.first->WeaponGet("firing heat") * cluster;
-			weapon.reload += cluster * it.first->WeaponGet("reload");
-			
-			// Create the projectile(s).
-			for(int i = 0; i < cluster; ++i)
-			{
-				Angle aim = angle;
-				
-				Point start = position;
-				
-				if(isGun)
-				{
-					int thisGun = gun + weapon.nextPort;
-					if(thisGun < gunPoints.size())
-					{
-						start += angle.Rotate(gunPoints[thisGun]) * .5 * zoom;
-						// Find the point of convergence of shots fired from
-						// this gun. The shots should converge at distance d:
-						double d = it.first->WeaponGet("range") * .9;
-						// The angle is therefore:
-						aim += Angle(asin(gunPoints[thisGun].X() * .5 / d) * (180. / M_PI));
-					}
-				}
-				else if(isTurret)
-				{
-					int thisTurret = turret + weapon.nextPort;
-					if(thisTurret < turretPoints.size())
-					{
-						start += angle.Rotate(turretPoints[thisTurret]) * .5 * zoom;
-						
-						if(target)
-						{
-							Point p = target->position - start;
-							Point v = target->velocity - velocity;
-							double vp = it.first->WeaponGet("velocity");
-							
-							// How many steps will it take this projectile
-							// to intersect the target?
-							// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
-							// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
-							//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
-							//    - vp^2*t^2 = 0
-							// (v.x^2 + v.y^2 - vp^2) * t^2
-							//    + (2 * (p.x * v.x + p.y * v.y)) * t
-							//    + (p.x^2 + p.y^2) = 0
-							double a = v.Dot(v) - vp * vp;
-							double b = 2. * p.Dot(v);
-							double c = p.Dot(p);
-							double discriminant = b * b - 4 * a * c;
-							double steps = 0.;
-							if(discriminant > 0.)
-							{
-								discriminant = sqrt(discriminant);
-								
-								// The solutions are b +- discriminant.
-								// But it's not a solution if it's negative.
-								double r1 = (-b + discriminant) / (2. * a);
-								double r2 = (-b - discriminant) / (2. * a);
-								if(r1 > 0. && r2 > 0.)
-									steps = min(r1, r2);
-								else if(r1 > 0. || r2 > 0.)
-									steps = max(r1, r2);
-								
-								// If it is not possible to reach the
-								// rendevous spot within this projectile's
-								// lifetime, just fire straight at the
-								// target.
-								steps = min(steps, it.first->WeaponGet("lifetime"));
-								// Figure out where the target will be after
-								// the calculated time has elapsed.
-								p += steps * v;
-							}
-							
-							aim = Angle((180. / M_PI) * atan2(p.X(), -p.Y()));
-						}
-						else
-						{
-							// Find the point of convergence of shots fired from
-							// this gun. The shots should converge at distance d:
-							double d = it.first->WeaponGet("range") * .9;
-							// The angle is therefore:
-							aim += Angle((180. / M_PI) * asin(
-								turretPoints[thisTurret].X() * .5 / d));
-						}
-					}
-				}
-				
-				projectiles.emplace_back(*this, start, aim, it.first);
-				double force = it.first->WeaponGet("firing force");
-				if(force)
-				{
-					double currentMass = Mass();
-					velocity -= aim.Unit() * (force / currentMass);
-					velocity *= 1. - attributes.Get("drag") / currentMass;
-				}
-					
-				if(++weapon.nextPort == count)
-					weapon.nextPort = 0;
-			}
+			else
+				armament.Fire(i, *this, projectiles);
 		}
-		if(isGun)
-			gun += count;
-		else if(isTurret)
-			turret += count;
 	}
+	
+	armament.Step(*this);
 	
 	return hasAntiMissile;
 }
@@ -553,48 +420,13 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 // Fire an anti-missile.
 bool Ship::FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects)
 {
-	int turret = 0;
-	for(auto &it : outfits)
+	const vector<Armament::Weapon> &weapons = armament.Get();
+	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
-		int count = it.second;
-		if(!count || !it.first->IsWeapon() || !it.first->Get("turret mounts"))
-			continue;
-		
-		Weapon &weapon = weapons[it.first];
-		int strength = it.first->WeaponGet("anti-missile");
-		double energyCost = it.first->WeaponGet("firing energy");
-		if(strength && weapon.reload <= 0 && energy >= energyCost)
-		{
-			double range = it.first->WeaponGet("velocity");
-			Point start = position;
-			int thisTurret = turret + weapon.nextPort;
-			if(++weapon.nextPort == count)
-				weapon.nextPort = 0;
-			
-			if(thisTurret < turretPoints.size())
-			{
-				start += angle.Rotate(turretPoints[thisTurret]) * .5 * zoom;
-				Point offset = projectile.Position() - start;
-				if(offset.Length() <= range)
-				{
-					energy -= energyCost;
-					weapon.reload += it.first->WeaponGet("reload");
-					
-					start += (.5 * range) * offset.Unit();
-					Angle a = (180. / M_PI) * atan2(offset.X(), -offset.Y());
-					for(const auto &eit : it.first->HitEffects())
-						for(int i = 0; i < eit.second; ++i)
-						{
-							effects.push_back(*eit.first);
-							effects.back().Place(start, velocity, a);
-						}
-					
-					if(rand() % strength > rand() % projectile.MissileStrength())
-						return true;
-				}
-			}
-		}
-		turret += count;
+		const Outfit *outfit = weapons[i].GetOutfit();
+		if(outfit && CanFire(outfit))
+			if(armament.FireAntiMissile(i, *this, projectile, effects))
+				return true;
 	}
 	
 	return false;
@@ -968,12 +800,18 @@ void Ship::TakeDamage(const Projectile &projectile)
 	}
 	
 	if(hitForce)
-	{
-		Point force = hitForce * projectile.Velocity().Unit();
-		double currentMass = Mass();
-		velocity += force / currentMass;
-		velocity *= 1. - attributes.Get("drag") / currentMass;
-	}
+		ApplyForce(hitForce * projectile.Velocity().Unit());
+}
+
+
+
+// Apply a force to this ship, accelerating it. This might be from a weapon
+// impact, or from firing a weapon, for example.
+void Ship::ApplyForce(const Point &force)
+{
+	double currentMass = Mass();
+	velocity += force / currentMass;
+	velocity *= 1. - attributes.Get("drag") / currentMass;
 }
 
 
@@ -1027,6 +865,14 @@ const map<const Outfit *, int> &Ship::Outfits() const
 
 
 
+int Ship::OutfitCount(const Outfit *outfit) const
+{
+	auto it = outfits.find(outfit);
+	return (it == outfits.end()) ? 0 : it->second;
+}
+
+
+
 const Outfit &Ship::Attributes() const
 {
 	return attributes;
@@ -1037,7 +883,7 @@ const Outfit &Ship::Attributes() const
 // Add or remove outfits. (To remove, pass a negative number.)
 void Ship::AddOutfit(const Outfit *outfit, int count)
 {
-	if(count)
+	if(outfit && count)
 	{
 		auto it = outfits.find(outfit);
 		if(it == outfits.end())
@@ -1048,7 +894,48 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(!it->second)
 				outfits.erase(it);
 		}
+		attributes.Add(*outfit, count);
 	}
+}
+
+
+
+// Check if we are able to fire the given weapon (i.e. there is enough
+// energy, ammo, and fuel to fire it).
+bool Ship::CanFire(const Outfit *outfit)
+{
+	if(!outfit || !outfit->IsWeapon())
+		return false;
+	
+	if(outfit->Ammo())
+	{
+		auto it = outfits.find(outfit->Ammo());
+		if(it == outfits.end() || it->second <= 0)
+			return false;
+	}
+	
+	if(energy < outfit->WeaponGet("firing energy"))
+		return false;
+	if(fuel < outfit->WeaponGet("firing fuel"))
+		return false;
+	
+	return true;
+}
+
+
+
+// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
+// and add whatever heat it generates. Assume that CanFire() is true.
+void Ship::ExpendAmmo(const Outfit *outfit)
+{
+	if(!outfit)
+		return;
+	if(outfit->Ammo())
+		AddOutfit(outfit->Ammo(), -1);
+	
+	energy -= outfit->WeaponGet("firing energy");
+	fuel -= outfit->WeaponGet("firing fuel");
+	heat += outfit->WeaponGet("firing heat");
 }
 
 
