@@ -35,6 +35,8 @@ public:
 		// Get the point, in ship image coordinates, from which projectiles of
 		// this weapon should originate.
 		const Point &GetPoint() const;
+		// Get the convergence angle adjustment of this weapon.
+		const Angle &GetAngle() const;
 		// Shortcuts for querying weapon characteristics.
 		bool IsTurret() const;
 		bool IsHoming() const;
@@ -93,7 +95,7 @@ public:
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
-	static double RendevousTime(const Point &p, const Point &v, double vp)
+	static double RendevousTime(const Point &p, const Point &v, double vp);
 	
 	
 private:

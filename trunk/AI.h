@@ -47,6 +47,14 @@ private:
 	void Attack(Controllable &control, const Ship &ship, const Ship &target);
 	
 	Point StoppingPoint(const Ship &ship);
+	// Get a vector giving the direction this ship should aim in in order to do
+	// maximum damaged to a target at the given position with its non-turret,
+	// non-homing weapons. If the ship has no non-homing weapons, this just
+	// returns the direction to the target.
+	Point TargetAim(const Ship &ship) const;
+	// Fire whichever of the given ship's weapons can hit a hostile target.
+	// Return a bitmask giving the weapons to fire.
+	int AutoFire(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	void MovePlayer(Controllable &control, const PlayerInfo &info, const std::list<std::shared_ptr<Ship>> &ships);
 	

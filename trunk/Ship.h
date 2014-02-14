@@ -65,13 +65,6 @@ public:
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects);
 	
-	// Get a vector giving the direction this ship should aim in in order to do
-	// maximum damaged to a target at the given position with its non-turret,
-	// non-homing weapons.
-	Point AimAt(const Ship &other) const;
-	// Check if I am in firing range for any other weapons.
-	bool IsInRange(const Ship &other) const;
-	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
 	
@@ -147,6 +140,8 @@ public:
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
 	
+	// Get the list of weapons.
+	const std::vector<Armament::Weapon> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Outfit *outfit);
@@ -178,24 +173,11 @@ private:
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
 	std::map<const Outfit *, int> outfits;
-	class Weapon {
-	public:
-		Weapon();
-		
-		int reload;
-		int nextPort;
-		// TODO: user can override cluster setting. Right now anything that can
-		// be destroyed by an anti-missile fires clustered.
-	};
-	std::map<const Outfit *, Weapon> weapons;
 	std::map<std::string, int> cargo;
 	int cargoMass;
 	// TODO: spare outfits (from plunder or previous ship when selling).
 	
 	std::vector<Point> enginePoints;
-	std::vector<Point> gunPoints;
-	std::vector<Point> turretPoints;
-	
 	Armament armament;
 	
 	// Various energy levels:

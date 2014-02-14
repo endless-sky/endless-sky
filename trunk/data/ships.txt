@@ -5,8 +5,8 @@ ship "Star Barge"
 		"bunks" 4
 		"drag" 1.1
 		"mass" 70
-		"shields" 80
-		"hull" 120
+		"shields" 800
+		"hull" 1200
 		"cargo space" 60
 		"outfit space" 100
 		"weapon capacity" 10
@@ -30,8 +30,8 @@ ship "Freighter"
 		"bunks" 4
 		"drag" 1.4
 		"mass" 70
-		"shields" 400
-		"hull" 200
+		"shields" 4000
+		"hull" 2000
 		"cargo space" 60
 		"outfit space" 100
 		"weapon capacity" 10
@@ -61,8 +61,8 @@ ship "Shuttle"
 		"bunks" 8
 		"drag" .8
 		"mass" 40
-		"shields" 100
-		"hull" 40
+		"shields" 1000
+		"hull" 400
 		"cargo space" 20
 		"outfit space" 80
 		"weapon capacity" 5
@@ -87,8 +87,8 @@ ship "Scout"
 		"bunks" 3
 		"drag" .6
 		"mass" 20
-		"shields" 300
-		"hull" 60
+		"shields" 3000
+		"hull" 600
 		"cargo space" 15
 		"outfit space" 90
 		"weapon capacity" 0
@@ -113,8 +113,8 @@ ship "Clipper"
 		"bunks" 3
 		"drag" .6
 		"mass" 20
-		"shields" 500
-		"hull" 90
+		"shields" 5000
+		"hull" 900
 		"cargo space" 15
 		"outfit space" 90
 		"weapon capacity" 0
@@ -142,8 +142,8 @@ ship "Argosy"
 		"bunks" 3
 		"drag" 1.3
 		"mass" 220
-		"shields" 800
-		"hull" 400
+		"shields" 8000
+		"hull" 4000
 		"cargo space" 15
 		"outfit space" 90
 		"weapon capacity" 0
@@ -174,8 +174,8 @@ ship "Corvette"
 		"bunks" 28
 		"drag" 1.6
 		"mass" 120
-		"shields" 450
-		"hull" 100
+		"shields" 4500
+		"hull" 1000
 		"cargo space" 40
 		"outfit space" 180
 		"weapon capacity" 80
@@ -212,8 +212,8 @@ ship "Sparrow"
 		"bunks" 3
 		"drag" 1.4
 		"mass" 90
-		"shields" 150
-		"hull" 30
+		"shields" 1500
+		"hull" 300
 		"cargo space" 15
 		"outfit space" 100
 		"weapon capacity" 20
@@ -244,8 +244,8 @@ ship "Fury"
 		"bunks" 3
 		"drag" .6
 		"mass" 20
-		"shields" 200
-		"hull" 40
+		"shields" 2000
+		"hull" 400
 		"cargo space" 15
 		"outfit space" 90
 		"weapon capacity" 0
@@ -274,8 +274,8 @@ ship "Destroyer"
 		"bunks" 3
 		"drag" 1.8
 		"mass" 20
-		"shields" 1000
-		"hull" 500
+		"shields" 10000
+		"hull" 5000
 		"cargo space" 15
 		"outfit space" 90
 		"weapon capacity" 0
@@ -310,8 +310,8 @@ ship "Cruiser"
 		"bunks" 500
 		"drag" 4.3
 		"mass" 800
-		"shields" 2500
-		"hull" 800
+		"shields" 25000
+		"hull" 8000
 		"cargo space" 40
 		"outfit space" 400
 		"weapon capacity" 0
