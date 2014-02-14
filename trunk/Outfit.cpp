@@ -13,7 +13,7 @@ using namespace std;
 
 
 Outfit::Outfit()
-	: cost(0), ammo(nullptr)
+	: cost(0), thumbnail(nullptr), ammo(nullptr), icon(nullptr)
 {
 }
 
@@ -33,6 +33,8 @@ void Outfit::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const 
 			category = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 			flare.Load(child);
+		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 		{
 			for(const DataFile::Node &grand : child)
@@ -41,6 +43,8 @@ void Outfit::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const 
 					weaponSprite.Load(grand);
 				else if(grand.Token(0) == "ammo" && grand.Size() >= 2)
 					ammo = outfits.Get(grand.Token(1));
+				else if(grand.Token(0) == "icon" && grand.Size() >= 2)
+					icon = SpriteSet::Get(grand.Token(1));
 				else if(grand.Token(0) == "hit effect" && grand.Size() >= 2)
 				{
 					int count = (grand.Size() >= 3) ? grand.Value(2) : 1;
@@ -86,6 +90,14 @@ const string &Outfit::Category() const
 int Outfit::Cost() const
 {
 	return cost;
+}
+
+
+
+// Get the image to display in the outfitter when buying this item.
+const Sprite *Outfit::Thumbnail() const
+{
+	return thumbnail;
 }
 
 
@@ -171,6 +183,13 @@ const Animation &Outfit::WeaponSprite() const
 const Outfit *Outfit::Ammo() const
 {
 	return ammo;
+}
+
+
+
+const Sprite *Outfit::Icon() const
+{
+	return icon;
 }
 
 

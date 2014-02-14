@@ -28,6 +28,8 @@ public:
 	const std::string &Name() const;
 	const std::string &Category() const;
 	int Cost() const;
+	// Get the image to display in the outfitter when buying this item.
+	const Sprite *Thumbnail() const;
 	
 	double Get(const std::string &attribute) const;
 	const std::map<std::string, double> &Attributes() const;
@@ -52,6 +54,7 @@ public:
 	// Get the weapon provided by this outfit, if any.
 	const Animation &WeaponSprite() const;
 	const Outfit *Ammo() const;
+	const Sprite *Icon() const;
 	double WeaponGet(const std::string &attribute) const;
 	
 	// TODO: also check if this is a gun or a turret.
@@ -66,12 +69,14 @@ private:
 	std::string name;
 	std::string category;
 	int cost;
+	const Sprite *thumbnail;
 	
 	std::map<std::string, double> attributes;
 	
 	Animation flare;
 	Animation weaponSprite;
 	const Outfit *ammo;
+	const Sprite *icon;
 	// Die and hit effects.
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> dieEffects;

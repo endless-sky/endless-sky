@@ -121,6 +121,9 @@ void SpriteShader::Init()
 
 void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom)
 {
+	if(!sprite)
+		return;
+	
 	float pos[2] = {
 		static_cast<float>(position.X()), static_cast<float>(position.Y())};
 	float trans[4] = {sprite->Width() * zoom, 0.f, 0.f, sprite->Height() * zoom};

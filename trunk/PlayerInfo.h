@@ -10,6 +10,7 @@ ship(s) they own and with what outfits, what systems they have visited, etc.
 
 #include "Account.h"
 
+class Outfit;
 class Ship;
 class System;
 
@@ -20,6 +21,8 @@ class System;
 
 class PlayerInfo {
 public:
+	PlayerInfo();
+	
 	const Account &Accounts() const;
 	Account &Accounts();
 	
@@ -42,6 +45,10 @@ public:
 	// Remove the first system from the travel plan.
 	void PopTravel();
 	
+	// Toggle which secondary weapon the player has selected.
+	const Outfit *SelectedWeapon() const;
+	void SelectNext();
+	
 	
 private:
 	Account accounts;
@@ -50,6 +57,8 @@ private:
 	std::set<const System *> seen;
 	std::set<const System *> visited;
 	std::vector<const System *> travelPlan;
+	
+	const Outfit *selectedWeapon;
 };
 
 

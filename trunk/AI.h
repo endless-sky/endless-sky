@@ -25,7 +25,7 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys();
+	void UpdateKeys(PlayerInfo *info);
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
 	
 	// Get any messages (such as "you cannot land here!") to display.
@@ -64,6 +64,7 @@ private:
 	
 	KeyStatus keys;
 	mutable KeyStatus sticky;
+	bool wasSelecting;
 	
 	std::string message;
 };

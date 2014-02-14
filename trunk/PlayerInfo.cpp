@@ -6,9 +6,18 @@ Function definitions for the PlayerInfo class.
 
 #include "PlayerInfo.h"
 
+#include "Outfit.h"
+#include "Ship.h"
 #include "System.h"
 
 using namespace std;
+
+
+
+PlayerInfo::PlayerInfo()
+	: selectedWeapon(nullptr)
+{
+}
 
 
 
@@ -115,4 +124,36 @@ void PlayerInfo::PopTravel()
 		Visit(travelPlan.back());
 		travelPlan.pop_back();
 	}
+}
+
+
+
+// Toggle which secondary weapon the player has selected.
+const Outfit *PlayerInfo::SelectedWeapon() const
+{
+	return selectedWeapon;
+}
+
+
+
+void PlayerInfo::SelectNext()
+{
+	if(ships.empty())
+		return;
+	
+	const Ship *ship = ships.front();
+	if(ship->Outfits().empty())
+		return;
+	
+	auto it = ship->Outfits().find(selectedWeapon);
+	if(it == ship->Outfits().end())
+		it = ship->Outfits().begin();
+	
+	while(++it != ship->Outfits().end())
+		if(it->first->Ammo())
+		{
+			selectedWeapon = it->first;
+			return;
+		}
+	selectedWeapon = nullptr;
 }

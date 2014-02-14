@@ -18,6 +18,8 @@ public:
 	static const int HYPERSPACE = 16;
 	static const int TARGET_NEAR = 32;
 	static const int PRIMARY = 64;
+	static const int SECONDARY = 128;
+	static const int SELECT = 256;
 	
 	static const int LEFT = -1;
 	static const int RIGHT = -2;

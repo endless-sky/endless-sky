@@ -15,6 +15,8 @@ Function definitions for the Engine class.
 #include "PlanetPanel.h"
 #include "PointerShader.h"
 #include "Screen.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 
 using namespace std;
 
@@ -105,7 +107,7 @@ void Engine::Step(bool isActive)
 		const Ship *player = playerInfo.GetShip();
 		position = player->Position();
 		velocity = player->Velocity();
-		ai.UpdateKeys();
+		ai.UpdateKeys(&playerInfo);
 		if(!ai.Message().empty())
 			AddMessage(ai.Message());
 		
@@ -132,6 +134,12 @@ void Engine::Step(bool isActive)
 			playerInfo.PopTravel();
 		
 		targets.clear();
+		
+		// Update the player's ammo amounts.
+		ammo.clear();
+		for(const auto &it : player->Outfits())
+			if(it.first->Ammo())
+				ammo.emplace_back(it.first, player->OutfitCount(it.first->Ammo()));
 		
 		info.SetSprite("player sprite", player->GetSprite().GetSprite());
 		info.SetString("location", currentSystem->Name());
@@ -272,6 +280,27 @@ void Engine::Draw() const
 	
 	data.Interfaces().Get("status")->Draw(info);
 	data.Interfaces().Get("targets")->Draw(info);
+	
+	// Draw ammo status.
+	Point pos(Screen::Width() / 2 - 80, Screen::Height() / 2);
+	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
+	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
+	Color selectedColor(.8, 0.);
+	Color unselectedColor(.3, 0.);
+	for(const pair<const Outfit *, int> &it : ammo)
+	{
+		pos.Y() -= 30.;
+		
+		bool isSelected = it.first == playerInfo.SelectedWeapon();
+		
+		SpriteShader::Draw(it.first->Icon(), pos);
+		SpriteShader::Draw(
+			isSelected ? selectedSprite : unselectedSprite, pos + Point(35., 0.));
+		
+		string amount = to_string(it.second);
+		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
+		font.Draw(amount, textPos, (isSelected ? selectedColor : unselectedColor).Get());
+	}
 	
 	if(data.ShouldShowLoad())
 	{

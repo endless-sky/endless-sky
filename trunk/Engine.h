@@ -90,6 +90,7 @@ private:
 	Information info;
 	const System *currentSystem;
 	std::vector<Target> targets;
+	std::vector<std::pair<const Outfit *, int>> ammo;
 	
 	Date today;
 	mutable std::vector<std::pair<int, std::string>> messages;

@@ -56,6 +56,10 @@ void KeyStatus::Update()
 		status |= TARGET_NEAR;
 	if(state[SDLK_TAB])
 		status |= PRIMARY;
+	if(state['q'])
+		status |= SECONDARY;
+	if(state['w'])
+		status |= SELECT;
 }
 
 
