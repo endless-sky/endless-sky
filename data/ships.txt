@@ -189,6 +189,7 @@ ship "Corvette"
 		"Tiny Battery Pack"
 		"Energy Blaster" 2
 		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 80
 		"Laser Turret" 2
 		"Tiny Shield Generator"
 	engine -26 -106
@@ -220,10 +221,8 @@ ship "Sparrow"
 		"engine capacity" 50
 		"fuel capacity" 300
 	outfits
-		"XD1200 Ion Thruster"
-		"XT1700 Ion Steering"
-#		"Chipmunk Class Plasma Thruster"
-#		"Chipmunk Class Plasma Steering"
+		"Chipmunk Class Plasma Thruster"
+		"Chipmunk Class Plasma Steering"
 		"Tiny Fuel Cell"
 		"Tiny Battery Pack"
 		"Beam Laser" 2
@@ -326,6 +325,7 @@ ship "Cruiser"
 		"Heavy Anti-Missile Turret"
 		"Particle Cannon" 4
 		"Torpedo Launcher" 2
+		"Torpedo" 60
 		"Liquid Nitrogen Coolant System"
 	engine -39 -118
 	engine 39 -118

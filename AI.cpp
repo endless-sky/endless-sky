@@ -23,15 +23,24 @@ using namespace std;
 
 
 AI::AI()
-	: step(0)
+	: step(0), wasSelecting(false)
 {
 }
 
 
 
-void AI::UpdateKeys()
+void AI::UpdateKeys(PlayerInfo *info)
 {
 	keys.Update();
+	
+	if(keys.Status() & KeyStatus::SELECT)
+	{
+		if(!wasSelecting)
+			info->SelectNext();
+		wasSelecting = true;
+	}
+	else
+		wasSelecting = false;
 }
 
 
@@ -534,7 +543,27 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keys.Status() & KeyStatus::THRUST)
 			control.SetThrustCommand(keys.Thrust());
 		if(keys.Status() & KeyStatus::PRIMARY)
-			control.SetFireCommands();
+		{
+			int index = 0;
+			for(const Armament::Weapon &weapon : ship.Weapons())
+			{
+				const Outfit *outfit = weapon.GetOutfit();
+				if(outfit && !outfit->Ammo())
+					control.SetFireCommand(index);
+				++index;
+			}
+		}
+		if(keys.Status() & KeyStatus::SECONDARY)
+		{
+			int index = 0;
+			for(const Armament::Weapon &weapon : ship.Weapons())
+			{
+				const Outfit *outfit = weapon.GetOutfit();
+				if(outfit && outfit == info.SelectedWeapon())
+					control.SetFireCommand(index);
+				++index;
+			}
+		}
 		
 		sticky = keys;
 	}

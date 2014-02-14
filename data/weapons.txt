@@ -179,6 +179,7 @@ outfit "Particle Cannon"
 outfit "Meteor Missile"
 	category "Missile"
 	cost 1200
+	"meteor capacity" -1
 
 outfit "Meteor Missile Launcher"
 	category "Missiles"
@@ -186,10 +187,13 @@ outfit "Meteor Missile Launcher"
 	"outfit space" -5
 	"weapon capacity" -5
 	"gun ports" -1
+	"meteor capacity" 35
 	weapon
 		sprite "projectile/meteor"
 			"no repeat"
 			"frame rate" .25
+		ammo "Meteor Missile"
+		icon "icon/meteor"
 		"die effect" "missile death"
 		"hit effect" "medium explosion"
 		"inaccuracy" 10
@@ -207,22 +211,30 @@ outfit "Meteor Missile Launcher"
 		"hit force" 30
 		"missile strength" 4
 
+outfit "Sidewinder Missile"
+	category "Missile"
+	cost 2000
+	"sidewinder capacity" -1
+
 outfit "Sidewinder Missile Launcher"
 	category "Missiles"
 	"mass" 5
 	"outfit space" -5
 	"weapon capacity" -5
 	"gun ports" -1
+	"sidewinder capacity" 40
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
 			"frame rate" .25
+		ammo "Sidewinder Missile"
+		icon "icon/sidewinder"
 		"die effect" "missile death"
 		"hit effect" "medium explosion"
 		"inaccuracy" 4
 		"velocity" 12
 		"lifetime" 600
-		"reload" 70
+		"reload" 50
 		"firing energy" 1
 		"firing heat" 10
 		"acceleration" 1.2
@@ -244,8 +256,11 @@ outfit "Javelin Pod"
 	"outfit space" -5
 	"weapon capacity" -5
 	"gun ports" -1
+	"javelin capacity" 200
 	weapon
 		sprite "projectile/javelin"
+		ammo "Javelin"
+		icon "icon/javelin"
 		"hit effect" "tiny explosion"
 		"inaccuracy" 1
 		"velocity" 10
@@ -258,16 +273,24 @@ outfit "Javelin Pod"
 		"hit force" 5
 		"missile strength" 2
 
+outfit "Torpedo"
+	category "Missile"
+	cost 3000
+	"torpedo capacity" -1
+
 outfit "Torpedo Launcher"
 	category "Missile"
 	"mass" 5
 	"outfit space" -5
 	"weapon capacity" -5
 	"gun ports" -1
+	"torpedo capacity" 30
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
 			"random start frame"
+		ammo "Torpedo"
+		icon "icon/torpedo"
 		"hit effect" "big explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
@@ -285,15 +308,23 @@ outfit "Torpedo Launcher"
 		"hit force" 40
 		"missile strength" 20
 
+outfit "Heavy Rocket"
+	category "Missile"
+	cost 5000
+	"rocket capacity" -1
+
 outfit "Heavy Rocket Launcher"
 	category "Missiles"
 	"mass" 5
 	"outfit space" -5
 	"weapon capacity" -5
 	"gun ports" -1
+	"rocket capacity" 20
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
+		ammo "Heavy Rocket"
+		icon "icon/rocket"
 		"inaccuracy" 1
 		"velocity" 9
 		"lifetime" 100
