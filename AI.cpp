@@ -6,7 +6,9 @@ Function definitions for the AI class.
 
 #include "AI.h"
 
+#include "Armament.h"
 #include "Government.h"
+#include "Mask.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -44,18 +46,26 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 	{
 		if(it.get() == player)
 			MovePlayer(*it, info, ships);
-		else if(it->GetParent().lock())
-			MoveEscort(*it, *it);
 		else
 		{
-			// Each ship only switches targets twice a second. Stagger which
-			// ships pick a target at each step to avoid having one frame take
-			// much longer when there are many ships.
-			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step)
-				it->SetTargetShip(FindTarget(*it, ships));
+			it->ResetCommands();
 			
-			MoveIndependent(*it, *it);
+			// Fire any weapons that will hit the target.
+			it->SetFireCommands(AutoFire(*it, ships));
+			
+			if(it->GetParent().lock())
+				MoveEscort(*it, *it);
+			else
+			{
+				// Each ship only switches targets twice a second. Stagger which
+				// ships pick a target at each step to avoid having one frame take
+				// much longer when there are many ships.
+				targetTurn = (targetTurn + 1) & 31;
+				if(targetTurn == step)
+					it->SetTargetShip(FindTarget(*it, ships));
+			
+				MoveIndependent(*it, *it);
+			}
 		}
 	}
 }
@@ -98,8 +108,6 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 
 void AI::MoveIndependent(Controllable &control, const Ship &ship)
 {
-	control.ResetCommands();
-	
 	auto target = ship.GetTargetShip().lock();
 	if(target)
 	{
@@ -179,8 +187,6 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 
 void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
-	control.ResetCommands();
-	
 	const Ship &parent = *ship.GetParent().lock();
 	if(ship.GetSystem() != parent.GetSystem())
 	{
@@ -326,24 +332,12 @@ void AI::CircleAround(Controllable &control, const Ship &ship, const Ship &targe
 
 void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 {
-	Point direction = target.Position() - ship.Position();
-	
 	// First of all, aim in the direction that will hit this target.
-	Point aim = ship.AimAt(target);
-	if(aim)
-	{
-		control.SetTurnCommand(TurnToward(ship, aim));
-		control.FireAll();
-	}
-	else
-	{
-		control.SetTurnCommand(TurnToward(ship, direction));
-		if(ship.IsInRange(target))
-			control.FireAll();
-	}
+	control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 	
 	// This is not the behavior I want, but it's reasonable.
-	control.SetThrustCommand(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.);
+	Point d = target.Position() - ship.Position();
+	control.SetThrustCommand(ship.Facing().Unit().Dot(d) >= 0. && d.Length() > 200.);
 }
 
 
@@ -370,6 +364,107 @@ Point AI::StoppingPoint(const Ship &ship)
 	stopDistance += .5 * v * v / acceleration;
 	
 	return position + stopDistance * velocity.Unit();
+}
+
+
+
+// Get a vector giving the direction this ship should aim in in order to do
+// maximum damaged to a target at the given position with its non-turret,
+// non-homing weapons. If the ship has no non-homing weapons, this just
+// returns the direction to the target.
+Point AI::TargetAim(const Ship &ship) const
+{
+	Point result;
+	shared_ptr<const Ship> target = ship.GetTargetShip().lock();
+	if(!target)
+		return result;
+	
+	for(const Armament::Weapon &weapon : ship.Weapons())
+	{
+		const Outfit *outfit = weapon.GetOutfit();
+		if(!outfit || weapon.IsHoming() || weapon.IsTurret())
+			continue;
+		
+		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+		Point p = target->Position() - start;
+		Point v = target->Velocity() - ship.Velocity();
+		double steps = Armament::RendevousTime(p, v, outfit->WeaponGet("velocity"));
+		if(!(steps == steps))
+			continue;
+		
+		steps = min(steps, outfit->WeaponGet("lifetime"));
+		p += steps * v;
+		
+		double damage = outfit->WeaponGet("shield damage") + outfit->WeaponGet("hull damage");
+		result += p.Unit() * damage;
+	}
+	
+	if(!result)
+		return target->Position() - ship.Position();
+	return result;
+}
+
+
+
+// Fire whichever of the given ship's weapons can hit a hostile target.
+int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
+{
+	int bit = 1;
+	int bits = 0;
+	
+	const Government *gov = ship.GetGovernment();
+	for(const Armament::Weapon &weapon : ship.Weapons())
+	{
+		if(!weapon.IsReady())
+		{
+			bit <<= 1;
+			continue;
+		}
+		
+		const Outfit *outfit = weapon.GetOutfit();
+		double vp = outfit->WeaponGet("velocity");
+		double lifetime = outfit->WeaponGet("lifetime");
+		
+		for(auto target : ships)
+		{
+			if(!target->IsTargetable() || !target->GetGovernment()->IsEnemy(gov))
+				continue;
+			
+			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
+			Point p = target->Position() - start;
+			Point v = target->Velocity() - ship.Velocity();
+			// By the time this action is performed, the ships will have moved
+			// forward one time step.
+			p += v;
+			
+			if(weapon.IsHoming() || weapon.IsTurret())
+			{
+				double steps = Armament::RendevousTime(p, v, vp);
+				if(steps == steps && steps <= lifetime)
+				{
+					bits |= bit;
+					break;
+				}
+			}
+			else
+			{
+				// Get the vector the weapon will travel along.
+				v += (ship.Facing() + weapon.GetAngle()).Unit() * vp;
+				// Extrapolate over the lifetime of the projectile.
+				v *= lifetime;
+				
+				const Mask &mask = target->GetSprite().GetMask(step);
+				if(mask.Collide(-p, v, target->Facing()) < 1.)
+				{
+					bits |= bit;
+					break;
+				}
+			}
+		}
+		bit <<= 1;
+	}
+	
+	return bits;
 }
 
 
@@ -439,7 +534,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keys.Status() & KeyStatus::THRUST)
 			control.SetThrustCommand(keys.Thrust());
 		if(keys.Status() & KeyStatus::PRIMARY)
-			control.FireAll();
+			control.SetFireCommands();
 		
 		sticky = keys;
 	}

@@ -35,7 +35,7 @@ public:
 	void SetLandCommand();
 	void SetHyperspaceCommand();
 	void SetFireCommand(int index);
-	void FireAll();
+	void SetFireCommands(int bitmask = 0xFFFFFFFF);
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).

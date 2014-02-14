@@ -53,6 +53,14 @@ const Point &Armament::Weapon::GetPoint() const
 
 
 
+// Get the convergence angle adjustment of this weapon.
+const Angle &Armament::Weapon::GetAngle() const
+{
+	return angle;
+}
+
+
+
 // Shortcuts for querying weapon characteristics.
 bool Armament::Weapon::IsTurret() const
 {
@@ -101,7 +109,10 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	// const access), assume Armament checked that this is a valid call.
 	Angle aim = ship.Facing();
 	
-	Point start = ship.Position() + aim.Rotate(point);
+	// TODO: THis is a kludge to get projectiles to line up right, because they
+	// are drawn at an offset of (.5 * velocity) and that velocity includes the
+	// velocity of the ship that fired them.
+	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
 	
 	shared_ptr<const Ship> target = ship.GetTargetShip().lock();
 	
@@ -289,7 +300,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
 	
 	weapons[index].Fire(ship, projectiles);
 	if(it != streamReload.end())
-		it->second += weapons[index].GetOutfit()->WeaponGet("reload");
+		it->second += it->first->WeaponGet("reload");
 }
 
 
@@ -311,8 +322,12 @@ void Armament::Step(const Ship &ship)
 		weapon.Step();
 	
 	for(auto &it : streamReload)
-		if(it.second > 0)
-			it.second -= ship.OutfitCount(it.first);
+	{
+		int count = ship.OutfitCount(it.first);
+		it.second -= count;
+		// Always reload to the quickest firing interval.
+		it.second = max(it.second, 1 - count);
+	}
 }
 
 

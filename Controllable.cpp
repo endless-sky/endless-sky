@@ -117,9 +117,9 @@ void Controllable::SetFireCommand(int index)
 
 
 
-void Controllable::FireAll()
+void Controllable::SetFireCommands(int bitmask)
 {
-	commands |= 0xFFFFFFFF << WEAPON_SHIFT;
+	commands |= bitmask << WEAPON_SHIFT;
 }
 
 

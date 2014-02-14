@@ -58,6 +58,16 @@ Engine::Engine(const GameData &data)
 	player->AddEscort(ships.back());
 	playerInfo.AddShip(&sidekick);*/
 	
+	/*for(int i = 0; i < 4; ++i)
+	{
+		ships.push_back(make_shared<Ship>(*data.Ships().Get("Sparrow")));
+		Ship &sidekick = *ships.back();
+		sidekick.Place(player->Position() + Point(2000 + rand() % 2000, -1000 + rand() % 2000));
+		sidekick.SetSystem(player->GetSystem());
+		sidekick.SetGovernment(data.Governments().Get("Pirate"));
+		sidekick.SetName("Raider");
+	}*/
+	
 	// TODO: don't automatically visit the whole galaxy.
 	for(const auto &it : data.Systems())
 		playerInfo.Visit(&it.second);

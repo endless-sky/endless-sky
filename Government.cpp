@@ -76,8 +76,13 @@ bool Government::IsAlly(const Government *other) const
 // the given government.
 bool Government::IsEnemy(const Government *other) const
 {
+	if(!other)
+		return false;
+	
 	return (enemies.find(other) != enemies.end()
-		|| provoked.find(other) != provoked.end());
+		|| provoked.find(other) != provoked.end()
+		|| other->enemies.find(this) != other->enemies.end()
+		|| other->provoked.find(this) != other->provoked.end());
 }
 
 
