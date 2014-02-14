@@ -51,6 +51,11 @@ public:
 	
 	
 private:
+	double Intersection(Point sA, Point vA) const;
+	bool Contains(Point point) const;
+	
+	
+private:
 	std::vector<Point> outline;
 	double radius;
 };
