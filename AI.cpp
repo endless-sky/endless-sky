@@ -197,6 +197,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
 	const Ship &parent = *ship.GetParent().lock();
+	control.SetTargetShip(parent.GetTargetShip());
 	if(ship.GetSystem() != parent.GetSystem())
 	{
 		control.SetTargetSystem(parent.GetSystem());
