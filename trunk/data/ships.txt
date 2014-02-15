@@ -236,6 +236,35 @@ ship "Sparrow"
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
 	description "	Reports estimate that as many as two out of every three first-time ship buyers who choose to pilot a Sparrow lose their ship (and often, their life as well) within the first month of owning it."
 
+ship "Hawk"
+	sprite "ship/hawk"
+	attributes
+		cost 160000
+		"required crew" 1
+		"bunks" 3
+		"drag" 1.6
+		"mass" 130
+		"shields" 2500
+		"hull" 500
+		"cargo space" 30
+		"outfit space" 120
+		"weapon capacity" 36
+		"engine capacity" 50
+		"fuel capacity" 300
+	outfits
+		"Chipmunk Class Plasma Thruster"
+		"Chipmunk Class Plasma Steering"
+		"Small Fuel Cell"
+		"Tiny Battery Pack"
+		"Heavy Laser" 2
+		"Tiny Shield Generator"
+	engine -13 -36
+	engine 13 -36
+	gun -13 11
+	gun 13 11
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+
 ship "Fury"
 	sprite "ship/fury"
 	attributes
@@ -320,8 +349,10 @@ ship "Cruiser"
 		"Medium Ion Thruster"
 		"Medium Ion Steering"
 		"Fusion Reactor"
+		"Fission Reactor"
 		"Medium Battery Pack"
 		"Tiny Shield Generator"
+		"Quad Blaster Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Particle Cannon" 4
 		"Torpedo Launcher" 2
@@ -330,6 +361,9 @@ ship "Cruiser"
 	engine -39 -118
 	engine 39 -118
 	turret 0 0
+	turret -20 -38
+	turret 20 38
+	turret 0 77
 	gun -72 18
 	gun 72 18
 	gun -72 18
