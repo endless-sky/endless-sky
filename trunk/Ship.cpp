@@ -234,6 +234,9 @@ bool Ship::Move(std::list<Effect> &effects)
 		{
 			for(int i = 0; i < explosionTotal; ++i)
 				CreateExplosion(effects);
+			energy = 0.;
+			heat = 0.;
+			fuel = 0.;
 			return false;
 		}
 	}
