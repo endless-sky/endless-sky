@@ -30,7 +30,7 @@ Engine::Engine(const GameData &data)
 {
 	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
 	Ship *player = &*ships.back();
-	playerInfo.AddShip(player);
+	playerInfo.AddShip(ships.back());
 	
 	playerGovernment = data.Governments().Get("Escort");
 	
@@ -117,7 +117,7 @@ void Engine::Step(bool isActive)
 		{
 			shouldLand = true;
 			
-			for(Ship *ship : playerInfo.Ships())
+			for(const shared_ptr<Ship> &ship : playerInfo.Ships())
 				if(ship->GetSystem() == player->GetSystem())
 					ship->Recharge();
 		}

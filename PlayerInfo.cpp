@@ -36,7 +36,7 @@ Account &PlayerInfo::Accounts()
 
 
 // Set the player ship.
-void PlayerInfo::AddShip(Ship *ship)
+void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
 }
@@ -45,19 +45,19 @@ void PlayerInfo::AddShip(Ship *ship)
 
 const Ship *PlayerInfo::GetShip() const
 {
-	return ships.empty() ? nullptr : ships.front();
+	return ships.empty() ? nullptr : ships.front().get();
 }
 
 
 
 Ship *PlayerInfo::GetShip()
 {
-	return ships.empty() ? nullptr : ships.front();
+	return ships.empty() ? nullptr : ships.front().get();
 }
 
 
 
-const vector<Ship *> &PlayerInfo::Ships() const
+const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 {
 	return ships;
 }
@@ -141,7 +141,7 @@ void PlayerInfo::SelectNext()
 	if(ships.empty())
 		return;
 	
-	const Ship *ship = ships.front();
+	shared_ptr<Ship> &ship = ships.front();
 	if(ship->Outfits().empty())
 		return;
 	

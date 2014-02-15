@@ -10,12 +10,13 @@ ship(s) they own and with what outfits, what systems they have visited, etc.
 
 #include "Account.h"
 
+#include <memory>
+#include <set>
+#include <vector>
+
 class Outfit;
 class Ship;
 class System;
-
-#include <set>
-#include <vector>
 
 
 
@@ -27,10 +28,10 @@ public:
 	Account &Accounts();
 	
 	// Set the player ship.
-	void AddShip(Ship *ship);
+	void AddShip(std::shared_ptr<Ship> &ship);
 	const Ship *GetShip() const;
 	Ship *GetShip();
-	const std::vector<Ship *> &Ships() const;
+	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
@@ -53,7 +54,7 @@ public:
 private:
 	Account accounts;
 	
-	std::vector<Ship *> ships;
+	std::vector<std::shared_ptr<Ship>> ships;
 	std::set<const System *> seen;
 	std::set<const System *> visited;
 	std::vector<const System *> travelPlan;

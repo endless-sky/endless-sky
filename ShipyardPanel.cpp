@@ -87,9 +87,9 @@ void ShipyardPanel::Draw() const
 	Point point(
 		(Screen::Width() - SIDE_WIDTH) / 2,
 		(Screen::Height() - SIDE_WIDTH) / -2 - sideScroll + 40);
-	for(const Ship *ship : player.Ships())
+	for(shared_ptr<Ship> ship : player.Ships())
 	{
-		bool isSelected = ship == playerShip;
+		bool isSelected = (ship.get() == playerShip);
 		DrawShip(*ship, point, isSelected);
 		
 		if(isSelected)
