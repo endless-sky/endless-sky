@@ -28,7 +28,7 @@ Engine::Engine(const GameData &data)
 	asteroids(data),
 	load(0.), loadSum(0.), loadCount(0)
 {
-	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
+	ships.push_back(make_shared<Ship>(*data.Ships().Get("Monitor")));
 	Ship *player = &*ships.back();
 	playerInfo.AddShip(ships.back());
 	

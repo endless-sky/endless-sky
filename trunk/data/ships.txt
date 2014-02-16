@@ -265,6 +265,44 @@ ship "Hawk"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 
+ship "Monitor"
+	sprite "ship/monitor"
+	attributes
+		cost 840000
+		"required crew" 10
+		"bunks" 16
+		"drag" 12
+		"mass" 370
+		"shields" 3900
+		"hull" 1800
+		"cargo space" 40
+		"outfit space" 220
+		"weapon capacity" 120
+		"engine capacity" 100
+		"fuel capacity" 500
+	outfits
+		"XD2200 Ion Thruster"
+		"XT2700 Ion Steering"
+		"Fusion Reactor"
+		"Water Coolant System"
+		"Medium Battery Pack"
+		"Quad Blaster Turret" 3
+		"Energy Blaster" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Tiny Shield Generator"
+	engine -20 -95
+	engine 20 -95
+	turret -18 20
+	turret 18 20
+	turret 0 -63
+	gun -15 74
+	gun 15 74
+	gun -20 60
+	gun 20 60
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+
 ship "Fury"
 	sprite "ship/fury"
 	attributes
