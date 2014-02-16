@@ -41,6 +41,9 @@ MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 		for(const System *system : edge)
 			for(const System *link : system->Links())
 			{
+				if(!player.HasSeen(link))
+					continue;
+				
 				auto it = distance.find(link);
 				if(it != distance.end())
 					continue;
@@ -164,13 +167,15 @@ void MapPanel::Draw() const
 	// System sprite goes from 0 to 90.
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
 	SpriteShader::Draw(systemSprite, uiPoint);
-	font.Draw(selected->Name(),
-		uiPoint + Point(-90., -7.),
-		closeColor);
+	
+	string systemName = player.HasVisited(selected) ?
+		selected->Name() : "Unexplored System";
+	font.Draw(systemName, uiPoint + Point(-90., -7.), closeColor);
+	
 	governmentY = uiPoint.Y() + 10.;
-	font.Draw(selected->GetGovernment().GetName(),
-		uiPoint + Point(-90., 13.),
-		(commodity == -3) ? closeColor : farColor);
+	string gov = player.HasVisited(selected) ?
+		selected->GetGovernment().GetName() : "Unknown Government";
+	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == -3) ? closeColor : farColor);
 	if(commodity == -3)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10., 10., 0., closeColor);
@@ -178,34 +183,37 @@ void MapPanel::Draw() const
 	uiPoint.Y() += 105.;
 	
 	planetY.clear();
-	const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
-	for(const StellarObject &object : selected->Objects())
-		if(object.GetPlanet())
-		{
-			SpriteShader::Draw(planetSprite, uiPoint);
-			planetY[object.GetPlanet()] = uiPoint.Y() - 50;
+	if(player.HasVisited(selected))
+	{
+		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
+		for(const StellarObject &object : selected->Objects())
+			if(object.GetPlanet())
+			{
+				SpriteShader::Draw(planetSprite, uiPoint);
+				planetY[object.GetPlanet()] = uiPoint.Y() - 50;
 			
-			font.Draw(object.GetPlanet()->Name(),
-				uiPoint + Point(-70., -42.),
-				object.GetPlanet() == selectedPlanet ? closeColor : farColor);
-			font.Draw("Space Port",
-				uiPoint + Point(-60., -22.),
-				object.GetPlanet()->HasSpaceport() ? closeColor : dimColor);
-			font.Draw("Shipyard",
-				uiPoint + Point(-60., -2.),
-				object.GetPlanet()->HasShipyard() ? closeColor : dimColor);
-			if(commodity == -1)
-				PointerShader::Draw(uiPoint + Point(-60., 5.), Point(1., 0.),
-					10., 10., 0., closeColor);
-			font.Draw("Outfitter",
-				uiPoint + Point(-60., 18.),
-				object.GetPlanet()->HasOutfitter() ? closeColor : dimColor);
-			if(commodity == -2)
-				PointerShader::Draw(uiPoint + Point(-60., 25.), Point(1., 0.),
-					10., 10., 0., closeColor);
+				font.Draw(object.GetPlanet()->Name(),
+					uiPoint + Point(-70., -42.),
+					object.GetPlanet() == selectedPlanet ? closeColor : farColor);
+				font.Draw("Space Port",
+					uiPoint + Point(-60., -22.),
+					object.GetPlanet()->HasSpaceport() ? closeColor : dimColor);
+				font.Draw("Shipyard",
+					uiPoint + Point(-60., -2.),
+					object.GetPlanet()->HasShipyard() ? closeColor : dimColor);
+				if(commodity == -1)
+					PointerShader::Draw(uiPoint + Point(-60., 5.), Point(1., 0.),
+						10., 10., 0., closeColor);
+				font.Draw("Outfitter",
+					uiPoint + Point(-60., 18.),
+					object.GetPlanet()->HasOutfitter() ? closeColor : dimColor);
+				if(commodity == -2)
+					PointerShader::Draw(uiPoint + Point(-60., 25.), Point(1., 0.),
+						10., 10., 0., closeColor);
 			
-			uiPoint.Y() += 110.;
-		}
+				uiPoint.Y() += 110.;
+			}
+	}
 	
 	uiPoint.Y() += 55.;
 	tradeY = uiPoint.Y() - 95.;
@@ -225,9 +233,12 @@ void MapPanel::Draw() const
 		
 		font.Draw(commodity.name, uiPoint, color);
 		
-		string price = to_string(selected->Trade(commodity.name));
-		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-		font.Draw(price, pos, color);
+		if(player.HasVisited(selected))
+		{
+			string price = to_string(selected->Trade(commodity.name));
+			Point pos = uiPoint + Point(140. - font.Width(price), 0.);
+			font.Draw(price, pos, color);
+		}
 		
 		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
@@ -240,6 +251,9 @@ void MapPanel::Draw() const
 	Point orbitCenter(Screen::Width() / 2 - 130, Screen::Height() / 2 - 140);
 	SpriteShader::Draw(orbitSprite, orbitCenter);
 	orbitCenter.Y() += 10.;
+	
+	if(!player.HasVisited(selected))
+		return;
 	
 	// Figure out wht the largest orbit in this system is.
 	double maxDistance = 0.;

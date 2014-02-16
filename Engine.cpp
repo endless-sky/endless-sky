@@ -28,7 +28,7 @@ Engine::Engine(const GameData &data)
 	asteroids(data),
 	load(0.), loadSum(0.), loadCount(0)
 {
-	ships.push_back(make_shared<Ship>(*data.Ships().Get("Monitor")));
+	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
 	Ship *player = &*ships.back();
 	playerInfo.AddShip(ships.back());
 	
@@ -36,17 +36,19 @@ Engine::Engine(const GameData &data)
 	
 	// TODO: Load player status from a file instead of starting over.
 	player->Place();
-	player->SetSystem(data.Systems().Get("Sol"));
+	player->SetSystem(data.Systems().Get("Sabik"));
 	player->SetGovernment(playerGovernment);
 	player->SetName("Starship One");
 	player->SetIsSpecial();
+	
+	playerInfo.Visit(player->GetSystem());
 	
 	playerInfo.Accounts().AddMortgage(250000);
 	playerInfo.Accounts().AddCredits(-200000);
 	
 	EnterSystem();
 	for(const StellarObject &object : player->GetSystem()->Objects())
-		if(object.Name() == "Earth")
+		if(object.GetPlanet())
 			player->Place(object.Position());
 	
 	/*ships.push_back(make_shared<Ship>(*data.Ships().Get("Argosy")));
@@ -69,10 +71,6 @@ Engine::Engine(const GameData &data)
 		sidekick.SetGovernment(data.Governments().Get("Pirate"));
 		sidekick.SetName("Raider");
 	}*/
-	
-	// TODO: don't automatically visit the whole galaxy.
-	for(const auto &it : data.Systems())
-		playerInfo.Visit(&it.second);
 	
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -365,6 +363,9 @@ void Engine::EnterSystem()
 	asteroids.Clear();
 	for(const System::Asteroid &a : player->GetSystem()->Asteroids())
 		asteroids.Add(a.Name(), a.Count(), a.Energy());
+	
+	projectiles.clear();
+	effects.clear();
 }
 
 
