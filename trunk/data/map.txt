@@ -1,5 +1,6 @@
 system "Acamar"
 	pos -284 -3
+	government "Syndicate"
 	habitable 5000
 	link "Diphda"
 	link "Aldebaran"
@@ -49,6 +50,7 @@ system "Acamar"
 
 system "Achernar"
 	pos -93 154
+	government "Syndicate"
 	habitable 3015.62
 	link "Al Dhanab"
 	link "Alpheratz"
@@ -170,6 +172,7 @@ system "Acrux"
 
 system "Adhara"
 	pos -669 -200
+	government "Republic"
 	habitable 320
 	link "Epsilon Leonis"
 	link "Gomeisa"
@@ -218,6 +221,7 @@ system "Adhara"
 
 system "Al Dhanab"
 	pos -177 207
+	government "Syndicate"
 	habitable 775.625
 	link "Scheat"
 	link "Mirach"
@@ -275,6 +279,7 @@ system "Al Dhanab"
 
 system "Albaldah"
 	pos -350 484
+	government "Free Worlds"
 	habitable 945
 	link "Albireo"
 	link "Girtab"
@@ -335,6 +340,7 @@ system "Albaldah"
 
 system "Albireo"
 	pos -270 503
+	government "Free Worlds"
 	habitable 320
 	link "Tarazed"
 	link "Albaldah"
@@ -442,6 +448,7 @@ system "Alcyone"
 
 system "Aldebaran"
 	pos -356 -26
+	government "Republic"
 	habitable 1080.62
 	link "Capella"
 	link "Acamar"
@@ -498,6 +505,7 @@ system "Aldebaran"
 
 system "Alderamin"
 	pos -272 258
+	government "Syndicate"
 	habitable 1080
 	link "Alnair"
 	link "Delta Capricorni"
@@ -551,6 +559,7 @@ system "Alderamin"
 
 system "Aldhibain"
 	pos -659 451
+	government "Free Worlds"
 	habitable 1080
 	link "Kornephoros"
 	link "Sabik"
@@ -658,6 +667,7 @@ system "Algenib"
 
 system "Algieba"
 	pos -691 -52
+	government "Republic"
 	habitable 2560
 	link "Tania Australis"
 	link "Alphard"
@@ -708,6 +718,7 @@ system "Algieba"
 
 system "Algol"
 	pos -210 17
+	government "Syndicate"
 	habitable 455.625
 	link "Ruchbah"
 	asteroids "large metal" 1 1.35
@@ -755,6 +766,7 @@ system "Algol"
 
 system "Algorel"
 	pos -631 145
+	government "Republic"
 	habitable 2170.62
 	link "Cor Caroli"
 	link "Turais"
@@ -820,6 +832,7 @@ system "Algorel"
 
 system "Alheka"
 	pos -350 -271
+	government "Republic"
 	habitable 625
 	link "Betelgeuse"
 	link "Canopus"
@@ -869,6 +882,7 @@ system "Alheka"
 
 system "Alhena"
 	pos -430 -80
+	government "Republic"
 	habitable 455.625
 	link "Menkalinan"
 	link "Wazn"
@@ -917,6 +931,7 @@ system "Alhena"
 
 system "Alioth"
 	pos -620 315
+	government "Free Worlds"
 	habitable 5360
 	link "Wei"
 	link "Vindemiatrix"
@@ -1151,6 +1166,7 @@ system "Almach"
 
 system "Alnair"
 	pos -272 314
+	government "Syndicate"
 	habitable 455.625
 	link "Persian"
 	link "Alderamin"
@@ -1199,6 +1215,7 @@ system "Alnair"
 
 system "Alnasl"
 	pos -553 380
+	government "Free Worlds"
 	habitable 640
 	link "Seginus"
 	link "Wei"
@@ -1319,6 +1336,7 @@ system "Alnilam"
 
 system "Alnitak"
 	pos -331 -412
+	government "Republic"
 	habitable 320
 	link "Rigel"
 	link "Mintaka"
@@ -1429,6 +1447,7 @@ system "Alniyat"
 
 system "Alpha Arae"
 	pos -481 394
+	government "Free Worlds"
 	habitable 1215
 	link "Delta Sagittarii"
 	link "Rastaban"
@@ -1535,6 +1554,7 @@ system "Alpha Centauri"
 
 system "Alpha Hydri"
 	pos -97 98
+	government "Syndicate"
 	habitable 1715
 	link "Ruchbah"
 	asteroids "medium rock" 1 7.467
@@ -1584,6 +1604,7 @@ system "Alpha Hydri"
 
 system "Alphard"
 	pos -588 -47
+	government "Republic"
 	habitable 320
 	link "Algieba"
 	link "Zosma"
@@ -1647,6 +1668,7 @@ system "Alphard"
 
 system "Alphecca"
 	pos -546 308
+	government "Free Worlds"
 	habitable 670
 	link "Alioth"
 	link "Seginus"
@@ -1697,6 +1719,7 @@ system "Alphecca"
 
 system "Alpheratz"
 	pos -176 125
+	government "Syndicate"
 	habitable 625
 	link "Al Dhanab"
 	link "Ruchbah"
@@ -1824,6 +1847,7 @@ system "Altair"
 
 system "Aludra"
 	pos -606 -374
+	government "Republic"
 	habitable 320
 	link "Naos"
 	asteroids "small rock" 2 3.8394
@@ -1878,6 +1902,7 @@ system "Aludra"
 
 system "Ankaa"
 	pos -230 100
+	government "Syndicate"
 	habitable 625
 	link "Markab"
 	link "Diphda"
@@ -1976,6 +2001,7 @@ system "Antares"
 
 system "Arcturus"
 	pos -590 224
+	government "Republic"
 	habitable 455.625
 	link "Mizar"
 	link "Rutilicus"
@@ -2064,6 +2090,7 @@ system "Arneb"
 
 system "Ascella"
 	pos -376 328
+	government "Free Worlds"
 	habitable 135
 	link "Peacock"
 	link "Zeta Aquilae"
@@ -2111,6 +2138,7 @@ system "Ascella"
 
 system "Aspidiske"
 	pos -690 -282
+	government "Republic"
 	habitable 1080
 	link "Avior"
 	link "Regor"
@@ -2152,6 +2180,7 @@ system "Aspidiske"
 
 system "Atria"
 	pos -551 532
+	government "Free Worlds"
 	habitable 320
 	link "Han"
 	link "Lesath"
@@ -2198,6 +2227,7 @@ system "Atria"
 
 system "Avior"
 	pos -658 -317
+	government "Republic"
 	habitable 1705
 	link "Aspidiske"
 	link "Naos"
@@ -2252,6 +2282,7 @@ system "Avior"
 
 system "Bellatrix"
 	pos -225 -82
+	government "Syndicate"
 	habitable 625
 	link "Menkar"
 	link "Mirfak"
@@ -2301,6 +2332,7 @@ system "Bellatrix"
 
 system "Beta Lupi"
 	pos -851 417
+	government "Free Worlds"
 	habitable 625
 	link "Pherkad"
 	link "Kappa Centauri"
@@ -2347,6 +2379,7 @@ system "Beta Lupi"
 
 system "Betelgeuse"
 	pos -384 -322
+	government "Republic"
 	habitable 1715
 	link "Mirzam"
 	link "Alheka"
@@ -2400,6 +2433,7 @@ system "Betelgeuse"
 
 system "Canopus"
 	pos -421 -225
+	government "Republic"
 	habitable 625
 	link "Phurad"
 	link "Mirzam"
@@ -2442,6 +2476,7 @@ system "Canopus"
 
 system "Capella"
 	pos -378 -13
+	government "Republic"
 	habitable 1715
 	link "Procyon"
 	link "Aldebaran"
@@ -2504,7 +2539,7 @@ system "Capella"
 
 system "Caph"
 	pos -295 77
-	government "Republic"
+	government "Syndicate"
 	habitable 670
 	link "Sol"
 	link "Diphda"
@@ -2627,6 +2662,7 @@ system "Castor"
 
 system "Cebalrai"
 	pos -461 282
+	government "Free Worlds"
 	habitable 455.625
 	link "Rutilicus"
 	link "Kaus Borealis"
@@ -2678,6 +2714,7 @@ system "Cebalrai"
 
 system "Cor Caroli"
 	pos -682 201
+	government "Republic"
 	habitable 214.375
 	link "Vindemiatrix"
 	link "Gacrux"
@@ -2729,6 +2766,7 @@ system "Cor Caroli"
 
 system "Dabih"
 	pos -253 427
+	government "Free Worlds"
 	habitable 945
 	link "Tarazed"
 	link "Eltanin"
@@ -2783,6 +2821,7 @@ system "Dabih"
 
 system "Delta Capricorni"
 	pos -285 202
+	government "Syndicate"
 	habitable 455.625
 	link "Alderamin"
 	link "Altair"
@@ -2845,6 +2884,7 @@ system "Delta Capricorni"
 
 system "Delta Sagittarii"
 	pos -414 416
+	government "Free Worlds"
 	habitable 320
 	link "Rastaban"
 	link "Alpha Arae"
@@ -2900,6 +2940,7 @@ system "Delta Sagittarii"
 
 system "Delta Velorum"
 	pos -740 90
+	government "Republic"
 	habitable 455.625
 	link "Turais"
 	asteroids "small rock" 6 2.775
@@ -2944,6 +2985,7 @@ system "Delta Velorum"
 
 system "Denebola"
 	pos -478 70
+	government "Republic"
 	habitable 1080
 	link "Sol"
 	link "Merak"
@@ -2992,6 +3034,7 @@ system "Denebola"
 
 system "Diphda"
 	pos -262 61
+	government "Syndicate"
 	habitable 1215
 	link "Ankaa"
 	link "Caph"
@@ -3044,6 +3087,7 @@ system "Diphda"
 
 system "Dschubba"
 	pos -598 501
+	government "Free Worlds"
 	habitable 839.375
 	link "Atria"
 	link "Lesath"
@@ -3093,6 +3137,7 @@ system "Dschubba"
 
 system "Dubhe"
 	pos -577 -103
+	government "Republic"
 	habitable 625
 	link "Zosma"
 	asteroids "medium rock" 12 3.5496
@@ -3136,6 +3181,7 @@ system "Dubhe"
 
 system "Elnath"
 	pos -288 -77
+	government "Republic"
 	habitable 2560
 	link "Acamar"
 	link "Aldebaran"
@@ -3182,6 +3228,7 @@ system "Elnath"
 
 system "Eltanin"
 	pos -328 433
+	government "Free Worlds"
 	habitable 455.625
 	link "Dabih"
 	link "Delta Sagittarii"
@@ -3308,6 +3355,7 @@ system "Enif"
 
 system "Epsilon Leonis"
 	pos -619 -229
+	government "Republic"
 	habitable 1080
 	link "Gomeisa"
 	link "Aspidiske"
@@ -3350,6 +3398,7 @@ system "Epsilon Leonis"
 
 system "Fomalhaut"
 	pos -314 124
+	government "Syndicate"
 	habitable 320
 	link "Altair"
 	link "Markab"
@@ -3399,6 +3448,7 @@ system "Fomalhaut"
 
 system "Gacrux"
 	pos -713 184
+	government "Republic"
 	habitable 945
 	link "Cor Caroli"
 	link "Muhlifain"
@@ -3450,6 +3500,7 @@ system "Gacrux"
 
 system "Gamma Cassiopeiae"
 	pos -116 293
+	government "Syndicate"
 	habitable 214.375
 	link "Mirach"
 	asteroids "small rock" 17 7.4936
@@ -3605,6 +3656,7 @@ system "Gienah"
 
 system "Girtab"
 	pos -430 481
+	government "Free Worlds"
 	habitable 1080
 	link "Lesath"
 	link "Rastaban"
@@ -3657,6 +3709,7 @@ system "Girtab"
 
 system "Gomeisa"
 	pos -600 -161
+	government "Republic"
 	habitable 214.375
 	link "Zosma"
 	link "Epsilon Leonis"
@@ -3811,6 +3864,7 @@ system "Hadar"
 
 system "Hamal"
 	pos -129 24
+	government "Syndicate"
 	habitable 1080
 	link "Ruchbah"
 	asteroids "small rock" 3 2.7552
@@ -3854,6 +3908,7 @@ system "Hamal"
 
 system "Han"
 	pos -610 561
+	government "Free Worlds"
 	habitable 1400
 	link "Alniyat"
 	link "Atria"
@@ -3904,6 +3959,7 @@ system "Han"
 
 system "Hassaleh"
 	pos -291 -287
+	government "Republic"
 	habitable 670
 	link "Rigel"
 	asteroids "small rock" 6 1.9305
@@ -3950,6 +4006,7 @@ system "Hassaleh"
 
 system "Hatysa"
 	pos -474 -542
+	government "Pirate"
 	habitable 533.75
 	link "Arneb"
 	link "Alnilam"
@@ -4108,6 +4165,7 @@ system "Kappa Centauri"
 
 system "Kaus Australis"
 	pos -284 395
+	government "Free Worlds"
 	habitable 292.5
 	link "Dabih"
 	link "Tais"
@@ -4164,6 +4222,7 @@ system "Kaus Australis"
 
 system "Kaus Borealis"
 	pos -456 350
+	government "Free Worlds"
 	habitable 320
 	link "Cebalrai"
 	link "Alpha Arae"
@@ -4265,6 +4324,7 @@ system "Kochab"
 
 system "Kornephoros"
 	pos -612 424
+	government "Free Worlds"
 	habitable 911.25
 	link "Sabik"
 	link "Aldhibain"
@@ -4387,6 +4447,7 @@ system "Kraz"
 
 system "Kursa"
 	pos -366 -105
+	government "Republic"
 	habitable 428.75
 	link "Elnath"
 	link "Aldebaran"
@@ -4434,6 +4495,7 @@ system "Kursa"
 
 system "Lesath"
 	pos -516 485
+	government "Free Worlds"
 	habitable 1715
 	link "Atria"
 	link "Shaula"
@@ -4481,6 +4543,7 @@ system "Lesath"
 
 system "Markab"
 	pos -241 168
+	government "Syndicate"
 	habitable 2560
 	link "Delta Capricorni"
 	link "Scheat"
@@ -4536,6 +4599,7 @@ system "Markab"
 
 system "Markeb"
 	pos -602 -305
+	government "Republic"
 	habitable 625
 	link "Avior"
 	asteroids "small rock" 23 5.0895
@@ -4588,6 +4652,7 @@ system "Markeb"
 
 system "Matar"
 	pos -218 272
+	government "Syndicate"
 	habitable 135
 	link "Persian"
 	link "Scheat"
@@ -4632,6 +4697,7 @@ system "Matar"
 
 system "Mebsuta"
 	pos -482 -394
+	government "Republic"
 	habitable 78.125
 	link "Mirzam"
 	asteroids "small rock" 1 4.1412
@@ -4728,6 +4794,7 @@ system "Men"
 
 system "Menkalinan"
 	pos -400 -61
+	government "Republic"
 	habitable 3430
 	link "Capella"
 	link "Castor"
@@ -4784,6 +4851,7 @@ system "Menkalinan"
 
 system "Menkar"
 	pos -183 -52
+	government "Syndicate"
 	habitable 78.125
 	link "Zaurak"
 	link "Mirfak"
@@ -4842,6 +4910,7 @@ system "Menkar"
 
 system "Menkent"
 	pos -495 218
+	government "Republic"
 	habitable 455
 	link "Vega"
 	link "Rutilicus"
@@ -4907,6 +4976,7 @@ system "Menkent"
 
 system "Merak"
 	pos -553 60
+	government "Republic"
 	habitable 135
 	link "Phecda"
 	link "Porrima"
@@ -4961,6 +5031,7 @@ system "Merak"
 
 system "Miaplacidus"
 	pos -524 -69
+	government "Republic"
 	habitable 1080
 	link "Tejat"
 	link "Alphard"
@@ -5056,6 +5127,7 @@ system "Mimosa"
 
 system "Minkar"
 	pos -823 138
+	government "Free Worlds"
 	habitable 670
 	link "Acrux"
 	link "Spica"
@@ -5111,6 +5183,7 @@ system "Minkar"
 
 system "Mintaka"
 	pos -304 -462
+	government "Republic"
 	habitable 1929.38
 	link "Almaaz"
 	link "Alnitak"
@@ -5177,6 +5250,7 @@ system "Mintaka"
 
 system "Mirach"
 	pos -166 250
+	government "Syndicate"
 	habitable 320
 	link "Al Dhanab"
 	link "Scheat"
@@ -5244,6 +5318,7 @@ system "Mirach"
 
 system "Mirfak"
 	pos -187 -128
+	government "Syndicate"
 	habitable 1715
 	link "Menkar"
 	link "Bellatrix"
@@ -5293,6 +5368,7 @@ system "Mirfak"
 
 system "Mirzam"
 	pos -498 -301
+	government "Republic"
 	habitable 214.375
 	link "Canopus"
 	link "Betelgeuse"
@@ -5346,6 +5422,7 @@ system "Mirzam"
 
 system "Mizar"
 	pos -579 184
+	government "Republic"
 	habitable 455.625
 	link "Arcturus"
 	link "Cor Caroli"
@@ -5403,6 +5480,7 @@ system "Mizar"
 
 system "Muhlifain"
 	pos -702 242
+	government "Republic"
 	habitable 1080
 	link "Vindemiatrix"
 	link "Gacrux"
@@ -5443,6 +5521,7 @@ system "Muhlifain"
 
 system "Muphrid"
 	pos -495 152
+	government "Republic"
 	habitable 625
 	link "Menkent"
 	link "Porrima"
@@ -5495,6 +5574,7 @@ system "Muphrid"
 
 system "Naos"
 	pos -653 -396
+	government "Republic"
 	habitable 625
 	link "Regor"
 	link "Wezen"
@@ -5539,6 +5619,7 @@ system "Naos"
 
 system "Nihal"
 	pos -280 -120
+	government "Republic"
 	habitable 945
 	link "Elnath"
 	asteroids "small rock" 18 3.1668
@@ -5662,6 +5743,7 @@ system "Nunki"
 
 system "Peacock"
 	pos -307 350
+	government "Free Worlds"
 	habitable 839.375
 	link "Tais"
 	link "Kaus Australis"
@@ -5718,6 +5800,7 @@ system "Peacock"
 
 system "Persian"
 	pos -203 331
+	government "Syndicate"
 	habitable 3859.38
 	link "Alnair"
 	link "Gienah"
@@ -5774,6 +5857,7 @@ system "Persian"
 
 system "Phact"
 	pos -375 -191
+	government "Republic"
 	habitable 4100.62
 	link "Wazn"
 	link "Canopus"
@@ -5825,6 +5909,7 @@ system "Phact"
 
 system "Phecda"
 	pos -607 88
+	government "Republic"
 	habitable 455.625
 	link "Algorel"
 	link "Tania Australis"
@@ -5922,6 +6007,7 @@ system "Pherkad"
 
 system "Phurad"
 	pos -494 -153
+	government "Republic"
 	habitable 2170.62
 	link "Tejat"
 	link "Canopus"
@@ -5974,6 +6060,7 @@ system "Phurad"
 
 system "Polaris"
 	pos -35 126
+	government "Syndicate"
 	habitable 625
 	link "Achernar"
 	asteroids "small rock" 1 7.67
@@ -6016,6 +6103,7 @@ system "Polaris"
 
 system "Pollux"
 	pos -465 4
+	government "Republic"
 	habitable 5000
 	link "Procyon"
 	link "Castor"
@@ -6069,6 +6157,7 @@ system "Pollux"
 
 system "Porrima"
 	pos -556 123
+	government "Republic"
 	habitable 5320
 	link "Muphrid"
 	link "Merak"
@@ -6116,6 +6205,7 @@ system "Porrima"
 
 system "Procyon"
 	pos -411 23
+	government "Republic"
 	habitable 320
 	link "Sirius"
 	link "Pollux"
@@ -6178,6 +6268,7 @@ system "Procyon"
 
 system "Rasalhague"
 	pos -413 246
+	government "Free Worlds"
 	habitable 703.125
 	link "Zeta Aquilae"
 	link "Cebalrai"
@@ -6242,6 +6333,7 @@ system "Rasalhague"
 
 system "Rastaban"
 	pos -463 446
+	government "Free Worlds"
 	habitable 5455.62
 	link "Girtab"
 	link "Lesath"
@@ -6306,6 +6398,7 @@ system "Rastaban"
 
 system "Regor"
 	pos -702 -335
+	government "Republic"
 	habitable 1400
 	link "Aspidiske"
 	link "Naos"
@@ -6361,6 +6454,7 @@ system "Regor"
 
 system "Regulus"
 	pos -544 25
+	government "Republic"
 	habitable 8640
 	link "Merak"
 	asteroids "small rock" 31 3.7752
@@ -6421,6 +6515,7 @@ system "Regulus"
 
 system "Rigel"
 	pos -324 -363
+	government "Republic"
 	habitable 625
 	link "Saiph"
 	link "Alnitak"
@@ -6476,6 +6571,7 @@ system "Rigel"
 
 system "Ruchbah"
 	pos -174 69
+	government "Syndicate"
 	habitable 214.375
 	link "Ankaa"
 	link "Alpheratz"
@@ -6541,6 +6637,7 @@ system "Ruchbah"
 
 system "Rutilicus"
 	pos -535 273
+	government "Republic"
 	habitable 455.625
 	link "Arcturus"
 	link "Cebalrai"
@@ -6737,6 +6834,7 @@ system "Sadalsuud"
 
 system "Sadr"
 	pos -287 543
+	government "Free Worlds"
 	habitable 3859.38
 	link "Albireo"
 	asteroids "small rock" 48 4.9932
@@ -6791,6 +6889,7 @@ system "Sadr"
 
 system "Saiph"
 	pos -375 -390
+	government "Republic"
 	habitable 455.625
 	link "Rigel"
 	link "Alnitak"
@@ -6847,6 +6946,7 @@ system "Saiph"
 
 system "Sargas"
 	pos -542 445
+	government "Free Worlds"
 	habitable 590.625
 	link "Kornephoros"
 	link "Lesath"
@@ -6897,6 +6997,7 @@ system "Sargas"
 
 system "Sarin"
 	pos -670 293
+	government "Republic"
 	habitable 1535.62
 	link "Vindemiatrix"
 	asteroids "large metal" 1 1.74
@@ -6950,6 +7051,7 @@ system "Sarin"
 
 system "Scheat"
 	pos -205 233
+	government "Syndicate"
 	habitable 625
 	link "Markab"
 	link "Delta Capricorni"
@@ -6997,6 +7099,7 @@ system "Scheat"
 
 system "Schedar"
 	pos -93 229
+	government "Syndicate"
 	habitable 1535.62
 	link "Mirach"
 	link "Achernar"
@@ -7049,6 +7152,7 @@ system "Schedar"
 
 system "Seginus"
 	pos -557 356
+	government "Free Worlds"
 	habitable 320
 	link "Alnasl"
 	link "Wei"
@@ -7158,6 +7262,7 @@ system "Shaula"
 
 system "Sheratan"
 	pos -40 46
+	government "Syndicate"
 	habitable 670
 	link "Ruchbah"
 	link "Zaurak"
@@ -7390,6 +7495,7 @@ system "Spica"
 
 system "Suhail"
 	pos -774 -338
+	government "Republic"
 	habitable 3645
 	link "Regor"
 	asteroids "small rock" 2 2.8224
@@ -7446,6 +7552,7 @@ system "Suhail"
 
 system "Tais"
 	pos -346 381
+	government "Free Worlds"
 	habitable 3645
 	link "Delta Sagittarii"
 	link "Kaus Australis"
@@ -7492,6 +7599,7 @@ system "Tais"
 
 system "Talita"
 	pos -519 -26
+	government "Republic"
 	habitable 214.375
 	link "Miaplacidus"
 	link "Alphard"
@@ -7543,6 +7651,7 @@ system "Talita"
 
 system "Tania Australis"
 	pos -671 7
+	government "Republic"
 	habitable 1715
 	link "Phecda"
 	link "Algieba"
@@ -7594,6 +7703,7 @@ system "Tania Australis"
 
 system "Tarazed"
 	pos -194 448
+	government "Free Worlds"
 	habitable 320
 	link "Enif"
 	link "Albireo"
@@ -7643,6 +7753,7 @@ system "Tarazed"
 
 system "Tejat"
 	pos -489 -107
+	government "Republic"
 	habitable 1929.38
 	link "Phurad"
 	link "Miaplacidus"
@@ -7706,6 +7817,7 @@ system "Tejat"
 
 system "Turais"
 	pos -691 134
+	government "Republic"
 	habitable 1080
 	link "Gacrux"
 	link "Delta Velorum"
@@ -7806,6 +7918,7 @@ system "Unukalhai"
 
 system "Vega"
 	pos -402 182
+	government "Republic"
 	habitable 1080.62
 	link "Altair"
 	link "Sol"
@@ -7866,6 +7979,7 @@ system "Vega"
 
 system "Vindemiatrix"
 	pos -635 257
+	government "Republic"
 	habitable 320
 	link "Alioth"
 	link "Muhlifain"
@@ -7913,6 +8027,7 @@ system "Vindemiatrix"
 
 system "Wazn"
 	pos -385 -131
+	government "Republic"
 	habitable 214.375
 	link "Alhena"
 	link "Kursa"
@@ -7957,6 +8072,7 @@ system "Wazn"
 
 system "Wei"
 	pos -598 369
+	government "Free Worlds"
 	habitable 455.625
 	link "Seginus"
 	link "Alnasl"
@@ -8007,6 +8123,7 @@ system "Wei"
 
 system "Wezen"
 	pos -664 -433
+	government "Republic"
 	habitable 455.625
 	link "Naos"
 	asteroids "small rock" 6 2.6418
@@ -8108,6 +8225,7 @@ system "Yed Prior"
 
 system "Zaurak"
 	pos -109 -34
+	government "Syndicate"
 	habitable 2035
 	link "Sheratan"
 	link "Alcyone"
@@ -8156,6 +8274,7 @@ system "Zaurak"
 
 system "Zeta Aquilae"
 	pos -369 276
+	government "Free Worlds"
 	habitable 945
 	link "Ascella"
 	link "Rasalhague"
@@ -8255,6 +8374,7 @@ system "Zeta Centauri"
 
 system "Zosma"
 	pos -640 -123
+	government "Republic"
 	habitable 1080
 	link "Algieba"
 	link "Dubhe"
@@ -8310,6 +8430,7 @@ system "Zosma"
 
 system "Zubenelgenubi"
 	pos -710 353
+	government "Free Worlds"
 	habitable 945
 	link "Zubeneschamali"
 	link "Unukalhai"

@@ -36,7 +36,7 @@ government "Militia"
 
 government "Syndicate"
 	swizzle 4
-	color .5 0 1
+	color .5 .4 1
 	ally "Escort"
 	ally "Merchant"
 	enemy "Pirate"
