@@ -19,15 +19,15 @@ color "fuel" .70 .62 .43 .75
 color "light grey" .8 .8 .8 1.
 
 interface "main menu"
-	sprite "ui/compass" 0 0
-
-interface "preload"
-	sprite "ui/galaxy.jpg" 0 0
-	sprite "ui/map system" 0 0
-	sprite "ui/map planet" 0 0
-	sprite "ui/map trade" 0 0
-	sprite "ui/orbits" 0 0
-	sprite "ui/conversation" 0 0
+	sprite "_menu/compass" 0 0
+	sprite "_menu/title" 0 -170
+	sprite "_menu/g0" 0 -280
+	sprite "_menu/forest2" 0 280
+	sprite "_menu/oberon" 140 180
+	sprite "_menu/left side" -350 0
+	sprite "_menu/right side" 350 0
+	outline "ship/corvette" 350 -80
+		size 120 120
 
 interface "status"
 	position top right

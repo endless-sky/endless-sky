@@ -190,7 +190,7 @@ void SpriteQueue::Premultiply(SDL_Surface *surface, int additive)
 
 double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 {
-	for(int i = 0; !toLoad.empty() && i < 100; ++i)
+	for(int i = 0; !toLoad.empty() && i < 30; ++i)
 	{
 		Item item = toLoad.front();
 		toLoad.pop();
