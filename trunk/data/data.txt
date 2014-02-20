@@ -24,10 +24,76 @@ interface "main menu"
 	sprite "_menu/g0" 0 -280
 	sprite "_menu/forest2" 0 280
 	sprite "_menu/oberon" 140 180
-	sprite "_menu/left side" -350 0
-	sprite "_menu/right side" 350 0
-	outline "ship/corvette" 350 -80
+	sprite "_menu/side panel" -360 0
+	sprite "_menu/side panel" 360 0
+#	sprite "_menu/side panel" 0 0
+	outline "ship/corvette" 360 -90
 		size 120 120
+	label "pilot:" 260 -15
+		size 14
+		color "grey"
+		align left
+	label "Michael Zahniser" 320 -15
+		size 14
+		color "light grey"
+		align left
+	label "ship:" 260 5
+		size 14
+		color "grey"
+		align left
+	label "HMS Beagle" 320 5
+		size 14
+		color "light grey"
+		align left
+	label "planet:" 260 35
+		size 14
+		color "grey"
+		align left
+	label "Chiron" 320 35
+		size 14
+		color "light grey"
+		align left
+	label "system:" 260 55
+		size 14
+		color "grey"
+		align left
+	label "Alpha Centauri" 320 55
+		size 14
+		color "light grey"
+		align left
+	label "credits:" 260 85
+		size 14
+		color "grey"
+		align left
+	label "17.5M" 320 85
+		size 14
+		color "light grey"
+		align left
+	label "date:" 260 105
+		size 14
+		color "grey"
+		align left
+	label "19 Feb 3014" 320 105
+		size 14
+		color "light grey"
+		align left
+	label "Enter Ship" 295 146
+		size 14
+		color "light grey"
+		align center
+	label "Load / Save..." 410 146
+		size 14
+		color "light grey"
+		align center
+	# Left panel:
+	label "Quit" -425 146
+		size 14
+		color "light grey"
+		align center
+	label "Preferences..." -310 146
+		size 14
+		color "light grey"
+		align center
 
 interface "status"
 	position top right
