@@ -51,6 +51,9 @@ Engine::Engine(const GameData &data)
 		if(object.GetPlanet())
 			player->Place(object.Position());
 	
+	for(const auto &it : data.Systems())
+		playerInfo.Visit(&it.second);
+	
 	/*ships.push_back(make_shared<Ship>(*data.Ships().Get("Argosy")));
 	Ship &sidekick = *ships.back();
 	sidekick.Place(player->Position() + Point(200., 0.));

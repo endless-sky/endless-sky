@@ -30,11 +30,10 @@ MenuPanel::MenuPanel(const GameData &gameData)
 void MenuPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	gameData.Background().Draw(Point(), Point());
 	
 	const Interface *menu = gameData.Interfaces().Get("main menu");
 	menu->Draw(Information());
-	
-	gameData.Background().Draw(Point(), Point());
 	
 	int progress = static_cast<int>(gameData.Progress() * 60.);
 	
@@ -46,8 +45,8 @@ void MenuPanel::Draw() const
 		Angle a(0.);
 		for(int i = 0; i < progress; ++i)
 		{
-			float color[4] = {1.f, 1.f, 1.f, alpha};
-			PointerShader::Draw(Point(), a.Unit(), 8., 20. / alpha, 140. / alpha, color);
+			float color[4] = {alpha, alpha, alpha, 0.f};
+			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
 			a += da;
 		}
 	}
