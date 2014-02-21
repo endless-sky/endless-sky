@@ -11,6 +11,7 @@ Function definitions for the MenuPanel class.
 #include "Information.h"
 #include "Point.h"
 #include "PointerShader.h"
+#include "PreferencesPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 
@@ -20,7 +21,7 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(const GameData &gameData)
+MenuPanel::MenuPanel(GameData &gameData)
 	: gameData(gameData)
 {
 }
@@ -56,9 +57,26 @@ void MenuPanel::Draw() const
 
 bool MenuPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(gameData.Progress() == 1. && key == SDLK_ESCAPE)
+	if(gameData.Progress() < 1.)
+		return false;
+	
+	if(key == 'e' || key == gameData.Keys().Get(Key::MENU))
 		Pop(this);
+	else if(key == 'p')
+		Push(new PreferencesPanel(gameData));
+	else if(key == 'q')
+		Quit();
 	
 	return true;
 }
 
+
+
+bool MenuPanel::Click(int x, int y)
+{
+	char key = gameData.Interfaces().Get("main menu")->OnClick(Point(x, y));
+	if(key != '\0')
+		KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
+	
+	return true;
+}

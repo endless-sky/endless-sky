@@ -18,6 +18,7 @@ namespace {
 	vector<Panel *> stack;
 	mutex stackMutex;
 	
+	bool isDone = false;
 	vector<Panel *> toPush;
 	vector<Panel *> toDelete;
 	vector<Panel *> toPop;
@@ -136,6 +137,24 @@ void Panel::FreeAll()
 		delete stack.back();
 		stack.pop_back();
 	}
+}
+
+
+
+// Tell the game to quit.
+void Panel::Quit()
+{
+	lock_guard<mutex> lock(addMutex);
+	isDone = true;
+}
+
+
+
+// Check if it is time to quit.
+bool Panel::IsDone()
+{
+	lock_guard<mutex> lock(addMutex);
+	return isDone;
 }
 
 

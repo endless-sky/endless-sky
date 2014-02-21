@@ -25,7 +25,7 @@ class GameData;
 
 class MainPanel : public Panel {
 public:
-	MainPanel(const GameData &gameData);
+	MainPanel(GameData &gameData);
 	virtual ~MainPanel() {}
 	
 	virtual void Step(bool isActive);
@@ -42,7 +42,7 @@ protected:
 	
 	
 private:
-	const GameData &gameData;
+	GameData &gameData;
 	
 	Engine engine;
 	

@@ -31,7 +31,7 @@ using namespace std;
 
 
 
-MainPanel::MainPanel(const GameData &gameData)
+MainPanel::MainPanel(GameData &gameData)
 	: gameData(gameData), engine(gameData),
 	load(0.), loadSum(0.), loadCount(0)
 {

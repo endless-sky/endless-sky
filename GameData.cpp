@@ -146,6 +146,23 @@ void GameData::LoadShaders()
 	FontSet::Add(basePath + "images/font/ubuntu14r.png", 14);
 	FontSet::Add(basePath + "images/font/ubuntu18r.png", 18);
 	
+	// Make sure ~/.config/endless-sky/ exists.
+	struct stat buf;
+	
+	string configPath = getenv("HOME") + string("/.config");
+	if(stat(configPath.c_str(), &buf))
+		mkdir(configPath.c_str(), 0755);
+	
+	string prefsPath = configPath + "/endless-sky";
+	if(stat(prefsPath.c_str(), &buf))
+		mkdir(prefsPath.c_str(), 0700);
+	
+	// Load the key settings.
+	defaultKeys.Load(basePath + "keys.txt");
+	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
+	keys = defaultKeys;
+	keys.Load(keysPath);
+	
 	SpriteShader::Init();
 	OutlineShader::Init();
 	LineShader::Init();
@@ -238,6 +255,28 @@ const vector<Trade::Commodity> &GameData::Commodities() const
 const StarField &GameData::Background() const
 {
 	return background;
+}
+
+
+
+// Get the mapping of keys to commands.
+const Key &GameData::Keys() const
+{
+	return keys;
+}
+
+
+
+Key &GameData::Keys()
+{
+	return keys;
+}
+
+
+
+const Key &GameData::DefaultKeys() const
+{
+	return defaultKeys;
 }
 
 
