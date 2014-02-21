@@ -92,13 +92,13 @@ void MenuPanel::Draw() const
 	for(const string &line : credits)
 	{
 		float fade = 1.f;
-		if(y < -150)
-			fade = max(0.f, (y + 170) / 20.f);
-		else if(y > 90)
-			fade = max(0.f, (110 - y) / 20.f);
+		if(y < -145)
+			fade = max(0.f, (y + 165) / 20.f);
+		else if(y > 95)
+			fade = max(0.f, (115 - y) / 20.f);
 		if(fade)
 		{
-			Color color(((line.empty() || line[0] == ' ') ? .4 : .8) * fade, 0.);
+			Color color(((line.empty() || line[0] == ' ') ? .2 : .4) * fade, 0.);
 			font.Draw(line, Point(-465., y), color.Get());
 		}
 		y += 20;

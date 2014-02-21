@@ -9,3 +9,8 @@ Artwork
   NASA (public domain)
   USGS (public domain)
   morguefile.com (public domain)
+
+This game is open source.
+To contibute to story writing,
+artwork, or programming, visit:
+code.google.com/p/endless-sky
