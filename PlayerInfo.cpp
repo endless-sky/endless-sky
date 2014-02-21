@@ -15,8 +15,45 @@ using namespace std;
 
 
 PlayerInfo::PlayerInfo()
-	: selectedWeapon(nullptr)
+	: date(15, 11, 3013), selectedWeapon(nullptr)
 {
+}
+
+
+
+const string &PlayerInfo::FirstName() const
+{
+	return firstName;
+}
+
+
+
+const string &PlayerInfo::LastName() const
+{
+	return lastName;
+}
+
+
+
+void PlayerInfo::SetName(const string &first, const string &last)
+{
+	firstName = first;
+	lastName = last;
+}
+
+
+
+const Date &PlayerInfo::GetDate() const
+{
+	return date;
+}
+
+
+
+string PlayerInfo::IncrementDate()
+{
+	++date;
+	return accounts.Step();
 }
 
 

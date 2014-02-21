@@ -21,13 +21,13 @@ not make sense because the MenuPanel must tell the MainPanel what game to load.
 #include "Interface.h"
 
 class GameData;
+class PlayerInfo;
 
 
 
 class MenuPanel : public Panel {
 public:
-	MenuPanel(GameData &gameData);
-	~MenuPanel() {}
+	MenuPanel(GameData &gameData, PlayerInfo &playerInfo);
 	
 	virtual void Draw() const;
 	
@@ -44,6 +44,7 @@ protected:
 	
 private:
 	GameData &gameData;
+	PlayerInfo &playerInfo;
 };
 
 

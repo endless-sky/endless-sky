@@ -4,14 +4,14 @@ Michael Zahniser, 26 Oct 2013
 Main function for Endless Sky.
 */
 
-#include "Screen.h"
 
+#include "FrameTimer.h"
 #include "GameData.h"
-
-#include "Panel.h"
 #include "MainPanel.h"
 #include "MenuPanel.h"
-#include "FrameTimer.h"
+#include "Panel.h"
+#include "PlayerInfo.h"
+#include "Screen.h"
 
 #include <GL/glew.h>
 #include <SDL/SDL.h>
@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 		// Begin loading the game data.
 		GameData gameData;
 		gameData.BeginLoad(argv + 1);
+		PlayerInfo playerInfo;
 		
 		// Check how big the window can be.
 		const SDL_VideoInfo *info = SDL_GetVideoInfo();
@@ -68,8 +69,8 @@ int main(int argc, char *argv[])
 		gameData.LoadShaders();
 		
 		
-		Panel::Push(new MainPanel(gameData));
-		Panel::Push(new MenuPanel(gameData));
+		Panel::Push(new MainPanel(gameData, playerInfo));
+		Panel::Push(new MenuPanel(gameData, playerInfo));
 		
 		FrameTimer timer(60);
 		while(!Panel::IsDone())

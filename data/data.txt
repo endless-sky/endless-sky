@@ -26,13 +26,13 @@ interface "main menu"
 	sprite "_menu/oberon" 140 180
 	sprite "_menu/side panel" -360 0
 	sprite "_menu/side panel" 360 0
-	outline "ship/corvette" 360 -90
+	outline "ship sprite" 360 -90 dynamic
 		size 120 120
 	label "pilot:" 260 -15
 		size 14
 		color "grey"
 		align left
-	label "Michael Zahniser" 320 -15
+	string "pilot" 320 -15
 		size 14
 		color "light grey"
 		align left
@@ -40,7 +40,7 @@ interface "main menu"
 		size 14
 		color "grey"
 		align left
-	label "HMS Beagle" 320 5
+	string "ship" 320 5
 		size 14
 		color "light grey"
 		align left
@@ -48,7 +48,7 @@ interface "main menu"
 		size 14
 		color "grey"
 		align left
-	label "Chiron" 320 35
+	string "planet" 320 35
 		size 14
 		color "light grey"
 		align left
@@ -56,7 +56,7 @@ interface "main menu"
 		size 14
 		color "grey"
 		align left
-	label "Alpha Centauri" 320 55
+	string "system" 320 55
 		size 14
 		color "light grey"
 		align left
@@ -64,7 +64,7 @@ interface "main menu"
 		size 14
 		color "grey"
 		align left
-	label "17.5M" 320 85
+	string "credits" 320 85
 		size 14
 		color "light grey"
 		align left
@@ -72,32 +72,32 @@ interface "main menu"
 		size 14
 		color "grey"
 		align left
-	label "19 Feb 3014" 320 105
+	string "date" 320 105
 		size 14
 		color "light grey"
 		align left
-	button e 295 155
+	button e 425 155
 		size 90 30
-	label "Enter Ship" 295 146
+	label "Enter Ship" 425 146
 		size 14
 		color "light grey"
 		align center
-	button l 410 155
+	button l 310 155
 		size 120 30
-	label "Load / Save..." 410 146
+	label "Load / Save..." 310 146
 		size 14
 		color "light grey"
 		align center
 	# Left panel:
-	button q -425 155
+	button q -295 155
 		size 90 30
-	label "Quit" -425 146
+	label "Quit" -295 146
 		size 14
 		color "light grey"
 		align center
-	button p -310 155
+	button p -410 155
 		size 120 30
-	label "Preferences..." -310 146
+	label "Preferences..." -410 146
 		size 14
 		color "light grey"
 		align center

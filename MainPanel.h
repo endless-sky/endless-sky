@@ -9,22 +9,16 @@ Class representing the main panel (i.e. the view of your ship moving around).
 
 #include "Panel.h"
 
-#include "AsteroidField.h"
-#include "Date.h"
-#include "DrawList.h"
 #include "Engine.h"
-#include "Information.h"
-#include "PlayerInfo.h"
-#include "Ship.h"
-#include "System.h"
 
 class GameData;
+class PlayerInfo;
 
 
 
 class MainPanel : public Panel {
 public:
-	MainPanel(GameData &gameData);
+	MainPanel(GameData &gameData, PlayerInfo &playerInfo);
 	virtual ~MainPanel() {}
 	
 	virtual void Step(bool isActive);
@@ -42,6 +36,7 @@ protected:
 	
 private:
 	GameData &gameData;
+	PlayerInfo &playerInfo;
 	
 	Engine engine;
 	

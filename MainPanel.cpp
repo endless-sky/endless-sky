@@ -31,8 +31,8 @@ using namespace std;
 
 
 
-MainPanel::MainPanel(GameData &gameData)
-	: gameData(gameData), engine(gameData),
+MainPanel::MainPanel(GameData &gameData, PlayerInfo &playerInfo)
+	: gameData(gameData), playerInfo(playerInfo), engine(gameData, playerInfo),
 	load(0.), loadSum(0.), loadCount(0)
 {
 }
@@ -81,7 +81,7 @@ bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 	if(key == gameData.Keys().Get(Key::MAP))
 		Push(engine.Map());
 	else if(key == gameData.Keys().Get(Key::MENU))
-		Push(new MenuPanel(gameData));
+		Push(new MenuPanel(gameData, playerInfo));
 	
 	return true;
 }
