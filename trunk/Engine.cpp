@@ -108,7 +108,7 @@ void Engine::Step(bool isActive)
 		const Ship *player = playerInfo.GetShip();
 		position = player->Position();
 		velocity = player->Velocity();
-		ai.UpdateKeys(&playerInfo);
+		ai.UpdateKeys(data.Keys().State(), &playerInfo);
 		if(!ai.Message().empty())
 			AddMessage(ai.Message());
 		

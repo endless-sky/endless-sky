@@ -72,6 +72,14 @@ int Key::State() const
 
 
 
+// Get the bit associated with the given command.
+int Key::Bit(Command command)
+{
+	return (1 << command);
+}
+
+
+
 // Load the key preferences from a file.
 void Key::Load(const string &path)
 {

@@ -45,6 +45,8 @@ public:
 	
 	// Get the current key state, as a bitmask.
 	int State() const;
+	// Get the bit associated with the given command.
+	static int Bit(Command command);
 	
 	// Load the key preferences from a file.
 	void Load(const std::string &path);

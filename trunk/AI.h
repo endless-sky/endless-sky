@@ -7,9 +7,6 @@ Interface for ship AIs.
 #ifndef AI_H_INCLUDED
 #define AI_H_INCLUDED
 
-// deprecated
-#include "KeyStatus.h"
-
 #include <list>
 #include <memory>
 #include <string>
@@ -25,7 +22,7 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys(PlayerInfo *info);
+	void UpdateKeys(int keys, PlayerInfo *info);
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
 	
 	// Get any messages (such as "you cannot land here!") to display.
@@ -62,9 +59,9 @@ private:
 private:
 	int step;
 	
-	KeyStatus keys;
-	mutable KeyStatus sticky;
-	bool wasSelecting;
+	int keyDown;
+	int keyHeld;
+	int keyStuck;
 	
 	std::string message;
 };
