@@ -217,12 +217,12 @@ void Conversation::Goto(const string &label, int node, int choice)
 // less than 0 means it is an outcome, and 1 means no match.
 int Conversation::TokenIndex(const string &token)
 {
-	if(token == "goto")
-		return 0;
 	if(token == "accept")
 		return ACCEPT;
 	if(token == "decline")
 		return DECLINE;
 	if(token == "die")
 		return DIE;
+	
+	return 0;
 }

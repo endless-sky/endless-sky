@@ -16,7 +16,7 @@ namespace {
 	static const double SECONDS_TO_DAYS = 1. / SECONDS_PER_DAY;
 	
 	// The string will never be longer than 29 characters, plus a '\0'.
-	static const int MAX_SIZE = 32;
+	static const size_t MAX_SIZE = 32;
 }
 
 

@@ -25,7 +25,7 @@ public:
 	
 	// Get or change the player's credits.
 	int Credits() const;
-	int AddCredits(int value);
+	void AddCredits(int value);
 	void PayExtra(int mortgage, int amount);
 	
 	// Step forward one day, and return a string summarizing payments made.

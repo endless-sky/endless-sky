@@ -361,7 +361,7 @@ Interface::BarSpec::BarSpec(const string &name, const Point &position)
 
 
 Interface::ButtonSpec::ButtonSpec(char key, const Point &position)
-	: key(key), position(position)
+	: position(position), key(key)
 {
 }
 

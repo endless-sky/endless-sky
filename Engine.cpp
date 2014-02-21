@@ -27,7 +27,7 @@ Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 	calcTickTock(false), drawTickTock(false), terminate(false),
 	step(0), shouldLand(false), hasLanded(false),
 	asteroids(data),
-	load(0.), loadSum(0.), loadCount(0)
+	load(0.), loadCount(0), loadSum(0.)
 {
 	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
 	Ship *player = &*ships.back();
@@ -598,10 +598,7 @@ void Engine::CalculateStep()
 		int index = rand() % player->GetSystem()->Links().size();
 		const System *source = player->GetSystem()->Links()[index];
 		
-		int type = 0;
-		for(const auto &it : data.Ships())
-			++type;
-		type = rand() % type;
+		int type = rand() % data.Ships().size();
 		for(const auto &it : data.Ships())
 			if(!type--)
 				ships.push_back(shared_ptr<Ship>(new Ship(it.second)));

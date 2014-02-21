@@ -13,7 +13,7 @@ Function definitions for the Account class.
 using namespace std;
 
 namespace {
-	static const int HISTORY = 100;
+	static const unsigned HISTORY = 100;
 }
 
 
@@ -34,7 +34,7 @@ int Account::Credits() const
 
 
 
-int Account::AddCredits(int value)
+void Account::AddCredits(int value)
 {
 	credits += value;
 }
@@ -43,7 +43,7 @@ int Account::AddCredits(int value)
 
 void Account::PayExtra(int mortgage, int amount)
 {
-	if(mortgage >= mortgages.size() || amount > credits
+	if(static_cast<unsigned>(mortgage) >= mortgages.size() || amount > credits
 			|| amount > mortgages[mortgage].Principal())
 		return;
 	

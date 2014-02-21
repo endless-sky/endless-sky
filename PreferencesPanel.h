@@ -36,12 +36,13 @@ private:
 	
 	
 private:
+	GameData &data;
+	
 	int editing;
 	int selected;
 	mutable int firstY;
 	mutable int buttonX;
 	mutable int buttonY;
-	GameData &data;
 };
 
 

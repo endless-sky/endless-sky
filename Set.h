@@ -29,6 +29,8 @@ public:
 	typename std::map<std::string, Type>::iterator end() { return data.end(); }
 	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
 	
+	int size() const { return data.size(); }
+	
 	
 private:
 	mutable std::map<std::string, Type> data;

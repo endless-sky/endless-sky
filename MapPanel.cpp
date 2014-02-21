@@ -71,7 +71,6 @@ void MapPanel::Draw() const
 	static const float dimColor[4] = {.1f, .1f, .1f, 0.f};
 	DotShader::Draw(current->Position() + center, 100.5, 99.5, dimColor);
 	
-	static const float selectedColor[4] = {1.f, 1.f, 1.f, 1.f};
 	static const float closeColor[4] = {.6f, .6f, .6f, .6f};
 	static const float farColor[4] = {.3f, .3f, .3f, .3f};
 	for(const auto &it : systems)
@@ -227,7 +226,7 @@ void MapPanel::Draw() const
 	for(const Trade::Commodity &commodity : data.Commodities())
 	{
 		bool isSelected = false;
-		if(this->commodity >= 0 && this->commodity < data.Commodities().size())
+		if(static_cast<unsigned>(this->commodity) < data.Commodities().size())
 			isSelected = (&commodity == &data.Commodities()[this->commodity]);
 		const float *color = isSelected ? closeColor : farColor;
 		

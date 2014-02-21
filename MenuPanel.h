@@ -49,7 +49,7 @@ private:
 	PlayerInfo &playerInfo;
 	
 	std::vector<std::string> credits;
-	int scroll;
+	unsigned scroll;
 };
 
 
