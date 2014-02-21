@@ -78,9 +78,9 @@ void MainPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == 'm')
+	if(key == gameData.Keys().Get(Key::MAP))
 		Push(engine.Map());
-	else if(key == SDLK_ESCAPE)
+	else if(key == gameData.Keys().Get(Key::MENU))
 		Push(new MenuPanel(gameData));
 	
 	return true;
