@@ -140,7 +140,7 @@ namespace {
 		
 		for(int i = first + 1; true; ++i)
 		{
-			if(i == p.size())
+			if(static_cast<unsigned>(i) == p.size())
 				i = 0;
 			if(i == last)
 				break;
@@ -179,7 +179,7 @@ namespace {
 		// bottom-most ones.
 		int top = -1;
 		int bottom = -1;
-		for(int i = 0; i < raw.size(); ++i)
+		for(int i = 0; static_cast<unsigned>(i) < raw.size(); ++i)
 			if(raw[i].X() >= -.25 && raw[i].X() < .25)
 			{
 				if(top == -1)

@@ -51,11 +51,13 @@ void DataFile::Load(istream &in)
 	string line;
 	while(getline(in, line))
 	{
+		int length = line.length();
+		
 		int white = 0;
-		while(white < line.length() && line[white] <= ' ')
+		while(white < length && line[white] <= ' ')
 			++white;
 		
-		if(white == line.length() || line[white] == '#')
+		if(white == length || line[white] == '#')
 			continue;
 		while(whiteStack.back() >= white)
 		{
@@ -71,22 +73,22 @@ void DataFile::Load(istream &in)
 		whiteStack.push_back(white);
 		
 		// Tokenize the line. Skip comments and empty lines.
-		if(white != line.length() && line[white] != '#')
+		if(white != length && line[white] != '#')
 		{
 			int i = white;
-			while(i != line.length())
+			while(i != length)
 			{
 				bool isQuoted = (line[i] == '"');
 				i += isQuoted;
 				
 				node.tokens.push_back(string());
-				while(i != line.length() && (isQuoted ? (line[i] != '"') : (line[i] > ' ')))
+				while(i != length && (isQuoted ? (line[i] != '"') : (line[i] > ' ')))
 					node.tokens.back() += line[i++];
 				
-				if(i != line.length())
+				if(i != length)
 				{
 					i += isQuoted;
-					while(i != line.length() && line[i] <= ' ')
+					while(i != length && line[i] <= ' ')
 						++i;
 				}
 			}
@@ -121,7 +123,7 @@ int DataFile::Node::Size() const
 
 const string &DataFile::Node::Token(int index) const
 {
-	assert(index >= 0 && index < tokens.size());
+	assert(static_cast<unsigned>(index) < tokens.size());
 	
 	return tokens[index];
 }
@@ -130,7 +132,7 @@ const string &DataFile::Node::Token(int index) const
 
 double DataFile::Node::Value(int index) const
 {
-	assert(index >= 0 && index < tokens.size());
+	assert(static_cast<unsigned>(index) < tokens.size());
 	
 	double value = numeric_limits<double>::quiet_NaN();
 	istringstream(tokens[index]) >> value;

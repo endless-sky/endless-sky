@@ -24,7 +24,7 @@ Sprite::Sprite()
 
 void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
 {
-	if(!surface)
+	if(!surface || frame < 0)
 		return;
 	
 	GLenum format;
@@ -41,7 +41,7 @@ void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
 	width = max(width, static_cast<float>(surface->w));
 	height = max(height, static_cast<float>(surface->h));
 	
-	if(textures.size() <= frame)
+	if(textures.size() <= static_cast<unsigned>(frame))
 		textures.resize(frame + 1, 0);
 	glGenTextures(1, &textures[frame]);
 	glBindTexture(GL_TEXTURE_2D, textures[frame]);
@@ -63,7 +63,7 @@ void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
 	
 	if(mask)
 	{
-		if(masks.size() <= frame)
+		if(masks.size() <= static_cast<unsigned>(frame))
 			masks.resize(frame + 1);
 		masks[frame] = move(*mask);
 		delete mask;

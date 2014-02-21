@@ -62,9 +62,6 @@ void StarField::Draw(Point pos, Point vel) const
 			Point off = pos - Point(gx, gy);
 			
 			const Tile &tile = tiles[(gx & widthMod) / 256][(gy & widthMod) / 256];
-			auto it = tile.first;
-			auto end = tile.last;
-			
 			for(auto it = tile.first; it != tile.last; it += 3)
 			{
 				GLfloat translate[2] = {

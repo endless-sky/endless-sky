@@ -110,13 +110,13 @@ bool TradingPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
-	else if(key == SDLK_DOWN && selectedRow < data.Commodities().size() - 1)
+	else if(key == SDLK_DOWN && selectedRow < static_cast<int>(data.Commodities().size()) - 1)
 		++selectedRow;
 	else if(key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
 		Buy();
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Sell();
-	else if(key == 'm')
+	else if(key == data.Keys().Get(Key::MAP))
 		Push(new MapPanel(data, player, selectedRow));
 	else
 		return false;

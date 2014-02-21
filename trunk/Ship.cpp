@@ -24,7 +24,7 @@ Ship::Ship()
 	: government(nullptr), isInSystem(true),
 	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
 	cargoMass(0),
-	shields(0.), hull(0.), energy(0.), fuel(0.), heat(0.),
+	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
 	currentSystem(nullptr),
 	zoom(1.), landingPlanet(nullptr),
 	hyperspaceCount(0), hyperspaceSystem(nullptr),
@@ -245,10 +245,6 @@ bool Ship::Move(std::list<Effect> &effects)
 		fuel -= (hyperspaceSystem != nullptr);
 		
 		// Enter hyperspace.
-		double maxVelocity = MaxVelocity();
-		double acceleration = Acceleration();
-		double turnRate = TurnRate();
-		
 		int direction = (hyperspaceSystem != nullptr) - (hyperspaceSystem == nullptr);
 		hyperspaceCount += direction;
 		static const int HYPER_C = 100;
@@ -276,7 +272,7 @@ bool Ship::Move(std::list<Effect> &effects)
 		}
 		velocity += (HYPER_A * direction) * angle.Unit();
 		position += velocity;
-		if(velocity.Length() <= maxVelocity && !hyperspaceSystem)
+		if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
 			hyperspaceCount = 0;
 		
 		return true;

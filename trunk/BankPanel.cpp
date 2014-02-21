@@ -44,10 +44,10 @@ void BankPanel::Step(bool isActive)
 {
 	if(isActive && amount)
 	{
-		if(selectedRow >= 0 && selectedRow < player.Accounts().Mortgages().size())
-			player.Accounts().PayExtra(selectedRow, amount);
-		else
+		if(static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size())
 			player.Accounts().AddMortgage(amount);
+		else
+			player.Accounts().PayExtra(selectedRow, amount);
 		
 		amount = 0;
 	}
@@ -58,16 +58,12 @@ void BankPanel::Step(bool isActive)
 void BankPanel::Draw() const
 {
 	Color back(.1, .1, .1, .1);
-	if(selectedRow >= 0 && selectedRow < player.Accounts().Mortgages().size())
-	{
-		FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33),
-			Point(480., 20.), back.Get());
-	}
+	if(static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size())
+		FillShader::Fill(
+			Point(130., FIRST_Y + 238), Point(100., 20.), back.Get());
 	else
-	{
-		FillShader::Fill(Point(130., FIRST_Y + 238),
-			Point(100., 20.), back.Get());
-	}
+		FillShader::Fill(
+			Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back.Get());
 	
 	const Font &font = FontSet::Get(14);
 	Color unselected(.5, .5, .5, 1.);
@@ -137,7 +133,8 @@ bool BankPanel::KeyDown(SDLKey key, SDLMod mod)
 		--selectedRow;
 	else if(key == SDLK_DOWN && selectedRow < maxRow)
 		++selectedRow;
-	else if(key == SDLK_RETURN && selectedRow < player.Accounts().Mortgages().size())
+	else if(key == SDLK_RETURN
+			&& static_cast<unsigned>(selectedRow) < player.Accounts().Mortgages().size())
 		Push(new CreditsPanel("Pay how many credits?", &amount, min(
 			player.Accounts().Credits(),
 			player.Accounts().Mortgages()[selectedRow].Principal())));

@@ -291,7 +291,7 @@ const vector<Armament::Weapon> &Armament::Get() const
 // not ready, return false.
 void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
 {
-	if(index < 0 || index >= weapons.size() || !weapons[index].IsReady())
+	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return;
 	
 	auto it = streamReload.find(weapons[index].GetOutfit());
@@ -307,7 +307,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
 
 bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects)
 {
-	if(index < 0 || index >= weapons.size() || !weapons[index].IsReady())
+	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return false;
 	
 	return weapons[index].FireAntiMissile(ship, projectile, effects);

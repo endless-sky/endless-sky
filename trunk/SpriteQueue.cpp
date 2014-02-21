@@ -20,7 +20,7 @@ using namespace std;
 
 
 SpriteQueue::SpriteQueue()
-	: threads(3), added(0), completed(0)
+	: added(0), completed(0), threads(3)
 {
 	for(thread &t : threads)
 		t = thread(ref(*this));
