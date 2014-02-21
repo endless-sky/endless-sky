@@ -8,6 +8,7 @@ Function definitions for the AI class.
 
 #include "Armament.h"
 #include "Government.h"
+#include "Key.h"
 #include "Mask.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -23,24 +24,21 @@ using namespace std;
 
 
 AI::AI()
-	: step(0), wasSelecting(false)
+	: step(0), keyDown(0), keyHeld(0), keyStuck(0)
 {
 }
 
 
 
-void AI::UpdateKeys(PlayerInfo *info)
+void AI::UpdateKeys(int keys, PlayerInfo *info)
 {
-	keys.Update();
+	keyDown = keys & !keyHeld;
+	keyHeld = keys;
+	if(keys)
+		keyStuck = 0;
 	
-	if(keys.Status() & KeyStatus::SELECT)
-	{
-		if(!wasSelecting)
-			info->SelectNext();
-		wasSelecting = true;
-	}
-	else
-		wasSelecting = false;
+	if(keyDown & Key::Bit(Key::SELECT))
+		info->SelectNext();
 }
 
 
@@ -489,7 +487,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	if(info.HasTravelPlan())
 		control.SetTargetSystem(info.TravelPlan().back());
 	
-	if(keys.Status() & KeyStatus::TARGET_NEAR)
+	if(keyDown & Key::Bit(Key::NEAREST))
 	{
 		double closest = numeric_limits<double>::infinity();
 		bool sawEnemy = false;
@@ -507,7 +505,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			}
 	}
 	
-	if(keys.Status() & KeyStatus::LAND)
+	if(keyHeld & Key::Bit(Key::LAND))
 	{
 		// If the player is right over an uninhabited planet, display a message
 		// explaining why they cannot land there.
@@ -534,16 +532,18 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		}
 	}
 	
-	if(keys.Status())
+	if(keyHeld)
 	{
-		if(keys.Status() & KeyStatus::BACK)
+		if(keyHeld & Key::Bit(Key::BACK))
 			control.SetTurnCommand(TurnBackward(ship));
 		else
-			control.SetTurnCommand(keys.Turn());
+			control.SetTurnCommand(
+				((keyHeld & Key::Bit(Key::RIGHT)) != 0) -
+				((keyHeld & Key::Bit(Key::LEFT)) != 0));
 		
-		if(keys.Status() & KeyStatus::THRUST)
-			control.SetThrustCommand(keys.Thrust());
-		if(keys.Status() & KeyStatus::PRIMARY)
+		if(keyHeld & Key::Bit(Key::FORWARD))
+			control.SetThrustCommand(1.);
+		if(keyHeld & Key::Bit(Key::PRIMARY))
 		{
 			int index = 0;
 			for(const Armament::Weapon &weapon : ship.Weapons())
@@ -554,7 +554,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				++index;
 			}
 		}
-		if(keys.Status() & KeyStatus::SECONDARY)
+		if(keyHeld & Key::Bit(Key::SECONDARY))
 		{
 			int index = 0;
 			for(const Armament::Weapon &weapon : ship.Weapons())
@@ -566,23 +566,23 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			}
 		}
 		
-		sticky = keys;
+		keyStuck = keyHeld;
 	}
-	else if((sticky.Status() & KeyStatus::LAND) && ship.GetTargetPlanet())
+	else if((keyStuck & Key::Bit(Key::LAND)) && ship.GetTargetPlanet())
 	{
 		if(ship.HasLanded())
-			sticky.Clear();
+			keyStuck = 0;
 		else
 		{
 			MoveToPlanet(control, ship);
 			control.SetLandCommand();
 		}
 	}
-	else if((sticky.Status() & KeyStatus::HYPERSPACE) && ship.GetTargetSystem())
+	else if((keyStuck & Key::Bit(Key::JUMP)) && ship.GetTargetSystem())
 	{
 		PrepareForHyperspace(control, ship);
 		control.SetHyperspaceCommand();
 	}
 	else
-		sticky.Clear();
+		keyStuck = 0;
 }

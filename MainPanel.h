@@ -14,7 +14,6 @@ Class representing the main panel (i.e. the view of your ship moving around).
 #include "DrawList.h"
 #include "Engine.h"
 #include "Information.h"
-#include "KeyStatus.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
