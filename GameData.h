@@ -54,6 +54,8 @@ public:
 	Key &Keys();
 	const Key &DefaultKeys() const;
 	
+	const std::string &ResourcePath() const;
+	
 	bool ShouldShowLoad() const;
 	
 	

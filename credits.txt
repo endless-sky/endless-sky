@@ -1,0 +1,11 @@
+Welcome to Endless Sky!
+version 0.5.0
+
+Programming
+  Michael Zahniser
+
+Artwork
+  Michael Zahniser
+  NASA (public domain)
+  USGS (public domain)
+  morguefile.com (public domain)

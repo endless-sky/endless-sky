@@ -18,7 +18,8 @@ not make sense because the MenuPanel must tell the MainPanel what game to load.
 
 #include "Panel.h"
 
-#include "Interface.h"
+#include <string>
+#include <vector>
 
 class GameData;
 class PlayerInfo;
@@ -29,6 +30,7 @@ class MenuPanel : public Panel {
 public:
 	MenuPanel(GameData &gameData, PlayerInfo &playerInfo);
 	
+	virtual void Step(bool isActive);
 	virtual void Draw() const;
 	
 	// Return true if this is a full-screen panel, so there is no point in
@@ -45,6 +47,9 @@ protected:
 private:
 	GameData &gameData;
 	PlayerInfo &playerInfo;
+	
+	std::vector<std::string> credits;
+	int scroll;
 };
 
 

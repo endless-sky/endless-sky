@@ -6,6 +6,8 @@ Function definitions for the MenuPanel class.
 
 #include "MenuPanel.h"
 
+#include "Font.h"
+#include "FontSet.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
@@ -16,17 +18,36 @@ Function definitions for the MenuPanel class.
 #include "Sprite.h"
 #include "SpriteShader.h"
 
+#include <fstream>
+
 using namespace std;
 
 namespace {
 	static float alpha = 1.;
+	static const int scrollSpeed = 2;
 }
 
 
 
 MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo)
-	: gameData(gameData), playerInfo(playerInfo)
+	: gameData(gameData), playerInfo(playerInfo), scroll(0)
 {
+	ifstream in(gameData.ResourcePath() + "credits.txt");
+	string line;
+	while(getline(in, line))
+		credits.push_back(line);
+}
+
+
+
+void MenuPanel::Step(bool isActive)
+{
+	if(isActive && alpha < 1.)
+	{
+		++scroll;
+		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
+			scroll = 0;
+	}
 }
 
 
@@ -64,6 +85,23 @@ void MenuPanel::Draw() const
 			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
 			a += da;
 		}
+	}
+	
+	const Font &font = FontSet::Get(14);
+	int y = 120 - scroll / scrollSpeed;
+	for(const string &line : credits)
+	{
+		float fade = 1.f;
+		if(y < -150)
+			fade = max(0.f, (y + 170) / 20.f);
+		else if(y > 90)
+			fade = max(0.f, (110 - y) / 20.f);
+		if(fade)
+		{
+			Color color(((line.empty() || line[0] == ' ') ? .4 : .8) * fade, 0.);
+			font.Draw(line, Point(-465., y), color.Get());
+		}
+		y += 20;
 	}
 }
 

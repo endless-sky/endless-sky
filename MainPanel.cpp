@@ -6,26 +6,14 @@ Function definitions for the MainPanel class.
 
 #include "MainPanel.h"
 
-#include "Angle.h"
-#include "DotShader.h"
-#include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "Interface.h"
-#include "MapPanel.h"
 #include "MenuPanel.h"
-#include "PlanetPanel.h"
-#include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "StarField.h"
 
 #include <string>
-#include <limits>
 
 using namespace std;
 
