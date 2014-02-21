@@ -78,29 +78,41 @@ interface "main menu"
 		align left
 	button e 425 155
 		size 90 30
-	label "Enter Ship" 425 146
+	label "Enter Ship" 425 148
 		size 14
 		color "light grey"
 		align center
 	button l 310 155
 		size 120 30
-	label "Load / Save..." 310 146
+	label "Load / Save..." 310 148
 		size 14
 		color "light grey"
 		align center
 	# Left panel:
 	button q -295 155
 		size 90 30
-	label "Quit" -295 146
+	label "Quit" -295 148
 		size 14
 		color "light grey"
 		align center
 	button p -410 155
 		size 120 30
-	label "Preferences..." -410 146
+	label "Preferences..." -410 148
 		size 14
 		color "light grey"
 		align center
+
+interface "preferences"
+	sprite "_menu/g0" 0 -280
+	sprite "_menu/forest2" 0 280
+	sprite "_menu/oberon" 140 180
+	sprite "ui/keys panel" 0 0
+	label "Back to Menu..." 150 228
+		size 14
+		color "light grey"
+		align center
+	button m 150 235
+		size 120 30
 
 interface "status"
 	position top right

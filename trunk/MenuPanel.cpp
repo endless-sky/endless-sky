@@ -90,7 +90,7 @@ bool MenuPanel::Click(int x, int y)
 {
 	char key = gameData.Interfaces().Get("main menu")->OnClick(Point(x, y));
 	if(key != '\0')
-		KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
+		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
 	
 	return true;
 }
