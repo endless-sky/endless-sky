@@ -37,6 +37,11 @@ public:
 	// Delete all the panels.
 	static void FreeAll();
 	
+	// Tell the game to quit.
+	static void Quit();
+	// Check if it is time to quit.
+	static bool IsDone();
+	
 	
 public:
 	// Make the destructor virtual just in case any derived class needs it.

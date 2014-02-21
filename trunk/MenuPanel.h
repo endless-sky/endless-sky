@@ -26,7 +26,7 @@ class GameData;
 
 class MenuPanel : public Panel {
 public:
-	MenuPanel(const GameData &gameData);
+	MenuPanel(GameData &gameData);
 	~MenuPanel() {}
 	
 	virtual void Draw() const;
@@ -39,10 +39,11 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDLKey key, SDLMod mod);
+	virtual bool Click(int x, int y);
 	
 	
 private:
-	const GameData &gameData;
+	GameData &gameData;
 };
 
 

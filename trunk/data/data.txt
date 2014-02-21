@@ -26,7 +26,6 @@ interface "main menu"
 	sprite "_menu/oberon" 140 180
 	sprite "_menu/side panel" -360 0
 	sprite "_menu/side panel" 360 0
-#	sprite "_menu/side panel" 0 0
 	outline "ship/corvette" 360 -90
 		size 120 120
 	label "pilot:" 260 -15
@@ -77,19 +76,27 @@ interface "main menu"
 		size 14
 		color "light grey"
 		align left
+	button e 295 155
+		size 90 30
 	label "Enter Ship" 295 146
 		size 14
 		color "light grey"
 		align center
+	button l 410 155
+		size 120 30
 	label "Load / Save..." 410 146
 		size 14
 		color "light grey"
 		align center
 	# Left panel:
+	button q -425 155
+		size 90 30
 	label "Quit" -425 146
 		size 14
 		color "light grey"
 		align center
+	button p -310 155
+		size 120 30
 	label "Preferences..." -310 146
 		size 14
 		color "light grey"

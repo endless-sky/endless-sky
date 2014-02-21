@@ -12,6 +12,7 @@ Class storing all the data used in the game: sprites, data files, etc.
 #include "Effect.h"
 #include "Government.h"
 #include "Interface.h"
+#include "Key.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "Sale.h"
@@ -48,6 +49,11 @@ public:
 	
 	const StarField &Background() const;
 	
+	// Get the mapping of keys to commands.
+	const Key &Keys() const;
+	Key &Keys();
+	const Key &DefaultKeys() const;
+	
 	bool ShouldShowLoad() const;
 	
 	
@@ -73,6 +79,9 @@ private:
 	Set<Sale<Outfit>> outfitSales;
 	
 	Trade trade;
+	
+	Key keys;
+	Key defaultKeys;
 	
 	StarField background;
 	

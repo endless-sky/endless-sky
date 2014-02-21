@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 		Panel::Push(new MenuPanel(gameData));
 		
 		FrameTimer timer(60);
-		while(true)
+		while(!Panel::IsDone())
 		{
 			bool done = false;
 			
