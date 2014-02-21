@@ -22,15 +22,17 @@ using namespace std;
 
 
 
-Engine::Engine(const GameData &data)
-	: data(data), calcTickTock(false), drawTickTock(false), terminate(false),
-	today(15, 11, 3013), step(0), shouldLand(false), hasLanded(false),
+Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
+	: data(data), playerInfo(playerInfo),
+	calcTickTock(false), drawTickTock(false), terminate(false),
+	step(0), shouldLand(false), hasLanded(false),
 	asteroids(data),
 	load(0.), loadSum(0.), loadCount(0)
 {
 	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
 	Ship *player = &*ships.back();
 	playerInfo.AddShip(ships.back());
+	playerInfo.SetName("Captain", "Nemo");
 	
 	playerGovernment = data.Governments().Get("Escort");
 	
@@ -144,7 +146,7 @@ void Engine::Step(bool isActive)
 		
 		info.SetSprite("player sprite", player->GetSprite().GetSprite());
 		info.SetString("location", currentSystem->Name());
-		info.SetString("date", today.ToString());
+		info.SetString("date", playerInfo.GetDate().ToString());
 		info.SetBar("fuel", player->Fuel());
 		info.SetBar("energy", player->Energy());
 		info.SetBar("heat", player->Heat());
@@ -353,11 +355,11 @@ void Engine::EnterSystem()
 	if(!player)
 		return;
 	
-	++today;
+	AddMessage(playerInfo.IncrementDate());
+	const Date &today = playerInfo.GetDate();
 	AddMessage("Entering the " + player->GetSystem()->Name() + " system on "
 		+ today.ToString() + (player->GetSystem()->IsInhabited() ?
 			"." : ". No inhabited planets detected."));
-	AddMessage(playerInfo.Accounts().Step());
 	
 	player->GetSystem()->SetDate(today);
 	for(const auto &it : data.Systems())

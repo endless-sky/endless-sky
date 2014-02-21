@@ -9,11 +9,14 @@ Function definitions for the MenuPanel class.
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
+#include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
+
+using namespace std;
 
 namespace {
 	static float alpha = 1.;
@@ -21,8 +24,8 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(GameData &gameData)
-	: gameData(gameData)
+MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo)
+	: gameData(gameData), playerInfo(playerInfo)
 {
 }
 
@@ -33,8 +36,19 @@ void MenuPanel::Draw() const
 	glClear(GL_COLOR_BUFFER_BIT);
 	gameData.Background().Draw(Point(), Point());
 	
+	const Ship *player = playerInfo.GetShip();
+	Information info;
+	info.SetSprite("ship sprite", player->GetSprite().GetSprite());
+	info.SetString("pilot", playerInfo.FirstName() + " " + playerInfo.LastName());
+	info.SetString("ship", player->Name());
+	if(player->GetTargetPlanet() && player->GetTargetPlanet()->GetPlanet())
+		info.SetString("planet", player->GetTargetPlanet()->GetPlanet()->Name());
+	info.SetString("system", player->GetSystem()->Name());
+	info.SetString("credits", to_string(playerInfo.Accounts().Credits()));
+	info.SetString("date", playerInfo.GetDate().ToString());
+	
 	const Interface *menu = gameData.Interfaces().Get("main menu");
-	menu->Draw(Information());
+	menu->Draw(info);
 	
 	int progress = static_cast<int>(gameData.Progress() * 60.);
 	

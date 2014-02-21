@@ -9,10 +9,12 @@ ship(s) they own and with what outfits, what systems they have visited, etc.
 #define PLAYER_INFO_H_INCLUDED
 
 #include "Account.h"
+#include "Date.h"
 
 #include <memory>
 #include <set>
 #include <vector>
+#include <string>
 
 class Outfit;
 class Ship;
@@ -23,6 +25,14 @@ class System;
 class PlayerInfo {
 public:
 	PlayerInfo();
+	
+	const std::string &FirstName() const;
+	const std::string &LastName() const;
+	void SetName(const std::string &first, const std::string &last);
+	
+	const Date &GetDate() const;
+	// Increment the date, and return a string summarizing daily payments.
+	std::string IncrementDate();
 	
 	const Account &Accounts() const;
 	Account &Accounts();
@@ -52,6 +62,11 @@ public:
 	
 	
 private:
+	std::string firstName;
+	std::string lastName;
+	std::string path;
+	
+	Date date;
 	Account accounts;
 	
 	std::vector<std::shared_ptr<Ship>> ships;
