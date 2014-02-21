@@ -281,6 +281,20 @@ const Key &GameData::DefaultKeys() const
 
 
 
+const string &GameData::ResourcePath() const
+{
+	return basePath;
+}
+
+
+
+bool GameData::ShouldShowLoad() const
+{
+	return showLoad;
+}
+
+
+
 void GameData::FindFiles(const string &path)
 {
 	struct stat buf;
@@ -383,11 +397,4 @@ string GameData::Name(const string &path)
 		end = path.length() - 4;
 	
 	return path.substr(0, end);
-}
-
-
-
-bool GameData::ShouldShowLoad() const
-{
-	return showLoad;
 }
