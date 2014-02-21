@@ -11,6 +11,8 @@ Function definitions for the PreferencesPanel class.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Information.h"
+#include "Interface.h"
 
 #include <GL/glew.h>
 
@@ -32,6 +34,10 @@ PreferencesPanel::PreferencesPanel(GameData &data)
 void PreferencesPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	data.Background().Draw(Point(), Point());
+	
+	const Interface *menu = data.Interfaces().Get("preferences");
+	menu->Draw(Information());
 	
 	Color dim(.1, 0.);
 	Color medium(.5, 0.);
@@ -39,17 +45,17 @@ void PreferencesPanel::Draw() const
 	
 	const Font &font = FontSet::Get(14);
 	
-	Point pos(0., -10. * (Key::END - Key::MENU) - 30.);
+	Point pos(0., -10. * (Key::END - Key::MENU) - 25.);
 	{
 		Point dOff(-100 - font.Width("Default"), 0.);
-		font.Draw("Default", pos + dOff, bright.Get());
+		font.Draw("Default", pos + dOff, medium.Get());
 		
 		Point cOff(-20 - font.Width("Key"), 0.);
-		font.Draw("Key", pos + cOff, bright.Get());
+		font.Draw("Key", pos + cOff, medium.Get());
 		
-		font.Draw("Action", pos, bright.Get());
+		font.Draw("Action", pos, medium.Get());
 		
-		FillShader::Fill(pos + Point(0., 20.), Point(400., 1.), bright.Get());
+		FillShader::Fill(pos + Point(0., 20.), Point(400., 1.), medium.Get());
 		pos.Y() += 30.;
 	}
 	
@@ -65,20 +71,13 @@ void PreferencesPanel::Draw() const
 	}
 	
 	// Check for conflicts.
-	Color red(.5, 0., 0., 0.);
+	Color red(.3, 0., 0., .3);
 	map<int, int> count;
 	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
 		++count[data.Keys().Get(c)];
 	
 	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
 	{
-		// Mark conflicts.
-		if(count[data.Keys().Get(c)] > 1)
-		{
-			Point eOff(-40., .5 * font.Height());
-			FillShader::Fill(pos + eOff, Point(60., 20.), red.Get());
-		}
-		
 		string current = SDL_GetKeyName(static_cast<SDLKey>(data.Keys().Get(c)));
 		string def = SDL_GetKeyName(static_cast<SDLKey>(data.DefaultKeys().Get(c)));
 		
@@ -89,17 +88,16 @@ void PreferencesPanel::Draw() const
 		font.Draw(current, pos + cOff, bright.Get());
 		
 		font.Draw(Key::Description(c), pos, medium.Get());
+
+		// Mark conflicts.
+		if(count[data.Keys().Get(c)] > 1)
+		{
+			Point eOff(-40., .5 * font.Height());
+			FillShader::Fill(pos + eOff, Point(60., 20.), red.Get());
+		}
+		
 		pos.Y() += 20.;
 	}
-	
-	Color black(0., 1.);
-	Point button = pos + Point(150., 40.);
-	FillShader::Fill(button, Point(100., 30.), medium.Get());
-	FillShader::Fill(button, Point(98., 28.), black.Get());
-	string back = "Back to Menu";
-	font.Draw(back, button - .5 * Point(font.Width(back), font.Height()), bright.Get());
-	buttonX = button.X();
-	buttonY = button.Y();
 }
 
 
@@ -129,11 +127,9 @@ bool PreferencesPanel::KeyDown(SDLKey key, SDLMod mod)
 
 bool PreferencesPanel::Click(int x, int y)
 {
-	if(abs(x - buttonX) < 50 && abs(y - buttonY) < 15)
-	{
-		Exit();
-		return true;
-	}
+	char key = data.Interfaces().Get("preferences")->OnClick(Point(x, y));
+	if(key != '\0')
+		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
 	
 	y -= firstY;
 	if(y < 0)
