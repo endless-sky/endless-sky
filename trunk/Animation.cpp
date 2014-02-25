@@ -46,7 +46,8 @@ void Animation::Load(const DataFile::Node &node)
 {
 	if(node.Size() < 2)
 		return;
-	sprite = SpriteSet::Get(node.Token(1));
+	spriteName = node.Token(1);
+	sprite = SpriteSet::Get(spriteName);
 	
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -81,6 +82,20 @@ void Animation::Load(const DataFile::Node &node)
 		else if(child.Token(0) == "rewind")
 			rewind = true;
 	}
+}
+
+
+
+// Save this animation's information to a ship descriptor. Only saves the
+// frame rate and the rewind flag if set, not the other settings, since
+// those will not generally apply to a ship sprite.
+void Animation::Save(ostream &out) const
+{
+	out << "\tsprite \"" << spriteName << "\"\n";
+	if(frameRate != 1.)
+		out << "\t\t\"frame rate\" " << frameRate * 60. << "\n";
+	if(rewind)
+		out << "\t\t\"rewind\"\n";
 }
 
 

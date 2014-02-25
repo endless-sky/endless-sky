@@ -68,7 +68,6 @@ public:
 private:
 	std::string name;
 	std::string category;
-	int cost;
 	const Sprite *thumbnail;
 	
 	std::map<std::string, double> attributes;

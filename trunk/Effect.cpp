@@ -18,8 +18,18 @@ Effect::Effect()
 
 
 
+const std::string &Effect::Name() const
+{
+	return name;
+}
+
+
+
 void Effect::Load(const DataFile::Node &node)
 {
+	if(node.Size() > 1)
+		name = node.Token(1);
+	
 	for(const DataFile::Node &child : node)
 	{
 		if(child.Token(0) == "sprite")

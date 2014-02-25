@@ -16,6 +16,7 @@ Main function for Endless Sky.
 #include <GL/glew.h>
 #include <SDL/SDL.h>
 
+#include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <vector>
@@ -108,6 +109,14 @@ int main(int argc, char *argv[])
 			
 			SDL_GL_SwapBuffers();
 			timer.Wait();
+		}
+		
+		if(playerInfo.GetShip())
+		{
+			ofstream out("save.txt");
+			for(const std::shared_ptr<Ship> &it : playerInfo.Ships())
+				if(it.get())
+					it.get()->Save(out);
 		}
 		
 		SDL_Quit();

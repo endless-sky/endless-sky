@@ -12,11 +12,15 @@ has no impact on any other objects in the game.
 #include "Animation.h"
 #include "Point.h"
 
+#include <string>
+
 
 
 class Effect {
 public:
 	Effect();
+	
+	const std::string &Name() const;
 	
 	void Load(const DataFile::Node &node);
 	// If creating a new effect, the animation and lifetime are copied,
@@ -33,6 +37,8 @@ public:
 	
 	
 private:
+	std::string name;
+	
 	Animation animation;
 	
 	Point position;

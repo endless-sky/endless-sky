@@ -47,18 +47,18 @@ void Ship::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Se
 		if(token == "sprite")
 			sprite.Load(child);
 		else if(token == "attributes")
-			attributes.Load(child, outfits, effects);
+			baseAttributes.Load(child, outfits, effects);
 		else if(token == "engine" && child.Size() >= 3)
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
 		else if(token == "gun" && child.Size() >= 3)
 		{
 			armament.AddGunPort(Point(child.Value(1), child.Value(2)));
-			attributes.Add("gun ports");
+			baseAttributes.Add("gun ports");
 		}
 		else if(token == "turret" && child.Size() >= 3)
 		{
 			armament.AddTurret(Point(child.Value(1), child.Value(2)));
-			attributes.Add("turret mounts");
+			baseAttributes.Add("turret mounts");
 		}
 		else if(token == "explode" && child.Size() >= 2)
 		{
@@ -80,6 +80,7 @@ void Ship::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Se
 			description += '\n';
 		}
 	}
+	attributes = baseAttributes;
 }
 
 
@@ -96,6 +97,53 @@ void Ship::FinishLoading()
 	}
 	
 	Recharge();
+}
+
+
+
+// Save a full description of this ship, as currently configured.
+void Ship::Save(std::ostream &out) const
+{
+	out << "ship \"" << modelName << "\"\n";
+	out << "\tname \"" << name << "\"\n";
+	sprite.Save(out);
+	
+	out << "\tattributes\n";
+	for(const auto &it : baseAttributes.Attributes())
+		if(it.second)
+			out << "\t\t\"" << it.first << "\" " << it.second << "\n";
+	
+	out << "\toutfits\n";
+	for(const auto &it : outfits)
+		if(it.first && it.second)
+			out << "\t\t\"" << it.first->Name() << "\" " << it.second << "\n";
+	
+	if(cargoMass)
+	{
+		out << "\tcargo\n";
+		for(const auto &it : cargo)
+			if(it.second)
+				out << "\t\t\"" << it.first << "\" " << it.second << "\n";
+	}
+	
+	for(const Point &point : enginePoints)
+		out << "\tengine " << point.X() << " " << point.Y() << "\n";
+	for(const Armament::Weapon &weapon : armament.Get())
+	{
+		out << (weapon.IsTurret() ? "\tturret " : "\tgun ");
+		out << 2. * weapon.GetPoint().X() << " " << 2. * weapon.GetPoint().Y();
+		if(weapon.GetOutfit())
+			out << " \"" << weapon.GetOutfit()->Name() << "\"";
+		out << "\n";
+	}
+	for(const auto &it : explosionEffects)
+		if(it.first && it.second)
+			out << "\texplode \"" << it.first->Name() << "\" " << it.second << "\n";
+	
+	if(currentSystem)
+		out << "\tstar \"" << currentSystem->Name() << "\"\n";
+	if(landingPlanet)
+		out << "\tplanet \"" << landingPlanet->Name() << "\"\n";
 }
 
 

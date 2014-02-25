@@ -13,7 +13,7 @@ using namespace std;
 
 
 Outfit::Outfit()
-	: cost(0), thumbnail(nullptr), ammo(nullptr), icon(nullptr)
+	: thumbnail(nullptr), ammo(nullptr), icon(nullptr)
 {
 }
 
@@ -27,9 +27,7 @@ void Outfit::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const 
 	
 	for(const DataFile::Node &child : node)
 	{
-		if(child.Token(0) == "cost" && child.Size() >= 2)
-			cost = child.Value(1);
-		else if(child.Token(0) == "category" && child.Size() >= 2)
+		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 			flare.Load(child);
@@ -89,7 +87,7 @@ const string &Outfit::Category() const
 
 int Outfit::Cost() const
 {
-	return cost;
+	return Get("cost");
 }
 
 
@@ -138,8 +136,6 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 // instances of the given outfit to this outfit.
 void Outfit::Add(const Outfit &other, int count)
 {
-	cost += other.cost * count;
-	
 	for(const auto &at : other.attributes)
 		attributes[at.first] += at.second * count;
 	
