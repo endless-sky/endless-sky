@@ -32,7 +32,7 @@ AI::AI()
 
 void AI::UpdateKeys(int keys, PlayerInfo *info)
 {
-	keyDown = keys & !keyHeld;
+	keyDown = keys & ~keyHeld;
 	keyHeld = keys;
 	if(keys)
 		keyStuck = 0;
@@ -570,7 +570,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	}
 	else if((keyStuck & Key::Bit(Key::LAND)) && ship.GetTargetPlanet())
 	{
-		if(ship.HasLanded())
+		if(ship.GetPlanet())
 			keyStuck = 0;
 		else
 		{

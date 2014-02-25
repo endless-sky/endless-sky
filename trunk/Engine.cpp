@@ -116,19 +116,22 @@ void Engine::Step(bool isActive)
 		
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
-		if(playerInfo.GetShip()->HasLanded() && isActive && !shouldLand)
+		if(playerInfo.GetShip()->GetPlanet() && isActive)
 		{
-			shouldLand = true;
+			if(hasLanded)
+			{
+				EnterSystem();
+				hasLanded = false;
+			}
+			else if(!shouldLand)
+			{
+				shouldLand = true;
+				isActive = false;
 			
-			for(const shared_ptr<Ship> &ship : playerInfo.Ships())
-				if(ship->GetSystem() == player->GetSystem())
-					ship->Recharge();
-		}
-		
-		if(hasLanded && isActive)
-		{
-			EnterSystem();
-			hasLanded = false;
+				for(const shared_ptr<Ship> &ship : playerInfo.Ships())
+					if(ship->GetSystem() == player->GetSystem())
+						ship->Recharge();
+			}
 		}
 		
 		currentSystem = player->GetSystem();

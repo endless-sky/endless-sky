@@ -327,7 +327,9 @@ bool Ship::Move(std::list<Effect> &effects)
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
-		if(landingPlanet)
+		// Special ships do not disappear forever when they land; they
+		// just slowly refuel.
+		if(landingPlanet && zoom)
 		{
 			zoom -= .02;
 			if(zoom < 0.)
@@ -337,14 +339,14 @@ bool Ship::Move(std::list<Effect> &effects)
 				if(!isSpecial)
 					return false;
 				
-				// Special ships do not disappear forever when they land; they
-				// just slowly refuel.
-				landingPlanet = nullptr;
 				zoom = 0.;
 			}
 		}
 		else if(fuel == attributes.Get("fuel capacity"))
+		{
 			zoom = min(1., zoom + .02);
+			landingPlanet = nullptr;
+		}
 		else
 			fuel = min(fuel + 1., attributes.Get("fuel capacity"));
 		
@@ -479,6 +481,14 @@ const System *Ship::GetSystem() const
 
 
 
+// If the ship is landed, get the planet it has landed on.
+const Planet *Ship::GetPlanet() const
+{
+	return zoom ? nullptr : landingPlanet->GetPlanet();
+}
+
+
+
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1. && !explosionRate && !forget);
@@ -489,14 +499,6 @@ bool Ship::IsTargetable() const
 bool Ship::IsDisabled() const
 {
 	return isDisabled;
-}
-
-
-
-bool Ship::HasLanded() const
-{
-	// Special ships do not cease to exist when they land.
-	return (zoom == 0.);
 }
 
 
@@ -703,7 +705,7 @@ int Ship::Crew() const
 // Check if this ship should be deleted.
 bool Ship::ShouldDelete() const
 {
-	return (HasLanded() && !isSpecial) || (hull <= 0. && explosionCount >= explosionTotal);
+	return (!zoom && !isSpecial) || (hull <= 0. && explosionCount >= explosionTotal);
 }
 
 

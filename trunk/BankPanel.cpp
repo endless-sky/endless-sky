@@ -33,7 +33,8 @@ namespace {
 
 
 BankPanel::BankPanel(PlayerInfo &player)
-	: player(player), qualify(player.Accounts().Prequalify()),
+	: Panel(false, false), player(player),
+	qualify(player.Accounts().Prequalify()),
 	selectedRow(0), amount(0)
 {
 }

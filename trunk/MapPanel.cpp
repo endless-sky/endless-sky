@@ -28,7 +28,7 @@ using namespace std;
 
 
 MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
-	: data(data), current(player.GetShip()->GetSystem()),
+	: Panel(true), data(data), current(player.GetShip()->GetSystem()),
 	selected(player.GetShip()->GetSystem()), player(player),
 	tradeY(0), commodity(commodity), selectedPlanet(nullptr)
 {
@@ -332,7 +332,7 @@ void MapPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == SDLK_ESCAPE)
+	if(key == data.Keys().Get(Key::MAP))
 		Pop(this);
 	
 	return true;

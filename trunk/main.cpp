@@ -12,6 +12,7 @@ Main function for Endless Sky.
 #include "Panel.h"
 #include "PlayerInfo.h"
 #include "Screen.h"
+#include "UI.h"
 
 #include <GL/glew.h>
 #include <SDL/SDL.h>
@@ -70,14 +71,15 @@ int main(int argc, char *argv[])
 		gameData.LoadShaders();
 		
 		
-		Panel::Push(new MainPanel(gameData, playerInfo));
-		Panel::Push(new MenuPanel(gameData, playerInfo));
+		UI gamePanels;
+		gamePanels.Push(shared_ptr<Panel>(new MainPanel(gameData, playerInfo)));
+		
+		UI menuPanels;
+		menuPanels.Push(shared_ptr<Panel>(new MenuPanel(gameData, playerInfo)));
 		
 		FrameTimer timer(60);
-		while(!Panel::IsDone())
+		while(!menuPanels.IsDone())
 		{
-			bool done = false;
-			
 			// Handle any events that occurred in this frame.
 			SDL_Event event;
 			while(SDL_PollEvent(&event))
@@ -87,9 +89,12 @@ int main(int argc, char *argv[])
 				if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
 						&& event.key.keysym.sym == SDLK_CAPSLOCK)
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 10 : 60);
+				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
+						&& event.key.keysym.sym == gameData.Keys().Get(Key::MENU))
+					menuPanels.Push(shared_ptr<Panel>(new MenuPanel(gameData, playerInfo)));
 				
 				if(event.type == SDL_QUIT)
-					done = true;
+					menuPanels.Quit();
 				else if(event.type == SDL_VIDEORESIZE)
 				{
 					Screen::Set(event.resize.w, event.resize.h);
@@ -97,15 +102,13 @@ int main(int argc, char *argv[])
 					glViewport(0, 0, Screen::Width(), Screen::Height());
 				}
 				else
-					Panel::Handle(event);
+					(menuPanels.IsEmpty() ? gamePanels : menuPanels).Handle(event);
 			}
-			if(done)
-				break;
 			
 			// Tell all the panels to step forward, then draw them.
-			Panel::StepAll();
+			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
 			
-			Panel::DrawAll();
+			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 			
 			SDL_GL_SwapBuffers();
 			timer.Wait();

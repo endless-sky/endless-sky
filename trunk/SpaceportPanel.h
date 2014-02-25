@@ -18,13 +18,8 @@ GUI panel to be shown when you are in a spaceport.
 class SpaceportPanel : public Panel {
 public:
 	SpaceportPanel(const std::string &description);
-	virtual ~SpaceportPanel() {}
 	
 	virtual void Draw() const;
-	
-	// Return true if, when this panel is on the stack, no events should be
-	// passed to any panel under it. By default, all panels do this.
-	virtual bool TrapAllEvents() { return false; }
 	
 	
 private:

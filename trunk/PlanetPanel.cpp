@@ -8,11 +8,15 @@ Function definitions for the PlanetPanel class.
 
 #include "Information.h"
 
+#include "BankPanel.h"
 #include "Color.h"
 #include "ConversationPanel.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "MapPanel.h"
 #include "ShipyardPanel.h"
+#include "SpaceportPanel.h"
+#include "TradingPanel.h"
 
 using namespace std;
 
@@ -22,9 +26,12 @@ PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Planet 
 	: data(data), player(player), planet(planet),
 	system(*player.GetShip()->GetSystem()),
 	ui(*data.Interfaces().Get("planet")),
-	trading(data, player), bank(player), spaceport(planet.SpaceportDescription()),
 	selectedPanel(nullptr)
 {
+	trading.reset(new TradingPanel(data, player));
+	bank.reset(new BankPanel(player));
+	spaceport.reset(new SpaceportPanel(planet.SpaceportDescription()));
+	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(480);
@@ -63,18 +70,18 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 		Pop(this);
 	else if(key == 't' && planet.HasSpaceport())
 	{
-		selectedPanel = &trading;
-		Push(selectedPanel);
+		selectedPanel = trading.get();
+		Push(trading);
 	}
 	else if(key == 'b' && planet.HasSpaceport())
 	{
-		selectedPanel = &bank;
-		Push(selectedPanel);
+		selectedPanel = bank.get();
+		Push(bank);
 	}
 	else if(key == 'p' && planet.HasSpaceport())
 	{
-		selectedPanel = &spaceport;
-		Push(selectedPanel);
+		selectedPanel = spaceport.get();
+		Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard())
 	{
@@ -88,13 +95,18 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	}
 	else if(key == 'j' || key == 'h')
 		selectedPanel = nullptr;
+	else if(key == data.Keys().Get(Key::MAP))
+	{
+		Push(new MapPanel(data, player));
+		return true;
+	}
 	else
 		return true;
 	
 	// If we are here, it is because something happened to change the selected
 	// panel. So, we need to pop the old selected panel:
 	if(oldPanel)
-		PopWithoutDelete(oldPanel);
+		Pop(oldPanel);
 	
 	return true;
 }

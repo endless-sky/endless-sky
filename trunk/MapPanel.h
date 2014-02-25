@@ -24,13 +24,8 @@ class System;
 class MapPanel : public Panel {
 public:
 	MapPanel(const GameData &data, PlayerInfo &info, int commodity = 0);
-	virtual ~MapPanel() {}
 	
 	virtual void Draw() const;
-	
-	// Return true if this is a full-screen panel, so there is no point in
-	// drawing any of the panels under it.
-	virtual bool IsFullScreen() { return true; }
 	
 	
 protected:

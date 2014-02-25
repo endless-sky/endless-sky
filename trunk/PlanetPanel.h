@@ -11,15 +11,14 @@ shown in full-screen panels that pop up above this one, but the remaining views
 
 #include "Panel.h"
 
-#include "BankPanel.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "SpaceportPanel.h"
 #include "System.h"
-#include "TradingPanel.h"
 #include "WrappedText.h"
+
+#include <memory>
 
 
 
@@ -44,9 +43,9 @@ private:
 	const System &system;
 	const Interface &ui;
 	
-	TradingPanel trading;
-	BankPanel bank;
-	SpaceportPanel spaceport;
+	std::shared_ptr<Panel> trading;
+	std::shared_ptr<Panel> bank;
+	std::shared_ptr<Panel> spaceport;
 	Panel *selectedPanel;
 	
 	WrappedText text;

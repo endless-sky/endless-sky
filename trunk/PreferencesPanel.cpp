@@ -24,7 +24,7 @@ using namespace std;
 
 
 PreferencesPanel::PreferencesPanel(GameData &data)
-	: data(data), editing(-1), selected(0), firstY(0)
+	: Panel(true), data(data), editing(-1), selected(0), firstY(0)
 {
 }
 

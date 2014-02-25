@@ -41,7 +41,7 @@ namespace {
 
 
 TradingPanel::TradingPanel(const GameData &data, PlayerInfo &player)
-	: data(data), player(player),
+	: Panel(false, false), data(data), player(player),
 	system(*player.GetShip()->GetSystem()), selectedRow(0)
 {
 }
