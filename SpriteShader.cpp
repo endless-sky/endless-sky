@@ -46,10 +46,10 @@ void SpriteShader::Init()
 	static const char *vertexCode =
 		"#version 130\n"
 		
-		"uniform mat2 transform;\t"
-		"uniform vec2 position;\t"
-		"uniform vec2 scale;\t"
-		"uniform float clip;\t"
+		"uniform mat2 transform;\n"
+		"uniform vec2 position;\n"
+		"uniform vec2 scale;\n"
+		"uniform float clip;\n"
 		
 		"in vec2 vert;\n"
 		"in vec2 vertTexCoord;\n"

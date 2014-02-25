@@ -31,9 +31,9 @@ void DotShader::Init()
 {
 	static const char *vertexCode =
 		"#version 130\n"
-		"uniform vec2 scale;\t"
-		"uniform vec2 position;\t"
-		"uniform float outRadius;\t"
+		"uniform vec2 scale;\n"
+		"uniform vec2 position;\n"
+		"uniform float outRadius;\n"
 		
 		"in vec2 vert;\n"
 		"out vec2 coord;\n"
@@ -45,9 +45,9 @@ void DotShader::Init()
 
 	static const char *fragmentCode =
 		"#version 130\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\t"
-		"uniform float outRadius;\t"
-		"uniform float inRadius;\t"
+		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"uniform float outRadius;\n"
+		"uniform float inRadius;\n"
 		
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"

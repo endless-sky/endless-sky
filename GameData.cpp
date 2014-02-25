@@ -6,15 +6,14 @@ Function definitions for the GameData class.
 
 #include "GameData.h"
 
-#include "FontSet.h"
-#include "SpriteSet.h"
-
-#include "SpriteShader.h"
-#include "OutlineShader.h"
-#include "LineShader.h"
 #include "DotShader.h"
-#include "PointerShader.h"
 #include "FillShader.h"
+#include "FontSet.h"
+#include "LineShader.h"
+#include "PointerShader.h"
+#include "OutlineShader.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 
 #include <algorithm>
 #include <vector>
@@ -163,12 +162,12 @@ void GameData::LoadShaders()
 	keys = defaultKeys;
 	keys.Load(keysPath);
 	
-	SpriteShader::Init();
-	OutlineShader::Init();
-	LineShader::Init();
 	DotShader::Init();
-	PointerShader::Init();
 	FillShader::Init();
+	LineShader::Init();
+	OutlineShader::Init();
+	PointerShader::Init();
+	SpriteShader::Init();
 	
 	background.Init(16384, 4096);
 }

@@ -29,9 +29,9 @@ void OutlineShader::Init()
 {
 	static const char *vertexCode =
 		"#version 130\n"
-		"uniform vec2 size;\t"
-		"uniform vec2 position;\t"
-		"uniform vec2 scale;\t"
+		"uniform vec2 size;\n"
+		"uniform vec2 position;\n"
+		"uniform vec2 scale;\n"
 		"in vec2 vert;\n"
 		"in vec2 vertTexCoord;\n"
 		"out vec2 tc;\n"
