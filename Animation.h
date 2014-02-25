@@ -9,6 +9,8 @@ Class representing an animation, i.e. a series of sprites.
 
 #include "DataFile.h"
 
+#include <ostream>
+
 class Mask;
 class Sprite;
 
@@ -33,6 +35,11 @@ public:
 	
 	// Load the animation.
 	void Load(const DataFile::Node &node);
+	// Save this animation's information to a ship descriptor. Only saves the
+	// frame rate and the rewind flag if set, not the other settings, since
+	// those will not generally apply to a ship sprite.
+	// TODO: decide how ship animations will work.
+	void Save(std::ostream &out) const;
 	
 	// Check if this animation contains any frames.
 	bool IsEmpty() const;
@@ -58,6 +65,7 @@ private:
 	
 private:
 	const Sprite *sprite;
+	std::string spriteName;
 	int swizzle;
 	
 	float frameRate;

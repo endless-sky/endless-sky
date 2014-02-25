@@ -16,6 +16,7 @@ Class representing a ship.
 #include "Point.h"
 #include "Set.h"
 
+#include <ostream>
 #include <map>
 #include <memory>
 #include <string>
@@ -37,6 +38,9 @@ public:
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading();
+	// Save a full description of this ship, as currently configured.
+	void Save(std::ostream &out) const;
+	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
 	// Get this ship's description.
@@ -137,6 +141,8 @@ public:
 	const std::map<const Outfit *, int> &Outfits() const;
 	int OutfitCount(const Outfit *outfit) const;
 	const Outfit &Attributes() const;
+	// Get the attributes of this ship chassis before any outfits were added.
+	const Outfit &BaseAttributes() const;
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
 	
@@ -173,6 +179,7 @@ private:
 	
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
+	Outfit baseAttributes;
 	std::map<const Outfit *, int> outfits;
 	std::map<std::string, int> cargo;
 	int cargoMass;

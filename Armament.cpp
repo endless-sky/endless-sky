@@ -28,14 +28,6 @@ Armament::Weapon::Weapon(const Point &point, bool isTurret)
 
 
 
-// Check if anything is installed in this gun port.
-bool Armament::Weapon::HasOutfit() const
-{
-	return (outfit != nullptr);
-}
-
-
-
 // Don't call this without checking HasOutfit()!
 const Outfit *Armament::Weapon::GetOutfit() const
 {

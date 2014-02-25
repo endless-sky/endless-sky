@@ -28,9 +28,7 @@ public:
 	public:
 		Weapon(const Point &point, bool isTurret);
 		
-		// Check if anything is installed in this gun port.
-		bool HasOutfit() const;
-		// Don't call this without checking HasOutfit()!
+		// Be sure to check if this is nullptr!
 		const Outfit *GetOutfit() const;
 		// Get the point, in ship image coordinates, from which projectiles of
 		// this weapon should originate.
