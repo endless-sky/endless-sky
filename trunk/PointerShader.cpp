@@ -32,11 +32,11 @@ void PointerShader::Init()
 {
 	static const char *vertexCode =
 		"#version 130\n"
-		"uniform vec2 scale;\t"
-		"uniform vec2 center;\t"
-		"uniform vec2 angle;\t"
-		"uniform vec2 size;\t"
-		"uniform float offset;\t"
+		"uniform vec2 scale;\n"
+		"uniform vec2 center;\n"
+		"uniform vec2 angle;\n"
+		"uniform vec2 size;\n"
+		"uniform float offset;\n"
 		
 		"in vec2 vert;\n"
 		"out vec2 coord;\n"
@@ -50,8 +50,8 @@ void PointerShader::Init()
 
 	static const char *fragmentCode =
 		"#version 130\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\t"
-		"uniform vec2 size;\t"
+		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
+		"uniform vec2 size;\n"
 		
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"

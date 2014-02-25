@@ -31,9 +31,9 @@ void FillShader::Init()
 {
 	static const char *vertexCode =
 		"#version 130\n"
-		"uniform vec2 scale;\t"
-		"uniform vec2 center;\t"
-		"uniform vec2 size;\t"
+		"uniform vec2 scale;\n"
+		"uniform vec2 center;\n"
+		"uniform vec2 size;\n"
 		
 		"in vec2 vert;\n"
 		
@@ -43,7 +43,7 @@ void FillShader::Init()
 
 	static const char *fragmentCode =
 		"#version 130\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\t"
+		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		"out vec4 finalColor;\n"
 		

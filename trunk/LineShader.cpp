@@ -31,10 +31,10 @@ void LineShader::Init()
 {
 	static const char *vertexCode =
 		"#version 130\n"
-		"uniform vec2 scale;\t"
-		"uniform vec2 start;\t"
-		"uniform vec2 len;\t"
-		"uniform vec2 width;\t"
+		"uniform vec2 scale;\n"
+		"uniform vec2 start;\n"
+		"uniform vec2 len;\n"
+		"uniform vec2 width;\n"
 		
 		"in vec2 vert;\n"
 		"out vec2 tpos;\n"
@@ -48,7 +48,7 @@ void LineShader::Init()
 
 	static const char *fragmentCode =
 		"#version 130\n"
-		"uniform vec4 color = vec4(1, 1, 1, 1);\t"
+		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		"in vec2 tpos;\n"
 		"in float tscale;\n"
