@@ -23,6 +23,7 @@ Class representing a ship.
 #include <vector>
 
 class Government;
+class Planet;
 class Projectile;
 class System;
 
@@ -71,10 +72,11 @@ public:
 	
 	// Get the system this ship is in.
 	const System *GetSystem() const;
+	// If the ship is landed, get the planet it has landed on.
+	const Planet *GetPlanet() const;
 	
 	bool IsTargetable() const;
 	bool IsDisabled() const;
-	bool HasLanded() const;
 	bool IsLanding() const;
 	bool IsHyperspacing() const;
 	// Check if this ship is currently able to begin landing on its target.

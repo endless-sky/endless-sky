@@ -30,7 +30,7 @@ namespace {
 
 
 MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo)
-	: gameData(gameData), playerInfo(playerInfo), scroll(0)
+	: Panel(true), gameData(gameData), playerInfo(playerInfo), scroll(0)
 {
 	ifstream in(gameData.ResourcePath() + "credits.txt");
 	string line;
@@ -62,8 +62,10 @@ void MenuPanel::Draw() const
 	info.SetSprite("ship sprite", player->GetSprite().GetSprite());
 	info.SetString("pilot", playerInfo.FirstName() + " " + playerInfo.LastName());
 	info.SetString("ship", player->Name());
-	if(player->GetTargetPlanet() && player->GetTargetPlanet()->GetPlanet())
-		info.SetString("planet", player->GetTargetPlanet()->GetPlanet()->Name());
+	if(player->GetPlanet())
+		info.SetString("planet", player->GetPlanet()->Name());
+	else
+		info.SetString("planet", "");
 	info.SetString("system", player->GetSystem()->Name());
 	info.SetString("credits", to_string(playerInfo.Accounts().Credits()));
 	info.SetString("date", playerInfo.GetDate().ToString());

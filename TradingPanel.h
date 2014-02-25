@@ -19,13 +19,8 @@ buying and selling.
 class TradingPanel : public Panel {
 public:
 	TradingPanel(const GameData &data, PlayerInfo &player);
-	virtual ~TradingPanel() {}
 	
 	virtual void Draw() const;
-	
-	// Return true if, when this panel is on the stack, no events should be
-	// passed to any panel under it. By default, all panels do this.
-	virtual bool TrapAllEvents() { return false; }
 	
 	
 protected:

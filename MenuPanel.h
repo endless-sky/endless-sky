@@ -33,10 +33,6 @@ public:
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
 	
-	// Return true if this is a full-screen panel, so there is no point in
-	// drawing any of the panels under it.
-	virtual bool IsFullScreen() { return true; }
-	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

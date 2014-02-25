@@ -17,14 +17,9 @@ buying and selling.
 class BankPanel : public Panel {
 public:
 	BankPanel(PlayerInfo &player);
-	virtual ~BankPanel() {}
 	
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
-	
-	// Return true if, when this panel is on the stack, no events should be
-	// passed to any panel under it. By default, all panels do this.
-	virtual bool TrapAllEvents() { return false; }
 	
 	
 protected:

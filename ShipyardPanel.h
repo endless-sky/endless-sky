@@ -22,13 +22,8 @@ class Ship;
 class ShipyardPanel : public Panel {
 public:
 	ShipyardPanel(const GameData &data, PlayerInfo &player);
-	virtual ~ShipyardPanel() {}
 	
 	virtual void Draw() const;
-	
-	// Return true if this is a full-screen panel, so there is no point in
-	// drawing any of the panels under it.
-	virtual bool IsFullScreen() { return true; }
 	
 	
 protected:

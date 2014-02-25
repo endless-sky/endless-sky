@@ -18,15 +18,10 @@ class PlayerInfo;
 
 class MainPanel : public Panel {
 public:
-	MainPanel(GameData &gameData, PlayerInfo &playerInfo);
-	virtual ~MainPanel() {}
+	MainPanel(const GameData &gameData, PlayerInfo &playerInfo);
 	
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
-	
-	// Return true if this is a full-screen panel, so there is no point in
-	// drawing any of the panels under it.
-	virtual bool IsFullScreen() { return true; }
 	
 	
 protected:
@@ -35,7 +30,7 @@ protected:
 	
 	
 private:
-	GameData &gameData;
+	const GameData &gameData;
 	PlayerInfo &playerInfo;
 	
 	Engine engine;

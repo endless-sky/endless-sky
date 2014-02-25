@@ -50,7 +50,7 @@ namespace {
 
 
 ShipyardPanel::ShipyardPanel(const GameData &data, PlayerInfo &player)
-	: data(data), player(player),
+	: Panel(true), data(data), player(player),
 	playerShip(player.GetShip()), selectedShip(nullptr),
 	mainScroll(0), sideScroll(0)
 {
