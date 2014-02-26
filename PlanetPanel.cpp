@@ -40,6 +40,13 @@ PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Planet 
 
 
 
+PlanetPanel::~PlanetPanel()
+{
+	player.Save();
+}
+
+
+
 void PlanetPanel::Draw() const
 {
 	Information info;

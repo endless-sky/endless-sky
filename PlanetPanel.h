@@ -25,7 +25,7 @@ shown in full-screen panels that pop up above this one, but the remaining views
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(const GameData &data, PlayerInfo &player, const Planet &planet);
-	virtual ~PlanetPanel() {}
+	virtual ~PlanetPanel();
 	
 	virtual void Draw() const;
 	

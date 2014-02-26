@@ -14,7 +14,6 @@ Class representing a ship.
 #include "DataFile.h"
 #include "Outfit.h"
 #include "Point.h"
-#include "Set.h"
 
 #include <ostream>
 #include <map>
@@ -22,6 +21,7 @@ Class representing a ship.
 #include <string>
 #include <vector>
 
+class GameData;
 class Government;
 class Planet;
 class Projectile;
@@ -35,7 +35,7 @@ public:
 	Ship();
 	
 	// Load data for a type of ship:
-	void Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Set<Effect> &effects);
+	void Load(const DataFile::Node &node, const GameData &data);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading();
@@ -53,6 +53,7 @@ public:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
 	void SetName(const std::string &name);
 	void SetSystem(const System *system);
+	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	
@@ -206,7 +207,7 @@ private:
 	// A Ship can be locked into one of three special states: landing,
 	// hyperspacing, and exploding. Each one must track some special counters:
 	double zoom;
-	const StellarObject *landingPlanet;
+	const Planet *landingPlanet;
 	
 	int hyperspaceCount;
 	const System *hyperspaceSystem;

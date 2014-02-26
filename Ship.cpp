@@ -6,6 +6,7 @@ Function definitions for the Ship class.
 
 #include "Ship.h"
 
+#include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Projectile.h"
@@ -34,7 +35,7 @@ Ship::Ship()
 
 
 
-void Ship::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Set<Effect> &effects)
+void Ship::Load(const DataFile::Node &node, const GameData &data)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
@@ -43,38 +44,52 @@ void Ship::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Se
 	// to override one ship definition with another.
 	for(const DataFile::Node &child : node)
 	{
-		const string &token = child.Token(0);
-		if(token == "sprite")
+		if(child.Token(0) == "sprite")
 			sprite.Load(child);
-		else if(token == "attributes")
-			baseAttributes.Load(child, outfits, effects);
-		else if(token == "engine" && child.Size() >= 3)
+		else if(child.Token(0) == "name" && child.Size() >= 2)
+			name = child.Token(1);
+		else if(child.Token(0) == "attributes")
+			baseAttributes.Load(child, data.Outfits(), data.Effects());
+		else if(child.Token(0) == "engine" && child.Size() >= 3)
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
-		else if(token == "gun" && child.Size() >= 3)
+		else if(child.Token(0) == "gun" && child.Size() >= 3)
 		{
 			armament.AddGunPort(Point(child.Value(1), child.Value(2)));
 			baseAttributes.Add("gun ports");
 		}
-		else if(token == "turret" && child.Size() >= 3)
+		else if(child.Token(0) == "turret" && child.Size() >= 3)
 		{
 			armament.AddTurret(Point(child.Value(1), child.Value(2)));
 			baseAttributes.Add("turret mounts");
 		}
-		else if(token == "explode" && child.Size() >= 2)
+		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			explosionEffects[effects.Get(child.Token(1))] += count;
+			explosionEffects[data.Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(token == "outfits")
+		else if(child.Token(0) == "outfits")
 		{
 			for(const DataFile::Node &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				this->outfits[outfits.Get(grand.Token(0))] += count;
+				this->outfits[data.Outfits().Get(grand.Token(0))] += count;
 			}
 		}
-		else if(token == "description" && child.Size() >= 2)
+		else if(child.Token(0) == "cargo")
+		{
+			for(const DataFile::Node &grand : child)
+				if(grand.Size() >= 2)
+					cargo[grand.Token(0)] += grand.Value(1);
+		}
+		else if(child.Token(0) == "system" && child.Size() >= 2)
+			currentSystem = data.Systems().Get(child.Token(1));
+		else if(child.Token(0) == "planet" && child.Size() >= 2)
+		{
+			zoom = 0.;
+			landingPlanet = data.Planets().Get(child.Token(1));
+		}
+		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
 			description += '\n';
@@ -141,7 +156,7 @@ void Ship::Save(std::ostream &out) const
 			out << "\texplode \"" << it.first->Name() << "\" " << it.second << "\n";
 	
 	if(currentSystem)
-		out << "\tstar \"" << currentSystem->Name() << "\"\n";
+		out << "\tsystem \"" << currentSystem->Name() << "\"\n";
 	if(landingPlanet)
 		out << "\tplanet \"" << landingPlanet->Name() << "\"\n";
 }
@@ -176,7 +191,11 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = angle;
-	zoom = 1.;
+	// If landed, place the ship right above the planet.
+	if(landingPlanet)
+		landingPlanet = nullptr;
+	else
+		zoom = 1.;
 	
 	cargo.clear();
 }
@@ -195,6 +214,14 @@ void Ship::SetName(const string &name)
 void Ship::SetSystem(const System *system)
 {
 	currentSystem = system;
+}
+
+
+
+void Ship::SetPlanet(const Planet *planet)
+{
+	zoom = 0.;
+	landingPlanet = planet;
 }
 
 
@@ -357,7 +384,7 @@ bool Ship::Move(std::list<Effect> &effects)
 		return true;
 	}
 	if(HasLandCommand() && CanLand())
-		landingPlanet = GetTargetPlanet();
+		landingPlanet = GetTargetPlanet()->GetPlanet();
 	else if(HasHyperspaceCommand() && CanHyperspace())
 		hyperspaceSystem = GetTargetSystem();
 	
@@ -484,7 +511,7 @@ const System *Ship::GetSystem() const
 // If the ship is landed, get the planet it has landed on.
 const Planet *Ship::GetPlanet() const
 {
-	return zoom ? nullptr : landingPlanet->GetPlanet();
+	return zoom ? nullptr : landingPlanet;
 }
 
 

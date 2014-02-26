@@ -24,6 +24,11 @@ public:
 	// Get the number of days that have elapsed since the "epoch".
 	double DaysSinceEpoch() const;
 	
+	// Get the date as numbers.
+	int Day() const;
+	int Month() const;
+	int Year() const;
+	
 	
 private:
 	time_t today;

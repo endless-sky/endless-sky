@@ -26,6 +26,46 @@ Account::Account()
 
 
 
+// Load or save account data.
+void Account::Load(const DataFile::Node &node)
+{
+	credits = 0;
+	salariesOwed = 0;
+	creditScore = 400;
+	
+	for(const DataFile::Node &child : node)
+	{
+		if(child.Token(0) == "credits" && child.Size() >= 2)
+			credits = child.Value(1);
+		else if(child.Token(0) == "salaries" && child.Size() >= 2)
+			salariesOwed = child.Value(1);
+		else if(child.Token(0) == "score" && child.Size() >= 2)
+			creditScore = child.Value(1);
+		else if(child.Token(0) == "mortgage")
+		{
+			mortgages.push_back(Mortgage(0, 0, 0));
+			mortgages.back().Load(child);
+		}
+	}
+}
+
+
+
+void Account::Save(ostream &out) const
+{
+	out << "account\n";
+	out << "\tcredits " << credits << "\n";
+	if(salariesOwed)
+		out << "\tsalaries " << salariesOwed << "\n";
+	out << "\tscore " << creditScore << "\n";
+	
+	for(const Mortgage &mortgage : mortgages)
+		mortgage.Save(out);
+	
+}
+
+
+
 // Get or change the player's credits.
 int Account::Credits() const
 {
@@ -148,15 +188,6 @@ string Account::Step()
 
 
 
-// Give the Account a reference to the list of ships owned by the player, so
-// it can calculate crew salaries and net worth.
-void Account::AddAsset(shared_ptr<const Ship *> ship)
-{
-	ships.push_back(ship);
-}
-
-
-
 // Liabilities:
 const vector<Mortgage> &Account::Mortgages() const
 {
@@ -189,12 +220,7 @@ int Account::Prequalify() const
 
 int Account::Salaries() const
 {
-	// One crew member is the player themself.
-	int crew = -1;
-	for(auto ptr : ships)
-		if(ptr && *ptr)
-			crew += (**ptr).Crew();
-	return (crew > 0) ? 100 * crew : 0;
+	return 0;
 }
 
 
