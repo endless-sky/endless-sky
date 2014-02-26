@@ -28,13 +28,19 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	// Game data should persist until after the UIs cease to exist.
+	GameData gameData;
+	PlayerInfo playerInfo;
+	
 	try {
 		SDL_Init(SDL_INIT_VIDEO);
 		
 		// Begin loading the game data.
-		GameData gameData;
 		gameData.BeginLoad(argv + 1);
-		PlayerInfo playerInfo;
+		
+		playerInfo.LoadRecent(gameData);
+		if(!playerInfo.IsLoaded())
+			playerInfo.New(gameData);
 		
 		// Check how big the window can be.
 		const SDL_VideoInfo *info = SDL_GetVideoInfo();
@@ -112,14 +118,6 @@ int main(int argc, char *argv[])
 			
 			SDL_GL_SwapBuffers();
 			timer.Wait();
-		}
-		
-		if(playerInfo.GetShip())
-		{
-			ofstream out("save.txt");
-			for(const std::shared_ptr<Ship> &it : playerInfo.Ships())
-				if(it.get())
-					it.get()->Save(out);
 		}
 		
 		SDL_Quit();

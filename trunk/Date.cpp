@@ -74,3 +74,34 @@ double Date::DaysSinceEpoch() const
 {
 	return today * SECONDS_TO_DAYS;
 }
+
+
+
+// Get the date as numbers.
+int Date::Day() const
+{
+	tm t;
+	gmtime_r(&today, &t);
+	
+	return t.tm_mday;
+}
+
+
+
+int Date::Month() const
+{
+	tm t;
+	gmtime_r(&today, &t);
+	
+	return t.tm_mon + 1;
+}
+
+
+
+int Date::Year() const
+{
+	tm t;
+	gmtime_r(&today, &t);
+	
+	return t.tm_year + 1900;
+}

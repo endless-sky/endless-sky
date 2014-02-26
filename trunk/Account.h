@@ -8,9 +8,11 @@ over time.
 #ifndef ACCOUNT_H_INCLUDED
 #define ACCOUNT_H_INCLUDED
 
+#include "DataFile.h"
 #include "Mortgage.h"
 
 #include <memory>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -23,6 +25,10 @@ public:
 	// Default constructor.
 	Account();
 	
+	// Load or save account data.
+	void Load(const DataFile::Node &node);
+	void Save(std::ostream &out) const;
+	
 	// Get or change the player's credits.
 	int Credits() const;
 	void AddCredits(int value);
@@ -30,10 +36,6 @@ public:
 	
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step();
-	
-	// Give the Account a reference to the list of ships owned by the player, so
-	// it can calculate crew salaries and net worth.
-	void AddAsset(std::shared_ptr<const Ship *> ship);
 	
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
@@ -55,7 +57,6 @@ private:
 	int salariesOwed;
 	
 	std::vector<Mortgage> mortgages;
-	std::vector<std::shared_ptr<const Ship *>> ships;
 	
 	std::vector<int> history;
 	int creditScore;

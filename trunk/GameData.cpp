@@ -156,6 +156,10 @@ void GameData::LoadShaders()
 	if(stat(prefsPath.c_str(), &buf))
 		mkdir(prefsPath.c_str(), 0700);
 	
+	string savePath = prefsPath + "/saves";
+	if(stat(savePath.c_str(), &buf))
+		mkdir(savePath.c_str(), 0700);
+	
 	// Load the key settings.
 	defaultKeys.Load(basePath + "keys.txt");
 	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
@@ -326,7 +330,7 @@ void GameData::FindFiles(const string &path)
 			else if(key == "planet" && node.Size() >= 2)
 				planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
 			else if(key == "ship" && node.Size() >= 2)
-				ships.Get(node.Token(1))->Load(node, outfits, effects);
+				ships.Get(node.Token(1))->Load(node, *this);
 			else if(key == "shipyard" && node.Size() >= 2)
 				shipSales.Get(node.Token(1))->Load(node, ships);
 			else if(key == "shipName" && node.Size() >= 2)

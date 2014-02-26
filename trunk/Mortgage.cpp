@@ -37,6 +37,41 @@ Mortgage::Mortgage(int principal, int creditScore, int term)
 
 
 
+// Load or save mortgage data.
+void Mortgage::Load(const DataFile::Node &node)
+{
+	if(node.Size() >= 2)
+		type = node.Token(1);
+	else
+		type = "Mortgage";
+	
+	for(const DataFile::Node &child : node)
+	{
+		if(child.Token(0) == "principal" && child.Size() >= 2)
+			principal = child.Value(1);
+		else if(child.Token(0) == "interest" && child.Size() >= 2)
+		{
+			interest = child.Value(1);
+			int f = 100000. * interest;
+			interestString = "0." + to_string(f) + "%";
+		}
+		else if(child.Token(0) == "term" && child.Size() >= 2)
+			term = child.Value(1);
+	}
+}
+
+
+
+void Mortgage::Save(ostream &out) const
+{
+	out << "\tmortgage \"" << type << "\"\n";
+	out << "\t\tprincipal " << principal << "\n";
+	out << "\t\tinterest " << interest << "\n";
+	out << "\t\tterm " << term << "\n";
+}
+
+
+
 // Make a mortgage payment. The return value is the amount paid.
 int Mortgage::MakePayment()
 {

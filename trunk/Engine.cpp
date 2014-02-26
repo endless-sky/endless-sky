@@ -24,58 +24,13 @@ using namespace std;
 
 Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 	: data(data), playerInfo(playerInfo),
+	playerGovernment(data.Governments().Get("Escort")),
 	calcTickTock(false), drawTickTock(false), terminate(false),
 	step(0), shouldLand(false), hasLanded(false),
 	asteroids(data),
 	load(0.), loadCount(0), loadSum(0.)
 {
-	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
-	Ship *player = &*ships.back();
-	playerInfo.AddShip(ships.back());
-	playerInfo.SetName("Captain", "Nemo");
-	
-	playerGovernment = data.Governments().Get("Escort");
-	
-	// TODO: Load player status from a file instead of starting over.
-	player->Place();
-	player->SetSystem(data.Systems().Get("Sabik"));
-	player->SetGovernment(playerGovernment);
-	player->SetName("Starship One");
-	player->SetIsSpecial();
-	
-	playerInfo.Visit(player->GetSystem());
-	
-	playerInfo.Accounts().AddMortgage(250000);
-	playerInfo.Accounts().AddCredits(-200000);
-	
-	EnterSystem();
-	for(const StellarObject &object : player->GetSystem()->Objects())
-		if(object.GetPlanet())
-			player->Place(object.Position());
-	
-	for(const auto &it : data.Systems())
-		playerInfo.Visit(&it.second);
-	
-	/*ships.push_back(make_shared<Ship>(*data.Ships().Get("Argosy")));
-	Ship &sidekick = *ships.back();
-	sidekick.Place(player->Position() + Point(200., 0.));
-	sidekick.SetSystem(player->GetSystem());
-	sidekick.SetGovernment(playerGovernment);
-	sidekick.SetName("Sidekick Sam");
-	sidekick.SetIsSpecial();
-	sidekick.SetParent(ships.front());
-	player->AddEscort(ships.back());
-	playerInfo.AddShip(&sidekick);*/
-	
-	/*for(int i = 0; i < 4; ++i)
-	{
-		ships.push_back(make_shared<Ship>(*data.Ships().Get("Sparrow")));
-		Ship &sidekick = *ships.back();
-		sidekick.Place(player->Position() + Point(2000 + rand() % 2000, -1000 + rand() % 2000));
-		sidekick.SetSystem(player->GetSystem());
-		sidekick.SetGovernment(data.Governments().Get("Pirate"));
-		sidekick.SetName("Raider");
-	}*/
+	Place();
 	
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -120,7 +75,7 @@ void Engine::Step(bool isActive)
 		{
 			if(hasLanded)
 			{
-				EnterSystem();
+				Place();
 				hasLanded = false;
 			}
 			else if(!shouldLand)
@@ -240,7 +195,7 @@ Panel *Engine::PanelToShow()
 		hasLanded = true;
 		shouldLand = false;
 		
-		const Planet &planet = *playerInfo.GetShip()->GetTargetPlanet()->GetPlanet();
+		const Planet &planet = *playerInfo.GetShip()->GetPlanet();
 		return new PlanetPanel(data, playerInfo, planet);
 	}
 	else
@@ -326,6 +281,53 @@ Panel *Engine::Map()
 
 
 
+void Engine::EnterSystem()
+{
+	const Ship *player = playerInfo.GetShip();
+	if(!player)
+		return;
+	
+	AddMessage(playerInfo.IncrementDate());
+	const Date &today = playerInfo.GetDate();
+	AddMessage("Entering the " + player->GetSystem()->Name() + " system on "
+		+ today.ToString() + (player->GetSystem()->IsInhabited() ?
+			"." : ". No inhabited planets detected."));
+	
+	for(const auto &it : data.Systems())
+		it.second.SetDate(today);
+	
+	asteroids.Clear();
+	for(const System::Asteroid &a : player->GetSystem()->Asteroids())
+		asteroids.Add(a.Name(), a.Count(), a.Energy());
+	
+	projectiles.clear();
+	effects.clear();
+}
+
+
+
+void Engine::Place()
+{
+	ships.clear();
+	
+	EnterSystem();
+	for(const shared_ptr<Ship> &ship : playerInfo.Ships())
+	{
+		ships.push_back(ship);
+		Point pos;
+		if(ship->GetPlanet())
+		{
+			for(const StellarObject &object : ship->GetSystem()->Objects())
+				if(object.GetPlanet() == ship->GetPlanet())
+					pos = object.Position();
+		}
+		ship->Place(pos);
+	}
+	
+}
+
+
+
 // Thread entry point.
 void Engine::ThreadEntryPoint()
 {
@@ -348,32 +350,6 @@ void Engine::ThreadEntryPoint()
 			drawTickTock = calcTickTock;
 		}
 	}
-}
-
-
-
-void Engine::EnterSystem()
-{
-	const Ship *player = playerInfo.GetShip();
-	if(!player)
-		return;
-	
-	AddMessage(playerInfo.IncrementDate());
-	const Date &today = playerInfo.GetDate();
-	AddMessage("Entering the " + player->GetSystem()->Name() + " system on "
-		+ today.ToString() + (player->GetSystem()->IsInhabited() ?
-			"." : ". No inhabited planets detected."));
-	
-	player->GetSystem()->SetDate(today);
-	for(const auto &it : data.Systems())
-		it.second.SetDate(today);
-	
-	asteroids.Clear();
-	for(const System::Asteroid &a : player->GetSystem()->Asteroids())
-		asteroids.Add(a.Name(), a.Count(), a.Energy());
-	
-	projectiles.clear();
-	effects.clear();
 }
 
 
@@ -604,18 +580,18 @@ void Engine::CalculateStep()
 		int type = rand() % data.Ships().size();
 		for(const auto &it : data.Ships())
 			if(!type--)
-				ships.push_back(shared_ptr<Ship>(new Ship(it.second)));
+				ships.push_front(shared_ptr<Ship>(new Ship(it.second)));
 		
-		ships.back()->Place();
-		ships.back()->SetSystem(source);
-		ships.back()->SetTargetSystem(player->GetSystem());
+		ships.front()->Place();
+		ships.front()->SetSystem(source);
+		ships.front()->SetTargetSystem(player->GetSystem());
 		static const std::string GOV[4] = {
 			"Merchant",
 			"Republic",
 			"Militia",
 			"Pirate"};
-		ships.back()->SetGovernment(data.Governments().Get(GOV[rand() % 4]));
-		ships.back()->SetName(data.ShipNames().Get("civilian")->Get());
+		ships.front()->SetGovernment(data.Governments().Get(GOV[rand() % 4]));
+		ships.front()->SetName(data.ShipNames().Get("civilian")->Get());
 	}
 	
 	// Keep track of how much of the CPU time we are using.

@@ -16,6 +16,7 @@ ship(s) they own and with what outfits, what systems they have visited, etc.
 #include <vector>
 #include <string>
 
+class GameData;
 class Outfit;
 class Ship;
 class System;
@@ -25,6 +26,16 @@ class System;
 class PlayerInfo {
 public:
 	PlayerInfo();
+	
+	void Clear();
+	bool IsLoaded() const;
+	void Load(const std::string &path, const GameData &data);
+	void Save() const;
+	
+	// Load the most recently saved player.
+	void LoadRecent(const GameData &data);
+	// Make a new player.
+	void New(const GameData &data);
 	
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
@@ -64,7 +75,7 @@ public:
 private:
 	std::string firstName;
 	std::string lastName;
-	std::string path;
+	std::string filePath;
 	
 	Date date;
 	Account accounts;

@@ -7,6 +7,8 @@ Class representing a mortgage (or a fine that can be paid in installments).
 #ifndef MORTGAGE_H_INCLUDED
 #define MORTGAGE_H_INCLUDED
 
+#include "DataFile.h"
+
 #include <string>
 
 
@@ -22,6 +24,10 @@ public:
 	// Create a new mortgage of the given amount. If this is a fine, set the
 	// credit score to zero for a higher interest rate.
 	Mortgage(int principal, int creditScore, int term = 365);
+	
+	// Load or save mortgage data.
+	void Load(const DataFile::Node &node);
+	void Save(std::ostream &out) const;
 	
 	// Make a mortgage payment. The return value is the amount paid.
 	int MakePayment();

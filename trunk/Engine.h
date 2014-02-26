@@ -51,8 +51,11 @@ public:
 	
 	
 private:
-	void ThreadEntryPoint();
 	void EnterSystem();
+	// Place all the player's ships, and "enter" the system the player is in.
+	void Place();
+	
+	void ThreadEntryPoint();
 	void CalculateStep();
 	void AddMessage(const std::string &message);
 	
