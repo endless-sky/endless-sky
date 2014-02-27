@@ -17,6 +17,7 @@ color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
 color "light grey" .8 .8 .8 1.
+color "dim grey" .2 .2 .2 0.
 
 interface "main menu"
 	sprite "_menu/compass" 0 0
@@ -102,17 +103,137 @@ interface "main menu"
 		color "light grey"
 		align center
 
+interface "load menu"
+	sprite "_menu/g0" 0 -280
+	sprite "_menu/forest2" 0 280
+	sprite "_menu/oberon" 140 180
+	sprite "_menu/side panel" -360 0
+	sprite "_menu/side panel" 0 0
+	sprite "_menu/side panel" 360 0
+	outline "ship sprite" 360 -90 dynamic
+		size 120 120
+	label "pilot:" 260 -15
+		size 14
+		color "grey"
+		align left
+	string "pilot" 320 -15
+		size 14
+		color "light grey"
+		align left
+	label "ship:" 260 5
+		size 14
+		color "grey"
+		align left
+	string "ship" 320 5
+		size 14
+		color "light grey"
+		align left
+	label "planet:" 260 35
+		size 14
+		color "grey"
+		align left
+	string "planet" 320 35
+		size 14
+		color "light grey"
+		align left
+	label "system:" 260 55
+		size 14
+		color "grey"
+		align left
+	string "system" 320 55
+		size 14
+		color "light grey"
+		align left
+	label "credits:" 260 85
+		size 14
+		color "grey"
+		align left
+	string "credits" 320 85
+		size 14
+		color "light grey"
+		align left
+	label "date:" 260 105
+		size 14
+		color "grey"
+		align left
+	string "date" 320 105
+		size 14
+		color "light grey"
+		align left
+	
+	# Greyed out buttons:
+	label "Delete" -295 148
+		size 14
+		color "dim grey"
+		align center
+	label "Add Snapshot" -50 148
+		size 14
+		color "dim grey"
+		align center
+	label "Delete" 65 148
+		size 14
+		color "dim grey"
+		align center
+	label "Enter Ship" 425 148
+		size 14
+		color "dim grey"
+		align center
+	
+	button n -410 155
+		size 120 30
+	label "New Pilot" -410 148
+		size 14
+		color "light grey"
+		align center
+	if "pilot selected"
+	button d -295 155
+		size 90 30
+	label "Delete" -295 148
+		size 14
+		color "light grey"
+		align center
+	
+	button a -50 155
+		size 120 30
+	label "Add Snapshot" -50 148
+		size 14
+		color "light grey"
+		align center
+	if "snapshot selected"
+	button r 65 155
+		size 90 30
+	label "Delete" 65 148
+		size 14
+		color "light grey"
+		align center
+	endif
+	
+	button b 310 155
+		size 120 30
+	label "Back to Menu" 310 148
+		size 14
+		color "light grey"
+		align center
+	if "any selected"
+	button e 425 155
+		size 90 30
+	label "Enter Ship" 425 148
+		size 14
+		color "light grey"
+		align center
+	endif
+
 interface "preferences"
 	sprite "_menu/g0" 0 -280
 	sprite "_menu/forest2" 0 280
 	sprite "_menu/oberon" 140 180
 	sprite "ui/keys panel" 0 0
+	button b 150 235
+		size 120 30
 	label "Back to Menu..." 150 228
 		size 14
 		color "light grey"
 		align center
-	button m 150 235
-		size 120 30
 
 interface "status"
 	position top right
