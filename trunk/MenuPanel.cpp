@@ -11,6 +11,7 @@ Function definitions for the MenuPanel class.
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
+#include "LoadPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
@@ -118,6 +119,8 @@ bool MenuPanel::KeyDown(SDLKey key, SDLMod mod)
 		Pop(this);
 	else if(key == 'p')
 		Push(new PreferencesPanel(gameData));
+	else if(key == 'l')
+		Push(new LoadPanel(gameData, playerInfo, this));
 	else if(key == 'q')
 		Quit();
 	
