@@ -89,7 +89,7 @@ void Engine::Step(bool isActive)
 			}
 		}
 		
-		currentSystem = player->GetSystem();
+		const System *currentSystem = playerInfo.GetSystem();
 		// Update this here, for thread safety.
 		if(playerInfo.HasTravelPlan() && currentSystem == playerInfo.TravelPlan().back())
 			playerInfo.PopTravel();
@@ -287,6 +287,8 @@ void Engine::EnterSystem()
 	if(!player)
 		return;
 	
+	playerInfo.SetSystem(player->GetSystem());
+	
 	AddMessage(playerInfo.IncrementDate());
 	const Date &today = playerInfo.GetDate();
 	AddMessage("Entering the " + player->GetSystem()->Name() + " system on "
@@ -383,7 +385,7 @@ void Engine::CalculateStep()
 	
 	// If the player has entered a new system, update the asteroids, etc.
 	const Ship *player = playerInfo.GetShip();
-	if(player->GetSystem() != currentSystem)
+	if(player->GetSystem() != playerInfo.GetSystem())
 		EnterSystem();
 	
 	// Now we know the player's current position. Draw the planets.

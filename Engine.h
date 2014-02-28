@@ -91,7 +91,6 @@ private:
 	Point velocity;
 	// Other information to display.
 	Information info;
-	const System *currentSystem;
 	std::vector<Target> targets;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	

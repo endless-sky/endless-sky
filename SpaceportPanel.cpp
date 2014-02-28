@@ -15,8 +15,9 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(const string &description)
-	: Panel(false, false)
 {
+	SetTrapAllEvents(false);
+	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(480);

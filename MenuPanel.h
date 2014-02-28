@@ -33,6 +33,9 @@ public:
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
 	
+	// New player "conversation" callback.
+	void OnCallback(int value);
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

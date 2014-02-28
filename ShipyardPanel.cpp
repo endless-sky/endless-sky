@@ -16,6 +16,7 @@ Function definitions for the ShipyardPanel class.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "UI.h"
 
 #include <algorithm>
 
@@ -50,10 +51,12 @@ namespace {
 
 
 ShipyardPanel::ShipyardPanel(const GameData &data, PlayerInfo &player)
-	: Panel(true), data(data), player(player),
+	: data(data), player(player),
 	playerShip(player.GetShip()), selectedShip(nullptr),
 	mainScroll(0), sideScroll(0)
 {
+	SetIsFullScreen(true);
+	
 	if(playerShip)
 		playerShipInfo.Update(*playerShip);
 }
@@ -208,7 +211,7 @@ void ShipyardPanel::Draw() const
 bool ShipyardPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == SDLK_ESCAPE)
-		Pop(this);
+		GetUI()->Pop(this);
 	
 	return true;
 }
@@ -229,7 +232,7 @@ bool ShipyardPanel::Click(int x, int y)
 			// TODO: sell ship;
 		}
 		else
-			Pop(this);
+			GetUI()->Pop(this);
 		
 		return true;
 	}

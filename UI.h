@@ -33,6 +33,7 @@ public:
 	
 	// Add the given panel to the stack. If you do not want a panel to be
 	// deleted when it is popped, save a copy of its shared pointer elsewhere.
+	void Push(Panel *panel);
 	void Push(const std::shared_ptr<Panel> &panel);
 	// Remove the given panel from the stack (if it is in it). The panel will be
 	// deleted at the start of the next time Step() is called, so it is safe for

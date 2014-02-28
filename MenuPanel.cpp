@@ -18,6 +18,7 @@ Function definitions for the MenuPanel class.
 #include "PreferencesPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
+#include "UI.h"
 
 #include <fstream>
 
@@ -31,8 +32,10 @@ namespace {
 
 
 MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo)
-	: Panel(true), gameData(gameData), playerInfo(playerInfo), scroll(0)
+	: gameData(gameData), playerInfo(playerInfo), scroll(0)
 {
+	SetIsFullScreen(true);
+	
 	ifstream in(gameData.ResourcePath() + "credits.txt");
 	string line;
 	while(getline(in, line))
@@ -58,16 +61,18 @@ void MenuPanel::Draw() const
 	glClear(GL_COLOR_BUFFER_BIT);
 	gameData.Background().Draw(Point(), Point());
 	
-	const Ship *player = playerInfo.GetShip();
 	Information info;
-	info.SetSprite("ship sprite", player->GetSprite().GetSprite());
 	info.SetString("pilot", playerInfo.FirstName() + " " + playerInfo.LastName());
-	info.SetString("ship", player->Name());
-	if(player->GetPlanet())
-		info.SetString("planet", player->GetPlanet()->Name());
-	else
-		info.SetString("planet", "");
-	info.SetString("system", player->GetSystem()->Name());
+	if(playerInfo.GetShip())
+	{
+		const Ship &ship = *playerInfo.GetShip();
+		info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
+		info.SetString("ship", ship.Name());
+		if(ship.GetPlanet())
+			info.SetString("planet", ship.GetPlanet()->Name());
+	}
+	if(playerInfo.GetSystem())
+		info.SetString("system", playerInfo.GetSystem()->Name());
 	info.SetString("credits", to_string(playerInfo.Accounts().Credits()));
 	info.SetString("date", playerInfo.GetDate().ToString());
 	
@@ -110,19 +115,26 @@ void MenuPanel::Draw() const
 
 
 
+// New player "conversation" callback.
+void MenuPanel::OnCallback(int)
+{
+}
+
+
+
 bool MenuPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(gameData.Progress() < 1.)
 		return false;
 	
 	if(key == 'e' || key == gameData.Keys().Get(Key::MENU))
-		Pop(this);
+		GetUI()->Pop(this);
 	else if(key == 'p')
-		Push(new PreferencesPanel(gameData));
+		GetUI()->Push(new PreferencesPanel(gameData));
 	else if(key == 'l')
-		Push(new LoadPanel(gameData, playerInfo, this));
+		GetUI()->Push(new LoadPanel(gameData, playerInfo, this));
 	else if(key == 'q')
-		Quit();
+		GetUI()->Quit();
 	
 	return true;
 }

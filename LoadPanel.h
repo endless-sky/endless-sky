@@ -11,6 +11,10 @@ UI panel for loading and saving games.
 
 #include "PlayerInfo.h"
 
+#include <map>
+#include <string>
+#include <vector>
+
 class GameData;
 
 
@@ -20,6 +24,9 @@ public:
 	LoadPanel(const GameData &data, PlayerInfo &player, const Panel *parent);
 	
 	virtual void Draw() const;
+	
+	// New player "conversation" callback.
+	void OnCallback(int value);
 	
 	
 protected:
@@ -32,6 +39,10 @@ private:
 	const GameData &data;
 	PlayerInfo &player;
 	const Panel *parent;
+	
+	std::map<std::string, std::vector<std::string>> files;
+	std::string selectedPilot;
+	std::string selectedFile;
 	
 	PlayerInfo loadedInfo;
 };

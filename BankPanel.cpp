@@ -11,6 +11,7 @@ Function definitions for the BankPanel class.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "UI.h"
 
 #include <string>
 
@@ -33,10 +34,10 @@ namespace {
 
 
 BankPanel::BankPanel(PlayerInfo &player)
-	: Panel(false, false), player(player),
-	qualify(player.Accounts().Prequalify()),
+	: player(player), qualify(player.Accounts().Prequalify()),
 	selectedRow(0), amount(0)
 {
+	SetTrapAllEvents(false);
 }
 
 
@@ -136,11 +137,11 @@ bool BankPanel::KeyDown(SDLKey key, SDLMod mod)
 		++selectedRow;
 	else if(key == SDLK_RETURN
 			&& static_cast<unsigned>(selectedRow) < player.Accounts().Mortgages().size())
-		Push(new CreditsPanel("Pay how many credits?", &amount, min(
+		GetUI()->Push(new CreditsPanel("Pay how many credits?", &amount, min(
 			player.Accounts().Credits(),
 			player.Accounts().Mortgages()[selectedRow].Principal())));
 	else if(key == SDLK_RETURN && qualify)
-		Push(new CreditsPanel("Borrow how many credits?", &amount, qualify));
+		GetUI()->Push(new CreditsPanel("Borrow how many credits?", &amount, qualify));
 	else
 		return false;
 	
@@ -157,7 +158,7 @@ bool BankPanel::Click(int x, int y)
 		selectedRow = (y - FIRST_Y - 25) / 20;
 		if(x >= EXTRA_X)
 		{
-			Push(new CreditsPanel("Pay how many credits?", &amount, min(
+			GetUI()->Push(new CreditsPanel("Pay how many credits?", &amount, min(
 				player.Accounts().Credits(),
 				player.Accounts().Mortgages()[selectedRow].Principal())));
 		}

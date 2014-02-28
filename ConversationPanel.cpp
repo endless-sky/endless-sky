@@ -11,12 +11,14 @@ Function definitions for the ConversationPanel class.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "shift.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "UI.h"
 
 #include <GL/glew.h>
 
@@ -29,14 +31,21 @@ namespace {
 
 
 
-ConversationPanel::ConversationPanel(const Conversation &conversation)
-	: conversation(conversation), scroll(0)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation)
+	: player(player), conversation(conversation), scroll(0)
 {
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 	
 	Goto(0);
+}
+
+
+
+void ConversationPanel::SetCallback(const Callback &callback)
+{
+	this->callback = callback;
 }
 
 
@@ -131,7 +140,10 @@ bool ConversationPanel::KeyDown(SDLKey key, SDLMod mod)
 	if(node < 0)
 	{
 		if(key == SDLK_RETURN)
-			Pop(this);
+		{
+			callback(node);
+			GetUI()->Pop(this);
+		}
 		
 		return true;
 	}
@@ -156,6 +168,8 @@ bool ConversationPanel::KeyDown(SDLKey key, SDLMod mod)
 			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
 			text.push_back(wrap);
 			text.back().Wrap(name);
+			
+			player.SetName(firstName, lastName);
 			
 			Goto(node + 1);
 		}

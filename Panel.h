@@ -19,7 +19,7 @@ class UI;
 class Panel {
 public:
 	// Constructor.
-	Panel(bool isFullScreen = false, bool trapAllEvents = true);
+	Panel();
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel();
 	
@@ -47,10 +47,9 @@ protected:
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(int dx, int dy);
 	
-	void Push(Panel *panel);
-	void Push(const std::shared_ptr<Panel> &panel);
-	void Pop(const Panel *panel);
-	void Quit();
+	void SetIsFullScreen(bool set);
+	void SetTrapAllEvents(bool set);
+	UI *GetUI();
 	
 	
 private:

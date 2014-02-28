@@ -18,6 +18,7 @@ Function definitions for the MapPanel class.
 #include "SpriteShader.h"
 #include "System.h"
 #include "Trade.h"
+#include "UI.h"
 
 #include <cmath>
 #include <limits>
@@ -28,10 +29,12 @@ using namespace std;
 
 
 MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
-	: Panel(true), data(data), current(player.GetShip()->GetSystem()),
+	: data(data), current(player.GetShip()->GetSystem()),
 	selected(player.GetShip()->GetSystem()), player(player),
 	tradeY(0), commodity(commodity), selectedPlanet(nullptr)
 {
+	SetIsFullScreen(true);
+	
 	vector<const System *> edge{current};
 	distance[current] = 0;
 	
@@ -333,7 +336,7 @@ void MapPanel::Draw() const
 bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == data.Keys().Get(Key::MAP))
-		Pop(this);
+		GetUI()->Pop(this);
 	
 	return true;
 }

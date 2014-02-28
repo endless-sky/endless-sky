@@ -17,6 +17,7 @@ Function definitions for the PlanetPanel class.
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "TradingPanel.h"
+#include "UI.h"
 
 using namespace std;
 
@@ -74,25 +75,25 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	Panel *oldPanel = selectedPanel;
 	
 	if(key == 'd')
-		Pop(this);
+		GetUI()->Pop(this);
 	else if(key == 't' && planet.HasSpaceport())
 	{
 		selectedPanel = trading.get();
-		Push(trading);
+		GetUI()->Push(trading);
 	}
 	else if(key == 'b' && planet.HasSpaceport())
 	{
 		selectedPanel = bank.get();
-		Push(bank);
+		GetUI()->Push(bank);
 	}
 	else if(key == 'p' && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
-		Push(spaceport);
+		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard())
 	{
-		Push(new ShipyardPanel(data, player));
+		GetUI()->Push(new ShipyardPanel(data, player));
 		return true;
 	}
 	else if(key == 'o' && planet.HasOutfitter())
@@ -102,12 +103,12 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	}
 	else if(key == 'j' || key == 'h')
 	{
-		Push(new ConversationPanel(*data.Conversations().Get("free worlds intro")));
+		GetUI()->Push(new ConversationPanel(player, *data.Conversations().Get("free worlds intro")));
 		return true;
 	}
 	else if(key == data.Keys().Get(Key::MAP))
 	{
-		Push(new MapPanel(data, player));
+		GetUI()->Push(new MapPanel(data, player));
 		return true;
 	}
 	else
@@ -116,7 +117,7 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	// If we are here, it is because something happened to change the selected
 	// panel. So, we need to pop the old selected panel:
 	if(oldPanel)
-		Pop(oldPanel);
+		GetUI()->Pop(oldPanel);
 	
 	return true;
 }

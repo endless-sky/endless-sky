@@ -13,8 +13,8 @@ using namespace std;
 
 
 // Constructor.
-Panel::Panel(bool isFullScreen, bool trapAllEvents)
-	: ui(nullptr), isFullScreen(isFullScreen), trapAllEvents(trapAllEvents)
+Panel::Panel()
+	: ui(nullptr), isFullScreen(false), trapAllEvents(true)
 {
 }
 
@@ -96,34 +96,24 @@ bool Panel::Drag(int dx, int dy)
 }
 
 
-
-void Panel::Push(Panel *panel)
+	
+void Panel::SetIsFullScreen(bool set)
 {
-	Push(shared_ptr<Panel>(panel));
+	isFullScreen = set;
 }
 
 
 
-void Panel::Push(const std::shared_ptr<Panel> &panel)
+void Panel::SetTrapAllEvents(bool set)
 {
-	if(ui)
-		ui->Push(panel);
+	trapAllEvents = set;
 }
 
 
 
-void Panel::Pop(const Panel *panel)
+UI *Panel::GetUI()
 {
-	if(ui)
-		ui->Pop(panel);
-}
-
-
-
-void Panel::Quit()
-{
-	if(ui)
-		ui->Quit();
+	return ui;
 }
 
 
