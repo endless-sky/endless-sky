@@ -13,6 +13,7 @@ Function definitions for the PreferencesPanel class.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "UI.h"
 
 #include <GL/glew.h>
 
@@ -24,8 +25,9 @@ using namespace std;
 
 
 PreferencesPanel::PreferencesPanel(GameData &data)
-	: Panel(true), data(data), editing(-1), selected(0), firstY(0)
+	: data(data), editing(-1), selected(0), firstY(0)
 {
+	SetIsFullScreen(true);
 }
 
 
@@ -157,6 +159,6 @@ void PreferencesPanel::Exit()
 {
 	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
 	data.Keys().Save(keysPath);
-
-	Pop(this);
+	
+	GetUI()->Pop(this);
 }

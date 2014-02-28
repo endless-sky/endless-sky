@@ -6,9 +6,19 @@ Function definitions for the LoadPanel class.
 
 #include "LoadPanel.h"
 
+#include "Color.h"
+#include "ConversationPanel.h"
+#include "FillShader.h"
+#include "Font.h"
+#include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "UI.h"
+
+#include <boost/filesystem.hpp>
+
+namespace fs = boost::filesystem;
 
 using namespace std;
 
@@ -17,6 +27,26 @@ using namespace std;
 LoadPanel::LoadPanel(const GameData &data, PlayerInfo &player, const Panel *parent)
 	: data(data), player(player), parent(parent)
 {
+	string path = getenv("HOME") + string("/.config/endless-sky/saves/");
+	fs::directory_iterator it(path);
+	fs::directory_iterator end;
+	for( ; it != end; ++it)
+	{
+		string fileName = it->path().filename().string();
+		// The file name is either "Pilot Name.txt" or "Pilot Name~Date.txt".
+		size_t pos = fileName.find('~');
+		if(pos == string::npos)
+			pos = fileName.size() - 4;
+		
+		string pilotName = fileName.substr(0, pos);
+		files[pilotName].push_back(fileName);
+	}
+	
+	if(!files.empty())
+	{
+		selectedPilot = files.begin()->first;
+		selectedFile = files.begin()->second.front();
+	}
 }
 
 
@@ -35,15 +65,47 @@ void LoadPanel::Draw() const
 		info.SetString("ship", ship.Name());
 		if(ship.GetPlanet())
 			info.SetString("planet", ship.GetPlanet()->Name());
-		else
-			info.SetString("planet", "");
-		info.SetString("system", ship.GetSystem()->Name());
 	}
+	if(player.GetSystem())
+		info.SetString("system", player.GetSystem()->Name());
 	info.SetString("credits", to_string(player.Accounts().Credits()));
 	info.SetString("date", player.GetDate().ToString());
 	
 	const Interface *menu = data.Interfaces().Get("load menu");
 	menu->Draw(info);
+	
+	Color dim(.1, 0.);
+	Color grey(.5, 0.);
+	const Font &font = FontSet::Get(14);
+	
+	Point point(-460., -157.);
+	for(const auto &it : files)
+	{
+		if(it.first == selectedPilot)
+			FillShader::Fill(point + Point(100., 7.), Point(200., 20.), dim.Get());
+		font.Draw(it.first, point, grey.Get());
+		point += Point(0., 20.);
+	}
+	
+	if(!selectedPilot.empty())
+	{
+		point = Point(-100., -157.);
+		for(const string &file : files.find(selectedPilot)->second)
+		{
+			if(file == selectedFile)
+				FillShader::Fill(point + Point(100., 7.), Point(200., 20.), dim.Get());
+			font.Draw(file, point, grey.Get());
+			point += Point(0., 20.);
+		}
+	}
+}
+
+
+
+// New player "conversation" callback.
+void LoadPanel::OnCallback(int)
+{
+	GetUI()->Pop(this);
 }
 
 
@@ -51,7 +113,15 @@ void LoadPanel::Draw() const
 bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == 'b' || key == data.Keys().Get(Key::MENU))
-		Pop(this);
+		GetUI()->Pop(this);
+	else if(key == 'n')
+	{
+		player.New(data);
+		
+		ConversationPanel *panel = new ConversationPanel(player, *data.Conversations().Get("intro"));
+		GetUI()->Push(panel);
+		panel->SetCallback(*this);
+	}
 	
 	return true;
 }
@@ -65,6 +135,7 @@ bool LoadPanel::Click(int x, int y)
 		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
 	
 	// TODO: handle clicks on lists of pilots / saves.
+	// The first row of each panel is y = -160 to -140.
 	
 	return true;
 }

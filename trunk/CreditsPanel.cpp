@@ -11,6 +11,7 @@ Function definitions for the CreditsPanel class.
 #include "FontSet.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "UI.h"
 
 using namespace std;
 
@@ -67,12 +68,12 @@ bool CreditsPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(key == SDLK_ESCAPE)
 	{
 		*amount = 0;
-		Pop(this);
+		GetUI()->Pop(this);
 	}
 	else if(key == SDLK_RETURN)
 	{
 		if(*amount <= limit)
-			Pop(this);
+			GetUI()->Pop(this);
 		else
 			*amount = limit;
 	}

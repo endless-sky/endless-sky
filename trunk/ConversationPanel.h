@@ -10,18 +10,21 @@ and then can be closed once the conversation ends.
 
 #include "Panel.h"
 
+#include "Callback.h"
 #include "WrappedText.h"
 
 #include <list>
 #include <string>
 
 class Conversation;
+class PlayerInfo;
 
 
 
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(const Conversation &conversation);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation);
+	void SetCallback(const Callback &callback);
 	
 	// Draw this panel.
 	virtual void Draw() const;
@@ -38,8 +41,11 @@ private:
 	
 	
 private:
+	PlayerInfo &player;
+	
 	const Conversation &conversation;
 	int node;
+	Callback callback;
 	
 	int scroll;
 	

@@ -112,7 +112,14 @@ void UI::DrawAll()
 
 
 // Add the given panel to the stack. UI is responsible for deleting it.
-void UI::Push(const std::shared_ptr<Panel> &panel)
+void UI::Push(Panel *panel)
+{
+	Push(shared_ptr<Panel>(panel));
+}
+
+
+
+void UI::Push(const shared_ptr<Panel> &panel)
 {
 	toPush.push_back(panel);
 }

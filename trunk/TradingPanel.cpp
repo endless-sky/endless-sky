@@ -11,6 +11,7 @@ Function definitions for the TradingPanel class.
 #include "Font.h"
 #include "FontSet.h"
 #include "MapPanel.h"
+#include "UI.h"
 
 #include <string>
 
@@ -41,9 +42,10 @@ namespace {
 
 
 TradingPanel::TradingPanel(const GameData &data, PlayerInfo &player)
-	: Panel(false, false), data(data), player(player),
-	system(*player.GetShip()->GetSystem()), selectedRow(0)
+	: data(data), player(player),
+	system(*player.GetSystem()), selectedRow(0)
 {
+	SetTrapAllEvents(false);
 }
 
 
@@ -117,7 +119,7 @@ bool TradingPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Sell();
 	else if(key == data.Keys().Get(Key::MAP))
-		Push(new MapPanel(data, player, selectedRow));
+		GetUI()->Push(new MapPanel(data, player, selectedRow));
 	else
 		return false;
 	

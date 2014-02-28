@@ -11,6 +11,7 @@ Function definitions for the MainPanel class.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "Screen.h"
+#include "UI.h"
 
 #include <string>
 
@@ -19,10 +20,11 @@ using namespace std;
 
 
 MainPanel::MainPanel(const GameData &gameData, PlayerInfo &playerInfo)
-	: Panel(true), gameData(gameData), playerInfo(playerInfo),
+	: gameData(gameData), playerInfo(playerInfo),
 	engine(gameData, playerInfo),
 	load(0.), loadSum(0.), loadCount(0)
 {
+	SetIsFullScreen(true);
 }
 
 
@@ -33,7 +35,7 @@ void MainPanel::Step(bool isActive)
 	
 	Panel *panel = engine.PanelToShow();
 	if(panel)
-		Push(panel);
+		GetUI()->Push(panel);
 }
 
 
@@ -67,7 +69,7 @@ void MainPanel::Draw() const
 bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == gameData.Keys().Get(Key::MAP))
-		Push(engine.Map());
+		GetUI()->Push(engine.Map());
 	
 	return true;
 }

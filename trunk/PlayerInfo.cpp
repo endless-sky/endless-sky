@@ -69,6 +69,8 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 		}
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "system" && child.Size() >= 2)
+			system = data.Systems().Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
@@ -82,6 +84,9 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			ships.back()->SetGovernment(data.Governments().Get("Escort"));
 		}
 	}
+	
+	if(!system && !ships.empty())
+		system = ships.front()->GetSystem();
 }
 
 
@@ -98,6 +103,8 @@ void PlayerInfo::Save() const
 	
 	out << "pilot \"" << firstName << "\" \"" << lastName << "\"\n";
 	out << "date " << date.Day() << " " << date.Month() <<  " " << date.Year() << "\n";
+	if(system)
+		out << "system \"" << system->Name() << "\"\n";
 	
 	accounts.Save(out);
 	
@@ -130,20 +137,9 @@ void PlayerInfo::New(const GameData &data)
 {
 	Clear();
 	
-	ships.push_back(make_shared<Ship>(*data.Ships().Get("Hawk")));
-	Ship &player = *ships.back();
-	SetName("Captain", "Nemo");
-	
-	player.SetSystem(data.Systems().Get("Sabik"));
-	player.SetPlanet(data.Planets().Get("Longjump"));
-	player.SetName("Starship One");
-	player.SetIsSpecial();
-	player.SetGovernment(data.Governments().Get("Escort"));
-	
-	Visit(player.GetSystem());
+	SetSystem(data.Systems().Get("Sabik"));
 	
 	accounts.AddMortgage(250000);
-	accounts.AddCredits(-200000);
 }
 
 
@@ -167,15 +163,17 @@ void PlayerInfo::SetName(const string &first, const string &last)
 	firstName = first;
 	lastName = last;
 	
+	string fileName = first + " " + last;
+	
 	// If there are multiple pilots with the same name, append a number to the
 	// pilot name to generate a unique file name.
-	filePath = getenv("HOME") + string("/.config/endless-sky/saves/") + first + last;
+	filePath = getenv("HOME") + ("/.config/endless-sky/saves/" + fileName);
 	int index = 0;
 	while(true)
 	{
 		string path = filePath;
 		if(index++)
-			path += to_string(index);
+			path += " " + to_string(index);
 		path += ".txt";
 		
 		struct stat buf;
@@ -200,6 +198,21 @@ string PlayerInfo::IncrementDate()
 {
 	++date;
 	return accounts.Step();
+}
+
+
+
+void PlayerInfo::SetSystem(const System *system)
+{
+	this->system = system;
+	Visit(system);
+}
+
+
+
+const System *PlayerInfo::GetSystem() const
+{
+	return system;
 }
 
 
