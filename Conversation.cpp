@@ -6,9 +6,18 @@ Function definitions for the Conversation class.
 
 #include "Conversation.h"
 
+#include "SpriteSet.h"
+
 #include <iostream>
 
 using namespace std;
+
+
+
+Conversation::Conversation()
+	: scene(nullptr)
+{
+}
 
 
 
@@ -23,7 +32,9 @@ void Conversation::Load(const DataFile::Node &node)
 	
 	for(const DataFile::Node &child : node)
 	{
-		if(child.Token(0) == "label" && child.Size() >= 2)
+		if(child.Token(0) == "scene" && child.Size() >= 2)
+			scene = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "label" && child.Size() >= 2)
 		{
 			// You cannot merge text above a label with text below it.
 			if(!nodes.empty())
@@ -63,6 +74,8 @@ void Conversation::Load(const DataFile::Node &node)
 				nodes.pop_back();
 			}
 		}
+		else if(child.Token(0) == "name")
+			nodes.emplace_back(true);
 		else
 		{
 			// This is just an ordinary text node.
@@ -128,6 +141,16 @@ void Conversation::Load(const DataFile::Node &node)
 
 
 
+bool Conversation::IsChoice(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return nodes[node].isChoice;
+}
+
+
+
 // The beginning of the conversation is node 0. Some nodes have choices for
 // the user to select; others just automatically continue to another node.
 int Conversation::Choices(int node) const
@@ -160,6 +183,13 @@ int Conversation::NextNode(int node, int choice) const
 		return -2;
 	
 	return nodes[node].data[choice].second;
+}
+
+
+
+const Sprite *Conversation::Scene() const
+{
+	return scene;
 }
 
 
