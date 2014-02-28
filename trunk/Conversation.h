@@ -17,6 +17,8 @@ killed.
 #include <utility>
 #include <vector>
 
+class Sprite;
+
 
 
 class Conversation {
@@ -28,13 +30,18 @@ public:
 	
 	
 public:
+	Conversation();
+	
 	void Load(const DataFile::Node &node);
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.
+	bool IsChoice(int node) const;
 	int Choices(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	int NextNode(int node, int choice = 0) const;
+	
+	const Sprite *Scene() const;
 	
 	
 private:
@@ -64,6 +71,8 @@ private:
 	std::map<std::string, int> labels;
 	std::multimap<std::string, std::pair<int, int>> unresolved;
 	std::vector<Node> nodes;
+	
+	const Sprite *scene;
 };
 
 

@@ -13,6 +13,7 @@ and then can be closed once the conversation ends.
 #include "WrappedText.h"
 
 #include <list>
+#include <string>
 
 class Conversation;
 
@@ -29,6 +30,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDLKey key, SDLMod mod);
+	virtual bool Drag(int dx, int dy);
 	
 	
 private:
@@ -45,6 +47,9 @@ private:
 	std::list<WrappedText> text;
 	std::list<WrappedText> choices;
 	int choice;
+	
+	std::string firstName;
+	std::string lastName;
 };
 
 

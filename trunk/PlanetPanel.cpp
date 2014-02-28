@@ -101,7 +101,10 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 		selectedPanel = nullptr;
 	}
 	else if(key == 'j' || key == 'h')
-		selectedPanel = nullptr;
+	{
+		Push(new ConversationPanel(*data.Conversations().Get("free worlds intro")));
+		return true;
+	}
 	else if(key == data.Keys().Get(Key::MAP))
 	{
 		Push(new MapPanel(data, player));
