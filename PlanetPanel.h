@@ -1,13 +1,17 @@
 /* PlanetPanel.h
-Michael Zahniser 2 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Dialog that pops up when you land on a planet. The shipyard and outfitter are
-shown in full-screen panels that pop up above this one, but the remaining views
-(trading, jobs, bank, port, and crew) are displayed within this dialog.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PLANET_PANEL_H_INCLUDED
-#define PLANET_PANEL_H_INCLUDED
+#ifndef PLANET_PANEL_H_
+#define PLANET_PANEL_H_
 
 #include "Panel.h"
 
@@ -23,6 +27,9 @@ shown in full-screen panels that pop up above this one, but the remaining views
 
 
 
+// Dialog that pops up when you land on a planet. The shipyard and outfitter are
+// shown in full-screen panels that pop up above this one, but the remaining views
+// (trading, jobs, bank, port, and crew) are displayed within this dialog.
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(const GameData &data, PlayerInfo &player, const Callback &callback);

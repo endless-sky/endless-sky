@@ -1,12 +1,17 @@
 /* Planet.h
-Michael Zahniser, 1 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a stellar object you can land on. (This includes planets,
-moons, and space stations.)
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PLANET_H_INCLUDED
-#define PLANET_H_INCLUDED
+#ifndef PLANET_H_
+#define PLANET_H_
 
 #include "DataFile.h"
 #include "Sale.h"
@@ -20,6 +25,8 @@ class Sprite;
 
 
 
+// Class representing a stellar object you can land on. (This includes planets,
+// moons, and space stations.)
 class Planet {
 public:
 	// Default constructor.

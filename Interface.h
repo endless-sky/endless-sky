@@ -1,12 +1,17 @@
 /* Interface.h
-Michael Zahniser, 24 Oct 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a user interface, specified in a data file and filled with
-the contents of an Information object.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef INTERFACE_H_INCLUDED
-#define INTERFACE_H_INCLUDED
+#ifndef INTERFACE_H_
+#define INTERFACE_H_
 
 #include "Color.h"
 #include "DataFile.h"
@@ -20,6 +25,8 @@ the contents of an Information object.
 
 
 
+// Class representing a user interface, specified in a data file and filled with
+// the contents of an Information object.
 class Interface {
 public:
 	void Load(const DataFile::Node &node, const Set<Color> &colors);

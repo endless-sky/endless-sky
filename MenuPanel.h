@@ -1,20 +1,17 @@
 /* MenuPanel.h
-Michael Zahniser, 5 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing the main menu, which is shown before you enter a game or
-when your player has been killed, ending the game.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
 
-TODO: There should be an option for a separate MenuPanel that is not full screen
-and that can be called up, say, to change keyboard settings or to revert to a
-previous saved game. There is no reason that could not be a separate instance of
-this class, however.
-
-The other option is to have the MainPanel be the bottom-most one, but that does
-not make sense because the MenuPanel must tell the MainPanel what game to load.
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef MENU_PANEL_H_INCLUDED
-#define MENU_PANEL_H_INCLUDED
+#ifndef MENU_PANEL_H_
+#define MENU_PANEL_H_
 
 #include "Panel.h"
 
@@ -26,6 +23,8 @@ class PlayerInfo;
 
 
 
+// Class representing the main menu, which is shown before you enter a game or
+// when your player has been killed, ending the game.
 class MenuPanel : public Panel {
 public:
 	MenuPanel(GameData &gameData, PlayerInfo &playerInfo, UI &mainUI);

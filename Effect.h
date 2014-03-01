@@ -1,12 +1,17 @@
 /* Effect.h
-Michael Zahniser, 20 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a graphic such as an explosion which is drawn for effect but
-has no impact on any other objects in the game.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef EFFECT_H_INCLUDED
-#define EFFECT_H_INCLUDED
+#ifndef EFFECT_H_
+#define EFFECT_H_
 
 #include "Angle.h"
 #include "Animation.h"
@@ -16,6 +21,8 @@ has no impact on any other objects in the game.
 
 
 
+// Class representing a graphic such as an explosion which is drawn for effect but
+// has no impact on any other objects in the game.
 class Effect {
 public:
 	Effect();

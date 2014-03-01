@@ -1,14 +1,17 @@
 /* StarField.h
-Michael Zahniser, 10 Oct 2013.
+Copyright (c) 2014 by Michael Zahniser
 
-Object to hold a set of "stars" to be drawn as a backdrop. Each star has an
-(x, y) location and a size. For efficiency when handling such a large set of
-points, the field is divided up into 256 x 256 grid squares, and you can query
-for a list of all the stars in a given square.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef STAR_FIELD_H_INCLUDED
-#define STAR_FIELD_H_INCLUDED
+#ifndef STAR_FIELD_H_
+#define STAR_FIELD_H_
 
 #include "Point.h"
 #include "Shader.h"
@@ -19,6 +22,7 @@ for a list of all the stars in a given square.
 
 
 
+// Object to hold a set of "stars" to be drawn as a backdrop.
 class StarField {
 public:
 	void Init(int stars, int width);

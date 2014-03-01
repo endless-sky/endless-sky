@@ -1,11 +1,17 @@
 /* PreferencesPanel.h
-Michael Zahniser, 20 Feb 2014
+Copyright (c) 2014 by Michael Zahniser
 
-UI panel for editing preferences, especially the key mappings.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PREFERENCES_PANEL_H_INCLUDED
-#define PREFERENCES_PANEL_H_INCLUDED
+#ifndef PREFERENCES_PANEL_H_
+#define PREFERENCES_PANEL_H_
 
 #include "Panel.h"
 
@@ -13,6 +19,7 @@ class GameData;
 
 
 
+// UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel(GameData &data);

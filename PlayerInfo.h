@@ -1,12 +1,17 @@
 /* PlayerInfo.h
-Michael Zahniser, 1 Jan 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class holding information about a "player" - their name, their finances, what
-ship(s) they own and with what outfits, what systems they have visited, etc.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PLAYER_INFO_H_INCLUDED
-#define PLAYER_INFO_H_INCLUDED
+#ifndef PLAYER_INFO_H_
+#define PLAYER_INFO_H_
 
 #include "Account.h"
 #include "Date.h"
@@ -25,6 +30,8 @@ class System;
 
 
 
+// Class holding information about a "player" - their name, their finances, what
+// ship(s) they own and with what outfits, what systems they have visited, etc.
 class PlayerInfo {
 public:
 	PlayerInfo();

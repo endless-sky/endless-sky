@@ -1,12 +1,17 @@
 /* MapPanel.h
-Michael Zahniser, 2 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
-A panel that displays the galaxy star map, with options for color-coding the
-stars based on attitude towards the player, government, or commodity price.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef MAP_PANEL_H_INCLUDED
-#define MAP_PANEL_H_INCLUDED
+#ifndef MAP_PANEL_H_
+#define MAP_PANEL_H_
 
 #include "Panel.h"
 
@@ -21,6 +26,8 @@ class System;
 
 
 
+// A panel that displays the galaxy star map, with options for color-coding the
+// stars based on attitude towards the player, government, or commodity price.
 class MapPanel : public Panel {
 public:
 	MapPanel(const GameData &data, PlayerInfo &info, int commodity = 0);

@@ -1,12 +1,17 @@
 /* ConversationPanel.h
-Michael Zahniser, 9 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-User interface panel that displays a conversation, allowing you to make choices,
-and then can be closed once the conversation ends.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef CONVERSATION_PANEL_H_INCLUDED
-#define CONVERSATION_PANEL_H_INCLUDED
+#ifndef CONVERSATION_PANEL_H_
+#define CONVERSATION_PANEL_H_
 
 #include "Panel.h"
 
@@ -21,6 +26,8 @@ class PlayerInfo;
 
 
 
+// User interface panel that displays a conversation, allowing you to make choices,
+// and then can be closed once the conversation ends.
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation);

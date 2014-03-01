@@ -1,11 +1,17 @@
 /* MainPanel.h
-Michael Zahniser, 5 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing the main panel (i.e. the view of your ship moving around).
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef MAIN_PANEL_H_INCLUDED
-#define MAIN_PANEL_H_INCLUDED
+#ifndef MAIN_PANEL_H_
+#define MAIN_PANEL_H_
 
 #include "Panel.h"
 
@@ -16,6 +22,7 @@ class PlayerInfo;
 
 
 
+// Class representing the main panel (i.e. the view of your ship moving around).
 class MainPanel : public Panel {
 public:
 	MainPanel(const GameData &gameData, PlayerInfo &playerInfo);

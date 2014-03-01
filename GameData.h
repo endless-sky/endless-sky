@@ -1,11 +1,17 @@
 /* GameData.h
-Michael Zahniser, 5 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class storing all the data used in the game: sprites, data files, etc.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef GAME_DATA_H_INCLUDED
-#define GAME_DATA_H_INCLUDED
+#ifndef GAME_DATA_H_
+#define GAME_DATA_H_
 
 #include "Color.h"
 #include "Conversation.h"
@@ -29,6 +35,7 @@ Class storing all the data used in the game: sprites, data files, etc.
 
 
 
+// Class storing all the data used in the game: sprites, data files, etc.
 class GameData {
 public:
 	void BeginLoad(const char * const *argv);

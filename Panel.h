@@ -1,12 +1,17 @@
 /* Panel.h
-Michael Zahniser, 1 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a UI window (full screen or pop-up) which responds to user
-input and can draw itself.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PANEL_H_INCLUDED
-#define PANEL_H_INCLUDED
+#ifndef PANEL_H_
+#define PANEL_H_
 
 #include <SDL/SDL.h>
 
@@ -16,6 +21,8 @@ class UI;
 
 
 
+// Class representing a UI window (full screen or pop-up) which responds to user
+// input and can draw itself.
 class Panel {
 public:
 	// Constructor.
