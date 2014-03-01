@@ -47,14 +47,6 @@ PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Callbac
 
 
 
-PlanetPanel::~PlanetPanel()
-{
-	player.Save();
-	callback();
-}
-
-
-
 void PlanetPanel::Draw() const
 {
 	Information info;
@@ -84,7 +76,11 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	Panel *oldPanel = selectedPanel;
 	
 	if(key == 'd')
+	{
+		player.Save();
+		callback();
 		GetUI()->Pop(this);
+	}
 	else if(key == 't' && planet.HasSpaceport())
 	{
 		selectedPanel = trading.get();

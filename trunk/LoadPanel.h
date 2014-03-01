@@ -43,10 +43,15 @@ protected:
 	
 	
 private:
+	void UpdateLists();
+	
+	
+private:
 	const GameData &data;
 	PlayerInfo &player;
 	UI &gamePanels;
 	
+	std::string root;
 	std::map<std::string, std::vector<std::string>> files;
 	std::string selectedPilot;
 	std::string selectedFile;

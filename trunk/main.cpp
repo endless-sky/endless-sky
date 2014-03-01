@@ -128,6 +128,10 @@ int main(int argc, char *argv[])
 			timer.Wait();
 		}
 		
+		// If you quit while landed on a planet, save the game.
+		if(playerInfo.GetPlanet())
+			playerInfo.Save();
+		
 		SDL_Quit();
 	}
 	catch(const runtime_error &error)

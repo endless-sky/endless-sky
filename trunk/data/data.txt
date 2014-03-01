@@ -182,7 +182,7 @@ interface "load menu"
 		size 14
 		color "dim grey"
 		align center
-	label "Delete" 65 148
+	label "Remove" 65 148
 		size 14
 		color "dim grey"
 		align center
@@ -214,7 +214,7 @@ interface "load menu"
 	if "snapshot selected"
 	button r 65 155
 		size 90 30
-	label "Delete" 65 148
+	label "Remove" 65 148
 		size 14
 		color "light grey"
 		align center
@@ -226,7 +226,7 @@ interface "load menu"
 		size 14
 		color "light grey"
 		align center
-	if "any selected"
+	if "pilot loaded"
 	button e 425 155
 		size 90 30
 	label "Enter Ship" 425 148
