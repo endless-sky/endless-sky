@@ -62,7 +62,7 @@ void MainPanel::Draw() const
 	if(gameData.ShouldShowLoad())
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
-		const float color[4] = {.4f, .4f, .4f, 0.f};
+		Color color(.4, 0.);
 		FontSet::Get(14).Draw(loadString, Point(0., Screen::Height() * -.5), color);
 	
 		loadSum += loadTimer.Time();

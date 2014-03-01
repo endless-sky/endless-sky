@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Font.h"
 
+#include "Color.h"
+#include "Point.h"
 #include "Screen.h"
 #include "SpriteQueue.h"
 
@@ -97,36 +99,14 @@ void Font::Load(const string &imagePath)
 
 
 
-void Font::Draw(const string &str, int x, int y) const
-{
-	Draw(str.c_str(), x, y);
-}
-
-
-
-void Font::Draw(const char *str, int x, int y) const
-{
-	Draw(str, Point(static_cast<double>(x), static_cast<double>(y)));
-}
-
-
-
-void Font::Draw(const string &str, const Point &point, const float *color) const
-{
-	Draw(str.c_str(), point, color);
-}
-
-
-
-void Font::Draw(const char *str, const Point &point, const float *color) const
+void Font::Draw(const string &str, const Point &point, const Color &color) const
 {
 	glUseProgram(shader.Object());
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
 	
-	if(color)
-		glUniform4fv(shader.Uniform("color"), 1, color);
+	glUniform4fv(shader.Uniform("color"), 1, color.Get());
 	
 	// Update the scale, only if the screen size has changed.
 	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
@@ -142,9 +122,9 @@ void Font::Draw(const char *str, const Point &point, const float *color) const
 		static_cast<float>(round(point.Y()))};
 	int previous = 0;
 	
-	for( ; *str; ++str)
+	for(char c : str)
 	{
-		int glyph = max(0, min(GLYPHS - 1, *str - 32));
+		int glyph = max(0, min(GLYPHS - 1, c - 32));
 		if(!glyph)
 		{
 			textPos[0] += space;

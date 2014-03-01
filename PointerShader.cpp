@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PointerShader.h"
 
+#include "Color.h"
+#include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
 
@@ -101,12 +103,11 @@ void PointerShader::Init()
 
 
 
-void PointerShader::Draw(const Point &center, const Point &angle, float width, float height, float offset, const float *color)
+void PointerShader::Draw(const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
 {
 	Bind();
 	
-	static const float white[4] = {1.f, 1.f, 1.f, 1.f};
-	Add(center, angle, width, height, offset, color ? color : white);
+	Add(center, angle, width, height, offset, color);
 	
 	Unbind();
 }
@@ -127,7 +128,7 @@ void PointerShader::Bind()
 
 
 
-void PointerShader::Add(const Point &center, const Point &angle, float width, float height, float offset, const float *color)
+void PointerShader::Add(const Point &center, const Point &angle, float width, float height, float offset, const Color &color)
 {
 	GLfloat c[2] = {static_cast<float>(center.X()), static_cast<float>(center.Y())};
 	glUniform2fv(centerI, 1, c);
@@ -140,7 +141,7 @@ void PointerShader::Add(const Point &center, const Point &angle, float width, fl
 	
 	glUniform1f(offsetI, offset);
 	
-	glUniform4fv(colorI, 1, color);
+	glUniform4fv(colorI, 1, color.Get());
 	
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }

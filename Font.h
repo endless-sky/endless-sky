@@ -13,12 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FONT_H_
 #define FONT_H_
 
-#include "Point.h"
 #include "Shader.h"
 
 #include <GL/glew.h>
 
 #include <string>
+
+class Point;
+class Color;
 
 
 
@@ -30,11 +32,7 @@ public:
 	
 	void Load(const std::string &imagePath);
 	
-	void Draw(const std::string &str, int x, int y) const;
-	void Draw(const char *str, int x, int y) const;
-	
-	void Draw(const std::string &str, const Point &point, const float *color = nullptr) const;
-	void Draw(const char *str, const Point &point, const float *color = nullptr) const;
+	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	
 	int Width(const std::string &str, char after = ' ') const;
 	int Width(const char *str, char after = ' ') const;

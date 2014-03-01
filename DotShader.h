@@ -13,7 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DOT_SHADER_H_
 #define DOT_SHADER_H_
 
-#include "Point.h"
+class Color;
+class Point;
 
 
 
@@ -23,10 +24,10 @@ class DotShader {
 public:
 	static void Init();
 	
-	static void Draw(const Point &pos, float out, float in, const float *color = nullptr);
+	static void Draw(const Point &pos, float out, float in, const Color &color);
 	
 	static void Bind();
-	static void Add(const Point &pos, float out, float in, const float *color);
+	static void Add(const Point &pos, float out, float in, const Color &color);
 	static void Unbind();
 };
 

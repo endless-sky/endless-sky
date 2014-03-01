@@ -111,7 +111,7 @@ void MenuPanel::Draw() const
 		Angle a(0.);
 		for(int i = 0; i < progress; ++i)
 		{
-			float color[4] = {alpha, alpha, alpha, 0.f};
+			Color color(alpha, 0.f);
 			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
 			a += da;
 		}
@@ -129,7 +129,7 @@ void MenuPanel::Draw() const
 		if(fade)
 		{
 			Color color(((line.empty() || line[0] == ' ') ? .2 : .4) * fade, 0.);
-			font.Draw(line, Point(-465., y), color.Get());
+			font.Draw(line, Point(-465., y), color);
 		}
 		y += 20;
 	}

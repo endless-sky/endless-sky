@@ -58,30 +58,29 @@ TradingPanel::TradingPanel(const GameData &data, PlayerInfo &player)
 	
 void TradingPanel::Draw() const
 {
-	Color back(.1, .1, .1, .1);
-	FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33),
-		Point(480., 20.), back.Get());
+	Color back(.1, .1);
+	FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
-	Color unselected(.5, .5, .5, 1.);
-	Color selected(.8, .8, .8, 1.);
+	Color unselected(.5, 1.);
+	Color selected(.8, 1.);
 	
 	int y = FIRST_Y;
-	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected.Get());
+	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
 	
-	font.Draw("Commodity", Point(NAME_X, y), selected.Get());
-	font.Draw("Price", Point(PRICE_X, y), selected.Get());
+	font.Draw("Commodity", Point(NAME_X, y), selected);
+	font.Draw("Price", Point(PRICE_X, y), selected);
 	
 	string mod = "x " + to_string(Modifier());
-	font.Draw(mod, Point(BUY_X, y), unselected.Get());
-	font.Draw(mod, Point(SELL_X, y), unselected.Get());
+	font.Draw(mod, Point(BUY_X, y), unselected);
+	font.Draw(mod, Point(SELL_X, y), unselected);
 	
-	font.Draw("In Hold", Point(HOLD_X, y), selected.Get());
+	font.Draw("In Hold", Point(HOLD_X, y), selected);
 	
 	y += 5;
 	int lastY = y + 20 * data.Commodities().size() + 25;
-	font.Draw("free:", Point(SELL_X + 5, lastY), selected.Get());
-	font.Draw(to_string(player.GetShip()->FreeCargo()), Point(HOLD_X, lastY), selected.Get());
+	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
+	font.Draw(to_string(player.GetShip()->FreeCargo()), Point(HOLD_X, lastY), selected);
 	
 	int i = 0;
 	for(const Trade::Commodity &commodity : data.Commodities())
@@ -89,9 +88,9 @@ void TradingPanel::Draw() const
 		y += 20;
 		int price = system.Trade(commodity.name);
 		
-		font.Draw(commodity.name, Point(NAME_X, y),
-			(i++ == selectedRow ? selected : unselected).Get());
-		font.Draw(to_string(price), Point(PRICE_X, y));
+		const Color &color = (i++ == selectedRow ? selected : unselected);
+		font.Draw(commodity.name, Point(NAME_X, y), color);
+		font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
 		int level = (price - commodity.low);
 		if(level < 0)
@@ -100,14 +99,14 @@ void TradingPanel::Draw() const
 			level = 4;
 		else
 			level = (5 * level) / (commodity.high - commodity.low);
-		font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y));
+		font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
 		
-		font.Draw("[buy]", Point(BUY_X, y));
-		font.Draw("[sell]", Point(SELL_X, y));
+		font.Draw("[buy]", Point(BUY_X, y), color);
+		font.Draw("[sell]", Point(SELL_X, y), color);
 		
 		int hold = player.GetShip()->Cargo(commodity.name);
 		if(hold)
-			font.Draw(to_string(hold), Point(HOLD_X, y), selected.Get());
+			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 	}
 }
 

@@ -58,7 +58,7 @@ private:
 		Point position;
 		double align;
 		int size;
-		const Color *color;
+		Color color;
 		
 		std::string condition;
 	};
@@ -70,7 +70,7 @@ private:
 		std::string name;
 		Point position;
 		Point size;
-		const Color *color;
+		Color color;
 		float width;
 		
 		std::string condition;

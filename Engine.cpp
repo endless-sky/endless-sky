@@ -280,7 +280,7 @@ void Engine::Draw() const
 	for(const auto &it : messages)
 	{
 		float alpha = (it.first + 1000 - step) * .001f;
-		float color[4] = {alpha, alpha, alpha, 0.};
+		Color color(alpha, 0.);
 		font.Draw(it.second, messagePoint, color);
 		messagePoint.Y() += 20.;
 	}
@@ -320,13 +320,13 @@ void Engine::Draw() const
 		
 		string amount = to_string(it.second);
 		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
-		font.Draw(amount, textPos, (isSelected ? selectedColor : unselectedColor).Get());
+		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 	
 	if(data.ShouldShowLoad())
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
-		const float color[4] = {.4f, .4f, .4f, 0.f};
+		Color color(.4, 0.);
 		FontSet::Get(14).Draw(loadString, Point(0., Screen::Height() * -.5 + 20.), color);
 	}
 }

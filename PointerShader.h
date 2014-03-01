@@ -13,7 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef POINTER_SHADER_H_
 #define POINTER_SHADER_H_
 
-#include "Point.h"
+class Color;
+class Point;
 
 
 
@@ -22,10 +23,10 @@ class PointerShader {
 public:
 	static void Init();
 	
-	static void Draw(const Point &center, const Point &angle, float width, float height, float offset, const float *color = nullptr);
+	static void Draw(const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
 	
 	static void Bind();
-	static void Add(const Point &center, const Point &angle, float width, float height, float offset, const float *color);
+	static void Add(const Point &center, const Point &angle, float width, float height, float offset, const Color &color);
 	static void Unbind();
 };
 
