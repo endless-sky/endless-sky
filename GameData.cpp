@@ -15,64 +15,14 @@ Function definitions for the GameData class.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
+#include <boost/filesystem.hpp>
+
 #include <algorithm>
 #include <vector>
 
-#include <sys/stat.h>
-#include <dirent.h>
+namespace fs = boost::filesystem;
 
 using namespace std;
-
-namespace {
-	class DirIt {
-	public:
-		DirIt(const string &path);
-		~DirIt();
-		
-		string Next();
-		
-	private:
-		string path;
-		DIR *dir;
-		dirent *ent;
-	};
-
-	DirIt::DirIt(const string &path)
-		: path(path), dir(nullptr), ent(nullptr)
-	{
-		if(!path.empty() && path.back() != '/')
-			this->path += '/';
-		
-		dir = opendir(path.c_str());
-		if(dir)
-			ent = reinterpret_cast<dirent *>(new char[
-				sizeof(dirent) - sizeof(dirent::d_name) + PATH_MAX + 1]);
-	}
-
-	DirIt::~DirIt()
-	{
-		if(dir)
-			closedir(dir);
-		delete [] reinterpret_cast<char *>(ent);
-	}
-
-	string DirIt::Next()
-	{
-		if(!dir)
-			return string();
-	
-		dirent *result = nullptr;
-		readdir_r(dir, ent, &result);
-		if(!result)
-			return string();
-	
-		// Do not return "." or "..".
-		if(ent->d_name[0] == '.')
-			return Next();
-	
-		return path + ent->d_name;
-	}
-}
 
 
 
@@ -100,8 +50,7 @@ void GameData::BeginLoad(const char * const *argv)
 		if(path.back() != '/')
 			path += '/';
 		
-		struct stat buf;
-		if(!stat(path.c_str(), &buf) && S_ISDIR(buf.st_mode))
+		if(fs::is_directory(path))
 			paths.push_back(path);
 	}
 	if(!paths.empty())
@@ -118,11 +67,9 @@ void GameData::BeginLoad(const char * const *argv)
 	for(const string &base : paths)
 		FindImages(base + "images/", base.size() + 7, images);
 	
+	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
-	{
-		// From the name, strip out any frame number, plus the extension.
 		queue.Add(Name(it.first), it.second);
-	}
 	
 	// Iterate through the paths starting with the last directory given. That
 	// is, things in folders near the start of the path have the ability to
@@ -146,19 +93,19 @@ void GameData::LoadShaders()
 	FontSet::Add(basePath + "images/font/ubuntu18r.png", 18);
 	
 	// Make sure ~/.config/endless-sky/ exists.
-	struct stat buf;
-	
+	// TODO: Set the permission bits properly. Boost filesystem 1.48 does not
+	// allow that, but the latest version does.
 	string configPath = getenv("HOME") + string("/.config");
-	if(stat(configPath.c_str(), &buf))
-		mkdir(configPath.c_str(), 0755);
+	if(!fs::exists(configPath))
+		fs::create_directory(configPath);
 	
 	string prefsPath = configPath + "/endless-sky";
-	if(stat(prefsPath.c_str(), &buf))
-		mkdir(prefsPath.c_str(), 0700);
+	if(!fs::exists(prefsPath))
+		fs::create_directory(prefsPath);
 	
 	string savePath = prefsPath + "/saves";
-	if(stat(savePath.c_str(), &buf))
-		mkdir(savePath.c_str(), 0700);
+	if(!fs::exists(savePath))
+		fs::create_directory(savePath);
 	
 	// Load the key settings.
 	defaultKeys.Load(basePath + "keys.txt");
@@ -300,8 +247,7 @@ bool GameData::ShouldShowLoad() const
 
 void GameData::FindFiles(const string &path)
 {
-	struct stat buf;
-	if(!stat(path.c_str(), &buf) && !S_ISDIR(buf.st_mode))
+	if(fs::is_regular_file(path))
 	{
 		// This is an ordinary file. Check to see if it is an image.
 		if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
@@ -341,17 +287,11 @@ void GameData::FindFiles(const string &path)
 				trade.Load(node);
 		}
 	}
-	else
+	else if(fs::is_directory(path))
 	{
-		DirIt it(path);
-		while(true)
-		{
-			string next = it.Next();
-			if(next.empty())
-				break;
-		
-			FindFiles(next);
-		}
+		fs::directory_iterator it(path);
+		for(fs::directory_iterator end; it != end; ++it)
+			FindFiles(it->path().string());
 	}
 }
 
@@ -359,26 +299,20 @@ void GameData::FindFiles(const string &path)
 
 void GameData::FindImages(const string &path, int start, map<string, string> &images)
 {
-	struct stat buf;
-	if(!stat(path.c_str(), &buf) && !S_ISDIR(buf.st_mode))
+	if(fs::is_regular_file(path) && path.length() >= 4)
 	{
-		// This is an ordinary file. Check to see if it is an image.
-		if(path.length() >= 4 && (!path.compare(path.length() - 4, 4, ".jpg")
-				|| !path.compare(path.length() - 4, 4, ".png")))
-		{
-			images[path.substr(start)] = path;
-		}
-		return;
-	}
-	
-	DirIt it(path);
-	while(true)
-	{
-		string next = it.Next();
-		if(next.empty())
-			break;
+		bool isJpg = !path.compare(path.length() - 4, 4, ".jpg");
+		bool isPng = !path.compare(path.length() - 4, 4, ".png");
 		
-		FindImages(next, start, images);
+		// This is an ordinary file. Check to see if it is an image.
+		if(isJpg || isPng)
+			images[path.substr(start)] = path;
+	}
+	else if(fs::is_directory(path))
+	{
+		fs::directory_iterator it(path);
+		for(fs::directory_iterator end; it != end; ++it)
+			FindImages(it->path().string(), start, images);
 	}
 }
 

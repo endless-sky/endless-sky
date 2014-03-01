@@ -12,9 +12,11 @@ Function definitions for the PlayerInfo class.
 #include "Ship.h"
 #include "System.h"
 
-#include <sys/stat.h>
+#include <boost/filesystem.hpp>
 
 #include <fstream>
+
+namespace fs = boost::filesystem;
 
 using namespace std;
 
@@ -189,8 +191,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 			path += " " + to_string(index);
 		path += ".txt";
 		
-		struct stat buf;
-		if(stat(path.c_str(), &buf))
+		if(!fs::exists(path))
 		{
 			filePath.swap(path);
 			break;

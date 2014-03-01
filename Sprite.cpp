@@ -9,7 +9,7 @@ Function definitions for the Sprite class.
 #include <algorithm>
 
 #include <GL/glew.h>
-#include "SDL/SDL.h"
+#include <SDL/SDL.h>
 
 using namespace std;
 
