@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FillShader.h"
 
+#include "Color.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
@@ -89,7 +90,7 @@ void FillShader::Init()
 
 
 
-void FillShader::Fill(const Point &center, const Point &size, const float *color)
+void FillShader::Fill(const Point &center, const Point &size, const Color &color)
 {
 	if(!shader.Object())
 		throw runtime_error("FillShader: Draw() called before Init().");
@@ -106,8 +107,7 @@ void FillShader::Fill(const Point &center, const Point &size, const float *color
 	GLfloat sizeV[2] = {static_cast<float>(size.X()), static_cast<float>(size.Y())};
 	glUniform2fv(sizeI, 1, sizeV);
 	
-	static const float white[4] = {1.f, 1.f, 1.f, 1.f};
-	glUniform4fv(colorI, 1, color ? color : white);
+	glUniform4fv(colorI, 1, color.Get());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

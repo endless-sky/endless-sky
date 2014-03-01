@@ -72,13 +72,10 @@ public:
 	int ParagraphBreak() const;
 	void SetParagraphBreak(int height);
 	
-	// Get the word positions when wrapping the given text. The coordinates
-	// always begin at (0, 0).
-	const std::vector<Word> &Wrap(const std::string &str);
-	const std::vector<Word> &Wrap(const char *str);
+	// Wrap the given text. Use Draw() to draw it.
+	void Wrap(const std::string &str);
+	void Wrap(const char *str);
 	
-	// Get the words from the most recent wrapping.
-	const std::vector<Word> &Words() const;
 	// Get the height of the wrapped text.
 	int Height() const;
 	

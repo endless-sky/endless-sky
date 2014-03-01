@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Point.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -43,23 +44,23 @@ void CreditsPanel::Draw() const
 	SpriteShader::Draw(ui, Point(OFF_X, OFF_Y));
 	
 	const Font &font = FontSet::Get(14);
-	Color grey(.5, .5, .5, 1.);
-	Color white(.8, .8, .8, 1.);
+	Color grey(.5, 0.);
+	Color bright(.8, 0.);
 	
-	font.Draw(message, Point(-85. + OFF_X, -35. + OFF_Y), grey.Get());
+	font.Draw(message, Point(-85. + OFF_X, -35. + OFF_Y), grey);
 	
 	string amountString = to_string(*amount);
 	int amountWidth = font.Width(amountString);
-	font.Draw(amountString, Point(75. - amountWidth + OFF_X, -12. + OFF_Y), white.Get());
+	font.Draw(amountString, Point(75. - amountWidth + OFF_X, -12. + OFF_Y), bright);
 	
 	static const string cancel = "Cancel";
 	static const string okay = "OK";
 	int cancelWidth = font.Width(cancel);
 	int okayWidth = font.Width(okay);
 	
-	font.Draw(cancel, Point(-45. - .5 * cancelWidth + OFF_X, 28. + OFF_Y), white.Get());
+	font.Draw(cancel, Point(-45. - .5 * cancelWidth + OFF_X, 28. + OFF_Y), bright);
 	font.Draw(okay, Point(45. - .5 * okayWidth + OFF_X, 28. + OFF_Y),
-		((*amount <= limit) ? white : grey).Get());
+		(*amount <= limit) ? bright : grey);
 }
 
 

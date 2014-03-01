@@ -13,7 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef LINE_SHADER_H_
 #define LINE_SHADER_H_
 
-#include "Point.h"
+class Color;
+class Point;
 
 
 
@@ -22,7 +23,7 @@ class LineShader {
 public:
 	static void Init();
 	
-	static void Draw(Point from, Point to, float width, const float *color = nullptr);
+	static void Draw(const Point &from, const Point &to, float width, const Color &color);
 };
 
 

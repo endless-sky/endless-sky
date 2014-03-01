@@ -61,11 +61,11 @@ void ConversationPanel::Draw() const
 {
 	Color half(0., .7);
 	Color back(0.125, 1.);
-	FillShader::Fill(Point(0., 0.), Point(Screen::Width(), Screen::Height()), half.Get());
+	FillShader::Fill(Point(0., 0.), Point(Screen::Width(), Screen::Height()), half);
 	FillShader::Fill(
 		Point(Screen::Width() * -.5 + WIDTH * .5 + 15., 0.),
 		Point(WIDTH + 30., Screen::Height()), 
-		back.Get());
+		back);
 	
 	SpriteShader::Draw(
 		SpriteSet::Get("ui/right edge"),
@@ -76,8 +76,9 @@ void ConversationPanel::Draw() const
 			Screen::Width() * -.5 + WIDTH * .5 + 20.,
 			Screen::Height() * -.5 + TOP * .5 + scroll));
 	
-	int x = (-Screen::Width() / 2) + 20;
-	int y = (-Screen::Height() / 2) + TOP + scroll;
+	Point point(
+		(-Screen::Width() / 2) + 20,
+		(-Screen::Height() / 2) + TOP + scroll);
 	
 	const Font &font = FontSet::Get(14);
 	
@@ -85,13 +86,8 @@ void ConversationPanel::Draw() const
 	Color grey(.5, 0.);
 	for(const WrappedText &it : text)
 	{
-		for(const WrappedText::Word &word : it.Words())
-		{
-			// TODO: color your choices brighter.
-			Point point(word.X() + x, word.Y() + y);
-			font.Draw(word.String(), point, grey.Get());
-		}
-		y += it.Height();
+		it.Draw(point, grey);
+		point.Y() += it.Height();
 	}
 	
 	Color bright(.8, 0.);
@@ -100,25 +96,24 @@ void ConversationPanel::Draw() const
 	if(node < 0)
 	{
 		string done = "[done]";
-		font.Draw(done, 
-			Point(Screen::Width() / -2 + 20 + WIDTH - font.Width(done), y),
-			bright.Get());
+		Point off(Screen::Width() / -2 + 20 + WIDTH - font.Width(done), point.Y());
+		font.Draw(done, off, bright);
 		return;
 	}
 	if(choices.empty())
 	{
-		Point center(x + (choice ? 420 : 190), y + 7);
+		Point center = point + Point(choice ? 420 : 190, 7);
 		Point size(150, 20);
-		FillShader::Fill(center, size, selectionColor.Get());
+		FillShader::Fill(center, size, selectionColor);
 		int width = font.Width(choice ? lastName : firstName);
 		center.X() += width - 67;
-		FillShader::Fill(center, Point(1., 16.), dim.Get());
+		FillShader::Fill(center, Point(1., 16.), dim);
 		
-		font.Draw("First name:", Point(x + 40, y), dim.Get());
-		font.Draw(firstName, Point(x + 120, y), (choice ? grey : bright).Get());
+		font.Draw("First name:", point + Point(40, 0), dim);
+		font.Draw(firstName, point + Point(120, 0), choice ? grey : bright);
 		
-		font.Draw("Last name:", Point(x + 270, y), dim.Get());
-		font.Draw(lastName, Point(x + 350, y), (choice ? bright : grey).Get());
+		font.Draw("Last name:", point + Point(270, 0), dim);
+		font.Draw(lastName, point + Point(350, 0), choice ? bright : grey);
 		return;
 	}
 	
@@ -127,17 +122,13 @@ void ConversationPanel::Draw() const
 	{
 		if(i++ == choice)
 		{
-			Point center(x + WIDTH / 2, y + (it.Height() - it.ParagraphBreak()) * .5);
+			Point center = point + Point(WIDTH, it.Height() - it.ParagraphBreak()) * .5;
 			Point size(WIDTH, it.Height());
 			
-			FillShader::Fill(center, size, selectionColor.Get());
+			FillShader::Fill(center, size, selectionColor);
 		}
-		for(const WrappedText::Word &word : it.Words())
-		{
-			Point point(word.X() + x, word.Y() + y);
-			font.Draw(word.String(), point, bright.Get());
-		}
-		y += it.Height();
+		it.Draw(point, bright);
+		point.Y() += it.Height();
 	}
 }
 

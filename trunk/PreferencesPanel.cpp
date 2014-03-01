@@ -56,26 +56,26 @@ void PreferencesPanel::Draw() const
 	Point pos(0., -10. * (Key::END - Key::MENU) - 25.);
 	{
 		Point dOff(-100 - font.Width("Default"), 0.);
-		font.Draw("Default", pos + dOff, medium.Get());
+		font.Draw("Default", pos + dOff, medium);
 		
 		Point cOff(-20 - font.Width("Key"), 0.);
-		font.Draw("Key", pos + cOff, medium.Get());
+		font.Draw("Key", pos + cOff, medium);
 		
-		font.Draw("Action", pos, medium.Get());
+		font.Draw("Action", pos, medium);
 		
-		FillShader::Fill(pos + Point(0., 20.), Point(400., 1.), medium.Get());
+		FillShader::Fill(pos + Point(0., 20.), Point(400., 1.), medium);
 		pos.Y() += 30.;
 	}
 	
 	firstY = pos.Y();
 	
 	Point sOff(0., .5 * font.Height() + 20. * selected);
-	FillShader::Fill(pos + sOff, Point(400., 20.), dim.Get());
+	FillShader::Fill(pos + sOff, Point(400., 20.), dim);
 	
 	if(editing != -1)
 	{
 		Point eOff(-40., .5 * font.Height() + 20. * editing);
-		FillShader::Fill(pos + eOff, Point(60., 20.), dim.Get());
+		FillShader::Fill(pos + eOff, Point(60., 20.), dim);
 	}
 	
 	// Check for conflicts.
@@ -90,18 +90,18 @@ void PreferencesPanel::Draw() const
 		string def = SDL_GetKeyName(static_cast<SDLKey>(data.DefaultKeys().Get(c)));
 		
 		Point dOff(-100 - font.Width(def), 0);
-		font.Draw(def, pos + dOff, (current == def ? dim : medium).Get());
+		font.Draw(def, pos + dOff, current == def ? dim : medium);
 		
 		Point cOff(-20 - font.Width(current), 0);
-		font.Draw(current, pos + cOff, bright.Get());
+		font.Draw(current, pos + cOff, bright);
 		
-		font.Draw(Key::Description(c), pos, medium.Get());
+		font.Draw(Key::Description(c), pos, medium);
 
 		// Mark conflicts.
 		if(count[data.Keys().Get(c)] > 1)
 		{
 			Point eOff(-40., .5 * font.Height());
-			FillShader::Fill(pos + eOff, Point(60., 20.), red.Get());
+			FillShader::Fill(pos + eOff, Point(60., 20.), red);
 		}
 		
 		pos.Y() += 20.;

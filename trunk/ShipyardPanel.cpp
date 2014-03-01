@@ -47,7 +47,7 @@ namespace {
 		const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 		const Font &font = FontSet::Get(14);
 		Point offset(-.5f * font.Width(name), -.5f * TILE_SIZE + 10.f);
-		font.Draw(name, center + offset, Color(.8, 0.).Get());
+		font.Draw(name, center + offset, Color(.8, 0.));
 		
 		float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, center, zoom);
@@ -81,17 +81,17 @@ void ShipyardPanel::Draw() const
 	FillShader::Fill(
 		Point((Screen::Width() - SIDE_WIDTH) * .5, 0.),
 		Point(SIDE_WIDTH, Screen::Height()),
-		Color(.1, 1.).Get());
+		Color(.1, 1.));
 	FillShader::Fill(
 		Point(Screen::Width() * .5 - SIDE_WIDTH, 0.),
 		Point(1, Screen::Height()),
-		Color(.2, 1.).Get());
+		Color(.2, 1.));
 	
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(
 		(Screen::Width() - SIDE_WIDTH - font.Width(YOURS)) / 2,
 		Screen::Height() / -2 + 10 - sideScroll);
-	font.Draw(YOURS, yoursPoint, bright.Get());
+	font.Draw(YOURS, yoursPoint, bright);
 	
 	Point point(
 		(Screen::Width() - SIDE_WIDTH) / 2,
@@ -116,37 +116,37 @@ void ShipyardPanel::Draw() const
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	FillShader::Fill(
 		Point((Screen::Width() - SIDE_WIDTH) / 2, Screen::Height() / 2 - 35),
-		Point(SIDE_WIDTH, 70), Color(.2, 1.).Get());
+		Point(SIDE_WIDTH, 70), Color(.2, 1.));
 	FillShader::Fill(
 		Point((Screen::Width() - SIDE_WIDTH) / 2, Screen::Height() / 2 - 70),
-		Point(SIDE_WIDTH, 1), Color(.3, 1.).Get());
+		Point(SIDE_WIDTH, 1), Color(.3, 1.));
 	point.Set(
 		Screen::Width() / 2 - SIDE_WIDTH + 10,
 		Screen::Height() / 2 - 65);
-	font.Draw("You have:", point, dim.Get());
+	font.Draw("You have:", point, dim);
 	string credits = to_string(player.Accounts().Credits()) + " credits";
 	point.X() += (SIDE_WIDTH - 20) - font.Width(credits);
-	font.Draw(credits, point, bright.Get());
+	font.Draw(credits, point, bright);
 	
 	const Font &bigFont = FontSet::Get(18);
 	
 	Point buyCenter(Screen::Width() / 2 - 210, Screen::Height() / 2 - 25);
-	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.).Get());
+	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
 	bigFont.Draw("Buy",
 		buyCenter - .5 * Point(bigFont.Width("Buy"), bigFont.Height()),
-		selectedShip ? bright.Get() : dim.Get());
+		selectedShip ? bright : dim);
 	
 	Point sellCenter(Screen::Width() / 2 - 130, Screen::Height() / 2 - 25);
-	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.).Get());
+	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
 	bigFont.Draw("Sell",
 		sellCenter - .5 * Point(bigFont.Width("Sell"), bigFont.Height()),
-		playerShip ? bright.Get() : dim.Get());
+		playerShip ? bright : dim);
 	
 	Point leaveCenter(Screen::Width() / 2 - 45, Screen::Height() / 2 - 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), Color(.1, 1.).Get());
+	FillShader::Fill(leaveCenter, Point(70, 30), Color(.1, 1.));
 	bigFont.Draw("Leave",
 		leaveCenter - .5 * Point(bigFont.Width("Leave"), bigFont.Height()),
-		bright.Get());
+		bright);
 	
 	// Draw all the available ships.
 	// First, figure out how many colums we can draw.
@@ -174,11 +174,11 @@ void ShipyardPanel::Draw() const
 			
 			float before = point.X() - TILE_SIZE / 2 - Screen::Width() * -.5;
 			FillShader::Fill(Point(Screen::Width() * -.5 + .5 * before, point.Y() + 121.),
-				Point(before, 1.), color.Get());
+				Point(before, 1.), color);
 			
 			float after = endX - (point.X() + TILE_SIZE / 2);
 			FillShader::Fill(Point(endX - .5 * after, point.Y() + 121.),
-				Point(after, 1.), color.Get());
+				Point(after, 1.), color);
 			
 			// The center of the display needs to be between these two values:
 			int panelAndAHalf = (selectedShipInfo.PanelWidth() * 3) / 2;

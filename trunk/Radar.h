@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef RADAR_H_
 #define RADAR_H_
 
+#include "Color.h"
 #include "Point.h"
 
 #include <vector>
@@ -43,15 +44,15 @@ public:
 	void Draw(const Point &center, double scale, double radius, double pointerRadius) const;
 	
 	// Get the color for the given status.
-	static const float *GetColor(int type);
+	static const Color &GetColor(int type);
 	
 	
 private:
 	class Object {
 	public:
-		Object(const float *color, const Point &pos, double out, double in);
+		Object(const Color &color, const Point &pos, double out, double in);
 		
-		const float *color;
+		Color color;
 		Point position;
 		double outer;
 		double inner;
@@ -59,9 +60,9 @@ private:
 	
 	class Pointer {
 	public:
-		Pointer(const float *color, const Point &unit);
+		Pointer(const Color &color, const Point &unit);
 		
-		const float *color;
+		Color color;
 		Point unit;
 	};
 	

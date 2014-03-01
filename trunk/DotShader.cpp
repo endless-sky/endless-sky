@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DotShader.h"
 
+#include "Color.h"
+#include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
 
@@ -102,12 +104,11 @@ void DotShader::Init()
 
 
 
-void DotShader::Draw(const Point &pos, float out, float in, const float *color)
+void DotShader::Draw(const Point &pos, float out, float in, const Color &color)
 {
 	Bind();
 	
-	static const float white[4] = {1.f, 1.f, 1.f, 1.f};
-	Add(pos, out, in, color ? color : white);
+	Add(pos, out, in, color);
 	
 	Unbind();
 }
@@ -128,7 +129,7 @@ void DotShader::Bind()
 
 
 
-void DotShader::Add(const Point &pos, float out, float in, const float *color)
+void DotShader::Add(const Point &pos, float out, float in, const Color &color)
 {
 	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);
@@ -136,7 +137,7 @@ void DotShader::Add(const Point &pos, float out, float in, const float *color)
 	glUniform1f(outRadiusI, out);
 	glUniform1f(inRadiusI, in);
 	
-	glUniform4fv(colorI, 1, color);
+	glUniform4fv(colorI, 1, color.Get());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 8);
 }

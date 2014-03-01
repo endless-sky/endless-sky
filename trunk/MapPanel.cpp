@@ -77,11 +77,11 @@ void MapPanel::Draw() const
 	
 	const Set<System> &systems = data.Systems();
 	
-	static const float dimColor[4] = {.1f, .1f, .1f, 0.f};
+	Color dimColor(.1, 0.);
 	DotShader::Draw(current->Position() + center, 100.5, 99.5, dimColor);
 	
-	static const float closeColor[4] = {.6f, .6f, .6f, .6f};
-	static const float farColor[4] = {.3f, .3f, .3f, .3f};
+	Color closeColor(.6, .6);
+	Color farColor(.3, .3);
 	for(const auto &it : systems)
 	{
 		const System *system = &it.second;
@@ -109,7 +109,7 @@ void MapPanel::Draw() const
 		if(!player.HasSeen(&system))
 			continue;
 		
-		float color[4] = {.2f, .2f, .2f, .2f};
+		Color color(.2, .2);
 		if(system.IsInhabited() && player.HasVisited(&system))
 		{
 			if(commodity != -3)
@@ -125,16 +125,19 @@ void MapPanel::Draw() const
 					value = system.HasShipyard();
 				else if(commodity == -2)
 					value = system.HasOutfitter();
-				color[0] = .6f * (1.f - max(-value, 0.f));
-				color[1] = .6f * (1.f - abs(value));
-				color[2] = .6f * (1.f - max(value, 0.f));
-				color[3] = .4f;
+				color = Color(
+					.6f * (1.f - max(-value, 0.f)),
+					.6f * (1.f - abs(value)),
+					.6f * (1.f - max(value, 0.f)),
+					.4f);
 			}
 			else
 			{
-				for(int i = 0; i < 3; ++i)
-					color[i] = .6f * system.GetGovernment().GetColor().Get()[i];
-				color[3] = .4;
+				color = Color(
+					.6f * system.GetGovernment().GetColor().Get()[0],
+					.6f * system.GetGovernment().GetColor().Get()[1],
+					.6f * system.GetGovernment().GetColor().Get()[2],
+					.4f);
 			}
 		}
 		
@@ -153,7 +156,7 @@ void MapPanel::Draw() const
 		from -= unit;
 		to += unit;
 		
-		float color[4] = {.4f, .4f, .0f, .0f};
+		Color color(.4, .4, 0., 0.);
 		LineShader::Draw(from, to, 3., color);
 		
 		previous = next;
@@ -237,7 +240,7 @@ void MapPanel::Draw() const
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < data.Commodities().size())
 			isSelected = (&commodity == &data.Commodities()[this->commodity]);
-		const float *color = isSelected ? closeColor : farColor;
+		Color &color = isSelected ? closeColor : farColor;
 		
 		font.Draw(commodity.name, uiPoint, color);
 		
@@ -276,14 +279,15 @@ void MapPanel::Draw() const
 	if(maxDistance > 0)
 		orbitCenter += Point(maxDistance, maxDistance);
 	
-	static const float habitColor[7][4] = {
-		{.4, 0., 0., 0.},
-		{.3, .3, 0., 0.},
-		{0., .4, 0., 0.},
-		{0., .3, .4, 0.},
-		{0., 0., .5, 0.},
-		{.2, .2, .2, 0.},
-		{1., 1., 1., 0.}};
+	static const Color habitColor[7] = {
+		Color(.4, 0., 0., 0.),
+		Color(.3, .3, 0., 0.),
+		Color(0., .4, 0., 0.),
+		Color(0., .3, .4, 0.),
+		Color(0., 0., .5, 0.),
+		Color(.2, .2, .2, 0.),
+		Color(1., 1., 1., 0.)
+	};
 	for(const StellarObject &object : selected->Objects())
 	{
 		if(object.Radius() <= 0.)
@@ -311,10 +315,11 @@ void MapPanel::Draw() const
 	}
 	
 	planets.clear();
-	static const float planetColor[3][4] = {
-		{1., 1., 1., 1.},
-		{.3, .3, .3, 1.},
-		{0., .8, 1., 1.}};
+	static const Color planetColor[3] = {
+		Color(1., 1., 1., 1.),
+		Color(.3, .3, .3, 1.),
+		Color(0., .8, 1., 1.)
+	};
 	for(const StellarObject &object : selected->Objects())
 	{
 		if(object.Radius() <= 0.)

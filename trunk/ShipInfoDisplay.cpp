@@ -58,10 +58,9 @@ namespace {
 				continue;
 			}
 		
-			font.Draw(labels[i], point,
-				(values[i].empty() ? valueColor : labelColor).Get());
+			font.Draw(labels[i], point, values[i].empty() ? valueColor : labelColor);
 			Point align(WIDTH - 20 - font.Width(values[i]), 0.);
-			font.Draw(values[i], point + align, valueColor.Get());
+			font.Draw(values[i], point + align, valueColor);
 			point.Y() += 20.;
 		}
 		return point;
@@ -161,17 +160,17 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	point.Y() += 10.;
 	static const int ENERGY_COL = WIDTH - 100;
 	static const int HEAT_COL = WIDTH - 20;
-	font.Draw("energy", point + Point(ENERGY_COL - font.Width("energy"), 0.), labelColor.Get());
-	font.Draw("heat", point + Point(HEAT_COL - font.Width("heat"), 0.), labelColor.Get());
+	font.Draw("energy", point + Point(ENERGY_COL - font.Width("energy"), 0.), labelColor);
+	font.Draw("heat", point + Point(HEAT_COL - font.Width("heat"), 0.), labelColor);
 	
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
 		point.Y() += 20.;
-		font.Draw(tableLabels[i], point, labelColor.Get());
+		font.Draw(tableLabels[i], point, labelColor);
 		Point energyAlign(ENERGY_COL - font.Width(energyTable[i]), 0.);
-		font.Draw(energyTable[i], point + energyAlign, valueColor.Get());
+		font.Draw(energyTable[i], point + energyAlign, valueColor);
 		Point heatAlign(HEAT_COL - font.Width(heatTable[i]), 0.);
-		font.Draw(heatTable[i], point + heatAlign, valueColor.Get());
+		font.Draw(heatTable[i], point + heatAlign, valueColor);
 	}
 }
 

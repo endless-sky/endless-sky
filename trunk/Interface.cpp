@@ -88,8 +88,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			for(const DataFile::Node &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
-					vec.back().color =
-						colors.Get(grand.Token(1));
+					vec.back().color = *colors.Get(grand.Token(1));
 				else if(grand.Token(0) == "align" && grand.Size() >= 2)
 					vec.back().align =
 						(grand.Token(1) == "center") ? .5 :
@@ -111,8 +110,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			for(const DataFile::Node &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
-					vec.back().color =
-						colors.Get(grand.Token(1));
+					vec.back().color = *colors.Get(grand.Token(1));
 				else if(grand.Token(0) == "size" && grand.Size() >= 3)
 					vec.back().size = Point(
 						grand.Value(1), grand.Value(2));
@@ -209,8 +207,7 @@ void Interface::Draw(const Information &info) const
 		const Font &font = FontSet::Get(spec.size);
 		double a = (spec.align >= 0.) ? spec.align : defaultAlign;
 		Point align(font.Width(str) * a, 0.);
-		font.Draw(str, corner - align + spec.position,
-			spec.color ? spec.color->Get() : nullptr);
+		font.Draw(str, corner - align + spec.position, spec.color);
 	}
 	for(const StringSpec &spec : strings)
 	{
@@ -222,8 +219,7 @@ void Interface::Draw(const Information &info) const
 		const Font &font = FontSet::Get(spec.size);
 		double a = (spec.align >= 0.) ? spec.align : defaultAlign;
 		Point align(font.Width(str) * a, 0.);
-		font.Draw(str, corner - align + spec.position,
-			spec.color ? spec.color->Get() : nullptr);
+		font.Draw(str, corner - align + spec.position, spec.color);
 	}
 	
 	for(const BarSpec &spec : bars)
@@ -253,8 +249,7 @@ void Interface::Draw(const Information &info) const
 			Point to = start + min(v, value) * spec.size;
 			v += empty;
 			
-			LineShader::Draw(from, to, spec.width,
-				spec.color ? spec.color->Get() : nullptr);
+			LineShader::Draw(from, to, spec.width, spec.color);
 		}
 	}
 	for(const BarSpec &spec : rings)
@@ -297,7 +292,7 @@ void Interface::Draw(const Information &info) const
 					center + start.Unit() * radius,
 					center + end.Unit() * radius,
 					spec.width,
-					spec.color ? spec.color->Get() : nullptr);
+					spec.color);
 			}
 		}
 	}
@@ -358,14 +353,14 @@ Interface::SpriteSpec::SpriteSpec(const Sprite *sprite, const Point &position)
 
 
 Interface::StringSpec::StringSpec(const string &str, const Point &position)
-	: str(str), position(position), align(-1.), size(14), color(nullptr)
+	: str(str), position(position), align(-1.), size(14)
 {
 }
 
 
 
 Interface::BarSpec::BarSpec(const string &name, const Point &position)
-	: name(name), position(position), color(nullptr)
+	: name(name), position(position)
 {
 }
 

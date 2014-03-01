@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Point.h"
 #include "UI.h"
 
 #include <string>
@@ -65,33 +66,33 @@ void BankPanel::Step(bool isActive)
 
 void BankPanel::Draw() const
 {
-	Color back(.1, .1, .1, .1);
+	Color back(.1, .1);
 	if(static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size())
 		FillShader::Fill(
-			Point(130., FIRST_Y + 238), Point(100., 20.), back.Get());
+			Point(130., FIRST_Y + 238), Point(100., 20.), back);
 	else
 		FillShader::Fill(
-			Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back.Get());
+			Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
-	Color unselected(.5, .5, .5, 1.);
-	Color selected(.8, .8, .8, 1.);
+	Color unselected(.5, 1.);
+	Color selected(.8, 1.);
 	
 	int y = FIRST_Y;
-	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected.Get());
+	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
 	
-	font.Draw("Type", Point(TYPE_X, y), selected.Get());
-	font.Draw("Principal", Point(PRINCIPAL_X, y), selected.Get());
-	font.Draw("Interest", Point(INTEREST_X, y), selected.Get());
-	font.Draw("Term", Point(TERM_X, y), selected.Get());
-	font.Draw("Payment", Point(PAYMENT_X, y), selected.Get());
+	font.Draw("Type", Point(TYPE_X, y), selected);
+	font.Draw("Principal", Point(PRINCIPAL_X, y), selected);
+	font.Draw("Interest", Point(INTEREST_X, y), selected);
+	font.Draw("Term", Point(TERM_X, y), selected);
+	font.Draw("Payment", Point(PAYMENT_X, y), selected);
 	y += 5.;
 	
 	int total = 0;
 	int i = 0;
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
-		const float *color = (i++ == selectedRow) ? selected.Get() : unselected.Get();
+		const Color &color = (i++ == selectedRow) ? selected : unselected;
 		y += 20.;
 		font.Draw(mortgage.Type(), Point(TYPE_X, y), color);
 		font.Draw(to_string(mortgage.Principal()), Point(PRINCIPAL_X, y), color);
@@ -106,18 +107,18 @@ void BankPanel::Draw() const
 	if(salaries)
 	{
 		y += 20.;
-		font.Draw("Crew Salaries", Point(TYPE_X, y), unselected.Get());
-		font.Draw(to_string(salaries), Point(PAYMENT_X, y), unselected.Get());
+		font.Draw("Crew Salaries", Point(TYPE_X, y), unselected);
+		font.Draw(to_string(salaries), Point(PAYMENT_X, y), unselected);
 		total += salaries;
 	}
 	y += 20.;
-	font.Draw("total:", Point(TERM_X, y), selected.Get());
-	font.Draw(to_string(total), Point(PAYMENT_X, y), unselected.Get());
+	font.Draw("total:", Point(TERM_X, y), selected);
+	font.Draw(to_string(total), Point(PAYMENT_X, y), unselected);
 	
 	y = FIRST_Y + 210.;
 	string credit = "Your credit score is "
 		+ to_string(player.Accounts().CreditScore()) + ".";
-	font.Draw(credit, Point(TYPE_X, y), unselected.Get());
+	font.Draw(credit, Point(TYPE_X, y), unselected);
 	
 	y += 20.;
 	string amount;
@@ -126,9 +127,9 @@ void BankPanel::Draw() const
 	else
 		amount = "You qualify for a new loan of up to "
 			+ to_string(qualify) + " credits.";
-	font.Draw(amount, Point(TYPE_X, y), unselected.Get());
+	font.Draw(amount, Point(TYPE_X, y), unselected);
 	if(qualify)
-		font.Draw("[apply]", Point(EXTRA_X, y), selected.Get());
+		font.Draw("[apply]", Point(EXTRA_X, y), selected);
 }
 
 

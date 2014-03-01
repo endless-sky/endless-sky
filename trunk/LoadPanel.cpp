@@ -85,8 +85,8 @@ void LoadPanel::Draw() const
 	for(const auto &it : files)
 	{
 		if(it.first == selectedPilot)
-			FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim.Get());
-		font.Draw(it.first, point, grey.Get());
+			FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim);
+		font.Draw(it.first, point, grey);
 		point += Point(0., 20.);
 	}
 	
@@ -96,8 +96,8 @@ void LoadPanel::Draw() const
 		for(const string &file : files.find(selectedPilot)->second)
 		{
 			if(file == selectedFile)
-				FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim.Get());
-			font.Draw(file.substr(0, file.size() - 4), point, grey.Get());
+				FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim);
+			font.Draw(file.substr(0, file.size() - 4), point, grey);
 			point += Point(0., 20.);
 		}
 	}

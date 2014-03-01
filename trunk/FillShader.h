@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define FILL_SHADER_H_
 
 class Point;
+class Color;
 
 
 
@@ -23,7 +24,7 @@ class FillShader {
 public:
 	static void Init();
 	
-	static void Fill(const Point &center, const Point &size, const float *color = nullptr);
+	static void Fill(const Point &center, const Point &size, const Color &color);
 };
 
 

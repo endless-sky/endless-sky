@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Point.h"
 
 using namespace std;
 
@@ -34,12 +35,5 @@ SpaceportPanel::SpaceportPanel(const string &description)
 
 void SpaceportPanel::Draw() const
 {
-	Color textColor(.8);
-	
-	const Font &font = FontSet::Get(14);
-	for(const WrappedText::Word &word : text.Words())
-	{
-		Point pos(word.X() - 300., word.Y() + 80.);
-		font.Draw(word.String(), pos, textColor.Get());
-	}
+	text.Draw(Point(-300., 80.), Color(.8));
 }

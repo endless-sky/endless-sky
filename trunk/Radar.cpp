@@ -26,13 +26,13 @@ const int Radar::SPECIAL = 5;
 
 namespace {
 	// Colors.
-	static const float color[6][4] = {
-		{.2, 1., 0., 0.}, // PLAYER: green
-		{.4, .6, 1., 0.}, // FRIENDLY: blue
-		{.8, .8, .4, 0.}, // UNFRIENDLY: yellow
-		{1., .6, .4, 0.}, // HOSTILE: red
-		{.4, .4, .4, 0.}, // INACTIVE: grey
-		{1., 1., 1., 0.}  // SPECIAL: white
+	static const Color color[6] = {
+		Color(.2, 1., 0., 0.), // PLAYER: green
+		Color(.4, .6, 1., 0.), // FRIENDLY: blue
+		Color(.8, .8, .4, 0.), // UNFRIENDLY: yellow
+		Color(1., .6, .4, 0.), // HOSTILE: red
+		Color(.4, .4, .4, 0.), // INACTIVE: grey
+		Color(1., 1., 1., 0.)  // SPECIAL: white
 	};
 }
 
@@ -93,7 +93,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 
 
 
-const float *Radar::GetColor(int type)
+const Color &Radar::GetColor(int type)
 {
 	if(type < 0 || type > SPECIAL)
 		type = INACTIVE;
@@ -103,14 +103,14 @@ const float *Radar::GetColor(int type)
 
 
 
-Radar::Object::Object(const float *color, const Point &pos, double out, double in)
+Radar::Object::Object(const Color &color, const Point &pos, double out, double in)
 	: color(color), position(pos), outer(out), inner(in)
 {
 }
 
 
 
-Radar::Pointer::Pointer(const float *color, const Point &unit)
+Radar::Pointer::Pointer(const Color &color, const Point &unit)
 	: color(color), unit(unit)
 {
 }

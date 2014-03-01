@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "LineShader.h"
 
+#include "Color.h"
+#include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
 
@@ -98,7 +100,7 @@ void LineShader::Init()
 
 
 
-void LineShader::Draw(Point from, Point to, float width, const float *color)
+void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color)
 {
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
@@ -114,16 +116,13 @@ void LineShader::Draw(Point from, Point to, float width, const float *color)
 	
 	Point v = to - from;
 	Point u = v.Unit() * width;
-	from -= u;
-	to += u;
 	GLfloat length[2] = {static_cast<float>(v.X()), static_cast<float>(v.Y())};
 	glUniform2fv(lengthI, 1, length);
 	
 	GLfloat w[2] = {static_cast<float>(u.Y()), static_cast<float>(-u.X())};
 	glUniform2fv(widthI, 1, w);
 	
-	static const float white[4] = {1.f, 1.f, 1.f, 1.f};
-	glUniform4fv(colorI, 1, color ? color : white);
+	glUniform4fv(colorI, 1, color.Get());
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

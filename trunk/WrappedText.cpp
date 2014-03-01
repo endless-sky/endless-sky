@@ -138,30 +138,20 @@ void WrappedText::SetParagraphBreak(int height)
 
 // Get the word positions when wrapping the given text. The coordinates
 // always begin at (0, 0).
-const vector<WrappedText::Word> &WrappedText::Wrap(const string &str)
+void WrappedText::Wrap(const string &str)
 {
 	SetText(str.data(), str.length());
 	
 	Wrap();
-	return words;
 }
 
 
 
-const vector<WrappedText::Word> &WrappedText::Wrap(const char *str)
+void WrappedText::Wrap(const char *str)
 {
 	SetText(str, strlen(str));
 	
 	Wrap();
-	return words;
-}
-
-
-
-// Get the words from the most recent wrapping.
-const vector<WrappedText::Word> &WrappedText::Words() const
-{
-	return words;
 }
 
 
@@ -178,7 +168,7 @@ int WrappedText::Height() const
 void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	for(const Word &w : words)
-		font->Draw(w.String(), Point(w.X(), w.Y()) + topLeft, color.Get());
+		font->Draw(w.String(), Point(w.X(), w.Y()) + topLeft, color);
 }
 
 
