@@ -1,19 +1,22 @@
 /* Screen.h
-Michael Zahniser, 16 Oct 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class that simply holds the screen dimensions. This is really just a wrapper
-around some global variables.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
 
-TODO: make this thread-safe. For now I'm not bothering to because generally
-OpenGL rendering will only be in a single thread, but other workers may want to
-know how big a screen the objects will be in.
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SCREEN_H_INCLUDED
-#define SCREEN_H_INCLUDED
+#ifndef SCREEN_H_
+#define SCREEN_H_
 
 
 
+// Class that simply holds the screen dimensions. This is really just a wrapper
+// around some global variables.
 class Screen {
 public:
 	static void Set(int width, int height);

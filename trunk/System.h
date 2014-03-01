@@ -1,12 +1,17 @@
 /* System.h
-Michael Zahniser, 1 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a star system, including the mathematics for calculating the
-star and planet positions on a given date.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SYSTEM_H_INCLUDED
-#define SYSTEM_H_INCLUDED
+#ifndef SYSTEM_H_
+#define SYSTEM_H_
 
 #include "Animation.h"
 #include "DataFile.h"
@@ -14,15 +19,17 @@ star and planet positions on a given date.
 #include "Set.h"
 #include "StellarObject.h"
 
+#include <string>
+#include <vector>
+
 class Date;
 class Government;
 class Planet;
 
-#include <string>
-#include <vector>
 
 
-
+// Class representing a star system, including the mathematics for calculating the
+// star and planet positions on a given date.
 class System {
 public:
 	class Asteroid {

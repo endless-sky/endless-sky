@@ -1,12 +1,17 @@
 /* Controllable.h
-Michael Zahniser, 27 January 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing all aspects of a ship which an AI has access to, either to
-modify them or just to view them.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef CONTROLLABLE_H_INCLUDED
-#define CONTROLLABLE_H_INCLUDED
+#ifndef CONTROLLABLE_H_
+#define CONTROLLABLE_H_
 
 #include <memory>
 #include <vector>
@@ -17,6 +22,8 @@ class System;
 
 
 
+// Class representing all aspects of a ship which an AI has access to, either to
+// modify them or just to view them.
 class Controllable {
 public:
 	Controllable();

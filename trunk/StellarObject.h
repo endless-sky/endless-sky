@@ -1,11 +1,17 @@
 /* StellarObject.h
-Michael Zahniser, 27 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a planet, star, moon, or other large object in space.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef STELLAR_OBJECT_H_INCLUDED
-#define STELLAR_OBJECT_H_INCLUDED
+#ifndef STELLAR_OBJECT_H_
+#define STELLAR_OBJECT_H_
 
 #include "Animation.h"
 #include "Point.h"
@@ -14,6 +20,7 @@ class Planet;
 
 
 
+// Class representing a planet, star, moon, or other large object in space.
 class StellarObject {
 public:
 	StellarObject();

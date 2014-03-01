@@ -1,13 +1,17 @@
 /* Radar.h
-Michael Zahniser, 3 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing all objects which should show up on radar. Each object is
-either a ring (planets) or a dot (ships) and has a color representing its status
-(owned by player, friendly, unfriendly, hostile, inactive, or special).
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef RADAR_H_INCLUDED
-#define RADAR_H_INCLUDED
+#ifndef RADAR_H_
+#define RADAR_H_
 
 #include "Point.h"
 
@@ -15,6 +19,9 @@ either a ring (planets) or a dot (ships) and has a color representing its status
 
 
 
+// Class representing all objects which should show up on radar. Each object is
+// either a ring (planets) or a dot (ships) and has a color representing its status
+// (owned by player, friendly, unfriendly, hostile, inactive, or special).
 class Radar {
 public:
 	static const int PLAYER;

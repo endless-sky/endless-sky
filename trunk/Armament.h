@@ -1,12 +1,17 @@
 /* Armament.h
-Michael Zahniser, 11 Feb 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing the collection of weapons that a given ship has, along with
-tracking reload counts, source points, etc.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef ARMAMENT_H_INCLUDED
-#define ARMAMENT_H_INCLUDED
+#ifndef ARMAMENT_H_
+#define ARMAMENT_H_
 
 #include "Angle.h"
 #include "Point.h"
@@ -22,6 +27,8 @@ class Ship;
 
 
 
+// Class representing the collection of weapons that a given ship has, along with
+// tracking reload counts, source points, etc.
 class Armament {
 public:
 	class Weapon {

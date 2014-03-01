@@ -1,11 +1,17 @@
 /* Sprite.h
-Michael Zahniser, 17 Oct 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a drawable sprite.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SPRITE_H_INCLUDED
-#define SPRITE_H_INCLUDED
+#ifndef SPRITE_H_
+#define SPRITE_H_
 
 #include "Mask.h"
 
@@ -16,6 +22,7 @@ class SDL_Surface;
 
 
 
+// Class representing a drawable sprite.
 class Sprite {
 public:
 	Sprite();

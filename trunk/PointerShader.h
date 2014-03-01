@@ -1,15 +1,23 @@
 /* PointerShader.h
-Michael Zahniser, 6 Nov 2013
+Copyright (c) 2014 by Michael Zahniser
 
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef POINTER_SHADER_H_INCLUDED
-#define POINTER_SHADER_H_INCLUDED
+#ifndef POINTER_SHADER_H_
+#define POINTER_SHADER_H_
 
 #include "Point.h"
 
 
 
+// Functions for drawing triangular "pointers," e.g. for target crosshairs.
 class PointerShader {
 public:
 	static void Init();

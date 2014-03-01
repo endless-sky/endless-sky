@@ -1,12 +1,17 @@
 /* Engine.h
-Michael Zahniser, 3 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing the game engine: its job is to track all of the objects in
-the game, and to move them, step by step.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef ENGINE_H_INCLUDED
-#define ENGINE_H_INCLUDED
+#ifndef ENGINE_H_
+#define ENGINE_H_
 
 #include "AI.h"
 #include "AsteroidField.h"
@@ -32,6 +37,8 @@ class Panel;
 
 
 
+// Class representing the game engine: its job is to track all of the objects in
+// the game, and to move them, step by step.
 class Engine {
 public:
 	Engine(const GameData &data, PlayerInfo &playerInfo);

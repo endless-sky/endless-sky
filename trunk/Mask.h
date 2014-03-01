@@ -1,12 +1,17 @@
 /* Mask.h
-Michael Zahniser, 16 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing the outline of an object, with functions for checking if a
-line segment intersetcs that object or if a point is within a certain distance.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef MASK_H_INCLUDED
-#define MASK_H_INCLUDED
+#ifndef MASK_H_
+#define MASK_H_
 
 #include "Angle.h"
 #include "Point.h"
@@ -17,6 +22,8 @@ class SDL_Surface;
 
 
 
+// Class representing the outline of an object, with functions for checking if a
+// line segment intersetcs that object or if a point is within a certain distance.
 class Mask {
 public:
 	// Default constructor.

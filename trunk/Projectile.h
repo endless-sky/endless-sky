@@ -1,28 +1,35 @@
 /* Projectile.h
-Michael Zahniser, 15 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a projectile (a moving object which can hit ships or
-asteroids and can potentially be hit by anti-missile systems).
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PROJECTILE_H_INCLUDED
-#define PROJECTILE_H_INCLUDED
+#ifndef PROJECTILE_H_
+#define PROJECTILE_H_
 
 #include "Angle.h"
 #include "Animation.h"
 #include "Effect.h"
 #include "Point.h"
 
+#include <list>
+#include <memory>
+
 class Government;
 class Outfit;
 class Ship;
 class System;
 
-#include <list>
-#include <memory>
 
 
-
+// Class representing a projectile (a moving object which can hit ships or
+// asteroids and can potentially be hit by anti-missile systems).
 class Projectile {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon);

@@ -1,12 +1,13 @@
 /* Angle.cpp
-Michael Zahniser, 21 Oct 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Function definitions for the Angle class.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
 
-Suppose you want to be able to turn 360 degrees in one second. Then you are
-turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
-degrees is 1092 steps, and your turn speed is accurate to +- 0.05%. That seems
-plenty accurate to me. At that step size, the lookup table is exactly 1 MB.
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Angle.h"
@@ -19,6 +20,10 @@ plenty accurate to me. At that step size, the lookup table is exactly 1 MB.
 using namespace std;
 
 namespace {
+	// Suppose you want to be able to turn 360 degrees in one second. Then you are
+	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
+	// degrees is 1092 steps, and your turn speed is accurate to +- 0.05%. That seems
+	// plenty accurate to me. At that step size, the lookup table is exactly 1 MB.
 	static const int32_t STEPS = 0x10000;
 	static const int32_t MASK = STEPS - 1;
 	double DEG_TO_STEP = STEPS / 360.;

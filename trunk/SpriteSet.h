@@ -1,11 +1,17 @@
 /* SpriteSet.h
-Michael Zahniser, 24 Oct 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class for storing sprites.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SPRITE_SET_H_INCLUDED
-#define SPRITE_SET_H_INCLUDED
+#ifndef SPRITE_SET_H_
+#define SPRITE_SET_H_
 
 #include <string>
 
@@ -13,6 +19,7 @@ class Sprite;
 
 
 
+// Class for storing sprites.
 class SpriteSet {
 public:
 	static const Sprite *Get(const std::string &name);

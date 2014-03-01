@@ -1,18 +1,25 @@
 /* Point.h
-Michael Zahniser, 27 Jun 2011
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a 2D point with functions for a variety of vector operations.
-Internally the coordinates are stored in a SSE vector and the processor's vector
-extensions are used to optimize all operations.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef POINT_H_INCLUDED
-#define POINT_H_INCLUDED
+#ifndef POINT_H_
+#define POINT_H_
 
 #include <pmmintrin.h>
 
 
 
+// Class representing a 2D point with functions for a variety of vector operations.
+// Internally the coordinates are stored in a SSE vector and the processor's vector
+// extensions are used to optimize all operations.
 class Point {
 public:
 	Point();

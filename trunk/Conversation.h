@@ -1,14 +1,17 @@
 /* Conversation.h
-Michael Zahniser, 9 Jan 2014
+Copyright (c) 2014 by Michael Zahniser
 
-Class representing a conversation, generally occurring when the you are asked to
-accept or decline a mission. The conversation can take different paths depending
-on what responses you choose, leading you to accept, decline, or (rarely) to be
-killed.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef CONVERSATION_H_INCLUDED
-#define CONVERSATION_H_INCLUDED
+#ifndef CONVERSATION_H_
+#define CONVERSATION_H_
 
 #include "DataFile.h"
 
@@ -21,6 +24,10 @@ class Sprite;
 
 
 
+// Class representing a conversation, generally occurring when the you are asked to
+// accept or decline a mission. The conversation can take different paths depending
+// on what responses you choose, leading you to accept, decline, or (rarely) to be
+// killed.
 class Conversation {
 public:
 	// The possible outcomes of a conversation:

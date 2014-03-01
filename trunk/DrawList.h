@@ -1,14 +1,17 @@
 /* DrawList.h
-Michael Zahniser, 17 Oct 2013
+Copyright (c) 2014 by Michael Zahniser
 
-Class for storing a list of textures to blit to the screen.
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
 
-Swizzle is: R = 0, G = 1, B = 2, Z = 3, O = 4.
-Rs + 5 * Gs + 25 * Bs, so no swizzle (RGB) = 0 + 5 + 50 = 55.
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef DRAW_LIST_H_INCLUDED
-#define DRAW_LIST_H_INCLUDED
+#ifndef DRAW_LIST_H_
+#define DRAW_LIST_H_
 
 #include "Point.h"
 
@@ -20,6 +23,7 @@ class Sprite;
 
 
 
+// Class for storing a list of textures to blit to the screen.
 class DrawList {
 public:
 	// Default constructor.
