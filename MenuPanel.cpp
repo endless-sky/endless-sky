@@ -6,6 +6,7 @@ Function definitions for the MenuPanel class.
 
 #include "MenuPanel.h"
 
+#include "ConversationPanel.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
@@ -16,6 +17,7 @@ Function definitions for the MenuPanel class.
 #include "Point.h"
 #include "PointerShader.h"
 #include "PreferencesPanel.h"
+#include "ShipyardPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -31,8 +33,8 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo)
-	: gameData(gameData), playerInfo(playerInfo), scroll(0)
+MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo, UI &gamePanels)
+	: gameData(gameData), playerInfo(playerInfo), gamePanels(gamePanels), scroll(0)
 {
 	SetIsFullScreen(true);
 	
@@ -62,19 +64,28 @@ void MenuPanel::Draw() const
 	gameData.Background().Draw(Point(), Point());
 	
 	Information info;
-	info.SetString("pilot", playerInfo.FirstName() + " " + playerInfo.LastName());
-	if(playerInfo.GetShip())
+	if(playerInfo.IsLoaded())
 	{
-		const Ship &ship = *playerInfo.GetShip();
-		info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
-		info.SetString("ship", ship.Name());
-		if(ship.GetPlanet())
-			info.SetString("planet", ship.GetPlanet()->Name());
+		info.SetCondition("pilot loaded");
+		info.SetString("pilot", playerInfo.FirstName() + " " + playerInfo.LastName());
+		if(playerInfo.GetShip())
+		{
+			const Ship &ship = *playerInfo.GetShip();
+			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
+			info.SetString("ship", ship.Name());
+		}
+		if(playerInfo.GetSystem())
+			info.SetString("system", playerInfo.GetSystem()->Name());
+		if(playerInfo.GetPlanet())
+			info.SetString("planet", playerInfo.GetPlanet()->Name());
+		info.SetString("credits", to_string(playerInfo.Accounts().Credits()));
+		info.SetString("date", playerInfo.GetDate().ToString());
 	}
-	if(playerInfo.GetSystem())
-		info.SetString("system", playerInfo.GetSystem()->Name());
-	info.SetString("credits", to_string(playerInfo.Accounts().Credits()));
-	info.SetString("date", playerInfo.GetDate().ToString());
+	else
+	{
+		info.SetCondition("no pilot loaded");
+		info.SetString("pilot", "No Pilot Loaded");
+	}
 	
 	const Interface *menu = gameData.Interfaces().Get("main menu");
 	menu->Draw(info);
@@ -118,6 +129,13 @@ void MenuPanel::Draw() const
 // New player "conversation" callback.
 void MenuPanel::OnCallback(int)
 {
+	GetUI()->Pop(this);
+	shared_ptr<Panel> saved = gamePanels.Root();
+	gamePanels.Reset();
+	gamePanels.Push(saved);
+	// Tell the main panel to re-draw itself (and pop up the planet panel).
+	saved->Step(true);
+	gamePanels.Push(new ShipyardPanel(gameData, playerInfo));
 }
 
 
@@ -132,7 +150,16 @@ bool MenuPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel(gameData));
 	else if(key == 'l')
-		GetUI()->Push(new LoadPanel(gameData, playerInfo, this));
+		GetUI()->Push(new LoadPanel(gameData, playerInfo, gamePanels));
+	else if(key == 'n')
+	{
+		playerInfo.New(gameData);
+		
+		ConversationPanel *panel = new ConversationPanel(
+			playerInfo, *gameData.Conversations().Get("intro"));
+		GetUI()->Push(panel);
+		panel->SetCallback(*this);
+	}
 	else if(key == 'q')
 		GetUI()->Quit();
 	

@@ -104,6 +104,9 @@ void ConversationPanel::Draw() const
 		Point center(x + (choice ? 420 : 190), y + 7);
 		Point size(150, 20);
 		FillShader::Fill(center, size, selectionColor.Get());
+		int width = font.Width(choice ? lastName : firstName);
+		center.X() += width - 67;
+		FillShader::Fill(center, Point(1., 16.), dim.Get());
 		
 		font.Draw("First name:", Point(x + 40, y), dim.Get());
 		font.Draw(firstName, Point(x + 120, y), (choice ? grey : bright).Get());
@@ -191,6 +194,22 @@ bool ConversationPanel::KeyDown(SDLKey key, SDLMod mod)
 		Goto(conversation.NextNode(node, choice));
 	}
 	
+	return true;
+}
+
+
+
+bool ConversationPanel::Click(int x, int y)
+{
+	if(choices.empty() && node >= 0)
+	{
+		// Get the x position relative to the left side of the screen.
+		x -= -Screen::Width() / 2;
+		if(x > 135 && x < 285)
+			choice = 0;
+		else if(x > 365 && x < 515)
+			choice = 1;
+	}
 	return true;
 }
 

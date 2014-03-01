@@ -37,11 +37,11 @@ public:
 	Engine(const GameData &data, PlayerInfo &playerInfo);
 	~Engine();
 	
+	// Place all the player's ships, and "enter" the system the player is in.
+	void Place();
+	
 	// Begin the next step of calculations.
 	void Step(bool isActive);
-	// Check if there's a new panel to show as a result of something that
-	// happened in this step (such as landing on a planet).
-	Panel *PanelToShow();
 	
 	// Draw a frame.
 	void Draw() const;
@@ -52,8 +52,6 @@ public:
 	
 private:
 	void EnterSystem();
-	// Place all the player's ships, and "enter" the system the player is in.
-	void Place();
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
@@ -96,8 +94,6 @@ private:
 	
 	mutable std::vector<std::pair<int, std::string>> messages;
 	int step;
-	bool shouldLand;
-	bool hasLanded;
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;

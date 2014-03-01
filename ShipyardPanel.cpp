@@ -225,11 +225,12 @@ bool ShipyardPanel::Click(int x, int y)
 		x -= Screen::Width() / 2 - SIDE_WIDTH;
 		if(x < 80)
 		{
-			// TODO: buy ship.
+			player.BuyShip(selectedShip);
 		}
 		else if(x < 160)
 		{
-			// TODO: sell ship;
+			player.SellShip(playerShip);
+			playerShip = nullptr;
 		}
 		else
 			GetUI()->Pop(this);

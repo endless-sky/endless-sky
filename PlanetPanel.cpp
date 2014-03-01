@@ -23,9 +23,9 @@ using namespace std;
 
 
 
-PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Planet &planet)
-	: data(data), player(player), planet(planet),
-	system(*player.GetShip()->GetSystem()),
+PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Callback &callback)
+	: data(data), player(player), callback(callback),
+	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*data.Interfaces().Get("planet")),
 	selectedPanel(nullptr)
 {
@@ -44,6 +44,7 @@ PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Planet 
 PlanetPanel::~PlanetPanel()
 {
 	player.Save();
+	callback();
 }
 
 
@@ -52,11 +53,13 @@ void PlanetPanel::Draw() const
 {
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	if(planet.HasSpaceport())
+	if(player.GetShip())
+		info.SetCondition("has ship");
+	if(planet.HasSpaceport() && player.GetShip())
 		info.SetCondition("has spaceport");
 	if(planet.HasShipyard())
 		info.SetCondition("has shipyard");
-	if(planet.HasOutfitter())
+	if(planet.HasOutfitter() && player.GetShip())
 		info.SetCondition("has outfitter");
 	
 	ui.Draw(info);

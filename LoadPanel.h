@@ -21,7 +21,7 @@ class GameData;
 
 class LoadPanel : public Panel {
 public:
-	LoadPanel(const GameData &data, PlayerInfo &player, const Panel *parent);
+	LoadPanel(const GameData &data, PlayerInfo &player, UI &gamePanels);
 	
 	virtual void Draw() const;
 	
@@ -38,7 +38,7 @@ protected:
 private:
 	const GameData &data;
 	PlayerInfo &player;
-	const Panel *parent;
+	UI &gamePanels;
 	
 	std::map<std::string, std::vector<std::string>> files;
 	std::string selectedPilot;

@@ -39,8 +39,6 @@ int main(int argc, char *argv[])
 		gameData.BeginLoad(argv + 1);
 		
 		playerInfo.LoadRecent(gameData);
-		if(!playerInfo.IsLoaded())
-			playerInfo.New(gameData);
 		
 		// Check how big the window can be.
 		const SDL_VideoInfo *info = SDL_GetVideoInfo();
@@ -78,10 +76,10 @@ int main(int argc, char *argv[])
 		
 		
 		UI gamePanels;
-		gamePanels.Push(shared_ptr<Panel>(new MainPanel(gameData, playerInfo)));
+		gamePanels.Push(new MainPanel(gameData, playerInfo));
 		
 		UI menuPanels;
-		menuPanels.Push(shared_ptr<Panel>(new MenuPanel(gameData, playerInfo)));
+		menuPanels.Push(new MenuPanel(gameData, playerInfo, gamePanels));
 		
 		FrameTimer timer(60);
 		while(!menuPanels.IsDone())
@@ -97,7 +95,8 @@ int main(int argc, char *argv[])
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 10 : 60);
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 						&& event.key.keysym.sym == gameData.Keys().Get(Key::MENU))
-					menuPanels.Push(shared_ptr<Panel>(new MenuPanel(gameData, playerInfo)));
+					menuPanels.Push(shared_ptr<Panel>(
+						new MenuPanel(gameData, playerInfo, gamePanels)));
 				
 				if(event.type == SDL_QUIT)
 					menuPanels.Quit();
@@ -113,7 +112,8 @@ int main(int argc, char *argv[])
 			
 			// Tell all the panels to step forward, then draw them.
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
-			
+			// That may have cleared out the menu, in which case we should draw
+			// the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 			
 			SDL_GL_SwapBuffers();

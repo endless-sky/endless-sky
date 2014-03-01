@@ -70,10 +70,7 @@ void UI::StepAll()
 	// Handle any panels that should be added.
 	for(shared_ptr<Panel> &panel : toPush)
 		if(panel)
-		{
-			panel->SetUI(this);
 			stack.push_back(panel);
-		}
 	toPush.clear();
 	
 	// These panels should be popped but not deleted (because someone else
@@ -121,6 +118,7 @@ void UI::Push(Panel *panel)
 
 void UI::Push(const shared_ptr<Panel> &panel)
 {
+	panel->SetUI(this);
 	toPush.push_back(panel);
 }
 
@@ -143,6 +141,22 @@ void UI::Reset()
 	toPush.clear();
 	toPop.clear();
 	isDone = false;
+}
+
+
+
+// Get the lower-most panel.
+shared_ptr<Panel> UI::Root() const
+{
+	if(stack.empty())
+	{
+		if(toPush.empty())
+			return shared_ptr<Panel>();
+		
+		return toPush.front();
+	}
+	
+	return stack.front();
 }
 
 
