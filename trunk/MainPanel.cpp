@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "MapPanel.h"
 #include "PlanetPanel.h"
 #include "Screen.h"
 #include "UI.h"
@@ -38,12 +39,15 @@ MainPanel::MainPanel(const GameData &gameData, PlayerInfo &playerInfo)
 
 void MainPanel::Step(bool isActive)
 {
-	engine.Step(isActive);
-	
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
 	if(isActive && playerInfo.GetPlanet())
+	{
 		GetUI()->Push(new PlanetPanel(gameData, playerInfo, *this));
+		isActive = false;
+	}
+	
+	engine.Step(isActive);
 }
 
 
@@ -85,7 +89,7 @@ void MainPanel::OnCallback(int)
 bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == gameData.Keys().Get(Key::MAP))
-		GetUI()->Push(engine.Map());
+		GetUI()->Push(new MapPanel(gameData, playerInfo));
 	
 	return true;
 }

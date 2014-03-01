@@ -53,9 +53,6 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
-	// Get a map of where the player is, currently.
-	Panel *Map();
-	
 	
 private:
 	void EnterSystem();

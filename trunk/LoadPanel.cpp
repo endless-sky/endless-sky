@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "MainPanel.h"
 #include "ShipyardPanel.h"
 #include "UI.h"
 
@@ -109,11 +110,11 @@ void LoadPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
-	shared_ptr<Panel> saved = gamePanels.Root();
 	gamePanels.Reset();
-	gamePanels.Push(saved);
+	Panel *panel = new MainPanel(data, player);
+	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	saved->Step(true);
+	panel->Step(true);
 	gamePanels.Push(new ShipyardPanel(data, player));
 }
 
@@ -190,11 +191,8 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 		player = loadedInfo;
 		GetUI()->Pop(this);
 		GetUI()->Pop(GetUI()->Root().get());
-		shared_ptr<Panel> saved = gamePanels.Root();
 		gamePanels.Reset();
-		gamePanels.Push(saved);
-		// Tell the main panel to re-draw itself (and pop up the planet panel).
-		saved->Step(true);
+		gamePanels.Push(new MainPanel(data, player));
 	}
 	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
 		GetUI()->Pop(this);

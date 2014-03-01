@@ -29,7 +29,7 @@ using namespace std;
 
 
 PlayerInfo::PlayerInfo()
-	: date(15, 11, 3013), selectedWeapon(nullptr)
+	: date(16, 11, 3013), system(nullptr), planet(nullptr), selectedWeapon(nullptr)
 {
 }
 
@@ -41,7 +41,9 @@ void PlayerInfo::Clear()
 	firstName.clear();
 	lastName.clear();
 	
-	date = Date(15, 11, 3013);
+	date = Date(16, 11, 3013);
+	system = nullptr;
+	planet = nullptr;
 	accounts = Account();
 	
 	ships.clear();

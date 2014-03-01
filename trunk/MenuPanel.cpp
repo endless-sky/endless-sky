@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Information.h"
 #include "LoadPanel.h"
+#include "MainPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
@@ -99,7 +100,11 @@ void MenuPanel::Draw() const
 	int progress = static_cast<int>(gameData.Progress() * 60.);
 	
 	if(progress == 60)
+	{
+		if(!gamePanels.Root())
+			gamePanels.Push(new MainPanel(gameData, playerInfo));
 		alpha -= .02f;
+	}
 	if(alpha > 0.f)
 	{
 		Angle da(6.);
@@ -136,11 +141,11 @@ void MenuPanel::Draw() const
 void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
-	shared_ptr<Panel> saved = gamePanels.Root();
+	Panel *panel = new MainPanel(gameData, playerInfo);
 	gamePanels.Reset();
-	gamePanels.Push(saved);
+	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	saved->Step(true);
+	panel->Step(true);
 	gamePanels.Push(new ShipyardPanel(gameData, playerInfo));
 }
 

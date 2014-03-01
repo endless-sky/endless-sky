@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "FrameTimer.h"
-#include "MapPanel.h"
 #include "PointerShader.h"
 #include "Screen.h"
 #include "SpriteSet.h"
@@ -34,10 +33,42 @@ Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 	asteroids(data),
 	load(0.), loadCount(0), loadSum(0.)
 {
-	Place();
-	
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
+	
+	if(!playerInfo.IsLoaded() || !playerInfo.GetSystem())
+		return;
+	playerInfo.GetSystem()->SetDate(playerInfo.GetDate());
+	
+	// Now we know the player's current position. Draw the planets.
+	Point center;
+	if(playerInfo.GetPlanet())
+	{
+		for(const StellarObject &object : playerInfo.GetSystem()->Objects())
+			if(object.GetPlanet() == playerInfo.GetPlanet())
+				center = object.Position();
+	}
+	for(const StellarObject &object : playerInfo.GetSystem()->Objects())
+		if(!object.GetSprite().IsEmpty())
+		{
+			Point position = object.Position();
+			Point unit(0., -1.);
+			if(position)
+				unit = position.Unit();
+			position -= center;
+			
+			int type = object.IsStar() ? Radar::SPECIAL :
+				object.GetPlanet() ? Radar::FRIENDLY : Radar::INACTIVE;
+			double r = max(2., object.Radius() * .03 + .5);
+			
+			draw[calcTickTock].Add(object.GetSprite(), position, unit);
+			radar[calcTickTock].Add(type, position, r, r - 1.);
+		}
+	
+	// Add all neighboring systems to the radar.
+	Point pos = playerInfo.GetSystem()->Position();
+	for(const System *system : playerInfo.GetSystem()->Links())
+		radar[calcTickTock].AddPointer(Radar::INACTIVE, system->Position() - pos);
 }
 
 
@@ -302,14 +333,6 @@ void Engine::Draw() const
 
 
 
-// Get a map of where the player is, currently.
-Panel *Engine::Map()
-{
-	return new MapPanel(data, playerInfo);
-}
-
-
-
 void Engine::EnterSystem()
 {
 	const Ship *player = playerInfo.GetShip();
@@ -397,7 +420,15 @@ void Engine::CalculateStep()
 		EnterSystem();
 	
 	// Now we know the player's current position. Draw the planets.
-	Point center = player ? player->Position() : Point();
+	Point center;
+	if(player)
+		center = player->Position();
+	else if(playerInfo.GetPlanet())
+	{
+		for(const StellarObject &object : playerInfo.GetSystem()->Objects())
+			if(object.GetPlanet() == playerInfo.GetPlanet())
+				center = object.Position();
+	}
 	for(const StellarObject &object : playerInfo.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
 		{
