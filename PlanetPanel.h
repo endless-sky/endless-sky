@@ -33,7 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(const GameData &data, PlayerInfo &player, const Callback &callback);
-	virtual ~PlanetPanel();
 	
 	virtual void Draw() const;
 	

@@ -25,35 +25,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <boost/filesystem.hpp>
 
-namespace fs = boost::filesystem;
+#include <algorithm>
+
+namespace fs = boost::filesystem3;
 
 using namespace std;
 
 
 
 LoadPanel::LoadPanel(const GameData &data, PlayerInfo &player, UI &gamePanels)
-	: data(data), player(player), gamePanels(gamePanels)
+	: data(data), player(player), gamePanels(gamePanels), loadedInfo(player)
 {
-	string path = getenv("HOME") + string("/.config/endless-sky/saves/");
-	fs::directory_iterator it(path);
-	fs::directory_iterator end;
-	for( ; it != end; ++it)
-	{
-		string fileName = it->path().filename().string();
-		// The file name is either "Pilot Name.txt" or "Pilot Name~Date.txt".
-		size_t pos = fileName.find('~');
-		if(pos == string::npos)
-			pos = fileName.size() - 4;
-		
-		string pilotName = fileName.substr(0, pos);
-		files[pilotName].push_back(fileName);
-	}
-	
-	if(!files.empty())
-	{
-		selectedPilot = files.begin()->first;
-		selectedFile = files.begin()->second.front();
-	}
+	UpdateLists();
 }
 
 
@@ -64,24 +47,31 @@ void LoadPanel::Draw() const
 	data.Background().Draw(Point(), Point());
 	
 	Information info;
-	if(player.IsLoaded())
+	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", player.FirstName() + " " + player.LastName());
+		info.SetString("pilot", loadedInfo.FirstName() + " " + loadedInfo.LastName());
 		if(player.GetShip())
 		{
-			const Ship &ship = *player.GetShip();
+			const Ship &ship = *loadedInfo.GetShip();
 			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
 			info.SetString("ship", ship.Name());
 		}
-		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
-		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
-		info.SetString("credits", to_string(player.Accounts().Credits()));
-		info.SetString("date", player.GetDate().ToString());
+		if(loadedInfo.GetSystem())
+			info.SetString("system", loadedInfo.GetSystem()->Name());
+		if(loadedInfo.GetPlanet())
+			info.SetString("planet", loadedInfo.GetPlanet()->Name());
+		info.SetString("credits", to_string(loadedInfo.Accounts().Credits()));
+		info.SetString("date", loadedInfo.GetDate().ToString());
 	}
 	else
 		info.SetString("pilot", "No Pilot Loaded");
+	
+	if(!selectedPilot.empty())
+		info.SetCondition("pilot selected");
+	if(selectedFile.find('~') != string::npos)
+		info.SetCondition("snapshot selected");
+	if(loadedInfo.IsLoaded())
+		info.SetCondition("pilot loaded");
 	
 	const Interface *menu = data.Interfaces().Get("load menu");
 	menu->Draw(info);
@@ -94,7 +84,7 @@ void LoadPanel::Draw() const
 	for(const auto &it : files)
 	{
 		if(it.first == selectedPilot)
-			FillShader::Fill(point + Point(100., 7.), Point(200., 20.), dim.Get());
+			FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim.Get());
 		font.Draw(it.first, point, grey.Get());
 		point += Point(0., 20.);
 	}
@@ -105,8 +95,8 @@ void LoadPanel::Draw() const
 		for(const string &file : files.find(selectedPilot)->second)
 		{
 			if(file == selectedFile)
-				FillShader::Fill(point + Point(100., 7.), Point(200., 20.), dim.Get());
-			font.Draw(file, point, grey.Get());
+				FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim.Get());
+			font.Draw(file.substr(0, file.size() - 4), point, grey.Get());
 			point += Point(0., 20.);
 		}
 	}
@@ -131,9 +121,7 @@ void LoadPanel::OnCallback(int)
 
 bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == 'b' || key == data.Keys().Get(Key::MENU))
-		GetUI()->Pop(this);
-	else if(key == 'n')
+	if(key == 'n')
 	{
 		player.New(data);
 		
@@ -141,6 +129,75 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 		GetUI()->Push(panel);
 		panel->SetCallback(*this);
 	}
+	else if(key == 'd')
+	{
+		auto it = files.find(selectedPilot);
+		if(it == files.end())
+			return false;
+		
+		for(const string &file : it->second)
+			fs::remove(root + file);
+		UpdateLists();
+	}
+	else if(key == 'a')
+	{
+		string wasSelected = selectedPilot;
+		auto it = files.find(selectedPilot);
+		if(it == files.end() || it->second.empty() || it->second.front().size() < 4)
+			return false;
+		
+		// Extract the date from this pilot's most recent save.
+		string date = "~0000-00-00.txt";
+		string from = root + it->second.front();
+		DataFile file(from);
+		for(const DataFile::Node &node : file)
+			if(node.Token(0) == "date")
+			{
+				int year = node.Value(3);
+				int month = node.Value(2);
+				int day = node.Value(1);
+				date[1] += (year / 1000) % 10;
+				date[2] += (year / 100) % 10;
+				date[3] += (year / 10) % 10;
+				date[4] += year % 10;
+				date[6] += (month / 10) % 10;
+				date[7] += month % 10;
+				date[9] += (day / 10) % 10;
+				date[10] += day % 10;
+			}
+		
+		// Copy the autosave to a new, named file.
+		string to = from.substr(0, from.size() - 4) + date;
+		fs::copy(from, to);
+		UpdateLists();
+		
+		selectedPilot = wasSelected;
+		selectedFile = to.substr(root.length());
+	}
+	else if(key == 'r')
+	{
+		fs::remove(root + selectedFile);
+		UpdateLists();
+		
+		auto it = files.find(selectedPilot);
+		if(it == files.end() || it->second.empty())
+			selectedFile.clear();
+		else
+			selectedFile = it->second.front();
+	}
+	else if(key == 'e')
+	{
+		player = loadedInfo;
+		GetUI()->Pop(this);
+		GetUI()->Pop(GetUI()->Root().get());
+		shared_ptr<Panel> saved = gamePanels.Root();
+		gamePanels.Reset();
+		gamePanels.Push(saved);
+		// Tell the main panel to re-draw itself (and pop up the planet panel).
+		saved->Step(true);
+	}
+	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
+		GetUI()->Pop(this);
 	
 	return true;
 }
@@ -153,8 +210,59 @@ bool LoadPanel::Click(int x, int y)
 	if(key != '\0')
 		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
 	
-	// TODO: handle clicks on lists of pilots / saves.
 	// The first row of each panel is y = -160 to -140.
+	if(y < -160)
+		return false;
+	int selected = (y - -160) / 20;
+	
+	if(x >= -460 && x < -260)
+	{
+		int i = 0;
+		for(const auto &it : files)
+			if(i++ == selected && selectedPilot != it.first)
+			{
+				selectedPilot = it.first;
+				selectedFile = it.second.front();
+			}
+	}
+	else if(x >= -100 && x < 100)
+	{
+		int i = 0;
+		for(const string &file : files.find(selectedPilot)->second)
+			if(i++ == selected && selectedFile != file)
+				selectedFile = file;
+	}
+	else
+		return false;
+	
+	loadedInfo.Load(root + selectedFile, data);
 	
 	return true;
+}
+
+
+
+void LoadPanel::UpdateLists()
+{
+	files.clear();
+	selectedPilot.clear();
+	selectedFile.clear();
+	
+	root = getenv("HOME") + string("/.config/endless-sky/saves/");
+	fs::directory_iterator it(root);
+	fs::directory_iterator end;
+	for( ; it != end; ++it)
+	{
+		string fileName = it->path().filename().string();
+		// The file name is either "Pilot Name.txt" or "Pilot Name~Date.txt".
+		size_t pos = fileName.find('~');
+		if(pos == string::npos)
+			pos = fileName.size() - 4;
+		
+		string pilotName = fileName.substr(0, pos);
+		files[pilotName].push_back(fileName);
+	}
+	
+	for(auto &it : files)
+		sort(it.second.begin(), it.second.end());
 }
