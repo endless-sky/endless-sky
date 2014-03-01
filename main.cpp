@@ -84,8 +84,6 @@ int main(int argc, char *argv[])
 		
 		
 		UI gamePanels;
-		gamePanels.Push(new MainPanel(gameData, playerInfo));
-		
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(gameData, playerInfo, gamePanels));
 		
