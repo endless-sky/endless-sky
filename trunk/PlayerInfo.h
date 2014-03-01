@@ -17,7 +17,9 @@ ship(s) they own and with what outfits, what systems they have visited, etc.
 #include <string>
 
 class GameData;
+class Government;
 class Outfit;
+class Planet;
 class Ship;
 class System;
 
@@ -50,6 +52,8 @@ public:
 	// This also marks the given system as visited.
 	void SetSystem(const System *system);
 	const System *GetSystem() const;
+	void SetPlanet(const Planet *planet);
+	const Planet *GetPlanet() const;
 	
 	const Account &Accounts() const;
 	Account &Accounts();
@@ -59,6 +63,9 @@ public:
 	const Ship *GetShip() const;
 	Ship *GetShip();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
+	// Buy or sell a ship.
+	void BuyShip(const Ship *model);
+	void SellShip(const Ship *selected);
 	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
@@ -85,6 +92,8 @@ private:
 	
 	Date date;
 	const System *system;
+	const Planet *planet;
+	const Government *playerGovernment;
 	Account accounts;
 	
 	std::vector<std::shared_ptr<Ship>> ships;

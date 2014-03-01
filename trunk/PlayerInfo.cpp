@@ -60,6 +60,8 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 	filePath = path;
 	DataFile file(path);
 	
+	playerGovernment = data.Governments().Get("Escort");
+	
 	for(const DataFile::Node &child : file)
 	{
 		if(child.Token(0) == "pilot" && child.Size() >= 3)
@@ -71,6 +73,8 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			system = data.Systems().Get(child.Token(1));
+		else if(child.Token(0) == "planet" && child.Size() >= 2)
+			planet = data.Planets().Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
@@ -81,7 +85,12 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			ships.back()->Load(child, data);
 			ships.back()->FinishLoading();
 			ships.back()->SetIsSpecial();
-			ships.back()->SetGovernment(data.Governments().Get("Escort"));
+			ships.back()->SetGovernment(playerGovernment);
+			if(ships.size() > 1)
+			{
+				ships.back()->SetParent(ships.front());
+				ships.front()->AddEscort(ships.back());
+			}
 		}
 	}
 	
@@ -105,6 +114,8 @@ void PlayerInfo::Save() const
 	out << "date " << date.Day() << " " << date.Month() <<  " " << date.Year() << "\n";
 	if(system)
 		out << "system \"" << system->Name() << "\"\n";
+	if(planet)
+		out << "planet \"" << planet->Name() << "\"\n";
 	
 	accounts.Save(out);
 	
@@ -138,6 +149,8 @@ void PlayerInfo::New(const GameData &data)
 	Clear();
 	
 	SetSystem(data.Systems().Get("Sabik"));
+	SetPlanet(data.Planets().Get("Longjump"));
+	playerGovernment = data.Governments().Get("Escort");
 	
 	accounts.AddMortgage(250000);
 }
@@ -217,6 +230,20 @@ const System *PlayerInfo::GetSystem() const
 
 
 
+void PlayerInfo::SetPlanet(const Planet *planet)
+{
+	this->planet = planet;
+}
+
+
+
+const Planet *PlayerInfo::GetPlanet() const
+{
+	return planet;
+}
+
+
+
 const Account &PlayerInfo::Accounts() const
 {
 	return accounts;
@@ -256,6 +283,41 @@ Ship *PlayerInfo::GetShip()
 const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 {
 	return ships;
+}
+
+
+
+void PlayerInfo::BuyShip(const Ship *model)
+{
+	if(model)
+	{
+		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
+		ships.back()->SetName("Starship One");
+		ships.back()->SetSystem(system);
+		ships.back()->SetPlanet(planet);
+		ships.back()->SetIsSpecial();
+		ships.back()->SetGovernment(playerGovernment);
+		if(ships.size() > 1)
+		{
+			ships.back()->SetParent(ships.front());
+			ships.front()->AddEscort(ships.back());
+		}
+		
+		accounts.AddCredits(-model->Cost());
+	}
+}
+
+
+
+void PlayerInfo::SellShip(const Ship *selected)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == selected)
+		{
+			ships.erase(it);
+			accounts.AddCredits(selected->Cost());
+			return;
+		}
 }
 
 

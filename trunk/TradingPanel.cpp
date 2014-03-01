@@ -151,7 +151,7 @@ void TradingPanel::Buy(int amount)
 {
 	amount *= Modifier();
 	
-	int price =system.Trade(data.Commodities()[selectedRow].name);
+	int price = system.Trade(data.Commodities()[selectedRow].name);
 	if(price * amount > player.Accounts().Credits())
 		amount = player.Accounts().Credits() / price;
 	

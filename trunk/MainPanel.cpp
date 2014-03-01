@@ -10,6 +10,7 @@ Function definitions for the MainPanel class.
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "PlanetPanel.h"
 #include "Screen.h"
 #include "UI.h"
 
@@ -33,9 +34,10 @@ void MainPanel::Step(bool isActive)
 {
 	engine.Step(isActive);
 	
-	Panel *panel = engine.PanelToShow();
-	if(panel)
-		GetUI()->Push(panel);
+	// If the player just landed, pop up the planet panel. When it closes, it
+	// will call this object's OnCallback() function;
+	if(isActive && playerInfo.GetPlanet())
+		GetUI()->Push(new PlanetPanel(gameData, playerInfo, *this));
 }
 
 
@@ -61,6 +63,14 @@ void MainPanel::Draw() const
 			loadCount = 0;
 		}
 	}
+}
+
+
+
+// The planet panel calls this when it closes.
+void MainPanel::OnCallback(int)
+{
+	engine.Place();
 }
 
 

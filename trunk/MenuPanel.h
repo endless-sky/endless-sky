@@ -28,7 +28,7 @@ class PlayerInfo;
 
 class MenuPanel : public Panel {
 public:
-	MenuPanel(GameData &gameData, PlayerInfo &playerInfo);
+	MenuPanel(GameData &gameData, PlayerInfo &playerInfo, UI &mainUI);
 	
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
@@ -46,6 +46,7 @@ protected:
 private:
 	GameData &gameData;
 	PlayerInfo &playerInfo;
+	UI &gamePanels;
 	
 	std::vector<std::string> credits;
 	unsigned scroll;

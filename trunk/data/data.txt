@@ -77,18 +77,30 @@ interface "main menu"
 		size 14
 		color "light grey"
 		align left
+	
+	if "pilot loaded"
 	button e 425 155
 		size 90 30
 	label "Enter Ship" 425 148
 		size 14
 		color "light grey"
 		align center
+	if "no pilot loaded"
+	button n 425 155
+		size 90 30
+	label "New Pilot" 425 148
+		size 14
+		color "light grey"
+		align center
+	endif
+	
 	button l 310 155
 		size 120 30
 	label "Load / Save..." 310 148
 		size 14
 		color "light grey"
 		align center
+	
 	# Left panel:
 	button q -295 155
 		size 90 30
@@ -365,7 +377,7 @@ interface "planet"
 	button p -400 270
 		size 140 40
 	
-	endif
+	if "has ship"
 	sprite "ui/planet dialog button" 280 270
 	label "Depart" 340 262
 		size 18
@@ -373,3 +385,4 @@ interface "planet"
 		align right
 	button d 280 270
 		size 140 40
+	endif

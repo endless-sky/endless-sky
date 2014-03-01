@@ -14,6 +14,7 @@ Function definitions for the LoadPanel class.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "ShipyardPanel.h"
 #include "UI.h"
 
 #include <boost/filesystem.hpp>
@@ -24,8 +25,8 @@ using namespace std;
 
 
 
-LoadPanel::LoadPanel(const GameData &data, PlayerInfo &player, const Panel *parent)
-	: data(data), player(player), parent(parent)
+LoadPanel::LoadPanel(const GameData &data, PlayerInfo &player, UI &gamePanels)
+	: data(data), player(player), gamePanels(gamePanels)
 {
 	string path = getenv("HOME") + string("/.config/endless-sky/saves/");
 	fs::directory_iterator it(path);
@@ -57,19 +58,24 @@ void LoadPanel::Draw() const
 	data.Background().Draw(Point(), Point());
 	
 	Information info;
-	info.SetString("pilot", player.FirstName() + " " + player.LastName());
-	if(player.GetShip())
+	if(player.IsLoaded())
 	{
-		const Ship &ship = *player.GetShip();
-		info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
-		info.SetString("ship", ship.Name());
-		if(ship.GetPlanet())
-			info.SetString("planet", ship.GetPlanet()->Name());
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
+		if(player.GetShip())
+		{
+			const Ship &ship = *player.GetShip();
+			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
+			info.SetString("ship", ship.Name());
+		}
+		if(player.GetSystem())
+			info.SetString("system", player.GetSystem()->Name());
+		if(player.GetPlanet())
+			info.SetString("planet", player.GetPlanet()->Name());
+		info.SetString("credits", to_string(player.Accounts().Credits()));
+		info.SetString("date", player.GetDate().ToString());
 	}
-	if(player.GetSystem())
-		info.SetString("system", player.GetSystem()->Name());
-	info.SetString("credits", to_string(player.Accounts().Credits()));
-	info.SetString("date", player.GetDate().ToString());
+	else
+		info.SetString("pilot", "No Pilot Loaded");
 	
 	const Interface *menu = data.Interfaces().Get("load menu");
 	menu->Draw(info);
@@ -106,6 +112,13 @@ void LoadPanel::Draw() const
 void LoadPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
+	GetUI()->Pop(GetUI()->Root().get());
+	shared_ptr<Panel> saved = gamePanels.Root();
+	gamePanels.Reset();
+	gamePanels.Push(saved);
+	// Tell the main panel to re-draw itself (and pop up the planet panel).
+	saved->Step(true);
+	gamePanels.Push(new ShipyardPanel(data, player));
 }
 
 

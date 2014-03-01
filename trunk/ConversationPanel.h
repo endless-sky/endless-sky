@@ -33,6 +33,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDLKey key, SDLMod mod);
+	virtual bool Click(int x, int y);
 	virtual bool Drag(int dx, int dy);
 	
 	

@@ -42,6 +42,8 @@ public:
 	
 	// Delete all the panels and clear the "done" flag.
 	void Reset();
+	// Get the lower-most panel.
+	std::shared_ptr<Panel> Root() const;
 	
 	// Tell the UI to quit.
 	void Quit();
