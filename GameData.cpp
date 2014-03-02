@@ -152,6 +152,13 @@ const Set<Effect> &GameData::Effects() const
 
 
 
+const Set<Fleet> &GameData::Fleets() const
+{
+	return fleets;
+}
+
+
+
 const Set<Government> &GameData::Governments() const
 {
 	return governments;
@@ -271,6 +278,8 @@ void GameData::FindFiles(const string &path)
 				conversations.Get(node.Token(1))->Load(node);
 			else if(key == "effect" && node.Size() >= 2)
 				effects.Get(node.Token(1))->Load(node);
+			else if(key == "fleet" && node.Size() >= 2)
+				fleets.Get(node.Token(1))->Load(node, *this);
 			else if(key == "government" && node.Size() >= 2)
 				governments.Get(node.Token(1))->Load(node, governments);
 			else if(key == "interface")

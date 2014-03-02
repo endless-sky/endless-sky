@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
+#include "Fleet.h"
 #include "Government.h"
 #include "Interface.h"
 #include "Key.h"
@@ -44,6 +45,7 @@ public:
 	
 	const Set<Conversation> &Conversations() const;
 	const Set<Effect> &Effects() const;
+	const Set<Fleet> &Fleets() const;
 	const Set<Government> &Governments() const;
 	const Set<Interface> &Interfaces() const;
 	const Set<Outfit> &Outfits() const;
@@ -76,6 +78,7 @@ private:
 	Set<Color> colors;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
+	Set<Fleet> fleets;
 	Set<Government> governments;
 	Set<Interface> interfaces;
 	Set<Outfit> outfits;
