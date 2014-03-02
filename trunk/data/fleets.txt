@@ -1,0 +1,17 @@
+fleet "small merchants"
+	government "Merchant"
+	names "civilian"
+	variant 4
+		"Freighter"
+	variant 2
+		"Freighter"
+		"Sparrow"
+	variant
+		"Freighter"
+		"Sparrow"
+		"Sparrow"
+	variant 3
+		"Star Barge"
+	variant 6
+		"Shuttle"
+

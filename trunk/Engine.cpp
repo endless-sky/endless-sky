@@ -616,24 +616,9 @@ void Engine::CalculateStep()
 	// Add incoming ships.
 	if(!(rand() % 100))
 	{
-		int index = rand() % playerInfo.GetSystem()->Links().size();
-		const System *source = playerInfo.GetSystem()->Links()[index];
-		
-		int type = rand() % data.Ships().size();
-		for(const auto &it : data.Ships())
-			if(!type--)
-				ships.push_front(shared_ptr<Ship>(new Ship(it.second)));
-		
-		ships.front()->Place();
-		ships.front()->SetSystem(source);
-		ships.front()->SetTargetSystem(playerInfo.GetSystem());
-		static const std::string GOV[4] = {
-			"Merchant",
-			"Republic",
-			"Militia",
-			"Pirate"};
-		ships.front()->SetGovernment(data.Governments().Get(GOV[rand() % 4]));
-		ships.front()->SetName(data.ShipNames().Get("civilian")->Get());
+		// TODO: Each system should specify its own fleets and weights.
+		const Fleet *fleet = data.Fleets().Get("small merchants");
+		fleet->Enter(*playerInfo.GetSystem(), ships);
 	}
 	
 	// Keep track of how much of the CPU time we are using.
