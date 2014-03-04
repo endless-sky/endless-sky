@@ -67,9 +67,16 @@ void ConversationPanel::Draw() const
 		Point(WIDTH + 30., Screen::Height()), 
 		back);
 	
-	SpriteShader::Draw(
-		SpriteSet::Get("ui/right edge"),
-		Point(Screen::Width() * -.5 + WIDTH + 45., 0.));
+	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
+	if(edgeSprite->Height())
+	{
+		int steps = Screen::Height() / edgeSprite->Height();
+		for(int y = -steps; y <= steps; ++y)
+		{
+			Point pos(Screen::Width() * -.5 + WIDTH + 45., y * 1000.);
+			SpriteShader::Draw(edgeSprite, pos);
+		}
+	}
 	
 	SpriteShader::Draw(conversation.Scene(),
 		Point(
