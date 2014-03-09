@@ -75,7 +75,7 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	Panel *oldPanel = selectedPanel;
 	
-	if(key == 'd')
+	if(key == 'd' && FlightCheck())
 	{
 		player.Save();
 		callback();
@@ -135,5 +135,47 @@ bool PlanetPanel::Click(int x, int y)
 	if(key != '\0')
 		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
 	
+	return true;
+}
+
+
+
+bool PlanetPanel::FlightCheck()
+{
+	if(!player.GetShip())
+		return false;
+	
+	const Outfit &attributes = player.GetShip()->Attributes();
+	double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
+	if(!attributes.Get("thrust"))
+	{
+		GetUI()->Push(new ConversationPanel(player,
+			*data.Conversations().Get("flight check: no thrusters")));
+		return false;
+	}
+	if(attributes.Get("thrusting energy") > energy)
+	{
+		GetUI()->Push(new ConversationPanel(player,
+			*data.Conversations().Get("flight check: no thruster energy")));
+		return false;
+	}
+	if(!attributes.Get("turn"))
+	{
+		GetUI()->Push(new ConversationPanel(player,
+			*data.Conversations().Get("flight check: no steering")));
+		return false;
+	}
+	if(attributes.Get("turning energy") > energy)
+	{
+		GetUI()->Push(new ConversationPanel(player,
+			*data.Conversations().Get("flight check: no steering energy")));
+		return false;
+	}
+	if(attributes.Get("heat generation") * 10. > player.GetShip()->Mass())
+	{
+		GetUI()->Push(new ConversationPanel(player,
+			*data.Conversations().Get("flight check: overheating")));
+		return false;
+	}
 	return true;
 }
