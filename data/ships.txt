@@ -54,6 +54,45 @@ ship "Freighter"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 
+ship "Bulk Freighter"
+	sprite "ship/bulk freighter"
+	attributes
+		"required crew" 1
+		"bunks" 4
+		"drag" 1.4
+		"mass" 500
+		"shields" 4000
+		"hull" 10000
+		"cargo space" 600
+		"outfit space" 100
+		"weapon capacity" 10
+		"engine capacity" 60
+		"fuel capacity" 300
+	outfits
+		"Medium Ion Thruster"
+		"Small Ion Steering"
+		"Fusion Reactor"
+		"Medium Battery Pack"
+		"Tiny Shield Generator"
+		"Sidewinder Missile Launcher" 1
+		"Sidewinder Missile" 40
+		"Torpedo Launcher" 1
+		"Torpedo" 30
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret" 2
+	engine -25 -210
+	engine 25 -210
+	gun -25 210
+	gun 25 210
+	turret -13 -168
+	turret 17 152
+	turret 0 -10
+	turret 13 -168
+	turret -17 152
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
+
 ship "Shuttle"
 	sprite "ship/shuttle"
 	attributes
