@@ -107,6 +107,7 @@ private:
 	std::map<std::list<Ship>::iterator, int> forget;
 	
 	AsteroidField asteroids;
+	double flash;
 	
 	double load;
 	int loadCount;

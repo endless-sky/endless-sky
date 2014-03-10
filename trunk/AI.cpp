@@ -319,7 +319,7 @@ void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
 	
 	// If we are moving too fast, point in the right direction.
 	double speed = velocity.Length();
-	if(speed > .1)
+	if(speed > .2)
 	{
 		control.SetTurnCommand(TurnBackward(ship));
 		control.SetThrustCommand(velocity.Unit().Dot(angle.Unit()) < -.5);

@@ -30,7 +30,7 @@ Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 	: data(data), playerInfo(playerInfo),
 	playerGovernment(data.Governments().Get("Escort")),
 	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
-	asteroids(data),
+	asteroids(data), flash(0.),
 	load(0.), loadCount(0), loadSum(0.)
 {
 	// Start the thread for doing calculations.
@@ -153,7 +153,12 @@ void Engine::Step(bool isActive)
 		const System *currentSystem = playerInfo.GetSystem();
 		// Update this here, for thread safety.
 		if(playerInfo.HasTravelPlan() && currentSystem == playerInfo.TravelPlan().back())
+		{
+			flash = .4;
 			playerInfo.PopTravel();
+		}
+		else if(flash)
+			flash = max(0., flash * .99 - .002);
 		
 		targets.clear();
 		
@@ -269,6 +274,9 @@ void Engine::Draw() const
 {
 	data.Background().Draw(position, velocity);
 	draw[drawTickTock].Draw();
+	
+	if(flash)
+		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
 	// Draw messages.
 	const Font &font = FontSet::Get(14);

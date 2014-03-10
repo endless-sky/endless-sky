@@ -571,7 +571,7 @@ bool Ship::CanHyperspace() const
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.
 	double speed = velocity.Length();
-	if(speed > .1)
+	if(speed > .2)
 		return false;
 	
 	Point direction = GetTargetSystem()->Position() - currentSystem->Position();
