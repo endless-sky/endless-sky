@@ -682,7 +682,7 @@ void Ship::Recharge()
 double Ship::Shields() const
 {
 	double maximum = attributes.Get("shields");
-	return maximum ? min(1., shields / maximum) : 1.;
+	return maximum ? min(1., shields / maximum) : 0.;
 }
 
 
@@ -698,7 +698,7 @@ double Ship::Hull() const
 double Ship::Fuel() const
 {
 	double maximum = attributes.Get("fuel capacity");
-	return maximum ? min(1., fuel / maximum) : 1.;
+	return maximum ? min(1., fuel / maximum) : 0.;
 }
 
 
