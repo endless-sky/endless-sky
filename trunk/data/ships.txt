@@ -244,6 +244,47 @@ ship "Corvette"
 	explode "medium explosion" 40
 	explode "big explosion" 20
 
+ship "Surveillance Drone"
+	sprite "ship/surveillance drone"
+	attributes
+		cost 85000
+		"drag" 2.8
+		"mass" 100
+		"hull" 400
+		"outfit space" 40
+		"engine capacity" 35
+		"energy generation" 1.5
+	outfits
+		"XD1200 Ion Thruster"
+		"XT1700 Ion Steering"
+	engine -4 -21
+	engine 4 -21
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+
+ship "Combat Drone"
+	sprite "ship/combat drone"
+	attributes
+		cost 85000
+		"drag" 2.8
+		"mass" 100
+		"hull" 600
+		"weapon space" 10
+		"outfit space" 45
+		"engine capacity" 35
+		"energy generation" 3.5
+		"energy capacity" 20
+	outfits
+		"XD1200 Ion Thruster"
+		"XT1700 Ion Steering"
+		"Energy Blaster" 2
+	engine -2 -18
+	engine 2 -18
+	gun -1 16
+	gun 1 16
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+
 ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
