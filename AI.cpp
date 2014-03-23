@@ -66,16 +66,22 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// Fire any weapons that will hit the target.
 			it->SetFireCommands(AutoFire(*it, ships));
 			
-			if(it->GetParent().lock())
+			// Each ship only switches targets twice a second. Stagger which
+			// ships pick a target at each step to avoid having one frame take
+			// much longer when there are many ships.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step)
+				it->SetTargetShip(FindTarget(*it, ships));
+			
+			double targetDistance = numeric_limits<double>::infinity();
+			shared_ptr<const Ship> target = it->GetTargetShip().lock();
+			if(target)
+				targetDistance = target->Position().Distance(it->Position());
+			
+			if(it->GetParent().lock() && targetDistance > 1000.)
 				MoveEscort(*it, *it);
 			else
 			{
-				// Each ship only switches targets twice a second. Stagger which
-				// ships pick a target at each step to avoid having one frame take
-				// much longer when there are many ships.
-				targetTurn = (targetTurn + 1) & 31;
-				if(targetTurn == step)
-					it->SetTargetShip(FindTarget(*it, ships));
 			
 				MoveIndependent(*it, *it);
 			}
