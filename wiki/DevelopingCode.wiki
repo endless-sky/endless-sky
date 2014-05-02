@@ -1,0 +1,9 @@
+#summary Information for anyone working with the source code
+
+= Introduction =
+
+Endless Sky needs contributions in a lot of different forms: artwork, story writing, beta testing, etc. Writing code is probably the area where I need the least help, but if you have significant experience in C++ or in OpenGL programming, I would welcome your contributions!
+
+If you are interested in contributing changes to the source code, first have a look at the <a href="http://endless-sky.googlecode.com/svn/wiki/styleguide/styleguide.xml">style guide</a>. You will probably disagree on some of the style points. Your personal style is probably just as well-thought-out and elegant and professional-looking as mine. But, if the code becomes a jumble of everyone's personal styles, the end result will be ugly and inconsistent. (If you make a _really_ good case, I'm open to changing the style guide and going through all the code to make it match that change.)
+
+Next, email me (mzahniser) some patches / code snippets of what you would like to change. I'll either merge those changes in myself, or once I've seen enough from you to be comfortable with your skill level, I'll give you access to upload changes to the repository.
