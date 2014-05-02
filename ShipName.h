@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SHIP_NAME_
-#define SHIP_NAME_
+#ifndef SHIP_NAME_H_
+#define SHIP_NAME_H_
 
 #include "DataFile.h"
 
