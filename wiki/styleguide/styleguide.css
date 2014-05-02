@@ -1,0 +1,68 @@
+/* This is a modified version of the Google style guide. The original is here:
+http://google-styleguide.googlecode.com/svn/trunk/styleguide.css
+It is licensed under the CC-By 3.0 License.
+
+This version has been modified by cutting out several items, and by changing the
+formatting of others. If you want fuller functionality, use the original.
+*/
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: serif;
+  font-size: 12pt;
+  margin-right: 5em;
+  margin-left: 5em;
+}
+
+h1, h2, h3 {
+  color: #06c;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+h1 {
+  text-align: center;
+  font-size: 18pt;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 14pt;
+  margin-left: -2em;
+  border-top: 1px solid #06c;
+}
+
+h3 {
+  font-size: 12pt;
+  margin-left: -1em;
+}
+
+pre {
+  font-family: Courier, monospace;
+  font-size: 10pt;
+  display: block;
+  color: #060;
+  background-color: #f8fff8;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+pre.badcode {
+  color: #c00;
+  background-color: #fff8f8;
+}
+
+.showhide_button {
+  float: left;
+  cursor: pointer;
+  padding: 0 3px 1px;
+  margin: 0 4px 8px 0;
+}
+
+.revision {
+  text-align: center;
+}
+

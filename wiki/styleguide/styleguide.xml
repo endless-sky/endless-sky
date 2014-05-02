@@ -1,0 +1,979 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="styleguide.xsl"?>
+<GUIDE title="C++ Style Guide for Endless Sky">
+
+<!-- This file makes use of .xsl and .css files based on the Google style guide:
+http://google-styleguide.googlecode.com/svn/trunk/styleguide.xsl
+http://google-styleguide.googlecode.com/svn/trunk/styleguide.css
+Those files are licensed under the CC-By 3.0 License.
+
+Although this file uses the formatting from the Google C++ style guide, the
+file contents are completely different, so please do not confuse the two. -->
+
+<p class="revision">Revision 1.0</p>
+
+<OVERVIEW>
+<CATEGORY title="Background">
+<p>Each section of this style guide can be read as a "how to": how to create source code files, how to create classes, etc. The sections are ordered hierarchically, from biggest "units" (files, namespaces, classes) to increasingly smaller ones (variables, comments, formatting). Our style choices are based on a small set of principles:</p>
+<ul>
+<li>Readability is achieved by laying out text in a clear visual hierarchy.</li>
+<li>Code should not rely on features of a particular editor or compiler.</li>
+<li>Formatting should be consistent to avoid confusing or distracting the reader.</li>
+<li>Reducing the risk of bugs is important even if it takes more work.</li>
+</ul>
+</CATEGORY>
+</OVERVIEW>
+
+
+
+<CATEGORY title="Files">
+<p>This section deals with naming and encoding of source code files and the items that appear at the start of each file.</p>
+
+<STYLEPOINT title="Line endings">
+<SUMMARY>All files should have Unix-style line endings.</SUMMARY>
+<BODY>
+<p>That is, "\n" alone, not "\r\n" (Windows style). If an editor changes Unix line endings to Windows style, this causes issues with source control diffs because those lines appear to be changed even though their actual text is the same.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="File encodings">
+<SUMMARY>All files should be plain ASCII.</SUMMARY>
+<BODY>
+<p>That is, nothing beyond the 127-character ASCII set should be used. This is to ensure maximum cross-compatibility.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="File extensions">
+<SUMMARY>All C++ files should use ".h" and ".cpp" for their extensions.</SUMMARY>
+<BODY>
+<p>This is a somewhat arbitrary choice, but these seem to be the most commonly used extensions.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="One class per file">
+<SUMMARY>Each class "MyClass" should have its own .h and .cpp files, and they should be named "MyClass.h" and "MyClass.cpp".</SUMMARY>
+<BODY>
+<p>This is so that it is easy to find the implementation of any class you are interested in.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Names for files with no classes">
+<SUMMARY>If a file does not contain any classes (such as "main.cpp" or "shift.h"), its name should be lower-case.</SUMMARY>
+<BODY>
+<p>This is just to make it clear that the file is not defining a class.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Header file guards">
+<SUMMARY>All header files should have #define guards, and they should be in the format "#ifndef MY_CLASS_H_".</SUMMARY>
+<BODY>
+<p>The C++ standard technically does not allow source code files to define macros that start with an underscore or contain a double underscore.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Header and copyright statement">
+<SUMMARY>Each file should begin with a header which specifies the file name, copyright, and licensing information, e.g.:
+<CODE_SNIPPET>
+/* Key.h
+Copyright (c) 2014 by Michael Zahniser
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+</CODE_SNIPPET>
+</SUMMARY>
+<BODY>
+<p>If you make substantial additions or changes to a file, please add your name to the copyright list.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Placement of #includes">
+<SUMMARY>All #includes in a file should be placed prior to anything else except for the #ifndef guards.</SUMMARY>
+<BODY>
+<p>This is so it is immediately clear which files a given file includes.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Order of #includes in a .h file">
+<SUMMARY>Within a .h file, the #includes should be broken into "paragraphs" each separated by a single blank line:
+<ol><li>Classes that this file's class inherits from.</li>
+<li>Other files in the "endless-sky" code base.</li>
+<li>Non-standard third-party libraries.</li>
+<li>Standard libraries.</li>
+<li>Optionally, forward declarations of anything that can be forward-declared.</li>
+</ol>
+</SUMMARY>
+<BODY>
+<p>For example, a header file might contain the following #includes:</p>
+<CODE_SNIPPET>
+#include "MyBaseClass.h"
+
+#include "Point.h"
+#include "Shader.h"
+
+#include &lt;GL/glew.h&gt;
+
+#include &lt;vector&gt;
+
+class Angle;
+class Sprite;
+</CODE_SNIPPET>
+<p>It is helpful but not required to alphabetize the lines within each "paragraph" of #includes.</p>
+<p>Forward-declaring classes instead of #including their headers reduces compilation time somewhat because it eliminates dependencies. But, compilation times are so short for this project anyways that using forward declarations is not an absolute requirement.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Order of #includes in a .cpp file">
+<SUMMARY>Within a .cpp file, the #includes should be broken into "paragraphs" each separated by a single blank line:
+<ol><li>This file's corresponding .h.</li>
+<li>Other files in the "endless-sky" code base.</li>
+<li>Non-standard third-party libraries.</li>
+<li>Standard libraries.</li>
+</ol>
+</SUMMARY>
+<BODY>
+<p>For example, a .cpp file might contain the following #includes:</p>
+<CODE_SNIPPET>
+#include "MyClass.h"
+
+#include "Angle.h"
+#include "Sprite.h"
+
+#include &lt;SDL/SDL.h&gt;
+
+#include &lt;set&gt;
+</CODE_SNIPPET>
+<p>It is helpful but not required to alphabetize the lines within each "paragraph" of #includes.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Namespaces">
+<p>This is not a large enough project to require splitting it into multiple namespaces.</p>
+
+<STYLEPOINT title="Use the global namespace">
+<SUMMARY>Put all classes except for local helpers in the global namespace.</SUMMARY>
+<BODY>
+<p>This project is never going to grow to a size where multiple namespaces are needed.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Unnamed namespaces">
+<SUMMARY>Put local helper classes, functions, and variables in an unnamed namespace.</SUMMARY>
+<BODY>
+<p>This allows you to define static classes, functions, and variables that are guaranteed to only be visible from within a single compilation unit. (You should not be using globals that are visible from more than one .cpp!)</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Using declarations">
+<SUMMARY>Do not put any using declarations in any header file.</SUMMARY>
+<BODY>
+<p>This is so that a file cannot end up dependent on a using declaration provided by a file that it #includes and suddenly failing to compile if that other file changes.</p>
+<p>This includes general using-directives (e.g. "using namespace std;") in addition to specific using-declarations (e.g. "using std::string;").</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="The std namespace">
+<SUMMARY>Each .cpp file should put "using namespace std;" immediately after the #includes.</SUMMARY>
+<BODY>
+<p>Because our class and function names are capitalized, there is no risk of name collision, and it is simply cleaner to not have to use the std:: prefix everywhere.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Classes">
+<p>For clarity and simplicity, nearly every function should be part of a class, and every class should be contained in its own files named after that class.</p>
+
+<STYLEPOINT title="Class names">
+<SUMMARY>Class names should be CapitalizedCamelCase. Do not use Hungarian notation.</SUMMARY>
+<BODY>
+<p>That is, for example, do not put a "C" at the start of all your class names to mark the fact that they are classes. Since we do not define any global functions, a capitalized name by itself is pretty much guaranteed to be a class, so we do not need any further markers to help the reader.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Order of declarations">
+<SUMMARY>A class definition should contain the following sections (most of which will be omitted for most classes) in this order, with each section introduced by a "public:", "protected:", or "private:" marker:
+<ol><li>public enums and nested classes</li>
+<li>public static constants</li>
+<li>public static functions</li>
+<li>public functions</li>
+<li>protected functions</li>
+<li>private nested classes</li>
+<li>private functions</li>
+<li>private variables</li>
+</ol>
+</SUMMARY>
+<BODY>
+<p>Anything not listed here (e.g. public non-constant variables, protected variables, etc.) should not be used.</p>
+<p>Here is an example class definition, with extra comments added to point out aspects of the formatting:</p>
+<CODE_SNIPPET>
+class MyClass : public MyBaseClass { // Brace on the same line.
+public: // Do not indent the tags for "public," etc.
+    MyClass(); // Default constructor always comes first.
+    explicit MyClass(int size); // Avoid unexpected implicit conversion.
+    
+    // These comments summarize the following block of functions, with enough
+    // detail for anyone using this interface (but who does not care about the
+    // implementation details).
+    bool IsEmpty() const; // Use "const" whenever possible.
+    size_t Size() const; // Use unsigned types for sizes.
+    
+    // Another set of descriptive comments.
+    void SetLabel(int index, const std::string &amp;label);
+    const std::string &amp;GetLabel(int index) const;
+    void GetIndex(const std::string &amp;label) const;
+    
+    // This class behaves like an array; you can look up elements by index, or
+    // by label (if a given label has been assigned to an index).
+    double operator[](int index) const; // Only use obvious operator overloads.
+    double operator[](const std::string &amp;label) const;
+    
+    
+private: // Two blank lines separating each section.
+    // Clear any index previously associated with the given label.
+    void ClearLabel(const std::string &amp;label);
+    
+    
+private: // Separate sections for functions and for variables.
+    std::vector&lt;double&gt; values;
+    std::vector&lt;std::string&gt; labels;
+    std::map&lt;std::string, size_t&gt; indices;
+};
+</CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Inline functions">
+<SUMMARY>Do not define any functions within the class definition.</SUMMARY>
+<BODY>
+<p>The class definition should provide a concise definition of the interface of the class, so that someone using the class can scan through it quickly. Defining functions inline makes this more difficult.</p>
+<p>If you have determined that making a function inline will substantially improve performance, or if it is a templated function, define it in the header after the end of the class definition.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Initialization order">
+<SUMMARY>Initializer lists in constructors should list the variables in the same order they occur in the class.</SUMMARY>
+<BODY>
+<p>Variables are initialized in the order they occur in the class definition, not in the initializer list. Most compilers will report a warning if you change the order because it means your initializer list might be written to depend on a variable that has not been initialized yet.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Explicit constructors">
+<SUMMARY>Constructors with only one argument should be labeled "explicit".</SUMMARY>
+<BODY>
+<p>This is to avoid defining implicit type conversions that might then be used by the compiler in surprising ways.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Operator overloading">
+<SUMMARY>Use operator overloading only if implementing an arithmetic class and only if the operator has its well-established mathematical sense.</SUMMARY>
+<BODY>
+<p>For example, the "Point" class can define Point + Point, Point * scalar, etc., but it should not define Point * Point because it is ambiguous whether that should be an element-by-element product, a dot product, or a cross product.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Use of class vs. struct">
+<SUMMARY>Do not use the "struct" keyword; just define a class with public data members instead.</SUMMARY>
+<BODY>
+<p>Exception: occasionally when using the POSIX libraries you need the "struct" keyword to define that a typename is a struct and not a function of the same name, e.g.:</p>
+<CODE_SNIPPET>
+struct stat sb;
+stat("path/to/file", &amp;sb);
+</CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Inheritance">
+<SUMMARY>Use inheritance only for an "is a" relationship. Do not use protected or private inheritance.</SUMMARY>
+<BODY>
+<p>Use composition if MyClass "has" an OtherClass instead of "is" an OtherClass.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Public data members">
+<SUMMARY>Avoid public non-constant data members except in classes that are used like structs.</SUMMARY>
+<BODY>
+<p>Occasional exceptions are allowed if they lead to much clearer code.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Mutable">
+<SUMMARY>Use "mutable" only for class members not related to the outwardly visible state of the class.</SUMMARY>
+<BODY>
+<p>For example, if a class caches the result of a complex calculation, that may be stored in a mutable variable. Similarly, if a class owns a worker thread that it communicates with, a const function checking on the worker's status may need to use a mutable mutex.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Nested classes">
+<SUMMARY>Nested classes are allowed, but use them sparingly.</SUMMARY>
+<BODY>
+<p>For example, a nested class representing a single node of a data structure or a complex return type might make sense.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Runtime type information">
+<SUMMARY>Do not make use of runtime type information.</SUMMARY>
+<BODY>
+<p>That includes using dynamic_cast&lt;&gt;().</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Friends">
+<SUMMARY>Use friends only when absolutely necessary.</SUMMARY>
+<BODY>
+<p>Using friends is better than making private class data public just so that one other class can use it, but much worse than just refactoring to avoid the need for data sharing in the first place.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Reinventing the wheel">
+<SUMMARY>Do not create your own classes where you can just use the STL.</SUMMARY>
+<BODY>
+<p>The STL will generally be as fast as anything you can write yourself, and also much less buggy.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Functions">
+<p>This section describes how functions should be named and also lays out some widely-accepted design principles for factoring code into functions.</p>
+
+<STYLEPOINT title="Function names">
+<SUMMARY>Function names should be CapitalizedCamelCase</SUMMARY>
+<BODY>
+<p>There is no single standard in C++ for whether or not function names are capitalized. But, constructor names must be capitalized, so it makes sense to capitalize the others too. Also, it is easy to distinguish class names from function names or variables based solely on context, but the only easy way to distinguish a function from a function object is by capitalization.</p>
+<p>Exception: function names that match the standard library (such as begin() and end()) may be lower-case.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Definition order">
+<SUMMARY>Functions in the .cpp file should appear in the same order as they are declared in the .h file.</SUMMARY>
+<BODY>
+<p>This makes it easier to scan through the files to find a function, which is often faster than going to the trouble of doing a Find... within the file. It also means that related functions are grouped together instead of appearing in an arbitrary order.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Const correctness">
+<SUMMARY>Any function or function parameter that can be const, should be const.</SUMMARY>
+<BODY>
+<p>It takes a little bit of extra work when defining a class interface, but makes all sorts of subtle errors impossible to commit.</p>
+<p>Note that this means that if a class provides begin() and end() iterators, you need to define both a const and a non-const copy of those functions.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Exception safety">
+<SUMMARY>Use the RAII idiom whenever possible so that code is automatically exception-safe.</SUMMARY>
+<BODY>
+<p>That is, use objects like ofstream, vector, lock_guard, etc. that automatically do whatever cleanup is necessary (closing a file, freeing memory, releasing a mutex) when they are destroyed. That produces cleaner code anyways, and has the advantage that you don't even have to worry about where in the function an exception might get thrown.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Avoid copy-and-pasted code">
+<SUMMARY>If nearly identical code appears in two places, factor it out into a separate function.</SUMMARY>
+<BODY>
+<p>Otherwise, if you make a change or a bug fix, you're likely to make it in one of the copies but not in the other. And, copy-and-paste is often a sign of quickly written throw-away code.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Non-member functions">
+<SUMMARY>All functions should either be a member of a class or of an unnamed namespace.</SUMMARY>
+<BODY>
+<p>This implies that some classes may consist entirely of static functions, and never actually be intended to be instantiated.</p>
+<p>This is so that it is immediately clear to anyone reading the code what file they need to look at to see the declaration or definition of that function. That is, if I see "MyClass::DoStuff(myData);", I know to look at MyClass.h for details. If I see "DoStuff(myData);", I have to read through all the #includes to see which one defined DoStuff().</p>
+<p>Functions in an unnamed namespace are only visible in a single .cpp file, so they will generally just be helper functions for that particular class.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Void">
+<SUMMARY>Do not use "void" to denote a function with no arguments.</SUMMARY>
+<BODY>
+<p>An empty list of arguments is much clearer than a list of one element that happens to be void. The only reason people use "void" is as a carry-over from C, where these two function declarations mean different things:</p>
+<CODE_SNIPPET>
+void F(void); // has zero arguments.
+void F(); // has an undefined number of arguments.
+</CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Default arguments">
+<SUMMARY>Use default arguments only when it is self-evident what the default ought to be.</SUMMARY>
+<BODY>
+<p>Using default arguments is preferable to defining several overloads of a function which all duplicate the same code.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Variables">
+<p>This section deals with naming of variables, scoping, initialization, etc.</p>
+
+<STYLEPOINT title="Lower-case camelCase">
+<SUMMARY>Variable names should be in camelCase, starting with a lower-case letter.</SUMMARY>
+<BODY>
+<p>This is so that variables can be easily distinguished from class and function names.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Constants in ALL_CAPS">
+<SUMMARY>Constants may be in ALL_CAPITALS_WITH_UNDERSCORES.</SUMMARY>
+<BODY>
+<p>Or they can use the same format as normal variables.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Use const rather than #define">
+<SUMMARY>Constants should be defined as "static const" rather than using macros.</SUMMARY>
+<BODY>
+<p>This avoids unintended side effects and is also more efficient if the variable in question has a non-trivial constructor, because this way one instance of it can be reused.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="No Hungarian notation">
+<SUMMARY>Do not use Hungarian notation (prefixes or suffixes on variable names just to represent their type).</SUMMARY>
+<BODY>
+<p>Hungarian notation makes variable names harder to read and harder to remember, because instead of English words they include random character sequences like "lptsz". Also, because the compiler is checking for type safety anyways, these prefixes do nothing to improve code quality.</p>
+<p>This also includes not putting "m_" or "_" before or after member variable names. If your functions and classes are well-factored, you should not encounter many situations where it is unclear to a reader whether a variable is a local variable or a member variable.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Point of first use">
+<SUMMARY>Declare variables at the point of first use, not at the top of the function.</SUMMARY>
+<BODY>
+<p>This avoids having variables be declared but not yet initialized. It also avoids requiring someone who is reading the middle of a function to keep looking back to the start of the function to figure out what variables are.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Avoid reusing variables">
+<SUMMARY>Rather than using one vaguely named temporary variable in many places in a function, just define new variables for each new value you are storing.</SUMMARY>
+<BODY>
+<p>The compiler will be able to figure out when each variable is no longer in use and can reuse whatever register it is in; you don not have to manage that.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Smallest possible scope">
+<SUMMARY>Put local variables in the smallest scope possible.</SUMMARY>
+<BODY>
+<p>This goes along with the previous two points, and also helps avoid name collisions. It is also sometimes useful to define a scope purely for the sake of limiting a variable's lifetime:</p>
+<CODE_SNIPPET>
+void MyClass::DoSomethingSafely(const Data &amp;newData)
+{
+    CheckSomeStuff();
+    {
+        lock_guard&lt;mutex&gt; lock(myMutex);
+        mySafeData = newData;
+    }
+    DoSomeMoreStuff();
+}
+</CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="No globals">
+<SUMMARY>Use a Singleton class or a similar construct instead of global variables.</SUMMARY>
+<BODY>
+<p>A Singleton is almost as dangerous as a global, but has the advantage that it is easy to see when it is being used.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Be careful with static locals">
+<SUMMARY>Do not use static local variables unless you have thought through the thread safety implications.</SUMMARY>
+<BODY>
+<p>A static local is initialized the first time the flow of control passes through a function, so if two threads call the same function at the same time, it can be initialized twice. Use a static variable in an anonymous namespace instead, to be safe.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Comments">
+<p>Exceedingly verbose comments can be as harmful as no comments at all; this section provides some guidelines for finding a happy medium.</p>
+
+<STYLEPOINT title="Headers are for quick reference">
+<SUMMARY>As a general principle, the header file for a class should be usable as a quick reference to that classes interface.</SUMMARY>
+<BODY>
+<p>That is, someone who needs to use a class but does not need to know implementation details should be able to get all the information that they need from the header. This also implies that you should not put implementation details or other excess comments into the header, since it should be as concise as possible. In particular, it is not required to have individual comments for every function and variable in the header.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Comments should not reiterate code">
+<SUMMARY>Comments should provide additional information needed to interpret the code, rather than reiterating every step the code performs.</SUMMARY>
+<BODY>
+<p>That is, avoid this sort of thing:</p>
+<BAD_CODE_SNIPPET>
+int temp; // Define an integer called "temp".
+temp = y; // Copy "y" into "temp".
+y = x; // Copy "x" into "y".
+x = temp; // Copy the previous value of "y" into "x".
+</BAD_CODE_SNIPPET>
+<p>The following is more concise, and also much clearer:</p>
+<CODE_SNIPPET>
+// Swap x and y.
+int temp = y;
+y = x;
+x = temp;
+</CODE_SNIPPET>
+<p>Of course, in this case using std::swap() is a better alternative than either.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Comment paragraphs, not lines">
+<SUMMARY>Put comments at the start of each non-trivial code paragraph explaining what it does.</SUMMARY>
+<BODY>
+<p>That is, by scanning through the comments, someone should be able to get an outline of what a function does. This also means that clarity is improved by taking out comments that are too low-level, as in the first example in the previous point.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Comments for classes">
+<SUMMARY>Put comments before each class definition giving an overview of the class.</SUMMARY>
+<BODY>
+<p>The overview should explain where and why you would use a class; comments on the individual functions will explain how.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Dead code">
+<SUMMARY>Do not leave any "dead code" when checking code in.</SUMMARY>
+<BODY>
+<p>This does not include code-like comments, e.g. equations.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Multi-line comments">
+<SUMMARY>Multi-line comments should only be used for the copyright header.</SUMMARY>
+<BODY>
+<p>This is mainly so that multi-line comments can be used as a quick and dirty way to comment out blocks of code while developing, but it also makes it much easier to write automated programs that extract all the comment text, e.g. for spell checking the comments.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Decorations">
+<SUMMARY>Fancy, decorated comments should not be used.</SUMMARY>
+<BODY>
+<p>For example, perhaps your editor has a "feature" that lets you automatically insert comments like this:</p>
+<BAD_CODE_SNIPPET>
+/*************************************
+ * My fancy comment.
+ * This is a comment that could have
+ * been a single line without these
+ * fancy decorative elements.
+ *************************************/
+</BAD_CODE_SNIPPET>
+<p>But, those two lines of asterisks are eye-grabbing and completely unnecessary on any editor that supports syntax coloring, and more importantly anyone using a different editor would have to manually type an asterisk at the beginning of every comment line and figure out exactly how many asterisks are in those rows at the top and bottom, in order to be consistent with your code.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="SVN commit comments">
+<SUMMARY>When committing code to SVN, include comments describing everything that is changing.</SUMMARY>
+<BODY>
+<p>If you are committing multiple changes, it is best to group them into separate commits that each change one thing, rather than committing them all together.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Formatting">
+<p>Proper formatting creates a visual hierarchy, e.g. of a set of functions (each separated by large vertical gaps) composed of a set of code paragraphs (separated by small vertical gaps) each composed of lines, which are composed of individual words (separated by horizontal space). If any of that white space is left out, objects in the hierarchy merge together and readability is harmed. Also, if code is inconsistently formatted it can be confusing and distracting, and looks sloppy and unprofessional.</p>
+
+<STYLEPOINT title="Tabs">
+<SUMMARY>Use tabs instead of spaces so that the code can be edited in any editor easily.</SUMMARY>
+<BODY>
+<p>Some editors support "smart spaces" where pressing TAB inserts some number of spaces and pressing DELETE deletes the proper number of spaces if there is nothing before the cursor on the previous line but white space, but most do not, requiring you to press DELETE exactly the right number of times to get to your desired indentation level.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Line length">
+<SUMMARY>Try to keep lines to about 80 characters in length, and wrap anything over 120 characters.</SUMMARY>
+<BODY>
+<p>Keeping the code all on one line is preferable in most cases, even if you have to rewrite the line into two separate statements to make it short enough. Wrapped lines are hard to read, but so are super-long lines.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Large vertical breaks">
+<SUMMARY>Put three blank lines between function definitions, and before and after the class definition in a .h file.</SUMMARY>
+<BODY>
+<p>Aside from files themselves, these are the largest "units" the code is broken up into. If your code is well-written, the reader should not need to keep looking back and forth between multiple functions, so it does not matter that the extra space will make it so fewer functions fit on the screen at once.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Medium vertical breaks">
+<SUMMARY>Put two blank lines between sections in a class definition, or to split up sections of code paragraphs in a large function.</SUMMARY>
+<BODY>
+<p>Of course, if a function is that long it might need to be refactored anyways.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Small vertical breaks">
+<SUMMARY>Use single blank lines to group lines of code into "paragraphs," both within class definitions and within functions.</SUMMARY>
+<BODY>
+<p>The rules here are analogous to paragraphs in prose: start with an introductory sentence (e.g. a comment summarizing what follows) and make sure that each "paragraph" is only dealing with one thing.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="One expression per line">
+<SUMMARY>Do not put multiple expression on the same line.</SUMMARY>
+<BODY>
+<p>Except, of course, for the three individual clauses contained in a for loop.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Parentheses">
+<SUMMARY>Do not put a space before or after the parentheses for functions and control statements.</SUMMARY>
+<BODY>
+<p>There is no consensus on this among programmers. But, the mathematical convention is to never put a space, i.e. you never write "sin (x)". Much of our code is mathematical in nature, so it makes sense to follow that convention.</p>
+<p>If you are used to putting spaces before the parentheses, rather than trying to adjust your typing you might find it easier to just do a find/replace before committing your code, e.g. replacing "if (" with "if(", etc. You can also grep the svn diff of your changes for "^+.*\ (" to check if you missed anything.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Return is not a function">
+<SUMMARY>The "return" keyword does not require parentheses; use them only when what follows is a complex statement, and put a space after "return" in that case.</SUMMARY>
+<BODY>
+<p>For example:</p>
+<CODE_SNIPPET>
+return x;
+return (x != 3 &amp;&amp; x &gt; 0);
+</CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Loop bodies go on a separate line">
+<SUMMARY>Always put the body of an if or loop on a separate line.</SUMMARY>
+<BODY>
+<p>That makes debugging easier, and also makes the code easier to read.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Use continue rather than empty loop bodies">
+<SUMMARY>If defining a loop with an empty body, put "continue;" as its body.</SUMMARY>
+<BODY>
+<p>All three of these are legal C++:</p>
+<BAD_CODE_SNIPPET>
+int i = 0;
+for( ; i &lt; str.length() &amp;&amp; str[i] &gt; ' '; ++i) ;
+for( ; i &lt; str.length() &amp;&amp; str[i] &gt; ' '; ++i) {}
+</BAD_CODE_SNIPPET>
+<CODE_SNIPPET>
+for( ; i &lt; str.length() &amp;&amp; str[i] &gt; ' '; ++i)
+    continue;
+</CODE_SNIPPET>
+<p>but the third option makes it most clear that the loop has an empty body.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Const">
+<SUMMARY>Write "const int x", not "int const x".</SUMMARY>
+<BODY>
+<p>This just makes more sense in English usage.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Pointers and references">
+<SUMMARY>The &amp; or * when defining a variable should be adjacent to the variable name, not the type.</SUMMARY>
+<BODY>
+<p>This is mainly as a reminder that "const int *x" means that *x is a const int, not that x is a "const int*". It also avoids problems like this:</p>
+<BAD_CODE_SNIPPET>
+int* x, y; // x is a pointer, but y is an int! Probably not what you intended.
+</BAD_CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Unary operators">
+<SUMMARY>Do not put spaces between unary operators and their operands.</SUMMARY>
+<BODY>
+<p>This makes it clearer which object the unary operator is operating on, i.e.:</p>
+<CODE_SNIPPET>
+bool check = *x || !y;
+</CODE_SNIPPET>
+<p>which is a whole lot clearer than:</p>
+<BAD_CODE_SNIPPET>
+bool check = * x || ! y;
+</BAD_CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Commas">
+<SUMMARY>Put a space after commas.</SUMMARY>
+<BODY>
+<p>This makes lists easier to read.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Binary operators">
+<SUMMARY>Put a space before and after all binary operators except for ",", ".", "::", and "-&gt;"</SUMMARY>
+<BODY>
+<p>This is for readability, so that the things being operated on are visually parsed as separate words.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Ternary operators">
+<SUMMARY>Put a space before and after "?" and ":".</SUMMARY>
+<BODY>
+<p>This is the same as for binary operators.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Initializer lists">
+<SUMMARY>Start initializer lists on a new line, indented once.</SUMMARY>
+<BODY>
+<p>That is:</p>
+<CODE_SNIPPET>
+MyClass::MyClass()
+    : x(0), y(0)
+{
+    // Any further initialization goes here...
+}
+</CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Function definitions">
+<SUMMARY>Put the return type on the same line as the function name.</SUMMARY>
+<BODY>
+<p>That is:</p>
+<CODE_SNIPPET>
+int Fibonacci(int x)
+{
+    if(x &lt; 2)
+        return 1;
+    return Fibonacci(x - 1) + Fibonacci(x - 2);
+}
+</CODE_SNIPPET>
+<p>rather than:</p>
+<BAD_CODE_SNIPPET>
+int
+Fibonacci(int x)
+{
+    // ...
+</BAD_CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Single-line loop bodies">
+<SUMMARY>You do not need to use braces if a loop or conditional body is a single expression.</SUMMARY>
+<BODY>
+<p>That is:</p>
+<CODE_SNIPPET>
+if(theThing != done)
+    DoTheThing();
+</CODE_SNIPPET>
+<p>You can also forgo the braces for something like this:</p>
+<CODE_SNIPPET>
+for(int i = 0; i &lt; 10; ++i)
+    if(vec[i])
+        sum += i;
+</CODE_SNIPPET>
+<p>And, you can also do this:</p>
+<CODE_SNIPPET>
+for(int i = 0; i &lt; 10; ++i)
+    if(vec[i])
+    {
+        sum += i;
+        DoSomeMoreStuff();
+    }
+</CODE_SNIPPET>
+<p>But, you should not do this, even though it is legal C++:</p>
+<BAD_CODE_SNIPPET>
+for(int i = 0; i &lt; 10; ++i)
+    if(vec[i])
+        sum += i;
+    else
+        sum -= i;
+</BAD_CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Closing braces">
+<SUMMARY>Always put closing braces on a separate line, except in a do...while loop.</SUMMARY>
+<BODY>
+<p>That is, do not do this:</p>
+<BAD_CODE_SNIPPET>
+if(!y)
+{
+    x = 1;
+    continue;
+} else {
+    x = 2;
+}
+</BAD_CODE_SNIPPET>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Opening braces">
+<SUMMARY>Put opening braces on a new line if and only if they come after a ")".</SUMMARY>
+<BODY>
+<p>That is:</p>
+<CODE_SNIPPET>
+class MyClass {
+public:
+    MyClass();
+};
+
+do {
+    ++x;
+} while(x &lt; 10);
+
+for(int i = 0; i &lt; 10; ++i)
+{
+    x += i;
+}
+
+while(true)
+{
+    DoStuff();
+}
+
+if(theThing != done)
+{
+    DoTheThing();
+    return;
+}
+</CODE_SNIPPET>
+<p>The reasoning here is that because we do not require braces for single-line bodies, the braces should be clearly visible when they are present.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="Best practices">
+<p>This section deals with other "best practices" that do not fit cleanly into one of the categories above.</p>
+
+<STYLEPOINT title="Learn new things">
+<SUMMARY>If you encounter something (a mathematical concept, a syntactical construct, etc.) that you do not understand, use the Internet to learn how it works.</SUMMARY>
+<BODY>
+<p>Consider the difference between the "Basic English Wikipedia" and the ordinary English Wikipedia. The former uses much simpler grammar and a much more limited vocabulary... and because of that is wordy, unclear, and ambiguous. A non-native English speaker would prefer the Basic English, but a native speaker will find the "Basic" English harder to read and more time-consuming to comprehend. The same is true in software: using more complex syntax and a wider variety of libraries can, if done well, produce code that is less buggy and easier for an experienced program to read.</p>
+<p>For example, an affine transform takes one line to write out in matrix form, or half a page of equations if you are not using linear algebra. In general, when writing code you should assume that anyone reading it has at least a high school level of mathematical ability, so matrix equations, logarithms, trigonometry, calculus, etc. are all fair game.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="No compiler warnings">
+<SUMMARY>Code should compile with -Wall without any warnings.</SUMMARY>
+<BODY>
+<p>Some of the warning are rather pedantic, but the effort required to eliminate them is worth it compared to the effort of tracking down subtle bugs that might otherwise exist.</p>
+<p>The "comparing signed to unsigned value" warning is particularly common, since the sizes of STL containers are unsigned, but it's common practice to use plain old "int" whenever an integer is needed, instead of using "unsigned". Assuming that your indices are never going to be larger than the maximum value of a signed int, instead of this:</p>
+<BAD_CODE_SNIPPET>
+if(index &lt; 0 || index &gt;= vec.size())
+</BAD_CODE_SNIPPET>
+<p>you can do this, which silences the warning and is also more efficient:</p>
+<CODE_SNIPPET>
+if(static_cast&lt;size_t&gt;(index) &gt;= vec.size())
+</CODE_SNIPPET>
+<p>(If you don't understand what that statement is doing, just think of what the 2's complement binary representation of a signed number is, and what happens when that gets converted to an unsigned number.)</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Avoid multiple side-effects">
+<SUMMARY>Try not to include multiple side-effects on a single line unless it's in a context where they are expected.</SUMMARY>
+<BODY>
+<p>For example, consider these two for loops:</p>
+<BAD_CODE_SNIPPET>
+for(it = vec.begin(); it != vec.end(); )
+    *out++ = *it++;
+</BAD_CODE_SNIPPET>
+<CODE_SNIPPET>
+for(it = vec.begin(); it != vec.end(); ++it, ++out)
+    *out = *it;
+</CODE_SNIPPET>
+<p>The first option is very slightly more concise, but putting the increments into the for statement is more standard practice, and the compiler will almost certainly be able to optimize it equally well. A third, equally good option for the above would be:</p>
+<CODE_SNIPPET>
+for(it = vec.begin(); it != vec.end(); ++it)
+{
+    *out = *it;
+    ++out;
+}
+</CODE_SNIPPET>
+<p>This has the advantage that the "for" clauses now deal only with the "it" variable; that is, it is now a "normal" for loop.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="C-style typecasts">
+<SUMMARY>Do not use C-style typecasts.</SUMMARY>
+<BODY>
+<p>That is, use static_cast&lt;&gt;() or reinterpret_cast&lt;&gt;(). Try to avoid using dynamic_cast&lt;&gt;() or const_cast&lt;&gt;().</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Pointers vs. references">
+<SUMMARY>In function parameters, it may be helpful to pass constant parameters by reference, and non-constant parameters by pointer, so that it is immediately clear which parameters are being modified.</SUMMARY>
+<BODY>
+<p>The current code does not do this, but it seems like a good practice to move towards.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="No manual memory management">
+<SUMMARY>If at all possible, use wrapper classes instead of explicitly allocating or freeing memory.</SUMMARY>
+<BODY>
+<p>This makes code exception-safe, and also avoids all sorts of memory management errors. Note that std::vector always stores its contents in a contiguous block of memory, which you can access with its data() function, so there is almost never any reason to allocate your own memory instead of using vector.</p>
+<p>If you must use explicit memory management, always use the C++ keywords "new" and "delete", rather than the C-style malloc() and free() functions. This is because creating memory with one set of functions and deleting it with the other results in undefined behavior. Also, unlike malloc(), "new" ensures that an object is properly constructed.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="No assumptions about variable sizes">
+<SUMMARY>Do not assume that sizeof(int) or sizeof(void *) will be a certain value.</SUMMARY>
+<BODY>
+<p>Use explicit types like int64_t when necessary, or just use a "long long" if all you care about is that a variable is at least 64 bits, not exactly 64 bits.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+<CATEGORY title="C++11">
+<p>C++11 brings substantial additions to the C++ language; in fact, one of the main reasons I started this project was to have an opportunity to see what it is like to design a large project from the ground up using the new features of C++11.</p>
+
+<STYLEPOINT title="nullptr">
+<SUMMARY>Use "nullptr" for pointers rather than "NULL" or "0".</SUMMARY>
+<BODY>
+<p>This has clear type-safety benefits, and also avoids needing to use a macro.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="auto">
+<SUMMARY>Use "auto" only for variables with a very small scope, and only when writing out the full type name would make the code less readable.</SUMMARY>
+<BODY>
+<p>That is, do not use "auto" just to save yourself some typing. Code is written once, but read many times, and in general it is going to be helpful to have type names spelled out.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Range-based for">
+<SUMMARY>Prefer range-based for loops whenever possible.</SUMMARY>
+<BODY>
+<p>Range-based for is more clear and concise than using an index or an iterator.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Default assignment and constructors">
+<SUMMARY>Use the "= delete" syntax to disable copying of a class if necessary.</SUMMARY>
+<BODY>
+<p>In general, just let the compiler automatically generate the copy constructor and assignment operator; very few classes will require custom copying.</p>
+</BODY>
+</STYLEPOINT>
+
+<STYLEPOINT title="Lambdas">
+<SUMMARY>Lambdas are an acceptable alternative to simple function objects.</SUMMARY>
+<BODY>
+<p>In particular, use lambdas when working with STL functions that require a function object, because defining the function immediately before using it is clearer than defining it in a class in, say, an anonymous namespace at the top of the file.</p>
+</BODY>
+</STYLEPOINT>
+
+</CATEGORY>
+
+
+
+</GUIDE>
