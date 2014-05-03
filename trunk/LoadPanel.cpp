@@ -28,7 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 
-namespace fs = boost::filesystem3;
+namespace fs = boost::filesystem;
 
 using namespace std;
 

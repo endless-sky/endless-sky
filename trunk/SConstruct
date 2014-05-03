@@ -1,8 +1,8 @@
 env = Environment()
 env.Append(CCFLAGS = ["-std=c++0x", "-msse4.1", "-O3", "-Wall"])
 env.Append(LIBS = [
-	"boost_filesystem-mt",
-	"boost_system-mt",
+	"boost_filesystem",
+	"boost_system",
 	"SDL",
 	"SDL_image",
 	"GL",
