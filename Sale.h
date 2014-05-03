@@ -39,7 +39,7 @@ template <class Item>
 void Sale<Item>::Load(const DataFile::Node &node, const Set<Item> &items)
 {
 	for(const DataFile::Node &child : node)
-		insert(items.Get(child.Token(0)));
+		this->insert(items.Get(child.Token(0)));
 }
 
 
@@ -47,7 +47,7 @@ void Sale<Item>::Load(const DataFile::Node &node, const Set<Item> &items)
 template <class Item>
 void Sale<Item>::Add(const Sale<Item> &other)
 {
-	insert(other.begin(), other.end());
+	this->insert(other.begin(), other.end());
 }
 
 
