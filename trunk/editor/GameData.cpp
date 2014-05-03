@@ -18,6 +18,7 @@ Function definitions for the GameData class.
 
 #include <sys/stat.h>
 #include <dirent.h>
+#include <unistd.h>
 
 using namespace std;
 

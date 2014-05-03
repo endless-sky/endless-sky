@@ -16,6 +16,7 @@ Main function for the Endless Sky editor.
 #include "DotShader.h"
 #include "GameData.h"
 #include "LineShader.h"
+#include "UI.h"
 
 #include <GL/glew.h>
 #include <SDL/SDL.h>
@@ -74,7 +75,8 @@ int main(int argc, char *argv[])
 		data.Finish();
 		System::Init();
 		
-		Panel::Push(new MapPanel(argv[1] ? argv[1] : "map.txt"));
+		UI ui;
+		ui.Push(new MapPanel(argv[1] ? argv[1] : "map.txt"));
 		
 		FrameTimer timer(60);
 		while(true)
@@ -93,20 +95,20 @@ int main(int argc, char *argv[])
 					glViewport(0, 0, Screen::Width(), Screen::Height());
 				}
 				else
-					Panel::Handle(event);
+					ui.Handle(event);
 			}
 			if(done)
 				break;
 			
-			Panel::StepAll();
+			ui.StepAll();
 		
 			// Find the last panel that is full screen.
-			Panel::DrawAll();
+			ui.DrawAll();
 		
 			SDL_GL_SwapBuffers();
 			timer.Wait();
 		}
-		Panel::FreeAll();
+		ui.Reset();
 		SDL_Quit();
 	}
 	catch(const runtime_error &error)

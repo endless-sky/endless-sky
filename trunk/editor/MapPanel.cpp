@@ -6,6 +6,7 @@ Function definitions for the MapPanel class.
 
 #include "MapPanel.h"
 
+#include "Color.h"
 #include "DataFile.h"
 #include "DotShader.h"
 #include "Font.h"
@@ -15,6 +16,7 @@ Function definitions for the MapPanel class.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "SystemPanel.h"
+#include "UI.h"
 
 #include <fstream>
 
@@ -63,8 +65,8 @@ void MapPanel::Draw() const
 	const Sprite *galaxy = SpriteSet::Get("ui/galaxy");
 	SpriteShader::Draw(galaxy, position);
 	
-	float white[] = {1., 1., 1., 1.};
-	float grey[] = {.5, .5, .5, .25};
+	Color white(1., 1., 1., 1.);
+	Color grey(.5, .5, .5, .25);
 	if(selected)
 		DotShader::Draw(selected->pos + position, 100., 98., grey);
 	
@@ -99,7 +101,8 @@ void MapPanel::Draw() const
 			color[2] *= .5f;
 			color[3] *= .25f;
 		}
-		DotShader::Draw(it.second.pos + position, 6., 3.5, color);
+		Color shade(color[0], color[1], color[2], color[3]);
+		DotShader::Draw(it.second.pos + position, 6., 3.5, shade);
 	}
 	
 	const Font &font = FontSet::Get(14);
@@ -128,8 +131,9 @@ void MapPanel::Draw() const
 			color[2] *= .5f;
 			color[3] = .25f;
 		}
-		DotShader::Draw(Point(x + 10., y + 10.), 6., 3.5, color);
-		font.Draw(name, Point(x + 20., y + 10. - .5 * font.Height()), color);
+		Color shade(color[0], color[1], color[2], color[3]);
+		DotShader::Draw(Point(x + 10., y + 10.), 6., 3.5, shade);
+		font.Draw(name, Point(x + 20., y + 10. - .5 * font.Height()), shade);
 		y += 20.;
 	}
 }
@@ -160,7 +164,7 @@ bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(key == 'l')
 		commodity = "Luxury Goods";
 	else if(key == SDLK_RETURN && selected)
-		Push(new SystemPanel(*selected, planets));
+		GetUI()->Push(new SystemPanel(*selected, planets));
 	return true;
 }
 
