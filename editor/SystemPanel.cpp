@@ -7,6 +7,7 @@ Function definitions for the SystemPanel class.
 #include "SystemPanel.h"
 
 #include "Angle.h"
+#include "Color.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
 #include "SpriteSet.h"
@@ -16,6 +17,7 @@ Function definitions for the SystemPanel class.
 #include "DotShader.h"
 #include "NamePanel.h"
 #include "PlanetPanel.h"
+#include "UI.h"
 
 #include <string>
 
@@ -71,8 +73,9 @@ void SystemPanel::Draw() const
 			(trade <= 0.f) ? 1.f : (1.f - trade),
 			1.f};
 		color[1] = min(color[0], color[2]);
-		DotShader::Draw(Point(x + 10., y + 10.), 6., 2., color);
-		font.Draw(name, Point(x + 20., y + 10. - .5 * font.Height()), color);
+		Color shade(color[0], color[1], color[2], color[3]);
+		DotShader::Draw(Point(x + 10., y + 10.), 6., 2., shade);
+		font.Draw(name, Point(x + 20., y + 10. - .5 * font.Height()), shade);
 		y += 20.;
 	}
 }
@@ -101,17 +104,17 @@ bool SystemPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(key == SDLK_RETURN && selected)
 	{
 		if(selected->planet.empty())
-			Push(new NamePanel(selected->planet));
+			GetUI()->Push(new NamePanel(selected->planet));
 		else
 		{
 			Planet &planet = *planets.Get(selected->planet);
 			if(planet.name.empty())
 				planet.name = selected->planet;
-			Push(new PlanetPanel(planet));
+			GetUI()->Push(new PlanetPanel(planet));
 		}
 	}
 	else if(key == SDLK_ESCAPE)
-		Pop(this);
+		GetUI()->Pop(this);
 	
 	return true;
 }
@@ -144,15 +147,15 @@ bool SystemPanel::Drag(int dx, int dy)
 void SystemPanel::Draw(const System::Object &object, Point center) const
 {
 	Point off(Screen::Width() * .5 - 300., Screen::Height() * .5 - 300.);
-	static const float white[] = {1., 1., 1., 1.};
+	static const Color white(1., 1., 1., 1.);
 	static const double scale = .1;
-	static const float color[5][4] = {
-		{1., 0., 0., 1.},
-		{1., 1., 0., 1.},
-		{0., 1., 0., 1.},
-		{0., 1., 1., 1.},
-		{0., 0., 1., 1.}};
-	static const float grey[] = {.5, .5, .5, 1.};
+	static const Color color[5] = {
+		Color(1., 0., 0., 1.),
+		Color(1., 1., 0., 1.),
+		Color(0., 1., 0., 1.),
+		Color(0., 1., 1., 1.),
+		Color(0., 0., 1., 1.)};
+	static const Color grey(.5, .5, .5, 1.);
 	
 	double time = now / (60. * 60. * 24.);
 	for(auto it = object.children.rbegin(); it != object.children.rend(); ++it)
@@ -161,15 +164,15 @@ void SystemPanel::Draw(const System::Object &object, Point center) const
 		Point pos = angle.Unit() * it->distance + center;
 		
 		double warmth = pos.Length() / system.habitable;
-		const float *ring = grey;
+		const Color *ring = &grey;
 		if(!center.X() && !center.Y())
-			ring = (warmth < .5) ? color[0] :
-				(warmth < .8) ? color[1] :
-				(warmth < 1.2) ? color[2] :
-				(warmth < 2.0) ? color[3] : color[4];
+			ring = (warmth < .5) ? &color[0] :
+				(warmth < .8) ? &color[1] :
+				(warmth < 1.2) ? &color[2] :
+				(warmth < 2.0) ? &color[3] : &color[4];
 		
 		double d = it->distance * scale;
-		DotShader::Draw(center * scale + off, d + .7, d - .7, ring);
+		DotShader::Draw(center * scale + off, d + .7, d - .7, *ring);
 		
 		Draw(*it, pos);
 	}

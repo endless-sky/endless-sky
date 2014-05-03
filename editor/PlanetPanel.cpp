@@ -6,6 +6,7 @@ Function definitions for the PlanetPanel GUI.
 
 #include "PlanetPanel.h"
 
+#include "Color.h"
 #include "DirIt.h"
 #include "DrawList.h"
 #include "Font.h"
@@ -14,6 +15,7 @@ Function definitions for the PlanetPanel GUI.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "UI.h"
 #include "WrappedText.h"
 
 #include <map>
@@ -81,7 +83,7 @@ void PlanetPanel::Draw() const
 	else
 		draw.Add(gallery[planet.landscape], Point(0., -141.));
 	
-	draw.Add(ui, Point());
+	draw.Add(::ui, Point());
 	
 	draw.Draw();
 	
@@ -92,12 +94,7 @@ void PlanetPanel::Draw() const
 	text.SetWrapWidth(480);
 	text.Wrap(planet.description);
 	
-	const float textColor[4] = {.8, .8, .8, 1.};
-	for(const WrappedText::Word &word : text.Words())
-	{
-		Point pos(word.X() - 240., word.Y() + 80.);
-		font.Draw(word.String(), pos, textColor);
-	}
+	text.Draw(Point(-240., 80.), Color(.8, .8, .8, 1.));
 }
 
 
@@ -115,7 +112,7 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(planet.description.size() > 1 && (key == SDLK_DELETE || key == SDLK_BACKSPACE))
 		planet.description.erase(planet.description.length() - 2, 1);
 	else if(key == SDLK_ESCAPE)
-		Pop(this);
+		GetUI()->Pop(this);
 	return true;
 }
 

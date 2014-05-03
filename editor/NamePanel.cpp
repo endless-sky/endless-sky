@@ -6,10 +6,12 @@ Function definitions for the NamePanel GUI.
 
 #include "NamePanel.h"
 
+#include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
-
+#include "Point.h"
 #include "shift.h"
+#include "UI.h"
 
 using namespace std;
 
@@ -30,7 +32,7 @@ void NamePanel::Draw() const
 	const string &label = "Planet name: ";
 	int x = font.Width(label);
 	
-	static const float white[4] = {4., 4., 4., .25};
+	static const Color white(1., 1., 1., .25);
 	font.Draw(label, Point(-x, 0), white);
 	font.Draw(name, Point(), white);
 }
@@ -47,11 +49,11 @@ bool NamePanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(!name.empty() && (key == SDLK_DELETE || key == SDLK_BACKSPACE))
 		name.erase(name.length() - 1);
 	else if(key == SDLK_RETURN)
-		Pop(this);
+		GetUI()->Pop(this);
 	else if(key == SDLK_ESCAPE)
 	{
 		name.clear();
-		Pop(this);
+		GetUI()->Pop(this);
 	}
 	
 	return true;
