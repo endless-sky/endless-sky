@@ -66,11 +66,11 @@ outfit "Beam Laser"
 		"inaccuracy" .5
 		"velocity" 300
 		"lifetime" 1
-		"reload" 2
-		"firing energy" 1
-		"firing heat" 1
-		"shield damage" 2
-		"hull damage" 4
+		"reload" 1
+		"firing energy" .5
+		"firing heat" .5
+		"shield damage" 1
+		"hull damage" 2
 
 outfit "Heavy Laser"
 	category "Guns"
@@ -85,11 +85,11 @@ outfit "Heavy Laser"
 		"inaccuracy" .4
 		"velocity" 400
 		"lifetime" 1
-		"reload" 2
-		"firing energy" 2
-		"firing heat" 3
-		"shield damage" 5
-		"hull damage" 8
+		"reload" 1
+		"firing energy" 1
+		"firing heat" 1.5
+		"shield damage" 2.5
+		"hull damage" 4
 
 outfit "Laser Turret"
 	category "Turrets"
