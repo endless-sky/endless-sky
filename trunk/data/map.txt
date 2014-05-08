@@ -642,7 +642,7 @@ system "Algenib"
 system "Algieba"
 	pos -691 -52
 	government "Republic"
-	habitable 2560
+	habitable 2695
 	link "Tania Australis"
 	link "Alphard"
 	link "Zosma"
@@ -664,31 +664,41 @@ system "Algieba"
 	trade "Plastic" 476
 	object
 		sprite "star/f0"
-		period 10
+		distance 5.86085
+		period 9.75123
 	object
-		sprite "planet/ice1"
-		distance 197.25
-		period 21.9011
+		sprite "star/m4"
+		distance 111.139
+		period 9.75123
+		offset 180
 	object
-		sprite "planet/rock18"
-		distance 565.41
-		period 106.288
+		sprite "planet/ice8"
+		distance 266.779
+		period 33.5744
 	object
-		sprite "planet/gas15"
-		distance 927.66
-		period 223.369
+		sprite "planet/dust1"
+		distance 495.669
+		period 85.0293
 	object
-		sprite "planet/desert4"
-		distance 1458.35
-		period 440.284
+		sprite "planet/dust3"
+		distance 712.919
+		period 146.67
 	object
-		sprite "planet/gas3"
-		distance 3863.76
-		period 1898.7
+		sprite "planet/forest0"
+		distance 1363.17
+		period 387.798
+	object
+		sprite "planet/gas4"
+		distance 3147.93
+		period 1360.87
 		object
-			sprite "planet/lava0"
-			distance 296
-			period 12.3202
+			sprite "planet/rock7"
+			distance 225
+			period 11.4109
+		object "Watcher"
+			sprite "planet/tethys"
+			distance 353
+			period 22.4237
 
 system "Algol"
 	pos -210 17
@@ -1573,7 +1583,7 @@ system "Alpha Hydri"
 system "Alphard"
 	pos -588 -47
 	government "Republic"
-	habitable 320
+	habitable 1080.62
 	link "Algieba"
 	link "Zosma"
 	link "Miaplacidus"
@@ -1595,44 +1605,34 @@ system "Alphard"
 	trade "Metal" 284
 	trade "Plastic" 496
 	object
-		sprite "star/k5"
-		period 10
+		sprite "star/g5"
+		distance 41.5307
+		period 11.8953
+		offset 180
 	object
-		sprite "planet/rock6"
-		distance 275.76
-		period 102.396
-		object
-			sprite "planet/rock17"
-			distance 121
-			period 15.1879
+		sprite "star/k0"
+		distance 56.9693
+		period 11.8953
 	object
-		sprite "planet/oberon"
-		distance 753.77
-		period 462.747
+		sprite "planet/desert1"
+		distance 325.709
+		period 71.5266
 	object
-		sprite "planet/gas1"
-		distance 1228.01
-		period 962.25
-		object
-			sprite "planet/lava2"
-			distance 231
-			period 12.3827
+		sprite "planet/dust6"
+		distance 627.949
+		period 191.474
+	object "Follower"
+		sprite "planet/cloud2"
+		distance 925.199
+		period 342.433
 	object
-		sprite "planet/gas9"
-		distance 2614.57
-		period 2989.41
-		object
-			sprite "planet/mercury"
-			distance 269
-			period 15.5606
-		object
-			sprite "planet/dust2"
-			distance 427
-			period 31.12
-		object
-			sprite "planet/rock7"
-			distance 559
-			period 46.6139
+		sprite "planet/dust3"
+		distance 1445.56
+		period 668.769
+	object
+		sprite "planet/tethys"
+		distance 2496.56
+		period 1517.87
 
 system "Alphecca"
 	pos -546 308
@@ -3090,7 +3090,7 @@ system "Dschubba"
 system "Dubhe"
 	pos -577 -103
 	government "Republic"
-	habitable 625
+	habitable 349.375
 	link "Zosma"
 	asteroids "medium rock" 12 3.5496
 	asteroids "large rock" 1 3.48
@@ -3108,28 +3108,30 @@ system "Dubhe"
 	trade "Metal" 262
 	trade "Plastic" 489
 	object
-		sprite "star/g5"
-		period 10
+		sprite "star/m0"
+		distance 42.6977
+		period 24.8575
+		offset 180
 	object
-		sprite "planet/lava7"
-		distance 196.25
-		period 43.988
+		sprite "star/m4"
+		distance 67.8023
+		period 24.8575
+	object "Haze"
+		sprite "planet/forest1"
+		distance 267.842
+		period 93.8065
 	object
-		sprite "planet/forest3"
-		distance 424.21
-		period 139.795
+		sprite "planet/rock10"
+		distance 696.682
+		period 393.52
 	object
-		sprite "planet/mercury"
-		distance 919.02
-		period 445.766
+		sprite "planet/lava3"
+		distance 1485.44
+		period 1225.17
 	object
-		sprite "planet/rock17"
-		distance 1454.26
-		period 887.326
-	object
-		sprite "planet/dust1"
-		distance 4133.51
-		period 4252.05
+		sprite "planet/rock3"
+		distance 2503.28
+		period 2680.27
 
 system "Elnath"
 	pos -288 -77
@@ -5022,7 +5024,7 @@ system "Merak"
 system "Miaplacidus"
 	pos -524 -69
 	government "Republic"
-	habitable 1080
+	habitable 455.625
 	link "Tejat"
 	link "Alphard"
 	link "Talita"
@@ -5043,36 +5045,48 @@ system "Miaplacidus"
 	trade "Metal" 344
 	trade "Plastic" 489
 	object
-		sprite "star/g0"
+		sprite "star/k0"
 		period 10
-	object
-		sprite "planet/desert5"
-		distance 291.01
-		period 60.4241
+	object "Vinci"
+		sprite "planet/ocean7"
+		distance 274.75
+		period 85.342
 		object
-			sprite "planet/dust1"
-			distance 140
-			period 17.2591
+			sprite "planet/ice8"
+			distance 156
+			period 20.3008
 	object
-		sprite "planet/gas11"
-		distance 972.26
-		period 368.996
+		sprite "planet/rock3"
+		distance 676
+		period 329.364
+	object
+		sprite "planet/dust3"
+		distance 873.29
+		period 483.609
+	object
+		sprite "planet/water1"
+		distance 1256.98
+		period 835.12
+	object
+		sprite "planet/gas0"
+		distance 3610.34
+		period 4065.17
 		object
-			sprite "planet/rhea"
-			distance 244
-			period 11.8825
-	object
-		sprite "planet/lava0"
-		distance 1672.9
-		period 832.824
-	object
-		sprite "planet/gas9"
-		distance 3097.99
-		period 2098.79
+			sprite "planet/dust4"
+			distance 296
+			period 14.1665
 		object
-			sprite "planet/lava1"
-			distance 234
-			period 12.6247
+			sprite "planet/ganymede"
+			distance 455
+			period 26.9986
+		object
+			sprite "planet/dust5"
+			distance 620
+			period 42.9449
+		object
+			sprite "planet/dust0"
+			distance 704
+			period 51.9616
 
 system "Mimosa"
 	pos -895 168
@@ -5974,7 +5988,7 @@ system "Pherkad"
 system "Phurad"
 	pos -494 -153
 	government "Republic"
-	habitable 2170.62
+	habitable 1080
 	link "Tejat"
 	link "Canopus"
 	link "Wazn"
@@ -5995,34 +6009,32 @@ system "Phurad"
 	trade "Metal" 279
 	trade "Plastic" 476
 	object
-		sprite "star/f5"
-		distance 26.553
-		period 12.2153
-		offset 180
-	object
-		sprite "star/k0"
-		distance 99.947
-		period 12.2153
-	object
-		sprite "planet/lava2"
-		distance 312.257
-		period 47.3735
-	object
-		sprite "planet/fog0"
-		distance 767.507
-		period 182.554
-	object
-		sprite "planet/rhea"
-		distance 1041.76
-		period 288.68
+		sprite "star/g0"
+		period 10
 	object
 		sprite "planet/rock18"
-		distance 1339.6
-		period 420.948
+		distance 242.81
+		period 46.0519
+	object "Pearl"
+		sprite "planet/ocean0"
+		distance 767.81
+		period 258.958
+		object
+			sprite "planet/dust1"
+			distance 129
+			period 16.7188
 	object
-		sprite "planet/rock17"
-		distance 2571.85
-		period 1119.79
+		sprite "planet/gas17"
+		distance 1584.81
+		period 767.916
+		object
+			sprite "planet/ganymede"
+			distance 220
+			period 13.1646
+	object
+		sprite "planet/dust3"
+		distance 2639.02
+		period 1650.11
 
 system "Polaris"
 	pos -35 126
@@ -7678,7 +7690,7 @@ system "Tarazed"
 system "Tejat"
 	pos -489 -107
 	government "Republic"
-	habitable 1929.38
+	habitable 1158.12
 	link "Phurad"
 	link "Miaplacidus"
 	asteroids "small rock" 5 4.5675
@@ -7698,46 +7710,50 @@ system "Tejat"
 	trade "Metal" 345
 	trade "Plastic" 492
 	object
-		sprite "star/f5"
-		distance 13.5
-		period 12.196
+		sprite "star/g0"
+		distance 7.1843
+		period 12.9183
+	object
+		sprite "star/m8"
+		distance 99.3157
+		period 12.9183
 		offset 180
 	object
-		sprite "star/m0"
-		distance 108
-		period 12.196
-	object
-		sprite "planet/desert6"
-		distance 359.06
-		period 61.9587
-	object
-		sprite "planet/earth"
-		distance 742.7
-		period 184.32
-		object
-			sprite "planet/rock3"
-			distance 145
-			period 16.6972
-	object
-		sprite "planet/gas14"
-		distance 1968.7
-		period 795.465
+		sprite "planet/lava4"
+		distance 444.026
+		period 109.975
 		object
 			sprite "planet/lava2"
-			distance 268
-			period 16.9017
+			distance 140
+			period 18.9022
+	object "Calda"
+		sprite "planet/cloud6"
+		distance 976.466
+		period 358.647
 		object
-			sprite "planet/lava1"
-			distance 417
-			period 32.8044
+			sprite "planet/dust0"
+			distance 155
+			period 18.4539
+	object "Vail"
+		sprite "planet/ice2"
+		distance 1542.03
+		period 711.737
 		object
-			sprite "planet/oberon"
-			distance 549
-			period 49.5549
+			sprite "planet/dust4"
+			distance 153
+			period 21.5952
+	object
+		sprite "planet/gas12"
+		distance 2957.47
+		period 1890.44
 		object
-			sprite "planet/ganymede"
-			distance 649
-			period 63.6936
+			sprite "planet/dust2"
+			distance 306
+			period 13.3938
+		object
+			sprite "planet/rhea"
+			distance 438
+			period 22.9367
 
 system "Turais"
 	pos -691 134
@@ -8319,7 +8335,7 @@ system "Zeta Centauri"
 system "Zosma"
 	pos -640 -123
 	government "Republic"
-	habitable 1080
+	habitable 455.625
 	link "Algieba"
 	link "Dubhe"
 	link "Alphard"
@@ -8341,36 +8357,32 @@ system "Zosma"
 	trade "Metal" 271
 	trade "Plastic" 498
 	object
-		sprite "star/g0"
+		sprite "star/k0"
 		period 10
 	object
-		sprite "planet/lava7"
-		distance 191.24
-		period 32.1896
+		sprite "planet/gas11"
+		distance 272.11
+		period 84.1149
+	object "Memory"
+		sprite "planet/cloud6"
+		distance 644.75
+		period 306.791
 	object
-		sprite "planet/earth"
-		distance 423.8
-		period 106.191
-	object
-		sprite "planet/rock2"
-		distance 755.49
-		period 252.75
-	object
-		sprite "planet/gas8"
-		distance 1562.7
-		period 751.903
+		sprite "planet/gas0"
+		distance 1637.56
+		period 1241.8
 		object
-			sprite "planet/rhea"
-			distance 226
-			period 16.7465
-		object
-			sprite "planet/lava1"
-			distance 371
-			period 35.2227
+			sprite "planet/ganymede"
+			distance 299
+			period 14.3824
 	object
 		sprite "planet/jupiter"
-		distance 3011.91
-		period 2011.92
+		distance 3585.81
+		period 4023.81
+		object
+			sprite "planet/oberon"
+			distance 274
+			period 13.0929
 
 system "Zubenelgenubi"
 	pos -710 353
@@ -8547,6 +8559,12 @@ planet "Burthen"
 	description "Burthen is only sparsely populated; the gravity here is much higher than earth normal, and although they tend to be exceptionally strong (and short), the inhabitants also have many health issues as a result. The land is suitable for farming, although irrigation is needed in most regions, but most of the industry focuses on strip mining heavy metals from the planet's crust. Some of the excavation vehicles use here are as large, complex, and costly as a capital starship."
 	spaceport "You could feel the oppressive force of this planet's gravity as soon as you landed. The spaceport is a small cluster of single-story buildings. More cargo seems to be handled by robotic vehicles than by actual human operators, but the few people walking past you are all much shorter than you are. You feel like a giant, clearly out of place."
 
+planet "Calda"
+	landscape "land/lava4"
+	description "Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the warm and humid summer months, at least among the very rich Calda is more popular as a tourist destination than as a place to live."
+	spaceport "This is one of the few planets in this sector whose spaceport does not include private hangars, or at least gangway tunnels connecting to ships that land. The reason, of course, is so that visitors can experience the warm and pleasant air the moment they disembark. There is, however, a network of canvas-covered awnings branching out from the main buildings, offering shade and protection from the weather."
+	spaceport "	Inside, the counters for hotel shuttles and rental vehicles (including hovercrafts and helicopters!) are far more promient than the amenities that interest a captain like yourself."
+
 planet "Canyon"
 	landscape "land/canyon1"
 	description "Canyon is a large world, with gravity near the high end of what human beings can comfortably bear. Much of its surface is sandstone, leading scientists to believe that the planet was once home to large oceans, before some cataclysmic event, perhaps a rogue star drifting through the system, caused much of the planet's water to boil away. The few settlers who live hear mostly farm the deep canyons; the mesas above are dry and almost lifeless."
@@ -8648,6 +8666,11 @@ planet "Flood"
 	spaceport "You have never seen this many shops in a single spaceport. Hand-glazed pottery, wooden furniture, dolls, sweaters, scarves, paintings - the variety is overwhelming. Crowds of tourists bustle around from shop to shop, making it very difficult for you to get through."
 	spaceport "	The spaceport is built on a mountainside, apparently designed to look like a village, except that in place of terrace gardens are landing pads (placed haphazardly to look more natural), and the buildings are much larger than you imagine the huts up in the villages would be. The cement tiles covering the roofs have been molded and colored to look like wood shingles, and although some of the larger buildings must have steel structures underneath, they have been made to look as if they are held up only by wooden beams."
 
+planet "Follower"
+	landscape "land/city2"
+	description "Follower is on the edge of the ''paradise planets'' region of space; not really one  of them yet, but aspiring to be. It is a prosperous world, but more from actual manufacturing than from law or finance or venture capitalism. Gravity is a bit higher here than Earth normal, and nothing can be done to fix that, but a significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy in considered very stable."
+	spaceport "The spaceport is a single skyscraper, fifty floors tall and as  wide as it is high, with the floors twisting around each other in a helical patterns so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort."
+
 planet "Forpelog"
 	landscape "land/badlands4"
 	description "Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, for the atmosphere is too thin to breathe and contains almost no oxygen."
@@ -8713,6 +8736,13 @@ planet "Haven"
 	description "Haven was founded by a highly successful ''privateers'' nearly two centuries ago. Since then, as rival bands of pirates have fought over it, it has changed hands fourteen times, but has never been successfully invaded by the Republic. Numerous small manufacturing shops sell outfits that cannot be bought legally, and there is even a small shipyard where customized ships are sold."
 	description "	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers."
 	spaceport "The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper. This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet."
+
+planet "Haze"
+	landscape "land/city9"
+	description "Haze is a manufacturing world, covered in sprawling cities. It is a relatively prosperous planet, but so far the inhabitants have chosen to spend more of their terraforming budget on climate control than on pollution reduction."
+	description "Very few regions of this planet remain untouched by human hands, but a few of the particularly mountainous or marshy areas have been set aside as nature preserves. More than half of the indigenous life forms have gone extinct since human settlement began here four centuries ago."
+	spaceport "The spaceport is constructed purely for efficiency and functionality. It is a long building, stretching in a straight line across more than a mile. Through the center, on tracks elevated at various levels, run monorail trams for carrying passengers and cargo. Along the sides of the building are docking bays alternating with storage rooms. The wide corridors are packed both with people and with robotic freight carts."
+	spaceport "	As the planet's economy grows and the spaceport becomes too cramped, the port authority simply clears more land and extends the building, the tramways, and the docks out farther along the same line."
 
 planet "Hephaestus"
 	landscape "land/city0"
@@ -8806,6 +8836,12 @@ planet "Martini"
 	description "Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship."
 	spaceport "The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible."
 
+planet "Memory"
+	landscape "land/dune3"
+	description "Memory is a dry world, but with enough local plants to maintain a breathable atmosphere. Some of the indigenous forms of cactus-like, drought-resistant plants grow dozens of meters high. Most of the animals that have evolved here are nocturnal."
+	description "	This planet was first settled only a few centuries ago, and the population is still relatively low, but they have developed a diverse set of industries including manufacturing and medical research."
+	spaceport "The local government has not yet seen the need to set aside funds to replace the spaceport built by the original settlers: mostly just a collection of poured concrete pads where larger ships  can land without sinking into the sand of the desert. They have added some large hangars for richer clients and Navy ships, however, and over the years more and more buildings have sprung up along the periphery of the landing field."
+
 planet "Mere"
 	landscape "land/sea7"
 	description "Mere is a world almost entirely covered by oceans. The locals live most of their lives on enormous ships, almost like floating cities, which travel around collecting fish and seaweed for food or harvesting pearls from the shallows to be sold off-world. The city-ships must do their best to avoid certain latitudes where hurricanes are most common, and even so storms are a continuous threat to anyone who lives here. Weather conditions are tracked constantly by a network of satellites."
@@ -8883,6 +8919,12 @@ planet "Oblivion"
 	landscape "land/sky7"
 	description "The atmosphere here is a toxic mix of ammonia, sulfur, and methane. Although breathable by human beings if necessary, the locals use masks to reduce the risk of chronic respiratory problems. Even so, the life expectancy here is short, but that is partly because the two best-paying industries are oil drilling and mining for radioactive elements."
 	spaceport "The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar.  Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family."
+
+planet "Pearl"
+	landscape "land/forest3"
+	description "Pearl is an idyllic, forested world, mostly set aside as a wildlife sanctuary for imported exotic species. Each of the islands and continents houses animals and plants from a different planet's biosphere. Terraforming stations and satellites maintain the atmospheric gas levels in order to keep each island at the proper temperature and rainfall level."
+	description "Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here."
+	spaceport "The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent."
 
 planet "Pilot"
 	landscape "land/badlands0"
@@ -9064,6 +9106,20 @@ planet "Twinstar"
 	landscape "land/lava3"
 	description "The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks."
 	spaceport "The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place."
+
+planet "Vail"
+	landscape "land/snow4"
+	description "Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries produce enough supplies to support the tourists and the large staffs that are necessary to cater to them. The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hover boarding and wingsuit cliff skiing."
+	spaceport "The spaceport is near the equator where the weather will be  most amenable for landing ships, but with airplane shuttles and  a few high speed rail lines leading to the various resort towns. As a result, the air is full of a confusing mixture of deep space ships and atmospheric vehicles, and runways are available in addition to the vertical take-off pads that starships use. In order to come anywhere near the port, you are required to surrender control of your ship to the port's  autopilot computer; there is no other way that collisions could be avoided."
+
+planet "Vinci"
+	landscape "land/nasa5"
+	description "Many centuries ago, some of the first settlers on Vinci included a small group of electrical engineers who formed a revolutionary new company for designing computers and microchips. Today, Vinci is the foremost manufacturer of CPUs in all of human space, and their processors are found in everything from navigational computers to video phones to intelligent toasters. Because this world is home to so many clean room fabrication plants, pollution is very tightly controlled."
+	spaceport "The spaceport is so full of high-fidelity holographic displays that you have trouble at times telling where the virtual reality ends and the physical reality begins; what looks like a paper poster on the wall will suddenly change to a different picture every minute, and the department store mannequins follow you with their eyes. You feel like you are trapped in someone's drug-assisted vision of the future."
+
+planet "Watcher"
+	landscape "land/hills4"
+	description "Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall."
 
 planet "Wayfarer"
 	landscape "land/nasa1"
