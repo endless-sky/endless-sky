@@ -87,6 +87,8 @@ public:
 	
 	// Access the array of weapons.
 	const std::vector<Weapon> &Get() const;
+	int GunCount() const;
+	int TurretCount() const;
 	
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.

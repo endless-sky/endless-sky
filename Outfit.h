@@ -50,6 +50,7 @@ public:
 	void Add(const Outfit &other, int count = 1);
 	// Modify this outfit's attributes.
 	void Add(const std::string &attribute, double value = 1.);
+	void Reset(const std::string &attribute, double value = 0.);
 	
 	// Get this outfit's engine flare sprite, if any.
 	const Animation &FlareSprite() const;

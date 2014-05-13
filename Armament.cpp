@@ -285,6 +285,23 @@ const vector<Armament::Weapon> &Armament::Get() const
 
 
 
+int Armament::GunCount() const
+{
+	return weapons.size() - TurretCount();
+}
+
+
+
+int Armament::TurretCount() const
+{
+	int count = 0;
+	for(const Weapon &weapon : weapons)
+		count += weapon.IsTurret();
+	return count;
+}
+
+
+
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
 void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
