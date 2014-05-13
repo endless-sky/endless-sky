@@ -158,6 +158,14 @@ void Outfit::Add(const string &attribute, double value)
 }
 
 
+
+// Modify this outfit's attributes.
+void Outfit::Reset(const string &attribute, double value)
+{
+	attributes[attribute] = value;
+}
+
+
 	
 // Get this outfit's engine flare sprite, if any.
 const Animation &Outfit::FlareSprite() const

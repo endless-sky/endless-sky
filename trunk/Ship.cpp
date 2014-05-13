@@ -101,6 +101,8 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 			description += '\n';
 		}
 	}
+	baseAttributes.Reset("gun ports", armament.GunCount());
+	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	attributes = baseAttributes;
 }
 
