@@ -2,7 +2,7 @@ trade
 	commodity "Food" 100 600
 	commodity "Clothing" 140 440
 	commodity "Metal" 190 590
-	commodity "Plastic" 240 440
+	commodity "Plastic" 240 540
 	commodity "Equipment" 330 730
 	commodity "Medical" 430 930
 	commodity "Industrial" 520 920
