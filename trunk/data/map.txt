@@ -6230,7 +6230,7 @@ system "Porrima"
 system "Procyon"
 	pos -411 23
 	government "Republic"
-	habitable 320
+	habitable 455.625
 	link "Sirius"
 	link "Pollux"
 	link "Capella"
@@ -6251,44 +6251,28 @@ system "Procyon"
 	trade "Metal" 429
 	trade "Plastic" 472
 	object
-		sprite "star/k5"
+		sprite "star/k0"
 		period 10
 	object
-		sprite "planet/rock19"
-		distance 298.64
-		period 115.4
-		object
-			sprite "planet/dust5"
-			distance 145
-			period 21.949
+		sprite "planet/rock4"
+		distance 243.06
+		period 71.0111
 	object
-		sprite "planet/forest3"
-		distance 675
-		period 392.14
+		sprite "planet/cloud4"
+		distance 623.31
+		period 291.617
 	object
-		sprite "planet/europa"
-		distance 959.41
-		period 664.494
+		sprite "planet/mars"
+		distance 1201.15
+		period 780.103
 	object
-		sprite "planet/io"
-		distance 1618.57
-		period 1456.07
+		sprite "planet/ice4"
+		distance 1558.96
+		period 1153.48
 	object
-		sprite "planet/gas15"
-		distance 3692.73
-		period 5017.72
-		object
-			sprite "planet/ice8"
-			distance 198
-			period 13.7328
-		object
-			sprite "planet/rock0"
-			distance 332
-			period 29.8174
-		object
-			sprite "planet/desert4"
-			distance 494
-			period 54.1194
+		sprite "planet/dust3"
+		distance 3148.97
+		period 3311.38
 
 system "Rasalhague"
 	pos -413 246
@@ -9206,7 +9190,7 @@ planet "Trove"
 planet "Tundra"
 	landscape "land/snow6"
 	description "Millions of years ago, this was a warm world, perhaps even tropical. But some cataclysmic event, perhaps a meteor strike or a massive volcanic eruption, altered the planet's atmosphere enough to turn it into the nearly lifeless, frozen planet it is today."
-	description "The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed n industry in synthetic fabrics and clothing."
+	description "The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing."
 	spaceport "The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Every decade or so, enough snow piles up on top of one of the domes that it is in danger of collapsing under its own weight; the locals simply move out of that dome and build another one higher up on the snowpack."
 
 planet "Twinstar"
