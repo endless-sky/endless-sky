@@ -81,10 +81,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			if(it->GetParent().lock() && targetDistance > 1000.)
 				MoveEscort(*it, *it);
 			else
-			{
-			
 				MoveIndependent(*it, *it);
-			}
 		}
 	}
 }
@@ -102,13 +99,22 @@ const string &AI::Message() const
 // Pick a new target for the given ship.
 weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships)
 {
-	double closest = numeric_limits<double>::infinity();
+	// If this ship has no government, it has no enemies.
 	weak_ptr<const Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov)
 		return target;
-	const System *system = ship.GetSystem();
 	
+	// If this ship is not armed, do not make it fight.
+	bool isArmed = false;
+	for(const Armament::Weapon &weapon : ship.Weapons())
+		isArmed |= (weapon.GetOutfit() != nullptr);
+	if(!isArmed)
+		return target;
+	
+	// Find the closest enemy ship (if there is one).
+	double closest = numeric_limits<double>::infinity();
+	const System *system = ship.GetSystem();
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
