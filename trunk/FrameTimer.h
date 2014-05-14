@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FRAME_TIMER_H_
 #define FRAME_TIMER_H_
 
-#include <ctime>
+#include <chrono>
 
 
 
@@ -43,9 +43,9 @@ private:
 	
 	
 private:
-	timespec next;
-	long step;
-	long maxLag;
+	std::chrono::steady_clock::time_point next;
+	std::chrono::steady_clock::duration step;
+	std::chrono::steady_clock::duration maxLag;
 };
 
 

@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FrameTimer.h"
 
+#include <thread>
+
 using namespace std;
 
 
@@ -20,7 +22,7 @@ using namespace std;
 // elapses until Time() is called.
 FrameTimer::FrameTimer()
 {
-	clock_gettime(CLOCK_MONOTONIC, &next);
+	next = chrono::steady_clock::now();
 }
 
 
@@ -29,11 +31,10 @@ FrameTimer::FrameTimer()
 // _unless_ a frame takes too long by at least the given lag, in which case
 // the next frame happens immediately but no "catch-up" is done.
 FrameTimer::FrameTimer(int fps, int maxLagMsec)
-	: step(1000000000 / fps), maxLag(maxLagMsec * 1000000)
+	: step(chrono::nanoseconds(1000000000 / fps)),
+	maxLag(chrono::milliseconds(maxLagMsec))
 {
-	// TODO: Once I am using a compiler with full c++11 library support, I can
-	// use chrono instead of linux-specific functions.
-	clock_gettime(CLOCK_MONOTONIC, &next);
+	next = chrono::steady_clock::now();
 	Step();
 }
 
@@ -47,20 +48,11 @@ void FrameTimer::Wait()
 	// it and that it does not ignore. But, the worst that would happen in that
 	// case is that this particular frame will end too quickly, and then it will
 	// go back to normal for the next one.
-	clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &next, nullptr);
-	
-	timespec now;
-	clock_gettime(CLOCK_MONOTONIC, &now);
-	
-	// Note: 2 seconds in nsec is nearly long enough to overflow a 32-bit signed
-	// int. So, do all this using a long long. The value of "lag" is how many
-	// nsec later we ended this frame than we wanted to:
-	long long lag = (now.tv_sec - next.tv_sec);
-	lag *= 1000000000ll;
-	lag += (now.tv_nsec - next.tv_nsec);
+	this_thread::sleep_until(next);
 	
 	// If the lag is too high, don't try to do catch-up.
-	if(lag > maxLag)
+	chrono::steady_clock::time_point now = chrono::steady_clock::now();
+	if(now - next > maxLag)
 		next = now;
 	
 	Step();
@@ -71,10 +63,8 @@ void FrameTimer::Wait()
 // Find out how long it has been since this timer was created, in seconds.
 double FrameTimer::Time() const
 {
-	timespec now;
-	clock_gettime(CLOCK_MONOTONIC, &now);
-	
-	return (now.tv_sec - next.tv_sec) + (now.tv_nsec - next.tv_nsec) / 1000000000.;
+	chrono::steady_clock::time_point now = chrono::steady_clock::now();
+	return chrono::duration_cast<chrono::nanoseconds>(now - next).count() * .000000001;
 }
 
 
@@ -82,7 +72,7 @@ double FrameTimer::Time() const
 // Change the frame rate (for viewing in slow motion).
 void FrameTimer::SetFrameRate(int fps)
 {
-	step = (1000000000 / fps);
+	step = chrono::nanoseconds(1000000000 / fps);
 }
 
 
@@ -90,10 +80,5 @@ void FrameTimer::SetFrameRate(int fps)
 // Calculate when the next frame should begin.
 void FrameTimer::Step()
 {
-	next.tv_nsec += step;
-	if(next.tv_nsec > 1000000000)
-	{
-		++next.tv_sec;
-		next.tv_nsec -= 1000000000;
-	}
+	next += step;
 }
