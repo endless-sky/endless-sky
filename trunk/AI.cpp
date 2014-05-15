@@ -334,7 +334,7 @@ void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
 	if(speed > .2)
 	{
 		control.SetTurnCommand(TurnBackward(ship));
-		control.SetThrustCommand(velocity.Unit().Dot(angle.Unit()) < -.5);
+		control.SetThrustCommand(velocity.Unit().Dot(angle.Unit()) < -.8);
 	}
 	else
 	{
