@@ -38,7 +38,11 @@ Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 	
 	if(!playerInfo.IsLoaded() || !playerInfo.GetSystem())
 		return;
-	playerInfo.GetSystem()->SetDate(playerInfo.GetDate());
+	
+	// Make sure all stellar objects are correctly positioned. This is needed
+	// because EnterSystem() is not called the first time through.
+	for(const auto &it : data.Systems())
+		it.second.SetDate(playerInfo.GetDate());
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
