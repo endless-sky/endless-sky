@@ -64,6 +64,10 @@ MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 	}
 	
 	center = Point(0., 0.) - current->Position();
+	
+	// Make sure all the systems have the planets positioned properly.
+	//for(const auto &system : data.Systems())
+	//	system.second.SetDate(player.GetDate());
 }
 
 
@@ -266,18 +270,17 @@ void MapPanel::Draw() const
 	if(!player.HasVisited(selected))
 		return;
 	
-	// Figure out wht the largest orbit in this system is.
+	// Figure out what the largest orbit in this system is.
 	double maxDistance = 0.;
 	for(const StellarObject &object : selected->Objects())
 		maxDistance = max(maxDistance, object.Position().Length() + object.Radius());
 	
 	// 2400 -> 120.
-	static const double scale = .03;
+	double scale = .03;
 	maxDistance *= scale;
-	maxDistance -= 120.;
 	
-	if(maxDistance > 0)
-		orbitCenter += Point(maxDistance, maxDistance);
+	if(maxDistance > 120.)
+		scale *= 120. / maxDistance;
 	
 	static const Color habitColor[7] = {
 		Color(.4, 0., 0., 0.),
