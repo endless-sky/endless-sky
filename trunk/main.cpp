@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 					menuPanels.Quit();
 				else if(event.type == SDL_VIDEORESIZE)
 				{
-					Screen::Set(event.resize.w, event.resize.h);
+					Screen::Set(event.resize.w & ~1, event.resize.h & ~1);
 					SDL_SetVideoMode(Screen::Width(), Screen::Height(), 0, flags);
 					glViewport(0, 0, Screen::Width(), Screen::Height());
 				}
