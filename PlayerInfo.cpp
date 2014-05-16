@@ -298,7 +298,7 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 void PlayerInfo::BuyShip(const Ship *model)
 {
-	if(model)
+	if(model && accounts.Credits() >= model->Cost())
 	{
 		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
 		ships.back()->SetName("Starship One");
@@ -323,8 +323,8 @@ void PlayerInfo::SellShip(const Ship *selected)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			ships.erase(it);
 			accounts.AddCredits(selected->Cost());
+			ships.erase(it);
 			return;
 		}
 }
