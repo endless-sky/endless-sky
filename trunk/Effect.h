@@ -32,7 +32,7 @@ public:
 	void Load(const DataFile::Node &node);
 	// If creating a new effect, the animation and lifetime are copied,
 	// but position, velocity, and angle are specific to this new effect.
-	void Place(Point pos, Point vel, Angle angle);
+	void Place(Point pos, Point vel, Angle angle, Point hitVelocity = Point());
 	
 	// This returns false if it is time to delete this effect.
 	bool Move();

@@ -538,7 +538,8 @@ void Engine::CalculateStep()
 		// The asteroids can collide with projectiles, the same as any other
 		// object. If the asteroid turns out to be closer than the ship, it
 		// shields the ship (unless the projectile has  blast radius).
-		double closestHit = asteroids.Collide(projectile, step);
+		Point hitVelocity;
+		double closestHit = asteroids.Collide(projectile, step, &hitVelocity);
 		Ship *hit = nullptr;
 		const Government *gov = projectile.GetGovernment();
 		
@@ -557,6 +558,7 @@ void Engine::CalculateStep()
 				{
 					closestHit = range;
 					hit = ship.get();
+					hitVelocity = ship->Velocity();
 				}
 			}
 		
@@ -564,7 +566,7 @@ void Engine::CalculateStep()
 		{
 			// Create the explosion the given distance along the projectile's
 			// motion path for this step.
-			projectile.Explode(effects, closestHit);
+			projectile.Explode(effects, closestHit, hitVelocity);
 			
 			// If this projectile has a blast radius, find all ships within its
 			// radius. Otherwise, only one is damaged.
