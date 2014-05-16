@@ -57,13 +57,13 @@ void Effect::Load(const DataFile::Node &node)
 
 // If creating a new effect, the animation and lifetime are copied,
 // but position, velocity, and angle are specific to this new effect.
-void Effect::Place(Point pos, Point vel, Angle angle)
+void Effect::Place(Point pos, Point vel, Angle angle, Point hitVelocity)
 {
 	this->angle = angle + Angle::Random(randomAngle) - Angle::Random(randomAngle);
 	spin = Angle::Random(randomSpin) - Angle::Random(randomSpin);
 	
 	position = pos;
-	velocity = vel * velocityScale
+	velocity = (vel - hitVelocity) * velocityScale + hitVelocity
 		+ this->angle.Unit() * ((rand() % randomVelocity) * .001);
 }
 

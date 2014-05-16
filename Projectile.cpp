@@ -144,7 +144,7 @@ bool Projectile::Move(list<Effect> &effects)
 
 // This is called when a projectile "dies," either of natural causes or
 // because it hit its target.
-void Projectile::MakeSubmunitions(std::list<Projectile> &projectiles) const
+void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 {
 	for(const auto &it : weapon->Submunitions())
 		for(int i = 0; i < it.second; ++i)
@@ -188,14 +188,14 @@ bool Projectile::InBlastRadius(const Ship &ship, int step) const
 
 // This projectile hit something. Create the explosion, if any. This also
 // marks the projectile as needing deletion.
-void Projectile::Explode(std::list<Effect> &effects, double intersection)
+void Projectile::Explode(list<Effect> &effects, double intersection, Point hitVelocity)
 {
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
 		{
 			effects.push_back(*it.first);
 			effects.back().Place(
-				position + velocity * intersection, velocity, angle);
+				position + velocity * intersection, velocity, angle, hitVelocity);
 		}
 	lifetime = -100;
 }

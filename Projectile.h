@@ -50,7 +50,7 @@ public:
 	bool InBlastRadius(const Ship &ship, int step) const;
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
-	void Explode(std::list<Effect> &effects, double intersection);
+	void Explode(std::list<Effect> &effects, double intersection, Point hitVelocity = Point());
 	// This projectile was killed, e.g. by an anti-missile system.
 	void Kill();
 	

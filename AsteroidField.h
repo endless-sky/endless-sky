@@ -37,7 +37,7 @@ public:
 	
 	void Step();
 	void Draw(DrawList &draw, const Point &center) const;
-	double Collide(const Projectile &projectile, int step) const;
+	double Collide(const Projectile &projectile, int step, Point *hitVelocity = nullptr) const;
 	
 	
 private:
@@ -48,6 +48,8 @@ private:
 		void Step();
 		void Draw(DrawList &draw, const Point &center) const;
 		double Collide(const Projectile &projectile, int step) const;
+		
+		Point Velocity() const;
 		
 	private:
 		Point location;

@@ -68,11 +68,19 @@ void AsteroidField::Draw(DrawList &draw, const Point &center) const
 
 
 
-double AsteroidField::Collide(const Projectile &projectile, int step) const
+double AsteroidField::Collide(const Projectile &projectile, int step, Point *hitVelocity) const
 {
 	double distance = 1.;
 	for(const Asteroid &asteroid : asteroids)
-		distance = min(distance, asteroid.Collide(projectile, step));
+	{
+		double thisDistance = asteroid.Collide(projectile, step);
+		if(thisDistance < distance)
+		{
+			distance = thisDistance;
+			if(hitVelocity)
+				*hitVelocity = asteroid.Velocity();
+		}
+	}
 	
 	return distance;
 }
@@ -126,4 +134,11 @@ double AsteroidField::Asteroid::Collide(const Projectile &projectile, int step) 
 	pos = Point(-remainder(pos.X(), WRAP), -remainder(pos.Y(), WRAP));
 	
 	return animation.GetMask(step).Collide(pos, projectile.Velocity(), angle);
+}
+
+
+
+Point AsteroidField::Asteroid::Velocity() const
+{
+	return velocity;
 }
