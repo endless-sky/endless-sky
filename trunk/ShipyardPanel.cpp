@@ -41,7 +41,7 @@ namespace {
 			isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 		SpriteShader::Draw(back, center);
 		// Make sure the ship sprite leaves 10 pixels padding all around.
-		float zoomSize = TILE_SIZE - 20.f;
+		float zoomSize = TILE_SIZE - 60.f;
 		
 		// Draw the ship name.
 		const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
@@ -132,9 +132,10 @@ void ShipyardPanel::Draw() const
 	
 	Point buyCenter(Screen::Width() / 2 - 210, Screen::Height() / 2 - 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
+	bool canBuy = selectedShip && (selectedShip->Cost() <= player.Accounts().Credits());
 	bigFont.Draw("Buy",
 		buyCenter - .5 * Point(bigFont.Width("Buy"), bigFont.Height()),
-		selectedShip ? bright : dim);
+		canBuy ? bright : dim);
 	
 	Point sellCenter(Screen::Width() / 2 - 130, Screen::Height() / 2 - 25);
 	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
