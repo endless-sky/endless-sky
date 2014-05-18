@@ -158,8 +158,8 @@ void PlayerInfo::New(const GameData &data)
 {
 	Clear();
 	
-	SetSystem(data.Systems().Get("Sabik"));
-	SetPlanet(data.Planets().Get("Longjump"));
+	SetSystem(data.Systems().Get("Rutilicus"));
+	SetPlanet(data.Planets().Get("New Boston"));
 	playerGovernment = data.Governments().Get("Escort");
 	
 	accounts.AddMortgage(250000);
