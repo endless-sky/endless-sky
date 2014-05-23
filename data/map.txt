@@ -592,6 +592,10 @@ system "Aldhibain"
 		sprite "planet/neptune"
 		distance 2197.61
 		period 1930.55
+		object "Charon Station"
+			sprite "planet/station2"
+			distance 211
+			period 13.622
 
 system "Algenib"
 	pos -118 341
@@ -811,6 +815,10 @@ system "Algorel"
 		sprite "planet/gas13"
 		distance 1859.58
 		period 1793.11
+		object "Hydra Station"
+			sprite "planet/station4"
+			distance 277
+			period 12.3693
 
 system "Alheka"
 	pos -350 -271
@@ -853,6 +861,10 @@ system "Alheka"
 		sprite "planet/gas13"
 		distance 2035.77
 		period 1118
+		object "Triton Station"
+			sprite "planet/station4"
+			distance 261
+			period 11.3132
 
 system "Alhena"
 	pos -430 -80
@@ -2239,6 +2251,10 @@ system "Avior"
 		sprite "planet/gas15"
 		distance 2389.82
 		period 1340.66
+		object "Fenrir Station"
+			sprite "planet/station3"
+			distance 212
+			period 15.2148
 
 system "Bellatrix"
 	pos -225 -82
@@ -2544,6 +2560,10 @@ system "Caph"
 		sprite "planet/gas6"
 		distance 1666.37
 		period 827.952
+		object "Kraken Station"
+			sprite "planet/station1"
+			distance 278
+			period 10.5056
 	object
 		sprite "planet/gas10"
 		distance 2434.98
@@ -3189,6 +3209,10 @@ system "Elnath"
 		sprite "planet/gas11"
 		distance 4745.58
 		period 3157.63
+		object "Carbuncle Station"
+			sprite "planet/station2"
+			distance 253
+			period 12.546
 
 system "Eltanin"
 	pos -328 433
@@ -3877,10 +3901,10 @@ system "Hadar"
 		sprite "planet/uranus"
 		distance 2293.68
 		period 2058.52
-		object
-			sprite "planet/desert4"
-			distance 217
-			period 12.8963
+		object "Typhon Station"
+			sprite "planet/station4"
+			distance 226
+			period 13.7068
 
 system "Hamal"
 	pos -129 24
@@ -4127,6 +4151,10 @@ system "Izar"
 		sprite "planet/neptune"
 		distance 2239.39
 		period 1178.21
+		object "Wyvern Station"
+			sprite "planet/station1"
+			distance 201
+			period 12.6652
 
 system "Kappa Centauri"
 	pos -867 480
@@ -4833,10 +4861,10 @@ system "Men"
 		sprite "planet/gas13"
 		distance 2504.61
 		period 2802.82
-		object
-			sprite "planet/rhea"
-			distance 292
-			period 13.3875
+		object "Smuggler's Den"
+			sprite "planet/station6"
+			distance 302
+			period 14.0811
 
 system "Menkalinan"
 	pos -400 -61
@@ -4937,6 +4965,10 @@ system "Menkar"
 		sprite "planet/gas9"
 		distance 1719.01
 		period 1335.59
+		object "Oberon Station"
+			sprite "planet/station5"
+			distance 246
+			period 13.6082
 	object
 		sprite "planet/dust4"
 		distance 4390.62
@@ -7044,14 +7076,10 @@ system "Scheat"
 		sprite "planet/gas0"
 		distance 2229.12
 		period 1683.91
-		object
-			sprite "planet/oberon"
-			distance 274
-			period 12.6168
-		object
-			sprite "planet/ice0"
-			distance 413
-			period 23.3479
+		object "Charybdis Station"
+			sprite "planet/station6"
+			distance 281
+			period 13.1034
 
 system "Schedar"
 	pos -93 229
@@ -7483,10 +7511,10 @@ system "Suhail"
 		sprite "planet/gas14"
 		distance 1034.31
 		period 321.295
-		object
-			sprite "planet/dust0"
-			distance 219
-			period 12.4852
+		object "Leviathan Station"
+			sprite "planet/station6"
+			distance 252
+			period 15.4109
 	object "Helheim"
 		sprite "planet/ocean9"
 		distance 1842.75
@@ -7708,10 +7736,10 @@ system "Tarazed"
 		sprite "planet/gas15"
 		distance 1880.55
 		period 935.835
-		object
-			sprite "planet/dust0"
-			distance 184
-			period 12.3024
+		object "Arachne Station"
+			sprite "planet/station3"
+			distance 228
+			period 16.9693
 
 system "Tejat"
 	pos -489 -107
@@ -8119,10 +8147,10 @@ system "Wezen"
 		sprite "planet/gas5"
 		distance 664.041
 		period 127.543
-		object
-			sprite "planet/rock7"
-			distance 246
-			period 11.5692
+		object "Phoenix Station"
+			sprite "planet/station1"
+			distance 257
+			period 12.3538
 	object
 		sprite "planet/water0"
 		distance 1273.29
@@ -8395,18 +8423,18 @@ system "Zosma"
 		sprite "planet/gas0"
 		distance 1637.56
 		period 1241.8
-		object
-			sprite "planet/ganymede"
-			distance 299
-			period 14.3824
+		object "Huginn Station"
+			sprite "planet/station5"
+			distance 286
+			period 13.4547
 	object
 		sprite "planet/jupiter"
 		distance 3585.81
 		period 4023.81
-		object
-			sprite "planet/oberon"
-			distance 274
-			period 13.0929
+		object "Muninn Station"
+			sprite "planet/station3"
+			distance 272
+			period 12.9498
 
 system "Zubenelgenubi"
 	pos -710 353
@@ -8558,6 +8586,10 @@ planet "Arabia"
 	spaceport "The spaceport consists mostly of a wide, open field paved in asphalt, the cheapest material available here. The pavement shimmers with heat, and is pockmarked with divots where ships' landing gear has sunk several centimeters in to the surface."
 	spaceport "	At the center of the pavement is a small cluster of refrigerated sheds and stacks of crates carrying various goods for trade; a few armed guards patrol around them to prevent theft. A food truck is parked nearby, serving burgers and tacos to the port workers and to the crews of the few starships that are parked here at the moment."
 
+planet "Arachne Station"
+	landscape "land/space1"
+	description "Arachne Station is privately owned by Tarazed Corporation, and there are no services available here for people who are not Tarazed employees."
+
 planet "Asgard"
 	landscape "land/city1"
 	description "Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and cement so commonly used elsewhere."
@@ -8621,6 +8653,19 @@ planet "Canyon"
 	description "Canyon is a large world, with gravity near the high end of what human beings can comfortably bear. Much of its surface is sandstone, leading scientists to believe that the planet was once home to large oceans, before some cataclysmic event, perhaps a rogue star drifting through the system, caused much of the planet's water to boil away. The few settlers who live hear mostly farm the deep canyons; the mesas above are dry and almost lifeless."
 	spaceport "The spaceport is a wide, flat stone field with no individual landing spots marked out; you're simply responsible for finding an unoccupied space large enough for your ship, A quarter mile away from the field is a small village with a marketplace and a pub. There are only a few starships parked here. In the village, you can recognize the locals because of their stout, muscular stature; you are taller than almost everyone here."
 
+planet "Carbuncle Station"
+	landscape "land/space6"
+	description "Carbuncle is a tiny station owned and operated by Lovelace Labs. You assume that like most such stations, it is primarily a deuterium refinery, but aside from the docking bay the rest of the station is closed off to visitors. Given the reputation of Lovelace Labs for exotic research, there could be almost anything beyond those sealed-off bulkheads."
+
+planet "Charon Station"
+	landscape "land/station3"
+	description "Charon station provides hyperspace fuel for much of the sourthern galactic rim. It is a tiny, cramped, and aging station, with twice as many workers here as it was originally designed for. Centuries ago, before much of the Dirt Belt was settled, this was the first spot below Algorel where merchant caravan fleets from the Deep could stop over on their way to the worlds farther up the Rim."
+	spaceport "The refinery here operates in shifts, non-stop, so there are always people coming and going in the hallways and docking bays. The cafeteria is so crowded that many workers are just standing up against the walls eating off their trays instead of trying to find a place to sit. Every few minutes, light flashes in through one of the windows from welders working in space suits outside the station to keep the hull in perfect shape, and others drift around outside checking up on the solar panels and replacing burnt-out modules."
+
+planet "Charybdis Station"
+	landscape "land/space0"
+	description "Charybdis station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or reful in this system, you will need to visit the neighboring world of Delve, instead of this station."
+
 planet "Chiron"
 	landscape "land/city9"
 	description "Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem."
@@ -8663,7 +8708,7 @@ planet "Darkstone"
 
 planet "Deadman's Cove"
 	landscape "land/sea1"
-	description "Deadman's Cove is an ocean planet; the continents take up only a fifth of its land mass. Legends tell of massive sea creatures hiding in the deeps: serpents hundreds of meters long; colossal sea turtles; strange tentacled monsters and exotic fish."
+	description "Deadman's Cove is an ocean planet; the continents take up only a tenth of its surface area. Legends tell of massive sea creatures hiding in the deeps: serpents hundreds of meters long; colossal sea turtles; strange tentacled monsters and exotic fish."
 	description "	One island archipelago is home to the spaceport, the only part of the planet where it is safe to land uninvited. The other islands - even some that seem from a distance to be uninhabited - are often used as staging bases for pirate fleets, who guard their secrets closely."
 	spaceport "Your ship is on a landing pad only a few meters above the pounding surf, and you can't help worrying about what might happen if the tide rises any higher. If nothing else, the salt water is bound to corrode your hull if you stay here too long. You make your way to a bar where a cage hanging from the ceiling holds an actual parrot. After trying for a while to get it to talk to you, you realize that it is dead, stuffed and nailed to its perch."
 
@@ -8711,6 +8756,11 @@ planet "Featherweight"
 	description "Featherweight is a small world, with lighter than normal gravity. Centuries ago, because of its remoteness, this world was the site of some illegal genetic experiments, and rumors say that the current inhabitants are the result of those experiments. Because they are so well adapted to low gravity, few of them choose to leave, and very few outsiders choose to settle here, so this world's culture remains quite insular and detached from the rest of the galaxy."
 	spaceport "Although this is a human planet, as you walk through this spaceport you feel as if you are on an alien world. The ceilings and doorways are all a bit higher than you are used to, and the locals tower over you. Aside from a few food carts in the marketplace, there are no shops or restaurants in the spaceport, and the nearest village is several kilometers away. It is as if the entire port was designed in order to limit interactions with outsiders to the bare minimum that is necessary."
 
+planet "Fenrir Station"
+	landscape "land/loc2"
+	description "Fenrir Station is a bustling refinery, and from the way the foremen looked at you when you stepped off your ship, they seem to be eager for new recruits. In addition to harvesting deuterium, this is one of the few refinery stations in human space which also collects helium-3, an isotope with some exotic uses in medical imaging and in energy research."
+	spaceport "This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you."
+
 planet "Flood"
 	landscape "land/water8"
 	description "The scenic fjords and rugged mountains make Flood a popular tourist destination. Nearly all the land in the planet's temperate zone is covered in mountains, making traditional agriculture difficult. The locals survive mostly by raising sheep and goats, plus a few native species, and grow fruit and vegetables in small terrace gardens tended by hand rather than by tractor. Most of the population is employed in the tourist industry, running inns for the visitors to their quaint mountainside villages, or making hand-made crafts for sale as gifts."
@@ -8729,7 +8779,7 @@ planet "Forpelog"
 
 planet "Foundry"
 	landscape "land/city1"
-	description "Foundry is home to the Syndicated Shipyards, where more than half of the commercial freighters in human space are manufactured. Although much of the planet is blanketed in smog from the factories, there are also regions of pristine forests and majestic mountains. The Syndicate has a generous vacation policy on Foundry that allows workers to take as much as a month of vacation time every year, and many choose to take that time to escape from the cities and explore the wilderness. The shypyards claim that this vacation time is partly responsible for the high reliability of the ships built here, because a well-rested and relaxed worker is less likely to make the sort of mistakes that can quickly become disastrous in outer space."
+	description "Foundry is home to the Syndicated Shipyards, where more than half of the commercial freighters in human space are manufactured. Although much of the planet is blanketed in smog from the factories, there are also regions of pristine forests and majestic mountains. The Syndicate has a generous vacation policy on Foundry that allows workers to take as much as a month of vacation time every year, and many choose to take that time to escape from the cities and explore the wilderness. The shipyards claim that this vacation time is partly responsible for the high reliability of the ships built here, because a well-rested and relaxed worker is less likely to make the sort of mistakes that can quickly become disastrous in outer space."
 	spaceport "The spaceport is surrounded by miles of hangars and factories where new ships are being assembled. The port itself is a trio of towering buildings, with a skywalk on the top floors to provide a view of the surrounding area. Larger ships land on pads on the ground surroundign the towers, while smaller ships can fly into hangars built into the sides of the towers themselves. Everything is made of gleaming metal, and each tower is slightly tapered and adorned with painted fins that make it resemble an enormous starship."
 
 planet "Freedom"
@@ -8843,10 +8893,19 @@ planet "Hopper"
 	description "Hopper is a temperate world of oceans, mountains, and plains, but with unfortunately high levels of sulfuric acid in its atmosphere. Metal and stone that are exposed to the atmosphere corrode quickly, requiring frequent maintenance. As a result, Hopper has only a few small settlements on it, and most of the industry is focused on underground mining. The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; earth fish could not be introduced successfully here."
 	spaceport "The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn. Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees."
 
+planet "Huginn Station"
+	landscape "land/station2"
+	description "Huginn and Muninn stations, together, are the gateway to the Deep, the region of space north of here. The Deep was the first large region of space to have a democratic government, predating the Republic by nearly two centuries."
+	description "	Huginn Station is a prison station where convicted pirates must work at harvesting and refining deuterium to atone for their crimes against humanity. There are no services available for you here and the security guards, surprised by your visit and wondering at your motives, watch you closely."
+
 planet "Humanika"
 	landscape "land/beach2"
 	description "The gravity is too strong on this planet for the Quarg to inhabit it, so they have welcomed human settlers instead. Many people who want freedom from the dangers of human space and the endless instability of human government have settled here. Although the regions near the equator are far too warm to be comfortable, the climate closer to the poles is almost ideal; the only reason Humanika is not as densely populated as some of the worlds farther to the galactic north is the distrust with which most humans view the Quarg."
 	spaceport "The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcertin proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quargs in orbit. It is a clear reminder of who owns this planet."
+
+planet "Hydra Station"
+	landscape "land/space4"
+	description "This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refuelling services available here."
 
 planet "Icefall"
 	landscape "land/snow4"
@@ -8859,10 +8918,21 @@ planet "Ingot"
 	spaceport "In this spaceport, ships dock inside a hangar whose ceiling protects them from meteorite impacts. The hangar is not pressurized, so there are also landing tubes that connect to each of the visiting ships. Many of the people inside are carrying emergency oxygen masks in case a sudden impact ruptures the building."
 	spaceport "	In addition to being the spaceport, this complex is also the repair and control center for the mining robots. There are a handful of buildings elsewhere on Ingot, but not many. You cannot imagine spending so much time with so little space or change of scenery."
 
+planet "Kraken Station"
+	landscape "land/station0"
+	description "Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the brand new station remains. Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime."
+	spaceport "The main ring the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be."
+
 planet "Lagrange"
-	landscape "land/sky2"
+	landscape "land/station2"
 	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view at this engineering feat that is so far beyond what anything human beings have ever attempted to build."
 	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station is a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
+
+planet "Leviathan Station"
+	landscape "land/space2"
+	description "Leviathan station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any priivate corporation controlling the industry that makes space travel possible."
+	spaceport "This is a refinery, not a tourist destination. You were allowed to dock here, and the massive cafeteria used by the local workers is available to you if you want to eat, but beyond that no one seems particularly interested in entertaining you or interacting with you."
+	spaceport "	On the other hand, you get some small satisfaction from knowing that you just refuelled your ship with deuterium that just yesterday was most likely still floating around in the upper cloud banks of the gas giant below."
 
 planet "Lichen"
 	landscape "land/fields3"
@@ -8945,6 +9015,11 @@ planet "Moonshake"
 	landscape "land/city7"
 	description "Moonshake is a planet of overpopulated cities side by side with dense wilderness. A few centuries ago it became a local center of industrial production when the Syndicate began building factories here. Since then, immigrants looking for steady work have been pouring in, doubling the planet's population every few decades. It is now a regional center for the production of everything from textiles to molded plastic parts to reactor-grade plutonium."
 	spaceport "The smog is so thick here that you could barely see the landing pad until you were only half a kilometer above it. At street level, the smog is less evident, but the air leaves a faint metallic taste in your mouth. The spaceport, like the rest of this city, is overcrowded, with people walking along the narrow streets and trying to thread their way in between large cargo trucks loaded with crates. You see signs for restaurants of every variety imaginable, but most of them look dirty and dimly lit."
+
+planet "Muninn Station"
+	landscape "land/space7"
+	description "Muninn station, along with its brother station Muninn, serves as the gateway to the region of space known as the Deep. They both harvest and refine deuterium for use as rocket fuel, and in addition Muninn station is used as a military base for the local defense fleets."
+	spaceport "Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. YOu would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise not noise except the video screens."
 
 planet "Muspel"
 	landscape "land/canyon9"
@@ -9068,6 +9143,10 @@ planet "Oasis"
 	description "	Many outsiders, of course, view the Oasis lifestyle as backward and primitive."
 	spaceport "Most cargo on Oasis is carried by horse-drawn wagons. Some of them are made of steel, but others seem to be built of hand-hewn wood. The sight of horses drawing loads onto and off of gleaming starships is almost surreal."
 
+planet "Oberon Station"
+	landscape "land/loc2"
+	description "Oberon station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees."
+
 planet "Oblivion"
 	landscape "land/sky7"
 	description "The atmosphere here is a toxic mix of ammonia, sulfur, and methane. Although breathable by human beings if necessary, the locals use masks to reduce the risk of chronic respiratory problems. Even so, the life expectancy here is short, but that is partly because the two best-paying industries are oil drilling and mining for radioactive elements."
@@ -9078,6 +9157,10 @@ planet "Pearl"
 	description "Pearl is an idyllic, forested world, mostly set aside as a wildlife sanctuary for imported exotic species. Each of the islands and continents houses animals and plants from a different planet's biosphere. Terraforming stations and satellites maintain the atmospheric gas levels in order to keep each island at the proper temperature and rainfall level."
 	description "Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here."
 	spaceport "The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent."
+
+planet "Phoenix Station"
+	landscape "land/space1"
+	description "As with all refineries in the Deep, Phoenix Station is government-owned and open to any visitors who wish to land here. You cannot imagine who would want to, however; despite reflective hull plating and active cooling systems, the station is uncomfortably hot. Nearly all the work is done by robots and computers, with only a skeleton crew of people supervising. Every time the station's orbit brings it through the planet's shadow, the temperature drops briefly and the entire station creaks ominously as it cools."
 
 planet "Pilot"
 	landscape "land/badlands0"
@@ -9099,7 +9182,7 @@ planet "Poisonwood"
 planet "Poseidos"
 	landscape "land/sea9"
 	description "Poseidos is an ocean world, speckled with tiny islands. The people who live on the islands almost all make a living by fishing. The oceans are so plentiful that the locals say that only a fool or a very lazy person would starve here; there are enough fish even near shore that most families just own a small boat rather than the larger vessels designed for the deep ocean."
-	description "The only scarce resource here is fresh drinking water. The village roofs are designed so that every drop of rain can be collected and conserved."
+	description "	The only scarce resource here is fresh drinking water. The village roofs are designed so that every drop of rain can be collected and conserved."
 	spaceport "The spaceport is on one of the larger archipelagos. It is built half on land, and half over the water, with a series of bridges and wide canals allowing foot traffic above and cargo barges below. The bridges are built with stone arches rather than steel truss structures, partly to allow more clearance for boats below but also partly just for appearances. For a spaceport, it is an unusually beautiful place."
 
 planet "Prime"
@@ -9184,6 +9267,11 @@ planet "Skymoot"
 	description "	The scientific consensus is that the ''dragons'' are clever animals, but not sentient. Those who insist on trying to find ways to communicate with them almost invariably end up getting eaten."
 	spaceport "The spaceport is unusually large and clean for a planet with such a low population. It is clear that tourism here is a profitable industry. One large booth offers airplane rides to view the ''dragons'' up close, for anyone willing to sign a waiver; even with energy shields, it is not unheard of for a plane to be snatched out of midair by one of the creatures. Other booths offer safari tours of the forest; the tourists in line at those booths are carrying a wide variety of knives and guns."
 
+planet "Smuggler's Den"
+	landscape "land/loc1"
+	description "Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. But, it has since been taken over by pirates, who turned it into a haven for all manner of smugglers and privateers. The repair shops here can make all manner of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners."
+	spaceport "It is a strange but indisputable fact that pirates smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygeine. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering."
+
 planet "Solace"
 	landscape "land/valley6"
 	description "Solace is a fertile world that was already home to Earth-like vegetation and animals even before the first settlers arrived. It has now been inhabited for nearly half a millennium, and sprawling cities cover much of its surface."
@@ -9249,6 +9337,11 @@ planet "Trinket"
 	description "In a region of the galaxy not known for beach resorts, Trinket has become somewhat of a major tourist destination. It is not a particularly warm world, and near both poles icebergs float year round, but at the equator the weather is almost tropical and the water is warm enough for swimming. Occasionally one of the ocean currents will pick up an iceberg and carry it all the way down past the resorts before it melts completely; taking a boat out to these icebergs is a popular daytime activity here."
 	spaceport "The spaceport is a long, two-story building of wood and stone with hundreds of stalls selling fruit and clothing and bad artwork. Many of the starships that are landed here have scorch marks and dents on their hulls, a sure sign of recent battle. It is likely that some of the people walking through the port are in fact pirates, posing as civilians in order to sell stolen cargo or to take a vacation incognito."
 
+planet "Triton Station"
+	landscape "land/space3"
+	description "Triton Station serves both as a refinery for hyperspace fuel, and as a garrison for ships of the Republic Navy. Patrol ships are constantly landing here and then taking off to scour the surrounding systems for pirates. Since pirates are scarce in this part of space, it seems like a very tedious job."
+	spaceport "The mess hall is empty except for one table where some Navy officers are playing a card game. They are sitting right under a ventilation duct, and the cards keep blowing off the table; the station's low simulated gravity is not enough to hold them there."
+
 planet "Trove"
 	landscape "land/badlands3"
 	description "Trove is a tiny moon, too small to have a breathable atmosphere. It is home to an experimental ''jack mining'' operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships."
@@ -9264,6 +9357,10 @@ planet "Twinstar"
 	landscape "land/lava3"
 	description "The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks."
 	spaceport "The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place."
+
+planet "Typhon Station"
+	landscape "land/space0"
+	description "Typhon Station is one of the major fuel refining stations in the galactic Rim. It is privately owned by Southbound Shipyards, and all the fuel produced here is shipped directly to them rather than being made available to visiting ships."
 
 planet "Vail"
 	landscape "land/snow4"
@@ -9302,6 +9399,11 @@ planet "Winter"
 	description "	The temperatures have risen measurably since the arrival of the human colonists, but without more intentional efforts it may be another century before the planet warms enough to be truly comfortable to live on."
 	spaceport "The spaceport is built on a large rock outcropping, with brilliant blue glaciers flowing to either side down into a lake below. The sight is stunning, and all the more appealing because you are able to view it from behind plate glass windows, in the warmth of the spaceport, rather than in the frigid air outside. Above you, several layers of clouds are scudding across the sky in different directions."
 
+planet "Wyvern Station"
+	landscape "land/station0"
+	description "Wyvern Station was once one of the end destinations for the merchant caravans traveling along the Rim, back in the days before the Republic existed when most systems were not policed and the only way to avoid being plundered by pirates was for ships to travel in large convoys. It has also been a continuously operating hyperspace fuel refinery for more than three centuries."
+	spaceport "This station is old, and some parts are dirty and in need of repair, but it is at least structurally sound, and the workers here seem optimistic and energetic. The cafeteria is loud and raucous, and the repair shop is more than willing to work on starships as a break from the tedium of repairing the harvester drones that dip into the planet's atmosphere to bring back pressurized tanks full of hydrogen gas."
+
 planet "Zenith"
 	landscape "land/water4"
 	description "Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it."
@@ -9311,5 +9413,6 @@ planet "Zenith"
 planet "Zug"
 	landscape "land/city4"
 	description "Zug is a pleasant world of rolling hills, fertile fields, and a few small oceans. Hundreds of millions of people live here, with more immigrants arriving every day, almost faster than the construction industry can keep up with them. In addition to the larger cities, many people live in smaller farming villages, making this one of the few worlds in the region that is truly self-sufficient both in industry and in agriculture."
-	spaceport "The spaceport of Zug has been growing by amalgamation for centuries. At its core is the ''Old Port,'' a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call ''The Port,'' a set of buildings that were constructed a century ago, with bolder architecture and more modern design. Some distance away is the ''New Port,'' a towering structure with robotic cargo lifts and large hangars for more expensive ships. Meanwhile, plans are apparently underway for an expansion of the New Port. YOu can't help but wonder what the new expansion will be named."
+	description "	The largest industry on Zug is Southbound Shipyards, which focuses on designing well-defended merchant ships to survive the pirates that are so common here."
+	spaceport "The spaceport of Zug has been growing by amalgamation for centuries. At its core is the ''Old Port,'' a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call ''The Port,'' a set of buildings that were constructed a century ago, with bolder architecture and more modern design. Some distance away is the ''New Port,'' a towering structure with robotic cargo lifts and large hangars for more expensive ships. Meanwhile, plans are apparently underway for an expansion of the New Port. You can't help but wonder what the new expansion will be named."
 

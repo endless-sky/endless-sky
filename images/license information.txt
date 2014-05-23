@@ -14,6 +14,8 @@ land/:
 		snow9.jpg (USGS)
 		mountain8.jpg (USGS)
 		mountain9.jpg (USGS)
+		space*.jpg (NASA)
+		loc*.jpg (Library of Congress)
 	The following are licensed CC BY-SA 4.0 by Michael Zahniser:
 		forest5.jpg
 		lava4.jpg
