@@ -261,6 +261,29 @@ System::Object::Object(double d, double p, const string &sprite, double o)
 
 
 
+void System::Object::AddStation()
+{
+	children.clear();
+	
+	const Sprite *mySprite = SpriteSet::Get(sprite);
+
+	double radius = mySprite->Width() * .5;
+	double planetMass = radius * radius * radius * .015;
+	int moonSpace = 50;
+	
+	radius += rand() % moonSpace;
+	
+	string stationName = "planet/station1";
+	stationName[stationName.length() - 1] += rand() % 6;
+
+	const Sprite *stationSprite = SpriteSet::Get(stationName);
+	radius += .5 * stationSprite->Width();
+	double period = sqrt((radius * radius * radius) / planetMass);
+	children.push_back(System::Object(radius, period, stationName));
+}
+
+
+
 void System::Randomize()
 {
 	bool feasible = false;

@@ -31,6 +31,8 @@ public:
 	public:
 		Object(double d = 0., double p = 10., const std::string &sprite = "", double o = 0.);
 		
+		void AddStation();
+		
 		std::string sprite;
 		
 		// Orbital parameters:
