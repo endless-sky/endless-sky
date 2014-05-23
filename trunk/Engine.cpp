@@ -251,11 +251,17 @@ void Engine::Step(bool isActive)
 				// of the width and the height of the sprite.
 				const Animation &anim = target->GetSprite();
 				double size = target->Zoom() * (anim.Width() + anim.Height()) * .175;
+				shared_ptr<const Ship> targetTarget = target->GetTargetShip().lock();
+				bool hostile = targetTarget &&
+					targetTarget->GetGovernment() == playerGovernment;
 				targets.push_back({
 					target->Position() - player->Position(),
 					Angle(45.) + target->Facing(),
 					size,
-					target->IsDisabled() ? Radar::INACTIVE : Radar::FRIENDLY});
+					target->IsDisabled() ? Radar::INACTIVE :
+						hostile ? Radar::HOSTILE : 
+						target->GetGovernment()->IsEnemy(playerGovernment) ?
+						Radar::UNFRIENDLY : Radar::FRIENDLY});
 			}
 			else
 			{
@@ -631,7 +637,7 @@ void Engine::CalculateStep()
 	if(!(rand() % 100))
 	{
 		// TODO: Each system should specify its own fleets and weights.
-		const Fleet *fleet = data.Fleets().Get("small merchants");
+		const Fleet *fleet = data.Fleets().Get((rand() % 20) ? "small merchants" : "small pirates");
 		fleet->Enter(*playerInfo.GetSystem(), ships);
 	}
 	

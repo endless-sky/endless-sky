@@ -8,10 +8,25 @@ fleet "small merchants"
 		"Sparrow"
 	variant
 		"Freighter"
-		"Sparrow"
-		"Sparrow"
+		"Sparrow" 2
 	variant 3
 		"Star Barge"
 	variant 6
 		"Shuttle"
-
+fleet "small pirates"
+	government "Pirate"
+	names "civilian"
+	variant 3
+		"Sparrow" 2
+	variant 5
+		"Fury"
+	variant 4
+		"Hawk"
+	variant 2
+		"Sparrow" 2
+		"Hawk" 1
+	variant 1
+		"Sparrow" 4
+	variant 1
+		"Hawk"
+		"Fury" 2
