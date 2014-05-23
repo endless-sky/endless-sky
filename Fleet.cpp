@@ -134,5 +134,10 @@ Fleet::Variant::Variant(const DataFile::Node &node, const GameData &data)
 	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
 	
 	for(const DataFile::Node &child : node)
-		ships.push_back(data.Ships().Get(child.Token(0)));
+	{
+		int n = 1;
+		if(child.Size() > 1 && child.Value(1) >= 1.)
+			n = static_cast<int>(child.Value(1));
+		ships.insert(ships.end(), n, data.Ships().Get(child.Token(0)));
+	}
 }
