@@ -91,6 +91,11 @@ bool SystemPanel::KeyDown(SDLKey key, SDLMod mod)
 		drawn.clear();
 		system.Randomize();
 	}
+	else if(key == 't' && selected)
+	{
+		drawn.clear();
+		selected->AddStation();
+	}
 	else if(key == 'h')
 		position = Point();
 	else if(key == 'p')
