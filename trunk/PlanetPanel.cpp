@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "MapPanel.h"
+#include "OutfitterPanel.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "TradingPanel.h"
@@ -103,8 +104,8 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 	}
 	else if(key == 'o' && planet.HasOutfitter())
 	{
-		// TODO: outfitter panel.
-		selectedPanel = nullptr;
+		GetUI()->Push(new OutfitterPanel(data, player));
+		return true;
 	}
 	else if(key == 'j' || key == 'h')
 	{
