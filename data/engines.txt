@@ -1,6 +1,7 @@
-outfit "XD1200 Ion Thruster"
+outfit "X1700 Ion Thruster"
 	category "Engines"
 	"cost" 16000
+	thumbnail "outfit/engine"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -10,9 +11,10 @@ outfit "XD1200 Ion Thruster"
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 
-outfit "XD2200 Ion Thruster"
+outfit "X2700 Ion Thruster"
 	category "Engines"
 	"cost" 40000
+	thumbnail "outfit/engine"
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
@@ -22,9 +24,10 @@ outfit "XD2200 Ion Thruster"
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.2
 
-outfit "XD3200 Ion Thruster"
+outfit "X3700 Ion Thruster"
 	category "Engines"
 	"cost" 100000
+	thumbnail "outfit/engine"
 	"mass" 80
 	"outfit space" -80
 	"engine capacity" -80
@@ -34,9 +37,10 @@ outfit "XD3200 Ion Thruster"
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.2
 
-outfit "XD4200 Ion Thruster"
+outfit "X4700 Ion Thruster"
 	category "Engines"
 	"cost" 250000
+	thumbnail "outfit/engine"
 	"mass" 160
 	"outfit space" -160
 	"engine capacity" -160
@@ -46,9 +50,10 @@ outfit "XD4200 Ion Thruster"
 	"flare sprite" "effect/ion flare/big"
 		"frame rate" 1.2
 
-outfit "XD5200 Ion Thruster"
+outfit "X5700 Ion Thruster"
 	category "Engines"
 	"cost" 650000
+	thumbnail "outfit/engine"
 	"mass" 160
 	"outfit space" -160
 	"engine capacity" -160
@@ -58,9 +63,10 @@ outfit "XD5200 Ion Thruster"
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 1.2
 
-outfit "XT1700 Ion Steering"
+outfit "X1200 Ion Steering"
 	category "Engines"
 	"cost" 10000
+	thumbnail "outfit/steering"
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
@@ -68,9 +74,10 @@ outfit "XT1700 Ion Steering"
 	"turning energy" .5
 	"turning heat" .8
 
-outfit "XT2700 Ion Steering"
+outfit "X2200 Ion Steering"
 	category "Engines"
 	"cost" 25000
+	thumbnail "outfit/steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
@@ -78,9 +85,10 @@ outfit "XT2700 Ion Steering"
 	"turning energy" 1
 	"turning heat" 1.6
 
-outfit "XT3700 Ion Steering"
+outfit "X3200 Ion Steering"
 	category "Engines"
 	"cost" 60000
+	thumbnail "outfit/steering"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -88,9 +96,10 @@ outfit "XT3700 Ion Steering"
 	"turning energy" 2
 	"turning heat" 3.2
 
-outfit "XT4700 Ion Steering"
+outfit "X4200 Ion Steering"
 	category "Engines"
 	"cost" 150000
+	thumbnail "outfit/steering"
 	"mass" 120
 	"outfit space" -120
 	"engine capacity" -120
@@ -98,9 +107,10 @@ outfit "XT4700 Ion Steering"
 	"turning energy" 4
 	"turning heat" 6.4
 
-outfit "XT5700 Ion Steering"
+outfit "X5200 Ion Steering"
 	category "Engines"
 	"cost" 380000
+	thumbnail "outfit/steering"
 	"mass" 60
 	"outfit space" -240
 	"engine capacity" -240
@@ -109,9 +119,10 @@ outfit "XT5700 Ion Steering"
 	"turning heat" 12.8
 
 
-outfit "Chipmunk Class Plasma Thruster"
+outfit "Chipmunk Plasma Thruster"
 	category "Engines"
 	"cost" 20000
+	thumbnail "outfit/engine"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -121,9 +132,10 @@ outfit "Chipmunk Class Plasma Thruster"
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 
-outfit "Greyhound Class Plasma Thruster"
+outfit "Greyhound Plasma Thruster"
 	category "Engines"
 	"cost" 50000
+	thumbnail "outfit/engine"
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
@@ -133,9 +145,10 @@ outfit "Greyhound Class Plasma Thruster"
 	"flare sprite" "effect/plasma flare/small"
 		"frame rate" 6
 
-outfit "Impala Class Plasma Thruster"
+outfit "Impala Plasma Thruster"
 	category "Engines"
 	"cost" 130000
+	thumbnail "outfit/engine"
 	"mass" 80
 	"outfit space" -80
 	"engine capacity" -80
@@ -145,9 +158,10 @@ outfit "Impala Class Plasma Thruster"
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
 
-outfit "Orca Class Plasma Thruster"
+outfit "Orca Plasma Thruster"
 	category "Engines"
 	"cost" 310000
+	thumbnail "outfit/engine"
 	"mass" 160
 	"outfit space" -160
 	"engine capacity" -160
@@ -157,9 +171,10 @@ outfit "Orca Class Plasma Thruster"
 	"flare sprite" "effect/plasma flare/big"
 		"frame rate" 8
 
-outfit "Tyrant Class Plasma Thruster"
+outfit "Tyrant Plasma Thruster"
 	category "Engines"
 	"cost" 780000
+	thumbnail "outfit/engine"
 	"mass" 160
 	"outfit space" -160
 	"engine capacity" -160
@@ -169,9 +184,10 @@ outfit "Tyrant Class Plasma Thruster"
 	"flare sprite" "effect/plasma flare/huge"
 		"frame rate" 9
 
-outfit "Chipmunk Class Plasma Steering"
+outfit "Chipmunk Plasma Steering"
 	category "Engines"
 	"cost" 12000
+	thumbnail "outfit/steering"
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
@@ -179,9 +195,10 @@ outfit "Chipmunk Class Plasma Steering"
 	"turning energy" .5
 	"turning heat" .8
 
-outfit "Greyhound Class Plasma Steering"
+outfit "Greyhound Plasma Steering"
 	category "Engines"
 	"cost" 30000
+	thumbnail "outfit/steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
@@ -189,9 +206,10 @@ outfit "Greyhound Class Plasma Steering"
 	"turning energy" 1
 	"turning heat" 1.6
 
-outfit "Impala Class Plasma Steering"
+outfit "Impala Plasma Steering"
 	category "Engines"
 	"cost" 75000
+	thumbnail "outfit/steering"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -199,9 +217,10 @@ outfit "Impala Class Plasma Steering"
 	"turning energy" 2
 	"turning heat" 3.2
 
-outfit "Orca Class Plasma Steering"
+outfit "Orca Plasma Steering"
 	category "Engines"
 	"cost" 190000
+	thumbnail "outfit/steering"
 	"mass" 120
 	"outfit space" -120
 	"engine capacity" -120
@@ -209,9 +228,10 @@ outfit "Orca Class Plasma Steering"
 	"turning energy" 4
 	"turning heat" 6.4
 
-outfit "Tyrant Class Plasma Steering"
+outfit "Tyrant Plasma Steering"
 	category "Engines"
 	"cost" 470000
+	thumbnail "outfit/steering"
 	"mass" 60
 	"outfit space" -240
 	"engine capacity" -240
