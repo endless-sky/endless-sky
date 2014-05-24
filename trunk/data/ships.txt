@@ -103,7 +103,7 @@ ship "Shuttle"
 		"shields" 1000
 		"hull" 400
 		"cargo space" 20
-		"outfit space" 80
+		"outfit space" 85
 		"weapon capacity" 5
 		"engine capacity" 50
 		"fuel capacity" 400

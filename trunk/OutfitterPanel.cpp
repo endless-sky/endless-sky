@@ -56,7 +56,7 @@ namespace {
 	}
 	
 	// Draw the given outfit at the given location.
-	void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected)
+	void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
 	{
 		const Sprite *thumbnail = outfit.Thumbnail();
 		const Sprite *back = SpriteSet::Get(
@@ -68,7 +68,19 @@ namespace {
 		const string &name = outfit.Name();
 		const Font &font = FontSet::Get(14);
 		Point offset(-.5f * font.Width(name), -.5f * TILE_SIZE + 10.f);
-		font.Draw(name, center + offset, Color(.8, 0.));
+		font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
+	}
+	
+	bool CanBuy(const Ship *ship, const Outfit *outfit, int credits)
+	{
+		return (ship && outfit && outfit->Cost() < credits
+			&& ship->Attributes().CanAdd(*outfit, 1));
+	}
+	
+	bool CanSell(const Ship *ship, const Outfit *outfit)
+	{
+		return (ship && outfit && ship->OutfitCount(outfit)
+			&& ship->Attributes().CanAdd(*outfit, -1));
 	}
 }
 
@@ -153,14 +165,14 @@ void OutfitterPanel::Draw() const
 	
 	Point buyCenter(Screen::Width() / 2 - 210, Screen::Height() / 2 - 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	bool canBuy = false;
+	bool canBuy = CanBuy(playerShip, selectedOutfit, player.Accounts().Credits());
 	bigFont.Draw("Buy",
 		buyCenter - .5 * Point(bigFont.Width("Buy"), bigFont.Height()),
 		canBuy ? bright : dim);
 	
 	Point sellCenter(Screen::Width() / 2 - 130, Screen::Height() / 2 - 25);
 	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
-	bool canSell = false;
+	bool canSell = CanSell(playerShip, selectedOutfit);
 	bigFont.Draw("Sell",
 		sellCenter - .5 * Point(bigFont.Width("Sell"), bigFont.Height()),
 		canSell ? bright : dim);
@@ -170,7 +182,6 @@ void OutfitterPanel::Draw() const
 	bigFont.Draw("Leave",
 		leaveCenter - .5 * Point(bigFont.Width("Leave"), bigFont.Height()),
 		bright);
-	
 	
 	
 	// Draw all the available outfits.
@@ -198,7 +209,8 @@ void OutfitterPanel::Draw() const
 		{
 			const Outfit *outfit = data.Outfits().Get(name);
 			bool isSelected = (outfit == selectedOutfit);
-			DrawOutfit(*outfit, point, isSelected);
+			bool isOwned = playerShip && playerShip->OutfitCount(outfit);
+			DrawOutfit(*outfit, point, isSelected, isOwned);
 			zones.emplace_back(point.X(), point.Y(), columnWidth / 2, TILE_SIZE / 2, outfit);
 			
 			if(isSelected)
@@ -227,6 +239,15 @@ void OutfitterPanel::Draw() const
 				outfitInfo.DrawAttributes(center + offset);
 				
 				nextY += outfitInfo.MaximumHeight();
+			}
+			
+			if(playerShip)
+			{
+				int count = playerShip->OutfitCount(outfit);
+				if(count)
+					font.Draw(to_string(count),
+						point + Point(-TILE_SIZE / 2 + 20, TILE_SIZE / 2 - 40),
+						bright);
 			}
 			
 			point.X() += columnWidth;
@@ -276,11 +297,21 @@ bool OutfitterPanel::Click(int x, int y)
 		x -= Screen::Width() / 2 - SIDE_WIDTH;
 		if(x < 80)
 		{
-			//player.BuyShip(selectedShip);
+			if(CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
+			{
+				player.Accounts().AddCredits(-selectedOutfit->Cost());
+				playerShip->AddOutfit(selectedOutfit, 1);
+				shipInfo.Update(*playerShip);
+			}
 		}
 		else if(x < 160)
 		{
-			//player.SellShip(playerShip);
+			if(CanSell(playerShip, selectedOutfit))
+			{
+				player.Accounts().AddCredits(selectedOutfit->Cost());
+				playerShip->AddOutfit(selectedOutfit, -1);
+				shipInfo.Update(*playerShip);
+			}
 		}
 		else
 			GetUI()->Pop(this);
@@ -324,7 +355,7 @@ bool OutfitterPanel::Drag(int dx, int dy)
 
 
 
-OutfitterPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship)
+OutfitterPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, Ship *ship)
 	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), ship(ship), outfit(nullptr)
 {
 }
@@ -345,7 +376,7 @@ bool OutfitterPanel::ClickZone::Contains(int x, int y) const
 
 
 
-const Ship *OutfitterPanel::ClickZone::GetShip() const
+Ship *OutfitterPanel::ClickZone::GetShip() const
 {
 	return ship;
 }
