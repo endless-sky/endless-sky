@@ -70,6 +70,11 @@ void Outfit::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const 
 			weapon["range"] = weapon["lifetime"] * (
 				weapon["velocity"] + .5 * weapon["acceleration"] * weapon["lifetime"]);
 		}
+		else if(child.Token(0) == "description" && child.Size() >= 2)
+		{
+			description += child.Token(1);
+			description += '\n';
+		}
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 	}
@@ -87,6 +92,13 @@ const string &Outfit::Name() const
 const string &Outfit::Category() const
 {
 	return category;
+}
+
+
+
+const string &Outfit::Description() const
+{
+	return description;
 }
 
 

@@ -34,6 +34,7 @@ public:
 	
 	const std::string &Name() const;
 	const std::string &Category() const;
+	const std::string &Description() const;
 	int Cost() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
@@ -76,6 +77,7 @@ public:
 private:
 	std::string name;
 	std::string category;
+	std::string description;
 	const Sprite *thumbnail;
 	
 	std::map<std::string, double> attributes;
