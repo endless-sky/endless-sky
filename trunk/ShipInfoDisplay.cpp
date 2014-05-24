@@ -27,12 +27,15 @@ using namespace std;
 namespace {
 	static const int WIDTH = 250;
 	
-	// Round a value to three 
+	// Round a value to three decimal places.
 	string Round(double value)
 	{
 		ostringstream out;
 		if(value >= 1000. || value <= -1000.)
+		{
+			out.precision(10);
 			out << round(value);
+		}
 		else
 		{
 			out.precision(3);
@@ -248,7 +251,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	}
 	attributesHeight += 20;
 	double emptyMass = attributes.Get("mass");
-	attributeLabels.push_back("empty mass:");
+	attributeLabels.push_back("mass with no cargo:");
 	attributeValues.push_back(Round(emptyMass));
 	attributesHeight += 20;
 	attributeLabels.push_back("cargo space:");
@@ -284,13 +287,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	// Find out how much outfit, engine, and weapon space the chassis has.
 	map<string, double> chassis;
 	static const string names[] = {
-		"outfit space:", "outfit space",
+		"outfit space free:", "outfit space",
 		"    weapon capacity:", "weapon capacity",
 		"    engine capacity:", "engine capacity",
-		"guns:", "gun ports",
-		"turrets:", "turrent mounts"
+		"guns ports free:", "gun ports",
+		"turret mounts free:", "turrent mounts"
 	};
-	for(int i = 1; i < 10; i += 2)
+	static const int NAMES =  sizeof(names) / sizeof(names[0]);
+	for(int i = 1; i < NAMES; i += 2)
 		chassis[names[i]] = attributes.Get(names[i]);
 	for(const auto &it : ship.Outfits())
 		for(auto &cit : chassis)
@@ -299,7 +303,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	for(int i = 0; i < 10; i += 2)
+	for(int i = 0; i < NAMES; i += 2)
 	{
 		attributeLabels.push_back(names[i]);
 		attributeValues.push_back(Round(attributes.Get(names[i + 1]))
