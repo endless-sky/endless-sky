@@ -181,7 +181,7 @@ void Engine::Step(bool isActive)
 		info.SetString("date", playerInfo.GetDate().ToString());
 		if(player)
 		{
-			info.SetBar("fuel", player->Fuel());
+			info.SetBar("fuel", player->Fuel(), player->Attributes().Get("fuel capacity") * .01);
 			info.SetBar("energy", player->Energy());
 			info.SetBar("heat", player->Heat());
 			info.SetBar("shields", player->Shields());
