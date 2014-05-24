@@ -59,15 +59,9 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "gun" && child.Size() >= 3)
-		{
 			armament.AddGunPort(Point(child.Value(1), child.Value(2)));
-			baseAttributes.Add("gun ports");
-		}
 		else if(child.Token(0) == "turret" && child.Size() >= 3)
-		{
 			armament.AddTurret(Point(child.Value(1), child.Value(2)));
-			baseAttributes.Add("turret mounts");
-		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -890,6 +884,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 				outfits.erase(it);
 		}
 		attributes.Add(*outfit, count);
+		if(outfit->IsWeapon())
+			armament.Add(outfit, count);
 	}
 }
 

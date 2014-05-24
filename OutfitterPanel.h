@@ -48,11 +48,11 @@ protected:
 private:
 	class ClickZone {
 	public:
-		ClickZone(int x, int y, int rx, int ry, const Ship *ship);
+		ClickZone(int x, int y, int rx, int ry, Ship *ship);
 		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit);
 		
 		bool Contains(int x, int y) const;
-		const Ship *GetShip() const;
+		Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 		
 	private:
@@ -61,7 +61,7 @@ private:
 		int right;
 		int bottom;
 		
-		const Ship *ship;
+		Ship *ship;
 		const Outfit *outfit;
 	};
 	
@@ -70,7 +70,7 @@ private:
 	const GameData &data;
 	PlayerInfo &player;
 	
-	const Ship *playerShip;
+	Ship *playerShip;
 	const Outfit *selectedOutfit;
 	
 	OutfitInfoDisplay outfitInfo;
