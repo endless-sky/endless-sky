@@ -284,12 +284,20 @@ bool ShipyardPanel::Drag(int dx, int dy)
 {
 	int &scroll = dragMain ? mainScroll : sideScroll;
 	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
-	scroll -= dy;
-	if(scroll < 0)
-		scroll = 0;
-	else if(scroll > maximum)
-		scroll = maximum;
 	
+	scroll = max(0, min(maximum, scroll - dy));
+	return true;
+}
+
+
+
+bool ShipyardPanel::Scroll(int x, int y, int dy)
+{
+	bool inMain = (x < Screen::Width() / 2 - SIDE_WIDTH);
+	int &scroll = inMain ? mainScroll : sideScroll;
+	const int &maximum = inMain ? maxMainScroll : maxSideScroll;
+	
+	scroll = max(0, min(maximum, scroll - 50 * dy));
 	return true;
 }
 

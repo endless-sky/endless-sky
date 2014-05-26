@@ -102,6 +102,13 @@ bool Panel::Drag(int dx, int dy)
 }
 
 
+
+bool Panel::Scroll(int x, int y, int dy)
+{
+	return false;
+}
+
+
 	
 void Panel::SetIsFullScreen(bool set)
 {
