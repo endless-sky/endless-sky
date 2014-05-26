@@ -93,6 +93,8 @@ public:
 	
 	
 private:
+	const GameData *gameData;
+	
 	std::string firstName;
 	std::string lastName;
 	std::string filePath;

@@ -42,7 +42,7 @@ public:
 	void PayExtra(int mortgage, int amount);
 	
 	// Step forward one day, and return a string summarizing payments made.
-	std::string Step();
+	std::string Step(int assets);
 	
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
