@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "CreditsPanel.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -41,25 +42,9 @@ namespace {
 
 
 BankPanel::BankPanel(PlayerInfo &player)
-	: player(player), qualify(player.Accounts().Prequalify()),
-	selectedRow(0), amount(0)
+	: player(player), qualify(player.Accounts().Prequalify()), selectedRow(0)
 {
 	SetTrapAllEvents(false);
-}
-
-
-	
-void BankPanel::Step(bool isActive)
-{
-	if(isActive && amount)
-	{
-		if(static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size())
-			player.Accounts().AddMortgage(amount);
-		else
-			player.Accounts().PayExtra(selectedRow, amount);
-		
-		amount = 0;
-	}
 }
 
 
@@ -144,11 +129,12 @@ bool BankPanel::KeyDown(SDLKey key, SDLMod mod)
 		++selectedRow;
 	else if(key == SDLK_RETURN
 			&& static_cast<unsigned>(selectedRow) < player.Accounts().Mortgages().size())
-		GetUI()->Push(new CreditsPanel("Pay how many credits?", &amount, min(
-			player.Accounts().Credits(),
-			player.Accounts().Mortgages()[selectedRow].Principal())));
+		GetUI()->Push(new Dialog(*this, &BankPanel::PayExtra,
+			"Paying off part of this debt will reduce your daily payments and the "
+			"interest that it costs you. How many extra credits will you pay?"));
 	else if(key == SDLK_RETURN && qualify)
-		GetUI()->Push(new CreditsPanel("Borrow how many credits?", &amount, qualify));
+		GetUI()->Push(new Dialog(*this, &BankPanel::NewMortgage,
+			"Borrow how many credits?"));
 	else
 		return false;
 	
@@ -164,11 +150,7 @@ bool BankPanel::Click(int x, int y)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
 		if(x >= EXTRA_X)
-		{
-			GetUI()->Push(new CreditsPanel("Pay how many credits?", &amount, min(
-				player.Accounts().Credits(),
-				player.Accounts().Mortgages()[selectedRow].Principal())));
-		}
+			KeyDown(SDLK_RETURN, KMOD_NONE);
 	}
 	else if(x >= EXTRA_X - 10 && x <= MAX_X && y >= FIRST_Y + 230 && y <= FIRST_Y + 250)
 	{
@@ -182,4 +164,18 @@ bool BankPanel::Click(int x, int y)
 		return false;
 	
 	return true;
+}
+
+
+
+void BankPanel::PayExtra(int amount)
+{
+	player.Accounts().PayExtra(selectedRow, amount);
+}
+
+
+
+void BankPanel::NewMortgage(int amount)
+{
+	player.Accounts().AddMortgage(amount);
 }
