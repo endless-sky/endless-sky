@@ -103,7 +103,7 @@ void Account::PayExtra(int mortgage, int amount)
 
 
 // Step forward one day, and return a string summarizing payments made.
-string Account::Step()
+string Account::Step(int assets)
 {
 	ostringstream out;
 	
@@ -146,6 +146,7 @@ string Account::Step()
 			else
 				finesPaid += payment;
 		}
+		assets -= mortgage.Principal();
 	}
 	for(auto it = mortgages.begin(); it != mortgages.end(); )
 	{
@@ -155,8 +156,7 @@ string Account::Step()
 			++it;
 	}
 	
-	// TODO: calculate net worth of all ships.
-	int assets = 0;
+	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
 	history.push_back(credits + assets);

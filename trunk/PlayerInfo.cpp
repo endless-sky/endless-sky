@@ -66,6 +66,7 @@ bool PlayerInfo::IsLoaded() const
 void PlayerInfo::Load(const string &path, const GameData &data)
 {
 	Clear();
+	gameData = &data;
 	
 	filePath = path;
 	DataFile file(path);
@@ -157,6 +158,7 @@ void PlayerInfo::LoadRecent(const GameData &data)
 void PlayerInfo::New(const GameData &data)
 {
 	Clear();
+	gameData = &data;
 	
 	SetSystem(data.Systems().Get("Rutilicus"));
 	SetPlanet(data.Planets().Get("New Boston"));
@@ -219,7 +221,22 @@ const Date &PlayerInfo::GetDate() const
 string PlayerInfo::IncrementDate()
 {
 	++date;
-	return accounts.Step();
+	
+	// For accounting, keep track of the player's net worth. This is for
+	// calculation of yearly income to determine maximum mortgage amounts.
+	int assets = 0;
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		assets += ship->Cost();
+		
+		if(!gameData)
+			continue;
+		
+		for(const Trade::Commodity &commodity : gameData->Commodities())
+			assets += ship->GetSystem()->Trade(commodity.name)
+				* ship->Cargo(commodity.name);
+	}
+	return accounts.Step(assets);
 }
 
 
