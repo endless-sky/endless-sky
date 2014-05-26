@@ -56,6 +56,10 @@ bool UI::Handle(const SDL_Event &event)
 				handled = (*it)->Click(x, y);
 			else if(event.button.button == 3)
 				handled = (*it)->RClick(x, y);
+			else if(event.button.button == 4)
+				handled = (*it)->Scroll(x, y, 1);
+			else if(event.button.button == 5)
+				handled = (*it)->Scroll(x, y, -1);
 		}
 		else if(event.type == SDL_KEYDOWN)
 			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod);

@@ -39,6 +39,7 @@ protected:
 	virtual bool KeyDown(SDLKey key, SDLMod mod);
 	virtual bool Click(int x, int y);
 	virtual bool Drag(int dx, int dy);
+	virtual bool Scroll(int x, int y, int dy);
 	
 	
 private:
