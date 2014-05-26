@@ -61,7 +61,7 @@ outfit "Fission Reactor"
 outfit "Fusion Reactor"
 	category "Systems"
 	cost 1200000
-	thumbnail "outfit/generator"
+	thumbnail "outfit/fusion reactor"
 	"mass" 35
 	"outfit space" -35
 	"energy generation" 4
