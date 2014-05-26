@@ -296,12 +296,12 @@ const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
 
 
 
-void PlayerInfo::BuyShip(const Ship *model)
+void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(model && accounts.Credits() >= model->Cost())
 	{
 		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
-		ships.back()->SetName("Starship One");
+		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
 		ships.back()->SetIsSpecial();

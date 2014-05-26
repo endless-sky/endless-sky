@@ -12,10 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
-#include "GameData.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
@@ -87,6 +88,9 @@ void ShipyardPanel::Draw() const
 		Point(1, Screen::Height()),
 		Color(.2, 1.));
 	
+	// Clear the list of clickable zones.
+	zones.clear();
+	
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(
 		(Screen::Width() - SIDE_WIDTH - font.Width(YOURS)) / 2,
@@ -100,6 +104,7 @@ void ShipyardPanel::Draw() const
 	{
 		bool isSelected = (ship.get() == playerShip);
 		DrawShip(*ship, point, isSelected);
+		zones.emplace_back(point.X(), point.Y(), TILE_SIZE / 2, TILE_SIZE / 2, ship.get());
 		
 		if(isSelected)
 		{
@@ -155,7 +160,6 @@ void ShipyardPanel::Draw() const
 	int columns = mainWidth / TILE_SIZE;
 	int columnWidth = mainWidth / columns;
 	
-	zones.clear();
 	Point begin(
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
@@ -166,8 +170,7 @@ void ShipyardPanel::Draw() const
 	{
 		bool isSelected = (&it.second == selectedShip);
 		DrawShip(it.second, point, isSelected);
-		zones.emplace_back(point.X(), point.Y(), columnWidth / 2, TILE_SIZE / 2,
-			&it.second);
+		zones.emplace_back(point.X(), point.Y(), columnWidth / 2, TILE_SIZE / 2, &it.second);
 		
 		if(isSelected)
 		{
@@ -217,8 +220,24 @@ void ShipyardPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool ShipyardPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == SDLK_ESCAPE)
+	if(key == 'l')
 		GetUI()->Pop(this);
+	else if(key == 'b')
+	{
+		if(!selectedShip || player.Accounts().Credits() < selectedShip->Cost())
+			return false;
+		
+		GetUI()->Push(new Dialog(*this, &ShipyardPanel::BuyShip,
+			"Enter a name for your brand new " + selectedShip->ModelName() + "!"));
+	}
+	else if(key == 's')
+	{
+		if(!playerShip)
+			return false;
+		
+		GetUI()->Push(new Dialog(*this, &ShipyardPanel::SellShip,
+			"Sell ''" + playerShip->Name() + "''?"));
+	}
 	
 	return true;
 }
@@ -231,16 +250,11 @@ bool ShipyardPanel::Click(int x, int y)
 	{
 		x -= Screen::Width() / 2 - SIDE_WIDTH;
 		if(x < 80)
-		{
-			player.BuyShip(selectedShip);
-		}
+			KeyDown(SDLK_b, KMOD_NONE);
 		else if(x < 160)
-		{
-			player.SellShip(playerShip);
-			playerShip = nullptr;
-		}
+			KeyDown(SDLK_s, KMOD_NONE);
 		else
-			GetUI()->Pop(this);
+			KeyDown(SDLK_l, KMOD_NONE);
 		
 		return true;
 	}
@@ -249,8 +263,16 @@ bool ShipyardPanel::Click(int x, int y)
 	for(const ClickZone &zone : zones)
 		if(zone.Contains(x, y))
 		{
-			selectedShip = zone.GetShip();
-			selectedShipInfo.Update(*selectedShip);
+			if(dragMain)
+			{
+				selectedShip = zone.GetShip();
+				selectedShipInfo.Update(*selectedShip);
+			}
+			else
+			{
+				playerShip = zone.GetShip();
+				playerShipInfo.Update(*playerShip);
+			}
 		}
 		
 	return true;
@@ -290,4 +312,22 @@ bool ShipyardPanel::ClickZone::Contains(int x, int y) const
 const Ship *ShipyardPanel::ClickZone::GetShip() const
 {
 	return ship;
+}
+
+
+
+void ShipyardPanel::BuyShip(const std::string &name)
+{
+	if(name.empty())
+		player.BuyShip(selectedShip, "Unnamed Ship");
+	else
+		player.BuyShip(selectedShip, name);
+}
+
+
+
+void ShipyardPanel::SellShip()
+{
+	player.SellShip(playerShip);
+	playerShip = nullptr;
 }
