@@ -169,12 +169,21 @@ bool BankPanel::Click(int x, int y)
 
 void BankPanel::PayExtra(int amount)
 {
-	player.Accounts().PayExtra(selectedRow, amount);
+	// You cannot pay more than you have or more than the mortgage principal.
+	amount = min(amount, min(player.Accounts().Credits(),
+		player.Accounts().Mortgages()[selectedRow].Principal()));
+	
+	if(amount > 0)
+		player.Accounts().PayExtra(selectedRow, amount);
 }
 
 
 
 void BankPanel::NewMortgage(int amount)
 {
-	player.Accounts().AddMortgage(amount);
+	// You cannot pay more than you have or more than the mortgage principal.
+	amount = min(amount, player.Accounts().Prequalify());
+	
+	if(amount > 0)
+		player.Accounts().AddMortgage(amount);
 }
