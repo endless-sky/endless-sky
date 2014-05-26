@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BankPanel.h"
 
 #include "Color.h"
-#include "CreditsPanel.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"

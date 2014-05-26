@@ -63,9 +63,7 @@ void PlanetPanel::Draw() const
 	
 	ui.Draw(info);
 	
-	if(selectedPanel)
-		selectedPanel->Draw();
-	else
+	if(!selectedPanel)
 		text.Draw(Point(-300., 80.), Color(.8));
 }
 
@@ -81,6 +79,10 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 		player.Save();
 		callback();
 		GetUI()->Pop(this);
+	}
+	else if(key == 'l')
+	{
+		selectedPanel = nullptr;
 	}
 	else if(key == 't' && planet.HasSpaceport())
 	{
