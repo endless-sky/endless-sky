@@ -25,7 +25,6 @@ class BankPanel : public Panel {
 public:
 	BankPanel(PlayerInfo &player);
 	
-	virtual void Step(bool isActive);
 	virtual void Draw() const;
 	
 	
@@ -36,11 +35,14 @@ protected:
 	
 	
 private:
+	void PayExtra(int amount);
+	void NewMortgage(int amount);
+	
+	
+private:
 	PlayerInfo &player;
 	int qualify;
 	int selectedRow;
-	
-	int amount;
 };
 
 
