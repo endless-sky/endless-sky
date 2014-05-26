@@ -13,38 +13,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef WRAPPED_TEXT_H_
 #define WRAPPED_TEXT_H_
 
+#include "Point.h"
+
 #include <string>
 #include <vector>
 
 class Color;
 class Font;
-class Point;
 
 
 
 // Class for calculating word positions in wrapped text.
 class WrappedText {
 public:
-	// The returned text is a series of words and (x, y) positions:
-	class Word {
-	public:
-		const char *String() const;
-		int X() const;
-		int Y() const;
-		
-	private:
-		const char *str;
-		int x;
-		int y;
-		
-		friend class WrappedText;
-	};
-	
-	
-public:
 	WrappedText();
 	WrappedText(const Font &font);
-	~WrappedText();
 	
 	// Set the alignment mode.
 	enum Align {LEFT, CENTER, RIGHT, JUSTIFIED};
@@ -91,6 +74,24 @@ private:
 	
 	
 private:
+	// The returned text is a series of words and (x, y) positions:
+	class Word {
+	public:
+		Word();
+		
+		size_t Index() const;
+		Point Pos() const;
+		
+	private:
+		size_t index;
+		int x;
+		int y;
+		
+		friend class WrappedText;
+	};
+	
+	
+private:
 	const Font *font;
 	
 	int space;
@@ -100,7 +101,7 @@ private:
 	int paragraphBreak;
 	Align alignment;
 	
-	char *text;
+	std::string text;
 	std::vector<Word> words;
 	int height;
 };
