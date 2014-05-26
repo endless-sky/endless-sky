@@ -1,15 +1,3 @@
-trade
-	commodity "Food" 100 600
-	commodity "Clothing" 140 440
-	commodity "Metal" 190 590
-	commodity "Plastic" 240 540
-	commodity "Equipment" 330 730
-	commodity "Medical" 430 930
-	commodity "Industrial" 520 920
-	commodity "Electronics" 590 890
-	commodity "Heavy Metals" 610 1310
-	commodity "Luxury Goods" 920 1520
-
 color "grey" .5 .5 .5 1.
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75

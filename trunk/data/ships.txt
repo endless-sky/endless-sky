@@ -3,12 +3,12 @@ ship "Star Barge"
 	attributes
 		"required crew" 1
 		"bunks" 4
-		"drag" 1.1
+		"drag" 4.4
 		"mass" 70
 		"shields" 800
 		"hull" 1200
 		"cargo space" 60
-		"outfit space" 100
+		"outfit space" 140
 		"weapon capacity" 10
 		"engine capacity" 60
 		"fuel capacity" 300
@@ -20,6 +20,7 @@ ship "Star Barge"
 		"Tiny Shield Generator"
 	engine -9 -38
 	engine 9 -38
+	gun 0 37
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 
@@ -28,7 +29,7 @@ ship "Freighter"
 	attributes
 		"required crew" 1
 		"bunks" 4
-		"drag" 1.4
+		"drag" 5.6
 		"mass" 70
 		"shields" 4000
 		"hull" 2000
