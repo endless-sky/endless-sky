@@ -71,7 +71,7 @@ public:
 	Ship *GetShip();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Buy or sell a ship.
-	void BuyShip(const Ship *model);
+	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
 	
 	bool HasSeen(const System *system) const;

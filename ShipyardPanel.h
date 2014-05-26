@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 #include "ShipInfoDisplay.h"
 
+#include <string>
 #include <vector>
 
 class GameData;
@@ -56,6 +57,11 @@ private:
 		
 		const Ship *ship;
 	};
+	
+	
+private:
+	void BuyShip(const std::string &name);
+	void SellShip();
 	
 	
 private:

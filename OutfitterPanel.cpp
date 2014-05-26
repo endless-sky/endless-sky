@@ -33,6 +33,7 @@ using namespace std;
 namespace {
 	static const int SIDE_WIDTH = 250;
 	static const int TILE_SIZE = 180;
+	static const int SHIP_TILE_SIZE = 250;
 	
 	// Draw the given ship at the given location, zoomed so it will fit within
 	// one cell of the grid.
@@ -43,12 +44,12 @@ namespace {
 			isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 		SpriteShader::Draw(back, center);
 		// Make sure the ship sprite leaves 10 pixels padding all around.
-		float zoomSize = TILE_SIZE - 60.f;
+		float zoomSize = SHIP_TILE_SIZE - 60.f;
 		
 		// Draw the ship name.
 		const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 		const Font &font = FontSet::Get(14);
-		Point offset(-.5f * font.Width(name), -.5f * TILE_SIZE + 10.f);
+		Point offset(-.5f * font.Width(name), -.5f * SHIP_TILE_SIZE + 10.f);
 		font.Draw(name, center + offset, Color(.8, 0.));
 		
 		float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
@@ -120,6 +121,9 @@ void OutfitterPanel::Draw() const
 		Point(1, Screen::Height()),
 		Color(.2, 1.));
 	
+	// Clear the list of clickable zones.
+	zones.clear();
+	
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(
 		(Screen::Width() - SIDE_WIDTH - font.Width(YOURS)) / 2,
@@ -133,6 +137,7 @@ void OutfitterPanel::Draw() const
 	{
 		bool isSelected = (ship.get() == playerShip);
 		DrawShip(*ship, point, isSelected);
+		zones.emplace_back(point.X(), point.Y(), SHIP_TILE_SIZE / 2, SHIP_TILE_SIZE / 2, ship.get());
 		
 		if(isSelected)
 		{
@@ -141,9 +146,9 @@ void OutfitterPanel::Draw() const
 			shipInfo.DrawAttributes(point + offset);
 			point.Y() += shipInfo.AttributesHeight();
 		}
-		point.Y() += TILE_SIZE;
+		point.Y() += SHIP_TILE_SIZE;
 	}
-	maxSideScroll = point.Y() + sideScroll - (Screen::Height()) / 2 + 70 - TILE_SIZE / 2;
+	maxSideScroll = point.Y() + sideScroll - (Screen::Height()) / 2 + 70 - SHIP_TILE_SIZE / 2;
 	maxSideScroll = max(0, maxSideScroll);
 	
 	// The last 70 pixels on the end of the side panel are for the buttons:
@@ -190,7 +195,6 @@ void OutfitterPanel::Draw() const
 	int columns = mainWidth / TILE_SIZE;
 	int columnWidth = mainWidth / columns;
 	
-	zones.clear();
 	Point begin(
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
@@ -282,8 +286,26 @@ void OutfitterPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool OutfitterPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == SDLK_ESCAPE)
+	if(key == 'l')
 		GetUI()->Pop(this);
+	else if(key == 'b')
+	{
+		if(CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
+		{
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			playerShip->AddOutfit(selectedOutfit, 1);
+			shipInfo.Update(*playerShip);
+		}
+	}
+	else if(key == 's')
+	{
+		if(CanSell(playerShip, selectedOutfit))
+		{
+			player.Accounts().AddCredits(selectedOutfit->Cost());
+			playerShip->AddOutfit(selectedOutfit, -1);
+			shipInfo.Update(*playerShip);
+		}
+	}
 	
 	return true;
 }
@@ -296,25 +318,11 @@ bool OutfitterPanel::Click(int x, int y)
 	{
 		x -= Screen::Width() / 2 - SIDE_WIDTH;
 		if(x < 80)
-		{
-			if(CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
-			{
-				player.Accounts().AddCredits(-selectedOutfit->Cost());
-				playerShip->AddOutfit(selectedOutfit, 1);
-				shipInfo.Update(*playerShip);
-			}
-		}
+			KeyDown(SDLK_b, KMOD_NONE);
 		else if(x < 160)
-		{
-			if(CanSell(playerShip, selectedOutfit))
-			{
-				player.Accounts().AddCredits(selectedOutfit->Cost());
-				playerShip->AddOutfit(selectedOutfit, -1);
-				shipInfo.Update(*playerShip);
-			}
-		}
+			KeyDown(SDLK_s, KMOD_NONE);
 		else
-			GetUI()->Pop(this);
+			KeyDown(SDLK_l, KMOD_NONE);
 		
 		return true;
 	}
