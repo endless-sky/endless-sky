@@ -27,6 +27,7 @@ public:
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	Dialog(const std::string &text);
+	virtual ~Dialog() = default;
 	
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any

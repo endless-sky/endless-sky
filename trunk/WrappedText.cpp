@@ -24,24 +24,16 @@ using namespace std;
 
 
 WrappedText::WrappedText()
-	: font(nullptr), wrapWidth(1000), alignment(JUSTIFIED), text(nullptr), height(0)
+	: font(nullptr), wrapWidth(1000), alignment(JUSTIFIED), height(0)
 {
 }
 
 
 
 WrappedText::WrappedText(const Font &font)
-	: font(nullptr), wrapWidth(1000), alignment(JUSTIFIED), text(nullptr), height(0)
+	: WrappedText()
 {
 	SetFont(font);
-}
-
-
-
-WrappedText::~WrappedText()
-{
-	if(text)
-		delete [] text;
 }
 
 
@@ -168,28 +160,28 @@ int WrappedText::Height() const
 void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	for(const Word &w : words)
-		font->Draw(w.String(), Point(w.X(), w.Y()) + topLeft, color);
+		font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
 }
 
 
 
-const char *WrappedText::Word::String() const
+WrappedText::Word::Word()
+	: index(0), x(0), y(0)
 {
-	return str;
 }
 
 
 
-int WrappedText::Word::X() const
+size_t WrappedText::Word::Index() const
 {
-	return x;
+	return index;
 }
 
 
 
-int WrappedText::Word::Y() const
+Point WrappedText::Word::Pos() const
 {
-	return y;
+	return Point(x, y);
 }
 
 
@@ -201,12 +193,7 @@ void WrappedText::SetText(const char *it, size_t length)
 	words.clear();
 	
 	// Reallocate that buffer.
-	if(text)
-		delete [] text;
-	
-	text = new char[length + 1];
-	memcpy(text, it, length);
-	text[length] = '\0';
+	text.assign(it, length);
 }
 
 
@@ -217,9 +204,7 @@ void WrappedText::Wrap()
 	
 	// Do this as a finite state machine.
 	Word word;
-	word.x = 0;
-	word.y = 0;
-	word.str = nullptr;
+	bool hasWord = false;
 	
 	// Keep track of how wide the current line is. This is just so we know how
 	// much extra space must be allotted by the alignment code.
@@ -233,16 +218,16 @@ void WrappedText::Wrap()
 	// would require a different format for the buffer, though, because it means
 	// inserting '\0' characters even where there is no whitespace.
 	
-	for(char *it = text; *it; ++it)
+	for(string::iterator it = text.begin(); it != text.end(); ++it)
 	{
 		char c = *it;
 		
 		// Whenever we encounter whitespace, the current word needs wrapping.
-		if(c <= ' ' && word.str)
+		if(c <= ' ' && hasWord)
 		{
 			// Break the string at this point, and measure the word's width.
 			*it = '\0';
-			int width = font->Width(word.str);
+			int width = font->Width(text.c_str() + word.index);
 			if(word.x + width > wrapWidth)
 			{
 				// If we just overflowed the length of the line, this word will
@@ -259,7 +244,7 @@ void WrappedText::Wrap()
 			// Keep track of how wide this line is now that this word is added.
 			lineWidth = word.x;
 			// We currently are not inside a word.
-			word.str = nullptr;
+			hasWord = false;
 		}
 		
 		// If that whitespace was a newline, we must handle that, too.
@@ -267,7 +252,6 @@ void WrappedText::Wrap()
 		{
 			word.y += lineHeight + paragraphBreak;
 			word.x = 0;
-			word.str = nullptr;
 			
 			AdjustLine(lineBegin, lineWidth, true);
 		}
@@ -275,12 +259,26 @@ void WrappedText::Wrap()
 		else if(c <= ' ')
 			word.x += Space(c);
 		// If we've reached the start of a new word, remember where it begins.
-		else if(!word.str)
-			word.str = it;
+		else if(!hasWord)
+		{
+			hasWord = true;
+			word.index = it - text.begin();
+		}
 	}
 	// Handle the final word.
-	if(word.str)
+	if(hasWord)
 	{
+		int width = font->Width(text.c_str() + word.index);
+		if(word.x + width > wrapWidth)
+		{
+			// If we just overflowed the length of the line, this word will
+			// be the first on the next line, and the current line needs to
+			// be adjusted for alignment.
+			word.y += lineHeight;
+			word.x = 0;
+			
+			AdjustLine(lineBegin, lineWidth, false);
+		}
 		words.push_back(word);
 		word.y += lineHeight + paragraphBreak;
 	}
