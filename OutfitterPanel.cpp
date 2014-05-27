@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutfitterPanel.h"
 
+#include "ConversationPanel.h"
 #include "GameData.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -34,6 +35,14 @@ namespace {
 	static const int SIDE_WIDTH = 250;
 	static const int TILE_SIZE = 180;
 	static const int SHIP_TILE_SIZE = 250;
+	
+	static const vector<string> CATEGORIES = {
+		"Guns",
+		"Missiles",
+		"Turrets",
+		"Systems",
+		"Engines"
+	};
 	
 	// Draw the given ship at the given location, zoomed so it will fit within
 	// one cell of the grid.
@@ -88,7 +97,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(const GameData &data, PlayerInfo &player)
-	: data(data), player(player),
+	: data(data), player(player), planet(player.GetPlanet()),
 	playerShip(player.GetShip()), selectedOutfit(nullptr),
 	mainScroll(0), sideScroll(0)
 {
@@ -135,6 +144,10 @@ void OutfitterPanel::Draw() const
 		(Screen::Height() - SIDE_WIDTH) / -2 - sideScroll + 40);
 	for(shared_ptr<Ship> ship : player.Ships())
 	{
+		// Skip any ships that are "absent" for whatever reason.
+		if(ship->GetSystem() != player.GetSystem())
+			continue;
+		
 		bool isSelected = (ship.get() == playerShip);
 		DrawShip(*ship, point, isSelected);
 		zones.emplace_back(point.X(), point.Y(), SHIP_TILE_SIZE / 2, SHIP_TILE_SIZE / 2, ship.get());
@@ -170,7 +183,11 @@ void OutfitterPanel::Draw() const
 	
 	Point buyCenter(Screen::Width() / 2 - 210, Screen::Height() / 2 - 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	bool canBuy = CanBuy(playerShip, selectedOutfit, player.Accounts().Credits());
+	// You can buy a particular outfit if this planet sells it or is holding on
+	// to one you sold to it, and if you have enough money and space.
+	bool canBuy = planet
+		&& (planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit])
+		&& CanBuy(playerShip, selectedOutfit, player.Accounts().Credits());
 	bigFont.Draw("Buy",
 		buyCenter - .5 * Point(bigFont.Width("Buy"), bigFont.Height()),
 		canBuy ? bright : dim);
@@ -202,16 +219,31 @@ void OutfitterPanel::Draw() const
 	float endX = Screen::Width() * .5f - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	
-	for(const pair<string, set<string>> &it : catalog)
+	for(const string &category : CATEGORIES)
 	{
+		map<string, set<string>>::const_iterator it = catalog.find(category);
+		if(it == catalog.end())
+			continue;
+		
+		// Do not draw any outfits if an error has occurred and we do not know
+		// what planet we are on. Since you cannot click "outfitter" unless a
+		// valid player's ship exists, this should never happen.
+		if(!planet || !playerShip)
+			break;
+		
 		Point side(Screen::Width() * -.5 + 10., point.Y() - TILE_SIZE / 2 + 10);
-		bigFont.Draw(it.first, side, bright);
+		bigFont.Draw(category, side, bright);
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
-		for(const string &name : it.second)
+		for(const string &name : it->second)
 		{
 			const Outfit *outfit = data.Outfits().Get(name);
+			if(!planet->Outfitter().Has(outfit)
+					&& !playerShip->OutfitCount(outfit)
+					&& !available[outfit])
+				continue;
+			
 			bool isSelected = (outfit == selectedOutfit);
 			bool isOwned = playerShip && playerShip->OutfitCount(outfit);
 			DrawOutfit(*outfit, point, isSelected, isOwned);
@@ -286,14 +318,17 @@ void OutfitterPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool OutfitterPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == 'l')
+	if(key == 'l' && FlightCheck())
 		GetUI()->Pop(this);
 	else if(key == 'b')
 	{
-		if(CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
+		if(planet
+			&& (planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit])
+			&& CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
 		{
 			player.Accounts().AddCredits(-selectedOutfit->Cost());
 			playerShip->AddOutfit(selectedOutfit, 1);
+			available[selectedOutfit] -= 1;
 			shipInfo.Update(*playerShip);
 		}
 	}
@@ -303,6 +338,7 @@ bool OutfitterPanel::KeyDown(SDLKey key, SDLMod mod)
 		{
 			player.Accounts().AddCredits(selectedOutfit->Cost());
 			playerShip->AddOutfit(selectedOutfit, -1);
+			available[selectedOutfit] -= -1;
 			shipInfo.Update(*playerShip);
 		}
 	}
@@ -402,4 +438,52 @@ Ship *OutfitterPanel::ClickZone::GetShip() const
 const Outfit *OutfitterPanel::ClickZone::GetOutfit() const
 {
 	return outfit;
+}
+
+
+
+bool OutfitterPanel::FlightCheck()
+{
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		// Skip any ships that are "absent" for whatever reason.
+		if(ship->GetSystem() != player.GetSystem())
+			continue;
+		
+		playerShip = &*ship;
+		
+		const Outfit &attributes = player.GetShip()->Attributes();
+		double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
+		if(!attributes.Get("thrust"))
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*data.Conversations().Get("flight check: no thrusters")));
+			return false;
+		}
+		if(attributes.Get("thrusting energy") > energy)
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*data.Conversations().Get("flight check: no thruster energy")));
+			return false;
+		}
+		if(!attributes.Get("turn"))
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*data.Conversations().Get("flight check: no steering")));
+			return false;
+		}
+		if(attributes.Get("turning energy") > energy)
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*data.Conversations().Get("flight check: no steering energy")));
+			return false;
+		}
+		if(attributes.Get("heat generation") * 10. > player.GetShip()->Mass())
+		{
+			GetUI()->Push(new ConversationPanel(player,
+				*data.Conversations().Get("flight check: overheating")));
+			return false;
+		}
+	}
+	return true;
 }

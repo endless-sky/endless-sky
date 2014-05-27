@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class GameData;
 class Outfit;
+class Planet;
 class PlayerInfo;
 class Ship;
 
@@ -68,8 +69,13 @@ private:
 	
 	
 private:
+	bool FlightCheck();
+	
+	
+private:
 	const GameData &data;
 	PlayerInfo &player;
+	const Planet *planet;
 	
 	Ship *playerShip;
 	const Outfit *selectedOutfit;
@@ -86,6 +92,10 @@ private:
 	mutable std::vector<ClickZone> zones;
 	
 	std::map<std::string, std::set<std::string>> catalog;
+	// This is how many of each outfit we have sold to this particular outfitter
+	// in this particular shopping session (so that you can buy back things this
+	// outfitter does not normally carry that you sold by accident).
+	mutable std::map<const Outfit *, int> available;
 };
 
 

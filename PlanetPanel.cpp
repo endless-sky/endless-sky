@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Color.h"
-#include "ConversationPanel.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "MapPanel.h"
@@ -74,9 +73,12 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	Panel *oldPanel = selectedPanel;
 	
-	if(key == 'd' && FlightCheck())
+	if(key == 'd')
 	{
-		player.Save();
+		// Only save if this is a planet that refuels you, to avoid an auto-save
+		// of a pilot who is out of fuel with no help in sight.
+		if(planet.HasSpaceport())
+			player.Save();
 		callback();
 		GetUI()->Pop(this);
 	}
@@ -109,9 +111,14 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 		GetUI()->Push(new OutfitterPanel(data, player));
 		return true;
 	}
-	else if(key == 'j' || key == 'h')
+	else if(key == 'j')
 	{
-		GetUI()->Push(new ConversationPanel(player, *data.Conversations().Get("free worlds intro")));
+		// TODO: jobs.
+		return true;
+	}
+	else if(key == 'h')
+	{
+		// TODO: hiring.
 		return true;
 	}
 	else if(key == data.Keys().Get(Key::MAP))
@@ -138,47 +145,5 @@ bool PlanetPanel::Click(int x, int y)
 	if(key != '\0')
 		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
 	
-	return true;
-}
-
-
-
-bool PlanetPanel::FlightCheck()
-{
-	if(!player.GetShip())
-		return false;
-	
-	const Outfit &attributes = player.GetShip()->Attributes();
-	double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
-	if(!attributes.Get("thrust"))
-	{
-		GetUI()->Push(new ConversationPanel(player,
-			*data.Conversations().Get("flight check: no thrusters")));
-		return false;
-	}
-	if(attributes.Get("thrusting energy") > energy)
-	{
-		GetUI()->Push(new ConversationPanel(player,
-			*data.Conversations().Get("flight check: no thruster energy")));
-		return false;
-	}
-	if(!attributes.Get("turn"))
-	{
-		GetUI()->Push(new ConversationPanel(player,
-			*data.Conversations().Get("flight check: no steering")));
-		return false;
-	}
-	if(attributes.Get("turning energy") > energy)
-	{
-		GetUI()->Push(new ConversationPanel(player,
-			*data.Conversations().Get("flight check: no steering energy")));
-		return false;
-	}
-	if(attributes.Get("heat generation") * 10. > player.GetShip()->Mass())
-	{
-		GetUI()->Push(new ConversationPanel(player,
-			*data.Conversations().Get("flight check: overheating")));
-		return false;
-	}
 	return true;
 }

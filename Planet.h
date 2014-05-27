@@ -51,11 +51,11 @@ public:
 	// Check if this planet has a shipyard.
 	bool HasShipyard() const;
 	// Get the list of ships in the shipyard.
-	const std::vector<const Ship *> &Shipyard() const;
+	const Sale<Ship> &Shipyard() const;
 	// Check if this planet has an outfitter.
 	bool HasOutfitter() const;
 	// Get the list of outfits available from the outfitter.
-	const std::vector<const Outfit *> &Outfitter() const;
+	const Sale<Outfit> &Outfitter() const;
 	
 	
 private:
@@ -68,8 +68,8 @@ private:
 	std::vector<const Sale<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
-	mutable std::vector<const Ship *> shipyard;
-	mutable std::vector<const Outfit *> outfitter;
+	mutable Sale<Ship> shipyard;
+	mutable Sale<Outfit> outfitter;
 };
 
 

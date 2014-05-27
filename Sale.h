@@ -30,7 +30,7 @@ public:
 	
 	void Add(const Sale<Item> &other);
 	
-	void StoreList(std::vector<const Item *> *list) const;
+	bool Has(const Item *item) const;
 };
 
 
@@ -53,17 +53,9 @@ void Sale<Item>::Add(const Sale<Item> &other)
 
 
 template <class Item>
-void Sale<Item>::StoreList(std::vector<const Item *> *list) const
+bool Sale<Item>::Has(const Item *item) const
 {
-	list->clear();
-	for(const Item *item : *this)
-		list->push_back(item);
-	
-	std::sort(list->begin(), list->end(),
-		[](const Item *a, const Item *b)
-		{
-			return (a->Cost() > b->Cost());
-		});
+	return this->find(item) != this->end();
 }
 
 
