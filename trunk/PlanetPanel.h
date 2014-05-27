@@ -44,10 +44,6 @@ protected:
 	
 	
 private:
-	bool FlightCheck();
-	
-	
-private:
 	const GameData &data;
 	PlayerInfo &player;
 	Callback callback;

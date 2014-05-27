@@ -108,14 +108,12 @@ bool Planet::HasShipyard() const
 
 
 // Get the list of ships in the shipyard.
-const std::vector<const Ship *> &Planet::Shipyard() const
+const Sale<Ship> &Planet::Shipyard() const
 {
 	if(shipyard.empty() && !shipSales.empty())
 	{
-		Sale<Ship> ships;
 		for(const Sale<Ship> *sale : shipSales)
-			ships.Add(*sale);
-		ships.StoreList(&shipyard);
+			shipyard.Add(*sale);
 	}
 	
 	return shipyard;
@@ -132,14 +130,12 @@ bool Planet::HasOutfitter() const
 
 
 // Get the list of outfits available from the outfitter.
-const std::vector<const Outfit *> &Planet::Outfitter() const
+const Sale<Outfit> &Planet::Outfitter() const
 {
 	if(outfitter.empty() && !outfitSales.empty())
 	{
-		Sale<Outfit> outfits;
 		for(const Sale<Outfit> *sale : outfitSales)
-			outfits.Add(*sale);
-		outfits.StoreList(&outfitter);
+			outfitter.Add(*sale);
 	}
 	
 	return outfitter;
