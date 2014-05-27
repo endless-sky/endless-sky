@@ -33,6 +33,16 @@ namespace {
 	static const int SIDE_WIDTH = 250;
 	static const int TILE_SIZE = 250;
 	
+	static const vector<string> CATEGORIES = {
+		"Light Freighter",
+		"Interceptor",
+		"Heavy Freighter",
+		"Light Warship",
+		"Heavy Warship",
+		"Fighter",
+		"Drone"
+	};
+	
 	// Draw the given ship at the given location, zoomed so it will fit within
 	// one cell of the grid.
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected)
@@ -58,7 +68,7 @@ namespace {
 
 
 ShipyardPanel::ShipyardPanel(const GameData &data, PlayerInfo &player)
-	: data(data), player(player),
+	: data(data), player(player), planet(player.GetPlanet()),
 	playerShip(player.GetShip()), selectedShip(nullptr),
 	mainScroll(0), sideScroll(0)
 {
@@ -66,6 +76,9 @@ ShipyardPanel::ShipyardPanel(const GameData &data, PlayerInfo &player)
 	
 	if(playerShip)
 		playerShipInfo.Update(*playerShip);
+	
+	for(const pair<string, Ship> &it : data.Ships())
+		catalog[it.second.Attributes().Category()].insert(it.first);
 }
 
 
@@ -102,6 +115,10 @@ void ShipyardPanel::Draw() const
 		(Screen::Height() - SIDE_WIDTH) / -2 - sideScroll + 40);
 	for(shared_ptr<Ship> ship : player.Ships())
 	{
+		// Skip any ships that are "absent" for whatever reason.
+		if(ship->GetSystem() != player.GetSystem())
+			continue;
+		
 		bool isSelected = (ship.get() == playerShip);
 		DrawShip(*ship, point, isSelected);
 		zones.emplace_back(point.X(), point.Y(), TILE_SIZE / 2, TILE_SIZE / 2, ship.get());
@@ -166,48 +183,91 @@ void ShipyardPanel::Draw() const
 	point = begin;
 	float endX = Screen::Width() * .5f - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
-	for(const auto &it : data.Ships())
+	for(const string &category : CATEGORIES)
 	{
-		bool isSelected = (&it.second == selectedShip);
-		DrawShip(it.second, point, isSelected);
-		zones.emplace_back(point.X(), point.Y(), columnWidth / 2, TILE_SIZE / 2, &it.second);
+		map<string, set<string>>::const_iterator it = catalog.find(category);
+		if(it == catalog.end())
+			continue;
 		
-		if(isSelected)
+		// This should never happen, but bail out if we don't know what planet
+		// we are on (meaning there's no way to know what ships are for sale).
+		if(!planet)
+			break;
+		
+		Point side(Screen::Width() * -.5 + 10., point.Y() - TILE_SIZE / 2 + 10);
+		point.Y() += bigFont.Height() + 20;
+		nextY += bigFont.Height() + 20;
+		
+		bool isEmpty = true;
+		for(const string &name : it->second)
 		{
-			Color color(.2, 1.);
+			const Ship *ship = data.Ships().Get(name);
+			if(!planet->Shipyard().Has(ship))
+				continue;
+			isEmpty = false;
 			
-			float before = point.X() - TILE_SIZE / 2 - Screen::Width() * -.5;
-			FillShader::Fill(Point(Screen::Width() * -.5 + .5 * before, point.Y() + 121.),
-				Point(before, 1.), color);
+			bool isSelected = (ship == selectedShip);
+			DrawShip(*ship, point, isSelected);
+			zones.emplace_back(point.X(), point.Y(), columnWidth / 2, TILE_SIZE / 2, ship);
+		
+			if(isSelected)
+			{
+				Color color(.2, 1.);
 			
-			float after = endX - (point.X() + TILE_SIZE / 2);
-			FillShader::Fill(Point(endX - .5 * after, point.Y() + 121.),
-				Point(after, 1.), color);
+				float before = point.X() - TILE_SIZE / 2 - Screen::Width() * -.5;
+				FillShader::Fill(Point(Screen::Width() * -.5 + .5 * before, point.Y() + 121.),
+					Point(before, 1.), color);
 			
-			// The center of the display needs to be between these two values:
-			int panelAndAHalf = (selectedShipInfo.PanelWidth() * 3) / 2;
-			double minX = Screen::Width() / -2 + panelAndAHalf;
-			double maxX = Screen::Width() / -2 + mainWidth - panelAndAHalf;
-			Point center(
-				max(minX, min(maxX, point.X())) - selectedShipInfo.PanelWidth() / 2,
-				point.Y() + TILE_SIZE / 2);
-			Point offset(selectedShipInfo.PanelWidth(), 0.);
+				float after = endX - (point.X() + TILE_SIZE / 2);
+				FillShader::Fill(Point(endX - .5 * after, point.Y() + 121.),
+					Point(after, 1.), color);
 			
-			selectedShipInfo.DrawDescription(center - offset);
-			selectedShipInfo.DrawAttributes(center);
-			selectedShipInfo.DrawOutfits(center + offset);
+				// The center of the display needs to be between these two values:
+				int panelAndAHalf = (selectedShipInfo.PanelWidth() * 3) / 2;
+				double minX = Screen::Width() / -2 + panelAndAHalf;
+				double maxX = Screen::Width() / -2 + mainWidth - panelAndAHalf;
+				Point center(
+					max(minX, min(maxX, point.X())) - selectedShipInfo.PanelWidth() / 2,
+					point.Y() + TILE_SIZE / 2);
+				Point offset(selectedShipInfo.PanelWidth(), 0.);
 			
-			nextY += selectedShipInfo.MaximumHeight();
+				selectedShipInfo.DrawDescription(center - offset);
+				selectedShipInfo.DrawAttributes(center);
+				selectedShipInfo.DrawOutfits(center + offset);
+			
+				nextY += selectedShipInfo.MaximumHeight();
+			}
+		
+			point.X() += columnWidth;
+			if(point.X() >= endX)
+			{
+				point.X() = begin.X();
+				point.Y() = nextY;
+				nextY += TILE_SIZE;
+			}
 		}
 		
-		point.X() += columnWidth;
-		if(point.X() >= endX)
+		if(!isEmpty)
 		{
-			point.X() = begin.X();
-			point.Y() = nextY;
-			nextY += TILE_SIZE;
+			bigFont.Draw(category, side, bright);
+			
+			if(point.X() != begin.X())
+			{
+				point.X() = begin.X();
+				point.Y() = nextY;
+				nextY += TILE_SIZE;
+			}
+			point.Y() += 40;
+			nextY += 40;
+		}
+		else
+		{
+			point.Y() -= bigFont.Height() + 20;
+			nextY -= bigFont.Height() + 20;
 		}
 	}
+	// This is how much Y space was actually used.
+	nextY -= 40 + TILE_SIZE;
 	
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen?
