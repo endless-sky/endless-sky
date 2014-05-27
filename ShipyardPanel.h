@@ -16,10 +16,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 #include "ShipInfoDisplay.h"
 
+#include <map>
+#include <set>
 #include <string>
 #include <vector>
 
 class GameData;
+class Planet;
 class PlayerInfo;
 class Ship;
 
@@ -68,6 +71,7 @@ private:
 private:
 	const GameData &data;
 	PlayerInfo &player;
+	const Planet *planet;
 	
 	const Ship *playerShip;
 	const Ship *selectedShip;
@@ -82,6 +86,8 @@ private:
 	bool dragMain;
 	
 	mutable std::vector<ClickZone> zones;
+	
+	std::map<std::string, std::set<std::string>> catalog;
 };
 
 

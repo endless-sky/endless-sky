@@ -1,6 +1,7 @@
 ship "Star Barge"
 	sprite "ship/star barge"
 	attributes
+		category "Light Freighter"
 		"required crew" 1
 		"bunks" 4
 		"drag" 4.4
@@ -27,6 +28,7 @@ ship "Star Barge"
 ship "Freighter"
 	sprite "ship/freighter"
 	attributes
+		category "Light Freighter"
 		"required crew" 1
 		"bunks" 4
 		"drag" 5.6
@@ -58,6 +60,7 @@ ship "Freighter"
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 	attributes
+		category "Heavy Freighter"
 		"required crew" 1
 		"bunks" 4
 		"drag" 1.4
@@ -97,6 +100,7 @@ ship "Bulk Freighter"
 ship "Shuttle"
 	sprite "ship/shuttle"
 	attributes
+		category "Light Freighter"
 		"required crew" 1
 		"bunks" 8
 		"drag" .8
@@ -123,6 +127,7 @@ ship "Shuttle"
 ship "Scout"
 	sprite "ship/scout"
 	attributes
+		category "Light Freighter"
 		"required crew" 1
 		"bunks" 3
 		"drag" .6
@@ -149,6 +154,7 @@ ship "Scout"
 ship "Clipper"
 	sprite "ship/clipper"
 	attributes
+		category "Light Freighter"
 		"required crew" 1
 		"bunks" 3
 		"drag" .6
@@ -178,6 +184,7 @@ ship "Clipper"
 ship "Argosy"
 	sprite "ship/argosy"
 	attributes
+		category "Heavy Freighter"
 		"required crew" 1
 		"bunks" 3
 		"drag" 1.3
@@ -210,6 +217,7 @@ ship "Argosy"
 ship "Corvette"
 	sprite "ship/corvette"
 	attributes
+		category "Light Warship"
 		"required crew" 17
 		"bunks" 28
 		"drag" 1.6
@@ -248,6 +256,7 @@ ship "Corvette"
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
 	attributes
+		category "Drone"
 		cost 85000
 		"drag" 2.8
 		"mass" 100
@@ -266,6 +275,7 @@ ship "Surveillance Drone"
 ship "Combat Drone"
 	sprite "ship/combat drone"
 	attributes
+		category "Drone"
 		cost 85000
 		"drag" 2.8
 		"mass" 100
@@ -289,6 +299,7 @@ ship "Combat Drone"
 ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
+		category "Interceptor"
 		cost 85000
 		"required crew" 1
 		"bunks" 3
@@ -320,6 +331,7 @@ ship "Sparrow"
 ship "Hawk"
 	sprite "ship/hawk"
 	attributes
+		category "Interceptor"
 		cost 160000
 		"required crew" 1
 		"bunks" 3
@@ -349,6 +361,7 @@ ship "Hawk"
 ship "Monitor"
 	sprite "ship/monitor"
 	attributes
+		category "Light Warship"
 		cost 840000
 		"required crew" 10
 		"bunks" 16
@@ -387,6 +400,7 @@ ship "Monitor"
 ship "Fury"
 	sprite "ship/fury"
 	attributes
+		category "Interceptor"
 		"required crew" 1
 		"bunks" 3
 		"drag" .6
@@ -417,6 +431,7 @@ ship "Fury"
 ship "Destroyer"
 	sprite "ship/destroyer"
 	attributes
+		category "Heavy Warship"
 		"required crew" 1
 		"bunks" 3
 		"drag" 1.8
@@ -453,6 +468,7 @@ ship "Destroyer"
 ship "Cruiser"
 	sprite "ship/big"
 	attributes
+		category "Heavy Warship"
 		"required crew" 300
 		"bunks" 500
 		"drag" 4.3

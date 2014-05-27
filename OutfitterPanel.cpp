@@ -27,8 +27,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 
-#include <iostream>
-
 using namespace std;
 
 namespace {
@@ -232,10 +230,10 @@ void OutfitterPanel::Draw() const
 			break;
 		
 		Point side(Screen::Width() * -.5 + 10., point.Y() - TILE_SIZE / 2 + 10);
-		bigFont.Draw(category, side, bright);
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
+		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
 			const Outfit *outfit = data.Outfits().Get(name);
@@ -243,6 +241,7 @@ void OutfitterPanel::Draw() const
 					&& !playerShip->OutfitCount(outfit)
 					&& !available[outfit])
 				continue;
+			isEmpty = false;
 			
 			bool isSelected = (outfit == selectedOutfit);
 			bool isOwned = playerShip && playerShip->OutfitCount(outfit);
@@ -295,14 +294,24 @@ void OutfitterPanel::Draw() const
 			}
 		}
 		
-		if(point.X() != begin.X())
+		if(!isEmpty)
 		{
-			point.X() = begin.X();
-			point.Y() = nextY;
-			nextY += TILE_SIZE;
+			bigFont.Draw(category, side, bright);
+			
+			if(point.X() != begin.X())
+			{
+				point.X() = begin.X();
+				point.Y() = nextY;
+				nextY += TILE_SIZE;
+			}
+			point.Y() += 40;
+			nextY += 40;
 		}
-		point.Y() += 40;
-		nextY += 40;
+		else
+		{
+			point.Y() -= bigFont.Height() + 20;
+			nextY -= bigFont.Height() + 20;
+		}
 	}
 	// This is how much Y space was actually used.
 	nextY -= 40 + TILE_SIZE;
