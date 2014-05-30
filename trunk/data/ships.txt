@@ -16,8 +16,8 @@ ship "Star Barge"
 	outfits
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
-		"Small Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 	engine -9 -38
 	engine 9 -38
@@ -43,8 +43,8 @@ ship "Freighter"
 	outfits
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
-		"Medium Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-EE Fuel Cell"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
@@ -76,7 +76,7 @@ ship "Bulk Freighter"
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Fusion Reactor"
-		"Medium Battery Pack"
+		"LP144a Battery Pack"
 		"Tiny Shield Generator"
 		"Sidewinder Missile Launcher" 1
 		"Sidewinder Missile" 40
@@ -115,8 +115,8 @@ ship "Shuttle"
 	outfits
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
-		"Tiny Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 	engine 6 -30
 	engine -6 -30
@@ -142,8 +142,8 @@ ship "Scout"
 	outfits
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
-		"Small Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 	engine -8 -53
 	engine 8 -53
@@ -169,8 +169,8 @@ ship "Clipper"
 	outfits
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
-		"Small Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 		"Energy Blaster" 2
 	engine -27 -53
@@ -200,7 +200,7 @@ ship "Argosy"
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
 		"Fission Reactor"
-		"Tiny Battery Pack"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 		"Water Coolant System"
 		"Heavy Laser Turret" 2
@@ -234,7 +234,7 @@ ship "Corvette"
 		"X2200 Ion Steering"
 		"Fission Reactor"
 		"Water Coolant System"
-		"Tiny Battery Pack"
+		"LP036a Battery Pack"
 		"Energy Blaster" 2
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 80
@@ -315,8 +315,8 @@ ship "Sparrow"
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
-		"Tiny Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
 		"Beam Laser" 2
 		"Tiny Shield Generator"
 	engine -4 -35
@@ -347,8 +347,8 @@ ship "Hawk"
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
-		"Small Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
 		"Heavy Laser" 2
 		"Tiny Shield Generator"
 	engine -13 -36
@@ -379,7 +379,7 @@ ship "Monitor"
 		"X2200 Ion Steering"
 		"Fusion Reactor"
 		"Water Coolant System"
-		"Medium Battery Pack"
+		"LP144a Battery Pack"
 		"Quad Blaster Turret" 3
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
@@ -415,8 +415,8 @@ ship "Fury"
 	outfits
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
-		"Small Fuel Cell"
-		"Tiny Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 		"Energy Blaster" 4
 	engine -20 -36
@@ -447,7 +447,7 @@ ship "Destroyer"
 		"X2700 Ion Thruster"
 		"X1200 Ion Steering"
 		"Fusion Reactor"
-		"Medium Battery Pack"
+		"LP144a Battery Pack"
 		"Tiny Shield Generator"
 		"Heavy Anti-Missile Turret"
 		"Quad Blaster Turret" 2
@@ -485,7 +485,7 @@ ship "Cruiser"
 		"X3200 Ion Steering"
 		"Fusion Reactor"
 		"Fission Reactor"
-		"Medium Battery Pack"
+		"LP144a Battery Pack"
 		"Tiny Shield Generator"
 		"Quad Blaster Turret" 3
 		"Heavy Anti-Missile Turret"

@@ -1,53 +1,89 @@
-outfit "Tiny Battery Pack"
+outfit "LP036a Battery Pack"
 	category "Systems"
 	cost 8000
-	thumbnail "outfit/battery"
+	thumbnail "outfit/tiny battery"
 	"mass" 10
 	"outfit space" -10
 	"energy capacity" 1000
 
-outfit "Small Battery Pack"
+outfit "LP072a Battery Pack"
 	category "Systems"
 	cost 20000
-	thumbnail "outfit/battery"
+	thumbnail "outfit/small battery"
 	"mass" 20
 	"outfit space" -20
 	"energy capacity" 2200
 
-outfit "Medium Battery Pack"
+outfit "LP144a Battery Pack"
 	category "Systems"
 	cost 45000
-	thumbnail "outfit/battery"
+	thumbnail "outfit/medium battery"
 	"mass" 40
 	"outfit space" -40
 	"energy capacity" 4800
 
-outfit "Tiny Fuel Cell"
+outfit "LP288a Battery Pack"
 	category "Systems"
-	cost 30000
-	thumbnail "outfit/generator"
+	cost 100000
+	thumbnail "outfit/large battery"
+	"mass" 80
+	"outfit space" -80
+	"energy capacity" 10400
+
+outfit "LP576a Battery Pack"
+	category "Systems"
+	cost 250000
+	thumbnail "outfit/huge battery"
+	"mass" 160
+	"outfit space" -160
+	"energy capacity" 23000
+
+
+outfit "nGVF-AA Fuel Cell"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
 	"outfit space" -20
 	"energy generation" 1
 	"heat generation" 5
 
-outfit "Small Fuel Cell"
+outfit "nGVF-BB Fuel Cell"
 	category "Systems"
-	cost 70000
-	thumbnail "outfit/generator"
+	cost 31000
+	thumbnail "outfit/small fuel cell"
+	"mass" 30
+	"outfit space" -30
+	"energy generation" 1.5
+	"heat generation" 8
+
+outfit "nGVF-CC Fuel Cell"
+	category "Systems"
+	cost 48000
+	thumbnail "outfit/medium fuel cell"
 	"mass" 40
 	"outfit space" -40
 	"energy generation" 2.2
 	"heat generation" 10
 
-outfit "Medium Fuel Cell"
+outfit "nGVF-DD Fuel Cell"
 	category "Systems"
-	cost 150000
-	thumbnail "outfit/generator"
+	cost 75000
+	thumbnail "outfit/large fuel cell"
+	"mass" 60
+	"outfit space" -60
+	"energy generation" 3.3
+	"heat generation" 16
+
+outfit "nGVF-EE Fuel Cell"
+	category "Systems"
+	cost 118000
+	thumbnail "outfit/huge fuel cell"
 	"mass" 80
 	"outfit space" -80
-	"energy generation" 4.8
+	"energy generation" 5
 	"heat generation" 20
+
 
 outfit "Fission Reactor"
 	category "Systems"
@@ -67,6 +103,7 @@ outfit "Fusion Reactor"
 	"energy generation" 4
 	"heat generation" 50
 
+
 outfit "Water Coolant System"
 	category "Systems"
 	cost 10000
@@ -85,6 +122,7 @@ outfit "Liquid Nitrogen Cooler"
 	"energy generation" -.2
 	"heat generation" -40
 
+
 outfit "Tiny Shield Generator"
 	category "Systems"
 	cost 20000
@@ -92,6 +130,7 @@ outfit "Tiny Shield Generator"
 	"mass" 15
 	"outfit space" -15
 	"shield generation" .2
+
 
 outfit "Ramscoop"
 	category "Systems"
