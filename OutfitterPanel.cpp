@@ -39,6 +39,7 @@ namespace {
 		"Missiles",
 		"Turrets",
 		"Systems",
+		"Power",
 		"Engines"
 	};
 	
