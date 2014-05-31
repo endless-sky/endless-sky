@@ -89,7 +89,7 @@ outfit "Laser Turret"
 	"weapon capacity" -25
 	"turret mounts" -1
 	weapon
-		sprite "projectile/laser"
+		sprite "projectile/2x laser"
 			"frame rate" 1
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
@@ -110,7 +110,7 @@ outfit "Heavy Laser Turret"
 	"weapon capacity" -45
 	"turret mounts" -1
 	weapon
-		sprite "projectile/heavy laser"
+		sprite "projectile/2x heavy laser"
 			"frame rate" 1
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
