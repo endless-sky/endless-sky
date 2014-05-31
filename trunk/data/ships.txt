@@ -380,7 +380,7 @@ ship "Monitor"
 		"Fusion Reactor"
 		"Water Coolant System"
 		"LP144a Battery Pack"
-		"Quad Blaster Turret" 3
+		"Blaster Turret" 3
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
@@ -450,7 +450,7 @@ ship "Destroyer"
 		"LP144a Battery Pack"
 		"Tiny Shield Generator"
 		"Heavy Anti-Missile Turret"
-		"Quad Blaster Turret" 2
+		"Blaster Turret" 2
 		"Particle Cannon" 3
 		"Liquid Nitrogen Cooler"
 	engine -27 -108
@@ -487,7 +487,7 @@ ship "Cruiser"
 		"Fission Reactor"
 		"LP144a Battery Pack"
 		"Tiny Shield Generator"
-		"Quad Blaster Turret" 3
+		"Blaster Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Particle Cannon" 4
 		"Torpedo Launcher" 2

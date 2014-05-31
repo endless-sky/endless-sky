@@ -146,8 +146,8 @@ outfit "Fission Reactor"
 	category "Power"
 	cost 3000000
 	thumbnail "outfit/fission"
-	"mass" 80
-	"outfit space" -80
+	"mass" 100
+	"outfit space" -100
 	"energy generation" 16.8
 	"heat generation" 40
 
@@ -155,8 +155,8 @@ outfit "Breeder Reactor"
 	category "Power"
 	cost 5000000
 	thumbnail "outfit/breeder"
-	"mass" 100
-	"outfit space" -100
+	"mass" 120
+	"outfit space" -120
 	"energy generation" 24.3
 	"heat generation" 48
 
@@ -164,8 +164,8 @@ outfit "Fusion Reactor"
 	category "Power"
 	cost 10000000
 	thumbnail "outfit/fusion"
-	"mass" 120
-	"outfit space" -120
+	"mass" 150
+	"outfit space" -150
 	"energy generation" 33.6
 	"heat generation" 50
 
@@ -173,8 +173,8 @@ outfit "Armageddon Core"
 	category "Power"
 	cost 17000000
 	thumbnail "outfit/core"
-	"mass" 160
-	"outfit space" -160
+	"mass" 200
+	"outfit space" -200
 	"energy generation" 48.7
 	"heat generation" 95
 
