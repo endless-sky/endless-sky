@@ -1,7 +1,7 @@
 outfit "Energy Blaster"
 	category "Guns"
 	cost 16000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/blaster"
 	"mass" 5
 	"outfit space" -5
 	"weapon capacity" -5
@@ -21,7 +21,7 @@ outfit "Energy Blaster"
 outfit "Blaster Turret"
 	category "Turrets"
 	cost 100000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/blaster turret"
 	"mass" 15
 	"outfit space" -15
 	"weapon capacity" -15
@@ -38,30 +38,10 @@ outfit "Blaster Turret"
 		"shield damage" 7
 		"hull damage" 7
 
-outfit "Quad Blaster Turret"
-	category "Turrets"
-	cost 220000
-	thumbnail "outfit/sidewinder"
-	"mass" 30
-	"outfit space" -30
-	"weapon capacity" -30
-	"turret mounts" -1
-	weapon
-		sprite "projectile/blaster"
-		"hit effect" "blaster impact"
-		"inaccuracy" 3
-		"velocity" 7
-		"lifetime" 60
-		"reload" 3
-		"firing energy" 10
-		"firing heat" 30
-		"shield damage" 7
-		"hull damage" 7
-
 outfit "Beam Laser"
 	category "Guns"
 	cost 29000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/laser"
 	"mass" 8
 	"outfit space" -8
 	"weapon capacity" -8
@@ -103,7 +83,7 @@ outfit "Heavy Laser"
 outfit "Laser Turret"
 	category "Turrets"
 	cost 80000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/laser turret"
 	"mass" 25
 	"outfit space" -25
 	"weapon capacity" -25
