@@ -185,7 +185,7 @@ outfit "Meteor Missile"
 outfit "Meteor Missile Launcher"
 	category "Missiles"
 	cost 15000
-	thumbnail "outfit/meteor"
+	thumbnail "outfit/meteor launcher"
 	"mass" 10
 	"outfit space" -10
 	"weapon capacity" -10
@@ -261,7 +261,7 @@ outfit "Javelin"
 outfit "Javelin Pod"
 	category "Missiles"
 	cost 20000
-	thumbnail "outfit/javelin"
+	thumbnail "outfit/javelin pod"
 	"mass" 12
 	"outfit space" -12
 	"weapon capacity" -12
