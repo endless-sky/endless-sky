@@ -62,7 +62,7 @@ outfit "Beam Laser"
 outfit "Heavy Laser"
 	category "Guns"
 	cost 60000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/heavy laser"
 	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
@@ -223,7 +223,7 @@ outfit "Sidewinder Missile"
 outfit "Sidewinder Missile Launcher"
 	category "Missiles"
 	cost 60000
-	thumbnail "outfit/sidewinder"
+	thumbnail "outfit/sidewinder launcher"
 	"mass" 15
 	"outfit space" -15
 	"weapon capacity" -15
@@ -292,7 +292,7 @@ outfit "Torpedo"
 outfit "Torpedo Launcher"
 	category "Missiles"
 	cost 80000
-	thumbnail "outfit/torpedo"
+	thumbnail "outfit/torpedo launcher"
 	"mass" 25
 	"outfit space" -25
 	"weapon capacity" -25
@@ -330,7 +330,7 @@ outfit "Heavy Rocket"
 outfit "Heavy Rocket Launcher"
 	category "Missiles"
 	cost 40000
-	thumbnail "outfit/rocket"
+	thumbnail "outfit/rocket launcher"
 	"mass" 20
 	"outfit space" -20
 	"weapon capacity" -20

@@ -9,7 +9,7 @@ ship "Star Barge"
 		"shields" 800
 		"hull" 1200
 		"cargo space" 60
-		"outfit space" 140
+		"outfit space" 160
 		"weapon capacity" 10
 		"engine capacity" 60
 		"fuel capacity" 300
@@ -19,6 +19,7 @@ ship "Star Barge"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine -9 -38
 	engine 9 -38
 	gun 0 37
@@ -36,7 +37,7 @@ ship "Freighter"
 		"shields" 4000
 		"hull" 2000
 		"cargo space" 60
-		"outfit space" 100
+		"outfit space" 120
 		"weapon capacity" 10
 		"engine capacity" 60
 		"fuel capacity" 300
@@ -48,6 +49,7 @@ ship "Freighter"
 		"Tiny Shield Generator"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
+		"Hyperdrive"
 	engine -12 -105
 	engine 12 -105
 	turret 0 40
@@ -68,7 +70,7 @@ ship "Bulk Freighter"
 		"shields" 4000
 		"hull" 10000
 		"cargo space" 600
-		"outfit space" 100
+		"outfit space" 120
 		"weapon capacity" 10
 		"engine capacity" 60
 		"fuel capacity" 300
@@ -84,6 +86,7 @@ ship "Bulk Freighter"
 		"Torpedo" 30
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
+		"Hyperdrive"
 	engine -25 -210
 	engine 25 -210
 	gun -25 210
@@ -108,7 +111,7 @@ ship "Shuttle"
 		"shields" 1000
 		"hull" 400
 		"cargo space" 20
-		"outfit space" 85
+		"outfit space" 105
 		"weapon capacity" 5
 		"engine capacity" 50
 		"fuel capacity" 400
@@ -118,6 +121,7 @@ ship "Shuttle"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine 6 -30
 	engine -6 -30
 	gun 0 30
@@ -135,7 +139,7 @@ ship "Scout"
 		"shields" 3000
 		"hull" 600
 		"cargo space" 15
-		"outfit space" 90
+		"outfit space" 110
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
@@ -145,6 +149,7 @@ ship "Scout"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine -8 -53
 	engine 8 -53
 	explode "tiny explosion" 10
@@ -162,7 +167,7 @@ ship "Clipper"
 		"shields" 5000
 		"hull" 900
 		"cargo space" 15
-		"outfit space" 90
+		"outfit space" 110
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
@@ -173,6 +178,7 @@ ship "Clipper"
 		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 		"Energy Blaster" 2
+		"Hyperdrive"
 	engine -27 -53
 	engine 27 -53
 	gun -13 17
@@ -192,7 +198,7 @@ ship "Argosy"
 		"shields" 8000
 		"hull" 4000
 		"cargo space" 15
-		"outfit space" 90
+		"outfit space" 110
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
@@ -204,6 +210,7 @@ ship "Argosy"
 		"Tiny Shield Generator"
 		"Water Coolant System"
 		"Heavy Laser Turret" 2
+		"Hyperdrive"
 	engine -34 -85
 	engine -24 -87
 	engine 34 -85
@@ -240,6 +247,7 @@ ship "Corvette"
 		"Sidewinder Missile" 80
 		"Laser Turret" 2
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine -26 -106
 	engine 26 -106
 	gun -12 78
@@ -308,7 +316,7 @@ ship "Sparrow"
 		"shields" 1500
 		"hull" 300
 		"cargo space" 15
-		"outfit space" 100
+		"outfit space" 120
 		"weapon capacity" 20
 		"engine capacity" 50
 		"fuel capacity" 300
@@ -319,6 +327,7 @@ ship "Sparrow"
 		"LP036a Battery Pack"
 		"Beam Laser" 2
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine -4 -35
 	engine 4 -35
 	gun -7 9
@@ -340,7 +349,7 @@ ship "Hawk"
 		"shields" 2500
 		"hull" 500
 		"cargo space" 30
-		"outfit space" 120
+		"outfit space" 140
 		"weapon capacity" 36
 		"engine capacity" 50
 		"fuel capacity" 300
@@ -351,6 +360,7 @@ ship "Hawk"
 		"LP036a Battery Pack"
 		"Heavy Laser" 2
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine -13 -36
 	engine 13 -36
 	gun -13 11
@@ -370,7 +380,7 @@ ship "Monitor"
 		"shields" 3900
 		"hull" 1800
 		"cargo space" 40
-		"outfit space" 220
+		"outfit space" 240
 		"weapon capacity" 120
 		"engine capacity" 100
 		"fuel capacity" 500
@@ -385,6 +395,7 @@ ship "Monitor"
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
 		"Tiny Shield Generator"
+		"Hyperdrive"
 	engine -20 -95
 	engine 20 -95
 	turret -18 20
@@ -408,7 +419,7 @@ ship "Fury"
 		"shields" 2000
 		"hull" 400
 		"cargo space" 15
-		"outfit space" 90
+		"outfit space" 110
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
@@ -419,6 +430,7 @@ ship "Fury"
 		"LP036a Battery Pack"
 		"Tiny Shield Generator"
 		"Energy Blaster" 4
+		"Hyperdrive"
 	engine -20 -36
 	engine 20 -36
 	gun -10 32
@@ -439,7 +451,7 @@ ship "Destroyer"
 		"shields" 10000
 		"hull" 5000
 		"cargo space" 15
-		"outfit space" 90
+		"outfit space" 110
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
@@ -453,6 +465,7 @@ ship "Destroyer"
 		"Blaster Turret" 2
 		"Particle Cannon" 3
 		"Liquid Nitrogen Cooler"
+		"Hyperdrive"
 	engine -27 -108
 	engine 27 -108
 	turret 0 25
@@ -493,6 +506,7 @@ ship "Cruiser"
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Liquid Nitrogen Cooler"
+		"Hyperdrive"
 	engine -39 -118
 	engine 39 -118
 	turret 0 0
