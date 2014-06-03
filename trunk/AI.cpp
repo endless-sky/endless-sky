@@ -119,6 +119,7 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
 			double range = it->Position().Distance(ship.Position());
+			range += 5000. * it->IsDisabled();
 			if(range < closest)
 			{
 				closest = range;
