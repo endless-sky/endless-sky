@@ -59,8 +59,9 @@ void GameData::BeginLoad(const char * const *argv)
 		if(fs::is_directory(path))
 			paths.push_back(path);
 	}
-	if(!paths.empty())
-		basePath = paths.back();
+	if(paths.empty())
+		paths.push_back("./");
+	basePath = paths.back();
 	
 	// Reverse the order: we will start by reading the last directories on the
 	// path, and allow them to be overridden by things in earlier ones.
