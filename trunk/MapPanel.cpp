@@ -52,6 +52,8 @@ MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 			{
 				if(!player.HasSeen(link))
 					continue;
+				if(!player.HasVisited(link) && !player.HasVisited(system))
+					continue;
 				
 				auto it = distance.find(link);
 				if(it != distance.end())
