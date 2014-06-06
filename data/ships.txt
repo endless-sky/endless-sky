@@ -2,21 +2,22 @@ ship "Star Barge"
 	sprite "ship/star barge"
 	attributes
 		category "Light Freighter"
+		cost 90000
 		"required crew" 1
-		"bunks" 4
-		"drag" 4.4
+		"bunks" 3
+		"drag" 2.8
 		"mass" 70
 		"shields" 800
 		"hull" 1200
-		"cargo space" 60
-		"outfit space" 160
+		"cargo space" 50
+		"outfit space" 120
 		"weapon capacity" 10
 		"engine capacity" 60
 		"fuel capacity" 300
 	outfits
-		"X2700 Ion Thruster"
-		"X1200 Ion Steering"
-		"nGVF-CC Fuel Cell"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Hyperdrive"
@@ -104,10 +105,11 @@ ship "Shuttle"
 	sprite "ship/shuttle"
 	attributes
 		category "Light Freighter"
+		cost 60000
 		"required crew" 1
-		"bunks" 8
-		"drag" .8
-		"mass" 40
+		"bunks" 6
+		"drag" 1.5
+		"mass" 50
 		"shields" 1000
 		"hull" 400
 		"cargo space" 20
@@ -311,8 +313,8 @@ ship "Sparrow"
 		cost 85000
 		"required crew" 1
 		"bunks" 3
-		"drag" 1.4
-		"mass" 90
+		"drag" 1.5
+		"mass" 70
 		"shields" 1500
 		"hull" 300
 		"cargo space" 15
@@ -341,25 +343,25 @@ ship "Hawk"
 	sprite "ship/hawk"
 	attributes
 		category "Interceptor"
-		cost 160000
+		cost 350000
 		"required crew" 1
 		"bunks" 3
-		"drag" 1.6
-		"mass" 130
+		"drag" 1.8
+		"mass" 90
 		"shields" 2500
 		"hull" 500
 		"cargo space" 30
-		"outfit space" 140
+		"outfit space" 150
 		"weapon capacity" 36
 		"engine capacity" 50
 		"fuel capacity" 300
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
-		"nGVF-CC Fuel Cell"
+		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"Heavy Laser" 2
-		"D14-RN Shield Generator"
+		"D23-QP Shield Generator"
 		"Hyperdrive"
 	engine -13 -36
 	engine 13 -36
@@ -412,19 +414,20 @@ ship "Fury"
 	sprite "ship/fury"
 	attributes
 		category "Interceptor"
+		cost 280000
 		"required crew" 1
 		"bunks" 3
-		"drag" .6
-		"mass" 20
+		"drag" 1.6
+		"mass" 70
 		"shields" 2000
 		"hull" 400
 		"cargo space" 15
-		"outfit space" 110
-		"weapon capacity" 0
+		"outfit space" 150
+		"weapon capacity" 30
 		"engine capacity" 50
 		"fuel capacity" 600
 	outfits
-		"X2700 Ion Thruster"
+		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
@@ -443,9 +446,10 @@ ship "Fury"
 ship "Rainmaker"
 	sprite "ship/rainmaker"
 	attributes
+		category "Enforcer"
 		"bunks" 4
 		"cargo space" 25
-		"cost" 160000
+		"cost" 780000
 		"drag" 4.6
 		"engine capacity" 40
 		"fuel capacity" 500
@@ -481,25 +485,26 @@ ship "Rainmaker"
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
+		category "Enforcer"
 		"bunks" 2
 		"cargo space" 10
-		"cost" 160000
+		"cost" 590000
 		"drag" 2.3
 		"engine capacity" 40
 		"fuel capacity" 400
 		"gun ports" 2
 		"hull" 200
 		"mass" 60
-		"outfit space" 170
+		"outfit space" 180
 		"required crew" 2
-		"shields" 1200
+		"shields" 1800
 		"weapon capacity" 60
 	outfits
 		"Chipmunk Plasma Thruster" 1
 		"Chipmunk Plasma Steering" 1
 		"LP036a Battery Pack" 1
 		"Particle Cannon" 2
-		"D14-RN Shield Generator" 1
+		"D23-QP Shield Generator" 1
 		"nGVF-BB Fuel Cell" 1
 		"Hyperdrive" 1
 	engine -17 -54

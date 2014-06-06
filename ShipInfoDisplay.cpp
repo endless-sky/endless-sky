@@ -229,7 +229,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	if(attributes.Get("shield generation"))
 	{
 		attributeLabels.push_back("shields charge / max:");
-		attributeValues.push_back(Round(attributes.Get("shield generation"))
+		attributeValues.push_back(Round(60. * attributes.Get("shield generation"))
 			+ " / " + Round(attributes.Get("shields")));
 	}
 	else
@@ -241,7 +241,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	if(attributes.Get("hull repair rate"))
 	{
 		attributeLabels.push_back("hull repair / max:");
-		attributeValues.push_back(Round(attributes.Get("hull repair rate"))
+		attributeValues.push_back(Round(60. * attributes.Get("hull repair rate"))
 			+ " / " + Round(attributes.Get("hull")));
 	}
 	else

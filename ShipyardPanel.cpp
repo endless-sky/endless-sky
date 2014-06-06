@@ -37,6 +37,7 @@ namespace {
 		"Light Freighter",
 		"Interceptor",
 		"Heavy Freighter",
+		"Enforcer",
 		"Light Warship",
 		"Heavy Warship",
 		"Fighter",
