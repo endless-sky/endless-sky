@@ -18,7 +18,7 @@ ship "Star Barge"
 		"X1200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine -9 -38
 	engine 9 -38
@@ -46,7 +46,7 @@ ship "Freighter"
 		"X1200 Ion Steering"
 		"nGVF-EE Fuel Cell"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Hyperdrive"
@@ -79,7 +79,7 @@ ship "Bulk Freighter"
 		"X2200 Ion Steering"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Sidewinder Missile Launcher" 1
 		"Sidewinder Missile" 40
 		"Torpedo Launcher" 1
@@ -120,7 +120,7 @@ ship "Shuttle"
 		"X1200 Ion Steering"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine 6 -30
 	engine -6 -30
@@ -148,7 +148,7 @@ ship "Scout"
 		"X1200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine -8 -53
 	engine 8 -53
@@ -176,7 +176,7 @@ ship "Clipper"
 		"X1200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Energy Blaster" 2
 		"Hyperdrive"
 	engine -27 -53
@@ -207,7 +207,7 @@ ship "Argosy"
 		"X1200 Ion Steering"
 		"Fission Reactor"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Water Coolant System"
 		"Heavy Laser Turret" 2
 		"Hyperdrive"
@@ -246,7 +246,7 @@ ship "Corvette"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 80
 		"Laser Turret" 2
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine -26 -106
 	engine 26 -106
@@ -326,7 +326,7 @@ ship "Sparrow"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"Beam Laser" 2
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine -4 -35
 	engine 4 -35
@@ -359,7 +359,7 @@ ship "Hawk"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"Heavy Laser" 2
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine -13 -36
 	engine 13 -36
@@ -394,7 +394,7 @@ ship "Monitor"
 		"Energy Blaster" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Hyperdrive"
 	engine -20 -95
 	engine 20 -95
@@ -428,7 +428,7 @@ ship "Fury"
 		"X1200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Energy Blaster" 4
 		"Hyperdrive"
 	engine -20 -36
@@ -460,7 +460,7 @@ ship "Destroyer"
 		"X1200 Ion Steering"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Heavy Anti-Missile Turret"
 		"Blaster Turret" 2
 		"Particle Cannon" 3
@@ -499,7 +499,7 @@ ship "Cruiser"
 		"Fusion Reactor"
 		"Fission Reactor"
 		"LP144a Battery Pack"
-		"Tiny Shield Generator"
+		"D14-RN Shield Generator"
 		"Blaster Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Particle Cannon" 4
