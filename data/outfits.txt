@@ -17,13 +17,45 @@ outfit "Liquid Nitrogen Cooler"
 	"heat generation" -40
 
 
-outfit "Tiny Shield Generator"
+outfit "D14-RN Shield Generator"
 	category "Systems"
 	cost 20000
-	thumbnail "outfit/generator"
+	thumbnail "outfit/tiny shield"
 	"mass" 15
 	"outfit space" -15
 	"shield generation" .2
+
+outfit "D23-QP Shield Generator"
+	category "Systems"
+	cost 35000
+	thumbnail "outfit/small shield"
+	"mass" 22
+	"outfit space" -22
+	"shield generation" .32
+
+outfit "D41-HY Shield Generator"
+	category "Systems"
+	cost 65000
+	thumbnail "outfit/medium shield"
+	"mass" 30
+	"outfit space" -30
+	"shield generation" .51
+
+outfit "D67-TM Shield Generator"
+	category "Systems"
+	cost 120000
+	thumbnail "outfit/large shield"
+	"mass" 45
+	"outfit space" -45
+	"shield generation" .82
+
+outfit "D94-YV Shield Generator"
+	category "Systems"
+	cost 200000
+	thumbnail "outfit/huge shield"
+	"mass" 60
+	"outfit space" -60
+	"shield generation" 1.31
 
 
 outfit "Ramscoop"
