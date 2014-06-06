@@ -35,13 +35,13 @@ ship "Freighter"
 		"bunks" 4
 		"drag" 5.6
 		"mass" 70
-		"shields" 4000
+		"shields" 2000
 		"hull" 2000
-		"cargo space" 60
-		"outfit space" 120
-		"weapon capacity" 10
+		"cargo space" 120
+		"outfit space" 230
+		"weapon capacity" 80
 		"engine capacity" 60
-		"fuel capacity" 300
+		"fuel capacity" 400
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -53,9 +53,9 @@ ship "Freighter"
 		"Hyperdrive"
 	engine -12 -105
 	engine 12 -105
-	turret 0 40
-	turret 0 -40
-	turret 0 0
+	turret 0 40 "Blaster Turret"
+	turret 0 -40 "Blaster Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
@@ -275,8 +275,8 @@ ship "Surveillance Drone"
 		"engine capacity" 35
 		"energy generation" 1.5
 	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
 	engine -4 -21
 	engine 4 -21
 	explode "tiny explosion" 15
@@ -296,8 +296,8 @@ ship "Combat Drone"
 		"energy generation" 3.5
 		"energy capacity" 20
 	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
 		"Energy Blaster" 2
 	engine -2 -18
 	engine 2 -18
