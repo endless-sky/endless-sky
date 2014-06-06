@@ -5,14 +5,14 @@ ship "Star Barge"
 		cost 90000
 		"required crew" 1
 		"bunks" 3
-		"drag" 2.8
+		"drag" 2.4
 		"mass" 70
 		"shields" 800
 		"hull" 1200
 		"cargo space" 50
 		"outfit space" 120
 		"weapon capacity" 10
-		"engine capacity" 60
+		"engine capacity" 40
 		"fuel capacity" 300
 	outfits
 		"Chipmunk Plasma Thruster"
@@ -44,7 +44,7 @@ ship "Freighter"
 		"fuel capacity" 300
 	outfits
 		"X2700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2200 Ion Steering"
 		"nGVF-EE Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -108,7 +108,7 @@ ship "Shuttle"
 		cost 60000
 		"required crew" 1
 		"bunks" 6
-		"drag" 1.5
+		"drag" 1.7
 		"mass" 50
 		"shields" 1000
 		"hull" 400
@@ -118,8 +118,8 @@ ship "Shuttle"
 		"engine capacity" 50
 		"fuel capacity" 400
 	outfits
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -147,7 +147,7 @@ ship "Scout"
 		"fuel capacity" 600
 	outfits
 		"X2700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -175,7 +175,7 @@ ship "Clipper"
 		"fuel capacity" 600
 	outfits
 		"X2700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -206,7 +206,7 @@ ship "Argosy"
 		"fuel capacity" 600
 	outfits
 		"X2700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2200 Ion Steering"
 		"Fission Reactor"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -275,8 +275,8 @@ ship "Surveillance Drone"
 		"engine capacity" 35
 		"energy generation" 1.5
 	outfits
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 	engine -4 -21
 	engine 4 -21
 	explode "tiny explosion" 15
@@ -296,8 +296,8 @@ ship "Combat Drone"
 		"energy generation" 3.5
 		"energy capacity" 20
 	outfits
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Energy Blaster" 2
 	engine -2 -18
 	engine 2 -18
@@ -313,14 +313,14 @@ ship "Sparrow"
 		cost 85000
 		"required crew" 1
 		"bunks" 3
-		"drag" 1.5
-		"mass" 70
+		"drag" 1.0
+		"mass" 50
 		"shields" 1500
 		"hull" 300
 		"cargo space" 15
-		"outfit space" 120
+		"outfit space" 110
 		"weapon capacity" 20
-		"engine capacity" 50
+		"engine capacity" 30
 		"fuel capacity" 300
 	outfits
 		"Chipmunk Plasma Thruster"
@@ -346,8 +346,8 @@ ship "Hawk"
 		cost 350000
 		"required crew" 1
 		"bunks" 3
-		"drag" 1.8
-		"mass" 90
+		"drag" 1.4
+		"mass" 80
 		"shields" 2500
 		"hull" 500
 		"cargo space" 30
@@ -356,8 +356,8 @@ ship "Hawk"
 		"engine capacity" 50
 		"fuel capacity" 300
 	outfits
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"Heavy Laser" 2
@@ -427,8 +427,8 @@ ship "Fury"
 		"engine capacity" 50
 		"fuel capacity" 600
 	outfits
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -464,8 +464,8 @@ ship "Rainmaker"
 		"Energy Blaster" 2
 		"LP036a Battery Pack" 1
 		"D14-RN Shield Generator" 1
-		"X1700 Ion Thruster" 1
-		"X1200 Ion Steering" 1
+		"X2700 Ion Thruster" 1
+		"X2200 Ion Steering" 1
 		"nGVF-AA Fuel Cell" 1
 		"Hyperdrive" 1
 		"Meteor Missile Launcher" 4
@@ -500,8 +500,8 @@ ship "Quicksilver"
 		"shields" 1800
 		"weapon capacity" 60
 	outfits
-		"Chipmunk Plasma Thruster" 1
-		"Chipmunk Plasma Steering" 1
+		"Greyhound Plasma Thruster" 1
+		"Greyhound Plasma Steering" 1
 		"LP036a Battery Pack" 1
 		"Particle Cannon" 2
 		"D23-QP Shield Generator" 1
@@ -513,6 +513,48 @@ ship "Quicksilver"
 	gun 6 38 "Particle Cannon"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
+
+ship "Frigate"
+	sprite "ship/frigate"
+	attributes
+		category "Light Warship"
+		"bunks" 32
+		"cargo space" 36
+		"cost" 1600000
+		"drag" 4.5
+		"engine capacity" 80
+		"fuel capacity" 500
+		"gun ports" 2
+		"hull" 1900
+		"mass" 260
+		"outfit space" 380
+		"required crew" 2
+		"shields" 5400
+		"weapon capacity" 160
+	outfits
+		"LP144a Battery Pack" 1
+		"D41-HY Shield Generator" 1
+		"X3200 Ion Steering"" 1
+		"X3700 Ion Thruster" 1
+		"RT-I Radiothermal" 1
+		"Hyperdrive" 1
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Blaster Turret" 3
+	engine -26 -92
+	engine 26 -92
+	gun -10 83 "Particle Cannon"
+	gun 10 83 "Particle Cannon"
+	gun -10 83 "Torpedo Launcher"
+	gun 10 83 "Torpedo Launcher"
+	turret 0 37 "Blaster Turret"
+	turret -12 12 "Blaster Turret"
+	turret 12 12 "Blaster Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
 
 ship "Destroyer"
 	sprite "ship/destroyer"
@@ -531,7 +573,7 @@ ship "Destroyer"
 		"fuel capacity" 600
 	outfits
 		"X2700 Ion Thruster"
-		"X1200 Ion Steering"
+		"X2200 Ion Steering"
 		"Fusion Reactor"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
