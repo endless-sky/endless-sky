@@ -204,6 +204,14 @@ void OutfitterPanel::Draw() const
 		leaveCenter - .5 * Point(bigFont.Width("Leave"), bigFont.Height()),
 		bright);
 	
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		string mod = "x " + to_string(modifier);
+		int modWidth = font.Width(mod);
+		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);	
+	}
 	
 	// Draw all the available outfits.
 	// First, figure out how many colums we can draw.
@@ -332,24 +340,32 @@ bool OutfitterPanel::KeyDown(SDLKey key, SDLMod mod)
 		GetUI()->Pop(this);
 	else if(key == 'b')
 	{
-		if(planet
-			&& (planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit])
-			&& CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
+		int modifier = Modifier();
+		for(int i = 0; i < modifier; ++i)
 		{
-			player.Accounts().AddCredits(-selectedOutfit->Cost());
-			playerShip->AddOutfit(selectedOutfit, 1);
-			available[selectedOutfit] -= 1;
-			shipInfo.Update(*playerShip);
+			if(planet
+				&& (planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit])
+				&& CanBuy(playerShip, selectedOutfit, player.Accounts().Credits()))
+			{
+				player.Accounts().AddCredits(-selectedOutfit->Cost());
+				playerShip->AddOutfit(selectedOutfit, 1);
+				available[selectedOutfit] -= 1;
+				shipInfo.Update(*playerShip);
+			}
 		}
 	}
 	else if(key == 's')
 	{
-		if(CanSell(playerShip, selectedOutfit))
+		int modifier = Modifier();
+		for(int i = 0; i < modifier; ++i)
 		{
-			player.Accounts().AddCredits(selectedOutfit->Cost());
-			playerShip->AddOutfit(selectedOutfit, -1);
-			available[selectedOutfit] -= -1;
-			shipInfo.Update(*playerShip);
+			if(CanSell(playerShip, selectedOutfit))
+			{
+				player.Accounts().AddCredits(selectedOutfit->Cost());
+				playerShip->AddOutfit(selectedOutfit, -1);
+				available[selectedOutfit] -= -1;
+				shipInfo.Update(*playerShip);
+			}
 		}
 	}
 	else
@@ -498,4 +514,19 @@ bool OutfitterPanel::FlightCheck()
 		}
 	}
 	return true;
+}
+
+
+
+int OutfitterPanel::Modifier()
+{
+	SDLMod mod = SDL_GetModState();
+	
+	int modifier = 1;
+	if(mod & KMOD_CTRL)
+		modifier *= 20;
+	if(mod & KMOD_SHIFT)
+		modifier *= 5;
+	
+	return modifier;
 }

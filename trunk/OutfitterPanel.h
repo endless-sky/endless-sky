@@ -70,6 +70,7 @@ private:
 	
 private:
 	bool FlightCheck();
+	static int Modifier();
 	
 	
 private:
