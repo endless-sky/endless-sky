@@ -180,6 +180,9 @@ bool ConversationPanel::KeyDown(SDLKey key, SDLMod mod)
 			
 			Goto(node + 1);
 		}
+		else
+			return false;
+		
 		return true;
 	}
 	
@@ -197,6 +200,8 @@ bool ConversationPanel::KeyDown(SDLKey key, SDLMod mod)
 		
 		Goto(conversation.NextNode(node, choice));
 	}
+	else
+		return false;
 	
 	return true;
 }

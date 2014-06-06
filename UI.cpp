@@ -66,7 +66,8 @@ bool UI::Handle(const SDL_Event &event)
 		
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
-		handled |= (*it)->TrapAllEvents();
+		if((*it)->TrapAllEvents())
+			break;
 	}
 	
 	return handled;

@@ -298,6 +298,8 @@ bool ShipyardPanel::KeyDown(SDLKey key, SDLMod mod)
 		GetUI()->Push(new Dialog(*this, &ShipyardPanel::SellShip,
 			"Sell ''" + playerShip->Name() + "''?"));
 	}
+	else
+		return false;
 	
 	return true;
 }

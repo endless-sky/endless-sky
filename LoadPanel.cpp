@@ -196,6 +196,8 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 	}
 	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
 		GetUI()->Pop(this);
+	else
+		return false;
 	
 	return true;
 }

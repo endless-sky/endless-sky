@@ -127,6 +127,8 @@ bool PreferencesPanel::KeyDown(SDLKey key, SDLMod mod)
 		editing = selected;
 	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
 		Exit();
+	else
+		return false;
 	
 	return true;
 }
