@@ -127,7 +127,7 @@ bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
 		return true;
 	}
 	else
-		return true;
+		return false;
 	
 	// If we are here, it is because something happened to change the selected
 	// panel. So, we need to pop the old selected panel:

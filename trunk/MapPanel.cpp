@@ -351,6 +351,8 @@ bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == data.Keys().Get(Key::MAP))
 		GetUI()->Pop(this);
+	else
+		return false;
 	
 	return true;
 }

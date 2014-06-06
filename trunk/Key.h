@@ -42,6 +42,7 @@ public:
 		DEFEND,
 		MAP,
 		INFO,
+		FULLSCREEN,
 		END
 	};
 	

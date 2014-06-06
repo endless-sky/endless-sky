@@ -42,7 +42,8 @@ namespace {
 		"Order escorts to attack target",
 		"Order escorts to defend you",
 		"View star map",
-		"View player info"
+		"View player info",
+		"Toggle fullscreen"
 	};
 }
 

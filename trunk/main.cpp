@@ -59,6 +59,9 @@ int main(int argc, char *argv[])
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = info->current_w;
 		int maxHeight = info->current_h;
+		// Restore this after toggling fullscreen.
+		int restoreWidth = 0;
+		int restoreHeight = 0;
 		if(maxWidth - 100 < 1024 || maxHeight - 100 < 768)
 		{
 			cerr << "Monitor resolution is too small!" << endl;
@@ -94,26 +97,57 @@ int main(int argc, char *argv[])
 			SDL_Event event;
 			while(SDL_PollEvent(&event))
 			{
+				UI &activeUI = (menuPanels.IsEmpty() ? gamePanels : menuPanels);
+				
 				// The caps lock key slows the game down (to make it easier to
 				// see and debug things that are happening quickly).
 				if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
 						&& event.key.keysym.sym == SDLK_CAPSLOCK)
+				{
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 10 : 60);
+				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 						&& event.key.keysym.sym == gameData.Keys().Get(Key::MENU))
+				{
 					menuPanels.Push(shared_ptr<Panel>(
 						new MenuPanel(gameData, playerInfo, gamePanels)));
-				
-				if(event.type == SDL_QUIT)
+				}
+				else if(event.type == SDL_QUIT)
+				{
 					menuPanels.Quit();
+				}
 				else if(event.type == SDL_VIDEORESIZE)
 				{
 					Screen::Set(event.resize.w & ~1, event.resize.h & ~1);
 					SDL_SetVideoMode(Screen::Width(), Screen::Height(), 0, flags);
 					glViewport(0, 0, Screen::Width(), Screen::Height());
 				}
-				else
-					(menuPanels.IsEmpty() ? gamePanels : menuPanels).Handle(event);
+				else if(activeUI.Handle(event))
+				{
+					// No need to do anything more!
+				}
+				else if(event.type == SDL_KEYDOWN
+						&& event.key.keysym.sym == gameData.Keys().Get(Key::FULLSCREEN))
+				{
+					if(restoreWidth)
+					{
+						Screen::Set(restoreWidth, restoreHeight);
+						restoreWidth = 0;
+						restoreHeight = 0;
+					}
+					else
+					{
+						restoreWidth = Screen::Width();
+						restoreHeight = Screen::Height();
+						Screen::Set(maxWidth, maxHeight);
+					}
+					// TODO: When toggling out of full-screen mode in unity,
+					// the window is left maximized. Find a way to fix that.
+					SDL_SetVideoMode(Screen::Width(), Screen::Height(), 0,
+						restoreWidth ? (flags | SDL_FULLSCREEN) : flags);
+					
+					glViewport(0, 0, Screen::Width(), Screen::Height());
+				}
 			}
 			
 			// Tell all the panels to step forward, then draw them.

@@ -352,6 +352,8 @@ bool OutfitterPanel::KeyDown(SDLKey key, SDLMod mod)
 			shipInfo.Update(*playerShip);
 		}
 	}
+	else
+		return false;
 	
 	return true;
 }

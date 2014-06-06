@@ -228,9 +228,9 @@ interface "preferences"
 	sprite "_menu/forest2" 0 280
 	sprite "_menu/oberon" 140 180
 	sprite "ui/keys panel" 0 0
-	button b 150 235
+	button b 150 245
 		size 120 30
-	label "Back to Menu..." 150 228
+	label "Back to Menu..." 150 238
 		size 14
 		color "light grey"
 		align center

@@ -173,6 +173,8 @@ bool MenuPanel::KeyDown(SDLKey key, SDLMod mod)
 	}
 	else if(key == 'q')
 		GetUI()->Quit();
+	else
+		return false;
 	
 	return true;
 }

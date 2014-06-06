@@ -90,6 +90,8 @@ bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == gameData.Keys().Get(Key::MAP))
 		GetUI()->Push(new MapPanel(gameData, playerInfo));
+	else
+		return false;
 	
 	return true;
 }
