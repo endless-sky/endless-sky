@@ -291,7 +291,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		"    weapon capacity:", "weapon capacity",
 		"    engine capacity:", "engine capacity",
 		"guns ports free:", "gun ports",
-		"turret mounts free:", "turrent mounts"
+		"turret mounts free:", "turret mounts"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
 	for(int i = 1; i < NAMES; i += 2)
