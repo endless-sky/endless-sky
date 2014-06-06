@@ -46,6 +46,8 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
 	
+	government = data.Governments().Get("Escort");
+	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
 	for(const DataFile::Node &child : node)
