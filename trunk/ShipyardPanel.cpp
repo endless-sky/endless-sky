@@ -61,7 +61,11 @@ namespace {
 		font.Draw(name, center + offset, Color(.8, 0.));
 		
 		float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
-		SpriteShader::Draw(sprite, center, zoom);
+		int swizzle = 5;
+		if(ship.GetGovernment())
+			swizzle = ship.GetGovernment()->GetSwizzle();
+		
+		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
 }
 

@@ -125,7 +125,7 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom)
+void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle)
 {
 	if(!sprite)
 		return;
@@ -135,7 +135,7 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom)
 	float trans[4] = {sprite->Width() * zoom, 0.f, 0.f, sprite->Height() * zoom};
 	
 	Bind();
-	Add(sprite->Texture(), 0, pos, trans, 0, 1.f, 0.f);
+	Add(sprite->Texture(), 0, pos, trans, swizzle, 1.f, 0.f);
 	Unbind();
 }
 

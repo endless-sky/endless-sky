@@ -27,7 +27,7 @@ public:
 	static void Init();
 	
 	// Draw a sprite.
-	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.);
+	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1., int swizzle = 0);
 	
 	static void Bind();
 	static void Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle = 0, float clip = 1., float fade = 0.);
