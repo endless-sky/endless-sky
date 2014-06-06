@@ -63,9 +63,9 @@ outfit "Heavy Laser"
 	category "Guns"
 	cost 60000
 	thumbnail "outfit/heavy laser"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
 	"gun ports" -1
 	weapon
 		sprite "projectile/heavy laser"
@@ -77,8 +77,8 @@ outfit "Heavy Laser"
 		"reload" 1
 		"firing energy" 1
 		"firing heat" 1.5
-		"shield damage" 2.5
-		"hull damage" 4
+		"shield damage" 1.8
+		"hull damage" 3.7
 
 outfit "Laser Turret"
 	category "Turrets"
@@ -169,12 +169,12 @@ outfit "Particle Cannon"
 		"velocity" 30
 		"lifetime" 25
 		"reload" 20
-		"firing energy" 5
+		"firing energy" 35
 		"firing force" 10
 		"firing heat" 100
 		"hit force" 80
-		"shield damage" 25
-		"hull damage" 38
+		"shield damage" 42
+		"hull damage" 65
 
 outfit "Meteor Missile"
 	category "Missiles"
