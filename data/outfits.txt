@@ -61,7 +61,7 @@ outfit "D94-YV Shield Generator"
 outfit "Ramscoop"
 	category "Systems"
 	cost 60000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/ramscoop"
 	"mass" 10
 	"outfit space" -10
 	"ramscoop" 1
@@ -69,7 +69,7 @@ outfit "Ramscoop"
 outfit "Hyperdrive"
 	category "Systems"
 	cost 50000
-	thumbnail "outfit/generator"
+	thumbnail "outfit/hyperdrive"
 	"mass" 20
 	"outfit space" -20
 	"jump fuel" 100
