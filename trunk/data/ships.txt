@@ -642,6 +642,59 @@ ship "Frigate"
 	explode "medium explosion" 24
 	explode "big explosion" 8
 
+ship "Cruiser"
+	sprite "ship/cruiser"
+	attributes
+		category "Heavy Warship"
+		"bunks" 95
+		"cargo space" 64
+		"cost" 4200000
+		"drag" 9.8
+		"engine capacity" 160
+		"fuel capacity" 600
+		"gun ports" 4
+		"hull" 3400
+		"mass" 610
+		"outfit space" 720
+		"required crew" 62
+		"shields" 12500
+		"turret mounts" 3
+		"weapon capacity" 320
+		weapon
+			"blast radius" 400
+			"shield damage" 3200
+			"hull damage" 1600
+			"hit force" 3200
+	outfits
+		"X4700 Ion Thruster" 1
+		"X4200 Ion Steering" 1
+		"D67-TM Shield Generator" 1
+		"LP288a Battery Pack" 1
+		"Fission Reactor" 1
+		"Hyperdrive" 1
+		"Particle Cannon" 4
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret" 1
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 80
+	engine -29 -156
+	engine 29 -156
+	gun -41 52 "Particle Cannon"
+	gun 41 52 "Particle Cannon"
+	gun -31 63 "Particle Cannon"
+	gun 31 63 "Particle Cannon"
+	gun -20 44 "Sidewinder Missile Launcher"
+	gun 20 44 "Sidewinder Missile Launcher"
+	turret 0 40 "Heavy Laser Turret"
+	turret -33 19 "Heavy Laser Turret"
+	turret 33 19 "Heavy Laser Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
+
 ship "Destroyer"
 	sprite "ship/destroyer"
 	attributes
@@ -684,55 +737,4 @@ ship "Destroyer"
 	explode "small explosion" 40
 	explode "medium explosion" 60
 	explode "big explosion" 60
-
-ship "Cruiser"
-	sprite "ship/big"
-	attributes
-		category "Heavy Warship"
-		"required crew" 300
-		"bunks" 500
-		"drag" 4.3
-		"mass" 800
-		"shields" 25000
-		"hull" 8000
-		"cargo space" 40
-		"outfit space" 400
-		"weapon capacity" 0
-		"engine capacity" 50
-		"fuel capacity" 600
-		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
-	outfits
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"Blaster Turret" 3
-		"Heavy Anti-Missile Turret"
-		"Particle Cannon" 4
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Liquid Nitrogen Cooler"
-		"Hyperdrive"
-	engine -39 -118
-	engine 39 -118
-	turret 0 0
-	turret -20 -38
-	turret 20 38
-	turret 0 77
-	gun -72 18
-	gun 72 18
-	gun -72 18
-	gun 72 18
-	gun -60 0
-	gun 60 0
-	explode "small explosion" 60
-	explode "medium explosion" 100
-	explode "big explosion" 30
-	explode "huge explosion" 10
 
