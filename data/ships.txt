@@ -14,6 +14,11 @@ ship "Star Barge"
 		"weapon capacity" 10
 		"engine capacity" 40
 		"fuel capacity" 300
+		weapon
+			"blast radius" 50
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 400
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -42,6 +47,11 @@ ship "Freighter"
 		"weapon capacity" 80
 		"engine capacity" 60
 		"fuel capacity" 400
+		weapon
+			"blast radius" 100
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 800
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -75,6 +85,11 @@ ship "Bulk Freighter"
 		"weapon capacity" 10
 		"engine capacity" 60
 		"fuel capacity" 300
+		weapon
+			"blast radius" 300
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 2400
 	outfits
 		"X3700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -97,9 +112,10 @@ ship "Bulk Freighter"
 	turret 0 -10
 	turret 13 -168
 	turret -17 152
-	explode "tiny explosion" 10
-	explode "small explosion" 30
-	explode "medium explosion" 20
+	explode "small explosion" 20
+	explode "medium explosion" 30
+	explode "big explosion" 30
+	explode "huge explosion" 20
 
 ship "Shuttle"
 	sprite "ship/shuttle"
@@ -117,6 +133,11 @@ ship "Shuttle"
 		"weapon capacity" 5
 		"engine capacity" 50
 		"fuel capacity" 400
+		weapon
+			"blast radius" 30
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 240
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -145,6 +166,11 @@ ship "Scout"
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
+		weapon
+			"blast radius" 90
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 720
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -173,6 +199,11 @@ ship "Clipper"
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
+		weapon
+			"blast radius" 120
+			"shield damage" 960
+			"hull damage" 480
+			"hit force" 960
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -204,6 +235,11 @@ ship "Argosy"
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
+		weapon
+			"blast radius" 300
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 2400
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -238,6 +274,11 @@ ship "Corvette"
 		"weapon capacity" 80
 		"engine capacity" 90
 		"fuel capacity" 400
+		weapon
+			"blast radius" 200
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 1600
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -274,6 +315,11 @@ ship "Surveillance Drone"
 		"outfit space" 40
 		"engine capacity" 35
 		"energy generation" 1.5
+		weapon
+			"blast radius" 10
+			"shield damage" 80
+			"hull damage" 40
+			"hit force" 80
 	outfits
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
@@ -295,6 +341,11 @@ ship "Combat Drone"
 		"engine capacity" 35
 		"energy generation" 3.5
 		"energy capacity" 20
+		weapon
+			"blast radius" 10
+			"shield damage" 80
+			"hull damage" 40
+			"hit force" 80
 	outfits
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
@@ -322,6 +373,11 @@ ship "Sparrow"
 		"weapon capacity" 20
 		"engine capacity" 30
 		"fuel capacity" 300
+		weapon
+			"blast radius" 40
+			"shield damage" 320
+			"hull damage" 160
+			"hit force" 320
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -355,6 +411,11 @@ ship "Hawk"
 		"weapon capacity" 36
 		"engine capacity" 50
 		"fuel capacity" 300
+		weapon
+			"blast radius" 70
+			"shield damage" 560
+			"hull damage" 280
+			"hit force" 560
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -386,6 +447,11 @@ ship "Monitor"
 		"weapon capacity" 120
 		"engine capacity" 100
 		"fuel capacity" 500
+		weapon
+			"blast radius" 150
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1200
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -426,6 +492,11 @@ ship "Fury"
 		"weapon capacity" 30
 		"engine capacity" 50
 		"fuel capacity" 600
+		weapon
+			"blast radius" 60
+			"shield damage" 480
+			"hull damage" 240
+			"hit force" 480
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -460,6 +531,11 @@ ship "Rainmaker"
 		"required crew" 3
 		"shields" 2500
 		"weapon capacity" 60
+		weapon
+			"blast radius" 120
+			"shield damage" 960
+			"hull damage" 480
+			"hit force" 960
 	outfits
 		"Energy Blaster" 2
 		"LP036a Battery Pack" 1
@@ -499,6 +575,11 @@ ship "Quicksilver"
 		"required crew" 2
 		"shields" 1800
 		"weapon capacity" 60
+		weapon
+			"blast radius" 80
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 720
 	outfits
 		"Greyhound Plasma Thruster" 1
 		"Greyhound Plasma Steering" 1
@@ -531,6 +612,11 @@ ship "Frigate"
 		"required crew" 2
 		"shields" 5400
 		"weapon capacity" 160
+		weapon
+			"blast radius" 180
+			"shield damage" 1440
+			"hull damage" 720
+			"hit force" 1440
 	outfits
 		"LP144a Battery Pack" 1
 		"D41-HY Shield Generator" 1
@@ -554,7 +640,7 @@ ship "Frigate"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
-	explode "large explosion" 8
+	explode "big explosion" 8
 
 ship "Destroyer"
 	sprite "ship/destroyer"
@@ -571,6 +657,11 @@ ship "Destroyer"
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
+		weapon
+			"blast radius" 300
+			"shield damage" 2400
+			"hull damage" 1200
+			"hit force" 2400
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -609,6 +700,11 @@ ship "Cruiser"
 		"weapon capacity" 0
 		"engine capacity" 50
 		"fuel capacity" 600
+		weapon
+			"blast radius" 400
+			"shield damage" 3200
+			"hull damage" 1600
+			"hit force" 3200
 	outfits
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"

@@ -34,6 +34,8 @@ class Projectile {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon);
 	Projectile(const Projectile &parent, const Outfit *weapon);
+	// Ship explosion.
+	Projectile(Point position, const Outfit *weapon);
 	
 	// This returns false if it is time to delete this projectile.
 	bool Move(std::list<Effect> &effects);

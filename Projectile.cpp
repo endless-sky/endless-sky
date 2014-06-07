@@ -53,6 +53,14 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 
 
 
+// Ship explosion.
+Projectile::Projectile(Point position, const Outfit *weapon)
+	: weapon(weapon), position(position), government(nullptr), lifetime(1)
+{
+}
+
+
+
 // This returns false if it is time to delete this projectile.
 bool Projectile::Move(list<Effect> &effects)
 {
@@ -181,7 +189,7 @@ bool Projectile::HasBlastRadius() const
 bool Projectile::InBlastRadius(const Ship &ship, int step) const
 {
 	return ship.GetSprite().GetMask(step).WithinRange(
-		position - ship.Position(), angle,  weapon->WeaponGet("blast radius"));
+		position - ship.Position(), ship.Facing(), weapon->WeaponGet("blast radius"));
 }
 
 

@@ -545,28 +545,33 @@ void Engine::CalculateStep()
 		// object. If the asteroid turns out to be closer than the ship, it
 		// shields the ship (unless the projectile has  blast radius).
 		Point hitVelocity;
-		double closestHit = asteroids.Collide(projectile, step, &hitVelocity);
+		double closestHit = 0.;
 		Ship *hit = nullptr;
 		const Government *gov = projectile.GetGovernment();
 		
-		// Projectiles can only collide with ships that are in the current
-		// system and are not landing, and that are hostile to this projectile.
-		for(shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == playerInfo.GetSystem() && !ship->IsLanding())
-			{
-				if(ship.get() != projectile.Target() && !gov->IsEnemy(ship->GetGovernment()))
-					continue;
-				
-				// This returns a value of 0 if the projectile has a trigger
-				// radius and the ship is within it.
-				double range = projectile.CheckCollision(*ship, step);
-				if(range < closestHit)
+		// If this "projectile" is a ship explosion, it always explodes.
+		if(gov)
+		{
+			closestHit = asteroids.Collide(projectile, step, &hitVelocity);
+			// Projectiles can only collide with ships that are in the current
+			// system and are not landing, and that are hostile to this projectile.
+			for(shared_ptr<Ship> &ship : ships)
+				if(ship->GetSystem() == playerInfo.GetSystem() && !ship->IsLanding())
 				{
-					closestHit = range;
-					hit = ship.get();
-					hitVelocity = ship->Velocity();
+					if(ship.get() != projectile.Target() && !gov->IsEnemy(ship->GetGovernment()))
+						continue;
+					
+					// This returns a value of 0 if the projectile has a trigger
+					// radius and the ship is within it.
+					double range = projectile.CheckCollision(*ship, step);
+					if(range < closestHit)
+					{
+						closestHit = range;
+						hit = ship.get();
+						hitVelocity = ship->Velocity();
+					}
 				}
-			}
+		}
 		
 		if(closestHit < 1.)
 		{

@@ -300,12 +300,6 @@ bool Ship::Move(std::list<Effect> &effects)
 	
 	if(hull <= 0.)
 	{
-		// If the ship is dead, it first creates explosions at an increasing
-		// rate, then disappears in one big explosion.
-		++explosionRate;
-		if(rand() % 1024 < explosionRate)
-			CreateExplosion(effects);
-		
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal)
 		{
@@ -316,6 +310,12 @@ bool Ship::Move(std::list<Effect> &effects)
 			fuel = 0.;
 			return false;
 		}
+		
+		// If the ship is dead, it first creates explosions at an increasing
+		// rate, then disappears in one big explosion.
+		++explosionRate;
+		if(rand() % 1024 < explosionRate)
+			CreateExplosion(effects);
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
@@ -460,6 +460,11 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 {
 	isInSystem = true;
 	forget = 0;
+	
+	// A ship that is about to die creates a special single-turn "projectile"
+	// representing its death explosion.
+	if(explosionCount == explosionTotal)
+		projectiles.emplace_back(position, &attributes);
 	
 	if(zoom != 1. || isDisabled || hyperspaceCount)
 		return false;
@@ -788,7 +793,7 @@ void Ship::TakeDamage(const Projectile &projectile)
 	}
 	
 	if(hitForce)
-		ApplyForce(hitForce * projectile.Velocity().Unit());
+		ApplyForce(hitForce * (position - projectile.Position()).Unit());
 }
 
 
