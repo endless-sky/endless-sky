@@ -509,19 +509,45 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	if(keyDown & Key::Bit(Key::NEAREST))
 	{
 		double closest = numeric_limits<double>::infinity();
-		bool sawEnemy = false;
+		int closeState = 0;
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->IsTargetable())
 			{
 				double d = other->Position().Distance(ship.Position());
-				bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
-				if((isEnemy && !sawEnemy) || ((isEnemy == sawEnemy) && d < closest))
+				
+				// Sort ships into one of three priority states:
+				// 0 = friendly, 1 = disabled enemy, 2 = active enemy.
+				int state = other->GetGovernment()->IsEnemy(ship.GetGovernment());
+				state += state * !other->IsDisabled();
+				
+				if(state > closeState || (state == closeState && d < closest))
 				{
 					control.SetTargetShip(other);
 					closest = d;
+					closeState = state;
 				}
-				sawEnemy |= isEnemy;
 			}
+	}
+	else if(keyDown & Key::Bit(Key::TARGET))
+	{
+		const Government *playerGovernment = info.GetShip()->GetGovernment();
+		
+		shared_ptr<const Ship> target = control.GetTargetShip().lock();
+		bool selectNext = !target;
+		for(const shared_ptr<Ship> &other : ships)
+			if(other->GetGovernment() != playerGovernment)
+			{
+				if(other == target)
+					selectNext = true;
+				else if(selectNext)
+				{
+					control.SetTargetShip(other);
+					selectNext = false;
+					break;
+				}
+			}
+		if(selectNext)
+			control.SetTargetShip(weak_ptr<Ship>());
 	}
 	
 	if(keyHeld & Key::Bit(Key::LAND))
