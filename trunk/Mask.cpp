@@ -328,7 +328,7 @@ bool Mask::Contains(Point point, Angle facing) const
 bool Mask::WithinRange(Point point, Angle facing, double range) const
 {
 	// Bail out if the object is too far away to possible be touched.
-	if(outline.empty() || range > point.Length() + radius)
+	if(outline.empty() || range < point.Length() - radius)
 		return false;
 	
 	// Rotate into the mask's frame of reference.
