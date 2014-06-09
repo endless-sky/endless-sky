@@ -163,6 +163,7 @@ void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], co
 	{
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, tex1);
+		glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, SWIZZLE[swizzle]);
 		glActiveTexture(GL_TEXTURE0);
 	}
 	else
