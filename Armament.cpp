@@ -187,14 +187,10 @@ void Armament::Weapon::Install(const Outfit *outfit)
 	{
 		this->outfit = outfit;
 		
-		if(!isTurret)
-		{
-			// Find the point of convergence of shots fired from
-			// this gun. The shots should converge at distance d:
-			double d = outfit->WeaponGet("range") * .9;
-			// The angle is therefore:
-			angle = Angle(asin(point.X() * .5 / d) * (180. / M_PI));
-		}
+		// Find the point of convergence of shots fired from this gun.
+		double d = outfit->WeaponGet("range");
+		// The angle is therefore:
+		angle = Angle(asin(point.X() / d) * (-180. / M_PI));
 	}
 }
 
