@@ -26,9 +26,9 @@ ship "Star Barge"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Hyperdrive"
-	engine -9 -38
-	engine 9 -38
-	gun 0 37
+	engine -9 38
+	engine 9 38
+	gun 0 -38
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 
@@ -61,61 +61,14 @@ ship "Freighter"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
 		"Hyperdrive"
-	engine -12 -105
-	engine 12 -105
-	turret 0 40 "Blaster Turret"
-	turret 0 -40 "Blaster Turret"
-	turret 0 0 "Heavy Anti-Missile Turret"
+	engine -9 97
+	engine 9 97
+	turret 0 -52 "Blaster Turret"
+	turret 0 65 "Blaster Turret"
+	turret 0 6 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
-
-ship "Bulk Freighter"
-	sprite "ship/bulk freighter"
-	attributes
-		category "Heavy Freighter"
-		"required crew" 1
-		"bunks" 4
-		"drag" 1.4
-		"mass" 500
-		"shields" 4000
-		"hull" 10000
-		"cargo space" 600
-		"outfit space" 120
-		"weapon capacity" 10
-		"engine capacity" 60
-		"fuel capacity" 300
-		weapon
-			"blast radius" 300
-			"shield damage" 2400
-			"hull damage" 1200
-			"hit force" 2400
-	outfits
-		"X3700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"Sidewinder Missile Launcher" 1
-		"Sidewinder Missile" 40
-		"Torpedo Launcher" 1
-		"Torpedo" 30
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret" 2
-		"Hyperdrive"
-	engine -25 -210
-	engine 25 -210
-	gun -25 210
-	gun 25 210
-	turret -13 -168
-	turret 17 152
-	turret 0 -10
-	turret 13 -168
-	turret -17 152
-	explode "small explosion" 20
-	explode "medium explosion" 30
-	explode "big explosion" 30
-	explode "huge explosion" 20
 
 ship "Shuttle"
 	sprite "ship/shuttle"
@@ -145,216 +98,10 @@ ship "Shuttle"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		"Hyperdrive"
-	engine 6 -30
-	engine -6 -30
-	gun 0 30
+	engine 6 30
+	engine -6 30
+	gun 0 -30
 	explode "tiny explosion" 10
-	explode "small explosion" 5
-
-ship "Scout"
-	sprite "ship/scout"
-	attributes
-		category "Light Freighter"
-		"required crew" 1
-		"bunks" 3
-		"drag" .6
-		"mass" 20
-		"shields" 3000
-		"hull" 600
-		"cargo space" 15
-		"outfit space" 110
-		"weapon capacity" 0
-		"engine capacity" 50
-		"fuel capacity" 600
-		weapon
-			"blast radius" 90
-			"shield damage" 720
-			"hull damage" 360
-			"hit force" 720
-	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Hyperdrive"
-	engine -8 -53
-	engine 8 -53
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 10
-
-ship "Clipper"
-	sprite "ship/clipper"
-	attributes
-		category "Light Freighter"
-		"required crew" 1
-		"bunks" 3
-		"drag" .6
-		"mass" 20
-		"shields" 5000
-		"hull" 900
-		"cargo space" 15
-		"outfit space" 110
-		"weapon capacity" 0
-		"engine capacity" 50
-		"fuel capacity" 600
-		weapon
-			"blast radius" 120
-			"shield damage" 960
-			"hull damage" 480
-			"hit force" 960
-	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Energy Blaster" 2
-		"Hyperdrive"
-	engine -27 -53
-	engine 27 -53
-	gun -13 17
-	gun 13 17
-	explode "small explosion" 20
-	explode "medium explosion" 25
-	explode "big explosion" 5
-
-ship "Argosy"
-	sprite "ship/argosy"
-	attributes
-		category "Heavy Freighter"
-		"required crew" 1
-		"bunks" 3
-		"drag" 1.3
-		"mass" 220
-		"shields" 8000
-		"hull" 4000
-		"cargo space" 15
-		"outfit space" 110
-		"weapon capacity" 0
-		"engine capacity" 50
-		"fuel capacity" 600
-		weapon
-			"blast radius" 300
-			"shield damage" 2400
-			"hull damage" 1200
-			"hit force" 2400
-	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Fission Reactor"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"Water Coolant System"
-		"Heavy Laser Turret" 2
-		"Hyperdrive"
-	engine -34 -85
-	engine -24 -87
-	engine 34 -85
-	engine 24 -87
-	turret 0 -1
-	turret 0 -26
-	explode "small explosion" 40
-	explode "medium explosion" 50
-	explode "big explosion" 10
-
-ship "Corvette"
-	sprite "ship/corvette"
-	attributes
-		category "Light Warship"
-		"required crew" 17
-		"bunks" 28
-		"drag" 1.6
-		"mass" 120
-		"shields" 4500
-		"hull" 1000
-		"cargo space" 40
-		"outfit space" 180
-		"weapon capacity" 80
-		"engine capacity" 90
-		"fuel capacity" 400
-		weapon
-			"blast radius" 200
-			"shield damage" 1600
-			"hull damage" 800
-			"hit force" 1600
-	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Fission Reactor"
-		"Water Coolant System"
-		"LP036a Battery Pack"
-		"Energy Blaster" 2
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 80
-		"Laser Turret" 2
-		"D14-RN Shield Generator"
-		"Hyperdrive"
-	engine -26 -106
-	engine 26 -106
-	gun -12 78
-	gun 12 78
-	gun -16 72
-	gun 16 72
-	turret 0 30
-	turret 0 -74
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 40
-	explode "big explosion" 20
-
-ship "Surveillance Drone"
-	sprite "ship/surveillance drone"
-	attributes
-		category "Drone"
-		cost 85000
-		"drag" 2.8
-		"mass" 100
-		"hull" 400
-		"outfit space" 40
-		"engine capacity" 35
-		"energy generation" 1.5
-		weapon
-			"blast radius" 10
-			"shield damage" 80
-			"hull damage" 40
-			"hit force" 80
-	outfits
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-	engine -4 -21
-	engine 4 -21
-	explode "tiny explosion" 15
-	explode "small explosion" 5
-
-ship "Combat Drone"
-	sprite "ship/combat drone"
-	attributes
-		category "Drone"
-		cost 85000
-		"drag" 2.8
-		"mass" 100
-		"hull" 600
-		"weapon space" 10
-		"outfit space" 45
-		"engine capacity" 35
-		"energy generation" 3.5
-		"energy capacity" 20
-		weapon
-			"blast radius" 10
-			"shield damage" 80
-			"hull damage" 40
-			"hit force" 80
-	outfits
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-		"Energy Blaster" 2
-	engine -2 -18
-	engine 2 -18
-	gun -1 16
-	gun 1 16
-	explode "tiny explosion" 15
 	explode "small explosion" 5
 
 ship "Sparrow"
@@ -386,10 +133,10 @@ ship "Sparrow"
 		"Beam Laser" 2
 		"D14-RN Shield Generator"
 		"Hyperdrive"
-	engine -4 -35
-	engine 4 -35
-	gun -7 9
-	gun 7 9
+	engine -4 35
+	engine 4 35
+	gun -7 -9
+	gun 7 -9
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
@@ -424,55 +171,10 @@ ship "Hawk"
 		"Heavy Laser" 2
 		"D23-QP Shield Generator"
 		"Hyperdrive"
-	engine -13 -36
-	engine 13 -36
-	gun -13 11
-	gun 13 11
-	explode "tiny explosion" 15
-	explode "small explosion" 5
-
-ship "Monitor"
-	sprite "ship/monitor"
-	attributes
-		category "Light Warship"
-		cost 840000
-		"required crew" 10
-		"bunks" 16
-		"drag" 12
-		"mass" 370
-		"shields" 3900
-		"hull" 1800
-		"cargo space" 40
-		"outfit space" 240
-		"weapon capacity" 120
-		"engine capacity" 100
-		"fuel capacity" 500
-		weapon
-			"blast radius" 150
-			"shield damage" 1200
-			"hull damage" 600
-			"hit force" 1200
-	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Fusion Reactor"
-		"Water Coolant System"
-		"LP144a Battery Pack"
-		"Blaster Turret" 3
-		"Energy Blaster" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"D14-RN Shield Generator"
-		"Hyperdrive"
-	engine -20 -95
-	engine 20 -95
-	turret -18 20
-	turret 18 20
-	turret 0 -63
-	gun -15 74
-	gun 15 74
-	gun -20 60
-	gun 20 60
+	engine -13 36
+	engine 13 36
+	gun -13 -11
+	gun 13 -11
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 
@@ -505,12 +207,12 @@ ship "Fury"
 		"D14-RN Shield Generator"
 		"Energy Blaster" 4
 		"Hyperdrive"
-	engine -20 -36
-	engine 20 -36
-	gun -10 32
-	gun 10 32
-	gun -16 22
-	gun 16 22
+	engine -20 36
+	engine 20 36
+	gun -10 -32
+	gun 10 -32
+	gun -16 -22
+	gun 16 -22
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 
@@ -546,14 +248,14 @@ ship "Rainmaker"
 		"Hyperdrive" 1
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
-	engine -8 -46
-	engine 8 -46
-	gun -10 30 "Energy Blaster"
-	gun 10 30 "Energy Blaster"
-	gun -27 5 "Meteor Missile Launcher"
-	gun 27 5 "Meteor Missile Launcher"
-	gun -17 5 "Meteor Missile Launcher"
-	gun 17 5 "Meteor Missile Launcher"
+	engine -8 46
+	engine 8 46
+	gun -10 -30 "Energy Blaster"
+	gun 10 -30 "Energy Blaster"
+	gun -27 -5 "Meteor Missile Launcher"
+	gun 27 -5 "Meteor Missile Launcher"
+	gun -17 -5 "Meteor Missile Launcher"
+	gun 17 -5 "Meteor Missile Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -588,10 +290,10 @@ ship "Quicksilver"
 		"D23-QP Shield Generator" 1
 		"nGVF-BB Fuel Cell" 1
 		"Hyperdrive" 1
-	engine -17 -54
-	engine 17 -54
-	gun -6 38 "Particle Cannon"
-	gun 6 38 "Particle Cannon"
+	engine -17 54
+	engine 17 54
+	gun -6 -38 "Particle Cannon"
+	gun 6 -38 "Particle Cannon"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 
@@ -628,15 +330,15 @@ ship "Frigate"
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Blaster Turret" 3
-	engine -26 -92
-	engine 26 -92
-	gun -10 83 "Particle Cannon"
-	gun 10 83 "Particle Cannon"
-	gun -10 83 "Torpedo Launcher"
-	gun 10 83 "Torpedo Launcher"
-	turret 0 37 "Blaster Turret"
-	turret -12 12 "Blaster Turret"
-	turret 12 12 "Blaster Turret"
+	engine -26 92
+	engine 26 92
+	gun -10 -83 "Particle Cannon"
+	gun 10 -83 "Particle Cannon"
+	gun -10 -83 "Torpedo Launcher"
+	gun 10 -83 "Torpedo Launcher"
+	turret 0 -37 "Blaster Turret"
+	turret -12 -12 "Blaster Turret"
+	turret 12 -12 "Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -677,64 +379,20 @@ ship "Cruiser"
 		"Heavy Anti-Missile Turret" 1
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 80
-	engine -29 -156
-	engine 29 -156
-	gun -41 52 "Particle Cannon"
-	gun 41 52 "Particle Cannon"
-	gun -31 63 "Particle Cannon"
-	gun 31 63 "Particle Cannon"
-	gun -20 44 "Sidewinder Missile Launcher"
-	gun 20 44 "Sidewinder Missile Launcher"
-	turret 0 40 "Heavy Laser Turret"
-	turret -33 19 "Heavy Laser Turret"
-	turret 33 19 "Heavy Laser Turret"
+	engine -29 156
+	engine 29 156
+	gun -41 -52 "Particle Cannon"
+	gun 41 -52 "Particle Cannon"
+	gun -31 -63 "Particle Cannon"
+	gun 31 -63 "Particle Cannon"
+	gun -20 -44 "Sidewinder Missile Launcher"
+	gun 20 -44 "Sidewinder Missile Launcher"
+	turret 0 -40 "Heavy Laser Turret"
+	turret -33 -19 "Heavy Laser Turret"
+	turret 33 -19 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
-
-ship "Destroyer"
-	sprite "ship/destroyer"
-	attributes
-		category "Heavy Warship"
-		"required crew" 1
-		"bunks" 3
-		"drag" 1.8
-		"mass" 20
-		"shields" 10000
-		"hull" 5000
-		"cargo space" 15
-		"outfit space" 110
-		"weapon capacity" 0
-		"engine capacity" 50
-		"fuel capacity" 600
-		weapon
-			"blast radius" 300
-			"shield damage" 2400
-			"hull damage" 1200
-			"hit force" 2400
-	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"Heavy Anti-Missile Turret"
-		"Blaster Turret" 2
-		"Particle Cannon" 3
-		"Liquid Nitrogen Cooler"
-		"Hyperdrive"
-	engine -27 -108
-	engine 27 -108
-	turret 0 25
-	turret -23 -38
-	turret 23 -38
-	gun 0 50
-	gun 10 40
-	gun -10 40
-	explode "small explosion" 40
-	explode "medium explosion" 60
-	explode "big explosion" 60
-

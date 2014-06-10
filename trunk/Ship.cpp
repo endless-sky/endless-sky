@@ -956,7 +956,7 @@ void Ship::CreateExplosion(std::list<Effect> &effects)
 	{
 		Point point((rand() % sprite.Width() - .5 * sprite.Width()) * .5,
 			(rand() % sprite.Height() - .5 * sprite.Height()) * .5);
-		if(sprite.GetMask(0).Contains(point, Angle(180.)))
+		if(sprite.GetMask(0).Contains(point, Angle()))
 		{
 			// Pick an explosion.
 			int type = rand() % explosionTotal;

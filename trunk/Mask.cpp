@@ -113,8 +113,8 @@ namespace {
 			prev += p;
 			prev -= size;
 			// Since we'll always be using these sprites at 50% scale, do that
-			// scaling here. Also rotate the mask 180 degrees.
-			prev *= -.25;
+			// scaling here.
+			prev *= .25;
 			swap(prev, p);
 		}
 	}

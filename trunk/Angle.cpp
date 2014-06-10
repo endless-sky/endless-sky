@@ -123,8 +123,8 @@ Point Angle::Rotate(const Point &point) const
 		return point;
 	
 	Point unit = Unit();
-	unit.Set(unit.Y() * point.X() + unit.X() * point.Y(),
-		unit.Y() * point.Y() - unit.X() * point.X());
+	unit.Set(-unit.Y() * point.X() - unit.X() * point.Y(),
+		-unit.Y() * point.Y() + unit.X() * point.X());
 	return unit;
 }
 
