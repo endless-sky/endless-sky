@@ -98,6 +98,14 @@ int Sprite::Frames() const
 }
 
 
+
+Point Sprite::Center() const
+{
+	return Point(.5 * width, .5 * height);
+}
+
+
+
 uint32_t Sprite::Texture(int frame) const
 {
 	if(textures.empty())

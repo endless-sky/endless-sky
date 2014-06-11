@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SPRITE_H_
 
 #include "Mask.h"
+#include "Point.h"
 
 #include <cstdint>
 #include <vector>
@@ -32,6 +33,10 @@ public:
 	float Width() const;
 	float Height() const;
 	int Frames() const;
+	
+	// Get the offset of the center from the top left corner; this is for easy
+	// shifting of corner to center coordinates.
+	Point Center() const;
 	
 	uint32_t Texture(int frame = 0) const;
 	const Mask &GetMask(int frame = 0) const;

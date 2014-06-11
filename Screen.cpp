@@ -14,6 +14,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+int Screen::width = 1000;
+int Screen::height = 1000;
+
+
+
 void Screen::Set(int width, int height)
 {
 	Screen::width = width;
@@ -36,5 +41,56 @@ int Screen::Height()
 
 
 
-int Screen::width = 1000;
-int Screen::height = 1000;
+int Screen::Left()
+{
+	return width / -2;
+}
+
+
+
+int Screen::Top()
+{
+	return height / -2;
+}
+
+
+
+int Screen::Right()
+{
+	return width / 2;
+}
+
+
+
+int Screen::Bottom()
+{
+	return height / 2;
+}
+
+
+
+Point Screen::TopLeft()
+{
+	return Point(-.5 * width, -.5 * height);
+}
+
+
+
+Point Screen::TopRight()
+{
+	return Point(.5 * width, -.5 * height);
+}
+
+
+
+Point Screen::BottomLeft()
+{
+	return Point(-.5 * width, .5 * height);
+}
+
+
+
+Point Screen::BottomRight()
+{
+	return Point(.5 * width, .5 * height);
+}
