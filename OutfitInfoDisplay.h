@@ -35,7 +35,7 @@ public:
 	void Update(const Outfit &outfit);
 	
 	// Get the panel width.
-	int PanelWidth() const;
+	static int PanelWidth();
 	// Get the height of each of the three panels.
 	int MaximumHeight() const;
 	int DescriptionHeight() const;
