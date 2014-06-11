@@ -98,7 +98,7 @@ void OutfitInfoDisplay::Update(const Outfit &outfit)
 
 
 // Get the panel width.
-int OutfitInfoDisplay::PanelWidth() const
+int OutfitInfoDisplay::PanelWidth()
 {
 	return WIDTH;
 }

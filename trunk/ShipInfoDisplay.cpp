@@ -100,7 +100,7 @@ void ShipInfoDisplay::Update(const Ship &ship)
 
 
 // Get the panel width.
-int ShipInfoDisplay::PanelWidth() const
+int ShipInfoDisplay::PanelWidth()
 {
 	return WIDTH;
 }
