@@ -2,23 +2,23 @@ ship "Argosy"
 	sprite "ship/argosy"
 	attributes
 		category "Heavy Freighter"
-		"bunks" 14
-		"cargo space" 120
 		"cost" 560000
-		"drag" 5.9
-		"engine capacity" 70
-		"fuel capacity" 400
-		"hull" 2500
-		"mass" 330
-		"outfit space" 270
-		"required crew" 4
 		"shields" 3500
+		"hull" 2500
+		"required crew" 4
+		"bunks" 14
+		"mass" 330
+		"drag" 5.9
+		"fuel capacity" 400
+		"cargo space" 120
+		"outfit space" 270
 		"weapon capacity" 90
+		"engine capacity" 70
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 150
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
 	outfits
 		"Greyhound Plasma Thruster" 1
 		"Greyhound Plasma Steering" 1
@@ -50,22 +50,22 @@ ship "Bastion"
 	attributes
 		category "Light Warship"
 		"cost" 960000
-		"bunks" 22
-		"required crew" 12
-		"cargo space" 110
-		"drag" 8.6
-		"mass" 580
-		"hull" 4200
 		"shields" 6100
+		"hull" 4200
+		"required crew" 12
+		"bunks" 22
+		"mass" 580
+		"drag" 8.6
 		"fuel capacity" 500
+		"cargo space" 110
 		"outfit space" 520
 		"weapon capacity" 250
 		"engine capacity" 120
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
 	outfits
 		"Impala Plasma Thruster" 1
 		"Impala Plasma Steering" 1
@@ -96,23 +96,23 @@ ship "Blackbird"
 	sprite "ship/blackbird"
 	attributes
 		category "Transport"
-		"bunks" 54
-		"cargo space" 60
 		"cost" 730000
-		"drag" 6.7
-		"engine capacity" 120
-		"fuel capacity" 700
-		"hull" 900
-		"mass" 290
-		"outfit space" 350
-		"required crew" 5
 		"shields" 5000
+		"hull" 900
+		"required crew" 5
+		"bunks" 54
+		"mass" 290
+		"drag" 6.7
+		"fuel capacity" 700
+		"cargo space" 60
+		"outfit space" 350
 		"weapon capacity" 120
+		"engine capacity" 120
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 150
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
 	outfits
 		"Impala Plasma Thruster" 1
 		"Impala Plasma Steering" 1
@@ -136,22 +136,22 @@ ship "Bulk Freighter"
 	attributes
 		category "Heavy Freighter"
 		"cost" 5400000
+		"shields" 4000
+		"hull" 6500
 		"required crew" 12
 		"bunks" 18
 		"mass" 870
 		"drag" 15.8
-		"shields" 4000
-		"hull" 6500
+		"fuel capacity" 500
 		"cargo space" 600
 		"outfit space" 400
-		"engine capacity" 80
-		"fuel capacity" 500
 		"weapon capacity" 180
+		"engine capacity" 80
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
 	outfits
 		"X3700 Ion Thruster" 1
 		"X3200 Ion Steering" 1
@@ -182,23 +182,23 @@ ship "Carrier"
 	sprite "ship/carrier"
 	attributes
 		category "Heavy Warship"
-		"required crew" 104
-		"bunks" 230
-		"cargo space" 100
 		"cost" 7200000
-		"drag" 14.7
-		"mass" 910
 		"shields" 10800
 		"hull" 8300
+		"required crew" 104
+		"bunks" 230
+		"mass" 910
+		"drag" 14.7
 		"fuel capacity" 700
-		"engine capacity" 160
+		"cargo space" 100
 		"outfit space" 770
 		"weapon capacity" 370
+		"engine capacity" 160
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
 	outfits
 		"X4700 Ion Thruster" 1
 		"X4200 Ion Steering" 1
@@ -237,22 +237,22 @@ ship "Clipper"
 	attributes
 		category "Light Freighter"
 		"cost" 700000
+		"shields" 1900
+		"hull" 800
 		"required crew" 2
 		"bunks" 9
 		"mass" 180
 		"drag" 4.8
-		"shields" 1900
-		"hull" 800
+		"fuel capacity" 500
 		"cargo space" 70
 		"outfit space" 340
-		"engine capacity" 80
-		"fuel capacity" 500
 		"weapon capacity" 180
+		"engine capacity" 80
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 70
+			"shield damage" 280
+			"hull damage" 140
+			"hit force" 420
 	outfits
 		"Greyhound Plasma Thruster" 1
 		"Greyhound Plasma Steering" 1
@@ -279,23 +279,23 @@ ship "Cruiser"
 	sprite "ship/cruiser"
 	attributes
 		category "Heavy Warship"
+		"cost" 4200000
+		"shields" 12500
+		"hull" 6400
 		"required crew" 62
 		"bunks" 95
-		"cargo space" 60
-		"cost" 4200000
-		"drag" 10.7
-		"engine capacity" 160
-		"fuel capacity" 600
-		"hull" 6400
 		"mass" 680
+		"drag" 10.7
+		"fuel capacity" 600
+		"cargo space" 60
 		"outfit space" 720
-		"shields" 12500
 		"weapon capacity" 320
+		"engine capacity" 160
 		weapon
-			"blast radius" 400
-			"shield damage" 3200
-			"hull damage" 1600
-			"hit force" 3200
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
 	outfits
 		"X4700 Ion Thruster" 1
 		"X4200 Ion Steering" 1
@@ -332,22 +332,22 @@ ship "Falcon"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
-		"required crew" 44
-		"bunks" 80
-		"drag" 7.5
-		"mass" 510
 		"shields" 9600
 		"hull" 3400
+		"required crew" 44
+		"bunks" 80
+		"mass" 510
+		"drag" 7.5
 		"fuel capacity" 600
 		"cargo space" 90
 		"outfit space" 590
 		"weapon capacity" 240
 		"engine capacity" 130
 		weapon
-			"blast radius" 100
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 800
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
 	outfits
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -379,22 +379,22 @@ ship "Firebird"
 	attributes
 		category "Light Warship"
 		"cost" 1600000
+		"shields" 4400
+		"hull" 2600
 		"required crew" 5
 		"bunks" 18
-		"drag" 4.9
 		"mass" 290
-		"hull" 2600
-		"shields" 4400
+		"drag" 4.9
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 380
 		"weapon capacity" 160
 		"engine capacity" 100
 		weapon
-			"blast radius" 180
-			"shield damage" 1440
-			"hull damage" 720
-			"hit force" 1440
+			"blast radius" 200
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
@@ -423,22 +423,22 @@ ship "Freighter"
 	attributes
 		category "Light Freighter"
 		"cost" 230000
-		"required crew" 3
-		"bunks" 6
-		"drag" 5.6
-		"mass" 240
 		"shields" 2000
 		"hull" 2000
+		"required crew" 3
+		"bunks" 6
+		"mass" 240
+		"drag" 5.6
+		"fuel capacity" 400
 		"cargo space" 150
 		"outfit space" 230
 		"weapon capacity" 80
 		"engine capacity" 60
-		"fuel capacity" 400
 		weapon
 			"blast radius" 100
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 800
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -463,23 +463,23 @@ ship "Frigate"
 	sprite "ship/frigate"
 	attributes
 		category "Light Warship"
-		"bunks" 32
-		"cargo space" 35
 		"cost" 1600000
-		"drag" 4.5
-		"engine capacity" 80
-		"fuel capacity" 500
-		"hull" 1900
-		"mass" 310
-		"outfit space" 380
-		"required crew" 7
 		"shields" 5400
+		"hull" 1900
+		"required crew" 7
+		"bunks" 32
+		"mass" 310
+		"drag" 4.5
+		"fuel capacity" 500
+		"cargo space" 35
+		"outfit space" 380
 		"weapon capacity" 170
+		"engine capacity" 80
 		weapon
-			"blast radius" 180
-			"shield damage" 1440
-			"hull damage" 720
-			"hit force" 1440
+			"blast radius" 200
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
@@ -510,23 +510,23 @@ ship "Fury"
 	sprite "ship/fury"
 	attributes
 		category "Interceptor"
-		cost 280000
-		"required crew" 1
-		"bunks" 3
-		"drag" 1.6
-		"mass" 70
+		"cost" 280000
 		"shields" 2000
 		"hull" 400
+		"required crew" 1
+		"bunks" 3
+		"mass" 70
+		"drag" 1.6
+		"fuel capacity" 600
 		"cargo space" 15
 		"outfit space" 150
 		"weapon capacity" 30
 		"engine capacity" 50
-		"fuel capacity" 600
 		weapon
 			"blast radius" 60
-			"shield damage" 480
-			"hull damage" 240
-			"hit force" 480
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -549,23 +549,23 @@ ship "Hawk"
 	sprite "ship/hawk"
 	attributes
 		category "Interceptor"
-		cost 350000
-		"required crew" 1
-		"bunks" 3
-		"drag" 2.1
-		"mass" 150
+		"cost" 350000
 		"shields" 2500
 		"hull" 500
+		"required crew" 1
+		"bunks" 3
+		"mass" 150
+		"drag" 2.1
+		"fuel capacity" 300
 		"cargo space" 30
 		"outfit space" 180
 		"weapon capacity" 36
 		"engine capacity" 50
-		"fuel capacity" 300
 		weapon
-			"blast radius" 70
-			"shield damage" 560
-			"hull damage" 280
-			"hit force" 560
+			"blast radius" 75
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
 	outfits
 		"Greyhound Plasma Thruster" 1
 		"Greyhound Plasma Steering" 1
@@ -586,23 +586,23 @@ ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
 		category "Light Warship"
-		"bunks" 2
-		"cargo space" 10
 		"cost" 590000
-		"drag" 2.3
-		"engine capacity" 50
-		"fuel capacity" 400
-		"hull" 200
-		"mass" 60
-		"outfit space" 200
-		"required crew" 2
 		"shields" 1800
+		"hull" 200
+		"required crew" 2
+		"bunks" 2
+		"mass" 60
+		"drag" 2.3
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 200
 		"weapon capacity" 60
+		"engine capacity" 50
 		weapon
-			"blast radius" 80
-			"shield damage" 720
-			"hull damage" 360
-			"hit force" 720
+			"blast radius" 50
+			"shield damage" 200
+			"hull damage" 100
+			"hit force" 300
 	outfits
 		"Greyhound Plasma Thruster" 1
 		"Greyhound Plasma Steering" 1
@@ -623,23 +623,23 @@ ship "Rainmaker"
 	sprite "ship/rainmaker"
 	attributes
 		category "Light Warship"
-		"bunks" 4
-		"cargo space" 25
 		"cost" 780000
-		"drag" 4.6
-		"engine capacity" 40
-		"fuel capacity" 500
-		"hull" 600
-		"mass" 180
-		"outfit space" 170
-		"required crew" 3
 		"shields" 2500
+		"hull" 600
+		"required crew" 3
+		"bunks" 4
+		"mass" 180
+		"drag" 4.6
+		"fuel capacity" 500
+		"cargo space" 25
+		"outfit space" 170
 		"weapon capacity" 60
+		"engine capacity" 40
 		weapon
-			"blast radius" 120
-			"shield damage" 960
-			"hull damage" 480
-			"hit force" 960
+			"blast radius" 100
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
 	outfits
 		"Energy Blaster" 2
 		"LP036a Battery Pack" 1
@@ -668,22 +668,22 @@ ship "Scout"
 	attributes
 		category "Transport"
 		"cost" 450000
-		"required crew" 2
-		"bunks" 12
 		"shields" 1200
 		"hull" 400
-		"drag" 3.4
+		"required crew" 2
+		"bunks" 12
 		"mass" 110
-		"cargo space" 55
+		"drag" 3.4
 		"fuel capacity" 800
-		"engine capacity" 80
+		"cargo space" 55
 		"outfit space" 200
 		"weapon capacity" 60
+		"engine capacity" 80
 		weapon
-			"blast radius" 120
-			"shield damage" 960
-			"hull damage" 480
-			"hit force" 960
+			"blast radius" 40
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
 	outfits
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -708,23 +708,23 @@ ship "Shuttle"
 	sprite "ship/shuttle"
 	attributes
 		category "Transport"
-		cost 60000
-		"required crew" 1
-		"bunks" 6
-		"drag" 1.7
-		"mass" 70
+		"cost" 60000
 		"shields" 500
 		"hull" 600
+		"required crew" 1
+		"bunks" 6
+		"mass" 70
+		"drag" 1.7
+		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 105
 		"weapon capacity" 5
 		"engine capacity" 50
-		"fuel capacity" 400
 		weapon
 			"blast radius" 30
-			"shield damage" 240
-			"hull damage" 120
-			"hit force" 240
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
 	outfits
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
@@ -744,23 +744,23 @@ ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
 		category "Interceptor"
-		cost 85000
-		"required crew" 1
-		"bunks" 3
-		"drag" 1.0
-		"mass" 50
+		"cost" 85000
 		"shields" 1200
 		"hull" 300
+		"required crew" 1
+		"bunks" 3
+		"mass" 50
+		"drag" 1.0
+		"fuel capacity" 300
 		"cargo space" 15
 		"outfit space" 110
 		"weapon capacity" 20
 		"engine capacity" 30
-		"fuel capacity" 300
 		weapon
 			"blast radius" 40
-			"shield damage" 320
-			"hull damage" 160
-			"hit force" 320
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -783,22 +783,22 @@ ship "Splinter"
 	attributes
 		category "Light Warship"
 		"cost" 1100000
-		"required crew" 6
-		"bunks" 25
-		"drag" 4.0
-		"mass" 250
 		"shields" 4800
 		"hull" 1200
-		"cargo space" 75
-		"engine capacity" 80
+		"required crew" 6
+		"bunks" 25
+		"mass" 250
+		"drag" 4.0
 		"fuel capacity" 600
+		"cargo space" 75
 		"outfit space" 370
 		"weapon capacity" 150
+		"engine capacity" 80
 		weapon
-			"blast radius" 180
-			"shield damage" 1440
-			"hull damage" 720
-			"hit force" 1440
+			"blast radius" 150
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
 	outfits
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
@@ -827,23 +827,23 @@ ship "Star Barge"
 	sprite "ship/star barge"
 	attributes
 		category "Light Freighter"
-		cost 90000
-		"required crew" 1
-		"bunks" 3
-		"drag" 2.4
-		"mass" 70
+		"cost" 90000
 		"shields" 600
 		"hull" 1200
+		"required crew" 1
+		"bunks" 3
+		"mass" 70
+		"drag" 2.4
+		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 120
 		"weapon capacity" 15
 		"engine capacity" 40
-		"fuel capacity" 300
 		weapon
-			"blast radius" 50
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 400
+			"blast radius" 45
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
