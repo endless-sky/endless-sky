@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <boost/filesystem.hpp>
 
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 namespace fs = boost::filesystem;
@@ -38,6 +39,7 @@ void GameData::BeginLoad(const char * const *argv)
 	
 	// Convert all the given paths to absolute patchs ending in '/".
 	vector<string> paths;
+	bool printTable = false;
 	for(const char * const *it = argv; *it; ++it)
 	{
 		if((*it)[0] == '-')
@@ -45,6 +47,8 @@ void GameData::BeginLoad(const char * const *argv)
 			string arg = *it;
 			if(arg == "-l" || arg == "--load")
 				showLoad = true;
+			if(arg == "-t" || arg == "--table")
+				printTable = true;
 			continue;
 		}
 		
@@ -90,6 +94,34 @@ void GameData::BeginLoad(const char * const *argv)
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading();
+	
+	if(printTable)
+	{
+		cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull"
+			<< '\t' << "mass" << '\t' << "cargo" << '\t' << "bunks" << '\t' << "fuel"
+			<< '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
+			<< "speed" << '\t' << "accel" << '\t' << "turn" << '\n';
+		for(auto &it : ships)
+		{
+			const Ship &ship = it.second;
+			cout << ship.ModelName() << '\t';
+			cout << ship.Cost() << '\t';
+			
+			const Outfit &attributes = ship.Attributes();
+			cout << attributes.Get("shields") << '\t';
+			cout << attributes.Get("hull") << '\t';
+			cout << attributes.Get("mass") << '\t';
+			cout << attributes.Get("cargo space") << '\t';
+			cout << attributes.Get("bunks") << '\t';
+			cout << attributes.Get("fuel capacity") << '\t';
+			cout << attributes.Get("outfit space") << '\t';
+			cout << attributes.Get("weapon capacity") << '\t';
+			cout << attributes.Get("engine capacity") << '\t';
+			cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
+			cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
+			cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\n';
+		}
+	}
 }
 
 
