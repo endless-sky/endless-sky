@@ -530,7 +530,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget);
+	return (zoom == 1. && !explosionRate && !forget && hyperspaceCount < 5);
 }
 
 
