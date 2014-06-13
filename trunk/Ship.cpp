@@ -200,6 +200,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 		landingPlanet = nullptr;
 	else
 		zoom = 1.;
+	forget = 1;
 }
 
 

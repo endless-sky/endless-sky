@@ -535,7 +535,7 @@ void Engine::CalculateStep()
 					ship->GetGovernment()->IsEnemy(playerGovernment) ?
 						Radar::UNFRIENDLY : Radar::FRIENDLY,
 				position,
-				(ship->GetSprite().Width() + ship->GetSprite().Height()) * .005 + .5);
+				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
 	
 	// Collision detection:
@@ -639,11 +639,14 @@ void Engine::CalculateStep()
 	}
 	
 	// Add incoming ships.
-	if(!(rand() % 100))
+	if(!(rand() % 200))
 	{
 		// TODO: Each system should specify its own fleets and weights.
-		const Fleet *fleet = data.Fleets().Get((rand() % 20) ? "small merchants" : "small pirates");
-		fleet->Enter(*playerInfo.GetSystem(), ships);
+		auto it = data.Fleets().begin();
+		int choice = rand() % data.Fleets().size();
+		for(int i = 0; i < choice; ++i)
+			++it;
+		it->second.Enter(*playerInfo.GetSystem(), ships);
 	}
 	
 	// Keep track of how much of the CPU time we are using.
