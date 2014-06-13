@@ -261,7 +261,6 @@ bool Ship::Move(std::list<Effect> &effects)
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
-	fuel = min(fuel, attributes.Get("fuel capacity"));
 	energy = min(energy, attributes.Get("energy capacity"));
 	
 	heat *= .999;
@@ -291,7 +290,12 @@ bool Ship::Move(std::list<Effect> &effects)
 		// If you have a ramscoop, you recharge enough fuel to make one jump in
 		// a little less than a minute - enough to be an inconvenience without
 		// being totally aggravating.
-		fuel += .03 * sqrt(attributes.Get("ramscoop"));
+		if(attributes.Get("ramscoop"))
+		{
+			fuel += .03 * sqrt(attributes.Get("ramscoop"));
+			fuel = min(fuel, attributes.Get("fuel capacity"));
+		}
+		
 		energy += attributes.Get("energy generation");
 		heat += attributes.Get("heat generation");
 		shields += attributes.Get("shield generation");
