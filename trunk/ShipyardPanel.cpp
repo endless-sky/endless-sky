@@ -26,10 +26,10 @@ using namespace std;
 
 namespace {
 	static const vector<string> CATEGORIES = {
+		"Transport",
 		"Light Freighter",
-		"Interceptor",
 		"Heavy Freighter",
-		"Enforcer",
+		"Interceptor",
 		"Light Warship",
 		"Heavy Warship",
 		"Fighter",
