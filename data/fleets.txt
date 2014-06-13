@@ -91,7 +91,4 @@ fleet "militia"
 		"Sparrow" 2
 	variant 1
 		"Falcon"
-	variant 1
-		"Frigate" 2
-		"Cruiser"
-		"Rainmaker" 2
+
