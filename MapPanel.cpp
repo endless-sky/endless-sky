@@ -133,7 +133,7 @@ void MapPanel::Draw() const
 					value = system.HasOutfitter();
 				color = Color(
 					.6f * (1.f - max(-value, 0.f)),
-					.6f * (1.f - abs(value)),
+					.6f * (1.f - max(-value, 0.f)),
 					.6f * (1.f - max(value, 0.f)),
 					.4f);
 			}
