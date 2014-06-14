@@ -1,20 +1,38 @@
-outfit "Water Coolant System"
+outfit "Cooling Ducts"
 	category "Systems"
 	cost 10000
 	thumbnail "outfit/steering"
 	"mass" 5
 	"outfit space" 5
 	"energy generation" -.1
-	"heat generation" -10
+	"heat generation" -5
 
-outfit "Liquid Nitrogen Cooler"
+outfit "Water Coolant System"
 	category "Systems"
-	cost 40000
+	cost 25000
 	thumbnail "outfit/steering"
 	"mass" 10
 	"outfit space" 10
 	"energy generation" -.2
-	"heat generation" -40
+	"heat generation" -12
+
+outfit "Liquid Nitrogen Cooler"
+	category "Systems"
+	cost 60000
+	thumbnail "outfit/steering"
+	"mass" 20
+	"outfit space" 20
+	"energy generation" -.4
+	"heat generation" -29
+
+outfit "Liquid Helium Cooler"
+	category "Systems"
+	cost 150000
+	thumbnail "outfit/steering"
+	"mass" 40
+	"outfit space" 40
+	"energy generation" -.8
+	"heat generation" -69
 
 
 outfit "D14-RN Shield Generator"
