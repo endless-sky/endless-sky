@@ -55,7 +55,7 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 
 // Ship explosion.
 Projectile::Projectile(Point position, const Outfit *weapon)
-	: weapon(weapon), position(position), government(nullptr), lifetime(1)
+	: weapon(weapon), position(position), government(nullptr), lifetime(0)
 {
 }
 
