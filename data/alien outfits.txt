@@ -1,0 +1,79 @@
+outfit "Nanotech Battery"
+	category "Power"
+	cost 3000000
+	"mass" 50
+	"outfit space" -50
+	"energy capacity" 30000
+
+outfit "Antimatter Core"
+	category "Power"
+	cost 100000000
+	"mass" 80
+	"outfit space" -80
+	"energy generation" 80
+	"heat generation" 20
+
+outfit "Quarg Skylance"
+	category "Turrets"
+	cost 18000000
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"turret mounts" -1
+	weapon
+		sprite "projectile/skylance"
+			"frame rate" 1
+		"hit effect" "skylance impact"
+		"inaccuracy" .4
+		"velocity" 500
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 30
+		"firing heat" 10
+		"shield damage" 50
+		"hull damage" 60
+
+outfit "Quarg Anti-Missile"
+	category "Turrets"
+	cost 6000000
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"turret mounts" -1
+	weapon
+		"hit effect" "quarg anti-missile"
+		"anti-missile" 25
+		"velocity" 500
+		"lifetime" 1
+		"reload" 10
+		"firing energy" 50
+
+outfit "Medium Graviton Thruster"
+	category "Engines"
+	"cost" 20000000
+	"mass" 70
+	"outfit space" -70
+	"engine capacity" -70
+	"thrust" 80
+	"thrusting energy" 20
+	"thrusting heat" 10
+	"flare sprite" "effect/medium graviton flare"
+
+outfit "Medium Graviton Steering"
+	category "Engines"
+	"cost" 16000000
+	thumbnail "outfit/steering"
+	"mass" 50
+	"outfit space" -50
+	"engine capacity" -50
+	"turn" 1600
+	"turning energy" 10
+	"turning heat" 5
+
+outfit "Quantum Shield Generator"
+	category "Systems"
+	cost 30000000
+	"mass" 120
+	"outfit space" -120
+	"shield generation" 10
+

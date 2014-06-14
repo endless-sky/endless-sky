@@ -91,4 +91,8 @@ fleet "militia"
 		"Sparrow" 2
 	variant 1
 		"Falcon"
-
+fleet "quarg"
+	government "Quarg"
+	names "quarg"
+	variant
+		"Quarg Skylark"
