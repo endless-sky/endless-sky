@@ -25,7 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Angle {
 public:
 	// Return a random angle up to the given amount (between 0 and 360).
-	static Angle Random(double range);
+	static Angle Random(double range = 360.);
 	
 	
 public:

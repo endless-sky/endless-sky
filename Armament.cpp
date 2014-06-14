@@ -118,7 +118,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 		aim += angle;
 	else
 	{
-		Point p = target->Position() - start;
+		Point p = target->Position() - start + ship.Confusion();
 		Point v = target->Velocity() - ship.Velocity();
 		double steps = RendevousTime(p, v, outfit->WeaponGet("velocity"));
 		
