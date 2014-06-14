@@ -228,7 +228,7 @@ outfit "Sidewinder Missile Launcher"
 	"outfit space" -15
 	"weapon capacity" -15
 	"gun ports" -1
-	"sidewinder capacity" 40
+	"sidewinder capacity" 50
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -250,7 +250,7 @@ outfit "Sidewinder Missile Launcher"
 		"shield damage" 60
 		"hull damage" 40
 		"hit force" 25
-		"missile strength" 5
+		"missile strength" 12
 
 outfit "Javelin"
 	category "Missiles"
