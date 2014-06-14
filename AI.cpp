@@ -476,7 +476,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 			else
 			{
 				// Get the vector the weapon will travel along.
-				v += (ship.Facing() + weapon.GetAngle()).Unit() * vp;
+				v = (ship.Facing() + weapon.GetAngle()).Unit() * vp - v;
 				// Extrapolate over the lifetime of the projectile.
 				v *= lifetime;
 				
