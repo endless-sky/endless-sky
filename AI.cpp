@@ -413,7 +413,7 @@ Point AI::TargetAim(const Ship &ship) const
 			continue;
 		
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-		Point p = target->Position() - start;
+		Point p = target->Position() - start + ship.Confusion();
 		Point v = target->Velocity() - ship.Velocity();
 		double steps = Armament::RendevousTime(p, v, outfit->WeaponGet("velocity"));
 		if(!(steps == steps))
@@ -454,11 +454,12 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 		
 		for(auto target : ships)
 		{
-			if(!target->IsTargetable() || !target->GetGovernment()->IsEnemy(gov))
+			if(!target->IsTargetable() || !target->GetGovernment()->IsEnemy(gov)
+					|| target->Velocity().Length() > 20.)
 				continue;
 			
 			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-			Point p = target->Position() - start;
+			Point p = target->Position() - start + ship.Confusion();
 			Point v = target->Velocity() - ship.Velocity();
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.

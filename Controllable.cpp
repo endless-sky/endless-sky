@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Controllable.h"
 
+#include "Angle.h"
+
 using namespace std;
 
 namespace {
@@ -30,7 +32,8 @@ namespace {
 
 
 Controllable::Controllable()
-	: commands(0), targetPlanet(nullptr), targetSystem(nullptr)
+	: commands(0), targetPlanet(nullptr), targetSystem(nullptr),
+	confusionMultiplier(.01)
 {
 }
 
@@ -132,7 +135,7 @@ void Controllable::SetFireCommands(int bitmask)
 
 // Each ship can have a target system (to travel to), a target planet (to
 // land on) and a target ship (to move to, and attack if hostile).
-const std::weak_ptr<const Ship> &Controllable::GetTargetShip() const
+const weak_ptr<const Ship> &Controllable::GetTargetShip() const
 {
 	return targetShip;
 }
@@ -154,7 +157,7 @@ const System *Controllable::GetTargetSystem() const
 
 
 // Set this ship's targets.
-void Controllable::SetTargetShip(const std::weak_ptr<const Ship> &ship)
+void Controllable::SetTargetShip(const weak_ptr<const Ship> &ship)
 {
 	targetShip = ship;
 }
@@ -177,28 +180,46 @@ void Controllable::SetTargetSystem(const System *system)
 
 // Add escorts to this ship. Escorts look to the parent ship for movement
 // cues and try to stay with it when it lands or goes into hyperspace.
-void Controllable::AddEscort(const std::weak_ptr<const Ship> &ship)
+void Controllable::AddEscort(const weak_ptr<const Ship> &ship)
 {
 	escorts.push_back(ship);
 }
 
 
 
-void Controllable::SetParent(const std::weak_ptr<const Ship> &ship)
+void Controllable::SetParent(const weak_ptr<const Ship> &ship)
 {
 	parent = ship;
 }
 
 
 
-const vector<std::weak_ptr<const Ship>> &Controllable::GetEscorts() const
+const vector<weak_ptr<const Ship>> &Controllable::GetEscorts() const
 {
 	return escorts;
 }
 
 
 
-const std::weak_ptr<const Ship> &Controllable::GetParent() const
+const weak_ptr<const Ship> &Controllable::GetParent() const
 {
 	return parent;
+}
+
+
+
+// Get this ship's current "confusion" about where its target is. Some ships
+// may be more accurate than others in targetting.
+const Point &Controllable::Confusion() const
+{
+	confusion += Angle::Random().Unit() * confusionMultiplier;
+	confusion *= .999;
+	return confusion;
+}
+
+
+
+void Controllable::SetConfusion(double confusionScale)
+{
+	confusionMultiplier = confusionScale * .001;
 }
