@@ -66,10 +66,6 @@ MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 	}
 	
 	center = Point(0., 0.) - current->Position();
-	
-	// Make sure all the systems have the planets positioned properly.
-	//for(const auto &system : data.Systems())
-	//	system.second.SetDate(player.GetDate());
 }
 
 
@@ -128,14 +124,22 @@ void MapPanel::Draw() const
 						/ (com.high - com.low) - 1.f;
 				}
 				else if(commodity == -1)
-					value = system.HasShipyard();
+					value = system.HasShipyard() * 2 - 1;
 				else if(commodity == -2)
-					value = system.HasOutfitter();
-				color = Color(
-					.6f * (1.f - max(-value, 0.f)),
-					.6f * (1.f - max(-value, 0.f)),
-					.6f * (1.f - max(value, 0.f)),
-					.4f);
+					value = system.HasOutfitter() * 2 - 1;
+				// Color the systems with a gradient from blue to cyan to gold.
+				if(value < 0.f)
+					color = Color(
+						.12 + .12 * value,
+						.48 + .36 * value,
+						.48 - .12 * value,
+						.4f);
+				else
+					color = Color(
+						.12 + .48 * value,
+						.48,
+						.48 - .48 * value,
+						.4f);
 			}
 			else
 			{
@@ -179,7 +183,7 @@ void MapPanel::Draw() const
 			(&system == current) ? closeColor : farColor);
 	}
 	
-	Point uiPoint(-Screen::Width() / 2 + 100., -Screen::Height() / 2 + 45.);
+	Point uiPoint(Screen::Left() + 100., Screen::Top() + 45.);
 	
 	// System sprite goes from 0 to 90.
 	const Sprite *systemSprite = SpriteSet::Get("ui/map system");
@@ -263,9 +267,18 @@ void MapPanel::Draw() const
 		uiPoint.Y() += 20.;
 	}
 	
+	// Draw the "Done" button.
+	const Sprite *buttonSprite = SpriteSet::Get("ui/dialog cancel");
+	Point buttonCenter(Screen::Right() - 300, Screen::Bottom() - 25);
+	SpriteShader::Draw(buttonSprite, buttonCenter);
+	static const string DONE = "Done";
+	buttonCenter.X() -= .5 * font.Width(DONE);
+	buttonCenter.Y() -= .5 * font.Height();
+	font.Draw(DONE, buttonCenter, Color(.8, 0.));
+	
 	// Draw the planet orbits in the currently selected system.
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
-	Point orbitCenter(Screen::Width() / 2 - 130, Screen::Height() / 2 - 140);
+	Point orbitCenter(Screen::Right() - 130, Screen::Bottom() - 140);
 	SpriteShader::Draw(orbitSprite, orbitCenter);
 	orbitCenter.Y() += 10.;
 	
@@ -342,7 +355,7 @@ void MapPanel::Draw() const
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selected->Name();
 	int width = font.Width(name);
 	width = (width / 2) + 65;
-	Point namePos(Screen::Width() / 2 - width - 5., Screen::Height() / 2 - 267.);
+	Point namePos(Screen::Right() - width - 5., Screen::Bottom() - 267.);
 	font.Draw(name, namePos, closeColor);
 }
 
@@ -351,7 +364,7 @@ void MapPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
 {
-	if(key == data.Keys().Get(Key::MAP))
+	if(key == data.Keys().Get(Key::MAP) || key == 'd')
 		GetUI()->Pop(this);
 	else
 		return false;
@@ -363,7 +376,7 @@ bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
 
 bool MapPanel::Click(int x, int y)
 {
-	if(x < 160 - Screen::Width() / 2)
+	if(x < Screen::Left() + 160)
 	{
 		if(y >= tradeY && y < tradeY + 200)
 		{
@@ -386,7 +399,7 @@ bool MapPanel::Click(int x, int y)
 				}
 		}
 	}
-	else if(x >= Screen::Width() / 2 - 240 && y >= Screen::Height() / 2 - 240)
+	else if(x >= Screen::Right() - 240 && y >= Screen::Bottom() - 240)
 	{
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
@@ -401,6 +414,11 @@ bool MapPanel::Click(int x, int y)
 			}
 		}
 		return true;
+	}
+	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 335 && x < Screen::Right() - 265)
+	{
+		// The user clicked the "done" button.
+		return KeyDown(SDLK_d, KMOD_NONE);
 	}
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) - center;
