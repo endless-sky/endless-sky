@@ -30,7 +30,7 @@ using namespace std;
 Ship::Ship()
 	: government(nullptr), isInSystem(true),
 	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
-	cargoMass(0),
+	explosionWeapon(nullptr), cargoMass(0),
 	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
 	currentSystem(nullptr),
 	zoom(1.), landingPlanet(nullptr),
@@ -100,6 +100,10 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	attributes = baseAttributes;
+	// All copies of this ship should save pointers to the "explosion" weapon
+	// definition stored safely in the ship model, which will not be destroyed
+	// until GameData is when the program quits.
+	explosionWeapon = &baseAttributes;
 }
 
 
@@ -468,8 +472,8 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 	
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
-	if(explosionCount == explosionTotal)
-		projectiles.emplace_back(position, &attributes);
+	if(explosionCount == explosionTotal && explosionWeapon)
+		projectiles.emplace_back(position, explosionWeapon);
 	
 	if(zoom != 1. || isDisabled || hyperspaceCount)
 		return false;
@@ -530,7 +534,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && hyperspaceCount < 5);
+	return (zoom == 1. && !explosionRate && !forget);
 }
 
 
