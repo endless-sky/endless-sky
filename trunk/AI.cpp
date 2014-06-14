@@ -70,11 +70,12 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// ships pick a target at each step to avoid having one frame take
 			// much longer when there are many ships.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step)
+			shared_ptr<const Ship> target = it->GetTargetShip().lock();
+			if(targetTurn == step || (target && target->IsDisabled()))
 				it->SetTargetShip(FindTarget(*it, ships));
 			
 			double targetDistance = numeric_limits<double>::infinity();
-			shared_ptr<const Ship> target = it->GetTargetShip().lock();
+			target = it->GetTargetShip().lock();
 			if(target)
 				targetDistance = target->Position().Distance(it->Position());
 			
@@ -513,12 +514,19 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		for(const shared_ptr<Ship> &other : ships)
 			if(other.get() != &ship && other->IsTargetable())
 			{
-				double d = other->Position().Distance(ship.Position());
-				
 				// Sort ships into one of three priority states:
 				// 0 = friendly, 1 = disabled enemy, 2 = active enemy.
 				int state = other->GetGovernment()->IsEnemy(ship.GetGovernment());
+				// Do not let "target nearest" select a friendly ship, so that
+				// if the player is repeatedly targeting nearest to, say, target
+				// a bunch of fighters, they won't start firing on friendly
+				// ships as soon as the last one is gone.
+				if(!state)
+					continue;
+				
 				state += state * !other->IsDisabled();
+				
+				double d = other->Position().Distance(ship.Position());
 				
 				if(state > closeState || (state == closeState && d < closest))
 				{
