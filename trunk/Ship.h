@@ -190,6 +190,7 @@ private:
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
 	Outfit baseAttributes;
+	const Outfit *explosionWeapon;
 	std::map<const Outfit *, int> outfits;
 	std::map<std::string, int> cargo;
 	int cargoMass;
