@@ -132,6 +132,7 @@ int main(int argc, char *argv[])
 					if(restoreWidth)
 					{
 						Screen::Set(restoreWidth, restoreHeight);
+						SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 0);
 						restoreWidth = 0;
 						restoreHeight = 0;
 					}
@@ -140,6 +141,7 @@ int main(int argc, char *argv[])
 						restoreWidth = Screen::Width();
 						restoreHeight = Screen::Height();
 						Screen::Set(maxWidth, maxHeight);
+						SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 					}
 					// TODO: When toggling out of full-screen mode in unity,
 					// the window is left maximized. Find a way to fix that.
