@@ -595,7 +595,7 @@ ship "Quicksilver"
 		"drag" 2.3
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 200
+		"outfit space" 220
 		"weapon capacity" 60
 		"engine capacity" 50
 		weapon
@@ -609,7 +609,7 @@ ship "Quicksilver"
 		"LP036a Battery Pack" 1
 		"Particle Cannon" 2
 		"D23-QP Shield Generator" 1
-		"nGVF-BB Fuel Cell" 1
+		"RT-I Radiothermal" 1
 		"Hyperdrive" 1
 	engine -17 54
 	engine 17 54
