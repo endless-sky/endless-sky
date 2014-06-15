@@ -57,6 +57,22 @@ fleet "small pirates"
 		"Splinter"
 	variant 1
 		"Falcon"
+fleet "large pirates"
+	government "Pirate"
+	names "civilian"
+	variant 1
+		"Falcon"
+fleet "medium pirates"
+	government "Pirate"
+	names "civilian"
+	variant 2
+		"Firebird"
+	variant 2
+		"Argosy"
+	variant 1
+		"Splinter"
+	variant 1
+		"Falcon"
 fleet "navy"
 	government "Republic"
 	names "civilian"

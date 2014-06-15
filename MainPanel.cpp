@@ -43,6 +43,7 @@ void MainPanel::Step(bool isActive)
 	// will call this object's OnCallback() function;
 	if(isActive && playerInfo.GetPlanet())
 	{
+		playerInfo.Land();
 		GetUI()->Push(new PlanetPanel(gameData, playerInfo, *this));
 		isActive = false;
 	}
@@ -80,7 +81,7 @@ void MainPanel::Draw() const
 // The planet panel calls this when it closes.
 void MainPanel::OnCallback(int)
 {
-	engine.Place();
+	engine.Place(playerInfo.TakeOff());
 }
 
 

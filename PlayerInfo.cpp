@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <boost/filesystem.hpp>
 
 #include <fstream>
+#include <sstream>
 
 namespace fs = boost::filesystem;
 
@@ -47,6 +48,8 @@ void PlayerInfo::Clear()
 	accounts = Account();
 	
 	ships.clear();
+	cargo.clear();
+	
 	seen.clear();
 	visited.clear();
 	travelPlan.clear();
@@ -90,6 +93,12 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(data.Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "cargo")
+		{
+			for(const DataFile::Node &grand : child)
+				if(grand.Size() >= 2)
+					cargo[grand.Token(0)] += static_cast<int>(grand.Value(1));
+		}
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -129,6 +138,15 @@ void PlayerInfo::Save() const
 		out << "planet \"" << planet->Name() << "\"\n";
 	
 	accounts.Save(out);
+	bool first = true;
+	for(const pair<string, int> &it : cargo)
+		if(it.second)
+		{
+			if(first)
+				out << "cargo\n";
+			first = false;
+			out << "\t\"" << it.first << "\" " << it.second << '\n';
+		}
 	
 	for(const std::shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
@@ -344,6 +362,160 @@ void PlayerInfo::SellShip(const Ship *selected)
 			ships.erase(it);
 			return;
 		}
+}
+
+
+
+// Get the cargo capacity of all in-system ships. This works whether or not
+// you have unloaded the cargo.
+int PlayerInfo::FreeCargo() const
+{
+	const Ship *flagship = GetShip();
+	if(!flagship)
+		return 0;
+	
+	int free = 0;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == flagship->GetSystem())
+			free += ship->FreeCargo();
+	
+	for(const pair<string, int> &it : cargo)
+		free -= it.second;
+	for(const pair<const Outfit *, int> &it : outfitCargo)
+		free -= it.first->Get("mass") * it.second;
+	
+	return free;
+}
+
+
+
+// Switch cargo from being stored in ships to being stored here.
+void PlayerInfo::Land()
+{
+	// Remove any ships that have been destroyed.
+	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
+	while(it != ships.end())
+	{
+		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled())
+			it = ships.erase(it);
+		else
+			++it; 
+	}
+	
+	// This can only be done while landed.
+	if(!system || !planet)
+		return;
+	
+	const Ship *flagship = GetShip();
+	if(!flagship)
+		return;
+	
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == flagship->GetSystem())
+		{
+			for(const pair<string, int> &it : ship->Cargo())
+			{
+				cargo[it.first] += it.second;
+				ship->AddCargo(-it.second, it.first);
+			}
+			// TODO: handle outfit cargo too.
+		}
+}
+
+
+
+// Load the cargo back into your ships. This may require selling excess, in
+// which case a message will be returned.
+std::string PlayerInfo::TakeOff()
+{
+	// This can only be done while landed.
+	if(!system || !planet)
+		return "";
+	
+	const Ship *flagship = GetShip();
+	if(!flagship)
+		return "";
+	
+	// TODO: handle outfit cargo.
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == flagship->GetSystem())
+			for(pair<const string, int> &it : cargo)
+			{
+				int transfer = min(it.second, ship->FreeCargo());
+				if(transfer)
+				{
+					ship->AddCargo(transfer, it.first);
+					it.second -= transfer;
+				}
+			}
+	
+	int sold = 0;
+	int income = 0;
+	for(pair<const string, int> &it : cargo)
+		if(it.second)
+		{
+			int price = system->Trade(it.first);
+			accounts.AddCredits(price * it.second);
+			sold += it.second;
+			income += price * it.second;
+		}
+	cargo.clear();
+	if(!sold)
+		return "";
+	
+	ostringstream out;
+	out << "You sold " << sold << " tons of excess cargo for " << income << " credits.";
+	return out.str();
+}
+
+
+
+// Normal cargo and spare parts:
+std::map<std::string, int> PlayerInfo::Cargo() const
+{
+	return cargo;
+}
+
+
+
+int PlayerInfo::Cargo(const std::string &type) const
+{
+	auto it = cargo.find(type);
+	if(it == cargo.end())
+		return 0;
+	
+	return it->second;
+}
+
+
+
+std::map<const Outfit *, int> PlayerInfo::OutfitCargo() const
+{
+	return outfitCargo;
+}
+
+
+
+void PlayerInfo::BuyCargo(const std::string &type, int amount)
+{
+	// This can only be done while landed.
+	if(!system || !planet)
+		return;
+	
+	int price = system->Trade(type);
+	amount = min(amount, accounts.Credits() / price);
+	amount = min(amount, FreeCargo());
+	amount = max(amount, -cargo[type]);
+	
+	cargo[type] += amount;
+	accounts.AddCredits(price * amount);
+}
+
+
+
+void PlayerInfo::AddOutfitCargo(const Outfit *outfit, int amount)
+{
+	outfitCargo[outfit] += amount;
 }
 
 

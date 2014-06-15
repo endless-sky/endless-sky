@@ -143,6 +143,7 @@ public:
 	void ApplyForce(const Point &force);
 	
 	// Get cargo information.
+	const std::map<std::string, int> &Cargo() const;
 	int Cargo(const std::string &type) const;
 	int FreeCargo() const;
 	int AddCargo(int tons, const std::string &type);
