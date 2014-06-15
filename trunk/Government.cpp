@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Government.h"
 
+#include <algorithm>
+
 using namespace std;
 
 
@@ -86,9 +88,8 @@ bool Government::IsEnemy(const Government *other) const
 		return false;
 	
 	return (enemies.find(other) != enemies.end()
-		|| provoked.find(other) != provoked.end()
-		|| other->enemies.find(this) != other->enemies.end()
-		|| other->provoked.find(this) != other->provoked.end());
+		|| IsProvoked(other)
+		|| other->enemies.find(this) != other->enemies.end());
 }
 
 
@@ -96,17 +97,34 @@ bool Government::IsEnemy(const Government *other) const
 // Mark that this government is, for the moment, fighting the given
 // government, which is not necessarily one of its normal enemies, because
 // a ship of that government attacked it or one of its allies.
-void Government::Provoke(const Government *other) const
+void Government::Provoke(const Government *other, double damage) const
 {
 	if(other != this)
-		provoked.insert(other);
+		provoked[other] += damage;
+}
+
+
+
+// Check if we are provoked against the given government.
+bool Government::IsProvoked(const Government *other) const
+{
+	return provoked[other] > 1.;
 }
 
 
 
 // Reset the record of who has provoked whom. Typically this will happen
 // whenever you move to a new system.
-void Government::ResetProvocation()
+void Government::ResetProvocation() const
 {
 	provoked.clear();
+}
+
+
+
+// Every time step, the provokation values fade a little:
+void Government::CoolDown() const
+{
+	for(auto &it : provoked)
+		it.second = max(0., it.second - 1.);
 }

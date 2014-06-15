@@ -54,10 +54,13 @@ public:
 	// Mark that this government is, for the moment, fighting the given
 	// government, which is not necessarily one of its normal enemies, because
 	// a ship of that government attacked it or one of its allies.
-	void Provoke(const Government *other) const;
-	// Reset the record of who has provoked whom. Typically this will happen
-	// whenever you move to a new system.
-	void ResetProvocation();
+	void Provoke(const Government *other, double damage) const;
+	// Check if we are provoked against the given government.
+	bool IsProvoked(const Government *other) const;
+	// Reset the record of who has provoked whom.
+	void ResetProvocation() const;
+	// Every time step, the provokation values fade a little:
+	void CoolDown() const;
 	
 	
 private:
@@ -68,7 +71,7 @@ private:
 	std::set<const Government *> allies;
 	std::set<const Government *> enemies;
 	
-	mutable std::set<const Government *> provoked;
+	mutable std::map<const Government *, double> provoked;
 };
 
 

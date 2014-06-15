@@ -428,6 +428,10 @@ void PlayerInfo::Land()
 // which case a message will be returned.
 std::string PlayerInfo::TakeOff()
 {
+	// Reset any governments you provoked yesterday.
+	for(const auto &it : gameData->Governments())
+		it.second.ResetProvocation();
+	
 	// This can only be done while landed.
 	if(!system || !planet)
 		return "";

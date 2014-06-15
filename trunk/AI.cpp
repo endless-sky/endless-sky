@@ -454,7 +454,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 		
 		for(auto target : ships)
 		{
-			if(!target->IsTargetable() || !target->GetGovernment()->IsEnemy(gov)
+			if(!target->IsTargetable() || !gov->IsEnemy(target->GetGovernment())
 					|| target->Velocity().Length() > 20.)
 				continue;
 			
