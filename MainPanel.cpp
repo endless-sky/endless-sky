@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MainPanel.h"
 
+#include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "FrameTimer.h"
@@ -21,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "UI.h"
 
+#include <sstream>
 #include <string>
 
 using namespace std;
@@ -91,6 +93,44 @@ bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == gameData.Keys().Get(Key::MAP))
 		GetUI()->Push(new MapPanel(gameData, playerInfo));
+	else if(key == gameData.Keys().Get(Key::SCAN))
+	{
+		const Ship *player = playerInfo.GetShip();
+		if(player)
+		{
+			shared_ptr<const Ship> target = player->GetTargetShip().lock();
+			if(target)
+			{
+				ostringstream out;
+				bool first = true;
+				for(const auto &it : target->Cargo())
+					if(it.second)
+					{
+						if(first)
+							out << "This ship is carrying:\n";
+						first = false;
+					
+						out << "\t" << it.second
+							<< (it.second == 1 ? " ton of " : " tons of ")
+							<< it.first << "\n";
+					}
+				if(first)
+					out << "This ship is not carrying any cargo.\n";
+				
+				out << "This ship is equipped with:\n";
+				for(const auto &it : target->Outfits())
+					if(it.first && it.second)
+					{
+						out << "\t" << it.first->Name();
+						if(it.second != 1)
+							out << " (" << it.second << ")";
+						out << "\n";
+					}
+				
+				GetUI()->Push(new Dialog(out.str()));
+			}
+		}
+	}
 	else
 		return false;
 	

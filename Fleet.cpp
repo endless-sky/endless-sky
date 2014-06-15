@@ -25,7 +25,7 @@ using namespace std;
 
 
 Fleet::Fleet()
-	: government(nullptr), names(nullptr), total(0)
+	: data(nullptr), government(nullptr), names(nullptr), total(0)
 {
 }
 
@@ -33,6 +33,8 @@ Fleet::Fleet()
 
 void Fleet::Load(const DataFile::Node &node, const GameData &data)
 {
+	this->data = &data;
+	
 	// Provide defaults for these in case they are not specified.
 	government = data.Governments().Get("Merchant");
 	names = data.ShipNames().Get("civilian");
@@ -55,7 +57,7 @@ void Fleet::Load(const DataFile::Node &node, const GameData &data)
 
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 {
-	if(!total)
+	if(!total || !data || !government)
 		return;
 	
 	// Pick a random variant based on the weights.
@@ -123,6 +125,19 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		{
 			ships.front()->SetParent(flagship);
 			flagship->AddEscort(ships.front());
+		}
+		
+		// Set this ship's cargo.
+		for(int i = 0; i < 3; ++i)
+		{
+			int free = ships.front()->FreeCargo();
+			if(!free)
+				break;
+			
+			const Trade::Commodity &commodity =
+				data->Commodities()[rand() % data->Commodities().size()];
+			int amount = rand() % free + 1;
+			ships.front()->AddCargo(amount, commodity.name);
 		}
 	}
 }
