@@ -47,6 +47,8 @@ private:
 	
 	
 private:
+	const GameData *data;
+	
 	const Government *government;
 	const ShipName *names;
 	std::vector<Variant> variants;
