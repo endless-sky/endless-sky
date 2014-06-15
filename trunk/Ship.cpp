@@ -821,6 +821,13 @@ void Ship::ApplyForce(const Point &force)
 
 
 
+const map<std::string, int> &Ship::Cargo() const
+{
+	return cargo;
+}
+
+
+
 int Ship::Cargo(const string &type) const
 {
 	auto it = cargo.find(type);

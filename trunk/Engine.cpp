@@ -89,8 +89,11 @@ Engine::~Engine()
 
 
 
-void Engine::Place()
+void Engine::Place(const string &message)
 {
+	if(!message.empty())
+		AddMessage(message);
+	
 	ships.clear();
 	
 	EnterSystem();
@@ -150,7 +153,8 @@ void Engine::Step(bool isActive)
 			playerInfo.SetPlanet(player->GetPlanet());
 			
 			for(const shared_ptr<Ship> &ship : playerInfo.Ships())
-				if(ship->GetSystem() == player->GetSystem())
+				if(ship->GetSystem() == player->GetSystem()
+						&& !ship->IsDisabled() && ship->Hull() > 0.)
 					ship->Recharge();
 		}
 		

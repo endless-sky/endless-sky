@@ -80,7 +80,7 @@ void TradingPanel::Draw() const
 	y += 5;
 	int lastY = y + 20 * data.Commodities().size() + 25;
 	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
-	font.Draw(to_string(player.GetShip()->FreeCargo()), Point(HOLD_X, lastY), selected);
+	font.Draw(to_string(player.FreeCargo()), Point(HOLD_X, lastY), selected);
 	
 	int i = 0;
 	for(const Trade::Commodity &commodity : data.Commodities())
@@ -104,7 +104,7 @@ void TradingPanel::Draw() const
 		font.Draw("[buy]", Point(BUY_X, y), color);
 		font.Draw("[sell]", Point(SELL_X, y), color);
 		
-		int hold = player.GetShip()->Cargo(commodity.name);
+		int hold = player.Cargo(commodity.name);
 		if(hold)
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 	}
@@ -154,14 +154,7 @@ bool TradingPanel::Click(int x, int y)
 
 void TradingPanel::Buy(int amount)
 {
-	amount *= Modifier();
-	
-	int price = system.Trade(data.Commodities()[selectedRow].name);
-	if(price * amount > player.Accounts().Credits())
-		amount = player.Accounts().Credits() / price;
-	
-	amount = player.GetShip()->AddCargo(amount, data.Commodities()[selectedRow].name);
-	player.Accounts().AddCredits(-price * amount);
+	player.BuyCargo(data.Commodities()[selectedRow].name, amount * Modifier());
 }
 
 
