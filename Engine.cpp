@@ -417,6 +417,10 @@ void Engine::CalculateStep()
 	draw[calcTickTock].Clear(step);
 	radar[calcTickTock].Clear();
 	
+	// Give provoked governments a chance to cool down.
+	for(const auto &it : data.Governments())
+		it.second.CoolDown();
+	
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(ships, playerInfo);
 	
@@ -598,7 +602,8 @@ void Engine::CalculateStep()
 			
 			// Whatever ship you hit directly is provoked against you.
 			if(hit)
-				hit->GetGovernment()->Provoke(gov);
+				hit->GetGovernment()->Provoke(gov, 
+					projectile.GetWeapon().WeaponGet("shield damage"));
 		}
 		else if(projectile.MissileStrength())
 		{
