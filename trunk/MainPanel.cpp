@@ -98,35 +98,45 @@ bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 		const Ship *player = playerInfo.GetShip();
 		if(player)
 		{
+			double cargoRange = player->Attributes().Get("cargo scan");
+			double outfitRange = player->Attributes().Get("outfit scan");
 			shared_ptr<const Ship> target = player->GetTargetShip().lock();
-			if(target)
+			if(target && (cargoRange || outfitRange))
 			{
+				double distance = (player->Position() - target->Position()).Length();
+				
 				ostringstream out;
-				bool first = true;
-				for(const auto &it : target->Cargo())
-					if(it.second)
-					{
-						if(first)
-							out << "This ship is carrying:\n";
-						first = false;
+				if(distance < cargoRange)
+				{
+					bool first = true;
+					for(const auto &it : target->Cargo())
+						if(it.second)
+						{
+							if(first)
+								out << "This ship is carrying:\n";
+							first = false;
 					
-						out << "\t" << it.second
-							<< (it.second == 1 ? " ton of " : " tons of ")
-							<< it.first << "\n";
-					}
-				if(first)
-					out << "This ship is not carrying any cargo.\n";
-				
-				out << "This ship is equipped with:\n";
-				for(const auto &it : target->Outfits())
-					if(it.first && it.second)
-					{
-						out << "\t" << it.first->Name();
-						if(it.second != 1)
-							out << " (" << it.second << ")";
-						out << "\n";
-					}
-				
+							out << "\t" << it.second
+								<< (it.second == 1 ? " ton of " : " tons of ")
+								<< it.first << "\n";
+						}
+					if(first)
+						out << "This ship is not carrying any cargo.\n";
+				}
+				if(distance < outfitRange)
+				{
+					out << "This ship is equipped with:\n";
+					for(const auto &it : target->Outfits())
+						if(it.first && it.second)
+						{
+							out << "\t" << it.first->Name();
+							if(it.second != 1)
+								out << " (" << it.second << ")";
+							out << "\n";
+						}
+				}
+				if(out.str().empty())
+					out << "You are too far away to scan this ship.\n";
 				GetUI()->Push(new Dialog(out.str()));
 			}
 		}
