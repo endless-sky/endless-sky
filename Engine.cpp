@@ -152,10 +152,11 @@ void Engine::Step(bool isActive)
 		{
 			playerInfo.SetPlanet(player->GetPlanet());
 			
-			for(const shared_ptr<Ship> &ship : playerInfo.Ships())
-				if(ship->GetSystem() == player->GetSystem()
-						&& !ship->IsFullyDisabled() && ship->Hull() > 0.)
-					ship->Recharge();
+			if(player->GetPlanet()->HasSpaceport())
+				for(const shared_ptr<Ship> &ship : playerInfo.Ships())
+					if(ship->GetSystem() == player->GetSystem()
+							&& !ship->IsFullyDisabled() && ship->Hull() > 0.)
+						ship->Recharge();
 		}
 		
 		const System *currentSystem = playerInfo.GetSystem();
@@ -375,6 +376,19 @@ void Engine::EnterSystem()
 	asteroids.Clear();
 	for(const System::Asteroid &a : player->GetSystem()->Asteroids())
 		asteroids.Add(a.Name(), a.Count(), a.Energy());
+	
+	for(int i = 0; i < 5; ++i)
+	{
+		// TODO: Use the actual fleets from the system (once they have them).
+		if(rand() % 200 < 60)
+		{
+			auto it = data.Fleets().begin();
+			int choice = rand() % data.Fleets().size();
+			for(int i = 0; i < choice; ++i)
+				++it;
+			it->second.Place(*playerInfo.GetSystem(), ships);
+		}
+	}
 	
 	projectiles.clear();
 	effects.clear();

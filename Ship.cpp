@@ -376,7 +376,9 @@ bool Ship::Move(std::list<Effect> &effects)
 				zoom = 0.;
 			}
 		}
-		else if(fuel == attributes.Get("fuel capacity"))
+		// Only refuel if this planet has a spaceport.
+		else if(fuel == attributes.Get("fuel capacity")
+				|| !landingPlanet || !landingPlanet->HasSpaceport())
 		{
 			zoom = min(1., zoom + .02);
 			landingPlanet = nullptr;
