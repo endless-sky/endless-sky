@@ -17,6 +17,7 @@ outfit "Energy Blaster"
 		"firing heat" 30
 		"shield damage" 7
 		"hull damage" 7
+	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
 
 outfit "Blaster Turret"
 	category "Turrets"
@@ -37,6 +38,7 @@ outfit "Blaster Turret"
 		"firing heat" 30
 		"shield damage" 7
 		"hull damage" 7
+	description "A Blaster Turret is a pair of Energy Blasters mounted on a rotating platform, allowing it to fire in any direction. Sophisticated software algorithms allow the turret to correct for a target's motion, making the Blaster Turret effective even against small, quickly moving fighters. Because it needs a special mounting point with a 360 degree field of view, not all ships are capable of being equipped with a turret."
 
 outfit "Beam Laser"
 	category "Guns"
@@ -58,6 +60,7 @@ outfit "Beam Laser"
 		"firing heat" .5
 		"shield damage" 1
 		"hull damage" 2
+	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere. A Beam Laser has a slightly shorter range than an Energy Blaster, but is also much more energy-efficient and does a comparable amount of damage."
 
 outfit "Heavy Laser"
 	category "Guns"
@@ -79,6 +82,7 @@ outfit "Heavy Laser"
 		"firing heat" 1.5
 		"shield damage" 1.8
 		"hull damage" 3.7
+	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
 
 outfit "Laser Turret"
 	category "Turrets"
@@ -100,6 +104,7 @@ outfit "Laser Turret"
 		"firing heat" 1
 		"shield damage" 2
 		"hull damage" 4
+	description "Laser Turrets are hated by fighter pilots because it is entirely impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
@@ -121,6 +126,7 @@ outfit "Heavy Laser Turret"
 		"firing heat" 3
 		"shield damage" 5
 		"hull damage" 8
+	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
 
 outfit "Anti-Missile Turret"
 	category "Turrets"
@@ -137,6 +143,7 @@ outfit "Anti-Missile Turret"
 		"lifetime" 1
 		"reload" 8
 		"firing energy" 5
+	description "Centuries ago, space battle were fought mostly with missiles, with the outcome dependent only on which ship had more shielding or ammunition. Lovelace Labs was originally founded to remedy that situation by developing a protective system that could shoot missiles out of the air, defending freighter convoys from pirates who could otherwise simply bombard them into submission without ever venturing within range of their guns."
 
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
@@ -153,6 +160,7 @@ outfit "Heavy Anti-Missile Turret"
 		"lifetime" 1
 		"reload" 6
 		"firing energy" 10
+	description "The Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome the it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
 		
 outfit "Particle Cannon"
 	category "Guns"
@@ -175,12 +183,14 @@ outfit "Particle Cannon"
 		"hit force" 80
 		"shield damage" 42
 		"hull damage" 65
+	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
 
 outfit "Meteor Missile"
 	category "Missiles"
 	cost 1200
 	thumbnail "outfit/meteor"
 	"meteor capacity" -1
+	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 35 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
 
 outfit "Meteor Missile Launcher"
 	category "Missiles"
@@ -213,12 +223,14 @@ outfit "Meteor Missile Launcher"
 		"hull damage" 45
 		"hit force" 30
 		"missile strength" 4
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The tracking system on these missiles is notoriously unreliable, and they are easily destroyed by anti-missile systems, but in large numbers or when fired at a slow-moving target they can be deadly."
 
 outfit "Sidewinder Missile"
 	category "Missiles"
 	cost 2000
 	thumbnail "outfit/sidewinder"
 	"sidewinder capacity" -1
+	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 40 of them. You cannot install a missile without a launcher to fire it from."
 
 outfit "Sidewinder Missile Launcher"
 	category "Missiles"
@@ -251,12 +263,15 @@ outfit "Sidewinder Missile Launcher"
 		"hull damage" 40
 		"hit force" 25
 		"missile strength" 12
+	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designed of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
+	description "	Although not as powerful or cheap as the popular Meteor missiles, Sidewinders have several advantages, including their better tracking systems and protective casings that make them much harder for anti-missile systems to destroy."
 
 outfit "Javelin"
 	category "Missiles"
 	cost 100
 	thumbnail "outfit/javelin"
 	"javelin capacity" -1
+	description "A Javelin missile is ammunition for the Javelin Pod; without a Pod to store them in you cannot purchase or use Javelins. Each pod stores up to 200 Javelins."
 
 outfit "Javelin Pod"
 	category "Missiles"
@@ -282,12 +297,14 @@ outfit "Javelin Pod"
 		"hull damage" 15
 		"hit force" 5
 		"missile strength" 2
+	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
 
 outfit "Torpedo"
 	category "Missiles"
 	cost 3000
 	thumbnail "outfit/torpedo"
 	"torpedo capacity" -1
+	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
 outfit "Torpedo Launcher"
 	category "Missiles"
@@ -320,12 +337,14 @@ outfit "Torpedo Launcher"
 		"hull damage" 300
 		"hit force" 40
 		"missile strength" 20
+	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
 
 outfit "Heavy Rocket"
 	category "Missiles"
 	cost 5000
 	thumbnail "outfit/rocket"
 	"rocket capacity" -1
+	description "Heavy Rockets are ammunition for the Heavy Rocket Launcher. You cannot install one unless you have first installed a launcher to fire it from. Each launcher holds up to 20 rockets."
 
 outfit "Heavy Rocket Launcher"
 	category "Missiles"
@@ -357,3 +376,4 @@ outfit "Heavy Rocket Launcher"
 		"hull damage" 700
 		"hit force" 80
 		"missile strength" 16
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
