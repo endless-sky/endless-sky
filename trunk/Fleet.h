@@ -34,6 +34,12 @@ public:
 	void Load(const DataFile::Node &node, const GameData &data);
 	
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
+	// Place a fleet in the given system, already "in action."
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
+	
+	
+private:
+	void SetCargo(Ship *ship) const;
 	
 	
 private:
@@ -52,6 +58,7 @@ private:
 	const Government *government;
 	const ShipName *names;
 	std::vector<Variant> variants;
+	int cargo;
 	int total;
 };
 

@@ -25,7 +25,7 @@ using namespace std;
 
 
 Fleet::Fleet()
-	: data(nullptr), government(nullptr), names(nullptr), total(0)
+	: data(nullptr), government(nullptr), names(nullptr), cargo(3), total(0)
 {
 }
 
@@ -45,6 +45,8 @@ void Fleet::Load(const DataFile::Node &node, const GameData &data)
 			government = data.Governments().Get(child.Token(1));
 		else if(child.Token(0) == "names" && child.Size() >= 2)
 			names = data.ShipNames().Get(child.Token(1));
+		else if(child.Token(0) == "cargo" && child.Size() >= 2)
+			cargo = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "variant")
 		{
 			variants.emplace_back(child, data);
@@ -127,18 +129,84 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 			flagship->AddEscort(ships.front());
 		}
 		
-		// Set this ship's cargo.
-		for(int i = 0; i < 3; ++i)
+		SetCargo(&*ships.front());
+	}
+}
+
+
+
+// Place a fleet in the given system, already "in action."
+void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships) const
+{
+	if(!total || !data || !government)
+		return;
+	
+	// Pick a random variant based on the weights.
+	unsigned index = 0;
+	for(int choice = rand() % total; choice >= variants[index].weight; ++index)
+		choice -= variants[index].weight;
+	
+	// Count the inhabited planets in this system.
+	int planets = 0;
+	for(const StellarObject &object : system.Objects())
+		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+			++planets;
+	
+	// Determine where the fleet is going to or coming from.
+	Point center;
+	if(planets)
+	{
+		int index = rand() % planets;
+		for(const StellarObject &object : system.Objects())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+				if(!index--)
+					center = object.Position();
+	}
+	
+	// Move out a random distance from that object, facing toward it or away.
+	Angle angle = Angle::Random();
+	center += angle.Unit() * ((rand() % 2001) - 1000);
+	
+	shared_ptr<Ship> flagship;
+	for(const Ship *ship : variants[index].ships)
+	{
+		Angle angle = Angle::Random(360.);
+		Point pos = center + Angle::Random().Unit() * (rand() % 400);
+		
+		double velocity = (rand() % static_cast<int>(100. * ship->MaxVelocity())) * .01;
+		
+		ships.push_front(shared_ptr<Ship>(new Ship(*ship)));
+		ships.front()->SetSystem(&system);
+		ships.front()->Place(pos, velocity * angle.Unit(), angle);
+		ships.front()->SetGovernment(government);
+		ships.front()->SetName(names->Get());
+		
+		if(!flagship)
+			flagship = ships.front();
+		else
 		{
-			int free = ships.front()->FreeCargo();
-			if(!free)
-				break;
-			
-			const Trade::Commodity &commodity =
-				data->Commodities()[rand() % data->Commodities().size()];
-			int amount = rand() % free + 1;
-			ships.front()->AddCargo(amount, commodity.name);
+			ships.front()->SetParent(flagship);
+			flagship->AddEscort(ships.front());
 		}
+		
+		SetCargo(&*ships.front());
+	}
+}
+
+
+
+void Fleet::SetCargo(Ship *ship) const
+{
+	for(int i = 0; i < cargo; ++i)
+	{
+		int free = ship->FreeCargo();
+		if(!free)
+			break;
+		
+		int index = rand() % data->Commodities().size();
+		const Trade::Commodity &commodity = data->Commodities()[index];
+		int amount = rand() % free + 1;
+		ship->AddCargo(amount, commodity.name);
 	}
 }
 
