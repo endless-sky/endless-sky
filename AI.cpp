@@ -70,7 +70,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
 			shared_ptr<const Ship> target = it->GetTargetShip().lock();
-			if(targetTurn == step || !target || target->IsDisabled() || !target->IsTargetable())
+			if(targetTurn == step || !target || target->IsFullyDisabled()
+					|| !target->IsTargetable())
 				it->SetTargetShip(FindTarget(*it, ships));
 			
 			double targetDistance = numeric_limits<double>::infinity();
@@ -118,8 +119,12 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
+			// TODO: ship personalities controlling whether they destroy disabled ships.
+			if(it->IsFullyDisabled())
+				continue;
+			
 			double range = it->Position().Distance(ship.Position());
-			range += 5000. * it->IsDisabled();
+			range += 5000. * it->IsFullyDisabled();
 			if(range < closest)
 			{
 				closest = range;
@@ -458,6 +463,11 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 					|| target->Velocity().Length() > 20.)
 				continue;
 			
+			// TODO: determine from a ship's "personality" whether it will kill
+			// a ship that is already disabled. Also distinguish 
+			if(target->IsFullyDisabled())
+				continue;
+			
 			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 			Point p = target->Position() - start + ship.Confusion();
 			Point v = target->Velocity() - ship.Velocity();
@@ -524,7 +534,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				if(!state)
 					continue;
 				
-				state += state * !other->IsDisabled();
+				state += state * !other->IsFullyDisabled();
 				
 				double d = other->Position().Distance(ship.Position());
 				

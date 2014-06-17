@@ -154,7 +154,7 @@ void Engine::Step(bool isActive)
 			
 			for(const shared_ptr<Ship> &ship : playerInfo.Ships())
 				if(ship->GetSystem() == player->GetSystem()
-						&& !ship->IsDisabled() && ship->Hull() > 0.)
+						&& !ship->IsFullyDisabled() && ship->Hull() > 0.)
 					ship->Recharge();
 		}
 		

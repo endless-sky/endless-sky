@@ -85,6 +85,7 @@ public:
 	
 	bool IsTargetable() const;
 	bool IsDisabled() const;
+	bool IsFullyDisabled() const;
 	bool IsLanding() const;
 	bool IsHyperspacing() const;
 	// Check if this ship is currently able to begin landing on its target.
