@@ -275,12 +275,8 @@ bool Ship::Move(std::list<Effect> &effects)
 		isOverheated = false;
 	
 	shields = min(shields, attributes.Get("shields"));
-	
-	double maximumHull = attributes.Get("hull");
-	hull = min(hull, maximumHull);
-	// Check if the hull amount is low enough to disable this ship.
-	double minimumHull = max(.10 * maximumHull, min(.50 * maximumHull, 100.));
-	isDisabled = isOverheated || (hull < minimumHull);
+	hull = min(hull, attributes.Get("hull"));
+	isDisabled = isOverheated || IsFullyDisabled();
 	
 	// Update ship supply levels.
 	if(!isOverheated)
@@ -542,6 +538,15 @@ bool Ship::IsTargetable() const
 bool Ship::IsDisabled() const
 {
 	return isDisabled;
+}
+
+
+
+bool Ship::IsFullyDisabled() const
+{
+	double maximumHull = attributes.Get("hull");
+	double minimumHull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
+	return (hull < minimumHull);
 }
 
 
