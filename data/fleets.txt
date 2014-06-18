@@ -1,114 +1,360 @@
-fleet "small merchants"
+fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
+	cargo 3
+	variant 6
+		"Shuttle"
 	variant 4
-		"Freighter"
-	variant 2
-		"Argosy"
+		"Star Barge"
 	variant 3
 		"Clipper"
-	variant 3
-		"Blackbird"
 	variant 2
+		"Star Barge" 2
+		"Sparrow"
+	variant 3
+		"Freighter"
+	variant 1
 		"Freighter"
 		"Sparrow"
+	variant 2
+		"Blackbird"
+
+fleet "Large Southern Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 4
+	variant 2
+		"Freighter"
+		"Hawk"
+	variant 3
+		"Freighter" 2
+		"Sparrow" 2
+	variant 4
+		"Argosy"
+	variant 1
+		"Bastion"
+		"Freighter" 3
+	variant 2
+		"Bastion"
+		"Argosy"
+	variant 1
+		"Freighter" 3
+		"Star Barge" 4
+		"Bastion"
+		"Fury"
+		"Sparrow" 2
+	variant 2
+		"Argosy" 2
+	variant 1
+		"Blackbird"
+		"Sparrow" 2
+
+fleet "Small Core Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 3
+	variant 4
+		"Shuttle"
+	variant 6
+		"Star Barge"
+	variant 3
+		"Freighter"
 	variant 1
 		"Freighter"
-		"Sparrow" 2
-	variant 1
-		"Freighter" 2
-		"Hawk"
+		"Sparrow"
+	variant 2
+		"Freighter"
+		"Star Barge" 2
+	variant 2
+		"Freighter"
+		"Shuttle" 2
+		"Quicksilver"
+
+fleet "Large Core Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 4
 	variant 3
-		"Star Barge"
+		"Freighter" 2
+		"Quicksilver" 2
+	variant 5
+		"Bulk Freighter"
+		"Sparrow"
+	variant 2
+		"Bulk Freighter"
 	variant 1
-		"Star Barge" 4
+		"Bulk Freighter" 2
+		"Quicksilver" 1
+		"Splinter" 1
+	variant 1
+		"Freighter" 4
+		"Quicksilver" 2
+		"Splinter" 1
+
+fleet "Small Northern Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 3
 	variant 8
 		"Shuttle"
+	variant 4
+		"Star Barge"
+		"Shuttle" 2
+	variant 3
+		"Freighter"
+	variant 2
+		"Freighter"
+		"Shuttle" 4
 	variant 1
-		"Scout"
+		"Freighter" 3
+		"Sparrow" 1
+
+fleet "Large Northern Merchants"
+	government "Merchant"
+	names "civilian"
+	cargo 4
+	variant 4
+		"Freighter" 2
+		"Firebird"
+	variant 2
+		"Freighter" 3
+		"Firebird"
+	variant 3
+		"Bulk Freighter"
 	variant 1
+		"Bulk Freighter" 2
+	variant 1
+		"Bulk Freighter" 2
+		"Firebird" 1
+	variant 1
+		"Freighter" 4
+		"Sparrow" 2
+		"Firebird" 1
+
+fleet "Small Free Worlds"
+	government "Free Worlds"
+	names "civilian"
+	cargo 1
+	variant 4
+		"Hawk"
+		"Sparrow"
+	variant 5
+		"Sparrow" 2
+	variant 1
+		"Hawk"
+	variant 1
+		"Sparrow"
+	variant 1
+		"Fury"
+	variant 2
+		"Hawk"
+		"Sparrow" 2
+
+fleet "Large Free Worlds"
+	government "Free Worlds"
+	names "civilian"
+	cargo 1
+	variant 5
+		"Bastion"
+	variant 4
+		"Argosy"
+		"Sparrow"
+	variant 2
+		"Argosy"
+	variant 3
+		"Bastion"
+		"Hawk" 2
+	variant 2
+		"Bastion"
+		"Fury" 2
+	variant 1
+		"Falcon"
+	variant 1
+		"Falcon"
+		"Hawk" 2
+		"Sparrow" 3
+	variant 1
+		"Falcon"
 		"Bastion"
 		"Hawk"
-		"Freighter" 3
-fleet "small pirates"
-	government "Pirate"
-	names "civilian"
-	variant 4
-		"Sparrow" 2
-	variant 3
-		"Fury"
-	variant 5
-		"Hawk"
-	variant 2
-		"Sparrow" 2
-		"Hawk" 1
-	variant 1
-		"Sparrow" 4
-	variant 1
-		"Hawk"
-		"Fury" 2
-	variant 2
-		"Firebird"
-	variant 2
-		"Argosy"
-	variant 3
-		"Clipper"
-	variant 1
-		"Splinter"
-	variant 1
-		"Falcon"
-fleet "large pirates"
-	government "Pirate"
-	names "civilian"
-	variant 1
-		"Falcon"
-fleet "medium pirates"
-	government "Pirate"
-	names "civilian"
-	variant 2
-		"Firebird"
-	variant 2
-		"Argosy"
-	variant 1
-		"Splinter"
-	variant 1
-		"Falcon"
-fleet "navy"
+
+fleet "Small Republic"
 	government "Republic"
 	names "civilian"
-	variant 3
-		"Rainmaker"
+	cargo 0
+	variant 6
+		"Rainmaker" 2
+	variant 4
 		"Frigate"
-	variant 2
 		"Rainmaker"
+	variant 3
+		"Frigate"
+	variant 1
+		"Rainmaker" 3
+
+fleet "Large Republic"
+	government "Republic"
+	names "civilian"
+	cargo 0
+	variant 5
 		"Frigate" 2
+		"Rainmaker"
+	variant 3
+		"Cruiser"
+	variant 3
+		"Cruiser"
+		"Frigate"
+		"Rainmaker"
+	variant 2
+		"Carrier"
 	variant 1
 		"Carrier"
+		"Cruiser"
+		"Frigate" 2
+		"Rainmaker" 2
+	variant 1
+		"Cruiser"
 		"Frigate" 2
 	variant 1
-		"Frigate" 2
-		"Cruiser"
-		"Rainmaker" 2
-fleet "militia"
-	government "Militia"
+		"Frigate"
+		"Rainmaker" 3
+
+fleet "Small Syndicate"
+	government "Syndicate"
 	names "civilian"
+	cargo 2
+	variant 3
+		"Quicksilver" 3
+	variant 1
+		"Splinter"
+		"Quicksilver" 2
+
+fleet "Large Syndicate"
+	government "Syndicate"
+	names "civilian"
+	cargo 2
+	variant 3
+		"Splinter"
+		"Quicksilver" 3
+	variant 1
+		"Splinter" 2
+	variant 1
+		"Splinter" 3
+	variant 2
+		"Quicksilver" 5
+
+fleet "Small Southern Pirates"
+	government "Pirate"
+	names "civilian"
+	cargo 1
+	variant 8
+		"Sparrow"
 	variant 3
 		"Hawk"
-		"Bastion"
+	variant 5
+		"Fury"
 	variant 2
-		"Hawk" 2
-		"Sparrow" 4
-	variant 1
-		"Falcon"
-		"Bastion"
-		"Hawk" 2
-	variant 1
-		"Argosy"
 		"Sparrow" 2
 	variant 1
+		"Hawk"
+		"Sparrow"
+	variant 1
+		"Fury" 3
+	variant 1
+		"Fury"
+		"Hawk"
+	variant 1
+		"Hawk"
+		"Fury"
+		"Sparrow"
+	variant 1
+		"Sparrow" 3
+	variant 1
+		"Hawk" 2
+	variant 2
+		"Clipper"
+
+fleet "Large Southern Pirates"
+	government "Pirate"
+	names "civilian"
+	cargo 1
+	variant 3
+		"Sparrow" 4
+	variant 5
+		"Argosy"
+	variant 4
+		"Clipper"
+	variant 2
+		"Clipper"
+		"Hawk"
+	variant 3
+		"Argosy"
+		"Hawk"
+	variant 2
+		"Bastion"
+	variant 1
 		"Falcon"
-fleet "quarg"
+
+fleet "Small Core Pirates"
+	government "Pirate"
+	names "civilian"
+	cargo 1
+	variant 4
+		"Quicksilver"
+	variant 2
+		"Sparrow"
+	variant 3
+		"Hawk"
+	variant 4
+		"Fury"
+	variant 2
+		"Quicksilver" 2
+
+fleet "Large Core Pirates"
+	government "Pirate"
+	names "civilian"
+	cargo 1
+	variant 5
+		"Quicksilver" 3
+	variant 3
+		"Splinter"
+		"Quicksilver"
+	variant 2
+		"Splinter" 2
+	variant 1
+		"Falcon"
+	variant 1
+		"Firebird"
+
+fleet "Small Northern Pirates"
+	government "Pirate"
+	names "civilian"
+	cargo 1
+	variant 5
+		"Sparrow"
+	variant 3
+		"Fury"
+	variant 2
+		"Hawk"
+
+fleet "Large Northern Pirates"
+	government "Pirate"
+	names "civilian"
+	cargo 1
+	variant 4
+		"Firebird"
+	variant 2
+		"Firebird"
+		"Fury"
+	variant 1
+		"Firebird"
+		"Bastion"
+	variant 1
+		"Falcon"
+
+fleet "Quarg"
 	government "Quarg"
 	names "quarg"
 	variant
 		"Quarg Skylark"
+
