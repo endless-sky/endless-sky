@@ -33,7 +33,8 @@ using namespace std;
 ShopPanel::ShopPanel(const GameData &data, PlayerInfo &player, const vector<string> &categories)
 	: data(data), player(player), planet(player.GetPlanet()),
 	playerShip(player.GetShip()), selectedShip(nullptr), selectedOutfit(nullptr),
-	mainScroll(0), sideScroll(0), categories(categories)
+	mainScroll(0), sideScroll(0), dragMain(true), 
+	mainDetailHeight(0), sideDetailHeight(0), categories(categories)
 {
 	SetIsFullScreen(true);
 }
@@ -59,6 +60,7 @@ void ShopPanel::DrawSidebar() const
 	const Font &font = FontSet::Get(14);
 	Color bright(.8, 0.);
 	Color dim(.5, 0.);
+	sideDetailHeight = 0;
 	
 	// Fill in the background.
 	FillShader::Fill(
@@ -94,7 +96,8 @@ void ShopPanel::DrawSidebar() const
 		if(isSelected)
 		{
 			Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
-			point.Y() += DrawPlayerShipInfo(point + offset);
+			sideDetailHeight = DrawPlayerShipInfo(point + offset);
+			point.Y() += sideDetailHeight;
 		}
 		point.Y() += SHIP_SIZE;
 	}
@@ -163,6 +166,7 @@ void ShopPanel::DrawMain() const
 {
 	const Font &bigFont = FontSet::Get(18);
 	Color bright(.8, 0.);
+	mainDetailHeight = 0;
 	
 	// Draw all the available ships.
 	// First, figure out how many colums we can draw.
@@ -188,7 +192,7 @@ void ShopPanel::DrawMain() const
 		if(!planet)
 			break;
 		
-		Point side(Screen::Width() * -.5 + 10., point.Y() - TILE_SIZE / 2 + 10);
+		Point side(Screen::Left() + 10., point.Y() - TILE_SIZE / 2 + 10);
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
@@ -223,7 +227,8 @@ void ShopPanel::DrawMain() const
 					max(minX, min(maxX, point.X())),
 					point.Y() + TILE_SIZE / 2);
 				
-				nextY += DrawDetails(center);
+				mainDetailHeight = DrawDetails(center);
+				nextY += mainDetailHeight;
 			}
 			
 			point.X() += columnWidth;
@@ -306,6 +311,26 @@ bool ShopPanel::KeyDown(SDLKey key, SDLMod mod)
 		for(int i = 0; i < modifier && CanSell(); ++i)
 			Sell();
 	}
+	else if(key == SDLK_LEFT || key == SDLK_RIGHT || key == SDLK_UP || key == SDLK_DOWN)
+	{
+		// Handle arrow keys to move the selection.
+		if(!dragMain)
+			SideSelect(key == SDLK_RIGHT || key == SDLK_DOWN);
+		else if(key == SDLK_LEFT)
+			MainLeft();
+		else if(key == SDLK_RIGHT)
+			MainRight();
+		else if(key == SDLK_UP)
+			MainUp();
+		else if(key == SDLK_DOWN)
+			MainDown();
+		
+		return true;
+	}
+	else if(key == SDLK_PAGEUP)
+		return Drag(0, Screen::Bottom());
+	else if(key == SDLK_PAGEDOWN)
+		return Drag(0, Screen::Top());
 	else
 		return false;
 	
@@ -415,4 +440,261 @@ const Ship *ShopPanel::ClickZone::GetShip() const
 const Outfit *ShopPanel::ClickZone::GetOutfit() const
 {
 	return outfit;
+}
+
+
+
+int ShopPanel::ClickZone::CenterX() const
+{
+	return (left + right) / 2;
+}
+
+
+
+int ShopPanel::ClickZone::CenterY() const
+{
+	return (top + bottom) / 2;
+}
+
+
+
+void ShopPanel::SideSelect(bool next)
+{
+	vector<shared_ptr<Ship>>::const_iterator it = player.Ships().begin();
+	for( ; it != player.Ships().end(); ++it)
+	{
+		// Skip any ships that are "absent" for whatever reason.
+		if((*it)->GetSystem() != player.GetSystem())
+			continue;
+		
+		if((*it).get() == playerShip)
+			break;
+	}
+	// Bail out if there are no ships to choose from.
+	if(it == player.Ships().end())
+		return;
+	
+	int previousY = 0;
+	for(vector<ClickZone>::const_iterator it = zones.begin(); it != zones.end(); ++it)
+		if(it->GetShip() == playerShip)
+		{
+			previousY = it->CenterY();
+			break;
+		}
+	
+	if(!next)
+	{
+		while(true)
+		{
+			if(it == player.Ships().begin())
+				it = player.Ships().end();
+			--it;
+			
+			if((*it)->GetSystem() == player.GetSystem())
+				break;
+		}
+	}
+	else
+	{
+		while(true)
+		{
+			++it;
+			if(it == player.Ships().end())
+				it = player.Ships().begin();
+			
+			if((*it)->GetSystem() == player.GetSystem())
+				break;
+		}
+	}
+	playerShip = &**it;
+	
+	// Scroll to this ship.
+	int newY = 0;
+	for(vector<ClickZone>::const_iterator it = zones.begin(); it != zones.end(); ++it)
+		if(it->GetShip() == playerShip)
+		{
+			newY = it->CenterY();
+			break;
+		}
+	int delta = newY - previousY;
+	if(delta > 0)
+		delta -= sideDetailHeight;
+	sideScroll += delta;
+}
+
+
+
+void ShopPanel::MainLeft()
+{
+	vector<ClickZone>::const_iterator start = MainStart();
+	if(start == zones.end())
+		return;
+	
+	vector<ClickZone>::const_iterator it = Selected();
+	// Special case: nothing is selected. Go to the last item.
+	if(it == zones.end())
+	{
+		--it;
+		mainScroll += it->CenterY() - start->CenterY();
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+		return;
+	}
+	
+	if(it == start)
+	{
+		mainScroll = 0;
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+	}
+	else
+	{
+		int previousY = it->CenterY();
+		--it;
+		mainScroll += it->CenterY() - previousY;
+		if(mainScroll < 0)
+			mainScroll = 0;
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+	}
+}
+
+
+
+void ShopPanel::MainRight()
+{
+	vector<ClickZone>::const_iterator start = MainStart();
+	if(start == zones.end())
+		return;
+	
+	vector<ClickZone>::const_iterator it = Selected();
+	// Special case: nothing is selected. Select the first item.
+	if(it == zones.end())
+	{
+		selectedShip = start->GetShip();
+		selectedOutfit = start->GetOutfit();
+		return;
+	}
+	
+	int previousY = it->CenterY();
+	++it;
+	if(it == zones.end())
+	{
+		mainScroll = 0;
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+	}
+	else
+	{
+		if(it->CenterY() != previousY)
+			mainScroll += it->CenterY() - previousY - mainDetailHeight;
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+	}
+}
+
+
+
+void ShopPanel::MainUp()
+{
+	vector<ClickZone>::const_iterator start = MainStart();
+	if(start == zones.end())
+		return;
+	
+	vector<ClickZone>::const_iterator it = Selected();
+	// Special case: nothing is selected. Go to the last item.
+	if(it == zones.end())
+	{
+		--it;
+		mainScroll += it->CenterY() - start->CenterY();
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+		return;
+	}
+	
+	int previousX = it->CenterX();
+	int previousY = it->CenterY();
+	while(it != start && it->CenterY() == previousY)
+		--it;
+	while(it != start && it->CenterX() > previousX)
+		--it;
+	
+	if(it == start)
+	{
+		mainScroll = 0;
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+	}
+	else
+	{
+		mainScroll += it->CenterY() - previousY;
+		if(mainScroll < 0)
+			mainScroll = 0;
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+	}
+}
+
+
+
+void ShopPanel::MainDown()
+{
+	vector<ClickZone>::const_iterator start = MainStart();
+	if(start == zones.end())
+		return;
+	
+	vector<ClickZone>::const_iterator it = Selected();
+	// Special case: nothing is selected. Select the first item.
+	if(it == zones.end())
+	{
+		selectedShip = start->GetShip();
+		selectedOutfit = start->GetOutfit();
+		return;
+	}
+	
+	int previousX = it->CenterX();
+	int previousY = it->CenterY();
+	while(it != zones.end() && it->CenterY() == previousY)
+		++it;
+	if(it == zones.end())
+	{
+		mainScroll = 0;
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+		return;
+	}
+	
+	while(it != zones.end() && it->CenterX() <= previousX)
+		++it;
+	--it;
+	
+	mainScroll += it->CenterY() - previousY - mainDetailHeight;
+	selectedShip = it->GetShip();
+	selectedOutfit = it->GetOutfit();
+}
+
+
+
+vector<ShopPanel::ClickZone>::const_iterator ShopPanel::Selected() const
+{
+	// Find the object that was clicked on.
+	vector<ClickZone>::const_iterator it = MainStart();
+	for( ; it != zones.end(); ++it)
+		if(it->GetShip() == selectedShip && it->GetOutfit() == selectedOutfit)
+			break;
+	
+	return it;
+}
+
+
+
+vector<ShopPanel::ClickZone>::const_iterator ShopPanel::MainStart() const
+{
+	// Find the first non-player-ship click zone.
+	int margin = Screen::Right() - SHIP_SIZE;
+	vector<ClickZone>::const_iterator start = zones.begin();
+	while(start != zones.end() && start->CenterX() > margin)
+		++start;
+	
+	return start;
 }
