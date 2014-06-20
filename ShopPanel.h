@@ -76,6 +76,9 @@ protected:
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 		
+		int CenterX() const;
+		int CenterY() const;
+		
 	private:
 		int left;
 		int top;
@@ -107,11 +110,23 @@ protected:
 	mutable int maxMainScroll;
 	mutable int maxSideScroll;
 	bool dragMain;
+	mutable int mainDetailHeight;
+	mutable int sideDetailHeight;
 	
 	mutable std::vector<ClickZone> zones;
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
+	
+	
+private:
+	void SideSelect(bool next);
+	void MainLeft();
+	void MainRight();
+	void MainUp();
+	void MainDown();
+	std::vector<ClickZone>::const_iterator Selected() const;
+	std::vector<ClickZone>::const_iterator MainStart() const;
 };
 
 
