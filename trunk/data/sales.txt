@@ -225,6 +225,8 @@ outfitter "Delta V Advanced"
 	"Breeder Reactor"
 	"Heavy Rocket Launcher"
 	"Meteor Missile Launcher"
+	"Modified Blaster"
+	"Modified Blaster Turret"
 
 outfitter "Syndicate Basics"
 	"RT-I Radiothermal"
@@ -293,4 +295,8 @@ outfitter "Kraz Advanced"
 	"Heavy Laser"
 	"Torpedo Launcher"
 	"Outfit Scanner"
+
+outfitter "Pirate Outfits"
+	"Modified Blaster"
+	"Modified Blaster Turret"
 
