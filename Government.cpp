@@ -126,5 +126,5 @@ void Government::ResetProvocation() const
 void Government::CoolDown() const
 {
 	for(auto &it : provoked)
-		it.second = max(0., it.second - 1.);
+		it.second = max(0., it.second - .1);
 }

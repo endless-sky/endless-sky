@@ -203,7 +203,7 @@ outfit "Heavy Anti-Missile Turret"
 		"reload" 6
 		"firing energy" 10
 	description "The Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome the it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
-		
+
 outfit "Particle Cannon"
 	category "Guns"
 	cost 200000
@@ -226,7 +226,7 @@ outfit "Particle Cannon"
 		"shield damage" 42
 		"hull damage" 65
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
- 		
+ 
 outfit "Plasma Cannon"
 	category "Guns"
 	cost 200000
@@ -249,6 +249,32 @@ outfit "Plasma Cannon"
 		"hull damage" 26
 		"heat damage" 240
 	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
+
+outfit "Flamethrower"
+	category "Guns"
+	cost 120000
+	thumbnail "outfit/plasma cannon"
+	"mass" 20
+	"outfit space" -20
+	"weapon capacity" -20
+	"gun ports" -1
+	weapon
+		sprite "effect/explosion/medium"
+			"frame rate" 12
+			"start frame" 0
+		icon "icon/flamethrower"
+		"hit effect" "medium explosion"
+		"inaccuracy" 15
+		"velocity" 7
+		"lifetime" 30
+		"reload" 4
+		"firing energy" 2
+		"firing heat" 40
+		"firing fuel" 1
+		"shield damage" 6
+		"hull damage" 10
+		"heat damage" 100
+	description "The Flamethrower is a powerful weapon that uses your hyperspace fuel as its ammunition. It is capable of quickly causing a target to overheat, but its range is short and it can leave you stranded if you expend all your fuel by firing it."
 
 outfit "Meteor Missile"
 	category "Missiles"
