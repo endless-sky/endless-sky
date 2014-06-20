@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 		SDL_Init(SDL_INIT_VIDEO);
 		
 		// Begin loading the game data.
-		gameData.BeginLoad(argv + 1);
+		gameData.BeginLoad(argv);
 		
 		playerInfo.LoadRecent(gameData);
 		

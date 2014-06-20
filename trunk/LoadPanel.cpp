@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "ConversationPanel.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -24,11 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipyardPanel.h"
 #include "UI.h"
 
-#include <boost/filesystem.hpp>
-
 #include <algorithm>
-
-namespace fs = boost::filesystem;
 
 using namespace std;
 
@@ -137,7 +134,7 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 			return false;
 		
 		for(const string &file : it->second)
-			fs::remove(root + file);
+			Files::Delete(Files::Saves() + file);
 		UpdateLists();
 	}
 	else if(key == 'a')
@@ -149,7 +146,7 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 		
 		// Extract the date from this pilot's most recent save.
 		string date = "~0000-00-00.txt";
-		string from = root + it->second.front();
+		string from = Files::Saves() + it->second.front();
 		DataFile file(from);
 		for(const DataFile::Node &node : file)
 			if(node.Token(0) == "date")
@@ -169,15 +166,15 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 		
 		// Copy the autosave to a new, named file.
 		string to = from.substr(0, from.size() - 4) + date;
-		fs::copy(from, to);
+		Files::Copy(from, to);
 		UpdateLists();
 		
 		selectedPilot = wasSelected;
-		selectedFile = to.substr(root.length());
+		selectedFile = to.substr(Files::Saves().size());
 	}
 	else if(key == 'r')
 	{
-		fs::remove(root + selectedFile);
+		Files::Delete(Files::Saves() + selectedFile);
 		UpdateLists();
 		
 		auto it = files.find(selectedPilot);
@@ -235,7 +232,7 @@ bool LoadPanel::Click(int x, int y)
 	else
 		return false;
 	
-	loadedInfo.Load(root + selectedFile, data);
+	loadedInfo.Load(Files::Saves() + selectedFile, data);
 	
 	return true;
 }
@@ -248,12 +245,10 @@ void LoadPanel::UpdateLists()
 	selectedPilot.clear();
 	selectedFile.clear();
 	
-	root = getenv("HOME") + string("/.config/endless-sky/saves/");
-	fs::directory_iterator it(root);
-	fs::directory_iterator end;
-	for( ; it != end; ++it)
+	vector<string> fileList = Files::List(Files::Saves());
+	for(const string &path : fileList)
 	{
-		string fileName = it->path().filename().string();
+		string fileName = path.substr(Files::Saves().size());
 		// The file name is either "Pilot Name.txt" or "Pilot Name~Date.txt".
 		size_t pos = fileName.find('~');
 		if(pos == string::npos)

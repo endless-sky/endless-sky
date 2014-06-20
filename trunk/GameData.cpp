@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "DotShader.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "FontSet.h"
 #include "LineShader.h"
@@ -21,13 +22,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
-#include <boost/filesystem.hpp>
-
 #include <algorithm>
 #include <iostream>
 #include <vector>
-
-namespace fs = boost::filesystem;
 
 using namespace std;
 
@@ -36,11 +33,8 @@ using namespace std;
 void GameData::BeginLoad(const char * const *argv)
 {
 	showLoad = false;
-	
-	// Convert all the given paths to absolute patchs ending in '/".
-	vector<string> paths;
 	bool printTable = false;
-	for(const char * const *it = argv; *it; ++it)
+	for(const char * const *it = argv + 1; *it; ++it)
 	{
 		if((*it)[0] == '-')
 		{
@@ -51,32 +45,16 @@ void GameData::BeginLoad(const char * const *argv)
 				printTable = true;
 			continue;
 		}
-		
-		string path;
-		if((*it)[0] == '~')
-			path = getenv("HOME") + string(*it + 1);
-		else
-			path = *it;
-		if(path.back() != '/')
-			path += '/';
-		
-		if(fs::is_directory(path))
-			paths.push_back(path);
 	}
-	if(paths.empty())
-		paths.push_back("./");
-	basePath = paths.back();
-	
-	// Reverse the order: we will start by reading the last directories on the
-	// path, and allow them to be overridden by things in earlier ones.
-	reverse(paths.begin(), paths.end());
+	Files::Init(argv);
 	
 	// Now, read all the images in all the path directories. For each unique
 	// name, only remember one instance, letting things on the higher priority
 	// paths override the default images.
+	vector<string> imageFiles = Files::RecursiveList(Files::Images());
 	map<string, string> images;
-	for(const string &base : paths)
-		FindImages(base + "images/", base.size() + 7, images);
+	for(const string &path : imageFiles)
+		LoadImage(path, images);
 	
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
@@ -85,8 +63,9 @@ void GameData::BeginLoad(const char * const *argv)
 	// Iterate through the paths starting with the last directory given. That
 	// is, things in folders near the start of the path have the ability to
 	// override things in folders later in the path.
-	for(const string &base : paths)
-		FindFiles(base + "data/");
+	vector<string> dataFiles = Files::RecursiveList(Files::Data());
+	for(const string &path : dataFiles)
+		LoadFile(path);
 	
 	// Now that all the stars are loaded, update the neighbor lists.
 	for(auto &it : systems)
@@ -128,27 +107,12 @@ void GameData::BeginLoad(const char * const *argv)
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(basePath + "images/font/ubuntu14r.png", 14);
-	FontSet::Add(basePath + "images/font/ubuntu18r.png", 18);
-	
-	// Make sure ~/.config/endless-sky/ exists.
-	// TODO: Set the permission bits properly. Boost filesystem 1.48 does not
-	// allow that, but the latest version does.
-	string configPath = getenv("HOME") + string("/.config");
-	if(!fs::exists(configPath))
-		fs::create_directory(configPath);
-	
-	string prefsPath = configPath + "/endless-sky";
-	if(!fs::exists(prefsPath))
-		fs::create_directory(prefsPath);
-	
-	string savePath = prefsPath + "/saves";
-	if(!fs::exists(savePath))
-		fs::create_directory(savePath);
+	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
 	
 	// Load the key settings.
-	defaultKeys.Load(basePath + "keys.txt");
-	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
+	defaultKeys.Load(Files::Resources() + "keys.txt");
+	string keysPath = Files::Config() + "keys.txt";
 	keys = defaultKeys;
 	keys.Load(keysPath);
 	
@@ -277,13 +241,6 @@ const Key &GameData::DefaultKeys() const
 
 
 
-const string &GameData::ResourcePath() const
-{
-	return basePath;
-}
-
-
-
 bool GameData::ShouldShowLoad() const
 {
 	return showLoad;
@@ -291,77 +248,59 @@ bool GameData::ShouldShowLoad() const
 
 
 
-void GameData::FindFiles(const string &path)
+void GameData::LoadFile(const string &path)
 {
-	if(fs::is_regular_file(path))
+	// This is an ordinary file. Check to see if it is an image.
+	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
+		return;
+	
+	DataFile data(path);
+	
+	for(const DataFile::Node &node : data)
 	{
-		// This is an ordinary file. Check to see if it is an image.
-		if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
-			return;
-		
-		DataFile data(path);
-		
-		for(const DataFile::Node &node : data)
-		{
-			const string &key = node.Token(0);
-			if(key == "color" && node.Size() >= 6)
-				colors.Get(node.Token(1))->Load(
-					node.Value(2), node.Value(3), node.Value(4), node.Value(5));
-			else if(key == "conversation" && node.Size() >= 2)
-				conversations.Get(node.Token(1))->Load(node);
-			else if(key == "effect" && node.Size() >= 2)
-				effects.Get(node.Token(1))->Load(node);
-			else if(key == "fleet" && node.Size() >= 2)
-				fleets.Get(node.Token(1))->Load(node, *this);
-			else if(key == "government" && node.Size() >= 2)
-				governments.Get(node.Token(1))->Load(node, governments);
-			else if(key == "interface")
-				interfaces.Get(node.Token(1))->Load(node, colors);
-			else if(key == "outfit" && node.Size() >= 2)
-				outfits.Get(node.Token(1))->Load(node, outfits, effects);
-			else if(key == "outfitter" && node.Size() >= 2)
-				outfitSales.Get(node.Token(1))->Load(node, outfits);
-			else if(key == "planet" && node.Size() >= 2)
-				planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
-			else if(key == "ship" && node.Size() >= 2)
-				ships.Get(node.Token(1))->Load(node, *this);
-			else if(key == "shipyard" && node.Size() >= 2)
-				shipSales.Get(node.Token(1))->Load(node, ships);
-			else if(key == "shipName" && node.Size() >= 2)
-				shipNames.Get(node.Token(1))->Load(node);
-			else if(key == "system" && node.Size() >= 2)
-				systems.Get(node.Token(1))->Load(node, systems, planets, governments);
-			else if(key == "trade")
-				trade.Load(node);
-		}
-	}
-	else if(fs::is_directory(path))
-	{
-		fs::directory_iterator it(path);
-		for(fs::directory_iterator end; it != end; ++it)
-			FindFiles(it->path().string());
+		const string &key = node.Token(0);
+		if(key == "color" && node.Size() >= 6)
+			colors.Get(node.Token(1))->Load(
+				node.Value(2), node.Value(3), node.Value(4), node.Value(5));
+		else if(key == "conversation" && node.Size() >= 2)
+			conversations.Get(node.Token(1))->Load(node);
+		else if(key == "effect" && node.Size() >= 2)
+			effects.Get(node.Token(1))->Load(node);
+		else if(key == "fleet" && node.Size() >= 2)
+			fleets.Get(node.Token(1))->Load(node, *this);
+		else if(key == "government" && node.Size() >= 2)
+			governments.Get(node.Token(1))->Load(node, governments);
+		else if(key == "interface")
+			interfaces.Get(node.Token(1))->Load(node, colors);
+		else if(key == "outfit" && node.Size() >= 2)
+			outfits.Get(node.Token(1))->Load(node, outfits, effects);
+		else if(key == "outfitter" && node.Size() >= 2)
+			outfitSales.Get(node.Token(1))->Load(node, outfits);
+		else if(key == "planet" && node.Size() >= 2)
+			planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
+		else if(key == "ship" && node.Size() >= 2)
+			ships.Get(node.Token(1))->Load(node, *this);
+		else if(key == "shipyard" && node.Size() >= 2)
+			shipSales.Get(node.Token(1))->Load(node, ships);
+		else if(key == "shipName" && node.Size() >= 2)
+			shipNames.Get(node.Token(1))->Load(node);
+		else if(key == "system" && node.Size() >= 2)
+			systems.Get(node.Token(1))->Load(node, systems, planets, governments);
+		else if(key == "trade")
+			trade.Load(node);
 	}
 }
 
 
 
-void GameData::FindImages(const string &path, int start, map<string, string> &images)
+void GameData::LoadImage(const string &path, map<string, string> &images)
 {
-	if(fs::is_regular_file(path) && path.length() >= 4)
-	{
-		bool isJpg = !path.compare(path.length() - 4, 4, ".jpg");
-		bool isPng = !path.compare(path.length() - 4, 4, ".png");
-		
-		// This is an ordinary file. Check to see if it is an image.
-		if(isJpg || isPng)
-			images[path.substr(start)] = path;
-	}
-	else if(fs::is_directory(path))
-	{
-		fs::directory_iterator it(path);
-		for(fs::directory_iterator end; it != end; ++it)
-			FindImages(it->path().string(), start, images);
-	}
+	bool isJpg = !path.compare(path.length() - 4, 4, ".jpg");
+	bool isPng = !path.compare(path.length() - 4, 4, ".png");
+	
+	// This is an ordinary file. Check to see if it is an image.
+	if(isJpg || isPng)
+		images[path.substr(Files::Images().length())] = path;
 }
 
 

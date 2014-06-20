@@ -63,14 +63,12 @@ public:
 	Key &Keys();
 	const Key &DefaultKeys() const;
 	
-	const std::string &ResourcePath() const;
-	
 	bool ShouldShowLoad() const;
 	
 	
 private:
-	void FindFiles(const std::string &path);
-	static void FindImages(const std::string &path, int start, std::map<std::string, std::string> &images);
+	void LoadFile(const std::string &path);
+	static void LoadImage(const std::string &path, std::map<std::string, std::string> &images);
 	static std::string Name(const std::string &path);
 	
 	
@@ -98,7 +96,6 @@ private:
 	StarField background;
 	
 	SpriteQueue queue;
-	std::string basePath;
 	
 	bool showLoad;
 };
