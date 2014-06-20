@@ -128,11 +128,11 @@ bool BankPanel::KeyDown(SDLKey key, SDLMod mod)
 		++selectedRow;
 	else if(key == SDLK_RETURN
 			&& static_cast<unsigned>(selectedRow) < player.Accounts().Mortgages().size())
-		GetUI()->Push(new Dialog(*this, &BankPanel::PayExtra,
+		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
 	else if(key == SDLK_RETURN && qualify)
-		GetUI()->Push(new Dialog(*this, &BankPanel::NewMortgage,
+		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
 	else
 		return false;

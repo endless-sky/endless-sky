@@ -41,6 +41,7 @@ public:
 	bool IsLoaded() const;
 	void Load(const std::string &path, const GameData &data);
 	void Save() const;
+	std::string Identifier() const;
 	
 	// Load the most recently saved player.
 	void LoadRecent(const GameData &data);

@@ -44,6 +44,8 @@ protected:
 	
 private:
 	void UpdateLists();
+	void DeletePilot();
+	void DeleteSave();
 	
 	
 private:

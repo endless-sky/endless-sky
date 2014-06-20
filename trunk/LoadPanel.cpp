@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "ConversationPanel.h"
+#include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -48,7 +49,7 @@ void LoadPanel::Draw() const
 	if(loadedInfo.IsLoaded())
 	{
 		info.SetString("pilot", loadedInfo.FirstName() + " " + loadedInfo.LastName());
-		if(player.GetShip())
+		if(loadedInfo.GetShip())
 		{
 			const Ship &ship = *loadedInfo.GetShip();
 			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
@@ -123,19 +124,16 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 	{
 		player.New(data);
 		
-		ConversationPanel *panel = new ConversationPanel(player, *data.Conversations().Get("intro"));
+		ConversationPanel *panel = new ConversationPanel(
+			player, *data.Conversations().Get("intro"));
 		GetUI()->Push(panel);
 		panel->SetCallback(*this);
 	}
-	else if(key == 'd')
+	else if(key == 'd' && !selectedPilot.empty())
 	{
-		auto it = files.find(selectedPilot);
-		if(it == files.end())
-			return false;
-		
-		for(const string &file : it->second)
-			Files::Delete(Files::Saves() + file);
-		UpdateLists();
+		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
+			"Are you sure you want to delete the selected pilot, \""
+				+ selectedPilot + "\", and all their saved games?"));
 	}
 	else if(key == 'a')
 	{
@@ -172,16 +170,11 @@ bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
 		selectedPilot = wasSelected;
 		selectedFile = to.substr(Files::Saves().size());
 	}
-	else if(key == 'r')
+	else if(key == 'r' && !selectedFile.empty())
 	{
-		Files::Delete(Files::Saves() + selectedFile);
-		UpdateLists();
-		
-		auto it = files.find(selectedPilot);
-		if(it == files.end() || it->second.empty())
-			selectedFile.clear();
-		else
-			selectedFile = it->second.front();
+		GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
+			"Are you sure you want to delete the selected saved game file, \""
+				+ selectedFile + "\"?"));
 	}
 	else if(key == 'e')
 	{
@@ -260,4 +253,38 @@ void LoadPanel::UpdateLists()
 	
 	for(auto &it : files)
 		sort(it.second.begin(), it.second.end());
+}
+
+
+
+void LoadPanel::DeletePilot()
+{
+	loadedInfo.Clear();
+	if(selectedPilot == player.Identifier())
+		player.Clear();
+	auto it = files.find(selectedPilot);
+	if(it == files.end())
+		return;
+	
+	for(const string &file : it->second)
+		Files::Delete(Files::Saves() + file);
+	UpdateLists();
+}
+
+
+
+void LoadPanel::DeleteSave()
+{
+	loadedInfo.Clear();
+	string pilot = selectedPilot;
+	Files::Delete(Files::Saves() + selectedFile);
+	UpdateLists();
+	
+	auto it = files.find(pilot);
+	if(it != files.end() && !it->second.empty())
+	{
+		selectedFile = it->second.front();
+		selectedPilot = pilot;
+		loadedInfo.Load(Files::Saves() + selectedFile, data);
+	}
 }

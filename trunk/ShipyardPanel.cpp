@@ -117,7 +117,7 @@ bool ShipyardPanel::CanBuy() const
 
 void ShipyardPanel::Buy()
 {
-	GetUI()->Push(new Dialog(*this, &ShipyardPanel::BuyShip,
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip,
 		"Enter a name for your brand new " + selectedShip->ModelName() + "!"));
 }
 
@@ -132,7 +132,7 @@ bool ShipyardPanel::CanSell() const
 
 void ShipyardPanel::Sell()
 {
-	GetUI()->Push(new Dialog(*this, &ShipyardPanel::SellShip,
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip,
 		"Sell ''" + playerShip->Name() + "''?"));
 }
 
