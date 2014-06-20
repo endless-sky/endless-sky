@@ -33,13 +33,13 @@ public:
 	// input, requesting text input, or not requesting any input at all. In any
 	// case, the callback is called only if the user selects "ok", not "cancel."
 template <class T>
-	Dialog(T &t, void (T::*fun)(int), const std::string &text);
+	Dialog(T *t, void (T::*fun)(int), const std::string &text);
 	
 template <class T>
-	Dialog(T &t, void (T::*fun)(const std::string &), const std::string &text);
+	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text);
 	
 template <class T>
-	Dialog(T &t, void (T::*fun)(), const std::string &text);
+	Dialog(T *t, void (T::*fun)(), const std::string &text);
 	
 	// Draw this panel.
 	virtual void Draw() const;
@@ -78,7 +78,7 @@ private:
 
 
 template <class T>
-Dialog::Dialog(T &t, void (T::*fun)(int), const std::string &text)
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text)
 	: intFun(std::bind(fun, t, std::placeholders::_1))
 {
 	Init(text);
@@ -87,7 +87,7 @@ Dialog::Dialog(T &t, void (T::*fun)(int), const std::string &text)
 
 
 template <class T>
-Dialog::Dialog(T &t, void (T::*fun)(const std::string &), const std::string &text)
+Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text)
 	: stringFun(std::bind(fun, t, std::placeholders::_1))
 {
 	Init(text);
@@ -96,7 +96,7 @@ Dialog::Dialog(T &t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 template <class T>
-Dialog::Dialog(T &t, void (T::*fun)(), const std::string &text)
+Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text)
 	: voidFun(std::bind(fun, t))
 {
 	Init(text);

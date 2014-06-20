@@ -110,6 +110,11 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			}
 		}
 	}
+	// Strip anything after the "~" from snapshots, so that the file we save
+	// will be the auto-save, not the snapshot.
+	size_t pos = filePath.rfind('~');
+	if(pos != string::npos && pos > Files::Saves().size())
+		filePath = filePath.substr(0, pos) + ".txt";
 	
 	if(!system && !ships.empty())
 		system = ships.front()->GetSystem();
@@ -120,7 +125,7 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 void PlayerInfo::Save() const
 {
 	{
-		string recentPath = getenv("HOME") + string("/.config/endless-sky/recent.txt");
+		string recentPath = Files::Config() + "recent.txt";
 		ofstream recent(recentPath);
 		recent << filePath << "\n";
 	}
@@ -154,10 +159,19 @@ void PlayerInfo::Save() const
 
 
 
+string PlayerInfo::Identifier() const
+{
+	size_t pos = Files::Saves().size();
+	size_t length = filePath.length() - 4 - pos;
+	return filePath.substr(pos, length);
+}
+
+
+
 // Load the most recently saved player.
 void PlayerInfo::LoadRecent(const GameData &data)
 {
-	string recentPath = getenv("HOME") + string("/.config/endless-sky/recent.txt");
+	string recentPath = Files::Config() + "recent.txt";
 	ifstream recent(recentPath);
 	getline(recent, recentPath);
 	
@@ -179,7 +193,7 @@ void PlayerInfo::New(const GameData &data)
 	SetPlanet(data.Planets().Get("New Boston"));
 	playerGovernment = data.Governments().Get("Escort");
 	
-	accounts.AddMortgage(250000);
+	accounts.AddMortgage(295000);
 }
 
 
