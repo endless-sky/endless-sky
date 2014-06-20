@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <cmath>
+#include <functional>
 
 using namespace std;
 

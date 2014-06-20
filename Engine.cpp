@@ -22,6 +22,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
+#include <cmath>
+
 using namespace std;
 
 
