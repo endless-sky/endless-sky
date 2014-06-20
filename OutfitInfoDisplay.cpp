@@ -245,7 +245,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.push_back("shield damage / second:");
 		attributeValues.push_back(Round(
-			outfit.WeaponGet("shield damage") / outfit.WeaponGet("reload")));
+			60. * outfit.WeaponGet("shield damage") / outfit.WeaponGet("reload")));
 		attributesHeight += 20;
 	}
 	
@@ -253,7 +253,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.push_back("hull damage / second:");
 		attributeValues.push_back(Round(
-			outfit.WeaponGet("hull damage") / outfit.WeaponGet("reload")));
+			60. * outfit.WeaponGet("hull damage") / outfit.WeaponGet("reload")));
 		attributesHeight += 20;
 	}
 	

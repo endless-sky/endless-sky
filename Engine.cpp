@@ -379,18 +379,11 @@ void Engine::EnterSystem()
 	for(const System::Asteroid &a : player->GetSystem()->Asteroids())
 		asteroids.Add(a.Name(), a.Count(), a.Energy());
 	
+	// Place five seconds worth of fleets.
 	for(int i = 0; i < 5; ++i)
-	{
-		// TODO: Use the actual fleets from the system (once they have them).
-		if(rand() % 200 < 60)
-		{
-			auto it = data.Fleets().begin();
-			int choice = rand() % data.Fleets().size();
-			for(int i = 0; i < choice; ++i)
-				++it;
-			it->second.Place(*playerInfo.GetSystem(), ships);
-		}
-	}
+		for(const System::FleetProbability &fleet : player->GetSystem()->Fleets())
+			if(rand() % fleet.Period() < 60)
+				fleet.Get()->Place(*playerInfo.GetSystem(), ships);
 	
 	projectiles.clear();
 	effects.clear();
@@ -664,15 +657,9 @@ void Engine::CalculateStep()
 	}
 	
 	// Add incoming ships.
-	if(!(rand() % 200))
-	{
-		// TODO: Each system should specify its own fleets and weights.
-		auto it = data.Fleets().begin();
-		int choice = rand() % data.Fleets().size();
-		for(int i = 0; i < choice; ++i)
-			++it;
-		it->second.Enter(*playerInfo.GetSystem(), ships);
-	}
+	for(const System::FleetProbability &fleet : playerInfo.GetSystem()->Fleets())
+		if(!(rand() % fleet.Period()))
+			fleet.Get()->Enter(*playerInfo.GetSystem(), ships);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();

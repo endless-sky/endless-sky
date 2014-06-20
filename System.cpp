@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Date.h"
+#include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
 #include "Sprite.h"
@@ -55,6 +56,27 @@ double System::Asteroid::Energy() const
 
 
 
+System::FleetProbability::FleetProbability(const Fleet *fleet, int period)
+	: fleet(fleet), period(period > 0 ? period : 200)
+{
+}
+
+
+
+const Fleet *System::FleetProbability::Get() const
+{
+	return fleet;
+}
+
+
+
+int System::FleetProbability::Period() const
+{
+	return period;
+}
+
+
+
 System::System()
 	: government(nullptr)
 {
@@ -63,7 +85,7 @@ System::System()
 
 
 // Load a system's description.
-void System::Load(const DataFile::Node &node, const Set<System> &systems, const Set<Planet> &planets, const Set<Government> &governments)
+void System::Load(const DataFile::Node &node, const GameData &data)
 {
 	if(node.Size() < 2)
 		return;
@@ -75,17 +97,19 @@ void System::Load(const DataFile::Node &node, const Set<System> &systems, const 
 		if(child.Token(0) == "pos" && child.Size() >= 3)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
-			government = governments.Get(child.Token(1));
+			government = data.Governments().Get(child.Token(1));
 		else if(child.Token(0) == "link" && child.Size() >= 2)
-			links.push_back(systems.Get(child.Token(1)));
+			links.push_back(data.Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
 		else if(child.Token(0) == "asteroids" && child.Size() >= 4)
 			asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)] = child.Value(2);
+		else if(child.Token(0) == "fleet" && child.Size() >= 3)
+			fleets.emplace_back(data.Fleets().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "object")
-			LoadObject(child, planets);
+			LoadObject(child, data.Planets());
 	}
 	
 	// Set planet messages based on what zone they are in.
@@ -266,6 +290,14 @@ int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
 	return (it == trade.end()) ? 0 : it->second;
+}
+
+
+
+// Get the probabilities of various fleets entering this system.
+const vector<System::FleetProbability> &System::Fleets() const
+{
+	return fleets;
 }
 
 
