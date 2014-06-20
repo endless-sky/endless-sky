@@ -13,17 +13,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 
 #include "DataFile.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
 
-#include <boost/filesystem.hpp>
-
 #include <fstream>
 #include <sstream>
-
-namespace fs = boost::filesystem;
 
 using namespace std;
 
@@ -210,7 +207,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 	
 	// If there are multiple pilots with the same name, append a number to the
 	// pilot name to generate a unique file name.
-	filePath = getenv("HOME") + ("/.config/endless-sky/saves/" + fileName);
+	filePath = Files::Saves() + fileName;
 	int index = 0;
 	while(true)
 	{
@@ -219,7 +216,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 			path += " " + to_string(index);
 		path += ".txt";
 		
-		if(!fs::exists(path))
+		if(!Files::Exists(path))
 		{
 			filePath.swap(path);
 			break;

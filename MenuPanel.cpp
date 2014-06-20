@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MenuPanel.h"
 
 #include "ConversationPanel.h"
+#include "Files.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
@@ -45,7 +46,7 @@ MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo, UI &gamePanels)
 {
 	SetIsFullScreen(true);
 	
-	ifstream in(gameData.ResourcePath() + "credits.txt");
+	ifstream in(Files::Resources() + "credits.txt");
 	string line;
 	while(getline(in, line))
 		credits.push_back(line);
