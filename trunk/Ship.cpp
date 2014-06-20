@@ -341,7 +341,7 @@ bool Ship::Move(std::list<Effect> &effects)
 			
 			Point target;
 			for(const StellarObject &object : currentSystem->Objects())
-				if(object.GetPlanet())
+				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 				{
 					target = object.Position();
 					break;
@@ -799,13 +799,18 @@ void Ship::TakeDamage(const Projectile &projectile)
 	double shieldDamage = weapon.WeaponGet("shield damage");
 	double hullDamage = weapon.WeaponGet("hull damage");
 	double hitForce =  weapon.WeaponGet("hit force");
+	double heatDamage = weapon.WeaponGet("heat damage");
 	
 	if(shields > shieldDamage)
+	{
 		shields -= shieldDamage;
+		heat += .25 * heatDamage;
+	}
 	else
 	{
 		hull -= hullDamage * (1. - (shields / shieldDamage));
 		shields = 0.;
+		heat += heatDamage;
 	}
 	
 	if(hitForce)

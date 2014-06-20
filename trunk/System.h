@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Date;
+class Fleet;
+class GameData;
 class Government;
 class Planet;
 
@@ -46,12 +48,24 @@ public:
 		double energy;
 	};
 	
+	class FleetProbability {
+	public:
+		FleetProbability(const Fleet *fleet, int period);
+		
+		const Fleet *Get() const;
+		int Period() const;
+		
+	private:
+		const Fleet *fleet;
+		int period;
+	};
+	
 	
 public:
 	System();
 	
 	// Load a system's description.
-	void Load(const DataFile::Node &node, const Set<System> &systems, const Set<Planet> &planets, const Set<Government> &governments);
+	void Load(const DataFile::Node &node, const GameData &data);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
@@ -88,6 +102,9 @@ public:
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
 	
+	// Get the probabilities of various fleets entering this system.
+	const std::vector<FleetProbability> &Fleets() const;
+	
 	
 private:
 	void LoadObject(const DataFile::Node &node, const Set<Planet> &planets, int parent = -1);
@@ -108,6 +125,7 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	std::vector<FleetProbability> fleets;
 	double habitable;
 	
 	// Commodity prices.

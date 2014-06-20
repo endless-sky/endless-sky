@@ -20,6 +20,10 @@ system "Acamar"
 	trade "Medical" 576
 	trade "Metal" 249
 	trade "Plastic" 483
+	fleet "Large Core Merchants" 3000
+	fleet "Small Core Merchants" 2000
+	fleet "Small Republic" 3600
+	fleet "Small Syndicate" 3200
 	object
 		sprite "star/g0"
 		period 10
@@ -68,6 +72,10 @@ system "Achernar"
 	trade "Medical" 775
 	trade "Metal" 289
 	trade "Plastic" 337
+	fleet "Large Core Merchants" 400
+	fleet "Large Syndicate" 600
+	fleet "Small Syndicate" 500
+	fleet "Small Core Merchants" 300
 	object
 		sprite "star/g5"
 		period 10
@@ -130,6 +138,12 @@ system "Acrux"
 	trade "Medical" 565
 	trade "Metal" 456
 	trade "Plastic" 448
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 1000
+	fleet "Small Free Worlds" 800
+	fleet "Large Free Worlds" 1200
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2400
 	object
 		sprite "star/k0"
 		distance 17.9429
@@ -197,6 +211,11 @@ system "Adhara"
 	trade "Medical" 608
 	trade "Metal" 210
 	trade "Plastic" 440
+	fleet "Small Northern Merchants" 300
+	fleet "Large Northern Merchants" 400
+	fleet "Small Deep" 500
+	fleet "Large Deep" 1000
+	fleet "Small Northern Pirates" 2000
 	object
 		sprite "star/k0"
 		distance 33.5961
@@ -255,6 +274,12 @@ system "Al Dhanab"
 	trade "Medical" 718
 	trade "Metal" 262
 	trade "Plastic" 317
+	fleet "Small Core Merchants" 400
+	fleet "Large Core Merchants" 400
+	fleet "Small Syndicate" 1000
+	fleet "Large Syndicate" 800
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 3000
 	object
 		sprite "star/g0"
 		period 10
@@ -310,6 +335,13 @@ system "Albaldah"
 	trade "Medical" 801
 	trade "Metal" 266
 	trade "Plastic" 343
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 1000
+	fleet "Small Southern Pirates" 800
+	fleet "Large Southern Pirates" 1200
+	fleet "Small Free Worlds" 1400
+	fleet "Large Free Worlds" 2400
+	fleet "Quarg" 3000
 	object
 		sprite "star/k5"
 		distance 42.7246
@@ -370,6 +402,13 @@ system "Albireo"
 	trade "Medical" 844
 	trade "Metal" 237
 	trade "Plastic" 387
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 1200
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 1400
+	fleet "Small Free Worlds" 1800
+	fleet "Large Free Worlds" 3000
+	fleet "Quarg" 2000
 	object
 		sprite "star/g5"
 		distance 15.6316
@@ -416,6 +455,9 @@ system "Alcyone"
 	trade "Medical" 705
 	trade "Metal" 249
 	trade "Plastic" 439
+	fleet "Small Southern Pirates" 400
+	fleet "Large Southern Pirates" 600
+	fleet "Large Syndicate" 1200
 	object
 		sprite "star/m4"
 		distance 45.5
@@ -473,6 +515,10 @@ system "Aldebaran"
 	trade "Medical" 514
 	trade "Metal" 265
 	trade "Plastic" 479
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 600
+	fleet "Small Republic" 800
+	fleet "Large Republic" 400
 	object
 		sprite "star/g5"
 		period 10
@@ -515,6 +561,12 @@ system "Alderamin"
 	trade "Medical" 475
 	trade "Metal" 237
 	trade "Plastic" 373
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 3200
+	fleet "Small Syndicate" 800
+	fleet "Large Syndicate" 800
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 1200
 	object
 		sprite "star/g0"
 		distance 36.6569
@@ -573,6 +625,12 @@ system "Aldhibain"
 	trade "Medical" 806
 	trade "Metal" 534
 	trade "Plastic" 360
+	fleet "Small Southern Merchants" 400
+	fleet "Large Southern Merchants" 600
+	fleet "Small Free Worlds" 600
+	fleet "Large Free Worlds" 1000
+	fleet "Small Southern Pirates" 800
+	fleet "Large Southern Pirates" 2000
 	object
 		sprite "star/k0"
 		period 10
@@ -613,6 +671,10 @@ system "Algenib"
 	trade "Medical" 607
 	trade "Metal" 293
 	trade "Plastic" 423
+	fleet "Small Core Pirates" 300
+	fleet "Large Core Pirates" 500
+	fleet "Large Syndicate" 800
+	fleet "Small Core Merchants" 600
 	object
 		sprite "star/k0"
 		period 10
@@ -672,6 +734,12 @@ system "Algieba"
 	trade "Medical" 621
 	trade "Metal" 251
 	trade "Plastic" 476
+	fleet "Small Republic" 1400
+	fleet "Large Republic" 5000
+	fleet "Small Southern Merchants" 400
+	fleet "Small Northern Merchants" 800
+	fleet "Large Southern Merchants" 600
+	fleet "Large Northern Merchants" 1000
 	object
 		sprite "star/f0"
 		distance 5.86085
@@ -726,6 +794,11 @@ system "Algol"
 	trade "Medical" 560
 	trade "Metal" 322
 	trade "Plastic" 309
+	fleet "Small Core Merchants" 1600
+	fleet "Large Core Merchants" 4000
+	fleet "Small Core Pirates" 1800
+	fleet "Large Core Pirates" 5000
+	fleet "Small Syndicate" 2400
 	object
 		sprite "star/k5"
 		distance 42.7246
@@ -788,6 +861,12 @@ system "Algorel"
 	trade "Medical" 758
 	trade "Metal" 490
 	trade "Plastic" 427
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 900
+	fleet "Small Free Worlds" 2000
+	fleet "Small Republic" 3000
+	fleet "Small Southern Pirates" 1600
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite "star/k5"
 		period 10
@@ -842,6 +921,12 @@ system "Alheka"
 	trade "Medical" 531
 	trade "Metal" 388
 	trade "Plastic" 477
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Republic" 1200
+	fleet "Large Republic" 4000
+	fleet "Small Northern Pirates" 2000
+	fleet "Large Northern Pirates" 2000
 	object
 		sprite "star/g0"
 		period 10
@@ -887,6 +972,10 @@ system "Alhena"
 	trade "Medical" 567
 	trade "Metal" 313
 	trade "Plastic" 415
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 700
+	fleet "Small Republic" 900
+	fleet "Large Republic" 1400 
 	object
 		sprite "star/g5"
 		distance 32.1693
@@ -945,6 +1034,11 @@ system "Alioth"
 	trade "Medical" 791
 	trade "Metal" 537
 	trade "Plastic" 458
+	fleet "Small Southern Merchants" 400
+	fleet "Large Northern Merchants" 600
+	fleet "Small Free Worlds" 900
+	fleet "Small Southern Pirates" 1200
+	fleet "Large Southern Pirates" 2400
 	object
 		sprite "star/k0"
 		period 10
@@ -988,6 +1082,10 @@ system "Alkaid"
 	trade "Medical" 624
 	trade "Metal" 535
 	trade "Plastic" 305
+	fleet "Small Southern Merchants" 1600
+	fleet "Large Southern Merchants" 5000
+	fleet "Small Southern Pirates" 2400
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite "star/g0"
 		period 10
@@ -1049,6 +1147,9 @@ system "Almaaz"
 	trade "Medical" 814
 	trade "Metal" 523
 	trade "Plastic" 308
+	fleet "Small Northern Pirates" 500
+	fleet "Large Northern Pirates" 600
+	fleet "Large Republic" 4000
 	object
 		sprite "star/g0"
 		period 10
@@ -1102,6 +1203,9 @@ system "Almach"
 	trade "Medical" 746
 	trade "Metal" 338
 	trade "Plastic" 266
+	fleet "Small Core Pirates" 500
+	fleet "Large Core Pirates" 1400
+	fleet "Large Syndicate" 6000
 	object
 		sprite "star/k5"
 		period 10
@@ -1155,6 +1259,11 @@ system "Alnair"
 	trade "Medical" 494
 	trade "Metal" 241
 	trade "Plastic" 467
+	fleet "Small Core Merchants" 2000
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 4000
+	fleet "Small Syndicate" 4000
+	fleet "Large Syndicate" 6000
 	object
 		sprite "star/m4"
 		period 10
@@ -1213,6 +1322,11 @@ system "Alnasl"
 	trade "Medical" 740
 	trade "Metal" 460
 	trade "Plastic" 459
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Free Worlds" 3000
+	fleet "Large Free Worlds" 6000
+	fleet "Small Southern Pirates" 4000
 	object
 		sprite "star/k5"
 		distance 41.5
@@ -1264,6 +1378,9 @@ system "Alnilam"
 	trade "Medical" 880
 	trade "Metal" 520
 	trade "Plastic" 334
+	fleet "Small Northern Pirates" 500
+	fleet "Large Northern Pirates" 700
+	fleet "Large Republic" 10000
 	object
 		sprite "star/f5"
 		period 10
@@ -1335,6 +1452,10 @@ system "Alnitak"
 	trade "Medical" 809
 	trade "Metal" 318
 	trade "Plastic" 452
+	fleet "Small Northern Pirates" 3000
+	fleet "Large Northern Pirates" 5000
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 4000
 	object
 		sprite "star/m0"
 		distance 31.1055
@@ -1387,6 +1508,12 @@ system "Alniyat"
 	trade "Medical" 880
 	trade "Metal" 467
 	trade "Plastic" 372
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 700
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
+	fleet "Small Free Worlds" 800
+	fleet "Large Free Worlds" 3000
 	object
 		sprite "star/k5"
 		distance 41.9222
@@ -1448,6 +1575,12 @@ system "Alpha Arae"
 	trade "Medical" 723
 	trade "Metal" 395
 	trade "Plastic" 314
+	fleet "Small Southern Merchants" 1800
+	fleet "Large Southern Merchants" 6000
+	fleet "Small Free Worlds" 4000
+	fleet "Large Free Worlds" 9000
+	fleet "Small Southern Pirates" 4000
+	fleet "Large Southern Pirates" 9000
 	object
 		sprite "star/g5"
 		distance 31.1534
@@ -1506,6 +1639,10 @@ system "Alpha Centauri"
 	trade "Medical" 498
 	trade "Metal" 393
 	trade "Plastic" 253
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 1000
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 6000
 	object
 		sprite "star/k5"
 		distance 26.7033
@@ -1558,6 +1695,12 @@ system "Alpha Hydri"
 	trade "Medical" 531
 	trade "Metal" 324
 	trade "Plastic" 390
+	fleet "Small Core Merchants" 900
+	fleet "Large Core Merchants" 3000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 6000
+	fleet "Small Syndicate" 4000
+	fleet "Large Syndicate" 9000
 	object
 		sprite "star/g0"
 		distance 24.6857
@@ -1608,6 +1751,11 @@ system "Alphard"
 	trade "Medical" 665
 	trade "Metal" 284
 	trade "Plastic" 496
+	fleet "Small Northern Merchants" 400
+	fleet "Large Northern Merchants" 700
+	fleet "Small Deep" 3000
+	fleet "Small Republic" 2400
+	fleet "Large Republic" 6000
 	object
 		sprite "star/g5"
 		distance 41.5307
@@ -1655,6 +1803,10 @@ system "Alphecca"
 	trade "Medical" 816
 	trade "Metal" 543
 	trade "Plastic" 498
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Northern Merchants" 3500
+	fleet "Small Southern Pirates" 3000
+	fleet "Small Free Worlds" 5000
 	object
 		sprite "star/g0"
 		distance 27.8857
@@ -1704,6 +1856,12 @@ system "Alpheratz"
 	trade "Medical" 713
 	trade "Metal" 340
 	trade "Plastic" 293
+	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 800
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 1200
+	fleet "Large Core Pirates" 3000
 	object
 		sprite "star/g5"
 		distance 48.2767
@@ -1757,6 +1915,13 @@ system "Altair"
 	trade "Medical" 534
 	trade "Metal" 335
 	trade "Plastic" 274
+	fleet "Small Core Merchants" 400
+	fleet "Large Core Merchants" 600
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 6000
+	fleer "Small Syndicate" 9000
 	object
 		sprite "star/g5"
 		distance 31.4921
@@ -1810,6 +1975,10 @@ system "Aludra"
 	trade "Medical" 703
 	trade "Metal" 392
 	trade "Plastic" 289
+	fleet "Small Deep" 600
+	fleet "Large Deep" 1000
+	fleet "Small Northern Merchants" 300
+	fleet "Large Northern Merchants" 900
 	object
 		sprite "star/k0"
 		period 10
@@ -1864,6 +2033,10 @@ system "Ankaa"
 	trade "Medical" 596
 	trade "Metal" 278
 	trade "Plastic" 353
+	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 700
+	fleet "Small Syndicate" 900
+	fleet "Large Core Pirates" 4000
 	object
 		sprite "star/g5"
 		period 10
@@ -1909,6 +2082,9 @@ system "Antares"
 	trade "Medical" 896
 	trade "Metal" 473
 	trade "Plastic" 403
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Large Free Worlds" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -1963,6 +2139,10 @@ system "Arcturus"
 	trade "Medical" 637
 	trade "Metal" 416
 	trade "Plastic" 461
+	fleet "Small Southern Merchants" 700
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 4000
+	fleet "Small Free Worlds" 10000
 	object
 		sprite "star/k5"
 		period 10
@@ -2014,6 +2194,9 @@ system "Arneb"
 	trade "Medical" 890
 	trade "Metal" 566
 	trade "Plastic" 358
+	fleet "Small Northern Pirates" 400
+	fleet "Large Northern Pirates" 500
+	fleet "Large Republic" 15000
 	object
 		sprite "star/f5"
 		period 10
@@ -2062,6 +2245,10 @@ system "Ascella"
 	trade "Medical" 827
 	trade "Metal" 450
 	trade "Plastic" 295
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 1000
+	fleet "Small Free Worlds" 4000
+	fleet "Small Southern Pirates" 3000
 	object
 		sprite "star/k5"
 		distance 43.5
@@ -2110,6 +2297,10 @@ system "Aspidiske"
 	trade "Medical" 678
 	trade "Metal" 247
 	trade "Plastic" 295
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Deep" 1000
+	fleet "Large Deep" 4000
 	object
 		sprite "star/m4"
 		period 10
@@ -2165,6 +2356,11 @@ system "Atria"
 	trade "Medical" 881
 	trade "Metal" 565
 	trade "Plastic" 291
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 5000
+	fleet "Small Free Worlds" 8000
 	object
 		sprite "star/m0"
 		period 10
@@ -2218,6 +2414,10 @@ system "Avior"
 	trade "Medical" 741
 	trade "Metal" 331
 	trade "Plastic" 299
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 1800
+	fleet "Small Deep" 1200
+	fleet "Large Deep" 4000
 	object
 		sprite "star/g0"
 		distance 11
@@ -2278,6 +2478,11 @@ system "Bellatrix"
 	trade "Medical" 846
 	trade "Metal" 422
 	trade "Plastic" 274
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1500
+	fleet "Small Syndicate" 1000
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 3000
 	object
 		sprite "star/k0"
 		distance 34.556
@@ -2331,6 +2536,11 @@ system "Beta Lupi"
 	trade "Medical" 883
 	trade "Metal" 310
 	trade "Plastic" 298
+	fleet "Small Southern Merchants" 1000
+	fleet "Small Southern Pirates" 1500
+	fleet "Large Southern Pirates" 2500
+	fleet "Small Free Worlds" 2000
+	fleet "Large Free Worlds" 5000
 	object
 		sprite "star/g5"
 		period 10
@@ -2377,6 +2587,11 @@ system "Betelgeuse"
 	trade "Medical" 568
 	trade "Metal" 384
 	trade "Plastic" 470
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 800
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 3000
+	fleet "Large Northern Pirates" 4000
 	object
 		sprite "star/g0"
 		period 10
@@ -2436,6 +2651,10 @@ system "Canopus"
 	trade "Medical" 512
 	trade "Metal" 323
 	trade "Plastic" 485
+	fleet "Small Northern Merchants" 900
+	fleet "Large Northern Merchants" 700
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 2000
 	object
 		sprite "star/m0"
 		period 10
@@ -2479,6 +2698,10 @@ system "Capella"
 	trade "Medical" 519
 	trade "Metal" 336
 	trade "Plastic" 499
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 800
+	fleet "Small Republic" 800
+	fleet "Large Republic" 1400
 	object
 		sprite "star/k0"
 		period 10
@@ -2537,6 +2760,9 @@ system "Caph"
 	trade "Medical" 532
 	trade "Metal" 323
 	trade "Plastic" 299
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 1600
 	object
 		sprite "star/g0"
 		period 10
@@ -2592,6 +2818,10 @@ system "Castor"
 	trade "Medical" 677
 	trade "Metal" 275
 	trade "Plastic" 467
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 800
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 500
 	object
 		sprite "star/g5"
 		distance 52.9147
@@ -2666,6 +2896,10 @@ system "Cebalrai"
 	trade "Medical" 692
 	trade "Metal" 514
 	trade "Plastic" 351
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Free Worlds" 4000
+	fleet "Small Southern Pirates" 4000
 	object
 		sprite "star/g5"
 		period 10
@@ -2718,6 +2952,11 @@ system "Cor Caroli"
 	trade "Medical" 806
 	trade "Metal" 517
 	trade "Plastic" 485
+	fleet "Small Southern Merchants" 700
+	fleet "Large Southern Merchants" 1300
+	fleet "Small Southern Pirates" 2000
+	fleet "Small Republic" 10000
+	fleet "Small Free Worlds" 7000
 	object
 		sprite "star/g0"
 		period 10
@@ -2763,6 +3002,11 @@ system "Dabih"
 	trade "Medical" 898
 	trade "Metal" 264
 	trade "Plastic" 312
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 800
+	fleet "Quarg" 4000
+	fleet "Small Free Worlds" 6000
+	fleet "Large Southern Pirates" 10000
 	object
 		sprite "star/k0"
 		distance 30.7164
@@ -2816,6 +3060,10 @@ system "Delta Capricorni"
 	trade "Medical" 492
 	trade "Metal" 269
 	trade "Plastic" 292
+	fleet "Small Core Merchants" 700
+	fleet "Large Core Merchants" 800
+	fleet "Small Syndicate" 2000
+	fleet "Small Core Pirates" 4000
 	object
 		sprite "star/g5"
 		distance 29.7539
@@ -2870,6 +3118,10 @@ system "Delta Sagittarii"
 	trade "Medical" 794
 	trade "Metal" 366
 	trade "Plastic" 369
+	fleet "Small Southern Merchants" 900
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 3000
+	fleet "Small Free Worlds" 7000
 	object
 		sprite "star/k5"
 		period 10
@@ -2923,6 +3175,11 @@ system "Delta Velorum"
 	trade "Medical" 717
 	trade "Metal" 577
 	trade "Plastic" 481
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 5000
+	fleet "Small Republic" 12000
 	object
 		sprite "star/g0"
 		period 10
@@ -2968,6 +3225,10 @@ system "Denebola"
 	trade "Medical" 477
 	trade "Metal" 489
 	trade "Plastic" 253
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 2000
 	object
 		sprite "star/k5"
 		distance 41.5211
@@ -3025,6 +3286,9 @@ system "Diphda"
 	trade "Medical" 600
 	trade "Metal" 277
 	trade "Plastic" 392
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 3000
 	object
 		sprite "star/k0"
 		distance 20.9143
@@ -3075,6 +3339,12 @@ system "Dschubba"
 	trade "Medical" 866
 	trade "Metal" 546
 	trade "Plastic" 326
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
+	fleet "Small Free Worlds" 3000
+	fleet "Large Free Worlds" 5000
 	object
 		sprite "star/k5"
 		distance 18.9364
@@ -3133,6 +3403,12 @@ system "Dubhe"
 	trade "Medical" 521
 	trade "Metal" 262
 	trade "Plastic" 489
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 2500
+	fleet "Small Deep" 4000
+	fleet "Large Deep" 9000
+	fleet "Small Northern Pirates" 12000
+	fleet "Large Northern Pirates" 8000
 	object
 		sprite "star/m0"
 		distance 42.6977
@@ -3182,6 +3458,12 @@ system "Elnath"
 	trade "Medical" 556
 	trade "Metal" 244
 	trade "Plastic" 476
+	fleet "Small Northern Merchants" 4000
+	fleet "Large Northern Merchants" 9000
+	fleet "Small Republic" 7000
+	fleet "Large Republic" 20000
+	fleet "Small Northern Pirates" 5000
+	fleet "Large Northern Pirates" 18000
 	object
 		sprite "star/f5"
 		period 10
@@ -3236,6 +3518,10 @@ system "Eltanin"
 	trade "Medical" 859
 	trade "Metal" 284
 	trade "Plastic" 335
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 4000
+	fleet "Quarg" 10000
 	object
 		sprite "star/k0"
 		period 10
@@ -3287,6 +3573,9 @@ system "Enif"
 	trade "Medical" 914
 	trade "Metal" 297
 	trade "Plastic" 412
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 4000
+	fleet "Quarg" 600
 	object
 		sprite "star/g5"
 		period 10
@@ -3368,6 +3657,10 @@ system "Epsilon Leonis"
 	trade "Medical" 599
 	trade "Metal" 216
 	trade "Plastic" 389
+	fleet "Small Northern Merchants" 400
+	fleet "Large Northern Merchants" 1000
+	fleet "Small Deep" 1000
+	fleet "Large Deep" 3000
 	object
 		sprite "star/g0"
 		distance 25.8286
@@ -3432,6 +3725,10 @@ system "Fomalhaut"
 	trade "Medical" 531
 	trade "Metal" 285
 	trade "Plastic" 267
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 1200
+	fleet "Small Syndicate" 5000
+	fleet "Large Syndicate" 10000
 	object
 		sprite "star/k0"
 		period 10
@@ -3486,6 +3783,11 @@ system "Gacrux"
 	trade "Medical" 848
 	trade "Metal" 542
 	trade "Plastic" 491
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 5000
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 3000
+	fleet "Small Republic" 15000
 	object
 		sprite "star/k5"
 		distance 32.6953
@@ -3545,6 +3847,9 @@ system "Gamma Cassiopeiae"
 	trade "Medical" 694
 	trade "Metal" 261
 	trade "Plastic" 284
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2000
+	fleet "Large Syndicate" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -3594,6 +3899,11 @@ system "Gamma Corvi"
 	trade "Medical" 590
 	trade "Metal" 473
 	trade "Plastic" 510
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 1500
+	fleet "Small Free Worlds" 1000
+	fleet "Large Free Worlds" 2000
+	fleet "Small Southern Pirates" 10000
 	object
 		sprite "star/g0"
 		distance 39.0165
@@ -3650,6 +3960,9 @@ system "Gienah"
 	trade "Medical" 600
 	trade "Metal" 245
 	trade "Plastic" 460
+	fleet "Small Core Pirates" 500
+	fleet "Large Core Pirates" 800
+	fleet "Large Syndicate" 5000
 	object
 		sprite "star/k5"
 		distance 31.893
@@ -3705,6 +4018,10 @@ system "Girtab"
 	trade "Medical" 716
 	trade "Metal" 366
 	trade "Plastic" 301
+	fleet "Small Southern Merchants" 700
+	fleet "Large Southern Merchants" 1700
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 3000
 	object
 		sprite "star/g0"
 		period 10
@@ -3762,6 +4079,10 @@ system "Gomeisa"
 	trade "Medical" 585
 	trade "Metal" 228
 	trade "Plastic" 451
+	fleet "Small Northern Merchants" 400
+	fleet "Large Northern Merchants" 1000
+	fleet "Small Deep" 1200
+	fleet "Large Deep" 2400
 	object
 		sprite "star/k0"
 		distance 55.5
@@ -3821,6 +4142,9 @@ system "Graffias"
 	trade "Medical" 824
 	trade "Metal" 404
 	trade "Plastic" 426
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 4000
+	fleet "Small Southern Pirates" 5000
 	object
 		sprite "star/k0"
 		distance 59.5
@@ -3878,6 +4202,12 @@ system "Hadar"
 	trade "Medical" 624
 	trade "Metal" 572
 	trade "Plastic" 307
+	fleet "Small Southern Merchants" 400
+	fleet "Large Southern Merchants" 1000
+	fleet "Small Free Worlds" 800
+	fleet "Large Free Worlds" 1500
+	fleet "Small Southern Pirates" 4000
+	fleet "Large Southern Pirates" 9000
 	object
 		sprite "star/k0"
 		period 10
@@ -3926,6 +4256,11 @@ system "Hamal"
 	trade "Medical" 633
 	trade "Metal" 332
 	trade "Plastic" 404
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 1000
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 8000
+	fleet "Small Syndicate" 4000
 	object
 		sprite "star/g0"
 		period 10
@@ -3967,6 +4302,12 @@ system "Han"
 	trade "Medical" 896
 	trade "Metal" 541
 	trade "Plastic" 329
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 5000
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 5000
+	fleet "Small Free Worlds" 4000
+	fleet "Large Free Worlds" 10000
 	object
 		sprite "star/g5"
 		distance 47.4335
@@ -4022,6 +4363,10 @@ system "Hassaleh"
 	trade "Medical" 721
 	trade "Metal" 265
 	trade "Plastic" 462
+	fleet "Small Northern Merchants" 9000
+	fleet "Small Northern Pirates" 6000
+	fleet "Large Northern Pirates" 20000
+	fleet "Large Republic" 20000
 	object
 		sprite "star/k0"
 		distance 36.1558
@@ -4070,6 +4415,9 @@ system "Hatysa"
 	trade "Medical" 863
 	trade "Metal" 546
 	trade "Plastic" 330
+	fleet "Small Northern Pirates" 600
+	fleet "Large Northern Pirates" 1000
+	fleet "Large Republic" 15000
 	object
 		sprite "star/k0"
 		distance 13.6124
@@ -4122,6 +4470,10 @@ system "Izar"
 	trade "Medical" 638
 	trade "Metal" 542
 	trade "Plastic" 359
+	fleet "Small Southern Merchants" 700
+	fleet "Large Southern Merchants" 1800
+	fleet "Small Free Worlds" 800
+	fleet "Large Free Worlds" 1200
 	object
 		sprite "star/g0"
 		distance 15.6511
@@ -4173,6 +4525,10 @@ system "Kappa Centauri"
 	trade "Medical" 891
 	trade "Metal" 293
 	trade "Plastic" 281
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Small Free Worlds" 2000
 	object
 		sprite "star/g0"
 		distance 10.2222
@@ -4234,6 +4590,11 @@ system "Kaus Australis"
 	trade "Medical" 849
 	trade "Metal" 270
 	trade "Plastic" 366
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 3000
+	fleet "Quarg" 10000
+	fleet "Small Southern Pirates" 4000
+	fleet "Large Southern Pirates" 8000
 	object
 		sprite "star/k5"
 		period 10
@@ -4276,6 +4637,10 @@ system "Kaus Borealis"
 	trade "Medical" 741
 	trade "Metal" 435
 	trade "Plastic" 350
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Free Worlds" 8000
+	fleet "Small Southern Pirates" 5000
 	object
 		sprite "star/k0"
 		distance 20.4571
@@ -4326,6 +4691,10 @@ system "Kochab"
 	trade "Medical" 529
 	trade "Metal" 528
 	trade "Plastic" 309
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 6000
+	fleet "Small Southern Pirates" 5000
+	fleet "Small Free Worlds" 6000
 	object
 		sprite "star/k5"
 		period 10
@@ -4370,6 +4739,11 @@ system "Kornephoros"
 	trade "Medical" 724
 	trade "Metal" 540
 	trade "Plastic" 381
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 1200
+	fleet "Small Southern Pirates" 3000
+	fleet "Small Free Worlds" 2000
+	fleet "Large Free Worlds" 4000
 	object
 		sprite "star/k0"
 		distance 57.5
@@ -4437,6 +4811,10 @@ system "Kraz"
 	trade "Medical" 507
 	trade "Metal" 436
 	trade "Plastic" 306
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Free Worlds" 800
+	fleet "Large Free Worlds" 1200
 	object
 		sprite "star/g0"
 		period 10
@@ -4491,6 +4869,12 @@ system "Kursa"
 	trade "Medical" 539
 	trade "Metal" 285
 	trade "Plastic" 441
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Northern Pirates" 4000
+	fleet "Large Northern Pirates" 8000
+	fleet "Small Republic" 5000
+	fleet "Large Republic" 8000
 	object
 		sprite "star/k5"
 		distance 27.5934
@@ -4541,6 +4925,11 @@ system "Lesath"
 	trade "Medical" 797
 	trade "Metal" 495
 	trade "Plastic" 271
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
+	fleet "Small Free Worlds" 5000
 	object
 		sprite "star/f5"
 		period 10
@@ -4597,6 +4986,10 @@ system "Markab"
 	trade "Medical" 515
 	trade "Metal" 251
 	trade "Plastic" 281
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 600
+	fleet "Large Syndicate" 800
 	object
 		sprite "star/g5"
 		period 10
@@ -4666,6 +5059,11 @@ system "Markeb"
 	trade "Medical" 787
 	trade "Metal" 389
 	trade "Plastic" 306
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Deep" 1500
+	fleet "Large Deep" 3000
+	fleet "Large Northern Pirates" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -4711,6 +5109,12 @@ system "Matar"
 	trade "Medical" 641
 	trade "Metal" 209
 	trade "Plastic" 407
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 2500
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Small Syndicate" 3000
+	fleet "Large Syndicate" 6000
 	object
 		sprite "star/k0"
 		period 10
@@ -4763,6 +5167,11 @@ system "Mebsuta"
 	trade "Medical" 457
 	trade "Metal" 385
 	trade "Plastic" 420
+	fleet "Small Northern Merchants" 3000
+	fleet "Large Northern Merchants" 5000
+	fleet "Small Northern Pirates" 4000
+	fleet "Large Northern Pirates" 8000
+	fleet "Small Republic" 12000
 	object
 		sprite "star/k0"
 		distance 37.1157
@@ -4830,6 +5239,10 @@ system "Men"
 	trade "Medical" 885
 	trade "Metal" 285
 	trade "Plastic" 300
+	fleet "Small Southern Pirates" 400
+	fleet "Large Southern Pirates" 600
+	fleet "Small Northern Pirates" 2000
+	fleet "Large Northern Pirates" 4000
 	object
 		sprite "star/k5"
 		period 10
@@ -4889,6 +5302,10 @@ system "Menkalinan"
 	trade "Medical" 602
 	trade "Metal" 324
 	trade "Plastic" 472
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 800
+	fleet "Small Republic" 700
+	fleet "Large Republic" 1500
 	object
 		sprite "star/f5"
 		distance 58.5
@@ -4946,6 +5363,11 @@ system "Menkar"
 	trade "Medical" 769
 	trade "Metal" 396
 	trade "Plastic" 285
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 1500
+	fleet "Large Syndicate" 2000
+	fleet "Large Core Pirates" 4000
 	object
 		sprite "star/k0"
 		period 10
@@ -4998,6 +5420,9 @@ system "Menkent"
 	trade "Medical" 553
 	trade "Metal" 444
 	trade "Plastic" 412
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 1500
+	fleet "Small Republic" 3000
 	object
 		sprite "star/f5"
 		distance 27.7778
@@ -5059,6 +5484,12 @@ system "Merak"
 	trade "Medical" 547
 	trade "Metal" 457
 	trade "Plastic" 291
+	fleet "Small Southern Merchants" 600
+	fleet "Small Northern Merchants" 800
+	fleet "Large Southern Merchants" 2000
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 4000
 	object
 		sprite "star/g5"
 		distance 40.2658
@@ -5112,6 +5543,10 @@ system "Miaplacidus"
 	trade "Medical" 653
 	trade "Metal" 344
 	trade "Plastic" 489
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 900
+	fleet "Small Republic" 1500
+	fleet "Large Republic" 3000
 	object
 		sprite "star/k0"
 		period 10
@@ -5177,6 +5612,11 @@ system "Mimosa"
 	trade "Medical" 502
 	trade "Metal" 404
 	trade "Plastic" 370
+	fleet "Small Southern Merchants" 1600
+	fleet "Large Southern Merchants" 5000
+	fleet "Small Free Worlds" 2500
+	fleet "Large Free Worlds" 6000
+	fleet "Large Southern Pirates" 8000
 	object
 		sprite "star/k5"
 		period 10
@@ -5219,6 +5659,11 @@ system "Minkar"
 	trade "Medical" 525
 	trade "Metal" 367
 	trade "Plastic" 485
+	fleet "Small Southern Merchants" 900
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Free Worlds" 1500
+	fleet "Large Free Worlds" 2000
+	fleet "Large Southern Pirates" 12000
 	object
 		sprite "star/k0"
 		distance 33.5961
@@ -5274,6 +5719,10 @@ system "Mintaka"
 	trade "Medical" 826
 	trade "Metal" 432
 	trade "Plastic" 370
+	fleet "Small Northern Pirates" 2000
+	fleet "Large Northern Pirates" 2000
+	fleet "Large Republic" 5000
+	fleet "Small Northern Merchants" 4000
 	object
 		sprite "star/k0"
 		distance 34.4496
@@ -5328,6 +5777,11 @@ system "Mirach"
 	trade "Medical" 686
 	trade "Metal" 267
 	trade "Plastic" 299
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 1200
+	fleet "Small Core Pirates" 4000
+	fleet "Small Syndicate" 3000
+	fleet "Large Syndicate" 5000
 	object
 		sprite "star/m0"
 		distance 21.1004
@@ -5384,6 +5838,10 @@ system "Mirfak"
 	trade "Medical" 811
 	trade "Metal" 451
 	trade "Plastic" 267
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 700
+	fleet "Small Syndicate" 1000
+	fleet "Large Syndicate" 1800
 	object
 		sprite "star/k5"
 		period 10
@@ -5430,6 +5888,12 @@ system "Mirzam"
 	trade "Medical" 495
 	trade "Metal" 363
 	trade "Plastic" 463
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Republic" 3000
+	fleet "Large Republic" 4000
+	fleet "Small Northern Pirates" 5000
+	fleet "Large Northern Pirates" 8000
 	object
 		sprite "star/g0"
 		period 10
@@ -5476,6 +5940,9 @@ system "Mizar"
 	trade "Medical" 715
 	trade "Metal" 442
 	trade "Plastic" 486
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3500
+	fleet "Small Southern Pirates" 6000
 	object
 		sprite "star/g0"
 		period 10
@@ -5521,6 +5988,9 @@ system "Muhlifain"
 	trade "Medical" 825
 	trade "Metal" 525
 	trade "Plastic" 441
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3500
+	fleet "Small Southern Pirates" 6000
 	object
 		sprite "star/k0"
 		period 10
@@ -5566,6 +6036,10 @@ system "Muphrid"
 	trade "Medical" 510
 	trade "Metal" 478
 	trade "Plastic" 455
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 3500
+	fleet "Small Southern Pirates" 6000
+	fleet "Small Republic" 5000
 	object
 		sprite "star/g5"
 		distance 21.8366
@@ -5617,6 +6091,10 @@ system "Naos"
 	trade "Medical" 750
 	trade "Metal" 339
 	trade "Plastic" 297
+	fleet "Small Northern Merchants" 400
+	fleet "Large Northern Merchants" 1000
+	fleet "Small Deep" 1000
+	fleet "Large Deep" 2000
 	object
 		sprite "star/g5"
 		period 10
@@ -5678,6 +6156,12 @@ system "Nihal"
 	trade "Medical" 522
 	trade "Metal" 232
 	trade "Plastic" 481
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 1200
+	fleet "Small Northern Pirates" 3000
+	fleet "Large Northern Pirates" 5000
+	fleet "Small Republic" 4000
+	fleet "Large Republic" 7000
 	object
 		sprite "star/k5"
 		distance 43.1257
@@ -5737,6 +6221,10 @@ system "Nunki"
 	trade "Medical" 844
 	trade "Metal" 241
 	trade "Plastic" 321
+	fleet "Small Southern Pirates" 1200
+	fleet "Large Southern Pirates" 2000
+	fleet "Small Southern Merchants" 1600
+	fleet "Small Free Worlds" 2000
 	object
 		sprite "star/m0"
 		period 10
@@ -5800,6 +6288,11 @@ system "Peacock"
 	trade "Medical" 804
 	trade "Metal" 338
 	trade "Plastic" 312
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 5000
+	fleet "Small Free Worlds" 8000
+	fleet "Small Southern Pirates" 4000
+	fleet "Large Southern Pirates" 10000
 	object
 		sprite "star/m0"
 		period 10
@@ -5863,6 +6356,10 @@ system "Persian"
 	trade "Medical" 582
 	trade "Metal" 216
 	trade "Plastic" 502
+	fleet "Small Syndicate" 800
+	fleet "Large Syndicate" 1200
+	fleet "Small Core Pirates" 600
+	fleet "Large Core Pirates" 2000
 	object
 		sprite "star/f5"
 		distance 27.8124
@@ -5919,6 +6416,12 @@ system "Phact"
 	trade "Medical" 492
 	trade "Metal" 252
 	trade "Plastic" 460
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Republic" 4000
+	fleet "Large Republic" 8000
+	fleet "Small Northern Pirates" 3000
+	fleet "Large Northern Pirates" 5000
 	object
 		sprite "star/g5"
 		distance 47.0119
@@ -5980,6 +6483,11 @@ system "Phecda"
 	trade "Medical" 684
 	trade "Metal" 413
 	trade "Plastic" 326
+	fleet "Small Northern Merchants" 700
+	fleer "Large Northern Merchants" 1000
+	fleet "Small Southern Merchants" 700
+	fleer "Large Southern Merchants" 1000
+	fleet "Small Republic" 5000
 	object
 		sprite "star/k5"
 		period 10
@@ -6023,6 +6531,12 @@ system "Pherkad"
 	trade "Medical" 896
 	trade "Metal" 350
 	trade "Plastic" 311
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 1000
+	fleet "Small Free Worlds" 700
+	fleet "Large Free Worlds" 1200
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 3000
 	object
 		sprite "star/m4"
 		period 10
@@ -6074,6 +6588,11 @@ system "Phurad"
 	trade "Medical" 513
 	trade "Metal" 279
 	trade "Plastic" 476
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 5000
+	fleet "Small Northern Pirates" 9000
 	object
 		sprite "star/g0"
 		period 10
@@ -6121,6 +6640,11 @@ system "Polaris"
 	trade "Medical" 822
 	trade "Metal" 255
 	trade "Plastic" 418
+	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 700
+	fleet "Small Syndicate" 1000
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 1500
 	object
 		sprite "star/k5"
 		period 10
@@ -6167,6 +6691,10 @@ system "Pollux"
 	trade "Medical" 669
 	trade "Metal" 346
 	trade "Plastic" 481
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 800
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 2000
 	object
 		sprite "star/g0"
 		period 10
@@ -6213,6 +6741,10 @@ system "Porrima"
 	trade "Medical" 510
 	trade "Metal" 490
 	trade "Plastic" 381
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Republic" 8000
+	fleet "Small Southern Pirates" 6000
 	object
 		sprite "star/g5"
 		distance 21.1382
@@ -6270,6 +6802,10 @@ system "Procyon"
 	trade "Medical" 540
 	trade "Metal" 429
 	trade "Plastic" 472
+	fleet "Small Northern Merchants" 700
+	fleet "Large Northern Merchants" 1200
+	fleet "Small Republic" 1500
+	fleet "Large Republic" 3000
 	object
 		sprite "star/k0"
 		period 10
@@ -6317,6 +6853,10 @@ system "Rasalhague"
 	trade "Medical" 782
 	trade "Metal" 516
 	trade "Plastic" 332
+	fleet "Small Southern Merchants" 1500
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Southern Pirates" 4000
+	fleet "Large Southern Pirates" 8000
 	object
 		sprite "star/k0"
 		period 10
@@ -6368,6 +6908,10 @@ system "Rastaban"
 	trade "Medical" 728
 	trade "Metal" 412
 	trade "Plastic" 314
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 1600
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite "star/g0"
 		period 10
@@ -6414,6 +6958,10 @@ system "Regor"
 	trade "Medical" 753
 	trade "Metal" 255
 	trade "Plastic" 277
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Deep" 2000
+	fleet "Large Deep" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -6471,6 +7019,10 @@ system "Regulus"
 	trade "Medical" 537
 	trade "Metal" 406
 	trade "Plastic" 318
+	fleet "Small Southern Merchants" 4000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 8000
+	fleet "Small Republic" 10000
 	object
 		sprite "star/b5"
 		period 10
@@ -6535,6 +7087,12 @@ system "Rigel"
 	trade "Medical" 721
 	trade "Metal" 302
 	trade "Plastic" 472
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 4000
+	fleet "Small Republic" 3000
+	fleet "Large Republic" 5000
+	fleet "Small Northern Pirates" 3000
+	fleet "Large Northern Pirates" 5000
 	object
 		sprite "star/g0"
 		period 10
@@ -6601,6 +7159,12 @@ system "Ruchbah"
 	trade "Medical" 597
 	trade "Metal" 334
 	trade "Plastic" 353
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 1000
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 3000
 	object
 		sprite "star/f0"
 		period 10
@@ -6660,6 +7224,10 @@ system "Rutilicus"
 	trade "Medical" 590
 	trade "Metal" 468
 	trade "Plastic" 415
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Southern Pirates" 8000
+	fleet "Small Free Worlds" 6000
 	object
 		sprite "star/g5"
 		period 10
@@ -6720,6 +7288,10 @@ system "Sabik"
 	trade "Medical" 697
 	trade "Metal" 512
 	trade "Plastic" 300
+	fleet "Small Southern Merchants" 400
+	fleet "Large Southern Merchants" 900
+	fleet "Small Free Worlds" 1200
+	fleet "Large Free Worlds" 2000
 	object
 		sprite "star/g5"
 		period 10
@@ -6761,6 +7333,9 @@ system "Sadalmelik"
 	trade "Medical" 915
 	trade "Metal" 297
 	trade "Plastic" 454
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 1200
+	fleet "Quarg" 2000
 	object
 		sprite "star/f5"
 		period 10
@@ -6808,6 +7383,9 @@ system "Sadalsuud"
 	trade "Medical" 911
 	trade "Metal" 320
 	trade "Plastic" 447
+	fleet "Small Southern Merchants" 900
+	fleet "Large Southern Merchants" 1500
+	fleet "Quarg" 1000
 	object
 		sprite "star/g0"
 		distance 26.9714
@@ -6867,6 +7445,10 @@ system "Sadr"
 	trade "Medical" 856
 	trade "Metal" 208
 	trade "Plastic" 458
+	fleet "Small Southern Merchants" 4000
+	fleet "Quarg" 9000
+	fleet "Small Southern Pirates" 5000
+	fleet "Large Southern Pirates" 9000
 	object
 		sprite "star/a5"
 		distance 5.86016
@@ -6922,6 +7504,12 @@ system "Saiph"
 	trade "Medical" 786
 	trade "Metal" 281
 	trade "Plastic" 473
+	fleet "Small Northern Merchants" 1200
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Northern Pirates" 2000
+	fleet "Large Northern Pirates" 3000
+	fleet "Small Republic" 4000
+	fleet "Large Republic" 7000
 	object
 		sprite "star/k5"
 		period 10
@@ -6963,6 +7551,12 @@ system "Sargas"
 	trade "Medical" 753
 	trade "Metal" 518
 	trade "Plastic" 298
+	fleet "Small Southern Merchants" 700
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
+	fleet "Small Free Worlds" 4000
+	fleet "Large Free Worlds" 7000
 	object
 		sprite "star/k0"
 		distance 53
@@ -7005,6 +7599,10 @@ system "Sarin"
 	trade "Medical" 824
 	trade "Metal" 531
 	trade "Plastic" 349
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 6000
 	object
 		sprite "star/g0"
 		period 10
@@ -7053,6 +7651,12 @@ system "Scheat"
 	trade "Medical" 573
 	trade "Metal" 259
 	trade "Plastic" 312
+	fleet "Small Core Merchants" 500
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 1000
+	fleet "Large Syndicate" 2000
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 5000
 	object
 		sprite "star/g5"
 		period 10
@@ -7104,6 +7708,12 @@ system "Schedar"
 	trade "Medical" 743
 	trade "Metal" 325
 	trade "Plastic" 279
+	fleet "Small Core Merchants" 900
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 3000
+	fleet "Large Syndicate" 4000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 3000
 	object
 		sprite "star/g0"
 		period 10
@@ -7161,6 +7771,10 @@ system "Seginus"
 	trade "Medical" 776
 	trade "Metal" 532
 	trade "Plastic" 503
+	fleet "Small Southern Merchants" 900
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Free Worlds" 3000
+	fleet "Small Southern Pirates" 5000
 	object
 		sprite "star/m4"
 		period 10
@@ -7218,6 +7832,13 @@ system "Shaula"
 	trade "Medical" 793
 	trade "Metal" 533
 	trade "Plastic" 249
+	fleet "Small Southern Pirates" 500
+	fleet "Large Southern Pirates" 800
+	fleet "Small Core Pirates" 4000
+	fleet "Large Core Pirates" 7000
+	fleet "Small Northern Pirates" 5000
+	fleet "Large Northern Pirates" 9000
+	fleet "Large Free Worlds" 9000
 	object
 		sprite "star/g5"
 		period 10
@@ -7272,6 +7893,10 @@ system "Sheratan"
 	trade "Medical" 596
 	trade "Metal" 306
 	trade "Plastic" 355
+	fleet "Small Core Merchants" 1500
+	fleet "Large Core Merchants" 1800
+	fleet "Small Core Pirates" 3000
+	fleet "Large Core Pirates" 5000
 	object
 		sprite "star/f5"
 		distance 21.0713
@@ -7328,6 +7953,10 @@ system "Sirius"
 	trade "Medical" 477
 	trade "Metal" 480
 	trade "Plastic" 366
+	fleet "Small Northern Merchants" 500
+	fleet "Large Northern Merchants" 700
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 1500
 	object
 		sprite "star/f5"
 		distance 3.94301
@@ -7382,6 +8011,12 @@ system "Sol"
 	trade "Medical" 480
 	trade "Metal" 402
 	trade "Plastic" 272
+	fleet "Small Northern Merchants" 300
+	fleet "Large Northern Merchants" 500
+	fleet "Small Republic" 600
+	fleet "Large Republic" 900
+	fleet "Small Core Merchants" 1000
+	fleet "Large Core Merchants" 2000
 	object
 		sprite "star/g0"
 		period 25.38
@@ -7447,6 +8082,12 @@ system "Spica"
 	trade "Medical" 574
 	trade "Metal" 417
 	trade "Plastic" 518
+	fleet "Small Southern Merchants" 1600
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Free Worlds" 2000
+	fleet "Large Free Worlds" 4000
+	fleet "Small Southern Pirates" 6000
+	fleet "Large Southern Pirates" 10000
 	object
 		sprite "star/g5"
 		period 10
@@ -7496,6 +8137,11 @@ system "Suhail"
 	trade "Medical" 774
 	trade "Metal" 259
 	trade "Plastic" 277
+	fleet "Small Northern Merchants" 2000
+	fleet "Large Northern Merchants" 5000
+	fleet "Small Deep" 4000
+	fleet "Large Deep" 7000
+	fleet "Large Northern Pirates" 9000
 	object
 		sprite "star/f5"
 		period 10
@@ -7547,6 +8193,12 @@ system "Tais"
 	trade "Medical" 856
 	trade "Metal" 362
 	trade "Plastic" 339
+	fleet "Small Southern Merchants" 1500
+	fleet "Large Southern Merchants" 4000
+	fleet "Small Free Worlds" 9000
+	fleet "Quarg" 15000
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 7000
 	object
 		sprite "star/a5"
 		period 10
@@ -7595,6 +8247,10 @@ system "Talita"
 	trade "Medical" 718
 	trade "Metal" 290
 	trade "Plastic" 469
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 900
+	fleet "Small Republic" 1000
+	fleet "Large Republic" 2000
 	object
 		sprite "star/g0"
 		distance 42.8886
@@ -7645,6 +8301,11 @@ system "Tania Australis"
 	trade "Medical" 677
 	trade "Metal" 311
 	trade "Plastic" 390
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Republic" 3000
+	fleet "Small Northern Pirates" 4000
+	fleet "Large Northern Pirates" 9000
 	object
 		sprite "star/g0"
 		period 10
@@ -7707,6 +8368,10 @@ system "Tarazed"
 	trade "Medical" 891
 	trade "Metal" 276
 	trade "Plastic" 315
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 1200
+	fleet "Quarg" 7000
+	fleet "Large Southern Pirates" 8000
 	object
 		sprite "star/g0"
 		distance 11
@@ -7763,6 +8428,10 @@ system "Tejat"
 	trade "Medical" 561
 	trade "Metal" 345
 	trade "Plastic" 492
+	fleet "Small Northern Merchants" 700
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 2000
 	object
 		sprite "star/g0"
 		distance 7.1843
@@ -7832,6 +8501,10 @@ system "Turais"
 	trade "Medical" 781
 	trade "Metal" 559
 	trade "Plastic" 473
+	fleet "Small Southern Merchants" 2000
+	fleet "Large Southern Merchants" 6000
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 7000
 	object
 		sprite "star/k5"
 		period 10
@@ -7878,6 +8551,11 @@ system "Unukalhai"
 	trade "Medical" 665
 	trade "Metal" 458
 	trade "Plastic" 277
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 4000
+	fleet "Small Southern Pirates" 3000
+	fleet "Small Free Worlds" 4000
+	fleet "Large Free Worlds" 10000
 	object
 		sprite "star/g5"
 		period 10
@@ -7929,6 +8607,10 @@ system "Vega"
 	trade "Medical" 496
 	trade "Metal" 356
 	trade "Plastic" 315
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 3000
+	fleet "Small Republic" 1600
+	fleet "Large Republic" 5000
 	object
 		sprite "star/g0"
 		distance 23.3143
@@ -7983,6 +8665,10 @@ system "Vindemiatrix"
 	trade "Medical" 824
 	trade "Metal" 535
 	trade "Plastic" 408
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 4000
 	object
 		sprite "star/g0"
 		period 10
@@ -8024,6 +8710,10 @@ system "Wazn"
 	trade "Medical" 506
 	trade "Metal" 246
 	trade "Plastic" 433
+	fleet "Small Northern Merchants" 700
+	fleet "Large Northern Merchants" 1500
+	fleet "Small Republic" 2000
+	fleet "Large Republic" 4000
 	object
 		sprite "star/k5"
 		distance 45.5327
@@ -8077,6 +8767,11 @@ system "Wei"
 	trade "Medical" 731
 	trade "Metal" 516
 	trade "Plastic" 486
+	fleet "Small Southern Merchants" 600
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Southern Pirates" 4000
+	fleet "Small Free Worlds" 3000
+	fleet "Large Free Worlds" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -8130,6 +8825,11 @@ system "Wezen"
 	trade "Medical" 796
 	trade "Metal" 365
 	trade "Plastic" 306
+	fleet "Small Northern Merchants" 1000
+	fleet "Large Northern Merchants" 2000
+	fleet "Small Deep" 1500
+	fleet "Large Deep" 4000
+	fleet "Small Northern Pirates" 8000
 	object
 		sprite "star/f0"
 		distance 11.8889
@@ -8201,6 +8901,12 @@ system "Yed Prior"
 	trade "Medical" 902
 	trade "Metal" 333
 	trade "Plastic" 307
+	fleet "Small Northern Merchants" 800
+	fleet "Large Northern Merchants" 1600
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 3000
+	fleet "Small Free Worlds" 3000
+	fleet "Large Free Worlds" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -8248,6 +8954,12 @@ system "Zaurak"
 	trade "Medical" 671
 	trade "Metal" 292
 	trade "Plastic" 376
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 1600
+	fleet "Large Syndicate" 2500
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
 	object
 		sprite "star/g5"
 		period 10
@@ -8292,6 +9004,10 @@ system "Zeta Aquilae"
 	trade "Medical" 790
 	trade "Metal" 510
 	trade "Plastic" 361
+	fleet "Small Southern Merchants" 1000
+	fleet "Large Southern Merchants" 3000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite "star/g0"
 		distance 22.6286
@@ -8356,6 +9072,12 @@ system "Zeta Centauri"
 	trade "Medical" 585
 	trade "Metal" 542
 	trade "Plastic" 386
+	fleet "Small Southern Merchants" 800
+	fleet "Large Southern Merchants" 2000
+	fleet "Small Free Worlds" 1500
+	fleet "Large Free Worlds" 2500
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite "star/k0"
 		period 10
@@ -8408,6 +9130,13 @@ system "Zosma"
 	trade "Medical" 567
 	trade "Metal" 271
 	trade "Plastic" 498
+	fleet "Small Northern Merchants" 600
+	fleet "Large Northern Merchants" 1000
+	fleet "Small Deep" 2000
+	fleet "Large Deep" 4000
+	fleet "Small Republic" 4000
+	fleet "Small Northern Pirates" 5000
+	fleet "Large Northern Pirates" 9000
 	object
 		sprite "star/k0"
 		period 10
@@ -8458,6 +9187,12 @@ system "Zubenelgenubi"
 	trade "Medical" 615
 	trade "Metal" 506
 	trade "Plastic" 303
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 1500
+	fleet "Small Free Worlds" 2000
+	fleet "Large Free Worlds" 3000
+	fleet "Small Southern Pirates" 3000
+	fleet "Large Southern Pirates" 5000
 	object
 		sprite "star/g5"
 		distance 32.8466
@@ -8515,6 +9250,12 @@ system "Zubeneschamali"
 	trade "Medical" 567
 	trade "Metal" 554
 	trade "Plastic" 303
+	fleet "Small Southern Merchants" 500
+	fleet "Large Southern Merchants" 1500
+	fleet "Small Free Worlds" 3000
+	fleet "Large Free Worlds" 5000
+	fleet "Small Southern Pirates" 2000
+	fleet "Large Southern Pirates" 3000
 	object
 		sprite "star/g5"
 		distance 62
@@ -8851,13 +9592,13 @@ planet "Follower"
 
 planet "Forpelog"
 	landscape "land/badlands4"
-	description "Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, for the atmosphere is too thin to breathe and contains almost no oxygen."
+	description "Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen."
 	spaceport "Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight."
 
 planet "Foundry"
 	landscape "land/city1"
 	description "Foundry is home to the Syndicated Shipyards, where more than half of the commercial freighters in human space are manufactured. Although much of the planet is blanketed in smog from the factories, there are also regions of pristine forests and majestic mountains. The Syndicate has a generous vacation policy on Foundry that allows workers to take as much as a month of vacation time every year, and many choose to take that time to escape from the cities and explore the wilderness. The shipyards claim that this vacation time is partly responsible for the high reliability of the ships built here, because a well-rested and relaxed worker is less likely to make the sort of mistakes that can quickly become disastrous in outer space."
-	spaceport "The spaceport is surrounded by miles of hangars and factories where new ships are being assembled. The port itself is a trio of towering buildings, with a skywalk on the top floors to provide a view of the surrounding area. Larger ships land on pads on the ground surroundign the towers, while smaller ships can fly into hangars built into the sides of the towers themselves. Everything is made of gleaming metal, and each tower is slightly tapered and adorned with painted fins that make it resemble an enormous starship."
+	spaceport "The spaceport is surrounded by miles of hangars and factories where new ships are being assembled. The port itself is a trio of towering buildings, with a skywalk on the top floors to provide a view of the surrounding area. Larger ships land on pads on the ground surrounding the towers, while smaller ships can fly into hangars built into the sides of the towers themselves. Everything is made of gleaming metal, and each tower is slightly tapered and adorned with painted fins that make it resemble an enormous starship."
 	shipyard "Basic Ships"
 	shipyard "Syndicate Basics"
 	shipyard "Syndicate Advanced"
@@ -9227,7 +9968,7 @@ planet "New Austria"
 
 planet "New Boston"
 	landscape "land/water2"
-	description "New Boston is a completely unremarkable world... except, of course, for the fact that you happen to have been born here. Most of the land is wet and marshy, and the coastal regions are are prone flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming."
+	description "New Boston is a completely unremarkable world... except, of course, for the fact that you happen to have been born here. Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming."
 	spaceport "Some day New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, are now tilted and uneven. The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain, and high enough for loads to be brought in and out by trucks and the occasional hovercraft. And, some enterprising local mechanics have set up not only a repair shop that also sells ship equipment, but also a small shipyard with several small, refurbished ships for sale."
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
@@ -9320,7 +10061,7 @@ planet "New Wales"
 planet "New Washington"
 	landscape "land/nasa4"
 	description "New Washington is a planet huddled close to a dim, red sun in an otherwise frozen system. It orbits so close to the sun that the two are locked together, with one side of New Washington continuously facing the sun and the other in perpetual darkness. The only villages are in the twilight region in between, and there the settlers make a living by mining for metal and for oil, a relic of a warmer period when more life flourished here and the planet spun more quickly on its axis."
-	spaceport "In this narrow ring between the baking sun of Nw Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them. Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatos. You are almost certain the stew is made with rat meat."
+	spaceport "In this narrow ring between the baking sun of New Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them. Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatos. You are almost certain the stew is made with rat meat."
 
 planet "Nifel"
 	landscape "land/snow2"

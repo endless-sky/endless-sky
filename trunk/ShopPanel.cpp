@@ -619,7 +619,7 @@ void ShopPanel::MainUp()
 	while(it != start && it->CenterX() > previousX)
 		--it;
 	
-	if(it == start)
+	if(it == start && it->CenterY() == previousY)
 	{
 		mainScroll = 0;
 		selectedShip = nullptr;
