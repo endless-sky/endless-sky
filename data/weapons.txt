@@ -226,6 +226,29 @@ outfit "Particle Cannon"
 		"shield damage" 42
 		"hull damage" 65
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
+ 		
+outfit "Plasma Cannon"
+	category "Guns"
+	cost 200000
+	thumbnail "outfit/plasma cannon"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
+	"gun ports" -1
+	weapon
+		sprite "projectile/plasma"
+		"hit effect" "plasma explosion"
+		"inaccuracy" 2
+		"velocity" 12
+		"lifetime" 40
+		"reload" 18
+		"firing energy" 30
+		"firing heat" 160
+		"hit force" 30
+		"shield damage" 32
+		"hull damage" 26
+		"heat damage" 240
+	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
 outfit "Meteor Missile"
 	category "Missiles"
