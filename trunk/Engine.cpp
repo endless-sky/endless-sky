@@ -177,8 +177,18 @@ void Engine::Step(bool isActive)
 		ammo.clear();
 		if(player)
 			for(const auto &it : player->Outfits())
+			{
 				if(it.first->Ammo())
-					ammo.emplace_back(it.first, player->OutfitCount(it.first->Ammo()));
+					ammo.emplace_back(it.first,
+						player->OutfitCount(it.first->Ammo()));
+				else if(it.first->WeaponGet("firing fuel"))
+				{
+					double remaining = player->Fuel()
+						* player->Attributes().Get("fuel capacity");
+					ammo.emplace_back(it.first,
+						remaining / it.first->WeaponGet("firing fuel"));
+				}
+			}
 		
 		if(player && player->Hull())
 			info.SetSprite("player sprite", player->GetSprite().GetSprite());
