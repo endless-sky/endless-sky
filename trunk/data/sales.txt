@@ -293,10 +293,12 @@ outfitter "Kraz Advanced"
 	"nGVF-EE Fuel Cell"
 	"Laser Turret"
 	"Heavy Laser"
+	"Plasma Cannon"
 	"Torpedo Launcher"
 	"Outfit Scanner"
 
 outfitter "Pirate Outfits"
 	"Modified Blaster"
 	"Modified Blaster Turret"
+	"Plasma Cannon"
 

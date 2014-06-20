@@ -73,14 +73,14 @@ ship "Bastion"
 		"LP144a Battery Pack" 1
 		"S3 Thermionic" 1
 		"Hyperdrive" 1
-		"Particle Cannon" 2
+		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
 		"Heavy Laser Turret" 3
 	engine -28 85
 	engine 28 85
-	gun -54 -14 "Particle Cannon"
-	gun 54 -14 "Particle Cannon"
+	gun -54 -14 "Plasma Cannon"
+	gun 54 -14 "Plasma Cannon"
 	gun -54 -14 "Heavy Rocket Launcher"
 	gun 54 -14 "Heavy Rocket Launcher"
 	turret 0 0 "Heavy Laser Turret"
@@ -355,14 +355,14 @@ ship "Falcon"
 		"LP288a Battery Pack"
 		"D41-HY Shield Generator"
 		"Blaster Turret" 4
-		"Particle Cannon" 2
+		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Hyperdrive"
 	engine -17 143
 	engine 17 143
-	gun -17 -188 "Particle Cannon"
-	gun 17 -188 "Particle Cannon"
+	gun -17 -188 "Plasma Cannon"
+	gun 17 -188 "Plasma Cannon"
 	gun -17 -188 "Torpedo Launcher"
 	gun 17 -188 "Torpedo Launcher"
 	turret -57 40 "Blaster Turret"
