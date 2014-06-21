@@ -146,6 +146,26 @@ int CargoHold::Used() const
 
 
 
+int CargoHold::CommoditiesSize() const
+{
+	used = 0;
+	for(const auto &it : commodities)
+		used += it.second;
+	return used;
+}
+
+
+
+int CargoHold::OutfitsSize() const
+{
+	used = 0;
+	for(const auto &it : outfits)
+		used += it.second * it.first->Get("mass");
+	return used;
+}
+
+
+
 // Normal cargo:
 int CargoHold::Get(const string &commodity) const
 {
