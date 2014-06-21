@@ -82,6 +82,13 @@ void TradingPanel::Draw() const
 	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(HOLD_X, lastY), selected);
 	
+	int outfits = player.Cargo().OutfitsSize();
+	if(outfits)
+	{
+		string str = to_string(outfits) + " tons of plundered outfits.";
+		font.Draw(str, Point(NAME_X, lastY), unselected);
+	}
+	
 	int i = 0;
 	for(const Trade::Commodity &commodity : data.Commodities())
 	{
