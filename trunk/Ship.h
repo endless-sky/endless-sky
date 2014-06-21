@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "Animation.h"
 #include "Armament.h"
+#include "CargoHold.h"
 #include "Controllable.h"
 #include "DataFile.h"
 #include "Outfit.h"
@@ -144,10 +145,8 @@ public:
 	void ApplyForce(const Point &force);
 	
 	// Get cargo information.
-	const std::map<std::string, int> &Cargo() const;
-	int Cargo(const std::string &type) const;
-	int FreeCargo() const;
-	int AddCargo(int tons, const std::string &type);
+	CargoHold &Cargo();
+	const CargoHold &Cargo() const;
 	
 	// Get outfit information.
 	const std::map<const Outfit *, int> &Outfits() const;
@@ -194,9 +193,7 @@ private:
 	Outfit baseAttributes;
 	const Outfit *explosionWeapon;
 	std::map<const Outfit *, int> outfits;
-	std::map<std::string, int> cargo;
-	int cargoMass;
-	// TODO: spare outfits (from plunder or previous ship when selling).
+	CargoHold cargo;
 	
 	std::vector<Point> enginePoints;
 	Armament armament;

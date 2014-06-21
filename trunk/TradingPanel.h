@@ -37,9 +37,8 @@ protected:
 	
 	
 private:
+	void Buy(int amount);
 	static int Modifier();
-	void Buy(int amount = 1);
-	void Sell(int amount = 1);
 	
 	
 private:

@@ -199,14 +199,14 @@ void Fleet::SetCargo(Ship *ship) const
 {
 	for(int i = 0; i < cargo; ++i)
 	{
-		int free = ship->FreeCargo();
+		int free = ship->Cargo().Free();
 		if(!free)
 			break;
 		
 		int index = rand() % data->Commodities().size();
 		const Trade::Commodity &commodity = data->Commodities()[index];
 		int amount = rand() % free + 1;
-		ship->AddCargo(amount, commodity.name);
+		ship->Cargo().Transfer(commodity.name, -amount);
 	}
 }
 

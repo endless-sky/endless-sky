@@ -80,7 +80,7 @@ void TradingPanel::Draw() const
 	y += 5;
 	int lastY = y + 20 * data.Commodities().size() + 25;
 	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
-	font.Draw(to_string(player.FreeCargo()), Point(HOLD_X, lastY), selected);
+	font.Draw(to_string(player.Cargo().Free()), Point(HOLD_X, lastY), selected);
 	
 	int i = 0;
 	for(const Trade::Commodity &commodity : data.Commodities())
@@ -104,7 +104,7 @@ void TradingPanel::Draw() const
 		font.Draw("[buy]", Point(BUY_X, y), color);
 		font.Draw("[sell]", Point(SELL_X, y), color);
 		
-		int hold = player.Cargo(commodity.name);
+		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 	}
@@ -120,9 +120,9 @@ bool TradingPanel::KeyDown(SDLKey key, SDLMod mod)
 	else if(key == SDLK_DOWN && selectedRow < static_cast<int>(data.Commodities().size()) - 1)
 		++selectedRow;
 	else if(key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
-		Buy();
+		Buy(1);
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
-		Sell();
+		Buy(-1);
 	else if(key == data.Keys().Get(Key::MAP))
 		GetUI()->Push(new MapPanel(data, player, selectedRow));
 	else
@@ -140,9 +140,9 @@ bool TradingPanel::Click(int x, int y)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
 		if(x >= BUY_X && x < SELL_X)
-			Buy();
+			Buy(1);
 		else if(x >= SELL_X && x < HOLD_X)
-			Sell();
+			Buy(-1);
 	}
 	else
 		return false;
@@ -154,14 +154,13 @@ bool TradingPanel::Click(int x, int y)
 
 void TradingPanel::Buy(int amount)
 {
-	player.BuyCargo(data.Commodities()[selectedRow].name, amount * Modifier());
-}
-
-
-
-void TradingPanel::Sell(int amount)
-{
-	Buy(-amount);
+	amount *= Modifier();
+	const string &type = data.Commodities()[selectedRow].name;
+	int price = system.Trade(type);
+	
+	amount = min(amount, player.Accounts().Credits() / price);
+	amount = player.Cargo().Transfer(type, -amount);
+	player.Accounts().AddCredits(amount * price);
 }
 
 

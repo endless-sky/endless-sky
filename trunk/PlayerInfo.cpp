@@ -45,7 +45,7 @@ void PlayerInfo::Clear()
 	accounts = Account();
 	
 	ships.clear();
-	cargo.clear();
+	cargo.Clear();
 	
 	seen.clear();
 	visited.clear();
@@ -91,11 +91,7 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(data.Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
-		{
-			for(const DataFile::Node &grand : child)
-				if(grand.Size() >= 2)
-					cargo[grand.Token(0)] += static_cast<int>(grand.Value(1));
-		}
+			cargo.Load(child, data);
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -110,6 +106,8 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			}
 		}
 	}
+	UpdateCargoCapacities();
+	
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
 	size_t pos = filePath.rfind('~');
@@ -140,15 +138,7 @@ void PlayerInfo::Save() const
 		out << "planet \"" << planet->Name() << "\"\n";
 	
 	accounts.Save(out);
-	bool first = true;
-	for(const pair<string, int> &it : cargo)
-		if(it.second)
-		{
-			if(first)
-				out << "cargo\n";
-			first = false;
-			out << "\t\"" << it.first << "\" " << it.second << '\n';
-		}
+	cargo.Save(out);
 	
 	for(const std::shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
@@ -255,16 +245,8 @@ string PlayerInfo::IncrementDate()
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int assets = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-	{
-		assets += ship->Cost();
-		
-		if(!gameData)
-			continue;
-		
-		for(const Trade::Commodity &commodity : gameData->Commodities())
-			assets += ship->GetSystem()->Trade(commodity.name)
-				* ship->Cargo(commodity.name);
-	}
+		assets += ship->Cost() + ship->Cargo().Value(system);
+	
 	return accounts.Step(assets);
 }
 
@@ -377,25 +359,18 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 
 
-// Get the cargo capacity of all in-system ships. This works whether or not
-// you have unloaded the cargo.
-int PlayerInfo::FreeCargo() const
+	
+// Get cargo information.
+CargoHold &PlayerInfo::Cargo()
 {
-	const Ship *flagship = GetShip();
-	if(!flagship)
-		return 0;
-	
-	int free = 0;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == flagship->GetSystem())
-			free += ship->FreeCargo();
-	
-	for(const pair<string, int> &it : cargo)
-		free -= it.second;
-	for(const pair<const Outfit *, int> &it : outfitCargo)
-		free -= it.first->Get("mass") * it.second;
-	
-	return free;
+	return cargo;
+}
+
+
+
+const CargoHold &PlayerInfo::Cargo() const
+{
+	return cargo;
 }
 
 
@@ -403,33 +378,29 @@ int PlayerInfo::FreeCargo() const
 // Switch cargo from being stored in ships to being stored here.
 void PlayerInfo::Land()
 {
-	// Remove any ships that have been destroyed.
+	// This can only be done while landed.
+	if(!system || !planet)
+		return;
+	
+	// Remove any ships that have been destroyed. Recharge the others if this is
+	// a planet with a spaceport.
 	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled())
+		if(!*it || (*it)->Hull() <= 0. || (*it)->IsFullyDisabled())
 			it = ships.erase(it);
 		else
 			++it; 
 	}
 	
-	// This can only be done while landed.
-	if(!system || !planet)
-		return;
-	
-	const Ship *flagship = GetShip();
-	if(!flagship)
-		return;
-	
+	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == flagship->GetSystem())
+		if(ship->GetSystem() == system)
 		{
-			for(const pair<string, int> &it : ship->Cargo())
-			{
-				cargo[it.first] += it.second;
-				ship->AddCargo(-it.second, it.first);
-			}
-			// TODO: handle outfit cargo too.
+			if(planet->HasSpaceport())
+				ship->Recharge();
+			
+			ship->Cargo().TransferAll(&cargo);
 		}
 }
 
@@ -439,42 +410,23 @@ void PlayerInfo::Land()
 // which case a message will be returned.
 std::string PlayerInfo::TakeOff()
 {
-	// Reset any governments you provoked yesterday.
-	for(const auto &it : gameData->Governments())
-		it.second.ResetProvocation();
-	
 	// This can only be done while landed.
 	if(!system || !planet)
 		return "";
 	
-	const Ship *flagship = GetShip();
-	if(!flagship)
-		return "";
+	// Reset any governments you provoked yesterday.
+	for(const auto &it : gameData->Governments())
+		it.second.ResetProvocation();
 	
 	// TODO: handle outfit cargo.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == flagship->GetSystem())
-			for(pair<const string, int> &it : cargo)
-			{
-				int transfer = min(it.second, ship->FreeCargo());
-				if(transfer)
-				{
-					ship->AddCargo(transfer, it.first);
-					it.second -= transfer;
-				}
-			}
+		if(ship->GetSystem() == system)
+			cargo.TransferAll(&ship->Cargo());
 	
-	int sold = 0;
-	int income = 0;
-	for(pair<const string, int> &it : cargo)
-		if(it.second)
-		{
-			int price = system->Trade(it.first);
-			accounts.AddCredits(price * it.second);
-			sold += it.second;
-			income += price * it.second;
-		}
-	cargo.clear();
+	int sold = cargo.Used();
+	int income = cargo.Value(system);
+	accounts.AddCredits(income);
+	cargo.Clear();
 	if(!sold)
 		return "";
 	
@@ -485,52 +437,19 @@ std::string PlayerInfo::TakeOff()
 
 
 
-// Normal cargo and spare parts:
-std::map<std::string, int> PlayerInfo::Cargo() const
+// Call this when leaving the oufitter, shipyard, or hiring panel.
+void PlayerInfo::UpdateCargoCapacities()
 {
-	return cargo;
-}
-
-
-
-int PlayerInfo::Cargo(const std::string &type) const
-{
-	auto it = cargo.find(type);
-	if(it == cargo.end())
-		return 0;
-	
-	return it->second;
-}
-
-
-
-std::map<const Outfit *, int> PlayerInfo::OutfitCargo() const
-{
-	return outfitCargo;
-}
-
-
-
-void PlayerInfo::BuyCargo(const std::string &type, int amount)
-{
-	// This can only be done while landed.
-	if(!system || !planet)
-		return;
-	
-	int price = system->Trade(type);
-	amount = min(amount, accounts.Credits() / price);
-	amount = min(amount, FreeCargo());
-	amount = max(amount, -cargo[type]);
-	
-	cargo[type] += amount;
-	accounts.AddCredits(price * amount);
-}
-
-
-
-void PlayerInfo::AddOutfitCargo(const Outfit *outfit, int amount)
-{
-	outfitCargo[outfit] += amount;
+	int size = 0;
+	int bunks = 0;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == system)
+		{
+			size += ship->Attributes().Get("cargo space");
+			bunks += ship->Attributes().Get("bunks") - ship->Crew();
+		}
+	cargo.SetSize(size);
+	// TODO: set passenger capacity, too.
 }
 
 
