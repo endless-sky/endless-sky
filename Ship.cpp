@@ -30,7 +30,7 @@ using namespace std;
 Ship::Ship()
 	: government(nullptr), isInSystem(true),
 	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
-	explosionWeapon(nullptr), cargoMass(0),
+	explosionWeapon(nullptr),
 	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
 	currentSystem(nullptr),
 	zoom(1.), landingPlanet(nullptr),
@@ -79,11 +79,7 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 			}
 		}
 		else if(child.Token(0) == "cargo")
-		{
-			for(const DataFile::Node &grand : child)
-				if(grand.Size() >= 2)
-					cargo[grand.Token(0)] += grand.Value(1);
-		}
+			cargo.Load(child, data);
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			currentSystem = data.Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -99,6 +95,7 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	}
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
+	cargo.SetSize(attributes.Get("cargo space"));
 	attributes = baseAttributes;
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
@@ -141,13 +138,7 @@ void Ship::Save(std::ostream &out) const
 		if(it.first && it.second)
 			out << "\t\t\"" << it.first->Name() << "\" " << it.second << "\n";
 	
-	if(cargoMass)
-	{
-		out << "\tcargo\n";
-		for(const auto &it : cargo)
-			if(it.second)
-				out << "\t\t\"" << it.first << "\" " << it.second << "\n";
-	}
+	cargo.Save(out, 1);
 	
 	for(const Point &point : enginePoints)
 		out << "\tengine " << point.X() << " " << point.Y() << "\n";
@@ -747,7 +738,7 @@ double Ship::Heat() const
 
 int Ship::Crew() const
 {
-	return 1;
+	return attributes.Get("required crew");
 }
 
 
@@ -762,7 +753,7 @@ bool Ship::ShouldDelete() const
 
 double Ship::Mass() const
 {
-	return cargoMass + attributes.Get("mass");
+	return cargo.Used() + attributes.Get("mass");
 }
 
 
@@ -833,50 +824,17 @@ void Ship::ApplyForce(const Point &force)
 
 
 
-const map<std::string, int> &Ship::Cargo() const
+CargoHold &Ship::Cargo()
 {
 	return cargo;
 }
 
 
 
-int Ship::Cargo(const string &type) const
+
+const CargoHold &Ship::Cargo() const
 {
-	auto it = cargo.find(type);
-	if(it == cargo.end())
-		return 0;
-	
-	return it->second;
-}
-
-
-
-int Ship::FreeCargo() const
-{
-	int total = attributes.Get("cargo space");
-	for(const auto &it : cargo)
-		total -= it.second;
-	
-	return total;
-}
-
-
-
-int Ship::AddCargo(int tons, const string &type)
-{
-	int free = FreeCargo();
-	if(tons > free)
-		tons = free;
-	
-	int &value = cargo[type];
-	value += tons;
-	if(value < 0)
-	{
-		tons -= value;
-		value = 0;
-	}
-	cargoMass += tons;
-	return tons;
+	return cargo;
 }
 
 

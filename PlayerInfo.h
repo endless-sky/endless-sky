@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define PLAYER_INFO_H_
 
 #include "Account.h"
+#include "CargoHold.h"
 #include "Date.h"
 
 #include <map>
@@ -76,25 +77,19 @@ public:
 	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
 	
-	// Get the cargo capacity of all in-system ships. This works whether or not
-	// you have unloaded the cargo.
-	int FreeCargo() const;
+	// Get cargo information.
+	CargoHold &Cargo();
+	const CargoHold &Cargo() const;
+	// Call this when leaving the oufitter, shipyard, or hiring panel.
+	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land();
 	// Load the cargo back into your ships. This may require selling excess, in
 	// which case a message will be returned.
 	std::string TakeOff();
-	// Normal cargo and spare parts:
-	std::map<std::string, int> Cargo() const;
-	int Cargo(const std::string &type) const;
-	std::map<const Outfit *, int> OutfitCargo() const;
-	// Buy or sell cargo.
-	void BuyCargo(const std::string &type, int amount);
-	void AddOutfitCargo(const Outfit *outfit, int amount);
 	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
-	
 	void Visit(const System *system);
 	
 	bool HasTravelPlan() const;
@@ -124,8 +119,7 @@ private:
 	Account accounts;
 	
 	std::vector<std::shared_ptr<Ship>> ships;
-	std::map<std::string, int> cargo;
-	std::map<const Outfit *, int> outfitCargo;
+	CargoHold cargo;
 	
 	std::set<const System *> seen;
 	std::set<const System *> visited;

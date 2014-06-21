@@ -109,7 +109,7 @@ bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 				if(distance < cargoRange)
 				{
 					bool first = true;
-					for(const auto &it : target->Cargo())
+					for(const auto &it : target->Cargo().Commodities())
 						if(it.second)
 						{
 							if(first)

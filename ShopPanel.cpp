@@ -298,7 +298,10 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 bool ShopPanel::KeyDown(SDLKey key, SDLMod mod)
 {
 	if(key == 'l' && FlightCheck())
+	{
+		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+	}
 	else if(key == 'b')
 	{
 		int modifier = Modifier();

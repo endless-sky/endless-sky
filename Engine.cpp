@@ -151,15 +151,7 @@ void Engine::Step(bool isActive)
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
 		if(player && player->GetPlanet() && isActive)
-		{
 			playerInfo.SetPlanet(player->GetPlanet());
-			
-			if(player->GetPlanet()->HasSpaceport())
-				for(const shared_ptr<Ship> &ship : playerInfo.Ships())
-					if(ship->GetSystem() == player->GetSystem()
-							&& !ship->IsFullyDisabled() && ship->Hull() > 0.)
-						ship->Recharge();
-		}
 		
 		const System *currentSystem = playerInfo.GetSystem();
 		// Update this here, for thread safety.
