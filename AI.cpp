@@ -567,6 +567,27 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(selectNext)
 			control.SetTargetShip(weak_ptr<Ship>());
 	}
+	else if(keyDown & Key::Bit(Key::BOARD))
+	{
+		shared_ptr<const Ship> target = control.GetTargetShip().lock();
+		if(!target || !target->IsFullyDisabled() || target->Hull() <= 0.)
+		{
+			double closest = numeric_limits<double>::infinity();
+			bool foundEnemy = false;
+			for(const shared_ptr<Ship> &other : ships)
+				if(other->IsTargetable() && other->IsFullyDisabled() && other->Hull() > 0.)
+				{
+					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
+					double d = other->Position().Distance(ship.Position());
+					if((isEnemy && !foundEnemy) || d < closest)
+					{
+						closest = d;
+						foundEnemy = isEnemy;
+						control.SetTargetShip(other);
+					}
+				}
+		}
+	}
 	
 	if(keyHeld & Key::Bit(Key::LAND))
 	{

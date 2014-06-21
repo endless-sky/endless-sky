@@ -72,7 +72,9 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 {
 	const Outfit *outfit = data.Outfits().Get(name);
-	if(!planet->Outfitter().Has(outfit) && !playerShip->OutfitCount(outfit) && !available[outfit])
+	if(!planet->Outfitter().Has(outfit)
+			&& (!playerShip || !playerShip->OutfitCount(outfit))
+			&& !available[outfit] && !player.Cargo().Get(outfit))
 		return false;
 	
 	bool isSelected = (outfit == selectedOutfit);
@@ -81,13 +83,22 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 	
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit);
 	
+	const Font &font = FontSet::Get(14);
 	if(playerShip)
 	{
 		int count = playerShip->OutfitCount(outfit);
 		if(count)
-			FontSet::Get(14).Draw(to_string(count),
+			font.Draw(to_string(count),
 				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 40),
 				Color(.8, 0.));
+	}
+	if(player.Cargo().Get(outfit))
+	{
+		string count = "in cargo: " + to_string(player.Cargo().Get(outfit));
+		Point pos = point + Point(
+			OUTFIT_SIZE / 2 - 20 - font.Width(count),
+			OUTFIT_SIZE / 2 - 40);
+		font.Draw(count, pos, Color(.8, 0.));
 	}
 	
 	return true;
@@ -125,36 +136,62 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 
 bool OutfitterPanel::CanBuy() const
 {
-	return planet && playerShip && selectedOutfit
-		&& (planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit])
-		&& selectedOutfit->Cost() < player.Accounts().Credits()
-		&& playerShip->Attributes().CanAdd(*selectedOutfit, 1);
+	if(!planet || !selectedOutfit || !playerShip)
+		return false;
+	
+	if(!playerShip->Attributes().CanAdd(*selectedOutfit, 1))
+		return false;
+	
+	// If you have this in your cargo hold, installing it is free.
+	if(player.Cargo().Get(selectedOutfit))
+		return true;
+	
+	if(!(planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit]))
+		return false;
+	
+	return selectedOutfit->Cost() < player.Accounts().Credits();
 }
 
 
 
 void OutfitterPanel::Buy()
 {
-	player.Accounts().AddCredits(-selectedOutfit->Cost());
+	if(player.Cargo().Get(selectedOutfit))
+		player.Cargo().Transfer(selectedOutfit, 1);
+	else
+	{
+		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		--available[selectedOutfit];
+	}
 	playerShip->AddOutfit(selectedOutfit, 1);
-	--available[selectedOutfit];
 }
 
 
 
 bool OutfitterPanel::CanSell() const
 {
-	return planet && playerShip && selectedOutfit
-		&& playerShip->OutfitCount(selectedOutfit)
-		&& playerShip->Attributes().CanAdd(*selectedOutfit, -1);
+	if(!planet || !selectedOutfit)
+		return false;
+	
+	if(player.Cargo().Get(selectedOutfit))
+		return true;
+	
+	if(!(playerShip && playerShip->OutfitCount(selectedOutfit)))
+		return false;
+	
+	return playerShip->Attributes().CanAdd(*selectedOutfit, -1);
 }
 
 
 
 void OutfitterPanel::Sell()
 {
+	if(player.Cargo().Get(selectedOutfit))
+		player.Cargo().Transfer(selectedOutfit, 1);
+	else
+		playerShip->AddOutfit(selectedOutfit, -1);
+	
 	player.Accounts().AddCredits(selectedOutfit->Cost());
-	playerShip->AddOutfit(selectedOutfit, -1);
 	++available[selectedOutfit];
 }
 

@@ -193,6 +193,8 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 		if(to->Size())
 			amount = min(amount, to->Free());
 	}
+	if(!amount)
+		return 0;
 	
 	commodities[commodity] -= amount;
 	used -= amount;
@@ -212,14 +214,16 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	int mass = outfit->Get("mass");
 	
 	amount = min(amount, Get(outfit));
-	if(Size())
+	if(Size() && mass)
 		amount = max(amount, -Free() / mass);
 	if(to)
 	{
 		amount = max(amount, -to->Get(outfit));
-		if(to->Size())
+		if(to->Size() && mass)
 			amount = min(amount, to->Free() / mass);
 	}
+	if(!amount)
+		return 0;
 	
 	outfits[outfit] -= amount;
 	used -= amount * mass;
