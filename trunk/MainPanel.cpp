@@ -141,6 +141,37 @@ bool MainPanel::KeyDown(SDLKey key, SDLMod mod)
 			}
 		}
 	}
+	else if(key == gameData.Keys().Get(Key::BOARD))
+	{
+		Ship *player = playerInfo.GetShip();
+		if(!player)
+			return true;
+		
+		shared_ptr<const Ship> target = player->GetTargetShip().lock();
+		if(!target || !target->IsFullyDisabled() || target->Hull() <= 0.)
+			return true;
+		
+		double distance = (player->Position() - target->Position()).Length();
+		double speed = (player->Velocity() - target->Velocity()).Length();
+		double dot = (player->Facing().Unit().Dot(target->Facing().Unit()));
+		
+		if(distance < 40. && speed < 1. && dot > .9)
+		{
+			// TODO: actually steal cargo from the ship.
+			CargoHold cargo = target->Cargo();
+			for(const auto &it : target->Outfits())
+				cargo.Transfer(it.first, -it.second);
+			int tons = cargo.Used();
+			int value = cargo.Value(player->GetSystem());
+			cargo.TransferAll(&player->Cargo());
+			tons -= cargo.Used();
+			value -= cargo.Value(player->GetSystem());
+			
+			ostringstream out;
+			out << "You stole " << tons << " tons of cargo, worth " << value << " credits.";
+			GetUI()->Push(new Dialog(out.str()));
+		}
+	}
 	else
 		return false;
 	

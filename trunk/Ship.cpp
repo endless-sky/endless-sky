@@ -95,8 +95,8 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	}
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
-	cargo.SetSize(attributes.Get("cargo space"));
 	attributes = baseAttributes;
+	cargo.SetSize(attributes.Get("cargo space"));
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits.
@@ -109,12 +109,15 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 // loaded yet. So, wait until everything has been loaded, then call this.
 void Ship::FinishLoading()
 {
+	// TODO: any way to do this through lazy evaluation, instead of having to
+	// call this function explicitly?
 	for(const auto &it : outfits)
 	{
 		attributes.Add(*it.first, it.second);
 		if(it.first->IsWeapon())
 			armament.Add(it.first, it.second);
 	}
+	cargo.SetSize(attributes.Get("cargo space"));
 	
 	Recharge();
 }
@@ -879,6 +882,9 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		attributes.Add(*outfit, count);
 		if(outfit->IsWeapon())
 			armament.Add(outfit, count);
+		
+		if(outfit->Get("cargo space"))
+			cargo.SetSize(attributes.Get("cargo space"));
 	}
 }
 

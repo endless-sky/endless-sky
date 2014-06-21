@@ -396,6 +396,7 @@ fleet "Large Northern Pirates"
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
+	cargo 3
 	variant
 		"Quarg Skylark"
 
