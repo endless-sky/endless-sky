@@ -71,6 +71,10 @@ public:
 	bool Move(std::list<Effect> &effects);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
+	// Check if this ship is boarding another ship. If it is, it either plunders
+	// it or, if this is a player ship, returns the ship it is plundering so a
+	// plunder dialog can be displayed.
+	std::shared_ptr<Ship> Board(std::list<std::shared_ptr<Ship>> &ships);
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if

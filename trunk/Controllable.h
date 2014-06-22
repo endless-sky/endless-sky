@@ -35,6 +35,8 @@ public:
 	double GetTurnCommand() const;
 	bool HasLandCommand() const;
 	bool HasHyperspaceCommand() const;
+	bool HasLaunchCommand() const;
+	bool HasBoardCommand() const;
 	bool HasFireCommand(int index) const;
 	
 	// Set the commands.
@@ -43,6 +45,8 @@ public:
 	void SetTurnCommand(double direction);
 	void SetLandCommand();
 	void SetHyperspaceCommand();
+	void SetLaunchCommand();
+	void SetBoardCommand();
 	void SetFireCommand(int index);
 	void SetFireCommands(int bitmask = 0xFFFFFFFF);
 	

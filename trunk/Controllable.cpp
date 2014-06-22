@@ -68,6 +68,21 @@ bool Controllable::HasHyperspaceCommand() const
 
 
 
+bool Controllable::HasLaunchCommand() const
+{
+	return commands & LAUNCH;
+}
+
+
+
+
+bool Controllable::HasBoardCommand() const
+{
+	return commands & BOARD;
+}
+
+
+
 bool Controllable::HasFireCommand(int index) const
 {
 	return commands & (1 << (index + WEAPON_SHIFT));
@@ -115,6 +130,20 @@ void Controllable::SetLandCommand()
 void Controllable::SetHyperspaceCommand()
 {
 	commands |= HYPERSPACE;
+}
+
+
+
+void Controllable::SetLaunchCommand()
+{
+	commands |= LAUNCH;
+}
+
+
+
+void Controllable::SetBoardCommand()
+{
+	commands |= BOARD;
 }
 
 
