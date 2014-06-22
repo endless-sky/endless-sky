@@ -668,7 +668,8 @@ void ShopPanel::MainDown()
 		return;
 	}
 	
-	while(it != zones.end() && it->CenterX() <= previousX)
+	int newY = it->CenterY();
+	while(it != zones.end() && it->CenterX() <= previousX && it->CenterY() == newY)
 		++it;
 	--it;
 	
