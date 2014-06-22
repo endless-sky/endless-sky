@@ -83,7 +83,7 @@ void GameData::BeginLoad(const char * const *argv)
 		for(auto &it : ships)
 		{
 			const Ship &ship = it.second;
-			cout << ship.ModelName() << '\t';
+			cout << it.first << '\t';
 			cout << ship.Cost() << '\t';
 			
 			const Outfit &attributes = ship.Attributes();
@@ -279,7 +279,11 @@ void GameData::LoadFile(const string &path)
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
 		else if(key == "ship" && node.Size() >= 2)
-			ships.Get(node.Token(1))->Load(node, *this);
+		{
+			// Allow multiple named variants of the same ship model.
+			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
+			ships.Get(name)->Load(node, *this);
+		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "shipName" && node.Size() >= 2)

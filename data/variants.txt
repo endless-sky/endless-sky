@@ -1,0 +1,34 @@
+ship "Star Barge" "Star Barge (Armed)"
+	sprite "ship/star barge"
+	attributes
+		category "Light Freighter"
+		"cost" 90000
+		"shields" 600
+		"hull" 1200
+		"required crew" 1
+		"bunks" 3
+		"mass" 70
+		"drag" 2.4
+		"fuel capacity" 300
+		"cargo space" 50
+		"outfit space" 120
+		"weapon capacity" 15
+		"engine capacity" 40
+		weapon
+			"blast radius" 45
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
+	outfits
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Hyperdrive"
+		"Blaster Turret"
+	engine -9 38
+	engine 9 38
+	turret 0 -8
+	explode "tiny explosion" 10
+	explode "small explosion" 10

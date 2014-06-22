@@ -56,7 +56,7 @@ fleet "Small Core Merchants"
 	variant 4
 		"Shuttle"
 	variant 6
-		"Star Barge"
+		"Star Barge (Armed)"
 	variant 3
 		"Freighter"
 	variant 1
@@ -64,7 +64,7 @@ fleet "Small Core Merchants"
 		"Sparrow"
 	variant 2
 		"Freighter"
-		"Star Barge" 2
+		"Star Barge (Armed)" 2
 	variant 2
 		"Freighter"
 		"Shuttle" 2
@@ -82,6 +82,8 @@ fleet "Large Core Merchants"
 		"Sparrow"
 	variant 2
 		"Bulk Freighter"
+	variant 2
+		"Star Barge (Armed)" 3
 	variant 1
 		"Bulk Freighter" 2
 		"Quicksilver" 1
