@@ -602,7 +602,7 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet())
+	if(!GetTargetPlanet() || IsDisabled() || Hull() <= 0.)
 		return false;
 	
 	Point distance = GetTargetPlanet()->Position() - position;
