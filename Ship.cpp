@@ -125,7 +125,7 @@ void Ship::FinishLoading()
 
 
 // Save a full description of this ship, as currently configured.
-void Ship::Save(std::ostream &out) const
+void Ship::Save(ostream &out) const
 {
 	out << "ship \"" << modelName << "\"\n";
 	out << "\tname \"" << name << "\"\n";
@@ -173,7 +173,7 @@ const string &Ship::ModelName() const
 
 
 // Get this ship's description.
-const std::string &Ship::Description() const
+const string &Ship::Description() const
 {
 	return description;
 }
@@ -246,7 +246,7 @@ void Ship::SetIsSpecial(bool special)
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(std::list<Effect> &effects)
+bool Ship::Move(list<Effect> &effects)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten."
@@ -447,9 +447,47 @@ bool Ship::Move(std::list<Effect> &effects)
 
 
 // Launch any ships that are ready to launch.
-void Ship::Launch(std::list<std::shared_ptr<Ship>> &ships)
+void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
 	// TODO: allow carrying and launching of ships.
+}
+
+
+
+// Check if this ship is boarding another ship.
+shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships)
+{
+	shared_ptr<Ship> victim;
+	if(!HasBoardCommand())
+		return victim;
+	
+	shared_ptr<const Ship> target = GetTargetShip().lock();
+	if(!target || !target->IsFullyDisabled() || target->Hull() <= 0.)
+		return victim;
+	
+	double distance = (position - target->position).Length();
+	double speed = (velocity - target->velocity).Length();
+	
+	if(distance > 50. || speed > 1.)
+		return victim;
+	
+	// Get a non-const pointer to the ship.
+	for(shared_ptr<Ship> &ship : ships)
+		if(ship == target)
+			victim = ship;
+	
+	// TODO: player ships handled specially.
+	if(!victim)
+		return victim;
+	
+	// Take any outfits that fit.
+	for(auto &it : victim->outfits)
+		while(it.second && cargo.Transfer(it.first, -1))
+			--it.second;
+	// Take any commodities that fit.
+	victim->cargo.TransferAll(&cargo);
+	//victim.reset();
+	return victim;
 }
 
 
@@ -457,7 +495,7 @@ void Ship::Launch(std::list<std::shared_ptr<Ship>> &ships)
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(std::list<Projectile> &projectiles)
+bool Ship::Fire(list<Projectile> &projectiles)
 {
 	isInSystem = true;
 	forget = 0;
@@ -493,7 +531,7 @@ bool Ship::Fire(std::list<Projectile> &projectiles)
 
 
 // Fire an anti-missile.
-bool Ship::FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects)
+bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
 {
 	const vector<Armament::Weapon> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
@@ -891,7 +929,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 // Get the list of weapons.
-const std::vector<Armament::Weapon> &Ship::Weapons() const
+const vector<Armament::Weapon> &Ship::Weapons() const
 {
 	return armament.Get();
 }
@@ -938,7 +976,7 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 
 
 
-void Ship::CreateExplosion(std::list<Effect> &effects)
+void Ship::CreateExplosion(list<Effect> &effects)
 {
 	if(sprite.IsEmpty() || !sprite.GetMask(0).IsLoaded() || explosionEffects.empty())
 		return;

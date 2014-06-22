@@ -50,6 +50,9 @@ public:
 	// Begin the next step of calculations.
 	void Step(bool isActive);
 	
+	// Get any ships that we must show boarding dialogs for.
+	const std::shared_ptr<Ship> &Boarding() const;
+	
 	// Draw a frame.
 	void Draw() const;
 	
@@ -105,6 +108,9 @@ private:
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.
 	std::map<std::list<Ship>::iterator, int> forget;
+	
+	std::list<std::shared_ptr<Ship>> boardingQueue;
+	std::shared_ptr<Ship> boarding;
 	
 	AsteroidField asteroids;
 	double flash;

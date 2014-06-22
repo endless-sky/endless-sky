@@ -45,7 +45,8 @@ private:
 	
 	double TurnBackward(const Ship &ship);
 	double TurnToward(const Ship &ship, const Point &vector);
-	void MoveToPlanet(Controllable &control, const Ship &ship);
+	bool MoveToPlanet(Controllable &control, const Ship &ship);
+	bool MoveTo(Controllable &control, const Ship &ship, const Point &target, double radius, double slow);
 	void PrepareForHyperspace(Controllable &control, const Ship &ship);
 	void CircleAround(Controllable &control, const Ship &ship, const Ship &target);
 	void Attack(Controllable &control, const Ship &ship, const Ship &target);

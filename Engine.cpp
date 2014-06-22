@@ -153,6 +153,14 @@ void Engine::Step(bool isActive)
 		if(player && player->GetPlanet() && isActive)
 			playerInfo.SetPlanet(player->GetPlanet());
 		
+		if(!boardingQueue.empty())
+		{
+			boarding = boardingQueue.back();
+			boardingQueue.pop_back();
+		}
+		else
+			boarding.reset();
+		
 		const System *currentSystem = playerInfo.GetSystem();
 		// Update this here, for thread safety.
 		if(playerInfo.HasTravelPlan() && currentSystem == playerInfo.TravelPlan().back())
@@ -286,6 +294,15 @@ void Engine::Step(bool isActive)
 	if(isActive)
 		condition.notify_one();
 }
+
+
+
+// Get any ships that we must show boarding dialogs for.
+const shared_ptr<Ship> &Engine::Boarding() const
+{
+	return boarding;
+}
+
 
 
 // Draw a frame.
@@ -526,7 +543,12 @@ void Engine::CalculateStep()
 			ship->Launch(ships);
 			if(ship->Fire(projectiles))
 				hasAntiMissile.push_back(ship.get());
-		
+			
+			// Boarding:
+			shared_ptr<Ship> victim = ship->Board(ships);
+			if(victim)
+				boardingQueue.push_back(victim);
+			
 			// This is a good opportunity to draw all the ships in system.
 			if(ship->GetSprite().IsEmpty())
 				continue;

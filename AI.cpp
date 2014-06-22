@@ -284,12 +284,19 @@ double AI::TurnToward(const Ship &ship, const Point &vector)
 
 
 
-void AI::MoveToPlanet(Controllable &control, const Ship &ship)
+bool AI::MoveToPlanet(Controllable &control, const Ship &ship)
 {
 	if(!ship.GetTargetPlanet())
-		return;
+		return false;
 	
 	const Point &target = ship.GetTargetPlanet()->Position();
+	return MoveTo(control, ship, target, ship.GetTargetPlanet()->Radius(), 1.);
+}
+
+
+
+bool AI::MoveTo(Controllable &control, const Ship &ship, const Point &target, double radius, double slow)
+{
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -297,35 +304,34 @@ void AI::MoveToPlanet(Controllable &control, const Ship &ship)
 	
 	double speed = velocity.Length();
 	
-	if(distance.Length() < ship.GetTargetPlanet()->Radius() && speed < 1.)
-		return;
+	if(distance.Length() < radius && speed < slow)
+		return true;
+
+	// If I am currently headed away from the planet, the first step is to
+	// head towards it.
+	if(distance.Dot(velocity) < 0.)
+	{
+		bool left = distance.Cross(angle.Unit()) < 0.;
+		control.SetTurnCommand(left - !left);
+	
+		if(distance.Dot(angle.Unit()) > 0.)
+			control.SetThrustCommand(1.);
+	}
 	else
 	{
-		// If I am currently headed away from the planet, the first step is to
-		// head towards it.
-		if(distance.Dot(velocity) < 0.)
+		distance = target - StoppingPoint(ship);
+		
+		// Stop steering if we're going to make it to the planet fine.
+		if(distance.Length() > 20.)
 		{
 			bool left = distance.Cross(angle.Unit()) < 0.;
 			control.SetTurnCommand(left - !left);
-		
-			if(distance.Dot(angle.Unit()) > 0.)
-				control.SetThrustCommand(1.);
 		}
-		else
-		{
-			distance = target - StoppingPoint(ship);
-			
-			// Stop steering if we're going to make it to the planet fine.
-			if(distance.Length() > 20.)
-			{
-				bool left = distance.Cross(angle.Unit()) < 0.;
-				control.SetTurnCommand(left - !left);
-			}
-		
-			if(distance.Unit().Dot(angle.Unit()) > .8)
-				control.SetThrustCommand(1.);
-		}
+	
+		if(distance.Unit().Dot(angle.Unit()) > .8)
+			control.SetThrustCommand(1.);
 	}
+	return false;
 }
 
 
@@ -666,6 +672,15 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	{
 		PrepareForHyperspace(control, ship);
 		control.SetHyperspaceCommand();
+	}
+	else if((keyStuck & Key::Bit(Key::BOARD)) && ship.GetTargetShip().lock())
+	{
+		shared_ptr<const Ship> target = control.GetTargetShip().lock();
+		if(MoveTo(control, ship, target->Position(), 40., .8))
+		{
+			control.SetBoardCommand();
+			keyStuck = 0;
+		}
 	}
 	else
 		keyStuck = 0;
