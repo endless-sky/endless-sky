@@ -148,20 +148,20 @@ int CargoHold::Used() const
 
 int CargoHold::CommoditiesSize() const
 {
-	used = 0;
+	int size = 0;
 	for(const auto &it : commodities)
-		used += it.second;
-	return used;
+		size += it.second;
+	return size;
 }
 
 
 
 int CargoHold::OutfitsSize() const
 {
-	used = 0;
+	int size = 0;
 	for(const auto &it : outfits)
-		used += it.second * it.first->Get("mass");
-	return used;
+		size += it.second * it.first->Get("mass");
+	return size;
 }
 
 
