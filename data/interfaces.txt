@@ -374,3 +374,174 @@ interface "planet"
 	button d 280 270
 		size 140 40
 	endif
+
+interface "boarding"
+	sprite "ui/boarding dialog" 0 0
+	
+	label "item" -320 -197
+		size 14
+		color "grey"
+		align left
+	label "value" -60 -197
+		size 14
+		color "grey"
+		align right
+	label "size" 10 -197
+		size 14
+		color "grey"
+		align right
+	
+	label "cargo space free:" -320 67
+		size 14
+		color "grey"
+		align left
+	string "cargo space" 10 67
+		size 14
+		color "light grey"
+		align right
+	
+	label "crew" 190  -120
+		size 14
+		color "grey"
+		align right
+	label "attack" 260  -120
+		size 14
+		color "grey"
+		align right
+	label "defense" 330  -120
+		size 14
+		color "grey"
+		align right
+	
+	label "your ship:" 50 -100
+		size 14
+		color "grey"
+		align left
+	string "your crew" 190 -100
+		size 14
+		color "light grey"
+		align right
+	string "your attack" 260 -100
+		size 14
+		color "light grey"
+		align right
+	string "your defense" 330 -100
+		size 14
+		color "light grey"
+		align right
+	
+	label "enemy ship:" 50 -80
+		size 14
+		color "grey"
+		align left
+	string "enemy crew" 190 -80
+		size 14
+		color "light grey"
+		align right
+	string "enemy attack" 260 -80
+		size 14
+		color "light grey"
+		align right
+	string "enemy defense" 330 -80
+		size 14
+		color "light grey"
+		align right
+	
+	label "capture odds (attacking):" 50 -50
+		size 14
+		color "grey"
+		align left
+	string "attack odds" 330 -50
+		size 14
+		color "light grey"
+		align right
+	label "expected casualties:" 50 -30
+		size 14
+		color "grey"
+		align left
+	string "attack casualties" 330 -30
+		size 14
+		color "light grey"
+		align right
+	
+	label "survival odds (defending):" 50 0
+		size 14
+		color "grey"
+		align left
+	string "defense odds" 330 0
+		size 14
+		color "light grey"
+		align right
+	label "expected casualties:" 50 20
+		size 14
+		color "grey"
+		align left
+	string "defense casualties" 330 20
+		size 14
+		color "light grey"
+		align right
+	
+	label "Take" -235 107
+		size 14
+		color "dim grey"
+		align center
+	if "can take"
+	label "Take" -235 107
+		size 14
+		color "light grey"
+		align center
+	button t 235 115
+		size 70 30
+	endif
+	
+	label "Done" -155 107
+		size 14
+		color "dim grey"
+		align center
+	if "can exit"
+	label "Done" -155 107
+		size 14
+		color "light grey"
+		align center
+	button x 155 115
+		size 70 30
+	endif
+	
+	label "Attempt Capture" -40 107
+		size 14
+		color "dim grey"
+		align center
+	if "can exit"
+	label "Attempt Capture" -40 107
+		size 14
+		color "light grey"
+		align center
+	button c 40 115
+		size 140 30
+	endif
+	
+	label "Attack" 120 177
+		size 14
+		color "dim grey"
+		align center
+	if "can attack"
+	label "Attack" 120 177
+		size 14
+		color "light grey"
+		align center
+	button a 120 185
+		size 80 30
+	endif
+	
+	label "Defend" 210 177
+		size 14
+		color "dim grey"
+		align center
+	if "can defend"
+	label "Defend" 120 177
+		size 14
+		color "light grey"
+		align center
+	button d 120 185
+		size 80 30
+	endif
