@@ -60,10 +60,10 @@ protected:
 	virtual int Modifier() const = 0;
 	
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDLKey key, SDLMod mod);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
 	virtual bool Click(int x, int y);
 	virtual bool Drag(int dx, int dy);
-	virtual bool Scroll(int x, int y, int dy);
+	virtual bool Scroll(int dx, int dy);
 	
 	
 protected:

@@ -68,7 +68,7 @@ bool Panel::TrapAllEvents()
 
 
 // Only override the ones you need; the default action is to return false.
-bool Panel::KeyDown(SDLKey key, SDLMod mod)
+bool Panel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	return false;
 }
@@ -103,7 +103,7 @@ bool Panel::Drag(int dx, int dy)
 
 
 
-bool Panel::Scroll(int x, int y, int dy)
+bool Panel::Scroll(int dx, int dy)
 {
 	return false;
 }

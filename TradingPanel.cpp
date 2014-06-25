@@ -120,7 +120,7 @@ void TradingPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool TradingPanel::KeyDown(SDLKey key, SDLMod mod)
+bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
@@ -174,7 +174,7 @@ void TradingPanel::Buy(int amount)
 
 int TradingPanel::Modifier()
 {
-	SDLMod mod = SDL_GetModState();
+	SDL_Keymod mod = SDL_GetModState();
 	
 	int modifier = 1;
 	if(mod & KMOD_CTRL)

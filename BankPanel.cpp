@@ -119,7 +119,7 @@ void BankPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool BankPanel::KeyDown(SDLKey key, SDLMod mod)
+bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	int maxRow = player.Accounts().Mortgages().size() - !qualify;
 	if(key == SDLK_UP && selectedRow)

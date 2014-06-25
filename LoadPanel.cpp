@@ -118,7 +118,7 @@ void LoadPanel::OnCallback(int)
 
 
 
-bool LoadPanel::KeyDown(SDLKey key, SDLMod mod)
+bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == 'n')
 	{
@@ -198,7 +198,7 @@ bool LoadPanel::Click(int x, int y)
 {
 	char key = data.Interfaces().Get("load menu")->OnClick(Point(x, y));
 	if(key != '\0')
-		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
+		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160)

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PANEL_H_
 #define PANEL_H_
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 #include <memory>
 
@@ -48,12 +48,12 @@ public:
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDLKey key, SDLMod mod);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
 	virtual bool Click(int x, int y);
 	virtual bool RClick(int x, int y);
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(int dx, int dy);
-	virtual bool Scroll(int x, int y, int dy);
+	virtual bool Scroll(int dx, int dy);
 	
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);

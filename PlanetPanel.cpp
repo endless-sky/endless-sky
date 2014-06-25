@@ -69,7 +69,7 @@ void PlanetPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool PlanetPanel::KeyDown(SDLKey key, SDLMod mod)
+bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	Panel *oldPanel = selectedPanel;
 	
@@ -143,7 +143,7 @@ bool PlanetPanel::Click(int x, int y)
 {
 	char key = ui.OnClick(Point(x, y));
 	if(key != '\0')
-		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
+		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	
 	return true;
 }

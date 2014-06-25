@@ -247,7 +247,7 @@ bool OutfitterPanel::FlightCheck()
 
 int OutfitterPanel::Modifier() const
 {
-	SDLMod mod = SDL_GetModState();
+	SDL_Keymod mod = SDL_GetModState();
 	
 	int modifier = 1;
 	if(mod & KMOD_CTRL)

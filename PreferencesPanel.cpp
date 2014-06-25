@@ -86,8 +86,8 @@ void PreferencesPanel::Draw() const
 	
 	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
 	{
-		string current = SDL_GetKeyName(static_cast<SDLKey>(data.Keys().Get(c)));
-		string def = SDL_GetKeyName(static_cast<SDLKey>(data.DefaultKeys().Get(c)));
+		string current = SDL_GetKeyName(static_cast<SDL_Keycode>(data.Keys().Get(c)));
+		string def = SDL_GetKeyName(static_cast<SDL_Keycode>(data.DefaultKeys().Get(c)));
 		
 		Point dOff(-100 - font.Width(def), 0);
 		font.Draw(def, pos + dOff, current == def ? dim : medium);
@@ -110,7 +110,7 @@ void PreferencesPanel::Draw() const
 
 
 
-bool PreferencesPanel::KeyDown(SDLKey key, SDLMod mod)
+bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(editing != -1)
 	{
@@ -139,7 +139,7 @@ bool PreferencesPanel::Click(int x, int y)
 {
 	char key = data.Interfaces().Get("preferences")->OnClick(Point(x, y));
 	if(key != '\0')
-		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
+		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	
 	y -= firstY;
 	if(y < 0)

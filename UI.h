@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <vector>
 
-#include <SDL/SDL_events.h>
+#include <SDL2/SDL_events.h>
 
 class Panel;
 

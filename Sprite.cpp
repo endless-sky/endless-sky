@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 
 #include <GL/glew.h>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 using namespace std;
 

@@ -152,7 +152,7 @@ void MenuPanel::OnCallback(int)
 
 
 
-bool MenuPanel::KeyDown(SDLKey key, SDLMod mod)
+bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(gameData.Progress() < 1.)
 		return false;
@@ -186,7 +186,7 @@ bool MenuPanel::Click(int x, int y)
 {
 	char key = gameData.Interfaces().Get("main menu")->OnClick(Point(x, y));
 	if(key != '\0')
-		return KeyDown(static_cast<SDLKey>(key), KMOD_NONE);
+		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	
 	return true;
 }
