@@ -142,7 +142,7 @@ void ConversationPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool ConversationPanel::KeyDown(SDLKey key, SDLMod mod)
+bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(node < 0)
 	{

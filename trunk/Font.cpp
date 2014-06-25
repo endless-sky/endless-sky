@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "SpriteQueue.h"
 
-#include <SDL/SDL_image.h>
+#include <SDL2/SDL_image.h>
 
 #include <cmath>
 #include <stdexcept>

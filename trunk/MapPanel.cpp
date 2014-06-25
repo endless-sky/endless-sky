@@ -362,7 +362,7 @@ void MapPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool MapPanel::KeyDown(SDLKey key, SDLMod mod)
+bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == data.Keys().Get(Key::MAP) || key == 'd')
 		GetUI()->Pop(this);

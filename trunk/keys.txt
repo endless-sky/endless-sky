@@ -1,8 +1,8 @@
 "Show main menu" 27
-"Forward thrust" 273
-"Turn left" 276
-"Turn right" 275
-"Reverse" 274
+"Forward thrust" 1073741906
+"Turn left" 1073741904
+"Turn right" 1073741903
+"Reverse" 1073741905
 "Fire primary weapon" 9
 "Fire secondary weapon" 113
 "Select secondary weapon" 119
@@ -18,4 +18,4 @@
 "Order escorts to defend you" 101
 "View star map" 109
 "View player info" 105
-"Toggle fullscreen" 292
+"Toggle fullscreen" 1073741892

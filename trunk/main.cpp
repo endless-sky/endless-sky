@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <GL/glew.h>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 #include <fstream>
 #include <iostream>
@@ -49,16 +49,16 @@ int main(int argc, char *argv[])
 		playerInfo.LoadRecent(gameData);
 		
 		// Check how big the window can be.
-		const SDL_VideoInfo *info = SDL_GetVideoInfo();
-		if(!info)
+		SDL_DisplayMode mode;
+		if(SDL_GetCurrentDisplayMode(0, &mode))
 		{
 			cerr << "Unable to query monitor resolution!" << endl;
 			return 1;
 		}
 		
 		// Make the window just slightly smaller than the monitor resolution.
-		int maxWidth = info->current_w;
-		int maxHeight = info->current_h;
+		int maxWidth = mode.w;
+		int maxHeight = mode.h;
 		// Restore this after toggling fullscreen.
 		int restoreWidth = 0;
 		int restoreHeight = 0;
@@ -70,13 +70,40 @@ int main(int argc, char *argv[])
 		Screen::Set(maxWidth - 100, maxHeight - 100);
 		
 		// Create the window.
-		SDL_WM_SetCaption("Endless Sky", "Endless Sky");
-		Uint32 flags = SDL_OPENGL | SDL_RESIZABLE | SDL_DOUBLEBUF;
-		SDL_SetVideoMode(Screen::Width(), Screen::Height(), 0, flags);
+		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
+		SDL_Window *window = SDL_CreateWindow("Endless Sky",
+			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+			Screen::Width(), Screen::Height(), flags);
+		if(!window)
+		{
+			cerr << "Unable to create window!" << endl;
+			return 1;
+		}
+		
+		SDL_GLContext context = SDL_GL_CreateContext(window);
+		if(!context)
+		{
+			cerr << "Unable to create OpenGL context!" << endl;
+			return 1;
+		}
+		
+		if(SDL_GL_MakeCurrent(window, context))
+		{
+			cerr << "Unable to set the current OpenGL context!" << endl;
+			return 1;
+		}
+		SDL_GL_SetSwapInterval(1);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 		
 		// Initialize GLEW.
+		glewExperimental = GL_TRUE;
 		if(glewInit() != GLEW_OK)
+		{
+			cerr << "Unable to initialize GLEW!" << endl;
 			return 1;
+		}
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
 		glShadeModel(GL_SMOOTH);
@@ -116,10 +143,10 @@ int main(int argc, char *argv[])
 				{
 					menuPanels.Quit();
 				}
-				else if(event.type == SDL_VIDEORESIZE)
+				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED)
 				{
-					Screen::Set(event.resize.w & ~1, event.resize.h & ~1);
-					SDL_SetVideoMode(Screen::Width(), Screen::Height(), 0, flags);
+					Screen::Set(event.window.data1 & ~1, event.window.data2 & ~1);
+					SDL_SetWindowSize(window, Screen::Width(), Screen::Height());
 					glViewport(0, 0, Screen::Width(), Screen::Height());
 				}
 				else if(activeUI.Handle(event))
@@ -131,8 +158,8 @@ int main(int argc, char *argv[])
 				{
 					if(restoreWidth)
 					{
+						SDL_SetWindowFullscreen(window, 0);
 						Screen::Set(restoreWidth, restoreHeight);
-						SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 0);
 						restoreWidth = 0;
 						restoreHeight = 0;
 					}
@@ -141,13 +168,8 @@ int main(int argc, char *argv[])
 						restoreWidth = Screen::Width();
 						restoreHeight = Screen::Height();
 						Screen::Set(maxWidth, maxHeight);
-						SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 					}
-					// TODO: When toggling out of full-screen mode in unity,
-					// the window is left maximized. Find a way to fix that.
-					SDL_SetVideoMode(Screen::Width(), Screen::Height(), 0,
-						restoreWidth ? (flags | SDL_FULLSCREEN) : flags);
-					
 					glViewport(0, 0, Screen::Width(), Screen::Height());
 				}
 			}
@@ -158,7 +180,7 @@ int main(int argc, char *argv[])
 			// the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 			
-			SDL_GL_SwapBuffers();
+			SDL_GL_SwapWindow(window);
 			timer.Wait();
 		}
 		
@@ -166,6 +188,8 @@ int main(int argc, char *argv[])
 		if(playerInfo.GetPlanet())
 			playerInfo.Save();
 		
+		SDL_GL_DeleteContext(context);
+		SDL_DestroyWindow(window);
 		SDL_Quit();
 	}
 	catch(const runtime_error &error)

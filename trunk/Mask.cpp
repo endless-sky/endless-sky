@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mask.h"
 
-#include "SDL/SDL.h"
+#include <SDL2/SDL.h>
 
 #include <algorithm>
 #include <cmath>

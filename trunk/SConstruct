@@ -1,8 +1,8 @@
 env = Environment()
-env.Append(CCFLAGS = ["-std=c++0x", "-msse4.1", "-O3", "-Wall"])
+env.Append(CCFLAGS = ["-std=c++0x", "-msse4.1", "-gdwarf-2", "-Wall"])
 env.Append(LIBS = [
-	"SDL",
-	"SDL_image",
+	"SDL2",
+	"SDL2_image",
 	"GL",
 	"GLEW"
 ]);

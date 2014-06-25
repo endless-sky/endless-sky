@@ -296,7 +296,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 // Only override the ones you need; the default action is to return false.
-bool ShopPanel::KeyDown(SDLKey key, SDLMod mod)
+bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == 'l' && FlightCheck())
 	{
@@ -401,14 +401,9 @@ bool ShopPanel::Drag(int dx, int dy)
 
 
 
-bool ShopPanel::Scroll(int x, int y, int dy)
+bool ShopPanel::Scroll(int dx, int dy)
 {
-	bool inMain = (x < Screen::Width() / 2 - SIDE_WIDTH);
-	int &scroll = inMain ? mainScroll : sideScroll;
-	const int &maximum = inMain ? maxMainScroll : maxSideScroll;
-	
-	scroll = max(0, min(maximum, scroll - 50 * dy));
-	return true;
+	return Drag(dx, dy * 50);
 }
 
 

@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
-#include "SDL/SDL_image.h"
+#include "SDL2/SDL_image.h"
 
 #include <iostream>
 #include <vector>
@@ -25,8 +25,10 @@ using namespace std;
 
 
 
+// TODO: Get multithreaded image loading working with SDL2.
+// That might require using libjpeg and libpng directly.
 SpriteQueue::SpriteQueue()
-	: added(0), completed(0), threads(3)
+	: added(0), completed(0), threads(1)
 {
 	for(thread &t : threads)
 		t = thread(ref(*this));

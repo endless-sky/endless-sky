@@ -118,7 +118,7 @@ void Dialog::Draw() const
 
 
 
-bool Dialog::KeyDown(SDLKey key, SDLMod mod)
+bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key >= ' ' && key <= '~' && (intFun || stringFun))
 	{

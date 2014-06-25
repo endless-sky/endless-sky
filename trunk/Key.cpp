@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataFile.h"
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 #include <fstream>
 #include <map>
@@ -63,14 +63,13 @@ Key::Key()
 // Get the current key state, as a bitmask.
 int Key::State() const
 {
-	int count = 0;
-	const Uint8 *state = SDL_GetKeyState(&count);
+	const Uint8 *state = SDL_GetKeyboardState(nullptr);
 	
 	int result = 0;
 	int bit = 1;
 	for(int key : keys)
 	{
-		if(state[key])
+		if(state[SDL_GetScancodeFromKey(key)])
 			result |= bit;
 		bit <<= 1;
 	}
