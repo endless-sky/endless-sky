@@ -50,7 +50,11 @@ namespace {
 void SpriteShader::Init()
 {
 	static const char *vertexCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		
 		"uniform mat2 transform;\n"
 		"uniform vec2 position;\n"
@@ -67,7 +71,11 @@ void SpriteShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform sampler2D tex0;\n"
 		"uniform sampler2D tex1;\n"
 		"uniform float fade;\n"
