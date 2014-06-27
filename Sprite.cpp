@@ -14,8 +14,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 
+#ifdef __APPLE__
+#include <OpenGL/GL3.h>
+#else
 #include <GL/glew.h>
+#endif
+
 #include <SDL2/SDL.h>
+
+#include <iostream>
 
 using namespace std;
 
@@ -33,12 +40,36 @@ void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
 	if(!surface || frame < 0)
 		return;
 	
+	// Find out whether the pixel format is reversed.
+	bool reverse = false;
+	if(surface->format->Rshift == 16 && surface->format->Gshift == 8 && surface->format->Bshift == 0)
+		reverse = true;
+	else if(surface->format->Rshift != 0 || surface->format->Gshift != 8 || surface->format->Bshift != 16)
+	{
+		static bool first = true;
+		if(first)
+			cerr << "Image format error!" << endl;
+		first = false;
+		return;
+	}
+	
+	// Pick the right OpenGL pixel format.
 	GLenum format;
 	int bytes = surface->format->BytesPerPixel;
-	if(bytes == 4)
-		format = GL_RGBA;
-	else if(bytes == 3)
-		format = GL_RGB;
+	if(reverse && bytes >= 3)
+	{
+		if(bytes == 4)
+			format = GL_BGRA;
+		else if(bytes == 3)
+			format = GL_BGR;
+	}
+	else if(bytes >= 3)
+	{
+		if(bytes == 4)
+			format = GL_RGBA;
+		else if(bytes == 3)
+			format = GL_RGB;
+	}
 	else if(bytes == 1)
 		format = GL_RED;
 	else
