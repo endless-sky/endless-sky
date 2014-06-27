@@ -180,6 +180,8 @@ bool Dialog::Click(int x, int y)
 // Common code from all three constructors:
 void Dialog::Init(const std::string &message, bool canCancel)
 {
+	TrapAllEvents();
+	
 	this->canCancel = canCancel;
 	okIsActive = true;
 	

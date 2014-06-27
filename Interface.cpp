@@ -297,8 +297,6 @@ void Interface::Draw(const Information &info) const
 			}
 		}
 	}
-	for(const ButtonSpec &button : buttons)
-		button.active = info.HasCondition(button.condition);
 	
 	if(info.GetRadar())
 		for(const RadarSpec &radar : radars)
@@ -322,9 +320,6 @@ char Interface::OnClick(const Point &point) const
 	
 	for(const ButtonSpec &button : buttons)
 	{
-		if(!button.active)
-			continue;
-		
 		Point offset(
 			button.size.X() * position.X(),
 			button.size.Y() * position.Y());
@@ -368,7 +363,7 @@ Interface::BarSpec::BarSpec(const string &name, const Point &position)
 
 
 Interface::ButtonSpec::ButtonSpec(char key, const Point &position)
-	: position(position), key(key), active(false)
+	: position(position), key(key)
 {
 }
 

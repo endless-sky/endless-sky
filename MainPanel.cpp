@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MainPanel.h"
 
+#include "BoardingPanel.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -53,10 +54,7 @@ void MainPanel::Step(bool isActive)
 	engine.Step(isActive);
 	
 	if(engine.Boarding())
-	{
-		string text = "You boarded the ship \"" + engine.Boarding()->Name() + "\".";
-		GetUI()->Push(new Dialog(text));
-	}
+		GetUI()->Push(new BoardingPanel(gameData, playerInfo, *engine.Boarding()));
 }
 
 

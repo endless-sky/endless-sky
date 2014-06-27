@@ -545,7 +545,8 @@ void Engine::CalculateStep()
 				hasAntiMissile.push_back(ship.get());
 			
 			// Boarding:
-			shared_ptr<Ship> victim = ship->Board(ships);
+			bool autoPlunder = (ship->GetGovernment() != data.Governments().Get("Escort"));
+			shared_ptr<Ship> victim = ship->Board(ships, autoPlunder);
 			if(victim)
 				boardingQueue.push_back(victim);
 			
