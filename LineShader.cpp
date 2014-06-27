@@ -38,7 +38,11 @@ namespace {
 void LineShader::Init()
 {
 	static const char *vertexCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform vec2 scale;\n"
 		"uniform vec2 start;\n"
 		"uniform vec2 len;\n"
@@ -55,7 +59,11 @@ void LineShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		"in vec2 tpos;\n"

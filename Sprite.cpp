@@ -60,14 +60,14 @@ void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
 	{
 		if(bytes == 4)
 			format = GL_BGRA;
-		else if(bytes == 3)
+		else
 			format = GL_BGR;
 	}
 	else if(bytes >= 3)
 	{
 		if(bytes == 4)
 			format = GL_RGBA;
-		else if(bytes == 3)
+		else
 			format = GL_RGB;
 	}
 	else if(bytes == 1)

@@ -38,7 +38,11 @@ namespace {
 void DotShader::Init()
 {
 	static const char *vertexCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform vec2 scale;\n"
 		"uniform vec2 position;\n"
 		"uniform float outRadius;\n"
@@ -52,7 +56,11 @@ void DotShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		"uniform float outRadius;\n"
 		"uniform float inRadius;\n"

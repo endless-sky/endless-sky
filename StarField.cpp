@@ -91,7 +91,11 @@ void StarField::Draw(Point pos, Point vel) const
 void StarField::SetUpGraphics()
 {
 	static const char *vertexCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform mat2 rotate;\n"
 		"uniform float alpha;\n"
 		"uniform vec2 scale;\n"
@@ -107,7 +111,11 @@ void StarField::SetUpGraphics()
 		"}\n";
 
 	static const char *fragmentCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		
 		"in float fragmentAlpha;\n"
 		"out vec4 finalColor;\n"

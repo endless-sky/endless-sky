@@ -34,7 +34,11 @@ namespace {
 void OutlineShader::Init()
 {
 	static const char *vertexCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform vec2 size;\n"
 		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
@@ -49,7 +53,11 @@ void OutlineShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
+#ifdef __APPLE__
 		"#version 330\n"
+#else
+		"#version 130\n"
+#endif
 		"uniform sampler2D tex;\n"
 		"in vec2 tc;\n"
 		"in vec2 off;\n"
