@@ -13,7 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHADER_H_
 #define SHADER_H_
 
+#ifdef __APPLE__
+#include <OpenGL/GL3.h>
+#else
 #include <GL/glew.h>
+#endif
 
 
 

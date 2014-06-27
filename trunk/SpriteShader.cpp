@@ -50,7 +50,7 @@ namespace {
 void SpriteShader::Init()
 {
 	static const char *vertexCode =
-		"#version 130\n"
+		"#version 330\n"
 		
 		"uniform mat2 transform;\n"
 		"uniform vec2 position;\n"
@@ -67,7 +67,7 @@ void SpriteShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
-		"#version 130\n"
+		"#version 330\n"
 		"uniform sampler2D tex0;\n"
 		"uniform sampler2D tex1;\n"
 		"uniform float fade;\n"

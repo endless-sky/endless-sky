@@ -16,7 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Shader.h"
 
+#ifdef __APPLE__
+#include <OpenGL/GL3.h>
+#else
 #include <GL/glew.h>
+#endif
 
 #include <vector>
 

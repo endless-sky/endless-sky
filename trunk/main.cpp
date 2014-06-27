@@ -22,7 +22,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "UI.h"
 
+#ifdef __APPLE__
+#include <OpenGL/GL3.h>
+#else
 #include <GL/glew.h>
+#endif
+
 #include <SDL2/SDL.h>
 
 #include <fstream>
@@ -70,6 +75,10 @@ int main(int argc, char *argv[])
 		Screen::Set(maxWidth - 100, maxHeight - 100);
 		
 		// Create the window.
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
@@ -93,20 +102,18 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 		SDL_GL_SetSwapInterval(1);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 		
 		// Initialize GLEW.
+#ifndef __APPLE__
 		glewExperimental = GL_TRUE;
 		if(glewInit() != GLEW_OK)
 		{
 			cerr << "Unable to initialize GLEW!" << endl;
 			return 1;
 		}
+#endif
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
-		glShadeModel(GL_SMOOTH);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		

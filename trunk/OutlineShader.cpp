@@ -34,7 +34,7 @@ namespace {
 void OutlineShader::Init()
 {
 	static const char *vertexCode =
-		"#version 130\n"
+		"#version 330\n"
 		"uniform vec2 size;\n"
 		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
@@ -49,7 +49,7 @@ void OutlineShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
-		"#version 130\n"
+		"#version 330\n"
 		"uniform sampler2D tex;\n"
 		"in vec2 tc;\n"
 		"in vec2 off;\n"

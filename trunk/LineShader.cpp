@@ -38,7 +38,7 @@ namespace {
 void LineShader::Init()
 {
 	static const char *vertexCode =
-		"#version 130\n"
+		"#version 330\n"
 		"uniform vec2 scale;\n"
 		"uniform vec2 start;\n"
 		"uniform vec2 len;\n"
@@ -55,7 +55,7 @@ void LineShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
-		"#version 130\n"
+		"#version 330\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		
 		"in vec2 tpos;\n"

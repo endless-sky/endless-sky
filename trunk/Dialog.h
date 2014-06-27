@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "WrappedText.h"
 
+#include <functional>
 #include <string>
 
 

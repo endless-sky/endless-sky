@@ -16,7 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
-#include "SDL2/SDL_image.h"
+#ifdef __APPLE__
+#include <SDL2_image/SDL_image.h>
+#else
+#include <SDL2/SDL_image.h>
+#endif
 
 #include <iostream>
 #include <vector>

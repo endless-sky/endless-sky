@@ -17,7 +17,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "SpriteQueue.h"
 
+#ifdef __APPLE__
+#include <SDL2_image/SDL_image.h>
+#else
 #include <SDL2/SDL_image.h>
+#endif
 
 #include <cmath>
 #include <stdexcept>
@@ -26,7 +30,7 @@ using namespace std;
 
 namespace {
 	static const char *vertexCode =
-		"#version 130\n"
+		"#version 330\n"
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
 		// The (x, y) coordinates of the top left corner of the glyph.
@@ -48,7 +52,7 @@ namespace {
 		"}\n";
 	
 	static const char *fragmentCode =
-		"#version 130\n"
+		"#version 330\n"
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
