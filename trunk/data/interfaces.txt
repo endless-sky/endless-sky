@@ -490,7 +490,7 @@ interface "boarding"
 		size 14
 		color "light grey"
 		align center
-	button t 235 115
+	button t -235 115
 		size 70 30
 	endif
 	
@@ -503,7 +503,7 @@ interface "boarding"
 		size 14
 		color "light grey"
 		align center
-	button x 155 115
+	button x -155 115
 		size 70 30
 	endif
 	
@@ -511,12 +511,12 @@ interface "boarding"
 		size 14
 		color "dim grey"
 		align center
-	if "can exit"
+	if "can capture"
 	label "Attempt Capture" -40 107
 		size 14
 		color "light grey"
 		align center
-	button c 40 115
+	button c -40 115
 		size 140 30
 	endif
 	
@@ -537,7 +537,7 @@ interface "boarding"
 		size 14
 		color "dim grey"
 		align center
-	if "can defend"
+	if "can attack"
 	label "Defend" 120 177
 		size 14
 		color "light grey"

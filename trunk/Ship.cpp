@@ -455,7 +455,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships)
+shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 {
 	shared_ptr<Ship> victim;
 	if(!HasBoardCommand())
@@ -476,17 +476,18 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships)
 		if(ship == target)
 			victim = ship;
 	
-	// TODO: player ships handled specially.
-	if(!victim)
-		return victim;
+	// If the boarding ship is the player, they will choose what to plunder.
+	if(victim && autoPlunder)
+	{
+		// Take any outfits that fit.
+		for(auto &it : victim->outfits)
+			while(it.second && cargo.Transfer(it.first, -1))
+				--it.second;
+		// Take any commodities that fit.
+		victim->cargo.TransferAll(&cargo);
+		victim.reset();
+	}
 	
-	// Take any outfits that fit.
-	for(auto &it : victim->outfits)
-		while(it.second && cargo.Transfer(it.first, -1))
-			--it.second;
-	// Take any commodities that fit.
-	victim->cargo.TransferAll(&cargo);
-	//victim.reset();
 	return victim;
 }
 

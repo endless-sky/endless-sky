@@ -84,7 +84,6 @@ private:
 		Point size;
 		char key;
 		
-		mutable bool active;
 		std::string condition;
 	};
 	
