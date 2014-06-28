@@ -103,11 +103,11 @@ void Account::PayExtra(int mortgage, int amount)
 
 
 // Step forward one day, and return a string summarizing payments made.
-string Account::Step(int assets)
+string Account::Step(int assets, int salaries)
 {
 	ostringstream out;
 	
-	salariesOwed += Salaries();
+	salariesOwed += salaries;
 	bool hasDebts = !mortgages.empty() || salariesOwed;
 	bool paid = true;
 	
@@ -181,7 +181,7 @@ string Account::Step(int assets)
 	{
 		if(salariesPaid)
 			out << salariesPaid << ((mortgagesPaid || finesPaid) ?
-				"credits in crew salaries and " : "credits in crew salaries.");
+				" credits in crew salaries and " : " credits in crew salaries.");
 		if(mortgagesPaid)
 			out << mortgagesPaid << (salariesPaid ? " " : " credits ")
 				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
@@ -220,13 +220,6 @@ void Account::AddFine(int amount)
 int Account::Prequalify() const
 {
 	return Mortgage::Maximum(YearlyRevenue(), creditScore);
-}
-
-
-
-int Account::Salaries() const
-{
-	return 0;
 }
 
 

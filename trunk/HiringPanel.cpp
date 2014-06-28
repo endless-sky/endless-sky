@@ -84,6 +84,14 @@ void HiringPanel::Draw() const
 
 bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
+	if(!player.GetShip())
+		return false;
+	
+	if(key == 'h' || key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
+		player.GetShip()->AddCrew(Modifier());
+	else if(key == 'f' || key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
+		player.GetShip()->AddCrew(-Modifier());
+	
 	return false;
 }
 
