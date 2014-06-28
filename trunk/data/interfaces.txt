@@ -545,3 +545,124 @@ interface "boarding"
 	button d 120 185
 		size 80 30
 	endif
+
+# The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
+# Text is 14 pixels tall
+interface "hiring"
+	label "flagship" -70 88
+		size 14
+		color "grey"
+		align right
+	label "entire fleet" 50 88
+		size 14
+		color "grey"
+		align right
+	label "salary" 170 88
+		size 14
+		color "grey"
+		align right
+	
+	label "bunks" -290 118
+		size 14
+		color "grey"
+		align left
+	string "flagship bunks" -70 118
+		size 14
+		color "light grey"
+		align right
+	string "fleet bunks" 50 118
+		size 14
+		color "light grey"
+		align right
+	
+	label "required crew" -290 148
+		size 14
+		color "grey"
+		align left
+	string "flagship required" -70 148
+		size 14
+		color "light grey"
+		align right
+	string "fleet required" 50 148
+		size 14
+		color "light grey"
+		align right
+	string "salary required" 170 148
+		size 14
+		color "light grey"
+		align right
+	
+	label "extra crew" -290 178
+		size 14
+		color "grey"
+		align left
+	string "flagship extra" -70 178
+		size 14
+		color "light grey"
+		align right
+	string "salary extra" 170 178
+		size 14
+		color "light grey"
+		align right
+	
+	label "[hire]" -60 168
+		size 14
+		color "dim grey"
+		align left
+	if "can hire"
+	label "[hire]" -60 168
+		size 14
+		color "grey"
+		align left
+	endif
+	button h -40 175
+		size 60 20
+	
+	label "[fire]" -60 188
+		size 14
+		color "dim grey"
+		align left
+	if "can fire"
+	label "[fire]" -60 188
+		size 14
+		color "grey"
+		align left
+	endif
+	string "modifier" -20 178
+		size 14
+		color "dim grey"
+		align left
+	button f -40 195
+		size 60 20
+	
+	label "passenger space" -290 208
+		size 14
+		color "grey"
+		align left
+	string "flagship unused" -70 208
+		size 14
+		color "light grey"
+		align right
+	string "fleet unused" 50 208
+		size 14
+		color "light grey"
+		align right
+	
+	label "passengers" -290 238
+		size 14
+		color "grey"
+		align left
+	string "passengers" 50 238
+		size 14
+		color "light grey"
+		align right
+	
+	label "(Extra crew for your flagship increases your odds of capturing ships," -60 278
+		size 14
+		color "grey"
+		align center
+	label "and once you capture a ship you need crew members to serve on it.)" -60 298
+		size 14
+		color "grey"
+		align center
+
