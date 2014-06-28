@@ -29,10 +29,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Format the given double with one deciml place.
+	string Format(double value)
+	{
+		int iPart = value;
+		string result = to_string(iPart);
+		result += ".0";
+		
+		int decimal = round((value - iPart) * 10.);
+		result.back() += decimal;
+		
+		return result;
+	}
+}
+
 
 
 BoardingPanel::BoardingPanel(const GameData &data, PlayerInfo &player, Ship &victim)
-	: data(data), player(player), victim(victim), selected(0), scroll(0)
+	: data(data), player(player), victim(victim), selected(0), scroll(0),
+	attackOdds(player.GetShip(), &victim), defenseOdds(&victim, player.GetShip())
 {
 	TrapAllEvents();
 	
@@ -95,23 +111,34 @@ void BoardingPanel::Draw() const
 		info.SetCondition("can attack");
 	
 	// This should always be true, but double check.
+	int crew = 0;
 	if(player.GetShip())
 	{
 		// TODO: Tabulate attack and odds for each number of crew.
 		const Ship &ship = *player.GetShip();
+		crew = ship.Crew();
 		info.SetString("cargo space", to_string(freeSpace));
-		info.SetString("your crew", to_string(ship.Crew()));
-		info.SetString("your attack", to_string(ship.Crew()));
-		info.SetString("your defense", to_string(2 * ship.Crew()));
+		info.SetString("your crew", to_string(crew));
+		info.SetString("your attack",
+			Format(attackOdds.AttackerPower(crew)));
+		info.SetString("your defense",
+			Format(defenseOdds.DefenderPower(crew)));
 	}
-	info.SetString("enemy crew", to_string(victim.Crew()));
-	info.SetString("enemy attack", to_string(victim.Crew()));
-	info.SetString("enemy defense", to_string(2 * victim.Crew()));
+	int vCrew = victim.Crew();
+	info.SetString("enemy crew", to_string(vCrew));
+	info.SetString("enemy attack",
+		Format(defenseOdds.AttackerPower(vCrew)));
+	info.SetString("enemy defense",
+		Format(attackOdds.DefenderPower(vCrew)));
 	
-	info.SetString("attack odds", "0%");
-	info.SetString("attack casualties", "0");
-	info.SetString("defense odds", "0%");
-	info.SetString("defense casualties", "0");
+	info.SetString("attack odds",
+		Format(100. * attackOdds.Odds(crew, vCrew)) + "%");
+	info.SetString("attack casualties",
+		Format(attackOdds.AttackerCasualties(crew, vCrew)));
+	info.SetString("defense odds",
+		Format(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+	info.SetString("defense casualties",
+		Format(defenseOdds.DefenderCasualties(vCrew, crew)));
 	
 	const Interface *interface = data.Interfaces().Get("boarding");
 	interface->Draw(info);

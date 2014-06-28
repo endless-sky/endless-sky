@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "CaptureOdds.h"
+
 #include <string>
 #include <vector>
 
@@ -100,6 +102,9 @@ private:
 	std::vector<Plunder> plunder;
 	int selected;
 	int scroll;
+	
+	CaptureOdds attackOdds;
+	CaptureOdds defenseOdds;
 };
 
 
