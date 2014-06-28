@@ -130,8 +130,9 @@ public:
 	int JumpsRemaining() const;
 	double Energy() const;
 	double Heat() const;
-	// TODO: track crew on all ships.
 	int Crew() const;
+	int RequiredCrew() const;
+	void AddCrew(int count);
 	// Check if this ship should be deleted.
 	bool ShouldDelete() const;
 	
@@ -208,6 +209,9 @@ private:
 	double fuel;
 	double energy;
 	double heat;
+	
+	int crew;
+	int pilotError;
 	
 	// Current status of this particular ship:
 	const System *currentSystem;

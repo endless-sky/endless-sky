@@ -247,7 +247,7 @@ string PlayerInfo::IncrementDate()
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cost() + ship->Cargo().Value(system);
 	
-	return accounts.Step(assets);
+	return accounts.Step(assets, Salaries());
 }
 
 
@@ -291,6 +291,19 @@ const Account &PlayerInfo::Accounts() const
 Account &PlayerInfo::Accounts()
 {
 	return accounts;
+}
+
+
+
+int PlayerInfo::Salaries() const
+{
+	int crew = 0;
+	for(const shared_ptr<Ship> &ship : ships)
+		crew += ship->Crew();
+	if(!crew)
+		return 0;
+	
+	return 100 * (crew - 1);
 }
 
 

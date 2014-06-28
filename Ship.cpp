@@ -47,6 +47,7 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	modelName = node.Token(1);
 	
 	government = data.Governments().Get("Escort");
+	crew = 0;
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -80,6 +81,8 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 		}
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child, data);
+		else if(child.Token(0) == "crew" && child.Size() >= 2)
+			crew = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			currentSystem = data.Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -142,6 +145,7 @@ void Ship::Save(ostream &out) const
 			out << "\t\t\"" << it.first->Name() << "\" " << it.second << "\n";
 	
 	cargo.Save(out, 1);
+	out << "\tcrew " << crew << "\n";
 	
 	for(const Point &point : enginePoints)
 		out << "\tengine " << point.X() << " " << point.Y() << "\n";
@@ -391,12 +395,18 @@ bool Ship::Move(list<Effect> &effects)
 	else if(HasHyperspaceCommand() && CanHyperspace())
 		hyperspaceSystem = GetTargetSystem();
 	
+	if(pilotError)
+		--pilotError;
+	else if(rand() % RequiredCrew() >= Crew())
+		pilotError = 30;
+	// TODO: If this is the player's ship, post a message.
+	
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
 	double mass = Mass();
 	if(isDisabled)
 		velocity *= 1. - attributes.Get("drag") / mass;
-	else
+	else if(!pilotError)
 	{
 		if(GetThrustCommand())
 		{
@@ -506,7 +516,7 @@ bool Ship::Fire(list<Projectile> &projectiles)
 	if(explosionCount == explosionTotal && explosionWeapon)
 		projectiles.emplace_back(position, explosionWeapon);
 	
-	if(zoom != 1. || isDisabled || hyperspaceCount)
+	if(zoom != 1. || isDisabled || hyperspaceCount || pilotError)
 		return false;
 	
 	bool hasAntiMissile = false;
@@ -721,6 +731,9 @@ Point Ship::Unit() const
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge()
 {
+	crew = max(crew, RequiredCrew());
+	pilotError = 0;
+	
 	shields = attributes.Get("shields");
 	hull = attributes.Get("hull");
 	energy = attributes.Get("energy capacity");
@@ -780,7 +793,22 @@ double Ship::Heat() const
 
 int Ship::Crew() const
 {
-	return attributes.Get("required crew");
+	return crew;
+}
+
+
+
+int Ship::RequiredCrew() const
+{
+	return max(1, static_cast<int>(attributes.Get("required crew")));
+}
+
+
+
+void Ship::AddCrew(int count)
+{
+	int bunks = static_cast<int>(attributes.Get("bunks"));
+	crew = min(bunks, max(RequiredCrew(), crew + count));
 }
 
 

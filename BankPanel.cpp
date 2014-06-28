@@ -87,7 +87,7 @@ void BankPanel::Draw() const
 		font.Draw(to_string(p), Point(PAYMENT_X, y), color);
 		font.Draw("[pay extra]", Point(EXTRA_X, y), color);
 	}
-	int salaries = player.Accounts().Salaries();
+	int salaries = player.Salaries();
 	if(salaries)
 	{
 		y += 20.;
