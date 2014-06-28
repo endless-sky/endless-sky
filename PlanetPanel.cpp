@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "HiringPanel.h"
 #include "MapPanel.h"
 #include "OutfitterPanel.h"
 #include "ShipyardPanel.h"
@@ -38,6 +39,7 @@ PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Callbac
 	trading.reset(new TradingPanel(data, player));
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(planet.SpaceportDescription()));
+	hiring.reset(new HiringPanel(data, player));
 	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(WrappedText::JUSTIFIED);
@@ -118,8 +120,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == 'h')
 	{
-		// TODO: hiring.
-		return true;
+		selectedPanel = hiring.get();
+		GetUI()->Push(hiring);
 	}
 	else if(key == data.Keys().Get(Key::MAP))
 	{
