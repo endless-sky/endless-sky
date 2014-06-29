@@ -71,6 +71,7 @@ public:
 	
 	// Set the player ship.
 	void AddShip(std::shared_ptr<Ship> &ship);
+	void RemoveShip(const std::shared_ptr<Ship> &ship);
 	const Ship *GetShip() const;
 	Ship *GetShip();
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;

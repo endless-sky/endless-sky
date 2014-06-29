@@ -538,11 +538,11 @@ interface "boarding"
 		color "dim grey"
 		align center
 	if "can attack"
-	label "Defend" 120 177
+	label "Defend" 210 177
 		size 14
 		color "light grey"
 		align center
-	button d 120 185
+	button d 210 185
 		size 80 30
 	endif
 

@@ -133,6 +133,7 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+	void WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Check if this ship should be deleted.
 	bool ShouldDelete() const;
 	

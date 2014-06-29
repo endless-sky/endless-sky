@@ -219,6 +219,9 @@ void Controllable::AddEscort(const weak_ptr<const Ship> &ship)
 void Controllable::SetParent(const weak_ptr<const Ship> &ship)
 {
 	parent = ship;
+	targetShip.reset();
+	targetPlanet = nullptr;
+	targetSystem = nullptr;
 }
 
 

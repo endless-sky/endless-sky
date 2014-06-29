@@ -46,17 +46,18 @@ namespace {
 
 
 
-BoardingPanel::BoardingPanel(const GameData &data, PlayerInfo &player, Ship &victim)
-	: data(data), player(player), victim(victim), selected(0), scroll(0),
-	attackOdds(player.GetShip(), &victim), defenseOdds(&victim, player.GetShip())
+BoardingPanel::BoardingPanel(const GameData &data, PlayerInfo &player, const shared_ptr<Ship> &victim)
+	: data(data), player(player), you(player.Ships().front()), victim(victim),
+	selected(0), scroll(0), isCapturing(false),
+	attackOdds(player.GetShip(), &*victim), defenseOdds(&*victim, player.GetShip())
 {
 	TrapAllEvents();
 	
 	const System &system = *player.GetSystem();
-	for(const auto &it : victim.Cargo().Commodities())
+	for(const auto &it : victim->Cargo().Commodities())
 		plunder.emplace_back(it.first, it.second, system.Trade(it.first));
 	
-	for(const auto &it : victim.Outfits())
+	for(const auto &it : victim->Outfits())
 		plunder.emplace_back(it.first, it.second);
 	
 	sort(plunder.begin(), plunder.end());
@@ -80,7 +81,7 @@ void BoardingPanel::Draw() const
 	
 	const Font &font = FontSet::Get(14);
 	double fontOff = .5 * (20 - font.Height());
-	int freeSpace = player.GetShip() ? player.GetShip()->Cargo().Free() : 0;
+	int freeSpace = you->Cargo().Free();
 	for( ; y < endY && static_cast<unsigned>(index) < plunder.size(); y += 20, ++index)
 	{
 		const Plunder &item = plunder[index];
@@ -112,10 +113,10 @@ void BoardingPanel::Draw() const
 	
 	// This should always be true, but double check.
 	int crew = 0;
-	if(player.GetShip())
+	if(you)
 	{
 		// TODO: Tabulate attack and odds for each number of crew.
-		const Ship &ship = *player.GetShip();
+		const Ship &ship = *you;
 		crew = ship.Crew();
 		info.SetString("cargo space", to_string(freeSpace));
 		info.SetString("your crew", to_string(crew));
@@ -124,7 +125,7 @@ void BoardingPanel::Draw() const
 		info.SetString("your defense",
 			Format(defenseOdds.DefenderPower(crew)));
 	}
-	int vCrew = victim.Crew();
+	int vCrew = victim->Crew();
 	info.SetString("enemy crew", to_string(vCrew));
 	info.SetString("enemy attack",
 		Format(defenseOdds.AttackerPower(vCrew)));
@@ -142,6 +143,13 @@ void BoardingPanel::Draw() const
 	
 	const Interface *interface = data.Interfaces().Get("boarding");
 	interface->Draw(info);
+	
+	Point messagePos(50., 55.);
+	for(const string &message : messages)
+	{
+		font.Draw(message, messagePos, Color(.8, 0.));
+		messagePos.Y() += 20.;
+	}
 }
 
 
@@ -152,17 +160,17 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Pop(this);
 	else if(key == 't' && CanTake())
 	{
-		CargoHold &cargo = player.GetShip()->Cargo();
+		CargoHold &cargo = you->Cargo();
 		int count = plunder[selected].CanTake(cargo.Free());
 		
 		const Outfit *outfit = plunder[selected].GetOutfit();
 		if(outfit)
 		{
 			cargo.Transfer(outfit, -count);
-			victim.AddOutfit(outfit, -count);
+			victim->AddOutfit(outfit, -count);
 		}
 		else
-			victim.Cargo().Transfer(plunder[selected].Name(), count, &cargo);
+			victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
 		
 		if(count == plunder[selected].Count())
 		{
@@ -174,12 +182,82 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == 'c' && CanCapture())
 	{
+		isCapturing = true;
+		messages.push_back("The airlock blasts open. Combat has begun!");
+		messages.push_back("(It will end if you both choose to \"defend.\")");
 	}
-	else if(key == 'a' && CanAttack())
+	else if((key == 'a' || key == 'd') && CanAttack())
 	{
-	}
-	else if(key == 'd' && CanAttack())
-	{
+		int yourStartCrew = you->Crew();
+		int enemyStartCrew = victim->Crew();
+		
+		// Figure out what action the other ship will take.
+		bool youAttack = (key == 'a');
+		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
+		
+		if(!youAttack && !enemyAttacks)
+		{
+			messages.push_back("You retreat to your ships. Combat ends.");
+			isCapturing = false;
+		}
+		else
+		{
+			if(youAttack)
+				messages.push_back("You attack. ");
+			else if(enemyAttacks)
+				messages.push_back("You defend. ");
+			
+			int rounds = max(1, yourStartCrew / 5);
+			for(int round = 0; round < rounds; ++round)
+			{
+				int yourCrew = you->Crew();
+				int enemyCrew = victim->Crew();
+				if(!yourCrew || !enemyCrew)
+					break;
+				
+				int yourPower = static_cast<int>(1000. * (youAttack ?
+					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew)));
+				int enemyPower = static_cast<int>(1000. * (enemyAttacks ?
+					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew)));
+				
+				int total = yourPower + enemyPower;
+				if(!total)
+					break;
+				
+				if(rand() % total >= yourPower)
+					you->AddCrew(-1);
+				else
+					victim->AddCrew(-1);
+			}
+			
+			int yourCasualties = yourStartCrew - you->Crew();
+			int enemyCasualties = enemyStartCrew - victim->Crew();
+			if(yourCasualties && enemyCasualties)
+				messages.back() += "You lose " + to_string(yourCasualties)
+					+ " crew; they lose " + to_string(enemyCasualties) + ".";
+			else if(yourCasualties)
+				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
+			else if(enemyCasualties)
+				messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
+			
+			if(!you->Crew())
+			{
+				messages.push_back("You have been killed. Your ship is lost.");
+				player.Ships().front()->WasCaptured(victim);
+				player.RemoveShip(player.Ships().front());
+				isCapturing = false;
+			}
+			else if(!victim->Crew())
+			{
+				messages.push_back("You have succeeded in capturing this ship.");
+				victim->WasCaptured(player.Ships().front());
+				player.AddShip(victim);
+				isCapturing = false;
+			}
+		}
+		// Trim the list of status messages.
+		while(messages.size() > 5)
+			messages.erase(messages.begin());
 	}
 	
 	return true;
@@ -233,13 +311,19 @@ bool BoardingPanel::Scroll(int dx, int dy)
 
 bool BoardingPanel::CanExit() const
 {
-	return true;
+	return !isCapturing;
 }
 
 
 
 bool BoardingPanel::CanTake(int index) const
 {
+	// If you ship or the other ship has been captured:
+	if(you->GetGovernment() != data.Governments().Get("Escort"))
+		return false;
+	if(victim->GetGovernment() == data.Governments().Get("Escort"))
+		return false;
+	
 	if(index < 0)
 		index = selected;
 	return static_cast<unsigned>(index) < plunder.size() && player.GetShip()
@@ -250,20 +334,21 @@ bool BoardingPanel::CanTake(int index) const
 
 bool BoardingPanel::CanCapture() const
 {
-	return false;
+	// If you ship or the other ship has been captured:
+	if(you->GetGovernment() != data.Governments().Get("Escort"))
+		return false;
+	if(victim->GetGovernment() == data.Governments().Get("Escort"))
+		return false;
+	
+	return !isCapturing && player.GetShip()->Crew() > 1;
 }
-
 
 
 
 bool BoardingPanel::CanAttack() const
 {
-	return false;
+	return isCapturing;
 }
-
-
-
-
 
 
 
