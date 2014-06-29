@@ -41,6 +41,9 @@ private:
 private:
 	const GameData &data;
 	PlayerInfo &player;
+	
+	mutable int maxHire;
+	mutable int maxFire;
 };
 
 

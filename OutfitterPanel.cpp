@@ -37,7 +37,8 @@ namespace {
 		"Turrets",
 		"Systems",
 		"Power",
-		"Engines"
+		"Engines",
+		"Hand to Hand"
 	};
 }
 

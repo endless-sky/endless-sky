@@ -142,7 +142,12 @@ void Ship::Save(ostream &out) const
 	out << "\toutfits\n";
 	for(const auto &it : outfits)
 		if(it.first && it.second)
-			out << "\t\t\"" << it.first->Name() << "\" " << it.second << "\n";
+		{
+			out << "\t\t\"" << it.first->Name() << "\"";
+			if(it.second != 1)
+				out << " " << it.second;
+			out << "\n";
+		}
 	
 	cargo.Save(out, 1);
 	out << "\tcrew " << crew << "\n";
@@ -807,8 +812,7 @@ int Ship::RequiredCrew() const
 
 void Ship::AddCrew(int count)
 {
-	int bunks = static_cast<int>(attributes.Get("bunks"));
-	crew = min(bunks, max(RequiredCrew(), crew + count));
+	crew += count;
 }
 
 

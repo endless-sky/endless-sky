@@ -282,7 +282,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"firing heat",
 		"blast radius",
 		"missile strength",
-		"anti-missile"
+		"anti-missile",
+		"capture attack",
+		"capture defense"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
 	for(int i = 0; i < NAMES; ++i)
