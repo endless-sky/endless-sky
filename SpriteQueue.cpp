@@ -12,15 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "SpriteQueue.h"
 
+#include "ImageBuffer.h"
 #include "Mask.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
-
-#ifdef __APPLE__
-#include <SDL2_image/SDL_image.h>
-#else
-#include <SDL2/SDL_image.h>
-#endif
 
 #include <iostream>
 #include <vector>
@@ -29,10 +24,8 @@ using namespace std;
 
 
 
-// TODO: Get multithreaded image loading working with SDL2.
-// That might require using libjpeg and libpng directly.
 SpriteQueue::SpriteQueue()
-	: added(0), completed(0), threads(1)
+	: added(0), completed(0), threads(4)
 {
 	for(thread &t : threads)
 		t = thread(ref(*this));
@@ -120,24 +113,17 @@ void SpriteQueue::operator()()
 			lock.unlock();
 			
 			// Load the sprite.
-			item.surface = IMG_Load(item.path.c_str());
-			if(!item.surface)
-				cerr << "Could not load image: \"" << item.path << "\"." << endl;
-			
-			// Check if the sprite uses additive blending.
-			int pos = item.path.length() - 4;
-			while(--pos)
-				if(item.path[pos] < '0' || item.path[pos] > '9')
-					break;
-			int additive = (item.path[pos] == '+') ? 2 : (item.path[pos] == '~') ? 1 : 0;
-			
-			// Convert to premultiplied alpha, and if this is a ship or an
-			// asteroid, also generate a collision mask.
-			Premultiply(item.surface, additive);
+			item.image = ImageBuffer::Read(item.path);
+			// If sprite loading fails, just skip this sprite.
+			if(!item.image)
+			{
+				lock.lock();
+				continue;
+			}
 			if(!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/"))
 			{
 				item.mask = new Mask;
-				item.mask->Create(item.surface);
+				item.mask->Create(item.image);
 			}
 			
 			// Don't bother to copy the path, now that we've loaded the file.
@@ -158,48 +144,6 @@ void SpriteQueue::operator()()
 }
 
 
-
-void SpriteQueue::Premultiply(SDL_Surface *surface, int additive)
-{
-	SDL_LockSurface(surface);
-	
-	if(surface->format->Amask && surface->format->BytesPerPixel == 4)
-	{
-		for(int y = 0; y < surface->h; ++y)
-		{
-			uint32_t *it = reinterpret_cast<uint32_t *>(surface->pixels)
-				+ (surface->pitch / 4) * y;
-			
-			for(uint32_t *end = it + surface->w; it != end; ++it)
-			{
-				uint64_t value = *it;
-				uint64_t alpha = (value & surface->format->Amask);
-				alpha >>= surface->format->Ashift;
-				
-				uint64_t red = (value & surface->format->Rmask) * alpha;
-				red = (red / 255) & surface->format->Rmask;
-				
-				uint64_t green = (value & surface->format->Gmask) * alpha;
-				green = (green / 255) & surface->format->Gmask;
-				
-				uint64_t blue = (value & surface->format->Bmask) * alpha;
-				blue = (blue / 255) & surface->format->Bmask;
-				
-				value = red | green | blue;
-				if(additive == 1)
-					alpha >>= 2;
-				if(additive != 2)
-					value |= (alpha << surface->format->Ashift);
-				*it = static_cast<uint32_t>(value);
-			}
-		}
-	}
-	
-	SDL_UnlockSurface(surface);
-}
-
-
-
 double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 {
 	for(int i = 0; !toLoad.empty() && i < 30; ++i)
@@ -209,7 +153,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 		
 		lock.unlock();
 		
-		item.sprite->AddFrame(item.frame, item.surface, item.mask);
+		item.sprite->AddFrame(item.frame, item.image, item.mask);
 		
 		lock.lock();
 		++completed;
@@ -227,6 +171,6 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 
 
 SpriteQueue::Item::Item(Sprite *sprite, const string &name, const string &path, int frame)
-	: sprite(sprite), name(name), path(path), surface(nullptr), mask(nullptr), frame(frame)
+	: sprite(sprite), name(name), path(path), image(nullptr), mask(nullptr), frame(frame)
 {
 }

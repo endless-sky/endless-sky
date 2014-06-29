@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sprite.h"
 
+#include "ImageBuffer.h"
+
 #include <algorithm>
 
 #ifdef __APPLE__
@@ -35,48 +37,13 @@ Sprite::Sprite()
 
 
 
-void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
+void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask)
 {
-	if(!surface || frame < 0)
+	if(!image || frame < 0)
 		return;
 	
-	// Find out whether the pixel format is reversed.
-	bool reverse = false;
-	if(surface->format->Rshift == 16 && surface->format->Gshift == 8 && surface->format->Bshift == 0)
-		reverse = true;
-	else if(surface->format->Rshift != 0 || surface->format->Gshift != 8 || surface->format->Bshift != 16)
-	{
-		static bool first = true;
-		if(first)
-			cerr << "Image format error!" << endl;
-		first = false;
-		return;
-	}
-	
-	// Pick the right OpenGL pixel format.
-	GLenum format;
-	int bytes = surface->format->BytesPerPixel;
-	if(reverse && bytes >= 3)
-	{
-		if(bytes == 4)
-			format = GL_BGRA;
-		else
-			format = GL_BGR;
-	}
-	else if(bytes >= 3)
-	{
-		if(bytes == 4)
-			format = GL_RGBA;
-		else
-			format = GL_RGB;
-	}
-	else if(bytes == 1)
-		format = GL_RED;
-	else
-		return;
-	
-	width = max(width, static_cast<float>(surface->w));
-	height = max(height, static_cast<float>(surface->h));
+	width = max(width, static_cast<float>(image->Width()));
+	height = max(height, static_cast<float>(image->Height()));
 	
 	if(textures.size() <= static_cast<unsigned>(frame))
 		textures.resize(frame + 1, 0);
@@ -88,15 +55,13 @@ void Sprite::AddFrame(int frame, SDL_Surface *surface, Mask *mask)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	SDL_LockSurface(surface);
-	
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0,
-		format, GL_UNSIGNED_BYTE, surface->pixels);
-	
-	SDL_UnlockSurface(surface);
+	// ImageBuffer always loads images into 32-bit BGRA buffers.
+	// That is supposedly the fastest format to upload.
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->Width(), image->Height(), 0,
+		GL_BGRA, GL_UNSIGNED_BYTE, image->Pixels());
 	
 	glBindTexture(GL_TEXTURE_2D, 0);
-	SDL_FreeSurface(surface);
+	delete image;
 	
 	if(mask)
 	{
