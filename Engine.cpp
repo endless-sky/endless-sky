@@ -259,6 +259,16 @@ void Engine::Step(bool isActive)
 				info.SetString("target government", "No Government");
 			else
 				info.SetString("target government", target->GetGovernment()->GetName());
+			
+			shared_ptr<const Ship> targetTarget = target->GetTargetShip().lock();
+			bool hostile = targetTarget &&
+				targetTarget->GetGovernment() == playerGovernment;
+			int targetType = target->IsDisabled() ? Radar::INACTIVE :
+				hostile ? Radar::HOSTILE : 
+				target->GetGovernment()->IsEnemy(playerGovernment) ?
+				Radar::UNFRIENDLY : Radar::FRIENDLY;
+			info.SetOutlineColor(Radar::GetColor(targetType));
+			
 			if(target->GetSystem() == player->GetSystem())
 			{
 				info.SetBar("target shields", target->Shields());
@@ -268,17 +278,11 @@ void Engine::Step(bool isActive)
 				// of the width and the height of the sprite.
 				const Animation &anim = target->GetSprite();
 				double size = target->Zoom() * (anim.Width() + anim.Height()) * .175;
-				shared_ptr<const Ship> targetTarget = target->GetTargetShip().lock();
-				bool hostile = targetTarget &&
-					targetTarget->GetGovernment() == playerGovernment;
 				targets.push_back({
 					target->Position() - player->Position(),
 					Angle(45.) + target->Facing(),
 					size,
-					target->IsDisabled() ? Radar::INACTIVE :
-						hostile ? Radar::HOSTILE : 
-						target->GetGovernment()->IsEnemy(playerGovernment) ?
-						Radar::UNFRIENDLY : Radar::FRIENDLY});
+					targetType});
 			}
 			else
 			{

@@ -75,6 +75,8 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 				if(grand.Token(0) == "size" && grand.Size() >= 3)
 					vec.back().size = Point(
 						grand.Value(1), grand.Value(2));
+				else if(grand.Token(0) == "colored")
+					vec.back().isColored = true;
 			}
 			
 			vec.back().condition = condition;
@@ -194,7 +196,9 @@ void Interface::Draw(const Information &info) const
 		if(outline.size.X() && outline.size.Y())
 			size *= min(outline.size.X() / s->Width(), outline.size.Y() / s->Height());
 		
-		OutlineShader::Draw(s, outline.position + corner - outline.size * position, size);
+		Point pos = outline.position + corner - outline.size * position;
+		OutlineShader::Draw(s, pos, size,
+			outline.isColored ? info.GetOutlineColor() : Color(1., 1.));
 	}
 	
 	double defaultAlign = position.X() + .5;
@@ -335,14 +339,14 @@ char Interface::OnClick(const Point &point) const
 
 
 Interface::SpriteSpec::SpriteSpec(const string &str, const Point &position)
-	: name(str), sprite(nullptr), position(position)
+	: name(str), sprite(nullptr), position(position), isColored(false)
 {
 }
 
 
 
 Interface::SpriteSpec::SpriteSpec(const Sprite *sprite, const Point &position)
-	: sprite(sprite), position(position)
+	: sprite(sprite), position(position), isColored(false)
 {
 }
 

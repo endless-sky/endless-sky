@@ -282,6 +282,7 @@ interface "targets"
 		color "grey"
 	outline "target sprite" 40 280 dynamic
 		size 70 70
+		colored
 	string "target name" 75 385
 		align center
 		color "grey"
