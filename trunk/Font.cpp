@@ -13,17 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 
 #include "Color.h"
+#include "ImageBuffer.h"
 #include "Point.h"
 #include "Screen.h"
 #include "SpriteQueue.h"
 
-#ifdef __APPLE__
-#include <SDL2_image/SDL_image.h>
-#else
-#include <SDL2/SDL_image.h>
-#endif
-
 #include <cmath>
+#include <cstring>
 #include <stdexcept>
 
 using namespace std;
@@ -99,14 +95,15 @@ Font::Font(const string &imagePath)
 void Font::Load(const string &imagePath)
 {
 	// Load the texture.
-	SDL_Surface *bmp = IMG_Load(imagePath.c_str());
+	ImageBuffer *image = ImageBuffer::Read(imagePath);
+	if(!image)
+		return;
 	
-	SpriteQueue::Premultiply(bmp);
-	LoadTexture(bmp);
-	CalculateAdvances(bmp);
-	SetUpShader(bmp->w / GLYPHS, bmp->h);
+	LoadTexture(image);
+	CalculateAdvances(image);
+	SetUpShader(image->Width() / GLYPHS, image->Height());
 	
-	SDL_FreeSurface(bmp);
+	delete image;
 }
 
 
@@ -200,7 +197,7 @@ int Font::Space() const
 
 
 
-void Font::LoadTexture(class SDL_Surface *bmp)
+void Font::LoadTexture(ImageBuffer *image)
 {
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -210,26 +207,20 @@ void Font::LoadTexture(class SDL_Surface *bmp)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	if(bmp->format->BitsPerPixel != 32)
-		throw runtime_error("Error: Font only supports 32-bit images.");
-	
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, bmp->w, bmp->h, 0,
-		GL_RGBA, GL_UNSIGNED_BYTE, bmp->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image->Width(), image->Height(), 0,
+		GL_BGRA, GL_UNSIGNED_BYTE, image->Pixels());
 }
 
 
 
-void Font::CalculateAdvances(SDL_Surface *bmp)
+void Font::CalculateAdvances(ImageBuffer *image)
 {
-	// Make sure the surface is in CPU memory, not GPU memory.
-	SDL_LockSurface(bmp);
-	
 	// Get the format and size of the surface.
-	int width = bmp->w / GLYPHS;
-	height = bmp->h;
-	unsigned mask = bmp->format->Amask;
+	int width = image->Width() / GLYPHS;
+	height = image->Height();
+	unsigned mask = 0xFF000000;
 	unsigned half = (mask >> 1) & mask;
-	int pitch = bmp->pitch / sizeof(Uint32);
+	int pitch = image->Width();
 	
 	// advance[previous * GLYPHS + next] is the x advance for each glyph pair.
 	// There is no advance if the previous value is 0, i.e. we are at the very
@@ -240,12 +231,12 @@ void Font::CalculateAdvances(SDL_Surface *bmp)
 		{
 			int maxD = 0;
 			int glyphWidth = 0;
-			Uint32 *begin = reinterpret_cast<Uint32 *>(bmp->pixels);
+			uint32_t *begin = reinterpret_cast<uint32_t *>(image->Pixels());
 			for(int y = 0; y < height; ++y)
 			{
 				// Find the last non-empty pixel in the previous glyph.
-				Uint32 *pend = begin + previous * width;
-				Uint32 *pit = pend + width;
+				uint32_t *pend = begin + previous * width;
+				uint32_t *pit = pend + width;
 				while(pit != pend && (*--pit & mask) < half) {}
 				int distance = (pit - pend) + 1;
 				glyphWidth = max(distance, glyphWidth);
@@ -255,8 +246,8 @@ void Font::CalculateAdvances(SDL_Surface *bmp)
 				if(next)
 				{
 					// Find the first non-empty pixel in this glyph.
-					Uint32 *nit = begin + next * width;
-					Uint32 *nend = nit + width;
+					uint32_t *nit = begin + next * width;
+					uint32_t *nend = nit + width;
 					while(nit != nend && (*nit++ & mask) < half) {}
 					
 					// How far apart do you want these glyphs drawn? If drawn at
@@ -278,8 +269,6 @@ void Font::CalculateAdvances(SDL_Surface *bmp)
 	
 	// Set the space size based on the character width.
 	space = KERN + (width + 3) / 6;
-	
-	SDL_UnlockSurface(bmp);
 }
 
 

@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <thread>
 #include <vector>
 
+class ImageBuffer;
 class Mask;
-class SDL_Surface;
 class Sprite;
 
 
@@ -44,8 +44,6 @@ public:
 	// Thread entry point.
 	void operator()();
 	
-	static void Premultiply(SDL_Surface *surface, int additive = 0);
-	
 	
 private:
 	double DoLoad(std::unique_lock<std::mutex> &lock) const;
@@ -59,7 +57,7 @@ private:
 		Sprite *sprite;
 		std::string name;
 		std::string path;
-		SDL_Surface *surface;
+		ImageBuffer *image;
 		Mask *mask;
 		int frame;
 	};

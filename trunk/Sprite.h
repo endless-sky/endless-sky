@@ -19,7 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstdint>
 #include <vector>
 
-class SDL_Surface;
+class ImageBuffer;
 
 
 
@@ -28,7 +28,7 @@ class Sprite {
 public:
 	Sprite();
 	
-	void AddFrame(int frame, SDL_Surface *surface, Mask *mask = nullptr);
+	void AddFrame(int frame, ImageBuffer *image, Mask *mask = nullptr);
 	
 	float Width() const;
 	float Height() const;

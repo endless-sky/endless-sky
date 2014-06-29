@@ -23,8 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
-class Point;
 class Color;
+class ImageBuffer;
+class Point;
 
 
 
@@ -47,8 +48,8 @@ public:
 	
 	
 private:
-	void LoadTexture(class SDL_Surface *bmp);
-	void CalculateAdvances(class SDL_Surface *bmp);
+	void LoadTexture(ImageBuffer *image);
+	void CalculateAdvances(ImageBuffer *image);
 	void SetUpShader(float glyphW, float glyphH);
 	
 	

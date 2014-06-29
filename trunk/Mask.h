@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <vector>
 
-class SDL_Surface;
+class ImageBuffer;
 
 
 
@@ -31,7 +31,7 @@ public:
 	
 	// Construct a mask from the alpha channel of an SDL surface. (The surface
 	// must therefore be a 4-byte RGBA format.)
-	void Create(SDL_Surface *surface);
+	void Create(ImageBuffer *image);
 	
 	// Check whether a mask was successfully loaded.
 	bool IsLoaded() const;

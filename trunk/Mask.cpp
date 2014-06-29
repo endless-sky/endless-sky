@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mask.h"
 
-#include <SDL2/SDL.h>
+#include "ImageBuffer.h"
 
 #include <algorithm>
 #include <cmath>
@@ -21,35 +21,30 @@ using namespace std;
 
 namespace {
 	// Trace out a pixmap.
-	void Trace(SDL_Surface *surface, vector<Point> *raw)
+	void Trace(ImageBuffer *image, vector<Point> *raw)
 	{
-		SDL_LockSurface(surface);
-		
-		uint32_t on = surface->format->Amask;
-		const uint32_t *begin = reinterpret_cast<uint32_t *>(surface->pixels);
+		uint32_t on = 0xFF000000;
+		const uint32_t *begin = image->Pixels();
 		
 		// Convert the pitch to uint32_ts instead of bytes.
-		int pitch = surface->pitch / 4;
-		// Skip this many pixels (of padding) in between rows.
-		int skip = pitch - surface->w;
+		int pitch = image->Width();
 		
 		// First, find a non-empty pixel.
 		// This points tot he current pixel. We will be added the inter-row
 		// pitch first thing, so subtract it here:
-		const uint32_t *it = begin - skip;
+		const uint32_t *it = begin;
 		// This is where we will store the current point:
 		Point point;
 		
-		for(int y = 0; y < surface->h; ++y)
+		for(int y = 0; y < image->Height(); ++y)
 		{
-			it += skip;
-			for(int x = 0; x < surface->w; ++x)
+			for(int x = 0; x < image->Width(); ++x)
 			{
 				// If this pixel is occupied, bail out of both loops.
 				if(*it & on)
 				{
 					point.Set(x, y);
-					y = surface->h;
+					y = image->Height();
 					break;
 				}
 				++it;
@@ -66,8 +61,8 @@ namespace {
 			pitch, pitch - 1, -1, -pitch - 1};
 		int d = 0;
 		// All points must be less than this,
-		const double maxX = surface->w - .5;
-		const double maxY = surface->h - .5;
+		const double maxX = image->Width() - .5;
+		const double maxY = image->Height() - .5;
 		
 		// Loop until we come back here.
 		begin = it;
@@ -99,8 +94,6 @@ namespace {
 			
 			// Loop until we are back where we started.
 		} while(it != begin);
-		
-		SDL_UnlockSurface(surface);
 	}
 	
 	
@@ -229,15 +222,12 @@ Mask::Mask()
 
 // Construct a mask from the alpha channel of an SDL surface. (The surface
 // must therefore be a 4-byte RGBA format.)
-void Mask::Create(SDL_Surface *surface)
+void Mask::Create(ImageBuffer *image)
 {
-	if(surface->format->BytesPerPixel != 4)
-		return;
-	
 	vector<Point> raw;
-	Trace(surface, &raw);
+	Trace(image, &raw);
 	
-	SmoothAndCenter(&raw, Point(surface->w, surface->h));
+	SmoothAndCenter(&raw, Point(image->Width(), image->Height()));
 	
 	Simplify(raw, &outline);
 	
