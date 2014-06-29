@@ -54,7 +54,7 @@ void MainPanel::Step(bool isActive)
 	engine.Step(isActive);
 	
 	if(engine.Boarding())
-		GetUI()->Push(new BoardingPanel(gameData, playerInfo, *engine.Boarding()));
+		GetUI()->Push(new BoardingPanel(gameData, playerInfo, engine.Boarding()));
 }
 
 

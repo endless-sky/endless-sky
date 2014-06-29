@@ -316,6 +316,18 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 
 
 
+void PlayerInfo::RemoveShip(const shared_ptr<Ship> &ship)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(*it == ship)
+		{
+			ships.erase(it);
+			break;
+		}
+}
+
+
+
 const Ship *PlayerInfo::GetShip() const
 {
 	return ships.empty() ? nullptr : ships.front().get();
@@ -400,7 +412,8 @@ void PlayerInfo::Land()
 	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->Hull() <= 0. || (*it)->IsFullyDisabled())
+		if(!*it || (*it)->Hull() <= 0. || (*it)->IsFullyDisabled()
+				|| (*it)->GetGovernment() != gameData->Governments().Get("Escort"))
 			it = ships.erase(it);
 		else
 			++it; 

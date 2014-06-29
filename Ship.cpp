@@ -596,7 +596,7 @@ bool Ship::IsFullyDisabled() const
 {
 	double maximumHull = attributes.Get("hull");
 	double minimumHull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
-	return (hull < minimumHull);
+	return (hull < minimumHull || !crew);
 }
 
 
@@ -813,6 +813,30 @@ int Ship::RequiredCrew() const
 void Ship::AddCrew(int count)
 {
 	crew += count;
+}
+
+
+
+void Ship::WasCaptured(const std::shared_ptr<Ship> &capturer)
+{
+	// Repair up to the point where it is just barely not disabled.
+	double maximumHull = attributes.Get("hull");
+	hull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
+	
+	// Set the new government.
+	government = capturer->GetGovernment();
+	
+	// Transfer some crew over.
+	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
+	int transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
+	capturer->AddCrew(-transfer);
+	AddCrew(transfer);
+	
+	// Set the capturer as this ship's parent.
+	SetParent(capturer);
+	// TODO: add as an "escort" to this ship.
+	
+	isSpecial = capturer->isSpecial;
 }
 
 
