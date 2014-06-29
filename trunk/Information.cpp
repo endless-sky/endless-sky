@@ -19,7 +19,7 @@ using namespace std;
 
 
 Information::Information()
-	: radar(nullptr)
+	: radar(nullptr), outlineColor(1., 1.)
 {
 }
 
@@ -112,4 +112,18 @@ bool Information::HasCondition(const string &condition) const
 		return true;
 	
 	return (conditions.find(condition) != conditions.end());
+}
+
+
+	
+void Information::SetOutlineColor(const Color &color)
+{
+	outlineColor = color;
+}
+
+
+
+const Color &Information::GetOutlineColor() const
+{
+	return outlineColor;
 }

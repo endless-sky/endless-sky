@@ -46,6 +46,7 @@ private:
 		const Sprite *sprite;
 		Point position;
 		Point size;
+		bool isColored;
 		
 		std::string condition;
 	};

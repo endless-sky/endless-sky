@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "OutlineShader.h"
 
+#include "Color.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
@@ -24,6 +25,7 @@ namespace {
 	GLint scaleI;
 	GLint sizeI;
 	GLint positionI;
+	GLint colorI;
 	
 	GLuint vao;
 	GLuint vbo;
@@ -59,6 +61,7 @@ void OutlineShader::Init()
 		"#version 130\n"
 #endif
 		"uniform sampler2D tex;\n"
+		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		"in vec2 tc;\n"
 		"in vec2 off;\n"
 		"out vec4 finalColor;\n"
@@ -73,13 +76,14 @@ void OutlineShader::Init()
 		"  float asw = texture(tex, vec2(tc.x + off.x, tc.y + off.y)).a;\n"
 		"  float h = (ae * 2 + ane + ase) - (aw * 2 + anw + asw);\n"
 		"  float v = (an * 2 + ane + anw) - (as * 2 + ase + asw);\n"
-		"  finalColor = vec4(1, 1, 1, 1) * (sqrt(h * h + v * v) * .25);\n"
+		"  finalColor = color * (sqrt(h * h + v * v) * .25);\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
 	sizeI = shader.Uniform("size");
 	positionI = shader.Uniform("position");
+	colorI = shader.Uniform("color");
 	
 	glUniform1ui(shader.Uniform("tex"), 0);
 	
@@ -113,7 +117,7 @@ void OutlineShader::Init()
 
 
 
-void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size)
+void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color)
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -129,6 +133,8 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	GLfloat position[2] = {
 		static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);
+	
+	glUniform4fv(colorI, 1, color.Get());
 	
 	glBindTexture(GL_TEXTURE_2D, sprite->Texture());
 	

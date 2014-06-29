@@ -30,15 +30,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	// Format the given double with one deciml place.
+	// Format the given double with one decimal place.
 	string Format(double value)
 	{
-		int iPart = value;
-		string result = to_string(iPart);
+		int integer = round(value * 10.);
+		string result = to_string(integer / 10);
 		result += ".0";
-		
-		int decimal = round((value - iPart) * 10.);
-		result.back() += decimal;
+		result.back() += integer % 10;
 		
 		return result;
 	}

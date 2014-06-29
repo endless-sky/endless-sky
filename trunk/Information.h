@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef INFORMATION_H_
 #define INFORMATION_H_
 
+#include "Color.h"
+
 #include <map>
 #include <set>
 #include <string>
@@ -44,6 +46,9 @@ public:
 	void SetCondition(const std::string &condition);
 	bool HasCondition(const std::string &condition) const;
 	
+	void SetOutlineColor(const Color &color);
+	const Color &GetOutlineColor() const;
+	
 	
 private:
 	std::map<std::string, const Sprite *> sprites;
@@ -54,6 +59,8 @@ private:
 	const Radar *radar;
 	
 	std::set<std::string> conditions;
+	
+	Color outlineColor;
 };
 
 
