@@ -113,3 +113,26 @@ outfit "Outfit Scanner"
 	"outfit space" -2
 	"outfit scan" 500
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry."
+
+
+outfit "Laser Rifle"
+	category "Hand to Hand"
+	cost 8000
+	"capture attack" .6
+	"capture defense" .8
+	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship fromboarders are increased substantially."
+
+outfit "Shock Grenades"
+	category "Hand to Hand"
+	cost 17000
+	"capture attack" 1.3
+	"capture defense" .3
+	description "Shock grenades are an only marginally legal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. They are much less useful as a defensive weapon, but still better than nothing."
+
+outfit "Security Station"
+	category "Hand to Hand"
+	cost 24000
+	"mass" 1
+	"outfit space" -1
+	"capture defense" 3.4
+	description "This is a specially designed barricade complete with remotely controlled weapons turrets, which can be installed in the hallways of your ship as a powerful defense against anyone who boards you in an attempt to take over your ship."
