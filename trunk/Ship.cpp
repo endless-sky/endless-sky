@@ -323,10 +323,11 @@ bool Ship::Move(list<Effect> &effects)
 	if(hull <= 0.)
 	{
 		// Once we've created enough little explosions, die.
-		if(explosionCount == explosionTotal)
+		if(explosionCount == explosionTotal || forget)
 		{
-			for(int i = 0; i < explosionTotal; ++i)
-				CreateExplosion(effects);
+			if(!forget)
+				for(int i = 0; i < explosionTotal; ++i)
+					CreateExplosion(effects);
 			energy = 0.;
 			heat = 0.;
 			fuel = 0.;
