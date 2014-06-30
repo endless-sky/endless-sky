@@ -38,6 +38,7 @@ void Account::Load(const DataFile::Node &node)
 	credits = 0;
 	salariesOwed = 0;
 	creditScore = 400;
+	history.clear();
 	
 	for(const DataFile::Node &child : node)
 	{
@@ -52,6 +53,9 @@ void Account::Load(const DataFile::Node &node)
 			mortgages.push_back(Mortgage(0, 0, 0));
 			mortgages.back().Load(child);
 		}
+		else if(child.Token(0) == "history")
+			for(const DataFile::Node &grand : child)
+				history.push_back(grand.Value(0));
 	}
 }
 
@@ -64,6 +68,9 @@ void Account::Save(ostream &out) const
 	if(salariesOwed)
 		out << "\tsalaries " << salariesOwed << "\n";
 	out << "\tscore " << creditScore << "\n";
+	out << "\thistory\n";
+	for(int worth : history)
+		out << "\t\t" << worth << "\n";
 	
 	for(const Mortgage &mortgage : mortgages)
 		mortgage.Save(out);
@@ -123,7 +130,10 @@ string Account::Step(int assets, int salaries)
 			out << "You could not pay all your crew salaries. ";
 		}
 		else
+		{
 			credits -= salariesOwed;
+			salariesOwed = 0;
+		}
 	}
 	
 	int mortgagesPaid = 0;
