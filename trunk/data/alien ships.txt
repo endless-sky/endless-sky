@@ -39,5 +39,48 @@ ship "Quarg Skylark"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
-	description "The Skylark is used by the Quarg as a defensive warship."
+	description "The Skylark is used by the Quarg as a freighter and warship."
+
+ship "Quarg Wardragon"
+	sprite "ship/wardragon"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 12000
+		"hull" 2400
+		"required crew" 900
+		"bunks" 1000
+		"mass" 360
+		"drag" 9.3
+		"fuel capacity" 800
+		"cargo space" 80
+		"outfit space" 600
+		"weapon capacity" 200
+		"engine capacity" 120
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Medium Graviton Thruster" 1
+		"Medium Graviton Steering" 1
+		"Nanotech Battery" 1
+		"Quantum Shield Generator" 1
+		"Antimatter Core" 1
+		"Hyperdrive" 1
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+	engine -14 47
+	engine 14 47
+	turret -29 6 "Quarg Skylance"
+	turret 29 6 "Quarg Skylance"
+	turret -29 6 "Quarg Anti-Missile"
+	turret 29 6 "Quarg Anti-Missile"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "big explosion" 40
+	explode "huge explosion" 20
+	description "The Skylark is used by the Quarg as a light warship."
 

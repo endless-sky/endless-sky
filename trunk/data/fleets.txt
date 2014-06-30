@@ -449,4 +449,6 @@ fleet "Quarg"
 		forbearing
 	variant
 		"Quarg Skylark"
+	variant
+		"Quarg Wardragon"
 
