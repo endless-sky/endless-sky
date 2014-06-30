@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataFile.h"
 
+#include "Personality.h"
+
 #include <list>
 #include <memory>
 #include <vector>
@@ -60,6 +62,8 @@ private:
 	std::vector<Variant> variants;
 	int cargo;
 	int total;
+	
+	Personality personality;
 };
 
 

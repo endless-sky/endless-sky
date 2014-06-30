@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Controllable.h"
 #include "DataFile.h"
 #include "Outfit.h"
+#include "Personality.h"
 #include "Point.h"
 
 #include <ostream>
@@ -64,6 +65,9 @@ public:
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
+	
+	const Personality &GetPersonality() const;
+	void SetPersonality(const Personality &other);
 	
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
@@ -193,6 +197,8 @@ private:
 	bool isSpecial;
 	bool isOverheated;
 	bool isDisabled;
+	
+	Personality personality;
 	
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;

@@ -69,11 +69,6 @@ public:
 	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
 	const std::weak_ptr<const Ship> &GetParent() const;
 	
-	// Get this ship's current "confusion" about where its target is. Some ships
-	// may be more accurate than others in targetting.
-	const Point &Confusion() const;
-	void SetConfusion(double confusionScale);
-	
 	
 private:
 	int commands;
@@ -84,9 +79,6 @@ private:
 	
 	std::vector<std::weak_ptr<const Ship>> escorts;
 	std::weak_ptr<const Ship> parent;
-	
-	mutable Point confusion;
-	double confusionMultiplier;
 };
 
 

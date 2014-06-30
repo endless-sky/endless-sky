@@ -62,6 +62,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		else
 		{
 			it->ResetCommands();
+			const Personality &personality = it->GetPersonality();
 			
 			// Fire any weapons that will hit the target.
 			it->SetFireCommands(AutoFire(*it, ships));
@@ -70,8 +71,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
 			shared_ptr<const Ship> target = it->GetTargetShip().lock();
-			if(targetTurn == step || !target || target->IsFullyDisabled()
-					|| !target->IsTargetable())
+			if(targetTurn == step || !target || !target->IsTargetable()
+					|| (target->IsFullyDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it, ships));
 			
 			double targetDistance = numeric_limits<double>::infinity();
@@ -79,7 +80,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			if(target)
 				targetDistance = target->Position().Distance(it->Position());
 			
-			if(it->GetParent().lock() && targetDistance > 1000.)
+			if(it->GetParent().lock() && (targetDistance > 1000. || personality.IsTimid()))
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
@@ -119,12 +120,14 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
+			const Personality &person = it->GetPersonality();
 			// TODO: ship personalities controlling whether they destroy disabled ships.
-			if(it->IsFullyDisabled())
+			if(it->IsFullyDisabled() && !person.Disables() && !person.Plunders())
 				continue;
 			
 			double range = it->Position().Distance(ship.Position());
-			range += 5000. * it->IsFullyDisabled();
+			if(!person.Plunders() || !ship.Cargo().Free())
+				range += 5000. * it->IsFullyDisabled();
 			if(range < closest)
 			{
 				closest = range;
@@ -142,7 +145,14 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 	auto target = ship.GetTargetShip().lock();
 	if(target)
 	{
-		Attack(control, ship, *target);
+		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
+		if(shouldBoard && target->IsFullyDisabled())
+		{
+			if(MoveTo(control, ship, target->Position(), 40., .8))
+				control.SetBoardCommand();
+		}
+		else
+			Attack(control, ship, *target);
 		return;
 	}
 	
@@ -424,7 +434,7 @@ Point AI::TargetAim(const Ship &ship) const
 			continue;
 		
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-		Point p = target->Position() - start + ship.Confusion();
+		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
 		double steps = Armament::RendevousTime(p, v, outfit->WeaponGet("velocity"));
 		if(!(steps == steps))
@@ -450,6 +460,9 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 	int bit = 1;
 	int bits = 0;
 	
+	// Only fire on disabled targets if you don't want to plunder them.
+	bool spareDisabled = (ship.GetPersonality().Disables() || ship.GetPersonality().Plunders());
+	
 	const Government *gov = ship.GetGovernment();
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
@@ -469,13 +482,12 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 					|| target->Velocity().Length() > 20.)
 				continue;
 			
-			// TODO: determine from a ship's "personality" whether it will kill
-			// a ship that is already disabled. Also distinguish 
-			if(target->IsFullyDisabled())
+			// Don't shoot ships we want to plunder.
+			if(target->IsFullyDisabled() && spareDisabled)
 				continue;
 			
 			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
-			Point p = target->Position() - start + ship.Confusion();
+			Point p = target->Position() - start + ship.GetPersonality().Confusion();
 			Point v = target->Velocity() - ship.Velocity();
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.

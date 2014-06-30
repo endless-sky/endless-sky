@@ -252,6 +252,20 @@ void Ship::SetIsSpecial(bool special)
 
 
 
+const Personality &Ship::GetPersonality() const
+{
+	return personality;
+}
+
+
+
+void Ship::SetPersonality(const Personality &other)
+{
+	personality = other;
+}
+
+
+
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
@@ -501,6 +515,8 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(&cargo);
 		victim.reset();
+		// Stop targeting this ship.
+		SetTargetShip(victim);
 	}
 	
 	return victim;
@@ -837,6 +853,7 @@ void Ship::WasCaptured(const std::shared_ptr<Ship> &capturer)
 	// TODO: add as an "escort" to this ship.
 	
 	isSpecial = capturer->isSpecial;
+	personality = capturer->personality;
 }
 
 
