@@ -32,8 +32,7 @@ namespace {
 
 
 Controllable::Controllable()
-	: commands(0), targetPlanet(nullptr), targetSystem(nullptr),
-	confusionMultiplier(.01)
+	: commands(0), targetPlanet(nullptr), targetSystem(nullptr)
 {
 }
 
@@ -236,22 +235,4 @@ const vector<weak_ptr<const Ship>> &Controllable::GetEscorts() const
 const weak_ptr<const Ship> &Controllable::GetParent() const
 {
 	return parent;
-}
-
-
-
-// Get this ship's current "confusion" about where its target is. Some ships
-// may be more accurate than others in targetting.
-const Point &Controllable::Confusion() const
-{
-	confusion += Angle::Random().Unit() * confusionMultiplier;
-	confusion *= .999;
-	return confusion;
-}
-
-
-
-void Controllable::SetConfusion(double confusionScale)
-{
-	confusionMultiplier = confusionScale * .001;
 }

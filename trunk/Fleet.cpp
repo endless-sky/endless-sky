@@ -47,6 +47,8 @@ void Fleet::Load(const DataFile::Node &node, const GameData &data)
 			names = data.ShipNames().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
+		else if(child.Token(0) == "personality")
+			personality.Load(child);
 		else if(child.Token(0) == "variant")
 		{
 			variants.emplace_back(child, data);
@@ -120,6 +122,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		ships.front()->SetTargetSystem(target);
 		ships.front()->SetGovernment(government);
 		ships.front()->SetName(names->Get());
+		ships.front()->SetPersonality(personality);
 		
 		if(!flagship)
 			flagship = ships.front();
@@ -180,6 +183,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 		ships.front()->Place(pos, velocity * angle.Unit(), angle);
 		ships.front()->SetGovernment(government);
 		ships.front()->SetName(names->Get());
+		ships.front()->SetPersonality(personality);
 		
 		if(!flagship)
 			flagship = ships.front();

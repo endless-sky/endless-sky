@@ -2,6 +2,9 @@ fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
 	cargo 3
+	personality
+		confusion 40
+		timid
 	variant 6
 		"Shuttle"
 	variant 4
@@ -23,6 +26,9 @@ fleet "Large Southern Merchants"
 	government "Merchant"
 	names "civilian"
 	cargo 4
+	personality
+		confusion 20
+		timid
 	variant 2
 		"Freighter"
 		"Hawk"
@@ -53,6 +59,9 @@ fleet "Small Core Merchants"
 	government "Merchant"
 	names "civilian"
 	cargo 3
+	personality
+		confusion 30
+		timid
 	variant 4
 		"Shuttle"
 	variant 6
@@ -74,6 +83,9 @@ fleet "Large Core Merchants"
 	government "Merchant"
 	names "civilian"
 	cargo 4
+	personality
+		confusion 10
+		timid
 	variant 3
 		"Freighter" 2
 		"Quicksilver" 2
@@ -97,6 +109,9 @@ fleet "Small Northern Merchants"
 	government "Merchant"
 	names "civilian"
 	cargo 3
+	personality
+		confusion 40
+		timid
 	variant 8
 		"Shuttle"
 	variant 4
@@ -115,6 +130,9 @@ fleet "Large Northern Merchants"
 	government "Merchant"
 	names "civilian"
 	cargo 4
+	personality
+		confusion 20
+		timid
 	variant 4
 		"Freighter" 2
 		"Firebird"
@@ -137,6 +155,8 @@ fleet "Small Free Worlds"
 	government "Free Worlds"
 	names "civilian"
 	cargo 1
+	personality
+		heroic
 	variant 4
 		"Hawk"
 		"Sparrow"
@@ -156,6 +176,8 @@ fleet "Large Free Worlds"
 	government "Free Worlds"
 	names "civilian"
 	cargo 1
+	personality
+		heroic
 	variant 5
 		"Bastion"
 	variant 4
@@ -184,6 +206,8 @@ fleet "Small Republic"
 	government "Republic"
 	names "civilian"
 	cargo 0
+	personality
+		heroic
 	variant 6
 		"Rainmaker" 2
 	variant 4
@@ -198,6 +222,8 @@ fleet "Large Republic"
 	government "Republic"
 	names "civilian"
 	cargo 0
+	personality
+		heroic
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -225,6 +251,8 @@ fleet "Small Deep"
 	government "Republic"
 	names "civilian"
 	cargo 0
+	personality
+		heroic
 	variant 6
 		"Rainmaker" 2
 	variant 4
@@ -239,6 +267,8 @@ fleet "Large Deep"
 	government "Republic"
 	names "civilian"
 	cargo 0
+	personality
+		heroic
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -266,6 +296,8 @@ fleet "Small Syndicate"
 	government "Syndicate"
 	names "civilian"
 	cargo 2
+	personality
+		heroic
 	variant 3
 		"Quicksilver" 3
 	variant 1
@@ -276,6 +308,8 @@ fleet "Large Syndicate"
 	government "Syndicate"
 	names "civilian"
 	cargo 2
+	personality
+		heroic
 	variant 3
 		"Splinter"
 		"Quicksilver" 3
@@ -290,6 +324,8 @@ fleet "Small Southern Pirates"
 	government "Pirate"
 	names "civilian"
 	cargo 1
+	personality
+		plunders
 	variant 8
 		"Sparrow"
 	variant 3
@@ -321,6 +357,8 @@ fleet "Large Southern Pirates"
 	government "Pirate"
 	names "civilian"
 	cargo 1
+	personality
+		plunders
 	variant 3
 		"Sparrow" 4
 	variant 5
@@ -342,6 +380,8 @@ fleet "Small Core Pirates"
 	government "Pirate"
 	names "civilian"
 	cargo 1
+	personality
+		plunders
 	variant 4
 		"Quicksilver"
 	variant 2
@@ -357,6 +397,8 @@ fleet "Large Core Pirates"
 	government "Pirate"
 	names "civilian"
 	cargo 1
+	personality
+		plunders
 	variant 5
 		"Quicksilver" 3
 	variant 3
@@ -373,6 +415,8 @@ fleet "Small Northern Pirates"
 	government "Pirate"
 	names "civilian"
 	cargo 1
+	personality
+		plunders
 	variant 5
 		"Sparrow"
 	variant 3
@@ -384,6 +428,8 @@ fleet "Large Northern Pirates"
 	government "Pirate"
 	names "civilian"
 	cargo 1
+	personality
+		plunders
 	variant 4
 		"Firebird"
 	variant 2
@@ -399,6 +445,8 @@ fleet "Quarg"
 	government "Quarg"
 	names "quarg"
 	cargo 3
+	personality
+		forbearing
 	variant
 		"Quarg Skylark"
 
