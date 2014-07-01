@@ -582,6 +582,88 @@ ship "Hawk"
 	explode "small explosion" 5
 	description "The Tarazed Hawk is an interceptor-class warship often used as an escort for freighters or in a planetary militia's patrol squadron. Hawks are fast enough to chase down most smaller ships, while also being much more heavily armed and armored. They are also, of course, a favorite ship of pirate captains who have earned enough money to afford one."
 
+ship "Heavy Shuttle"
+	sprite "ship/heavy shuttle"
+	attributes
+		category "Transport"
+		"cost" 140000
+		"shields" 700
+		"hull" 700
+		"required crew" 1
+		"bunks" 8
+		"mass" 110
+		"drag" 2.1
+		"fuel capacity" 500
+		"cargo space" 35
+		"outfit space" 105
+		"weapon capacity" 5
+		"engine capacity" 50
+		weapon
+			"blast radius" 30
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Hyperdrive"
+	engine 6 30
+	engine -6 30
+	gun -7 -37
+	gun 7 -37
+	explode "tiny explosion" 10
+	explode "small explosion" 5
+	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perrenial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
+
+ship "Leviathan"
+	sprite "ship/leviathan"
+	attributes
+		category "Heavy Warship"
+		"cost" 3800000
+		"shields" 8000
+		"hull" 5000
+		"required crew" 25
+		"bunks" 50
+		"mass" 480
+		"drag" 9.2
+		"fuel capacity" 500
+		"cargo space" 80
+		"outfit space" 620
+		"weapon capacity" 300
+		"engine capacity" 100
+		weapon
+			"blast radius" 200
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"X4200 Ion Steering"
+		"X3700 Ion Thruster"
+		"NT-200 Nucleovoltaic"
+		"Hyperdrive"
+		"Particle Cannon" 4
+		"Heavy Laser Turret" 4
+	engine -25 125
+	engine 25 125
+	gun -51 -21 "Particle Cannon"
+	gun 51 -21 "Particle Cannon"
+	gun -39 -33 "Particle Cannon"
+	gun 39 -33 "Particle Cannon"
+	turret -15 -50 "Heavy Laser Turret"
+	turret 15 -50 "Heavy Laser Turret"
+	turret -25 10 "Heavy Laser Turret"
+	turret 25 10 "Heavy Laser Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
+
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
