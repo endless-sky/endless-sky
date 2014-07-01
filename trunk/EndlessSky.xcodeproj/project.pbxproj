@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A9277E531958DD6500EF19B1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9277E521958DD6500EF19B1 /* SDL2_image.framework */; };
+		A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A945B3E11963655400722981 /* ImageBuffer.cpp */; };
+		A945B3E51963660D00722981 /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A945B3E41963660D00722981 /* libpng14.14.dylib */; };
+		A945B3E9196366D700722981 /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A945B3E8196366D700722981 /* libturbojpeg.0.dylib */; };
 		A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A54195DF44B002C30B8 /* Account.cpp */; };
 		A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A56195DF44B002C30B8 /* AI.cpp */; };
@@ -88,10 +90,18 @@
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		A9E84C7D196215140058DFB7 /* CaptureOdds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C77196215140058DFB7 /* CaptureOdds.cpp */; };
+		A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C79196215140058DFB7 /* HiringPanel.cpp */; };
+		A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C7B196215140058DFB7 /* Personality.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A9277E521958DD6500EF19B1 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		A945B3E11963655400722981 /* ImageBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageBuffer.cpp; sourceTree = "<group>"; };
+		A945B3E21963655400722981 /* ImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBuffer.h; sourceTree = "<group>"; };
+		A945B3E41963660D00722981 /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = ../../../../usr/local/lib/libpng14.14.dylib; sourceTree = "<group>"; };
+		A945B3E61963662000722981 /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.8.dylib; path = ../../../../usr/local/lib/libjpeg.8.dylib; sourceTree = "<group>"; };
+		A945B3E8196366D700722981 /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "../../../../opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<group>"; };
 		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XCode/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A99F7A51195DF3F9002C30B8 /* EndlessSky-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EndlessSky-Info.plist"; path = "XCode/EndlessSky-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A99F7A54195DF44B002C30B8 /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Account.cpp; sourceTree = "<group>"; };
@@ -251,6 +261,12 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		A9E84C77196215140058DFB7 /* CaptureOdds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CaptureOdds.cpp; sourceTree = "<group>"; };
+		A9E84C78196215140058DFB7 /* CaptureOdds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureOdds.h; sourceTree = "<group>"; };
+		A9E84C79196215140058DFB7 /* HiringPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HiringPanel.cpp; sourceTree = "<group>"; };
+		A9E84C7A196215140058DFB7 /* HiringPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiringPanel.h; sourceTree = "<group>"; };
+		A9E84C7B196215140058DFB7 /* Personality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Personality.cpp; sourceTree = "<group>"; };
+		A9E84C7C196215140058DFB7 /* Personality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Personality.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,8 +274,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A945B3E9196366D700722981 /* libturbojpeg.0.dylib in Frameworks */,
+				A945B3E51963660D00722981 /* libpng14.14.dylib in Frameworks */,
 				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
-				A9277E531958DD6500EF19B1 /* SDL2_image.framework in Frameworks */,
 				A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */,
 				A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */,
 			);
@@ -288,6 +305,8 @@
 				A99F7A62195DF44B002C30B8 /* BoardingPanel.cpp */,
 				A99F7A63195DF44B002C30B8 /* BoardingPanel.h */,
 				A99F7A64195DF44B002C30B8 /* Callback.h */,
+				A9E84C77196215140058DFB7 /* CaptureOdds.cpp */,
+				A9E84C78196215140058DFB7 /* CaptureOdds.h */,
 				A99F7A65195DF44B002C30B8 /* CargoHold.cpp */,
 				A99F7A66195DF44B002C30B8 /* CargoHold.h */,
 				A99F7A67195DF44B002C30B8 /* Color.cpp */,
@@ -329,6 +348,10 @@
 				A99F7A8B195DF44B002C30B8 /* GameData.h */,
 				A99F7A8C195DF44B002C30B8 /* Government.cpp */,
 				A99F7A8D195DF44B002C30B8 /* Government.h */,
+				A9E84C79196215140058DFB7 /* HiringPanel.cpp */,
+				A9E84C7A196215140058DFB7 /* HiringPanel.h */,
+				A945B3E11963655400722981 /* ImageBuffer.cpp */,
+				A945B3E21963655400722981 /* ImageBuffer.h */,
 				A99F7A8E195DF44B002C30B8 /* Information.cpp */,
 				A99F7A8F195DF44B002C30B8 /* Information.h */,
 				A99F7A90195DF44B002C30B8 /* Interface.cpp */,
@@ -362,6 +385,8 @@
 				A99F7AAC195DF44B002C30B8 /* OutlineShader.h */,
 				A99F7AAD195DF44B002C30B8 /* Panel.cpp */,
 				A99F7AAE195DF44B002C30B8 /* Panel.h */,
+				A9E84C7B196215140058DFB7 /* Personality.cpp */,
+				A9E84C7C196215140058DFB7 /* Personality.h */,
 				A99F7AAF195DF44B002C30B8 /* Planet.cpp */,
 				A99F7AB0195DF44B002C30B8 /* Planet.h */,
 				A99F7AB1195DF44B002C30B8 /* PlanetPanel.cpp */,
@@ -438,6 +463,9 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A945B3E8196366D700722981 /* libturbojpeg.0.dylib */,
+				A945B3E61963662000722981 /* libjpeg.8.dylib */,
+				A945B3E41963660D00722981 /* libpng14.14.dylib */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
 				A9277E521958DD6500EF19B1 /* SDL2_image.framework */,
 				A9CC52A01950CA16004E4E22 /* SDL2.framework */,
@@ -583,6 +611,7 @@
 				A99F7AFD195DF44C002C30B8 /* Files.cpp in Sources */,
 				A99F7B1D195DF44C002C30B8 /* Projectile.cpp in Sources */,
 				A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */,
+				A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */,
 				A99F7B28195DF44C002C30B8 /* SpriteQueue.cpp in Sources */,
 				A99F7B15195DF44C002C30B8 /* OutlineShader.cpp in Sources */,
 				A99F7AF7195DF44C002C30B8 /* Date.cpp in Sources */,
@@ -595,6 +624,7 @@
 				A99F7B1A195DF44C002C30B8 /* Point.cpp in Sources */,
 				A99F7B29195DF44C002C30B8 /* SpriteSet.cpp in Sources */,
 				A99F7B0E195DF44C002C30B8 /* MapPanel.cpp in Sources */,
+				A9E84C7D196215140058DFB7 /* CaptureOdds.cpp in Sources */,
 				A99F7AF8195DF44C002C30B8 /* Dialog.cpp in Sources */,
 				A99F7B30195DF44C002C30B8 /* UI.cpp in Sources */,
 				A99F7AF3195DF44C002C30B8 /* Conversation.cpp in Sources */,
@@ -603,8 +633,10 @@
 				A99F7B01195DF44C002C30B8 /* FontSet.cpp in Sources */,
 				A99F7B2B195DF44C002C30B8 /* StarField.cpp in Sources */,
 				A99F7B17195DF44C002C30B8 /* Planet.cpp in Sources */,
+				A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */,
 				A99F7B21195DF44C002C30B8 /* Ship.cpp in Sources */,
 				A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */,
+				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
 				A99F7AF2195DF44C002C30B8 /* Controllable.cpp in Sources */,
 				A99F7AEC195DF44C002C30B8 /* Armament.cpp in Sources */,
@@ -650,6 +682,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -683,6 +720,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
@@ -700,7 +742,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/libjpeg-turbo/include",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/opt/libjpeg-turbo/lib",
+					/usr/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -718,7 +771,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/opt/libjpeg-turbo/include",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/opt/libjpeg-turbo/lib",
+					/usr/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

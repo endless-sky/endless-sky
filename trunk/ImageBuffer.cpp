@@ -13,7 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 
 #include <png.h>
+#ifdef __APPLE__
+#include </opt/libjpeg-turbo/include/jpeglib.h>
+#else
 #include <jpeglib.h>
+#endif
 
 #include <cstdio>
 #include <vector>
