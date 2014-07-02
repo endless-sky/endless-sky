@@ -101,6 +101,7 @@ public:
 	bool CanLand() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool CanHyperspace() const;
+	bool IsBoarding() const;
 	
 	// Get information on this particular ship, for displaying it.
 	const Animation &GetSprite() const;
@@ -197,6 +198,8 @@ private:
 	bool isSpecial;
 	bool isOverheated;
 	bool isDisabled;
+	bool isBoarding;
+	bool hasBoarded;
 	
 	Personality personality;
 	

@@ -148,8 +148,10 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		if(shouldBoard && target->IsFullyDisabled())
 		{
-			if(MoveTo(control, ship, target->Position(), 40., .8))
-				control.SetBoardCommand();
+			if(ship.IsBoarding())
+				return;
+			MoveTo(control, ship, target->Position(), 40., .8);
+			control.SetBoardCommand();
 		}
 		else
 			Attack(control, ship, *target);
@@ -670,6 +672,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		
 		keyStuck = keyHeld;
 	}
+	else if(ship.IsBoarding())
+		keyStuck = 0;
 	else if((keyStuck & Key::Bit(Key::LAND)) && ship.GetTargetPlanet())
 	{
 		if(ship.GetPlanet())
@@ -688,11 +692,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	else if((keyStuck & Key::Bit(Key::BOARD)) && ship.GetTargetShip().lock())
 	{
 		shared_ptr<const Ship> target = control.GetTargetShip().lock();
-		if(MoveTo(control, ship, target->Position(), 40., .8))
-		{
-			control.SetBoardCommand();
-			keyStuck = 0;
-		}
+		MoveTo(control, ship, target->Position(), 40., .8);
+		control.SetBoardCommand();
 	}
 	else
 		keyStuck = 0;

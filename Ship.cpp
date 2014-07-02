@@ -30,6 +30,7 @@ using namespace std;
 Ship::Ship()
 	: government(nullptr), isInSystem(true),
 	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
+	isBoarding(false), hasBoarded(false),
 	explosionWeapon(nullptr),
 	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
 	currentSystem(nullptr),
@@ -468,6 +469,44 @@ bool Ship::Move(list<Effect> &effects)
 		}
 	}
 	
+	// Boarding:
+	if(isBoarding && (GetThrustCommand() || GetTurnCommand()))
+		isBoarding = false;
+	shared_ptr<const Ship> target = GetTargetShip().lock();
+	if(target && !IsDisabled())
+	{
+		Point dp = (target->position - position);
+		double distance = dp.Length();
+		Point dv = (target->velocity - velocity);
+		double speed = dv.Length();
+		isBoarding |= (distance < 50. && speed < 1. && HasBoardCommand());
+		if(isBoarding && (!target->IsFullyDisabled() || target->Hull() < 0.))
+			isBoarding = false;
+		if(isBoarding && !pilotError)
+		{
+			Angle facing = angle;
+			bool left = target->Unit().Cross(facing.Unit()) < 0.;
+			double turn = left - !left;
+			
+			// Check if the ship will still be pointing to the same side of the target
+			// angle if it turns by this amount.
+			facing += TurnRate() * turn;
+			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
+			if(left != stillLeft)
+				turn = 0.;
+			angle += TurnRate() * turn;
+			
+			velocity += dv.Unit() * .1;
+			position += dp.Unit() * .5;
+			
+			if(distance < 10. && speed < 1. && !turn)
+			{
+				isBoarding = false;
+				hasBoarded = true;
+			}
+		}
+	}
+	
 	// And finally: move the ship!
 	position += velocity;
 	
@@ -488,17 +527,12 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 {
 	shared_ptr<Ship> victim;
-	if(!HasBoardCommand())
+	if(!hasBoarded)
 		return victim;
+	hasBoarded = false;
 	
 	shared_ptr<const Ship> target = GetTargetShip().lock();
 	if(!target || !target->IsFullyDisabled() || target->Hull() <= 0.)
-		return victim;
-	
-	double distance = (position - target->position).Length();
-	double speed = (velocity - target->velocity).Length();
-	
-	if(distance > 50. || speed > 1.)
 		return victim;
 	
 	// Get a non-const pointer to the ship.
@@ -666,6 +700,13 @@ bool Ship::CanHyperspace() const
 	bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 	
 	return (left != stillLeft);
+}
+
+
+
+bool Ship::IsBoarding() const
+{
+	return isBoarding;
 }
 
 
@@ -907,6 +948,8 @@ void Ship::TakeDamage(const Projectile &projectile)
 	double hullDamage = weapon.WeaponGet("hull damage");
 	double hitForce =  weapon.WeaponGet("hit force");
 	double heatDamage = weapon.WeaponGet("heat damage");
+	
+	isBoarding = false;
 	
 	if(shields > shieldDamage)
 	{
