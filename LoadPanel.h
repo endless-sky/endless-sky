@@ -58,6 +58,8 @@ private:
 	std::string selectedFile;
 	
 	PlayerInfo loadedInfo;
+	
+	bool sideHasFocus;
 };
 
 
