@@ -92,6 +92,52 @@ ship "Bastion"
 	explode "big explosion" 20
 	description "The Southbound Shipyards Bastion is designed as a heavy defense platform to accompany freighter convoys, in addition to having enough cargo capacity to serve as a freighter in its own right. Because of its heavy armament, it is classified as a Warship, and throughout Republic space any captain without a warship license is barred from purchasing or operating a Bastion."
 
+ship "Behemoth"
+	sprite "ship/behemoth"
+	attributes
+		category "Heavy Freighter"
+		"cost" 3800000
+		"shields" 7000
+		"hull" 5300
+		"required crew" 16
+		"bunks" 30
+		"mass" 540
+		"drag" 11.7
+		"fuel capacity" 600
+		"cargo space" 420
+		"outfit space" 500
+		"weapon capacity" 280
+		"engine capacity" 80
+		weapon
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"D41-HY Shield Generator"
+		"LP144a Battery Pack"
+		"NT-200 Nucleovoltaic"
+		"Hyperdrive"
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+	engine -34 154
+	engine 34 154
+	gun -27 -83
+	gun 27 -83
+	turret -34 -64 "Heavy Laser Turret"
+	turret 24 78 "Heavy Laser Turret"
+	turret -58 11 "Heavy Laser Turret"
+	turret 58 11 "Heavy Laser Turret"
+	turret -24 78 "Heavy Anti-Missile Turret"
+	turret 34 -64 "Heavy Anti-Missile Turret"
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "big explosion" 35
+	explode "huge explosion" 20
+	description "The Behemoth is a recent ship design from Betelgeuse Shipyards, designed as an alternative to the Syndicate Bulk Freighter. Although its cargo capacity is somewhat lower, it is also more maneuverable, and packs a heavier armament by default."
+
 ship "Blackbird"
 	sprite "ship/blackbird"
 	attributes

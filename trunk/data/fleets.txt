@@ -140,11 +140,14 @@ fleet "Large Northern Merchants"
 		"Freighter" 3
 		"Firebird"
 	variant 3
+		"Behemoth"
+	variant 1
+		"Behemoth" 2
+	variant 1
 		"Bulk Freighter"
+		"Sparrow" 2
 	variant 1
-		"Bulk Freighter" 2
-	variant 1
-		"Bulk Freighter" 2
+		"Behemoth" 2
 		"Firebird" 1
 	variant 1
 		"Freighter" 4
@@ -437,9 +440,9 @@ fleet "Large Northern Pirates"
 		"Fury"
 	variant 1
 		"Firebird"
-		"Bastion"
+		"Leviathan"
 	variant 1
-		"Falcon"
+		"Leviathan"
 
 fleet "Quarg"
 	government "Quarg"
