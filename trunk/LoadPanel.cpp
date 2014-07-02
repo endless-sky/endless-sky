@@ -169,6 +169,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		
 		selectedPilot = wasSelected;
 		selectedFile = to.substr(Files::Saves().size());
+		loadedInfo.Load(Files::Saves() + selectedFile, data);
 	}
 	else if(key == 'r' && !selectedFile.empty())
 	{
@@ -186,6 +187,58 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
 		GetUI()->Pop(this);
+	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
+	{
+		auto pit = files.find(selectedPilot);
+		if(sideHasFocus)
+		{
+			auto it = files.begin();
+			for( ; it != files.end(); ++it)
+				if(it->first == selectedPilot)
+					break;
+			
+			if(key == SDLK_DOWN)
+			{
+				++it;
+				if(it == files.end())
+					it = files.begin();
+			}
+			else
+			{
+				if(it == files.begin())
+					it = files.end();
+				--it;
+			}
+			selectedPilot = it->first;
+			selectedFile = it->second.front();
+		}
+		else if(pit != files.end())
+		{
+			auto it = pit->second.begin();
+			for( ; it != pit->second.end(); ++it)
+				if(*it == selectedFile)
+					break;
+			
+			if(key == SDLK_DOWN)
+			{
+				++it;
+				if(it == pit->second.end())
+					it = pit->second.begin();
+			}
+			else
+			{
+				if(it == pit->second.begin())
+					it = pit->second.end();
+				--it;
+			}
+			selectedFile = *it;
+		}
+		loadedInfo.Load(Files::Saves() + selectedFile, data);
+	}
+	else if(key == SDLK_LEFT)
+		sideHasFocus = true;
+	else if(key == SDLK_RIGHT)
+		sideHasFocus = false;
 	else
 		return false;
 	
@@ -214,6 +267,7 @@ bool LoadPanel::Click(int x, int y)
 				selectedPilot = it.first;
 				selectedFile = it.second.front();
 			}
+		sideHasFocus = true;
 	}
 	else if(x >= -100 && x < 100)
 	{
@@ -221,6 +275,7 @@ bool LoadPanel::Click(int x, int y)
 		for(const string &file : files.find(selectedPilot)->second)
 			if(i++ == selected && selectedFile != file)
 				selectedFile = file;
+		sideHasFocus = false;
 	}
 	else
 		return false;
@@ -235,8 +290,6 @@ bool LoadPanel::Click(int x, int y)
 void LoadPanel::UpdateLists()
 {
 	files.clear();
-	selectedPilot.clear();
-	selectedFile.clear();
 	
 	vector<string> fileList = Files::List(Files::Saves());
 	for(const string &path : fileList)
@@ -253,6 +306,21 @@ void LoadPanel::UpdateLists()
 	
 	for(auto &it : files)
 		sort(it.second.begin(), it.second.end());
+	
+	if(!files.empty())
+	{
+		if(selectedPilot.empty())
+			selectedPilot = files.begin()->first;
+		if(selectedFile.empty())
+		{
+			auto it = files.find(selectedPilot);
+			if(it != files.end())
+			{
+				selectedFile =it->second.front();
+				loadedInfo.Load(Files::Saves() + selectedFile, data);
+			}
+		}
+	}
 }
 
 
@@ -268,6 +336,10 @@ void LoadPanel::DeletePilot()
 	
 	for(const string &file : it->second)
 		Files::Delete(Files::Saves() + file);
+	
+	sideHasFocus = true;
+	selectedPilot.clear();
+	selectedFile.clear();
 	UpdateLists();
 }
 
@@ -278,6 +350,9 @@ void LoadPanel::DeleteSave()
 	loadedInfo.Clear();
 	string pilot = selectedPilot;
 	Files::Delete(Files::Saves() + selectedFile);
+	
+	sideHasFocus = true;
+	selectedPilot.clear();
 	UpdateLists();
 	
 	auto it = files.find(pilot);
