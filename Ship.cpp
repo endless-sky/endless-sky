@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
+#include "Messages.h"
 #include "Projectile.h"
 #include "SpriteSet.h"
 #include "System.h"
@@ -419,8 +420,10 @@ bool Ship::Move(list<Effect> &effects)
 	if(pilotError)
 		--pilotError;
 	else if(rand() % RequiredCrew() >= Crew())
+	{
 		pilotError = 30;
-	// TODO: If this is the player's ship, post a message.
+		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
+	}
 	
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.

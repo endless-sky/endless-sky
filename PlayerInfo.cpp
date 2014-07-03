@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "Files.h"
 #include "GameData.h"
+#include "Messages.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "System.h"
@@ -434,11 +435,11 @@ void PlayerInfo::Land()
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-std::string PlayerInfo::TakeOff()
+void PlayerInfo::TakeOff()
 {
 	// This can only be done while landed.
 	if(!system || !planet)
-		return "";
+		return;
 	
 	// Reset any governments you provoked yesterday.
 	for(const auto &it : gameData->Governments())
@@ -453,12 +454,12 @@ std::string PlayerInfo::TakeOff()
 	int income = cargo.Value(system);
 	accounts.AddCredits(income);
 	cargo.Clear();
-	if(!sold)
-		return "";
-	
-	ostringstream out;
-	out << "You sold " << sold << " tons of excess cargo for " << income << " credits.";
-	return out.str();
+	if(sold)
+	{
+		ostringstream out;
+		out << "You sold " << sold << " tons of excess cargo for " << income << " credits.";
+		Messages::Add(out.str());
+	}
 }
 
 

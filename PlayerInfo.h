@@ -86,9 +86,8 @@ public:
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land();
-	// Load the cargo back into your ships. This may require selling excess, in
-	// which case a message will be returned.
-	std::string TakeOff();
+	// Load the cargo back into your ships. This may require selling excess.
+	void TakeOff();
 	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;

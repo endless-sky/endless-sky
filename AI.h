@@ -32,9 +32,6 @@ public:
 	void UpdateKeys(int keys, PlayerInfo *info);
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
 	
-	// Get any messages (such as "you cannot land here!") to display.
-	const std::string &Message() const;
-	
 	
 private:
 	// Pick a new target for the given ship.
@@ -70,8 +67,6 @@ private:
 	int keyDown;
 	int keyHeld;
 	int keyStuck;
-	
-	std::string message;
 };
 
 
