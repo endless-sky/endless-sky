@@ -45,7 +45,7 @@ public:
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.
-	void Place(const std::string &message = "");
+	void Place();
 	
 	// Begin the next step of calculations.
 	void Step(bool isActive);
@@ -62,7 +62,6 @@ private:
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
-	void AddMessage(const std::string &message);
 	
 	
 private:
@@ -99,7 +98,6 @@ private:
 	std::vector<Target> targets;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	
-	mutable std::vector<std::pair<int, std::string>> messages;
 	int step;
 	
 	std::list<std::shared_ptr<Ship>> ships;

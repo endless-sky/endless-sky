@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Key.h"
 #include "Mask.h"
+#include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -86,14 +87,6 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				MoveIndependent(*it, *it);
 		}
 	}
-}
-
-
-
-// Get any messages (such as "you cannot land here!") to display.
-const string &AI::Message() const
-{
-	return message;
 }
 
 
@@ -532,8 +525,6 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	const Ship &ship = *info.GetShip();
 	control.ResetCommands();
 	
-	message.clear();
-	
 	if(info.HasTravelPlan())
 		control.SetTargetSystem(info.TravelPlan().back());
 	
@@ -613,6 +604,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	{
 		// If the player is right over an uninhabited planet, display a message
 		// explaining why they cannot land there.
+		string message;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(!object.GetPlanet() && !object.GetSprite().IsEmpty())
 			{
@@ -634,6 +626,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 					}
 				}
 		}
+		if(!message.empty())
+			Messages::Add(message);
 	}
 	
 	if(keyHeld)

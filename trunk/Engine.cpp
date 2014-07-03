@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "FrameTimer.h"
+#include "Messages.h"
 #include "PointerShader.h"
 #include "Screen.h"
 #include "SpriteSet.h"
@@ -91,11 +92,8 @@ Engine::~Engine()
 
 
 
-void Engine::Place(const string &message)
+void Engine::Place()
 {
-	if(!message.empty())
-		AddMessage(message);
-	
 	ships.clear();
 	
 	EnterSystem();
@@ -145,8 +143,6 @@ void Engine::Step(bool isActive)
 			velocity = player->Velocity();
 		}
 		ai.UpdateKeys(data.Keys().State(), &playerInfo);
-		if(!ai.Message().empty())
-			AddMessage(ai.Message());
 		
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
@@ -320,16 +316,15 @@ void Engine::Draw() const
 	
 	// Draw messages.
 	const Font &font = FontSet::Get(14);
-	while(!messages.empty() && messages.front().first < step - 1000)
-		messages.erase(messages.begin());
+	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Point messagePoint(
 		Screen::Width() * -.5 + 20.,
 		Screen::Height() * .5 - 20. * messages.size());
 	for(const auto &it : messages)
 	{
-		float alpha = (it.first + 1000 - step) * .001f;
+		float alpha = (it.step + 1000 - step) * .001f;
 		Color color(alpha, 0.);
-		font.Draw(it.second, messagePoint, color);
+		font.Draw(it.message, messagePoint, color);
 		messagePoint.Y() += 20.;
 	}
 	
@@ -389,9 +384,9 @@ void Engine::EnterSystem()
 	
 	playerInfo.SetSystem(player->GetSystem());
 	
-	AddMessage(playerInfo.IncrementDate());
+	Messages::Add(playerInfo.IncrementDate());
 	const Date &today = playerInfo.GetDate();
-	AddMessage("Entering the " + player->GetSystem()->Name() + " system on "
+	Messages::Add("Entering the " + player->GetSystem()->Name() + " system on "
 		+ today.ToString() + (player->GetSystem()->IsInhabited() ?
 			"." : ". No inhabited planets detected."));
 	
@@ -698,18 +693,4 @@ void Engine::CalculateStep()
 		loadSum = 0.;
 		loadCount = 0;
 	}
-}
-
-
-
-void Engine::AddMessage(const string &message)
-{
-	for(auto it = messages.begin(); it != messages.end(); )
-	{
-		if(it->second == message)
-			messages.erase(it);
-		else
-			++it;
-	}
-	messages.emplace_back(step, message);
 }

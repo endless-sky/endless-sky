@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "MapPanel.h"
+#include "Messages.h"
 #include "PlanetPanel.h"
 #include "Screen.h"
 #include "UI.h"
@@ -87,7 +88,7 @@ void MainPanel::Draw() const
 // The planet panel calls this when it closes.
 void MainPanel::OnCallback(int)
 {
-	engine.Place(playerInfo.TakeOff());
+	engine.Place();
 }
 
 
@@ -140,9 +141,12 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 						}
 				}
 				if(out.str().empty())
-					out << "You are too far away to scan this ship.\n";
-				GetUI()->Push(new Dialog(out.str()));
+					Messages::Add("You are too far away to scan this ship.");
+				else
+					GetUI()->Push(new Dialog(out.str()));
 			}
+			else if(target)
+				Messages::Add("You do not have any scanners installed.");
 		}
 	}
 	else
