@@ -263,7 +263,7 @@ void Engine::Step(bool isActive)
 			shared_ptr<const Ship> targetTarget = target->GetTargetShip().lock();
 			bool hostile = targetTarget &&
 				targetTarget->GetGovernment() == playerGovernment;
-			int targetType = target->IsDisabled() ? Radar::INACTIVE :
+			int targetType = (target->IsDisabled() || target->IsOverheated()) ? Radar::INACTIVE :
 				hostile ? Radar::HOSTILE : 
 				target->GetGovernment()->IsEnemy(playerGovernment) ?
 				Radar::UNFRIENDLY : Radar::FRIENDLY;
@@ -576,7 +576,7 @@ void Engine::CalculateStep()
 			auto target = ship->GetTargetShip().lock();
 			radar[calcTickTock].Add(
 				ship->GetGovernment() == playerGovernment ? Radar::PLAYER :
-					ship->IsDisabled() ? Radar::INACTIVE :
+					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
 					(target && target->GetGovernment() == playerGovernment) ? Radar::HOSTILE :
 					ship->GetGovernment()->IsEnemy(playerGovernment) ?
 						Radar::UNFRIENDLY : Radar::FRIENDLY,

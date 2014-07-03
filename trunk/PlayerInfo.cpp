@@ -412,7 +412,7 @@ void PlayerInfo::Land()
 	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->Hull() <= 0. || (*it)->IsFullyDisabled()
+		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled()
 				|| (*it)->GetGovernment() != gameData->Governments().Get("Escort"))
 			it = ships.erase(it);
 		else

@@ -294,7 +294,7 @@ bool Ship::Move(list<Effect> &effects)
 	
 	shields = min(shields, attributes.Get("shields"));
 	hull = min(hull, attributes.Get("hull"));
-	isDisabled = isOverheated || IsFullyDisabled();
+	isDisabled = isOverheated || IsDisabled();
 	
 	// Update ship supply levels.
 	if(!isOverheated)
@@ -473,14 +473,14 @@ bool Ship::Move(list<Effect> &effects)
 	if(isBoarding && (GetThrustCommand() || GetTurnCommand()))
 		isBoarding = false;
 	shared_ptr<const Ship> target = GetTargetShip().lock();
-	if(target && !IsDisabled())
+	if(target && !isDisabled)
 	{
 		Point dp = (target->position - position);
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding |= (distance < 50. && speed < 1. && HasBoardCommand());
-		if(isBoarding && (!target->IsFullyDisabled() || target->Hull() < 0.))
+		if(isBoarding && (!target->IsDisabled() || target->Hull() < 0.))
 			isBoarding = false;
 		if(isBoarding && !pilotError)
 		{
@@ -532,7 +532,7 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 	hasBoarded = false;
 	
 	shared_ptr<const Ship> target = GetTargetShip().lock();
-	if(!target || !target->IsFullyDisabled() || target->Hull() <= 0.)
+	if(!target || !target->IsDisabled() || target->Hull() <= 0.)
 		return victim;
 	
 	// Get a non-const pointer to the ship.
@@ -636,14 +636,14 @@ bool Ship::IsTargetable() const
 
 
 
-bool Ship::IsDisabled() const
+bool Ship::IsOverheated() const
 {
-	return isDisabled;
+	return isOverheated;
 }
 
 
 
-bool Ship::IsFullyDisabled() const
+bool Ship::IsDisabled() const
 {
 	double maximumHull = attributes.Get("hull");
 	double minimumHull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
@@ -669,7 +669,7 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet() || IsDisabled() || Hull() <= 0.)
+	if(!GetTargetPlanet() || isDisabled || Hull() <= 0.)
 		return false;
 	
 	Point distance = GetTargetPlanet()->Position() - position;
