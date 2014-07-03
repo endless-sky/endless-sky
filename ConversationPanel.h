@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <string>
+#include <vector>
 
 class Conversation;
 class PlayerInfo;
@@ -49,6 +50,19 @@ private:
 	
 	
 private:
+	class ClickZone {
+	public:
+		ClickZone(const Point &topLeft, const Point &size);
+		
+		bool Contains(const Point &point);
+		
+	private:
+		Point topLeft;
+		Point size;
+	};
+	
+	
+private:
 	PlayerInfo &player;
 	
 	const Conversation &conversation;
@@ -64,6 +78,8 @@ private:
 	
 	std::string firstName;
 	std::string lastName;
+	
+	mutable std::vector<ClickZone> zones;
 };
 
 
