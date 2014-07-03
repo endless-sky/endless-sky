@@ -36,7 +36,6 @@ using namespace std;
 
 namespace {
 	static const int WIDTH = 540;
-	static const int TOP = 240;
 }
 
 
@@ -82,14 +81,19 @@ void ConversationPanel::Draw() const
 		}
 	}
 	
-	SpriteShader::Draw(conversation.Scene(),
-		Point(
-			Screen::Width() * -.5 + WIDTH * .5 + 20.,
-			Screen::Height() * -.5 + TOP * .5 + scroll));
+	int sceneHeight = 20;
+	if(conversation.Scene() && conversation.Scene()->Height())
+	{
+		sceneHeight = 40 + conversation.Scene()->Height();
+		SpriteShader::Draw(conversation.Scene(),
+			Point(
+				Screen::Width() * -.5 + WIDTH * .5 + 20.,
+				Screen::Height() * -.5 + sceneHeight * .5 + scroll));
+	}
 	
 	Point point(
 		(-Screen::Width() / 2) + 20,
-		(-Screen::Height() / 2) + TOP + scroll);
+		(-Screen::Height() / 2) + sceneHeight + scroll);
 	
 	const Font &font = FontSet::Get(14);
 	
@@ -104,6 +108,7 @@ void ConversationPanel::Draw() const
 	Color bright(.8, 0.);
 	Color selectionColor(.1, 0.);
 	
+	zones.clear();
 	if(node < 0)
 	{
 		string done = "[done]";
@@ -128,16 +133,15 @@ void ConversationPanel::Draw() const
 		return;
 	}
 	
-	int i = 0;
 	for(const WrappedText &it : choices)
 	{
-		if(i++ == choice)
-		{
-			Point center = point + Point(WIDTH, it.Height() - it.ParagraphBreak()) * .5;
-			Point size(WIDTH, it.Height());
-			
+		Point center = point + Point(WIDTH, it.Height() - it.ParagraphBreak()) * .5;
+		Point size(WIDTH, it.Height());
+		
+		if(zones.size() == static_cast<unsigned>(choice))
 			FillShader::Fill(center, size, selectionColor);
-		}
+		zones.emplace_back(point, size);
+		
 		it.Draw(point, bright);
 		point.Y() += it.Height();
 	}
@@ -214,7 +218,9 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool ConversationPanel::Click(int x, int y)
 {
-	if(choices.empty() && node >= 0)
+	if(node < 0)
+		GetUI()->Pop(this);
+	else if(choices.empty() && node >= 0)
 	{
 		// Get the x position relative to the left side of the screen.
 		x -= -Screen::Width() / 2;
@@ -222,6 +228,16 @@ bool ConversationPanel::Click(int x, int y)
 			choice = 0;
 		else if(x > 365 && x < 515)
 			choice = 1;
+	}
+	else
+	{
+		Point point(x, y);
+		for(unsigned i = 0; i < zones.size(); ++i)
+			if(zones[i].Contains(point))
+			{
+				Goto(conversation.NextNode(node, i));
+				break;
+			}
 	}
 	return true;
 }
@@ -255,7 +271,9 @@ void ConversationPanel::Goto(int index)
 	}
 	choice = 0;
 	
-	int y = TOP + scroll;
+	int y = scroll;
+	if(conversation.Scene())
+		y += conversation.Scene()->Height();
 	for(const WrappedText &it : text)
 		y += it.Height();
 	for(const WrappedText &it : choices)
@@ -265,4 +283,19 @@ void ConversationPanel::Goto(int index)
 	
 	if(y > Screen::Height())
 		scroll -= (y - Screen::Height());
+}
+
+
+
+ConversationPanel::ClickZone::ClickZone(const Point &topLeft, const Point &size)
+	: topLeft(topLeft), size(size)
+{
+}
+
+
+
+bool ConversationPanel::ClickZone::Contains(const Point &point)
+{
+	Point r = point - topLeft;
+	return (r.X() >= 0. && r.Y() >= 0. && r.X() < size.X() && r.Y() < size.Y());
 }
