@@ -72,7 +72,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			targetTurn = (targetTurn + 1) & 31;
 			shared_ptr<const Ship> target = it->GetTargetShip().lock();
 			if(targetTurn == step || !target || !target->IsTargetable()
-					|| (target->IsFullyDisabled() && personality.Disables()))
+					|| (target->IsDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it, ships));
 			
 			double targetDistance = numeric_limits<double>::infinity();
@@ -122,12 +122,12 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 		{
 			const Personality &person = it->GetPersonality();
 			// TODO: ship personalities controlling whether they destroy disabled ships.
-			if(it->IsFullyDisabled() && !person.Disables() && !person.Plunders())
+			if(it->IsDisabled() && !person.Disables() && !person.Plunders())
 				continue;
 			
 			double range = it->Position().Distance(ship.Position());
 			if(!person.Plunders() || !ship.Cargo().Free())
-				range += 5000. * it->IsFullyDisabled();
+				range += 5000. * it->IsDisabled();
 			if(range < closest)
 			{
 				closest = range;
@@ -146,7 +146,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 	if(target)
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
-		if(shouldBoard && target->IsFullyDisabled())
+		if(shouldBoard && target->IsDisabled())
 		{
 			if(ship.IsBoarding())
 				return;
@@ -485,7 +485,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 				continue;
 			
 			// Don't shoot ships we want to plunder.
-			if(target->IsFullyDisabled() && spareDisabled)
+			if(target->IsDisabled() && spareDisabled)
 				continue;
 			
 			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
@@ -554,7 +554,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				if(!state)
 					continue;
 				
-				state += state * !other->IsFullyDisabled();
+				state += state * !other->IsDisabled();
 				
 				double d = other->Position().Distance(ship.Position());
 				
@@ -590,12 +590,12 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	else if(keyDown & Key::Bit(Key::BOARD))
 	{
 		shared_ptr<const Ship> target = control.GetTargetShip().lock();
-		if(!target || !target->IsFullyDisabled() || target->Hull() <= 0.)
+		if(!target || !target->IsDisabled() || target->Hull() <= 0.)
 		{
 			double closest = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
 			for(const shared_ptr<Ship> &other : ships)
-				if(other->IsTargetable() && other->IsFullyDisabled() && other->Hull() > 0.)
+				if(other->IsTargetable() && other->IsDisabled() && other->Hull() > 0.)
 				{
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double d = other->Position().Distance(ship.Position());
