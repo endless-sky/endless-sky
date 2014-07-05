@@ -55,8 +55,11 @@ BoardingPanel::BoardingPanel(const GameData &data, PlayerInfo &player, const sha
 	for(const auto &it : victim->Cargo().Commodities())
 		plunder.emplace_back(it.first, it.second, system.Trade(it.first));
 	
+	// You cannot plunder hand to hand weapons, because they are kept in the
+	// crew's quarters, not mounted on the exterior of the ship.
 	for(const auto &it : victim->Outfits())
-		plunder.emplace_back(it.first, it.second);
+		if(it->Category() != "Hand to Hand")
+			plunder.emplace_back(it.first, it.second);
 	
 	sort(plunder.begin(), plunder.end());
 }
