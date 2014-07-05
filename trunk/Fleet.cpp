@@ -114,8 +114,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
-		const string &category = ship->Attributes().Category();
-		if(category == "Fighter" || category == "Drone")
+		if(ship->IsFighter())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
 			fighter->SetGovernment(government);
@@ -186,8 +185,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
-		const string &category = ship->Attributes().Category();
-		if(category == "Fighter" || category == "Drone")
+		if(ship->IsFighter())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
 			fighter->SetGovernment(government);

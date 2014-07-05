@@ -306,7 +306,7 @@ bool Ship::Move(list<Effect> &effects)
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten."
 	forget += !isInSystem;
-	if(!isSpecial && forget >= 1000)
+	if((!isSpecial && forget >= 1000) || !currentSystem)
 		return false;
 	isInSystem = false;
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
@@ -508,7 +508,7 @@ bool Ship::Move(list<Effect> &effects)
 	// Boarding:
 	if(isBoarding && (GetThrustCommand() || GetTurnCommand()))
 		isBoarding = false;
-	shared_ptr<const Ship> target = GetTargetShip().lock();
+	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip()).lock();
 	if(target && !isDisabled)
 	{
 		Point dp = (target->position - position);
@@ -516,7 +516,7 @@ bool Ship::Move(list<Effect> &effects)
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding |= (distance < 50. && speed < 1. && HasBoardCommand());
-		if(isBoarding && (!target->IsDisabled() || target->Hull() < 0.))
+		if(isBoarding && !IsFighter() && (!target->IsDisabled() || target->Hull() < 0.))
 			isBoarding = false;
 		if(isBoarding && !pilotError)
 		{
@@ -535,7 +535,7 @@ bool Ship::Move(list<Effect> &effects)
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
 			
-			if(distance < 10. && speed < 1. && !turn)
+			if(distance < 10. && speed < 1. && (IsFighter() || !turn))
 			{
 				isBoarding = false;
 				hasBoarded = true;
@@ -588,19 +588,31 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 // Check if this ship is boarding another ship.
 shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 {
-	shared_ptr<Ship> victim;
 	if(!hasBoarded)
-		return victim;
+		return shared_ptr<Ship>();
 	hasBoarded = false;
 	
-	shared_ptr<const Ship> target = GetTargetShip().lock();
-	if(!target || !target->IsDisabled() || target->Hull() <= 0.)
-		return victim;
-	
 	// Get a non-const pointer to the ship.
+	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip()).lock();
+	shared_ptr<Ship> victim;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship == target)
 			victim = ship;
+	if(!victim)
+		return shared_ptr<Ship>();
+	
+	// For a fighter, "board" means "return to ship."
+	if(IsFighter())
+	{
+		if(victim->AddFighter(shared_from_this()))
+		{
+			currentSystem = nullptr;
+			victim->RemoveEscort(this);
+		}
+		return shared_ptr<Ship>();
+	}
+	if(!target->IsDisabled() || target->Hull() <= 0.)
+		return shared_ptr<Ship>();
 	
 	// If the boarding ship is the player, they will choose what to plunder.
 	if(victim && autoPlunder)
@@ -1110,6 +1122,14 @@ void Ship::UnloadFighters(vector<shared_ptr<Ship>> &ships)
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();
 		}
+}
+
+
+
+bool Ship::IsFighter() const
+{
+	const string &category = attributes.Category();
+	return (category == "Fighter" || category == "Drone");
 }
 
 

@@ -65,6 +65,7 @@ public:
 	// cues and try to stay with it when it lands or goes into hyperspace.
 	void AddEscort(const std::weak_ptr<const Ship> &ship);
 	void SetParent(const std::weak_ptr<const Ship> &ship);
+	void RemoveEscort(const Ship *ship);
 	
 	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
 	const std::weak_ptr<const Ship> &GetParent() const;

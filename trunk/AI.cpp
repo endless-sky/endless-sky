@@ -90,6 +90,17 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			if(target)
 				targetDistance = target->Position().Distance(it->Position());
 			
+			if(it->IsFighter())
+			{
+				shared_ptr<const Ship> parent = it->GetParent().lock();
+				if(parent && !parent->HasLaunchCommand())
+				{
+					MoveTo(*it, *it, parent->Position(), 40., .8);
+					(*it).SetBoardCommand();
+					continue;
+				}
+			}
+			
 			if(it->GetParent().lock() && (targetDistance > 1000. || personality.IsTimid()))
 				MoveEscort(*it, *it);
 			else
@@ -145,7 +156,7 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 void AI::MoveIndependent(Controllable &control, const Ship &ship)
 {
 	auto target = ship.GetTargetShip().lock();
-	if(target)
+	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		if(shouldBoard && target->IsDisabled())
@@ -219,7 +230,15 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 	if(ship.GetTargetSystem())
 	{
 		PrepareForHyperspace(control, ship);
-		control.SetHyperspaceCommand();
+		bool mustWait = false;
+		for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
+		{
+			shared_ptr<const Ship> locked = escort.lock();
+			mustWait = locked && locked->IsFighter();
+		}
+		
+		if(!mustWait)
+			control.SetHyperspaceCommand();
 	}
 	else if(ship.GetTargetPlanet())
 	{

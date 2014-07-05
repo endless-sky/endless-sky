@@ -225,6 +225,19 @@ void Controllable::SetParent(const weak_ptr<const Ship> &ship)
 
 
 
+void Controllable::RemoveEscort(const Ship *ship)
+{
+	auto it = escorts.begin();
+	for( ; it != escorts.end(); ++it)
+		if(it->lock().get() == ship)
+		{
+			escorts.erase(it);
+			return;
+		}
+}
+
+
+
 const vector<weak_ptr<const Ship>> &Controllable::GetEscorts() const
 {
 	return escorts;
