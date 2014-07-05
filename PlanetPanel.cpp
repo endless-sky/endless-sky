@@ -81,6 +81,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		// of a pilot who is out of fuel with no help in sight.
 		if(planet.HasSpaceport())
 			player.Save();
+		player.TakeOff();
 		callback();
 		GetUI()->Pop(this);
 	}

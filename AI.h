@@ -67,6 +67,7 @@ private:
 	int keyDown;
 	int keyHeld;
 	int keyStuck;
+	bool isLaunching;
 };
 
 

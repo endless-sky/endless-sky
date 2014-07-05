@@ -78,6 +78,10 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 			else
 				armament.AddTurret(hardpoint, outfit);
 		}
+		else if(child.Token(0) == "fighter" && child.Size() >= 3)
+			fighterBays.emplace_back(child.Value(1), child.Value(2));
+		else if(child.Token(0) == "drone" && child.Size() >= 3)
+			droneBays.emplace_back(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -158,6 +162,7 @@ void Ship::Save(ostream &out) const
 	sprite.Save(out);
 	
 	out << "\tattributes\n";
+	out << "\t\tcategory \"" << baseAttributes.Category() << "\"\n";
 	for(const auto &it : baseAttributes.Attributes())
 		if(it.second)
 			out << "\t\t\"" << it.first << "\" " << it.second << "\n";
@@ -185,6 +190,10 @@ void Ship::Save(ostream &out) const
 			out << " \"" << weapon.GetOutfit()->Name() << "\"";
 		out << "\n";
 	}
+	for(const Bay &bay : fighterBays)
+		out << "\tfighter " << 2. * bay.point.X() << " " << 2. * bay.point.Y() << "\n";
+	for(const Bay &bay : droneBays)
+		out << "\tdrone " << 2. * bay.point.X() << " " << 2. * bay.point.Y() << "\n";
 	for(const auto &it : explosionEffects)
 		if(it.first && it.second)
 			out << "\texplode \"" << it.first->Name() << "\" " << it.second << "\n";
@@ -300,6 +309,8 @@ bool Ship::Move(list<Effect> &effects)
 	if(!isSpecial && forget >= 1000)
 		return false;
 	isInSystem = false;
+	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
+		hyperspaceSystem = nullptr;
 	
 	
 	// When ships recharge, what actually happens is that they can exceed their
@@ -438,9 +449,10 @@ bool Ship::Move(list<Effect> &effects)
 	else if(HasHyperspaceCommand() && CanHyperspace())
 		hyperspaceSystem = GetTargetSystem();
 	
+	int requiredCrew = RequiredCrew();
 	if(pilotError)
 		--pilotError;
-	else if(rand() % RequiredCrew() >= Crew())
+	else if(requiredCrew && rand() % requiredCrew >= Crew())
 	{
 		pilotError = 30;
 		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
@@ -542,7 +554,33 @@ bool Ship::Move(list<Effect> &effects)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	// TODO: allow carrying and launching of ships.
+	if(!HasLaunchCommand() || zoom != 1. || isDisabled || hyperspaceCount || pilotError)
+		return;
+	
+	for(Bay &bay : fighterBays)
+		if(bay.ship && !(rand() % 60))
+		{
+			ships.push_back(bay.ship);
+			double maxV = bay.ship->MaxVelocity();
+			Point v = velocity + (.3 * maxV) * angle.Unit() + (.2 * maxV) * Angle::Random().Unit();
+			bay.ship->Place(position + angle.Rotate(bay.point), v, angle);
+			bay.ship->SetSystem(currentSystem);
+			bay.ship->SetParent(shared_from_this());
+			AddEscort(bay.ship);
+			bay.ship.reset();
+		}
+	for(Bay &bay : droneBays)
+		if(bay.ship && !(rand() % 40))
+		{
+			ships.push_back(bay.ship);
+			double maxV = bay.ship->MaxVelocity();
+			Point v = velocity + (.3 * maxV) * angle.Unit() + (.2 * maxV) * Angle::Random().Unit();
+			bay.ship->Place(position + angle.Rotate(bay.point), v, angle);
+			bay.ship->SetSystem(currentSystem);
+			bay.ship->SetParent(shared_from_this());
+			AddEscort(bay.ship);
+			bay.ship.reset();
+		}
 }
 
 
@@ -671,7 +709,8 @@ bool Ship::IsDisabled() const
 {
 	double maximumHull = attributes.Get("hull");
 	double minimumHull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
-	return (hull < minimumHull || !crew);
+	bool needsCrew = RequiredCrew() != 0;
+	return (hull < minimumHull || (!crew && needsCrew));
 }
 
 
@@ -887,7 +926,9 @@ int Ship::Crew() const
 
 int Ship::RequiredCrew() const
 {
-	return max(1, static_cast<int>(attributes.Get("required crew")));
+	// Drones do not need crew, but all other ships need at least one.
+	return max(attributes.Category() == "Drone" ? 0 : 1,
+		static_cast<int>(attributes.Get("required crew")));
 }
 
 
@@ -899,7 +940,7 @@ void Ship::AddCrew(int count)
 
 
 
-void Ship::WasCaptured(const std::shared_ptr<Ship> &capturer)
+void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where it is just barely not disabled.
 	double maximumHull = attributes.Get("hull");
@@ -1003,6 +1044,71 @@ void Ship::ApplyForce(const Point &force)
 	double currentVelocity = velocity.Length();
 	if(currentVelocity > maxVelocity)
 		velocity *= maxVelocity / currentVelocity;
+}
+
+
+
+int Ship::FighterBaysFree() const
+{
+	int count = 0;
+	for(const Bay &bay : fighterBays)
+		count += !bay.ship;
+	return count;
+}
+
+
+
+int Ship::DroneBaysFree() const
+{
+	int count = 0;
+	for(const Bay &bay : droneBays)
+		count += !bay.ship;
+	return count;
+}
+
+
+
+void Ship::AddFighter(const shared_ptr<Ship> &ship)
+{
+	if(!ship)
+		return;
+	
+	bool isFighter = ship->attributes.Category() == "Fighter";
+	bool isDrone = ship->attributes.Category() == "Drone";
+	if(!(isFighter || isDrone))
+		return;
+	
+	vector<Bay> &bays = isFighter ? fighterBays : droneBays;
+	for(Bay &bay : bays)
+		if(!bay.ship)
+		{
+			bay.ship = ship;
+			ship->SetSystem(nullptr);
+			ship->SetPlanet(nullptr);
+			break;
+		}
+}
+
+
+
+void Ship::UnloadFighters(vector<shared_ptr<Ship>> &ships)
+{
+	for(Bay &bay : fighterBays)
+		if(bay.ship)
+		{
+			ships.push_back(bay.ship);
+			bay.ship->SetSystem(currentSystem);
+			bay.ship->SetPlanet(landingPlanet);
+			bay.ship.reset();
+		}
+	for(Bay &bay : droneBays)
+		if(bay.ship)
+		{
+			ships.push_back(bay.ship);
+			bay.ship->SetSystem(currentSystem);
+			bay.ship->SetPlanet(landingPlanet);
+			bay.ship.reset();
+		}
 }
 
 
