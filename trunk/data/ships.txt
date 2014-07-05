@@ -321,6 +321,28 @@ ship "Clipper"
 	explode "medium explosion" 10
 	description "The Clipper is the smaller sister ship to the popular Southbound Shipyards Argosy. Although not able to carry as much cargo, Clippers are versatile ships that can be used as passenger transports, couriers, or even warships in a pinch, and they come with enough free space to be customized based on an individual captain's needs."
 
+ship "Combat Drone"
+	sprite "ship/combat drone"
+	attributes
+		category "Drone"
+		"cost" "50000"
+		"hull" 500
+		"mass" 20
+		"drag" .6
+		"outfit space" 45
+		"weapon capacity" 8
+		"engine capacity" 17
+	outfits
+		"X1200 Ion Steering"
+		"X1700 Ion Thruster"
+		"Beam Laser"
+		"nGVF-AA Fuel Cell"
+	engine -5 16
+	engine 5 16
+	gun 0 -16 "Beam Laser"
+	explode "tiny explosion" 15
+	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers."
+
 ship "Cruiser"
 	sprite "ship/cruiser"
 	attributes
@@ -664,6 +686,39 @@ ship "Heavy Shuttle"
 	explode "small explosion" 5
 	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perrenial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
 
+ship "Lance"
+	sprite "ship/lance"
+	attributes
+		category "Fighter"
+		"cost" 55000
+		"shields" 800
+		"hull" 400
+		"required crew" 1
+		"bunks" 1
+		"mass" 30
+		"drag" 0.8
+		"outfit space" 80
+		"weapon capacity" 16
+		"engine capacity" 17
+		weapon
+			"blast radius" 20
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"X1200 Ion Steering"
+		"X1700 Ion Thruster"
+		"nGVF-BB Fuel Cell"
+		"Beam Laser" 2
+		"D14-RN Shield Generator"
+	engine -15 30
+	engine 15 30
+	gun -14 -10 "Beam Laser"
+	gun 14 -10 "Beam Laser"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
+
 ship "Leviathan"
 	sprite "ship/leviathan"
 	attributes
@@ -987,3 +1042,23 @@ ship "Star Barge"
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
 	description "	Because they often carry valuable cargo, and because they are too slow to evade any attackers, Star Barges are a common target of pirates.
 
+ship "Surveillance Drone"
+	sprite "ship/surveillance drone"
+	attributes
+		category "Drone"
+		"cost" "30000"
+		"hull" 300
+		"mass" 15
+		"drag" .6
+		"outfit space" 42
+		"weapon capacity" 0
+		"engine capacity" 17
+	outfits
+		"X1200 Ion Steering"
+		"X1700 Ion Thruster"
+		"Surveillance Pod"
+		"nGVF-AA Fuel Cell"
+	engine -5 16
+	engine 5 16
+	explode "tiny explosion" 15
+	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
