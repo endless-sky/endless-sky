@@ -5,6 +5,7 @@ outfit "LP036a Battery Pack"
 	"mass" 10
 	"outfit space" -10
 	"energy capacity" 1000
+	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
 outfit "LP072a Battery Pack"
 	category "Power"
@@ -13,6 +14,7 @@ outfit "LP072a Battery Pack"
 	"mass" 20
 	"outfit space" -20
 	"energy capacity" 2200
+	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trustign that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
 outfit "LP144a Battery Pack"
 	category "Power"
@@ -21,6 +23,7 @@ outfit "LP144a Battery Pack"
 	"mass" 40
 	"outfit space" -40
 	"energy capacity" 4800
+	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
 outfit "LP288a Battery Pack"
 	category "Power"
@@ -29,6 +32,7 @@ outfit "LP288a Battery Pack"
 	"mass" 80
 	"outfit space" -80
 	"energy capacity" 10400
+	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
 outfit "LP576a Battery Pack"
 	category "Power"
@@ -37,6 +41,7 @@ outfit "LP576a Battery Pack"
 	"mass" 160
 	"outfit space" -160
 	"energy capacity" 23000
+	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
 
 outfit "nGVF-AA Fuel Cell"
@@ -47,6 +52,7 @@ outfit "nGVF-AA Fuel Cell"
 	"outfit space" -20
 	"energy generation" 1
 	"heat generation" 5
+	description "Fuel cells have been the cheapest and most common starship power sources since the dawn of the space era. This model produces only enough power for very small or slow ships."
 
 outfit "nGVF-BB Fuel Cell"
 	category "Power"
@@ -56,6 +62,7 @@ outfit "nGVF-BB Fuel Cell"
 	"outfit space" -30
 	"energy generation" 1.5
 	"heat generation" 8
+	description "This is a step up form the smallest fuel cells, providing enough energy to power a few small guns in addition to your engines."
 
 outfit "nGVF-CC Fuel Cell"
 	category "Power"
@@ -65,6 +72,7 @@ outfit "nGVF-CC Fuel Cell"
 	"outfit space" -40
 	"energy generation" 2.2
 	"heat generation" 10
+	description "This is a medium-sized fuel cell, designed to be sufficient for larger civilian ships and small warships while still being more affordable than the more sophisticated generator options."
 
 outfit "nGVF-DD Fuel Cell"
 	category "Power"
@@ -74,6 +82,7 @@ outfit "nGVF-DD Fuel Cell"
 	"outfit space" -60
 	"energy generation" 3.3
 	"heat generation" 16
+	description "This is a relatively large fuel cell. Other generators are available that produce more energy and fit into a smaller space, but they are much more expensive. As a result, large civilian ships that will not be frequently in combat often come equipped with these fuel cells."
 
 outfit "nGVF-EE Fuel Cell"
 	category "Power"
@@ -83,6 +92,7 @@ outfit "nGVF-EE Fuel Cell"
 	"outfit space" -80
 	"energy generation" 5
 	"heat generation" 20
+	description "This is the largest fuel cell available, larger than some nuclear reactors but much, much more affordable. Many captains on a tight budget are willing to put up with one of these until they can raise the money for something more efficient."
 
 
 outfit "RT-I Radiothermal"
@@ -93,16 +103,7 @@ outfit "RT-I Radiothermal"
 	"outfit space" -50
 	"energy generation" 4.2
 	"heat generation" 18
-
-outfit "RT-V Radiothermal"
-	category "Power"
-	cost 600000
-	thumbnail "outfit/large radiothermal"
-	"mass" 100
-	"outfit space" -100
-	"energy generation" 9.2
-	"heat generation" 38
-
+	description "Radiothermal generators harvest heat from radioactive isotopes and convert it into electricity. They are more powerful than fuel cells, but also produce a relatively high amount of heat."
 
 outfit "S3 Thermionic"
 	category "Power"
@@ -112,16 +113,7 @@ outfit "S3 Thermionic"
 	"outfit space" -60
 	"energy generation" 4.8
 	"heat generation" 12
-
-outfit "S7 Thermionic"
-	category "Power"
-	cost 700000
-	thumbnail "outfit/large thermionic"
-	"mass" 120
-	"outfit space" -120
-	"energy generation" 10.5
-	"heat generation" 25
-
+	description "Thermionic radioisotopic generators were designed as a cooler-running alternative to radiothermal generators."
 
 outfit "NT-200 Nucleovoltaic"
 	category "Power"
@@ -131,50 +123,45 @@ outfit "NT-200 Nucleovoltaic"
 	"outfit space" -70
 	"energy generation" 7.0
 	"heat generation" 15
-
-outfit "NT-500 Nucleovoltaic"
-	category "Power"
-	cost 1200000
-	thumbnail "outfit/large nucleovoltaic"
-	"mass" 140
-	"outfit space" -140
-	"energy generation" 15.3
-	"heat generation" 32
+	description "Nucleovoltaic generators are a relatively recent generator technology that harvests energy from the decay of a radioisotope source and converts it directly into electricity. They are the most powerful generator that relies on nuclear decay instead of an active nuclear chain reaction."
 
 
 outfit "Fission Reactor"
 	category "Power"
-	cost 3000000
+	cost 1500000
 	thumbnail "outfit/fission"
-	"mass" 100
-	"outfit space" -100
-	"energy generation" 16.8
-	"heat generation" 40
+	"mass" 65
+	"outfit space" -65
+	"energy generation" 9.4
+	"heat generation" 25
+	description "Fission reactors have been a mainstay of large military vessels since even before the dawn of the space era. Today's models are very safe and efficient, but some pilots still find them disconcerting."
 
 outfit "Breeder Reactor"
 	category "Power"
-	cost 5000000
+	cost 2500000
 	thumbnail "outfit/breeder"
-	"mass" 120
-	"outfit space" -120
-	"energy generation" 24.3
-	"heat generation" 48
+	"mass" 80
+	"outfit space" -80
+	"energy generation" 12.8
+	"heat generation" 35
+	description "A breeder reactor is a more efficient fusion reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
 
 outfit "Fusion Reactor"
 	category "Power"
-	cost 10000000
+	cost 5000000
 	thumbnail "outfit/fusion"
-	"mass" 150
-	"outfit space" -150
-	"energy generation" 33.6
-	"heat generation" 50
+	"mass" 100
+	"outfit space" -100
+	"energy generation" 18.2
+	"heat generation" 40
+	description "The invention of practical fusion power near the end of the twenty-first century spurred a new era of prosperity and plenty. Centuries later, the generators have been reduced in size, but are still generally only used in capital warships."
 
 outfit "Armageddon Core"
 	category "Power"
-	cost 17000000
+	cost 9000000
 	thumbnail "outfit/core"
-	"mass" 200
-	"outfit space" -200
-	"energy generation" 48.7
+	"mass" 140
+	"outfit space" -140
+	"energy generation" 28.2
 	"heat generation" 95
-
+	description "The Armageddon Core was designed to meet the extreme power needs of the largest warships of the Republic Navy. One of these generators costs more than an entire fleet of smaller ships."
