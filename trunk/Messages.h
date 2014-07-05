@@ -40,6 +40,9 @@ public:
 	// will be culled out, and new ones that have just been added will have
 	// their "step" set to the given value.
 	static const std::vector<Entry> &Get(int step);
+	
+	// Reset the messages (i.e. because a new game was loaded).
+	static void Reset();
 };
 
 

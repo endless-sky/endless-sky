@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "MainPanel.h"
+#include "Messages.h"
 #include "ShipyardPanel.h"
 #include "UI.h"
 
@@ -180,6 +181,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	else if(key == 'e')
 	{
 		player = loadedInfo;
+		Messages::Reset();
 		GetUI()->Pop(this);
 		GetUI()->Pop(GetUI()->Root().get());
 		gamePanels.Reset();

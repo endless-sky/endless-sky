@@ -61,3 +61,12 @@ const vector<Messages::Entry> &Messages::Get(int step)
 	return list;
 }
 
+
+
+// Reset the messages (i.e. because a new game was loaded).
+void Messages::Reset()
+{
+	lock_guard<mutex> lock(incomingMutex);
+	incoming.clear();
+	list.clear();
+}
