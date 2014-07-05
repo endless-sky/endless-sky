@@ -33,7 +33,7 @@ class Armament {
 public:
 	class Weapon {
 	public:
-		Weapon(const Point &point, bool isTurret);
+		Weapon(const Point &point, bool isTurret, const Outfit *outfit = nullptr);
 		
 		// Be sure to check if this is nullptr!
 		const Outfit *GetOutfit() const;
@@ -77,13 +77,16 @@ public:
 	
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point);
-	void AddTurret(const Point &point);
+	void AddGunPort(const Point &point, const Outfit *outfit = nullptr);
+	void AddTurret(const Point &point, const Outfit *outfit = nullptr);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
-	// remove a weapon, just pass  negative value here.
+	// remove a weapon, just pass a negative value here.
 	void Add(const Outfit *outfit, int count = 1);
+	// Call this once all the outfits have been loaded to make sure they are all
+	// set up properly (even the ones that were pre-assigned to a hardpoint).
+	void FinishLoading();
 	
 	// Access the array of weapons.
 	const std::vector<Weapon> &Get() const;

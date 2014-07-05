@@ -50,6 +50,7 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	
 	government = data.Governments().Get("Escort");
 	crew = 0;
+	equipped.clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -63,10 +64,20 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 			baseAttributes.Load(child, data.Outfits(), data.Effects());
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
-		else if(child.Token(0) == "gun" && child.Size() >= 3)
-			armament.AddGunPort(Point(child.Value(1), child.Value(2)));
-		else if(child.Token(0) == "turret" && child.Size() >= 3)
-			armament.AddTurret(Point(child.Value(1), child.Value(2)));
+		else if((child.Token(0) == "gun" || child.Token(0) == "turret") && child.Size() >= 3)
+		{
+			Point hardpoint(child.Value(1), child.Value(2));
+			const Outfit *outfit = nullptr;
+			if(child.Size() >= 4)
+			{
+				outfit = data.Outfits().Get(child.Token(3));
+				++equipped[outfit];
+			}
+			if(child.Token(0) == "gun")
+				armament.AddGunPort(hardpoint, outfit);
+			else
+				armament.AddTurret(hardpoint, outfit);
+		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -120,9 +131,19 @@ void Ship::FinishLoading()
 	{
 		attributes.Add(*it.first, it.second);
 		if(it.first->IsWeapon())
-			armament.Add(it.first, it.second);
+		{
+			int count = it.second;
+			auto eit = equipped.find(it.first);
+			if(eit != equipped.end())
+				count -= eit->second;
+			
+			if(count)
+				armament.Add(it.first, count);
+		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
+	equipped.clear();
+	armament.FinishLoading();
 	
 	Recharge();
 }

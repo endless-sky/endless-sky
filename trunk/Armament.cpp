@@ -27,8 +27,8 @@ using namespace std;
 // Members of Armament::Weapon:
 
 // Constructor.
-Armament::Weapon::Weapon(const Point &point, bool isTurret)
-	: outfit(nullptr), point(point * .5), reload(0), isTurret(isTurret)
+Armament::Weapon::Weapon(const Point &point, bool isTurret, const Outfit *outfit)
+	: outfit(outfit), point(point * .5), reload(0), isTurret(isTurret)
 {
 }
 
@@ -207,16 +207,16 @@ void Armament::Weapon::Uninstall()
 // Members of Armament:
 
 // Add a gun or turret hard-point.
-void Armament::AddGunPort(const Point &point)
+void Armament::AddGunPort(const Point &point, const Outfit *outfit)
 {
-	weapons.emplace_back(point, false);
+	weapons.emplace_back(point, false, outfit);
 }
 
 
 
-void Armament::AddTurret(const Point &point)
+void Armament::AddTurret(const Point &point, const Outfit *outfit)
 {
-	weapons.emplace_back(point, true);
+	weapons.emplace_back(point, true, outfit);
 }
 
 
@@ -269,6 +269,27 @@ void Armament::Add(const Outfit *outfit, int count)
 				streamReload.erase(it);
 		}
 	}
+}
+
+
+
+// Call this once all the outfits have been loaded to make sure they are all
+// set up properly (even the ones that were pre-assigned to a hardpoint).
+void Armament::FinishLoading()
+{
+	streamReload.clear();
+	for(Weapon &weapon : weapons)
+		if(weapon.GetOutfit())
+		{
+			const Outfit *outfit = weapon.GetOutfit();
+			
+			// Make sure the firing angle is set properly.
+			weapon.Install(outfit);
+			// If this weapon is streamed, create a stream counter.
+			// Missiles and anti-missiles do not stream.
+			if(!outfit->WeaponGet("missile strength") && !outfit->WeaponGet("anti-missile"))
+				++streamReload[outfit];
+		}
 }
 
 
