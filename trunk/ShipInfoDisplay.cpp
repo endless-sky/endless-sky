@@ -311,6 +311,19 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributesHeight += 20;
 	}
 	
+	if(ship.DroneBaysFree())
+	{
+		attributeLabels.push_back("drone bays:");
+		attributeValues.push_back(to_string(ship.DroneBaysFree()));
+		attributesHeight += 10;
+	}
+	if(ship.FighterBaysFree())
+	{
+		attributeLabels.push_back("fighter bays:");
+		attributeValues.push_back(to_string(ship.FighterBaysFree()));
+		attributesHeight += 10;
+	}
+	
 	tableLabels.clear();
 	energyTable.clear();
 	heatTable.clear();

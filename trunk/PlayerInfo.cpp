@@ -499,17 +499,18 @@ void PlayerInfo::TakeOff()
 	if(!drones.empty() || !fighters.empty())
 	{
 		ostringstream out;
+		out << "Because none of your ships can carry them, you sold ";
 		if(!fighters.empty() && !drones.empty())
-			out << "You sold " << fighters.size()
-				<< (fighters.size() == 1 ? "fighter and " : "fighters and ")
+			out << fighters.size()
+				<< (fighters.size() == 1 ? " fighter and " : " fighters and ")
 				<< drones.size()
-				<< (drones.size() == 1 ? "drone " : " drones ");
+				<< (drones.size() == 1 ? " drone" : " drones");
 		else if(fighters.size())
-			out << "You sold " << fighters.size()
-				<< (fighters.size() == 1 ? "fighter " : "fighters ");
+			out << fighters.size()
+				<< (fighters.size() == 1 ? " fighter" : " fighters");
 		else
-			out << "You sold " << drones.size()
-				<< (drones.size() == 1 ? "drone " : "drones ");
+			out << drones.size()
+				<< (drones.size() == 1 ? " drone" : " drones");
 		
 		int income = 0;
 		for(const shared_ptr<Ship> &ship : fighters)
@@ -517,7 +518,7 @@ void PlayerInfo::TakeOff()
 		for(const shared_ptr<Ship> &ship : drones)
 			income += ship->Cost();
 		
-		out << "that you had no bays for, for " << income << " credits.";
+		out << ", earning " << income << " credits.";
 		accounts.AddCredits(income);
 		Messages::Add(out.str());
 	}
