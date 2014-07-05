@@ -233,8 +233,10 @@ fleet "Large Republic"
 		"Rainmaker"
 	variant 3
 		"Cruiser"
+		"Combat Drone" 4
 	variant 3
 		"Cruiser"
+		"Combat Drone" 4
 		"Frigate"
 		"Rainmaker"
 	variant 2
@@ -246,10 +248,12 @@ fleet "Large Republic"
 		"Lance" 4
 		"Combat Drone" 6
 		"Cruiser"
+		"Combat Drone" 4
 		"Frigate" 2
 		"Rainmaker" 2
 	variant 1
 		"Cruiser"
+		"Combat Drone" 4
 		"Frigate" 2
 	variant 1
 		"Frigate"
@@ -283,8 +287,10 @@ fleet "Large Deep"
 		"Rainmaker"
 	variant 3
 		"Cruiser"
+		"Combat Drone" 4
 	variant 3
 		"Cruiser"
+		"Combat Drone" 4
 		"Frigate"
 		"Rainmaker"
 	variant 2
@@ -296,10 +302,12 @@ fleet "Large Deep"
 		"Lance" 4
 		"Combat Drone" 6
 		"Cruiser"
+		"Combat Drone" 4
 		"Frigate" 2
 		"Rainmaker" 2
 	variant 1
 		"Cruiser"
+		"Combat Drone" 4
 		"Frigate" 2
 	variant 1
 		"Frigate"

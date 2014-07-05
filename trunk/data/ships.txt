@@ -398,6 +398,10 @@ ship "Cruiser"
 	turret -33 -19 "Heavy Laser Turret"
 	turret 33 -19 "Heavy Laser Turret"
 	turret 0 0 "Heavy Anti-Missile Turret"
+	drone -25 18
+	drone 25 18
+	drone -25 49
+	drone 25 49
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
