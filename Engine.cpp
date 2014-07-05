@@ -186,6 +186,9 @@ void Engine::Step(bool isActive)
 				}
 			}
 		
+		if(player && player->IsOverheated())
+			Messages::Add("Your ship has overheated.");
+		
 		if(player && player->Hull())
 			info.SetSprite("player sprite", player->GetSprite().GetSprite());
 		else
