@@ -157,7 +157,7 @@ public:
 	
 	int FighterBaysFree() const;
 	int DroneBaysFree() const;
-	void AddFighter(const std::shared_ptr<Ship> &ship);
+	bool AddFighter(const std::shared_ptr<Ship> &ship);
 	void UnloadFighters(std::vector<std::shared_ptr<Ship>> &ships);
 	
 	// Get cargo information.

@@ -59,6 +59,7 @@ private:
 	
 	const Government *government;
 	const ShipName *names;
+	const ShipName *fighterNames;
 	std::vector<Variant> variants;
 	int cargo;
 	int total;
