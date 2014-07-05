@@ -45,6 +45,8 @@ void Fleet::Load(const DataFile::Node &node, const GameData &data)
 			government = data.Governments().Get(child.Token(1));
 		else if(child.Token(0) == "names" && child.Size() >= 2)
 			names = data.ShipNames().Get(child.Token(1));
+		else if(child.Token(0) == "fighter names" && child.Size() >= 2)
+			fighterNames = data.ShipNames().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "personality")
@@ -109,9 +111,21 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	else
 		source = system.Links()[choice];
 	
-	shared_ptr<Ship> flagship;
+	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
+		const string &category = ship->Attributes().Category();
+		if(category == "Fighter" || category == "Drone")
+		{
+			shared_ptr<Ship> fighter(new Ship(*ship));
+			fighter->SetGovernment(government);
+			fighter->SetName((fighterNames ? fighterNames : names)->Get());
+			fighter->SetPersonality(personality);
+			for(const shared_ptr<Ship> &parent : placed)
+				if(parent->AddFighter(fighter))
+					break;
+			continue;
+		}
 		Angle angle = Angle::Random(360.);
 		Point pos = position + angle.Unit() * (rand() % (radius + 1));
 		
@@ -124,13 +138,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		ships.front()->SetName(names->Get());
 		ships.front()->SetPersonality(personality);
 		
-		if(!flagship)
-			flagship = ships.front();
-		else
+		if(!placed.empty())
 		{
-			ships.front()->SetParent(flagship);
-			flagship->AddEscort(ships.front());
+			ships.front()->SetParent(placed.front());
+			placed.front()->AddEscort(ships.front());
 		}
+		placed.push_back(ships.front());
 		
 		SetCargo(&*ships.front());
 	}
@@ -170,9 +183,21 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 	Angle angle = Angle::Random();
 	center += angle.Unit() * ((rand() % 2001) - 1000);
 	
-	shared_ptr<Ship> flagship;
+	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
+		const string &category = ship->Attributes().Category();
+		if(category == "Fighter" || category == "Drone")
+		{
+			shared_ptr<Ship> fighter(new Ship(*ship));
+			fighter->SetGovernment(government);
+			fighter->SetName((fighterNames ? fighterNames : names)->Get());
+			fighter->SetPersonality(personality);
+			for(const shared_ptr<Ship> &parent : placed)
+				if(parent->AddFighter(fighter))
+					break;
+			continue;
+		}
 		Angle angle = Angle::Random(360.);
 		Point pos = center + Angle::Random().Unit() * (rand() % 400);
 		
@@ -185,13 +210,12 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 		ships.front()->SetName(names->Get());
 		ships.front()->SetPersonality(personality);
 		
-		if(!flagship)
-			flagship = ships.front();
-		else
+		if(!placed.empty())
 		{
-			ships.front()->SetParent(flagship);
-			flagship->AddEscort(ships.front());
+			ships.front()->SetParent(placed.front());
+			placed.front()->AddEscort(ships.front());
 		}
+		placed.push_back(ships.front());
 		
 		SetCargo(&*ships.front());
 	}

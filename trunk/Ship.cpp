@@ -1068,15 +1068,15 @@ int Ship::DroneBaysFree() const
 
 
 
-void Ship::AddFighter(const shared_ptr<Ship> &ship)
+bool Ship::AddFighter(const shared_ptr<Ship> &ship)
 {
 	if(!ship)
-		return;
+		return false;
 	
 	bool isFighter = ship->attributes.Category() == "Fighter";
 	bool isDrone = ship->attributes.Category() == "Drone";
 	if(!(isFighter || isDrone))
-		return;
+		return false;
 	
 	vector<Bay> &bays = isFighter ? fighterBays : droneBays;
 	for(Bay &bay : bays)
@@ -1085,8 +1085,9 @@ void Ship::AddFighter(const shared_ptr<Ship> &ship)
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
-			break;
+			return true;
 		}
+	return false;
 }
 
 

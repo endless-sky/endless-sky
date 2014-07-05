@@ -224,6 +224,7 @@ fleet "Small Republic"
 fleet "Large Republic"
 	government "Republic"
 	names "civilian"
+	"fighter names" "republic fighter"
 	cargo 0
 	personality
 		heroic
@@ -238,8 +239,12 @@ fleet "Large Republic"
 		"Rainmaker"
 	variant 2
 		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
 	variant 1
 		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
 		"Cruiser"
 		"Frigate" 2
 		"Rainmaker" 2
@@ -269,6 +274,7 @@ fleet "Small Deep"
 fleet "Large Deep"
 	government "Republic"
 	names "civilian"
+	"fighter names" "republic fighter"
 	cargo 0
 	personality
 		heroic
@@ -283,8 +289,12 @@ fleet "Large Deep"
 		"Rainmaker"
 	variant 2
 		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
 	variant 1
 		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
 		"Cruiser"
 		"Frigate" 2
 		"Rainmaker" 2

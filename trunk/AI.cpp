@@ -386,6 +386,7 @@ void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 {
 	// First of all, aim in the direction that will hit this target.
 	control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
+	control.SetLaunchCommand();
 	
 	// This is not the behavior I want, but it's reasonable.
 	Point d = target.Position() - ship.Position();
