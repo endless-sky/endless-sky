@@ -38,7 +38,7 @@ class System;
 
 
 // Class representing a ship (either a model for sale or an instance of it).
-class Ship : public Controllable {
+class Ship : public Controllable, public std::enable_shared_from_this<Ship> {
 public:
 	// Default constructor.
 	Ship();
@@ -155,6 +155,11 @@ public:
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
 	
+	int FighterBaysFree() const;
+	int DroneBaysFree() const;
+	void AddFighter(const std::shared_ptr<Ship> &ship);
+	void UnloadFighters(std::vector<std::shared_ptr<Ship>> &ships);
+	
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
@@ -180,6 +185,17 @@ public:
 	
 private:
 	void CreateExplosion(std::list<Effect> &effects);
+	
+	
+private:
+	class Bay {
+	public:
+		Bay() = default;
+		Bay(double x, double y) : point(x * .5, y * .5) {}
+		
+		Point point;
+		std::shared_ptr<Ship> ship;
+	};
 	
 	
 private:
@@ -209,6 +225,9 @@ private:
 	const Outfit *explosionWeapon;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
+	
+	std::vector<Bay> droneBays;
+	std::vector<Bay> fighterBays;
 	
 	std::vector<Point> enginePoints;
 	Armament armament;

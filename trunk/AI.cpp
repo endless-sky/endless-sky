@@ -31,7 +31,7 @@ using namespace std;
 
 
 AI::AI()
-	: step(0), keyDown(0), keyHeld(0), keyStuck(0)
+	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false)
 {
 }
 
@@ -46,6 +46,15 @@ void AI::UpdateKeys(int keys, PlayerInfo *info)
 	
 	if(keyDown & Key::Bit(Key::SELECT))
 		info->SelectNext();
+	if(keyDown & Key::Bit(Key::DEPLOY))
+	{
+		const Ship *player = info->GetShip();
+		if(player && player->IsTargetable())
+		{
+			isLaunching = !isLaunching;
+			Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
+		}
+	}
 }
 
 
@@ -691,4 +700,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	}
 	else
 		keyStuck = 0;
+	
+	if(isLaunching)
+		control.SetLaunchCommand();
 }

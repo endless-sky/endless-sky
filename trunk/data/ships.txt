@@ -271,6 +271,16 @@ ship "Carrier"
 	turret 0 -114 "Heavy Laser Turret"
 	turret 0 157 "Heavy Laser Turret"
 	turret 0 103 "Heavy Anti-Missile Turret"
+	fighter -37 -65
+	fighter 37 -65
+	fighter -46 40
+	fighter 46 40
+	drone -72 -46
+	drone 72 -46
+	drone -101 57
+	drone 101 57
+	drone -74 57
+	drone 74 57
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50

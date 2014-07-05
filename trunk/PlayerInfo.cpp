@@ -420,6 +420,14 @@ void PlayerInfo::Land()
 			++it; 
 	}
 	
+	// "Unload" all fighters, so they will get recharged, etc.
+	vector<shared_ptr<Ship>> fighters;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == system)
+			ship->UnloadFighters(fighters);
+	ships.insert(ships.end(), fighters.begin(), fighters.end());
+	fighters.clear();
+	
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
@@ -445,10 +453,74 @@ void PlayerInfo::TakeOff()
 	for(const auto &it : gameData->Governments())
 		it.second.ResetProvocation();
 	
-	// TODO: handle outfit cargo.
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
 			cargo.TransferAll(&ship->Cargo());
+	
+	// Extract the fighters from the list.
+	vector<shared_ptr<Ship>> fighters;
+	vector<shared_ptr<Ship>> drones;
+	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
+	while(it != ships.end())
+	{
+		if((*it)->GetSystem() == system)
+		{
+			const string &category = (*it)->Attributes().Category();
+			bool isFighter = (category == "Fighter");
+			bool isDrone = (category == "Drone");
+			if(isFighter)
+				fighters.push_back(*it);
+			else if(isDrone)
+				drones.push_back(*it);
+			
+			if(isFighter || isDrone)
+			{
+				it = ships.erase(it);
+				// Do not increment the iterator.
+				continue;
+			}
+		}
+		++it;
+	}
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == system)
+		{
+			while(!fighters.empty() && ship->FighterBaysFree())
+			{
+				ship->AddFighter(fighters.back());
+				fighters.pop_back();
+			}
+			while(!drones.empty() && ship->DroneBaysFree())
+			{
+				ship->AddFighter(drones.back());
+				drones.pop_back();
+			}
+		}
+	if(!drones.empty() || !fighters.empty())
+	{
+		ostringstream out;
+		if(!fighters.empty() && !drones.empty())
+			out << "You sold " << fighters.size()
+				<< (fighters.size() == 1 ? "fighter and " : "fighters and ")
+				<< drones.size()
+				<< (drones.size() == 1 ? "drone " : " drones ");
+		else if(fighters.size())
+			out << "You sold " << fighters.size()
+				<< (fighters.size() == 1 ? "fighter " : "fighters ");
+		else
+			out << "You sold " << drones.size()
+				<< (drones.size() == 1 ? "drone " : "drones ");
+		
+		int income = 0;
+		for(const shared_ptr<Ship> &ship : fighters)
+			income += ship->Cost();
+		for(const shared_ptr<Ship> &ship : drones)
+			income += ship->Cost();
+		
+		out << "that you had no bays for, for " << income << " credits.";
+		accounts.AddCredits(income);
+		Messages::Add(out.str());
+	}
 	
 	int sold = cargo.Used();
 	int income = cargo.Value(system);
