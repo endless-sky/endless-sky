@@ -1,3 +1,49 @@
+ship "Aerie"
+	sprite "ship/aerie"
+	attributes
+		category "Light Warship"
+		"cost" 1500000
+		"shields" 4500
+		"hull" 1500
+		"required crew" 6
+		"bunks" 15
+		"mass" 130
+		"drag" 4.1
+		"fuel capacity" 500
+		"cargo space" 50
+		"outfit space" 360
+		"weapon capacity" 150
+		"engine capacity" 70
+		weapon
+			"blast radius" 30
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"D41-HY Shield Generator"
+		"LP072a Battery Pack"
+		"NT-200 Nucleovoltaic"
+		"Hyperdrive"
+		"Heavy Laser" 2
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+	engine -10 91
+	engine 10 91
+	gun -13 -79 "Heavy Laser"
+	gun 13 -79 "Heavy Laser"
+	turret -17 14 "Heavy Laser Turret"
+	turret 17 14 "Heavy Laser Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	fighter -42 -2
+	fighter 42 2
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "big explosion" 10
+	description "The Lionheart Aerie is a light carrier, designed to be just big enough for two fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millenium, but this model comes with the very latest in generator and weapon technology."
+
 ship "Argosy"
 	sprite "ship/argosy"
 	attributes
@@ -353,6 +399,50 @@ ship "Combat Drone"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers."
 
+ship "Corvette"
+	sprite "ship/corvette"
+	attributes
+		category "Light Warship"
+		"cost" 1600000
+		"shields" 7200
+		"hull" 700
+		"required crew" 5
+		"bunks" 12
+		"mass" 150
+		"drag" 3.2
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 400
+		"weapon capacity" 150
+		"engine capacity" 70
+		weapon
+			"blast radius" 150
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+		"NT-200 Nucleovoltaic"
+		"Hyperdrive"
+		"Heavy Laser Turret" 2
+		"Heavy Laser" 4
+	engine -25 105
+	engine 25 105
+	gun -12 -80 "Heavy Laser"
+	gun 12 -80 "Heavy Laser"
+	gun -16 -72 "Heavy Laser"
+	gun 16 -72 "Heavy Laser"
+	turret 0 -30 "Heavy Laser Turret"
+	turret 0 73 "Heavy Laser Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+	description "Incorporating new, experimental lightweight materials, the Lionheart Corvette combines the speed and agility of a fighter with the armament of a heavy warship. It weak hull is more than compensated for by its advanced shielding matrix."
+
 ship "Cruiser"
 	sprite "ship/cruiser"
 	attributes
@@ -408,6 +498,39 @@ ship "Cruiser"
 	explode "big explosion" 40
 	explode "huge explosion" 10
 	description "The Republic Cruiser is a relatively recent design, a much larger version of the Frigate designed to be able to take on an entire pirate fleet if necessary. In addition to a wide variety of weaponry, Cruisers have space to carry four attack drones: fast, pilotless fighters that can be controlled remotely."
+
+ship "Dagger"
+	sprite "ship/dagger"
+	attributes
+		category "Fighter"
+		"cost" 59000
+		"shields" 1000
+		"hull" 300
+		"required crew" 1
+		"bunks" 1
+		"mass" 20
+		"drag" 0.8
+		"outfit space" 90
+		"weapon capacity" 20
+		"engine capacity" 20
+		weapon
+			"blast radius" 20
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"X1200 Ion Steering"
+		"X1700 Ion Thruster"
+		"nGVF-BB Fuel Cell"
+		"Beam Laser" 2
+		"D14-RN Shield Generator"
+	engine -15 30
+	engine 15 30
+	gun -14 -10 "Beam Laser"
+	gun 14 -10 "Beam Laser"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
 
 ship "Falcon"
 	sprite "ship/falcon"
@@ -704,13 +827,13 @@ ship "Lance"
 	sprite "ship/lance"
 	attributes
 		category "Fighter"
-		"cost" 55000
+		"cost" 53000
 		"shields" 800
 		"hull" 400
 		"required crew" 1
 		"bunks" 1
 		"mass" 30
-		"drag" 0.8
+		"drag" 0.9
 		"outfit space" 80
 		"weapon capacity" 16
 		"engine capacity" 17
@@ -722,7 +845,8 @@ ship "Lance"
 	outfits
 		"X1200 Ion Steering"
 		"X1700 Ion Thruster"
-		"nGVF-BB Fuel Cell"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
 		"Beam Laser" 2
 		"D14-RN Shield Generator"
 	engine -15 30
