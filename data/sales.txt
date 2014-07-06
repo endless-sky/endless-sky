@@ -21,9 +21,10 @@ shipyard "Southbound Advanced"
 
 shipyard "Lionheart Basics"
 	"Scout"
+	"Dagger"
 
 shipyard "Lionheart Advanced"
-	"Scout"
+	"Aerie"
 
 shipyard "Betelgeuse Basics"
 	"Shuttle"
