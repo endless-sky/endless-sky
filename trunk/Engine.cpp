@@ -292,7 +292,7 @@ void Engine::Step(bool isActive)
 		
 		// Begin the next frame's calculations.
 		if(isActive)
-			calcTickTock = !calcTickTock;
+			drawTickTock = !drawTickTock;
 	}
 	if(isActive)
 		condition.notify_one();
@@ -431,7 +431,7 @@ void Engine::ThreadEntryPoint()
 		
 		{
 			unique_lock<mutex> lock(swapMutex);
-			drawTickTock = calcTickTock;
+			calcTickTock = drawTickTock;
 		}
 		condition.notify_one();
 	}
