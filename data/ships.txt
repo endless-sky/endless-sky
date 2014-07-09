@@ -903,6 +903,53 @@ ship "Leviathan"
 	explode "big explosion" 8
 	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
 
+ship "Protector"
+	sprite "ship/protector"
+	attributes
+		category "Heavy Warship"
+		"cost" 2500000
+		"shields" 7000
+		"hull" 9000
+		"required crew" 31
+		"bunks" 44
+		"mass" 560
+		"drag" 12.3
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 520
+		"weapon capacity" 220
+		"engine capacity" 100
+		weapon
+			"blast radius" 400
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"X3200 Ion Steering"
+		"X3700 Ion Thruster"
+		"Fission Reactor"
+		"Hyperdrive"
+		"Quad Blaster Turret" 6
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+	engine -11 125
+	engine 11 125
+	gun -15 -100 "Torpedo Launcher"
+	gun 15 -100 "Torpedo Launcher"
+	turret -54 -54 "Quad Blaster Turret"
+	turret 54 -54 "Quad Blaster Turret"
+	turret -73 0 "Quad Blaster Turret"
+	turret 73 0 "Quad Blaster Turret"
+	turret -54 54 "Quad Blaster Turret"
+	turret 54 54 "Quad Blaster Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+	description "Voted the ''ugliest ship in the sky'' by Star and Starship Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six blaster turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys."
+
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes

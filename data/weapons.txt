@@ -82,6 +82,27 @@ outfit "Modified Blaster Turret"
 		"hull damage" 10
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
+outfit "Quad Blaster Turret"
+	category "Turrets"
+	cost 230000
+	thumbnail "outfit/quad blaster turret"
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
+	"turret mounts" -1
+	weapon
+		sprite "projectile/blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 3
+		"velocity" 7
+		"lifetime" 60
+		"reload" 3
+		"firing energy" 10
+		"firing heat" 30
+		"shield damage" 7
+		"hull damage" 7
+	description "A Quad Blaster Turret carries four guns on a single turret mount, doubling the firepower of an ordinary Blaster Turret for ships with enough space to install one and energy to drive it."
+
 outfit "Beam Laser"
 	category "Guns"
 	cost 29000
