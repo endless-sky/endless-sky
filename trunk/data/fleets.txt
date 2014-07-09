@@ -104,6 +104,12 @@ fleet "Large Core Merchants"
 		"Freighter" 4
 		"Quicksilver" 2
 		"Splinter" 1
+	variant 1
+		"Freighter" 4
+		"Protector" 1
+	variant 1
+		"Bulk Freighter" 2
+		"Protector" 1
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -315,6 +321,11 @@ fleet "Large Syndicate"
 		"Splinter" 3
 	variant 2
 		"Quicksilver" 5
+	variant 1
+		"Protector"
+	variant 1
+		"Protector"
+		"Quicksilver" 2
 
 fleet "Small Southern Pirates"
 	government "Pirate"
