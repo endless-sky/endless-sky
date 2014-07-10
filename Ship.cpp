@@ -987,7 +987,14 @@ bool Ship::ShouldDelete() const
 
 double Ship::Mass() const
 {
-	return cargo.Used() + attributes.Get("mass");
+	double carried = 0.;
+	for(const Bay &bay : droneBays)
+		if(bay.ship)
+			carried += bay.ship->Mass();
+	for(const Bay &bay : fighterBays)
+		if(bay.ship)
+			carried += bay.ship->Mass();
+	return carried + cargo.Used() + attributes.Get("mass");
 }
 
 
