@@ -166,6 +166,16 @@ int CargoHold::OutfitsSize() const
 
 
 
+bool CargoHold::HasOutfits() const
+{
+	for(const auto &it : outfits)
+		if(it.second)
+			return true;
+	return false;
+}
+
+
+
 // Normal cargo:
 int CargoHold::Get(const string &commodity) const
 {

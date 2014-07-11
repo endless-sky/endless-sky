@@ -44,6 +44,7 @@ public:
 	int Used() const;
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
+	bool HasOutfits() const;
 	
 	// Normal cargo:
 	int Get(const std::string &commodity) const;
