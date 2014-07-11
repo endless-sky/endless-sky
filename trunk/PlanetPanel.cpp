@@ -51,15 +51,17 @@ PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Callbac
 
 void PlanetPanel::Draw() const
 {
+	const Ship *ship = player.GetShip();
+	
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	if(player.GetShip())
 		info.SetCondition("has ship");
-	if(planet.HasSpaceport() && player.GetShip())
+	if(ship && planet.HasSpaceport())
 		info.SetCondition("has spaceport");
 	if(planet.HasShipyard())
 		info.SetCondition("has shipyard");
-	if(planet.HasOutfitter() && player.GetShip())
+	if(ship && (planet.HasOutfitter() || player.Cargo().HasOutfits()))
 		info.SetCondition("has outfitter");
 	
 	ui.Draw(info);
@@ -74,6 +76,7 @@ void PlanetPanel::Draw() const
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	Panel *oldPanel = selectedPanel;
+	const Ship *ship = player.GetShip();
 	
 	if(key == 'd')
 	{
@@ -89,17 +92,17 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		selectedPanel = nullptr;
 	}
-	else if(key == 't' && planet.HasSpaceport())
+	else if(key == 't' && ship && planet.HasSpaceport())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && planet.HasSpaceport())
+	else if(key == 'b' && ship && planet.HasSpaceport())
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && planet.HasSpaceport())
+	else if(key == 'p' && ship && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
 		GetUI()->Push(spaceport);
@@ -109,7 +112,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Push(new ShipyardPanel(data, player));
 		return true;
 	}
-	else if(key == 'o' && planet.HasOutfitter())
+	else if(key == 'o' && ship && (planet.HasOutfitter() || player.Cargo().HasOutfits()))
 	{
 		GetUI()->Push(new OutfitterPanel(data, player));
 		return true;
