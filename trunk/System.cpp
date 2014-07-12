@@ -85,7 +85,7 @@ System::System()
 
 
 // Load a system's description.
-void System::Load(const DataFile::Node &node, const GameData &data)
+void System::Load(const DataFile::Node &node, const GameData &data, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
@@ -109,7 +109,7 @@ void System::Load(const DataFile::Node &node, const GameData &data)
 		else if(child.Token(0) == "fleet" && child.Size() >= 3)
 			fleets.emplace_back(data.Fleets().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "object")
-			LoadObject(child, data.Planets());
+			LoadObject(child, planets);
 	}
 	
 	// Set planet messages based on what zone they are in.
@@ -302,7 +302,7 @@ const vector<System::FleetProbability> &System::Fleets() const
 
 
 
-void System::LoadObject(const DataFile::Node &node, const Set<Planet> &planets, int parent)
+void System::LoadObject(const DataFile::Node &node, Set<Planet> &planets, int parent)
 {
 	int index = objects.size();
 	objects.push_back(StellarObject());
@@ -310,7 +310,11 @@ void System::LoadObject(const DataFile::Node &node, const Set<Planet> &planets, 
 	object.parent = parent;
 	
 	if(node.Size() >= 2)
-		object.planet = planets.Get(node.Token(1));
+	{
+		Planet *planet = planets.Get(node.Token(1));
+		object.planet = planet;
+		planet->SetSystem(this);
+	}
 	
 	for(const DataFile::Node &child : node)
 	{

@@ -65,7 +65,7 @@ public:
 	System();
 	
 	// Load a system's description.
-	void Load(const DataFile::Node &node, const GameData &data);
+	void Load(const DataFile::Node &node, const GameData &data, Set<Planet> &planets);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
@@ -107,7 +107,7 @@ public:
 	
 	
 private:
-	void LoadObject(const DataFile::Node &node, const Set<Planet> &planets, int parent = -1);
+	void LoadObject(const DataFile::Node &node, Set<Planet> &planets, int parent = -1);
 	
 	
 private:
