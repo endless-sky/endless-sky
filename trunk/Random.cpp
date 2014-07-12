@@ -19,24 +19,21 @@ using namespace std;
 namespace {
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
-	thread_local bool isInit = false;
-	
-	inline void Init()
-	{
-		if(!isInit)
-		{
-			random_device rd;
-			gen = mt19937_64(rd());
-			isInit = true;
-		}
-	}
+}
+
+
+
+// Seed the generator (e.g. to make it produce exactly the same random
+// numbers it produced previously).
+void Random::Seed(uint64_t seed)
+{
+	gen.seed(seed);
 }
 
 
 
 uint32_t Random::Int()
 {
-	Init();
 	return uniform(gen);
 }
 
@@ -44,16 +41,24 @@ uint32_t Random::Int()
 
 uint32_t Random::Int(uint32_t modulus)
 {
-	Init();
 	return uniform(gen) % modulus;
 }
+
+
 
 // Return the expected number of failures before k successes, when the 
 // probability of success is p. The mean value will be k / (1 - p).
 uint32_t Random::Polya(uint32_t k, double p)
 {
-	Init();
 	negative_binomial_distribution<uint32_t> polya(k, p);
 	return polya(gen);
 }
 
+
+
+// Get a number from a binomial distribution (i.e. integer bell curve).
+uint32_t Random::Binomial(uint32_t t, double p)
+{
+	binomial_distribution<uint32_t> binomial(t, p);
+	return binomial(gen);
+}
