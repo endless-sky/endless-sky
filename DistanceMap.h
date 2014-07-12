@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
 
-#include "Set.h"
-
 #include <map>
 
 class System;
@@ -29,8 +27,8 @@ public:
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
-	DistanceMap(const System *center, const Set<System> &systems);
-	DistanceMap(const PlayerInfo &player, const Set<System> &systems);
+	DistanceMap(const System *center);
+	DistanceMap(const PlayerInfo &player);
 	
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
@@ -42,9 +40,9 @@ public:
 	
 	
 private:
-	void Init(const Set<System> &systems);
-	void InitHyper(const Set<System> &systems, const PlayerInfo &player);
-	void InitJump(const Set<System> &systems, const PlayerInfo &player);
+	void Init();
+	void InitHyper(const PlayerInfo &player);
+	void InitJump(const PlayerInfo &player);
 	
 	
 private:

@@ -36,8 +36,7 @@ using namespace std;
 
 MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 	: data(data), current(player.GetShip()->GetSystem()),
-	selected(player.GetShip()->GetSystem()), player(player),
-	distance(player, data.Systems()),
+	selected(player.GetShip()->GetSystem()), player(player), distance(player),
 	tradeY(0), commodity(commodity), selectedPlanet(nullptr)
 {
 	SetIsFullScreen(true);
