@@ -26,15 +26,15 @@ using namespace std;
 // If a player is given, the map will only use hyperspace paths known to the
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
-DistanceMap::DistanceMap(const System *center, const Set<System> &systems)
+DistanceMap::DistanceMap(const System *center)
 {
 	distance[center] = 0;
-	Init(systems);
+	Init();
 }
 
 
 
-DistanceMap::DistanceMap(const PlayerInfo &player, const Set<System> &systems)
+DistanceMap::DistanceMap(const PlayerInfo &player)
 {
 	if(!player.GetShip() || !player.GetShip()->GetSystem())
 		return;
@@ -42,9 +42,9 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const Set<System> &systems)
 	distance[player.GetShip()->GetSystem()] = 0;
 	
 	if(player.GetShip()->Attributes().Get("jump drive"))
-		InitJump(systems, player);
+		InitJump(player);
 	else if(player.GetShip()->Attributes().Get("hyperdrive"))
-		InitHyper(systems, player);
+		InitHyper(player);
 	
 	// If the player has a ship but no hyperdrive capability, all systems are
 	// marked as unreachable except for this one.
@@ -92,7 +92,7 @@ const System *DistanceMap::Route(const System *system) const
 
 
 
-void DistanceMap::Init(const Set<System> &systems)
+void DistanceMap::Init()
 {
 	vector<const System *> edge = {distance.begin()->first};
 	for(int steps = 1; !edge.empty(); ++steps)
@@ -114,7 +114,7 @@ void DistanceMap::Init(const Set<System> &systems)
 
 
 
-void DistanceMap::InitHyper(const Set<System> &systems, const PlayerInfo &player)
+void DistanceMap::InitHyper(const PlayerInfo &player)
 {
 	vector<const System *> edge = {distance.begin()->first};
 	for(int steps = 1; !edge.empty(); ++steps)
@@ -141,7 +141,7 @@ void DistanceMap::InitHyper(const Set<System> &systems, const PlayerInfo &player
 
 
 
-void DistanceMap::InitJump(const Set<System> &systems, const PlayerInfo &player)
+void DistanceMap::InitJump(const PlayerInfo &player)
 {
 	hasJump = true;
 	
