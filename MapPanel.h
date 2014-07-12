@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "DistanceMap.h"
 #include "Point.h"
 
 #include <map>
@@ -48,7 +49,7 @@ private:
 	const System *selected;
 	PlayerInfo &player;
 	
-	std::map<const System *, int> distance;
+	DistanceMap distance;
 	
 	mutable int governmentY;
 	

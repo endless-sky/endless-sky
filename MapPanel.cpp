@@ -37,33 +37,10 @@ using namespace std;
 MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 	: data(data), current(player.GetShip()->GetSystem()),
 	selected(player.GetShip()->GetSystem()), player(player),
+	distance(player, data.Systems()),
 	tradeY(0), commodity(commodity), selectedPlanet(nullptr)
 {
 	SetIsFullScreen(true);
-	
-	vector<const System *> edge{current};
-	distance[current] = 0;
-	
-	for(int steps = 1; !edge.empty(); ++steps)
-	{
-		vector<const System *> newEdge;
-		for(const System *system : edge)
-			for(const System *link : system->Links())
-			{
-				if(!player.HasSeen(link))
-					continue;
-				if(!player.HasVisited(link) && !player.HasVisited(system))
-					continue;
-				
-				auto it = distance.find(link);
-				if(it != distance.end())
-					continue;
-			
-				distance[link] = steps;
-				newEdge.push_back(link);
-			}
-		newEdge.swap(edge);
-	}
 	
 	center = Point(0., 0.) - current->Position();
 }
@@ -433,24 +410,13 @@ bool MapPanel::Click(int x, int y)
 	if(system)
 	{
 		selected = system;
-		auto it = distance.find(system);
-		if(it != distance.end())
+		if(distance.HasRoute(system))
 		{
 			player.ClearTravel();
-			int steps = it->second;
 			while(system != current)
 			{
 				player.AddTravel(system);
-				for(const System *link : system->Links())
-				{
-					auto lit = distance.find(link);
-					if(lit != distance.end() && lit->second < steps)
-					{
-						steps = lit->second;
-						system = link;
-						break;
-					}
-				}
+				system = distance.Route(system);
 			}
 		}
 	}
