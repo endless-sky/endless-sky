@@ -30,6 +30,8 @@ void Trade::Load(const DataFile::Node &node)
 			commodities.back().name = child.Token(1);
 			commodities.back().low = child.Value(2);
 			commodities.back().high = child.Value(3);
+			for(const DataFile::Node &grand : child)
+				commodities.back().items.push_back(grand.Token(0));
 		}
 	}
 }

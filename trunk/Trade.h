@@ -28,6 +28,7 @@ public:
 		std::string name;
 		int low;
 		int high;
+		std::vector<std::string> items;
 	};
 	
 	
