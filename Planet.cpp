@@ -20,14 +20,6 @@ using namespace std;
 
 
 
-// Default constructor.
-Planet::Planet()
-	: landscape(nullptr)
-{
-}
-
-
-
 // Load a planet's description from a file.
 void Planet::Load(const DataFile::Node &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits)
 {
@@ -139,4 +131,18 @@ const Sale<Outfit> &Planet::Outfitter() const
 	}
 	
 	return outfitter;
+}
+
+
+
+const System *Planet::GetSystem() const
+{
+	return system;
+}
+
+
+
+void Planet::SetSystem(const System *system)
+{
+	this->system = system;
 }

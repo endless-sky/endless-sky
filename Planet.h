@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Outfit;
 class Ship;
 class Sprite;
+class System;
 
 
 
@@ -29,9 +30,6 @@ class Sprite;
 // moons, and space stations.)
 class Planet {
 public:
-	// Default constructor.
-	Planet();
-	
 	// Load a planet's description from a file.
 	void Load(const DataFile::Node &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits);
 	
@@ -57,12 +55,17 @@ public:
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	
+	// Set or get what system this planet is in. This is so that missions, for
+	// example, can just hold a planet pointer instead of a system as well.
+	const System *GetSystem() const;
+	void SetSystem(const System *system);
+	
 	
 private:
 	std::string name;
 	std::string description;
 	std::string spaceport;
-	const Sprite *landscape;
+	const Sprite *landscape = nullptr;
 	
 	std::vector<const Sale<Ship> *> shipSales;
 	std::vector<const Sale<Outfit> *> outfitSales;
@@ -70,6 +73,8 @@ private:
 	// first asked for:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
+	
+	const System *system = nullptr;
 };
 
 
