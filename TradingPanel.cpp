@@ -83,9 +83,16 @@ void TradingPanel::Draw() const
 	font.Draw(to_string(player.Cargo().Free()), Point(HOLD_X, lastY), selected);
 	
 	int outfits = player.Cargo().OutfitsSize();
-	if(outfits)
+	int missionCargo = player.Cargo().MissionCargoSize();
+	if(outfits || missionCargo)
 	{
-		string str = to_string(outfits) + " tons of plundered outfits.";
+		string str = to_string(outfits + missionCargo);
+		if(outfits && missionCargo)
+			str += " tons of outfits and mission cargo.";
+		else if(outfits)
+			str += " tons of plundered outfits.";
+		else
+			str += " tons of mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
 	}
 	

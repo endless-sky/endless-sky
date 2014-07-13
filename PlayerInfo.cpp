@@ -57,6 +57,9 @@ void PlayerInfo::Clear()
 	travelPlan.clear();
 	
 	selectedWeapon = nullptr;
+	
+	random_device rd;
+	Random::Seed(rd());
 }
 
 
@@ -101,6 +104,7 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 		{
 			missions.push_back(Mission());
 			missions.back().Load(child, data);
+			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "job")
 		{
@@ -205,8 +209,6 @@ void PlayerInfo::New(const GameData &data)
 	
 	accounts.AddMortgage(295000);
 	
-	random_device rd;
-	Random::Seed(rd());
 	CreateMissions();
 }
 
@@ -554,6 +556,18 @@ void PlayerInfo::TakeOff()
 		Messages::Add(out.str());
 	}
 	
+	for(const auto &it : cargo.MissionCargo())
+		if(it.second)
+		{
+			for(Mission &mission : missions)
+				if(&mission == it.first)
+				{
+					mission.SetFailed();
+					Messages::Add("Mission \"" + mission.Name()
+						+ " failed because you do not have space for the cargo.");
+				}
+		}
+	
 	int sold = cargo.Used();
 	int income = cargo.Value(system);
 	accounts.AddCredits(income);
@@ -606,7 +620,7 @@ void PlayerInfo::AcceptJob(const Mission &mission)
 	for(auto it = jobs.begin(); it != jobs.end(); ++it)
 		if(&*it == &mission)
 		{
-			// TODO: update cargo.
+			cargo.AddMissionCargo(&mission);
 			missions.splice(missions.end(), jobs, it);
 			break;
 		}
@@ -617,7 +631,10 @@ void PlayerInfo::AcceptJob(const Mission &mission)
 void PlayerInfo::AddMission(const Mission &mission)
 {
 	missions.push_back(mission);
-	// TODO: update cargo.
+	// It's important to use a pointer to the Mission we just created here in
+	// PlayerInfo (which will persist) rather than to the Mission that was
+	// passed as an argument to this function (which may be temporary).
+	cargo.AddMissionCargo(&missions.back());
 }
 
 
@@ -627,7 +644,7 @@ void PlayerInfo::AbortMission(const Mission &mission)
 	for(auto it = missions.begin(); it != missions.end(); ++it)
 		if(&*it == &mission)
 		{
-			// TODO: update cargo.
+			cargo.RemoveMissionCargo(&mission);
 			missions.erase(it);
 			break;
 		}

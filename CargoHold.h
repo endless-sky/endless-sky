@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class GameData;
+class Mission;
 class Outfit;
 class System;
 
@@ -26,8 +27,6 @@ class System;
 
 class CargoHold {
 public:
-	CargoHold();
-	
 	void Clear();
 	
 	// Load the cargo manifest from a DataFile. This must be done after the
@@ -45,36 +44,43 @@ public:
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
 	bool HasOutfits() const;
+	int MissionCargoSize() const;
 	
 	// Normal cargo:
 	int Get(const std::string &commodity) const;
 	// Spare outfits:
 	int Get(const Outfit *outfit) const;
-	// TODO: mission-specific cargo.
+	// Mission cargo:
+	int Get(const Mission *mission) const;
 	
 	const std::map<std::string, int> &Commodities() const;
 	const std::map<const Outfit *, int> &Outfits() const;
+	// Note: some missions may have cargo that takes up 0 space, but should
+	// still show up on the cargo listing.
+	const std::map<const Mission *, int> &MissionCargo() const;
 	
 	// For all the transfer functions, the "other" can be null if you simply want
 	// the commodity to "disappear" or, if the "amount" is negative, to have an
 	// unlimited supply. The return value is the actual number transferred.
 	int Transfer(const std::string &commodity, int amount, CargoHold *to = nullptr);
 	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr);
+	int Transfer(const Mission *mission, int amount, CargoHold *to = nullptr);
 	// Transfer as much as the given cargo hold has capacity for. The priority is
 	// first mission cargo, then spare outfits, then ordinary commodities.
 	void TransferAll(CargoHold *to);
+	
+	void AddMissionCargo(const Mission *mission);
+	void RemoveMissionCargo(const Mission *mission);
 	
 	// Get the total value of all this cargo, in the given system.
 	int Value(const System *system) const;
 	
 	
 private:
-	int size;
-	// The amount of cargo used is calculated the first time it is asked for, so
-	// that the outfits can be set before those outfit objects are loaded.
-	mutable int used;
+	int size = 0;
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
+	std::map<const Mission *, int> missionCargo;
 };
 
 

@@ -45,6 +45,9 @@ public:
 	const std::string &Description() const;
 	const std::string &SuccessMessage() const;
 	
+	bool Failed() const;
+	void SetFailed();
+	
 	
 private:
 	std::string name;
@@ -57,6 +60,8 @@ private:
 	
 	std::string description;
 	std::string successMessage;
+	
+	bool failed = false;
 };
 
 
