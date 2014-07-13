@@ -16,7 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 #include "CargoHold.h"
 #include "Date.h"
+#include "Mission.h"
 
+#include <list>
 #include <map>
 #include <memory>
 #include <set>
@@ -89,6 +91,13 @@ public:
 	// Load the cargo back into your ships. This may require selling excess.
 	void TakeOff();
 	
+	// Get mission information.
+	const std::list<Mission> &Missions() const;
+	const std::list<Mission> &AvailableJobs() const;
+	void AcceptJob(const Mission &mission);
+	void AddMission(const Mission &mission);
+	void AbortMission(const Mission &mission);
+	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
 	void Visit(const System *system);
@@ -107,6 +116,13 @@ public:
 	
 	
 private:
+	// New missions are generated each time you land on a planet. This also means
+	// that random missions that didn't show up might show up if you reload the
+	// game, but that's a minor detail and I can fix it later.
+	void CreateMissions();
+	
+	
+private:
 	const GameData *gameData;
 	
 	std::string firstName;
@@ -121,6 +137,10 @@ private:
 	
 	std::vector<std::shared_ptr<Ship>> ships;
 	CargoHold cargo;
+	std::list<Mission> missions;
+	// This list is populated when you are landed on a planet. It must be saved
+	// in order to avoid presenting duplicate missions when loading again.
+	std::list<Mission> jobs;
 	
 	std::set<const System *> seen;
 	std::set<const System *> visited;

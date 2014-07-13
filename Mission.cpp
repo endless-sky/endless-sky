@@ -129,9 +129,9 @@ void Mission::Load(const DataFile::Node &node, const GameData &data)
 
 
 
-void Mission::Save(ostream &out)
+void Mission::Save(ostream &out, const string &tag) const
 {
-	out << "mission \"" << name << "\"\n";
+	out << tag << " \"" << name << "\"\n";
 	if(destination)
 		out << "\tdestination \"" << destination->Name() << "\"\n";
 	if(!cargo.empty())

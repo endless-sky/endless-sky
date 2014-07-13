@@ -667,3 +667,68 @@ interface "hiring"
 		color "grey"
 		align center
 
+interface "mission"
+	position bottom center
+	sprite "ui/mission" 0 0
+	
+	label "cargo space free:" -130 -93
+		size 14
+		color "grey"
+		align center
+	string "cargo free" -130 -73
+		size 14
+		color "light grey"
+		align center
+	
+	label "passenger space:" 0 -93
+		size 14
+		color "grey"
+		align center
+	string "bunks free" 0 -73
+		size 14
+		color "light grey"
+		align center
+	
+	label "today's date:" 130 -93
+		size 14
+		color "grey"
+		align center
+	string "today" 130 -73
+		size 14
+		color "light grey"
+		align center
+	
+	if "can accept"
+	label "Accept Mission" -45 -33
+		size 14
+		color "light grey"
+		align center
+	endif
+	if "can abort"
+	label "Abort Mission" -45 -33
+		size 14
+		color "light grey"
+		align center
+	endif
+	if "cannot accept"
+	label "Accept Mission" -45 -33
+		size 14
+		color "dim grey"
+		align center
+	endif
+	if "cannot abort"
+	label "Abort Mission" -45 -33
+		size 14
+		color "dim grey"
+		align center
+	endif
+	button a -45 -25
+		size 130 30
+	
+	label "Done" 70 -33
+		size 14
+		color "light grey"
+		align center
+	button d 70 -25
+		size 80 30
+

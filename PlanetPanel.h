@@ -16,14 +16,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Callback.h"
-#include "GameData.h"
-#include "Interface.h"
-#include "Planet.h"
-#include "PlayerInfo.h"
-#include "System.h"
 #include "WrappedText.h"
 
 #include <memory>
+
+class GameData;
+class Interface;
+class Planet;
+class PlayerInfo;
+class System;
 
 
 
