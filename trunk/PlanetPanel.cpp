@@ -16,11 +16,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Color.h"
-#include "Font.h"
+#include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
+#include "Interface.h"
 #include "MapPanel.h"
+#include "MissionPanel.h"
 #include "OutfitterPanel.h"
+#include "PlayerInfo.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "TradingPanel.h"
@@ -119,7 +122,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == 'j')
 	{
-		// TODO: jobs.
+		GetUI()->Push(new MissionPanel(data, player));
 		return true;
 	}
 	else if(key == 'h')

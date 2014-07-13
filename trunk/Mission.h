@@ -32,7 +32,7 @@ public:
 	
 public:
 	void Load(const DataFile::Node &node, const GameData &data);
-	void Save(std::ostream &out);
+	void Save(std::ostream &out, const std::string &tag = "mission") const;
 	
 	const std::string &Name() const;
 	const Planet *Destination() const;

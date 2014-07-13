@@ -13,14 +13,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 
 #include "DataFile.h"
+#include "DistanceMap.h"
 #include "Files.h"
 #include "GameData.h"
 #include "Messages.h"
+#include "Mission.h"
 #include "Outfit.h"
+#include "Random.h"
 #include "Ship.h"
 #include "System.h"
 
 #include <fstream>
+#include <random>
 #include <sstream>
 
 using namespace std;
@@ -93,6 +97,16 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 			Visit(data.Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child, data);
+		else if(child.Token(0) == "mission")
+		{
+			missions.push_back(Mission());
+			missions.back().Load(child, data);
+		}
+		else if(child.Token(0) == "job")
+		{
+			jobs.push_back(Mission());
+			jobs.back().Load(child, data);
+		}
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -144,6 +158,11 @@ void PlayerInfo::Save() const
 	for(const std::shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
 	
+	for(const Mission &mission : missions)
+		mission.Save(out);
+	for(const Mission &mission : jobs)
+		mission.Save(out, "job");
+	
 	for(const System *system : visited)
 		out << "visited \"" << system->Name() << "\"\n";
 }
@@ -185,6 +204,10 @@ void PlayerInfo::New(const GameData &data)
 	playerGovernment = data.Governments().Get("Escort");
 	
 	accounts.AddMortgage(295000);
+	
+	random_device rd;
+	Random::Seed(rd());
+	CreateMissions();
 }
 
 
@@ -384,7 +407,6 @@ void PlayerInfo::SellShip(const Ship *selected)
 }
 
 
-
 	
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
@@ -437,6 +459,12 @@ void PlayerInfo::Land()
 			
 			ship->Cargo().TransferAll(&cargo);
 		}
+	
+	// TODO: This is not quite right, because in theory a planet may have no
+	// jobs generated, in which case it should still be empty when re-loading
+	// the saved game.
+	if(jobs.empty())
+		CreateMissions();
 }
 
 
@@ -448,6 +476,9 @@ void PlayerInfo::TakeOff()
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
+	
+	// Jobs are only available when you are landed.
+	jobs.clear();
 	
 	// Reset any governments you provoked yesterday.
 	for(const auto &it : gameData->Governments())
@@ -554,6 +585,56 @@ void PlayerInfo::UpdateCargoCapacities()
 
 
 
+// Get mission information.
+const list<Mission> &PlayerInfo::Missions() const
+{
+	return missions;
+}
+
+
+
+// Get mission information.
+const list<Mission> &PlayerInfo::AvailableJobs() const
+{
+	return jobs;
+}
+
+
+
+void PlayerInfo::AcceptJob(const Mission &mission)
+{
+	for(auto it = jobs.begin(); it != jobs.end(); ++it)
+		if(&*it == &mission)
+		{
+			// TODO: update cargo.
+			missions.splice(missions.end(), jobs, it);
+			break;
+		}
+}
+
+
+
+void PlayerInfo::AddMission(const Mission &mission)
+{
+	missions.push_back(mission);
+	// TODO: update cargo.
+}
+
+
+
+void PlayerInfo::AbortMission(const Mission &mission)
+{
+	for(auto it = missions.begin(); it != missions.end(); ++it)
+		if(&*it == &mission)
+		{
+			// TODO: update cargo.
+			missions.erase(it);
+			break;
+		}
+}
+
+
+
 bool PlayerInfo::HasSeen(const System *system) const
 {
 	return (seen.find(system) != seen.end());
@@ -646,4 +727,25 @@ void PlayerInfo::SelectNext()
 			return;
 		}
 	selectedWeapon = nullptr;
+}
+
+
+
+// New missions are generated each time you land on a planet. This also means
+// that random missions that didn't show up might show up if you reload the
+// game, but that's a minor detail and I can fix it later.
+void PlayerInfo::CreateMissions()
+{
+	DistanceMap distance(system);
+	
+	int cargoCount = Random::Binomial(10);
+	for(int i = 0; i < cargoCount; ++i)
+		jobs.push_back(Mission::Cargo(*gameData, planet, distance));
+	
+	// TODO: Passenger missions, etc.
+	
+	// TODO: Each planet specifies the maximum number of each mission type.
+	
+	// TODO: eventually, search for missions in GameData that have all their
+	// prerequisites met, and add them to the missions list.
 }
