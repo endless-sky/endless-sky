@@ -204,6 +204,20 @@ const string &Mission::SuccessMessage() const
 
 
 
+bool Mission::Failed() const
+{
+	return failed;
+}
+
+
+
+void Mission::SetFailed()
+{
+	failed = true;
+}
+
+
+
 namespace {
 	// Pick a destination within the given number of jumps.
 	const Planet *Pick(const DistanceMap &distance, const GameData &data, int minJumps, int maxJumps)

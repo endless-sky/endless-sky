@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CargoHold.h"
 
 #include "GameData.h"
+#include "Mission.h"
 #include "Outfit.h"
 
 #include <algorithm>
@@ -21,19 +22,12 @@ using namespace std;
 
 
 
-CargoHold::CargoHold()
-	: size(0), used(-1)
-{
-}
-
-
-
 void CargoHold::Clear()
 {
 	size = 0;
-	used = -1;
 	commodities.clear();
 	outfits.clear();
+	missionCargo.clear();
 }
 
 
@@ -42,8 +36,6 @@ void CargoHold::Clear()
 // GameData is loaded, so that the sizes of any outfits are known.
 void CargoHold::Load(const DataFile::Node &node, const GameData &data)
 {
-	Clear();
-	
 	for(const DataFile::Node &child : node)
 	{
 		if(child.Token(0) == "commodities")
@@ -105,6 +97,9 @@ void CargoHold::Save(std::ostream &out, int depth) const
 			
 			out << prefix << "\t\t\"" << it.first->Name() << "\" " << it.second << "\n";
 		}
+	
+	// Mission cargo is not saved because it is repopulated when the missions
+	// are read rather than when the cargo is read.
 }
 
 
@@ -133,14 +128,14 @@ int CargoHold::Free() const
 
 int CargoHold::Used() const
 {
-	if(used < 0)
-	{
-		used = 0;
-		for(const auto &it : commodities)
-			used += it.second;
-		for(const auto &it : outfits)
-			used += it.second * it.first->Get("mass");
-	}
+	int used = 0;
+	for(const auto &it : commodities)
+		used += it.second;
+	for(const auto &it : outfits)
+		used += it.second * it.first->Get("mass");
+	for(const auto &it : missionCargo)
+		used += it.second;
+	
 	return used;
 }
 
@@ -176,6 +171,16 @@ bool CargoHold::HasOutfits() const
 
 
 
+int CargoHold::MissionCargoSize() const
+{
+	int size = 0;
+	for(const auto &it : missionCargo)
+		size += it.second;
+	return size;
+}
+
+
+
 // Normal cargo:
 int CargoHold::Get(const string &commodity) const
 {
@@ -194,6 +199,15 @@ int CargoHold::Get(const Outfit *outfit) const
 
 
 
+// Mission cargo:
+int CargoHold::Get(const Mission *mission) const
+{
+	map<const Mission *, int>::const_iterator it = missionCargo.find(mission);
+	return (it == missionCargo.end() ? 0 : it->second);
+}
+
+
+
 const map<string, int> &CargoHold::Commodities() const
 {
 	return commodities;
@@ -204,6 +218,13 @@ const map<string, int> &CargoHold::Commodities() const
 const map<const Outfit *, int> &CargoHold::Outfits() const
 {
 	return outfits;
+}
+
+
+
+const map<const Mission *, int> &CargoHold::MissionCargo() const
+{
+	return missionCargo;
 }
 
 
@@ -227,12 +248,8 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 		return 0;
 	
 	commodities[commodity] -= amount;
-	used -= amount;
 	if(to)
-	{
 		to->commodities[commodity] += amount;
-		to->used += amount;
-	}
 	
 	return amount;
 }
@@ -256,12 +273,32 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 		return 0;
 	
 	outfits[outfit] -= amount;
-	used -= amount * mass;
+	if(to)
+		to->outfits[outfit] += amount;
+	
+	return amount;
+}
+
+
+
+int CargoHold::Transfer(const Mission *mission, int amount, CargoHold *to)
+{
+	// Take your free capacity into account here too.
+	amount = min(amount, Get(mission));
+	if(Size())
+		amount = max(amount, -Free());
 	if(to)
 	{
-		to->outfits[outfit] += amount;
-		to->used += amount * mass;
+		amount = max(amount, -to->Get(mission));
+		if(to->Size())
+			amount = min(amount, to->Free());
 	}
+	
+	// Do the "transfer" even if the amount is 0, because some mission cargo
+	// takes up no space.
+	missionCargo[mission] -= amount;
+	if(to)
+		to->missionCargo[mission] += amount;
 	
 	return amount;
 }
@@ -277,14 +314,36 @@ void CargoHold::TransferAll(CargoHold *to)
 	{
 		commodities.clear();
 		outfits.clear();
-		used = 0;
+		missionCargo.clear();
 		return;
 	}
 	
+	for(const auto &it : missionCargo)
+		Transfer(it.first, it.second, to);
 	for(const auto &it : outfits)
 		Transfer(it.first, it.second, to);
 	for(const auto &it : commodities)
 		Transfer(it.first, it.second, to);
+}
+
+
+
+void CargoHold::AddMissionCargo(const Mission *mission)
+{
+	// If the mission defines a cargo string, create an entry for it even if the
+	// cargo size is zero. This is so that, for example, your cargo listing can
+	// show "important documents" even if the documents take up no cargo space.
+	if(mission && !mission->Cargo().empty())
+		missionCargo[mission] += mission->CargoSize();
+}
+
+
+
+void CargoHold::RemoveMissionCargo(const Mission *mission)
+{
+	auto it = missionCargo.find(mission);
+	if(it != missionCargo.end())
+		missionCargo.erase(it);
 }
 
 
