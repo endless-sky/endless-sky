@@ -97,6 +97,7 @@ public:
 	void AcceptJob(const Mission &mission);
 	void AddMission(const Mission &mission);
 	void AbortMission(const Mission &mission);
+	void CompleteMission(const Mission &mission);
 	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
