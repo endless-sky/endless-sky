@@ -49,6 +49,18 @@ void MainPanel::Step(bool isActive)
 	{
 		playerInfo.Land();
 		GetUI()->Push(new PlanetPanel(gameData, playerInfo, *this));
+		auto it = playerInfo.Missions().begin();
+		while(it != playerInfo.Missions().end())
+		{
+			const Mission &mission = *it;
+			++it;
+			
+			if(mission.Destination() == playerInfo.GetPlanet())
+			{
+				GetUI()->Push(new Dialog(mission.SuccessMessage()));
+				playerInfo.CompleteMission(mission);
+			}
+		}
 		isActive = false;
 	}
 	

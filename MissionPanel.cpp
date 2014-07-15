@@ -245,16 +245,26 @@ bool MissionPanel::Click(int x, int y)
 		Select(system);
 		list<Mission>::const_iterator start =
 			(availableIt == available.end() ? acceptedIt : availableIt);
-		while(true)
+		while(!(available.empty() && accepted.empty()))
 		{
+			// TODO: Implement this more succinctly.
 			if(availableIt != available.end())
 			{
 				++availableIt;
-				if(availableIt == available.end() && !accepted.empty())
+				if(availableIt == available.end())
 				{
-					acceptedIt = accepted.begin();
-					if(acceptedIt->Destination()->GetSystem() == system)
-						break;
+					if(accepted.empty())
+					{
+						availableIt = available.begin();
+						if(availableIt->Destination()->GetSystem() == system)
+							break;
+					}
+					else
+					{
+						acceptedIt = accepted.begin();
+						if(acceptedIt->Destination()->GetSystem() == system)
+							break;
+					}
 				}
 				else if(availableIt->Destination()->GetSystem() == system)
 					break;
@@ -262,11 +272,20 @@ bool MissionPanel::Click(int x, int y)
 			else if(acceptedIt != accepted.end())
 			{
 				++acceptedIt;
-				if(acceptedIt == accepted.end() && !available.empty())
+				if(acceptedIt == accepted.end())
 				{
-					availableIt = available.begin();
-					if(availableIt->Destination()->GetSystem() == system)
-						break;
+					if(available.empty())
+					{
+						acceptedIt = accepted.begin();
+						if(acceptedIt->Destination()->GetSystem() == system)
+							break;
+					}
+					else
+					{
+						availableIt = available.begin();
+						if(availableIt->Destination()->GetSystem() == system)
+							break;
+					}
 				}
 				else if(acceptedIt->Destination()->GetSystem() == system)
 					break;

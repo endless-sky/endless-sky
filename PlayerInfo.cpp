@@ -652,6 +652,14 @@ void PlayerInfo::AbortMission(const Mission &mission)
 
 
 
+void PlayerInfo::CompleteMission(const Mission &mission)
+{
+	accounts.AddCredits(mission.Payment());
+	AbortMission(mission);
+}
+
+
+
 bool PlayerInfo::HasSeen(const System *system) const
 {
 	return (seen.find(system) != seen.end());
