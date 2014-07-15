@@ -100,10 +100,10 @@ void MissionPanel::Draw() const
 	
 	DrawSelectedSystem();
 	DrawList(available,
-		Screen::TopLeft() + Point(0., availableScroll),
+		Screen::TopLeft() + Point(0., -availableScroll),
 		"Missions available here:");
 	DrawList(accepted,
-		Screen::TopRight() + Point(-SIDE_WIDTH, acceptedScroll),
+		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:");
 	DrawMissionInfo();
 }
@@ -122,12 +122,16 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			const Mission &toAccept = *availableIt;
 			++availableIt;
 			player.AcceptJob(toAccept);
+			if(availableIt == player.AvailableJobs().end() && !player.AvailableJobs().empty())
+				--availableIt;
 		}
 		else if(acceptedIt != accepted.end())
 		{
 			const Mission &toAbort = *acceptedIt;
 			++acceptedIt;
 			player.AbortMission(toAbort);
+			if(acceptedIt == player.Missions().end() && !player.Missions().empty())
+				--acceptedIt;
 		}
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
@@ -187,6 +191,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool MissionPanel::Click(int x, int y)
 {
+	dragSide = 0;
+	
 	// Handle clicks on the interface buttons.
 	const Interface *interface = data.Interfaces().Get("mission");
 	if(interface)
@@ -194,6 +200,35 @@ bool MissionPanel::Click(int x, int y)
 		char key = interface->OnClick(Point(x, y));
 		if(key != '\0')
 			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	}
+	
+	if(x < Screen::Left() + SIDE_WIDTH)
+	{
+		unsigned index = max(0, (y + availableScroll - 36 - Screen::Top()) / 20);
+		if(index < available.size())
+		{
+			availableIt = available.begin();
+			while(index--)
+				++availableIt;
+			acceptedIt = accepted.end();
+			dragSide = -1;
+			Select(availableIt->Destination()->GetSystem());
+			return true;
+		}
+	}
+	else if(x >= Screen::Right() - SIDE_WIDTH)
+	{
+		unsigned index = max(0, (y + acceptedScroll - 36 - Screen::Top()) / 20);
+		if(index < accepted.size())
+		{
+			acceptedIt = accepted.begin();
+			while(index--)
+				++acceptedIt;
+			availableIt = available.end();
+			dragSide = 1;
+			Select(acceptedIt->Destination()->GetSystem());
+			return true;
+		}
 	}
 	
 	// Figure out if a system was clicked on.
@@ -207,8 +242,38 @@ bool MissionPanel::Click(int x, int y)
 		}
 	if(system)
 	{
-		// TODO: toggle through all missions in the selected system.
 		Select(system);
+		list<Mission>::const_iterator start =
+			(availableIt == available.end() ? acceptedIt : availableIt);
+		while(true)
+		{
+			if(availableIt != available.end())
+			{
+				++availableIt;
+				if(availableIt == available.end() && !accepted.empty())
+				{
+					acceptedIt = accepted.begin();
+					if(acceptedIt->Destination()->GetSystem() == system)
+						break;
+				}
+				else if(availableIt->Destination()->GetSystem() == system)
+					break;
+			}
+			else if(acceptedIt != accepted.end())
+			{
+				++acceptedIt;
+				if(acceptedIt == accepted.end() && !available.empty())
+				{
+					availableIt = available.begin();
+					if(availableIt->Destination()->GetSystem() == system)
+						break;
+				}
+				else if(acceptedIt->Destination()->GetSystem() == system)
+					break;
+			}
+			if(availableIt == start || acceptedIt == start)
+				break;
+		}
 	}
 	
 	return true;
@@ -218,15 +283,19 @@ bool MissionPanel::Click(int x, int y)
 
 bool MissionPanel::Drag(int dx, int dy)
 {
-	/*if(sideSelected < 0)
+	if(dragSide < 0)
 	{
-	
+		availableScroll = max(0,
+			min(static_cast<int>(available.size() * 20 + 70 - Screen::Height()),
+				availableScroll - dy));
 	}
-	else if(sideSelected > 0)
+	else if(dragSide > 0)
 	{
-	
+		acceptedScroll = max(0,
+			min(static_cast<int>(accepted.size() * 20 + 70 - Screen::Height()),
+				acceptedScroll - dy));
 	}
-	else*/
+	else
 		center += Point(dx, dy);
 	
 	return true;
