@@ -722,13 +722,13 @@ interface "mission"
 		color "dim grey"
 		align center
 	endif
-	button a -45 -25
+	button a -45 -10
 		size 130 30
 	
 	label "Done" 70 -33
 		size 14
 		color "light grey"
 		align center
-	button d 70 -25
+	button d 70 -10
 		size 80 30
 
