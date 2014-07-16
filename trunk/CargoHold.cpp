@@ -181,6 +181,31 @@ int CargoHold::MissionCargoSize() const
 
 
 
+// Set the number of free bunks for passengers.
+void CargoHold::SetBunks(int count)
+{
+	bunks = count;
+}
+
+
+
+int CargoHold::Bunks() const
+{
+	return bunks;
+}
+
+
+
+int CargoHold::Passengers() const
+{
+	int count = 0;
+	for(const auto &it : passengers)
+		count += it.second;
+	return count;
+}
+
+
+
 // Normal cargo:
 int CargoHold::Get(const string &commodity) const
 {
@@ -335,6 +360,8 @@ void CargoHold::AddMissionCargo(const Mission *mission)
 	// show "important documents" even if the documents take up no cargo space.
 	if(mission && !mission->Cargo().empty())
 		missionCargo[mission] += mission->CargoSize();
+	if(mission && mission->Passengers())
+		passengers[mission] += mission->Passengers();
 }
 
 
@@ -344,6 +371,10 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 	auto it = missionCargo.find(mission);
 	if(it != missionCargo.end())
 		missionCargo.erase(it);
+	
+	auto pit = passengers.find(mission);
+	if(pit != passengers.end())
+		passengers.erase(pit);
 }
 
 

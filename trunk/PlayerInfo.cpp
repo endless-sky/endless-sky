@@ -594,7 +594,7 @@ void PlayerInfo::UpdateCargoCapacities()
 			bunks += ship->Attributes().Get("bunks") - ship->Crew();
 		}
 	cargo.SetSize(size);
-	// TODO: set passenger capacity, too.
+	cargo.SetBunks(bunks);
 }
 
 
@@ -767,7 +767,9 @@ void PlayerInfo::CreateMissions()
 	for(int i = 0; i < cargoCount; ++i)
 		jobs.push_back(Mission::Cargo(*gameData, planet, distance));
 	
-	// TODO: Passenger missions, etc.
+	int passengerCount = Random::Binomial(10);
+	for(int i = 0; i < passengerCount; ++i)
+		jobs.push_back(Mission::Passenger(*gameData, planet, distance));
 	
 	// TODO: Each planet specifies the maximum number of each mission type.
 	

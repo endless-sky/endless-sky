@@ -46,6 +46,11 @@ public:
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	
+	// Set the number of free bunks for passengers.
+	void SetBunks(int count);
+	int Bunks() const;
+	int Passengers() const;
+	
 	// Normal cargo:
 	int Get(const std::string &commodity) const;
 	// Spare outfits:
@@ -78,9 +83,11 @@ public:
 	
 private:
 	int size = 0;
+	int bunks = 0;
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
 	std::map<const Mission *, int> missionCargo;
+	std::map<const Mission *, int> passengers;
 };
 
 

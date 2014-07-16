@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "GameData.h"
 #include "LineShader.h"
+#include "Mission.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Screen.h"
@@ -40,6 +41,13 @@ MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
 	tradeY(0), commodity(commodity), selectedPlanet(nullptr)
 {
 	SetIsFullScreen(true);
+	
+	// Special case: any systems which have not been seen but which are the
+	// destination of a mission, should be shown in the map.
+	for(const Mission &mission : player.AvailableJobs())
+		destinations.insert(mission.Destination()->GetSystem());
+	for(const Mission &mission : player.Missions())
+		destinations.insert(mission.Destination()->GetSystem());
 	
 	center = Point(0., 0.) - current->Position();
 }
@@ -84,7 +92,7 @@ void MapPanel::Draw() const
 	for(const auto &it : systems)
 	{
 		const System &system = it.second;
-		if(!player.HasSeen(&system))
+		if(!player.HasSeen(&system) && destinations.find(&system) == destinations.end())
 			continue;
 		
 		Color color(.2, .2);
@@ -241,6 +249,23 @@ void MapPanel::Draw() const
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
 		
 		uiPoint.Y() += 20.;
+	}
+	
+	// Draw a pointer for each active or current mission.
+	map<const System *, Angle> angle;
+	for(const Mission &mission : player.AvailableJobs())
+	{
+		const System *system = mission.Destination()->GetSystem();
+		Angle a = (angle[system] += Angle(30.));
+		Color color(.2, 1., 0., 1.);
+		PointerShader::Draw(system->Position() + center, a.Unit(), 8., 15., -6., color);
+	}
+	for(const Mission &mission : player.Missions())
+	{
+		const System *system = mission.Destination()->GetSystem();
+		Angle a = (angle[system] += Angle(30.));
+		Color color(.2, .8, 1., 1.);
+		PointerShader::Draw(system->Position() + center, a.Unit(), 8., 15., -6., color);
 	}
 	
 	// Draw the "Done" button.
