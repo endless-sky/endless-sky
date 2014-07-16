@@ -18,7 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "MapPanel.h"
+#include "MapDetailPanel.h"
 #include "Messages.h"
 #include "PlanetPanel.h"
 #include "Screen.h"
@@ -109,7 +109,7 @@ void MainPanel::OnCallback(int)
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == gameData.Keys().Get(Key::MAP))
-		GetUI()->Push(new MapPanel(gameData, playerInfo));
+		GetUI()->Push(new MapDetailPanel(gameData, playerInfo));
 	else if(key == gameData.Keys().Get(Key::SCAN))
 	{
 		const Ship *player = playerInfo.GetShip();

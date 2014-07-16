@@ -1,4 +1,4 @@
-/* MapPanel.h
+/* MapDetailPanel.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,59 +10,48 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef MAP_PANEL_H_
-#define MAP_PANEL_H_
+#ifndef MAP_DETAIL_PANEL_H_
+#define MAP_DETAIL_PANEL_H_
 
-#include "Panel.h"
+#include "MapPanel.h"
 
-#include "DistanceMap.h"
 #include "Point.h"
 
-#include <set>
+#include <map>
 
 class GameData;
+class Planet;
 class PlayerInfo;
-class System;
 
 
 
 // A panel that displays the galaxy star map, with options for color-coding the
 // stars based on attitude towards the player, government, or commodity price.
-class MapPanel : public Panel {
+class MapDetailPanel : public MapPanel {
 public:
-	MapPanel(const GameData &data, PlayerInfo &info, int commodity = -4);
+	MapDetailPanel(const GameData &data, PlayerInfo &info, int commodity = -4);
 	
 	virtual void Draw() const override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod) override;
 	virtual bool Click(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	
-	void Select(const System *system);
-	
-	
-protected:
-	const GameData &data;
-	PlayerInfo &player;
-	
-	DistanceMap distance;
-	std::set<const System *> destinations;
-	
-	const System *playerSystem;
-	const System *selectedSystem;
-	
-	Point center;
-	int commodity;
 	
 	
 private:
-	void DrawTravelPlan() const;
-	void DrawLinks() const;
-	void DrawSystems() const;
-	void DrawNames() const;
-	void DrawMissions() const;
+	void DrawInfo() const;
+	void DrawOrbits() const;
+	
+	
+private:
+	mutable int governmentY;
+	mutable int tradeY;
+	
+	mutable std::map<const Planet *, int> planetY;
+	mutable std::map<const Planet *, Point> planets;
+	const Planet *selectedPlanet;
 };
 
 
