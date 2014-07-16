@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
-#include "MapPanel.h"
+#include "MapDetailPanel.h"
 #include "UI.h"
 
 #include <string>
@@ -138,7 +138,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
 	else if(key == data.Keys().Get(Key::MAP))
-		GetUI()->Push(new MapPanel(data, player, selectedRow));
+		GetUI()->Push(new MapDetailPanel(data, player, selectedRow));
 	else
 		return false;
 	

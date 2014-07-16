@@ -14,18 +14,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
-#include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
 #include "Mission.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
 #include "Screen.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
@@ -36,27 +34,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int SIDE_WIDTH = 240;
+	static const int SIDE_WIDTH = 280;
 }
 
 
 
 MissionPanel::MissionPanel(const GameData &data, PlayerInfo &player)
-	: data(data), playerSystem(player.GetShip()->GetSystem()), player(player),
-	distance(player), available(player.AvailableJobs()), accepted(player.Missions()),
+	: MapPanel(data, player, -4),
+	available(player.AvailableJobs()),
+	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
-	SetIsFullScreen(true);
-	
-	// Special case: any systems which have not been seen but which are the
-	// destination of a mission, should be shown in the map.
-	for(const Mission &mission : available)
-		destinations.insert(mission.Destination()->GetSystem());
-	for(const Mission &mission : accepted)
-		destinations.insert(mission.Destination()->GetSystem());
-	
 	if(availableIt != available.end())
 		Select(availableIt->Destination()->GetSystem());
 	else if(acceptedIt != accepted.end())
@@ -77,26 +67,7 @@ MissionPanel::MissionPanel(const GameData &data, PlayerInfo &player)
 
 void MissionPanel::Draw() const
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	
-	DrawMap();
-	
-	// Draw a pointer for each active or current mission.
-	map<const System *, Angle> angle;
-	for(const Mission &mission : available)
-	{
-		const System *system = mission.Destination()->GetSystem();
-		Angle a = (angle[system] += Angle(30.));
-		Color color(.2, 1., 0., 1.);
-		PointerShader::Draw(system->Position() + center, a.Unit(), 8., 15., -6., color);
-	}
-	for(const Mission &mission : accepted)
-	{
-		const System *system = mission.Destination()->GetSystem();
-		Angle a = (angle[system] += Angle(30.));
-		Color color(.2, .8, 1., 1.);
-		PointerShader::Draw(system->Position() + center, a.Unit(), 8., 15., -6., color);
-	}
+	MapPanel::Draw();
 	
 	DrawSelectedSystem();
 	DrawList(available,
@@ -300,89 +271,9 @@ bool MissionPanel::Drag(int dx, int dy)
 				acceptedScroll - dy));
 	}
 	else
-		center += Point(dx, dy);
+		MapPanel::Drag(dx, dy);
 	
 	return true;
-}
-
-
-
-void MissionPanel::DrawMap() const
-{
-	const Sprite *galaxy = SpriteSet::Get("ui/galaxy");
-	SpriteShader::Draw(galaxy, center);
-	
-	const Set<System> &systems = data.Systems();
-	
-	Color dimColor(.1, 0.);
-	DotShader::Draw(playerSystem->Position() + center, 100.5, 99.5, dimColor);
-	
-	Color closeColor(.6, .6);
-	Color farColor(.3, .3);
-	for(const auto &it : systems)
-	{
-		const System *system = &it.second;
-		if(!player.HasSeen(system))
-			continue;
-		
-		for(const System *link : system->Links())
-			if(link < system || !player.HasSeen(link))
-			{
-				if(!player.HasVisited(system) && !player.HasVisited(link))
-					continue;
-				
-				Point from = system->Position() + center;
-				Point to = link->Position() + center;
-				Point unit = (from - to).Unit() * 7.;
-				from -= unit;
-				to += unit;
-				LineShader::Draw(from, to, 1.2,
-					(system == playerSystem || link == playerSystem) ? closeColor : farColor);
-			}
-	}
-	const Government *playerGovernment = data.Governments().Get("Escort");
-	for(const auto &it : systems)
-	{
-		const System &system = it.second;
-		if(!player.HasSeen(&system) && destinations.find(&system) == destinations.end())
-			continue;
-		
-		Color color(.20f, .20f);
-		if(player.HasVisited(&system) && system.IsInhabited())
-			color = system.GetGovernment().IsEnemy(playerGovernment) ?
-				Color(.60f, .10f, .00f, .40f) : Color(.00f, .12f, .60f, .40f);
-		
-		DotShader::Draw(system.Position() + center, 6., 3.5, color);
-		if(&system == selectedSystem)
-			DotShader::Draw(system.Position() + center, 10., 9., color);
-	}
-	const System *previous = playerSystem;
-	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
-	{
-		const System *next = player.TravelPlan()[i];
-		
-		Point from = next->Position() + center;
-		Point to = previous->Position() + center;
-		Point unit = (from - to).Unit() * 7.;
-		from -= unit;
-		to += unit;
-		
-		Color color(.4, .4, 0., 0.);
-		LineShader::Draw(from, to, 3., color);
-		
-		previous = next;
-	}
-	const Font &font = FontSet::Get(14);
-	Point offset(6., -.5 * font.Height());
-	for(const auto &it : systems)
-	{
-		const System &system = it.second;
-		if(!player.HasVisited(&system))
-			continue;
-		
-		font.Draw(system.Name(), system.Position() + offset + center,
-			(&system == playerSystem) ? closeColor : farColor);
-	}
 }
 
 
@@ -507,26 +398,6 @@ void MissionPanel::DrawMissionInfo() const
 		return;
 	wrap.Draw(Point(-190., Screen::Bottom() - 183.), Color(.8, 1.));
 }
-
-
-
-void MissionPanel::Select(const System *system)
-{
-	if(!system)
-		system = playerSystem;
-	selectedSystem = system;
-	
-	if(distance.HasRoute(system))
-	{
-		player.ClearTravel();
-		while(system != playerSystem)
-		{
-			player.AddTravel(system);
-			system = distance.Route(system);
-		}
-	}
-}
-
 
 
 bool MissionPanel::CanAccept() const

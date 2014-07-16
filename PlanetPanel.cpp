@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "HiringPanel.h"
 #include "Interface.h"
-#include "MapPanel.h"
+#include "MapDetailPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "PlayerInfo.h"
@@ -132,7 +132,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == data.Keys().Get(Key::MAP))
 	{
-		GetUI()->Push(new MapPanel(data, player));
+		GetUI()->Push(new MapDetailPanel(data, player));
 		return true;
 	}
 	else
