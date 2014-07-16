@@ -213,6 +213,7 @@ bool MissionPanel::Click(int x, int y)
 			acceptedIt = accepted.end();
 			dragSide = -1;
 			Select(availableIt->Destination()->GetSystem());
+			center = Point(0., -80.) - selectedSystem->Position();
 			return true;
 		}
 	}
@@ -227,6 +228,7 @@ bool MissionPanel::Click(int x, int y)
 			availableIt = available.end();
 			dragSide = 1;
 			Select(acceptedIt->Destination()->GetSystem());
+			center = Point(0., -80.) - selectedSystem->Position();
 			return true;
 		}
 	}
@@ -247,27 +249,16 @@ bool MissionPanel::Click(int x, int y)
 			(availableIt == available.end() ? acceptedIt : availableIt);
 		while(!(available.empty() && accepted.empty()))
 		{
-			// TODO: Implement this more succinctly.
 			if(availableIt != available.end())
 			{
 				++availableIt;
 				if(availableIt == available.end())
 				{
 					if(accepted.empty())
-					{
 						availableIt = available.begin();
-						if(availableIt->Destination()->GetSystem() == system)
-							break;
-					}
 					else
-					{
 						acceptedIt = accepted.begin();
-						if(acceptedIt->Destination()->GetSystem() == system)
-							break;
-					}
 				}
-				else if(availableIt->Destination()->GetSystem() == system)
-					break;
 			}
 			else if(acceptedIt != accepted.end())
 			{
@@ -275,21 +266,15 @@ bool MissionPanel::Click(int x, int y)
 				if(acceptedIt == accepted.end())
 				{
 					if(available.empty())
-					{
 						acceptedIt = accepted.begin();
-						if(acceptedIt->Destination()->GetSystem() == system)
-							break;
-					}
 					else
-					{
 						availableIt = available.begin();
-						if(availableIt->Destination()->GetSystem() == system)
-							break;
-					}
 				}
-				else if(acceptedIt->Destination()->GetSystem() == system)
-					break;
 			}
+			if(availableIt != available.end() && availableIt->Destination()->GetSystem() == system)
+				break;
+			if(acceptedIt != accepted.end() && acceptedIt->Destination()->GetSystem() == system)
+				break;
 			if(availableIt == start || acceptedIt == start)
 				break;
 		}
@@ -435,6 +420,7 @@ void MissionPanel::DrawList(const list<Mission> &list, Point pos, const string &
 	Color highlight(.1, .1);
 	Color unselected(.5, 1.);
 	Color selected(.8, 1.);
+	Color dim(.3, 1.);
 	
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * list.size() + 40);
@@ -478,7 +464,9 @@ void MissionPanel::DrawList(const list<Mission> &list, Point pos, const string &
 				Point(size.X() - 10., 20.),
 				highlight);
 		
-		font.Draw(it->Name(), pos, (isSelected ? selected : unselected));
+		bool canAccept = (&list != &available || CanAccept(*it));
+		font.Draw(it->Name(), pos,
+			(!canAccept ? dim : isSelected ? selected : unselected));
 	}
 }
 
@@ -502,12 +490,7 @@ void MissionPanel::DrawMissionInfo() const
 	int cargoFree = player.Cargo().Free();
 	info.SetString("cargo free", to_string(cargoFree) + " tons");
 	
-	int bunksFree = 0;
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		bunksFree += static_cast<int>(ship->Attributes().Get("bunks"));
-		bunksFree -= ship->Crew();
-	}
+	int bunksFree = player.Cargo().Bunks();
 	info.SetString("bunks free", to_string(bunksFree) + " bunks");
 	
 	info.SetString("today", player.GetDate().ToString());
@@ -551,9 +534,18 @@ bool MissionPanel::CanAccept() const
 	if(availableIt == available.end())
 		return false;
 	
-	if(availableIt->CargoSize() > player.Cargo().Free())
+	return CanAccept(*availableIt);
+}
+
+
+
+bool MissionPanel::CanAccept(const Mission &mission) const
+{
+	if(mission.CargoSize() > player.Cargo().Free())
 		return false;
 	
-	// TODO: check passengers.
+	if(mission.Passengers() > player.Cargo().Bunks())
+		return false;
+	
 	return true;
 }

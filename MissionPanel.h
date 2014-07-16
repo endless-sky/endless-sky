@@ -53,6 +53,7 @@ private:
 	
 	void Select(const System *system);
 	bool CanAccept() const;
+	bool CanAccept(const Mission &mission) const;
 	
 	
 private:

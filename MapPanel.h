@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <map>
+#include <set>
 
 class GameData;
 class Planet;
@@ -50,6 +51,7 @@ private:
 	PlayerInfo &player;
 	
 	DistanceMap distance;
+	std::set<const System *> destinations;
 	
 	mutable int governmentY;
 	

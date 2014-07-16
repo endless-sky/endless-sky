@@ -79,7 +79,7 @@ Mission Mission::Passenger(const GameData &data, const Planet *source, const Dis
 	
 	if(count == 1)
 	{
-		mission.name = "Ferry a passenger to ";
+		mission.name = "Ferry passenger to ";
 		mission.description = "This passenger wants to go to ";
 		mission.successMessage = "Your passenger disembarks, and pays you ";
 	}
