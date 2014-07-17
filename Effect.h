@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+class DataNode;
+
 
 
 // Class representing a graphic such as an explosion which is drawn for effect but
@@ -29,7 +31,7 @@ public:
 	
 	const std::string &Name() const;
 	
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	// If creating a new effect, the animation and lifetime are copied,
 	// but position, velocity, and angle are specific to this new effect.
 	void Place(Point pos, Point vel, Angle angle, Point hitVelocity = Point());

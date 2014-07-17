@@ -14,11 +14,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GOVERNMENT_H_
 
 #include "Color.h"
-#include "DataFile.h"
 #include "Set.h"
 
 #include <set>
 #include <string>
+
+class DataNode;
 
 
 
@@ -35,7 +36,7 @@ public:
 	Government();
 	
 	// Load a government's definition from a file.
-	void Load(const DataFile::Node &node, const Set<Government> &others);
+	void Load(const DataNode &node, const Set<Government> &others);
 	
 	// Get the name of this government.
 	const std::string &GetName() const;

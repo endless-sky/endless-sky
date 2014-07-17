@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "GameData.h"
 
+#include "DataFile.h"
 #include "DotShader.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -256,7 +257,7 @@ void GameData::LoadFile(const string &path)
 	
 	DataFile data(path);
 	
-	for(const DataFile::Node &node : data)
+	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
 		if(key == "color" && node.Size() >= 6)
@@ -273,7 +274,7 @@ void GameData::LoadFile(const string &path)
 		else if(key == "interface")
 			interfaces.Get(node.Token(1))->Load(node, colors);
 		else if(key == "outfit" && node.Size() >= 2)
-			outfits.Get(node.Token(1))->Load(node, outfits, effects);
+			outfits.Get(node.Token(1))->Load(node, *this);
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
 		else if(key == "planet" && node.Size() >= 2)

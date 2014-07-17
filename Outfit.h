@@ -14,12 +14,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define OUTFIT_H_
 
 #include "Animation.h"
-#include "DataFile.h"
 #include "Effect.h"
 #include "Set.h"
 
 #include <map>
 #include <string>
+
+class DataNode;
+class GameData;
+class Outfit;
+class Sprite;
 
 
 
@@ -30,7 +34,7 @@ public:
 	
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
-	void Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Set<Effect> &effects);
+	void Load(const DataNode &node, const GameData &data);
 	
 	const std::string &Name() const;
 	const std::string &Category() const;

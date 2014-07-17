@@ -13,11 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CARGO_HOLD_H_
 #define CARGO_HOLD_H_
 
-#include "DataFile.h"
-
 #include <map>
 #include <string>
 
+class DataNode;
 class GameData;
 class Mission;
 class Outfit;
@@ -31,7 +30,7 @@ public:
 	
 	// Load the cargo manifest from a DataFile. This must be done after the
 	// GameData is loaded, so that the sizes of any outfits are known.
-	void Load(const DataFile::Node &node, const GameData &data);
+	void Load(const DataNode &node, const GameData &data);
 	// Save the cargo manifest to a file. Optionally prefix each line with the
 	// given number of tabs, if this CargoHold is inside a larger class.
 	void Save(std::ostream &out, int depth = 0) const;

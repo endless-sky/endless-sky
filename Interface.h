@@ -14,14 +14,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define INTERFACE_H_
 
 #include "Color.h"
-#include "DataFile.h"
 #include "Set.h"
-#include "Sprite.h"
 #include "Point.h"
-#include "Information.h"
 
 #include <string>
 #include <vector>
+
+class DataNode;
+class Information;
+class Sprite;
 
 
 
@@ -29,7 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // the contents of an Information object.
 class Interface {
 public:
-	void Load(const DataFile::Node &node, const Set<Color> &colors);
+	void Load(const DataNode &node, const Set<Color> &colors);
 	
 	void Draw(const Information &info) const;
 	

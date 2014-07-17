@@ -13,12 +13,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 
 #include "Angle.h"
+#include "DataNode.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Radar.h"
 #include "Screen.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
@@ -29,7 +32,7 @@ using namespace std;
 
 
 
-void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
+void Interface::Load(const DataNode &node, const Set<Color> &colors)
 {
 	position = Point();
 	sprites.clear();
@@ -38,7 +41,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 	
 	string condition;
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
 		if(key == "if" && child.Size() >= 2)
@@ -70,7 +73,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			else
 				vec.emplace_back(child.Token(1), position);
 			
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "size" && grand.Size() >= 3)
 					vec.back().size = Point(
@@ -88,7 +91,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			Point position(child.Value(2), child.Value(3));
 			vec.emplace_back(child.Token(1), position);
 			
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
 					vec.back().color = *colors.Get(grand.Token(1));
@@ -110,7 +113,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			Point position(child.Value(2), child.Value(3));
 			vec.emplace_back(child.Token(1), position);
 			
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
 					vec.back().color = *colors.Get(grand.Token(1));
@@ -129,7 +132,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			Point position(child.Value(2), child.Value(3));
 			buttons.emplace_back(child.Token(1).front(), position);
 			
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "size" && grand.Size() >= 3)
 					buttons.back().size = Point(
@@ -143,7 +146,7 @@ void Interface::Load(const DataFile::Node &node, const Set<Color> &colors)
 			Point position(child.Value(1), child.Value(2));
 			radars.emplace_back(position);
 			
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "radius" && grand.Size() >= 2)
 					radars.back().radius = grand.Value(1);

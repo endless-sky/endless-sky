@@ -1,4 +1,4 @@
-/* Personality.h
+/* DataNode.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,37 +10,34 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef PERSONALITY_H_
-#define PERSONALITY_H_
+#ifndef DATA_NODE_H_
+#define DATA_NODE_H_
 
-#include "Point.h"
+#include <list>
+#include <ostream>
+#include <string>
+#include <vector>
 
-class DataNode;
 
 
-
-// Class defining an AI "personality": what actions it takes, and how skilled
-// and aggressive it is in combat.
-class Personality {
+class DataNode {
 public:
-	Personality();
+	int Size() const;
+	const std::string &Token(int index) const;
+	double Value(int index) const;
 	
-	void Load(const DataNode &node);
+	std::list<DataNode>::const_iterator begin() const;
+	std::list<DataNode>::const_iterator end() const;
 	
-	bool IsPacifist() const;
-	bool IsForbearing() const;
-	bool IsTimid() const;
-	bool Disables() const;
-	bool Plunders() const;
-	bool IsHeroic() const;
-	
-	const Point &Confusion() const;
+	void Write(std::ostream &out) const;
 	
 	
 private:
-	int flags;
-	double confusionMultiplier;
-	mutable Point confusion;
+	std::string raw;
+	std::list<DataNode> children;
+	std::vector<std::string> tokens;
+	
+	friend class DataFile;
 };
 
 

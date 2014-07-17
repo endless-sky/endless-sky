@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "ConversationPanel.h"
+#include "DataNode.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -147,7 +148,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		string date = "~0000-00-00.txt";
 		string from = Files::Saves() + it->second.front();
 		DataFile file(from);
-		for(const DataFile::Node &node : file)
+		for(const DataNode &node : file)
 			if(node.Token(0) == "date")
 			{
 				int year = node.Value(3);

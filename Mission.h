@@ -13,11 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MISSION_H_
 #define MISSION_H_
 
-#include "DataFile.h"
-
 #include <ostream>
 #include <string>
 
+class DataNode;
 class DistanceMap;
 class GameData;
 class Planet;
@@ -31,7 +30,7 @@ public:
 	
 	
 public:
-	void Load(const DataFile::Node &node, const GameData &data);
+	void Load(const DataNode &node, const GameData &data);
 	void Save(std::ostream &out, const std::string &tag = "mission") const;
 	
 	const std::string &Name() const;

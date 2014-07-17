@@ -13,12 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PLANET_H_
 #define PLANET_H_
 
-#include "DataFile.h"
 #include "Sale.h"
 
 #include <string>
 #include <vector>
 
+class DataNode;
 class Outfit;
 class Ship;
 class Sprite;
@@ -31,7 +31,7 @@ class System;
 class Planet {
 public:
 	// Load a planet's description from a file.
-	void Load(const DataFile::Node &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits);
+	void Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits);
 	
 	// Get the name of the planet.
 	const std::string &Name() const;

@@ -13,7 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SALE_H_
 #define SALE_H_
 
-#include "DataFile.h"
+#include "DataNode.h"
 #include "Set.h"
 
 #include <algorithm>
@@ -26,7 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 template <class Item>
 class Sale : public std::set<const Item *> {
 public:
-	void Load(const DataFile::Node &node, const Set<Item> &items);
+	void Load(const DataNode &node, const Set<Item> &items);
 	
 	void Add(const Sale<Item> &other);
 	
@@ -36,9 +36,9 @@ public:
 
 
 template <class Item>
-void Sale<Item>::Load(const DataFile::Node &node, const Set<Item> &items)
+void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 {
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 		this->insert(items.Get(child.Token(0)));
 }
 

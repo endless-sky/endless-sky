@@ -13,12 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHIP_H_
 #define SHIP_H_
 
+#include "Controllable.h"
+
 #include "Angle.h"
 #include "Animation.h"
 #include "Armament.h"
 #include "CargoHold.h"
-#include "Controllable.h"
-#include "DataFile.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class DataNode;
 class GameData;
 class Government;
 class Planet;
@@ -44,7 +45,7 @@ public:
 	Ship();
 	
 	// Load data for a type of ship:
-	void Load(const DataFile::Node &node, const GameData &data);
+	void Load(const DataNode &node, const GameData &data);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading();

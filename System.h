@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define SYSTEM_H_
 
 #include "Animation.h"
-#include "DataFile.h"
 #include "Point.h"
 #include "Set.h"
 #include "StellarObject.h"
@@ -22,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class DataNode;
 class Date;
 class Fleet;
 class GameData;
@@ -65,7 +65,7 @@ public:
 	System();
 	
 	// Load a system's description.
-	void Load(const DataFile::Node &node, const GameData &data, Set<Planet> &planets);
+	void Load(const DataNode &node, const GameData &data, Set<Planet> &planets);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
@@ -107,7 +107,7 @@ public:
 	
 	
 private:
-	void LoadObject(const DataFile::Node &node, Set<Planet> &planets, int parent = -1);
+	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
 	
 	
 private:

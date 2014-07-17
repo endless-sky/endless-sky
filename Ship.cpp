@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Ship.h"
 
+#include "DataNode.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
@@ -43,7 +44,7 @@ Ship::Ship()
 
 
 
-void Ship::Load(const DataFile::Node &node, const GameData &data)
+void Ship::Load(const DataNode &node, const GameData &data)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
@@ -54,14 +55,14 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
 			sprite.Load(child);
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(child.Token(0) == "attributes")
-			baseAttributes.Load(child, data.Outfits(), data.Effects());
+			baseAttributes.Load(child, data);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
 		else if((child.Token(0) == "gun" || child.Token(0) == "turret") && child.Size() >= 3)
@@ -90,7 +91,7 @@ void Ship::Load(const DataFile::Node &node, const GameData &data)
 		}
 		else if(child.Token(0) == "outfits")
 		{
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
 				this->outfits[data.Outfits().Get(grand.Token(0))] += count;

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Planet.h"
 
+#include "DataNode.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "SpriteSet.h"
@@ -21,13 +22,13 @@ using namespace std;
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataFile::Node &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits)
+void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<Sale<Outfit>> &outfits)
 {
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "landscape" && child.Size() >= 2)
 			landscape = SpriteSet::Get(child.Token(1));

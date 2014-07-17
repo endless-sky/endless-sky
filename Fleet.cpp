@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Fleet.h"
 
+#include "DataNode.h"
 #include "GameData.h"
 #include "Ship.h"
 #include "ShipName.h"
@@ -31,7 +32,7 @@ Fleet::Fleet()
 
 
 
-void Fleet::Load(const DataFile::Node &node, const GameData &data)
+void Fleet::Load(const DataNode &node, const GameData &data)
 {
 	this->data = &data;
 	
@@ -39,7 +40,7 @@ void Fleet::Load(const DataFile::Node &node, const GameData &data)
 	government = data.Governments().Get("Merchant");
 	names = data.ShipNames().Get("civilian");
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "government" && child.Size() >= 2)
 			government = data.Governments().Get(child.Token(1));
@@ -238,11 +239,11 @@ void Fleet::SetCargo(Ship *ship) const
 
 
 
-Fleet::Variant::Variant(const DataFile::Node &node, const GameData &data)
+Fleet::Variant::Variant(const DataNode &node, const GameData &data)
 {
 	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		int n = 1;
 		if(child.Size() > 1 && child.Value(1) >= 1.)

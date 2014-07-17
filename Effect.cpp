@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Effect.h"
 
+#include "DataNode.h"
 #include "SpriteSet.h"
 
 
@@ -31,12 +32,12 @@ const std::string &Effect::Name() const
 
 
 
-void Effect::Load(const DataFile::Node &node)
+void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)
 		name = node.Token(1);
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
 			animation.Load(child);

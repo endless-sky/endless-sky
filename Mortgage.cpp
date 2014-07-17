@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mortgage.h"
 
+#include "DataNode.h"
+
 #include <algorithm>
 #include <cmath>
 
@@ -44,14 +46,14 @@ Mortgage::Mortgage(int principal, int creditScore, int term)
 
 
 // Load or save mortgage data.
-void Mortgage::Load(const DataFile::Node &node)
+void Mortgage::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		type = node.Token(1);
 	else
 		type = "Mortgage";
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "principal" && child.Size() >= 2)
 			principal = child.Value(1);

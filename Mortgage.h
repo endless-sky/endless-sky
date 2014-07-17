@@ -33,7 +33,7 @@ public:
 	Mortgage(int principal, int creditScore, int term = 365);
 	
 	// Load or save mortgage data.
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	void Save(std::ostream &out) const;
 	
 	// Make a mortgage payment. The return value is the amount paid.

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "HiringPanel.h"
 
 #include "GameData.h"
+#include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 

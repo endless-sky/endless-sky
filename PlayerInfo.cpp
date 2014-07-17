@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 
 #include "DataFile.h"
+#include "DataNode.h"
 #include "DistanceMap.h"
 #include "Files.h"
 #include "GameData.h"
@@ -81,7 +82,7 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 	
 	playerGovernment = data.Governments().Get("Escort");
 	
-	for(const DataFile::Node &child : file)
+	for(const DataNode &child : file)
 	{
 		if(child.Token(0) == "pilot" && child.Size() >= 3)
 		{
