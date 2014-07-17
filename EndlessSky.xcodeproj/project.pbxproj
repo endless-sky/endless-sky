@@ -87,6 +87,14 @@
 		A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7AE6195DF44C002C30B8 /* WrappedText.cpp */; };
 		A99F7B34195DF45E002C30B8 /* data in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B32195DF45E002C30B8 /* data */; };
 		A99F7B35195DF45E002C30B8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B33195DF45E002C30B8 /* images */; };
+		A9C81F7C197873CD00EBA833 /* DataNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F7A197873CD00EBA833 /* DataNode.cpp */; };
+		A9C81F7F197873D800EBA833 /* DistanceMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F7D197873D800EBA833 /* DistanceMap.cpp */; };
+		A9C81F82197873EB00EBA833 /* MapDetailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F80197873EB00EBA833 /* MapDetailPanel.cpp */; };
+		A9C81F85197873F700EBA833 /* Messages.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F83197873F700EBA833 /* Messages.cpp */; };
+		A9C81F8A1978740400EBA833 /* Mission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F861978740400EBA833 /* Mission.cpp */; };
+		A9C81F8B1978740400EBA833 /* MissionPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F881978740400EBA833 /* MissionPanel.cpp */; };
+		A9C81F8E1978741400EBA833 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F8C1978741400EBA833 /* Random.cpp */; };
+		A9C81F911978743100EBA833 /* DataWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F8F1978743100EBA833 /* DataWriter.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
@@ -254,6 +262,22 @@
 		A99F7AE7195DF44C002C30B8 /* WrappedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappedText.h; sourceTree = "<group>"; };
 		A99F7B32195DF45E002C30B8 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		A99F7B33195DF45E002C30B8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		A9C81F7A197873CD00EBA833 /* DataNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataNode.cpp; sourceTree = "<group>"; };
+		A9C81F7B197873CD00EBA833 /* DataNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataNode.h; sourceTree = "<group>"; };
+		A9C81F7D197873D800EBA833 /* DistanceMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceMap.cpp; sourceTree = "<group>"; };
+		A9C81F7E197873D800EBA833 /* DistanceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceMap.h; sourceTree = "<group>"; };
+		A9C81F80197873EB00EBA833 /* MapDetailPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapDetailPanel.cpp; sourceTree = "<group>"; };
+		A9C81F81197873EB00EBA833 /* MapDetailPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDetailPanel.h; sourceTree = "<group>"; };
+		A9C81F83197873F700EBA833 /* Messages.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Messages.cpp; sourceTree = "<group>"; };
+		A9C81F84197873F700EBA833 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
+		A9C81F861978740400EBA833 /* Mission.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mission.cpp; sourceTree = "<group>"; };
+		A9C81F871978740400EBA833 /* Mission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mission.h; sourceTree = "<group>"; };
+		A9C81F881978740400EBA833 /* MissionPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionPanel.cpp; sourceTree = "<group>"; };
+		A9C81F891978740400EBA833 /* MissionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionPanel.h; sourceTree = "<group>"; };
+		A9C81F8C1978741400EBA833 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		A9C81F8D1978741400EBA833 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		A9C81F8F1978743100EBA833 /* DataWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataWriter.cpp; sourceTree = "<group>"; };
+		A9C81F901978743100EBA833 /* DataWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataWriter.h; sourceTree = "<group>"; };
 		A9CC52691950C9F6004E4E22 /* EndlessSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessSky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CC526C1950C9F6004E4E22 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A9CC526F1950C9F6004E4E22 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -320,10 +344,16 @@
 				A99F7A6F195DF44B002C30B8 /* credits.txt */,
 				A99F7A70195DF44B002C30B8 /* DataFile.cpp */,
 				A99F7A71195DF44B002C30B8 /* DataFile.h */,
+				A9C81F7A197873CD00EBA833 /* DataNode.cpp */,
+				A9C81F7B197873CD00EBA833 /* DataNode.h */,
+				A9C81F8F1978743100EBA833 /* DataWriter.cpp */,
+				A9C81F901978743100EBA833 /* DataWriter.h */,
 				A99F7A72195DF44B002C30B8 /* Date.cpp */,
 				A99F7A73195DF44B002C30B8 /* Date.h */,
 				A99F7A74195DF44B002C30B8 /* Dialog.cpp */,
 				A99F7A75195DF44B002C30B8 /* Dialog.h */,
+				A9C81F7D197873D800EBA833 /* DistanceMap.cpp */,
+				A9C81F7E197873D800EBA833 /* DistanceMap.h */,
 				A99F7A76195DF44B002C30B8 /* DotShader.cpp */,
 				A99F7A77195DF44B002C30B8 /* DotShader.h */,
 				A99F7A78195DF44B002C30B8 /* DrawList.cpp */,
@@ -367,12 +397,20 @@
 				A99F7A9A195DF44B002C30B8 /* main.cpp */,
 				A99F7A9B195DF44B002C30B8 /* MainPanel.cpp */,
 				A99F7A9C195DF44B002C30B8 /* MainPanel.h */,
+				A9C81F80197873EB00EBA833 /* MapDetailPanel.cpp */,
+				A9C81F81197873EB00EBA833 /* MapDetailPanel.h */,
 				A99F7A9D195DF44B002C30B8 /* MapPanel.cpp */,
 				A99F7A9E195DF44B002C30B8 /* MapPanel.h */,
 				A99F7A9F195DF44B002C30B8 /* Mask.cpp */,
 				A99F7AA0195DF44B002C30B8 /* Mask.h */,
 				A99F7AA1195DF44B002C30B8 /* MenuPanel.cpp */,
 				A99F7AA2195DF44B002C30B8 /* MenuPanel.h */,
+				A9C81F83197873F700EBA833 /* Messages.cpp */,
+				A9C81F84197873F700EBA833 /* Messages.h */,
+				A9C81F861978740400EBA833 /* Mission.cpp */,
+				A9C81F871978740400EBA833 /* Mission.h */,
+				A9C81F881978740400EBA833 /* MissionPanel.cpp */,
+				A9C81F891978740400EBA833 /* MissionPanel.h */,
 				A99F7AA3195DF44B002C30B8 /* Mortgage.cpp */,
 				A99F7AA4195DF44B002C30B8 /* Mortgage.h */,
 				A99F7AA5195DF44B002C30B8 /* Outfit.cpp */,
@@ -403,6 +441,8 @@
 				A99F7ABC195DF44B002C30B8 /* Projectile.h */,
 				A99F7ABD195DF44B002C30B8 /* Radar.cpp */,
 				A99F7ABE195DF44B002C30B8 /* Radar.h */,
+				A9C81F8C1978741400EBA833 /* Random.cpp */,
+				A9C81F8D1978741400EBA833 /* Random.h */,
 				A99F7ABF195DF44B002C30B8 /* Sale.h */,
 				A99F7AC0195DF44B002C30B8 /* Screen.cpp */,
 				A99F7AC1195DF44C002C30B8 /* Screen.h */,
@@ -573,6 +613,7 @@
 				A99F7B2D195DF44C002C30B8 /* System.cpp in Sources */,
 				A99F7B00195DF44C002C30B8 /* Font.cpp in Sources */,
 				A99F7B19195DF44C002C30B8 /* PlayerInfo.cpp in Sources */,
+				A9C81F8B1978740400EBA833 /* MissionPanel.cpp in Sources */,
 				A99F7AEF195DF44C002C30B8 /* BoardingPanel.cpp in Sources */,
 				A99F7AF6195DF44C002C30B8 /* DataFile.cpp in Sources */,
 				A99F7B2E195DF44C002C30B8 /* Trade.cpp in Sources */,
@@ -588,6 +629,7 @@
 				A99F7B2C195DF44C002C30B8 /* StellarObject.cpp in Sources */,
 				A99F7AEA195DF44C002C30B8 /* Angle.cpp in Sources */,
 				A99F7B2A195DF44C002C30B8 /* SpriteShader.cpp in Sources */,
+				A9C81F8E1978741400EBA833 /* Random.cpp in Sources */,
 				A99F7AF4195DF44C002C30B8 /* ConversationPanel.cpp in Sources */,
 				A99F7B1F195DF44C002C30B8 /* Screen.cpp in Sources */,
 				A99F7B1C195DF44C002C30B8 /* PreferencesPanel.cpp in Sources */,
@@ -596,6 +638,7 @@
 				A99F7B03195DF44C002C30B8 /* GameData.cpp in Sources */,
 				A99F7AEB195DF44C002C30B8 /* Animation.cpp in Sources */,
 				A99F7AED195DF44C002C30B8 /* AsteroidField.cpp in Sources */,
+				A9C81F911978743100EBA833 /* DataWriter.cpp in Sources */,
 				A99F7B16195DF44C002C30B8 /* Panel.cpp in Sources */,
 				A99F7B05195DF44C002C30B8 /* Information.cpp in Sources */,
 				A99F7AF0195DF44C002C30B8 /* CargoHold.cpp in Sources */,
@@ -610,10 +653,12 @@
 				A99F7B10195DF44C002C30B8 /* MenuPanel.cpp in Sources */,
 				A99F7AFD195DF44C002C30B8 /* Files.cpp in Sources */,
 				A99F7B1D195DF44C002C30B8 /* Projectile.cpp in Sources */,
+				A9C81F7C197873CD00EBA833 /* DataNode.cpp in Sources */,
 				A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */,
 				A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */,
 				A99F7B28195DF44C002C30B8 /* SpriteQueue.cpp in Sources */,
 				A99F7B15195DF44C002C30B8 /* OutlineShader.cpp in Sources */,
+				A9C81F8A1978740400EBA833 /* Mission.cpp in Sources */,
 				A99F7AF7195DF44C002C30B8 /* Date.cpp in Sources */,
 				A99F7AFA195DF44C002C30B8 /* DrawList.cpp in Sources */,
 				A99F7B0C195DF44C002C30B8 /* main.cpp in Sources */,
@@ -630,6 +675,7 @@
 				A99F7AF3195DF44C002C30B8 /* Conversation.cpp in Sources */,
 				A99F7AEE195DF44C002C30B8 /* BankPanel.cpp in Sources */,
 				A99F7B20195DF44C002C30B8 /* Shader.cpp in Sources */,
+				A9C81F82197873EB00EBA833 /* MapDetailPanel.cpp in Sources */,
 				A99F7B01195DF44C002C30B8 /* FontSet.cpp in Sources */,
 				A99F7B2B195DF44C002C30B8 /* StarField.cpp in Sources */,
 				A99F7B17195DF44C002C30B8 /* Planet.cpp in Sources */,
@@ -639,8 +685,10 @@
 				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
 				A99F7AF2195DF44C002C30B8 /* Controllable.cpp in Sources */,
+				A9C81F7F197873D800EBA833 /* DistanceMap.cpp in Sources */,
 				A99F7AEC195DF44C002C30B8 /* Armament.cpp in Sources */,
 				A99F7B0A195DF44C002C30B8 /* LineShader.cpp in Sources */,
+				A9C81F85197873F700EBA833 /* Messages.cpp in Sources */,
 				A99F7B0F195DF44C002C30B8 /* Mask.cpp in Sources */,
 				A99F7B23195DF44C002C30B8 /* ShipName.cpp in Sources */,
 				A99F7AFB195DF44C002C30B8 /* Effect.cpp in Sources */,
