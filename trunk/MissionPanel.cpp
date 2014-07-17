@@ -328,7 +328,7 @@ void MissionPanel::DrawList(const list<Mission> &list, Point pos, const string &
 	double dy = .5 * left->Height();
 	Point leftOff(-.5 * (size.X() + left->Width()), 0.);
 	Point rightOff(.5 * (size.X() + right->Width()), 0.);
-	while(edgePos.Y() > Screen::Top())
+	while(dy && edgePos.Y() > Screen::Top())
 	{
 		edgePos.Y() -= dy;
 		SpriteShader::Draw(left, edgePos + leftOff);
