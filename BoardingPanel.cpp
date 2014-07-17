@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
+#include "Random.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "System.h"
@@ -216,16 +217,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				if(!yourCrew || !enemyCrew)
 					break;
 				
-				int yourPower = static_cast<int>(1000. * (youAttack ?
+				unsigned yourPower = static_cast<unsigned>(1000. * (youAttack ?
 					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew)));
-				int enemyPower = static_cast<int>(1000. * (enemyAttacks ?
+				unsigned enemyPower = static_cast<unsigned>(1000. * (enemyAttacks ?
 					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew)));
 				
-				int total = yourPower + enemyPower;
+				unsigned total = yourPower + enemyPower;
 				if(!total)
 					break;
 				
-				if(rand() % total >= yourPower)
+				if(Random::Int(total) >= yourPower)
 					you->AddCrew(-1);
 				else
 					victim->AddCrew(-1);

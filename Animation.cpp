@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Animation.h"
 
 #include "DataNode.h"
+#include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -76,7 +77,7 @@ void Animation::Load(const DataNode &node)
 		else if(child.Token(0) == "random start frame")
 		{
 			if(child.Size() >= 2 && child.Value(1) >= 0.)
-				frameOffset += rand() % (static_cast<int>(child.Value(1)) + 1);
+				frameOffset += Random::Int(child.Value(1) + 1.);
 			else
 				randomize = true;
 		}
@@ -259,7 +260,7 @@ void Animation::DoFirst(int step) const
 	{
 		randomize = false;
 		if(sprite && sprite->Frames())
-			frameOffset += rand() % sprite->Frames();
+			frameOffset += Random::Int(sprite->Frames());
 	}
 	if(startAtZero)
 	{

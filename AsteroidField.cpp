@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Mask.h"
 #include "Projectile.h"
+#include "Random.h"
 
 #include <cmath>
 #include <cstdlib>
@@ -89,14 +90,14 @@ double AsteroidField::Collide(const Projectile &projectile, int step, Point *hit
 
 
 AsteroidField::Asteroid::Asteroid(const Sprite *sprite, double energy)
-	: animation(sprite, (rand() % 1000) * .004 * energy + 5.)
+	: animation(sprite, Random::Real() * 4. * energy + 5.)
 {
-	location = Point(rand() & WRAP_MASK, rand() & WRAP_MASK);
+	location = Point(Random::Int() & WRAP_MASK, Random::Int() & WRAP_MASK);
 	
 	angle = Angle::Random(360.);
-	spin = Angle((rand() % 2001 - 1000) * .001 * energy);
+	spin = Angle((Random::Real() * 2. - 1.) * energy);
 	
-	velocity = angle.Unit() * (rand() % 1001) * .001 * energy;
+	velocity = angle.Unit() * Random::Real() * energy;
 }
 
 

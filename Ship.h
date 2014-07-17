@@ -262,9 +262,9 @@ private:
 	const System *hyperspaceSystem;
 	
 	std::map<const Effect *, int> explosionEffects;
-	int explosionRate;
-	int explosionCount;
-	int explosionTotal;
+	unsigned explosionRate;
+	unsigned explosionCount;
+	unsigned explosionTotal;
 };
 
 

@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FrameTimer.h"
 #include "Messages.h"
 #include "PointerShader.h"
+#include "Random.h"
 #include "Screen.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -110,10 +111,7 @@ void Engine::Place()
 			for(const StellarObject &object : ship->GetSystem()->Objects())
 				if(object.GetPlanet() == player.GetPlanet())
 				{
-					pos = object.Position();
-					int radius = static_cast<int>(object.Radius());
-					if(radius)
-						pos += angle.Unit() * (rand() % radius);
+					pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
 				}
 		}
 		ship->Place(pos, angle.Unit(), angle);
@@ -405,7 +403,7 @@ void Engine::EnterSystem()
 	// Place five seconds worth of fleets.
 	for(int i = 0; i < 5; ++i)
 		for(const System::FleetProbability &fleet : system->Fleets())
-			if(rand() % fleet.Period() < 60)
+			if(Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, ships);
 	
 	projectiles.clear();
@@ -687,7 +685,7 @@ void Engine::CalculateStep()
 	
 	// Add incoming ships.
 	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
-		if(!(rand() % fleet.Period()))
+		if(!Random::Int(fleet.Period()))
 			fleet.Get()->Enter(*player.GetSystem(), ships);
 	
 	// Keep track of how much of the CPU time we are using.

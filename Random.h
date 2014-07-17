@@ -26,6 +26,8 @@ public:
 	static uint32_t Int();
 	static uint32_t Int(uint32_t modulus);
 	
+	static double Real();
+	
 	// Slower functions for getting random numbers from a given distribution.
 	// Do not use these functions in time-critical code.
 	

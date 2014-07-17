@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mask.h"
 #include "Messages.h"
 #include "Projectile.h"
+#include "Random.h"
 #include "SpriteSet.h"
 #include "System.h"
 
@@ -361,7 +362,7 @@ bool Ship::Move(list<Effect> &effects)
 		if(explosionCount == explosionTotal || forget)
 		{
 			if(!forget)
-				for(int i = 0; i < explosionTotal; ++i)
+				for(unsigned i = 0; i < explosionTotal; ++i)
 					CreateExplosion(effects);
 			energy = 0.;
 			heat = 0.;
@@ -372,7 +373,7 @@ bool Ship::Move(list<Effect> &effects)
 		// If the ship is dead, it first creates explosions at an increasing
 		// rate, then disappears in one big explosion.
 		++explosionRate;
-		if(rand() % 1024 < explosionRate)
+		if(Random::Int(1024) < explosionRate)
 			CreateExplosion(effects);
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
@@ -453,7 +454,7 @@ bool Ship::Move(list<Effect> &effects)
 	int requiredCrew = RequiredCrew();
 	if(pilotError)
 		--pilotError;
-	else if(requiredCrew && rand() % requiredCrew >= Crew())
+	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
 		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
@@ -559,7 +560,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 		return;
 	
 	for(Bay &bay : fighterBays)
-		if(bay.ship && !(rand() % 60))
+		if(bay.ship && !Random::Int(60))
 		{
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
@@ -571,7 +572,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship.reset();
 		}
 	for(Bay &bay : droneBays)
-		if(bay.ship && !(rand() % 40))
+		if(bay.ship && !Random::Int(40))
 		{
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
@@ -1261,12 +1262,12 @@ void Ship::CreateExplosion(list<Effect> &effects)
 	// Bail out if this loops enough times, just in case.
 	for(int i = 0; i < 10; ++i)
 	{
-		Point point((rand() % sprite.Width() - .5 * sprite.Width()) * .5,
-			(rand() % sprite.Height() - .5 * sprite.Height()) * .5);
+		Point point((Random::Real() - .5) * .5 * sprite.Width(),
+			(Random::Real() - .5) * .5 * sprite.Height());
 		if(sprite.GetMask(0).Contains(point, Angle()))
 		{
 			// Pick an explosion.
-			int type = rand() % explosionTotal;
+			int type = Random::Int(explosionTotal);
 			auto it = explosionEffects.begin();
 			for( ; it != explosionEffects.end(); ++it)
 			{
