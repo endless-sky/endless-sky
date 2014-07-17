@@ -13,14 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FLEET_H_
 #define FLEET_H_
 
-#include "DataFile.h"
-
 #include "Personality.h"
 
 #include <list>
 #include <memory>
 #include <vector>
 
+class DataNode;
 class GameData;
 class Government;
 class Ship;
@@ -33,7 +32,7 @@ class Fleet {
 public:
 	Fleet();
 	
-	void Load(const DataFile::Node &node, const GameData &data);
+	void Load(const DataNode &node, const GameData &data);
 	
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
 	// Place a fleet in the given system, already "in action."
@@ -47,7 +46,7 @@ private:
 private:
 	class Variant {
 	public:
-		Variant(const DataFile::Node &node, const GameData &data);
+		Variant(const DataNode &node, const GameData &data);
 		
 		int weight;
 		std::vector<const Ship *> ships;

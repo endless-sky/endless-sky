@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteSet.h"
 #include "DrawList.h"
 #include "GameData.h"
+#include "Mask.h"
 #include "Projectile.h"
 
 #include <cmath>

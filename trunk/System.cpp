@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include "Angle.h"
+#include "DataNode.h"
 #include "Date.h"
 #include "GameData.h"
 #include "Government.h"
@@ -85,14 +86,14 @@ System::System()
 
 
 // Load a system's description.
-void System::Load(const DataFile::Node &node, const GameData &data, Set<Planet> &planets)
+void System::Load(const DataNode &node, const GameData &data, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
 	habitable = 1000.;
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "pos" && child.Size() >= 3)
 			position.Set(child.Value(1), child.Value(2));
@@ -302,7 +303,7 @@ const vector<System::FleetProbability> &System::Fleets() const
 
 
 
-void System::LoadObject(const DataFile::Node &node, Set<Planet> &planets, int parent)
+void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 {
 	int index = objects.size();
 	objects.push_back(StellarObject());
@@ -316,7 +317,7 @@ void System::LoadObject(const DataFile::Node &node, Set<Planet> &planets, int pa
 		planet->SetSystem(this);
 	}
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite" && child.Size() >= 2)
 		{

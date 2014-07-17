@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Account.h"
 
+#include "DataNode.h"
 #include "Ship.h"
 
 #include <sstream>
@@ -33,14 +34,14 @@ Account::Account()
 
 
 // Load or save account data.
-void Account::Load(const DataFile::Node &node)
+void Account::Load(const DataNode &node)
 {
 	credits = 0;
 	salariesOwed = 0;
 	creditScore = 400;
 	history.clear();
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "credits" && child.Size() >= 2)
 			credits = child.Value(1);
@@ -54,7 +55,7 @@ void Account::Load(const DataFile::Node &node)
 			mortgages.back().Load(child);
 		}
 		else if(child.Token(0) == "history")
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
 	}
 }

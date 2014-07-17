@@ -13,17 +13,17 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHIP_NAME_H_
 #define SHIP_NAME_H_
 
-#include "DataFile.h"
-
 #include <string>
 #include <vector>
+
+class DataNode;
 
 
 
 // Class representing a set of rules for generating random ship names.
 class ShipName {
 public:
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	
 	std::string Get() const;
 	

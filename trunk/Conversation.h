@@ -13,13 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONVERSATION_H_
 #define CONVERSATION_H_
 
-#include "DataFile.h"
-
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
+class DataNode;
 class Sprite;
 
 
@@ -39,7 +38,7 @@ public:
 public:
 	Conversation();
 	
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.

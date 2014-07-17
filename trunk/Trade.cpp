@@ -12,17 +12,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Trade.h"
 
+#include "DataNode.h"
+
 #include <cassert>
 
 using namespace std;
 
 
 
-void Trade::Load(const DataFile::Node &node)
+void Trade::Load(const DataNode &node)
 {
 	assert(node.Token(0) == "trade");
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "commodity" && child.Size() >= 4)
 		{
@@ -30,7 +32,7 @@ void Trade::Load(const DataFile::Node &node)
 			commodities.back().name = child.Token(1);
 			commodities.back().low = child.Value(2);
 			commodities.back().high = child.Value(3);
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 				commodities.back().items.push_back(grand.Token(0));
 		}
 	}

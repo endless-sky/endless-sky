@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "CargoHold.h"
 
+#include "DataNode.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
@@ -34,13 +35,13 @@ void CargoHold::Clear()
 
 // Load the cargo manifest from a DataFile. This must be done after the
 // GameData is loaded, so that the sizes of any outfits are known.
-void CargoHold::Load(const DataFile::Node &node, const GameData &data)
+void CargoHold::Load(const DataNode &node, const GameData &data)
 {
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "commodities")
 		{
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
 					int tons = grand.Value(1);
@@ -49,7 +50,7 @@ void CargoHold::Load(const DataFile::Node &node, const GameData &data)
 		}
 		else if(child.Token(0) == "outfits")
 		{
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				const Outfit *outfit = data.Outfits().Get(grand.Token(0));
 				int count = (grand.Size() < 2) ? 1 : grand.Value(1);

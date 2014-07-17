@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef TRADE_H_
 #define TRADE_H_
 
-#include "DataFile.h"
-
 #include <vector>
 #include <string>
+
+class DataNode;
 
 
 
@@ -33,7 +33,7 @@ public:
 	
 	
 public:
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	
 	const std::vector<Commodity> &Commodities() const;
 	

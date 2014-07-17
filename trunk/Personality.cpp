@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Personality.h"
 
 #include "Angle.h"
+#include "DataNode.h"
 
 using namespace std;
 
@@ -35,10 +36,10 @@ Personality::Personality()
 
 
 
-void Personality::Load(const DataFile::Node &node)
+void Personality::Load(const DataNode &node)
 {
 	flags = 0;
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion" && child.Size() >= 2)
 			confusionMultiplier = child.Value(1) * .001;

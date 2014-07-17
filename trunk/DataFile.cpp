@@ -13,9 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 
 #include <fstream>
-#include <sstream>
-#include <cassert>
-#include <limits>
 
 using namespace std;
 
@@ -51,7 +48,7 @@ void DataFile::Load(const string &path)
 
 void DataFile::Load(istream &in)
 {
-	vector<Node *> stack(1, &root);
+	vector<DataNode *> stack(1, &root);
 	vector<int> whiteStack(1, -1);
 	
 	string line;
@@ -71,9 +68,9 @@ void DataFile::Load(istream &in)
 			stack.pop_back();
 		}
 		
-		list<Node> &children = stack.back()->children;
-		children.push_back(Node());
-		Node &node = children.back();
+		list<DataNode> &children = stack.back()->children;
+		children.push_back(DataNode());
+		DataNode &node = children.back();
 		
 		stack.push_back(&node);
 		whiteStack.push_back(white);
@@ -106,65 +103,14 @@ void DataFile::Load(istream &in)
 
 
 
-list<DataFile::Node>::const_iterator DataFile::begin() const
+list<DataNode>::const_iterator DataFile::begin() const
 {
 	return root.begin();
 }
 
 
 
-list<DataFile::Node>::const_iterator DataFile::end() const
+list<DataNode>::const_iterator DataFile::end() const
 {
 	return root.end();
-}
-
-
-
-int DataFile::Node::Size() const
-{
-	return tokens.size();
-}
-
-
-
-const string &DataFile::Node::Token(int index) const
-{
-	assert(static_cast<unsigned>(index) < tokens.size());
-	
-	return tokens[index];
-}
-
-
-
-double DataFile::Node::Value(int index) const
-{
-	assert(static_cast<unsigned>(index) < tokens.size());
-	
-	double value = numeric_limits<double>::quiet_NaN();
-	istringstream(tokens[index]) >> value;
-	
-	return value;
-}
-
-
-
-list<DataFile::Node>::const_iterator DataFile::Node::begin() const
-{
-	return children.begin();
-}
-
-
-
-list<DataFile::Node>::const_iterator DataFile::Node::end() const
-{
-	return children.end();
-}
-
-
-
-void DataFile::Node::Write(ostream &out) const
-{
-	out << raw << endl;
-	for(const Node &node : children)
-		node.Write(out);
 }

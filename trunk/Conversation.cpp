@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Conversation.h"
 
+#include "DataNode.h"
 #include "SpriteSet.h"
 
 #include <iostream>
@@ -27,7 +28,7 @@ Conversation::Conversation()
 
 
 
-void Conversation::Load(const DataFile::Node &node)
+void Conversation::Load(const DataNode &node)
 {
 	if(node.Token(0) != "conversation" || node.Size() < 2)
 		return;
@@ -36,7 +37,7 @@ void Conversation::Load(const DataFile::Node &node)
 	// Free any previously loaded data.
 	nodes.clear();
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "scene" && child.Size() >= 2)
 			scene = SpriteSet::Get(child.Token(1));
@@ -51,7 +52,7 @@ void Conversation::Load(const DataFile::Node &node)
 		{
 			// Create a new node with one or more choices in it.
 			nodes.emplace_back(true);
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				// Store the text of this choice. By default, the choice will
 				// just bring you to the next node in the script.
@@ -59,7 +60,7 @@ void Conversation::Load(const DataFile::Node &node)
 				nodes.back().data.back().first += '\n';
 				
 				// If this choice contains a goto, record it.
-				for(const DataFile::Node &great : grand)
+				for(const DataNode &great : grand)
 				{
 					int index = TokenIndex(great.Token(0));
 					
@@ -99,7 +100,7 @@ void Conversation::Load(const DataFile::Node &node)
 			nodes.back().data.back().first += '\n';
 			
 			// Check if this node contains a "goto".
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				int index = TokenIndex(grand.Token(0));
 					

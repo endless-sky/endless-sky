@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ACCOUNT_H_
 #define ACCOUNT_H_
 
-#include "DataFile.h"
 #include "Mortgage.h"
 
 #include <memory>
@@ -21,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class DataNode;
 class Ship;
 
 
@@ -33,7 +33,7 @@ public:
 	Account();
 	
 	// Load or save account data.
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	void Save(std::ostream &out) const;
 	
 	// Get or change the player's credits.

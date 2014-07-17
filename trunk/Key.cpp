@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Key.h"
 
 #include "DataFile.h"
+#include "DataNode.h"
 
 #include <SDL2/SDL.h>
 
@@ -96,7 +97,7 @@ void Key::Load(const string &path)
 	for(int i = MENU; i != END; ++i)
 		commands[DESCRIPTION[i]] = i;
 	
-	for(const DataFile::Node &node : file)
+	for(const DataNode &node : file)
 	{
 		auto it = commands.find(node.Token(0));
 		if(it != commands.end() && node.Size() >= 2)

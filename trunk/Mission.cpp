@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mission.h"
 
+#include "DataNode.h"
 #include "DistanceMap.h"
 #include "GameData.h"
 #include "Random.h"
@@ -101,12 +102,12 @@ Mission Mission::Passenger(const GameData &data, const Planet *source, const Dis
 
 
 
-void Mission::Load(const DataFile::Node &node, const GameData &data)
+void Mission::Load(const DataNode &node, const GameData &data)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "destination" && child.Size() >= 2)
 			destination = data.Planets().Get(child.Token(1));

@@ -13,10 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ANIMATION_H_
 #define ANIMATION_H_
 
-#include "DataFile.h"
-
 #include <ostream>
 
+class DataNode;
 class Mask;
 class Sprite;
 
@@ -41,7 +40,7 @@ public:
 	Animation(const Sprite *sprite, float frameRate);
 	
 	// Load the animation.
-	void Load(const DataFile::Node &node);
+	void Load(const DataNode &node);
 	// Save this animation's information to a ship descriptor. Only saves the
 	// frame rate and the rewind flag if set, not the other settings, since
 	// those will not generally apply to a ship sprite.

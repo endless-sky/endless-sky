@@ -12,24 +12,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipName.h"
 
+#include "DataNode.h"
+
 #include <cstdlib>
 
 using namespace std;
 
 
 
-void ShipName::Load(const DataFile::Node &node)
+void ShipName::Load(const DataNode &node)
 {
 	if(node.Token(0) != "shipName")
 		return;
 	
 	words.push_back(vector<vector<string>>());
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "word")
 		{
 			words.back().push_back(vector<string>());
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 				words.back().back().push_back(grand.Token(0));
 		}
 	}

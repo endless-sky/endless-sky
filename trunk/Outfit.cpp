@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Outfit.h"
 
+#include "DataNode.h"
+#include "GameData.h"
 #include "SpriteSet.h"
 
 using namespace std;
@@ -25,13 +27,13 @@ Outfit::Outfit()
 
 
 
-void Outfit::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const Set<Effect> &effects)
+void Outfit::Load(const DataNode &node, const GameData &data)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
 	category = "Other";
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
@@ -41,28 +43,28 @@ void Outfit::Load(const DataFile::Node &node, const Set<Outfit> &outfits, const 
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
 		{
-			for(const DataFile::Node &grand : child)
+			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "sprite" && grand.Size() >= 2)
 					weaponSprite.Load(grand);
 				else if(grand.Token(0) == "ammo" && grand.Size() >= 2)
-					ammo = outfits.Get(grand.Token(1));
+					ammo = data.Outfits().Get(grand.Token(1));
 				else if(grand.Token(0) == "icon" && grand.Size() >= 2)
 					icon = SpriteSet::Get(grand.Token(1));
 				else if(grand.Token(0) == "hit effect" && grand.Size() >= 2)
 				{
 					int count = (grand.Size() >= 3) ? grand.Value(2) : 1;
-					hitEffects[effects.Get(grand.Token(1))] += count;
+					hitEffects[data.Effects().Get(grand.Token(1))] += count;
 				}
 				else if(grand.Token(0) == "die effect" && grand.Size() >= 2)
 				{
 					int count = (grand.Size() >= 3) ? grand.Value(2) : 1;
-					dieEffects[effects.Get(grand.Token(1))] += count;
+					dieEffects[data.Effects().Get(grand.Token(1))] += count;
 				}
 				else if(grand.Token(0) == "submunition" && grand.Size() >= 2)
 				{
 					int count = (grand.Size() >= 3) ? grand.Value(2) : 1;
-					submunitions[outfits.Get(grand.Token(1))] += count;
+					submunitions[data.Outfits().Get(grand.Token(1))] += count;
 				}
 				else if(grand.Size() >= 2)
 					weapon[grand.Token(0)] = grand.Value(1);

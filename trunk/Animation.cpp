@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Animation.h"
 
-#include "DataFile.h"
+#include "DataNode.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -48,7 +48,7 @@ Animation::Animation(const Sprite *sprite, float frameRate)
 
 
 // Load the animation.
-void Animation::Load(const DataFile::Node &node)
+void Animation::Load(const DataNode &node)
 {
 	if(node.Size() < 2)
 		return;
@@ -59,7 +59,7 @@ void Animation::Load(const DataFile::Node &node)
 	// start frame is specified and it repeats. Since a frame that does not
 	// start at zero starts when the game started, it does not make sense for it
 	// to do that unless it is repeating endlessly.
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "frame rate" && child.Size() >= 2)
 		{

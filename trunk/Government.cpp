@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Government.h"
 
+#include "DataNode.h"
+
 #include <algorithm>
 
 using namespace std;
@@ -27,12 +29,12 @@ Government::Government()
 
 
 // Load a government's definition from a file.
-void Government::Load(const DataFile::Node &node, const Set<Government> &others)
+void Government::Load(const DataNode &node, const Set<Government> &others)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
 	
-	for(const DataFile::Node &child : node)
+	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "swizzle" && child.Size() >= 2)
 			swizzle = child.Value(1);
