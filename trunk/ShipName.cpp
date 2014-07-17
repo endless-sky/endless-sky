@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipName.h"
 
 #include "DataNode.h"
+#include "Random.h"
 
 #include <cstdlib>
 
@@ -45,8 +46,8 @@ string ShipName::Get() const
 	if(words.empty())
 		return result;
 	
-	for(const vector<string> &v : words[rand() % words.size()])
-		result += v[rand() % v.size()];
+	for(const vector<string> &v : words[Random::Int(words.size())])
+		result += v[Random::Int(v.size())];
 	
 	return result;
 }

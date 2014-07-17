@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StarField.h"
 
+#include "Random.h"
 #include "Screen.h"
 
 #include <cassert>
@@ -199,13 +200,13 @@ void StarField::MakeStars(int stars, int width)
 	vector<short> temp;
 	temp.reserve(2 * stars);
 	
-	short x = rand() % width;
-	short y = rand() % width;
+	short x = Random::Int(width);
+	short y = Random::Int(width);
 	for(int i = 0; i < stars; ++i)
 	{
 		for(int j = 0; j < 10; ++j)
 		{
-			int index = (rand() % off.size()) & ~1;
+			int index = Random::Int(off.size()) & ~1;
 			x += off[index];
 			y += off[index + 1];
 			x &= widthMod;
@@ -245,7 +246,7 @@ StarField::Tile::Tile(vector<float>::iterator it)
 
 void StarField::Tile::Add(short x, short y)
 {
-	short random = rand() % 4096;
+	short random = Random::Int(4096);
 	*last++ = (x & 255) + (random & 15) * 0.0625f;
 	*last++ = (y & 255) + (random >> 8) * 0.0625f;
 	*last++ = (((random >> 4) & 15) + 20) * 0.125f;

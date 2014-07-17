@@ -19,6 +19,7 @@ using namespace std;
 namespace {
 	thread_local mt19937_64 gen;
 	thread_local uniform_int_distribution<uint32_t> uniform;
+	thread_local uniform_real_distribution<double> real;
 }
 
 
@@ -42,6 +43,13 @@ uint32_t Random::Int()
 uint32_t Random::Int(uint32_t modulus)
 {
 	return uniform(gen) % modulus;
+}
+
+
+
+double Random::Real()
+{
+	return real(gen);
 }
 
 

@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 
+#include "Random.h"
+
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
@@ -32,12 +34,20 @@ namespace {
 
 
 
+Angle Angle::Random()
+{
+	return Angle(static_cast<int32_t>(Random::Int(STEPS)));
+}
+
+
+
+
 Angle Angle::Random(double range)
 {
 	int64_t steps = fabs(range) * DEG_TO_STEP + .5;
 	int32_t mod = min(steps, int64_t(STEPS - 1)) + 1;
 	
-	return Angle(rand() % mod);
+	return Angle(static_cast<int32_t>(Random::Int(mod)));
 }
 
 

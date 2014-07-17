@@ -59,7 +59,7 @@ private:
 	// added to the parent angle, and then a random velocity in that direction
 	// is added to the parent velocity.
 	double velocityScale;
-	int randomVelocity;
+	double randomVelocity;
 	double randomAngle;
 	double randomSpin;
 	

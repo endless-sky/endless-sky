@@ -13,12 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 
 #include "DataNode.h"
+#include "Random.h"
 #include "SpriteSet.h"
 
 
 
 Effect::Effect()
-	: velocityScale(1.), randomVelocity(1),
+	: velocityScale(1.), randomVelocity(0.),
 	randomAngle(0.), randomSpin(0.), lifetime(0)
 {
 }
@@ -46,7 +47,7 @@ void Effect::Load(const DataNode &node)
 		if(child.Token(0) == "velocity scale" && child.Size() >= 2)
 			velocityScale = child.Value(1);
 		if(child.Token(0) == "random velocity" && child.Size() >= 2)
-			randomVelocity = child.Value(1) * 1000. + 1.;
+			randomVelocity = child.Value(1);
 		if(child.Token(0) == "random angle" && child.Size() >= 2)
 			randomAngle = child.Value(1);
 		if(child.Token(0) == "random spin" && child.Size() >= 2)
@@ -65,7 +66,7 @@ void Effect::Place(Point pos, Point vel, Angle angle, Point hitVelocity)
 	
 	position = pos;
 	velocity = (vel - hitVelocity) * velocityScale + hitVelocity
-		+ this->angle.Unit() * ((rand() % randomVelocity) * .001);
+		+ this->angle.Unit() * Random::Real() * randomVelocity;
 }
 
 

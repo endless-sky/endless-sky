@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Outfit.h"
 #include "Projectile.h"
+#include "Random.h"
 #include "Ship.h"
 
 #include <cmath>
@@ -174,7 +175,7 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 	reload += outfit->WeaponGet("reload");
 	ship.ExpendAmmo(outfit);
 	
-	return (rand() % strength > rand() % projectile.MissileStrength());
+	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
 }
 
 

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "GameData.h"
+#include "Random.h"
 #include "Ship.h"
 #include "ShipName.h"
 #include "StellarObject.h"
@@ -69,7 +70,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	
 	// Pick a random variant based on the weights.
 	unsigned index = 0;
-	for(int choice = rand() % total; choice >= variants[index].weight; ++index)
+	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
 		choice -= variants[index].weight;
 	
 	bool isEnemy = system.GetGovernment().IsEnemy(government);
@@ -84,7 +85,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	if(!(links + planets))
 		return;
 	
-	int choice = rand() % (links + planets);
+	int choice = Random::Int(links + planets);
 	
 	const Planet *planet = nullptr;
 	const System *source = &system;
@@ -107,7 +108,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 				radius = max(0, static_cast<int>(object.Radius()));
 				break;
 			}
-		target = system.Links()[rand() % links];
+		target = system.Links()[Random::Int(links)];
 	}
 	else
 		source = system.Links()[choice];
@@ -127,7 +128,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 			continue;
 		}
 		Angle angle = Angle::Random(360.);
-		Point pos = position + angle.Unit() * (rand() % (radius + 1));
+		Point pos = position + angle.Unit() * (Random::Int(radius + 1));
 		
 		ships.push_front(shared_ptr<Ship>(new Ship(*ship)));
 		ships.front()->SetSystem(source);
@@ -159,7 +160,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 	
 	// Pick a random variant based on the weights.
 	unsigned index = 0;
-	for(int choice = rand() % total; choice >= variants[index].weight; ++index)
+	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
 		choice -= variants[index].weight;
 	
 	// Count the inhabited planets in this system.
@@ -172,7 +173,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 	Point center;
 	if(planets)
 	{
-		int index = rand() % planets;
+		int index = Random::Int(planets);
 		for(const StellarObject &object : system.Objects())
 			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 				if(!index--)
@@ -181,7 +182,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 	
 	// Move out a random distance from that object, facing toward it or away.
 	Angle angle = Angle::Random();
-	center += angle.Unit() * ((rand() % 2001) - 1000);
+	center += angle.Unit() * (Random::Real() * 2. - 1.);
 	
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
@@ -197,10 +198,10 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 					break;
 			continue;
 		}
-		Angle angle = Angle::Random(360.);
-		Point pos = center + Angle::Random().Unit() * (rand() % 400);
+		Angle angle = Angle::Random();
+		Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
 		
-		double velocity = (rand() % static_cast<int>(100. * ship->MaxVelocity())) * .01;
+		double velocity = Random::Real() * ship->MaxVelocity();
 		
 		ships.push_front(shared_ptr<Ship>(new Ship(*ship)));
 		ships.front()->SetSystem(&system);
@@ -230,9 +231,9 @@ void Fleet::SetCargo(Ship *ship) const
 		if(!free)
 			break;
 		
-		int index = rand() % data->Commodities().size();
+		int index = Random::Int(data->Commodities().size());
 		const Trade::Commodity &commodity = data->Commodities()[index];
-		int amount = rand() % free + 1;
+		int amount = Random::Int(free) + 1;
 		ship->Cargo().Transfer(commodity.name, -amount);
 	}
 }

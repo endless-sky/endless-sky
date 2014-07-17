@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Random.h"
 #include "Ship.h"
 #include "System.h"
 
@@ -207,7 +208,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		if(!totalWeight)
 			return;
 		
-		int choice = rand() % totalWeight;
+		int choice = Random::Int(totalWeight);
 		if(choice < systemTotalWeight)
 		{
 			for(unsigned i = 0; i < systemWeights.size(); ++i)
