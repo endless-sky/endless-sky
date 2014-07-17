@@ -41,8 +41,8 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &playerInfo, UI &gamePanels)
-	: gameData(gameData), playerInfo(playerInfo), gamePanels(gamePanels), scroll(0)
+MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &player, UI &gamePanels)
+	: gameData(gameData), player(player), gamePanels(gamePanels), scroll(0)
 {
 	SetIsFullScreen(true);
 	
@@ -72,22 +72,22 @@ void MenuPanel::Draw() const
 	gameData.Background().Draw(Point(), Point());
 	
 	Information info;
-	if(playerInfo.IsLoaded())
+	if(player.IsLoaded())
 	{
 		info.SetCondition("pilot loaded");
-		info.SetString("pilot", playerInfo.FirstName() + " " + playerInfo.LastName());
-		if(playerInfo.GetShip())
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
+		if(player.GetShip())
 		{
-			const Ship &ship = *playerInfo.GetShip();
+			const Ship &ship = *player.GetShip();
 			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
 			info.SetString("ship", ship.Name());
 		}
-		if(playerInfo.GetSystem())
-			info.SetString("system", playerInfo.GetSystem()->Name());
-		if(playerInfo.GetPlanet())
-			info.SetString("planet", playerInfo.GetPlanet()->Name());
-		info.SetString("credits", to_string(playerInfo.Accounts().Credits()));
-		info.SetString("date", playerInfo.GetDate().ToString());
+		if(player.GetSystem())
+			info.SetString("system", player.GetSystem()->Name());
+		if(player.GetPlanet())
+			info.SetString("planet", player.GetPlanet()->Name());
+		info.SetString("credits", to_string(player.Accounts().Credits()));
+		info.SetString("date", player.GetDate().ToString());
 	}
 	else
 	{
@@ -103,7 +103,7 @@ void MenuPanel::Draw() const
 	if(progress == 60)
 	{
 		if(!gamePanels.Root())
-			gamePanels.Push(new MainPanel(gameData, playerInfo));
+			gamePanels.Push(new MainPanel(gameData, player));
 		alpha -= .02f;
 	}
 	if(alpha > 0.f)
@@ -142,12 +142,12 @@ void MenuPanel::Draw() const
 void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
-	Panel *panel = new MainPanel(gameData, playerInfo);
+	Panel *panel = new MainPanel(gameData, player);
 	gamePanels.Reset();
 	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	panel->Step(true);
-	gamePanels.Push(new ShipyardPanel(gameData, playerInfo));
+	gamePanels.Push(new ShipyardPanel(gameData, player));
 }
 
 
@@ -162,13 +162,13 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel(gameData));
 	else if(key == 'l')
-		GetUI()->Push(new LoadPanel(gameData, playerInfo, gamePanels));
+		GetUI()->Push(new LoadPanel(gameData, player, gamePanels));
 	else if(key == 'n')
 	{
-		playerInfo.New(gameData);
+		player.New(gameData);
 		
 		ConversationPanel *panel = new ConversationPanel(
-			playerInfo, *gameData.Conversations().Get("intro"));
+			player, *gameData.Conversations().Get("intro"));
 		GetUI()->Push(panel);
 		panel->SetCallback(*this);
 	}

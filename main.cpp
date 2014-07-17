@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 {
 	// Game data should persist until after the UIs cease to exist.
 	GameData gameData;
-	PlayerInfo playerInfo;
+	PlayerInfo player;
 	
 	try {
 		SDL_Init(SDL_INIT_VIDEO);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		// Begin loading the game data.
 		gameData.BeginLoad(argv);
 		
-		playerInfo.LoadRecent(gameData);
+		player.LoadRecent(gameData);
 		
 		// Check how big the window can be.
 		SDL_DisplayMode mode;
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 		
 		UI gamePanels;
 		UI menuPanels;
-		menuPanels.Push(new MenuPanel(gameData, playerInfo, gamePanels));
+		menuPanels.Push(new MenuPanel(gameData, player, gamePanels));
 		
 		FrameTimer timer(60);
 		while(!menuPanels.IsDone())
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 						&& event.key.keysym.sym == gameData.Keys().Get(Key::MENU))
 				{
 					menuPanels.Push(shared_ptr<Panel>(
-						new MenuPanel(gameData, playerInfo, gamePanels)));
+						new MenuPanel(gameData, player, gamePanels)));
 				}
 				else if(event.type == SDL_QUIT)
 				{
@@ -196,8 +196,8 @@ int main(int argc, char *argv[])
 		}
 		
 		// If you quit while landed on a planet, save the game.
-		if(playerInfo.GetPlanet())
-			playerInfo.Save();
+		if(player.GetPlanet())
+			player.Save();
 		
 		SDL_GL_DeleteContext(context);
 		SDL_DestroyWindow(window);

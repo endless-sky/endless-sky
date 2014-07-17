@@ -25,7 +25,7 @@ class PlayerInfo;
 // Class representing the main panel (i.e. the view of your ship moving around).
 class MainPanel : public Panel {
 public:
-	MainPanel(const GameData &gameData, PlayerInfo &playerInfo);
+	MainPanel(const GameData &gameData, PlayerInfo &player);
 	
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
@@ -41,7 +41,7 @@ protected:
 	
 private:
 	const GameData &gameData;
-	PlayerInfo &playerInfo;
+	PlayerInfo &player;
 	
 	Engine engine;
 	

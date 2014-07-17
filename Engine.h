@@ -41,7 +41,7 @@ class Panel;
 // the game, and to move them, step by step.
 class Engine {
 public:
-	Engine(const GameData &data, PlayerInfo &playerInfo);
+	Engine(const GameData &data, PlayerInfo &player);
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.
@@ -76,7 +76,7 @@ private:
 	
 private:
 	const GameData &data;
-	PlayerInfo &playerInfo;
+	PlayerInfo &player;
 	const Government *playerGovernment;
 	
 	AI ai;
