@@ -108,7 +108,10 @@ bool MapDetailPanel::Click(int x, int y)
 		return KeyDown(SDLK_d, KMOD_NONE);
 	}
 	
-	return MapPanel::Click(x, y);
+	MapPanel::Click(x, y);
+	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
+		selectedPlanet = nullptr;
+	return true;
 }
 
 

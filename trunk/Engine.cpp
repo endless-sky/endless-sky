@@ -29,8 +29,8 @@ using namespace std;
 
 
 
-Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
-	: data(data), playerInfo(playerInfo),
+Engine::Engine(const GameData &data, PlayerInfo &player)
+	: data(data), player(player),
 	playerGovernment(data.Governments().Get("Escort")),
 	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
 	asteroids(data), flash(0.),
@@ -39,23 +39,23 @@ Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
 	
-	if(!playerInfo.IsLoaded() || !playerInfo.GetSystem())
+	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
 	for(const auto &it : data.Systems())
-		it.second.SetDate(playerInfo.GetDate());
+		it.second.SetDate(player.GetDate());
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
-	if(playerInfo.GetPlanet())
+	if(player.GetPlanet())
 	{
-		for(const StellarObject &object : playerInfo.GetSystem()->Objects())
-			if(object.GetPlanet() == playerInfo.GetPlanet())
+		for(const StellarObject &object : player.GetSystem()->Objects())
+			if(object.GetPlanet() == player.GetPlanet())
 				center = object.Position();
 	}
-	for(const StellarObject &object : playerInfo.GetSystem()->Objects())
+	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
 		{
 			Point position = object.Position();
@@ -73,8 +73,8 @@ Engine::Engine(const GameData &data, PlayerInfo &playerInfo)
 		}
 	
 	// Add all neighboring systems to the radar.
-	Point pos = playerInfo.GetSystem()->Position();
-	for(const System *system : playerInfo.GetSystem()->Links())
+	Point pos = player.GetSystem()->Position();
+	for(const System *system : player.GetSystem()->Links())
 		radar[calcTickTock].AddPointer(Radar::INACTIVE, system->Position() - pos);
 }
 
@@ -97,18 +97,18 @@ void Engine::Place()
 	ships.clear();
 	
 	EnterSystem();
-	for(const shared_ptr<Ship> &ship : playerInfo.Ships())
+	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		ships.push_back(ship);
 		Point pos;
 		Angle angle = Angle::Random(360.);
 		// All your ships that are in system with the player act as if they are
 		// leaving the planet along with you.
-		if(playerInfo.GetPlanet() && ship->GetSystem() == playerInfo.GetSystem())
+		if(player.GetPlanet() && ship->GetSystem() == player.GetSystem())
 		{
-			ship->SetPlanet(playerInfo.GetPlanet());
+			ship->SetPlanet(player.GetPlanet());
 			for(const StellarObject &object : ship->GetSystem()->Objects())
-				if(object.GetPlanet() == playerInfo.GetPlanet())
+				if(object.GetPlanet() == player.GetPlanet())
 				{
 					pos = object.Position();
 					int radius = static_cast<int>(object.Radius());
@@ -119,7 +119,7 @@ void Engine::Place()
 		ship->Place(pos, angle.Unit(), angle);
 	}
 	
-	playerInfo.SetPlanet(nullptr);
+	player.SetPlanet(nullptr);
 }
 
 
@@ -136,18 +136,18 @@ void Engine::Step(bool isActive)
 			++step;
 		
 		// The calculation thread is now paused, so it is safe to access things.
-		const Ship *player = playerInfo.GetShip();
-		if(player)
+		const Ship *flagship = player.GetShip();
+		if(flagship)
 		{
-			position = player->Position();
-			velocity = player->Velocity();
+			position = flagship->Position();
+			velocity = flagship->Velocity();
 		}
-		ai.UpdateKeys(data.Keys().State(), &playerInfo);
+		ai.UpdateKeys(data.Keys().State(), &player);
 		
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
-		if(player && player->GetPlanet() && isActive)
-			playerInfo.SetPlanet(player->GetPlanet());
+		if(flagship && flagship->GetPlanet() && isActive)
+			player.SetPlanet(flagship->GetPlanet());
 		
 		if(!boardingQueue.empty())
 		{
@@ -157,12 +157,12 @@ void Engine::Step(bool isActive)
 		else
 			boarding.reset();
 		
-		const System *currentSystem = playerInfo.GetSystem();
+		const System *currentSystem = player.GetSystem();
 		// Update this here, for thread safety.
-		if(playerInfo.HasTravelPlan() && currentSystem == playerInfo.TravelPlan().back())
+		if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		{
 			flash = .4;
-			playerInfo.PopTravel();
+			player.PopTravel();
 		}
 		else if(flash)
 			flash = max(0., flash * .99 - .002);
@@ -171,37 +171,38 @@ void Engine::Step(bool isActive)
 		
 		// Update the player's ammo amounts.
 		ammo.clear();
-		if(player)
-			for(const auto &it : player->Outfits())
+		if(flagship)
+			for(const auto &it : flagship->Outfits())
 			{
 				if(it.first->Ammo())
 					ammo.emplace_back(it.first,
-						player->OutfitCount(it.first->Ammo()));
+						flagship->OutfitCount(it.first->Ammo()));
 				else if(it.first->WeaponGet("firing fuel"))
 				{
-					double remaining = player->Fuel()
-						* player->Attributes().Get("fuel capacity");
+					double remaining = flagship->Fuel()
+						* flagship->Attributes().Get("fuel capacity");
 					ammo.emplace_back(it.first,
 						remaining / it.first->WeaponGet("firing fuel"));
 				}
 			}
 		
-		if(player && player->IsOverheated())
+		if(flagship && flagship->IsOverheated())
 			Messages::Add("Your ship has overheated.");
 		
-		if(player && player->Hull())
-			info.SetSprite("player sprite", player->GetSprite().GetSprite());
+		if(flagship && flagship->Hull())
+			info.SetSprite("player sprite", flagship->GetSprite().GetSprite());
 		else
 			info.SetSprite("player sprite", nullptr);
 		info.SetString("location", currentSystem->Name());
-		info.SetString("date", playerInfo.GetDate().ToString());
-		if(player)
+		info.SetString("date", player.GetDate().ToString());
+		if(flagship)
 		{
-			info.SetBar("fuel", player->Fuel(), player->Attributes().Get("fuel capacity") * .01);
-			info.SetBar("energy", player->Energy());
-			info.SetBar("heat", player->Heat());
-			info.SetBar("shields", player->Shields());
-			info.SetBar("hull", player->Hull(), 20.);
+			info.SetBar("fuel", flagship->Fuel(),
+				flagship->Attributes().Get("fuel capacity") * .01);
+			info.SetBar("energy", flagship->Energy());
+			info.SetBar("heat", flagship->Heat());
+			info.SetBar("shields", flagship->Shields());
+			info.SetBar("hull", flagship->Hull(), 20.);
 		}
 		else
 		{
@@ -211,23 +212,23 @@ void Engine::Step(bool isActive)
 			info.SetBar("shields", 0.);
 			info.SetBar("hull", 0.);
 		}
-		info.SetString("credits", to_string(playerInfo.Accounts().Credits()) + " credits");
-		if(player && player->GetTargetPlanet())
+		info.SetString("credits", to_string(player.Accounts().Credits()) + " credits");
+		if(flagship && flagship->GetTargetPlanet())
 		{
 			info.SetString("navigation mode", "Landing on:");
-			info.SetString("destination", player->GetTargetPlanet()->Name());
+			info.SetString("destination", flagship->GetTargetPlanet()->Name());
 			
 			targets.push_back({
-				player->GetTargetPlanet()->Position() - player->Position(),
+				flagship->GetTargetPlanet()->Position() - flagship->Position(),
 				Angle(45.),
-				player->GetTargetPlanet()->Radius(),
+				flagship->GetTargetPlanet()->Radius(),
 				Radar::FRIENDLY});
 		}
-		else if(player && player->GetTargetSystem())
+		else if(flagship && flagship->GetTargetSystem())
 		{
 			info.SetString("navigation mode", "Hyperspace:");
-			if(playerInfo.HasVisited(player->GetTargetSystem()))
-				info.SetString("destination", player->GetTargetSystem()->Name());
+			if(player.HasVisited(flagship->GetTargetSystem()))
+				info.SetString("destination", flagship->GetTargetSystem()->Name());
 			else
 				info.SetString("destination", "unexplored system");
 		}
@@ -238,8 +239,8 @@ void Engine::Step(bool isActive)
 		}
 		info.SetRadar(radar[drawTickTock]);
 		shared_ptr<const Ship> target;
-		if(player)
-			target = player->GetTargetShip().lock();
+		if(flagship)
+			target = flagship->GetTargetShip().lock();
 		if(!target)
 		{
 			info.SetSprite("target sprite", nullptr);
@@ -268,7 +269,7 @@ void Engine::Step(bool isActive)
 				Radar::UNFRIENDLY : Radar::FRIENDLY;
 			info.SetOutlineColor(Radar::GetColor(targetType));
 			
-			if(target->GetSystem() == player->GetSystem())
+			if(target->GetSystem() == flagship->GetSystem())
 			{
 				info.SetBar("target shields", target->Shields());
 				info.SetBar("target hull", target->Hull(), 20.);
@@ -278,7 +279,7 @@ void Engine::Step(bool isActive)
 				const Animation &anim = target->GetSprite();
 				double size = target->Zoom() * (anim.Width() + anim.Height()) * .175;
 				targets.push_back({
-					target->Position() - player->Position(),
+					target->Position() - flagship->Position(),
 					Angle(45.) + target->Facing(),
 					size,
 					targetType});
@@ -358,7 +359,7 @@ void Engine::Draw() const
 	{
 		pos.Y() -= 30.;
 		
-		bool isSelected = it.first == playerInfo.SelectedWeapon();
+		bool isSelected = it.first == player.SelectedWeapon();
 		
 		SpriteShader::Draw(it.first->Icon(), pos);
 		SpriteShader::Draw(
@@ -381,30 +382,31 @@ void Engine::Draw() const
 
 void Engine::EnterSystem()
 {
-	const Ship *player = playerInfo.GetShip();
-	if(!player)
+	const Ship *flagship = player.GetShip();
+	if(!flagship)
 		return;
 	
-	playerInfo.SetSystem(player->GetSystem());
+	const System *system = flagship->GetSystem();
+	player.SetSystem(system);
 	
-	Messages::Add(playerInfo.IncrementDate());
-	const Date &today = playerInfo.GetDate();
-	Messages::Add("Entering the " + player->GetSystem()->Name() + " system on "
-		+ today.ToString() + (player->GetSystem()->IsInhabited() ?
+	Messages::Add(player.IncrementDate());
+	const Date &today = player.GetDate();
+	Messages::Add("Entering the " + system->Name() + " system on "
+		+ today.ToString() + (system->IsInhabited() ?
 			"." : ". No inhabited planets detected."));
 	
 	for(const auto &it : data.Systems())
 		it.second.SetDate(today);
 	
 	asteroids.Clear();
-	for(const System::Asteroid &a : player->GetSystem()->Asteroids())
+	for(const System::Asteroid &a : system->Asteroids())
 		asteroids.Add(a.Name(), a.Count(), a.Energy());
 	
 	// Place five seconds worth of fleets.
 	for(int i = 0; i < 5; ++i)
-		for(const System::FleetProbability &fleet : player->GetSystem()->Fleets())
+		for(const System::FleetProbability &fleet : system->Fleets())
 			if(rand() % fleet.Period() < 60)
-				fleet.Get()->Place(*playerInfo.GetSystem(), ships);
+				fleet.Get()->Place(*system, ships);
 	
 	projectiles.clear();
 	effects.clear();
@@ -452,7 +454,7 @@ void Engine::CalculateStep()
 		it.second.CoolDown();
 	
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(ships, playerInfo);
+	ai.Step(ships, player);
 	
 	// Now, move all the ships. We must finish moving all of them before any of
 	// them fire, or their turrets will be targeting where a given ship was
@@ -471,21 +473,21 @@ void Engine::CalculateStep()
 	}
 	
 	// If the player has entered a new system, update the asteroids, etc.
-	const Ship *player = playerInfo.GetShip();
-	if(player && player->GetSystem() != playerInfo.GetSystem())
+	const Ship *flagship = player.GetShip();
+	if(flagship && flagship->GetSystem() != player.GetSystem())
 		EnterSystem();
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
-	if(player)
-		center = player->Position();
-	else if(playerInfo.GetPlanet())
+	if(flagship)
+		center = flagship->Position();
+	else if(player.GetPlanet())
 	{
-		for(const StellarObject &object : playerInfo.GetSystem()->Objects())
-			if(object.GetPlanet() == playerInfo.GetPlanet())
+		for(const StellarObject &object : player.GetSystem()->Objects())
+			if(object.GetPlanet() == player.GetPlanet())
 				center = object.Position();
 	}
-	for(const StellarObject &object : playerInfo.GetSystem()->Objects())
+	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
 		{
 			Point position = object.Position();
@@ -503,11 +505,11 @@ void Engine::CalculateStep()
 		}
 	
 	// Add all neighboring systems to the radar.
-	const System *targetSystem = player ? player->GetTargetSystem() : nullptr;
-	for(const System *system : playerInfo.GetSystem()->Links())
+	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
+	for(const System *system : player.GetSystem()->Links())
 		radar[calcTickTock].AddPointer(
 			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
-			system->Position() - playerInfo.GetSystem()->Position());
+			system->Position() - player.GetSystem()->Position());
 	
 	// Now that the planets have been drawn, we can draw the asteroids on top
 	// of them. This could be done later, as long as it is done before the
@@ -537,7 +539,7 @@ void Engine::CalculateStep()
 	// missile is detected in range during collision detection, below.
 	vector<Ship *> hasAntiMissile;
 	for(shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == playerInfo.GetSystem())
+		if(ship->GetSystem() == player.GetSystem())
 		{
 			// Note: if a ship "fires" a fighter, that fighter was already in
 			// existence and under the control of the same AI as the ship, but
@@ -600,7 +602,7 @@ void Engine::CalculateStep()
 			// Projectiles can only collide with ships that are in the current
 			// system and are not landing, and that are hostile to this projectile.
 			for(shared_ptr<Ship> &ship : ships)
-				if(ship->GetSystem() == playerInfo.GetSystem() && !ship->IsLanding())
+				if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding())
 				{
 					if(ship.get() != projectile.Target() && !gov->IsEnemy(ship->GetGovernment()))
 						continue;
@@ -629,7 +631,7 @@ void Engine::CalculateStep()
 			{
 				// Even friendly ships can be hit by the blast.
 				for(shared_ptr<Ship> &ship : ships)
-					if(ship->GetSystem() == playerInfo.GetSystem() && !ship->IsLanding())
+					if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding())
 						if(projectile.InBlastRadius(*ship, step))
 							ship->TakeDamage(projectile);
 			}
@@ -684,9 +686,9 @@ void Engine::CalculateStep()
 	}
 	
 	// Add incoming ships.
-	for(const System::FleetProbability &fleet : playerInfo.GetSystem()->Fleets())
+	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
 		if(!(rand() % fleet.Period()))
-			fleet.Get()->Enter(*playerInfo.GetSystem(), ships);
+			fleet.Get()->Enter(*player.GetSystem(), ships);
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();

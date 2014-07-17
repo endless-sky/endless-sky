@@ -31,9 +31,9 @@ using namespace std;
 
 
 
-MainPanel::MainPanel(const GameData &gameData, PlayerInfo &playerInfo)
-	: gameData(gameData), playerInfo(playerInfo),
-	engine(gameData, playerInfo),
+MainPanel::MainPanel(const GameData &gameData, PlayerInfo &player)
+	: gameData(gameData), player(player),
+	engine(gameData, player),
 	load(0.), loadSum(0.), loadCount(0)
 {
 	SetIsFullScreen(true);
@@ -45,20 +45,20 @@ void MainPanel::Step(bool isActive)
 {
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
-	if(isActive && playerInfo.GetPlanet())
+	if(isActive && player.GetPlanet())
 	{
-		playerInfo.Land();
-		GetUI()->Push(new PlanetPanel(gameData, playerInfo, *this));
-		auto it = playerInfo.Missions().begin();
-		while(it != playerInfo.Missions().end())
+		player.Land();
+		GetUI()->Push(new PlanetPanel(gameData, player, *this));
+		auto it = player.Missions().begin();
+		while(it != player.Missions().end())
 		{
 			const Mission &mission = *it;
 			++it;
 			
-			if(mission.Destination() == playerInfo.GetPlanet())
+			if(mission.Destination() == player.GetPlanet())
 			{
 				GetUI()->Push(new Dialog(mission.SuccessMessage()));
-				playerInfo.CompleteMission(mission);
+				player.CompleteMission(mission);
 			}
 		}
 		isActive = false;
@@ -67,7 +67,7 @@ void MainPanel::Step(bool isActive)
 	engine.Step(isActive);
 	
 	if(engine.Boarding())
-		GetUI()->Push(new BoardingPanel(gameData, playerInfo, engine.Boarding()));
+		GetUI()->Push(new BoardingPanel(gameData, player, engine.Boarding()));
 }
 
 
@@ -109,18 +109,18 @@ void MainPanel::OnCallback(int)
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == gameData.Keys().Get(Key::MAP))
-		GetUI()->Push(new MapDetailPanel(gameData, playerInfo));
+		GetUI()->Push(new MapDetailPanel(gameData, player));
 	else if(key == gameData.Keys().Get(Key::SCAN))
 	{
-		const Ship *player = playerInfo.GetShip();
-		if(player)
+		const Ship *flagship = player.GetShip();
+		if(flagship)
 		{
-			double cargoRange = player->Attributes().Get("cargo scan");
-			double outfitRange = player->Attributes().Get("outfit scan");
-			shared_ptr<const Ship> target = player->GetTargetShip().lock();
+			double cargoRange = flagship->Attributes().Get("cargo scan");
+			double outfitRange = flagship->Attributes().Get("outfit scan");
+			shared_ptr<const Ship> target = flagship->GetTargetShip().lock();
 			if(target && (cargoRange || outfitRange))
 			{
-				double distance = (player->Position() - target->Position()).Length();
+				double distance = (flagship->Position() - target->Position()).Length();
 				
 				ostringstream out;
 				if(distance < cargoRange)
