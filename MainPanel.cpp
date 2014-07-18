@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "PlanetPanel.h"
+#include "PlayerInfo.h"
 #include "Screen.h"
 #include "UI.h"
 
@@ -31,10 +32,8 @@ using namespace std;
 
 
 
-MainPanel::MainPanel(const GameData &gameData, PlayerInfo &player)
-	: gameData(gameData), player(player),
-	engine(gameData, player),
-	load(0.), loadSum(0.), loadCount(0)
+MainPanel::MainPanel(PlayerInfo &player)
+	: player(player), engine(player), load(0.), loadSum(0.), loadCount(0)
 {
 	SetIsFullScreen(true);
 }
@@ -48,7 +47,7 @@ void MainPanel::Step(bool isActive)
 	if(isActive && player.GetPlanet())
 	{
 		player.Land();
-		GetUI()->Push(new PlanetPanel(gameData, player, *this));
+		GetUI()->Push(new PlanetPanel(player, *this));
 		auto it = player.Missions().begin();
 		while(it != player.Missions().end())
 		{
@@ -68,7 +67,7 @@ void MainPanel::Step(bool isActive)
 	engine.Step(isActive);
 	
 	if(engine.Boarding())
-		GetUI()->Push(new BoardingPanel(gameData, player, engine.Boarding()));
+		GetUI()->Push(new BoardingPanel(player, engine.Boarding()));
 }
 
 
@@ -80,7 +79,7 @@ void MainPanel::Draw() const
 	
 	engine.Draw();
 	
-	if(gameData.ShouldShowLoad())
+	if(GameData::ShouldShowLoad())
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
 		Color color(.4, 0.);
@@ -109,9 +108,9 @@ void MainPanel::OnCallback(int)
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
-	if(key == gameData.Keys().Get(Key::MAP))
-		GetUI()->Push(new MapDetailPanel(gameData, player));
-	else if(key == gameData.Keys().Get(Key::SCAN))
+	if(key == GameData::Keys().Get(Key::MAP))
+		GetUI()->Push(new MapDetailPanel(player));
+	else if(key == GameData::Keys().Get(Key::SCAN))
 	{
 		const Ship *flagship = player.GetShip();
 		if(flagship)

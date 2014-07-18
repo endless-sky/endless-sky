@@ -15,9 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "GameData.h"
-#include "PlayerInfo.h"
-#include "System.h"
+class PlayerInfo;
+class System;
 
 
 
@@ -25,7 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // buying and selling.
 class TradingPanel : public Panel {
 public:
-	TradingPanel(const GameData &data, PlayerInfo &player);
+	TradingPanel(PlayerInfo &player);
 	
 	virtual void Draw() const;
 	
@@ -42,7 +41,6 @@ private:
 	
 	
 private:
-	const GameData &data;
 	PlayerInfo &player;
 	const System &system;
 	

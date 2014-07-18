@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
-class GameData;
 class Government;
 class Outfit;
 class Planet;
@@ -42,14 +41,14 @@ public:
 	
 	void Clear();
 	bool IsLoaded() const;
-	void Load(const std::string &path, const GameData &data);
+	void Load(const std::string &path);
 	void Save() const;
 	std::string Identifier() const;
 	
 	// Load the most recently saved player.
-	void LoadRecent(const GameData &data);
+	void LoadRecent();
 	// Make a new player.
-	void New(const GameData &data);
+	void New();
 	
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
@@ -126,8 +125,6 @@ private:
 	
 	
 private:
-	const GameData *gameData;
-	
 	std::string firstName;
 	std::string lastName;
 	std::string filePath;

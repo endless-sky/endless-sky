@@ -29,6 +29,34 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	Set<Color> colors;
+	Set<Conversation> conversations;
+	Set<Effect> effects;
+	Set<Fleet> fleets;
+	Set<Government> governments;
+	Set<Interface> interfaces;
+	Set<Outfit> outfits;
+	Set<Planet> planets;
+	Set<Ship> ships;
+	Set<ShipName> shipNames;
+	Set<System> systems;
+	
+	Set<Sale<Ship>> shipSales;
+	Set<Sale<Outfit>> outfitSales;
+	
+	Trade trade;
+	
+	Key keys;
+	Key defaultKeys;
+	
+	StarField background;
+	
+	SpriteQueue spriteQueue;
+	
+	bool showLoad;
+}
+
 
 
 void GameData::BeginLoad(const char * const *argv)
@@ -59,7 +87,7 @@ void GameData::BeginLoad(const char * const *argv)
 	
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
-		queue.Add(Name(it.first), it.second);
+		spriteQueue.Add(Name(it.first), it.second);
 	
 	// Iterate through the paths starting with the last directory given. That
 	// is, things in folders near the start of the path have the ability to
@@ -129,91 +157,109 @@ void GameData::LoadShaders()
 
 
 
-double GameData::Progress() const
+double GameData::Progress()
 {
-	return queue.Progress();
+	return spriteQueue.Progress();
 }
 
 
 
-const Set<Conversation> &GameData::Conversations() const
+// Revert any changes that have been made to the universe.
+void GameData::Revert()
+{
+	// Currently it is not possible to change anything, so nothing needs to be
+	// reverted. Eventually, we will need to save a copy of the systems,
+	// planets, and sales, and maybe other things as well.
+}
+
+
+
+void GameData::SetDate(const Date &date)
+{
+	for(auto &it : systems)
+		it.second.SetDate(date);
+}
+
+
+
+const Set<Conversation> &GameData::Conversations()
 {
 	return conversations;
 }
 
 
 
-const Set<Effect> &GameData::Effects() const
+const Set<Effect> &GameData::Effects()
 {
 	return effects;
 }
 
 
 
-const Set<Fleet> &GameData::Fleets() const
+const Set<Fleet> &GameData::Fleets()
 {
 	return fleets;
 }
 
 
 
-const Set<Government> &GameData::Governments() const
+const Set<Government> &GameData::Governments()
 {
 	return governments;
 }
 
 
 
-const Set<Interface> &GameData::Interfaces() const
+const Set<Interface> &GameData::Interfaces()
 {
 	return interfaces;
 }
 
 
 
-const Set<Outfit> &GameData::Outfits() const
+const Set<Outfit> &GameData::Outfits()
 {
 	return outfits;
 }
 
 
 
-const Set<Planet> &GameData::Planets() const
+const Set<Planet> &GameData::Planets()
 {
 	return planets;
 }
 
 
 
-const Set<Ship> &GameData::Ships() const
+const Set<Ship> &GameData::Ships()
 {
 	return ships;
 }
 
 
 
-const Set<ShipName> &GameData::ShipNames() const
+const Set<ShipName> &GameData::ShipNames()
 {
 	return shipNames;
 }
 
 
 
-const Set<System> &GameData::Systems() const
+const Set<System> &GameData::Systems()
 {
 	return systems;
 }
 
 
 
-const vector<Trade::Commodity> &GameData::Commodities() const
+const vector<Trade::Commodity> &GameData::Commodities()
 {
 	return trade.Commodities();
 }
 
 
 
-const StarField &GameData::Background() const
+const StarField &GameData::Background()
 {
 	return background;
 }
@@ -221,28 +267,28 @@ const StarField &GameData::Background() const
 
 
 // Get the mapping of keys to commands.
-const Key &GameData::Keys() const
+const Key &GameData::Keys()
 {
 	return keys;
 }
 
 
 
-Key &GameData::Keys()
+void GameData::SetKey(Key::Command command, int key)
 {
-	return keys;
+	keys.Set(command, key);
 }
 
 
 
-const Key &GameData::DefaultKeys() const
+const Key &GameData::DefaultKeys()
 {
 	return defaultKeys;
 }
 
 
 
-bool GameData::ShouldShowLoad() const
+bool GameData::ShouldShowLoad()
 {
 	return showLoad;
 }
@@ -268,13 +314,13 @@ void GameData::LoadFile(const string &path)
 		else if(key == "effect" && node.Size() >= 2)
 			effects.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
-			fleets.Get(node.Token(1))->Load(node, *this);
+			fleets.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
-			governments.Get(node.Token(1))->Load(node, governments);
+			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface")
 			interfaces.Get(node.Token(1))->Load(node, colors);
 		else if(key == "outfit" && node.Size() >= 2)
-			outfits.Get(node.Token(1))->Load(node, *this);
+			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
 		else if(key == "planet" && node.Size() >= 2)
@@ -283,14 +329,14 @@ void GameData::LoadFile(const string &path)
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node, *this);
+			ships.Get(name)->Load(node);
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "shipName" && node.Size() >= 2)
 			shipNames.Get(node.Token(1))->Load(node);
 		else if(key == "system" && node.Size() >= 2)
-			systems.Get(node.Token(1))->Load(node, *this, planets);
+			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
 	}

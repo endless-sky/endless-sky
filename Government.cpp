@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 
 #include "DataNode.h"
+#include "GameData.h"
 
 #include <algorithm>
 
@@ -29,7 +30,7 @@ Government::Government()
 
 
 // Load a government's definition from a file.
-void Government::Load(const DataNode &node, const Set<Government> &others)
+void Government::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
@@ -41,9 +42,9 @@ void Government::Load(const DataNode &node, const Set<Government> &others)
 		else if(child.Token(0) == "color" && child.Size() >= 4)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "ally" && child.Size() >= 2)
-			allies.insert(others.Get(child.Token(1)));
+			allies.insert(GameData::Governments().Get(child.Token(1)));
 		else if(child.Token(0) == "enemy" && child.Size() >= 2)
-			enemies.insert(others.Get(child.Token(1)));
+			enemies.insert(GameData::Governments().Get(child.Token(1)));
 	}
 }
 

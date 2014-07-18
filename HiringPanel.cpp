@@ -21,8 +21,8 @@ using namespace std;
 
 
 
-HiringPanel::HiringPanel(const GameData &data, PlayerInfo &player)
-	: data(data), player(player), maxHire(0), maxFire(0)
+HiringPanel::HiringPanel(PlayerInfo &player)
+	: player(player), maxHire(0), maxFire(0)
 {
 	SetTrapAllEvents(false);
 }
@@ -35,7 +35,7 @@ void HiringPanel::Draw() const
 		return;
 	const Ship &flagship = *player.GetShip();
 	
-	const Interface *interface = data.Interfaces().Get("hiring");
+	const Interface *interface = GameData::Interfaces().Get("hiring");
 	Information info;
 	
 	int flagshipBunks = flagship.Attributes().Get("bunks");
@@ -104,7 +104,7 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 bool HiringPanel::Click(int x, int y)
 {
 	// Handle clicks on the interface buttons.
-	const Interface *interface = data.Interfaces().Get("hiring");
+	const Interface *interface = GameData::Interfaces().Get("hiring");
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));

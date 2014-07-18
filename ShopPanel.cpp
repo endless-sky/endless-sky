@@ -30,8 +30,8 @@ using namespace std;
 
 
 
-ShopPanel::ShopPanel(const GameData &data, PlayerInfo &player, const vector<string> &categories)
-	: data(data), player(player), planet(player.GetPlanet()),
+ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
+	: player(player), planet(player.GetPlanet()),
 	playerShip(player.GetShip()), selectedShip(nullptr), selectedOutfit(nullptr),
 	mainScroll(0), sideScroll(0), dragMain(true), 
 	mainDetailHeight(0), sideDetailHeight(0), categories(categories)
@@ -204,8 +204,8 @@ void ShopPanel::DrawMain() const
 				continue;
 			isEmpty = false;
 			
-			bool isSelected = (selectedShip && data.Ships().Get(name) == selectedShip)
-				|| (selectedOutfit && data.Outfits().Get(name) == selectedOutfit);
+			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
+				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
 			
 			if(isSelected)
 			{

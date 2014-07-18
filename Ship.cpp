@@ -45,12 +45,12 @@ Ship::Ship()
 
 
 
-void Ship::Load(const DataNode &node, const GameData &data)
+void Ship::Load(const DataNode &node)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
 	
-	government = data.Governments().Get("Escort");
+	government = GameData::Governments().Get("Escort");
 	crew = 0;
 	equipped.clear();
 	
@@ -63,7 +63,7 @@ void Ship::Load(const DataNode &node, const GameData &data)
 		else if(child.Token(0) == "name" && child.Size() >= 2)
 			name = child.Token(1);
 		else if(child.Token(0) == "attributes")
-			baseAttributes.Load(child, data);
+			baseAttributes.Load(child);
 		else if(child.Token(0) == "engine" && child.Size() >= 3)
 			enginePoints.emplace_back(child.Value(1), child.Value(2));
 		else if((child.Token(0) == "gun" || child.Token(0) == "turret") && child.Size() >= 3)
@@ -72,7 +72,7 @@ void Ship::Load(const DataNode &node, const GameData &data)
 			const Outfit *outfit = nullptr;
 			if(child.Size() >= 4)
 			{
-				outfit = data.Outfits().Get(child.Token(3));
+				outfit = GameData::Outfits().Get(child.Token(3));
 				++equipped[outfit];
 			}
 			if(child.Token(0) == "gun")
@@ -87,7 +87,7 @@ void Ship::Load(const DataNode &node, const GameData &data)
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			explosionEffects[data.Effects().Get(child.Token(1))] += count;
+			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
 		else if(child.Token(0) == "outfits")
@@ -95,19 +95,19 @@ void Ship::Load(const DataNode &node, const GameData &data)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				this->outfits[data.Outfits().Get(grand.Token(0))] += count;
+				this->outfits[GameData::Outfits().Get(grand.Token(0))] += count;
 			}
 		}
 		else if(child.Token(0) == "cargo")
-			cargo.Load(child, data);
+			cargo.Load(child);
 		else if(child.Token(0) == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			currentSystem = data.Systems().Get(child.Token(1));
+			currentSystem = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
 		{
 			zoom = 0.;
-			landingPlanet = data.Planets().Get(child.Token(1));
+			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{

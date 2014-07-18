@@ -34,8 +34,8 @@ using namespace std;
 
 
 
-LoadPanel::LoadPanel(const GameData &data, PlayerInfo &player, UI &gamePanels)
-	: data(data), player(player), gamePanels(gamePanels), loadedInfo(player)
+LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
+	: player(player), gamePanels(gamePanels), loadedInfo(player)
 {
 	UpdateLists();
 }
@@ -45,7 +45,7 @@ LoadPanel::LoadPanel(const GameData &data, PlayerInfo &player, UI &gamePanels)
 void LoadPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	data.Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point(), Point());
 	
 	Information info;
 	if(loadedInfo.IsLoaded())
@@ -74,7 +74,7 @@ void LoadPanel::Draw() const
 	if(loadedInfo.IsLoaded())
 		info.SetCondition("pilot loaded");
 	
-	const Interface *menu = data.Interfaces().Get("load menu");
+	const Interface *menu = GameData::Interfaces().Get("load menu");
 	menu->Draw(info);
 	
 	Color dim(.1, 0.);
@@ -111,11 +111,11 @@ void LoadPanel::OnCallback(int)
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
 	gamePanels.Reset();
-	Panel *panel = new MainPanel(data, player);
+	Panel *panel = new MainPanel(player);
 	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	panel->Step(true);
-	gamePanels.Push(new ShipyardPanel(data, player));
+	gamePanels.Push(new ShipyardPanel(player));
 }
 
 
@@ -124,10 +124,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == 'n')
 	{
-		player.New(data);
+		player.New();
 		
 		ConversationPanel *panel = new ConversationPanel(
-			player, *data.Conversations().Get("intro"));
+			player, *GameData::Conversations().Get("intro"));
 		GetUI()->Push(panel);
 		panel->SetCallback(*this);
 	}
@@ -171,7 +171,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		
 		selectedPilot = wasSelected;
 		selectedFile = to.substr(Files::Saves().size());
-		loadedInfo.Load(Files::Saves() + selectedFile, data);
+		loadedInfo.Load(Files::Saves() + selectedFile);
 	}
 	else if(key == 'r' && !selectedFile.empty())
 	{
@@ -186,9 +186,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Pop(this);
 		GetUI()->Pop(GetUI()->Root().get());
 		gamePanels.Reset();
-		gamePanels.Push(new MainPanel(data, player));
+		gamePanels.Push(new MainPanel(player));
 	}
-	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
+	else if(key == 'b' || key == GameData::Keys().Get(Key::MENU))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{
@@ -236,7 +236,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			}
 			selectedFile = *it;
 		}
-		loadedInfo.Load(Files::Saves() + selectedFile, data);
+		loadedInfo.Load(Files::Saves() + selectedFile);
 	}
 	else if(key == SDLK_LEFT)
 		sideHasFocus = true;
@@ -252,7 +252,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool LoadPanel::Click(int x, int y)
 {
-	char key = data.Interfaces().Get("load menu")->OnClick(Point(x, y));
+	char key = GameData::Interfaces().Get("load menu")->OnClick(Point(x, y));
 	if(key != '\0')
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	
@@ -283,7 +283,7 @@ bool LoadPanel::Click(int x, int y)
 	else
 		return false;
 	
-	loadedInfo.Load(Files::Saves() + selectedFile, data);
+	loadedInfo.Load(Files::Saves() + selectedFile);
 	
 	return true;
 }
@@ -320,7 +320,7 @@ void LoadPanel::UpdateLists()
 			if(it != files.end())
 			{
 				selectedFile =it->second.front();
-				loadedInfo.Load(Files::Saves() + selectedFile, data);
+				loadedInfo.Load(Files::Saves() + selectedFile);
 			}
 		}
 	}
@@ -363,6 +363,6 @@ void LoadPanel::DeleteSave()
 	{
 		selectedFile = it->second.front();
 		selectedPilot = pilot;
-		loadedInfo.Load(Files::Saves() + selectedFile, data);
+		loadedInfo.Load(Files::Saves() + selectedFile);
 	}
 }

@@ -39,10 +39,10 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(const GameData &data, PlayerInfo &player)
-	: ShopPanel(data, player, CATEGORIES)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player)
+	: ShopPanel(player, CATEGORIES)
 {
-	for(const pair<string, Ship> &it : data.Ships())
+	for(const pair<string, Ship> &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
 }
 
@@ -67,7 +67,7 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 
 bool ShipyardPanel::DrawItem(const string &name, const Point &point) const
 {
-	const Ship *ship = data.Ships().Get(name);
+	const Ship *ship = GameData::Ships().Get(name);
 	if(!planet->Shipyard().Has(ship))
 		return false;
 	

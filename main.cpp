@@ -41,17 +41,15 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	// Game data should persist until after the UIs cease to exist.
-	GameData gameData;
 	PlayerInfo player;
 	
 	try {
 		SDL_Init(SDL_INIT_VIDEO);
 		
 		// Begin loading the game data.
-		gameData.BeginLoad(argv);
+		GameData::BeginLoad(argv);
 		
-		player.LoadRecent(gameData);
+		player.LoadRecent();
 		
 		// Check how big the window can be.
 		SDL_DisplayMode mode;
@@ -121,12 +119,12 @@ int main(int argc, char *argv[])
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
-		gameData.LoadShaders();
+		GameData::LoadShaders();
 		
 		
 		UI gamePanels;
 		UI menuPanels;
-		menuPanels.Push(new MenuPanel(gameData, player, gamePanels));
+		menuPanels.Push(new MenuPanel(player, gamePanels));
 		
 		FrameTimer timer(60);
 		while(!menuPanels.IsDone())
@@ -145,10 +143,10 @@ int main(int argc, char *argv[])
 					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 10 : 60);
 				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-						&& event.key.keysym.sym == gameData.Keys().Get(Key::MENU))
+						&& event.key.keysym.sym == GameData::Keys().Get(Key::MENU))
 				{
 					menuPanels.Push(shared_ptr<Panel>(
-						new MenuPanel(gameData, player, gamePanels)));
+						new MenuPanel(player, gamePanels)));
 				}
 				else if(event.type == SDL_QUIT)
 				{
@@ -165,7 +163,7 @@ int main(int argc, char *argv[])
 					// No need to do anything more!
 				}
 				else if(event.type == SDL_KEYDOWN
-						&& event.key.keysym.sym == gameData.Keys().Get(Key::FULLSCREEN))
+						&& event.key.keysym.sym == GameData::Keys().Get(Key::FULLSCREEN))
 				{
 					if(restoreWidth)
 					{

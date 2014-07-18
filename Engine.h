@@ -17,9 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "Date.h"
 #include "DrawList.h"
-#include "GameData.h"
 #include "Information.h"
-#include "PlayerInfo.h"
 #include "Point.h"
 #include "Projectile.h"
 #include "Radar.h"
@@ -31,9 +29,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <thread>
 #include <vector>
+#include <condition_variable>
 
 class Government;
-class Panel;
+class PlayerInfo;
 
 
 
@@ -41,7 +40,7 @@ class Panel;
 // the game, and to move them, step by step.
 class Engine {
 public:
-	Engine(const GameData &data, PlayerInfo &player);
+	Engine(PlayerInfo &player);
 	~Engine();
 	
 	// Place all the player's ships, and "enter" the system the player is in.
@@ -75,7 +74,6 @@ private:
 	
 	
 private:
-	const GameData &data;
 	PlayerInfo &player;
 	const Government *playerGovernment;
 	

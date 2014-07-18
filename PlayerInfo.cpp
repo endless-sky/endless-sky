@@ -74,15 +74,14 @@ bool PlayerInfo::IsLoaded() const
 
 
 
-void PlayerInfo::Load(const string &path, const GameData &data)
+void PlayerInfo::Load(const string &path)
 {
 	Clear();
-	gameData = &data;
 	
 	filePath = path;
 	DataFile file(path);
 	
-	playerGovernment = data.Governments().Get("Escort");
+	playerGovernment = GameData::Governments().Get("Escort");
 	
 	for(const DataNode &child : file)
 	{
@@ -94,30 +93,30 @@ void PlayerInfo::Load(const string &path, const GameData &data)
 		else if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
-			system = data.Systems().Get(child.Token(1));
+			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
-			planet = data.Planets().Get(child.Token(1));
+			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
-			Visit(data.Systems().Get(child.Token(1)));
+			Visit(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
-			cargo.Load(child, data);
+			cargo.Load(child);
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
-			missions.back().Load(child, data);
+			missions.back().Load(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if(child.Token(0) == "job")
 		{
 			jobs.push_back(Mission());
-			jobs.back().Load(child, data);
+			jobs.back().Load(child);
 		}
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
-			ships.back()->Load(child, data);
+			ships.back()->Load(child);
 			ships.back()->FinishLoading();
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(playerGovernment);
@@ -186,7 +185,7 @@ string PlayerInfo::Identifier() const
 
 
 // Load the most recently saved player.
-void PlayerInfo::LoadRecent(const GameData &data)
+void PlayerInfo::LoadRecent()
 {
 	string recentPath = Files::Config() + "recent.txt";
 	ifstream recent(recentPath);
@@ -195,20 +194,19 @@ void PlayerInfo::LoadRecent(const GameData &data)
 	if(recentPath.empty())
 		Clear();
 	else
-		Load(recentPath, data);
+		Load(recentPath);
 }
 
 
 
 // Make a new player.
-void PlayerInfo::New(const GameData &data)
+void PlayerInfo::New()
 {
 	Clear();
-	gameData = &data;
 	
-	SetSystem(data.Systems().Get("Rutilicus"));
-	SetPlanet(data.Planets().Get("New Boston"));
-	playerGovernment = data.Governments().Get("Escort");
+	SetSystem(GameData::Systems().Get("Rutilicus"));
+	SetPlanet(GameData::Planets().Get("New Boston"));
+	playerGovernment = GameData::Governments().Get("Escort");
 	
 	accounts.AddMortgage(295000);
 	
@@ -441,7 +439,7 @@ void PlayerInfo::Land()
 	while(it != ships.end())
 	{
 		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled()
-				|| (*it)->GetGovernment() != gameData->Governments().Get("Escort"))
+				|| (*it)->GetGovernment() != GameData::Governments().Get("Escort"))
 			it = ships.erase(it);
 		else
 			++it; 
@@ -498,7 +496,7 @@ void PlayerInfo::TakeOff()
 	jobs.clear();
 	
 	// Reset any governments you provoked yesterday.
-	for(const auto &it : gameData->Governments())
+	for(const auto &it : GameData::Governments())
 		it.second.ResetProvocation();
 	
 	for(const shared_ptr<Ship> &ship : ships)
@@ -802,11 +800,11 @@ void PlayerInfo::CreateMissions()
 	
 	int cargoCount = Random::Binomial(10);
 	for(int i = 0; i < cargoCount; ++i)
-		jobs.push_back(Mission::Cargo(*gameData, planet, distance));
+		jobs.push_back(Mission::Cargo(planet, distance));
 	
 	int passengerCount = Random::Binomial(10);
 	for(int i = 0; i < passengerCount; ++i)
-		jobs.push_back(Mission::Passenger(*gameData, planet, distance));
+		jobs.push_back(Mission::Passenger(planet, distance));
 	
 	// TODO: Each planet specifies the maximum number of each mission type.
 	

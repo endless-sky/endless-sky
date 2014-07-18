@@ -34,8 +34,8 @@ using namespace std;
 
 
 
-PreferencesPanel::PreferencesPanel(GameData &data)
-	: data(data), editing(-1), selected(0), firstY(0)
+PreferencesPanel::PreferencesPanel()
+	: editing(-1), selected(0), firstY(0)
 {
 	SetIsFullScreen(true);
 }
@@ -46,9 +46,9 @@ PreferencesPanel::PreferencesPanel(GameData &data)
 void PreferencesPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	data.Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point(), Point());
 	
-	const Interface *menu = data.Interfaces().Get("preferences");
+	const Interface *menu = GameData::Interfaces().Get("preferences");
 	menu->Draw(Information());
 	
 	Color dim(.1, 0.);
@@ -86,12 +86,12 @@ void PreferencesPanel::Draw() const
 	Color red(.3, 0., 0., .3);
 	map<int, int> count;
 	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
-		++count[data.Keys().Get(c)];
+		++count[GameData::Keys().Get(c)];
 	
 	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
 	{
-		string current = SDL_GetKeyName(static_cast<SDL_Keycode>(data.Keys().Get(c)));
-		string def = SDL_GetKeyName(static_cast<SDL_Keycode>(data.DefaultKeys().Get(c)));
+		string current = SDL_GetKeyName(static_cast<SDL_Keycode>(GameData::Keys().Get(c)));
+		string def = SDL_GetKeyName(static_cast<SDL_Keycode>(GameData::DefaultKeys().Get(c)));
 		
 		Point dOff(-100 - font.Width(def), 0);
 		font.Draw(def, pos + dOff, current == def ? dim : medium);
@@ -102,7 +102,7 @@ void PreferencesPanel::Draw() const
 		font.Draw(Key::Description(c), pos, medium);
 
 		// Mark conflicts.
-		if(count[data.Keys().Get(c)] > 1)
+		if(count[GameData::Keys().Get(c)] > 1)
 		{
 			Point eOff(-40., .5 * font.Height());
 			FillShader::Fill(pos + eOff, Point(60., 20.), red);
@@ -118,7 +118,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(editing != -1)
 	{
-		data.Keys().Set(static_cast<Key::Command>(editing), key);
+		GameData::SetKey(static_cast<Key::Command>(editing), key);
 		editing = -1;
 		return true;
 	}
@@ -129,7 +129,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		selected -= (selected != Key::MENU);
 	else if(key == SDLK_RETURN)
 		editing = selected;
-	else if(key == 'b' || key == data.Keys().Get(Key::MENU))
+	else if(key == 'b' || key == GameData::Keys().Get(Key::MENU))
 		Exit();
 	else
 		return false;
@@ -141,7 +141,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool PreferencesPanel::Click(int x, int y)
 {
-	char key = data.Interfaces().Get("preferences")->OnClick(Point(x, y));
+	char key = GameData::Interfaces().Get("preferences")->OnClick(Point(x, y));
 	if(key != '\0')
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	
@@ -159,7 +159,7 @@ bool PreferencesPanel::Click(int x, int y)
 	else if(x >= -150 && x < -90)
 	{
 		Key::Command command = static_cast<Key::Command>(selected);
-		data.Keys().Set(command, data.DefaultKeys().Get(command));
+		GameData::SetKey(command, GameData::DefaultKeys().Get(command));
 	}
 	
 	return true;
@@ -170,7 +170,7 @@ bool PreferencesPanel::Click(int x, int y)
 void PreferencesPanel::Exit()
 {
 	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
-	data.Keys().Save(keysPath);
+	GameData::Keys().Save(keysPath);
 	
 	GetUI()->Pop(this);
 }

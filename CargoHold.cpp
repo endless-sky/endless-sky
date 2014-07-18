@@ -35,7 +35,7 @@ void CargoHold::Clear()
 
 // Load the cargo manifest from a DataFile. This must be done after the
 // GameData is loaded, so that the sizes of any outfits are known.
-void CargoHold::Load(const DataNode &node, const GameData &data)
+void CargoHold::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
@@ -52,7 +52,7 @@ void CargoHold::Load(const DataNode &node, const GameData &data)
 		{
 			for(const DataNode &grand : child)
 			{
-				const Outfit *outfit = data.Outfits().Get(grand.Token(0));
+				const Outfit *outfit = GameData::Outfits().Get(grand.Token(0));
 				int count = (grand.Size() < 2) ? 1 : grand.Value(1);
 				outfits[outfit] += count;
 			}

@@ -31,8 +31,8 @@ using namespace std;
 
 
 
-MapPanel::MapPanel(const GameData &data, PlayerInfo &player, int commodity)
-	: data(data), player(player), distance(player),
+MapPanel::MapPanel(PlayerInfo &player, int commodity)
+	: player(player), distance(player),
 	playerSystem(player.GetShip()->GetSystem()),
 	selectedSystem(player.GetShip()->GetSystem()),
 	commodity(commodity)
@@ -78,7 +78,7 @@ bool MapPanel::Click(int x, int y)
 {
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) - center;
-	for(const auto &it : data.Systems())
+	for(const auto &it : GameData::Systems())
 		if(click.Distance(it.second.Position()) < 10.)
 		{
 			Select(&it.second);
@@ -146,7 +146,7 @@ void MapPanel::DrawLinks() const
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
-	for(const auto &it : data.Systems())
+	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
 		if(!player.HasSeen(system))
@@ -179,8 +179,8 @@ void MapPanel::DrawSystems() const
 {
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
-	const Government *playerGovernment = data.Governments().Get("Escort");
-	for(const auto &it : data.Systems())
+	const Government *playerGovernment = GameData::Governments().Get("Escort");
+	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
 		if(!player.HasSeen(&system) && destinations.find(&system) == destinations.end())
@@ -194,7 +194,7 @@ void MapPanel::DrawSystems() const
 				float value = 0.f;
 				if(commodity >= 0)
 				{
-					const Trade::Commodity &com = data.Commodities()[commodity];
+					const Trade::Commodity &com = GameData::Commodities()[commodity];
 					value = (2.f * (system.Trade(com.name) - com.low))
 						/ (com.high - com.low) - 1.f;
 				}
@@ -243,7 +243,7 @@ void MapPanel::DrawNames() const
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
 	Point offset(6., -.5 * font.Height());
-	for(const auto &it : data.Systems())
+	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
 		if(!player.HasVisited(&system))

@@ -33,16 +33,16 @@ using namespace std;
 
 
 
-PlanetPanel::PlanetPanel(const GameData &data, PlayerInfo &player, const Callback &callback)
-	: data(data), player(player), callback(callback),
+PlanetPanel::PlanetPanel(PlayerInfo &player, const Callback &callback)
+	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*data.Interfaces().Get("planet")),
+	ui(*GameData::Interfaces().Get("planet")),
 	selectedPanel(nullptr)
 {
-	trading.reset(new TradingPanel(data, player));
+	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(planet.SpaceportDescription()));
-	hiring.reset(new HiringPanel(data, player));
+	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(WrappedText::JUSTIFIED);
@@ -112,17 +112,17 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == 's' && planet.HasShipyard())
 	{
-		GetUI()->Push(new ShipyardPanel(data, player));
+		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
 	else if(key == 'o' && ship && (planet.HasOutfitter() || player.Cargo().HasOutfits()))
 	{
-		GetUI()->Push(new OutfitterPanel(data, player));
+		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
 	else if(key == 'j')
 	{
-		GetUI()->Push(new MissionPanel(data, player));
+		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
 	else if(key == 'h')
@@ -130,9 +130,9 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
 	}
-	else if(key == data.Keys().Get(Key::MAP))
+	else if(key == GameData::Keys().Get(Key::MAP))
 	{
-		GetUI()->Push(new MapDetailPanel(data, player));
+		GetUI()->Push(new MapDetailPanel(player));
 		return true;
 	}
 	else

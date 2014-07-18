@@ -16,7 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "MapDetailPanel.h"
+#include "PlayerInfo.h"
 #include "UI.h"
 
 #include <string>
@@ -47,9 +49,8 @@ namespace {
 
 
 
-TradingPanel::TradingPanel(const GameData &data, PlayerInfo &player)
-	: data(data), player(player),
-	system(*player.GetSystem()), selectedRow(0)
+TradingPanel::TradingPanel(PlayerInfo &player)
+	: player(player), system(*player.GetSystem()), selectedRow(0)
 {
 	SetTrapAllEvents(false);
 }
@@ -78,7 +79,7 @@ void TradingPanel::Draw() const
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
 	
 	y += 5;
-	int lastY = y + 20 * data.Commodities().size() + 25;
+	int lastY = y + 20 * GameData::Commodities().size() + 25;
 	font.Draw("free:", Point(SELL_X + 5, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(HOLD_X, lastY), selected);
 	
@@ -97,7 +98,7 @@ void TradingPanel::Draw() const
 	}
 	
 	int i = 0;
-	for(const Trade::Commodity &commodity : data.Commodities())
+	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
 		int price = system.Trade(commodity.name);
@@ -131,14 +132,14 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
-	else if(key == SDLK_DOWN && selectedRow < static_cast<int>(data.Commodities().size()) - 1)
+	else if(key == SDLK_DOWN && selectedRow < static_cast<int>(GameData::Commodities().size()) - 1)
 		++selectedRow;
 	else if(key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
 		Buy(1);
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == data.Keys().Get(Key::MAP))
-		GetUI()->Push(new MapDetailPanel(data, player, selectedRow));
+	else if(key == GameData::Keys().Get(Key::MAP))
+		GetUI()->Push(new MapDetailPanel(player, selectedRow));
 	else
 		return false;
 	
@@ -149,7 +150,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool TradingPanel::Click(int x, int y)
 {
-	int maxY = FIRST_Y + 25 + 20 * data.Commodities().size();
+	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
@@ -169,7 +170,7 @@ bool TradingPanel::Click(int x, int y)
 void TradingPanel::Buy(int amount)
 {
 	amount *= Modifier();
-	const string &type = data.Commodities()[selectedRow].name;
+	const string &type = GameData::Commodities()[selectedRow].name;
 	int price = system.Trade(type);
 	
 	amount = min(amount, player.Accounts().Credits() / price);

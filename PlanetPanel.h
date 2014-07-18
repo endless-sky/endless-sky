@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <memory>
 
-class GameData;
 class Interface;
 class Planet;
 class PlayerInfo;
@@ -33,7 +32,7 @@ class System;
 // (trading, jobs, bank, port, and crew) are displayed within this dialog.
 class PlanetPanel : public Panel {
 public:
-	PlanetPanel(const GameData &data, PlayerInfo &player, const Callback &callback);
+	PlanetPanel(PlayerInfo &player, const Callback &callback);
 	
 	virtual void Draw() const;
 	
@@ -45,7 +44,6 @@ protected:
 	
 	
 private:
-	const GameData &data;
 	PlayerInfo &player;
 	Callback callback;
 	

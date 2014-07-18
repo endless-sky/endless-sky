@@ -26,22 +26,22 @@ using namespace std;
 
 namespace {
 	// Pick a destination within the given number of jumps.
-	const Planet *Pick(const DistanceMap &distance, const GameData &data, int minJumps, int maxJumps);
-	const Trade::Commodity &PickCommodity(const GameData &data, const System &from, const System &to);
+	const Planet *Pick(const DistanceMap &distance, int minJumps, int maxJumps);
+	const Trade::Commodity &PickCommodity(const System &from, const System &to);
 }
 
 
 
-Mission Mission::Cargo(const GameData &data, const Planet *source, const DistanceMap &distance)
+Mission Mission::Cargo(const Planet *source, const DistanceMap &distance)
 {
 	Mission mission;
 	
 	// First, pick the destination planet.
-	mission.destination = Pick(distance, data, 2, 10);
+	mission.destination = Pick(distance, 2, 10);
 	
 	const System &from = *source->GetSystem();
 	const System &to = *mission.destination->GetSystem();
-	const Trade::Commodity &commodity = PickCommodity(data, from, to);
+	const Trade::Commodity &commodity = PickCommodity(from, to);
 	mission.cargo = commodity.items[Random::Int(commodity.items.size())];
 	mission.cargoSize = Random::Polya(2, .1) + 5;
 	int jumps = distance.Distance(&to);
@@ -64,12 +64,12 @@ Mission Mission::Cargo(const GameData &data, const Planet *source, const Distanc
 
 
 
-Mission Mission::Passenger(const GameData &data, const Planet *source, const DistanceMap &distance)
+Mission Mission::Passenger(const Planet *source, const DistanceMap &distance)
 {
 	Mission mission;
 	
 	// First, pick the destination planet.
-	mission.destination = Pick(distance, data, 2, 10);
+	mission.destination = Pick(distance, 2, 10);
 	int jumps = distance.Distance(mission.destination->GetSystem());
 	int count = Random::Polya(10, .9) + 1;
 	mission.passengers = count;
@@ -102,7 +102,7 @@ Mission Mission::Passenger(const GameData &data, const Planet *source, const Dis
 
 
 
-void Mission::Load(const DataNode &node, const GameData &data)
+void Mission::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
@@ -110,7 +110,7 @@ void Mission::Load(const DataNode &node, const GameData &data)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "destination" && child.Size() >= 2)
-			destination = data.Planets().Get(child.Token(1));
+			destination = GameData::Planets().Get(child.Token(1));
 		if(child.Token(0) == "cargo" && child.Size() >= 2)
 		{
 			cargo = child.Token(1);
@@ -221,10 +221,10 @@ void Mission::SetFailed()
 
 namespace {
 	// Pick a destination within the given number of jumps.
-	const Planet *Pick(const DistanceMap &distance, const GameData &data, int minJumps, int maxJumps)
+	const Planet *Pick(const DistanceMap &distance, int minJumps, int maxJumps)
 	{
 		vector<const Planet *> options;
-		for(const auto &it : data.Planets())
+		for(const auto &it : GameData::Planets())
 		{
 			const Planet &planet = it.second;
 			if(!planet.HasSpaceport())
@@ -239,11 +239,11 @@ namespace {
 	
 	
 	
-	const Trade::Commodity &PickCommodity(const GameData &data, const System &from, const System &to)
+	const Trade::Commodity &PickCommodity(const System &from, const System &to)
 	{
 		vector<int> weight;
 		int total = 0;
-		for(const Trade::Commodity &commodity : data.Commodities())
+		for(const Trade::Commodity &commodity : GameData::Commodities())
 		{
 			// For every 100 credits in profit you can make, double the chance
 			// of this commodity being chosen.
@@ -258,9 +258,9 @@ namespace {
 		{
 			r -= weight[i];
 			if(r < 0)
-				return data.Commodities()[i];
+				return GameData::Commodities()[i];
 		}
 		// Control will never reach here, but to satisfy the compiler:
-		return data.Commodities().front();
+		return GameData::Commodities().front();
 	}
 }

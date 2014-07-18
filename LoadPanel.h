@@ -21,14 +21,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class GameData;
-
 
 
 // UI panel for loading and saving games.
 class LoadPanel : public Panel {
 public:
-	LoadPanel(const GameData &data, PlayerInfo &player, UI &gamePanels);
+	LoadPanel(PlayerInfo &player, UI &gamePanels);
 	
 	virtual void Draw() const;
 	
@@ -49,7 +47,6 @@ private:
 	
 	
 private:
-	const GameData &data;
 	PlayerInfo &player;
 	UI &gamePanels;
 	

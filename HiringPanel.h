@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "PlayerInfo.h"
+class PlayerInfo;
 
 
 
@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // buying and selling.
 class HiringPanel : public Panel {
 public:
-	HiringPanel(const GameData &data, PlayerInfo &player);
+	HiringPanel(PlayerInfo &player);
 	
 	virtual void Draw() const;
 	
@@ -39,7 +39,6 @@ private:
 	
 	
 private:
-	const GameData &data;
 	PlayerInfo &player;
 	
 	mutable int maxHire;
