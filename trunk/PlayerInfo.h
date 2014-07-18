@@ -94,6 +94,8 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+	// Check if your fleet has space for the given mission.
+	bool CanAccept(const Mission &mission) const;
 	void AcceptJob(const Mission &mission);
 	void AddMission(const Mission &mission);
 	void AbortMission(const Mission &mission);

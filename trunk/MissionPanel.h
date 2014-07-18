@@ -45,7 +45,6 @@ private:
 	void DrawMissionInfo() const;
 	
 	bool CanAccept() const;
-	bool CanAccept(const Mission &mission) const;
 	
 	
 private:

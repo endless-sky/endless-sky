@@ -52,6 +52,8 @@ void PlayerInfo::Clear()
 	
 	ships.clear();
 	cargo.Clear();
+	missions.clear();
+	jobs.clear();
 	
 	seen.clear();
 	visited.clear();
@@ -468,6 +470,18 @@ void PlayerInfo::Land()
 	// the saved game.
 	if(jobs.empty())
 		CreateMissions();
+	
+	auto mit = missions.begin();
+	while(mit != missions.end())
+	{
+		if(mit->Failed())
+		{
+			cargo.RemoveMissionCargo(&*mit);
+			mit = missions.erase(mit);
+		}
+		else
+			++mit;
+	}
 }
 
 
@@ -489,7 +503,10 @@ void PlayerInfo::TakeOff()
 	
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
+		{
+			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
 			cargo.TransferAll(&ship->Cargo());
+		}
 	
 	// Extract the fighters from the list.
 	vector<shared_ptr<Ship>> fighters;
@@ -565,7 +582,18 @@ void PlayerInfo::TakeOff()
 				{
 					mission.SetFailed();
 					Messages::Add("Mission \"" + mission.Name()
-						+ " failed because you do not have space for the cargo.");
+						+ "\" failed because you do not have space for the cargo.");
+				}
+		}
+	for(const auto &it : cargo.PassengerList())
+		if(it.second)
+		{
+			for(Mission &mission : missions)
+				if(&mission == it.first)
+				{
+					mission.SetFailed();
+					Messages::Add("Mission \"" + mission.Name()
+						+ "\" failed because you do not have enough passenger bunks free.");
 				}
 		}
 	
@@ -612,6 +640,14 @@ const list<Mission> &PlayerInfo::Missions() const
 const list<Mission> &PlayerInfo::AvailableJobs() const
 {
 	return jobs;
+}
+
+
+
+bool PlayerInfo::CanAccept(const Mission &mission) const
+{
+	return (mission.CargoSize() <= cargo.Free()
+		&& mission.Passengers() <= cargo.Bunks());
 }
 
 

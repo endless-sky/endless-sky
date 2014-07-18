@@ -61,6 +61,7 @@ void MainPanel::Step(bool isActive)
 				player.CompleteMission(mission);
 			}
 		}
+		player.UpdateCargoCapacities();
 		isActive = false;
 	}
 	
