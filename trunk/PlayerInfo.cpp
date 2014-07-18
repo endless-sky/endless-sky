@@ -439,7 +439,7 @@ void PlayerInfo::Land()
 	while(it != ships.end())
 	{
 		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled()
-				|| (*it)->GetGovernment() != GameData::Governments().Get("Escort"))
+				|| (*it)->GetGovernment() != playerGovernment)
 			it = ships.erase(it);
 		else
 			++it; 
@@ -787,6 +787,14 @@ void PlayerInfo::SelectNext()
 			return;
 		}
 	selectedWeapon = nullptr;
+}
+
+
+	
+// Get the player's government.
+const Government *PlayerInfo::GetGovernment() const
+{
+	return playerGovernment;
 }
 
 
