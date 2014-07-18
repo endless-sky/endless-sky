@@ -18,19 +18,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DistanceMap;
-class GameData;
 class Planet;
 
 
 
 class Mission {
 public:
-	static Mission Cargo(const GameData &data, const Planet *source, const DistanceMap &distance);
-	static Mission Passenger(const GameData &data, const Planet *source, const DistanceMap &distance);
+	static Mission Cargo(const Planet *source, const DistanceMap &distance);
+	static Mission Passenger(const Planet *source, const DistanceMap &distance);
 	
 	
 public:
-	void Load(const DataNode &node, const GameData &data);
+	void Load(const DataNode &node);
 	void Save(std::ostream &out, const std::string &tag = "mission") const;
 	
 	const std::string &Name() const;

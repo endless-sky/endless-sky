@@ -36,7 +36,7 @@ public:
 	Government();
 	
 	// Load a government's definition from a file.
-	void Load(const DataNode &node, const Set<Government> &others);
+	void Load(const DataNode &node);
 	
 	// Get the name of this government.
 	const std::string &GetName() const;

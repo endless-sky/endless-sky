@@ -45,8 +45,8 @@ namespace {
 
 
 
-BoardingPanel::BoardingPanel(const GameData &data, PlayerInfo &player, const shared_ptr<Ship> &victim)
-	: data(data), player(player), you(player.Ships().front()), victim(victim),
+BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
+	: player(player), you(player.Ships().front()), victim(victim),
 	selected(0), scroll(0), isCapturing(false),
 	attackOdds(player.GetShip(), &*victim), defenseOdds(&*victim, player.GetShip())
 {
@@ -143,7 +143,7 @@ void BoardingPanel::Draw() const
 	info.SetString("defense casualties",
 		Format(defenseOdds.DefenderCasualties(vCrew, crew)));
 	
-	const Interface *interface = data.Interfaces().Get("boarding");
+	const Interface *interface = GameData::Interfaces().Get("boarding");
 	interface->Draw(info);
 	
 	Point messagePos(50., 55.);
@@ -279,7 +279,7 @@ bool BoardingPanel::Click(int x, int y)
 	}
 	
 	// Handle clicks on the interface buttons.
-	const Interface *interface = data.Interfaces().Get("boarding");
+	const Interface *interface = GameData::Interfaces().Get("boarding");
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
@@ -321,9 +321,9 @@ bool BoardingPanel::CanExit() const
 bool BoardingPanel::CanTake(int index) const
 {
 	// If you ship or the other ship has been captured:
-	if(you->GetGovernment() != data.Governments().Get("Escort"))
+	if(you->GetGovernment() != GameData::Governments().Get("Escort"))
 		return false;
-	if(victim->GetGovernment() == data.Governments().Get("Escort"))
+	if(victim->GetGovernment() == GameData::Governments().Get("Escort"))
 		return false;
 	
 	if(index < 0)
@@ -337,9 +337,9 @@ bool BoardingPanel::CanTake(int index) const
 bool BoardingPanel::CanCapture() const
 {
 	// If you ship or the other ship has been captured:
-	if(you->GetGovernment() != data.Governments().Get("Escort"))
+	if(you->GetGovernment() != GameData::Governments().Get("Escort"))
 		return false;
-	if(victim->GetGovernment() == data.Governments().Get("Escort"))
+	if(victim->GetGovernment() == GameData::Governments().Get("Escort"))
 		return false;
 	
 	return !isCapturing && player.GetShip()->Crew() > 1;

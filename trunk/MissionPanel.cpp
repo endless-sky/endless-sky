@@ -39,8 +39,8 @@ namespace {
 
 
 
-MissionPanel::MissionPanel(const GameData &data, PlayerInfo &player)
-	: MapPanel(data, player, -4),
+MissionPanel::MissionPanel(PlayerInfo &player)
+	: MapPanel(player, -4),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
@@ -165,7 +165,7 @@ bool MissionPanel::Click(int x, int y)
 	dragSide = 0;
 	
 	// Handle clicks on the interface buttons.
-	const Interface *interface = data.Interfaces().Get("mission");
+	const Interface *interface = GameData::Interfaces().Get("mission");
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
@@ -207,7 +207,7 @@ bool MissionPanel::Click(int x, int y)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) - center;
 	const System *system = nullptr;
-	for(const auto &it : data.Systems())
+	for(const auto &it : GameData::Systems())
 		if(click.Distance(it.second.Position()) < 10.)
 		{
 			system = &it.second;
@@ -386,7 +386,7 @@ void MissionPanel::DrawMissionInfo() const
 	
 	info.SetString("today", player.GetDate().ToString());
 	
-	const Interface *interface = data.Interfaces().Get("mission");
+	const Interface *interface = GameData::Interfaces().Get("mission");
 	interface->Draw(info);
 	
 	// If a mission is selected, draw its descriptive text.

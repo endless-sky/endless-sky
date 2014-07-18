@@ -30,7 +30,7 @@ class Projectile;
 // fill all of space.
 class AsteroidField {
 public:
-	AsteroidField(const GameData &gameData);
+	AsteroidField();
 	
 	void Clear();
 	void Add(const std::string &name, int count, double energy = 1.);
@@ -63,8 +63,6 @@ private:
 	
 	
 private:
-	const GameData &gameData;
-	
 	std::vector<Asteroid> asteroids;
 };
 

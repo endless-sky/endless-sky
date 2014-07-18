@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
-class GameData;
 class Outfit;
 class Sprite;
 
@@ -34,7 +33,7 @@ public:
 	
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
-	void Load(const DataNode &node, const GameData &data);
+	void Load(const DataNode &node);
 	
 	const std::string &Name() const;
 	const std::string &Category() const;

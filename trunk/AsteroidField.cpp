@@ -31,8 +31,7 @@ namespace {
 
 
 
-AsteroidField::AsteroidField(const GameData &gameData)
-	: gameData(gameData)
+AsteroidField::AsteroidField()
 {
 }
 

@@ -53,7 +53,7 @@ public:
 	
 private:
 	Animation animation;
-	mutable Point position;
+	Point position;
 	const Planet *planet;
 	
 	double distance;

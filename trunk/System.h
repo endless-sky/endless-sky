@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Date;
 class Fleet;
-class GameData;
 class Government;
 class Planet;
 
@@ -65,7 +64,7 @@ public:
 	System();
 	
 	// Load a system's description.
-	void Load(const DataNode &node, const GameData &data, Set<Planet> &planets);
+	void Load(const DataNode &node, Set<Planet> &planets);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
@@ -84,7 +83,7 @@ public:
 	const std::vector<const System *> &Neighbors() const;
 	
 	// Move the stellar objects to their positions on the given date.
-	void SetDate(const Date &date) const;
+	void SetDate(const Date &date);
 	// Get the stellar object locations on the most recently set date.
 	const std::vector<StellarObject> &Objects() const;
 	// Get the habitable zone's center.

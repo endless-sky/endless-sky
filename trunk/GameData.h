@@ -34,70 +34,48 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <string>
 
+class Date;
+
 
 
 // Class storing all the data used in the game: sprites, data files, etc.
 class GameData {
 public:
-	void BeginLoad(const char * const *argv);
-	void LoadShaders();
-	double Progress() const;
+	static void BeginLoad(const char * const *argv);
+	static void LoadShaders();
+	static double Progress();
 	
-	const Set<Conversation> &Conversations() const;
-	const Set<Effect> &Effects() const;
-	const Set<Fleet> &Fleets() const;
-	const Set<Government> &Governments() const;
-	const Set<Interface> &Interfaces() const;
-	const Set<Outfit> &Outfits() const;
-	const Set<Planet> &Planets() const;
-	const Set<Ship> &Ships() const;
-	const Set<ShipName> &ShipNames() const;
-	const Set<System> &Systems() const;
+	// Revert any changes that have been made to the universe.
+	static void Revert();
+	static void SetDate(const Date &date);
 	
-	const std::vector<Trade::Commodity> &Commodities() const;
+	static const Set<Conversation> &Conversations();
+	static const Set<Effect> &Effects();
+	static const Set<Fleet> &Fleets();
+	static const Set<Government> &Governments();
+	static const Set<Interface> &Interfaces();
+	static const Set<Outfit> &Outfits();
+	static const Set<Planet> &Planets();
+	static const Set<Ship> &Ships();
+	static const Set<ShipName> &ShipNames();
+	static const Set<System> &Systems();
 	
-	const StarField &Background() const;
+	static const std::vector<Trade::Commodity> &Commodities();
+	
+	static const StarField &Background();
 	
 	// Get the mapping of keys to commands.
-	const Key &Keys() const;
-	Key &Keys();
-	const Key &DefaultKeys() const;
+	static const Key &Keys();
+	static void SetKey(Key::Command command, int key);
+	static const Key &DefaultKeys();
 	
-	bool ShouldShowLoad() const;
+	static bool ShouldShowLoad();
 	
 	
 private:
-	void LoadFile(const std::string &path);
+	static void LoadFile(const std::string &path);
 	static void LoadImage(const std::string &path, std::map<std::string, std::string> &images);
 	static std::string Name(const std::string &path);
-	
-	
-private:
-	Set<Color> colors;
-	Set<Conversation> conversations;
-	Set<Effect> effects;
-	Set<Fleet> fleets;
-	Set<Government> governments;
-	Set<Interface> interfaces;
-	Set<Outfit> outfits;
-	Set<Planet> planets;
-	Set<Ship> ships;
-	Set<ShipName> shipNames;
-	Set<System> systems;
-	
-	Set<Sale<Ship>> shipSales;
-	Set<Sale<Outfit>> outfitSales;
-	
-	Trade trade;
-	
-	Key keys;
-	Key defaultKeys;
-	
-	StarField background;
-	
-	SpriteQueue queue;
-	
-	bool showLoad;
 };
 
 

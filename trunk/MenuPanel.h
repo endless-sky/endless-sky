@@ -27,7 +27,7 @@ class PlayerInfo;
 // when your player has been killed, ending the game.
 class MenuPanel : public Panel {
 public:
-	MenuPanel(GameData &gameData, PlayerInfo &player, UI &mainUI);
+	MenuPanel(PlayerInfo &player, UI &mainUI);
 	
 	virtual void Step(bool isActive);
 	virtual void Draw() const;
@@ -43,7 +43,6 @@ protected:
 	
 	
 private:
-	GameData &gameData;
 	PlayerInfo &player;
 	UI &gamePanels;
 	

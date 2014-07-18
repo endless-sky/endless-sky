@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <set>
 
-class GameData;
 class PlayerInfo;
 class System;
 
@@ -30,7 +29,7 @@ class System;
 // stars based on attitude towards the player, government, or commodity price.
 class MapPanel : public Panel {
 public:
-	MapPanel(const GameData &data, PlayerInfo &info, int commodity = -4);
+	MapPanel(PlayerInfo &info, int commodity = -4);
 	
 	virtual void Draw() const override;
 	
@@ -44,7 +43,6 @@ protected:
 	
 	
 protected:
-	const GameData &data;
 	PlayerInfo &player;
 	
 	DistanceMap distance;

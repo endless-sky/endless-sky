@@ -27,7 +27,7 @@ class Mission;
 // available missions to accept if any) and a map of their destinations.
 class MissionPanel : public MapPanel {
 public:
-	MissionPanel(const GameData &data, PlayerInfo &player);
+	MissionPanel(PlayerInfo &player);
 	
 	virtual void Draw() const override;
 	

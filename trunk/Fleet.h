@@ -32,7 +32,7 @@ class Fleet {
 public:
 	Fleet();
 	
-	void Load(const DataNode &node, const GameData &data);
+	void Load(const DataNode &node);
 	
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
 	// Place a fleet in the given system, already "in action."
@@ -46,7 +46,7 @@ private:
 private:
 	class Variant {
 	public:
-		Variant(const DataNode &node, const GameData &data);
+		Variant(const DataNode &node);
 		
 		int weight;
 		std::vector<const Ship *> ships;
@@ -54,8 +54,6 @@ private:
 	
 	
 private:
-	const GameData *data;
-	
 	const Government *government;
 	const ShipName *names;
 	const ShipName *fighterNames;

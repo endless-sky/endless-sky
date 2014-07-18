@@ -41,8 +41,8 @@ namespace {
 
 
 
-MenuPanel::MenuPanel(GameData &gameData, PlayerInfo &player, UI &gamePanels)
-	: gameData(gameData), player(player), gamePanels(gamePanels), scroll(0)
+MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
+	: player(player), gamePanels(gamePanels), scroll(0)
 {
 	SetIsFullScreen(true);
 	
@@ -69,7 +69,7 @@ void MenuPanel::Step(bool isActive)
 void MenuPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	gameData.Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point(), Point());
 	
 	Information info;
 	if(player.IsLoaded())
@@ -95,15 +95,15 @@ void MenuPanel::Draw() const
 		info.SetString("pilot", "No Pilot Loaded");
 	}
 	
-	const Interface *menu = gameData.Interfaces().Get("main menu");
+	const Interface *menu = GameData::Interfaces().Get("main menu");
 	menu->Draw(info);
 	
-	int progress = static_cast<int>(gameData.Progress() * 60.);
+	int progress = static_cast<int>(GameData::Progress() * 60.);
 	
 	if(progress == 60)
 	{
 		if(!gamePanels.Root())
-			gamePanels.Push(new MainPanel(gameData, player));
+			gamePanels.Push(new MainPanel(player));
 		alpha -= .02f;
 	}
 	if(alpha > 0.f)
@@ -142,33 +142,33 @@ void MenuPanel::Draw() const
 void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
-	Panel *panel = new MainPanel(gameData, player);
+	Panel *panel = new MainPanel(player);
 	gamePanels.Reset();
 	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	panel->Step(true);
-	gamePanels.Push(new ShipyardPanel(gameData, player));
+	gamePanels.Push(new ShipyardPanel(player));
 }
 
 
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
-	if(gameData.Progress() < 1.)
+	if(GameData::Progress() < 1.)
 		return false;
 	
-	if(key == 'e' || key == gameData.Keys().Get(Key::MENU))
+	if(key == 'e' || key == GameData::Keys().Get(Key::MENU))
 		GetUI()->Pop(this);
 	else if(key == 'p')
-		GetUI()->Push(new PreferencesPanel(gameData));
+		GetUI()->Push(new PreferencesPanel());
 	else if(key == 'l')
-		GetUI()->Push(new LoadPanel(gameData, player, gamePanels));
+		GetUI()->Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n')
 	{
-		player.New(gameData);
+		player.New();
 		
 		ConversationPanel *panel = new ConversationPanel(
-			player, *gameData.Conversations().Get("intro"));
+			player, *GameData::Conversations().Get("intro"));
 		GetUI()->Push(panel);
 		panel->SetCallback(*this);
 	}
@@ -184,7 +184,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool MenuPanel::Click(int x, int y)
 {
-	char key = gameData.Interfaces().Get("main menu")->OnClick(Point(x, y));
+	char key = GameData::Interfaces().Get("main menu")->OnClick(Point(x, y));
 	if(key != '\0')
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	

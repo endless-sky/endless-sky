@@ -29,8 +29,8 @@ using namespace std;
 
 
 
-MapDetailPanel::MapDetailPanel(const GameData &data, PlayerInfo &player, int commodity)
-	: MapPanel(data, player, commodity), governmentY(0), tradeY(0), selectedPlanet(nullptr)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity)
+	: MapPanel(player, commodity), governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {
 }
 
@@ -49,7 +49,7 @@ void MapDetailPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
-	if(key == data.Keys().Get(Key::MAP) || key == 'd')
+	if(key == GameData::Keys().Get(Key::MAP) || key == 'd')
 		GetUI()->Pop(this);
 	else
 		return false;
@@ -185,11 +185,11 @@ void MapDetailPanel::DrawInfo() const
 	
 	uiPoint.X() -= 90.;
 	uiPoint.Y() -= 97.;
-	for(const Trade::Commodity &commodity : data.Commodities())
+	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
-		if(static_cast<unsigned>(this->commodity) < data.Commodities().size())
-			isSelected = (&commodity == &data.Commodities()[this->commodity]);
+		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
+			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
 		Color &color = isSelected ? closeColor : farColor;
 		
 		font.Draw(commodity.name, uiPoint, color);

@@ -44,10 +44,10 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(const GameData &data, PlayerInfo &player)
-	: ShopPanel(data, player, CATEGORIES)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player)
+	: ShopPanel(player, CATEGORIES)
 {
-	for(const pair<string, Outfit> &it : data.Outfits())
+	for(const pair<string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
 }
 
@@ -72,7 +72,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 {
-	const Outfit *outfit = data.Outfits().Get(name);
+	const Outfit *outfit = GameData::Outfits().Get(name);
 	if(!planet->Outfitter().Has(outfit)
 			&& (!playerShip || !playerShip->OutfitCount(outfit))
 			&& !available[outfit] && !player.Cargo().Get(outfit))
@@ -213,31 +213,31 @@ bool OutfitterPanel::FlightCheck()
 		if(!attributes.Get("thrust"))
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*data.Conversations().Get("flight check: no thrusters")));
+				*GameData::Conversations().Get("flight check: no thrusters")));
 			return false;
 		}
 		if(attributes.Get("thrusting energy") > energy)
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*data.Conversations().Get("flight check: no thruster energy")));
+				*GameData::Conversations().Get("flight check: no thruster energy")));
 			return false;
 		}
 		if(!attributes.Get("turn"))
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*data.Conversations().Get("flight check: no steering")));
+				*GameData::Conversations().Get("flight check: no steering")));
 			return false;
 		}
 		if(attributes.Get("turning energy") > energy)
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*data.Conversations().Get("flight check: no steering energy")));
+				*GameData::Conversations().Get("flight check: no steering energy")));
 			return false;
 		}
 		if(attributes.Get("heat generation") * 10. > player.GetShip()->Mass())
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*data.Conversations().Get("flight check: overheating")));
+				*GameData::Conversations().Get("flight check: overheating")));
 			return false;
 		}
 	}

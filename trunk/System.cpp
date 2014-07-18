@@ -86,7 +86,7 @@ System::System()
 
 
 // Load a system's description.
-void System::Load(const DataNode &node, const GameData &data, Set<Planet> &planets)
+void System::Load(const DataNode &node, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
@@ -98,9 +98,9 @@ void System::Load(const DataNode &node, const GameData &data, Set<Planet> &plane
 		if(child.Token(0) == "pos" && child.Size() >= 3)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
-			government = data.Governments().Get(child.Token(1));
+			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "link" && child.Size() >= 2)
-			links.push_back(data.Systems().Get(child.Token(1)));
+			links.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
 		else if(child.Token(0) == "asteroids" && child.Size() >= 4)
@@ -108,7 +108,7 @@ void System::Load(const DataNode &node, const GameData &data, Set<Planet> &plane
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)] = child.Value(2);
 		else if(child.Token(0) == "fleet" && child.Size() >= 3)
-			fleets.emplace_back(data.Fleets().Get(child.Token(1)), child.Value(2));
+			fleets.emplace_back(GameData::Fleets().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets);
 	}
@@ -206,11 +206,11 @@ const vector<const System *> &System::Neighbors() const
 
 
 // Move the stellar objects to their positions on the given date.
-void System::SetDate(const Date &date) const
+void System::SetDate(const Date &date)
 {
 	double now = date.DaysSinceEpoch();
 	
-	for(const StellarObject &object : objects)
+	for(StellarObject &object : objects)
 	{
 		// "offset" is used to allow binary orbits; the second object is offset
 		// by 180 degrees.

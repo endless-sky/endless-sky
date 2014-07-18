@@ -27,35 +27,33 @@ using namespace std;
 
 
 Fleet::Fleet()
-	: data(nullptr), government(nullptr), names(nullptr), cargo(3), total(0)
+	: government(nullptr), names(nullptr), cargo(3), total(0)
 {
 }
 
 
 
-void Fleet::Load(const DataNode &node, const GameData &data)
+void Fleet::Load(const DataNode &node)
 {
-	this->data = &data;
-	
 	// Provide defaults for these in case they are not specified.
-	government = data.Governments().Get("Merchant");
-	names = data.ShipNames().Get("civilian");
+	government = GameData::Governments().Get("Merchant");
+	names = GameData::ShipNames().Get("civilian");
 	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "government" && child.Size() >= 2)
-			government = data.Governments().Get(child.Token(1));
+			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "names" && child.Size() >= 2)
-			names = data.ShipNames().Get(child.Token(1));
+			names = GameData::ShipNames().Get(child.Token(1));
 		else if(child.Token(0) == "fighter names" && child.Size() >= 2)
-			fighterNames = data.ShipNames().Get(child.Token(1));
+			fighterNames = GameData::ShipNames().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "personality")
 			personality.Load(child);
 		else if(child.Token(0) == "variant")
 		{
-			variants.emplace_back(child, data);
+			variants.emplace_back(child);
 			total += variants.back().weight;
 		}
 	}
@@ -65,7 +63,7 @@ void Fleet::Load(const DataNode &node, const GameData &data)
 
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 {
-	if(!total || !data || !government)
+	if(!total || !government)
 		return;
 	
 	// Pick a random variant based on the weights.
@@ -155,7 +153,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 // Place a fleet in the given system, already "in action."
 void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships) const
 {
-	if(!total || !data || !government)
+	if(!total || !government)
 		return;
 	
 	// Pick a random variant based on the weights.
@@ -231,8 +229,8 @@ void Fleet::SetCargo(Ship *ship) const
 		if(!free)
 			break;
 		
-		int index = Random::Int(data->Commodities().size());
-		const Trade::Commodity &commodity = data->Commodities()[index];
+		int index = Random::Int(GameData::Commodities().size());
+		const Trade::Commodity &commodity = GameData::Commodities()[index];
 		int amount = Random::Int(free) + 1;
 		ship->Cargo().Transfer(commodity.name, -amount);
 	}
@@ -240,7 +238,7 @@ void Fleet::SetCargo(Ship *ship) const
 
 
 
-Fleet::Variant::Variant(const DataNode &node, const GameData &data)
+Fleet::Variant::Variant(const DataNode &node)
 {
 	weight = (node.Size() < 2) ? 1 : static_cast<int>(node.Value(1));
 	
@@ -249,6 +247,6 @@ Fleet::Variant::Variant(const DataNode &node, const GameData &data)
 		int n = 1;
 		if(child.Size() > 1 && child.Value(1) >= 1.)
 			n = static_cast<int>(child.Value(1));
-		ships.insert(ships.end(), n, data.Ships().Get(child.Token(0)));
+		ships.insert(ships.end(), n, GameData::Ships().Get(child.Token(0)));
 	}
 }

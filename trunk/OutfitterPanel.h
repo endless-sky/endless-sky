@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <string>
 
-class GameData;
 class Outfit;
 class PlayerInfo;
 class Point;
@@ -29,7 +28,7 @@ class Point;
 // outfits to install in your ship or to sell the ones you own.
 class OutfitterPanel : public ShopPanel {
 public:
-	OutfitterPanel(const GameData &data, PlayerInfo &player);
+	OutfitterPanel(PlayerInfo &player);
 	
 	
 protected:

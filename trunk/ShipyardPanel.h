@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
-class GameData;
 class PlayerInfo;
 class Point;
 
@@ -27,7 +26,7 @@ class Point;
 // sell any of the ones you own.
 class ShipyardPanel : public ShopPanel {
 public:
-	ShipyardPanel(const GameData &data, PlayerInfo &player);
+	ShipyardPanel(PlayerInfo &player);
 	
 	
 protected:

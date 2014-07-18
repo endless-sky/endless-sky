@@ -30,7 +30,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class DataNode;
-class GameData;
 class Government;
 class Planet;
 class Projectile;
@@ -45,7 +44,7 @@ public:
 	Ship();
 	
 	// Load data for a type of ship:
-	void Load(const DataNode &node, const GameData &data);
+	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading();

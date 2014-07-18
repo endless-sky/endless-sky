@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class GameData;
 class Planet;
 class PlayerInfo;
 class Point;
@@ -33,7 +32,7 @@ class Outfit;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	ShopPanel(const GameData &data, PlayerInfo &player, const std::vector<std::string> &categories);
+	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
 	virtual void Draw() const;
 	
@@ -97,7 +96,6 @@ protected:
 	
 	
 protected:
-	const GameData &data;
 	PlayerInfo &player;
 	const Planet *planet;
 	

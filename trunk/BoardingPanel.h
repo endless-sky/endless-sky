@@ -31,7 +31,7 @@ class Ship;
 // buying and selling.
 class BoardingPanel : public Panel {
 public:
-	BoardingPanel(const GameData &data, PlayerInfo &player, const std::shared_ptr<Ship> &victim);
+	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
 	
 	virtual void Draw() const;
 	
@@ -95,7 +95,6 @@ private:
 	};
 	
 private:
-	const GameData &data;
 	PlayerInfo &player;
 	std::shared_ptr<Ship> you;
 	std::shared_ptr<Ship> victim;

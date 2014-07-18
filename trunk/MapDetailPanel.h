@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 
-class GameData;
 class Planet;
 class PlayerInfo;
 
@@ -29,7 +28,7 @@ class PlayerInfo;
 // stars based on attitude towards the player, government, or commodity price.
 class MapDetailPanel : public MapPanel {
 public:
-	MapDetailPanel(const GameData &data, PlayerInfo &info, int commodity = -4);
+	MapDetailPanel(PlayerInfo &info, int commodity = -4);
 	
 	virtual void Draw() const override;
 	

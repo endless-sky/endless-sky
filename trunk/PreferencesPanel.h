@@ -22,7 +22,7 @@ class GameData;
 // UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
-	PreferencesPanel(GameData &data);
+	PreferencesPanel();
 	
 	// Draw this panel.
 	virtual void Draw() const;
@@ -39,8 +39,6 @@ private:
 	
 	
 private:
-	GameData &data;
-	
 	int editing;
 	int selected;
 	mutable int firstY;

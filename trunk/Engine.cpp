@@ -17,7 +17,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "FrameTimer.h"
+#include "GameData.h"
 #include "Messages.h"
+#include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Random.h"
 #include "Screen.h"
@@ -30,11 +32,9 @@ using namespace std;
 
 
 
-Engine::Engine(const GameData &data, PlayerInfo &player)
-	: data(data), player(player),
-	playerGovernment(data.Governments().Get("Escort")),
-	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
-	asteroids(data), flash(0.),
+Engine::Engine(PlayerInfo &player)
+	: player(player), playerGovernment(GameData::Governments().Get("Escort")),
+	calcTickTock(false), drawTickTock(false), terminate(false), step(0), flash(0.),
 	load(0.), loadCount(0), loadSum(0.)
 {
 	// Start the thread for doing calculations.
@@ -45,8 +45,7 @@ Engine::Engine(const GameData &data, PlayerInfo &player)
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
-	for(const auto &it : data.Systems())
-		it.second.SetDate(player.GetDate());
+	GameData::SetDate(player.GetDate());
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
@@ -140,7 +139,7 @@ void Engine::Step(bool isActive)
 			position = flagship->Position();
 			velocity = flagship->Velocity();
 		}
-		ai.UpdateKeys(data.Keys().State(), &player);
+		ai.UpdateKeys(GameData::Keys().State(), &player);
 		
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
@@ -310,7 +309,7 @@ const shared_ptr<Ship> &Engine::Boarding() const
 // Draw a frame.
 void Engine::Draw() const
 {
-	data.Background().Draw(position, velocity);
+	GameData::Background().Draw(position, velocity);
 	draw[drawTickTock].Draw();
 	
 	if(flash)
@@ -344,8 +343,8 @@ void Engine::Draw() const
 		}
 	}
 	
-	data.Interfaces().Get("status")->Draw(info);
-	data.Interfaces().Get("targets")->Draw(info);
+	GameData::Interfaces().Get("status")->Draw(info);
+	GameData::Interfaces().Get("targets")->Draw(info);
 	
 	// Draw ammo status.
 	Point pos(Screen::Width() / 2 - 80, Screen::Height() / 2);
@@ -368,7 +367,7 @@ void Engine::Draw() const
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
 	}
 	
-	if(data.ShouldShowLoad())
+	if(GameData::ShouldShowLoad())
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
 		Color color(.4, 0.);
@@ -393,8 +392,7 @@ void Engine::EnterSystem()
 		+ today.ToString() + (system->IsInhabited() ?
 			"." : ". No inhabited planets detected."));
 	
-	for(const auto &it : data.Systems())
-		it.second.SetDate(today);
+	GameData::SetDate(today);
 	
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
@@ -448,7 +446,7 @@ void Engine::CalculateStep()
 	radar[calcTickTock].Clear();
 	
 	// Give provoked governments a chance to cool down.
-	for(const auto &it : data.Governments())
+	for(const auto &it : GameData::Governments())
 		it.second.CoolDown();
 	
 	// Now, all the ships must decide what they are doing next.
@@ -547,7 +545,7 @@ void Engine::CalculateStep()
 				hasAntiMissile.push_back(ship.get());
 			
 			// Boarding:
-			bool autoPlunder = (ship->GetGovernment() != data.Governments().Get("Escort"));
+			bool autoPlunder = (ship->GetGovernment() != GameData::Governments().Get("Escort"));
 			shared_ptr<Ship> victim = ship->Board(ships, autoPlunder);
 			if(victim)
 				boardingQueue.push_back(victim);
