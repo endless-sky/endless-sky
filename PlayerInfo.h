@@ -116,6 +116,9 @@ public:
 	const Outfit *SelectedWeapon() const;
 	void SelectNext();
 	
+	// Get the player's government.
+	const Government *GetGovernment() const;
+	
 	
 private:
 	// New missions are generated each time you land on a planet. This also means

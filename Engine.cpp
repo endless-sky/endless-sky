@@ -33,7 +33,7 @@ using namespace std;
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), playerGovernment(GameData::Governments().Get("Escort")),
+	: player(player), playerGovernment(player.GetGovernment()),
 	calcTickTock(false), drawTickTock(false), terminate(false), step(0), flash(0.),
 	load(0.), loadCount(0), loadSum(0.)
 {
@@ -545,7 +545,7 @@ void Engine::CalculateStep()
 				hasAntiMissile.push_back(ship.get());
 			
 			// Boarding:
-			bool autoPlunder = (ship->GetGovernment() != GameData::Governments().Get("Escort"));
+			bool autoPlunder = (ship->GetGovernment() != playerGovernment);
 			shared_ptr<Ship> victim = ship->Board(ships, autoPlunder);
 			if(victim)
 				boardingQueue.push_back(victim);
