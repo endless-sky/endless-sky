@@ -261,15 +261,17 @@ void MapPanel::DrawMissions() const
 	// Draw a pointer for each active or playerSystem mission.
 	map<const System *, Angle> angle;
 	Color black(0., 1.);
-	Color availableColor(.2, 1., 0., 1.);
-	Color currentColor(.2, .6, 1., 1.);
+	Color availableColor(1., .7, 0., 1.);
+	Color unavailableColor(.6, .3, 0., 1.);
+	Color currentColor(.2, 1., 0., 1.);
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
 		Angle a = (angle[system] += Angle(30.));
 		Point pos = system->Position() + center;
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., availableColor);
+		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
+			player.CanAccept(mission) ? availableColor : unavailableColor);
 	}
 	for(const Mission &mission : player.Missions())
 	{

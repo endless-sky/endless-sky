@@ -192,7 +192,7 @@ void CargoHold::SetBunks(int count)
 
 int CargoHold::Bunks() const
 {
-	return bunks;
+	return bunks - Passengers();
 }
 
 
@@ -234,6 +234,14 @@ int CargoHold::Get(const Mission *mission) const
 
 
 
+int CargoHold::GetPassengers(const Mission *mission) const
+{
+	map<const Mission *, int>::const_iterator it = passengers.find(mission);
+	return (it == passengers.end() ? 0 : it->second);
+}
+
+
+
 const map<string, int> &CargoHold::Commodities() const
 {
 	return commodities;
@@ -251,6 +259,13 @@ const map<const Outfit *, int> &CargoHold::Outfits() const
 const map<const Mission *, int> &CargoHold::MissionCargo() const
 {
 	return missionCargo;
+}
+
+
+
+const map<const Mission *, int> &CargoHold::PassengerList() const
+{
+	return passengers;
 }
 
 
@@ -331,6 +346,30 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold *to)
 
 
 
+int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold *to)
+{
+	// Take your free capacity into account here too.
+	amount = min(amount, GetPassengers(mission));
+	if(Size())
+		amount = max(amount, -Bunks());
+	if(to)
+	{
+		amount = max(amount, -to->GetPassengers(mission));
+		if(to->Size())
+			amount = min(amount, to->Bunks());
+	}
+	
+	// Do the "transfer" even if the amount is 0, because some mission cargo
+	// takes up no space.
+	passengers[mission] -= amount;
+	if(to)
+		to->passengers[mission] += amount;
+	
+	return amount;
+}
+
+
+
 // Transfer as much as the given cargo hold has capacity for. The priority is
 // first mission cargo, then spare outfits, then ordinary commodities.
 void CargoHold::TransferAll(CargoHold *to)
@@ -344,6 +383,8 @@ void CargoHold::TransferAll(CargoHold *to)
 		return;
 	}
 	
+	for(const auto &it : passengers)
+		TransferPassengers(it.first, it.second, to);
 	for(const auto &it : missionCargo)
 		Transfer(it.first, it.second, to);
 	for(const auto &it : outfits)

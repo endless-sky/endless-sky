@@ -355,7 +355,7 @@ void MissionPanel::DrawList(const list<Mission> &list, Point pos, const string &
 				Point(size.X() - 10., 20.),
 				highlight);
 		
-		bool canAccept = (&list != &available || CanAccept(*it));
+		bool canAccept = (&list != &available || player.CanAccept(*it));
 		font.Draw(it->Name(), pos,
 			(!canAccept ? dim : isSelected ? selected : unselected));
 	}
@@ -400,23 +400,11 @@ void MissionPanel::DrawMissionInfo() const
 }
 
 
+
 bool MissionPanel::CanAccept() const
 {
 	if(availableIt == available.end())
 		return false;
 	
-	return CanAccept(*availableIt);
-}
-
-
-
-bool MissionPanel::CanAccept(const Mission &mission) const
-{
-	if(mission.CargoSize() > player.Cargo().Free())
-		return false;
-	
-	if(mission.Passengers() > player.Cargo().Bunks())
-		return false;
-	
-	return true;
+	return player.CanAccept(*availableIt);
 }

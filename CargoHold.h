@@ -56,12 +56,14 @@ public:
 	int Get(const Outfit *outfit) const;
 	// Mission cargo:
 	int Get(const Mission *mission) const;
+	int GetPassengers(const Mission *mission) const;
 	
 	const std::map<std::string, int> &Commodities() const;
 	const std::map<const Outfit *, int> &Outfits() const;
 	// Note: some missions may have cargo that takes up 0 space, but should
 	// still show up on the cargo listing.
 	const std::map<const Mission *, int> &MissionCargo() const;
+	const std::map<const Mission *, int> &PassengerList() const;
 	
 	// For all the transfer functions, the "other" can be null if you simply want
 	// the commodity to "disappear" or, if the "amount" is negative, to have an
@@ -69,6 +71,7 @@ public:
 	int Transfer(const std::string &commodity, int amount, CargoHold *to = nullptr);
 	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr);
 	int Transfer(const Mission *mission, int amount, CargoHold *to = nullptr);
+	int TransferPassengers(const Mission *mission, int amount, CargoHold *to = nullptr);
 	// Transfer as much as the given cargo hold has capacity for. The priority is
 	// first mission cargo, then spare outfits, then ordinary commodities.
 	void TransferAll(CargoHold *to);
