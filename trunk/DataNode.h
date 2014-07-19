@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DATA_NODE_H_
 
 #include <list>
-#include <ostream>
 #include <string>
 #include <vector>
 
@@ -28,8 +27,6 @@ public:
 	
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
-	
-	void Write(std::ostream &out) const;
 	
 	
 private:

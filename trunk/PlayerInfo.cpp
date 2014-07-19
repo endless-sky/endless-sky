@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "DistanceMap.h"
 #include "Files.h"
 #include "GameData.h"
@@ -24,8 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "System.h"
 
-#include <fstream>
-#include <random>
 #include <sstream>
 
 using namespace std;
@@ -149,20 +148,20 @@ void PlayerInfo::Save() const
 		recent << filePath << "\n";
 	}
 	
-	ofstream out(filePath);
+	DataWriter out(filePath);
 	
-	out << "pilot \"" << firstName << "\" \"" << lastName << "\"\n";
-	out << "date " << date.Day() << " " << date.Month() <<  " " << date.Year() << "\n";
+	out.Write("pilot", firstName, lastName);
+	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(system)
-		out << "system \"" << system->Name() << "\"\n";
+		out.Write("system", system->Name());
 	if(planet)
-		out << "planet \"" << planet->Name() << "\"\n";
-	
-	accounts.Save(out);
-	cargo.Save(out);
+		out.Write("planet", planet->Name());
 	
 	for(const std::shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
+	
+	cargo.Save(out);
+	accounts.Save(out);
 	
 	for(const Mission &mission : missions)
 		mission.Save(out);
@@ -170,7 +169,7 @@ void PlayerInfo::Save() const
 		mission.Save(out, "job");
 	
 	for(const System *system : visited)
-		out << "visited \"" << system->Name() << "\"\n";
+		out.Write("visited", system->Name());
 }
 
 

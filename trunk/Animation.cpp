@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Animation.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -96,13 +97,15 @@ void Animation::Load(const DataNode &node)
 // Save this animation's information to a ship descriptor. Only saves the
 // frame rate and the rewind flag if set, not the other settings, since
 // those will not generally apply to a ship sprite.
-void Animation::Save(ostream &out) const
+void Animation::Save(DataWriter &out) const
 {
-	out << "\tsprite \"" << spriteName << "\"\n";
-	if(frameRate != 1.)
-		out << "\t\t\"frame rate\" " << frameRate * 60. << "\n";
-	if(rewind)
-		out << "\t\t\"rewind\"\n";
+	out.Write("sprite", spriteName);
+	out.BeginChild();
+		if(frameRate != 1.)
+			out.Write("frame rate", frameRate * 60.);
+		if(rewind)
+			out.Write("rewind");
+	out.EndChild();
 }
 
 

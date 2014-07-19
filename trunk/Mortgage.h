@@ -13,9 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MORTGAGE_H_
 #define MORTGAGE_H_
 
-#include "DataFile.h"
-
 #include <string>
+
+class DataNode;
+class DataWriter;
 
 
 
@@ -34,7 +35,7 @@ public:
 	
 	// Load or save mortgage data.
 	void Load(const DataNode &node);
-	void Save(std::ostream &out) const;
+	void Save(DataWriter &out) const;
 	
 	// Make a mortgage payment. The return value is the amount paid.
 	int MakePayment();
