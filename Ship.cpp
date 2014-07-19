@@ -409,7 +409,10 @@ bool Ship::Move(list<Effect> &effects)
 		velocity += (HYPER_A * direction) * angle.Unit();
 		position += velocity;
 		if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
+		{
+			velocity = velocity.Unit() * MaxVelocity();
 			hyperspaceCount = 0;
+		}
 		
 		return true;
 	}
