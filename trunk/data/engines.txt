@@ -132,7 +132,7 @@ outfit "X5200 Ion Steering"
 outfit "Chipmunk Plasma Thruster"
 	category "Engines"
 	"cost" 17000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/tiny plasma thruster"
 	"mass" 15
 	"outfit space" -15
 	"engine capacity" -15
@@ -146,7 +146,7 @@ outfit "Chipmunk Plasma Thruster"
 outfit "Greyhound Plasma Thruster"
 	category "Engines"
 	"cost" 46000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/small plasma thruster"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
@@ -160,7 +160,7 @@ outfit "Greyhound Plasma Thruster"
 outfit "Impala Plasma Thruster"
 	category "Engines"
 	"cost" 1260000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/medium plasma thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -174,7 +174,7 @@ outfit "Impala Plasma Thruster"
 outfit "Orca Plasma Thruster"
 	category "Engines"
 	"cost" 342000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/large plasma thruster"
 	"mass" 120
 	"outfit space" -120
 	"engine capacity" -120
@@ -188,7 +188,7 @@ outfit "Orca Plasma Thruster"
 outfit "Tyrant Plasma Thruster"
 	category "Engines"
 	"cost" 931000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/huge plasma thruster"
 	"mass" 240
 	"outfit space" -240
 	"engine capacity" -240
@@ -202,7 +202,7 @@ outfit "Tyrant Plasma Thruster"
 outfit "Chipmunk Plasma Steering"
 	category "Engines"
 	"cost" 14000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/tiny plasma steering"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
@@ -214,7 +214,7 @@ outfit "Chipmunk Plasma Steering"
 outfit "Greyhound Plasma Steering"
 	category "Engines"
 	"cost" 37000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/small plasma steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -226,7 +226,7 @@ outfit "Greyhound Plasma Steering"
 outfit "Impala Plasma Steering"
 	category "Engines"
 	"cost" 101000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/medium plasma steering"
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
@@ -238,7 +238,7 @@ outfit "Impala Plasma Steering"
 outfit "Orca Plasma Steering"
 	category "Engines"
 	"cost" 2740000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/large plasma steering"
 	"mass" 80
 	"outfit space" -80
 	"engine capacity" -80
@@ -250,7 +250,7 @@ outfit "Orca Plasma Steering"
 outfit "Tyrant Plasma Steering"
 	category "Engines"
 	"cost" 744000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/huge plasma steering"
 	"mass" 160
 	"outfit space" -160
 	"engine capacity" -160
