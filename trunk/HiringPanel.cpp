@@ -56,7 +56,7 @@ void HiringPanel::Draw() const
 		fleetBunks += static_cast<int>(attr.Get("bunks"));
 		fleetRequired += static_cast<int>(attr.Get("required crew"));
 	}
-	int passengers = 0;
+	int passengers = player.Cargo().Passengers();
 	int fleetUnused = fleetBunks - fleetRequired - flagshipExtra;
 	info.SetString("fleet bunks", to_string(static_cast<int>(fleetBunks)));
 	info.SetString("fleet required", to_string(static_cast<int>(fleetRequired)));
@@ -69,17 +69,17 @@ void HiringPanel::Draw() const
 	info.SetString("salary required", to_string(static_cast<int>(salary)));
 	info.SetString("salary extra", to_string(static_cast<int>(extraSalary)));
 	
-	if(fleetUnused)
-		info.SetCondition("can hire");
-	if(flagshipExtra)
-		info.SetCondition("can fire");
-	
 	int modifier = Modifier();
 	if(modifier > 1)
 		info.SetString("modifier", "x " + to_string(modifier));
 	
 	maxFire = flagshipExtra;
-	maxHire = min(flagshipUnused, fleetUnused);
+	maxHire = min(flagshipUnused, fleetUnused - passengers);
+	
+	if(maxHire)
+		info.SetCondition("can hire");
+	if(flagshipExtra)
+		info.SetCondition("can fire");
 	
 	interface->Draw(info);
 }
