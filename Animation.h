@@ -13,9 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ANIMATION_H_
 #define ANIMATION_H_
 
-#include <ostream>
+#include <cstdint>
+#include <string>
 
 class DataNode;
+class DataWriter;
 class Mask;
 class Sprite;
 
@@ -44,8 +46,7 @@ public:
 	// Save this animation's information to a ship descriptor. Only saves the
 	// frame rate and the rewind flag if set, not the other settings, since
 	// those will not generally apply to a ship sprite.
-	// TODO: decide how ship animations will work.
-	void Save(std::ostream &out) const;
+	void Save(DataWriter &out) const;
 	
 	// Check if this animation contains any frames.
 	bool IsEmpty() const;

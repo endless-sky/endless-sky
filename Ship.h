@@ -23,13 +23,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Personality.h"
 #include "Point.h"
 
-#include <ostream>
 #include <map>
 #include <memory>
 #include <string>
 #include <vector>
 
 class DataNode;
+class DataWriter;
 class Government;
 class Planet;
 class Projectile;
@@ -49,7 +49,7 @@ public:
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading();
 	// Save a full description of this ship, as currently configured.
-	void Save(std::ostream &out) const;
+	void Save(DataWriter &out) const;
 	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;

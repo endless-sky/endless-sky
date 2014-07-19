@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
@@ -157,53 +158,60 @@ void Ship::FinishLoading()
 
 
 // Save a full description of this ship, as currently configured.
-void Ship::Save(ostream &out) const
+void Ship::Save(DataWriter &out) const
 {
-	out << "ship \"" << modelName << "\"\n";
-	out << "\tname \"" << name << "\"\n";
-	sprite.Save(out);
-	
-	out << "\tattributes\n";
-	out << "\t\tcategory \"" << baseAttributes.Category() << "\"\n";
-	for(const auto &it : baseAttributes.Attributes())
-		if(it.second)
-			out << "\t\t\"" << it.first << "\" " << it.second << "\n";
-	
-	out << "\toutfits\n";
-	for(const auto &it : outfits)
-		if(it.first && it.second)
+	out.Write("ship", modelName);
+	out.BeginChild();
+		out.Write("name", name);
+		sprite.Save(out);
+		
+		out.Write("attributes");
+		out.BeginChild();
+			out.Write("category", baseAttributes.Category());
+			for(const auto &it : baseAttributes.Attributes())
+				if(it.second)
+					out.Write(it.first, it.second);
+		out.EndChild();
+		
+		out.Write("outfits");
+		out.BeginChild();
+			for(const auto &it : outfits)
+				if(it.first && it.second)
+				{
+					if(it.second == 1)
+						out.Write(it.first->Name());
+					else
+						out.Write(it.first->Name(), it.second);
+				}
+		out.EndChild();
+		
+		cargo.Save(out);
+		out.Write("crew", crew);
+		
+		for(const Point &point : enginePoints)
+			out.Write("engine", point.X(), point.Y());
+		for(const Armament::Weapon &weapon : armament.Get())
 		{
-			out << "\t\t\"" << it.first->Name() << "\"";
-			if(it.second != 1)
-				out << " " << it.second;
-			out << "\n";
+			const char *type = (weapon.IsTurret() ? "turret" : "gun");
+			if(weapon.GetOutfit())
+				out.Write(type, 2. * weapon.GetPoint().X(), 2. * weapon.GetPoint().Y(),
+					weapon.GetOutfit()->Name());
+			else
+				out.Write(type, 2. * weapon.GetPoint().X(), 2. * weapon.GetPoint().Y());
 		}
-	
-	cargo.Save(out, 1);
-	out << "\tcrew " << crew << "\n";
-	
-	for(const Point &point : enginePoints)
-		out << "\tengine " << point.X() << " " << point.Y() << "\n";
-	for(const Armament::Weapon &weapon : armament.Get())
-	{
-		out << (weapon.IsTurret() ? "\tturret " : "\tgun ");
-		out << 2. * weapon.GetPoint().X() << " " << 2. * weapon.GetPoint().Y();
-		if(weapon.GetOutfit())
-			out << " \"" << weapon.GetOutfit()->Name() << "\"";
-		out << "\n";
-	}
-	for(const Bay &bay : fighterBays)
-		out << "\tfighter " << 2. * bay.point.X() << " " << 2. * bay.point.Y() << "\n";
-	for(const Bay &bay : droneBays)
-		out << "\tdrone " << 2. * bay.point.X() << " " << 2. * bay.point.Y() << "\n";
-	for(const auto &it : explosionEffects)
-		if(it.first && it.second)
-			out << "\texplode \"" << it.first->Name() << "\" " << it.second << "\n";
-	
-	if(currentSystem)
-		out << "\tsystem \"" << currentSystem->Name() << "\"\n";
-	if(landingPlanet)
-		out << "\tplanet \"" << landingPlanet->Name() << "\"\n";
+		for(const Bay &bay : fighterBays)
+			out.Write("fighter", 2. * bay.point.X(), 2. * bay.point.Y());
+		for(const Bay &bay : droneBays)
+			out.Write("drone", 2. * bay.point.X(), 2. * bay.point.Y());
+		for(const auto &it : explosionEffects)
+			if(it.first && it.second)
+				out.Write("explode", it.first->Name(), it.second);
+		
+		if(currentSystem)
+			out.Write("system", currentSystem->Name());
+		if(landingPlanet)
+			out.Write("planet", landingPlanet->Name());
+	out.EndChild();
 }
 
 
@@ -410,7 +418,7 @@ bool Ship::Move(list<Effect> &effects)
 		position += velocity;
 		if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
 		{
-			velocity = velocity.Unit() * MaxVelocity();
+			velocity = angle.Unit() * MaxVelocity();
 			hyperspaceCount = 0;
 		}
 		

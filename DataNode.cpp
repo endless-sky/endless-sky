@@ -54,12 +54,3 @@ list<DataNode>::const_iterator DataNode::end() const
 {
 	return children.end();
 }
-
-
-
-void DataNode::Write(ostream &out) const
-{
-	out << raw << endl;
-	for(const DataNode &node : children)
-		node.Write(out);
-}

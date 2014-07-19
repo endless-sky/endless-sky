@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Ship.h"
 
 #include <sstream>
@@ -62,20 +63,24 @@ void Account::Load(const DataNode &node)
 
 
 
-void Account::Save(ostream &out) const
+void Account::Save(DataWriter &out) const
 {
-	out << "account\n";
-	out << "\tcredits " << credits << "\n";
-	if(salariesOwed)
-		out << "\tsalaries " << salariesOwed << "\n";
-	out << "\tscore " << creditScore << "\n";
-	out << "\thistory\n";
-	for(int worth : history)
-		out << "\t\t" << worth << "\n";
-	
-	for(const Mortgage &mortgage : mortgages)
-		mortgage.Save(out);
-	
+	out.Write("account");
+	out.BeginChild();
+		out.Write("credits", credits);
+		if(salariesOwed)
+			out.Write("salaries", salariesOwed);
+		out.Write("score", creditScore);
+		
+		out.Write("history");
+		out.BeginChild();
+			for(int worth : history)
+				out.Write(worth);
+		out.EndChild();
+		
+		for(const Mortgage &mortgage : mortgages)
+			mortgage.Save(out);
+	out.EndChild();
 }
 
 

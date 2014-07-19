@@ -16,11 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mortgage.h"
 
 #include <memory>
-#include <ostream>
 #include <string>
 #include <vector>
 
 class DataNode;
+class DataWriter;
 class Ship;
 
 
@@ -34,7 +34,7 @@ public:
 	
 	// Load or save account data.
 	void Load(const DataNode &node);
-	void Save(std::ostream &out) const;
+	void Save(DataWriter &out) const;
 	
 	// Get or change the player's credits.
 	int Credits() const;

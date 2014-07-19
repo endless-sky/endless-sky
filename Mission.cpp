@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mission.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "DistanceMap.h"
 #include "GameData.h"
 #include "Random.h"
@@ -130,21 +131,23 @@ void Mission::Load(const DataNode &node)
 
 
 
-void Mission::Save(ostream &out, const string &tag) const
+void Mission::Save(DataWriter &out, const string &tag) const
 {
-	out << tag << " \"" << name << "\"\n";
-	if(destination)
-		out << "\tdestination \"" << destination->Name() << "\"\n";
-	if(!cargo.empty())
-		out << "\tcargo \"" << cargo << "\" " << cargoSize << "\n";
-	if(passengers)
-		out << "\tpassengers " << passengers << "\n";
-	if(payment)
-		out << "\tpayment " << payment << "\n";
-	if(!description.empty())
-		out << "\tdescription \"" << description << "\"\n";
-	if(!successMessage.empty())
-		out << "\tsuccessMessage \"" << successMessage << "\"\n";
+	out.Write(tag, name);
+	out.BeginChild();
+		if(destination)
+			out.Write("destination", destination->Name());
+		if(!cargo.empty())
+			out.Write("cargo", cargo, cargoSize);
+		if(passengers)
+			out.Write("passengers", passengers);
+		if(payment)
+			out.Write("payment", payment);
+		if(!description.empty())
+			out.Write("description", description);
+		if(!successMessage.empty())
+			out.Write("successMessage", successMessage);
+	out.EndChild();
 }
 
 

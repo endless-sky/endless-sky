@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "CargoHold.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
@@ -63,23 +64,25 @@ void CargoHold::Load(const DataNode &node)
 
 
 // Save the cargo manifest to a file.
-void CargoHold::Save(std::ostream &out, int depth) const
+void CargoHold::Save(DataWriter &out) const
 {
-	string prefix(depth, '\t');
-	
 	bool first = true;
 	for(const auto &it : commodities)
 		if(it.second)
 		{
 			if(first)
 			{
-				out << prefix << "cargo\n";
-				out << prefix << "\tcommodities\n";
+				out.Write("cargo");
+				out.BeginChild();
+				out.Write("commodities");
+				out.BeginChild();
 			}
 			first = false;
 			
-			out << prefix << "\t\t\"" << it.first << "\" " << it.second << "\n";
+			out.Write(it.first, it.second);
 		}
+	if(!first)
+		out.EndChild();
 	
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
@@ -88,16 +91,26 @@ void CargoHold::Save(std::ostream &out, int depth) const
 			// It is possible this cargo hold contained no commodities, meaning
 			// we must print the opening tag now.
 			if(first)
-				out << prefix << "cargo\n";
+			{
+				out.Write("cargo");
+				out.BeginChild();
+			}
 			first = false;
 			
 			// If this is the first outfit to be written, print the opening tag.
 			if(firstOutfit)
-				out << prefix << "\toutfits\n";
+			{
+				out.Write("outfits");
+				out.BeginChild();
+			}
 			firstOutfit = false;
 			
-			out << prefix << "\t\t\"" << it.first->Name() << "\" " << it.second << "\n";
+			out.Write(it.first->Name(), it.second);
 		}
+	if(!firstOutfit)
+		out.EndChild();
+	if(!first)
+		out.EndChild();
 	
 	// Mission cargo is not saved because it is repopulated when the missions
 	// are read rather than when the cargo is read.

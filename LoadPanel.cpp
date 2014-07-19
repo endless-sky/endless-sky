@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "ConversationPanel.h"
-#include "DataNode.h"
+#include "DataFile.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "FillShader.h"

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mortgage.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 
 #include <algorithm>
 #include <cmath>
@@ -70,12 +71,14 @@ void Mortgage::Load(const DataNode &node)
 
 
 
-void Mortgage::Save(ostream &out) const
+void Mortgage::Save(DataWriter &out) const
 {
-	out << "\tmortgage \"" << type << "\"\n";
-	out << "\t\tprincipal " << principal << "\n";
-	out << "\t\tinterest " << interest << "\n";
-	out << "\t\tterm " << term << "\n";
+	out.Write("mortgage", type);
+	out.BeginChild();
+		out.Write("principal", principal);
+		out.Write("interest", interest);
+		out.Write("term", term);
+	out.EndChild();
 }
 
 
