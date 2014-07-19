@@ -9465,6 +9465,7 @@ planet "Clark"
 	spaceport "The spaceport is at the heart of one of Clark's largest cities, surrounded by smokestacks and factories. There are a few hangars owned by different corporations where their cargo ships can load and unload, but you are relegated to a set of concrete landing pads farther from the main buildings. Large trucks rumble by carrying carts loaded down with cargo crates."
 	spaceport "	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boistrous and energetic, very different from most of the Dirt Belt worlds you have visited."
 	shipyard "Basic Ships"
+	outfitter "Basic Outfits"
 
 planet "Cornucopia"
 	landscape "land/fields0"
