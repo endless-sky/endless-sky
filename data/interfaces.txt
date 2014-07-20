@@ -550,110 +550,110 @@ interface "boarding"
 # The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
 # Text is 14 pixels tall
 interface "hiring"
-	label "flagship" -70 88
+	label "flagship" -70 80
 		size 14
-		color "grey"
+		color "light grey"
 		align right
-	label "entire fleet" 50 88
+	label "entire fleet" 50 80
 		size 14
-		color "grey"
+		color "light grey"
 		align right
-	label "salary" 170 88
+	label "salary" 170 80
 		size 14
-		color "grey"
+		color "light grey"
 		align right
 	
-	label "bunks" -290 118
+	label "bunks" -290 105
 		size 14
 		color "grey"
 		align left
-	string "flagship bunks" -70 118
+	string "flagship bunks" -70 105
 		size 14
 		color "light grey"
 		align right
-	string "fleet bunks" 50 118
+	string "fleet bunks" 50 105
 		size 14
 		color "light grey"
 		align right
 	
-	label "required crew" -290 148
+	label "required crew" -290 125
 		size 14
 		color "grey"
 		align left
-	string "flagship required" -70 148
+	string "flagship required" -70 125
 		size 14
 		color "light grey"
 		align right
-	string "fleet required" 50 148
+	string "fleet required" 50 125
 		size 14
 		color "light grey"
 		align right
-	string "salary required" 170 148
+	string "salary required" 170 125
 		size 14
 		color "light grey"
 		align right
 	
-	label "extra crew" -290 178
+	label "extra crew" -290 145
 		size 14
 		color "grey"
 		align left
-	string "flagship extra" -70 178
+	string "flagship extra" -70 145
 		size 14
 		color "light grey"
 		align right
-	string "salary extra" 170 178
+	string "salary extra" 170 145
 		size 14
 		color "light grey"
 		align right
 	
-	label "[hire]" -60 168
+	label "[hire]" -60 135
 		size 14
 		color "dim grey"
 		align left
 	if "can hire"
-	label "[hire]" -60 168
+	label "[hire]" -60 135
 		size 14
 		color "grey"
 		align left
 	endif
-	button h -40 175
+	button h -40 142
 		size 60 20
 	
-	label "[fire]" -60 188
+	label "[fire]" -60 155
 		size 14
 		color "dim grey"
 		align left
 	if "can fire"
-	label "[fire]" -60 188
+	label "[fire]" -60 155
 		size 14
 		color "grey"
 		align left
 	endif
-	string "modifier" -20 178
+	string "modifier" -20 155
 		size 14
 		color "dim grey"
 		align left
-	button f -40 195
+	button f -40 162
 		size 60 20
 	
-	label "passenger space" -290 208
+	label "passenger space" -290 175
 		size 14
 		color "grey"
 		align left
-	string "flagship unused" -70 208
+	string "flagship unused" -70 175
 		size 14
 		color "light grey"
 		align right
-	string "fleet unused" 50 208
+	string "fleet unused" 50 175
 		size 14
 		color "light grey"
 		align right
 	
-	label "passengers" -290 238
+	label "passengers" -290 195
 		size 14
 		color "grey"
 		align left
-	string "passengers" 50 238
+	string "passengers" 50 195
 		size 14
 		color "light grey"
 		align right
