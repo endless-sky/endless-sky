@@ -257,7 +257,7 @@ const vector<int> Account::History() const
 
 int Account::YearlyRevenue() const
 {
-	if(history.empty())
+	if(history.empty() || history.back() <= history.front())
 		return 0;
 	
 	return ((history.back() - history.front()) * 365) / HISTORY;
