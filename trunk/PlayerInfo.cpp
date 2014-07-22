@@ -95,6 +95,8 @@ void PlayerInfo::Load(const string &path)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
 			planet = GameData::Planets().Get(child.Token(1));
+		else if(child.Token(0) == "travel" && child.Size() >= 2)
+			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
@@ -156,6 +158,8 @@ void PlayerInfo::Save() const
 		out.Write("system", system->Name());
 	if(planet)
 		out.Write("planet", planet->Name());
+	for(const System *system : travelPlan)
+		out.Write("travel", system->Name());
 	
 	for(const std::shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
