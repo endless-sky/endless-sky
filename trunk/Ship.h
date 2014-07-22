@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -102,6 +103,9 @@ public:
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool CanHyperspace() const;
 	bool IsBoarding() const;
+	// Check if this ship has boarded another ship. This is just so the AI knows
+	// to move on and not keep boarding the same ship forever.
+	bool HasBoarded(const Ship *ship) const;
 	
 	// Get information on this particular ship, for displaying it.
 	const Animation &GetSprite() const;
@@ -217,6 +221,7 @@ private:
 	bool isDisabled;
 	bool isBoarding;
 	bool hasBoarded;
+	std::set<const Ship *> boardedShips;
 	
 	Personality personality;
 	

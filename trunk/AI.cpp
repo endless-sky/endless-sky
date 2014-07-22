@@ -135,13 +135,14 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
 			const Personality &person = it->GetPersonality();
-			// TODO: ship personalities controlling whether they destroy disabled ships.
 			if(it->IsDisabled() && !person.Disables() && !person.Plunders())
 				continue;
 			
 			double range = it->Position().Distance(ship.Position());
-			if(!person.Plunders() || !ship.Cargo().Free())
+			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();
+			else
+				range += 2000. * ship.HasBoarded(it.get());
 			if(range < closest)
 			{
 				closest = range;
@@ -160,7 +161,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
-		if(shouldBoard && target->IsDisabled())
+		if(shouldBoard && target->IsDisabled() && !ship.HasBoarded(target.get()))
 		{
 			if(ship.IsBoarding())
 				return;
@@ -508,7 +509,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 				continue;
 			
 			// Don't shoot ships we want to plunder.
-			if(target->IsDisabled() && spareDisabled)
+			if(target->IsDisabled() && spareDisabled && !ship.HasBoarded(target.get()))
 				continue;
 			
 			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
