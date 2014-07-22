@@ -26,6 +26,9 @@ using namespace std;
 // and the given credit score (which should be between 200 and 800).
 int Mortgage::Maximum(int annualRevenue, int creditScore, int term)
 {
+	if(annualRevenue <= 0)
+		return 0;
+	
 	double interest = (500 - creditScore / 2) * .00001;
 	double power = pow(1. + interest, term);
 	double multiplier = interest * term * power / (power - 1.);
