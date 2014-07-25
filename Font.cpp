@@ -26,11 +26,6 @@ using namespace std;
 
 namespace {
 	static const char *vertexCode =
-#ifdef __APPLE__
-		"#version 330\n"
-#else
-		"#version 130\n"
-#endif
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
 		// The (x, y) coordinates of the top left corner of the glyph.
@@ -52,11 +47,6 @@ namespace {
 		"}\n";
 	
 	static const char *fragmentCode =
-#ifdef __APPLE__
-		"#version 330\n"
-#else
-		"#version 130\n"
-#endif
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"

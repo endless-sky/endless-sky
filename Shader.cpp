@@ -12,8 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Shader.h"
 
-#include <stdexcept>
+#include <cctype>
+#include <cstring>
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -79,13 +81,36 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	if(!object)
 		throw runtime_error("Shader creation failed.");
 	
-	glShaderSource(object, 1, (const GLchar**)&str, NULL);
+	static string version;
+	if(version.empty())
+	{
+		version = "#version ";
+		string glsl = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		for(char c : glsl)
+		{
+			if(isspace(c))
+				break;
+			if(isdigit(c))
+				version += c;
+		}
+		version += '\n';
+	}
+	size_t length = strlen(str);
+	GLchar *text = new GLchar[version.length() + length + 1];
+	memcpy(text, version.data(), version.length());
+	memcpy(text + version.length(), str, length);
+	text[version.length() + length] = '\0';
+	
+	const GLchar *cText = text;
+	glShaderSource(object, 1, &cText, NULL);
 	glCompileShader(object);
 	
 	GLint status;
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
+		cerr.write(reinterpret_cast<char *>(text), version.length() + length + 1);
+		
 		static const int SIZE = 4096;
 		GLchar message[SIZE];
 		GLsizei length;

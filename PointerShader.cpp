@@ -39,11 +39,6 @@ namespace {
 void PointerShader::Init()
 {
 	static const char *vertexCode =
-#ifdef __APPLE__
-		"#version 330\n"
-#else
-		"#version 130\n"
-#endif
 		"uniform vec2 scale;\n"
 		"uniform vec2 center;\n"
 		"uniform vec2 angle;\n"
@@ -61,11 +56,6 @@ void PointerShader::Init()
 		"}\n";
 
 	static const char *fragmentCode =
-#ifdef __APPLE__
-		"#version 330\n"
-#else
-		"#version 130\n"
-#endif
 		"uniform vec4 color = vec4(1, 1, 1, 1);\n"
 		"uniform vec2 size;\n"
 		
