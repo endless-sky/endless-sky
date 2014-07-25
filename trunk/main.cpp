@@ -41,6 +41,36 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	for(const char *const *it = argv + 1; *it; ++it)
+	{
+		string arg = *it;
+		if(arg == "-h" || arg == "--help")
+		{
+			cerr << endl;
+			cerr << "Command line options:" << endl;
+			cerr << "    -h, --help: print this help message." << endl;
+			cerr << "    -v, --version: print version information." << endl;
+			cerr << "    -l, --load: display CPU and GPU load." << endl;
+			cerr << "    -t, --table: print table of ship statistics." << endl;
+			cerr << "    -r, --resources <path>: load resources from given directory." << endl;
+			cerr << "    -c, --config <path>: save user's files to given directory." << endl;
+			cerr << endl;
+			return 0;
+		}
+		else if(arg == "-v" || arg == "--version")
+		{
+			cerr << endl;
+			cerr << "Endless Sky 0.5.0" << endl;
+			cerr << "License GPLv3+: GNU GPL version 3 or later: <http://gnu.org/licenses/gpl.html>" << endl;
+			cerr << "This is free software: you are free to change and redistribute it." << endl;
+			cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
+			cerr << endl;
+			cerr << "Report bugs to: mzahniser@gmail.com" << endl;
+			cerr << "Home page: <http://endless-sky.googlecode.com>" << endl;
+			cerr << endl;
+			return 0;
+		}
+	}
 	PlayerInfo player;
 	
 	try {
