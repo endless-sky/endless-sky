@@ -72,6 +72,15 @@ private:
 		int type;
 	};
 	
+	class Escort {
+	public:
+		Escort(const Ship &ship, bool isHere);
+		
+		const Sprite *sprite;
+		bool isHere;
+		double stats[5];
+	};
+	
 	
 private:
 	PlayerInfo &player;
@@ -94,6 +103,7 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
+	std::vector<Escort> escorts;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	
 	int step;

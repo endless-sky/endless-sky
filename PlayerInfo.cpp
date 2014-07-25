@@ -453,12 +453,9 @@ void PlayerInfo::Land()
 	}
 	
 	// "Unload" all fighters, so they will get recharged, etc.
-	vector<shared_ptr<Ship>> fighters;
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
-			ship->UnloadFighters(fighters);
-	ships.insert(ships.end(), fighters.begin(), fighters.end());
-	fighters.clear();
+			ship->UnloadFighters();
 	
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
@@ -516,42 +513,35 @@ void PlayerInfo::TakeOff()
 	// Extract the fighters from the list.
 	vector<shared_ptr<Ship>> fighters;
 	vector<shared_ptr<Ship>> drones;
-	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
-	while(it != ships.end())
+	for(shared_ptr<Ship> &ship : ships)
 	{
-		if((*it)->GetSystem() == system)
+		bool fit = false;
+		const string &category = ship->Attributes().Category();
+		if(category == "Fighter")
 		{
-			const string &category = (*it)->Attributes().Category();
-			bool isFighter = (category == "Fighter");
-			bool isDrone = (category == "Drone");
-			if(isFighter)
-				fighters.push_back(*it);
-			else if(isDrone)
-				drones.push_back(*it);
-			
-			if(isFighter || isDrone)
-			{
-				it = ships.erase(it);
-				// Do not increment the iterator.
-				continue;
-			}
+			for(shared_ptr<Ship> &parent : ships)
+				if(parent->FighterBaysFree())
+				{
+					parent->AddFighter(ship);
+					fit = true;
+					break;
+				}
+			if(!fit)
+				fighters.push_back(ship);
 		}
-		++it;
+		else if(category == "Drone")
+		{
+			for(shared_ptr<Ship> &parent : ships)
+				if(parent->DroneBaysFree())
+				{
+					parent->AddFighter(ship);
+					fit = true;
+					break;
+				}
+			if(!fit)
+				drones.push_back(ship);
+		}
 	}
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system)
-		{
-			while(!fighters.empty() && ship->FighterBaysFree())
-			{
-				ship->AddFighter(fighters.back());
-				fighters.pop_back();
-			}
-			while(!drones.empty() && ship->DroneBaysFree())
-			{
-				ship->AddFighter(drones.back());
-				drones.pop_back();
-			}
-		}
 	if(!drones.empty() || !fighters.empty())
 	{
 		ostringstream out;
