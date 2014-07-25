@@ -1,3 +1,0 @@
-name "Food"
-base 100
-bins 40 35 20 35 40

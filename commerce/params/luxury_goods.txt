@@ -1,3 +1,0 @@
-name "Luxury Goods"
-base 920
-bins 50 40 30 20 20 30

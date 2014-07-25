@@ -1,3 +1,0 @@
-name "Metal"
-base 190
-bins 50 40 30 50

@@ -1,3 +1,0 @@
-name "Clothing"
-base 140
-bins 40 80 40

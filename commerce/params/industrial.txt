@@ -1,3 +1,0 @@
-name "Industrial"
-base 520
-bins 35 50 50 35
