@@ -1,3 +1,0 @@
-name "Electronics"
-base 590
-bins 50 70 50

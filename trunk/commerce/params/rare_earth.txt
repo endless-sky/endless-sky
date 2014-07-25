@@ -1,3 +1,0 @@
-name "Rare Earth"
-base 890
-bins 4 15 28 15 4

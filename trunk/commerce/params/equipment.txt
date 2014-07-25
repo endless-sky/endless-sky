@@ -1,3 +1,0 @@
-name "Equipment"
-base 330
-bins 40 45 45 40

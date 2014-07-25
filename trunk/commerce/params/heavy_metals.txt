@@ -1,3 +1,0 @@
-name "Heavy Metals"
-base 610
-bins 10 20 30 50 30 20 10
