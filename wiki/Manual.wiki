@@ -1,5 +1,7 @@
 #summary User's Manual
 
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/land/city7.jpg">
+
 To own a starship: that is the dream that has kept you sane since you began working at the mill at the age of fifteen, saving up money little by little to pay for a captain's license. In the weeks when you were working so deep in the bowels of the factory that you could not even see out the windows from where you sat, you would tell yourself: one day, I will take to the sky, and be free. One day I will leave this planet behind...
 
 You are about to purchase your first ship and set out to make your fortune among the stars. What happens next is up to you. Will you take on the quiet, steady work of a merchant captain? Or join the Navy and fight to keep the galaxy safe? Will you choose the glamorous life of a bounty hunter, fighting pirates for a living? Or become a pirate yourself? Or will you journey beyond the edge of known space, seeking friends among the strange and powerful aliens that inhabit the other corners of the galaxy?
@@ -8,15 +10,23 @@ You are about to purchase your first ship and set out to make your fortune among
 
 As a new pilot, only a handful of ships are within your price range. Each one is suited to a slightly different personality:
 
-  * The Shuttle is the cheapest and most versatile option. Nearly as nimble as a fighter, shuttles can easily escape from slower pirate ships and even dodge missiles, which is a good thing because they are otherwise useless in combat. Shuttles are classified as “transports” because they have relatively small cargo holds, and instead their most common use is ferrying passengers: a great way for more gregarious captains to meet interesting people while exploring the galaxy.
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/shuttle.png">
 
-  * The Star Barge is a slow ship, but with ample cargo capacity, enough to be able to take on multiple simultaneous delivery jobs. Or, a captain without much hunger for variety can earn a stable living on a Star Barge just by finding a decent trade route and running it over and over again. Unfortunately, Star Barges are a favorite target of pirates because they often carry valuable cargo and are hardly ever able to outrun their adversaries.
+The Shuttle is the cheapest and most versatile option. Nearly as nimble as a fighter, shuttles can easily escape from slower pirate ships and even dodge missiles, which is a good thing because they are otherwise useless in combat. Shuttles are classified as “transports” because they have relatively small cargo holds, and instead their most common use is ferrying passengers: a great way for more gregarious captains to meet interesting people while exploring the galaxy.
 
-  * The Sparrow is the cheapest interstellar ship you can buy that is designed for combat. With enough luck or skill, a Sparrow pilot can earn quick income by disabling and boarding small pirate ships... or by turning pirate and attacking civilian ships. Once you earn a reputation in combat, you can find a more steady income as an escort for merchant caravans, but even so, life at the helm of a Sparrow is risky and uncertain.
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/star barge.png">
+
+The Star Barge is a slow ship, but with ample cargo capacity, enough to be able to take on multiple simultaneous delivery jobs. Or, a captain without much hunger for variety can earn a stable living on a Star Barge just by finding a decent trade route and running it over and over again. Unfortunately, Star Barges are a favorite target of pirates because they often carry valuable cargo and are hardly ever able to outrun their adversaries.
+
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/sparrow.png">
+
+The Sparrow is the cheapest interstellar ship you can buy that is designed for combat. With enough luck or skill, a Sparrow pilot can earn quick income by disabling and boarding small pirate ships... or by turning pirate and attacking civilian ships. Once you earn a reputation in combat, you can find a more steady income as an escort for merchant caravans, but even so, life at the helm of a Sparrow is risky and uncertain.
 
 Your game is saved automatically every time you depart from an inhabited planet. Each saved game overwrites the previous one. If you want to be able to return to a specific point in time, perhaps because you are about to make a major decision or undertake a risky mission, you can save a “snapshot” of the current game. These snapshots are never overwritten or deleted unless you choose to delete them.
 
 You can return to the main menu at any time, which pauses the game, by pressing the main menu key (escape, by default). That lets you view the key controls, reload your game, etc.
+
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/planet/earth.png">
 
 =Planets=
 
@@ -56,6 +66,10 @@ The job board works fine for offering run of the mill missions, but people who n
 
 When you visit a spaceport, if anyone wants to offer you a mission a conversation panel will pop up. Some conversations just offer you a choice between accepting or declining a mission; others let you ask questions and make different choices of how to respond. And if you make a particularly bad decision, some conversations can end with you dead, or imprisoned or enslaved for life. The universe is a dangerous place, so be careful!
 
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/firebird.png">
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/blackbird.png">
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/hawk.png">
+
 ==Shipyard (S)==
 
 The degree of technological and industrial development necessary to build starships from scratch is so high that only a few planets in human space are home to active shipyards, although there are other planets that sell those ships second hand. So, even before you are ready to buy a new ship it is worthwhile to check what each planet is selling; the ship models that are popular in one part of the galaxy may not be available in others.
@@ -65,6 +79,12 @@ When buying a new ship, you can either sell your previous ship first, or buy a s
 Some ships have space for “drones” or “fighters.” These are small attack ships that have no hyperdrives or fuel of their own; they can travel from system to system only if carried within a larger ship. This lack of hyperspace capability generally makes them much cheaper than other ships. Drones are smaller than fighters, and require no crew, whereas for each fighter, you will have to pay the salary for one additional crew member. Ships with drone or fighter bays do not come with any ships in them by default; you must purchase those ships separately.
 
 If you trade in a ship for one with less cargo or passenger space, and then try to leave the planet, you may have to sell cargo and, if there is not enough room for your passengers or mission-related cargo, you may fail some of your missions as a result.
+
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/quad blaster turret.png">
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/small plasma thruster.png">
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/breeder.png">
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/large battery.png">
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/meteor launcher.png">
 
 ==Outfitter (O)==
 
@@ -126,6 +146,8 @@ All ships need, at a bare minimum, a steering system and thruster, and a power s
 
 Each ship has a limited amount of space for outfits. In addition, ships also have a limit on the total size of weapons installed, and of engines. For example, some ships have ample engine space, but very little space for weapons; in other ships, the reverse is true. This means that, for example, it is not possible to replace a Sparrow's two small beam lasers with two massive particle cannons, even if the engines are downgraded to something smaller in order to make room.
 
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/fission.png">
+
 ==Power Sources==
 
 On most ships, a central generator produces electricity, which is then stored in batteries until needed. The batteries allow the ship to temporarily draw more power than its generator produces, for example to fire a weapon salvo. It is possible to forgo the batteries entirely if your ship's instantaneous power draw will never exceed the output of its generator, but if so you may not be able to fire weapons like energy blasters that require a sudden burst of energy followed by a reload period, instead of drawing energy in a constant stream like laser weapons do. You can also build a ship that relies only on batteries, with no generator at all, but that is a dangerous choice: if you run out of energy to power your thrusters before reaching a planet to land on, you will be stranded.
@@ -134,6 +156,8 @@ Generators come in a variety of sizes, prices, and power levels. Most small ship
 
 If your ship is short on energy, engines take priority over weapons. If the engines draw enough power, it is even possible that once your batteries are depleted you will not be able to steer and apply forward thrusters at the same time. In their stock configurations, most ships have engines and generators balanced well enough that this will not happen, but a common mistake made by rookie pilots is to install overpowered engines without having the means to drive them continuously.
 
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/large plasma steering.png">
+
 ==Engines==
 
 Human ships make use of two different kinds of engines: ion drives, and plasma drives. Ion drives are more energy-efficient; plasma drives are more space-efficient. Plasma drives also produce more heat, although that is only an issue if your other systems produce enough heat for your ship to be in danger of overheating. Ion drives are the older and more mature technology, and are available throughout most of human space; plasma drives are produced by Delta V Corporation, in the galactic south, and may be hard to find in other parts of the galaxy.
@@ -141,6 +165,8 @@ Human ships make use of two different kinds of engines: ion drives, and plasma d
 Each engine type is available in a variety of sizes, and there is nothing stopping you from installing, for example, two small sets of thrusters instead of one large one, or even an ion thruster and a plasma thruster side by side. However, a larger thruster will always be more efficient that two smaller ones that add up to the same size.
 
 Because thrusters and steering systems are sold separately, you must also balance how important it is for you to be able to turn quickly, versus being able to move quickly. If your ship has mostly forward-facing guns, quick steering is essential in order to be able to track your targets. If it has mostly turrets, you might forgo the better steering capability in favor of a higher maximum speed. And of course, you may also decide to install smaller engines in order to use some of the engine space for holding a bigger generator or other bulky systems.
+
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/large shield.png">
 
 ==Hull and Shields==
 
@@ -154,6 +180,8 @@ There is one other reason that it is worth keeping the ancient history of energy
 
 Finally, although we fervently pray that this will never again be an issue in human conflict, bear in mind that nuclear weapons were also said to generate considerable amounts of radiation.
 
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/particle cannon.png">
+
 ==Weapons==
 
 Ships can be equipped with two different types of weapons: guns and turrets. Each ship model has a fixed number of gun ports and turret mounts, but no constraints aside from space on what particular weapons will be mounted there.
@@ -166,9 +194,13 @@ Turrets can fire in any direction, and typically have sophisticated tracking sys
 
 The rise of anti-missile technology has prompted changes in missile design to compensate. In particular, some missile (such as the Sidewinder from Lovelace Labs, which ironically is also the primary manufacturer of anti-missile turrets) have ablative armor that makes them harder to destroy. Also, if a ship has several missile launchers of the same type installed, they will fire in clusters, each firing at the same time, to increase the odds of one missile getting past a ship's defenses while it is busy shooting down another.
 
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/ship/dagger.png">
+
 ==Fighters and Drones==
 
 If your ship has any "fighter bays" or "drone bays," you can purchase fighters and drones in the shipyard for it to carry. Fighters and drones do not have hyperspace capability, so if you have launched them you must recall them to your ship before entering hyperspace to a new system. Otherwise, they behave the same as ordinary escorts. If you accidentally leave a fighter behind, return to that system as soon as possible to retrieve it! The pilot will probably be very relieved to see you.
+
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/small radiothermal.png">
 
 ==Heat==
 
@@ -185,6 +217,8 @@ A hundred years ago, in the golden age of the Republic, piracy had been all but 
 Whether or not you are looking for a fight, sooner or later a fight will find you. The simplest response remains the best: run away, or look for help. If you fly in the direction of any government ship, they will be more than willing to shield you from the pirates. If you are near a planet, landing on the planet will shake all but the most persistent pursuit. And if you are too far away from a planet, you can always try making a hyperspace jump and hoping the pirates will not follow. But bear in mind that your ship must be almost stationary before initiating a hyperspace jump, so if you are taking impacts from powerful weapons you may not be able to come to a stop for long enough to make the jump.
 
 If you decide to engage in combat, strategy can be as important as brute force. If attacked by multiple adversaries, try to split them up and deal with them one at a time; even if you are in a capital ship, you can be taken down by three or four interceptors operating in tandem. If your weapons have a longer reach then theirs, try to keep them just outside their maximum weapon range. Focus your fire on one ship at a time rather than continuously choosing new targets. Use asteroids for cover. If you are in a light, fast ship, change direction frequently to dodge the shots from their blasters or cannons. Do your best to dodge missiles until your adversaries run out of ammunition. And even though missiles cost money, if you're facing a stronger ship don't hesitate to bombard them from a distance before closing in for the kill.
+
+<img src="https://endless-sky.googlecode.com/svn/trunk/images/outfit/sidewinder.png">
 
 ==Secondary Weapons==
 
