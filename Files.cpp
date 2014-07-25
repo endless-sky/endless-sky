@@ -50,10 +50,12 @@ void Files::Init(const char * const *argv)
 	// By default, if there is an "installed" copy of the code, use the "local"
 	// install if it exists, and otherwise the non-local one. If neither one
 	// exists, this is a development machine, so use the current directory.
-	if(Exists("/usr/local/bin/" + appName))
-		resources = "/usr/local/share/" + appName;
+	if(Exists("keys.txt") && Exists("credits.txt") && Exists("data") && Exists("images"))
+		resources = "./";
+	else if(Exists("/usr/local/bin/" + appName))
+		resources = "/usr/local/share/" + appName + "/";
 	else if(Exists("/usr/bin/" + appName))
-		resources = "/usr/share/" + appName;
+		resources = "/usr/share/" + appName + "/";
 	else
 		resources = "./";
 	
