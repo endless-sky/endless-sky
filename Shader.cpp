@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstring>
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 
 using namespace std;
 
@@ -96,12 +97,12 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		version += '\n';
 	}
 	size_t length = strlen(str);
-	GLchar *text = new GLchar[version.length() + length + 1];
-	memcpy(text, version.data(), version.length());
-	memcpy(text + version.length(), str, length);
+	vector<GLchar> text(version.length() + length + 1);
+	memcpy(&text.front(), version.data(), version.length());
+	memcpy(&text.front() + version.length(), str, length);
 	text[version.length() + length] = '\0';
 	
-	const GLchar *cText = text;
+	const GLchar *cText = &text.front();
 	glShaderSource(object, 1, &cText, NULL);
 	glCompileShader(object);
 	
@@ -109,7 +110,8 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		cerr.write(reinterpret_cast<char *>(text), version.length() + length + 1);
+		cerr << version;
+		cerr.write(str, length);
 		
 		static const int SIZE = 4096;
 		GLchar message[SIZE];
