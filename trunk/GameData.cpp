@@ -182,6 +182,13 @@ void GameData::SetDate(const Date &date)
 
 
 
+const Set<Color> &GameData::Colors()
+{
+	return colors;
+}
+
+
+
 const Set<Conversation> &GameData::Conversations()
 {
 	return conversations;
@@ -318,7 +325,7 @@ void GameData::LoadFile(const string &path)
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface")
-			interfaces.Get(node.Token(1))->Load(node, colors);
+			interfaces.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)

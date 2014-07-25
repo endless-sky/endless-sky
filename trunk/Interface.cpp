@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
@@ -32,7 +33,7 @@ using namespace std;
 
 
 
-void Interface::Load(const DataNode &node, const Set<Color> &colors)
+void Interface::Load(const DataNode &node)
 {
 	position = Point();
 	sprites.clear();
@@ -94,7 +95,7 @@ void Interface::Load(const DataNode &node, const Set<Color> &colors)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
-					vec.back().color = *colors.Get(grand.Token(1));
+					vec.back().color = *GameData::Colors().Get(grand.Token(1));
 				else if(grand.Token(0) == "align" && grand.Size() >= 2)
 					vec.back().align =
 						(grand.Token(1) == "center") ? .5 :
@@ -116,7 +117,7 @@ void Interface::Load(const DataNode &node, const Set<Color> &colors)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "color" && grand.Size() >= 2)
-					vec.back().color = *colors.Get(grand.Token(1));
+					vec.back().color = *GameData::Colors().Get(grand.Token(1));
 				else if(grand.Token(0) == "size" && grand.Size() >= 3)
 					vec.back().size = Point(
 						grand.Value(1), grand.Value(2));

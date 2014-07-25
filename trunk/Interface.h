@@ -30,7 +30,7 @@ class Sprite;
 // the contents of an Information object.
 class Interface {
 public:
-	void Load(const DataNode &node, const Set<Color> &colors);
+	void Load(const DataNode &node);
 	
 	void Draw(const Information &info) const;
 	
