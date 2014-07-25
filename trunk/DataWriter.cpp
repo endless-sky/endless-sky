@@ -12,6 +12,7 @@ DataWriter::DataWriter(const string &path)
 	: before(&indent)
 {
 	out.open(path);
+	out.precision(8);
 }
 
 
