@@ -335,6 +335,7 @@ bool Ship::Move(list<Effect> &effects)
 	else if(heat < Mass() * 90.)
 		isOverheated = false;
 	
+	double maxShields = attributes.Get("shields");
 	shields = min(shields, attributes.Get("shields"));
 	hull = min(hull, attributes.Get("hull"));
 	isDisabled = isOverheated || IsDisabled();
@@ -360,7 +361,43 @@ bool Ship::Move(list<Effect> &effects)
 		
 		energy += attributes.Get("energy generation");
 		heat += attributes.Get("heat generation");
+		
+		// Recharge shields, but only up to the max. If there is extra shield
+		// energy, use it to recharge fighters and drones.
 		shields += attributes.Get("shield generation");
+		double excessShields = max(0., shields - maxShields);
+		shields -= excessShields;
+		
+		for(Bay &bay : fighterBays)
+		{
+			if(!bay.ship)
+				continue;
+			
+			double myGen = bay.ship->Attributes().Get("shield generation");
+			double myMax = bay.ship->Attributes().Get("shields");
+			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+			if(excessShields > 0. && bay.ship->shields < myMax)
+			{
+				double extra = min(myMax - bay.ship->shields, excessShields);
+				bay.ship->shields += extra;
+				excessShields -= extra;
+			}
+		}
+		for(Bay &bay : droneBays)
+		{
+			if(!bay.ship)
+				continue;
+			
+			double myGen = bay.ship->Attributes().Get("shield generation");
+			double myMax = bay.ship->Attributes().Get("shields");
+			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+			if(excessShields > 0. && bay.ship->shields < myMax)
+			{
+				double extra = min(myMax - bay.ship->shields, excessShields);
+				bay.ship->shields += extra;
+				excessShields -= extra;
+			}
+		}
 	}
 	
 	
