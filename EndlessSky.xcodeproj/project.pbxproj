@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A945B3E11963655400722981 /* ImageBuffer.cpp */; };
 		A945B3E51963660D00722981 /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A945B3E41963660D00722981 /* libpng14.14.dylib */; };
 		A945B3E9196366D700722981 /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A945B3E8196366D700722981 /* libturbojpeg.0.dylib */; };
+		A955EA1D1979BE4600AD9029 /* libturbojpeg.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = A945B3E8196366D700722981 /* libturbojpeg.0.dylib */; };
+		A955EA1E1979BE4600AD9029 /* libpng14.14.dylib in Resources */ = {isa = PBXBuildFile; fileRef = A945B3E41963660D00722981 /* libpng14.14.dylib */; };
+		A955EA1F1979BE4600AD9029 /* SDL2.framework in Resources */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A54195DF44B002C30B8 /* Account.cpp */; };
 		A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A56195DF44B002C30B8 /* AI.cpp */; };
@@ -104,11 +108,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A9277E521958DD6500EF19B1 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
 		A945B3E11963655400722981 /* ImageBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageBuffer.cpp; sourceTree = "<group>"; };
 		A945B3E21963655400722981 /* ImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBuffer.h; sourceTree = "<group>"; };
 		A945B3E41963660D00722981 /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = ../../../../usr/local/lib/libpng14.14.dylib; sourceTree = "<group>"; };
-		A945B3E61963662000722981 /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.8.dylib; path = ../../../../usr/local/lib/libjpeg.8.dylib; sourceTree = "<group>"; };
 		A945B3E8196366D700722981 /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "../../../../opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<group>"; };
 		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XCode/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A99F7A51195DF3F9002C30B8 /* EndlessSky-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EndlessSky-Info.plist"; path = "XCode/EndlessSky-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -484,6 +487,7 @@
 				A99F7AE5195DF44C002C30B8 /* UI.h */,
 				A99F7AE6195DF44C002C30B8 /* WrappedText.cpp */,
 				A99F7AE7195DF44C002C30B8 /* WrappedText.h */,
+				A94408A41982F3E600610427 /* endless-sky.iconset */,
 				A99F7B32195DF45E002C30B8 /* data */,
 				A99F7B33195DF45E002C30B8 /* images */,
 				A9CC52721950C9F6004E4E22 /* XCode */,
@@ -504,10 +508,8 @@
 			isa = PBXGroup;
 			children = (
 				A945B3E8196366D700722981 /* libturbojpeg.0.dylib */,
-				A945B3E61963662000722981 /* libjpeg.8.dylib */,
 				A945B3E41963660D00722981 /* libpng14.14.dylib */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
-				A9277E521958DD6500EF19B1 /* SDL2_image.framework */,
 				A9CC52A01950CA16004E4E22 /* SDL2.framework */,
 				A9CC526C1950C9F6004E4E22 /* Cocoa.framework */,
 				A9CC526E1950C9F6004E4E22 /* Other Frameworks */,
@@ -593,11 +595,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A955EA1D1979BE4600AD9029 /* libturbojpeg.0.dylib in Resources */,
+				A955EA1E1979BE4600AD9029 /* libpng14.14.dylib in Resources */,
+				A955EA1F1979BE4600AD9029 /* SDL2.framework in Resources */,
 				A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */,
 				A99F7B09195DF44C002C30B8 /* license.txt in Resources */,
 				A99F7AF5195DF44C002C30B8 /* credits.txt in Resources */,
 				A99F7B08195DF44C002C30B8 /* keys.txt in Resources */,
 				A99F7B34195DF45E002C30B8 /* data in Resources */,
+				A94408A51982F3E600610427 /* endless-sky.iconset in Resources */,
 				A99F7B35195DF45E002C30B8 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -782,7 +788,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -811,7 +816,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",

@@ -60,8 +60,12 @@ void PlayerInfo::Clear()
 	
 	selectedWeapon = nullptr;
 	
+#ifdef __APPLE__
+	Random::Seed(time(NULL));
+#else
 	random_device rd;
 	Random::Seed(rd());
+#endif
 }
 
 
