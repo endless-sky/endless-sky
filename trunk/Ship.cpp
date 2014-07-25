@@ -1172,12 +1172,11 @@ bool Ship::AddFighter(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::UnloadFighters(vector<shared_ptr<Ship>> &ships)
+void Ship::UnloadFighters()
 {
 	for(Bay &bay : fighterBays)
 		if(bay.ship)
 		{
-			ships.push_back(bay.ship);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();
@@ -1185,7 +1184,6 @@ void Ship::UnloadFighters(vector<shared_ptr<Ship>> &ships)
 	for(Bay &bay : droneBays)
 		if(bay.ship)
 		{
-			ships.push_back(bay.ship);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();

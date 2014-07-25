@@ -18,11 +18,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "LineShader.h"
 #include "Messages.h"
+#include "OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
@@ -183,6 +186,11 @@ void Engine::Step(bool isActive)
 				}
 			}
 		
+		escorts.clear();
+		for(const shared_ptr<Ship> &escort : player.Ships())
+			if(escort.get() != flagship)
+				escorts.emplace_back(*escort, escort->GetSystem() == currentSystem);
+		
 		if(flagship && flagship->IsOverheated())
 			Messages::Add("Your ship has overheated.");
 		
@@ -319,8 +327,8 @@ void Engine::Draw() const
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Point messagePoint(
-		Screen::Width() * -.5 + 20.,
-		Screen::Height() * .5 - 20. * messages.size());
+		Screen::Left() + 120.,
+		Screen::Bottom() - 20. * messages.size());
 	for(const auto &it : messages)
 	{
 		float alpha = (it.step + 1000 - step) * .001f;
@@ -347,7 +355,7 @@ void Engine::Draw() const
 	GameData::Interfaces().Get("targets")->Draw(info);
 	
 	// Draw ammo status.
-	Point pos(Screen::Width() / 2 - 80, Screen::Height() / 2);
+	Point pos(Screen::Right() - 80, Screen::Bottom());
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
 	Color selectedColor(.8, 0.);
@@ -365,6 +373,38 @@ void Engine::Draw() const
 		string amount = to_string(it.second);
 		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
 		font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
+	}
+	
+	// Draw escort status.
+	pos = Point(Screen::Left() + 20., Screen::Bottom());
+	Color hereColor(.8, 1.);
+	Color elsewhereColor(.4, .4, .6, 1.);
+	for(const Escort &escort : escorts)
+	{
+		pos.Y() -= 30.;
+		// Show only as many escorts as we have room for on screen.
+		if(pos.Y() <= Screen::Top() + 450.)
+			break;
+		if(!escort.sprite)
+			continue;
+		
+		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
+		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
+		OutlineShader::Draw(escort.sprite, pos, size, escort.isHere ? hereColor : elsewhereColor);
+		
+		static const string name[5] = {"shields", "hull", "energy", "heat", "fuel"};
+		Point from(pos.X() + 15., pos.Y() - 8.5);
+		for(int i = 0; i < 5; ++i)
+		{
+			if(escort.stats[i] > 0.)
+			{
+				Point to = from + Point((70. - 5. * (i > 1)) * escort.stats[i], 0.);
+				LineShader::Draw(from, to, 1.5, *GameData::Colors().Get(name[i]));
+			}
+			from.Y() += 4.;
+			if(i == 1)
+				from.X() += 5.;
+		}
 	}
 	
 	if(GameData::ShouldShowLoad())
@@ -694,4 +734,12 @@ void Engine::CalculateStep()
 		loadSum = 0.;
 		loadCount = 0;
 	}
+}
+
+
+
+Engine::Escort::Escort(const Ship &ship, bool isHere)
+	: sprite(ship.GetSprite().GetSprite()), isHere(isHere),
+	stats{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()}
+{
 }
