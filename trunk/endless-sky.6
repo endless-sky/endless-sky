@@ -1,0 +1,41 @@
+." man page for Endless Sky.
+.TH foo 6 "24 Jul 2014" "ver. 0.5.0" "Endless Sky"
+
+.SH NAME
+Endless Sky \- a space exploration and combat game.
+
+.SH SYNOPSIS
+\fBendless-sky\fR [-h] [--help] [-v] [--version] [-l] [--load] [-t] [--table] [-r] [--resources] [-c] [--config]
+
+.SH DESCRIPTION
+\fBEndless Sky\fR is a space exploration and combat game combining action and role playing elements.
+
+Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
+
+If a resource directory is not specified, the program will check to see if the current directory contains directories named "data" and "images" and files named "keys.txt" and "credits.txt"; if so it will read resources from the current directory. Otherwise it will use /usr/local/share/endless-sky if it exists, or /usr/share/endless-sky otherwise.
+
+For more information, visit: http://endless-sky.googlecode.com
+
+.SH OPTIONS
+.IP \fB-h, --help
+prints a short help message.
+
+.IP \fB-v, --version
+prints the software version.
+
+.IP \fB-l, --load
+turns on a "load indicator" showing the percent GPU and CPU usage.
+
+.IP \fB-t, --table
+prints (to STDOUT) a table showing primary characteristics of all ships in the game, to aid in balancing.
+
+.IP \fB-r, --resources <directory>
+sets the directory from which game resources (images, etc.) will be loaded.
+
+.IP \fB-c, --config
+sets the directory where preferences and saved games will be stored.
+
+.SH AUTHOR
+Michael Zahniser (mzahniser@gmail.com)
+
+This is free software; you can redistribute it and/or modify it under the terms of the GPL.
