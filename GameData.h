@@ -49,6 +49,7 @@ public:
 	static void Revert();
 	static void SetDate(const Date &date);
 	
+	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<Fleet> &Fleets();
