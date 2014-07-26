@@ -125,7 +125,7 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 	bool isArmed = false;
 	for(const Armament::Weapon &weapon : ship.Weapons())
 		isArmed |= (weapon.GetOutfit() != nullptr);
-	if(!isArmed)
+	if(!isArmed || ship.Shields() + ship.Hull() < 1.)
 		return target;
 	
 	// Find the closest enemy ship (if there is one).
@@ -254,7 +254,6 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
 	const Ship &parent = *ship.GetParent().lock();
-	control.SetTargetShip(parent.GetTargetShip());
 	if(ship.GetSystem() != parent.GetSystem())
 	{
 		control.SetTargetSystem(parent.GetSystem());

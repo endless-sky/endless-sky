@@ -254,6 +254,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->WasCaptured(player.Ships().front());
 				player.AddShip(victim);
+				you->AddEscort(victim);
 				isCapturing = false;
 			}
 		}

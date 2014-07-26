@@ -502,11 +502,15 @@ bool Ship::Move(list<Effect> &effects)
 	int requiredCrew = RequiredCrew();
 	if(pilotError)
 		--pilotError;
+	else if(pilotOkay)
+		--pilotOkay;
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
 		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
 	}
+	else
+		pilotOkay = 30;
 	
 	// This ship is not landing or entering hyperspace. So, move it. If it is
 	// disabled, all it can do is slow down to a stop.
@@ -664,6 +668,14 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 	if(!target->IsDisabled() || target->Hull() <= 0.)
 		return shared_ptr<Ship>();
 	
+	// Board a ship of your own government to repair it.
+	if(victim->GetGovernment() == government)
+	{
+		victim->hull = victim->MinimumHull();
+		victim->isDisabled = false;
+		return shared_ptr<Ship>();
+	}
+	
 	// If the boarding ship is the player, they will choose what to plunder.
 	if(victim && autoPlunder)
 	{
@@ -771,8 +783,7 @@ bool Ship::IsOverheated() const
 
 bool Ship::IsDisabled() const
 {
-	double maximumHull = attributes.Get("hull");
-	double minimumHull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
+	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
 	return (hull < minimumHull || (!crew && needsCrew));
 }
@@ -932,6 +943,7 @@ void Ship::Recharge()
 {
 	crew = max(crew, RequiredCrew());
 	pilotError = 0;
+	pilotOkay = 0;
 	
 	shields = attributes.Get("shields");
 	hull = attributes.Get("hull");
@@ -1016,11 +1028,11 @@ void Ship::AddCrew(int count)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where it is just barely not disabled.
-	double maximumHull = attributes.Get("hull");
-	hull = max(.10 * maximumHull, min(.50 * maximumHull, 400.));
+	hull = MinimumHull();
 	
 	// Set the new government.
 	government = capturer->GetGovernment();
+	sprite.SetSwizzle(government->GetSwizzle());
 	
 	// Transfer some crew over.
 	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
@@ -1030,6 +1042,12 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
+	SetTargetShip(weak_ptr<Ship>());
+	SetTargetPlanet(nullptr);
+	SetTargetSystem(nullptr);
+	ResetCommands();
+	isDisabled = false;
+	hyperspaceSystem = nullptr;
 	// TODO: add as an "escort" to this ship.
 	
 	isSpecial = capturer->isSpecial;
@@ -1307,6 +1325,14 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	energy -= outfit->WeaponGet("firing energy");
 	fuel -= outfit->WeaponGet("firing fuel");
 	heat += outfit->WeaponGet("firing heat");
+}
+
+
+
+double Ship::MinimumHull() const
+{
+	double maximumHull = attributes.Get("hull");
+	return max(.10 * maximumHull, min(.50 * maximumHull, 400.));
 }
 
 
