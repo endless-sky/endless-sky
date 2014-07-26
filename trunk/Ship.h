@@ -189,6 +189,7 @@ public:
 	
 	
 private:
+	double MinimumHull() const;
 	void CreateExplosion(std::list<Effect> &effects);
 	
 	
@@ -250,6 +251,7 @@ private:
 	
 	int crew;
 	int pilotError;
+	int pilotOkay;
 	
 	// Current status of this particular ship:
 	const System *currentSystem;
