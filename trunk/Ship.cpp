@@ -209,6 +209,12 @@ void Ship::Save(DataWriter &out) const
 		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
+		else
+		{
+			shared_ptr<const Ship> parent = GetParent().lock();
+			if(parent && parent->currentSystem)
+				out.Write("system", parent->currentSystem->Name());
+		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->Name());
 	out.EndChild();
