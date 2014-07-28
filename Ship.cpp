@@ -1288,6 +1288,13 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 
 
 // Get the list of weapons.
+Armament &Ship::GetArmament()
+{
+	return armament;
+}
+
+
+
 const vector<Armament::Weapon> &Ship::Weapons() const
 {
 	return armament.Get();

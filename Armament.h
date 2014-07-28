@@ -111,7 +111,7 @@ public:
 private:
 	// Note: the Armament must be copied when an instance of a Ship is made, so
 	// it should not hold any pointers specific to one ship (including to
-	// elements of this Armement itself).
+	// elements of this Armament itself).
 	std::map<const Outfit *, int> streamReload;
 	std::vector<Weapon> weapons;
 };

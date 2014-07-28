@@ -179,6 +179,7 @@ public:
 	void AddOutfit(const Outfit *outfit, int count);
 	
 	// Get the list of weapons.
+	Armament &GetArmament();
 	const std::vector<Armament::Weapon> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
