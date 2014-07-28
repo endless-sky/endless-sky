@@ -38,12 +38,15 @@ AI::AI()
 
 
 
-void AI::UpdateKeys(int keys, PlayerInfo *info)
+void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 {
 	keyDown = keys & ~keyHeld;
 	keyHeld = keys;
-	if(keys)
+	if(keys || !isActive)
 		keyStuck = 0;
+	
+	if(!isActive)
+		return;
 	
 	if(keyDown & Key::Bit(Key::SELECT))
 		info->SelectNext();

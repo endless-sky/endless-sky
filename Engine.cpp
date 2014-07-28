@@ -142,7 +142,7 @@ void Engine::Step(bool isActive)
 			position = flagship->Position();
 			velocity = flagship->Velocity();
 		}
-		ai.UpdateKeys(GameData::Keys().State(), &player);
+		ai.UpdateKeys(GameData::Keys().State(), &player, isActive);
 		
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
