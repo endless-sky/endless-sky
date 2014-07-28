@@ -88,6 +88,9 @@ public:
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
 	void FinishLoading();
 	
+	// Swap the weapons in the given two hardpoints.
+	void Swap(int first, int second);
+	
 	// Access the array of weapons.
 	const std::vector<Weapon> &Get() const;
 	int GunCount() const;

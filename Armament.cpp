@@ -295,6 +295,23 @@ void Armament::FinishLoading()
 
 
 
+// Swap the weapons in the given two hardpoints.
+void Armament::Swap(int first, int second)
+{
+	if(static_cast<unsigned>(first) >= weapons.size())
+		return;
+	if(static_cast<unsigned>(second) >= weapons.size())
+		return;
+	if(weapons[first].IsTurret() != weapons[second].IsTurret())
+		return;
+	
+	const Outfit *outfit = weapons[first].GetOutfit();
+	weapons[first].Install(weapons[second].GetOutfit());
+	weapons[second].Install(outfit);
+}
+
+
+
 // Access the array of weapons.
 const vector<Armament::Weapon> &Armament::Get() const
 {

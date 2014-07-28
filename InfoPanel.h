@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Color;
 class Outfit;
 class PlayerInfo;
 
@@ -39,10 +40,29 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod) override;
 	virtual bool Click(int x, int y) override;
+	virtual bool Hover(int x, int y) override;
+	
+	
+private:
+	class ClickZone {
+	public:
+		ClickZone(int x, int y, int width, int height, int index);
+		
+		bool Contains(int x, int y) const;
+		int Index() const;
+		
+	private:
+		int left;
+		int top;
+		int right;
+		int bottom;
+		int index;
+	};
 	
 	
 private:
 	void UpdateInfo();
+	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
 	
 	
 private:
@@ -51,6 +71,11 @@ private:
 	
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
+	
+	mutable std::vector<ClickZone> zones;
+	int selectedWeapon;
+	int hoverWeapon;
+	Point hoverPoint;
 };
 
 

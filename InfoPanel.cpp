@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "InfoPanel.h"
 
+#include "Armament.h"
 #include "Color.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -180,41 +181,36 @@ void InfoPanel::Draw() const
 	SpriteShader::Draw(sprite, shipCenter, scale, 7);
 	
 	Color black(0., 1.);
-	Color turretLine(0., .6, .8, 1.);
-	Color gunLine(.8, .6, 0., 1.);
 	pos = Point(10., 250.);
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(unsigned i = 0; i < ship.Weapons().size(); ++i)
+	{
+		const Armament::Weapon &weapon = ship.Weapons()[i];
 		if(weapon.IsTurret())
 		{
-			font.Draw(weapon.GetOutfit()->Name(), pos, dim);
-			
-			Point from(pos.X() - 5., pos.Y() + .5 * font.Height());
-			Point to = shipCenter + (2. * scale) * weapon.GetPoint();
-			Point mid(to.X(), from.Y());
-			LineShader::Draw(from, mid, 3.5, black);
-			LineShader::Draw(mid, to, 3.5, black);
-			LineShader::Draw(from, mid, 1.5, turretLine);
-			LineShader::Draw(mid, to, 1.5, turretLine);
-			
+			DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
 			pos.Y() -= 20.;
 		}
+	}
 	if(pos.Y() != 250.)
 		pos.Y() -= 10.;
-	for(const Armament::Weapon &weapon : ship.Weapons())
+	for(unsigned i = 0; i < ship.Weapons().size(); ++i)
+	{
+		const Armament::Weapon &weapon = ship.Weapons()[i];
 		if(!weapon.IsTurret())
 		{
-			font.Draw(weapon.GetOutfit()->Name(), pos, dim);
-			
-			Point from(pos.X() - 5., pos.Y() + .5 * font.Height());
-			Point to = shipCenter + (2. * scale) * weapon.GetPoint();
-			Point mid(to.X(), from.Y());
-			LineShader::Draw(from, mid, 3.5, black);
-			LineShader::Draw(mid, to, 3.5, black);
-			LineShader::Draw(from, mid, 1.5, gunLine);
-			LineShader::Draw(mid, to, 1.5, gunLine);
-			
+			DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
 			pos.Y() -= 20.;
 		}
+	}
+	
+	// Re-positioning weapons.
+	if(selectedWeapon >= 0)
+	{
+		const string &name = ship.Weapons()[selectedWeapon].GetOutfit()->Name();
+		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
+		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
+		font.Draw(name, pos, bright);
+	}
 }
 
 
@@ -256,6 +252,42 @@ bool InfoPanel::Click(int x, int y)
 			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	}
 	
+	if(shipIt == player.Ships().end())
+		return true;
+	
+	if(hoverWeapon && (**shipIt).GetPlanet())
+	{
+		if(selectedWeapon == -1)
+			selectedWeapon = hoverWeapon;
+		else
+		{
+			(**shipIt).GetArmament().Swap(hoverWeapon, selectedWeapon);
+			selectedWeapon = -1;
+		}
+	}
+	else if(selectedWeapon)
+		selectedWeapon = -1;
+	
+	return true;
+}
+
+
+
+bool InfoPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	
+	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
+	hoverWeapon = -1;
+	for(const ClickZone &zone : zones)
+		if(zone.Contains(x, y))
+		{
+			if(selectedWeapon == -1)
+				hoverWeapon = zone.Index();
+			if(weapons[selectedWeapon].IsTurret() == weapons[zone.Index()].IsTurret())
+				hoverWeapon = zone.Index();
+		}
+	
 	return true;
 }
 
@@ -263,6 +295,8 @@ bool InfoPanel::Click(int x, int y)
 
 void InfoPanel::UpdateInfo()
 {
+	selectedWeapon = -1;
+	hoverWeapon = -1;
 	if(shipIt == player.Ships().end())
 		return;
 	
@@ -272,4 +306,54 @@ void InfoPanel::UpdateInfo()
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
 		outfits[it.first->Category()].push_back(it.first);
+}
+
+
+
+void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) const
+{
+	const Font &font = FontSet::Get(14);
+	double high = (index == hoverWeapon ? .8 : .5);
+	Color textColor(high, 0.);
+	font.Draw((**shipIt).Weapons()[index].GetOutfit()->Name(), pos, textColor);
+	
+	
+	Color color(high, .75 * high, 0., 1.);
+	if((**shipIt).Weapons()[index].IsTurret())
+		color = Color(0., .75 * high, high, 1.);
+	
+	Color black(0., 1.);
+	Point from(pos.X() - 5., pos.Y() + .5 * font.Height());
+	Point mid(hardpoint.X(), from.Y());
+	
+	LineShader::Draw(from, mid, 3.5, black);
+	LineShader::Draw(mid, hardpoint, 3.5, black);
+	LineShader::Draw(from, mid, 1.5, color);
+	LineShader::Draw(mid, hardpoint, 1.5, color);
+	
+	int x = from.X() + 120;
+	int y = from.Y();
+	zones.emplace_back(x, y, 240, 20, index);
+}
+
+
+
+InfoPanel::ClickZone::ClickZone(int x, int y, int width, int height, int index)
+	: left(x - width / 2), top(y - height / 2),
+	right(x + width / 2), bottom(y + height / 2), index(index)
+{
+}
+
+
+
+bool InfoPanel::ClickZone::Contains(int x, int y) const
+{
+	return (x >= left && y >= top && x < right && y < bottom);
+}
+
+
+
+int InfoPanel::ClickZone::Index() const
+{
+	return index;
 }
