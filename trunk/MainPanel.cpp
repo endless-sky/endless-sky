@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "InfoPanel.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "PlanetPanel.h"
@@ -110,6 +111,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == GameData::Keys().Get(Key::MAP))
 		GetUI()->Push(new MapDetailPanel(player));
+	else if(key == GameData::Keys().Get(Key::INFO))
+		GetUI()->Push(new InfoPanel(player));
 	else if(key == GameData::Keys().Get(Key::SCAN))
 	{
 		const Ship *flagship = player.GetShip();

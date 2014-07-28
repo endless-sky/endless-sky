@@ -732,3 +732,51 @@ interface "mission"
 	button d 70 -10
 		size 80 30
 
+interface "ship info"
+	sprite "ui/ship info" 0 0
+	
+	label "Ship Info" -300 -303
+		size 14
+		color "light grey"
+		align center
+	
+	label "Done" 455 287
+		size 14
+		color "light grey"
+		align center
+	button d 455 295
+		size 90 30
+	
+	label "Missions..." 355 287
+		size 14
+		color "light grey"
+		align center
+	button m 355 295
+		size 90 30
+	
+	label "Next" 255 287
+		size 14
+		color "dim grey"
+		align center
+	if "has other ships"
+	label "Next" 255 287
+		size 14
+		color "light grey"
+		align center
+	button n 255 295
+		size 90 30
+	endif
+	
+	label "Previous" 155 287
+		size 14
+		color "dim grey"
+		align center
+	if "has other ships"
+	label "Previous" 155 287
+		size 14
+		color "light grey"
+		align center
+	button p 155 295
+		size 90 30
+	endif
+
