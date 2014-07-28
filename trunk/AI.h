@@ -29,7 +29,7 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys(int keys, PlayerInfo *info);
+	void UpdateKeys(int keys, PlayerInfo *info, bool isActive);
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
 	
 	
