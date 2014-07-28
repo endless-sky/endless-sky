@@ -20,15 +20,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
-class GameData;
 class Outfit;
 class PlayerInfo;
 class Ship;
 
 
 
-// Overlay on the PlanetPanel showing commodity prices and inventory, and allowing
-// buying and selling.
+// This panel is displayed whenever your flagship boards another ship, to give
+// you a choice of what to plunder or whether to attempt to capture it.
 class BoardingPanel : public Panel {
 public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);

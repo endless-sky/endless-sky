@@ -15,8 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-class GameData;
-
 
 
 // UI panel for editing preferences, especially the key mappings.
