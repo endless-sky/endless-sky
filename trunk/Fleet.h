@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class DataNode;
-class GameData;
 class Government;
 class Ship;
 class ShipName;
