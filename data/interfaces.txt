@@ -733,7 +733,9 @@ interface "mission"
 		size 80 30
 
 interface "ship info"
-	sprite "ui/ship info" 0 0
+	sprite "ui/ship tab" 0 -300
+	sprite "ui/info panel" 0 -5
+	sprite "ui/four info buttons" 0 295
 	
 	label "Ship Info" -300 -303
 		size 14
