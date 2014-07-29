@@ -255,7 +255,7 @@ bool InfoPanel::Click(int x, int y)
 	if(shipIt == player.Ships().end())
 		return true;
 	
-	if(hoverWeapon && (**shipIt).GetPlanet())
+	if(hoverWeapon >= 0 && (**shipIt).GetPlanet())
 	{
 		if(selectedWeapon == -1)
 			selectedWeapon = hoverWeapon;
