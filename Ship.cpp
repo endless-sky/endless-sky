@@ -995,7 +995,7 @@ int Ship::JumpsRemaining() const
 double Ship::Energy() const
 {
 	double maximum = attributes.Get("energy capacity");
-	return maximum ? min(1., energy / maximum) : 1.;
+	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
 }
 
 

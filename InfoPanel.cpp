@@ -38,7 +38,7 @@ using namespace std;
 
 
 InfoPanel::InfoPanel(PlayerInfo &player)
-	: player(player), shipIt(player.Ships().begin())
+	: player(player), shipIt(player.Ships().begin()), showShip(false)
 {
 	UpdateInfo();
 }
@@ -52,11 +52,264 @@ void InfoPanel::Draw() const
 	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
 	
 	Information interfaceInfo;
-	if(player.Ships().size() > 1)
-		interfaceInfo.SetCondition("has other ships");
-	const Interface *interface = GameData::Interfaces().Get("ship info");
+	if(showShip)
+	{
+		interfaceInfo.SetCondition("ship tab");
+		if(player.Ships().size() > 1)
+			interfaceInfo.SetCondition("four buttons");
+		else
+			interfaceInfo.SetCondition("two buttons");
+	}
+	else
+	{
+		interfaceInfo.SetCondition("player tab");
+		interfaceInfo.SetCondition("two buttons");
+	}
+	const Interface *interface = GameData::Interfaces().Get("info panel");
 	interface->Draw(interfaceInfo);
 	
+	if(showShip)
+		DrawShip();
+	else
+		DrawInfo();
+}
+
+
+
+bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+{
+	if(key == 'd')
+		GetUI()->Pop(this);
+	else if(!player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
+	{
+		if(shipIt == player.Ships().begin())
+			shipIt = player.Ships().end();
+		--shipIt;
+		UpdateInfo();
+	}
+	else if(!player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
+	{
+		++shipIt;
+		if(shipIt == player.Ships().end())
+			shipIt = player.Ships().begin();
+		UpdateInfo();
+	}
+	else if(key == 'i')
+	{
+		selected = -1;
+		hover = -1;
+		showShip = false;
+	}
+	else if(key == 's')
+	{
+		showShip = true;
+		UpdateInfo();
+	}
+	else if(key == 'm')
+		GetUI()->Push(new MissionPanel(player));
+	
+	return true;
+}
+
+
+
+bool InfoPanel::Click(int x, int y)
+{
+	// Handle clicks on the interface buttons.
+	const Interface *interface = GameData::Interfaces().Get("info panel");
+	if(interface)
+	{
+		char key = interface->OnClick(Point(x, y));
+		if(key != '\0')
+			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	}
+	
+	if(shipIt == player.Ships().end())
+		return true;
+	
+	if(showShip)
+	{
+		if(hover >= 0 && (**shipIt).GetPlanet())
+		{
+			if(selected == -1)
+				selected = hover;
+			else
+			{
+				(**shipIt).GetArmament().Swap(hover, selected);
+				selected = -1;
+			}
+		}
+		else if(selected)
+			selected = -1;
+	}
+	else if(player.GetPlanet())
+	{
+		// Only allow changing your flagship when landed.
+		if(hover >= 0)
+		{
+			shipIt = player.Ships().begin() + hover;
+			if(hover == selected)
+			{
+				showShip = true;
+				UpdateInfo();
+			}
+			else
+			{
+				if(selected < 0)
+					selected = hover;
+				else
+				{
+					player.ReorderShip(selected, hover);
+					selected = -1;
+				}
+			}
+		}
+		else if(selected)
+			selected = -1;
+	}
+	else if(hover >= 0)
+	{
+		// If not landed, clicking a ship name takes you straight to its info.
+		shipIt = player.Ships().begin() + hover;
+		showShip = true;
+		UpdateInfo();
+	}
+	
+	return true;
+}
+
+
+
+bool InfoPanel::Hover(int x, int y)
+{
+	hoverPoint = Point(x, y);
+	
+	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
+	hover = -1;
+	for(const ClickZone &zone : zones)
+		if(zone.Contains(x, y) && (!showShip || selected == -1
+				|| weapons[selected].IsTurret() == weapons[zone.Index()].IsTurret()))
+			hover = zone.Index();
+	
+	return true;
+}
+
+
+
+void InfoPanel::UpdateInfo()
+{
+	selected = -1;
+	hover = -1;
+	if(shipIt == player.Ships().end())
+		return;
+	
+	const Ship &ship = **shipIt;
+	info.Update(ship);
+	
+	outfits.clear();
+	for(const auto &it : ship.Outfits())
+		outfits[it.first->Category()].push_back(it.first);
+}
+
+
+
+void InfoPanel::DrawInfo() const
+{
+	Color dim(.5, 0.);
+	Color bright(.8, 0.);
+	Color elsewhere(.2, 0.);
+	Color dead(.4, 0., 0., 0.);
+	const Font &font = FontSet::Get(14);
+	
+	// Player info.
+	Point pos(-490., -265.);
+	font.Draw("player:", pos, dim);
+	string name = player.FirstName() + " " + player.LastName();
+	font.Draw(name, pos + Point(230. - font.Width(name), 0.), bright);
+	
+	pos.Y() += 25.;
+	string rating = "mostly harmless";
+	font.Draw("combat rating:", pos, dim);
+	font.Draw(rating, pos + Point(230. - font.Width(rating), 0.), bright);
+	
+	pos.Y() += 20.;
+	string worth = to_string(player.Accounts().NetWorth()) + " credits";
+	font.Draw("net worth:", pos, dim);
+	font.Draw(worth, pos + Point(230. - font.Width(worth), 0.), bright);
+	
+	pos.Y() += 30.;
+	font.Draw("licenses:", pos, bright);
+	FillShader::Fill(pos + Point(115., 15.), Point(230., 1.), dim);
+	
+	pos.Y() += 25.;
+	font.Draw("Pilot's License", pos, dim);
+	
+	// Fleet listing.
+	pos = Point(-240., -270.);
+	font.Draw("ship", pos + Point(0., 0.), bright);
+	font.Draw("model", pos + Point(220., 0.), bright);
+	font.Draw("system", pos + Point(350., 0.), bright);
+	font.Draw("shields", pos + Point(550. - font.Width("shields"), 0.), bright);
+	font.Draw("hull", pos + Point(610. - font.Width("hull"), 0.), bright);
+	font.Draw("fuel", pos + Point(670. - font.Width("fuel"), 0.), bright);
+	font.Draw("crew", pos + Point(730. - font.Width("crew"), 0.), bright);
+	FillShader::Fill(pos + Point(365., 15.), Point(730., 1.), dim);
+	
+	pos.Y() += 5.;
+	zones.clear();
+	int index = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		pos.Y() += 20.;
+		if(pos.Y() >= 250.)
+			break;
+		
+		bool isElsewhere = (ship->GetSystem() != player.GetSystem());
+		bool isDead = (ship->Hull() <= 0.) || ship->IsDisabled();
+		bool isHovered = (index == hover);
+		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;
+		string category = ship->Attributes().Category();
+		bool isFighter = (category == "Fighter" || category == "Drone");
+		font.Draw(ship->Name(), pos + Point(10. * isFighter, 0.), color);
+		font.Draw(ship->ModelName(), pos + Point(220., 0.), color);
+		
+		const System *system = ship->GetSystem();
+		if(system)
+			font.Draw(system->Name(), pos + Point(350., 0.), color);
+		
+		string shields = to_string(static_cast<int>(100. * max(0., ship->Shields()))) + "%";
+		font.Draw(shields, pos + Point(550. - font.Width(shields), 0.), color);
+		
+		string hull = to_string(static_cast<int>(100. * max(0., ship->Hull()))) + "%";
+		font.Draw(hull, pos + Point(610. - font.Width(hull), 0.), color);
+		
+		string fuel = to_string(static_cast<int>(
+			ship->Attributes().Get("fuel capacity") * ship->Fuel()));
+		font.Draw(fuel, pos + Point(670. - font.Width(fuel), 0.), color);
+		
+		string crew = to_string(ship->Crew());
+		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
+		
+		int x = pos.X() + 365;
+		int y = pos.Y() + .5 * font.Height();
+		zones.emplace_back(x, y, 730, 20, index);
+		++index;
+	}
+	
+	// Re-ordering ships in your fleet.
+	if(selected >= 0)
+	{
+		const string &name = player.Ships()[selected]->Name();
+		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
+		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
+		font.Draw(name, pos, bright);
+	}
+}
+
+
+
+void InfoPanel::DrawShip() const
+{
 	if(player.Ships().empty())
 		return;
 	
@@ -204,9 +457,9 @@ void InfoPanel::Draw() const
 	}
 	
 	// Re-positioning weapons.
-	if(selectedWeapon >= 0)
+	if(selected >= 0)
 	{
-		const string &name = ship.Weapons()[selectedWeapon].GetOutfit()->Name();
+		const string &name = ship.Weapons()[selected].GetOutfit()->Name();
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);
@@ -215,105 +468,10 @@ void InfoPanel::Draw() const
 
 
 
-bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod)
-{
-	if(key == 'd')
-		GetUI()->Pop(this);
-	else if(!player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
-	{
-		if(shipIt == player.Ships().begin())
-			shipIt = player.Ships().end();
-		--shipIt;
-		UpdateInfo();
-	}
-	else if(!player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
-	{
-		++shipIt;
-		if(shipIt == player.Ships().end())
-			shipIt = player.Ships().begin();
-		UpdateInfo();
-	}
-	else if(key == 'm')
-		GetUI()->Push(new MissionPanel(player));
-	
-	return true;
-}
-
-
-
-bool InfoPanel::Click(int x, int y)
-{
-	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("ship info");
-	if(interface)
-	{
-		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
-	}
-	
-	if(shipIt == player.Ships().end())
-		return true;
-	
-	if(hoverWeapon >= 0 && (**shipIt).GetPlanet())
-	{
-		if(selectedWeapon == -1)
-			selectedWeapon = hoverWeapon;
-		else
-		{
-			(**shipIt).GetArmament().Swap(hoverWeapon, selectedWeapon);
-			selectedWeapon = -1;
-		}
-	}
-	else if(selectedWeapon)
-		selectedWeapon = -1;
-	
-	return true;
-}
-
-
-
-bool InfoPanel::Hover(int x, int y)
-{
-	hoverPoint = Point(x, y);
-	
-	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
-	hoverWeapon = -1;
-	for(const ClickZone &zone : zones)
-		if(zone.Contains(x, y))
-		{
-			if(selectedWeapon == -1)
-				hoverWeapon = zone.Index();
-			if(weapons[selectedWeapon].IsTurret() == weapons[zone.Index()].IsTurret())
-				hoverWeapon = zone.Index();
-		}
-	
-	return true;
-}
-
-
-
-void InfoPanel::UpdateInfo()
-{
-	selectedWeapon = -1;
-	hoverWeapon = -1;
-	if(shipIt == player.Ships().end())
-		return;
-	
-	const Ship &ship = **shipIt;
-	info.Update(ship);
-	
-	outfits.clear();
-	for(const auto &it : ship.Outfits())
-		outfits[it.first->Category()].push_back(it.first);
-}
-
-
-
 void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) const
 {
 	const Font &font = FontSet::Get(14);
-	double high = (index == hoverWeapon ? .8 : .5);
+	double high = (index == hover ? .8 : .5);
 	Color textColor(high, 0.);
 	font.Draw((**shipIt).Weapons()[index].GetOutfit()->Name(), pos, textColor);
 	

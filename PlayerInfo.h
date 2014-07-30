@@ -79,6 +79,8 @@ public:
 	// Buy or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
+	// Change the order of the given ship in the list.
+	void ReorderShip(int fromIndex, int toIndex);
 	
 	// Get cargo information.
 	CargoHold &Cargo();

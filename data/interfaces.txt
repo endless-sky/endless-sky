@@ -732,15 +732,42 @@ interface "mission"
 	button d 70 -10
 		size 80 30
 
-interface "ship info"
-	sprite "ui/ship tab" 0 -300
+interface "info panel"
 	sprite "ui/info panel" 0 -5
+	if "four buttons"
 	sprite "ui/four info buttons" 0 295
+	endif
+	if "two buttons"
+	sprite "ui/two info buttons" 0 295
+	endif
 	
+	if "ship tab"
+	sprite "ui/ship tab" 0 -300
 	label "Ship Info" -300 -303
 		size 14
 		color "light grey"
 		align center
+	label "Player Info" -420 -303
+		size 14
+		color "grey"
+		align center
+	button i -420 -295
+		size 120 30
+	endif
+	
+	if "player tab"
+	sprite "ui/player tab" 0 -300
+	label "Ship Info" -300 -303
+		size 14
+		color "grey"
+		align center
+	label "Player Info" -420 -303
+		size 14
+		color "light grey"
+		align center
+	button s -300 -295
+		size 120 30
+	endif
 	
 	label "Done" 455 287
 		size 14
@@ -756,24 +783,13 @@ interface "ship info"
 	button m 355 295
 		size 90 30
 	
-	label "Next" 255 287
-		size 14
-		color "dim grey"
-		align center
-	if "has other ships"
+	if "four buttons"
 	label "Next" 255 287
 		size 14
 		color "light grey"
 		align center
 	button n 255 295
 		size 90 30
-	endif
-	
-	label "Previous" 155 287
-		size 14
-		color "dim grey"
-		align center
-	if "has other ships"
 	label "Previous" 155 287
 		size 14
 		color "light grey"
@@ -781,4 +797,3 @@ interface "ship info"
 	button p 155 295
 		size 90 30
 	endif
-
