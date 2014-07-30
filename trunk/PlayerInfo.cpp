@@ -417,6 +417,43 @@ void PlayerInfo::SellShip(const Ship *selected)
 }
 
 
+
+// Change the order of the given ship in the list.
+void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
+{
+	// Make sure the indices are valid.
+	if(static_cast<unsigned>(fromIndex) >= ships.size())
+		return;
+	if(static_cast<unsigned>(toIndex) >= ships.size())
+		return;
+	
+	if(!fromIndex)
+	{
+		if(ships.size() < 2)
+			return;
+		const string &category = ships[1]->Attributes().Category();
+		if(category == "Fighter" || category == "Drone")
+			return;
+	}
+	
+	if(!toIndex)
+	{
+		// Check that this ship is eligible to be a flagship.
+		const string &category = ships[fromIndex]->Attributes().Category();
+		if(category == "Fighter" || category == "Drone")
+			++toIndex;
+		if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->Hull() <= 0.)
+			++toIndex;
+		if(ships[fromIndex]->GetSystem() != system)
+			++toIndex;
+	}
+	
+	shared_ptr<Ship> ship = ships[fromIndex];
+	ships.erase(ships.begin() + fromIndex);
+	ships.insert(ships.begin() + toIndex, ship);
+}
+
+
 	
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()

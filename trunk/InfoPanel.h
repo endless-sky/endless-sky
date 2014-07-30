@@ -62,6 +62,8 @@ private:
 	
 private:
 	void UpdateInfo();
+	void DrawInfo() const;
+	void DrawShip() const;
 	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
 	
 	
@@ -73,9 +75,10 @@ private:
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 	
 	mutable std::vector<ClickZone> zones;
-	int selectedWeapon;
-	int hoverWeapon;
+	int selected;
+	int hover;
 	Point hoverPoint;
+	bool showShip;
 };
 
 
