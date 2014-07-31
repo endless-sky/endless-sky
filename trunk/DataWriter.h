@@ -1,8 +1,22 @@
+/* DataWriter.h
+Copyright (c) 2014 by Michael Zahniser
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+
 #ifndef DATA_WRITER_H_
 #define DATA_WRITER_H_
 
 #include <string>
 #include <fstream>
+
+class DataNode;
 
 
 
@@ -21,12 +35,17 @@ public:
 	void Write(const std::string &a, B... others);
   template <class A, class ...B>
 	void Write(const A &a, B... others);
+	void Write(const DataNode &node);
 	void Write();
 	
 	void BeginChild();
 	void EndChild();
 	
 	void WriteComment(const std::string &str);
+	
+	
+private:
+	void WriteToken(const char *a);
 	
 	
 private:
@@ -41,21 +60,7 @@ private:
 template <class ...B>
 void DataWriter::Write(const char *a, B... others)
 {
-	bool hasSpace = false;
-	for(const char *it = a; *it; ++it)
-		if(*it <= ' ')
-		{
-			hasSpace = true;
-			break;
-		}
-	
-	out << *before;
-	if(hasSpace)
-		out << '"' << a << '"';
-	else
-		out << a;
-	before = &space;
-	
+	WriteToken(a);
 	Write(others...);
 }
 
