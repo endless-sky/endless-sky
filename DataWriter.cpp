@@ -1,4 +1,18 @@
+/* DataWriter.h
+Copyright (c) 2014 by Michael Zahniser
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+
 #include "DataWriter.h"
+
+#include "DataNode.h"
 
 using namespace std;
 
@@ -13,6 +27,23 @@ DataWriter::DataWriter(const string &path)
 {
 	out.open(path);
 	out.precision(8);
+}
+
+
+
+void DataWriter::Write(const DataNode &node)
+{
+	for(int i = 0; i < node.Size(); ++i)
+		WriteToken(node.Token(i).c_str());
+	Write();
+	
+	if(node.begin() != node.end())
+	{
+		BeginChild();
+		for(const DataNode &child : node)
+			Write(child);
+		EndChild();
+	}
 }
 
 
@@ -42,4 +73,24 @@ void DataWriter::EndChild()
 void DataWriter::WriteComment(const string &str)
 {
 	out << indent << "# " << str << '\n';
+}
+
+
+
+void DataWriter::WriteToken(const char *a)
+{
+	bool hasSpace = false;
+	for(const char *it = a; *it; ++it)
+		if(*it <= ' ')
+		{
+			hasSpace = true;
+			break;
+		}
+	
+	out << *before;
+	if(hasSpace)
+		out << '"' << a << '"';
+	else
+		out << a;
+	before = &space;
 }
