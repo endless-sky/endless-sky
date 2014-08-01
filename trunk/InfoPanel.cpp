@@ -468,11 +468,17 @@ void InfoPanel::DrawShip() const
 
 void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) const
 {
+	if(static_cast<unsigned>(index) >= (**shipIt).Weapons().size())
+		return;
+	
+	const Outfit *outfit = (**shipIt).Weapons()[index].GetOutfit();
+	if(!outfit)
+		return;
+	
 	const Font &font = FontSet::Get(14);
 	double high = (index == hover ? .8 : .5);
 	Color textColor(high, 0.);
-	font.Draw((**shipIt).Weapons()[index].GetOutfit()->Name(), pos, textColor);
-	
+	font.Draw(outfit->Name(), pos, textColor);
 	
 	Color color(high, .75 * high, 0., 1.);
 	if((**shipIt).Weapons()[index].IsTurret())
