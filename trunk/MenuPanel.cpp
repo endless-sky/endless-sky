@@ -143,8 +143,8 @@ void MenuPanel::Draw() const
 void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
-	Panel *panel = new MainPanel(player);
 	gamePanels.Reset();
+	Panel *panel = new MainPanel(player);
 	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	panel->Step(true);
