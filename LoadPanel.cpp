@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -61,7 +62,7 @@ void LoadPanel::Draw() const
 			info.SetString("system", loadedInfo.GetSystem()->Name());
 		if(loadedInfo.GetPlanet())
 			info.SetString("planet", loadedInfo.GetPlanet()->Name());
-		info.SetString("credits", to_string(loadedInfo.Accounts().Credits()));
+		info.SetString("credits", Format::Number(loadedInfo.Accounts().Credits()));
 		info.SetString("date", loadedInfo.GetDate().ToString());
 	}
 	else

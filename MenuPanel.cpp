@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Files.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "Information.h"
@@ -86,7 +87,7 @@ void MenuPanel::Draw() const
 			info.SetString("system", player.GetSystem()->Name());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->Name());
-		info.SetString("credits", to_string(player.Accounts().Credits()));
+		info.SetString("credits", Format::Number(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 	}
 	else

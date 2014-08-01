@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -126,7 +127,7 @@ void ShopPanel::DrawButtons() const
 		Screen::Bottom() - 65);
 	font.Draw("You have:", point, dim);
 	
-	string credits = to_string(player.Accounts().Credits()) + " credits";
+	string credits = Format::Number(player.Accounts().Credits()) + " credits";
 	point.X() += (SIDE_WIDTH - 20) - font.Width(credits);
 	font.Draw(credits, point, bright);
 	
