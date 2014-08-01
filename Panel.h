@@ -57,6 +57,10 @@ protected:
 	
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);
+	
+	// Dim the background of this panel.
+	void DrawBackdrop() const;
+	
 	UI *GetUI();
 	
 	

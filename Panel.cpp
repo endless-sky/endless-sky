@@ -12,6 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Color.h"
+#include "FillShader.h"
+#include "Screen.h"
 #include "UI.h"
 
 using namespace std;
@@ -120,6 +123,16 @@ void Panel::SetIsFullScreen(bool set)
 void Panel::SetTrapAllEvents(bool set)
 {
 	trapAllEvents = set;
+}
+
+
+	
+// Dim the background of this panel.
+void Panel::DrawBackdrop() const
+{
+	// Darken everything but the dialog.
+	Color back(0., .7);
+	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
 }
 
 
