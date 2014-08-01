@@ -27,9 +27,11 @@ using namespace std;
 void CargoHold::Clear()
 {
 	size = 0;
+	bunks = 0;
 	commodities.clear();
 	outfits.clear();
 	missionCargo.clear();
+	passengers.clear();
 }
 
 
