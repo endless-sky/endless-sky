@@ -78,6 +78,10 @@ public:
 	// be called in the middle of a row, or the fields will not line up.
 	void DrawGap(int y) const;
 	
+	// Get the point that should be passed to DrawAt() to start the next row at
+	// the given location.
+	Point GetPoint();
+	
 	// Get the center and size of the current row. This can be used to define
 	// what screen region constitutes a mouse click on this particular row.
 	Point GetCenterPoint() const;
