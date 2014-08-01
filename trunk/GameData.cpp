@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <vector>
 
 using namespace std;
@@ -53,6 +54,8 @@ namespace {
 	StarField background;
 	
 	SpriteQueue spriteQueue;
+	
+	map<const Sprite *, pair<string, string>> deferred;
 	
 	bool showLoad;
 }
@@ -87,7 +90,13 @@ void GameData::BeginLoad(const char * const *argv)
 	
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
-		spriteQueue.Add(Name(it.first), it.second);
+	{
+		string name = Name(it.first);
+		if(name.substr(0, 5) == "land/")
+			deferred[SpriteSet::Get(name)] = pair<string, string>(name, it.second);
+		else
+			spriteQueue.Add(name, it.second);
+	}
 	
 	// Iterate through the paths starting with the last directory given. That
 	// is, things in folders near the start of the path have the ability to
@@ -160,6 +169,27 @@ void GameData::LoadShaders()
 double GameData::Progress()
 {
 	return spriteQueue.Progress();
+}
+
+
+
+// Begin loading a sprite that was previously deferred. Currently this is
+// done with all landscapes to speed up the program's startup.
+void GameData::Preload(const Sprite *sprite)
+{
+	auto it = deferred.find(sprite);
+	if(it != deferred.end())
+	{
+		spriteQueue.Add(it->second.first, it->second.second);
+		deferred.erase(it);
+	}
+}
+
+
+
+void GameData::FinishLoading()
+{
+	spriteQueue.Finish();
 }
 
 

@@ -49,6 +49,10 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, const Callback &callback)
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(480);
 	text.Wrap(planet.Description());
+	
+	// Since the loading of landscape images is deferred, make sure that the
+	// landscapes for this system are loaded before showing the planet panel.
+	GameData::FinishLoading();
 }
 
 

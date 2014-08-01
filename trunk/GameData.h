@@ -44,6 +44,10 @@ public:
 	static void BeginLoad(const char * const *argv);
 	static void LoadShaders();
 	static double Progress();
+	// Begin loading a sprite that was previously deferred. Currently this is
+	// done with all landscapes to speed up the program's startup.
+	static void Preload(const Sprite *sprite);
+	static void FinishLoading();
 	
 	// Revert any changes that have been made to the universe.
 	static void Revert();

@@ -17,7 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 
-#include <iostream>
 #include <vector>
 
 using namespace std;
