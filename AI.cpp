@@ -713,6 +713,12 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	}
 	else if((keyStuck & Key::Bit(Key::JUMP)) && ship.GetTargetSystem())
 	{
+		if(!ship.JumpsRemaining() && !ship.IsHyperspacing())
+		{
+			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
+			keyStuck = 0;
+			return;
+		}
 		PrepareForHyperspace(control, ship);
 		control.SetHyperspaceCommand();
 	}
