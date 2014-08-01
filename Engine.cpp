@@ -50,6 +50,10 @@ Engine::Engine(PlayerInfo &player)
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(player.GetDate());
 	
+	for(const StellarObject &object : player.GetSystem()->Objects())
+		if(object.GetPlanet())
+			GameData::Preload(object.GetPlanet()->Landscape());
+	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
 	if(player.GetPlanet())
@@ -425,6 +429,10 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	player.SetSystem(system);
+	
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet())
+			GameData::Preload(object.GetPlanet()->Landscape());
 	
 	Messages::Add(player.IncrementDate());
 	const Date &today = player.GetDate();
