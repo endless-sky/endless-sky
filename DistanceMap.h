@@ -47,6 +47,7 @@ private:
 	
 private:
 	std::map<const System *, int> distance;
+	std::map<const System *, const System *> route;
 	bool hasJump = false;
 };
 

@@ -77,17 +77,11 @@ int DistanceMap::Distance(const System *system) const
 // should I jump to next?
 const System *DistanceMap::Route(const System *system) const
 {
-	auto it = distance.find(system);
-	if(it == distance.end())
+	auto it = route.find(system);
+	if(it == route.end())
 		return nullptr;
 	
-	for(const System *link : (hasJump ? system->Neighbors() : system->Links()))
-	{
-		auto lit = distance.find(link);
-		if(lit != distance.end() && lit->second < it->second)
-			return lit->first;
-	}
-	return system;
+	return it->second;
 }
 
 
@@ -106,6 +100,7 @@ void DistanceMap::Init()
 					continue;
 				
 				distance[link] = steps;
+				route[link] = system;
 				newEdge.push_back(link);
 			}
 		newEdge.swap(edge);
@@ -133,6 +128,7 @@ void DistanceMap::InitHyper(const PlayerInfo &player)
 					continue;
 				
 				distance[link] = steps;
+				route[link] = system;
 				newEdge.push_back(link);
 			}
 		newEdge.swap(edge);
@@ -160,6 +156,7 @@ void DistanceMap::InitJump(const PlayerInfo &player)
 					continue;
 				
 				distance[link] = steps;
+				route[link] = system;
 				newEdge.push_back(link);
 			}
 		newEdge.swap(edge);
