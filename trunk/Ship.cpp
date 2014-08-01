@@ -1133,7 +1133,12 @@ void Ship::TakeDamage(const Projectile &projectile)
 	}
 	
 	if(hitForce)
-		ApplyForce(hitForce * (position - projectile.Position()).Unit());
+	{
+		Point d = position - projectile.Position();
+		double distance = d.Length();
+		if(distance)
+			ApplyForce((hitForce / distance) * d);
+	}
 }
 
 
@@ -1143,6 +1148,9 @@ void Ship::TakeDamage(const Projectile &projectile)
 void Ship::ApplyForce(const Point &force)
 {
 	double currentMass = Mass();
+	if(!currentMass)
+		return;
+	
 	velocity += force / currentMass;
 	double maxVelocity = MaxVelocity();
 	double currentVelocity = velocity.Length();
