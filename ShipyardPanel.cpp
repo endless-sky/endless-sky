@@ -42,7 +42,7 @@ namespace {
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 	: ShopPanel(player, CATEGORIES)
 {
-	for(const pair<string, Ship> &it : GameData::Ships())
+	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
 }
 
