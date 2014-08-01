@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "LineShader.h"
@@ -221,7 +222,8 @@ void Engine::Step(bool isActive)
 			info.SetBar("shields", 0.);
 			info.SetBar("hull", 0.);
 		}
-		info.SetString("credits", to_string(player.Accounts().Credits()) + " credits");
+		info.SetString("credits",
+			Format::Number(player.Accounts().Credits()) + " credits");
 		if(flagship && flagship->GetTargetPlanet())
 		{
 			info.SetString("navigation mode", "Landing on:");
