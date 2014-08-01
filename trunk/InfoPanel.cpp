@@ -47,9 +47,7 @@ InfoPanel::InfoPanel(PlayerInfo &player)
 
 void InfoPanel::Draw() const
 {
-	// Darken everything but the dialog.
-	Color back(0., .7);
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	DrawBackdrop();
 	
 	Information interfaceInfo;
 	if(showShip)

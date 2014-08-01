@@ -62,9 +62,9 @@ void ConversationPanel::SetCallback(const Callback &callback)
 // Draw this panel.
 void ConversationPanel::Draw() const
 {
-	Color half(0., .7);
+	DrawBackdrop();
+	
 	Color back(0.125, 1.);
-	FillShader::Fill(Point(0., 0.), Point(Screen::Width(), Screen::Height()), half);
 	FillShader::Fill(
 		Point(Screen::Width() * -.5 + WIDTH * .5 + 15., 0.),
 		Point(WIDTH + 30., Screen::Height()), 

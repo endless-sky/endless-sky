@@ -69,9 +69,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	
 void BoardingPanel::Draw() const
 {
-	// Darken everything but the dialog.
-	Color back(0., .7);
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	DrawBackdrop();
 	
 	// Draw the list of plunder.
 	Color opaque(.1, 1.);

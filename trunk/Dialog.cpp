@@ -47,9 +47,7 @@ Dialog::Dialog(const std::string &text)
 // Draw this panel.
 void Dialog::Draw() const
 {
-	// Darken everything but the dialog.
-	Color back(0., .7);
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	DrawBackdrop();
 	
 	const Sprite *top = SpriteSet::Get("ui/dialog top");
 	const Sprite *middle = SpriteSet::Get("ui/dialog middle");
