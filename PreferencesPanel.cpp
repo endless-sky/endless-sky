@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Table.h"
 #include "UI.h"
 
 #ifdef __APPLE__
@@ -51,36 +52,24 @@ void PreferencesPanel::Draw() const
 	const Interface *menu = GameData::Interfaces().Get("preferences");
 	menu->Draw(Information());
 	
-	Color dim(.1, 0.);
-	Color medium(.5, 0.);
-	Color bright(.8, 0.);
+	Color dim = *GameData::Colors().Get("dim");
+	Color medium = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
 	
-	const Font &font = FontSet::Get(14);
+	Table table;
+	table.AddColumn(-100, Table::RIGHT);
+	table.AddColumn(-20, Table::RIGHT);
+	table.AddColumn(0, Table::LEFT);
+	table.SetUnderline(-200, 200);
 	
-	Point pos(0., -10. * (Key::END - Key::MENU) - 25.);
-	{
-		Point dOff(-100 - font.Width("Default"), 0.);
-		font.Draw("Default", pos + dOff, medium);
-		
-		Point cOff(-20 - font.Width("Key"), 0.);
-		font.Draw("Key", pos + cOff, medium);
-		
-		font.Draw("Action", pos, medium);
-		
-		FillShader::Fill(pos + Point(0., 20.), Point(400., 1.), medium);
-		pos.Y() += 30.;
-	}
+	firstY = -10 * (Key::END - Key::MENU);
+	table.DrawAt(Point(0., firstY - 25));
 	
-	firstY = pos.Y();
-	
-	Point sOff(0., .5 * font.Height() + 20. * selected);
-	FillShader::Fill(pos + sOff, Point(400., 20.), dim);
-	
-	if(editing != -1)
-	{
-		Point eOff(-40., .5 * font.Height() + 20. * editing);
-		FillShader::Fill(pos + eOff, Point(60., 20.), dim);
-	}
+	table.DrawUnderline(medium);
+	table.Draw("Default", medium);
+	table.Draw("Key", medium);
+	table.Draw("Action", medium);
+	table.DrawGap(5);
 	
 	// Check for conflicts.
 	Color red(.3, 0., 0., .3);
@@ -92,23 +81,23 @@ void PreferencesPanel::Draw() const
 	{
 		string current = SDL_GetKeyName(static_cast<SDL_Keycode>(GameData::Keys().Get(c)));
 		string def = SDL_GetKeyName(static_cast<SDL_Keycode>(GameData::DefaultKeys().Get(c)));
-		
-		Point dOff(-100 - font.Width(def), 0);
-		font.Draw(def, pos + dOff, current == def ? dim : medium);
-		
-		Point cOff(-20 - font.Width(current), 0);
-		font.Draw(current, pos + cOff, bright);
-		
-		font.Draw(Key::Description(c), pos, medium);
 
+		int index = c - Key::MENU;
 		// Mark conflicts.
-		if(count[GameData::Keys().Get(c)] > 1)
+		bool isConflicted = (count[GameData::Keys().Get(c)] > 1);
+		if(isConflicted || index == editing)
 		{
-			Point eOff(-40., .5 * font.Height());
-			FillShader::Fill(pos + eOff, Point(60., 20.), red);
+			table.SetHighlight(-70, -10);
+			table.DrawHighlight(isConflicted ? red : dim);
+			table.SetHighlight(-200, 200);
 		}
+		// Mark the selected row.
+		if(index == selected)
+			table.DrawHighlight(dim);
 		
-		pos.Y() += 20.;
+		table.Draw(def, current == def ? dim : medium);
+		table.Draw(current, bright);
+		table.Draw(Key::Description(c), medium);
 	}
 }
 
@@ -143,7 +132,10 @@ bool PreferencesPanel::Click(int x, int y)
 {
 	char key = GameData::Interfaces().Get("preferences")->OnClick(Point(x, y));
 	if(key != '\0')
+	{
+		editing = -1;
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	}
 	
 	y -= firstY;
 	if(y < 0)

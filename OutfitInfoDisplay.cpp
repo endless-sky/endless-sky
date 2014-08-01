@@ -15,7 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
+#include "GameData.h"
 #include "Outfit.h"
+#include "Table.h"
 
 #include <cmath>
 #include <map>
@@ -26,46 +29,30 @@ using namespace std;
 namespace {
 	static const int WIDTH = 250;
 	
-	// Round a value to three decimal places.
-	string Round(double value)
-	{
-		ostringstream out;
-		if(value >= 1000. || value <= -1000.)
-		{
-			out.precision(10);
-			out << round(value);
-		}
-		else
-		{
-			out.precision(3);
-			out << value;
-		}
-		return out.str();
-	}
-	
 	Point Draw(Point point, const vector<string> &labels, const vector<string> &values)
 	{
-		// Use additive color mixing.
-		Color labelColor(.5, 0.);
-		Color valueColor(.8, 0.);
-		const Font &font = FontSet::Get(14);
+		// Get standard colors to draw with.
+		Color labelColor = *GameData::Colors().Get("medium");
+		Color valueColor = *GameData::Colors().Get("bright");
 		
+		Table table;
 		// Use 10-pixel margins on both sides.
-		point.X() += 10.;
+		table.AddColumn(10, Table::LEFT);
+		table.AddColumn(WIDTH - 10, Table::RIGHT);
+		table.DrawAt(point);
+		
 		for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
 		{
 			if(labels[i].empty())
 			{
-				point.Y() += 10.;
+				table.DrawGap(10);
 				continue;
 			}
-		
-			font.Draw(labels[i], point, values[i].empty() ? valueColor : labelColor);
-			Point align(WIDTH - 20 - font.Width(values[i]), 0.);
-			font.Draw(values[i], point + align, valueColor);
-			point.Y() += 20.;
+			
+			table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
+			table.Draw(values[i], valueColor);
 		}
-		return point;
+		return table.GetPoint();
 	}
 }
 
@@ -137,21 +124,21 @@ int OutfitInfoDisplay::AttributesHeight() const
 // Draw each of the panels.
 void OutfitInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	description.Draw(topLeft + Point(10., 10.), Color(.5, 0.));
+	description.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
 
 
 void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 {
-	Draw(topLeft + Point(0., 10.), requirementLabels, requirementValues);
+	Draw(topLeft, requirementLabels, requirementValues);
 }
 
 
 
 void OutfitInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Draw(topLeft + Point(0., 10.), attributeLabels, attributeValues);
+	Draw(topLeft, attributeLabels, attributeValues);
 }
 
 
@@ -177,7 +164,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 	requirementsHeight = 20;
 	
 	requirementLabels.push_back("cost:");
-	requirementValues.push_back(Round(outfit.Cost()));
+	requirementValues.push_back(Format::Number(outfit.Cost()));
 	requirementsHeight += 20;
 	
 	static const string names[] = {
@@ -196,7 +183,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 			requirementsHeight += 10;
 		
 			requirementLabels.push_back(names[i]);
-			requirementValues.push_back(Round(-outfit.Get(names[i + 1])));
+			requirementValues.push_back(Format::Number(-outfit.Get(names[i + 1])));
 			requirementsHeight += 20;
 		}
 }
@@ -218,7 +205,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			continue;
 		
 		attributeLabels.push_back(it.first + ':');
-		attributeValues.push_back(Round(it.second));
+		attributeValues.push_back(Format::Number(it.second));
 		attributesHeight += 20;
 	}
 	
@@ -237,14 +224,14 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 	
 	attributeLabels.push_back("range:");
-	attributeValues.push_back(Round(
+	attributeValues.push_back(Format::Number(
 		outfit.WeaponGet("velocity") * outfit.WeaponGet("lifetime")));
 	attributesHeight += 20;
 	
 	if(outfit.WeaponGet("shield damage"))
 	{
 		attributeLabels.push_back("shield damage / second:");
-		attributeValues.push_back(Round(
+		attributeValues.push_back(Format::Number(
 			60. * outfit.WeaponGet("shield damage") / outfit.WeaponGet("reload")));
 		attributesHeight += 20;
 	}
@@ -252,7 +239,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.WeaponGet("hull damage"))
 	{
 		attributeLabels.push_back("hull damage / second:");
-		attributeValues.push_back(Round(
+		attributeValues.push_back(Format::Number(
 			60. * outfit.WeaponGet("hull damage") / outfit.WeaponGet("reload")));
 		attributesHeight += 20;
 	}
@@ -291,7 +278,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(outfit.WeaponGet(names[i]))
 		{
 			attributeLabels.push_back(names[i]);
-			attributeValues.push_back(Round(outfit.WeaponGet(names[i])));
+			attributeValues.push_back(Format::Number(outfit.WeaponGet(names[i])));
 			attributesHeight += 20;
 		}
 }

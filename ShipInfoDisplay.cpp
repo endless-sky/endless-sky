@@ -13,10 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
-#include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "Ship.h"
+#include "Table.h"
 
 #include <cmath>
 #include <map>
@@ -27,46 +29,30 @@ using namespace std;
 namespace {
 	static const int WIDTH = 250;
 	
-	// Round a value to three decimal places.
-	string Round(double value)
-	{
-		ostringstream out;
-		if(value >= 1000. || value <= -1000.)
-		{
-			out.precision(10);
-			out << round(value);
-		}
-		else
-		{
-			out.precision(3);
-			out << value;
-		}
-		return out.str();
-	}
-	
 	Point Draw(Point point, const vector<string> &labels, const vector<string> &values)
 	{
-		// Use additive color mixing.
-		Color labelColor(.5, 0.);
-		Color valueColor(.8, 0.);
-		const Font &font = FontSet::Get(14);
+		// Get standard colors to draw with.
+		Color labelColor = *GameData::Colors().Get("medium");
+		Color valueColor = *GameData::Colors().Get("bright");
 		
+		Table table;
 		// Use 10-pixel margins on both sides.
-		point.X() += 10.;
+		table.AddColumn(10, Table::LEFT);
+		table.AddColumn(WIDTH - 10, Table::RIGHT);
+		table.DrawAt(point);
+		
 		for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
 		{
 			if(labels[i].empty())
 			{
-				point.Y() += 10.;
+				table.DrawGap(10);
 				continue;
 			}
-		
-			font.Draw(labels[i], point, values[i].empty() ? valueColor : labelColor);
-			Point align(WIDTH - 20 - font.Width(values[i]), 0.);
-			font.Draw(values[i], point + align, valueColor);
-			point.Y() += 20.;
+			
+			table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
+			table.Draw(values[i], valueColor);
 		}
-		return point;
+		return table.GetPoint();
 	}
 }
 
@@ -146,7 +132,7 @@ int ShipInfoDisplay::SaleHeight() const
 // Draw each of the panels.
 void ShipInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	description.Draw(topLeft + Point(10., 10.), Color(.5, 0.));
+	description.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
 
@@ -155,25 +141,26 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
 	Point point = Draw(topLeft, attributeLabels, attributeValues);
 	
-	// Use additive color mixing.
-	Color labelColor(.5, 0.);
-	Color valueColor(.8, 0.);
-	const Font &font = FontSet::Get(14);
-		
-	point.Y() += 10.;
-	static const int ENERGY_COL = WIDTH - 100;
-	static const int HEAT_COL = WIDTH - 20;
-	font.Draw("energy", point + Point(ENERGY_COL - font.Width("energy"), 0.), labelColor);
-	font.Draw("heat", point + Point(HEAT_COL - font.Width("heat"), 0.), labelColor);
+	// Get standard colors to draw with.
+	Color labelColor = *GameData::Colors().Get("medium");
+	Color valueColor = *GameData::Colors().Get("bright");
+	
+	Table table;
+	table.AddColumn(10, Table::LEFT);
+	table.AddColumn(WIDTH - 90, Table::RIGHT);
+	table.AddColumn(WIDTH - 10, Table::RIGHT);
+	table.DrawAt(point);
+	table.DrawGap(10.);
+	
+	table.Advance();
+	table.Draw("energy", labelColor);
+	table.Draw("heat", labelColor);
 	
 	for(unsigned i = 0; i < tableLabels.size(); ++i)
 	{
-		point.Y() += 20.;
-		font.Draw(tableLabels[i], point, labelColor);
-		Point energyAlign(ENERGY_COL - font.Width(energyTable[i]), 0.);
-		font.Draw(energyTable[i], point + energyAlign, valueColor);
-		Point heatAlign(HEAT_COL - font.Width(heatTable[i]), 0.);
-		font.Draw(heatTable[i], point + heatAlign, valueColor);
+		table.Draw(tableLabels[i], labelColor);
+		table.Draw(energyTable[i], valueColor);
+		table.Draw(heatTable[i], valueColor);
 	}
 }
 
@@ -220,7 +207,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeValues.push_back(string());
 	attributesHeight += 10;
 	attributeLabels.push_back("cost:");
-	attributeValues.push_back(Round(ship.Cost()));
+	attributeValues.push_back(Format::Number(ship.Cost()));
 	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
@@ -229,59 +216,67 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	if(attributes.Get("shield generation"))
 	{
 		attributeLabels.push_back("shields charge / max:");
-		attributeValues.push_back(Round(60. * attributes.Get("shield generation"))
-			+ " / " + Round(attributes.Get("shields")));
+		attributeValues.push_back(Format::Number(60. * attributes.Get("shield generation"))
+			+ " / " + Format::Number(attributes.Get("shields")));
 	}
 	else
 	{
 		attributeLabels.push_back("shields:");
-		attributeValues.push_back(Round(attributes.Get("shields")));
+		attributeValues.push_back(Format::Number(attributes.Get("shields")));
 	}
 	attributesHeight += 20;
 	if(attributes.Get("hull repair rate"))
 	{
 		attributeLabels.push_back("hull repair / max:");
-		attributeValues.push_back(Round(60. * attributes.Get("hull repair rate"))
-			+ " / " + Round(attributes.Get("hull")));
+		attributeValues.push_back(Format::Number(60. * attributes.Get("hull repair rate"))
+			+ " / " + Format::Number(attributes.Get("hull")));
 	}
 	else
 	{
 		attributeLabels.push_back("hull:");
-		attributeValues.push_back(Round(attributes.Get("hull")));
+		attributeValues.push_back(Format::Number(attributes.Get("hull")));
 	}
 	attributesHeight += 20;
 	double emptyMass = attributes.Get("mass");
 	attributeLabels.push_back("mass with no cargo:");
-	attributeValues.push_back(Round(emptyMass));
+	attributeValues.push_back(Format::Number(emptyMass));
 	attributesHeight += 20;
 	attributeLabels.push_back("cargo space:");
-	attributeValues.push_back(Round(attributes.Get("cargo space")));
+	attributeValues.push_back(Format::Number(attributes.Get("cargo space")));
 	attributesHeight += 20;
 	attributeLabels.push_back("crew / bunks:");
-	attributeValues.push_back(Round(attributes.Get("required crew"))
-		+ " / " + Round(attributes.Get("bunks")));
+	attributeValues.push_back(Format::Number(attributes.Get("required crew"))
+		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back("fuel:");
-	attributeValues.push_back(Round(attributes.Get("fuel capacity")));
+	attributeValues.push_back(Format::Number(attributes.Get("fuel capacity")));
 	attributesHeight += 20;
 	
+	double fullMass = emptyMass + attributes.Get("cargo space");
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	attributeLabels.push_back("movement, full / no cargo:");
+	attributeLabels.push_back((emptyMass == fullMass) ? "movement:" : "movement, full / no cargo:");
 	attributeValues.push_back(string());
 	attributesHeight += 20;
-	double fullMass = emptyMass + attributes.Get("cargo space");
 	attributeLabels.push_back("max speed");
-	attributeValues.push_back(Round(60. * attributes.Get("thrust") / attributes.Get("drag")));
+	attributeValues.push_back(Format::Number(60. * attributes.Get("thrust") / attributes.Get("drag")));
 	attributesHeight += 20;
+	
 	attributeLabels.push_back("acceleration");
-	attributeValues.push_back(Round(3600. * attributes.Get("thrust") / fullMass)
-		+ " / " + Round(3600. * attributes.Get("thrust") / emptyMass));
+	if(emptyMass == fullMass)
+		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass));
+	else
+		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass)
+			+ " / " + Format::Number(3600. * attributes.Get("thrust") / emptyMass));
 	attributesHeight += 20;
+	
 	attributeLabels.push_back("turning:");
-	attributeValues.push_back(Round(60. * attributes.Get("turn") / fullMass)
-		+ " / " + Round(60. * attributes.Get("turn") / emptyMass));
+	if(emptyMass == fullMass)
+		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass));
+	else
+		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
+			+ " / " + Format::Number(60. * attributes.Get("turn") / emptyMass));
 	attributesHeight += 20;
 	
 	// Find out how much outfit, engine, and weapon space the chassis has.
@@ -306,8 +301,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	for(int i = 0; i < NAMES; i += 2)
 	{
 		attributeLabels.push_back(names[i]);
-		attributeValues.push_back(Round(attributes.Get(names[i + 1]))
-			+ " / " + Round(chassis[names[i + 1]]));
+		attributeValues.push_back(Format::Number(attributes.Get(names[i + 1]))
+			+ " / " + Format::Number(chassis[names[i + 1]]));
 		attributesHeight += 20;
 	}
 	
@@ -331,13 +326,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 30;
 	
 	tableLabels.push_back("idle:");
-	energyTable.push_back(Round(60. * attributes.Get("energy generation")));
-	heatTable.push_back(Round(60. * attributes.Get("heat generation")));
+	energyTable.push_back(Format::Number(60. * attributes.Get("energy generation")));
+	heatTable.push_back(Format::Number(60. * attributes.Get("heat generation")));
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
-	energyTable.push_back(Round(
+	energyTable.push_back(Format::Number(
 		-60. * (attributes.Get("thrusting energy") + attributes.Get("turning energy"))));
-	heatTable.push_back(Round(
+	heatTable.push_back(Format::Number(
 		60. * (attributes.Get("thrusting heat") + attributes.Get("turning heat"))));
 	attributesHeight += 20;
 	double firingEnergy = 0.;
@@ -351,12 +346,12 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 				/ it.first->WeaponGet("reload");
 		}
 	tableLabels.push_back("firing:");
-	energyTable.push_back(Round(-60. * firingEnergy));
-	heatTable.push_back(Round(60. * firingHeat));
+	energyTable.push_back(Format::Number(-60. * firingEnergy));
+	heatTable.push_back(Format::Number(60. * firingHeat));
 	attributesHeight += 20;
 	tableLabels.push_back("max:");
-	energyTable.push_back(Round(attributes.Get("energy capacity")));
-	heatTable.push_back(Round(60. * emptyMass * .1));
+	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
+	heatTable.push_back(Format::Number(60. * emptyMass * .1));
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
 }
@@ -410,13 +405,13 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Round(totalValue - outfitsValue) + " credits");
+	saleValues.push_back(Format::Number(totalValue - outfitsValue) + " credits");
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Round(outfitsValue) + " credits");
+	saleValues.push_back(Format::Number(outfitsValue) + " credits");
 	saleHeight += 20;
 	saleLabels.push_back("= total:");
-	saleValues.push_back(Round(totalValue) + " credits");
+	saleValues.push_back(Format::Number(totalValue) + " credits");
 	saleHeight += 20;
 	
 	// Pad by 10 pixels on the top and bottom.

@@ -214,6 +214,15 @@ void Table::DrawGap(int y) const
 }
 
 
+	
+// Get the point that should be passed to DrawAt() to start the next row at
+// the given location.
+Point Table::GetPoint()
+{
+	return point - Point(0., (rowSize.Y() - font->Height()) / 2);
+}
+
+
 
 // Get the center and size of the current row. This can be used to define
 // what screen region constitutes a mouse click on this particular row.

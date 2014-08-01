@@ -1,11 +1,11 @@
-color "grey" .5 .5 .5 1.
+color bright .7 .7 .7 0.
+color medium .4 .4 .4 0.
+color dim .1 .1 .1 0.
 color "shields" .43 .55 .70 .75
 color "hull" .70 .62 .43 .75
 color "heat" .70 .43 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
-color "light grey" .8 .8 .8 1.
-color "dim grey" .2 .2 .2 0.
 
 interface "main menu"
 	sprite "_menu/compass" 0 0
@@ -19,51 +19,51 @@ interface "main menu"
 		size 120 120
 	label "pilot:" 260 -15
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "pilot" 320 -15
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "ship:" 260 5
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "ship" 320 5
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "planet:" 260 35
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "planet" 320 35
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "system:" 260 55
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "system" 320 55
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "credits:" 260 85
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "credits" 320 85
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "date:" 260 105
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "date" 320 105
 		size 14
-		color "light grey"
+		color bright
 		align left
 	
 	if "pilot loaded"
@@ -71,14 +71,14 @@ interface "main menu"
 		size 90 30
 	label "Enter Ship" 425 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	if "no pilot loaded"
 	button n 425 155
 		size 90 30
 	label "New Pilot" 425 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	endif
 	
@@ -86,7 +86,7 @@ interface "main menu"
 		size 120 30
 	label "Load / Save..." 310 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	
 	# Left panel:
@@ -94,13 +94,13 @@ interface "main menu"
 		size 90 30
 	label "Quit" -295 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button p -410 155
 		size 120 30
 	label "Preferences..." -410 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 
 interface "load menu"
@@ -114,97 +114,97 @@ interface "load menu"
 		size 120 120
 	label "pilot:" 260 -15
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "pilot" 320 -15
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "ship:" 260 5
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "ship" 320 5
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "planet:" 260 35
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "planet" 320 35
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "system:" 260 55
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "system" 320 55
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "credits:" 260 85
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "credits" 320 85
 		size 14
-		color "light grey"
+		color bright
 		align left
 	label "date:" 260 105
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "date" 320 105
 		size 14
-		color "light grey"
+		color bright
 		align left
 	
 	# Greyed out buttons:
 	label "Delete" -295 148
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	label "Add Snapshot" -50 148
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	label "Remove" 65 148
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	label "Enter Ship" 425 148
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	
 	button n -410 155
 		size 120 30
 	label "New Pilot" -410 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	if "pilot selected"
 	button d -295 155
 		size 90 30
 	label "Delete" -295 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	
 	button a -50 155
 		size 120 30
 	label "Add Snapshot" -50 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	if "snapshot selected"
 	button r 65 155
 		size 90 30
 	label "Remove" 65 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	endif
 	
@@ -212,14 +212,14 @@ interface "load menu"
 		size 120 30
 	label "Back to Menu" 310 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	if "pilot loaded"
 	button e 425 155
 		size 90 30
 	label "Enter Ship" 425 148
 		size 14
-		color "light grey"
+		color bright
 		align center
 	endif
 
@@ -232,7 +232,7 @@ interface "preferences"
 		size 120 30
 	label "Back to Menu..." 150 238
 		size 14
-		color "light grey"
+		color bright
 		align center
 
 interface "status"
@@ -241,11 +241,11 @@ interface "status"
 	outline "player sprite" -40 120 dynamic
 		size 70 70
 	string "location" -20 18
-		color "grey"
+		color medium
 	string "date" -20 38
-		color "grey"
+		color medium
 	string "credits" -20 58
-		color "grey"
+		color medium
 	ring "shields" -15 95
 		size 120 120
 		color "shields"
@@ -277,21 +277,21 @@ interface "targets"
 	sprite "ui/navigation" 200 0
 	sprite "ui/target" 0 240
 	string "navigation mode" 215 12
-		color "grey"
+		color medium
 	string "destination" 230 30
-		color "grey"
+		color medium
 	outline "target sprite" 40 280 dynamic
 		size 70 70
 		colored
 	string "target name" 75 385
 		align center
-		color "grey"
+		color medium
 	string "target type" 75 405
 		align center
-		color "grey"
+		color medium
 	string "target government" 75 425
 		align center
-		color "grey"
+		color medium
 	ring "target shields" 15 255
 		size 120 120
 		color "shields"
@@ -311,7 +311,7 @@ interface "planet"
 	sprite "ui/planet dialog button" 280 90
 	label "Shipyard" 340 82
 		size 18
-		color "light grey"
+		color bright
 		align right
 	button s 280 90
 		size 140 40
@@ -320,7 +320,7 @@ interface "planet"
 	sprite "ui/planet dialog button" 280 150
 	label "Outfitter" 340 142
 		size 18
-		color "light grey"
+		color bright
 		align right
 	button o 280 150
 		size 140 40
@@ -329,7 +329,7 @@ interface "planet"
 	sprite "ui/planet dialog button" -400 150
 	label "Job Board" -460 142
 		size 18
-		color "light grey"
+		color bright
 		align left
 	button j -400 150
 		size 140 40
@@ -337,7 +337,7 @@ interface "planet"
 	sprite "ui/planet dialog button" -400 90
 	label "Trading" -460 82
 		size 18
-		color "light grey"
+		color bright
 		align left
 	button t -400 90
 		size 140 40
@@ -345,7 +345,7 @@ interface "planet"
 	sprite "ui/planet dialog button" -400 210
 	label "Bank" -460 202
 		size 18
-		color "light grey"
+		color bright
 		align left
 	button b -400 210
 		size 140 40
@@ -353,7 +353,7 @@ interface "planet"
 	sprite "ui/planet dialog button" 280 210
 	label "Hire Crew" 340 202
 		size 18
-		color "light grey"
+		color bright
 		align right
 	button h 280 210
 		size 140 40
@@ -361,7 +361,7 @@ interface "planet"
 	sprite "ui/planet dialog button" -400 270
 	label "Space Port" -460 262
 		size 18
-		color "light grey"
+		color bright
 		align left
 	button p -400 270
 		size 140 40
@@ -370,7 +370,7 @@ interface "planet"
 	sprite "ui/planet dialog button" 280 270
 	label "Depart" 340 262
 		size 18
-		color "light grey"
+		color bright
 		align right
 	button d 280 270
 		size 140 40
@@ -381,115 +381,115 @@ interface "boarding"
 	
 	label "item" -320 -197
 		size 14
-		color "grey"
+		color medium
 		align left
 	label "value" -60 -197
 		size 14
-		color "grey"
+		color medium
 		align right
 	label "size" 10 -197
 		size 14
-		color "grey"
+		color medium
 		align right
 	
 	label "cargo space free:" -320 67
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "cargo space" 10 67
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "crew" 190  -120
 		size 14
-		color "grey"
+		color medium
 		align right
 	label "attack" 260  -120
 		size 14
-		color "grey"
+		color medium
 		align right
 	label "defense" 330  -120
 		size 14
-		color "grey"
+		color medium
 		align right
 	
 	label "your ship:" 50 -100
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "your crew" 190 -100
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "your attack" 260 -100
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "your defense" 330 -100
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "enemy ship:" 50 -80
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "enemy crew" 190 -80
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "enemy attack" 260 -80
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "enemy defense" 330 -80
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "capture odds (attacking):" 50 -50
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "attack odds" 330 -50
 		size 14
-		color "light grey"
+		color bright
 		align right
 	label "expected casualties:" 50 -30
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "attack casualties" 330 -30
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "survival odds (defending):" 50 0
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "defense odds" 330 0
 		size 14
-		color "light grey"
+		color bright
 		align right
 	label "expected casualties:" 50 20
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "defense casualties" 330 20
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "Take" -235 107
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	if "can take"
 	label "Take" -235 107
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button t -235 115
 		size 70 30
@@ -497,12 +497,12 @@ interface "boarding"
 	
 	label "Done" -155 107
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	if "can exit"
 	label "Done" -155 107
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button x -155 115
 		size 70 30
@@ -510,12 +510,12 @@ interface "boarding"
 	
 	label "Attempt Capture" -40 107
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	if "can capture"
 	label "Attempt Capture" -40 107
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button c -40 115
 		size 140 30
@@ -523,12 +523,12 @@ interface "boarding"
 	
 	label "Attack" 120 177
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	if "can attack"
 	label "Attack" 120 177
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button a 120 185
 		size 80 30
@@ -536,12 +536,12 @@ interface "boarding"
 	
 	label "Defend" 210 177
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	if "can attack"
 	label "Defend" 210 177
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button d 210 185
 		size 80 30
@@ -552,68 +552,68 @@ interface "boarding"
 interface "hiring"
 	label "flagship" -70 80
 		size 14
-		color "light grey"
+		color bright
 		align right
 	label "entire fleet" 50 80
 		size 14
-		color "light grey"
+		color bright
 		align right
 	label "salary" 170 80
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "bunks" -290 105
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "flagship bunks" -70 105
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "fleet bunks" 50 105
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "required crew" -290 125
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "flagship required" -70 125
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "fleet required" 50 125
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "salary required" 170 125
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "extra crew" -290 145
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "flagship extra" -70 145
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "salary extra" 170 145
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "[hire]" -60 135
 		size 14
-		color "dim grey"
+		color dim
 		align left
 	if "can hire"
 	label "[hire]" -60 135
 		size 14
-		color "grey"
+		color medium
 		align left
 	endif
 	button h -40 142
@@ -621,50 +621,50 @@ interface "hiring"
 	
 	label "[fire]" -60 155
 		size 14
-		color "dim grey"
+		color dim
 		align left
 	if "can fire"
 	label "[fire]" -60 155
 		size 14
-		color "grey"
+		color medium
 		align left
 	endif
 	string "modifier" -20 155
 		size 14
-		color "dim grey"
+		color dim
 		align left
 	button f -40 162
 		size 60 20
 	
 	label "passenger space" -290 175
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "flagship unused" -70 175
 		size 14
-		color "light grey"
+		color bright
 		align right
 	string "fleet unused" 50 175
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "passengers" -290 195
 		size 14
-		color "grey"
+		color medium
 		align left
 	string "passengers" 50 195
 		size 14
-		color "light grey"
+		color bright
 		align right
 	
 	label "(Extra crew for your flagship increases your odds of capturing ships," -60 278
 		size 14
-		color "grey"
+		color medium
 		align center
 	label "and once you capture a ship you need crew members to serve on it.)" -60 298
 		size 14
-		color "grey"
+		color medium
 		align center
 
 interface "mission"
@@ -673,53 +673,53 @@ interface "mission"
 	
 	label "cargo space free:" -130 -93
 		size 14
-		color "grey"
+		color medium
 		align center
 	string "cargo free" -130 -73
 		size 14
-		color "light grey"
+		color bright
 		align center
 	
 	label "passenger space:" 0 -93
 		size 14
-		color "grey"
+		color medium
 		align center
 	string "bunks free" 0 -73
 		size 14
-		color "light grey"
+		color bright
 		align center
 	
 	label "today's date:" 130 -93
 		size 14
-		color "grey"
+		color medium
 		align center
 	string "today" 130 -73
 		size 14
-		color "light grey"
+		color bright
 		align center
 	
 	if "can accept"
 	label "Accept Mission" -45 -33
 		size 14
-		color "light grey"
+		color bright
 		align center
 	endif
 	if "can abort"
 	label "Abort Mission" -45 -33
 		size 14
-		color "light grey"
+		color bright
 		align center
 	endif
 	if "cannot accept"
 	label "Accept Mission" -45 -33
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	endif
 	if "cannot abort"
 	label "Abort Mission" -45 -33
 		size 14
-		color "dim grey"
+		color dim
 		align center
 	endif
 	button a -45 -10
@@ -727,7 +727,7 @@ interface "mission"
 	
 	label "Done" 70 -33
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button d 70 -10
 		size 80 30
@@ -745,11 +745,11 @@ interface "info panel"
 	sprite "ui/ship tab" 0 -300
 	label "Ship Info" -300 -303
 		size 14
-		color "light grey"
+		color bright
 		align center
 	label "Player Info" -420 -303
 		size 14
-		color "grey"
+		color medium
 		align center
 	button i -420 -295
 		size 120 30
@@ -759,11 +759,11 @@ interface "info panel"
 	sprite "ui/player tab" 0 -300
 	label "Ship Info" -300 -303
 		size 14
-		color "grey"
+		color medium
 		align center
 	label "Player Info" -420 -303
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button s -300 -295
 		size 120 30
@@ -771,14 +771,14 @@ interface "info panel"
 	
 	label "Done" 455 287
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button d 455 295
 		size 90 30
 	
 	label "Missions..." 355 287
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button m 355 295
 		size 90 30
@@ -786,13 +786,13 @@ interface "info panel"
 	if "four buttons"
 	label "Next" 255 287
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button n 255 295
 		size 90 30
 	label "Previous" 155 287
 		size 14
-		color "light grey"
+		color bright
 		align center
 	button p 155 295
 		size 90 30
