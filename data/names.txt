@@ -45,7 +45,7 @@ name "civilian"
 		"Jane's"
 		"River's"
 		"Aletheia's"
-		"Montmorency's"
+		"Monty's"
 		"Sara's"
 	word
 		" Folly"
@@ -57,7 +57,7 @@ name "civilian"
 		" Moneymaker"
 		" Destiny"
 		" Wings"
-		" Awesome Spaceship"
+		" Starship"
 
 name "civilian"
 	word
@@ -165,6 +165,85 @@ name "republic capital"
 		"Tabor"
 		"Washington"
 		"Haleakala"
+
+name "deep"
+	word
+		"D.S.S. "
+	word
+		Aristotle
+		Aristarchus
+		Archimedes
+		Avogadro
+		Abbe
+		Alcubierre
+		Abbott
+		Alvarez
+		Angstrom
+		Anderson
+		Bell
+		Becquerel
+		Bernoulli
+		Bohr
+		Brahe
+		Cherenkov
+		Coriolis
+		Coulomb
+		Curie
+		Dalton
+		Democritus
+		Dewar
+		Dirac
+		Doppler
+		Einstein
+		Englert
+		Euler
+		Edison
+		Fahrenheit
+		Faraday
+		Fermi
+		Feynman
+		Fourier
+		Franklin
+		Fresnel
+		Galvani
+		Geiger
+		Hall
+		Hawking
+		Heisenberg
+		Hertz
+		Higgs
+		Hooke
+		Hubble
+		Huygens
+		Joule
+		Kepler
+		Lagrange
+		Lebedev
+		Leibniz
+		Lyapunov
+		Mach
+		Marconi
+		Maxwell
+		Neumann
+		Newcomb
+		Newton
+		Ohm
+		Oppenheimer
+		Pascal
+		Penrose
+		Planck
+		Poincare
+		Poisson
+		Rayleigh
+		Richter
+		Roentgen
+		Sagan
+		Schroedinger
+		Schwarzschild
+		Tesla
+		Watson
+		Watt
+		Weber
 
 name "militia"
 	word
@@ -323,6 +402,238 @@ name "free worlds capital"
 		"Traveler"
 		"Spurge"
 		"Linden"
+
+name "syndicate capital"
+	word
+		"S.S. "
+	word
+		Africanus
+		Agrippa
+		Varus
+		Antonius
+		Diogenes
+		Aquila
+		Atticus
+		Augustus
+		Aurelius
+		Brutus
+		Caesar
+		Julius
+		Calpurnia
+		Cassius
+		Catilina
+		Cato
+		Catullus
+		Cicero
+		Cincinnatus
+		Claudius
+		Clemens
+		Commodus
+		Coriolanus
+		Metella
+		Crassus
+		Diocletian
+		Domitian
+		Fabius
+		Felix
+		Festus
+		Flaccus
+		Horace
+		Caligula
+		Gracchus
+		Hadrian
+		Lucretia
+		Lucretius
+		Licinius
+		Metellus
+		Milo
+		Nero
+		Nerva
+		Flavian
+		Ovid
+		Paullus
+		Petronius
+		Piso
+		Placidus
+		Plautus
+		Pliny
+		Trajan
+		Plutarch
+		Pompeius
+		Pompilius
+		Porcia
+		Porsenna
+		Remus
+		Romulus
+		Roscius
+		Rufus
+		Sabinus
+		Sallust
+		Octavian
+		Scaevola
+		Scipio
+		Severus
+		Suetonius
+		Sulla
+		Tacitus
+		Tarquin
+		Tiberius
+		Trajan
+		Valerian
+		Varus
+		Vespasian
+		Virgil
+
+name "republic small"
+	word
+		"R.N.S. "
+	word
+		Nile
+		Amazon
+		Mississippi
+		Yangtze
+		Zaire
+		Mackenzie
+		Niger
+		Mekong
+		Volga
+		Madeira
+		Yukon
+		Rio
+		Indus
+		Danube
+		Euphrates
+		Darling
+		Zambezi
+		Murray
+		Nelson
+		Paraguay
+		Ural
+		Ganges
+		Oxus
+		Salween
+		Arkansas
+		Colorado
+		Dnieper
+		Allegheny
+		Irawaddy
+		Orange
+		Orinocco
+		Pilcomayo
+		Columbia
+		Don
+		Sungari
+		Saskatchewan
+		Peace
+		Tigris
+		Breede
+		Modder
+		Ohlanga
+		Palala
+		Alph
+		Onyx
+		Amur
+		Angara
+		Dongjiang
+		Pearl
+		Daly
+		Flinders
+		Cooper
+		Barwon
+		Lachlan
+		Macquarie
+		Waikato
+		Yarra
+		Avon
+		Boyne
+		Clwyd
+		Hayle
+		Lagan
+		Mersey
+		Narva
+		Rhine
+		Severn
+		Thames
+		Tyne
+		Hiwassee
+		Loup
+		Platte
+		Potomac
+		Schuylkill
+		Susquehanna
+		Wabash
+
+name "free worlds small"
+	word
+		"F.S. "
+	word
+		Lily
+		Thistle
+		Amaryllis
+		Daisy
+		Bell
+		Bergamot
+		Buttercup
+		Chrysanthemum
+		Banksia
+		Carnation
+		Aster
+		Columbina
+		Orchid
+		Daffodil
+		Primrose
+		Cherry
+		Foxglove
+		Foxtail
+		Gentian
+		Ginger
+		Gilly
+		Amarath
+		Goldenrod
+		Viburnum
+		Hyacinth
+		Larkspur
+		Lavender
+		Lilac
+		Loosestrife
+		Marigold
+		Mimosa
+		Mum
+		Peony
+		Rose
+		Safflower
+		Scarlet
+		Slipper
+		Snapdragon
+		Berry
+		Snowdrop
+		Spurge
+		Sedum
+		Stonecrop
+		Sunflower
+		Tulip
+		Yarrow
+		Ambrosia
+		Bittersweet
+		Brier
+		Clover
+		Nettle
+		Holly
+		Ivy
+		Morel
+		Nightshade
+		Poke
+		Rye
+		Saffron
+		Sorrel
+		Sage
+		Rosemary
+		Thyme
+		Trilium
+		Violet
+		Purslane
+		Vetch
+		Burdock
 
 name "syndicate small"
 	word
@@ -488,6 +799,163 @@ name "syndicate fighter"
 		7
 		8
 		9
+
+name "pirate"
+	word
+		"Caleuche"
+		"Lady Lovibond"
+		"Flying Dutchman"
+		"Princess Augusta"
+		"Eliza Battle"
+		"Iron Mountain"
+		"Euridyce"
+		"Valencia"
+		"Octavius"
+		"Jenny"
+		"Ourang Medan"
+		"Sea Bird"
+		"Resolute"
+		"Mary Celeste"
+		"Resolven"
+		"Zebrina"
+		"Deering"
+		"Bavchimo"
+		"Governor Parr"
+		"Joyita"
+		"Teignmouth Electron"
+		"Ocean Wave"
+		"High Aim"
+		"Jian Seng"
+		"Bel Amica"
+		"Kaz II"
+		"Tai Ching"
+		"Lunatic"
+		"Ryou-Un Maru"
+		"T. T. Zion"
+		"Lyubov Orlova"
+		"Skeleton Key"
+		"Ampoliros"
+		"Demeter"
+		"William Kidd"
+		"Adventure Gallery"
+		"Adventure Prize"
+		"Blackbeard"
+		"Queen Anne's Revenge"
+		"Adventure"
+		"Good Fortune"
+		"Scowerer"
+		"Wyndham Galley"
+		"Speakwell"
+		"Sultana"
+		"Whydah"
+		"Ranger"
+		"Lark"
+		"Flying Dragon"
+		"Golden Fleece"
+		"Trompeuse"
+		"La Novelle Trompeuse"
+		"Sea Nymph"
+		"Rising Sun"
+		"Postillion"
+		"Indian Queen"
+		"Marianne"
+		"Revenge"
+		"Happy Return"
+		"Night Rambler"
+		"Flying King"
+		"Delight"
+		"Amity"
+		"Liberty"
+		"Royal James"
+		"Fancy Dutch"
+		"Pembroke"
+		"Margaret"
+		"Prosperous"
+		"Rose Pink"
+		"Squirrel"
+		"Merry Christmas"
+		"Roebuck"
+		"Katherine"
+		"Defiance"
+		"Rover"
+		"Diamond Grey"
+		"Barsheba"
+		"St. Marie"
+		"Grey Wolf"
+		"Sea Wolf"
+		"Morning Star"
+		"Antelope"
+
+name "pirate"
+	word
+		"Sea "
+		"Grey "
+		"Morning "
+		"Night "
+		"Evening "
+		"Midnight "
+		"Black "
+		"Dead "
+		"Golden "
+		"Silver "
+		"Flying "
+		"Dark "
+		"Sky "
+		"Sunset "
+		"Shadow "
+	word
+		"Star"
+		"Nymph"
+		"Queen"
+		"Wolf"
+		"Rover"
+		"Rambler"
+		"King"
+		"Prince"
+		"Princess"
+		"Dragon"
+		"Galley"
+		"Hunter"
+		"Kill"
+		"Killer"
+		"Bandit"
+		"Thief"
+		"Chain"
+		"Falcon"
+		"Raptor"
+		"Hawk"
+		"Stag"
+		"Fog"
+
+name "pirate"
+	word
+		"Blood"
+		"Night"
+		"Death"
+		"Doom"
+		"Dark"
+		"Free"
+		"Hate"
+		"Mad"
+		"Mind"
+		"Gut"
+	word
+		"oath"
+		"fire"
+		"spit"
+		"night"
+		"fury"
+		"rot"
+		"bat"
+		"bath"
+		"blade"
+		"flame"
+		"curse"
+		"scowl"
+		"wrench"
+		"wrought"
+		"corpse"
+		"fear"
 
 name "quarg"
 	word

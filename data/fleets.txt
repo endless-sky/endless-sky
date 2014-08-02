@@ -172,7 +172,7 @@ fleet "Large Northern Merchants"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
-	names "free worlds capital"
+	names "free worlds small"
 	cargo 1
 	personality
 		heroic
@@ -223,7 +223,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Republic"
 	government "Republic"
-	names "republic capital"
+	names "republic small"
 	cargo 0
 	personality
 		heroic
@@ -277,7 +277,7 @@ fleet "Large Republic"
 
 fleet "Small Deep"
 	government "Republic"
-	names "civilian"
+	names "deep"
 	cargo 0
 	personality
 		heroic
@@ -289,7 +289,7 @@ fleet "Small Deep"
 
 fleet "Large Deep"
 	government "Republic"
-	names "civilian"
+	names "deep"
 	fighters "deep fighter"
 	cargo 0
 	personality
@@ -318,7 +318,7 @@ fleet "Small Syndicate"
 
 fleet "Large Syndicate"
 	government "Syndicate"
-	names "syndicate small"
+	names "syndicate capital"
 	fighters "syndicate fighter"
 	cargo 2
 	personality
@@ -340,7 +340,7 @@ fleet "Large Syndicate"
 
 fleet "Small Southern Pirates"
 	government "Pirate"
-	names "civilian"
+	names "pirate"
 	cargo 1
 	personality
 		plunders
@@ -373,7 +373,7 @@ fleet "Small Southern Pirates"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
-	names "civilian"
+	names "pirate"
 	cargo 1
 	personality
 		plunders
@@ -396,7 +396,7 @@ fleet "Large Southern Pirates"
 
 fleet "Small Core Pirates"
 	government "Pirate"
-	names "civilian"
+	names "pirate"
 	cargo 1
 	personality
 		plunders
@@ -413,7 +413,7 @@ fleet "Small Core Pirates"
 
 fleet "Large Core Pirates"
 	government "Pirate"
-	names "civilian"
+	names "pirate"
 	cargo 1
 	personality
 		plunders
@@ -431,7 +431,7 @@ fleet "Large Core Pirates"
 
 fleet "Small Northern Pirates"
 	government "Pirate"
-	names "civilian"
+	names "pirate"
 	cargo 1
 	personality
 		plunders
@@ -444,7 +444,7 @@ fleet "Small Northern Pirates"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
-	names "civilian"
+	names "pirate"
 	cargo 1
 	personality
 		plunders
