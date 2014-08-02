@@ -12,7 +12,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-
+#include "Dialog.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "MainPanel.h"
@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
@@ -149,6 +150,14 @@ int main(int argc, char *argv[])
 		UI gamePanels;
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
+		
+		const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
+		if(!strstr(extensions, "GL_ARB_texture_swizzle"))
+			menuPanels.Push(new Dialog(
+				"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
+				"which Endless Sky uses to draw ships in different colors depending on which "
+				"government they belong to. So, all human ships will be the same color, which "
+				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 		
 		FrameTimer timer(60);
 		while(!menuPanels.IsDone())
