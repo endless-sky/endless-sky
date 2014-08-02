@@ -162,6 +162,7 @@ interface "load menu"
 		align left
 	
 	# Greyed out buttons:
+	if "!pilot selected"
 	label "Delete" -295 148
 		size 14
 		color dim
@@ -170,14 +171,17 @@ interface "load menu"
 		size 14
 		color dim
 		align center
+	if "!snapshot selected"
 	label "Remove" 65 148
 		size 14
 		color dim
 		align center
+	if "!pilot loaded"
 	label "Enter Ship" 425 148
 		size 14
 		color dim
 		align center
+	endif
 	
 	button n -410 155
 		size 120 30
@@ -482,6 +486,7 @@ interface "boarding"
 		color bright
 		align right
 	
+	if "!can take"
 	label "Take" -235 107
 		size 14
 		color dim
@@ -495,6 +500,7 @@ interface "boarding"
 		size 70 30
 	endif
 	
+	if "!can exit"
 	label "Done" -155 107
 		size 14
 		color dim
@@ -508,6 +514,7 @@ interface "boarding"
 		size 70 30
 	endif
 	
+	if "!can capture"
 	label "Attempt Capture" -40 107
 		size 14
 		color dim
@@ -521,6 +528,7 @@ interface "boarding"
 		size 140 30
 	endif
 	
+	if "!can attack"
 	label "Attack" 120 177
 		size 14
 		color dim
@@ -534,6 +542,7 @@ interface "boarding"
 		size 80 30
 	endif
 	
+	if "!can attack"
 	label "Defend" 210 177
 		size 14
 		color dim
@@ -606,6 +615,7 @@ interface "hiring"
 		color bright
 		align right
 	
+	if "!can hire"
 	label "[hire]" -60 135
 		size 14
 		color dim
@@ -619,6 +629,7 @@ interface "hiring"
 	button h -40 142
 		size 60 20
 	
+	if "!can fire"
 	label "[fire]" -60 155
 		size 14
 		color dim

@@ -111,6 +111,9 @@ bool Information::HasCondition(const string &condition) const
 	if(condition.empty())
 		return true;
 	
+	if(condition.front() == '!')
+		return !HasCondition(condition.substr(1));
+	
 	return (conditions.find(condition) != conditions.end());
 }
 
