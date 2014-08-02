@@ -1,3 +1,13 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
 conversation "intro"
 	scene "scene/lobby"
 	"The bank's architecture is what you would have called ''futuristic'' back when you dreamed that the future would be less squalid than the present, story above story of curves and spires and balconies. There is a doorman for each of the heavy glass doors: a pair on the outside, and a pair leading from the vestibule into the lobby. You are wearing your very best clothes, but you feel shabby next to them."
