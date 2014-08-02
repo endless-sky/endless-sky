@@ -431,16 +431,14 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	{
 		if(ships.size() < 2)
 			return;
-		const string &category = ships[1]->Attributes().Category();
-		if(category == "Fighter" || category == "Drone")
+		if(ships[1]->IsFighter())
 			return;
 	}
 	
 	if(!toIndex)
 	{
 		// Check that this ship is eligible to be a flagship.
-		const string &category = ships[fromIndex]->Attributes().Category();
-		if(category == "Fighter" || category == "Drone")
+		if(ships[fromIndex]->IsFighter())
 			++toIndex;
 		if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->Hull() <= 0.)
 			++toIndex;
