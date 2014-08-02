@@ -128,12 +128,13 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 	bool isArmed = false;
 	for(const Armament::Weapon &weapon : ship.Weapons())
 		isArmed |= (weapon.GetOutfit() != nullptr);
-	if(!isArmed || ship.Shields() + ship.Hull() < 1.)
+	if(!isArmed)
 		return target;
 	
 	// Find the closest enemy ship (if there is one).
 	double closest = numeric_limits<double>::infinity();
 	const System *system = ship.GetSystem();
+	bool isDisabled = false;
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
@@ -150,8 +151,13 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 			{
 				closest = range;
 				target = it;
+				isDisabled = it->IsDisabled();
 			}
 		}
+	
+	// Run away if your target is not disabled and you are badly damaged.
+	if(!isDisabled && ship.Shields() + ship.Hull() < 1.)
+		target.reset();
 	
 	return target;
 }
