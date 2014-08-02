@@ -59,8 +59,7 @@ void ShopPanel::Draw() const
 void ShopPanel::DrawSidebar() const
 {
 	const Font &font = FontSet::Get(14);
-	Color bright(.8, 0.);
-	Color dim(.5, 0.);
+	Color bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
 	
 	// Fill in the background.
@@ -119,8 +118,8 @@ void ShopPanel::DrawButtons() const
 		Point(SIDE_WIDTH, 1), Color(.3, 1.));
 	
 	const Font &font = FontSet::Get(14);
-	Color bright(.8, 0.);
-	Color dim(.5, 0.);
+	Color bright = *GameData::Colors().Get("bright");
+	Color dim = *GameData::Colors().Get("medium");
 	
 	Point point(
 		Screen::Right() - SIDE_WIDTH + 10,
@@ -167,7 +166,7 @@ void ShopPanel::DrawButtons() const
 void ShopPanel::DrawMain() const
 {
 	const Font &bigFont = FontSet::Get(18);
-	Color bright(.8, 0.);
+	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
 	
 	// Draw all the available ships.
@@ -210,7 +209,7 @@ void ShopPanel::DrawMain() const
 			
 			if(isSelected)
 			{
-				Color color(.2, 1.);
+				Color color = *GameData::Colors().Get("dim");
 				int dy = DividerOffset();
 				
 				float before = point.X() - TILE_SIZE / 2 - Screen::Left();
@@ -285,7 +284,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
-	font.Draw(name, center + offset, Color(.8, 0.));
+	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
 	float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
 	int swizzle = 5;

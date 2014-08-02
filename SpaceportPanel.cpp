@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "Point.h"
 
 using namespace std;
@@ -35,5 +36,5 @@ SpaceportPanel::SpaceportPanel(const string &description)
 
 void SpaceportPanel::Draw() const
 {
-	text.Draw(Point(-300., 80.), Color(.8));
+	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
 }

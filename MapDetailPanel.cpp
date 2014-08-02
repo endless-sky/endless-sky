@@ -214,7 +214,7 @@ void MapDetailPanel::DrawInfo() const
 	static const string DONE = "Done";
 	buttonCenter.X() -= .5 * font.Width(DONE);
 	buttonCenter.Y() -= .5 * font.Height();
-	font.Draw(DONE, buttonCenter, Color(.8, 0.));
+	font.Draw(DONE, buttonCenter, *GameData::Colors().Get("bright"));
 }
 
 

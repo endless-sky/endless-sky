@@ -364,8 +364,8 @@ void Engine::Draw() const
 	Point pos(Screen::Right() - 80, Screen::Bottom());
 	const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
 	const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
-	Color selectedColor(.8, 0.);
-	Color unselectedColor(.3, 0.);
+	Color selectedColor = *GameData::Colors().Get("bright");
+	Color unselectedColor = *GameData::Colors().Get("dim");
 	for(const pair<const Outfit *, int> &it : ammo)
 	{
 		pos.Y() -= 30.;
@@ -416,7 +416,7 @@ void Engine::Draw() const
 	if(GameData::ShouldShowLoad())
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
-		Color color(.4, 0.);
+		Color color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(0., Screen::Height() * -.5 + 20.), color);
 	}
 }

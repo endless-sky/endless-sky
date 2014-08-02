@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
@@ -97,16 +98,15 @@ void ConversationPanel::Draw() const
 	
 	const Font &font = FontSet::Get(14);
 	
-	Color dim(.2, 0.);
-	Color grey(.5, 0.);
+	Color selectionColor = *GameData::Colors().Get("faint");
+	Color dim = *GameData::Colors().Get("dim");
+	Color grey = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
 	for(const WrappedText &it : text)
 	{
 		it.Draw(point, grey);
 		point.Y() += it.Height();
 	}
-	
-	Color bright(.8, 0.);
-	Color selectionColor(.1, 0.);
 	
 	zones.clear();
 	if(node < 0)

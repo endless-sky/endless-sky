@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "Point.h"
 #include "Screen.h"
 #include "shift.h"
@@ -79,8 +80,9 @@ void Dialog::Draw() const
 	pos.Y() += bottom->Height() * .5 - 25.;
 	
 	// Draw the buttons, including optionally the cancel button.
-	Color bright(.8, 0.);
-	Color dim(.5, 0.);
+	Color bright = *GameData::Colors().Get("bright");
+	Color dim = *GameData::Colors().Get("medium");
+	Color back = *GameData::Colors().Get("faint");
 	if(canCancel)
 	{
 		cancelPos = pos + Point(10., 0.);
@@ -102,7 +104,7 @@ void Dialog::Draw() const
 	// Draw the input, if any.
 	if(intFun || stringFun)
 	{
-		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), Color(.1, 0));
+		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), back);
 		
 		Point stringPos(
 			inputPos.X() - (WIDTH - 20) * .5 + 5.,

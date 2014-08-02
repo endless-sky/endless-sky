@@ -213,9 +213,9 @@ void InfoPanel::UpdateInfo()
 
 void InfoPanel::DrawInfo() const
 {
-	Color dim(.5, 0.);
-	Color bright(.8, 0.);
-	Color elsewhere(.2, 0.);
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	Color elsewhere = *GameData::Colors().Get("dim");
 	Color dead(.4, 0., 0., 0.);
 	const Font &font = FontSet::Get(14);
 	
@@ -311,8 +311,8 @@ void InfoPanel::DrawShip() const
 	if(player.Ships().empty())
 		return;
 	
-	Color dim(.5, 0.);
-	Color bright(.8, 0.);
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
 	const Font &font = FontSet::Get(14);
 	const Ship &ship = **shipIt;
 	
@@ -476,10 +476,10 @@ void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) 
 		return;
 	
 	const Font &font = FontSet::Get(14);
-	double high = (index == hover ? .8 : .5);
-	Color textColor(high, 0.);
+	Color textColor = *GameData::Colors().Get(index == hover ? "bright" : "medium");
 	font.Draw(outfit->Name(), pos, textColor);
 	
+	double high = (index == hover ? .8 : .5);
 	Color color(high, .75 * high, 0., 1.);
 	if((**shipIt).Weapons()[index].IsTurret())
 		color = Color(0., .75 * high, high, 1.);
