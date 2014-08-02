@@ -66,6 +66,7 @@ void InfoPanel::Draw() const
 	const Interface *interface = GameData::Interfaces().Get("info panel");
 	interface->Draw(interfaceInfo);
 	
+	zones.clear();
 	if(showShip)
 		DrawShip();
 	else
@@ -254,7 +255,6 @@ void InfoPanel::DrawInfo() const
 	FillShader::Fill(pos + Point(365., 15.), Point(730., 1.), dim);
 	
 	pos.Y() += 5.;
-	zones.clear();
 	int index = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
