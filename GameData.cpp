@@ -370,7 +370,7 @@ void GameData::LoadFile(const string &path)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "shipName" && node.Size() >= 2)
+		else if(key == "name" && node.Size() >= 2)
 			shipNames.Get(node.Token(1))->Load(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);

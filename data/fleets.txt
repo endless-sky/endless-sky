@@ -162,7 +162,7 @@ fleet "Large Northern Merchants"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
-	names "civilian"
+	names "free worlds capital"
 	cargo 1
 	personality
 		heroic
@@ -183,7 +183,7 @@ fleet "Small Free Worlds"
 
 fleet "Large Free Worlds"
 	government "Free Worlds"
-	names "civilian"
+	names "free worlds capital"
 	cargo 1
 	personality
 		heroic
@@ -213,7 +213,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Republic"
 	government "Republic"
-	names "civilian"
+	names "republic capital"
 	cargo 0
 	personality
 		heroic
@@ -229,8 +229,8 @@ fleet "Small Republic"
 
 fleet "Large Republic"
 	government "Republic"
-	names "civilian"
-	"fighter names" "republic fighter"
+	names "republic capital"
+	fighters "republic fighter"
 	cargo 0
 	personality
 		heroic
@@ -280,7 +280,7 @@ fleet "Small Deep"
 fleet "Large Deep"
 	government "Republic"
 	names "civilian"
-	"fighter names" "republic fighter"
+	fighters "deep fighter"
 	cargo 0
 	personality
 		heroic
@@ -296,7 +296,7 @@ fleet "Large Deep"
 
 fleet "Small Syndicate"
 	government "Syndicate"
-	names "civilian"
+	names "syndicate small"
 	cargo 2
 	personality
 		heroic
@@ -308,7 +308,8 @@ fleet "Small Syndicate"
 
 fleet "Large Syndicate"
 	government "Syndicate"
-	names "civilian"
+	names "syndicate small"
+	fighters "syndicate fighter"
 	cargo 2
 	personality
 		heroic
