@@ -123,7 +123,7 @@ void Ship::Load(const DataNode &node)
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits.
-	explosionWeapon = &baseAttributes;
+	explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
 }
 
 
@@ -1266,6 +1266,14 @@ int Ship::OutfitCount(const Outfit *outfit) const
 const Outfit &Ship::Attributes() const
 {
 	return attributes;
+}
+
+
+
+
+const Outfit &Ship::BaseAttributes() const
+{
+	return baseAttributes;
 }
 
 
