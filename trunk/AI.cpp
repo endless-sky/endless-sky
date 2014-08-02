@@ -94,9 +94,25 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			if(target)
 				targetDistance = target->Position().Distance(it->Position());
 			
-			if(it->IsFighter())
+			// Handle fighters:
+			const string &category = it->Attributes().Category();
+			bool isDrone = (category == "Drone");
+			bool isFighter = (category == "Fighter");
+			if(isDrone || isFighter)
 			{
 				shared_ptr<const Ship> parent = it->GetParent().lock();
+				if(!parent)
+				{
+					// Handle orphaned fighters and drones.
+					for(const auto &other : ships)
+						if(other->GetGovernment() == it->GetGovernment())
+							if((isDrone && other->DroneBaysFree())
+									|| (isFighter && other->FighterBaysFree()))
+							{
+								it->SetParent(other);
+								break;
+							}
+				}
 				if(parent && !parent->HasLaunchCommand())
 				{
 					MoveTo(*it, *it, parent->Position(), 40., .8);
