@@ -1,4 +1,4 @@
-shipName "civilian"
+name "civilian"
 	word
 		"Shockwave"
 		"Cloud"
@@ -24,7 +24,7 @@ shipName "civilian"
 		" Beater"
 		" Racer"
 
-shipName "civilian"
+name "civilian"
 	word
 		"Alan's"
 		"Logan's"
@@ -49,7 +49,7 @@ shipName "civilian"
 		" Wings"
 		" Awesome Spaceship"
 
-shipName "civilian"
+name "civilian"
 	word
 		"Heart"
 		"Ring"
@@ -72,7 +72,313 @@ shipName "civilian"
 		"the Future"
 		"the Morning"
 
-shipName "republic fighter"
+name "republic capital"
+	word
+		"R.N.S. "
+	word
+		"Everest"
+		"Kilimanjaro"
+		"Massif"
+		"McKinley"
+		"Aconcagua"
+		"Denali"
+		"Kenya"
+		"Logan"
+		"Cathkin"
+		"Elgon"
+		"Sinai"
+		"Erebus"
+		"Kirkpatrick"
+		"Markham"
+		"McClintock"
+		"McMaster"
+		"Annapurna"
+		"Kamet"
+		"Lhotse"
+		"Makalu"
+		"Shivling"
+		"Kangri"
+		"Laila"
+		"Mitre"
+		"Ultar"
+		"Jade"
+		"Fuji"
+		"Korbu"
+		"Victoria"
+		"Ararat"
+		"Hermon"
+		"Hebron"
+		"Breithorn"
+		"Eiger"
+		"Paradiso"
+		"Olympus"
+		"Matterhorn"
+		"Nordend"
+		"Weisshorn"
+		"Etna"
+		"Parnassus"
+		"Vesuvius"
+		"Telemark"
+		"Oppland"
+		"Snowdon"
+		"Scafell"
+		"Vancouver"
+		"Hubbard"
+		"Walsh"
+		"Augusta"
+		"Strickland"
+		"Cook"
+		"Columbia"
+		"Wood"
+		"Douglas"
+		"Hector"
+		"Razorback"
+		"Raleigh"
+		"Blackcomb"
+		"Thor"
+		"Sierra"
+		"Adams"
+		"Baker"
+		"Baxter"
+		"Clark"
+		"Cleveland"
+		"Evans"
+		"Foraker"
+		"Gannett"
+		"Greylock"
+		"Helen"
+		"Hood"
+		"Jackson"
+		"Monadnock"
+		"Rainier"
+		"Sacagawea"
+		"Tabor"
+		"Washington"
+		"Haleakala"
+
+name "militia"
+	word
+		"I.M.S. "
+	word
+		"Terebinth"
+		"Tamarack"
+		"Juniper"
+		"Maple"
+		"Willow"
+		"Cedar"
+		"Ponderosa"
+		"Douglas"
+		"Elm"
+		"Cork"
+		"Hemlock"
+		"Larch"
+		"Sequoia"
+		"Redwood"
+		"Ginko"
+		"Dogwood"
+		"Bartlett"
+		"Magnolia"
+		"Baobab"
+		"Banyan"
+		"Cypress"
+		"Teak"
+		"Hawthorn"
+		"Hophorn"
+		"Poplar"
+		"Sycamore"
+		"Aspen"
+		"Holly"
+		"Ebony"
+		"Birch"
+		"Borage"
+		"Asphodel"
+		"Heath"
+		"Beech"
+		"Laurel"
+		"Myrtle"
+		"Buckthorn"
+		"Nightshade"
+		"Tamarisk"
+		"Pinyon"
+		"Eucalyptus"
+		"Joshua"
+		"Yucca"
+		"Torrey"
+		"Sumac"
+		"Aloe"
+		"Alder"
+		"Hazel"
+		"Ironwood"
+		"Elder"
+		"Mangrove"
+		"Persimmon"
+		"Crabwood"
+		"Tallow"
+		"Winterthorn"
+		"Senna"
+		"Carob"
+		"Redbud"
+		"Coral"
+		"Locust"
+		"Hickory"
+		"Lancewood"
+		"Sassafras"
+		"Primrose"
+		"Brisbane"
+		"Ash"
+		"Privet"
+		"Raywood"
+		"Quince"
+		"Medlar"
+		"Balsam"
+		"Traveler"
+		"Spurge"
+		"Linden"
+
+name "free worlds capital"
+	word
+		"F.S. "
+	word
+		"Terebinth"
+		"Tamarack"
+		"Juniper"
+		"Maple"
+		"Willow"
+		"Cedar"
+		"Ponderosa"
+		"Douglas"
+		"Elm"
+		"Cork"
+		"Hemlock"
+		"Larch"
+		"Sequoia"
+		"Redwood"
+		"Ginko"
+		"Dogwood"
+		"Bartlett"
+		"Magnolia"
+		"Baobab"
+		"Banyan"
+		"Cypress"
+		"Teak"
+		"Hawthorn"
+		"Hophorn"
+		"Poplar"
+		"Sycamore"
+		"Aspen"
+		"Holly"
+		"Ebony"
+		"Birch"
+		"Borage"
+		"Asphodel"
+		"Heath"
+		"Beech"
+		"Laurel"
+		"Myrtle"
+		"Buckthorn"
+		"Nightshade"
+		"Tamarisk"
+		"Pinyon"
+		"Eucalyptus"
+		"Joshua"
+		"Yucca"
+		"Torrey"
+		"Sumac"
+		"Aloe"
+		"Alder"
+		"Hazel"
+		"Ironwood"
+		"Elder"
+		"Mangrove"
+		"Persimmon"
+		"Crabwood"
+		"Tallow"
+		"Winterthorn"
+		"Senna"
+		"Carob"
+		"Redbud"
+		"Coral"
+		"Locust"
+		"Hickory"
+		"Lancewood"
+		"Sassafras"
+		"Primrose"
+		"Brisbane"
+		"Ash"
+		"Privet"
+		"Raywood"
+		"Quince"
+		"Medlar"
+		"Balsam"
+		"Traveler"
+		"Spurge"
+		"Linden"
+
+name "syndicate small"
+	word
+		"S-"
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+	word
+		A
+		B
+		C
+		D
+		E
+		F
+		G
+		H
+		I
+		J
+		K
+		L
+		M
+		N
+		O
+		P
+		Q
+		R
+		S
+		T
+		U
+		V
+		W
+		X
+		Y
+		Z
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+
+name "republic fighter"
 	word
 		"Red "
 		"Orange "
@@ -96,7 +402,84 @@ shipName "republic fighter"
 		"Eleven"
 		"Twelve"
 
-shipName "quarg"
+name "deep fighter"
+	word
+		"Alpha "
+		"Beta "
+		"Gamma "
+		"Delta "
+		"Epsilon "
+	word
+		"One"
+		"Two"
+		"Three"
+		"Four"
+		"Five"
+		"Six"
+		"Seven"
+		"Eight"
+		"Nine"
+		"Ten"
+		"Eleven"
+		"Twelve"
+
+name "free worlds fighter"
+	word
+		"Wolf "
+		"Hound "
+		"Fox "
+	word
+		"One"
+		"Two"
+		"Three"
+		"Four"
+		"Five"
+		"Six"
+		"Seven"
+		"Eight"
+		"Nine"
+		"Ten"
+		"Eleven"
+		"Twelve"
+
+name "syndicate fighter"
+	word
+		"F-"
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+
+name "quarg"
 	word
 		"Quar"
 		"Mer"

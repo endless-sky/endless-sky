@@ -23,7 +23,7 @@ using namespace std;
 
 void ShipName::Load(const DataNode &node)
 {
-	if(node.Token(0) != "shipName")
+	if(node.Token(0) != "name")
 		return;
 	
 	words.push_back(vector<vector<string>>());

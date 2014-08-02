@@ -45,7 +45,7 @@ void Fleet::Load(const DataNode &node)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "names" && child.Size() >= 2)
 			names = GameData::ShipNames().Get(child.Token(1));
-		else if(child.Token(0) == "fighter names" && child.Size() >= 2)
+		else if(child.Token(0) == "fighters" && child.Size() >= 2)
 			fighterNames = GameData::ShipNames().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
