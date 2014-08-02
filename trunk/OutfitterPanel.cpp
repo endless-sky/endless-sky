@@ -85,13 +85,14 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit);
 	
 	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
 	if(playerShip)
 	{
 		int count = playerShip->OutfitCount(outfit);
 		if(count)
 			font.Draw(to_string(count),
 				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 40),
-				Color(.8, 0.));
+				bright);
 	}
 	if(player.Cargo().Get(outfit))
 	{
@@ -99,7 +100,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 		Point pos = point + Point(
 			OUTFIT_SIZE / 2 - 20 - font.Width(count),
 			OUTFIT_SIZE / 2 - 40);
-		font.Draw(count, pos, Color(.8, 0.));
+		font.Draw(count, pos, bright);
 	}
 	
 	return true;

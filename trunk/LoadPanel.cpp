@@ -78,8 +78,8 @@ void LoadPanel::Draw() const
 	const Interface *menu = GameData::Interfaces().Get("load menu");
 	menu->Draw(info);
 	
-	Color dim(.1, 0.);
-	Color grey(.5, 0.);
+	Color dim = *GameData::Colors().Get("faint");
+	Color grey = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 	
 	Point point(-460., -157.);

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "GameData.h"
 #include "Point.h"
 #include "UI.h"
 
@@ -50,7 +51,7 @@ BankPanel::BankPanel(PlayerInfo &player)
 
 void BankPanel::Draw() const
 {
-	Color back(.1, .1);
+	Color back = *GameData::Colors().Get("faint");
 	if(static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size())
 		FillShader::Fill(
 			Point(130., FIRST_Y + 238), Point(100., 20.), back);
@@ -59,8 +60,8 @@ void BankPanel::Draw() const
 			Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
-	Color unselected(.5, 1.);
-	Color selected(.8, 1.);
+	Color unselected = *GameData::Colors().Get("medium");
+	Color selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
 	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);

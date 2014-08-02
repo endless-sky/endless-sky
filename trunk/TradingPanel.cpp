@@ -59,12 +59,12 @@ TradingPanel::TradingPanel(PlayerInfo &player)
 	
 void TradingPanel::Draw() const
 {
-	Color back(.1, .1);
+	Color back = *GameData::Colors().Get("faint");
 	FillShader::Fill(Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
 	
 	const Font &font = FontSet::Get(14);
-	Color unselected(.5, 1.);
-	Color selected(.8, 1.);
+	Color unselected = *GameData::Colors().Get("medium");
+	Color selected = *GameData::Colors().Get("bright");
 	
 	int y = FIRST_Y;
 	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);

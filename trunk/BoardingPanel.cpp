@@ -73,6 +73,10 @@ void BoardingPanel::Draw() const
 	
 	// Draw the list of plunder.
 	Color opaque(.1, 1.);
+	Color back = *GameData::Colors().Get("back");
+	Color dim = *GameData::Colors().Get("dim");
+	Color medium = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
 	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
 	
 	int index = (scroll - 10) / 20;
@@ -88,9 +92,9 @@ void BoardingPanel::Draw() const
 		
 		bool isSelected = (index == selected);
 		if(isSelected)
-			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), Color(.1, .1));
+			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
 		
-		Color color(item.CanTake(freeSpace) ? isSelected ? .8 : .5 : .2, 0.);
+		const Color &color = item.CanTake(freeSpace) ? isSelected ? bright : medium : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
 		
@@ -147,7 +151,7 @@ void BoardingPanel::Draw() const
 	Point messagePos(50., 55.);
 	for(const string &message : messages)
 	{
-		font.Draw(message, messagePos, Color(.8, 0.));
+		font.Draw(message, messagePos, bright);
 		messagePos.Y() += 20.;
 	}
 }

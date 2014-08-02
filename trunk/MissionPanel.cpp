@@ -299,7 +299,7 @@ void MissionPanel::DrawSelectedSystem() const
 	
 	const Font &font = FontSet::Get(14);
 	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
-	font.Draw(text, pos, Color(.8, 1.));
+	font.Draw(text, pos, *GameData::Colors().Get("bright"));
 }
 
 
@@ -308,10 +308,10 @@ void MissionPanel::DrawList(const list<Mission> &list, Point pos, const string &
 {
 	const Font &font = FontSet::Get(14);
 	Color back(.125, 1.);
-	Color highlight(.1, .1);
-	Color unselected(.5, 1.);
-	Color selected(.8, 1.);
-	Color dim(.3, 1.);
+	Color highlight = *GameData::Colors().Get("faint");
+	Color unselected = *GameData::Colors().Get("medium");
+	Color selected = *GameData::Colors().Get("bright");
+	Color dim = *GameData::Colors().Get("dim");
 	
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * list.size() + 40);
@@ -396,7 +396,7 @@ void MissionPanel::DrawMissionInfo() const
 		wrap.Wrap(acceptedIt->Description());
 	else
 		return;
-	wrap.Draw(Point(-190., Screen::Bottom() - 183.), Color(.8, 1.));
+	wrap.Draw(Point(-190., Screen::Bottom() - 183.), *GameData::Colors().Get("bright"));
 }
 
 
