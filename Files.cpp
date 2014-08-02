@@ -84,6 +84,8 @@ void Files::Init(const char * const *argv)
 	
 	data = resources + "data/";
 	images = resources + "images/";
+	if(!Exists(data) || !Exists(images))
+		throw runtime_error("Unable to find the resource directories!");
 	
 	saves = config + "saves/";
 	if(!Exists(saves) && mkdir(saves.c_str(), 0700))
