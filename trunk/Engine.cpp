@@ -453,6 +453,19 @@ void Engine::EnterSystem()
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, ships);
+	// Find out how attractive the player's fleet is to pirates.
+	unsigned attraction = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		const string &category = ship->Attributes().Category();
+		if(category == "Light Freighter")
+			attraction += 1;
+		if(category == "Heavy Freighter")
+			attraction += 2;
+	}
+	for(int i = 0; i < 3; ++i)
+		if(Random::Int(50) < attraction)
+			GameData::Fleets().Get("pirate raid")->Place(*system, ships);
 	
 	projectiles.clear();
 	effects.clear();

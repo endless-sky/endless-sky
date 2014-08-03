@@ -459,6 +459,34 @@ fleet "Large Northern Pirates"
 	variant 1
 		"Leviathan"
 
+fleet "pirate raid"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant
+		Sparrow 3
+	variant
+		Sparrow 4
+	variant
+		Hawk 2
+	variant
+		Hawk
+		Sparrow 2
+	variant
+		Fury
+		Sparrow 2
+	variant
+		Hawk
+		Fury
+		Sparrow
+	variant
+		Fury 3
+	variant
+		Fury 2
+		Sparrow
+
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
