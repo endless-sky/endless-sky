@@ -1010,7 +1010,7 @@ double Ship::Energy() const
 double Ship::Heat() const
 {
 	double maximum = Mass() * 100.;
-	return maximum ? min(1., heat / maximum) : 1.;
+	return maximum ? max(0., min(1., heat / maximum)) : 1.;
 }
 
 

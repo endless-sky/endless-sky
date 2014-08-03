@@ -107,8 +107,8 @@ ship "Bastion"
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 110
-		"outfit space" 450
-		"weapon capacity" 250
+		"outfit space" 470
+		"weapon capacity" 180
 		"engine capacity" 120
 		weapon
 			"blast radius" 250
@@ -292,7 +292,7 @@ ship "Carrier"
 		"heat dissipation" .45
 		"fuel capacity" 700
 		"cargo space" 100
-		"outfit space" 800
+		"outfit space" 820
 		"weapon capacity" 370
 		"engine capacity" 210
 		weapon
@@ -470,7 +470,7 @@ ship "Cruiser"
 		"heat dissipation" .45
 		"fuel capacity" 600
 		"cargo space" 60
-		"outfit space" 730
+		"outfit space" 760
 		"weapon capacity" 320
 		"engine capacity" 170
 		weapon
@@ -562,7 +562,7 @@ ship "Falcon"
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 90
-		"outfit space" 500
+		"outfit space" 540
 		"weapon capacity" 240
 		"engine capacity" 140
 		weapon
@@ -897,8 +897,8 @@ ship "Leviathan"
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 80
-		"outfit space" 600
-		"weapon capacity" 320
+		"outfit space" 620
+		"weapon capacity" 240
 		"engine capacity" 120
 		weapon
 			"blast radius" 200
@@ -945,7 +945,7 @@ ship "Protector"
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 550
+		"outfit space" 570
 		"weapon capacity" 220
 		"engine capacity" 100
 		weapon
@@ -1196,7 +1196,7 @@ ship "Splinter"
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 75
-		"outfit space" 390
+		"outfit space" 400
 		"weapon capacity" 150
 		"engine capacity" 100
 		weapon
