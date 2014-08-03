@@ -3,7 +3,7 @@ ship "Aerie"
 	attributes
 		category "Light Warship"
 		"cost" 1500000
-		"shields" 4500
+		"shields" 4000
 		"hull" 1500
 		"required crew" 6
 		"bunks" 15
@@ -11,9 +11,9 @@ ship "Aerie"
 		"drag" 4.1
 		"fuel capacity" 500
 		"cargo space" 50
-		"outfit space" 360
+		"outfit space" 390
 		"weapon capacity" 150
-		"engine capacity" 70
+		"engine capacity" 95
 		weapon
 			"blast radius" 30
 			"shield damage" 120
@@ -50,7 +50,7 @@ ship "Argosy"
 		category "Heavy Freighter"
 		"cost" 560000
 		"shields" 3500
-		"hull" 2500
+		"hull" 2600
 		"required crew" 4
 		"bunks" 14
 		"mass" 330
@@ -59,7 +59,7 @@ ship "Argosy"
 		"cargo space" 120
 		"outfit space" 270
 		"weapon capacity" 90
-		"engine capacity" 70
+		"engine capacity" 80
 		weapon
 			"blast radius" 150
 			"shield damage" 600
@@ -101,10 +101,10 @@ ship "Bastion"
 		"required crew" 12
 		"bunks" 22
 		"mass" 580
-		"drag" 8.6
+		"drag" 10.3
 		"fuel capacity" 500
 		"cargo space" 110
-		"outfit space" 520
+		"outfit space" 450
 		"weapon capacity" 250
 		"engine capacity" 120
 		weapon
@@ -113,16 +113,17 @@ ship "Bastion"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Impala Plasma Thruster" 1
-		"Impala Plasma Steering" 1
-		"D67-TM Shield Generator" 1
-		"LP144a Battery Pack" 1
-		"S3 Thermionic" 1
-		"Hyperdrive" 1
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"D67-TM Shield Generator"
+		"LP144a Battery Pack"
+		"S3 Thermionic"
+		"nGVF-BB Fuel Cell"
+		"Hyperdrive"
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
-		"Heavy Laser Turret" 3
+		"Blaster Turret" 3
 	engine -28 85
 	engine 28 85
 	gun -54 -14 "Plasma Cannon"
@@ -143,8 +144,8 @@ ship "Behemoth"
 	attributes
 		category "Heavy Freighter"
 		"cost" 3800000
-		"shields" 7000
-		"hull" 5300
+		"shields" 6600
+		"hull" 5900
 		"required crew" 16
 		"bunks" 30
 		"mass" 540
@@ -153,7 +154,7 @@ ship "Behemoth"
 		"cargo space" 420
 		"outfit space" 500
 		"weapon capacity" 280
-		"engine capacity" 80
+		"engine capacity" 90
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -189,17 +190,17 @@ ship "Blackbird"
 	attributes
 		category "Transport"
 		"cost" 730000
-		"shields" 5000
+		"shields" 3600
 		"hull" 900
 		"required crew" 5
 		"bunks" 54
-		"mass" 290
-		"drag" 6.7
+		"mass" 220
+		"drag" 5.0
 		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 350
 		"weapon capacity" 120
-		"engine capacity" 120
+		"engine capacity" 110
 		weapon
 			"blast radius" 150
 			"shield damage" 600
@@ -238,7 +239,7 @@ ship "Bulk Freighter"
 		"cargo space" 600
 		"outfit space" 400
 		"weapon capacity" 180
-		"engine capacity" 80
+		"engine capacity" 85
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -280,23 +281,23 @@ ship "Carrier"
 		"required crew" 104
 		"bunks" 230
 		"mass" 910
-		"drag" 14.7
+		"drag" 17.7
 		"fuel capacity" 700
 		"cargo space" 100
-		"outfit space" 770
+		"outfit space" 800
 		"weapon capacity" 370
-		"engine capacity" 160
+		"engine capacity" 210
 		weapon
 			"blast radius" 500
 			"shield damage" 2000
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"X4700 Ion Thruster" 1
-		"X4200 Ion Steering" 1
-		"D94-YV Shield Generator" 1
-		"LP288a Battery Pack" 1
-		"Fission Reactor" 1
+		"X5700 Ion Thruster"
+		"X4200 Ion Steering"
+		"D94-YV Shield Generator"
+		"LP288a Battery Pack"
+		"Fusion Reactor"
 		"Hyperdrive" 1
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
@@ -343,12 +344,12 @@ ship "Clipper"
 		"hull" 800
 		"required crew" 2
 		"bunks" 9
-		"mass" 180
-		"drag" 4.8
+		"mass" 150
+		"drag" 3.7
 		"fuel capacity" 500
 		"cargo space" 70
-		"outfit space" 340
-		"weapon capacity" 180
+		"outfit space" 300
+		"weapon capacity" 140
 		"engine capacity" 80
 		weapon
 			"blast radius" 70
@@ -360,7 +361,7 @@ ship "Clipper"
 		"Greyhound Plasma Steering" 1
 		"D23-QP Shield Generator" 1
 		"LP072a Battery Pack" 1
-		"nGVF-BB Fuel Cell" 1
+		"nGVF-DD Fuel Cell" 1
 		"Hyperdrive" 1
 		"Laser Turret" 3
 		"Beam Laser" 2
@@ -384,10 +385,10 @@ ship "Combat Drone"
 		"cost" "50000"
 		"hull" 500
 		"mass" 20
-		"drag" .6
-		"outfit space" 45
+		"drag" .59
+		"outfit space" 56
 		"weapon capacity" 8
-		"engine capacity" 17
+		"engine capacity" 28
 	outfits
 		"X1200 Ion Steering"
 		"X1700 Ion Thruster"
@@ -412,9 +413,9 @@ ship "Corvette"
 		"drag" 3.2
 		"fuel capacity" 500
 		"cargo space" 40
-		"outfit space" 400
+		"outfit space" 420
 		"weapon capacity" 150
-		"engine capacity" 70
+		"engine capacity" 100
 		weapon
 			"blast radius" 150
 			"shield damage" 600
@@ -453,12 +454,12 @@ ship "Cruiser"
 		"required crew" 62
 		"bunks" 95
 		"mass" 680
-		"drag" 10.7
+		"drag" 10.1
 		"fuel capacity" 600
 		"cargo space" 60
 		"outfit space" 720
 		"weapon capacity" 320
-		"engine capacity" 160
+		"engine capacity" 170
 		weapon
 			"blast radius" 500
 			"shield damage" 2000
@@ -469,7 +470,7 @@ ship "Cruiser"
 		"X4200 Ion Steering" 1
 		"D67-TM Shield Generator" 1
 		"LP288a Battery Pack" 1
-		"Fission Reactor" 1
+		"Fusion Reactor" 1
 		"Hyperdrive" 1
 		"Particle Cannon" 4
 		"Heavy Laser Turret" 3
@@ -509,10 +510,10 @@ ship "Dagger"
 		"required crew" 1
 		"bunks" 1
 		"mass" 20
-		"drag" 0.8
+		"drag" .63
 		"outfit space" 90
 		"weapon capacity" 20
-		"engine capacity" 20
+		"engine capacity" 30
 		weapon
 			"blast radius" 20
 			"shield damage" 120
@@ -537,17 +538,17 @@ ship "Falcon"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
-		"shields" 9600
+		"shields" 8400
 		"hull" 3400
 		"required crew" 44
 		"bunks" 80
 		"mass" 510
-		"drag" 7.5
+		"drag" 7.1
 		"fuel capacity" 600
 		"cargo space" 90
-		"outfit space" 590
+		"outfit space" 500
 		"weapon capacity" 240
-		"engine capacity" 130
+		"engine capacity" 140
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
@@ -556,10 +557,10 @@ ship "Falcon"
 	outfits
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"NT-200 Nucleovoltaic"
+		"Breeder Reactor"
 		"LP288a Battery Pack"
 		"D41-HY Shield Generator"
-		"Blaster Turret" 4
+		"Quad Blaster Turret" 4
 		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
@@ -570,10 +571,10 @@ ship "Falcon"
 	gun 17 -188 "Plasma Cannon"
 	gun -17 -188 "Torpedo Launcher"
 	gun 17 -188 "Torpedo Launcher"
-	turret -57 40 "Blaster Turret"
-	turret 57 40 "Blaster Turret"
-	turret -16 -24 "Blaster Turret"
-	turret 16 -24 "Blaster Turret"
+	turret -57 40 "Quad Blaster Turret"
+	turret 57 40 "Quad Blaster Turret"
+	turret -16 -24 "Quad Blaster Turret"
+	turret 16 -24 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
@@ -585,14 +586,14 @@ ship "Firebird"
 		category "Light Warship"
 		"cost" 1600000
 		"shields" 4400
-		"hull" 2600
+		"hull" 2800
 		"required crew" 5
 		"bunks" 18
 		"mass" 290
-		"drag" 4.9
+		"drag" 4.5
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 380
+		"outfit space" 400
 		"weapon capacity" 160
 		"engine capacity" 100
 		weapon
@@ -606,6 +607,7 @@ ship "Firebird"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
 		"RT-I Radiothermal"
+		"nGVF-AA Fuel Cell"
 		"Hyperdrive"
 		"Heavy Laser" 4
 		"Heavy Laser Turret" 2
@@ -636,9 +638,9 @@ ship "Freighter"
 		"drag" 5.6
 		"fuel capacity" 400
 		"cargo space" 150
-		"outfit space" 230
+		"outfit space" 250
 		"weapon capacity" 80
-		"engine capacity" 60
+		"engine capacity" 70
 		weapon
 			"blast radius" 100
 			"shield damage" 400
@@ -670,16 +672,16 @@ ship "Frigate"
 		category "Light Warship"
 		"cost" 1600000
 		"shields" 5400
-		"hull" 1900
+		"hull" 2200
 		"required crew" 7
 		"bunks" 32
 		"mass" 310
-		"drag" 4.5
+		"drag" 5.2
 		"fuel capacity" 500
 		"cargo space" 35
-		"outfit space" 380
+		"outfit space" 410
 		"weapon capacity" 170
-		"engine capacity" 80
+		"engine capacity" 100
 		weapon
 			"blast radius" 200
 			"shield damage" 800
@@ -690,7 +692,7 @@ ship "Frigate"
 		"D41-HY Shield Generator"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
-		"RT-I Radiothermal"
+		"NT-200 Nucleovoltaic"
 		"Hyperdrive"
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
@@ -724,9 +726,9 @@ ship "Fury"
 		"drag" 1.6
 		"fuel capacity" 600
 		"cargo space" 15
-		"outfit space" 150
-		"weapon capacity" 30
-		"engine capacity" 50
+		"outfit space" 160
+		"weapon capacity" 50
+		"engine capacity" 60
 		weapon
 			"blast radius" 60
 			"shield damage" 240
@@ -763,9 +765,9 @@ ship "Hawk"
 		"drag" 2.1
 		"fuel capacity" 300
 		"cargo space" 30
-		"outfit space" 180
-		"weapon capacity" 36
-		"engine capacity" 50
+		"outfit space" 200
+		"weapon capacity" 40
+		"engine capacity" 70
 		weapon
 			"blast radius" 75
 			"shield damage" 300
@@ -800,9 +802,9 @@ ship "Heavy Shuttle"
 		"drag" 2.1
 		"fuel capacity" 500
 		"cargo space" 35
-		"outfit space" 105
-		"weapon capacity" 5
-		"engine capacity" 50
+		"outfit space" 120
+		"weapon capacity" 10
+		"engine capacity" 60
 		weapon
 			"blast radius" 30
 			"shield damage" 120
@@ -833,10 +835,10 @@ ship "Lance"
 		"required crew" 1
 		"bunks" 1
 		"mass" 30
-		"drag" 0.9
-		"outfit space" 80
-		"weapon capacity" 16
-		"engine capacity" 17
+		"drag" 0.7
+		"outfit space" 100
+		"weapon capacity" 20
+		"engine capacity" 30
 		weapon
 			"blast radius" 20
 			"shield damage" 120
@@ -867,36 +869,36 @@ ship "Leviathan"
 		"required crew" 25
 		"bunks" 50
 		"mass" 480
-		"drag" 9.2
+		"drag" 6.9
 		"fuel capacity" 500
 		"cargo space" 80
-		"outfit space" 620
-		"weapon capacity" 300
-		"engine capacity" 100
+		"outfit space" 600
+		"weapon capacity" 320
+		"engine capacity" 120
 		weapon
 			"blast radius" 200
 			"shield damage" 800
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"LP288a Battery Pack"
+		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
 		"X4200 Ion Steering"
 		"X3700 Ion Thruster"
-		"NT-200 Nucleovoltaic"
+		"Fusion Reactor"
 		"Hyperdrive"
 		"Particle Cannon" 4
-		"Heavy Laser Turret" 4
+		"Quad Blaster Turret" 4
 	engine -25 125
 	engine 25 125
 	gun -51 -21 "Particle Cannon"
 	gun 51 -21 "Particle Cannon"
 	gun -39 -33 "Particle Cannon"
 	gun 39 -33 "Particle Cannon"
-	turret -15 -50 "Heavy Laser Turret"
-	turret 15 -50 "Heavy Laser Turret"
-	turret -25 10 "Heavy Laser Turret"
-	turret 25 10 "Heavy Laser Turret"
+	turret -15 -50 "Quad Blaster Turret"
+	turret 15 -50 "Quad Blaster Turret"
+	turret -25 10 "Quad Blaster Turret"
+	turret 25 10 "Quad Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -909,14 +911,14 @@ ship "Protector"
 		category "Heavy Warship"
 		"cost" 2500000
 		"shields" 7000
-		"hull" 9000
+		"hull" 7000
 		"required crew" 31
 		"bunks" 44
-		"mass" 560
-		"drag" 12.3
+		"mass" 500
+		"drag" 10.3
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 520
+		"outfit space" 510
 		"weapon capacity" 220
 		"engine capacity" 100
 		weapon
@@ -929,7 +931,7 @@ ship "Protector"
 		"D67-TM Shield Generator"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
-		"Fission Reactor"
+		"Fusion Reactor"
 		"Hyperdrive"
 		"Quad Blaster Turret" 6
 		"Torpedo Launcher" 2
@@ -956,16 +958,16 @@ ship "Quicksilver"
 		category "Light Warship"
 		"cost" 590000
 		"shields" 1800
-		"hull" 200
+		"hull" 500
 		"required crew" 2
 		"bunks" 2
-		"mass" 60
-		"drag" 2.3
+		"mass" 120
+		"drag" 2.7
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 220
+		"outfit space" 240
 		"weapon capacity" 60
-		"engine capacity" 50
+		"engine capacity" 70
 		weapon
 			"blast radius" 50
 			"shield damage" 200
@@ -992,17 +994,17 @@ ship "Rainmaker"
 	attributes
 		category "Light Warship"
 		"cost" 780000
-		"shields" 2500
-		"hull" 600
+		"shields" 3200
+		"hull" 1200
 		"required crew" 3
 		"bunks" 4
 		"mass" 180
-		"drag" 4.6
+		"drag" 3.8
 		"fuel capacity" 500
 		"cargo space" 25
-		"outfit space" 170
+		"outfit space" 230
 		"weapon capacity" 60
-		"engine capacity" 40
+		"engine capacity" 50
 		weapon
 			"blast radius" 100
 			"shield damage" 400
@@ -1010,12 +1012,12 @@ ship "Rainmaker"
 			"hit force" 600
 	outfits
 		"Energy Blaster" 2
-		"LP036a Battery Pack" 1
-		"D14-RN Shield Generator" 1
-		"X2700 Ion Thruster" 1
-		"X2200 Ion Steering" 1
-		"nGVF-AA Fuel Cell" 1
-		"Hyperdrive" 1
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"nGVF-CC Fuel Cell"
+		"Hyperdrive"
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
 	engine -8 46
@@ -1044,9 +1046,9 @@ ship "Scout"
 		"drag" 3.4
 		"fuel capacity" 800
 		"cargo space" 55
-		"outfit space" 200
-		"weapon capacity" 60
-		"engine capacity" 80
+		"outfit space" 220
+		"weapon capacity" 40
+		"engine capacity" 100
 		weapon
 			"blast radius" 40
 			"shield damage" 160
@@ -1085,9 +1087,9 @@ ship "Shuttle"
 		"drag" 1.7
 		"fuel capacity" 400
 		"cargo space" 20
-		"outfit space" 105
-		"weapon capacity" 5
-		"engine capacity" 50
+		"outfit space" 120
+		"weapon capacity" 10
+		"engine capacity" 60
 		weapon
 			"blast radius" 30
 			"shield damage" 120
@@ -1121,9 +1123,9 @@ ship "Sparrow"
 		"drag" 1.0
 		"fuel capacity" 300
 		"cargo space" 15
-		"outfit space" 110
+		"outfit space" 130
 		"weapon capacity" 20
-		"engine capacity" 30
+		"engine capacity" 40
 		weapon
 			"blast radius" 40
 			"shield damage" 160
@@ -1132,7 +1134,7 @@ ship "Sparrow"
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
-		"nGVF-AA Fuel Cell"
+		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"Beam Laser" 2
 		"D14-RN Shield Generator"
@@ -1152,16 +1154,16 @@ ship "Splinter"
 		category "Light Warship"
 		"cost" 1100000
 		"shields" 4800
-		"hull" 1200
+		"hull" 1400
 		"required crew" 6
 		"bunks" 25
 		"mass" 250
 		"drag" 4.0
 		"fuel capacity" 600
 		"cargo space" 75
-		"outfit space" 370
+		"outfit space" 390
 		"weapon capacity" 150
-		"engine capacity" 80
+		"engine capacity" 100
 		weapon
 			"blast radius" 150
 			"shield damage" 600
@@ -1197,15 +1199,15 @@ ship "Star Barge"
 		category "Light Freighter"
 		"cost" 90000
 		"shields" 600
-		"hull" 1200
+		"hull" 1000
 		"required crew" 1
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
 		"fuel capacity" 300
 		"cargo space" 50
-		"outfit space" 120
-		"weapon capacity" 15
+		"outfit space" 130
+		"weapon capacity" 20
 		"engine capacity" 40
 		weapon
 			"blast radius" 45
@@ -1234,10 +1236,10 @@ ship "Surveillance Drone"
 		"cost" "30000"
 		"hull" 300
 		"mass" 15
-		"drag" .6
-		"outfit space" 42
+		"drag" .53
+		"outfit space" 53
 		"weapon capacity" 0
-		"engine capacity" 17
+		"engine capacity" 28
 	outfits
 		"X1200 Ion Steering"
 		"X1700 Ion Thruster"

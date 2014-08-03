@@ -14,15 +14,15 @@ ship "Star Barge" "Star Barge (Armed)"
 		category "Light Freighter"
 		"cost" 90000
 		"shields" 600
-		"hull" 1200
+		"hull" 1000
 		"required crew" 1
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
 		"fuel capacity" 300
 		"cargo space" 50
-		"outfit space" 120
-		"weapon capacity" 15
+		"outfit space" 130
+		"weapon capacity" 20
 		"engine capacity" 40
 		weapon
 			"blast radius" 45

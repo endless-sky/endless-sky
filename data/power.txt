@@ -61,7 +61,7 @@ outfit "nGVF-AA Fuel Cell"
 	"mass" 20
 	"outfit space" -20
 	"energy generation" 1
-	"heat generation" 5
+	"heat generation" 4
 	description "Fuel cells have been the cheapest and most common starship power sources since the dawn of the space era. This model produces only enough power for very small or slow ships."
 
 outfit "nGVF-BB Fuel Cell"
@@ -70,8 +70,8 @@ outfit "nGVF-BB Fuel Cell"
 	thumbnail "outfit/small fuel cell"
 	"mass" 30
 	"outfit space" -30
-	"energy generation" 1.5
-	"heat generation" 8
+	"energy generation" 1.6
+	"heat generation" 6
 	description "This is a step up form the smallest fuel cells, providing enough energy to power a few small guns in addition to your engines."
 
 outfit "nGVF-CC Fuel Cell"
@@ -80,8 +80,8 @@ outfit "nGVF-CC Fuel Cell"
 	thumbnail "outfit/medium fuel cell"
 	"mass" 40
 	"outfit space" -40
-	"energy generation" 2.2
-	"heat generation" 10
+	"energy generation" 2.3
+	"heat generation" 8
 	description "This is a medium-sized fuel cell, designed to be sufficient for larger civilian ships and small warships while still being more affordable than the more sophisticated generator options."
 
 outfit "nGVF-DD Fuel Cell"
@@ -90,8 +90,8 @@ outfit "nGVF-DD Fuel Cell"
 	thumbnail "outfit/large fuel cell"
 	"mass" 60
 	"outfit space" -60
-	"energy generation" 3.3
-	"heat generation" 16
+	"energy generation" 3.6
+	"heat generation" 12
 	description "This is a relatively large fuel cell. Other generators are available that produce more energy and fit into a smaller space, but they are much more expensive. As a result, large civilian ships that will not be frequently in combat often come equipped with these fuel cells."
 
 outfit "nGVF-EE Fuel Cell"
@@ -100,8 +100,8 @@ outfit "nGVF-EE Fuel Cell"
 	thumbnail "outfit/huge fuel cell"
 	"mass" 80
 	"outfit space" -80
-	"energy generation" 5
-	"heat generation" 20
+	"energy generation" 5.1
+	"heat generation" 16
 	description "This is the largest fuel cell available, larger than some nuclear reactors but much, much more affordable. Many captains on a tight budget are willing to put up with one of these until they can raise the money for something more efficient."
 
 
@@ -170,8 +170,8 @@ outfit "Armageddon Core"
 	category "Power"
 	cost 9000000
 	thumbnail "outfit/core"
-	"mass" 140
-	"outfit space" -140
-	"energy generation" 28.2
-	"heat generation" 95
+	"mass" 130
+	"outfit space" -130
+	"energy generation" 24.2
+	"heat generation" 75
 	description "The Armageddon Core was designed to meet the extreme power needs of the largest warships of the Republic Navy. One of these generators costs more than an entire fleet of smaller ships."
