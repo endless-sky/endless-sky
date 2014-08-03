@@ -9,6 +9,7 @@ ship "Aerie"
 		"bunks" 15
 		"mass" 130
 		"drag" 4.1
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 50
 		"outfit space" 390
@@ -55,6 +56,7 @@ ship "Argosy"
 		"bunks" 14
 		"mass" 330
 		"drag" 5.9
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 120
 		"outfit space" 270
@@ -66,12 +68,12 @@ ship "Argosy"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Greyhound Plasma Thruster" 1
-		"Greyhound Plasma Steering" 1
-		"D23-QP Shield Generator" 1
-		"LP072a Battery Pack" 1
-		"RT-I Radiothermal" 1
-		"Hyperdrive" 1
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"D23-QP Shield Generator"
+		"LP072a Battery Pack"
+		"RT-I Radiothermal"
+		"Hyperdrive"
 		"Energy Blaster" 2
 		"Blaster Turret" 2
 		"Meteor Missile Launcher" 2
@@ -102,6 +104,7 @@ ship "Bastion"
 		"bunks" 22
 		"mass" 580
 		"drag" 10.3
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 450
@@ -119,6 +122,7 @@ ship "Bastion"
 		"LP144a Battery Pack"
 		"S3 Thermionic"
 		"nGVF-BB Fuel Cell"
+		"Water Coolant System"
 		"Hyperdrive"
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
@@ -150,6 +154,7 @@ ship "Behemoth"
 		"bunks" 30
 		"mass" 540
 		"drag" 11.7
+		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 420
 		"outfit space" 500
@@ -196,6 +201,7 @@ ship "Blackbird"
 		"bunks" 54
 		"mass" 220
 		"drag" 5.0
+		"heat dissipation" .7
 		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 350
@@ -207,12 +213,12 @@ ship "Blackbird"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Impala Plasma Thruster" 1
-		"Impala Plasma Steering" 1
-		"D23-QP Shield Generator" 1
-		"LP072a Battery Pack" 1
-		"S3 Thermionic" 1
-		"Hyperdrive" 1
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"D23-QP Shield Generator"
+		"LP072a Battery Pack"
+		"S3 Thermionic"
+		"Hyperdrive"
 		"Heavy Laser Turret" 2
 	engine -40 55
 	engine 40 55
@@ -235,6 +241,7 @@ ship "Bulk Freighter"
 		"bunks" 18
 		"mass" 870
 		"drag" 15.8
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 600
 		"outfit space" 400
@@ -246,12 +253,12 @@ ship "Bulk Freighter"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"X3700 Ion Thruster" 1
-		"X3200 Ion Steering" 1
-		"D23-QP Shield Generator" 1
-		"LP144a Battery Pack" 1
-		"RT-I Radiothermal" 1
-		"Hyperdrive" 1
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"D23-QP Shield Generator"
+		"LP144a Battery Pack"
+		"RT-I Radiothermal"
+		"Hyperdrive"
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		"Sidewinder Missile Launcher" 2
@@ -282,6 +289,7 @@ ship "Carrier"
 		"bunks" 230
 		"mass" 910
 		"drag" 17.7
+		"heat dissipation" .45
 		"fuel capacity" 700
 		"cargo space" 100
 		"outfit space" 800
@@ -298,12 +306,13 @@ ship "Carrier"
 		"D94-YV Shield Generator"
 		"LP288a Battery Pack"
 		"Fusion Reactor"
-		"Hyperdrive" 1
+		"Water Coolant System"
+		"Hyperdrive"
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
 		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret" 1
+		"Heavy Anti-Missile Turret"
 	engine -35 200
 	engine 35 200
 	gun -25 -166 "Particle Cannon"
@@ -346,6 +355,7 @@ ship "Clipper"
 		"bunks" 9
 		"mass" 150
 		"drag" 3.7
+		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 70
 		"outfit space" 300
@@ -357,12 +367,12 @@ ship "Clipper"
 			"hull damage" 140
 			"hit force" 420
 	outfits
-		"Greyhound Plasma Thruster" 1
-		"Greyhound Plasma Steering" 1
-		"D23-QP Shield Generator" 1
-		"LP072a Battery Pack" 1
-		"nGVF-DD Fuel Cell" 1
-		"Hyperdrive" 1
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"D23-QP Shield Generator"
+		"LP072a Battery Pack"
+		"nGVF-DD Fuel Cell"
+		"Hyperdrive"
 		"Laser Turret" 3
 		"Beam Laser" 2
 		"Javelin Pod" 2
@@ -386,6 +396,7 @@ ship "Combat Drone"
 		"hull" 500
 		"mass" 20
 		"drag" .59
+		"heat dissipation" .9
 		"outfit space" 56
 		"weapon capacity" 8
 		"engine capacity" 28
@@ -411,6 +422,7 @@ ship "Corvette"
 		"bunks" 12
 		"mass" 150
 		"drag" 3.2
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 420
@@ -455,9 +467,10 @@ ship "Cruiser"
 		"bunks" 95
 		"mass" 680
 		"drag" 10.1
+		"heat dissipation" .45
 		"fuel capacity" 600
 		"cargo space" 60
-		"outfit space" 720
+		"outfit space" 730
 		"weapon capacity" 320
 		"engine capacity" 170
 		weapon
@@ -466,15 +479,16 @@ ship "Cruiser"
 			"hull damage" 1000
 			"hit force" 3000
 	outfits
-		"X4700 Ion Thruster" 1
-		"X4200 Ion Steering" 1
-		"D67-TM Shield Generator" 1
-		"LP288a Battery Pack" 1
-		"Fusion Reactor" 1
-		"Hyperdrive" 1
+		"X4700 Ion Thruster"
+		"X4200 Ion Steering"
+		"D67-TM Shield Generator"
+		"LP288a Battery Pack"
+		"Fusion Reactor"
+		"Liquid Nitrogen Cooler"
+		"Hyperdrive"
 		"Particle Cannon" 4
 		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret" 1
+		"Heavy Anti-Missile Turret"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
 	engine -29 156
@@ -511,6 +525,7 @@ ship "Dagger"
 		"bunks" 1
 		"mass" 20
 		"drag" .63
+		"heat dissipation" .9
 		"outfit space" 90
 		"weapon capacity" 20
 		"engine capacity" 30
@@ -544,6 +559,7 @@ ship "Falcon"
 		"bunks" 80
 		"mass" 510
 		"drag" 7.1
+		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 90
 		"outfit space" 500
@@ -558,8 +574,9 @@ ship "Falcon"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Breeder Reactor"
-		"LP288a Battery Pack"
+		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
 		"Quad Blaster Turret" 4
 		"Plasma Cannon" 2
 		"Torpedo Launcher" 2
@@ -591,6 +608,7 @@ ship "Firebird"
 		"bunks" 18
 		"mass" 290
 		"drag" 4.5
+		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 400
@@ -636,6 +654,7 @@ ship "Freighter"
 		"bunks" 6
 		"mass" 240
 		"drag" 5.6
+		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 150
 		"outfit space" 250
@@ -677,6 +696,7 @@ ship "Frigate"
 		"bunks" 32
 		"mass" 310
 		"drag" 5.2
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 35
 		"outfit space" 410
@@ -724,6 +744,7 @@ ship "Fury"
 		"bunks" 3
 		"mass" 70
 		"drag" 1.6
+		"heat dissipation" .9
 		"fuel capacity" 600
 		"cargo space" 15
 		"outfit space" 160
@@ -763,6 +784,7 @@ ship "Hawk"
 		"bunks" 3
 		"mass" 150
 		"drag" 2.1
+		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 30
 		"outfit space" 200
@@ -774,8 +796,8 @@ ship "Hawk"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Greyhound Plasma Thruster" 1
-		"Greyhound Plasma Steering" 1
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"Heavy Laser" 2
@@ -800,6 +822,7 @@ ship "Heavy Shuttle"
 		"bunks" 8
 		"mass" 110
 		"drag" 2.1
+		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 35
 		"outfit space" 120
@@ -836,6 +859,7 @@ ship "Lance"
 		"bunks" 1
 		"mass" 30
 		"drag" 0.7
+		"heat dissipation" .8
 		"outfit space" 100
 		"weapon capacity" 20
 		"engine capacity" 30
@@ -870,6 +894,7 @@ ship "Leviathan"
 		"bunks" 50
 		"mass" 480
 		"drag" 6.9
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 80
 		"outfit space" 600
@@ -886,6 +911,7 @@ ship "Leviathan"
 		"X4200 Ion Steering"
 		"X3700 Ion Thruster"
 		"Fusion Reactor"
+		"Liquid Helium Cooler"
 		"Hyperdrive"
 		"Particle Cannon" 4
 		"Quad Blaster Turret" 4
@@ -916,9 +942,10 @@ ship "Protector"
 		"bunks" 44
 		"mass" 500
 		"drag" 10.3
+		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 510
+		"outfit space" 550
 		"weapon capacity" 220
 		"engine capacity" 100
 		weapon
@@ -932,6 +959,7 @@ ship "Protector"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
 		"Fusion Reactor"
+		"Liquid Nitrogen Cooler"
 		"Hyperdrive"
 		"Quad Blaster Turret" 6
 		"Torpedo Launcher" 2
@@ -963,6 +991,7 @@ ship "Quicksilver"
 		"bunks" 2
 		"mass" 120
 		"drag" 2.7
+		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 240
@@ -974,13 +1003,14 @@ ship "Quicksilver"
 			"hull damage" 100
 			"hit force" 300
 	outfits
-		"Greyhound Plasma Thruster" 1
-		"Greyhound Plasma Steering" 1
-		"LP036a Battery Pack" 1
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"LP036a Battery Pack"
 		"Particle Cannon" 2
-		"D23-QP Shield Generator" 1
-		"RT-I Radiothermal" 1
-		"Hyperdrive" 1
+		"D23-QP Shield Generator"
+		"RT-I Radiothermal"
+		"Cooling Ducts"
+		"Hyperdrive"
 	engine -17 54
 	engine 17 54
 	gun -6 -38 "Particle Cannon"
@@ -1000,6 +1030,7 @@ ship "Rainmaker"
 		"bunks" 4
 		"mass" 180
 		"drag" 3.8
+		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 25
 		"outfit space" 230
@@ -1044,6 +1075,7 @@ ship "Scout"
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
+		"heat dissipation" .7
 		"fuel capacity" 800
 		"cargo space" 55
 		"outfit space" 220
@@ -1085,6 +1117,7 @@ ship "Shuttle"
 		"bunks" 6
 		"mass" 70
 		"drag" 1.7
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 120
@@ -1121,6 +1154,7 @@ ship "Sparrow"
 		"bunks" 3
 		"mass" 50
 		"drag" 1.0
+		"heat dissipation" .8
 		"fuel capacity" 300
 		"cargo space" 15
 		"outfit space" 130
@@ -1159,6 +1193,7 @@ ship "Splinter"
 		"bunks" 25
 		"mass" 250
 		"drag" 4.0
+		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 75
 		"outfit space" 390
@@ -1175,6 +1210,7 @@ ship "Splinter"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"
 		"RT-I Radiothermal"
+		"Water Coolant System"
 		"Hyperdrive"
 		"Blaster Turret" 3
 		"Particle Cannon" 2
@@ -1204,6 +1240,7 @@ ship "Star Barge"
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
+		"heat dissipation" .7
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
@@ -1237,6 +1274,7 @@ ship "Surveillance Drone"
 		"hull" 300
 		"mass" 15
 		"drag" .53
+		"heat dissipation" .9
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28

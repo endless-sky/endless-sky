@@ -249,6 +249,7 @@ private:
 	double fuel;
 	double energy;
 	double heat;
+	double heatDissipation;
 	
 	int crew;
 	int pilotError;
