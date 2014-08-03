@@ -10,42 +10,42 @@
 
 outfit "X1700 Ion Thruster"
 	category "Engines"
-	"cost" 10000
+	"cost" 12000
 	thumbnail "outfit/engine"
-	"mass" 10
-	"outfit space" -10
-	"engine capacity" -10
+	"mass" 16
+	"outfit space" -16
+	"engine capacity" -16
 	"thrust" 6.0
-	"thrusting energy" .5
-	"thrusting heat" .8
+	"thrusting energy" .6
+	"thrusting heat" 1.0
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	description "This is the smallest thruster that you can buy, so weak that anything larger than a drone will accelerate quite slowly when using this engine. On the other hand, it is also very energy-efficient."
 
 outfit "X2700 Ion Thruster"
 	category "Engines"
-	"cost" 27000
+	"cost" 26000
 	thumbnail "outfit/engine"
-	"mass" 20
-	"outfit space" -20
-	"engine capacity" -20
-	"thrust" 13.3
-	"thrusting energy" 1
-	"thrusting heat" 1.6
+	"mass" 27
+	"outfit space" -27
+	"engine capacity" -27
+	"thrust" 11.5
+	"thrusting energy" 1.1
+	"thrusting heat" 1.9
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.1
 	description "The X2700 ion thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
 
 outfit "X3700 Ion Thruster"
 	category "Engines"
-	"cost" 74000
+	"cost" 58000
 	thumbnail "outfit/engine"
-	"mass" 40
-	"outfit space" -40
-	"engine capacity" -40
-	"thrust" 29.3
-	"thrusting energy" 2
-	"thrusting heat" 3.2
+	"mass" 46
+	"outfit space" -46
+	"engine capacity" -46
+	"thrust" 22.1
+	"thrusting energy" 1.9
+	"thrusting heat" 3.6
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.0
 	description "The X3700 ion thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
@@ -54,217 +54,217 @@ outfit "X4700 Ion Thruster"
 	category "Engines"
 	"cost" 201000
 	thumbnail "outfit/engine"
-	"mass" 80
-	"outfit space" -80
-	"engine capacity" -80
-	"thrust" 64.8
-	"thrusting energy" 4
-	"thrusting heat" 6.4
+	"mass" 79
+	"outfit space" -79
+	"engine capacity" -79
+	"thrust" 42.5
+	"thrusting energy" 3.5
+	"thrusting heat" 6.9
 	"flare sprite" "effect/ion flare/big"
 		"frame rate" 0.9
-	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a warship to move at a respectable speed, but also requires an enormous amount of engine space."
+	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
 
 outfit "X5700 Ion Thruster"
 	category "Engines"
-	"cost" 547000
+	"cost" 281000
 	thumbnail "outfit/engine"
-	"mass" 160
-	"outfit space" -160
-	"engine capacity" -160
-	"thrust" 143.1
-	"thrusting energy" 8
-	"thrusting heat" 12.8
+	"mass" 134
+	"outfit space" -134
+	"engine capacity" -134
+	"thrust" 81.5
+	"thrusting energy" 6.3
+	"thrusting heat" 13.0
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 0.8
-	description "No ship has yet been built that comes with an X5700 installed by default, so it is widely considered to be nothing more than a publicity stunt on the part of the Syndicate, a demonstration model simply designed to wow people. With this engine, a bulk freighter with a fully loaded cargo bay could outrace a Sparrow."
+	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
 
 outfit "X1200 Ion Steering"
 	category "Engines"
-	"cost" 8000
+	"cost" 10000
 	thumbnail "outfit/steering"
-	"mass" 7
-	"outfit space" -7
-	"engine capacity" -7
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
 	"turn" 160
 	"turning energy" .3
-	"turning heat" .5
+	"turning heat" .6
 	description "This is the smallest set of steering thrusters that you can buy, generally considered suitable only for tiny, pilotless drones. Occasionally pilots looking for some extra outfit space will try swapping out their larger steering systems for one of these, but the results are invariably disappointing."
 
 outfit "X2200 Ion Steering"
 	category "Engines"
-	"cost" 22000
+	"cost" 21000
 	thumbnail "outfit/steering"
-	"mass" 14
-	"outfit space" -14
-	"engine capacity" -14
-	"turn" 354
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"turn" 307
 	"turning energy" .6
-	"turning heat" 1.0
+	"turning heat" 1.2
 	description "The X2200 steering system is designed for fighters and other small spacecraft, as well as for use in larger ships when maneuverability is not needed."
 
 outfit "X3200 Ion Steering"
 	category "Engines"
-	"cost" 59000
+	"cost" 46000
 	thumbnail "outfit/steering"
-	"mass" 28
-	"outfit space" -28
-	"engine capacity" -28
-	"turn" 781
+	"mass" 35
+	"outfit space" -35
+	"engine capacity" -35
+	"turn" 590
 	"turning energy" 1.1
-	"turning heat" 2.0
-	description "The X3200 steering system is intended for capital ships and large freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
+	"turning heat" 2.3
+	description "The X3200 steering system is intended for small warships ships and freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
 
 outfit "X4200 Ion Steering"
 	category "Engines"
-	"cost" 161000
+	"cost" 102000
 	thumbnail "outfit/steering"
-	"mass" 56
-	"outfit space" -56
-	"engine capacity" -56
-	"turn" 1727
-	"turning energy" 2.2
-	"turning heat" 4.0
-	description "The X4200 is a steering system so powerful that only a handful of ships use it. It is standard equipment for Republic cruisers and carriers, ships so large that they are practically a self-contained city."
+	"mass" 59
+	"outfit space" -59
+	"engine capacity" -59
+	"turn" 1132
+	"turning energy" 1.9
+	"turning heat" 4.3
+	description "The X4200 is a powerful steering system, designed mostly for warships because quick steering is seldom a requirement in freighter design."
 
 outfit "X5200 Ion Steering"
 	category "Engines"
-	"cost" 438000
+	"cost" 225000
 	thumbnail "outfit/steering"
-	"mass" 112
-	"outfit space" -112
-	"engine capacity" -112
-	"turn" 3817
-	"turning energy" 4.4
-	"turning heat" 8.0
-	description "As with the X5700 thruster, the X5200 steering system is not used in any ships that are available on the public market, although the Syndicate has apparently tested it in some experimental designs."
+	"mass" 100
+	"outfit space" -100
+	"engine capacity" -100
+	"turn" 2174
+	"turning energy" 3.5
+	"turning heat" 8.1
+	description "The X5200 is a steering system so powerful that only a handful of ships use it. It is standard equipment for Republic cruisers and carriers, ships so large that they are practically a self-contained city."
 
 
 outfit "Chipmunk Plasma Thruster"
 	category "Engines"
-	"cost" 17000
+	"cost" 20000
 	thumbnail "outfit/tiny plasma thruster"
-	"mass" 15
-	"outfit space" -15
-	"engine capacity" -15
-	"thrust" 10.2
-	"thrusting energy" .9
-	"thrusting heat" 1.3
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"thrust" 9.6
+	"thrusting energy" 1.0
+	"thrusting heat" 1.8
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
 
 outfit "Greyhound Plasma Thruster"
 	category "Engines"
-	"cost" 46000
+	"cost" 45000
 	thumbnail "outfit/small plasma thruster"
-	"mass" 30
-	"outfit space" -30
-	"engine capacity" -30
-	"thrust" 22.5
+	"mass" 34
+	"outfit space" -34
+	"engine capacity" -34
+	"thrust" 18.4
 	"thrusting energy" 1.8
-	"thrusting heat" 2.6
+	"thrusting heat" 3.4
 	"flare sprite" "effect/plasma flare/small"
 		"frame rate" 6
 	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
 
 outfit "Impala Plasma Thruster"
 	category "Engines"
-	"cost" 1260000
+	"cost" 99000
 	thumbnail "outfit/medium plasma thruster"
-	"mass" 60
-	"outfit space" -60
-	"engine capacity" -60
-	"thrust" 49.8
-	"thrusting energy" 3.6
-	"thrusting heat" 5.2
+	"mass" 58
+	"outfit space" -58
+	"engine capacity" -58
+	"thrust" 35.4
+	"thrusting energy" 3.2
+	"thrusting heat" 6.5
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
-	description "Impala class thrusters produce a significant amount of force, and are suitable for all but the largest of capital ships. They also, of course, produce a large amount of heat."
+	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. They also, of course, produce a large amount of heat."
 
 outfit "Orca Plasma Thruster"
 	category "Engines"
-	"cost" 342000
+	"cost" 217000
 	thumbnail "outfit/large plasma thruster"
-	"mass" 120
-	"outfit space" -120
-	"engine capacity" -120
-	"thrust" 110.1
-	"thrusting energy" 7.2
-	"thrusting heat" 10.4
+	"mass" 98
+	"outfit space" -98
+	"engine capacity" -98
+	"thrust" 67.9
+	"thrusting energy" 5.8
+	"thrusting heat" 12.3
 	"flare sprite" "effect/plasma flare/big"
 		"frame rate" 8
-	description "Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
+	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
 
 outfit "Tyrant Plasma Thruster"
 	category "Engines"
-	"cost" 931000
+	"cost" 478000
 	thumbnail "outfit/huge plasma thruster"
-	"mass" 240
-	"outfit space" -240
-	"engine capacity" -240
-	"thrust" 243.3
-	"thrusting energy" 14.4
-	"thrusting heat" 20.8
+	"mass" 167
+	"outfit space" -167
+	"engine capacity" -167
+	"thrust" 130.5
+	"thrusting energy" 10.5
+	"thrusting heat" 23.5
 	"flare sprite" "effect/plasma flare/huge"
 		"frame rate" 9
-	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. You have never heard of a ship large enough to even be able to fit this engine inside it, not to mention that it would take the entire energy output of a nuclear reactor just to power it."
+	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
 
 outfit "Chipmunk Plasma Steering"
 	category "Engines"
-	"cost" 14000
+	"cost" 16000
 	thumbnail "outfit/tiny plasma steering"
-	"mass" 10
-	"outfit space" -10
-	"engine capacity" -10
-	"turn" 272
+	"mass" 15
+	"outfit space" -15
+	"engine capacity" -15
+	"turn" 256
 	"turning energy" .5
-	"turning heat" .8
+	"turning heat" 1.1
 	description "This is the smallest plasma steering system that Delta V produces. The packaging features a cartoon of what appears to be a very highly caffeinated rodent."
 
 outfit "Greyhound Plasma Steering"
 	category "Engines"
-	"cost" 37000
+	"cost" 36000
 	thumbnail "outfit/small plasma steering"
-	"mass" 20
-	"outfit space" -20
-	"engine capacity" -20
-	"turn" 601
-	"turning energy" 1
-	"turning heat" 1.6
+	"mass" 26
+	"outfit space" -26
+	"engine capacity" -26
+	"turn" 492
+	"turning energy" 0.9
+	"turning heat" 2.1
 	description "The Greyhound class plasma propulsion systems are Delta V's most popular product, suitable for a wide range of small starships."
 
 outfit "Impala Plasma Steering"
 	category "Engines"
-	"cost" 101000
+	"cost" 79000
 	thumbnail "outfit/medium plasma steering"
-	"mass" 40
-	"outfit space" -40
-	"engine capacity" -40
-	"turn" 1328
-	"turning energy" 2
-	"turning heat" 3.2
-	description "Impala class plasma steering systems are suitable for anything but the largest of warships, and are also considerably more compact than the ion propulsion systems produced by the Syndicate."
+	"mass" 43
+	"outfit space" -43
+	"engine capacity" -43
+	"turn" 944
+	"turning energy" 1.6
+	"turning heat" 4.1
+	description "Impala class plasma steering systems are suitable for most freighters and all but the largest warships, and are also considerably more compact than the ion propulsion systems produced by the Syndicate."
 
 outfit "Orca Plasma Steering"
 	category "Engines"
-	"cost" 2740000
+	"cost" 1740000
 	thumbnail "outfit/large plasma steering"
-	"mass" 80
-	"outfit space" -80
-	"engine capacity" -80
-	"turn" 2936
-	"turning energy" 4
-	"turning heat" 6.5
+	"mass" 74
+	"outfit space" -74
+	"engine capacity" -74
+	"turn" 1812
+	"turning energy" 2.9
+	"turning heat" 7.7
 	description "An Orca class steering system will allow any mid-sized ship to turn as quickly as a fighter, and is powerful enough to serve even the largest of warships."
 
 outfit "Tyrant Plasma Steering"
 	category "Engines"
-	"cost" 744000
+	"cost" 382000
 	thumbnail "outfit/huge plasma steering"
-	"mass" 160
-	"outfit space" -160
-	"engine capacity" -160
-	"turn" 6488
-	"turning energy" 8
-	"turning heat" 13.0
-	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that there is almost no conceivable need for its existence, aside from proving the prowess of the Delta V engineers."
+	"mass" 125
+	"outfit space" -125
+	"engine capacity" -125
+	"turn" 3479
+	"turning energy" 5.2
+	"turning heat" 14.7
+	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships could make use of it. Its primary function appears to be proving the prowess of the Delta V engineers."
