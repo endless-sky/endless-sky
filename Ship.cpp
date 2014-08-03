@@ -37,7 +37,7 @@ Ship::Ship()
 	isBoarding(false), hasBoarded(false),
 	explosionWeapon(nullptr),
 	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
-	currentSystem(nullptr),
+	heatDissipation(.999), currentSystem(nullptr),
 	zoom(1.), landingPlanet(nullptr),
 	hyperspaceCount(0), hyperspaceSystem(nullptr),
 	explosionRate(0), explosionCount(0), explosionTotal(0)
@@ -116,6 +116,13 @@ void Ship::Load(const DataNode &node)
 			description += '\n';
 		}
 	}
+	// Different ships dissipate heat at different rates.
+	heatDissipation = baseAttributes.Get("heat dissipation");
+	if(!heatDissipation)
+		heatDissipation = .999;
+	else
+		heatDissipation = 1. - .001 * heatDissipation;
+	
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	attributes = baseAttributes;
@@ -335,7 +342,7 @@ bool Ship::Move(list<Effect> &effects)
 	// with no batteries but a good generator can still move.
 	energy = min(energy, attributes.Get("energy capacity"));
 	
-	heat *= .999;
+	heat *= heatDissipation;
 	if(heat > Mass() * 100.)
 		isOverheated = true;
 	else if(heat < Mass() * 90.)
@@ -955,7 +962,7 @@ void Ship::Recharge()
 	hull = attributes.Get("hull");
 	energy = attributes.Get("energy capacity");
 	fuel = attributes.Get("fuel capacity");
-	heat = attributes.Get("heat generation") / .001;
+	heat = attributes.Get("heat generation") / (1. - heatDissipation);
 }
 
 

@@ -157,7 +157,7 @@ void GameData::BeginLoad(const char * const *argv)
 			cout << 60. * heat << '\t';
 			// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
 			// per 60th of a second, so:
-			cout << 60. * ship.Mass() * .1 << '\n';
+			cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
 		}
 		cout.flush();
 	}

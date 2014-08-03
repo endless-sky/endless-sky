@@ -19,6 +19,7 @@ ship "Star Barge" "Star Barge (Armed)"
 		"bunks" 3
 		"mass" 70
 		"drag" 2.4
+		"heat dissipation" .7
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130

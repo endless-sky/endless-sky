@@ -19,6 +19,7 @@ ship "Quarg Skylark"
 		"bunks" 1200
 		"mass" 460
 		"drag" 12.3
+		"heat dissipation" .7
 		"fuel capacity" 800
 		"cargo space" 200
 		"outfit space" 600
@@ -30,12 +31,12 @@ ship "Quarg Skylark"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Medium Graviton Thruster" 1
-		"Medium Graviton Steering" 1
-		"Nanotech Battery" 1
-		"Quantum Shield Generator" 1
-		"Antimatter Core" 1
-		"Hyperdrive" 1
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Antimatter Core"
+		"Hyperdrive"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 	engine -15 117
@@ -62,6 +63,7 @@ ship "Quarg Wardragon"
 		"bunks" 1000
 		"mass" 360
 		"drag" 9.3
+		"heat dissipation" .5
 		"fuel capacity" 800
 		"cargo space" 80
 		"outfit space" 600
@@ -73,12 +75,12 @@ ship "Quarg Wardragon"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Medium Graviton Thruster" 1
-		"Medium Graviton Steering" 1
-		"Nanotech Battery" 1
-		"Quantum Shield Generator" 1
-		"Antimatter Core" 1
-		"Hyperdrive" 1
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Antimatter Core"
+		"Hyperdrive"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 	engine -14 47
