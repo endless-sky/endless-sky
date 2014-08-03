@@ -114,10 +114,11 @@ void GameData::BeginLoad(const char * const *argv)
 	
 	if(printTable)
 	{
-		cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull"
-			<< '\t' << "mass" << '\t' << "cargo" << '\t' << "bunks" << '\t' << "fuel"
-			<< '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
-			<< "speed" << '\t' << "accel" << '\t' << "turn" << '\n';
+		cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull" << '\t'
+			<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
+			<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
+			<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
+			<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
 		for(auto &it : ships)
 		{
 			const Ship &ship = it.second;
@@ -128,16 +129,37 @@ void GameData::BeginLoad(const char * const *argv)
 			cout << attributes.Get("shields") << '\t';
 			cout << attributes.Get("hull") << '\t';
 			cout << attributes.Get("mass") << '\t';
+			cout << attributes.Get("required crew") << '\t';
 			cout << attributes.Get("cargo space") << '\t';
 			cout << attributes.Get("bunks") << '\t';
 			cout << attributes.Get("fuel capacity") << '\t';
+			
 			cout << attributes.Get("outfit space") << '\t';
 			cout << attributes.Get("weapon capacity") << '\t';
 			cout << attributes.Get("engine capacity") << '\t';
 			cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
 			cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
-			cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\n';
+			cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
+			
+			double energy = attributes.Get("thrusting energy")
+				+ attributes.Get("turning energy");
+			double heat = attributes.Get("heat generation")
+				+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
+			for(const auto &oit : ship.Outfits())
+				if(oit.first->IsWeapon())
+				{
+					double reload = oit.first->WeaponGet("reload");
+					energy += oit.second * oit.first->WeaponGet("firing energy") / reload;
+					heat += oit.second * oit.first->WeaponGet("firing heat") / reload;
+				}
+			cout << 60. * attributes.Get("energy generation") << '\t';
+			cout << 60. * energy << '\t';
+			cout << 60. * heat << '\t';
+			// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
+			// per 60th of a second, so:
+			cout << 60. * ship.Mass() * .1 << '\n';
 		}
+		cout.flush();
 	}
 }
 
