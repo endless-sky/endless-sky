@@ -234,6 +234,8 @@ void Fleet::SetCargo(Ship *ship) const
 		int amount = Random::Int(free) + 1;
 		ship->Cargo().Transfer(commodity.name, -amount);
 	}
+	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();
+	ship->AddCrew(Random::Int(extraCrew + 1));
 }
 
 

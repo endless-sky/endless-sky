@@ -5,8 +5,8 @@ ship "Aerie"
 		"cost" 1500000
 		"shields" 4000
 		"hull" 1500
-		"required crew" 6
-		"bunks" 15
+		"required crew" 12
+		"bunks" 28
 		"mass" 130
 		"drag" 4.1
 		"heat dissipation" .7
@@ -52,7 +52,7 @@ ship "Argosy"
 		"cost" 560000
 		"shields" 3500
 		"hull" 2600
-		"required crew" 4
+		"required crew" 6
 		"bunks" 14
 		"mass" 330
 		"drag" 5.9
@@ -100,8 +100,8 @@ ship "Bastion"
 		"cost" 960000
 		"shields" 6100
 		"hull" 4200
-		"required crew" 12
-		"bunks" 22
+		"required crew" 35
+		"bunks" 47
 		"mass" 580
 		"drag" 10.3
 		"heat dissipation" .5
@@ -198,7 +198,7 @@ ship "Blackbird"
 		"shields" 3600
 		"hull" 900
 		"required crew" 5
-		"bunks" 54
+		"bunks" 28
 		"mass" 220
 		"drag" 5.0
 		"heat dissipation" .7
@@ -237,7 +237,7 @@ ship "Bulk Freighter"
 		"cost" 5400000
 		"shields" 4000
 		"hull" 6500
-		"required crew" 12
+		"required crew" 14
 		"bunks" 18
 		"mass" 870
 		"drag" 15.8
@@ -285,8 +285,8 @@ ship "Carrier"
 		"cost" 7200000
 		"shields" 10800
 		"hull" 8300
-		"required crew" 104
-		"bunks" 230
+		"required crew" 114
+		"bunks" 184
 		"mass" 910
 		"drag" 17.7
 		"heat dissipation" .45
@@ -351,7 +351,7 @@ ship "Clipper"
 		"cost" 700000
 		"shields" 1900
 		"hull" 800
-		"required crew" 2
+		"required crew" 3
 		"bunks" 9
 		"mass" 150
 		"drag" 3.7
@@ -418,8 +418,8 @@ ship "Corvette"
 		"cost" 1600000
 		"shields" 7200
 		"hull" 700
-		"required crew" 5
-		"bunks" 12
+		"required crew" 10
+		"bunks" 32
 		"mass" 150
 		"drag" 3.2
 		"heat dissipation" .7
@@ -463,8 +463,8 @@ ship "Cruiser"
 		"cost" 4200000
 		"shields" 12500
 		"hull" 6400
-		"required crew" 62
-		"bunks" 95
+		"required crew" 84
+		"bunks" 136
 		"mass" 680
 		"drag" 10.1
 		"heat dissipation" .45
@@ -555,8 +555,8 @@ ship "Falcon"
 		"cost" 5900000
 		"shields" 8400
 		"hull" 3400
-		"required crew" 44
-		"bunks" 80
+		"required crew" 56
+		"bunks" 75
 		"mass" 510
 		"drag" 7.1
 		"heat dissipation" .7
@@ -604,8 +604,8 @@ ship "Firebird"
 		"cost" 1600000
 		"shields" 4400
 		"hull" 2800
-		"required crew" 5
-		"bunks" 18
+		"required crew" 9
+		"bunks" 22
 		"mass" 290
 		"drag" 4.5
 		"heat dissipation" .6
@@ -650,8 +650,8 @@ ship "Freighter"
 		"cost" 230000
 		"shields" 2000
 		"hull" 2000
-		"required crew" 3
-		"bunks" 6
+		"required crew" 4
+		"bunks" 7
 		"mass" 240
 		"drag" 5.6
 		"heat dissipation" .6
@@ -692,8 +692,8 @@ ship "Frigate"
 		"cost" 1600000
 		"shields" 5400
 		"hull" 2200
-		"required crew" 7
-		"bunks" 32
+		"required crew" 24
+		"bunks" 44
 		"mass" 310
 		"drag" 5.2
 		"heat dissipation" .7
@@ -780,8 +780,8 @@ ship "Hawk"
 		"cost" 350000
 		"shields" 2500
 		"hull" 500
-		"required crew" 1
-		"bunks" 3
+		"required crew" 2
+		"bunks" 4
 		"mass" 150
 		"drag" 2.1
 		"heat dissipation" .8
@@ -890,8 +890,8 @@ ship "Leviathan"
 		"cost" 3800000
 		"shields" 8000
 		"hull" 5000
-		"required crew" 25
-		"bunks" 50
+		"required crew" 47
+		"bunks" 64
 		"mass" 480
 		"drag" 6.9
 		"heat dissipation" .5
@@ -938,8 +938,8 @@ ship "Protector"
 		"cost" 2500000
 		"shields" 7000
 		"hull" 7000
-		"required crew" 31
-		"bunks" 44
+		"required crew" 62
+		"bunks" 69
 		"mass" 500
 		"drag" 10.3
 		"heat dissipation" .6
@@ -987,8 +987,8 @@ ship "Quicksilver"
 		"cost" 590000
 		"shields" 1800
 		"hull" 500
-		"required crew" 2
-		"bunks" 2
+		"required crew" 3
+		"bunks" 6
 		"mass" 120
 		"drag" 2.7
 		"heat dissipation" .8
@@ -1026,8 +1026,8 @@ ship "Rainmaker"
 		"cost" 780000
 		"shields" 3200
 		"hull" 1200
-		"required crew" 3
-		"bunks" 4
+		"required crew" 7
+		"bunks" 14
 		"mass" 180
 		"drag" 3.8
 		"heat dissipation" .6
@@ -1071,7 +1071,7 @@ ship "Scout"
 		"cost" 450000
 		"shields" 1200
 		"hull" 400
-		"required crew" 2
+		"required crew" 3
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
@@ -1151,7 +1151,7 @@ ship "Sparrow"
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
-		"bunks" 3
+		"bunks" 2
 		"mass" 50
 		"drag" 1.0
 		"heat dissipation" .8
@@ -1189,8 +1189,8 @@ ship "Splinter"
 		"cost" 1100000
 		"shields" 4800
 		"hull" 1400
-		"required crew" 6
-		"bunks" 25
+		"required crew" 15
+		"bunks" 21
 		"mass" 250
 		"drag" 4.0
 		"heat dissipation" .7
