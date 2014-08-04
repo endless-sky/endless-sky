@@ -30,9 +30,12 @@ Conversation::Conversation()
 
 void Conversation::Load(const DataNode &node)
 {
-	if(node.Token(0) != "conversation" || node.Size() < 2)
+	if(node.Token(0) != "conversation")
 		return;
-	identifier = node.Token(1);
+	if(node.Size() >= 2)
+		identifier = node.Token(1);
+	else
+		identifier = "unnamed";
 	
 	// Free any previously loaded data.
 	nodes.clear();
@@ -144,6 +147,13 @@ void Conversation::Load(const DataNode &node)
 	// Free the working buffers that we no longer need.
 	labels.clear();
 	unresolved.clear();
+}
+
+
+
+bool Conversation::IsEmpty() const
+{
+	return nodes.empty();
 }
 
 

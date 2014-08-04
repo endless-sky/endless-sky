@@ -59,7 +59,7 @@ Mission Mission::Cargo(const Planet *source, const DistanceMap &distance)
 	mission.successMessage = "The dock workers unload the " + mission.cargo
 		+ " and pay you " + to_string(mission.payment) + " credits.";
 	
-	// TODO: get move semantics working.
+	// This should automatically use move semantics.
 	return mission;
 }
 
@@ -97,7 +97,7 @@ Mission Mission::Passenger(const Planet *source, const DistanceMap &distance)
 		+ to_string(mission.payment) + " credits.";
 	mission.successMessage += to_string(mission.payment) + " credits.";
 	
-	// TODO: get move semantics working.
+	// This should automatically use move semantics.
 	return mission;
 }
 
@@ -112,20 +112,38 @@ void Mission::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "destination" && child.Size() >= 2)
 			destination = GameData::Planets().Get(child.Token(1));
-		if(child.Token(0) == "cargo" && child.Size() >= 2)
+		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 		{
 			cargo = child.Token(1);
 			if(child.Size() >= 3)
 				cargoSize = child.Value(2);
 		}
-		if(child.Token(0) == "passengers" && child.Size() >= 2)
+		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 			passengers = child.Value(1);
-		if(child.Token(0) == "payment" && child.Size() >= 2)
+		else if(child.Token(0) == "payment" && child.Size() >= 2)
 			payment = child.Value(1);
-		if(child.Token(0) == "description" && child.Size() >= 2)
+		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
-		if(child.Token(0) == "successMessage" && child.Size() >= 2)
-			successMessage = child.Token(1);
+		else if(child.Token(0) == "success")
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "message" && grand.Size() >= 2)
+					successMessage = grand.Token(1);
+				else if(grand.Token(0) == "mission" && grand.Size() >= 2)
+					next = GameData::Missions().Get(grand.Token(1));
+			}
+		}
+		else if(child.Token(0) == "require")
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "planet" && grand.Size() >= 2)
+					sourcePlanets.insert(GameData::Planets().Get(grand.Token(1)));
+			}
+		}
+		else if(child.Token(0) == "conversation")
+			introduction.Load(child);
 	}
 }
 
@@ -146,7 +164,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(!description.empty())
 			out.Write("description", description);
 		if(!successMessage.empty())
-			out.Write("successMessage", successMessage);
+		{
+			out.Write("success");
+			out.BeginChild();
+				out.Write("message", successMessage);
+			out.EndChild();
+		}
 	out.EndChild();
 }
 
@@ -162,6 +185,27 @@ const string &Mission::Name() const
 const Planet *Mission::Destination() const
 {
 	return destination;
+}
+
+
+
+const string &Mission::Description() const
+{
+	return description;
+}
+
+
+
+bool Mission::IsAvailableAt(const Planet *planet) const
+{
+	return (sourcePlanets.find(planet) != sourcePlanets.end());
+}
+
+
+
+const Conversation &Mission::Introduction() const
+{
+	return introduction;
 }
 
 
@@ -193,14 +237,6 @@ int Mission::Payment() const
 }
 
 
-
-const string &Mission::Description() const
-{
-	return description;
-}
-
-
-
 const string &Mission::SuccessMessage() const
 {
 	return successMessage;
@@ -208,16 +244,9 @@ const string &Mission::SuccessMessage() const
 
 
 
-bool Mission::Failed() const
+const Mission *Mission::Next() const
 {
-	return failed;
-}
-
-
-
-void Mission::SetFailed()
-{
-	failed = true;
+	return next;
 }
 
 

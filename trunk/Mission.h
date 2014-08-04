@@ -13,6 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef MISSION_H_
 #define MISSION_H_
 
+#include "Conversation.h"
+
+#include <set>
 #include <string>
 
 class DataNode;
@@ -34,32 +37,35 @@ public:
 	
 	const std::string &Name() const;
 	const Planet *Destination() const;
+	const std::string &Description() const;
+	
+	bool IsAvailableAt(const Planet *planet) const;
+	const Conversation &Introduction() const;
 	
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Passengers() const;
 	int Payment() const;
 	
-	const std::string &Description() const;
 	const std::string &SuccessMessage() const;
-	
-	bool Failed() const;
-	void SetFailed();
+	const Mission *Next() const;
 	
 	
 private:
 	std::string name;
 	const Planet *destination = nullptr;
+	std::string description;
+	
+	std::set<const Planet *> sourcePlanets;
+	Conversation introduction;
 	
 	std::string cargo;
 	int cargoSize = 0;
 	int passengers = 0;
 	int payment = 0;
 	
-	std::string description;
 	std::string successMessage;
-	
-	bool failed = false;
+	const Mission *next = nullptr;
 };
 
 

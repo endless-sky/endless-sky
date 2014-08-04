@@ -39,6 +39,11 @@ protected:
 	
 	
 private:
+	void FinishNormalMissions();
+	void FinishSpecialMissions();
+	
+	
+private:
 	PlayerInfo &player;
 	
 	Engine engine;

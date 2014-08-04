@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "ConversationPanel.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -49,19 +50,8 @@ void MainPanel::Step(bool isActive)
 	{
 		player.Land();
 		GetUI()->Push(new PlanetPanel(player, *this));
-		auto it = player.Missions().begin();
-		while(it != player.Missions().end())
-		{
-			const Mission &mission = *it;
-			++it;
-			
-			if(mission.Destination() == player.GetPlanet())
-			{
-				GetUI()->Push(new Dialog(mission.SuccessMessage()));
-				player.CompleteMission(mission);
-			}
-		}
-		player.UpdateCargoCapacities();
+		FinishNormalMissions();
+		FinishSpecialMissions();
 		isActive = false;
 	}
 	
@@ -168,4 +158,49 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		return false;
 	
 	return true;
+}
+
+
+
+void MainPanel::FinishNormalMissions()
+{
+	auto it = player.Missions().begin();
+	while(it != player.Missions().end())
+	{
+		const Mission &mission = *it;
+		++it;
+		
+		if(mission.Destination() == player.GetPlanet())
+		{
+			GetUI()->Push(new Dialog(mission.SuccessMessage()));
+			player.CompleteMission(mission);
+		}
+	}
+	player.UpdateCargoCapacities();
+}
+
+
+
+void MainPanel::FinishSpecialMissions()
+{
+	auto it = player.SpecialMissions().begin();
+	while(it != player.SpecialMissions().end())
+	{
+		const Mission &mission = **it;
+		++it;
+		
+		if(mission.Destination() == player.GetPlanet())
+		{
+			// Check that all this mission's requirements are met.
+			if(mission.Next() && !player.CanAccept(*mission.Next()))
+				continue;
+			
+			if(!mission.SuccessMessage().empty())
+				GetUI()->Push(new Dialog(mission.SuccessMessage()));
+			if(mission.Next() && !mission.Next()->Introduction().IsEmpty())
+				GetUI()->Push(new ConversationPanel(player, mission.Next()->Introduction()));
+			player.CompleteMission(mission);
+		}
+	}
+	player.UpdateCargoCapacities();
 }

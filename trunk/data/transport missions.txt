@@ -1,0 +1,80 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Immigrant Workers"
+	require
+		planet "New Iceland"
+	destination "Millrace"
+	passengers 2
+	cargo "luggage and furniture" 2
+	payment 15000
+	conversation
+		"As you leave your ship and walk toward the cafeteria at the center fo the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
+		choice
+			"	(Talk to them.)"
+			"	(Ignore them.)"
+				decline
+		"	The couple introduces themselves as George and Samantha. As you shake hands with them, you notice that Samatha's eyes under the goggles are rimmed in red, and she keeps coughing quietly: a dry, careful cough. George explains that they came here several years ago to take jobs in the factories, but the volcanic fumes have been giving Samantha trouble ever since they arrived. They will pay for transport for themselves and their household goods to Millrace in the Fomalhaut System."
+		choice
+			"	(Accept.)"
+			"	(Decline.)"
+				decline
+		"	They thank you for your assistance, and you give them a hand pushing the heavy cart into your cargo bay."
+			accept
+	description "This young couple wants to start a new life on Millrace, in the Fomalhaut system."
+	success
+		message "The young couple from New Iceland pays you and thanks you profusely as they gather up their goods and depart. You wish them the best of luck in their life on this new planet."
+
+
+mission "Pookie, Part 1"
+	require
+		planet "Hestia"
+	destination "Shroud"
+	conversation
+		"As you walk through the spaceport, you hear a voice behind you, saying, ''Excuse me, captain.'' You turn around and see a woman trying to flag you down. Her hairdo is tall and somewhat confusing; her high heels are also tall and are giving her considerable trouble as she walks towards you."
+		"	''You look like the sort of captain I can trust,'' she says. ''My darling Pookie has been visiting her aunt on Shroud, and it's time for her to come home, but she's not used to space travel and it scares her. I would feel so much better if you could go pick her up and bring her back here. Can you do that for me?'' You can't help noticing that the jewelry she's wearing probably costs as much as a small fighter craft. This job sounds easy, and has the potential to be quite lucrative."
+		choice
+			"	(Accept.)"
+			"	(Decline.)"
+		"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the Alheka system."
+			accept
+	description "Travel to Shroud in the Alheka system and meet Pookie, who is staying with her aunt and may be scared of flying."
+	success
+		mission "Pookie, Part 2"
+
+mission "Pookie, Part 2"
+	destination "Hestia"
+	passengers 1
+	payment 40000
+	conversation
+		"You called ahead while your ship was landing and agreed to meet Pookie's aunt at the spaceport. She told you, ''Meet me outside the shop with the ridiculous sheepskin coats.'' The shop is not hard to find; the mannequins in the window look like feral sheep with overgrown wool in bad need of grooming."
+		"	The only person standing outside the shop is a tall woman in a suit who is busy making furious marks on some sort of document with a red pen. She has a small poodle on a leash; it is busy nipping the heels of everyone who walks by."
+		choice
+			"	(Interrupt her.)"
+				goto interrupt
+			"	(Wait to see if someone else shows up.)"
+				goto wait
+		
+		label interrupt
+		"	''Excuse me,'' you say. She looks up at you with a withering glare. ''I'm looking for someone named Pookie.''"
+			goto response
+		
+		label wait
+		"	Eventually she looks up from the paper and sees you standing there. ''Are you captain <last>?'' she asks. You nod."
+			goto response
+		
+		label response
+		"	''Thank heavens,'' she says. ''She's all yours.'' She hands you the leash and a large bag that appears to be full of chew toys. ''Here are her toys, her food, and her... outfits. Which she hates. Feed her twice a day, or she will go berserk. Do not feed her more than twice a day, or she will throw up...''"
+		"	As she continues rattling off instructions, you ask, ''Wait, Pookie is the dog?''"
+		"	''Short for 'Pocahontas,''' she explains. ''Good luck, and I hope my sister pays you well.'' She walks away. There's nothing else you can do but bring Pookie back to your ship, where she immediately lifts her leg against the landing strut."
+			accept
+	description "Return Pookie the poodle to Hestia in the Talita system."
+	success
+		message "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you forty thousand credits."

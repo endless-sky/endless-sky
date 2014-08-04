@@ -39,6 +39,7 @@ public:
 	Conversation();
 	
 	void Load(const DataNode &node);
+	bool IsEmpty() const;
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.
