@@ -374,6 +374,8 @@ bool Ship::Move(list<Effect> &effects)
 		
 		energy += attributes.Get("energy generation");
 		heat += attributes.Get("heat generation");
+		heat -= attributes.Get("cooling");
+		heat = max(0., heat);
 		
 		// Recharge shields, but only up to the max. If there is extra shield
 		// energy, use it to recharge fighters and drones.
@@ -1010,7 +1012,7 @@ double Ship::Energy() const
 double Ship::Heat() const
 {
 	double maximum = Mass() * 100.;
-	return maximum ? max(0., min(1., heat / maximum)) : 1.;
+	return maximum ? min(1., heat / maximum) : 1.;
 }
 
 
