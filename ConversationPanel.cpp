@@ -112,8 +112,10 @@ void ConversationPanel::Draw() const
 	if(node < 0)
 	{
 		string done = "[done]";
+		int width = font.Width(done);
 		Point off(Screen::Width() / -2 + 20 + WIDTH - font.Width(done), point.Y());
 		font.Draw(done, off, bright);
+		zones.emplace_back(off, Point(width, font.Height()));
 		return;
 	}
 	if(choices.empty())
@@ -218,8 +220,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool ConversationPanel::Click(int x, int y)
 {
+	Point point(x, y);
 	if(node < 0)
-		GetUI()->Pop(this);
+	{
+		if(zones.empty() || zones.front().Contains(point))
+		{
+			callback(node);
+			GetUI()->Pop(this);
+		}
+	}
 	else if(choices.empty() && node >= 0)
 	{
 		// Get the x position relative to the left side of the screen.
@@ -231,7 +240,6 @@ bool ConversationPanel::Click(int x, int y)
 	}
 	else
 	{
-		Point point(x, y);
 		for(unsigned i = 0; i < zones.size(); ++i)
 			if(zones[i].Contains(point))
 			{

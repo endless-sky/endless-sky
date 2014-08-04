@@ -43,6 +43,7 @@ mission "Pookie, Part 1"
 		choice
 			"	(Accept.)"
 			"	(Decline.)"
+				decline
 		"	You tell her that you would be glad to assist, and that you can personally assure her that no harm will come to Pookie while on board your ship. She thanks you, and gives you contact information for her aunt in the Alheka system."
 			accept
 	description "Travel to Shroud in the Alheka system and meet Pookie, who is staying with her aunt and may be scared of flying."
