@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Interface.h"
 #include "Key.h"
+#include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "Sale.h"
@@ -59,6 +60,7 @@ public:
 	static const Set<Fleet> &Fleets();
 	static const Set<Government> &Governments();
 	static const Set<Interface> &Interfaces();
+	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();

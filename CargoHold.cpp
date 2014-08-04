@@ -197,6 +197,13 @@ int CargoHold::MissionCargoSize() const
 
 
 
+bool CargoHold::IsEmpty() const
+{
+	return commodities.empty() && outfits.empty() && missionCargo.empty() && passengers.empty();
+}
+
+
+
 // Set the number of free bunks for passengers.
 void CargoHold::SetBunks(int count)
 {

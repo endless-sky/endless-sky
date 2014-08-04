@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Color.h"
+#include "ConversationPanel.h"
 #include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
@@ -80,6 +81,30 @@ void PlanetPanel::Draw() const
 
 
 
+// Conversation callback for new special missions.
+void PlanetPanel::OnCallback(int value)
+{
+	if(value == Conversation::DIE)
+	{
+		// TODO: handle "DIE".
+	}
+	else if(value == Conversation::ACCEPT)
+		player.AcceptSpecialMission();
+	else
+		player.DeclineSpecialMission();
+	
+	if(player.NextSpecialMission())
+	{
+		ConversationPanel *panel = new ConversationPanel(
+			player,
+			player.NextSpecialMission()->Introduction());
+		panel->SetCallback(*this);
+		GetUI()->Push(panel);
+	}
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
@@ -114,6 +139,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		selectedPanel = spaceport.get();
 		GetUI()->Push(spaceport);
+		if(player.NextSpecialMission())
+		{
+			ConversationPanel *panel = new ConversationPanel(
+				player,
+				player.NextSpecialMission()->Introduction());
+			panel->SetCallback(*this);
+			GetUI()->Push(panel);
+		}
 	}
 	else if(key == 's' && planet.HasShipyard())
 	{

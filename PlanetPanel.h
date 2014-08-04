@@ -36,6 +36,9 @@ public:
 	
 	virtual void Draw() const;
 	
+	// Conversation callback for new special missions.
+	void OnCallback(int value);
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.

@@ -102,6 +102,12 @@ public:
 	void AbortMission(const Mission &mission);
 	void CompleteMission(const Mission &mission);
 	
+	// Special missions.
+	const Mission *NextSpecialMission() const;
+	void AcceptSpecialMission();
+	void DeclineSpecialMission();
+	const std::list<const Mission *> &SpecialMissions() const;
+	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
 	void Visit(const System *system);
@@ -146,6 +152,9 @@ private:
 	// This list is populated when you are landed on a planet. It must be saved
 	// in order to avoid presenting duplicate missions when loading again.
 	std::list<Mission> jobs;
+	
+	std::list<const Mission *> availableSpecials;
+	std::list<const Mission *> specials;
 	
 	std::set<const System *> seen;
 	std::set<const System *> visited;

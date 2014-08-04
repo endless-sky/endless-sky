@@ -43,6 +43,7 @@ public:
 	int OutfitsSize() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
+	bool IsEmpty() const;
 	
 	// Set the number of free bunks for passengers.
 	void SetBunks(int count);

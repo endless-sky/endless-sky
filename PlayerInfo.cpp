@@ -53,6 +53,8 @@ void PlayerInfo::Clear()
 	cargo.Clear();
 	missions.clear();
 	jobs.clear();
+	availableSpecials.clear();
+	specials.clear();
 	
 	seen.clear();
 	visited.clear();
@@ -118,6 +120,10 @@ void PlayerInfo::Load(const string &path)
 			jobs.push_back(Mission());
 			jobs.back().Load(child);
 		}
+		else if(child.Token(0) == "special mission" && child.Size() >= 2)
+			specials.push_back(GameData::Missions().Get(child.Token(1)));
+		else if(child.Token(0) == "available special mission" && child.Size() >= 2)
+			availableSpecials.push_back(GameData::Missions().Get(child.Token(1)));
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -175,6 +181,10 @@ void PlayerInfo::Save() const
 		mission.Save(out);
 	for(const Mission &mission : jobs)
 		mission.Save(out, "job");
+	for(const Mission *mission : specials)
+		out.Write("special mission", mission->Name());
+	for(const Mission *mission : availableSpecials)
+		out.Write("available special mission", mission->Name());
 	
 	for(const System *system : visited)
 		out.Write("visited", system->Name());
@@ -475,6 +485,10 @@ void PlayerInfo::Land()
 	if(!system || !planet)
 		return;
 	
+	// Check if we really are just landing (as opposed to loading a saved game
+	// that has already done all the landing steps).
+	bool didJustLand = cargo.IsEmpty();
+	
 	// Remove any ships that have been destroyed. Recharge the others if this is
 	// a planet with a spaceport.
 	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
@@ -502,23 +516,22 @@ void PlayerInfo::Land()
 			ship->Cargo().TransferAll(&cargo);
 		}
 	
-	// TODO: This is not quite right, because in theory a planet may have no
-	// jobs generated, in which case it should still be empty when re-loading
-	// the saved game.
-	if(jobs.empty())
+	// Create whatever missions this planet has to offer.
+	if(didJustLand)
 		CreateMissions();
 	
-	auto mit = missions.begin();
-	while(mit != missions.end())
-	{
-		if(mit->Failed())
-		{
-			cargo.RemoveMissionCargo(&*mit);
-			mit = missions.erase(mit);
-		}
-		else
-			++mit;
-	}
+	// Search for any missions that have failed but for which we are still
+	// holding on to some cargo.
+	set<const Mission *> active;
+	for(const auto &it : missions)
+		active.insert(&it);
+	
+	for(const auto &it : cargo.MissionCargo())
+		if(active.find(it.first) == active.end())
+			cargo.RemoveMissionCargo(it.first);
+	for(const auto &it : cargo.PassengerList())
+		if(active.find(it.first) == active.end())
+			cargo.RemoveMissionCargo(it.first);
 }
 
 
@@ -533,6 +546,7 @@ void PlayerInfo::TakeOff()
 	
 	// Jobs are only available when you are landed.
 	jobs.clear();
+	availableSpecials.clear();
 	
 	// Reset any governments you provoked yesterday.
 	for(const auto &it : GameData::Governments())
@@ -607,24 +621,16 @@ void PlayerInfo::TakeOff()
 	for(const auto &it : cargo.MissionCargo())
 		if(it.second)
 		{
-			for(Mission &mission : missions)
-				if(&mission == it.first)
-				{
-					mission.SetFailed();
-					Messages::Add("Mission \"" + mission.Name()
-						+ "\" failed because you do not have space for the cargo.");
-				}
+			Messages::Add("Mission \"" + it.first->Name()
+				+ "\" failed because you do not have space for the cargo.");
+			AbortMission(*it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
-			for(Mission &mission : missions)
-				if(&mission == it.first)
-				{
-					mission.SetFailed();
-					Messages::Add("Mission \"" + mission.Name()
-						+ "\" failed because you do not have enough passenger bunks free.");
-				}
+			Messages::Add("Mission \"" + it.first->Name()
+				+ "\" failed because you do not have enough passenger bunks free.");
+			AbortMission(*it.first);
 		}
 	
 	int sold = cargo.Used();
@@ -713,6 +719,13 @@ void PlayerInfo::AbortMission(const Mission &mission)
 		{
 			cargo.RemoveMissionCargo(&mission);
 			missions.erase(it);
+			return;
+		}
+	for(auto it = specials.begin(); it != specials.end(); ++it)
+		if(*it == &mission)
+		{
+			cargo.RemoveMissionCargo(&mission);
+			specials.erase(it);
 			break;
 		}
 }
@@ -722,7 +735,47 @@ void PlayerInfo::AbortMission(const Mission &mission)
 void PlayerInfo::CompleteMission(const Mission &mission)
 {
 	accounts.AddCredits(mission.Payment());
+	if(mission.Next())
+		specials.push_back(mission.Next());
 	AbortMission(mission);
+}
+
+
+
+const Mission *PlayerInfo::NextSpecialMission() const
+{
+	if(availableSpecials.empty())
+		return nullptr;
+	
+	return availableSpecials.back();
+}
+
+
+
+void PlayerInfo::AcceptSpecialMission()
+{
+	if(availableSpecials.empty())
+		return;
+	
+	specials.push_back(availableSpecials.back());
+	availableSpecials.pop_back();
+}
+
+
+
+void PlayerInfo::DeclineSpecialMission()
+{
+	if(availableSpecials.empty())
+		return;
+	
+	availableSpecials.pop_back();
+}
+
+
+
+const list<const Mission *> &PlayerInfo::SpecialMissions() const
+{
+	return specials;
 }
 
 
@@ -848,6 +901,8 @@ void PlayerInfo::CreateMissions()
 	
 	// TODO: Each planet specifies the maximum number of each mission type.
 	
-	// TODO: eventually, search for missions in GameData that have all their
-	// prerequisites met, and add them to the missions list.
+	// Check for available special missions.
+	for(const auto &it : GameData::Missions())
+		if(it.second.IsAvailableAt(planet))
+				availableSpecials.push_back(&it.second);
 }

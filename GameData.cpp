@@ -37,6 +37,7 @@ namespace {
 	Set<Fleet> fleets;
 	Set<Government> governments;
 	Set<Interface> interfaces;
+	Set<Mission> missions;
 	Set<Outfit> outfits;
 	Set<Planet> planets;
 	Set<Ship> ships;
@@ -276,6 +277,13 @@ const Set<Interface> &GameData::Interfaces()
 
 
 
+const Set<Mission> &GameData::Missions()
+{
+	return missions;
+}
+
+
+
 const Set<Outfit> &GameData::Outfits()
 {
 	return outfits;
@@ -378,6 +386,8 @@ void GameData::LoadFile(const string &path)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface")
 			interfaces.Get(node.Token(1))->Load(node);
+		else if(key == "mission")
+			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
