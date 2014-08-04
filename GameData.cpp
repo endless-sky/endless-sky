@@ -144,7 +144,7 @@ void GameData::BeginLoad(const char * const *argv)
 			
 			double energy = attributes.Get("thrusting energy")
 				+ attributes.Get("turning energy");
-			double heat = attributes.Get("heat generation")
+			double heat = attributes.Get("heat generation") - attributes.Get("cooling")
 				+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
 			for(const auto &oit : ship.Outfits())
 				if(oit.first->IsWeapon())
