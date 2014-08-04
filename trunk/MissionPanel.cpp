@@ -47,13 +47,6 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
-	if(availableIt != available.end())
-		Select(availableIt->Destination()->GetSystem());
-	else if(acceptedIt != accepted.end())
-		Select(acceptedIt->Destination()->GetSystem());
-	else
-		Select(playerSystem);
-	
 	// Center the system slightly above the center of the screen because the
 	// lower panel is taking up more space than the upper one.
 	center = Point(0., -80.) - selectedSystem->Position();
