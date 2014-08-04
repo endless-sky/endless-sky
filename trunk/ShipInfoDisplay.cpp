@@ -327,7 +327,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * attributes.Get("energy generation")));
-	heatTable.push_back(Format::Number(60. * attributes.Get("heat generation")));
+	heatTable.push_back(Format::Number(
+		60. * (attributes.Get("heat generation") - attributes.Get("cooling"))));
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(
