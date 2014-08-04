@@ -72,7 +72,6 @@ outfit "Medium Graviton Thruster"
 outfit "Medium Graviton Steering"
 	category "Engines"
 	"cost" 16000000
-	thumbnail "outfit/steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50

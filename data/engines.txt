@@ -11,7 +11,7 @@
 outfit "X1700 Ion Thruster"
 	category "Engines"
 	"cost" 12000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/tiny ion thruster"
 	"mass" 16
 	"outfit space" -16
 	"engine capacity" -16
@@ -25,7 +25,7 @@ outfit "X1700 Ion Thruster"
 outfit "X2700 Ion Thruster"
 	category "Engines"
 	"cost" 26000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/small ion thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
@@ -39,7 +39,7 @@ outfit "X2700 Ion Thruster"
 outfit "X3700 Ion Thruster"
 	category "Engines"
 	"cost" 58000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/medium ion thruster"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -52,8 +52,8 @@ outfit "X3700 Ion Thruster"
 
 outfit "X4700 Ion Thruster"
 	category "Engines"
-	"cost" 201000
-	thumbnail "outfit/engine"
+	"cost" 128000
+	thumbnail "outfit/large ion thruster"
 	"mass" 79
 	"outfit space" -79
 	"engine capacity" -79
@@ -67,7 +67,7 @@ outfit "X4700 Ion Thruster"
 outfit "X5700 Ion Thruster"
 	category "Engines"
 	"cost" 281000
-	thumbnail "outfit/engine"
+	thumbnail "outfit/huge ion thruster"
 	"mass" 134
 	"outfit space" -134
 	"engine capacity" -134
@@ -81,7 +81,7 @@ outfit "X5700 Ion Thruster"
 outfit "X1200 Ion Steering"
 	category "Engines"
 	"cost" 10000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/tiny ion steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -93,7 +93,7 @@ outfit "X1200 Ion Steering"
 outfit "X2200 Ion Steering"
 	category "Engines"
 	"cost" 21000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/small ion steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -105,7 +105,7 @@ outfit "X2200 Ion Steering"
 outfit "X3200 Ion Steering"
 	category "Engines"
 	"cost" 46000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/medium ion steering"
 	"mass" 35
 	"outfit space" -35
 	"engine capacity" -35
@@ -117,7 +117,7 @@ outfit "X3200 Ion Steering"
 outfit "X4200 Ion Steering"
 	category "Engines"
 	"cost" 102000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/large ion steering"
 	"mass" 59
 	"outfit space" -59
 	"engine capacity" -59
@@ -129,7 +129,7 @@ outfit "X4200 Ion Steering"
 outfit "X5200 Ion Steering"
 	category "Engines"
 	"cost" 225000
-	thumbnail "outfit/steering"
+	thumbnail "outfit/huge ion steering"
 	"mass" 100
 	"outfit space" -100
 	"engine capacity" -100
