@@ -86,8 +86,6 @@ void PlayerInfo::Load(const string &path)
 	filePath = path;
 	DataFile file(path);
 	
-	playerGovernment = GameData::Governments().Get("Escort");
-	
 	for(const DataNode &child : file)
 	{
 		if(child.Token(0) == "pilot" && child.Size() >= 3)
@@ -130,7 +128,7 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->Load(child);
 			ships.back()->FinishLoading();
 			ships.back()->SetIsSpecial();
-			ships.back()->SetGovernment(playerGovernment);
+			ships.back()->SetGovernment(GameData::PlayerGovernment());
 			if(ships.size() > 1)
 			{
 				ships.back()->SetParent(ships.front());
@@ -223,11 +221,18 @@ void PlayerInfo::New()
 	
 	SetSystem(GameData::Systems().Get("Rutilicus"));
 	SetPlanet(GameData::Planets().Get("New Boston"));
-	playerGovernment = GameData::Governments().Get("Escort");
 	
 	accounts.AddMortgage(295000);
 	
 	CreateMissions();
+}
+
+
+
+// Apply any "changes" saved in this player info to the global game state.
+void PlayerInfo::ApplyChanges()
+{
+	// TODO: Allow changes to the galaxy.
 }
 
 
@@ -402,7 +407,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
 		ships.back()->SetIsSpecial();
-		ships.back()->SetGovernment(playerGovernment);
+		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		if(ships.size() > 1)
 		{
 			ships.back()->SetParent(ships.front());
@@ -495,7 +500,7 @@ void PlayerInfo::Land()
 	while(it != ships.end())
 	{
 		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled()
-				|| (*it)->GetGovernment() != playerGovernment)
+				|| (*it)->GetGovernment() != GameData::PlayerGovernment())
 			it = ships.erase(it);
 		else
 			++it; 
@@ -547,10 +552,6 @@ void PlayerInfo::TakeOff()
 	// Jobs are only available when you are landed.
 	jobs.clear();
 	availableSpecials.clear();
-	
-	// Reset any governments you provoked yesterday.
-	for(const auto &it : GameData::Governments())
-		it.second.ResetProvocation();
 	
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
@@ -873,15 +874,6 @@ void PlayerInfo::SelectNext()
 		}
 	selectedWeapon = nullptr;
 }
-
-
-	
-// Get the player's government.
-const Government *PlayerInfo::GetGovernment() const
-{
-	return playerGovernment;
-}
-
 
 
 // New missions are generated each time you land on a planet. This also means

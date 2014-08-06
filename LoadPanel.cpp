@@ -125,6 +125,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == 'n')
 	{
+		GameData::Revert();
 		player.New();
 		
 		ConversationPanel *panel = new ConversationPanel(
@@ -182,7 +183,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	}
 	else if(key == 'e')
 	{
+		GameData::Revert();
+		loadedInfo.ApplyChanges();
 		player = loadedInfo;
+		
 		Messages::Reset();
 		GetUI()->Pop(this);
 		GetUI()->Pop(GetUI()->Root().get());

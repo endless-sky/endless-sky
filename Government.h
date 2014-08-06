@@ -14,9 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GOVERNMENT_H_
 
 #include "Color.h"
-#include "Set.h"
+#include "ShipEvent.h"
 
-#include <set>
+#include <map>
 #include <string>
 
 class DataNode;
@@ -45,23 +45,16 @@ public:
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
 	
-	// Check whether ships of this government will come to the aid of ships of
-	// the given government that are under attack.
-	bool IsAlly(const Government *other) const;
-	// Check whether ships of this government will preemptively attack ships of
-	// the given government.
-	bool IsEnemy(const Government *other) const;
+	// Get the government's initial disposition toward other governments or
+	// toward the player.
+	double InitialAttitudeToward(const Government *other) const;
+	double InitialPlayerReputation() const;
+	// Get the amount that your reputation changes for the given offense.
+	double PenaltyFor(ShipEvent::Type actionType) const;
 	
-	// Mark that this government is, for the moment, fighting the given
-	// government, which is not necessarily one of its normal enemies, because
-	// a ship of that government attacked it or one of its allies.
-	void Provoke(const Government *other, double damage) const;
-	// Check if we are provoked against the given government.
-	bool IsProvoked(const Government *other) const;
-	// Reset the record of who has provoked whom.
-	void ResetProvocation() const;
-	// Every time step, the provokation values fade a little:
-	void CoolDown() const;
+	// Check if, according to the politcs stored by GameData, this government is
+	// an enemy of the given government right now.
+	bool IsEnemy(const Government *other) const;
 	
 	
 private:
@@ -69,10 +62,9 @@ private:
 	int swizzle;
 	Color color;
 	
-	std::set<const Government *> allies;
-	std::set<const Government *> enemies;
-	
-	mutable std::map<const Government *, double> provoked;
+	std::map<const Government *, double> initialAttitudeToward;
+	double initialPlayerReputation;
+	std::map<ShipEvent::Type, double> penaltyFor;
 };
 
 
