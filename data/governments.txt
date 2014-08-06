@@ -14,7 +14,7 @@ government "Escort"
 government "Merchant"
 	swizzle 5
 	
-	"initial reputation" 10
+	"player reputation" 10
 	"attitude toward"
 		"Pirate" -.2
 
@@ -22,7 +22,7 @@ government "Republic"
 	swizzle 0
 	color .91 .42 .09
 	
-	"initial reputation" 2
+	"player reputation" 2
 	"attitude toward"
 		"Merchant" .25
 		"Militia" .1
@@ -33,7 +33,7 @@ government "Free Worlds"
 	swizzle 2
 	color .06 .68 0
 	
-	"initial reputation" 1
+	"player reputation" 1
 	"attitude toward"
 		"Merchant" .3
 		"Militia" .3
@@ -44,7 +44,7 @@ government "Militia"
 	swizzle 2
 	color .06 .68 0
 	
-	"initial reputation" 0
+	"player reputation" 0
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
@@ -53,7 +53,7 @@ government "Syndicate"
 	swizzle 4
 	color 0 .41 .71
 	
-	"initial reputation" 2
+	"player reputation" 2
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
@@ -62,7 +62,7 @@ government "Pirate"
 	swizzle 6
 	color .78 0 0
 	
-	"initial reputation" -10
+	"player reputation" -10
 	"attitude toward"
 		"Merchant" -.1
 		"Syndicate" -.1
@@ -71,7 +71,7 @@ government "Quarg"
 	swizzle 0
 	color .88 .77 0
 	
-	"initial reputation" 1
+	"player reputation" 1
 	"attitude toward"
 		"Merchant" .1
 		"Pirate" -.1

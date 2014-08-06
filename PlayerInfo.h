@@ -159,6 +159,9 @@ private:
 	std::vector<const System *> travelPlan;
 	
 	const Outfit *selectedWeapon;
+	
+	// Changes that this PlayerInfo wants to make to the global galaxy state:
+	std::vector<std::pair<const Government *, double>> reputationChanges;
 };
 
 
