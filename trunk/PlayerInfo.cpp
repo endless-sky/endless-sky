@@ -101,6 +101,13 @@ void PlayerInfo::Load(const string &path)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "travel" && child.Size() >= 2)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "reputation with")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					GameData::GetPolitics().SetReputation(
+						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
+		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
@@ -168,6 +175,13 @@ void PlayerInfo::Save() const
 		out.Write("planet", planet->Name());
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
+	out.Write("reputation with");
+	out.BeginChild();
+		for(const auto &it : GameData::Governments())
+			if(&it.second != GameData::PlayerGovernment())
+				out.Write(it.first, GameData::GetPolitics().Reputation(&it.second));
+	out.EndChild();
+		
 	
 	for(const std::shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
@@ -232,6 +246,10 @@ void PlayerInfo::New()
 // Apply any "changes" saved in this player info to the global game state.
 void PlayerInfo::ApplyChanges()
 {
+	for(const auto &it : reputationChanges)
+		GameData::GetPolitics().SetReputation(it.first, it.second);
+	reputationChanges.clear();
+	
 	// TODO: Allow changes to the galaxy.
 }
 
