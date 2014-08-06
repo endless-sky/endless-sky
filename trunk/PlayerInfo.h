@@ -49,6 +49,8 @@ public:
 	void LoadRecent();
 	// Make a new player.
 	void New();
+	// Apply any "changes" saved in this player info to the global game state.
+	void ApplyChanges();
 	
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
@@ -124,9 +126,6 @@ public:
 	const Outfit *SelectedWeapon() const;
 	void SelectNext();
 	
-	// Get the player's government.
-	const Government *GetGovernment() const;
-	
 	
 private:
 	// New missions are generated each time you land on a planet. This also means
@@ -143,7 +142,6 @@ private:
 	Date date;
 	const System *system;
 	const Planet *planet;
-	const Government *playerGovernment;
 	Account accounts;
 	
 	std::vector<std::shared_ptr<Ship>> ships;

@@ -23,8 +23,15 @@ using namespace std;
 
 // Default constructor.
 Government::Government()
-	: name("Uninhabited"), swizzle(0), color(1.)
+	: name("Uninhabited"), swizzle(0), color(1.), initialPlayerReputation(0.)
 {
+	// Default penalties:
+	penaltyFor[ShipEvent::ASSIST] = -0.1;
+	penaltyFor[ShipEvent::DISABLE] = 0.5;
+	penaltyFor[ShipEvent::BOARD] = 0.3;
+	penaltyFor[ShipEvent::CAPTURE] = 1.;
+	penaltyFor[ShipEvent::DESTROY] = 1.;
+	penaltyFor[ShipEvent::ATROCITY] = 10.;
 }
 
 
@@ -41,10 +48,36 @@ void Government::Load(const DataNode &node)
 			swizzle = child.Value(1);
 		else if(child.Token(0) == "color" && child.Size() >= 4)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "ally" && child.Size() >= 2)
-			allies.insert(GameData::Governments().Get(child.Token(1)));
-		else if(child.Token(0) == "enemy" && child.Size() >= 2)
-			enemies.insert(GameData::Governments().Get(child.Token(1)));
+		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
+			initialPlayerReputation = child.Value(1.);
+		else if(child.Token(0) == "attitude toward")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+				{
+					const Government *gov = GameData::Governments().Get(grand.Token(0));
+					initialAttitudeToward[gov] = grand.Value(1);
+				}
+		}
+		else if(child.Token(0) == "penalty for")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+				{
+					if(grand.Token(0) == "assist")
+						penaltyFor[ShipEvent::ASSIST] = grand.Value(1);
+					if(grand.Token(0) == "disable")
+						penaltyFor[ShipEvent::DISABLE] = grand.Value(1);
+					if(grand.Token(0) == "board")
+						penaltyFor[ShipEvent::BOARD] = grand.Value(1);
+					if(grand.Token(0) == "capture")
+						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
+					if(grand.Token(0) == "destroy")
+						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
+					if(grand.Token(0) == "atrocity")
+						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
+				}
+		}
 	}
 }
 
@@ -74,60 +107,35 @@ const Color &Government::GetColor() const
 
 
 
-// Check whether ships of this government will come to the aid of ships of
-// the given government that are under attack.
-bool Government::IsAlly(const Government *other) const
+// Get the government's initial disposition toward other governments or
+// toward the player.
+double Government::InitialAttitudeToward(const Government *other) const
 {
-	return (allies.find(other) != allies.end());
+	auto it = initialAttitudeToward.find(other);
+	return (it == initialAttitudeToward.end() ? 0. : it->second);
 }
 
 
 
-// Check whether ships of this government will preemptively attack ships of
-// the given government.
+double Government::InitialPlayerReputation() const
+{
+	return initialPlayerReputation;
+}
+
+
+
+// Get the amount that your reputation changes for the given offense.
+double Government::PenaltyFor(ShipEvent::Type actionType) const
+{
+	auto it = penaltyFor.find(actionType);
+	return (it == penaltyFor.end() ? 0. : it->second);
+}
+
+
+	
+// Check if, according to the politcs stored by GameData, this government is
+// an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const
 {
-	if(!other)
-		return false;
-	
-	return (enemies.find(other) != enemies.end()
-		|| IsProvoked(other)
-		|| other->enemies.find(this) != other->enemies.end());
-}
-
-
-
-// Mark that this government is, for the moment, fighting the given
-// government, which is not necessarily one of its normal enemies, because
-// a ship of that government attacked it or one of its allies.
-void Government::Provoke(const Government *other, double damage) const
-{
-	if(other != this)
-		provoked[other] += damage;
-}
-
-
-
-// Check if we are provoked against the given government.
-bool Government::IsProvoked(const Government *other) const
-{
-	return provoked[other] > 1.;
-}
-
-
-
-// Reset the record of who has provoked whom. Typically this will happen
-// whenever you move to a new system.
-void Government::ResetProvocation() const
-{
-	provoked.clear();
-}
-
-
-
-// Every time step, the provokation values fade a little:
-void Government::CoolDown() const
-{
-	for(auto &it : provoked)
-		it.second = max(0., it.second - .1);
+	return GameData::GetPolitics().IsEnemy(this, other);
 }

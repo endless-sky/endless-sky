@@ -47,6 +47,8 @@ namespace {
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
 	
+	Politics politics;
+	
 	Trade trade;
 	
 	Key keys;
@@ -112,6 +114,9 @@ void GameData::BeginLoad(const char * const *argv)
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading();
+	
+	// TODO: store the current state, to revert back to later.
+	politics.Reset();
 	
 	if(printTable)
 	{
@@ -223,6 +228,7 @@ void GameData::Revert()
 	// Currently it is not possible to change anything, so nothing needs to be
 	// reverted. Eventually, we will need to save a copy of the systems,
 	// planets, and sales, and maybe other things as well.
+	politics.Reset();
 }
 
 
@@ -231,6 +237,7 @@ void GameData::SetDate(const Date &date)
 {
 	for(auto &it : systems)
 		it.second.SetDate(date);
+	politics.ResetProvocation();
 }
 
 
@@ -315,6 +322,20 @@ const Set<ShipName> &GameData::ShipNames()
 const Set<System> &GameData::Systems()
 {
 	return systems;
+}
+
+
+
+const Government *GameData::PlayerGovernment()
+{
+	return governments.Get("Escort");
+}
+
+
+
+Politics &GameData::GetPolitics()
+{
+	return politics;
 }
 
 

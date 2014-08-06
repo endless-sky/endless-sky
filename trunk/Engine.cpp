@@ -37,7 +37,7 @@ using namespace std;
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), playerGovernment(player.GetGovernment()),
+	: player(player), playerGovernment(GameData::PlayerGovernment()),
 	calcTickTock(false), drawTickTock(false), terminate(false), step(0), flash(0.),
 	load(0.), loadCount(0), loadSum(0.)
 {
@@ -508,10 +508,6 @@ void Engine::CalculateStep()
 	draw[calcTickTock].Clear(step);
 	radar[calcTickTock].Clear();
 	
-	// Give provoked governments a chance to cool down.
-	for(const auto &it : GameData::Governments())
-		it.second.CoolDown();
-	
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(ships, player);
 	
@@ -698,9 +694,8 @@ void Engine::CalculateStep()
 				hit->TakeDamage(projectile);
 			
 			// Whatever ship you hit directly is provoked against you.
-			if(hit)
-				hit->GetGovernment()->Provoke(gov, 
-					projectile.GetWeapon().WeaponGet("shield damage"));
+			if(hit && projectile.GetGovernment() == GameData::PlayerGovernment())
+				GameData::GetPolitics().Offend(hit->GetGovernment(), ShipEvent::PROVOKE);
 		}
 		else if(projectile.MissileStrength())
 		{

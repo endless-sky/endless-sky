@@ -10,57 +10,68 @@
 
 government "Escort"
 	swizzle 5
-	enemy "Pirate"
 
 government "Merchant"
 	swizzle 5
+	
+	"initial reputation" 10
+	"attitude toward"
+		"Pirate" -.2
 
 government "Republic"
 	swizzle 0
 	color .91 .42 .09
-	ally "Escort"
-	ally "Merchant"
-	ally "Syndicate"
-	ally "Militia"
-	enemy "Pirate"
-	enemy "Free Worlds"
+	
+	"initial reputation" 2
+	"attitude toward"
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+		"Free Worlds" -.3
 
 government "Free Worlds"
 	swizzle 2
 	color .06 .68 0
-	ally "Escort"
-	ally "Merchant"
-	ally "Syndicate"
-	ally "Militia"
-	enemy "Pirate"
-	enemy "Republic"
+	
+	"initial reputation" 1
+	"attitude toward"
+		"Merchant" .3
+		"Militia" .3
+		"Pirate" -.4
+		"Republic" -.3
 
 government "Militia"
 	swizzle 2
 	color .06 .68 0
-	ally "Escort"
-	ally "Merchant"
-	ally "Syndicate"
-	ally "Free Worlds"
-	enemy "Pirate"
+	
+	"initial reputation" 0
+	"attitude toward"
+		"Merchant" .3
+		"Pirate" -.4
 
 government "Syndicate"
 	swizzle 4
 	color 0 .41 .71
-	ally "Escort"
-	ally "Merchant"
-	enemy "Pirate"
+	
+	"initial reputation" 2
+	"attitude toward"
+		"Merchant" .3
+		"Pirate" -.4
 
 government "Pirate"
 	swizzle 6
 	color .78 0 0
-	enemy "Escort"
-	enemy "Merchant"
-	enemy "Syndicate"
+	
+	"initial reputation" -10
+	"attitude toward"
+		"Merchant" -.1
+		"Syndicate" -.1
 
 government "Quarg"
 	swizzle 0
 	color .88 .77 0
-	ally "Escort"
-	ally "Merchant"
-	enemy "Pirate"
+	
+	"initial reputation" 1
+	"attitude toward"
+		"Merchant" .1
+		"Pirate" -.1

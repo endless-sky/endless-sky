@@ -179,7 +179,7 @@ void MapPanel::DrawSystems() const
 {
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
-	const Government *playerGovernment = player.GetGovernment();
+	const Government *playerGovernment = GameData::PlayerGovernment();
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;

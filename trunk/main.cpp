@@ -81,6 +81,7 @@ int main(int argc, char *argv[])
 		GameData::BeginLoad(argv);
 		
 		player.LoadRecent();
+		player.ApplyChanges();
 		
 		// Check how big the window can be.
 		SDL_DisplayMode mode;

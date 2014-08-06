@@ -51,7 +51,7 @@ void Ship::Load(const DataNode &node)
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
 	
-	government = GameData::Governments().Get("Escort");
+	government = GameData::PlayerGovernment();
 	crew = 0;
 	equipped.clear();
 	

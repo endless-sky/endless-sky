@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "Politics.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Ship.h"
@@ -66,6 +67,9 @@ public:
 	static const Set<Ship> &Ships();
 	static const Set<ShipName> &ShipNames();
 	static const Set<System> &Systems();
+	
+	static const Government *PlayerGovernment();
+	static Politics &GetPolitics();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
 	
