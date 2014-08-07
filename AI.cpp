@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AI.h"
 
 #include "Armament.h"
+#include "GameData.h"
 #include "Government.h"
 #include "Key.h"
 #include "Mask.h"
@@ -22,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
 
 #include <limits>
@@ -66,8 +68,13 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 void AI::UpdateEvents(const std::list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
+	{
 		if(event.Actor() && event.Target())
-			actions[event.Actor()][event.Target()] |= event.Action();
+			actions[event.Actor()][event.Target()] |= event.Type();
+		if(event.ActorGovernment() == GameData::PlayerGovernment() && event.Target())
+			GameData::GetPolitics().Offend(
+				event.TargetGovernment(), event.Type(), event.Target()->RequiredCrew());
+	}
 }
 
 
@@ -780,7 +787,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 
 
 
-bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, ShipEvent::Type type) const
+bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) const
 {
 	auto sit = actions.find(ship.shared_from_this());
 	if(sit == actions.end())

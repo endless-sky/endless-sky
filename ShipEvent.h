@@ -23,7 +23,7 @@ class Ship;
 // A ShipEvent is anything of significance that one ship does to another.
 class ShipEvent {
 public:
-	enum Type {
+	enum {
 		// This is a "null" event.
 		NONE = 0,
 		// This ship did something good for the given ship.
@@ -63,14 +63,14 @@ public:
 	
 	
 public:
-	ShipEvent(const Government *actor, std::shared_ptr<Ship> &target, Type type);
-	ShipEvent(std::shared_ptr<Ship> &actor, std::shared_ptr<Ship> &target, Type type);
+	ShipEvent(const Government *actor, std::shared_ptr<Ship> &target, int type);
+	ShipEvent(std::shared_ptr<Ship> &actor, std::shared_ptr<Ship> &target, int type);
 	
 	const std::shared_ptr<Ship> &Actor() const;
 	const Government *ActorGovernment() const;
 	const std::shared_ptr<Ship> &Target() const;
 	const Government *TargetGovernment() const;
-	Type Action() const;
+	int Type() const;
 	
 	
 private:
@@ -78,7 +78,7 @@ private:
 	const Government *actorGovernment = nullptr;
 	std::shared_ptr<Ship> target;
 	const Government *targetGovernment = nullptr;
-	Type type;
+	int type;
 };
 
 

@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Projectile.h"
 #include "Random.h"
+#include "ShipEvent.h"
 #include "SpriteSet.h"
 #include "System.h"
 
@@ -1107,13 +1108,17 @@ double Ship::MaxVelocity() const
 
 // This ship just got hit by the given projectile. Take damage according to
 // what sort of weapon the projectile it.
-void Ship::TakeDamage(const Projectile &projectile)
+int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 {
+	int type = 0;
+	
 	const Outfit &weapon = projectile.GetWeapon();
 	double shieldDamage = weapon.WeaponGet("shield damage");
 	double hullDamage = weapon.WeaponGet("hull damage");
 	double hitForce =  weapon.WeaponGet("hit force");
 	double heatDamage = weapon.WeaponGet("heat damage");
+	bool wasDisabled = IsDisabled();
+	bool wasDestroyed = (hull <= 0.);
 	
 	isBoarding = false;
 	
@@ -1136,6 +1141,18 @@ void Ship::TakeDamage(const Projectile &projectile)
 		if(distance)
 			ApplyForce((hitForce / distance) * d);
 	}
+	
+	if(!wasDisabled && IsDisabled())
+		type |= ShipEvent::DISABLE;
+	if(!wasDestroyed && hull <= 0.)
+		type |= ShipEvent::DESTROY;
+	// If this ship was hit directly and did not consider itself an enemy of the
+	// ship that hit it, it is now "provoked" against that government.
+	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
+			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing()))
+		type |= ShipEvent::PROVOKE;
+	
+	return type;
 }
 
 

@@ -60,7 +60,7 @@ void MainPanel::Step(bool isActive)
 	const Government *gov = GameData::PlayerGovernment();
 	for(const ShipEvent &event : engine.Events())
 	{
-		if(event.Action() == ShipEvent::BOARD)
+		if(event.Type() == ShipEvent::BOARD)
 		{
 			// TODO: handle player getting boarded.
 			if(event.ActorGovernment() == gov)
