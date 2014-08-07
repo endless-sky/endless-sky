@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Projectile.h"
 #include "Radar.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
 
 #include <list>
@@ -49,8 +50,8 @@ public:
 	// Begin the next step of calculations.
 	void Step(bool isActive);
 	
-	// Get any ships that we must show boarding dialogs for.
-	const std::shared_ptr<Ship> &Boarding() const;
+	// Get any special events that happened in this step.
+	const std::list<ShipEvent> &Events() const;
 	
 	// Draw a frame.
 	void Draw() const;
@@ -115,8 +116,8 @@ private:
 	// time to stop tracking their movements.
 	std::map<std::list<Ship>::iterator, int> forget;
 	
-	std::list<std::shared_ptr<Ship>> boardingQueue;
-	std::shared_ptr<Ship> boarding;
+	std::list<ShipEvent> eventQueue;
+	std::list<ShipEvent> events;
 	
 	AsteroidField asteroids;
 	double flash;

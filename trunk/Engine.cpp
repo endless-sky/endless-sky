@@ -140,6 +140,9 @@ void Engine::Step(bool isActive)
 		if(isActive)
 			++step;
 		
+		events.swap(eventQueue);
+		eventQueue.clear();
+		
 		// The calculation thread is now paused, so it is safe to access things.
 		const Ship *flagship = player.GetShip();
 		if(flagship)
@@ -153,14 +156,6 @@ void Engine::Step(bool isActive)
 		// landed along with the player.
 		if(flagship && flagship->GetPlanet() && isActive)
 			player.SetPlanet(flagship->GetPlanet());
-		
-		if(!boardingQueue.empty())
-		{
-			boarding = boardingQueue.back();
-			boardingQueue.pop_back();
-		}
-		else
-			boarding.reset();
 		
 		const System *currentSystem = player.GetSystem();
 		// Update this here, for thread safety.
@@ -312,10 +307,9 @@ void Engine::Step(bool isActive)
 
 
 
-// Get any ships that we must show boarding dialogs for.
-const shared_ptr<Ship> &Engine::Boarding() const
+const list<ShipEvent> &Engine::Events() const
 {
-	return boarding;
+	return events;
 }
 
 
@@ -607,7 +601,7 @@ void Engine::CalculateStep()
 			bool autoPlunder = (ship->GetGovernment() != playerGovernment);
 			shared_ptr<Ship> victim = ship->Board(ships, autoPlunder);
 			if(victim)
-				boardingQueue.push_back(victim);
+				eventQueue.emplace_back(ship, victim, ShipEvent::BOARD);
 			
 			// This is a good opportunity to draw all the ships in system.
 			if(ship->GetSprite().IsEmpty())
