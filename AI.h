@@ -13,7 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef AI_H_
 #define AI_H_
 
+#include "ShipEvent.h"
+
 #include <list>
+#include <map>
 #include <memory>
 #include <string>
 
@@ -30,6 +33,8 @@ public:
 	AI();
 	
 	void UpdateKeys(int keys, PlayerInfo *info, bool isActive);
+	void UpdateEvents(const std::list<ShipEvent> &events);
+	void Clean();
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
 	
 	
@@ -60,6 +65,8 @@ private:
 	
 	void MovePlayer(Controllable &control, const PlayerInfo &info, const std::list<std::shared_ptr<Ship>> &ships);
 	
+	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, ShipEvent::Type type) const;
+	
 	
 private:
 	int step;
@@ -68,6 +75,9 @@ private:
 	int keyHeld;
 	int keyStuck;
 	bool isLaunching;
+	
+	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
+	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
 };
 
 
