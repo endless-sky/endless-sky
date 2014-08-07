@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef AI_H_
 #define AI_H_
 
-#include "ShipEvent.h"
-
 #include <list>
 #include <map>
 #include <memory>
@@ -23,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Controllable;
 class Point;
 class Ship;
+class ShipEvent;
 class PlayerInfo;
 
 
@@ -65,7 +64,7 @@ private:
 	
 	void MovePlayer(Controllable &control, const PlayerInfo &info, const std::list<std::shared_ptr<Ship>> &ships);
 	
-	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, ShipEvent::Type type) const;
+	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	
 	
 private:

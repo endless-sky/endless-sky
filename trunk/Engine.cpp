@@ -644,7 +644,7 @@ void Engine::CalculateStep()
 		// shields the ship (unless the projectile has  blast radius).
 		Point hitVelocity;
 		double closestHit = 0.;
-		Ship *hit = nullptr;
+		shared_ptr<Ship> hit;
 		const Government *gov = projectile.GetGovernment();
 		
 		// If this "projectile" is a ship explosion, it always explodes.
@@ -665,7 +665,7 @@ void Engine::CalculateStep()
 					if(range < closestHit)
 					{
 						closestHit = range;
-						hit = ship.get();
+						hit = ship;
 						hitVelocity = ship->Velocity();
 					}
 				}
@@ -685,14 +685,20 @@ void Engine::CalculateStep()
 				for(shared_ptr<Ship> &ship : ships)
 					if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding())
 						if(projectile.InBlastRadius(*ship, step))
-							ship->TakeDamage(projectile);
+						{
+							int eventType = ship->TakeDamage(projectile, ship != hit);
+							if(eventType)
+								eventQueue.emplace_back(
+									projectile.GetGovernment(), ship, eventType);
+						}
 			}
 			else if(hit)
-				hit->TakeDamage(projectile);
-			
-			// Whatever ship you hit directly is provoked against you.
-			if(hit && projectile.GetGovernment() == GameData::PlayerGovernment())
-				GameData::GetPolitics().Offend(hit->GetGovernment(), ShipEvent::PROVOKE);
+			{
+				int eventType = hit->TakeDamage(projectile);
+				if(eventType)
+					eventQueue.emplace_back(
+						projectile.GetGovernment(), hit, eventType);
+			}
 		}
 		else if(projectile.MissileStrength())
 		{

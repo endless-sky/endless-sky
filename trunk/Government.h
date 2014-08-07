@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define GOVERNMENT_H_
 
 #include "Color.h"
-#include "ShipEvent.h"
 
 #include <map>
 #include <string>
@@ -49,8 +48,9 @@ public:
 	// toward the player.
 	double InitialAttitudeToward(const Government *other) const;
 	double InitialPlayerReputation() const;
-	// Get the amount that your reputation changes for the given offense.
-	double PenaltyFor(ShipEvent::Type actionType) const;
+	// Get the amount that your reputation changes for the given offense. The
+	// given value should be a combination of one or more ShipEvent values.
+	double PenaltyFor(int eventType) const;
 	
 	// Check if, according to the politcs stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -64,7 +64,7 @@ private:
 	
 	std::map<const Government *, double> initialAttitudeToward;
 	double initialPlayerReputation;
-	std::map<ShipEvent::Type, double> penaltyFor;
+	std::map<int, double> penaltyFor;
 };
 
 

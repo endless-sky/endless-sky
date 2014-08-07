@@ -13,8 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef POLITICS_H_
 #define POLITICS_H_
 
-#include "ShipEvent.h"
-
 #include <map>
 #include <set>
 
@@ -47,7 +45,7 @@ public:
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the even type is PROVOKE), or a permanent change to your
 	// reputation.
-	void Offend(const Government *gov, ShipEvent::Type type, int count = 1);
+	void Offend(const Government *gov, int eventType, int count = 1);
 	
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov);

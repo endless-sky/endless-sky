@@ -150,8 +150,11 @@ public:
 	double MaxVelocity() const;
 	
 	// This ship just got hit by the given projectile. Take damage according to
-	// what sort of weapon the projectile it.
-	void TakeDamage(const Projectile &projectile);
+	// what sort of weapon the projectile it. The return value is a ShipEvent
+	// type, which may be a combination of PROVOKED, DISABLED, and DESTROYED.
+	// If isBlast, this ship was caught in the blast radius of a weapon but was
+	// not necessarily its primary target.
+	int TakeDamage(const Projectile &projectile, bool isBlast = false);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);

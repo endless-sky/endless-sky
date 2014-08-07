@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "GameData.h"
+#include "ShipEvent.h"
 
 #include <algorithm>
 
@@ -125,10 +126,13 @@ double Government::InitialPlayerReputation() const
 
 
 // Get the amount that your reputation changes for the given offense.
-double Government::PenaltyFor(ShipEvent::Type actionType) const
+double Government::PenaltyFor(int eventType) const
 {
-	auto it = penaltyFor.find(actionType);
-	return (it == penaltyFor.end() ? 0. : it->second);
+	double penalty = 0.;
+	for(const auto &it : penaltyFor)
+		if(eventType & it.first)
+			penalty += it.second;
+	return penalty;
 }
 
 

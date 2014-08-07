@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 
 #include "GameData.h"
+#include "ShipEvent.h"
 
 #include <algorithm>
 
@@ -98,7 +99,7 @@ void Politics::SetAttitude(const Government *gov, const Government *other, doubl
 // actually consider it to be an offense). This may result in temporary
 // hostilities (if the even type is PROVOKE), or a permanent change to your
 // reputation.
-void Politics::Offend(const Government *gov, ShipEvent::Type type, int count)
+void Politics::Offend(const Government *gov, int eventType, int count)
 {
 	if(gov == GameData::PlayerGovernment())
 		return;
@@ -107,15 +108,15 @@ void Politics::Offend(const Government *gov, ShipEvent::Type type, int count)
 	{
 		// You can provoke a government even by attacking an empty ship, such as
 		// a drone (count = 0, because count = crew).
-		if(type == ShipEvent::PROVOKE)
+		if(eventType & ShipEvent::PROVOKE)
 		{
 			if(other.second > 0.)
 				provoked.insert(other.first);
 		}
 		else if(count * other.second)
 		{
-			double penalty = (count * other.second) * other.first->PenaltyFor(type);
-			if(type == ShipEvent::ATROCITY)
+			double penalty = (count * other.second) * other.first->PenaltyFor(eventType);
+			if(eventType & ShipEvent::ATROCITY)
 				reputationWith[other.first] = min(0., reputationWith[other.first]);
 			
 			reputationWith[other.first] -= penalty;
