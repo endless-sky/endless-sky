@@ -142,6 +142,7 @@ void Engine::Step(bool isActive)
 		
 		events.swap(eventQueue);
 		eventQueue.clear();
+		ai.UpdateEvents(events);
 		
 		// The calculation thread is now paused, so it is safe to access things.
 		const Ship *flagship = player.GetShip();
@@ -419,6 +420,8 @@ void Engine::Draw() const
 
 void Engine::EnterSystem()
 {
+	ai.Clean();
+	
 	const Ship *flagship = player.GetShip();
 	if(!flagship)
 		return;

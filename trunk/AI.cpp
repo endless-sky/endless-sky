@@ -63,6 +63,22 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 
 
 
+void AI::UpdateEvents(const std::list<ShipEvent> &events)
+{
+	for(const ShipEvent &event : events)
+		if(event.Actor() && event.Target())
+			actions[event.Actor()][event.Target()] |= event.Action();
+}
+
+
+
+void AI::Clean()
+{
+	actions.clear();
+}
+
+
+
 void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 {
 	const Ship *player = info.GetShip();
@@ -162,7 +178,10 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();
 			else
-				range += 2000. * ship.HasBoarded(it.get());
+			{
+				bool hasBoarded = Has(ship, it, ShipEvent::BOARD);
+				range += 2000. * hasBoarded;
+			}
 			if(range < closest)
 			{
 				closest = range;
@@ -186,7 +205,8 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
-		if(shouldBoard && target->IsDisabled() && !ship.HasBoarded(target.get()))
+		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
+		if(shouldBoard && target->IsDisabled() && !hasBoarded)
 		{
 			if(ship.IsBoarding())
 				return;
@@ -533,7 +553,8 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 				continue;
 			
 			// Don't shoot ships we want to plunder.
-			if(target->IsDisabled() && spareDisabled && !ship.HasBoarded(target.get()))
+			bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
+			if(target->IsDisabled() && spareDisabled && !hasBoarded)
 				continue;
 			
 			Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
@@ -756,3 +777,19 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	if(isLaunching)
 		control.SetLaunchCommand();
 }
+
+
+
+bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, ShipEvent::Type type) const
+{
+	auto sit = actions.find(ship.shared_from_this());
+	if(sit == actions.end())
+		return false;
+	
+	auto oit = sit->second.find(other);
+	if(oit == sit->second.end())
+		return false;
+	
+	return (oit->second & type);
+}
+

@@ -694,8 +694,6 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 	// If the boarding ship is the player, they will choose what to plunder.
 	if(victim && autoPlunder)
 	{
-		boardedShips.insert(victim.get());
-		
 		// Take any outfits that fit.
 		for(auto &it : victim->outfits)
 			while(it.second && cargo.Transfer(it.first, -1))
@@ -859,15 +857,6 @@ bool Ship::CanHyperspace() const
 bool Ship::IsBoarding() const
 {
 	return isBoarding;
-}
-
-
-
-// Check if this ship has boarded another ship. This is just so the AI knows
-// to move on and not keep boarding the same ship forever.
-bool Ship::HasBoarded(const Ship *ship) const
-{
-	return (boardedShips.find(ship) != boardedShips.end());
 }
 
 
