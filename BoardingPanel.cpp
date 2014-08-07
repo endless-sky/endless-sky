@@ -73,7 +73,7 @@ void BoardingPanel::Draw() const
 	
 	// Draw the list of plunder.
 	Color opaque(.1, 1.);
-	Color back = *GameData::Colors().Get("back");
+	Color back = *GameData::Colors().Get("faint");
 	Color dim = *GameData::Colors().Get("dim");
 	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");

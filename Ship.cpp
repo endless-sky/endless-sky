@@ -702,9 +702,8 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 				--it.second;
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(&cargo);
-		victim.reset();
 		// Stop targeting this ship.
-		SetTargetShip(victim);
+		SetTargetShip(shared_ptr<Ship>());
 	}
 	
 	return victim;

@@ -57,8 +57,16 @@ void MainPanel::Step(bool isActive)
 	
 	engine.Step(isActive);
 	
-	if(engine.Boarding())
-		GetUI()->Push(new BoardingPanel(player, engine.Boarding()));
+	const Government *gov = GameData::PlayerGovernment();
+	for(const ShipEvent &event : engine.Events())
+	{
+		if(event.Action() == ShipEvent::BOARD)
+		{
+			// TODO: handle player getting boarded.
+			if(event.ActorGovernment() == gov)
+				GetUI()->Push(new BoardingPanel(player, event.Target()));
+		}
+	}
 }
 
 

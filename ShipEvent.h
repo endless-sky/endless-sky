@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <memory>
 
+class Government;
 class Ship;
 
 
@@ -62,16 +63,21 @@ public:
 	
 	
 public:
+	ShipEvent(const Government *actor, std::shared_ptr<Ship> &target, Type type);
 	ShipEvent(std::shared_ptr<Ship> &actor, std::shared_ptr<Ship> &target, Type type);
 	
 	const std::shared_ptr<Ship> &Actor() const;
+	const Government *ActorGovernment() const;
 	const std::shared_ptr<Ship> &Target() const;
+	const Government *TargetGovernment() const;
 	Type Action() const;
 	
 	
 private:
 	std::shared_ptr<Ship> actor;
+	const Government *actorGovernment = nullptr;
 	std::shared_ptr<Ship> target;
+	const Government *targetGovernment = nullptr;
 	Type type;
 };
 
