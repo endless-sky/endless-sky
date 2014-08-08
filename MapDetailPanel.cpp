@@ -29,8 +29,8 @@ using namespace std;
 
 
 
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity)
-	: MapPanel(player, commodity), governmentY(0), tradeY(0), selectedPlanet(nullptr)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity, const System *system)
+	: MapPanel(player, commodity, system), governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {
 }
 

@@ -31,10 +31,11 @@ using namespace std;
 
 
 
-MapPanel::MapPanel(PlayerInfo &player, int commodity)
+MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	: player(player), distance(player),
 	playerSystem(player.GetShip()->GetSystem()),
-	selectedSystem(player.GetShip()->GetSystem()),
+	selectedSystem(special ? special : player.GetShip()->GetSystem()),
+	specialSystem(special),
 	commodity(commodity)
 {
 	SetIsFullScreen(true);
@@ -47,8 +48,10 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity)
 		destinations.insert(mission.Destination()->GetSystem());
 	for(const Mission *mission : player.SpecialMissions())
 		destinations.insert(mission->Destination()->GetSystem());
+	if(specialSystem)
+		destinations.insert(specialSystem);
 	
-	center = Point(0., 0.) - playerSystem->Position();
+	center = Point(0., 0.) - selectedSystem->Position();
 }
 
 
@@ -263,6 +266,7 @@ void MapPanel::DrawMissions() const
 	// Draw a pointer for each active or playerSystem mission.
 	map<const System *, Angle> angle;
 	Color black(0., 1.);
+	Color white(1., 1.);
 	Color availableColor(1., .7, 0., 1.);
 	Color unavailableColor(.6, .3, 0., 1.);
 	Color currentColor(.2, 1., 0., 1.);
@@ -290,5 +294,12 @@ void MapPanel::DrawMissions() const
 		Point pos = system->Position() + center;
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., currentColor);
+	}
+	if(specialSystem)
+	{
+		Angle a = (angle[specialSystem] += Angle(30.));
+		Point pos = specialSystem->Position() + center;
+		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
+		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., white);
 	}
 }

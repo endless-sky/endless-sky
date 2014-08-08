@@ -97,7 +97,8 @@ void PlanetPanel::OnCallback(int value)
 	{
 		ConversationPanel *panel = new ConversationPanel(
 			player,
-			player.NextSpecialMission()->Introduction());
+			player.NextSpecialMission()->Introduction(),
+			player.NextSpecialMission()->Destination()->GetSystem());
 		panel->SetCallback(*this);
 		GetUI()->Push(panel);
 	}
@@ -143,7 +144,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		{
 			ConversationPanel *panel = new ConversationPanel(
 				player,
-				player.NextSpecialMission()->Introduction());
+				player.NextSpecialMission()->Introduction(),
+			player.NextSpecialMission()->Destination()->GetSystem());
 			panel->SetCallback(*this);
 			GetUI()->Push(panel);
 		}

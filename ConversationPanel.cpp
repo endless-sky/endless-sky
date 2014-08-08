@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
@@ -41,8 +42,8 @@ namespace {
 
 
 
-ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation)
-	: player(player), conversation(conversation), scroll(0)
+ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system)
+	: player(player), conversation(conversation), scroll(0), system(system)
 {
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
@@ -210,6 +211,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		
 		Goto(conversation.NextNode(node, choice));
 	}
+	else if(key == GameData::Keys().Get(Key::MAP))
+		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	else
 		return false;
 	

@@ -55,6 +55,7 @@ void PlayerInfo::Clear()
 	jobs.clear();
 	availableSpecials.clear();
 	specials.clear();
+	conditions.clear();
 	
 	seen.clear();
 	visited.clear();
@@ -208,11 +209,14 @@ void PlayerInfo::Save() const
 	for(const Mission *mission : availableSpecials)
 		out.Write("available special mission", mission->Name());
 	
-	out.Write("conditions");
-	out.BeginChild();
-		for(const auto &it : conditions)
-			out.Write(it.first, it.second);
-	out.EndChild();
+	if(!conditions.empty())
+	{
+		out.Write("conditions");
+		out.BeginChild();
+			for(const auto &it : conditions)
+				out.Write(it.first, it.second);
+		out.EndChild();
+	}
 	
 	for(const System *system : visited)
 		out.Write("visited", system->Name());

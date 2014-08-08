@@ -29,7 +29,7 @@ class System;
 // stars based on attitude towards the player, government, or commodity price.
 class MapPanel : public Panel {
 public:
-	MapPanel(PlayerInfo &info, int commodity = -4);
+	MapPanel(PlayerInfo &info, int commodity = -4, const System *special = nullptr);
 	
 	virtual void Draw() const override;
 	
@@ -50,6 +50,7 @@ protected:
 	
 	const System *playerSystem;
 	const System *selectedSystem;
+	const System *specialSystem;
 	
 	Point center;
 	int commodity;

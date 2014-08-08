@@ -28,7 +28,7 @@ class PlayerInfo;
 // stars based on attitude towards the player, government, or commodity price.
 class MapDetailPanel : public MapPanel {
 public:
-	MapDetailPanel(PlayerInfo &info, int commodity = -4);
+	MapDetailPanel(PlayerInfo &info, int commodity = -4, const System *system = nullptr);
 	
 	virtual void Draw() const override;
 	
