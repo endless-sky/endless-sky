@@ -143,7 +143,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			if(acceptedIt == accepted.begin())
 			{
 				specialIt = special.end();
-				acceptedIt == accepted.end();
+				acceptedIt = accepted.end();
 				if(special.empty())
 					--acceptedIt;
 				else
@@ -157,7 +157,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			if(specialIt == special.begin())
 			{
 				specialIt = special.end();
-				acceptedIt == accepted.end();
+				acceptedIt = accepted.end();
 				if(accepted.empty())
 					--specialIt;
 				else
