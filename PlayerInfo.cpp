@@ -61,6 +61,7 @@ void PlayerInfo::Clear()
 	travelPlan.clear();
 	
 	selectedWeapon = nullptr;
+	freshlyLoaded = true;
 	
 #ifdef __APPLE__
 	Random::Seed(time(NULL));
@@ -232,6 +233,7 @@ void PlayerInfo::LoadRecent()
 void PlayerInfo::New()
 {
 	Clear();
+	freshlyLoaded = false;
 	
 	SetSystem(GameData::Systems().Get("Rutilicus"));
 	SetPlanet(GameData::Planets().Get("New Boston"));
@@ -508,10 +510,6 @@ void PlayerInfo::Land()
 	if(!system || !planet)
 		return;
 	
-	// Check if we really are just landing (as opposed to loading a saved game
-	// that has already done all the landing steps).
-	bool didJustLand = cargo.IsEmpty();
-	
 	// Remove any ships that have been destroyed. Recharge the others if this is
 	// a planet with a spaceport.
 	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
@@ -540,8 +538,9 @@ void PlayerInfo::Land()
 		}
 	
 	// Create whatever missions this planet has to offer.
-	if(didJustLand)
+	if(!freshlyLoaded)
 		CreateMissions();
+	freshlyLoaded = false;
 	
 	// Search for any missions that have failed but for which we are still
 	// holding on to some cargo.

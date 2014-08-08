@@ -41,7 +41,9 @@ protected:
 	
 private:
 	void DrawSelectedSystem() const;
-	void DrawList(const std::list<Mission> &list, Point pos, const std::string &label) const;
+	Point DrawPanel(Point pos, const std::string &label, int entries) const;
+	Point DrawList(const std::list<Mission> &list, Point pos) const;
+	Point DrawList(const std::list<const Mission *> &list, Point pos) const;
 	void DrawMissionInfo() const;
 	
 	bool CanAccept() const;
@@ -50,8 +52,10 @@ private:
 private:
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
+	const std::list<const Mission *> &special;
 	std::list<Mission>::const_iterator availableIt;
 	std::list<Mission>::const_iterator acceptedIt;
+	std::list<const Mission *>::const_iterator specialIt;
 	int availableScroll;
 	int acceptedScroll;
 	
