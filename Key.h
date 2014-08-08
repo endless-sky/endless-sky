@@ -67,6 +67,8 @@ public:
 	void Set(Command command, int key);
 	// Get the key that triggers the given command.
 	int Get(Command command) const;
+	// Get the name of the key that triggers the given command.
+	std::string Name(Command command) const;
 	
 	// Get a string describing the given command.
 	static const std::string &Description(Command command);

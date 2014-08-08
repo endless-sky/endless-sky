@@ -466,6 +466,21 @@ void Engine::EnterSystem()
 	
 	projectiles.clear();
 	effects.clear();
+	
+	// Help message for new players. Show this message for the first four days,
+	// since the new player ships can make at most four jumps before landing.
+	if(today.DaysSinceEpoch() <= Date(21, 11, 3013).DaysSinceEpoch())
+	{
+		Messages::Add(string("Press \"")
+			+ GameData::Keys().Name(Key::MAP)
+			+ string("\" to view your map, and \"")
+			+ GameData::Keys().Name(Key::JUMP)
+			+ string("\" to make a hyperspace jump."));
+		Messages::Add(string("Or, press \"")
+			+ GameData::Keys().Name(Key::LAND)
+			+ string("\" to land. For the main menu, press \"")
+			+ GameData::Keys().Name(Key::MENU) + string("\"."));
+	}
 }
 
 
