@@ -16,7 +16,7 @@ mission "Immigrant Workers"
 	cargo "luggage and furniture" 2
 	payment 15000
 	conversation
-		"As you leave your ship and walk toward the cafeteria at the center fo the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
+		"As you leave your ship and walk toward the cafeteria at the center of the spaceport, you notice a young couple standing near the edge of the landing area next to a cart loaded high with a jumble of boxes and furniture. Like many of the locals, they are both wearing dust masks over their mouths, and the woman is also wearing goggles."
 		choice
 			"	(Talk to them.)"
 			"	(Ignore them.)"

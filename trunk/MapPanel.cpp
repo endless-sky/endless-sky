@@ -45,6 +45,8 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity)
 		destinations.insert(mission.Destination()->GetSystem());
 	for(const Mission &mission : player.Missions())
 		destinations.insert(mission.Destination()->GetSystem());
+	for(const Mission *mission : player.SpecialMissions())
+		destinations.insert(mission->Destination()->GetSystem());
 	
 	center = Point(0., 0.) - playerSystem->Position();
 }
@@ -272,6 +274,14 @@ void MapPanel::DrawMissions() const
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
 			player.CanAccept(mission) ? availableColor : unavailableColor);
+	}
+	for(const Mission *mission : player.SpecialMissions())
+	{
+		const System *system = mission->Destination()->GetSystem();
+		Angle a = (angle[system] += Angle(30.));
+		Point pos = system->Position() + center;
+		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
+		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., currentColor);
 	}
 	for(const Mission &mission : player.Missions())
 	{

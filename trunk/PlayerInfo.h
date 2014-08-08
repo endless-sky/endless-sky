@@ -162,6 +162,8 @@ private:
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
+	
+	bool freshlyLoaded;
 };
 
 
