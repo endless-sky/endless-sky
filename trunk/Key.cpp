@@ -143,6 +143,14 @@ int Key::Get(Command command) const
 
 
 
+// Get the name of the key that triggers the given command.
+string Key::Name(Command command) const
+{
+	return SDL_GetKeyName(keys[command]);
+}
+
+
+
 // Get a string describing the given command.
 const string &Key::Description(Command command)
 {
