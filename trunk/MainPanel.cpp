@@ -206,7 +206,12 @@ void MainPanel::FinishSpecialMissions()
 			if(!mission.SuccessMessage().empty())
 				GetUI()->Push(new Dialog(mission.SuccessMessage()));
 			if(mission.Next() && !mission.Next()->Introduction().IsEmpty())
-				GetUI()->Push(new ConversationPanel(player, mission.Next()->Introduction()));
+			{
+				GetUI()->Push(new ConversationPanel(
+					player,
+					mission.Next()->Introduction(),
+					mission.Next()->Destination()->GetSystem()));
+			}
 			player.CompleteMission(mission);
 		}
 	}

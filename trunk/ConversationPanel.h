@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Conversation;
 class PlayerInfo;
+class System;
 
 
 
@@ -31,7 +32,7 @@ class PlayerInfo;
 // and then can be closed once the conversation ends.
 class ConversationPanel : public Panel {
 public:
-	ConversationPanel(PlayerInfo &player, const Conversation &conversation);
+	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr);
 	void SetCallback(const Callback &callback);
 	
 	// Draw this panel.
@@ -80,6 +81,8 @@ private:
 	std::string lastName;
 	
 	mutable std::vector<ClickZone> zones;
+	
+	const System *system;
 };
 
 
