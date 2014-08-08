@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include <list>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -48,6 +49,7 @@ protected:
 	
 private:
 	void Goto(int index);
+	std::string Substitute(const std::string &source) const;
 	
 	
 private:
@@ -79,6 +81,7 @@ private:
 	
 	std::string firstName;
 	std::string lastName;
+	std::map<std::string, std::string> subs;
 	
 	mutable std::vector<ClickZone> zones;
 	

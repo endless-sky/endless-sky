@@ -49,6 +49,9 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 	
+	subs["<first>"] = player.FirstName();
+	subs["<last>"] = player.LastName();
+	
 	Goto(0);
 }
 
@@ -188,6 +191,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			text.back().Wrap(name);
 			
 			player.SetName(firstName, lastName);
+			subs["<first>"] = player.FirstName();
+			subs["<last>"] = player.LastName();
 			
 			Goto(node + 1);
 		}
@@ -272,13 +277,15 @@ void ConversationPanel::Goto(int index)
 	while(node >= 0 && !conversation.IsChoice(node))
 	{
 		text.push_back(wrap);
-		text.back().Wrap(conversation.Text(node));
+		string altered = Substitute(conversation.Text(node));
+		text.back().Wrap(altered);
 		node = conversation.NextNode(node);
 	}
 	for(int i = 0; i < conversation.Choices(node); ++i)
 	{
 		choices.push_back(wrap);
-		choices.back().Wrap(conversation.Text(node, i));
+		string altered = Substitute(conversation.Text(node, i));
+		choices.back().Wrap(altered);
 	}
 	choice = 0;
 	
@@ -294,6 +301,47 @@ void ConversationPanel::Goto(int index)
 	
 	if(y > Screen::Height())
 		scroll -= (y - Screen::Height());
+}
+
+
+
+string ConversationPanel::Substitute(const string &source) const
+{
+	string result;
+	result.reserve(source.length());
+	
+	size_t start = 0;
+	size_t search = start;
+	while(search < source.length())
+	{
+		size_t left = source.find('<', search);
+		if(left == string::npos)
+			break;
+		
+		size_t right = source.find('>', left);
+		if(right == string::npos)
+			break;
+		
+		bool matched = false;
+		++right;
+		size_t length = right - left;
+		for(const auto &it : subs)
+			if(!source.compare(left, length, it.first))
+			{
+				result.append(source, start, left - start);
+				result.append(it.second);
+				start = right;
+				search = start;
+				matched = true;
+				break;
+			}
+		
+		if(!matched)
+			search = left + 1;
+	}
+	
+	result.append(source, start, source.length() - start);
+	return result;
 }
 
 
