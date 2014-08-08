@@ -140,6 +140,8 @@ void Mission::Load(const DataNode &node)
 			{
 				if(grand.Token(0) == "planet" && grand.Size() >= 2)
 					sourcePlanets.insert(GameData::Planets().Get(grand.Token(1)));
+				if(grand.Token(0) == "probability" && grand.Size() >= 2)
+					probability = grand.Value(1);
 			}
 		}
 		else if(child.Token(0) == "conversation")
@@ -200,6 +202,9 @@ bool Mission::IsAvailableAt(const Planet *planet, const map<string, int> &condit
 {
 	auto it = conditions.find(name);
 	if(it != conditions.end() && it->second)
+		return false;
+	
+	if(Random::Int(100) >= probability)
 		return false;
 	
 	return (sourcePlanets.find(planet) != sourcePlanets.end());

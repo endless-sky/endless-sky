@@ -57,6 +57,7 @@ private:
 	const Planet *destination = nullptr;
 	std::string description;
 	
+	unsigned probability = 100;
 	std::set<const Planet *> sourcePlanets;
 	Conversation introduction;
 	

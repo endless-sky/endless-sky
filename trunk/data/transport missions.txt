@@ -10,6 +10,7 @@
 
 mission "Immigrant Workers"
 	require
+		probability 50
 		planet "New Iceland"
 	destination "Millrace"
 	passengers 2
@@ -35,6 +36,7 @@ mission "Immigrant Workers"
 
 mission "Pookie, Part 1"
 	require
+		probability 50
 		planet "Hestia"
 	destination "Shroud"
 	conversation
