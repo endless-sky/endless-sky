@@ -703,6 +703,9 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 		victim->cargo.TransferAll(&cargo);
 		// Stop targeting this ship.
 		SetTargetShip(shared_ptr<Ship>());
+		
+		// Pause for two seconds before moving on.
+		pilotError = 120;
 	}
 	
 	return victim;
