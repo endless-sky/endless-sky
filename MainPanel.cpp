@@ -66,6 +66,19 @@ void MainPanel::Step(bool isActive)
 			if(event.ActorGovernment() == gov)
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
 		}
+		if(event.Type() == ShipEvent::DESTROY && event.TargetGovernment() == gov)
+		{
+			for(const auto &it : event.Target()->Cargo().MissionCargo())
+			{
+				Messages::Add("Ship lost. Mission failed: \"" + it.first->Name() + "\".");
+				player.AbortMission(*it.first);
+			}
+			for(const auto &it : event.Target()->Cargo().PassengerList())
+			{
+				Messages::Add("Ship lost. Mission failed: \"" + it.first->Name() + "\".");
+				player.AbortMission(*it.first);
+			}
+		}
 	}
 }
 
@@ -201,6 +214,12 @@ void MainPanel::FinishSpecialMissions()
 		{
 			// Check that all this mission's requirements are met.
 			if(mission.Next() && !player.CanAccept(*mission.Next()))
+				continue;
+			// You can't complete the mission if some of the cargo is in a ship
+			// stranded in another system.
+			if(player.Cargo().Get(&mission) != mission.CargoSize())
+				continue;
+			if(player.Cargo().GetPassengers(&mission) != mission.Passengers())
 				continue;
 			
 			if(!mission.SuccessMessage().empty())

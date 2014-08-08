@@ -757,6 +757,8 @@ void PlayerInfo::AbortMission(const Mission &mission)
 		if(&*it == &mission)
 		{
 			cargo.RemoveMissionCargo(&mission);
+			for(shared_ptr<Ship> &ship : ships)
+				ship->Cargo().RemoveMissionCargo(&mission);
 			missions.erase(it);
 			return;
 		}
@@ -764,6 +766,8 @@ void PlayerInfo::AbortMission(const Mission &mission)
 		if(*it == &mission)
 		{
 			cargo.RemoveMissionCargo(&mission);
+			for(shared_ptr<Ship> &ship : ships)
+				ship->Cargo().RemoveMissionCargo(&mission);
 			specials.erase(it);
 			break;
 		}
