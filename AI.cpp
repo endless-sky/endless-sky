@@ -171,16 +171,13 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 		return target;
 	
 	// Find the closest enemy ship (if there is one).
+	const Personality &person = ship.GetPersonality();
 	double closest = numeric_limits<double>::infinity();
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
-			const Personality &person = it->GetPersonality();
-			if(it->IsDisabled() && !person.Disables() && !person.Plunders())
-				continue;
-			
 			double range = it->Position().Distance(ship.Position());
 			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();
