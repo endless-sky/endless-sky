@@ -80,15 +80,17 @@ void DataWriter::WriteComment(const string &str)
 void DataWriter::WriteToken(const char *a)
 {
 	bool hasSpace = false;
+	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
-		if(*it <= ' ')
-		{
-			hasSpace = true;
-			break;
-		}
+	{
+		hasSpace |= (*it <= ' ');
+		hasQuote |= (*it == '"');
+	}
 	
 	out << *before;
-	if(hasSpace)
+	if(hasSpace && hasQuote)
+		out << '`' << a << '`';
+	else if(hasSpace)
 		out << '"' << a << '"';
 	else
 		out << a;

@@ -81,11 +81,12 @@ void DataFile::Load(istream &in)
 			int i = white;
 			while(i != length)
 			{
-				bool isQuoted = (line[i] == '"');
+				char endQuote = line[i];
+				bool isQuoted = (endQuote == '"' || endQuote == '`');
 				i += isQuoted;
 				
 				node.tokens.push_back(string());
-				while(i != length && (isQuoted ? (line[i] != '"') : (line[i] > ' ')))
+				while(i != length && (isQuoted ? (line[i] != endQuote) : (line[i] > ' ')))
 					node.tokens.back() += line[i++];
 				
 				if(i != length)
