@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
+		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
+		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
+		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A945B3E11963655400722981 /* ImageBuffer.cpp */; };
-		A945B3E51963660D00722981 /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A945B3E41963660D00722981 /* libpng14.14.dylib */; };
-		A945B3E9196366D700722981 /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A945B3E8196366D700722981 /* libturbojpeg.0.dylib */; };
-		A955EA1D1979BE4600AD9029 /* libturbojpeg.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = A945B3E8196366D700722981 /* libturbojpeg.0.dylib */; };
-		A955EA1E1979BE4600AD9029 /* libpng14.14.dylib in Resources */ = {isa = PBXBuildFile; fileRef = A945B3E41963660D00722981 /* libpng14.14.dylib */; };
-		A955EA1F1979BE4600AD9029 /* SDL2.framework in Resources */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
+		A959553419957260005197E6 /* ShipEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553219957260005197E6 /* ShipEvent.cpp */; };
+		A959553719957288005197E6 /* Politics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553519957288005197E6 /* Politics.cpp */; };
+		A959553A19957294005197E6 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553819957294005197E6 /* Table.cpp */; };
+		A959553D199572A7005197E6 /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553B199572A7005197E6 /* Format.cpp */; };
+		A9595540199572BB005197E6 /* InfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553E199572BB005197E6 /* InfoPanel.cpp */; };
 		A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A54195DF44B002C30B8 /* Account.cpp */; };
 		A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A56195DF44B002C30B8 /* AI.cpp */; };
@@ -107,12 +112,37 @@
 		A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C7B196215140058DFB7 /* Personality.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A93931ED19880ECA00C2A87B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */,
+				A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */,
+				A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "../../../../opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<group>"; };
+		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = ../../../../usr/local/lib/libpng14.14.dylib; sourceTree = "<group>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
 		A945B3E11963655400722981 /* ImageBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageBuffer.cpp; sourceTree = "<group>"; };
 		A945B3E21963655400722981 /* ImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBuffer.h; sourceTree = "<group>"; };
-		A945B3E41963660D00722981 /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = ../../../../usr/local/lib/libpng14.14.dylib; sourceTree = "<group>"; };
-		A945B3E8196366D700722981 /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "../../../../opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<group>"; };
+		A959553219957260005197E6 /* ShipEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipEvent.cpp; sourceTree = "<group>"; };
+		A959553319957260005197E6 /* ShipEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipEvent.h; sourceTree = "<group>"; };
+		A959553519957288005197E6 /* Politics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Politics.cpp; sourceTree = "<group>"; };
+		A959553619957288005197E6 /* Politics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Politics.h; sourceTree = "<group>"; };
+		A959553819957294005197E6 /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
+		A959553919957294005197E6 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
+		A959553B199572A7005197E6 /* Format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Format.cpp; sourceTree = "<group>"; };
+		A959553C199572A7005197E6 /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
+		A959553E199572BB005197E6 /* InfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoPanel.cpp; sourceTree = "<group>"; };
+		A959553F199572BB005197E6 /* InfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPanel.h; sourceTree = "<group>"; };
 		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XCode/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A99F7A51195DF3F9002C30B8 /* EndlessSky-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EndlessSky-Info.plist"; path = "XCode/EndlessSky-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A99F7A54195DF44B002C30B8 /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Account.cpp; sourceTree = "<group>"; };
@@ -301,9 +331,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A945B3E9196366D700722981 /* libturbojpeg.0.dylib in Frameworks */,
-				A945B3E51963660D00722981 /* libpng14.14.dylib in Frameworks */,
 				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
+				A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */,
+				A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */,
 				A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */,
 				A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */,
 			);
@@ -375,6 +405,8 @@
 				A99F7A85195DF44B002C30B8 /* Font.h */,
 				A99F7A86195DF44B002C30B8 /* FontSet.cpp */,
 				A99F7A87195DF44B002C30B8 /* FontSet.h */,
+				A959553B199572A7005197E6 /* Format.cpp */,
+				A959553C199572A7005197E6 /* Format.h */,
 				A99F7A88195DF44B002C30B8 /* FrameTimer.cpp */,
 				A99F7A89195DF44B002C30B8 /* FrameTimer.h */,
 				A99F7A8A195DF44B002C30B8 /* GameData.cpp */,
@@ -385,6 +417,8 @@
 				A9E84C7A196215140058DFB7 /* HiringPanel.h */,
 				A945B3E11963655400722981 /* ImageBuffer.cpp */,
 				A945B3E21963655400722981 /* ImageBuffer.h */,
+				A959553E199572BB005197E6 /* InfoPanel.cpp */,
+				A959553F199572BB005197E6 /* InfoPanel.h */,
 				A99F7A8E195DF44B002C30B8 /* Information.cpp */,
 				A99F7A8F195DF44B002C30B8 /* Information.h */,
 				A99F7A90195DF44B002C30B8 /* Interface.cpp */,
@@ -438,6 +472,8 @@
 				A99F7AB6195DF44B002C30B8 /* Point.h */,
 				A99F7AB7195DF44B002C30B8 /* PointerShader.cpp */,
 				A99F7AB8195DF44B002C30B8 /* PointerShader.h */,
+				A959553519957288005197E6 /* Politics.cpp */,
+				A959553619957288005197E6 /* Politics.h */,
 				A99F7AB9195DF44B002C30B8 /* PreferencesPanel.cpp */,
 				A99F7ABA195DF44B002C30B8 /* PreferencesPanel.h */,
 				A99F7ABB195DF44B002C30B8 /* Projectile.cpp */,
@@ -455,6 +491,8 @@
 				A99F7AC5195DF44C002C30B8 /* shift.h */,
 				A99F7AC6195DF44C002C30B8 /* Ship.cpp */,
 				A99F7AC7195DF44C002C30B8 /* Ship.h */,
+				A959553219957260005197E6 /* ShipEvent.cpp */,
+				A959553319957260005197E6 /* ShipEvent.h */,
 				A99F7AC8195DF44C002C30B8 /* ShipInfoDisplay.cpp */,
 				A99F7AC9195DF44C002C30B8 /* ShipInfoDisplay.h */,
 				A99F7ACA195DF44C002C30B8 /* ShipName.cpp */,
@@ -479,6 +517,8 @@
 				A99F7ADD195DF44C002C30B8 /* StellarObject.h */,
 				A99F7ADE195DF44C002C30B8 /* System.cpp */,
 				A99F7ADF195DF44C002C30B8 /* System.h */,
+				A959553819957294005197E6 /* Table.cpp */,
+				A959553919957294005197E6 /* Table.h */,
 				A99F7AE0195DF44C002C30B8 /* Trade.cpp */,
 				A99F7AE1195DF44C002C30B8 /* Trade.h */,
 				A99F7AE2195DF44C002C30B8 /* TradingPanel.cpp */,
@@ -507,8 +547,8 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A945B3E8196366D700722981 /* libturbojpeg.0.dylib */,
-				A945B3E41963660D00722981 /* libpng14.14.dylib */,
+				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
+				A93931FC1988136B00C2A87B /* libpng14.14.dylib */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
 				A9CC52A01950CA16004E4E22 /* SDL2.framework */,
 				A9CC526C1950C9F6004E4E22 /* Cocoa.framework */,
@@ -554,6 +594,7 @@
 				A9CC52651950C9F6004E4E22 /* Sources */,
 				A9CC52661950C9F6004E4E22 /* Frameworks */,
 				A9CC52671950C9F6004E4E22 /* Resources */,
+				A93931ED19880ECA00C2A87B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -595,9 +636,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A955EA1D1979BE4600AD9029 /* libturbojpeg.0.dylib in Resources */,
-				A955EA1E1979BE4600AD9029 /* libpng14.14.dylib in Resources */,
-				A955EA1F1979BE4600AD9029 /* SDL2.framework in Resources */,
 				A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */,
 				A99F7B09195DF44C002C30B8 /* license.txt in Resources */,
 				A99F7AF5195DF44C002C30B8 /* credits.txt in Resources */,
@@ -625,6 +663,7 @@
 				A99F7B2E195DF44C002C30B8 /* Trade.cpp in Sources */,
 				A99F7B06195DF44C002C30B8 /* Interface.cpp in Sources */,
 				A99F7B27195DF44C002C30B8 /* Sprite.cpp in Sources */,
+				A959553A19957294005197E6 /* Table.cpp in Sources */,
 				A99F7B07195DF44C002C30B8 /* Key.cpp in Sources */,
 				A99F7AFF195DF44C002C30B8 /* Fleet.cpp in Sources */,
 				A99F7B1E195DF44C002C30B8 /* Radar.cpp in Sources */,
@@ -655,6 +694,7 @@
 				A99F7B02195DF44C002C30B8 /* FrameTimer.cpp in Sources */,
 				A99F7B13195DF44C002C30B8 /* OutfitInfoDisplay.cpp in Sources */,
 				A99F7AFC195DF44C002C30B8 /* Engine.cpp in Sources */,
+				A959553419957260005197E6 /* ShipEvent.cpp in Sources */,
 				A99F7B26195DF44C002C30B8 /* SpaceportPanel.cpp in Sources */,
 				A99F7B10195DF44C002C30B8 /* MenuPanel.cpp in Sources */,
 				A99F7AFD195DF44C002C30B8 /* Files.cpp in Sources */,
@@ -679,6 +719,7 @@
 				A99F7AF8195DF44C002C30B8 /* Dialog.cpp in Sources */,
 				A99F7B30195DF44C002C30B8 /* UI.cpp in Sources */,
 				A99F7AF3195DF44C002C30B8 /* Conversation.cpp in Sources */,
+				A9595540199572BB005197E6 /* InfoPanel.cpp in Sources */,
 				A99F7AEE195DF44C002C30B8 /* BankPanel.cpp in Sources */,
 				A99F7B20195DF44C002C30B8 /* Shader.cpp in Sources */,
 				A9C81F82197873EB00EBA833 /* MapDetailPanel.cpp in Sources */,
@@ -688,6 +729,7 @@
 				A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */,
 				A99F7B21195DF44C002C30B8 /* Ship.cpp in Sources */,
 				A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */,
+				A959553719957288005197E6 /* Politics.cpp in Sources */,
 				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
 				A99F7AF2195DF44C002C30B8 /* Controllable.cpp in Sources */,
@@ -695,6 +737,7 @@
 				A99F7AEC195DF44C002C30B8 /* Armament.cpp in Sources */,
 				A99F7B0A195DF44C002C30B8 /* LineShader.cpp in Sources */,
 				A9C81F85197873F700EBA833 /* Messages.cpp in Sources */,
+				A959553D199572A7005197E6 /* Format.cpp in Sources */,
 				A99F7B0F195DF44C002C30B8 /* Mask.cpp in Sources */,
 				A99F7B23195DF44C002C30B8 /* ShipName.cpp in Sources */,
 				A99F7AFB195DF44C002C30B8 /* Effect.cpp in Sources */,
@@ -807,6 +850,7 @@
 					"/opt/libjpeg-turbo/lib",
 					/usr/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -835,6 +879,7 @@
 					"/opt/libjpeg-turbo/lib",
 					/usr/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

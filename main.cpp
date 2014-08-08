@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 		// Restore this after toggling fullscreen.
 		int restoreWidth = 0;
 		int restoreHeight = 0;
-		if(maxWidth - 100 < 1024 || maxHeight - 100 < 768)
+		if(maxWidth < 640 || maxHeight < 480)
 		{
 			cerr << "Monitor resolution is too small!" << endl;
 			return 1;
@@ -152,8 +152,21 @@ int main(int argc, char *argv[])
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
 		
+		string swizzleName = "GL_ARB_texture_swizzle";
+#ifndef __APPLE__
 		const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-		if(!strstr(extensions, "GL_ARB_texture_swizzle"))
+		if(!strstr(extensions, swizzleName.c_str()))
+#else
+		bool hasSwizzle = false;
+		GLint extensionCount;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &extensionCount);
+		for(GLint i = 0; i < extensionCount && !hasSwizzle; ++i)
+		{
+			const char *extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
+			hasSwizzle = (extension && extension == swizzleName);
+		}
+		if(!hasSwizzle)
+#endif
 			menuPanels.Push(new Dialog(
 				"Note: your computer does not support the \"texture swizzling\" OpenGL feature, "
 				"which Endless Sky uses to draw ships in different colors depending on which "
