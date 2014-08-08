@@ -197,6 +197,13 @@ int CargoHold::MissionCargoSize() const
 
 
 
+bool CargoHold::HasMissionCargo() const
+{
+	return !missionCargo.empty();
+}
+
+
+
 bool CargoHold::IsEmpty() const
 {
 	return commodities.empty() && outfits.empty() && missionCargo.empty() && passengers.empty();

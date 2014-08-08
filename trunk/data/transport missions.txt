@@ -53,6 +53,7 @@ mission "Pookie, Part 1"
 mission "Pookie, Part 2"
 	destination "Hestia"
 	passengers 1
+	cargo "chew toys"
 	payment 40000
 	conversation
 		"You called ahead while your ship was landing and agreed to meet Pookie's aunt at the spaceport. She told you, ''Meet me outside the shop with the ridiculous sheepskin coats.'' The shop is not hard to find; the mannequins in the window look like feral sheep with overgrown wool in bad need of grooming."
