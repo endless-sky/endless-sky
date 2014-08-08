@@ -353,19 +353,24 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 
 int CargoHold::Transfer(const Mission *mission, int amount, CargoHold *to)
 {
-	// Take your free capacity into account here too.
-	amount = min(amount, Get(mission));
-	if(Size())
-		amount = max(amount, -Free());
-	if(to)
+	// Special case: if the mission cargo has zero size, always transfer it. But
+	// if it has nonzero size and zero can fit, do _not_ transfer it.
+	if(amount)
 	{
-		amount = max(amount, -to->Get(mission));
-		if(to->Size())
-			amount = min(amount, to->Free());
+		// Take your free capacity into account here too.
+		amount = min(amount, Get(mission));
+		if(Size())
+			amount = max(amount, -Free());
+		if(to)
+		{
+			amount = max(amount, -to->Get(mission));
+			if(to->Size())
+				amount = min(amount, to->Free());
+		}
+		if(!amount)
+			return 0;
 	}
 	
-	// Do the "transfer" even if the amount is 0, because some mission cargo
-	// takes up no space.
 	missionCargo[mission] -= amount;
 	if(to)
 		to->missionCargo[mission] += amount;
@@ -387,9 +392,9 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 		if(to->Size())
 			amount = min(amount, to->Bunks());
 	}
+	if(!amount)
+		return 0;
 	
-	// Do the "transfer" even if the amount is 0, because some mission cargo
-	// takes up no space.
 	passengers[mission] -= amount;
 	if(to)
 		to->passengers[mission] += amount;
@@ -414,8 +419,18 @@ void CargoHold::TransferAll(CargoHold *to)
 	
 	for(const auto &it : passengers)
 		TransferPassengers(it.first, it.second, to);
-	for(const auto &it : missionCargo)
-		Transfer(it.first, it.second, to);
+	// Handle zero-size mission cargo correctly. For mission cargo, having an
+	// entry in the map, but with a size of zero, is different than not having
+	// an entry at all.
+	auto mit = missionCargo.begin();
+	while(mit != missionCargo.end())
+	{
+		Transfer(mit->first, mit->second, to);
+		if(!mit->second)
+			mit = missionCargo.erase(mit);
+		else
+			++mit;
+	}
 	for(const auto &it : outfits)
 		Transfer(it.first, it.second, to);
 	for(const auto &it : commodities)
