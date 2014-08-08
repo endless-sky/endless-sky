@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Conversation.h"
 
+#include <map>
 #include <set>
 #include <string>
 
@@ -39,7 +40,7 @@ public:
 	const Planet *Destination() const;
 	const std::string &Description() const;
 	
-	bool IsAvailableAt(const Planet *planet) const;
+	bool IsAvailableAt(const Planet *planet, const std::map<std::string, int> &conditions) const;
 	const Conversation &Introduction() const;
 	
 	const std::string &Cargo() const;

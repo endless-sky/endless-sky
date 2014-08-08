@@ -196,8 +196,12 @@ const string &Mission::Description() const
 
 
 
-bool Mission::IsAvailableAt(const Planet *planet) const
+bool Mission::IsAvailableAt(const Planet *planet, const map<string, int> &conditions) const
 {
+	auto it = conditions.find(name);
+	if(it != conditions.end() && it->second)
+		return false;
+	
 	return (sourcePlanets.find(planet) != sourcePlanets.end());
 }
 

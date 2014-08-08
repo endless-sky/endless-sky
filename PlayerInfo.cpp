@@ -127,9 +127,18 @@ void PlayerInfo::Load(const string &path)
 			jobs.back().Load(child);
 		}
 		else if(child.Token(0) == "special mission" && child.Size() >= 2)
+		{
 			specials.push_back(GameData::Missions().Get(child.Token(1)));
+			cargo.AddMissionCargo(specials.back());
+		}
 		else if(child.Token(0) == "available special mission" && child.Size() >= 2)
 			availableSpecials.push_back(GameData::Missions().Get(child.Token(1)));
+		else if(child.Token(0) == "conditions")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					conditions[grand.Token(0)] = grand.Value(1);
+		}
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -198,6 +207,12 @@ void PlayerInfo::Save() const
 		out.Write("special mission", mission->Name());
 	for(const Mission *mission : availableSpecials)
 		out.Write("available special mission", mission->Name());
+	
+	out.Write("conditions");
+	out.BeginChild();
+		for(const auto &it : conditions)
+			out.Write(it.first, it.second);
+	out.EndChild();
 	
 	for(const System *system : visited)
 		out.Write("visited", system->Name());
@@ -545,8 +560,10 @@ void PlayerInfo::Land()
 	// Search for any missions that have failed but for which we are still
 	// holding on to some cargo.
 	set<const Mission *> active;
-	for(const auto &it : missions)
+	for(const Mission &it : missions)
 		active.insert(&it);
+	for(const Mission *it : specials)
+		active.insert(it);
 	
 	for(const auto &it : cargo.MissionCargo())
 		if(active.find(it.first) == active.end())
@@ -775,7 +792,9 @@ void PlayerInfo::AcceptSpecialMission()
 	if(availableSpecials.empty())
 		return;
 	
+	++conditions[availableSpecials.back()->Name()];
 	specials.push_back(availableSpecials.back());
+	cargo.AddMissionCargo(specials.back());
 	availableSpecials.pop_back();
 }
 
@@ -786,6 +805,7 @@ void PlayerInfo::DeclineSpecialMission()
 	if(availableSpecials.empty())
 		return;
 	
+	++conditions[availableSpecials.back()->Name()];
 	availableSpecials.pop_back();
 }
 
@@ -912,6 +932,6 @@ void PlayerInfo::CreateMissions()
 	
 	// Check for available special missions.
 	for(const auto &it : GameData::Missions())
-		if(it.second.IsAvailableAt(planet))
-				availableSpecials.push_back(&it.second);
+		if(it.second.IsAvailableAt(planet, conditions))
+			availableSpecials.push_back(&it.second);
 }

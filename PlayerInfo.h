@@ -154,6 +154,8 @@ private:
 	std::list<const Mission *> availableSpecials;
 	std::list<const Mission *> specials;
 	
+	std::map<std::string, int> conditions;
+	
 	std::set<const System *> seen;
 	std::set<const System *> visited;
 	std::vector<const System *> travelPlan;

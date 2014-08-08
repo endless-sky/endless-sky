@@ -383,7 +383,7 @@ void InfoPanel::DrawShip() const
 		}
 		pos.Y() += 10.;
 	}
-	if(cargo.MissionCargoSize())
+	if(cargo.HasMissionCargo())
 	{
 		for(const auto &it : cargo.MissionCargo())
 		{
