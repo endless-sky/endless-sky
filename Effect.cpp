@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Effect.h"
 
+#include "Audio.h"
 #include "DataNode.h"
 #include "Random.h"
 #include "SpriteSet.h"
@@ -19,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 Effect::Effect()
-	: velocityScale(1.), randomVelocity(0.),
+	: sound(nullptr), velocityScale(1.), randomVelocity(0.),
 	randomAngle(0.), randomSpin(0.), lifetime(0)
 {
 }
@@ -42,6 +43,8 @@ void Effect::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "sprite")
 			animation.Load(child);
+		if(child.Token(0) == "sound" && child.Size() >= 2)
+			sound = Audio::Get(child.Token(1));
 		if(child.Token(0) == "lifetime" && child.Size() >= 2)
 			lifetime = child.Value(1);
 		if(child.Token(0) == "velocity scale" && child.Size() >= 2)
@@ -67,6 +70,9 @@ void Effect::Place(Point pos, Point vel, Angle angle, Point hitVelocity)
 	position = pos;
 	velocity = (vel - hitVelocity) * velocityScale + hitVelocity
 		+ this->angle.Unit() * Random::Real() * randomVelocity;
+	
+	if(sound)
+		Audio::Play(sound, position, velocity);
 }
 
 

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Outfit.h"
 
+#include "Audio.h"
 #include "DataNode.h"
 #include "GameData.h"
 #include "SpriteSet.h"
@@ -21,7 +22,7 @@ using namespace std;
 
 
 Outfit::Outfit()
-	: thumbnail(nullptr), ammo(nullptr), icon(nullptr)
+	: thumbnail(nullptr), flareSound(nullptr), weaponSound(nullptr), ammo(nullptr), icon(nullptr)
 {
 }
 
@@ -39,6 +40,8 @@ void Outfit::Load(const DataNode &node)
 			category = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
 			flare.Load(child);
+		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
+			flareSound = Audio::Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
@@ -47,6 +50,8 @@ void Outfit::Load(const DataNode &node)
 			{
 				if(grand.Token(0) == "sprite" && grand.Size() >= 2)
 					weaponSprite.Load(grand);
+				else if(grand.Token(0) == "sound" && grand.Size() >= 2)
+					weaponSound = Audio::Get(grand.Token(1));
 				else if(grand.Token(0) == "ammo" && grand.Size() >= 2)
 					ammo = GameData::Outfits().Get(grand.Token(1));
 				else if(grand.Token(0) == "icon" && grand.Size() >= 2)
@@ -161,6 +166,8 @@ void Outfit::Add(const Outfit &other, int count)
 	
 	if(other.flare.GetSprite())
 		flare = other.flare;
+	if(other.flareSound)
+		flareSound = other.flareSound;
 }
 
 
@@ -189,6 +196,14 @@ const Animation &Outfit::FlareSprite() const
 
 
 
+const Sound *Outfit::FlareSound() const
+{
+	return flareSound;
+}
+
+
+
+
 bool Outfit::IsWeapon() const
 {
 	return !weapon.empty();
@@ -200,6 +215,13 @@ bool Outfit::IsWeapon() const
 const Animation &Outfit::WeaponSprite() const
 {
 	return weaponSprite;
+}
+
+
+
+const Sound *Outfit::WeaponSound() const
+{
+	return weaponSound;
 }
 
 

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 
+#include "Audio.h"
 #include "Effect.h"
 #include "Outfit.h"
 #include "Projectile.h"
@@ -108,7 +109,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	// const access), assume Armament checked that this is a valid call.
 	Angle aim = ship.Facing();
 	
-	// TODO: THis is a kludge to get projectiles to line up right, because they
+	// TODO: This is a kludge to get projectiles to line up right, because they
 	// are drawn at an offset of (.5 * velocity) and that velocity includes the
 	// velocity of the ship that fired them.
 	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
@@ -134,6 +135,8 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	}
 	
 	projectiles.emplace_back(ship, start, aim, outfit);
+	if(outfit->WeaponSound())
+		Audio::Play(outfit->WeaponSound(), start, ship.Velocity());
 	double force = outfit->WeaponGet("firing force");
 	if(force)
 		ship.ApplyForce(aim.Unit() * -force);

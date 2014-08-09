@@ -107,6 +107,52 @@ Files:
 Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
+Files: sounds/*
+Copyright: Écrivain, Iwan Gabovitch, Bart Kelsey, others.
+License: public-domain
+ From opengameart.org. The contributors have placed these sounds in the public domain.
+ (Note that this only covers the few sounds not otherwise mentioned below...)
+
+Files:
+ sounds/hyperspace.wav
+ sounds/tiny_explosion.wav
+ sounds/small_explosion.wav
+ sounds/big_explosion.wav
+ sounds/huge_explosion.wav
+Copyright: Stephen M. Cameron
+License: CC-BY-SA-3.0
+ (creativecommons.org/licenses/by-sa/3.0)
+
+Files:
+ sounds/heavy_anti-missile.wav
+ sounds/javelin.wav
+ sounds/torpedo.wav
+ sounds/rocket.wav
+Copyright: HorrorPen (opengameart.org/users/horrorpen)
+License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
+
+Files: sounds/laser~.wav sounds/heavy_laser~.wav sounds/particle.wav
+Copyright: Jesús Lastra
+License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
+
+Files: sounds/blaster.wav sounds/plasma.wav
+Copyright: dklon (Devin Watson, opengameart.org/users/dklon)
+License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
+
+Files: sounds/meteor.wav sounds/sidewinder.wav
+Copyright: Michel Baradari (apollo-music.de)
+License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
+
+Files: sounds/mod_blaster.wav
+mod blaster: lasers/7.wav (dravenx, CC-BY 3.0)
+Copyright: Dravenx (www.dravenxgames.com)
+License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

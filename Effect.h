@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
+class Sound;
 
 
 
@@ -49,6 +50,7 @@ private:
 	std::string name;
 	
 	Animation animation;
+	const Sound *sound;
 	
 	Point position;
 	Point velocity;

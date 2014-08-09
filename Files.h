@@ -27,6 +27,7 @@ public:
 	
 	static const std::string &Data();
 	static const std::string &Images();
+	static const std::string &Sounds();
 	static const std::string &Saves();
 	
 	static std::vector<std::string> List(const std::string &directory);
