@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Outfit;
+class Sound;
 class Sprite;
 
 
@@ -58,6 +59,7 @@ public:
 	
 	// Get this outfit's engine flare sprite, if any.
 	const Animation &FlareSprite() const;
+	const Sound *FlareSound() const;
 	
 	// Weapon attributes.
 	
@@ -65,6 +67,7 @@ public:
 	bool IsWeapon() const;
 	// Get the weapon provided by this outfit, if any.
 	const Animation &WeaponSprite() const;
+	const Sound *WeaponSound() const;
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
 	double WeaponGet(const std::string &attribute) const;
@@ -86,7 +89,9 @@ private:
 	std::map<std::string, double> attributes;
 	
 	Animation flare;
+	const Sound *flareSound;
 	Animation weaponSprite;
+	const Sound *weaponSound;
 	const Outfit *ammo;
 	const Sprite *icon;
 	// Die and hit effects.

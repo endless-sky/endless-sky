@@ -18,6 +18,7 @@ outfit "Energy Blaster"
 	"gun ports" -1
 	weapon
 		sprite "projectile/blaster"
+		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"velocity" 7
@@ -39,6 +40,7 @@ outfit "Modified Blaster"
 	"gun ports" -1
 	weapon
 		sprite "projectile/mod blaster"
+		sound "mod_blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"velocity" 7.5
@@ -60,6 +62,7 @@ outfit "Blaster Turret"
 	"turret mounts" -1
 	weapon
 		sprite "projectile/blaster"
+		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"velocity" 7
@@ -81,6 +84,7 @@ outfit "Modified Blaster Turret"
 	"turret mounts" -1
 	weapon
 		sprite "projectile/mod blaster"
+		sound "mod_blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"velocity" 7.5
@@ -102,6 +106,7 @@ outfit "Quad Blaster Turret"
 	"turret mounts" -1
 	weapon
 		sprite "projectile/blaster"
+		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
 		"velocity" 7
@@ -124,6 +129,7 @@ outfit "Beam Laser"
 	weapon
 		sprite "projectile/laser"
 			"frame rate" 1
+		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
 		"velocity" 300
@@ -146,6 +152,7 @@ outfit "Heavy Laser"
 	weapon
 		sprite "projectile/heavy laser"
 			"frame rate" 1
+		sound "heavy_laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"velocity" 400
@@ -168,6 +175,7 @@ outfit "Laser Turret"
 	weapon
 		sprite "projectile/2x laser"
 			"frame rate" 1
+		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
 		"velocity" 300
@@ -190,6 +198,7 @@ outfit "Heavy Laser Turret"
 	weapon
 		sprite "projectile/2x heavy laser"
 			"frame rate" 1
+		sound "heavy_laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"velocity" 400
@@ -247,6 +256,7 @@ outfit "Particle Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/particle beam"
+		sound "particle"
 		"hit effect" "tiny explosion"
 		"inaccuracy" .5
 		"velocity" 30
@@ -270,6 +280,7 @@ outfit "Plasma Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/plasma"
+		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
 		"velocity" 12
@@ -282,32 +293,6 @@ outfit "Plasma Cannon"
 		"hull damage" 26
 		"heat damage" 240
 	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
-
-outfit "Flamethrower"
-	category "Guns"
-	cost 120000
-	thumbnail "outfit/plasma cannon"
-	"mass" 20
-	"outfit space" -20
-	"weapon capacity" -20
-	"gun ports" -1
-	weapon
-		sprite "effect/explosion/medium"
-			"frame rate" 12
-			"start frame" 0
-		icon "icon/flamethrower"
-		"hit effect" "medium explosion"
-		"inaccuracy" 15
-		"velocity" 7
-		"lifetime" 30
-		"reload" 4
-		"firing energy" 2
-		"firing heat" 50
-		"firing fuel" 1
-		"shield damage" 6
-		"hull damage" 10
-		"heat damage" 100
-	description "The Flamethrower is a powerful weapon that uses your hyperspace fuel as its ammunition. It is capable of quickly causing a target to overheat, but its range is short and it can leave you stranded if you expend all your fuel by firing it."
 
 outfit "Meteor Missile"
 	category "Missiles"
@@ -329,6 +314,7 @@ outfit "Meteor Missile Launcher"
 		sprite "projectile/meteor"
 			"no repeat"
 			"frame rate" .25
+		sound "meteor"
 		ammo "Meteor Missile"
 		icon "icon/meteor"
 		"die effect" "missile death"
@@ -369,6 +355,7 @@ outfit "Sidewinder Missile Launcher"
 		sprite "projectile/sidewinder"
 			"no repeat"
 			"frame rate" .25
+		sound "sidewinder"
 		ammo "Sidewinder Missile"
 		icon "icon/sidewinder"
 		"die effect" "missile death"
@@ -408,6 +395,7 @@ outfit "Javelin Pod"
 	"javelin capacity" 200
 	weapon
 		sprite "projectile/javelin"
+		sound "javelin"
 		ammo "Javelin"
 		icon "icon/javelin"
 		"hit effect" "tiny explosion"
@@ -443,6 +431,7 @@ outfit "Torpedo Launcher"
 		sprite "projectile/torpedo"
 			"frame rate" 2
 			"random start frame"
+		sound "torpedo"
 		ammo "Torpedo"
 		icon "icon/torpedo"
 		"hit effect" "big explosion"
@@ -482,6 +471,7 @@ outfit "Heavy Rocket Launcher"
 	weapon
 		sprite "projectile/rocket"
 			"frame rate" 4
+		sound "rocket"
 		ammo "Heavy Rocket"
 		icon "icon/rocket"
 		"hit effect" "huge explosion"

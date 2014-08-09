@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "GameData.h"
 
+#include "Audio.h"
 #include "DataFile.h"
 #include "DotShader.h"
 #include "Files.h"
@@ -196,7 +197,7 @@ void GameData::LoadShaders()
 
 double GameData::Progress()
 {
-	return spriteQueue.Progress();
+	return min(spriteQueue.Progress(), Audio::Progress());
 }
 
 

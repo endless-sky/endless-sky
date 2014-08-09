@@ -12,6 +12,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
+#include "Audio.h"
 #include "Dialog.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -79,6 +80,7 @@ int main(int argc, char *argv[])
 		
 		// Begin loading the game data.
 		GameData::BeginLoad(argv);
+		Audio::Init();
 		
 		player.LoadRecent();
 		player.ApplyChanges();
@@ -232,6 +234,7 @@ int main(int argc, char *argv[])
 			
 			// Tell all the panels to step forward, then draw them.
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
+			Audio::Step();
 			// That may have cleared out the menu, in which case we should draw
 			// the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
@@ -244,6 +247,7 @@ int main(int argc, char *argv[])
 		if(player.GetPlanet())
 			player.Save();
 		
+		Audio::Quit();
 		SDL_GL_DeleteContext(context);
 		SDL_DestroyWindow(window);
 		SDL_Quit();

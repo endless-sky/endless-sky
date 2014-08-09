@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Engine.h"
 
+#include "Audio.h"
 #include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -152,6 +153,7 @@ void Engine::Step(bool isActive)
 			velocity = flagship->Velocity();
 		}
 		ai.UpdateKeys(GameData::Keys().State(), &player, isActive);
+		Audio::Update(position, velocity);
 		
 		// Any of the player's ships that are in system are assumed to have
 		// landed along with the player.
@@ -522,6 +524,8 @@ void Engine::CalculateStep()
 	
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(ships, player);
+	const Ship *flagship = player.GetShip();
+	bool wasHyperspacing = (flagship && flagship->IsHyperspacing());
 	
 	// Now, move all the ships. We must finish moving all of them before any of
 	// them fire, or their turrets will be targeting where a given ship was
@@ -539,8 +543,10 @@ void Engine::CalculateStep()
 			++it;
 	}
 	
+	if(!wasHyperspacing && flagship && flagship->IsHyperspacing())
+		Audio::Play(Audio::Get("hyperspace"));
+	
 	// If the player has entered a new system, update the asteroids, etc.
-	const Ship *flagship = player.GetShip();
 	if(flagship && flagship->GetSystem() != player.GetSystem())
 		EnterSystem();
 	
@@ -630,10 +636,12 @@ void Engine::CalculateStep()
 			// EnginePoints() returns empty if there is no flare sprite, or if
 			// the ship is not thrusting right now.
 			for(const Point &point : ship->EnginePoints())
-				draw[calcTickTock].Add(
-					ship->FlareSprite(),
-					ship->Facing().Rotate(point) * .5 * ship->Zoom() + position,
-					ship->Unit());
+			{
+				Point pos = ship->Facing().Rotate(point) * .5 * ship->Zoom() + position;
+				draw[calcTickTock].Add(ship->FlareSprite(), pos, ship->Unit());
+				if(ship.get() == flagship && ship->Attributes().FlareSound())
+					Audio::Play(ship->Attributes().FlareSound(), pos, ship->Velocity());
+			}
 			
 			draw[calcTickTock].Add(
 				ship->GetSprite(),

@@ -31,6 +31,7 @@ namespace {
 	
 	string data;
 	string images;
+	string sounds;
 	string saves;
 }
 
@@ -84,7 +85,8 @@ void Files::Init(const char * const *argv)
 	
 	data = resources + "data/";
 	images = resources + "images/";
-	if(!Exists(data) || !Exists(images))
+	sounds = resources + "sounds/";
+	if(!Exists(data) || !Exists(images) || !Exists(sounds))
 		throw runtime_error("Unable to find the resource directories!");
 	
 	saves = config + "saves/";
@@ -118,6 +120,13 @@ const string &Files::Data()
 const string &Files::Images()
 {
 	return images;
+}
+
+
+
+const string &Files::Sounds()
+{
+	return sounds;
 }
 
 
