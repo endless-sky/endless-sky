@@ -114,6 +114,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			if(specialIt == special.end() && !special.empty())
 				--specialIt;
 		}
+		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
