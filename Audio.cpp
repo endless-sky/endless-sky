@@ -64,6 +64,7 @@ namespace {
 	
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
+	double volume = 1.;
 	
 	thread::id mainThreadID;
 	map<const Sound *, QueueEntry> queue;
@@ -121,6 +122,22 @@ double Audio::Progress()
 
 
 
+// Get or set the volume (between 0 and 1).
+double Audio::Volume()
+{
+	return volume;
+}
+
+
+
+void Audio::SetVolume(double level)
+{
+	volume = min(1., max(0., level));
+	alListenerf(AL_GAIN, level);
+}
+
+
+
 // Get a pointer to the named sound. The name is the path relative to the
 // "sound/" folder, and without ~ if it's on the end, or the extension.
 const Sound *Audio::Get(const std::string &name)
@@ -158,7 +175,7 @@ void Audio::Play(const Sound *sound)
 // "listener". This will make it softer and change the left / right balance.
 void Audio::Play(const Sound *sound, const Point &position, const Point &velocity)
 {
-	if(!sound || !sound->Buffer())
+	if(!sound || !sound->Buffer() || !volume)
 		return;
 	
 	if(this_thread::get_id() == mainThreadID)

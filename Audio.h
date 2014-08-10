@@ -28,6 +28,10 @@ public:
 	// Check the progress of loading sounds.
 	static double Progress();
 	
+	// Get or set the volume (between 0 and 1).
+	static double Volume();
+	static void SetVolume(double level);
+	
 	// Get a pointer to the named sound. The name is the path relative to the
 	// "sound/" folder, and without ~ if it's on the end, or the extension.
 	// Do not call this function until Progress() is 100%.
