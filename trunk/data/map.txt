@@ -11519,7 +11519,7 @@ planet Haven
 planet Haze
 	landscape land/city9
 	description "Haze is a manufacturing world, covered in sprawling cities. It is a relatively prosperous planet, but so far the inhabitants have chosen to spend more of their terraforming budget on climate control than on pollution reduction."
-	description "Very few regions of this planet remain untouched by human hands, but a few of the particularly mountainous or marshy areas have been set aside as nature preserves. More than half of the indigenous life forms have gone extinct since human settlement began here four centuries ago."
+	description "	Very few regions of this planet remain untouched by human hands, but a few of the particularly mountainous or marshy areas have been set aside as nature preserves. More than half of the indigenous life forms have gone extinct since human settlement began here four centuries ago."
 	spaceport "The spaceport is constructed purely for efficiency and functionality. It is a long building, stretching in a straight line across more than a mile. Through the center, on tracks elevated at various levels, run monorail trams for carrying passengers and cargo. Along the sides of the building are docking bays alternating with storage rooms. The wide corridors are packed both with people and with robotic freight carts."
 	spaceport "	As the planet's economy grows and the spaceport becomes too cramped, the port authority simply clears more land and extends the building, the tramways, and the docks out farther along the same line."
 	shipyard "Lionheart Basics"
@@ -11759,7 +11759,7 @@ planet Mutiny
 planet "New Argentina"
 	landscape land/fields1
 	description "New Argentina is a world that is ideal for ranching but suitable for little else. Ranchers live as individual families or small communities surrounded by hectares of grazing land for cattle. As a result, the population is still quite low here, and the locals live isolated lives, with most families living many kilometers away from the nearest school or hospital or even from their nearest neighbor."
-	description "Cattle handlers here do their work on horseback, because they believe modern vehicles are more likely to spook the animals."
+	description "	Cattle handlers here do their work on horseback, because they believe modern vehicles are more likely to spook the animals."
 	spaceport "The spaceport is on the outskirts of one of New Argentina's largest towns... which has a population of barely ten thousand people. Many of the dock workers are teenagers or barely past their teens, children of ranchers who are not drawn to the solitary sort of life that their parents enjoy. Aside from the church and the hospital, the largest building in town is ''The Grange,'' a function hall with a sign out front advertising square dances and line dances three nights a week."
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
@@ -11772,7 +11772,7 @@ planet "New Austria"
 planet "New Boston"
 	landscape land/water2
 	description "New Boston is a completely unremarkable world... except, of course, for the fact that you happen to have been born here. Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming."
-	spaceport "Some day New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, are now tilted and uneven. The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain, and high enough for loads to be brought in and out by trucks and the occasional hovercraft. And, some enterprising local mechanics have set up not only a repair shop that also sells ship equipment, but also a small shipyard with several small, refurbished ships for sale."
+	spaceport "Some day New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, and are now tilted and uneven. The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain, and high enough for loads to be brought in and out by trucks and the occasional hovercraft. And, some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale."
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
@@ -11850,8 +11850,8 @@ planet "New Switzerland"
 
 planet "New Tibet"
 	landscape land/mountain0
-	description "New Tibet is a world of tall mountains and deep valleys. Although it has been inhabited for centuries, in many places the terrain is so rugged that roads cannot be built, leaving several of the smaller towns almost completely isolated. Taking advantage of this isolation, several orders of Buddhist monks have built monasteries here."
-	description "In the lowlands, large farms support sprawling cities full of factories, a striking contrast to the simplicity and isolation of the mountain villages."
+	description "New Tibet is a world of jagged mountains and deeply shadowed valleys. Although it has been inhabited for centuries, in many places the terrain is so rugged that roads cannot be built, leaving several of the smaller towns almost completely isolated. Taking advantage of this isolation, several orders of Buddhist monks have built monasteries here."
+	description "	In the lowlands, large farms support sprawling cities full of factories, a striking contrast to the simplicity and isolation of the mountain villages."
 	spaceport "The spaceport is in a hill region, just outside the largest city, with a view of a valley full of farms that stretch for miles and miles down to the ocean. The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because their focus has been on improving life for the locals, not for their occasional visitors."
 
 planet "New Wales"
