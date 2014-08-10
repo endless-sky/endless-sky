@@ -695,9 +695,11 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(message.empty())
 		{
 			double closest = numeric_limits<double>::infinity();
+			int count = 0;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
 				{
+					++count;
 					double distance = ship.Position().Distance(object.Position());
 					if(distance < closest)
 					{
@@ -705,6 +707,9 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 						closest = distance;
 					}
 				}
+			if(count > 1)
+				message = "You can land on more than one planet in this system. Landing on "
+					+ control.GetTargetPlanet()->Name() + ".";
 		}
 		if(!message.empty())
 			Messages::Add(message);
