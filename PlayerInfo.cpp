@@ -252,7 +252,6 @@ void PlayerInfo::LoadRecent()
 void PlayerInfo::New()
 {
 	Clear();
-	freshlyLoaded = false;
 	
 	SetSystem(GameData::Systems().Get("Rutilicus"));
 	SetPlanet(GameData::Planets().Get("New Boston"));
@@ -927,6 +926,9 @@ void PlayerInfo::SelectNext()
 void PlayerInfo::CreateMissions()
 {
 	DistanceMap distance(system);
+	
+	jobs.clear();
+	availableSpecials.clear();
 	
 	int cargoCount = Random::Binomial(10);
 	for(int i = 0; i < cargoCount; ++i)
