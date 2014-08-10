@@ -14,8 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-int Screen::width = 1000;
-int Screen::height = 1000;
+int Screen::width = 0;
+int Screen::height = 0;
 
 
 

@@ -13,7 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Audio.h"
+#include "DataFile.h"
+#include "DataNode.h"
+#include "DataWriter.h"
 #include "Dialog.h"
+#include "Files.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "MainPanel.h"
@@ -93,6 +97,18 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 		
+		DataFile prefs(Files::Config() + "preferences.txt");
+		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
+		for(const DataNode &node : prefs)
+		{
+			if(node.Token(0) == "fullscreen")
+				flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+			else if(node.Token(0) == "window size" && node.Size() >= 3)
+				Screen::Set(node.Value(1), node.Value(2));
+			else if(node.Token(0) == "volume" && node.Size() >= 2)
+				Audio::SetVolume(node.Value(1));
+		}
+		
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = mode.w;
 		int maxHeight = mode.h;
@@ -104,12 +120,21 @@ int main(int argc, char *argv[])
 			cerr << "Monitor resolution is too small!" << endl;
 			return 1;
 		}
-		Screen::Set(maxWidth - 100, maxHeight - 100);
+		if(Screen::Width() && Screen::Height())
+		{
+			if(flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
+			{
+				restoreWidth = Screen::Width();
+				restoreHeight = Screen::Height();
+				Screen::Set(maxWidth, maxHeight);
+			}
+		}
+		else
+			Screen::Set(maxWidth - 100, maxHeight - 100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 		
-		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			Screen::Width(), Screen::Height(), flags);
@@ -218,6 +243,7 @@ int main(int argc, char *argv[])
 					{
 						SDL_SetWindowFullscreen(window, 0);
 						Screen::Set(restoreWidth, restoreHeight);
+						SDL_SetWindowSize(window, Screen::Width(), Screen::Height());
 						restoreWidth = 0;
 						restoreHeight = 0;
 					}
@@ -246,6 +272,17 @@ int main(int argc, char *argv[])
 		// If you quit while landed on a planet, save the game.
 		if(player.GetPlanet())
 			player.Save();
+		
+		DataWriter out(Files::Config() + "preferences.txt");
+		out.Write("volume", Audio::Volume());
+		bool isFullscreen = (restoreWidth != 0);
+		if(isFullscreen)
+		{
+			out.Write("window size", restoreWidth, restoreHeight);
+			out.Write("fullscreen");
+		}
+		else
+			out.Write("window size", Screen::Width(), Screen::Height());
 		
 		Audio::Quit();
 		SDL_GL_DeleteContext(context);

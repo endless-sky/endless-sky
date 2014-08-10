@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PreferencesPanel.h"
 
+#include "Audio.h"
 #include "Color.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -50,7 +51,9 @@ void PreferencesPanel::Draw() const
 	GameData::Background().Draw(Point(), Point());
 	
 	const Interface *menu = GameData::Interfaces().Get("preferences");
-	menu->Draw(Information());
+	Information info;
+	info.SetBar("volume", Audio::Volume());
+	menu->Draw(info);
 	
 	Color dim = *GameData::Colors().Get("dim");
 	Color medium = *GameData::Colors().Get("medium");
@@ -136,6 +139,16 @@ bool PreferencesPanel::Click(int x, int y)
 		editing = -1;
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	}
+	
+	if(x < -210)
+		return false;
+	if(x >= 220 && x < 250 && y >= -190 && y < 90)
+	{
+		Audio::SetVolume((50 - y) / 200.);
+		return true;
+	}
+	if(x >= 210)
+		return false;
 	
 	y -= firstY;
 	if(y < 0)
