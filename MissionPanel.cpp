@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
+#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -87,7 +88,10 @@ void MissionPanel::Draw() const
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == 'd')
+	{
 		GetUI()->Pop(this);
+		return true;
+	}
 	else if(key == 'a')
 	{
 		if(CanAccept())
@@ -100,19 +104,13 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		}
 		else if(acceptedIt != accepted.end())
 		{
-			const Mission &toAbort = *acceptedIt;
-			++acceptedIt;
-			player.AbortMission(toAbort);
-			if(acceptedIt == accepted.end() && !accepted.empty())
-				--acceptedIt;
+			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
+				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		}
 		else if(specialIt != special.end())
 		{
-			const Mission &toAbort = **specialIt;
-			++specialIt;
-			player.AbortMission(toAbort);
-			if(specialIt == special.end() && !special.empty())
-				--specialIt;
+			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
+				"Abort mission \"" + (*specialIt)->Name() + "\"?"));
 		}
 		return true;
 	}
@@ -277,7 +275,8 @@ bool MissionPanel::Click(int x, int y)
 	Point click = Point(x, y) - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.)
+		if(click.Distance(it.second.Position()) < 10. && (player.HasSeen(&it.second)
+				|| destinations.find(&it.second) != destinations.end()))
 		{
 			system = &it.second;
 			break;
@@ -534,4 +533,26 @@ bool MissionPanel::CanAccept() const
 		return false;
 	
 	return player.CanAccept(*availableIt);
+}
+
+
+
+void MissionPanel::AbortMission()
+{
+	if(acceptedIt != accepted.end())
+	{
+		const Mission &toAbort = *acceptedIt;
+		++acceptedIt;
+		player.AbortMission(toAbort);
+		if(acceptedIt == accepted.end() && !accepted.empty())
+			--acceptedIt;
+	}
+	else if(specialIt != special.end())
+	{
+		const Mission &toAbort = **specialIt;
+		++specialIt;
+		player.AbortMission(toAbort);
+		if(specialIt == special.end() && !special.empty())
+			--specialIt;
+	}
 }

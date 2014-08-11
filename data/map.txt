@@ -1181,22 +1181,6 @@ system Almaaz
 		sprite planet/cloud2
 		distance 930.93
 		period 345.719
-	object
-		sprite "planet/ringworld left"
-		distance 2617.09
-		period 1629.58
-		object
-			sprite planet/miranda
-			distance 231
-			period 15.604
-		object
-			sprite planet/mercury
-			distance 340
-			period 27.8635
-		object
-			sprite planet/lava2
-			distance 482
-			period 47.0314
 
 system Almach
 	pos -7 232
@@ -11339,7 +11323,7 @@ planet Dune
 
 planet Earth
 	landscape land/city3
-	description "The ancestral home world of humanity, Earth has a population ten times that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sort to see this planet that once cradled the entirety of the human species."
+	description "The ancestral home world of humanity, Earth has a population ten times that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species."
 	description "	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single Senator between them - a source of much frustration in the frontier worlds."
 	spaceport "Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound."
 	spaceport "	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras."
