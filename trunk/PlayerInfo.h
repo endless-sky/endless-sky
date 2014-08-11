@@ -40,6 +40,11 @@ public:
 	PlayerInfo();
 	
 	void Clear();
+	// Don't allow copying, because the mission pointers won't get transferred properly.
+	void Steal(PlayerInfo &other);
+	PlayerInfo(const PlayerInfo &) = delete;
+	PlayerInfo &operator=(const PlayerInfo &) = delete;
+	
 	bool IsLoaded() const;
 	void Load(const std::string &path);
 	void Save() const;

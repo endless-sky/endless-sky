@@ -96,6 +96,10 @@
 		A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7AE6195DF44C002C30B8 /* WrappedText.cpp */; };
 		A99F7B34195DF45E002C30B8 /* data in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B32195DF45E002C30B8 /* data */; };
 		A99F7B35195DF45E002C30B8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B33195DF45E002C30B8 /* images */; };
+		A9A5296F19996C7B002D7C35 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9A5296D19996C7B002D7C35 /* Sound.cpp */; };
+		A9A5297219996C8A002D7C35 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9A5297019996C8A002D7C35 /* Audio.cpp */; };
+		A9A5297419996C9F002D7C35 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = A9A5297319996C9F002D7C35 /* sounds */; };
+		A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
 		A9C81F7C197873CD00EBA833 /* DataNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F7A197873CD00EBA833 /* DataNode.cpp */; };
 		A9C81F7F197873D800EBA833 /* DistanceMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F7D197873D800EBA833 /* DistanceMap.cpp */; };
 		A9C81F82197873EB00EBA833 /* MapDetailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C81F80197873EB00EBA833 /* MapDetailPanel.cpp */; };
@@ -295,6 +299,12 @@
 		A99F7AE7195DF44C002C30B8 /* WrappedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrappedText.h; sourceTree = "<group>"; };
 		A99F7B32195DF45E002C30B8 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		A99F7B33195DF45E002C30B8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		A9A5296D19996C7B002D7C35 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		A9A5296E19996C7B002D7C35 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		A9A5297019996C8A002D7C35 /* Audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
+		A9A5297119996C8A002D7C35 /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
+		A9A5297319996C9F002D7C35 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		A9A5297519996CC3002D7C35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		A9C81F7A197873CD00EBA833 /* DataNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataNode.cpp; sourceTree = "<group>"; };
 		A9C81F7B197873CD00EBA833 /* DataNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataNode.h; sourceTree = "<group>"; };
 		A9C81F7D197873D800EBA833 /* DistanceMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceMap.cpp; sourceTree = "<group>"; };
@@ -331,6 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */,
 				A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */,
 				A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */,
 				A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */,
@@ -357,6 +368,8 @@
 				A99F7A5D195DF44B002C30B8 /* Armament.h */,
 				A99F7A5E195DF44B002C30B8 /* AsteroidField.cpp */,
 				A99F7A5F195DF44B002C30B8 /* AsteroidField.h */,
+				A9A5297019996C8A002D7C35 /* Audio.cpp */,
+				A9A5297119996C8A002D7C35 /* Audio.h */,
 				A99F7A60195DF44B002C30B8 /* BankPanel.cpp */,
 				A99F7A61195DF44B002C30B8 /* BankPanel.h */,
 				A99F7A62195DF44B002C30B8 /* BoardingPanel.cpp */,
@@ -501,6 +514,8 @@
 				A99F7ACD195DF44C002C30B8 /* ShipyardPanel.h */,
 				A99F7ACE195DF44C002C30B8 /* ShopPanel.cpp */,
 				A99F7ACF195DF44C002C30B8 /* ShopPanel.h */,
+				A9A5296D19996C7B002D7C35 /* Sound.cpp */,
+				A9A5296E19996C7B002D7C35 /* Sound.h */,
 				A99F7AD0195DF44C002C30B8 /* SpaceportPanel.cpp */,
 				A99F7AD1195DF44C002C30B8 /* SpaceportPanel.h */,
 				A99F7AD2195DF44C002C30B8 /* Sprite.cpp */,
@@ -528,6 +543,7 @@
 				A99F7AE6195DF44C002C30B8 /* WrappedText.cpp */,
 				A99F7AE7195DF44C002C30B8 /* WrappedText.h */,
 				A94408A41982F3E600610427 /* endless-sky.iconset */,
+				A9A5297319996C9F002D7C35 /* sounds */,
 				A99F7B32195DF45E002C30B8 /* data */,
 				A99F7B33195DF45E002C30B8 /* images */,
 				A9CC52721950C9F6004E4E22 /* XCode */,
@@ -547,6 +563,7 @@
 		A9CC526B1950C9F6004E4E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A9A5297519996CC3002D7C35 /* OpenAL.framework */,
 				A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */,
 				A93931FC1988136B00C2A87B /* libpng14.14.dylib */,
 				A9D40D19195DFAA60086EE52 /* OpenGL.framework */,
@@ -638,6 +655,7 @@
 			files = (
 				A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */,
 				A99F7B09195DF44C002C30B8 /* license.txt in Resources */,
+				A9A5297419996C9F002D7C35 /* sounds in Resources */,
 				A99F7AF5195DF44C002C30B8 /* credits.txt in Resources */,
 				A99F7B08195DF44C002C30B8 /* keys.txt in Resources */,
 				A99F7B34195DF45E002C30B8 /* data in Resources */,
@@ -690,6 +708,7 @@
 				A99F7AF9195DF44C002C30B8 /* DotShader.cpp in Sources */,
 				A99F7B04195DF44C002C30B8 /* Government.cpp in Sources */,
 				A99F7B0D195DF44C002C30B8 /* MainPanel.cpp in Sources */,
+				A9A5296F19996C7B002D7C35 /* Sound.cpp in Sources */,
 				A99F7B22195DF44C002C30B8 /* ShipInfoDisplay.cpp in Sources */,
 				A99F7B02195DF44C002C30B8 /* FrameTimer.cpp in Sources */,
 				A99F7B13195DF44C002C30B8 /* OutfitInfoDisplay.cpp in Sources */,
@@ -726,6 +745,7 @@
 				A99F7B01195DF44C002C30B8 /* FontSet.cpp in Sources */,
 				A99F7B2B195DF44C002C30B8 /* StarField.cpp in Sources */,
 				A99F7B17195DF44C002C30B8 /* Planet.cpp in Sources */,
+				A9A5297219996C8A002D7C35 /* Audio.cpp in Sources */,
 				A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */,
 				A99F7B21195DF44C002C30B8 /* Ship.cpp in Sources */,
 				A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */,

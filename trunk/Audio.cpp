@@ -16,9 +16,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Sound.h"
 
+#ifndef __APPLE__
 #include <AL/alut.h>
+#else
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
+#endif
 
 #include <algorithm>
+#include <cmath>
 #include <map>
 #include <mutex>
 #include <stdexcept>
@@ -87,7 +93,9 @@ namespace {
 // Begin loading sounds (in a separate thread).
 void Audio::Init()
 {
+#ifndef __APPLE__
 	alutInitWithoutContext(nullptr, nullptr);
+#endif
 	device = alcOpenDevice(nullptr);
 	if(!device)
 		throw runtime_error("Unable to open audio device!");
@@ -290,7 +298,9 @@ void Audio::Quit()
 	alcMakeContextCurrent(nullptr);
 	alcDestroyContext(context);
 	alcCloseDevice(device);
+#ifndef __APPLE__
 	alutExit();
+#endif
 }
 
 

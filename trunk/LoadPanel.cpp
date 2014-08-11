@@ -36,7 +36,7 @@ using namespace std;
 
 
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels), loadedInfo(player)
+	: player(player), gamePanels(gamePanels)
 {
 	UpdateLists();
 }
@@ -185,7 +185,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		GameData::Revert();
 		loadedInfo.ApplyChanges();
-		player = loadedInfo;
+		player.Steal(loadedInfo);
 		
 		Messages::Reset();
 		GetUI()->Pop(this);
