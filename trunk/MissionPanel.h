@@ -47,6 +47,7 @@ private:
 	void DrawMissionInfo() const;
 	
 	bool CanAccept() const;
+	void AbortMission();
 	
 	
 private:

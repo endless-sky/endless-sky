@@ -452,8 +452,9 @@ void Engine::EnterSystem()
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, ships);
-	// Find out how attractive the player's fleet is to pirates.
-	unsigned attraction = 0;
+	// Find out how attractive the player's fleet is to pirates. Aside from a
+	// heavy freighter, no single ship should attract extra pirate attention.
+	unsigned attraction = -1;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		const string &category = ship->Attributes().Category();
