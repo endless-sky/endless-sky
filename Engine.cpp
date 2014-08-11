@@ -454,7 +454,7 @@ void Engine::EnterSystem()
 				fleet.Get()->Place(*system, ships);
 	// Find out how attractive the player's fleet is to pirates. Aside from a
 	// heavy freighter, no single ship should attract extra pirate attention.
-	unsigned attraction = -1;
+	int attraction = -1;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		const string &category = ship->Attributes().Category();
@@ -463,9 +463,10 @@ void Engine::EnterSystem()
 		if(category == "Heavy Freighter")
 			attraction += 2;
 	}
-	for(int i = 0; i < 3; ++i)
-		if(Random::Int(50) < attraction)
-			GameData::Fleets().Get("pirate raid")->Place(*system, ships);
+	if(attraction > 0)
+		for(int i = 0; i < 3; ++i)
+			if(Random::Int(50) < attraction)
+				GameData::Fleets().Get("pirate raid")->Place(*system, ships);
 	
 	projectiles.clear();
 	effects.clear();
