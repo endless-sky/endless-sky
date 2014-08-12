@@ -328,6 +328,8 @@ bool BoardingPanel::CanTake(int index) const
 		return false;
 	if(victim->GetGovernment() == GameData::PlayerGovernment())
 		return false;
+	if(isCapturing)
+		return false;
 	
 	if(index < 0)
 		index = selected;
