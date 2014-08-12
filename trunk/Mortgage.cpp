@@ -24,8 +24,10 @@ using namespace std;
 
 // Find out how much you can afford to borrow with the given annual revenue
 // and the given credit score (which should be between 200 and 800).
-int Mortgage::Maximum(int annualRevenue, int creditScore, int term)
+int Mortgage::Maximum(int annualRevenue, int creditScore, int currentPayments)
 {
+	const int term = 365;
+	annualRevenue -= term * currentPayments;
 	if(annualRevenue <= 0)
 		return 0;
 	

@@ -25,7 +25,7 @@ class Mortgage {
 public:
 	// Find out how much you can afford to borrow with the given annual revenue
 	// and the given credit score (which should be between 200 and 800).
-	static int Maximum(int annualRevenue, int creditScore, int term = 365);
+	static int Maximum(int annualRevenue, int creditScore, int currentPayments);
 	
 	
 public:

@@ -235,7 +235,10 @@ void Account::AddFine(int amount)
 
 int Account::Prequalify() const
 {
-	return Mortgage::Maximum(YearlyRevenue(), creditScore);
+	int payments = 0;
+	for(const Mortgage &mortgage : mortgages)
+		payments += mortgage.Payment();
+	return Mortgage::Maximum(YearlyRevenue(), creditScore, payments);
 }
 
 
