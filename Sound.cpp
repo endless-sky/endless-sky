@@ -13,16 +13,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sound.h"
 
 #ifndef __APPLE__
-#include <AL/alut.h>
+#include <AL/al.h>
 #else
 #include <OpenAL/al.h>
+#endif
+
 #include <fstream>
 #include <vector>
-#endif
 
 using namespace std;
 
-#ifdef __APPLE__
 namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
@@ -31,7 +31,6 @@ namespace {
 	uint32_t Read4(istream &in);
 	uint16_t Read2(istream &in);
 }
-#endif
 
 
 
@@ -41,9 +40,7 @@ void Sound::Load(const string &path)
 		return;
 	
 	isLooped = path[path.length() - 5] == '~';
-#ifndef __APPLE__
-	buffer = alutCreateBufferFromFile(path.c_str());
-#else
+	
 	ifstream in(path, ios::in | ios::binary);
 	uint32_t frequency = 0;
 	uint32_t bytes = ReadHeader(in, frequency);
@@ -55,7 +52,6 @@ void Sound::Load(const string &path)
 		alGenBuffers(1, &buffer);
 		alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 	}
-#endif
 }
 
 
@@ -74,7 +70,6 @@ bool Sound::IsLooping() const
 
 
 
-#ifdef __APPLE__
 namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
@@ -160,4 +155,3 @@ namespace {
 		return result;
 	}
 }
-#endif
