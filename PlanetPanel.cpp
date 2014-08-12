@@ -112,7 +112,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	Panel *oldPanel = selectedPanel;
 	const Ship *ship = player.GetShip();
 	
-	if(key == 'd')
+	if(key == 'd' && ship)
 	{
 		// Only save if this is a planet that refuels you, to avoid an auto-save
 		// of a pilot who is out of fuel with no help in sight.
@@ -131,7 +131,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && ship && planet.HasSpaceport())
+	else if(key == 'b' && planet.HasSpaceport())
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
@@ -160,12 +160,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j')
+	else if(key == 'j' && ship)
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h')
+	else if(key == 'h' && ship)
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
