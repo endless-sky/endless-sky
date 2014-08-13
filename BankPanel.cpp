@@ -176,6 +176,8 @@ void BankPanel::PayExtra(int amount)
 	
 	if(amount > 0)
 		player.Accounts().PayExtra(selectedRow, amount);
+	
+	qualify = player.Accounts().Prequalify();
 }
 
 
@@ -187,4 +189,6 @@ void BankPanel::NewMortgage(int amount)
 	
 	if(amount > 0)
 		player.Accounts().AddMortgage(amount);
+	
+	qualify = player.Accounts().Prequalify();
 }
