@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -232,7 +233,7 @@ void InfoPanel::DrawInfo() const
 	font.Draw(rating, pos + Point(230. - font.Width(rating), 0.), bright);
 	
 	pos.Y() += 20.;
-	string worth = to_string(player.Accounts().NetWorth()) + " credits";
+	string worth = Format::Number(player.Accounts().NetWorth()) + " credits";
 	font.Draw("net worth:", pos, dim);
 	font.Draw(worth, pos + Point(230. - font.Width(worth), 0.), bright);
 	
