@@ -28,6 +28,7 @@ class Mission;
 class MissionPanel : public MapPanel {
 public:
 	MissionPanel(PlayerInfo &player);
+	MissionPanel(const MapPanel &panel);
 	
 	virtual void Draw() const override;
 	

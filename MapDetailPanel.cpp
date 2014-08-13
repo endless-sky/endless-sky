@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "MissionPanel.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Screen.h"
@@ -36,6 +37,13 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity, const System *
 
 
 
+MapDetailPanel::MapDetailPanel(const MapPanel &panel)
+	: MapPanel(panel), governmentY(0), tradeY(0), selectedPlanet(nullptr)
+{
+}
+
+
+
 void MapDetailPanel::Draw() const
 {
 	MapPanel::Draw();
@@ -51,6 +59,11 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if(key == GameData::Keys().Get(Key::MAP) || key == 'd')
 		GetUI()->Pop(this);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MissionPanel(*this));
+	}
 	else
 		return false;
 	
@@ -106,6 +119,11 @@ bool MapDetailPanel::Click(int x, int y)
 	{
 		// The user clicked the "done" button.
 		return KeyDown(SDLK_d, KMOD_NONE);
+	}
+	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 415 && x < Screen::Right() - 345)
+	{
+		// The user clicked the "missions" button.
+		return KeyDown(SDLK_PAGEDOWN, KMOD_NONE);
 	}
 	
 	MapPanel::Click(x, y);
@@ -215,6 +233,14 @@ void MapDetailPanel::DrawInfo() const
 	buttonCenter.X() -= .5 * font.Width(DONE);
 	buttonCenter.Y() -= .5 * font.Height();
 	font.Draw(DONE, buttonCenter, *GameData::Colors().Get("bright"));
+	
+	// Draw the "Missions" button.
+	buttonCenter = Point(Screen::Right() - 380, Screen::Bottom() - 25);
+	SpriteShader::Draw(buttonSprite, buttonCenter);
+	static const string MISSIONS = "Missions...";
+	buttonCenter.X() -= .5 * font.Width(MISSIONS);
+	buttonCenter.Y() -= .5 * font.Height();
+	font.Draw(MISSIONS, buttonCenter, *GameData::Colors().Get("bright"));
 }
 
 

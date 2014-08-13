@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "MapDetailPanel.h"
 #include "Mission.h"
 #include "PlayerInfo.h"
 #include "Screen.h"
@@ -54,6 +55,23 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	// lower panel is taking up more space than the upper one.
 	center = Point(0., -80.) - selectedSystem->Position();
 	
+	wrap.SetWrapWidth(380);
+	wrap.SetFont(FontSet::Get(14));
+	wrap.SetAlignment(WrappedText::JUSTIFIED);
+}
+
+
+
+MissionPanel::MissionPanel(const MapPanel &panel)
+	: MapPanel(panel),
+	available(player.AvailableJobs()),
+	accepted(player.Missions()),
+	special(player.SpecialMissions()),
+	availableIt(player.AvailableJobs().begin()),
+	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
+	specialIt(special.end()),
+	availableScroll(0), acceptedScroll(0), dragSide(0)
+{
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
@@ -196,6 +214,12 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 					acceptedIt = accepted.begin();
 			}
 		}
+	}
+	else if(key == GameData::Keys().Get(Key::MAP))
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this));
+		return true;
 	}
 	else
 		return false;

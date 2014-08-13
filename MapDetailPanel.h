@@ -29,6 +29,7 @@ class PlayerInfo;
 class MapDetailPanel : public MapPanel {
 public:
 	MapDetailPanel(PlayerInfo &info, int commodity = -4, const System *system = nullptr);
+	MapDetailPanel(const MapPanel &panel);
 	
 	virtual void Draw() const override;
 	
