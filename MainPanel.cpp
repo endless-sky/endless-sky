@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "UI.h"
 
+#include <set>
 #include <sstream>
 #include <string>
 
@@ -68,15 +69,18 @@ void MainPanel::Step(bool isActive)
 		}
 		if(event.Type() == ShipEvent::DESTROY && event.TargetGovernment() == gov)
 		{
+			// Some missions have both cargo and passengers. Avoid aborting them
+			// twice, because the name may no longer be accessible the second time.
+			set<const Mission *> failed;
 			for(const auto &it : event.Target()->Cargo().MissionCargo())
-			{
-				Messages::Add("Ship lost. Mission failed: \"" + it.first->Name() + "\".");
-				player.AbortMission(*it.first);
-			}
+				failed.insert(it.first);
 			for(const auto &it : event.Target()->Cargo().PassengerList())
+				failed.insert(it.first);
+			
+			for(const Mission *mission : failed)
 			{
-				Messages::Add("Ship lost. Mission failed: \"" + it.first->Name() + "\".");
-				player.AbortMission(*it.first);
+				Messages::Add("Ship lost. Mission failed: \"" + mission->Name() + "\".");
+				player.AbortMission(*mission);
 			}
 		}
 	}
