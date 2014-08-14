@@ -279,7 +279,7 @@ void Engine::Step(bool isActive)
 				Radar::UNFRIENDLY : Radar::FRIENDLY;
 			info.SetOutlineColor(Radar::GetColor(targetType));
 			
-			if(target->GetSystem() == flagship->GetSystem())
+			if(target->GetSystem() == player.GetSystem())
 			{
 				info.SetBar("target shields", target->Shields());
 				info.SetBar("target hull", target->Hull(), 20.);
