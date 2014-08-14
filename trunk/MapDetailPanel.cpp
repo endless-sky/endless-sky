@@ -237,7 +237,7 @@ void MapDetailPanel::DrawInfo() const
 	// Draw the "Missions" button.
 	buttonCenter = Point(Screen::Right() - 380, Screen::Bottom() - 25);
 	SpriteShader::Draw(buttonSprite, buttonCenter);
-	static const string MISSIONS = "Missions...";
+	static const string MISSIONS = "Missions";
 	buttonCenter.X() -= .5 * font.Width(MISSIONS);
 	buttonCenter.Y() -= .5 * font.Height();
 	font.Draw(MISSIONS, buttonCenter, *GameData::Colors().Get("bright"));

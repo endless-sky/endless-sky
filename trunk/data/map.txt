@@ -11499,6 +11499,7 @@ planet Haven
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	shipyard "Northern Pirates"
 
 planet Haze
 	landscape land/city9
