@@ -158,14 +158,16 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	if(GameData::Progress() < 1.)
 		return false;
 	
-	if(key == 'e' || key == GameData::Keys().Get(Key::MENU))
+	if(player.IsLoaded() && (key == 'e' || key == GameData::Keys().Get(Key::MENU)))
 		GetUI()->Pop(this);
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
 	else if(key == 'l')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
-	else if(key == 'n')
+	else if(key == 'n' || key == 'e')
 	{
+		// The "New Pilot" and "Enter Ship" buttons are in the same place.
+		GameData::Revert();
 		player.New();
 		
 		ConversationPanel *panel = new ConversationPanel(

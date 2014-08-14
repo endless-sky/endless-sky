@@ -201,7 +201,8 @@ void Engine::Step(bool isActive)
 			info.SetSprite("player sprite", flagship->GetSprite().GetSprite());
 		else
 			info.SetSprite("player sprite", nullptr);
-		info.SetString("location", currentSystem->Name());
+		if(currentSystem)
+			info.SetString("location", currentSystem->Name());
 		info.SetString("date", player.GetDate().ToString());
 		if(flagship)
 		{
@@ -525,6 +526,9 @@ void Engine::CalculateStep()
 	// Clear the list of objects to draw.
 	draw[calcTickTock].Clear(step);
 	radar[calcTickTock].Clear();
+	
+	if(!player.GetSystem())
+		return;
 	
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(ships, player);
