@@ -132,8 +132,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "../../../../opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<group>"; };
-		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = ../../../../usr/local/lib/libpng14.14.dylib; sourceTree = "<group>"; };
+		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
+		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
 		A945B3E11963655400722981 /* ImageBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageBuffer.cpp; sourceTree = "<group>"; };
 		A945B3E21963655400722981 /* ImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBuffer.h; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		A9CC526F1950C9F6004E4E22 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A9CC52701950C9F6004E4E22 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		A9E84C77196215140058DFB7 /* CaptureOdds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CaptureOdds.cpp; sourceTree = "<group>"; };
 		A9E84C78196215140058DFB7 /* CaptureOdds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureOdds.h; sourceTree = "<group>"; };
