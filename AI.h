@@ -66,6 +66,8 @@ private:
 	
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	
+	// Return a bitmask of keys that cancel autopilot
+	int AutopilotCancelKeys();
 	
 private:
 	int step;

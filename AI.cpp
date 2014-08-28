@@ -44,7 +44,7 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 {
 	keyDown = keys & ~keyHeld;
 	keyHeld = keys;
-	if(keys || !isActive)
+	if((keys & AutopilotCancelKeys()) || !isActive)
 		keyStuck = 0;
 	
 	if(!isActive)
@@ -61,6 +61,14 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 			Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
 		}
 	}
+}
+
+
+
+int AI::AutopilotCancelKeys()
+{
+	return Key::Bit(Key::LAND) | Key::Bit(Key::JUMP) | Key::Bit(Key::BOARD) |
+		Key::Bit(Key::BACK) | Key::Bit(Key::RIGHT) | Key::Bit(Key::LEFT) | Key::Bit(Key::FORWARD);
 }
 
 
@@ -749,9 +757,11 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			}
 		}
 		
-		keyStuck = keyHeld;
+		if(keyHeld & AutopilotCancelKeys())
+			keyStuck = keyHeld;
 	}
-	else if(ship.IsBoarding())
+	
+	if(ship.IsBoarding())
 		keyStuck = 0;
 	else if((keyStuck & Key::Bit(Key::LAND)) && ship.GetTargetPlanet())
 	{
@@ -780,8 +790,6 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		MoveTo(control, ship, target->Position(), 40., .8);
 		control.SetBoardCommand();
 	}
-	else
-		keyStuck = 0;
 	
 	if(isLaunching)
 		control.SetLaunchCommand();
