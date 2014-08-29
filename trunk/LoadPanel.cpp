@@ -36,7 +36,7 @@ using namespace std;
 
 
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels)
+	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier())
 {
 	UpdateLists();
 }
