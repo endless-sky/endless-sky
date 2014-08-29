@@ -128,6 +128,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GameData::Revert();
 		player.New();
 		
+		Messages::Reset();
 		ConversationPanel *panel = new ConversationPanel(
 			player, *GameData::Conversations().Get("intro"));
 		GetUI()->Push(panel);
