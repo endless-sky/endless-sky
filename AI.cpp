@@ -26,10 +26,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "System.h"
 
+#include <SDL2/SDL.h>
+
 #include <limits>
 #include <cmath>
-
-#include <SDL2/SDL.h>
 
 using namespace std;
 
@@ -573,7 +573,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 		for(auto target : ships)
 		{
 			if(!target->IsTargetable() || !gov->IsEnemy(target->GetGovernment())
-					|| target->Velocity().Length() > 20.)
+					|| target->Velocity().Length() > 20. || (weapon.IsTurret() && target != ship.GetTargetShip().lock()))
 				continue;
 			
 			// Don't shoot ships we want to plunder.
