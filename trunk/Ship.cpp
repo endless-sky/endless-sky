@@ -956,7 +956,7 @@ void Ship::Recharge()
 	hull = attributes.Get("hull");
 	energy = attributes.Get("energy capacity");
 	fuel = attributes.Get("fuel capacity");
-	heat = attributes.Get("heat generation") / (1. - heatDissipation);
+	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
 
