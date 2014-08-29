@@ -137,7 +137,7 @@ int CargoHold::Size() const
 
 int CargoHold::Free() const
 {
-	return size - Used();
+	return max(0, size - Used());
 }
 
 
