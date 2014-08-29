@@ -29,6 +29,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <limits>
 #include <cmath>
 
+#include <SDL2/SDL.h>
+
 using namespace std;
 
 
@@ -324,6 +326,8 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 		if(parent.IsLanding() || parent.CanLand())
 			control.SetLandCommand();
 	}
+	else if(parent.HasBoardCommand() && parent.GetTargetShip().lock().get() == &ship)
+		Stop(control, ship);
 	else if(parent.HasHyperspaceCommand() && parent.GetTargetSystem())
 	{
 		control.SetTargetSystem(parent.GetTargetSystem());
@@ -427,19 +431,27 @@ bool AI::MoveTo(Controllable &control, const Ship &ship, const Point &target, do
 
 
 
-void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
+bool AI::Stop(Controllable &control, const Ship &ship)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
 	
-	// If we are moving too fast, point in the right direction.
 	double speed = velocity.Length();
-	if(speed > .2)
-	{
-		control.SetTurnCommand(TurnBackward(ship));
-		control.SetThrustCommand(velocity.Unit().Dot(angle.Unit()) < -.8);
-	}
-	else
+	
+	if(speed <= .2)
+		return true;
+	
+	control.SetTurnCommand(TurnBackward(ship));
+	control.SetThrustCommand(velocity.Unit().Dot(angle.Unit()) < -.8);
+	return false;
+}
+
+
+
+void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
+{
+	// If we are moving too fast, point in the right direction.
+	if(Stop(control, ship))
 	{
 		Point direction = ship.GetTargetSystem()->Position()
 			- ship.GetSystem()->Position();
@@ -648,6 +660,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	else if(keyDown & Key::Bit(Key::TARGET))
 	{
 		const Government *playerGovernment = info.GetShip()->GetGovernment();
+		bool targetMine = SDL_GetModState() & KMOD_SHIFT;
 		
 		shared_ptr<const Ship> target = control.GetTargetShip().lock();
 		bool selectNext = !target;
@@ -655,7 +668,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		{
 			if(other == target)
 				selectNext = true;
-			else if(other->GetGovernment() != playerGovernment && selectNext && other->IsTargetable())
+			else if(other.get() != &ship && selectNext && other->IsTargetable() &&
+					(other->GetGovernment() == playerGovernment) == targetMine)
 			{
 				control.SetTargetShip(other);
 				selectNext = false;

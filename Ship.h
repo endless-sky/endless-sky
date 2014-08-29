@@ -127,7 +127,7 @@ public:
 	Point Unit() const;
 	
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge();
+	void Recharge(bool atSpaceport=true);
 	
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -139,6 +139,7 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+	double TransferFuel(double amount, Ship* to);
 	void WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Check if this ship should be deleted.
 	bool ShouldDelete() const;

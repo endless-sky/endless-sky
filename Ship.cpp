@@ -104,6 +104,8 @@ void Ship::Load(const DataNode &node)
 			cargo.Load(child);
 		else if(child.Token(0) == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
+		else if(child.Token(0) == "fuel" && child.Size() >= 2)
+			fuel = child.Value(1);
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			currentSystem = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -160,7 +162,8 @@ void Ship::FinishLoading()
 	equipped.clear();
 	armament.FinishLoading();
 	
-	Recharge();
+	// Recharge, but don't recharge crew or fuel if not in the parent's system
+	Recharge(GetParent().expired() || currentSystem == GetParent().lock()->currentSystem);
 }
 
 
@@ -195,6 +198,7 @@ void Ship::Save(DataWriter &out) const
 		
 		cargo.Save(out);
 		out.Write("crew", crew);
+		out.Write("fuel", fuel);
 		
 		for(const Point &point : enginePoints)
 			out.Write("engine", point.X(), point.Y());
@@ -368,10 +372,7 @@ bool Ship::Move(list<Effect> &effects)
 		// a little less than a minute - enough to be an inconvenience without
 		// being totally aggravating.
 		if(attributes.Get("ramscoop"))
-		{
-			fuel += .03 * sqrt(attributes.Get("ramscoop"));
-			fuel = min(fuel, attributes.Get("fuel capacity"));
-		}
+			TransferFuel(-.03 * sqrt(attributes.Get("ramscoop")), nullptr);
 		
 		energy += attributes.Get("energy generation");
 		heat += attributes.Get("heat generation");
@@ -586,7 +587,7 @@ bool Ship::Move(list<Effect> &effects)
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding |= (distance < 50. && speed < 1. && HasBoardCommand());
-		if(isBoarding && !IsFighter() && (!target->IsDisabled() || target->Hull() < 0.))
+		if(isBoarding && !IsFighter() && (!(target->IsDisabled() || target->GetParent().lock().get() == this) || target->Hull() < 0.))
 			isBoarding = false;
 		if(isBoarding && !pilotError)
 		{
@@ -681,14 +682,18 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 		}
 		return shared_ptr<Ship>();
 	}
-	if(!target->IsDisabled() || target->Hull() <= 0.)
+	if(!(target->IsDisabled() || target->GetParent().lock().get() == this) || target->Hull() <= 0.)
 		return shared_ptr<Ship>();
 	
-	// Board a ship of your own government to repair it.
+	// Board a ship of your own government to repair/refuel it.
 	if(victim->GetGovernment() == government)
 	{
-		victim->hull = victim->MinimumHull();
+		victim->hull = max(victim->hull, victim->MinimumHull());
 		victim->isDisabled = false;
+		// Transfer some fuel if needed (trying to equalize our fuel, in increments of 100)
+		if(JumpsRemaining() >= 2 && victim->JumpsRemaining() == 0) {
+			TransferFuel(static_cast<int>((fuel - victim->fuel) / 200.) * 100, victim.get());
+		}
 		return shared_ptr<Ship>();
 	}
 	
@@ -946,16 +951,19 @@ Point Ship::Unit() const
 
 
 // Recharge and repair this ship (e.g. because it has landed).
-void Ship::Recharge()
+void Ship::Recharge(bool atSpaceport)
 {
-	crew = max(crew, RequiredCrew());
+	if(atSpaceport)
+	{
+		crew = max(crew, RequiredCrew());
+		fuel = attributes.Get("fuel capacity");
+	}
 	pilotError = 0;
 	pilotOkay = 0;
 	
 	shields = attributes.Get("shields");
 	hull = attributes.Get("hull");
 	energy = attributes.Get("energy capacity");
-	fuel = attributes.Get("fuel capacity");
 	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
@@ -1028,6 +1036,20 @@ int Ship::RequiredCrew() const
 void Ship::AddCrew(int count)
 {
 	crew += count;
+}
+
+
+
+double Ship::TransferFuel(double amount, Ship *to)
+{
+	amount = max(fuel - attributes.Get("fuel capacity"), amount);
+	if(to)
+	{
+		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
+		to->fuel += amount;
+	}
+	fuel -= amount;
+	return amount;
 }
 
 
