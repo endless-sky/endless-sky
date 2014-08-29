@@ -181,7 +181,6 @@ void PlayerInfo::Load(const string &path)
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
 			ships.back()->Load(child);
-			ships.back()->FinishLoading();
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(GameData::PlayerGovernment());
 			if(ships.size() > 1)
@@ -189,6 +188,7 @@ void PlayerInfo::Load(const string &path)
 				ships.back()->SetParent(ships.front());
 				ships.front()->AddEscort(ships.back());
 			}
+			ships.back()->FinishLoading();
 		}
 	}
 	UpdateCargoCapacities();
