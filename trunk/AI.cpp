@@ -652,17 +652,16 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		shared_ptr<const Ship> target = control.GetTargetShip().lock();
 		bool selectNext = !target;
 		for(const shared_ptr<Ship> &other : ships)
-			if(other->GetGovernment() != playerGovernment)
+		{
+			if(other == target)
+				selectNext = true;
+			else if(other->GetGovernment() != playerGovernment && selectNext && other->IsTargetable())
 			{
-				if(other == target)
-					selectNext = true;
-				else if(selectNext && other->IsTargetable())
-				{
-					control.SetTargetShip(other);
-					selectNext = false;
-					break;
-				}
+				control.SetTargetShip(other);
+				selectNext = false;
+				break;
 			}
+		}
 		if(selectNext)
 			control.SetTargetShip(weak_ptr<Ship>());
 	}
