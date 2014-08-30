@@ -133,13 +133,41 @@ outfit "Outfit Scanner"
 outfit "Surveillance Pod"
 	category "Systems"
 	cost 42000
-	thumbnail "outfit/small shield"
+	thumbnail "outfit/outfit scanner"
 	"mass" 5
 	"outfit space" -5
 	"outfit scan" 400
 	"cargo scan" 200
 	"atmosphere scan" 100
 	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
+
+
+outfit "Mass Expansion"
+	category "Systems"
+	cost 50000
+	thumbnail "outfit/blue screwdriver"
+	"mass" 5
+	"outfit space" 15
+	"cargo space" -20
+	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
+	
+outfit "Cargo Expansion"
+	category "Systems"
+	cost 30000
+	thumbnail "outfit/red screwdriver"
+	"mass" 5
+	"cargo space" 15
+	"outfit space" -20
+	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
+
+outfit "Fuel Pod"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/fuel pod"
+	"mass" 10
+	"outfit space" -10
+	"fuel capacity" 100
+	description "A fuel pod increases your fuel capacity, allowing your ship to make one additional hyperspace jump before it needs to land and refuel."
 
 
 outfit "Laser Rifle"
