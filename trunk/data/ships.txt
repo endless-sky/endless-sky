@@ -373,7 +373,6 @@ ship "Clipper"
 		"LP072a Battery Pack"
 		"nGVF-DD Fuel Cell"
 		"Hyperdrive"
-		"Laser Turret" 3
 		"Beam Laser" 2
 		"Javelin Pod" 2
 		"Javelin" 400
