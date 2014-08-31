@@ -705,8 +705,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				}
 		}
 	}
-	
-	if(keyHeld & Key::Bit(Key::LAND))
+	else if(keyDown & Key::Bit(Key::LAND))
 	{
 		// If the player is right over an uninhabited planet, display a message
 		// explaining why they cannot land there.
@@ -718,7 +717,33 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				if(distance < object.Radius())
 					message = object.LandingMessage();
 			}
-		if(message.empty())
+		if(message.empty() && control.GetTargetPlanet())
+		{
+			bool found = false;
+			const StellarObject *next = nullptr;
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.GetPlanet())
+				{
+					if(found)
+					{
+						next = &object;
+						break;
+					}
+					else if(&object == control.GetTargetPlanet())
+						found = true;
+				}
+			if(!next)
+			{
+				for(const StellarObject &object : ship.GetSystem()->Objects())
+					if(object.GetPlanet())
+					{
+						next = &object;
+						break;
+					}
+			}
+			control.SetTargetPlanet(next);
+		}
+		else if(message.empty())
 		{
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
