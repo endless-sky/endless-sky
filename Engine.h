@@ -63,6 +63,8 @@ private:
 	void ThreadEntryPoint();
 	void CalculateStep();
 	
+	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
+	
 	
 private:
 	class Target {
@@ -118,6 +120,8 @@ private:
 	
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
+	// Keep track of who has asked for help in fighting whom.
+	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	
 	AsteroidField asteroids;
 	double flash;

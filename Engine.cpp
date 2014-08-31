@@ -424,6 +424,7 @@ void Engine::Draw() const
 void Engine::EnterSystem()
 {
 	ai.Clean();
+	grudge.clear();
 	
 	const Ship *flagship = player.GetShip();
 	if(!flagship)
@@ -730,6 +731,9 @@ void Engine::CalculateStep()
 					eventQueue.emplace_back(
 						projectile.GetGovernment(), hit, eventType);
 			}
+			
+			if(hit)
+				DoGrudge(hit, projectile.GetGovernment());
 		}
 		else if(projectile.MissileStrength())
 		{
@@ -786,6 +790,82 @@ void Engine::CalculateStep()
 		loadSum = 0.;
 		loadCount = 0;
 	}
+}
+
+
+
+void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
+{
+	if(attacker == GameData::PlayerGovernment())
+	{
+		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
+		if(previous && previous->GetSystem() == player.GetSystem() && !previous->IsDisabled())
+		{
+			grudge[target->GetGovernment()].reset();
+			Messages::Add(previous->GetGovernment()->GetName() + " ship \""
+				+ previous->Name() + "\": Thank you for your assistance, Captain "
+				+ player.LastName() + "!");
+		}
+		return;
+	}
+	
+	// Check who currently has a grudge against this government. Also check if
+	// someone has already said "thank you" today.
+	if(grudge.find(attacker) != grudge.end())
+	{
+		shared_ptr<const Ship> previous = grudge[attacker].lock();
+		if(!previous || (previous->GetSystem() == player.GetSystem() && !previous->IsDisabled()))
+			return;
+	}
+	
+	// Do not ask the player's help if they are your enemy or are not an enemy
+	// of the ship that is attacking you.
+	if(target->GetGovernment() == GameData::PlayerGovernment())
+		return;
+	if(!GameData::GetPolitics().IsEnemy(attacker, GameData::PlayerGovernment()))
+		return;
+	if(GameData::GetPolitics().IsEnemy(target->GetGovernment(), GameData::PlayerGovernment()))
+		return;
+	
+	// No active ship has a grudge already agains this government.
+	// Check the relative strength of this ship and its attackers.
+	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
+	double attackerStrength = 0.;
+	int attackerCount = 0;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetGovernment() == attacker && ship->GetTargetShip().lock() == target)
+		{
+			++attackerCount;
+			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();
+		}
+	
+	if(attackerStrength <= targetStrength)
+		return;
+	
+	// Ask for help more frequently if the battle is very lopsided.
+	double ratio = attackerStrength / targetStrength - 1.;
+	if(Random::Real() * 10. > ratio)
+		return;
+	
+	grudge[attacker] = target;
+	string message = target->GetGovernment()->GetName() + " ship \"" + target->Name() + "\": ";
+	if(target->GetPersonality().IsHeroic())
+	{
+		message += "Please assist us in destroying ";
+		message += (attackerCount == 1 ? "this " : "these ");
+		message += attacker->GetName();
+		message += (attackerCount == 1 ? " ship." : " ships.");
+	}
+	else
+	{
+		message += "We are under attack by ";
+		if(attackerCount == 1)
+			message += "a ";
+		message += attacker->GetName();
+		message += (attackerCount == 1 ? " ship" : " ships");
+		message += ". Please assist us!";
+	}
+	Messages::Add(message);
 }
 
 
