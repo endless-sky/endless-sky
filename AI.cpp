@@ -188,6 +188,11 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
+			// "Timid" ships do not pick fights; they only attack ships that are
+			// already targeting them.
+			if(ship.GetPersonality().IsTimid() && it->GetTargetShip().lock().get() != &ship)
+				continue;
+			
 			double range = it->Position().Distance(ship.Position());
 			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();
