@@ -26,10 +26,10 @@ using namespace std;
 // If a player is given, the map will only use hyperspace paths known to the
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
-DistanceMap::DistanceMap(const System *center)
+DistanceMap::DistanceMap(const System *center, int maxCount)
 {
 	distance[center] = 0;
-	Init();
+	Init(maxCount);
 }
 
 
@@ -86,7 +86,15 @@ const System *DistanceMap::Route(const System *system) const
 
 
 
-void DistanceMap::Init()
+// Access the distance map directly.
+const map<const System *, int> DistanceMap::Distances() const
+{
+	return distance;
+}
+
+
+
+void DistanceMap::Init(int maxCount)
 {
 	vector<const System *> edge = {distance.begin()->first};
 	for(int steps = 1; !edge.empty(); ++steps)
@@ -102,6 +110,10 @@ void DistanceMap::Init()
 				distance[link] = steps;
 				route[link] = system;
 				newEdge.push_back(link);
+				
+				// Bail out if we've found the specified number of systems.
+				if(!--maxCount)
+					return;
 			}
 		newEdge.swap(edge);
 	}

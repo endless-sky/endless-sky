@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "ConversationPanel.h"
+#include "DistanceMap.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -38,7 +39,8 @@ namespace {
 		"Systems",
 		"Power",
 		"Engines",
-		"Hand to Hand"
+		"Hand to Hand",
+		"Special"
 	};
 }
 
@@ -158,6 +160,23 @@ bool OutfitterPanel::CanBuy() const
 
 void OutfitterPanel::Buy()
 {
+	// Special case: maps.
+	int mapSize = selectedOutfit->Get("map");
+	if(mapSize)
+	{
+		bool hadNewSystems = false;
+		DistanceMap distance(player.GetSystem(), mapSize);
+		for(const auto &it : distance.Distances())
+			if(!player.HasVisited(it.first))
+			{
+				player.Visit(it.first);
+				hadNewSystems = true;
+			}
+		if(hadNewSystems)
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+		return;
+	}
+	
 	if(player.Cargo().Get(selectedOutfit))
 		player.Cargo().Transfer(selectedOutfit, 1);
 	else

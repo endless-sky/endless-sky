@@ -27,7 +27,7 @@ public:
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
-	DistanceMap(const System *center);
+	DistanceMap(const System *center, int maxCount = 0);
 	DistanceMap(const PlayerInfo &player);
 	
 	// Find out if the given system is reachable.
@@ -38,9 +38,12 @@ public:
 	// should I jump to next?
 	const System *Route(const System *system) const;
 	
+	// Access the distance map directly.
+	const std::map<const System *, int> Distances() const;
+	
 	
 private:
-	void Init();
+	void Init(int maxCount);
 	void InitHyper(const PlayerInfo &player);
 	void InitJump(const PlayerInfo &player);
 	
