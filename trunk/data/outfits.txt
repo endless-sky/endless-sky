@@ -202,3 +202,11 @@ outfit "Nerve Gas"
 	"capture attack" 2.8
 	"capture defense" .8
 	description "This is a highly illegal weapon for hand to hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas cannisters. But, they do clear out an enemy ship quicker than just about anything else..."
+
+
+outfit "Local Map"
+	category "Special"
+	cost 1000
+	thumbnail "outfit/map"
+	"map" 12
+	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
