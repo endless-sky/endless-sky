@@ -62,6 +62,8 @@ private:
 		// Check how many of this item are left un-plundered. Once this is zero,
 		// the item can be removed from the list.
 		int Count() const;
+		// Get the value of each unit of this pluder item.
+		int64_t UnitValue() const;
 		
 		// Get the name of this item. If it is a commodity, this is its name.
 		const std::string &Name() const;
@@ -88,7 +90,7 @@ private:
 		std::string name;
 		const Outfit *outfit;
 		int count;
-		int unitValue;
+		int64_t unitValue;
 		std::string size;
 		std::string value;
 	};
@@ -99,13 +101,16 @@ private:
 	std::shared_ptr<Ship> victim;
 	
 	std::vector<Plunder> plunder;
-	int selected;
-	int scroll;
+	int selected = 0;
+	int scroll = 0;
 	
-	bool isCapturing;
+	bool isCapturing = false;
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	std::vector<std::string> messages;
+	
+	int initialCrew;
+	int64_t crewBonus = 0;
 };
 
 

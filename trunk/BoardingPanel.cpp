@@ -16,9 +16,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Screen.h"
@@ -32,7 +34,7 @@ using namespace std;
 
 namespace {
 	// Format the given double with one decimal place.
-	string Format(double value)
+	string Round(double value)
 	{
 		int integer = round(value * 10.);
 		string result = to_string(integer / 10);
@@ -47,8 +49,8 @@ namespace {
 
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.Ships().front()), victim(victim),
-	selected(0), scroll(0), isCapturing(false),
-	attackOdds(player.GetShip(), &*victim), defenseOdds(&*victim, player.GetShip())
+	attackOdds(player.GetShip(), &*victim), defenseOdds(&*victim, player.GetShip()),
+	initialCrew(you->Crew())
 {
 	TrapAllEvents();
 	
@@ -125,25 +127,25 @@ void BoardingPanel::Draw() const
 		info.SetString("cargo space", to_string(freeSpace));
 		info.SetString("your crew", to_string(crew));
 		info.SetString("your attack",
-			Format(attackOdds.AttackerPower(crew)));
+			Round(attackOdds.AttackerPower(crew)));
 		info.SetString("your defense",
-			Format(defenseOdds.DefenderPower(crew)));
+			Round(defenseOdds.DefenderPower(crew)));
 	}
 	int vCrew = victim->Crew();
 	info.SetString("enemy crew", to_string(vCrew));
 	info.SetString("enemy attack",
-		Format(defenseOdds.AttackerPower(vCrew)));
+		Round(defenseOdds.AttackerPower(vCrew)));
 	info.SetString("enemy defense",
-		Format(attackOdds.DefenderPower(vCrew)));
+		Round(attackOdds.DefenderPower(vCrew)));
 	
 	info.SetString("attack odds",
-		Format(100. * attackOdds.Odds(crew, vCrew)) + "%");
+		Round(100. * attackOdds.Odds(crew, vCrew)) + "%");
 	info.SetString("attack casualties",
-		Format(attackOdds.AttackerCasualties(crew, vCrew)));
+		Round(attackOdds.AttackerCasualties(crew, vCrew)));
 	info.SetString("defense odds",
-		Format(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+		Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
 	info.SetString("defense casualties",
-		Format(defenseOdds.DefenderCasualties(vCrew, crew)));
+		Round(defenseOdds.DefenderCasualties(vCrew, crew)));
 	
 	const Interface *interface = GameData::Interfaces().Get("boarding");
 	interface->Draw(info);
@@ -161,7 +163,15 @@ void BoardingPanel::Draw() const
 bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
 	if((key == 'd' || key == 'x') && CanExit())
+	{
+		if(crewBonus)
+		{
+			Messages::Add("You owe your crew a bonus of " + Format::Number(crewBonus)
+				+ " credits as a share of the plunder, in return for risking their lives.");
+			player.Accounts().AddBonus(crewBonus);
+		}
 		GetUI()->Pop(this);
+	}
 	else if(key == 't' && CanTake())
 	{
 		CargoHold &cargo = you->Cargo();
@@ -176,6 +186,14 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		else
 			victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
 		
+		if(initialCrew > 1)
+		{
+			int64_t bonus = count * plunder[selected].UnitValue();
+			// The captain gets 6 shares in the bonus payment.
+			bonus *= initialCrew - 1;
+			bonus /= initialCrew + 5;
+			crewBonus += bonus;
+		}
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
@@ -258,6 +276,12 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				player.AddShip(victim);
 				you->AddEscort(victim);
 				isCapturing = false;
+				
+				int64_t bonus = victim->Cost();
+				// The captain gets 6 shares in the bonus payment.
+				bonus *= initialCrew - 1;
+				bonus /= initialCrew + 5;
+				crewBonus += bonus;
 			}
 		}
 		// Trim the list of status messages.
@@ -393,6 +417,14 @@ int BoardingPanel::Plunder::Count() const
 
 
 
+// Get the value of each unit of this pluder item.
+int64_t BoardingPanel::Plunder::UnitValue() const
+{
+	return unitValue;
+}
+
+
+
 // Get the name of this item. If it is a commodity, this is its name.
 const string &BoardingPanel::Plunder::Name() const
 {
@@ -459,7 +491,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 	else
 		size = to_string(count) + " x " + to_string(mass);
 	
-	value = to_string(unitValue * count);
+	value = Format::Number(unitValue * count);
 }
 
 
