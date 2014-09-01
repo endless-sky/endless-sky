@@ -192,7 +192,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 	// include commas, so just handle that separately here.
 	if(salariesPaid && mortgagesPaid && finesPaid)
 		out << salariesPaid << " credits in crew salaries, " << mortgagesPaid
-			<< " in mortgages, and " << finesPaid << " in fines.";
+			<< " in mortgages, and " << finesPaid << " in other payments.";
 	else
 	{
 		if(salariesPaid)
@@ -203,7 +203,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
 		if(finesPaid)
 			out << finesPaid << ((salariesPaid || mortgagesPaid) ?
-				" in fines." : " credits in fines.");
+				" in other payments." : " credits in other payments.");
 	}
 	return out.str();
 }
@@ -229,6 +229,13 @@ void Account::AddMortgage(int64_t principal)
 void Account::AddFine(int64_t amount)
 {
 	mortgages.emplace_back(amount, 0, 60);
+}
+
+
+
+void Account::AddBonus(int64_t bonus)
+{
+	mortgages.emplace_back(bonus, 1000, 60);
 }
 
 

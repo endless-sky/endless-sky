@@ -41,7 +41,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 
 // Create a new mortgage of the given amount.
 Mortgage::Mortgage(int64_t principal, int creditScore, int term)
-	: type(creditScore ? "Mortgage" : "Fine"),
+	: type(creditScore < 0 ? "Fine" : creditScore > 800 ? "Crew Bonus" : "Mortgage"),
 	principal(principal),
 	interest((500 - creditScore / 2) * .00001),
 	interestString("0." + to_string(500 - creditScore / 2) + "%"),
@@ -158,6 +158,9 @@ int Mortgage::Term() const
 // Check the amount of the next payment due (rounded to the nearest credit).
 int64_t Mortgage::Payment() const
 {
+	if(!interest)
+		return round(principal / term);
+	
 	double power = pow(1. + interest, term);
 	return round(principal * interest * power / (power - 1.));
 }
