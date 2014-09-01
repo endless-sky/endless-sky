@@ -86,21 +86,21 @@ void Account::Save(DataWriter &out) const
 
 
 // Get or change the player's credits.
-int Account::Credits() const
+int64_t Account::Credits() const
 {
 	return credits;
 }
 
 
 
-void Account::AddCredits(int value)
+void Account::AddCredits(int64_t value)
 {
 	credits += value;
 }
 
 
 
-void Account::PayExtra(int mortgage, int amount)
+void Account::PayExtra(int mortgage, int64_t amount)
 {
 	if(static_cast<unsigned>(mortgage) >= mortgages.size() || amount > credits
 			|| amount > mortgages[mortgage].Principal())
@@ -116,7 +116,7 @@ void Account::PayExtra(int mortgage, int amount)
 
 
 // Step forward one day, and return a string summarizing payments made.
-string Account::Step(int assets, int salaries)
+string Account::Step(int64_t assets, int64_t salaries)
 {
 	ostringstream out;
 	
@@ -124,7 +124,7 @@ string Account::Step(int assets, int salaries)
 	bool hasDebts = !mortgages.empty() || salariesOwed;
 	bool paid = true;
 	
-	int salariesPaid = salariesOwed;
+	int64_t salariesPaid = salariesOwed;
 	if(salariesOwed)
 	{
 		if(salariesOwed > credits)
@@ -142,11 +142,11 @@ string Account::Step(int assets, int salaries)
 		}
 	}
 	
-	int mortgagesPaid = 0;
-	int finesPaid = 0;
+	int64_t mortgagesPaid = 0;
+	int64_t finesPaid = 0;
 	for(Mortgage &mortgage : mortgages)
 	{
-		int payment = mortgage.Payment();
+		int64_t payment = mortgage.Payment();
 		if(payment > credits)
 		{
 			if(paid)
@@ -218,7 +218,7 @@ const vector<Mortgage> &Account::Mortgages() const
 
 
 
-void Account::AddMortgage(int principal)
+void Account::AddMortgage(int64_t principal)
 {
 	mortgages.emplace_back(principal, creditScore);
 	credits += principal;
@@ -226,16 +226,16 @@ void Account::AddMortgage(int principal)
 
 
 
-void Account::AddFine(int amount)
+void Account::AddFine(int64_t amount)
 {
 	mortgages.emplace_back(amount, 0, 60);
 }
 
 
 
-int Account::Prequalify() const
+int64_t Account::Prequalify() const
 {
-	int payments = 0;
+	int64_t payments = 0;
 	for(const Mortgage &mortgage : mortgages)
 		payments += mortgage.Payment();
 	return Mortgage::Maximum(YearlyRevenue(), creditScore, payments);
@@ -244,21 +244,21 @@ int Account::Prequalify() const
 
 
 // Assets:
-int Account::NetWorth() const
+int64_t Account::NetWorth() const
 {
 	return history.back();
 }
 
 
 
-const vector<int> Account::History() const
+const vector<int64_t> Account::History() const
 {
 	return history;
 }
 
 
 
-int Account::YearlyRevenue() const
+int64_t Account::YearlyRevenue() const
 {
 	if(history.empty() || history.back() <= history.front())
 		return 0;

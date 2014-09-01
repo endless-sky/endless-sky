@@ -37,34 +37,34 @@ public:
 	void Save(DataWriter &out) const;
 	
 	// Get or change the player's credits.
-	int Credits() const;
-	void AddCredits(int value);
-	void PayExtra(int mortgage, int amount);
+	int64_t Credits() const;
+	void AddCredits(int64_t value);
+	void PayExtra(int mortgage, int64_t amount);
 	
 	// Step forward one day, and return a string summarizing payments made.
-	std::string Step(int assets, int salaries);
+	std::string Step(int64_t assets, int64_t salaries);
 	
 	// Liabilities:
 	const std::vector<Mortgage> &Mortgages() const;
-	void AddMortgage(int principal);
-	void AddFine(int amount);
-	int Prequalify() const;
+	void AddMortgage(int64_t principal);
+	void AddFine(int64_t amount);
+	int64_t Prequalify() const;
 	// Assets:
-	int NetWorth() const;
-	const std::vector<int> History() const;
-	int YearlyRevenue() const;
+	int64_t NetWorth() const;
+	const std::vector<int64_t> History() const;
+	int64_t YearlyRevenue() const;
 	
 	// Find out the player's credit rating.
 	int CreditScore() const;
 	
 	
 private:
-	int credits;
-	int salariesOwed;
+	int64_t credits;
+	int64_t salariesOwed;
 	
 	std::vector<Mortgage> mortgages;
 	
-	std::vector<int> history;
+	std::vector<int64_t> history;
 	int creditScore;
 };
 

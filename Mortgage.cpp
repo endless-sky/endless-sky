@@ -24,7 +24,7 @@ using namespace std;
 
 // Find out how much you can afford to borrow with the given annual revenue
 // and the given credit score (which should be between 200 and 800).
-int Mortgage::Maximum(int annualRevenue, int creditScore, int currentPayments)
+int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t currentPayments)
 {
 	const int term = 365;
 	annualRevenue -= term * currentPayments;
@@ -34,13 +34,13 @@ int Mortgage::Maximum(int annualRevenue, int creditScore, int currentPayments)
 	double interest = (500 - creditScore / 2) * .00001;
 	double power = pow(1. + interest, term);
 	double multiplier = interest * term * power / (power - 1.);
-	return static_cast<int>(max(0., annualRevenue / multiplier));
+	return static_cast<int64_t>(max(0., annualRevenue / multiplier));
 }
 
 
 
 // Create a new mortgage of the given amount.
-Mortgage::Mortgage(int principal, int creditScore, int term)
+Mortgage::Mortgage(int64_t principal, int creditScore, int term)
 	: type(creditScore ? "Mortgage" : "Fine"),
 	principal(principal),
 	interest((500 - creditScore / 2) * .00001),
@@ -89,9 +89,9 @@ void Mortgage::Save(DataWriter &out) const
 
 
 // Make a mortgage payment. The return value is the amount paid.
-int Mortgage::MakePayment()
+int64_t Mortgage::MakePayment()
 {
-	int payment = Payment();
+	int64_t payment = Payment();
 	MissPayment();
 	principal -= payment;
 	--term;
@@ -112,7 +112,7 @@ void Mortgage::MissPayment()
 // the minimum amount of your future payments, not the term of the mortgage.
 // This returns the actual amount paid, which may be less if the total
 // principal remaining is less than the given amount.
-int Mortgage::PayExtra(int amount)
+int64_t Mortgage::PayExtra(int64_t amount)
 {
 	amount = min(principal, amount);
 	principal -= amount;
@@ -131,7 +131,7 @@ const string &Mortgage::Type() const
 
 
 // Get the remaining mortgage principal.
-int Mortgage::Principal() const
+int64_t Mortgage::Principal() const
 {
 	return principal;
 }
@@ -156,7 +156,7 @@ int Mortgage::Term() const
 
 
 // Check the amount of the next payment due (rounded to the nearest credit).
-int Mortgage::Payment() const
+int64_t Mortgage::Payment() const
 {
 	double power = pow(1. + interest, term);
 	return round(principal * interest * power / (power - 1.));

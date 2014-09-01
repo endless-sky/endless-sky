@@ -110,7 +110,7 @@ const string &Outfit::Description() const
 
 
 
-int Outfit::Cost() const
+int64_t Outfit::Cost() const
 {
 	return Get("cost");
 }

@@ -39,7 +39,7 @@ public:
 	const std::string &Name() const;
 	const std::string &Category() const;
 	const std::string &Description() const;
-	int Cost() const;
+	int64_t Cost() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 	
