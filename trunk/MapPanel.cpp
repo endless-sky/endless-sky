@@ -185,7 +185,6 @@ void MapPanel::DrawSystems() const
 {
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
-	const Government *playerGovernment = GameData::PlayerGovernment();
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
@@ -232,8 +231,19 @@ void MapPanel::DrawSystems() const
 					.4f);
 			}
 			else
-				color = system.GetGovernment().IsEnemy(playerGovernment) ?
-					Color(.60f, .10f, .00f, .40f) : Color(.00f, .12f, .60f, .40f);
+			{
+				double reputation = GameData::GetPolitics().Reputation(&system.GetGovernment());
+				if(reputation >= 0.)
+				{
+					reputation = min(1., .1 * log(1. + reputation));
+					color = Color(0., .6 * (1. - reputation), .6, .4);
+				}
+				else
+				{
+					reputation = 1. - min(1., .1 * log(1. - reputation));
+					color = Color(.6, .6 * (1. - reputation), 0., .4);
+				}
+			}
 		}
 		
 		DotShader::Draw(system.Position() + center, 6., 3.5, color);

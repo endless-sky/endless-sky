@@ -144,7 +144,7 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					GameData::GetPolitics().SetReputation(
+					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
 		else if(child.Token(0) == "account")
