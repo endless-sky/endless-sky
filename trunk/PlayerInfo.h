@@ -75,7 +75,7 @@ public:
 	
 	const Account &Accounts() const;
 	Account &Accounts();
-	int Salaries() const;
+	int64_t Salaries() const;
 	
 	// Set the player ship.
 	void AddShip(std::shared_ptr<Ship> &ship);

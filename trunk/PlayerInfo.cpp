@@ -367,7 +367,7 @@ string PlayerInfo::IncrementDate()
 	
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int assets = 0;
+	int64_t assets = 0;
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cost() + ship->Cargo().Value(system);
 	
@@ -419,9 +419,9 @@ Account &PlayerInfo::Accounts()
 
 
 
-int PlayerInfo::Salaries() const
+int64_t PlayerInfo::Salaries() const
 {
-	int crew = 0;
+	int64_t crew = 0;
 	for(const shared_ptr<Ship> &ship : ships)
 		crew += ship->Crew();
 	if(!crew)
@@ -682,7 +682,7 @@ void PlayerInfo::TakeOff()
 			out << drones.size()
 				<< (drones.size() == 1 ? " drone" : " drones");
 		
-		int income = 0;
+		int64_t income = 0;
 		for(const shared_ptr<Ship> &ship : fighters)
 			income += ship->Cost();
 		for(const shared_ptr<Ship> &ship : drones)
@@ -708,8 +708,8 @@ void PlayerInfo::TakeOff()
 			AbortMission(*it.first);
 		}
 	
-	int sold = cargo.Used();
-	int income = cargo.Value(system);
+	int64_t sold = cargo.Used();
+	int64_t income = cargo.Value(system);
 	accounts.AddCredits(income);
 	cargo.Clear();
 	if(sold)

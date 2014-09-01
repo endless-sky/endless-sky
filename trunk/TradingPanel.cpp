@@ -167,7 +167,7 @@ bool TradingPanel::Click(int x, int y)
 
 
 
-void TradingPanel::Buy(int amount)
+void TradingPanel::Buy(int64_t amount)
 {
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
