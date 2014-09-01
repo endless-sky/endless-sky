@@ -32,7 +32,7 @@ namespace {
 
 
 Controllable::Controllable()
-	: commands(0), targetPlanet(nullptr), targetSystem(nullptr)
+	: commands(0), targetPlanet(nullptr), targetSystem(nullptr), destination(nullptr)
 {
 }
 
@@ -184,6 +184,13 @@ const System *Controllable::GetTargetSystem() const
 
 
 
+const Planet *Controllable::GetDestination() const
+{
+	return destination;
+}
+
+
+
 // Set this ship's targets.
 void Controllable::SetTargetShip(const weak_ptr<const Ship> &ship)
 {
@@ -202,6 +209,13 @@ void Controllable::SetTargetPlanet(const StellarObject *object)
 void Controllable::SetTargetSystem(const System *system)
 {
 	targetSystem = system;
+}
+
+
+
+void Controllable::SetDestination(const Planet *planet)
+{
+	destination = planet;
 }
 
 

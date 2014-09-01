@@ -624,7 +624,23 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	control.ResetCommands();
 	
 	if(info.HasTravelPlan())
-		control.SetTargetSystem(info.TravelPlan().back());
+	{
+		const System *system = info.TravelPlan().back();
+		control.SetTargetSystem(system);
+		// Check if there's a particular planet there we want to visit.
+		for(const Mission &mission : info.Missions())
+			if(mission.Destination() && mission.Destination()->GetSystem() == system)
+			{
+				control.SetDestination(mission.Destination());
+				break;
+			}
+		for(const Mission *mission : info.SpecialMissions())
+			if(mission->Destination() && mission->Destination()->GetSystem() == system)
+			{
+				control.SetDestination(mission->Destination());
+				break;
+			}
+	}
 	
 	if(keyDown & Key::Bit(Key::NEAREST))
 	{
@@ -745,6 +761,9 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				{
 					++count;
 					double distance = ship.Position().Distance(object.Position());
+					if(object.GetPlanet() == ship.GetDestination())
+						distance = 0.;
+					
 					if(distance < closest)
 					{
 						control.SetTargetPlanet(&object);

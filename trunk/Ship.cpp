@@ -292,6 +292,7 @@ void Ship::SetPlanet(const Planet *planet)
 {
 	zoom = 0.;
 	landingPlanet = planet;
+	SetDestination(nullptr);
 }
 
 
@@ -462,6 +463,13 @@ bool Ship::Move(list<Effect> &effects)
 					target = object.Position();
 					break;
 				}
+			if(GetDestination())
+				for(const StellarObject &object : currentSystem->Objects())
+					if(object.GetPlanet() == GetDestination())
+					{
+						target = object.Position();
+						break;
+					}
 			
 			// Have all ships exit hyperspace at the same distance so that
 			// your escorts always stay with you.
