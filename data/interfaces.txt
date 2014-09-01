@@ -632,37 +632,39 @@ interface "hiring"
 		color bright
 		align right
 	
+	sprite "ui/dialog cancel" 140 355
+	button h 140 355
+		size 80 40
 	if "!can hire"
-	label "[hire]" -60 135
+	label "Hire" 140 348
 		size 14
 		color dim
-		align left
+		align center
 	if "can hire"
-	label "[hire]" -60 135
+	label "Hire" 140 348
 		size 14
 		color medium
-		align left
+		align center
 	endif
-	button h -40 142
-		size 60 20
 	
+	sprite "ui/dialog cancel" 60 355
+	button f 60 355
+		size 80 40
 	if "!can fire"
-	label "[fire]" -60 155
+	label "Fire" 60 348
 		size 14
 		color dim
-		align left
+		align center
 	if "can fire"
-	label "[fire]" -60 155
+	label "Fire" 60 348
 		size 14
 		color medium
-		align left
+		align center
 	endif
-	string "modifier" -20 155
+	string "modifier" -50 145
 		size 14
 		color dim
-		align left
-	button f -40 162
-		size 60 20
+		align center
 	
 	label "passenger space" -290 175
 		size 14
