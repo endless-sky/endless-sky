@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <vector>
 
+class Planet;
 class Ship;
 class StellarObject;
 class System;
@@ -55,11 +56,13 @@ public:
 	const std::weak_ptr<const Ship> &GetTargetShip() const;
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
+	const Planet *GetDestination() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::weak_ptr<const Ship> &ship);
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
+	void SetDestination(const Planet *planet);
 	
 	// Add escorts to this ship. Escorts look to the parent ship for movement
 	// cues and try to stay with it when it lands or goes into hyperspace.
@@ -77,6 +80,7 @@ private:
 	std::weak_ptr<const Ship> targetShip;
 	const StellarObject *targetPlanet;
 	const System *targetSystem;
+	const Planet *destination;
 	
 	std::vector<std::weak_ptr<const Ship>> escorts;
 	std::weak_ptr<const Ship> parent;
