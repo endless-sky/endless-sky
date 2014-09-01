@@ -67,14 +67,6 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 
 
 
-int AI::AutopilotCancelKeys()
-{
-	return Key::Bit(Key::LAND) | Key::Bit(Key::JUMP) | Key::Bit(Key::BOARD) |
-		Key::Bit(Key::BACK) | Key::Bit(Key::RIGHT) | Key::Bit(Key::LEFT) | Key::Bit(Key::FORWARD);
-}
-
-
-
 void AI::UpdateEvents(const std::list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
@@ -110,6 +102,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		{
 			it->ResetCommands();
 			const Personality &personality = it->GetPersonality();
+			shared_ptr<const Ship> parent = it->GetParent().lock();
 			
 			// Fire any weapons that will hit the target.
 			it->SetFireCommands(AutoFire(*it, ships));
@@ -133,7 +126,6 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			bool isFighter = (category == "Fighter");
 			if(isDrone || isFighter)
 			{
-				shared_ptr<const Ship> parent = it->GetParent().lock();
 				if(!parent)
 				{
 					// Handle orphaned fighters and drones.
@@ -154,7 +146,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				}
 			}
 			
-			if(it->GetParent().lock() && (targetDistance > 1000. || personality.IsTimid()))
+			if(parent && (parent->HasLandCommand() || parent->HasHyperspaceCommand()
+					|| targetDistance > 1000. || personality.IsTimid() || !target))
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
@@ -780,13 +773,19 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keyHeld & Key::Bit(Key::PRIMARY))
 		{
 			int index = 0;
+			bool hasGuns = false;
 			for(const Armament::Weapon &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
 				if(outfit && !outfit->Ammo())
+				{
 					control.SetFireCommand(index);
+					hasGuns |= !weapon.IsTurret();
+				}
 				++index;
 			}
+			if(hasGuns && !control.GetTurnCommand())
+				control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 		}
 		if(keyHeld & Key::Bit(Key::SECONDARY))
 		{
@@ -853,3 +852,10 @@ bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) cons
 	return (oit->second & type);
 }
 
+
+
+int AI::AutopilotCancelKeys()
+{
+	return Key::Bit(Key::LAND) | Key::Bit(Key::JUMP) | Key::Bit(Key::BOARD) |
+		Key::Bit(Key::BACK) | Key::Bit(Key::RIGHT) | Key::Bit(Key::LEFT) | Key::Bit(Key::FORWARD);
+}
