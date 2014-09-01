@@ -143,6 +143,14 @@ void UI::Pop(const Panel *panel)
 
 
 
+// Check whether the given panel is on top, i.e. is the active one.
+bool UI::IsTop(const Panel *panel) const
+{
+	return (!stack.empty() && stack.back().get() == panel);
+}
+
+
+
 // Delete all the panels and clear the "done" flag.
 void UI::Reset()
 {
