@@ -47,6 +47,9 @@ public:
 	// a panel to Pop() itself.
 	void Pop(const Panel *panel);
 	
+	// Check whether the given panel is on top, i.e. is the active one.
+	bool IsTop(const Panel *panel) const;
+	
 	// Delete all the panels and clear the "done" flag.
 	void Reset();
 	// Get the lower-most panel.

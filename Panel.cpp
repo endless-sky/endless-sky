@@ -130,6 +130,9 @@ void Panel::SetTrapAllEvents(bool set)
 // Dim the background of this panel.
 void Panel::DrawBackdrop() const
 {
+	if(!GetUI()->IsTop(this))
+		return;
+	
 	// Darken everything but the dialog.
 	Color back(0., .7);
 	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
@@ -137,7 +140,7 @@ void Panel::DrawBackdrop() const
 
 
 
-UI *Panel::GetUI()
+UI *Panel::GetUI() const
 {
 	return ui;
 }

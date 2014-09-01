@@ -61,7 +61,7 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 	
-	UI *GetUI();
+	UI *GetUI() const;
 	
 	
 private:
