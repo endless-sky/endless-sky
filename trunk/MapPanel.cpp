@@ -235,12 +235,12 @@ void MapPanel::DrawSystems() const
 				double reputation = GameData::GetPolitics().Reputation(&system.GetGovernment());
 				if(reputation >= 0.)
 				{
-					reputation = min(1., .1 * log(1. + reputation));
+					reputation = min(1., .1 * log(1. + reputation) + .1);
 					color = Color(0., .6 * (1. - reputation), .6, .4);
 				}
 				else
 				{
-					reputation = 1. - min(1., .1 * log(1. - reputation));
+					reputation = min(1., .1 * log(1. - reputation) + .1);
 					color = Color(.6, .6 * (1. - reputation), 0., .4);
 				}
 			}
