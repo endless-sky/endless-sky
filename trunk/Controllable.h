@@ -38,6 +38,7 @@ public:
 	bool HasHyperspaceCommand() const;
 	bool HasLaunchCommand() const;
 	bool HasBoardCommand() const;
+	bool HasScanCommand() const;
 	bool HasFireCommand(int index) const;
 	
 	// Set the commands.
@@ -48,6 +49,7 @@ public:
 	void SetHyperspaceCommand();
 	void SetLaunchCommand();
 	void SetBoardCommand();
+	void SetScanCommand();
 	void SetFireCommand(int index);
 	void SetFireCommands(int bitmask = 0xFFFFFFFF);
 	

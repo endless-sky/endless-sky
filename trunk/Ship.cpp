@@ -732,6 +732,29 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 
 
 
+// Scan the target, if able and commanded to. Return a ShipEvent bitmask
+// giving the types of scan that succeeded.
+int Ship::Scan() const
+{
+	if(!HasScanCommand())
+		return 0;
+	
+	shared_ptr<const Ship> target = GetTargetShip().lock();
+	if(!target)
+		return 0;
+	
+	int result = 0;
+	double distance = (target->position - position).Length();
+	if(distance < attributes.Get("cargo scan"))
+		result |= ShipEvent::SCAN_CARGO;
+	if(distance < attributes.Get("outfit scan"))
+		result |= ShipEvent::SCAN_OUTFITS;
+	
+	return result;
+}
+
+
+
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.

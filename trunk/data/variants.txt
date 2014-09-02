@@ -43,3 +43,42 @@ ship "Star Barge" "Star Barge (Armed)"
 	turret 0 -8
 	explode "tiny explosion" 10
 	explode "small explosion" 10
+
+ship "Sparrow" "Sparrow (Patrol)"
+	sprite "ship/sparrow"
+	attributes
+		category "Interceptor"
+		"cost" 85000
+		"shields" 1200
+		"hull" 300
+		"required crew" 1
+		"bunks" 2
+		"mass" 50
+		"drag" 1.0
+		"heat dissipation" .8
+		"fuel capacity" 300
+		"cargo space" 15
+		"outfit space" 130
+		"weapon capacity" 20
+		"engine capacity" 40
+		weapon
+			"blast radius" 40
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"Beam Laser" 2
+		"D14-RN Shield Generator"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Hyperdrive"
+	engine -4 35
+	engine 4 35
+	gun -7 -9
+	gun 7 -9
+	explode "tiny explosion" 15
+	explode "small explosion" 5

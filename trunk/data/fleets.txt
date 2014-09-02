@@ -236,6 +236,8 @@ fleet "Small Republic"
 		"Frigate"
 	variant 1
 		"Rainmaker" 3
+	variant 6
+		"Sparrow (Patrol)"
 
 fleet "Large Republic"
 	government "Republic"

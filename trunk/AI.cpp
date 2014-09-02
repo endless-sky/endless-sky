@@ -71,6 +71,12 @@ void AI::UpdateEvents(const std::list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
 	{
+		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
+		{
+			if(event.TargetGovernment() == GameData::PlayerGovernment())
+				Messages::Add("\"" + event.Target()->Name() + "\" is being scanned by the " +
+					event.ActorGovernment()->GetName() + " ship \"" + event.Actor()->Name() + ".\"");
+		}
 		if(event.Actor() && event.Target())
 			actions[event.Actor()][event.Target()] |= event.Type();
 		if(event.ActorGovernment() == GameData::PlayerGovernment() && event.Target())
@@ -202,6 +208,27 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 			}
 		}
 	
+	bool cargoScan = ship.Attributes().Get("cargo scan");
+	bool outfitScan = ship.Attributes().Get("outfit scan");
+	if(!target.lock() && (cargoScan || outfitScan))
+	{
+		closest = numeric_limits<double>::infinity();
+		for(const auto &it : ships)
+			if(it->GetSystem() == system && it->GetGovernment() != ship.GetGovernment())
+			{
+				if((cargoScan && !Has(ship, it, ShipEvent::SCAN_CARGO))
+						|| (outfitScan && !Has(ship, it, ShipEvent::SCAN_OUTFITS)))
+				{
+					double range = it->Position().Distance(ship.Position());
+					if(range < closest)
+					{
+						closest = range;
+						target = it;
+					}
+				}
+			}
+	}
+	
 	// Run away if your target is not disabled and you are badly damaged.
 	if(!isDisabled && ship.Shields() + ship.Hull() < 1.)
 		target.reset();
@@ -227,6 +254,20 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		}
 		else
 			Attack(control, ship, *target);
+		return;
+	}
+	else if(target)
+	{
+		bool cargoScan = ship.Attributes().Get("cargo scan");
+		bool outfitScan = ship.Attributes().Get("outfit scan");
+		if((!cargoScan || Has(ship, target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(ship, target, ShipEvent::SCAN_OUTFITS)))
+			target.reset();
+		else
+		{
+			CircleAround(control, ship, *target);
+			control.SetScanCommand();
+		}
 		return;
 	}
 	
@@ -777,6 +818,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(!message.empty())
 			Messages::Add(message);
 	}
+	else if(keyDown & Key::Bit(Key::SCAN))
+		control.SetScanCommand();
 	
 	if(keyHeld)
 	{

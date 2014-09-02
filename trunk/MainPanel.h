@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Engine.h"
 
 class PlayerInfo;
+class ShipEvent;
 
 
 
@@ -41,6 +42,7 @@ protected:
 private:
 	void FinishNormalMissions();
 	void FinishSpecialMissions();
+	void ShowScanDialog(const ShipEvent &event);
 	
 	
 private:

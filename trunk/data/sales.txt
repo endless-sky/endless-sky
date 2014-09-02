@@ -35,6 +35,7 @@ shipyard "Lionheart Basics"
 
 shipyard "Lionheart Advanced"
 	"Aerie"
+	"Corvette"
 
 shipyard "Betelgeuse Basics"
 	"Shuttle"
