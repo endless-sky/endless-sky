@@ -157,7 +157,7 @@ ship "Behemoth"
 		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 420
-		"outfit space" 500
+		"outfit space" 510
 		"weapon capacity" 280
 		"engine capacity" 90
 		weapon
@@ -171,7 +171,7 @@ ship "Behemoth"
 		"D41-HY Shield Generator"
 		"LP144a Battery Pack"
 		"NT-200 Nucleovoltaic"
-		"Hyperdrive"
+		"Scram Drive"
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
 	engine -34 154
@@ -242,9 +242,9 @@ ship "Bulk Freighter"
 		"mass" 870
 		"drag" 15.8
 		"heat dissipation" .5
-		"fuel capacity" 500
+		"fuel capacity" 600
 		"cargo space" 600
-		"outfit space" 400
+		"outfit space" 410
 		"weapon capacity" 180
 		"engine capacity" 85
 		weapon
@@ -258,7 +258,7 @@ ship "Bulk Freighter"
 		"D23-QP Shield Generator"
 		"LP144a Battery Pack"
 		"RT-I Radiothermal"
-		"Hyperdrive"
+		"Scram Drive"
 		"Laser Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		"Sidewinder Missile Launcher" 2

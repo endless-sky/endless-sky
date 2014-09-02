@@ -451,6 +451,8 @@ bool Ship::Move(list<Effect> &effects)
 		if(hyperspaceCount == HYPER_C)
 		{
 			currentSystem = hyperspaceSystem;
+			// If "jump fuel" is higher than 100, expend extra fuel now.
+			fuel -= attributes.Get("jump fuel") - 100.;
 			hyperspaceSystem = nullptr;
 			SetTargetSystem(nullptr);
 			SetTargetPlanet(nullptr);
@@ -475,14 +477,18 @@ bool Ship::Move(list<Effect> &effects)
 			// your escorts always stay with you.
 			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + 1000.;
 			position = (target - distance * angle.Unit());
+			// Make sure your velocity is in exactly the direction you are
+			// traveling in, so that when you decellerate there will not be a
+			// sudden shift in direction at the end.
+			velocity = velocity.Length() * angle.Unit();
 		}
 		velocity += (HYPER_A * direction) * angle.Unit();
-		position += velocity;
 		if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
 		{
 			velocity = angle.Unit() * MaxVelocity();
 			hyperspaceCount = 0;
 		}
+		position += velocity;
 		
 		return true;
 	}
@@ -852,11 +858,13 @@ bool Ship::CanHyperspace() const
 {
 	if(!GetTargetSystem())
 		return false;
+	if(fuel < attributes.Get("jump fuel"))
+		return false;
 	
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.
 	double speed = velocity.Length();
-	if(speed > .2)
+	if(speed > attributes.Get("jump speed"))
 		return false;
 	
 	Point direction = GetTargetSystem()->Position() - currentSystem->Position();
@@ -1004,7 +1012,7 @@ double Ship::Fuel() const
 
 int Ship::JumpsRemaining() const
 {
-	return fuel / 100;
+	return fuel / attributes.Get("jump fuel");
 }
 
 
