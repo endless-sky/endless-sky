@@ -249,7 +249,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeValues.push_back(Format::Number(crew)
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
-	attributeLabels.push_back("fuel:");
+	attributeLabels.push_back("fuel capacity:");
 	attributeValues.push_back(Format::Number(attributes.Get("fuel capacity")));
 	attributesHeight += 20;
 	

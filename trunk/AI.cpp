@@ -429,14 +429,14 @@ bool AI::MoveTo(Controllable &control, const Ship &ship, const Point &target, do
 
 
 
-bool AI::Stop(Controllable &control, const Ship &ship)
+bool AI::Stop(Controllable &control, const Ship &ship, double slow)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
 	
 	double speed = velocity.Length();
 	
-	if(speed <= .2)
+	if(speed <= slow)
 		return true;
 	
 	control.SetTurnCommand(TurnBackward(ship));
@@ -449,7 +449,7 @@ bool AI::Stop(Controllable &control, const Ship &ship)
 void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
 {
 	// If we are moving too fast, point in the right direction.
-	if(Stop(control, ship))
+	if(Stop(control, ship, ship.Attributes().Get("jump speed")))
 	{
 		Point direction = ship.GetTargetSystem()->Position()
 			- ship.GetSystem()->Position();
