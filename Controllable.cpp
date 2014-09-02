@@ -25,6 +25,7 @@ namespace {
 	static const unsigned HYPERSPACE = 32;
 	static const unsigned LAUNCH = 64;
 	static const unsigned BOARD = 128;
+	static const unsigned SCAN = 256;
 	
 	static const unsigned WEAPON_SHIFT = 16;
 }
@@ -74,10 +75,17 @@ bool Controllable::HasLaunchCommand() const
 
 
 
-
 bool Controllable::HasBoardCommand() const
 {
 	return commands & BOARD;
+}
+
+
+
+
+bool Controllable::HasScanCommand() const
+{
+	return commands & SCAN;
 }
 
 
@@ -143,6 +151,13 @@ void Controllable::SetLaunchCommand()
 void Controllable::SetBoardCommand()
 {
 	commands |= BOARD;
+}
+
+
+
+void Controllable::SetScanCommand()
+{
+	commands |= SCAN;
 }
 
 

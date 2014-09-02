@@ -274,9 +274,8 @@ void Engine::Step(bool isActive)
 			bool hostile = targetTarget &&
 				targetTarget->GetGovernment() == playerGovernment;
 			int targetType = (target->IsDisabled() || target->IsOverheated()) ? Radar::INACTIVE :
-				hostile ? Radar::HOSTILE : 
-				target->GetGovernment()->IsEnemy(playerGovernment) ?
-				Radar::UNFRIENDLY : Radar::FRIENDLY;
+				!target->GetGovernment()->IsEnemy(playerGovernment) ? Radar::FRIENDLY :
+				hostile ? Radar::HOSTILE : Radar::UNFRIENDLY;
 			info.SetOutlineColor(Radar::GetColor(targetType));
 			
 			if(target->GetSystem() == player.GetSystem())
@@ -636,6 +635,15 @@ void Engine::CalculateStep()
 			if(victim)
 				eventQueue.emplace_back(ship, victim, ShipEvent::BOARD);
 			
+			int scan = ship->Scan();
+			if(scan)
+			{
+				shared_ptr<const Ship> target = ship->GetTargetShip().lock();
+				for(shared_ptr<Ship> &it : ships)
+					if(it == target)
+						eventQueue.emplace_back(ship, it, scan);
+			}
+			
 			// This is a good opportunity to draw all the ships in system.
 			if(ship->GetSprite().IsEmpty())
 				continue;
@@ -661,9 +669,9 @@ void Engine::CalculateStep()
 			radar[calcTickTock].Add(
 				ship->GetGovernment() == playerGovernment ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
-					(target && target->GetGovernment() == playerGovernment) ? Radar::HOSTILE :
-					ship->GetGovernment()->IsEnemy(playerGovernment) ?
-						Radar::UNFRIENDLY : Radar::FRIENDLY,
+					!ship->GetGovernment()->IsEnemy(playerGovernment) ? Radar::FRIENDLY :
+					(target && target->GetGovernment() == playerGovernment) ?
+						Radar::HOSTILE : Radar::UNFRIENDLY,
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}

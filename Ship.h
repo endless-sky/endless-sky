@@ -80,6 +80,9 @@ public:
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
 	std::shared_ptr<Ship> Board(std::list<std::shared_ptr<Ship>> &ships, bool autoPlunder = true);
+	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
+	// giving the types of scan that succeeded.
+	int Scan() const;
 	
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
