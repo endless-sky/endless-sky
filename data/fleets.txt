@@ -15,6 +15,7 @@ fleet "Small Southern Merchants"
 	personality
 		confusion 40
 		timid
+	"friendly hail" "friendly civilian"
 	variant 6
 		"Shuttle"
 	variant 4
@@ -39,6 +40,7 @@ fleet "Large Southern Merchants"
 	personality
 		confusion 20
 		timid
+	"friendly hail" "friendly civilian"
 	variant 2
 		"Freighter"
 		"Hawk"
@@ -72,6 +74,7 @@ fleet "Small Core Merchants"
 	personality
 		confusion 30
 		timid
+	"friendly hail" "friendly civilian"
 	variant 4
 		"Shuttle"
 	variant 6
@@ -96,6 +99,7 @@ fleet "Large Core Merchants"
 	personality
 		confusion 10
 		timid
+	"friendly hail" "friendly civilian"
 	variant 3
 		"Freighter" 2
 		"Quicksilver" 2
@@ -128,6 +132,7 @@ fleet "Small Northern Merchants"
 	personality
 		confusion 40
 		timid
+	"friendly hail" "friendly civilian"
 	variant 8
 		"Shuttle"
 	variant 4
@@ -149,6 +154,7 @@ fleet "Large Northern Merchants"
 	personality
 		confusion 20
 		timid
+	"friendly hail" "friendly civilian"
 	variant 4
 		"Freighter" 2
 		"Firebird"
@@ -176,6 +182,7 @@ fleet "Small Free Worlds"
 	cargo 1
 	personality
 		heroic
+	"friendly hail" "friendly free worlds"
 	variant 4
 		"Hawk"
 		"Sparrow"
@@ -197,6 +204,7 @@ fleet "Large Free Worlds"
 	cargo 1
 	personality
 		heroic
+	"friendly hail" "friendly free worlds"
 	variant 5
 		"Bastion"
 	variant 4
@@ -227,6 +235,7 @@ fleet "Small Republic"
 	cargo 0
 	personality
 		heroic
+	"friendly hail" "friendly navy"
 	variant 6
 		"Rainmaker" 2
 	variant 4
@@ -246,6 +255,7 @@ fleet "Large Republic"
 	cargo 0
 	personality
 		heroic
+	"friendly hail" "friendly navy"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -312,6 +322,7 @@ fleet "Small Syndicate"
 	cargo 2
 	personality
 		heroic
+	"friendly hail" "friendly syndicate"
 	variant 3
 		"Quicksilver" 3
 	variant 1
@@ -325,6 +336,7 @@ fleet "Large Syndicate"
 	cargo 2
 	personality
 		heroic
+	"friendly hail" "friendly syndicate"
 	variant 3
 		"Splinter"
 		"Quicksilver" 3

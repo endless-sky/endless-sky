@@ -53,9 +53,11 @@ private:
 	
 	
 private:
-	const Government *government;
-	const ShipName *names;
-	const ShipName *fighterNames;
+	const Government *government = nullptr;
+	const ShipName *names = nullptr;
+	const ShipName *fighterNames = nullptr;
+	const ShipName *friendlyHail = nullptr;
+	const ShipName *hostileHail = nullptr;
 	std::vector<Variant> variants;
 	int cargo;
 	int total;
