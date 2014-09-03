@@ -790,6 +790,26 @@ void Engine::CalculateStep()
 		if(!Random::Int(fleet.Period()))
 			fleet.Get()->Enter(*player.GetSystem(), ships);
 	
+	// Occasionally have some ship hail you.
+	if(!Random::Int(600))
+	{
+		shared_ptr<Ship> source;
+		unsigned i = Random::Int(ships.size());
+		for(const shared_ptr<Ship> &it : ships)
+			if(!i--)
+			{
+				source = it;
+				break;
+			}
+		if(source->GetGovernment() != GameData::PlayerGovernment() && !source->IsDisabled())
+		{
+			string message = source->GetHail();
+			if(!message.empty())
+				Messages::Add(source->GetGovernment()->GetName() + " ship "
+					+ source->Name() + ": " + message);
+		}
+	}
+	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
 	if(++loadCount == 60)

@@ -1,0 +1,242 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+name "friendly civilian"
+	word
+		"May "
+	word
+		"peace"
+		"luck"
+		"good fortune"
+		"God"
+		"prosperity"
+		"the Force"
+		"Fair winds"
+		"clear skies"
+		"the best of luck"
+		"fair winds and bright skies "
+	word
+		" be with you!"
+		" be with you today!"
+		" journey with you!"
+		" go with you!"
+
+name "friendly civilian"
+	word
+		"Did you watch the null-ball game? The "
+		"The "
+	word
+		"Gophers"
+		"Quasars"
+		"Dragons"
+		"Dire Wolves"
+		"Reapers"
+		"Quants"
+		"Hellcats"
+	word
+		" totally beat the "
+		" creamed the "
+		" trounced the "
+		" almost lost to the "
+		" defeated the "
+		" played an epic game against the "
+	word
+		"Jabberwocks"
+		"Turlingdroves"
+		"Passenger Pigeons"
+		"Sequoias"
+		"Presidents"
+		"Aardvarks"
+		"Raiders"
+	word
+		" last night."
+		" yesterday."
+		" this morning."
+
+name "friendly civilian"
+	word
+		"Just delivered a load of "
+	word
+		"Limberger cheese"
+		"livestock"
+		"fertilizer"
+		"manure"
+		"processed sewage"
+		"lab mice"
+	word
+		". My "
+	word
+		"hold"
+		"cargo hold"
+	word
+		" totally reeks!"
+		" smells awful!"
+		" is going to smell bad for weeks!"
+		" still stinks!"
+
+name "friendly navy"
+	word
+		"The Navy is here to "
+	word
+		"protect"
+		"defend"
+		"safeguard"
+		"shield"
+		"guard"
+	word
+		" and "
+	word
+		"serve"
+		"assist"
+		"help"
+		"aid"
+		"support"
+	word
+		" you."
+
+name "friendly navy"
+	word
+		"Join the navy. "
+	word
+		"See"
+		"Tour"
+		"Explore"
+		"Defend"
+		"Protect"
+	word
+		" the galaxy!"
+
+name "friendly navy"
+	word
+		"Join the Navy, the largest "
+	word
+		"humanitarian "
+		"peacekeeping "
+		"defense "
+		"civil service "
+		"volunteer "
+	word
+		"organization"
+		"force"
+	word
+		" in the galaxy!"
+
+name "friendly navy"
+	word
+		"United, humanity stands. Divided we will fall."
+		"Be thankful to the Republic for three centuries of freedom."
+		"For honor! For glory!"
+		"Answer the call of duty! Join the Navy!"
+		"If you have courage, if you have honor, join the Navy!"
+
+name "friendly militia"
+	word
+		"We are on the lookout for any "
+	word
+		"suspicious "
+		"unusual "
+		"Pirate "
+		"strange "
+		"illegal "
+		"criminal "
+	word
+		"vessels."
+		"behavior."
+		"activity."
+		"ships."
+
+name "friendly syndicate"
+	word
+		"Smart captains know cargo space is key. Smart captains choose the Syndicate Star Barge."
+		"The Syndicate Bulk Freighter: backbone of the galactic economy."
+		"Remember that unauthorized blaster modifications void the warranty. Buy from the Syndicate directly!"
+		"Smart captains choose Syndicated Shipyards, the gold standard for reliability."
+		"Smart captains shop Syndicated Systems."
+		"Trouble with Pirates? Hire a Syndicate Protector and your trouble will be over."
+
+name "friendly syndicate"
+	word
+		"Work for the Syndicate! Our "
+	word
+		"people"
+		"employees"
+		"salaries"
+		"benefits"
+		"compensation packages"
+		"stock options"
+		"business ethics"
+		"new technologies"
+		"starships"
+		"ships"
+		"shipyards"
+	word
+		" are the best!"
+
+name "friendly free worlds"
+	word
+		"Be "
+	word
+		"safe"
+		"independent"
+		"wise"
+		"fair"
+		"just"
+		"courageous"
+		"self-sufficient"
+		"confident"
+		"equitable"
+	word
+		"! Be free!"
+
+name "friendly free worlds"
+	word
+		"Without "
+	word
+		"equality"
+		"justice"
+		"sacrifice"
+		"courage"
+	word
+		" there can be no "
+	word
+		"peace!"
+		"freedom!"
+		"safety!"
+		"prosperity!"
+
+name "friendly free worlds"
+	word
+		"Fight "
+		"Overthrow "
+		"Oppose "
+		"Stand up to "
+		"Defy "
+		"Speak out against "
+	word
+		"corrupt "
+		"greedy "
+		"overbearing "
+		"decadent "
+		"crooked "
+		"nefarious "
+		"rotten "
+		"unscrupulous "
+		"debauched "
+		"profiteering "
+	word
+		"government"
+		"corporations"
+		"politicians"
+		"oligarchs"
+		"tycoons"
+		"bureaucrats"
+		"lobbyists"
+	word
+		"! Join the Free Worlds!"

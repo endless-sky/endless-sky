@@ -35,7 +35,7 @@ using namespace std;
 Ship::Ship()
 	: government(nullptr), isInSystem(true),
 	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
-	isBoarding(false), hasBoarded(false),
+	isBoarding(false), hasBoarded(false), hail{nullptr, nullptr},
 	explosionWeapon(nullptr),
 	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
 	heatDissipation(.999), currentSystem(nullptr),
@@ -323,6 +323,27 @@ const Personality &Ship::GetPersonality() const
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
+}
+
+
+
+string Ship::GetHail() const
+{
+	bool isEnemy = GameData::GetPolitics().IsEnemy(government, GameData::PlayerGovernment());
+	const ShipName *name = hail[isEnemy];
+	
+	if(!name)
+		return "";
+	
+	return name->Get();
+}
+
+
+
+void Ship::SetHail(const ShipName *friendly, const ShipName *hostile)
+{
+	hail[0] = friendly;
+	hail[1] = hostile;
 }
 
 

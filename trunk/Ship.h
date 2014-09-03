@@ -34,6 +34,7 @@ class DataWriter;
 class Government;
 class Planet;
 class Projectile;
+class ShipName;
 class System;
 
 
@@ -69,6 +70,9 @@ public:
 	
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	
+	std::string GetHail() const;
+	void SetHail(const ShipName *friendly, const ShipName *hostile);
 	
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
@@ -229,6 +233,7 @@ private:
 	bool hasBoarded;
 	
 	Personality personality;
+	const ShipName *hail[2];
 	
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
