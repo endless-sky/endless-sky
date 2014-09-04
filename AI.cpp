@@ -280,9 +280,11 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		
 		vector<int> systemWeights;
 		int totalWeight = 0;
+		const vector<const System *> &links = ship.Attributes().Get("jump drive")
+			? ship.GetSystem()->Neighbors() : ship.GetSystem()->Links();
 		if(jumps)
 		{
-			for(const System *link : ship.GetSystem()->Links())
+			for(const System *link : links)
 			{
 				// Prefer systems in the direction we're facing.
 				Point direction = link->Position() - ship.GetSystem()->Position();
@@ -315,7 +317,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 				choice -= systemWeights[i];
 				if(choice < 0)
 				{
-					control.SetTargetSystem(ship.GetSystem()->Links()[i]);
+					control.SetTargetSystem(links[i]);
 					break;
 				}
 			}

@@ -469,15 +469,38 @@ bool Ship::Move(list<Effect> &effects)
 		hyperspaceCount += direction;
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
+		bool hasJumpDrive = attributes.Get("jump drive");
+		
+		if(hasJumpDrive && !forget)
+		{
+			int count = hyperspaceCount;
+			count *= sprite.Width() * sprite.Height();
+			count /= 20000;
+			const Effect *effect = GameData::Effects().Get("skylance impact");
+			while(--count >= 0)
+			{
+				Point point((Random::Real() - .5) * .5 * sprite.Width(),
+					(Random::Real() - .5) * .5 * sprite.Height());
+				if(sprite.GetMask(0).Contains(point, Angle()))
+				{
+					effects.push_back(*effect);
+					effects.back().Place(angle.Rotate(point) + position, velocity, angle);
+				}
+			}
+		}
+		
 		if(hyperspaceCount == HYPER_C)
 		{
 			currentSystem = hyperspaceSystem;
 			// If "jump fuel" is higher than 100, expend extra fuel now.
-			fuel -= attributes.Get("jump fuel") - 100.;
+			fuel -= attributes.Get("jump fuel") - HYPER_C;
 			hyperspaceSystem = nullptr;
 			SetTargetSystem(nullptr);
 			SetTargetPlanet(nullptr);
 			direction = -1;
+			
+			if(hasJumpDrive)
+				return true;
 			
 			Point target;
 			for(const StellarObject &object : currentSystem->Objects())
@@ -503,11 +526,14 @@ bool Ship::Move(list<Effect> &effects)
 			// sudden shift in direction at the end.
 			velocity = velocity.Length() * angle.Unit();
 		}
-		velocity += (HYPER_A * direction) * angle.Unit();
-		if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
+		if(!hasJumpDrive)
 		{
-			velocity = angle.Unit() * MaxVelocity();
-			hyperspaceCount = 0;
+			velocity += (HYPER_A * direction) * angle.Unit();
+			if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
+			{
+				velocity = angle.Unit() * MaxVelocity();
+				hyperspaceCount = 0;
+			}
 		}
 		position += velocity;
 		
@@ -909,6 +935,11 @@ bool Ship::CanHyperspace() const
 	// and pointed in the right direction.
 	double speed = velocity.Length();
 	if(speed > attributes.Get("jump speed"))
+		return false;
+	
+	if(attributes.Get("jump drive"))
+		return true;
+	if(!attributes.Get("hyperdrive"))
 		return false;
 	
 	Point direction = GetTargetSystem()->Position() - currentSystem->Position();

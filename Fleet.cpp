@@ -77,7 +77,9 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		choice -= variants[index].weight;
 	
 	bool isEnemy = system.GetGovernment().IsEnemy(government);
-	int links = system.Links().size();
+	const vector<const System *> &linkVector = ships.front()->Attributes().Get("jump drive")
+		? system.Neighbors() : system.Links();
+	int links = linkVector.size();
 	// Count the inhabited planets in this system.
 	int planets = 0;
 	if(!isEnemy)
@@ -111,10 +113,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 				radius = max(0, static_cast<int>(object.Radius()));
 				break;
 			}
-		target = system.Links()[Random::Int(links)];
+		target = linkVector[Random::Int(links)];
 	}
 	else
-		source = system.Links()[choice];
+	{
+		radius = 1000;
+		source = linkVector[choice];
+	}
 	
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)

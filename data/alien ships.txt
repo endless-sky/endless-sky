@@ -20,7 +20,7 @@ ship "Quarg Skylark"
 		"mass" 460
 		"drag" 12.3
 		"heat dissipation" .7
-		"fuel capacity" 800
+		"fuel capacity" 1000
 		"cargo space" 200
 		"outfit space" 600
 		"weapon capacity" 200
@@ -36,7 +36,7 @@ ship "Quarg Skylark"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Antimatter Core"
-		"Hyperdrive"
+		"Jump Drive"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 	engine -15 117
@@ -80,7 +80,7 @@ ship "Quarg Wardragon"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Antimatter Core"
-		"Hyperdrive"
+		"Jump Drive"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 	engine -14 47
