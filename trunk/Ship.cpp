@@ -471,6 +471,8 @@ bool Ship::Move(list<Effect> &effects)
 		static const double HYPER_A = 2.;
 		bool hasJumpDrive = attributes.Get("jump drive");
 		
+		// Create the particle effects for the jump drive. This may create 100
+		// or more particles per ship per turn at the peak of the jump.
 		if(hasJumpDrive && !forget)
 		{
 			int count = hyperspaceCount;
@@ -484,7 +486,8 @@ bool Ship::Move(list<Effect> &effects)
 				if(sprite.GetMask(0).Contains(point, Angle()))
 				{
 					effects.push_back(*effect);
-					effects.back().Place(angle.Rotate(point) + position, velocity, angle);
+					Point vel = velocity + 5. * Angle::Random(360.).Unit();
+					effects.back().Place(angle.Rotate(point) + position, vel, angle);
 				}
 			}
 		}
