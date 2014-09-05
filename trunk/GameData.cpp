@@ -459,7 +459,7 @@ string GameData::Name(const string &path)
 	// "images/123.jpg" or something:
 	if(end < 0)
 		end = path.length() - 4;
-	else if(path[end] != '-' && path[end] != '~' && path[end] != '+')
+	else if(path[end] != '-' && path[end] != '~' && path[end] != '+' && path[end] != '=')
 		end = path.length() - 4;
 	
 	return path.substr(0, end);
