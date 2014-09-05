@@ -116,6 +116,9 @@ ImageBuffer *ImageBuffer::Read(const string &path)
 		while(--pos)
 			if(path[pos] < '0' || path[pos] > '9')
 				break;
+		// Special case: the PNG is already premultiplied alpha.
+		if(path[pos] == '=')
+			return buffer;
 		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
 		
 		Premultiply(buffer, additive);
