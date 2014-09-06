@@ -251,7 +251,9 @@ void MainPanel::ShowHailPanel()
 		shared_ptr<Ship> target = ship->GetTargetShip();
 		if(target)
 		{
-			if(target->Hull() > 0. && target->GetSystem() == player.GetSystem())
+			if(target->IsHyperspacing())
+				Messages::Add("Unable to send hail: ship is entering hyperspace.");
+			else if(target->Hull() > 0. && target->GetSystem() == player.GetSystem())
 				GetUI()->Push(new HailPanel(player, target));
 			else
 				Messages::Add("Unable to hail target ship.");
