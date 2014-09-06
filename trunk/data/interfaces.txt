@@ -827,3 +827,50 @@ interface "info panel"
 	button p 155 295
 		size 90 30
 	endif
+
+interface "hail panel"
+	sprite "ui/hail panel" 0 0
+	
+	if "can dominate"
+	label "Demand Tribute" -20 108
+		size 14
+		color bright
+		align center
+	if "cannot dominate"
+	label "Demand Tribute" -20 108
+		size 14
+		color dim
+		align center
+	if "can assist"
+	label "Ask For Help" -20 108
+		size 14
+		color bright
+		align center
+	if "cannot assist"
+	label "Ask For Help" -20 108
+		size 14
+		color dim
+		align center
+	endif
+	button a -20 115
+		size 140 30
+	
+	if "can bribe"
+	label "Offer Bribe" 130 108
+		size 14
+		color bright
+		align center
+	if "!can bribe"
+	label "Offer Bribe" 130 108
+		size 14
+		color dim
+		align center
+	endif
+	
+	label "Done" 250 108
+		size 14
+		color bright
+		align center
+	button d 250 115
+		size 80 30
+

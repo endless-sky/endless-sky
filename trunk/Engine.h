@@ -98,6 +98,7 @@ private:
 	bool calcTickTock;
 	bool drawTickTock;
 	bool terminate;
+	bool wasActive = false;
 	DrawList draw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
