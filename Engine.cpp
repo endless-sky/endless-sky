@@ -152,7 +152,8 @@ void Engine::Step(bool isActive)
 			position = flagship->Position();
 			velocity = flagship->Velocity();
 		}
-		ai.UpdateKeys(GameData::Keys().State(), &player, isActive);
+		ai.UpdateKeys(GameData::Keys().State(), &player, isActive && wasActive);
+		wasActive = isActive;
 		Audio::Update(position, velocity);
 		
 		// Any of the player's ships that are in system are assumed to have

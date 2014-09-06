@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "HailPanel.h"
 #include "InfoPanel.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
@@ -133,6 +134,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Push(new MapDetailPanel(player));
 	else if(key == GameData::Keys().Get(Key::INFO))
 		GetUI()->Push(new InfoPanel(player));
+	else if(key == GameData::Keys().Get(Key::HAIL))
+		ShowHailPanel();
 	else
 		return false;
 	
@@ -232,4 +235,30 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			}
 	}
 	GetUI()->Push(new Dialog(out.str()));
+}
+
+
+
+void MainPanel::ShowHailPanel()
+{
+	const Ship *ship = player.GetShip();
+	if(ship)
+	{
+		// An exploding ship cannot communicate.
+		if(ship->Hull() <= 0.)
+			return;
+		
+		shared_ptr<const Ship> target = ship->GetTargetShip().lock();
+		if(target)
+		{
+			if(target->Hull() > 0. && target->GetSystem() == player.GetSystem())
+				GetUI()->Push(new HailPanel(player, target.get()));
+			else
+				Messages::Add("Unable to hail target ship.");
+		}
+		else if(ship->GetTargetPlanet())
+			GetUI()->Push(new HailPanel(player, ship->GetTargetPlanet()));
+		else
+			Messages::Add("Unable to send hail: no target selected.");
+	}
 }

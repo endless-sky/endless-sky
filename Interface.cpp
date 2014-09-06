@@ -183,7 +183,11 @@ void Interface::Draw(const Information &info) const
 			s->Width() * position.X(),
 			s->Height() * position.Y());
 		
-		SpriteShader::Draw(s, sprite.position + corner - offset);
+		double zoom = 1.;
+		if(sprite.size.X() && sprite.size.Y())
+			zoom = min(1., min(sprite.size.X() / s->Width(), sprite.size.Y() / s->Height()));
+		
+		SpriteShader::Draw(s, sprite.position + corner - offset, zoom);
 	}
 	for(const SpriteSpec &outline : outlines)
 	{

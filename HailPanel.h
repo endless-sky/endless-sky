@@ -1,4 +1,4 @@
-/* MainPanel.h
+/* HailPanel.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,50 +10,36 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef MAIN_PANEL_H_
-#define MAIN_PANEL_H_
+#ifndef HAIL_PANEL_H_
+#define HAIL_PANEL_H_
 
 #include "Panel.h"
 
-#include "Engine.h"
-
 class PlayerInfo;
-class ShipEvent;
+class Ship;
+class StellarObject;
 
 
 
-// Class representing the main panel (i.e. the view of your ship moving around).
-class MainPanel : public Panel {
+// This panel is shown when you hail a ship or planet.
+class HailPanel : public Panel {
 public:
-	MainPanel(PlayerInfo &player);
+	HailPanel(PlayerInfo &player, const Ship *ship);
+	HailPanel(PlayerInfo &player, const StellarObject *planet);
 	
-	virtual void Step(bool isActive);
-	virtual void Draw() const;
-	
-	// The planet panel calls this when it closes.
-	void OnCallback(int value);
+	virtual void Draw() const override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
-	
-	
-private:
-	void FinishNormalMissions();
-	void FinishSpecialMissions();
-	void ShowScanDialog(const ShipEvent &event);
-	void ShowHailPanel();
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod) override;
+	virtual bool Click(int x, int y) override;
 	
 	
 private:
 	PlayerInfo &player;
-	
-	Engine engine;
-	
-	mutable double load;
-	mutable double loadSum;
-	mutable int loadCount;
+	const Ship *ship = nullptr;
+	const StellarObject *planet = nullptr;
 };
 
 
