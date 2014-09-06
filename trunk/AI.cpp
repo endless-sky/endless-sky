@@ -108,7 +108,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		{
 			it->ResetCommands();
 			const Personality &personality = it->GetPersonality();
-			shared_ptr<const Ship> parent = it->GetParent().lock();
+			shared_ptr<const Ship> parent = it->GetParent();
 			
 			// Fire any weapons that will hit the target.
 			it->SetFireCommands(AutoFire(*it, ships));
@@ -116,13 +116,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			shared_ptr<const Ship> target = it->GetTargetShip().lock();
+			shared_ptr<const Ship> target = it->GetTargetShip();
 			if(targetTurn == step || !target || !target->IsTargetable()
 					|| (target->IsDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it, ships));
 			
 			double targetDistance = numeric_limits<double>::infinity();
-			target = it->GetTargetShip().lock();
+			target = it->GetTargetShip();
 			if(target)
 				targetDistance = target->Position().Distance(it->Position());
 			
@@ -152,6 +152,20 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				}
 			}
 			
+			shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+			if(shipToAssist)
+			{
+				it->SetTargetShip(shipToAssist);
+				if(shipToAssist->Hull() <= 0. || shipToAssist->GetSystem() != it->GetSystem())
+					it->SetShipToAssist(weak_ptr<Ship>());
+				else if(!it->IsBoarding())
+				{
+					MoveTo(*it, *it, shipToAssist->Position(), 40., .8);
+					it->SetBoardCommand();
+				}
+				continue;
+			}
+			
 			if(parent && (parent->HasLandCommand() || parent->HasHyperspaceCommand()
 					|| targetDistance > 1000. || personality.IsTimid() || !target))
 				MoveEscort(*it, *it);
@@ -164,10 +178,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 
 
 // Pick a new target for the given ship.
-weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships)
+weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships)
 {
 	// If this ship has no government, it has no enemies.
-	weak_ptr<const Ship> target;
+	weak_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov)
 		return target;
@@ -189,7 +203,7 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 		{
 			// "Timid" ships do not pick fights; they only attack ships that are
 			// already targeting them.
-			if(ship.GetPersonality().IsTimid() && it->GetTargetShip().lock().get() != &ship)
+			if(ship.GetPersonality().IsTimid() && it->GetTargetShip().get() != &ship)
 				continue;
 			
 			double range = it->Position().Distance(ship.Position());
@@ -240,7 +254,7 @@ weak_ptr<const Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship
 
 void AI::MoveIndependent(Controllable &control, const Ship &ship)
 {
-	auto target = ship.GetTargetShip().lock();
+	shared_ptr<const Ship> target = ship.GetTargetShip();
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
@@ -353,7 +367,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 
 void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
-	const Ship &parent = *ship.GetParent().lock();
+	const Ship &parent = *ship.GetParent();
 	if(ship.GetSystem() != parent.GetSystem())
 	{
 		control.SetTargetSystem(parent.GetSystem());
@@ -367,7 +381,7 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 		if(parent.IsLanding() || parent.CanLand())
 			control.SetLandCommand();
 	}
-	else if(parent.HasBoardCommand() && parent.GetTargetShip().lock().get() == &ship)
+	else if(parent.HasBoardCommand() && parent.GetTargetShip().get() == &ship)
 		Stop(control, ship);
 	else if(parent.HasHyperspaceCommand() && parent.GetTargetSystem())
 	{
@@ -558,7 +572,7 @@ Point AI::StoppingPoint(const Ship &ship)
 Point AI::TargetAim(const Ship &ship) const
 {
 	Point result;
-	shared_ptr<const Ship> target = ship.GetTargetShip().lock();
+	shared_ptr<const Ship> target = ship.GetTargetShip();
 	if(!target)
 		return result;
 	
@@ -614,7 +628,8 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 		for(auto target : ships)
 		{
 			if(!target->IsTargetable() || !gov->IsEnemy(target->GetGovernment())
-					|| target->Velocity().Length() > 20. || (weapon.IsTurret() && target != ship.GetTargetShip().lock()))
+					|| target->Velocity().Length() > 20.
+					|| (weapon.IsTurret() && target != ship.GetTargetShip()))
 				continue;
 			
 			// Don't shoot ships we want to plunder.
@@ -719,7 +734,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		const Government *playerGovernment = info.GetShip()->GetGovernment();
 		bool targetMine = SDL_GetModState() & KMOD_SHIFT;
 		
-		shared_ptr<const Ship> target = control.GetTargetShip().lock();
+		shared_ptr<const Ship> target = control.GetTargetShip();
 		bool selectNext = !target;
 		for(const shared_ptr<Ship> &other : ships)
 		{
@@ -738,7 +753,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	}
 	else if(keyDown & Key::Bit(Key::BOARD))
 	{
-		shared_ptr<const Ship> target = control.GetTargetShip().lock();
+		shared_ptr<const Ship> target = control.GetTargetShip();
 		if(!target || !target->IsDisabled() || target->Hull() <= 0.)
 		{
 			double closest = numeric_limits<double>::infinity();
@@ -890,9 +905,9 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		PrepareForHyperspace(control, ship);
 		control.SetHyperspaceCommand();
 	}
-	else if((keyStuck & Key::Bit(Key::BOARD)) && ship.GetTargetShip().lock())
+	else if((keyStuck & Key::Bit(Key::BOARD)) && ship.GetTargetShip())
 	{
-		shared_ptr<const Ship> target = control.GetTargetShip().lock();
+		shared_ptr<const Ship> target = control.GetTargetShip();
 		MoveTo(control, ship, target->Position(), 40., .8);
 		control.SetBoardCommand();
 	}

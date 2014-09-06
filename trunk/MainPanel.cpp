@@ -248,11 +248,11 @@ void MainPanel::ShowHailPanel()
 		if(ship->Hull() <= 0.)
 			return;
 		
-		shared_ptr<const Ship> target = ship->GetTargetShip().lock();
+		shared_ptr<Ship> target = ship->GetTargetShip();
 		if(target)
 		{
 			if(target->Hull() > 0. && target->GetSystem() == player.GetSystem())
-				GetUI()->Push(new HailPanel(player, target.get()));
+				GetUI()->Push(new HailPanel(player, target));
 			else
 				Messages::Add("Unable to hail target ship.");
 		}

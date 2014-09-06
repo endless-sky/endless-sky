@@ -39,7 +39,7 @@ public:
 	
 private:
 	// Pick a new target for the given ship.
-	std::weak_ptr<const Ship> FindTarget(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships);
+	std::weak_ptr<Ship> FindTarget(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	void MoveIndependent(Controllable &control, const Ship &ship);
 	void MoveEscort(Controllable &control, const Ship &ship);

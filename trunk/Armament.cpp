@@ -114,7 +114,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	// velocity of the ship that fired them.
 	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
 	
-	shared_ptr<const Ship> target = ship.GetTargetShip().lock();
+	shared_ptr<const Ship> target = ship.GetTargetShip();
 	
 	if(!isTurret || !target)
 		aim += angle;
