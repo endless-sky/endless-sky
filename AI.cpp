@@ -844,6 +844,23 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(!message.empty())
 			Messages::Add(message);
 	}
+	else if(keyDown & Key::Bit(Key::JUMP))
+	{
+		if(!control.GetTargetSystem())
+		{
+			double bestMatch = -2.;
+			for(const System *link : ship.GetSystem()->Links())
+			{
+				Point direction = link->Position() - ship.GetSystem()->Position();
+				double match = ship.Facing().Unit().Dot(direction.Unit());
+				if(match > bestMatch)
+				{
+					bestMatch = match;
+					control.SetTargetSystem(link);
+				}
+			}
+		}
+	}
 	else if(keyDown & Key::Bit(Key::SCAN))
 		control.SetScanCommand();
 	
