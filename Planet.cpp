@@ -46,6 +46,10 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			shipSales.push_back(ships.Get(child.Token(1)));
 		else if(child.Token(0) == "outfitter" && child.Size() >= 2)
 			outfitSales.push_back(outfits.Get(child.Token(1)));
+		else if(child.Token(0) == "required reputation" && child.Size() >= 2)
+			requiredReputation = child.Value(1);
+		else if(child.Token(0) == "bribe" && child.Size() >= 2)
+			bribe = child.Value(1);
 	}
 }
 
@@ -132,6 +136,23 @@ const Sale<Outfit> &Planet::Outfitter() const
 	}
 	
 	return outfitter;
+}
+
+
+
+// You need this good a reputation with this system's government to land here.
+double Planet::RequiredReputation() const
+{
+	return requiredReputation;
+}
+
+
+
+// This is what fraction of your fleet's value you must pay as a bribe in
+// order to land on this planet. (If zero, you cannot bribe it.)
+double Planet::GetBribeFraction() const
+{
+	return bribe;
 }
 
 

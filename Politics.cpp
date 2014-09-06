@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Politics.h"
 
 #include "GameData.h"
+#include "Ship.h"
 #include "ShipEvent.h"
 
 #include <algorithm>
@@ -145,8 +146,35 @@ void Politics::Bribe(const Government *gov)
 
 
 
+// Check if the given ship can land on the given planet.
+bool Politics::CanLand(const Ship &ship, const Planet *planet) const
+{
+	if(!planet)
+		return false;
+	
+	const Government *gov = ship.GetGovernment();
+	const Government *systemGov = &planet->GetSystem()->GetGovernment();
+	if(gov != GameData::PlayerGovernment())
+		return !IsEnemy(gov, systemGov);
+	
+	if(bribedPlanets.find(planet) != bribedPlanets.end())
+		return true;
+	
+	return Reputation(systemGov) >= planet->RequiredReputation();
+}
+
+
+
+// Bribe a planet to let the player's ships land there.
+void Politics::BribePlanet(const Planet *planet)
+{
+	bribedPlanets.insert(planet);
+}
+
+
+
 // Get or set your reputation with the given government.
-double Politics::Reputation(const Government *gov)
+double Politics::Reputation(const Government *gov) const
 {
 	auto it = reputationWith.find(gov);
 	return (it == reputationWith.end() ? 0. : it->second);
@@ -173,4 +201,5 @@ void Politics::ResetProvocation()
 {
 	provoked.clear();
 	bribed.clear();
+	bribedPlanets.clear();
 }
