@@ -55,6 +55,12 @@ public:
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	
+	// You need this good a reputation with this system's government to land here.
+	double RequiredReputation() const;
+	// This is what fraction of your fleet's value you must pay as a bribe in
+	// order to land on this planet. (If zero, you cannot bribe it.)
+	double GetBribeFraction() const;
+	
 	// Set or get what system this planet is in. This is so that missions, for
 	// example, can just hold a planet pointer instead of a system as well.
 	const System *GetSystem() const;
@@ -73,6 +79,9 @@ private:
 	// first asked for:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
+	
+	double requiredReputation = 0.;
+	double bribe = 0.01;
 	
 	const System *system = nullptr;
 };

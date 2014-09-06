@@ -315,7 +315,8 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+					&& GameData::GetPolitics().CanLand(ship, object.GetPlanet()))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -809,6 +810,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 					}
 			}
 			control.SetTargetPlanet(next);
+			if(next->GetPlanet() && !GameData::GetPolitics().CanLand(ship, next->GetPlanet()))
+				message = "The authorities on this planet refuse to clear you to land here.";
 		}
 		else if(message.empty())
 		{
@@ -821,6 +824,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 					double distance = ship.Position().Distance(object.Position());
 					if(object.GetPlanet() == ship.GetDestination())
 						distance = 0.;
+					else if(!object.GetPlanet()->HasSpaceport())
+						distance += 10000.;
 					
 					if(distance < closest)
 					{
@@ -828,7 +833,11 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 						closest = distance;
 					}
 				}
-			if(count > 1)
+			if(!control.GetTargetPlanet())
+				message = "There are no planets in this system that you can land on.";
+			else if(!GameData::GetPolitics().CanLand(ship, control.GetTargetPlanet()->GetPlanet()))
+				message = "The authorities on this planet refuse to clear you to land here.";
+			else if(count > 1)
 				message = "You can land on more than one planet in this system. Landing on "
 					+ control.GetTargetPlanet()->Name() + ".";
 		}

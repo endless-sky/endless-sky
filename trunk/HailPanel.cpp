@@ -38,12 +38,7 @@ HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
 	
 	if(GameData::GetPolitics().IsEnemy(GameData::PlayerGovernment(), gov))
 	{
-		// Find the total value of your fleet.
-		int value = 0;
-		for(const shared_ptr<Ship> &it : player.Ships())
-			value += it->Cost();
-		
-		bribe = static_cast<int>(value * gov->GetBribeFraction() * .001) * 1000;
+		SetBribe(gov->GetBribeFraction());
 		if(bribe)
 			message = "If you want us to leave you alone, it'll cost you "
 				+ Format::Number(bribe) + " credits.";
@@ -89,9 +84,20 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *planet)
 	if(planet->GetPlanet())
 		header = gov->GetName() + " planet \"" + planet->GetPlanet()->Name() + "\":";
 	
-	// TODO: handle bribe requests if the player is not currently allowed to land.
 	if(player.GetShip())
-		message = "You are cleared to land, " + player.GetShip()->Name() + ".";
+	{
+		if(GameData::GetPolitics().CanLand(*player.GetShip(), planet->GetPlanet()))
+			message = "You are cleared to land, " + player.GetShip()->Name() + ".";
+		else
+		{
+			SetBribe(planet->GetPlanet()->GetBribeFraction());
+			if(bribe)
+				message = "If you want to land here, it'll cost you "
+					+ Format::Number(bribe) + " credits.";
+			else
+				message = "I'm afraid we can't permit you to land here.";
+		}
+	}
 }
 
 
@@ -116,9 +122,7 @@ void HailPanel::Draw() const
 	}
 	else
 	{
-		bool isEnemy = GameData::GetPolitics().IsEnemy(
-			GameData::PlayerGovernment(), &player.GetSystem()->GetGovernment());
-		if(isEnemy)
+		if(!GameData::GetPolitics().CanLand(*player.GetShip(), planet->GetPlanet()))
 			interfaceInfo.SetCondition("can bribe");
 		else
 			interfaceInfo.SetCondition("cannot bribe");
@@ -198,13 +202,21 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		if(bribe)
 		{
 			if(ship)
+			{
 				GameData::GetPolitics().Bribe(ship->GetGovernment());
+				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
+					+ Format::Number(bribe) + " credits to refrain from attacking you today.");
+			}
+			else
+			{
+				GameData::GetPolitics().BribePlanet(planet->GetPlanet());
+				Messages::Add("You bribed the authorities on " + planet->GetPlanet()->Name() + " "
+					+ Format::Number(bribe) + " credits to permit you to land.");
+			}
 			
 			// TODO: handle landing bribes to planets.
 			player.Accounts().AddCredits(-bribe);
 			message = "It's a pleasure doing business with you.";
-			Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
-				+ Format::Number(bribe) + " credits to refrain from attacking you today.");
 			bribe = 0;
 		}
 		else
@@ -228,4 +240,18 @@ bool HailPanel::Click(int x, int y)
 	}
 	
 	return true;
+}
+
+
+
+void HailPanel::SetBribe(double scale)
+{
+	// Find the total value of your fleet.
+	int value = 0;
+	for(const shared_ptr<Ship> &it : player.Ships())
+		value += it->Cost();
+	
+	bribe = 1000 * static_cast<int>(value * .001 * scale);
+	if(scale && !bribe)
+		bribe = 1000;
 }

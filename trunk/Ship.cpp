@@ -921,6 +921,9 @@ bool Ship::CanLand() const
 	if(!GetTargetPlanet() || isDisabled || Hull() <= 0.)
 		return false;
 	
+	if(!GameData::GetPolitics().CanLand(*this, GetTargetPlanet()->GetPlanet()))
+		return false;
+	
 	Point distance = GetTargetPlanet()->Position() - position;
 	double speed = velocity.Length();
 	

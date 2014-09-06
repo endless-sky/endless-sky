@@ -39,6 +39,10 @@ protected:
 	
 	
 private:
+	void SetBribe(double scale);
+	
+	
+private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> ship = nullptr;
 	const StellarObject *planet = nullptr;

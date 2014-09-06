@@ -579,7 +579,9 @@ void Engine::CalculateStep()
 			position -= center;
 			
 			int type = object.IsStar() ? Radar::SPECIAL :
-				object.GetPlanet() ? Radar::FRIENDLY : Radar::INACTIVE;
+				!object.GetPlanet() ? Radar::INACTIVE :
+				GameData::GetPolitics().CanLand(*flagship, object.GetPlanet()) ?
+				Radar::FRIENDLY : Radar::UNFRIENDLY;
 			double r = max(2., object.Radius() * .03 + .5);
 			
 			draw[calcTickTock].Add(object.GetSprite(), position, unit);

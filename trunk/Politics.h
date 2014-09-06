@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <set>
 
 class Government;
+class Planet;
+class Ship;
 
 
 
@@ -49,8 +51,13 @@ public:
 	// Bribe the given government to be friendly to you for one day.
 	void Bribe(const Government *gov);
 	
+	// Check if the given ship can land on the given planet.
+	bool CanLand(const Ship &ship, const Planet *planet) const;
+	// Bribe a planet to let the player's ships land there.
+	void BribePlanet(const Planet *planet);
+	
 	// Get or set your reputation with the given government.
-	double Reputation(const Government *gov);
+	double Reputation(const Government *gov) const;
 	void AddReputation(const Government *gov, double value);
 	void SetReputation(const Government *gov, double value);
 	
@@ -68,6 +75,7 @@ private:
 	std::map<const Government *, double> reputationWith;
 	std::set<const Government *> provoked;
 	std::set<const Government *> bribed;
+	std::set<const Planet *> bribedPlanets;
 };
 
 
