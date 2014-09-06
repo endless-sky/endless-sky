@@ -86,7 +86,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *planet)
 	
 	if(player.GetShip())
 	{
-		if(GameData::GetPolitics().CanLand(*player.GetShip(), planet->GetPlanet()))
+		if(GameData::GetPolitics().CanLand(planet->GetPlanet()))
 			message = "You are cleared to land, " + player.GetShip()->Name() + ".";
 		else
 		{
@@ -122,7 +122,7 @@ void HailPanel::Draw() const
 	}
 	else
 	{
-		if(!GameData::GetPolitics().CanLand(*player.GetShip(), planet->GetPlanet()))
+		if(!GameData::GetPolitics().CanLand(planet->GetPlanet()))
 			interfaceInfo.SetCondition("can bribe");
 		else
 			interfaceInfo.SetCondition("cannot bribe");

@@ -53,6 +53,8 @@ public:
 	
 	// Check if the given ship can land on the given planet.
 	bool CanLand(const Ship &ship, const Planet *planet) const;
+	// Check if the player can land on the given planet.
+	bool CanLand(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
 	void BribePlanet(const Planet *planet);
 	

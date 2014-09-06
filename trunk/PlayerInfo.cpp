@@ -993,11 +993,19 @@ void PlayerInfo::CreateMissions()
 	
 	int cargoCount = Random::Binomial(10);
 	for(int i = 0; i < cargoCount; ++i)
+	{
 		jobs.push_back(Mission::Cargo(planet, distance));
+		if(!jobs.back().Destination())
+			jobs.pop_back();
+	}
 	
 	int passengerCount = Random::Binomial(10);
 	for(int i = 0; i < passengerCount; ++i)
+	{
 		jobs.push_back(Mission::Passenger(planet, distance));
+		if(!jobs.back().Destination())
+			jobs.pop_back();
+	}
 	
 	// TODO: Each planet specifies the maximum number of each mission type.
 	

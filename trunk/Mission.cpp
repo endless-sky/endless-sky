@@ -39,6 +39,8 @@ Mission Mission::Cargo(const Planet *source, const DistanceMap &distance)
 	
 	// First, pick the destination planet.
 	mission.destination = Pick(distance, 2, 10);
+	if(!mission.destination)
+		return mission;
 	
 	const System &from = *source->GetSystem();
 	const System &to = *mission.destination->GetSystem();
@@ -71,6 +73,9 @@ Mission Mission::Passenger(const Planet *source, const DistanceMap &distance)
 	
 	// First, pick the destination planet.
 	mission.destination = Pick(distance, 2, 10);
+	if(!mission.destination)
+		return mission;
+	
 	int jumps = distance.Distance(mission.destination->GetSystem());
 	int count = Random::Polya(10, .9) + 1;
 	mission.passengers = count;
@@ -268,13 +273,16 @@ namespace {
 		for(const auto &it : GameData::Planets())
 		{
 			const Planet &planet = it.second;
-			if(!planet.HasSpaceport())
+			if(!planet.HasSpaceport() || !GameData::GetPolitics().CanLand(&planet))
 				continue;
 			
 			int jumps = distance.Distance(planet.GetSystem());
 			if(jumps >= minJumps && jumps <= maxJumps)
 				options.push_back(&planet);
 		}
+		if(options.empty())
+			return nullptr;
+		
 		return options[Random::Int(options.size())];
 	}
 	
