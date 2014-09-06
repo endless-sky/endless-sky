@@ -24,7 +24,7 @@ using namespace std;
 
 // Default constructor.
 Government::Government()
-	: name("Uninhabited"), swizzle(0), color(1.), initialPlayerReputation(0.)
+	: name("Uninhabited"), swizzle(0), color(1.), initialPlayerReputation(0.), bribe(0.)
 {
 	// Default penalties:
 	penaltyFor[ShipEvent::ASSIST] = -0.1;
@@ -79,6 +79,8 @@ void Government::Load(const DataNode &node)
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
 				}
 		}
+		else if(child.Token(0) == "bribe" && child.Size() >= 2)
+			bribe = child.Value(1);
 	}
 }
 
@@ -133,6 +135,15 @@ double Government::PenaltyFor(int eventType) const
 		if(eventType & it.first)
 			penalty += it.second;
 	return penalty;
+}
+
+
+
+// In order to successfully bribe this government you must pay them this
+// fraction of your fleet's value. (Zero means they cannot be bribed.)
+double Government::GetBribeFraction() const
+{
+	return bribe;
 }
 
 

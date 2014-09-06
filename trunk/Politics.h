@@ -46,6 +46,8 @@ public:
 	// hostilities (if the even type is PROVOKE), or a permanent change to your
 	// reputation.
 	void Offend(const Government *gov, int eventType, int count = 1);
+	// Bribe the given government to be friendly to you for one day.
+	void Bribe(const Government *gov);
 	
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov);
@@ -65,6 +67,7 @@ private:
 	std::map<const Government *, std::map<const Government *, double>> attitudeToward;
 	std::map<const Government *, double> reputationWith;
 	std::set<const Government *> provoked;
+	std::set<const Government *> bribed;
 };
 
 

@@ -51,6 +51,9 @@ public:
 	// Get the amount that your reputation changes for the given offense. The
 	// given value should be a combination of one or more ShipEvent values.
 	double PenaltyFor(int eventType) const;
+	// In order to successfully bribe this government you must pay them this
+	// fraction of your fleet's value. (Zero means they cannot be bribed.)
+	double GetBribeFraction() const;
 	
 	// Check if, according to the politcs stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -65,6 +68,7 @@ private:
 	std::map<const Government *, double> initialAttitudeToward;
 	double initialPlayerReputation;
 	std::map<int, double> penaltyFor;
+	double bribe;
 };
 
 

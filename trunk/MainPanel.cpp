@@ -257,7 +257,12 @@ void MainPanel::ShowHailPanel()
 				Messages::Add("Unable to hail target ship.");
 		}
 		else if(ship->GetTargetPlanet())
-			GetUI()->Push(new HailPanel(player, ship->GetTargetPlanet()));
+		{
+			if(ship->GetTargetPlanet()->GetPlanet())
+				GetUI()->Push(new HailPanel(player, ship->GetTargetPlanet()));
+			else
+				Messages::Add("Unable to send hail: planet is not inhabited.");
+		}
 		else
 			Messages::Add("Unable to send hail: no target selected.");
 	}

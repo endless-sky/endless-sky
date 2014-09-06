@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include <string>
+
 class PlayerInfo;
 class Ship;
 class StellarObject;
@@ -40,6 +42,14 @@ private:
 	PlayerInfo &player;
 	const Ship *ship = nullptr;
 	const StellarObject *planet = nullptr;
+	
+	std::string header;
+	std::string message;
+	
+	int bribe = 0;
+	bool playerNeedsHelp = false;
+	bool canGiveFuel = false;
+	bool canRepair = false;
 };
 
 

@@ -750,13 +750,15 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 		return shared_ptr<Ship>();
 	
 	// Board a ship of your own government to repair/refuel it.
-	if(victim->GetGovernment() == government)
+	if(!GameData::GetPolitics().IsEnemy(victim->GetGovernment(), government))
 	{
 		victim->hull = max(victim->hull, victim->MinimumHull());
 		victim->isDisabled = false;
-		// Transfer some fuel if needed (trying to equalize our fuel, in increments of 100)
-		if(JumpsRemaining() >= 2 && victim->JumpsRemaining() == 0) {
-			TransferFuel(static_cast<int>((fuel - victim->fuel) / 200.) * 100, victim.get());
+		// Transfer some fuel if needed.
+		if(!victim->JumpsRemaining() && !currentSystem->IsInhabited())
+		{
+			if(CanRefuel(*victim))
+				TransferFuel(victim->attributes.Get("jump fuel"), victim.get());
 		}
 		return shared_ptr<Ship>();
 	}
@@ -1130,6 +1132,14 @@ int Ship::RequiredCrew() const
 void Ship::AddCrew(int count)
 {
 	crew += count;
+}
+
+
+
+bool Ship::CanRefuel(const Ship &other) const
+{
+	double needed = other.attributes.Get("jump fuel");
+	return (fuel - needed >= attributes.Get("jump fuel"));
 }
 
 

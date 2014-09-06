@@ -51,6 +51,8 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 		swap(first, second);
 	if(first == GameData::PlayerGovernment())
 	{
+		if(bribed.find(second) != bribed.end())
+			return false;
 		if(provoked.find(second) != provoked.end())
 			return true;
 		
@@ -104,6 +106,15 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	if(gov == GameData::PlayerGovernment())
 		return;
 	
+	// If you bribe a government but then attack it, the effect of your bribe is
+	// cancelled out.
+	if(eventType & ShipEvent::PROVOKE)
+	{
+		auto it = bribed.find(gov);
+		if(it != bribed.end())
+			bribed.erase(it);
+	}
+	
 	for(const auto &other : attitudeToward[gov])
 	{
 		// You can provoke a government even by attacking an empty ship, such as
@@ -122,6 +133,14 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			reputationWith[other.first] -= penalty;
 		}
 	}
+}
+
+
+
+// Bribe the given government to be friendly to you for one day.
+void Politics::Bribe(const Government *gov)
+{
+	bribed.insert(gov);
 }
 
 
@@ -153,4 +172,5 @@ void Politics::SetReputation(const Government *gov, double value)
 void Politics::ResetProvocation()
 {
 	provoked.clear();
+	bribed.clear();
 }
