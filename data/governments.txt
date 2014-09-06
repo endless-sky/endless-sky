@@ -17,6 +17,7 @@ government "Merchant"
 	"player reputation" 10
 	"attitude toward"
 		"Pirate" -.2
+	"bribe" .05
 
 government "Republic"
 	swizzle 0
@@ -39,6 +40,7 @@ government "Free Worlds"
 		"Militia" .3
 		"Pirate" -.4
 		"Republic" -.3
+	"bribe" .1
 
 government "Militia"
 	swizzle 2
@@ -48,6 +50,7 @@ government "Militia"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
+	"bribe" .1
 
 government "Syndicate"
 	swizzle 4
@@ -57,6 +60,7 @@ government "Syndicate"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
+	"bribe" .08
 
 government "Pirate"
 	swizzle 6
@@ -66,6 +70,7 @@ government "Pirate"
 	"attitude toward"
 		"Merchant" -.1
 		"Syndicate" -.1
+	"bribe" .05
 
 government "Quarg"
 	swizzle 0

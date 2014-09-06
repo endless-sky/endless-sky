@@ -830,6 +830,10 @@ interface "info panel"
 
 interface "hail panel"
 	sprite "ui/hail panel" 0 0
+	string "header" -50 -70
+		size 14
+		color bright
+		align left
 	
 	if "can dominate"
 	label "Demand Tribute" -20 108
@@ -866,6 +870,8 @@ interface "hail panel"
 		color dim
 		align center
 	endif
+	button b 130 115
+		size 140 30
 	
 	label "Done" 250 108
 		size 14
