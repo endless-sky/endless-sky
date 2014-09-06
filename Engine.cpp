@@ -251,7 +251,7 @@ void Engine::Step(bool isActive)
 		info.SetRadar(radar[drawTickTock]);
 		shared_ptr<const Ship> target;
 		if(flagship)
-			target = flagship->GetTargetShip().lock();
+			target = flagship->GetTargetShip();
 		if(!target)
 		{
 			info.SetSprite("target sprite", nullptr);
@@ -271,7 +271,7 @@ void Engine::Step(bool isActive)
 			else
 				info.SetString("target government", target->GetGovernment()->GetName());
 			
-			shared_ptr<const Ship> targetTarget = target->GetTargetShip().lock();
+			shared_ptr<const Ship> targetTarget = target->GetTargetShip();
 			bool hostile = targetTarget &&
 				targetTarget->GetGovernment() == playerGovernment;
 			int targetType = (target->IsDisabled() || target->IsOverheated()) ? Radar::INACTIVE :
@@ -632,14 +632,14 @@ void Engine::CalculateStep()
 			
 			// Boarding:
 			bool autoPlunder = (ship->GetGovernment() != playerGovernment);
-			shared_ptr<Ship> victim = ship->Board(ships, autoPlunder);
+			shared_ptr<Ship> victim = ship->Board(autoPlunder);
 			if(victim)
 				eventQueue.emplace_back(ship, victim, ShipEvent::BOARD);
 			
 			int scan = ship->Scan();
 			if(scan)
 			{
-				shared_ptr<const Ship> target = ship->GetTargetShip().lock();
+				shared_ptr<const Ship> target = ship->GetTargetShip();
 				for(shared_ptr<Ship> &it : ships)
 					if(it == target)
 						eventQueue.emplace_back(ship, it, scan);
@@ -666,7 +666,7 @@ void Engine::CalculateStep()
 				position,
 				ship->Unit());
 			
-			auto target = ship->GetTargetShip().lock();
+			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
 				ship->GetGovernment() == playerGovernment ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
@@ -862,7 +862,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	double attackerStrength = 0.;
 	int attackerCount = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetGovernment() == attacker && ship->GetTargetShip().lock() == target)
+		if(ship->GetGovernment() == attacker && ship->GetTargetShip() == target)
 		{
 			++attackerCount;
 			attackerStrength += (ship->Shields() + ship->Hull()) * ship->Cost();

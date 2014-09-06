@@ -30,7 +30,7 @@ using namespace std;
 
 
 
-HailPanel::HailPanel(PlayerInfo &player, const Ship *ship)
+HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
 	: player(player), ship(ship)
 {
 	const Government *gov = ship->GetGovernment();
@@ -53,7 +53,7 @@ HailPanel::HailPanel(PlayerInfo &player, const Ship *ship)
 		// Is the player in any need of assistance?
 		const Ship *playerShip = player.GetShip();
 		// Check if the player is out of fuel.
-		if(!player.GetSystem()->IsInhabited() && !playerShip->JumpsRemaining())
+		if(!playerShip->JumpsRemaining())
 		{
 			playerNeedsHelp = true;
 			canGiveFuel = ship->CanRefuel(*playerShip);
@@ -179,7 +179,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		{
 			if(canGiveFuel || canRepair)
 			{
-				// TODO: actually implement this.
+				ship->SetShipToAssist(player.Ships().front());
 				message = "Hang on, we'll be there in a minute.";
 			}
 			else

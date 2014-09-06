@@ -162,8 +162,9 @@ void Ship::FinishLoading()
 	equipped.clear();
 	armament.FinishLoading();
 	
-	// Recharge, but don't recharge crew or fuel if not in the parent's system
-	Recharge(GetParent().expired() || currentSystem == GetParent().lock()->currentSystem);
+	// Recharge, but don't recharge crew or fuel if not in the parent's system.
+	shared_ptr<const Ship> parent = GetParent();
+	Recharge(!parent || currentSystem == parent->currentSystem);
 }
 
 
@@ -223,7 +224,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("system", currentSystem->Name());
 		else
 		{
-			shared_ptr<const Ship> parent = GetParent().lock();
+			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
 				out.Write("system", parent->currentSystem->Name());
 		}
@@ -643,7 +644,7 @@ bool Ship::Move(list<Effect> &effects)
 	// Boarding:
 	if(isBoarding && (GetThrustCommand() || GetTurnCommand()))
 		isBoarding = false;
-	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip()).lock();
+	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip());
 	if(target && !isDisabled)
 	{
 		Point dp = (target->position - position);
@@ -651,8 +652,13 @@ bool Ship::Move(list<Effect> &effects)
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding |= (distance < 50. && speed < 1. && HasBoardCommand());
-		if(isBoarding && !IsFighter() && (!(target->IsDisabled() || target->GetParent().lock().get() == this) || target->Hull() < 0.))
-			isBoarding = false;
+		if(isBoarding && !IsFighter())
+		{
+			if(!target->IsDisabled() && GameData::GetPolitics().IsEnemy(target->government, government))
+				isBoarding = false;
+			else if(target->Hull() < 0.)
+				isBoarding = false;
+		}
 		if(isBoarding && !pilotError)
 		{
 			Angle facing = angle;
@@ -721,19 +727,14 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 
 
 // Check if this ship is boarding another ship.
-shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
+shared_ptr<Ship> Ship::Board(bool autoPlunder)
 {
 	if(!hasBoarded)
 		return shared_ptr<Ship>();
 	hasBoarded = false;
 	
-	// Get a non-const pointer to the ship.
-	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip()).lock();
-	shared_ptr<Ship> victim;
-	for(shared_ptr<Ship> &ship : ships)
-		if(ship == target)
-			victim = ship;
-	if(!victim)
+	shared_ptr<Ship> victim = GetTargetShip();
+	if(!victim || victim->Hull() <= 0.)
 		return shared_ptr<Ship>();
 	
 	// For a fighter, "board" means "return to ship."
@@ -746,25 +747,25 @@ shared_ptr<Ship> Ship::Board(list<shared_ptr<Ship>> &ships, bool autoPlunder)
 		}
 		return shared_ptr<Ship>();
 	}
-	if(!(target->IsDisabled() || target->GetParent().lock().get() == this) || target->Hull() <= 0.)
-		return shared_ptr<Ship>();
 	
 	// Board a ship of your own government to repair/refuel it.
 	if(!GameData::GetPolitics().IsEnemy(victim->GetGovernment(), government))
 	{
+		SetShipToAssist(shared_ptr<Ship>());
 		victim->hull = max(victim->hull, victim->MinimumHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
-		if(!victim->JumpsRemaining() && !currentSystem->IsInhabited())
-		{
-			if(CanRefuel(*victim))
-				TransferFuel(victim->attributes.Get("jump fuel"), victim.get());
-		}
+		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+			TransferFuel(victim->attributes.Get("jump fuel"), victim.get());
 		return shared_ptr<Ship>();
 	}
+	if(!victim->IsDisabled())
+		return shared_ptr<Ship>();
 	
 	// If the boarding ship is the player, they will choose what to plunder.
-	if(victim && autoPlunder)
+	// Always take fuel if you can.
+	victim->TransferFuel(victim->fuel, this);
+	if(autoPlunder)
 	{
 		// Take any outfits that fit.
 		for(auto &it : victim->outfits)
@@ -791,7 +792,7 @@ int Ship::Scan() const
 	if(!HasScanCommand())
 		return 0;
 	
-	shared_ptr<const Ship> target = GetTargetShip().lock();
+	shared_ptr<const Ship> target = GetTargetShip();
 	if(!target)
 		return 0;
 	

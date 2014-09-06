@@ -26,7 +26,7 @@ class StellarObject;
 // This panel is shown when you hail a ship or planet.
 class HailPanel : public Panel {
 public:
-	HailPanel(PlayerInfo &player, const Ship *ship);
+	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship);
 	HailPanel(PlayerInfo &player, const StellarObject *planet);
 	
 	virtual void Draw() const override;
@@ -40,7 +40,7 @@ protected:
 	
 private:
 	PlayerInfo &player;
-	const Ship *ship = nullptr;
+	std::shared_ptr<Ship> ship = nullptr;
 	const StellarObject *planet = nullptr;
 	
 	std::string header;

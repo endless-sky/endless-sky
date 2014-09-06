@@ -178,9 +178,16 @@ void Controllable::SetFireCommands(int bitmask)
 
 // Each ship can have a target system (to travel to), a target planet (to
 // land on) and a target ship (to move to, and attack if hostile).
-const weak_ptr<const Ship> &Controllable::GetTargetShip() const
+shared_ptr<Ship> Controllable::GetTargetShip() const
 {
-	return targetShip;
+	return targetShip.lock();
+}
+
+
+
+shared_ptr<Ship> Controllable::GetShipToAssist() const
+{
+	return shipToAssist.lock();
 }
 
 
@@ -207,10 +214,18 @@ const Planet *Controllable::GetDestination() const
 
 
 // Set this ship's targets.
-void Controllable::SetTargetShip(const weak_ptr<const Ship> &ship)
+void Controllable::SetTargetShip(const weak_ptr<Ship> &ship)
 {
 	targetShip = ship;
 }
+
+
+
+void Controllable::SetShipToAssist(const weak_ptr<Ship> &ship)
+{
+	shipToAssist = ship;
+}
+
 
 
 
@@ -218,7 +233,6 @@ void Controllable::SetTargetPlanet(const StellarObject *object)
 {
 	targetPlanet = object;
 }
-
 
 
 void Controllable::SetTargetSystem(const System *system)
@@ -274,7 +288,7 @@ const vector<weak_ptr<const Ship>> &Controllable::GetEscorts() const
 
 
 
-const weak_ptr<const Ship> &Controllable::GetParent() const
+shared_ptr<const Ship> Controllable::GetParent() const
 {
-	return parent;
+	return parent.lock();
 }

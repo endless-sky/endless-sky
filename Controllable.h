@@ -55,13 +55,15 @@ public:
 	
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
-	const std::weak_ptr<const Ship> &GetTargetShip() const;
+	std::shared_ptr<Ship> GetTargetShip() const;
+	std::shared_ptr<Ship> GetShipToAssist() const;
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
 	const Planet *GetDestination() const;
 	
 	// Set this ship's targets.
-	void SetTargetShip(const std::weak_ptr<const Ship> &ship);
+	void SetTargetShip(const std::weak_ptr<Ship> &ship);
+	void SetShipToAssist(const std::weak_ptr<Ship> &ship);
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
@@ -73,13 +75,14 @@ public:
 	void RemoveEscort(const Ship *ship);
 	
 	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
-	const std::weak_ptr<const Ship> &GetParent() const;
+	std::shared_ptr<const Ship> GetParent() const;
 	
 	
 private:
 	int commands;
 	
-	std::weak_ptr<const Ship> targetShip;
+	std::weak_ptr<Ship> targetShip;
+	std::weak_ptr<Ship> shipToAssist;
 	const StellarObject *targetPlanet;
 	const System *targetSystem;
 	const Planet *destination;
