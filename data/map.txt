@@ -11089,6 +11089,8 @@ planet Ada
 	outfitter "Lovelace Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
+	bribe .1
+	"required reputation" 2
 
 planet Albatross
 	landscape land/snow6
@@ -11100,6 +11102,7 @@ planet Albatross
 	outfitter "Ammo South"
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
+	"required reputation" -20
 
 planet Alfheim
 	landscape land/nasa2
@@ -11108,6 +11111,7 @@ planet Alfheim
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	bribe .05
 
 planet Amazon
 	landscape land/forest5
@@ -11131,6 +11135,8 @@ planet Arabia
 planet "Arachne Station"
 	landscape land/space1
 	description "Arachne Station is privately owned by Tarazed Corporation, and there are no services available here for people who are not Tarazed employees."
+	"required reputation" 20
+	bribe .05
 
 planet Asgard
 	landscape land/city1
@@ -11144,6 +11150,7 @@ planet Asgard
 	outfitter "Lovelace Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
+	bribe .05
 
 planet "Big Sky"
 	landscape land/fields2
@@ -11167,6 +11174,7 @@ planet Bloodsea
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	"required reputation" -10
 
 planet Bluestone
 	landscape land/mountain2
@@ -11213,6 +11221,7 @@ planet Calda
 	description "Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the warm and humid summer months, at least among the very rich Calda is more popular as a tourist destination than as a place to live."
 	spaceport "This is one of the few planets in this sector whose spaceport does not include private hangars, or at least gangway tunnels connecting to ships that land. The reason, of course, is so that visitors can experience the warm and pleasant air the moment they disembark. There is, however, a network of canvas-covered awnings branching out from the main buildings, offering shade and protection from the weather."
 	spaceport "	Inside, the counters for hotel shuttles and rental vehicles (including hovercrafts and helicopters!) are far more promient than the amenities that interest a captain like yourself."
+	bribe .05
 
 planet Canyon
 	landscape land/canyon1
@@ -11222,6 +11231,8 @@ planet Canyon
 planet "Carbuncle Station"
 	landscape land/space6
 	description "Carbuncle is a tiny station owned and operated by Lovelace Labs. You assume that like most such stations, it is primarily a deuterium refinery, but aside from the docking bay the rest of the station is closed off to visitors. Given the reputation of Lovelace Labs for exotic research, there could be almost anything beyond those sealed-off bulkheads."
+	bribe .05
+	"required reputation" 100
 
 planet "Charon Station"
 	landscape land/station3
@@ -11231,6 +11242,8 @@ planet "Charon Station"
 planet "Charybdis Station"
 	landscape land/space0
 	description "Charybdis station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or reful in this system, you will need to visit the neighboring world of Delve, instead of this station."
+	"required reputation" 20
+	bribe .05
 
 planet Chiron
 	landscape land/city9
@@ -11244,6 +11257,7 @@ planet Chiron
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Basics"
+	bribe .02
 
 planet Clark
 	landscape land/valley3
@@ -11267,6 +11281,8 @@ planet Covert
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	"required reputation" 10
+	bribe .1
 
 planet Crossroads
 	landscape land/valley1
@@ -11297,6 +11313,7 @@ planet "Deadman's Cove"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	bribe .03
 
 planet Deep
 	landscape land/sea3
@@ -11331,11 +11348,14 @@ planet Earth
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
+	bribe .03
+	"required reputation" 2
 
 planet Echo
 	landscape land/desert3
 	description "This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds."
 	spaceport "This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind."
+	bribe 0
 
 planet Farpoint
 	landscape land/desert4
@@ -11344,11 +11364,14 @@ planet Farpoint
 	outfitter "Common Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	bribe .08
+	"required reputation" 2
 
 planet Farseer
 	landscape land/sea8
 	description "With enough money, you can buy a sunny day. Farseer is an ocean resort world, where much of the local government's tax revenue is spent on the terraforming equipment that moderates the weather. Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions."
 	spaceport "The spaceport is in one of the industrial regions near the pole; presumably the sight and sound of starships landing and taking off is too distasteful and bourgeois for this world's richer inhabitants. Most of the people here are terraforming technicians or mechanics; they hurry through the streets without giving you a second glance. Next to the tin-roofed marketplace, children are playing in a concrete-paved lot; across the street are a few run-down pubs and a restaurant."
+	bribe .05
 
 planet Featherweight
 	landscape land/sky6
@@ -11359,6 +11382,7 @@ planet "Fenrir Station"
 	landscape land/loc2
 	description "Fenrir Station is a bustling refinery, and from the way the foremen looked at you when you stepped off your ship, they seem to be eager for new recruits. In addition to harvesting deuterium, this is one of the few refinery stations in human space which also collects helium-3, an isotope with some exotic uses in medical imaging and in energy research."
 	spaceport "This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you."
+	bribe .05
 
 planet Flood
 	landscape land/water8
@@ -11376,11 +11400,13 @@ planet Follower
 	outfitter "Common Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	bribe .03
 
 planet Forpelog
 	landscape land/badlands4
 	description "Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen."
 	spaceport "Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight."
+	bribe 0
 
 planet Foundry
 	landscape land/city1
@@ -11393,6 +11419,7 @@ planet Foundry
 	outfitter "Common Outfits"
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
+	bribe .1
 
 planet Freedom
 	landscape land/desert2
@@ -11407,6 +11434,7 @@ planet Freedom
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
+	"required reputation" -10
 
 planet Furnace
 	landscape land/canyon3
@@ -11415,6 +11443,7 @@ planet Furnace
 	outfitter "Syndicate Basics"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
+	bribe .05
 
 planet Geminus
 	landscape land/fog5
@@ -11430,6 +11459,7 @@ planet Geminus
 	outfitter "Ammo North"
 	outfitter "Lovelace Advanced"
 	outfitter "Syndicate Basics"
+	bribe .1
 
 planet Gemstone
 	landscape land/hills3
@@ -11463,11 +11493,13 @@ planet Glory
 	description "Elsewhere in the galaxy, people speak dismissively of the ''boughten sunshine'' that rich, terraformed worlds can afford. On Glory, even many of the lakes and hills are artificial, crafted to garden-like perfection. Fittingly, the chief industry on Glory is plastic surgery, along with other medical efforts aimed at prolonging life, funded by rich, elderly folks who have settled here."
 	spaceport "The starport is as perfectly sculpted as the rest of the planet, a hive-like structure with hexagonal openings of various sizes for docking bays. Gardens have been planted on the roofs and on terraces on all different levels, and a small artificial river flows from a fountain on the roof down among the terraces and out to the ground below."
 	spaceport "	It is almost impossible to tell the age of the locals who are walking by: there is a frightening monotony of wrinkle-free, nearly identically proportioned faces. When they speak, only their lips move; their expressions remain mask-like, immobile."
+	bribe .05
 
 planet Grakhord
 	landscape land/water9
 	description "Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits."
 	spaceport "Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quargs have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards."
+	bribe 0
 
 planet Greenrock
 	landscape land/sky0
@@ -11483,6 +11515,7 @@ planet Greenrock
 	outfitter "Kraz Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Pirate Outfits"
+	bribe .05
 
 planet Harmony
 	landscape land/mountain4
@@ -11500,6 +11533,7 @@ planet Haven
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	shipyard "Northern Pirates"
+	bribe .03
 
 planet Haze
 	landscape land/city9
@@ -11523,6 +11557,7 @@ planet Helheim
 	landscape land/lava1
 	description "Helheim is not a pleasant place. Much of the surface is volcanic, pockmarked with crates and steam vents leading deep into the planet's crust. The air is slightly caustic, but breathable. However, it is also a world rich in easily accessible deposits of nickel, aluminum, and magnesium. The mining industry here has been booming for centuries, and in all of the Deep it is the one world where work is never hard to find - if you are willing to face the health risks and the lack of green and growing things."
 	spaceport "The spaceport is also the main city in Helheim, and it is built around a series of glass domes of all different sizes. Each dome is a greenhouse housing a different sort of plant life, and in some cases animals as well: hermetically sealed parks, protected from the caustic air outside, where the locals can come when their hunger to be among living things becomes unbearable. The docking bays each have an airlock to protect the atmosphere inside the city."
+	bribe .05
 
 planet Hephaestus
 	landscape land/city0
@@ -11537,6 +11572,7 @@ planet Hephaestus
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
+	bribe .1
 
 planet Hermes
 	landscape land/sky7
@@ -11545,6 +11581,8 @@ planet Hermes
 	spaceport "The spaceport is far removed from any of this world's cities. It consists of a single, ring-shaped building; the docking bays open onto the central atrium, which visiting ships fly through to reach them. Industrial strength ultraviolet lasers are mounted on turrets throughout the atrium, and fire automatically at entering and departing ships to sterilize them. Once you land, the docking bay is hermetically sealed. Based on the precautions they are taking, you find yourself wanting to spend as little time as possible breathing the air here."
 	outfitter "Ammo North"
 	outfitter "Lovelace Advanced"
+	"required reputation" 100
+	bribe .1
 
 planet Hestia
 	landscape land/sky5
@@ -11553,6 +11591,7 @@ planet Hestia
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
+	bribe .04
 
 planet Hippocrates
 	landscape land/water6
@@ -11570,12 +11609,15 @@ planet "Huginn Station"
 	landscape land/station2
 	description "Huginn and Muninn stations, together, are the gateway to the Deep, the region of space north of here. The Deep was the first large region of space to have a democratic government, predating the Republic by nearly two centuries."
 	description "	Huginn Station is a prison station where convicted pirates must work at harvesting and refining deuterium to atone for their crimes against humanity. There are no services available for you here and the security guards, surprised by your visit and wondering at your motives, watch you closely."
+	"required reputation" 20
+	bribe .1
 
 planet Humanika
 	landscape land/beach2
 	description "The gravity is too strong on this planet for the Quarg to inhabit it, so they have welcomed human settlers instead. Many people who want freedom from the dangers of human space and the endless instability of human government have settled here. Although the regions near the equator are far too warm to be comfortable, the climate closer to the poles is almost ideal; the only reason Humanika is not as densely populated as some of the worlds farther to the galactic north is the distrust with which most humans view the Quarg."
 	spaceport "The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcertin proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quargs in orbit. It is a clear reminder of who owns this planet."
 	outfitter "Ammo South"
+	bribe .05
 
 planet "Hydra Station"
 	landscape land/space4
@@ -11602,12 +11644,15 @@ planet Lagrange
 	landscape land/station2
 	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view at this engineering feat that is so far beyond what anything human beings have ever attempted to build."
 	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station is a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
+	bribe 0
 
 planet "Leviathan Station"
 	landscape land/space2
 	description "Leviathan station is the Deep's most productive deuterium harvesting station. Built nearly four hundred years ago, the station was one of the first to fuel the massive cargo caravans sent out from the Deep back when this was one of the only regions of the galaxy with a prosperous economy and a democratic government. Today it remains under government control, because the citizens of the Deep are wary of any priivate corporation controlling the industry that makes space travel possible."
 	spaceport "This is a refinery, not a tourist destination. You were allowed to dock here, and the massive cafeteria used by the local workers is available to you if you want to eat, but beyond that no one seems particularly interested in entertaining you or interacting with you."
 	spaceport "	On the other hand, you get some small satisfaction from knowing that you just refuelled your ship with deuterium that just yesterday was most likely still floating around in the upper cloud banks of the gas giant below."
+	"required reputation" 10
+	bribe .08
 
 planet Lichen
 	landscape land/fields3
@@ -11642,6 +11687,7 @@ planet Luna
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
+	bribe .05
 
 planet Maelstrom
 	landscape land/rock0
@@ -11661,6 +11707,7 @@ planet Mainsail
 	outfitter "Basic Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	bribe .06
 
 planet Maker
 	landscape land/desert4
@@ -11685,6 +11732,7 @@ planet Martini
 	landscape land/beach1
 	description "Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship."
 	spaceport "The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible."
+	bribe .1
 
 planet Memory
 	landscape land/dune3
@@ -11710,6 +11758,7 @@ planet Midgard
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Delta V Advanced"
+	bribe .05
 
 planet Millrace
 	landscape land/city6
@@ -11729,13 +11778,16 @@ planet Moonshake
 planet "Muninn Station"
 	landscape land/space7
 	description "Muninn station, along with its brother station Muninn, serves as the gateway to the region of space known as the Deep. They both harvest and refine deuterium for use as rocket fuel, and in addition Muninn station is used as a military base for the local defense fleets."
-	spaceport "Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. YOu would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise not noise except the video screens."
+	spaceport "Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. You would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise not noise except the video screens."
+	"required reputation" 10
+	bribe .05
 
 planet Muspel
 	landscape land/canyon9
 	description "Muspel is a hot world of deserts, canyons, and warm-water oceans. It is mostly a mining and manufacturing planet, and as a result there are few lifelong inhabitants; most of the people here are migrant workers who are just trying to save up enough money to settle down somewhere more hospitable."
 	description "	Some tourists also come here, to walk through the sandstone canyons where the wind and rain has carved the rock into tall pillars and spires. A few particularly beautiful canyons are protected against strip mining by local law."
 	spaceport "The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep."
+	bribe .03
 
 planet Mutiny
 	landscape land/sky6
@@ -11859,6 +11911,7 @@ planet Nifel
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	bribe .05
 
 planet Nimbus
 	landscape land/fog6
@@ -11877,6 +11930,7 @@ planet Norn
 	outfitter "Ammo North"
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
+	bribe .04
 
 planet Oasis
 	landscape land/dune3
@@ -11887,6 +11941,8 @@ planet Oasis
 planet "Oberon Station"
 	landscape land/loc2
 	description "Oberon station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees."
+	"required reputation" 10
+	bribe .03
 
 planet Oblivion
 	landscape land/sky7
@@ -11899,15 +11955,21 @@ planet Pearl
 	description "Pearl is an idyllic, forested world, mostly set aside as a wildlife sanctuary for imported exotic species. Each of the islands and continents houses animals and plants from a different planet's biosphere. Terraforming stations and satellites maintain the atmospheric gas levels in order to keep each island at the proper temperature and rainfall level."
 	description "	Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here."
 	spaceport "The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent."
+	bribe .03
 
 planet "Phoenix Station"
 	landscape land/space1
-	description "As with all refineries in the Deep, Phoenix Station is government-owned and open to any visitors who wish to land here. You cannot imagine who would want to, however; despite reflective hull plating and active cooling systems, the station is uncomfortably hot. Nearly all the work is done by robots and computers, with only a skeleton crew of people supervising. Every time the station's orbit brings it through the planet's shadow, the temperature drops briefly and the entire station creaks ominously as it cools."
+	description "As with all refineries in the Deep, Phoenix Station is government-owned. You cannot imagine who would want to live here; despite reflective hull plating and active cooling systems, the station is uncomfortably hot. Nearly all the work is done by robots and computers, with only a skeleton crew of people supervising. Every time the station's orbit brings it through the planet's shadow, the temperature drops briefly and the entire station creaks ominously as it cools."
+	"required reputation" 10
+	bribe .07
 
 planet Pilot
 	landscape land/badlands0
 	description "Pilot is used as a research and testing station for Lovelace Labs. The research buildings are not open to non-employees. From a distance it looks almost like a small war is going on, with missiles being fired from a silo toward a hilltop where an anti-missile turret is picking them off one by one."
 	description "	Rumors say that the Sidewinder Missile engineering team and the Missile Defense team are in fierce competition with each other, and whichever team is currently losing to the other must buy them lunch every Friday."
+	spaceport "The workers grudgingly refuel your ship, but it is quite clear that you are out of place here. Nearly everyone in the spaceport is wearing a lab coat or a uniform, and several groups of people halt their conversations as soon as you pass within earshot."
+	"required reputation" 100
+	bribe .1
 
 planet Placer
 	landscape land/mountain4
@@ -11921,6 +11983,8 @@ planet Poisonwood
 	spaceport "The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals are unusually courteous and proud to welcome you to their planet."
 	spaceport "	The tavern in the center of the port is named The Parting Glass. The walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away, and friends left behind. It is a strange feeling to sit here so deeply immersed in signs of a history that you had no part in."
 	outfitter "Ammo South"
+	bribe .04
+	"required reputation" 2
 
 planet Poseidos
 	landscape land/sea9
@@ -11942,6 +12006,8 @@ planet Prime
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
+	"required reputation" 2
+	bribe .05
 
 planet Quicksilver
 	landscape land/mountain7
@@ -11984,6 +12050,7 @@ planet Rust
 	outfitter "Delta V Basics"
 	outfitter "Kraz Advanced"
 	outfitter "Ammo South"
+	bribe .04
 
 planet Serpens
 	landscape land/desert5
@@ -11999,18 +12066,22 @@ planet Shangri-La
 	outfitter "Syndicate Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
+	bribe .07
+	"required reputation" 5
 
 planet Shiver
 	landscape land/snow8
 	description "Shiver is a dead and frozen world. The only settlement is a small refueling station that services cargo fleets on their way to Earth. Precipitation is rare here, but sometimes the wind whips up snow and ice from the surface into something akin to a desert sandstorm, and even on days when the wind dies down the air sparkles with tiny, floating ice crystals. Most people who come here for work only stay for a few months or half a year, just long enough for the sense of adventure to die away."
 	spaceport "The spaceport is protected from the wind and blowing snow by a perimeter wall about fifty meters tall. Aside from running the fueling station, one of the few jobs for the workers here is to operate the bulldozers that push away the snowdrifts and keep the station from being buried beneath them. Although the air is breathable, ships that land here connect directly to docking tubes, to protect their crews from the icy air."
-	spaceport "	There are no children here, and almost no women. Most of the workers are men in their early twenties, and no one makes an effort to greet you."
+	spaceport "	There are no children here, and almost no women. Most of the workers are men in their early twenties. No one makes an effort to greet you."
 
 planet Shorebreak
 	landscape land/beach1
 	description "Shorebreak is an ocean world which is home to a stunning profusion of alien life, some of which is not too dissimilar from life on earth. The first settlement, centuries ago, was built as a marine biology laboratory, and from there the planet gradually grew into a regional center for bioengineering, where local life forms are tested for possible use in human medicine."
 	description "	Outside the laboratories, much of the planet's land mass remains in its natural state, but the planet is currently struggling with a large increase in immigration."
 	spaceport "The spaceport on Shorebreak is built on its own separate island, perhaps as a way to keep any contamination isolated from the main continents. The hangar where you were directed to land your ship was hermetically sealed before you were allowed to land, and the customs officer informs you that any cargo you wish to trade must first be screened for ''rats, mice, invasive insects, or wild pigs.''"
+	"required reputation" 2
+	bribe .06
 
 planet Shroud
 	landscape land/mountain1
@@ -12020,6 +12091,7 @@ planet Shroud
 	outfitter "Common Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Lovelace Advanced"
+	bribe .04
 
 planet Silver
 	landscape land/dune2
@@ -12041,6 +12113,7 @@ planet Skymoot
 	description "The ''dragons'' of Skymoot are an immensely popular tourist attraction, unlike their mythical namesakes only in their lack of ability to breathe fire. The presence of such an efficient apex predator has spurred the evolution of a stunning variety of defense mechanisms in its prey, as well; whether in the air or in the plains or deep in the forest, Skymoot is a dangerous place to visit."
 	description "	The scientific consensus is that the ''dragons'' are clever animals, but not sentient. Those who insist on trying to find ways to communicate with them almost invariably end up getting eaten."
 	spaceport "The spaceport is unusually large and clean for a planet with such a low population. It is clear that tourism here is a profitable industry. One large booth offers airplane rides to view the ''dragons'' up close, for anyone willing to sign a waiver; even with energy shields, it is not unheard of for a plane to be snatched out of midair by one of the creatures. Other booths offer safari tours of the forest; the tourists in line at those booths are carrying a wide variety of knives and guns."
+	bribe .02
 
 planet "Smuggler's Den"
 	landscape land/loc1
@@ -12053,6 +12126,7 @@ planet "Smuggler's Den"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	bribe .06
 
 planet Solace
 	landscape land/valley6
@@ -12064,6 +12138,7 @@ planet Solace
 	outfitter "Kraz Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
+	bribe .04
 
 planet Splashdown
 	landscape land/water5
@@ -12084,6 +12159,7 @@ planet Stormhold
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	bribe .03
 
 planet Sundive
 	landscape land/water1
@@ -12109,6 +12185,7 @@ planet Sunracer
 	outfitter "Syndicate Advanced"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	bribe .06
 
 planet Thrall
 	landscape land/fields5
@@ -12116,6 +12193,7 @@ planet Thrall
 	spaceport "The spaceport consists of a vast asphalt-paved field for landing ships, and some wooden buildings a few stories tall. Most of the materials for export are stored in sheds or stacked under plastic tarps, with a few police officers clustered around them to make sure no ship picks up cargo that has not been paid for. Inside the buildings, two restaurants with different names serve an identical selection of fried foods."
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
+	bribe .04
 
 planet Thule
 	landscape land/valley3
@@ -12127,6 +12205,7 @@ planet Thule
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	bribe .05
 
 planet Thunder
 	landscape land/snow7
@@ -12147,6 +12226,7 @@ planet Tinker
 	outfitter "Ammo North"
 	outfitter "Syndicate Basics"
 	outfitter "Lovelace Basics"
+	bribe .04
 
 planet Trinket
 	landscape land/beach3
@@ -12157,11 +12237,14 @@ planet Trinket
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	bribe .02
 
 planet "Triton Station"
 	landscape land/space3
 	description "Triton Station serves both as a refinery for hyperspace fuel, and as a garrison for ships of the Republic Navy. Patrol ships are constantly landing here and then taking off to scour the surrounding systems for pirates. Since pirates are scarce in this part of space, it seems like a very tedious job."
 	spaceport "The mess hall is empty except for one table where some Navy officers are playing a card game. They are sitting right under a ventilation duct, and the cards keep blowing off the table; the station's low simulated gravity is not enough to hold them there."
+	"required reputation" 10
+	bribe .08
 
 planet Trove
 	landscape land/badlands3
@@ -12189,6 +12272,7 @@ planet Vail
 	landscape land/snow4
 	description "Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries produce enough supplies to support the tourists and the large staffs that are necessary to cater to them. The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hover boarding and wingsuit cliff skiing."
 	spaceport "The spaceport is near the equator where the weather will be  most amenable for landing ships, but with airplane shuttles and  a few high speed rail lines leading to the various resort towns. As a result, the air is full of a confusing mixture of deep space ships and atmospheric vehicles, and runways are available in addition to the vertical take-off pads that starships use. In order to come anywhere near the port, you are required to surrender control of your ship to the port's  autopilot computer; there is no other way that collisions could be avoided."
+	bribe .04
 
 planet Valhalla
 	landscape land/city3
@@ -12202,6 +12286,7 @@ planet Valhalla
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Deep Sky Advanced"
+	bribe .08
 
 planet Vinci
 	landscape land/nasa5
@@ -12225,6 +12310,7 @@ planet Wayfarer
 	outfitter "Kraz Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
+	bribe .07
 
 planet Windblain
 	landscape land/sea7
@@ -12251,6 +12337,7 @@ planet Zenith
 	description "	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous cement fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown."
 	spaceport "To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here."
 	outfitter "Ammo North"
+	bribe .04
 
 planet Zug
 	landscape land/city4
@@ -12264,4 +12351,4 @@ planet Zug
 	outfitter "Kraz Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
-
+	bribe .03
