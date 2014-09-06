@@ -810,7 +810,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 					}
 			}
 			control.SetTargetPlanet(next);
-			if(next->GetPlanet() && !GameData::GetPolitics().CanLand(ship, next->GetPlanet()))
+			if(next->GetPlanet() && !GameData::GetPolitics().CanLand(next->GetPlanet()))
 				message = "The authorities on this planet refuse to clear you to land here.";
 		}
 		else if(message.empty())
@@ -835,7 +835,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				}
 			if(!control.GetTargetPlanet())
 				message = "There are no planets in this system that you can land on.";
-			else if(!GameData::GetPolitics().CanLand(ship, control.GetTargetPlanet()->GetPlanet()))
+			else if(!GameData::GetPolitics().CanLand(control.GetTargetPlanet()->GetPlanet()))
 				message = "The authorities on this planet refuse to clear you to land here.";
 			else if(count > 1)
 				message = "You can land on more than one planet in this system. Landing on "

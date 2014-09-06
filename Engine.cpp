@@ -580,7 +580,7 @@ void Engine::CalculateStep()
 			
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
-				GameData::GetPolitics().CanLand(*flagship, object.GetPlanet()) ?
+				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
 				Radar::FRIENDLY : Radar::UNFRIENDLY;
 			double r = max(2., object.Radius() * .03 + .5);
 			
