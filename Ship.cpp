@@ -1165,7 +1165,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where it is just barely not disabled.
-	hull = MinimumHull();
+	hull = max(hull, MinimumHull());
 	
 	// Set the new government.
 	government = capturer->GetGovernment();
