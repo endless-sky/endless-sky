@@ -116,7 +116,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	
-	if(!isTurret || !target)
+	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
 		aim += angle;
 	else
 	{
