@@ -19,6 +19,7 @@ shipyard "Tarazed Basics"
 	"Blackbird"
 
 shipyard "Tarazed Advanced"
+	"Osprey"
 	"Falcon"
 	
 shipyard "Southbound Basics"
@@ -85,6 +86,7 @@ shipyard "Luxury Ships"
 	"Shuttle"
 	"Blackbird"
 	"Scout"
+	"Osprey"
 	"Falcon"
 
 
