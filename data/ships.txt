@@ -772,6 +772,49 @@ ship "Fury"
 	explode "small explosion" 20
 	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
 
+ship "Gunboat"
+	sprite "ship/gunboat"
+	attributes
+		category "Light Warship"
+		"cost" 1600000
+		"shields" 4000
+		"hull" 1000
+		"required crew" 8
+		"bunks" 12
+		"mass" 150
+		"drag" 3.1
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 50
+		"outfit space" 270
+		"weapon capacity" 100
+		"engine capacity" 90
+		weapon
+			"blast radius" 100
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"RT-I Radiothermal"
+		"Hyperdrive"
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		"Cargo Scanner"
+		"Outfit Scanner"
+	engine -12 57
+	engine 12 57
+	gun -28 -28 "Heavy Laser"
+	gun 28 -28 "Heavy Laser"
+	turret 0 -8 "Heavy Laser Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	description "The Navy gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
+
 ship "Hawk"
 	sprite "ship/hawk"
 	attributes
