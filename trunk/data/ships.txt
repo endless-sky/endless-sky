@@ -973,6 +973,52 @@ ship "Leviathan"
 	explode "big explosion" 8
 	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
 
+ship "Osprey"
+	sprite "ship/osprey"
+	attributes
+		category "Light Warship"
+		"cost" 1400000
+		"shields" 6200
+		"hull" 1200
+		"required crew" 11
+		"bunks" 24
+		"mass" 270
+		"drag" 6.1
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 40
+		"outfit space" 450
+		"weapon capacity" 180
+		"engine capacity" 130
+		weapon
+			"blast radius" 200
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Breeder Reactor"
+		"LP072a Battery Pack"
+		"Liquid Helium Cooler"
+		"Quad Blaster Turret" 2
+		"Plasma Cannon" 4
+		Hyperdrive
+		"D41-HY Shield Generator"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+	engine -40 67
+	engine 40 67
+	gun -8 -100 "Plasma Cannon"
+	gun 8 -100 "Plasma Cannon"
+	gun -26 -53 "Plasma Cannon"
+	gun 26 -53 "Plasma Cannon"
+	turret -16 -16 "Quad Blaster Turret"
+	turret 16 -16 "Quad Blaster Turret"
+	explode "medium explosion" 24
+	explode "big explosion" 16
+	explode "small explosion" 40
+	explode "tiny explosion" 28
+	description "After the Osprey gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perrenial favorite among those who have the extra cash to spend on it."
+
 ship "Protector"
 	sprite "ship/protector"
 	attributes
