@@ -889,7 +889,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				}
 				++index;
 			}
-			if(hasGuns && !control.GetTurnCommand())
+			if(hasGuns && !control.GetTurnCommand() && ship.GetTargetShip()
+					&& ship.GetTargetShip()->GetSystem() == ship.GetSystem())
 				control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 		}
 		if(keyHeld & Key::Bit(Key::SECONDARY))
