@@ -61,6 +61,7 @@ outfit "Quarg Anti-Missile"
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
+	thumbnail "outfit/medium graviton thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70

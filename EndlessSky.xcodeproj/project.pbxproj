@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4644543F19BA9A7C00D5A235 /* HailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4644543D19BA9A7C00D5A235 /* HailPanel.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
@@ -132,6 +133,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4644543D19BA9A7C00D5A235 /* HailPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HailPanel.cpp; sourceTree = "<group>"; };
+		4644543E19BA9A7C00D5A235 /* HailPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HailPanel.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				A99F7A8B195DF44B002C30B8 /* GameData.h */,
 				A99F7A8C195DF44B002C30B8 /* Government.cpp */,
 				A99F7A8D195DF44B002C30B8 /* Government.h */,
+				4644543D19BA9A7C00D5A235 /* HailPanel.cpp */,
+				4644543E19BA9A7C00D5A235 /* HailPanel.h */,
 				A9E84C79196215140058DFB7 /* HiringPanel.cpp */,
 				A9E84C7A196215140058DFB7 /* HiringPanel.h */,
 				A945B3E11963655400722981 /* ImageBuffer.cpp */,
@@ -684,6 +689,7 @@
 				A959553A19957294005197E6 /* Table.cpp in Sources */,
 				A99F7B07195DF44C002C30B8 /* Key.cpp in Sources */,
 				A99F7AFF195DF44C002C30B8 /* Fleet.cpp in Sources */,
+				4644543F19BA9A7C00D5A235 /* HailPanel.cpp in Sources */,
 				A99F7B1E195DF44C002C30B8 /* Radar.cpp in Sources */,
 				A99F7B12195DF44C002C30B8 /* Outfit.cpp in Sources */,
 				A99F7B11195DF44C002C30B8 /* Mortgage.cpp in Sources */,
