@@ -48,12 +48,13 @@ shipyard "Betelgeuse Advanced"
 
 shipyard "Navy Basics"
 	"Rainmaker"
-	"Frigate"
+	"Gunboat"
 	"Lance"
 	"Combat Drone"
 	"Surveillance Drone"
 
 shipyard "Navy Advanced"
+	"Frigate"
 	"Cruiser"
 	"Carrier"
 
