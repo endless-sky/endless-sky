@@ -90,7 +90,7 @@ outfit "Quantum Shield Generator"
 outfit "Jump Drive"
 	category "Systems"
 	cost 1000000
-	thumbnail "outfit/hyperdrive"
+	thumbnail "outfit/jump drive"
 	"mass" 20
 	"outfit space" -20
 	"jump fuel" 200
