@@ -1,0 +1,155 @@
+#summary How to create new missions
+
+= Introduction =
+
+The basic syntax of a mission description is:
+
+{{{
+mission <name>
+    description <text>
+    deadline (<days>)
+    cargo <name><number> (<number> (<probability>))
+    passengers <number> (<number> (<probability>))
+    invisible
+    repeat (<number>)
+    child <mission name>
+        <mission name>*
+    (conditions | require)
+        <condition> (<comp> <value>)
+        not <condition>
+    (source | destination)
+        planet <name>*
+            <name>*
+        government <name>*
+            <name>*
+        attribute <name>*
+            <name>*
+        near <system> ((<min>) <max>)
+        distance ((<min>) <max>)
+    npc (save | kill | board | disable | scan)*
+        ship <model> <name>
+        ship <model>
+            ...
+        fleet <name>
+        fleet
+            ...
+    on (offer | complete | accept | decline | fail)
+        dialog <text>
+            <text>*
+        conversation <name>
+        conversation
+            ...
+        outfit <outfit> (<number>)
+        payment (<value>)
+        <condition> (= | += | -= | ++ | --) (value)
+        (set | clear) <condition>
+        event <name>
+        event
+            ...
+}}}
+
+Each of these parts of the mission description is described in detail below.
+
+= Text replacements =
+
+Certain characteristics of a mission, such as the cargo or the destination planet, may be chosen at random. In order to refer to those randomly chosen elements  in descriptive text, you can use the following placeholders:
+
+  * `<commodity>` = name of commodity being carried
+  * `<tons>` = "1 ton" or "N tons"
+  * `<cargo>` = "`<tons>` of `<commodity>`"
+  * `<passengers>` = "a passenger" or "N passengers"
+  * `<origin>` = planet where mission was offered.
+  * `<planet>` = destination planet
+  * `<system>` = destination system
+  * `<destination>` = "`<planet>`, in the `<system>` system"
+  * `<payment>` = "1 credit" or "N credits"
+  * `<date>` = the deadline for the mission.
+
+These placeholders will be substituted in any text in the following places:
+
+  * the mission name
+  * the mission description
+  * dialog messages contained in the mission
+  * conversations contained in the mission
+
+For example, the mission description might be, "Deliver `<cargo>` to `<destination>`, by `<date>`."
+
+= Basic mission characteristics =
+
+{{{
+mission <name>
+}}}
+
+The mission name must be unique.
+
+{{{
+description <text>
+}}}
+
+This is a short description of the mission, with enough detail to make it clear to the player what they need to do to complete the mission, and what could cause the mission to fail.
+
+{{{
+deadline (<days>)
+}}}
+
+The number of days you have to complete the mission. If the number of days is left out (i.e. it is just the word "deadline", that means use the default deadline (2 days * number of hyperspace jumps to the destination). In a saved game, the `<days>` amount is stored as an absolute date instead of a relative number.
+
+{{{
+cargo <name> <number> (<number> (<probability>))
+}}}
+
+This specifies the cargo that you are carrying. If `<name>` is one of the standard commodity names defined in the "trade" data, it will be replaced by a random one of the specific names for that commodity, e.g. "Food" might be replaced by "canned fruit" or "evaporated milk".
+
+If two amounts are given instead of one, that means that a random amount should be chosen in between those two numbers (inclusive).
+
+If three numbers are given, a random number will be chosen by adding the first number to a random number chosen from a negative binomial distribution with the given number of successes needed and probability. This produces numbers that are generally somewhat low but can occasionally be quite high, if you want to every once in a while have massive cargo missions, for example.
+
+{{{
+passengers <number> (<number> (<probability>))
+}}}
+
+This specifies the number of passengers. As with the cargo specification, if there are two or three numbers they are used to pick a random number.
+
+{{{
+invisible
+}}}
+
+This specifies that the mission does not show up in the player's list of missions, and cannot be canceled.
+
+{{{
+repeat (<number>)
+}}}
+
+If the word "repeat" appears by itself, this mission can be offered any number of times. If a number is given, that is the maximum number of times this mission can be offered. By default, each mission can only be offered once, so having a "repeat 1" specified is unnecessary.
+
+If you want a mission to be offered any number of times but to limit the number of instances of the mission that can be active concurrently, you can decrement the "`<mission name>`: offered" condition (described below) whenever the mission is completed, failed, or declined.
+
+{{{
+child <mission name>
+    <mission name>*
+}}}
+
+This is a list of missions that will automatically be accepted when the player accepts this mission, and automatically removed from the list when this mission is removed (for any reason). No dialogs or conversations are shown when the mission is accepted, so any mission that is a "child" should not specify any. This allows you, for example, to have a mission automatically spawn sub-missions with random locations that must all be completed before the main mission is done.
+
+= Conditions =
+
+"Conditions" are named values that represent things the player has done. Conditions start out with a value of zero. Conditions can have almost any name you want, as long as you make sure not to use the same name in two places. A few names are reserved for special purposes:
+
+  * `"<mission name>: offered"`, where `<mission name>` is replaced with the name of any mission. This is incremented whenever a mission is offered to you, and is used by the "repeat" check to make sure a mission is not offered too many times.
+  * `"<mission name>: done"` is set when a mission is successfully completed.
+  * `"reputation: <Government>"` is set to your current reputation with the given government.
+  * "reputation" is your reputation in the current system.
+  * "combat rating" is your current combat rating.
+  * "random" is a random number between 0 and 1. This can be used to make a mission only sometimes appear when all other conditions are met.
+
+Conditions are checked at two times when processing a mission: when determining whether the mission can be offered right now (in the `conditions` tag), and when determining whether it has been completed successfully (in the `require` tag):
+
+{{{
+(conditions | require)
+    <condition> (<comp> <value>)
+    not <condition>
+}}}
+
+The `<comp>` comparison operator can be `==`, `!=`, `<`, `>`, `<=`, or `>=`. If only the condition name is given, the comparison is assumed to be "!= 0". As a special shortcut, you can write "not `<condition>`" instead of "`<condition>` == 0".
+
+Conditions can be changed when you are offered a mission or when you accept, decline, fail, or complete it, as described later in this document.
