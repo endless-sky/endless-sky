@@ -26,7 +26,8 @@ mission <name>
             <name>*
         near <system> ((<min>) <max>)
         distance ((<min>) <max>)
-    npc (save | kill | board | disable | scan)*
+    npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+        system <system>
         ship <model> <name>
         ship <model>
             ...
@@ -43,9 +44,7 @@ mission <name>
         payment (<value>)
         <condition> (= | += | -= | ++ | --) (value)
         (set | clear) <condition>
-        event <name>
-        event
-            ...
+        event <name> (delay)
 }}}
 
 Each of these parts of the mission description is described in detail below.
@@ -207,3 +206,151 @@ but this means it must be urban _and_ rich:
 attribute urban
 attribute rich
 }}}
+
+There are also ways of specifying how far the system is from a particular location, or from the current location:
+
+{{{
+near <system> ((<min>) <max>)
+}}}
+
+If one number is given, the planet must be within that number of jumps from the given system (which includes the given system itself). If two numbers are given, the distance from he given system must be at least as high as the first number, and no more than the second. If no numbers are given, the planet must be in the given system or one of the systems it is linked to; this is equivalent to giving distances of 0 and 1.
+
+{{{
+distance ((<min>) <max>)
+}}}
+
+This is the same as the "near" tag, but gives distances relative to the origin planet. (So, this tag only makes sense within a "destination" filter, not within a "source" filter.)
+
+= Non-Player Characters (NPCs) =
+
+NPCs are ships that are associated with the mission in some way. This includes friendly ships the player must protect, and hostile ships the player must fight off or destroy:
+
+{{{
+npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+    system <system>
+    ship <model> <name>
+    ship <model>
+        ...
+    fleet <name>
+    fleet
+        ...
+}}}
+
+Each "npc" tag may have one or more tags following it, specifying what the player must do with the given NPC:
+
+  * save: The mission fails if the given NPC is destroyed.
+  * kill: To complete the mission, the given NPC must be dead.
+  * board: To complete the mission, the player must board the given NPC. If the ship is destroyed before being boarded, the mission fails.
+  * disable: To complete the mission, the player must disable the given NPC.
+  * "scan cargo": To complete the mission, the player must scan the given NPC's cargo. If the NPC is destroyed before being scanned, the mission fails.
+  * "scan outfits": Same, but the player must use an outfit scanner instead of a cargo scanner.
+
+{{{
+system <system>
+}}}
+
+This specifies what system the NPC starts out in. If this is given, the NPC will remain idle in that system until the player arrives. If the word "system" appears without a specific system following it, that means the NPC starts out in the current system, but in space rather than on the planet. If no system tag appears, the NPC takes off from the planet along with the player.
+
+{{{
+ship <model> <name>
+ship <model>
+    ...
+}}}
+
+This specifies a single ship as an NPC. There are two possible formats. The first format says to create a generic ship of the given model type (or named variant), such as "Falcon", or "Star Barge (Armed)". In that case, the ship will have the given name.
+
+The second option is to give an entire ship specification, which can optionally include things like number of crew members remaining if you want to create a ship that starts out as a disabled "ghost ship."
+
+{{{
+fleet <name>
+fleet
+    ...
+}}}
+
+This specifies an entire fleet of ships. The first format refers to one or the standard fleets, such as "pirate raid" or "Small Republic". The second format gives a custom fleet, using the same syntax as  normal "fleet" data entry. Every ship in the fleet will have the requirements given in the first line (such as "kill" or "save").
+
+*Eventually we may need to add other tags to this section describing special AI characteristics or other things.*
+
+= Triggers =
+
+A mission can also specify what happens at various key parts of the mission:
+
+{{{
+on (offer | complete | accept | decline | fail)
+    dialog <text>
+        <text>*
+    conversation <name>
+    conversation
+        ...
+    outfit <outfit> (<number>)
+    payment (<value>)
+    <condition> (= | += | -= | ++ | --) (value)
+    (set | clear) <condition>
+    event <name> (delay)
+}}}
+
+There are five events that can trigger a response of some sort:
+
+  * offer: when the initial mission is offered. This is the place to put the conversation or dialog that introduces the mission.
+  * complete: when the mission is completed. This is when the player gets paid.
+  * accept: if the player agrees to accept a mission.
+  * decline: if the player decides to decline a mission.
+  * fail: if the mission fails.
+
+Some of the events below usually only make sense for certain triggers, but all of them can be included in any trigger:
+
+{{{
+dialog <text>
+    <text>*
+}}}
+
+This gives a message to be displayed in a dialog message to the user. If the trigger is "on offer", the dialog will have "accept" and "decline" buttons. Otherwise, it is a purely informational message and only an "okay" button is shown.
+
+Each token following the "dialog" tag will be a separate paragraph. The first token may appear either on the same line or indented on a subsequent line.
+
+As mentioned previously, text replacement is done on keywords like "`<destination>`" and "`<payment`" within the dialog text.
+
+{{{
+conversation <name>
+conversation
+    ...
+}}}
+
+This specifies that a conversation will be shown to the player at this point in the mission. When a mission is being offered, the conversation can return "accept" or "decline"; conversations can also return special values like "die" (if the conversation ends with the player dying) or "launch" (if the player should take off from the planet immediately).
+
+As with the dialogs, text substitution is done throughout the conversation.
+
+{{{
+outfit <outfit> (<number>)
+}}}
+
+At this point in the mission, the named ship outfit (or some number of them, if a number is given) is installed in the player's flagship, or placed in the player's cargo if the flagship has no outfit space for it. If the number is negative, outfits are taken away. If a mission removes outfits in its "complete" phase, it cannot be completed unless that outfit exists. This makes it possible to loan the player an outfit for the duration of a mission, or to require that the player disable a non-NPC ship and steal a particular piece of technology from it.
+
+If the outfit cannot be installed due to lack of space, a warning message will be shown so the player knows that the outfit is not actually active (and may in fact be lost if they leave the planet).
+
+{{{
+payment (<value>)
+}}}
+
+If the "payment" tag appears on its own, the player is paid the default amount for this mission, which is equal to:
+
+1000 + (# of jumps from origin to destination) `*` (1000 `*` (# of passengers) + 100 `*` (tons of cargo))
+
+If a value is given, that is the player's payment for reaching this step of the mission. Normally, a "payment" value would only be given in the "on complete" section, but you can also have a negative value to be subtracted if the player fails the mission, or you could use a "payment" to advance the player some money when they first accept a mission. If the "on complete" payment is negative, the player cannot complete the mission if they have fewer than that number of credits.
+
+{{{
+<condition> (= | += | -= | ++ | --) (value)
+(set | clear) <condition>
+}}}
+
+This is used to adjust the "conditions" described previously, which form the requirements for other missions. You can either set the condition to a certain value (using the "=" operator), or add or subtract a value using "+=" or "-=". As a shortcut, "++" means "+= 1" and "--" means "-= 1". You must place a space between the condition, the operator, and the value in order for the parser to interpret it correctly.
+
+The "set" and "clear" tags are shortcuts for "= 1" and "= 0".
+
+{{{
+event <name> (<delay>)
+}}}
+
+This specifies that the given event happens at this point in the mission. Events may permanently alter planets or solar systems. If a delay is given, the event will occur that number of days from now, instead of happening immediately.
+
+*Events have not been implemented yet.*
