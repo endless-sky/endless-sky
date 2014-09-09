@@ -14,7 +14,7 @@ mission <name>
     repeat (<number>)
     child <mission name>
         <mission name>*
-    (conditions | require)
+    to (offer | complete)
         <condition> (<comp> <value>)
         not <condition>
     (source | destination)
@@ -141,10 +141,10 @@ This is a list of missions that will automatically be accepted when the player a
   * "combat rating" is your current combat rating.
   * "random" is a random number between 0 and 1. This can be used to make a mission only sometimes appear when all other conditions are met.
 
-Conditions are checked at two times when processing a mission: when determining whether the mission can be offered right now (in the `conditions` tag), and when determining whether it has been completed successfully (in the `require` tag):
+Conditions are checked at two times when processing a mission: when determining whether the mission can be offered right now (in the "to offer" tag), and when determining whether it has been completed successfully (in the "to complete" tag):
 
 {{{
-(conditions | require)
+to (offer | complete)
     <condition> (<comp> <value>)
     not <condition>
 }}}
