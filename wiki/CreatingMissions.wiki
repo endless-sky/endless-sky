@@ -91,7 +91,7 @@ This is a short description of the mission, with enough detail to make it clear 
 deadline (<days>)
 }}}
 
-The number of days you have to complete the mission. If the number of days is left out (i.e. it is just the word "deadline", that means use the default deadline (2 days * number of hyperspace jumps to the destination). In a saved game, the `<days>` amount is stored as an absolute date instead of a relative number.
+The number of days you have to complete the mission. If the number of days is left out (i.e. it is just the word "deadline", that means use the default deadline (2 days `*` number of hyperspace jumps to the destination). In a saved game, the `<days>` amount is stored as an absolute date instead of a relative number, e.g. "deadline 29 1 3014".
 
 {{{
 cargo <name> <number> (<number> (<probability>))
@@ -151,7 +151,7 @@ to (offer | complete)
 
 The `<comp>` comparison operator can be `==`, `!=`, `<`, `>`, `<=`, or `>=`. If only the condition name is given, the comparison is assumed to be "!= 0". As a special shortcut, you can write "not `<condition>`" instead of "`<condition>` == 0".
 
-Conditions can be changed when you are offered a mission or when you accept, decline, fail, or complete it, as described later in this document.
+Conditions can be changed when you are offered a mission or when you accept, decline, fail, or complete it, as described later in this document. By making one mission set a condition on success, and another depend on nothing except that one condition, you can "chain" missions together. Since all your existing missions complete before new ones are offered, that condition will be set before the check is done for what new missions are available.
 
 = Source and destination filters =
 
