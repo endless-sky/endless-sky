@@ -15,8 +15,6 @@ mission <name>
     invisible
     job
     repeat (<number>)
-    child <mission name>
-        <mission name>*
     to (offer | complete)
         <condition> (<comp> <value>)
         not <condition>
@@ -144,13 +142,6 @@ If the word "repeat" appears by itself, this mission can be offered any number o
 
 If you want a mission to be offered any number of times but to limit the number of instances of the mission that can be active concurrently, you can decrement the "`<mission name>`: offered" condition (described below) whenever the mission is completed, failed, or declined.
 
-{{{
-child <mission name>
-    <mission name>*
-}}}
-
-This is a list of missions that will automatically be accepted when the player accepts this mission, and automatically removed from the list when this mission is removed (for any reason). No dialogs or conversations are shown when the mission is accepted, so any mission that is a "child" should not specify any. This allows you, for example, to have a mission automatically spawn sub-missions with random locations that must all be completed before the main mission is done.
-
 = Conditions =
 
 "Conditions" are named values that represent things the player has done. Conditions start out with a value of zero. Conditions can have almost any name you want, as long as you make sure not to use the same name in two places. A few names are reserved for special purposes:
@@ -234,7 +225,7 @@ There are also ways of specifying how far the system is from a particular locati
 near <system> ((<min>) <max>)
 }}}
 
-If one number is given, the planet must be within that number of jumps from the given system (which includes the given system itself). If two numbers are given, the distance from he given system must be at least as high as the first number, and no more than the second. If no numbers are given, the planet must be in the given system or one of the systems it is linked to; this is equivalent to giving distances of 0 and 1.
+If one number is given, the planet must be within that number of jumps from the given system (which includes the given system itself). If two numbers are given, the distance from the given system must be at least as high as the first number, and no more than the second. If no numbers are given, the planet must be in the given system or one of the systems it is linked to; this is equivalent to giving distances of 0 and 1.
 
 {{{
 distance ((<min>) <max>)
@@ -290,8 +281,6 @@ For example, a ship you must repair would "wait" in another system (or possibly 
 If no action is specified, the default NPC action is to take off from the planet along with the player. So, you would omit this node entirely for escort missions, for example.
 
 The "near" and "distance" filters operate the same way they do in the descriptions in the previous section, and can be used instead of naming a particular system.
-
-This specifies what system the NPC starts out in. If this is given, the NPC will remain idle in that system until the player arrives. If the word "system" appears without a specific system following it, that means the NPC starts out in the current system, but in space rather than on the planet. If no system tag appears, the NPC takes off from the planet along with the player.
 
 {{{
 dialog <text>
