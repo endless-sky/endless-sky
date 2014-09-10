@@ -13,6 +13,7 @@ mission <name>
         illegal <government> <level>
     passengers <number> (<number> (<probability>))
     invisible
+    job
     repeat (<number>)
     child <mission name>
         <mission name>*
@@ -130,6 +131,12 @@ invisible
 This specifies that the mission does not show up in the player's list of missions, and cannot be canceled.
 
 {{{
+job
+}}}
+
+This specifies that the mission should never be automatically created in a spaceport; the only time it will be created is in a job board or as a child of another mission.
+
+{{{
 repeat (<number>)
 }}}
 
@@ -183,7 +190,7 @@ Each mission starts on a planet, and ends on a planet, usually different from wh
     distance ((<min>) <max>)
 }}}
 
-If no destination is specified, the destination is the same as the source planet. This can be useful for missions that should end on the same planet they start on, such as "Kill pirate ship X and return here for payment." If no source is specified, the mission will never be offered except as a "job" specified in a planet's job board, or as a "child" of another mission.
+If no destination is specified, the destination is the same as the source planet. This can be useful for missions that should end on the same planet they start on, such as "Kill pirate ship X and return here for payment." If no source is specified, the mission will be offered whenever its "to offer" conditions are satisfied; this can be used to create a mission that is offered as soon as you complete another.
 
 Each entry in the source or destination specification acts as a filter:
 
