@@ -30,6 +30,11 @@ mission <name>
         distance ((<min>) <max>)
     npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
         system <system>
+        dialog <text>
+            <text>*
+        conversation <name>
+        conversation
+            ...
         ship <model> <name>
         ship <model>
             ...
@@ -65,6 +70,7 @@ Certain characteristics of a mission, such as the cargo or the destination plane
   * `<destination>` = "`<planet>`, in the `<system>` system"
   * `<payment>` = "1 credit" or "N credits"
   * `<date>` = the deadline for the mission.
+  * `<npc>` = the name of the first NPC in the mission description.
 
 These placeholders will be substituted in any text in the following places:
 
@@ -233,6 +239,11 @@ NPCs are ships that are associated with the mission in some way. This includes f
 
 {{{
 npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+    dialog <text>
+        <text>*
+    conversation <name>
+    conversation
+        ...
     system <system>
     ship <model> <name>
     ship <model>
@@ -256,6 +267,16 @@ system <system>
 }}}
 
 This specifies what system the NPC starts out in. If this is given, the NPC will remain idle in that system until the player arrives. If the word "system" appears without a specific system following it, that means the NPC starts out in the current system, but in space rather than on the planet. If no system tag appears, the NPC takes off from the planet along with the player.
+
+{{{
+dialog <text>
+    <text>*
+conversation <name>
+conversation
+    ...
+}}}
+
+This defines a dialog or conversation to be shown when you have first satisfied all the requirements of a given NPC. For more details on the syntax, see the "Triggers" section below.
 
 {{{
 ship <model> <name>
