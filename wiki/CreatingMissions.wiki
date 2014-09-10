@@ -148,7 +148,7 @@ If you want a mission to be offered any number of times but to limit the number 
 
   * `"<mission name>: offered"`, where `<mission name>` is replaced with the name of any mission. This is incremented whenever a mission is offered to you, and is used by the "repeat" check to make sure a mission is not offered too many times.
   * `"<mission name>: done"` is set when a mission is successfully completed.
-  * `"reputation: <Government>"` is set to your current reputation with the given government.
+  * `"reputation: <government>"` is set to your current reputation with the given government.
   * "reputation" is your reputation in the current system.
   * "combat rating" is your current combat rating.
   * "random" is a random number between 0 and 1. This can be used to make a mission only sometimes appear when all other conditions are met.
@@ -351,7 +351,7 @@ This gives a message to be displayed in a dialog message to the user. If the tri
 
 Each token following the "dialog" tag will be a separate paragraph. The first token may appear either on the same line or indented on a subsequent line.
 
-As mentioned previously, text replacement is done on keywords like "`<destination>`" and "`<payment`" within the dialog text.
+As mentioned previously, text replacement is done on keywords like "`<destination>`" and "`<payment>`" within the dialog text.
 
 {{{
 conversation <name>
@@ -390,7 +390,7 @@ This is used to adjust the "conditions" described previously, which form the req
 
 The "set" and "clear" tags are shortcuts for "= 1" and "= 0".
 
-To change the player's reputation or combat rating, you may alter the "reputation", "reputation: <Government>", or "combat rating" conditions. For example, a bounty hunting mission might automatically alter your reputation on whatever planet the mission ends on ("reputation"), and a mission for the Navy might improve your reputation with the Republic but reduce your reputation with the Free Worlds.
+To change the player's reputation or combat rating, you may alter the "reputation", "`reputation: <government>`", or "combat rating" conditions. For example, a bounty hunting mission might automatically alter your reputation on whatever planet the mission ends on ("reputation"), and a mission for the Navy might improve your reputation with the Republic but reduce your reputation with the Free Worlds.
 
 {{{
 event <name> (<delay>)
