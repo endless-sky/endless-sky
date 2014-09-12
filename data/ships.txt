@@ -93,6 +93,63 @@ ship "Argosy"
 	description "The Argosy from Southbound Shipyards is very popular with merchants not because of its capacity, which is actually slightly smaller than the Syndicate Freighter, but because it can hold it own in combat even against a small pirate fleet."
 	description "	The Argosy is also a very easy ship to upgrade with faster engines or more powerful weapons as needed, so many privately owned Argosies have very different capabilities than the stock model."
 
+ship Bactrian
+	sprite ship/bactrian
+	attributes
+		category "Heavy Warship"
+		"cost" 5600000
+		"shields" 9300
+		"hull" 8600
+		"required crew" 74
+		"bunks" 245
+		"mass" 820
+		"drag" 14.8
+		"heat dissipation" .4
+		"fuel capacity" 700
+		"cargo space" 530
+		"outfit space" 800
+		"weapon capacity" 330
+		"engine capacity" 240
+		weapon
+			"blast radius" 400
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"X5700 Ion Thruster"
+		"X5200 Ion Steering"
+		"D94-YV Shield Generator"
+		"LP144a Battery Pack"
+		"Fusion Reactor"
+		"Hyperdrive"
+		"Ramscoop"
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+	engine -18 230
+	engine 18 230
+	gun -15 -226 "Torpedo Launcher"
+	gun 15 -226 "Torpedo Launcher"
+	gun -40 -133 "Sidewinder Missile Launcher"
+	gun -45 -128 "Sidewinder Missile Launcher"
+	turret -22 -148 "Heavy Laser Turret"
+	turret 26 -80 "Heavy Anti-Missile Turret"
+	turret -41 -20 "Heavy Laser Turret"
+	turret 32 -7 "Heavy Laser Turret"
+	turret 53 82 "Heavy Laser Turret"
+	turret -37 186 "Heavy Anti-Missile Turret"
+	fighter -38 -26
+	fighter 35 36
+	fighter -47 97
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "big explosion" 45
+	explode "huge explosion" 30
+	description "The Lionheart Bactrian is the last of the great city-ships, a design hearkening back to the early days of space colonization when a long-distance vessel needed to be a self-contained world, able to survive at times for weeks without encountering an inhabited planet. It is not only a freighter, but a carrier, and a capable warship either at short range or at a distance. Naturally, this versatility also makes it extremely expensive, and the Bactrian is not normally for sale to ordinary citizens who have not been vetted by the local government of the Deep."
+
 ship "Bastion"
 	sprite "ship/bastion"
 	attributes
@@ -283,7 +340,7 @@ ship "Carrier"
 	attributes
 		category "Heavy Warship"
 		"cost" 7200000
-		"shields" 10800
+		"shields" 14800
 		"hull" 8300
 		"required crew" 114
 		"bunks" 184
@@ -460,7 +517,7 @@ ship "Cruiser"
 	attributes
 		category "Heavy Warship"
 		"cost" 4200000
-		"shields" 12500
+		"shields" 17500
 		"hull" 6400
 		"required crew" 84
 		"bunks" 136
@@ -972,6 +1029,54 @@ ship "Leviathan"
 	explode "medium explosion" 24
 	explode "big explosion" 8
 	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
+
+ship "Mule"
+	sprite "ship/mule"
+	attributes
+		category "Light Warship"
+		"cost" 780000
+		"shields" 5600
+		"hull" 4400
+		"required crew" 9
+		"bunks" 43
+		"mass" 320
+		"drag" 5.7
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 270
+		"outfit space" 450
+		"weapon capacity" 210
+		"engine capacity" 110
+		weapon
+			"blast radius" 200
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Hyperdrive"
+		"Ramscoop"
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+	engine -12 123
+	engine 12 123
+	gun -9 -119 "Sidewinder Missile Launcher"
+	gun 9 -119 "Sidewinder Missile Launcher"
+	turret 22 -65 "Heavy Laser Turret"
+	turret -37 -21 "Heavy Laser Turret"
+	turret 39 35 "Heavy Laser Turret"
+	turret -9 59 "Heavy Anti-Missile Turret"
+	fighter -16 -9
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	description "The Mule is as much of a hodgepodge as its looks suggest. The Lionheart ship designers combined a good deal of cargo space with a decent amount of weaponry and even a fighter bay, and ended up with a ship that is mostly used as a freighter but must be classified as a warship because of its heavy armament and shields."
 
 ship "Osprey"
 	sprite "ship/osprey"
