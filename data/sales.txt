@@ -64,9 +64,11 @@ shipyard "Navy Advanced"
 
 shipyard "Megaparsec Basics"
 	"Quicksilver"
+	"Bounder"
 
 shipyard "Megaparsec Advanced"
 	"Splinter"
+	"Manta"
 
 shipyard "Syndicate Basics"
 	"Star Barge"

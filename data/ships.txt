@@ -287,6 +287,45 @@ ship "Blackbird"
 	explode "big explosion" 2
 	description "The Tarazed Blackbird is a high-class passenger transport, designed to move large numbers of people across the galaxy with speed and safety. Although not equipped with much weaponry, a Blackbird is well shielded and fast enough to evade pirate attacks, and its cargo capacity is high enough to allow the captain to take courier missions on the side."
 
+ship "Bounder"
+	sprite "ship/bounder"
+	attributes
+		category "Transport"
+		"cost" 540000
+		"shields" 2000
+		"hull" 700
+		"required crew" 3
+		"bunks" 17
+		"mass" 130
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 900
+		"cargo space" 40
+		"outfit space" 220
+		"weapon capacity" 50
+		"engine capacity" 110
+		weapon
+			"blast radius" 40
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"nGVF-CC Fuel Cell"
+		"Blaster Turret" 2
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	engine -12 44
+	engine 12 44
+	turret -37 4 "Blaster Turret"
+	turret 37 4 "Blaster Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	description "The Megaparsec Bounder is a scout ship and courier, designed not for battle but for carrying passengers and small amounts of cargo across large distances quickly."
+
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 	attributes
@@ -1029,6 +1068,51 @@ ship "Leviathan"
 	explode "medium explosion" 24
 	explode "big explosion" 8
 	description "The Betelgeuse Shipyards Leviathan has been in service since long before the Republic existed. Although considered today to be an outdated and clunky model, it is still a force to be reckoned with."
+
+ship "Manta"
+	sprite "ship/manta"
+	attributes
+		category "Light Warship"
+		"cost" 1200000
+		"shields" 3000
+		"hull" 1200
+		"required crew" 6
+		"bunks" 10
+		"mass" 170
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 340
+		"weapon capacity" 140
+		"engine capacity" 100
+		weapon
+			"blast radius" 40
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Particle Cannon" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"RT-I Radiothermal"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	engine -33 38
+	engine 33 38
+	gun -21 -35 "Particle Cannon"
+	gun 21 -35 "Particle Cannon"
+	gun -27 -35 "Particle Cannon"
+	gun 27 -35 "Particle Cannon"
+	gun -66 -32 "Meteor Missile Launcher"
+	gun 66 -32 "Meteor Missile Launcher"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+	description "After their Quicksilver light warship with its armament of particle cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
 
 ship "Mule"
 	sprite "ship/mule"
