@@ -251,14 +251,14 @@ void Controllable::SetDestination(const Planet *planet)
 
 // Add escorts to this ship. Escorts look to the parent ship for movement
 // cues and try to stay with it when it lands or goes into hyperspace.
-void Controllable::AddEscort(const weak_ptr<const Ship> &ship)
+void Controllable::AddEscort(const weak_ptr<Ship> &ship)
 {
 	escorts.push_back(ship);
 }
 
 
 
-void Controllable::SetParent(const weak_ptr<const Ship> &ship)
+void Controllable::SetParent(const weak_ptr<Ship> &ship)
 {
 	parent = ship;
 	targetShip.reset();
@@ -281,14 +281,14 @@ void Controllable::RemoveEscort(const Ship *ship)
 
 
 
-const vector<weak_ptr<const Ship>> &Controllable::GetEscorts() const
+const vector<weak_ptr<Ship>> &Controllable::GetEscorts() const
 {
 	return escorts;
 }
 
 
 
-shared_ptr<const Ship> Controllable::GetParent() const
+shared_ptr<Ship> Controllable::GetParent() const
 {
 	return parent.lock();
 }

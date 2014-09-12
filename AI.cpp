@@ -108,7 +108,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		{
 			it->ResetCommands();
 			const Personality &personality = it->GetPersonality();
-			shared_ptr<const Ship> parent = it->GetParent();
+			shared_ptr<Ship> parent = it->GetParent();
 			
 			// Fire any weapons that will hit the target.
 			it->SetFireCommands(AutoFire(*it, ships));
@@ -146,6 +146,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				}
 				if(parent && !parent->HasLaunchCommand())
 				{
+					it->SetTargetShip(parent);
 					MoveTo(*it, *it, parent->Position(), 40., .8);
 					(*it).SetBoardCommand();
 					continue;

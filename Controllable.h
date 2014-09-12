@@ -70,12 +70,12 @@ public:
 	
 	// Add escorts to this ship. Escorts look to the parent ship for movement
 	// cues and try to stay with it when it lands or goes into hyperspace.
-	void AddEscort(const std::weak_ptr<const Ship> &ship);
-	void SetParent(const std::weak_ptr<const Ship> &ship);
+	void AddEscort(const std::weak_ptr<Ship> &ship);
+	void SetParent(const std::weak_ptr<Ship> &ship);
 	void RemoveEscort(const Ship *ship);
 	
-	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
-	std::shared_ptr<const Ship> GetParent() const;
+	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
+	std::shared_ptr<Ship> GetParent() const;
 	
 	
 private:
@@ -87,8 +87,8 @@ private:
 	const System *targetSystem;
 	const Planet *destination;
 	
-	std::vector<std::weak_ptr<const Ship>> escorts;
-	std::weak_ptr<const Ship> parent;
+	std::vector<std::weak_ptr<Ship>> escorts;
+	std::weak_ptr<Ship> parent;
 };
 
 
