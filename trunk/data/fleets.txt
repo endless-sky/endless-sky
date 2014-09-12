@@ -91,6 +91,11 @@ fleet "Small Core Merchants"
 		"Freighter"
 		"Shuttle" 2
 		"Quicksilver"
+	variant 5
+		"Bounder"
+	variant 3
+		"Bounder"
+		"Shuttle"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -124,6 +129,9 @@ fleet "Large Core Merchants"
 	variant 1
 		"Bulk Freighter" 2
 		"Protector" 1
+	variant 2
+		"Bounder"
+		"Quicksilver" 2
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -365,6 +373,8 @@ fleet "Small Syndicate"
 	variant 1
 		"Splinter"
 		"Quicksilver" 2
+	variant 1
+		"Manta"
 
 fleet "Large Syndicate"
 	government "Syndicate"
@@ -381,6 +391,11 @@ fleet "Large Syndicate"
 		"Splinter" 2
 	variant 1
 		"Splinter" 3
+	variant 2
+		"Manta" 2
+	variant 3
+		"Manta"
+		"Quicksilver" 2
 	variant 2
 		"Quicksilver" 5
 	variant 1
