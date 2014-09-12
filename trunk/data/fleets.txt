@@ -83,7 +83,7 @@ fleet "Small Core Merchants"
 		"Freighter"
 	variant 1
 		"Freighter"
-		"Sparrow"
+		"Wasp"
 	variant 2
 		"Freighter"
 		"Star Barge (Armed)" 2
@@ -95,7 +95,10 @@ fleet "Small Core Merchants"
 		"Bounder"
 	variant 3
 		"Bounder"
-		"Shuttle"
+		"Wasp"
+	variant 1
+		"Freighter"
+		"Wasp" 2
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -110,7 +113,7 @@ fleet "Large Core Merchants"
 		"Quicksilver" 2
 	variant 5
 		"Bulk Freighter"
-		"Sparrow"
+		"Wasp" 2
 	variant 2
 		"Bulk Freighter"
 	variant 2

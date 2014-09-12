@@ -1608,3 +1608,44 @@ ship "Surveillance Drone"
 	engine 5 16
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
+
+ship "Wasp"
+	sprite "ship/wasp"
+	attributes
+		category "Interceptor"
+		"cost" 200000
+		"shields" 1500
+		"hull" 500
+		"required crew" 1
+		"bunks" 2
+		"mass" 60
+		"drag" 1.2
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 150
+		"weapon capacity" 25
+		"engine capacity" 60
+		weapon
+			"blast radius" 50
+			"shield damage" 200
+			"hull damage" 100
+			"hit force" 300
+	outfits
+		"Javelin Pod"
+		"Javelin" 200
+		"Energy Blaster" 2
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	engine -6 33
+	engine 6 33
+	gun 0 -38 "Javelin Pod"
+	gun -13 -31 "Energy Blaster"
+	gun 13 -31 "Energy Blaster"
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+	description "The wasp is a medium-strength interceptor, designed by Syndicated Shipyards to serve as an escort for cargo vessels. Like most Syndicate ships, it is not particularly pretty, but it at least serves the purpose it was made for."
