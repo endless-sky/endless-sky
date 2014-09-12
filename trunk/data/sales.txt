@@ -34,10 +34,12 @@ shipyard "Lionheart Basics"
 	"Scout"
 	"Dagger"
 	"Raven"
+	"Mule"
 
 shipyard "Lionheart Advanced"
 	"Aerie"
 	"Corvette"
+	"Bactrian"
 
 shipyard "Betelgeuse Basics"
 	"Shuttle"

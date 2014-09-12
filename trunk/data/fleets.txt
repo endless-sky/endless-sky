@@ -186,6 +186,11 @@ fleet "Small Free Worlds"
 	variant 4
 		"Hawk"
 		"Sparrow"
+	variant 2
+		"Hawk"
+		"Fury"
+	variant 2
+		"Fury" 2
 	variant 5
 		"Sparrow" 2
 	variant 1
@@ -209,7 +214,7 @@ fleet "Large Free Worlds"
 		"Bastion"
 	variant 4
 		"Osprey"
-		"Sparrow"
+		"Fury"
 	variant 2
 		"Argosy"
 	variant 3
@@ -303,6 +308,13 @@ fleet "Small Deep"
 		"Dagger" 2
 	variant 3
 		"Raven"
+	variant 6
+		"Mule"
+		"Dagger"
+	variant 2
+		"Mule"
+		"Dagger"
+		"Raven"
 
 fleet "Large Deep"
 	government "Republic"
@@ -319,13 +331,27 @@ fleet "Large Deep"
 		"Aerie"
 		"Dagger" 2
 		"Raven"
-	variant 7
+	variant 4
 		"Raven" 2
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
-	variant 3
+	variant 1
 		"Corvette" 2
+	variant 8
+		"Bactrian"
+		"Dagger" 3
+	variant 2
+		"Bactrian"
+		"Dagger" 3
+		"Raven"
+		"Aerie"
+		"Dagger" 2
+	variant 5
+		"Bactrian"
+		"Dagger" 3
+		"Mule" 2
+		"Dagger" 2
 
 fleet "Small Syndicate"
 	government "Syndicate"
