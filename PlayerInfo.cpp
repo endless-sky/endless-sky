@@ -895,6 +895,20 @@ const list<const Mission *> &PlayerInfo::SpecialMissions() const
 
 
 
+map<string, int> &PlayerInfo::Conditions()
+{
+	return conditions;
+}
+
+
+
+const map<string, int> &PlayerInfo::Conditions() const
+{
+	return conditions;
+}
+
+
+
 bool PlayerInfo::HasSeen(const System *system) const
 {
 	return (seen.find(system) != seen.end());
