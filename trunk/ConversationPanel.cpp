@@ -57,13 +57,6 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 
 
-void ConversationPanel::SetCallback(const Callback &callback)
-{
-	this->callback = callback;
-}
-
-
-
 // Draw this panel.
 void ConversationPanel::Draw() const
 {
@@ -162,7 +155,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		if(key == SDLK_RETURN)
 		{
-			callback(node);
+			if(callback)
+				callback(node);
 			GetUI()->Pop(this);
 		}
 		
@@ -233,7 +227,8 @@ bool ConversationPanel::Click(int x, int y)
 	{
 		if(zones.empty() || zones.front().Contains(point))
 		{
-			callback(node);
+			if(callback)
+				callback(node);
 			GetUI()->Pop(this);
 		}
 	}

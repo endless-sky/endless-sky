@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "Callback.h"
 #include "WrappedText.h"
 
+#include <functional>
 #include <memory>
 
 class Interface;
@@ -32,7 +32,7 @@ class System;
 // (trading, jobs, bank, port, and crew) are displayed within this dialog.
 class PlanetPanel : public Panel {
 public:
-	PlanetPanel(PlayerInfo &player, const Callback &callback);
+	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 	
 	virtual void Draw() const;
 	
@@ -48,7 +48,7 @@ protected:
 	
 private:
 	PlayerInfo &player;
-	Callback callback;
+	std::function<void()> callback = nullptr;
 	
 	const Planet &planet;
 	const System &system;
