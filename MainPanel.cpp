@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "UI.h"
 
+#include <functional>
 #include <set>
 #include <sstream>
 #include <string>
@@ -51,7 +52,7 @@ void MainPanel::Step(bool isActive)
 	if(isActive && player.GetPlanet())
 	{
 		player.Land();
-		GetUI()->Push(new PlanetPanel(player, *this));
+		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		FinishNormalMissions();
 		FinishSpecialMissions();
 		isActive = false;
@@ -120,7 +121,7 @@ void MainPanel::Draw() const
 
 
 // The planet panel calls this when it closes.
-void MainPanel::OnCallback(int)
+void MainPanel::OnCallback()
 {
 	engine.Place();
 }

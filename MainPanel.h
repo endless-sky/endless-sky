@@ -31,7 +31,7 @@ public:
 	virtual void Draw() const;
 	
 	// The planet panel calls this when it closes.
-	void OnCallback(int value);
+	void OnCallback();
 	
 	
 protected:

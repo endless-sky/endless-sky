@@ -132,7 +132,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		ConversationPanel *panel = new ConversationPanel(
 			player, *GameData::Conversations().Get("intro"));
 		GetUI()->Push(panel);
-		panel->SetCallback(*this);
+		panel->SetCallback(this, &LoadPanel::OnCallback);
 	}
 	else if(key == 'd' && !selectedPilot.empty())
 	{

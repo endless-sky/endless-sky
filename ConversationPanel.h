@@ -15,9 +15,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "Callback.h"
 #include "WrappedText.h"
 
+#include <functional>
 #include <list>
 #include <map>
 #include <string>
@@ -34,7 +34,9 @@ class System;
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr);
-	void SetCallback(const Callback &callback);
+	
+template <class T>
+	void SetCallback(T *t, void (T::*fun)(int));
 	
 	// Draw this panel.
 	virtual void Draw() const;
@@ -70,7 +72,7 @@ private:
 	
 	const Conversation &conversation;
 	int node;
-	Callback callback;
+	std::function<void(int)> callback = nullptr;
 	
 	int scroll;
 	
@@ -87,6 +89,14 @@ private:
 	
 	const System *system;
 };
+
+
+
+template <class T>
+void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
+{
+	callback = std::bind(fun, t, std::placeholders::_1);
+}
 
 
 

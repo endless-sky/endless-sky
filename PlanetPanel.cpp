@@ -35,7 +35,7 @@ using namespace std;
 
 
 
-PlanetPanel::PlanetPanel(PlayerInfo &player, const Callback &callback)
+PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet")),
@@ -99,7 +99,7 @@ void PlanetPanel::OnCallback(int value)
 			player,
 			player.NextSpecialMission()->Introduction(),
 			player.NextSpecialMission()->Destination()->GetSystem());
-		panel->SetCallback(*this);
+		panel->SetCallback(this, &PlanetPanel::OnCallback);
 		GetUI()->Push(panel);
 	}
 }
@@ -119,7 +119,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		if(planet.HasSpaceport())
 			player.Save();
 		player.TakeOff();
-		callback();
+		if(callback)
+			callback();
 		GetUI()->Pop(this);
 	}
 	else if(key == 'l')
@@ -146,7 +147,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				player,
 				player.NextSpecialMission()->Introduction(),
 			player.NextSpecialMission()->Destination()->GetSystem());
-			panel->SetCallback(*this);
+			panel->SetCallback(this, &PlanetPanel::OnCallback);
 			GetUI()->Push(panel);
 		}
 	}
