@@ -845,6 +845,15 @@ void PlayerInfo::CompleteMission(const Mission &mission)
 
 
 
+// Callback for accepting or declining whatever mission has been offered.
+void PlayerInfo::MissionCallback(int response)
+{
+	// TODO: handle this.
+	response = response;
+}
+
+
+
 const Mission *PlayerInfo::NextSpecialMission() const
 {
 	if(availableSpecials.empty())

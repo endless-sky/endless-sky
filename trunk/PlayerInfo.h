@@ -108,6 +108,8 @@ public:
 	void AddMission(const Mission &mission);
 	void AbortMission(const Mission &mission);
 	void CompleteMission(const Mission &mission);
+	// Callback for accepting or declining whatever mission has been offered.
+	void MissionCallback(int response);
 	
 	// Special missions.
 	const Mission *NextSpecialMission() const;
