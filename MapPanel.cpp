@@ -225,14 +225,14 @@ void MapPanel::DrawSystems() const
 			{
 				// Color based on the government's specified color.
 				color = Color(
-					.6f * system.GetGovernment().GetColor().Get()[0],
-					.6f * system.GetGovernment().GetColor().Get()[1],
-					.6f * system.GetGovernment().GetColor().Get()[2],
+					.6f * system.GetGovernment()->GetColor().Get()[0],
+					.6f * system.GetGovernment()->GetColor().Get()[1],
+					.6f * system.GetGovernment()->GetColor().Get()[2],
 					.4f);
 			}
 			else
 			{
-				double reputation = GameData::GetPolitics().Reputation(&system.GetGovernment());
+				double reputation = GameData::GetPolitics().Reputation(system.GetGovernment());
 				if(reputation >= 0.)
 				{
 					reputation = min(1., .1 * log(1. + reputation) + .1);

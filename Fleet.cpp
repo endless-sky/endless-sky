@@ -76,7 +76,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
 		choice -= variants[index].weight;
 	
-	bool isEnemy = system.GetGovernment().IsEnemy(government);
+	bool isEnemy = system.GetGovernment()->IsEnemy(government);
 	const vector<const System *> &linkVector = ships.front()->Attributes().Get("jump drive")
 		? system.Neighbors() : system.Links();
 	int links = linkVector.size();

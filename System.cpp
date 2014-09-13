@@ -179,10 +179,10 @@ const Point &System::Position() const
 
 
 // Get this system's government.
-const Government &System::GetGovernment() const
+const Government *System::GetGovernment() const
 {
 	static const Government empty;
-	return government ? *government : empty;
+	return government ? government : &empty;
 }
 
 
