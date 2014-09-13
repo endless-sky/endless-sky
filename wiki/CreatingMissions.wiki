@@ -21,6 +21,8 @@ mission <name>
     (source | destination)
         planet <name>*
             <name>*
+        system <name>*
+            <name>*
         government <name>*
             <name>*
         attribute <name>*
@@ -29,6 +31,10 @@ mission <name>
         distance ((<min>) <max>)
     npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
         (enter | remain | wait) (<system>)
+            system <name>*
+                <name>*
+            government <name>*
+                <name>*
             near <system> ((<min>) <max>)
             distance ((<min>) <max>)
         dialog <text>
@@ -193,6 +199,13 @@ planet <name>*
 This says that the planet must be one of the named planets. The list of names can either be all on one line, or split between multiple lines if it is particularly long; the subsequent lines must be indented so that they are "children" of the "planet" node. As with most of these filters, you can also have more than one "planet" entry, in which case the planet chosen must be in any one of the lists.
 
 {{{
+system <name>*
+    <name>*
+}}}
+
+The system must be one of the items in this list. You can use this if you do not want to bother to look up what planets are in the system, but the intended use is for the NPC location filter as described later.
+
+{{{
 government <name>*
     <name>*
 }}}
@@ -266,6 +279,10 @@ Each "npc" tag may have one or more tags following it, specifying what the playe
 
 {{{
 (enter | remain | wait) (<system>)
+    system <name>*
+        <name>*
+    government <name>*
+        <name>*
     near <system> ((<min>) <max>)
     distance ((<min>) <max>)
 }}}
@@ -280,7 +297,7 @@ For example, a ship you must repair would "wait" in another system (or possibly 
 
 If no action is specified, the default NPC action is to take off from the planet along with the player. So, you would omit this node entirely for escort missions, for example.
 
-The "near" and "distance" filters operate the same way they do in the descriptions in the previous section, and can be used instead of naming a particular system.
+The "system", "government", "near", and "distance" filters operate the same way they do in the descriptions in the previous section, and can be used instead of naming a particular system. For example, you could have the NPC start out in any Pirate system, or within two jumps of the current system.
 
 {{{
 dialog <text>
