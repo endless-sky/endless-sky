@@ -144,14 +144,14 @@ If you want a mission to be offered any number of times but to limit the number 
 
 = Conditions =
 
-"Conditions" are named values that represent things the player has done. Conditions start out with a value of zero. Conditions can have almost any name you want, as long as you make sure not to use the same name in two places. A few names are reserved for special purposes:
+"Conditions" are named values that represent things the player has done. Conditions start out with a value of zero, and can only have integer values. Conditions can have almost any name you want, as long as you make sure not to use the same name in two places. A few names are reserved for special purposes:
 
   * `"<mission name>: offered"`, where `<mission name>` is replaced with the name of any mission. This is incremented whenever a mission is offered to you, and is used by the "repeat" check to make sure a mission is not offered too many times.
   * `"<mission name>: done"` is set when a mission is successfully completed.
-  * `"reputation: <government>"` is set to your current reputation with the given government.
-  * "reputation" is your reputation in the current system.
-  * "combat rating" is your current combat rating.
-  * "random" is a random number between 0 and 1. This can be used to make a mission only sometimes appear when all other conditions are met.
+  * `"reputation: <government>"` is set to your current reputation with the given government, rounded down to a whole number.
+  * "reputation" is your reputation in the current system, rounded down.
+  * "combat rating" is your current combat rating, rounded down.
+  * "random" is a random number between 0 and 99. This can be used to make a mission only sometimes appear when all other conditions are met.
 
 Conditions are checked at two times when processing a mission: when determining whether the mission can be offered right now (in the "to offer" tag), and when determining whether it has been completed successfully (in the "to complete" tag):
 
