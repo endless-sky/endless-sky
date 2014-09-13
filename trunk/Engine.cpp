@@ -76,7 +76,7 @@ Engine::Engine(PlayerInfo &player)
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
 				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
-				Radar::FRIENDLY : Radar::UNFRIENDLY;
+				Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
 			draw[calcTickTock].Add(object.GetSprite(), position, unit);
@@ -236,7 +236,7 @@ void Engine::Step(bool isActive)
 				Angle(45.),
 				flagship->GetTargetPlanet()->Radius(),
 				GameData::GetPolitics().CanLand(flagship->GetTargetPlanet()->GetPlanet()) ?
-					Radar::FRIENDLY : Radar::UNFRIENDLY});
+					Radar::FRIENDLY : Radar::HOSTILE});
 		}
 		else if(flagship && flagship->GetTargetSystem())
 		{
@@ -584,7 +584,7 @@ void Engine::CalculateStep()
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
 				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
-				Radar::FRIENDLY : Radar::UNFRIENDLY;
+				Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
 			draw[calcTickTock].Add(object.GetSprite(), position, unit);
