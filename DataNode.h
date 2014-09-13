@@ -25,6 +25,7 @@ public:
 	const std::string &Token(int index) const;
 	double Value(int index) const;
 	
+	bool HasChildren() const;
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
 	
