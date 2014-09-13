@@ -21,6 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <functional>
 #include <string>
 
+class PlayerInfo;
+
 
 
 class Dialog : public Panel {
@@ -28,6 +30,8 @@ public:
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	Dialog(const std::string &text);
+	// Mission accept / decline dialog.
+	Dialog(const std::string &text, PlayerInfo &player);
 	virtual ~Dialog() = default;
 	
 	// Three different kinds of dialogs can be constructed: requesting numerical
@@ -55,7 +59,7 @@ protected:
 	
 private:
 	// Common code from all three constructors:
-	void Init(const std::string &message, bool canCancel = true);
+	void Init(const std::string &message, bool canCancel = true, bool isMission = false);
 	void DoCallback() const;
 	
 	
@@ -69,6 +73,7 @@ private:
 	
 	bool canCancel;
 	bool okIsActive;
+	bool isMission;
 	
 	std::string input;
 	

@@ -13,10 +13,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 
 #include "Color.h"
+#include "Conversation.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "shift.h"
@@ -41,6 +43,15 @@ namespace {
 Dialog::Dialog(const std::string &text)
 {
 	Init(text, false);
+}
+
+
+
+// Mission accept / decline dialog.
+Dialog::Dialog(const string &text, PlayerInfo &player)
+	: intFun(bind(&PlayerInfo::MissionCallback, &player, std::placeholders::_1))
+{
+	Init(text, true, true);
 }
 
 
@@ -85,24 +96,26 @@ void Dialog::Draw() const
 	Color back = *GameData::Colors().Get("faint");
 	if(canCancel)
 	{
+		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(10., 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		Point labelPos(
-			cancelPos.X() - .5 * font.Width("Cancel"),
+			cancelPos.X() - .5 * font.Width(cancelText),
 			cancelPos.Y() - .5 * font.Height());
-		font.Draw("Cancel", labelPos, !okIsActive ? bright : dim);
+		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
 	}
+	string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point(90., 0.);
 	Point labelPos(
-		okPos.X() - .5 * font.Width("OK"),
+		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
-	font.Draw("OK", labelPos, okIsActive ? bright : dim);
+	font.Draw(okText, labelPos, okIsActive ? bright : dim);
 	
 	// Draw the text.
 	text.Draw(textPos, dim);
 	
 	// Draw the input, if any.
-	if(intFun || stringFun)
+	if(!isMission && (intFun || stringFun))
 	{
 		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), back);
 		
@@ -141,7 +154,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod)
 		okIsActive = true;
 	else if(key == SDLK_RETURN)
 	{
-		if(okIsActive)
+		if(okIsActive || isMission)
 			DoCallback();
 		
 		GetUI()->Pop(this);
@@ -178,10 +191,11 @@ bool Dialog::Click(int x, int y)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const std::string &message, bool canCancel)
+void Dialog::Init(const std::string &message, bool canCancel, bool isMission)
 {
 	TrapAllEvents();
 	
+	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 	
@@ -204,6 +218,14 @@ void Dialog::Init(const std::string &message, bool canCancel)
 
 void Dialog::DoCallback() const
 {
+	if(isMission)
+	{
+		if(intFun)
+			intFun(okIsActive ? Conversation::ACCEPT : Conversation::DECLINE);
+		
+		return;
+	}
+	
 	if(intFun)
 		intFun(input.empty() ? 0 : stoi(input));
 	
