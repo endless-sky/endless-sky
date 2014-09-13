@@ -13,11 +13,53 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Conversation.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
+#include "Format.h"
 #include "SpriteSet.h"
 
 #include <iostream>
 
 using namespace std;
+
+namespace {
+	// Get the index of the given special string. 0 means it is "goto", a number
+	// less than 0 means it is an outcome, and 1 means no match.
+	static int TokenIndex(const std::string &token)
+	{
+		if(token == "accept")
+			return Conversation::ACCEPT;
+		if(token == "decline")
+			return Conversation::DECLINE;
+		if(token == "die")
+			return Conversation::DIE;
+		if(token == "defer")
+			return Conversation::DEFER;
+		if(token == "launch")
+			return Conversation::LAUNCH;
+	
+		return 0;
+	}
+	
+	static void WriteToken(int index, DataWriter &out)
+	{
+		out.BeginChild();
+			
+		if(index >= 0)
+			out.Write("goto", index);
+		else if(index == Conversation::ACCEPT)
+			out.Write("accept");
+		else if(index == Conversation::DECLINE)
+			out.Write("decline");
+		else if(index == Conversation::DIE)
+			out.Write("die");
+		else if(index == Conversation::DEFER)
+			out.Write("defer");
+		else if(index == Conversation::LAUNCH)
+			out.Write("launch");
+					
+		out.EndChild();
+	}
+}
 
 
 
@@ -43,7 +85,10 @@ void Conversation::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "scene" && child.Size() >= 2)
-			scene = SpriteSet::Get(child.Token(1));
+		{
+			sceneName = child.Token(1);
+			scene = SpriteSet::Get(sceneName);
+		}
 		else if(child.Token(0) == "label" && child.Size() >= 2)
 		{
 			// You cannot merge text above a label with text below it.
@@ -151,9 +196,69 @@ void Conversation::Load(const DataNode &node)
 
 
 
+void Conversation::Save(DataWriter &out) const
+{
+	out.Write("conversation", identifier);
+	out.BeginChild();
+	
+	if(scene)
+		out.Write("scene", sceneName);
+	
+	for(unsigned i = 0; i < nodes.size(); ++i)
+	{
+		out.Write("label", i);
+		const Node &node = nodes[i];
+		
+		if(node.isChoice)
+		{
+			out.Write(node.data.empty() ? "name" : "choice");
+			out.BeginChild();
+		}
+		for(const auto &it : node.data)
+		{
+			// Break the text up into paragraphs.
+			size_t begin = 0;
+			while(begin != it.first.length())
+			{
+				size_t pos = it.first.find('\n', begin);
+				if(pos == string::npos)
+					pos = it.first.length();
+				out.Write(it.first.substr(begin, pos - begin));
+				if(pos == it.first.length())
+					break;
+				begin = pos + 1;
+			}
+			int index = it.second;
+			if(index > 0 && static_cast<unsigned>(index) >= nodes.size())
+				index = -1;
+			
+			WriteToken(index, out);
+		}
+		if(node.isChoice)
+			out.EndChild();
+		out.Write();
+	}
+	
+	out.EndChild();
+}
+
+
+
 bool Conversation::IsEmpty() const
 {
 	return nodes.empty();
+}
+
+
+
+// Do text replacement throughout this conversation.
+Conversation Conversation::Substitute(const map<string, string> &subs) const
+{
+	Conversation result = *this;
+	for(Node &node : result.nodes)
+		for(pair<string, int> &choice : node.data)
+			choice.first = Format::Replace(choice.first, subs);
+	return result;
 }
 
 
@@ -256,20 +361,4 @@ void Conversation::Goto(const string &label, int node, int choice)
 		unresolved.insert({label, {node, choice}});
 	else
 		nodes[node].data[choice].second = it->second;
-}
-
-
-
-// Get the index of the given special string. 0 means it is "goto", a number
-// less than 0 means it is an outcome, and 1 means no match.
-int Conversation::TokenIndex(const string &token)
-{
-	if(token == "accept")
-		return ACCEPT;
-	if(token == "decline")
-		return DECLINE;
-	if(token == "die")
-		return DIE;
-	
-	return 0;
 }

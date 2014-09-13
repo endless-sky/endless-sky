@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class DataNode;
+class DataWriter;
 class Sprite;
 
 
@@ -30,16 +31,24 @@ class Sprite;
 class Conversation {
 public:
 	// The possible outcomes of a conversation:
+	// TODO: Once the code can handle "defer" and "launch", give them unique
+	// indices instead of having them be equal to other options.
 	static const int ACCEPT = -1;
 	static const int DECLINE = -2;
 	static const int DIE = -3;
+	static const int DEFER = -2;
+	static const int LAUNCH = -1;
 	
 	
 public:
 	Conversation();
 	
 	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
 	bool IsEmpty() const;
+	
+	// Do text replacement throughout this conversation.
+	Conversation Substitute(const std::map<std::string, std::string> &subs) const;
 	
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.
@@ -68,9 +77,6 @@ private:
 	// Set up a "goto". Depending on whether the named label has been seen yet
 	// or not, it is either resolved immediately or added to the unresolved set.
 	void Goto(const std::string &label, int node, int choice = 0);
-	// Get the index of the given special string. 0 means it is "goto", a number
-	// less than 0 means it is an outcome, and 1 means no match.
-	static int TokenIndex(const std::string &token);
 	
 	
 private:
@@ -80,6 +86,7 @@ private:
 	std::vector<Node> nodes;
 	
 	const Sprite *scene;
+	std::string sceneName;
 };
 
 

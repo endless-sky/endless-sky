@@ -43,6 +43,13 @@ double DataNode::Value(int index) const
 
 
 
+bool DataNode::HasChildren() const
+{
+	return !children.empty();
+}
+
+
+
 list<DataNode>::const_iterator DataNode::begin() const
 {
 	return children.begin();
