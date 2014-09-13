@@ -8,7 +8,7 @@ The basic syntax of a mission description is:
 mission <name>
     description <text>
     deadline (<days>)
-    cargo <name><number> (<number> (<probability>))
+    cargo (random | <name>) <number> (<number> (<probability>))
         illegal <level>
         illegal <government> <level>
     passengers <number> (<number> (<probability>))
@@ -36,7 +36,7 @@ mission <name>
             government <name>*
                 <name>*
             near <system> ((<min>) <max>)
-            distance ((<min>) <max>)
+            distance (<min>) <max>
         dialog <text>
             <text>*
         conversation <name>
@@ -109,12 +109,14 @@ deadline (<days>)
 The number of days you have to complete the mission. If the number of days is left out (i.e. it is just the word "deadline", that means use the default deadline (2 days `*` number of hyperspace jumps to the destination). In a saved game, the `<days>` amount is stored as an absolute date instead of a relative number, e.g. "deadline 29 1 3014".
 
 {{{
-cargo <name> <number> (<number> (<probability>))
+cargo (random | <name>) <number> (<number> (<probability>))
     illegal <level>
     illegal <government> <level>
 }}}
 
 This specifies the cargo that you are carrying. If `<name>` is one of the standard commodity names defined in the "trade" data, it will be replaced by a random one of the specific names for that commodity, e.g. "Food" might be replaced by "canned fruit" or "evaporated milk".
+
+If the given cargo name is the word "random", a random basic commodity type will be chosen based on the relative commodity prices at the source and destination system. That is, it will attempt to pick a commodity that would make sense as an export from the one system to the other.
 
 If two amounts are given instead of one, that means that a random amount should be chosen in between those two numbers (inclusive).
 
@@ -184,7 +186,7 @@ Each mission starts on a planet, and ends on a planet, usually different from wh
     attribute <name>*
         <name>*
     near <system> ((<min>) <max>)
-    distance ((<min>) <max>)
+    distance (<min>) <max>
 }}}
 
 If no destination is specified, the destination is the same as the source planet. This can be useful for missions that should end on the same planet they start on, such as "Kill pirate ship X and return here for payment." If no source is specified, the mission will be offered whenever its "to offer" conditions are satisfied; this can be used to create a mission that is offered as soon as you complete another.
@@ -241,7 +243,7 @@ near <system> ((<min>) <max>)
 If one number is given, the planet must be within that number of jumps from the given system (which includes the given system itself). If two numbers are given, the distance from the given system must be at least as high as the first number, and no more than the second. If no numbers are given, the planet must be in the given system or one of the systems it is linked to; this is equivalent to giving distances of 0 and 1.
 
 {{{
-distance ((<min>) <max>)
+distance (<min>) <max>
 }}}
 
 This is the same as the "near" tag, but gives distances relative to the origin planet. (So, this tag only makes sense within a "destination" filter, not within a "source" filter.)
