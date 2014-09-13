@@ -51,7 +51,6 @@ protected:
 	
 private:
 	void Goto(int index);
-	std::string Substitute(const std::string &source) const;
 	
 	
 private:

@@ -94,3 +94,44 @@ string Format::Number(double value)
 	
 	return result;
 }
+
+
+
+string Format::Replace(const string source, const map<string, string> keys)
+{
+	string result;
+	result.reserve(source.length());
+	
+	size_t start = 0;
+	size_t search = start;
+	while(search < source.length())
+	{
+		size_t left = source.find('<', search);
+		if(left == string::npos)
+			break;
+		
+		size_t right = source.find('>', left);
+		if(right == string::npos)
+			break;
+		
+		bool matched = false;
+		++right;
+		size_t length = right - left;
+		for(const auto &it : keys)
+			if(!source.compare(left, length, it.first))
+			{
+				result.append(source, start, left - start);
+				result.append(it.second);
+				start = right;
+				search = start;
+				matched = true;
+				break;
+			}
+		
+		if(!matched)
+			search = left + 1;
+	}
+	
+	result.append(source, start, source.length() - start);
+	return result;
+}
