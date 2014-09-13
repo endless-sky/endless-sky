@@ -91,7 +91,7 @@ void LoadPanel::Draw() const
 		point += Point(0., 20.);
 	}
 	
-	if(!selectedPilot.empty())
+	if(!selectedPilot.empty() && files.find(selectedPilot) != files.end())
 	{
 		point = Point(-100., -157.);
 		for(const string &file : files.find(selectedPilot)->second)
