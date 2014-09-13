@@ -786,7 +786,14 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				if(distance < object.Radius())
 					message = object.LandingMessage();
 			}
-		if(message.empty() && control.GetTargetPlanet())
+		const StellarObject *target = control.GetTargetPlanet();
+		if(target && ship.Position().Distance(target->Position()) < target->Radius())
+		{
+			// Special case: if there are two planets in system and you have one
+			// selected, then press "land" again, do not toggle to the other if
+			// you are within landing range of the one you have selected.
+		}
+		else if(message.empty() && target)
 		{
 			bool found = false;
 			const StellarObject *next = nullptr;
