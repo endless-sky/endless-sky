@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sale.h"
 
+#include <set>
 #include <string>
 #include <vector>
 
@@ -39,6 +40,9 @@ public:
 	const std::string &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
+	
+	// Get the list of "attributes" of the planet.
+	const std::set<std::string> &Attributes() const;
 	
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).
@@ -72,6 +76,8 @@ private:
 	std::string description;
 	std::string spaceport;
 	const Sprite *landscape = nullptr;
+	
+	std::set<std::string> attributes;
 	
 	std::vector<const Sale<Ship> *> shipSales;
 	std::vector<const Sale<Outfit> *> outfitSales;
