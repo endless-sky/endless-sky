@@ -117,6 +117,9 @@ public:
 	void DeclineSpecialMission();
 	const std::list<const Mission *> &SpecialMissions() const;
 	
+	std::map<std::string, int> &Conditions();
+	const std::map<std::string, int> &Conditions() const;
+	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
 	void Visit(const System *system);
