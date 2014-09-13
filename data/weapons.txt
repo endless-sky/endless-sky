@@ -266,8 +266,8 @@ outfit "Particle Cannon"
 		"firing force" 10
 		"firing heat" 120
 		"hit force" 80
-		"shield damage" 42
-		"hull damage" 65
+		"shield damage" 54
+		"hull damage" 78
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
  
 outfit "Plasma Cannon"
@@ -289,8 +289,8 @@ outfit "Plasma Cannon"
 		"firing energy" 30
 		"firing heat" 180
 		"hit force" 30
-		"shield damage" 32
-		"hull damage" 26
+		"shield damage" 50
+		"hull damage" 32
 		"heat damage" 240
 	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
