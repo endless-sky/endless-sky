@@ -153,7 +153,7 @@ void MapDetailPanel::DrawInfo() const
 	
 	governmentY = uiPoint.Y() + 10.;
 	string gov = player.HasVisited(selectedSystem) ?
-		selectedSystem->GetGovernment().GetName() : "Unknown Government";
+		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
 	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == -3) ? closeColor : farColor);
 	if(commodity == -3)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),

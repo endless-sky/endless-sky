@@ -80,7 +80,7 @@ HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *planet)
 	: player(player), planet(planet)
 {
-	const Government *gov = &player.GetSystem()->GetGovernment();
+	const Government *gov = player.GetSystem()->GetGovernment();
 	if(planet->GetPlanet())
 		header = gov->GetName() + " planet \"" + planet->GetPlanet()->Name() + "\":";
 	

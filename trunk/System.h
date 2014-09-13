@@ -73,7 +73,7 @@ public:
 	const std::string &Name() const;
 	const Point &Position() const;
 	// Get this system's government.
-	const Government &GetGovernment() const;
+	const Government *GetGovernment() const;
 	
 	// Get a list of systems you can travel to through hyperspace from here.
 	const std::vector<const System *> &Links() const;
