@@ -32,6 +32,11 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	{
 		if(child.Token(0) == "landscape" && child.Size() >= 2)
 			landscape = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "attributes")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				attributes.insert(child.Token(i));
+		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
@@ -75,6 +80,14 @@ const string &Planet::Description() const
 const Sprite *Planet::Landscape() const
 {
 	return landscape;
+}
+
+
+
+// Get the list of "attributes" of the planet.
+const set<string> &Planet::Attributes() const
+{
+	return attributes;
 }
 
 
