@@ -21,7 +21,7 @@ name "friendly civilian"
 		"Fair winds"
 		"clear skies"
 		"the best of luck"
-		"fair winds and bright skies "
+		"fair winds and bright skies"
 	word
 		" be with you!"
 		" be with you today!"
