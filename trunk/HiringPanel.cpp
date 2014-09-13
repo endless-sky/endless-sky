@@ -96,9 +96,15 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		return false;
 	
 	if(key == 'h' || key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
+	{
 		player.GetShip()->AddCrew(min(maxHire, Modifier()));
+		player.UpdateCargoCapacities();
+	}
 	else if(key == 'f' || key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
+	{
 		player.GetShip()->AddCrew(-min(maxFire, Modifier()));
+		player.UpdateCargoCapacities();
+	}
 	
 	return false;
 }
