@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Class representing a date (day, month, and year).
 class Date {
 public:
+	Date();
 	Date(int day, int month, int year);
 	
 	const std::string &ToString() const;

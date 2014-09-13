@@ -27,6 +27,13 @@ namespace {
 
 
 
+Date::Date()
+	: today(0), str(MAX_SIZE, '\0')
+{
+}
+
+
+
 Date::Date(int day, int month, int year)
 	: str(MAX_SIZE, '\0')
 {
