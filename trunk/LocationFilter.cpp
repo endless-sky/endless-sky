@@ -1,0 +1,157 @@
+/* LocationFilter.cpp
+Copyright (c) 2014 by Michael Zahniser
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+*/
+
+#include "LocationFilter.h"
+
+#include "DistanceMap.h"
+#include "GameData.h"
+
+using namespace std;
+
+namespace {
+	bool SetsIntersect(const set<string> &a, const set<string> &b)
+	{
+		// Quickest way to find out if two sets contain common elements: iterate
+		// through both of them in sorted order.
+		auto ait = a.begin();
+		auto bit = b.begin();
+		while(ait != a.end() && bit != b.end())
+		{
+			int comp = ait->compare(*bit);
+			if(!comp)
+				return true;
+			else if(comp < 0)
+				++ait;
+			else
+				++bit;
+		}
+		return false;
+	}
+}
+
+
+
+// There is no need to save a location filter, because any mission that is
+// in the saved game will already have "applied" the filter to choose a
+// particular planet or system.
+void LocationFilter::Load(const DataNode &node)
+{
+	for(int i = 1; i < node.Size(); ++i)
+		planets.insert(GameData::Planets().Get(node.Token(i)));
+	
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "planet")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				planets.insert(GameData::Planets().Get(child.Token(i)));
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+					planets.insert(GameData::Planets().Get(grand.Token(i)));
+		}
+		else if(child.Token(0) == "system")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				systems.insert(GameData::Systems().Get(child.Token(i)));
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+					systems.insert(GameData::Systems().Get(grand.Token(i)));
+		}
+		else if(child.Token(0) == "government")
+		{
+			for(int i = 1; i < child.Size(); ++i)
+				governments.insert(GameData::Governments().Get(child.Token(i)));
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+					governments.insert(GameData::Governments().Get(grand.Token(i)));
+		}
+		else if(child.Token(0) == "attribute")
+		{
+			attributes.push_back(set<string>());
+			for(int i = 1; i < child.Size(); ++i)
+				attributes.back().insert(child.Token(i));
+			for(const DataNode &grand : child)
+				for(int i = 0; i < grand.Size(); ++i)
+					attributes.back().insert(grand.Token(i));
+			// Don't allow empty attribute sets; that's probably a typo.
+			if(attributes.back().empty())
+				attributes.pop_back();
+		}
+		else if(child.Token(0) == "near" && child.Size() >= 2)
+		{
+			center = GameData::Systems().Get(child.Token(1));
+			if(child.Size() == 3)
+				centerMaxDistance = child.Value(1);
+			else if(child.Size() == 4)
+			{
+				centerMinDistance = child.Value(1);
+				centerMaxDistance = child.Value(2);
+			}
+		}
+		else if(child.Token(0) == "distance" && child.Size() >= 2)
+		{
+			if(child.Size() == 2)
+				originMaxDistance = child.Value(1);
+			else if(child.Size() == 3)
+			{
+				originMinDistance = child.Value(1);
+				originMaxDistance = child.Value(2);
+			}
+		}
+	}
+}
+
+
+
+// If the player is in the given system, does this filter match?
+bool LocationFilter::Matches(const Planet *planet, const System *origin) const
+{
+	if(!planet)
+		return false;
+	
+	if(!planets.empty() && planets.find(planet) == planets.end())
+		return false;
+	for(const set<string> &attr : attributes)
+		if(!SetsIntersect(attr, planet->Attributes()))
+			return false;
+	
+	return Matches(planet->GetSystem(), origin);
+}
+
+
+
+bool LocationFilter::Matches(const System *system, const System *origin) const
+{
+	if(!systems.empty() && systems.find(system) == systems.end())
+		return false;
+	if(!governments.empty() && governments.find(system->GetGovernment()) == governments.end())
+		return false;
+	
+	if(center)
+	{
+		DistanceMap distance(center, centerMaxDistance);
+		// Distance() will return -1 if the system was not within the given max
+		// distance, so this checks for that as well as for the minimum:
+		if(distance.Distance(system) < centerMinDistance)
+			return false;
+	}
+	if(origin && originMaxDistance >= 0)
+	{
+		DistanceMap distance(origin, originMaxDistance);
+		// Distance() will return -1 if the system was not within the given max
+		// distance, so this checks for that as well as for the minimum:
+		if(distance.Distance(system) < originMinDistance)
+			return false;
+	}
+	
+	return true;
+}
