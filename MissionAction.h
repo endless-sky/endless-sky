@@ -53,7 +53,7 @@ public:
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(const std::map<std::string, std::string> &subs) const;
+	MissionAction Instantiate(std::map<std::string, std::string> &subs, int defaultPayment) const;
 	
 	
 private:

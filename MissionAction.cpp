@@ -117,19 +117,6 @@ int MissionAction::Payment() const
 
 
 
-// Tell this object what the default payment for this mission turned out to
-// be. It will ignore this information if it is not giving default payment.
-void MissionAction::SetDefaultPayment(int credits)
-{
-	if(giveDefaultPayment)
-	{
-		payment += credits;
-		giveDefaultPayment = false;
-	}
-}
-
-
-
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player) const
@@ -226,10 +213,18 @@ void MissionAction::Do(PlayerInfo &player, UI &ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(const map<string, string> &subs) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultPayment) const
 {
 	MissionAction result;
 	result.trigger = trigger;
+	
+	result.gifts = gifts;
+	result.payment = payment + (giveDefaultPayment ? defaultPayment : 0);
+	// Fill in the payment amount if this is the "complete" action (which comes
+	// before all the others in the list).
+	if(trigger == "complete")
+		subs["<payment>"] = Format::Number(result.payment)
+			+ (result.payment == 1 ? " credit" : " credits");
 	
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(dialogText, subs);
@@ -238,9 +233,6 @@ MissionAction MissionAction::Instantiate(const map<string, string> &subs) const
 		result.conversation = stockConversation->Substitute(subs);
 	else if(!conversation.IsEmpty())
 		result.conversation = conversation.Substitute(subs);
-	
-	result.gifts = gifts;
-	result.payment = payment;
 	
 	result.conditions = conditions;
 	
