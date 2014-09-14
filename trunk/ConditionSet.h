@@ -34,6 +34,8 @@ public:
 	// they may be interspersed with other data.
 	void Save(DataWriter &out) const;
 	
+	bool IsEmpty() const;
+	
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	void Add(const std::string &firstToken, const std::string &secondToken);

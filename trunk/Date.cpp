@@ -82,6 +82,15 @@ void Date::operator++(int)
 
 
 
+Date Date::operator+(int days) const
+{
+	Date result;
+	result.today += days * SECONDS_PER_DAY;
+	return result;
+}
+
+
+
 // Get the number of days that have elapsed since the "epoch".
 double Date::DaysSinceEpoch() const
 {

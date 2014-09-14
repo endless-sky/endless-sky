@@ -59,6 +59,13 @@ void ConditionSet::Save(DataWriter &out) const
 
 
 
+bool ConditionSet::IsEmpty() const
+{
+	return entries.empty();
+}
+
+
+
 void ConditionSet::Add(const DataNode &node)
 {
 	if(node.Size() == 2)

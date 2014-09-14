@@ -32,8 +32,8 @@ public:
 	void Load(const DataNode &node);
 	
 	// If the player is in the given system, does this filter match?
-	bool Matches(const Planet *planet, const System *origin) const;
-	bool Matches(const System *system, const System *origin) const;
+	bool Matches(const Planet *planet, const System *origin = nullptr) const;
+	bool Matches(const System *system, const System *origin = nullptr) const;
 	
 	
 private:

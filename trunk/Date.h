@@ -28,6 +28,7 @@ public:
 	
 	void operator++();
 	void operator++(int);
+	Date operator+(int days) const;
 	
 	// Get the number of days that have elapsed since the "epoch".
 	double DaysSinceEpoch() const;
