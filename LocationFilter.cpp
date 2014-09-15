@@ -74,7 +74,7 @@ void LocationFilter::Load(const DataNode &node)
 				for(int i = 0; i < grand.Size(); ++i)
 					governments.insert(GameData::Governments().Get(grand.Token(i)));
 		}
-		else if(child.Token(0) == "attribute")
+		else if(child.Token(0) == "attributes")
 		{
 			attributes.push_back(set<string>());
 			for(int i = 1; i < child.Size(); ++i)

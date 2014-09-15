@@ -76,8 +76,6 @@ void Conversation::Load(const DataNode &node)
 		return;
 	if(node.Size() >= 2)
 		identifier = node.Token(1);
-	else
-		identifier = "unnamed";
 	
 	// Free any previously loaded data.
 	nodes.clear();
@@ -236,7 +234,6 @@ void Conversation::Save(DataWriter &out) const
 		}
 		if(node.isChoice)
 			out.EndChild();
-		out.Write();
 	}
 	
 	out.EndChild();
