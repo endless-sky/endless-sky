@@ -85,7 +85,7 @@ void Date::operator++(int)
 Date Date::operator+(int days) const
 {
 	Date result;
-	result.today += days * SECONDS_PER_DAY;
+	result.today = today + days * SECONDS_PER_DAY;
 	return result;
 }
 

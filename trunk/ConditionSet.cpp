@@ -80,6 +80,8 @@ void ConditionSet::Add(const string &firstToken, const string &secondToken)
 {
 	if(firstToken == "not")
 		entries.emplace_back(secondToken, "==", 0);
+	else if(firstToken == "has")
+		entries.emplace_back(secondToken, "!=", 0);
 	else if(firstToken == "set")
 		entries.emplace_back(secondToken, "=", 1);
 	else if(firstToken == "clear")
