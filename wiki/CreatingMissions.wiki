@@ -18,6 +18,7 @@ mission <name>
     to (offer | complete)
         <condition> (<comp> <value>)
         (has | not) <condition>
+    (source | destination) <planet>
     (source | destination)
         planet <name>*
             <name>*
@@ -175,9 +176,10 @@ Conditions can be changed when you are offered a mission or when you accept, dec
 
 = Source and destination filters =
 
-Each mission starts on a planet, and ends on a planet, usually different from where it started. Rather than having to specify the exact planet, you can give a set of constraints that the planet must match:
+Each mission starts on a planet, and ends on a planet, usually different from where it started. You can either specify one particular planet, or give a set of constraints that the planet must match:
 
 {{{
+(source | destination) <planet>
 (source | destination)
     planet <name>*
         <name>*
@@ -359,7 +361,7 @@ There are five events that can trigger a response of some sort:
   * decline: if the player decides to decline a mission.
   * fail: if the mission fails.
 
-Some of the events below usually only make sense for certain triggers, but all of them can be included in any trigger:
+Some of the events below usually only make sense for certain triggers. In particular, dialogs and conversations can be shown when a mission is offered, but not in response to it being accepted or declined; just add the appropriate text to the offer conversation instead.
 
 {{{
 dialog <text>
