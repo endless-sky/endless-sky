@@ -51,10 +51,11 @@ void PlayerInfo::Clear()
 	
 	ships.clear();
 	cargo.Clear();
+	
 	missions.clear();
-	jobs.clear();
-	availableSpecials.clear();
-	specials.clear();
+	availableJobs.clear();
+	availableMissions.clear();
+	
 	conditions.clear();
 	
 	seen.clear();
@@ -88,11 +89,10 @@ void PlayerInfo::Steal(PlayerInfo &other)
 	
 	ships = other.ships;
 	cargo = other.cargo;
-	missions.swap(other.missions);
-	jobs.swap(other.jobs);
 	
-	availableSpecials.swap(other.availableSpecials);
-	specials.swap(other.specials);
+	missions.swap(other.missions);
+	availableJobs.swap(other.availableJobs);
+	availableMissions.swap(other.availableMissions);
 	
 	conditions.swap(other.conditions);
 	
@@ -159,18 +159,16 @@ void PlayerInfo::Load(const string &path)
 			missions.back().Load(child);
 			cargo.AddMissionCargo(&missions.back());
 		}
-		else if(child.Token(0) == "job")
+		else if(child.Token(0) == "available job")
 		{
-			jobs.push_back(Mission());
-			jobs.back().Load(child);
+			availableJobs.push_back(Mission());
+			availableJobs.back().Load(child);
 		}
-		else if(child.Token(0) == "special mission" && child.Size() >= 2)
+		else if(child.Token(0) == "available mission")
 		{
-			specials.push_back(GameData::Missions().Get(child.Token(1)));
-			cargo.AddMissionCargo(specials.back());
+			availableMissions.push_back(Mission());
+			availableMissions.back().Load(child);
 		}
-		else if(child.Token(0) == "available special mission" && child.Size() >= 2)
-			availableSpecials.push_back(GameData::Missions().Get(child.Token(1)));
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
@@ -239,12 +237,10 @@ void PlayerInfo::Save() const
 	
 	for(const Mission &mission : missions)
 		mission.Save(out);
-	for(const Mission &mission : jobs)
-		mission.Save(out, "job");
-	for(const Mission *mission : specials)
-		out.Write("special mission", mission->Name());
-	for(const Mission *mission : availableSpecials)
-		out.Write("available special mission", mission->Name());
+	for(const Mission &mission : availableJobs)
+		mission.Save(out, "available job");
+	for(const Mission &mission : availableMissions)
+		mission.Save(out, "available mission");
 	
 	if(!conditions.empty())
 	{
@@ -602,8 +598,6 @@ void PlayerInfo::Land()
 	set<const Mission *> active;
 	for(const Mission &it : missions)
 		active.insert(&it);
-	for(const Mission *it : specials)
-		active.insert(it);
 	
 	for(const auto &it : cargo.MissionCargo())
 		if(active.find(it.first) == active.end())
@@ -624,8 +618,8 @@ void PlayerInfo::TakeOff()
 		return;
 	
 	// Jobs are only available when you are landed.
-	jobs.clear();
-	availableSpecials.clear();
+	availableJobs.clear();
+	availableMissions.clear();
 	
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
@@ -698,14 +692,14 @@ void PlayerInfo::TakeOff()
 		{
 			Messages::Add("Mission \"" + it.first->Name()
 				+ "\" failed because you do not have space for the cargo.");
-			AbortMission(*it.first);
+			RemoveMission(Mission::FAIL, *it.first, nullptr);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
 			Messages::Add("Mission \"" + it.first->Name()
 				+ "\" failed because you do not have enough passenger bunks free.");
-			AbortMission(*it.first);
+			RemoveMission(Mission::FAIL, *it.first, nullptr);
 		}
 	
 	int64_t sold = cargo.Used();
@@ -774,73 +768,35 @@ const list<Mission> &PlayerInfo::Missions() const
 // Get mission information.
 const list<Mission> &PlayerInfo::AvailableJobs() const
 {
-	return jobs;
-}
-
-
-
-bool PlayerInfo::CanAccept(const Mission &mission) const
-{
-	return (mission.CargoSize() <= cargo.Free()
-		&& mission.Passengers() <= cargo.Bunks());
+	return availableJobs;
 }
 
 
 
 void PlayerInfo::AcceptJob(const Mission &mission)
 {
-	for(auto it = jobs.begin(); it != jobs.end(); ++it)
+	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			missions.splice(missions.end(), jobs, it);
+			missions.splice(missions.end(), availableJobs, it);
 			break;
 		}
 }
 
 
 
-void PlayerInfo::AddMission(const Mission &mission)
+Mission *PlayerInfo::MissionToOffer()
 {
-	missions.push_back(mission);
-	// It's important to use a pointer to the Mission we just created here in
-	// PlayerInfo (which will persist) rather than to the Mission that was
-	// passed as an argument to this function (which may be temporary).
-	cargo.AddMissionCargo(&missions.back());
-}
-
-
-
-void PlayerInfo::AbortMission(const Mission &mission)
-{
-	for(auto it = missions.begin(); it != missions.end(); ++it)
-		if(&*it == &mission)
+	// If a mission can be offered right now, move it to the start of the list
+	// so we know what mission the callback is referring to, and return it.
+	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
+		if(it->CanOffer(*this) && it->HasSpace(*this))
 		{
-			cargo.RemoveMissionCargo(&mission);
-			for(shared_ptr<Ship> &ship : ships)
-				ship->Cargo().RemoveMissionCargo(&mission);
-			missions.erase(it);
-			return;
+			availableMissions.splice(availableMissions.begin(), availableMissions, it);
+			return &availableMissions.front();
 		}
-	for(auto it = specials.begin(); it != specials.end(); ++it)
-		if(*it == &mission)
-		{
-			cargo.RemoveMissionCargo(&mission);
-			for(shared_ptr<Ship> &ship : ships)
-				ship->Cargo().RemoveMissionCargo(&mission);
-			specials.erase(it);
-			break;
-		}
-}
-
-
-
-void PlayerInfo::CompleteMission(const Mission &mission)
-{
-	accounts.AddCredits(mission.Payment());
-	if(mission.Next())
-		specials.push_back(mission.Next());
-	AbortMission(mission);
+	return nullptr;
 }
 
 
@@ -848,49 +804,36 @@ void PlayerInfo::CompleteMission(const Mission &mission)
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {
-	// TODO: handle this.
-	response = response;
+	if(response == Conversation::ACCEPT)
+	{
+		availableMissions.front().Do(Mission::ACCEPT, *this);
+		missions.splice(missions.end(), availableMissions, availableMissions.begin());
+	}
+	else if(response == Conversation::DECLINE)
+	{
+		availableMissions.front().Do(Mission::DECLINE, *this);
+		availableMissions.pop_front();
+	}
+	else
+	{
+		// TODO: handle "die", etc.
+	}
 }
 
 
 
-const Mission *PlayerInfo::NextSpecialMission() const
+void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui)
 {
-	if(availableSpecials.empty())
-		return nullptr;
-	
-	return availableSpecials.back();
-}
-
-
-
-void PlayerInfo::AcceptSpecialMission()
-{
-	if(availableSpecials.empty())
-		return;
-	
-	++conditions[availableSpecials.back()->Name()];
-	specials.push_back(availableSpecials.back());
-	cargo.AddMissionCargo(specials.back());
-	availableSpecials.pop_back();
-}
-
-
-
-void PlayerInfo::DeclineSpecialMission()
-{
-	if(availableSpecials.empty())
-		return;
-	
-	++conditions[availableSpecials.back()->Name()];
-	availableSpecials.pop_back();
-}
-
-
-
-const list<const Mission *> &PlayerInfo::SpecialMissions() const
-{
-	return specials;
+	for(auto it = missions.begin(); it != missions.end(); ++it)
+		if(&*it == &mission)
+		{
+			it->Do(trigger, *this, ui);
+			cargo.RemoveMissionCargo(&mission);
+			for(shared_ptr<Ship> &ship : ships)
+				ship->Cargo().RemoveMissionCargo(&mission);
+			missions.erase(it);
+			return;
+		}
 }
 
 
@@ -1009,31 +952,15 @@ void PlayerInfo::SelectNext()
 // game, but that's a minor detail and I can fix it later.
 void PlayerInfo::CreateMissions()
 {
-	DistanceMap distance(system);
-	
-	jobs.clear();
-	availableSpecials.clear();
-	
-	int cargoCount = Random::Binomial(10);
-	for(int i = 0; i < cargoCount; ++i)
-	{
-		jobs.push_back(Mission::Cargo(planet, distance));
-		if(!jobs.back().Destination())
-			jobs.pop_back();
-	}
-	
-	int passengerCount = Random::Binomial(10);
-	for(int i = 0; i < passengerCount; ++i)
-	{
-		jobs.push_back(Mission::Passenger(planet, distance));
-		if(!jobs.back().Destination())
-			jobs.pop_back();
-	}
-	
-	// TODO: Each planet specifies the maximum number of each mission type.
+	// TODO: generate "available jobs" based on what jobs the planet says it has
+	// available.
 	
 	// Check for available special missions.
 	for(const auto &it : GameData::Missions())
-		if(it.second.IsAvailableAt(planet, conditions))
-			availableSpecials.push_back(&it.second);
+		if(it.second.CanOffer(*this))
+		{
+			availableMissions.push_back(it.second.Instantiate(*this));
+			if(availableMissions.back().HasFailed())
+				availableMissions.pop_back();
+		}
 }

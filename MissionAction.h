@@ -49,7 +49,7 @@ public:
 	bool CanBeDone(const PlayerInfo &player) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
-	void Do(PlayerInfo &player, UI &ui, const System *destination = nullptr) const;
+	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr) const;
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.

@@ -16,20 +16,35 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "PlayerInfo.h"
 #include "Point.h"
+#include "UI.h"
 
 using namespace std;
 
 
 
-SpaceportPanel::SpaceportPanel(const string &description)
+SpaceportPanel::SpaceportPanel(PlayerInfo &player)
+	: player(player)
 {
 	SetTrapAllEvents(false);
 	
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(WrappedText::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(description);
+	text.Wrap(player.GetPlanet()->SpaceportDescription());
+}
+
+
+
+void SpaceportPanel::Step(bool isActive)
+{
+	if(GetUI()->IsTop(this))
+	{
+		Mission *mission = player.MissionToOffer();
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+	}
 }
 
 

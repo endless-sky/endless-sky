@@ -30,6 +30,7 @@ class Outfit;
 class Planet;
 class Ship;
 class System;
+class UI;
 
 
 
@@ -102,20 +103,13 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
-	// Check if your fleet has space for the given mission.
-	bool CanAccept(const Mission &mission) const;
 	void AcceptJob(const Mission &mission);
-	void AddMission(const Mission &mission);
-	void AbortMission(const Mission &mission);
-	void CompleteMission(const Mission &mission);
+	// Check to see if there is any mission to offer in the spaceport right now.
+	Mission *MissionToOffer();
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
-	
-	// Special missions.
-	const Mission *NextSpecialMission() const;
-	void AcceptSpecialMission();
-	void DeclineSpecialMission();
-	const std::list<const Mission *> &SpecialMissions() const;
+	// Complete or fail a mission.
+	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
 	
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
@@ -138,9 +132,7 @@ public:
 	
 	
 private:
-	// New missions are generated each time you land on a planet. This also means
-	// that random missions that didn't show up might show up if you reload the
-	// game, but that's a minor detail and I can fix it later.
+	// New missions are generated each time you land on a planet.
 	void CreateMissions();
 	
 	
@@ -156,13 +148,12 @@ private:
 	
 	std::vector<std::shared_ptr<Ship>> ships;
 	CargoHold cargo;
-	std::list<Mission> missions;
-	// This list is populated when you are landed on a planet. It must be saved
-	// in order to avoid presenting duplicate missions when loading again.
-	std::list<Mission> jobs;
 	
-	std::list<const Mission *> availableSpecials;
-	std::list<const Mission *> specials;
+	std::list<Mission> missions;
+	// These lists are populated when you land on a planet, and saved so that
+	// they will not change if you reload the game.
+	std::list<Mission> availableJobs;
+	std::list<Mission> availableMissions;
 	
 	std::map<std::string, int> conditions;
 	

@@ -694,12 +694,6 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				control.SetDestination(mission.Destination());
 				break;
 			}
-		for(const Mission *mission : info.SpecialMissions())
-			if(mission->Destination() && mission->Destination()->GetSystem() == system)
-			{
-				control.SetDestination(mission->Destination());
-				break;
-			}
 	}
 	
 	if(keyDown & Key::Bit(Key::NEAREST))

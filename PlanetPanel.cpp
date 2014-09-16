@@ -43,7 +43,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
-	spaceport.reset(new SpaceportPanel(planet.SpaceportDescription()));
+	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
 	
 	text.SetFont(FontSet::Get(14));
@@ -77,31 +77,6 @@ void PlanetPanel::Draw() const
 	
 	if(!selectedPanel)
 		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
-}
-
-
-
-// Conversation callback for new special missions.
-void PlanetPanel::OnCallback(int value)
-{
-	if(value == Conversation::DIE)
-	{
-		// TODO: handle "DIE".
-	}
-	else if(value == Conversation::ACCEPT)
-		player.AcceptSpecialMission();
-	else
-		player.DeclineSpecialMission();
-	
-	if(player.NextSpecialMission())
-	{
-		ConversationPanel *panel = new ConversationPanel(
-			player,
-			player.NextSpecialMission()->Introduction(),
-			player.NextSpecialMission()->Destination()->GetSystem());
-		panel->SetCallback(this, &PlanetPanel::OnCallback);
-		GetUI()->Push(panel);
-	}
 }
 
 
@@ -141,15 +116,6 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		selectedPanel = spaceport.get();
 		GetUI()->Push(spaceport);
-		if(player.NextSpecialMission())
-		{
-			ConversationPanel *panel = new ConversationPanel(
-				player,
-				player.NextSpecialMission()->Introduction(),
-			player.NextSpecialMission()->Destination()->GetSystem());
-			panel->SetCallback(this, &PlanetPanel::OnCallback);
-			GetUI()->Push(panel);
-		}
 	}
 	else if(key == 's' && planet.HasShipyard())
 	{

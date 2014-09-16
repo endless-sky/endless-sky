@@ -19,17 +19,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+class PlayerInfo;
+
 
 
 // GUI panel to be shown when you are in a spaceport.
 class SpaceportPanel : public Panel {
 public:
-	SpaceportPanel(const std::string &description);
+	SpaceportPanel(PlayerInfo &player);
 	
+	virtual void Step(bool isActive);
 	virtual void Draw() const;
 	
 	
 private:
+	PlayerInfo &player;
 	WrappedText text;
 };
 
