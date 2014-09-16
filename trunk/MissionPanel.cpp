@@ -45,10 +45,8 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	: MapPanel(player, -4),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
-	special(player.SpecialMissions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
-	specialIt(special.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
 	// Center the system slightly above the center of the screen because the
@@ -66,10 +64,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	: MapPanel(panel),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
-	special(player.SpecialMissions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
-	specialIt(special.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
 	wrap.SetWrapWidth(380);
@@ -93,8 +89,7 @@ void MissionPanel::Draw() const
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
-		player.SpecialMissions().size() + accepted.size());
-	pos = DrawList(special, pos);
+		accepted.size());
 	DrawList(accepted, pos);
 	
 	DrawMissionInfo();
@@ -125,27 +120,17 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		}
-		else if(specialIt != special.end())
-		{
-			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + (*specialIt)->Name() + "\"?"));
-		}
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
 		acceptedIt = accepted.end();
-		specialIt = special.end();
 		availableIt = available.begin();
 	}
-	else if(key == SDLK_RIGHT && acceptedIt == accepted.end() && specialIt == special.end())
+	else if(key == SDLK_RIGHT && acceptedIt == accepted.end())
 	{
 		availableIt = available.end();
-		specialIt = special.begin();
-		if(specialIt == special.end())
-			acceptedIt = accepted.begin();
-		else
-			acceptedIt = accepted.end();
+		acceptedIt = accepted.begin();
 	}
 	else if(key == SDLK_UP)
 	{
@@ -158,30 +143,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		else if(acceptedIt != accepted.end())
 		{
 			if(acceptedIt == accepted.begin())
-			{
-				specialIt = special.end();
 				acceptedIt = accepted.end();
-				if(special.empty())
-					--acceptedIt;
-				else
-					--specialIt;
-			}
-			else
-				--acceptedIt;
-		}
-		else if(specialIt != special.end())
-		{
-			if(specialIt == special.begin())
-			{
-				specialIt = special.end();
-				acceptedIt = accepted.end();
-				if(accepted.empty())
-					--specialIt;
-				else
-					--acceptedIt;
-			}
-			else
-				--specialIt;
+			--acceptedIt;
 		}
 	}
 	else if(key == SDLK_DOWN)
@@ -196,23 +159,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		{
 			++acceptedIt;
 			if(acceptedIt == accepted.end())
-			{
-				if(special.empty())
-					acceptedIt = accepted.begin();
-				else
-					specialIt = special.begin();
-			}
-		}
-		else if(specialIt != special.end())
-		{
-			++specialIt;
-			if(specialIt == special.end())
-			{
-				if(accepted.empty())
-					specialIt = special.begin();
-				else
-					acceptedIt = accepted.begin();
-			}
+				acceptedIt = accepted.begin();
 		}
 	}
 	else if(key == GameData::Keys().Get(Key::MAP))
@@ -228,8 +175,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		Select(availableIt->Destination()->GetSystem());
 	else if(acceptedIt != accepted.end())
 		Select(acceptedIt->Destination()->GetSystem());
-	else if(specialIt != special.end())
-		Select((*specialIt)->Destination()->GetSystem());
 	if(selectedSystem)
 		center = Point(0., -80.) - selectedSystem->Position();
 	
@@ -260,7 +205,6 @@ bool MissionPanel::Click(int x, int y)
 			while(index--)
 				++availableIt;
 			acceptedIt = accepted.end();
-			specialIt = special.end();
 			dragSide = -1;
 			Select(availableIt->Destination()->GetSystem());
 			center = Point(0., -80.) - selectedSystem->Position();
@@ -270,26 +214,14 @@ bool MissionPanel::Click(int x, int y)
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
 		unsigned index = max(0, (y + acceptedScroll - 36 - Screen::Top()) / 20);
-		if(index < special.size() + accepted.size())
+		if(index < accepted.size())
 		{
-			specialIt = special.begin();
-			while(specialIt != special.end() && index--)
-				++specialIt;
-			if(specialIt == special.end())
-			{
-				acceptedIt = accepted.begin();
-				while(acceptedIt != accepted.end() && index--)
-					++acceptedIt;
-				Select(acceptedIt->Destination()->GetSystem());
-			}
-			else
-			{
-				acceptedIt = accepted.end();
-				Select((*specialIt)->Destination()->GetSystem());
-			}
+			acceptedIt = accepted.begin();
+			while(index--)
+				++acceptedIt;
 			availableIt = available.end();
 			dragSide = 1;
-			
+			Select(acceptedIt->Destination()->GetSystem());
 			center = Point(0., -80.) - selectedSystem->Position();
 			return true;
 		}
@@ -308,7 +240,7 @@ bool MissionPanel::Click(int x, int y)
 	if(system)
 	{
 		Select(system);
-		int options = available.size() + special.size() + accepted.size();
+		int options = available.size() + accepted.size();
 		while(options--)
 		{
 			if(availableIt != available.end())
@@ -316,25 +248,10 @@ bool MissionPanel::Click(int x, int y)
 				++availableIt;
 				if(availableIt == available.end())
 				{
-					if(!special.empty())
-						specialIt = special.begin();
-					else if(!accepted.empty())
-						acceptedIt = accepted.begin();
-					else
-						availableIt = available.begin();
-				}
-			}
-			else if(specialIt != special.end())
-			{
-				++specialIt;
-				if(specialIt == special.end())
-				{
 					if(!accepted.empty())
 						acceptedIt = accepted.begin();
-					else if(!available.empty())
-						availableIt = available.begin();
 					else
-						specialIt = special.begin();
+						availableIt = available.begin();
 				}
 			}
 			else if(acceptedIt != accepted.end())
@@ -344,15 +261,11 @@ bool MissionPanel::Click(int x, int y)
 				{
 					if(!available.empty())
 						availableIt = available.begin();
-					else if(!special.empty())
-						specialIt = special.begin();
 					else
 						acceptedIt = accepted.begin();
 				}
 			}
 			if(availableIt != available.end() && availableIt->Destination()->GetSystem() == system)
-				break;
-			if(specialIt != special.end() && (*specialIt)->Destination()->GetSystem() == system)
 				break;
 			if(acceptedIt != accepted.end() && acceptedIt->Destination()->GetSystem() == system)
 				break;
@@ -474,36 +387,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
 		
-		bool canAccept = (&list != &available || player.CanAccept(*it));
+		bool canAccept = (&list != &available || it->HasSpace(player));
 		font.Draw(it->Name(), pos,
 			(!canAccept ? dim : isSelected ? selected : unselected));
-	}
-	
-	return pos;
-}
-
-
-
-
-Point MissionPanel::DrawList(const list<const Mission *> &list, Point pos) const
-{
-	const Font &font = FontSet::Get(14);
-	Color highlight = *GameData::Colors().Get("faint");
-	Color unselected = *GameData::Colors().Get("medium");
-	Color selected = *GameData::Colors().Get("bright");
-	
-	for(auto it = list.begin(); it != list.end(); ++it)
-	{
-		pos.Y() += 20.;
-		
-		bool isSelected = (it == specialIt);
-		if(isSelected)
-			FillShader::Fill(
-				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
-				Point(SIDE_WIDTH - 10., 20.),
-				highlight);
-		
-		font.Draw((*it)->Name(), pos, isSelected ? selected : unselected);
 	}
 	
 	return pos;
@@ -519,7 +405,7 @@ void MissionPanel::DrawMissionInfo() const
 	// if any, is selected, and whether missions are available.
 	if(CanAccept())
 		info.SetCondition("can accept");
-	else if(acceptedIt != accepted.end() || specialIt != special.end())
+	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
 	else if(available.size())
 		info.SetCondition("cannot accept");
@@ -542,8 +428,6 @@ void MissionPanel::DrawMissionInfo() const
 		wrap.Wrap(availableIt->Description());
 	else if(acceptedIt != accepted.end())
 		wrap.Wrap(acceptedIt->Description());
-	else if(specialIt != special.end())
-		wrap.Wrap((*specialIt)->Description());
 	else
 		return;
 	wrap.Draw(Point(-190., Screen::Bottom() - 183.), *GameData::Colors().Get("bright"));
@@ -556,7 +440,7 @@ bool MissionPanel::CanAccept() const
 	if(availableIt == available.end())
 		return false;
 	
-	return player.CanAccept(*availableIt);
+	return availableIt->HasSpace(player);
 }
 
 
@@ -567,16 +451,8 @@ void MissionPanel::AbortMission()
 	{
 		const Mission &toAbort = *acceptedIt;
 		++acceptedIt;
-		player.AbortMission(toAbort);
+		player.RemoveMission(Mission::FAIL, toAbort, GetUI());
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
-	}
-	else if(specialIt != special.end())
-	{
-		const Mission &toAbort = **specialIt;
-		++specialIt;
-		player.AbortMission(toAbort);
-		if(specialIt == special.end() && !special.empty())
-			--specialIt;
 	}
 }

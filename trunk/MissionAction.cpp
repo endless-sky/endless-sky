@@ -144,16 +144,17 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI &ui, const System *destination) const
+void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) const
 {
 	if(!conversation.IsEmpty())
 	{
 		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
-		panel->SetCallback(&player, &PlayerInfo::MissionCallback);
-		ui.Push(panel);
+		if(trigger == "offer")
+			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+		ui->Push(panel);
 	}
 	else if(!dialogText.empty())
-		ui.Push(new Dialog(dialogText, player));
+		ui->Push(new Dialog(dialogText, player));
 	
 	Ship *flagship = player.GetShip();
 	for(const auto &it : gifts)

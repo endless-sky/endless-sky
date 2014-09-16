@@ -53,8 +53,7 @@ void MainPanel::Step(bool isActive)
 	{
 		player.Land();
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
-		FinishNormalMissions();
-		FinishSpecialMissions();
+		FinishMissions();
 		isActive = false;
 	}
 	
@@ -71,9 +70,10 @@ void MainPanel::Step(bool isActive)
 		}
 		if(event.Type() == ShipEvent::DESTROY && event.TargetGovernment() == gov)
 		{
+			// TODO: hand ship events on to each Mission to inspect.
 			// Some missions have both cargo and passengers. Avoid aborting them
 			// twice, because the name may no longer be accessible the second time.
-			set<const Mission *> failed;
+			/*set<const Mission *> failed;
 			for(const auto &it : event.Target()->Cargo().MissionCargo())
 				failed.insert(it.first);
 			for(const auto &it : event.Target()->Cargo().PassengerList())
@@ -83,7 +83,7 @@ void MainPanel::Step(bool isActive)
 			{
 				Messages::Add("Ship lost. Mission failed: \"" + mission->Name() + "\".");
 				player.AbortMission(*mission);
-			}
+			}*/
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
@@ -145,7 +145,7 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 
 
-void MainPanel::FinishNormalMissions()
+void MainPanel::FinishMissions()
 {
 	auto it = player.Missions().begin();
 	while(it != player.Missions().end())
@@ -153,48 +153,10 @@ void MainPanel::FinishNormalMissions()
 		const Mission &mission = *it;
 		++it;
 		
-		if(mission.Destination() == player.GetPlanet())
-		{
-			GetUI()->Push(new Dialog(mission.SuccessMessage()));
-			player.CompleteMission(mission);
-		}
-	}
-	player.UpdateCargoCapacities();
-}
-
-
-
-void MainPanel::FinishSpecialMissions()
-{
-	auto it = player.SpecialMissions().begin();
-	while(it != player.SpecialMissions().end())
-	{
-		const Mission &mission = **it;
-		++it;
-		
-		if(mission.Destination() == player.GetPlanet())
-		{
-			// Check that all this mission's requirements are met.
-			if(mission.Next() && !player.CanAccept(*mission.Next()))
-				continue;
-			// You can't complete the mission if some of the cargo is in a ship
-			// stranded in another system.
-			if(player.Cargo().Get(&mission) != mission.CargoSize())
-				continue;
-			if(player.Cargo().GetPassengers(&mission) != mission.Passengers())
-				continue;
-			
-			if(!mission.SuccessMessage().empty())
-				GetUI()->Push(new Dialog(mission.SuccessMessage()));
-			if(mission.Next() && !mission.Next()->Introduction().IsEmpty())
-			{
-				GetUI()->Push(new ConversationPanel(
-					player,
-					mission.Next()->Introduction(),
-					mission.Next()->Destination()->GetSystem()));
-			}
-			player.CompleteMission(mission);
-		}
+		if(mission.HasFailed())
+			player.RemoveMission(Mission::FAIL, mission, GetUI());
+		else if(mission.CanComplete(player))
+			player.RemoveMission(Mission::COMPLETE, mission, GetUI());
 	}
 	player.UpdateCargoCapacities();
 }

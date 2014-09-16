@@ -15,280 +15,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DistanceMap.h"
+#include "Format.h"
 #include "GameData.h"
+#include "Planet.h"
+#include "PlayerInfo.h"
 #include "Random.h"
-#include "Trade.h"
+#include "Ship.h"
+#include "ShipEvent.h"
+#include "UI.h"
 
-#include <algorithm>
-#include <cmath>
-#include <string>
+#include <iostream>
 
 using namespace std;
 
 namespace {
-	// Pick a destination within the given number of jumps.
-	const Planet *Pick(const DistanceMap &distance, int minJumps, int maxJumps);
-	const Trade::Commodity &PickCommodity(const System &from, const System &to);
-}
-
-
-
-Mission Mission::Cargo(const Planet *source, const DistanceMap &distance)
-{
-	Mission mission;
-	
-	// First, pick the destination planet.
-	mission.destination = Pick(distance, 2, 10);
-	if(!mission.destination)
-		return mission;
-	
-	const System &from = *source->GetSystem();
-	const System &to = *mission.destination->GetSystem();
-	const Trade::Commodity &commodity = PickCommodity(from, to);
-	mission.cargo = commodity.items[Random::Int(commodity.items.size())];
-	mission.cargoSize = Random::Polya(2, .1) + 5;
-	int jumps = distance.Distance(&to);
-	// All missions should have a "base pay" to make up for the fact that doing
-	// many short missions is more complicated and time consuming than doing one
-	// long, big haul.
-	mission.payment = 1000 + 100 * mission.cargoSize * jumps;
-	
-	mission.name = "Delivery to " + mission.destination->Name();
-	mission.description = "Deliver " + to_string(mission.cargoSize) + " tons of "
-		+ mission.cargo + " to " + mission.destination->Name() + " in the "
-		+ mission.destination->GetSystem()->Name() + " system. Payment is "
-		+ to_string(mission.payment) + " credits.";
-	mission.successMessage = "The dock workers unload the " + mission.cargo
-		+ " and pay you " + to_string(mission.payment) + " credits.";
-	
-	// This should automatically use move semantics.
-	return mission;
-}
-
-
-
-Mission Mission::Passenger(const Planet *source, const DistanceMap &distance)
-{
-	Mission mission;
-	
-	// First, pick the destination planet.
-	mission.destination = Pick(distance, 2, 10);
-	if(!mission.destination)
-		return mission;
-	
-	int jumps = distance.Distance(mission.destination->GetSystem());
-	int count = Random::Polya(10, .9) + 1;
-	mission.passengers = count;
-	// All missions should have a "base pay" to make up for the fact that doing
-	// many short missions is more complicated and time consuming than doing one
-	// long, big haul.
-	mission.payment = 1000 + 1000 * count * jumps;
-	
-	if(count == 1)
-	{
-		mission.name = "Ferry passenger to ";
-		mission.description = "This passenger wants to go to ";
-		mission.successMessage = "Your passenger disembarks, and pays you ";
-	}
-	else
-	{
-		mission.name = "Ferry passengers to ";
-		mission.description = to_string(count) + " passengers want to go to ";
-		mission.successMessage = "Your passengers disembark, and pay you ";
-	}
-	mission.name += mission.destination->Name();
-	mission.description += mission.destination->Name() + " in the "
-		+ mission.destination->GetSystem()->Name() + " system. Payment is "
-		+ to_string(mission.payment) + " credits.";
-	mission.successMessage += to_string(mission.payment) + " credits.";
-	
-	// This should automatically use move semantics.
-	return mission;
-}
-
-
-
-void Mission::Load(const DataNode &node)
-{
-	if(node.Size() >= 2)
-		name = node.Token(1);
-	
-	for(const DataNode &child : node)
-	{
-		if(child.Token(0) == "destination" && child.Size() >= 2)
-			destination = GameData::Planets().Get(child.Token(1));
-		else if(child.Token(0) == "cargo" && child.Size() >= 2)
-		{
-			cargo = child.Token(1);
-			if(child.Size() >= 3)
-				cargoSize = child.Value(2);
-		}
-		else if(child.Token(0) == "passengers" && child.Size() >= 2)
-			passengers = child.Value(1);
-		else if(child.Token(0) == "payment" && child.Size() >= 2)
-			payment = child.Value(1);
-		else if(child.Token(0) == "description" && child.Size() >= 2)
-			description = child.Token(1);
-		else if(child.Token(0) == "success")
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "message" && grand.Size() >= 2)
-					successMessage = grand.Token(1);
-				else if(grand.Token(0) == "mission" && grand.Size() >= 2)
-					next = GameData::Missions().Get(grand.Token(1));
-			}
-		}
-		else if(child.Token(0) == "require")
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Token(0) == "planet" && grand.Size() >= 2)
-					sourcePlanets.insert(GameData::Planets().Get(grand.Token(1)));
-				if(grand.Token(0) == "probability" && grand.Size() >= 2)
-					probability = grand.Value(1);
-			}
-		}
-		else if(child.Token(0) == "conversation")
-			introduction.Load(child);
-	}
-}
-
-
-
-void Mission::Save(DataWriter &out, const string &tag) const
-{
-	out.Write(tag, name);
-	out.BeginChild();
-		if(destination)
-			out.Write("destination", destination->Name());
-		if(!cargo.empty())
-			out.Write("cargo", cargo, cargoSize);
-		if(passengers)
-			out.Write("passengers", passengers);
-		if(payment)
-			out.Write("payment", payment);
-		if(!description.empty())
-			out.Write("description", description);
-		if(!successMessage.empty())
-		{
-			out.Write("success");
-			out.BeginChild();
-				out.Write("message", successMessage);
-			out.EndChild();
-		}
-	out.EndChild();
-}
-
-
-
-const string &Mission::Name() const
-{
-	return name;
-}
-
-
-
-const Planet *Mission::Destination() const
-{
-	return destination;
-}
-
-
-
-const string &Mission::Description() const
-{
-	return description;
-}
-
-
-
-bool Mission::IsAvailableAt(const Planet *planet, const map<string, int> &conditions) const
-{
-	auto it = conditions.find(name);
-	if(it != conditions.end() && it->second)
-		return false;
-	
-	if(Random::Int(100) >= probability)
-		return false;
-	
-	return (sourcePlanets.find(planet) != sourcePlanets.end());
-}
-
-
-
-const Conversation &Mission::Introduction() const
-{
-	return introduction;
-}
-
-
-
-const string &Mission::Cargo() const
-{
-	return cargo;
-}
-
-
-
-int Mission::CargoSize() const
-{
-	return cargoSize;
-}
-
-
-
-int Mission::Passengers() const
-{
-	return passengers;
-}
-
-
-
-int Mission::Payment() const
-{
-	return payment;
-}
-
-
-const string &Mission::SuccessMessage() const
-{
-	return successMessage;
-}
-
-
-
-const Mission *Mission::Next() const
-{
-	return next;
-}
-
-
-
-namespace {
-	// Pick a destination within the given number of jumps.
-	const Planet *Pick(const DistanceMap &distance, int minJumps, int maxJumps)
-	{
-		vector<const Planet *> options;
-		for(const auto &it : GameData::Planets())
-		{
-			const Planet &planet = it.second;
-			if(!planet.HasSpaceport() || !GameData::GetPolitics().CanLand(&planet))
-				continue;
-			
-			int jumps = distance.Distance(planet.GetSystem());
-			if(jumps >= minJumps && jumps <= maxJumps)
-				options.push_back(&planet);
-		}
-		if(options.empty())
-			return nullptr;
-		
-		return options[Random::Int(options.size())];
-	}
-	
-	
-	
-	const Trade::Commodity &PickCommodity(const System &from, const System &to)
+	// Pick a random commodity that would make sense to be exported from the
+	// first system to the second.
+	const Trade::Commodity *PickCommodity(const System &from, const System &to)
 	{
 		vector<int> weight;
 		int total = 0;
@@ -307,9 +50,467 @@ namespace {
 		{
 			r -= weight[i];
 			if(r < 0)
-				return GameData::Commodities()[i];
+				return &GameData::Commodities()[i];
 		}
 		// Control will never reach here, but to satisfy the compiler:
-		return GameData::Commodities().front();
+		return nullptr;
 	}
+}
+
+
+
+// Load a mission, either from the game data or from a saved game.
+void Mission::Load(const DataNode &node)
+{
+	if(node.Size() >= 2)
+		name = node.Token(1);
+	else
+		name = "Unnamed Mission";
+	
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "description" && child.Size() >= 2)
+			description = child.Token(1);
+		else if(child.Token(0) == "deadline" && child.Size() >= 4)
+		{
+			hasDeadline = true;
+			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
+		}
+		else if(child.Token(0) == "deadline" && child.Size() >= 2)
+			daysToDeadline = child.Value(1);
+		else if(child.Token(0) == "deadline")
+			doDefaultDeadline = true;
+		else if(child.Token(0) == "cargo" && child.Size() >= 3)
+		{
+			cargo = child.Token(1);
+			cargoSize = child.Value(2);
+			if(child.Size() >= 4)
+				cargoLimit = child.Value(3);
+			if(child.Size() >= 5)
+				cargoProb = child.Value(4);
+			
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
+				{
+					if(grand.Size() >= 3)
+						cargoIllegality[GameData::Governments().Get(grand.Token(1))] = grand.Value(2);
+					else
+						cargoBaseIllegality = grand.Value(1);
+				}
+			}
+		}
+		else if(child.Token(0) == "passengers" && child.Size() >= 2)
+		{
+			passengers = child.Value(1);
+			if(child.Size() >= 3)
+				passengerLimit = child.Value(2);
+			if(child.Size() >= 4)
+				passengerProb = child.Value(3);
+		}
+		else if(child.Token(0) == "invisible")
+			isVisible = false;
+		else if(child.Token(0) == "job")
+		{
+			isJob = true;
+			repeat = 0;
+		}
+		else if(child.Token(0) == "repeat")
+			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
+		else if(child.Token(0) == "to" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "offer")
+				toOffer.Load(child);
+			else if(child.Token(1) == "complete")
+				toComplete.Load(child);
+		}
+		else if(child.Token(0) == "source" && child.Size() >= 2)
+			source = GameData::Planets().Get(child.Token(1));
+		else if(child.Token(0) == "source")
+			sourceFilter.Load(child);
+		else if(child.Token(0) == "destination" && child.Size() == 2)
+			destination = GameData::Planets().Get(child.Token(1));
+		else if(child.Token(0) == "destination")
+			destinationFilter.Load(child);
+		else if(child.Token(0) == "on" && child.Size() >= 2)
+		{
+			static const map<string, Trigger> trigger = {
+				{"complete", COMPLETE},
+				{"offer", OFFER},
+				{"accept", ACCEPT},
+				{"decline", DECLINE},
+				{"fail", FAIL}};
+			auto it = trigger.find(child.Token(1));
+			if(it != trigger.end())
+				actions[it->second].Load(child);
+		}
+	}
+}
+
+
+
+// Save a mission. It is safe to assume that any mission that is being saved
+// is already "instantiated," so only a subset of the data must be saved.
+void Mission::Save(DataWriter &out, const std::string &tag) const
+{
+	out.Write(tag, name);
+	out.BeginChild();
+	
+	if(!description.empty())
+		out.Write("description", description);
+	if(hasDeadline)
+		out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
+	if(cargoSize)
+	{
+		out.Write("cargo", cargo, cargoSize);
+		if(cargoBaseIllegality || !cargoIllegality.empty())
+		{
+			out.BeginChild();
+			for(const auto &it : cargoIllegality)
+				out.Write("illegal", it.first->GetName(), it.second);
+			if(cargoBaseIllegality)
+				out.Write("illegal", cargoBaseIllegality);
+			out.EndChild();
+		}
+	}
+	if(passengers)
+		out.Write("passengers", passengers);
+	if(!isVisible)
+		out.Write("invisible");
+	
+	if(!toComplete.IsEmpty())
+	{
+		out.Write("to", "complete");
+		out.BeginChild();
+		
+		toComplete.Save(out);
+		
+		out.EndChild();
+	}
+	if(destination)
+		out.Write("destination", destination->Name());
+	
+	// TODO: save NPCs.
+	
+	// In the saved game, there is no need to save anything but the COMPLETE and
+	// FAIL actions, because the time for the others is already past.
+	for(const auto &it : actions)
+		if(it.first == COMPLETE || it.first == FAIL)
+			it.second.Save(out);
+	
+	out.EndChild();
+}
+
+
+
+// Basic mission information.
+const string &Mission::Name() const
+{
+	return name;
+}
+
+
+
+const string &Mission::Description() const
+{
+	return description;
+}
+
+
+
+// Check if this mission should be shown in your mission list. If not, the
+// player will not know this mission exists (which is sometimes useful).
+bool Mission::IsVisible() const
+{
+	return isVisible;
+}
+
+
+
+// Check if this mission is a "job" (i.e. something that should not show up
+// automatically in the spaceport, because it will instead be shown in the
+// job listing).
+bool Mission::IsJob() const
+{
+	return isJob;
+}
+
+
+
+// Information about what you are doing.
+const Planet *Mission::Destination() const
+{
+	return destination;
+}
+
+
+
+const string &Mission::Cargo() const
+{
+	return cargo;
+}
+
+
+
+int Mission::CargoSize() const
+{
+	return cargoSize;
+}
+
+
+
+int Mission::CargoIllegality(const Government *government) const
+{
+	auto it = cargoIllegality.find(government);
+	return (it != cargoIllegality.end() ? it->second : cargoBaseIllegality);
+}
+
+
+
+int Mission::Passengers() const
+{
+	return passengers;
+}
+
+
+
+// The mission must be completed by this deadline (if there is a deadline).
+bool Mission::HasDeadline() const
+{
+	return hasDeadline;
+}
+
+
+
+const Date &Mission::Deadline() const
+{
+	return deadline;
+}
+
+
+
+// Check if it's possible to offer or complete this mission right now.
+bool Mission::CanOffer(const PlayerInfo &player) const
+{
+	if(source && source != player.GetPlanet())
+		return false;
+	
+	if(!sourceFilter.Matches(player.GetPlanet()))
+		return false;
+	
+	if(!toOffer.Test(player.Conditions()))
+		return false;
+	
+	if(repeat)
+	{
+		auto cit = player.Conditions().find(name + ": offered");
+		if(cit != player.Conditions().end() && cit->second >= repeat)
+			return false;
+	}
+	
+	auto it = actions.find(OFFER);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	
+	it = actions.find(ACCEPT);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	
+	it = actions.find(DECLINE);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	
+	return true;
+}
+
+
+
+bool Mission::HasSpace(const PlayerInfo &player) const
+{
+	return (cargoSize <= player.Cargo().Free() && passengers <= player.Cargo().Bunks());
+}
+
+
+
+bool Mission::CanComplete(const PlayerInfo &player) const
+{
+	if(player.GetPlanet() != destination)
+		return false;
+	
+	if(!toComplete.Test(player.Conditions()))
+		return false;
+	
+	auto it = actions.find(COMPLETE);
+	if(it != actions.end() && !it->second.CanBeDone(player))
+		return false;
+	
+	return true;
+}
+
+
+
+bool Mission::HasFailed() const
+{
+	return hasFailed;
+}
+
+
+
+// When the state of this mission changes, it may make changes to the player
+// information or show new UI panels. PlayerInfo::MissionCallback() will be
+// used as the callback for any UI panel that returns a value.
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
+{
+	auto it = actions.find(trigger);
+	if(it == actions.end())
+		return true;
+	
+	if(!it->second.CanBeDone(player))
+		return false;
+	
+	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+	return true;
+}
+
+
+
+// Get a list of NPCs associated with this mission. Every time the player
+// takes off from a planet, they should be added to the active ships.
+const list<shared_ptr<Ship>> &Mission::Ships() const
+{
+	return ships;
+}
+
+
+
+// If any event occurs between two ships, check to see if this mission cares
+// about it. This may affect the mission status or display a message.
+void Mission::Do(const ShipEvent &event, UI *ui)
+{
+	// TODO: handle ship events for each mission.
+}
+
+
+
+// "Instantiate" a mission by replacing randomly selected values and places
+// with a single choice, and then replacing any wildcard text as well.
+Mission Mission::Instantiate(const PlayerInfo &player) const
+{
+	Mission result;
+	// If anything goes wrong below, this mission should not be offered.
+	result.hasFailed = true;
+	result.isVisible = isVisible;
+	
+	// First, pick values for all the variables.
+	
+	// If a specific destination is not specified in the mission, pick a random
+	// one out of all the destinations that satisfy the mission requirements.
+	result.destination = destination;
+	if(!result.destination)
+	{
+		// Find a destination that satisfies the filter.
+		vector<const Planet *> options;
+		for(const auto &it : GameData::Planets())
+		{
+			// Skip entries with incomplete data.
+			if(it.second.Name().empty())
+				continue;
+			if(destinationFilter.Matches(&it.second, player.GetSystem()))
+				options.push_back(&it.second);
+		}
+		if(!options.empty())
+			result.destination = options[Random::Int(options.size())];
+	}
+	// If no destination is specified, it is the same as the source planet.
+	if(!result.destination)
+		result.destination = player.GetPlanet();
+	
+	// If cargo is being carried, see if we are supposed to replace a generic
+	// cargo name with something more specific.
+	if(!cargo.empty())
+	{
+		const Trade::Commodity *commodity = nullptr;
+		if(cargo == "random")
+			commodity = PickCommodity(*player.GetSystem(), *destination->GetSystem());
+		else
+		{
+			for(const Trade::Commodity &option : GameData::Commodities())
+				if(option.name == cargo)
+				{
+					commodity = &option;
+					break;
+				}
+		}
+		if(commodity)
+			result.cargo = commodity->items[Random::Int(commodity->items.size())];
+		else
+			result.cargo = cargo;
+	}
+	// Pick a random cargo amount, if requested.
+	if(cargoSize || cargoLimit)
+	{
+		if(cargoProb)
+			result.cargoSize = Random::Polya(cargoLimit, cargoProb) + cargoSize;
+		else if(cargoLimit > cargoSize)
+			result.cargoSize = cargoSize + Random::Int(cargoLimit - cargoSize + 1);
+		else
+			result.cargoSize = cargoSize;
+	}
+	// Pick a random passenger count, it requested.
+	if(passengers | passengerLimit)
+	{
+		if(passengerProb)
+			result.passengers = Random::Polya(passengerLimit, passengerProb) + passengers;
+		else if(cargoLimit > cargoSize)
+			result.passengers = passengers + Random::Int(passengerLimit - passengers + 1);
+		else
+			result.passengers = passengers;
+	}
+	result.cargoIllegality = cargoIllegality;
+	result.cargoBaseIllegality = cargoBaseIllegality;
+	
+	// How far is it to the destination?
+	DistanceMap distance(player.GetSystem());
+	int jumps = distance.Distance(result.destination->GetSystem());
+	int defaultPayment = 1000 + jumps * 100 * (result.cargoSize + 10 * result.passengers);
+	int defaultDeadline = doDefaultDeadline ? (2 * jumps) : 0;
+	
+	// Set the deadline, if requested.
+	if(daysToDeadline || defaultDeadline)
+	{
+		result.hasDeadline = true;
+		result.deadline = player.GetDate() + (defaultDeadline + daysToDeadline);
+	}
+	
+	// Copy the completion conditions. No need to copy the offer conditions,
+	// because they have already been checked.
+	result.toComplete = toComplete;
+	
+	// Generate the substitutions map.
+	map<string, string> subs;
+	subs["<commodity>"] = result.cargo;
+	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
+	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<passengers>"] = (result.passengers == 1) ?
+		"a passenger" : (to_string(result.passengers) + " passengers");
+	subs["<origin>"] = player.GetPlanet()->Name();
+	subs["<planet>"] = result.destination ? result.destination->Name() : "";
+	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
+	subs["<date>"] = deadline.ToString();
+	// TODO: fill in the NPC name.
+	subs["<npc>"] = "Name of NPC";
+	
+	// Instantiate the actions.
+	for(const auto &it : actions)
+		result.actions[it.first] = it.second.Instantiate(subs, defaultPayment);
+	
+	// Perform substitution in the name and description.
+	result.name = Format::Replace(name, subs);
+	result.description = Format::Replace(description, subs);
+	
+	// TODO: Instantiate NPCs and perform substitution there, too.
+	
+	result.hasFailed = false;
+	return result;
 }
