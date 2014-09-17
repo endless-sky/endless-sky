@@ -13,7 +13,7 @@ mission <name>
         illegal <government> <level>
     passengers <number> (<number> (<probability>))
     invisible
-    job
+    (job | landing)
     repeat (<number>)
     to (offer | complete)
         <condition> (<comp> <value>)
@@ -138,10 +138,12 @@ invisible
 This specifies that the mission does not show up in the player's list of missions, and cannot be canceled.
 
 {{{
-job
+(job | landing)
 }}}
 
-This specifies that the mission should never be automatically created in a spaceport; the only time it will be created is in a job board or as a child of another mission.
+This specifies where this mission will be shown, if someplace other than the spaceport. If it is a "job", it will appear only if included in the job board (which only happens if the current planet names this mission as one of its job templates).
+
+If this mission is to be shown at "landing," it shows up as soon as you land instead of waiting for you to visit the spaceport. This can be used, for example, to show a special conversation the first time you land on a particular planet or on any planet belonging to a certain species. It can also be used for a continuation of an active mission.
 
 {{{
 repeat (<number>)
