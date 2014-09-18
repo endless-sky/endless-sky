@@ -11734,8 +11734,8 @@ planet "Kraken Station"
 planet Lagrange
 	attributes quarg tourism
 	landscape land/station2
-	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view at this engineering feat, so far beyond anything human have ever attempted to build."
-	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station is a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
+	description "The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build."
+	spaceport "In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines."
 	bribe 0
 
 planet "Leviathan Station"

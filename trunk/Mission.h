@@ -53,10 +53,10 @@ public:
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
-	// Check if this mission is a "job" (i.e. something that should not show up
-	// automatically in the spaceport, because it will instead be shown in the
-	// job listing).
-	bool IsJob() const;
+	
+	// Find out where this mission is offered.
+	enum Location {SPACEPORT, LANDING, JOB};
+	bool IsAtLocation(Location location) const;
 	
 	// Information about what you are doing.
 	const Planet *Destination() const;
@@ -99,10 +99,10 @@ public:
 private:
 	std::string name;
 	std::string description;
+	Location location = SPACEPORT;
 	
 	bool hasFailed = false;
 	bool isVisible = true;
-	bool isJob = false;
 	bool hasDeadline = false;
 	bool doDefaultDeadline = false;
 	Date deadline;

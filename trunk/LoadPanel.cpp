@@ -115,7 +115,7 @@ void LoadPanel::OnCallback(int)
 	Panel *panel = new MainPanel(player);
 	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	panel->Step(true);
+	panel->Step();
 	gamePanels.Push(new ShipyardPanel(player));
 }
 

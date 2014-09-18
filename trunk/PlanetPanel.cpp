@@ -58,6 +58,19 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 
 
+void PlanetPanel::Step()
+{
+	if(GetUI()->IsTop(this))
+	{
+		Mission *mission = player.MissionToOffer(Mission::LANDING);
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+	}
+}
+
+
+
+
 void PlanetPanel::Draw() const
 {
 	const Ship *ship = player.GetShip();

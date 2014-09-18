@@ -786,12 +786,12 @@ void PlayerInfo::AcceptJob(const Mission &mission)
 
 
 
-Mission *PlayerInfo::MissionToOffer()
+Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 {
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
 	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
-		if(it->CanOffer(*this) && it->HasSpace(*this))
+		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->HasSpace(*this))
 		{
 			availableMissions.splice(availableMissions.begin(), availableMissions, it);
 			return &availableMissions.front();
@@ -957,7 +957,7 @@ void PlayerInfo::CreateMissions()
 	
 	// Check for available special missions.
 	for(const auto &it : GameData::Missions())
-		if(it.second.CanOffer(*this))
+		if(!it.second.IsAtLocation(Mission::JOB) && it.second.CanOffer(*this))
 		{
 			availableMissions.push_back(it.second.Instantiate(*this));
 			if(availableMissions.back().HasFailed())

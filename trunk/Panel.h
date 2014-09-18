@@ -30,10 +30,8 @@ public:
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel();
 	
-	// Move the state of this panel forward one game step. This will only be
-	// called on the front-most panel, so if there are things like animations
-	// that should work on panels behind that one, update them in Draw().
-	virtual void Step(bool isActive);
+	// Move the state of this panel forward one game step.
+	virtual void Step();
 	
 	// Draw this panel.
 	virtual void Draw() const;

@@ -36,10 +36,8 @@ Panel::~Panel()
 
 
 
-// Move the state of this panel forward one game step. This will only be
-// called on the front-most panel, so if there are things like animations
-// that should work on panels behind that one, update them in Draw().
-void Panel::Step(bool)
+// Move the state of this panel forward one game step.
+void Panel::Step()
 {
 }
 

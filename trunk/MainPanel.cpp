@@ -45,8 +45,10 @@ MainPanel::MainPanel(PlayerInfo &player)
 
 
 
-void MainPanel::Step(bool isActive)
+void MainPanel::Step()
 {
+	bool isActive = GetUI()->IsTop(this);
+	
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
 	if(isActive && player.GetPlanet())

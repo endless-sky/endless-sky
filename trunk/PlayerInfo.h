@@ -105,7 +105,7 @@ public:
 	const std::list<Mission> &AvailableJobs() const;
 	void AcceptJob(const Mission &mission);
 	// Check to see if there is any mission to offer in the spaceport right now.
-	Mission *MissionToOffer();
+	Mission *MissionToOffer(Mission::Location location);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Complete or fail a mission.
