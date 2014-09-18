@@ -72,14 +72,16 @@ Certain characteristics of a mission, such as the cargo or the destination plane
   * `<commodity>` = name of commodity being carried
   * `<tons>` = "1 ton" or "N tons"
   * `<cargo>` = "`<tons>` of `<commodity>`"
-  * `<passengers>` = "a passenger" or "N passengers"
-  * `<origin>` = planet where mission was offered.
+  * `<bunks>` = the number of passengers
+  * `<passengers>` = "passenger" or "passengers"
+  * `<fare>` = "a passenger" or "N passengers"
+  * `<origin>` = planet where mission was offered
   * `<planet>` = destination planet
   * `<system>` = destination system
   * `<destination>` = "`<planet>`, in the `<system>` system"
   * `<payment>` = "1 credit" or "N credits"
-  * `<date>` = the deadline for the mission.
-  * `<npc>` = the name of the first NPC in the mission description.
+  * `<date>` = the deadline for the mission
+  * `<npc>` = the name of the first NPC in the mission description
 
 These placeholders will be substituted in any text in the following places:
 
