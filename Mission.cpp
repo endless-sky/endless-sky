@@ -411,7 +411,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// If a specific destination is not specified in the mission, pick a random
 	// one out of all the destinations that satisfy the mission requirements.
 	result.destination = destination;
-	if(!result.destination)
+	if(!result.destination && !destinationFilter.IsEmpty())
 	{
 		// Find a destination that satisfies the filter.
 		vector<const Planet *> options;
@@ -425,6 +425,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		}
 		if(!options.empty())
 			result.destination = options[Random::Int(options.size())];
+		else
+			return result;
 	}
 	// If no destination is specified, it is the same as the source planet.
 	if(!result.destination)
@@ -498,6 +500,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
 	subs["<passengers>"] = (result.passengers == 1) ?
 		"a passenger" : (to_string(result.passengers) + " passengers");
+	subs["<your passengers>"] = (result.passengers == 1) ? "your passenger" : "your passengers";
 	subs["<origin>"] = player.GetPlanet()->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";

@@ -112,9 +112,11 @@ void DistanceMap::Init(int maxCount)
 				newEdge.push_back(link);
 				
 				// Bail out if we've found the specified number of systems.
-				if(!--maxCount)
+				if(maxCount > 0 && !--maxCount)
 					return;
 			}
+		if(steps == -maxCount)
+			return;
 		newEdge.swap(edge);
 	}
 }

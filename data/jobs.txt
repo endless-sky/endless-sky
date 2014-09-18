@@ -1,0 +1,179 @@
+mission "Passenger transport to <planet>"
+	job
+	description "Bring <passengers> to <destination>. Payment is <payment>."
+	passengers 1 10 .9
+	to offer
+		random < 75
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Passenger transport to <planet> "
+	job
+	description "Bring <passengers> to <destination>. Payment is <payment>."
+	passengers 1 10 .9
+	to offer
+		random < 50
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Passenger transport to <planet>  "
+	job
+	description "Bring <passengers> to <destination>. Payment is <payment>."
+	passengers 1 10 .9
+	to offer
+		random < 50
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Passenger transport to <planet>   "
+	job
+	description "These passengers want to escape the pollution and crime on <origin> and settle on <destination>. Payment is <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 50
+	source
+		attributes "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport miners to <planet>"
+	job
+	description "This family of miners is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 50
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "mining"
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish the mining family the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport farmers to <planet>"
+	job
+	description "This family of farmers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 50
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "farming"
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish the farm family the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Fishing on <planet>"
+	job
+	description "This man wants to go on a fishing expedition to <destination>, and will pay you <payment> to take them there."
+	passengers 1
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "fishing"
+		distance 5 16
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 5000
+		dialog "You drop off the fisherman, wishing him the best of luck at catching fish, and collect your payment of <payment>."
+
+mission "Bring tourists to <planet>"
+	job
+	description "These tourists want to see <destination>. They are willing to pay you <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 50
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "tourism"
+		distance 2 25
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 10000
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Bring tourists to <planet> "
+	job
+	description "These tourists want to see <destination>. They are willing to pay you <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 75
+	source
+		attributes "rich" "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "tourism"
+		distance 2 30
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 15000
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Bring tourists home to <planet>"
+	job
+	description "These tourists are headed home to <destination>. They are willing to pay you <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 50
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		attributes "tourism"
+	destination
+		distance 2 25
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 10000
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Bring tourists home to <planet> "
+	job
+	description "These tourists are headed home to <destination>. They are willing to pay you <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 75
+	source
+		attributes "tourism"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "rich" "urban"
+		distance 2 30
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 15000
+		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
