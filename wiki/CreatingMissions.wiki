@@ -6,6 +6,7 @@ The basic syntax of a mission description is:
 
 {{{
 mission <name>
+    name <name>
     description <text>
     deadline (<days>)
     cargo (random | <name>) <number> (<number> (<probability>))
@@ -96,6 +97,12 @@ mission <name>
 }}}
 
 The mission name must be unique.
+
+{{{
+name <name>
+}}}
+
+Because the mission name must be unique, if you want to have the same name displayed for two different missions, you can specify the display name separately. This is useful, for example, if you want to have multiple jobs that all get displayed as "ferry passengers to <planet>".
 
 {{{
 description <text>
