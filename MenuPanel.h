@@ -28,7 +28,7 @@ class MenuPanel : public Panel {
 public:
 	MenuPanel(PlayerInfo &player, UI &mainUI);
 	
-	virtual void Step(bool isActive);
+	virtual void Step();
 	virtual void Draw() const;
 	
 	// New player "conversation" callback.

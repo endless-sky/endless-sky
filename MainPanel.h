@@ -27,7 +27,7 @@ class MainPanel : public Panel {
 public:
 	MainPanel(PlayerInfo &player);
 	
-	virtual void Step(bool isActive);
+	virtual void Step();
 	virtual void Draw() const;
 	
 	// The planet panel calls this when it closes.

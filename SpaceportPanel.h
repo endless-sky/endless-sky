@@ -28,7 +28,7 @@ class SpaceportPanel : public Panel {
 public:
 	SpaceportPanel(PlayerInfo &player);
 	
-	virtual void Step(bool isActive);
+	virtual void Step();
 	virtual void Draw() const;
 	
 	

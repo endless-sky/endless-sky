@@ -112,9 +112,11 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "job")
 		{
-			isJob = true;
+			location = JOB;
 			repeat = 0;
 		}
+		else if(child.Token(0) == "landing")
+			location = LANDING;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "to" && child.Size() >= 2)
@@ -177,6 +179,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.Write("passengers", passengers);
 	if(!isVisible)
 		out.Write("invisible");
+	if(location == LANDING)
+		out.Write("landing");
 	
 	if(!toComplete.IsEmpty())
 	{
@@ -192,11 +196,10 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	
 	// TODO: save NPCs.
 	
-	// In the saved game, there is no need to save anything but the COMPLETE and
-	// FAIL actions, because the time for the others is already past.
+	// Save all the actions, because this might be an "available mission" that
+	// has not been received yet but must still be included in the saved game.
 	for(const auto &it : actions)
-		if(it.first == COMPLETE || it.first == FAIL)
-			it.second.Save(out);
+		it.second.Save(out);
 	
 	out.EndChild();
 }
@@ -227,12 +230,9 @@ bool Mission::IsVisible() const
 
 
 
-// Check if this mission is a "job" (i.e. something that should not show up
-// automatically in the spaceport, because it will instead be shown in the
-// job listing).
-bool Mission::IsJob() const
+bool Mission::IsAtLocation(Location location) const
 {
-	return isJob;
+	return (this->location == location);
 }
 
 
@@ -369,6 +369,10 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		return false;
 	
 	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
+	if(trigger == OFFER)
+		player.Conditions()[name + ": offered"] = true;
+	if(trigger == COMPLETE)
+		player.Conditions()[name + ": done"] = true;
 	return true;
 }
 
@@ -400,6 +404,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// If anything goes wrong below, this mission should not be offered.
 	result.hasFailed = true;
 	result.isVisible = isVisible;
+	result.location = location;
 	
 	// First, pick values for all the variables.
 	

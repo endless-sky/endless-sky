@@ -37,11 +37,11 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 
 
-void SpaceportPanel::Step(bool isActive)
+void SpaceportPanel::Step()
 {
 	if(GetUI()->IsTop(this))
 	{
-		Mission *mission = player.MissionToOffer();
+		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
 	}

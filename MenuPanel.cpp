@@ -55,9 +55,9 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 
 
-void MenuPanel::Step(bool isActive)
+void MenuPanel::Step()
 {
-	if(isActive && alpha < 1.)
+	if(GetUI()->IsTop(this) && alpha < 1.)
 	{
 		++scroll;
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
@@ -147,7 +147,7 @@ void MenuPanel::OnCallback(int)
 	Panel *panel = new MainPanel(player);
 	gamePanels.Push(panel);
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	panel->Step(true);
+	panel->Step();
 	gamePanels.Push(new ShipyardPanel(player));
 }
 

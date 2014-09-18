@@ -34,6 +34,7 @@ class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 	
+	virtual void Step();
 	virtual void Draw() const;
 	
 	
