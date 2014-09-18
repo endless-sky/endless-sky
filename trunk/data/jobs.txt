@@ -1,6 +1,7 @@
 mission "Passengers [1]"
 	name "Passenger transport to <planet>"
 	job
+	repeat
 	description "Bring <passengers> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
@@ -17,6 +18,7 @@ mission "Passengers [1]"
 mission "Passengers [2]"
 	name "Passenger transport to <planet>"
 	job
+	repeat
 	description "Bring <passengers> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
@@ -33,6 +35,7 @@ mission "Passengers [2]"
 mission "Passengers [3]"
 	name "Passenger transport to <planet>"
 	job
+	repeat
 	description "Bring <passengers> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
@@ -49,7 +52,8 @@ mission "Passengers [3]"
 mission "Passengers [4]"
 	name "Passenger transport to <planet>"
 	job
-	description "These passengers want to escape the pollution and crime on <origin> and settle on <destination>. Payment is <payment>."
+	repeat
+	description "These <bunks> passengers want to escape the pollution and crime on <origin> and settle on <destination>. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -65,7 +69,8 @@ mission "Passengers [4]"
 
 mission "Transport miners to <planet>"
 	job
-	description "This family of miners is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	repeat
+	description "This family of <bunks> miners is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 2 .8
 	to offer
 		random < 50
@@ -81,7 +86,8 @@ mission "Transport miners to <planet>"
 
 mission "Transport farmers to <planet>"
 	job
-	description "This family of farmers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	repeat
+	description "This family of <bunks> farmers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 2 .8
 	to offer
 		random < 50
@@ -97,6 +103,7 @@ mission "Transport farmers to <planet>"
 
 mission "Fishing on <planet>"
 	job
+	repeat
 	description "This man wants to go on a fishing expedition to <destination>, and will pay you <payment> to take them there."
 	passengers 1
 	to offer
@@ -115,7 +122,8 @@ mission "Fishing on <planet>"
 mission "Tourists out [1]"
 	name "Bring tourists to <planet>"
 	job
-	description "These tourists want to see <destination>. They are willing to pay you <payment>."
+	repeat
+	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -133,7 +141,8 @@ mission "Tourists out [1]"
 mission "Tourists out [1]"
 	name "Bring tourists to <planet>"
 	job
-	description "These tourists want to see <destination>. They are willing to pay you <payment>."
+	repeat
+	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
@@ -152,7 +161,8 @@ mission "Tourists out [1]"
 mission "Tourists back [1]"
 	name "Bring tourists home to <planet>"
 	job
-	description "These tourists are headed home to <destination>. They are willing to pay you <payment>."
+	repeat
+	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -170,7 +180,8 @@ mission "Tourists back [1]"
 mission "Tourists back [1]"
 	name "Bring tourists home to <planet>"
 	job
-	description "These tourists are headed home to <destination>. They are willing to pay you <payment>."
+	repeat
+	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
