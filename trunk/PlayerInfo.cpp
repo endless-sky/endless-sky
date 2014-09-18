@@ -952,15 +952,15 @@ void PlayerInfo::SelectNext()
 // game, but that's a minor detail and I can fix it later.
 void PlayerInfo::CreateMissions()
 {
-	// TODO: generate "available jobs" based on what jobs the planet says it has
-	// available.
-	
-	// Check for available special missions.
+	// Check for available missions.
 	for(const auto &it : GameData::Missions())
-		if(!it.second.IsAtLocation(Mission::JOB) && it.second.CanOffer(*this))
+		if(it.second.CanOffer(*this))
 		{
-			availableMissions.push_back(it.second.Instantiate(*this));
-			if(availableMissions.back().HasFailed())
-				availableMissions.pop_back();
+			list<Mission> &missions =
+				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
+			
+			missions.push_back(it.second.Instantiate(*this));
+			if(missions.back().HasFailed())
+				missions.pop_back();
 		}
 }

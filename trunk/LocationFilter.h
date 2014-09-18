@@ -31,6 +31,9 @@ public:
 	// particular planet or system.
 	void Load(const DataNode &node);
 	
+	// Check if this filter contains any specifications.
+	bool IsEmpty() const;
+	
 	// If the player is in the given system, does this filter match?
 	bool Matches(const Planet *planet, const System *origin = nullptr) const;
 	bool Matches(const System *system, const System *origin = nullptr) const;

@@ -24,10 +24,13 @@ class PlayerInfo;
 // from the given "center" system.
 class DistanceMap {
 public:
+	// Find paths to the given system. If the given maximum count is above zero,
+	// it is a limit on how many systems should be returned. If it is below zero
+	// it specifies the maximum distance away that paths should be found.
+	DistanceMap(const System *center, int maxCount = 0);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
-	DistanceMap(const System *center, int maxCount = 0);
 	DistanceMap(const PlayerInfo &player);
 	
 	// Find out if the given system is reachable.

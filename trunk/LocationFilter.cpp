@@ -112,6 +112,15 @@ void LocationFilter::Load(const DataNode &node)
 
 
 
+// Check if this filter contains any specifications.
+bool LocationFilter::IsEmpty() const
+{
+	return planets.empty() && attributes.empty() && systems.empty() && governments.empty()
+		&& !center && originMaxDistance < 0;
+}
+
+
+
 // If the player is in the given system, does this filter match?
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
@@ -138,7 +147,7 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	
 	if(center)
 	{
-		DistanceMap distance(center, centerMaxDistance);
+		DistanceMap distance(center, -centerMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
 		if(distance.Distance(system) < centerMinDistance)
@@ -146,7 +155,7 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	}
 	if(origin && originMaxDistance >= 0)
 	{
-		DistanceMap distance(origin, originMaxDistance);
+		DistanceMap distance(origin, -originMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
 		if(distance.Distance(system) < originMinDistance)
