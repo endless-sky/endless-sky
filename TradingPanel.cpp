@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Information.h"
+#include "Interface.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "UI.h"
@@ -85,7 +87,7 @@ void TradingPanel::Draw() const
 	
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
-	if(outfits || missionCargo)
+	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		string str = to_string(outfits + missionCargo);
 		if(outfits && missionCargo)
@@ -123,6 +125,12 @@ void TradingPanel::Draw() const
 		if(hold)
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 	}
+	
+	const Interface *interface = GameData::Interfaces().Get("trade");
+	Information info;
+	if(player.Cargo().HasOutfits() || player.Cargo().CommoditiesSize())
+		info.SetCondition("can sell");
+	interface->Draw(info);
 }
 
 
@@ -138,6 +146,21 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		Buy(1);
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
+	else if(key == 'a')
+	{
+		for(const auto &it : GameData::Commodities())
+		{
+			int amount = player.Cargo().Get(it.name);
+			int price = system.Trade(it.name);
+			player.Cargo().Transfer(it.name, amount);
+			player.Accounts().AddCredits(amount * price);
+		}
+		for(const auto &it : player.Cargo().Outfits())
+		{
+			player.Accounts().AddCredits(it.second * it.first->Cost());
+			player.Cargo().Transfer(it.first, it.second);
+		}
+	}
 	else if(key == GameData::Keys().Get(Key::MAP))
 		GetUI()->Push(new MapDetailPanel(player, selectedRow));
 	else
@@ -150,6 +173,15 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool TradingPanel::Click(int x, int y)
 {
+	// Handle clicks on the interface buttons.
+	const Interface *interface = GameData::Interfaces().Get("trade");
+	if(interface)
+	{
+		char key = interface->OnClick(Point(x, y));
+		if(key != '\0')
+			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	}
+	
 	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
