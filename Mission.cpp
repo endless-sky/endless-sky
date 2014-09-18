@@ -113,10 +113,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
 		else if(child.Token(0) == "job")
-		{
 			location = JOB;
-			repeat = 0;
-		}
 		else if(child.Token(0) == "landing")
 			location = LANDING;
 		else if(child.Token(0) == "repeat")
@@ -500,6 +497,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
+	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ?
 		"a passenger" : (to_string(result.passengers) + " passengers");
 	subs["<your passengers>"] = (result.passengers == 1) ? "your passenger" : "your passengers";

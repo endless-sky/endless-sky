@@ -779,6 +779,8 @@ void PlayerInfo::AcceptJob(const Mission &mission)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this);
 			missions.splice(missions.end(), availableJobs, it);
 			break;
 		}
