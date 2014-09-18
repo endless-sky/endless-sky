@@ -69,7 +69,9 @@ void Mission::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "description" && child.Size() >= 2)
+		if(child.Token(0) == "name" && child.Size() >= 2)
+			name = child.Token(1);
+		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 		{

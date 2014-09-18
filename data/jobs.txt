@@ -1,4 +1,5 @@
-mission "Passenger transport to <planet>"
+mission "Passengers [1]"
+	name "Passenger transport to <planet>"
 	job
 	description "Bring <passengers> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
@@ -13,7 +14,8 @@ mission "Passenger transport to <planet>"
 		payment
 		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Passenger transport to <planet> "
+mission "Passengers [2]"
+	name "Passenger transport to <planet>"
 	job
 	description "Bring <passengers> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
@@ -28,7 +30,8 @@ mission "Passenger transport to <planet> "
 		payment
 		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Passenger transport to <planet>  "
+mission "Passengers [3]"
+	name "Passenger transport to <planet>"
 	job
 	description "Bring <passengers> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
@@ -43,7 +46,8 @@ mission "Passenger transport to <planet>  "
 		payment
 		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Passenger transport to <planet>   "
+mission "Passengers [4]"
+	name "Passenger transport to <planet>"
 	job
 	description "These passengers want to escape the pollution and crime on <origin> and settle on <destination>. Payment is <payment>."
 	passengers 2 10 .9
@@ -108,7 +112,8 @@ mission "Fishing on <planet>"
 		payment 5000
 		dialog "You drop off the fisherman, wishing him the best of luck at catching fish, and collect your payment of <payment>."
 
-mission "Bring tourists to <planet>"
+mission "Tourists out [1]"
+	name "Bring tourists to <planet>"
 	job
 	description "These tourists want to see <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
@@ -125,7 +130,8 @@ mission "Bring tourists to <planet>"
 		payment 10000
 		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Bring tourists to <planet> "
+mission "Tourists out [1]"
+	name "Bring tourists to <planet>"
 	job
 	description "These tourists want to see <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
@@ -143,7 +149,8 @@ mission "Bring tourists to <planet> "
 		payment 15000
 		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Bring tourists home to <planet>"
+mission "Tourists back [1]"
+	name "Bring tourists home to <planet>"
 	job
 	description "These tourists are headed home to <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
@@ -160,7 +167,8 @@ mission "Bring tourists home to <planet>"
 		payment 10000
 		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Bring tourists home to <planet> "
+mission "Tourists back [1]"
+	name "Bring tourists home to <planet>"
 	job
 	description "These tourists are headed home to <destination>. They are willing to pay you <payment>."
 	passengers 2 10 .9
