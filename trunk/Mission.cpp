@@ -478,7 +478,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// How far is it to the destination?
 	DistanceMap distance(player.GetSystem());
 	int jumps = distance.Distance(result.destination->GetSystem());
-	int defaultPayment = 1000 + jumps * 100 * (result.cargoSize + 10 * result.passengers);
+	int defaultPayment = (jumps + 1) * (150 * result.cargoSize + 1500 * result.passengers);
 	int defaultDeadline = doDefaultDeadline ? (2 * jumps) : 0;
 	
 	// Set the deadline, if requested.
@@ -498,9 +498,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<tons>"] = to_string(result.cargoSize) + (result.cargoSize == 1 ? " ton" : " tons");
 	subs["<cargo>"] = subs["<tons>"] + " of " + subs["<commodity>"];
 	subs["<bunks>"] = to_string(result.passengers);
-	subs["<passengers>"] = (result.passengers == 1) ?
-		"a passenger" : (to_string(result.passengers) + " passengers");
-	subs["<your passengers>"] = (result.passengers == 1) ? "your passenger" : "your passengers";
+	subs["<passengers>"] = (result.passengers == 1) ? "your passenger" : "your passengers";
+	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	subs["<origin>"] = player.GetPlanet()->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
