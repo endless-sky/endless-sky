@@ -949,13 +949,41 @@ void PlayerInfo::SelectNext()
 }
 
 
+
 // New missions are generated each time you land on a planet. This also means
 // that random missions that didn't show up might show up if you reload the
 // game, but that's a minor detail and I can fix it later.
 void PlayerInfo::CreateMissions()
 {
+	// Set up the "conditions" for the current status of the player.
+	const Politics &politics = GameData::GetPolitics();
+	for(const auto &it : GameData::Governments())
+	{
+		int rep = politics.Reputation(&it.second);
+		conditions["reputation: " + it.first] = rep;
+		if(&it.second == system->GetGovernment())
+			conditions["reputation"] = rep;
+	}
+	static const vector<string> CATEGORIES = {
+		"Transport",
+		"Light Freighter",
+		"Heavy Freighter",
+		"Interceptor",
+		"Light Warship",
+		"Heavy Warship",
+		"Fighter",
+		"Drone"
+	};
+	for(const string &category : CATEGORIES)
+		conditions[category] = 0;
+	for(const shared_ptr<Ship> &ship : ships)
+		++conditions["ships: " + ship->Attributes().Category()];
+	// TODO: combat rating.
+	
 	// Check for available missions.
 	for(const auto &it : GameData::Missions())
+	{
+		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =
@@ -965,4 +993,5 @@ void PlayerInfo::CreateMissions()
 			if(missions.back().HasFailed())
 				missions.pop_back();
 		}
+	}
 }

@@ -2,7 +2,7 @@ mission "Passengers [1]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring <passengers> to <destination>. Payment is <payment>."
+	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
 		random < 75
@@ -13,13 +13,13 @@ mission "Passengers [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Passengers [2]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring <passengers> to <destination>. Payment is <payment>."
+	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
 		random < 50
@@ -30,13 +30,13 @@ mission "Passengers [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Passengers [3]"
 	name "Passenger transport to <planet>"
 	job
 	repeat
-	description "Bring <passengers> to <destination>. Payment is <payment>."
+	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
 		random < 50
@@ -47,7 +47,7 @@ mission "Passengers [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Passengers [4]"
 	name "Passenger transport to <planet>"
@@ -65,7 +65,7 @@ mission "Passengers [4]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport miners to <planet>"
 	job
@@ -136,7 +136,7 @@ mission "Tourists out [1]"
 	on complete
 		payment
 		payment 10000
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
 	name "Bring tourists to <planet>"
@@ -156,7 +156,7 @@ mission "Tourists out [1]"
 	on complete
 		payment
 		payment 15000
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
 	name "Bring tourists home to <planet>"
@@ -175,7 +175,7 @@ mission "Tourists back [1]"
 	on complete
 		payment
 		payment 10000
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
 	name "Bring tourists home to <planet>"
@@ -195,4 +195,4 @@ mission "Tourists back [1]"
 	on complete
 		payment
 		payment 15000
-		dialog "You wish <your passengers> the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
