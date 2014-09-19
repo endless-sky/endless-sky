@@ -170,6 +170,7 @@ If you want a mission to be offered any number of times but to limit the number 
   * `"<mission name>: done"` is set when a mission is successfully completed.
   * `"reputation: <government>"` is set to your current reputation with the given government, rounded down to a whole number.
   * "reputation" is your reputation in the current system, rounded down.
+  * "ships: `<category>`" is the number of ships you have of each category (Transport, Light Freighter, Heavy Freighter, Interceptor, Light Warship, Heavy Warship, Fighter, Drone).
   * "combat rating" is your current combat rating, rounded down.
   * "random" is a random number between 0 and 99. This can be used to make a mission only sometimes appear when all other conditions are met.
 
