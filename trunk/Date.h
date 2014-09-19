@@ -29,6 +29,8 @@ public:
 	void operator++();
 	void operator++(int);
 	Date operator+(int days) const;
+	// Comparison operator, ignoring fractions of a day.
+	bool operator<(const Date &other) const;
 	
 	// Get the number of days that have elapsed since the "epoch".
 	double DaysSinceEpoch() const;

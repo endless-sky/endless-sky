@@ -288,6 +288,20 @@ const Date &Mission::Deadline() const
 
 
 
+// If this mission's deadline was before the given date and it has not been
+// marked as failing already, mark it and return true.
+bool Mission::CheckDeadline(const Date &today)
+{
+	if(!hasFailed && hasDeadline && deadline < today)
+	{
+		hasFailed = true;
+		return true;
+	}
+	return false;
+}
+
+
+
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player) const
 {
@@ -437,7 +451,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	{
 		const Trade::Commodity *commodity = nullptr;
 		if(cargo == "random")
-			commodity = PickCommodity(*player.GetSystem(), *destination->GetSystem());
+			commodity = PickCommodity(*player.GetSystem(), *result.destination->GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
@@ -504,7 +518,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
-	subs["<date>"] = deadline.ToString();
+	subs["<date>"] = result.deadline.ToString();
 	// TODO: fill in the NPC name.
 	subs["<npc>"] = "Name of NPC";
 	
