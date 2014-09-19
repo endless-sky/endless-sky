@@ -91,6 +91,29 @@ Date Date::operator+(int days) const
 
 
 
+bool Date::operator<(const Date &other) const
+{
+	tm t;
+	gmtime_r(&today, &t);
+	
+	tm ot;
+	gmtime_r(&other.today, &ot);
+	
+	if(t.tm_year < ot.tm_year)
+		return true;
+	if(t.tm_year > ot.tm_year)
+		return false;
+	
+	if(t.tm_mon < ot.tm_mon)
+		return true;
+	if(t.tm_mon > ot.tm_mon)
+		return false;
+	
+	return t.tm_mday < ot.tm_mday;
+}
+
+
+
 // Get the number of days that have elapsed since the "epoch".
 double Date::DaysSinceEpoch() const
 {

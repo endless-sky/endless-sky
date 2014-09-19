@@ -361,6 +361,11 @@ string PlayerInfo::IncrementDate()
 {
 	++date;
 	
+	// Check if any missions have failed because of deadlines.
+	for(Mission &mission : missions)
+		if(mission.CheckDeadline(date))
+			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".");
+	
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = 0;

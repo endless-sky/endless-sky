@@ -67,6 +67,9 @@ public:
 	// The mission must be completed by this deadline (if there is a deadline).
 	bool HasDeadline() const;
 	const Date &Deadline() const;
+	// If this mission's deadline was before the given date and it has not been
+	// marked as failing already, mark it and return true.
+	bool CheckDeadline(const Date &today);
 	
 	// Check if it's possible to offer or complete this mission right now. The
 	// check for whether you can offer a mission does not take available space

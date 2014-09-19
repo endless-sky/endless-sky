@@ -1,3 +1,251 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Cargo [0]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Cargo [1]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Cargo [2]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 80
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Cargo [3]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 70
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 3 14
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 5000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Cargo [4]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 60
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 4 16
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 10000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Bulk Delivery [0]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 25 2 .05
+	to offer
+		random < 70
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Bulk Delivery [1]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 25 2 .05
+	to offer
+		random < 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 10000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Bulk Delivery [2]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 25 2 .05
+	to offer
+		random < 50
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 4 16
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 15000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Rush Delivery [0]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 4 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 20000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Rush Delivery [1]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 80
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 5 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 25000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Rush Delivery [2]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 70
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 6 14
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 30000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Rush Delivery [3]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 60
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 7 16
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 35000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+
+mission "Passengers [0]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 1 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 20000
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
 mission "Passengers [1]"
 	name "Passenger transport to <planet>"
 	job
@@ -6,6 +254,7 @@ mission "Passengers [1]"
 	passengers 1 10 .9
 	to offer
 		random < 75
+		has "ship: Transport"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	destination
@@ -39,7 +288,7 @@ mission "Passengers [3]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	to offer
-		random < 50
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	destination
@@ -101,23 +350,58 @@ mission "Transport farmers to <planet>"
 		payment
 		dialog "You wish the farm family the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Fishing on <planet>"
+mission "Transport mill workers to <planet>"
 	job
 	repeat
-	description "This man wants to go on a fishing expedition to <destination>, and will pay you <payment> to take them there."
-	passengers 1
+	description "This family of <bunks> mill workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 2 2 .8
 	to offer
-		random < 10
+		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	destination
-		attributes "fishing"
-		distance 5 16
+		attributes "textiles"
+		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 5000
-		dialog "You drop off the fisherman, wishing him the best of luck at catching fish, and collect your payment of <payment>."
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport workers to <planet>"
+	job
+	repeat
+	description "This family of <bunks> factory workers is hoping to find work on <destination>, and they will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 80
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "factory"
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Tourists out [0]"
+	name "Bring a tourist to <planet>"
+	job
+	repeat
+	description "This tourist wants to see <destination>, and will pay you <payment>."
+	passengers 1
+	to offer
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	destination
+		attributes "tourism"
+		distance 2 35
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 20000
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
 	name "Bring tourists to <planet>"
@@ -138,7 +422,7 @@ mission "Tourists out [1]"
 		payment 10000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Tourists out [1]"
+mission "Tourists out [2]"
 	name "Bring tourists to <planet>"
 	job
 	repeat
@@ -156,6 +440,25 @@ mission "Tourists out [1]"
 	on complete
 		payment
 		payment 15000
+		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Tourists back [0]"
+	name "Bring a tourist home to <planet>"
+	job
+	repeat
+	description "This tourist is headed home to <destination>, and will pay you <payment>."
+	passengers 1
+	to offer
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		attributes "tourism"
+	destination
+		distance 2 35
+		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+	on complete
+		payment
+		payment 20000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
@@ -177,7 +480,7 @@ mission "Tourists back [1]"
 		payment 10000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Tourists back [1]"
+mission "Tourists back [2]"
 	name "Bring tourists home to <planet>"
 	job
 	repeat
