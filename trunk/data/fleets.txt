@@ -16,6 +16,7 @@ fleet "Small Southern Merchants"
 		confusion 40
 		timid
 	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 	variant 6
 		"Shuttle"
 	variant 4
@@ -41,6 +42,7 @@ fleet "Large Southern Merchants"
 		confusion 20
 		timid
 	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 	variant 2
 		"Freighter"
 		"Hawk"
@@ -75,6 +77,7 @@ fleet "Small Core Merchants"
 		confusion 30
 		timid
 	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 	variant 4
 		"Shuttle"
 	variant 6
@@ -108,6 +111,7 @@ fleet "Large Core Merchants"
 		confusion 10
 		timid
 	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 	variant 3
 		"Freighter" 2
 		"Quicksilver" 2
@@ -144,6 +148,7 @@ fleet "Small Northern Merchants"
 		confusion 40
 		timid
 	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 	variant 8
 		"Shuttle"
 	variant 4
@@ -166,6 +171,7 @@ fleet "Large Northern Merchants"
 		confusion 20
 		timid
 	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 	variant 4
 		"Freighter" 2
 		"Firebird"

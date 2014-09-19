@@ -240,3 +240,55 @@ name "friendly free worlds"
 		"lobbyists"
 	word
 		"! Join the Free Worlds!"
+
+
+
+name "hostile civilian"
+	word
+		"I hope the "
+	word
+		"Navy "
+		"Militia "
+	word
+		"burns "
+		"cuts "
+		"tears "
+		"chops "
+		"smashes "
+		"rips "
+		"blows "
+		"blasts "
+		"shoots "
+	word
+		"off your head"
+		"out your heart"
+		"off your hands"
+		"off your arms"
+		"out your eyes"
+		"up your ship"
+		"up your face"
+	word
+		", you"
+	word
+		" lowdown "
+		" good-for-nothing "
+		" evil "
+		" mangy "
+		" bottom-feeding "
+		" "
+	word
+		"scuzz"
+		"chump"
+		"frack"
+		"zorch"
+		"gunk"
+		"blarf"
+		"dink"
+	word
+		"wad!"
+		"head!"
+		"bucket!"
+		"bag!"
+		"sack!"
+		"heap!"
+		"pile!"
