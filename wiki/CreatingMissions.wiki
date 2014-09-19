@@ -104,7 +104,7 @@ The mission name must be unique.
 name <name>
 }}}
 
-Because the mission name must be unique, if you want to have the same name displayed for two different missions, you can specify the display name separately. This is useful, for example, if you want to have multiple jobs that all get displayed as "ferry passengers to <planet>".
+Because the mission name must be unique, if you want to have the same name displayed for two different missions, you can specify the display name separately. This is useful, for example, if you want to have multiple jobs that all get displayed as "ferry passengers to `<planet>`".
 
 {{{
 description <text>
@@ -409,7 +409,7 @@ payment (<value>)
 
 If the "payment" tag appears on its own, the player is paid the default amount for this mission, which is equal to:
 
-1000 + (# of jumps from origin to destination) `*` (1000 `*` (# of passengers) + 100 `*` (tons of cargo))
+(# of jumps from origin to destination + 1) `*` (1500 `*` (# of passengers) + 150 `*` (tons of cargo))
 
 If a value is given, that is the player's payment for reaching this step of the mission. Normally, a "payment" value would only be given in the "on complete" section, but you can also have a negative value to be subtracted if the player fails the mission, or you could use a "payment" to advance the player some money when they first accept a mission. If the "on complete" payment is negative, the player cannot complete the mission if they have fewer than that number of credits.
 
@@ -429,5 +429,3 @@ event <name> (<delay>)
 }}}
 
 This specifies that the given event happens at this point in the mission. Events may permanently alter planets or solar systems. If a delay is given, the event will occur that number of days from now, instead of happening immediately.
-
-*Events have not been implemented yet.*
