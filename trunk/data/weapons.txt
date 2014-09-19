@@ -296,7 +296,7 @@ outfit "Plasma Cannon"
 
 outfit "Meteor Missile"
 	category "Missiles"
-	cost 1200
+	cost 500
 	thumbnail "outfit/meteor"
 	"meteor capacity" -1
 	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has the capacity for 35 missiles; you cannot install missiles if you have not first purchased a launcher to store them in."
@@ -322,22 +322,22 @@ outfit "Meteor Missile Launcher"
 		"inaccuracy" 10
 		"velocity" 10
 		"lifetime" 600
-		"reload" 40
+		"reload" 45
 		"firing energy" 1
 		"firing heat" 20
 		"acceleration" 1
 		"drag" .1
 		"turn" 2
 		"homing" 3
-		"shield damage" 65
-		"hull damage" 45
+		"shield damage" 130
+		"hull damage" 90
 		"hit force" 30
 		"missile strength" 4
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The tracking system on these missiles is notoriously unreliable, and they are easily destroyed by anti-missile systems, but in large numbers or when fired at a slow-moving target they can be deadly."
 
 outfit "Sidewinder Missile"
 	category "Missiles"
-	cost 2000
+	cost 800
 	thumbnail "outfit/sidewinder"
 	"sidewinder capacity" -1
 	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 40 of them. You cannot install a missile without a launcher to fire it from."
@@ -363,15 +363,15 @@ outfit "Sidewinder Missile Launcher"
 		"inaccuracy" 4
 		"velocity" 12
 		"lifetime" 600
-		"reload" 50
+		"reload" 40
 		"firing energy" 1
 		"firing heat" 15
 		"acceleration" 1.2
 		"drag" .1
 		"turn" 3
 		"homing" 4
-		"shield damage" 60
-		"hull damage" 40
+		"shield damage" 120
+		"hull damage" 80
 		"hit force" 25
 		"missile strength" 12
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designed of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
@@ -379,7 +379,7 @@ outfit "Sidewinder Missile Launcher"
 
 outfit "Javelin"
 	category "Missiles"
-	cost 100
+	cost 50
 	thumbnail "outfit/javelin"
 	"javelin capacity" -1
 	description "A Javelin missile is ammunition for the Javelin Pod; without a Pod to store them in you cannot purchase or use Javelins. Each pod stores up to 200 Javelins."
@@ -405,15 +405,15 @@ outfit "Javelin Pod"
 		"reload" 20
 		"firing energy" .2
 		"firing heat" 12
-		"shield damage" 28
-		"hull damage" 15
+		"shield damage" 56
+		"hull damage" 30
 		"hit force" 5
 		"missile strength" 2
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
 
 outfit "Torpedo"
 	category "Missiles"
-	cost 3000
+	cost 1400
 	thumbnail "outfit/torpedo"
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
@@ -446,15 +446,15 @@ outfit "Torpedo Launcher"
 		"drag" .1
 		"turn" 4
 		"homing" 3
-		"shield damage" 300
-		"hull damage" 300
+		"shield damage" 400
+		"hull damage" 400
 		"hit force" 40
 		"missile strength" 20
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
 
 outfit "Heavy Rocket"
 	category "Missiles"
-	cost 5000
+	cost 2000
 	thumbnail "outfit/rocket"
 	"rocket capacity" -1
 	description "Heavy Rockets are ammunition for the Heavy Rocket Launcher. You cannot install one unless you have first installed a launcher to fire it from. Each launcher holds up to 20 rockets."
