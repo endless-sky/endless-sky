@@ -110,16 +110,20 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			const Personality &personality = it->GetPersonality();
 			shared_ptr<Ship> parent = it->GetParent();
 			
-			// Fire any weapons that will hit the target.
-			it->SetFireCommands(AutoFire(*it, ships));
-			
-			// Each ship only switches targets twice a second, so that it can
-			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) & 31;
+			// Fire any weapons that will hit the target. Only ships that are in
+			// the current system can fire.
 			shared_ptr<const Ship> target = it->GetTargetShip();
-			if(targetTurn == step || !target || !target->IsTargetable()
-					|| (target->IsDisabled() && personality.Disables()))
-				it->SetTargetShip(FindTarget(*it, ships));
+			if(it->GetSystem() == info.GetSystem())
+			{
+				it->SetFireCommands(AutoFire(*it, ships));
+			
+				// Each ship only switches targets twice a second, so that it can
+				// focus on damaging one particular ship.
+				targetTurn = (targetTurn + 1) & 31;
+				if(targetTurn == step || !target || !target->IsTargetable()
+						|| (target->IsDisabled() && personality.Disables()))
+					it->SetTargetShip(FindTarget(*it, ships));
+			}
 			
 			double targetDistance = numeric_limits<double>::infinity();
 			target = it->GetTargetShip();
