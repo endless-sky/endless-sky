@@ -643,7 +643,7 @@ interface "hiring"
 	if "can hire"
 	label "Hire" 140 348
 		size 14
-		color medium
+		color bright
 		align center
 	endif
 	
@@ -658,7 +658,7 @@ interface "hiring"
 	if "can fire"
 	label "Fire" 60 348
 		size 14
-		color medium
+		color bright
 		align center
 	endif
 	string "modifier" -50 145
@@ -709,7 +709,7 @@ interface "trade"
 	if "can sell"
 	label "Sell All" 140 348
 		size 14
-		color medium
+		color bright
 		align center
 	endif
 
