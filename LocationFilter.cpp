@@ -45,9 +45,6 @@ namespace {
 // particular planet or system.
 void LocationFilter::Load(const DataNode &node)
 {
-	for(int i = 1; i < node.Size(); ++i)
-		planets.insert(GameData::Planets().Get(node.Token(i)));
-	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "planet")

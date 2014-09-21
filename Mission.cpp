@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -133,6 +134,11 @@ void Mission::Load(const DataNode &node)
 			destination = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
+		else if(child.Token(0) == "npc")
+		{
+			npcs.push_back(NPC());
+			npcs.back().Load(child);
+		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
 			static const map<string, Trigger> trigger = {
@@ -193,7 +199,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	if(destination)
 		out.Write("destination", destination->Name());
 	
-	// TODO: save NPCs.
+	for(const NPC &npc : npcs)
+		npc.Save(out);
 	
 	// Save all the actions, because this might be an "available mission" that
 	// has not been received yet but must still be included in the saved game.
@@ -357,6 +364,10 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 	if(it != actions.end() && !it->second.CanBeDone(player))
 		return false;
 	
+	for(const NPC &npc : npcs)
+		if(!npc.HasSucceeded())
+			return false;
+	
 	return true;
 }
 
@@ -364,6 +375,10 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 
 bool Mission::HasFailed() const
 {
+	for(const NPC &npc : npcs)
+		if(npc.HasFailed())
+			return true;
+	
 	return hasFailed;
 }
 
@@ -393,18 +408,34 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 
 // Get a list of NPCs associated with this mission. Every time the player
 // takes off from a planet, they should be added to the active ships.
-const list<shared_ptr<Ship>> &Mission::Ships() const
+const list<NPC> &Mission::NPCs() const
 {
-	return ships;
+	return npcs;
 }
 
 
 
 // If any event occurs between two ships, check to see if this mission cares
 // about it. This may affect the mission status or display a message.
-void Mission::Do(const ShipEvent &event, UI *ui)
+void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	// TODO: handle ship events for each mission.
+	if(event.TargetGovernment() == GameData::PlayerGovernment() && !hasFailed)
+	{
+		bool failed = false;
+		for(const auto &it : event.Target()->Cargo().MissionCargo())
+			failed |= (it.first == this);
+		for(const auto &it : event.Target()->Cargo().PassengerList())
+			failed |= (it.first == this);
+		
+		if(failed && !hasFailed)
+		{
+			hasFailed = true;
+			Messages::Add("Ship lost. Mission failed: \"" + name + "\".");
+		}
+	}
+	
+	for(NPC &npc : npcs)
+		npc.Do(event, player, ui);
 }
 
 
@@ -519,18 +550,19 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
-	// TODO: fill in the NPC name.
-	subs["<npc>"] = "Name of NPC";
 	
-	// Instantiate the actions.
+	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
+	for(const NPC &npc : npcs)
+		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem()));
+	
+	// Instantiate the actions. The "complete" action is always first so that
+	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, defaultPayment);
 	
 	// Perform substitution in the name and description.
 	result.name = Format::Replace(name, subs);
 	result.description = Format::Replace(description, subs);
-	
-	// TODO: Instantiate NPCs and perform substitution there, too.
 	
 	result.hasFailed = false;
 	return result;

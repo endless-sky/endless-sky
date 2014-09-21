@@ -126,6 +126,30 @@ void Engine::Place()
 		}
 		ship->Place(pos, angle.Unit(), angle);
 	}
+	shared_ptr<Ship> flagship;
+	if(!player.Ships().empty())
+		flagship = player.Ships().front();
+	for(const Mission &mission : player.Missions())
+		for(const NPC &npc : mission.NPCs())
+			for(const shared_ptr<Ship> &ship : npc.Ships())
+			{
+				ships.push_back(ship);
+				ship->SetParent(flagship);
+				ship->Recharge();
+				
+				Point pos;
+				Angle angle = Angle::Random(360.);
+				// All your ships that are in system with the player act as if they are
+				// leaving the planet along with you.
+				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem())
+				{
+					ship->SetPlanet(player.GetPlanet());
+					for(const StellarObject &object : ship->GetSystem()->Objects())
+						if(object.GetPlanet() == player.GetPlanet())
+							pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
+				}
+				ship->Place(pos, angle.Unit(), angle);
+			}
 	
 	player.SetPlanet(nullptr);
 }

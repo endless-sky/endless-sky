@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
+#include "NPC.h"
 
 #include <list>
 #include <map>
@@ -89,10 +90,10 @@ public:
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
-	const std::list<std::shared_ptr<Ship>> &Ships() const;
+	const std::list<NPC> &NPCs() const;
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
-	void Do(const ShipEvent &event, UI *ui);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
@@ -133,8 +134,7 @@ private:
 	LocationFilter destinationFilter;
 	
 	// NPCs:
-	std::list<std::shared_ptr<Ship>> ships;
-	// TODO: class representing NPC characteristics.
+	std::list<NPC> npcs;
 	
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
