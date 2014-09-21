@@ -64,28 +64,12 @@ void MainPanel::Step()
 	const Government *gov = GameData::PlayerGovernment();
 	for(const ShipEvent &event : engine.Events())
 	{
+		player.HandleEvent(event, GetUI());
 		if(event.Type() == ShipEvent::BOARD)
 		{
 			// TODO: handle player getting boarded.
 			if(event.ActorGovernment() == gov)
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
-		}
-		if(event.Type() == ShipEvent::DESTROY && event.TargetGovernment() == gov)
-		{
-			// TODO: hand ship events on to each Mission to inspect.
-			// Some missions have both cargo and passengers. Avoid aborting them
-			// twice, because the name may no longer be accessible the second time.
-			/*set<const Mission *> failed;
-			for(const auto &it : event.Target()->Cargo().MissionCargo())
-				failed.insert(it.first);
-			for(const auto &it : event.Target()->Cargo().PassengerList())
-				failed.insert(it.first);
-			
-			for(const Mission *mission : failed)
-			{
-				Messages::Add("Ship lost. Mission failed: \"" + mission->Name() + "\".");
-				player.AbortMission(*mission);
-			}*/
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{

@@ -29,6 +29,7 @@ class Government;
 class Outfit;
 class Planet;
 class Ship;
+class ShipEvent;
 class System;
 class UI;
 
@@ -110,6 +111,8 @@ public:
 	void MissionCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	// Update mission status based on an event.
+	void HandleEvent(const ShipEvent &event, UI *ui);
 	
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;

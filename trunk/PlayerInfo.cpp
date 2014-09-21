@@ -845,6 +845,15 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 
 
 
+// Update mission status based on an event.
+void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
+{
+	for(Mission &mission : missions)
+		mission.Do(event, *this, ui);
+}
+
+
+
 map<string, int> &PlayerInfo::Conditions()
 {
 	return conditions;

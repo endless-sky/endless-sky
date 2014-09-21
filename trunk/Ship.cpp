@@ -128,8 +128,6 @@ void Ship::Load(const DataNode &node)
 	
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
-	attributes = baseAttributes;
-	cargo.SetSize(attributes.Get("cargo space"));
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits.
@@ -144,6 +142,7 @@ void Ship::FinishLoading()
 {
 	// TODO: any way to do this through lazy evaluation, instead of having to
 	// call this function explicitly?
+	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
 		attributes.Add(*it.first, it.second);
