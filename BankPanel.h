@@ -41,7 +41,7 @@ private:
 	
 private:
 	PlayerInfo &player;
-	int qualify;
+	int64_t qualify;
 	int selectedRow;
 };
 

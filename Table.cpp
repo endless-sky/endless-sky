@@ -113,6 +113,7 @@ void Table::SetUnderline(int startX, int endX)
 void Table::DrawAt(const Point &point) const
 {
 	this->point = point + Point(0., (rowSize.Y() - font->Height()) / 2);
+	it = columns.begin();
 }
 
 
@@ -126,12 +127,15 @@ void Table::SetColor(const Color &color) const
 
 
 // Advance to the next field without drawing anything.
-void Table::Advance() const
+void Table::Advance(int fields) const
 {
-	if(columns.empty() || ++it == columns.end())
+	while(fields-- > 0)
 	{
-		it = columns.begin();
-		point.Y() += rowSize.Y();
+		if(columns.empty() || ++it == columns.end())
+		{
+			it = columns.begin();
+			point.Y() += rowSize.Y();
+		}
 	}
 }
 
@@ -186,7 +190,7 @@ void Table::DrawUnderline() const
 
 void Table::DrawUnderline(const Color &color) const
 {
-	FillShader::Fill(point + lineOff, lineSize, color);
+	FillShader::Fill(point + lineOff - Point(0., 2.), lineSize, color);
 }
 
 
