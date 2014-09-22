@@ -56,7 +56,7 @@ public:
 	void SetColor(const Color &color) const;
 	
 	// Advance to the next field without drawing anything.
-	void Advance() const;
+	void Advance(int fields = 1) const;
 	
 	// Draw a single text field, and move on to the next one.
 	void Draw(const std::string &text) const;

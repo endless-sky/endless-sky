@@ -17,8 +17,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Point.h"
+#include "Table.h"
 #include "UI.h"
 
 #include <string>
@@ -36,7 +38,9 @@ namespace {
 	static const int PAYMENT_X = 20;
 	static const int EXTRA_X = 100;
 	
-	static const int FIRST_Y = 80;
+	static const int FIRST_Y = 78;
+	
+	static const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 }
 
 
@@ -51,70 +55,113 @@ BankPanel::BankPanel(PlayerInfo &player)
 
 void BankPanel::Draw() const
 {
-	Color back = *GameData::Colors().Get("faint");
-	if(static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size())
-		FillShader::Fill(
-			Point(130., FIRST_Y + 238), Point(100., 20.), back);
-	else
-		FillShader::Fill(
-			Point(-60., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
+	Table table;
+	table.AddColumn(TYPE_X, Table::LEFT);
+	table.AddColumn(PRINCIPAL_X, Table::LEFT);
+	table.AddColumn(INTEREST_X, Table::LEFT);
+	table.AddColumn(TERM_X, Table::LEFT);
+	table.AddColumn(PAYMENT_X, Table::LEFT);
+	table.AddColumn(170, Table::RIGHT);
+	table.SetHighlight(-300, 180);
+	table.DrawAt(Point(0., FIRST_Y));
 	
-	const Font &font = FontSet::Get(14);
+	Color back = *GameData::Colors().Get("faint");
 	Color unselected = *GameData::Colors().Get("medium");
 	Color selected = *GameData::Colors().Get("bright");
+	table.DrawUnderline(unselected);
+	table.SetColor(selected);
+	for(int i = 0; i < 6; ++i)
+		table.Draw(HEADING[i]);
+	table.DrawGap(5);
 	
-	int y = FIRST_Y;
-	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
-	
-	font.Draw("Type", Point(TYPE_X, y), selected);
-	font.Draw("Principal", Point(PRINCIPAL_X, y), selected);
-	font.Draw("Interest", Point(INTEREST_X, y), selected);
-	font.Draw("Term", Point(TERM_X, y), selected);
-	font.Draw("Payment", Point(PAYMENT_X, y), selected);
-	y += 5.;
-	
-	int total = 0;
-	int i = 0;
+	// Figure out the total payments and principal (other than salaries). This
+	// is in case there are more mortgages than can be displayed.
+	int otherPrincipal = 0;
+	int otherPayment = 0;
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
-		const Color &color = (i++ == selectedRow) ? selected : unselected;
-		y += 20.;
-		font.Draw(mortgage.Type(), Point(TYPE_X, y), color);
-		font.Draw(to_string(mortgage.Principal()), Point(PRINCIPAL_X, y), color);
-		font.Draw(mortgage.Interest(), Point(INTEREST_X, y), color);
-		font.Draw(to_string(mortgage.Term()), Point(TERM_X, y), color);
-		int p = mortgage.Payment();
-		total += p;
-		font.Draw(to_string(p), Point(PAYMENT_X, y), color);
-		font.Draw("[pay extra]", Point(EXTRA_X, y), color);
+		otherPrincipal += mortgage.Principal();
+		otherPayment += mortgage.Payment();
 	}
+	int totalPayment = otherPayment;
+	
+	// Check if salaries need to be drawn.
 	int salaries = player.Salaries();
+	
+	int row = 0;
+	for(const Mortgage &mortgage : player.Accounts().Mortgages())
+	{
+		if(row == selectedRow)
+		{
+			table.DrawHighlight(back);
+			table.SetColor(selected);
+		}
+		else
+			table.SetColor(unselected);
+		
+		// There is room for seven rows if including salaries, or 8 if not.
+		if(row == (6 + !salaries) && otherPrincipal != mortgage.Principal())
+		{
+			table.Draw("Other", unselected);
+			table.Draw(otherPrincipal);
+			table.Advance(2);
+			table.Draw(otherPayment);
+		}
+		else
+		{
+			table.Draw(mortgage.Type());
+			table.Draw(mortgage.Principal());
+			table.Draw(mortgage.Interest());
+			table.Draw(mortgage.Term());
+			table.Draw(mortgage.Payment());
+			
+			otherPrincipal -= mortgage.Principal();
+			otherPayment -= mortgage.Payment();
+		}
+		table.Draw("[pay extra]");
+		++row;
+		
+		// Draw no more than 8 rows, countign the salaries row if any.
+		if(row == 7 + !salaries)
+			break;
+	}
+	table.SetColor(unselected);
+	// Draw the salaries, if necessary.
 	if(salaries)
 	{
-		y += 20.;
-		font.Draw("Crew Salaries", Point(TYPE_X, y), unselected);
-		font.Draw(to_string(salaries), Point(PAYMENT_X, y), unselected);
-		total += salaries;
+		totalPayment += salaries;
+		
+		table.Draw("Crew Salaries", unselected);
+		table.Advance(3);
+		table.Draw(salaries);
+		table.Advance();
 	}
-	y += 20.;
-	font.Draw("total:", Point(TERM_X, y), selected);
-	font.Draw(to_string(total), Point(PAYMENT_X, y), unselected);
 	
-	y = FIRST_Y + 210.;
-	string credit = "Your credit score is "
-		+ to_string(player.Accounts().CreditScore()) + ".";
-	font.Draw(credit, Point(TYPE_X, y), unselected);
+	table.Advance(3);
+	table.Draw("total:", selected);
+	table.Draw(totalPayment, unselected);
+	table.Advance();
 	
-	y += 20.;
+	table.DrawAt(Point(0., FIRST_Y + 210.));
+	string credit = "Your credit score is " + to_string(player.Accounts().CreditScore()) + ".";
+	table.Draw(credit);
+	table.Advance(5);
+	
 	string amount;
 	if(!qualify)
 		amount = "You do not qualify for further loans at this time.";
 	else
-		amount = "You qualify for a new loan of up to "
-			+ to_string(qualify) + " credits.";
-	font.Draw(amount, Point(TYPE_X, y), unselected);
+		amount = "You qualify for a new loan of up to " + Format::Number(qualify) + " credits.";
+	bool isSelected = qualify && (selectedRow > (6 + !salaries)
+		|| static_cast<unsigned>(selectedRow) >= player.Accounts().Mortgages().size());
+	if(isSelected)
+		table.DrawHighlight(back);
+	table.Draw(amount, unselected);
 	if(qualify)
-		font.Draw("[apply]", Point(EXTRA_X, y), selected);
+	{
+		table.Advance(4);
+		table.Draw("[apply]", selected);
+	}
 }
 
 
@@ -185,7 +232,7 @@ void BankPanel::PayExtra(int amount)
 void BankPanel::NewMortgage(int amount)
 {
 	// You cannot pay more than you have or more than the mortgage principal.
-	amount = min(static_cast<int64_t>(amount), player.Accounts().Prequalify());
+	amount = min(static_cast<int64_t>(amount), qualify);
 	
 	if(amount > 0)
 		player.Accounts().AddMortgage(amount);
