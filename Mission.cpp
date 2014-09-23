@@ -436,7 +436,8 @@ const list<NPC> &Mission::NPCs() const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment() == GameData::PlayerGovernment() && !hasFailed)
+	if(event.TargetGovernment() == GameData::PlayerGovernment() && !hasFailed
+			&& (event.Type() & ShipEvent::DESTROY))
 	{
 		bool failed = false;
 		for(const auto &it : event.Target()->Cargo().MissionCargo())
@@ -444,7 +445,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		for(const auto &it : event.Target()->Cargo().PassengerList())
 			failed |= (it.first == this);
 		
-		if(failed && !hasFailed)
+		if(failed)
 		{
 			hasFailed = true;
 			Messages::Add("Ship lost. Mission failed: \"" + name + "\".");
