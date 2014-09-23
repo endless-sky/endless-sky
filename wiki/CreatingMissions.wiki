@@ -32,6 +32,7 @@ mission <name>
         near <system> ((<min>) <max>)
         distance ((<min>) <max>)
     npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+        government <name>
         (enter | remain | wait) (<system>)
             system <name>*
                 <name>*
@@ -171,7 +172,7 @@ If you want a mission to be offered any number of times but to limit the number 
   * `"reputation: <government>"` is set to your current reputation with the given government, rounded down to a whole number.
   * "reputation" is your reputation in the current system, rounded down.
   * "ships: `<category>`" is the number of ships you have of each category (Transport, Light Freighter, Heavy Freighter, Interceptor, Light Warship, Heavy Warship, Fighter, Drone).
-  * "combat rating" is your current combat rating, rounded down.
+  * "combat rating" is your current combat rating (sum of the base crews of all the ships you have disabled).
   * "random" is a random number between 0 and 99. This can be used to make a mission only sometimes appear when all other conditions are met.
 
 Conditions are checked at two times when processing a mission: when determining whether the mission can be offered right now (in the "to offer" tag), and when determining whether it has been completed successfully (in the "to complete" tag):
@@ -268,6 +269,7 @@ NPCs are ships that are associated with the mission in some way. This includes f
 
 {{{
 npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+    government <name>
     (enter | remain | wait) (<system>)
         near <system> ((<min>) <max>)
         distance ((<min>) <max>)
@@ -292,6 +294,12 @@ Each "npc" tag may have one or more tags following it, specifying what the playe
   * disable: To complete the mission, the player must disable the given NPC.
   * "scan cargo": To complete the mission, the player must scan the given NPC's cargo. If the NPC is destroyed before being scanned, the mission fails.
   * "scan outfits": Same, but the player must use an outfit scanner instead of a cargo scanner.
+
+{{{
+government <name>
+}}}
+
+This specifies what government all the ships connected to this NPC specification will have. If no government is given, they are set to the player's government, as escorts.
 
 {{{
 (enter | remain | wait) (<system>)
