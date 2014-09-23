@@ -115,6 +115,10 @@
 		A9E84C7D196215140058DFB7 /* CaptureOdds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C77196215140058DFB7 /* CaptureOdds.cpp */; };
 		A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C79196215140058DFB7 /* HiringPanel.cpp */; };
 		A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C7B196215140058DFB7 /* Personality.cpp */; };
+		A9F4DBBE19D21F030015BBE2 /* ConditionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */; };
+		A9F4DBC119D21F150015BBE2 /* MissionAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBBF19D21F150015BBE2 /* MissionAction.cpp */; };
+		A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBC219D21F260015BBE2 /* NPC.cpp */; };
+		A9F4DBC719D21F380015BBE2 /* LocationFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBC519D21F380015BBE2 /* LocationFilter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -168,7 +172,6 @@
 		A99F7A61195DF44B002C30B8 /* BankPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankPanel.h; sourceTree = "<group>"; };
 		A99F7A62195DF44B002C30B8 /* BoardingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardingPanel.cpp; sourceTree = "<group>"; };
 		A99F7A63195DF44B002C30B8 /* BoardingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardingPanel.h; sourceTree = "<group>"; };
-		A99F7A64195DF44B002C30B8 /* Callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callback.h; sourceTree = "<group>"; };
 		A99F7A65195DF44B002C30B8 /* CargoHold.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CargoHold.cpp; sourceTree = "<group>"; };
 		A99F7A66195DF44B002C30B8 /* CargoHold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoHold.h; sourceTree = "<group>"; };
 		A99F7A67195DF44B002C30B8 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
@@ -337,6 +340,14 @@
 		A9E84C7A196215140058DFB7 /* HiringPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiringPanel.h; sourceTree = "<group>"; };
 		A9E84C7B196215140058DFB7 /* Personality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Personality.cpp; sourceTree = "<group>"; };
 		A9E84C7C196215140058DFB7 /* Personality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Personality.h; sourceTree = "<group>"; };
+		A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConditionSet.cpp; sourceTree = "<group>"; };
+		A9F4DBBD19D21F030015BBE2 /* ConditionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSet.h; sourceTree = "<group>"; };
+		A9F4DBBF19D21F150015BBE2 /* MissionAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionAction.cpp; sourceTree = "<group>"; };
+		A9F4DBC019D21F150015BBE2 /* MissionAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionAction.h; sourceTree = "<group>"; };
+		A9F4DBC219D21F260015BBE2 /* NPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPC.cpp; sourceTree = "<group>"; };
+		A9F4DBC319D21F260015BBE2 /* NPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPC.h; sourceTree = "<group>"; };
+		A9F4DBC519D21F380015BBE2 /* LocationFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocationFilter.cpp; sourceTree = "<group>"; };
+		A9F4DBC619D21F380015BBE2 /* LocationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationFilter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,13 +388,14 @@
 				A99F7A61195DF44B002C30B8 /* BankPanel.h */,
 				A99F7A62195DF44B002C30B8 /* BoardingPanel.cpp */,
 				A99F7A63195DF44B002C30B8 /* BoardingPanel.h */,
-				A99F7A64195DF44B002C30B8 /* Callback.h */,
 				A9E84C77196215140058DFB7 /* CaptureOdds.cpp */,
 				A9E84C78196215140058DFB7 /* CaptureOdds.h */,
 				A99F7A65195DF44B002C30B8 /* CargoHold.cpp */,
 				A99F7A66195DF44B002C30B8 /* CargoHold.h */,
 				A99F7A67195DF44B002C30B8 /* Color.cpp */,
 				A99F7A68195DF44B002C30B8 /* Color.h */,
+				A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */,
+				A9F4DBBD19D21F030015BBE2 /* ConditionSet.h */,
 				A99F7A69195DF44B002C30B8 /* Controllable.cpp */,
 				A99F7A6A195DF44B002C30B8 /* Controllable.h */,
 				A99F7A6B195DF44B002C30B8 /* Conversation.cpp */,
@@ -449,6 +461,8 @@
 				A99F7A97195DF44B002C30B8 /* LineShader.h */,
 				A99F7A98195DF44B002C30B8 /* LoadPanel.cpp */,
 				A99F7A99195DF44B002C30B8 /* LoadPanel.h */,
+				A9F4DBC519D21F380015BBE2 /* LocationFilter.cpp */,
+				A9F4DBC619D21F380015BBE2 /* LocationFilter.h */,
 				A99F7A9A195DF44B002C30B8 /* main.cpp */,
 				A99F7A9B195DF44B002C30B8 /* MainPanel.cpp */,
 				A99F7A9C195DF44B002C30B8 /* MainPanel.h */,
@@ -464,10 +478,14 @@
 				A9C81F84197873F700EBA833 /* Messages.h */,
 				A9C81F861978740400EBA833 /* Mission.cpp */,
 				A9C81F871978740400EBA833 /* Mission.h */,
+				A9F4DBBF19D21F150015BBE2 /* MissionAction.cpp */,
+				A9F4DBC019D21F150015BBE2 /* MissionAction.h */,
 				A9C81F881978740400EBA833 /* MissionPanel.cpp */,
 				A9C81F891978740400EBA833 /* MissionPanel.h */,
 				A99F7AA3195DF44B002C30B8 /* Mortgage.cpp */,
 				A99F7AA4195DF44B002C30B8 /* Mortgage.h */,
+				A9F4DBC219D21F260015BBE2 /* NPC.cpp */,
+				A9F4DBC319D21F260015BBE2 /* NPC.h */,
 				A99F7AA5195DF44B002C30B8 /* Outfit.cpp */,
 				A99F7AA6195DF44B002C30B8 /* Outfit.h */,
 				A99F7AA7195DF44B002C30B8 /* OutfitInfoDisplay.cpp */,
@@ -706,6 +724,7 @@
 				A99F7B25195DF44C002C30B8 /* ShopPanel.cpp in Sources */,
 				A99F7B03195DF44C002C30B8 /* GameData.cpp in Sources */,
 				A99F7AEB195DF44C002C30B8 /* Animation.cpp in Sources */,
+				A9F4DBC719D21F380015BBE2 /* LocationFilter.cpp in Sources */,
 				A99F7AED195DF44C002C30B8 /* AsteroidField.cpp in Sources */,
 				A9C81F911978743100EBA833 /* DataWriter.cpp in Sources */,
 				A99F7B16195DF44C002C30B8 /* Panel.cpp in Sources */,
@@ -720,6 +739,8 @@
 				A99F7B13195DF44C002C30B8 /* OutfitInfoDisplay.cpp in Sources */,
 				A99F7AFC195DF44C002C30B8 /* Engine.cpp in Sources */,
 				A959553419957260005197E6 /* ShipEvent.cpp in Sources */,
+				A9F4DBBE19D21F030015BBE2 /* ConditionSet.cpp in Sources */,
+				A9F4DBC119D21F150015BBE2 /* MissionAction.cpp in Sources */,
 				A99F7B26195DF44C002C30B8 /* SpaceportPanel.cpp in Sources */,
 				A99F7B10195DF44C002C30B8 /* MenuPanel.cpp in Sources */,
 				A99F7AFD195DF44C002C30B8 /* Files.cpp in Sources */,
@@ -757,6 +778,7 @@
 				A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */,
 				A959553719957288005197E6 /* Politics.cpp in Sources */,
 				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
+				A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
 				A99F7AF2195DF44C002C30B8 /* Controllable.cpp in Sources */,
 				A9C81F7F197873D800EBA833 /* DistanceMap.cpp in Sources */,
