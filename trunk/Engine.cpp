@@ -143,6 +143,10 @@ void Engine::Place()
 				// leaving the planet along with you.
 				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem())
 				{
+					// If a ship is "staying", it starts out in orbit.
+					if(ship->GetPersonality().IsStaying())
+						continue;
+					
 					ship->SetPlanet(player.GetPlanet());
 					for(const StellarObject &object : ship->GetSystem()->Objects())
 						if(object.GetPlanet() == player.GetPlanet())

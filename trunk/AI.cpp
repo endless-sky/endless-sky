@@ -290,7 +290,7 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		return;
 	}
 	
-	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet())
+	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())
 	{
 		int jumps = ship.JumpsRemaining();
 		// Each destination system has an average priority of 10.
@@ -374,7 +374,8 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
 	const Ship &parent = *ship.GetParent();
-	if(ship.GetSystem() != parent.GetSystem())
+	bool isStaying = ship.GetPersonality().IsStaying();
+	if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
 		control.SetTargetSystem(parent.GetSystem());
 		PrepareForHyperspace(control, ship);
@@ -389,7 +390,7 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 	}
 	else if(parent.HasBoardCommand() && parent.GetTargetShip().get() == &ship)
 		Stop(control, ship);
-	else if(parent.HasHyperspaceCommand() && parent.GetTargetSystem())
+	else if(parent.HasHyperspaceCommand() && parent.GetTargetSystem() && !isStaying)
 	{
 		control.SetTargetSystem(parent.GetTargetSystem());
 		PrepareForHyperspace(control, ship);

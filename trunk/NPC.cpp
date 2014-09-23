@@ -51,10 +51,7 @@ void NPC::Load(const DataNode &node)
 	
 	for(const DataNode &child : node)
 	{
-		bool doEnter = child.Token(0) == "enter";
-		bool doRemain = child.Token(0) == "remain";
-		bool doWait = child.Token(0) == "wait";
-		if(doEnter || doRemain || doWait)
+		if(child.Token(0) == "system")
 		{
 			if(child.Size() >= 2)
 				system = GameData::Systems().Get(child.Token(1));
@@ -67,6 +64,8 @@ void NPC::Load(const DataNode &node)
 			failIf = child.Value(1);
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
+		else if(child.Token(0) == "personality")
+			personality.Load(child);
 		else if(child.Token(0) == "dialog")
 		{
 			for(int i = 1; i < child.Size(); ++i)
@@ -119,6 +118,7 @@ void NPC::Load(const DataNode &node)
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		ship->SetGovernment(government);
+		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
 		ship->FinishLoading();
 	}
@@ -140,6 +140,7 @@ void NPC::Save(DataWriter &out) const
 	
 	if(government)
 		out.Write("government", government->GetName());
+	personality.Save(out);
 	
 	if(!dialogText.empty())
 	{
@@ -165,6 +166,9 @@ void NPC::Save(DataWriter &out) const
 	
 	for(const shared_ptr<Ship> &ship : ships)
 	{
+		if(ship->Hull() <= 0.)
+			continue;
+		
 		ship->Save(out);
 		auto it = actions.find(ship.get());
 		if(it != actions.end() && it->second)
@@ -253,6 +257,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 	result.government = government;
 	if(!result.government)
 		result.government = GameData::PlayerGovernment();
+	result.personality = personality;
 	result.succeedIf = succeedIf;
 	result.failIf = failIf;
 	
@@ -289,29 +294,26 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(*nameIt);
 	}
-	for(const shared_ptr<Ship> &ship : result.ships)
-	{
-		Angle angle = Angle::Random();
-		Point pos = Angle::Random().Unit() * Random::Real() * 400.;
-		double velocity = Random::Real() * ship->MaxVelocity();
-		
-		ship->SetSystem(result.system);
-		ship->Place(pos, velocity * angle.Unit(), angle);
-	}
 	for(const Fleet &fleet : fleets)
 		fleet.Place(*result.system, result.ships);
 	for(const Fleet *fleet : stockFleets)
 		fleet->Place(*result.system, result.ships);
-	
+	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
-		ship->SetGovernment(government);
+		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
+		ship->SetPersonality(personality);
+		
+		if(personality.IsEntering())
+			Fleet::Enter(*result.system, *ship);
+		else
+			Fleet::Place(*result.system, *ship);
 	}
 	
 	// String replacement:
-	if(!ships.empty())
-		subs["<npc>"] = ships.front()->Name();
+	if(!result.ships.empty())
+		subs["<npc>"] = result.ships.front()->Name();
 	
 	// Do string replacement on any dialog or conversation.
 	if(!dialogText.empty())

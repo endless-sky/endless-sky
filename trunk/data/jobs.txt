@@ -8,6 +8,19 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Pirate Attack"
+	description "Defeat a pirate raid on <destination>."
+	npc kill
+		personality staying
+		government Pirate
+		fleet "Large Northern Pirates"
+		fleet "Large Southern Pirates"
+	on offer
+		dialog "Suddenly you hear shouting outside. It appears that the planet is under attack by pirates. Do you join in the defenses?"
+	on complete
+		payment 200000
+		dialog "You are paid <payment> for helping to drive off the pirates."
+
 mission "Cargo [0]"
 	name "Delivery to <planet>"
 	job

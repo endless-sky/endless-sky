@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Conversation.h"
 #include "Fleet.h"
 #include "LocationFilter.h"
+#include "Personality.h"
 
 #include <string>
 #include <list>
@@ -59,6 +60,7 @@ public:
 private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
+	Personality personality;
 	
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
