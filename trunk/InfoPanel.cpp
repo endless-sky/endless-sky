@@ -32,9 +32,29 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <cctype>
 
 using namespace std;
+
+namespace {
+	const vector<string> RATINGS = {
+		"harmless",
+		"mostly harmless",
+		"wimpy",
+		"beginner",
+		"mediocre",
+		"fair",
+		"average",
+		"above average",
+		"competent",
+		"proficient",
+		"noteworthy",
+		"dangerous",
+		"deadly",
+		"legendary"
+	};
+}
 
 
 
@@ -228,7 +248,14 @@ void InfoPanel::DrawInfo() const
 	font.Draw(name, pos + Point(230. - font.Width(name), 0.), bright);
 	
 	pos.Y() += 25.;
-	string rating = "mostly harmless";
+	size_t ratingLevel = 0;
+	auto it = player.Conditions().find("combat rating");
+	if(it != player.Conditions().end() && it->second > 0)
+	{
+		ratingLevel = log(it->second);
+		ratingLevel = min(ratingLevel, RATINGS.size() - 1);
+	}
+	string rating = RATINGS[ratingLevel];
 	font.Draw("combat rating:", pos, dim);
 	font.Draw(rating, pos + Point(230. - font.Width(rating), 0.), bright);
 	
