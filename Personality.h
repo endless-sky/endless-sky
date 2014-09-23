@@ -15,7 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Point.h"
 
+#include <string>
+
 class DataNode;
+class DataWriter;
 
 
 
@@ -26,6 +29,7 @@ public:
 	Personality();
 	
 	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
 	
 	bool IsPacifist() const;
 	bool IsForbearing() const;
@@ -33,8 +37,14 @@ public:
 	bool Disables() const;
 	bool Plunders() const;
 	bool IsHeroic() const;
+	bool IsStaying() const;
+	bool IsEntering() const;
 	
 	const Point &Confusion() const;
+	
+	
+private:
+	void Parse(const std::string &token);
 	
 	
 private:

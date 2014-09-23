@@ -14,6 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "DataNode.h"
+#include "DataWriter.h"
+
+#include <map>
 
 using namespace std;
 
@@ -24,13 +27,28 @@ namespace {
 	static const int DISABLES = 8;
 	static const int PLUNDERS = 16;
 	static const int HEROIC = 32;
+	static const int STAYING = 64;
+	static const int ENTERING = 128;
+	
+	static const map<string, int> TOKEN = {
+		{"pacifist", PACIFIST},
+		{"forbearing", FORBEARING},
+		{"timid", TIMID},
+		{"disables", DISABLES},
+		{"plunders", PLUNDERS},
+		{"heroic", HEROIC},
+		{"staying", STAYING},
+		{"entering", ENTERING}
+	};
+	
+	double DEFAULT_CONFUSION = 10. * .001;
 }
 
 
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(10. * .001)
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION)
 {
 }
 
@@ -39,23 +57,34 @@ Personality::Personality()
 void Personality::Load(const DataNode &node)
 {
 	flags = 0;
+	for(int i = 1; i < node.Size(); ++i)
+		Parse(node.Token(i));
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion" && child.Size() >= 2)
 			confusionMultiplier = child.Value(1) * .001;
-		else if(child.Token(0) == "pacifist")
-			flags |= PACIFIST;
-		else if(child.Token(0) == "forbearing")
-			flags |= FORBEARING;
-		else if(child.Token(0) == "timid")
-			flags |= TIMID;
-		else if(child.Token(0) == "disables")
-			flags |= DISABLES;
-		else if(child.Token(0) == "plunders")
-			flags |= PLUNDERS;
-		else if(child.Token(0) == "heroic")
-			flags |= HEROIC;
+		else
+		{
+			for(int i = 0; i < child.Size(); ++i)
+				Parse(child.Token(i));
+		}
 	}
+}
+
+
+
+void Personality::Save(DataWriter &out) const
+{
+	out.Write("personality");
+	out.BeginChild();
+	
+	out.Write("confusion", confusionMultiplier * 1000.);
+	for(const auto &it : TOKEN)
+		if(flags & it.second)
+			out.Write(it.first);
+	
+	out.EndChild();
 }
 
 
@@ -102,9 +131,32 @@ bool Personality::IsHeroic() const
 
 
 
+bool Personality::IsStaying() const
+{
+	return flags & STAYING;
+}
+
+
+
+bool Personality::IsEntering() const
+{
+	return flags & ENTERING;
+}
+
+
+
 const Point &Personality::Confusion() const
 {
 	confusion += Angle::Random().Unit() * confusionMultiplier;
 	confusion *= .999;
 	return confusion;
+}
+
+
+
+void Personality::Parse(const string &token)
+{
+	auto it = TOKEN.find(token);
+	if(it != TOKEN.end())
+		flags |= it->second;
 }

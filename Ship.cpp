@@ -106,6 +106,12 @@ void Ship::Load(const DataNode &node)
 			crew = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "fuel" && child.Size() >= 2)
 			fuel = child.Value(1);
+		else if(child.Token(0) == "shields" && child.Size() >= 2)
+			shields = child.Value(1);
+		else if(child.Token(0) == "hull" && child.Size() >= 2)
+			hull = child.Value(1);
+		else if(child.Token(0) == "position" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
 			currentSystem = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "planet" && child.Size() >= 2)
@@ -162,8 +168,12 @@ void Ship::FinishLoading()
 	armament.FinishLoading();
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
-	shared_ptr<const Ship> parent = GetParent();
-	Recharge(!parent || currentSystem == parent->currentSystem);
+	// Do not recharge if this ship's starting state was saved.
+	if(!hull)
+	{
+		shared_ptr<const Ship> parent = GetParent();
+		Recharge(!parent || currentSystem == parent->currentSystem);
+	}
 }
 
 
@@ -199,6 +209,9 @@ void Ship::Save(DataWriter &out) const
 		cargo.Save(out);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);
+		out.Write("shields", shields);
+		out.Write("hull", hull);
+		out.Write("position", position.X(), position.Y());
 		
 		for(const Point &point : enginePoints)
 			out.Write("engine", point.X(), point.Y());

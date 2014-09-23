@@ -233,6 +233,58 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 
 
 
+// Do the randomization to make a ship enter or be in the given system.
+void Fleet::Enter(const System &system, Ship &ship)
+{
+	if(!system.Links().size())
+	{
+		Place(system, ship);
+		return;
+	}
+	
+	const System *source = system.Links()[Random::Int(system.Links().size())];
+	Angle angle = Angle::Random();
+	Point pos = angle.Unit() * Random::Real() * 1000.;
+	
+	ship.Place(pos, angle.Unit(), angle);
+	ship.SetSystem(source);
+	ship.SetTargetSystem(&system);
+}
+
+
+
+void Fleet::Place(const System &system, Ship &ship)
+{
+	// Count the inhabited planets in this system.
+	int planets = 0;
+	for(const StellarObject &object : system.Objects())
+		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+			++planets;
+	
+	// Determine where the fleet is going to or coming from.
+	Point center;
+	if(planets)
+	{
+		int index = Random::Int(planets);
+		for(const StellarObject &object : system.Objects())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+				if(!index--)
+					center = object.Position();
+	}
+	
+	// Move out a random distance from that object, facing toward it or away.
+	center += Angle::Random().Unit() * (Random::Real() * 2. - 1.);
+	Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
+	
+	double velocity = Random::Real() * ship.MaxVelocity();
+	
+	ship.SetSystem(&system);
+	Angle angle = Angle::Random();
+	ship.Place(pos, velocity * angle.Unit(), angle);
+}
+
+
+
 void Fleet::SetCargo(Ship *ship) const
 {
 	for(int i = 0; i < cargo; ++i)
