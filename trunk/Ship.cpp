@@ -404,6 +404,8 @@ bool Ship::Move(list<Effect> &effects)
 		// Recharge shields, but only up to the max. If there is extra shield
 		// energy, use it to recharge fighters and drones.
 		shields += attributes.Get("shield generation");
+		static const double SHIELD_EXCHANGE_RATE = 2.;
+		energy -= SHIELD_EXCHANGE_RATE * attributes.Get("shield generation");
 		double excessShields = max(0., shields - maxShields);
 		shields -= excessShields;
 		
@@ -436,6 +438,15 @@ bool Ship::Move(list<Effect> &effects)
 				bay.ship->shields += extra;
 				excessShields -= extra;
 			}
+		}
+		// If you do not need the shield generation, apply the extra back to
+		// your energy. On the other hand, if recharging shields drives your
+		// energy negative, undo that part of the recharge.
+		energy += SHIELD_EXCHANGE_RATE * excessShields;
+		if(energy < 0.)
+		{
+			shields += energy / SHIELD_EXCHANGE_RATE;
+			energy = 0.;
 		}
 	}
 	
@@ -548,6 +559,9 @@ bool Ship::Move(list<Effect> &effects)
 		// just slowly refuel.
 		if(landingPlanet && zoom)
 		{
+			// Move the ship toward the center of the planet while landing.
+			if(GetTargetPlanet())
+				position = .97 * position + .03 * GetTargetPlanet()->Position();
 			zoom -= .02;
 			if(zoom < 0.)
 			{
