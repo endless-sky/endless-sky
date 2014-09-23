@@ -11111,7 +11111,7 @@ planet Alfheim
 	attributes deep oil factory
 	landscape land/nasa2
 	description "Alfheim is a world of wide grassy plains, deserts, a few small oceans, and scattered rainforests. Not a pleasant enough planet to support large cities, it is instead mostly a site for oil drilling and manufacturing. So far only a tiny fraction of the surface has been developed, mostly clustered around the sites where the largest oil deposits have been discovered."
-	description " Settlements show up as small bright points on the dark side of the planet - not from city lights, but from natural gas burnoff at the drilling stations."
+	description "	Settlements show up as small bright points on the dark side of the planet - not from city lights, but from natural gas burnoff at the drilling stations."
 	spaceport "The spaceport is in the middle of a field of oil derricks so vast that from above, the desert seemed to be covered in spiky grey fur. The spaceport itself is a soaring canopy, made to look like a tent, or sails on a ship. But it is built of a sturdy composite of plastic and carbon fiber, and coated in reflective plastic. Inside, hovercrafts and massive sand-crawlers are bringing cargo to and from the refineries and factories scattered across the planet's surface."
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
@@ -11166,7 +11166,7 @@ planet "Big Sky"
 	attributes "dirt belt" farming
 	landscape land/fields2
 	description "Big Sky is a warm and fertile world, teeming with indigenous life. It would be an ideal farming world if it were not for the fact that the native plants are so abundant and so well adapted to this environment that they can take over an untended field in a matter of months. Farmers typically start the growing season by slashing and burning the plants that have taken root in their fields over the winter, and even so they must be constantly vigilant for weeds throughout the summer."
-	description " The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These ''ubergoats'' pose so great a threat to the typical biosphere that they are export-controlled as biological weapons. But a flock of them left in a field will rapidly end up corralled into a tiny clearing by encroaching vegetation."
+	description "	The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These ''ubergoats'' pose so great a threat to the typical biosphere that they are export-controlled as biological weapons. But a flock of them left in a field will rapidly end up corralled into a tiny clearing by encroaching vegetation."
 	spaceport "The landing pads here are being gradually consumed by the local plant life. In most places grass and ivy has crept out to cover at least a meter of the pad on all sides, and every small crack or crevice has been colonized by moss and by the roots of larger plants. In places the forest has been cleared to make roads leading to the nearby farming villages, but in most directions all you see is green. It is a beautiful sight, and oddly peaceful, but you know what a nuisance these plants are to the locals."
 
 planet Bivrost
@@ -11174,7 +11174,7 @@ planet Bivrost
 	landscape land/city6
 	description "Bivrost is the one planet in the Deep where heavy metals are relatively abundant. What began as a mining colony has developed into one of the most prosperous worlds in the region. Unlike most worlds that are strip mined for uranium, the environment outside the cities is relatively unspoiled. Strict controls are placed on the emissions and waste products of the local manufacturing plants to ensure that it stays that way."
 	spaceport "The spaceport is within sight of the capital city, Rainbridge, but far enough away that the sound of ships taking off and landing will not be too disturbing to the locals. The warehouse space here is underground, level after level of tunnels and caverns stocked with lead-lined trunks filled with uranium and plastic crates of manufactured goods. Above ground, the spaceport is entirely enclosed within a dome of glass and plastic composite."
-	spaceport " A video screen plays a looping advertisement from the local chamber of commerce. A prosperous-looking man is saying, ''I knew there was a fortune to be made in uranium - but I was afraid my children would start glowing in the dark.''"
+	spaceport "	A video screen plays a looping advertisement from the local chamber of commerce. A prosperous-looking man is saying, ''I knew there was a fortune to be made in uranium - but I was afraid my children would start glowing in the dark.''"
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
@@ -11185,7 +11185,7 @@ planet Bloodsea
 	description "Bloodsea is nearly uninhabited, except for a few pirate outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming."
 	description "	The pirates have no industry of their own, but instead make a living by reselling stolen cargo from raids on merchant fleets."
 	spaceport "When you landed your ship near one of the larger outposts, no one even came out to greet you or to check your paperwork - not that anyone on a pirate world would care about such things. In the center of town is an open-air marketplace where large men armed with large guns stand guard over piles of crates, while others examine the wares that are for sale and haggle over prices."
-	spaceport " The local slang incorporates threats of extreme violence as a seemingly meaningless verbal tic. ''Hey, I'm gonna cut off your fingers one by one until you buy a meat patty!'' a vender calls out cheerfully as you pass. ''First one's free, and I'll tie a knot in your spine if you don't like it.''"
+	spaceport "	The local slang incorporates threats of extreme violence as a seemingly meaningless verbal tic. ''Hey, I'm gonna cut off your fingers one by one until you buy a meat patty!'' a vender calls out cheerfully as you pass. ''First one's free, and I'll tie a knot in your spine if you don't like it.''"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
@@ -11280,7 +11280,7 @@ planet Chiron
 	attributes "near earth" urban
 	landscape land/city9
 	description "Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem."
-	description " Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, offworld students form a noticeable fraction of the population." 
+	description "	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, offworld students form a noticeable fraction of the population." 
 	spaceport "There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships."
 	spaceport "	The New Port, on the other hand, is in the center of New Sidney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous."
 	shipyard "Basic Ships"
@@ -11326,7 +11326,7 @@ planet Crossroads
 	attributes core mining
 	landscape land/valley1
 	description "Crossroads is a thoroughly unbeautiful planet. The scrawny local vegetation has blue and purple leaves, shocking to your human eyes, and grows only reluctantly, leaving the land looking like a blighted wasteland."
-	description " The Syndicate's vast operation strip mining for uranium ore does nothing to improve this situation. They say that sandstorms were frequent here even before the Syndicate arrived, but the storms have gotten far worse in recent years, with some storms now reaching several kilometers high and dozens of kilometers in diameter."
+	description "	The Syndicate's vast operation strip mining for uranium ore does nothing to improve this situation. They say that sandstorms were frequent here even before the Syndicate arrived, but the storms have gotten far worse in recent years, with some storms now reaching several kilometers high and dozens of kilometers in diameter."
 	spaceport "The spaceport is marked out with radio beacons to allow ships to land or take off even if the air is too dusty to see the ground. The dusty air tastes metallic on your tongue. It is laced with radioactive elements, and you try your best not to breathe in too much of the dust while making your way from your ship to the low stone buildings of the port."
 	outfitter "Syndicate Basics"
 	outfitter "Basic Outfits"
@@ -11336,7 +11336,7 @@ planet Dancer
 	attributes south research
 	landscape land/nasa7
 	description "Dancer is a resource rich world, but with unusually violent weather and strong atmospheric convection, which leads to lightning storms stronger than on any other settled human world. Straying outside on foot is unthinkable, and it is not uncommon to find a small crater blasted out by a particularly energetic strike."
-	description " A fair number of scientists have settled here to study the planet's weather systems, as well as others who do not mind, or who even enjoy, the wild weather. It might be possible for terraforming to moderate Dancer's atmospheric activity enough to make it a less dangerous place to live, but the cost would be prohibitive."
+	description "	A fair number of scientists have settled here to study the planet's weather systems, as well as others who do not mind, or who even enjoy, the wild weather. It might be possible for terraforming to moderate Dancer's atmospheric activity enough to make it a less dangerous place to live, but the cost would be prohibitive."
 	spaceport "The spaceport town is a rather normal collection of wood and stone buildings, with large sheds for trade goods and a handful of pubs and restaurants. The only unusual thing is the fact that every single building has lightning rods mounted on its roof. The sky is perpetually cloudy here, with only occasional beams of sunlight glancing through. The clouds are moving awfully fast."
 	outfitter "Basic Outfits"
 
@@ -11344,7 +11344,7 @@ planet Darkstone
 	attributes south farming
 	landscape land/hills3
 	description "Darkstone is a rainy, mountainous planet. The major continents are spidered with rivers and green valleys. A few enterprising settlers have build farming communities here, but the population remains low because of the threat of piracy from neighboring systems."
-	description " Among the farmers who choose to stay, the attitude seems to be that piracy can't last forever, but good land will always be good land. Despite some low-level cynicism and bitterness, there is surprisingly little outright anger at either the pirates themselves or any government that might have been expected to control them."
+	description "	Among the farmers who choose to stay, the attitude seems to be that piracy can't last forever, but good land will always be good land. Despite some low-level cynicism and bitterness, there is surprisingly little outright anger at either the pirates themselves or any government that might have been expected to control them."
 	spaceport "Once every few months, one pirate band or another will land here demanding tribute in the form of food. The locals respond by just keeping a big enough supply on hand to satisfy them; any sort of planetary defenses would cost far more than the price of the amount of food that an average fleet of warships can carry. But once they recognize that you are here to trade and not to steal, they greet you quite enthusiastically."
 	outfitter "Ammo South"
 
@@ -11363,7 +11363,7 @@ planet Deep
 	attributes south fishing
 	landscape land/sea3
 	description "Deep is a sparsely populated world of small island archipelagos surrounded by vast expanses of empty ocean. There is not enough land for any large cities or serious industry to emerge, so most of the inhabitants live in small fishing villages. The climate is temperate and Earth-like, but the sunlight is somewhat dimmer than you are used to."
-	description " The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, surprisingly little trace of the original colony was found."
+	description "	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, surprisingly little trace of the original colony was found."
 	spaceport "The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families."
 
 planet Delve
@@ -11412,7 +11412,7 @@ planet Farpoint
 	landscape land/desert4
 	description "Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry."
 	spaceport "The spaceport is the Navy base; there are no other settlements. There are a few pubs filled mostly with off-duty officers, and a quartermaster's warehouse where you can trade goods. The most striking aspect of the base, however, is how empty it is. There are enough buildings here to make it feel like a small city, but only one small corner of the port is in use; the rest of the buildings are boarded up. And there are enough landing pads and hangars to house perhaps a fifth of the entire fleet, but they are nearly all empty at the moment."
-	spaceport " The massive scale of the fortifications, coupled with their state of near-total disuse, puts you in mind of the fabled Maginot Line on Earth - a relic of an anticipated battle that failed to materialize according to plan."
+	spaceport "	The massive scale of the fortifications, coupled with their state of near-total disuse, puts you in mind of the fabled Maginot Line on Earth - a relic of an anticipated battle that failed to materialize according to plan."
 	outfitter "Common Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
@@ -11423,7 +11423,7 @@ planet Farseer
 	attributes paradise tourism rich
 	landscape land/sea8
 	description "With enough money, you can buy a sunny day. Farseer is an ocean resort world, where much of the local tax revenue is spent on the terraforming equipment that moderates the weather. Real estate prices fluctuate wildly in times of political anxiety, because the idyllic climate exists only by government fiat."
-	description " Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions."
+	description "	Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions."
 	spaceport "The spaceport is in one of the industrial regions near the pole; presumably the sight and sound of starships landing and taking off is too distasteful and plebeian for this world's richer inhabitants. Most of the people here are terraforming technicians or mechanics; they hurry through the streets without giving you a second glance. Next to the tin-roofed marketplace, children are playing in a concrete-paved lot; across the street are a few run-down pubs and a restaurant."
 	bribe .05
 
@@ -11437,7 +11437,7 @@ planet "Fenrir Station"
 	attributes deep station
 	landscape land/loc2
 	description "Fenrir Station is a bustling refinery, and from the way the foremen looked at you when you stepped off your ship, they seem to be eager for new recruits. In addition to harvesting deuterium, this is one of the few refinery stations in human space which also collects helium-3, an isotope with some exotic uses in medical imaging and in energy research."
-	description " The diversity of isotopes found here is partly due to the station being relatively new construction and benefitting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion."
+	description "	The diversity of isotopes found here is partly due to the station being relatively new construction and benefitting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion."
 	spaceport "This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you."
 	bribe .05
 
@@ -11503,7 +11503,7 @@ planet Furnace
 	attributes core military
 	landscape land/canyon3
 	description "Furnace is a nearly uninhabited world, used mostly as a waypoint for shipping and as a staging point for the Syndicate fleets that seek to keep this region of space free from pirates. The atmosphere is barely thick enough to be breathable, and none of the plants that grow here are useful for eating. However, because it is only a large moon instead of a full-sized planet, moving cargo and fleets of ships to and from its surface is fairly easy and inexpensive."
-	description " Conducting any business here is a nightmare of tedium. Syndicate doctrine claims that corporate structure and process produce a leaner and more effective military force without the perceived wastage of the Republic Navy. But in practice, they seem to have combined all the worst aspects of military and corporate bureaucracy."
+	description "	Conducting any business here is a nightmare of tedium. Syndicate doctrine claims that corporate structure and process produce a leaner and more effective military force without the perceived wastage of the Republic Navy. But in practice, they seem to have combined all the worst aspects of military and corporate bureaucracy."
 	spaceport "The spaceport is mostly a military base. Uniformed crew members hurry back and forth without giving you a second glance. The food in the mess hall is standard military fare, hearty but bland and unappetizing, and there are few shops or other services catering to civilians."
 	outfitter "Syndicate Basics"
 	outfitter "Basic Outfits"
@@ -11514,7 +11514,7 @@ planet Geminus
 	attributes paradise factory mining
 	landscape land/fog5
 	description "Geminus, although not the most hospitable of planets, is a young enough planet that large stores of iron, titanium, and other metals are easily accessible near the surface. For that reason, it has become one of the Republic's primary shipyards. More than half of the warships in the navy were constructed here."
-	description " The constant volcanic activity leaves the planet perpetually shrouded in clouds of ash and fog, so that being outside means being in a twilight haze with low visibility. Probably in compensation for this, interior spaces tend to be brightly lit and painted in bold colors."
+	description "	The constant volcanic activity leaves the planet perpetually shrouded in clouds of ash and fog, so that being outside means being in a twilight haze with low visibility. Probably in compensation for this, interior spaces tend to be brightly lit and painted in bold colors."
 	spaceport "Like everything else on Geminus, the spaceport is not terribly pretty, but is functional and efficient. Each of the wide hallways is marked out like a road, with space in the center for electric carts carrying cargo, while pedestrians are relegated to the edges."
 	spaceport "	The hub of the spaceport is a food court with a ring of shops in the center and seating on the outside, where you can look out of plate glass windows at the lava fields and caldera outside. By night, you can see the volcanic glow all around the horizon."
 	shipyard "Basic Ships"
@@ -11532,7 +11532,7 @@ planet Gemstone
 	attributes "dirt belt" mining
 	landscape land/hills3
 	description "Gemstone is a hot and unpleasant world, mostly due to a smoggy atmosphere high in methane. Much of the surface is covered in rugged mountains, making travel across land very difficult. However, the powerful tectonic forces here have created rich deposits of diamonds, emeralds, and sapphires, which are mined both for use in jewelry and for certain electronic components. Mining a tectonically active world is an insane project, and earthquakes cause frequent cave-ins, but the potential of wealth draws miners here despite the high mortality rate."
-	description " The miners are paid on commission on the stones they find. As a result most as dirt-poor, but full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit."
+	description "	The miners are paid on commission on the stones they find. As a result most as dirt-poor, but full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit."
 	spaceport "The spaceport is perched on top of a peak in one of the older and more stable mountain ranges. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low cement buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses."
 
 planet Geyser
@@ -11714,7 +11714,7 @@ planet Icefall
 	attributes core farming oil
 	landscape land/snow4
 	description "Icefall is far from its sun, but with an axial tilt of roughly 38 degrees. This means that the climate is cold, but the year is also long, and each hemisphere has a short summer - barely enough to fit a terrestrial growing season. There are only a few major towns, and no major metropolitan centers. Most of the inhabitants make a living as farmers, although near the equator there is also some oil drilling industry. Icefall's oceans are filled with constantly shifting pack ice and icebergs, making them nearly unnavigable."
-	description " The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres."
+	description "	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres."
 	spaceport "The spaceport is located near the equator, in this world's industrial zone. Along the horizon are fields of pumpjacks and oil derricks. The port consists of rows of hangars, plus two large square towers that house the marketplace and storage space for cargo. A constant howling wind sweeps in between the buildings, but thankfully they are well constructed out of sturdy cement."
 
 planet Ingot
@@ -11751,7 +11751,7 @@ planet Lichen
 	attributes south farming
 	landscape land/fields3
 	description "Lichen is a rainy world of marshes, fields, and streams. More than half the rice consumed in this administrative district is grown on Lichen, because of its near-optimal climate. However, because of the constant rain and overcast weather, few people aside from farmers have settled here."
-	description " Planetary government, or indeed any government above the village level, is virtually nonexistent. Most farms are small and family-owned, negotiating sales directly with offworld corporations who then arrange for transportation of the produce." 
+	description "	Planetary government, or indeed any government above the village level, is virtually nonexistent. Most farms are small and family-owned, negotiating sales directly with offworld corporations who then arrange for transportation of the produce." 
 	spaceport "The spaceport is built on a small mountain, one of the rare places where enough bedrock rises above the soil to provide a firm foundation for large buildings and a flood-free location. The warehouses and market are built of concrete, but the smaller buildings on the outskirts of the port are wood framed. Moss is growing everywhere, and in places the wood is stippled with mold. But the people are friendly enough, unhurried and peaceful."
 	spaceport "	A noodle soup restaurant near the center of the port town seems to be the gathering place of choice. Whatever they're cooking inside, it smells delicious."
 	outfitter "Ammo South"
@@ -11791,7 +11791,7 @@ planet Maelstrom
 	attributes north mining
 	landscape land/rock0
 	description "Maelstrom is a stormy, geologically young world with towering mountains and frequent earthquakes. Most of the large cities are near the center of the planet's main continent, where the iron beds from an ancient ocean are exposed. Maelstrom is one of the chief exporters of iron, copper, gold, titanium, and other metals to Ada, where Lovelace Labs and the associated industries have a continuous need for raw materials."
-	description " Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract offworld climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake."
+	description "	Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract offworld climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake."
 	spaceport "The spaceport is a single massive complex of buildings, with hangars large enough for even a dreadnought or a carrier. A railroad runs through several of the nearby mining towns and straight into the spaceport building itself, allowing ore and processed metal to be loaded directly from the mine cars into the waiting freighters."
 	outfitter "Lovelace Basics"
 	outfitter "Common Outfits"
@@ -11859,7 +11859,7 @@ planet Midgard
 	attributes deep urban factory mining
 	landscape land/city5
 	description "Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing."
-	description " Food, fashion, and entertainment here all strike you as out of pace with broader galactic culture. The deep independent history of the planet makes it less likely to simply follow the latest Earth trends as the more recent colonies do."
+	description "	Food, fashion, and entertainment here all strike you as out of pace with broader galactic culture. The deep independent history of the planet makes it less likely to simply follow the latest Earth trends as the more recent colonies do."
 	spaceport "The spaceport is located in the center of the city of New Reykjavik, a bustling metropolis which is also Midgard's center of government. The port was built five hundred years ago, and its architecture is much more conservative than other ports in the Deep: instead of domes and rounded, wavy surfaces, it is a collection of tall, square granite towers, connected by bridges at various levels. Most of the hotels and restaurants are in a central tower, slightly higher than the others. There is no central marketplace; instead, you can just buy or sell cargo from a computer terminal and a robotic forklift will arrive at your docking bay to carry it."
 	shipyard "Basic Ships"
 	shipyard "Lionheart Basics"
@@ -11873,7 +11873,7 @@ planet Millrace
 	attributes "near earth" factory urban
 	landscape land/city6
 	description "Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds."
-	description " The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them."
+	description "	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them."
 	spaceport "The spaceport is ugly. As the population of Millrace has grown, the spaceport has been expanded to support the increase immigration; you can recognize the different sections because in the newer ones, the bare cement walls are lighter and have accumulated less soot and grime. Most of the restaurants are of the greasy spoon variety."
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
@@ -11883,7 +11883,7 @@ planet Moonshake
 	attributes core urban factory
 	landscape land/city7
 	description "Moonshake is a planet of overpopulated cities side by side with dense wilderness. A few centuries ago it became a local center of industrial production when the Syndicate began building factories here. Since then, immigrants looking for steady work have been pouring in, doubling the planet's population every few decades. It is now a regional center for the production of everything from textiles to molded plastic parts to reactor-grade plutonium."
-	description " It is characteristic of the Syndicate that the wilderness is entirely ignored, both scientifically and agriculturally, until it is plowed under to make way for expanding industry. Nowhere else in the galaxy is the local fauna so plentiful and yet so poorly characterized."
+	description "	It is characteristic of the Syndicate that the wilderness is entirely ignored, both scientifically and agriculturally, until it is plowed under to make way for expanding industry. Nowhere else in the galaxy is the local fauna so plentiful and yet so poorly characterized."
 	spaceport "The smog is so thick here that you could barely see the landing pad until you were only half a kilometer above it. At street level, the smog is less evident, but the air leaves a faint metallic taste in your mouth. The spaceport, like the rest of this city, is overcrowded, with people walking along the narrow streets and trying to thread their way in between large cargo trucks loaded with crates. You see signs for restaurants of every variety imaginable, but most of them look dirty and dimly lit."
 	outfitter "Common Outfits"
 	outfitter "Syndicate Basics"
@@ -11962,7 +11962,7 @@ planet "New Greenland"
 	landscape land/snow7
 	description "New Greenland was first settled about six hundred years ago, at the peak of the ''Turf Wars'' era where most planets were controlled by powerful corporations and their struggles often turned into outright warfare with privately owned fleets and armies. The people who came to new Greenland were looking for a world so marginal and undesirable that they could live here in peace without being caught in the crossfire. The locals here grow food in greenhouses and specialize in making warm winter clothing, which is this planet's only export."
 	spaceport "The spaceport is near the equator, but it is still cold enough that there is always some snow on the ground. In addition to the outdoor landing pads a few hangars are available: an effort by the locals to make their world a little more appealing to merchants passing through the system. You have never seen as many people in fur coats as there are here; what might be considered a luxury in other parts of the galaxy is a necessity here, where the cheapest clothing material is the pelts of indigenous animals."
-	spaceport " From the size of the claws hanging decoratively off some of the coats, you have to give a grudging respect to the hunters. High fashion is not an industry that usually involves risk of dismemberment."
+	spaceport "	From the size of the claws hanging decoratively off some of the coats, you have to give a grudging respect to the hunters. High fashion is not an industry that usually involves risk of dismemberment."
 
 planet "New Holland"
 	attributes "dirt belt" farming
@@ -11994,7 +11994,7 @@ planet "New Kansas"
 	attributes "dirt belt" textiles
 	landscape land/fields6
 	description "Wool clothing is considered a luxury in most of human space, because enough oil is mined on most planets to make synthetic clothing much cheaper than raising and shearing sheep. However, here on New Kansas, wool is the primary industry."
-	description " The land is mostly rolling green hills and shallow streams, ideal for grazing. However, unwary travelers hiking through the idyllic countryside have been known to be attacked by savage packs of feral sheep, so this world is not without unique dangers of its own."
+	description "	The land is mostly rolling green hills and shallow streams, ideal for grazing. However, unwary travelers hiking through the idyllic countryside have been known to be attacked by savage packs of feral sheep, so this world is not without unique dangers of its own."
 	spaceport "The spaceport includes several stores selling wool garments, each worth easily ten times as much as the clothes you are wearing. A few of the visitors milling around seem genuinely interested in the clothing, but most of them, like you, are just ship captains who see wool clothing as nothing more than a pricey luxury good that can be sold elsewhere for a good profit."
 	spaceport "	The port authority employs several people on horseback whose sole job is to keep the landing pads clear of wild sheep."
 
@@ -12002,7 +12002,7 @@ planet "New Portland"
 	attributes "dirt belt" farming
 	landscape land/sky3
 	description "New Portland is a cloudy planet orbiting a dim star; the only reason it is not completely frozen is because of the heat trapped by its upper atmosphere. There are only a handful of towns here, and nothing big enough to warrant being called a city. Most of the settlers are subsistence farmers who can only dream about life on other worlds. Many houses here do not even have running water or personal computers."
-	description " Some of the farms near the spaceport are planted with different crops forming abstract patterns visible from the air. Such a whimsical extravagance seems particularly odd when you consider that the owners will never be able to afford to see their fields from that angle. But perhaps that is precisely the point."
+	description "	Some of the farms near the spaceport are planted with different crops forming abstract patterns visible from the air. Such a whimsical extravagance seems particularly odd when you consider that the owners will never be able to afford to see their fields from that angle. But perhaps that is precisely the point."
 	spaceport "The largest town on New Portland has set aside a landing area for ships, but it is barely what could be called a spaceport. Aside from the refueling station and a few sheds, there are no other buildings, just an open field of packed gravel, with grass and weeds peeking up in places where it has avoided the blast from landing spacecraft. A few farmers have parked wagons here and are trading food and other goods with the visiting ships."
 
 planet "New Sahara"
@@ -12182,7 +12182,7 @@ planet Reunion
 	attributes "near earth" urban factory
 	landscape land/city5
 	description "Reunion is one of the most earth-like planets found by the early settlers, all the way down to its moon and tides. It has grown into a mostly urban world, which supplies manufactured goods of all sorts to the neighboring systems."
-	description " Local politics are unusually lively for a Republic world, to the point where a seat in the local parliament is often more hotly contested than one in the Republic Senate. Topics of debate include trade and taxation, of course, but also seemingly fringe issues like biodiversity regulations for city green space. It may be that a world with no terraforming needs is focusing instead on tweaking society itself."
+	description "	Local politics are unusually lively for a Republic world, to the point where a seat in the local parliament is often more hotly contested than one in the Republic Senate. Topics of debate include trade and taxation, of course, but also seemingly fringe issues like biodiversity regulations for city green space. It may be that a world with no terraforming needs is focusing instead on tweaking society itself."
 	spaceport "The spaceport, although designed as a clean and modern building, is a place of barely controlled chaos: vendors selling food on the sides of the hallways, tourist families with young children, and even a few farmers driving cattle. People of every age and race and occupation rub shoulders here, but there is no sign of the extreme sort of poverty that you have seen on some other worlds."
 	shipyard "Basic Ships"
 	shipyard "Syndicate Basics"
@@ -12245,7 +12245,7 @@ planet Shroud
 	attributes north rich textiles
 	landscape land/mountain1
 	description "Shroud is a world of castles in the clouds and slums in the valleys below. High on the mountain peaks, above the clouds, the planet's few elites live in splendid mansions. Below them, the people work mostly in textiles: farming cotton, raising sheep, working at looms and sewing machines in dimly lit factories."
-	description " The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction."
+	description "	The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction."
 	spaceport "The spaceport here is a shopping mall. You landed on a plain cement slab near the ''cargo entrance,'' where raw goods are bought and sold. But the other end of the building holds hangars for luxury ships and glass-windowed storefronts where mannequins are dressed in outlandish and horribly impractical outfits. There is a sparse cafeteria for dock workers near your entrance, and fancy steakhouses and seafood places for the more wealthy visitors."
 	shipyard "Luxury Ships"
 	outfitter "Common Outfits"
@@ -12348,7 +12348,7 @@ planet Sunracer
 	attributes core urban factory farming fishing
 	landscape land/valley6
 	description "Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of nearly half a billion, and a diverse economy that includes farming and fishing in addition to the shipyards."
-	description " Outside the cities, large regions of undeveloped land still remain. Hovercraft racing is a major local sport, and some massive and elaborate courses have been constructed in the wilderness."
+	description "	Outside the cities, large regions of undeveloped land still remain. Hovercraft racing is a major local sport, and some massive and elaborate courses have been constructed in the wilderness."
 	spaceport "On Sunracer, the spaceport and shipyard are one and the same. As you walk among the landing pads and hangars, it is not immediately clear which ships are visiting starships undergoing minor repairs, and which are new ones under construction. A series of enormous cranes tower over one section of landing pads. From them hang hull fragments, engines, and even a few small ships, each being swung from one location within the shipyard to another. Meanwhile, forklifts and flatbed truck are weaving between the buildings in every direction."
 	shipyard "Basic Ships"
 	shipyard "Syndicate Basics"
@@ -12364,7 +12364,7 @@ planet Thrall
 	attributes paradise textiles
 	landscape land/fields5
 	description "Thrall has a warm, moderate climate and a geography of mostly gently rolling hills. Most of the industry here takes the form of agriculture, especially growing cotton. There are also three major cities where the cotton is spun into thread and woven into textiles for export off world. It is one of the few places in the galaxy where cotton is picked by hand, because labor here is cheaper than the cost of buying and maintaining machinery."
-	description " The locals are prevented from seeking more lucrative employment elsewhere partly by the crushingly low wages, which make the cost of space transport prohibitively high for most, and partly by the educational system, which is among the worst in the galaxy."
+	description "	The locals are prevented from seeking more lucrative employment elsewhere partly by the crushingly low wages, which make the cost of space transport prohibitively high for most, and partly by the educational system, which is among the worst in the galaxy."
 	spaceport "The spaceport consists of a vast asphalt-paved field for landing ships, and some wooden buildings a few stories tall. Most of the materials for export are stored in sheds or stacked under plastic tarps, with a few police officers clustered around them to make sure no ship picks up cargo that has not been paid for. Inside the buildings, two restaurants with different names serve an identical selection of fried foods."
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
@@ -12505,7 +12505,7 @@ planet Windblain
 	attributes deep oil textiles
 	landscape land/sea7
 	description "Nearly three quarters of the surface of Windblain is ocean. Most of the industry here centers around petrochemicals: deep sea oil drilling, refining, and manufacture of plastic composites and synthetic fabrics for clothing. There are a few large cities on the continents, but also plenty of wilderness spaces as yet untouched by human activity."
-	description " The local climate and economy are neither good enough to attract immigration, nor bad enough to drive people to leave. There seems to be almost no interest in the affairs of the wider galaxy."
+	description "	The local climate and economy are neither good enough to attract immigration, nor bad enough to drive people to leave. There seems to be almost no interest in the affairs of the wider galaxy."
 	spaceport "The spaceport is in one of the main cities, and is built partly on land and partly on piers that stretch out into the harbor, so that cargo can be brought to the port by truck or by barge. There are even a few runways for aircraft, in addition to the landing pads for starships. In the wharf area, fresh cooked fish and sushi are sold from a small cluster of wooden huts. Farther inland, cargo crates are stacked under the immense tents that serve as warehouses. There is a constant flow of people and cargo in between the harbor and the city."
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
@@ -12517,7 +12517,7 @@ planet Winter
 	description "The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going."
 	description "	The temperatures have risen measurably since the arrival of the human colonists, but without more intentional efforts it may be another century before the planet warms enough to be truly comfortable to live on."
 	spaceport "The spaceport is built on a large rock outcropping, with brilliant blue glaciers flowing to either side down into a lake below. The sight is stunning, and all the more appealing because you are able to view it from behind plate glass windows, in the warmth of the spaceport, rather than in the frigid air outside. Above you, several layers of clouds are scudding across the sky in different directions."
-	spaceport " Faded posters on the walls advise you to buy an estate on Winter now before prices skyrocket. The posters depict children playing in a lush green landscape while their grandparents stand by, looking quietly pleased with the wisdom of their investment."
+	spaceport "	Faded posters on the walls advise you to buy an estate on Winter now before prices skyrocket. The posters depict children playing in a lush green landscape while their grandparents stand by, looking quietly pleased with the wisdom of their investment."
 
 planet "Wyvern Station"
 	attributes rim station
