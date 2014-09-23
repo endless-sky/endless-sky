@@ -480,7 +480,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		for(const auto &it : GameData::Planets())
 		{
 			// Skip entries with incomplete data.
-			if(it.second.Name().empty())
+			if(it.second.Name().empty() || !GameData::GetPolitics().CanLand(&it.second))
 				continue;
 			if(destinationFilter.Matches(&it.second, player.GetSystem()))
 				options.push_back(&it.second);
