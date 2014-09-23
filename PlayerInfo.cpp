@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
 
 #include <sstream>
@@ -848,6 +849,11 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 // Update mission status based on an event.
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
+	// Combat rating increases when you disable an enemy ship.
+	if(event.ActorGovernment() == GameData::PlayerGovernment())
+		if((event.Type() & ShipEvent::DISABLE) && event.Target())
+			conditions["combat rating"] += event.Target()->RequiredCrew();
+	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
 }
