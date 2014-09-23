@@ -251,6 +251,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 {
 	NPC result;
 	result.government = government;
+	if(!result.government)
+		result.government = GameData::PlayerGovernment();
 	result.succeedIf = succeedIf;
 	result.failIf = failIf;
 	
