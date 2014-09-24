@@ -60,6 +60,12 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 void PlanetPanel::Step()
 {
+	// If the previous mission callback resulted in a "launch", take off now.
+	if(player.ShouldLaunch())
+	{
+		KeyDown('d', KMOD_NONE);
+		return;
+	}
 	if(GetUI()->IsTop(this))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);

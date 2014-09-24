@@ -191,9 +191,9 @@ ship "Bastion"
 	gun 54 -14 "Plasma Cannon"
 	gun -54 -14 "Heavy Rocket Launcher"
 	gun 54 -14 "Heavy Rocket Launcher"
-	turret 0 0 "Heavy Laser Turret"
-	turret -30 14 "Heavy Laser Turret"
-	turret 30 14 "Heavy Laser Turret"
+	turret 0 0 "Blaster Turret"
+	turret -30 14 "Blaster Turret"
+	turret 30 14 "Blaster Turret"
 	explode "tiny explosion" 5
 	explode "small explosion" 15
 	explode "medium explosion" 30

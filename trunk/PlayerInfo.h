@@ -74,6 +74,7 @@ public:
 	const System *GetSystem() const;
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	bool ShouldLaunch() const;
 	
 	const Account &Accounts() const;
 	Account &Accounts();
@@ -147,6 +148,8 @@ private:
 	Date date;
 	const System *system;
 	const Planet *planet;
+	bool shouldLaunch;
+	
 	Account accounts;
 	
 	std::vector<std::shared_ptr<Ship>> ships;
