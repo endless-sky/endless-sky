@@ -93,6 +93,16 @@ void MissionPanel::Draw() const
 	DrawList(accepted, pos);
 	
 	DrawMissionInfo();
+	
+	// Draw the "Commodities" button.
+	const Font &font = FontSet::Get(14);
+	const Sprite *buttonSprite = SpriteSet::Get("ui/dialog cancel");
+	Point buttonCenter(Screen::Right() - 40, Screen::Bottom() - 25);
+	SpriteShader::Draw(buttonSprite, buttonCenter);
+	static const string PORTS = "Ports";
+	buttonCenter.X() -= .5 * font.Width(PORTS);
+	buttonCenter.Y() -= .5 * font.Height();
+	font.Draw(PORTS, buttonCenter, *GameData::Colors().Get("bright"));
 }
 
 
@@ -121,6 +131,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		}
 		return true;
+	}
+	else if(key == 'p' || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this));
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
@@ -195,6 +210,9 @@ bool MissionPanel::Click(int x, int y)
 		if(key != '\0')
 			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	}
+	
+	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
+		return KeyDown('p', KMOD_NONE);
 	
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
