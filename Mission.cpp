@@ -71,7 +71,7 @@ void Mission::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
-			name = child.Token(1);
+			displayName = child.Token(1);
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
@@ -152,6 +152,9 @@ void Mission::Load(const DataNode &node)
 				actions[it->second].Load(child);
 		}
 	}
+	
+	if(displayName.empty())
+		displayName = name;
 }
 
 
@@ -163,6 +166,7 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	out.Write(tag, name);
 	out.BeginChild();
 	
+	out.Write("name", displayName);
 	if(!description.empty())
 		out.Write("description", description);
 	if(hasDeadline)
@@ -215,7 +219,7 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 // Basic mission information.
 const string &Mission::Name() const
 {
-	return name;
+	return displayName;
 }
 
 
@@ -448,7 +452,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(failed)
 		{
 			hasFailed = true;
-			Messages::Add("Ship lost. Mission failed: \"" + name + "\".");
+			Messages::Add("Ship lost. Mission failed: \"" + displayName + "\".");
 		}
 	}
 	
@@ -467,6 +471,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.hasFailed = true;
 	result.isVisible = isVisible;
 	result.location = location;
+	result.repeat = 0;
+	result.name = name;
 	
 	// First, pick values for all the variables.
 	
@@ -579,7 +585,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.actions[it.first] = it.second.Instantiate(subs, defaultPayment);
 	
 	// Perform substitution in the name and description.
-	result.name = Format::Replace(name, subs);
+	result.displayName = Format::Replace(displayName, subs);
 	result.description = Format::Replace(description, subs);
 	
 	result.hasFailed = false;

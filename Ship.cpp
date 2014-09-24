@@ -417,7 +417,7 @@ bool Ship::Move(list<Effect> &effects)
 		// Recharge shields, but only up to the max. If there is extra shield
 		// energy, use it to recharge fighters and drones.
 		shields += attributes.Get("shield generation");
-		static const double SHIELD_EXCHANGE_RATE = 2.;
+		static const double SHIELD_EXCHANGE_RATE = 1.;
 		energy -= SHIELD_EXCHANGE_RATE * attributes.Get("shield generation");
 		double excessShields = max(0., shields - maxShields);
 		shields -= excessShields;

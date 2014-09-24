@@ -102,6 +102,7 @@ public:
 	
 private:
 	std::string name;
+	std::string displayName;
 	std::string description;
 	Location location = SPACEPORT;
 	

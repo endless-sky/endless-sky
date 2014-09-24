@@ -36,8 +36,8 @@ public:
 	static const int ACCEPT = -1;
 	static const int DECLINE = -2;
 	static const int DIE = -3;
-	static const int DEFER = -2;
-	static const int LAUNCH = -1;
+	static const int DEFER = -4;
+	static const int LAUNCH = -5;
 	
 	
 public:

@@ -48,6 +48,7 @@ void PlayerInfo::Clear()
 	date = Date(16, 11, 3013);
 	system = nullptr;
 	planet = nullptr;
+	shouldLaunch = false;
 	accounts = Account();
 	
 	ships.clear();
@@ -86,6 +87,7 @@ void PlayerInfo::Steal(PlayerInfo &other)
 	Date date = other.date;
 	system = other.system;
 	planet = other.planet;
+	shouldLaunch = false;
 	accounts = other.accounts;
 	
 	ships = other.ships;
@@ -407,6 +409,13 @@ const Planet *PlayerInfo::GetPlanet() const
 
 
 
+bool PlayerInfo::ShouldLaunch() const
+{
+	return shouldLaunch;
+}
+
+
+
 const Account &PlayerInfo::Accounts() const
 {
 	return accounts;
@@ -619,6 +628,7 @@ void PlayerInfo::Land()
 // which case a message will be returned.
 void PlayerInfo::TakeOff()
 {
+	shouldLaunch = false;
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
@@ -812,7 +822,8 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {
-	if(response == Conversation::ACCEPT)
+	shouldLaunch = response == Conversation::LAUNCH;
+	if(response == Conversation::ACCEPT || shouldLaunch)
 	{
 		availableMissions.front().Do(Mission::ACCEPT, *this);
 		missions.splice(missions.end(), availableMissions, availableMissions.begin());
@@ -822,10 +833,10 @@ void PlayerInfo::MissionCallback(int response)
 		availableMissions.front().Do(Mission::DECLINE, *this);
 		availableMissions.pop_front();
 	}
-	else
-	{
-		// TODO: handle "die", etc.
-	}
+	else if(response == Conversation::DEFER)
+		availableMissions.pop_front();
+	
+	// TODO: handle "DIE".
 }
 
 
