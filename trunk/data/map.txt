@@ -11119,14 +11119,14 @@ planet Alfheim
 	bribe .05
 
 planet Amazon
-	attributes core tourism oil
+	attributes core tourism oil frontier
 	landscape land/forest5
 	description "Amazon is a lush, green, tropical world, a popular tourist destination for many who live in this region of space. The indigenous forests are dense and hardy enough that growing human crops here is a constant battle, and none of the native plants or fruits are edible. Aside from tourism, most of the planet's income is from petroleum mining."
 	description "	The forests are home to a stunning variety of wildlife, some of it dangerous but most of it entirely indifferent to human presence. Plant life is so abundant here that even the oceans are green rather than blue, teeming with kelp and algae."
 	spaceport "The Amazon spaceport is unique, built on top of tall pillars more than fifty meters above the ground, directly above the forest canopy. The landing pads, buildings, and catwalks between them are laid out in a random branching pattern, forming a shape that from above looks almost organic. Directly over the railings, you can see brightly colored birds circling beneath your feet."
 
 planet Antipode
-	attributes core mining
+	attributes core mining frontier
 	landscape land/snow5
 	description "Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector."
 	description "	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success."
@@ -11193,7 +11193,7 @@ planet Bloodsea
 	"required reputation" -10
 
 planet Bluestone
-	attributes core oil research
+	attributes core oil research frontier
 	landscape land/mountain2
 	description "The sunlight that filters through Bluestone's atmosphere is too dim and reddish for ordinary Earth plants to thrive. The native plants, mostly grasses and lichens, have adapted their own unique chlorophyll-like molecules in response."
 	description "	Bluestone is sparsely populated. Aside from one small research village dedicated to cultivating edible hybrid crops that can grow on similar worlds, most of the industry here is focused on drilling and refining oil to make a variety of plastics."
@@ -11249,7 +11249,7 @@ planet Calda
 	bribe .05
 
 planet Canyon
-	attributes core farming
+	attributes core farming frontier
 	landscape land/canyon1
 	description "Canyon is a large world, with gravity near the high end of what human beings can comfortably bear. Much of its surface is sandstone, leading scientists to believe that the planet was once home to large oceans, before some cataclysmic event, perhaps a rogue star drifting through the system, caused much of the planet's water to boil away. The few settlers who live here mostly farm the deep canyons; the mesas above are dry and almost lifeless."
 	description "The angular rock formations that cover most of the mesaland are identified in local mythology as the ruins of an unspeakably vast and ancient alien city. A gullible tourist can find any number of opportunities to tour these alleged sites. Offworld science has been largely skeptical of these claims."
@@ -11303,7 +11303,7 @@ planet Clark
 	outfitter "Basic Outfits"
 
 planet Cornucopia
-	attributes south farming research
+	attributes south farming research frontier
 	landscape land/fields0
 	description "Cornucopia is a mostly agrarian world, and like several of its neighbors it has been inhabited since the early days of space travel, when settlers seeking to get as far as possible from old Earth and its troubles landed here. Through careful stewardship and attention to the rhythms and balances of nature, generation after generation of farmers have transformed this world into one of the most fertile in human space. The Cornucopia College of Agriculture is famous, and justly so."
 	description "From orbit, most of the landmass seems covered with a bizarre pixelated pattern. On approach, this resolves into a vast patchwork of fields and irrigation circles."
@@ -11341,7 +11341,7 @@ planet Dancer
 	outfitter "Basic Outfits"
 
 planet Darkstone
-	attributes south farming
+	attributes south farming frontier
 	landscape land/hills3
 	description "Darkstone is a rainy, mountainous planet. The major continents are spidered with rivers and green valleys. A few enterprising settlers have build farming communities here, but the population remains low because of the threat of piracy from neighboring systems."
 	description "	Among the farmers who choose to stay, the attitude seems to be that piracy can't last forever, but good land will always be good land. Despite some low-level cynicism and bitterness, there is surprisingly little outright anger at either the pirates themselves or any government that might have been expected to control them."
@@ -11408,7 +11408,7 @@ planet Echo
 	bribe 0
 
 planet Farpoint
-	attributes north military
+	attributes north military frontier
 	landscape land/desert4
 	description "Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry."
 	spaceport "The spaceport is the Navy base; there are no other settlements. There are a few pubs filled mostly with off-duty officers, and a quartermaster's warehouse where you can trade goods. The most striking aspect of the base, however, is how empty it is. There are enough buildings here to make it feel like a small city, but only one small corner of the port is in use; the rest of the buildings are boarded up. And there are enough landing pads and hangars to house perhaps a fifth of the entire fleet, but they are nearly all empty at the moment."
@@ -11428,7 +11428,7 @@ planet Farseer
 	bribe .05
 
 planet Featherweight
-	attributes north research
+	attributes north research frontier
 	landscape land/sky6
 	description "Featherweight is a small world, with lighter than normal gravity. Centuries ago, because of its remoteness, this world was the site of some illegal genetic experiments, and rumors say that the current inhabitants are the result of those experiments. Because they are so well adapted to low gravity, few of them choose to leave, and very few outsiders choose to settle here, so this world's culture remains quite insular and detached from the rest of the galaxy."
 	spaceport "Although this is a human planet, as you walk through this spaceport you feel as if you are on an alien world. The ceilings and doorways are all a bit higher than you are used to, and the locals tower over you. Aside from a few food carts in the marketplace, there are no shops or restaurants in the spaceport, and the nearest village is several kilometers away. It is as if the entire port was designed in order to limit interactions with outsiders to the bare minimum that is necessary."
@@ -11592,7 +11592,7 @@ planet Greenrock
 	bribe .05
 
 planet Harmony
-	attributes south farming religious
+	attributes south farming religious frontier
 	landscape land/mountain4
 	description "The first settlers who came to Harmony were an Amish community seeking a place where they could live a quiet life and do work with their own hands instead of relying on machines and computers. Their community grew to millions of people, who now live side by side with other, more modern settlers. There are still regions of the planet where motorized vehicles are prohibited, but in other places trucks and horse-drawn buggies share the same roads."
 	spaceport "The spaceport is on the outskirts of one of the larger cities, with a few medium-sized skyscrapers and many tall smokestacks for factories and oil refineries. The starship hangars here are shaped like oversized barns, and close to the hangars, grain is stored in silos. The spaceport police are on horseback."
@@ -11676,7 +11676,7 @@ planet Hestia
 	bribe .04
 
 planet Hippocrates
-	attributes core research
+	attributes core research frontier
 	landscape land/water6
 	description "Hippocrates is a sparsely settled world, home mostly to scientific research outposts. The environment here, orbiting so close to a red dwarf star, is very different from most other settled planets. The scientists estimate this star system to be over ten billion years old, enough that life here has had much more time to develop and evolve than on any planet orbiting a brighter, more short-lived star."
 	spaceport "The spaceport is a single building, and half the landing pads are just packed dirt. This port was not designed for large volumes of cargo or of visitors. Within the building is a sun-lit atrium, with separate storefronts for the commodity exchange, the job center, and the bank. The only place you can see where you might be able to get something to eat is a bar, advertised by a sign showing an Erlenmeyer flask with a folding paper umbrella hung over the rim."
@@ -11711,7 +11711,7 @@ planet "Hydra Station"
 	description "This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here."
 
 planet Icefall
-	attributes core farming oil
+	attributes core farming oil frontier
 	landscape land/snow4
 	description "Icefall is far from its sun, but with an axial tilt of roughly 38 degrees. This means that the climate is cold, but the year is also long, and each hemisphere has a short summer - barely enough to fit a terrestrial growing season. There are only a few major towns, and no major metropolitan centers. Most of the inhabitants make a living as farmers, although near the equator there is also some oil drilling industry. Icefall's oceans are filled with constantly shifting pack ice and icebergs, making them nearly unnavigable."
 	description "	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres."
@@ -11748,7 +11748,7 @@ planet "Leviathan Station"
 	bribe .08
 
 planet Lichen
-	attributes south farming
+	attributes south farming frontier
 	landscape land/fields3
 	description "Lichen is a rainy world of marshes, fields, and streams. More than half the rice consumed in this administrative district is grown on Lichen, because of its near-optimal climate. However, because of the constant rain and overcast weather, few people aside from farmers have settled here."
 	description "	Planetary government, or indeed any government above the village level, is virtually nonexistent. Most farms are small and family-owned, negotiating sales directly with offworld corporations who then arrange for transportation of the produce." 
@@ -11788,7 +11788,7 @@ planet Luna
 	bribe .05
 
 planet Maelstrom
-	attributes north mining
+	attributes north mining frontier
 	landscape land/rock0
 	description "Maelstrom is a stormy, geologically young world with towering mountains and frequent earthquakes. Most of the large cities are near the center of the planet's main continent, where the iron beds from an ancient ocean are exposed. Maelstrom is one of the chief exporters of iron, copper, gold, titanium, and other metals to Ada, where Lovelace Labs and the associated industries have a continuous need for raw materials."
 	description "	Extreme rock climbing is a hugely popular sport among the mining workers here, who have a tendency to be young, male, and reckless. The mountains are dramatic enough to even attract offworld climbers as tourists, though more than once a favorite climbing face has been sloughed off its mountain in an earthquake."
@@ -11983,7 +11983,7 @@ planet "New Iceland"
 	spaceport "	This port consists of a single large hangar, only big enough for two or three bulk freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day."
 
 planet "New India"
-	attributes "dirt belt" farming textiles
+	attributes "dirt belt" farming textiles frontier
 	landscape land/forest0
 	description "New India was first settled less than a century ago, and the settlers are still struggling to establish themselves. It is a hospitable climate, but the amount of labor needed to clear forests and to plow rocky fields has meant that the towns here can only grow very slowly. The farms grow both food crops and cotton, and very recently they have begun manufacturing their own textiles instead of just shipping the raw cotton off-world for processing."
 	spaceport "New India's spaceport is a ring of low wooden buildings around a wide landing area paved with concrete slabs. Around the perimeter carts of trade goods are driven, some being pulled by tractors and others, by horses or oxen. You even think you see a few carts being pulled by water buffalo."
@@ -12116,13 +12116,13 @@ planet Pilot
 	bribe .1
 
 planet Placer
-	attributes core mining
+	attributes core mining frontier
 	landscape land/mountain4
 	description "Placer is uninhabited aside from one small mining outpost; the atmosphere contains uncomfortable levels of ammonia and sulfur dioxide, and although brief exposure is not considered a health threat, those who live here must wear breathing gear when they leave their pressurized homes and mine shafts. Several scientific experiments over the last few centuries have sought to introduce microorganisms that would break down the harmful chemicals and transform the atmosphere to make it safer for human beings to breathe, but none have been successful."
 	spaceport "The port consists of a large atmospheric dome, with landing pads and airlocks around the periphery. Although brief exposure to the air is not considered harmful, you find yourself holding your breath as you run from your ship to the airlock. Inside the dome, hanging gardens and open park land create a much more hospitable place, but the spaceport is nearly deserted, aside from one small pub that seems to be full of mine workers whose shift has just ended."
 
 planet Poisonwood
-	attributes south factory farming
+	attributes south factory farming frontier
 	landscape land/desert6
 	description "Until very recently, Poisonwood was home to a slave colony run by a powerful outlaw cartel. Tens of thousands of slaves were forced to work in hot, dirty manufacturing plants or irrigating fields out under the burning sun. Finally, in the year 2985, a Republic Navy strike force defeated the cartel and liberated the slaves. The Navy also supplied the manpower and equipment necessary to transform the factories and towns into a more livable setting for those who chose to remain, while giving others free passage off-world."
 	description "	Today, most of the inhabitants are children of the liberated slaves, and like their parents they remain grateful and fiercely loyal to the Republic."
@@ -12213,7 +12213,7 @@ planet Serpens
 	spaceport "The spaceport's landing pads are just a set of flat cleared areas on top of a mesa, surrounding a jumble of small adobe buildings. Inside the spaceport, scientists in lab coats rub shoulders with ''snake wranglers'' who ride in and out on horseback, dressed in denim and wearing oversized straw hats. The whole place smells of antiseptic and manure."
 
 planet Shangri-La
-	attributes core rich urban
+	attributes core rich urban frontier
 	landscape land/sea6
 	description "Named after a mythical paradise, Shangri-La is an almost ideal planet, with a mixture of advanced, developed cities and uninhabited mountains. It is a rich and prosperous world, and nearly self-sufficient, but the cost of living here is prohibitively high for anyone from off-world. Because Polaris is on the very fringe of human space, and because of the wealth of its economy, piracy is a constant threat. Although recently the Syndicate has provided good protection, in past centuries it was not unheard of for raiding parties of starships to attack major port cities here, carrying off valuable cargo and sometimes also human slaves."
 	spaceport "The spaceport is state-of-the-art. So are the laser turrets and missile silos spaced out along its periphery. But somehow, instead of making you feel more secure, the defenses only serve to remind you of how far on the fringes of civilization you are, and of how rich this planet is compared to some of its neighbors. Everyone walking through the port is moving at a brisk, purposeful pace; loitering and sightseeing are not encouraged here."
@@ -12242,7 +12242,7 @@ planet Shorebreak
 	bribe .06
 
 planet Shroud
-	attributes north rich textiles
+	attributes north rich textiles frontier
 	landscape land/mountain1
 	description "Shroud is a world of castles in the clouds and slums in the valleys below. High on the mountain peaks, above the clouds, the planet's few elites live in splendid mansions. Below them, the people work mostly in textiles: farming cotton, raising sheep, working at looms and sewing machines in dimly lit factories."
 	description "	The level of intrigue and dalliance between the bored gentry could easily compete with the most lurid and unrealistic of Victorian fiction."
@@ -12266,7 +12266,7 @@ planet Sinter
 	spaceport "The spaceport is built next to a large smelter where ore is processed into metal ingots. Even on a planet as inhospitable as this one, the cost of extracting metal from ore is still cheaper than the cost of shipping the ore off-world for processing. A long enclosed terminal building extends out from the smelter, with docking tubes and landing pads every few hundred meters for connecting to visiting ships. Small robotic trolleys carry cargo crates back and forth; only a handful of people are walking around here, and most of them are probably off-worlders."
 
 planet Skillet
-	attributes north mining farming
+	attributes north mining farming frontier
 	landscape land/canyon3
 	description "Skillet is a sparsely populated planet whose red hills and canyonlands are strip mined for placer deposits of iron ore and precious metals, mostly to supply the needs of the shipyards in Betelgeuse. This world is also used for ranching, and even for growing corn in a few less arid regions. The weather is usually quite mild, although hot and dry; the only reasons so few people have settled here are because it is so remote, and because the mining and farming industries need far fewer human workers than machines."
 	spaceport "The spaceport mostly consists of a row of adobe warehouses, with tin roofs polished to mirror brightness to reflect the heat of the sun. Around the warehouses is a ring of concrete landing pads. Forklift trucks carrying pallets of iron and steel ingots weave their way in between men and women on horseback and others on foot. The air is hot, but too dry to feel oppressive."
@@ -12294,7 +12294,7 @@ planet "Smuggler's Den"
 	bribe .06
 
 planet Solace
-	attributes south urban factory
+	attributes south urban factory frontier
 	landscape land/valley6
 	description "Solace is a fertile world that was already home to Earth-like vegetation and animals even before the first settlers arrived. It has now been inhabited for nearly half a millennium, and sprawling cities cover much of its surface."
 	description "	In addition to being one of the major metropolitan centers of the galactic South, Solace is best known as the home of Delta V Corporation, makers of plasma engines and rockets of various sorts."
@@ -12331,7 +12331,7 @@ planet Stormhold
 	bribe .03
 
 planet Sundive
-	attributes core farming research
+	attributes core farming research frontier
 	landscape land/water1
 	description "Sundive is largely covered in tropical rainforests and savanna, but with enough open plains that it has also become a major agricultural world. For most of the year, the weather here is quite mild, but tornadoes and massive thunderstorms are not uncommon in the summer months."
 	description "	Sundive is also home to a large astronomical laboratory with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there."
@@ -12339,13 +12339,13 @@ planet Sundive
 	spaceport "	The buildings are short and made of wood; even the roofs are clapboard shingles rather than metal or rubber. Several farmers have brought in goods to sell; most of them came in trucks, but you also see a few horse-drawn wagons."
 
 planet Sundrinker
-	attributes south farming
+	attributes south farming frontier
 	landscape land/desert6
 	description "Most of this world is barren deserts and oceans; for whatever reason almost no life evolved here. The only human settlement is a small town in one of the few hilly regions, and the locals survive by ranching and farming. It is the sort of world that is ideal for people who enjoy being alone, because it has almost no appeal for anyone else. In addition to the oppressively hot weather, flash floods are quite frequent."
 	spaceport "There are only two concrete landing platforms in the spaceport, and that is plenty for the amount of traffic they receive. A wide cleared-off field of dirt is available beyond that in case an unusual number of ships ever need to land. The two platforms and the spaceport buildings are all built near to the tops of the hills, out of the way of the flood waters. This is both the spaceport and the only town on Sundrinker. A single road winds between a few buildings; one seems to be a saloon, and another, a general store."
 
 planet Sunracer
-	attributes core urban factory farming fishing
+	attributes core urban factory farming fishing frontier
 	landscape land/valley6
 	description "Sunracer is home of Megaparsec, Inc., a shipyard that specializes in designing fast, lightweight ships. It is a well-settled planet with a population of nearly half a billion, and a diverse economy that includes farming and fishing in addition to the shipyards."
 	description "	Outside the cities, large regions of undeveloped land still remain. Hovercraft racing is a major local sport, and some massive and elaborate courses have been constructed in the wilderness."
@@ -12441,7 +12441,7 @@ planet Tundra
 	outfitter "Ammo South"
 
 planet Twinstar
-	attributes south tourism
+	attributes south tourism frontier
 	landscape land/lava3
 	description "The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks."
 	spaceport "The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place."
@@ -12512,7 +12512,7 @@ planet Windblain
 	outfitter "Ammo North"
 
 planet Winter
-	attributes south factory
+	attributes south factory frontier
 	landscape land/snow3
 	description "The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going."
 	description "	The temperatures have risen measurably since the arrival of the human colonists, but without more intentional efforts it may be another century before the planet warms enough to be truly comfortable to live on."
