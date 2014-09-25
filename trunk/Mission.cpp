@@ -393,6 +393,13 @@ bool Mission::HasFailed() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 {
+	if(trigger == OFFER)
+		++player.Conditions()[name + ": offered"];
+	else if(trigger == DEFER)
+		--player.Conditions()[name + ": offered"];
+	else if(trigger == COMPLETE)
+		++player.Conditions()[name + ": done"];
+	
 	auto it = actions.find(trigger);
 	if(it == actions.end())
 		return true;
@@ -409,10 +416,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		player.Conditions()["reputation: " + it.first] = rep;
 	}
 	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
-	if(trigger == OFFER)
-		player.Conditions()[name + ": offered"] = true;
-	if(trigger == COMPLETE)
-		player.Conditions()[name + ": done"] = true;
 	
 	// Check if any reputation conditions were updated.
 	for(const auto &it : GameData::Governments())

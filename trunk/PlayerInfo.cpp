@@ -806,6 +806,9 @@ void PlayerInfo::AcceptJob(const Mission &mission)
 
 Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 {
+	if(ships.empty())
+		return nullptr;
+	
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
 	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
@@ -834,7 +837,10 @@ void PlayerInfo::MissionCallback(int response)
 		availableMissions.pop_front();
 	}
 	else if(response == Conversation::DEFER)
+	{
+		availableMissions.front().Do(Mission::DEFER, *this);
 		availableMissions.pop_front();
+	}
 	
 	// TODO: handle "DIE".
 }
@@ -1006,7 +1012,7 @@ void PlayerInfo::CreateMissions()
 		"Drone"
 	};
 	for(const string &category : CATEGORIES)
-		conditions[category] = 0;
+		conditions["ships: " + category] = 0;
 	for(const shared_ptr<Ship> &ship : ships)
 		++conditions["ships: " + ship->Attributes().Category()];
 	// TODO: combat rating.
