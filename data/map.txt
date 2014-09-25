@@ -2140,7 +2140,7 @@ system Arcturus
 	trade "Heavy Metals" 918
 	trade Industrial 773
 	trade "Luxury Goods" 1231
-	trade Medical 637
+	trade Medical 684
 	trade Metal 416
 	trade Plastic 461
 	fleet "Small Southern Merchants" 700

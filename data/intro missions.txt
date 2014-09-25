@@ -1,0 +1,99 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "Intro [0]"
+	name "Passenger to <planet>"
+	description "This old-timer captain offered to ride along with you to New Greenland and to give you some tips along the way."
+	landing
+	passengers 1
+	source "New Boston"
+	destination "New Greenland"
+	on complete
+		payment 10000
+		conversation
+			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
+			`	"Including you?" you ask.`
+			`	"Yeah, and then spent half an hour in orbit cleaning my cabin whil hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyways, here's your pay." He hands you <payment>.`
+			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
+	on offer
+		conversation
+			`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
+			`	"Nothing quite like buying your very first starship," he says.`
+			choice
+				`	"Yeah, I'm still kind of in shock over how much money I spent."`
+					goto money
+				`	"Well, I don't plan to get too attached to this one. I'll be flying something much nicer before long."`
+					goto bigger
+				`	"Beat it, old-timer, I've got more important things to do than chat with you."`
+					decline
+			
+			label money
+			`	He grins. "I know the feeling. It's a crime how much interest the banks charge to first-timers. It's been that way ever since when I first started out."`
+				goto captain
+			
+			label bigger
+			`	He smiles. "I'm sure you will. But there's something nice to having a ship you can pilot all by yourself. Believe me, once you have to start managing crew and paying salaries, or keeping track of a whole fleet, you'll miss these days when everything was simple."
+				goto captain
+			
+			label captain
+			`	"You're a captain?" you ask.`
+			`	"Was," he says. "Sold off my fleet a few days ago, and I already miss it. But it was time. Time for me to retire." His voice trails off, then his face lights up. "Say, any chance I could hitch a ride with you, maybe show you the ropes, give you some pointers? I could pay you, of course."`
+			choice
+				`	"Sure, where are you trying to get to?"`
+				`	"Sorry, I'd rather figure things out on my own."`
+					decline
+			
+			`	"Well," he says, "I've got a spot reserved in a retirement home, but I don't mind taking a roundabout way to get there. For starters, how about you give me a lift to <planet>? It's just one jump away from here; I can mark it on your map."`
+			choice
+				`	"Sounds good!"`
+					goto end
+				`	"How much will you pay me?"`
+			
+			`	"That's kind of a rude question," he says, "but I'll pay you ten thousand credits. I guarantee you that's more than any captain ever gets for carrying one passenger for one day."`
+			choice
+				`	"That's really generous. Thank you."`
+					goto end
+				`	"You're treating me like a charity case? No thanks, I'll earn my money legitimately."`
+					decline
+			
+			label end
+			`	"Great," he says. "My name is James, by the way."`
+			`	"<first> <last>," you say.`
+			`	"I'm looking forward to traveling with you, Captain <last>," says James.`
+			`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and stock up on medical goods; we can sell those for a good profit on <planet>. Or take a look at the outfitter if you like, but they don't sell much here compared to on the big manufacturing worlds."`
+				accept
+
+mission "Intro [1 Transport]"
+	name "Transport family to <planet>"
+	description "Bring your new friend James, along with this large family, to <destination>. Payment will be <payment>."
+	source "New Greenland"
+	destination "New China"
+	passengers 5
+	to offer
+		has "Intro [0]: done"
+		has "ships: Transport"
+	on complete
+		payment 60000
+		conversation
+			`	Along the journey, you learned that the family you are transporting are named the Hendersons, and that they are moving to <planet> mostly because they hope the urban setting will be better for their kids than <origin>, where there were hardly any children at all and their village had only a few thousand people in it. The grandmother, Olivia, has also been chattering nonstop about how excited she is about being on a world where she can actually go sunbathing: "I've gotten much too old for snowshoeing," she says.`
+			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
+			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
+	on offer
+		conversation
+			`You begin strolling through the spaceport, walking briskly in order to keep warm and wondering if it might be worth investing in a good winter coat for visiting planets like this one. Eventually you find James. He has an entire family in tow: a young couple, and elderly woman, and four children who range in age from probably about three or four up to twelve or thirteen.`
+			`	"Captain Reynolds!" he says, "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks, at least if the kids double up. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, an is a planet well worth visiting in its own right. What do you say?"`
+			`	You're absolutely sure that your shuttle was not designed to fit nine people including yourself, but if they're willing to squeeze into the available five bunks you've got no reason to discourage them.`
+			choice
+				`	"Sure, welcome aboard!"`
+				`	"Sorry, I think I'd rather go off in my own direction from here."`
+					decline
+			
+			`	James helps the older woman up the steps and into your ship while the younger family members carry the luggage. You are going to have quite a full ship for the next few days.`
+				accept
