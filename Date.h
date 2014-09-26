@@ -24,7 +24,11 @@ public:
 	Date();
 	Date(int day, int month, int year);
 	
+	// Get this date as a string, in the form "Day, DD Mon Year".
 	const std::string &ToString() const;
+	// Get a string in the form "the DDth of Month", suitable to include in
+	// conversation text.
+	std::string LongString() const;
 	
 	void operator++();
 	void operator++(int);

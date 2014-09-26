@@ -65,6 +65,42 @@ const string &Date::ToString() const
 
 
 
+string Date::LongString() const
+{
+	tm t;
+	gmtime_r(&today, &t);
+	string result = "the " + to_string(t.tm_mday);
+	if(t.tm_mday / 10 == 1 || t.tm_mday % 10 == 0 || t.tm_mday % 10 > 3)
+		result += "th";
+	else if(t.tm_mday % 10 == 1)
+		result += "st";
+	else if(t.tm_mday % 10 == 2)
+		result += "nd";
+	else
+		result += "rd";
+	
+	result += " of ";
+	static const string MONTH[12] = {
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	};
+	result += MONTH[t.tm_mon];
+	
+	return result;
+}
+
+
+
 void Date::operator++()
 {
 	today += SECONDS_PER_DAY;
