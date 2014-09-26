@@ -636,6 +636,7 @@ void PlayerInfo::TakeOff()
 	// Jobs are only available when you are landed.
 	availableJobs.clear();
 	availableMissions.clear();
+	doneMissions.clear();
 	
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
@@ -830,6 +831,7 @@ void PlayerInfo::MissionCallback(int response)
 	{
 		availableMissions.front().Do(Mission::ACCEPT, *this);
 		missions.splice(missions.end(), availableMissions, availableMissions.begin());
+		UpdateCargoCapacities();
 	}
 	else if(response == Conversation::DECLINE)
 	{
@@ -856,7 +858,9 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
-			missions.erase(it);
+			// Don't get rid of the mission yet, because the conversation or
+			// dialog panel may still be showing.
+			doneMissions.splice(doneMissions.end(), missions, it);
 			return;
 		}
 }

@@ -88,7 +88,7 @@ mission "Intro [1 Transport]"
 	on offer
 		conversation
 			`You begin strolling through the spaceport, walking briskly in order to keep warm and wondering if it might be worth investing in a good winter coat for visiting planets like this one. Eventually you find James. He has an entire family in tow: a young couple, and elderly woman, and four children who range in age from probably about three or four up to twelve or thirteen.`
-			`	"Captain Reynolds!" he says, "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks, at least if the kids double up. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, an is a planet well worth visiting in its own right. What do you say?"`
+			`	"Captain <last>!" he says, "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks, at least if the kids double up. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, an is a planet well worth visiting in its own right. What do you say?"`
 			`	You're absolutely sure that your shuttle was not designed to fit nine people including yourself, but if they're willing to squeeze into the available five bunks you've got no reason to discourage them.`
 			choice
 				`	"Sure, welcome aboard!"`
@@ -97,3 +97,162 @@ mission "Intro [1 Transport]"
 			
 			`	James helps the older woman up the steps and into your ship while the younger family members carry the luggage. You are going to have quite a full ship for the next few days.`
 				accept
+
+mission "Intro [2 Transport]"
+	name "Tourists to <planet>"
+	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
+	passengers 3
+	source "New China"
+	destination "Earth"
+	to offer
+		has "Intro [1 Transport]: done"
+	on complete
+		payment
+		payment 10000
+		conversation
+			`As you made the final landing descent to the surface of Earth, Chuck and Sarah were staring out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Carl, meanwhile, has spent the entire journey playing a handheld video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
+			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? At take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
+			`	After they leave, James shakes his head ruefully. "It'll probably be a decade before that kid is old enough to realize what he's missing out on. Waste of money, doing a trip like this with a teenage boy. They should've gone to Skymoot and seen the dragons instead; I'm sure that would interest him a lot more than historical museums and ancient cities." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+	on offer
+		conversation
+			`It doesn't take you long to find James in the <origin> spaceport. He's already got a small group of people with him: a middle-aged couple, and a teenage boy. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
+			choice
+				`	"Sure!"`
+				`	"No thanks, I think I'll strike off on my own now."`
+					decline
+			
+			`	"Great," he says. "This is Chuck, and Sarah, and their son Carl. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time."`
+				accept
+
+mission "Intro [3 Transport]"
+	name "Bring James to <planet>"
+	descrption "Bring James to <destination>, where he has a spot reserved in a retirement home."
+	passengers 1
+	source "Earth"
+	destination "Hestia"
+	to offer
+		has "Intro [2 Transport]: done"
+	on complete
+		payment 50000
+		conversation "end of intro missions"
+	on offer
+		conversation
+			`The spaceport on <planet> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Ten billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
+			`	After taking one last glance out the window, he says, "Anyways, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
+			choice
+				`	"Of course."`
+				`	"Sorry, but I was planning on heading out in a different direction from here."`
+					decline
+			
+			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "paradise worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+
+mission "Intro [1 Freighter]"
+	name "Delivery to <planet>"
+	description "Travel with your new friend James to <destination>, and deliver <cargo>."
+	cargo vaccines 48
+	passengers 1
+	source "New Greenland"
+	destination "Heartland"
+	to offer
+		has "Intro [0]: done"
+		has "ships: Light Freighter"
+	on complete
+		payment 35000
+		conversation
+			`You drop off the shipment of <commodity> on <planet>, and collect your payment of <payment>. "Hauling freight," says James. "Not the most glamorous job, or the most interesting, but you're always guaranteed steady income. And once you know the galaxy a bit better, instead of taking missions you can find your own trade routes to follow. The only trouble is, build up a big enough fleet and the pirates begin to take notice."`
+			choice
+				`	"Did you have a lot of trouble with pirates when you were a captain?"`
+					goto pirates
+				`	"But what if I want to earn money more quickly than I can by trading?"`
+					goto quick
+			
+			label pirates
+			`	"Some. That's why you can't just go traipsing around the galaxy in a fleet of unarmed star barges; every pirate within a week's travel will hear you're coming through and come after you. That's why, long term, having a few heavy freighters with good defenses is more cost effective than losing a star barge or two to the pirates on every journey."`
+				goto port
+			
+			label quick
+			`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And, no one's going to give you those sorts of missions until you've proved yourself in combat, anyways."`
+				goto port
+			
+			label port
+			`	He picks up his suitcase. "Anyways, if you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a bit higher profit margin this time."`
+	
+	on offer
+		conversation
+			`	"The spaceport on <planet> is small enough that it doesn't take long to find James. He's talking with a man wearing what looks like a doctor's lab coat. "Captain <last>!" says James, "Glad you could join us. It turns out there's been a flu outbreak on <planet>, and they're asking every captain with space to spare to carry some vaccines and other medical supplies over there. Are you willing to help out?"`
+			choice
+				`	"Sure, anything I can do to assist them!"`
+				`	"Sorry, I've heard bad things about that region of space. I think I'm going to head in the other direction."`
+					decline
+			`	"Great!" says James. "They'll be loading up your ship shortly."`
+				accept
+
+mission "Intro [2 Freighter]
+	name "Rush delivery to <planet>"
+	description "This shipment of <commodity> needs to get to <destination>, by <date>."
+	cargo "raw eel" 34
+	passengers 1
+	source "Heartland"
+	destination "Ingot"
+	deadline
+	to offer
+		has "Intro [1 Freighter]: done"
+	on complete
+		payment 40000
+		conversation
+			`	By now, your entire ship smells like brine and raw fish, but as best you can tell the fish is still fresh enough to eat. The  dock workers on <planet> offload it without comment, and give you your payment of <payment>.`
+			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And  if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
+			choice
+				`	"What would you recommend if I want to do more than just carry cargo?"`
+					goto more
+				`	"Was that what you did for your whole career?"`
+					goto career
+			
+			label more
+			`	He pauses for a moment to think, then says, "Unless you want to do something really risky like hunting pirates, your best bet is to work with the Navy, or the Syndicate, or one of the local militias. Any of those would be a decent choice, although they've each got their own problems. If any of them offer you a mission, go ahead and take it; that's a good way to build connections and get to know the lay of the land."`
+				goto end
+			
+			label career
+			`	"Well," he says, "Back when I was a bit older than you, I piloted a Firebird for a while, escorting merchant convoys up and down the Rim. I used to hope we'd get attacked; I'd disable the pirate ships and rob them blind. Turnabout is fair play, after all.`
+			`	"Then one day I got a bit too greedy and thought I'd try to capture a pirate ship or two, to add more firepower to my fleet. We boarded their ship, and I sent my crew through the airlock to kill off the pirates. And it turns out the pirates had grenades. Four of my men were dead before I even realized what was happening. We had to retreat, and then limp back to port without even enough crew left uninjured to pilot the ship right. After that I decided to stick to less risky jobs."`
+				goto end
+			
+			label end
+			`	He glances toward the spaceport and says, "Anyway, if you want to make one more trip with me, you know where to find me."`
+	on offer
+		conversation
+			`	As you walk through the spaceport, James sees you from a distance and waves you over. As you approach, the smell of raw fish overwhelms you. "I've found another job for you," he says.`
+			choice
+				`	"Is it by any chance an unusually smelly job?"`
+				`	"Sorry, I think I'll head off on my own now."`
+					decline
+			
+			`	"It is indeed," he says, "but a lucrative one. <cargo> needs to get to <planet> while it's still fresh, and that means it needs to be there no later than <date>. If we take a direct route, there should be no trouble making the delivery on time. What do you say?"`
+			choice
+				`	"Sounds good. Let's do it!"`
+				`	"Sorry, no way am I loading up my shiny new starship with smelly fish."`
+					decline
+			
+			`	"Great!" he says. "You might want to stop by the outfitter and buy a local map, by the way. Hyperspace routes aren't always logical, and the last thing you want to do is get lost and end up with a pile of rotten fish that no one wants filling up your cargo hold."`
+				accept
+
+conversation "end of intro missions"
+	`	As you are piloting your ship down to land on <planet>, James disappears into his bunk room. After the ship has landed he comes out, no longer in the grease-stained coveralls he's been wearing up until now, but in a suit. As a lifelong textile worker, you automatically note that the suit is made of real wool, very finely woven, and that it has been tailored to fit him. He smooths down the front of the suit distractedly and then looks at his hands as if unsure of where to put them. "How do I look?" he asks.`
+	choice
+		`	"Like a millionaire."`
+			goto millionaire
+		`	"You look great."`
+			goto great
+	
+	label millionaire
+	`	"Well, that's the other thing about being a captain," he says, "You can get filthy rich."`
+		goto next
+	
+	label great
+	`	"Let's hope the locals think so," he says.`
+		goto next
+	
+	label next
+	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this here planet is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship."`
+	`	He hands you a credit chip worth <payment>, and says, "Best of luck to you, Captain. Don't hesitate to look me up if you're ever in the area."`
