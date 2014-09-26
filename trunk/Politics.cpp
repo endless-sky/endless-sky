@@ -151,8 +151,6 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
 	if(!planet)
 		return false;
-	if(!planet->HasSpaceport())
-		return true;
 	
 	const Government *gov = ship.GetGovernment();
 	const Government *systemGov = planet->GetSystem()->GetGovernment();

@@ -119,6 +119,8 @@ void Mission::Load(const DataNode &node)
 			location = LANDING;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
+		else if(child.Token(0) == "clearance")
+			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -190,6 +192,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.Write("invisible");
 	if(location == LANDING)
 		out.Write("landing");
+	if(!clearance.empty())
+		out.Write("clearance", clearance);
 	
 	if(!toComplete.IsEmpty())
 	{
@@ -313,6 +317,23 @@ bool Mission::CheckDeadline(const Date &today)
 
 
 
+// Check if you have special clearance to land on your destination.
+bool Mission::HasClearance() const
+{
+	return !clearance.empty();
+}
+
+
+
+// Get the string to be shown in the destination planet's hailing dialog. If
+// this is "auto", you don't have to hail them to get landing permission.
+const string &Mission::ClearanceMessage() const
+{
+	return clearance;
+}
+
+
+
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player) const
 {
@@ -397,8 +418,15 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		++player.Conditions()[name + ": offered"];
 	else if(trigger == DEFER)
 		--player.Conditions()[name + ": offered"];
+	else if(trigger == ACCEPT)
+		++player.Conditions()[name + ": active"];
+	else if(trigger == FAIL)
+		--player.Conditions()[name + ": active"];
 	else if(trigger == COMPLETE)
+	{
+		--player.Conditions()[name + ": active"];
 		++player.Conditions()[name + ": done"];
+	}
 	
 	auto it = actions.find(trigger);
 	if(it == actions.end())
@@ -591,6 +619,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
 	result.description = Format::Replace(description, subs);
+	result.clearance = Format::Replace(clearance, subs);
 	
 	result.hasFailed = false;
 	return result;

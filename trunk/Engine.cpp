@@ -51,6 +51,10 @@ Engine::Engine(PlayerInfo &player)
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(player.GetDate());
+	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
+	for(const Mission &mission : player.Missions())
+		if(mission.ClearanceMessage() == "auto")
+			GameData::GetPolitics().BribePlanet(mission.Destination());
 	
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.GetPlanet())
@@ -477,6 +481,10 @@ void Engine::EnterSystem()
 			"." : ". No inhabited planets detected."));
 	
 	GameData::SetDate(today);
+	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
+	for(const Mission &mission : player.Missions())
+		if(mission.ClearanceMessage() == "auto")
+			GameData::GetPolitics().BribePlanet(mission.Destination());
 	
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
