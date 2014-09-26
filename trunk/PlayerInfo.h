@@ -160,6 +160,7 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
+	std::list<Mission> doneMissions;
 	
 	std::map<std::string, int> conditions;
 	
