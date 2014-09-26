@@ -16,6 +16,7 @@ mission <name>
     invisible
     (job | landing)
     repeat (<number>)
+    clearance (<message>)
     to (offer | complete)
         <condition> (<comp> <value>)
         (has | not) <condition>
@@ -36,7 +37,8 @@ mission <name>
         personality <type>*
             <type>*
             confusion <amount>
-        (enter | remain | wait) (<system>)
+        system (<system>)
+        system
             system <name>*
                 <name>*
             government <name>*
@@ -86,6 +88,9 @@ Certain characteristics of a mission, such as the cargo or the destination plane
   * `<payment>` = "1 credit" or "N credits"
   * `<date>` = the deadline for the mission
   * `<npc>` = the name of the first NPC in the mission description
+  * `<first>` = your first name
+  * `<last>` = your last name
+  * `<ship>` = the name of your flagship
 
 These placeholders will be substituted in any text in the following places:
 
@@ -166,11 +171,26 @@ If the word "repeat" appears by itself, this mission can be offered any number o
 
 If you want a mission to be offered any number of times but to limit the number of instances of the mission that can be active concurrently, you can decrement the "`<mission name>`: offered" condition (described below) whenever the mission is completed, failed, or declined.
 
+{{{
+clearance (<message>)
+}}}
+
+This gives you landing clearance on the destination planet, even if normally you would not be allowed to land there, or would have to pay a bribe.
+
+If a "clearance" tag appears followed by a message, if you hail your destination planet that message will be shown as the initial text, landing permission will be granted, and you will not have to pay a bribe. The message will be shown even for friendly planets so that this can be used to customize their hail, e.g. "Welcome back, Captain `<last>`! Everyone's waiting for you at the spaceport."
+
+If a "clearance" tag appears with no message, clearance is automatically granted without needing to hail the planet. You can use this, for example, if the mission involves secretly landing on a planet under the cover of darkness and the last thing you want to do is inform the authorities that you're coming.
+
+If a specific destination is given (i.e. "destination `<planet>`") and no clearance is included in the mission, you must pay a bribe if you are not allowed to land on that planet. (Sometimes bribing the authorities could be part of the mission plot.)
+
+If the destination is specified via a filter, the filter will not match planets you cannot land on unless this mission contains a "clearance" tag. This may make it impossible for a particular mission to be offered.
+
 = Conditions =
 
 "Conditions" are named values that represent things the player has done. Conditions start out with a value of zero, and can only have integer values. Conditions can have almost any name you want, as long as you make sure not to use the same name in two places. A few names are reserved for special purposes:
 
   * `"<mission name>: offered"`, where `<mission name>` is replaced with the name of any mission. This is incremented whenever a mission is offered to you, and is used by the "repeat" check to make sure a mission is not offered too many times.
+  * `"<mission name>: active"`, where `<mission name>` is replaced with the name of any mission. This is incremented when you accept a mission, and decremented when you complete, or fail it.
   * `"<mission name>: done"` is set when a mission is successfully completed.
   * `"reputation: <government>"` is set to your current reputation with the given government, rounded down to a whole number.
   * "reputation" is your reputation in the current system, rounded down.
@@ -276,7 +296,12 @@ npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
     personality <type>*
         <type>*
         confusion <amount>
-    (enter | remain | wait) (<system>)
+    system <system>
+    system
+        system <name>*
+            <name>*
+        government <name>*
+            <name>*
         near <system> ((<min>) <max>)
         distance ((<min>) <max>)
     dialog <text>
@@ -329,7 +354,7 @@ The valid personality types (which can be combined) are:
 In addition, if an NPC is specified as starting out in your current system and its personality is _not_ "staying", it will take off from the planet along with you (e.g. a ship you are escorting). A ship that is "entering" the current system might, for example, be a pirate raid chasing the fleet you are escorting, and a ship "staying" in a certain system might be a target you must locate for a bounty hunting mission. (Any ship that is not "staying" will actively seek the player out if it is in a different system.)
 
 {{{
-(enter | remain | wait) (<system>)
+system (<system>)
     system <name>*
         <name>*
     government <name>*
