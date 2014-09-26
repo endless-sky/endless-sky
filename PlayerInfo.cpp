@@ -250,7 +250,8 @@ void PlayerInfo::Save() const
 		out.Write("conditions");
 		out.BeginChild();
 			for(const auto &it : conditions)
-				out.Write(it.first, it.second);
+				if(it.second)
+					out.Write(it.first, it.second);
 		out.EndChild();
 	}
 	
