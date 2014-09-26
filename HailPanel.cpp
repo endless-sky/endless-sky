@@ -86,6 +86,14 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *planet)
 	
 	if(player.GetShip())
 	{
+		for(const Mission &mission : player.Missions())
+			if(mission.Destination() == planet->GetPlanet() && mission.HasClearance()
+					&& mission.ClearanceMessage() != "auto")
+			{
+				GameData::GetPolitics().BribePlanet(mission.Destination());
+				message = mission.ClearanceMessage();
+				return;
+			}
 		if(GameData::GetPolitics().CanLand(planet->GetPlanet()))
 			message = "You are cleared to land, " + player.GetShip()->Name() + ".";
 		else
@@ -251,7 +259,7 @@ void HailPanel::SetBribe(double scale)
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 	
-	bribe = 1000 * static_cast<int>(value * .001 * scale);
+	bribe = 1000 * static_cast<int>(sqrt(value) * scale);
 	if(scale && !bribe)
 		bribe = 1000;
 }
