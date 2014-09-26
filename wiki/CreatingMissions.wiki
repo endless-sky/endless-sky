@@ -86,7 +86,8 @@ Certain characteristics of a mission, such as the cargo or the destination plane
   * `<system>` = destination system
   * `<destination>` = "`<planet>`, in the `<system>` system"
   * `<payment>` = "1 credit" or "N credits"
-  * `<date>` = the deadline for the mission
+  * `<date>` = the deadline for the mission (in the format "Day, DD Mon YYYY")
+  * `<day>` = the deadline in conversational form ("the DDth of Month")
   * `<npc>` = the name of the first NPC in the mission description
   * `<first>` = your first name
   * `<last>` = your last name
