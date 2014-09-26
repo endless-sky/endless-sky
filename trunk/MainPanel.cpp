@@ -53,9 +53,9 @@ void MainPanel::Step()
 	// will call this object's OnCallback() function;
 	if(isActive && player.GetPlanet())
 	{
-		player.Land();
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		FinishMissions();
+		player.Land();
 		isActive = false;
 	}
 	

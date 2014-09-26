@@ -263,6 +263,8 @@ void PlayerInfo::Save() const
 string PlayerInfo::Identifier() const
 {
 	size_t pos = Files::Saves().size();
+	if(filePath.length() < pos + 4)
+		return "";
 	size_t length = filePath.length() - 4 - pos;
 	return filePath.substr(pos, length);
 }
@@ -1019,7 +1021,6 @@ void PlayerInfo::CreateMissions()
 		conditions["ships: " + category] = 0;
 	for(const shared_ptr<Ship> &ship : ships)
 		++conditions["ships: " + ship->Attributes().Category()];
-	// TODO: combat rating.
 	
 	// Check for available missions.
 	for(const auto &it : GameData::Missions())
