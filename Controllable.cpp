@@ -17,10 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const unsigned FORWARD = 1;
-	static const unsigned REVERSE = 2;
-	static const unsigned LEFT = 4;
-	static const unsigned RIGHT = 8;
 	static const unsigned LAND = 16;
 	static const unsigned HYPERSPACE = 32;
 	static const unsigned LAUNCH = 64;
@@ -34,7 +30,8 @@ namespace {
 
 
 Controllable::Controllable()
-	: commands(0), targetPlanet(nullptr), targetSystem(nullptr), destination(nullptr)
+	: commands(0), thrust(0.), turn(0.),
+	targetPlanet(nullptr), targetSystem(nullptr), destination(nullptr)
 {
 }
 
@@ -43,14 +40,14 @@ Controllable::Controllable()
 // Find out what commands this ship has been given.
 double Controllable::GetThrustCommand() const
 {
-	return ((commands & FORWARD) != 0) - ((commands & REVERSE) != 0);
+	return thrust;
 }
 
 
 
 double Controllable::GetTurnCommand() const
 {
-	return ((commands & RIGHT) != 0) - ((commands & LEFT) != 0);
+	return turn;
 }
 
 
@@ -108,28 +105,22 @@ bool Controllable::HasFireCommand(int index) const
 void Controllable::ResetCommands()
 {
 	commands = 0;
+	thrust = 0.;
+	turn = 0.;
 }
 
 
 
 void Controllable::SetThrustCommand(double direction)
 {
-	commands ^= (commands & (FORWARD | REVERSE));
-	if(direction > 0.)
-		commands |= FORWARD;
-	if(direction < 0.)
-		commands |= REVERSE;
+	thrust = min(1., max(-1., direction));
 }
 
 
 
 void Controllable::SetTurnCommand(double direction)
 {
-	commands ^= (commands & (RIGHT | LEFT));
-	if(direction > 0.)
-		commands |= RIGHT;
-	if(direction < 0.)
-		commands |= LEFT;
+	turn = min(1., max(-1., direction));
 }
 
 

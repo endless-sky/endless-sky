@@ -424,19 +424,19 @@ double AI::TurnBackward(const Ship &ship)
 
 double AI::TurnToward(const Ship &ship, const Point &vector)
 {
-	Angle angle = ship.Facing();
-	bool left = vector.Cross(angle.Unit()) < 0.;
-	double turn = left - !left;
+	static const double RAD_TO_DEG = 180. / 3.14159265358979;
+	Point facing = ship.Facing().Unit();
+	double cross = vector.Cross(facing);
 	
-	// Check if the ship will still be pointing to the same side of the target
-	// angle if it turns by this amount.
-	angle += ship.TurnRate() * turn;
-	bool stillLeft = vector.Cross(angle.Unit()) < 0.;
-	if(left == stillLeft)
-		return turn;
+	if(vector.Dot(facing) > 0.)
+	{
+		double angle = asin(cross / vector.Length()) * RAD_TO_DEG;
+		if(fabs(angle) <= ship.TurnRate())
+			return -angle / ship.TurnRate();
+	}
 	
-	// If we're within one step of the correct direction, stop turning.
-	return 0.;
+	bool left = cross < 0.;
+	return left - !left;
 }
 
 

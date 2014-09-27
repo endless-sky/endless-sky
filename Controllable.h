@@ -82,6 +82,8 @@ public:
 	
 private:
 	int commands;
+	double thrust;
+	double turn;
 	
 	std::weak_ptr<Ship> targetShip;
 	std::weak_ptr<Ship> shipToAssist;
