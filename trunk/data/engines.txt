@@ -8,6 +8,19 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+outfit "Afterburner"
+	category "Engines"
+	"cost" 70000
+	thumbnail "outfit/afterburner"
+	"mass" 15
+	"outfit space" -15
+	"engine capacity" -15
+	"afterburner thrust" 25.0
+	"afterburner fuel" .5
+	"afterburner heat" 10.0
+	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
+
+
 outfit "X1700 Ion Thruster"
 	category "Engines"
 	"cost" 12000

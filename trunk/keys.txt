@@ -14,8 +14,8 @@
 "Select next ship" 96
 "Select nearest hostile ship" 114
 "Deploy / recall fighters" 100
-"Order escorts to attack target" 97
-"Order escorts to defend you" 101
+"Fire afterburner" 97
+"Toggle cloaking device" 99
 "View star map" 109
 "View player info" 105
 "Toggle fullscreen" 1073741892

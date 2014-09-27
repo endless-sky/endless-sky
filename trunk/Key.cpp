@@ -40,8 +40,8 @@ namespace {
 		"Select next ship",
 		"Select nearest hostile ship",
 		"Deploy / recall fighters",
-		"Order escorts to attack target",
-		"Order escorts to defend you",
+		"Fire afterburner",
+		"Toggle cloaking device",
 		"View star map",
 		"View player info",
 		"Toggle fullscreen"
