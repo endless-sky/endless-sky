@@ -171,6 +171,15 @@ outfit "Cargo Expansion"
 	"cargo space" 15
 	"outfit space" -20
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
+	
+outfit "Bunk Room"
+	category "Systems"
+	cost 40000
+	thumbnail "outfit/bunk room"
+	"mass" 5
+	"bunks" 4
+	"outfit space" -20
+	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
 
 outfit "Fuel Pod"
 	category "Systems"
