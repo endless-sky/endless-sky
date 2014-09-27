@@ -648,10 +648,33 @@ bool Ship::Move(list<Effect> &effects)
 					heat += attributes.Get((GetThrustCommand() > 0.) ?
 						"thrusting heat" : "reverse thrusting heat");
 					velocity += angle.Unit() * (GetThrustCommand() * thrust / mass);
-					velocity *= 1. - attributes.Get("drag") / mass;
 				}
 			}
 		}
+		bool applyAfterburner = HasAfterburnerCommand();
+		if(applyAfterburner)
+		{
+			double thrust = attributes.Get("afterburner thrust");
+			double cost = attributes.Get("afterburner fuel");
+			if(!thrust || fuel < cost)
+				applyAfterburner = false;
+			else
+			{
+				heat += attributes.Get("afterburner heat");
+				fuel -= cost;
+				velocity += angle.Unit() * thrust / mass;
+				
+				const Effect *effect = GameData::Effects().Get("afterburner");
+				for(const Point &point : enginePoints)
+				{
+					Point pos = angle.Rotate(point) * .5 * Zoom() + position;
+					effects.push_back(*effect);
+					effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
+				}
+			}
+		}
+		if(GetThrustCommand() || applyAfterburner)
+			velocity *= 1. - attributes.Get("drag") / mass;
 		if(GetTurnCommand())
 		{
 			// Check if we are able to turn.

@@ -26,6 +26,7 @@ namespace {
 	static const unsigned LAUNCH = 64;
 	static const unsigned BOARD = 128;
 	static const unsigned SCAN = 256;
+	static const unsigned AFTERBURNER = 512;
 	
 	static const unsigned WEAPON_SHIFT = 16;
 }
@@ -82,10 +83,16 @@ bool Controllable::HasBoardCommand() const
 
 
 
-
 bool Controllable::HasScanCommand() const
 {
 	return commands & SCAN;
+}
+
+
+
+bool Controllable::HasAfterburnerCommand() const
+{
+	return commands & AFTERBURNER;
 }
 
 
@@ -158,6 +165,13 @@ void Controllable::SetBoardCommand()
 void Controllable::SetScanCommand()
 {
 	commands |= SCAN;
+}
+
+
+
+void Controllable::SetAfterburnerCommand()
+{
+	commands |= AFTERBURNER;
 }
 
 

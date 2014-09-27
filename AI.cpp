@@ -911,6 +911,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				++index;
 			}
 		}
+		if(keyHeld & Key::Bit(Key::AFTERBURNER))
+			control.SetAfterburnerCommand();
 		
 		if(keyHeld & AutopilotCancelKeys())
 			keyStuck = keyHeld;

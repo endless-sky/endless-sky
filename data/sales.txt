@@ -141,6 +141,7 @@ outfitter "Common Outfits"
 	"Cargo Expansion"
 	"Bunk Room"
 	"Fuel Pod"
+	"Afterburner"
 	"Outfit Scanner"
 	"Local Map"
 
