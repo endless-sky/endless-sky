@@ -64,6 +64,27 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
+	else if((key == SDLK_TAB || key == GameData::Keys().Get(Key::JUMP)) && player.GetShip())
+	{
+		const vector<const System *> &links = player.GetShip()->Attributes().Get("jump drive") ?
+			player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+		if(!player.HasTravelPlan() && !links.empty())
+			Select(links.front());
+		else if(player.TravelPlan().size() == 1 && !links.empty())
+		{
+			auto it = links.begin();
+			for( ; it != links.end(); ++it)
+				if(*it == player.TravelPlan().front())
+					break;
+			
+			if(it != links.end())
+				++it;
+			if(it == links.end())
+				it = links.begin();
+			
+			Select(*it);
+		}
+	}
 	else
 		return false;
 	
