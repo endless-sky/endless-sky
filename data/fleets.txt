@@ -17,22 +17,28 @@ fleet "Small Southern Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 6
+	variant 60
 		"Shuttle"
-	variant 4
+	variant 40
 		"Star Barge"
-	variant 3
+	variant 30
 		"Clipper"
-	variant 2
+	variant 20
 		"Star Barge" 2
 		"Sparrow"
-	variant 3
+	variant 30
 		"Freighter"
-	variant 1
+	variant 10
 		"Freighter"
 		"Sparrow"
-	variant 2
+	variant 20
 		"Blackbird"
+	variant 1
+		"Mule"
+	variant 2
+		"Bounder"
+	variant 4
+		"Heavy Shuttle"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -43,31 +49,33 @@ fleet "Large Southern Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 2
+	variant 20
 		"Freighter"
 		"Hawk"
-	variant 3
+	variant 30
 		"Freighter" 2
 		"Sparrow" 2
-	variant 4
+	variant 40
 		"Argosy"
-	variant 1
+	variant 10
 		"Bastion"
 		"Freighter" 3
-	variant 2
+	variant 20
 		"Bastion"
 		"Argosy"
-	variant 1
+	variant 10
 		"Freighter" 3
 		"Star Barge" 4
 		"Bastion"
 		"Fury"
 		"Sparrow" 2
-	variant 2
+	variant 20
 		"Argosy" 2
-	variant 1
+	variant 10
 		"Blackbird"
 		"Sparrow" 2
+	variant 1
+		"Bactrian"
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -78,30 +86,36 @@ fleet "Small Core Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 4
+	variant 40
 		"Shuttle"
-	variant 6
+	variant 60
 		"Star Barge (Armed)"
-	variant 3
+	variant 30
 		"Freighter"
-	variant 1
+	variant 10
 		"Freighter"
 		"Wasp"
-	variant 2
+	variant 20
 		"Freighter"
 		"Star Barge (Armed)" 2
-	variant 2
+	variant 20
 		"Freighter"
 		"Shuttle" 2
 		"Quicksilver"
-	variant 5
+	variant 50
 		"Bounder"
-	variant 3
+	variant 30
 		"Bounder"
 		"Wasp"
-	variant 1
+	variant 10
 		"Freighter"
 		"Wasp" 2
+	variant 1
+		"Mule"
+	variant 3
+		"Argosy"
+	variant 5
+		"Heavy Shuttle"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -112,33 +126,35 @@ fleet "Large Core Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 3
+	variant 30
 		"Freighter" 2
 		"Quicksilver" 2
-	variant 5
+	variant 50
 		"Bulk Freighter"
 		"Wasp" 2
-	variant 2
+	variant 20
 		"Bulk Freighter"
-	variant 2
+	variant 20
 		"Star Barge (Armed)" 3
-	variant 1
+	variant 10
 		"Bulk Freighter" 2
 		"Quicksilver" 1
 		"Splinter" 1
-	variant 1
+	variant 10
 		"Freighter" 4
 		"Quicksilver" 2
 		"Splinter" 1
-	variant 1
+	variant 10
 		"Freighter" 4
 		"Protector" 1
-	variant 1
+	variant 10
 		"Bulk Freighter" 2
 		"Protector" 1
-	variant 2
+	variant 20
 		"Bounder"
 		"Quicksilver" 2
+	variant 1
+		"Bactrian"
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -149,19 +165,23 @@ fleet "Small Northern Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 8
+	variant 80
 		"Shuttle"
-	variant 4
+	variant 40
 		"Star Barge"
 		"Shuttle" 2
-	variant 3
+	variant 30
 		"Freighter"
-	variant 2
+	variant 20
 		"Freighter"
 		"Shuttle" 4
-	variant 1
+	variant 10
 		"Freighter" 3
 		"Sparrow" 1
+	variant 3
+		"Mule"
+	variant 2
+		"Bounder"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -172,26 +192,28 @@ fleet "Large Northern Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 4
+	variant 40
 		"Freighter" 2
 		"Firebird"
-	variant 2
+	variant 20
 		"Freighter" 3
 		"Firebird"
-	variant 3
+	variant 30
 		"Behemoth"
-	variant 1
+	variant 10
 		"Behemoth" 2
-	variant 1
+	variant 10
 		"Bulk Freighter"
 		"Sparrow" 2
-	variant 1
+	variant 10
 		"Behemoth" 2
 		"Firebird" 1
-	variant 1
+	variant 10
 		"Freighter" 4
 		"Sparrow" 2
 		"Firebird" 1
+	variant 2
+		"Bactrian"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
