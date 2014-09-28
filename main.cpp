@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
 				if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
 						&& event.key.keysym.sym == SDLK_CAPSLOCK)
 				{
-					timer.SetFrameRate((event.type == SDL_KEYDOWN) ? 10 : 60);
+					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
 				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 						&& event.key.keysym.sym == GameData::Keys().Get(Key::MENU))
