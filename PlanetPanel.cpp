@@ -108,10 +108,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	
 	if(key == 'd' && ship)
 	{
-		// Only save if this is a planet that refuels you, to avoid an auto-save
-		// of a pilot who is out of fuel with no help in sight.
-		if(planet.HasSpaceport())
-			player.Save();
+		player.Save();
 		player.TakeOff();
 		if(callback)
 			callback();
