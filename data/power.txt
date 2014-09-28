@@ -111,7 +111,7 @@ outfit "RT-I Radiothermal"
 	thumbnail "outfit/small radiothermal"
 	"mass" 50
 	"outfit space" -50
-	"energy generation" 4.2
+	"energy generation" 4.4
 	"heat generation" 18
 	description "Radiothermal generators harvest heat from radioactive isotopes and convert it into electricity. They are more powerful than fuel cells, but also produce a relatively high amount of heat."
 
@@ -121,7 +121,7 @@ outfit "S3 Thermionic"
 	thumbnail "outfit/small thermionic"
 	"mass" 60
 	"outfit space" -60
-	"energy generation" 4.8
+	"energy generation" 5.0
 	"heat generation" 12
 	description "Thermionic radioisotopic generators were designed as a cooler-running alternative to radiothermal generators."
 
@@ -131,7 +131,7 @@ outfit "NT-200 Nucleovoltaic"
 	thumbnail "outfit/small nucleovoltaic"
 	"mass" 70
 	"outfit space" -70
-	"energy generation" 7.0
+	"energy generation" 7.2
 	"heat generation" 15
 	description "Nucleovoltaic generators are a relatively recent generator technology that harvests energy from the decay of a radioisotope source and converts it directly into electricity. They are the most powerful generator that relies on nuclear decay instead of an active nuclear chain reaction."
 
