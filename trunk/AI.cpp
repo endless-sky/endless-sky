@@ -171,8 +171,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				continue;
 			}
 			
-			if(parent && (parent->HasLandCommand() || parent->HasHyperspaceCommand()
-					|| targetDistance > 1000. || personality.IsTimid() || !target))
+			if(parent && !parent->IsDisabled()
+					&& (parent->HasLandCommand() || parent->HasHyperspaceCommand()
+						|| targetDistance > 1000. || personality.IsTimid() || !target))
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
