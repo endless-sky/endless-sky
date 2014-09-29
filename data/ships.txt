@@ -262,7 +262,7 @@ ship "Blackbird"
 		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 350
-		"weapon capacity" 120
+		"weapon capacity" 90
 		"engine capacity" 110
 		weapon
 			"blast radius" 150
@@ -1206,7 +1206,7 @@ ship "Osprey"
 	explode "big explosion" 16
 	explode "small explosion" 40
 	explode "tiny explosion" 28
-	description "After the Osprey gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perrenial favorite among those who have the extra cash to spend on it."
+	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perrenial favorite among those who have the extra cash to spend on it."
 
 ship "Protector"
 	sprite "ship/protector"

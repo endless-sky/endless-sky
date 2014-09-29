@@ -1220,9 +1220,12 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	government = capturer->GetGovernment();
 	sprite.SetSwizzle(government->GetSwizzle());
 	
-	// Transfer some crew over.
+	// Transfer some crew over. Only transfer the bare minimum unless even that
+	// is not possible, in which case, share evenly.
 	int totalRequired = capturer->RequiredCrew() + RequiredCrew();
-	int transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
+	int transfer = RequiredCrew();
+	if(totalRequired > capturer->Crew())
+		transfer = max(1, (capturer->Crew() * RequiredCrew()) / totalRequired);
 	capturer->AddCrew(-transfer);
 	AddCrew(transfer);
 	
