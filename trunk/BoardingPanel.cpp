@@ -186,14 +186,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		else
 			victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
 		
-		if(initialCrew > 1)
-		{
-			int64_t bonus = count * plunder[selected].UnitValue();
-			// The captain gets 6 shares in the bonus payment.
-			bonus *= initialCrew - 1;
-			bonus /= initialCrew + 5;
-			crewBonus += bonus;
-		}
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
@@ -280,9 +272,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				isCapturing = false;
 				
 				int64_t bonus = victim->Cost();
-				// The captain gets 6 shares in the bonus payment.
+				// The captain gets 20 shares in the bonus payment.
 				bonus *= initialCrew - 1;
-				bonus /= initialCrew + 5;
+				bonus /= initialCrew + 19;
 				crewBonus += bonus;
 			}
 		}
