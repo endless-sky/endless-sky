@@ -49,6 +49,7 @@ void PlayerInfo::Clear()
 	system = nullptr;
 	planet = nullptr;
 	shouldLaunch = false;
+	isDead = false;
 	accounts = Account();
 	
 	ships.clear();
@@ -88,6 +89,7 @@ void PlayerInfo::Steal(PlayerInfo &other)
 	system = other.system;
 	planet = other.planet;
 	shouldLaunch = false;
+	isDead = other.isDead;
 	accounts = other.accounts;
 	
 	ships = other.ships;
@@ -208,6 +210,9 @@ void PlayerInfo::Load(const string &path)
 
 void PlayerInfo::Save() const
 {
+	if(isDead)
+		return;
+	
 	{
 		string recentPath = Files::Config() + "recent.txt";
 		ofstream recent(recentPath);
@@ -310,6 +315,20 @@ void PlayerInfo::ApplyChanges()
 	reputationChanges.clear();
 	
 	// TODO: Allow changes to the galaxy.
+}
+
+
+
+void PlayerInfo::Die()
+{
+	isDead = true;
+}
+
+
+
+bool PlayerInfo::IsDead() const
+{
+	return isDead;
 }
 
 
@@ -829,7 +848,7 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {
-	shouldLaunch = response == Conversation::LAUNCH;
+	shouldLaunch = (response == Conversation::LAUNCH);
 	if(response == Conversation::ACCEPT || shouldLaunch)
 	{
 		availableMissions.front().Do(Mission::ACCEPT, *this);
@@ -846,8 +865,11 @@ void PlayerInfo::MissionCallback(int response)
 		availableMissions.front().Do(Mission::DEFER, *this);
 		availableMissions.pop_front();
 	}
-	
-	// TODO: handle "DIE".
+	else if(response == Conversation::DIE)
+	{
+		Die();
+		ships.clear();
+	}
 }
 
 
@@ -880,6 +902,9 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
+	
+	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target() == ships.front())
+		Die();
 }
 
 

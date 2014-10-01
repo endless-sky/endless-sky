@@ -79,6 +79,9 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw() const
 {
+	if(player.IsDead())
+		return;
+	
 	const Ship *ship = player.GetShip();
 	
 	Information info;
