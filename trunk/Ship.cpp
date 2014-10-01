@@ -548,6 +548,7 @@ bool Ship::Move(list<Effect> &effects)
 			// your escorts always stay with you.
 			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + 1000.;
 			position = (target - distance * angle.Unit());
+			position += hyperspaceOffset;
 			// Make sure your velocity is in exactly the direction you are
 			// traveling in, so that when you decellerate there will not be a
 			// sudden shift in direction at the end.
@@ -563,6 +564,13 @@ bool Ship::Move(list<Effect> &effects)
 			}
 		}
 		position += velocity;
+		if(GetParent() && GetParent()->currentSystem == currentSystem)
+		{
+			hyperspaceOffset = position - GetParent()->position;
+			double length = hyperspaceOffset.Length();
+			if(length > 1000.)
+				hyperspaceOffset *= 1000. / length;
+		}
 		
 		return true;
 	}

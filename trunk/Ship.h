@@ -277,6 +277,7 @@ private:
 	
 	int hyperspaceCount;
 	const System *hyperspaceSystem;
+	Point hyperspaceOffset;
 	
 	std::map<const Effect *, int> explosionEffects;
 	unsigned explosionRate;
