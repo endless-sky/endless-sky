@@ -51,5 +51,8 @@ void SpaceportPanel::Step()
 
 void SpaceportPanel::Draw() const
 {
+	if(player.IsDead())
+		return;
+	
 	text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
 }

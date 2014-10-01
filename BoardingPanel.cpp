@@ -258,7 +258,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			{
 				messages.push_back("You have been killed. Your ship is lost.");
 				player.Ships().front()->WasCaptured(victim);
-				player.RemoveShip(player.Ships().front());
+				player.Die();
 				isCapturing = false;
 			}
 			else if(!victim->Crew())

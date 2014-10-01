@@ -73,7 +73,7 @@ void MenuPanel::Draw() const
 	GameData::Background().Draw(Point(), Point());
 	
 	Information info;
-	if(player.IsLoaded())
+	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
@@ -89,6 +89,12 @@ void MenuPanel::Draw() const
 			info.SetString("planet", player.GetPlanet()->Name());
 		info.SetString("credits", Format::Number(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
+	}
+	else if(player.IsLoaded())
+	{
+		info.SetCondition("no pilot loaded");
+		info.SetString("pilot", player.FirstName() + " " + player.LastName());
+		info.SetString("ship", "You have died.");
 	}
 	else
 	{

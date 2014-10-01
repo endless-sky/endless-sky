@@ -59,6 +59,10 @@ public:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
 	
+	// Mark the player as dead, or check if they have died.
+	void Die();
+	bool IsDead() const;
+	
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
 	void SetName(const std::string &first, const std::string &last);
@@ -149,6 +153,7 @@ private:
 	const System *system;
 	const Planet *planet;
 	bool shouldLaunch;
+	bool isDead;
 	
 	Account accounts;
 	
