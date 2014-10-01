@@ -71,6 +71,9 @@ public:
 	// Increment the date, and return a string summarizing daily payments.
 	std::string IncrementDate();
 	
+	// Get the color swizzle to use for the player's ships.
+	int GetSwizzle() const;
+	
 	// Set the system the player is in. This must be stored here so that even if
 	// the player sells all their ships, we still know where the player is.
 	// This also marks the given system as visited.

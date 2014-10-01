@@ -271,7 +271,7 @@ void ShopPanel::DrawMain() const
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
 {
 	const Sprite *sprite = ship.GetSprite().GetSprite();
 	const Sprite *back = SpriteSet::Get(
@@ -287,9 +287,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
 	float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
-	int swizzle = 5;
-	if(ship.GetGovernment())
-		swizzle = ship.GetGovernment()->GetSwizzle();
+	int swizzle = player.GetSwizzle();
 	
 	SpriteShader::Draw(sprite, center, zoom, swizzle);
 }

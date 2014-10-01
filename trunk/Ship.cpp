@@ -312,7 +312,7 @@ void Ship::SetPlanet(const Planet *planet)
 
 void Ship::SetGovernment(const Government *government)
 {
-	if(government)
+	if(government && government != GameData::PlayerGovernment())
 		sprite.SetSwizzle(government->GetSwizzle());
 	this->government = government;
 }
@@ -322,6 +322,13 @@ void Ship::SetGovernment(const Government *government)
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
+}
+
+
+
+void Ship::SetSwizzle(int swizzle)
+{
+	sprite.SetSwizzle(swizzle);
 }
 
 

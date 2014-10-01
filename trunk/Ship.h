@@ -67,6 +67,9 @@ public:
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
+	// Use this only for the player's ships. Other ships always use the swizzle
+	// associated with their government.
+	void SetSwizzle(int swizzle);
 	
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
