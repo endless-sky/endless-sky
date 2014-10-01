@@ -204,6 +204,10 @@ void PlayerInfo::Load(const string &path)
 	
 	if(!system && !ships.empty())
 		system = ships.front()->GetSystem();
+	
+	int swizzle = GetSwizzle();
+	for(shared_ptr<Ship> &ship : ships)
+		ship->SetSwizzle(swizzle);
 }
 
 
@@ -255,7 +259,7 @@ void PlayerInfo::Save() const
 		out.Write("conditions");
 		out.BeginChild();
 			for(const auto &it : conditions)
-				if(it.second)
+				if(it.second || it.first == "swizzle")
 					out.Write(it.first, it.second);
 		out.EndChild();
 	}
@@ -398,6 +402,15 @@ string PlayerInfo::IncrementDate()
 		assets += ship->Cost() + ship->Cargo().Value(system);
 	
 	return accounts.Step(assets, Salaries());
+}
+
+
+
+// Get the color swizzle to use for the player's ships.
+int PlayerInfo::GetSwizzle() const
+{
+	auto it = conditions.find("swizzle");
+	return (it == conditions.end()) ? GameData::PlayerGovernment()->GetSwizzle() : it->second;
 }
 
 
@@ -670,8 +683,11 @@ void PlayerInfo::TakeOff()
 	// Extract the fighters from the list.
 	vector<shared_ptr<Ship>> fighters;
 	vector<shared_ptr<Ship>> drones;
+	int swizzle = GetSwizzle();
 	for(shared_ptr<Ship> &ship : ships)
 	{
+		ship->SetSwizzle(swizzle);
+		
 		bool fit = false;
 		const string &category = ship->Attributes().Category();
 		if(category == "Fighter")
