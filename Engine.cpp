@@ -39,8 +39,8 @@ using namespace std;
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), playerGovernment(GameData::PlayerGovernment()),
-	calcTickTock(false), drawTickTock(false), terminate(false), step(0), flash(0.),
-	load(0.), loadCount(0), loadSum(0.)
+	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
+	flash(0.), doFlash(false), load(0.), loadCount(0), loadSum(0.)
 {
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -198,9 +198,11 @@ void Engine::Step(bool isActive)
 		const System *currentSystem = player.GetSystem();
 		// Update this here, for thread safety.
 		if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
+			player.PopTravel();
+		if(doFlash)
 		{
 			flash = .4;
-			player.PopTravel();
+			doFlash = false;
 		}
 		else if(flash)
 			flash = max(0., flash * .99 - .002);
@@ -595,8 +597,11 @@ void Engine::CalculateStep()
 		Audio::Play(Audio::Get("hyperspace"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
-	if(flagship && flagship->GetSystem() != player.GetSystem())
+	if(wasHyperspacing && !flagship->IsHyperspacing())
+	{
+		doFlash = true;
 		EnterSystem();
+	}
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;

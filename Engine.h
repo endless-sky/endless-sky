@@ -126,6 +126,7 @@ private:
 	
 	AsteroidField asteroids;
 	double flash;
+	bool doFlash;
 	
 	double load;
 	int loadCount;
