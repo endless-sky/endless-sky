@@ -253,7 +253,7 @@ int64_t Account::Prequalify() const
 // Assets:
 int64_t Account::NetWorth() const
 {
-	return history.back();
+	return history.empty() ? 0 : history.back();
 }
 
 
