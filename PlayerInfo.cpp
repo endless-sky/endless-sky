@@ -303,6 +303,7 @@ void PlayerInfo::New()
 	
 	SetSystem(GameData::Systems().Get("Rutilicus"));
 	SetPlanet(GameData::Planets().Get("New Boston"));
+	conditions["license: Pilot's"] = true;
 	
 	accounts.AddMortgage(295000);
 	
@@ -394,6 +395,29 @@ string PlayerInfo::IncrementDate()
 	for(Mission &mission : missions)
 		if(mission.CheckDeadline(date))
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".");
+	
+	// Check what salaries and tribute the player receives.
+	int total[2] = {0, 0};
+	static const string prefix[2] = {"salary: ", "tribute: "};
+	for(int i = 0; i < 2; ++i)
+	{
+		auto it = conditions.lower_bound(prefix[i]);
+		for( ; it != conditions.end() && !it->first.compare(0, prefix[i].length(), prefix[i]); ++it)
+			total[i] += it->second;
+	}
+	if(total[0] || total[1])
+	{
+		string message = "You receive ";
+		if(total[0])
+			message += to_string(total[0]) + " credits salary";
+		if(total[0] && total[1])
+			message += " and ";
+		if(total[1])
+			message += to_string(total[1]) + " credits in tribute";
+		message += ".";
+		Messages::Add(message);
+		accounts.AddCredits(total[0] + total[1]);
+	}
 	
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
