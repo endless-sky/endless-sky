@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "Table.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -41,19 +42,69 @@ namespace {
 	const vector<string> RATINGS = {
 		"harmless",
 		"mostly harmless",
-		"wimpy",
-		"beginner",
-		"mediocre",
-		"fair",
-		"average",
-		"above average",
-		"competent",
-		"proficient",
-		"noteworthy",
-		"dangerous",
-		"deadly",
-		"legendary"
+		"not entirely helpless",
+		"borderline competent",
+		"almost dangerous",
+		"moderately intimidating",
+		"not to be trifled with",
+		"seasoned fighter",
+		"respected foe",
+		"force to be reckoned with",
+		"fearsome scrapper",
+		"formidable adversary",
+		"dread warrior",
+		"veteran battle-lord",
+		"terror of the galaxy"
 	};
+	
+	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
+	{
+		vector<pair<int, string>> match;
+		
+		auto it = player.Conditions().lower_bound(prefix);
+		for( ; it != player.Conditions().end(); ++it)
+		{
+			if(it->first.compare(0, prefix.length(), prefix))
+				break;
+			if(it->second > 0)
+				match.push_back(pair<int, string>(it->second, it->first.substr(prefix.length()) + suffix));
+		}
+		return match;
+	}
+	
+	void DrawList(vector<pair<int, string>> &list, Table &table, const string &title, int maxCount = 0, bool drawValues = true)
+	{
+		if(list.empty())
+			return;
+		
+		int otherCount = list.size() - maxCount;
+		if(otherCount > 0)
+		{
+			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " Others)";
+			while(otherCount--)
+			{
+				list[maxCount - 1].first += list.back().first;
+				list.pop_back();
+			}
+		}
+		
+		Color dim = *GameData::Colors().Get("medium");
+		Color bright = *GameData::Colors().Get("bright");
+		table.DrawGap(10);
+		table.DrawUnderline(dim);
+		table.Draw(title, bright);
+		table.Advance();
+		table.DrawGap(5);
+		
+		for(const pair<int, string> &it : list)
+		{
+			table.Draw(it.second, dim);
+			if(drawValues)
+				table.Draw(it.first);
+			else
+				table.Advance();
+		}
+	}
 }
 
 
@@ -242,12 +293,19 @@ void InfoPanel::DrawInfo() const
 	const Font &font = FontSet::Get(14);
 	
 	// Player info.
-	Point pos(-490., -265.);
-	font.Draw("player:", pos, dim);
-	string name = player.FirstName() + " " + player.LastName();
-	font.Draw(name, pos + Point(230. - font.Width(name), 0.), bright);
+	Table table;
+	table.AddColumn(0, Table::LEFT);
+	table.AddColumn(230, Table::RIGHT);
+	table.SetUnderline(0, 230);
+	table.DrawAt(Point(-490., -265.));
 	
-	pos.Y() += 25.;
+	table.Draw("player:", dim);
+	table.Draw(player.FirstName() + " " + player.LastName(), bright);
+	table.Draw("net worth:", dim);
+	table.Draw(Format::Number(player.Accounts().NetWorth()) + " credits", bright);
+	
+	// Determine the player's combat rating.
+	table.DrawGap(10);
 	size_t ratingLevel = 0;
 	auto it = player.Conditions().find("combat rating");
 	if(it != player.Conditions().end() && it->second > 0)
@@ -255,24 +313,27 @@ void InfoPanel::DrawInfo() const
 		ratingLevel = log(it->second);
 		ratingLevel = min(ratingLevel, RATINGS.size() - 1);
 	}
-	string rating = RATINGS[ratingLevel];
-	font.Draw("combat rating:", pos, dim);
-	font.Draw(rating, pos + Point(230. - font.Width(rating), 0.), bright);
+	table.DrawUnderline(dim);
+	table.Draw("combat rating:", bright);
+	table.Advance();
+	table.DrawGap(5);
+	table.Draw(RATINGS[ratingLevel], dim);
+	table.Draw("(" + to_string(ratingLevel) + ")", dim);
 	
-	pos.Y() += 20.;
-	string worth = Format::Number(player.Accounts().NetWorth()) + " credits";
-	font.Draw("net worth:", pos, dim);
-	font.Draw(worth, pos + Point(230. - font.Width(worth), 0.), bright);
+	auto salary = Match(player, "salary: ", "");
+	sort(salary.begin(), salary.end());
+	DrawList(salary, table, "salary:", 4);
 	
-	pos.Y() += 30.;
-	font.Draw("licenses:", pos, bright);
-	FillShader::Fill(pos + Point(115., 15.), Point(230., 1.), dim);
+	auto tribute = Match(player, "tribute: ", "");
+	sort(tribute.begin(), tribute.end());
+	DrawList(tribute, table, "tribute:", 4);
 	
-	pos.Y() += 25.;
-	font.Draw("Pilot's License", pos, dim);
+	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
+	auto licenses = Match(player, "license: ", " License");
+	DrawList(licenses, table, "licenses:", maxRows, false);
 	
 	// Fleet listing.
-	pos = Point(-240., -270.);
+	Point pos = Point(-240., -270.);
 	font.Draw("ship", pos + Point(0., 0.), bright);
 	font.Draw("model", pos + Point(220., 0.), bright);
 	font.Draw("system", pos + Point(350., 0.), bright);
