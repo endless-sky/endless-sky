@@ -81,7 +81,7 @@ mission "Intro [1 Transport]"
 	on offer
 		conversation
 			`You begin strolling through the spaceport, walking briskly in order to keep warm and wondering if it might be worth investing in a good winter coat for visiting planets like this one. Eventually you find James. He has an entire family in tow: a young couple, and elderly woman, and four children who range in age from probably about three or four up to twelve or thirteen.`
-			`	"Captain <last>!" he says, "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks, at least if the kids double up. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, an is a planet well worth visiting in its own right. What do you say?"`
+			`	"Captain <last>!" he says, "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks, at least if the kids double up. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, and is a planet well worth visiting in its own right. What do you say?"`
 			`	You're absolutely sure that your shuttle was not designed to fit nine people including yourself, but if they're willing to squeeze into the available five bunks you've got no reason to discourage them.`
 			choice
 				`	"Sure, welcome aboard!"`
@@ -130,7 +130,7 @@ mission "Intro [2 Transport]"
 
 mission "Intro [3 Transport]"
 	name "Bring James to <planet>"
-	descrption "Bring James to <destination>, where he has a spot reserved in a retirement home."
+	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	passengers 1
 	source "Earth"
 	destination "Hestia"

@@ -562,12 +562,12 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		else
 			result.cargoSize = cargoSize;
 	}
-	// Pick a random passenger count, it requested.
+	// Pick a random passenger count, if requested.
 	if(passengers | passengerLimit)
 	{
 		if(passengerProb)
 			result.passengers = Random::Polya(passengerLimit, passengerProb) + passengers;
-		else if(cargoLimit > cargoSize)
+		else if(passengerLimit > passengers)
 			result.passengers = passengers + Random::Int(passengerLimit - passengers + 1);
 		else
 			result.passengers = passengers;

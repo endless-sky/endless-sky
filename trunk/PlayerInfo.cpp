@@ -892,6 +892,7 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Conversation::ACCEPT || shouldLaunch)
 	{
 		availableMissions.front().Do(Mission::ACCEPT, *this);
+		cargo.AddMissionCargo(&*availableMissions.begin());
 		missions.splice(missions.end(), availableMissions, availableMissions.begin());
 		UpdateCargoCapacities();
 	}
