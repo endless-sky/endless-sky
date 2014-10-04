@@ -231,3 +231,28 @@ outfit "Local Map"
 	thumbnail "outfit/map"
 	"map" 12
 	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
+
+
+outfit "Pilot's License"
+	category "Special"
+	cost 50000
+	thumbnail "outfit/license"
+	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
+
+outfit "Freight License"
+	category "Special"
+	cost 100000
+	thumbnail "outfit/license"
+	description "A freight license allows you to operate heavy freighters, in addition to some other ships that are not classified as freighters but have significant cargo capacity. This license is required throughout Republic space, and if you manage to acquire a freighter without a license, you can be fined for owning and operating it."
+
+outfit "Warship License"
+	category "Special"
+	cost 200000
+	thumbnail "outfit/license"
+	description "Naturally, the Republic wants to keep careful track of every pilot who has been licensed to own a ship that is designed primarily as a warship, or in general any ship with a significant armament. The cost of this license goes in part toward funding anti-piracy measures and starport security. This license is required throughout Republic space."
+
+outfit "Capital Ship License"
+	category "Special"
+	cost 400000
+	thumbnail "outfit/license"
+	description "A capital ship license qualifies you to operate the largest ships available to civilians, anywhere in Republic space."

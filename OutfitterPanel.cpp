@@ -86,11 +86,23 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 	
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit);
 	
+	// Check if this outfit is a "license".
+	static const string &LICENSE = " License";
+	bool isLicense = (name.length() >= LICENSE.length()
+		&& !name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE));
+	
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
-	if(playerShip)
+	if(playerShip || isLicense)
 	{
 		int count = playerShip->OutfitCount(outfit);
+		if(isLicense)
+		{
+			string condition = "license: " + name.substr(0, name.length() - LICENSE.length());
+			auto it = player.Conditions().find(condition);
+			if(it != player.Conditions().end() && it->second > 0)
+				count = it->second;
+		}
 		if(count)
 			font.Draw(to_string(count),
 				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 40),
@@ -174,6 +186,23 @@ void OutfitterPanel::Buy()
 			}
 		if(hadNewSystems)
 			player.Accounts().AddCredits(-selectedOutfit->Cost());
+		return;
+	}
+	
+	// Special case: licenses.
+	const string &name = selectedOutfit->Name();
+	static const string &LICENSE = " License";
+	bool isLicense = (name.length() >= LICENSE.length()
+		&& !name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE));
+	if(isLicense)
+	{
+		string condition = "license: " + name.substr(0, name.length() - LICENSE.length());
+		auto it = player.Conditions().find(condition);
+		if(it == player.Conditions().end() || it->second <= 0)
+		{
+			player.Conditions()[condition] = true;
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+		}
 		return;
 	}
 	
