@@ -57,7 +57,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	ShipInfoDisplay info(*playerShip);
+	ShipInfoDisplay info(*playerShip, player.GetSystem()->GetGovernment());
 	info.DrawSale(point);
 	
 	return info.SaleHeight();
@@ -96,7 +96,7 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	ShipInfoDisplay info(*selectedShip);
+	ShipInfoDisplay info(*selectedShip, player.GetSystem()->GetGovernment());
 	Point offset(info.PanelWidth(), 0.);
 	
 	info.DrawDescription(center - offset * 1.5);
@@ -110,7 +110,16 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 
 bool ShipyardPanel::CanBuy() const
 {
-	return (selectedShip && player.Accounts().Credits() >= selectedShip->Cost());
+	if(!selectedShip)
+		return false;
+	
+	// Check that the player has any necessary licenses.
+	const vector<string> &licenses = selectedShip->Licenses(player.GetSystem()->GetGovernment());
+	for(const string &name : licenses)
+		if(player.GetCondition("license: " + name) <= 0)
+			return false;
+	
+	return (player.Accounts().Credits() >= selectedShip->Cost());
 }
 
 

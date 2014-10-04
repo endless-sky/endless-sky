@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
+class Government;
 class Point;
 class Ship;
 
@@ -30,10 +31,10 @@ class Ship;
 class ShipInfoDisplay {
 public:
 	ShipInfoDisplay();
-	ShipInfoDisplay(const Ship &ship);
+	ShipInfoDisplay(const Ship &ship, const Government *systemGovernment = nullptr);
 	
 	// Call this every time the ship changes.
-	void Update(const Ship &ship);
+	void Update(const Ship &ship, const Government *systemGovernment = nullptr);
 	
 	// Get the panel width.
 	static int PanelWidth();
@@ -52,7 +53,7 @@ public:
 	
 	
 private:
-	void UpdateDescription(const Ship &ship);
+	void UpdateDescription(const Ship &ship, const Government *systemGovernment);
 	void UpdateAttributes(const Ship &ship);
 	void UpdateOutfits(const Ship &ship);
 	

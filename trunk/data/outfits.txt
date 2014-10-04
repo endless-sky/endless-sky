@@ -245,6 +245,12 @@ outfit "Freight License"
 	thumbnail "outfit/license"
 	description "A freight license allows you to operate heavy freighters, in addition to some other ships that are not classified as freighters but have significant cargo capacity. This license is required throughout Republic space, and if you manage to acquire a freighter without a license, you can be fined for owning and operating it."
 
+outfit "Transport License"
+	category "Special"
+	cost 100000
+	thumbnail "outfit/license"
+	description "Because ships that can carry large numbers of people can potentially be used as military transports or for raiding and capturing other ships, the Republic requires a special license to operate them."
+
 outfit "Warship License"
 	category "Special"
 	cost 200000

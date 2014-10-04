@@ -59,6 +59,8 @@ public:
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int Cost() const;
+	// Get the licenses needed to buy or operate this ship.
+	const std::vector<std::string> &Licenses(const Government *government) const;
 	
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
@@ -225,6 +227,9 @@ private:
 	// Characteristics of this particular ship:
 	std::string name;
 	const Government *government;
+	
+	// Licenses needed to operate this ship.
+	std::map<const Government *, std::vector<std::string>> licenses;
 	
 	bool isInSystem;
 	int forget;

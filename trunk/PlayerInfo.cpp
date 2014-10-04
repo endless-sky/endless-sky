@@ -950,6 +950,14 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 
 
 
+int PlayerInfo::GetCondition(const string &name) const
+{
+	auto it = conditions.find(name);
+	return (it == conditions.end()) ? 0 : it->second;
+}
+
+
+
 map<string, int> &PlayerInfo::Conditions()
 {
 	return conditions;

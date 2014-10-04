@@ -12,7 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Politics.h"
 
+#include "Format.h"
 #include "GameData.h"
+#include "PlayerInfo.h"
+#include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 
@@ -180,6 +183,47 @@ void Politics::BribePlanet(const Planet *planet)
 
 
 
+// Check to see if the player has done anything they should be fined for.
+string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, double security)
+{
+	// Do nothing if you have already been fined today, or if you evade
+	// detection.
+	auto it = fined.find(gov);
+	if(it != fined.end() || Random::Real() > security)
+		return "";
+	
+	string reason;
+	int64_t maxFine = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		const vector<string> &licenses = ship->Licenses(gov);
+		for(const string &name : licenses)
+			if(player.GetCondition("license: " + name) <= 0)
+			{
+				const Outfit *outfit = GameData::Outfits().Get(name + " License");
+				int64_t fine = outfit->Cost() / 10;
+				if(!fine)
+					fine = 100000;
+				
+				if(fine > maxFine)
+				{
+					maxFine = fine;
+					reason = "operating a " + ship->ModelName() + " without a " + name + " License.";
+				}
+			}
+	}
+	
+	if(!maxFine)
+		return reason;
+	
+	fined.insert(gov);
+	player.Accounts().AddFine(maxFine);
+	return "The " + gov->GetName() + " fines you " + Format::Number(maxFine)
+		+ " credits for " + reason;
+}
+
+
+
 // Get or set your reputation with the given government.
 double Politics::Reputation(const Government *gov) const
 {
@@ -209,4 +253,5 @@ void Politics::ResetProvocation()
 	provoked.clear();
 	bribed.clear();
 	bribedPlanets.clear();
+	fined.clear();
 }
