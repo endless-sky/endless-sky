@@ -82,6 +82,16 @@ void Ship::Load(const DataNode &node)
 			else
 				armament.AddTurret(hardpoint, outfit);
 		}
+		else if(child.Token(0) == "licenses")
+		{
+			const Government *gov = nullptr;
+			if(child.Size() >= 2)
+				gov = GameData::Governments().Get(child.Token(1));
+			
+			vector<string> &vec = licenses[gov];
+			for(const DataNode &grand : child)
+				vec.push_back(grand.Token(0));
+		}
 		else if(child.Token(0) == "fighter" && child.Size() >= 3)
 			fighterBays.emplace_back(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "drone" && child.Size() >= 3)
@@ -186,6 +196,19 @@ void Ship::Save(DataWriter &out) const
 		out.Write("name", name);
 		sprite.Save(out);
 		
+		for(const auto &it : licenses)
+		{
+			if(it.first)
+				out.Write("licenses", it.first->GetName());
+			else
+				out.Write("licenses");
+			
+			out.BeginChild();
+			for(const auto &license : it.second)
+				out.Write(license);
+			out.EndChild();
+		}
+		
 		out.Write("attributes");
 		out.BeginChild();
 			out.Write("category", baseAttributes.Category());
@@ -266,6 +289,21 @@ const string &Ship::Description() const
 int Ship::Cost() const
 {
 	return attributes.Cost();
+}
+
+
+
+// Get the licenses needed to buy or operate this ship.
+const vector<string> &Ship::Licenses(const Government *government) const
+{
+	// Find out if we have any licenses specifically for this government. If
+	// not, check if there are any universally required licenses.
+	auto it = licenses.find(government);
+	if(it == licenses.end())
+		it = licenses.find(nullptr);
+	
+	static const vector<string> empty;
+	return (it == licenses.end()) ? empty : it->second;
 }
 
 
@@ -854,6 +892,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 int Ship::Scan() const
 {
 	if(!HasScanCommand())
+		return 0;
+	
+	if(zoom != 1. || isDisabled || hyperspaceCount || pilotError)
 		return 0;
 	
 	shared_ptr<const Ship> target = GetTargetShip();

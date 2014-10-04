@@ -122,6 +122,7 @@ public:
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
+	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
 	

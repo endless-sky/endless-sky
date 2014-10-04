@@ -75,6 +75,13 @@ void MainPanel::Step()
 		{
 			if(event.ActorGovernment() == gov)
 				ShowScanDialog(event);
+			else if(event.TargetGovernment() == gov)
+			{
+				string message = GameData::GetPolitics().Fine(
+					player, event.ActorGovernment(), event.Type());
+				if(!message.empty())
+					GetUI()->Push(new Dialog(message));
+			}
 		}
 	}
 }

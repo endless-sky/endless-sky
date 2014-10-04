@@ -1,5 +1,8 @@
 ship "Aerie"
 	sprite "ship/aerie"
+	licenses Republic
+		Pilot's
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 1500000
@@ -47,6 +50,9 @@ ship "Aerie"
 
 ship "Argosy"
 	sprite "ship/argosy"
+	licenses Republic
+		Pilot's
+		Freight
 	attributes
 		category "Heavy Freighter"
 		"cost" 560000
@@ -95,6 +101,12 @@ ship "Argosy"
 
 ship Bactrian
 	sprite ship/bactrian
+	licenses Republic
+		Pilot's
+		Freight
+		Transport
+		Warship
+		"Capital Ship"
 	attributes
 		category "Heavy Warship"
 		"cost" 5600000
@@ -152,6 +164,11 @@ ship Bactrian
 
 ship "Bastion"
 	sprite "ship/bastion"
+	licenses Republic
+		Pilot's
+		Warship
+		Freight
+		"Capital Ship"
 	attributes
 		category "Light Warship"
 		"cost" 960000
@@ -202,6 +219,10 @@ ship "Bastion"
 
 ship "Behemoth"
 	sprite "ship/behemoth"
+	licenses Republic
+		Pilot's
+		Freight
+		"Capital Ship"
 	attributes
 		category "Heavy Freighter"
 		"cost" 3800000
@@ -249,6 +270,9 @@ ship "Behemoth"
 
 ship "Blackbird"
 	sprite "ship/blackbird"
+	licenses Republic
+		Pilot's
+		Transport
 	attributes
 		category "Transport"
 		"cost" 730000
@@ -289,6 +313,8 @@ ship "Blackbird"
 
 ship "Bounder"
 	sprite "ship/bounder"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Transport"
 		"cost" 540000
@@ -328,6 +354,10 @@ ship "Bounder"
 
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
+	licenses Republic
+		Pilot's
+		Freight
+		"Capital Ship"
 	attributes
 		category "Heavy Freighter"
 		"cost" 5400000
@@ -376,6 +406,12 @@ ship "Bulk Freighter"
 
 ship "Carrier"
 	sprite "ship/carrier"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+		Navy
+		Carrier
 	attributes
 		category "Heavy Warship"
 		"cost" 7200000
@@ -442,6 +478,8 @@ ship "Carrier"
 
 ship "Clipper"
 	sprite "ship/clipper"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Light Freighter"
 		"cost" 700000
@@ -485,6 +523,8 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
+	licenses Republic
+		Navy
 	attributes
 		category "Drone"
 		"cost" "50000"
@@ -508,6 +548,10 @@ ship "Combat Drone"
 
 ship "Corvette"
 	sprite "ship/corvette"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
 	attributes
 		category "Light Warship"
 		"cost" 1600000
@@ -553,6 +597,12 @@ ship "Corvette"
 
 ship "Cruiser"
 	sprite "ship/cruiser"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+		Navy
+		Cruiser
 	attributes
 		category "Heavy Warship"
 		"cost" 4200000
@@ -645,6 +695,10 @@ ship "Dagger"
 
 ship "Falcon"
 	sprite "ship/falcon"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
 	attributes
 		category "Heavy Warship"
 		"cost" 5900000
@@ -694,6 +748,9 @@ ship "Falcon"
 
 ship "Firebird"
 	sprite "ship/firebird"
+	licenses Republic
+		Pilot's
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 1600000
@@ -740,6 +797,9 @@ ship "Firebird"
 
 ship "Freighter"
 	sprite "ship/freighter"
+	licenses Republic
+		Pilot's
+		Freight
 	attributes
 		category "Light Freighter"
 		"cost" 230000
@@ -782,6 +842,10 @@ ship "Freighter"
 
 ship "Frigate"
 	sprite "ship/frigate"
+	licenses Republic
+		Pilot's
+		Warship
+		Navy
 	attributes
 		category "Light Warship"
 		"cost" 1600000
@@ -830,6 +894,8 @@ ship "Frigate"
 
 ship "Fury"
 	sprite "ship/fury"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Interceptor"
 		"cost" 280000
@@ -870,6 +936,10 @@ ship "Fury"
 
 ship "Gunboat"
 	sprite "ship/gunboat"
+	licenses Republic
+		Pilot's
+		Warship
+		Navy
 	attributes
 		category "Light Warship"
 		"cost" 1600000
@@ -913,6 +983,8 @@ ship "Gunboat"
 
 ship "Hawk"
 	sprite "ship/hawk"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Interceptor"
 		"cost" 350000
@@ -951,6 +1023,8 @@ ship "Hawk"
 
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Transport"
 		"cost" 140000
@@ -1023,6 +1097,10 @@ ship "Lance"
 
 ship "Leviathan"
 	sprite "ship/leviathan"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
 	attributes
 		category "Heavy Warship"
 		"cost" 3800000
@@ -1071,6 +1149,9 @@ ship "Leviathan"
 
 ship "Manta"
 	sprite "ship/manta"
+	licenses Republic
+		Pilot's
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 1200000
@@ -1116,6 +1197,11 @@ ship "Manta"
 
 ship "Mule"
 	sprite "ship/mule"
+	licenses Republic
+		Pilot's
+		Freight
+		Transport
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 780000
@@ -1164,6 +1250,10 @@ ship "Mule"
 
 ship "Osprey"
 	sprite "ship/osprey"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
 	attributes
 		category "Light Warship"
 		"cost" 1400000
@@ -1210,6 +1300,10 @@ ship "Osprey"
 
 ship "Protector"
 	sprite "ship/protector"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
 	attributes
 		category "Heavy Warship"
 		"cost" 2500000
@@ -1259,6 +1353,9 @@ ship "Protector"
 
 ship "Quicksilver"
 	sprite "ship/quicksilver"
+	licenses Republic
+		Pilot's
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 590000
@@ -1298,6 +1395,10 @@ ship "Quicksilver"
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
+	licenses Republic
+		Pilot's
+		Warship
+		Navy
 	attributes
 		category "Light Warship"
 		"cost" 780000
@@ -1343,6 +1444,9 @@ ship "Rainmaker"
 
 ship Raven
 	sprite ship/raven
+	licenses Republic
+		Pilot's
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 800000
@@ -1387,6 +1491,8 @@ ship Raven
 
 ship "Scout"
 	sprite "ship/scout"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Transport"
 		"cost" 450000
@@ -1429,6 +1535,8 @@ ship "Scout"
 
 ship "Shuttle"
 	sprite "ship/shuttle"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Transport"
 		"cost" 60000
@@ -1466,6 +1574,8 @@ ship "Shuttle"
 
 ship "Sparrow"
 	sprite "ship/sparrow"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Interceptor"
 		"cost" 85000
@@ -1505,6 +1615,9 @@ ship "Sparrow"
 
 ship "Splinter"
 	sprite "ship/splinter"
+	licenses Republic
+		Pilot's
+		Warship
 	attributes
 		category "Light Warship"
 		"cost" 1100000
@@ -1552,6 +1665,8 @@ ship "Splinter"
 
 ship "Star Barge"
 	sprite "ship/star barge"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Light Freighter"
 		"cost" 90000
@@ -1589,6 +1704,8 @@ ship "Star Barge"
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
+	licenses Republic
+		Navy
 	attributes
 		category "Drone"
 		"cost" "30000"
@@ -1611,6 +1728,8 @@ ship "Surveillance Drone"
 
 ship "Wasp"
 	sprite "ship/wasp"
+	licenses Republic
+		Pilot's
 	attributes
 		category "Interceptor"
 		"cost" 200000
