@@ -469,23 +469,17 @@ bool AI::MoveTo(Controllable &control, const Ship &ship, const Point &target, do
 	// head towards it.
 	if(distance.Dot(velocity) < 0.)
 	{
-		bool left = distance.Cross(angle.Unit()) < 0.;
-		control.SetTurnCommand(left - !left);
+		control.SetTurnCommand(TurnToward(ship, distance));
 	
 		if(distance.Dot(angle.Unit()) > 0.)
 			control.SetThrustCommand(1.);
 	}
 	else
 	{
+		bool isClose = (distance.Length() < .2 * radius);
 		distance = target - StoppingPoint(ship);
-		
-		// Stop steering if we're going to make it to the planet fine.
-		if(distance.Length() > 20.)
-		{
-			bool left = distance.Cross(angle.Unit()) < 0.;
-			control.SetTurnCommand(left - !left);
-		}
-	
+		if(!isClose)
+			control.SetTurnCommand(TurnToward(ship, distance));
 		if(distance.Unit().Dot(angle.Unit()) > .8)
 			control.SetThrustCommand(1.);
 	}
