@@ -30,7 +30,7 @@ void Politics::Reset()
 {
 	attitudeToward.clear();
 	reputationWith.clear();
-	provoked.clear();
+	ResetProvocation();
 	
 	for(const auto &it : GameData::Governments())
 	{
@@ -220,6 +220,16 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, doubl
 	player.Accounts().AddFine(maxFine);
 	return "The " + gov->GetName() + " fines you " + Format::Number(maxFine)
 		+ " credits for " + reason;
+}
+
+
+
+// Disable fines for today (because the game was just loaded, so any fines
+// were already checked for when you first landed).
+void Politics::DisableFines()
+{
+	for(const auto &it : GameData::Governments())
+		fined.insert(&it.second);
 }
 
 

@@ -55,6 +55,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			requiredReputation = child.Value(1);
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
 			bribe = child.Value(1);
+		else if(child.Token(0) == "security" && child.Size() >= 2)
+			security = child.Value(1);
 	}
 }
 
@@ -166,6 +168,15 @@ double Planet::RequiredReputation() const
 double Planet::GetBribeFraction() const
 {
 	return bribe;
+}
+
+
+
+// This is how likely the planet's authorities are to notice if you are
+// doing something illegal.
+double Planet::Security() const
+{
+	return security;
 }
 
 
