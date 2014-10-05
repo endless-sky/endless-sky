@@ -11091,6 +11091,7 @@ planet Ada
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	bribe .1
+	security .9
 	"required reputation" 2
 
 planet Albatross
@@ -11106,6 +11107,7 @@ planet Albatross
 	outfitter "Common Outfits"
 	outfitter "Pirate Outfits"
 	"required reputation" -20
+	security 0
 
 planet Alfheim
 	attributes deep oil factory
@@ -11117,6 +11119,7 @@ planet Alfheim
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	bribe .05
+	security .7
 
 planet Amazon
 	attributes core tourism oil frontier
@@ -11124,6 +11127,7 @@ planet Amazon
 	description `Amazon is a lush, green, tropical world, a popular tourist destination for many who live in this region of space. The indigenous forests are dense and hardy enough that growing human crops here is a constant battle, and none of the native plants or fruits are edible. Aside from tourism, most of the planet's income is from petroleum mining.`
 	description `	The forests are home to a stunning variety of wildlife, some of it dangerous but most of it entirely indifferent to human presence. Plant life is so abundant here that even the oceans are green rather than blue, teeming with kelp and algae.`
 	spaceport `The Amazon spaceport is unique, built on top of tall pillars more than fifty meters above the ground, directly above the forest canopy. The landing pads, buildings, and catwalks between them are laid out in a random branching pattern, forming a shape that from above looks almost organic. Directly over the railings, you can see brightly colored birds circling beneath your feet.`
+	security .3
 
 planet Antipode
 	attributes core mining frontier
@@ -11131,6 +11135,7 @@ planet Antipode
 	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off. As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
+	security .1
 
 planet Arabia
 	attributes "dirt belt" oil
@@ -11139,6 +11144,7 @@ planet Arabia
 	description `	Aside from hunting, most of the industry takes the form of harvesting and refining petrochemicals to make plastics, polymers, and oils. In some parts of Arabia, the pumpjacks outnumber the people a hundred to one.`
 	spaceport `The spaceport consists mostly of a wide, open field paved in asphalt, the cheapest material available here. The pavement shimmers with heat, and is pockmarked with divots where ships' landing gear has sunk several centimeters in to the surface.`
 	spaceport `	At the center of the pavement is a small cluster of refrigerated sheds and stacks of crates carrying various goods for trade; a few armed guards patrol around them to prevent theft. A food truck is parked nearby, serving burgers and tacos to the port workers and to the crews of the few starships that are parked here at the moment.`
+	security .1
 
 planet "Arachne Station"
 	attributes south station
@@ -11146,6 +11152,7 @@ planet "Arachne Station"
 	description `Arachne Station is privately owned by Tarazed Corporation, and there are no services available here for people who are not Tarazed employees.`
 	"required reputation" 20
 	bribe .05
+	security .4
 
 planet Asgard
 	attributes deep factory urban rich
@@ -11161,6 +11168,7 @@ planet Asgard
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	bribe .05
+	security .7
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -11168,6 +11176,7 @@ planet "Big Sky"
 	description `Big Sky is a warm and fertile world, teeming with indigenous life. It would be an ideal farming world if it were not for the fact that the native plants are so abundant and so well adapted to this environment that they can take over an untended field in a matter of months. Farmers typically start the growing season by slashing and burning the plants that have taken root in their fields over the winter, and even so they must be constantly vigilant for weeds throughout the summer.`
 	description `	The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These "ubergoats" pose so great a threat to the typical biosphere that they are export-controlled as biological weapons.`
 	spaceport `The landing pads here are being gradually consumed by the local plant life. In most places grass and ivy has crept out to cover at least a meter of the pad on all sides, and every small crack or crevice has been colonized by moss and by the roots of larger plants. In places the forest has been cleared to make roads leading to the nearby farming villages, but in most directions all you see is green. It is a beautiful sight, and oddly peaceful, but you know what a nuisance these plants are to the locals.`
+	security .1
 
 planet Bivrost
 	attributes deep mining urban
@@ -11178,6 +11187,7 @@ planet Bivrost
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	security .8
 
 planet Bloodsea
 	attributes pirate
@@ -11191,6 +11201,7 @@ planet Bloodsea
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	"required reputation" -10
+	security 0
 
 planet Bluestone
 	attributes core oil research frontier
@@ -11198,6 +11209,7 @@ planet Bluestone
 	description `The sunlight that filters through Bluestone's atmosphere is too dim and reddish for ordinary Earth plants to thrive. The native plants, mostly grasses and lichens, have adapted their own unique chlorophyll-like molecules in response.`
 	description `	Bluestone is sparsely populated. Aside from one small research village dedicated to cultivating edible hybrid crops that can grow on similar worlds, most of the industry here is focused on drilling and refining oil to make a variety of plastics.`
 	spaceport `Aside from the metal roofs on a few of the largest warehouses, the spaceport buildings are constructed largely of durable plastic resin, pre-cast into interlocking beams and panels. There is a small pub in the center of the port, with its exterior walls painted a cheerful yellow. All the other buildings are the same red-brown color of the raw plastic.`
+	security .2
 
 planet Bounty
 	attributes "dirt belt" farming factory
@@ -11205,6 +11217,7 @@ planet Bounty
 	description `All the land near Bounty's equator is desert, but closer to the poles, the weather is temperate and there is enough rain for farming. The land near the northern pole is sparsely populated, but the other hemisphere is quite well developed, with many of the inhabitants now working in factories that produce fancy watches and intricate electronic components.`
 	description `The focus on skilled manufacturing has had a dramatic effect on both the local education system and the sports scene. One can garner great respect - and a sizable income - simply by being the best at folding tiny paper cranes by microscope.`
 	spaceport `The spaceport is not fancy, but it is serviceable: the landing pads are very level and show only minor signs of wear and tear, and the one warehouse is tiny but recently built, and its roof is in good repair. Next to it is a marketplace building, with three walls and a pitched roof, and the fourth side open for people and trucks to come and go. An enterprising cook is selling lamb kebabs from a small grill and cart in one corner of the building.`
+	security .1
 
 planet Bourne
 	attributes rim factory urban
@@ -11217,6 +11230,7 @@ planet Bourne
 	outfitter "Kraz Advanced"
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
+	security .4
 
 planet "Buccaneer Bay"
 	attributes pirate
@@ -11231,6 +11245,7 @@ planet "Buccaneer Bay"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
+	security 0
 
 planet Burthen
 	attributes core mining
@@ -11238,6 +11253,7 @@ planet Burthen
 	description `Burthen is only sparsely populated due to crushingly high gravity. The locals - exceptionally strong and short - take a stoic pride in this misery and the many health issues that result. The land in most regions is suitable for farming, but mining of heavy metals is the primary industry, and the source of ready wealth that ties people to this uncomfortable planet.`
 	description `	Some of the excavation vehicles used here are as large and costly as a capital starship and as noisy as a volcano. Vast scars of strip mines span across the landscape. On this planet the environment is something to be endured rather than cherished.`
 	spaceport `You could feel the oppressive force of this planet's gravity as soon as you landed. The spaceport is a small cluster of single-story buildings. More cargo seems to be handled by robotic vehicles than by actual human operators, but the few people walking past you are all much shorter than you are. You feel like a giant, clearly out of place.`
+	security .2
 
 planet Calda
 	attributes paradise tourism rich
@@ -11247,6 +11263,7 @@ planet Calda
 	spaceport `This is one of the few planets in this sector whose spaceport does not include private hangars, or at least gangway tunnels connecting to ships that land. The reason, of course, is so that visitors can experience the warm and pleasant air the moment they disembark. There is, however, a network of canvas-covered awnings branching out from the main buildings, offering shade and protection from the weather.`
 	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercrafts and helicopters!) are far more promient than the amenities that interest a captain like yourself.`
 	bribe .05
+	security .5
 
 planet Canyon
 	attributes core farming frontier
@@ -11254,6 +11271,7 @@ planet Canyon
 	description `Canyon is a large world, with gravity near the high end of what human beings can comfortably bear. Much of its surface is sandstone, leading scientists to believe that the planet was once home to large oceans, before some cataclysmic event, perhaps a rogue star drifting through the system, caused much of the planet's water to boil away. The few settlers who live here mostly farm the deep canyons; the mesas above are dry and almost lifeless.`
 	description `The angular rock formations that cover most of the mesaland are identified in local mythology as the ruins of an unspeakably vast and ancient alien city. A gullible tourist can find any number of opportunities to tour these alleged sites. Offworld science has been largely skeptical of these claims.`
 	spaceport `The spaceport is a wide, flat stone field with no individual landing spots marked out; you're simply responsible for finding an unoccupied space large enough for your ship, A quarter mile away from the field is a small village with a marketplace and a pub. There are only a few starships parked here. In the village, you can recognize the locals because of their stout, muscular stature; you are taller than almost everyone here.`
+	security .1
 
 planet "Carbuncle Station"
 	attributes north station research
@@ -11261,6 +11279,7 @@ planet "Carbuncle Station"
 	description `Carbuncle is a tiny station owned and operated by Lovelace Labs. You assume that like most such stations, it is primarily a deuterium refinery, but aside from the docking bay the rest of the station is closed off to visitors. Given the reputation of Lovelace Labs for exotic research, there could be almost anything beyond those sealed-off bulkheads.`
 	bribe .05
 	"required reputation" 100
+	security .9
 
 planet "Charon Station"
 	attributes south station
@@ -11268,6 +11287,7 @@ planet "Charon Station"
 	description `Charon station provides hyperspace fuel for much of the sourthern galactic rim. It is a tiny, cramped, and aging station, with twice as many workers here as it was originally designed for. Centuries ago, before much of the Dirt Belt was settled, this was the first spot below Algorel where merchant caravan fleets from the Deep could stop over on their way to the worlds farther up the Rim.`
 	description `The close quarters have fostered an extreme scrupulosity about personal space. It is unnerving to walk down a densely crowded hallway and fail to make eye contact with anyone.`
 	spaceport `The refinery here operates in shifts, non-stop, so there are always people coming and going in the hallways and docking bays. The cafeteria is so crowded that many workers are just standing up against the walls eating off their trays instead of trying to find a place to sit. Every few minutes, light flashes in through one of the windows from welders outside in space suits trying to keep the aging hull in perfect shape. Others drift around outside checking up on the solar panels and replacing burnt-out modules.`
+	security .4
 
 planet "Charybdis Station"
 	attributes core station
@@ -11275,6 +11295,7 @@ planet "Charybdis Station"
 	description `Charybdis station is privately owned by the Syndicate. It is a massive deuterium refinery, with harvester drones constantly flying in and out to scoop hydrogen gas out of the upper atmosphere of the planet below. If you need to repair or reful in this system, you will need to visit the neighboring world of Delve, instead of this station.`
 	"required reputation" 20
 	bribe .05
+	security .6
 
 planet Chiron
 	attributes "near earth" urban
@@ -11291,6 +11312,7 @@ planet Chiron
 	outfitter "Lovelace Basics"
 	outfitter "Syndicate Basics"
 	bribe .02
+	security .3
 
 planet Clark
 	attributes "dirt belt" forest factory
@@ -11301,6 +11323,7 @@ planet Clark
 	spaceport `	In the central building, dozens of workers fill a large cafeteria with several stations serving different types of food. The mood here feels boistrous and energetic, very different from most of the Dirt Belt worlds you have visited.`
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
+	security .1
 
 planet Cornucopia
 	attributes south farming research frontier
@@ -11309,6 +11332,7 @@ planet Cornucopia
 	description `From orbit, most of the landmass seems covered with a bizarre pixelated pattern. On approach, this resolves into a vast patchwork of fields and irrigation circles.`
 	spaceport `The spaceport on Cornucopia is a set of massive hangars in the center of a wide-open plain. Before leaving your ship you had to sign several documents regarding the use and disposal of various chemicals used in ship operations, and the department of agriculture requires that any luggage you bring on or off world be submitted to a scan for biological material.`
 	spaceport `	When you leave your hangar, you find yourself in an immense farmers' market, with hundreds of fruits and grains that you do not even know words for. The smell of this world is rich and earthy - you feel like you could almost receive all the nourishment your body needs just by breathing this air.`
+	security .1
 
 planet Covert
 	attributes pirate mining
@@ -11321,6 +11345,7 @@ planet Covert
 	outfitter "Pirate Outfits"
 	"required reputation" 10
 	bribe .1
+	security 0
 
 planet Crossroads
 	attributes core mining
@@ -11331,6 +11356,7 @@ planet Crossroads
 	outfitter "Syndicate Basics"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
+	security .2
 
 planet Dancer
 	attributes south research
@@ -11339,6 +11365,7 @@ planet Dancer
 	description `	A fair number of scientists have settled here to study the planet's weather systems, as well as others who do not mind, or who even enjoy, the wild weather. It might be possible for terraforming to moderate Dancer's atmospheric activity enough to make it a less dangerous place to live, but the cost would be prohibitive.`
 	spaceport `The spaceport town is a rather normal collection of wood and stone buildings, with large sheds for trade goods and a handful of pubs and restaurants. The only unusual thing is the fact that every single building has lightning rods mounted on its roof. The sky is perpetually cloudy here, with only occasional beams of sunlight glancing through. The clouds are moving awfully fast.`
 	outfitter "Basic Outfits"
+	security .05
 
 planet Darkstone
 	attributes south farming frontier
@@ -11347,6 +11374,7 @@ planet Darkstone
 	description `	Among the farmers who choose to stay, the attitude seems to be that piracy can't last forever, but good land will always be good land. Despite some low-level cynicism and bitterness, there is surprisingly little outright anger at either the pirates themselves or any government that might have been expected to control them.`
 	spaceport `Once every few months, one pirate band or another will land here demanding tribute in the form of food. The locals respond by just keeping a big enough supply on hand to satisfy them; any sort of planetary defenses would cost far more than the price of the amount of food that an average fleet of warships can carry. But once they recognize that you are here to trade and not to steal, they greet you quite enthusiastically.`
 	outfitter "Ammo South"
+	security .1
 
 planet "Deadman's Cove"
 	attributes pirate
@@ -11358,6 +11386,7 @@ planet "Deadman's Cove"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	bribe .03
+	security 0
 
 planet Deep
 	attributes south fishing
@@ -11365,6 +11394,7 @@ planet Deep
 	description `Deep is a sparsely populated world of small island archipelagos surrounded by vast expanses of empty ocean. There is not enough land for any large cities or serious industry to emerge, so most of the inhabitants live in small fishing villages. The climate is temperate and Earth-like, but the sunlight is somewhat dimmer than you are used to.`
 	description `	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, surprisingly little trace of the original colony was found.`
 	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+	security .1
 
 planet Delve
 	attributes core mining
@@ -11376,6 +11406,7 @@ planet Delve
 	outfitter "Syndicate Advanced"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
+	security .2
 
 planet Dune
 	attributes rim mining
@@ -11385,6 +11416,7 @@ planet Dune
 	spaceport `	There are no windows inside the port, but the tall ceilings and bright strips of sun-lamps keep it from feeling too claustrophobic.`
 	outfitter "Ammo South"
 	outfitter "Kraz Basics"
+	security .05
 
 planet Earth
 	attributes "near earth" urban tourism
@@ -11399,6 +11431,7 @@ planet Earth
 	outfitter "Ammo North"
 	bribe .03
 	"required reputation" 2
+	security .3
 
 planet Echo
 	attributes quarg
@@ -11406,6 +11439,7 @@ planet Echo
 	description `This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds.`
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
 	bribe 0
+	security .9
 
 planet Farpoint
 	attributes north military frontier
@@ -11418,6 +11452,7 @@ planet Farpoint
 	outfitter "Ammo North"
 	bribe .08
 	"required reputation" 2
+	security .8
 
 planet Farseer
 	attributes paradise tourism rich
@@ -11426,12 +11461,14 @@ planet Farseer
 	description `	Industry here mostly takes the form of executive offices for interplanetary banks, law firms, and software companies. Strict zoning laws limit construction of skyscrapers or factories to the continents that are in the less pleasant polar regions.`
 	spaceport `The spaceport is in one of the industrial regions near the pole; presumably the sight and sound of starships landing and taking off is too distasteful and plebeian for this world's richer inhabitants. Most of the people here are terraforming technicians or mechanics; they hurry through the streets without giving you a second glance. Next to the tin-roofed marketplace, children are playing in a concrete-paved lot; across the street are a few run-down pubs and a restaurant.`
 	bribe .05
+	security .6
 
 planet Featherweight
 	attributes north research frontier
 	landscape land/sky6
 	description `Featherweight is a small world, with lighter than normal gravity. Centuries ago, because of its remoteness, this world was the site of some illegal genetic experiments, and rumors say that the current inhabitants are the result of those experiments. Because they are so well adapted to low gravity, few of them choose to leave, and very few outsiders choose to settle here, so this world's culture remains quite insular and detached from the rest of the galaxy.`
 	spaceport `Although this is a human planet, as you walk through this spaceport you feel as if you are on an alien world. The ceilings and doorways are all a bit higher than you are used to, and the locals tower over you. Aside from a few food carts in the marketplace, there are no shops or restaurants in the spaceport, and the nearest village is several kilometers away. It is as if the entire port was designed in order to limit interactions with outsiders to the bare minimum that is necessary.`
+	security .5
 
 planet "Fenrir Station"
 	attributes deep station
@@ -11440,6 +11477,7 @@ planet "Fenrir Station"
 	description `	The diversity of isotopes found here is partly due to the station being relatively new construction and benefitting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion.`
 	spaceport `This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you.`
 	bribe .05
+	security .8
 
 planet Flood
 	attributes rim tourism farming
@@ -11447,6 +11485,7 @@ planet Flood
 	description `The scenic fjords and rugged mountains make Flood a popular tourist destination. Nearly all the land in the planet's temperate zone is covered in mountains, making traditional agriculture difficult. The locals survive mostly by raising sheep and goats, plus a few native species, and grow fruit and vegetables in small terrace gardens tended by hand rather than by tractor. Most of the population is employed in the tourist industry, running inns for the visitors to their quaint mountainside villages, or making handcrafts for sale as gifts.`
 	spaceport `You have never seen this many shops in a single spaceport. Hand-glazed pottery, wooden furniture, dolls, sweaters, scarves, paintings - the variety is overwhelming. Crowds of tourists bustle around from shop to shop, making it very difficult for you to get through.`
 	spaceport `	The spaceport is built on a mountainside, apparently designed to look like a village, except that in place of terrace gardens are landing pads (placed haphazardly to look more natural), and the buildings are much larger than you imagine the huts up in the villages would be. The cement tiles covering the roofs have been molded and colored to look like wood shingles, and although some of the larger buildings must have steel structures underneath, they have been made to look as if they are held up only by wooden beams.`
+	security .2
 
 planet Follower
 	attributes paradise factory
@@ -11461,6 +11500,7 @@ planet Follower
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	bribe .03
+	security .4
 
 planet Forpelog
 	attributes quarg
@@ -11468,6 +11508,7 @@ planet Forpelog
 	description `Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen.`
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
 	bribe 0
+	security .9
 
 planet Foundry
 	attributes core factory urban
@@ -11482,6 +11523,7 @@ planet Foundry
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
 	bribe .1
+	security .5
 
 planet Freedom
 	attributes pirate farming
@@ -11498,6 +11540,7 @@ planet Freedom
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	"required reputation" -10
+	security 0
 
 planet Furnace
 	attributes core military
@@ -11509,6 +11552,7 @@ planet Furnace
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	bribe .05
+	security .1
 
 planet Geminus
 	attributes paradise factory mining
@@ -11527,6 +11571,7 @@ planet Geminus
 	outfitter "Lovelace Advanced"
 	outfitter "Syndicate Basics"
 	bribe .1
+	security .9
 
 planet Gemstone
 	attributes "dirt belt" mining
@@ -11534,6 +11579,7 @@ planet Gemstone
 	description `Gemstone is a hot and unpleasant world, mostly due to a smoggy atmosphere high in methane. Much of the surface is covered in rugged mountains, making travel across land very difficult. However, the powerful tectonic forces here have created rich deposits of diamonds, emeralds, and sapphires, which are mined both for use in jewelry and for certain electronic components. Mining a tectonically active world is an insane project, and earthquakes cause frequent cave-ins, but the potential of wealth draws miners here despite the high mortality rate.`
 	description `	The miners are paid on commission on the stones they find. As a result most as dirt-poor, but full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit.`
 	spaceport `The spaceport is perched on top of a peak in one of the older and more stable mountain ranges. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low cement buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
+	security .2
 
 planet Geyser
 	attributes "near earth" oil factory
@@ -11545,6 +11591,7 @@ planet Geyser
 	outfitter "Ammo North"
 	outfitter "Syndicate Basics"
 	outfitter "Lovelace Basics"
+	security .3
 
 planet Glaze
 	attributes south tourism
@@ -11558,6 +11605,7 @@ planet Glaze
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	outfitter "Ammo South"
+	security .2
 
 planet Glory
 	attributes paradise medical
@@ -11566,6 +11614,7 @@ planet Glory
 	spaceport `The starport is as perfectly sculpted as the rest of the planet, a hive-like structure with hexagonal openings of various sizes for docking bays. Gardens have been planted on the roofs and on terraces on all different levels, and a small artificial river flows from a fountain on the roof down among the terraces and out to the ground below.`
 	spaceport `	It is almost impossible to tell the age of the locals who are walking by: there is a frightening monotony of wrinkle-free, nearly identically proportioned faces. When they speak, only their lips move; their expressions remain mask-like, immobile.`
 	bribe .05
+	security .6
 
 planet Grakhord
 	attributes quarg
@@ -11573,6 +11622,7 @@ planet Grakhord
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quargs have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
 	bribe 0
+	security .9
 
 planet Greenrock
 	attributes pirate
@@ -11590,6 +11640,7 @@ planet Greenrock
 	outfitter "Syndicate Basics"
 	outfitter "Pirate Outfits"
 	bribe .05
+	security 0
 
 planet Harmony
 	attributes south farming religious frontier
@@ -11597,6 +11648,7 @@ planet Harmony
 	description `The first settlers who came to Harmony were an Amish community seeking a place where they could live a quiet life and do work with their own hands instead of relying on machines and computers. Their community grew to millions of people, who now live side by side with other, more modern settlers. There are still regions of the planet where motorized vehicles are prohibited, but in other places trucks and horse-drawn buggies share the same roads.`
 	spaceport `The spaceport is on the outskirts of one of the larger cities, with a few medium-sized skyscrapers and many tall smokestacks for factories and oil refineries. The starship hangars here are shaped like oversized barns, and close to the hangars, grain is stored in silos. The spaceport police are on horseback.`
 	spaceport `	Inside the building at the center of the port is a large cafeteria, with food of the simple "meat and potatos" variety. You notice a few children and teenagers in rough, homemade clothing staring out the windows at the ships taking off and landing.`
+	security 0
 
 planet Haven
 	attributes pirate mining
@@ -11610,6 +11662,7 @@ planet Haven
 	outfitter "Pirate Outfits"
 	shipyard "Northern Pirates"
 	bribe .03
+	security 0
 
 planet Haze
 	attributes deep factory
@@ -11622,6 +11675,7 @@ planet Haze
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	security .6
 
 planet Heartland
 	attributes "dirt belt" farming
@@ -11630,6 +11684,7 @@ planet Heartland
 	spaceport `The spaceport is a cluster of low buildings. At the center of the port is a special, taller building with glass walls on all sides. It houses the tractor showroom. The farmers visiting the showroom look about as excited as you do when touring a large and well-appointed shipyard. There are tractors with rubber wheels, spiked wheels, and tracks; with plows, combines, balers, and chaser bins; tractors barely big enough to sit on and tractors the size of a small freighter. It's somewhat overwhelming.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
+	security .2
 
 planet Helheim
 	attributes deep mining volcanic
@@ -11637,6 +11692,7 @@ planet Helheim
 	description `Helheim is not a pleasant place. Much of the surface is volcanic, pockmarked with crates and steam vents leading deep into the planet's crust. The air is slightly caustic, but breathable. However, it is also a world rich in easily accessible deposits of nickel, aluminum, and magnesium. The mining industry here has been booming for centuries, and in all of the Deep it is the one world where work is never hard to find - if you are willing to face the health risks and the lack of green and growing things.`
 	spaceport `The spaceport is also the main city in Helheim, and it is built around a series of glass domes of all different sizes. Each dome is a greenhouse housing a different sort of plant life, and in some cases animals as well: hermetically sealed parks, protected from the caustic air outside, where the locals can come when their hunger to be among living things becomes unbearable. The docking bays each have an airlock to protect the atmosphere inside the city.`
 	bribe .05
+	security .6
 
 planet Hephaestus
 	attributes core factory ubran
@@ -11653,6 +11709,7 @@ planet Hephaestus
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
 	bribe .1
+	security .7
 
 planet Hermes
 	attributes paradise research medical
@@ -11664,6 +11721,7 @@ planet Hermes
 	outfitter "Lovelace Advanced"
 	"required reputation" 100
 	bribe .1
+	security .9
 
 planet Hestia
 	attributes paradise rich
@@ -11674,6 +11732,7 @@ planet Hestia
 	outfitter "Ammo North"
 	outfitter "Lovelace Basics"
 	bribe .04
+	security .5
 
 planet Hippocrates
 	attributes core research frontier
@@ -11681,6 +11740,7 @@ planet Hippocrates
 	description `Hippocrates is a sparsely settled world, home mostly to scientific research outposts. The environment here, orbiting so close to a red dwarf star, is very different from most other settled planets. The scientists estimate this star system to be over ten billion years old, enough that life here has had much more time to develop and evolve than on any planet orbiting a brighter, more short-lived star.`
 	spaceport `The spaceport is a single building, and half the landing pads are just packed dirt. This port was not designed for large volumes of cargo or of visitors. Within the building is a sun-lit atrium, with separate storefronts for the commodity exchange, the job center, and the bank. The only place you can see where you might be able to get something to eat is a bar, advertised by a sign showing an Erlenmeyer flask with a folding paper umbrella hung over the rim.`
 	outfitter "Ammo North"
+	security .1
 
 planet Hopper
 	attributes "dirt belt" mining
@@ -11688,6 +11748,7 @@ planet Hopper
 	description `Hopper is a temperate world of oceans, mountains, and plains, but with unfortunately high levels of sulfuric acid in its atmosphere. Metal and stone that are exposed to the atmosphere corrode quickly, requiring frequent maintenance. As a result, Hopper has only a few small settlements on it, and most of the industry is focused on underground mining. The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; earth fish could not be introduced successfully here.`
 	spaceport `The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn. Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees.`
 	outfitter "Ammo South"
+	security .05
 
 planet "Huginn Station"
 	attributes deep station
@@ -11696,6 +11757,7 @@ planet "Huginn Station"
 	description `	Huginn Station is a prison station where convicted pirates must work at harvesting and refining deuterium to atone for their crimes against humanity. There are no services available for you here and the security guards, surprised by your visit and wondering at your motives, watch you closely.`
 	"required reputation" 20
 	bribe .1
+	security .9
 
 planet Humanika
 	attributes south farming
@@ -11704,11 +11766,13 @@ planet Humanika
 	spaceport `The spaceport is a towering steel structure, built by the Quarg, with docks for their pilot-less cargo drones in addition to the platforms for human ships. The hallways inside have disconcerting proportions, somewhat narrow but with very tall ceilings. In addition to the human inhabitants, there are a few tall, almost fragile-looking robots with digitigrade limbs and narrow torsos patterned after the anatomy of a Quarg. Most of the robots stand still in the corners, like statues, but a few are moving around and interacting with people, apparently as remote control proxies for Quargs in orbit. It is a clear reminder of who owns this planet.`
 	outfitter "Ammo South"
 	bribe .05
+	security .9
 
 planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/space4
 	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
+	security .3
 
 planet Icefall
 	attributes core farming oil frontier
@@ -11716,6 +11780,7 @@ planet Icefall
 	description `Icefall is far from its sun, but with an axial tilt of roughly 38 degrees. This means that the climate is cold, but the year is also long, and each hemisphere has a short summer - barely enough to fit a terrestrial growing season. There are only a few major towns, and no major metropolitan centers. Most of the inhabitants make a living as farmers, although near the equator there is also some oil drilling industry. Icefall's oceans are filled with constantly shifting pack ice and icebergs, making them nearly unnavigable.`
 	description `	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres.`
 	spaceport `The spaceport is located near the equator, in this world's industrial zone. Along the horizon are fields of pumpjacks and oil derricks. The port consists of rows of hangars, plus two large square towers that house the marketplace and storage space for cargo. A constant howling wind sweeps in between the buildings, but thankfully they are well constructed out of sturdy cement.`
+	security .2
 
 planet Ingot
 	attributes "dirt belt" volcanic mining
@@ -11724,12 +11789,14 @@ planet Ingot
 	spaceport `In this spaceport, ships dock inside a hangar whose ceiling protects them from meteorite impacts. The hangar is not pressurized, so there are also landing tubes that connect to each of the visiting ships. Many of the people inside are carrying emergency oxygen masks in case a sudden impact ruptures the building.`
 	spaceport `	In addition to being the spaceport, this complex is also the repair and control center for the mining robots. There are a handful of buildings elsewhere on Ingot, but not many. You cannot imagine spending so much time with so little space or change of scenery.`
 	outfitter "Basic Outfits"
+	security .1
 
 planet "Kraken Station"
 	attributes "near earth" station
 	landscape land/station0
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains. Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
 	spaceport `The main ring the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
+	security .3
 
 planet Lagrange
 	attributes quarg tourism
@@ -11737,6 +11804,7 @@ planet Lagrange
 	description `The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build.`
 	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
 	bribe 0
+	security .9
 
 planet "Leviathan Station"
 	attributes deep station
@@ -11746,6 +11814,7 @@ planet "Leviathan Station"
 	spaceport `	On the other hand, you get some small satisfaction from knowing that you refueled your ship with deuterium that just yesterday was most likely still floating around in the upper cloud banks of the gas giant below.`
 	"required reputation" 10
 	bribe .08
+	security .9
 
 planet Lichen
 	attributes south farming frontier
@@ -11755,6 +11824,7 @@ planet Lichen
 	spaceport `The spaceport is built on a small mountain, one of the rare places where enough bedrock rises above the soil to provide a firm foundation for large buildings and a flood-free location. The warehouses and market are built of concrete, but the smaller buildings on the outskirts of the port are wood framed. Moss is growing everywhere, and in places the wood is stippled with mold. But the people are friendly enough, unhurried and peaceful.`
 	spaceport `	A noodle soup restaurant near the center of the port town seems to be the gathering place of choice. Whatever they're cooking inside, it smells delicious.`
 	outfitter "Ammo South"
+	security .05
 
 planet Lodestone
 	attributes core volcanic mining
@@ -11762,6 +11832,7 @@ planet Lodestone
 	description `Lodestone is a young, volcanically active world. The atmosphere is often filled with choking dust or sulfur dioxide, and new eruptions can occur with hardly any warning. Building any sort of structure here is an exercise in futility.`
 	description `	The only reason Lodestone is inhabited is because of the planet's unusually rich reserves of heavy metals and other rare minerals.`
 	spaceport `This port is known as "Fourth Port." The previous three ports are partly or completely buried under lava flows. The present port is built on a raised platform a hundred meters above the ground. The steel stilts supporting the platform are intended to keep the port from being buried by any encroaching lava flow. However, given that some explosive eruptions here have been known to launch lava nearly a kilometer into the air, sooner or later Fourth Port will need to be replaced by a fifth.`
+	security .05
 
 planet Longjump
 	attributes rim tourism factory
@@ -11771,6 +11842,7 @@ planet Longjump
 	outfitter "Basic Outfits"
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
+	security .1
 
 planet Luna
 	attributes "near earth" tourism factory
@@ -11786,6 +11858,7 @@ planet Luna
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
 	bribe .05
+	security .2
 
 planet Maelstrom
 	attributes north mining frontier
@@ -11796,6 +11869,7 @@ planet Maelstrom
 	outfitter "Lovelace Basics"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
+	security .5
 
 planet Mainsail
 	attributes paradise rich
@@ -11809,6 +11883,7 @@ planet Mainsail
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	bribe .06
+	security .5
 
 planet Maker
 	attributes core factory mining
@@ -11818,6 +11893,7 @@ planet Maker
 	spaceport `	In the commercial sector of the port, robotic cargo trucks rumble through the streets at frightening speeds, while pedestrians walk from building to building along skyways several stories up.`
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
+	security .4
 
 planet Mani
 	attributes deep
@@ -11825,12 +11901,14 @@ planet Mani
 	description `Mani is a small moon, with an atmosphere thick enough to keep your blood from boiling off but too thin to breathe without assistance. It is used only as a cargo depot and a spot for refueling and repairs. The native plant life mostly consists of pale-colored lichens and a few species of grass. The only animals are insects.`
 	spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it. Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
 	outfitter "Ammo North"
+	security .6
 
 planet Mars
 	attributes "near earth" tourism farming
 	landscape land/desert0
 	description `Mars was humanity's first attempt at terraforming. Although it remains a dry, cold desert, the air is now breathable without an oxygen tank, and there are sections of the planet where a fair number of plants can grow. Because far more hospitable planets are available to those with enough money to pay for interstellar travel, the farms and ranches of Mars are run mostly by poorer Earth families who want to escape the pollution and congestion, along with some young adults who do farm work to help finance their once-in-a-lifetime opportunity to stand on another world.`
 	spaceport `The spaceport on Mars is situated next to the northern Polar Basin, one of the few places where, post-terraforming, a natural lake exists. Here, far more trees grow than elsewhere on the planet, and in the few warm months when the lake is not frozen, Mars almost looks like a friendly place.`
+	security .2
 
 planet Martini
 	attributes paradise rich
@@ -11838,6 +11916,7 @@ planet Martini
 	description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange are headquartered here, and so much money flows through this world's economy every day that the cost of utterly controlling its weather and climate is only a drop in the bucket. Not surprisingly, real estate prices here are astronomical; a small condo in one of Martini's main cities costs more than a capital starship.`
 	spaceport `The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible.`
 	bribe .1
+	security .5
 
 planet Memory
 	attributes deep research factory medical
@@ -11847,6 +11926,7 @@ planet Memory
 	spaceport `The local government has not yet seen the need to set aside funds to replace the spaceport built by the original settlers: mostly just a collection of poured concrete pads where larger ships  can land without sinking into the sand of the desert. They have added some large hangars for richer clients and Navy ships, however, and over the years more and more buildings have sprung up along the periphery of the landing field.`
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	security .8
 
 planet Mere
 	attributes rim fishing
@@ -11854,6 +11934,7 @@ planet Mere
 	description `Mere is a world almost entirely covered by oceans. The locals live most of their lives on enormous ships, almost like floating cities, which travel around collecting fish and seaweed for food or harvesting pearls from the shallows to be sold off-world. The city-ships must do their best to avoid certain latitudes where hurricanes are most common, and even so storms are a continuous threat to anyone who lives here. Weather conditions are tracked constantly by a network of satellites.`
 	spaceport `The spaceport is on the largest island on the planet. The marketplace is a large, open plaza down by the docks, where the captains of whichever city-ships are moored here at the moment can sell their goods directly to customers. Behind the plaza are large warehouses. If a storm approaches, the goods can quickly be moved inside, while the ships launch out into the deep sea where they have a better change of weathering the storm without being smashed against the rocks.`
 	spaceport `	The entire port is filled with the almost overpowering smell of fish. You have heard that this is the best place in the galaxy for good, cheap sushi, but the smell is doing nothing for your appetite.`
+	security .1
 
 planet Midgard
 	attributes deep urban factory mining
@@ -11868,6 +11949,7 @@ planet Midgard
 	outfitter "Ammo North"
 	outfitter "Delta V Advanced"
 	bribe .05
+	security .8
 
 planet Millrace
 	attributes "near earth" factory urban
@@ -11878,6 +11960,7 @@ planet Millrace
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
+	security .2
 
 planet Moonshake
 	attributes core urban factory
@@ -11887,6 +11970,7 @@ planet Moonshake
 	spaceport `The smog is so thick here that you could barely see the landing pad until you were only half a kilometer above it. At street level, the smog is less evident, but the air leaves a faint metallic taste in your mouth. The spaceport, like the rest of this city, is overcrowded, with people walking along the narrow streets and trying to thread their way in between large cargo trucks loaded with crates. You see signs for restaurants of every variety imaginable, but most of them look dirty and dimly lit.`
 	outfitter "Common Outfits"
 	outfitter "Syndicate Basics"
+	security .2
 
 planet "Muninn Station"
 	attributes deep station military
@@ -11895,6 +11979,7 @@ planet "Muninn Station"
 	spaceport `Most of the station is closed off to you, but you are told that if you want you may visit the large military mess hall, where hundreds of Navy members and local militia sit and eat or watch the news videos. You would normally expect a military mess hall to be a noisy, rowdy place, but this one is almost eerily silent, with a few quiet conversations going on in the corners but otherwise no noise except the video screens.`
 	"required reputation" 10
 	bribe .05
+	security .8
 
 planet Muspel
 	attributes deep mining factory
@@ -11903,11 +11988,13 @@ planet Muspel
 	description `	Some tourists also come here, to walk through the sandstone canyons where the wind and rain has carved the rock into tall pillars and spires. A few particularly beautiful canyons are protected against strip mining by local law.`
 	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
 	bribe .03
+	security .6
 
 planet Mutiny
 	attributes pirate
 	landscape land/sky6
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
+	security 0
 
 planet "New Argentina"
 	attributes "dirt belt" farming
@@ -11917,12 +12004,14 @@ planet "New Argentina"
 	spaceport `The spaceport is on the outskirts of one of New Argentina's largest towns... which has a population of barely ten thousand people. Many of the dock workers are teenagers or barely past their teens, children of ranchers who are not drawn to the solitary sort of life that their parents enjoy. Aside from the church and the hospital, the largest building in town is "The Grange," a function hall with a sign out front advertising square dances and line dances three nights a week.`
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
+	security .05
 
 planet "New Austria"
 	attributes "dirt belt" mining
 	landscape land/valley9
 	description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
 	spaceport `The spaceport is nothing but a couple of landing pads built on the outskirts of one of the larger mining villages, high up on a mountain ridge to allow easy access for starships. A few roads lead down from there to the village, where you can trade for local goods or get food from the miners' cafeteria. By the time you have walked to the center of the town, several people have already tried to sell you large "diamonds" that you strongly suspect are just clear sapphires.`
+	security .05
 
 planet "New Boston"
 	attributes "dirt belt" textiles farming
@@ -11932,6 +12021,7 @@ planet "New Boston"
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
+	security .05
 
 planet "New Britain"
 	attributes "dirt belt" farming factory urban
@@ -11945,6 +12035,7 @@ planet "New Britain"
 	outfitter "Ammo South"
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
+	security .2
 
 planet "New China"
 	attributes "near earth" urban
@@ -11956,6 +12047,7 @@ planet "New China"
 	outfitter "Ammo South"
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
+	security .1
 
 planet "New Greenland"
 	attributes "dirt belt" textiles
@@ -11963,6 +12055,7 @@ planet "New Greenland"
 	description `New Greenland was first settled about six hundred years ago, at the peak of the "Turf Wars" era where most planets were controlled by powerful corporations and their struggles often turned into outright warfare with privately owned fleets and armies. The people who came to new Greenland were looking for a world so marginal and undesirable that they could live here in peace without being caught in the crossfire. The locals here grow food in greenhouses and specialize in making warm winter clothing, which is this planet's only export.`
 	spaceport `The spaceport is near the equator, but it is still cold enough that there is always some snow on the ground. In addition to the outdoor landing pads a few hangars are available: an effort by the locals to make their world a little more appealing to merchants passing through the system. You have never seen as many people in fur coats as there are here; what might be considered a luxury in other parts of the galaxy is a necessity here, where the cheapest clothing material is the pelts of indigenous animals.`
 	spaceport `	From the size of the claws hanging decoratively off some of the coats, you have to give a grudging respect to the hunters. High fashion is not an industry that usually involves risk of dismemberment.`
+	security .05
 
 planet "New Holland"
 	attributes "dirt belt" farming
@@ -11973,6 +12066,7 @@ planet "New Holland"
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	outfitter "Delta V Basics"
+	security .1
 
 planet "New Iceland"
 	attributes "dirt belt" oil mining volcanic
@@ -11981,6 +12075,7 @@ planet "New Iceland"
 	description `	Many of the inhabitants wear dust masks to avoid letting the particulate matter from the volcanos accumulate in their lungs.`
 	spaceport `Almost as soon as you stepped off your ship, your eyes began to sting. You try to breathe as shallowly as possible.`
 	spaceport `	This port consists of a single large hangar, only big enough for two or three bulk freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day.`
+	security .05
 
 planet "New India"
 	attributes "dirt belt" farming textiles frontier
@@ -11989,6 +12084,7 @@ planet "New India"
 	spaceport `New India's spaceport is a ring of low wooden buildings around a wide landing area paved with concrete slabs. Around the perimeter carts of trade goods are driven, some being pulled by tractors and others, by horses or oxen. You even think you see a few carts being pulled by water buffalo.`
 	spaceport `	Most of the buildings are for storage, but from somewhere nearby you can smell fresh-baked bread.`
 	outfitter "Ammo South"
+	security .05
 
 planet "New Kansas"
 	attributes "dirt belt" textiles
@@ -11997,6 +12093,7 @@ planet "New Kansas"
 	description `	The land is mostly rolling green hills and shallow streams, ideal for grazing. However, unwary travelers hiking through the idyllic countryside have been known to be attacked by savage packs of feral sheep, so this world is not without unique dangers of its own.`
 	spaceport `The spaceport includes several stores selling wool garments, each worth easily ten times as much as the clothes you are wearing. A few of the visitors milling around seem genuinely interested in the clothing, but most of them, like you, are just ship captains who see wool clothing as nothing more than a pricey luxury good that can be sold elsewhere for a good profit.`
 	spaceport `	The port authority employs several people on horseback whose sole job is to keep the landing pads clear of wild sheep.`
+	security .05
 
 planet "New Portland"
 	attributes "dirt belt" farming
@@ -12004,18 +12101,21 @@ planet "New Portland"
 	description `New Portland is a cloudy planet orbiting a dim star; the only reason it is not completely frozen is because of the heat trapped by its upper atmosphere. There are only a handful of towns here, and nothing big enough to warrant being called a city. Most of the settlers are subsistence farmers who can only dream about life on other worlds. Many houses here do not even have running water or personal computers.`
 	description `	Some of the farms near the spaceport are planted with different crops forming abstract patterns visible from the air. Such a whimsical extravagance seems particularly odd when you consider that the owners will never be able to afford to see their fields from that angle. But perhaps that is precisely the point.`
 	spaceport `The largest town on New Portland has set aside a landing area for ships, but it is barely what could be called a spaceport. Aside from the refueling station and a few sheds, there are no other buildings, just an open field of packed gravel, with grass and weeds peeking up in places where it has avoided the blast from landing spacecraft. A few farmers have parked wagons here and are trading food and other goods with the visiting ships.`
+	security .05
 
 planet "New Sahara"
 	attributes "dirt belt" factory
 	landscape land/water1
 	description `New Sahara is mostly desert and savanna, with very little precipitation. A century ago, some entrepreneurs settled here and built a factory complex that is entirely powered by wind and solar energy, because there are so few cloudy days here and the wind and sunshine are so reliable. The factory is mostly autonomous, with only a few thousand people living here to perform maintenance or to grow crops in irrigated fields.`
 	spaceport `The spaceport consists of a few large concrete slabs, each big enough for a dozen small ships or a pair of bulk freighters to land on. Farther away are fields of solar panels and the factories that they power. The spaceport buildings themselves, however, are underground, where less energy is needed to keep the air cool. Light pipes bring sunlight down from the surface to illuminate the subterranean storage caverns and living quarters, while keeping the searing heat of the sunlight out.`
+	security .05
 
 planet "New Switzerland"
 	attributes "near earth" tourism mining
 	landscape land/mountain5
 	description `New Switzerland is a world where tectonic activity has left deeply folded and fractured mountains across much of the planet's surface. In many places, the topsoil is too thin and rocky to support farming, but many people have settled here anyway, drawn to the beauty of the mountains. A few ski resorts operate in the mountains, and in recent years a gemstone mining industry has begun to develop as well.`
 	spaceport `The spaceport is in a valley, surrounded by mountains so high that their tops are often lost in the clouds. From the port town, tourists can ride a cog railway to the tops of several of the tallest mountains nearby. Most of the buildings in town are wood framed, and some are old fashioned half-timber buildings with whitewashed plaster packed in between the beams. It is not a technologically advanced world, but it is a very beautiful place.`
+	security .1
 
 planet "New Tibet"
 	attributes "dirt belt" religious factory
@@ -12023,6 +12123,7 @@ planet "New Tibet"
 	description `New Tibet is a world of jagged mountains and deeply shadowed valleys. Although it has been inhabited for centuries, in many places the terrain is so rugged that roads cannot be built, leaving several of the smaller towns almost completely isolated. Taking advantage of this isolation, several orders of Buddhist monks have built monasteries here.`
 	description `	In the lowlands, large farms support sprawling cities full of factories, a striking contrast to the simplicity and isolation of the mountain villages.`
 	spaceport `The spaceport is in a hill region, just outside the largest city, with a view of a valley full of farms that stretch for miles and miles down to the ocean. The port is much less modern than the city nearby; it was built by the early settlers and has not been significantly updated since then, because the focus has been on improving life for the locals, not for their occasional visitors.`
+	security .1
 
 planet "New Wales"
 	attributes "dirt belt" mining
@@ -12031,12 +12132,14 @@ planet "New Wales"
 	spaceport `The warehouses at the spaceport are kept under continuous guard due to the high value of the refined metals they contain. There are several missile silos and laser turrets as well; New Wales has survived several pirate attacks in the last decade. Within the spaceport cafeteria, however, the locals are quite friendly and excited to connect with visitors and hear news of the outside world. The cafeteria is cooking lamb stew, and the smell of it pervades the whole building.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
+	security .2
 
 planet "New Washington"
 	attributes "dirt belt" mining oil
 	landscape land/nasa4
 	description `New Washington is a planet huddled close to a dim, red sun in an otherwise frozen system. It orbits so close to the sun that the two are locked together, with one side of New Washington continuously facing the sun and the other in perpetual darkness. The only villages are in the twilight region in between, and there the settlers make a living by mining for metal and for oil, a relic of a warmer period when more life flourished here and the planet spun more quickly on its axis.`
 	spaceport `In this narrow ring between the baking sun of New Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them. Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatos. You are almost certain the stew is made with rat meat.`
+	security .05
 
 planet Nifel
 	attributes deep research medical
@@ -12048,6 +12151,7 @@ planet Nifel
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	bribe .05
+	security .7
 
 planet Nimbus
 	attributes core fishing medical
@@ -12058,6 +12162,7 @@ planet Nimbus
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
+	security .3
 
 planet Norn
 	attributes deep fishing
@@ -12069,6 +12174,7 @@ planet Norn
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	bribe .04
+	security .6
 
 planet Oasis
 	attributes rim farming textiles
@@ -12076,6 +12182,7 @@ planet Oasis
 	description `Although much of Oasis is desert, a few tropical regions exist that are more suited to human habitation. The settlements are small, and rely mostly on agriculture, ranching, and textiles to produce goods that can be sold off-world. For those who are drawn to simple frontier living, it is a paradise, where you can earn a living just by working with your hands, and where the only mode of transportation anyone needs is a horse.`
 	description `	Many outsiders, of course, view the Oasis lifestyle as backward and primitive.`
 	spaceport `Most cargo on Oasis is carried by horse-drawn wagons. Some of them are made of steel, but others seem to be built of hand-hewn wood. The sight of horses drawing loads onto and off of gleaming starships is almost surreal.`
+	security .05
 
 planet "Oberon Station"
 	attributes core station
@@ -12083,6 +12190,7 @@ planet "Oberon Station"
 	description `Oberon station is a deuterium refinery owned and operated by the Syndicate, and aside from a few docking bays for visiting ships to use in an emergency, the rest of the station is sealed off to non-employees.`
 	"required reputation" 10
 	bribe .03
+	security .4
 
 planet Oblivion
 	attributes "dirt belt" oil mining
@@ -12090,6 +12198,7 @@ planet Oblivion
 	description `The atmosphere here is a toxic mix of ammonia, sulfur, and methane. Although breathable by human beings if necessary, the locals use masks to reduce the risk of chronic respiratory problems. Even so, the life expectancy here is short, but that is partly because the two best-paying industries are oil drilling and mining for radioactive elements.`
 	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar.  Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
 	outfitter "Ammo South"
+	security .05
 
 planet Pearl
 	attributes paradise tourism
@@ -12098,6 +12207,7 @@ planet Pearl
 	description `	Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here.`
 	spaceport `The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent.`
 	bribe .03
+	security .7
 
 planet "Phoenix Station"
 	attributes deep station
@@ -12105,6 +12215,7 @@ planet "Phoenix Station"
 	description `As with all refineries in the Deep, Phoenix Station is government-owned. You cannot imagine who would want to live here; despite reflective hull plating and active cooling systems, the station is uncomfortably hot. Nearly all the work is done by robots and computers, with only a skeleton crew of people supervising. Every time the station's orbit brings it through the planet's shadow, the temperature drops briefly and the entire station creaks ominously as it cools.`
 	"required reputation" 10
 	bribe .07
+	security .7
 
 planet Pilot
 	attributes north research
@@ -12114,12 +12225,14 @@ planet Pilot
 	spaceport `The workers grudgingly refuel your ship, but it is quite clear that you are out of place here. Nearly everyone in the spaceport is wearing a lab coat or a uniform, and several groups of people halt their conversations as soon as you pass within earshot.`
 	"required reputation" 100
 	bribe .1
+	security .9
 
 planet Placer
 	attributes core mining frontier
 	landscape land/mountain4
 	description `Placer is uninhabited aside from one small mining outpost; the atmosphere contains uncomfortable levels of ammonia and sulfur dioxide, and although brief exposure is not considered a health threat, those who live here must wear breathing gear when they leave their pressurized homes and mine shafts. Several scientific experiments over the last few centuries have sought to introduce microorganisms that would break down the harmful chemicals and transform the atmosphere to make it safer for human beings to breathe, but none have been successful.`
 	spaceport `The port consists of a large atmospheric dome, with landing pads and airlocks around the periphery. Although brief exposure to the air is not considered harmful, you find yourself holding your breath as you run from your ship to the airlock. Inside the dome, hanging gardens and open park land create a much more hospitable place, but the spaceport is nearly deserted, aside from one small pub that seems to be full of mine workers whose shift has just ended.`
+	security .2
 
 planet Poisonwood
 	attributes south factory farming frontier
@@ -12131,6 +12244,7 @@ planet Poisonwood
 	outfitter "Ammo South"
 	bribe .04
 	"required reputation" 2
+	security .5
 
 planet Poseidos
 	attributes rim fishing
@@ -12141,6 +12255,7 @@ planet Poseidos
 	outfitter "Basic Outfits"
 	outfitter "Kraz Basics"
 	outfitter "Ammo South"
+	security .1
 
 planet Prime
 	attributes north urban factory
@@ -12156,6 +12271,7 @@ planet Prime
 	outfitter "Lovelace Basics"
 	"required reputation" 2
 	bribe .05
+	security .6
 
 planet Quicksilver
 	attributes core volcanic mining
@@ -12164,12 +12280,14 @@ planet Quicksilver
 	description `	Although Quicksilver has vast mineral resources, the tectonic activity makes underground mining far too dangerous. However, a few enterprising settlers work in surface mining and mountaintop removal. The result are ugly, but this is a far too inhospitable world for anyone to care what it looks like.`
 	spaceport `The spaceport is a single, enormous hangar built as a geodesic dome. It is filled with the constant dull roar of rain beating against the dome from above. When an especially strong blast of wind strikes the dome, its joints flex slightly and you can see the whole structure ripple and move.`
 	spaceport `	Amenities here are minimal: a small cafeteria selling hot drinks and warm stew, and a marketplace mostly filled with stacks of refined steel and aluminum and titanium for sale. A smaller stack of lead-lined crates hold radioactive metals. The air is not particularly cold here, but it is very damp, and the howling weather outside seems to weigh on everyone's spirits.`
+	security .2
 
 planet Rand
 	attributes "dirt belt" mining
 	landscape land/valley7
 	description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 	spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
+	security 05
 
 planet Relic
 	attributes "near earth"
@@ -12177,6 +12295,7 @@ planet Relic
 	description `As a borderline-habitable planet in one of the systems neighboring Sol, Relic was colonized hundreds of years ago in the early years of the space race. Because of its low gravity and limited natural resources, only a few minor settlements are left.`
 	spaceport `The spaceport on Relic consists of one low building surrounded by open-air concrete slabs for ships to land on. If rain were more common here, you would worry about your ship rusting, but in this environment the only threat to it is the infrequent sand storms.`
 	outfitter "Ammo North"
+	security .2
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -12190,6 +12309,7 @@ planet Reunion
 	outfitter "Common Outfits"
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
+	security .3
 
 planet Rust
 	attributes rim farming factory
@@ -12205,12 +12325,14 @@ planet Rust
 	outfitter "Kraz Advanced"
 	outfitter "Ammo South"
 	bribe .04
+	security .5
 
 planet Serpens
 	attributes north medical research
 	landscape land/desert5
 	description `Serpens is a sparsely populated world of ancient canyonlands and barren deserts. There were no permanent settlements here until a century ago when visiting biologists discovered an indigenous snake whose venom is useful as a painkiller and heart medication. That led to a few small laboratories being set up in the desert, and to the eventually discovery of other useful compounds that can be extracted from the local flora and fauna.`
 	spaceport `The spaceport's landing pads are just a set of flat cleared areas on top of a mesa, surrounding a jumble of small adobe buildings. Inside the spaceport, scientists in lab coats rub shoulders with "snake wranglers" who ride in and out on horseback, dressed in denim and wearing oversized straw hats. The whole place smells of antiseptic and manure.`
+	security .05
 
 planet Shangri-La
 	attributes core rich urban frontier
@@ -12224,6 +12346,7 @@ planet Shangri-La
 	outfitter "Ammo North"
 	bribe .07
 	"required reputation" 5
+	security .7
 
 planet Shiver
 	attributes "near earth"
@@ -12231,6 +12354,7 @@ planet Shiver
 	description `Shiver is a dead and frozen world. The only settlement is a small refueling station that services cargo fleets on their way to Earth. Precipitation is rare here, but sometimes the wind whips up snow and ice from the surface into something akin to a desert sandstorm, and even on days when the wind dies down the air sparkles with tiny, floating ice crystals. Most people who come here for work only stay for a few months or half a year, just long enough for the sense of adventure to die away.`
 	spaceport `The spaceport is protected from the wind and blowing snow by a perimeter wall about fifty meters tall. Aside from running the fueling station, one of the few jobs for the workers here is to operate the bulldozers that push away the snowdrifts and keep the station from being buried beneath them. Although the air is breathable, ships that land here connect directly to docking tubes, to protect their crews from the icy air.`
 	spaceport `	There are no children here, and almost no women. Most of the workers are men in their early twenties. No one makes an effort to greet you.`
+	security .1
 
 planet Shorebreak
 	attributes rim research medical
@@ -12240,6 +12364,7 @@ planet Shorebreak
 	spaceport `The spaceport on Shorebreak is built on its own separate island, perhaps as a way to keep any contamination isolated from the main continents. The hangar where you were directed to land your ship was hermetically sealed before you were allowed to land, and the customs officer informs you that any cargo you wish to trade must first be screened for "rats, mice, invasive insects, or wild pigs."`
 	"required reputation" 2
 	bribe .06
+	security .3
 
 planet Shroud
 	attributes north rich textiles frontier
@@ -12252,24 +12377,28 @@ planet Shroud
 	outfitter "Lovelace Basics"
 	outfitter "Lovelace Advanced"
 	bribe .04
+	security .8
 
 planet Silver
 	attributes "near earth" oil
 	landscape land/dune2
 	description `Eons ago, Silver was a lush tropical world. It is now mostly desert, but large oil deposits remain below the surface. The petrochemicals mined here are refined to produce plastics, fuel for terrestrial vehicles, and some components of medical ointments and antibiotics. The deserts are hot in daylight and surprisingly cool at night, and as a result most settlers live in houses sunk into the ground in regions where there is enough plant cover to keep the dunes from shifting in the wind and slowly burying their dwellings.`
 	spaceport `The spaceport is near an oasis. Cactus-like plants and a few palm trees stand as tall as radio towers, on the outskirts. The landing pads are made of concrete, rising several meters above the ground to protect both against the encroaching sand and against the flash floods that come in the rare times when it rains here. Under the clear sky and with white sand in all directions, the sunlight is painfully bright, and you have been warned to avoid prolonged exposure to it.`
+	security .1
 
 planet Sinter
 	attributes "dirt belt" mining
 	landscape land/nasa2
 	description `Sinter is a world where life never developed; the atmosphere is unbreathable, but warm enough and dense enough that people can survive here in pressurized homes or outside when wearing oxygen tanks. The only industry here is mining, which is mostly done with remotely controlled robots, so the population of the entire planet is only a few thousand people.`
 	spaceport `The spaceport is built next to a large smelter where ore is processed into metal ingots. Even on a planet as inhospitable as this one, the cost of extracting metal from ore is still cheaper than the cost of shipping the ore off-world for processing. A long enclosed terminal building extends out from the smelter, with docking tubes and landing pads every few hundred meters for connecting to visiting ships. Small robotic trolleys carry cargo crates back and forth; only a handful of people are walking around here, and most of them are probably off-worlders.`
+	security .05
 
 planet Skillet
 	attributes north mining farming frontier
 	landscape land/canyon3
 	description `Skillet is a sparsely populated planet whose red hills and canyonlands are strip mined for placer deposits of iron ore and precious metals, mostly to supply the needs of the shipyards in Betelgeuse. This world is also used for ranching, and even for growing corn in a few less arid regions. The weather is usually quite mild, although hot and dry; the only reasons so few people have settled here are because it is so remote, and because the mining and farming industries need far fewer human workers than machines.`
 	spaceport `The spaceport mostly consists of a row of adobe warehouses, with tin roofs polished to mirror brightness to reflect the heat of the sun. Around the warehouses is a ring of concrete landing pads. Forklift trucks carrying pallets of iron and steel ingots weave their way in between men and women on horseback and others on foot. The air is hot, but too dry to feel oppressive.`
+	security .3
 
 planet Skymoot
 	attributes rim tourism
@@ -12278,6 +12407,7 @@ planet Skymoot
 	description `	The scientific consensus is that the "dragons" are clever animals, but not sentient. Those who insist on trying to find ways to communicate with them almost invariably end up getting eaten.`
 	spaceport `The spaceport is unusually large and clean for a planet with such a low population. It is clear that tourism here is a profitable industry. One large booth offers airplane rides to view the "dragons" up close, for anyone willing to sign a waiver; even with energy shields, it is not unheard of for a plane to be snatched out of midair by one of the creatures. Other booths offer safari tours of the forest; the tourists in line at those booths are carrying a wide variety of knives and guns.`
 	bribe .02
+	security .1
 
 planet "Smuggler's Den"
 	attributes pirate
@@ -12292,6 +12422,7 @@ planet "Smuggler's Den"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	bribe .06
+	security 0
 
 planet Solace
 	attributes south urban factory frontier
@@ -12305,12 +12436,14 @@ planet Solace
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe .04
+	security .5
 
 planet Splashdown
 	attributes north farming
 	landscape land/water5
 	description `Splashdown is an aging world where plate tectonics have long since died down and the weather has worn the surface down into lowlands, marshes, and shallow seas. Most of the land area is not suitable for growing anything but rice, and only a few settlements have been built here. Most visitors find this world boring, but the locals say they find beauty in the big sky and the subtle colors of the grasslands.`
 	spaceport `The spaceport is in the "highlands," a wide plateau only a few hundred meters above sea level. In all directions, the horizon is an almost perfectly flat line, varied only slightly by low hills and copses of trees. The port itself consists of some grain silos and warehouses, an open air marketplace, and a barbecue restaurant with outdoor seating. The buildings are all single-story, wood-framed construction.`
+	security .2
 
 planet Starcross
 	attributes rim farming
@@ -12318,6 +12451,7 @@ planet Starcross
 	description `Starcross is a stormy, ocean-dappled planet that was not settled until the planets farther out on this arm of the galaxy grew prosperous enough to create a need for a stop-over point for cargo. Structures must be built strong and on high enough ground to avoid the frequent floods. A few enterprising settlers have taken up farming of some native plants that are edible for humans, including one plant similar to cranberries that has come to be considered a rare delicacy by many.`
 	spaceport `The spaceport is rudimentary: just a couple of landing pads, each with thick cement walls around it to protect your ship from being buffeted by any storms that strike. The central building is a squat, windowless cement fortress. Inside, however, it is completely different: the ceilings are high, with sun-lamps that provide some sense of warmth and cheer, and native wood paneling or stucco on most of the walls to soften them.`
 	outfitter "Ammo South"
+	security .05
 
 planet Stormhold
 	attributes pirate
@@ -12329,6 +12463,7 @@ planet Stormhold
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	bribe .03
+	security 0
 
 planet Sundive
 	attributes core farming research frontier
@@ -12337,12 +12472,14 @@ planet Sundive
 	description `	Sundive is also home to a large astronomical laboratory with radio telescopes and other devices for studying the galactic core and the massive black hole that resides there.`
 	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the laboratory and telescopes are far beyond the horizon, where incoming ships will not interfere with their operation.`
 	spaceport `	The buildings are short and made of wood; even the roofs are clapboard shingles rather than metal or rubber. Several farmers have brought in goods to sell; most of them came in trucks, but you also see a few horse-drawn wagons.`
+	security .3
 
 planet Sundrinker
 	attributes south farming frontier
 	landscape land/desert6
 	description `Most of this world is barren deserts and oceans; for whatever reason almost no life evolved here. The only human settlement is a small town in one of the few hilly regions, and the locals survive by ranching and farming. It is the sort of world that is ideal for people who enjoy being alone, because it has almost no appeal for anyone else. In addition to the oppressively hot weather, flash floods are quite frequent.`
 	spaceport `There are only two concrete landing platforms in the spaceport, and that is plenty for the amount of traffic they receive. A wide cleared-off field of dirt is available beyond that in case an unusual number of ships ever need to land. The two platforms and the spaceport buildings are all built near to the tops of the hills, out of the way of the flood waters. This is both the spaceport and the only town on Sundrinker. A single road winds between a few buildings; one seems to be a saloon, and another, a general store.`
+	security .1
 
 planet Sunracer
 	attributes core urban factory farming fishing frontier
@@ -12359,6 +12496,7 @@ planet Sunracer
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	bribe .06
+	security .7
 
 planet Thrall
 	attributes paradise textiles
@@ -12369,6 +12507,7 @@ planet Thrall
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	bribe .04
+	security .5
 
 planet Thule
 	attributes pirate
@@ -12382,6 +12521,7 @@ planet Thule
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	bribe .05
+	security .6
 
 planet Thunder
 	attributes rim
@@ -12390,6 +12530,7 @@ planet Thunder
 	spaceport `The spaceport's landing pads are all solid slabs of metal; poured concrete would be far too prone to cracking. The spaceport village itself is a sprawling collection of squat, sturdy buildings, and a sign near the entrance to the cargo warehouse reads, "Do not stack crates."`
 	outfitter "Basic Outfits"
 	outfitter "Kraz Basics"
+	security .1
 
 planet Tinker
 	attributes "near earth" factory mining
@@ -12405,6 +12546,7 @@ planet Tinker
 	outfitter "Syndicate Basics"
 	outfitter "Lovelace Basics"
 	bribe .04
+	security .4
 
 planet Trinket
 	attributes south tourism
@@ -12417,6 +12559,7 @@ planet Trinket
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	bribe .02
+	security .4
 
 planet "Triton Station"
 	attributes north station military
@@ -12425,12 +12568,14 @@ planet "Triton Station"
 	spaceport `The mess hall is empty except for one table where some Navy officers are playing a card game. They are sitting right under a ventilation duct, and the cards keep blowing off the table; the station's low simulated gravity is not enough to hold them there.`
 	"required reputation" 10
 	bribe .08
+	security .8
 
 planet Trove
 	attributes core mining
 	landscape land/badlands3
 	description `Trove is a tiny moon, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
 	spaceport `Within the mining complex, you find a small cafeteria with an uninspiring menu, and windows overlooking offices where dozens of people are staring at flickering video screens. Because of the low gravity, everyone moves languidly, as if in a dream. It is nearly silent.`
+	security .05
 
 planet Tundra
 	attributes "dirt belt" oil textiles
@@ -12439,6 +12584,7 @@ planet Tundra
 	description `	The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing.`
 	spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Every decade or so, enough snow piles up on top of one of the domes that it is in danger of collapsing under its own weight; the locals simply move out of that dome and build another one higher up on the snowpack.`
 	outfitter "Ammo South"
+	security .1
 
 planet Twinstar
 	attributes south tourism frontier
@@ -12446,11 +12592,13 @@ planet Twinstar
 	description `The only settlement on this small world is Twinstar Depot, a village created mostly just to service the spaceport, where food and equipment from the southern galactic arm is stored and sent out in all directions to supply the rest of human space. The gravity is far less than ideal for human development, but the atmosphere is breathable and some tourists come to the planet just for the experience of being able to run and jump in low gravity without the need for a suit or oxygen tanks.`
 	spaceport `The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place.`
 	outfitter "Ammo South"
+	security .2
 
 planet "Typhon Station"
 	attributes rim station
 	landscape land/space0
 	description `Typhon Station is one of the major fuel refining stations in the galactic Rim. It is privately owned by Southbound Shipyards, and all the fuel produced here is shipped directly to them rather than being made available to visiting ships.`
+	security .3
 
 planet Vail
 	attributes paradise tourism farming
@@ -12458,6 +12606,7 @@ planet Vail
 	description `Vail is an entire world that is maintained as a ski resort for rich clients from the nearby planets. A combination of terraforming and snow making ensures that whichever hemisphere is in winter always has ideal skiing conditions, while farming and other small industries supply the tourists and the large staffs that cater to them. The slopes here include tracks for all the latest dangerous and expensive extreme winter sports, like hoverboarding and wingsuit cliff skiing.`
 	spaceport `The spaceport is near the equator where the weather will be most amenable for landing ships, but with airplane shuttles and a few high speed rail lines leading to the various resort towns. As a result, the air is full of a confusing mixture of deep space ships and atmospheric vehicles, and runways are available in addition to the vertical take-off pads that starships use. In order to come anywhere near the port, you are required to surrender control of your ship to the port's autopilot computer; there is no other way that collisions could be avoided.`
 	bribe .04
+	security .6
 
 planet Valhalla
 	attributes deep farming fishing urban factory
@@ -12473,17 +12622,20 @@ planet Valhalla
 	outfitter "Ammo North"
 	outfitter "Deep Sky Advanced"
 	bribe .08
+	security .8
 
 planet Vinci
 	attributes paradise factory
 	landscape land/nasa5
 	description `Many centuries ago, some of the first settlers on Vinci included a small group of electrical engineers who formed a revolutionary new company for designing computers and microchips. Today, Vinci is the foremost manufacturer of CPUs in all of human space, and their processors are found in everything from navigational computers to video phones to intelligent toasters. Because this world is home to so many cleanroom fabrication plants, pollution is very tightly controlled.`
 	spaceport `The spaceport is so full of high-fidelity holographic displays that you have trouble at times telling where the virtual reality ends and the physical reality begins; what looks like a paper poster on the wall will suddenly change to a different picture every minute, and the department store mannequins follow you with their eyes. You feel like you are trapped in someone's drug-assisted vision of the future.`
+	security .6
 
 planet Watcher
 	attributes "dirt belt" research
 	landscape land/hills4
 	description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
+	security 0
 
 planet Wayfarer
 	attributes south factory
@@ -12500,6 +12652,7 @@ planet Wayfarer
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe .07
+	security .3
 
 planet Windblain
 	attributes deep oil textiles
@@ -12510,6 +12663,7 @@ planet Windblain
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
+	security .6
 
 planet Winter
 	attributes south factory frontier
@@ -12518,12 +12672,14 @@ planet Winter
 	description `	The temperatures have risen measurably since the arrival of the human colonists, but without more intentional efforts it may be another century before the planet warms enough to be truly comfortable to live on.`
 	spaceport `The spaceport is built on a large rock outcropping, with brilliant blue glaciers flowing to either side down into a lake below. The sight is stunning, and all the more appealing because you are able to view it from behind plate glass windows, in the warmth of the spaceport, rather than in the frigid air outside. Above you, several layers of clouds are scudding across the sky in different directions.`
 	spaceport `	Faded posters on the walls advise you to buy an estate on Winter now before prices skyrocket. The posters depict children playing in a lush green landscape while their grandparents stand by, looking quietly pleased with the wisdom of their investment.`
+	security .1
 
 planet "Wyvern Station"
 	attributes rim station
 	landscape land/station0
 	description `Wyvern Station was once one of the end destinations for the merchant caravans traveling along the Rim, back in the days before the Republic existed when most systems were not policed and the only way to avoid being plundered by pirates was for ships to travel in large convoys. It has also been a continuously operating hyperspace fuel refinery for more than three centuries.`
 	spaceport `This station is old, and some parts are dirty and in need of repair, but it is at least structurally sound, and the workers here seem optimistic and energetic. The cafeteria is loud and raucous, and the repair shop is more than willing to work on starships as a break from the tedium of repairing the harvester drones that dip into the planet's atmosphere to bring back pressurized tanks full of hydrogen gas.`
+	security .4
 
 planet Zenith
 	attributes pirate
@@ -12533,6 +12689,7 @@ planet Zenith
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
 	outfitter "Ammo North"
 	bribe .04
+	security 0
 
 planet Zug
 	attributes rim farming factory
@@ -12548,3 +12705,4 @@ planet Zug
 	outfitter "Common Outfits"
 	outfitter "Ammo South"
 	bribe .03
+	security .5

@@ -55,6 +55,8 @@ Engine::Engine(PlayerInfo &player)
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
 			GameData::GetPolitics().BribePlanet(mission.Destination());
+	// Also disable any fines.
+	GameData::GetPolitics().DisableFines();
 	
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.GetPlanet())

@@ -54,6 +54,13 @@ void MainPanel::Step()
 	if(isActive && player.GetPlanet())
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
+		
+		// Check if the player is doing anything illegal.
+		string message = GameData::GetPolitics().Fine(
+			player, player.GetSystem()->GetGovernment(), 0, player.GetPlanet()->Security());
+		if(!message.empty())
+			GetUI()->Push(new Dialog(message));
+		
 		FinishMissions();
 		player.Land();
 		isActive = false;
