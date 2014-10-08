@@ -87,22 +87,18 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit);
 	
 	// Check if this outfit is a "license".
-	static const string &LICENSE = " License";
-	bool isLicense = (name.length() >= LICENSE.length()
-		&& !name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE));
+	bool isLicense = IsLicense(name);
+	int mapSize = outfit->Get("map");
 	
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
-	if(playerShip || isLicense)
+	if(playerShip || isLicense || mapSize)
 	{
 		int count = playerShip->OutfitCount(outfit);
 		if(isLicense)
-		{
-			string condition = "license: " + name.substr(0, name.length() - LICENSE.length());
-			auto it = player.Conditions().find(condition);
-			if(it != player.Conditions().end() && it->second > 0)
-				count = it->second;
-		}
+			count = player.GetCondition(LicenseName(name));
+		if(mapSize)
+			count = HasMapped(mapSize);
 		if(count)
 			font.Draw(to_string(count),
 				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 40),
@@ -165,6 +161,13 @@ bool OutfitterPanel::CanBuy() const
 	if(!(planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit]))
 		return false;
 	
+	int mapSize = selectedOutfit->Get("map");
+	if(mapSize > 0 && HasMapped(mapSize))
+		return false;
+	
+	if(HasLicense(selectedOutfit->Name()))
+		return false;
+	
 	return selectedOutfit->Cost() < player.Accounts().Credits();
 }
 
@@ -174,33 +177,26 @@ void OutfitterPanel::Buy()
 {
 	// Special case: maps.
 	int mapSize = selectedOutfit->Get("map");
-	if(mapSize)
+	if(mapSize > 0)
 	{
-		bool hadNewSystems = false;
-		DistanceMap distance(player.GetSystem(), mapSize);
-		for(const auto &it : distance.Distances())
-			if(!player.HasVisited(it.first))
-			{
-				player.Visit(it.first);
-				hadNewSystems = true;
-			}
-		if(hadNewSystems)
+		if(!HasMapped(mapSize))
+		{
+			DistanceMap distance(player.GetSystem(), mapSize);
+			for(const auto &it : distance.Distances())
+				if(!player.HasVisited(it.first))
+					player.Visit(it.first);
 			player.Accounts().AddCredits(-selectedOutfit->Cost());
+		}
 		return;
 	}
 	
 	// Special case: licenses.
-	const string &name = selectedOutfit->Name();
-	static const string &LICENSE = " License";
-	bool isLicense = (name.length() >= LICENSE.length()
-		&& !name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE));
-	if(isLicense)
+	if(IsLicense(selectedOutfit->Name()))
 	{
-		string condition = "license: " + name.substr(0, name.length() - LICENSE.length());
-		auto it = player.Conditions().find(condition);
-		if(it == player.Conditions().end() || it->second <= 0)
+		int &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
+		if(entry <= 0)
 		{
-			player.Conditions()[condition] = true;
+			entry = true;
 			player.Accounts().AddCredits(-selectedOutfit->Cost());
 		}
 		return;
@@ -324,4 +320,44 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5f * font.Width(name), -.5f * OUTFIT_SIZE + 10.f);
 	font.Draw(name, center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
+}
+
+
+
+bool OutfitterPanel::HasMapped(int mapSize) const
+{
+	DistanceMap distance(player.GetSystem(), mapSize);
+	for(const auto &it : distance.Distances())
+		if(!player.HasVisited(it.first))
+			return false;
+	
+	return true;
+}
+
+
+
+bool OutfitterPanel::IsLicense(const string &name) const
+{
+	static const string &LICENSE = " License";
+	if(name.length() < LICENSE.length())
+		return false;
+	if(name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE))
+		return false;
+	
+	return true;
+}
+
+
+
+bool OutfitterPanel::HasLicense(const string &name) const
+{
+	return (IsLicense(name) && player.GetCondition(LicenseName(name)) > 0);
+}
+
+
+
+string OutfitterPanel::LicenseName(const string &name) const
+{
+	static const string &LICENSE = " License";
+	return "license: " + name.substr(0, name.length() - LICENSE.length());
 }
