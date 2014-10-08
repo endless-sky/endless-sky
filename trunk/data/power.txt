@@ -10,7 +10,7 @@
 
 outfit "LP036a Battery Pack"
 	category "Power"
-	cost 8000
+	cost 12000
 	thumbnail "outfit/tiny battery"
 	"mass" 10
 	"outfit space" -10
@@ -19,7 +19,7 @@ outfit "LP036a Battery Pack"
 
 outfit "LP072a Battery Pack"
 	category "Power"
-	cost 20000
+	cost 30000
 	thumbnail "outfit/small battery"
 	"mass" 20
 	"outfit space" -20
@@ -28,7 +28,7 @@ outfit "LP072a Battery Pack"
 
 outfit "LP144a Battery Pack"
 	category "Power"
-	cost 45000
+	cost 67000
 	thumbnail "outfit/medium battery"
 	"mass" 40
 	"outfit space" -40
@@ -37,7 +37,7 @@ outfit "LP144a Battery Pack"
 
 outfit "LP288a Battery Pack"
 	category "Power"
-	cost 100000
+	cost 150000
 	thumbnail "outfit/large battery"
 	"mass" 80
 	"outfit space" -80
@@ -46,7 +46,7 @@ outfit "LP288a Battery Pack"
 
 outfit "LP576a Battery Pack"
 	category "Power"
-	cost 250000
+	cost 380000
 	thumbnail "outfit/huge battery"
 	"mass" 160
 	"outfit space" -160
@@ -56,7 +56,7 @@ outfit "LP576a Battery Pack"
 
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
-	cost 20000
+	cost 40000
 	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
 	"outfit space" -20
@@ -66,7 +66,7 @@ outfit "nGVF-AA Fuel Cell"
 
 outfit "nGVF-BB Fuel Cell"
 	category "Power"
-	cost 31000
+	cost 47000
 	thumbnail "outfit/small fuel cell"
 	"mass" 30
 	"outfit space" -30
@@ -76,7 +76,7 @@ outfit "nGVF-BB Fuel Cell"
 
 outfit "nGVF-CC Fuel Cell"
 	category "Power"
-	cost 48000
+	cost 72000
 	thumbnail "outfit/medium fuel cell"
 	"mass" 40
 	"outfit space" -40
@@ -86,7 +86,7 @@ outfit "nGVF-CC Fuel Cell"
 
 outfit "nGVF-DD Fuel Cell"
 	category "Power"
-	cost 75000
+	cost 118000
 	thumbnail "outfit/large fuel cell"
 	"mass" 60
 	"outfit space" -60
@@ -96,7 +96,7 @@ outfit "nGVF-DD Fuel Cell"
 
 outfit "nGVF-EE Fuel Cell"
 	category "Power"
-	cost 118000
+	cost 177000
 	thumbnail "outfit/huge fuel cell"
 	"mass" 80
 	"outfit space" -80

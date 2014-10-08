@@ -63,7 +63,7 @@ mission "Intro [0]"
 		conversation
 			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
 			`	"Including you?" you ask.`
-			`	"Yeah, and then spent half an hour in orbit cleaning my cabin whil hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyways, here's your pay." He hands you <payment>.`
+			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyways, here's your pay." He hands you <payment>.`
 			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
 
 
