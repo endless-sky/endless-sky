@@ -5,9 +5,9 @@ ship "Aerie"
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 1500000
-		"shields" 4000
-		"hull" 1500
+		"cost" 3500000
+		"shields" 5700
+		"hull" 1900
 		"required crew" 12
 		"bunks" 28
 		"mass" 130
@@ -55,8 +55,8 @@ ship "Argosy"
 		Freight
 	attributes
 		category "Heavy Freighter"
-		"cost" 560000
-		"shields" 3500
+		"cost" 1560000
+		"shields" 4200
 		"hull" 2600
 		"required crew" 6
 		"bunks" 14
@@ -109,8 +109,8 @@ ship Bactrian
 		"Capital Ship"
 	attributes
 		category "Heavy Warship"
-		"cost" 5600000
-		"shields" 9300
+		"cost" 12600000
+		"shields" 17500
 		"hull" 8600
 		"required crew" 74
 		"bunks" 245
@@ -171,8 +171,8 @@ ship "Bastion"
 		"Capital Ship"
 	attributes
 		category "Light Warship"
-		"cost" 960000
-		"shields" 6100
+		"cost" 3560000
+		"shields" 6700
 		"hull" 4200
 		"required crew" 35
 		"bunks" 47
@@ -225,9 +225,9 @@ ship "Behemoth"
 		"Capital Ship"
 	attributes
 		category "Heavy Freighter"
-		"cost" 3800000
-		"shields" 6600
-		"hull" 5900
+		"cost" 7800000
+		"shields" 7600
+		"hull" 6300
 		"required crew" 16
 		"bunks" 30
 		"mass" 540
@@ -275,8 +275,8 @@ ship "Blackbird"
 		Transport
 	attributes
 		category "Transport"
-		"cost" 730000
-		"shields" 3600
+		"cost" 2230000
+		"shields" 4400
 		"hull" 900
 		"required crew" 5
 		"bunks" 28
@@ -317,8 +317,8 @@ ship "Bounder"
 		Pilot's
 	attributes
 		category "Transport"
-		"cost" 540000
-		"shields" 2000
+		"cost" 1140000
+		"shields" 2200
 		"hull" 700
 		"required crew" 3
 		"bunks" 17
@@ -360,9 +360,9 @@ ship "Bulk Freighter"
 		"Capital Ship"
 	attributes
 		category "Heavy Freighter"
-		"cost" 5400000
+		"cost" 9400000
 		"shields" 4000
-		"hull" 6500
+		"hull" 7600
 		"required crew" 14
 		"bunks" 18
 		"mass" 870
@@ -414,8 +414,8 @@ ship "Carrier"
 		Carrier
 	attributes
 		category "Heavy Warship"
-		"cost" 7200000
-		"shields" 14800
+		"cost" 15200000
+		"shields" 21400
 		"hull" 8300
 		"required crew" 114
 		"bunks" 184
@@ -482,8 +482,8 @@ ship "Clipper"
 		Pilot's
 	attributes
 		category "Light Freighter"
-		"cost" 700000
-		"shields" 1900
+		"cost" 1300000
+		"shields" 2700
 		"hull" 800
 		"required crew" 3
 		"bunks" 9
@@ -527,7 +527,7 @@ ship "Combat Drone"
 		Navy
 	attributes
 		category "Drone"
-		"cost" "50000"
+		"cost" "83000"
 		"hull" 500
 		"mass" 20
 		"drag" .59
@@ -554,9 +554,9 @@ ship "Corvette"
 		"Capital Ship"
 	attributes
 		category "Light Warship"
-		"cost" 1600000
-		"shields" 7200
-		"hull" 700
+		"cost" 4400000
+		"shields" 6400
+		"hull" 1200
 		"required crew" 10
 		"bunks" 32
 		"mass" 150
@@ -605,8 +605,8 @@ ship "Cruiser"
 		Cruiser
 	attributes
 		category "Heavy Warship"
-		"cost" 4200000
-		"shields" 17500
+		"cost" 11200000
+		"shields" 19600
 		"hull" 6400
 		"required crew" 84
 		"bunks" 136
@@ -663,8 +663,8 @@ ship "Dagger"
 	sprite "ship/dagger"
 	attributes
 		category "Fighter"
-		"cost" 59000
-		"shields" 1000
+		"cost" 129000
+		"shields" 900
 		"hull" 300
 		"required crew" 1
 		"bunks" 1
@@ -701,9 +701,9 @@ ship "Falcon"
 		"Capital Ship"
 	attributes
 		category "Heavy Warship"
-		"cost" 5900000
-		"shields" 8400
-		"hull" 3400
+		"cost" 10900000
+		"shields" 12800
+		"hull" 3700
 		"required crew" 56
 		"bunks" 75
 		"mass" 510
@@ -753,8 +753,8 @@ ship "Firebird"
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 1600000
-		"shields" 4400
+		"cost" 4000000
+		"shields" 6100
 		"hull" 2800
 		"required crew" 9
 		"bunks" 22
@@ -802,7 +802,7 @@ ship "Freighter"
 		Freight
 	attributes
 		category "Light Freighter"
-		"cost" 230000
+		"cost" 730000
 		"shields" 2000
 		"hull" 2000
 		"required crew" 4
@@ -848,9 +848,9 @@ ship "Frigate"
 		Navy
 	attributes
 		category "Light Warship"
-		"cost" 1600000
-		"shields" 5400
-		"hull" 2200
+		"cost" 5200000
+		"shields" 8000
+		"hull" 2500
 		"required crew" 24
 		"bunks" 44
 		"mass" 310
@@ -898,7 +898,7 @@ ship "Fury"
 		Pilot's
 	attributes
 		category "Interceptor"
-		"cost" 280000
+		"cost" 490000
 		"shields" 2000
 		"hull" 400
 		"required crew" 1
@@ -942,9 +942,9 @@ ship "Gunboat"
 		Navy
 	attributes
 		category "Light Warship"
-		"cost" 1600000
-		"shields" 4000
-		"hull" 1000
+		"cost" 3200000
+		"shields" 5800
+		"hull" 1400
 		"required crew" 8
 		"bunks" 12
 		"mass" 150
@@ -987,7 +987,7 @@ ship "Hawk"
 		Pilot's
 	attributes
 		category "Interceptor"
-		"cost" 350000
+		"cost" 670000
 		"shields" 2500
 		"hull" 500
 		"required crew" 2
@@ -1027,7 +1027,7 @@ ship "Heavy Shuttle"
 		Pilot's
 	attributes
 		category "Transport"
-		"cost" 140000
+		"cost" 320000
 		"shields" 700
 		"hull" 700
 		"required crew" 1
@@ -1064,8 +1064,8 @@ ship "Lance"
 	sprite "ship/lance"
 	attributes
 		category "Fighter"
-		"cost" 53000
-		"shields" 800
+		"cost" 93000
+		"shields" 700
 		"hull" 400
 		"required crew" 1
 		"bunks" 1
@@ -1103,8 +1103,8 @@ ship "Leviathan"
 		"Capital Ship"
 	attributes
 		category "Heavy Warship"
-		"cost" 3800000
-		"shields" 8000
+		"cost" 9800000
+		"shields" 14400
 		"hull" 5000
 		"required crew" 47
 		"bunks" 64
@@ -1154,9 +1154,9 @@ ship "Manta"
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 1200000
-		"shields" 3000
-		"hull" 1200
+		"cost" 3400000
+		"shields" 5900
+		"hull" 1500
 		"required crew" 6
 		"bunks" 10
 		"mass" 170
@@ -1204,8 +1204,8 @@ ship "Mule"
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 780000
-		"shields" 5600
+		"cost" 2580000
+		"shields" 5400
 		"hull" 4400
 		"required crew" 9
 		"bunks" 43
@@ -1256,9 +1256,9 @@ ship "Osprey"
 		"Capital Ship"
 	attributes
 		category "Light Warship"
-		"cost" 1400000
-		"shields" 6200
-		"hull" 1200
+		"cost" 4400000
+		"shields" 7200
+		"hull" 1600
 		"required crew" 11
 		"bunks" 24
 		"mass" 270
@@ -1306,9 +1306,9 @@ ship "Protector"
 		"Capital Ship"
 	attributes
 		category "Heavy Warship"
-		"cost" 2500000
-		"shields" 7000
-		"hull" 7000
+		"cost" 5500000
+		"shields" 9500
+		"hull" 6500
 		"required crew" 62
 		"bunks" 69
 		"mass" 500
@@ -1349,7 +1349,7 @@ ship "Protector"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "Voted the ''ugliest ship in the sky'' by Star and Starship Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six blaster turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys."
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than six blaster turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
 
 ship "Quicksilver"
 	sprite "ship/quicksilver"
@@ -1358,9 +1358,9 @@ ship "Quicksilver"
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 590000
-		"shields" 1800
-		"hull" 500
+		"cost" 1590000
+		"shields" 3200
+		"hull" 800
 		"required crew" 3
 		"bunks" 6
 		"mass" 120
@@ -1401,8 +1401,8 @@ ship "Rainmaker"
 		Navy
 	attributes
 		category "Light Warship"
-		"cost" 780000
-		"shields" 3200
+		"cost" 1580000
+		"shields" 3500
 		"hull" 1200
 		"required crew" 7
 		"bunks" 14
@@ -1449,9 +1449,9 @@ ship Raven
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 800000
-		"shields" 3900
-		"hull" 900
+		"cost" 2000000
+		"shields" 4700
+		"hull" 1400
 		"required crew" 7
 		"bunks" 13
 		"mass" 130
@@ -1495,7 +1495,7 @@ ship "Scout"
 		Pilot's
 	attributes
 		category "Transport"
-		"cost" 450000
+		"cost" 850000
 		"shields" 1200
 		"hull" 400
 		"required crew" 3
@@ -1539,7 +1539,7 @@ ship "Shuttle"
 		Pilot's
 	attributes
 		category "Transport"
-		"cost" 60000
+		"cost" 180000
 		"shields" 500
 		"hull" 600
 		"required crew" 1
@@ -1570,7 +1570,7 @@ ship "Shuttle"
 	explode "tiny explosion" 10
 	explode "small explosion" 5
 	description "Although Betelgeuse Shipyards produces other ship models as well, the majority of their profits come from sales of the Shuttle. This versatile ship serves equally well as a passenger transport or a cargo courier. It also happens to be the cheapest ship you can buy which is capable of hyperspace travel."
-	description "	Shuttles are not designed to withstand combat or any sort, but they are fast and maneuverable enough to get out of harm's way if attacked by a larger, slower ship. Although they are typically unarmed, they have enough space for one weapon, which is the origin of the popular phrase, ''as useless as a blaster cannon on a shuttlecraft.''"
+	description `	Shuttles are not designed to withstand combat or any sort, but they are fast and maneuverable enough to get out of harm's way if attacked by a larger, slower ship. Although they are typically unarmed, they have enough space for one weapon, which is the origin of the popular phrase, "as useless as a blaster cannon on a shuttlecraft."`
 
 ship "Sparrow"
 	sprite "ship/sparrow"
@@ -1578,7 +1578,7 @@ ship "Sparrow"
 		Pilot's
 	attributes
 		category "Interceptor"
-		"cost" 85000
+		"cost" 225000
 		"shields" 1200
 		"hull" 300
 		"required crew" 1
@@ -1620,9 +1620,9 @@ ship "Splinter"
 		Warship
 	attributes
 		category "Light Warship"
-		"cost" 1100000
-		"shields" 4800
-		"hull" 1400
+		"cost" 3100000
+		"shields" 5200
+		"hull" 1700
 		"required crew" 15
 		"bunks" 21
 		"mass" 250
@@ -1669,7 +1669,7 @@ ship "Star Barge"
 		Pilot's
 	attributes
 		category "Light Freighter"
-		"cost" 90000
+		"cost" 210000
 		"shields" 600
 		"hull" 1000
 		"required crew" 1
@@ -1708,7 +1708,7 @@ ship "Surveillance Drone"
 		Navy
 	attributes
 		category "Drone"
-		"cost" "30000"
+		"cost" "50000"
 		"hull" 300
 		"mass" 15
 		"drag" .53
@@ -1732,7 +1732,7 @@ ship "Wasp"
 		Pilot's
 	attributes
 		category "Interceptor"
-		"cost" 200000
+		"cost" 400000
 		"shields" 1500
 		"hull" 500
 		"required crew" 1

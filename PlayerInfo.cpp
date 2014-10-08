@@ -305,7 +305,7 @@ void PlayerInfo::New()
 	SetPlanet(GameData::Planets().Get("New Boston"));
 	conditions["license: Pilot's"] = true;
 	
-	accounts.AddMortgage(295000);
+	accounts.AddMortgage(480000);
 	
 	CreateMissions();
 }
