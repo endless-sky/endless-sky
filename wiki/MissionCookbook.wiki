@@ -1,0 +1,110 @@
+#summary Short "recipes" for how to implement particular elements in missions
+
+<wiki:toc>
+
+== Getting run off a planet ==
+
+Suppose you want the player to be chased off a planet by hostile NPCs, which then chase him for a few jumps.
+
+{{{
+mission "Getting run off of Smuggler's Den"
+	source "Smuggler's Den"
+	landing
+	invisible
+	deadline 3
+	npc
+		government Pirate
+		ship "Sparrow"
+		ship "Sparrow"
+		ship "Fury"
+	to complete
+		has "nothing"
+	on offer
+		conversation
+			`Oh no! Pirates are trying to kill you!`
+				launch
+				accept
+}}}
+
+The basic idea here is that this mission cannot be completed, but will expire in 3 days. After that, as soon as you land, the NPCs will disappear. The mission triggers when you land, and cannot be declined, so that it always happens the first time you land here. And it is invisible because it would be confusing to the user if this was called a "mission".
+
+== Time delay between missions ==
+
+Suppose you want the second mission in a chain to not be offered until some time after the first was completed.
+
+{{{
+mission "A Cooldown"
+	invisible
+	landing
+	deadline 14
+	to offer
+		has "A: done"
+	to complete
+		has "nothing"
+
+mission "B"
+	to offer
+		has "A Cooldown: offered"
+		not "A Cooldown: active"
+}}}
+
+The basic idea here is that "A Cooldown" is given to the player immediately upon the completion of A, but is invisible, just marking time. Mission "B" cannot be offered until the two-week time limit expires, making "A Cooldown" no longer active. And "A Cooldown" can never complete; it always just silently fails.
+
+By having B look for "A Cooldown: offered" rather than just "A: done", B will not be offered at the same time as "A Cooldown" (which would be another time when A is done and the cooldown is not active).
+
+== Mission with unknown end location ==
+
+Suppose the player needs to get a shrubbery from a particular planet, but you don't want to tell them where to look. Furthermore, since forest planets are reasonable places to look, you want to give feedback every time they go to a spaceport on a forest planet.
+
+{{{
+mission "Get a shrubbery"
+	source A
+	to complete
+		has shrubbery
+
+mission "Found a shrubbery!"
+	source B
+	to offer
+		has "Get a shrubbery: active"
+	on offer
+		conversation
+			`You found a shrubbery!`
+				defer
+		set shrubbery
+
+mission "No shrubbery here"
+	source
+		attribute forest
+		near BSystem 1 100
+	to offer
+		has "Get a shrubbery: active"
+		not shrubbery
+	on offer
+		conversation
+			`You search diligently, but find no shrubbery.`
+				defer
+}}}
+
+The "Get a shrubbery" mission is what will appear in the player's mission list, and it targets the planet they need to bring the shrubbery to, not the one they will find it on. The planet they will find it on is B. The "Found a shrubbery!" mission gives the player a shrubbery, but then is just deferred, since they already have the main mission active.
+
+To give feedback when they land on other forest planets, we have the "No shrubbery here" mission, which again is just a conversation that then defers the mission. It triggers on any forest planet that is *not* B (which we implement by saying it must be 1 jump from B's system). We stop offering this message once the player has got a shrubbery.
+
+== Mission with randomized unknown end location ==
+
+For replay value, we might want the "shrubbery" mission to pick a random planet as the location of the shrubbery.
+
+{{{
+mission "Secret shrubbery"
+	invisible
+	landing
+	to offer
+		has "Get a shrubbery: active"
+	destination
+		attribute forest
+		near ASystem 4 8
+	on complete
+		dialog `You found a shrubbery!`
+		set shrubbery
+}}}
+
+This would replace the "Found a shrubbery!" mission above. It is given to the player immediately on accepting "Get a shrubbery", but is invisible. It chooses as destination a random forest planet 4-8 jumps from A. It will then complete when the player lands on that planet. Because completion is checked before missions are offered, "shrubbery" will be set and the player will not also get the "No shrubbery here" message on that planet.
