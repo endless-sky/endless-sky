@@ -85,7 +85,7 @@ void PlayerInfo::Steal(PlayerInfo &other)
 	lastName.swap(other.lastName);
 	filePath.swap(other.filePath);
 	
-	Date date = other.date;
+	date = other.date;
 	system = other.system;
 	planet = other.planet;
 	shouldLaunch = false;
