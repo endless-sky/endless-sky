@@ -39,6 +39,7 @@ public:
 	bool IsHeroic() const;
 	bool IsStaying() const;
 	bool IsEntering() const;
+	bool IsNemesis() const;
 	
 	const Point &Confusion() const;
 	

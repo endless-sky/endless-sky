@@ -620,27 +620,36 @@ fleet "pirate raid"
 	cargo 1
 	personality
 		plunders
-	variant
+		nemesis
+	variant 10
 		Sparrow 3
-	variant
+	variant 10
 		Sparrow 4
-	variant
+	variant 10
 		Hawk 2
-	variant
+	variant 10
 		Hawk
 		Sparrow 2
-	variant
+	variant 10
 		Fury
 		Sparrow 2
-	variant
+	variant 10
 		Hawk
 		Fury
 		Sparrow
-	variant
+	variant 10
 		Fury 3
-	variant
+	variant 10
 		Fury 2
 		Sparrow
+	variant 2
+		Firebird
+	variant 2
+		Quicksilver
+	variant 1
+		Leviathan
+	variant 1
+		Falcon
 
 fleet "Quarg"
 	government "Quarg"

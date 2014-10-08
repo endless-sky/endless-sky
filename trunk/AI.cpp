@@ -212,6 +212,9 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 			if(ship.GetPersonality().IsTimid() && it->GetTargetShip().get() != &ship)
 				continue;
 			
+			if(person.IsNemesis() && it->GetGovernment() != GameData::PlayerGovernment())
+				continue;
+			
 			double range = it->Position().Distance(ship.Position());
 			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();

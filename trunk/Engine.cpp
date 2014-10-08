@@ -511,7 +511,7 @@ void Engine::EnterSystem()
 			attraction += 2;
 	}
 	if(attraction > 1)
-		for(int i = 0; i < 3; ++i)
+		for(int i = 0; i < 10; ++i)
 			if(Random::Int(50) + 1 < attraction)
 				GameData::Fleets().Get("pirate raid")->Place(*system, ships);
 	
