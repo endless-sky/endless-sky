@@ -199,6 +199,11 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	if(!isArmed)
 		return target;
 	
+	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
+	shared_ptr<Ship> parentTarget;
+	if(ship.GetParent())
+		parentTarget = ship.GetParent()->GetTargetShip();
+	
 	// Find the closest enemy ship (if there is one).
 	const Personality &person = ship.GetPersonality();
 	double closest = numeric_limits<double>::infinity();
@@ -216,6 +221,11 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 				continue;
 			
 			double range = it->Position().Distance(ship.Position());
+			// Preferentially focus on your previous target or your parent ship's
+			// target if they are nearby.
+			if(it == oldTarget || it == parentTarget)
+				range -= 500.;
+			
 			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();
 			else
