@@ -170,7 +170,7 @@ mission "Cargo [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 5000
+		payment 2000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Cargo [4]"
@@ -189,7 +189,7 @@ mission "Cargo [4]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 10000
+		payment 4000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Bulk Delivery [0]"
@@ -224,7 +224,7 @@ mission "Bulk Delivery [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 10000
+		payment 2000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Bulk Delivery [2]"
@@ -243,7 +243,7 @@ mission "Bulk Delivery [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 15000
+		payment 4000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Rush Delivery [0]"
@@ -262,7 +262,7 @@ mission "Rush Delivery [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 20000
+		payment 16000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Rush Delivery [1]"
@@ -281,7 +281,7 @@ mission "Rush Delivery [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 25000
+		payment 18000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Rush Delivery [2]"
@@ -301,7 +301,7 @@ mission "Rush Delivery [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 30000
+		payment 20000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Rush Delivery [3]"
@@ -321,7 +321,7 @@ mission "Rush Delivery [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 35000
+		payment 22000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 
@@ -339,7 +339,7 @@ mission "Passengers [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 20000
+		payment 2000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Passengers [1]"
@@ -410,6 +410,7 @@ mission "Passengers [4]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
+		payment 2000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport miners to <planet>"
@@ -427,6 +428,7 @@ mission "Transport miners to <planet>"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
+		payment 2000
 		dialog "You wish the mining family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport farmers to <planet>"
@@ -444,6 +446,7 @@ mission "Transport farmers to <planet>"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
+		payment 2000
 		dialog "You wish the farm family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport mill workers to <planet>"
@@ -461,6 +464,7 @@ mission "Transport mill workers to <planet>"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
+		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport workers to <planet>"
@@ -478,6 +482,7 @@ mission "Transport workers to <planet>"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
+		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [0]"
@@ -492,11 +497,11 @@ mission "Tourists out [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	destination
 		attributes "tourism"
-		distance 2 35
+		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 20000
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
@@ -515,7 +520,7 @@ mission "Tourists out [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 10000
+		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [2]"
@@ -531,11 +536,11 @@ mission "Tourists out [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	destination
 		attributes "tourism"
-		distance 2 30
+		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 15000
+		payment 8000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [0]"
@@ -550,11 +555,11 @@ mission "Tourists back [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 		attributes "tourism"
 	destination
-		distance 2 35
+		distance 6 35
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 20000
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
@@ -573,7 +578,7 @@ mission "Tourists back [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 10000
+		payment 4000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [2]"
@@ -589,9 +594,9 @@ mission "Tourists back [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	destination
 		attributes "rich" "urban"
-		distance 2 30
+		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Quarg"
 	on complete
 		payment
-		payment 15000
+		payment 8000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
