@@ -91,7 +91,7 @@ mission "Intro [1 Transport]"
 				accept
 	
 	on complete
-		payment 60000
+		payment 40000
 		conversation
 			`Along the journey, you learned that the family you are transporting are named the Hendersons, and that they are moving to <planet> mostly because they hope the urban setting will be better for their kids than <origin>, where there were hardly any children at all and their village had only a few thousand people in it. The grandmother, Olivia, has also been chattering nonstop about how excited she is about being on a world where she can actually go sunbathing: "I've gotten much too old for snowshoeing," she says.`
 			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
@@ -119,8 +119,7 @@ mission "Intro [2 Transport]"
 				accept
 	
 	on complete
-		payment
-		payment 10000
+		payment 15000
 		conversation
 			`As you made the final landing descent to the surface of Earth, Chuck and Sarah were staring out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Carl, meanwhile, has spent the entire journey playing a handheld video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
 			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? At take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
@@ -150,7 +149,7 @@ mission "Intro [3 Transport]"
 				accept
 	
 	on complete
-		payment 50000
+		payment 30000
 		conversation "end of intro missions"
 
 
@@ -177,7 +176,7 @@ mission "Intro [1 Freighter]"
 				accept
 	
 	on complete
-		payment 35000
+		payment 30000
 		conversation
 			`You drop off the shipment of <commodity> on <planet>, and collect your payment of <payment>. "Hauling freight," says James. "Not the most glamorous job, or the most interesting, but you're always guaranteed steady income. And once you know the galaxy a bit better, instead of taking missions you can find your own trade routes to follow. The only trouble is, build up a big enough fleet and the pirates begin to take notice."`
 			choice
@@ -223,7 +222,7 @@ mission "Intro [2 Freighter]
 				accept
 	
 	on complete
-		payment 40000
+		payment 35000
 		conversation
 			`By now, your entire ship smells like brine and raw fish, but as best you can tell the fish is still fresh enough to eat. The  dock workers on <planet> offload it without comment, and give you your payment of <payment>.`
 			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And  if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
@@ -268,7 +267,7 @@ mission "Intro [3 Freighter]
 				accept
 	
 	on complete
-		payment 50000
+		payment 30000
 		conversation "end of intro missions"
 
 
@@ -304,7 +303,7 @@ mission "Intro [1 Interceptor]"
 				accept
 	
 	on complete
-		payment 50000
+		payment 30000
 		conversation
 			`The captain of the Horn of Plenty hands you <payment> and thanks you for your escort services. From the expression on his face, you'd guess that he's feeling lucky to still be alive after entrusting the safety of his fleet to a rookie pilot like yourself.`
 			`	After he is gone, James turns to you and says, "Not too bad for your first escort mission. If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
@@ -383,7 +382,7 @@ mission "Intro [3 Interceptor]
 				accept
 	
 	on complete
-		payment 50000
+		payment 30000
 		conversation "end of intro missions"
 
 
