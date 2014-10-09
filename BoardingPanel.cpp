@@ -166,8 +166,14 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		if(crewBonus)
 		{
-			Messages::Add("You owe your crew a bonus of " + Format::Number(crewBonus)
-				+ " credits as a share of the plunder, in return for risking their lives.");
+			if(casualties)
+				Messages::Add(("You must pay " + Format::Number(crewBonus)
+					+ " credits as a bonus for your crew and death benefits for the ")
+					+ ((casualties > 1) ? "families of your dead crew members."
+						: "family of your dead crew member."));
+			else
+				Messages::Add("You owe your crew a bonus of " + Format::Number(crewBonus)
+					+ " credits as a share of the plunder, in return for risking their lives.");
 			player.Accounts().AddBonus(crewBonus);
 		}
 		GetUI()->Pop(this);
@@ -263,6 +269,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			}
 			else if(!victim->Crew())
 			{
+				casualties = initialCrew - you->Crew();
 				messages.push_back("You have succeeded in capturing this ship.");
 				victim->WasCaptured(player.Ships().front());
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
@@ -273,8 +280,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				
 				int64_t bonus = victim->Cost();
 				// The captain gets 20 shares in the bonus payment.
-				bonus *= initialCrew - 1;
-				bonus /= initialCrew + 19;
+				int otherCrew = initialCrew - 1 + 4 * casualties;
+				bonus *= otherCrew;
+				bonus /= otherCrew + 20;
 				crewBonus += bonus;
 			}
 		}
