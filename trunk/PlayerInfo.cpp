@@ -88,7 +88,7 @@ void PlayerInfo::Steal(PlayerInfo &other)
 	date = other.date;
 	system = other.system;
 	planet = other.planet;
-	shouldLaunch = false;
+	shouldLaunch = other.shouldLaunch;
 	isDead = other.isDead;
 	accounts = other.accounts;
 	
@@ -180,6 +180,8 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					conditions[grand.Token(0)] = grand.Value(1);
 		}
+		else if(child.Token(0) == "launching")
+			shouldLaunch = true;
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -263,6 +265,8 @@ void PlayerInfo::Save() const
 					out.Write(it.first, it.second);
 		out.EndChild();
 	}
+	if(shouldLaunch)
+		out.Write("launching");
 	
 	for(const System *system : visited)
 		out.Write("visited", system->Name());
