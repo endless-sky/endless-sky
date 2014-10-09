@@ -393,7 +393,7 @@ string PlayerInfo::IncrementDate()
 	
 	// Check if any missions have failed because of deadlines.
 	for(Mission &mission : missions)
-		if(mission.CheckDeadline(date))
+		if(mission.CheckDeadline(date) && mission.IsVisible())
 			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".");
 	
 	// Check what salaries and tribute the player receives.

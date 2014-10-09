@@ -430,7 +430,12 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	
 	auto it = actions.find(trigger);
 	if(it == actions.end())
+	{
+		// If a mission has no "on offer" field, it is automatically accepted.
+		if(trigger == OFFER)
+			player.MissionCallback(Conversation::ACCEPT);
 		return true;
+	}
 	
 	if(!it->second.CanBeDone(player))
 		return false;
@@ -483,7 +488,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(failed)
 		{
 			hasFailed = true;
-			Messages::Add("Ship lost. Mission failed: \"" + displayName + "\".");
+			if(isVisible)
+				Messages::Add("Ship lost. Mission failed: \"" + displayName + "\".");
 		}
 	}
 	

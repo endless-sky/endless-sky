@@ -49,6 +49,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+		++acceptedIt;
+	
 	// Center the system slightly above the center of the screen because the
 	// lower panel is taking up more space than the upper one.
 	center = Point(0., -80.) - selectedSystem->Position();
@@ -68,6 +71,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+		++acceptedIt;
+	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
@@ -89,7 +95,7 @@ void MissionPanel::Draw() const
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
-		accepted.size());
+		AcceptedVisible());
 	DrawList(accepted, pos);
 	
 	DrawMissionInfo();
@@ -146,6 +152,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		availableIt = available.end();
 		acceptedIt = accepted.begin();
+		while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+			++acceptedIt;
 	}
 	else if(key == SDLK_UP)
 	{
@@ -157,9 +165,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		}
 		else if(acceptedIt != accepted.end())
 		{
-			if(acceptedIt == accepted.begin())
-				acceptedIt = accepted.end();
-			--acceptedIt;
+			do {
+				if(acceptedIt == accepted.begin())
+					acceptedIt = accepted.end();
+				--acceptedIt;
+			} while(!acceptedIt->IsVisible());
 		}
 	}
 	else if(key == SDLK_DOWN)
@@ -172,9 +182,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		}
 		else if(acceptedIt != accepted.end())
 		{
-			++acceptedIt;
-			if(acceptedIt == accepted.end())
-				acceptedIt = accepted.begin();
+			do {
+				++acceptedIt;
+				if(acceptedIt == accepted.end())
+					acceptedIt = accepted.begin();
+			} while(!acceptedIt->IsVisible());
 		}
 	}
 	else if(key == GameData::Keys().Get(Key::MAP))
@@ -231,12 +243,15 @@ bool MissionPanel::Click(int x, int y)
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
-		unsigned index = max(0, (y + acceptedScroll - 36 - Screen::Top()) / 20);
-		if(index < accepted.size())
+		int index = max(0, (y + acceptedScroll - 36 - Screen::Top()) / 20);
+		if(index < AcceptedVisible())
 		{
 			acceptedIt = accepted.begin();
-			while(index--)
+			while(index || !acceptedIt->IsVisible())
+			{
+				index -= acceptedIt->IsVisible();
 				++acceptedIt;
+			}
 			availableIt = available.end();
 			dragSide = 1;
 			Select(acceptedIt->Destination()->GetSystem());
@@ -283,6 +298,9 @@ bool MissionPanel::Click(int x, int y)
 						acceptedIt = accepted.begin();
 				}
 			}
+			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+				continue;
+			
 			if(availableIt != available.end() && availableIt->Destination()->GetSystem() == system)
 				break;
 			if(acceptedIt != accepted.end() && acceptedIt->Destination()->GetSystem() == system)
@@ -396,6 +414,9 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 	
 	for(auto it = list.begin(); it != list.end(); ++it)
 	{
+		if(!it->IsVisible())
+			continue;
+		
 		pos.Y() += 20.;
 		
 		bool isSelected = (it == availableIt || it == acceptedIt);
@@ -473,4 +494,15 @@ void MissionPanel::AbortMission()
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
 	}
+}
+
+
+
+	
+int MissionPanel::AcceptedVisible() const
+{
+	int count = 0;
+	for(const Mission &mission : accepted)
+		count += mission.IsVisible();
+	return count;
 }
