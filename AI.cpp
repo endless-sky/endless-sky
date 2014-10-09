@@ -46,7 +46,7 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 {
 	keyDown = keys & ~keyHeld;
 	keyHeld = keys;
-	if((keys & AutopilotCancelKeys()) || !isActive)
+	if(keys & AutopilotCancelKeys())
 		keyStuck = 0;
 	
 	if(!isActive)
