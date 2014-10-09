@@ -497,7 +497,6 @@ void MissionPanel::AbortMission()
 }
 
 
-
 	
 int MissionPanel::AcceptedVisible() const
 {
