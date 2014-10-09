@@ -161,7 +161,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		else
 			ui->Push(new Dialog(dialogText));
 	}
-	else if(isOffer)
+	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
 	Ship *flagship = player.GetShip();

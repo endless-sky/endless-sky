@@ -192,6 +192,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.Write("invisible");
 	if(location == LANDING)
 		out.Write("landing");
+	if(location == JOB)
+		out.Write("job");
 	if(!clearance.empty())
 		out.Write("clearance", clearance);
 	
@@ -428,11 +430,16 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		++player.Conditions()[name + ": done"];
 	}
 	
+	// "Jobs" should never show dialogs when offered, nor should they call the
+	// player's mission callback.
+	if(trigger == OFFER && location == JOB)
+		ui = nullptr;
+	
 	auto it = actions.find(trigger);
 	if(it == actions.end())
 	{
 		// If a mission has no "on offer" field, it is automatically accepted.
-		if(trigger == OFFER)
+		if(trigger == OFFER && location != JOB)
 			player.MissionCallback(Conversation::ACCEPT);
 		return true;
 	}
