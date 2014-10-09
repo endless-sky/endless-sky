@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MissionPanel.h"
 
 #include "Dialog.h"
+#include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -99,6 +100,16 @@ void MissionPanel::Draw() const
 	DrawList(accepted, pos);
 	
 	DrawMissionInfo();
+	
+	Color availableColor(.5, .4, 0., .5);
+	Color unavailableColor(.3, .1, 0., .5);
+	Color currentColor(0., .5, 0., .5);
+	if(availableIt != available.end() && availableIt->Destination())
+		DotShader::Draw(availableIt->Destination()->GetSystem()->Position() + center,
+			22., 20.5, CanAccept() ? availableColor : unavailableColor);
+	if(acceptedIt != accepted.end() && acceptedIt->Destination())
+		DotShader::Draw(acceptedIt->Destination()->GetSystem()->Position() + center,
+			22., 20.5, currentColor);
 	
 	// Draw the "Commodities" button.
 	const Font &font = FontSet::Get(14);
