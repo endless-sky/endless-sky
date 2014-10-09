@@ -85,6 +85,20 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			Select(*it);
 		}
 	}
+	else if(key == SDLK_DOWN)
+	{
+		if(commodity < 0 || commodity == 9)
+			commodity = 0;
+		else
+			++commodity;
+	}
+	else if(key == SDLK_UP)
+	{
+		if(commodity <= 0)
+			commodity = 9;
+		else
+			--commodity;
+	}
 	else
 		return false;
 	
