@@ -110,6 +110,7 @@ private:
 	std::vector<std::string> messages;
 	
 	int initialCrew;
+	int casualties = 0;
 	int64_t crewBonus = 0;
 };
 
