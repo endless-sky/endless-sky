@@ -180,6 +180,15 @@ outfit "Bunk Room"
 	"bunks" 4
 	"outfit space" -20
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
+	
+outfit "Small Bunk Room"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/small bunk room"
+	"mass" 3
+	"bunks" 2
+	"outfit space" -12
+	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makshift way to make space for more people."
 
 outfit "Fuel Pod"
 	category "Systems"
