@@ -78,27 +78,29 @@ void LoadPanel::Draw() const
 	const Interface *menu = GameData::Interfaces().Get("load menu");
 	menu->Draw(info);
 	
-	Color dim = *GameData::Colors().Get("faint");
-	Color grey = *GameData::Colors().Get("medium");
 	const Font &font = FontSet::Get(14);
 	
-	Point point(-460., -157.);
+	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
+	// 103, and fade to 0 at 10 pixels beyond that.
+	Point point(-460., -157. - sideScroll);
 	for(const auto &it : files)
 	{
+		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
-			FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim);
-		font.Draw(it.first, point, grey);
+			FillShader::Fill(point + Point(100., 7.), Point(210., 20.), Color(.1 * alpha, 0.));
+		font.Draw(it.first, point, Color(.5 * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
 	if(!selectedPilot.empty() && files.find(selectedPilot) != files.end())
 	{
-		point = Point(-100., -157.);
+		point = Point(-100., -157. - centerScroll);
 		for(const string &file : files.find(selectedPilot)->second)
 		{
+			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			if(file == selectedFile)
-				FillShader::Fill(point + Point(100., 7.), Point(210., 20.), dim);
-			font.Draw(file.substr(0, file.size() - 4), point, grey);
+				FillShader::Fill(point + Point(100., 7.), Point(210., 20.), Color(.1 * alpha, 0.));
+			font.Draw(file.substr(0, file.size() - 4), point, Color(.5 * alpha, 0.));
 			point += Point(0., 20.);
 		}
 	}
@@ -292,6 +294,25 @@ bool LoadPanel::Click(int x, int y)
 	loadedInfo.Load(Files::Saves() + selectedFile);
 	
 	return true;
+}
+
+
+
+bool LoadPanel::Drag(int dx, int dy)
+{
+	auto it = files.find(selectedPilot);
+	if(sideHasFocus)
+		sideScroll = max(0, min(static_cast<int>(20 * files.size()) - 280, sideScroll - dy));
+	else if(!selectedPilot.empty() && it != files.end())
+		centerScroll = max(0, min(static_cast<int>(20 * it->second.size()) - 280, centerScroll - dy));
+	return true;
+}
+
+
+
+bool LoadPanel::Scroll(int dx, int dy)
+{
+	return Drag(50 * dx, 50 * dy);
 }
 
 

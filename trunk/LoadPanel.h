@@ -38,6 +38,8 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
 	virtual bool Click(int x, int y);
+	virtual bool Drag(int dx, int dy);
+	virtual bool Scroll(int dx, int dy);
 	
 	
 private:
@@ -57,6 +59,8 @@ private:
 	PlayerInfo loadedInfo;
 	
 	bool sideHasFocus;
+	int sideScroll = 0;
+	int centerScroll = 0;
 };
 
 
