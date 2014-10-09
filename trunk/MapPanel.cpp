@@ -290,6 +290,9 @@ void MapPanel::DrawMissions() const
 	}
 	for(const Mission &mission : player.Missions())
 	{
+		if(!mission.IsVisible())
+			continue;
+		
 		const System *system = mission.Destination()->GetSystem();
 		Angle a = (angle[system] += Angle(30.));
 		Point pos = system->Position() + center;

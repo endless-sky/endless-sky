@@ -49,6 +49,8 @@ private:
 	bool CanAccept() const;
 	void AbortMission();
 	
+	int AcceptedVisible() const;
+	
 	
 private:
 	const std::list<Mission> &available;
