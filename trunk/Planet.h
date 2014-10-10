@@ -73,6 +73,10 @@ public:
 	const System *GetSystem() const;
 	void SetSystem(const System *system);
 	
+	// Check if this is a wormhole (that is, it appears in multiple systems).
+	bool IsWormhole() const;
+	const System *WormholeDestination(const System *from) const;
+	
 	
 private:
 	std::string name;
@@ -93,7 +97,7 @@ private:
 	double bribe = 0.01;
 	double security = .25;
 	
-	const System *system = nullptr;
+	std::vector<const System *> systems;
 };
 
 

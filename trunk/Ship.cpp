@@ -632,8 +632,18 @@ bool Ship::Move(list<Effect> &effects)
 			if(zoom < 0.)
 			{
 				// If this is not a special ship, it ceases to exist when it
-				// lands.
-				if(!isSpecial)
+				// lands on a true planet. If this is a wormhole, the ship is
+				// instantly transported.
+				if(landingPlanet->IsWormhole())
+				{
+					currentSystem = landingPlanet->WormholeDestination(currentSystem);
+					for(const StellarObject &object : currentSystem->Objects())
+						if(object.GetPlanet() == landingPlanet)
+							position = object.Position();
+					SetTargetPlanet(nullptr);
+					landingPlanet = nullptr;
+				}
+				else if(!isSpecial)
 					return false;
 				
 				zoom = 0.;

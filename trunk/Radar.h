@@ -31,6 +31,7 @@ public:
 	static const int HOSTILE;
 	static const int INACTIVE;
 	static const int SPECIAL;
+	static const int ANOMALOUS;
 	
 public:
 	void Clear();
