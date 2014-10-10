@@ -43,6 +43,7 @@ private:
 	
 	void MoveIndependent(Controllable &control, const Ship &ship);
 	void MoveEscort(Controllable &control, const Ship &ship);
+	void Refuel(Controllable &control, const Ship &ship);
 	
 	double TurnBackward(const Ship &ship);
 	double TurnToward(const Ship &ship, const Point &vector);

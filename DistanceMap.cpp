@@ -52,6 +52,23 @@ DistanceMap::DistanceMap(const PlayerInfo &player)
 
 
 
+// Calculate the path for the given ship to get to the given system. The
+// ship wil use a jump drive or hyperdrive depending on what it has.
+DistanceMap::DistanceMap(const Ship &ship, const System *destination)
+{
+	if(!ship.GetSystem() || !destination)
+		return;
+	
+	distance[destination] = 0;
+	
+	if(ship.Attributes().Get("jump drive"))
+		InitJump(ship.GetSystem());
+	else if(ship.Attributes().Get("hyperdrive"))
+		InitHyper(ship.GetSystem());
+}
+
+
+
 // Find out if the given system is reachable.
 bool DistanceMap::HasRoute(const System *system) const
 {
@@ -173,6 +190,56 @@ void DistanceMap::InitJump(const PlayerInfo &player)
 				route[link] = system;
 				newEdge.push_back(link);
 			}
+		newEdge.swap(edge);
+	}
+}
+
+
+
+void DistanceMap::InitHyper(const System *source)
+{
+	vector<const System *> edge = {distance.begin()->first};
+	for(int steps = 1; !edge.empty(); ++steps)
+	{
+		vector<const System *> newEdge;
+		for(const System *system : edge)
+			for(const System *link : system->Links())
+				if(distance.find(link) == distance.end())
+				{
+					distance[link] = steps;
+					route[link] = system;
+					
+					if(link == source)
+						return;
+					
+					newEdge.push_back(link);
+				}
+		newEdge.swap(edge);
+	}
+}
+
+
+
+void DistanceMap::InitJump(const System *source)
+{
+	hasJump = true;
+	
+	vector<const System *> edge = {distance.begin()->first};
+	for(int steps = 1; !edge.empty(); ++steps)
+	{
+		vector<const System *> newEdge;
+		for(const System *system : edge)
+			for(const System *link : system->Neighbors())
+				if(distance.find(link) == distance.end())
+				{
+					distance[link] = steps;
+					route[link] = system;
+					
+					if(link == source)
+						return;
+					
+					newEdge.push_back(link);
+				}
 		newEdge.swap(edge);
 	}
 }
