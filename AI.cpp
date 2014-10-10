@@ -77,7 +77,7 @@ void AI::UpdateEvents(const std::list<ShipEvent> &events)
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
 			if(event.TargetGovernment() == GameData::PlayerGovernment())
-				Messages::Add("\"" + event.Target()->Name() + "\" is being scanned by the " +
+				Messages::Add("You are being scanned by the " +
 					event.ActorGovernment()->GetName() + " ship \"" + event.Actor()->Name() + ".\"");
 		}
 		if(event.Actor() && event.Target())
