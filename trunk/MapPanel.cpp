@@ -58,8 +58,8 @@ void MapPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
-	const Sprite *galaxy = SpriteSet::Get("ui/galaxy");
-	SpriteShader::Draw(galaxy, center);
+	for(const auto &it : GameData::Galaxies())
+		SpriteShader::Draw(it.second.GetSprite(), center + it.second.Position());
 	
 	DrawTravelPlan();
 	

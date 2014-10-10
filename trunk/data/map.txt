@@ -8,6 +8,10 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+galaxy "Milky Way"
+	pos 0 0
+	sprite ui/galaxy
+
 system Acamar
 	pos -284 -3
 	government Syndicate

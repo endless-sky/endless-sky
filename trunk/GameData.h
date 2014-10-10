@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
+#include "Galaxy.h"
 #include "Government.h"
 #include "Interface.h"
 #include "Key.h"
@@ -59,6 +60,7 @@ public:
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<Fleet> &Fleets();
+	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
 	static const Set<Interface> &Interfaces();
 	static const Set<Mission> &Missions();
