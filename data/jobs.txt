@@ -8,6 +8,10 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Impossible"
+	to complete
+		never
+
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
