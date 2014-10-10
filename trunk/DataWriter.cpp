@@ -79,7 +79,7 @@ void DataWriter::WriteComment(const string &str)
 
 void DataWriter::WriteToken(const char *a)
 {
-	bool hasSpace = false;
+	bool hasSpace = !*a;
 	bool hasQuote = false;
 	for(const char *it = a; *it; ++it)
 	{

@@ -72,6 +72,8 @@ void ConditionSet::Add(const DataNode &node)
 		Add(node.Token(0), node.Token(1));
 	else if(node.Size() == 3)
 		Add(node.Token(0), node.Token(1), node.Value(2));
+	else if(node.Size() == 1 && node.Token(0) == "never")
+		entries.emplace_back("", "!=", 0);
 }
 
 
