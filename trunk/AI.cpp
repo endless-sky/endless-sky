@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AI.h"
 
 #include "Armament.h"
+#include "DistanceMap.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Key.h"
@@ -48,6 +49,8 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 	keyHeld = keys;
 	if(keys & AutopilotCancelKeys())
 		keyStuck = 0;
+	if((keyStuck & Key::Bit(Key::JUMP)) && !info->HasTravelPlan())
+		keyStuck -= Key::Bit(Key::JUMP);
 	
 	if(!isActive)
 		return;
@@ -173,7 +176,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			
 			if(parent && !parent->IsDisabled()
 					&& (parent->HasLandCommand() || parent->HasHyperspaceCommand()
-						|| targetDistance > 1000. || personality.IsTimid() || !target))
+						|| targetDistance > 1000. || personality.IsTimid() || !target
+						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))))
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
@@ -389,11 +393,21 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 {
 	const Ship &parent = *ship.GetParent();
 	bool isStaying = ship.GetPersonality().IsStaying();
-	if(ship.GetSystem() != parent.GetSystem() && !isStaying)
+	// If an escort is out of fuel, they should refuel without waiting for the
+	// "parent" to land (because the parent may not be planning on landing).
+	if(ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining())
+		Refuel(control, ship);
+	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
-		control.SetTargetSystem(parent.GetSystem());
-		PrepareForHyperspace(control, ship);
-		control.SetHyperspaceCommand();
+		DistanceMap distance(ship, parent.GetSystem());
+		control.SetTargetSystem(distance.Route(ship.GetSystem()));
+		if(!control.GetTargetSystem()->IsInhabited() && ship.JumpsRemaining() == 1)
+			Refuel(control, ship);
+		else
+		{
+			PrepareForHyperspace(control, ship);
+			control.SetHyperspaceCommand();
+		}
 	}
 	else if(parent.HasLandCommand() && parent.GetTargetPlanet())
 	{
@@ -406,13 +420,47 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 		Stop(control, ship);
 	else if(parent.HasHyperspaceCommand() && parent.GetTargetSystem() && !isStaying)
 	{
-		control.SetTargetSystem(parent.GetTargetSystem());
-		PrepareForHyperspace(control, ship);
-		if(parent.IsHyperspacing() || parent.CanHyperspace())
-			control.SetHyperspaceCommand();
+		DistanceMap distance(ship, parent.GetTargetSystem());
+		const System *dest = distance.Route(ship.GetSystem());
+		control.SetTargetSystem(dest);
+		if(dest != parent.GetTargetSystem() && !dest->IsInhabited() && ship.JumpsRemaining() == 1)
+			Refuel(control, ship);
+		else
+		{
+			PrepareForHyperspace(control, ship);
+			if(parent.IsHyperspacing() || parent.CanHyperspace())
+				control.SetHyperspaceCommand();
+		}
 	}
 	else
 		CircleAround(control, ship, parent);
+}
+
+
+
+void AI::Refuel(Controllable &control, const Ship &ship)
+{
+	if(ship.GetParent() && ship.GetParent()->GetTargetPlanet())
+		control.SetTargetPlanet(ship.GetParent()->GetTargetPlanet());
+	else if(!control.GetTargetPlanet())
+	{
+		double closest = numeric_limits<double>::infinity();
+		for(const StellarObject &object : ship.GetSystem()->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+			{
+				double distance = ship.Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					control.SetTargetPlanet(&object);
+					closest = distance;
+				}
+			}
+	}
+	if(control.GetTargetPlanet())
+	{
+		MoveToPlanet(control, ship);
+		control.SetLandCommand();
+	}
 }
 
 

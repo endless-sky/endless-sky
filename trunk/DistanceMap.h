@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 
+class Ship;
 class System;
 class PlayerInfo;
 
@@ -32,6 +33,9 @@ public:
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
 	DistanceMap(const PlayerInfo &player);
+	// Calculate the path for the given ship to get to the given system. The
+	// ship wil use a jump drive or hyperdrive depending on what it has.
+	DistanceMap(const Ship &ship, const System *destination);
 	
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
@@ -49,6 +53,8 @@ private:
 	void Init(int maxCount);
 	void InitHyper(const PlayerInfo &player);
 	void InitJump(const PlayerInfo &player);
+	void InitHyper(const System *source);
+	void InitJump(const System *source);
 	
 	
 private:
