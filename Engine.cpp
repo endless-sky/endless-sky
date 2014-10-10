@@ -199,6 +199,8 @@ void Engine::Step(bool isActive)
 		
 		const System *currentSystem = player.GetSystem();
 		// Update this here, for thread safety.
+		if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
+			player.AddTravel(flagship->GetTargetSystem());
 		if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 			player.PopTravel();
 		if(doFlash)
@@ -596,7 +598,7 @@ void Engine::CalculateStep()
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsHyperspacing())
-		Audio::Play(Audio::Get("hyperspace"));
+		Audio::Play(Audio::Get(flagship->Attributes().Get("jump drive") ? "jump_drive" : "hyperspace"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
 	if(wasHyperspacing && !flagship->IsHyperspacing())
