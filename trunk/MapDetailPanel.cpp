@@ -20,11 +20,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Screen.h"
+#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
 #include "Trade.h"
 #include "UI.h"
+#include "WrappedText.h"
 
 using namespace std;
 
@@ -258,6 +260,21 @@ void MapDetailPanel::DrawInfo() const
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
 		
 		uiPoint.Y() += 20.;
+	}
+	
+	if(selectedPlanet)
+	{
+		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
+		Point pos(Screen::Right() - .5 * panelSprite->Width(),
+			Screen::Top() + .5 * panelSprite->Height());
+		SpriteShader::Draw(panelSprite, pos);
+		
+		WrappedText text;
+		text.SetFont(FontSet::Get(14));
+		text.SetAlignment(WrappedText::JUSTIFIED);
+		text.SetWrapWidth(480);
+		text.Wrap(selectedPlanet->Description());
+		text.Draw(Point(Screen::Right() - 500, Screen::Top() + 20), closeColor);
 	}
 	
 	// Draw the "Done" button.
