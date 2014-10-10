@@ -292,3 +292,73 @@ name "hostile civilian"
 		"sack!"
 		"heap!"
 		"pile!"
+
+name "hostile pirate"
+	word
+		"Prepare to fight"
+		"We're"
+		"You're about to be plundered by"
+		"You've been chosen as the next target of"
+		"I hope you know we're"
+		"You have no chance against us,"
+	word
+		" the "
+	word
+		"baddest"
+		"strongest"
+		"fiercest"
+		"deadliest"
+		"scariest"
+		"most feared"
+	word
+		" ship"
+		" warship"
+		" pirate ship"
+	word
+		" in the "
+	word
+		"universe, "
+		"galaxy, "
+		"sky, "
+		"'verse, "
+		"air, "
+	word
+		"wimp."
+		"maggot."
+		"worm."
+
+name "hostile pirate"
+	word
+		"Plundering "
+		"Blasting "
+		"Destroying "
+		"Robbing "
+		"Raiding "
+		"Pummeling "
+		"Crushing "
+	word
+		"merchants "
+		"ships "
+		"villages "
+		"freighters "
+		"convoys "
+		"rich merchants "
+		"defenseless ships "
+		"weak ships "
+		"wimpy ships "
+	word
+		"and "
+	word
+		"enjoying "
+		"spending "
+		"piling up "
+		"sharing "
+		"squandering "
+	word
+		"the loot"
+		"money"
+		"our gains"
+		"wealth"
+		"plunder"
+	word
+		": I love the pirate's life!"

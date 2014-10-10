@@ -499,6 +499,7 @@ fleet "Small Southern Pirates"
 	cargo 1
 	personality
 		plunders
+	"hostile hail" "hostile pirate"
 	variant 8
 		"Sparrow"
 	variant 3
@@ -532,6 +533,7 @@ fleet "Large Southern Pirates"
 	cargo 1
 	personality
 		plunders
+	"hostile hail" "hostile pirate"
 	variant 3
 		"Sparrow" 4
 	variant 5
@@ -555,6 +557,7 @@ fleet "Small Core Pirates"
 	cargo 1
 	personality
 		plunders
+	"hostile hail" "hostile pirate"
 	variant 4
 		"Quicksilver"
 	variant 2
@@ -572,6 +575,7 @@ fleet "Large Core Pirates"
 	cargo 1
 	personality
 		plunders
+	"hostile hail" "hostile pirate"
 	variant 5
 		"Quicksilver" 3
 	variant 3
@@ -590,6 +594,7 @@ fleet "Small Northern Pirates"
 	cargo 1
 	personality
 		plunders
+	"hostile hail" "hostile pirate"
 	variant 5
 		"Sparrow"
 	variant 3
@@ -603,6 +608,7 @@ fleet "Large Northern Pirates"
 	cargo 1
 	personality
 		plunders
+	"hostile hail" "hostile pirate"
 	variant 4
 		"Firebird"
 	variant 2
@@ -621,6 +627,7 @@ fleet "pirate raid"
 	personality
 		plunders
 		nemesis
+	"hostile hail" "hostile pirate"
 	variant 10
 		Sparrow 3
 	variant 10
