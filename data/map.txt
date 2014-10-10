@@ -8197,6 +8197,7 @@ system Rajak
 	habitable 78.125
 	link Sumar
 	link Hassaleh
+	link "Ultima Thule"
 	asteroids "small rock" 15 2.3232
 	asteroids "medium rock" 51 4.1536
 	asteroids "large rock" 14 4.1536
@@ -10137,6 +10138,44 @@ system Turais
 		distance 2424.17
 		period 2668.88
 
+system "Ultima Thule"
+	pos -336 -211
+	link Rajak
+	habitable 2560
+	asteroids "small rock" 2 2.4966
+	asteroids "medium rock" 22 1.9836
+	asteroids "large rock" 6 2.7018
+	asteroids "small metal" 63 4.788
+	asteroids "medium metal" 15 4.2066
+	asteroids "large metal" 1 4.2408
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/desert5
+		distance 200
+		period 22.36068
+	object
+		sprite planet/europa
+		distance 403.41
+		period 64.056027
+	object
+		sprite planet/desert7
+		distance 824.9
+		period 187.30181
+	object
+		sprite planet/gas1
+		distance 1706.99
+		period 557.55341
+		object
+			sprite planet/ice8
+			distance 216
+			period 11.196388
+	object "Wormhole Alpha"
+		sprite planet/wormhole
+		distance 4208.63
+		period 2158.4954
+
 system Umbral
 	pos -164 406
 	government "Free Worlds"
@@ -10472,6 +10511,43 @@ system Volax
 		sprite planet/rock17
 		distance 4455.87
 		period 2872.9409
+
+system Waypoint
+	pos -184 -515
+	habitable 78.125
+	asteroids "small rock" 9 2.8028
+	asteroids "medium rock" 90 2.0328
+	asteroids "large rock" 1 3.2956
+	asteroids "small metal" 1 1.9712
+	asteroids "medium metal" 6 4.0656
+	asteroids "large metal" 2 1.9404
+	object
+		sprite star/m8
+		period 10
+	object
+		sprite planet/rock8
+		distance 187.26
+		period 115.96649
+	object
+		sprite planet/gas16
+		distance 866.67
+		period 1154.6374
+		object
+			sprite planet/lava0
+			distance 200
+			period 13.94143
+		object
+			sprite planet/rock7
+			distance 333
+			period 29.952196
+	object
+		sprite planet/luna
+		distance 1499.03
+		period 2626.5185
+	object "Wormhole Alpha"
+		sprite planet/wormhole
+		distance 2079.28
+		period 4290.7621
 
 system Wazn
 	pos -385 -131

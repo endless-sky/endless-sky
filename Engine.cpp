@@ -81,6 +81,7 @@ Engine::Engine(PlayerInfo &player)
 			
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
+				object.GetPlanet()->IsWormhole() ? Radar::ANOMALOUS :
 				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
 				Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
@@ -606,6 +607,13 @@ void Engine::CalculateStep()
 		doFlash = true;
 		EnterSystem();
 	}
+	else if(flagship && player.GetSystem() != flagship->GetSystem())
+	{
+		// Wormhole travel:
+		player.ClearTravel();
+		doFlash = true;
+		EnterSystem();
+	}
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
@@ -628,6 +636,7 @@ void Engine::CalculateStep()
 			
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
+				object.GetPlanet()->IsWormhole() ? Radar::ANOMALOUS :
 				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
 				Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);

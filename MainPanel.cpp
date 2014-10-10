@@ -51,7 +51,7 @@ void MainPanel::Step()
 	
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
-	if(isActive && player.GetPlanet())
+	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		

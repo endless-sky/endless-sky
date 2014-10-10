@@ -885,9 +885,10 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				{
 					++count;
 					double distance = ship.Position().Distance(object.Position());
-					if(object.GetPlanet() == ship.GetDestination())
+					const Planet *planet = object.GetPlanet();
+					if(planet == ship.GetDestination())
 						distance = 0.;
-					else if(!object.GetPlanet()->HasSpaceport())
+					else if(!planet->HasSpaceport() && !planet->IsWormhole())
 						distance += 10000.;
 					
 					if(distance < closest)

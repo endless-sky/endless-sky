@@ -183,12 +183,33 @@ double Planet::Security() const
 
 const System *Planet::GetSystem() const
 {
-	return system;
+	return (systems.empty() ? nullptr : systems.front());
 }
 
 
 
 void Planet::SetSystem(const System *system)
 {
-	this->system = system;
+	if(find(systems.begin(), systems.end(), system) == systems.end())
+		systems.push_back(system);
+}
+
+
+
+// Check if this is a wormhole (that is, it appears in multiple systems).
+bool Planet::IsWormhole() const
+{
+	return (systems.size() > 1);
+}
+
+
+
+const System *Planet::WormholeDestination(const System *from) const
+{
+	auto it = find(systems.begin(), systems.end(), from);
+	if(it == systems.end())
+		return from;
+	
+	++it;
+	return (it == systems.end() ? systems.front() : *it);
 }

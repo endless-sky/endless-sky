@@ -23,16 +23,19 @@ const int Radar::UNFRIENDLY = 2;
 const int Radar::HOSTILE = 3;
 const int Radar::INACTIVE = 4;
 const int Radar::SPECIAL = 5;
+const int Radar::ANOMALOUS = 6;
+static const int SIZE = 7;
 
 namespace {
 	// Colors.
-	static const Color color[6] = {
+	static const Color color[SIZE] = {
 		Color(.2, 1., 0., 0.), // PLAYER: green
 		Color(.4, .6, 1., 0.), // FRIENDLY: blue
 		Color(.8, .8, .4, 0.), // UNFRIENDLY: yellow
 		Color(1., .6, .4, 0.), // HOSTILE: red
 		Color(.4, .4, .4, 0.), // INACTIVE: grey
-		Color(1., 1., 1., 0.)  // SPECIAL: white
+		Color(1., 1., 1., 0.),  // SPECIAL: white
+		Color(.7, 0., 1., 0.)  // ANOMALOUS: magenta
 	};
 }
 
@@ -50,7 +53,7 @@ void Radar::Clear()
 // given position should be in world units (not shrunk to radar units).
 void Radar::Add(int type, Point position, double outer, double inner)
 {
-	if(type < 0 || type > SPECIAL)
+	if(type < 0 || type >= SIZE)
 		return;
 	
 	objects.emplace_back(color[type], position, outer, inner);
@@ -61,7 +64,7 @@ void Radar::Add(int type, Point position, double outer, double inner)
 // Add a pointer, pointing in the direction of the given vector.
 void Radar::AddPointer(int type, const Point &position)
 {
-	if(type < 0 || type > SPECIAL)
+	if(type < 0 || type >= SIZE)
 		return;
 	
 	pointers.emplace_back(color[type], position.Unit());
@@ -95,7 +98,7 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 
 const Color &Radar::GetColor(int type)
 {
-	if(type < 0 || type > SPECIAL)
+	if(type < 0 || type >= SIZE)
 		type = INACTIVE;
 	
 	return color[type];
