@@ -196,6 +196,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.Write("job");
 	if(!clearance.empty())
 		out.Write("clearance", clearance);
+	if(repeat != 1)
+		out.Write("repeat", repeat);
 	
 	if(!toComplete.IsEmpty())
 	{

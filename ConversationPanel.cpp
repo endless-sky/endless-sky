@@ -274,6 +274,19 @@ void ConversationPanel::Goto(int index)
 	
 	while(node >= 0 && !conversation.IsChoice(node))
 	{
+		if(conversation.IsBranch(node))
+		{
+			int choice = !conversation.Conditions(node).Test(player.Conditions());
+			node = conversation.NextNode(node, choice);
+			continue;
+		}
+		if(conversation.IsApply(node))
+		{
+			conversation.Conditions(node).Apply(player.Conditions());
+			node = conversation.NextNode(node);
+			continue;
+		}
+		
 		text.push_back(wrap);
 		string altered = Format::Replace(conversation.Text(node), subs);
 		text.back().Wrap(altered);

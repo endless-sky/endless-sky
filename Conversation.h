@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CONVERSATION_H_
 #define CONVERSATION_H_
 
+#include "ConditionSet.h"
+
 #include <map>
 #include <string>
 #include <utility>
@@ -54,6 +56,9 @@ public:
 	// the user to select; others just automatically continue to another node.
 	bool IsChoice(int node) const;
 	int Choices(int node) const;
+	bool IsBranch(int node) const;
+	bool IsApply(int node) const;
+	const ConditionSet &Conditions(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
 	int NextNode(int node, int choice = 0) const;
 	
@@ -65,6 +70,7 @@ private:
 	public:
 		Node(bool isChoice = false);
 		
+		ConditionSet conditions;
 		std::vector<std::pair<std::string, int>> data;
 		bool isChoice;
 		bool canMergeOnto;
