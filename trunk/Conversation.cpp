@@ -40,22 +40,30 @@ namespace {
 		return 0;
 	}
 	
+	static string TokenName(int index)
+	{
+		if(index == Conversation::ACCEPT)
+			return "accept";
+		else if(index == Conversation::DECLINE)
+			return "decline";
+		else if(index == Conversation::DIE)
+			return "die";
+		else if(index == Conversation::DEFER)
+			return "defer";
+		else if(index == Conversation::LAUNCH)
+			return "launch";
+		else
+			return to_string(index);
+	}
+	
 	static void WriteToken(int index, DataWriter &out)
 	{
 		out.BeginChild();
 			
 		if(index >= 0)
 			out.Write("goto", index);
-		else if(index == Conversation::ACCEPT)
-			out.Write("accept");
-		else if(index == Conversation::DECLINE)
-			out.Write("decline");
-		else if(index == Conversation::DIE)
-			out.Write("die");
-		else if(index == Conversation::DEFER)
-			out.Write("defer");
-		else if(index == Conversation::LAUNCH)
-			out.Write("launch");
+		else
+			out.Write(TokenName(index));
 					
 		out.EndChild();
 	}
@@ -129,6 +137,40 @@ void Conversation::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "name")
 			nodes.emplace_back(true);
+		else if(child.Token(0) == "branch")
+		{
+			nodes.emplace_back();
+			nodes.back().canMergeOnto = false;
+			nodes.back().conditions.Load(child);
+			for(int i = 1; i <= 2; ++i)
+			{
+				// If no link is provided, just go to the next node.
+				nodes.back().data.emplace_back("", nodes.size());
+				if(child.Size() > i)
+				{
+					int index = TokenIndex(child.Token(i));
+					if(!index)
+						Goto(child.Token(i), nodes.size() - 1, i - 1);
+					else if(index < 0)
+						nodes.back().data.back().second = index;
+				}
+			}
+		}
+		else if(child.Token(0) == "apply")
+		{
+			nodes.emplace_back();
+			nodes.back().canMergeOnto = false;
+			nodes.back().conditions.Load(child);
+			nodes.back().data.emplace_back("", nodes.size());
+			if(child.Size() > 1)
+			{
+				int index = TokenIndex(child.Token(1));
+				if(!index)
+					Goto(child.Token(1), nodes.size() - 1, 0);
+				else if(index < 0)
+					nodes.back().data.back().second = index;
+			}
+		}
 		else
 		{
 			// This is just an ordinary text node.
@@ -207,6 +249,18 @@ void Conversation::Save(DataWriter &out) const
 		out.Write("label", i);
 		const Node &node = nodes[i];
 		
+		if(!node.conditions.IsEmpty())
+		{
+			if(node.data.size() > 1)
+				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
+			else
+				out.Write("apply", TokenName(node.data[0].second));
+			
+			out.BeginChild();
+			node.conditions.Save(out);
+			out.EndChild();
+			continue;
+		}
 		if(node.isChoice)
 		{
 			out.Write(node.data.empty() ? "name" : "choice");
@@ -278,6 +332,38 @@ int Conversation::Choices(int node) const
 		return 0;
 	
 	return nodes[node].isChoice ? nodes[node].data.size() : 0;
+}
+
+
+
+bool Conversation::IsBranch(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() > 1;
+}
+
+
+
+
+bool Conversation::IsApply(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return false;
+	
+	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() == 1;
+}
+
+
+
+const ConditionSet &Conversation::Conditions(int node) const
+{
+	static const ConditionSet empty;
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return empty;
+	
+	return nodes[node].conditions;
 }
 
 
