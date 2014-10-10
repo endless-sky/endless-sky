@@ -36,6 +36,7 @@ namespace {
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<Fleet> fleets;
+	Set<Galaxy> galaxies;
 	Set<Government> governments;
 	Set<Interface> interfaces;
 	Set<Mission> missions;
@@ -271,6 +272,13 @@ const Set<Fleet> &GameData::Fleets()
 
 
 
+const Set<Galaxy> &GameData::Galaxies()
+{
+	return galaxies;
+}
+
+
+
 const Set<Government> &GameData::Governments()
 {
 	return governments;
@@ -404,6 +412,8 @@ void GameData::LoadFile(const string &path)
 			effects.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
 			fleets.Get(node.Token(1))->Load(node);
+		else if(key == "galaxy" && node.Size() >= 2)
+			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
 		else if(key == "interface")
