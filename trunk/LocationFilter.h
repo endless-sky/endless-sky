@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
+class DataWriter;
 class Government;
 class Planet;
 class System;
@@ -26,10 +27,10 @@ class System;
 
 class LocationFilter {
 public:
-	// There is no need to save a location filter, because any mission that is
-	// in the saved game will already have "applied" the filter to choose a
-	// particular planet or system.
 	void Load(const DataNode &node);
+	// This only saves the children. Save the root node separately. It does
+	// handle indenting, however.
+	void Save(DataWriter &out) const;
 	
 	// Check if this filter contains any specifications.
 	bool IsEmpty() const;
