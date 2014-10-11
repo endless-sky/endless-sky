@@ -267,6 +267,14 @@ bool ConversationPanel::Drag(int dx, int dy)
 
 
 
+bool ConversationPanel::Scroll(int dx, int dy)
+{
+	return Drag(50 * dx, 50 * dy);
+}
+
+
+
+
 void ConversationPanel::Goto(int index)
 {
 	choices.clear();
