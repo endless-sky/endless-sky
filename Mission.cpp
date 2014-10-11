@@ -120,7 +120,10 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
+		{
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
+			clearanceFilter.Load(child);
+		}
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -195,7 +198,10 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	if(location == JOB)
 		out.Write("job");
 	if(!clearance.empty())
+	{
 		out.Write("clearance", clearance);
+		clearanceFilter.Save(out);
+	}
 	if(repeat != 1)
 		out.Write("repeat", repeat);
 	
@@ -322,9 +328,10 @@ bool Mission::CheckDeadline(const Date &today)
 
 
 // Check if you have special clearance to land on your destination.
-bool Mission::HasClearance() const
+bool Mission::HasClearance(const Planet *planet) const
 {
-	return !clearance.empty();
+	return !clearance.empty() && (planet == destination ||
+		(!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet)));
 }
 
 
@@ -637,6 +644,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.displayName = Format::Replace(displayName, subs);
 	result.description = Format::Replace(description, subs);
 	result.clearance = Format::Replace(clearance, subs);
+	result.clearanceFilter = clearanceFilter;
 	
 	result.hasFailed = false;
 	return result;

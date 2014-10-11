@@ -87,10 +87,9 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *planet)
 	if(player.GetShip())
 	{
 		for(const Mission &mission : player.Missions())
-			if(mission.Destination() == planet->GetPlanet() && mission.HasClearance()
-					&& mission.ClearanceMessage() != "auto")
+			if(mission.HasClearance(planet->GetPlanet()) && mission.ClearanceMessage() != "auto")
 			{
-				GameData::GetPolitics().BribePlanet(mission.Destination());
+				GameData::GetPolitics().BribePlanet(planet->GetPlanet());
 				message = mission.ClearanceMessage();
 				return;
 			}
