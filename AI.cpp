@@ -400,8 +400,9 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetSystem());
-		control.SetTargetSystem(distance.Route(ship.GetSystem()));
-		if(!control.GetTargetSystem()->IsInhabited() && ship.JumpsRemaining() == 1)
+		const System *system = distance.Route(ship.GetSystem());
+		control.SetTargetSystem(system);
+		if(!system || (!system->IsInhabited() && ship.JumpsRemaining() == 1))
 			Refuel(control, ship);
 		else
 		{
