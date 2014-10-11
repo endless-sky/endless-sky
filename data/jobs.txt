@@ -8,6 +8,66 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Bounty Hunting (Big)"
+	name "Hunt down <npc>"
+	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		random < 20
+	source
+		government Republic "Free Worlds" Syndicate
+		attributes rim south north "dirt belt" core "near earth" frontier
+	npc kill
+		personality staying nemesis
+		government Pirate
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Falcon"
+			variant
+				"Protector"
+	on complete
+		payment 250000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
+
+mission "Bounty Hunting (Small)"
+	name "Hunt down <npc>"
+	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		random < 40
+	source
+		government Republic "Free Worlds" Syndicate
+		attributes rim south north "dirt belt" core "near earth" frontier
+	npc kill
+		personality staying nemesis
+		government Pirate
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Splinter"
+			variant
+				"Osprey"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+	on complete
+		payment 150000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
+
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
