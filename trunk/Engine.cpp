@@ -268,7 +268,8 @@ void Engine::Step(bool isActive)
 		if(flagship && flagship->GetTargetPlanet() && !flagship->HasHyperspaceCommand())
 		{
 			info.SetString("navigation mode", "Landing on:");
-			info.SetString("destination", flagship->GetTargetPlanet()->Name());
+			const string &name = flagship->GetTargetPlanet()->Name();
+			info.SetString("destination", name.empty() ? "???" : name);
 			
 			targets.push_back({
 				flagship->GetTargetPlanet()->Position() - flagship->Position(),
