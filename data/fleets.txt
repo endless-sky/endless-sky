@@ -601,6 +601,8 @@ fleet "Small Northern Pirates"
 		"Fury"
 	variant 2
 		"Hawk"
+	variant 1
+		"Raven (Afterburner)"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -614,6 +616,8 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird"
 		"Fury"
+	variant 2
+		"Raven (Afterburner)" 2
 	variant 1
 		"Firebird"
 		"Leviathan"
@@ -654,6 +658,8 @@ fleet "pirate raid"
 	variant 2
 		Quicksilver
 	variant 1
+		"Raven (Afterburner)" 2
+	variant 1
 		Leviathan
 	variant 1
 		Falcon
@@ -668,4 +674,3 @@ fleet "Quarg"
 		"Quarg Skylark"
 	variant
 		"Quarg Wardragon"
-
