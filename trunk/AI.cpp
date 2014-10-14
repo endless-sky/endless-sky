@@ -181,6 +181,14 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
+			
+			if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled())
+			{
+				double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
+				if(fuel - it->Attributes().Get("afterburner fuel") >= it->Attributes().Get("jump fuel"))
+					if(it->GetThrustCommand() && targetDistance < 1000.)
+						it->SetAfterburnerCommand();
+			}
 		}
 	}
 }
