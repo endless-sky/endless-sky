@@ -47,6 +47,7 @@ protected:
 private:
 	void BuyShip(const std::string &name);
 	void SellShip();
+	uint64_t LicenseCost() const;
 };
 
 

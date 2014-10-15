@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Dialog.h"
 #include "FillShader.h"
+#include "Format.h"
 #include "GameData.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -113,21 +114,34 @@ bool ShipyardPanel::CanBuy() const
 	if(!selectedShip)
 		return false;
 	
-	// Check that the player has any necessary licenses.
-	const vector<string> &licenses = selectedShip->Licenses(player.GetSystem()->GetGovernment());
-	for(const string &name : licenses)
-		if(player.GetCondition("license: " + name) <= 0)
-			return false;
+	int cost = selectedShip->Cost();
 	
-	return (player.Accounts().Credits() >= selectedShip->Cost());
+	// Check that the player has any necessary licenses.
+	uint64_t licenseCost = LicenseCost();
+	if(licenseCost < 0)
+		return false;
+	cost += licenseCost;
+	
+	return (player.Accounts().Credits() >= cost);
 }
 
 
 
 void ShipyardPanel::Buy()
 {
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip,
-		"Enter a name for your brand new " + selectedShip->ModelName() + "!"));
+	uint64_t licenseCost = LicenseCost();
+	if(licenseCost < 0)
+		return;
+	
+	string message;
+	if(licenseCost)
+		message = "Note: you will need to pay " + Format::Number(licenseCost)
+			+ " credits for the licenses required to operate this ship, in addition to its cost."
+			" If that is okay with you, go ahead and enter a name for your brand new ";
+	else
+		message = "Enter a name for your brand new ";
+	message += selectedShip->ModelName() + "!";
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip, message));
 }
 
 
@@ -142,7 +156,7 @@ bool ShipyardPanel::CanSell() const
 void ShipyardPanel::Sell()
 {
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip,
-		"Sell ''" + playerShip->Name() + "''?"));
+		"Sell \"" + playerShip->Name() + "\"?"));
 }
 
 
@@ -166,6 +180,16 @@ int ShipyardPanel::Modifier() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
+	uint64_t licenseCost = LicenseCost();
+	if(licenseCost)
+	{
+		player.Accounts().AddCredits(-licenseCost);
+		const vector<string> &licenses = selectedShip->Licenses(player.GetSystem()->GetGovernment());
+		for(const string &name : licenses)
+			if(player.GetCondition("license: " + name) <= 0)
+				player.Conditions()["license: " + name] = true;
+	}
+	
 	if(name.empty())
 		player.BuyShip(selectedShip, "Unnamed Ship");
 	else
@@ -178,4 +202,21 @@ void ShipyardPanel::SellShip()
 {
 	player.SellShip(playerShip);
 	playerShip = nullptr;
+}
+
+
+
+uint64_t ShipyardPanel::LicenseCost() const
+{
+	uint64_t cost = 0;
+	const vector<string> &licenses = selectedShip->Licenses(player.GetSystem()->GetGovernment());
+	for(const string &name : licenses)
+		if(player.GetCondition("license: " + name) <= 0)
+		{
+			const Outfit *outfit = GameData::Outfits().Get(name + " License");
+			if(!outfit->Cost())
+				return -1;
+			cost += outfit->Cost();
+		}
+	return cost;
 }
