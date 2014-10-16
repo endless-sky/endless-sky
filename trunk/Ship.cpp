@@ -727,12 +727,15 @@ bool Ship::Move(list<Effect> &effects)
 				fuel -= cost;
 				velocity += angle.Unit() * thrust / mass;
 				
-				const Effect *effect = GameData::Effects().Get("afterburner");
-				for(const Point &point : enginePoints)
+				if(!forget)
 				{
-					Point pos = angle.Rotate(point) * .5 * Zoom() + position;
-					effects.push_back(*effect);
-					effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
+					const Effect *effect = GameData::Effects().Get("afterburner");
+					for(const Point &point : enginePoints)
+					{
+						Point pos = angle.Rotate(point) * .5 * Zoom() + position;
+						effects.push_back(*effect);
+						effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
+					}
 				}
 			}
 		}

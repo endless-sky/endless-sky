@@ -182,7 +182,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			else
 				MoveIndependent(*it, *it);
 			
-			if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled())
+			if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled()
+					&& target->IsTargetable() && target->GetSystem() == it->GetSystem())
 			{
 				double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
 				if(fuel - it->Attributes().Get("afterburner fuel") >= it->Attributes().Get("jump fuel"))
@@ -701,7 +702,8 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 		{
 			if(!target->IsTargetable() || !gov->IsEnemy(target->GetGovernment())
 					|| target->Velocity().Length() > 20.
-					|| (weapon.IsTurret() && target != ship.GetTargetShip()))
+					|| (weapon.IsTurret() && target != ship.GetTargetShip())
+					|| target->GetSystem() != ship.GetSystem())
 				continue;
 			
 			// Don't shoot ships we want to plunder.
