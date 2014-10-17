@@ -107,34 +107,44 @@ outfit "nGVF-EE Fuel Cell"
 
 outfit "RT-I Radiothermal"
 	category "Power"
-	cost 250000
+	cost 300000
 	thumbnail "outfit/small radiothermal"
 	"mass" 50
-	"outfit space" -50
+	"outfit space" -45
 	"energy generation" 4.4
 	"heat generation" 18
 	description "Radiothermal generators harvest heat from radioactive isotopes and convert it into electricity. They are more powerful than fuel cells, but also produce a relatively high amount of heat."
 
 outfit "S3 Thermionic"
 	category "Power"
-	cost 300000
+	cost 360000
 	thumbnail "outfit/small thermionic"
 	"mass" 60
-	"outfit space" -60
+	"outfit space" -55
 	"energy generation" 5.0
 	"heat generation" 12
 	description "Thermionic radioisotopic generators were designed as a cooler-running alternative to radiothermal generators."
 
 outfit "NT-200 Nucleovoltaic"
 	category "Power"
-	cost 500000
+	cost 570000
 	thumbnail "outfit/small nucleovoltaic"
 	"mass" 70
-	"outfit space" -70
+	"outfit space" -65
 	"energy generation" 7.2
 	"heat generation" 15
 	description "Nucleovoltaic generators are a relatively recent generator technology that harvests energy from the decay of a radioisotope source and converts it directly into electricity. They are the most powerful generator that relies on nuclear decay instead of an active nuclear chain reaction."
 
+
+outfit "Dwarf Core"
+	category "Power"
+	cost 900000
+	thumbnail "outfit/dwarf core"
+	"mass" 36
+	"outfit space" -36
+	"energy generation" 4.8
+	"heat generation" 14
+	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. It was designed by Deep Sky to be paired with their power-hungry atomic engines."
 
 outfit "Fission Reactor"
 	category "Power"
