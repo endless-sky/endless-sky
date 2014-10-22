@@ -533,27 +533,18 @@ bool AI::MoveTo(Controllable &control, const Ship &ship, const Point &target, do
 	
 	double speed = velocity.Length();
 	
-	if(distance.Length() < radius && speed < slow)
+	bool isClose = (distance.Length() < radius);
+	if(isClose && speed < slow)
 		return true;
-
-	// If I am currently headed away from the planet, the first step is to
-	// head towards it.
-	if(distance.Dot(velocity) < 0.)
-	{
-		control.SetTurnCommand(TurnToward(ship, distance));
 	
-		if(distance.Dot(angle.Unit()) > 0.)
-			control.SetThrustCommand(1.);
-	}
-	else
-	{
-		bool isClose = (distance.Length() < .2 * radius);
-		distance = target - StoppingPoint(ship);
-		if(!isClose)
-			control.SetTurnCommand(TurnToward(ship, distance));
-		if(distance.Unit().Dot(angle.Unit()) > .8)
-			control.SetThrustCommand(1.);
-	}
+	bool isVeryClose = (distance.Length() < .5 * radius);
+	distance = target - StoppingPoint(ship);
+	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
+	if(!isVeryClose && (!isClose || !isFacing))
+		control.SetTurnCommand(TurnToward(ship, distance));
+	if(isFacing)
+		control.SetThrustCommand(1.);
+	
 	return false;
 }
 
