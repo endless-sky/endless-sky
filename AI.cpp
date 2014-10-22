@@ -966,7 +966,11 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			}
 			if(hasGuns && !control.GetTurnCommand() && ship.GetTargetShip()
 					&& ship.GetTargetShip()->GetSystem() == ship.GetSystem())
-				control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
+			{
+				Point distance = ship.GetTargetShip()->Position() - ship.Position();
+				if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
+					control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
+			}
 		}
 		if(keyHeld & Key::Bit(Key::SECONDARY))
 		{
