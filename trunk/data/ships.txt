@@ -84,14 +84,14 @@ ship "Argosy"
 		"Blaster Turret" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
-	engine -28 85
-	engine 28 85
-	gun -26 -35 "Energy Blaster"
-	gun 26 -35 "Energy Blaster"
-	gun -26 -35 "Meteor Missile Launcher"
-	gun 26 -35 "Meteor Missile Launcher"
-	turret 0 0 "Blaster Turret"
-	turret 0 26 "Blaster Turret"
+	engine -16 82
+	engine 16 82
+	gun -22 -37 "Energy Blaster"
+	gun 22 -37 "Energy Blaster"
+	gun -23 -37 "Meteor Missile Launcher"
+	gun 23 -37 "Meteor Missile Launcher"
+	turret 0 -8 "Blaster Turret"
+	turret 0 12 "Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
