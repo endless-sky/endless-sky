@@ -592,12 +592,34 @@ void AI::CircleAround(Controllable &control, const Ship &ship, const Ship &targe
 
 void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 {
+	Point d = target.Position() - ship.Position();
+	
+	// First, figure out what your shortest-range weapon is.
+	double shortestRange = 10000.;
+	for(const Armament::Weapon &weapon : ship.Weapons())
+	{
+		const Outfit *outfit = weapon.GetOutfit();
+		if(outfit->WeaponGet("anti-missile"))
+			continue;
+		
+		double range = outfit->WeaponGet("lifetime") * outfit->WeaponGet("velocity");
+		shortestRange = min(range, shortestRange);
+	}
+	// If this ship only has long-range weapons, it should keep its distance
+	// instead of trying to close with the target ship.
+	if(shortestRange > 1000. && d.Length() < .5 * shortestRange)
+	{
+		control.SetTurnCommand(TurnToward(ship, -d));
+		control.SetLaunchCommand();
+		control.SetThrustCommand(ship.Facing().Unit().Dot(d) <= 0.);
+		return;
+	}
+	
 	// First of all, aim in the direction that will hit this target.
 	control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 	control.SetLaunchCommand();
 	
-	// This is not the behavior I want, but it's reasonable.
-	Point d = target.Position() - ship.Position();
+	// This isn't perfect, but it works well enough.
 	control.SetThrustCommand(ship.Facing().Unit().Dot(d) >= 0. && d.Length() > 200.);
 }
 
