@@ -401,7 +401,7 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 		return false;
 	
 	for(const NPC &npc : npcs)
-		if(!npc.HasSucceeded())
+		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
 	
 	return true;

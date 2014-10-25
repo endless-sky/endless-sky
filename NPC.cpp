@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Messages.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "ShipEvent.h"
 #include "UI.h"
@@ -37,16 +38,20 @@ void NPC::Load(const DataNode &node)
 	{
 		if(node.Token(i) == "save")
 			failIf |= ShipEvent::DESTROY;
-		if(node.Token(i) == "kill")
+		else if(node.Token(i) == "kill")
 			succeedIf |= ShipEvent::DESTROY;
-		if(node.Token(i) == "board")
+		else if(node.Token(i) == "board")
 			succeedIf |= ShipEvent::BOARD;
-		if(node.Token(i) == "disable")
+		else if(node.Token(i) == "disable")
 			succeedIf |= ShipEvent::DISABLE;
-		if(node.Token(i) == "scan cargo")
+		else if(node.Token(i) == "scan cargo")
 			succeedIf |= ShipEvent::SCAN_CARGO;
-		if(node.Token(i) == "scan outfits")
+		else if(node.Token(i) == "scan outfits")
 			succeedIf |= ShipEvent::SCAN_OUTFITS;
+		else if(node.Token(i) == "evade")
+			mustEvade = true;
+		else if(node.Token(i) == "accompany")
+			mustAccompany = true;
 	}
 	
 	for(const DataNode &child : node)
@@ -62,6 +67,10 @@ void NPC::Load(const DataNode &node)
 			succeedIf = child.Value(1);
 		else if(child.Token(0) == "fail" && child.Size() >= 2)
 			failIf = child.Value(1);
+		else if(child.Token(0) == "evade")
+			mustEvade = true;
+		else if(child.Token(0) == "accompany")
+			mustAccompany = true;
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "personality")
@@ -137,6 +146,10 @@ void NPC::Save(DataWriter &out) const
 		out.Write("succeed", succeedIf);
 	if(failIf)
 		out.Write("fail", failIf);
+	if(mustEvade)
+		out.Write("evade");
+	if(mustAccompany)
+		out.Write("accompany");
 	
 	if(government)
 		out.Write("government", government->GetName());
@@ -196,7 +209,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	bool hasSucceeded = HasSucceeded();
+	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship == event.Target())
@@ -207,7 +220,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	
 	if(HasFailed() && !hasFailed)
 		Messages::Add("Mission failed.");
-	else if(ui && HasSucceeded() && !hasSucceeded)
+	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{
 		if(!conversation.IsEmpty())
 			ui->Push(new ConversationPanel(player, conversation));
@@ -218,10 +231,17 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 
 
 
-bool NPC::HasSucceeded() const
+bool NPC::HasSucceeded(const System *playerSystem) const
 {
 	if(HasFailed())
 		return false;
+	
+	// Check what system each ship is in, if there is a requirement that we
+	// either evade them, or accompany them.
+	if(mustEvade || mustAccompany)
+		for(const shared_ptr<Ship> &ship : ships)
+			if((ship->GetSystem() == playerSystem) ^ mustAccompany)
+				return false;
 	
 	if(!succeedIf)
 		return true;
@@ -260,6 +280,8 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 	result.personality = personality;
 	result.succeedIf = succeedIf;
 	result.failIf = failIf;
+	result.mustEvade = mustEvade;
+	result.mustAccompany = mustAccompany;
 	
 	// Pick the system for this NPC to start out in.
 	result.system = system;
