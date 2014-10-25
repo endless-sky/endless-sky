@@ -99,6 +99,51 @@ ship "Argosy"
 	description "The Argosy from Southbound Shipyards is very popular with merchants not because of its capacity, which is actually slightly smaller than the Syndicate Freighter, but because it can hold it own in combat even against a small pirate fleet."
 	description "	The Argosy is also a very easy ship to upgrade with faster engines or more powerful weapons as needed, so many privately owned Argosies have very different capabilities than the stock model."
 
+ship "Arrow"
+	sprite "ship/arrow"
+	licenses Republic
+		Pilot's
+		Transport
+	attributes
+		category "Transport"
+		"cost" 1200000
+		"shields" 2000
+		"hull" 400
+		"required crew" 1
+		"bunks" 5
+		"mass" 130
+		"drag" 2.7
+		"heat dissipation" .85
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 180
+		"weapon capacity" 50
+		"engine capacity" 60
+		weapon
+			"blast radius" 40
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Anti-Missile Turret"
+		"Supercapacitor"
+		"Dwarf Core"
+		"D14-RN Shield Generator"
+		"Hyperdrive"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+	engine -8 48
+	engine 8 48
+	gun -6 -30 "Sidewinder Missile Launcher"
+	gun 6 -30 "Sidewinder Missile Launcher"
+	turret 0 12 "Anti-Missile Turret"
+	explode "tiny explosion" 12
+	explode "small explosion" 18
+	explode "medium explosion" 6
+	description "The Arrow is a light transport, designed for bringing a small number of very rich passengers - Syndicate CEOs, for example - from one planet to another with speed and style. It makes up for its light armament by being able to outrun nearly every other ship in the sky."
+
 ship Bactrian
 	sprite ship/bactrian
 	licenses Republic

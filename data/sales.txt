@@ -78,6 +78,7 @@ shipyard "Syndicate Basics"
 shipyard "Syndicate Advanced"
 	"Bulk Freighter"
 	"Protector"
+	"Arrow"
 
 shipyard "Southern Pirates"
 	"Hawk"

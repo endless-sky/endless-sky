@@ -214,9 +214,9 @@ outfit "Anti-Missile Turret"
 	category "Turrets"
 	cost 60000
 	thumbnail "outfit/anti-missile"
-	"mass" 20
-	"outfit space" -20
-	"weapon capacity" -20
+	"mass" 16
+	"outfit space" -16
+	"weapon capacity" -16
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"

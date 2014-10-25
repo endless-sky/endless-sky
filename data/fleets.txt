@@ -155,6 +155,11 @@ fleet "Large Core Merchants"
 		"Quicksilver" 2
 	variant 1
 		"Bactrian"
+	variant 5
+		"Arrow"
+		"Wasp" 2
+	variant 2
+		"Arrow"
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -214,6 +219,8 @@ fleet "Large Northern Merchants"
 		"Firebird" 1
 	variant 2
 		"Bactrian"
+	variant 2
+		"Arrow"
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
