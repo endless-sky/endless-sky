@@ -206,8 +206,8 @@ outfit "Heavy Laser Turret"
 		"reload" 1
 		"firing energy" 2
 		"firing heat" 4.4
-		"shield damage" 5
-		"hull damage" 8
+		"shield damage" 3.6
+		"hull damage" 7.4
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
 
 outfit "Anti-Missile Turret"
@@ -329,8 +329,8 @@ outfit "Meteor Missile Launcher"
 		"drag" .1
 		"turn" 2
 		"homing" 3
-		"shield damage" 130
-		"hull damage" 90
+		"shield damage" 100
+		"hull damage" 70
 		"hit force" 30
 		"missile strength" 4
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. The tracking system on these missiles is notoriously unreliable, and they are easily destroyed by anti-missile systems, but in large numbers or when fired at a slow-moving target they can be deadly."
@@ -370,8 +370,8 @@ outfit "Sidewinder Missile Launcher"
 		"drag" .1
 		"turn" 3
 		"homing" 4
-		"shield damage" 120
-		"hull damage" 80
+		"shield damage" 80
+		"hull damage" 60
 		"hit force" 25
 		"missile strength" 12
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designed of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
@@ -405,8 +405,8 @@ outfit "Javelin Pod"
 		"reload" 20
 		"firing energy" .2
 		"firing heat" 12
-		"shield damage" 56
-		"hull damage" 30
+		"shield damage" 48
+		"hull damage" 26
 		"hit force" 5
 		"missile strength" 2
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
@@ -446,8 +446,8 @@ outfit "Torpedo Launcher"
 		"drag" .1
 		"turn" 4
 		"homing" 3
-		"shield damage" 400
-		"hull damage" 400
+		"shield damage" 340
+		"hull damage" 340
 		"hit force" 40
 		"missile strength" 20
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
@@ -486,8 +486,8 @@ outfit "Heavy Rocket Launcher"
 		"drag" .1
 		"trigger radius" 30
 		"blast radius" 50
-		"shield damage" 900
-		"hull damage" 700
+		"shield damage" 700
+		"hull damage" 600
 		"hit force" 80
 		"missile strength" 16
 	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
