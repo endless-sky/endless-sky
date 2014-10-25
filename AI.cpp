@@ -569,13 +569,22 @@ bool AI::Stop(Controllable &control, const Ship &ship, double slow)
 
 void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
 {
-	// If we are moving too fast, point in the right direction.
-	if(Stop(control, ship, ship.Attributes().Get("jump speed")))
+	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
+	if(ship.Attributes().Get("scram drive"))
 	{
-		Point direction = ship.GetTargetSystem()->Position()
-			- ship.GetSystem()->Position();
+		direction = direction.Unit();
+		Point normal(-direction.Y(), direction.X());
+		
+		double deviation = normal.Dot(ship.Velocity()) / ship.Acceleration();
+		direction -= normal * min(1., max(-1., deviation));
+		
 		control.SetTurnCommand(TurnToward(ship, direction));
+		if(ship.Facing().Unit().Dot(direction) >= .5)
+			control.SetThrustCommand(1.);
 	}
+	// If we are moving too fast, point in the right direction.
+	else if(Stop(control, ship, ship.Attributes().Get("jump speed")))
+		control.SetTurnCommand(TurnToward(ship, direction));
 }
 
 

@@ -1058,18 +1058,23 @@ bool Ship::CanHyperspace() const
 	if(fuel < attributes.Get("jump fuel"))
 		return false;
 	
+	Point direction = GetTargetSystem()->Position() - currentSystem->Position();
+	
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.
-	double speed = velocity.Length();
-	if(speed > attributes.Get("jump speed"))
+	if(attributes.Get("scram drive"))
+	{
+		double deviation = fabs(direction.Unit().Cross(velocity));
+		if(deviation > attributes.Get("scram drive"))
+			return false;
+	}
+	else if(velocity.Length() > attributes.Get("jump speed"))
 		return false;
 	
 	if(attributes.Get("jump drive"))
 		return true;
 	if(!attributes.Get("hyperdrive"))
 		return false;
-	
-	Point direction = GetTargetSystem()->Position() - currentSystem->Position();
 	
 	// Figure out if we're within one turn step of facing this system.
 	bool left = direction.Cross(angle.Unit()) < 0.;
