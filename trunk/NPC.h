@@ -49,7 +49,7 @@ public:
 	
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr);
-	bool HasSucceeded() const;
+	bool HasSucceeded(const System *playerSystem) const;
 	bool HasFailed() const;
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual
@@ -82,6 +82,8 @@ private:
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;
 	int failIf = 0;
+	bool mustEvade = false;
+	bool mustAccompany = false;
 	std::map<const Ship *, int> actions;
 };
 
