@@ -157,6 +157,8 @@ void MainPanel::FinishMissions()
 			player.RemoveMission(Mission::FAIL, mission, GetUI());
 		else if(mission.CanComplete(player))
 			player.RemoveMission(Mission::COMPLETE, mission, GetUI());
+		else if(mission.Destination() == player.GetPlanet())
+			mission.Do(Mission::VISIT, player, GetUI());
 	}
 	player.UpdateCargoCapacities();
 }

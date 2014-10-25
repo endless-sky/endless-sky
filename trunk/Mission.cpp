@@ -151,7 +151,8 @@ void Mission::Load(const DataNode &node)
 				{"offer", OFFER},
 				{"accept", ACCEPT},
 				{"decline", DECLINE},
-				{"fail", FAIL}};
+				{"fail", FAIL},
+				{"visit", VISIT}};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child);
@@ -423,7 +424,7 @@ bool Mission::HasFailed() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
 {
 	if(trigger == OFFER)
 		++player.Conditions()[name + ": offered"];
