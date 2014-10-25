@@ -542,7 +542,7 @@ bool AI::MoveTo(Controllable &control, const Ship &ship, const Point &target, do
 	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
 	if(!isVeryClose && (!isClose || !isFacing))
 		control.SetTurnCommand(TurnToward(ship, distance));
-	if(isFacing)
+	if(isFacing || (isVeryClose && distance.Unit().Dot(angle.Unit()) > 0.))
 		control.SetThrustCommand(1.);
 	
 	return false;
