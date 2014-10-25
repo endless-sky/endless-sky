@@ -27,6 +27,25 @@ If you want your ship to be animated, just create multiple files with the same n
 
 (If there are more than 10 frames, the extensions should be "-00.png", "-01.png", etc. You can also create sprites with additive or "half-additive" blending modes by using the extension "+#.png" or "~#.png" respectively, but these blending modes look much better for projectiles or explosions than for ships.)
 
+= Artistic tricks =
+
+Making a full texture-mapped 3D model can be a lot of work, and since all the ships in this game are only shown from directly overhead and at relatively low resolution, it can be overkill. I've found that the fastest way to create good-looking ship images is to use a 3D design program (such as Blender) for rendering the shape of the ship and the basic colors of the different parts of it, but then using an image manipulation program (such as GIMP) for some post-processing.
+
+https://endless-sky.googlecode.com/svn/trunk/images/ship/cruiser.png
+https://endless-sky.googlecode.com/svn/trunk/images/ship/firebird.png
+https://endless-sky.googlecode.com/svn/trunk/images/ship/gunboat.png
+https://endless-sky.googlecode.com/svn/trunk/images/ship/leviathan.png
+https://endless-sky.googlecode.com/svn/trunk/images/ship/mule.png
+
+Editing images in GIMP, some easy ways to make the models look more detailed and less "artificial" include:
+
+  * Find a public domain metal texture. Paste it into a separate layer, setting the layer's blending mode to "overlay" and adding an alpha channel to the layer if necessary. Erase portions of the texture so that it is only applied to certain parts of the ship. Repeat with other textures until each part of the ship is covered by at least one.
+  * In a layer set to "multiply" mode, spray-paint with black to add extra shadows to the left side of the image and to other areas as you see fit. It often also looks good to add dark patches near the engine outlets, to make that part of the ship look a bit "burnt."
+  * Spray-painting dark patches at a few corners or edges can also help make the metal look reflective.
+  * In the "multiply" layer, spray paint with red over the yellow or orange paint sections to make the color less uniform.
+
+If possible, try to edit the ship image at at least twice the resolution it will be saved at, in case we ever decide to update the game to support high-DPI monitors.
+
 = Data =
 
 For some examples, you can look at data/ships.txt. The easiest thing to do is to take an existing ship and modify it. If you don't want to change the ships.txt file, you can create a file with any name you like, define your ship there, and save it in the data directory. Each ship attributes is defined as a key name (such as "sprite") followed by (usually) one value. If a key or value has spaces in it, you must enclose it in quotation marks or it will be interpreted as two separate keys.
