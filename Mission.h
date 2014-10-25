@@ -90,8 +90,8 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for any UI panel that returns a value. If it is not
 	// possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER};
-	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr);
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT};
+	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr) const;
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
