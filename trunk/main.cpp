@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 			cerr << "    -v, --version: print version information." << endl;
 			cerr << "    -l, --load: display CPU and GPU load." << endl;
 			cerr << "    -t, --table: print table of ship statistics." << endl;
+			cerr << "    -w, --weapons: print table of weapon statistics." << endl;
 			cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 			cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 			cerr << endl;

@@ -71,6 +71,7 @@ void GameData::BeginLoad(const char * const *argv)
 {
 	showLoad = false;
 	bool printTable = false;
+	bool printWeapons = false;
 	for(const char * const *it = argv + 1; *it; ++it)
 	{
 		if((*it)[0] == '-')
@@ -80,6 +81,8 @@ void GameData::BeginLoad(const char * const *argv)
 				showLoad = true;
 			if(arg == "-t" || arg == "--table")
 				printTable = true;
+			if(arg == "-w" || arg == "--weapons")
+				printWeapons = true;
 			continue;
 		}
 	}
@@ -168,6 +171,39 @@ void GameData::BeginLoad(const char * const *argv)
 			cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
 		}
 		cout.flush();
+	}
+	if(printWeapons)
+	{
+		cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
+			<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
+			<< "homing" << '\t' << "strength" << '\n';
+		for(auto &it : outfits)
+		{
+			if(!it.second.IsWeapon())
+				continue;
+			
+			const Outfit &outfit = it.second;
+			cout << it.first << '\t';
+			cout << outfit.Cost() << '\t';
+			cout << -outfit.Get("weapon capacity") << '\t';
+			
+			double range = outfit.WeaponGet("lifetime") * outfit.WeaponGet("velocity");
+			cout << range << '\t';
+			
+			double energy = outfit.WeaponGet("firing energy") * 60. / outfit.WeaponGet("reload");
+			cout << energy << '\t';
+			double heat = outfit.WeaponGet("firing heat") * 60. / outfit.WeaponGet("reload");
+			cout << heat << '\t';
+			
+			double shield = outfit.WeaponGet("shield damage") * 60. / outfit.WeaponGet("reload");
+			cout << shield << '\t';
+			double hull = outfit.WeaponGet("hull damage") * 60. / outfit.WeaponGet("reload");
+			cout << hull << '\t';
+			
+			cout << outfit.WeaponGet("homing") << '\t';
+			double strength = outfit.WeaponGet("missile strength") + outfit.WeaponGet("anti-missile");
+			cout << strength << '\n';
+		}
 	}
 }
 
