@@ -221,6 +221,12 @@ fleet "Large Northern Merchants"
 		"Bactrian"
 	variant 2
 		"Arrow"
+	variant 1
+		"Star Queen"
+		"Leviathan"
+	variant 1
+		"Star Queen"
+		"Firebird" 2
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
@@ -456,6 +462,9 @@ fleet "Large Deep"
 		"Dagger" 3
 		"Mule" 2
 		"Dagger" 2
+	variant 1
+		"Star Queen"
+		"Raven" 2
 
 fleet "Small Syndicate"
 	government "Syndicate"
