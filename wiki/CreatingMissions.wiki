@@ -463,6 +463,8 @@ This specifies that a conversation will be shown to the player at this point in 
 
 As with the dialogs, text substitution is done throughout the conversation.
 
+The syntax for conversations is described [WritingConversations here].
+
 {{{
 outfit <outfit> (<number>)
 }}}
