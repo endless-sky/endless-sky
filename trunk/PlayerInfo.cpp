@@ -209,7 +209,13 @@ void PlayerInfo::Load(const string &path)
 	
 	int swizzle = GetSwizzle();
 	for(shared_ptr<Ship> &ship : ships)
+	{
 		ship->SetSwizzle(swizzle);
+		if(!ship->GetSystem())
+			ship->SetSystem(system);
+		if(ship->GetSystem() == system)
+			ship->SetPlanet(planet);
+	}
 }
 
 
