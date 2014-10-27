@@ -35,6 +35,7 @@ namespace {
 	Set<Color> colors;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
+	Set<GameEvent> events;
 	Set<Fleet> fleets;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
@@ -48,6 +49,13 @@ namespace {
 	
 	Set<Sale<Ship>> shipSales;
 	Set<Sale<Outfit>> outfitSales;
+	
+	Set<Fleet> defaultFleets;
+	Set<Government> defaultGovernments;
+	Set<Planet> defaultPlanets;
+	Set<System> defaultSystems;
+	Set<Sale<Ship>> defaultShipSales;
+	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
 	
@@ -120,7 +128,14 @@ void GameData::BeginLoad(const char * const *argv)
 	for(auto &it : ships)
 		it.second.FinishLoading();
 	
-	// TODO: store the current state, to revert back to later.
+	// Store the current state, to revert back to later.
+	defaultFleets = fleets;
+	defaultGovernments = governments;
+	defaultPlanets = planets;
+	defaultSystems = systems;
+	defaultShipSales = shipSales;
+	defaultOutfitSales = outfitSales;
+	
 	politics.Reset();
 	
 	if(printTable)
@@ -263,9 +278,19 @@ void GameData::FinishLoading()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	// Currently it is not possible to change anything, so nothing needs to be
-	// reverted. Eventually, we will need to save a copy of the systems,
-	// planets, and sales, and maybe other things as well.
+	for(auto &it : fleets)
+		it.second = *defaultFleets.Get(it.first);
+	for(auto &it : governments)
+		it.second = *defaultGovernments.Get(it.first);
+	for(auto &it : planets)
+		it.second = *defaultPlanets.Get(it.first);
+	for(auto &it : systems)
+		it.second = *defaultSystems.Get(it.first);
+	for(auto &it : shipSales)
+		it.second = *defaultShipSales.Get(it.first);
+	for(auto &it : outfitSales)
+		it.second = *defaultOutfitSales.Get(it.first);
+	
 	politics.Reset();
 }
 
@@ -276,6 +301,26 @@ void GameData::SetDate(const Date &date)
 	for(auto &it : systems)
 		it.second.SetDate(date);
 	politics.ResetProvocation();
+}
+
+
+
+// Apply the given change to the universe.
+void GameData::Change(const DataNode &node)
+{
+	// TODO: Each of these classes needs a function that allows it to be changed.
+	if(node.Token(0) == "fleet" && node.Size() >= 2)
+		fleets.Get(node.Token(1));
+	else if(node.Token(0) == "government" && node.Size() >= 2)
+		governments.Get(node.Token(1));
+	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
+		outfitSales.Get(node.Token(1));
+	else if(node.Token(0) == "planet" && node.Size() >= 2)
+		planets.Get(node.Token(1));
+	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
+		shipSales.Get(node.Token(1));
+	else if(node.Token(0) == "system" && node.Size() >= 2)
+		systems.Get(node.Token(1));
 }
 
 
@@ -297,6 +342,14 @@ const Set<Conversation> &GameData::Conversations()
 const Set<Effect> &GameData::Effects()
 {
 	return effects;
+}
+
+
+
+
+const Set<GameEvent> &GameData::Events()
+{
+	return events;
 }
 
 
@@ -446,6 +499,8 @@ void GameData::LoadFile(const string &path)
 			conversations.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)
 			effects.Get(node.Token(1))->Load(node);
+		else if(key == "event" && node.Size() >= 2)
+			events.Get(node.Token(1))->Load(node);
 		else if(key == "fleet" && node.Size() >= 2)
 			fleets.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && node.Size() >= 2)

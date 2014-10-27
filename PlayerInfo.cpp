@@ -108,6 +108,8 @@ void PlayerInfo::Steal(PlayerInfo &other)
 	selectedWeapon = other.selectedWeapon;
 	
 	reputationChanges.swap(other.reputationChanges);
+	gameEvents.swap(other.gameEvents);
+	dataChanges.swap(other.dataChanges);
 	
 	freshlyLoaded = other.freshlyLoaded;
 	
@@ -182,6 +184,16 @@ void PlayerInfo::Load(const string &path)
 		}
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
+		else if(child.Token(0) == "changes")
+		{
+			for(const DataNode &grand : child)
+				dataChanges.push_back(grand);
+		}
+		else if(child.Token(0) == "event")
+		{
+			gameEvents.push_back(GameEvent());
+			gameEvents.back().Load(child);
+		}
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -274,6 +286,19 @@ void PlayerInfo::Save() const
 	if(shouldLaunch)
 		out.Write("launching");
 	
+	for(const GameEvent &event : gameEvents)
+		event.Save(out);
+	if(!dataChanges.empty())
+	{
+		out.Write("changes");
+		out.BeginChild();
+		
+		for(const DataNode &node : dataChanges)
+			out.Write(node);
+		
+		out.EndChild();
+	}
+	
 	for(const System *system : visited)
 		out.Write("visited", system->Name());
 }
@@ -318,6 +343,10 @@ void PlayerInfo::New()
 	accounts.AddMortgage(480000);
 	
 	CreateMissions();
+	
+	for(const auto &it : GameData::Events())
+		if(it.second.GetDate())
+			AddEvent(it.second, it.second.GetDate());
 }
 
 
@@ -328,8 +357,28 @@ void PlayerInfo::ApplyChanges()
 	for(const auto &it : reputationChanges)
 		GameData::GetPolitics().SetReputation(it.first, it.second);
 	reputationChanges.clear();
+	AddChanges(dataChanges);
+}
+
+
+
+void PlayerInfo::AddChanges(std::list<DataNode> &changes)
+{
+	for(const DataNode &change : changes)
+		GameData::Change(change);
 	
-	// TODO: Allow changes to the galaxy.
+	// Only move the changes into my list if they are not already there.
+	if(&changes != &dataChanges)
+		dataChanges.splice(dataChanges.end(), changes);
+}
+
+
+
+// Add an event that will happen at the given date.
+void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
+{
+	gameEvents.push_back(event);
+	gameEvents.back().SetDate(date);
 }
 
 
@@ -397,9 +446,22 @@ const Date &PlayerInfo::GetDate() const
 
 
 
-string PlayerInfo::IncrementDate()
+void PlayerInfo::IncrementDate()
 {
 	++date;
+	
+	// Check if any special events should happen today.
+	auto it = gameEvents.begin();
+	while(it != gameEvents.end())
+	{
+		if(date < it->GetDate())
+			++it;
+		else
+		{
+			it->Apply(*this);
+			it = gameEvents.erase(it);
+		}
+	}
 	
 	// Check if any missions have failed because of deadlines.
 	for(Mission &mission : missions)
@@ -435,7 +497,9 @@ string PlayerInfo::IncrementDate()
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cost() + ship->Cargo().Value(system);
 	
-	return accounts.Step(assets, Salaries());
+	string message = accounts.Step(assets, Salaries());
+	if(!message.empty())
+		Messages::Add(message);
 }
 
 

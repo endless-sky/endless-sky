@@ -480,9 +480,7 @@ void Engine::EnterSystem()
 		if(object.GetPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());
 	
-	string message = player.IncrementDate();
-	if(!message.empty())
-		Messages::Add(message);
+	player.IncrementDate();
 	const Date &today = player.GetDate();
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited() ?

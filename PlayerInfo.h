@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Account.h"
 #include "CargoHold.h"
 #include "Date.h"
+#include "GameEvent.h"
 #include "Mission.h"
 
 #include <list>
@@ -25,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
+class DataNode;
 class Government;
 class Outfit;
 class Planet;
@@ -58,6 +60,9 @@ public:
 	void New();
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
+	void AddChanges(std::list<DataNode> &changes);
+	// Add an event that will happen at the given date.
+	void AddEvent(const GameEvent &event, const Date &date);
 	
 	// Mark the player as dead, or check if they have died.
 	void Die();
@@ -68,8 +73,7 @@ public:
 	void SetName(const std::string &first, const std::string &last);
 	
 	const Date &GetDate() const;
-	// Increment the date, and return a string summarizing daily payments.
-	std::string IncrementDate();
+	void IncrementDate();
 	
 	// Get the color swizzle to use for the player's ships.
 	int GetSwizzle() const;
@@ -181,6 +185,9 @@ private:
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
+	std::list<DataNode> dataChanges;
+	// Events that are going to happen some time in the future:
+	std::list<GameEvent> gameEvents;
 	
 	bool freshlyLoaded;
 };
