@@ -30,6 +30,10 @@ public:
 	// conversation text.
 	std::string LongString() const;
 	
+	// Check if this date has been initialized.
+	operator bool() const;
+	bool operator!() const;
+	
 	void operator++();
 	void operator++(int);
 	Date operator+(int days) const;

@@ -101,6 +101,21 @@ string Date::LongString() const
 
 
 
+// Check if this date has been initialized.
+Date::operator bool() const
+{
+	return !!*this;
+}
+
+
+
+bool Date::operator!() const
+{
+	return !today;
+}
+
+
+
 void Date::operator++()
 {
 	today += SECONDS_PER_DAY;
