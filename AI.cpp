@@ -710,7 +710,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 	const Government *gov = ship.GetGovernment();
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
-		if(!weapon.IsReady() || (!target && weapon.IsHoming()))
+		if(!weapon.IsReady() || (!ship.GetTargetShip() && weapon.IsHoming()))
 		{
 			bit <<= 1;
 			continue;
