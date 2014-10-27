@@ -42,6 +42,15 @@ effect "blaster impact"
 	"random angle" 40
 	"velocity scale" -.05
 
+effect "particle impact"
+	sprite "effect/particle impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 35
+	"random angle" 2
+	"velocity scale" -.05
+	"random spin" 10
+
 effect "plasma explosion"
 	sprite "effect/plasma explosion"
 		"no repeat"

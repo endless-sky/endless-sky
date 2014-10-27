@@ -257,7 +257,7 @@ outfit "Particle Cannon"
 	weapon
 		sprite "projectile/particle beam"
 		sound "particle"
-		"hit effect" "tiny explosion"
+		"hit effect" "particle impact"
 		"inaccuracy" .5
 		"velocity" 30
 		"lifetime" 25
