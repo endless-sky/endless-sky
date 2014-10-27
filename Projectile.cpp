@@ -47,6 +47,9 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 	double inaccuracy = weapon->WeaponGet("inaccuracy");
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
+	double scale = weapon->WeaponGet("velocity scale");
+	if(scale)
+		velocity *= scale;
 	
 	velocity += this->angle.Unit() * weapon->WeaponGet("velocity");
 }
