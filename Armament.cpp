@@ -125,11 +125,11 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 		double steps = RendevousTime(p, v, outfit->WeaponGet("velocity"));
 		
 		// Special case: RendevousTime() may return NaN. But in that case, this
-		// comparison will return false. Also, if the target is out of range,
-		// just fire toward its current location instead of extrapolating way
-		// into the future.
-		if(steps < outfit->WeaponGet("lifetime"))
-			p += steps * v;
+		// comparison will return false.
+		if(!(steps < outfit->Lifetime()))
+			steps = outfit->Lifetime();
+		
+		p += steps * v;
 		
 		aim = Angle((180. / M_PI) * atan2(p.X(), -p.Y()));
 	}
@@ -192,7 +192,7 @@ void Armament::Weapon::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		
 		// Find the point of convergence of shots fired from this gun.
-		double d = outfit->WeaponGet("range");
+		double d = outfit->Range();
 		// The angle is therefore:
 		angle = Angle(asin(point.X() / d) * (-180. / M_PI));
 	}

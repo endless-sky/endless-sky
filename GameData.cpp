@@ -179,7 +179,8 @@ void GameData::BeginLoad(const char * const *argv)
 			<< "homing" << '\t' << "strength" << '\n';
 		for(auto &it : outfits)
 		{
-			if(!it.second.IsWeapon())
+			// Skip non-weapons and submunitions.
+			if(!it.second.IsWeapon() || !it.second.WeaponGet("reload"))
 				continue;
 			
 			const Outfit &outfit = it.second;
@@ -187,17 +188,16 @@ void GameData::BeginLoad(const char * const *argv)
 			cout << outfit.Cost() << '\t';
 			cout << -outfit.Get("weapon capacity") << '\t';
 			
-			double range = outfit.WeaponGet("lifetime") * outfit.WeaponGet("velocity");
-			cout << range << '\t';
+			cout << outfit.Range() << '\t';
 			
 			double energy = outfit.WeaponGet("firing energy") * 60. / outfit.WeaponGet("reload");
 			cout << energy << '\t';
 			double heat = outfit.WeaponGet("firing heat") * 60. / outfit.WeaponGet("reload");
 			cout << heat << '\t';
 			
-			double shield = outfit.WeaponGet("shield damage") * 60. / outfit.WeaponGet("reload");
+			double shield = outfit.ShieldDamage() * 60. / outfit.WeaponGet("reload");
 			cout << shield << '\t';
-			double hull = outfit.WeaponGet("hull damage") * 60. / outfit.WeaponGet("reload");
+			double hull = outfit.HullDamage() * 60. / outfit.WeaponGet("reload");
 			cout << hull << '\t';
 			
 			cout << outfit.WeaponGet("homing") << '\t';
