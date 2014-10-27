@@ -131,7 +131,7 @@ fleet "Large Core Merchants"
 		"Quicksilver" 2
 	variant 50
 		"Bulk Freighter"
-		"Wasp" 2
+		"Wasp (Proton)" 2
 	variant 20
 		"Bulk Freighter"
 	variant 20
@@ -157,7 +157,7 @@ fleet "Large Core Merchants"
 		"Bactrian"
 	variant 5
 		"Arrow"
-		"Wasp" 2
+		"Wasp (Proton)" 2
 	variant 2
 		"Arrow"
 
@@ -575,7 +575,7 @@ fleet "Small Core Pirates"
 		plunders
 	"hostile hail" "hostile pirate"
 	variant 4
-		"Quicksilver"
+		"Quicksilver (Proton)"
 	variant 2
 		"Sparrow"
 	variant 3
@@ -596,7 +596,9 @@ fleet "Large Core Pirates"
 		"Quicksilver" 3
 	variant 3
 		"Splinter"
-		"Quicksilver"
+		"Quicksilver (Proton)"
+	variant 4
+		"Manta (Proton)"
 	variant 2
 		"Splinter" 2
 	variant 1
