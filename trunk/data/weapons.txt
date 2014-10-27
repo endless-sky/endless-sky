@@ -296,7 +296,7 @@ outfit "Proton Fragment"
 		sprite "projectile/proton fragment"
 			"no repeat"
 			"frame rate" 2
-		"hit effect" "tiny explosion"
+		"hit effect" "proton impact"
 		"inaccuracy" 2
 		"velocity scale" .0001
 		"velocity" 24
