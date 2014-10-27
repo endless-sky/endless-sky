@@ -312,7 +312,8 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 		else
 		{
 			CircleAround(control, ship, *target);
-			control.SetScanCommand();
+			if(ship.GetGovernment() != GameData::PlayerGovernment())
+				control.SetScanCommand();
 		}
 		return;
 	}
@@ -608,11 +609,10 @@ void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
-		if(outfit->WeaponGet("anti-missile"))
+		if(!outfit || outfit->WeaponGet("anti-missile"))
 			continue;
 		
-		double range = outfit->WeaponGet("lifetime") * outfit->WeaponGet("velocity");
-		shortestRange = min(range, shortestRange);
+		shortestRange = min(outfit->Range(), shortestRange);
 	}
 	// If this ship only has long-range weapons, it should keep its distance
 	// instead of trying to close with the target ship.
@@ -684,10 +684,10 @@ Point AI::TargetAim(const Ship &ship) const
 		if(!(steps == steps))
 			continue;
 		
-		steps = min(steps, outfit->WeaponGet("lifetime"));
+		steps = min(steps, outfit->Lifetime());
 		p += steps * v;
 		
-		double damage = outfit->WeaponGet("shield damage") + outfit->WeaponGet("hull damage");
+		double damage = outfit->ShieldDamage() + outfit->HullDamage();
 		result += p.Unit() * damage;
 	}
 	
@@ -718,7 +718,7 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 		
 		const Outfit *outfit = weapon.GetOutfit();
 		double vp = outfit->WeaponGet("velocity");
-		double lifetime = outfit->WeaponGet("lifetime");
+		double lifetime = outfit->Lifetime();
 		
 		for(auto target : ships)
 		{
