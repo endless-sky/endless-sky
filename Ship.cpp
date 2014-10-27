@@ -1386,10 +1386,14 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		shields -= shieldDamage;
 		heat += .25 * heatDamage;
 	}
-	else
+	else if(!shields || shieldDamage)
 	{
-		hull -= hullDamage * (1. - (shields / shieldDamage));
-		shields = 0.;
+		if(shieldDamage)
+		{
+			hullDamage *= (1. - (shields / shieldDamage));
+			shields = 0.;
+		}
+		hull -= hullDamage;
 		heat += heatDamage;
 	}
 	
