@@ -126,3 +126,129 @@ ship Raven "Raven (Afterburner)"
 	explode "big explosion" 16
 	explode "tiny explosion" 28
 	explode "small explosion" 40
+
+ship "Wasp" "Wasp (Proton)"
+	sprite "ship/wasp"
+	licenses Republic
+		Pilot's
+	attributes
+		category "Interceptor"
+		"cost" 400000
+		"shields" 1500
+		"hull" 500
+		"required crew" 1
+		"bunks" 2
+		"mass" 60
+		"drag" 1.2
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 150
+		"weapon capacity" 28
+		"engine capacity" 60
+		weapon
+			"blast radius" 50
+			"shield damage" 200
+			"hull damage" 100
+			"hit force" 300
+	outfits
+		"Proton Gun"
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+	engine -6 33
+	engine 6 33
+	gun 0 -38 "Proton Gun"
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+
+ship "Manta" "Manta (Proton)"
+	sprite "ship/manta"
+	licenses Republic
+		Pilot's
+		Warship
+	attributes
+		category "Light Warship"
+		"cost" 3400000
+		"shields" 5900
+		"hull" 1500
+		"required crew" 6
+		"bunks" 10
+		"mass" 170
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 340
+		"weapon capacity" 140
+		"engine capacity" 100
+		weapon
+			"blast radius" 40
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Proton Gun" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
+		"RT-I Radiothermal"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+	engine -33 38
+	engine 33 38
+	gun -21 -35 "Meteor Missile Launcher"
+	gun 21 -35 "Meteor Missile Launcher"
+	gun -27 -35 "Proton Gun"
+	gun 27 -35 "Proton Gun"
+	gun -66 -32 "Proton Gun"
+	gun 66 -32 "Proton Gun"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+
+ship "Quicksilver" "Quicksilver (Proton)"
+	sprite "ship/quicksilver"
+	licenses Republic
+		Pilot's
+		Warship
+	attributes
+		category "Light Warship"
+		"cost" 1590000
+		"shields" 3200
+		"hull" 800
+		"required crew" 3
+		"bunks" 6
+		"mass" 120
+		"drag" 2.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 240
+		"weapon capacity" 60
+		"engine capacity" 70
+		weapon
+			"blast radius" 50
+			"shield damage" 200
+			"hull damage" 100
+			"hit force" 300
+	outfits
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"LP036a Battery Pack"
+		"Proton Gun" 2
+		"D23-QP Shield Generator"
+		"RT-I Radiothermal"
+		"Cooling Ducts"
+		"Hyperdrive"
+	engine -17 54
+	engine 17 54
+	gun -6 -38 "Proton Gun"
+	gun 6 -38 "Proton Gun"
+	explode "tiny explosion" 12
+	explode "small explosion" 16

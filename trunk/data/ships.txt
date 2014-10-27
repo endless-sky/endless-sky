@@ -1740,13 +1740,11 @@ ship "Splinter"
 		"Water Coolant System"
 		"Hyperdrive"
 		"Blaster Turret" 3
-		"Particle Cannon" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
+		"Proton Gun" 2
 	engine -15 115
 	engine 15 115
-	gun -15 -80 "Particle Cannon"
-	gun 15 -80 "Particle Cannon"
+	gun -15 -80 "Proton Gun"
+	gun 15 -80 "Proton Gun"
 	turret -17 -28 "Blaster Turret"
 	turret 0 -28 "Blaster Turret"
 	turret 17 -28 "Blaster Turret"
@@ -1836,7 +1834,7 @@ ship "Wasp"
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 150
-		"weapon capacity" 25
+		"weapon capacity" 28
 		"engine capacity" 60
 		weapon
 			"blast radius" 50
