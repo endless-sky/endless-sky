@@ -224,23 +224,22 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 	
 	attributeLabels.push_back("range:");
-	attributeValues.push_back(Format::Number(
-		outfit.WeaponGet("velocity") * outfit.WeaponGet("lifetime")));
+	attributeValues.push_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
-	if(outfit.WeaponGet("shield damage"))
+	if(outfit.ShieldDamage())
 	{
 		attributeLabels.push_back("shield damage / second:");
 		attributeValues.push_back(Format::Number(
-			60. * outfit.WeaponGet("shield damage") / outfit.WeaponGet("reload")));
+			60. * outfit.ShieldDamage() / outfit.WeaponGet("reload")));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.WeaponGet("hull damage"))
+	if(outfit.HullDamage())
 	{
 		attributeLabels.push_back("hull damage / second:");
 		attributeValues.push_back(Format::Number(
-			60. * outfit.WeaponGet("hull damage") / outfit.WeaponGet("reload")));
+			60. * outfit.HullDamage() / outfit.WeaponGet("reload")));
 		attributesHeight += 20;
 	}
 	

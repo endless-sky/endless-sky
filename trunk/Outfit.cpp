@@ -74,8 +74,6 @@ void Outfit::Load(const DataNode &node)
 				else if(grand.Size() >= 2)
 					weapon[grand.Token(0)] = grand.Value(1);
 			}
-			weapon["range"] = weapon["lifetime"] * (
-				weapon["velocity"] + .5 * weapon["acceleration"] * weapon["lifetime"]);
 		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
@@ -266,4 +264,45 @@ const map<const Effect *, int> Outfit::DieEffects() const
 const map<const Outfit *, int> Outfit::Submunitions() const
 {
 	return submunitions;
+}
+
+
+
+// Get weapon lifetime, including submunitions.
+double Outfit::Lifetime() const
+{
+	double lifetime = 0.;
+	for(const auto &it : submunitions)
+		lifetime = max(lifetime, it.first->Lifetime());
+	
+	return lifetime + WeaponGet("lifetime");
+}
+
+
+
+double Outfit::Range() const
+{
+	return Lifetime() * WeaponGet("velocity");
+}
+
+
+
+double Outfit::ShieldDamage() const
+{
+	double damage = 0.;
+	for(const auto &it : submunitions)
+		damage += it.first->ShieldDamage() * it.second;
+	
+	return damage + WeaponGet("shield damage");
+}
+
+
+
+double Outfit::HullDamage() const
+{
+	double damage = 0.;
+	for(const auto &it : submunitions)
+		damage += it.first->HullDamage() * it.second;
+	
+	return damage + WeaponGet("hull damage");
 }
