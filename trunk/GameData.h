@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Fleet.h"
 #include "Galaxy.h"
+#include "GameEvent.h"
 #include "Government.h"
 #include "Interface.h"
 #include "Key.h"
@@ -38,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Date;
+class DataNode;
 
 
 
@@ -55,10 +57,13 @@ public:
 	// Revert any changes that have been made to the universe.
 	static void Revert();
 	static void SetDate(const Date &date);
+	// Apply the given change to the universe.
+	static void Change(const DataNode &node);
 	
 	static const Set<Color> &Colors();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
+	static const Set<GameEvent> &Events();
 	static const Set<Fleet> &Fleets();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();

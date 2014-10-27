@@ -238,7 +238,10 @@ void Conversation::Load(const DataNode &node)
 
 void Conversation::Save(DataWriter &out) const
 {
-	out.Write("conversation", identifier);
+	if(!identifier.empty())
+		out.Write("conversation", identifier);
+	else
+		out.Write("conversation");
 	out.BeginChild();
 	
 	if(scene)
