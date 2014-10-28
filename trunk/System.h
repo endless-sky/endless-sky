@@ -61,8 +61,6 @@ public:
 	
 	
 public:
-	System();
-	
 	// Load a system's description.
 	void Load(const DataNode &node, Set<Planet> &planets);
 	void Change(const DataNode &node, Set<Planet> &planets);
@@ -118,7 +116,7 @@ private:
 	// Name and position (within the star map) of this system.
 	std::string name;
 	Point position;
-	const Government *government;
+	const Government *government = nullptr;
 	// Hyperspace links to other systems.
 	std::vector<const System *> links;
 	std::vector<const System *> neighbors;
@@ -130,7 +128,7 @@ private:
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
 	std::vector<FleetProbability> fleets;
-	double habitable;
+	double habitable = 1000.;
 	
 	// Commodity prices.
 	std::map<std::string, int> trade;

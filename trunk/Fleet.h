@@ -63,8 +63,8 @@ private:
 	const ShipName *friendlyHail = nullptr;
 	const ShipName *hostileHail = nullptr;
 	std::vector<Variant> variants;
-	int cargo;
-	int total;
+	int cargo = 3;
+	int total = 0;
 	
 	Personality personality;
 };

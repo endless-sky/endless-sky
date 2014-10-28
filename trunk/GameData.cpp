@@ -310,7 +310,7 @@ void GameData::Change(const DataNode &node)
 {
 	// TODO: Each of these classes needs a function that allows it to be changed.
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
-		fleets.Get(node.Token(1));
+		fleets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)
 		governments.Get(node.Token(1));
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
@@ -320,7 +320,7 @@ void GameData::Change(const DataNode &node)
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1))->Load(node, ships);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
-		systems.Get(node.Token(1))->Change(node, planets);
+		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
