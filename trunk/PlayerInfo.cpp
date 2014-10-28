@@ -68,6 +68,10 @@ void PlayerInfo::Clear()
 	selectedWeapon = nullptr;
 	freshlyLoaded = true;
 	
+	reputationChanges.clear();
+	gameEvents.clear();
+	dataChanges.clear();
+	
 #ifdef __APPLE__
 	Random::Seed(time(NULL));
 #else

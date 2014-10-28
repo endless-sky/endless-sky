@@ -34,7 +34,8 @@ void GameEvent::Load(const DataNode &node)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "system" || child.Token(0) == "planet"
 				|| child.Token(0) == "shipyard" || child.Token(0) == "outfitter"
-				|| child.Token(0) == "fleet" || child.Token(0) == "government")
+				|| child.Token(0) == "fleet" || child.Token(0) == "government"
+				|| child.Token(0) == "link" || child.Token(0) == "unlink")
 			changes.push_back(child);
 	}
 }

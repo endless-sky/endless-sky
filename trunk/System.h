@@ -69,6 +69,10 @@ public:
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
 	
+	// Modify a system's links.
+	void Link(System *other);
+	void Unlink(System *other);
+	
 	// Get this system's name and position (in the star map).
 	const std::string &Name() const;
 	const Point &Position() const;

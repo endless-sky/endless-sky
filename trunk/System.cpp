@@ -163,6 +163,48 @@ void System::UpdateNeighbors(const Set<System> &systems)
 
 
 
+// Modify a system's links.
+void System::Link(System *other)
+{
+	if(find(links.begin(), links.end(), other) == links.end())
+		links.push_back(other);
+	if(find(other->links.begin(), other->links.end(), this) == other->links.end())
+		other->links.push_back(this);
+	
+	if(find(neighbors.begin(), neighbors.end(), other) == neighbors.end())
+		neighbors.push_back(other);
+	if(find(other->neighbors.begin(), other->neighbors.end(), this) == other->neighbors.end())
+		other->neighbors.push_back(this);
+}
+
+
+
+void System::Unlink(System *other)
+{
+	auto it = find(links.begin(), links.end(), other);
+	if(it != links.end())
+		links.erase(it);
+	
+	it = find(other->links.begin(), other->links.end(), this);
+	if(it != other->links.end())
+		other->links.erase(it);
+	
+	// If the only reason these systems are neighbors is because of a hyperspace
+	// link, they are no longer neighbors.
+	if(position.Distance(other->position) > NEIGHBOR_DISTANCE)
+	{
+		it = find(neighbors.begin(), neighbors.end(), other);
+		if(it != neighbors.end())
+			neighbors.erase(it);
+		
+		it = find(other->neighbors.begin(), other->neighbors.end(), this);
+		if(it != other->neighbors.end())
+			other->neighbors.erase(it);
+	}
+}
+
+
+
 // Get this system's name and position (in the star map).
 const string &System::Name() const
 {
