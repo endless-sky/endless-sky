@@ -320,7 +320,7 @@ void GameData::Change(const DataNode &node)
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
 		shipSales.Get(node.Token(1));
 	else if(node.Token(0) == "system" && node.Size() >= 2)
-		systems.Get(node.Token(1));
+		systems.Get(node.Token(1))->Change(node, planets);
 	else if(node.Token(0) == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(node.Token(0) == "unlink" && node.Size() >= 3)
