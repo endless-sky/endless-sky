@@ -122,11 +122,9 @@ bool Planet::HasShipyard() const
 // Get the list of ships in the shipyard.
 const Sale<Ship> &Planet::Shipyard() const
 {
-	if(shipyard.empty() && !shipSales.empty())
-	{
-		for(const Sale<Ship> *sale : shipSales)
-			shipyard.Add(*sale);
-	}
+	shipyard.clear();
+	for(const Sale<Ship> *sale : shipSales)
+		shipyard.Add(*sale);
 	
 	return shipyard;
 }
@@ -144,11 +142,9 @@ bool Planet::HasOutfitter() const
 // Get the list of outfits available from the outfitter.
 const Sale<Outfit> &Planet::Outfitter() const
 {
-	if(outfitter.empty() && !outfitSales.empty())
-	{
-		for(const Sale<Outfit> *sale : outfitSales)
-			outfitter.Add(*sale);
-	}
+	outfitter.clear();
+	for(const Sale<Outfit> *sale : outfitSales)
+		outfitter.Add(*sale);
 	
 	return outfitter;
 }
