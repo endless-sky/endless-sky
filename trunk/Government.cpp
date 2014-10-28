@@ -50,14 +50,14 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "color" && child.Size() >= 4)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
-			initialPlayerReputation = child.Value(1.);
+			initialPlayerReputation = child.Value(1);
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 				{
 					const Government *gov = GameData::Governments().Get(grand.Token(0));
-					initialAttitudeToward[gov] = grand.Value(1);
+					attitudeToward[gov] = grand.Value(1);
 				}
 		}
 		else if(child.Token(0) == "penalty for")
@@ -112,10 +112,13 @@ const Color &Government::GetColor() const
 
 // Get the government's initial disposition toward other governments or
 // toward the player.
-double Government::InitialAttitudeToward(const Government *other) const
+double Government::AttitudeToward(const Government *other) const
 {
-	auto it = initialAttitudeToward.find(other);
-	return (it == initialAttitudeToward.end() ? 0. : it->second);
+	if(other == this)
+		return 1.;
+	
+	auto it = attitudeToward.find(other);
+	return (it == attitudeToward.end() ? 0. : it->second);
 }
 
 
@@ -148,7 +151,7 @@ double Government::GetBribeFraction() const
 
 
 	
-// Check if, according to the politcs stored by GameData, this government is
+// Check if, according to the politics stored by GameData, this government is
 // an enemy of the given government right now.
 bool Government::IsEnemy(const Government *other) const
 {
