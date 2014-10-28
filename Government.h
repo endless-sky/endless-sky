@@ -46,7 +46,7 @@ public:
 	
 	// Get the government's initial disposition toward other governments or
 	// toward the player.
-	double InitialAttitudeToward(const Government *other) const;
+	double AttitudeToward(const Government *other) const;
 	double InitialPlayerReputation() const;
 	// Get the amount that your reputation changes for the given offense. The
 	// given value should be a combination of one or more ShipEvent values.
@@ -55,7 +55,7 @@ public:
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
 	
-	// Check if, according to the politcs stored by GameData, this government is
+	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
 	bool IsEnemy(const Government *other) const;
 	
@@ -65,7 +65,7 @@ private:
 	int swizzle;
 	Color color;
 	
-	std::map<const Government *, double> initialAttitudeToward;
+	std::map<const Government *, double> attitudeToward;
 	double initialPlayerReputation;
 	std::map<int, double> penaltyFor;
 	double bribe;

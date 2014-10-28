@@ -34,16 +34,6 @@ public:
 	
 	bool IsEnemy(const Government *first, const Government *second) const;
 	
-	// Get the attitude of one government toward another. This does not apply to
-	// the player's government, which uses "reputation" instead.
-	double Attitude(const Government *gov, const Government *other) const;
-	// Set the attitude of the given government toward the other government. A
-	// positive value means they are allies, i.e. anything that affects your
-	// reputation with one affects it with the other. A negative value means
-	// that whatever hurts your reputation with one, helps it with the other.
-	// The value should be between -1 and 1, controlling how strongly your
-	// reputation is affected.
-	void SetAttitude(const Government *gov, const Government *other, double value);
 	// Commit the given "offense" against the given government (which may not
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the even type is PROVOKE), or a permanent change to your
@@ -81,7 +71,6 @@ private:
 	// The relationships need not be perfectly symmetrical. For example, just
 	// because Republic ships will help a merchant under attack does not mean
 	// that merchants will come to the aid of Republic ships.
-	std::map<const Government *, std::map<const Government *, double>> attitudeToward;
 	std::map<const Government *, double> reputationWith;
 	std::set<const Government *> provoked;
 	std::set<const Government *> bribed;

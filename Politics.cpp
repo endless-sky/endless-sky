@@ -28,18 +28,11 @@ using namespace std;
 // Reset to the initial political state defined in the game data.
 void Politics::Reset()
 {
-	attitudeToward.clear();
 	reputationWith.clear();
 	ResetProvocation();
 	
 	for(const auto &it : GameData::Governments())
-	{
-		const Government *gov = &it.second;
-		reputationWith[gov] = it.second.InitialPlayerReputation();
-		for(const auto &oit : GameData::Governments())
-			attitudeToward[gov][&oit.second] = oit.second.InitialAttitudeToward(gov);
-		attitudeToward[gov][gov] = 1.;
-	}
+		reputationWith[&it.second] = it.second.InitialPlayerReputation();
 }
 
 
@@ -66,37 +59,7 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 	
 	// Neither government is the player, so the question of enemies depends only
 	// on the attitude matrix.
-	return (Attitude(first, second) < 0. || Attitude(second, first) < 0.);
-}
-
-
-
-// Get the attitude of one government toward another. This does not apply to
-// the player's government, which uses "reputation" instead.
-double Politics::Attitude(const Government *gov, const Government *other) const
-{
-	auto oit = attitudeToward.find(other);
-	if(oit == attitudeToward.end())
-		return 0.;
-	
-	auto it = oit->second.find(gov);
-	if(it == oit->second.end())
-		return 0.;
-	
-	return it->second; 
-}
-
-
-
-// Set the attitude of the given government toward the other government. A
-// positive value means they are allies, i.e. anything that affects your
-// reputation with one affects it with the other. A negative value means
-// that whatever hurts your reputation with one, helps it with the other.
-// The value should be between -1 and 1, controlling how strongly your
-// reputation is affected.
-void Politics::SetAttitude(const Government *gov, const Government *other, double value)
-{
-	attitudeToward[other][gov] = value;
+	return (first->AttitudeToward(second) < 0. || second->AttitudeToward(first) < 0.);
 }
 
 
@@ -119,22 +82,25 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			bribed.erase(it);
 	}
 	
-	for(const auto &other : attitudeToward[gov])
+	for(const auto &it : GameData::Governments())
 	{
+		const Government *gov = &it.second;
+		double weight = gov->AttitudeToward(GameData::PlayerGovernment());
+		
 		// You can provoke a government even by attacking an empty ship, such as
 		// a drone (count = 0, because count = crew).
 		if(eventType & ShipEvent::PROVOKE)
 		{
-			if(other.second > 0.)
-				provoked.insert(other.first);
+			if(weight > 0.)
+				provoked.insert(gov);
 		}
-		else if(count * other.second)
+		else if(count * weight)
 		{
-			double penalty = (count * other.second) * other.first->PenaltyFor(eventType);
+			double penalty = (count * weight) * gov->PenaltyFor(eventType);
 			if(eventType & ShipEvent::ATROCITY)
-				reputationWith[other.first] = min(0., reputationWith[other.first]);
+				reputationWith[gov] = min(0., reputationWith[gov]);
 			
-			reputationWith[other.first] -= penalty;
+			reputationWith[gov] -= penalty;
 		}
 	}
 }
