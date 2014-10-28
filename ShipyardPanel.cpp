@@ -117,7 +117,7 @@ bool ShipyardPanel::CanBuy() const
 	int cost = selectedShip->Cost();
 	
 	// Check that the player has any necessary licenses.
-	uint64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost();
 	if(licenseCost < 0)
 		return false;
 	cost += licenseCost;
@@ -129,7 +129,7 @@ bool ShipyardPanel::CanBuy() const
 
 void ShipyardPanel::Buy()
 {
-	uint64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost();
 	if(licenseCost < 0)
 		return;
 	
@@ -180,7 +180,7 @@ int ShipyardPanel::Modifier() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
-	uint64_t licenseCost = LicenseCost();
+	int64_t licenseCost = LicenseCost();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
@@ -206,9 +206,9 @@ void ShipyardPanel::SellShip()
 
 
 
-uint64_t ShipyardPanel::LicenseCost() const
+int64_t ShipyardPanel::LicenseCost() const
 {
-	uint64_t cost = 0;
+	int64_t cost = 0;
 	const vector<string> &licenses = selectedShip->Licenses(player.GetSystem()->GetGovernment());
 	for(const string &name : licenses)
 		if(player.GetCondition("license: " + name) <= 0)

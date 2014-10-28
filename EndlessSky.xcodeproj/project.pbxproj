@@ -115,6 +115,8 @@
 		A9E84C7D196215140058DFB7 /* CaptureOdds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C77196215140058DFB7 /* CaptureOdds.cpp */; };
 		A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C79196215140058DFB7 /* HiringPanel.cpp */; };
 		A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C7B196215140058DFB7 /* Personality.cpp */; };
+		A9F26FB71A003D8600A4B5BA /* Galaxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F26FB31A003D8600A4B5BA /* Galaxy.cpp */; };
+		A9F26FB81A003D8600A4B5BA /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F26FB51A003D8600A4B5BA /* GameEvent.cpp */; };
 		A9F4DBBE19D21F030015BBE2 /* ConditionSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */; };
 		A9F4DBC119D21F150015BBE2 /* MissionAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBBF19D21F150015BBE2 /* MissionAction.cpp */; };
 		A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBC219D21F260015BBE2 /* NPC.cpp */; };
@@ -340,6 +342,10 @@
 		A9E84C7A196215140058DFB7 /* HiringPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiringPanel.h; sourceTree = "<group>"; };
 		A9E84C7B196215140058DFB7 /* Personality.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Personality.cpp; sourceTree = "<group>"; };
 		A9E84C7C196215140058DFB7 /* Personality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Personality.h; sourceTree = "<group>"; };
+		A9F26FB31A003D8600A4B5BA /* Galaxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Galaxy.cpp; sourceTree = "<group>"; };
+		A9F26FB41A003D8600A4B5BA /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
+		A9F26FB51A003D8600A4B5BA /* GameEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEvent.cpp; sourceTree = "<group>"; };
+		A9F26FB61A003D8600A4B5BA /* GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEvent.h; sourceTree = "<group>"; };
 		A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConditionSet.cpp; sourceTree = "<group>"; };
 		A9F4DBBD19D21F030015BBE2 /* ConditionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSet.h; sourceTree = "<group>"; };
 		A9F4DBBF19D21F150015BBE2 /* MissionAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionAction.cpp; sourceTree = "<group>"; };
@@ -437,8 +443,12 @@
 				A959553C199572A7005197E6 /* Format.h */,
 				A99F7A88195DF44B002C30B8 /* FrameTimer.cpp */,
 				A99F7A89195DF44B002C30B8 /* FrameTimer.h */,
+				A9F26FB31A003D8600A4B5BA /* Galaxy.cpp */,
+				A9F26FB41A003D8600A4B5BA /* Galaxy.h */,
 				A99F7A8A195DF44B002C30B8 /* GameData.cpp */,
 				A99F7A8B195DF44B002C30B8 /* GameData.h */,
+				A9F26FB51A003D8600A4B5BA /* GameEvent.cpp */,
+				A9F26FB61A003D8600A4B5BA /* GameEvent.h */,
 				A99F7A8C195DF44B002C30B8 /* Government.cpp */,
 				A99F7A8D195DF44B002C30B8 /* Government.h */,
 				4644543D19BA9A7C00D5A235 /* HailPanel.cpp */,
@@ -695,6 +705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99F7B1B195DF44C002C30B8 /* PointerShader.cpp in Sources */,
+				A9F26FB71A003D8600A4B5BA /* Galaxy.cpp in Sources */,
 				A99F7B2D195DF44C002C30B8 /* System.cpp in Sources */,
 				A99F7B00195DF44C002C30B8 /* Font.cpp in Sources */,
 				A99F7B19195DF44C002C30B8 /* PlayerInfo.cpp in Sources */,
@@ -718,6 +729,7 @@
 				A99F7B2A195DF44C002C30B8 /* SpriteShader.cpp in Sources */,
 				A9C81F8E1978741400EBA833 /* Random.cpp in Sources */,
 				A99F7AF4195DF44C002C30B8 /* ConversationPanel.cpp in Sources */,
+				A9F26FB81A003D8600A4B5BA /* GameEvent.cpp in Sources */,
 				A99F7B1F195DF44C002C30B8 /* Screen.cpp in Sources */,
 				A99F7B1C195DF44C002C30B8 /* PreferencesPanel.cpp in Sources */,
 				A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */,
