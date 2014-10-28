@@ -27,18 +27,19 @@ using namespace std;
 
 
 Fleet::Fleet()
-	: cargo(3), total(0)
 {
+	government = GameData::Governments().Get("Merchant");
+	names = GameData::ShipNames().Get("civilian");
+	fighterNames = GameData::ShipNames().Get("deep fighter");
 }
 
 
 
 void Fleet::Load(const DataNode &node)
 {
-	// Provide defaults for these in case they are not specified.
-	government = GameData::Governments().Get("Merchant");
-	names = GameData::ShipNames().Get("civilian");
-	fighterNames = GameData::ShipNames().Get("deep fighter");
+	// If Load() has already been called once on this fleet, any subsequent
+	// calls will replace the variants instead of adding to them.
+	bool resetVariants = !variants.empty();
 	
 	for(const DataNode &child : node)
 	{
@@ -58,6 +59,12 @@ void Fleet::Load(const DataNode &node)
 			personality.Load(child);
 		else if(child.Token(0) == "variant")
 		{
+			if(resetVariants)
+			{
+				resetVariants = false;
+				variants.clear();
+				total = 0;
+			}
 			variants.emplace_back(child);
 			total += variants.back().weight;
 		}

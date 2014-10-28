@@ -78,32 +78,13 @@ int System::FleetProbability::Period() const
 
 
 
-System::System()
-	: government(nullptr)
-{
-}
-
-
-
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
 	name = node.Token(1);
-	habitable = 1000.;
-	links.clear();
-	asteroids.clear();
-	fleets.clear();
-	objects.clear();
 	
-	Change(node, planets);
-}
-
-
-
-void System::Change(const DataNode &node, Set<Planet> &planets)
-{
 	// If this is truly a change and not just being called by Load(), these sets
 	// of objects will be entirely replaced by any new ones, rather than adding
 	// the new ones on to the end of the list:
