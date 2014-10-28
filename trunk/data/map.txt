@@ -133,7 +133,7 @@ system Achernar
 
 system Acrux
 	pos -808 192
-	government "Free Worlds"
+	government "Republic"
 	habitable 590.625
 	link Minkar
 	link "Zeta Centauri"
@@ -155,8 +155,8 @@ system Acrux
 	trade Plastic 448
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1000
-	fleet "Small Free Worlds" 800
-	fleet "Large Free Worlds" 1200
+	fleet "Small Militia" 800
+	fleet "Large Militia" 1200
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2400
 	object
@@ -329,7 +329,7 @@ system "Al Dhanab"
 
 system Albaldah
 	pos -350 484
-	government "Free Worlds"
+	government "Republic"
 	habitable 534.375
 	link Albireo
 	link Girtab
@@ -354,8 +354,8 @@ system Albaldah
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Southern Pirates" 800
 	fleet "Large Southern Pirates" 1200
-	fleet "Small Free Worlds" 1400
-	fleet "Large Free Worlds" 2400
+	fleet "Small Militia" 1400
+	fleet "Large Militia" 2400
 	fleet Quarg 3000
 	object
 		sprite star/k5
@@ -397,7 +397,7 @@ system Albaldah
 
 system Albireo
 	pos -270 503
-	government "Free Worlds"
+	government "Republic"
 	habitable 760
 	link Tarazed
 	link Albaldah
@@ -422,8 +422,8 @@ system Albireo
 	fleet "Large Southern Merchants" 1200
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 1400
-	fleet "Small Free Worlds" 1800
-	fleet "Large Free Worlds" 3000
+	fleet "Small Militia" 1800
+	fleet "Large Militia" 3000
 	fleet Quarg 2000
 	object
 		sprite star/g5
@@ -621,7 +621,7 @@ system Alderamin
 
 system Aldhibain
 	pos -659 451
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Kornephoros
 	link Sabik
@@ -645,8 +645,8 @@ system Aldhibain
 	trade Plastic 360
 	fleet "Small Southern Merchants" 400
 	fleet "Large Southern Merchants" 600
-	fleet "Small Free Worlds" 600
-	fleet "Large Free Worlds" 1000
+	fleet "Small Militia" 600
+	fleet "Large Militia" 1000
 	fleet "Small Southern Pirates" 800
 	fleet "Large Southern Pirates" 2000
 	object
@@ -881,7 +881,7 @@ system Algorel
 	trade Plastic 427
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 900
-	fleet "Small Free Worlds" 2000
+	fleet "Small Militia" 2000
 	fleet "Small Republic" 3000
 	fleet "Small Southern Pirates" 1600
 	fleet "Large Southern Pirates" 5000
@@ -1034,7 +1034,7 @@ system Alhena
 
 system Alioth
 	pos -620 315
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Wei
 	link Vindemiatrix
@@ -1055,7 +1055,7 @@ system Alioth
 	trade Plastic 458
 	fleet "Small Southern Merchants" 400
 	fleet "Large Northern Merchants" 600
-	fleet "Small Free Worlds" 900
+	fleet "Small Militia" 900
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2400
 	object
@@ -1084,7 +1084,7 @@ system Alioth
 
 system Alkaid
 	pos -825 318
-	government "Free Worlds"
+	government "Republic"
 	habitable 1080
 	link Hadar
 	asteroids "medium rock" 7 5.2164
@@ -1306,7 +1306,7 @@ system Alnair
 
 system Alnasl
 	pos -553 380
-	government "Free Worlds"
+	government "Republic"
 	habitable 640
 	link Seginus
 	link Wei
@@ -1329,8 +1329,8 @@ system Alnasl
 	trade Plastic 459
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Free Worlds" 3000
-	fleet "Large Free Worlds" 6000
+	fleet "Small Militia" 3000
+	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 4000
 	object
 		sprite star/k5
@@ -1489,7 +1489,7 @@ system Alnitak
 
 system Alniyat
 	pos -691 501
-	government "Free Worlds"
+	government "Republic"
 	habitable 534.375
 	link Pherkad
 	link Graffias
@@ -1517,8 +1517,8 @@ system Alniyat
 	fleet "Large Southern Merchants" 700
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
-	fleet "Small Free Worlds" 800
-	fleet "Large Free Worlds" 3000
+	fleet "Small Militia" 800
+	fleet "Large Militia" 3000
 	object
 		sprite star/k5
 		distance 41.9222
@@ -1559,7 +1559,7 @@ system Alniyat
 
 system "Alpha Arae"
 	pos -481 394
-	government "Free Worlds"
+	government "Republic"
 	habitable 945
 	link "Delta Sagittarii"
 	link Rastaban
@@ -1583,8 +1583,8 @@ system "Alpha Arae"
 	trade Plastic 314
 	fleet "Small Southern Merchants" 1800
 	fleet "Large Southern Merchants" 6000
-	fleet "Small Free Worlds" 4000
-	fleet "Large Free Worlds" 9000
+	fleet "Small Militia" 4000
+	fleet "Large Militia" 9000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 9000
 	object
@@ -1794,7 +1794,7 @@ system Alphard
 
 system Alphecca
 	pos -546 308
-	government "Free Worlds"
+	government "Republic"
 	habitable 1400
 	link Alioth
 	link Seginus
@@ -1813,7 +1813,7 @@ system Alphecca
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Northern Merchants" 3500
 	fleet "Small Southern Pirates" 3000
-	fleet "Small Free Worlds" 5000
+	fleet "Small Militia" 5000
 	object
 		sprite star/g0
 		distance 27.8857
@@ -2091,7 +2091,7 @@ system Antares
 	trade Plastic 403
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
-	fleet "Large Free Worlds" 5000
+	fleet "Large Militia" 5000
 	object
 		sprite star/k0
 		period 10
@@ -2150,7 +2150,7 @@ system Arcturus
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 4000
-	fleet "Small Free Worlds" 10000
+	fleet "Small Militia" 10000
 	object
 		sprite star/k5
 		period 10
@@ -2231,7 +2231,7 @@ system Arneb
 
 system Ascella
 	pos -376 328
-	government "Free Worlds"
+	government "Republic"
 	habitable 640
 	link Peacock
 	link "Zeta Aquilae"
@@ -2256,7 +2256,7 @@ system Ascella
 	trade Plastic 295
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1000
-	fleet "Small Free Worlds" 4000
+	fleet "Small Militia" 4000
 	fleet "Small Southern Pirates" 3000
 	object
 		sprite star/k5
@@ -2344,7 +2344,7 @@ system Aspidiske
 
 system Atria
 	pos -551 532
-	government "Free Worlds"
+	government "Republic"
 	habitable 214.375
 	link Han
 	link Lesath
@@ -2369,7 +2369,7 @@ system Atria
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
-	fleet "Small Free Worlds" 8000
+	fleet "Small Militia" 8000
 	object
 		sprite star/m0
 		period 10
@@ -2524,7 +2524,7 @@ system Bellatrix
 
 system "Beta Lupi"
 	pos -851 417
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Pherkad
 	link "Kappa Centauri"
@@ -2548,8 +2548,8 @@ system "Beta Lupi"
 	fleet "Small Southern Merchants" 1000
 	fleet "Small Southern Pirates" 1500
 	fleet "Large Southern Pirates" 2500
-	fleet "Small Free Worlds" 2000
-	fleet "Large Free Worlds" 5000
+	fleet "Small Militia" 2000
+	fleet "Large Militia" 5000
 	object
 		sprite star/g5
 		period 10
@@ -2643,7 +2643,7 @@ system Betelgeuse
 
 system Boral
 	pos -502 331
-	government "Free Worlds"
+	government "Republic"
 	habitable 214.375
 	link Alphecca
 	asteroids "small rock" 7 2.4752
@@ -2665,7 +2665,7 @@ system Boral
 	fleet "Small Southern Merchants" 3000
 	fleet "Large Northern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
-	fleet "Small Free Worlds" 10000
+	fleet "Small Militia" 10000
 	object
 		sprite star/m0
 		period 10
@@ -3003,7 +3003,7 @@ system Castor
 
 system Cebalrai
 	pos -461 282
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Rutilicus
 	link "Kaus Borealis"
@@ -3028,7 +3028,7 @@ system Cebalrai
 	trade Plastic 351
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Free Worlds" 4000
+	fleet "Small Militia" 4000
 	fleet "Small Southern Pirates" 4000
 	object
 		sprite star/g5
@@ -3086,7 +3086,7 @@ system "Cor Caroli"
 	fleet "Large Southern Merchants" 1300
 	fleet "Small Southern Pirates" 2000
 	fleet "Small Republic" 10000
-	fleet "Small Free Worlds" 7000
+	fleet "Small Militia" 7000
 	object
 		sprite star/g0
 		period 10
@@ -3113,7 +3113,7 @@ system "Cor Caroli"
 
 system Dabih
 	pos -253 427
-	government "Free Worlds"
+	government "Republic"
 	habitable 670
 	link Tarazed
 	link Eltanin
@@ -3136,7 +3136,7 @@ system Dabih
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 800
 	fleet Quarg 4000
-	fleet "Small Free Worlds" 6000
+	fleet "Small Militia" 6000
 	fleet "Large Southern Pirates" 10000
 	object
 		sprite star/k0
@@ -3285,7 +3285,7 @@ system "Delta Capricorni"
 
 system "Delta Sagittarii"
 	pos -414 416
-	government "Free Worlds"
+	government "Republic"
 	habitable 320
 	link Rastaban
 	link "Alpha Arae"
@@ -3310,7 +3310,7 @@ system "Delta Sagittarii"
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 3000
-	fleet "Small Free Worlds" 7000
+	fleet "Small Militia" 7000
 	object
 		sprite star/k5
 		period 10
@@ -3562,7 +3562,7 @@ system Diphda
 
 system Dschubba
 	pos -598 501
-	government "Free Worlds"
+	government "Republic"
 	habitable 398.125
 	link Atria
 	link Lesath
@@ -3588,8 +3588,8 @@ system Dschubba
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
-	fleet "Small Free Worlds" 3000
-	fleet "Large Free Worlds" 5000
+	fleet "Small Militia" 3000
+	fleet "Large Militia" 5000
 	object
 		sprite star/k5
 		distance 18.9364
@@ -3742,7 +3742,7 @@ system Durax
 
 system Eber
 	pos -532 406
-	government "Free Worlds"
+	government "Republic"
 	habitable 320
 	link Alnasl
 	link "Alpha Arae"
@@ -3764,8 +3764,8 @@ system Eber
 	trade Plastic 408
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 2500
-	fleet "Small Free Worlds" 4000
-	fleet "Large Free Worlds" 5000
+	fleet "Small Militia" 4000
+	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	object
 		sprite star/k5
@@ -3862,7 +3862,7 @@ system Elnath
 
 system Eltanin
 	pos -328 433
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Dabih
 	link "Delta Sagittarii"
@@ -4411,7 +4411,7 @@ system "Gamma Cassiopeiae"
 
 system "Gamma Corvi"
 	pos -906 64
-	government "Free Worlds"
+	government "Republic"
 	habitable 1535.62
 	link Spica
 	asteroids "small rock" 20 1.5168
@@ -4432,8 +4432,8 @@ system "Gamma Corvi"
 	trade Plastic 510
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 1500
-	fleet "Small Free Worlds" 1000
-	fleet "Large Free Worlds" 2000
+	fleet "Small Militia" 1000
+	fleet "Large Militia" 2000
 	fleet "Small Southern Pirates" 10000
 	object
 		sprite star/g0
@@ -4530,7 +4530,7 @@ system Gienah
 
 system Girtab
 	pos -430 481
-	government "Free Worlds"
+	government "Republic"
 	habitable 1080
 	link Lesath
 	link Rastaban
@@ -4771,7 +4771,7 @@ system Graffias
 
 system Hadar
 	pos -788 283
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link "Zeta Centauri"
 	link Izar
@@ -4794,8 +4794,8 @@ system Hadar
 	trade Plastic 307
 	fleet "Small Southern Merchants" 400
 	fleet "Large Southern Merchants" 1000
-	fleet "Small Free Worlds" 800
-	fleet "Large Free Worlds" 1500
+	fleet "Small Militia" 800
+	fleet "Large Militia" 1500
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 9000
 	object
@@ -4877,7 +4877,7 @@ system Hamal
 
 system Han
 	pos -610 561
-	government "Free Worlds"
+	government "Republic"
 	habitable 1080.62
 	link Alniyat
 	link Atria
@@ -4896,8 +4896,8 @@ system Han
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 5000
-	fleet "Small Free Worlds" 4000
-	fleet "Large Free Worlds" 10000
+	fleet "Small Militia" 4000
+	fleet "Large Militia" 10000
 	object
 		sprite star/g5
 		distance 47.4335
@@ -5043,7 +5043,7 @@ system Hatysa
 
 system Hintar
 	pos -422 311
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Cebalrai
 	asteroids "small rock" 34 2.016
@@ -5064,7 +5064,7 @@ system Hintar
 	trade Plastic 421
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
-	fleet "Small Free Worlds" 5000
+	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	object
 		sprite star/g5
@@ -5100,6 +5100,7 @@ system Hintar
 
 system Holeb
 	pos -590 287
+	government Republic
 	habitable 1715
 	link Alioth
 	link Rutilicus
@@ -5118,7 +5119,7 @@ system Holeb
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 5000
-	fleet "Small Free Worlds" 5000
+	fleet "Small Militia" 5000
 	object
 		sprite star/f5
 		period 10
@@ -5145,7 +5146,7 @@ system Holeb
 
 system Ildaria
 	pos -702 317
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Zubeneschamali
 	link Kochab
@@ -5166,8 +5167,8 @@ system Ildaria
 	trade Plastic 384
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Free Worlds" 3000
-	fleet "Large Free Worlds" 6000
+	fleet "Small Militia" 3000
+	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
@@ -5269,7 +5270,7 @@ system Ipsing
 
 system Izar
 	pos -784 231
-	government "Free Worlds"
+	government "Republic"
 	habitable 1294.38
 	link Acrux
 	link Hadar
@@ -5291,8 +5292,8 @@ system Izar
 	trade Plastic 359
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 1800
-	fleet "Small Free Worlds" 800
-	fleet "Large Free Worlds" 1200
+	fleet "Small Militia" 800
+	fleet "Large Militia" 1200
 	object
 		sprite star/g0
 		distance 15.6511
@@ -5329,7 +5330,7 @@ system Izar
 
 system "Kappa Centauri"
 	pos -867 480
-	government "Free Worlds"
+	government "Republic"
 	habitable 1215
 	link Pherkad
 	link "Beta Lupi"
@@ -5347,7 +5348,7 @@ system "Kappa Centauri"
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
-	fleet "Small Free Worlds" 2000
+	fleet "Small Militia" 2000
 	object
 		sprite star/g0
 		distance 10.2222
@@ -5388,7 +5389,7 @@ system "Kappa Centauri"
 
 system "Kaus Australis"
 	pos -284 395
-	government "Free Worlds"
+	government "Republic"
 	habitable 320
 	link Dabih
 	link Tais
@@ -5436,7 +5437,7 @@ system "Kaus Australis"
 
 system "Kaus Borealis"
 	pos -456 350
-	government "Free Worlds"
+	government "Republic"
 	habitable 590.625
 	link Cebalrai
 	link "Alpha Arae"
@@ -5458,7 +5459,7 @@ system "Kaus Borealis"
 	trade Plastic 350
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 3000
-	fleet "Small Free Worlds" 8000
+	fleet "Small Militia" 8000
 	fleet "Small Southern Pirates" 5000
 	object
 		sprite star/k0
@@ -5496,7 +5497,7 @@ system "Kaus Borealis"
 
 system Kochab
 	pos -731 279
-	government "Free Worlds"
+	government "Republic"
 	habitable 320
 	link Zubeneschamali
 	link Ildaria
@@ -5514,7 +5515,7 @@ system Kochab
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 5000
-	fleet "Small Free Worlds" 6000
+	fleet "Small Militia" 6000
 	object
 		sprite star/k5
 		period 10
@@ -5537,7 +5538,7 @@ system Kochab
 
 system Kornephoros
 	pos -612 424
-	government "Free Worlds"
+	government "Republic"
 	habitable 911.25
 	link Sabik
 	link Aldhibain
@@ -5562,8 +5563,8 @@ system Kornephoros
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1200
 	fleet "Small Southern Pirates" 3000
-	fleet "Small Free Worlds" 2000
-	fleet "Large Free Worlds" 4000
+	fleet "Small Militia" 2000
+	fleet "Large Militia" 4000
 	object
 		sprite star/k0
 		distance 57.5
@@ -5612,7 +5613,7 @@ system Kornephoros
 
 system Kraz
 	pos -876 204
-	government "Free Worlds"
+	government "Republic"
 	habitable 1080
 	link Mimosa
 	asteroids "small rock" 1 7.2072
@@ -5633,8 +5634,8 @@ system Kraz
 	trade Plastic 306
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Free Worlds" 800
-	fleet "Large Free Worlds" 1200
+	fleet "Small Militia" 800
+	fleet "Large Militia" 1200
 	object
 		sprite star/g0
 		period 10
@@ -5789,7 +5790,7 @@ system Kursa
 
 system Lesath
 	pos -516 485
-	government "Free Worlds"
+	government "Republic"
 	habitable 1715
 	link Atria
 	link Shaula
@@ -5815,7 +5816,7 @@ system Lesath
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
-	fleet "Small Free Worlds" 5000
+	fleet "Small Militia" 5000
 	object
 		sprite star/f5
 		period 10
@@ -5910,7 +5911,7 @@ system Lolami
 
 system Lurata
 	pos -279 463
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Dabih
 	link Albireo
@@ -5932,7 +5933,7 @@ system Lurata
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet Quarg 7000
-	fleet "Small Free Worlds" 9000
+	fleet "Small Militia" 9000
 	fleet "Large Southern Pirates" 4000
 	object
 		sprite star/k0
@@ -6597,7 +6598,7 @@ system Miaplacidus
 
 system Mimosa
 	pos -895 168
-	government "Free Worlds"
+	government "Republic"
 	habitable 320
 	link Minkar
 	link Kraz
@@ -6618,8 +6619,8 @@ system Mimosa
 	trade Plastic 370
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 5000
-	fleet "Small Free Worlds" 2500
-	fleet "Large Free Worlds" 6000
+	fleet "Small Militia" 2500
+	fleet "Large Militia" 6000
 	fleet "Large Southern Pirates" 8000
 	object
 		sprite star/k5
@@ -6643,7 +6644,7 @@ system Mimosa
 
 system Minkar
 	pos -823 138
-	government "Free Worlds"
+	government "Republic"
 	habitable 670
 	link Acrux
 	link Spica
@@ -6665,8 +6666,8 @@ system Minkar
 	trade Plastic 485
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 3000
-	fleet "Small Free Worlds" 1500
-	fleet "Large Free Worlds" 2000
+	fleet "Small Militia" 1500
+	fleet "Large Militia" 2000
 	fleet "Large Southern Pirates" 12000
 	object
 		sprite star/k0
@@ -7260,7 +7261,7 @@ system Naos
 
 system Naper
 	pos -416 369
-	government "Free Worlds"
+	government "Republic"
 	habitable 1715
 	link Ascella
 	asteroids "small rock" 3 2.0757
@@ -7281,7 +7282,7 @@ system Naper
 	trade Plastic 326
 	fleet "Small Southern Merchants" 1500
 	fleet "Large Southern Merchants" 3000
-	fleet "Small Free Worlds" 5000
+	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	object
 		sprite star/f5
@@ -7468,7 +7469,7 @@ system Nunki
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
-	fleet "Small Free Worlds" 2000
+	fleet "Small Militia" 2000
 	object
 		sprite star/m0
 		period 10
@@ -7570,7 +7571,7 @@ system Oblate
 
 system Orvala
 	pos -334 303
-	government "Free Worlds"
+	government "Republic"
 	habitable 533.75
 	link "Zeta Aquilae"
 	asteroids "small rock" 27 1.44
@@ -7632,7 +7633,7 @@ system Orvala
 
 system Peacock
 	pos -307 350
-	government "Free Worlds"
+	government "Republic"
 	habitable 214.375
 	link Tais
 	link "Kaus Australis"
@@ -7655,7 +7656,7 @@ system Peacock
 	trade Plastic 312
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 5000
-	fleet "Small Free Worlds" 8000
+	fleet "Small Militia" 8000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 10000
 	object
@@ -7879,7 +7880,7 @@ system Phecda
 
 system Pherkad
 	pos -798 451
-	government "Free Worlds"
+	government "Republic"
 	habitable 135
 	link "Beta Lupi"
 	link "Kappa Centauri"
@@ -7898,8 +7899,8 @@ system Pherkad
 	trade Plastic 311
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1000
-	fleet "Small Free Worlds" 700
-	fleet "Large Free Worlds" 1200
+	fleet "Small Militia" 700
+	fleet "Large Militia" 1200
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	object
@@ -8261,7 +8262,7 @@ system Rajak
 
 system Rasalhague
 	pos -413 246
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link "Zeta Aquilae"
 	link Cebalrai
@@ -8316,7 +8317,7 @@ system Rasalhague
 
 system Rastaban
 	pos -463 446
-	government "Free Worlds"
+	government "Republic"
 	habitable 1080
 	link Girtab
 	link Lesath
@@ -8657,7 +8658,7 @@ system Rutilicus
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 8000
-	fleet "Small Free Worlds" 6000
+	fleet "Small Militia" 6000
 	object
 		sprite star/g5
 		period 10
@@ -8696,7 +8697,7 @@ system Rutilicus
 
 system Sabik
 	pos -675 379
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Unukalhai
 	link Zubenelgenubi
@@ -8720,8 +8721,8 @@ system Sabik
 	trade Plastic 300
 	fleet "Small Southern Merchants" 400
 	fleet "Large Southern Merchants" 900
-	fleet "Small Free Worlds" 1200
-	fleet "Large Free Worlds" 2000
+	fleet "Small Militia" 1200
+	fleet "Large Militia" 2000
 	object
 		sprite star/g5
 		period 10
@@ -8856,7 +8857,7 @@ system Sadalsuud
 
 system Sadr
 	pos -287 543
-	government "Free Worlds"
+	government "Republic"
 	habitable 3859.38
 	link Albireo
 	asteroids "small rock" 48 4.9932
@@ -8966,7 +8967,7 @@ system Saiph
 
 system Sargas
 	pos -542 445
-	government "Free Worlds"
+	government "Republic"
 	habitable 911.25
 	link Kornephoros
 	link Lesath
@@ -8985,8 +8986,8 @@ system Sargas
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
-	fleet "Small Free Worlds" 4000
-	fleet "Large Free Worlds" 7000
+	fleet "Small Militia" 4000
+	fleet "Large Militia" 7000
 	object
 		sprite star/k0
 		distance 53
@@ -9182,7 +9183,7 @@ system Schedar
 
 system Seginus
 	pos -557 356
-	government "Free Worlds"
+	government "Republic"
 	habitable 135
 	link Alnasl
 	link Wei
@@ -9203,7 +9204,7 @@ system Seginus
 	trade Plastic 503
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Free Worlds" 3000
+	fleet "Small Militia" 3000
 	fleet "Small Southern Pirates" 5000
 	object
 		sprite star/m4
@@ -9268,7 +9269,7 @@ system Shaula
 	fleet "Large Core Pirates" 7000
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
-	fleet "Large Free Worlds" 9000
+	fleet "Large Militia" 9000
 	object
 		sprite star/g5
 		period 10
@@ -9553,7 +9554,7 @@ system Sospi
 
 system Spica
 	pos -906 120
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Minkar
 	link "Gamma Corvi"
@@ -9574,8 +9575,8 @@ system Spica
 	trade Plastic 518
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 3000
-	fleet "Small Free Worlds" 2000
-	fleet "Large Free Worlds" 4000
+	fleet "Small Militia" 2000
+	fleet "Large Militia" 4000
 	fleet "Small Southern Pirates" 6000
 	fleet "Large Southern Pirates" 10000
 	object
@@ -9720,7 +9721,7 @@ system Sumar
 
 system Tais
 	pos -346 381
-	government "Free Worlds"
+	government "Republic"
 	habitable 3645
 	link "Delta Sagittarii"
 	link "Kaus Australis"
@@ -9743,7 +9744,7 @@ system Tais
 	trade Plastic 339
 	fleet "Small Southern Merchants" 1500
 	fleet "Large Southern Merchants" 4000
-	fleet "Small Free Worlds" 9000
+	fleet "Small Militia" 9000
 	fleet Quarg 15000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 7000
@@ -9899,7 +9900,7 @@ system "Tania Australis"
 
 system Tarazed
 	pos -194 448
-	government "Free Worlds"
+	government "Republic"
 	habitable 1215
 	link Enif
 	link Albireo
@@ -10144,6 +10145,7 @@ system Turais
 
 system "Ultima Thule"
 	pos -336 -211
+	government Republic
 	link Rajak
 	habitable 2560
 	asteroids "small rock" 2 2.4966
@@ -10182,7 +10184,7 @@ system "Ultima Thule"
 
 system Umbral
 	pos -164 406
-	government "Free Worlds"
+	government "Republic"
 	habitable 670
 	link Tarazed
 	asteroids "small rock" 4 7.1925
@@ -10305,7 +10307,7 @@ system Unagi
 
 system Unukalhai
 	pos -710 405
-	government "Free Worlds"
+	government "Republic"
 	habitable 625
 	link Zubenelgenubi
 	link Sabik
@@ -10328,8 +10330,8 @@ system Unukalhai
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Southern Pirates" 3000
-	fleet "Small Free Worlds" 4000
-	fleet "Large Free Worlds" 10000
+	fleet "Small Militia" 4000
+	fleet "Large Militia" 10000
 	object
 		sprite star/g5
 		period 10
@@ -10614,7 +10616,7 @@ system Wazn
 
 system Wei
 	pos -598 369
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Seginus
 	link Alnasl
@@ -10634,8 +10636,8 @@ system Wei
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 4000
-	fleet "Small Free Worlds" 3000
-	fleet "Large Free Worlds" 5000
+	fleet "Small Militia" 3000
+	fleet "Large Militia" 5000
 	object
 		sprite star/k0
 		period 10
@@ -10746,7 +10748,7 @@ system Wezen
 
 system "Yed Prior"
 	pos -810 374
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Pherkad
 	asteroids "small rock" 12 5.0784
@@ -10769,8 +10771,8 @@ system "Yed Prior"
 	fleet "Large Northern Merchants" 1600
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
-	fleet "Small Free Worlds" 3000
-	fleet "Large Free Worlds" 5000
+	fleet "Small Militia" 3000
+	fleet "Large Militia" 5000
 	object
 		sprite star/k0
 		period 10
@@ -10850,7 +10852,7 @@ system Zaurak
 
 system "Zeta Aquilae"
 	pos -369 276
-	government "Free Worlds"
+	government "Republic"
 	habitable 1400
 	link Ascella
 	link Rasalhague
@@ -10921,7 +10923,7 @@ system "Zeta Aquilae"
 
 system "Zeta Centauri"
 	pos -835 257
-	government "Free Worlds"
+	government "Republic"
 	habitable 455.625
 	link Acrux
 	link Hadar
@@ -10939,8 +10941,8 @@ system "Zeta Centauri"
 	trade Plastic 386
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Free Worlds" 1500
-	fleet "Large Free Worlds" 2500
+	fleet "Small Militia" 1500
+	fleet "Large Militia" 2500
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
 	object
@@ -11032,7 +11034,7 @@ system Zosma
 
 system Zubenelgenubi
 	pos -710 353
-	government "Free Worlds"
+	government "Republic"
 	habitable 945
 	link Zubeneschamali
 	link Unukalhai
@@ -11054,8 +11056,8 @@ system Zubenelgenubi
 	trade Plastic 303
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
-	fleet "Small Free Worlds" 2000
-	fleet "Large Free Worlds" 3000
+	fleet "Small Militia" 2000
+	fleet "Large Militia" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
 	object
@@ -11094,7 +11096,7 @@ system Zubenelgenubi
 
 system Zubeneschamali
 	pos -759 338
-	government "Free Worlds"
+	government "Republic"
 	habitable 1250
 	link Hadar
 	link Zubenelgenubi
@@ -11118,8 +11120,8 @@ system Zubeneschamali
 	trade Plastic 303
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
-	fleet "Small Free Worlds" 3000
-	fleet "Large Free Worlds" 5000
+	fleet "Small Militia" 3000
+	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 3000
 	object
