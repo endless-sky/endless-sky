@@ -5581,12 +5581,12 @@ system Kornephoros
 		sprite planet/ocean9
 		distance 739.16
 		period 266.286
-		object
-			sprite planet/ice7
+		object Clink
+			sprite planet/luna
 			distance 168
 			period 20.8235
 	object
-		sprite planet/luna
+		sprite planet/ice7
 		distance 1501.2
 		period 770.724
 	object
@@ -11404,6 +11404,12 @@ planet Clark
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
 	security .1
+
+planet Clink
+	attributes mining
+	landscape land/desert3
+	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
+	description `The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
 
 planet Cornucopia
 	attributes south farming research frontier
