@@ -1,0 +1,80 @@
+event "war begins"
+	date 7 4 3014
+	system "Gamma Corvi"
+		government "Free Worlds"
+	system "Spica"
+		government "Free Worlds"
+	system "Minkar"
+		government "Free Worlds"
+	system "Acrux"
+		government "Free Worlds"
+	system "Mimosa"
+		government "Free Worlds"
+	system "Kraz"
+		government "Free Worlds"
+	system "Izar"
+		government "Free Worlds"
+	system "Zeta Centauri"
+		government "Free Worlds"
+	system "Hadar"
+		government "Free Worlds"
+	system "Alkaid"
+		government "Free Worlds"
+	system "Zubeneschamali"
+		government "Free Worlds"
+	system "Kochab"
+		government "Free Worlds"
+	system "Ildaria"
+		government "Free Worlds"
+	system "Zubenelgenubi"
+		government "Free Worlds"
+	system "Sabik"
+		government "Free Worlds"
+	system "Unukalhai"
+		government "Free Worlds"
+	system "Kornephoros"
+		government "Free Worlds"
+	system "Sargas"
+		government "Free Worlds"
+	system "Lesath"
+		government "Free Worlds"
+	system "Aldhibain"
+		government "Free Worlds"
+	system "Dschubba"
+		government "Free Worlds"
+	system "Atria"
+		government "Free Worlds"
+	system "Alniyat"
+		government "Free Worlds"
+	system "Han"
+		government "Free Worlds"
+	system "Pherkad"
+		government "Free Worlds"
+	system "Yed Prior"
+		government "Free Worlds"
+	system "Beta Lupi"
+		government "Free Worlds"
+	system "Kappa Centauri"
+		government "Free Worlds"
+	planet "Geminus"
+		description `Until recently, Geminus was home to the Republic Navy Yard, the largest shipyard in human space. Now, there is nothing left of the shipyard but a gaping crater in the ground, from the recent terrorist bombing.`
+		spaceport `Fortunately, the spaceport and residential areas survived the bombing, which was focused only on the Navy yard and happened early in the morning, when very few people were at work.`
+		spaceport `The Navy officers who are in charge here have no time for anyone who is not enlisted in the Navy and participating in the ongoing investigation.`
+		shipyard
+		outfitter
+		"required reputation" 100
+	planet "Martini"
+		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
+		security .9
+
+mission "event: war begins"
+	landing
+	to offer
+		has "event: war begins"
+	on offer
+		conversation
+			`The moment you step off your ship you realize something is very wrong. The spaceport is eerily quiet, and a large crowd of people is gathered around a video screen in the local bar.`
+			`	You ask what is happening, and someone explains. Recently, a collection of local governments in the southern galactic arm sent the Republic Parliament what ammounted to an ultimatum: a refusal to pay taxes until certain reforms were made in trade tariffs, ship licensing, and election of planetary representatives. The coalition calls themselves the "Free Worlds." Parliament outright refused to consider their demands.`
+			`	Then, in the early morning, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
+			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
+				decline
