@@ -28,29 +28,68 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		return;
 	name = node.Token(1);
 	
+	// If this planet has been loaded before, these sets of items should be
+	// reset if they are also defined here, instead of appending to them:
+	bool resetAttributes = !attributes.empty();
+	bool resetDescription = !description.empty();
+	bool resetSpaceport = !spaceport.empty();
+	bool resetShipyard = !shipSales.empty();
+	bool resetOutfitter = !outfitSales.empty();
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "landscape" && child.Size() >= 2)
 			landscape = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "attributes")
 		{
+			if(resetAttributes)
+			{
+				resetAttributes = false;
+				attributes.clear();
+			}
 			for(int i = 1; i < child.Size(); ++i)
 				attributes.insert(child.Token(i));
 		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
+			if(resetDescription)
+			{
+				resetDescription = false;
+				description.clear();
+			}
 			description += child.Token(1);
 			description += '\n';
 		}
 		else if(child.Token(0) == "spaceport" && child.Size() >= 2)
 		{
+			if(resetSpaceport)
+			{
+				resetSpaceport = false;
+				spaceport.clear();
+			}
 			spaceport += child.Token(1);
 			spaceport += '\n';
 		}
-		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
-			shipSales.push_back(ships.Get(child.Token(1)));
-		else if(child.Token(0) == "outfitter" && child.Size() >= 2)
-			outfitSales.push_back(outfits.Get(child.Token(1)));
+		else if(child.Token(0) == "shipyard")
+		{
+			if(resetShipyard)
+			{
+				resetShipyard = false;
+				shipSales.clear();
+			}
+			if(child.Size() >= 2)
+				shipSales.push_back(ships.Get(child.Token(1)));
+		}
+		else if(child.Token(0) == "outfitter")
+		{
+			if(resetOutfitter)
+			{
+				resetOutfitter = false;
+				outfitSales.clear();
+			}
+			if(child.Size() >= 2)
+				outfitSales.push_back(outfits.Get(child.Token(1)));
+		}
 		else if(child.Token(0) == "required reputation" && child.Size() >= 2)
 			requiredReputation = child.Value(1);
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
