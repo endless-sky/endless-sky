@@ -92,6 +92,25 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		return;
 	name = node.Token(1);
 	habitable = 1000.;
+	links.clear();
+	asteroids.clear();
+	fleets.clear();
+	objects.clear();
+	
+	Change(node, planets);
+}
+
+
+
+void System::Change(const DataNode &node, Set<Planet> &planets)
+{
+	// If this is truly a change and not just being called by Load(), these sets
+	// of objects will be entirely replaced by any new ones, rather than adding
+	// the new ones on to the end of the list:
+	bool resetLinks = !links.empty();
+	bool resetAsteroids = !asteroids.empty();
+	bool resetFleets = !fleets.empty();
+	bool resetObjects = !objects.empty();
 	
 	for(const DataNode &child : node)
 	{
@@ -99,18 +118,49 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			position.Set(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "link" && child.Size() >= 2)
-			links.push_back(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "link")
+		{
+			if(resetLinks)
+			{
+				resetLinks = false;
+				links.clear();
+			}
+			if(child.Size() >= 2)
+				links.push_back(GameData::Systems().Get(child.Token(1)));
+		}
 		else if(child.Token(0) == "habitable" && child.Size() >= 2)
 			habitable = child.Value(1);
-		else if(child.Token(0) == "asteroids" && child.Size() >= 4)
-			asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "asteroids")
+		{
+			if(resetAsteroids)
+			{
+				resetAsteroids = false;
+				asteroids.clear();
+			}
+			if(child.Size() >= 4)
+				asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
+		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)] = child.Value(2);
-		else if(child.Token(0) == "fleet" && child.Size() >= 3)
-			fleets.emplace_back(GameData::Fleets().Get(child.Token(1)), child.Value(2));
+		else if(child.Token(0) == "fleet")
+		{
+			if(resetFleets)
+			{
+				resetFleets = false;
+				fleets.clear();
+			}
+			if(child.Size() >= 3)
+				fleets.emplace_back(GameData::Fleets().Get(child.Token(1)), child.Value(2));
+		}
 		else if(child.Token(0) == "object")
+		{
+			if(resetObjects)
+			{
+				resetObjects = false;
+				objects.clear();
+			}
 			LoadObject(child, planets);
+		}
 	}
 	
 	// Set planet messages based on what zone they are in.
