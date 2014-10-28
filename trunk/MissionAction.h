@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class GameEvent;
 class Outfit;
 class PlayerInfo;
 class System;
@@ -64,6 +65,7 @@ private:
 	const Conversation *stockConversation = nullptr;
 	Conversation conversation;
 	
+	std::map<std::string, int> events;
 	std::map<const Outfit *, int> gifts;
 	int payment = 0;
 	bool giveDefaultPayment = false;

@@ -62,6 +62,11 @@ void MissionAction::Load(const DataNode &node)
 			payment += child.Value(1);
 		else if(child.Token(0) == "payment")
 			giveDefaultPayment = true;
+		else if(child.Token(0) == "event" && child.Size() >= 2)
+		{
+			int days = (child.Size() >= 3 ? child.Value(2) : 0);
+			events[child.Token(1)] = days;
+		}
 		else
 			conditions.Add(child);
 	}
@@ -102,6 +107,8 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("outfit", it.first->Name(), it.second);
 	if(payment)
 		out.Write("payment", payment);
+	for(const auto &it : events)
+		out.Write("event", it.first, it.second);
 	
 	conditions.Save(out);
 	
@@ -217,6 +224,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	if(payment)
 		player.Accounts().AddCredits(payment);
 	
+	for(const auto &it : events)
+		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second);
+	
 	conditions.Apply(player.Conditions());
 }
 
@@ -227,6 +237,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultP
 	MissionAction result;
 	result.trigger = trigger;
 	
+	result.events = events;
 	result.gifts = gifts;
 	result.payment = payment + (giveDefaultPayment ? defaultPayment : 0);
 	// Fill in the payment amount if this is the "complete" action (which comes
