@@ -57,6 +57,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 				resetDescription = false;
 				description.clear();
 			}
+			if(!description.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
+				description += '\t';
 			description += child.Token(1);
 			description += '\n';
 		}
@@ -67,6 +69,8 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 				resetSpaceport = false;
 				spaceport.clear();
 			}
+			if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
+				spaceport += '\t';
 			spaceport += child.Token(1);
 			spaceport += '\n';
 		}
