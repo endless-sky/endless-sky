@@ -362,7 +362,7 @@ bool Conversation::IsApply(int node) const
 
 const ConditionSet &Conversation::Conditions(int node) const
 {
-	static const ConditionSet empty;
+	static ConditionSet empty;
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return empty;
 	
