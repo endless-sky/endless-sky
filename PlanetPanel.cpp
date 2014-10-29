@@ -126,7 +126,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && planet.HasSpaceport())
+	else if(key == 'b')
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);

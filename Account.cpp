@@ -149,6 +149,7 @@ string Account::Step(int64_t assets, int64_t salaries)
 		int64_t payment = mortgage.Payment();
 		if(payment > credits)
 		{
+			mortgage.MissPayment();
 			if(paid)
 				out << "You missed a mortgage payment. ";
 			paid = false;
