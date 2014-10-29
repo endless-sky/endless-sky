@@ -407,6 +407,20 @@ fleet "Large Republic"
 		"Rainmaker" 2
 		"Gunboat"
 
+fleet "Navy Surveillance"
+	government "Republic"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		timid
+	"friendly hail" "friendly navy"
+	variant 10
+		"Cruiser"
+		"Surveillance Drone" 4
+	variant 10
+		"Gunboat" 2
+
 fleet "Small Deep"
 	government "Republic"
 	names "deep"
