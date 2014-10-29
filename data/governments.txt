@@ -28,7 +28,6 @@ government "Republic"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Free Worlds" -.3
 
 government "Free Worlds"
 	swizzle 2
@@ -39,7 +38,6 @@ government "Free Worlds"
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
-		"Republic" -.3
 	"bribe" .1
 
 government "Militia"
