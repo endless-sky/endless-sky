@@ -1928,7 +1928,7 @@ system Altair
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 6000
-	fleer "Small Syndicate" 9000
+	fleet "Small Syndicate" 9000
 	object
 		sprite star/g5
 		distance 31.4921
@@ -7850,9 +7850,9 @@ system Phecda
 	trade Metal 413
 	trade Plastic 326
 	fleet "Small Northern Merchants" 700
-	fleer "Large Northern Merchants" 1000
+	fleet "Large Northern Merchants" 1000
 	fleet "Small Southern Merchants" 700
-	fleer "Large Southern Merchants" 1000
+	fleet "Large Southern Merchants" 1000
 	fleet "Small Republic" 5000
 	object
 		sprite star/k5
