@@ -741,7 +741,7 @@ void PlayerInfo::Land()
 		}
 	
 	// Create whatever missions this planet has to offer.
-	if(!freshlyLoaded)
+	if(!freshlyLoaded && planet->HasSpaceport())
 		CreateMissions();
 	freshlyLoaded = false;
 	
