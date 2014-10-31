@@ -211,6 +211,13 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			++it;
 		text.splice(text.end(), choices, it);
 		
+		int y = 20;
+		if(conversation.Scene() && conversation.Scene()->Height())
+			y = 40 + conversation.Scene()->Height();
+		for(const WrappedText &it : text)
+			y += it.Height();
+		scroll = -y + 9;
+		
 		Goto(conversation.NextNode(node, choice));
 	}
 	else if(key == GameData::Keys().Get(Key::MAP))
