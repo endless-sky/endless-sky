@@ -741,7 +741,7 @@ void PlayerInfo::Land()
 		}
 	
 	// Create whatever missions this planet has to offer.
-	if(!freshlyLoaded && planet->HasSpaceport())
+	if(!freshlyLoaded)
 		CreateMissions();
 	freshlyLoaded = false;
 	
@@ -1176,8 +1176,12 @@ void PlayerInfo::CreateMissions()
 		++conditions["ships: " + ship->Attributes().Category()];
 	
 	// Check for available missions.
+	bool skipJobs = planet && !planet->HasSpaceport();
 	for(const auto &it : GameData::Missions())
 	{
+		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
+			continue;
+		
 		conditions["random"] = Random::Int(100);
 		if(it.second.CanOffer(*this))
 		{
