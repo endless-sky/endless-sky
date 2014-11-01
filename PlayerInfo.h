@@ -48,8 +48,7 @@ public:
 	PlayerInfo();
 	
 	void Clear();
-	// Don't allow copying, because the mission pointers won't get transferred properly.
-	void Steal(PlayerInfo &other);
+	// Don't allow copying, because pointers won't get transferred properly.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
 	
