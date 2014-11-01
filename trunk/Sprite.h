@@ -23,7 +23,12 @@ class ImageBuffer;
 
 
 
-// Class representing a drawable sprite.
+// Class representing a drawable sprite. A sprite can have multiple frames, for
+// animation. Certain sprites will also include a "mask" that can be used to
+// check whether something has collided with them. Each frame is stored in a
+// separate OpenGL texture object. This may not be as efficient as sprite
+// sheets, but with modern graphics cards it will not matter much and it makes
+// working with the graphics a lot simpler.
 class Sprite {
 public:
 	Sprite();

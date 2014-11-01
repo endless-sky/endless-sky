@@ -17,6 +17,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// Collection of functions for generating random numbers with a variety of
+// different distributions. (This is done partly because on some systems the
+// random number generation is not thread-safe.)
 class Random {
 public:
 	// Seed the generator (e.g. to make it produce exactly the same random

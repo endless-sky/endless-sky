@@ -29,7 +29,11 @@ class System;
 
 
 // Class representing a projectile (a moving object which can hit ships or
-// asteroids and can potentially be hit by anti-missile systems).
+// asteroids and can potentially be hit by anti-missile systems). A projectile
+// may either move at a constant heading and velocity, or may accelerate or
+// change course to track its target. Also, when they hit their target or reach
+// the end of their lifetime, some projectiles split into "sub-munitions," new
+// projectiles that may look different or travel in a new direction.
 class Projectile {
 public:
 	Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon);

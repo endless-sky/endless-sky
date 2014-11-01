@@ -27,8 +27,15 @@ class Ship;
 
 
 
-// Class representing the collection of weapons that a given ship has, along with
-// tracking reload counts, source points, etc.
+// This class handles the logic for a ship's set of weapons. All weapons of the
+// same type coordinate their fire with each other, either firing in clusters
+// (if the projectiles are vulnerable to anti-missile) or in a "stream" where
+// the guns take turns firing. Instead of firing straight, guns (that is, non-
+// turreted weapons) fire aimed slightly inward in a convergence pattern so
+// that even if the guns are spaced out horizontally on the ship, their
+// projectiles will nearly meet at the end of their range. This class also
+// handles turrets, which aim automatically and take into account the target's
+// distance away and velocity relative to the ship that is firing.
 class Armament {
 public:
 	class Weapon {

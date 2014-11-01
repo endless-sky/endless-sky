@@ -18,8 +18,8 @@ class Point;
 
 
 
-// Class representing a shader that draws round "dots," wither filled in or with
-// black in the center.
+// Class representing a shader that draws round "dots," either filled in or with
+// transparent centers (i.e. circles or rings).
 class DotShader {
 public:
 	static void Init();

@@ -19,7 +19,8 @@ class Font;
 
 
 
-// Class for storing all the fonts that can be used.
+// Class for getting the Font object for a given point size. Each font must be
+// based on a glyph image; right now only point sizes 14 and 18 exist.
 class FontSet {
 public:
 	static void Add(const std::string &path, int size);

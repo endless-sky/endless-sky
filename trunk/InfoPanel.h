@@ -28,7 +28,10 @@ class PlayerInfo;
 
 
 // This panel displays detailed information about the player's fleet and each of
-// the ships in it.
+// the ships in it. If the player is landed on a planet, this panel also allows
+// them to reorder the ships in their fleet (including changing which one is the
+// flagship) and to shift the weapons on any of their ships to different
+// hardpoints.
 class InfoPanel : public Panel {
 public:
 	InfoPanel(PlayerInfo &player);

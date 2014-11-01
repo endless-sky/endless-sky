@@ -19,8 +19,9 @@ class PlayerInfo;
 
 
 
-// Overlay on the PlanetPanel showing commodity prices and inventory, and allowing
-// buying and selling.
+// This panel is drawn as an overlay on top of the PlanetPanel. It shows your
+// current crew and passengers and allows you to hire extra crew if you are
+// hunting other ships to capture.
 class HiringPanel : public Panel {
 public:
 	HiringPanel(PlayerInfo &player);

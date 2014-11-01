@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// This is a sound that can be played. The sound's file name will determine
+// whether it is looping (ends in '~') or not.
 class Sound {
 public:
 	void Load(const std::string &path);

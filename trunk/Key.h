@@ -18,7 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class mapping key presses to specific commands / actions.
+// Class mapping key presses to specific commands / actions. The player can
+// change the mappings for most of these keys in the preferences panel.
 class Key {
 public:
 	enum Command {

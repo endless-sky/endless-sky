@@ -23,7 +23,9 @@ class PlayerInfo;
 
 
 
-// GUI panel to be shown when you are in a spaceport.
+// GUI panel to be shown when you are in a spaceport. This just draws the port
+// description, but can also pop up conversation panels or dialogs offering
+// missions that are marked as originating in the spaceport.
 class SpaceportPanel : public Panel {
 public:
 	SpaceportPanel(PlayerInfo &player);

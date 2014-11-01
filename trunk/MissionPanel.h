@@ -23,8 +23,10 @@ class Mission;
 
 
 
-// A panel that displays a list of missions (accepted missions, and also 
-// available missions to accept if any) and a map of their destinations.
+// A panel that displays a list of missions (accepted missions, and also the
+// available "jobs" to accept if any) and a map of their destinations. You can
+// accept any "jobs" that are available, and can also abort any mission that you
+// have previously accepted.
 class MissionPanel : public MapPanel {
 public:
 	MissionPanel(PlayerInfo &player);

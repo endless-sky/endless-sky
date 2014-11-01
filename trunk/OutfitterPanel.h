@@ -25,7 +25,12 @@ class Point;
 
 
 // Class representing the Outfitter UI panel, which allows you to buy new
-// outfits to install in your ship or to sell the ones you own.
+// outfits to install in your ship or to sell the ones you own. Any outfit you
+// sell is available to be bought again until you close this panel, even if it
+// is not normally sold here. You can also directly install any outfit that you
+// have plundered from another ship and are storing in your cargo bay. This
+// panel makes an attempt to ensure that you do not leave with a ship that is
+// configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
 	OutfitterPanel(PlayerInfo &player);

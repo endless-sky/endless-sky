@@ -18,6 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// File paths and file handling are different on each operating system. This
+// class stores the path, on each oprating system, to the game's resources -
+// images, data files, etc. - and also to the "configuration" directory where
+// saved games and other user-specific information can be stored. It also
+// provides an interface for file operations so that the rest of the code can
+// be completely platform-agnostic.
 class Files {
 public:
 	static void Init(const char * const *argv);

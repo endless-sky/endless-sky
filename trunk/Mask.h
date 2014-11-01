@@ -24,13 +24,15 @@ class ImageBuffer;
 
 // Class representing the outline of an object, with functions for checking if a
 // line segment intersetcs that object or if a point is within a certain distance.
+// The outline is represented in polygonal form, which allows intersection tests
+// to be done much more efficiently than if we were testing individual pixels in
+// the image itself.
 class Mask {
 public:
 	// Default constructor.
 	Mask();
 	
-	// Construct a mask from the alpha channel of an SDL surface. (The surface
-	// must therefore be a 4-byte RGBA format.)
+	// Construct a mask from the alpha channel of an image.
 	void Create(ImageBuffer *image);
 	
 	// Check whether a mask was successfully loaded.

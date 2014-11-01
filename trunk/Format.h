@@ -18,8 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// Collection of functions for formatting strings for display.
 class Format {
 public:
+	// Convert the given number into abbreviated format with a suffix like
+	// "M" for million, "B" for billion, or "T" for trillion. Any number
+	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Number(double value);
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.

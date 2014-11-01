@@ -25,8 +25,14 @@ class Projectile;
 
 
 
-// Class representing a field of asteroids, which repeats regularly in order to
-// fill all of space.
+// Class representing a field of asteroids. The field actually "repeats" every
+// 4096 pixels. That is, an asteroid present at (100, 200) is also present at
+// (4196, 200), (100, 4296), etc. Other games often just "wrap" the asteroids
+// to the screen, meaning that there are no actual asteroids beyond what the
+// player can see, but that means that missiles are not in danger of hitting an
+// asteroid unless they are on screen, and also causes trouble if the screen is
+// resized on the fly. Asteroids never change direction or speed, even if they
+// are hit by a projectile.
 class AsteroidField {
 public:
 	AsteroidField();

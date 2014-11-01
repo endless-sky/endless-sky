@@ -15,7 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Class representing an RGBA color (for use by OpenGL).
+// Class representing an RGBA color (for use by OpenGL). The specified colors
+// should be in premultiplied alpha mode. For example, a white color which is
+// 50% translucent would be {.5, .5, .5} with an alpha of .5. This allows you to
+// also specify colors that use additive blending. For example, if the alpha is
+// zero the color's components will be added to whatever is underneath them.
 class Color {
 public:
 	Color(float i = 1.f, float a = 1.f);

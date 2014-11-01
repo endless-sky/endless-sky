@@ -23,6 +23,9 @@ class Font;
 
 
 
+// Helper class for drawing text formatted in a table, where each column of the
+// table is aligned left, right, or centered. This also handles spacing in
+// between table rows, underlines, selection highlights, etc.
 class Table {
 public:
 	enum Align {LEFT = 0, CENTER = 1, RIGHT = 2};

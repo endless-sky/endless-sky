@@ -15,15 +15,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Point.h"
 
-class Animation;
-class Sprite;
-
 #include <cstdint>
 #include <vector>
 
+class Animation;
+class Sprite;
 
 
-// Class for storing a list of textures to blit to the screen.
+
+// Class for storing a list of textures to blit to the screen. This allows the
+// work of clculating the transformation matrices to be done in a separate
+// thread from the graphics thread. However, the SpriteShader class is also
+// available for drawing individual sprites in contexts where putting them into
+// a DrawList first does not make sense.
 class DrawList {
 public:
 	// Default constructor.

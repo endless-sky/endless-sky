@@ -25,8 +25,10 @@ class System;
 
 
 
-// A panel that displays the galaxy star map, with options for color-coding the
-// stars based on attitude towards the player, government, or commodity price.
+// This class provides the base class for both the "map details" panel and the
+// missions panel, and handles drawing of the underlying starmap and coloring
+// the systems based on a selected criterion. It also handles finding and
+// drawing routes in between systems.
 class MapPanel : public Panel {
 public:
 	MapPanel(PlayerInfo &info, int commodity = -4, const System *special = nullptr);

@@ -29,8 +29,10 @@ class Planet;
 
 
 
-// Class representing a star system, including the mathematics for calculating the
-// star and planet positions on a given date.
+// Class representing a star system. This includes characteristics like what
+// ships enter that system, what asteroids are present, who owns the system, and
+// what prices the trade goods have in that system. It also includes the stellar
+// objects in each system, and the hyperspace links between systems.
 class System {
 public:
 	class Asteroid {

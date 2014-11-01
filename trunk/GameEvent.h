@@ -24,6 +24,13 @@ class PlayerInfo;
 
 
 
+// This represents something that happens that changes the universe. For
+// example, a system may be taken over by a different government, or a new type
+// of ship or weapon may become available for purchase. Events that do not
+// specify a date on which they occur will happen in response to missions. An
+// event always sets the "event: <name>" condition when it occurs, which allows
+// you to use the mission framework to specify a message that can be shown to
+// the player the next time they land  on a planet after that event happens.
 class GameEvent {
 public:
 	void Load(const DataNode &node);
