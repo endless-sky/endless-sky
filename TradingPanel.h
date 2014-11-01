@@ -21,7 +21,9 @@ class System;
 
 
 // Overlay on the PlanetPanel showing commodity prices and inventory, and allowing
-// buying and selling.
+// buying and selling. This also lets you sell any plundered outfits you are
+// carrying, although if you want to sell only certain ones and not others you
+// will need to select them individually int he outfitter panel.
 class TradingPanel : public Panel {
 public:
 	TradingPanel(PlayerInfo &player);

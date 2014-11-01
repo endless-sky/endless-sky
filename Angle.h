@@ -19,9 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Represents an angle that can be converted to a unit vector. Internally the angle
-// is stored as an integer index into a lookup array, because that is about 7-8
-// times faster than calling sin() and cos() whenever we want a unit vector.
+// Represents an angle, in degrees. Angles are in "clock" orientation rather
+// than usual mathematical orientation. That is, 0 degrees is up, and angles
+// increase in a clockwise direction. Angles can be efficiently mapped to unit
+// vectors, which also makes rotating a vector an efficient operation.
 class Angle {
 public:
 	// Return a random angle up to the given amount (between 0 and 360).

@@ -27,6 +27,12 @@ class System;
 
 
 
+// A fleet represents a collection of ships that may enter a system or be used
+// as NPCs in a mission. Each fleet contains one or more "variants," each of
+// which can occur with a different probability, and each of those variants
+// lists one or more ships. All the ships in a fleet share a certain government,
+// AI personality, and set of friendly and hostile "hail" messages, and the ship
+// names are chosen based on a given random "phrase" generator.
 class Fleet {
 public:
 	Fleet();

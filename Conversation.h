@@ -29,7 +29,8 @@ class Sprite;
 // Class representing a conversation, generally occurring when the you are asked to
 // accept or decline a mission. The conversation can take different paths depending
 // on what responses you choose, leading you to accept, decline, or (rarely) to be
-// killed.
+// killed. A conversation can also branch based on various condition flags that
+// are set for the player, and can also modify those flags.
 class Conversation {
 public:
 	// The possible outcomes of a conversation:

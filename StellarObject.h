@@ -20,7 +20,11 @@ class Planet;
 
 
 
-// Class representing a planet, star, moon, or other large object in space.
+// Class representing a planet, star, moon, or other large object in space. This
+// does not store the details of what is on that object, if anything; that is
+// handled by the Planet class. Each object's position depends on what it is
+// orbiting around and how far away it is from that object. Each day, all the
+// objects in each system move slightly in their orbits.
 class StellarObject {
 public:
 	StellarObject();

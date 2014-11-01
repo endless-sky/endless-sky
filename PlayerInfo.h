@@ -39,6 +39,10 @@ class UI;
 
 // Class holding information about a "player" - their name, their finances, what
 // ship(s) they own and with what outfits, what systems they have visited, etc.
+// This class also handles saving the player's info to disk so it can be read
+// back in exactly the same state later. This includes what changes the player
+// has made to the unniverses, what jobs are being offered to them right now,
+// and what their current travel plan is, if any.
 class PlayerInfo {
 public:
 	PlayerInfo();

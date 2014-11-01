@@ -20,7 +20,10 @@ class DataNode;
 
 
 
-// Class representing all the commodities that are available to trade.
+// Class representing all the commodities that are available to trade. Each
+// commodity has a certain normal price range, and can also specify specific
+// items that are a kind of that commodity, so that a mission can have you
+// deliver, say, "eggs" or "frozen meat" instead of generic "food".
 class Trade {
 public:
 	class Commodity {

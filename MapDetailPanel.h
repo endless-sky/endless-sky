@@ -26,6 +26,8 @@ class PlayerInfo;
 
 // A panel that displays the galaxy star map, with options for color-coding the
 // stars based on attitude towards the player, government, or commodity price.
+// This panel also lets you view what planets are in each system, and you can
+// click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
 	MapDetailPanel(PlayerInfo &info, int commodity = -4, const System *system = nullptr);

@@ -23,7 +23,8 @@ class PlayerInfo;
 
 
 // Class representing the main menu, which is shown before you enter a game or
-// when your player has been killed, ending the game.
+// when you hit "escape" to return here. This includes a scrolling list of
+// credits and basic information on the currently loaded player.
 class MenuPanel : public Panel {
 public:
 	MenuPanel(PlayerInfo &player, UI &mainUI);

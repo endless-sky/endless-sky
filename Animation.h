@@ -23,7 +23,11 @@ class Sprite;
 
 
 
-// Class representing an animation, i.e. a series of sprites.
+// An Animation is a series of sprites, which are drawn gradually fading into
+// each other so that you can draw a relatively small number of frames even for
+// an animation lasting for a relatively long time. An animation can either
+// progress once through the set of frames, loop through them, or "rewind",
+// i.e. show each frame until the last one, then back up to the start again.
 class Animation {
 public:
 	class Frame {

@@ -25,6 +25,11 @@ class PlayerInfo;
 
 
 
+// A dialog box displays a given message to the player. The box will expand to
+// fit the message, and may also include a text input field. The box may have
+// only an "ok" button, or may also have a "cancel" button. If this dialog is
+// introducing a mission, the buttons are instead "accept" and "decline". A
+// callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
 	// Dialog that has no callback (information only). In this form, there is

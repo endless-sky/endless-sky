@@ -19,6 +19,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+// A DataNode is a single line of a DataFile. It consists of one or more tokens,
+// which can be interpreted either as strings or as floating point values, and
+// it may also have "children," which may each in turn have their own children.
+// The tokens of a node are separated by white space, with quotation marks being
+// used to group multiple words into a single token. If the token text contains
+// quotation marks, it should be enclosed in backticks instead.
 class DataNode {
 public:
 	int Size() const;

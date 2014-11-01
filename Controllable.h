@@ -26,7 +26,9 @@ class System;
 
 
 // Class representing all aspects of a ship which an AI has access to, either to
-// modify them or just to view them.
+// modify them or just to view them. This is separated out so that the AI can
+// have read-only access to ship characteristics, but write access to their
+// actions. This also includes the various targets each ship can have.
 class Controllable {
 public:
 	Controllable();

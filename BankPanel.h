@@ -19,8 +19,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Overlay on the PlanetPanel showing commodity prices and inventory, and allowing
-// buying and selling.
+// This is an overlay drawn on top of the PlanetPanel when the player clicks on
+// the "bank" button. It shows the player's mortgages and other expenses, and
+// allows them to apply for new mortgages or pay extra on existing debts.
 class BankPanel : public Panel {
 public:
 	BankPanel(PlayerInfo &player);

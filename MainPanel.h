@@ -24,6 +24,9 @@ class ShipEvent;
 
 
 // Class representing the main panel (i.e. the view of your ship moving around).
+// The goal is that the Engine class will not need to know about displaying
+// panels or handling key presses; it instead focuses just on the calculations
+// needed to move the ships around and to figure out where they should be drawn.
 class MainPanel : public Panel {
 public:
 	MainPanel(PlayerInfo &player);

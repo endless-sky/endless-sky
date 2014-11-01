@@ -29,8 +29,9 @@ class System;
 
 
 
-// User interface panel that displays a conversation, allowing you to make choices,
-// and then can be closed once the conversation ends.
+// User interface panel that displays a conversation, allowing you to make
+// choices. If a callback function is given, that function will be called when
+// the panel closes, to report the outcome of the conversation.
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system = nullptr);

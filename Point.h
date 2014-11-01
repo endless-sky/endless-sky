@@ -18,6 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 // Class representing a 2D point with functions for a variety of vector operations.
+// A Point can represent either a location or a vector (e.g. a velocity, or a
+// distance between two points, or a unit vector representing a direction). All
+// basic mathematical operations thatmake sense for vectors are supported.
 // Internally the coordinates are stored in a SSE vector and the processor's vector
 // extensions are used to optimize all operations.
 class Point {

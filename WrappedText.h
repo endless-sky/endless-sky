@@ -23,7 +23,8 @@ class Font;
 
 
 
-// Class for calculating word positions in wrapped text.
+// Class for calculating word positions in wrapped text. You can specify various
+// parameters of the formatting, including text alignment.
 class WrappedText {
 public:
 	WrappedText();

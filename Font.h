@@ -29,7 +29,10 @@ class Point;
 
 
 
-// Class for drawing text in OpenGL.
+// Class for drawing text in OpenGL. Each font is based on a single image with
+// glyphs for each character in ASCII order (not counting control characters).
+// The kerning between characters is automatically adjusted to look good. At the
+// moment only plain ASCII characters are supported, not Unicode.
 class Font {
 public:
 	Font();

@@ -22,7 +22,10 @@ class UI;
 
 
 // Class representing a UI window (full screen or pop-up) which responds to user
-// input and can draw itself.
+// input and can draw itself. Everything displayed in the game is drawn in a
+// Panel, and panels can stack on top of each other like "real" UI windows. By
+// default, a panel allows the panels under it to show through, but does not
+// allow them to receive any events that it does not know how to handle.
 class Panel {
 public:
 	// Constructor.

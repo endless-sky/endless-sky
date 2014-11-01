@@ -43,7 +43,12 @@ class DataNode;
 
 
 
-// Class storing all the data used in the game: sprites, data files, etc.
+// Class storing all the data used in the game: sprites, data files, etc. This
+// data is globally accessible, but can only be modified in certain ways.
+// Events that occur over the course of the game may change the state of the
+// game data, so we must revert to the initial state when loading a new player
+// and then apply whatever changes have happened in that particular player's
+// universe.
 class GameData {
 public:
 	static void BeginLoad(const char * const *argv);

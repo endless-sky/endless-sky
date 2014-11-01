@@ -28,7 +28,9 @@ class System;
 
 
 // Class representing a stellar object you can land on. (This includes planets,
-// moons, and space stations.)
+// moons, and space stations.) Each planet has a certain set of services that
+// are available, as well as attributes that determine what sort of missions
+// might choose it as a source or destination.
 class Planet {
 public:
 	// Load a planet's description from a file.

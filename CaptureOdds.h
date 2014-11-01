@@ -19,6 +19,14 @@ class Ship;
 
 
 
+// This class stores the odds that one ship will be able to capture another, and
+// can report the odds for any number of crew up to what each ship starts out
+// with (because the odds change each time a crew member is lost). If either
+// ship has hand-to-hand weapons available, the crew members will make use of
+// them starting with whatever weapon is most useful to them. In each round of
+// combat, one ship will lose one crew member. Which ship loses depends on the
+// ratio of the strengths of the two crews (plus weapons), and whether each crew
+// is attacking or defending; defending crew get a +1 power bonus.
 class CaptureOdds {
 public:
 	CaptureOdds(const Ship *attacker, const Ship *defender);

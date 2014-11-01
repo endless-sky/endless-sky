@@ -20,7 +20,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // Class representing messages that should be shown to the user. The messages
 // gradually fade as the game steps forward, so each one must remember the game
-// step when it came into being.
+// step when it came into being. If a new message is added that exactly matches
+// an old one, the old version is removed before the new one is added; this is
+// to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
 	class Entry {

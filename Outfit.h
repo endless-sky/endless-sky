@@ -27,7 +27,12 @@ class Sprite;
 
 
 
-// Class representing an outfit that can be installed in a ship.
+// Class representing an outfit that can be installed in a ship. A ship's
+// "attributes" are simply stored as a series of key-value pairs, and an outfit
+// can add to or subtract from any of those values. Weapons also have another
+// set of attributes unique to them, and outfits can also specify additional
+// information like the sprite to use in the outfitter panel for selling them,
+// or the sprite or sound to be used for an engine flare.
 class Outfit {
 public:
 	Outfit();

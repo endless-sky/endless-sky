@@ -24,6 +24,12 @@ class System;
 
 
 
+// This class represents the cargo and passengers that a ship can carry. That
+// can include ordinary commodities, plundered outfits, and mission cargo. When
+// you land on a planet, all your cargo is pooled into a single collection, not
+// tied to any one ship, so you retain it even if you sell off all your ships.
+// When you take off, cargo is distributed among your ships, and if some of it
+// will not fit it must be sold off.
 class CargoHold {
 public:
 	void Clear();

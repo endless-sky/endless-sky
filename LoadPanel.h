@@ -23,7 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// UI panel for loading and saving games.
+// UI panel for loading and saving games. The game is automatically saved when
+// the player takes off from any planet, so if they want to be able to go back
+// to a previous game state they must save a "snapshot" of that state.
 class LoadPanel : public Panel {
 public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);

@@ -26,7 +26,12 @@ class PlayerInfo;
 
 
 
-// Interface for ship AIs.
+// This class is responsible for controlling all the ships in the game,
+// including the player's "flagship" - which is usually controlled via the
+// keyboard but can also make use of the AI's autopilot for landing, aiming,
+// or hyperspace travel between systems. The AI also tracks which actions
+// ships have performed, to avoid having the same ship try to scan or board
+// the same target over and over.
 class AI {
 public:
 	AI();
