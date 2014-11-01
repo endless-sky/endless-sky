@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "MainPanel.h"
 #include "Messages.h"
+#include "PlayerInfo.h"
 #include "ShipyardPanel.h"
 #include "UI.h"
 
@@ -51,19 +52,18 @@ void LoadPanel::Draw() const
 	Information info;
 	if(loadedInfo.IsLoaded())
 	{
-		info.SetString("pilot", loadedInfo.FirstName() + " " + loadedInfo.LastName());
-		if(loadedInfo.GetShip())
+		info.SetString("pilot", loadedInfo.Name());
+		if(loadedInfo.ShipSprite())
 		{
-			const Ship &ship = *loadedInfo.GetShip();
-			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
-			info.SetString("ship", ship.Name());
+			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
+			info.SetString("ship", loadedInfo.ShipName());
 		}
-		if(loadedInfo.GetSystem())
-			info.SetString("system", loadedInfo.GetSystem()->Name());
-		if(loadedInfo.GetPlanet())
-			info.SetString("planet", loadedInfo.GetPlanet()->Name());
-		info.SetString("credits", Format::Number(loadedInfo.Accounts().Credits()));
-		info.SetString("date", loadedInfo.GetDate().ToString());
+		if(!loadedInfo.GetSystem().empty())
+			info.SetString("system", loadedInfo.GetSystem());
+		if(!loadedInfo.GetPlanet().empty())
+			info.SetString("planet", loadedInfo.GetPlanet());
+		info.SetString("credits", loadedInfo.Credits());
+		info.SetString("date", loadedInfo.GetDate());
 	}
 	else
 		info.SetString("pilot", "No Pilot Loaded");
@@ -187,8 +187,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	else if(key == 'e')
 	{
 		GameData::Revert();
-		loadedInfo.ApplyChanges();
-		player.Steal(loadedInfo);
+		player.Load(loadedInfo.Path());
 		
 		Messages::Reset();
 		GetUI()->Pop(this);

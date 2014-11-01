@@ -15,11 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
-#include "PlayerInfo.h"
+#include "SavedGame.h"
 
 #include <map>
 #include <string>
 #include <vector>
+
+class PlayerInfo;
 
 
 
@@ -52,13 +54,12 @@ private:
 	
 private:
 	PlayerInfo &player;
+	SavedGame loadedInfo;
 	UI &gamePanels;
 	
 	std::map<std::string, std::vector<std::string>> files;
 	std::string selectedPilot;
 	std::string selectedFile;
-	
-	PlayerInfo loadedInfo;
 	
 	bool sideHasFocus;
 	int sideScroll = 0;

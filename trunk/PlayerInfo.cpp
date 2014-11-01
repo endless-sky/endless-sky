@@ -82,46 +82,6 @@ void PlayerInfo::Clear()
 
 
 
-// Don't allow copying, because the mission pointers won't get transferred properly.
-void PlayerInfo::Steal(PlayerInfo &other)
-{
-	firstName.swap(other.firstName);
-	lastName.swap(other.lastName);
-	filePath.swap(other.filePath);
-	
-	date = other.date;
-	system = other.system;
-	planet = other.planet;
-	shouldLaunch = other.shouldLaunch;
-	isDead = other.isDead;
-	accounts = other.accounts;
-	
-	ships = other.ships;
-	cargo = other.cargo;
-	
-	missions.swap(other.missions);
-	availableJobs.swap(other.availableJobs);
-	availableMissions.swap(other.availableMissions);
-	
-	conditions.swap(other.conditions);
-	
-	seen.swap(other.seen);
-	visited.swap(other.visited);
-	travelPlan.swap(other.travelPlan);
-	
-	selectedWeapon = other.selectedWeapon;
-	
-	reputationChanges.swap(other.reputationChanges);
-	gameEvents.swap(other.gameEvents);
-	dataChanges.swap(other.dataChanges);
-	
-	freshlyLoaded = other.freshlyLoaded;
-	
-	other.Clear();
-}
-
-
-
 bool PlayerInfo::IsLoaded() const
 {
 	return !firstName.empty();
