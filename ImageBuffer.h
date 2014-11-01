@@ -20,7 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // This class stores the raw pixel data from an image, and handles reading that
 // image from disk (so that multiple images can be read and decoded at the same
 // time in different threads). It also handles converting images to
-// premultiplied alpha or attitive or half-additive color mixing mode depending
+// premultiplied alpha or additive or half-additive color mixing mode depending
 // on the file name, so that content creators do not have to save the images in
 // some sort of special format.
 class ImageBuffer {

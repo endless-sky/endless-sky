@@ -595,7 +595,7 @@ bool Ship::Move(list<Effect> &effects)
 			position = (target - distance * angle.Unit());
 			position += hyperspaceOffset;
 			// Make sure your velocity is in exactly the direction you are
-			// traveling in, so that when you decellerate there will not be a
+			// traveling in, so that when you decelerate there will not be a
 			// sudden shift in direction at the end.
 			velocity = velocity.Length() * angle.Unit();
 		}

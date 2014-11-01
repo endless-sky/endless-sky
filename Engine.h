@@ -38,7 +38,7 @@ class PlayerInfo;
 
 
 // Class representing the game engine: its job is to track all of the objects in
-// the game, and to move them, step by step. All the motion and collition
+// the game, and to move them, step by step. All the motion and collision
 // calculations are handled in a separate thread so that the graphics thread is
 // free to just work on drawing things; this means that the drawn state of the
 // game is always one step (1/60 second) behind what is being calculated. This

@@ -857,7 +857,7 @@ void PlayerInfo::TakeOff()
 
 
 
-// Call this when leaving the oufitter, shipyard, or hiring panel.
+// Call this when leaving the outfitter, shipyard, or hiring panel.
 void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;

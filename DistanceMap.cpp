@@ -53,7 +53,7 @@ DistanceMap::DistanceMap(const PlayerInfo &player)
 
 
 // Calculate the path for the given ship to get to the given system. The
-// ship wil use a jump drive or hyperdrive depending on what it has.
+// ship will use a jump drive or hyperdrive depending on what it has.
 DistanceMap::DistanceMap(const Ship &ship, const System *destination)
 {
 	if(!ship.GetSystem() || !destination)

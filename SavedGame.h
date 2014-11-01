@@ -20,7 +20,7 @@ class Sprite;
 
 
 // This class represents a saved game file. It reads the bare amount of
-// information necessary fromt he file to display it in the "Load Game" panel,
+// information necessary from the file to display it in the "Load Game" panel,
 // without doing all the complicated parsing that PlayerInfo does. This is so
 // that we only need to have one PlayerInfo instance, and there does not need
 // to be logic for copying one PlayerInfo into another.

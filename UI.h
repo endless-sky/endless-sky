@@ -24,7 +24,7 @@ class Panel;
 
 // Class representing a UI (i.e. a series of Panels stacked on top of each other,
 // with Panels added or removed in response to user events). This handles events
-// and passing them on to whtever pnel is on top, and drawing of the panels
+// and passing them on to whatever panel is on top, and drawing of the panels
 // starting with whichever one is on the bottom.
 class UI {
 public:

@@ -160,7 +160,7 @@ void MapPanel::DrawLinks() const
 			if(link < system || !player.HasSeen(link))
 			{
 				// Only draw links between two systems if one of the two is
-				// visited. Also, avoid drawiong twice by only drawing in the
+				// visited. Also, avoid drawing twice by only drawing in the
 				// direction of increasing pointer values.
 				if(!player.HasVisited(system) && !player.HasVisited(link))
 					continue;
@@ -272,7 +272,7 @@ void MapPanel::DrawNames() const
 
 void MapPanel::DrawMissions() const
 {
-	// Draw a pointer for each active or playerSystem mission.
+	// Draw a pointer for each active or available mission.
 	map<const System *, Angle> angle;
 	Color black(0., 1.);
 	Color white(1., 1.);
