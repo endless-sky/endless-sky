@@ -170,7 +170,7 @@ void ShopPanel::DrawMain() const
 	mainDetailHeight = 0;
 	
 	// Draw all the available ships.
-	// First, figure out how many colums we can draw.
+	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
 	int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
 	int columns = mainWidth / TILE_SIZE;

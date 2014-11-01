@@ -41,7 +41,7 @@ class UI;
 // ship(s) they own and with what outfits, what systems they have visited, etc.
 // This class also handles saving the player's info to disk so it can be read
 // back in exactly the same state later. This includes what changes the player
-// has made to the unniverses, what jobs are being offered to them right now,
+// has made to the universe, what jobs are being offered to them right now,
 // and what their current travel plan is, if any.
 class PlayerInfo {
 public:
@@ -109,7 +109,7 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
-	// Call this when leaving the oufitter, shipyard, or hiring panel.
+	// Call this when leaving the outfitter, shipyard, or hiring panel.
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land();

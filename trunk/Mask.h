@@ -23,7 +23,7 @@ class ImageBuffer;
 
 
 // Class representing the outline of an object, with functions for checking if a
-// line segment intersetcs that object or if a point is within a certain distance.
+// line segment intersects that object or if a point is within a certain distance.
 // The outline is represented in polygonal form, which allows intersection tests
 // to be done much more efficiently than if we were testing individual pixels in
 // the image itself.

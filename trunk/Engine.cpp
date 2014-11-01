@@ -914,7 +914,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	if(GameData::GetPolitics().IsEnemy(target->GetGovernment(), GameData::PlayerGovernment()))
 		return;
 	
-	// No active ship has a grudge already agains this government.
+	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
 	double targetStrength = (target->Shields() + target->Hull()) * target->Cost();
 	double attackerStrength = 0.;

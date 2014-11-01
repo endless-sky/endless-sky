@@ -28,7 +28,7 @@ class Ship;
 
 // This panel is displayed whenever your flagship boards another ship, to give
 // you a choice of what to plunder or whether to attempt to capture it. The
-// items you can pluder are shown in a list sorted by value per ton. This also
+// items you can plunder are shown in a list sorted by value per ton. This also
 // handles the crew "bonus" that must be paid if you try to capture a ship, to
 // compensate for them risking their lives. (The bonus is needed to keep ship
 // capture from being so lucrative that the player can almost immediately have
@@ -69,7 +69,7 @@ private:
 		// Check how many of this item are left un-plundered. Once this is zero,
 		// the item can be removed from the list.
 		int Count() const;
-		// Get the value of each unit of this pluder item.
+		// Get the value of each unit of this plunder item.
 		int64_t UnitValue() const;
 		
 		// Get the name of this item. If it is a commodity, this is its name.

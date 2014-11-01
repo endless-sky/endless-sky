@@ -419,7 +419,7 @@ int BoardingPanel::Plunder::Count() const
 
 
 
-// Get the value of each unit of this pluder item.
+// Get the value of each unit of this plunder item.
 int64_t BoardingPanel::Plunder::UnitValue() const
 {
 	return unitValue;

@@ -24,7 +24,7 @@ class Sprite;
 
 
 // Class for storing a list of textures to blit to the screen. This allows the
-// work of clculating the transformation matrices to be done in a separate
+// work of calculating the transformation matrices to be done in a separate
 // thread from the graphics thread. However, the SpriteShader class is also
 // available for drawing individual sprites in contexts where putting them into
 // a DrawList first does not make sense.

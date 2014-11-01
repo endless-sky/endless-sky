@@ -121,7 +121,7 @@ void BankPanel::Draw() const
 		table.Draw("[pay extra]");
 		++row;
 		
-		// Draw no more than 8 rows, countign the salaries row if any.
+		// Draw no more than 8 rows, counting the salaries row if any.
 		if(row == 7 + !salaries)
 			break;
 	}

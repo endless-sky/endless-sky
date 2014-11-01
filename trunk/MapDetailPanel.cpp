@@ -299,7 +299,7 @@ void MapDetailPanel::DrawInfo() const
 
 void MapDetailPanel::DrawOrbits() const
 {
-	// Draw the planet orbits in the currently selectedSystem system.
+	// Draw the planet orbits in the currently selected system.
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
 	Point orbitCenter(Screen::Right() - 130, Screen::Bottom() - 140);
 	SpriteShader::Draw(orbitSprite, orbitCenter);
@@ -376,7 +376,7 @@ void MapDetailPanel::DrawOrbits() const
 				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)]);
 	}
 	
-	// Draw the name of the selectedSystem planet.
+	// Draw the name of the selected planet.
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	int width = font.Width(name);
 	width = (width / 2) + 65;
