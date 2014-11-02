@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-name "friendly civilian"
+phrase "friendly civilian"
 	word
 		"May "
 	word
@@ -28,7 +28,7 @@ name "friendly civilian"
 		" journey with you!"
 		" go with you!"
 
-name "friendly civilian"
+phrase "friendly civilian"
 	word
 		"Did you watch the null-ball game? The "
 		"The "
@@ -60,7 +60,7 @@ name "friendly civilian"
 		" yesterday."
 		" this morning."
 
-name "friendly civilian"
+phrase "friendly civilian"
 	word
 		"Just delivered a load of "
 	word
@@ -81,7 +81,7 @@ name "friendly civilian"
 		" is going to smell bad for weeks!"
 		" still stinks!"
 
-name "friendly navy"
+phrase "friendly navy"
 	word
 		"The Navy is here to "
 	word
@@ -101,7 +101,7 @@ name "friendly navy"
 	word
 		" you."
 
-name "friendly navy"
+phrase "friendly navy"
 	word
 		"Join the navy. "
 	word
@@ -113,7 +113,7 @@ name "friendly navy"
 	word
 		" the galaxy!"
 
-name "friendly navy"
+phrase "friendly navy"
 	word
 		"Join the Navy, the largest "
 	word
@@ -128,7 +128,7 @@ name "friendly navy"
 	word
 		" in the galaxy!"
 
-name "friendly navy"
+phrase "friendly navy"
 	word
 		"United, humanity stands. Divided we will fall."
 		"Be thankful to the Republic for three centuries of freedom."
@@ -136,7 +136,7 @@ name "friendly navy"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 
-name "friendly militia"
+phrase "friendly militia"
 	word
 		"We are on the lookout for any "
 	word
@@ -152,7 +152,7 @@ name "friendly militia"
 		"activity."
 		"ships."
 
-name "friendly syndicate"
+phrase "friendly syndicate"
 	word
 		"Smart captains know cargo space is key. Smart captains choose the Syndicate Star Barge."
 		"The Syndicate Bulk Freighter: backbone of the galactic economy."
@@ -161,7 +161,7 @@ name "friendly syndicate"
 		"Smart captains shop Syndicated Systems."
 		"Trouble with Pirates? Hire a Syndicate Protector and your trouble will be over."
 
-name "friendly syndicate"
+phrase "friendly syndicate"
 	word
 		"Work for the Syndicate! Our "
 	word
@@ -179,7 +179,7 @@ name "friendly syndicate"
 	word
 		" are the best!"
 
-name "friendly free worlds"
+phrase "friendly free worlds"
 	word
 		"Be "
 	word
@@ -195,7 +195,7 @@ name "friendly free worlds"
 	word
 		"! Be free!"
 
-name "friendly free worlds"
+phrase "friendly free worlds"
 	word
 		"Without "
 	word
@@ -211,7 +211,7 @@ name "friendly free worlds"
 		"safety!"
 		"prosperity!"
 
-name "friendly free worlds"
+phrase "friendly free worlds"
 	word
 		"Fight "
 		"Overthrow "
@@ -243,7 +243,7 @@ name "friendly free worlds"
 
 
 
-name "hostile civilian"
+phrase "hostile civilian"
 	word
 		"I hope the "
 	word
@@ -293,7 +293,7 @@ name "hostile civilian"
 		"heap!"
 		"pile!"
 
-name "hostile pirate"
+phrase "hostile pirate"
 	word
 		"Prepare to fight"
 		"We're"
@@ -327,7 +327,7 @@ name "hostile pirate"
 		"maggot."
 		"worm."
 
-name "hostile pirate"
+phrase "hostile pirate"
 	word
 		"Plundering "
 		"Blasting "

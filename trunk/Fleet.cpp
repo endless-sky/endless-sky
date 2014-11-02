@@ -14,9 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "GameData.h"
+#include "Phrase.h"
 #include "Random.h"
 #include "Ship.h"
-#include "ShipName.h"
 #include "StellarObject.h"
 #include "System.h"
 
@@ -29,8 +29,8 @@ using namespace std;
 Fleet::Fleet()
 {
 	government = GameData::Governments().Get("Merchant");
-	names = GameData::ShipNames().Get("civilian");
-	fighterNames = GameData::ShipNames().Get("deep fighter");
+	names = GameData::Phrases().Get("civilian");
+	fighterNames = GameData::Phrases().Get("deep fighter");
 }
 
 
@@ -46,13 +46,13 @@ void Fleet::Load(const DataNode &node)
 		if(child.Token(0) == "government" && child.Size() >= 2)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(child.Token(0) == "names" && child.Size() >= 2)
-			names = GameData::ShipNames().Get(child.Token(1));
+			names = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "fighters" && child.Size() >= 2)
-			fighterNames = GameData::ShipNames().Get(child.Token(1));
+			fighterNames = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
-			friendlyHail = GameData::ShipNames().Get(child.Token(1));
+			friendlyHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
-			hostileHail = GameData::ShipNames().Get(child.Token(1));
+			hostileHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "personality")

@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-name "civilian"
+phrase "civilian"
 	word
 		"Shockwave"
 		"Cloud"
@@ -34,7 +34,7 @@ name "civilian"
 		" Beater"
 		" Racer"
 
-name "civilian"
+phrase "civilian"
 	word
 		"Alan's"
 		"Logan's"
@@ -59,7 +59,7 @@ name "civilian"
 		" Wings"
 		" Starship"
 
-name "civilian"
+phrase "civilian"
 	word
 		"Heart"
 		"Ring"
@@ -82,7 +82,7 @@ name "civilian"
 		"the Future"
 		"the Morning"
 
-name "republic capital"
+phrase "republic capital"
 	word
 		"R.N.S. "
 	word
@@ -166,7 +166,7 @@ name "republic capital"
 		"Washington"
 		"Haleakala"
 
-name "deep"
+phrase "deep"
 	word
 		"D.S.S. "
 	word
@@ -245,7 +245,7 @@ name "deep"
 		Watt
 		Weber
 
-name "militia"
+phrase "militia"
 	word
 		"I.M.S. "
 	word
@@ -324,7 +324,7 @@ name "militia"
 		"Spurge"
 		"Linden"
 
-name "free worlds capital"
+phrase "free worlds capital"
 	word
 		"F.S. "
 	word
@@ -403,7 +403,7 @@ name "free worlds capital"
 		"Spurge"
 		"Linden"
 
-name "syndicate capital"
+phrase "syndicate capital"
 	word
 		"S.S. "
 	word
@@ -484,7 +484,7 @@ name "syndicate capital"
 		Vespasian
 		Virgil
 
-name "republic small"
+phrase "republic small"
 	word
 		"R.N.S. "
 	word
@@ -563,7 +563,7 @@ name "republic small"
 		Susquehanna
 		Wabash
 
-name "free worlds small"
+phrase "free worlds small"
 	word
 		"F.S. "
 	word
@@ -635,7 +635,7 @@ name "free worlds small"
 		Vetch
 		Burdock
 
-name "syndicate small"
+phrase "syndicate small"
 	word
 		"S-"
 	word
@@ -699,7 +699,7 @@ name "syndicate small"
 		8
 		9
 
-name "republic fighter"
+phrase "republic fighter"
 	word
 		"Red "
 		"Orange "
@@ -723,7 +723,7 @@ name "republic fighter"
 		"Eleven"
 		"Twelve"
 
-name "deep fighter"
+phrase "deep fighter"
 	word
 		"Alpha "
 		"Beta "
@@ -744,7 +744,7 @@ name "deep fighter"
 		"Eleven"
 		"Twelve"
 
-name "free worlds fighter"
+phrase "free worlds fighter"
 	word
 		"Wolf "
 		"Hound "
@@ -763,7 +763,7 @@ name "free worlds fighter"
 		"Eleven"
 		"Twelve"
 
-name "syndicate fighter"
+phrase "syndicate fighter"
 	word
 		"F-"
 	word
@@ -800,7 +800,7 @@ name "syndicate fighter"
 		8
 		9
 
-name "pirate"
+phrase "pirate"
 	word
 		"Caleuche"
 		"Lady Lovibond"
@@ -886,7 +886,7 @@ name "pirate"
 		"Morning Star"
 		"Antelope"
 
-name "pirate"
+phrase "pirate"
 	word
 		"Sea "
 		"Grey "
@@ -927,7 +927,7 @@ name "pirate"
 		"Stag"
 		"Fog"
 
-name "pirate"
+phrase "pirate"
 	word
 		"Blood"
 		"Night"
@@ -957,7 +957,7 @@ name "pirate"
 		"corpse"
 		"fear"
 
-name "quarg"
+phrase "quarg"
 	word
 		"Quar"
 		"Mer"

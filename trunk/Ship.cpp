@@ -388,7 +388,7 @@ void Ship::SetPersonality(const Personality &other)
 string Ship::GetHail() const
 {
 	bool isEnemy = GameData::GetPolitics().IsEnemy(government, GameData::PlayerGovernment());
-	const ShipName *name = hail[isEnemy];
+	const Phrase *name = hail[isEnemy];
 	
 	if(!name)
 		return "";
@@ -398,7 +398,7 @@ string Ship::GetHail() const
 
 
 
-void Ship::SetHail(const ShipName *friendly, const ShipName *hostile)
+void Ship::SetHail(const Phrase *friendly, const Phrase *hostile)
 {
 	hail[0] = friendly;
 	hail[1] = hostile;
