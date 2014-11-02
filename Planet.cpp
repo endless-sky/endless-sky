@@ -235,6 +235,17 @@ void Planet::SetSystem(const System *system)
 
 
 
+// Remove the given system from the list of systems this planet is in. This
+// must be done when game events rearrange the planets in a system.
+void Planet::RemoveSystem(const System *system)
+{
+	auto it = find(systems.begin(), systems.end(), system);
+	if(it != systems.end())
+		systems.erase(it);
+}
+
+
+
 // Check if this is a wormhole (that is, it appears in multiple systems).
 bool Planet::IsWormhole() const
 {

@@ -74,6 +74,9 @@ public:
 	// example, can just hold a planet pointer instead of a system as well.
 	const System *GetSystem() const;
 	void SetSystem(const System *system);
+	// Remove the given system from the list of systems this planet is in. This
+	// must be done when game events rearrange the planets in a system.
+	void RemoveSystem(const System *system);
 	
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
