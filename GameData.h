@@ -24,12 +24,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Key.h"
 #include "Mission.h"
 #include "Outfit.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "Politics.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Ship.h"
-#include "ShipName.h"
 #include "SpriteQueue.h"
 #include "StarField.h"
 #include "System.h"
@@ -75,9 +75,9 @@ public:
 	static const Set<Interface> &Interfaces();
 	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
+	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();
-	static const Set<ShipName> &ShipNames();
 	static const Set<System> &Systems();
 	
 	static const Government *PlayerGovernment();

@@ -21,8 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Government;
+class Phrase;
 class Ship;
-class ShipName;
 class System;
 
 
@@ -64,10 +64,10 @@ private:
 	
 private:
 	const Government *government = nullptr;
-	const ShipName *names = nullptr;
-	const ShipName *fighterNames = nullptr;
-	const ShipName *friendlyHail = nullptr;
-	const ShipName *hostileHail = nullptr;
+	const Phrase *names = nullptr;
+	const Phrase *fighterNames = nullptr;
+	const Phrase *friendlyHail = nullptr;
+	const Phrase *hostileHail = nullptr;
 	std::vector<Variant> variants;
 	int cargo = 3;
 	int total = 0;

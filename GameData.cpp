@@ -42,9 +42,9 @@ namespace {
 	Set<Interface> interfaces;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
+	Set<Phrase> phrases;
 	Set<Planet> planets;
 	Set<Ship> ships;
-	Set<ShipName> shipNames;
 	Set<System> systems;
 	
 	Set<Sale<Ship>> shipSales;
@@ -400,6 +400,13 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
+const Set<Phrase> &GameData::Phrases()
+{
+	return phrases;
+}
+
+
+
 const Set<Planet> &GameData::Planets()
 {
 	return planets;
@@ -410,13 +417,6 @@ const Set<Planet> &GameData::Planets()
 const Set<Ship> &GameData::Ships()
 {
 	return ships;
-}
-
-
-
-const Set<ShipName> &GameData::ShipNames()
-{
-	return shipNames;
 }
 
 
@@ -519,6 +519,8 @@ void GameData::LoadFile(const string &path)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
+		else if(key == "phrase" && node.Size() >= 2)
+			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)
 			planets.Get(node.Token(1))->Load(node, shipSales, outfitSales);
 		else if(key == "ship" && node.Size() >= 2)
@@ -529,8 +531,6 @@ void GameData::LoadFile(const string &path)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
-		else if(key == "name" && node.Size() >= 2)
-			shipNames.Get(node.Token(1))->Load(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")

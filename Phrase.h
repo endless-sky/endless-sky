@@ -1,4 +1,4 @@
-/* ShipName.h
+/* Phrase.h
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,8 +10,8 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#ifndef SHIP_NAME_H_
-#define SHIP_NAME_H_
+#ifndef PHRASE_H_
+#define PHRASE_H_
 
 #include <string>
 #include <vector>
@@ -21,7 +21,7 @@ class DataNode;
 
 
 // Class representing a set of rules for generating random ship names.
-class ShipName {
+class Phrase {
 public:
 	void Load(const DataNode &node);
 	
