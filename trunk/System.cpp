@@ -137,6 +137,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			if(resetObjects)
 			{
+				for(StellarObject &object : objects)
+					if(object.GetPlanet())
+					{
+						Planet *planet = planets.Get(object.GetPlanet()->Name());
+						planet->RemoveSystem(this);
+					}
 				resetObjects = false;
 				objects.clear();
 			}
