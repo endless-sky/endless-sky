@@ -84,23 +84,23 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	
 	for(const auto &it : GameData::Governments())
 	{
-		const Government *gov = &it.second;
-		double weight = gov->AttitudeToward(GameData::PlayerGovernment());
+		const Government *other = &it.second;
+		double weight = other->AttitudeToward(gov);
 		
 		// You can provoke a government even by attacking an empty ship, such as
 		// a drone (count = 0, because count = crew).
 		if(eventType & ShipEvent::PROVOKE)
 		{
 			if(weight > 0.)
-				provoked.insert(gov);
+				provoked.insert(other);
 		}
 		else if(count * weight)
 		{
-			double penalty = (count * weight) * gov->PenaltyFor(eventType);
+			double penalty = (count * weight) * other->PenaltyFor(eventType);
 			if(eventType & ShipEvent::ATROCITY)
-				reputationWith[gov] = min(0., reputationWith[gov]);
+				reputationWith[other] = min(0., reputationWith[other]);
 			
-			reputationWith[gov] -= penalty;
+			reputationWith[other] -= penalty;
 		}
 	}
 }
