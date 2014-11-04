@@ -148,7 +148,14 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		ships.push_front(shared_ptr<Ship>(new Ship(*ship)));
 		ships.front()->SetSystem(source);
 		ships.front()->SetPlanet(planet);
-		ships.front()->Place(pos, angle.Unit(), angle);
+		if(source == &system)
+			ships.front()->Place(pos, angle.Unit(), angle);
+		else
+		{
+			Point offset = system.Position() - source->Position();
+			angle = (180. / M_PI) * atan2(offset.X(), -offset.Y());
+			ships.front()->Place(pos, Point(), angle);
+		}
 		ships.front()->SetTargetSystem(target);
 		ships.front()->SetGovernment(government);
 		ships.front()->SetName(names->Get());
