@@ -42,6 +42,7 @@ public:
 	bool IsStaying() const;
 	bool IsEntering() const;
 	bool IsNemesis() const;
+	bool IsSurveillance() const;
 	
 	const Point &Confusion() const;
 	

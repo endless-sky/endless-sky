@@ -58,6 +58,7 @@ private:
 	void PrepareForHyperspace(Controllable &control, const Ship &ship);
 	void CircleAround(Controllable &control, const Ship &ship, const Ship &target);
 	void Attack(Controllable &control, const Ship &ship, const Ship &target);
+	void DoSurveillance(Controllable &control, const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	Point StoppingPoint(const Ship &ship);
 	// Get a vector giving the direction this ship should aim in in order to do
