@@ -206,6 +206,9 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		GetUI()->Push(new MapDetailPanel(*this));
 		return true;
 	}
+	else if(key == 'f')
+		GetUI()->Push(new Dialog(
+			this, &MissionPanel::DoFind, "Search for:"));
 	else
 		return false;
 	
@@ -342,6 +345,13 @@ bool MissionPanel::Drag(int dx, int dy)
 		MapPanel::Drag(dx, dy);
 	
 	return true;
+}
+
+
+
+void MissionPanel::DoFind(const std::string &text)
+{
+	Find(text);
 }
 
 

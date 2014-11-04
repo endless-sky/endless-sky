@@ -27,7 +27,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Trade.h"
 #include "UI.h"
 
+#include <algorithm>
+#include <cctype>
+
 using namespace std;
+
+namespace {
+	bool Contains(const string &str, const string &sub)
+	{
+		auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+			[](char a, char b) { return toupper(a) == toupper(b); });
+		return (it != str.end());
+	}
+}
 
 
 
@@ -117,6 +129,27 @@ void MapPanel::Select(const System *system)
 			system = distance.Route(system);
 		}
 	}
+}
+
+
+
+const Planet *MapPanel::Find(const std::string &name)
+{
+	for(const auto &it : GameData::Systems())
+		if(player.HasVisited(&it.second) && Contains(it.first, name))
+		{
+			selectedSystem = &it.second;
+			center = Point() - selectedSystem->Position();
+			return nullptr;
+		}
+	for(const auto &it : GameData::Planets())
+		if(player.HasVisited(it.second.GetSystem()) && Contains(it.first, name))
+		{
+			selectedSystem = it.second.GetSystem();
+			center = Point() - selectedSystem->Position();
+			return &it.second;
+		}
+	return nullptr;
 }
 
 
