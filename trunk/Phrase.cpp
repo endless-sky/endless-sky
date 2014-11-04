@@ -23,7 +23,7 @@ using namespace std;
 
 void Phrase::Load(const DataNode &node)
 {
-	if(node.Token(0) != "name")
+	if(node.Token(0) != "phrase")
 		return;
 	
 	words.push_back(vector<vector<string>>());
