@@ -781,7 +781,7 @@ Point AI::TargetAim(const Ship &ship) const
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
-		if(!outfit || weapon.IsHoming() || weapon.IsTurret())
+		if(!outfit || weapon.IsHoming() || weapon.IsTurret() || outfit->Ammo())
 			continue;
 		
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
