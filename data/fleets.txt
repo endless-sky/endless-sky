@@ -413,7 +413,7 @@ fleet "Navy Surveillance"
 	fighters "republic fighter"
 	cargo 0
 	personality
-		timid
+		surveillance
 	"friendly hail" "friendly navy"
 	variant 10
 		"Cruiser"

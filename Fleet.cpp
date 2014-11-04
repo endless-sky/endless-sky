@@ -89,7 +89,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	int links = linkVector.size();
 	// Count the inhabited planets in this system.
 	int planets = 0;
-	if(!isEnemy)
+	if(!isEnemy && !personality.IsSurveillance())
 		for(const StellarObject &object : system.Objects())
 			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 				++planets;

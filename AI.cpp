@@ -113,10 +113,17 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			const Personality &personality = it->GetPersonality();
 			shared_ptr<Ship> parent = it->GetParent();
 			
+			bool isPresent = (it->GetSystem() == info.GetSystem());
+			if(isPresent && personality.IsSurveillance())
+			{
+				DoSurveillance(*it, *it, ships);
+				continue;
+			}
+			
 			// Fire any weapons that will hit the target. Only ships that are in
 			// the current system can fire.
 			shared_ptr<const Ship> target = it->GetTargetShip();
-			if(it->GetSystem() == info.GetSystem())
+			if(isPresent)
 			{
 				it->SetFireCommands(AutoFire(*it, ships));
 			
@@ -630,6 +637,106 @@ void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 	
 	// This isn't perfect, but it works well enough.
 	control.SetThrustCommand(ship.Facing().Unit().Dot(d) >= 0. && d.Length() > 200.);
+}
+
+
+
+void AI::DoSurveillance(Controllable &control, const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships)
+{
+	const shared_ptr<Ship> &target = ship.GetTargetShip();
+	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
+	{
+		MoveIndependent(control, ship);
+		control.SetFireCommands(AutoFire(ship, ships));
+		return;
+	}
+	
+	bool cargoScan = ship.Attributes().Get("cargo scan");
+	bool outfitScan = ship.Attributes().Get("outfit scan");
+	double atmosphereScan = ship.Attributes().Get("atmosphere scan");
+	bool jumpDrive = ship.Attributes().Get("jump drive");
+	bool hyperdrive = ship.Attributes().Get("hyperdrive");
+	
+	// This function is only called for ships that are in the player's system.
+	if(ship.GetTargetSystem())
+	{
+		PrepareForHyperspace(control, ship);
+		control.SetHyperspaceCommand();
+		control.SetLaunchCommand();
+	}
+	else if(ship.GetTargetPlanet())
+	{
+		MoveToPlanet(control, ship);
+		double distance = ship.Position().Distance(ship.GetTargetPlanet()->Position());
+		if(distance < atmosphereScan && !Random::Int(100))
+			control.SetTargetPlanet(nullptr);
+		else
+			control.SetLandCommand();
+	}
+	else if(ship.GetTargetShip())
+	{
+		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
+		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
+		bool isInSystem = (ship.GetSystem() == target->GetSystem() && !target->IsHyperspacing());
+		if(!isInSystem || (!mustScanCargo && !mustScanOutfits))
+			control.SetTargetShip(weak_ptr<Ship>());
+		else
+		{
+			CircleAround(control, ship, *target);
+			control.SetScanCommand();
+		}
+	}
+	else
+	{
+		shared_ptr<Ship> newTarget = FindTarget(ship, ships).lock();
+		if(newTarget && ship.GetGovernment()->IsEnemy(newTarget->GetGovernment()))
+		{
+			control.SetTargetShip(newTarget);
+			return;
+		}
+		
+		vector<weak_ptr<Ship>> targetShips;
+		vector<const StellarObject *> targetPlanets;
+		vector<const System *> targetSystems;
+		
+		if(cargoScan || outfitScan)
+			for(const auto &it : ships)
+				if(it->GetGovernment() != ship.GetGovernment())
+				{
+					if(Has(ship, it, ShipEvent::SCAN_CARGO) && Has(ship, it, ShipEvent::SCAN_OUTFITS))
+						continue;
+				
+					targetShips.push_back(it);
+				}
+		
+		if(atmosphereScan)
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(!object.IsStar() && object.Radius() < 130.)
+					targetPlanets.push_back(&object);
+		
+		if(jumpDrive)
+			for(const System *link : ship.GetSystem()->Neighbors())
+				targetSystems.push_back(link);
+		else if(hyperdrive)
+			for(const System *link : ship.GetSystem()->Links())
+				targetSystems.push_back(link);
+		
+		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
+		if(!total)
+			return;
+		
+		unsigned index = Random::Int(total);
+		if(index < targetShips.size())
+			control.SetTargetShip(targetShips[index]);
+		else
+		{
+			index -= targetShips.size();
+			if(index < targetPlanets.size())
+				control.SetTargetPlanet(targetPlanets[index]);
+			else
+				control.SetTargetSystem(targetSystems[index - targetPlanets.size()]);
+		}
+	}
 }
 
 
