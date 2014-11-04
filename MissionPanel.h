@@ -43,6 +43,8 @@ protected:
 	
 	
 private:
+	void DoFind(const std::string &text);
+	
 	void DrawSelectedSystem() const;
 	Point DrawPanel(Point pos, const std::string &label, int entries) const;
 	Point DrawList(const std::list<Mission> &list, Point pos) const;

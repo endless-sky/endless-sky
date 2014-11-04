@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "Dialog.h"
 #include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -101,6 +102,9 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		else
 			--commodity;
 	}
+	else if(key == 'f')
+		GetUI()->Push(new Dialog(
+			this, &MapDetailPanel::DoFind, "Search for:"));
 	else
 		return false;
 	
@@ -167,6 +171,15 @@ bool MapDetailPanel::Click(int x, int y)
 	if(selectedPlanet && selectedPlanet->GetSystem() != selectedSystem)
 		selectedPlanet = nullptr;
 	return true;
+}
+
+
+
+void MapDetailPanel::DoFind(const std::string &text)
+{
+	const Planet *planet = Find(text);
+	if(planet)
+		selectedPlanet = planet;
 }
 
 

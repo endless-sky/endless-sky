@@ -43,6 +43,7 @@ protected:
 	
 	
 private:
+	void DoFind(const std::string &text);
 	void DrawInfo() const;
 	void DrawOrbits() const;
 	

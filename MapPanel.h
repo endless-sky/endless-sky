@@ -19,7 +19,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <set>
+#include <string>
 
+class Planet;
 class PlayerInfo;
 class System;
 
@@ -42,6 +44,7 @@ protected:
 	virtual bool Drag(int dx, int dy) override;
 	
 	void Select(const System *system);
+	const Planet *Find(const std::string &name);
 	
 	
 protected:
