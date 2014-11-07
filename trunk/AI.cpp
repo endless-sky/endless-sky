@@ -38,7 +38,8 @@ using namespace std;
 
 
 AI::AI()
-	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false)
+	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false),
+	holdPosition(false), moveToMe(false)
 {
 }
 
@@ -53,19 +54,45 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 	if((keyStuck & Key::Bit(Key::JUMP)) && !info->HasTravelPlan())
 		keyStuck -= Key::Bit(Key::JUMP);
 	
-	if(!isActive)
+	const Ship *player = info->GetShip();
+	if(!isActive || !player || !player->IsTargetable())
 		return;
 	
 	if(keyDown & Key::Bit(Key::SELECT))
 		info->SelectNext();
-	if(keyDown & Key::Bit(Key::DEPLOY))
+	
+	// The commands below here only apply if you have escorts or fighters.
+	if(info->Ships().size() < 2)
+		return;
+	
+	if((keyDown & Key::Bit(Key::DEPLOY)) && player->HasBays())
 	{
-		const Ship *player = info->GetShip();
-		if(player && player->IsTargetable())
-		{
-			isLaunching = !isLaunching;
-			Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
-		}
+		isLaunching = !isLaunching;
+		Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
+	}
+	shared_ptr<Ship> target = player->GetTargetShip();
+	if((keyDown & Key::Bit(Key::FIGHT)) && target)
+	{
+		sharedTarget = target;
+		holdPosition = false;
+		moveToMe = false;
+		Messages::Add("All your ships are focusing their fire on \"" + target->Name() + "\".");
+	}
+	if(keyDown & Key::Bit(Key::HOLD))
+	{
+		sharedTarget.reset();
+		holdPosition = !holdPosition;
+		moveToMe = false;
+		Messages::Add(holdPosition ? "Your fleet is holding position."
+			: "Your fleet is no longer holding position.");
+	}
+	if(keyDown & Key::Bit(Key::GATHER))
+	{
+		sharedTarget.reset();
+		holdPosition = false;
+		moveToMe = !moveToMe;
+		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
+			: "Your fleet is no longer gathering around your flagship.");
 	}
 }
 
@@ -182,10 +209,19 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				continue;
 			}
 			
-			if(parent && !parent->IsDisabled()
+			bool isPlayerEscort = it->GetGovernment() == GameData::PlayerGovernment();
+			if(isPlayerEscort && holdPosition)
+			{
+				if(it->Velocity().Length() > .2 || !target)
+					Stop(*it, *it);
+				else
+					it->SetTurnCommand(TurnToward(*it, TargetAim(*it)));
+			}
+			else if(parent && !parent->IsDisabled()
 					&& (parent->HasLandCommand() || parent->HasHyperspaceCommand()
 						|| targetDistance > 1000. || personality.IsTimid() || !target
-						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))))
+						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))
+						|| (isPlayerEscort && moveToMe)))
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
@@ -212,6 +248,14 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	const Government *gov = ship.GetGovernment();
 	if(!gov)
 		return target;
+	
+	bool isPlayerEscort = (gov == GameData::PlayerGovernment());
+	if(isPlayerEscort)
+	{
+		shared_ptr<Ship> locked = sharedTarget.lock();
+		if(locked && locked->GetSystem() == ship.GetSystem() && !locked->IsDisabled())
+			return sharedTarget;
+	}
 	
 	// If this ship is not armed, do not make it fight.
 	bool isArmed = false;
@@ -264,7 +308,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	
 	bool cargoScan = ship.Attributes().Get("cargo scan");
 	bool outfitScan = ship.Attributes().Get("outfit scan");
-	if(!target.lock() && (cargoScan || outfitScan))
+	if(!target.lock() && (cargoScan || outfitScan) && !isPlayerEscort)
 	{
 		closest = numeric_limits<double>::infinity();
 		for(const auto &it : ships)

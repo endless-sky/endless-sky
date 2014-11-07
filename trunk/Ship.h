@@ -185,6 +185,7 @@ public:
 	bool AddFighter(const std::shared_ptr<Ship> &ship);
 	void UnloadFighters();
 	bool IsFighter() const;
+	bool HasBays() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
