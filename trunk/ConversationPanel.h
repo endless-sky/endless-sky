@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "ClickZone.h"
 #include "WrappedText.h"
 
 #include <functional>
@@ -56,19 +57,6 @@ private:
 	
 	
 private:
-	class ClickZone {
-	public:
-		ClickZone(const Point &topLeft, const Point &size);
-		
-		bool Contains(const Point &point);
-		
-	private:
-		Point topLeft;
-		Point size;
-	};
-	
-	
-private:
 	PlayerInfo &player;
 	
 	const Conversation &conversation;
@@ -86,7 +74,7 @@ private:
 	std::string lastName;
 	std::map<std::string, std::string> subs;
 	
-	mutable std::vector<ClickZone> zones;
+	mutable std::vector<ClickZone<int>> zones;
 	
 	const System *system;
 };

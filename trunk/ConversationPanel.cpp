@@ -115,7 +115,9 @@ void ConversationPanel::Draw() const
 		int width = font.Width(done);
 		Point off(Screen::Width() / -2 + 20 + WIDTH - font.Width(done), point.Y());
 		font.Draw(done, off, bright);
-		zones.emplace_back(off, Point(width, font.Height()));
+		
+		Point size(width, font.Height());
+		zones.emplace_back(off + .5 * size, size);
 		return;
 	}
 	if(choices.empty())
@@ -142,7 +144,7 @@ void ConversationPanel::Draw() const
 		
 		if(zones.size() == static_cast<unsigned>(choice))
 			FillShader::Fill(center, size, selectionColor);
-		zones.emplace_back(point, size);
+		zones.emplace_back(point + .5 * size, size);
 		
 		it.Draw(point, bright);
 		point.Y() += it.Height();
@@ -327,19 +329,4 @@ void ConversationPanel::Goto(int index)
 	
 	if(y > Screen::Height())
 		scroll -= (y - Screen::Height());
-}
-
-
-
-ConversationPanel::ClickZone::ClickZone(const Point &topLeft, const Point &size)
-	: topLeft(topLeft), size(size)
-{
-}
-
-
-
-bool ConversationPanel::ClickZone::Contains(const Point &point)
-{
-	Point r = point - topLeft;
-	return (r.X() >= 0. && r.Y() >= 0. && r.X() < size.X() && r.Y() < size.Y());
 }

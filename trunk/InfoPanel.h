@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "ClickZone.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -47,23 +48,6 @@ protected:
 	
 	
 private:
-	class ClickZone {
-	public:
-		ClickZone(int x, int y, int width, int height, int index);
-		
-		bool Contains(int x, int y) const;
-		int Index() const;
-		
-	private:
-		int left;
-		int top;
-		int right;
-		int bottom;
-		int index;
-	};
-	
-	
-private:
 	void UpdateInfo();
 	void DrawInfo() const;
 	void DrawShip() const;
@@ -77,7 +61,7 @@ private:
 	ShipInfoDisplay info;
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 	
-	mutable std::vector<ClickZone> zones;
+	mutable std::vector<ClickZone<int>> zones;
 	int selected;
 	int hover;
 	Point hoverPoint;
