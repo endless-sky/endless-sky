@@ -44,7 +44,10 @@ namespace {
 		"Toggle cloaking device",
 		"View star map",
 		"View player info",
-		"Toggle fullscreen"
+		"Toggle fullscreen",
+		"Fleet: Fight my target",
+		"Fleet: Gather around me",
+		"Fleet: Hold position"
 	};
 }
 

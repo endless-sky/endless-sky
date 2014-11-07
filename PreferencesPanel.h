@@ -15,6 +15,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "ClickZone.h"
+#include "Key.h"
+
+#include <vector>
+
 
 
 // UI panel for editing preferences, especially the key mappings.
@@ -34,6 +39,8 @@ protected:
 	
 private:
 	void Exit();
+	
+	mutable std::vector<ClickZone<Key::Command>> zones;
 	
 	
 private:
