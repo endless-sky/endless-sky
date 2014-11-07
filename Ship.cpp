@@ -1509,6 +1509,13 @@ bool Ship::IsFighter() const
 
 
 
+bool Ship::HasBays() const
+{
+	return !droneBays.empty() || !fighterBays.empty();
+}
+
+
+
 CargoHold &Ship::Cargo()
 {
 	return cargo;
