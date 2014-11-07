@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <string>
 
+class Conversation;
 class DataNode;
 
 
@@ -53,6 +54,12 @@ public:
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
+	// This government will fine you the given fraction of the maximum fine for
+	// carrying illegal cargo or outfits. Zero means they will not fine you.
+	double GetFineFraction() const;
+	// Get the conversation that will be shown if this government gives a death
+	// sentence to the player (for carrying highly illegal cargo).
+	const Conversation *DeathSentence() const;
 	
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -68,6 +75,8 @@ private:
 	double initialPlayerReputation;
 	std::map<int, double> penaltyFor;
 	double bribe;
+	double fine;
+	const Conversation *deathSentence;
 };
 
 

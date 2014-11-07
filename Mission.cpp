@@ -93,15 +93,8 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
-			{
 				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
-				{
-					if(grand.Size() >= 3)
-						cargoIllegality[GameData::Governments().Get(grand.Token(1))] = grand.Value(2);
-					else
-						cargoBaseIllegality = grand.Value(1);
-				}
-			}
+					illegalCargoFine = grand.Value(1);
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -180,13 +173,10 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	if(cargoSize)
 	{
 		out.Write("cargo", cargo, cargoSize);
-		if(cargoBaseIllegality || !cargoIllegality.empty())
+		if(illegalCargoFine)
 		{
 			out.BeginChild();
-			for(const auto &it : cargoIllegality)
-				out.Write("illegal", it.first->GetName(), it.second);
-			if(cargoBaseIllegality)
-				out.Write("illegal", cargoBaseIllegality);
+			out.Write("illegal", illegalCargoFine);
 			out.EndChild();
 		}
 	}
@@ -284,10 +274,9 @@ int Mission::CargoSize() const
 
 
 
-int Mission::CargoIllegality(const Government *government) const
+int Mission::IllegalCargoFine() const
 {
-	auto it = cargoIllegality.find(government);
-	return (it != cargoIllegality.end() ? it->second : cargoBaseIllegality);
+	return illegalCargoFine;
 }
 
 
@@ -597,8 +586,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		else
 			result.passengers = passengers;
 	}
-	result.cargoIllegality = cargoIllegality;
-	result.cargoBaseIllegality = cargoBaseIllegality;
+	result.illegalCargoFine = illegalCargoFine;
 	
 	// How far is it to the destination?
 	DistanceMap distance(player.GetSystem());

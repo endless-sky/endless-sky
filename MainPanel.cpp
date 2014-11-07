@@ -57,10 +57,30 @@ void MainPanel::Step()
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		
 		// Check if the player is doing anything illegal.
-		string message = GameData::GetPolitics().Fine(
-			player, player.GetSystem()->GetGovernment(), 0, player.GetPlanet()->Security());
+		const Government *gov = player.GetSystem()->GetGovernment();
+		string message = GameData::GetPolitics().Fine(player, gov, 0, player.GetPlanet()->Security());
 		if(!message.empty())
-			GetUI()->Push(new Dialog(message));
+		{
+			if(message == "atrocity")
+			{
+				const Conversation *conversation = gov->DeathSentence();
+				if(conversation)
+					GetUI()->Push(new ConversationPanel(player, *conversation));
+				else
+				{
+					message = "Before you can leave your ship, the " + gov->GetName()
+						+ " authorities show up and begin scanning it. They say, \"Captain "
+						+ player.LastName()
+						+ ", we detect highly illegal material on your ship.\""
+						"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
+						" Your days of traveling the stars have come to an end.";
+					GetUI()->Push(new Dialog(message));
+				}
+				player.Die();
+			}
+			else
+				GetUI()->Push(new Dialog(message));
+		}
 		
 		FinishMissions();
 		player.Land();
@@ -69,24 +89,25 @@ void MainPanel::Step()
 	
 	engine.Step(isActive);
 	
-	const Government *gov = GameData::PlayerGovernment();
+	const Government *playerGov = GameData::PlayerGovernment();
 	for(const ShipEvent &event : engine.Events())
 	{
+		const Government *actor = event.ActorGovernment();
+		
 		player.HandleEvent(event, GetUI());
 		if(event.Type() == ShipEvent::BOARD)
 		{
 			// TODO: handle player getting boarded.
-			if(event.ActorGovernment() == gov)
+			if(actor == playerGov)
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
-			if(event.ActorGovernment() == gov)
+			if(actor == playerGov)
 				ShowScanDialog(event);
-			else if(event.TargetGovernment() == gov)
+			else if(event.TargetGovernment() == playerGov)
 			{
-				string message = GameData::GetPolitics().Fine(
-					player, event.ActorGovernment(), event.Type());
+				string message = GameData::GetPolitics().Fine(player, actor, event.Type());
 				if(!message.empty())
 					GetUI()->Push(new Dialog(message));
 			}

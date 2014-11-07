@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Format.h"
 #include "GameData.h"
+#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -150,12 +151,12 @@ void Politics::BribePlanet(const Planet *planet)
 
 
 // Check to see if the player has done anything they should be fined for.
-string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, double security)
+string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan, double security)
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
 	auto it = fined.find(gov);
-	if(it != fined.end() || Random::Real() > security)
+	if(it != fined.end() || Random::Real() > security || !gov->GetFineFraction())
 		return "";
 	
 	string reason;
@@ -171,21 +172,55 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, doubl
 				if(!fine)
 					fine = 100000;
 				
-				if(fine > maxFine)
+				if(fine > maxFine || fine < 0)
 				{
 					maxFine = fine;
 					reason = "operating a " + ship->ModelName() + " without a " + name + " License.";
 				}
 			}
+		if(!scan || (scan & ShipEvent::SCAN_CARGO))
+		{
+			int64_t fine = ship->Cargo().IllegalCargoFine();
+			if(fine > maxFine || fine < 0)
+			{
+				maxFine = fine;
+				reason = "carrying illegal cargo.";
+			}
+		}
+		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
+		{
+			for(const auto &it : ship->Outfits())
+				if(it.second)
+				{
+					int64_t fine = it.first->Get("illegal");
+					if(fine > maxFine || fine < 0)
+					{
+						maxFine = fine;
+						reason = "having illegal outfits installed on your ship.";
+					}
+				}
+		}
 	}
 	
-	if(!maxFine)
-		return reason;
-	
-	fined.insert(gov);
-	player.Accounts().AddFine(maxFine);
-	return "The " + gov->GetName() + " fines you " + Format::Number(maxFine)
-		+ " credits for " + reason;
+	if(maxFine < 0)
+	{
+		Offend(gov, ShipEvent::ATROCITY);
+		if(!scan)
+			reason = "atrocity";
+		else
+			reason = "After scanning your ship, the " + gov->GetName()
+				+ " captain hails you with a grim expression on his face. He says, \"You are guilty of "
+				+ reason + " The penalty for your actions is death. Goodbye.\"";
+	}
+	else if(maxFine > 0)
+	{
+		// Scale the fine based on how lenient this government is.
+		maxFine = maxFine * gov->GetFineFraction() + .5;
+		reason = "The " + gov->GetName() + " fines you "
+			+ Format::Number(maxFine) + " credits for " + reason;
+		fined.insert(gov);
+	}
+	return reason;
 }
 
 

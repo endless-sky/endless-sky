@@ -63,7 +63,7 @@ public:
 	const Planet *Destination() const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int CargoIllegality(const Government *government) const;
+	int IllegalCargoFine() const;
 	int Passengers() const;
 	// The mission must be completed by this deadline (if there is a deadline).
 	bool HasDeadline() const;
@@ -126,8 +126,7 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	std::map<const Government *, int> cargoIllegality;
-	int cargoBaseIllegality = 0;
+	int illegalCargoFine = 0;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;

@@ -10,6 +10,7 @@
 
 government "Escort"
 	swizzle 5
+	"fine" 0
 
 government "Merchant"
 	swizzle 5
@@ -18,6 +19,7 @@ government "Merchant"
 	"attitude toward"
 		"Pirate" -.2
 	"bribe" .05
+	"fine" 0
 
 government "Republic"
 	swizzle 0
@@ -69,6 +71,7 @@ government "Pirate"
 		"Merchant" -.1
 		"Syndicate" -.1
 	"bribe" .05
+	"fine" 0
 
 government "Quarg"
 	swizzle 0
