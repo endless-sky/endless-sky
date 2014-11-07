@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ClickZone.h"
 #include "Key.h"
 
+#include <string>
 #include <vector>
 
 
@@ -40,15 +41,13 @@ protected:
 private:
 	void Exit();
 	
-	mutable std::vector<ClickZone<Key::Command>> zones;
-	
 	
 private:
 	int editing;
 	int selected;
-	mutable int firstY;
-	mutable int buttonX;
-	mutable int buttonY;
+	
+	mutable std::vector<ClickZone<Key::Command>> zones;
+	mutable std::vector<ClickZone<std::string>> prefZones;
 };
 
 

@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Preferences.h"
 #include "Table.h"
 #include "UI.h"
 
@@ -72,13 +73,19 @@ namespace {
 		"Menus",
 		"Fleet"
 	};
+	static const string SETTINGS[] = {
+		"Show CPU / GPU load",
+		"",
+		"Automatic firing",
+		"Automatic aiming"
+	};
 	static const Key::Command *BREAK = &COMMANDS[18];
 }
 
 
 
 PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0), firstY(0)
+	: editing(-1), selected(0)
 {
 	SetIsFullScreen(true);
 }
@@ -97,6 +104,7 @@ void PreferencesPanel::Draw() const
 	menu->Draw(info);
 	
 	Color back = *GameData::Colors().Get("faint");
+	Color dim = *GameData::Colors().Get("dim");
 	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	
@@ -111,16 +119,20 @@ void PreferencesPanel::Draw() const
 	table.AddColumn(115, Table::RIGHT);
 	table.SetUnderline(-120, 120);
 	
-	firstY = -240;
-	table.DrawAt(Point(-130, -240));
+	int firstY = -240;
+	table.DrawAt(Point(-130, firstY));
 	
+	Point endPoint;
 	const string *category = CATEGORIES;
 	zones.clear();
 	for(const Key::Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
 		if(&command == BREAK)
+		{
+			endPoint = table.GetPoint() + Point(260, -20);
 			table.DrawAt(Point(130, firstY));
+		}
 		
 		if(command == Key::END)
 		{
@@ -141,21 +153,43 @@ void PreferencesPanel::Draw() const
 			int index = zones.size();
 			// Mark conflicts.
 			bool isConflicted = (count[key] > 1);
-			if(isConflicted || index == editing)
+			bool isEditing = (index == editing);
+			if(isConflicted || isEditing)
 			{
-				table.SetHighlight(65, 120);
-				table.DrawHighlight(isConflicted ? red : back);
-				table.SetHighlight(-120, 120);
+				table.SetHighlight(66, 120);
+				table.DrawHighlight(isEditing ? dim: red);
 			}
 			// Mark the selected row.
 			if(index == selected)
+			{
+				table.SetHighlight(-120, 64);
 				table.DrawHighlight(back);
+			}
 			
+			table.SetHighlight(-120, 120);
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 			
 			table.Draw(Key::Description(command), medium);
-			table.Draw(current, bright);
+			table.Draw(current, isEditing ? bright : medium);
 		}
+	}
+	
+	table.DrawAt(endPoint);
+	prefZones.clear();
+	for(const string &setting : SETTINGS)
+	{
+		if(setting.empty())
+		{
+			table.DrawGap(-10);
+			continue;
+		}
+		
+		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
+		
+		bool isOn = Preferences::Has(setting);
+		table.Draw(setting, isOn ? medium : dim);
+		table.Draw(isOn ? "on" : "off", isOn ? bright : medium);
+		table.DrawGap(-40);
 	}
 }
 
@@ -188,13 +222,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool PreferencesPanel::Click(int x, int y)
 {
+	editing = -1;
+	
 	Point point(x, y);
 	char key = GameData::Interfaces().Get("preferences")->OnClick(point);
 	if(key != '\0')
-	{
-		editing = -1;
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
-	}
 	
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
@@ -205,6 +238,10 @@ bool PreferencesPanel::Click(int x, int y)
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
 			editing = selected = index;
+	
+	for(const auto &zone : prefZones)
+		if(zone.Contains(point))
+			Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 	
 	return true;
 }

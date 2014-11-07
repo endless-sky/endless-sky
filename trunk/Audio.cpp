@@ -103,6 +103,7 @@ void Audio::Init()
 		throw runtime_error("Unable to create audio context!");
 	
 	alListener3f(AL_POSITION, 0., 0., 0.);
+	alListenerf(AL_GAIN, volume);
 	
 	mainThreadID = this_thread::get_id();
 	
@@ -139,7 +140,7 @@ double Audio::Volume()
 void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
-	alListenerf(AL_GAIN, level);
+	alListenerf(AL_GAIN, volume);
 }
 
 

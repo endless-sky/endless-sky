@@ -68,7 +68,7 @@ private:
 	Point TargetAim(const Ship &ship) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	int AutoFire(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships);
+	int AutoFire(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships, bool secondary = true);
 	
 	void MovePlayer(Controllable &control, const PlayerInfo &info, const std::list<std::shared_ptr<Ship>> &ships);
 	

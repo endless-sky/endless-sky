@@ -92,13 +92,14 @@ public:
 	static void SetKey(Key::Command command, int key);
 	static const Key &DefaultKeys();
 	
-	static bool ShouldShowLoad();
-	
 	
 private:
 	static void LoadFile(const std::string &path);
 	static void LoadImage(const std::string &path, std::map<std::string, std::string> &images);
 	static std::string Name(const std::string &path);
+	
+	static void PrintShipTable();
+	static void PrintWeaponTable();
 };
 
 

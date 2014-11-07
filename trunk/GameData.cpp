@@ -69,26 +69,21 @@ namespace {
 	SpriteQueue spriteQueue;
 	
 	map<const Sprite *, pair<string, string>> deferred;
-	
-	bool showLoad;
 }
 
 
 
 void GameData::BeginLoad(const char * const *argv)
 {
-	showLoad = false;
-	bool printTable = false;
+	bool printShips = false;
 	bool printWeapons = false;
 	for(const char * const *it = argv + 1; *it; ++it)
 	{
 		if((*it)[0] == '-')
 		{
 			string arg = *it;
-			if(arg == "-l" || arg == "--load")
-				showLoad = true;
-			if(arg == "-t" || arg == "--table")
-				printTable = true;
+			if(arg == "-s" || arg == "--ships")
+				printShips = true;
 			if(arg == "-w" || arg == "--weapons")
 				printWeapons = true;
 			continue;
@@ -138,88 +133,10 @@ void GameData::BeginLoad(const char * const *argv)
 	
 	politics.Reset();
 	
-	if(printTable)
-	{
-		cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull" << '\t'
-			<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
-			<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
-			<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
-			<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
-		for(auto &it : ships)
-		{
-			const Ship &ship = it.second;
-			cout << it.first << '\t';
-			cout << ship.Cost() << '\t';
-			
-			const Outfit &attributes = ship.Attributes();
-			cout << attributes.Get("shields") << '\t';
-			cout << attributes.Get("hull") << '\t';
-			cout << attributes.Get("mass") << '\t';
-			cout << attributes.Get("required crew") << '\t';
-			cout << attributes.Get("cargo space") << '\t';
-			cout << attributes.Get("bunks") << '\t';
-			cout << attributes.Get("fuel capacity") << '\t';
-			
-			cout << attributes.Get("outfit space") << '\t';
-			cout << attributes.Get("weapon capacity") << '\t';
-			cout << attributes.Get("engine capacity") << '\t';
-			cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
-			cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
-			cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
-			
-			double energy = attributes.Get("thrusting energy")
-				+ attributes.Get("turning energy");
-			double heat = attributes.Get("heat generation") - attributes.Get("cooling")
-				+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
-			for(const auto &oit : ship.Outfits())
-				if(oit.first->IsWeapon())
-				{
-					double reload = oit.first->WeaponGet("reload");
-					energy += oit.second * oit.first->WeaponGet("firing energy") / reload;
-					heat += oit.second * oit.first->WeaponGet("firing heat") / reload;
-				}
-			cout << 60. * attributes.Get("energy generation") << '\t';
-			cout << 60. * energy << '\t';
-			cout << 60. * heat << '\t';
-			// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
-			// per 60th of a second, so:
-			cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
-		}
-		cout.flush();
-	}
+	if(printShips)
+		PrintShipTable();
 	if(printWeapons)
-	{
-		cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
-			<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
-			<< "homing" << '\t' << "strength" << '\n';
-		for(auto &it : outfits)
-		{
-			// Skip non-weapons and submunitions.
-			if(!it.second.IsWeapon() || !it.second.WeaponGet("reload"))
-				continue;
-			
-			const Outfit &outfit = it.second;
-			cout << it.first << '\t';
-			cout << outfit.Cost() << '\t';
-			cout << -outfit.Get("weapon capacity") << '\t';
-			
-			cout << outfit.Range() << '\t';
-			
-			double energy = outfit.WeaponGet("firing energy") * 60. / outfit.WeaponGet("reload");
-			cout << energy << '\t';
-			double heat = outfit.WeaponGet("firing heat") * 60. / outfit.WeaponGet("reload");
-			cout << heat << '\t';
-			
-			double shield = outfit.ShieldDamage() * 60. / outfit.WeaponGet("reload");
-			cout << shield << '\t';
-			double hull = outfit.HullDamage() * 60. / outfit.WeaponGet("reload");
-			cout << hull << '\t';
-			
-			cout << outfit.WeaponGet("homing") << '\t';
-			double strength = outfit.WeaponGet("missile strength") + outfit.WeaponGet("anti-missile");
-			cout << strength << '\n';
-		}
-	}
+		PrintWeaponTable();
 }
 
 
@@ -478,13 +395,6 @@ const Key &GameData::DefaultKeys()
 
 
 
-bool GameData::ShouldShowLoad()
-{
-	return showLoad;
-}
-
-
-
 void GameData::LoadFile(const string &path)
 {
 	// This is an ordinary file. Check to see if it is an image.
@@ -568,4 +478,93 @@ string GameData::Name(const string &path)
 		end = path.length() - 4;
 	
 	return path.substr(0, end);
+}
+
+
+
+void GameData::PrintShipTable()
+{
+	cout << "model" << '\t' << "cost" << '\t' << "shields" << '\t' << "hull" << '\t'
+		<< "mass" << '\t' << "crew" << '\t' << "cargo" << '\t' << "bunks" << '\t'
+		<< "fuel" << '\t' << "outfit" << '\t' << "weapon" << '\t' << "engine" << '\t'
+		<< "speed" << '\t' << "accel" << '\t' << "turn" << '\t'
+		<< "e_gen" << '\t' << "e_use" << '\t' << "h_gen" << '\t' << "h_max" << '\n';
+	for(auto &it : ships)
+	{
+		const Ship &ship = it.second;
+		cout << it.first << '\t';
+		cout << ship.Cost() << '\t';
+		
+		const Outfit &attributes = ship.Attributes();
+		cout << attributes.Get("shields") << '\t';
+		cout << attributes.Get("hull") << '\t';
+		cout << attributes.Get("mass") << '\t';
+		cout << attributes.Get("required crew") << '\t';
+		cout << attributes.Get("cargo space") << '\t';
+		cout << attributes.Get("bunks") << '\t';
+		cout << attributes.Get("fuel capacity") << '\t';
+		
+		cout << attributes.Get("outfit space") << '\t';
+		cout << attributes.Get("weapon capacity") << '\t';
+		cout << attributes.Get("engine capacity") << '\t';
+		cout << 60. * attributes.Get("thrust") / attributes.Get("drag") << '\t';
+		cout << 3600. * attributes.Get("thrust") / attributes.Get("mass") << '\t';
+		cout << 60. * attributes.Get("turn") / attributes.Get("mass") << '\t';
+		
+		double energy = attributes.Get("thrusting energy")
+			+ attributes.Get("turning energy");
+		double heat = attributes.Get("heat generation") - attributes.Get("cooling")
+			+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
+		for(const auto &oit : ship.Outfits())
+			if(oit.first->IsWeapon())
+			{
+				double reload = oit.first->WeaponGet("reload");
+				energy += oit.second * oit.first->WeaponGet("firing energy") / reload;
+				heat += oit.second * oit.first->WeaponGet("firing heat") / reload;
+			}
+		cout << 60. * attributes.Get("energy generation") << '\t';
+		cout << 60. * energy << '\t';
+		cout << 60. * heat << '\t';
+		// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000
+		// per 60th of a second, so:
+		cout << 60. * ship.Mass() * .1 * attributes.Get("heat dissipation") << '\n';
+	}
+	cout.flush();
+}
+
+
+
+void GameData::PrintWeaponTable()
+{
+	cout << "name" << '\t' << "cost" << '\t' << "space" << '\t' << "range" << '\t'
+		<< "energy/s" << '\t' << "heat/s" << '\t' << "shield/s" << '\t' << "hull/s" << '\t'
+		<< "homing" << '\t' << "strength" << '\n';
+	for(auto &it : outfits)
+	{
+		// Skip non-weapons and submunitions.
+		if(!it.second.IsWeapon() || !it.second.WeaponGet("reload"))
+			continue;
+		
+		const Outfit &outfit = it.second;
+		cout << it.first << '\t';
+		cout << outfit.Cost() << '\t';
+		cout << -outfit.Get("weapon capacity") << '\t';
+		
+		cout << outfit.Range() << '\t';
+		
+		double energy = outfit.WeaponGet("firing energy") * 60. / outfit.WeaponGet("reload");
+		cout << energy << '\t';
+		double heat = outfit.WeaponGet("firing heat") * 60. / outfit.WeaponGet("reload");
+		cout << heat << '\t';
+		
+		double shield = outfit.ShieldDamage() * 60. / outfit.WeaponGet("reload");
+		cout << shield << '\t';
+		double hull = outfit.HullDamage() * 60. / outfit.WeaponGet("reload");
+		cout << hull << '\t';
+		
+		cout << outfit.WeaponGet("homing") << '\t';
+		double strength = outfit.WeaponGet("missile strength") + outfit.WeaponGet("anti-missile");
+		cout << strength << '\n';
+	}
+	cout.flush();
 }
