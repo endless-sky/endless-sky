@@ -34,6 +34,47 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	static const Key::Command COMMANDS[] = {
+		Key::END,
+		Key::FORWARD,
+		Key::LEFT,
+		Key::RIGHT,
+		Key::BACK,
+		Key::AFTERBURNER,
+		Key::LAND,
+		Key::JUMP,
+		Key::END,
+		Key::PRIMARY,
+		Key::SELECT,
+		Key::SECONDARY,
+		Key::CLOAK,
+		Key::END,
+		Key::NEAREST,
+		Key::TARGET,
+		Key::SCAN,
+		Key::HAIL,
+		Key::END,
+		Key::MENU,
+		Key::MAP,
+		Key::INFO,
+		Key::FULLSCREEN,
+		Key::END,
+		Key::DEPLOY,
+		Key::FIGHT,
+		Key::GATHER,
+		Key::HOLD
+	};
+	static const string CATEGORIES[] = {
+		"Navigation",
+		"Weapons",
+		"Targeting",
+		"Menus",
+		"Fleet"
+	};
+	static const Key::Command *BREAK = &COMMANDS[18];
+}
+
 
 
 PreferencesPanel::PreferencesPanel()
@@ -55,24 +96,9 @@ void PreferencesPanel::Draw() const
 	info.SetBar("volume", Audio::Volume());
 	menu->Draw(info);
 	
-	Color dim = *GameData::Colors().Get("dim");
+	Color back = *GameData::Colors().Get("faint");
 	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
-	
-	Table table;
-	table.AddColumn(-100, Table::RIGHT);
-	table.AddColumn(-20, Table::RIGHT);
-	table.AddColumn(0, Table::LEFT);
-	table.SetUnderline(-200, 200);
-	
-	firstY = -10 * (Key::END - Key::MENU);
-	table.DrawAt(Point(0., firstY - 25));
-	
-	table.DrawUnderline(medium);
-	table.Draw("Default", medium);
-	table.Draw("Key", medium);
-	table.Draw("Action", medium);
-	table.DrawGap(5);
 	
 	// Check for conflicts.
 	Color red(.3, 0., 0., .3);
@@ -80,27 +106,56 @@ void PreferencesPanel::Draw() const
 	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
 		++count[GameData::Keys().Get(c)];
 	
-	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
+	Table table;
+	table.AddColumn(-115, Table::LEFT);
+	table.AddColumn(115, Table::RIGHT);
+	table.SetUnderline(-120, 120);
+	
+	firstY = -240;
+	table.DrawAt(Point(-130, -240));
+	
+	const string *category = CATEGORIES;
+	zones.clear();
+	for(const Key::Command &command : COMMANDS)
 	{
-		string current = SDL_GetKeyName(static_cast<SDL_Keycode>(GameData::Keys().Get(c)));
-		string def = SDL_GetKeyName(static_cast<SDL_Keycode>(GameData::DefaultKeys().Get(c)));
-
-		int index = c - Key::MENU;
-		// Mark conflicts.
-		bool isConflicted = (count[GameData::Keys().Get(c)] > 1);
-		if(isConflicted || index == editing)
-		{
-			table.SetHighlight(-70, -10);
-			table.DrawHighlight(isConflicted ? red : dim);
-			table.SetHighlight(-200, 200);
-		}
-		// Mark the selected row.
-		if(index == selected)
-			table.DrawHighlight(dim);
+		// The "BREAK" line is where to go to the next column.
+		if(&command == BREAK)
+			table.DrawAt(Point(130, firstY));
 		
-		table.Draw(def, current == def ? dim : medium);
-		table.Draw(current, bright);
-		table.Draw(Key::Description(c), medium);
+		if(command == Key::END)
+		{
+			table.DrawGap(10);
+			table.DrawUnderline(medium);
+			if(category != end(CATEGORIES))
+				table.Draw(*category++, bright);
+			else
+				table.Advance();
+			table.Draw("Key", bright);
+			table.DrawGap(5);
+		}
+		else
+		{
+			SDL_Keycode key = static_cast<SDL_Keycode>(GameData::Keys().Get(command));
+			string current = SDL_GetKeyName(key);
+			
+			int index = zones.size();
+			// Mark conflicts.
+			bool isConflicted = (count[key] > 1);
+			if(isConflicted || index == editing)
+			{
+				table.SetHighlight(65, 120);
+				table.DrawHighlight(isConflicted ? red : back);
+				table.SetHighlight(-120, 120);
+			}
+			// Mark the selected row.
+			if(index == selected)
+				table.DrawHighlight(back);
+			
+			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
+			
+			table.Draw(Key::Description(command), medium);
+			table.Draw(current, bright);
+		}
 	}
 }
 
@@ -108,17 +163,17 @@ void PreferencesPanel::Draw() const
 
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 {
-	if(editing != -1)
+	if(static_cast<unsigned>(editing) < zones.size())
 	{
-		GameData::SetKey(static_cast<Key::Command>(editing), key);
+		GameData::SetKey(zones[editing].Value(), key);
 		editing = -1;
 		return true;
 	}
 	
-	if(key == SDLK_DOWN)
-		selected += (selected != Key::END - 1);
-	else if(key == SDLK_UP)
-		selected -= (selected != Key::MENU);
+	if(key == SDLK_DOWN && static_cast<unsigned>(selected + 1) < zones.size())
+		++selected;
+	else if(key == SDLK_UP && selected > 0)
+		--selected;
 	else if(key == SDLK_RETURN)
 		editing = selected;
 	else if(key == 'b' || key == GameData::Keys().Get(Key::MENU))
@@ -133,39 +188,23 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 
 bool PreferencesPanel::Click(int x, int y)
 {
-	char key = GameData::Interfaces().Get("preferences")->OnClick(Point(x, y));
+	Point point(x, y);
+	char key = GameData::Interfaces().Get("preferences")->OnClick(point);
 	if(key != '\0')
 	{
 		editing = -1;
 		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
 	}
 	
-	if(x < -210)
-		return false;
-	if(x >= 220 && x < 250 && y >= -190 && y < 90)
+	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
-		Audio::SetVolume((50 - y) / 200.);
+		Audio::SetVolume((20 - y) / 200.);
 		return true;
 	}
-	if(x >= 210)
-		return false;
 	
-	y -= firstY;
-	if(y < 0)
-		return false;
-	
-	y /= 20;
-	if(y >= Key::END)
-		return false;
-	
-	selected = y;
-	if(x >= -70 && x < -10)
-		editing = selected;
-	else if(x >= -150 && x < -90)
-	{
-		Key::Command command = static_cast<Key::Command>(selected);
-		GameData::SetKey(command, GameData::DefaultKeys().Get(command));
-	}
+	for(unsigned index = 0; index < zones.size(); ++index)
+		if(zones[index].Contains(point))
+			editing = selected = index;
 	
 	return true;
 }

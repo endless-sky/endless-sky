@@ -44,6 +44,9 @@ public:
 		MAP,
 		INFO,
 		FULLSCREEN,
+		FIGHT,
+		GATHER,
+		HOLD,
 		END
 	};
 	
