@@ -257,10 +257,10 @@ bool InfoPanel::Hover(int x, int y)
 	
 	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
 	hover = -1;
-	for(const ClickZone &zone : zones)
-		if(zone.Contains(x, y) && (!showShip || selected == -1
-				|| weapons[selected].IsTurret() == weapons[zone.Index()].IsTurret()))
-			hover = zone.Index();
+	for(const auto &zone : zones)
+		if(zone.Contains(hoverPoint) && (!showShip || selected == -1
+				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
+			hover = zone.Value();
 	
 	return true;
 }
@@ -375,9 +375,7 @@ void InfoPanel::DrawInfo() const
 		string crew = to_string(ship->Crew());
 		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
 		
-		int x = pos.X() + 365;
-		int y = pos.Y() + .5 * font.Height();
-		zones.emplace_back(x, y, 730, 20, index);
+		zones.emplace_back(pos + Point(365, font.Height() / 2), Point(730, 20), index);
 		++index;
 	}
 	
@@ -580,29 +578,5 @@ void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) 
 	LineShader::Draw(from, mid, 1.5, color);
 	LineShader::Draw(mid, hardpoint, 1.5, color);
 	
-	int x = from.X() + 120;
-	int y = from.Y();
-	zones.emplace_back(x, y, 240, 20, index);
-}
-
-
-
-InfoPanel::ClickZone::ClickZone(int x, int y, int width, int height, int index)
-	: left(x - width / 2), top(y - height / 2),
-	right(x + width / 2), bottom(y + height / 2), index(index)
-{
-}
-
-
-
-bool InfoPanel::ClickZone::Contains(int x, int y) const
-{
-	return (x >= left && y >= top && x < right && y < bottom);
-}
-
-
-
-int InfoPanel::ClickZone::Index() const
-{
-	return index;
+	zones.emplace_back(from + Point(120, 0), Point(240, 20), index);
 }
