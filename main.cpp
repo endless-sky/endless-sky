@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
 
@@ -43,6 +44,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+void PrintHelp();
+void PrintVersion();
+
 
 
 int main(int argc, char *argv[])
@@ -52,29 +56,12 @@ int main(int argc, char *argv[])
 		string arg = *it;
 		if(arg == "-h" || arg == "--help")
 		{
-			cerr << endl;
-			cerr << "Command line options:" << endl;
-			cerr << "    -h, --help: print this help message." << endl;
-			cerr << "    -v, --version: print version information." << endl;
-			cerr << "    -l, --load: display CPU and GPU load." << endl;
-			cerr << "    -t, --table: print table of ship statistics." << endl;
-			cerr << "    -w, --weapons: print table of weapon statistics." << endl;
-			cerr << "    -r, --resources <path>: load resources from given directory." << endl;
-			cerr << "    -c, --config <path>: save user's files to given directory." << endl;
-			cerr << endl;
-			cerr << "Report bugs to: mzahniser@gmail.com" << endl;
-			cerr << "Home page: <http://endless-sky.googlecode.com>" << endl;
-			cerr << endl;
+			PrintHelp();
 			return 0;
 		}
 		else if(arg == "-v" || arg == "--version")
 		{
-			cerr << endl;
-			cerr << "Endless Sky 0.5.0" << endl;
-			cerr << "License GPLv3+: GNU GPL version 3 or later: <http://gnu.org/licenses/gpl.html>" << endl;
-			cerr << "This is free software: you are free to change and redistribute it." << endl;
-			cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
-			cerr << endl;
+			PrintVersion();
 			return 0;
 		}
 	}
@@ -98,17 +85,10 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 		
-		DataFile prefs(Files::Config() + "preferences.txt");
+		Preferences::Load();
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
-		for(const DataNode &node : prefs)
-		{
-			if(node.Token(0) == "fullscreen")
-				flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-			else if(node.Token(0) == "window size" && node.Size() >= 3)
-				Screen::Set(node.Value(1), node.Value(2));
-			else if(node.Token(0) == "volume" && node.Size() >= 2)
-				Audio::SetVolume(node.Value(1));
-		}
+		if(Preferences::Has("fullscreen"))
+			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		
 		// Make the window just slightly smaller than the monitor resolution.
 		int maxWidth = mode.w;
@@ -274,16 +254,13 @@ int main(int argc, char *argv[])
 		if(player.GetPlanet())
 			player.Save();
 		
-		DataWriter out(Files::Config() + "preferences.txt");
-		out.Write("volume", Audio::Volume());
+		// The Preferences class reads the screen dimensions, so update them if
+		// the window is full screen:
 		bool isFullscreen = (restoreWidth != 0);
+		Preferences::Set("fullscreen", isFullscreen);
 		if(isFullscreen)
-		{
-			out.Write("window size", restoreWidth, restoreHeight);
-			out.Write("fullscreen");
-		}
-		else
-			out.Write("window size", Screen::Width(), Screen::Height());
+			Screen::Set(restoreWidth, restoreHeight);
+		Preferences::Save();
 		
 		Audio::Quit();
 		SDL_GL_DeleteContext(context);
@@ -296,4 +273,34 @@ int main(int argc, char *argv[])
 	}
 	
 	return 0;
+}
+
+
+
+void PrintHelp()
+{
+	cerr << endl;
+	cerr << "Command line options:" << endl;
+	cerr << "    -h, --help: print this help message." << endl;
+	cerr << "    -v, --version: print version information." << endl;
+	cerr << "    -s, --ships: print table of ship statistics." << endl;
+	cerr << "    -w, --weapons: print table of weapon statistics." << endl;
+	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
+	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
+	cerr << endl;
+	cerr << "Report bugs to: mzahniser@gmail.com" << endl;
+	cerr << "Home page: <http://endless-sky.googlecode.com>" << endl;
+	cerr << endl;
+}
+
+
+
+void PrintVersion()
+{
+	cerr << endl;
+	cerr << "Endless Sky 0.5.0" << endl;
+	cerr << "License GPLv3+: GNU GPL version 3 or later: <http://gnu.org/licenses/gpl.html>" << endl;
+	cerr << "This is free software: you are free to change and redistribute it." << endl;
+	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
+	cerr << endl;
 }

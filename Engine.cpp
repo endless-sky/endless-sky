@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -454,11 +455,12 @@ void Engine::Draw() const
 		}
 	}
 	
-	if(GameData::ShouldShowLoad())
+	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
 		Color color = *GameData::Colors().Get("medium");
-		FontSet::Get(14).Draw(loadString, Point(0., Screen::Height() * -.5 + 20.), color);
+		FontSet::Get(14).Draw(loadString,
+			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
 }
 

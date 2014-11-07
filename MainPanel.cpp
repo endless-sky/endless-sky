@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
 
@@ -102,11 +103,11 @@ void MainPanel::Draw() const
 	
 	engine.Draw();
 	
-	if(GameData::ShouldShowLoad())
+	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% GPU";
 		Color color = *GameData::Colors().Get("medium");
-		FontSet::Get(14).Draw(loadString, Point(0., Screen::Height() * -.5), color);
+		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 	
 		loadSum += loadTimer.Time();
 		if(++loadCount == 60)

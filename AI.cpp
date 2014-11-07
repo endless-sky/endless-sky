@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -412,7 +413,7 @@ void AI::MoveEscort(Controllable &control, const Ship &ship)
 	bool isStaying = ship.GetPersonality().IsStaying();
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining())
+	if(ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining() && ship.GetSystem()->IsInhabited())
 		Refuel(control, ship);
 	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
@@ -806,7 +807,7 @@ Point AI::TargetAim(const Ship &ship) const
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
+int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships, bool secondary)
 {
 	int bit = 1;
 	int bits = 0;
@@ -817,7 +818,8 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships)
 	const Government *gov = ship.GetGovernment();
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
-		if(!weapon.IsReady() || (!ship.GetTargetShip() && weapon.IsHoming()))
+		if(!weapon.IsReady() || (!ship.GetTargetShip() && weapon.IsHoming())
+				|| (!secondary && weapon.GetOutfit()->Ammo()))
 		{
 			bit <<= 1;
 			continue;
@@ -1068,6 +1070,9 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	else if(keyDown & Key::Bit(Key::SCAN))
 		control.SetScanCommand();
 	
+	bool hasGuns = Preferences::Has("Automatic firing");
+	if(hasGuns)
+		control.SetFireCommands(AutoFire(ship, ships, false));
 	if(keyHeld)
 	{
 		if(keyHeld & Key::Bit(Key::BACK))
@@ -1082,7 +1087,6 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keyHeld & Key::Bit(Key::PRIMARY))
 		{
 			int index = 0;
-			bool hasGuns = false;
 			for(const Armament::Weapon &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
@@ -1092,13 +1096,6 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 					hasGuns |= !weapon.IsTurret();
 				}
 				++index;
-			}
-			if(hasGuns && !control.GetTurnCommand() && ship.GetTargetShip()
-					&& ship.GetTargetShip()->GetSystem() == ship.GetSystem())
-			{
-				Point distance = ship.GetTargetShip()->Position() - ship.Position();
-				if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
-					control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 			}
 		}
 		if(keyHeld & Key::Bit(Key::SECONDARY))
@@ -1117,6 +1114,13 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		
 		if(keyHeld & AutopilotCancelKeys())
 			keyStuck = keyHeld;
+	}
+	if(hasGuns && Preferences::Has("Automatic aiming") && !control.GetTurnCommand()
+			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem())
+	{
+		Point distance = ship.GetTargetShip()->Position() - ship.Position();
+		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
+			control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 	}
 	
 	if(ship.IsBoarding())
