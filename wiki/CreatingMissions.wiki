@@ -10,8 +10,7 @@ mission <name>
     description <text>
     deadline (<days>)
     cargo (random | <name>) <number> (<number> (<probability>))
-        illegal <level>
-        illegal <government> <level>
+        illegal <fine>
     passengers <number> (<number> (<probability>))
     invisible
     (job | landing)
@@ -132,8 +131,7 @@ The number of days you have to complete the mission. If the number of days is le
 
 {{{
 cargo (random | <name>) <number> (<number> (<probability>))
-    illegal <level>
-    illegal <government> <level>
+    illegal <fine>
 }}}
 
 This specifies the cargo that you are carrying. If `<name>` is one of the standard commodity names defined in the "trade" data, it will be replaced by a random one of the specific names for that commodity, e.g. "Food" might be replaced by "canned fruit" or "evaporated milk".
@@ -144,7 +142,7 @@ If two amounts are given instead of one, that means that a random amount should 
 
 If three numbers are given, a random number will be chosen by adding the first number to a random number chosen from a negative binomial distribution with the given number of successes needed and probability. This produces numbers that are generally somewhat low but can occasionally be quite high, if you want to every once in a while have massive cargo missions, for example.
 
-The cargo can optionally be marked with an illegality number between 1 and 5. For being caught carrying illegal cargo you will be fined 5000 `*` 10^level credits. In addition, being caught with level 5 illegal cargo carries an immediate death sentence. You can give different illegality levels for different governments, and/or specify a default level that applies to all governments.
+If the cargo is marked as "illegal," governments that care about such things will levy the given fine against you if you are caught carrying this cargo. If the fine is negative, being caught with this cargo while in flight is counted as an "atrocity" (the government that catches you immediately becomes your enemy, no matter how good your reputation was previously), and if you are caught in a spaceport with the cargo the result is a death sentence (game over).
 
 {{{
 passengers <number> (<number> (<probability>))
