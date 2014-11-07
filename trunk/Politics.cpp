@@ -172,7 +172,7 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 				if(!fine)
 					fine = 100000;
 				
-				if(fine > maxFine || fine < 0)
+				if((fine > maxFine && maxFine >= 0) || fine < 0)
 				{
 					maxFine = fine;
 					reason = "operating a " + ship->ModelName() + " without a " + name + " License.";
@@ -181,7 +181,7 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();
-			if(fine > maxFine || fine < 0)
+			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
 				reason = "carrying illegal cargo.";
@@ -193,7 +193,7 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 				if(it.second)
 				{
 					int64_t fine = it.first->Get("illegal");
-					if(fine > maxFine || fine < 0)
+					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
 						reason = "having illegal outfits installed on your ship.";
