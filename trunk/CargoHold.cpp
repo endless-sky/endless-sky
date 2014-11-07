@@ -475,3 +475,30 @@ int CargoHold::Value(const System *system) const
 		value += it.first->Cost() * it.second;
 	return value;
 }
+
+
+	
+// If anything you are carrying is illegal, return the maximum fine you can
+// be charged. If the returned value is negative, you are carrying something
+// so bad that it warrants a death sentence.
+int CargoHold::IllegalCargoFine() const
+{
+	int worst = 0;
+	// Carrying an illegal outfit is only half as bad as having it equipped.
+	for(const auto &it : outfits)
+	{
+		int fine = it.first->Get("illegal");
+		if(fine < 0)
+			return fine;
+		worst = max(worst, fine / 2);
+	}
+	
+	for(const auto &it : missionCargo)
+	{
+		int fine = it.first->IllegalCargoFine();
+		if(fine < 0)
+			return fine;
+		worst = max(worst, fine);
+	}
+	return worst;
+}

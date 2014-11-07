@@ -24,7 +24,8 @@ using namespace std;
 
 // Default constructor.
 Government::Government()
-	: name("Uninhabited"), swizzle(0), color(1.), initialPlayerReputation(0.), bribe(0.)
+	: name("Uninhabited"), swizzle(0), color(1.), initialPlayerReputation(0.),
+	bribe(0.), fine(1.), deathSentence(nullptr)
 {
 	// Default penalties:
 	penaltyFor[ShipEvent::ASSIST] = -0.1;
@@ -81,6 +82,10 @@ void Government::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
 			bribe = child.Value(1);
+		else if(child.Token(0) == "fine" && child.Size() >= 2)
+			fine = child.Value(1);
+		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
+			deathSentence = GameData::Conversations().Get(child.Token(1));
 	}
 }
 
@@ -147,6 +152,20 @@ double Government::PenaltyFor(int eventType) const
 double Government::GetBribeFraction() const
 {
 	return bribe;
+}
+
+
+
+double Government::GetFineFraction() const
+{
+	return fine;
+}
+
+
+
+const Conversation *Government::DeathSentence() const
+{
+	return deathSentence;
 }
 
 
