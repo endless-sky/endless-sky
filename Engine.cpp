@@ -699,10 +699,9 @@ void Engine::CalculateStep()
 			int scan = ship->Scan();
 			if(scan)
 			{
-				shared_ptr<const Ship> target = ship->GetTargetShip();
-				for(shared_ptr<Ship> &it : ships)
-					if(it == target)
-						eventQueue.emplace_back(ship, it, scan);
+				shared_ptr<Ship> target = ship->GetTargetShip();
+				if(target && target->IsTargetable())
+					eventQueue.emplace_back(ship, target, scan);
 			}
 			
 			// This is a good opportunity to draw all the ships in system.
