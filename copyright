@@ -87,6 +87,9 @@ License: public-domain
 Files:
  images/land/canyon2.jpg
  images/land/snow9.jpg
+ images/land/lava0.jpg
+ images/land/lava6.jpg
+ images/land/lava8.jpg
  images/land/mountain8.jpg
  images/land/mountain9.jpg
 License: public-domain
@@ -101,9 +104,10 @@ License: public-domain
  government employees while doing work for the government.
 
 Files:
+ images/land/lava1.jpg
  images/land/lava5.jpg
  images/land/lava7.jpg
- images/land/lava8.jpg
+ images/land/lava9.jpg
 Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
