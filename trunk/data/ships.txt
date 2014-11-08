@@ -134,11 +134,11 @@ ship "Arrow"
 		"Hyperdrive"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-	engine -8 48
-	engine 8 48
-	gun -6 -30 "Sidewinder Missile Launcher"
-	gun 6 -30 "Sidewinder Missile Launcher"
-	turret 0 12 "Anti-Missile Turret"
+	engine -10 60
+	engine 10 60
+	gun -8 -34 "Sidewinder Missile Launcher"
+	gun 8 -34 "Sidewinder Missile Launcher"
+	turret 0 16 "Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
@@ -585,9 +585,9 @@ ship "Combat Drone"
 		"X1700 Ion Thruster"
 		"Beam Laser"
 		"nGVF-AA Fuel Cell"
-	engine -5 16
-	engine 5 16
-	gun 0 -16 "Beam Laser"
+	engine -9 29
+	engine 9 29
+	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
 	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers."
 
@@ -1812,8 +1812,8 @@ ship "Surveillance Drone"
 		"X1700 Ion Thruster"
 		"Surveillance Pod"
 		"nGVF-AA Fuel Cell"
-	engine -5 16
-	engine 5 16
+	engine -5 29
+	engine 5 29
 	explode "tiny explosion" 15
 	description "Surveillance drones are unarmed drones used by the Republic navy to scan ships and planets in a star system."
 
