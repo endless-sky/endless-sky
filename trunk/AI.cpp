@@ -978,7 +978,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		bool targetMine = SDL_GetModState() & KMOD_SHIFT;
 		
 		shared_ptr<const Ship> target = control.GetTargetShip();
-		bool selectNext = !target;
+		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
 		{
 			if(other == target)
@@ -1159,7 +1159,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keyHeld & AutopilotCancelKeys())
 			keyStuck = keyHeld;
 	}
-	if(hasGuns && Preferences::Has("Automatic aiming") && !control.GetTurnCommand()
+	if(hasGuns && !keyStuck && Preferences::Has("Automatic aiming") && !control.GetTurnCommand()
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem())
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();

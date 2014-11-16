@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Escort (Small, Northern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -38,7 +38,7 @@ mission "Escort (Small, Northern)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Medium, Northern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -71,7 +71,7 @@ mission "Escort (Medium, Northern)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Large, Northern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -100,7 +100,7 @@ mission "Escort (Large, Northern)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Extra Large, Northern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -134,7 +134,7 @@ mission "Escort (Extra Large, Northern)"
 
 
 mission "Escort (Small, Core)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -163,7 +163,7 @@ mission "Escort (Small, Core)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Medium, Core)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -196,7 +196,7 @@ mission "Escort (Medium, Core)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Large, Core)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -225,7 +225,7 @@ mission "Escort (Large, Core)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Extra Large, Core)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -259,7 +259,7 @@ mission "Escort (Extra Large, Core)"
 
 
 mission "Escort (Small, Southern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -288,7 +288,7 @@ mission "Escort (Small, Southern)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Medium, Southern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -321,7 +321,7 @@ mission "Escort (Medium, Southern)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Large, Southern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job
@@ -350,7 +350,7 @@ mission "Escort (Large, Southern)"
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 
 mission "Escort (Extra Large, Southern)"
-	name "Escort the <npc> to <planet>"
+	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
 	repeat
 	job

@@ -1176,6 +1176,9 @@ Point Ship::Unit() const
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(bool atSpaceport)
 {
+	if(hull < 0.)
+		return;
+	
 	if(atSpaceport)
 	{
 		crew = max(crew, RequiredCrew());
