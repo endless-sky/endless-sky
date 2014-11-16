@@ -188,6 +188,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	{
 		GameData::Revert();
 		player.Load(loadedInfo.Path());
+		player.ApplyChanges();
 		
 		Messages::Reset();
 		GetUI()->Pop(this);
