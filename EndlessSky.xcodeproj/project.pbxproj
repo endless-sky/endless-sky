@@ -80,7 +80,6 @@
 		A99F7B20195DF44C002C30B8 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7AC3195DF44C002C30B8 /* Shader.cpp */; };
 		A99F7B21195DF44C002C30B8 /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7AC6195DF44C002C30B8 /* Ship.cpp */; };
 		A99F7B22195DF44C002C30B8 /* ShipInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7AC8195DF44C002C30B8 /* ShipInfoDisplay.cpp */; };
-		A99F7B23195DF44C002C30B8 /* ShipName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7ACA195DF44C002C30B8 /* ShipName.cpp */; };
 		A99F7B24195DF44C002C30B8 /* ShipyardPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7ACC195DF44C002C30B8 /* ShipyardPanel.cpp */; };
 		A99F7B25195DF44C002C30B8 /* ShopPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7ACE195DF44C002C30B8 /* ShopPanel.cpp */; };
 		A99F7B26195DF44C002C30B8 /* SpaceportPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7AD0195DF44C002C30B8 /* SpaceportPanel.cpp */; };
@@ -112,6 +111,9 @@
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
+		A9D445C01A1BFFA200AB5EE5 /* Preferences.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9D445BE1A1BFFA200AB5EE5 /* Preferences.cpp */; };
+		A9D445C31A1BFFB200AB5EE5 /* Phrase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9D445C11A1BFFB200AB5EE5 /* Phrase.cpp */; };
+		A9D445C61A1BFFBD00AB5EE5 /* SavedGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9D445C41A1BFFBD00AB5EE5 /* SavedGame.cpp */; };
 		A9E84C7D196215140058DFB7 /* CaptureOdds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C77196215140058DFB7 /* CaptureOdds.cpp */; };
 		A9E84C7E196215140058DFB7 /* HiringPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C79196215140058DFB7 /* HiringPanel.cpp */; };
 		A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E84C7B196215140058DFB7 /* Personality.cpp */; };
@@ -275,8 +277,6 @@
 		A99F7AC7195DF44C002C30B8 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		A99F7AC8195DF44C002C30B8 /* ShipInfoDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipInfoDisplay.cpp; sourceTree = "<group>"; };
 		A99F7AC9195DF44C002C30B8 /* ShipInfoDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipInfoDisplay.h; sourceTree = "<group>"; };
-		A99F7ACA195DF44C002C30B8 /* ShipName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipName.cpp; sourceTree = "<group>"; };
-		A99F7ACB195DF44C002C30B8 /* ShipName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipName.h; sourceTree = "<group>"; };
 		A99F7ACC195DF44C002C30B8 /* ShipyardPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipyardPanel.cpp; sourceTree = "<group>"; };
 		A99F7ACD195DF44C002C30B8 /* ShipyardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipyardPanel.h; sourceTree = "<group>"; };
 		A99F7ACE195DF44C002C30B8 /* ShopPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShopPanel.cpp; sourceTree = "<group>"; };
@@ -336,6 +336,13 @@
 		A9CC52711950C9F6004E4E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9CC52A01950CA16004E4E22 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
 		A9D40D19195DFAA60086EE52 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		A9D445BE1A1BFFA200AB5EE5 /* Preferences.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Preferences.cpp; sourceTree = "<group>"; };
+		A9D445BF1A1BFFA200AB5EE5 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		A9D445C11A1BFFB200AB5EE5 /* Phrase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Phrase.cpp; sourceTree = "<group>"; };
+		A9D445C21A1BFFB200AB5EE5 /* Phrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phrase.h; sourceTree = "<group>"; };
+		A9D445C41A1BFFBD00AB5EE5 /* SavedGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SavedGame.cpp; sourceTree = "<group>"; };
+		A9D445C51A1BFFBD00AB5EE5 /* SavedGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedGame.h; sourceTree = "<group>"; };
+		A9D445C71A1BFFD200AB5EE5 /* ClickZone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClickZone.h; sourceTree = "<group>"; };
 		A9E84C77196215140058DFB7 /* CaptureOdds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CaptureOdds.cpp; sourceTree = "<group>"; };
 		A9E84C78196215140058DFB7 /* CaptureOdds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureOdds.h; sourceTree = "<group>"; };
 		A9E84C79196215140058DFB7 /* HiringPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HiringPanel.cpp; sourceTree = "<group>"; };
@@ -398,6 +405,7 @@
 				A9E84C78196215140058DFB7 /* CaptureOdds.h */,
 				A99F7A65195DF44B002C30B8 /* CargoHold.cpp */,
 				A99F7A66195DF44B002C30B8 /* CargoHold.h */,
+				A9D445C71A1BFFD200AB5EE5 /* ClickZone.h */,
 				A99F7A67195DF44B002C30B8 /* Color.cpp */,
 				A99F7A68195DF44B002C30B8 /* Color.h */,
 				A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */,
@@ -508,6 +516,8 @@
 				A99F7AAE195DF44B002C30B8 /* Panel.h */,
 				A9E84C7B196215140058DFB7 /* Personality.cpp */,
 				A9E84C7C196215140058DFB7 /* Personality.h */,
+				A9D445C11A1BFFB200AB5EE5 /* Phrase.cpp */,
+				A9D445C21A1BFFB200AB5EE5 /* Phrase.h */,
 				A99F7AAF195DF44B002C30B8 /* Planet.cpp */,
 				A99F7AB0195DF44B002C30B8 /* Planet.h */,
 				A99F7AB1195DF44B002C30B8 /* PlanetPanel.cpp */,
@@ -520,6 +530,8 @@
 				A99F7AB8195DF44B002C30B8 /* PointerShader.h */,
 				A959553519957288005197E6 /* Politics.cpp */,
 				A959553619957288005197E6 /* Politics.h */,
+				A9D445BE1A1BFFA200AB5EE5 /* Preferences.cpp */,
+				A9D445BF1A1BFFA200AB5EE5 /* Preferences.h */,
 				A99F7AB9195DF44B002C30B8 /* PreferencesPanel.cpp */,
 				A99F7ABA195DF44B002C30B8 /* PreferencesPanel.h */,
 				A99F7ABB195DF44B002C30B8 /* Projectile.cpp */,
@@ -529,6 +541,8 @@
 				A9C81F8C1978741400EBA833 /* Random.cpp */,
 				A9C81F8D1978741400EBA833 /* Random.h */,
 				A99F7ABF195DF44B002C30B8 /* Sale.h */,
+				A9D445C41A1BFFBD00AB5EE5 /* SavedGame.cpp */,
+				A9D445C51A1BFFBD00AB5EE5 /* SavedGame.h */,
 				A99F7AC0195DF44B002C30B8 /* Screen.cpp */,
 				A99F7AC1195DF44C002C30B8 /* Screen.h */,
 				A99F7AC2195DF44C002C30B8 /* Set.h */,
@@ -541,8 +555,6 @@
 				A959553319957260005197E6 /* ShipEvent.h */,
 				A99F7AC8195DF44C002C30B8 /* ShipInfoDisplay.cpp */,
 				A99F7AC9195DF44C002C30B8 /* ShipInfoDisplay.h */,
-				A99F7ACA195DF44C002C30B8 /* ShipName.cpp */,
-				A99F7ACB195DF44C002C30B8 /* ShipName.h */,
 				A99F7ACC195DF44C002C30B8 /* ShipyardPanel.cpp */,
 				A99F7ACD195DF44C002C30B8 /* ShipyardPanel.h */,
 				A99F7ACE195DF44C002C30B8 /* ShopPanel.cpp */,
@@ -730,12 +742,14 @@
 				A9C81F8E1978741400EBA833 /* Random.cpp in Sources */,
 				A99F7AF4195DF44C002C30B8 /* ConversationPanel.cpp in Sources */,
 				A9F26FB81A003D8600A4B5BA /* GameEvent.cpp in Sources */,
+				A9D445C01A1BFFA200AB5EE5 /* Preferences.cpp in Sources */,
 				A99F7B1F195DF44C002C30B8 /* Screen.cpp in Sources */,
 				A99F7B1C195DF44C002C30B8 /* PreferencesPanel.cpp in Sources */,
 				A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */,
 				A99F7B25195DF44C002C30B8 /* ShopPanel.cpp in Sources */,
 				A99F7B03195DF44C002C30B8 /* GameData.cpp in Sources */,
 				A99F7AEB195DF44C002C30B8 /* Animation.cpp in Sources */,
+				A9D445C61A1BFFBD00AB5EE5 /* SavedGame.cpp in Sources */,
 				A9F4DBC719D21F380015BBE2 /* LocationFilter.cpp in Sources */,
 				A99F7AED195DF44C002C30B8 /* AsteroidField.cpp in Sources */,
 				A9C81F911978743100EBA833 /* DataWriter.cpp in Sources */,
@@ -789,6 +803,7 @@
 				A99F7B21195DF44C002C30B8 /* Ship.cpp in Sources */,
 				A99F7B31195DF44C002C30B8 /* WrappedText.cpp in Sources */,
 				A959553719957288005197E6 /* Politics.cpp in Sources */,
+				A9D445C31A1BFFB200AB5EE5 /* Phrase.cpp in Sources */,
 				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
 				A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
@@ -799,7 +814,6 @@
 				A9C81F85197873F700EBA833 /* Messages.cpp in Sources */,
 				A959553D199572A7005197E6 /* Format.cpp in Sources */,
 				A99F7B0F195DF44C002C30B8 /* Mask.cpp in Sources */,
-				A99F7B23195DF44C002C30B8 /* ShipName.cpp in Sources */,
 				A99F7AFB195DF44C002C30B8 /* Effect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
