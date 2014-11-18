@@ -5172,16 +5172,8 @@ system Ildaria
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	object
-		sprite star/g5
+		sprite star/wr
 		period 10
-	object
-		sprite planet/rock9
-		distance 247.01
-		period 62.114327
-		object
-			sprite planet/tethys
-			distance 116
-			period 14.256285
 	object
 		sprite planet/ice4
 		distance 694.26
