@@ -177,7 +177,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 
 
 // Place a fleet in the given system, already "in action."
-void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships) const
+void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried) const
 {
 	if(!total || !government)
 		return;
@@ -211,7 +211,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships)
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
-		if(ship->IsFighter())
+		if(carried && ship->IsFighter())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
 			fighter->SetGovernment(government);

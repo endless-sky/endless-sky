@@ -41,7 +41,7 @@ public:
 	
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
 	// Place a fleet in the given system, already "in action."
-	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
+	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 	
 	// Do the randomization to make a ship enter or be in the given system.
 	static void Enter(const System &system, Ship &ship);
