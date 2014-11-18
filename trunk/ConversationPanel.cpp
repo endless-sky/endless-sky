@@ -143,7 +143,7 @@ void ConversationPanel::Draw() const
 		Point size(WIDTH, it.Height());
 		
 		if(zones.size() == static_cast<unsigned>(choice))
-			FillShader::Fill(center, size, selectionColor);
+			FillShader::Fill(center, size + Point(20., 0.), selectionColor);
 		zones.emplace_back(point + .5 * size, size);
 		
 		it.Draw(point, bright);
@@ -206,22 +206,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 	else if(key == SDLK_DOWN && choice < conversation.Choices(node) - 1)
 		++choice;
 	else if(key == SDLK_RETURN && choice < conversation.Choices(node))
-	{
-		// Find the ith choice.
-		auto it = choices.begin();
-		for(int i = 0; i < choice; ++i)
-			++it;
-		text.splice(text.end(), choices, it);
-		
-		int y = 20;
-		if(conversation.Scene() && conversation.Scene()->Height())
-			y = 40 + conversation.Scene()->Height();
-		for(const WrappedText &it : text)
-			y += it.Height();
-		scroll = -y + 9;
-		
 		Goto(conversation.NextNode(node, choice));
-	}
 	else if(key == GameData::Keys().Get(Key::MAP))
 		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	else
@@ -286,6 +271,22 @@ bool ConversationPanel::Scroll(int dx, int dy)
 
 void ConversationPanel::Goto(int index)
 {
+	if(static_cast<unsigned>(index) < choices.size())
+	{
+		// Find the ith choice.
+		auto it = choices.begin();
+		for(int i = 0; i < index; ++i)
+			++it;
+		text.splice(text.end(), choices, it);
+	
+		int y = 20;
+		if(conversation.Scene() && conversation.Scene()->Height())
+			y = 40 + conversation.Scene()->Height();
+		for(const WrappedText &it : text)
+			y += it.Height();
+		scroll = -y + 9;
+	}
+	
 	choices.clear();
 	node = index;
 	
@@ -316,17 +317,4 @@ void ConversationPanel::Goto(int index)
 		choices.back().Wrap(altered);
 	}
 	choice = 0;
-	
-	int y = scroll;
-	if(conversation.Scene())
-		y += conversation.Scene()->Height();
-	for(const WrappedText &it : text)
-		y += it.Height();
-	for(const WrappedText &it : choices)
-		y += it.Height();
-	if(choices.empty())
-		y += 20;
-	
-	if(y > Screen::Height())
-		scroll -= (y - Screen::Height());
 }

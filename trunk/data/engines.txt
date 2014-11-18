@@ -348,7 +348,7 @@ outfit "A520 Atomic Thruster"
 	"thrust" 81.9
 	"thrusting energy" 8.3
 	"thrusting heat" 17.4
-	"flare sprite" "effect/atomic flare/big"
+	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "ion_drive"
 	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."

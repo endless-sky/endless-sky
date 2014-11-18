@@ -323,7 +323,7 @@ void Engine::Step(bool isActive)
 				hostile ? Radar::HOSTILE : Radar::UNFRIENDLY;
 			info.SetOutlineColor(Radar::GetColor(targetType));
 			
-			if(target->GetSystem() == player.GetSystem())
+			if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 			{
 				info.SetBar("target shields", target->Shields());
 				info.SetBar("target hull", target->Hull(), 20.);
@@ -514,7 +514,7 @@ void Engine::EnterSystem()
 		if(category == "Heavy Freighter")
 			attraction += 2;
 	}
-	if(attraction > 1)
+	if(attraction > 2)
 		for(int i = 0; i < 10; ++i)
 			if(Random::Int(50) + 1 < attraction)
 				GameData::Fleets().Get("pirate raid")->Place(*system, ships);
