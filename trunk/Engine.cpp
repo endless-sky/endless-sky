@@ -139,11 +139,50 @@ void Engine::Place()
 		flagship = player.Ships().front();
 	for(const Mission &mission : player.Missions())
 		for(const NPC &npc : mission.NPCs())
+		{
+			map<Ship *, int> droneCarriers;
+			map<Ship *, int> fighterCarriers;
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
+				if(ship->DroneBaysFree())
+					droneCarriers[&*ship] = ship->DroneBaysFree();
+				if(ship->FighterBaysFree())
+					fighterCarriers[&*ship] = ship->FighterBaysFree();
+			}
+			
+			for(const shared_ptr<Ship> &ship : npc.Ships())
+			{
+				ship->Recharge();
+				
+				if(ship->IsFighter())
+				{
+					bool docked = false;
+					if(ship->Attributes().Category() == "Drone")
+					{
+						for(auto &it : droneCarriers)
+							if(it.second)
+							{
+								it.first->AddFighter(ship);
+								--it.second;
+								docked = true;
+							}
+					}
+					else if(ship->Attributes().Category() == "Fighter")
+					{
+						for(auto &it : fighterCarriers)
+							if(it.second)
+							{
+								it.first->AddFighter(ship);
+								--it.second;
+								docked = true;
+							}
+					}
+					if(docked)
+						continue;
+				}
+				
 				ships.push_back(ship);
 				ship->SetParent(flagship);
-				ship->Recharge();
 				
 				Point pos;
 				Angle angle = Angle::Random(360.);
@@ -162,6 +201,7 @@ void Engine::Place()
 				}
 				ship->Place(pos, angle.Unit(), angle);
 			}
+		}
 	
 	player.SetPlanet(nullptr);
 }

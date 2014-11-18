@@ -317,9 +317,9 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 		result.ships.back()->SetName(*nameIt);
 	}
 	for(const Fleet &fleet : fleets)
-		fleet.Place(*result.system, result.ships);
+		fleet.Place(*result.system, result.ships, false);
 	for(const Fleet *fleet : stockFleets)
-		fleet->Place(*result.system, result.ships);
+		fleet->Place(*result.system, result.ships, false);
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
