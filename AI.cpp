@@ -1159,8 +1159,9 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(keyHeld & AutopilotCancelKeys())
 			keyStuck = keyHeld;
 	}
-	if(hasGuns && !keyStuck && Preferences::Has("Automatic aiming") && !control.GetTurnCommand()
-			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem())
+	if(hasGuns && Preferences::Has("Automatic aiming") && !control.GetTurnCommand()
+			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
+			&& !(keyStuck & (Key::Bit(Key::LAND) || Key::Bit(Key::JUMP) || Key::Bit(Key::BOARD))))
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
