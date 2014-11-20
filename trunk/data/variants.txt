@@ -252,3 +252,73 @@ ship "Quicksilver" "Quicksilver (Proton)"
 	gun 6 -38 "Proton Gun"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
+
+ship "Cruiser" "Cruiser (Heavy)"
+	sprite "ship/cruiser"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+		Navy
+		Cruiser
+	attributes
+		category "Heavy Warship"
+		"cost" 11200000
+		"shields" 19600
+		"hull" 6400
+		"required crew" 84
+		"bunks" 136
+		"mass" 680
+		"drag" 10.1
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 60
+		"outfit space" 760
+		"weapon capacity" 320
+		"engine capacity" 170
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		Supercapacitor
+		"X2200 Ion Steering"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Particle Cannon" 4
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Dwarf Core"
+		"Armageddon Core"
+		"Liquid Helium Cooler"
+		"D94-YV Shield Generator"
+		Ramscoop
+		"Scram Drive"
+		"Mass Expansion"
+		"Laser Rifle" 20
+		"Fragmentation Grenades" 20
+		"Heavy Rocket" 40
+		"Heavy Rocket Launcher" 2
+		"Quad Blaster Turret"
+	engine -29 156
+	engine 29 156
+	gun -41 -52 "Heavy Rocket Launcher"
+	gun 41 -52 "Heavy Rocket Launcher"
+	gun -31 -63 "Particle Cannon"
+	gun 31 -63 "Particle Cannon"
+	gun -20 -44 "Particle Cannon"
+	gun 20 -44 "Particle Cannon"
+	turret 0 -40 "Heavy Laser Turret"
+	turret -33 -19 "Heavy Anti-Missile Turret"
+	turret 33 -19 "Heavy Laser Turret"
+	turret 0 0 "Quad Blaster Turret"
+	drone -25 18
+	drone 25 18
+	drone -25 49
+	drone 25 49
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
