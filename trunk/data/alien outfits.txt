@@ -173,6 +173,29 @@ outfit "Korath Warder"
 		"firing heat" 10
 	description "This anti-missile system helps defend Korath warships from long-range attacks."
 
+outfit "Korath Fire-Lance"
+	category "Guns"
+	cost 600000
+	thumbnail "outfit/heavy laser"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"gun ports" -1
+	weapon
+		sprite "projectile/fire-lance"
+			"frame rate" 12
+		sound "heavy_laser"
+		"hit effect" "fire-lance impact"
+		"inaccuracy" .4
+		"velocity" 350
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.1
+		"firing heat" 4.5
+		"shield damage" 4.2
+		"hull damage" 3.2
+	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
+
 
 outfit "Korath Tek'far Reactor"
 	category "Power"

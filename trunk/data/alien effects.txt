@@ -45,3 +45,11 @@ effect "korath warder"
 	"lifetime" 11
 	"velocity scale" 1
 
+effect "fire-lance impact"
+	sprite "effect/fire-lance impact"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 10
+	"random angle" 360
+	"velocity scale" 0.
+
