@@ -1210,6 +1210,7 @@ system Almach
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
+	fleet "Korath Raid" 20000
 	object
 		sprite star/k5
 		period 10
@@ -1707,6 +1708,7 @@ system "Alpha Hydri"
 	fleet "Large Core Pirates" 6000
 	fleet "Small Syndicate" 4000
 	fleet "Large Syndicate" 9000
+	fleet "Korath Raid" 40000
 	object
 		sprite star/g0
 		distance 24.6857
@@ -3704,6 +3706,7 @@ system Durax
 	fleet "Small Southern Pirates" 300
 	fleet "Large Southern Pirates" 500
 	fleet "Large Syndicate" 2000
+	fleet "Korath Raid" 20000
 	object
 		sprite star/g0
 		period 10
@@ -4678,16 +4681,10 @@ system Gorvi
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
 	object
-		sprite star/k0
-		distance 32.316231
-		period 15.685727
-		offset 180
+		sprite star/wr
+		period 100
 	object
-		sprite star/m0
-		distance 68.683769
-		period 15.685727
-	object
-		sprite planet/rock16
+		sprite planet/lava0
 		distance 342.18377
 		period 97.816405
 	object
@@ -8003,6 +8000,7 @@ system Polaris
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 1500
+	fleet "Korath Raid" 50000
 	object
 		sprite star/k5
 		period 10
@@ -9320,6 +9318,7 @@ system Sheratan
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 5000
+	fleet "Korath Raid" 30000
 	object
 		sprite star/f5
 		distance 21.0713
@@ -9513,18 +9512,18 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	object
-		sprite star/f5
-		period 10
+		sprite star/wr
+		period 100
 	object
 		sprite planet/lava2
 		distance 152.96
 		period 18.272364
 	object
-		sprite planet/titan
+		sprite planet/lava7
 		distance 362.32
 		period 66.614135
 	object
-		sprite planet/rock16
+		sprite planet/lava4
 		distance 656.93
 		period 162.63221
 	object
