@@ -696,6 +696,15 @@ fleet "pirate raid"
 	variant 1
 		Falcon
 
+fleet "Korath Raid"
+	government "Korath"
+	names "quarg"
+	cargo 3
+	personality
+		plunders
+	variant
+		"Korath Raider"
+
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
