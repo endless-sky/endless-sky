@@ -96,3 +96,50 @@ ship "Quarg Wardragon"
 	explode "huge explosion" 20
 	description "The Skylark is used by the Quarg as a light warship."
 
+ship "Korath Raider"
+	sprite "ship/raider"
+	attributes
+		category "Heavy Warship"
+		"cost" 10000000
+		"shields" 19000
+		"hull" 7000
+		"required crew" 145
+		"bunks" 250
+		"mass" 720
+		"drag" 12
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 143
+		"outfit space" 721
+		"weapon capacity" 284
+		"engine capacity" 155
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Korath Grab-Strike" 4
+		"Korath Banisher"
+		"Korath Warder"
+		"Korath Tek'nel Reactor"
+		"Korath Shield Generator"
+		"Korath Heat Shunt"
+		Ramscoop
+		"Jump Drive"
+		"Korath Jak'torbal Thruster"
+		"Korath Jak'parat Steering"
+	engine -20 130
+	engine 20 130
+	turret -34 -143 "Korath Grab-Strike"
+	turret 34 -143 "Korath Grab-Strike"
+	turret -8 -145 "Korath Grab-Strike"
+	turret 8 -145 "Korath Grab-Strike"
+	turret 0 35 "Korath Banisher"
+	turret 0 90 "Korath Warder"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
+	description "The Korath Raider is their warship of choice for plundering neighboring species."

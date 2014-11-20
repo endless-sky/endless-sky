@@ -73,6 +73,20 @@ government "Pirate"
 	"bribe" .05
 	"fine" 0
 
+government "Korath"
+	swizzle 0
+	color .8 .5 .1
+	
+	"player reputation" -10
+	"attitude toward"
+		"Merchant" -.1
+		"Syndicate" -.1
+		"Republic" -.1
+		"Militia" -.1
+		"Free Worlds" -.1
+		"Pirate" -.1
+		"Quarg" -.5
+
 government "Quarg"
 	swizzle 0
 	color .88 .77 0
