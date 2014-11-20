@@ -1053,6 +1053,8 @@ bool Ship::CanLand() const
 // Check if this ship is currently able to enter hyperspace to it target.
 bool Ship::CanHyperspace() const
 {
+	if(IsDisabled())
+		return false;
 	if(!GetTargetSystem())
 		return false;
 	if(fuel < attributes.Get("jump fuel"))
@@ -1648,7 +1650,7 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 double Ship::MinimumHull() const
 {
 	double maximumHull = attributes.Get("hull");
-	return max(.10 * maximumHull, min(.50 * maximumHull, 400.));
+	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
 }
 
 
