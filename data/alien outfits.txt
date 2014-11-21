@@ -193,7 +193,7 @@ outfit "Korath Fire-Lance"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.1
-		"firing heat" 2.1
+		"firing heat" 1.7
 		"shield damage" 3.5
 		"hull damage" 2.2
 	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
@@ -206,7 +206,7 @@ outfit "Korath Tek'far Reactor"
 	"mass" 25
 	"outfit space" -25
 	"energy generation" 3.9
-	"heat generation" 9
+	"heat generation" 7.3
 	description "This is a miniature nuclear reactor, used by the Korath to power their fighters."
 
 outfit "Korath Tek'nel Reactor"
@@ -248,7 +248,7 @@ outfit "Korath Ark'torbal Thruster"
 	"engine capacity" -17
 	"thrust" 8.9
 	"thrusting energy" 1.1
-	"thrusting heat" 1.2
+	"thrusting heat" 1.0
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma_drive"
@@ -263,7 +263,7 @@ outfit "Korath Ark'parat Steering"
 	"engine capacity" -12
 	"turn" 240
 	"turning energy" .6
-	"turning heat" .9
+	"turning heat" .7
 	description "This engine is used by Korath fighters."
 
 outfit "Korath Jak'torbal Thruster"

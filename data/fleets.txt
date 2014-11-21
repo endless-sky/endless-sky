@@ -706,6 +706,16 @@ fleet "Korath Raid"
 		"Korath Raider"
 		"Korath Chaser" 2
 
+fleet "Korath Home"
+	government "Korath"
+	names "quarg"
+	cargo 3
+	personality
+		plunders
+	variant
+		"Korath Raider"
+		"Korath Chaser" 2
+
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
