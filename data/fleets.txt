@@ -704,6 +704,7 @@ fleet "Korath Raid"
 		plunders
 	variant
 		"Korath Raider"
+		"Korath Chaser" 2
 
 fleet "Quarg"
 	government "Quarg"

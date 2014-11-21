@@ -141,6 +141,7 @@ outfit "Korath Banisher"
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
+			"random start frame"
 		sound "heavy_laser"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
@@ -184,6 +185,7 @@ outfit "Korath Fire-Lance"
 	weapon
 		sprite "projectile/fire-lance"
 			"frame rate" 12
+			"random start frame"
 		sound "heavy_laser"
 		"hit effect" "fire-lance impact"
 		"inaccuracy" .4
@@ -191,9 +193,9 @@ outfit "Korath Fire-Lance"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.1
-		"firing heat" 4.5
-		"shield damage" 4.2
-		"hull damage" 3.2
+		"firing heat" 2.1
+		"shield damage" 3.5
+		"hull damage" 2.2
 	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
 
 
@@ -201,10 +203,10 @@ outfit "Korath Tek'far Reactor"
 	category "Power"
 	cost 1200000
 	thumbnail "outfit/dwarf core"
-	"mass" 29
-	"outfit space" -29
-	"energy generation" 4.2
-	"heat generation" 12
+	"mass" 25
+	"outfit space" -25
+	"energy generation" 3.9
+	"heat generation" 9
 	description "This is a miniature nuclear reactor, used by the Korath to power their fighters."
 
 outfit "Korath Tek'nel Reactor"
@@ -236,6 +238,33 @@ outfit "Korath Heat Shunt"
 	"cooling" 78
 	description "Korath weapons generate extreme amounts of heat, and the cooling systems they require are massive."
 
+
+outfit "Korath Ark'torbal Thruster"
+	category "Engines"
+	"cost" 40000
+	thumbnail "outfit/tiny plasma thruster"
+	"mass" 17
+	"outfit space" -17
+	"engine capacity" -17
+	"thrust" 8.9
+	"thrusting energy" 1.1
+	"thrusting heat" 1.2
+	"flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"flare sound" "plasma_drive"
+	description "This engine is used by Korath fighters."
+
+outfit "Korath Ark'parat Steering"
+	category "Engines"
+	"cost" 36000
+	thumbnail "outfit/tiny plasma steering"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"turn" 240
+	"turning energy" .6
+	"turning heat" .9
+	description "This engine is used by Korath fighters."
 
 outfit "Korath Jak'torbal Thruster"
 	category "Engines"
