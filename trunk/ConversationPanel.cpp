@@ -271,14 +271,17 @@ bool ConversationPanel::Scroll(int dx, int dy)
 
 void ConversationPanel::Goto(int index)
 {
-	if(static_cast<unsigned>(index) < choices.size())
+	if(!choices.empty())
 	{
-		// Find the ith choice.
+		unsigned i = 0;
 		auto it = choices.begin();
-		for(int i = 0; i < index; ++i)
-			++it;
-		text.splice(text.end(), choices, it);
-	
+		for( ; it != choices.end(); ++it, ++i)
+			if(conversation.NextNode(node, i) == index)
+			{
+				text.splice(text.end(), choices, it);
+				break;
+			}
+		
 		int y = 20;
 		if(conversation.Scene() && conversation.Scene()->Height())
 			y = 40 + conversation.Scene()->Height();
