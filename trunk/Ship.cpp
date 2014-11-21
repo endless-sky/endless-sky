@@ -32,28 +32,12 @@ using namespace std;
 
 
 
-Ship::Ship()
-	: government(nullptr), isInSystem(true),
-	forget(0), isSpecial(false), isOverheated(false), isDisabled(false),
-	isBoarding(false), hasBoarded(false), hail{nullptr, nullptr},
-	explosionWeapon(nullptr),
-	shields(0.), hull(0.), fuel(0.), energy(0.), heat(0.),
-	heatDissipation(.999), currentSystem(nullptr),
-	zoom(1.), landingPlanet(nullptr),
-	hyperspaceCount(0), hyperspaceSystem(nullptr),
-	explosionRate(0), explosionCount(0), explosionTotal(0)
-{
-}
-
-
-
 void Ship::Load(const DataNode &node)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
 	
 	government = GameData::PlayerGovernment();
-	crew = 0;
 	equipped.clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
