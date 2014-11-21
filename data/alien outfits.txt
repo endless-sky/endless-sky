@@ -141,7 +141,6 @@ outfit "Korath Banisher"
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
-			"random start frame"
 		sound "heavy_laser"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
