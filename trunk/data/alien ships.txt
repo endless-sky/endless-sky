@@ -137,9 +137,42 @@ ship "Korath Raider"
 	turret 8 -145 "Korath Grab-Strike"
 	turret 0 35 "Korath Banisher"
 	turret 0 90 "Korath Warder"
+	fighter -75 100
+	fighter 75 100
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
+
+ship "Korath Chaser"
+	sprite "ship/chaser"
+	attributes
+		category "Fighter"
+		"cost" 221000
+		"shields" 1400
+		"hull" 500
+		"required crew" 1
+		"bunks" 1
+		"mass" 40
+		"drag" .7
+		"heat dissipation" .9
+		"outfit space" 90
+		"weapon capacity" 25
+		"engine capacity" 30
+		weapon
+			"blast radius" 30
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Korath Fire-Lance"
+		"Korath Tek'far Reactor"
+		"Korath Ark'torbal Thruster"
+		"Korath Ark'parat Steering"
+	engine -7 23
+	engine 7 23
+	gun 0 -28 "Korath Fire-Lance"
+	explode "tiny explosion" 20
+	description "The Korath Chaser is a fighter carried by most of their capital ships."
