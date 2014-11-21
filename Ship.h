@@ -49,9 +49,6 @@ class System;
 // same  within the limits of what the AI knows how to command them to do.
 class Ship : public Controllable, public std::enable_shared_from_this<Ship> {
 public:
-	// Default constructor.
-	Ship();
-	
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
@@ -234,28 +231,28 @@ private:
 	Animation sprite;
 	// Characteristics of this particular ship:
 	std::string name;
-	const Government *government;
+	const Government *government = nullptr;
 	
 	// Licenses needed to operate this ship.
 	std::map<const Government *, std::vector<std::string>> licenses;
 	
-	bool isInSystem;
-	int forget;
+	bool isInSystem = true;
+	int forget = 0;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
-	bool isSpecial;
-	bool isOverheated;
-	bool isDisabled;
-	bool isBoarding;
-	bool hasBoarded;
+	bool isSpecial = false;
+	bool isOverheated = false;
+	bool isDisabled = false;
+	bool isBoarding = false;
+	bool hasBoarded = false;
 	
 	Personality personality;
-	const Phrase *hail[2];
+	const Phrase *hail[2] = {nullptr, nullptr};
 	
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
 	Outfit baseAttributes;
-	const Outfit *explosionWeapon;
+	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	
@@ -269,36 +266,36 @@ private:
 	std::map<const Outfit *, int> equipped;
 	
 	// Various energy levels:
-	double shields;
-	double hull;
-	double fuel;
-	double energy;
-	double heat;
-	double heatDissipation;
+	double shields = 0.;
+	double hull = 0.;
+	double fuel = 0.;
+	double energy = 0.;
+	double heat = 0.;
+	double heatDissipation = .999;
 	
-	int crew;
-	int pilotError;
-	int pilotOkay;
+	int crew = 0;
+	int pilotError = 0;
+	int pilotOkay = 0;
 	
 	// Current status of this particular ship:
-	const System *currentSystem;
+	const System *currentSystem = nullptr;
 	Point position;
 	Point velocity;
 	Angle angle;
 	
 	// A Ship can be locked into one of three special states: landing,
 	// hyperspacing, and exploding. Each one must track some special counters:
-	double zoom;
-	const Planet *landingPlanet;
+	double zoom = 1.;
+	const Planet *landingPlanet = nullptr;
 	
-	int hyperspaceCount;
-	const System *hyperspaceSystem;
+	int hyperspaceCount = 0;
+	const System *hyperspaceSystem = nullptr;
 	Point hyperspaceOffset;
 	
 	std::map<const Effect *, int> explosionEffects;
-	unsigned explosionRate;
-	unsigned explosionCount;
-	unsigned explosionTotal;
+	unsigned explosionRate = 0;
+	unsigned explosionCount = 0;
+	unsigned explosionTotal = 0;
 };
 
 
