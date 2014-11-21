@@ -18,6 +18,7 @@ government "Merchant"
 	"player reputation" 10
 	"attitude toward"
 		"Pirate" -.2
+		"Korath" -.2
 	"bribe" .05
 	"fine" 0
 
@@ -30,6 +31,7 @@ government "Republic"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
+		"Korath" -.3
 
 government "Free Worlds"
 	swizzle 2
@@ -40,6 +42,7 @@ government "Free Worlds"
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
+		"Korath" -.2
 	"bribe" .1
 
 government "Militia"
@@ -50,6 +53,7 @@ government "Militia"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
+		"Korath" -.2
 	"bribe" .1
 
 government "Syndicate"
@@ -60,6 +64,7 @@ government "Syndicate"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
+		"Korath" -.5
 	"bribe" .08
 
 government "Pirate"
@@ -70,6 +75,7 @@ government "Pirate"
 	"attitude toward"
 		"Merchant" -.1
 		"Syndicate" -.1
+		"Korath" -.1
 	"bribe" .05
 	"fine" 0
 
@@ -78,14 +84,6 @@ government "Korath"
 	color .8 .5 .1
 	
 	"player reputation" -10
-	"attitude toward"
-		"Merchant" -.1
-		"Syndicate" -.1
-		"Republic" -.1
-		"Militia" -.1
-		"Free Worlds" -.1
-		"Pirate" -.1
-		"Quarg" -.5
 
 government "Quarg"
 	swizzle 0

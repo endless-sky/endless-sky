@@ -5525,6 +5525,306 @@ system Kochab
 		distance 2419.01
 		period 2660.37
 
+system "Kor Ak'Mari"
+	pos 43 22
+	government Korath
+	habitable 625
+	asteroids "small metal" 13 3.024
+	asteroids "medium metal" 99 3.0744
+	asteroids "large metal" 32 1.5624
+	fleet "Korath Raid" 2800
+	fleet "Korath Home" 2000
+	object
+		sprite star/wr
+		period 100
+	object
+		sprite planet/lava6
+		distance 179.89
+		period 38.603841
+	object
+		sprite planet/lava0
+		distance 492.58
+		period 174.91826
+	object
+		sprite planet/ocean6
+		distance 874.19
+		period 413.55067
+		object
+			sprite planet/callisto
+			distance 166
+			period 16.230524
+	object
+		sprite planet/ice0
+		distance 1777.8
+		period 1199.3456
+	object
+		sprite planet/oberon
+		distance 2107.64
+		period 1548.1557
+
+system "Kor En'lakfar"
+	pos -31 -33
+	government Korath
+	habitable 1080
+	link "Kor Men"
+	link "Kor Fel'tar"
+	asteroids "small rock" 7 0.84
+	asteroids "medium rock" 20 1.17
+	asteroids "large rock" 31 1.27
+	asteroids "small metal" 4 0.74
+	asteroids "medium metal" 91 1.12
+	asteroids "large metal" 30 1.07
+	fleet "Korath Raid" 600
+	fleet "Korath Home" 1800
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert1
+		distance 184.41
+		period 30.480691
+	object
+		sprite planet/ocean2
+		distance 571.85
+		period 166.44521
+		object
+			sprite planet/europa
+			distance 163
+			period 16.991659
+	object
+		sprite planet/gas8
+		distance 1724.74
+		period 871.83353
+		object
+			sprite planet/mercury
+			distance 239
+			period 18.212064
+		object
+			sprite planet/rhea
+			distance 354
+			period 32.829722
+		object
+			sprite planet/rock0
+			distance 468
+			period 49.90351
+
+system "Kor Fel'tar"
+	pos 29 -66
+	government Korath
+	habitable 455.625
+	link "Kor En'lakfar"
+	link "Kor Men"
+	asteroids "small rock" 17 3.4713
+	asteroids "medium rock" 14 5.586
+	asteroids "large rock" 24 5.7456
+	asteroids "small metal" 6 2.0748
+	asteroids "medium metal" 63 3.192
+	asteroids "large metal" 3 4.5486
+	fleet "Korath Raid" 1600
+	fleet "Korath Home" 900
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/ocean3
+		distance 249.66
+		period 73.923014
+	object
+		sprite planet/cloud8
+		distance 673.9
+		period 327.83054
+		object
+			sprite planet/lava2
+			distance 163
+			period 23.746565
+	object
+		sprite planet/gas2
+		distance 1786.9
+		period 1415.4893
+		object
+			sprite planet/io
+			distance 277
+			period 11.94033
+		object
+			sprite planet/ice0
+			distance 375
+			period 18.808042
+		object
+			sprite planet/dust4
+			distance 515
+			period 30.269659
+		object
+			sprite planet/rock3
+			distance 694
+			period 47.351734
+
+system "Kor Men"
+	pos 6 -5
+	government Korath
+	habitable 2340
+	link "Kor En'lakfar"
+	link "Kor Fel'tar"
+	asteroids "small rock" 3 1.7442
+	asteroids "large rock" 1 1.7784
+	asteroids "small metal" 13 3.249
+	asteroids "medium metal" 6 4.275
+	asteroids "large metal" 4 4.1724
+	fleet "Korath Raid" 1300
+	fleet "Korath Home" 600
+	object
+		sprite star/f5
+		distance 33.386752
+		period 11.556254
+	object
+		sprite star/g5
+		distance 91.613248
+		period 11.556254
+		offset 180
+	object
+		sprite planet/mercury
+		distance 361.86325
+		period 56.920509
+	object
+		sprite planet/rock6
+		distance 765.07325
+		period 174.98732
+	object
+		sprite planet/ocean4
+		distance 1262.3232
+		period 370.85824
+	object
+		sprite planet/ocean6
+		distance 1630.9632
+		period 544.65102
+	object
+		sprite planet/rhea
+		distance 2382.6532
+		period 961.70822
+
+system "Kor Nor'peli"
+	pos 52 160
+	government Korath
+	habitable 590.625
+	link "Kor Tar'bei"
+	asteroids "small rock" 2 3.7932
+	asteroids "medium rock" 14 4.0716
+	asteroids "large rock" 2 2.0184
+	asteroids "small metal" 1 3.2364
+	asteroids "medium metal" 59 2.2272
+	asteroids "large metal" 3 3.5148
+	fleet "Korath Raid" 1000
+	fleet "Korath Home" 500
+	object
+		sprite star/k0
+		distance 25.485714
+		period 19.378331
+	object
+		sprite star/m4
+		distance 86.014286
+		period 19.378331
+		offset 180
+	object
+		sprite planet/dust6
+		distance 285.02429
+		period 79.200309
+	object "Far'en Lai"
+		sprite planet/forest0
+		distance 595.27429
+		period 239.04505
+	object
+		sprite planet/gas10
+		distance 1069.1643
+		period 575.40117
+	object
+		sprite planet/dust4
+		distance 1871.6043
+		period 1332.6777
+	object
+		sprite planet/gas9
+		distance 2761.2143
+		period 2388.1096
+		object
+			sprite planet/tethys
+			distance 235
+			period 12.705714
+
+system "Kor Tar'bei"
+	pos 57 106
+	government Korath
+	habitable 214.375
+	link "Kor Nor'peli"
+	link "Kor Zena'i"
+	asteroids "large metal" 1 3.036
+	fleet "Korath Raid" 1200
+	fleet "Korath Home" 600
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/ocean6
+		distance 265.91
+		period 118.46087
+		object
+			sprite planet/dust7
+			distance 150
+			period 13.94143
+	object
+		sprite planet/fog0
+		distance 995.92
+		period 858.63701
+		object
+			sprite planet/rhea
+			distance 198
+			period 18.446136
+	object
+		sprite planet/ice0
+		distance 1628.08
+		period 1794.678
+	object
+		sprite planet/gas15
+		distance 2310.97
+		period 3035.0398
+
+system "Kor Zena'i"
+	pos -2 83
+	government Korath
+	habitable 703.125
+	link "Kor Tar'bei"
+	asteroids "small rock" 5 6.2205
+	asteroids "large rock" 2 4.7415
+	asteroids "large metal" 1 4.4805
+	fleet "Korath Raid" 800
+	fleet "Korath Home" 1100
+	object
+		sprite star/g5
+		distance 8.9444444
+		period 10.895259
+	object
+		sprite star/m8
+		distance 71.555556
+		period 10.895259
+		offset 180
+	object
+		sprite planet/rock12
+		distance 484.41556
+		period 160.8314
+		object
+			sprite planet/lava0
+			distance 162
+			period 19.718012
+	object
+		sprite planet/ocean5
+		distance 981.37556
+		period 463.76351
+	object
+		sprite planet/gas16
+		distance 1900.6656
+		period 1249.9777
+		object
+			sprite planet/dust1
+			distance 185
+			period 12.402805
+
 system Kornephoros
 	pos -612 424
 	government "Republic"
@@ -11519,6 +11819,13 @@ planet Echo
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
 	bribe 0
 	security .9
+
+planet "Far'en Lai"
+	landscape land/dune3
+	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and un-exploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
+	bribe 0
+	security 0
+	"required reputation" -1000
 
 planet Farpoint
 	attributes north military frontier
