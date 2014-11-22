@@ -148,6 +148,8 @@ void Engine::Place()
 					droneCarriers[&*ship] = ship->DroneBaysFree();
 				if(ship->FighterBaysFree())
 					fighterCarriers[&*ship] = ship->FighterBaysFree();
+				// Redo the loading up of fighters.
+				ship->UnloadFighters();
 			}
 			
 			for(const shared_ptr<Ship> &ship : npc.Ships())
@@ -165,6 +167,7 @@ void Engine::Place()
 								it.first->AddFighter(ship);
 								--it.second;
 								docked = true;
+								break;
 							}
 					}
 					else if(ship->Attributes().Category() == "Fighter")
@@ -175,6 +178,7 @@ void Engine::Place()
 								it.first->AddFighter(ship);
 								--it.second;
 								docked = true;
+								break;
 							}
 					}
 					if(docked)
@@ -182,7 +186,8 @@ void Engine::Place()
 				}
 				
 				ships.push_back(ship);
-				ship->SetParent(flagship);
+				if(!ship->GetPersonality().IsUninterested())
+					ship->SetParent(flagship);
 				
 				Point pos;
 				Angle angle = Angle::Random(360.);

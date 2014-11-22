@@ -1505,6 +1505,20 @@ bool Ship::HasBays() const
 
 
 
+vector<shared_ptr<Ship>> Ship::CarriedShips() const
+{
+	vector<shared_ptr<Ship>> ships;
+	for(const Bay &bay : fighterBays)
+		if(bay.ship)
+			ships.push_back(bay.ship);
+	for(const Bay &bay : droneBays)
+		if(bay.ship)
+			ships.push_back(bay.ship);
+	return ships;
+}
+
+
+
 CargoHold &Ship::Cargo()
 {
 	return cargo;

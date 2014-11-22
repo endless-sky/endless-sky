@@ -84,6 +84,7 @@ private:
 	int keyHeld;
 	int keyStuck;
 	bool isLaunching;
+	bool shift;
 	
 	bool holdPosition;
 	bool moveToMe;

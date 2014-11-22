@@ -31,6 +31,7 @@ namespace {
 	static const int ENTERING = 128;
 	static const int NEMESIS = 256;
 	static const int SURVEILLANCE = 512;
+	static const int UNINTERESTED = 1024;
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -42,7 +43,8 @@ namespace {
 		{"staying", STAYING},
 		{"entering", ENTERING},
 		{"nemesis", NEMESIS},
-		{"surveillance", SURVEILLANCE}
+		{"surveillance", SURVEILLANCE},
+		{"uninterested", UNINTERESTED}
 	};
 	
 	double DEFAULT_CONFUSION = 10. * .001;
@@ -159,6 +161,14 @@ bool Personality::IsNemesis() const
 bool Personality::IsSurveillance() const
 {
 	return flags & SURVEILLANCE;
+}
+
+
+
+
+bool Personality::IsUninterested() const
+{
+	return flags & UNINTERESTED;
 }
 
 
