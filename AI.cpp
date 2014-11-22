@@ -39,7 +39,7 @@ using namespace std;
 
 AI::AI()
 	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false),
-	holdPosition(false), moveToMe(false)
+	shift(false), holdPosition(false), moveToMe(false)
 {
 }
 
@@ -47,6 +47,8 @@ AI::AI()
 
 void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 {
+	shift = (SDL_GetModState() & KMOD_SHIFT);
+	
 	keyDown = keys & ~keyHeld;
 	keyHeld = keys;
 	if(keys & AutopilotCancelKeys())
@@ -445,7 +447,15 @@ void AI::MoveIndependent(Controllable &control, const Ship &ship)
 	else if(ship.GetTargetPlanet())
 	{
 		MoveToPlanet(control, ship);
-		control.SetLandCommand();
+		if(!ship.GetPersonality().IsStaying())
+			control.SetLandCommand();
+		else if(ship.Position().Distance(ship.GetTargetPlanet()->Position()) < 100.)
+			control.SetTargetPlanet(nullptr);
+	}
+	else if(ship.GetPersonality().IsStaying())
+	{
+		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
+		control.SetTargetPlanet(&ship.GetSystem()->Objects()[i]);
 	}
 }
 
@@ -957,7 +967,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if(!state)
+				if(!state && !shift)
 					continue;
 				
 				state += state * !other->IsDisabled();
@@ -975,7 +985,6 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	else if(keyDown & Key::Bit(Key::TARGET))
 	{
 		const Government *playerGovernment = info.GetShip()->GetGovernment();
-		bool targetMine = SDL_GetModState() & KMOD_SHIFT;
 		
 		shared_ptr<const Ship> target = control.GetTargetShip();
 		bool selectNext = !target || !target->IsTargetable();
@@ -984,7 +993,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			if(other == target)
 				selectNext = true;
 			else if(other.get() != &ship && selectNext && other->IsTargetable() &&
-					(other->GetGovernment() == playerGovernment) == targetMine)
+					(other->GetGovernment() == playerGovernment) == shift)
 			{
 				control.SetTargetShip(other);
 				selectNext = false;

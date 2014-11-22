@@ -183,6 +183,7 @@ public:
 	void UnloadFighters();
 	bool IsFighter() const;
 	bool HasBays() const;
+	std::vector<std::shared_ptr<Ship>> CarriedShips() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
