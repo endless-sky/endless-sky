@@ -12,11 +12,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
-#if defined(__APPLE__) || defined(__linux__)
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
-#endif
 
 #include <cstdlib>
 #include <fstream>
@@ -149,7 +147,6 @@ vector<string> Files::List(const string &directory)
 
 void Files::List(const string &directory, vector<string> *list)
 {
-#if defined(__APPLE__) || defined(__linux__)
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
 		return;
@@ -164,14 +161,17 @@ void Files::List(const string &directory, vector<string> *list)
 			continue;
 		
 		string name = directory + ent->d_name;
-		if(ent->d_type == DT_REG)
+		// Don't assume that this operating system's implementation of dirent
+		// includes the t_type field; in particular, on Windows it will not.
+		struct stat buf;
+		stat(name.c_str(), &buf);
+		bool isRegularFile = S_ISREG(buf.st_mode);
+		
+		if(isRegularFile)
 			list->push_back(name);
 	}
 	
 	closedir(dir);
-#else
-#error "Unsupported operating system. No code for Files::List()."
-#endif
 }
 
 
@@ -187,7 +187,6 @@ vector<string> Files::RecursiveList(const string &directory)
 
 void Files::RecursiveList(const string &directory, vector<string> *list)
 {
-#if defined(__APPLE__) || defined(__linux__)
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
 		return;
@@ -202,28 +201,28 @@ void Files::RecursiveList(const string &directory, vector<string> *list)
 			continue;
 		
 		string name = directory + ent->d_name;
-		if(ent->d_type == DT_REG)
+		// Don't assume that this operating system's implementation of dirent
+		// includes the t_type field; in particular, on Windows it will not.
+		struct stat buf;
+		stat(name.c_str(), &buf);
+		bool isRegularFile = S_ISREG(buf.st_mode);
+		bool isDirectory = S_ISDIR(buf.st_mode);
+		
+		if(isRegularFile)
 			list->push_back(name);
-		else if(ent->d_type == DT_DIR)
+		else if(isDirectory)
 			RecursiveList(name + '/', list);
 	}
 	
 	closedir(dir);
-#else
-#error "Unsupported operating system. No code for Files::RecursiveList()."
-#endif
 }
 
 
 
 bool Files::Exists(const std::string &filePath)
 {
-#if defined(__APPLE__) || defined(__linux__)
 	struct stat buf;
 	return !stat(filePath.c_str(), &buf);
-#else
-#error "Unsupported operating system. No code for Files::Exists()."
-#endif
 }
 
 
@@ -240,20 +239,12 @@ void Files::Copy(const std::string &from, const std::string &to)
 
 void Files::Move(const std::string &from, const std::string &to)
 {
-#if defined(__APPLE__) || defined(__linux__)
 	rename(from.c_str(), to.c_str());
-#else
-#error "Unsupported operating system. No code for Files::Move()."
-#endif
 }
 
 
 
 void Files::Delete(const std::string &filePath)
 {
-#if defined(__APPLE__) || defined(__linux__)
 	unlink(filePath.c_str());
-#else
-#error "Unsupported operating system. No code for Files::Delete()."
-#endif
 }

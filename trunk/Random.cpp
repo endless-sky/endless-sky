@@ -14,14 +14,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <random>
 
-#ifdef __APPLE__
+#ifndef __linux__
 #include <mutex>
 #endif
 
 using namespace std;
 
+// Right now thread_local storage is only supported under Linux.
 namespace {
-#ifdef __APPLE__
+#ifndef __linux__
 	mutex workaroundMutex;
 	mt19937_64 gen;
 	uniform_int_distribution<uint32_t> uniform;
@@ -39,7 +40,7 @@ namespace {
 // numbers it produced previously).
 void Random::Seed(uint64_t seed)
 {
-#ifdef __APPLE__
+#ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	gen.seed(seed);
@@ -49,7 +50,7 @@ void Random::Seed(uint64_t seed)
 
 uint32_t Random::Int()
 {
-#ifdef __APPLE__
+#ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return uniform(gen);
@@ -59,7 +60,7 @@ uint32_t Random::Int()
 
 uint32_t Random::Int(uint32_t modulus)
 {
-#ifdef __APPLE__
+#ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return uniform(gen) % modulus;
@@ -69,7 +70,7 @@ uint32_t Random::Int(uint32_t modulus)
 
 double Random::Real()
 {
-#ifdef __APPLE__
+#ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return real(gen);
@@ -82,7 +83,7 @@ double Random::Real()
 uint32_t Random::Polya(uint32_t k, double p)
 {
 	negative_binomial_distribution<uint32_t> polya(k, p);
-#ifdef __APPLE__
+#ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return polya(gen);
@@ -94,7 +95,7 @@ uint32_t Random::Polya(uint32_t k, double p)
 uint32_t Random::Binomial(uint32_t t, double p)
 {
 	binomial_distribution<uint32_t> binomial(t, p);
-#ifdef __APPLE__
+#ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	return binomial(gen);

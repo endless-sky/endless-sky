@@ -24,11 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Table.h"
 #include "UI.h"
 
-#ifdef __APPLE__
-#include <OpenGL/GL3.h>
-#else
-#include <GL/glew.h>
-#endif
+#include "gl_header.h"
 
 #include <cmath>
 #include <map>
