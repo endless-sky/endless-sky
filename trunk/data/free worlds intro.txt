@@ -1,0 +1,177 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "FW Recon 1"
+	name "Free Worlds Reconaissance"
+	description "Perform an outfit scan on the cruiser <npc>, then report to a Free Worlds officer on <destination>."
+	source
+		planet Glaze
+	to offer
+		has "event: initial deployment 4"
+	
+	on offer
+		conversation
+			`	"As you are walking through the spaceport, a man in a militia uniform flags you down, saying, "Excuse me, Captain <last>. Would you be willing to do a small service for the Free Worlds?"`
+			choice
+				`	"Perhaps. What do you want me to do?"`
+				`	"Sorry, I want no part in your rebellion."`
+					decline
+			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? We will pay <payment>"`
+			choice
+				`	"Sure, that sounds simple enough."`
+					accept
+				`	"Sorry, I don't want to assist rebels."`
+					decline
+	
+	npc "scan outfits"
+		government Republic
+		personality staying uninterested
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			"friendly hail" "friendly navy"
+			variant
+				"Cruiser (Heavy)"
+				"Combat Drone" 4
+		conversation
+			`As soon as you scan the Ironface its captain hails you. "Excuse me, captain," he says, "Can I assist you with something?"`
+			choice
+				`	"I was just wondering what sort of engines you've got that let you move so fast."`
+					goto engines
+				`	"Never mind sir, I was just admiring your... impressive equipment."
+					goto equipment
+			label engines
+			`	"Nice, aren't they?" he says. "Atomic engines, the very latest in propulsion technology from Deep Sky. They're so smooth and responsive, I feel like I'm back piloting a shuttlecraft again."`
+			`	He pauses, then adds, "They pay me a thousand credits every time I say that."`
+				goto close
+			label equipment
+			`	He looks awfully pleased with himself. "Yes, I suppose a ship like this is sure to turn a few heads. Next time we're on the same planet, stop by my berth and I'd be glad to give you a... private tour." He winks at you. You feel a little bit creepy.`
+				goto close
+			label close
+			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
+	
+	on complete
+		dialog `Soon after you land, the militia officer comes to your ship pays you <payment> in exhange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
+		payment 10000
+
+
+
+mission "FW Recon 2"
+	name "Free Worlds Reconaissance"
+	description "Scan any ships in the Menkent system that are equipped like the combat-ready cruiser you scanned previously, then return to <destination>."
+	source
+		planet Glaze
+	to offer
+		has "FW Recon 1: done"
+	
+	on offer
+		conversation
+			`You meet up with the militia officer in the spaceport bar. "Glad you showed up," he says, "I'm Jean Jacques, by the way, but you can call me JJ."`
+			`	You introduce yourself in return, and he continues. "Here's the deal. I'm the commander of the militia on Glaze. So far, we and the Navy are not shooting at each other, because no one wants to fire the first shot. But if they're getting ready to change that, they'll start refitting their cruisers with heavy weaponry instead of surveillance equipment. So, I need to know how many more of their ships are equipped like the one you just scanned."`
+			`	He continues, "I'd like you to go to Menkent, where they're building some sort of secret base. Scan any ships you think match the one we just saw, then bring your scanner logs back here for me to look at."`
+			choice
+				`	"Sure, I'd be glad to do that."`
+					accept
+				`	"Sorry, after the way this last captain responded to me scanning him, I'm not sure I want to risk it again."`
+					decline
+	
+	npc "scan outfits"
+		government Republic
+		personality staying uninterested
+		system Menkent
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			"friendly hail" "friendly navy"
+			variant
+				"Cruiser (Heavy)" 4
+				"Combat Drone" 16
+	
+	on complete
+		dialog `JJ meets you as soon as you land, and you hand over the scanner data. "Thank you again," he says. "If you're willing to take on one more recon mission, meet me in the bar." He hands you <payment>.`
+		payment 50000
+
+
+
+mission "FW Recon 3"
+	name "Free Worlds Reconaissance"
+	description "Land on <destination> and secretly collect information on the developing Navy base there."
+	source
+		planet Glaze
+	destination
+		planet "New Wales"
+	to offer
+		has "FW Recon 2: done"
+	
+	on offer
+		conversation
+			`You meet JJ again in the bar. "I have one more reconaissance mission for you," he says. "The Navy is building a base on New Wales, adjacent to the existing spaceport. From what I understand, they're employing thousands of locals to build it, so one more worker walking around would not seem out of place. I need you to walk around the base, take notes on the number and size of the landing pads and hangars, take pictures if you can, and report back to me. What do you say?"`
+			choice
+				`	"Sure, I can do that."`
+					accept
+				`	"What if they arrest me?"`
+			
+			`	"From what I understand," says JJ, "the base is not actually closed off to civilians. So as long as you keep out of any areas that are marked off limits, you won't be committing any crime."`
+			choice
+				`	"Okay, I'll do it."`
+					accept
+				`	"Sorry, I've decided I don't really want to side with the Free Worlds."`
+			
+			`	"I'm really sorry to hear that," says JJ. "We hd high hopes for you."`
+				decline
+
+
+
+mission "FW Recon 3B"
+	name "Free Worlds Reconaissance"
+	description "Return to <destination>, with information on the Navy base on <origin>."
+	landing
+	source
+		planet "New Wales"
+	destination
+		planet Glaze
+	to offer
+		has "FW Recon 3: done"
+	
+	on offer
+		conversation
+			`You walk through the new section of the spaceport spaceport that the Navy is building, trying to look inconspicuous. When it seems that no one is watching, you snap a few photographs. You count seven hangars large enough to house a carrier, and workers are clearing and blasting level surfaces for many more. An entire new village of identical prefabricated houses has sprung up nearby. And every few minutes, a warship flies overhead with a roar that shakes the entire mountain. It is an intimidating sight.`
+			`	As you are heading back to your ship after taking note of everything you think JJ would be interested in, two officers walk past you and you overhear one saying to the other, "Secret message from fleet command."`
+			`	You stop to tie your shoe and try to listen in. "What's the message?" asks the other.`
+			`	"I can't tell you here," says the first, and they duck behind one of the storage sheds.`
+			choice
+				`	(Ignore them and return to my ship.)`
+					accept
+				`	(Follow them and listen in.)`
+			
+			`	You follow the officers into a supply yard and hide behind a large stack of crates. "Lieutenant," says one of them, "we just received word that the Free Worlds have contracted with someone to spy on this facility."`
+			`	"A professional, sir?"`
+			`	"Hardly. My grandmother would make a better spy. It's a merchant captain, clearly an amateur." They are both speaking quite loudly; you are having no trouble listening in.`
+			`	"What are we going to do, sir?" asks the lieutenant.`
+			`	"Nothing. If gawking at our ships were a crime, we'd have half the local population in prison by now. But if this captain should accept any further assignments, we may have to take action."`
+			`	"Should we at least inform this individual that those crates make terrible cover?" asks the lieutenant, grinning.`
+			`	"Now, now," says the other officer, "no need to be spiteful." They walk off, leaving you thoroughly embarrassed.`
+				accept
+	
+	npc evade
+		government Republic
+		personality timid
+		fleet
+			names "republic capital"
+			"friendly hail" "friendly navy"
+			variant
+				"Gunboat"
+	
+	on visit
+		dialog `A minute after you land, a Republic gunboat, <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
+	
+	on complete
+		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds council know how helpful you have been."`
+		payment 80000
