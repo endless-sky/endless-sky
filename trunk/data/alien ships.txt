@@ -176,3 +176,52 @@ ship "Korath Chaser"
 	gun 0 -28 "Korath Fire-Lance"
 	explode "tiny explosion" 20
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
+
+ship "Korath World-Ship"
+	sprite "ship/world-ship a"
+	attributes
+		category "Heavy Freighter"
+		cost 4000000
+		shields 39000
+		hull 27000
+		"required crew" 543
+		"bunks" 972
+		"mass" 1235
+		"drag" 21
+		"heat dissipation" .4
+		"fuel capacity" 600
+		"cargo space" 734
+		"outfit space" 721
+		"weapon capacity" 284
+		"engine capacity" 155
+		weapon
+			"blast radius" 1000
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits	
+		"Korath Banisher" 3
+		"Korath Warder" 3
+		"Korath Tek'nel Reactor"
+		"Korath Shield Generator"
+		"Korath Heat Shunt"
+		Ramscoop
+		Hyperdrive
+		"Korath Jak'torbal Thruster"
+		"Korath Jak'parat Steering"
+	engine -98 111
+	engine -31 149
+	engine 70 179
+	turret 45 -52 "Korath Banisher"
+	turret -46 -104 "Korath Banisher"
+	turret -21 90 "Korath Banisher"
+	turret -115 -62 "Korath Warder"
+	turret 47 -89 "Korath Warder"
+	turret -1 126 "Korath Warder"
+	explode "tiny explosion" 30
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 50
+	description "Korath World-Ships are mobile habitats cobbled together from asteroids."
+		

@@ -711,10 +711,9 @@ fleet "Korath Home"
 	names "quarg"
 	cargo 3
 	personality
-		plunders
+		timid
 	variant
-		"Korath Raider"
-		"Korath Chaser" 2
+		"Korath World-Ship"
 
 fleet "Quarg"
 	government "Quarg"
