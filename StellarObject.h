@@ -35,6 +35,8 @@ public:
 	// Get this object's position on the date most recently passed to this
 	// system's SetDate() function.
 	const Point &Position() const;
+	// Get the unit vector representing the rotation of this object.
+	const Point &Unit() const;
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
 	// If it is possible to land on this planet, this returns the Planet
@@ -58,6 +60,7 @@ public:
 private:
 	Animation animation;
 	Point position;
+	Point unit;
 	const Planet *planet;
 	
 	double distance;
