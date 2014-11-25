@@ -133,16 +133,20 @@ void ConversationPanel::Draw() const
 		return;
 	}
 	
+	string label = "0:";
 	for(const WrappedText &it : choices)
 	{
+		++label[0];
+		
 		Point center = point + Point(WIDTH, it.Height() - it.ParagraphBreak()) * .5;
 		Point size(WIDTH, it.Height());
 		
 		if(zones.size() == static_cast<unsigned>(choice))
-			FillShader::Fill(center, size + Point(20., 0.), selectionColor);
+			FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 		zones.emplace_back(point + .5 * size, size);
 		
 		it.Draw(point, bright);
+		font.Draw(label, point + Point(-15, 0), dim);
 		point.Y() += it.Height();
 	}
 }
@@ -205,6 +209,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		Goto(conversation.NextNode(node, choice));
 	else if(key == GameData::Keys().Get(Key::MAP))
 		GetUI()->Push(new MapDetailPanel(player, -4, system));
+	else if(key > '0' && key <= '0' + choices.size())
+		Goto(conversation.NextNode(node, key - '1'));
 	else
 		return false;
 	
@@ -267,7 +273,7 @@ bool ConversationPanel::Scroll(int dx, int dy)
 
 void ConversationPanel::Goto(int index)
 {
-	if(!choices.empty())
+	if(index)
 	{
 		unsigned i = 0;
 		auto it = choices.begin();
