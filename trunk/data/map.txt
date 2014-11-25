@@ -10940,8 +10940,8 @@ system Wei
 		sprite planet/lava1
 		distance 334.14
 		period 114.459
-	object
-		sprite planet/desert8
+	object "Hope"
+		sprite planet/ice2
 		distance 605.15
 		period 278.966
 	object
@@ -11997,6 +11997,7 @@ planet Glory
 	attributes paradise medical
 	landscape land/sky8
 	description `Elsewhere in the galaxy, people speak dismissively of the "boughten sunshine" that rich terraformed worlds can afford. On Glory, even many of the lakes and hills are artificial, crafted to garden-like perfection. Fittingly, the chief industry on Glory is plastic surgery, along with other medical efforts aimed at prolonging life, funded by rich, elderly folks who have settled here.`
+	description `	Glory is also home to the Academy of Planetary Sciences, the organization at the forefront of terraforming research. The Academy takes on only a handful of apprentices each year, and guards its secrets very closely.`
 	spaceport `The starport is as perfectly sculpted as the rest of the planet, a hive-like structure with hexagonal openings of various sizes for docking bays. Gardens have been planted on the roofs and on terraces on all different levels, and a small artificial river flows from a fountain on the roof down among the terraces and out to the ground below.`
 	spaceport `	It is almost impossible to tell the age of the locals who are walking by: there is a frightening monotony of wrinkle-free, nearly identically proportioned faces. When they speak, only their lips move; their expressions remain mask-like, immobile.`
 	bribe .05
@@ -12105,7 +12106,7 @@ planet Hermes
 	spaceport `The spaceport is far removed from any of this world's cities. It consists of a single, ring-shaped building; the docking bays open onto the central atrium, which visiting ships fly through to reach them. Industrial strength ultraviolet lasers are mounted on turrets throughout the atrium, and fire automatically at entering and departing ships to sterilize them. Once you land, the docking bay is hermetically sealed. Based on the precautions they are taking, you find yourself wanting to spend as little time as possible breathing the air here.`
 	outfitter "Ammo North"
 	outfitter "Lovelace Advanced"
-	"required reputation" 100
+	"required reputation" 10
 	bribe .1
 	security .9
 
@@ -12127,6 +12128,12 @@ planet Hippocrates
 	spaceport `The spaceport is a single building, and half the landing pads are just packed dirt. This port was not designed for large volumes of cargo or of visitors. Within the building is a sun-lit atrium, with separate storefronts for the commodity exchange, the job center, and the bank. The only place you can see where you might be able to get something to eat is a bar, advertised by a sign showing an Erlenmeyer flask with a folding paper umbrella hung over the rim.`
 	outfitter "Ammo North"
 	security .1
+
+planet Hope
+	landscape land/snow9
+	description `In the year 2994, Hope was a somehwat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable. As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
+	description `	The abandoned villages and towns are now buried deep beneath the snow, and occasional treasure hunters come here to explore them and find items of value that were left behind."
+	"required reputation" -1000
 
 planet Hopper
 	attributes "dirt belt" mining

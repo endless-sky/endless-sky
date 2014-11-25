@@ -175,3 +175,193 @@ mission "FW Recon 3B"
 	on complete
 		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds council know how helpful you have been."`
 		payment 80000
+
+
+
+mission "FW Katya 1"
+	name "Assist the Free Worlds"
+	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
+	to offer
+		random < 10
+	source
+		government "Free Worlds"
+	destination Glory
+	passengers 2
+	cargo (reserved) 10
+	on offer
+		conversation
+			`Wandering through the spaceport, you have stopped for a moment to read the menu posted in front of a restaurant, when your thoughts are interrupted by the click of a gun being cocked right behind your head, and a woman's voice saying, "Think fast, Captain."`
+			choice
+				`	(Do this karate move I saw in a video one time.)`
+					goto `karate`
+				`	(Raise my hands slowly into the air and find out what she wants.)`
+	
+			`	"Good choice," she says. "Now, turn around, slowly, and don't try any funny business. I've got a semiautomatic pistol pointed right at your head."`
+			choice
+				`	(Now, try that karate move.)`
+					goto `karate`
+				`	(Turn around slowly.)`
+	
+			`	You turn around and find yourself facing a woman in a Free Worlds uniform. The chevrons on her collar mark her as some sort of officer. She is grinning at you. "Beautifully done, Captain," she says. "Such restraint. Such remarkable levelheadedness. Not something I often see around here. If this thing were loaded, quite a few backcountry rubes in the last few months would've had their brains blown open before I could even get around to recruiting them." She lowers the gun.`
+			choice
+				`	"You mean this was some sort of test? You're not trying to mug me?"`
+					goto `explanation`
+				`	(Try that karate move, just for kicks.)`
+	
+			`	You make a grab for the gun. A second later she's got your arm twisted behind your back, using just enough force to make it clear that things could get really painful if you continue to struggle. "Smart, and playful too," she says, "I like that. But, it'll be a cold day in hell before a kid like you gets the drop on me. Now, shall we talk?" She lets go of you, and you shake out your arm gingerly.`
+	
+			label `explanation`
+			`	"I need a civilian for some courier work," she says, "Nothing illegal, at least nothing the Republic can pin on you. It just needs to be done by a ship that isn't flying our colors, and by a captain who isn't going to scream, 'Death to all tyrants!' and go in with guns blazing the first time your cargo gets scanned. What do you say?"`
+			choice
+				`	"I'm not sure I'm ready to pick sides in this war, yet."`
+				`	"Okay, tell me more."`
+					goto `more`
+	
+			`	"Look kid," she says, "When I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
+			choice
+				`	"That sounds fair. I'll hear you out."`
+				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns."`
+					decline
+	
+			label `more`
+			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyways. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
+			choice
+				`	"I like the way you think. Count me in."`
+					goto `details`
+				`	"Sorry, it sounds a bit too shady for my liking. Please don't offer me any work in the future."`
+	
+			`	"Shucks," she says, "I liked you. I was looking forward to having you on my team." She looks genuinely crestfallen. "But fair is fair. You're free to go, and I'll tell my colleagues that you're not interested in working for us."`
+				decline
+	
+			label `details`
+			`	"Great," she says, grinning even more broadly. "My name's Katya Reynolds, by the way. Glad we'll be working together." She starts to walk away, then seems to remember something. "One last thing - some friends of mine on <planet>, tourists, need a lift off that rock, and I owe them a favor. Would you mind saving two bunks for them?"`
+			choice
+				`	"Sure, no problem."`
+	
+			`	"Excellent. I'm looking forward to doing business with you, Captain."`
+				accept
+	
+			label `karate`
+			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
+			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "Well aren't you a dumb reckless bastard!" she says, "I'd hoped for something better from you. First of all, if this gun were loaded, your brains would be splattered all over the sidewalk. And second, you fight like a girl. I have no use for hotheads like you." She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
+			choice
+				`	(Let her go.)`
+					decline
+				`	"Oh yeah? Well you ARE a girl!"`
+	
+			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don’t fight like one," she says. "I... fight like a she-badger."`
+			choice
+				`	"A she... badger?"`
+	
+			`	"Fearsome creatures." She walks away, leaving you even more confused.`
+				decline
+
+
+
+mission "FW Katya 1B"
+	name "Assist the Free Worlds"
+	description "Bring some cargo (harmless but intended to look suspicious) and two tourists to <destination>."
+	landing
+	to offer
+		has "FW Katya 1: done"
+	source Glory
+	destination Skymoot
+	passengers 2
+	cargo "surgical gear" 10
+	on offer
+		conversation
+			`Soon after you land, a middle-aged tourist couple approach you and ask if you'd be willing to take them to Skymoot, "to see the dragons. Katerina recommended you." You tell them you would be glad to.`
+			`	The man, who is wearing floral print shorts and carrying an absurdly large camera, introduces himself as Marty. "And this is my wife, Sarah," he adds. "Would you mind taking a picture of us?" They pose in front of your ship. "Better take two pictures in case she blinks," says Marty. As you help them bring their oversized suitcases on board, you can't help wondering why Katya would be friends with such a quintessential pair of rich, uncultured buffoons.`
+			`	Much later that night, as planned, three shadowy figures load a set of unmarked crates into your cargo bay. Katya assured you that the contents are harmless, just intended to distract the Republic security officers, but you can't help feeling like you're getting involved in something shady.`
+				accept
+	
+	on complete
+		payment 100000
+		conversation
+			`When you land on <planet>, before your engines have even had a chance to cool, Katya comes aboard your ship. When she sees your passengers, she breaks into a wide grin. "Lynn!" she says, running up and hugging the woman who introduced herself as "Sarah." Then she turns to "Marty" and says, "And Henry! So good to see you both. Captain <last>, allow me to introduce you to Professor Lynn Anderson, one of the galaxy's premier planetary scientists, and her husband Henry, a former Navy intelligence officer."`
+			choice
+				`	"Pleased to meet you both. Why the deception?"`
+				`	"Wait a minute... were they the secret cargo?"`
+			
+			`	Katya explains, "The Andersons are defecting to the Free Worlds. The'r dream is to make terraforming a public service, supported by government funds, rather than a luxury available only to the richest of planets. We worked for years to get Parliament to accept that idea, but with no luck. And because of Henry's background and knowledge about the intelligence community, the Republic would have stopped them if they knew they were defecting."`
+			`	She adds, "The real secret cargo, which arrived several days ago via a faster ship, was their personal possessions and Lynn's lab equipment and instruments, which were loaded onto a ship supposedly bound for Hestia."`
+			`	"We had just rented a cottage there," says Henry, "saying we were downsizing. We'll lose the security deposit, of course, but it gave us an excuse to pack up and move."`
+			`	Katya says, "You might not guess if from the outfit he's wearing, but Henry is an absolute mastermind at sublety and misdirection. He planned the whole thing." She hands you a credit chip for <payment>. "Thanks so much for your help. If you're willing to continue helping the Free Worlds, meet me in the spaceport bar in half an hour."`
+
+
+
+mission "FW Katya 1C"
+	invisible
+	landing
+	source
+		government Republic
+	to offer
+		has "FW Katya 1B: active"
+	
+	npc kill
+		personality nemesis
+		government "Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+	
+	on offer
+		conversation
+			`When you land on <origin> and open your ship's main hatch, you find yourself facing a Navy officer with several armed guards in tow. He says, "Sorry captain, but you've been selected for a random cargo screening."`
+			choice
+				`	(Let them in.)`
+					goto enter
+				`	(Attack them.)`
+					goto attack
+				`	(Shut the hatch and escape into space.)`
+					goto flee
+			
+			label attack
+			`	You draw your gun. The officer shouts in alarm and dives out of the way. His companions, who turn out to be wearing body armor, open fire. You die quickly. Katya will be very disappointed.`
+				die
+			
+			label flee
+			`	You slam the hatch shut in their faces, quickly fire up your engines, and flee for the sky. Before you have even broken out of the atmosphere, your communicator picks up a broadcast message marking you as a wanted criminal. Also, your radar informs you that several Navy vessels are on your tail.`
+				accept
+			
+			label enter
+			`	You let the officer and his companions into your cargo bay. They immediately zero in on the crates that were loaded up during the night. One of the guards runs a quick scan and says, "No explosives, no radiation."`
+			`	The Navy officer says, "Would you mind telling us what's in these crates?"`
+			choice
+				`	"Just medical supplies. Surgical gear, mostly."`
+					goto medical
+				`	"Just some secret illegal things."`
+					goto illegal
+				`	"I've never seen those crates before in my life. I don't know where they came from."`
+					goto denial
+			
+			label medical
+			`	"Any biological material or restricted medications?" he asks.`
+			`	"No, sir," you say.`
+				goto search
+			
+			label illegal
+			`	He laughs. "Sorry," he says, "you probably think we're just being paranoid, but rules are rules." Clearly he took what you said as a joke.`
+				goto search
+			
+			label denial
+			`	He frowns. "Frisk him," he says. One of the guards pats you down and takes your gun and your pocketknife. "Have a seat," says the officer. They force you to sit on the ground, and one of the guards points a very large gun at you.`
+				goto search
+			
+			label search
+			`	He says, "I'm afraid we're going to have to search these crates." The guards grab a couple of crowbars and begin prying the lids off them. The contents turn out to be relatively innocuous, although one box full of scalpels and other surgical implements gives them pause. As they open crate after crate without finding anything incriminating, you can tell the officer is getting more and more frustrated and uncomfortable. When the last crate turns out to contain nothing but bandages and gauze pads, his frustration turns to embarrassment. They repack the crates and nail the lids back on.`
+			`	"I'm sorry," says the officer, "we must have been responding to a bad tip. I'm very sorry for this invasion of your privacy, Captain."`
+			choice
+				`	"Never mind, I know you're just doing your job."`
+					goto gracious
+				`	"Since when has the Republic gotten so heavy handed about searching civilian ships?"`
+					goto angry
+	
+			label gracious
+			`	"You are very gracious, Captain. We will not detain you any longer." They leave.`
+				decline
+	
+			label angry
+			`	"I am sorry, Captain. Since the terrorist attacks everyone has been on edge. I hope you won't think badly of us." They leave.`
+	
+	on accept
+		"reputation: Republic" = -10
