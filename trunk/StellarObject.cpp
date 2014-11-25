@@ -48,6 +48,15 @@ const Point &StellarObject::Position() const
 
 
 
+
+// Get the unit vector representing the rotation of this object.
+const Point &StellarObject::Unit() const
+{
+	return unit;
+}
+
+
+
 // Get the radius of this planet, i.e. how close you must be to land.
 double StellarObject::Radius() const
 {
