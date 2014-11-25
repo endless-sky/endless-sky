@@ -29,11 +29,11 @@ mission <name>
             <name>*
         government <name>*
             <name>*
-        attribute <name>*
+        attributes <name>*
             <name>*
         near <system> ((<min>) <max>)
         distance ((<min>) <max>)
-    npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+    npc (save | kill | board | disable | "scan cargo" | "scan outfits" | evade | accompany)*
         government <name>
         personality <type>*
             <type>*
@@ -226,7 +226,7 @@ Each mission starts on a planet, and ends on a planet, usually different from wh
         <name>*
     government <name>*
         <name>*
-    attribute <name>*
+    attributes <name>*
         <name>*
     near <system> ((<min>) <max>)
     distance (<min>) <max>
@@ -258,7 +258,7 @@ government <name>*
 The planet must be in a system owned by the given government. Again, the list can be all on one line, or multiple indented lines.
 
 {{{
-attribute <name>*
+attributes <name>*
     <name>*
 }}}
 
@@ -267,14 +267,14 @@ The planet must have one of the given attributes (e.g. "dirt belt", "urban", "ri
 Unlike the other filters, if multiple "attribute" tags appear, the planet must contain at least one attribute from each of the lists. For example, this means the planet must be urban or rich:
 
 {{{
-attribute urban rich
+attributes urban rich
 }}}
 
 but this means it must be urban _and_ rich:
 
 {{{
-attribute urban
-attribute rich
+attributes urban
+attributes rich
 }}}
 
 There are also ways of specifying how far the system is from a particular location, or from the current location:
@@ -296,7 +296,7 @@ This is the same as the "near" tag, but gives distances relative to the origin p
 NPCs are ships that are associated with the mission in some way. This includes friendly ships the player must protect, and hostile ships the player must fight off or destroy:
 
 {{{
-npc (save | kill | board | disable | "scan cargo" | "scan outfits")*
+npc (save | kill | board | disable | "scan cargo" | "scan outfits" | evade | accompany)*
     government <name>
     personality <type>*
         <type>*
@@ -330,6 +330,8 @@ Each "npc" tag may have one or more tags following it, specifying what the playe
   * disable: To complete the mission, the player must disable the given NPC.
   * "scan cargo": To complete the mission, the player must scan the given NPC's cargo. If the NPC is destroyed before being scanned, the mission fails.
   * "scan outfits": Same, but the player must use an outfit scanner instead of a cargo scanner.
+  * evade: you cannot complete the mission if any members of this NPC are in the same system as you.
+  * accompany: you can only complete the mission if all members of this NPC are in the same system as you.
 
 {{{
 government <name>
@@ -355,6 +357,9 @@ The valid personality types (which can be combined) are:
   * heroic: more likely to join fights when an ally is threatened.
   * staying: never leaves the system it starts out in.
   * entering: enters its starting system via hyperspace instead of appearing there.
+  * nemesis: only attacks the player's ships.
+  * surveillance: scans random ships and visits random planets in system.
+  * uninterested: does not follow the player's flagship around (i.e. does not behave like an escort).
 
 In addition, if an NPC is specified as starting out in your current system and its personality is _not_ "staying", it will take off from the planet along with you (e.g. a ship you are escorting). A ship that is "entering" the current system might, for example, be a pirate raid chasing the fleet you are escorting, and a ship "staying" in a certain system might be a target you must locate for a bounty hunting mission. (Any ship that is not "staying" will actively seek the player out if it is in a different system.)
 
@@ -368,15 +373,7 @@ system (<system>)
     distance ((<min>) <max>)
 }}}
 
-This specifies what system the NPC starts out in and what they do there. If no system is specified either by name or through the "near" or "distance" child tags, the system will be the current system:
-
-  * enter: the NPC will hyperspace into the given system as soon as the player takes off from this planet, and then remains in that system.
-  * remain: the NPC starts out in the given system and will not leave there.
-  * wait: the NPC starts out in the given system but will follow the player once the player enters that system (if it is able to).
-
-For example, a ship you must repair would "wait" in another system (or possibly this one) until you arrive, and once it is repaired it will follow you. A pirate raid might "enter" a system or already be in progress, in which case it would "remain" in that system until you destroy all the ships. A bounty hunting mission would generally send you after a ship that is "remaining" somewhere nearby.
-
-If no action is specified, the default NPC action is to take off from the planet along with the player. So, you would omit this node entirely for escort missions, for example.
+This specifies what system the NPC starts out in. If no system is specified either by name or through the "near" or "distance" child tags, the system will be the current system.
 
 The "system", "government", "near", and "distance" filters operate the same way they do in the descriptions in the previous section, and can be used instead of naming a particular system. For example, you could have the NPC start out in any Pirate system, or within two jumps of the current system.
 
