@@ -158,6 +158,7 @@
 		A959553C199572A7005197E6 /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
 		A959553E199572BB005197E6 /* InfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoPanel.cpp; sourceTree = "<group>"; };
 		A959553F199572BB005197E6 /* InfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPanel.h; sourceTree = "<group>"; };
+		A994B6501A2536CB007067E3 /* gl_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl_header.h; sourceTree = "<group>"; };
 		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XCode/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A99F7A51195DF3F9002C30B8 /* EndlessSky-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EndlessSky-Info.plist"; path = "XCode/EndlessSky-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A99F7A54195DF44B002C30B8 /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Account.cpp; sourceTree = "<group>"; };
@@ -457,6 +458,7 @@
 				A99F7A8B195DF44B002C30B8 /* GameData.h */,
 				A9F26FB51A003D8600A4B5BA /* GameEvent.cpp */,
 				A9F26FB61A003D8600A4B5BA /* GameEvent.h */,
+				A994B6501A2536CB007067E3 /* gl_header.h */,
 				A99F7A8C195DF44B002C30B8 /* Government.cpp */,
 				A99F7A8D195DF44B002C30B8 /* Government.h */,
 				4644543D19BA9A7C00D5A235 /* HailPanel.cpp */,
