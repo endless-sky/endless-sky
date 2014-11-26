@@ -87,6 +87,9 @@ double CaptureOdds::DefenderPower(int defendingCrew) const
 
 void CaptureOdds::Calculate()
 {
+	if(powerD.empty() || powerA.empty())
+		return;
+	
 	// The first row represents the case where the attacker has only one crew left.
 	// In that case, the defending ship can never be successfully captured.
 	capture.resize(powerD.size(), 0.);

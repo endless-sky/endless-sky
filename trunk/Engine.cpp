@@ -196,7 +196,7 @@ void Engine::Place()
 				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem())
 				{
 					// If a ship is "staying", it starts out in orbit.
-					if(ship->GetPersonality().IsStaying())
+					if(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting())
 						continue;
 					
 					ship->SetPlanet(player.GetPlanet());
