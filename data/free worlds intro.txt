@@ -182,7 +182,7 @@ mission "FW Katya 1"
 	name "Assist the Free Worlds"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
 	to offer
-		random < 10
+		random < 20
 	source
 		government "Free Worlds"
 	destination Glory
@@ -321,7 +321,7 @@ mission "FW Katya 1C"
 			
 			label flee
 			`	You slam the hatch shut in their faces, quickly fire up your engines, and flee for the sky. Before you have even broken out of the atmosphere, your communicator picks up a broadcast message marking you as a wanted criminal. Also, your radar informs you that several Navy vessels are on your tail.`
-				accept
+				launch
 			
 			label enter
 			`	You let the officer and his companions into your cargo bay. They immediately zero in on the crates that were loaded up during the night. One of the guards runs a quick scan and says, "No explosives, no radiation."`
@@ -362,6 +362,170 @@ mission "FW Katya 1C"
 	
 			label angry
 			`	"I am sorry, Captain. Since the terrorist attacks everyone has been on edge. I hope you won't think badly of us." They leave.`
+				decline
 	
 	on accept
 		"reputation: Republic" = -10
+
+
+
+mission "FW Katya 2"
+	name "Transport Mr. Eyes"
+	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
+	source Skymoot
+	destination Foundry
+	passengers 1
+	to offer
+		has "FW Katya 1B: done"
+	on offer
+		conversation
+			`When you enter the bar, Katya waves you over to her table. "I've got another friend who needs to be transported," she says. "This one is on a boondock planet near the Core right now."`
+			choice
+				`	"Sure, I'd be glad to transport him."`
+				`	"Sorry, but I've decided working for the Free Worlds just isn't worth the risk."`
+					decline
+			
+			`	"Great!" she says, "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though."`
+				accept
+
+
+
+mission "FW Katya 2B"
+	landing
+	name "Transport Mr. Eyes"
+	description "Transport Mr. Eyes to <destination>, where the recent terrorist attack took place."
+	source Foundry
+	destination Geminus
+	passengers 1
+	npc
+		personality nemesis plunder waiting
+		government Pirate
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+	to offer
+		has "FW Katya 2: done"
+	on offer
+		conversation
+			`As soon as you land and open you ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
+			choice
+				`	(Draw my weapon to defend myself against him.)`
+					goto weapon
+				`	(Quickly shut the hatch and find out if he is okay.)`
+					goto okay
+			
+			label weapon
+			`	You shut the hatch to keep anyone else from boarding your ship uninvited, then confront him. "Who are you and what are you doing on my ship?" you ask.`
+				goto name
+			
+			label okay
+			`	You shut the hatch to keep anyone else from boarding your ship, then turn around to find out who your visitor is. "My name is <first>," you say. "How can I help you?"`
+				goto name
+			
+			label name
+			`	"I'm Ijs Springborn," he says, pronouncing the name like "Eyes." He takes off the glasses and hat. "Councilor Reynolds told me to meet you here."`
+			choice
+				`	"Wait, 'Councilor' Reynolds? You mean Katya is in Parliament?"`
+			
+			`	He looks genuinely shocked. "You didn't know? That woman is a legend. Did two terms representing the Dirt Belt. Defender of small worlds and the common people. In some circles her work has made her almost as unpopular as me. But she got tired of working for reform and decided to create her own government instead."`
+			`	"And what do you do for work?" you ask.`
+			`	"Vigilante nuclear power plant inspector," he says, nonchalantly.`
+			choice
+				`	"Um... what?"`
+				`	"How does that even work?"`
+				`	"Is that even legal?"`
+			
+			`	"I go from world to world checking out plant emissions, to see if they're leaking isotopes into the air, the sea, or the groundwater. And if they are I sic the Department of Atomic Safety on them. The Syndicate hates my guts right now."`
+			`	"So, what has Katya asked you to do for the Free Worlds?" you ask.`
+			`	"Isn't it obvious?" he says. "We're going to hunt down certain naughty people who have been developing nuclear weapons, and the Free Worlds will turn them over to the Republic. Then the Republic will know that the Free Worlds weren't behind the attacks, and we'll stop this whole mess before it devolves into a civil war."`
+			choice
+				`	"So, you're convinced that the Free Worlds are innocent?"`
+					goto convinced
+				`	"Okay, what's our plan to do that?"`
+					goto plan
+			
+			label convinced
+			`	"Absolutely," he says. "It makes no sense. First of all, that attack hurt their cause more than it helped it. And second, I've known Katerina and her friends in the Coalition for a long time. There's no way they would agree to such a thing. So, whoever is responsible is out there somewhere, and the Free Worlds will bring them to justice."`
+			choice
+				`	"Well, then, what's our plan?"`
+			
+			label plan
+			`	"First," he says, "We need to go to Geminus, where the attack happened. I can explain more when we get there. In the meantime, I should also warn you that I seem to have terrible luck with pirates showing up wherever I go. It's almost like someone has put a price on my head." He grins.`
+				accept
+
+
+
+mission "FW Katya 2C"
+	landing
+	name "Transport Mr. Eyes"
+	description "Bring Mr. Eyes to <destination>, where you will meet up with Katya (and hopefully get paid)."
+	source Geminus
+	destination Rand
+	passengers 1
+	to offer
+		has "FW Katya 2B: done"
+	on offer
+		conversation
+			`It turns out that the suitcase Mr. Eyes is carrying is full of portable sensors. He fires them up while explaining to you what he is doing. "Each world, and even each mine, has a slightly different mix of isotopes in their fissionable elements," he explains. "So what I'm doing right now is almost like taking a fingerprint. Once we've got it, we can try to find a match on another planet. I'd be willing to bet the material just came from a civilian reactor core, so tracking it back to the mine wouldn't necessarily incriminate anyone. But developing nukes is tricky, so they probably did tests. And if we can find the test site, that may lead us to the perpetrators."`
+			`	A few minutes later, his measurements are done. "Got it," he says. "Time to start hunting. Katya said to meet up with her on <planet>. It's not our best bet, but it's on the list of suspects."`
+				accept
+	on complete
+		payment 100000
+		conversation
+			`As soon as you land, Mr. Eyes fires up his sensors and begins collecting data. A few minutes later, Katya shows up. "Eyes!" she says, "It's great to see you again."`
+			`	"You too, councilor," he says.`
+			`	Katya hands you a credit chip for another <payment>. "Thanks again, Captain. Did Eyes explain the plan to you?" You nod. "Well," she says, "if you've got space for the two of us and want to be a part of seeing justice done, let's meet up in the spaceport once Eyes is done analyzing his data."`
+
+
+
+mission "FW Katya 3"
+	name "Drone Hunting"
+	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>.`
+	source Rand
+	passengers 2
+	to offer
+		has "FW Katya 2C: done"
+	on offer
+		conversation
+			`You find Eyes and Katya sitting in the shade of one of the few trees in the port, drinking some sort of frozen milkshakes while they stare out at the desert and talk in hushed voices. When you join them, Katya says, "I was just filling Eyes in on the Navy's recent fleet mobilization. Half the dirt belt is swarming with cruisers and surveillance drones right now. It's hard to believe that we can find the attackers before they do, unless they're somewhere the Navy hasn't thought to look."`
+			`	"Agreed," says Eyes, "And to make matters worse, their sensors are probably much better than mine."`
+			`	Katya appears to be struck by a sudden idea. "The sensors on their drones," she says, "their unmanned drones..."`
+			`	Eyes glances at her, sees her expression, and says, "No, councilor, don't even think of it. That's a horrible idea."`
+			`	"No," she says, "it's brilliant. Captain <last>, are you familiar with the Dereliction and Salvage Act of 2976?"`
+			choice
+				`	"Of course. I read Parliamentary proceedings every night when I'm trying to fall asleep."`
+					goto yes
+				`	"No, I've never heard of it."`
+					goto no
+			
+			label yes
+				`	"Well then," she says, "you'll probably agree that legally speaking, Navy surveillance drones count as abandoned goods the moment their owners have left the system."`
+				goto response
+			
+			label no
+			`	"Well," she says, "it started when the Syndicate began experimenting with fully automated mining facilities on uninhabitable planets. Pirates started raiding the mines to steal equipment, and the Syndicate claimed that these installations were 'colonies' and it was the Navy's job to defend them. The Act was Parliament's response, stating that taking goods from a human being is piracy, but if the owner or some living representative of theirs is not present in system, taking those goods is a legal salvage operation. The point was to keep the Navy from being obligated to defend every equipment cache or abandoned station in the galaxy. But by the same law, those Navy surveillance drones become abandoned goods the moment their motherships leave the system."`
+				goto response
+			
+			label response
+			choice
+				`	"Yup. That makes perfect sense to me."`
+					goto agree
+				`	"That sounds like a terrible idea."`
+					goto disagree
+			
+			label disagree
+			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "That would be a big disappointment."`
+			choice
+				`	"Fine, I'll do it. But I still think it's an unwise idea."`
+					goto agree
+				`	"I'm sorry, but this is a bit farther than I'm willing to go. Count me out."`
+					decline
+			
+			label agree
+			`	"Great!" Says Katya, "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
+				accept
+	
+	on complete
+		outfit "Surveillance Pod" -1
+		conversation
+			`	You hand over the "salvaged" equipment to Mr. Eyes and Katya. Eyes begins fiddling with it, and soon discovers how to work the atmospheric scanner. "This is really nice stuff!" he says, enthusiastically.`
+			`	Katya says, "We found a halfway decent restaurant in the spaceport village. If you want to keep working with us, meet us there this evening."`

@@ -23,7 +23,7 @@ mission "Escort (Small, Northern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc accompany save
@@ -52,11 +52,11 @@ mission "Escort (Medium, Northern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc accompany save
@@ -85,7 +85,7 @@ mission "Escort (Large, Northern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc accompany save
@@ -114,11 +114,11 @@ mission "Escort (Extra Large, Northern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc accompany save
@@ -148,7 +148,7 @@ mission "Escort (Small, Core)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
@@ -177,11 +177,11 @@ mission "Escort (Medium, Core)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
@@ -210,7 +210,7 @@ mission "Escort (Large, Core)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Large Core Pirates"
 	npc accompany save
@@ -239,11 +239,11 @@ mission "Escort (Extra Large, Core)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Large Core Pirates"
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
@@ -273,7 +273,7 @@ mission "Escort (Small, Southern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save
@@ -302,11 +302,11 @@ mission "Escort (Medium, Southern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save
@@ -335,7 +335,7 @@ mission "Escort (Large, Southern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Large Southern Pirates"
 	npc accompany save
@@ -364,11 +364,11 @@ mission "Escort (Extra Large, Southern)"
 		government Republic "Free Worlds" Syndicate
 		distance 3 4
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Large Southern Pirates"
 	npc
-		personality nemesis entering
+		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save

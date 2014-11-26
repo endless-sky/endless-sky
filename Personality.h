@@ -44,6 +44,7 @@ public:
 	bool IsNemesis() const;
 	bool IsSurveillance() const;
 	bool IsUninterested() const;
+	bool IsWaiting() const;
 	
 	const Point &Confusion() const;
 	
