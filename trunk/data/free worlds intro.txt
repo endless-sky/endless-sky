@@ -529,3 +529,87 @@ mission "FW Katya 3"
 		conversation
 			`	You hand over the "salvaged" equipment to Mr. Eyes and Katya. Eyes begins fiddling with it, and soon discovers how to work the atmospheric scanner. "This is really nice stuff!" he says, enthusiastically.`
 			`	Katya says, "We found a halfway decent restaurant in the spaceport village. If you want to keep working with us, meet us there this evening."`
+
+
+
+mission "FW Katya 4"
+	name "Katya and Mr. Eyes"
+	description "Stop on <destination>, and check the planet for signs of nuclear testing."
+	source Rand
+	destination Oblivion
+	passengers 2
+	to offer
+		has "FW Katya 3: done"
+	on offer
+		conversation
+			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
+			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "And then work our way toward the Rim."`
+			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native like yourself, from a planet named Hope. "No longer settled," she explains, "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millenia. My home town is under thirty meters of glacier by now."`
+			choice
+				`	"Was anyone killed?"`
+				`	"How did you escape?"`
+			
+			`	"The eruption was on the other continent," she explains, "So no one was killed in the blast. It was a slow-moving disaster. We had six months or so to move two million settlers off-world before the temperatures would drop too low to be livable. More than half of the Navy was mobilized to ferry our people to other planets."`
+			`	"Here's the best part," says Eyes. "The Navy operates with a certain amount of autonomy. Turns out when they found out about the disaster, they mobilized without even waiting to clear it with Parliament. Which was technically within their mandate, this being a natural disaster. But the Navy is funded by taxes, and the Paradise Planets pay ten times as much in taxes as the Dirt Belt."`
+			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those generals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
+			choice
+				`	"You're making the Navy sound like heros. I thought they were your enemies."`
+				`	"You've almost convinced me to join the Navy."`
+			
+			`	"Our fight isn't with the Navy," says Katya. "Most of them are good people. I'm sure they don't want war any more than we do. They're like police officers who are suddenly being asked to fight against the very people they swore to protect and serve."`
+			`	"I was a child on Vinci while this was happening," says Eyes. "A paradise world. I would listen to the news and could never understand why all the adults around me were so very, very angry that the Navy had gone off to rescue two million people from freezing to death. But they told me that we lived in one little island of safety in a dangerous galaxy, and that without the Navy protecting us the pirates or even maybe aliens would sweep in and destroy our homes and take our money. That is was us against the whole galaxy."`
+			`	"I'd hate to be rich," says Katya. "So much to fear."`
+			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
+				accept
+
+mission "FW Katya 5"
+	landing
+	name "Information Gathering"
+	description "Bring Katya and Mr. Eyes to <destination>, where some monks may be able to help you negotiate with the pirates for information."
+	source Oblivion
+	destination Harmony
+	passengers 2
+	to offer
+		has "FW Katya 4: done"
+	on offer
+		conversation
+			`You land on <planet>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes, "Guess we should move on."`
+			choice
+				`	"Are we just going to search every planet in this sector? Won't that take months?"`
+					goto months
+				`	"Are there any other ships helping us search, or is it just us?"`
+					goto search
+			
+			label months
+			`	"You've got a point," says Eyes. "And we don't even know for sure that the terrorists originated from around here."`
+				goto pirates
+			
+			label search
+			`	"No," says Eyes, "we've tried to keep this search a secret so the terrorists won't know we're looking for them. If they turn out to be Free Worlds sympathizers, and I assume they are, we'll have a better chance of infiltrating them if they think we're on their side."`
+				goto pirates
+			
+			label pirates
+			`	Katya says, "What we need is some leads to follow. I bet we could buy information on Greenrock. Whenever anyone is doing something illegal in this sector, there's a good chance the pirates are helping them."`
+			`	Mr. Eyes says, "Unless you've got boatloads of money to give the pirates, we need someone who's friendly with them, who can convince them to talk for free. We should go to the Brothers on Harmony."`
+			`	"That's not a bad idea," says Katya, "as long as they don't make me sit through one of their church services. I always fall asleep."`
+			`	"What do you say, Captain?" asks Eyes. "Want to visit a monastery?"`
+			choice
+				`	"Sure, sounds like fun."`
+					accept
+				`	"You guys have interesting friends. How do you know these monks?"`
+					goto friends
+				`	"Sounds boring. Can't we go shoot down more surveillance drones instead?"`
+					goto shoot
+			
+			label friends
+			`	"When I grew up and left the paradise sector, as a young idealist," says Eyes, "I decided I wanted to take a vow of poverty, so I came to live with the Brothers. But it turns out they also wanted me to take a vow of obedience. And chastity. Not so much my cup of tea." He winks at Katya.`
+			`	"Are the monks really as boring as Katya says?" you ask.`
+				goto shoot
+						
+			label shoot
+			`	"Sorry kid," says Eyes. "Take it from me, working for justice is not always exciting."`
+			choice
+				`	"Fine, I'm in."`
+					accept
+				`	"Sorry, but I think I'm done with helping the Free Worlds. I'd rather strike out on my own."`
+					decline
