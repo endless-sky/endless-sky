@@ -1149,7 +1149,7 @@ void PlayerInfo::CreateMissions()
 				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 			
 			missions.push_back(it.second.Instantiate(*this));
-			if(missions.back().HasFailed())
+			if(missions.back().HasFailed(*this))
 				missions.pop_back();
 		}
 	}

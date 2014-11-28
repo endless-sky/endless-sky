@@ -84,7 +84,7 @@ public:
 	bool CanOffer(const PlayerInfo &player) const;
 	bool HasSpace(const PlayerInfo &player) const;
 	bool CanComplete(const PlayerInfo &player) const;
-	bool HasFailed() const;
+	bool HasFailed(const PlayerInfo &player) const;
 	
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
@@ -134,6 +134,7 @@ private:
 	
 	ConditionSet toOffer;
 	ConditionSet toComplete;
+	ConditionSet toFail;
 	
 	const Planet *source = nullptr;
 	LocationFilter sourceFilter;

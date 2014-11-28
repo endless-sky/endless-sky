@@ -175,7 +175,7 @@ void MainPanel::FinishMissions()
 		const Mission &mission = *it;
 		++it;
 		
-		if(mission.HasFailed())
+		if(mission.HasFailed(player))
 			player.RemoveMission(Mission::FAIL, mission, GetUI());
 		else if(mission.CanComplete(player))
 			player.RemoveMission(Mission::COMPLETE, mission, GetUI());
