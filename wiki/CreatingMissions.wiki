@@ -17,7 +17,7 @@ mission <name>
     repeat (<number>)
     clearance (<message>)
         ...
-    to (offer | complete)
+    to (offer | complete | fail)
         <condition> (<comp> <value>)
         (has | not) <condition>
         never
@@ -205,7 +205,7 @@ The "clearance" tag may have child entries that specify a location filter, the s
 Conditions are checked at two times when processing a mission: when determining whether the mission can be offered right now (in the "to offer" tag), and when determining whether it has been completed successfully (in the "to complete" tag):
 
 {{{
-to (offer | complete)
+to (offer | complete | fail)
     <condition> (<comp> <value>)
     (has | not) <condition>
     never
@@ -213,7 +213,9 @@ to (offer | complete)
 
 The `<comp>` comparison operator can be `==`, `!=`, `<`, `>`, `<=`, or `>=`. If only the condition name is given, the comparison is assumed to be "!= 0". As a special shortcut, you can write "has `<condition>`" instead of "`<condition>` != 0", or "not `<condition>`" instead of "`<condition>` == 0". The "never" condition always evaluates to false, so it can be used to create a mission that can never succeed.
 
-Conditions can be changed when you are offered a mission or when you accept, decline, fail, or complete it, as described later in this document. By making one mission set a condition on success, and another depend on nothing except that one condition, you can "chain" missions together. Since all your existing missions complete before new ones are offered, that condition will be set before the check is done for what new missions are available.
+Conditions can be changed when you are offered a mission or when you accept, decline, fail, or complete it, as described later in this document. You can "chain" missions together by having one depend on the "`<mission name>`: done" condition set by a previous mission. Since all your existing missions complete before new ones are offered, that condition will be set before the check is done for what new missions are available.
+
+A mission will not be offered if any of the "to fail" conditions are met, and will fail if it is active and one of those conditions changes so that it is satisfied.
 
 = Source and destination filters =
 
