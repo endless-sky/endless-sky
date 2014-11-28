@@ -352,7 +352,7 @@ void InfoPanel::DrawInfo() const
 			break;
 		
 		bool isElsewhere = (ship->GetSystem() != player.GetSystem());
-		bool isDead = (ship->Hull() <= 0.) || ship->IsDisabled();
+		bool isDead = ship->IsDestroyed() || ship->IsDisabled();
 		bool isHovered = (index == hover);
 		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;
 		font.Draw(ship->Name(), pos + Point(10. * ship->IsFighter(), 0.), color);

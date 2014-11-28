@@ -209,7 +209,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		Goto(conversation.NextNode(node, choice));
 	else if(key == GameData::Keys().Get(Key::MAP))
 		GetUI()->Push(new MapDetailPanel(player, -4, system));
-	else if(key > '0' && key <= '0' + choices.size())
+	else if(key > '0' && key <= static_cast<SDL_Keycode>('0' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'));
 	else
 		return false;

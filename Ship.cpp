@@ -493,7 +493,7 @@ bool Ship::Move(list<Effect> &effects)
 	}
 	
 	
-	if(hull <= 0.)
+	if(IsDestroyed())
 	{
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
@@ -755,7 +755,7 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			if(!target->IsDisabled() && GameData::GetPolitics().IsEnemy(target->government, government))
 				isBoarding = false;
-			else if(target->Hull() < 0.)
+			else if(target->IsDestroyed())
 				isBoarding = false;
 		}
 		if(isBoarding && !pilotError)
@@ -833,7 +833,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	hasBoarded = false;
 	
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(!victim || victim->Hull() <= 0.)
+	if(!victim || victim->IsDestroyed())
 		return shared_ptr<Ship>();
 	
 	// For a fighter, "board" means "return to ship."
@@ -1020,7 +1020,7 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet() || isDisabled || Hull() <= 0.)
+	if(!GetTargetPlanet() || isDisabled || IsDestroyed())
 		return false;
 	
 	if(!GameData::GetPolitics().CanLand(*this, GetTargetPlanet()->GetPlanet()))
@@ -1162,7 +1162,7 @@ Point Ship::Unit() const
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(bool atSpaceport)
 {
-	if(hull < 0.)
+	if(IsDestroyed())
 		return;
 	
 	if(atSpaceport)
@@ -1177,6 +1177,22 @@ void Ship::Recharge(bool atSpaceport)
 	hull = attributes.Get("hull");
 	energy = attributes.Get("energy capacity");
 	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
+}
+
+
+
+// Mark a ship as destroyed.
+void Ship::Destroy()
+{
+	hull = -1.;
+}
+
+
+
+// Check if this ship has been destroyed.
+bool Ship::IsDestroyed() const
+{
+	return (hull < 0.);
 }
 
 
@@ -1311,7 +1327,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 // Check if this ship should be deleted.
 bool Ship::ShouldDelete() const
 {
-	return (!zoom && !isSpecial) || (hull <= 0. && explosionCount >= explosionTotal);
+	return (!zoom && !isSpecial) || (IsDestroyed() && explosionCount >= explosionTotal);
 }
 
 
@@ -1366,7 +1382,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double hitForce =  weapon.WeaponGet("hit force");
 	double heatDamage = weapon.WeaponGet("heat damage");
 	bool wasDisabled = IsDisabled();
-	bool wasDestroyed = (hull <= 0.);
+	bool wasDestroyed = IsDestroyed();
 	
 	isBoarding = false;
 	
@@ -1396,7 +1412,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	if(!wasDisabled && IsDisabled())
 		type |= ShipEvent::DISABLE;
-	if(!wasDestroyed && hull <= 0.)
+	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.

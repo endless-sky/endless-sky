@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "System.h"
 #include "UI.h"
 
@@ -284,6 +285,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 				bonus *= otherCrew;
 				bonus /= otherCrew + 20;
 				crewBonus += bonus;
+				
+				ShipEvent event(you, victim, ShipEvent::CAPTURE);
+				player.HandleEvent(event, GetUI());
 			}
 		}
 		// Trim the list of status messages.

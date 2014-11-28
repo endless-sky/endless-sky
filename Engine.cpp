@@ -144,6 +144,10 @@ void Engine::Place()
 			map<Ship *, int> fighterCarriers;
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
+				// Skip ships that have been destroyed.
+				if(ship->IsDestroyed())
+					continue;
+				
 				if(ship->DroneBaysFree())
 					droneCarriers[&*ship] = ship->DroneBaysFree();
 				if(ship->FighterBaysFree())
@@ -154,6 +158,10 @@ void Engine::Place()
 			
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
+				// Skip ships that have been destroyed.
+				if(ship->IsDestroyed())
+					continue;
+				
 				ship->Recharge();
 				
 				if(ship->IsFighter())
