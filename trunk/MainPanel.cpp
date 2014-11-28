@@ -243,7 +243,7 @@ void MainPanel::ShowHailPanel()
 	if(ship)
 	{
 		// An exploding ship cannot communicate.
-		if(ship->Hull() <= 0.)
+		if(ship->IsDestroyed())
 			return;
 		
 		shared_ptr<Ship> target = ship->GetTargetShip();
@@ -251,7 +251,7 @@ void MainPanel::ShowHailPanel()
 		{
 			if(target->IsHyperspacing())
 				Messages::Add("Unable to send hail: ship is entering hyperspace.");
-			else if(target->Hull() > 0. && target->GetSystem() == player.GetSystem())
+			else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
 				GetUI()->Push(new HailPanel(player, target));
 			else
 				Messages::Add("Unable to hail target ship.");

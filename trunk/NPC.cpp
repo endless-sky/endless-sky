@@ -179,9 +179,6 @@ void NPC::Save(DataWriter &out) const
 	
 	for(const shared_ptr<Ship> &ship : ships)
 	{
-		if(ship->Hull() <= 0.)
-			continue;
-		
 		ship->Save(out);
 		auto it = actions.find(ship.get());
 		if(it != actions.end() && it->second)
@@ -204,20 +201,31 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 	return ships;
 }
 
-
+#include <iostream>
 
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
-	for(const shared_ptr<Ship> &ship : ships)
+	for(shared_ptr<Ship> &ship : ships)
 		if(ship == event.Target())
 		{
 			actions[ship.get()] |= event.Type();
 			vector<shared_ptr<Ship>> carried = ship->CarriedShips();
 			for(const shared_ptr<Ship> &fighter : carried)
 				actions[fighter.get()] |= event.Type();
+			
+			// If a mission ship is captured, let it live on under its new
+			// ownership but mark our copy of it as destroyed.
+			if(event.Type() & ShipEvent::CAPTURE)
+			{
+				std::cout << "Captured the mission ship " << ship->Name() << "." << std::endl;
+				Ship *copy = new Ship(*ship);
+				copy->Destroy();
+				actions[copy] = actions[ship.get()] | ShipEvent::DESTROY;
+				ship.reset(copy);
+			}
 			break;
 		}
 	

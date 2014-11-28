@@ -638,7 +638,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 		// Check that this ship is eligible to be a flagship.
 		if(ships[fromIndex]->IsFighter())
 			++toIndex;
-		if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->Hull() <= 0.)
+		if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->IsDestroyed())
 			++toIndex;
 		if(ships[fromIndex]->GetSystem() != system)
 			++toIndex;
@@ -678,7 +678,7 @@ void PlayerInfo::Land()
 	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->Hull() <= 0. || (*it)->IsDisabled()
+		if(!*it || (*it)->IsDestroyed() || (*it)->IsDisabled()
 				|| (*it)->GetGovernment() != GameData::PlayerGovernment())
 			it = ships.erase(it);
 		else

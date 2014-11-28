@@ -144,6 +144,10 @@ public:
 	
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(bool atSpaceport = true);
+	// Mark a ship as destroyed.
+	void Destroy();
+	// Check if this ship has been destroyed.
+	bool IsDestroyed() const;
 	
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;

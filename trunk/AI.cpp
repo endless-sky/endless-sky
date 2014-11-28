@@ -201,7 +201,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			if(shipToAssist)
 			{
 				it->SetTargetShip(shipToAssist);
-				if(shipToAssist->Hull() <= 0. || shipToAssist->GetSystem() != it->GetSystem())
+				if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem())
 					it->SetShipToAssist(weak_ptr<Ship>());
 				else if(!it->IsBoarding())
 				{
@@ -1006,12 +1006,12 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	else if(keyDown & Key::Bit(Key::BOARD))
 	{
 		shared_ptr<const Ship> target = control.GetTargetShip();
-		if(!target || !target->IsDisabled() || target->Hull() <= 0.)
+		if(!target || !target->IsDisabled() || target->IsDestroyed())
 		{
 			double closest = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
 			for(const shared_ptr<Ship> &other : ships)
-				if(other->IsTargetable() && other->IsDisabled() && other->Hull() > 0.)
+				if(other->IsTargetable() && other->IsDisabled() && !other->IsDestroyed())
 				{
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double d = other->Position().Distance(ship.Position());
