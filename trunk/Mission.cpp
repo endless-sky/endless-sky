@@ -123,6 +123,8 @@ void Mission::Load(const DataNode &node)
 				toOffer.Load(child);
 			else if(child.Token(1) == "complete")
 				toComplete.Load(child);
+			else if(child.Token(1) == "fail")
+				toFail.Load(child);
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
 			source = GameData::Planets().Get(child.Token(1));
@@ -202,6 +204,15 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.BeginChild();
 		
 		toComplete.Save(out);
+		
+		out.EndChild();
+	}
+	if(!toFail.IsEmpty())
+	{
+		out.Write("to", "fail");
+		out.BeginChild();
+		
+		toFail.Save(out);
 		
 		out.EndChild();
 	}
@@ -347,6 +358,9 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 	if(!toOffer.Test(player.Conditions()))
 		return false;
 	
+	if(toFail.Test(player.Conditions()))
+		return false;
+	
 	if(repeat)
 	{
 		auto cit = player.Conditions().find(name + ": offered");
@@ -399,8 +413,11 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 
 
 
-bool Mission::HasFailed() const
+bool Mission::HasFailed(const PlayerInfo &player) const
 {
+	if(toFail.Test(player.Conditions()))
+		return true;
+	
 	for(const NPC &npc : npcs)
 		if(npc.HasFailed())
 			return true;
@@ -604,6 +621,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Copy the completion conditions. No need to copy the offer conditions,
 	// because they have already been checked.
 	result.toComplete = toComplete;
+	result.toFail = toFail;
 	
 	// Generate the substitutions map.
 	map<string, string> subs;
