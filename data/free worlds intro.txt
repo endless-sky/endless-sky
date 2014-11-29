@@ -15,6 +15,8 @@ mission "FW Recon 1"
 		planet Glaze
 	to offer
 		has "event: initial deployment 4"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -70,6 +72,8 @@ mission "FW Recon 2"
 		planet Glaze
 	to offer
 		has "FW Recon 1: done"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -109,6 +113,8 @@ mission "FW Recon 3"
 		planet "New Wales"
 	to offer
 		has "FW Recon 2: done"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -139,6 +145,8 @@ mission "FW Recon 3B"
 		planet Glaze
 	to offer
 		has "FW Recon 3: done"
+	to fail
+		has "chosen sides"
 	
 	on offer
 		conversation
@@ -173,6 +181,7 @@ mission "FW Recon 3B"
 		dialog `A minute after you land, a Republic gunboat, <npc>, lands directly next to you. JJ does not approach you. You notice from your ship's logs that this gunboat has been following you ever since you left <origin>; before you can hand over the information, you will need to escape its pursuit.`
 	
 	on complete
+		"assisted free worlds" ++
 		dialog `JJ meets you as soon as you land, and you pass off your information and photos to him. He pays you <payment> and says, "I'll be sure to let the Free Worlds council know how helpful you have been."`
 		payment 80000
 
@@ -183,6 +192,8 @@ mission "FW Katya 1"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
 	to offer
 		random < 20
+	to fail
+		has "chosen sides"
 	source
 		government "Free Worlds"
 	destination Glory
@@ -264,6 +275,8 @@ mission "FW Katya 1B"
 	landing
 	to offer
 		has "FW Katya 1: done"
+	to fail
+		has "chosen sides"
 	source Glory
 	destination Skymoot
 	passengers 2
@@ -297,6 +310,8 @@ mission "FW Katya 1C"
 		government Republic
 	to offer
 		has "FW Katya 1B: active"
+	to fail
+		has "chosen sides"
 	
 	npc kill
 		personality nemesis
@@ -377,6 +392,8 @@ mission "FW Katya 2"
 	passengers 1
 	to offer
 		has "FW Katya 1B: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`When you enter the bar, Katya waves you over to her table. "I've got another friend who needs to be transported," she says. "This one is on a boondock planet near the Core right now."`
@@ -404,6 +421,8 @@ mission "FW Katya 2B"
 		fleet "Large Core Pirates"
 	to offer
 		has "FW Katya 2: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`As soon as you land and open you ship's hatch, a man wearing sunglasses and a ridiculous hat and carrying a large metal suitcase runs past you and into your ship, casting a quick furtive glance behind him to see if anyone is following.`
@@ -463,6 +482,8 @@ mission "FW Katya 2C"
 	passengers 1
 	to offer
 		has "FW Katya 2B: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`It turns out that the suitcase Mr. Eyes is carrying is full of portable sensors. He fires them up while explaining to you what he is doing. "Each world, and even each mine, has a slightly different mix of isotopes in their fissionable elements," he explains. "So what I'm doing right now is almost like taking a fingerprint. Once we've got it, we can try to find a match on another planet. I'd be willing to bet the material just came from a civilian reactor core, so tracking it back to the mine wouldn't necessarily incriminate anyone. But developing nukes is tricky, so they probably did tests. And if we can find the test site, that may lead us to the perpetrators."`
@@ -484,6 +505,8 @@ mission "FW Katya 3"
 	passengers 2
 	to offer
 		has "FW Katya 2C: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`You find Eyes and Katya sitting in the shade of one of the few trees in the port, drinking some sort of frozen milkshakes while they stare out at the desert and talk in hushed voices. When you join them, Katya says, "I was just filling Eyes in on the Navy's recent fleet mobilization. Half the dirt belt is swarming with cruisers and surveillance drones right now. It's hard to believe that we can find the attackers before they do, unless they're somewhere the Navy hasn't thought to look."`
@@ -540,6 +563,8 @@ mission "FW Katya 4"
 	passengers 2
 	to offer
 		has "FW Katya 3: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
@@ -573,6 +598,8 @@ mission "FW Katya 5"
 	passengers 2
 	to offer
 		has "FW Katya 4: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`You land on <planet>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes, "Guess we should move on."`
@@ -628,6 +655,8 @@ mission "FW Katya 5B"
 	passengers 2
 	to offer
 		has "FW Katya 5: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`Katya and Eyes lead you to the monastery. As you are approaching, you meet a monk who is wearing a long black robe and kneeling in a small vegetable garden, pulling weeds. When he looks up and sees you, he leaps to his feet and runs over. "Katya! And Ijs! Welcome back!" Then he turns to you. "I'm David," he says.`
@@ -682,6 +711,8 @@ mission "FW Katya 5C"
 	passengers 2
 	to offer
 		has "FW Katya 5B: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`Father Greg disappears for several hours to talk with his various contacts, then returns and reports to you and Katya. "No one has heard anything specific," he says, "And they say keeping a nuclear program secret would take an incredible amount of resources, or a very remote location with very good security."`
@@ -711,6 +742,8 @@ mission "FW Katya 6"
 	passengers 2
 	to offer
 		has "FW Katya 5C: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`You find Katya and Mr. Eyes sitting at a table in the corner of a small cafe, talking in hushed voices and examining a galactic map that is spread out in front of them. Several of the nearby systems are circled. Katya says, "Hello again, Captain. We've picked three planets that we think are our best options. It should only take a few weeks to visit all of them. What do you say?"`
@@ -733,6 +766,8 @@ mission "FW Katya 6B"
 	passengers 2
 	to offer
 		has "FW Katya 6: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says, "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
@@ -750,19 +785,17 @@ mission "FW Katya 6C"
 	passengers 2
 	to offer
 		has "FW Katya 6B: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`Again, Eyes runs his tests, and again, nothing shows up. "One more planet to go," he says. "Time to try <planet>." You can tell that they are both starting to feel a bit discouraged, and you are overwhelmed by the thought of how many planets in this sector you may need to search unless you get a lucky break soon.`
 				accept
-	
-	on complete
-		payment 50000
-		conversation
-			`<planet> turns out no differently than the previous two. "We need a change in strategy," says Katya. "Captain, if you're willing to keep going, meet us in the spaceport bar in an hour. I have to believe we'll come up with something soon. In the meantime, here." She hands you <payment>.`
 
 
 
 mission "FW Katya 7"
+	landing
 	name "The Hunt Continues"
 	description "Take Katya and Eyes to <destination>, to check for signs of underwater testing."
 	source "New Iceland"
@@ -770,10 +803,12 @@ mission "FW Katya 7"
 	passengers 2
 	to offer
 		has "FW Katya 6C: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
-			`When you meet them in the bar, Katya and Eyes have another idea. "Best not to talk in such a public place," they say, "But we can explain it back at your ship."`
-			`	When you get there, Eyes says, "It occurred to me that underwater testing might be even easier than underground: no need to dig or find a mine shaft. And, the Navy's sensors are for atmosphere, not oceans. But I've still got my old test kits with me for seawater."`
+			`<planet> turns out no differently than the previous two. "We need a change in strategy," says Katya. "We've been talking about something while we were in transit."`
+			`	Eyes says, "It occurred to me that underwater testing might be even easier than underground: no need to dig or find a mine shaft. And, the Navy's sensors are for atmosphere, not oceans. But I've still got my old test kits with me for seawater."`
 			`	Katya says, "So then we wondered, what sort of world would you go to if you wanted rumblings in the ocean to go unnoticed? Either an unpopulated one, or one with lots of meteorite activity. And that leads us to... Deep." She points out the system on your map. "Mild tidal surges on almost a weekly basis, due to impacts from all the asteroids in system. Perfect place to hide an undersea explosion."`
 			choice
 				`	"Sounds like a good possibility. Let's give it a try!"`
@@ -792,6 +827,8 @@ mission "FW Katya 7B"
 	passengers 2
 	to offer
 		has "FW Katya 7: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`After landing, you go for a walk along the beach with Katya and Eyes. They both go barefoot, walking in the surf. Eyes is collecting pebbles and shells from under the water, and at one point instead of grabbing a pebble he surreptitiously reaches down and fills a small vial with seawater.`
@@ -832,6 +869,8 @@ mission "FW Katya 7C"
 	passengers 1
 	to offer
 		has "FW Katya 7B: done"
+	to fail
+		has "chosen sides"
 	on offer
 		conversation
 			`You land some distance from the mining settlement, and Mr. Eyes goes into the airlock in a pressure suit, cycling it to bring in some of the moon's thin atmosphere for him to test. "Firing up my instruments now," he says through the comm link. There is a long pause, and then he starts spouting a long string of creative profanity. Katya runs over to the airlock window to see what is happening.`
@@ -850,6 +889,7 @@ mission "FW Katya 7C"
 				accept
 	
 	on complete
+		"assisted free worlds" ++
 		payment 250000
 		conversation
 			`	Eyes has been really quiet for the whole journey; you're sure that he's worried about Katya. When you land, he hands you <payment> and says, "Thank you for all your help, Captain. I hope that this leads to justice being done."`
