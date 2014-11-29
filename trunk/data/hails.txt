@@ -362,3 +362,10 @@ phrase "hostile pirate"
 		"plunder"
 	word
 		": I love the pirate's life!"
+
+# From the "Southern Television broadcast interruption."
+phrase "hostile quarg"
+	word
+		"All your weapons of evil must be destroyed."
+		"You have only a short time to learn to live together in peace."
+		"You must live in peace... or leave the galaxy."
