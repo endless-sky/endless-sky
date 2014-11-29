@@ -562,6 +562,8 @@ mission "FW Katya 4"
 			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
 				accept
 
+
+
 mission "FW Katya 5"
 	landing
 	name "Information Gathering"
@@ -613,3 +615,88 @@ mission "FW Katya 5"
 					accept
 				`	"Sorry, but I think I'm done with helping the Free Worlds. I'd rather strike out on my own."`
 					decline
+
+
+
+mission "FW Katya 5B"
+	landing
+	name "Information Gathering"
+	description "Travel to <planet> with Brother Greg and see if he can get any information from the pirates there."
+	source Harmony
+	destination Greenrock
+	clearance `Brother Greg talks briefly with the spaceport traffic controller. When they realize who he is, they agree to let you land "without paying the usual fee."`
+	passengers 2
+	to offer
+		has "FW Katya 5: done"
+	on offer
+		conversation
+			`Katya and Eyes lead you to the monastery. As you are approaching, you meet a monk who is wearing a long black robe and kneeling in a small vegetable garden, pulling weeds. When he looks up and sees you, he leaps to his feet and runs over. "Katya! And Ijs! Welcome back!" Then he turns to you. "I'm David," he says.`
+			choice
+				`	"I'm <first>. Pleased to meet you."`
+			
+			`	Katya asks, "Is Brother Greg here?"`
+			`	"Sure," says David, "Come inside." The monastery building is a stone and brick structure that looks like pictures you have seen of ancient Earth. He leads you down a long hallway and into a sitting room with furniture that looks equally antique, and then leaves.`
+			`	As you are waiting, Eyes explains, "Brother Greg is in charge of the monastery's outreach and ministry to pirate crew members."`
+			choice
+				`	"That sounds even odder than being a vigilante nuclear inspector."`
+					goto odd
+				`	"Why would anyone want to reach out to pirates?"`
+					goto outreach
+			
+			label odd
+			`	Eyes laughs. "Yes, the monks were a big influence in helping me to think creatively about my own vocation."`
+			
+			label outreach
+			`	"Consider this," says Katya. "In the galactic south, the average age of a pirate crew member is seventeen years old. And many are much younger than that. They're more like street kids than like hardened criminals."`
+			`	Just then, Brother Greg walks in. Mr. Eyes introduces you to him and explains your situation. Greg frowns, thoughtfully. "What do we have to offer in exchange for that information?" he asks.`
+			`	Katya says, "Ever since this conflict began, southern space has been swarming not only with an increased militia presence, but with the whole Republic Navy. That must make it awfully hard to be a pirate. Seems like the pirates would be glad if the Navy got what they were looking for and went back up north."`
+			`	Brother Greg nods. "It's worth a try. Why don't you join us for dinner, and we'll depart for Greenrock in the morning. When we get there, just hail the planet and let me do the talking, and I can probably get permission to land for free."`
+			`	You join the brothers for a simple but delicious dinner, soup and salad made entirely from their own gardens. After dinner, Greg asks you, "Do you want to join us from evening prayer?"`
+			choice
+				`	"Sure, I'd be glad to."`
+					goto prayer
+				`	"Sorry, I've got some other stuff to get done tonight."`
+					goto excuse
+			
+			label excuse
+			`	"No problem," he says, "See you in the morning."`
+				goto morning
+			
+			label prayer
+			`	"Evening prayer" turns out to be a lengthy church service that apparently begins with the monks listing every bad thing they can possibly imagine and praying that it would not happen: "From lightning and tempest; from earthquake, fire, and flood; from plague, pestilence, and famine, good Lord, deliver us. From all oppression, conspiracy, and rebellion; from violence, battle, and murder; and from dying suddenly and unprepared, good Lord, deliver us..." It's very monotonous.`
+			`	At some point, they switch to praying for different people: for the Parliament of the Republic, and everyone in authority; for the governor of <origin>, their world; for the Quarg and all sentient species; for prisoners, for the homeless and poor, for orphans, for pregnant women and young children, for travelers, for starship crews and captains, for miners and oil crews, for mill and factory workers; for the abused; for the mentally ill; for pirates and street gangs; for all creatures and planets vulnerable to exploitation or ecological destruction. (Eyes, who is sitting next to you, responds to that last petition with a fervent "Amen!") The litany is so detailed and specific that you find it both exhausting and fascinating.`
+			`	When the service ends, the monks depart for their rooms in silence, and Eyes, with a brief nod to you, does the same.`
+			
+			label morning
+			`	At breakfast in the monastery, Mr. Eyes tells you, "I'm going to be staying here until you get back. Greenrock is no place for a man with a price on his head. But Katya will be going with you." You bring Katya and Greg back to your ship and get ready to take off.`
+				accept
+
+
+
+mission "FW Katya 5C"
+	landing
+	name "Information Gathering"
+	description "Return to <planet> with Katya and Brother Greg."
+	source Greenrock
+	destination Harmony
+	passengers 2
+	to offer
+		has "FW Katya 5B: done"
+	on offer
+		conversation
+			`Father Greg disappears for several hours to talk with his various contacts, then returns and reports to you and Katya. "No one has heard anything specific," he says, "And they say keeping a nuclear program secret would take an incredible amount of resources, or a very remote location with very good security."`
+			`	"Any hints on where we should look?" asks Katya.`
+			`	"A few. I talked to one friend who had done research into nuclear development 'for purely academic reasons,' and he said that only a fool would perform atmospheric tests; Intelligence would notice that immediately, no matter what world you were on. He said the ideal development location would be a sparsely populated planet with some abandoned deep underground mines."`
+			`	"Anything else?" you ask.`
+			`	"Just one more thing," says Greg. "Several people mentioned that they think the Navy itself may have a nuclear arsenal, and that a renegade may have stolen the weapons from them. Much easier than developing them yourself."`
+			`	"Well, let's head back to <planet> and see what Eyes thinks," says Katya, "but I can't imagine the Navy would have such an arsenal. Searching on mining planets sounds like our best bet for now."`
+				accept
+	
+	on complete
+		payment 100000
+		conversation
+			`	When you land on <planet>, as Brother Greg is gathering his luggage, Katya hands you another credit chip for <payment>. "Thanks for risking your life with the pirates," she says. "You've got real guts."`
+			`	You return to the monastery and share your new information with Mr. Eyes. His reaction is the same as Katya's. "No way the Navy has nukes," he says. "Some other secret branch of the government, maybe, but not the Navy. That would offend their sense of honor."`
+			`	"Still," says Katya, "If there was such a program and the weapons were stolen from it, that would explain why Intelligence has not named a suspect yet. They would have to reveal the program's existence."`
+			`	Eyes shakes his head. "This isn't a productive line of investigation," he says. "If it was some local terrorists, we've got some hope of tracking them down. If it's some shadowy government organization, there's no way we can find them. So, the local terrorist angle is the only one worth pursuing."`
+			`	"Very well," says Katya. "Captain <last>, meet us in the spaceport if you're willing to continue working with us."`
