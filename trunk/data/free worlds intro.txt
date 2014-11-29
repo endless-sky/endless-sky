@@ -700,3 +700,161 @@ mission "FW Katya 5C"
 			`	"Still," says Katya, "If there was such a program and the weapons were stolen from it, that would explain why Intelligence has not named a suspect yet. They would have to reveal the program's existence."`
 			`	Eyes shakes his head. "This isn't a productive line of investigation," he says. "If it was some local terrorists, we've got some hope of tracking them down. If it's some shadowy government organization, there's no way we can find them. So, the local terrorist angle is the only one worth pursuing."`
 			`	"Very well," says Katya. "Captain <last>, meet us in the spaceport if you're willing to continue working with us."`
+
+
+
+mission "FW Katya 6"
+	name "The Hunt Continues"
+	description "Take Katya and Eyes to <destination>."
+	source Harmony
+	destination Sinter
+	passengers 2
+	to offer
+		has "FW Katya 5C: done"
+	on offer
+		conversation
+			`You find Katya and Mr. Eyes sitting at a table in the corner of a small cafe, talking in hushed voices and examining a galactic map that is spread out in front of them. Several of the nearby systems are circled. Katya says, "Hello again, Captain. We've picked three planets that we think are our best options. It should only take a few weeks to visit all of them. What do you say?"`
+			choice
+				`	"Sure, I definitely want to help solve this case!"`
+				`	"Sorry, I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
+					decline
+			
+			`	"Great!" says Katya. "We'll stop on <planet> first, then swing by Hopper and on to New Iceland. If we still haven't found anything by that point, we'll start working our way up the Rim."`
+				accept
+
+
+
+mission "FW Katya 6B"
+	landing
+	name "The Hunt Continues"
+	description "Take Katya and Eyes to <destination>."
+	source Sinter
+	destination Hopper
+	passengers 2
+	to offer
+		has "FW Katya 6: done"
+	on offer
+		conversation
+			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says, "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
+			`	"No problem," says Katya, "let's continue to <planet>."`
+				accept
+
+
+
+mission "FW Katya 6C"
+	landing
+	name "The Hunt Continues"
+	description "Take Katya and Eyes to <destination>."
+	source Hopper
+	destination "New Iceland"
+	passengers 2
+	to offer
+		has "FW Katya 6B: done"
+	on offer
+		conversation
+			`Again, Eyes runs his tests, and again, nothing shows up. "One more planet to go," he says. "Time to try <planet>." You can tell that they are both starting to feel a bit discouraged, and you are overwhelmed by the thought of how many planets in this sector you may need to search unless you get a lucky break soon.`
+				accept
+	
+	on complete
+		payment 50000
+		conversation
+			`<planet> turns out no differently than the previous two. "We need a change in strategy," says Katya. "Captain, if you're willing to keep going, meet us in the spaceport bar in an hour. I have to believe we'll come up with something soon. In the meantime, here." She hands you <payment>.`
+
+
+
+mission "FW Katya 7"
+	name "The Hunt Continues"
+	description "Take Katya and Eyes to <destination>, to check for signs of underwater testing."
+	source "New Iceland"
+	destination Deep
+	passengers 2
+	to offer
+		has "FW Katya 6C: done"
+	on offer
+		conversation
+			`When you meet them in the bar, Katya and Eyes have another idea. "Best not to talk in such a public place," they say, "But we can explain it back at your ship."`
+			`	When you get there, Eyes says, "It occurred to me that underwater testing might be even easier than underground: no need to dig or find a mine shaft. And, the Navy's sensors are for atmosphere, not oceans. But I've still got my old test kits with me for seawater."`
+			`	Katya says, "So then we wondered, what sort of world would you go to if you wanted rumblings in the ocean to go unnoticed? Either an unpopulated one, or one with lots of meteorite activity. And that leads us to... Deep." She points out the system on your map. "Mild tidal surges on almost a weekly basis, due to impacts from all the asteroids in system. Perfect place to hide an undersea explosion."`
+			choice
+				`	"Sounds like a good possibility. Let's give it a try!"`
+					accept
+				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
+					decline
+
+
+
+mission "FW Katya 7B"
+	landing
+	name "The Hunt Continues"
+	description "Take Katya and Eyes to the mining moon <planet>."
+	source Deep
+	destination Clink
+	passengers 2
+	to offer
+		has "FW Katya 7: done"
+	on offer
+		conversation
+			`After landing, you go for a walk along the beach with Katya and Eyes. They both go barefoot, walking in the surf. Eyes is collecting pebbles and shells from under the water, and at one point instead of grabbing a pebble he surreptitiously reaches down and fills a small vial with seawater.`
+			`	Back at your ship he runs his tests, with you and Katya watching eagerly. He looks at the results, frowns, and then repeats the whole procedure with a second test kit. Finally he sighs. "Nothing," he says.`
+			`	Katya shouts in frustration and bangs her fists against the bulkheads. "I was so certain this would be the right system," she says. "Forget it, I'm going for a walk." She leaves your ship.`
+			`	Mr. Eyes packs up his instruments, and then you walk outside and find her sitting on the landing pad near your ship, watching the moon rise over the ocean. She seems much calmer.`
+			choice
+				`	(Sit down next to her and try to comfort her.)`
+					goto sit
+				`	(Ask what she wants to do next.)`
+					goto ask
+			
+			label sit
+			`	You sit on one side of her, and Eyes sits on the other. "It's really admirable, what you're doing," you say. "You're trying to work for peace, and for justice. It's valuable work. Don't lose heart."`
+				goto last
+			
+			label ask
+			`	"What should we do now?" you ask.`
+				goto last
+			
+			label last
+			`	"One more try," she says. "One last world, and then we give up. I want you to take me... there." She points at the moon, hanging just above the horizon.`
+			`	Eyes says, "Mining world. Dusty atmosphere. Frequent meteorite impacts. You could set off a nuke on the far side of that world and the miners would probably sleep right through it."`
+			choice
+				`	"Okay, I'll take you to this one last world, and then we're done."
+					accept
+				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."
+					decline
+
+
+
+mission "FW Katya 7C"
+	landing
+	name "Bring Eyes to <planet>"
+	description "While Katya is undercover on <origin>, bring Mr. Eyes to <destination>, to report to the Free Worlds."
+	source Clink
+	destination Zug
+	passengers 1
+	to offer
+		has "FW Katya 7B: done"
+	on offer
+		conversation
+			`You land some distance from the mining settlement, and Mr. Eyes goes into the airlock in a pressure suit, cycling it to bring in some of the moon's thin atmosphere for him to test. "Firing up my instruments now," he says through the comm link. There is a long pause, and then he starts spouting a long string of creative profanity. Katya runs over to the airlock window to see what is happening.`
+			`	Finally, Eyes calms down enough to say, "It's a match! Not only has there been a recent test here, but the signature matches the one we took on Geminus. This is it."`
+			`	He cycles the airlock and comes back inside. "Let's fly around the planet and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is full of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
+			`	"Based on the isotopic decay rates, this explosion happened in mid-June," says Eyes, "Just before the attacks happened."`
+			`	"It makes no sense," says Katya, "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment. Captain, is the outpost reporting any miner's jobs open?"`
+			choice
+				`	(Check what my computer says.)`
+			
+			`	You check your computer. "One job opening, for a janitor in the mess hall."`
+			`	She grimaces. "Okay, it's better than nothing. I'll take the job and see what I can find out. You take Eyes to <planet>, where he can get in touch with the Free Worlds council. I'll find a way to send you a message once I've found the perpetrators."`
+			`	"Katerina," says Eyes, "this is way too dangerous."`
+			`	"There's no other way," she says. "We have no time to lose. I'm willing to risk it."`
+			`	With deep reservations, you drop her off at the outpost, where she is quickly offered the job. "Not many folks care to work up here," says the foreman, "so your help would be much appreciated." You and Eyes return to your ship and get ready to travel to <planet> with the evidence.`
+				accept
+	
+	on complete
+		payment 250000
+		conversation
+			`	Eyes has been really quiet for the whole journey; you're sure that he's worried about Katya. When you land, he hands you <payment> and says, "Thank you for all your help, Captain. I hope that this leads to justice being done."`
+			`	He starts to walk off, then comes back. "By the way, Katya wanted to keep this a secret, but I think you should know." He points to the credit chips he just handed you. "Katya's been funding this out of her own pocket. That's the last of her savings that she just paid you."`
+			choice
+				`	"I had no idea."`
+				`	"Wow, she really is dedicated to this work, isn't she?"`
+			`	"She's a unique woman," says Eyes. "I hope we see her again soon. Goodbye for now, <first>."`
