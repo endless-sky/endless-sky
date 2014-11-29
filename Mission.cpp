@@ -358,7 +358,7 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 	if(!toOffer.Test(player.Conditions()))
 		return false;
 	
-	if(toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
 		return false;
 	
 	if(repeat)
@@ -415,7 +415,7 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 
 bool Mission::HasFailed(const PlayerInfo &player) const
 {
-	if(toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
 		return true;
 	
 	for(const NPC &npc : npcs)
