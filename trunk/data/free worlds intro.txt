@@ -898,3 +898,317 @@ mission "FW Katya 7C"
 				`	"I had no idea."`
 				`	"Wow, she really is dedicated to this work, isn't she?"`
 			`	"She's a unique woman," says Eyes. "I hope we see her again soon. Goodbye for now, <first>."`
+
+
+
+mission "FW Escort 1"
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source
+		government "Free Worlds"
+	destination Wayfarer
+	to offer
+		has "assisted free worlds"
+		random < 25
+	to fail
+		has "chosen sides"
+	
+	npc accompany save
+		personality timid
+		government Escort
+		ship Freighter "R.N.S. Raleigh"
+		ship Freighter "R.N.S. Scott"
+		ship Freighter "R.N.S. Hudson"
+		ship Freighter "R.N.S. Drake"
+		ship Freighter "R.N.S. Magellan"
+		ship Freighter "R.N.S. Franklin"
+	npc
+		personality heroic
+		government Escort
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Hawk" 2
+				"Sparrow" 5
+	npc
+		personality plunders entering
+		government Pirate
+		fleet "Large Southern Pirates"
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		system "Alpha Arae"
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		system "Lesath"
+	npc
+		personality plunders waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		system "Tarazed"
+	
+	on offer
+		conversation
+			`	As you are walking through the spaceport, a man in a militia uniform approaches you. "Captain <last>?" he asks. You nod. "I'm the Free Worlds quartermaster here on <origin>," he says. "We're looking for ships to help escort a supply convoy that is traveling to <planet> and back. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. Are you interested?"`
+			choice
+				`	"Sure, I'd be glad to assist."`
+				`	"Sorry, I'm busy with another mission at this moment."`
+					defer
+		
+			`	"Great!" he says. "You'll be escorting six freighters. If they all make it safely there and back, your payment will be four hundred thousand credits."`
+				accept
+
+
+
+mission "FW Escort 1B"
+	landing
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source Wayfarer
+	destination Longjump
+	to offer
+		has "FW Escort 1: done"
+	to fail
+		has "chosen sides"
+	
+	npc accompany save
+		personality timid
+		government Escort
+		ship Freighter "R.N.S. Raleigh"
+		ship Freighter "R.N.S. Scott"
+		ship Freighter "R.N.S. Hudson"
+		ship Freighter "R.N.S. Drake"
+		ship Freighter "R.N.S. Magellan"
+		ship Freighter "R.N.S. Franklin"
+	npc
+		personality heroic
+		government Escort
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Hawk" 1
+				"Sparrow" 3
+	npc
+		personality plunders entering
+		government Pirate
+		fleet "Large Southern Pirates"
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		system "Alpha Arae"
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		system "Lesath"
+	npc
+		personality plunders waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		system "Longjump"
+	
+	on offer
+		conversation
+			`	Your convoy of freighters reaches <origin> intact, despite numerous encounters with pirates. The merchant captains sell their trade goods and stock up with weapons and ship outfits that will be used to build new ships for the Free Worlds. Of course, now that you are carrying such valuable cargo, the pirate attacks are likely to get even worse...`
+				accept
+	
+	on complete
+		payment 400000
+		conversation
+			`	You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "So meet me in the spaceport if you are willing to volunteer for escort duty again."`
+
+
+
+mission "FW Escort 2"
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source Longjump
+	destination Wayfarer
+	to offer
+		has "FW Escort 1B: done"
+	to fail
+		has "chosen sides"
+	
+	npc accompany save
+		personality timid
+		government Escort
+		ship Freighter "R.N.S. Raleigh"
+		ship Freighter "R.N.S. Scott"
+		ship Freighter "R.N.S. Hudson"
+		ship Freighter "R.N.S. Drake"
+		ship Freighter "R.N.S. Magellan"
+		ship Freighter "R.N.S. Franklin"
+	npc
+		personality heroic
+		government Escort
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Sparrow" 3
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		system "Alpha Arae"
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		system "Lesath"
+	npc
+		personality plunders waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		system "Tarazed"
+	
+	on offer
+		conversation
+			`	A few of the escort pilots, yourself included, have stuck around for another mission. Tomek meets you in the spaceport and says, "Same deal as before, and same payment. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
+			choice
+				`	(Volunteer.)`
+				`	(Go find some other work to do.)`
+					defer
+			
+			`	"Great!" says Tomek. "Good luck to all of you, and I hope to see you all safely back here in a couple of weeks."`
+				accept
+
+
+
+mission "FW Escort 2B"
+	landing
+	name "Free Worlds Escort"
+	description "Escort a Free Worlds supply convoy safely to <destination>."
+	source Wayfarer
+	destination Longjump
+	to offer
+		has "FW Escort 2: done"
+	to fail
+		has "chosen sides"
+	
+	npc accompany save
+		personality timid
+		government Escort
+		ship Freighter "R.N.S. Raleigh"
+		ship Freighter "R.N.S. Scott"
+		ship Freighter "R.N.S. Hudson"
+		ship Freighter "R.N.S. Drake"
+		ship Freighter "R.N.S. Magellan"
+		ship Freighter "R.N.S. Franklin"
+	npc
+		personality heroic
+		government Escort
+		fleet
+			cargo 0
+			names "free worlds small"
+			variant
+				"Sparrow" 2
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		system "Alpha Arae"
+	npc
+		personality plunders staying
+		government Pirate
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		system "Lesath"
+	npc
+		personality plunders waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		system "Longjump"
+	
+	on offer
+		conversation
+			`	Once again, the convoy stocks up on weapons and outfits and begins preparing for the return journey. You can't help worrying that the longer these convoys keep running, the more pirates will discover their route and begin setting ambushes for them.`
+				accept
+	
+	on complete
+		payment 400000
+		conversation
+			`	Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar.`
+
+
+
+mission "FW Escort 3"
+	name "Stranded Freighter"
+	description "Repair the <npc>, which is stranded in the Lesath system, and escort it safely back to <destination>."
+	source Longjump
+	to offer
+		has "FW Escort 2B: done"
+	to fail
+		has "chosen sides"
+	
+	npc accompany save
+		system Lesath
+		personality derelict timid
+		government "Escort"
+		ship "Freighter" "R.N.S. Shackleton"
+	
+	on offer
+		conversation
+			`	When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says, "One of our freighters, the <npc>, was just disabled in the Lesath system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
+			choice
+				`	"Sure!"`
+				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
+					decline
+		
+			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if the pirates board them before you get there."`
+				accept
+	
+	on complete
+		payment 200000
+		dialog
+			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
+		"assisted free worlds" ++
+
+
+
+mission "FW Commitment"
+	landing
+	name "Join the Free Worlds"
+	description "If you want to join the Free Worlds, report to their headquarters on <destination>."
+	source
+		government "Free Worlds"
+	destination "Bourne"
+	to offer
+		has "assisted free worlds" 3
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
+			``
+			`Dear Captain <last>,`
+			`	The Free Worlds council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our navy, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
+			`	Sincerely,`
+			`				Tomek Voigt`
+			`				Jean Jacques Soleau`
+			`				Freeman Winters`
+			`				Alondo Martins`
+			`				and Katerina Reynolds.`
+			``
+			`	You notice that Katya's name is printed, instead of signed like the others; she must still be undercover on Clink.`
+				accept

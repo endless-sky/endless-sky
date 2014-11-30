@@ -201,7 +201,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 	return ships;
 }
 
-#include <iostream>
+
 
 // Handle the given ShipEvent.
 void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
@@ -220,7 +220,6 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			// ownership but mark our copy of it as destroyed.
 			if(event.Type() & ShipEvent::CAPTURE)
 			{
-				std::cout << "Captured the mission ship " << ship->Name() << "." << std::endl;
 				Ship *copy = new Ship(*ship);
 				copy->Destroy();
 				actions[copy] = actions[ship.get()] | ShipEvent::DESTROY;
@@ -336,7 +335,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 	{
 		ship->SetGovernment(result.government);
 		ship->SetIsSpecial();
-		ship->SetPersonality(personality);
+		ship->SetPersonality(result.personality);
 		
 		if(personality.IsEntering())
 			Fleet::Enter(*result.system, *ship);

@@ -45,6 +45,7 @@ public:
 	bool IsSurveillance() const;
 	bool IsUninterested() const;
 	bool IsWaiting() const;
+	bool IsDerelict() const;
 	
 	const Point &Confusion() const;
 	
