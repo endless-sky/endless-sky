@@ -548,7 +548,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 			// Skip entries with incomplete data.
 			if(it.second.Name().empty() || !GameData::GetPolitics().CanLand(&it.second))
 				continue;
-			if(it.second.IsWormhole())
+			if(it.second.IsWormhole() || !it.second.HasSpaceport())
 				continue;
 			if(destinationFilter.Matches(&it.second, player.GetSystem()))
 				options.push_back(&it.second);
