@@ -1206,7 +1206,7 @@ mission "FW Commitment"
 			`	Sincerely,`
 			`				Tomek Voigt`
 			`				Jean Jacques Soleau`
-			`				Freeman Winters`
+			`				Freya Winters`
 			`				Alondo Martins`
 			`				and Katerina Reynolds.`
 			``
@@ -1243,12 +1243,12 @@ mission "Rescue Katya 1"
 					goto attack
 			
 			label rescue
-			`	"Indeed," says Freeman, "That should be our first priority."`
+			`	"Indeed," says Freya, "That should be our first priority."`
 				goto help
 			
 			label attack
 			`	JJ says, "Calm down, Captain. Combat is our last option, not our first. And if their claim is correct, they were justified in taking the system."`
-			`	Freeman says, "Uniting the militias could take weeks. A much more pressing issue is that Katya is still on Clink, unless anyone has heard otherwise from her."`
+			`	Freya says, "Uniting the militias could take weeks. A much more pressing issue is that Katya is still on Clink, unless anyone has heard otherwise from her."`
 				goto help
 			
 			label help

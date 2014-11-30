@@ -600,3 +600,18 @@ event "start of hostilities"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
+
+
+
+event "recapture of Kornephoros"
+	system "Aldhibain"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 800
+		fleet "Small Free Worlds" 600
+		fleet "Large Free Worlds" 600
+	system "Kornephoros"
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1000
+		fleet "Small Free Worlds" 900
+		fleet "Large Free Worlds" 1700
