@@ -1212,3 +1212,178 @@ mission "FW Commitment"
 			``
 			`	You notice that Katya's name is printed, instead of signed like the others; she must still be undercover on Clink.`
 				accept
+
+
+
+mission "Rescue Katya 1"
+	name "Rescue Katya"
+	description "Rescue Katya from <planet>, before the Navy discovers her, and bring her safely to Longjump."
+	landing
+	source Bourne
+	destination Clink
+	to offer
+		has "FW Commitment: done"
+	
+	on offer
+		conversation
+			`You are on Bourne, the capital of the Free Worlds. Do you take them up on their job offer and volunteer to officially join them?`
+			choice
+				`	Yes.`
+				`	Not yet.`
+					defer
+			
+			`	You find the Free Worlds offices and give your name to the person at the fron desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "This is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
+			`	That night, the Council takes you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
+			`	After a long silence, JJ asks, "How many casualties?"`
+			`	"None," says Tomek, "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a conflict."`
+			choice
+				`	"Was Katya still there? We need to rescue her!"`
+					goto rescue
+				`	"We can't allow them to do that. We should gather our fleets and attack."`
+					goto attack
+			
+			label rescue
+			`	"Indeed," says Freeman, "That should be our first priority."`
+				goto help
+			
+			label attack
+			`	JJ says, "Calm down, Captain. Combat is our last option, not our first. And if their claim is correct, they were justified in taking the system."`
+			`	Freeman says, "Uniting the militias could take weeks. A much more pressing issue is that Katya is still on Clink, unless anyone has heard otherwise from her."`
+				goto help
+			
+			label help
+			`	"Well," says Alondo, "It's a good thing we haven't yet publicly announced that Captain <last> is working for us. Captain, we have one final mission for you as an independent merchant captain. We need you to stop on Clink, locate Katya, and bring her safely to Longjump without being stopped by the Navy."`
+				accept
+	
+	on accept
+		set "chosen sides"
+		event "capture of Kornephoros"
+
+
+
+mission "Rescue Katya 2"
+	landing
+	name "Rescue Katya"
+	description "Return to <planet> and report to the Free Worlds council that you were unable to locate Katya."
+	source Clink
+	destination Longjump
+	to offer
+		has "Rescue Katya 1: done"
+	
+	on offer
+		conversation
+			`The mining outpost on Clink is swarming with Navy officers; you would guess that they in fact outnumber the miners. You are not sure how you are going to get in there and contact Katya without the Navy noticing.`
+			choice
+				`	(Wait in my ship and see if she approaches.)`
+					goto wait
+				`	(Check if she is waiting for me out by the test site.)`
+					goto site
+				`	(Make some excuse to enter the outpost.)`
+					goto enter
+			
+			label wait
+			`	You wait on the landing pad for several hours. Katya does not show up. Navy officers in pressure suits walk by your ship about every fifteen minutes, no doubt wondering what you are doing here.`
+			choice
+				`	(Check if she is waiting for me out by the test site.)`
+					goto site
+				`	(Make some excuse to enter the outpost.)`
+					goto enter
+				`	(Give up and report my failure to the Council.)`
+					goto fail
+			
+			label site
+			`	You fly over the test site scanning for life signs or energy signatures, but there is nothing. And, there is little chance that Katya could be living out here for long, because she would need an oxygen source.`
+			choice
+				`	(Wait on the landing pad and see if she approaches.)`
+					goto wait
+				`	(Make some excuse to enter the outpost.)`
+					goto enter
+				`	(Give up and report my failure to the Council.)`
+					goto fail
+			
+			label enter
+			`	You put on a pressure suit, leave your ship, and approach the outpost. As soon as you step through the airlock you are stopped by a Navy officer. "What is your business here?" he asks.`
+			`	"My brother is a miner here," you say. "Our mother sent me to check on him."`
+			`	The officer says, "Don't worry, no one here has been hurt, and they will all be free to continue their work shortly. But for now, I'm going to have to ask you to leave this world." He calls over several guards who are wearing pressure suits; they escort you to your ship and command you to take off.`
+			
+			label fail
+			`	You have no choice but to head back to <planet> without Katya. The Council is going to be very disappointed.`
+				launch
+
+
+
+mission "Defend Sabik"
+	landing
+	name "Defend Sabik"
+	description "Help to repulse a Navy attack on Sabik, then land on Longjump to debrief."
+	source Longjump
+	to offer
+		has "Rescue Katya 2: done"
+	
+	on offer
+		conversation
+			`	When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
+			`	"Very well," he says, "We'll have to hope that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
+			`	He is carrying a paintbrush and a very large can of green paint. "Would you like to do the honors?" he asks.`
+			choice
+				`	"Sure."`
+					goto paint
+				`	"I can't just keep flying merchant colors?"`
+			
+			`	"No," he says, "It would be dishonest, and if you were to fight alongside us you would be classified as a partisan, a criminal rather than an enemy combatant. Believe it or not, you're better off as an official prisoner of war than as a partisan, if you ever do get captured. So, time to start painting."`
+			
+			label paint
+			`	You take the paintbrush, climb on top of your ship, and begin painting it in the green and gold of the Free Worlds. Suddenly you hear a cheer from one of the other ships parked nearby; someone has seen what you are doing and is shouting, "For freedom! Another ship for freedom!" Soon several other people see you, and before long it seems like everyone in the port has picked up the cheer.`
+			`	Tomek stands by, silently, until you finish, and then says, "Let's hit the bar. I need a drink."`
+			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
+			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly!" You hurry to join all the other ships taking off to defend the system.`
+				launch
+		
+		"reputation: Republic" = -10
+		"salary: Free Worlds" 300
+		event "start of hostilities"
+		"swizzle" = 2
+	
+	npc kill
+		personality waiting heroic
+		government Republic
+		fleet "Large Republic"
+	npc kill
+		personality entering heroic
+		government Republic
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+	
+	npc
+		personality heroic
+		government "Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+	npc
+		personality heroic entering
+		government "Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+	npc
+		personality heroic waiting
+		government "Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+	
+	on complete
+		conversation
+			`	The mood is somber when you land again on <planet>. The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
