@@ -33,6 +33,7 @@ namespace {
 	static const int SURVEILLANCE = 512;
 	static const int UNINTERESTED = 1024;
 	static const int WAITING = 2048;
+	static const int DERELICT = 4096;
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -46,7 +47,8 @@ namespace {
 		{"nemesis", NEMESIS},
 		{"surveillance", SURVEILLANCE},
 		{"uninterested", UNINTERESTED},
-		{"waiting", WAITING}
+		{"waiting", WAITING},
+		{"derelict", DERELICT}
 	};
 	
 	double DEFAULT_CONFUSION = 10. * .001;
@@ -177,6 +179,13 @@ bool Personality::IsUninterested() const
 bool Personality::IsWaiting() const
 {
 	return flags & WAITING;
+}
+
+
+
+bool Personality::IsDerelict() const
+{
+	return flags & DERELICT;
 }
 
 

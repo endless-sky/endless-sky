@@ -334,7 +334,7 @@ void Ship::SetPlanet(const Planet *planet)
 
 void Ship::SetGovernment(const Government *government)
 {
-	if(government && government != GameData::PlayerGovernment())
+	if(government)
 		sprite.SetSwizzle(government->GetSwizzle());
 	this->government = government;
 }
@@ -365,6 +365,12 @@ const Personality &Ship::GetPersonality() const
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
+	if(personality.IsDerelict())
+	{
+		shields = 0.;
+		hull = .5 * MinimumHull();
+		isDisabled = true;
+	}
 }
 
 
@@ -1173,9 +1179,12 @@ void Ship::Recharge(bool atSpaceport)
 	pilotError = 0;
 	pilotOkay = 0;
 	
-	shields = attributes.Get("shields");
-	hull = attributes.Get("hull");
-	energy = attributes.Get("energy capacity");
+	if(!personality.IsDerelict())
+	{
+		shields = attributes.Get("shields");
+		hull = attributes.Get("hull");
+		energy = attributes.Get("energy capacity");
+	}
 	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
