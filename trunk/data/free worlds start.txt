@@ -98,7 +98,7 @@ mission "Liberate Kornephoros"
 			`	One of the Navy officers stands up. "I'll take that oath," he says, "if you'll honor your part of it."`
 			`	Tomek takes the man's hands, looks him in the eyes, and asks, "Do you swear before God and these witnesses to take no further part in military actions against the Free Worlds?"`
 			`	"I do," says the officer. Several of the other prisoners stand up, and before long all but a handful have sworn the oath.`
-			`	After they finish, Tomek turns to you and a few other captains. "Marco, <first>, Sarah, please meet me in the spaceport cafe when you are ready." He walks off.`
+			`	After they finish, Tomek turns to you and a few other captains. "Emily, Marco, <first>, Sarah, please meet me in the spaceport cafe when you are ready." He walks off.`
 		event "recapture of Kornephoros"
 
 
@@ -107,3 +107,74 @@ event "prepare for battle of Kornephoros"
 	system "Kornephoros"
 		fleet "Small Free Worlds" 1200
 		fleet "Large Free Worlds" 1700
+
+
+
+mission "FW Prisoner Parole"
+	name "Prisoner Parole"
+	description "Escort a fleet of transports carrying prisoners of war to <planet>. The temporary ceasefire will end on <date>."
+	deadline 7
+	source "Deep"
+	destination "New Tibet"
+	to offer
+		has "Liberate Kornephoros: done"
+	
+	npc accompany save
+		government "Escort"
+		personality timid
+		ship "Falcon" "R.N.S. Starry Warrior"
+		ship "Blackbird" "Flight of Fancy"
+		ship "Blackbird" "Southern Luxury"
+	
+	on offer
+		conversation
+			`When you have all gathered in the cafe, Tomek explains the situation to you. "Alondo has arranged for a one-week ceasefire to return the prisoners who have given us their parole," he says. "That gives you just enough time to transport them to New Tibet and return here. If you encounter Republic ships, do not engage them. Just drop off the prisoners and return. Any questions?"`
+			choice
+				`	"No, I'm ready to go."`
+					accept
+				`	"What should we do if they attack us?"`
+			
+			`	"If you can, return here without engaging them. No point is losing more lives."`
+				accept
+		"reputation: Republic" = 1
+		event "temporary ceasefire"
+		event "start of hostilities" 7
+	
+	on complete
+		dialog `You drop off the Navy prisoners on <planet>. Now, it's time to get back to Deep with your fleet before the ceasefire ends.`
+
+
+
+mission "FW Prisoner Parole 2"
+	landing
+	name "Prisoner Parole"
+	description "Return to Deep before the cease-fire ends."
+	source "New Tibet"
+	destination "Deep"
+	to offer
+		has "FW Prisoner Parole: done"
+	
+	npc accompany save
+		government "Escort"
+		personality timid
+		ship "Falcon" "R.N.S. Starry Warrior"
+		ship "Blackbird" "Flight of Fancy"
+		ship "Blackbird" "Southern Luxury"
+	
+	on complete
+		conversation
+			`Tomek seems very relieved to see you all back in one piece. "Thank you for your service," he says. "Please report to your local militia commanders for your next orders. Captain <last>, remain here."`
+			`	After everyone else has left the room, he tells you, "I'm sorry, but I've got some bad news for you. We've searched the entire outpost on Clink. No sign of Katya. The miners don't know what happened to her, but I'd say it's a safe bet that she's either dead, or a prisoner."`
+			choice
+				`	"So, what do we do now?"`
+					goto next
+				`	"I wish we'd known that a few days earlier. We could have arranged a prisoner exchange."`
+					goto exchange
+			
+			label exchange
+			`	"I know," he says. "That's what a lot of our people are saying now. But what we did, a pure good-faith gesture with nothing demanded in return - we may come to be glad of that. My hope was to set a precedent, to shape the character of whatever conflict comes out of this, and I still think that was the right thing to do."`
+			`	"So, what do we do now?" you ask.`
+			
+			label next
+			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
+		"reputation: Republic" = -100
