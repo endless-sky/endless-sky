@@ -603,6 +603,16 @@ event "start of hostilities"
 
 
 
+event "temporary ceasefire"
+	government "Republic"
+		"attitude toward"
+			"Free Worlds" 0
+	government "Free Worlds"
+		"attitude toward"
+			"Republic" 0
+
+
+
 event "recapture of Kornephoros"
 	system "Aldhibain"
 		fleet "Small Southern Merchants" 600
@@ -615,3 +625,32 @@ event "recapture of Kornephoros"
 		fleet "Large Southern Merchants" 1000
 		fleet "Small Free Worlds" 900
 		fleet "Large Free Worlds" 1700
+	planet "Clink"
+		description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
+		description `The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
+		security .5
+	planet "Deep"
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		security .5
+	fleet "Small Republic"
+		government "Republic"
+		names "republic small"
+		cargo 0
+		personality
+			heroic
+		"friendly hail" "friendly navy"
+		variant 6
+			"Rainmaker" 2
+		variant 5
+			"Gunboat"
+			"Rainmaker"
+		variant 4
+			"Frigate"
+		variant 3
+			"Gunboat" 2
+		variant 1
+			"Rainmaker" 3
+		variant 6
+			"Gunboat"
+		variant 10
+			"Protector"
