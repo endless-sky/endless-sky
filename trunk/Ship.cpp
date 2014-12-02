@@ -1306,7 +1306,6 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	
 	// Set the new government.
 	government = capturer->GetGovernment();
-	sprite.SetSwizzle(government->GetSwizzle());
 	
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
