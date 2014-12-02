@@ -178,3 +178,161 @@ mission "FW Prisoner Parole 2"
 			label next
 			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
 		"reputation: Republic" = -100
+
+
+
+mission "FW Syndicate Diplomacy 1"
+	name "Syndicate Diplomacy"
+	description "Transport Alondo Martins to the Syndicate headquarters on <planet>."
+	source "Deep"
+	destination "Hephaestus"
+	to offer
+		has "FW Prisoner Parole 2: done"
+	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
+		attributes "dirt belt"
+	passengers 1
+	
+	on offer
+		conversation
+			`You meet Tomek and Alondo in the spaceport. "We've decided that now would be a good time for a diplomatic mission to the Syndicate," says Alondo. "We've proven that we are a force to reckon with, but also that we are open to working for peace. And a relationship with the Syndicate would be a significant advantage for us."`
+			choice
+				`	"Do you think they will fight on our side?"`
+					goto fight
+				`	"Wait, isn't the Syndicate an evil megacorporation?"`
+					goto evil
+			
+			label fight
+			`	"Certainly not," says Alondo. "But they are very interested in maximizing their profits, so I hope we can arrange to purchase ship materials from them. And if nothing else, I hope they at least will promise not to hire out their security forces as mercenaries to the Republic."`
+				goto time
+			
+			label evil
+			`	"Well, they do have a long record of environmental and human rights violations. But they are also the single largest employer in the galaxy, and a main reason for the stability the Republic has enjoyed for the last few centuries. So, I wouldn't call them 'evil.' It's more complicated than that."`
+				goto time
+			
+			label time
+			`	"Reaching Syndicate space could be difficult once the Navy has time to regroup," says Tomek. "This may be the last window of opportunity we get for a while to meet with them in person."`
+			`	"I have plenty of contacts in the Dirt Belt," says Alondo, "so if a planet won't let us land, we can just hail them and I should be able to negotiate with them. In fact, I'm hoping that a side effect of this trip will be to judge how much sympathy we have in the surrounding systems."`
+			choice
+				`	"Sounds good! Let's do it!"`
+					accept
+				`	"Why meet in person? How do we know this is not a trap?"`
+					goto trap
+				`	"What should we do if we encounter Navy ships?"`
+					goto navy
+			
+			label trap
+			`	"It's a risk, but not a large one. The Syndicate is driven by greed, and they want us as a customer."`
+			choice
+				`	"I hope you're right! Let's get going."`
+					accept
+			
+			label navy
+			`	"Evade them. Destroy them. Whatever you want. From a diplomatic perspective, I'd rather let them live, but Tomek might think otherwise."`
+			choice
+				`	"Okay. Let's get going!"`
+					accept
+
+
+
+mission "FW Syndicate Diplomacy 1B"
+	landing
+	name "Syndicate Diplomacy"
+	description "Transport Alondo Martins to <planet> to negotiate with Tarazed Corporation."
+	source Hephaestus
+	destination Wayfarer
+	to offer
+		has "FW Syndicate Diplomacy 1: done"
+	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
+		attributes "dirt belt"
+	passengers 1
+	
+	npc
+		personality heroic
+		government Republic
+		system Sol
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+	
+	on offer
+		conversation
+			`As you land, Alondo says to you, "Let me do the talking, please." You are met almost immediately by two men in suits, who escort you to a room in the Syndicate headquarters. Six men are sitting on one side of a large mahogany conference table; they gesture for the two of you to be seated on the other side.`
+			`	You introduce yourselves. "Thank you for meeting with us," says Alondo.`
+			`	"We are always open to new business opportunities," says one of the men, "although negotiating with known terrorists is... distasteful." He leafs through a folder of papers, pulls one out, and slides it over to you. It is a picture of Katya, and the caption under it reads, "Terrorist ringleader captured in raid on Kornephoros system." It is dated a few days after the Navy's initial assault, before you retook the system from them.`
+			choice
+				`	(Try to explain what Katya was doing in that system.)`
+					goto explain
+				`	(Let Alondo handle this.)`
+					goto alondo
+			
+			label explain
+			`	"She was there trying to find the terrorists. She wasn't one of them," you say.`
+				goto ijs
+			
+			label alondo
+			`	Alondo has turned very pale, but finally he says, "They have not announced this publicly."`
+			`	"No," says the man, "they have only shared it with certain... trusted friends of the Republic."`
+			`	Alondo says, "They haven't announced anything because they know she was innocent. She was hunting the terrorists, not helping them."`
+				goto ijs
+			
+			label ijs
+			`	"That may be true," says the man. "I am willing to believe you were hunting the terrorists, because I am aware through my own sources that the Free Worlds secured the services of a certain Ijs Springborn, whose skills would be well suited to such a hunt. And who might not be alive today if you had not offered him work outside this sector of space, where he is... universally despised. Regardless, we cannot sell weapons to enemies of the Republic."`
+			`	"Piracy is on the rise in the Dirt Belt," says Alondo. "And I know you have customers there. Such as the Tarazed Corporation. If we can count you among our friends, we could ensure that your convoys reach Tarazed unmolested."`
+			`	"And you would no doubt immediately purchase said weapons from Tarazed," says the man.`
+			`	An older man sitting next to him says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
+			`	You speak for a while longer, but Alondo manages to hash out a deal where the Free Worlds will defend any Syndicate ships they encounter in return for a promise that the Syndicate will not serve as Republic mercenaries and will not prevent you from purchasing their equipment indirectly through Tarazed. You thank the Syndicate leaders, and return to your ship.`
+			`	"That was disgusting," says Alondo.`
+			choice
+				`	"I thought it went pretty well."`
+					goto well
+				`	"What do we do about Katya?"`
+					goto katya
+			
+			label well
+			`	"It did. What disgusts me is how those greedy old men were practically salivating at the thought of how much profit they are going to make from this conflict. Anyway, time for us to make a visit to Tarazed."`
+				accept
+			
+			label katya
+			`	"I will send the news to the Council immediately. But if she is a prisoner of the Intelligence bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission, and head to Tarazed."`
+				accept
+
+
+
+mission "FW Syndicate Diplomacy 1C"
+	landing
+	name "Syndicate Diplomacy"
+	description "Travel home to <planet> with Alondo Martins and report the outcome of your diplomacy to the Council."
+	source Wayfarer
+	destination Longjump
+	to offer
+		has "FW Syndicate Diplomacy 1B: done"
+	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
+		attributes "dirt belt"
+	passengers 1
+
+	npc
+		personality heroic
+		government Republic
+		system Rutilicus
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+	
+	on offer
+		conversation
+			`You are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously mysogynistic Syndicate, Tarazed is in fact currently run by a female CEO, Emily Lane.`
+			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
+			`	"Thank you," says Alondo, "although for the time being the best way to support us, may be for you to remain neutral in this conflict." He explains the idea of Tarazed being a go-between with the Syndicate.`
+			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
+			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it." They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral. "Now, back to Longjump to meet with the Council," says Alondo.`
+				accept
+		event "Tarazed neutrality"
+		
+	on complete
+		payment 200000
+		conversation
+			`You meet Tomek and Freya at the spaceport, and the entire Council quickly convenes. Alondo outlines the results of your diplomatic mission, which he believes has been a success. "There is one other thing," he says. "The Syndicate informed us that the Republic has Katya in custody, accused of terrorism."`
+			`	The news is a shock to everyone. "I had begun to worry that was the case," says Freya.`
+			`	"Why have they not announced it publicly?" asks Tomek.`
+			`	"I suspect it's because they know she is innocent," says Alondo. "They say it is impossible to tell a lie to the Questioners, and in this case that will work in her favor."`
+			`	You talk for a while longer, and then Tomek says, "Meet me in the spaceport when you are ready for your next assignment. Also, the Council approved a bonus for you." He gives you <payment>.`

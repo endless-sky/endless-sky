@@ -22,6 +22,16 @@ government "Merchant"
 	"bribe" .05
 	"fine" 0
 
+government "Neutral"
+	swizzle 0
+	color .84 .61 .37
+	
+	"player reputation" 1
+	"attitude toward"
+		"Pirate" -.2
+		"Korath" -.2
+	"bribe" .05
+
 government "Republic"
 	swizzle 0
 	color .91 .42 .09
