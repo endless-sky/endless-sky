@@ -270,7 +270,7 @@ outfit "Impala Plasma Steering"
 
 outfit "Orca Plasma Steering"
 	category "Engines"
-	"cost" 1740000
+	"cost" 174000
 	thumbnail "outfit/large plasma steering"
 	"mass" 74
 	"outfit space" -74
