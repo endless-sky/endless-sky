@@ -17,10 +17,10 @@ mission "Escort (Small, Northern)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes north "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -46,10 +46,10 @@ mission "Escort (Medium, Northern)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes north "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -79,10 +79,10 @@ mission "Escort (Large, Northern)"
 		random < 50
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes north "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -108,10 +108,10 @@ mission "Escort (Extra Large, Northern)"
 		random < 20
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes north "near earth"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -142,10 +142,10 @@ mission "Escort (Small, Core)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -171,10 +171,10 @@ mission "Escort (Medium, Core)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -204,10 +204,10 @@ mission "Escort (Large, Core)"
 		random < 50
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -233,10 +233,10 @@ mission "Escort (Extra Large, Core)"
 		random < 20
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth" "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -267,10 +267,10 @@ mission "Escort (Small, Southern)"
 		random < 70
 		"combat rating" > 5
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes south rim "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -296,10 +296,10 @@ mission "Escort (Medium, Southern)"
 		random < 40
 		"combat rating" > 20
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes south rim "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -329,10 +329,10 @@ mission "Escort (Large, Southern)"
 		random < 50
 		"combat rating" > 60
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes south rim "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -358,10 +358,10 @@ mission "Escort (Extra Large, Southern)"
 		random < 20
 		"combat rating" > 100
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes south rim "dirt belt"
 	destination
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
 		personality nemesis waiting
@@ -392,7 +392,7 @@ mission "Bounty Hunting (Big)"
 		"combat rating" > 500
 		random < 20
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core "near earth" frontier
 	npc kill
 		personality staying nemesis
@@ -420,7 +420,7 @@ mission "Bounty Hunting (Small)"
 		"combat rating" > 300
 		random < 40
 	source
-		government Republic "Free Worlds" Syndicate
+		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core "near earth" frontier
 	npc kill
 		personality staying nemesis
@@ -546,10 +546,10 @@ mission "Cargo [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 5 2 .1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -563,10 +563,10 @@ mission "Cargo [1]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -581,10 +581,10 @@ mission "Cargo [2]"
 		random < 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -599,10 +599,10 @@ mission "Cargo [3]"
 		random < 70
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 3 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -618,10 +618,10 @@ mission "Cargo [4]"
 		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -636,10 +636,10 @@ mission "Bulk Delivery [0]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -653,10 +653,10 @@ mission "Bulk Delivery [1]"
 	to offer
 		random < 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -672,10 +672,10 @@ mission "Bulk Delivery [2]"
 		random < 50
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -691,10 +691,10 @@ mission "Rush Delivery [0]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 16000
@@ -710,10 +710,10 @@ mission "Rush Delivery [1]"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 18000
@@ -730,10 +730,10 @@ mission "Rush Delivery [2]"
 		random < 70
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 20000
@@ -750,10 +750,10 @@ mission "Rush Delivery [3]"
 		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 22000
@@ -768,10 +768,10 @@ mission "Passengers [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -787,10 +787,10 @@ mission "Passengers [1]"
 		random < 75
 		has "ship: Transport"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -804,10 +804,10 @@ mission "Passengers [2]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -821,10 +821,10 @@ mission "Passengers [3]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -839,10 +839,10 @@ mission "Passengers [4]"
 		random < 50
 	source
 		attributes "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -856,11 +856,11 @@ mission "Transport miners to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "mining"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -874,11 +874,11 @@ mission "Transport farmers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "farming"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -892,11 +892,11 @@ mission "Transport mill workers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "textiles"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -910,11 +910,11 @@ mission "Transport workers to <planet>"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "factory"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 2000
@@ -929,11 +929,11 @@ mission "Tourists out [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "tourism"
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 6000
@@ -948,11 +948,11 @@ mission "Tourists out [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "tourism"
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -968,11 +968,11 @@ mission "Tourists out [2]"
 		random < 75
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 8000
@@ -987,11 +987,11 @@ mission "Tourists back [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 		attributes "tourism"
 	destination
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 6000
@@ -1006,11 +1006,11 @@ mission "Tourists back [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 		attributes "tourism"
 	destination
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 4000
@@ -1026,11 +1026,11 @@ mission "Tourists back [2]"
 		random < 75
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Quarg"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment
 		payment 8000
