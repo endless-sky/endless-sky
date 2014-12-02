@@ -654,3 +654,13 @@ event "recapture of Kornephoros"
 			"Gunboat"
 		variant 10
 			"Protector"
+
+
+
+event "Tarazed neutrality"
+	system "Tarazed"
+		government "Neutral"
+	system "Dabih"
+		government "Neutral"
+	system "Albireo"
+		government "Neutral"
