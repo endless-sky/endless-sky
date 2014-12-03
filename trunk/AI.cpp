@@ -330,7 +330,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	}
 	
 	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && ship.Shields() + ship.Hull() < 1.)
+	if(!isDisabled && (ship.Shields() + ship.Hull() < 1. || ship.GetPersonality().IsFleeing()))
 		target.reset();
 	
 	return target;

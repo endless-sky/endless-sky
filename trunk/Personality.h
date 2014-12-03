@@ -46,6 +46,7 @@ public:
 	bool IsUninterested() const;
 	bool IsWaiting() const;
 	bool IsDerelict() const;
+	bool IsFleeing() const;
 	
 	const Point &Confusion() const;
 	
