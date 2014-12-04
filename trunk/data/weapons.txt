@@ -168,9 +168,9 @@ outfit "Laser Turret"
 	category "Turrets"
 	cost 80000
 	thumbnail "outfit/laser turret"
-	"mass" 25
-	"outfit space" -25
-	"weapon capacity" -25
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
 		sprite "projectile/2x laser"
@@ -191,9 +191,9 @@ outfit "Heavy Laser Turret"
 	category "Turrets"
 	cost 180000
 	thumbnail "outfit/heavy laser turret"
-	"mass" 45
-	"outfit space" -45
-	"weapon capacity" -45
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
 	"turret mounts" -1
 	weapon
 		sprite "projectile/2x heavy laser"
@@ -328,6 +328,30 @@ outfit "Plasma Cannon"
 		"hull damage" 37
 		"heat damage" 240
 	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
+
+outfit "Plasma Turret"
+	category "Turrets"
+	cost 560000
+	thumbnail "outfit/plasma turret"
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"turret mounts" -1
+	weapon
+		sprite "projectile/plasma"
+		sound "plasma"
+		"hit effect" "plasma explosion"
+		"inaccuracy" 2
+		"velocity" 12
+		"lifetime" 40
+		"reload" 9
+		"firing energy" 30
+		"firing heat" 180
+		"hit force" 30
+		"shield damage" 63
+		"hull damage" 37
+		"heat damage" 240
+	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
 outfit "Meteor Missile"
 	category "Missiles"
