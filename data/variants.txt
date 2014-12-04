@@ -360,14 +360,14 @@ ship "Falcon" "Falcon (Plasma)"
 		"Hyperdrive"
 	engine -17 143
 	engine 17 143
-	gun -17 -88 "Plasma Cannon"
-	gun 17 -88 "Plasma Cannon"
-	gun -17 -88 "Torpedo Launcher"
-	gun 17 -88 "Torpedo Launcher"
-	turret -57 40 "Quad Blaster Turret"
-	turret 57 40 "Quad Blaster Turret"
-	turret -16 -24 "Quad Blaster Turret"
-	turret 16 -24 "Quad Blaster Turret"
+	gun -17 -88
+	gun 17 -88
+	gun -17 -88
+	gun 17 -88
+	turret -57 40 "Plasma Turret"
+	turret 57 40 "Plasma Turret"
+	turret -16 -24 "Plasma Turret"
+	turret 16 -24 "Plasma Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
