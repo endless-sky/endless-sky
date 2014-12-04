@@ -39,6 +39,11 @@ License: public-domain
  Taken from morgue-file.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
+Files: images/scene/loc*
+License: public-domain
+ From the Library of Congress. Public domain because they are photographs taken
+ by a government employee as part of their job.
+
 Files:
  images/scene/engine.jpg
  images/scene/engine2.jpg
