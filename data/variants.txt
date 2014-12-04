@@ -322,3 +322,52 @@ ship "Cruiser" "Cruiser (Heavy)"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
+
+ship "Falcon" "Falcon (Plasma)"
+	sprite "ship/falcon"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+	attributes
+		category "Heavy Warship"
+		"cost" 10900000
+		"shields" 12800
+		"hull" 3700
+		"required crew" 56
+		"bunks" 75
+		"mass" 510
+		"drag" 7.1
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 90
+		"outfit space" 540
+		"weapon capacity" 240
+		"engine capacity" 140
+		weapon
+			"blast radius" 300
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Breeder Reactor"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Plasma Turret" 4
+		"Hyperdrive"
+	engine -17 143
+	engine 17 143
+	gun -17 -88 "Plasma Cannon"
+	gun 17 -88 "Plasma Cannon"
+	gun -17 -88 "Torpedo Launcher"
+	gun 17 -88 "Torpedo Launcher"
+	turret -57 40 "Quad Blaster Turret"
+	turret 57 40 "Quad Blaster Turret"
+	turret -16 -24 "Quad Blaster Turret"
+	turret 16 -24 "Quad Blaster Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 30
+	explode "medium explosion" 20
