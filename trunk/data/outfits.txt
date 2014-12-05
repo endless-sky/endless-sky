@@ -98,7 +98,16 @@ outfit "Ramscoop"
 	"mass" 10
 	"outfit space" -10
 	"ramscoop" 1
-	In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refil your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
+	description "In the early days of space exploration, when ships could travel through half a dozen systems before encountering an established colony where they could refuel, ramscoops were an essential piece of equipment, harvesting plasma from the solar wind to refil your hyperspace fuel tanks. Although you can install more than one ramscoop, additional ramscoops on a single ship are not as effective as the first."
+
+outfit "Catalytic Ramscoop"
+	category "Systems"
+	cost 320000
+	thumbnail "outfit/catalytic ramscoop"
+	"mass" 16
+	"outfit space" -16
+	"ramscoop" 7
+	description "For centuries, ramscoop technology has remained almost unchanged, because once nearly every planet in human space was settled there was no longer a pressing need for a ship to generate its own fuel. When the Free Worlds found themselves in a situation where their ships were suddenly no longer welcome in many systems, they asked a team at Delta V Corporation to look at applying modern scientific insights to developing an improved ramscoop. This is the result."
 
 outfit "Hyperdrive"
 	category "Systems"
