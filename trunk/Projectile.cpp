@@ -100,7 +100,7 @@ bool Projectile::Move(list<Effect> &effects)
 		bool isFacingAway = d.Dot(angle.Unit()) > 0.;
 		
 		// At the highest homing level, compensate for target motion.
-		if(homing == 4)
+		if(homing >= 4)
 		{
 			// Adjust the target's position based on where it will be when we
 			// reach it (assuming we're pointed right towards it).

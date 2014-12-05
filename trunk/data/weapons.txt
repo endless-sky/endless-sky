@@ -511,6 +511,47 @@ outfit "Torpedo Launcher"
 		"missile strength" 20
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
 
+outfit "Typhoon Torpedo"
+	category "Missiles"
+	cost 2700
+	thumbnail "outfit/typhoon"
+	"typhoon capacity" -1
+	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 30 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
+
+outfit "Typhoon Launcher"
+	category "Missiles"
+	cost 260000
+	thumbnail "outfit/typhoon launcher"
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
+	"gun ports" -1
+	"typhoon capacity" 30
+	weapon
+		sprite "projectile/typhoon"
+			"frame rate" 4
+			"random start frame"
+		sound "torpedo"
+		ammo "Typhoon Torpedo"
+		icon "icon/typhoon"
+		"hit effect" "big explosion"
+		"die effect" "tiny explosion"
+		"inaccuracy" 5
+		"velocity" 5
+		"lifetime" 600
+		"reload" 100
+		"firing energy" 4
+		"firing heat" 50
+		"acceleration" .5
+		"drag" .1
+		"turn" 6
+		"homing" 4
+		"shield damage" 480
+		"hull damage" 480
+		"hit force" 70
+		"missile strength" 30
+	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedos. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
+
 outfit "Heavy Rocket"
 	category "Missiles"
 	cost 2000
