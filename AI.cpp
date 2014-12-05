@@ -638,12 +638,31 @@ void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
 		
-		double deviation = normal.Dot(ship.Velocity()) / ship.Acceleration();
-		direction -= normal * min(1., max(-1., deviation));
-		
+		double deviation = ship.Velocity().Dot(normal);
+		if(fabs(deviation) > ship.Attributes().Get("scram drive"))
+		{
+			// Need to maneuver; not ready to jump
+			if((ship.Facing().Unit().Dot(normal) < 0) == (deviation < 0))
+				// Thrusting from this angle is counterproductive
+				direction = -deviation * normal;
+			else
+			{
+				control.SetThrustCommand(1.);
+				
+				// How much correction will be applied to deviation by thrusting
+				// as I turn back toward the jump direction.
+				double turnRateRadians = ship.TurnRate() * M_PI / 180.;
+				double cos = ship.Facing().Unit().Dot(direction);
+				// integral(t*sin(r*x), angle/r, 0) = t/r * (1 - cos(angle)), so:
+				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
+				// (Note that this will always underestimate because thrust happens before turn)
+				
+				if(fabs(deviation) - correctionWhileTurning > ship.Attributes().Get("scram drive"))
+					// Want to thrust from an even sharper angle
+					direction = -deviation * normal;
+			}
+		}
 		control.SetTurnCommand(TurnToward(ship, direction));
-		if(ship.Facing().Unit().Dot(direction) >= .5)
-			control.SetThrustCommand(1.);
 	}
 	// If we are moving too fast, point in the right direction.
 	else if(Stop(control, ship, ship.Attributes().Get("jump speed")))
