@@ -254,7 +254,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			"excellent"
 		};
 		attributeLabels.push_back("homing:");
-		attributeValues.push_back(skill[homing]);
+		attributeValues.push_back(skill[max(0, min(4, homing))]);
 		attributesHeight += 20;
 	}
 	
