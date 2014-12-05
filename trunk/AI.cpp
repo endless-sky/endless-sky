@@ -897,7 +897,16 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships, boo
 			bit <<= 1;
 			continue;
 		}
-		
+		if(weapon.GetOutfit()->WeaponGet("firing fuel"))
+		{
+			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
+			fuel -= weapon.GetOutfit()->WeaponGet("firing fuel");
+			if(!secondary || fuel < ship.Attributes().Get("jump fuel"))
+			{
+				bit <<= 1;
+				continue;
+			}
+		}
 		const Outfit *outfit = weapon.GetOutfit();
 		double vp = outfit->WeaponGet("velocity");
 		double lifetime = outfit->Lifetime();
@@ -1162,7 +1171,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			for(const Armament::Weapon &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && !outfit->Ammo())
+				if(outfit && !outfit->Ammo() && !outfit->WeaponGet("firing fuel"))
 				{
 					control.SetFireCommand(index);
 					hasGuns |= !weapon.IsTurret();

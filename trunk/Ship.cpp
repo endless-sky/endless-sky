@@ -1405,7 +1405,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	if(shields > shieldDamage)
 	{
 		shields -= shieldDamage;
-		heat += .25 * heatDamage;
+		heat += .5 * heatDamage;
 	}
 	else if(!shields || shieldDamage)
 	{
