@@ -350,8 +350,47 @@ outfit "Plasma Turret"
 		"hit force" 30
 		"shield damage" 63
 		"hull damage" 37
-		"heat damage" 240
+		"heat damage" 540
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
+
+outfit "Flamethrower"
+	category "Guns"
+	cost 190000
+	thumbnail "outfit/flamethrower"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"gun ports" -1
+	weapon
+		sprite "effect/explosion/small"
+			"frame rate" 60
+			"no repeat"
+		sound "plasma"
+		icon "icon/flamethrower"
+		"submunition" "Flamethrower Projectile"
+		"inaccuracy" 12
+		"velocity" 9
+		"lifetime" 5
+		"reload" 1
+		"firing energy" .1
+		"firing fuel" .25
+		"firing heat" 2
+	description "A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight."
+
+outfit "Flamethrower Projectile"
+	weapon
+		sprite "projectile/flamethrower"
+			"frame rate" 17
+			"random start frame"
+		sound "plasma"
+		icon "icon/flamethrower"
+		"hit effect" "medium explosion"
+		"die effect" "small explosion"
+		"inaccuracy" 20
+		"lifetime" 22
+		"shield damage" .8
+		"hull damage" 1.1
+		"heat damage" 200
 
 outfit "Meteor Missile"
 	category "Missiles"
