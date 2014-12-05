@@ -18,7 +18,24 @@ outfit "Afterburner"
 	"afterburner thrust" 25.0
 	"afterburner fuel" .5
 	"afterburner heat" 10.0
+	weapon
+		"die effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
+
+outfit "Ionic Afterburner"
+	category "Engines"
+	"cost" 340000
+	thumbnail "outfit/ionic afterburner"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"afterburner thrust" 29.0
+	"afterburner fuel" .1
+	"afterburner energy" 5.1
+	"afterburner heat" 12.0
+	weapon
+		"die effect" "ionic afterburner"
+	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigous rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ships batteries to achieve the same effect."
 
 
 outfit "X1700 Ion Thruster"

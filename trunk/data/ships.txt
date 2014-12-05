@@ -1209,7 +1209,7 @@ ship "Manta"
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 20
-		"outfit space" 340
+		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 100
 		weapon
