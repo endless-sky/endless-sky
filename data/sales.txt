@@ -376,3 +376,12 @@ outfitter "Pirate Outfits"
 	"Nerve Gas"
 	"Scram Drive"
 	"Local Map"
+
+# These are not available on any planet; listing them here is just a convenience
+# to allow them to be all turned on for testing.
+outfitter "Special Outfits"
+	"Catalytic Ramscoop"
+	"Plasma Turret"
+	"Typhoon Launcher"
+	"Typhoon Torpedo"
+	"Ionic Afterburner"
