@@ -42,10 +42,6 @@ namespace {
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system)
 	: player(player), conversation(conversation), scroll(0), system(system)
 {
-	wrap.SetAlignment(WrappedText::JUSTIFIED);
-	wrap.SetWrapWidth(WIDTH);
-	wrap.SetFont(FontSet::Get(14));
-	
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(player.GetShip())
@@ -78,31 +74,17 @@ void ConversationPanel::Draw() const
 		}
 	}
 	
-	int sceneHeight = 20;
-	if(conversation.Scene() && conversation.Scene()->Height())
-	{
-		sceneHeight = 40 + conversation.Scene()->Height();
-		SpriteShader::Draw(conversation.Scene(),
-			Point(
-				Screen::Width() * -.5 + WIDTH * .5 + 20.,
-				Screen::Height() * -.5 + sceneHeight * .5 + scroll));
-	}
-	
+	const Font &font = FontSet::Get(14);
 	Point point(
 		(-Screen::Width() / 2) + 20,
-		(-Screen::Height() / 2) + sceneHeight + scroll);
-	
-	const Font &font = FontSet::Get(14);
+		(-Screen::Height() / 2) + 20 + scroll);
 	
 	Color selectionColor = *GameData::Colors().Get("faint");
 	Color dim = *GameData::Colors().Get("dim");
 	Color grey = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
-	for(const WrappedText &it : text)
-	{
+	for(const Paragraph &it : text)
 		it.Draw(point, grey);
-		point.Y() += it.Height();
-	}
 	
 	zones.clear();
 	if(node < 0)
@@ -134,20 +116,19 @@ void ConversationPanel::Draw() const
 	}
 	
 	string label = "0:";
-	for(const WrappedText &it : choices)
+	for(const Paragraph &it : choices)
 	{
 		++label[0];
 		
-		Point center = point + Point(WIDTH, it.Height() - it.ParagraphBreak()) * .5;
+		Point center = point + it.Center();
 		Point size(WIDTH, it.Height());
 		
 		if(zones.size() == static_cast<unsigned>(choice))
 			FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 		zones.emplace_back(point + .5 * size, size);
 		
-		it.Draw(point, bright);
 		font.Draw(label, point + Point(-15, 0), dim);
-		point.Y() += it.Height();
+		it.Draw(point, bright);
 	}
 }
 
@@ -186,8 +167,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 					c = '-';
 			
 			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
-			text.push_back(wrap);
-			text.back().Wrap(name);
+			text.emplace_back(name);
 			
 			player.SetName(firstName, lastName);
 			subs["<first>"] = player.FirstName();
@@ -288,9 +268,7 @@ void ConversationPanel::Goto(int index)
 		if(index >= 0)
 		{
 			int y = 20;
-			if(conversation.Scene() && conversation.Scene()->Height())
-				y = 40 + conversation.Scene()->Height();
-			for(const WrappedText &it : text)
+			for(const Paragraph &it : text)
 				y += it.Height();
 			scroll = -y + 9;
 		}
@@ -314,16 +292,57 @@ void ConversationPanel::Goto(int index)
 			continue;
 		}
 		
-		text.push_back(wrap);
 		string altered = Format::Replace(conversation.Text(node), subs);
-		text.back().Wrap(altered);
+		text.emplace_back(altered, conversation.Scene(node));
 		node = conversation.NextNode(node);
 	}
 	for(int i = 0; i < conversation.Choices(node); ++i)
 	{
-		choices.push_back(wrap);
 		string altered = Format::Replace(conversation.Text(node, i), subs);
-		choices.back().Wrap(altered);
+		choices.emplace_back(altered);
 	}
 	choice = 0;
+}
+
+
+
+ConversationPanel::Paragraph::Paragraph(const std::string &text, const Sprite *scene)
+	: scene(scene)
+{
+	wrap.SetAlignment(WrappedText::JUSTIFIED);
+	wrap.SetWrapWidth(WIDTH);
+	wrap.SetFont(FontSet::Get(14));
+	
+	wrap.Wrap(text);
+}
+
+
+
+int ConversationPanel::Paragraph::Height() const
+{
+	int height = wrap.Height();
+	if(scene)
+		height += 40 + scene->Height();
+	return height;
+}
+
+
+
+Point ConversationPanel::Paragraph::Center() const
+{
+	return Point(.5 * WIDTH, .5 * (Height() - wrap.ParagraphBreak()));
+}
+
+
+
+void ConversationPanel::Paragraph::Draw(Point &point, const Color &color) const
+{
+	if(scene)
+	{
+		Point offset(WIDTH / 2, 20 + scene->Height() / 2);
+		SpriteShader::Draw(scene, point + offset);
+		point.Y() += 40 + scene->Height();
+	}
+	wrap.Draw(point, color);
+	point.Y() += wrap.Height();
 }

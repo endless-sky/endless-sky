@@ -44,8 +44,6 @@ public:
 	
 	
 public:
-	Conversation();
-	
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	bool IsEmpty() const;
@@ -61,9 +59,8 @@ public:
 	bool IsApply(int node) const;
 	const ConditionSet &Conditions(int node) const;
 	const std::string &Text(int node, int choice = 0) const;
+	const Sprite *Scene(int node) const;
 	int NextNode(int node, int choice = 0) const;
-	
-	const Sprite *Scene() const;
 	
 	
 private:
@@ -75,6 +72,9 @@ private:
 		std::vector<std::pair<std::string, int>> data;
 		bool isChoice;
 		bool canMergeOnto;
+		
+		const Sprite *scene = nullptr;
+		std::string sceneName;
 	};
 	
 	
@@ -91,9 +91,6 @@ private:
 	std::map<std::string, int> labels;
 	std::multimap<std::string, std::pair<int, int>> unresolved;
 	std::vector<Node> nodes;
-	
-	const Sprite *scene;
-	std::string sceneName;
 };
 
 

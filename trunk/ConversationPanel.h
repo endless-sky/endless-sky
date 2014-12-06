@@ -24,8 +24,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class Color;
 class Conversation;
 class PlayerInfo;
+class Point;
+class Sprite;
 class System;
 
 
@@ -57,6 +60,21 @@ private:
 	
 	
 private:
+	class Paragraph {
+	public:
+		Paragraph(const std::string &text, const Sprite *scene = nullptr);
+		
+		int Height() const;
+		Point Center() const;
+		void Draw(Point &point, const Color &color) const;
+		
+	private:
+		const Sprite *scene = nullptr;
+		WrappedText wrap;
+	};
+	
+	
+private:
 	PlayerInfo &player;
 	
 	const Conversation &conversation;
@@ -65,9 +83,8 @@ private:
 	
 	int scroll;
 	
-	WrappedText wrap;
-	std::list<WrappedText> text;
-	std::list<WrappedText> choices;
+	std::list<Paragraph> text;
+	std::list<Paragraph> choices;
 	int choice;
 	
 	std::string firstName;

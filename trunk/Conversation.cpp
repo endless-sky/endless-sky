@@ -71,13 +71,6 @@ namespace {
 
 
 
-Conversation::Conversation()
-	: scene(nullptr)
-{
-}
-
-
-
 void Conversation::Load(const DataNode &node)
 {
 	if(node.Token(0) != "conversation")
@@ -92,8 +85,12 @@ void Conversation::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "scene" && child.Size() >= 2)
 		{
-			sceneName = child.Token(1);
-			scene = SpriteSet::Get(sceneName);
+			nodes.emplace_back();
+			int next = nodes.size();
+			nodes.back().data.emplace_back("", next);
+			
+			nodes.back().scene = SpriteSet::Get(child.Token(1));
+			nodes.back().sceneName = child.Token(1);
 		}
 		else if(child.Token(0) == "label" && child.Size() >= 2)
 		{
@@ -244,14 +241,13 @@ void Conversation::Save(DataWriter &out) const
 		out.Write("conversation");
 	out.BeginChild();
 	
-	if(scene)
-		out.Write("scene", sceneName);
-	
 	for(unsigned i = 0; i < nodes.size(); ++i)
 	{
 		out.Write("label", i);
 		const Node &node = nodes[i];
 		
+		if(node.scene)
+			out.Write("scene", node.sceneName);	
 		if(!node.conditions.IsEmpty())
 		{
 			if(node.data.size() > 1)
@@ -384,6 +380,16 @@ const string &Conversation::Text(int node, int choice) const
 
 
 
+const Sprite *Conversation::Scene(int node) const
+{
+	if(static_cast<unsigned>(node) >= nodes.size())
+		return nullptr;
+	
+	return nodes[node].scene;
+}
+
+
+
 int Conversation::NextNode(int node, int choice) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size()
@@ -391,13 +397,6 @@ int Conversation::NextNode(int node, int choice) const
 		return -2;
 	
 	return nodes[node].data[choice].second;
-}
-
-
-
-const Sprite *Conversation::Scene() const
-{
-	return scene;
 }
 
 
