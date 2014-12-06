@@ -164,6 +164,29 @@ outfit "Heavy Laser"
 		"hull damage" 3.7
 	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
 
+outfit "Electron Beam"
+	category "Guns"
+	cost 170000
+	thumbnail "outfit/electron beam"
+	"mass" 21
+	"outfit space" -21
+	"weapon capacity" -21
+	"gun ports" -1
+	weapon
+		sprite "projectile/electron"
+			"frame rate" 60
+		sound "heavy_laser"
+		"hit effect" "electron impact"
+		"inaccuracy" .3
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.1
+		"firing heat" 2.6
+		"shield damage" 2.9
+		"hull damage" 5.9
+	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
+
 outfit "Laser Turret"
 	category "Turrets"
 	cost 80000
@@ -209,6 +232,29 @@ outfit "Heavy Laser Turret"
 		"shield damage" 3.6
 		"hull damage" 7.4
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
+
+outfit "Electron Turret"
+	category "Turrets"
+	cost 550000
+	thumbnail "outfit/electron turret"
+	"mass" 54
+	"outfit space" -54
+	"weapon capacity" -54
+	"turret mounts" -1
+	weapon
+		sprite "projectile/2x electron"
+			"frame rate" 60
+		sound "heavy_laser"
+		"hit effect" "electron impact"
+		"inaccuracy" .3
+		"velocity" 450
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.2
+		"firing heat" 5.2
+		"shield damage" 5.8
+		"hull damage" 11.8
+	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed accuracy and power for shooting down fast-moving targets."
 
 outfit "Anti-Missile Turret"
 	category "Turrets"
