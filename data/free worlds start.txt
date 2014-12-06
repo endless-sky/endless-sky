@@ -519,6 +519,7 @@ mission "FW Plasma Testing 1B"
 			
 			label explain
 			`	"Of course," he says. "Anyways, I bet you're wondering what new toys we're going to let you play with." You nod. He says, "We've been trying to come up with a weapon for our capital ships, something that's a match for one of the Navy's heavy laser turrets. Something more elegant than those awful quad blaster turrets the Syndicate makes. So I thought, why not take the biggest thing we've got, and then mount a pair of them on a turret?" He beckons for you to follow, and leads you through a door and into a hangar.`
+			scene "outfit/plasma turret"
 			`	In front of you is a turret. It is almost absurdly large: a pair of plasma cannons mounted on a massive rotating base. "Sixty tons," says Barmy Edward. "Draws more power than... well, than anything else, practically. Runs a little hot, too."`
 			choice
 				`	"It's so... big!"`
@@ -542,8 +543,8 @@ mission "FW Plasma Testing 1B"
 			
 			label plan
 			`	"So, where do I come in?" you ask.`
-			`	"Well, the Council says no testing against the Navy yet. No point in provoking a fight just to try out an untested weapon. So I ask them, what other target they can suggest, and they mention this pirate ship by the name of Red Nile, been haunting the Ildaria system, sniping on merchants that get lost. So we pack four of our prototypes into our department's very own test ship, the Walloping Window-Blind."`
-			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to Ildaria, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?`
+			`	"Well, the Council says no testing against the Navy yet. No point in provoking a fight just to try out an untested weapon. So I asked them what other target they could suggest, and they mentioned this pirate ship by the name of Red Nile, that's been haunting the Ildaria system, sniping on merchants that take a wrong turn and end up there."`
+			`	With a grand gesture, he indicates an aging Tarazed Falcon parked in the far corner of the hangar. It's a little rusty, and the paint is flaking, but a Falcon is an impressive ship under any circumstances. "We packed four of our prototypes into our department's very own test ship, the Walloping Window-Blind. We can't let you fly her, of course," he says, "on account of she's dearer to us than our own children. So the plan is, the Window-Blind will accompany you to Ildaria, and you fight the pirates together, taking careful note of how the guns perform. Sound like fun?`
 			choice
 				`	"You bet!"`
 					accept
