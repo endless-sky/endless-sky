@@ -44,6 +44,14 @@ effect "heavy laser impact"
 	"random angle" 2
 	"velocity scale" -.005
 
+effect "electron impact"
+	sprite "effect/electron impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"velocity scale" -.003
+
 effect "blaster impact"
 	sprite "effect/blaster impact"
 		"no repeat"
