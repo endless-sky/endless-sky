@@ -23,6 +23,7 @@ namespace {
 	static const unsigned BOARD = 128;
 	static const unsigned SCAN = 256;
 	static const unsigned AFTERBURNER = 512;
+	static const unsigned CLOAK = 1024;
 	
 	static const unsigned WEAPON_SHIFT = 16;
 }
@@ -90,6 +91,13 @@ bool Controllable::HasScanCommand() const
 bool Controllable::HasAfterburnerCommand() const
 {
 	return commands & AFTERBURNER;
+}
+
+
+
+bool Controllable::HasCloakCommand() const
+{
+	return commands & CLOAK;
 }
 
 
@@ -163,6 +171,13 @@ void Controllable::SetScanCommand()
 void Controllable::SetAfterburnerCommand()
 {
 	commands |= AFTERBURNER;
+}
+
+
+
+void Controllable::SetCloakCommand()
+{
+	commands |= CLOAK;
 }
 
 

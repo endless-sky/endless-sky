@@ -185,6 +185,17 @@ outfit "Surveillance Pod"
 	description "This is Republic military technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want."
 
 
+outfit "Cloaking Device"
+	category "Systems"
+	cost 1200000
+	"mass" 10
+	"outfit space" -10
+	"cloak" .01
+	"cloaking energy" 1
+	"cloaking fuel" .2
+	description "You're sure the cloaking device is here somewhere, but you can't see it."
+
+
 outfit "Mass Expansion"
 	category "Systems"
 	cost 50000

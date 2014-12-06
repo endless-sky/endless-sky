@@ -286,9 +286,19 @@ void Engine::Step(bool isActive)
 			}
 		
 		escorts.clear();
+		cloakedPlayerShips.Clear(step);
 		for(const shared_ptr<Ship> &escort : player.Ships())
+		{
+			bool isInSystem = (escort->GetSystem() == currentSystem);
 			if(escort.get() != flagship)
-				escorts.emplace_back(*escort, escort->GetSystem() == currentSystem);
+				escorts.emplace_back(*escort, isInSystem);
+			if(isInSystem && escort->Cloaking())
+			{
+				Animation animation = escort->GetSprite();
+				animation.SetSwizzle(7);
+				cloakedPlayerShips.Add(animation, escort->Position() - position, escort->Unit());
+			}
+		}
 		
 		if(flagship && flagship->IsOverheated())
 			Messages::Add("Your ship has overheated.");
@@ -419,6 +429,7 @@ const list<ShipEvent> &Engine::Events() const
 void Engine::Draw() const
 {
 	GameData::Background().Draw(position, velocity);
+	cloakedPlayerShips.Draw();
 	draw[drawTickTock].Draw();
 	
 	if(flash)
@@ -766,15 +777,41 @@ void Engine::CalculateStep()
 			for(const Point &point : ship->EnginePoints())
 			{
 				Point pos = ship->Facing().Rotate(point) * .5 * ship->Zoom() + position;
-				draw[calcTickTock].Add(ship->FlareSprite(), pos, ship->Unit());
+				if(ship->Cloaking())
+				{
+					draw[calcTickTock].Add(
+						ship->FlareSprite().GetSprite(),
+						pos,
+						ship->Unit(),
+						ship->Cloaking());
+				}
+				else
+				{
+					draw[calcTickTock].Add(
+						ship->FlareSprite(),
+						pos,
+						ship->Unit());
+				}
 				if(ship.get() == flagship && ship->Attributes().FlareSound())
 					Audio::Play(ship->Attributes().FlareSound(), pos, ship->Velocity());
 			}
 			
-			draw[calcTickTock].Add(
-				ship->GetSprite(),
-				position,
-				ship->Unit());
+			if(ship->Cloaking())
+			{
+				draw[calcTickTock].Add(
+					ship->GetSprite().GetSprite(),
+					position,
+					ship->Unit(),
+					ship->Cloaking(),
+					ship->GetSprite().GetSwizzle());
+			}
+			else
+			{
+				draw[calcTickTock].Add(
+					ship->GetSprite(),
+					position,
+					ship->Unit());
+			}
 			
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
@@ -805,7 +842,7 @@ void Engine::CalculateStep()
 			// Projectiles can only collide with ships that are in the current
 			// system and are not landing, and that are hostile to this projectile.
 			for(shared_ptr<Ship> &ship : ships)
-				if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding())
+				if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding() && ship->Cloaking() < 1.)
 				{
 					if(ship.get() != projectile.Target() && !gov->IsEnemy(ship->GetGovernment()))
 						continue;
