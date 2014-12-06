@@ -661,9 +661,9 @@ bool Ship::Move(list<Effect> &effects)
 		hyperspaceSystem = GetTargetSystem();
 	
 	double cloakingSpeed = attributes.Get("cloak");
-	bool canCloak = (cloakingSpeed &&
-		fuel >= attributes.Get("cloaking fuel") &&
-		energy >= attributes.Get("cloaking energy"));
+	bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
+		&& fuel >= attributes.Get("cloaking fuel")
+		&& energy >= attributes.Get("cloaking energy"));
 	if(HasCloakCommand() && canCloak)
 	{
 		cloak = min(1., cloak + cloakingSpeed);
