@@ -40,7 +40,7 @@ namespace {
 		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // blue + magenta (syndicate)
 		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // blue + cyan (merchant)
 		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // red and black (pirate)
-		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}  // black filled
+		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA}  // red only (cloaked)
 	};
 }
 

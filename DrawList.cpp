@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DrawList.h"
 
 #include "Animation.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
 #include "SpriteShader.h"
 
 #include <cmath>
@@ -48,10 +50,17 @@ void DrawList::Add(const Animation &animation, Point pos, Point unit, double cli
 
 
 // Add a single sprite.
-void DrawList::Add(const Sprite *sprite, Point pos, Point unit)
+void DrawList::Add(const Sprite *sprite, Point pos, Point unit, double cloak, int swizzle)
 {
+	if(cloak >= 1.)
+		return;
+	
 	Animation animation(sprite, 1.f);
+	animation.SetSwizzle(swizzle);
 	Add(animation, pos, unit);
+	
+	if(cloak > 0.)
+		items.back().Cloak(cloak);
 }
 
 
@@ -153,4 +162,13 @@ float DrawList::Item::Clip() const
 float DrawList::Item::Fade() const
 {
 	return (flags >> 8) / 256.f;
+}
+
+
+
+void DrawList::Item::Cloak(double cloak)
+{
+	tex1 = SpriteSet::Get("ship/cloaked")->Texture();
+	flags &= 0xFF;
+	flags |= static_cast<uint32_t>(cloak * 256.f) << 8;
 }

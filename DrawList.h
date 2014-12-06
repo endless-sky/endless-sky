@@ -40,7 +40,7 @@ public:
 	void Add(const Animation &animation, Point pos, Point unit, double clip = 1.);
 	
 	// Add a single sprite.
-	void Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.));
+	void Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.), double cloak = 0., int swizzle = 0);
 	
 	// Draw all the items in this list. The shader object may be shared between
 	// multiple DrawLists, so pass it in here.
@@ -68,6 +68,8 @@ private:
 		
 		float Clip() const;
 		float Fade() const;
+		
+		void Cloak(double cloak);
 		
 	private:
 		uint32_t tex0;

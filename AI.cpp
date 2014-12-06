@@ -39,7 +39,7 @@ using namespace std;
 
 AI::AI()
 	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false),
-	shift(false), holdPosition(false), moveToMe(false)
+	isCloaking(false), shift(false), holdPosition(false), moveToMe(false)
 {
 }
 
@@ -57,7 +57,16 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 		keyStuck -= Key::Bit(Key::JUMP);
 	
 	const Ship *player = info->GetShip();
-	if(!isActive || !player || !player->IsTargetable())
+	if(!isActive || !player)
+		return;
+	
+	// Cloaking device.
+	if((keyDown & Key::Bit(Key::CLOAK)) && player->Attributes().Get("cloak"))
+	{
+		isCloaking = !isCloaking;
+		Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
+	}
+	if(!player->IsTargetable())
 		return;
 	
 	if(keyDown & Key::Bit(Key::SELECT))
@@ -1237,6 +1246,8 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	
 	if(isLaunching)
 		control.SetLaunchCommand();
+	if(isCloaking)
+		control.SetCloakCommand();
 }
 
 

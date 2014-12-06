@@ -42,6 +42,7 @@ public:
 	bool HasBoardCommand() const;
 	bool HasScanCommand() const;
 	bool HasAfterburnerCommand() const;
+	bool HasCloakCommand() const;
 	bool HasFireCommand(int index) const;
 	
 	// Set the commands.
@@ -54,6 +55,7 @@ public:
 	void SetBoardCommand();
 	void SetScanCommand();
 	void SetAfterburnerCommand();
+	void SetCloakCommand();
 	void SetFireCommand(int index);
 	void SetFireCommands(int bitmask = 0xFFFFFFFF);
 	

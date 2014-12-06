@@ -660,6 +660,21 @@ bool Ship::Move(list<Effect> &effects)
 	else if(HasHyperspaceCommand() && CanHyperspace())
 		hyperspaceSystem = GetTargetSystem();
 	
+	double cloakingSpeed = attributes.Get("cloak");
+	bool canCloak = (cloakingSpeed &&
+		fuel >= attributes.Get("cloaking fuel") &&
+		energy >= attributes.Get("cloaking energy"));
+	if(HasCloakCommand() && canCloak)
+	{
+		cloak = min(1., cloak + cloakingSpeed);
+		fuel -= attributes.Get("cloaking fuel");
+		energy -= attributes.Get("cloaking energy");
+	}
+	else if(cloakingSpeed)
+		cloak = max(0., cloak - cloakingSpeed);
+	else
+		cloak = 0.;
+	
 	int requiredCrew = RequiredCrew();
 	if(pilotError)
 		--pilotError;
@@ -704,7 +719,7 @@ bool Ship::Move(list<Effect> &effects)
 				}
 			}
 		}
-		bool applyAfterburner = HasAfterburnerCommand();
+		bool applyAfterburner = HasAfterburnerCommand() && !CannotAct();
 		if(applyAfterburner)
 		{
 			double thrust = attributes.Get("afterburner thrust");
@@ -808,7 +823,7 @@ bool Ship::Move(list<Effect> &effects)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	if(!HasLaunchCommand() || zoom != 1. || isDisabled || hyperspaceCount || pilotError)
+	if(!HasLaunchCommand() || CannotAct())
 		return;
 	
 	for(Bay &bay : fighterBays)
@@ -842,7 +857,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 // Check if this ship is boarding another ship.
 shared_ptr<Ship> Ship::Board(bool autoPlunder)
 {
-	if(!hasBoarded)
+	if(!hasBoarded || CannotAct())
 		return shared_ptr<Ship>();
 	hasBoarded = false;
 	
@@ -902,10 +917,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 // giving the types of scan that succeeded.
 int Ship::Scan() const
 {
-	if(!HasScanCommand())
-		return 0;
-	
-	if(zoom != 1. || isDisabled || hyperspaceCount || pilotError)
+	if(!HasScanCommand() || CannotAct())
 		return 0;
 	
 	shared_ptr<const Ship> target = GetTargetShip();
@@ -937,7 +949,7 @@ bool Ship::Fire(list<Projectile> &projectiles)
 	if(explosionCount == explosionTotal && explosionWeapon)
 		projectiles.emplace_back(position, explosionWeapon);
 	
-	if(zoom != 1. || isDisabled || hyperspaceCount || pilotError)
+	if(CannotAct())
 		return false;
 	
 	bool hasAntiMissile = false;
@@ -965,6 +977,9 @@ bool Ship::Fire(list<Projectile> &projectiles)
 // Fire an anti-missile.
 bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
 {
+	if(CannotAct())
+		return false;
+	
 	const vector<Armament::Weapon> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
@@ -996,7 +1011,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget);
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1.);
 }
 
 
@@ -1089,6 +1104,13 @@ bool Ship::CanHyperspace() const
 bool Ship::IsBoarding() const
 {
 	return isBoarding;
+}
+
+
+
+double Ship::Cloaking() const
+{
+	return cloak;
 }
 
 
@@ -1673,6 +1695,13 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	energy -= outfit->WeaponGet("firing energy");
 	fuel -= outfit->WeaponGet("firing fuel");
 	heat += outfit->WeaponGet("firing heat");
+}
+
+
+
+bool Ship::CannotAct() const
+{
+	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
 }
 
 

@@ -119,6 +119,9 @@ public:
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool CanHyperspace() const;
 	bool IsBoarding() const;
+	// Get the degree to which this ship is cloaked. 1 means invisible and
+	// impossible to hit or target; 0 means fully visible.
+	double Cloaking() const;
 	
 	// Get information on this particular ship, for displaying it.
 	const Animation &GetSprite() const;
@@ -214,6 +217,7 @@ public:
 	
 	
 private:
+	bool CannotAct() const;
 	double MinimumHull() const;
 	void CreateExplosion(std::list<Effect> &effects);
 	
@@ -241,8 +245,8 @@ private:
 	// Licenses needed to operate this ship.
 	std::map<const Government *, std::vector<std::string>> licenses;
 	
-	bool isInSystem = true;
 	int forget = 0;
+	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
@@ -250,6 +254,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	double cloak = 0.;
 	
 	Personality personality;
 	const Phrase *hail[2] = {nullptr, nullptr};
