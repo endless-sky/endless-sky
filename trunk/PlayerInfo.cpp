@@ -1067,6 +1067,9 @@ void PlayerInfo::PopTravel()
 {
 	if(!travelPlan.empty())
 	{
+		for(Mission &mission : missions)
+			mission.Visit(travelPlan.back());
+		
 		Visit(travelPlan.back());
 		travelPlan.pop_back();
 	}
