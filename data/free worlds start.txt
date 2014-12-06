@@ -554,6 +554,7 @@ mission "FW Plasma Testing 1B"
 	
 	on complete
 		payment 200000
+		event "plasma turret available" 50
 		conversation
 			scene "scene/loc7"
 			`When you enter the hangar, the Window-Blind has just returned to the hangar and a team of engineers are looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
@@ -592,3 +593,90 @@ mission "FW Plasma Testing 1B"
 			`	"When do you think that will be?" you ask.`
 			`	"A month or two. I'll send you a message when they're available."`
 			`	"Sounds good," you say. "Thanks for involving me in your tests!"`
+
+
+
+mission "FW Supply Convoy 1"
+	name "Escort Supply Convoy"
+	description "Escort this convoy carrying equipment from Kraz Cybernetics to the militia base on <destination>."
+	source Rust
+	destination Longjump
+	to offer
+		has "FW Plasma Testing 1B: done"
+	
+	on offer
+		conversation
+			`In the spaceport, you meet up with a woman wearing a militia uniform and carrying a clipboard. "Are you Captain <last>?" she asks. You nod. "We have a large shipment of weapons and equipment that needs to go to the militia base on <planet>. Your job is to make sure none of these ships get... lost in transit." She points to a large landing pad where you count ten Star Barges lines up next to each other.`
+			choice
+				`	"Isn't it risky to transport valuable cargo in such flimsy and vulnerable ships?"`
+					goto risky
+				`	"Hey, I'm a starship captain, not a cattle herder!"`
+					goto cattle
+				`	"No problem. I'll see to it that they arrive safely."`
+					accept
+			
+			label risky
+			`	"It would be, except that our Free Worlds military presence has basically eliminated piracy in the Rim. And in any case, we're saving a lot of money on crew salaries by using ships that can be piloted by one person."`
+			choice
+				`	"Okay, I hope you're right!"`
+					accept
+			
+			label cattle
+			`	She grins. "Yes, I know it's not terribly glamorous work, and keeping track of a big fleet of slow ships is a pain. But, bulk freighters are just too expensive to use on internal cargo convoys. Just make sure you do a head count when you arrive in each system."`
+			choice
+				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
+					accept
+	
+	npc save
+		government "Escort"
+		personality timid
+		fleet
+			cargo 4
+			names "civilian"
+			variant
+				"Star Barge (Armed)" 10
+	
+	npc
+		government "Pirate"
+		personality plunders staying
+		system "Sabik"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+	
+	on complete
+		dialog
+			`You make sure that all ten Star Barges have landed safely, then report to the quartermaster. He thanks you for your work, and mentions that Tomek has asked to see you in the spaceport bar.`
+
+
+
+mission "FW Pirates 1"
+	name "Pirate Reconnaissance"
+	description "Scout out all the pirate systems on the southern fringe of human space, then report back to Tomek on <planet>"
+	source Longjump
+	waypoint Men
+	waypoint Antares
+	waypoint Shaula
+	waypoint Nunki
+	to offer
+		has "FW Supply Convoy 1: done"
+	
+	on offer
+		conversation
+			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic terrories. "Good to see you, <first>!" he says. "I hope whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
+			`	You describe to him the impressive performance of the Plasma Turrets, and the challenge of finding a ship with enough size for them. "Excellent!," he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
+			`	He smooths out the map, sweeping a few stray peanuts and crumbs off it. Apparently he's been sitting here for quite a while. "Right now," he says, "the Navy is leaving us alone, and we have no good reason to attack them. So the Council has been turning its attention to other matters, namely the pirates. They're a big threat to our shipping, and plus if we could do something about them, it would gain us a whole lot of support in the nearby systems that have not yet joined us."`
+			choice
+				`	"Agreed."`
+					goto agree
+				`	"But isn't the Navy still the bigger threat?"`
+			
+			`	"Maybe. But remember that what we're trying to do here is build a new government, not fight a war. We have absolutely no desire to take all of human space away from the Republic. All we want is the freedom to govern our own selves, here in our one corner of the galaxy. So attacking systems that the Republic holds right now would make absolutely no sense."`
+			`	"I suppose you're right," you say.`
+			
+			label agree
+			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."
+				accept
+	
+	on complete
+		dialog
+			`You have scouted out all four pirate systems that Tomek asked you to visit. Time to head back to the spaceport bar and see if he is waiting for you.`

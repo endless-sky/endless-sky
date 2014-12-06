@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <memory>
 #include <string>
+#include <set>
 
 class DataNode;
 class DataWriter;
@@ -31,6 +32,7 @@ class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
+class System;
 class UI;
 
 
@@ -61,6 +63,7 @@ public:
 	
 	// Information about what you are doing.
 	const Planet *Destination() const;
+	std::set<const System *> Waypoints() const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;
@@ -99,6 +102,10 @@ public:
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	
+	// Visit a certain system. If it is one of this mission's waypoints, that
+	// waypoint will be removed from the list.
+	void Visit(const System *system);
 	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
@@ -140,6 +147,8 @@ private:
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
 	LocationFilter destinationFilter;
+	// Systems that must be visited:
+	std::set<const System *> waypoints;
 	
 	// NPCs:
 	std::list<NPC> npcs;

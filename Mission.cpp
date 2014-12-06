@@ -134,6 +134,8 @@ void Mission::Load(const DataNode &node)
 			destination = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
+		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
+			waypoints.insert(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "npc")
 		{
 			npcs.push_back(NPC());
@@ -218,6 +220,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	}
 	if(destination)
 		out.Write("destination", destination->Name());
+	for(const System *system : waypoints)
+		out.Write("waypoint", system->Name());
 	
 	for(const NPC &npc : npcs)
 		npc.Save(out);
@@ -267,6 +271,13 @@ bool Mission::IsAtLocation(Location location) const
 const Planet *Mission::Destination() const
 {
 	return destination;
+}
+
+
+
+set<const System *> Mission::Waypoints() const
+{
+	return waypoints;
 }
 
 
@@ -394,7 +405,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination)
+	if(player.GetPlanet() != destination || !waypoints.empty())
 		return false;
 	
 	if(!toComplete.Test(player.Conditions()))
@@ -522,6 +533,17 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 
 
 
+// Visit a certain system. If it is one of this mission's waypoints, that
+// waypoint will be removed from the list.
+void Mission::Visit(const System *system)
+{
+	auto it = waypoints.find(system);
+	if(it != waypoints.end())
+		waypoints.erase(it);
+}
+
+
+
 // "Instantiate" a mission by replacing randomly selected values and places
 // with a single choice, and then replacing any wildcard text as well.
 Mission Mission::Instantiate(const PlayerInfo &player) const
@@ -533,6 +555,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.location = location;
 	result.repeat = 0;
 	result.name = name;
+	result.waypoints = waypoints;
 	
 	// First, pick values for all the variables.
 	

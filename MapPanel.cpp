@@ -312,6 +312,7 @@ void MapPanel::DrawMissions() const
 	Color availableColor(1., .7, 0., 1.);
 	Color unavailableColor(.6, .3, 0., 1.);
 	Color currentColor(.2, 1., 0., 1.);
+	Color waypointColor(1., 0., 0., 1.);
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
@@ -331,6 +332,14 @@ void MapPanel::DrawMissions() const
 		Point pos = system->Position() + center;
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., currentColor);
+		
+		for(const System *waypoint : mission.Waypoints())
+		{
+			Angle a = (angle[waypoint] += Angle(30.));
+			Point pos = waypoint->Position() + center;
+			PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
+			PointerShader::Draw(pos, a.Unit(), 8., 15., -6., waypointColor);
+		}
 	}
 	if(specialSystem)
 	{
