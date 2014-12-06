@@ -515,7 +515,7 @@ mission "FW Plasma Testing 1B"
 			`	"I've heard good things about your work," he says. "Assisting the Free Worlds and all. Not that I'm big on politics, but I do like blowing things up."`
 			choice
 				`	"Me too."`
-				`	"Well, we only try to blow things up when strictly necessary."`
+				`	"Well, we try to only blow things up when strictly necessary."`
 			
 			label explain
 			`	"Of course," he says. "Anyways, I bet you're wondering what new toys we're going to let you play with." You nod. He says, "We've been trying to come up with a weapon for our capital ships, something that's a match for one of the Navy's heavy laser turrets. Something more elegant than those awful quad blaster turrets the Syndicate makes. So I thought, why not take the biggest thing we've got, and then mount a pair of them on a turret?" He beckons for you to follow, and leads you through a door and into a hangar.`
