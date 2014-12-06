@@ -286,19 +286,9 @@ void Engine::Step(bool isActive)
 			}
 		
 		escorts.clear();
-		cloakedPlayerShips.Clear(step);
 		for(const shared_ptr<Ship> &escort : player.Ships())
-		{
-			bool isInSystem = (escort->GetSystem() == currentSystem);
 			if(escort.get() != flagship)
-				escorts.emplace_back(*escort, isInSystem);
-			if(isInSystem && escort->Cloaking())
-			{
-				Animation animation = escort->GetSprite();
-				animation.SetSwizzle(7);
-				cloakedPlayerShips.Add(animation, escort->Position() - position, escort->Unit());
-			}
-		}
+				escorts.emplace_back(*escort, escort->GetSystem() == currentSystem);
 		
 		if(flagship && flagship->IsOverheated())
 			Messages::Add("Your ship has overheated.");
@@ -429,7 +419,6 @@ const list<ShipEvent> &Engine::Events() const
 void Engine::Draw() const
 {
 	GameData::Background().Draw(position, velocity);
-	cloakedPlayerShips.Draw();
 	draw[drawTickTock].Draw();
 	
 	if(flash)
@@ -796,8 +785,18 @@ void Engine::CalculateStep()
 					Audio::Play(ship->Attributes().FlareSound(), pos, ship->Velocity());
 			}
 			
+			bool isPlayer = (ship->GetGovernment() == playerGovernment);
 			if(ship->Cloaking())
 			{
+				if(isPlayer)
+				{
+					Animation animation = ship->GetSprite();
+					animation.SetSwizzle(7);
+					draw[calcTickTock].Add(
+						animation,
+						position,
+						ship->Unit());
+				}
 				draw[calcTickTock].Add(
 					ship->GetSprite().GetSprite(),
 					position,
@@ -812,6 +811,10 @@ void Engine::CalculateStep()
 					position,
 					ship->Unit());
 			}
+			
+			// Do not show cloaked ships on the radar, except the player's ships.
+			if(ship->Cloaking() == 1. && !isPlayer)
+				continue;
 			
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(

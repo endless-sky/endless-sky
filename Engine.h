@@ -114,7 +114,6 @@ private:
 	std::vector<Target> targets;
 	std::vector<Escort> escorts;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	DrawList cloakedPlayerShips;
 	
 	int step;
 	
