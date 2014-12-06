@@ -738,6 +738,62 @@ ship "Dagger"
 	explode "small explosion" 5
 	description "The Dagger is a fighter designed by Lionheart Industries, intended to be carried by their Aerie warship, although other ships have been known to carry them, as well. As with many Lionheart ships, its chassis is largely composed of lightweight composite materials, making it considerably faster than other fighters."
 
+ship "Dreadnought"
+	sprite "ship/dreadnought"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+	attributes
+		category "Heavy Warship"
+		"cost" 10900000
+		"shields" 18100
+		"hull" 7300
+		"required crew" 89
+		"bunks" 147
+		"mass" 630
+		"drag" 10.1
+		"heat dissipation" .65
+		"fuel capacity" 600
+		"cargo space" 100
+		"outfit space" 790
+		"weapon capacity" 350
+		"engine capacity" 190
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Plasma Turret" 5
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"Breeder Reactor"
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Helium Cooler"
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	engine -25 172
+	engine 25 172
+	gun -10 -167 "Meteor Missile Launcher"
+	gun 10 -167 "Meteor Missile Launcher"
+	gun -20 -151 "Meteor Missile Launcher"
+	gun -20 -151 "Meteor Missile Launcher"
+	turret 0 -94 "Plasma Turret"
+	turret -38 -56 "Plasma Turret"
+	turret 38 -56 "Plasma Turret"
+	turret -44 118 "Plasma Turret"
+	turret 44 118 "Plasma Turret"
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "big explosion" 50
+	explode "huge explosion" 20
+	description "The Dreadnought is a new warship that was designed by Southbound Shipyards in order to provide a large capital ships for the Free Worlds fleets, something capable of standing up to a Navy Cruiser or even a Carrier."
+
 ship "Falcon"
 	sprite "ship/falcon"
 	licenses Republic
@@ -786,9 +842,10 @@ ship "Falcon"
 	turret 57 40 "Quad Blaster Turret"
 	turret -16 -24 "Quad Blaster Turret"
 	turret 16 -24 "Quad Blaster Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 30
-	explode "medium explosion" 20
+	explode "tiny explosion" 40
+	explode "small explosion" 55
+	explode "medium explosion" 60
+	explode "big explosion" 40
 	description "The Tarazed Falcon is the most powerful warship that civilians can buy... or at least, civilians who have also paid for a Republic warship license."
 
 ship "Firebird"
