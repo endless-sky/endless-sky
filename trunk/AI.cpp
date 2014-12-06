@@ -245,6 +245,33 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 					if(it->GetThrustCommand() && targetDistance < 1000.)
 						it->SetAfterburnerCommand();
 			}
+			if(it->Attributes().Get("cloak"))
+			{
+				// Never cloak if it will cause you to be stranded.
+				if(it->Attributes().Get("cloaking fuel") && !it->Attributes().Get("ramscoop"))
+				{
+					double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
+					fuel -= it->Attributes().Get("cloaking fuel");
+					if(fuel < it->Attributes().Get("jump fuel"))
+						continue;
+				}
+				// Otherwise, always cloak if you are in imminent danger.
+				static const double MAX_RANGE = 10000.;
+				double nearestEnemy = MAX_RANGE;
+				for(const auto &other : ships)
+					if(other->GetSystem() == it->GetSystem() && other->IsTargetable() &&
+							other->GetGovernment()->IsEnemy(it->GetGovernment()))
+						nearestEnemy = min(nearestEnemy,
+							it->Position().Distance(other->Position()));
+				
+				if(it->Hull() + it->Shields() < 1. && nearestEnemy < 2000.)
+					it->SetCloakCommand();
+				
+				// Also cloak if there are no enemies nearby and cloaking does
+				// not cost you fuel.
+				if(nearestEnemy == MAX_RANGE && !it->Attributes().Get("cloaking fuel"))
+					it->SetCloakCommand();
+			}
 		}
 	}
 }
