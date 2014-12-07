@@ -690,11 +690,12 @@ void PlayerInfo::Land()
 		if(ship->GetSystem() == system)
 			ship->UnloadFighters();
 	
+	bool canRecharge = planet->HasSpaceport() && GameData::GetPolitics().CanUseServices(planet);
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
 		{
-			if(planet->HasSpaceport())
+			if(canRecharge)
 				ship->Recharge();
 			
 			ship->Cargo().TransferAll(&cargo);

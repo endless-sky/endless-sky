@@ -79,6 +79,9 @@ public:
 	// Get the string to be shown in the destination planet's hailing dialog. If
 	// this is "auto", you don't have to hail them to get landing permission.
 	const std::string &ClearanceMessage() const;
+	// Check whether we have full clearance to land and use the planet's
+	// services, or whether we are landing in secret ("infiltrating").
+	bool HasFullClearance() const;
 	
 	// Check if it's possible to offer or complete this mission right now. The
 	// check for whether you can offer a mission does not take available space
@@ -126,6 +129,7 @@ private:
 	int daysToDeadline = 0;
 	std::string clearance;
 	LocationFilter clearanceFilter;
+	bool hasFullClearance = true;
 	
 	int repeat = 1;
 	std::string cargo;
