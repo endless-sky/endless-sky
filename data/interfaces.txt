@@ -360,7 +360,6 @@ interface "planet"
 		align left
 	button t -400 90
 		size 140 40
-	endif
 	
 	sprite "ui/planet dialog button" -400 210
 	label "Bank" -460 202
@@ -370,7 +369,6 @@ interface "planet"
 	button b -400 210
 		size 140 40
 	
-	if "has spaceport"
 	sprite "ui/planet dialog button" 280 210
 	label "Hire Crew" 340 202
 		size 18

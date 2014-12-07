@@ -142,10 +142,21 @@ bool Politics::CanLand(const Planet *planet) const
 
 
 
-// Bribe a planet to let the player's ships land there.
-void Politics::BribePlanet(const Planet *planet)
+bool Politics::CanUseServices(const Planet *planet) const
 {
-	bribedPlanets.insert(planet);
+	auto it = bribedPlanets.find(planet);
+	if(it != bribedPlanets.end())
+		return it->second;
+	
+	return Reputation(planet->GetSystem()->GetGovernment()) >= planet->RequiredReputation();
+}
+
+
+
+// Bribe a planet to let the player's ships land there.
+void Politics::BribePlanet(const Planet *planet, bool fullAccess)
+{
+	bribedPlanets[planet] = fullAccess;
 }
 
 

@@ -117,6 +117,8 @@ void Mission::Load(const DataNode &node)
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
 			clearanceFilter.Load(child);
 		}
+		else if(child.Token(0) == "infiltrating")
+			hasFullClearance = false;
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
@@ -197,6 +199,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.Write("clearance", clearance);
 		clearanceFilter.Save(out);
 	}
+	if(!hasFullClearance)
+		out.Write("infiltrating");
 	if(repeat != 1)
 		out.Write("repeat", repeat);
 	
@@ -353,6 +357,15 @@ bool Mission::HasClearance(const Planet *planet) const
 const string &Mission::ClearanceMessage() const
 {
 	return clearance;
+}
+
+
+
+// Check whether we have full clearance to land and use the planet's
+// services, or whether we are landing in secret ("infiltrating").
+bool Mission::HasFullClearance() const
+{
+	return hasFullClearance;
 }
 
 
@@ -675,6 +688,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.description = Format::Replace(description, subs);
 	result.clearance = Format::Replace(clearance, subs);
 	result.clearanceFilter = clearanceFilter;
+	result.hasFullClearance = hasFullClearance;
 	
 	result.hasFailed = false;
 	return result;

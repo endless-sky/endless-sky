@@ -47,8 +47,9 @@ public:
 	bool CanLand(const Ship &ship, const Planet *planet) const;
 	// Check if the player can land on the given planet.
 	bool CanLand(const Planet *planet) const;
+	bool CanUseServices(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
-	void BribePlanet(const Planet *planet);
+	void BribePlanet(const Planet *planet, bool fullAccess = true);
 	
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
@@ -75,7 +76,7 @@ private:
 	std::map<const Government *, double> reputationWith;
 	std::set<const Government *> provoked;
 	std::set<const Government *> bribed;
-	std::set<const Planet *> bribedPlanets;
+	std::map<const Planet *, bool> bribedPlanets;
 	std::set<const Government *> fined;
 };
 

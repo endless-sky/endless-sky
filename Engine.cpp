@@ -55,7 +55,7 @@ Engine::Engine(PlayerInfo &player)
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
-			GameData::GetPolitics().BribePlanet(mission.Destination());
+			GameData::GetPolitics().BribePlanet(mission.Destination(), mission.HasFullClearance());
 	// Also disable any fines.
 	GameData::GetPolitics().DisableFines();
 	
@@ -545,7 +545,7 @@ void Engine::EnterSystem()
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
-			GameData::GetPolitics().BribePlanet(mission.Destination());
+			GameData::GetPolitics().BribePlanet(mission.Destination(), mission.HasFullClearance());
 	
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
