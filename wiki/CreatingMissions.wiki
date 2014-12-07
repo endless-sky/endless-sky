@@ -17,6 +17,8 @@ mission <name>
     repeat (<number>)
     clearance (<message>)
         ...
+    infiltrating
+    waypoint <system>
     to (offer | complete | fail)
         <condition> (<comp> <value>)
         (has | not) <condition>
@@ -188,6 +190,18 @@ If a specific destination is given (i.e. "destination `<planet>`") and no cleara
 If the destination is specified via a filter, the filter will not match planets you cannot land on unless this mission contains a "clearance" tag. This may make it impossible for a particular mission to be offered.
 
 The "clearance" tag may have child entries that specify a location filter, the same as the "source" and "destination" tags described below. In this case, you have clearance on all planets that match that filter, in addition to on the destination planet.
+
+{{{
+infiltrating
+}}}
+
+This indicates that you do not have access to any of the services on the destination planet, including refueling or repairing; all you can do is complete your mission and then leave. This is useful for missions that involve you landing secretly somewhere other than the spaceport; it wouldn't make sense to then allow the player to then walk around the spaceport or purchase things.
+
+{{{
+waypoint <system>
+}}}
+
+This specifies a system which you must fly through in order to complete the mission. You do not have to land on any planets or spend any amount of time there. Waypoints are marked on the map in red until they have been visited; then they disappear.
 
 = Conditions =
 
@@ -362,8 +376,11 @@ The valid personality types (which can be combined) are:
   * nemesis: only attacks the player's ships.
   * surveillance: scans random ships and visits random planets in system.
   * uninterested: does not follow the player's flagship around (i.e. does not behave like an escort).
+  * waiting: starts out in space in the given system, then follows you.
+  * derelict: starts out disabled.
+  * fleeing: tries to run away from the player.
 
-In addition, if an NPC is specified as starting out in your current system and its personality is _not_ "staying", it will take off from the planet along with you (e.g. a ship you are escorting). A ship that is "entering" the current system might, for example, be a pirate raid chasing the fleet you are escorting, and a ship "staying" in a certain system might be a target you must locate for a bounty hunting mission. (Any ship that is not "staying" will actively seek the player out if it is in a different system.)
+In addition, if an NPC is specified as starting out in your current system and its personality is _not_ "staying" or "waiting", it will take off from the planet along with you (e.g. a ship you are escorting). A ship that is "entering" the current system might, for example, be a pirate raid chasing the fleet you are escorting, and a ship "staying" in a certain system might be a target you must locate for a bounty hunting mission. (Any ship that is not "staying" will actively seek the player out if it is in a different system.)
 
 {{{
 system (<system>)
@@ -408,8 +425,6 @@ fleet
 }}}
 
 This specifies an entire fleet of ships. The first format refers to one or the standard fleets, such as "pirate raid" or "Small Republic". The second format gives a custom fleet, using the same syntax as  normal "fleet" data entry. Every ship in the fleet will have the requirements given in the first line (such as "kill" or "save").
-
-*Eventually we may need to add other tags to this section describing special AI characteristics or other things.*
 
 = Triggers =
 
