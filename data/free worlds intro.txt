@@ -9,7 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "FW Recon 1"
-	name "Free Worlds Reconaissance"
+	name "Free Worlds Reconnaissance"
 	description "Perform an outfit scan on the cruiser <npc>, then report to a Free Worlds officer on <destination>."
 	source
 		planet Glaze
@@ -43,7 +43,7 @@ mission "FW Recon 1"
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
 		conversation
-			`As soon as you scan the Ironface its captain hails you. "Excuse me, captain," he says, "Can I assist you with something?"`
+			`As soon as you scan the <npc> its captain hails you. "Excuse me, captain," he says, "Can I assist you with something?"`
 			choice
 				`	"I was just wondering what sort of engines you've got that let you move so fast."`
 					goto engines
@@ -60,13 +60,13 @@ mission "FW Recon 1"
 			`	You cut the comlink and breathe a sigh of relief that the conversation is over.`
 	
 	on complete
-		dialog `Soon after you land, the militia officer comes to your ship pays you <payment> in exhange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
+		dialog `Soon after you land, the militia officer comes to your ship pays you <payment> in exchange for your sensor logs regarding <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 		payment 10000
 
 
 
 mission "FW Recon 2"
-	name "Free Worlds Reconaissance"
+	name "Free Worlds Reconnaissance"
 	description "Scan any ships in the Menkent system that are equipped like the combat-ready cruiser you scanned previously, then return to <destination>."
 	source
 		planet Glaze
@@ -105,7 +105,7 @@ mission "FW Recon 2"
 
 
 mission "FW Recon 3"
-	name "Free Worlds Reconaissance"
+	name "Free Worlds Reconnaissance"
 	description "Land on <destination> and secretly collect information on the developing Navy base there."
 	source
 		planet Glaze
@@ -118,7 +118,7 @@ mission "FW Recon 3"
 	
 	on offer
 		conversation
-			`You meet JJ again in the bar. "I have one more reconaissance mission for you," he says. "The Navy is building a base on New Wales, adjacent to the existing spaceport. From what I understand, they're employing thousands of locals to build it, so one more worker walking around would not seem out of place. I need you to walk around the base, take notes on the number and size of the landing pads and hangars, take pictures if you can, and report back to me. What do you say?"`
+			`You meet JJ again in the bar. "I have one more reconnaissance mission for you," he says. "The Navy is building a base on New Wales, adjacent to the existing spaceport. From what I understand, they're employing thousands of locals to build it, so one more worker walking around would not seem out of place. I need you to walk around the base, take notes on the number and size of the landing pads and hangars, take pictures if you can, and report back to me. What do you say?"`
 			choice
 				`	"Sure, I can do that."`
 					accept
@@ -130,13 +130,13 @@ mission "FW Recon 3"
 					accept
 				`	"Sorry, I've decided I don't really want to side with the Free Worlds."`
 			
-			`	"I'm really sorry to hear that," says JJ. "We hd high hopes for you."`
+			`	"I'm really sorry to hear that," says JJ. "We had high hopes for you."`
 				decline
 
 
 
 mission "FW Recon 3B"
-	name "Free Worlds Reconaissance"
+	name "Free Worlds Reconnaissance"
 	description "Return to <destination>, with information on the Navy base on <origin>."
 	landing
 	source
@@ -578,7 +578,7 @@ mission "FW Katya 4"
 			`	"Here's the best part," says Eyes. "The Navy operates with a certain amount of autonomy. Turns out when they found out about the disaster, they mobilized without even waiting to clear it with Parliament. Which was technically within their mandate, this being a natural disaster. But the Navy is funded by taxes, and the Paradise Planets pay ten times as much in taxes as the Dirt Belt."`
 			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those generals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
 			choice
-				`	"You're making the Navy sound like heros. I thought they were your enemies."`
+				`	"You're making the Navy sound like heroes. I thought they were your enemies."`
 				`	"You've almost convinced me to join the Navy."`
 			
 			`	"Our fight isn't with the Navy," says Katya. "Most of them are good people. I'm sure they don't want war any more than we do. They're like police officers who are suddenly being asked to fight against the very people they swore to protect and serve."`
