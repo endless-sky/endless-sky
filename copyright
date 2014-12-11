@@ -30,16 +30,19 @@ Files:
  images/planet/titan.png
  images/planet/uranus.png
  images/planet/venus.png
+Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files: images/scene/*
+Copyright: Various
 License: public-domain
  Taken from morgue-file.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
 Files: images/scene/loc*
+Copyright: Library of Congress
 License: public-domain
  From the Library of Congress. Public domain because they are photographs taken
  by a government employee as part of their job.
@@ -47,11 +50,13 @@ License: public-domain
 Files:
  images/scene/engine.jpg
  images/scene/engine2.jpg
+Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files: images/land/*
+Copyright: Various
 License: public-domain
  Taken from morgue-file.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
@@ -68,6 +73,7 @@ Files:
  images/land/mountain7.jpg
  images/land/valley5.jpg
  images/land/water3.jpg
+Copyright: Various
 License: public-domain
  Taken from publicdomainarchive.com, a collection of photographs that have been
  donated and placed in the public domain.
@@ -78,6 +84,7 @@ Files:
  images/land/forest2.jpg
  images/land/forest5.jpg
  images/land/mountain3.jpg
+Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
@@ -85,6 +92,7 @@ License: public-domain
 Files:
  images/land/city5.jpg
  images/land/snow2.jpg
+Copyright: Various
 License: public-domain
  Taken from burningwell.com, a collection of photographs that have been donated
  and placed in the public domain.
@@ -97,6 +105,7 @@ Files:
  images/land/lava8.jpg
  images/land/mountain8.jpg
  images/land/mountain9.jpg
+Copyright: USGS
 License: public-domain
  From the USGS, and therefore in the public domain because they were created by
  government employees while doing work for the government.
@@ -104,6 +113,7 @@ License: public-domain
 Files:
  images/land/earthrise.jpg
  images/land/space*.jpg
+Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
@@ -157,7 +167,6 @@ License: CC-BY-3.0
  (creativecommons.org/licenses/by/3.0)
 
 Files: sounds/mod_blaster.wav
-mod blaster: lasers/7.wav (dravenx, CC-BY 3.0)
 Copyright: Dravenx (www.dravenxgames.com)
 License: CC-BY-3.0
  (creativecommons.org/licenses/by/3.0)

@@ -1,3 +1,5 @@
+import os
+
 env = Environment()
 env.Append(CCFLAGS = ["-std=c++0x", "-msse4.1", "-O3", "-Wall"])
 env.Append(LIBS = [
@@ -21,7 +23,7 @@ sky = env.Program("endless-sky", Glob("build/*.cpp"))
 
 
 # Install the binary:
-env.Install("$PREFIX/bin", sky)
+env.Install("$PREFIX/games", sky)
 
 # Install the desktop file:
 env.Install("$PREFIX/share/applications", "endless-sky.desktop")
@@ -49,6 +51,21 @@ env.Command(
 	"$PREFIX/share/man/man6/endless-sky.6.gz",
 	"endless-sky.6",
 	"gzip -c $SOURCE > $TARGET")
+
+# Install the data files.
+def RecursiveInstall(env, target, source):
+	rootIndex = len(env.Dir(source).abspath) + 1
+	for node in env.Glob(os.path.join(source, '*')):
+		if node.isdir():
+			name = node.abspath[rootIndex:]
+			RecursiveInstall(env, os.path.join(target, name), node.abspath)
+		else:
+			env.Install(target, node)
+RecursiveInstall(env, "$PREFIX/share/games/endless-sky/data", "data")
+RecursiveInstall(env, "$PREFIX/share/games/endless-sky/images", "images")
+RecursiveInstall(env, "$PREFIX/share/games/endless-sky/sounds", "sounds")
+env.Install("$PREFIX/share/games/endless-sky", "credits.txt")
+env.Install("$PREFIX/share/games/endless-sky", "keys.txt")
 
 # Make the word "install" in the command line do an installation.
 env.Alias("install", "$PREFIX")
