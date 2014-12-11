@@ -51,10 +51,10 @@ void Files::Init(const char * const *argv)
 	// exists, this is a development machine, so use the current directory.
 	if(Exists("keys.txt") && Exists("credits.txt") && Exists("data") && Exists("images"))
 		resources = "./";
-	else if(Exists("/usr/local/bin/" + appName))
-		resources = "/usr/local/share/" + appName + "/";
-	else if(Exists("/usr/bin/" + appName))
-		resources = "/usr/share/" + appName + "/";
+	else if(Exists("/usr/local/games/" + appName))
+		resources = "/usr/local/share/games/" + appName + "/";
+	else if(Exists("/usr/games/" + appName))
+		resources = "/usr/share/games/" + appName + "/";
 	else
 		resources = "./";
 	
