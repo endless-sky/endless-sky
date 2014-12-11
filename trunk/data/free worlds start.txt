@@ -74,7 +74,7 @@ mission "Liberate Kornephoros"
 	
 	on complete
 		conversation
-			`The last of the Navy vessels in orbit has been destroyed. As you land, you find that several Free Worlds troop transports have already set down in the spaceport and coralled the remaining Navy officers into a small circle. You would estimate that there are several hundred Navy prisoners. Another transport lands, carrying more prisoners: the Navy troops who had been guarding the mines on Clink.`
+			`The last of the Navy vessels in orbit has been destroyed. As you land, you find that several Free Worlds troop transports have already set down in the spaceport and corralled the remaining Navy officers into a small circle. You would estimate that there are several hundred Navy prisoners. Another transport lands, carrying more prisoners: the Navy troops who had been guarding the mines on Clink.`
 			`	For several hours, nothing changes: the Navy troops are huddled into a small circle, surrounded by guards. When lunchtime comes, some of the guards go to the market and fetch some of the vendors who sell meals out of carts there; they return with the carts and hand out food to the prisoners. Then, another transport lands and Tomek steps out.`
 			`	He pulls you aside and asks you, "How are things going here?"`
 			choice
@@ -92,7 +92,7 @@ mission "Liberate Kornephoros"
 				goto speech
 			
 			label speech
-			`	Tomek climbs up onto the hull of a nearby ship and addresses the prisoners. "Hello," he says. A few of the Navy officers respond, warily. "My name is Tomek Voigt," he says. "Our militia is very loosely organized, but I'm the one in charge of organizing it." That gets a few laughs from the Free Worlds guards. "As such, I am resonsible for deciding your fate."`
+			`	Tomek climbs up onto the hull of a nearby ship and addresses the prisoners. "Hello," he says. A few of the Navy officers respond, warily. "My name is Tomek Voigt," he says. "Our militia is very loosely organized, but I'm the one in charge of organizing it." That gets a few laughs from the Free Worlds guards. "As such, I am responsible for deciding your fate."`
 			`	At that, a hush falls over the crowd. "The council has decided," he continues, "that any of you who gives us your parole, swearing to take no further part in fighting the Free Worlds, will be returned to Republic space. You will give us your word of honor that you will either seek reassignment in another part of the galaxy, or resign your commission."`
 			`	A few of the Free Worlds guards shout, "What?" But only a surprising few. The rest are nodding, seemingly pleased with the council's choice. Tomek climbs down from the hull and approaches the prisoners, and you notice Alondo and Freya have joined him.`
 			`	One of the Navy officers stands up. "I'll take that oath," he says, "if you'll honor your part of it."`
@@ -320,7 +320,7 @@ mission "FW Syndicate Diplomacy 1C"
 	
 	on offer
 		conversation
-			`You are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously mysogynistic Syndicate, Tarazed is in fact currently run by a female CEO, Emily Lane.`
+			`You are led into the Tarazed board room, which is different from the Syndicate one in two respects. First, it is much less fancy. And second, there are women present: unlike the notoriously misogynistic Syndicate, Tarazed is in fact currently run by a female CEO, Emily Lane.`
 			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
 			`	"Thank you," says Alondo, "although for the time being the best way to support us, may be for you to remain neutral in this conflict." He explains the idea of Tarazed being a go-between with the Syndicate.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
@@ -350,7 +350,7 @@ mission "FW Hope Recon 1"
 	
 	on offer
 		conversation
-			`You meet up with Tomek and Freya, who are looking over a map of the nearby systems. "This is a choke point," says Freya, pointing to the Wei system. "Any attack on us will come either through Wei or Lesath, and Wei is much more likely. And that also means that if we can monitor what is hapening there, we will have advance warning of any attack."`
+			`You meet up with Tomek and Freya, who are looking over a map of the nearby systems. "This is a choke point," says Freya, pointing to the Wei system. "Any attack on us will come either through Wei or Lesath, and Wei is much more likely. And that also means that if we can monitor what is happening there, we will have advance warning of any attack."`
 			`	Tomek adds, "As you may know, the planet Hope is in the Wei system. It's a former colony that is now an ice planet. Our plan is to deploy a sensor network on Hope, tracking every ship in system. Freya designed the equipment, so she can explain how to deploy it."`
 			`	Freya explains where on the planet each sensor should be installed, and how to cover them in insulative shielding so their heat and energy signatures will be difficult to detect. "Once the network is deployed," she says, "you will begin receiving telemetry. A good way to test it is to make sure it is picking up your own ship. Any questions?"`
 			choice
@@ -530,7 +530,7 @@ mission "FW Plasma Testing 1B"
 					goto ugly
 			
 			label big
-			`	"Kind of mesmerising, huh?" he says.`
+			`	"Kind of mesmerizing, huh?" he says.`
 				goto plan
 			
 			label want
