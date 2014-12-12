@@ -41,7 +41,6 @@ mission "FW Recon 1"
 			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)"
-				"Combat Drone" 4
 		conversation
 			`As soon as you scan the <npc> its captain hails you. "Excuse me, captain," he says, "Can I assist you with something?"`
 			choice
@@ -74,6 +73,7 @@ mission "FW Recon 2"
 		has "FW Recon 1: done"
 	to fail
 		has "chosen sides"
+	waypoint Menkent
 	
 	on offer
 		conversation
@@ -96,7 +96,6 @@ mission "FW Recon 2"
 			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)" 4
-				"Combat Drone" 16
 	
 	on complete
 		dialog `JJ meets you as soon as you land, and you hand over the scanner data. "Thank you again," he says. "If you're willing to take on one more recon mission, meet me in the bar." He hands you <payment>.`
@@ -1193,7 +1192,7 @@ mission "FW Commitment"
 		government "Free Worlds"
 	destination "Bourne"
 	to offer
-		has "assisted free worlds" 3
+		"assisted free worlds" >= 3
 	to fail
 		has "chosen sides"
 	

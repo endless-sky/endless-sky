@@ -77,6 +77,8 @@ mission "Intro [1 Transport]"
 	to offer
 		has "Intro [0]: done"
 		has "ships: Transport"
+		not "Intro [1 Freighter]: offered"
+		not "Intro [1 Interceptor]: offered"
 	
 	on offer
 		conversation
@@ -164,6 +166,8 @@ mission "Intro [1 Freighter]"
 	to offer
 		has "Intro [0]: done"
 		has "ships: Light Freighter"
+		not "Intro [1 Transport]: offered"
+		not "Intro [1 Interceptor]: offered"
 	
 	on offer
 		conversation
@@ -281,6 +285,8 @@ mission "Intro [1 Interceptor]"
 	to offer
 		has "Intro [0]: done"
 		has "ships: Interceptor"
+		not "Intro [1 Transport]: offered"
+		not "Intro [1 Freighter]: offered"
 	npc save
 		government Merchant
 		personality timid
