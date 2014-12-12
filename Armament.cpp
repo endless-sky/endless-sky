@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Effect.h"
 #include "Outfit.h"
+#include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Ship.h"
@@ -131,7 +132,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 		
 		p += steps * v;
 		
-		aim = Angle((180. / M_PI) * atan2(p.X(), -p.Y()));
+		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
 	}
 	
 	projectiles.emplace_back(ship, start, aim, outfit);
@@ -166,7 +167,7 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 	// Figure out where the effect should be placed. Anti-missiles do not create
 	// projectiles; they just create a blast animation.
 	start += (.5 * range) * offset.Unit();
-	Angle aim = (180. / M_PI) * atan2(offset.X(), -offset.Y());
+	Angle aim = TO_DEG * atan2(offset.X(), -offset.Y());
 	for(const auto &eit : outfit->HitEffects())
 		for(int i = 0; i < eit.second; ++i)
 		{
@@ -194,7 +195,7 @@ void Armament::Weapon::Install(const Outfit *outfit)
 		// Find the point of convergence of shots fired from this gun.
 		double d = outfit->Range();
 		// The angle is therefore:
-		angle = Angle(asin(point.X() / d) * (-180. / M_PI));
+		angle = Angle(-asin(point.X() / d) * TO_DEG);
 	}
 }
 

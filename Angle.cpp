@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 
+#include "pi.h"
 #include "Random.h"
 
 #include <algorithm>
@@ -29,7 +30,7 @@ namespace {
 	static const int32_t STEPS = 0x10000;
 	static const int32_t MASK = STEPS - 1;
 	double DEG_TO_STEP = STEPS / 360.;
-	double STEP_TO_RAD = M_PI / (STEPS / 2);
+	double STEP_TO_RAD = PI / (STEPS / 2);
 }
 
 
