@@ -8,7 +8,8 @@ env.Append(LIBS = [
 	"jpeg",
 	"GL",
 	"GLEW",
-	"openal"
+	"openal",
+	"pthread"
 ]);
 
 opts = Variables()
