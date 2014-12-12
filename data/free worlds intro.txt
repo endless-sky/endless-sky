@@ -8,19 +8,56 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "FW Recon 0"
+	name "Transport Militia Officer"
+	description "This militia officer asked if you could transport him to <destination>."
+	source
+		government "Free Worlds"
+	destination Glaze
+	to offer
+		random < 20
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`A man in a militia uniform approaches you and asks whether you would be willing to give him a lift to <destination>.`
+			choice
+				`	"Sure, I'd be glad to help!"`
+					accept
+				`	"Sorry, I'm busy with something else right now."`
+					defer
+				`	"Are you connected to the Free Worlds?"`
+			`	"Yes, I'm an officer in their militia. Is that a problem?"`
+			choice
+				`	"Sorry, I really don't want to assist the rebels."`
+					decline
+				`	"No problem at all. I'd be glad to help with your cause!"`
+					accept
+				`	"No problem. But I'm afraid I don't have space for you right now."`
+					defer
+	
+	on complete
+		payment
+		dialog
+			`The militia officer thanks you for the ride and pays you <payment>. As he is leaving, he says, "If you're interested in doing more work for us, head to the spaceport bar and find my commander. I'll tell him to keep an eye out for you."`
+
+
+
 mission "FW Recon 1"
 	name "Free Worlds Reconnaissance"
 	description "Perform an outfit scan on the cruiser <npc>, then report to a Free Worlds officer on <destination>."
 	source
 		planet Glaze
 	to offer
+		has "FW Recon 0: done"
 		has "event: initial deployment 4"
 	to fail
 		has "chosen sides"
 	
 	on offer
 		conversation
-			`	"As you are walking through the spaceport, a man in a militia uniform flags you down, saying, "Excuse me, Captain <last>. Would you be willing to do a small service for the Free Worlds?"`
+			`	When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Excuse me, Captain <last>. Would you be willing to do a small service for the Free Worlds?"`
 			choice
 				`	"Perhaps. What do you want me to do?"`
 				`	"Sorry, I want no part in your rebellion."`
@@ -380,6 +417,40 @@ mission "FW Katya 1C"
 	
 	on accept
 		"reputation: Republic" = -10
+
+
+
+mission "FW Katya Alt 2"
+	name "Transport Mr. Eyes"
+	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
+	source
+		government "Free Worlds"
+	destination Foundry
+	passengers 1
+	to offer
+		has "FW Katya 1: offered"
+		not "FW Katya 1: done"
+		not "FW Katya 1: active"
+		"assisted free worlds" >= 2
+		random < 50
+	to fail
+		has "chosen sides"
+	on offer
+		conversation
+			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds council, and I'm hoping you'd reconsider working with me."`
+			choice
+				`	"Okay, as long as you don't point any more guns at me."`
+				`	"Sorry, I just really don't like you. Or the Free Worlds."`
+					decline
+			`	"Great," she says. "Here's the deal. I have a friend named Mr. Eyes, who needs a lift from <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though. Can you give him a lift?"`
+			choice
+				`	"Sure, I would be glad to."`
+					accept
+				`	"Sorry, this sounds a bit too shady to me."`
+					decline
+	
+	on complete
+		set "FW Katya 2: done"
 
 
 
