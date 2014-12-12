@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Phrase.h"
+#include "pi.h"
 #include "Random.h"
 #include "Ship.h"
 #include "StellarObject.h"
@@ -154,7 +155,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		else
 		{
 			Point offset = system.Position() - source->Position();
-			angle = (180. / M_PI) * atan2(offset.X(), -offset.Y());
+			angle = TO_DEG * atan2(offset.X(), -offset.Y());
 			ships.front()->Place(pos, Point(), angle);
 		}
 		ships.front()->SetTargetSystem(target);

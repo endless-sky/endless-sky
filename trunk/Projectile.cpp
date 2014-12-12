@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mask.h"
 #include "Outfit.h"
+#include "pi.h"
 #include "Ship.h"
 #include "Sprite.h"
 
@@ -116,7 +117,7 @@ bool Projectile::Move(list<Effect> &effects)
 			targetShip.reset();
 		else
 		{
-			double desiredTurn = (180. / M_PI) * asin(cross);
+			double desiredTurn = TO_DEG * asin(cross);
 			if(fabs(desiredTurn) > turn)
 				turn = copysign(turn, desiredTurn);
 			else

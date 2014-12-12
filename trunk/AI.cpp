@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Key.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -687,7 +688,7 @@ void AI::PrepareForHyperspace(Controllable &control, const Ship &ship)
 				
 				// How much correction will be applied to deviation by thrusting
 				// as I turn back toward the jump direction.
-				double turnRateRadians = ship.TurnRate() * M_PI / 180.;
+				double turnRateRadians = ship.TurnRate() * TO_RAD;
 				double cos = ship.Facing().Unit().Dot(direction);
 				// integral(t*sin(r*x), angle/r, 0) = t/r * (1 - cos(angle)), so:
 				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
@@ -865,7 +866,7 @@ Point AI::StoppingPoint(const Ship &ship)
 		return position;
 	
 	// This assumes you're facing exactly the wrong way.
-	double degreesToTurn = (180. / M_PI) * acos(-velocity.Unit().Dot(angle.Unit()));
+	double degreesToTurn = TO_DEG * acos(-velocity.Unit().Dot(angle.Unit()));
 	double stopDistance = v * (degreesToTurn / turnRate);
 	// Sum of: v + (v - a) + (v - 2a) + ... + 0.
 	// The number of terms will be v / a.
