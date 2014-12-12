@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Point.h"
 
+#include <cmath>
+
 
 
 template <class Type>
@@ -48,7 +50,7 @@ bool ClickZone<Type>::Contains(Point point) const
 {
 	point -= center;
 	
-	return (fabs(point.X()) < size.X() && fabs(point.Y()) < size.Y());
+	return (std::fabs(point.X()) < size.X() && std::fabs(point.Y()) < size.Y());
 }
 
 
