@@ -75,7 +75,7 @@ public:
 	
 private:
 	// Private constructor, using a vector.
-	Point(__m128d v);
+	Point(const __m128d &v);
 	
 	
 private:

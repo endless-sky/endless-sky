@@ -246,8 +246,7 @@ double Point::DistanceSquared(const Point &point) const
 
 
 // Private constructor, using a vector.
-Point::Point(__m128d v)
+inline Point::Point(const __m128d &v)
 	: v(v)
 {
 }
-
