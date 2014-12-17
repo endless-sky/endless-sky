@@ -145,6 +145,7 @@
 		4644543E19BA9A7C00D5A235 /* HailPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HailPanel.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
+		A941B0251A42387700317014 /* pi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pi.h; sourceTree = "<group>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
 		A945B3E11963655400722981 /* ImageBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageBuffer.cpp; sourceTree = "<group>"; };
 		A945B3E21963655400722981 /* ImageBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBuffer.h; sourceTree = "<group>"; };
@@ -520,6 +521,7 @@
 				A9E84C7C196215140058DFB7 /* Personality.h */,
 				A9D445C11A1BFFB200AB5EE5 /* Phrase.cpp */,
 				A9D445C21A1BFFB200AB5EE5 /* Phrase.h */,
+				A941B0251A42387700317014 /* pi.h */,
 				A99F7AAF195DF44B002C30B8 /* Planet.cpp */,
 				A99F7AB0195DF44B002C30B8 /* Planet.h */,
 				A99F7AB1195DF44B002C30B8 /* PlanetPanel.cpp */,
