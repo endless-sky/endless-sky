@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
+#include <SDL2/SDL.h>
+
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
@@ -37,37 +39,44 @@ namespace {
 
 void Files::Init(const char * const *argv)
 {
-#if defined(__APPLE__)
-	// Get the full path to the executable file, then find ../Resources/.
-	string app = argv[0];
-	size_t pos = app.rfind('/');
-	pos = app.rfind('/', pos - 1);
-	resources = app.substr(0, pos) + "/Resources/";
-	
-	config = getenv("HOME") + ("/Library/Application Support/" + appName + "/");
-#elif defined(__linux__)
-	// By default, if there is an "installed" copy of the code, use the "local"
-	// install if it exists, and otherwise the non-local one. If neither one
-	// exists, this is a development machine, so use the current directory.
-	if(Exists("keys.txt") && Exists("credits.txt") && Exists("data") && Exists("images"))
-		resources = "./";
-	else if(Exists("/usr/local/games/" + appName))
-		resources = "/usr/local/share/games/" + appName + "/";
-	else if(Exists("/usr/games/" + appName))
-		resources = "/usr/share/games/" + appName + "/";
-	else
-		resources = "./";
-	
-	// Make sure the root ".config" directory exists.
-	config = getenv("HOME") + string("/.config/");
-	if(!Exists(config) && mkdir(config.c_str(), 0700))
-		throw runtime_error("Unable to create config directory!");
-	config += appName + '/';
-#else
-#error "Unsupported operating system. No code for Files::Init()."
+	// Find the path to the resource directory. This will depend on the
+	// operating system, and can be overridden by a command line argument.
+	char *str = SDL_GetBasePath();
+	resources = str;
+	SDL_free(str);
+	if(resources.back() != '/')
+		resources += '/';
+#ifdef __linux__
+	// Special case, for Linux: the resource files are not in the same place as
+	// the executable, but are under the same prefix (/usr or /usr/local).
+	static const string LOCAL_PATH = "/usr/local/";
+	static const string STANDARD_PATH = "/usr/";
+	static const string RESOURCE_PATH = "share/games/endless-sky/";
+	if(!resources.compare(0, LOCAL_PATH.length(), LOCAL_PATH))
+		resources = LOCAL_PATH + RESOURCE_PATH;
+	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
+		resources = STANDARD_PATH + RESOURCE_PATH;
+#elif __APPLE__
+	// Special case for Mac OS X: the resources are in ../Resources relative to
+	// the folder the binary is in.
+	size_t pos = resources.rfind('/', resources.length() - 2) + 1;
+	resources = resources.substr(0, pos) + "Resources/";
 #endif
+	data = resources + "data/";
+	images = resources + "images/";
+	sounds = resources + "sounds/";
 	
-	// Parse command line arguments to override the defaults from above.
+	// Find the path to the directory for saved games (and create it if it does
+	// not already exist). This can also be overridden in the command line.
+	str = SDL_GetPrefPath("endless-sky", "saves");
+	saves = str;
+	SDL_free(str);
+	if(saves.back() != '/')
+		saves += '/';
+	config = saves.substr(0, saves.rfind('/', saves.length() - 2) + 1);
+	
+	// Parse the command line arguments to see if the user has specified
+	// different directories to use.
 	for(const char * const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -77,19 +86,11 @@ void Files::Init(const char * const *argv)
 			config = *it;
 	}
 	
-	// Create the config directory if it does not exist.
-	if(!Exists(config) && mkdir(config.c_str(), 0700))
-		throw runtime_error("Unable to create config directory!");
-	
-	data = resources + "data/";
-	images = resources + "images/";
-	sounds = resources + "sounds/";
+	// Check that all the directories exist.
 	if(!Exists(data) || !Exists(images) || !Exists(sounds))
 		throw runtime_error("Unable to find the resource directories!");
-	
-	saves = config + "saves/";
-	if(!Exists(saves) && mkdir(saves.c_str(), 0700))
-		throw runtime_error("Unable to create saves directory!");
+	if(!Exists(saves))
+		throw runtime_error("Unable to create config directory!");
 }
 
 
