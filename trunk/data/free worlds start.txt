@@ -597,6 +597,23 @@ mission "FW Plasma Testing 1B"
 
 
 
+mission "plasma turret available"
+	landing
+	to offer
+		has "event: plasma turret available"
+	on offer
+		conversation
+			`When you land, a message pops up on your communicator from Barmy Edward. A photograph is enclosed as well. The message reads:`
+			scene "outfit/plasma turret"
+			`	Rejoice, Captain! The next time you are on Rust, you will be able to purchase plasma turrets for your very own.`
+			`				Regards,`
+			`						B. Edward`
+			`						Chief Offensive Engineer`
+			`						Kraz Cybernetics`
+				decline
+
+
+
 mission "FW Supply Convoy 1"
 	name "Escort Supply Convoy"
 	description "Escort this convoy carrying equipment from Kraz Cybernetics to the militia base on <destination>."
@@ -628,7 +645,7 @@ mission "FW Supply Convoy 1"
 				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
 					accept
 	
-	npc save
+	npc save accompany
 		government "Escort"
 		personality timid
 		fleet
@@ -681,3 +698,328 @@ mission "FW Pirates 1"
 	on complete
 		dialog
 			`You have scouted out all four pirate systems that Tomek asked you to visit. Time to head back to the spaceport bar and see if he is waiting for you.`
+
+
+
+mission "FW Pirates 1A"
+	landing
+	source Harmony
+	to offer
+		has "FW Pirates 1: active"
+	
+	on offer
+		conversation
+			`As you land on <planet>, you recall that the monks who live here are involved in some sort of outreach to children serving as pirate crews. They might have something to say about the best way to deal with the pirate threat. Do you want to visit them?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	It's a short walk to the monastery from the spaceport. When you arrive there, you run into a monk who is working in the garden. He glances up, and recognizes you. "Welcome back," he says. "You're Katya's friend, right? I'm David. I've forgotten your name."`
+			`	"<first>," you say.`
+			`	He brushes some of the dirt off his hands and then shakes hands with you. "How are you doing?" he asks. "And how is Katya? And Ijs?" You explain to him that you are now an official member of the Free Worlds, and that Katya has been captured by the Republic. He is clearly shocked and saddened by the news. After pressing you for all the details, he asks, "And what about you? What brings you to Harmony?"`
+			choice
+				`	"The Free Worlds is hoping to eliminate piracy in this sector, and I was hoping for advice on what targets we should attack."`
+					goto attack
+				`	"The Free Worlds is thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about most of the pirate crews just being kids."`
+					goto kids
+			label attack
+			`	"If you want some military advice," he says, "here's what I can tell you. You cannot create peace using violence. Most people on the pirate worlds are not pirates, just ordinary people unlucky enough to be born there. Or people who feel unwelcome everywhere else."`
+				goto advice
+			label kids
+			`	"It's true," he says. "If you fight the pirates, innocent lives will be lost."`
+				goto advice
+			label advice
+			`	"Then what do you suggest we do?" you ask.`
+			`	"Well," he says, "it's worth noting that most people on the 'pirate' worlds are not pirates. They're just anarchists. As a monk, I feel a sort of kinship with them."`
+			choice
+				`	"How so?"`
+				`	"Naturally."`
+					goto continue
+			`	"For starters, we both wear black all the time," he says, grinning. "And more to the point, we're both seeking to build an alternative community according to our own ideals. Historically, monasticism can actually be seen as a form of utopic anarchism - 'Fear none but God' and all that."`
+			choice
+				`	"Of course."`
+				`	"That makes absolutely no sense. Are you joking around with me?"`
+			label continue
+			`	He grins. "Well, that's a tangent, anyway. My real advice is this: figure out what the people on those pirate worlds want, and how to offer it to them. Freedom from government intervention would be a good start. But that means no annexing their territory for the Free Worlds. Instead, you could offer them some sort of pact: they stop supporting pirate fleets, and you agree to leave their planets in peace."`
+			choice
+				`	"Thanks for the advice. I'll see if we can work out something like that."`
+				`	"No way. We need to speak the language they understand. Overwhelming force."`
+					goto force
+			`	He wishes you the best of luck, and you return to the port.`
+				decline
+			label force
+			`	"It won't end," he says, "not unless you exterminate every last person on those planets. But I can't control what choices you make. Good luck." He returns to gardening, and you walk back to the spaceport.`
+				decline
+
+
+
+mission "FW Senate 1"
+	name "Senator Huygens"
+	description "Meet Senator Arianna Huygens on <planet>, and transport her to the new Free Worlds Senate building on Bourne."
+	source Longjump
+	destination Mere
+	to offer
+		has "FW Pirates 1: done"
+	
+	on offer
+		conversation
+			`Surprisingly, when you get back to Longjump you find that Tomek is no longer there. A courier hands you a short note: "Captain <last>: because the decision of how to deal with the pirates is of interest to all the Free Worlds, we are convening the first session of the Free Worlds Senate ahead of schedule. I have already left for Bourne. You have been assigned to transport Senator Arianna Huygens of Mere; please pick her up as soon as possible and bring her with you."`
+				accept
+
+
+
+mission "FW Senate 1B"
+	landing
+	name "Senator Huygens"
+	description "Transport Senator Arianna Huygens to <destination>."
+	source Mere
+	destination Bourne
+	to offer
+		has "FW Senate 1: done"
+	
+	on offer
+		conversation
+			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
+			`	You take one of her suitcases and lead her into your ship to her room. Once you get there, she says, "I'm glad the Council relented and agreed to convene the Senate. I had begun to worry that the democracy we signed up for had become an oligarchy instead."`
+			`	"What do you mean?" you ask.`
+			`	"Don't play dumb. I mean the Council, deciding everything."`
+			choice
+				`	"Don't worry, it was never their intention to hold on to power once each world had had sufficient time to elect their own representatives."`
+				`	"Hey, the Council has provided great leadership at a time when no one else was ready to take charge. Give then some respect."`
+			`	She looks angry for a minute, then her expression softens. "Oh, pardon me," she says. "I was treating you like another scheming politician, but now I realize you're way too clueless for that. Tell me, Captain, do you know what makes politics similar to piloting a ship?"`
+			choice
+				`	"I have no idea."`
+				`	"Ummm... they both involve momentous decisions that have serious consequences?"`
+				`	"They both require someone skilled and decisive to be in command?"`
+			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast, but decide against it.`
+				accept
+	
+	on complete
+		conversation
+			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
+			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
+			choice
+				`	"You too. What brings you to Bourne?"`
+					goto bourne
+				`	"You too. Did you hear what happened to Katya?"`
+					goto katya
+			label bourne
+			`	"I guess I'm sort of a lobbyist," he says, "here to make Katya's dream a reality."`
+				goto dream
+			label katya
+			`	"Yes, that's why I'm here," he says, "to make sure her dream becomes a reality."`
+			label dream
+			`	"Which dream?" you ask.`
+			`	"Terraforming for the masses. A publicly funded university and research center. Are you familiar with the Free Worlds taxation model?"`
+			`	"Not really," you say.`
+			`	"It's brilliant. And probably totally unsustainable. Each world that joins us negotiates a certain yearly tax amount based on their population and resources. In return they gain access to our defense fleet and other shared resources. Twenty percent of each planet's tax payments are 'unrestricted,' money the Free Worlds can use for whatever we think is most important. But the rest of the taxes can be earmarked for whatever projects that world thinks are most important. Those taxes can also be an in kind donation, such as supplying ships or crews for the common militia..."`
+			`	He continues talking for quite some time. You stop even trying to follow what he is saying. Finally he sees the blank expression on your face and stops babbling. "The point is," he says, "if we can convince enough worlds to pool their money, the Conservatory will become a reality. Our own public university."`
+			choice
+				`	"So you're here to talk to the Senators?"`
+				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
+			`	"Indeed," he says. "Anyways, I'm off to a meeting, but meet me later in the spaceport if you're interested."`
+
+
+
+mission "FW Pirates 2"
+	landing
+	name "Southern Patrol"
+	description "Lead a patrol through the Free Worlds systems on the southern rim, driving off any pirates you encounter, then meet up with Tomek on <destination>."
+	source Bourne
+	waypoint "Yed Prior"
+	waypoint "Beta Lupi"
+	waypoint "Kappa Centauri"
+	waypoint "Pherkad"
+	waypoint "Alniyat"
+	waypoint "Dschubba"
+	waypoint "Han"
+	waypoint "Atria"
+	destination Longjump
+	to offer
+		has "FW Senate 1B: done"
+	
+	on offer
+		conversation
+			`A few minutes later, Tomek shows up at your ship. "Glad you made it," he says. "Sorry to disappear on you earlier."`
+			choice
+				`	"Has the Senate decided anything about the pirates yet?"`
+					goto pirates
+				`	"It seems like some people are a little bit hostile toward the Council."`
+					goto council
+			label pirates
+			`	"Not yet. This is why we wanted to get as much done as possible while we were still under a relatively agile leadership structure. Getting two dozen politicians to agree on any course of action is... difficult. What did your reconnaissance turn up?"`
+				goto recon
+			label council
+			`	"You mean Arianna? Don't worry, she's one of those people who by reflex opposes any idea that comes from someone other than her. Most people appreciate what the Council has done, and in fact before you even arrived the Senate voted to give us a continued advisory role, under the Senate's supervision."`
+			`	"They had that vote before she arrived?"`
+			`	"Yes, we already had a quorum. She was the last to get here, because of her transportation troubles. Sorry to give you a menial job like that, by the way. Now, what can you tell me about the pirates?"`
+			label recon
+			`	You show him your sensor logs. "I've been trying to decide what advice we should give the Senate," he says. "A shock and awe assault on Greenrock might bring all the pirate systems in this sector under our control overnight. But we might have fewer losses if we attack the smaller worlds first, then demand that Greenrock surrender."`
+			choice
+				`	"I say we strike right at their heart, and launch a massive assault on Greenrock."`
+					goto greenrock
+				`	"Why not start by clearing out the Antares system? It's not very well defended."`
+					goto antares
+				`	"Occupying four pirate systems in perpetuity would be a huge drain on our resources. Why not try to negotiate with them, say by offering those worlds freedom from our interference as long as they stop supporting pirate fleets?"`
+					goto diplomacy
+			label greenrock
+			apply
+				set "fw pirate suggestion: greenrock"
+			`	"That's defintely the fastest solution," he says, "and it would be a great show of strength to impress worlds that are still undecided about joining us."`
+				goto next
+			label antares
+			apply
+				set "fw pirate suggestion: antares"
+			`	"Sounds reasonable to me," he says. "We could probably do that with minimal loss of life. But the risk is that Greenrock would still refuse to surrender."`
+				goto next
+			label diplomacy
+			apply
+				set "fw pirate suggestion: diplomacy"
+			`	He frowns. "Negotiate with criminals?"`
+			`	"I'm told that only a small portion of the people on those worlds actually engage in piracy," you say, "and many of them are children pressed into service as crew members."`
+			`	"Very well, we'll take your suggestion into consideration," he says."`
+			label next
+			`	"But I suppose we need to wait for the Senate to decide?" you ask.`
+			`	"Indeed," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the southern rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps. Can you do that?"`
+			`	"Of course!" you say.`
+				accept
+	
+	npc
+		personality heroic
+		government "Escort"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+	
+	on complete
+		dialog "Your patrol fleet is still busy finding landing spots, but your work is done. Time to head to the spaceport bar and see if Tomek is there."
+
+
+
+mission "FW Pirates 3"
+	name "Pirate Diplomacy"
+	description "Following the Senate's orders, travel to <destination>, and negotiate with the ruling authorities. Don't fight pirates if you don't have to, and don't let your escort be destroyed."
+	source Longjump
+	destination Thule
+	clearance
+	to offer
+		has "FW Pirates 2: done"
+	to fail
+		has "fw pirates: disobeyed senate"
+	
+	npc save
+		personality timid
+		government Escort
+		ship "Falcon" "F.S. Terebinth"
+	
+	on complete
+		karma ++
+
+
+
+mission "FW Pirates 3.1"
+	name "Attack Antares"
+	description "Instead of following the Senate's orders, launch a Free Worlds attack on <system> and suppress any Pirate opposition, then land on <planet>."
+	source Longjump
+	destination Bloodsea
+	to offer
+		has "FW Pirates 2: done"
+		not "fw pirate suggestion: greenrock"
+	to fail
+		has "FW Pirates 3: done"
+	
+	npc
+		personality heroic staying
+		government "Free Worlds"
+		system Antares
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+	
+	npc kill
+		personality plunders staying
+		government "Pirate"
+		system Antares
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+	
+	on offer
+		conversation
+			branch antares
+				has "fw pirate suggestion: antares"
+			`You find Tomek in the spaceport bar, talking with Freya and JJ. "Well, Captain," says Tomek, "you're going to be happy to hear this. The Senate recommended the same approach you did: negotiating with the pirates." He seems very upset at this.`
+				goto orders
+			label antares
+			`You find Tomek in the spaceport bar, talking with Freya and JJ. "Well, Captain," says Tomek, "The Senate doesn't see things your way. Instead of attacking the pirates, they want us to negotiate with them." He seems very upset at this.`
+			label orders
+			`	JJ explains, "We've been asked to deliver an ultimatum to each pirate world, starting with the ruling authorities on Thule, in the Men system. The Free Worlds maintains the right to attack any ships engaged in piracy. Any world that continues to support piracy, slavery, or illegal weapons manufacture will be a valid military target for us. But first, we are to offer each world the opportunity to become truly autonomous and free from outside intervention, if they will pledge to cease those activities."`
+			`	Freya says, "The thing is, just like any other world, most people on the 'pirate' planets are just ordinary farmers, or factory workers, or whatever. The only difference is, they want no off-world government telling them how to live. So that's what we're going to offer them."`
+			choice
+				`	"That's good news! I think the Senate made the right choice."`
+					goto agree
+				`	"That doesn't make any sense. If we leave those pirate worlds alone, they'll stab us in the back some time in the future."`
+					goto disagree
+			label agree
+			`	"Well, I think the Senate has water flowing through their veins instead of blood," says Tomek, "and I think asking anarchists to make a binding diplomatic contract is an exercise in futility." You notice that his face is very flushed: he may be drunk.`
+				goto plan
+			label disagree
+			`	"Absolutely," says Tomek. "The Senate doesn't know what's best for them. Perhaps we should save them from their own stupidity and make sure the right thing gets done."`
+			`	"Tomek," says Freya, "This is a diplomacy. We follow the Senate's orders."`
+			label plan
+			`	JJ says, "Captain <last>, the Senate wants you to travel to Thule and deliver their ultimatum. You will be given a single Falcon as an escort: not enough for a battle fleet, just enough to keep you safe. You are to avoid engaging any pirates you meet, if possible."`
+			`	"I'll introduce you to your escort," says Tomek, and he leads you out of the bar. Once you are outside, he pulls you aside and says, "If by any chance you are attacked by pirates along the way, and if you have any reason to suspect that they originate from the <system> system, you would be totally justified in attacking that system instead of following your initial orders. I could even supply you with a backup fleet, if that happened."`
+			choice
+				`	"You're asking me to go against the Senate's decision?"`
+				`	"Understood."`
+					accept
+			`	"Never mind," he says, "I guess you're as weak-willed as the rest of them." He walks back into the bar and leaves you alone.`
+				accept
+	
+	on complete
+		set "fw pirates: disobeyed senate"
+
+
+
+mission "FW Pirates 3.2"
+	name "Attack Greenrock"
+	description "Disobeying the Senate's orders, head to <destination>, and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
+	source Longjump
+	destination Trinket
+	to offer
+		has "FW Pirates 2: done"
+		has "fw pirate suggestion: greenrock"
+	to fail
+		has "FW Pirates 3: done"
+	
+	on offer
+		conversation
+			`Tomek meets you outside the spaceport bar and pulls you roughly aside into an alley. "Do you still think that an all-out assault on Greenrock is our best option?" he asks. Standing so close to him, you can't help notice the whisky on his breath.`
+			choice
+				`	"Yes, it's our best chance for eliminating the pirates."`
+					goto yes
+				`	"Only if the Senate agrees. This is a diplomatic government, after all."`
+				`	"What's going on? Are you drunk?"`
+			`	"Those fools in the Senate want us to negotiate with the pirates," he says. "We need to save them from their own stupidity. I've got a battle fleet waiting for you on <planet>, brave captains who are willing to join you."`
+				goto others
+			label yes
+			`	"Then head to <planet> immediately. There are some militia captains there who will join you in a battle fleet. It's now or never, before the Senate finishes their work of castrating our military."`
+			label others
+			`	Just then, JJ walks out of the bar and sees you talking with Tomek. "Tomek," he says, "what are you doing? Freya and I are waiting inside." He beckons you into the bar.`
+			`	Inside, Freya is sitting at a table looking at Tomek's battered and whisky-stained galactic map. As you all sit down, JJ explains, "We've been asked to deliver an ultimatum to each pirate world, starting with the ruling authorities on Thule, in the Men system. The Free Worlds maintains the right to attack any ships engaged in piracy. Any world that continues to support piracy, slavery, or illegal weapons manufacture will be a valid military target for us. But first, we are to offer each world the opportunity to become truly autonomous and free from outside intervention, if they will pledge to cease those activities."`
+			`	Freya says, "The thing is, just like any other world, most people on the 'pirate' planets are just ordinary farmers, or factory workers, or whatever. The only difference is, they want no off-world government telling them how to live. So that's what we're going to offer them."`
+			`	JJ says, "Captain <last>, the Senate wants you to travel to Thule and deliver their ultimatum. You will be given a single Falcon as an escort: not enough for a battle fleet, just enough to keep you safe. You are to avoid engaging any pirates you meet, if possible. Understood?"`
+			choice
+				`	"Understood."`
+					goto leave
+				`	"So, we're not going to attack the pirates?"`
+			`	Tomek says, "No, we're just going to let them sit there waiting to stab us in the back at the first opportunity."`
+			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the diplomatic process even when we don't like the decisions they make. Captain, I hope your mission to Thule is a success."`
+			label leave
+			`	As you stand up to leave the bar, Tomek says, "Remember what we talked about, <first>."`
+				accept
+	
+	on complete
+		set "fw pirates: disobeyed senate"
