@@ -89,6 +89,16 @@ government "Pirate"
 	"bribe" .05
 	"fine" 0
 
+government "Independent"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" 10
+	"attitude toward"
+		"Korath" -.1
+	"bribe" .05
+	"fine" 0
+
 government "Korath"
 	swizzle 0
 	color .8 .5 .1
