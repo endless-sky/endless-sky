@@ -177,7 +177,7 @@ mission "FW Prisoner Parole 2"
 			
 			label next
 			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
-		"reputation: Republic" = -100
+		"reputation: Republic" = -1000
 
 
 
@@ -907,7 +907,7 @@ mission "FW Pirates 3"
 	to fail
 		has "fw pirates: disobeyed senate"
 	
-	npc save
+	npc accompany save
 		personality timid
 		government Escort
 		ship "Falcon" "F.S. Terebinth"
@@ -1023,3 +1023,106 @@ mission "FW Pirates 3.2"
 	
 	on complete
 		set "fw pirates: disobeyed senate"
+
+
+
+mission "FW Pirates 4"
+	landing
+	name "Defend Thule"
+	description "Destroy the pirate fleet that is attacking the spaceport on Thule. Free Worlds reinforcements ought to be on their way."
+	source Thule
+	clearance
+	to offer
+		has "FW Pirates 3: done"
+	
+	npc kill
+		personality plunders
+		government Pirate
+		ship "Leviathan" "Dire Rain"
+	
+	npc kill
+		personality plunders entering
+		government Pirate
+		ship "Leviathan" "Red Dawn"
+		ship "Leviathan" "Bleak Omen"
+	
+	npc
+		personality heroic
+		government "Free Worlds"
+		system Pherkad
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+	
+	npc
+		personality heroic
+		government "Free Worlds"
+		system Alniyat
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+		fleet" Large Free Worlds"
+		fleet" Large Free Worlds"
+		fleet" Large Free Worlds"
+	
+	npc
+		personality heroic
+		government "Free Worlds"
+		system Sabik
+		ship "Falcon (Plasma)" "F.S. White Oak"
+		ship "Falcon (Plasma)" "F.S. Larch"
+		ship "Falcon (Plasma)" "F.S. Ironwood"
+	
+	on offer
+		conversation
+			`One of the first people to step off the Terebinth when it lands is Alondo, the Free Worlds diplomat. You ask him what the plan is, now.`
+			`	"Well," he says, "The people I'll be meeting with here are tribal elders, of a sort. But the tribes are separated not so much by ethnicity, as by geography and ideology. I can't claim to understand all the intricacies, really, but in matters affecting the entire planet they have authority to make consensus decisions. Of course, there are hundreds of independent settlements and groups that may or may not abide by that decision."`
+			choice
+				`	"What do you think our odds are of a successful negotiation?"`
+				`	"What do we do if diplomacy doesn't work?"`
+			scene scene/army0
+			`	Before he has a chance to respond, the sky lights up with incoming particle beams, and you see one of the Terebinth's engines erupt in a gout of flames. "What the hell?" says Alondo.`
+			`	The captain of the Terebinth, who is standing next to you, stares slack-jawed at his ship for a second before jumping into action. "Captain <last>," he says, "fire up your ship immediately and go after whoever is attacking us. I'll call for backup, but you will need to keep the attackers distracted until they arrive."`
+				launch
+	
+	on accept
+		event "battle for Thule"
+
+
+
+event "battle for Thule"
+	system Men
+		fleet "Small Southern Pirate" 10000
+
+
+
+mission "FW Pirates 4B"
+	name "Return to Longjump"
+	description "Escort the newly repaired F.S. Terebinth back to the Free Worlds base on <destination>."
+	landing
+	source Thule
+	destination Longjump
+	to offer
+		has "FW Pirates 4: done"
+	
+	npc accompany save
+		personality timid
+		government Escort
+		ship "Falcon" "F.S. Terebinth"
+	
+	on offer
+		event "Thule becomes independent"
+		conversation
+			`A pall of smoke still hangs over the spaceport, and as you are coming in for a landing you fly over one landing pad where bodies draped in sheets have been laid out side by side: dozens of casualties. Several buildings are in ruins, some of them still smoldering.`
+			`	Alondo has survived, fortunately. He tells you, "While the fight was goin on overhead, I met with the elders, and they agreed that now that the Free Worlds exist and opposing the pirates is a viable option, they will try to put an end to piracy in this system. But they have no interest whatsoever in joining the Free Worlds."`
+			choice
+				`	"That's the best we had hoped for, right?"`
+					goto best
+				`	"While we've got our fleet here, why not just demand that they join us?"`
+			`	"You can't force people to join a democracy," he says. "Maybe some day they'll be ready, but in the meantime, any pressure we exert on them will turn them from an almost-ally into an enemy."`
+				goto next
+			label best
+			`	"Indeed," he says, "I hate to say it, but that pirate attack actually helped our case. But only time will tell what will come of this experiment of letting worlds be "independent." If more worlds start wanting total independence, rather than joining us, our future may not be sustainable."`
+			label next
+			`	"So, what do we do next?" you ask.`
+			`	"Well, the Terebinth is patched up, but they could use an escort back to <planet>. After that, you'll have to see what the Senate or the Council want you to do."`
+				accept
