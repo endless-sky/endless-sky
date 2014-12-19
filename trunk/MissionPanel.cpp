@@ -490,7 +490,7 @@ void MissionPanel::DrawMissionInfo() const
 		wrap.Wrap(acceptedIt->Description());
 	else
 		return;
-	wrap.Draw(Point(-190., Screen::Bottom() - 183.), *GameData::Colors().Get("bright"));
+	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
 }
 
 
