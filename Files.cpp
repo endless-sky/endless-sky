@@ -39,41 +39,12 @@ namespace {
 
 void Files::Init(const char * const *argv)
 {
-	// Find the path to the resource directory. This will depend on the
-	// operating system, and can be overridden by a command line argument.
-	char *str = SDL_GetBasePath();
-	resources = str;
-	SDL_free(str);
-	if(resources.back() != '/')
-		resources += '/';
-#ifdef __linux__
-	// Special case, for Linux: the resource files are not in the same place as
-	// the executable, but are under the same prefix (/usr or /usr/local).
-	static const string LOCAL_PATH = "/usr/local/";
-	static const string STANDARD_PATH = "/usr/";
-	static const string RESOURCE_PATH = "share/games/endless-sky/";
-	if(!resources.compare(0, LOCAL_PATH.length(), LOCAL_PATH))
-		resources = LOCAL_PATH + RESOURCE_PATH;
-	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
-		resources = STANDARD_PATH + RESOURCE_PATH;
-#elif __APPLE__
-	// Special case for Mac OS X: the resources are in ../Resources relative to
-	// the folder the binary is in.
-	size_t pos = resources.rfind('/', resources.length() - 2) + 1;
-	resources = resources.substr(0, pos) + "Resources/";
+	// The directory separator character is different on Windows:
+#if defined _WIN32
+	static const char SEP = '\\';
+#else
+	static const char SEP = '/';
 #endif
-	data = resources + "data/";
-	images = resources + "images/";
-	sounds = resources + "sounds/";
-	
-	// Find the path to the directory for saved games (and create it if it does
-	// not already exist). This can also be overridden in the command line.
-	str = SDL_GetPrefPath("endless-sky", "saves");
-	saves = str;
-	SDL_free(str);
-	if(saves.back() != '/')
-		saves += '/';
-	config = saves.substr(0, saves.rfind('/', saves.length() - 2) + 1);
 	
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
@@ -84,6 +55,65 @@ void Files::Init(const char * const *argv)
 			resources = *it;
 		else if((arg == "-c" || arg == "--config") && *++it)
 			config = *it;
+			
+	}
+	
+	if(resources.empty())
+	{
+		// Find the path to the resource directory. This will depend on the
+		// operating system, and can be overridden by a command line argument.
+		char *str = SDL_GetBasePath();
+		resources = str;
+		SDL_free(str);
+	}
+	if(resources.back() != SEP)
+		resources += SEP;
+#if defined __linux__
+	// Special case, for Linux: the resource files are not in the same place as
+	// the executable, but are under the same prefix (/usr or /usr/local).
+	static const string LOCAL_PATH = "/usr/local/";
+	static const string STANDARD_PATH = "/usr/";
+	static const string RESOURCE_PATH = "share/games/endless-sky/";
+	if(!resources.compare(0, LOCAL_PATH.length(), LOCAL_PATH))
+		resources = LOCAL_PATH + RESOURCE_PATH;
+	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
+		resources = STANDARD_PATH + RESOURCE_PATH;
+#elif defined __APPLE__
+	// Special case for Mac OS X: the resources are in ../Resources relative to
+	// the folder the binary is in.
+	size_t pos = resources.rfind(SEP, resources.length() - 2) + 1;
+	resources = resources.substr(0, pos) + "Resources/";
+#elif defined _WIN32
+	while(!Exists(resources + "credits.txt"))
+	{
+		size_t pos = resources.rfind(SEP, resources.length() - 2);
+		if(pos == string::npos)
+			throw runtime_error("Unable to find the resource directories!");
+		resources.erase(pos + 1);
+	}
+#else
+#error "Unsupported operating system. No code for Files::Init()."
+#endif
+	data = resources + "data" + SEP;
+	images = resources + "images" + SEP;
+	sounds = resources + "sounds" + SEP;
+	
+	if(config.empty())
+	{
+		// Find the path to the directory for saved games (and create it if it does
+		// not already exist). This can also be overridden in the command line.
+		char *str = SDL_GetPrefPath("endless-sky", "saves");
+		saves = str;
+		SDL_free(str);
+		if(saves.back() != SEP)
+			saves += SEP;
+		config = saves.substr(0, saves.rfind(SEP, saves.length() - 2) + 1);
+	}
+	else
+	{
+		if(config.back() != SEP)
+			config += SEP;
+		saves = config + "saves" + SEP;
 	}
 	
 	// Check that all the directories exist.
