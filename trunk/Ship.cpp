@@ -303,6 +303,8 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	else
 		zoom = 1.;
 	forget = 1;
+	if(government)
+		sprite.SetSwizzle(government->GetSwizzle());
 }
 
 
@@ -344,13 +346,6 @@ void Ship::SetGovernment(const Government *government)
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
-}
-
-
-
-void Ship::SetSwizzle(int swizzle)
-{
-	sprite.SetSwizzle(swizzle);
 }
 
 

@@ -603,6 +603,12 @@ event "start of hostilities"
 
 
 
+event "joined the free worlds"
+	government "Escort"
+		swizzle 2
+
+
+
 event "temporary ceasefire"
 	government "Republic"
 		"attitude toward"

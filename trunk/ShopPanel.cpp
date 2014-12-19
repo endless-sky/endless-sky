@@ -287,7 +287,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
 	float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
-	int swizzle = player.GetSwizzle();
+	int swizzle = GameData::PlayerGovernment()->GetSwizzle();
 	
 	SpriteShader::Draw(sprite, center, zoom, swizzle);
 }

@@ -16,6 +16,7 @@ mission "FW Recon 0"
 	destination Glaze
 	to offer
 		random < 20
+		has "event: initial deployment 4"
 	to fail
 		has "chosen sides"
 	
@@ -51,7 +52,6 @@ mission "FW Recon 1"
 		planet Glaze
 	to offer
 		has "FW Recon 0: done"
-		has "event: initial deployment 4"
 	to fail
 		has "chosen sides"
 	
@@ -332,7 +332,7 @@ mission "FW Katya 1B"
 				`	"Pleased to meet you both. Why the deception?"`
 				`	"Wait a minute... were they the secret cargo?"`
 			
-			`	Katya explains, "The Andersons are defecting to the Free Worlds. The'r dream is to make terraforming a public service, supported by government funds, rather than a luxury available only to the richest of planets. We worked for years to get Parliament to accept that idea, but with no luck. And because of Henry's background and knowledge about the intelligence community, the Republic would have stopped them if they knew they were defecting."`
+			`	Katya explains, "The Andersons are defecting to the Free Worlds. Their dream is to make terraforming a public service, supported by government funds, rather than a luxury available only to the richest of planets. We worked for years to get Parliament to accept that idea, but with no luck. And because of Henry's background and knowledge about the intelligence community, the Republic would have stopped them if they knew they were defecting."`
 			`	She adds, "The real secret cargo, which arrived several days ago via a faster ship, was their personal possessions and Lynn's lab equipment and instruments, which were loaded onto a ship supposedly bound for Hestia."`
 			`	"We had just rented a cottage there," says Henry, "saying we were downsizing. We'll lose the security deposit, of course, but it gave us an excuse to pack up and move."`
 			`	Katya says, "You might not guess if from the outfit he's wearing, but Henry is an absolute mastermind at sublety and misdirection. He planned the whole thing." She hands you a credit chip for <payment>. "Thanks so much for your help. If you're willing to continue helping the Free Worlds, meet me in the spaceport bar in half an hour."`
@@ -1412,7 +1412,7 @@ mission "Defend Sabik"
 		"reputation: Republic" = -10
 		"salary: Free Worlds" 300
 		event "start of hostilities"
-		"swizzle" = 2
+		event "joined the free worlds"
 	
 	npc kill
 		personality waiting heroic
