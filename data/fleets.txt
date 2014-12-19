@@ -581,6 +581,48 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Falcon"
 
+fleet "Small Independent"
+	government "Independent"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 2
+		"Sparrow" 2
+	variant 1
+		"Hawk"
+		"Sparrow"
+	variant 1
+		"Fury" 3
+	variant 2
+		"Clipper"
+	variant 1
+		"Freighter"
+		"Sparrow"
+
+fleet "Large Independent"
+	government "Independent"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
+	variant 5
+		"Argosy"
+		"Hawk"
+	variant 4
+		"Clipper"
+	variant 2
+		"Clipper"
+		"Hawk"
+	variant 3
+		"Argosy"
+		"Sparrow"
+		"Sparrow"
+	variant 2
+		"Bastion"
+	variant 1
+		"Falcon"
+
 fleet "Small Core Pirates"
 	government "Pirate"
 	names "pirate"
