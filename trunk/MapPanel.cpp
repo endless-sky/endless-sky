@@ -85,6 +85,19 @@ void MapPanel::Draw() const
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
+	
+	if(!distance.HasRoute(selectedSystem))
+	{
+		const Font &font = FontSet::Get(18);
+		
+		static const string NO_ROUTE = "You have not yet mapped a route to this system.";
+		Color black(0., 1.);
+		Color red(1., 0., 0., 1.);
+		Point point(-font.Width(NO_ROUTE) / 2, Screen::Top() + 40);
+		
+		font.Draw(NO_ROUTE, point + Point(1, 1), black);
+		font.Draw(NO_ROUTE, point, red);
+	}
 }
 
 
