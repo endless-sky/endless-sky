@@ -23,6 +23,8 @@ namespace {
 	
 	// The string will never be longer than 29 characters, plus a '\0'.
 	static const size_t MAX_SIZE = 32;
+	
+	static const int EPOCH = 2900;
 }
 
 
@@ -42,7 +44,7 @@ Date::Date(int day, int month, int year)
 	t.tm_hour = 12;
 	t.tm_mday = day;
 	t.tm_mon = month - 1;
-	t.tm_year = year - 1900;
+	t.tm_year = year - EPOCH;
 	today = mktime(&t);
 }
 
@@ -50,15 +52,22 @@ Date::Date(int day, int month, int year)
 
 const string &Date::ToString() const
 {
-	if(str.size() == MAX_SIZE)
-	{
-		// Convert to a tm structure (day of the week, etc.).
-		tm t;
-		gmtime_r(&today, &t);
+	// Convert to a tm structure (day of the week, etc.).
+	tm t;
+	gmtime_r(&today, &t);
 	
-		size_t length = strftime(&str.front(), MAX_SIZE, "%a, %-d %b %Y", &t);
-		str.resize(length);
-	}
+	static const string DAY[] = {
+		"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+	static const string MON[] = {
+		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+	str.clear();
+	str.append(DAY[t.tm_wday]);
+	str.append(", 00 ");
+	str[str.length() - 3] += t.tm_mday / 10;
+	str[str.length() - 2] += t.tm_mday % 10;
+	str.append(MON[t.tm_mon]);
+	str.append(" ");
+	str.append(to_string(t.tm_year + EPOCH));
 	
 	return str;
 }
@@ -199,5 +208,5 @@ int Date::Year() const
 	tm t;
 	gmtime_r(&today, &t);
 	
-	return t.tm_year + 1900;
+	return t.tm_year + EPOCH;
 }
