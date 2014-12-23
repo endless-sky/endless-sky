@@ -306,7 +306,7 @@ void MapPanel::DrawNames() const
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		if(!player.HasVisited(&system))
+		if(!player.KnowsName(&system))
 			continue;
 		
 		font.Draw(system.Name(), system.Position() + offset + center,

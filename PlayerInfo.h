@@ -132,6 +132,7 @@ public:
 	
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
+	bool KnowsName(const System *system) const;
 	void Visit(const System *system);
 	
 	bool HasTravelPlan() const;

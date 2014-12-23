@@ -1011,6 +1011,24 @@ bool PlayerInfo::HasVisited(const System *system) const
 
 
 
+bool PlayerInfo::KnowsName(const System *system) const
+{
+	if(HasVisited(system))
+		return true;
+	
+	for(const Mission &mission : availableJobs)
+		if(mission.Destination()->GetSystem() == system)
+			return true;
+	
+	for(const Mission &mission : missions)
+		if(mission.Destination()->GetSystem() == system)
+			return true;
+	
+	return false;
+}
+
+
+
 void PlayerInfo::Visit(const System *system)
 {
 	visited.insert(system);
