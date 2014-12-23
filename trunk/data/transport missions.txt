@@ -59,6 +59,7 @@ mission "Pookie, Part 1"
 
 
 mission "Pookie, Part 2"
+	landing
 	description "Return Pookie the poodle to <destination>."
 	source "Shroud"
 	destination "Hestia"
