@@ -54,6 +54,7 @@ const string &Date::ToString() const
 {
 	// Convert to a tm structure (day of the week, etc.).
 	tm t;
+	memset(&t, 0, sizeof(t));
 	gmtime_r(&today, &t);
 	
 	static const string DAY[] = {
@@ -62,9 +63,9 @@ const string &Date::ToString() const
 		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 	str.clear();
 	str.append(DAY[t.tm_wday]);
-	str.append(", 00 ");
-	str[str.length() - 3] += t.tm_mday / 10;
-	str[str.length() - 2] += t.tm_mday % 10;
+	str.append(", ");
+	str.append(to_string(t.tm_mday));
+	str.append(" ");
 	str.append(MON[t.tm_mon]);
 	str.append(" ");
 	str.append(to_string(t.tm_year + EPOCH));
@@ -77,6 +78,7 @@ const string &Date::ToString() const
 string Date::LongString() const
 {
 	tm t;
+	memset(&t, 0, sizeof(t));
 	gmtime_r(&today, &t);
 	string result = "the " + to_string(t.tm_mday);
 	if(t.tm_mday / 10 == 1 || t.tm_mday % 10 == 0 || t.tm_mday % 10 > 3)
@@ -154,9 +156,11 @@ Date Date::operator+(int days) const
 bool Date::operator<(const Date &other) const
 {
 	tm t;
+	memset(&t, 0, sizeof(t));
 	gmtime_r(&today, &t);
 	
 	tm ot;
+	memset(&ot, 0, sizeof(ot));
 	gmtime_r(&other.today, &ot);
 	
 	if(t.tm_year < ot.tm_year)
@@ -186,6 +190,7 @@ double Date::DaysSinceEpoch() const
 int Date::Day() const
 {
 	tm t;
+	memset(&t, 0, sizeof(t));
 	gmtime_r(&today, &t);
 	
 	return t.tm_mday;
@@ -196,6 +201,7 @@ int Date::Day() const
 int Date::Month() const
 {
 	tm t;
+	memset(&t, 0, sizeof(t));
 	gmtime_r(&today, &t);
 	
 	return t.tm_mon + 1;
@@ -206,6 +212,7 @@ int Date::Month() const
 int Date::Year() const
 {
 	tm t;
+	memset(&t, 0, sizeof(t));
 	gmtime_r(&today, &t);
 	
 	return t.tm_year + EPOCH;
