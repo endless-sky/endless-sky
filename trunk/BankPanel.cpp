@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Table.h"
 #include "UI.h"
 
@@ -49,6 +50,24 @@ BankPanel::BankPanel(PlayerInfo &player)
 	: player(player), qualify(player.Accounts().Prequalify()), selectedRow(0)
 {
 	SetTrapAllEvents(false);
+}
+
+
+
+void BankPanel::Step()
+{
+	if(!Preferences::Has("help: bank"))
+	{
+		Preferences::Set("help: bank");
+		GetUI()->Push(new Dialog(
+			"This is the bank. "
+			"Here, you can apply for new mortgages, if your income and credit history allows it. "
+			"The bank is also a good place to get an overview of your daily expenses: "
+			"mortgage payments, crew salaries, etc.\n"
+			"\tPaying off a mortgage early means you pay less interest to the bank, "
+			"but it is sometimes wiser to instead use your money to buy a bigger ship "
+			"which can earn you more income."));
+	}
 }
 
 

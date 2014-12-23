@@ -12,11 +12,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "HiringPanel.h"
 
+#include "Dialog.h"
 #include "FillShader.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
+#include "UI.h"
 
 using namespace std;
 
@@ -26,6 +29,22 @@ HiringPanel::HiringPanel(PlayerInfo &player)
 	: player(player), maxHire(0), maxFire(0)
 {
 	SetTrapAllEvents(false);
+}
+
+
+
+void HiringPanel::Step()
+{
+	if(!Preferences::Has("help: hiring"))
+	{
+		Preferences::Set("help: hiring");
+		GetUI()->Push(new Dialog(
+			"Hiring extra crew is only helpful if you plan on capturing enemy ships. "
+			"Each crew member other than yourself is paid 100 credits per day. "
+			"Larger ships require more than one crew member, "
+			"but you will automatically hire the minimum number of crew when you buy those ships.\n"
+			"\tCrew members take up space that can otherwise be used for passengers."));
+	}
 }
 
 

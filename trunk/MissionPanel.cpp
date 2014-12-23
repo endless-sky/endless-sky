@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapDetailPanel.h"
 #include "Mission.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -78,6 +79,26 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
+}
+
+
+
+void MissionPanel::Step()
+{
+	if(!Preferences::Has("help: jobs"))
+	{
+		Preferences::Set("help: jobs");
+		GetUI()->Push(new Dialog(
+			"Taking on jobs is a safe way to earn money. "
+			"Special missions are offered in the Space Port; "
+			"more mundane jobs are posted on the Job Board. "
+			"Most special missions are only offered once: "
+			"if you turn one down, it will not be offered to you again.\n"
+			"\tThe payment for a job depends on how far you must travel and how much you are carrying. "
+			"Jobs that have a time limit pay extra, but you are paid nothing if you miss the deadline.\n"
+			"\tAs you gain a combat reputation, new jobs will become available, "
+			"including escorting convoys and bounty hunting."));
+	}
 }
 
 

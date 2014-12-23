@@ -86,6 +86,45 @@ void MainPanel::Step()
 		player.Land();
 		isActive = false;
 	}
+	if(isActive && !Preferences::Has("help: navigation"))
+	{
+		Preferences::Set("help: navigation");
+		ostringstream out;
+		out << "Welcome to the sky! To travel to another star system, press \""
+			<< GameData::Keys().Name(Key::MAP) << "\" to view your map, "
+			<< "and click on the system you want to travel to. "
+			<< "Your hyperdrive can only travel along the \"links\" shown on your map. "
+			<< "After selecting a destination, close your map and press \""
+			<< GameData::Keys().Name(Key::JUMP) << "\" to jump to that system.\n"
+			<< "\tWhen you reach a new system, you can press \""
+			<< GameData::Keys().Name(Key::LAND) << "\" to land on any inhabited planets that are there.";
+		GetUI()->Push(new Dialog(out.str()));
+	}
+	if(isActive && player.GetShip() && !player.GetShip()->Fuel()
+			&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
+	{
+		Preferences::Set("help: stranded");
+		ostringstream out;
+		out << "Oops! You just ran out of fuel in an uninhabited system. "
+			<< "Fortunately, other ships are willing to help you.\n\tPress \""
+			<< GameData::Keys().Name(Key::TARGET) << "\" to cycle through all the ships in this system. "
+			<< "When you have a friendly one selected, press \""
+			<< GameData::Keys().Name(Key::HAIL) << "\" to hail it. "
+			<< "You can then ask for help, "
+			<< "and if it has fuel to spare it will fly over and transfer fuel to your ship. "
+			<< "This is easiest for the other ship to do if your ship is nearly stationary.";
+		GetUI()->Push(new Dialog(out.str()));
+	}
+	if(isActive && player.GetShip() && player.GetShip()->IsDestroyed() && !Preferences::Has("help: dead"))
+	{
+		Preferences::Set("help: dead");
+		ostringstream out;
+		out << "Uh-oh! You just died. The universe can a dangerous place for new captains!\n"
+			<< "\tFortunately, your game is automatically saved every time you leave a planet. "
+			<< "To load your most recent saved game, press \"" + GameData::Keys().Name(Key::MENU)
+			<< "\" to return to the main menu, then click on \"Load / Save\" and \"Enter Ship.\"";
+		GetUI()->Push(new Dialog(out.str()));
+	}
 	
 	engine.Step(isActive);
 	
