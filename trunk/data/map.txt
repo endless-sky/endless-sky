@@ -12,6 +12,38 @@ galaxy "Milky Way"
 	pos 0 0
 	sprite ui/galaxy
 
+galaxy "label south"
+	pos -566 501
+	sprite "label/south"
+
+galaxy "label rim"
+	pos -778 265
+	sprite "label/rim"
+
+galaxy "label dirt belt"
+	pos -515 260
+	sprite "label/dirt belt"
+
+galaxy "label earth"
+	pos -420 94
+	sprite "label/earth"
+
+galaxy "label core"
+	pos -136 130
+	sprite "label/core"
+
+galaxy "label deep"
+	pos -658 -300
+	sprite "label/deep"
+
+galaxy "label paradise"
+	pos -345 -136
+	sprite "label/paradise"
+
+galaxy "label north"
+	pos -324 -332
+	sprite "label/north"
+
 system Acamar
 	pos -284 -3
 	government Syndicate
