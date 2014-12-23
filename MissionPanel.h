@@ -32,6 +32,7 @@ public:
 	MissionPanel(PlayerInfo &player);
 	MissionPanel(const MapPanel &panel);
 	
+	virtual void Step() override;
 	virtual void Draw() const override;
 	
 	

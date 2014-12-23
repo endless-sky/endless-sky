@@ -35,6 +35,8 @@ class OutfitterPanel : public ShopPanel {
 public:
 	OutfitterPanel(PlayerInfo &player);
 	
+	virtual void Step() override;
+	
 	
 protected:
 	virtual int TileSize() const;
