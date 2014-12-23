@@ -100,8 +100,8 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 		if(mapSize)
 			count = HasMapped(mapSize);
 		if(count)
-			font.Draw(to_string(count),
-				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 40),
+			font.Draw("installed: " + to_string(count),
+				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38),
 				bright);
 	}
 	if(player.Cargo().Get(outfit))
@@ -109,7 +109,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 		string count = "in cargo: " + to_string(player.Cargo().Get(outfit));
 		Point pos = point + Point(
 			OUTFIT_SIZE / 2 - 20 - font.Width(count),
-			OUTFIT_SIZE / 2 - 40);
+			OUTFIT_SIZE / 2 - 24);
 		font.Draw(count, pos, bright);
 	}
 	
