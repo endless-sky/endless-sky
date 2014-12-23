@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Screen.h"
 #include "ShipInfoDisplay.h"
 #include "Sprite.h"
@@ -103,6 +104,11 @@ void ShopPanel::DrawSidebar() const
 	}
 	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70 - SHIP_SIZE / 2;
 	maxSideScroll = max(0, maxSideScroll);
+	
+	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
+		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
+	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
+		Point(0., 1.), 10., 10., 5., Color(sideScroll < maxSideScroll ? .8 : .2, 0.));
 }
 
 
@@ -209,7 +215,7 @@ void ShopPanel::DrawMain() const
 			
 			if(isSelected)
 			{
-				Color color = *GameData::Colors().Get("dim");
+				Color color(.2, 0.);
 				int dy = DividerOffset();
 				
 				float before = point.X() - TILE_SIZE / 2 - Screen::Left();
@@ -267,6 +273,11 @@ void ShopPanel::DrawMain() const
 	// bottom of the screen?
 	maxMainScroll = nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2;
 	maxMainScroll = max(0, maxMainScroll);
+	
+	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
+		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
+	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
+		Point(0., 1.), 10., 10., 5., Color(mainScroll < maxMainScroll ? .8 : .2, 0.));
 }
 
 
@@ -344,9 +355,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 bool ShopPanel::Click(int x, int y)
 {
 	// Handle clicks on the buttons.
-	if(x >= Screen::Width() / 2 - SIDE_WIDTH && y >= Screen::Height() / 2 - 70)
+	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - 70)
 	{
-		x -= Screen::Width() / 2 - SIDE_WIDTH;
+		x -= Screen::Right() - SIDE_WIDTH;
 		if(x < 80)
 			KeyDown(SDLK_b, KMOD_NONE);
 		else if(x < 160)
@@ -359,7 +370,24 @@ bool ShopPanel::Click(int x, int y)
 	
 	// Handle clicks anywhere else by checking if they fell into any of the
 	// active click zones (main panel or side panel).
-	dragMain = (x < Screen::Right() - SHIP_SIZE);
+	dragMain = (x < Screen::Right() - SIDE_WIDTH);
+	
+	// Check for clicks in the scroll arrows.
+	if(x >= Screen::Right() - 20)
+	{
+		if(y < Screen::Top() + 20)
+			return Scroll(0, 4);
+		if(y < Screen::Bottom() - 70 && y >= Screen::Bottom() - 90)
+			return Scroll(0, -4);
+	}
+	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
+	{
+		if(y < Screen::Top() + 20)
+			return Scroll(0, 4);
+		if(y >= Screen::Bottom() - 20)
+			return Scroll(0, -4);
+	}
+	
 	for(const ClickZone &zone : zones)
 		if(zone.Contains(x, y))
 		{
