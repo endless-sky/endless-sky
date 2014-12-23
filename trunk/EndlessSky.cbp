@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="EndlessSky" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/EndlessSky" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/EndlessSky" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-march=corei7" />
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+			<Add directory="C:/dev64/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,--subsystem,windows" />
+			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libmingw32.a" />
+			<Add library="C:\dev64\lib\libsdl2main.a" />
+			<Add library="C:\dev64\lib\libsdl2.dll.a" />
+			<Add library="C:\dev64\lib\libpng.dll.a" />
+			<Add library="C:\dev64\lib\libturbojpeg.dll.a" />
+			<Add library="C:\dev64\lib\libjpeg.dll.a" />
+			<Add library="C:\dev64\lib\libopenal32.dll.a" />
+			<Add library="C:\dev64\lib\libglew32.dll.a" />
+			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libopengl32.a" />
+			<Add directory="C:/dev64/lib" />
+		</Linker>
+		<Unit filename="AI.cpp" />
+		<Unit filename="AI.h" />
+		<Unit filename="Account.cpp" />
+		<Unit filename="Account.h" />
+		<Unit filename="Angle.cpp" />
+		<Unit filename="Angle.h" />
+		<Unit filename="Animation.cpp" />
+		<Unit filename="Animation.h" />
+		<Unit filename="Armament.cpp" />
+		<Unit filename="Armament.h" />
+		<Unit filename="AsteroidField.cpp" />
+		<Unit filename="AsteroidField.h" />
+		<Unit filename="Audio.cpp" />
+		<Unit filename="Audio.h" />
+		<Unit filename="BankPanel.cpp" />
+		<Unit filename="BankPanel.h" />
+		<Unit filename="BoardingPanel.cpp" />
+		<Unit filename="BoardingPanel.h" />
+		<Unit filename="CaptureOdds.cpp" />
+		<Unit filename="CaptureOdds.h" />
+		<Unit filename="CargoHold.cpp" />
+		<Unit filename="CargoHold.h" />
+		<Unit filename="ClickZone.h" />
+		<Unit filename="Color.cpp" />
+		<Unit filename="Color.h" />
+		<Unit filename="ConditionSet.cpp" />
+		<Unit filename="ConditionSet.h" />
+		<Unit filename="Controllable.cpp" />
+		<Unit filename="Controllable.h" />
+		<Unit filename="Conversation.cpp" />
+		<Unit filename="Conversation.h" />
+		<Unit filename="ConversationPanel.cpp" />
+		<Unit filename="ConversationPanel.h" />
+		<Unit filename="DataFile.cpp" />
+		<Unit filename="DataFile.h" />
+		<Unit filename="DataNode.cpp" />
+		<Unit filename="DataNode.h" />
+		<Unit filename="DataWriter.cpp" />
+		<Unit filename="DataWriter.h" />
+		<Unit filename="Date.cpp" />
+		<Unit filename="Date.h" />
+		<Unit filename="Dialog.cpp" />
+		<Unit filename="Dialog.h" />
+		<Unit filename="DistanceMap.cpp" />
+		<Unit filename="DistanceMap.h" />
+		<Unit filename="DotShader.cpp" />
+		<Unit filename="DotShader.h" />
+		<Unit filename="DrawList.cpp" />
+		<Unit filename="DrawList.h" />
+		<Unit filename="Effect.cpp" />
+		<Unit filename="Effect.h" />
+		<Unit filename="Engine.cpp" />
+		<Unit filename="Engine.h" />
+		<Unit filename="Files.cpp" />
+		<Unit filename="Files.h" />
+		<Unit filename="FillShader.cpp" />
+		<Unit filename="FillShader.h" />
+		<Unit filename="Fleet.cpp" />
+		<Unit filename="Fleet.h" />
+		<Unit filename="Font.cpp" />
+		<Unit filename="Font.h" />
+		<Unit filename="FontSet.cpp" />
+		<Unit filename="FontSet.h" />
+		<Unit filename="Format.cpp" />
+		<Unit filename="Format.h" />
+		<Unit filename="FrameTimer.cpp" />
+		<Unit filename="FrameTimer.h" />
+		<Unit filename="Galaxy.cpp" />
+		<Unit filename="Galaxy.h" />
+		<Unit filename="GameData.cpp" />
+		<Unit filename="GameData.h" />
+		<Unit filename="GameEvent.cpp" />
+		<Unit filename="GameEvent.h" />
+		<Unit filename="Government.cpp" />
+		<Unit filename="Government.h" />
+		<Unit filename="HailPanel.cpp" />
+		<Unit filename="HailPanel.h" />
+		<Unit filename="HiringPanel.cpp" />
+		<Unit filename="HiringPanel.h" />
+		<Unit filename="ImageBuffer.cpp" />
+		<Unit filename="ImageBuffer.h" />
+		<Unit filename="InfoPanel.cpp" />
+		<Unit filename="InfoPanel.h" />
+		<Unit filename="Information.cpp" />
+		<Unit filename="Information.h" />
+		<Unit filename="Interface.cpp" />
+		<Unit filename="Interface.h" />
+		<Unit filename="Key.cpp" />
+		<Unit filename="Key.h" />
+		<Unit filename="LineShader.cpp" />
+		<Unit filename="LineShader.h" />
+		<Unit filename="LoadPanel.cpp" />
+		<Unit filename="LoadPanel.h" />
+		<Unit filename="LocationFilter.cpp" />
+		<Unit filename="LocationFilter.h" />
+		<Unit filename="MainPanel.cpp" />
+		<Unit filename="MainPanel.h" />
+		<Unit filename="MapDetailPanel.cpp" />
+		<Unit filename="MapDetailPanel.h" />
+		<Unit filename="MapPanel.cpp" />
+		<Unit filename="MapPanel.h" />
+		<Unit filename="Mask.cpp" />
+		<Unit filename="Mask.h" />
+		<Unit filename="MenuPanel.cpp" />
+		<Unit filename="MenuPanel.h" />
+		<Unit filename="Messages.cpp" />
+		<Unit filename="Messages.h" />
+		<Unit filename="Mission.cpp" />
+		<Unit filename="Mission.h" />
+		<Unit filename="MissionAction.cpp" />
+		<Unit filename="MissionAction.h" />
+		<Unit filename="MissionPanel.cpp" />
+		<Unit filename="MissionPanel.h" />
+		<Unit filename="Mortgage.cpp" />
+		<Unit filename="Mortgage.h" />
+		<Unit filename="NPC.cpp" />
+		<Unit filename="NPC.h" />
+		<Unit filename="Outfit.cpp" />
+		<Unit filename="Outfit.h" />
+		<Unit filename="OutfitInfoDisplay.cpp" />
+		<Unit filename="OutfitInfoDisplay.h" />
+		<Unit filename="OutfitterPanel.cpp" />
+		<Unit filename="OutfitterPanel.h" />
+		<Unit filename="OutlineShader.cpp" />
+		<Unit filename="OutlineShader.h" />
+		<Unit filename="Panel.cpp" />
+		<Unit filename="Panel.h" />
+		<Unit filename="Personality.cpp" />
+		<Unit filename="Personality.h" />
+		<Unit filename="Phrase.cpp" />
+		<Unit filename="Phrase.h" />
+		<Unit filename="Planet.cpp" />
+		<Unit filename="Planet.h" />
+		<Unit filename="PlanetPanel.cpp" />
+		<Unit filename="PlanetPanel.h" />
+		<Unit filename="PlayerInfo.cpp" />
+		<Unit filename="PlayerInfo.h" />
+		<Unit filename="Point.cpp" />
+		<Unit filename="Point.h" />
+		<Unit filename="PointerShader.cpp" />
+		<Unit filename="PointerShader.h" />
+		<Unit filename="Politics.cpp" />
+		<Unit filename="Politics.h" />
+		<Unit filename="Preferences.cpp" />
+		<Unit filename="Preferences.h" />
+		<Unit filename="PreferencesPanel.cpp" />
+		<Unit filename="PreferencesPanel.h" />
+		<Unit filename="Projectile.cpp" />
+		<Unit filename="Projectile.h" />
+		<Unit filename="Radar.cpp" />
+		<Unit filename="Radar.h" />
+		<Unit filename="Random.cpp" />
+		<Unit filename="Random.h" />
+		<Unit filename="Sale.h" />
+		<Unit filename="SavedGame.cpp" />
+		<Unit filename="SavedGame.h" />
+		<Unit filename="Screen.cpp" />
+		<Unit filename="Screen.h" />
+		<Unit filename="Set.h" />
+		<Unit filename="Shader.cpp" />
+		<Unit filename="Shader.h" />
+		<Unit filename="Ship.cpp" />
+		<Unit filename="Ship.h" />
+		<Unit filename="ShipEvent.cpp" />
+		<Unit filename="ShipEvent.h" />
+		<Unit filename="ShipInfoDisplay.cpp" />
+		<Unit filename="ShipInfoDisplay.h" />
+		<Unit filename="ShipyardPanel.cpp" />
+		<Unit filename="ShipyardPanel.h" />
+		<Unit filename="ShopPanel.cpp" />
+		<Unit filename="ShopPanel.h" />
+		<Unit filename="Sound.cpp" />
+		<Unit filename="Sound.h" />
+		<Unit filename="SpaceportPanel.cpp" />
+		<Unit filename="SpaceportPanel.h" />
+		<Unit filename="Sprite.cpp" />
+		<Unit filename="Sprite.h" />
+		<Unit filename="SpriteQueue.cpp" />
+		<Unit filename="SpriteQueue.h" />
+		<Unit filename="SpriteSet.cpp" />
+		<Unit filename="SpriteSet.h" />
+		<Unit filename="SpriteShader.cpp" />
+		<Unit filename="SpriteShader.h" />
+		<Unit filename="StarField.cpp" />
+		<Unit filename="StarField.h" />
+		<Unit filename="StellarObject.cpp" />
+		<Unit filename="StellarObject.h" />
+		<Unit filename="System.cpp" />
+		<Unit filename="System.h" />
+		<Unit filename="Table.cpp" />
+		<Unit filename="Table.h" />
+		<Unit filename="Trade.cpp" />
+		<Unit filename="Trade.h" />
+		<Unit filename="TradingPanel.cpp" />
+		<Unit filename="TradingPanel.h" />
+		<Unit filename="UI.cpp" />
+		<Unit filename="UI.h" />
+		<Unit filename="WrappedText.cpp" />
+		<Unit filename="WrappedText.h" />
+		<Unit filename="gl_header.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="pi.h" />
+		<Unit filename="shift.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

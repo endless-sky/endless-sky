@@ -98,6 +98,11 @@ int main(int argc, char *argv[])
 		}
 		if(Screen::Width() && Screen::Height())
 		{
+			// Never allow the saved screen width to be leaving less than 100
+			// pixels free around the window. This avoids the problem where you
+			// maximize without going full-screen, and next time the window pops
+			// up you can't access the resize control because it is offscreen.
+			Screen::Set(min(Screen::Width(), maxWidth - 100), min(Screen::Height(), maxHeight - 100));
 			if(flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
 			{
 				restoreWidth = Screen::Width();
@@ -109,7 +114,13 @@ int main(int argc, char *argv[])
 			Screen::Set(maxWidth - 100, maxHeight - 100);
 		
 		// Create the window.
+#ifdef _WIN32
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);		
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+#else
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+#endif
 		
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
@@ -155,7 +166,7 @@ int main(int argc, char *argv[])
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
 		
-		string swizzleName = "GL_ARB_texture_swizzle";
+		string swizzleName = "_texture_swizzle";
 #ifndef __APPLE__
 		const char *extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
 		if(!strstr(extensions, swizzleName.c_str()))
@@ -258,7 +269,10 @@ int main(int argc, char *argv[])
 		Preferences::Save();
 		
 		Audio::Quit();
+#ifndef _WIN32
+		// Under windows, this cleanup code causes intermittent crashes.
 		SDL_GL_DeleteContext(context);
+#endif
 		SDL_DestroyWindow(window);
 		SDL_Quit();
 	}
