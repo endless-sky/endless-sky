@@ -10,7 +10,7 @@
 
 mission "Intro [0]"
 	name "Passenger to <planet>"
-	description "This old-timer captain offered to ride along with you to New Greenland and to give you some tips along the way."
+	description "This old-timer captain offered to ride along with you to <destination>, and to give you some tips along the way."
 	landing
 	passengers 1
 	source "New Boston"

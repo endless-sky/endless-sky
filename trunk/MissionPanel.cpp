@@ -364,7 +364,7 @@ void MissionPanel::DrawSelectedSystem() const
 	string text;
 	if(!selectedSystem)
 		text = "Selected system: none";
-	else if(!player.HasVisited(selectedSystem))
+	else if(!player.KnowsName(selectedSystem))
 		text = "Selected system: unexplored system";
 	else	
 		text = "Selected system: " + selectedSystem->Name();

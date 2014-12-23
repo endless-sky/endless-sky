@@ -197,7 +197,7 @@ void MapDetailPanel::DrawInfo() const
 	SpriteShader::Draw(systemSprite, uiPoint);
 	
 	const Font &font = FontSet::Get(14);
-	string systemName = player.HasVisited(selectedSystem) ?
+	string systemName = player.KnowsName(selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
 	font.Draw(systemName, uiPoint + Point(-90., -7.), closeColor);
 	
