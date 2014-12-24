@@ -986,12 +986,12 @@ mission "FW Escort 1"
 	npc accompany save
 		personality timid
 		government Escort
-		ship Freighter "R.N.S. Raleigh"
-		ship Freighter "R.N.S. Scott"
-		ship Freighter "R.N.S. Hudson"
-		ship Freighter "R.N.S. Drake"
-		ship Freighter "R.N.S. Magellan"
-		ship Freighter "R.N.S. Franklin"
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
 	npc
 		personality heroic
 		government Escort
@@ -1050,12 +1050,12 @@ mission "FW Escort 1B"
 	npc accompany save
 		personality timid
 		government Escort
-		ship Freighter "R.N.S. Raleigh"
-		ship Freighter "R.N.S. Scott"
-		ship Freighter "R.N.S. Hudson"
-		ship Freighter "R.N.S. Drake"
-		ship Freighter "R.N.S. Magellan"
-		ship Freighter "R.N.S. Franklin"
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
 	npc
 		personality heroic
 		government Escort
@@ -1112,12 +1112,12 @@ mission "FW Escort 2"
 	npc accompany save
 		personality timid
 		government Escort
-		ship Freighter "R.N.S. Raleigh"
-		ship Freighter "R.N.S. Scott"
-		ship Freighter "R.N.S. Hudson"
-		ship Freighter "R.N.S. Drake"
-		ship Freighter "R.N.S. Magellan"
-		ship Freighter "R.N.S. Franklin"
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
 	npc
 		personality heroic
 		government Escort
@@ -1171,12 +1171,12 @@ mission "FW Escort 2B"
 	npc accompany save
 		personality timid
 		government Escort
-		ship Freighter "R.N.S. Raleigh"
-		ship Freighter "R.N.S. Scott"
-		ship Freighter "R.N.S. Hudson"
-		ship Freighter "R.N.S. Drake"
-		ship Freighter "R.N.S. Magellan"
-		ship Freighter "R.N.S. Franklin"
+		ship Freighter "F.S. Raleigh"
+		ship Freighter "F.S. Scott"
+		ship Freighter "F.S. Hudson"
+		ship Freighter "F.S. Drake"
+		ship Freighter "F.S. Magellan"
+		ship Freighter "F.S. Franklin"
 	npc
 		personality heroic
 		government Escort
@@ -1234,7 +1234,7 @@ mission "FW Escort 3"
 		system Lesath
 		personality derelict timid
 		government "Escort"
-		ship "Freighter" "R.N.S. Shackleton"
+		ship "Freighter" "F.S. Shackleton"
 	
 	on offer
 		conversation
