@@ -577,7 +577,7 @@ void Engine::EnterSystem()
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today.DaysSinceEpoch() <= Date(21, 11, 3013).DaysSinceEpoch())
+	if(today <= Date(21, 11, 3013))
 	{
 		Messages::Add(string("Press \"")
 			+ GameData::Keys().Name(Key::MAP)
