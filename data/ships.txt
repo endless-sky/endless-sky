@@ -1011,7 +1011,7 @@ ship "Fury"
 		"fuel capacity" 600
 		"cargo space" 15
 		"outfit space" 160
-		"weapon capacity" 50
+		"weapon capacity" 40
 		"engine capacity" 60
 		weapon
 			"blast radius" 60
