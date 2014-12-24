@@ -817,7 +817,130 @@ mission "FW Senate 1B"
 			choice
 				`	"So you're here to talk to the Senators?"`
 				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
-			`	"Indeed," he says. "Anyways, I'm off to a meeting, but meet me later in the spaceport if you're interested."`
+			`	"Indeed," he says. "Anyways, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
+
+
+
+mission "FW Conservatory 1"
+	name "Take Ijs to Winter"
+	description "Transport Mr. Eyes and the Andersons to <destination>, where he will be helping to set up a public university."
+	source Bourne
+	destination Winter
+	to offer
+		has "FW Senate 1B: done"
+	
+	on offer
+		conversation
+			`When you meet Ijs in the spaceport, he has Lynn and Henry Anderson with him, the friends of Katya who you transported from Glory months ago. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
+			`	"A somewhat run-down community center," adds Henry.`
+			`	Ijs laughs. "True. Anyways, we were hoping you could give us a lift over there, and maybe help out with securing some equipment, too."`
+			choice
+				`	"Sure, I'd definitely like to help make this a reality!"`
+					accept
+				`	"Sorry, I've got more important business to attend to."`
+			`	Ijs seems really dejected. "Are you sure?" he asks. "This could make a big difference for the Free Worlds, as much as any military victory."`
+			choice
+				`	"Okay, I'll help you."`
+					accept
+				`	"Sorry, I'm just not interested."`
+					decline
+	
+	on complete
+		payment 50000
+		dialog `Ijs thanks you for the lift and gives you a credit chip for <payment>. He says, "Next we need to pick up some equipment from Tarazed Corporation. Meet me in the spaceport if you're willing to help out as an escort."`
+
+
+
+mission "FW Conservatory 2"
+	name "Escort to Wayfarer"
+	description "Escort this Free Worlds convoy to Wayfarer, to trade for terraforming equipment provided by Tarazed and the Syndicate."
+	source Winter
+	destination Wayfarer
+	to offer
+		has "FW Conservatory 1: done"
+	
+	on offer
+		conversation
+			`In the spaceport, it does not take long to locate Ijs; he is supervising a crew that is loading trade goods onto several Free Worlds ships. "Glad to see you, <first>," he says. "These three ships need to get to Tarazed and back without being destroyed by pirates... or by the Republic. Think you can tag along and protect them?"`
+			choice
+				`	"Sure thing!"`
+					accept
+				`	"I've got another pressing mission. Can I come back and do this later?"`
+			`	"Sure," he says, "But the longer we wait, the longer it will be until the Conservatory is up and running, so come back soon."`
+				defer
+	
+	npc accompany save
+		government Escort
+		personality timid
+		ship "Argosy" "F.M.S. Daybreak"
+		ship "Argosy" "F.M.S. Monsoon"
+		ship "Argosy" "F.M.S. Summer"
+	
+	npc
+		government Pirate
+		personality plunders
+		system Tarazed
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+
+
+
+mission "FW Conservatory 2B"
+	landing
+	name "Escort to Winter"
+	description "Escort this Free Worlds convoy of terraforming equipment back to Winter."
+	source Wayfarer
+	destination Winter
+	to offer
+		has "FW Conservatory 2: done"
+	
+	on offer
+		conversation
+			`Your three escorts land safely on Tarazed. Their cargo is quickly offloaded and exchanged for the terraforming equipment that the Conservatory needs.`
+				accept
+	
+	npc accompany save
+		government Escort
+		personality timid
+		ship "Argosy" "F.M.S. Daybreak"
+		ship "Argosy" "F.M.S. Monsoon"
+		ship "Argosy" "F.M.S. Summer"
+	
+	npc
+		government Pirate
+		personality plunders
+		system "Yed Prior"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+	
+	npc
+		government Pirate
+		personality plunders
+		system "Pherkad"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+	
+	on complete
+		payment 300000
+		conversation
+			`Ijs meets your convoy as it lands, and checks off each item on a clipboard as it is unloaded. Lynn is with him, looking over the various machines to make sure they are all in working order. "I hope you didn't have any trouble," says Ijs, as he hands you your payment of <payment>.`
+			choice
+				`	"No, none at all."`
+				`	"A few pirates, nothing I couldn't handle."`
+				`	"Actually, we were lucky to make it back alive."`
+					goto lucky
+			`	"Glad to hear it," he says.`
+				goto next
+			label lucky
+			`	"That's too bad," he says. "This war must be making the Dirt Belt even more unstable than usual. Hopefully we'll be able to do something about that soon."`
+			label next
+			`	"Is there anything else you need me to do?" you ask.`
+			`	"Not at the moment," he says. "I'll send you a message when we do. Thanks for your help, and if you hear any more news about Katya, please let me know."`
+		event "fw conservatory founded" 30
 
 
 
