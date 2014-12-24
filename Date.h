@@ -21,7 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // Class representing a date (day, month, and year).
 class Date {
 public:
-	Date();
+	Date() = default;
 	Date(int day, int month, int year);
 	
 	// Get this date as a string, in the form "Day, DD Mon Year".
@@ -41,7 +41,7 @@ public:
 	bool operator<(const Date &other) const;
 	
 	// Get the number of days that have elapsed since the "epoch".
-	double DaysSinceEpoch() const;
+	int DaysSinceEpoch() const;
 	
 	// Get the date as numbers.
 	int Day() const;
@@ -50,7 +50,8 @@ public:
 	
 	
 private:
-	time_t today;
+	int date = 0;
+	mutable int daysSinceEpoch = 0;
 	mutable std::string str;
 };
 
