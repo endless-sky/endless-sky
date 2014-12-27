@@ -168,6 +168,41 @@ bool Date::operator<(const Date &other) const
 
 
 
+bool Date::operator<=(const Date &other) const
+{
+	return date <= other.date;
+}
+
+
+
+bool Date::operator>(const Date &other) const
+{
+	return date > other.date;
+}
+
+
+
+bool Date::operator>=(const Date &other) const
+{
+	return date >= other.date;
+}
+
+
+
+bool Date::operator==(const Date &other) const
+{
+	return date == other.date;
+}
+
+
+
+bool Date::operator!=(const Date &other) const
+{
+	return date != other.date;
+}
+
+
+
 // Get the number of days that have elapsed since the "epoch".
 int Date::DaysSinceEpoch() const
 {
