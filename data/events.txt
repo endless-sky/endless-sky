@@ -670,6 +670,8 @@ event "Tarazed neutrality"
 		government "Neutral"
 	system "Albireo"
 		government "Neutral"
+	system "Girtab"
+		government "Neutral"
 
 
 
@@ -770,6 +772,48 @@ event "Thule becomes independent"
 
 
 
+event "fw suppressed Bloodsea"
+	system Antares
+		government "Free Worlds"
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1600
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 8000
+
+
+
+event "fw abandoned Bloodsea"
+	system Antares
+		government "Pirate"
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 2000
+		fleet "Large Militia" 5000
+
+
+
+event "fw suppressed Greenrock"
+	system Shaula
+		government "Free Worlds"
+		fleet "Small Free Worlds" 500
+		fleet "Large Free Worlds" 800
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 5000
+
+
+
+event "fw abandoned Greenrock"
+	system Shaula
+		government "Pirate"
+		fleet "Small Southern Pirates" 500
+		fleet "Large Southern Pirates" 800
+		fleet "Small Core Pirates" 4000
+		fleet "Large Core Pirates" 7000
+		fleet "Small Northern Pirates" 5000
+		fleet "Large Northern Pirates" 9000
+		fleet "Large Militia" 9000
+
+
+
 event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Chipmunk Plasma Thruster"
@@ -798,3 +842,28 @@ event "flamethrower available"
 		"Laser Rifle"
 		"Plasma Turret"
 		"Flamethrower"
+
+
+
+event "navy occupying the south"
+	system "Rastaban"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 2400
+		fleet "Small Republic" 500
+		fleet "Large Republic" 700
+	system Girtab
+		fleet "Small Southern Merchants" 900
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Republic" 500
+		fleet "Large Republic" 700
+	system Albaldah
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 1200
+		fleet "Small Republic" 500
+		fleet "Large Republic" 700
+	system "Delta Sagitarii"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Republic" 500
+		fleet "Large Republic" 700
+
