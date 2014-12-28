@@ -692,8 +692,12 @@ mission "FW Pirates 1"
 			`	"I suppose you're right," you say.`
 			
 			label agree
-			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."
+			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."`
+			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 800 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
+	
+	on accept
+		"salary: Free Worlds" = 800
 	
 	on complete
 		dialog
@@ -951,6 +955,7 @@ mission "FW Flamethrower 1"
 	destination Rust
 	to offer
 		has "event: plasma turret available"
+		random < 5
 	
 	on offer
 		conversation
@@ -1161,6 +1166,7 @@ mission "FW Pirates 3.1"
 	description "Instead of following the Senate's orders, launch a Free Worlds attack on <system> and suppress any Pirate opposition, then land on <planet>."
 	source Longjump
 	destination Bloodsea
+	clearance
 	to offer
 		has "FW Pirates 2: done"
 		not "fw pirate suggestion: greenrock"
@@ -1219,6 +1225,9 @@ mission "FW Pirates 3.1"
 	
 	on complete
 		set "fw pirates: disobeyed senate"
+		set "fw pirates: victory"
+		event "fw suppressed Bloodsea"
+		event "fw abandoned Bloodsea" 70
 
 
 
@@ -1259,9 +1268,104 @@ mission "FW Pirates 3.2"
 			label leave
 			`	As you stand up to leave the bar, Tomek says, "Remember what we talked about, <first>."`
 				accept
+
+
+
+mission "FW Pirates 3.2A"
+	landing
+	name "Attack Greenrock"
+	description "Disobeying the Senate's orders, launch an all-out attack on the pirate world of <destination>, then land there."
+	source Trinket
+	destination Greenrock
+	clearance
+	to offer
+		has "FW Pirates 3.2: done"
+	
+	on offer
+		conversation
+			`When you land on <origin>, you do indeed find a Free Worlds fleet gathered, but nowhere near as large a fleet as you had hoped for. As you survey the motley mix of grizzled militia veterans and young, naive interceptor pilots, you can't help but wonder if a fleet this size really has any chance at all against the strongest pirate world in southern space.`
+			`	Perhaps the Senate was right in suggesting a diplomatic solution. If you disobey their orders and lead this entire fleet to their deaths, that will not earn you any friends in the Free Worlds.`
+			choice
+				`	(Give up on Tomek's scheme and follow the Senate's orders to make a diplomatic visit to Thule, instead.)`
+					decline
+				`	(Go ahead and attack Greenrock, even though it may be an impossible fight.)`
+			`	You meet with the volunteer captains and give them a brief pep talk, telling them that you will be praised as heros for years to come after you eliminate southern piracy in one fell swoop. The younger ones are fired up, but you can tell that some of the older veterans are very worried.`
+			`	Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
+				accept
+	
+	on accept
+		set "fw pirates: disobeyed senate"
+	
+	npc
+		personality heroic
+		government "Escort"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Small Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+	
+	npc kill
+		personality plunders staying
+		government "Pirate"
+		system Shaula
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
 	
 	on complete
-		set "fw pirates: disobeyed senate"
+		event "fw suppressed Greenrock"
+		event "fw abandoned Greenrock" 40
+
+
+
+mission "FW Pirates 3.1B"
+	landing
+	name "Report to Tomek"
+	description "Return to Longjump to report to Tomek that <origin> has been pacified."
+	source Bloodsea
+	destination Longjump
+	to offer
+		has "FW Pirates 3.1: done"
+	
+	on offer
+		set "fw pirates: victory"
+		conversation
+			`As you bring your ship in for a landing on <planet>, you are struck by the utter futility of the victory you have just won. The locals stand around your ship, sullen and defiant, as you announce that this world is now property of the Free Worlds. True, you have destroyed much of their military strength, but you have no idea what to do to win the hearts of these people.`
+			`	But if nothing else, the battle you have fought here will give merchants in the surrounding systems a respite from piracy for many months to come, while the pirates are busy finding new ships and recruiting new crews. Time to report back to Tomek and see what your next steps will be.`
+				accept
+
+
+
+mission "FW Pirates 3.2B"
+	landing
+	name "Report to Tomek"
+	description "Return to Longjump to report to Tomek that <origin> has been pacified."
+	source Greenrock
+	destination Longjump
+	to offer
+		has "FW Pirates 3.2A: done"
+	
+	on offer
+		set "fw pirates: victory"
+		conversation
+			`As you bring your ship in for a landing on <planet>, you are struck by the utter futility of the victory you have just won. The locals stand around your ship, sullen and defiant, as you announce that this world is now property of the Free Worlds. True, you have destroyed much of their military strength, but you have no idea what to do to win the hearts of these people.`
+			`	But if nothing else, the battle you have fought here will give merchants in the surrounding systems a respite from piracy for many months to come, while the pirates are busy finding new ships and recruiting new crews. Time to report back to Tomek and see what your next steps will be.`
+				accept
 
 
 
@@ -1365,3 +1469,161 @@ mission "FW Pirates 4B"
 			`	"So, what do we do next?" you ask.`
 			`	"Well, the Terebinth is patched up, but they could use an escort back to <planet>. After that, you'll have to see what the Senate or the Council want you to do."`
 				accept
+
+
+
+mission "FW Pirates 4.1"
+	landing
+	name "Senate Hearing"
+	description "Report to <destination>, for a Senate hearing on your recent failure to obey their orders. If you do not arrive by <date>, your service will be terminated."
+	source "Longjump"
+	destination "Bourne"
+	deadline 14
+	to offer
+		has "fw pirates: victory"
+	
+	on offer
+		conversation
+			`JJ and Freya meet you soon after you land on <origin>. "Congratulations," says JJ, "You're a goddamn hero. Now, what exactly were you planning on doing next?"`
+			choice
+				`	"Station a fleet in orbit to keep the locals pacified."`
+					goto fleet
+				`	"Launch a ground assault on the planet."`
+					goto ground
+				`	"Subdue the locals with orbital bombardment."`
+					goto bombard
+			label fleet
+			`	"The fleet that's currently protecting us from the Navy, you mean? Sure, it makes perfect sense to split up that fleet in order to baby-sit a pirate world."`
+				goto tomek
+			label ground
+			`	"Are you out of your mind?" he says. "We have no ground army. And even if we did, pirate settlements are like fortresses. We'd have no hope of subduing them."`
+				goto tomek
+			label bombard
+			`	Freya looks shocked. "You're suggesting committing war crimes?" she says. "Sure, I bet that will make tons of other worlds flock to our cause."`
+				goto tomek
+			label tomek
+			`	"Well, I'm sure Tomek had a plan," you say. "Why don't we ask him?"`
+			`	"We could do that," says Freya, "if he weren't currently under house arrest on Bourne for disobeying the Senate."`
+			`	The last vestiges of the elation you have been feeling over your victory are suddenly replaced by a sense of dread. "What about me?" you ask.`
+			`	JJ says, "You are temporarily suspended from your service to the Free Worlds, and commanded to report to Bourne for a Senate hearing within the next two weeks. If you do not report for your hearing, your service will be terminated. And given your reputation, I doubt you will be able to find any meaningful employment elsewhere in human space."`
+			`	"I'm very disappointed in you," says Freya, as she and JJ leave.`
+				accept
+		clear "salary: Free Worlds"
+	
+	on complete
+		event "navy occupying the south" 50
+		set "fw first chapter done"
+		conversation
+			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
+			branch greenrock
+				has "FW Pirates 3.2B: done"
+			`	Several hours pass. Finally, you are led into the Senate chamber, where several dozen senators sit, each with a name card identifying the world they represent. Senator Huygens of Mere asks the first question. "Captain <last>, is it true that you took part in a recent unauthorized attack on Bloodsea in the Antares system?"`
+				goto start
+			label greenrock
+			`	Several hours pass. Finally, you are led into the Senate chamber, where several dozen senators sit, each with a name card identifying the world they represent. Senator Huygens of Mere asks the first question. "Captain <last>, is it true that you took part in a recent unauthorized attack on Greenrock in the Shaula system?"`
+			label start
+			choice
+				`	"Yes, that is correct."`
+					goto knew
+				`	"I was following orders from Tomek, from the Council."`
+			`	"I didn't ask what your excuse is," she says. "I asked whether you took part in the attack."`
+			`	"Yes, I did," you say.`
+			label knew
+			`	"Were you aware at the time that you were going against the orders of the Senate?"`
+			choice
+				`	"Yes."`
+					goto reason
+				`	"No, I was led to believe that I was following the Senate's orders."`
+			`	"Interesting," sys Arianna. "That's not what Tomek told us. And JJ and Freya both said that you were well aware of the Senate's wishes."`
+			label reason
+			`	One of the other Senators, an older man, asks, "Why did you choose to take part in the attack?"`
+			choice
+				`	"I wanted to do something to end the pirate threat."`
+				`	"I trusted that Tomek would know the best strategy."`
+				`	"I guess I got too caught up in trying to be a hero."`
+					goto hero
+			`	"And how did that work out?" says the old man. "How long after the battle did it take you to realize that we have no way of holding on to the planet you conquered?"`
+			`	"Not long," you admit.`
+				goto sentence
+			label hero
+			`	"Indeed," says the senator. "And I bet it wasn't long after the battle that you realized saving the galaxy isn't that easy."`
+			`	"I suppose so," you admit.`
+			label sentence
+			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we to want your continued services."`
+			`	You are led back out to the lobby, where you wait for what feels like another hour. Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay. When we are in need of your services again, we will contact you." It looks like for now, you are back to being a simple merchant captain.`
+
+
+
+mission "FW Refinery 1"
+	landing
+	name "Smuggler's Den Repairs"
+	description "Travel to Tundra and pick up a shipment of equipment for repairing the refinery on Smuggler's Den."
+	source Longjump
+	destination Tundra
+	clearance
+	to offer
+		has "FW Pirates 4B: done"
+	
+	on offer
+		conversation
+			`You arrive back on Longjump to a hero's welcome. People have heard of the battle you fought on Thule and the deal that was forged with the locals there. JJ and Freya greet you too, and congratulate you. But then Freya says, "We need to talk in private."`
+			`	You lead them into your ship, where Freya explains, "Soon after you left for Thule, Tomek took off on his own and raised a fleet for an attack on Greenrock. He thought the Senate's plan of making a deal with the pirate worlds was too cowardly, and that we needed a show of strength instead. But he was defeated by the pirates. His fleet retreated, with heavy losses, and when they landed back on Trinket, Tomek was put under house arrest by order of the Senate."`
+			choice
+				`	"Why would Tomek do something like that? It's unthinkable!"`
+					goto attack
+				`	"How can the Senate have him arrested? He's part of the Council!"`
+					goto defend
+			label attack
+			`	"That's easy to answer," says JJ. "He didn't like the idea of taking orders from the Senate. He thought they should treat him like a hero and go along with whatever he thought best."`
+				goto next
+			label defend
+			`	JJ and Freya are both quiet for a minute, then Freya says, "You know, there are people in the Senate who worry that the Council could become the ruling authority in the Free Worlds, instead of a democratic Senate. It wouldn't be the first time a people's revolution turned into an oligarchy. We of the council have to be careful not to let that happen."`
+				goto next
+			label next
+			`	"So, what will happen to Tomek?" you ask.`
+			`	"He's out of the picture for now," says Freya. "But he's a tactical genius. We'll need his advice, if this war turns worse. In the meantime, though, we need your help with some peacemaking."`
+			choice
+				`	"How so?"`
+					goto repairs
+				`	"So we're just going to let Tomek stay under arrest?"`
+			`	"Yes," says Freya, firmly. "Don't be a fool, <first>. We're trying to create a new sort of democracy here, and we can't do that by flaunting its rules."`
+			`	"I suppose you're right," you say. "So, what's next?"`
+			label repairs
+			`	"Well, thanks to you, the Men system is no longer engaged in piracy," says JJ. "And that means the folks on Smuggler's Den are in need of new work. That station used to be a deuterium refinery. With a little work, it can be one, again."`
+			`	"A working refinery could bring more income to that system than piracy ever did," says Freya. "Only problem is, the replacement parts are rare, and hard to come by. The Syndicate agreed to sell us the parts, but only if we meet them halfway, on Tundra. That's in the Cebalrai system. Just one jump away from one of the major new Navy bases."`
+			choice
+				`	"We're going to take a supply convoy through Republic space?"`
+					goto convoy
+				`	"How do we know this isn't a trap?"`
+			`	"We don't," says Freya, "except that the Syndicate is greedy, and we have money. I don't think they're ready yet to give up on the chance to sell their wares to both sides in this war."`
+			`	"Still, how do they expect us to get a convoy safely to Tundra?"`
+			label convoy
+			`	"Not a convoy," says JJ. "Just you, captain. It's only ten tons of spare parts. Your job is to fly to Tundra, retrieve the parts, and return here."`
+			choice
+				`	"I'll do my best."`
+					accept
+				`	"I hope this doesn't turn out to be a suicide mission."`
+			`	"I hope so too," says Freya. "If your ship has enough fuel capacity, you might try flying over to the neutral territory of Dabih or Tarazed, and then up to Cebalrai from there, to avoid the worst of the Navy patrols. Good luck, Captain. If anyone can do it, you can."`
+				accept
+
+
+
+mission "FW Refinery 1A"
+	landing
+	name "Smuggler's Den Repairs"
+	description "Bring a shipment of special refinery equipment to Smuggler's Den."
+	source Tundra
+	destination "Smuggler's Den"
+	to offer
+		has "FW Refinery 1: done"
+	
+	on offer
+		conversation
+			`	"Your landing site is an abandoned settlement a thousand kilometers from Tundra's main spaceport. It's an old oil field that ran dry decades ago, and only  few of the landing pads are still usable. The Syndicate employees quickly load the cargo onto your ship, and say, "Now, take off quickly, before the Navy sees us doing business with a ship flying Free Worlds colors."`
+				launch
+	
+	on complete
+		dialog
+			`After unloading the supplies, you send Freya and JJ a message letting them know that you arrived safely. You're a bit surprised when they don't immediately send you a message back. Something else must be going on that is occupying their attention. After months of just traveling around following other people's orders, it feels odd to be left to your own devices for a change.`
+		set "fw first chapter done"
+		event "navy occupying the south" 5

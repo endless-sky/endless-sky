@@ -1410,7 +1410,7 @@ mission "Defend Sabik"
 				launch
 		
 		"reputation: Republic" = -10
-		"salary: Free Worlds" 300
+		"salary: Free Worlds" = 300
 		event "start of hostilities"
 		event "joined the free worlds"
 	
