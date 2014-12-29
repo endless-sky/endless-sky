@@ -89,11 +89,11 @@ void LocationFilter::Load(const DataNode &node)
 		{
 			center = GameData::Systems().Get(child.Token(1));
 			if(child.Size() == 3)
-				centerMaxDistance = child.Value(1);
+				centerMaxDistance = child.Value(2);
 			else if(child.Size() == 4)
 			{
-				centerMinDistance = child.Value(1);
-				centerMaxDistance = child.Value(2);
+				centerMinDistance = child.Value(2);
+				centerMaxDistance = child.Value(3);
 			}
 		}
 		else if(child.Token(0) == "distance" && child.Size() >= 2)
