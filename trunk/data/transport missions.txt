@@ -198,3 +198,172 @@ mission "Smuggler's Den, Part 2"
 		conversation
 			`	You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
 			`	You wish them the best of luck, and return to your ship.`
+
+
+
+mission "Expedition to Hope 1"
+	name "Expedition to Hope"
+	description "Transport a team of scientists to the abandoned world of <planet>, where they will be placing some meteorological equipment."
+	source
+		near Wei 2 5
+		attributes "dirt belt"
+	destination Hope
+	to offer
+		random < 5
+	cargo "scientific equipment" 4
+	passengers 4
+	
+	on offer
+		conversation
+			`A group of scientists approaches you and asks if you would be willing to take them to the abandoned planet of Hope, and then back home from there. "The transport we'd arranged for bailed out on us at the last moment," says their leader, a middle-aged man wearing thick-rimmed glasses.`
+			choice
+				`	"Sure, I'd be glad to help."`
+					goto yes
+				`	"What sort of research are you doing?"`
+				`	"Sorry, I don't have space for you."`
+					decline
+			`	"You probably know about the supervolcano that forced the evacuation of Hope two decades ago," he says. "My family lived on Hope back then. We want to measure how much ash is still in the air, to see how long it will be before the glaciers recede and the planet is habitable again."`
+			choice
+				`	"That sounds like a worthy cause. I'd be glad to transport you."`
+					goto yes
+				`	"Sorry, I'm not going to be headed in that direction any time soon."`
+					decline
+			label yes
+			`	"Thank you," he says. You help them to load their meteorological equipment onto your ship.`
+				accept
+	
+	on complete
+		payment 40000
+
+
+
+mission "Expedition to Hope 2"
+	landing
+	name "Expedition to Hope"
+	description "Transport the team of scientists home to <destination>."
+	source
+		Hope
+	destination
+		distance 2 5
+	to offer
+		has "Expedition to Hope 1: done"
+	passengers 4
+	
+	on offer
+		conversation
+			`You fly around the planet to several different sites that the scientists have identified as good places for their equipment. They also make some deep radar scans of the glaciers. "That's my old house, down there," says one of the scientists, pointing to the radar picture of one of the buried villages. "Under thirty meters of ice, now."`
+			`	The lead scientist hands you forty thousand credits, and says, "Here's the first part of your payment. Now we need to get home to <planet>. I'll pay you the rest once we get there."`
+				accept
+	
+	on complete
+		payment 40000
+		dialog `You drop the team of scientists off on <planet>. They thank you for helping them out, and pay you <payment>.`
+
+
+
+mission "Transport Workers A"
+	name "Transport Family"
+	description "Transport this family to <destination>, where they hope that steady work will be more easy to come by."
+	source
+		attributes "dirt belt"
+	destination
+		government "Syndicate"
+		attributes "factory"
+	to offer
+		random < 500
+	passengers 4
+	cargo "household goods" 2
+	
+	on offer
+		dialog `In one of the corners of the spaceport, you meet a family with two kids, and a pile of trunks and boxes spread out next to them. They tell you that they are trying to book passage to <planet>. "Work has gotten way too hard to come by here," explains the father. "I've had seven different jobs in the past year, and none of them lasted more than a month. So we thought we'd try our luck on a Syndicate world."`
+	
+	on complete
+		payment
+		payment 20000
+		dialog `You drop off the family from <origin>, and wish them the best of luck on <planet>. They seem optimistic, and their kids are still quite excited about having taken their first ever space journey. You're sure that they will be remembering this trip for years to come. Their parents thank you, and pay you <payment>.`
+
+
+
+mission "Transport Workers B"
+	name "Transport Worker"
+	description `This young man is headed to the factories on <destination>. He says he wants to save enough money to be able to ask his "true love" to marry him.`
+	source
+		attributes "dirt belt"
+	destination
+		government "Syndicate"
+		attributes "factory"
+	to offer
+		random < 500
+	passengers 1
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, a young man approaches you and says, "Excuse me, Captain. Is there any chance you're traveling towards the Core?" He's probably in his late teens, barely more than a kid.`
+			choice
+				`	"I'm sure I could work that into my plans. Where are you headed?"`
+				`	"You're traveling all by yourself? You aren't in any trouble, I hope?"`
+				`	"Sorry, I don't expect to be headed that way any time soon."`
+					decline
+			`	"Well, here's the story," he says. "My girlfriend's father won't let us get married until I have some money saved up. They say there's plenty of jobs to be had on <planet>. So I'm headed there to put down roots and get myself established, then in a year or two she can come and join me."`
+			choice
+				`	"I'd be glad to take you there."`
+					goto thanks
+				`	"Are you sure about that? I've heard some bad things about the Syndicate's company towns."`
+					goto towns
+				`	"Do your really think she's going to wait around for you?"`
+					goto wait
+			label towns
+			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`
+				goto choice
+			label wait
+			`	"She'll be true to me," he says, with absolute confidence.`
+				goto choice
+			label choice
+			choice
+				`	"Okay, I'll take you to <planet>."`
+					goto thanks
+				`	"Sorry, I'm not headed in that direction."`
+					decline
+			label thanks
+			`	"Thank you, Captain," he says, shaking your hand. You bring him aboard your ship and show him to one of the empty bunks.`
+				accept
+	
+	on complete
+		payment
+		payment 10000
+		dialog `You drop off the young man from <origin> who is hoping to find work and save enough money for his girlfriend to join him. "Good luck," you say. "Be wise. Don't let yourself get into debt." He thanks you, and pays you <payment>.`
+
+
+
+mission "Transport Workers C"
+	name "Farming Family"
+	description "Transport this family of farmers, and their livestock, to <destination>."
+	source
+		attributes "dirt belt"
+		attributes "farming"
+	destination
+		government "Syndicate"
+		attributes "farming"
+	to offer
+		random < 1500
+	passengers 5
+	cargo "farm animals" 10
+	
+	on offer
+		conversation
+			`On the dirt near your landing pad is parked a large wagon, hitched to a draft horse and loaded down with furniture and various farming implements. A family is gathered in the shade of the cart, and several goats and sheep are tied up behind it. Do you approach them and find out where they are headed?`
+			choice
+				`	(Yes.)`
+				`	(No, I'm not interested in carrying livestock in my shiny new space ship.)`
+					defer
+			`	The farmers introduce themselves as Cory and Annette Patterson; their kids are Erin, Kyle, and Sarah. "Any chance you've got space for some livestock?" asks Jim. "The droughts the last few years have been fierce, and we're hoping to start a new homestead on <planet>."`
+			choice
+				`	"Sure, I'd be glad to take you there."`
+					accept
+				`	"Sorry, that's way too far from here."`
+					decline
+	
+	on complete
+		payment
+		payment 10000
+		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
