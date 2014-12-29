@@ -32,7 +32,7 @@ namespace {
 	GLuint vao;
 	GLuint vbo;
 
-	static const GLint SWIZZLE[8][4] = {
+	static const GLint SWIZZLE[9][4] = {
 		{GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA}, // red + yellow markings (republic)
 		{GL_RED, GL_BLUE, GL_GREEN, GL_ALPHA}, // red + magenta markings
 		{GL_GREEN, GL_RED, GL_BLUE, GL_ALPHA}, // green + yellow (freeholders)
@@ -40,7 +40,8 @@ namespace {
 		{GL_GREEN, GL_BLUE, GL_RED, GL_ALPHA}, // blue + magenta (syndicate)
 		{GL_BLUE, GL_GREEN, GL_RED, GL_ALPHA}, // blue + cyan (merchant)
 		{GL_GREEN, GL_BLUE, GL_BLUE, GL_ALPHA}, // red and black (pirate)
-		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA}  // red only (cloaked)
+		{GL_BLUE, GL_ZERO, GL_ZERO, GL_ALPHA},  // red only (cloaked)
+		{GL_ZERO, GL_ZERO, GL_ZERO, GL_ALPHA}  // black only (outline)
 	};
 }
 
