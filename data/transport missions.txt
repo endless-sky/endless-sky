@@ -270,7 +270,7 @@ mission "Transport Workers A"
 		government "Syndicate"
 		attributes "factory"
 	to offer
-		random < 500
+		random < 5
 	passengers 4
 	cargo "household goods" 2
 	
@@ -293,7 +293,7 @@ mission "Transport Workers B"
 		government "Syndicate"
 		attributes "factory"
 	to offer
-		random < 500
+		random < 5
 	passengers 1
 	
 	on offer
@@ -345,7 +345,7 @@ mission "Transport Workers C"
 		government "Syndicate"
 		attributes "farming"
 	to offer
-		random < 1500
+		random < 15
 	passengers 5
 	cargo "farm animals" 10
 	
