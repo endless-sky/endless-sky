@@ -514,7 +514,7 @@ void InfoPanel::DrawShip() const
 	const Sprite *sprite = ship.GetSprite().GetSprite();
 	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
 	Point shipCenter(-125., 145.);
-	SpriteShader::Draw(sprite, shipCenter, scale, 7);
+	SpriteShader::Draw(sprite, shipCenter, scale, 8);
 	
 	Color black(0., 1.);
 	pos = Point(10., 250.);
