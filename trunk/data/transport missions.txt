@@ -367,3 +367,234 @@ mission "Transport Workers C"
 		payment
 		payment 10000
 		dialog `You drop off the Pattersons, the farm family from <origin>, and help them to unload their wagon and cattle from your cargo hold. They thank you, and Jim pays you <payment>.`
+
+
+
+mission "WR Star 1"
+	name "Star Research"
+	description "Fly through the Ildaria system with this team of scientists, then return them to <destination>."
+	source
+		attributes deep
+		attributes urban research
+	waypoint Ildaria
+	to offer
+		random < 10
+	passengers 3
+	cargo "sensors" 2
+	
+	on offer
+		dialog `A group of scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of Ildaria." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
+	
+	on complete
+		payment 250000
+		dialog `The team of scientists thanks you for bringing them to Ildaria and back, and pays you <payment>. They seem eager to get back to their lab and start analyzing their measurements.`
+
+
+
+mission "Deep Archaeology 1"
+	name "Deep Archaeology"
+	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
+	source
+		attributes paradise
+	destination Vinci
+	to offer
+		random < 15
+	passengers 1
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, a man in an expensive suit approaches you. "Pardon me, Captain," he says. "I wonder if you would be willing to talk privately about a very lucrative job opportunity."`
+			choice
+				`	"Is this something illegal?"`
+				`	"Sure, let's return to my ship and talk there."`
+					goto ship
+			`	"Not illegal," he says, "but it could help to uncover a secret with enormous ramifications. A secret that certain people do not want known."`
+			`	"Okay," you say, "let's return to my ship, and I'll hear you out."`
+			label ship
+			`	You lead him back to your ship. "I'm an archaeologist," he explains, "studying the early history of the space era. And in particular, a set of persistent folk tales about contact with alien species. Many of these tales have to do with the region of the galaxy we call the Deep. I need someone to travel to Midgard and retrieve some samples from an ancient site there."`
+			choice
+				`	"Why can't you travel there yourself?"`
+				`	"What sort of samples? Will this get me in trouble?"`
+					goto samples
+			`	"Well, let's just say I've made myself somewhat unpopular in the Deep," he says. "Asking too many questions. If I were seen walking around on Midgard, they would probably ask me to leave immediately."`
+			`	You say, "And, is the work you're asking me to do going to make me equally unpopular?"`
+			label samples
+			`	"Not if you are circumspect," he says. "I need two samples from a certain village. One is simple: wood from a livng or recently deceased tree. Any tree will do."`
+			`	He pauses for a minute, then continues. "The other is more... sensitive. There is a historical site on Midgard, an ancient church. Not something they publish in the official tourist guides, mind you. I need a small sample of the wood that the church is built with. A small splinter would suffice."`
+			choice
+				`	"Sure, if it's in the interest of science, I can do that."`
+					goto yes
+				`	"You're asking me to vandalize a historical site?"`
+			`	"I need only the tiniest of samples," he says, "maybe a splinter of wood that is already peeling off, or from a place where the wood is worn and cracked. And what we discover from that sample could be of immense importance."`
+			choice
+				`	"Sorry, that sounds a bit too shady to me."`
+					decline
+				`	"Okay, I'm willing to do that."`
+			label yes
+			`	"Thank you," he says. "Trust me, this could give us some very important information. I'll need you to drop me off on Vinci first, to meet with some scientists. We can then meet up back on Vinci once you have the samples."`
+				accept
+
+
+
+mission "Deep Archaeology 2"
+	landing
+	name "Deep Archaeology"
+	description "Travel to <destination>, and take wood fiber samples from an ancient church and from the trees that grow nearby."
+	source Vinci
+	destination Midgard
+	to offer
+		has "Deep Archaeology 1: done"
+	
+	on offer
+		conversation
+			`	You drop the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
+				accept
+
+
+
+mission "Deep Archaeology 3"
+	landing
+	name "Deep Archaeology"
+	description "Return to <destination>, with the wood samples that you retrieved from the church on <origin>."
+	source Midgard
+	destination Vinci
+	to offer
+		has "Deep Archaeology 2: done"
+	
+	on offer
+		conversation
+			`	Following the map that the archaeologist gave you, you make your way to a small village in the mountains on <origin>, with two envelopes in your pocket for samples. As you approach the church, you break a dead twig off one of the trees along the path, put it into the first envelope, and pocket it. One sample collected, one more to go.`
+			`	The church itself is unlike any building you have seen before, clearly very ancient, build of roughly hewn wood, old and weathered. Surprisingly, the front doors are open, and you hear music coming from inside.`
+			choice
+				`	(Walk into the church.)`
+					goto inside
+				`	(Take a sample from the outside.)`
+				`	(Give up on this mission and leave, before I get into trouble.)`
+					decline
+			`	You walk around the outside of the building until you find one corner where the wood has been recently scuffed, and a few hairs of it are hanging loose. You carefully pick the splinters off and put them in the second envelope. Then, you return to your ship. Although you see no one following you, you can't shake the feeling that you are being watched.`
+				accept
+			label inside
+			`	This church must still be used for services: candles are lit up front, and a man in a white surplice is playing the organ. A few people sit in the pews with their heads bowed. Trying to be as unobtrusive as possible, you join them, and look around at the ornately carved pillars and wood panels. The air in here smells of incense and musty wood.`
+			choice
+				`	(Take a sample.)`
+				`	(Give up on this mission, and leave.)`
+					decline
+			`	Pretending to pray, you kneel on the ground, take your pocket knife, and shave the tiniest sliver off the bottom corner of the pew in front of you. It leaves a small white scar in the dark weathered wood of the pew. You pocket the sample, wait a few more minutes, and then leave and walk back to the spaceport. Although you see no one following you, you cannot shake the feeling that you are being watched.`
+				accept
+	
+	npc
+		personality waiting
+		government Republic
+		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+	
+	npc
+		personality waiting
+		system Aspidiske
+		government Republic
+		ship "Raven (Afterburner)" "D.P.S. Skuld"
+	
+	npc
+		personality waiting
+		system Gomeisa
+		government Republic
+		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+	
+	on complete
+		payment 200000
+		conversation
+			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, Take a look and let us know what you find."`
+			`	After the lab tech leaves, he explains, "You see, the ratio of Carbon 12 to Carbon 14 varies from world to world, so accurate dating can only be done if you have a control sample to compare against. Only a handful of archaeological studies have been done in the Deep, and those were sloppy - they used the standard tables of Earth's carbon ratios instead of determining the local concentrations."`
+			`	About thirty minutes later, John reappears, looking somewhat shaken. "Where did you get those samples?" he asks.`
+			`	"Never mind that," says the archaeologist. "What are your results?"`
+			`	"The second sample contains some sort of oil or tar," he says. "A varnish. And therefore it is from furniture or a building. A man-made artifact. The control sample has an isotopic ratio different from Earth, so unless you're playing some game with me, these samples are not from Earth."`
+			`	"Go on," says the archaeologist.`
+			`	"However," says the lab tech, "again assuming the two samples are from the same planet, the second sample is between fifteen hundred and twenty-five hundred years old. Which means it predates the discovery of the hyperdrive by, at minimum, five centuries. So again I ask you, where did you get these samples?" His voice is raised.`
+			`	"Intriguing, isn't it?" says the archaeologist. Captain <last>, if you'd like to help us get to the bottom of this, make sure you've got space for us and some equipment, and meet us in the spaceport."`
+
+
+
+mission "Deep Archaeology 4"
+	name "Deep Archaeology"
+	description "Return to <destination>, with some specialized equipment for subterranean mapping."
+	source Vinci
+	destination Midgard
+	to offer
+		has "Deep Archaeology 3: done"
+	cargo "mapping equipment" 4
+	passengers 2
+	
+	on offer
+		conversation
+			`You find John the lab tech in one of the spaceport bars, along with the archaeologist, who says, "I suppose I should introduce myself. Albert Foster. You may have heard of me." Indeed, you have: he made headlines about a decade ago by being driven out of Quarg space after trying unsuccessfully to collect an alloy sample from their ringworld.`
+			`	"We've purchased some equipment for gravitational field mapping," he says, "in addition to a very sensitive radar array. We're hoping to map the area around the church, see if there are signs of any ancient settlements. Are you willing to help us?"`
+			choice
+				`	"Sure, I'd love to help solve this mystery."`
+				`	"Sorry, I can't. I'm worried we're going to make people in the Deep angry."`
+					decline
+			`	"Excellent," says Albert. "We just need to do a flyover of <planet>, and see what our radar turns up."`
+				accept
+
+
+
+mission "Deep Archaeology 5"
+	landing
+	name "Deep Archaeology"
+	description "Evade the ships that are chasing you and return to <destination>."
+	source Midgard
+	destination Vinci
+	to offer
+		has "Deep Archaeology 4: done"
+	cargo "mapping equipment" 4
+	passengers 2
+	
+	on offer
+		conversation
+			`You cruise high above the surface of <origin> as John calibrates his instruments. "Sorry it's taking so long," he says, "there's some sort of glitch in the gravitational sensors, messing up my measurements."`
+			`	"What sort of glitch?" asks Albert.`
+			`	"Just a sensor artifact," he says, "some sort of echo. No, wait..." He trails off and starts turning dials on the instrument, then turns very pale.`
+			`	Albert looks over his shoulder at the monitor, but clearly doesn't understand what he's looking at. "What is it?" he asks.`
+			`	"It's not a sensor glitch," says John. "It's an artificial singularity."`
+			choice
+				`	"Some sort of illegal research?"`
+					goto illegal
+				`	"A what?"`
+					goto what
+			label illegal
+			`	"No, not illegal," says Albert. "No need to make laws against them, for the simple reason that no one knows how to make them. That's alien technology, very advanced."`
+				goto attack
+			label what
+			`	"A miniature black hole," says John. "An alien power source. Far more sophisticated than anything human beings have ever created. That is, unless someone in the Deep has found a way to reverse engineer alien technology."`
+			label attack
+			`	Suddenly, a warning light flashes on your ship's radar. Three ships have taken off from the planet's surface and are headed straight towards you. "Let's get out of here," says Albert. "Head back to <planet>!"`
+				launch
+	
+	npc
+		personality heroic
+		government Deep
+		ship "Raven (Afterburner)" "D.P.S. Wyrd"
+		ship "Raven (Afterburner)" "D.P.S. Skuld"
+		ship "Raven (Afterburner)" "D.P.S. Verthandi"
+	
+	on complete
+		payment 300000
+		conversation
+			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
+			`	I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already establised in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
+			choice
+				`	"For what purpose?"`
+					goto purpose
+				`	"What aliens? The Quarg?"`
+					goto aliens
+			label purpose
+			`	"I'm not sure," he says. "But I first became interested in the Deep while researching the Alpha Wars. I'm sure you know the history, how humanity was nearly enslaved by psychopathic 'super' humans that we ourselves had created by dabbling in genetic engineering. At that time, the Deep made a sudden, improbable technological leap that allowed them to construct weapons and ships far more powerful than what the Alphas had, and the war against them was won."`
+				goto end
+			label aliens
+			`	"There are popular folks tales in the Deep about 'elves,'" says Albert. "Thin, pale, graceful creatures, with blue blood."`
+			`	John frowns. "Hemocyanic blood. Not the Quarg, then. Their lungs are odd, but their blood uses hemoglobin for oxygen transport, just like ours."`
+			label end
+			`	Albert continues, "What I think is that an unknown alien species has been involved in events in the Deep since the beginning, and is perhaps still involved there today. I think this is known to at least some of the Deep's inhabitants."`
+			choice
+				`	"So, what do we do now?"`
+				`	"How can we find out more information?"`
+			`	"Well," he says, "unfortunately, Captain, they're going to be watching you. I'll have to seek out someone else for the next stages of my research. But I will keep you notified if I discover anything further."`
+			`	It is an unsatisfactory conclusion to your work, with so many questions unanswered. But to make up for that, Albert gives you <payment> as payment for your services. "You will hear from me again," he promises.`
