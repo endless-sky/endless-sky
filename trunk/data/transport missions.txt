@@ -599,3 +599,155 @@ mission "Deep Archaeology 5"
 				`	"How can we find out more information?"`
 			`	"Well," he says, "unfortunately, Captain, they're going to be watching you. I'll have to seek out someone else for the next stages of my research. But I will keep you notified if I discover anything further."`
 			`	It is an unsatisfactory conclusion to your work, with so many questions unanswered. But to make up for that, Albert gives you <payment> as payment for your services. "You will hear from me again," he promises.`
+
+
+
+mission "Drug Running 1"
+	name "Drug Running"
+	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	repeat
+	source
+		attributes "near earth" "dirt belt" "north"
+	destination
+		attributes paradise
+	cargo "illegal drugs" 5 2 .1
+		illegal 40000
+	to offer
+		random < 10
+	
+	on offer
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on plantes with high security.)`
+	
+	on complete
+		payment
+		payment 80000
+		dialog `Some disreputable-looking locals unload the illegal drugs from your cargo bay, and hand you your payment of <payment>.`
+		"reputation: Republic" -= 1
+
+
+
+mission "Drug Running 2"
+	name "Drug Running"
+	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	repeat
+	source
+		attributes "near earth" "dirt belt" "north"
+	destination
+		attributes rich
+	cargo "illegal drugs" 5 2 .1
+		illegal 50000
+	to offer
+		random < 10
+		has "Drug Running 1: done"
+	
+	on offer
+		dialog `When you walk into the local bar, a man sitting in the corner waves you over and says in a hushed voice, "Captain, we've got a shipment of the good stuff that needs to get to <planet>. I promise you this will be a very lucrative operation. What do you say?"`
+	
+	on complete
+		payment
+		payment 100000
+		dialog `Immediately after you land, some workers show up to unload the "stuff." They give you <payment>.`
+		"reputation: Republic" -= 2
+
+
+
+mission "Drug Running 3"
+	name "Drug Running"
+	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	repeat
+	source
+		attributes "near earth" "dirt belt" "north"
+	destination
+		attributes urban
+	cargo "illegal drugs" 5 2 .1
+		illegal 70000
+	to offer
+		random < 10
+		has "Drug Running 2: done"
+	
+	on offer
+		dialog `A well-dressed woman approaches you as you are walking through the spaceport and asks quietly if you would be willing to help facilitate the transport of some "naughty substances" to a certain individual on <planet>.`
+	
+	on complete
+		payment
+		payment 120000
+		dialog `You hand off the illegal "substances" to your contact on <planet>, who pays you <payment>.`
+		"reputation: Republic" -= 3
+
+
+
+government "Bad Trip"
+	swizzle 0
+	"player reputation" -1000
+
+effect "puff"
+	sprite "effect/puff"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 20
+	"random angle" 360
+	"velocity scale" -.005
+
+outfit "Imaginary Weapon"
+	category "Missiles"
+	"gun ports" -1
+	weapon
+		sprite "projectile/rainbow"
+			"frame rate" 12
+			"random start frame"
+		"hit effect" "puff"
+		"die effect" "puff"
+		"inaccuracy" 20
+		"velocity" 12
+		"lifetime" 60
+		"reload" 10
+		"acceleration" 1.2
+		"drag" .1
+		"turn" 3
+		"homing" 4
+
+ship "Hallucination"
+	sprite "ship/hallucination"
+		"frame rate" 1
+		"random start frame"
+	attributes
+		"hull" 1000
+		"mass" 180
+		"drag" 2.1
+		"heat dissipation" .7
+		"fuel capacity" 100000
+		"jump fuel" 100
+		"jump speed" 1
+		"jump drive" 1
+		"thrust" 30
+		"turn" 500
+		"energy generation" 1
+	outfits
+		"Imaginary Weapon" 1
+	gun 0 0
+	explode "puff" 100
+
+mission "Hallucination"
+	invisible
+	landing
+	to offer
+		has "Drug Running 2: active"
+		random < 50
+	
+	on offer
+		conversation
+			`During your brief stop on <origin>, it occurs to you that it really is a shame to have a cargo hold full of the finest of illegal drugs, and not to take even a small sample for yourself. There is no way the loss of a tiny bit of drugs could be noticed. Give it a try?`
+			choice
+				`	(No, I never touch that stuff.)`
+					defer
+				`	(Sure, sounds like fun!)`
+			`	The room begins to spin, and strange things happen...`
+				launch
+	
+	npc kill
+		government "Bad Trip"
+		personality nemesis
+		ship "Hallucination" "Love"
+		ship "Hallucination" "Peace"
+		ship "Hallucination" "Happy"
+		ship "Hallucination" "Shiny"

@@ -56,6 +56,10 @@ void MainPanel::Step()
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		
+		// You have a chance to drop off illegal mission cargo before the local
+		// authorities scan your ship.
+		FinishMissions();
+		
 		// Check if the player is doing anything illegal.
 		const Government *gov = player.GetSystem()->GetGovernment();
 		string message = GameData::GetPolitics().Fine(player, gov, 0, player.GetPlanet()->Security());
@@ -82,7 +86,6 @@ void MainPanel::Step()
 				GetUI()->Push(new Dialog(message));
 		}
 		
-		FinishMissions();
 		player.Land();
 		isActive = false;
 	}
