@@ -232,6 +232,10 @@ void MapPanel::DrawSystems() const
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
+		// Referring to a non-existent system in a mission can create a spurious
+		// system record. Ignore those.
+		if(system.Name().empty())
+			continue;
 		if(!player.HasSeen(&system) && destinations.find(&system) == destinations.end())
 			continue;
 		
@@ -306,7 +310,7 @@ void MapPanel::DrawNames() const
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
-		if(!player.KnowsName(&system))
+		if(!player.KnowsName(&system) || system.Name().empty())
 			continue;
 		
 		font.Draw(system.Name(), system.Position() + offset + center,
