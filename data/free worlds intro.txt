@@ -1085,7 +1085,7 @@ mission "FW Escort 1B"
 		fleet "Large Southern Pirates"
 		fleet "Large Southern Pirates"
 		fleet "Large Southern Pirates"
-		system "Longjump"
+		system "Sabik"
 	
 	on offer
 		conversation
@@ -1207,7 +1207,7 @@ mission "FW Escort 2B"
 		fleet "Large Southern Pirates"
 		fleet "Large Southern Pirates"
 		fleet "Large Southern Pirates"
-		system "Longjump"
+		system "Sabik"
 	
 	on offer
 		conversation
