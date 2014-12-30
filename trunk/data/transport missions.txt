@@ -399,6 +399,7 @@ mission "Deep Archaeology 1"
 	destination Vinci
 	to offer
 		random < 15
+		"combat rating" > 30
 	passengers 1
 	
 	on offer
