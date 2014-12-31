@@ -84,7 +84,7 @@ mission "Pookie, Part 2"
 				goto response
 		
 			label wait
-			`	Eventually she looks up from the paper and sees you standing there. "Are you captain <last>?" she asks. You nod.`
+			`	Eventually she looks up from the paper and sees you standing there. "Are you Captain <last>?" she asks. You nod.`
 				goto response
 		
 			label response
