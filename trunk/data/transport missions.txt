@@ -40,6 +40,7 @@ mission "Immigrant Workers"
 
 
 mission "Pookie, Part 1"
+	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
 	to offer
 		random < 50
@@ -59,6 +60,7 @@ mission "Pookie, Part 1"
 
 
 mission "Pookie, Part 2"
+	name "Pookie"
 	landing
 	description "Return Pookie the poodle to <destination>."
 	source "Shroud"
@@ -936,6 +938,7 @@ mission "Humanitarian 1"
 	cargo "vaccine" 20
 	to offer
 		random < 5
+		"combat rating" > 0
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
@@ -972,6 +975,7 @@ mission "Humanitarian 2"
 	cargo "emergency rations" 50
 	to offer
 		random < 5
+		"combat rating" > 0
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination

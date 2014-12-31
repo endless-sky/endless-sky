@@ -106,6 +106,8 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "invisible")
 			isVisible = false;
+		else if(child.Token(0) == "priority")
+			hasPriority = true;
 		else if(child.Token(0) == "job")
 			location = JOB;
 		else if(child.Token(0) == "landing")
@@ -190,6 +192,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 		out.Write("passengers", passengers);
 	if(!isVisible)
 		out.Write("invisible");
+	if(hasPriority)
+		out.Write("priority");
 	if(location == LANDING)
 		out.Write("landing");
 	if(location == JOB)
@@ -260,6 +264,16 @@ const string &Mission::Description() const
 bool Mission::IsVisible() const
 {
 	return isVisible;
+}
+
+
+
+// Check if this mission has high priority. If any high-priority missions
+// are available, no others will be shown at landing or in the spaceport.
+// This is to be used for missions that are part of a series.
+bool Mission::HasPriority() const
+{
+	return hasPriority;
 }
 
 
@@ -565,6 +579,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// If anything goes wrong below, this mission should not be offered.
 	result.hasFailed = true;
 	result.isVisible = isVisible;
+	result.hasPriority = hasPriority;
 	result.location = location;
 	result.repeat = 0;
 	result.name = name;

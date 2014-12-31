@@ -56,6 +56,10 @@ public:
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// Check if this mission has high priority. If any high-priority missions
+	// are available, no others will be shown at landing or in the spaceport.
+	// This is to be used for missions that are part of a series.
+	bool HasPriority() const;
 	
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB};
@@ -123,6 +127,7 @@ private:
 	
 	bool hasFailed = false;
 	bool isVisible = true;
+	bool hasPriority = false;
 	bool hasDeadline = false;
 	bool doDefaultDeadline = false;
 	Date deadline;

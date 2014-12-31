@@ -1145,6 +1145,7 @@ void PlayerInfo::CreateMissions()
 	
 	// Check for available missions.
 	bool skipJobs = planet && !planet->HasSpaceport();
+	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
@@ -1159,6 +1160,20 @@ void PlayerInfo::CreateMissions()
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().HasFailed(*this))
 				missions.pop_back();
+			else
+				hasPriorityMissions |= missions.back().HasPriority();
+		}
+	}
+	
+	if(hasPriorityMissions)
+	{
+		auto it = availableMissions.begin();
+		while(it != availableMissions.end())
+		{
+			if(it->IsAtLocation(Mission::SPACEPORT) && !it->HasPriority())
+				it = availableMissions.erase(it);
+			else
+				++it;
 		}
 	}
 }
