@@ -103,6 +103,10 @@ government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
 
+government "Derelict"
+	swizzle 0
+	"player reputation" 10
+
 government "Deep"
 	swizzle 0
 	"player reputation" -1000

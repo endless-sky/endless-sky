@@ -628,7 +628,7 @@ bool Ship::Move(list<Effect> &effects)
 					SetTargetPlanet(nullptr);
 					landingPlanet = nullptr;
 				}
-				else if(!isSpecial)
+				else if(!isSpecial || personality.IsFleeing())
 					return false;
 				
 				zoom = 0.;
@@ -880,7 +880,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
 			TransferFuel(victim->attributes.Get("jump fuel"), victim.get());
-		return shared_ptr<Ship>();
+		return autoPlunder ? shared_ptr<Ship>() : victim;
 	}
 	if(!victim->IsDisabled())
 		return shared_ptr<Ship>();
@@ -1258,7 +1258,10 @@ double Ship::Fuel() const
 
 int Ship::JumpsRemaining() const
 {
-	return fuel / attributes.Get("jump fuel");
+	double jumpFuel = attributes.Get("jump fuel");
+	if(!jumpFuel)
+		return 0;
+	return fuel / jumpFuel;
 }
 
 

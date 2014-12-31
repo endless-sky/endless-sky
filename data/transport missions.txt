@@ -751,3 +751,294 @@ mission "Hallucination"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"
 		ship "Hallucination" "Shiny"
+
+
+
+mission "Rescue Miners 1"
+	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
+	name "Rescue Miners"
+	source
+		attributes core
+		attributes urban
+	destination
+		attributes core
+		attributes mining
+	passengers 5
+	cargo 15 "emergency supplies"
+	to offer
+		random < 100
+	
+	on offer
+		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities." Do you volunteer?`
+
+
+
+mission "Rescue Miners 2"
+	landing
+	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
+	name "Rescue Miners"
+	destination
+		attributes core
+		attributes urban
+		distance 2 10
+	passengers 15
+	to offer
+		has "Rescue Miners 1: done"
+	
+	on offer
+		dialog `You drop off the medical personnel on <origin>. There are nearly a hundred injured miners waiting for medical evacuation to <planet>. Do you volunteer to carry some of them?`
+	
+	on complete
+		payment 80000
+		dialog `You drop off the injured miners at one of the medical facilities on <planet> that has agreed to care for the survivors. It's a somewhat chaotic process, but eventually someone thanks you for your help and pays you <payment>.`
+
+
+
+mission "Courier 1"
+	name "Rush delivery to <planet>"
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 4 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on offer
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before the deadline. Can you take this job for me?"`
+	on complete
+		payment
+		payment 30000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+
+
+mission "Courier 2"
+	name "Package to <planet>"
+	repeat
+	deadline
+	description "Deliver a package to <destination> by <date>. Payment is <payment>."
+	cargo package 2
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 7 14
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on offer
+		dialog `A woman in the spaceport flags you down and asks, "Excuse me, Captain. I have small package that needs to get to <planet> by <day>. Can you carry it for me?"`
+	on complete
+		payment
+		payment 50000
+		dialog "You drop off the package and collect your payment of <payment>."
+
+
+
+mission "Courier 3"
+	name "Papers to <planet>"
+	deadline
+	description "Deliver some legal papers to <destination> by <date>. Payment is <payment>."
+	cargo "legal papers" 1
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 7 14
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on offer
+		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work?"`
+	on complete
+		payment 100000
+		dialog "You drop off the legal papers and collect your payment of <payment>."
+
+
+
+mission "Courier 4"
+	name "Lizard to <planet>"
+	deadline
+	description "Deliver an exotic pet to <destination> by <date>. Payment is <payment>."
+	cargo "exotic lizard" 3
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 7 14
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		attributes rich
+	on offer
+		conversation
+			`A man wearing a very complicated hat waves to you from the other side of a landing pad. "Yoo-hoo, Captain!" he says. "I have a courier mission for you if you're interested."`
+			choice
+				`	(Find out what he wants.)`
+				`	(Ignore him.)`
+					decline
+			`	"My name is Alphonse," he says. "I am a breeder of exotic lizards. A new client on <planet> has just ordered one, and will pay you quite handsomely to transport it. What do you say?"`
+			choice
+				`	"I'd be glad to."`
+				`	"Sorry, I'm not interested in that sort of work."`
+					decline
+			`	"Exellent!" he says. "Come, let me introduce you to your cargo." He leads you to a supply shed where an enormous lizard, taller than you and probably weighing several tons, is being held in a cage that looks far too flimsy for it. "I'll have my men load her aboard your ship at once," says the man, "along with some meat for her to eat on the journey. Watch out for your fingers when you feed her, by the way. Thank you!"`
+				accept
+	
+	on complete
+		payment
+		payment 100000
+		dialog `Somehow, you have managed to bring the large lizard to <planet> without it breaking loose and eating you. You unload it and wait for its new owner to come. When he does, he pays you <payment>.`
+
+
+
+mission "Migrant Workers 1"
+	name "Migrant Workers"
+	description "Bring this group of migrant workers to <planet>."
+	source
+		attributes "dirt belt"
+		attributes "farming"
+	destination Rand
+	to offer
+		random < 5
+	
+	on offer
+		conversation
+			`In the spaceport, you can't help but notice a group of six or seven men in ragged farm clothing, sitting by the edge of one of the launch pads. They are probably migrant workers looking for a lift.`
+			choice
+				`	(Approach them.)`
+				`	(Ignore them.)`
+					defer
+			`	You strike up a conversation with the workers. They say that they are tired of the seasonal fluctuations of farm work, and are looking for something a bit steadier and better paying. "We hear there's always work to be had in the mines on <planet>," they say. "Can you take us there?"`
+			choice
+				`	"Sure!"`
+					accept
+				`	"No, sorry, I'm not headed in that direction."`
+					decline
+	
+	on complete
+		payment
+		payment 20000
+		dialog `The migrant workers thank you for transporting them, and hand you <payment>. You hope that they will be able to find better work here than they had on <origin>.`
+
+
+
+mission "Terraforming 1"
+	name "Terraforming Rand"
+	description "Bring a delegation from Rand to the Academy of Planetary Sciences on Glory."
+	source Rand
+	destination Glory
+	passengers 2
+	
+	on offer
+		conversation
+			`	You stop in to the spaceport bar for a drink. The bar seems to be frequented mostly by the managers of the mining corporation; you suspect the workers don't earn enough to visit a bar very frequently. In one corner, two of the managers are having a very animated discussion. When they see you, they say, "Hello there, Captain! Interested in taking us on a business trip?"`
+			choice
+				`	"What sort of trip?"`
+				`	"Sorry, I'm just in here for the drinks."`
+					defer
+			`	To Glory, to the Academy of Planetary Sciences," he says. "This world is rich in resources, and we're thinking that if we could only cool down the deserts a bit and get more plants to grow here, it would be a decent place to live. We've been dreaming about this for years, and I think it's time to go pay a terraforming consultant to tell us whether it's actually possible or not."`
+			choice
+				`	"Sure, I'd be glad to take you there."`
+					accept
+				`	"Sorry, that's way too far away for me to travel right now."`
+					decline
+
+
+
+mission "Terraforming 2"
+	landing
+	name "Terraforming Rand"
+	description "Return to Rand with a student who thinks she can terraform the planet cheaply."
+	source Glory
+	destination Rand
+	passengers 2
+	to offer
+		has "Terraforming 1: done"
+	
+	on offer
+		conversation
+			`You drop off the two managers from Rand, whose names are Eric and Alaric, at the Academy. While you wait for their meeting to end, you look around the lobby. The students have apparently just had some sort of science symposium, and poster boards are on display all along the walls. One of them catches your eye: the title is "Affordable Terraforming through Equilibrium Mapping."`
+			`	The basic concept of the poster seems to be that instead of altering the climate of a planet through brute force, it ought to instead be feasible to use a properly timed nudge in the right direction to cause the climate to shift toward a new equilibrium point that supports greater biological complexity. This student seems to think that planets naturally "want" to grow more complex and support more life, but that they sometimes get "stuck" in less optimum states.`
+			`	It's an intriguing idea. On the other hand, at the bottom of the paper, the professor has written, "Very poor scholarship. Do not anthropomorphize planets."`
+			`	Just then, Eric and Alaric return, looking disappointed.`
+			choice
+				`	"No luck?"`
+			`	They shake their heads. "It would cost fifteen million just to bring a specialist out for an initial consultation," says Eric, "and besides, the cost of terrafroming machinery and upkeep is prohibitive. I think this whole Academy is just a money-making racket."`
+			choice
+				`	"Have a look at this poster. Maybe this student would help us. We could bill it as a sort of internship for her."`
+				`	"Indeed. They gave this student a failing grade just for suggesting it could be done more cheaply."`
+			
+			`	They look at the poster. "Sounds almost too good to be true," says Alaric. "Hang on, I'll look her up in the campus directory." A few minutes later, he is on the phone with the student who made the poster. Her name is Amy. It turns out she is about to flunk out anyway, and is more than willing to travel back to Rand with you when offered a tiny fraction of what the consultant would have received.`
+			`	An hour later, you meet up with Amy, and arrange for her to join you on your ship before it takes off. Eric and Alaric are very excited, but you are a bit worried about the wisdom of entrusting their planet's future to someone so young and inexperienced.`
+				accept
+	
+	on complete
+		payment 140000
+		dialog `On the entire return journey, Eric and Alaric have been busy showing Amy geological survey maps of Rand and asking her for ideas. The moment you land, they hurry out of the ship. "I'm going to show Amy around," says Eric, "but meet us in the spaceport bar later if you want to help out with whatever we do next." Alaric hands you <payment> as payment for your services, and then follows after them.`
+
+
+
+mission "Terraforming 3"
+	name "Terraforming Rand"
+	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
+	source Rand
+	to offer
+		has "Terraforming 2: done"
+	
+	on offer
+		conversation
+			`Alaric, Eric, and Amy are having a heated conversation at a table in the bar. When they see you, Alaric says, "Okay, let's let Captain <last> be the tie breaker." He motions to you to join them.`
+			`	Amy explains, "Based on my data, it appears that Rand once had a cooler, more moist climate. But the trouble is, it has almost no axial tilt."`
+			`	"That means no changing seasons," explains Eric.`
+			`	"The result is that much of the planet is very hot, but the poles are very cold. Nearly all the planet's water has migrated to the poles and ended up frozen into the ice caps. Because the weather is so unchanging here, nothing ever prompts that water to melt and rejoin the hydrological cycle."`
+			choice
+				`	"Well, that seems impossible to fix. It's not like you can rotate a planet's axis."`
+					goto rotate
+				`	"Are you suggesting melting the ice caps somehow?"`
+					goto melting
+			label rotate
+			`	"Of course not," she says. But what we can do is introduce a sudden variation in the planet's climate that will allow water to be distributed more evenly across the surface again."`
+				goto danger
+			label melting
+			`	"That would be the traditional terraforming approach," she says, "using orbital mirrors, or geothermal power, or something similar to evaporate the ice caps at a faster rate than new ice is being deposited. That approach would take a century or so."`
+				goto danger
+			label danger
+			`	"This is where Amy's plan gets a bit scary," says Alaric.`
+			`	"I'm proposing crashing a medium-sized asteroid into the ice cap," she says. "If we pick the right asteroid, we can control the amount of dust that is created. The result will be a sudden influx of variability, that may allow the planet to revert to a wetter, more biodiverse state."`
+			choice
+				`	"That is a stupid idea, and I want nothing to do with it."`
+					decline
+				`	"Well, if you think it will work, I'm willing to try it!"`
+			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and wait for it to land on the planet, then return here."`
+				accept
+	
+	npc assist
+		government Derelict
+		personality derelict fleeing uninterested waiting
+		ship Asteroid
+			name "Target Asteroid"
+			sprite "asteroid/medium rock/spin"
+				"frame rate" 10
+			attributes
+				"hull" 10000
+				"mass" 1000
+				"drag" 10
+				"heat dissipation" .1
+				"required crew" 0
+				"bunks" 0
+				"thrust" 10
+				"turn" 100
+				"thrusting energy" 1
+				"turning energy" 1
+				"energy generation" 3
+			explode "small explosion" 25
+			explode "medium explosion" 35
+			explode "big explosion" 45
+			explode "huge explosion" 30
+	
+	on complete
+		payment 20000
+		dialog
+			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
