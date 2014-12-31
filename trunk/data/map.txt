@@ -12371,7 +12371,7 @@ planet Midgard
 	shipyard "Lionheart Advanced"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
-	outfitter "Delta V Advanced"
+	outfitter "Deep Sky Advanced"
 	bribe .05
 	security .8
 
