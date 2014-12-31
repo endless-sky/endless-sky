@@ -29,6 +29,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 #include "WrappedText.h"
 
+#include <algorithm>
+#include <sstream>
+#include <vector>
+
 using namespace std;
 
 
@@ -133,9 +137,17 @@ bool MapDetailPanel::Click(int x, int y)
 				{
 					selectedPlanet = it.first;
 					if(y >= it.second + 50 && y < it.second + 70)
+					{
+						if(commodity == -1)
+							ListShips();
 						commodity = -1;
+					}
 					else if(y >= it.second + 70 && y < it.second + 90)
+					{
+						if(commodity == -2)
+							ListOutfits();
 						commodity = -2;
+					}
 					return true;
 				}
 		}
@@ -396,4 +408,58 @@ void MapDetailPanel::DrawOrbits() const
 	Point namePos(Screen::Right() - width - 5., Screen::Bottom() - 267.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);
+}
+
+
+
+void MapDetailPanel::ListShips() const
+{
+	if(!selectedPlanet)
+		return;
+	
+	// First, count how many planets have each ship.
+	map<const Ship *, int> count;
+	for(const auto &it : GameData::Planets())
+		for(const Ship *ship : it.second.Shipyard())
+			++count[ship];
+	
+	vector<pair<int, const Ship *>> list;
+	for(const Ship *ship : selectedPlanet->Shipyard())
+		list.emplace_back(count[ship], ship);
+	
+	sort(list.begin(), list.end());
+	ostringstream out;
+	out << "Ships for sale here:";
+	for(unsigned i = 0; i < 10 + (list.size() == 11) && i < list.size(); ++i)
+		out << '\n' << list[i].second->ModelName();
+	if(list.size() > 11)
+		out << "\n...and " << list.size() - 10 << " others.";
+	GetUI()->Push(new Dialog(out.str()));
+}
+
+
+
+void MapDetailPanel::ListOutfits() const
+{
+	if(!selectedPlanet)
+		return;
+	
+	// First, count how many planets have each ship.
+	map<const Outfit *, int> count;
+	for(const auto &it : GameData::Planets())
+		for(const Outfit *outfit : it.second.Outfitter())
+			++count[outfit];
+	
+	vector<pair<int, const Outfit *>> list;
+	for(const Outfit *ship : selectedPlanet->Outfitter())
+		list.emplace_back(count[ship], ship);
+	
+	sort(list.begin(), list.end());
+	ostringstream out;
+	out << "Outfits for sale here:";
+	for(unsigned i = 0; i < 18 + (list.size() == 19) && i < list.size(); ++i)
+		out << '\n' << list[i].second->Name();
+	if(list.size() > 19)
+		out << "\n...and " << list.size() - 18 << " others.";
+	GetUI()->Push(new Dialog(out.str()));
 }

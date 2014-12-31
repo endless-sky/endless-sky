@@ -244,17 +244,29 @@ void MapPanel::DrawSystems() const
 		{
 			if(commodity > -3)
 			{
-				float value = 0.f;
+				double value = 0.;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					value = (2.f * (system.Trade(com.name) - com.low))
-						/ (com.high - com.low) - 1.f;
+					value = (2. * (system.Trade(com.name) - com.low))
+						/ (com.high - com.low) - 1.;
 				}
 				else if(commodity == -1)
-					value = system.HasShipyard() * 2 - 1;
+				{
+					double size = 0;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet())
+							size += object.GetPlanet()->Shipyard().size();
+					value = size ? min(10., size) / 10. : -1.;
+				}
 				else if(commodity == -2)
-					value = system.HasOutfitter() * 2 - 1;
+				{
+					double size = 0;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet())
+							size += object.GetPlanet()->Outfitter().size();
+					value = size ? min(60., size) / 60. : -1.;
+				}
 				// Color the systems with a gradient from blue to cyan to gold.
 				if(value < 0.f)
 					color = Color(

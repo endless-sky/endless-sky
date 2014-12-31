@@ -47,6 +47,9 @@ private:
 	void DrawInfo() const;
 	void DrawOrbits() const;
 	
+	void ListShips() const;
+	void ListOutfits() const;
+	
 	
 private:
 	mutable int governmentY;
