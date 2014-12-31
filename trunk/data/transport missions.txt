@@ -614,9 +614,15 @@ mission "Drug Running 1"
 		illegal 40000
 	to offer
 		random < 10
+		"said no to drugs" < 4
 	
 	on offer
 		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on plantes with high security.)`
+	
+	on accept
+		"said no to drugs" --
+	on decline
+		"said no to drugs" ++
 	
 	on complete
 		payment
@@ -924,6 +930,77 @@ mission "Migrant Workers 1"
 
 
 
+mission "Humanitarian 1"
+	name "Vaccine to <planet>"
+	description "Bring a shipment of flu vaccines to the lawless world of <planet>. Be sure the medicine gets into the right hands."
+	cargo "vaccine" 20
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		government "Pirate"
+		distance 2 10
+	clearance
+	
+	on offer
+		conversation
+			`While you are sitting at a table in a local cafe, a woman sits down across from you and says, "Pardon me, Captain. I wonder if you would be interested in helping with a humanitarian mission."`
+			choice
+				`	"Tell me more."`
+				`	"Sorry, I'm too busy."`
+					decline
+			`	"There's a flu epidemic on <planet>," she says. "It's a lawless world, so they have not been able to find any merchants willing to bring them medicine. But if they don't get a shipment of vaccine soon, the epidemic could become much worse, and even spread to other worlds."`
+			choice
+				`	"I'd be glad to help."`
+				`	"Sorry, I don't believe in helping pirates."`
+					decline
+			`	"Thank you," she says. "Your contact on <planet> will be a man named 'Raven Hunter.' Don't let anyone but him trick you into giving them the supplies."`
+				accept
+	
+	on complete
+		payment
+		payment 50000
+		dialog
+			 `After several shady characters have offered to buy the vaccines off you, or threatened to rob you, "Raven Hunter" finally shows up and collects them. He thanks you, and pays you <payment>.`
+
+
+
+mission "Humanitarian 2"
+	name "Food to <planet>"
+	description "Bring a shipment of food to the lawless world of <planet>, to help alleviate a famine."
+	cargo "emergency rations" 50
+	to offer
+		random < 5
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		government "Pirate"
+		distance 2 10
+	clearance
+	
+	on offer
+		conversation
+			`As you are walking through the local market, a man says, "Captain, do you have room in your hold to bring food to a starving planet?"`
+			choice
+				`	"Yes, but I hadn't heard news of a famine recently."`
+				`	"Sorry, not today."`
+					decline
+			`	"No, this one wouldn't be in the news," he says. "It's <planet>, a lawless world. They're desperately in need of food, although it's mostly due to corruption and mismanagement of resources."`
+			choice
+				`	"Well, it sounds like they're getting exactly what they deserve. And, I have no intention of risking my life to land on a pirate world."`
+					decline
+				`	"Well, even so, no one deserves to starve to death. I'll help them."`
+					accept
+	
+	on complete
+		payment
+		payment 50000
+		dialog
+			 `It takes a while to figure out who exactly is in charge here. You sell off parts of your shipment of food to a few different local leaders, receiving <payment> in exchange.`
+
+
+
 mission "Terraforming 1"
 	name "Terraforming Rand"
 	description "Bring a delegation from Rand to the Academy of Planetary Sciences on Glory."
@@ -1042,3 +1119,70 @@ mission "Terraforming 3"
 		payment 20000
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
+
+
+
+mission "Terraforming 4"
+	name "Terraforming Rand"
+	description "Collect some hardy plants that can grow in a low-light environment from <destination>."
+	source Rand
+	destination "New Portland"
+	to offer
+		has "Terraforming 3: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`By the time you meet up with Eric, Alaric, and Amy, the cloud cover already seems to have visibly increased. Amy is very enthusiastic. "Atmospheric water vapor is on the rise," she says. "The impact vaporized enough ice to form a small ocean. I wouldn't be surprised if we get a rainstorm here in a day or two."`
+			`	"What's next?" you ask.`
+			`	She says, "I'd like to travel with you to <planet>, and collect some seeds and cuttings from plants that can handle a cooler world with dimmer light, since that's what we'll have here until the dust settles down. I'd say we'll need about ten tons of cargo space."`
+			choice
+				`	"I'd be glad to take you there."`
+					accept
+				`	"Sorry, I need to move on to some other work now."`
+					decline
+	
+	on complete
+		dialog `As soon as you land, Amy heads off to meet with some local biologists who she contacted during the trip over here. "We'll be back in the spaceport in two hours," she says. "Be sure to have ten tons of cargo space free."`
+
+
+
+mission "Terraforming 5"
+	name "Terraforming Rand"
+	description "Bring some hardy plants that can grow in a low-light environment back to <destination>."
+	source "New Portland"
+	destination Rand
+	to offer
+		has "Terraforming 4: done"
+	passengers 1
+	cargo "seeds and plants" 10
+	
+	on offer
+		conversation
+			`You meet up with Amy, and load the seeds and plant cuttings onto your ship.`
+			choice
+				`	"Looks good, let's head back to Rand."`
+					accept
+				`	"So, how do you plan to seed the whole planet with these, anyways?"`
+			`	She says, "My idea is to just disperse them in a few different locations, and trust that they will spread out over the next decade or so. We picked plants that are hardy and can spread very rapidly."`
+			choice
+				`	"Sounds good to me."`
+					accept
+				`	"What happens if the plants are too invasive, and choke out all the local wildlife?"`
+			`	"Well," she says, "in order to keep the climate on <planet> dynamic, they're going to need regular asteroid impacts every few decades. If these plants are too invasive, they can just wait an extra decade or so in between impacts and let the desert creep back in and kill off the invasive plants."`
+			choice
+				`	"Okay, I guess that would work."`
+					accept
+				`	"Wait, they're going to have to keep smashing asteroids into their world in perpetuity to maintain the new environment?"`
+			`	"For a century or so, yes," she says. "But that's a whole lot more economical than vaporizing the ice caps using traditional terraforming equipment. Come on, let's get back to <planet>."`
+				accept
+	
+	on complete
+		payment 60000
+		conversation
+			`When you get back to <planet>, Amy has you fly in a random path a few kilometers above the surface while she periodically dumps loads of seeds and plant material out the airlock. In the process, you fly through several rainstorms. This world's climate has indeed been altered. But you can't help wonder how a few tons of seed spread out over the entire surface of a planet is really going to help anything.`
+			`	Then you meet up with Eric and Alaric. Eric is elated. "We just got a massive rainstorm here!" he says. "We haven't had that much precipitation in a decade!"`
+			`	Alaric is less enthusiastic. "Flash floods washed out the road through the canyon," he says, "and very nearly flooded one of the mines, too."`
+			`	Amy says, "It will take a year or two for things to begin to settle down. Then we can figure out what our next steps should be."`
+			`	"I just hope we haven't made things worse than they were," says Alaric. He hands you your payment of <payment>. "Anyway, thanks for your help, <first>. It sounds like there's nothing more to be done here for the time being."`
+		event "terraforming Rand"

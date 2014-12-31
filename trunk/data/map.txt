@@ -11503,8 +11503,7 @@ planet Albatross
 	attributes pirate
 	landscape land/snow6
 	description `Albatross is a cold ocean world orbiting a small, cold sun. The first settlers on Albatross were anarchists who believed that in a society free from unnatural laws and constraints, everyone would happily and freely work for the common good. The next settlers were pirates who believed that a planet free from laws and constraints would be a great base of operations.`
-	description "The anarchist farming communes, each operating independently but trading with outsiders to gain necessary supplies, are clustered in the barely temperate climate near the equator. Even there, winter lasts for nearly half the year, and the growing season is short."
-	description `The pirate bases, having a much more ready source of supplies, are located wherever there are flat landing areas close to craggy, defensible mountains.`
+	description "The anarchist farming communes, each operating independently but trading with outsiders to gain necessary supplies, are clustered in the barely temperate climate near the equator. The pirate bases, having a much more ready source of supplies, are located wherever there are flat landing areas close to craggy, defensible mountains.`
 	spaceport `You are glad you put on a warm coat before leaving your ship. The wind blows in stong gusts down the streets of this small spaceport town. You pass by ranchers herding cattle, a few farmers driving old, rusted-out trucks full of produce, and a couple of shady figures huddled in an alleyway negotiating what looks like a drug deal. In the center of town is a small merchant's exchange and a couple of greasy spoon diners.`
 	spaceport `	The sign over the spaceport bar reads, "No Gods, No Masters." Below it in slightly smaller writing is another sign which reads, "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." You have no idea what a "polecat" is.`
 	outfitter "Ammo North"
