@@ -12712,7 +12712,7 @@ planet Rand
 	landscape land/valley7
 	description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 	spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
-	security 05
+	security .05
 
 planet Relic
 	attributes "near earth"

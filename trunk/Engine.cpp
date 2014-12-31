@@ -745,7 +745,9 @@ void Engine::CalculateStep()
 			bool autoPlunder = (ship->GetGovernment() != playerGovernment);
 			shared_ptr<Ship> victim = ship->Board(autoPlunder);
 			if(victim)
-				eventQueue.emplace_back(ship, victim, ShipEvent::BOARD);
+				eventQueue.emplace_back(ship, victim,
+					ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
+						ShipEvent::BOARD : ShipEvent::ASSIST);
 			
 			int scan = ship->Scan();
 			if(scan)

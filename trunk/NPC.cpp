@@ -42,6 +42,8 @@ void NPC::Load(const DataNode &node)
 			succeedIf |= ShipEvent::DESTROY;
 		else if(node.Token(i) == "board")
 			succeedIf |= ShipEvent::BOARD;
+		else if(node.Token(i) == "assist")
+			succeedIf |= ShipEvent::ASSIST;
 		else if(node.Token(i) == "disable")
 			succeedIf |= ShipEvent::DISABLE;
 		else if(node.Token(i) == "scan cargo")
