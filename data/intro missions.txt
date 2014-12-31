@@ -9,6 +9,7 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 mission "Intro [0]"
+	priority
 	name "Passenger to <planet>"
 	description "This old-timer captain offered to ride along with you to <destination>, and to give you some tips along the way."
 	landing
@@ -71,6 +72,7 @@ mission "Intro [0]"
 
 
 mission "Intro [1 Transport]"
+	priority
 	name "Transport family to <planet>"
 	description "Bring your new friend James, along with this large family, to <destination>. Payment will be <payment>."
 	source "New Greenland"
@@ -106,6 +108,7 @@ mission "Intro [1 Transport]"
 
 
 mission "Intro [2 Transport]"
+	priority
 	name "Tourists to <planet>"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	passengers 3
@@ -134,6 +137,7 @@ mission "Intro [2 Transport]"
 
 
 mission "Intro [3 Transport]"
+	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	passengers 1
@@ -161,6 +165,7 @@ mission "Intro [3 Transport]"
 
 
 mission "Intro [1 Freighter]"
+	priority
 	name "Delivery to <planet>"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
 	cargo vaccines 48
@@ -199,13 +204,14 @@ mission "Intro [1 Freighter]"
 			`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And, no one's going to give you those sorts of missions until you've proved yourself in combat, anyways."`
 				goto port
 			label port
-			`	He picks up his suitcase. "Anyways, if you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a bit higher profit margin this time."`
+			`	He picks up his suitcase. "If you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a bit higher profit margin this time."`
 			``
 			`	(As before, click the "Space Port" button to continue this mission.)`
 
 
 
 mission "Intro [2 Freighter]
+	priority
 	name "Rush delivery to <planet>"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	cargo "raw eel" 34
@@ -254,6 +260,7 @@ mission "Intro [2 Freighter]
 
 
 mission "Intro [3 Freighter]
+	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	passengers 1
@@ -283,6 +290,7 @@ mission "Intro [3 Freighter]
 
 
 mission "Intro [1 Interceptor]"
+	priority
 	name "Escort convoy to <planet>"
 	description "Escort a merchant convoy to <destination>, along with your new friend James."
 	passengers 1
@@ -325,6 +333,7 @@ mission "Intro [1 Interceptor]"
 
 
 mission "Intro [2 Interceptor]"
+	priority
 	name "Delivery to <planet>"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	passengers 1
@@ -370,6 +379,7 @@ mission "Intro [2 Interceptor]"
 
 
 mission "Intro [3 Interceptor]
+	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	passengers 1
