@@ -100,7 +100,9 @@ void MainPanel::Step()
 			<< "After selecting a destination, close your map and press \""
 			<< GameData::Keys().Name(Key::JUMP) << "\" to jump to that system.\n"
 			<< "\tWhen you reach a new system, you can press \""
-			<< GameData::Keys().Name(Key::LAND) << "\" to land on any inhabited planets that are there.";
+			<< GameData::Keys().Name(Key::LAND) << "\" to land on any inhabited planets that are there.\n"
+			<< "\tAlso, don't worry about crashing into asteroids or other ships; "
+			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
 	}
 	if(isActive && player.GetShip() && !player.GetShip()->Fuel()
