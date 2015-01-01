@@ -121,6 +121,8 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
 	if(!planet)
 		return false;
+	if(!planet->HasSpaceport())
+		return true;
 	
 	const Government *gov = ship.GetGovernment();
 	const Government *systemGov = planet->GetSystem()->GetGovernment();
@@ -134,6 +136,10 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 
 bool Politics::CanLand(const Planet *planet) const
 {
+	if(!planet)
+		return false;
+	if(!planet->HasSpaceport())
+		return true;
 	if(bribedPlanets.find(planet) != bribedPlanets.end())
 		return true;
 	

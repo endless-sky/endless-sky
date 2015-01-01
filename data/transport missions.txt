@@ -380,7 +380,7 @@ mission "WR Star 1"
 		attributes urban research
 	waypoint Ildaria
 	to offer
-		random < 10
+		random < 20
 	passengers 3
 	cargo "sensors" 2
 	
@@ -397,7 +397,7 @@ mission "Deep Archaeology 1"
 	name "Deep Archaeology"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
 	source
-		attributes paradise
+		attributes paradise north "near earth"
 	destination Vinci
 	to offer
 		random < 15
@@ -450,7 +450,7 @@ mission "Deep Archaeology 2"
 	
 	on offer
 		conversation
-			`	You drop the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
+			`	You drop off the archaeologist (who still has not told you his name) on <origin>. "Remember," he says, "I only need a tiny splinter. Just make sure it really is from the building and not anything more recent."`
 				accept
 
 
@@ -507,9 +507,11 @@ mission "Deep Archaeology 3"
 		conversation
 			`You return to the lab where you dropped off the anonymous archaeologist. Soon after you arrive, he appears and eagerly collects the two samples, giving you a payment of <payment> for your troubles. "But please," he says, "stick around long enough to learn the results." He hands the two envelopes to a lab technologist, and says, "Here you go, John, Take a look and let us know what you find."`
 			`	After the lab tech leaves, he explains, "You see, the ratio of Carbon 12 to Carbon 14 varies from world to world, so accurate dating can only be done if you have a control sample to compare against. Only a handful of archaeological studies have been done in the Deep, and those were sloppy - they used the standard tables of Earth's carbon ratios instead of determining the local concentrations."`
+			choice
+				`	(Wait and see what the results are.)`
 			`	About thirty minutes later, John reappears, looking somewhat shaken. "Where did you get those samples?" he asks.`
 			`	"Never mind that," says the archaeologist. "What are your results?"`
-			`	"The second sample contains some sort of oil or tar," he says. "A varnish. And therefore it is from furniture or a building. A man-made artifact. The control sample has an isotopic ratio different from Earth, so unless you're playing some game with me, these samples are not from Earth."`
+			`	"The second sample is infused with some sort of oil or tar," he says. "A varnish. And therefore it is from furniture or a building. A man-made artifact. The control sample has an isotopic ratio different from Earth, so unless you're playing games with me, these samples are not from Earth."`
 			`	"Go on," says the archaeologist.`
 			`	"However," says the lab tech, "again assuming the two samples are from the same planet, the second sample is between fifteen hundred and twenty-five hundred years old. Which means it predates the discovery of the hyperdrive by, at minimum, five centuries. So again I ask you, where did you get these samples?" His voice is raised.`
 			`	"Intriguing, isn't it?" says the archaeologist. Captain <last>, if you'd like to help us get to the bottom of this, make sure you've got space for us and some equipment, and meet us in the spaceport."`

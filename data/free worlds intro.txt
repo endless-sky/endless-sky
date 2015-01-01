@@ -15,7 +15,7 @@ mission "FW Recon 0"
 		government "Free Worlds"
 	destination Glaze
 	to offer
-		random < 20
+		random < 25
 		has "event: initial deployment 4"
 	passengers 1
 	to fail
@@ -1304,10 +1304,10 @@ mission "Rescue Katya 1"
 				`	Not yet.`
 					defer
 			
-			`	You find the Free Worlds offices and give your name to the person at the fron desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "This is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
+			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "This is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
 			`	That night, the Council takes you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
 			`	After a long silence, JJ asks, "How many casualties?"`
-			`	"None," says Tomek, "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a conflict."`
+			`	"None," says Tomek, "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
 			choice
 				`	"Was Katya still there? We need to rescue her!"`
 					goto rescue
@@ -1457,5 +1457,4 @@ mission "Defend Sabik"
 		fleet "Large Free Worlds"
 	
 	on complete
-		conversation
-			`	The mood is somber when you land again on <planet>. The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
+		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
