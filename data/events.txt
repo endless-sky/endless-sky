@@ -1,5 +1,5 @@
 event "war begins"
-	date 7 4 3014
+	date 4 7 3014
 	system "Gamma Corvi"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 600
