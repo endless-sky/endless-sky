@@ -401,7 +401,7 @@ mission "Deep Archaeology 1"
 	destination Vinci
 	to offer
 		random < 15
-		"combat rating" > 30
+		"combat rating" > 15
 	passengers 1
 	
 	on offer
@@ -816,7 +816,7 @@ mission "Courier 1"
 		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before the deadline. Can you take this job for me?"`
+		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me?"`
 	on complete
 		payment
 		payment 30000
@@ -859,7 +859,7 @@ mission "Courier 3"
 		distance 7 14
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
-		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work?"`
+		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>."`
 	on complete
 		payment 100000
 		dialog "You drop off the legal papers and collect your payment of <payment>."
@@ -886,7 +886,7 @@ mission "Courier 4"
 				`	(Find out what he wants.)`
 				`	(Ignore him.)`
 					decline
-			`	"My name is Alphonse," he says. "I am a breeder of exotic lizards. A new client on <planet> has just ordered one, and will pay you quite handsomely to transport it. What do you say?"`
+			`	"My name is Alphonse," he says. "I am a breeder of exotic lizards. A new client on <planet> has just ordered one, and will pay you quite handsomely to transport it. Naturally, being a live animal, it's a rush delivery; it needs to be done by <day>. What do you say?"`
 			choice
 				`	"I'd be glad to."`
 				`	"Sorry, I'm not interested in that sort of work."`
