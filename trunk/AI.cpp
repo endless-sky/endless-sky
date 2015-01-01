@@ -233,7 +233,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 					&& (parent->HasLandCommand() || parent->HasHyperspaceCommand()
 						|| targetDistance > 1000. || personality.IsTimid() || !target
 						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))
-						|| (isPlayerEscort && moveToMe)))
+						|| (isPlayerEscort && moveToMe))
+					&& (parent->GetSystem() != it->GetSystem()
+						|| !parent->GetGovernment()->IsEnemy(it->GetGovernment())))
 				MoveEscort(*it, *it);
 			else
 				MoveIndependent(*it, *it);
@@ -938,7 +940,10 @@ int AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships, boo
 		{
 			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
 			fuel -= weapon.GetOutfit()->WeaponGet("firing fuel");
-			if(!secondary || fuel < ship.Attributes().Get("jump fuel"))
+			// If the ship is not ever leaving this system, it does not need to
+			// reserve any fuel.
+			bool isStaying = ship.GetPersonality().IsStaying();
+			if(!secondary || (fuel < ship.Attributes().Get("jump fuel") * !isStaying))
 			{
 				bit <<= 1;
 				continue;

@@ -19,7 +19,7 @@ mission "Liberate Kornephoros"
 	on offer
 		conversation
 			`The mood in the spaceport is solemn. No one has had time yet to count up the losses, on both sides of the battle, but it is likely that over a thousand lives were lost. And because the Navy is held in such high regard even here where Parliament and the Paradise Planets are viewed with disgust, many of the militia captains are almost as saddened by the loss of Navy lives as by the loss of some of their own.`
-			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your "<ship>" holding together?"`
+			`	You find Tomek walking among the fleet, conversing with captains and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is your '<ship>' holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
 				`	"Just fine. It'd take more than a few cruisers to destroy the <ship>."`
@@ -93,8 +93,8 @@ mission "Liberate Kornephoros"
 			
 			label speech
 			`	Tomek climbs up onto the hull of a nearby ship and addresses the prisoners. "Hello," he says. A few of the Navy officers respond, warily. "My name is Tomek Voigt," he says. "Our militia is very loosely organized, but I'm the one in charge of organizing it." That gets a few laughs from the Free Worlds guards. "As such, I am responsible for deciding your fate."`
-			`	At that, a hush falls over the crowd. "The council has decided," he continues, "that any of you who gives us your parole, swearing to take no further part in fighting the Free Worlds, will be returned to Republic space. You will give us your word of honor that you will either seek reassignment in another part of the galaxy, or resign your commission."`
-			`	A few of the Free Worlds guards shout, "What?" But only a surprising few. The rest are nodding, seemingly pleased with the council's choice. Tomek climbs down from the hull and approaches the prisoners, and you notice Alondo and Freya have joined him.`
+			`	At that, a hush falls over the crowd. "The Council has decided," he continues, "that any of you who gives us your parole, swearing to take no further part in fighting the Free Worlds, will be returned to Republic space. You will give us your word of honor that you will either seek reassignment in another part of the galaxy, or resign your commission."`
+			`	A few of the Free Worlds guards shout, "What?" But only a surprising few. The rest are nodding, seemingly pleased with the Council's choice. Tomek climbs down from the hull and approaches the prisoners, and you notice Alondo and Freya have joined him.`
 			`	One of the Navy officers stands up. "I'll take that oath," he says, "if you'll honor your part of it."`
 			`	Tomek takes the man's hands, looks him in the eyes, and asks, "Do you swear before God and these witnesses to take no further part in military actions against the Free Worlds?"`
 			`	"I do," says the officer. Several of the other prisoners stand up, and before long all but a handful have sworn the oath.`
@@ -276,7 +276,7 @@ mission "FW Syndicate Diplomacy 1B"
 				goto ijs
 			
 			label ijs
-			`	"That may be true," says the man. "I am willing to believe you were hunting the terrorists, because I am aware through my own sources that the Free Worlds secured the services of a certain Ijs Springborn, whose skills would be well suited to such a hunt. And who might not be alive today if you had not offered him work outside this sector of space, where he is... universally despised. Regardless, we cannot sell weapons to enemies of the Republic."`
+			`	"That may be true," says the man. "I am willing to believe you were hunting the terrorists, because I am aware through my own sources that the Free Worlds secured the services of a certain Ijs Springborn, whose skills would be well suited to such a hunt. And who might not be alive today if you had not given him a reason to leave this sector of space, where he is... universally despised. Regardless, we cannot sell weapons to enemies of the Republic."`
 			`	"Piracy is on the rise in the Dirt Belt," says Alondo. "And I know you have customers there. Such as the Tarazed Corporation. If we can count you among our friends, we could ensure that your convoys reach Tarazed unmolested."`
 			`	"And you would no doubt immediately purchase said weapons from Tarazed," says the man.`
 			`	An older man sitting next to him says, "Of course, such weapons would end up being bought at a significant price markup." He is grinning.`
@@ -386,7 +386,7 @@ mission "FW Hope Recon 1C"
 	
 	on offer
 		conversation
-			`You land on Hope, place Freya's surveillance rigs in the locations they specified, and fire them up. Telemetry starts coming in, and you verify that your own ship is showing up in their scans. However, they are also picking up an unidentified heat signature on another part of Hope. Do you investigate?`
+			`You land on Hope, place Freya's surveillance rigs in the locations she specified, and fire them up. Telemetry starts coming in, and you verify that your own ship is showing up in their scans. However, they are also picking up an unidentified heat signature on another part of Hope. Do you investigate?`
 			choice
 				`	Of course!`
 				`	No, sounds risky.`
@@ -558,7 +558,7 @@ mission "FW Plasma Testing 1B"
 		event "plasma turret available" 50
 		conversation
 			scene "scene/loc7"
-			`When you enter the hangar, the Window-Blind has just returned to the hangar and a team of engineers are looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
+			`When you enter the hangar, the Window-Blind has just returned, and a team of engineers are looking it over. Barmy Edward puts down his work to come over and debrief you. "How did the turrets perform?" he asks.`
 			choice
 				`	"Very impressive. I want a few of those on my own ship."`
 					goto impressive
@@ -713,7 +713,7 @@ mission "FW Pirates 1A"
 	
 	on offer
 		conversation
-			`As you land on <planet>, you recall that the monks who live here are involved in some sort of outreach to children serving as pirate crews. They might have something to say about the best way to deal with the pirate threat. Do you want to visit them?`
+			`As you land on <planet>, you recall that the monks who live here are involved in some sort of outreach to children serving as pirate crew members. They might have something to say about the best way to deal with the pirate threat. Do you want to visit them?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
@@ -724,7 +724,7 @@ mission "FW Pirates 1A"
 			choice
 				`	"The Free Worlds is hoping to eliminate piracy in this sector, and I was hoping for advice on what targets we should attack."`
 					goto attack
-				`	"The Free Worlds is thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about most of the pirate crews just being kids."`
+				`	"The Free Worlds is thinking of launching an attack on the pirates, but I've been thinking about what Brother Greg said about the pirate crews being just kids."`
 					goto kids
 			label attack
 			`	"If you want some military advice," he says, "here's what I can tell you. You cannot create peace using violence. Most people on the pirate worlds are not pirates, just ordinary people unlucky enough to be born there. Or people who feel unwelcome everywhere else."`
@@ -955,7 +955,7 @@ mission "FW Flamethrower 1"
 	destination Rust
 	to offer
 		has "event: plasma turret available"
-		random < 5
+		random < 15
 	
 	on offer
 		conversation
@@ -1121,7 +1121,7 @@ mission "FW Pirates 2"
 				set "fw pirate suggestion: diplomacy"
 			`	He frowns. "Negotiate with criminals?"`
 			`	"I'm told that only a small portion of the people on those worlds actually engage in piracy," you say, "and many of them are children pressed into service as crew members."`
-			`	"Very well, we'll take your suggestion into consideration," he says."`
+			`	"Very well, we'll take your suggestion into consideration," he says.`
 			label next
 			`	"But I suppose we need to wait for the Senate to decide?" you ask.`
 			`	"Indeed," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the southern rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps. Can you do that?"`
@@ -1456,7 +1456,7 @@ mission "FW Pirates 4B"
 		event "Thule becomes independent"
 		conversation
 			`A pall of smoke still hangs over the spaceport, and as you are coming in for a landing you fly over one landing pad where bodies draped in sheets have been laid out side by side: dozens of casualties. Several buildings are in ruins, some of them still smoldering.`
-			`	Alondo has survived, fortunately. He tells you, "While the fight was goin on overhead, I met with the elders, and they agreed that now that the Free Worlds exist and opposing the pirates is a viable option, they will try to put an end to piracy in this system. But they have no interest whatsoever in joining the Free Worlds."`
+			`	Alondo has survived, fortunately. He tells you, "While the fight was going on overhead, I met with the elders, and they agreed that now that the Free Worlds exist and opposing the pirates is a viable option, they will try to put an end to piracy in this system. But they have no interest whatsoever in joining the Free Worlds."`
 			choice
 				`	"That's the best we had hoped for, right?"`
 					goto best
@@ -1464,7 +1464,7 @@ mission "FW Pirates 4B"
 			`	"You can't force people to join a democracy," he says. "Maybe some day they'll be ready, but in the meantime, any pressure we exert on them will turn them from an almost-ally into an enemy."`
 				goto next
 			label best
-			`	"Indeed," he says, "I hate to say it, but that pirate attack actually helped our case. But only time will tell what will come of this experiment of letting worlds be "independent." If more worlds start wanting total independence, rather than joining us, our future may not be sustainable."`
+			`	"Indeed," he says, "I hate to say it, but that pirate attack actually helped our case. But only time will tell what will come of this experiment of letting worlds be 'independent.' If more worlds start wanting total independence, rather than joining us, our future may not be sustainable."`
 			label next
 			`	"So, what do we do next?" you ask.`
 			`	"Well, the Terebinth is patched up, but they could use an escort back to <planet>. After that, you'll have to see what the Senate or the Council want you to do."`
@@ -1616,10 +1616,11 @@ mission "FW Refinery 1A"
 	destination "Smuggler's Den"
 	to offer
 		has "FW Refinery 1: done"
+	cargo "refinery equipment" 10
 	
 	on offer
 		conversation
-			`	"Your landing site is an abandoned settlement a thousand kilometers from Tundra's main spaceport. It's an old oil field that ran dry decades ago, and only  few of the landing pads are still usable. The Syndicate employees quickly load the cargo onto your ship, and say, "Now, take off quickly, before the Navy sees us doing business with a ship flying Free Worlds colors."`
+			`Your landing site is an abandoned settlement a thousand kilometers from Tundra's main spaceport. It's an old oil field that ran dry decades ago, and only a few of the landing pads are still usable. The Syndicate employees quickly load the cargo onto your ship, and say, "Now, take off quickly, before the Navy sees us doing business with a ship flying Free Worlds colors."`
 				launch
 	
 	on complete

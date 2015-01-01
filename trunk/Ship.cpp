@@ -1659,7 +1659,7 @@ const vector<Armament::Weapon> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
-bool Ship::CanFire(const Outfit *outfit)
+bool Ship::CanFire(const Outfit *outfit) const
 {
 	if(!outfit || !outfit->IsWeapon())
 		return false;

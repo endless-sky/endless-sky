@@ -207,7 +207,7 @@ public:
 	const std::vector<Armament::Weapon> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Outfit *outfit);
+	bool CanFire(const Outfit *outfit) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
 	void ExpendAmmo(const Outfit *outfit);
