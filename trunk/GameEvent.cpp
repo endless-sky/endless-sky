@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "GameData.h"
 #include "PlayerInfo.h"
 
 using namespace std;
@@ -75,6 +76,22 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
+	static const string lowerStr = "reputation: ";
+	// '!' = ' ' + 1.
+	static const string upperString = "reputation:!";
+	auto it = player.Conditions().lower_bound(lowerStr);
+	auto end = player.Conditions().lower_bound(upperString);
+	player.Conditions().erase(it, end);
 	conditionsToApply.Apply(player.Conditions());
 	player.AddChanges(changes);
+	
+	Politics &politics = GameData::GetPolitics();
+	it = player.Conditions().lower_bound(lowerStr);
+	end = player.Conditions().lower_bound(upperString);
+	for( ; it != end; ++it)
+	{
+		string name = it->first.substr(lowerStr.length());
+		const Government *gov = GameData::Governments().Get(name);
+		politics.AddReputation(gov, it->second);
+	}
 }
