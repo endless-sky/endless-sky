@@ -874,3 +874,104 @@ event "terraforming Rand"
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
 
+
+
+event "fw safe passage starts"
+	"reputation: Republic" += 10000
+
+
+
+event "fw safe passage ends"
+	"reputation: Republic" -= 10000
+
+
+
+event "navy using mark ii ships"
+	fleet "Small Republic"
+		government "Republic"
+		names "republic small"
+		cargo 0
+		personality
+			heroic
+		"friendly hail" "friendly navy"
+		variant 4
+			"Rainmaker (Mark II)" 2
+		variant 2
+			"Rainmaker" 2
+		variant 4
+			"Gunboat (Mark II)"
+			"Rainmaker (Mark II)"
+		variant 1
+			"Gunboat"
+			"Rainmaker"
+		variant 3
+			"Frigate (Mark II)"
+		variant 1
+			"Frigate"
+		variant 2
+			"Gunboat (Mark II)" 2
+		variant 1
+			"Gunboat" 2
+		variant 1
+			"Rainmaker (Mark II)" 3
+		variant 4
+			"Gunboat (Mark II)"
+		variant 2
+			"Gunboat"
+	fleet "Large Republic"
+		government "Republic"
+		names "republic capital"
+		fighters "republic fighter"
+		cargo 0
+		personality
+			heroic
+		"friendly hail" "friendly navy"
+		variant 4
+			"Frigate (Mark II)" 2
+			"Rainmaker (Mark II)"
+			"Gunboat (Mark II)"
+		variant 1
+			"Frigate" 2
+			"Rainmaker"
+			"Gunboat"
+		variant 2
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+		variant 1
+			"Cruiser"
+			"Combat Drone" 4
+		variant 2
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)"
+			"Rainmaker (Mark II)"
+		variant 1
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Rainmaker"
+		variant 2
+			"Carrier (Mark II)"
+			"Lance" 4
+			"Combat Drone" 6
+		variant 1
+			"Carrier"
+			"Lance" 4
+			"Combat Drone" 6
+		variant 1
+			"Carrier (Mark II)"
+			"Lance" 4
+			"Combat Drone" 6
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)" 2
+			"Rainmaker (Mark II)" 2
+			"Gunboat (Mark II)" 2
+		variant 1
+			"Cruiser (Mark II)"
+			"Combat Drone" 4
+			"Frigate (Mark II)" 2
+		variant 1
+			"Frigate (Mark II)"
+			"Rainmaker (Mark II)" 2
+			"Gunboat (Mark II)"
