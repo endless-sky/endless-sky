@@ -79,6 +79,7 @@ public:
 	void AddEscort(const std::weak_ptr<Ship> &ship);
 	void SetParent(const std::weak_ptr<Ship> &ship);
 	void RemoveEscort(const Ship *ship);
+	void ClearEscorts();
 	
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 	std::shared_ptr<Ship> GetParent() const;

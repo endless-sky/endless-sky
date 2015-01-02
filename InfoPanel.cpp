@@ -542,7 +542,8 @@ void InfoPanel::DrawShip() const
 	// Re-positioning weapons.
 	if(selected >= 0)
 	{
-		const string &name = ship.Weapons()[selected].GetOutfit()->Name();
+		const Outfit *outfit = ship.Weapons()[selected].GetOutfit();
+		string name = outfit ? outfit->Name() : "[empty]";
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);
@@ -557,12 +558,10 @@ void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) 
 		return;
 	
 	const Outfit *outfit = (**shipIt).Weapons()[index].GetOutfit();
-	if(!outfit)
-		return;
 	
 	const Font &font = FontSet::Get(14);
 	Color textColor = *GameData::Colors().Get(index == hover ? "bright" : "medium");
-	font.Draw(outfit->Name(), pos, textColor);
+	font.Draw(outfit ? outfit->Name() : "[empty]", pos, textColor);
 	
 	double high = (index == hover ? .8 : .5);
 	Color color(high, .75 * high, 0., 1.);

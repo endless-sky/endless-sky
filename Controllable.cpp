@@ -301,6 +301,13 @@ void Controllable::RemoveEscort(const Ship *ship)
 
 
 
+void Controllable::ClearEscorts()
+{
+	escorts.clear();
+}
+
+
+
 const vector<weak_ptr<Ship>> &Controllable::GetEscorts() const
 {
 	return escorts;
