@@ -636,6 +636,17 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	shared_ptr<Ship> ship = ships[fromIndex];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
+	
+	// Make sure all the ships know who the flagship is.
+	for(const shared_ptr<Ship> &it : ships)
+	{
+		it->ClearEscorts();
+		if(it != ships.front())
+		{
+			it->SetParent(ships.front());
+			ships.front()->AddEscort(it);
+		}
+	}
 }
 
 

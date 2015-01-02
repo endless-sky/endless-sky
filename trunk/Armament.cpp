@@ -188,7 +188,9 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 // Armament to call internally.
 void Armament::Weapon::Install(const Outfit *outfit)
 {
-	if(outfit && outfit->IsWeapon() && (!outfit->Get("turret mounts") || isTurret))
+	if(!outfit || !outfit->IsWeapon())
+		this->outfit = nullptr;
+	else if(!outfit->Get("turret mounts") || isTurret)
 	{
 		this->outfit = outfit;
 		
