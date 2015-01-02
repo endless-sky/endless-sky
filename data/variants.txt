@@ -371,3 +371,287 @@ ship "Falcon" "Falcon (Plasma)"
 	explode "tiny explosion" 10
 	explode "small explosion" 30
 	explode "medium explosion" 20
+
+ship "Rainmaker" "Rainmaker (Mark II)"
+	sprite "ship/rainmaker"
+	licenses Republic
+		Pilot's
+		Warship
+		Navy
+	attributes
+		category "Light Warship"
+		"cost" 1580000
+		"shields" 3500
+		"hull" 1200
+		"required crew" 7
+		"bunks" 14
+		"mass" 180
+		"drag" 3.8
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 25
+		"outfit space" 230
+		"weapon capacity" 60
+		"engine capacity" 50
+		weapon
+			"blast radius" 100
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D67-TM Shield Generator"
+		"Fuel Pod"
+		"Scram Drive"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+	engine -8 46
+	engine 8 46
+	gun -10 -30
+	gun 10 -30
+	gun -27 -5 "Sidewinder Missile Launcher"
+	gun 27 -5 "Sidewinder Missile Launcher"
+	gun -17 -5 "Sidewinder Missile Launcher"
+	gun 17 -5 "Sidewinder Missile Launcher"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+
+ship "Gunboat" "Gunboat (Mark II)"
+	sprite "ship/gunboat"
+	licenses Republic
+		Pilot's
+		Warship
+		Navy
+	attributes
+		category "Light Warship"
+		"cost" 3200000
+		"shields" 5800
+		"hull" 1400
+		"required crew" 8
+		"bunks" 12
+		"mass" 150
+		"drag" 3.1
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 50
+		"outfit space" 270
+		"weapon capacity" 100
+		"engine capacity" 90
+		weapon
+			"blast radius" 100
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Electron Beam" 2
+		"Electron Turret"
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"Water Coolant System"
+		"Mass Expansion" 2
+		Hyperdrive
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+	engine -12 57
+	engine 12 57
+	gun -28 -28 "Electron Beam"
+	gun 28 -28 "Electron Beam"
+	turret 0 -8 "Electron Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+
+ship "Frigate" "Frigate (Mark II)"
+	sprite "ship/frigate"
+	licenses Republic
+		Pilot's
+		Warship
+		Navy
+	attributes
+		category "Light Warship"
+		"cost" 5200000
+		"shields" 8000
+		"hull" 2500
+		"required crew" 24
+		"bunks" 44
+		"mass" 310
+		"drag" 5.2
+		"heat dissipation" .7
+		"fuel capacity" 500
+		"cargo space" 35
+		"outfit space" 410
+		"weapon capacity" 170
+		"engine capacity" 100
+		weapon
+			"blast radius" 200
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Particle Cannon" 4
+		"Anti-Missile Turret"
+		"Blaster Turret" 2
+		"NT-200 Nucleovoltaic"
+		"Dwarf Core"
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Water Coolant System"
+		"Mass Expansion"
+		Hyperdrive
+		"X3700 Ion Thruster"
+		"A375 Atomic Steering"
+	engine -26 92
+	engine 26 92
+	gun -10 -83 "Particle Cannon"
+	gun 10 -83 "Particle Cannon"
+	gun -10 -83 "Particle Cannon"
+	gun 10 -83 "Particle Cannon"
+	turret 0 -37 "Anti-Missile Turret"
+	turret -12 -12 "Blaster Turret"
+	turret 12 -12 "Blaster Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+
+ship "Cruiser" "Cruiser (Mark II)"
+	sprite "ship/cruiser"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+		Navy
+		Cruiser
+	attributes
+		category "Heavy Warship"
+		"cost" 11200000
+		"shields" 19600
+		"hull" 6400
+		"required crew" 84
+		"bunks" 136
+		"mass" 680
+		"drag" 10.1
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 60
+		"outfit space" 760
+		"weapon capacity" 320
+		"engine capacity" 170
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Electron Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		Hyperdrive
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+	engine -29 156
+	engine 29 156
+	gun -41 -52 "Typhoon Launcher"
+	gun 41 -52 "Typhoon Launcher"
+	gun -31 -63 "Sidewinder Missile Launcher"
+	gun 31 -63 "Sidewinder Missile Launcher"
+	gun -20 -44 "Sidewinder Missile Launcher"
+	gun 20 -44 "Sidewinder Missile Launcher"
+	turret 0 -40 "Electron Turret"
+	turret -33 -19 "Electron Turret"
+	turret 33 -19 "Electron Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	drone -25 18
+	drone 25 18
+	drone -25 49
+	drone 25 49
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
+
+ship "Carrier" "Carrier (Mark II)"
+	sprite "ship/carrier"
+	licenses Republic
+		Pilot's
+		Warship
+		"Capital Ship"
+		Navy
+		Carrier
+	attributes
+		category "Heavy Warship"
+		"cost" 15200000
+		"shields" 21400
+		"hull" 8300
+		"required crew" 114
+		"bunks" 184
+		"mass" 910
+		"drag" 17.7
+		"heat dissipation" .45
+		"fuel capacity" 700
+		"cargo space" 100
+		"outfit space" 820
+		"weapon capacity" 370
+		"engine capacity" 210
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Particle Cannon" 4
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Electron Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Dwarf Core"
+		"Armageddon Core"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Mass Expansion" 2
+		Hyperdrive
+		"A860 Atomic Thruster"
+		"X4200 Ion Steering"
+	engine -35 200
+	engine 35 200
+	gun -25 -166 "Particle Cannon"
+	gun 25 -166 "Particle Cannon"
+	gun -16 -176 "Particle Cannon"
+	gun 16 -176 "Particle Cannon"
+	gun -25 -166 "Sidewinder Missile Launcher"
+	gun 25 -166 "Sidewinder Missile Launcher"
+	gun -16 -176 "Sidewinder Missile Launcher"
+	gun 16 -176 "Sidewinder Missile Launcher"
+	turret 0 15 "Electron Turret"
+	turret 0 -114 "Electron Turret"
+	turret 0 157 "Electron Turret"
+	turret 0 103 "Heavy Anti-Missile Turret"
+	fighter -37 -65
+	fighter 37 -65
+	fighter -46 40
+	fighter 46 40
+	drone -72 -46
+	drone 72 -46
+	drone -101 57
+	drone 101 57
+	drone -74 57
+	drone 74 57
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
