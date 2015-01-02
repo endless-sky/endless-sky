@@ -490,9 +490,9 @@ outfit "Sidewinder Missile Launcher"
 	category "Missiles"
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
-	"mass" 15
-	"outfit space" -15
-	"weapon capacity" -15
+	"mass" 14
+	"outfit space" -14
+	"weapon capacity" -14
 	"gun ports" -1
 	"sidewinder capacity" 50
 	weapon
