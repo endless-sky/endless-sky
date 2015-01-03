@@ -44,7 +44,6 @@ protected:
 	
 	
 private:
-	void FinishMissions();
 	void ShowScanDialog(const ShipEvent &event);
 	void ShowHailPanel();
 	
