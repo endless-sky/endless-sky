@@ -231,7 +231,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			}
 			else if(parent && !parent->IsDisabled()
 					&& (parent->HasLandCommand() || parent->HasHyperspaceCommand()
-						|| targetDistance > 1000. || personality.IsTimid() || !target
+						|| targetDistance > 2000. || personality.IsTimid() || !target
 						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))
 						|| (isPlayerEscort && moveToMe))
 					&& (parent->GetSystem() != it->GetSystem()
@@ -369,7 +369,8 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	}
 	
 	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && (ship.Shields() + ship.Hull() < 1. || ship.GetPersonality().IsFleeing()))
+	if(!isDisabled && (ship.GetPersonality().IsFleeing() ||
+			(ship.Shields() + ship.Hull() < 1. && !ship.GetPersonality().IsHeroic())))
 		target.reset();
 	
 	return target;
@@ -379,6 +380,11 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 
 void AI::MoveIndependent(Controllable &control, const Ship &ship)
 {
+	if(ship.Position().Length() >= 10000.)
+	{
+		MoveTo(control, ship, Point(), 40., .8);
+		return;
+	}
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
@@ -725,7 +731,7 @@ void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 	Point d = target.Position() - ship.Position();
 	
 	// First, figure out what your shortest-range weapon is.
-	double shortestRange = 10000.;
+	double shortestRange = 4000.;
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
@@ -748,8 +754,14 @@ void AI::Attack(Controllable &control, const Ship &ship, const Ship &target)
 	control.SetTurnCommand(TurnToward(ship, TargetAim(ship)));
 	control.SetLaunchCommand();
 	
+	// Calculate this ship's "turning radius; that is, the smallest circle it
+	// can make while at full speed.
+	double stepsInFullTurn = 360. / ship.TurnRate();
+	double circumference = stepsInFullTurn * ship.MaxVelocity();
+	double diameter = max(200., circumference / PI);
+	
 	// This isn't perfect, but it works well enough.
-	control.SetThrustCommand(ship.Facing().Unit().Dot(d) >= 0. && d.Length() > 200.);
+	control.SetThrustCommand(ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter);
 }
 
 
