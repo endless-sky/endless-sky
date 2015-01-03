@@ -55,38 +55,7 @@ void MainPanel::Step()
 	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
-		
-		// You have a chance to drop off illegal mission cargo before the local
-		// authorities scan your ship.
-		FinishMissions();
-		
-		// Check if the player is doing anything illegal.
-		const Government *gov = player.GetSystem()->GetGovernment();
-		string message = GameData::GetPolitics().Fine(player, gov, 0, player.GetPlanet()->Security());
-		if(!message.empty())
-		{
-			if(message == "atrocity")
-			{
-				const Conversation *conversation = gov->DeathSentence();
-				if(conversation)
-					GetUI()->Push(new ConversationPanel(player, *conversation));
-				else
-				{
-					message = "Before you can leave your ship, the " + gov->GetName()
-						+ " authorities show up and begin scanning it. They say, \"Captain "
-						+ player.LastName()
-						+ ", we detect highly illegal material on your ship.\""
-						"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
-						" Your days of traveling the stars have come to an end.";
-					GetUI()->Push(new Dialog(message));
-				}
-				player.Die();
-			}
-			else
-				GetUI()->Push(new Dialog(message));
-		}
-		
-		player.Land();
+		player.Land(GetUI());
 		isActive = false;
 	}
 	if(isActive && !Preferences::Has("help: navigation"))
@@ -207,26 +176,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		return false;
 	
 	return true;
-}
-
-
-
-void MainPanel::FinishMissions()
-{
-	auto it = player.Missions().begin();
-	while(it != player.Missions().end())
-	{
-		const Mission &mission = *it;
-		++it;
-		
-		if(mission.HasFailed(player))
-			player.RemoveMission(Mission::FAIL, mission, GetUI());
-		else if(mission.CanComplete(player))
-			player.RemoveMission(Mission::COMPLETE, mission, GetUI());
-		else if(mission.Destination() == player.GetPlanet())
-			mission.Do(Mission::VISIT, player, GetUI());
-	}
-	player.UpdateCargoCapacities();
 }
 
 

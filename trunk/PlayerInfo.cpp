@@ -12,9 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfo.h"
 
+#include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Dialog.h"
 #include "DistanceMap.h"
 #include "Files.h"
 #include "GameData.h"
@@ -25,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "UI.h"
 
 #include <sstream>
 
@@ -667,7 +670,7 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 // Switch cargo from being stored in ships to being stored here.
-void PlayerInfo::Land()
+void PlayerInfo::Land(UI *ui)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -701,6 +704,22 @@ void PlayerInfo::Land()
 			ship->Cargo().TransferAll(&cargo);
 		}
 	
+	// Check for missions that are completed.
+	auto mit = missions.begin();
+	while(mit != missions.end())
+	{
+		const Mission &mission = *mit;
+		++mit;
+		
+		if(mission.HasFailed(*this))
+			RemoveMission(Mission::FAIL, mission, ui);
+		else if(mission.CanComplete(*this))
+			RemoveMission(Mission::COMPLETE, mission, ui);
+		else if(mission.Destination() == GetPlanet())
+			mission.Do(Mission::VISIT, *this, ui);
+	}
+	UpdateCargoCapacities();
+	
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
@@ -718,6 +737,32 @@ void PlayerInfo::Land()
 	for(const auto &it : cargo.PassengerList())
 		if(active.find(it.first) == active.end())
 			cargo.RemoveMissionCargo(it.first);
+	
+	// Check if the player is doing anything illegal.
+	const Government *gov = GetSystem()->GetGovernment();
+	string message = GameData::GetPolitics().Fine(*this, gov, 0, GetPlanet()->Security());
+	if(!message.empty())
+	{
+		if(message == "atrocity")
+		{
+			const Conversation *conversation = gov->DeathSentence();
+			if(conversation)
+				ui->Push(new ConversationPanel(*this, *conversation));
+			else
+			{
+				message = "Before you can leave your ship, the " + gov->GetName()
+					+ " authorities show up and begin scanning it. They say, \"Captain "
+					+ LastName()
+					+ ", we detect highly illegal material on your ship.\""
+					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
+					" Your days of traveling the stars have come to an end.";
+				ui->Push(new Dialog(message));
+			}
+			Die();
+		}
+		else
+			ui->Push(new Dialog(message));
+	}
 }
 
 

@@ -131,3 +131,55 @@ mission "FW Diplomacy 1D"
 	on complete
 		dialog `You are still finding it hard to believe that you made it to Earth and back in one piece. Alondo thanks you for transporting him and says, "Now I just have to break the bad news to the Senate. JJ and I will meet you in the spaceport bar in a few hours, once we've decided what our next steps will be."`
 		event "navy using mark ii ships"
+
+
+
+mission "FW Southern Recon 1"
+	name "Reconnaissance"
+	description "Fly through Rastaban, Delta Sagittarii, and Albaldah to get a sense of the Navy's strength in those systems, then report to <destination>."
+	source Longjump
+	waypoint Rastaban
+	waypoint "Delta Sagittarii"
+	waypoint Albaldah
+	destination Trinket
+	to offer
+		has "FW Diplomacy 1D: done"
+	
+	on offer
+		conversation
+			`Alondo and JJ are in a somber mood when you meet up with them in the bar. You can't help remembering that Tomek always used to be a part of these gatherings, before he turned against the Senate. And now it looks like your next major battle will be fought without Tomek's expert guidance.`
+			`	JJ says, "We've done all we can. Sooner or later we will have to fight the Navy for those star systems. So to start with, <first>, we'd like you to scout them out and report back to us on the Navy's presence there. Freya is on Trinket, gathering a fleet. Report to her there when you're done."`
+				accept
+
+
+
+mission "FW Southern Recon 1B"
+	landing
+	name "Electron Beam"
+	description "Steal an Electron Beam from a Navy gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone gunboats might be the Wei or Alnasl systems."
+	source Trinket
+	destination Trinket
+	to offer
+		has "FW Southern Recon 1: done"
+	
+	on offer
+		event "gunboats in Alnasl"
+		conversation
+			`Freya thanks you for performing the scouting mission, and you give her a copy of your ship's logs to analyze. As she looks through them, almost immediately something catches her eye. "Looks like the Navy is fielding some new weapons," she says. "Some higher-yield torpedos, and a beam weapon even more powerful than heavy lasers. Those beam weapons in particular worry me."`
+			choice
+				`	"Yes, that kind of negates the advantage I was hoping we'd have due to our new plasma turrets."`
+				`	"Does that mean we're not going to attack them after all?"`
+					goto attack
+			`	"Well," she says, "the plasma turrets weren't the only ace up our sleeve, but still, it's frustrating that the Navy still has such an advantage over us technologically."`
+			`	"What should we do?" you ask.`
+			label attack
+			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
+			choice
+				`	"How can I find a gunboat that's all by itself? They're usually a part of a bigger fleet."`
+			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
+				accept
+	
+	on complete
+		event "normal in Alnasl"
+		outfit "Electron Beam" -1
+		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
