@@ -372,6 +372,48 @@ ship "Falcon" "Falcon (Plasma)"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 
+ship "Fury" "Fury (Flamethrower)"
+	sprite "ship/fury"
+	licenses Republic
+		Pilot's
+	attributes
+		category "Interceptor"
+		"cost" 490000
+		"shields" 2000
+		"hull" 400
+		"required crew" 1
+		"bunks" 3
+		"mass" 70
+		"drag" 1.6
+		"heat dissipation" .9
+		"fuel capacity" 600
+		"cargo space" 15
+		"outfit space" 160
+		"weapon capacity" 40
+		"engine capacity" 60
+		weapon
+			"blast radius" 60
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
+	outfits
+		"Flamethrower" 4
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		"Hyperdrive"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+	engine -20 36
+	engine 20 36
+	gun -10 -32 "Flamethrower"
+	gun 10 -32 "Flamethrower"
+	gun -16 -22 "Flamethrower"
+	gun 16 -22 "Flamethrower"
+	explode "small explosion" 30
+	explode "medium explosion" 40
+
 ship "Rainmaker" "Rainmaker (Mark II)"
 	sprite "ship/rainmaker"
 	licenses Republic

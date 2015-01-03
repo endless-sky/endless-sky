@@ -994,47 +994,7 @@ mission "FW Flamethrower 2"
 	npc save disable
 		personality staying heroic
 		government "Test Dummy"
-		ship "Fury"
-			name "Doombat"
-			sprite "ship/fury"
-			licenses Republic
-				Pilot's
-			attributes
-				category "Interceptor"
-				"cost" 490000
-				"shields" 2000
-				"hull" 400
-				"required crew" 1
-				"bunks" 3
-				"mass" 70
-				"drag" 1.6
-				"heat dissipation" .9
-				"fuel capacity" 600
-				"cargo space" 15
-				"outfit space" 160
-				"weapon capacity" 40
-				"engine capacity" 60
-				weapon
-					"blast radius" 60
-					"shield damage" 240
-					"hull damage" 120
-					"hit force" 360
-			outfits
-				"X2700 Ion Thruster"
-				"X2200 Ion Steering"
-				"nGVF-CC Fuel Cell"
-				"LP036a Battery Pack"
-				"D14-RN Shield Generator"
-				"Flamethrower" 4
-				"Hyperdrive"
-			engine -20 36
-			engine 20 36
-			gun -10 -32
-			gun 10 -32
-			gun -16 -22
-			gun 16 -22
-			explode "small explosion" 30
-			explode "medium explosion" 40
+		ship "Fury (Flamethrower)" "Doombat"
 	
 	on complete
 		event "flamethrower available" 30
