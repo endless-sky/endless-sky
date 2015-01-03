@@ -183,3 +183,236 @@ mission "FW Southern Recon 1B"
 		event "normal in Alnasl"
 		outfit "Electron Beam" -1
 		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
+
+
+
+mission "FW Southern Battle 1"
+	name "Escort Battle Fleet"
+	description "Travel to <planet> to gather a fleet of experimental new warships, and escort them back to Trinket."
+	source Trinket
+	destination Zug
+	to offer
+		has "FW Southern Recon 1B: done"
+	
+	on offer
+		conversation
+			`Because this world is a tourist destination, there are innumerable small cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
+			choice
+				`	"Do you have any tactical advice on fighting ships with one of those installed?"`
+					goto advice
+				`	"Is there any chance we can reverse engineer it and build our own?"`
+					goto reverse
+			label advice
+			`	"Well," she says, "its range is very slightly shorter than our plasma turrets. You might be able to use that to your advantage if you can position your ship just right so that you can hit an enemy target but they can't hit you. You may find that useful in the upcoming battle."`
+				goto battle
+			label reverse
+			`	"Maybe, although we haven't even mastered the art of building heavy lasers yet," she says. "We certainly won't have time before the upcoming battle."`
+				goto battle
+			label battle
+			`	"So we're definitely going to attack the Navy?" you ask.`
+			`	"We have no choice," she says. "We tried diplomacy. If we don't show a willingness to support new worlds that want to join us, or if we don't seem to have enough strength to defend them, some of those that have joined us already may start to return to the Republic."`
+			choice
+				`	"Okay, I'm ready to fight."`
+				`	"I wish it hadn't come to this, but if you think it's our only option, I'll join the fight."`
+			`	"Thank you," she says. "But there's one more thing we must do to prepare for battle. I mentioned before that we have an ace up our sleeve. It's a new warship designed by Southbound Shipyards, intended to be a match for a Cruiser. They've only finished building three of them. I'd like you to travel to Zug and escort them back here. Once you return, we'll prepare for battle."`
+				accept
+
+
+
+mission "FW Southern Battle 1B"
+	landing
+	name "Escort Battle Fleet"
+	description "Escort a fleet of experimental warships to <destination>."
+	source Zug
+	destination Trinket
+	to offer
+		has "FW Southern Battle 1: done"
+	
+	on offer
+		conversation
+			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews. He says, "The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far."`
+			`	He then leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
+			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
+			`	You thank him for his time, and meet up with the captains of the battle fleet, arranging for them to follow you back to Trinket.`
+				accept
+	
+	npc accompany save
+		government Escort
+		personality timid
+		ship "Dreadnought" "F.S. Sequoia"
+		ship "Dreadnought" "F.S. Sitka"
+		ship "Dreadnought" "F.S. Rosewood"
+		ship "Fury (Flamethrower)" "F.S. Montag"
+		ship "Fury (Flamethrower)" "F.S. Faber"
+		ship "Fury (Flamethrower)" "F.S. Beatty"
+		ship "Fury (Flamethrower)" "F.S. Mildred"
+		ship "Fury (Flamethrower)" "F.S. Clarisse"
+	
+	on complete
+		dialog `You land on <planet> with the battle fleet. Time to meet up with Freya in the spaceport.`
+
+
+
+event "battle for Rastaban"
+	system Rastaban
+		fleet "Small Free Worlds" 10000
+	system Lesath
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1600
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1100
+	system Sargas
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2500
+		fleet "Small Free Worlds" 1000
+		fleet "Large Free Worlds" 1500
+
+mission "FW Southern Battle 2"
+	name "Attack Rastaban"
+	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in system."
+	source Trinket
+	destination Dancer
+	clearance
+	to offer
+		has "FW Southern Battle 1B: done"
+	deadline 3
+	
+	on offer
+		event "battle for Rastaban"
+		conversation
+			`When you meet up with Freya in the cafe, she looks like she hasn't slept in several days. "I can't believe we're headed for another major battle," she says. "I keep hoping the Navy will just pull back and not force us to fight them."`
+			choice
+				`	"It doesn't seem likely that Parliament would allow that."`
+				`	"Yes, their sense of honor can be inspiring at times, but right now it's annoying."`
+			`	"Indeed," she says. "Although, based on what Alondo said, the Navy hinted that if we made such a show of force that there was no way they could win the battle, they could honorably choose to retreat. So, if they start trying to retreat, let them go. But I suspect it will be a difficult battle to win."`
+			`	"What's the battle plan?" you ask.`
+			`	"The fleet from Southbound Shipyards will be traveling with you," she says. "Other fleets with other commanders will be converging on Rastaban separately, at approximately the same time. So, you have no time to lose. You must travel directly to Rastaban from here, or else you will arrive too late to join in the fight. Good luck, captain."`
+				accept
+	
+	npc
+		government Escort
+		personality heroic disables
+		ship "Dreadnought" "F.S. Sequoia"
+		ship "Dreadnought" "F.S. Sitka"
+		ship "Dreadnought" "F.S. Rosewood"
+		ship "Fury (Flamethrower)" "F.S. Montag"
+		ship "Fury (Flamethrower)" "F.S. Faber"
+		ship "Fury (Flamethrower)" "F.S. Beatty"
+		ship "Fury (Flamethrower)" "F.S. Mildred"
+		ship "Fury (Flamethrower)" "F.S. Clarisse"
+	
+	npc
+		system Rastaban
+		personality heroic uninterested staying disables
+		government "Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Plasma)"
+				"Osprey" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Plasma)"
+				"Osprey" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Plasma)"
+				"Osprey" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Plasma)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon" 2
+	
+	npc disable
+		system Rastaban
+		personality heroic uninterested staying
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Gunboat (Mark II)" 2
+	
+	on complete
+		event "fw southern expansion"
