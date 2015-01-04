@@ -111,6 +111,17 @@ government "Deep"
 	swizzle 0
 	"player reputation" -1000
 
+government "Navy (Oathkeeper)"
+	swizzle 0
+	color .91 .42 .09
+	
+	"player reputation" 100
+	"attitude toward"
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+		"Korath" -.3
+
 government "Korath"
 	swizzle 0
 	color .8 .5 .1

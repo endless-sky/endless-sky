@@ -1066,3 +1066,96 @@ event "fw southern expansion"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
 
+
+
+event "fw northern expansion"
+	system Alioth
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 400
+		fleet "Large Northern Merchants" 600
+		fleet "Small Free Worlds" 500
+		fleet "Large Free Worlds" 800
+		fleet "Small Republic" 5000
+		fleet "Large Republic" 6000
+		fleet "Navy Surveillance" 4000
+	system Alphecca
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 2000
+		fleet "Large Northern Merchants" 3500
+		fleet "Small Free Worlds" 1200
+		fleet "Large Free Worlds" 2000
+		fleet "Navy Surveillance" 6000
+	system Boral
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 3000
+		fleet "Large Northern Merchants" 8000
+		fleet "Small Free Worlds" 1500
+		fleet "Large Free Worlds" 3800
+	system Seginus
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 2700
+		fleet "Small Free Worlds" 700
+		fleet "Large Free Worlds" 1100
+		fleet "Small Republic" 5000
+		fleet "Large Republic" 6000
+		fleet "Navy Surveillance" 4000
+	system Wei
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 2500
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1000
+		fleet "Navy Surveillance" 4000
+
+
+
+event "fw prison on Clink"
+	planet Clink
+		description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
+		description `Recently, the Free Worlds have converted Clink into a prison colony for Navy officers and support staff who were captured in the battle for the Rastaban system.`
+
+
+
+event "alphas capture Poisonwood"
+	system Graffias
+		government "Pirate"
+		fleet "Small Free Worlds" 10000
+
+event "liberation of Poisonwood"
+	system Graffias
+		government "Neutral"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Southern Pirates" 6000
+		fleet "Small Free Worlds" 700
+		fleet "Small Free Worlds" 1200
+
+event "Poisonwood reverts to Republic"
+	system Graffias
+		government "Republic"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Southern Pirates" 4000
+		fleet "Small Free Worlds" 1500
+		fleet "Small Free Worlds" 2600
+
+
+
+event "fw at war with Syndicate"
+	government Syndicate
+		"attitude toward"
+			"Free Worlds" -.3
+			"Republic" -.3
+			"Pirate" -.4
+			"Korath" -.5
+
+
+
+event "fw armistice"
+	government Republic
+		"attitude toward"
+			"Free Worlds" 0
+	government "Free Worlds"
+		"attitude toward"
+			Republic 0
