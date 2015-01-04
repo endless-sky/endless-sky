@@ -229,8 +229,14 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				else
 					it->SetTurnCommand(TurnToward(*it, TargetAim(*it)));
 			}
+			// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
+			// escort behavior when in a different system from you. Otherwise,
+			// the behavior depends on what the parent is doing, whether there
+			// are hostile targets nearby, and whether the escort has any
+			// immediate needs (like refueling).
 			else if(parent && !parent->IsDisabled()
 					&& (parent->HasLandCommand() || parent->HasHyperspaceCommand()
+						|| parent->GetSystem() != it->GetSystem()
 						|| targetDistance > 2000. || personality.IsTimid() || !target
 						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))
 						|| (isPlayerEscort && moveToMe))
