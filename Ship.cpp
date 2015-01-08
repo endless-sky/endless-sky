@@ -391,6 +391,21 @@ void Ship::SetHail(const Phrase *friendly, const Phrase *hostile)
 
 
 
+// Set the commands for this ship to follow this timestep.
+void Ship::SetCommands(const Command &command)
+{
+	commands = command;
+}
+
+
+
+const Command &Ship::Commands() const
+{
+	return commands;
+}
+
+
+
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
@@ -650,16 +665,16 @@ bool Ship::Move(list<Effect> &effects)
 		
 		return true;
 	}
-	if(HasLandCommand() && CanLand())
+	if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetPlanet()->GetPlanet();
-	else if(HasHyperspaceCommand() && CanHyperspace())
+	else if(commands.Has(Command::JUMP) && CanHyperspace())
 		hyperspaceSystem = GetTargetSystem();
 	
 	double cloakingSpeed = attributes.Get("cloak");
 	bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
 		&& fuel >= attributes.Get("cloaking fuel")
 		&& energy >= attributes.Get("cloaking energy"));
-	if(HasCloakCommand() && canCloak)
+	if(commands.Has(Command::CLOAK) && canCloak)
 	{
 		cloak = min(1., cloak + cloakingSpeed);
 		fuel -= attributes.Get("cloaking fuel");
@@ -690,31 +705,32 @@ bool Ship::Move(list<Effect> &effects)
 		velocity *= 1. - attributes.Get("drag") / mass;
 	else if(!pilotError)
 	{
-		if(GetThrustCommand())
+		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			double cost = attributes.Get((GetThrustCommand() > 0.) ?
+			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
 			if(energy < cost)
-				SetThrustCommand(0.);
+				thrustCommand = 0.;
 			else
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
-				double thrust = attributes.Get((GetThrustCommand() > 0.) ?
+				double thrust = attributes.Get((thrustCommand > 0.) ?
 					"thrust" : "reverse thrust");
 				if(!thrust)
-					SetThrustCommand(0.);
+					thrustCommand = 0.;
 				else
 				{
 					energy -= cost;
-					heat += attributes.Get((GetThrustCommand() > 0.) ?
+					heat += attributes.Get((thrustCommand > 0.) ?
 						"thrusting heat" : "reverse thrusting heat");
-					velocity += angle.Unit() * (GetThrustCommand() * thrust / mass);
+					velocity += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
 		}
-		bool applyAfterburner = HasAfterburnerCommand() && !CannotAct();
+		bool applyAfterburner = commands.Has(Command::AFTERBURNER) && !CannotAct();
 		if(applyAfterburner)
 		{
 			double thrust = attributes.Get("afterburner thrust");
@@ -747,25 +763,25 @@ bool Ship::Move(list<Effect> &effects)
 				}
 			}
 		}
-		if(GetThrustCommand() || applyAfterburner)
+		if(thrustCommand || applyAfterburner)
 			velocity *= 1. - attributes.Get("drag") / mass;
-		if(GetTurnCommand())
+		if(commands.Turn())
 		{
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
 			if(energy < cost)
-				SetTurnCommand(0.);
+				commands.SetTurn(0.);
 			else
 			{
 				energy -= cost;
 				heat += attributes.Get("turning heat");
-				angle += GetTurnCommand() * TurnRate();
+				angle += commands.Turn() * TurnRate();
 			}
 		}
 	}
 	
 	// Boarding:
-	if(isBoarding && (GetThrustCommand() || GetTurnCommand()))
+	if(isBoarding && (commands.Has(Command::FORWARD | Command::BACK) || commands.Turn()))
 		isBoarding = false;
 	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip());
 	if(target && !isDisabled)
@@ -774,7 +790,7 @@ bool Ship::Move(list<Effect> &effects)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding |= (distance < 50. && speed < 1. && HasBoardCommand());
+		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 		if(isBoarding && !IsFighter())
 		{
 			if(!target->IsDisabled() && GameData::GetPolitics().IsEnemy(target->government, government))
@@ -818,7 +834,7 @@ bool Ship::Move(list<Effect> &effects)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	if(!HasLaunchCommand() || CannotAct())
+	if(!commands.Has(Command::DEPLOY) || CannotAct())
 		return;
 	
 	for(Bay &bay : fighterBays)
@@ -912,7 +928,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 // giving the types of scan that succeeded.
 int Ship::Scan() const
 {
-	if(!HasScanCommand() || CannotAct())
+	if(!commands.Has(Command::SCAN) || CannotAct())
 		return 0;
 	
 	shared_ptr<const Ship> target = GetTargetShip();
@@ -957,7 +973,7 @@ bool Ship::Fire(list<Projectile> &projectiles)
 		{
 			if(outfit->WeaponGet("anti-missile"))
 				hasAntiMissile = true;
-			else if(HasFireCommand(i))
+			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles);
 		}
 	}
@@ -1144,7 +1160,7 @@ const string &Ship::Name() const
 const vector<Point> &Ship::EnginePoints() const
 {
 	static const vector<Point> empty;
-	if(GetThrustCommand() <= 0. || isDisabled || attributes.FlareSprite().IsEmpty())
+	if(!commands.Has(Command::FORWARD) || isDisabled || attributes.FlareSprite().IsEmpty())
 		return empty;
 	
 	return enginePoints;
@@ -1349,7 +1365,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	SetTargetShip(weak_ptr<Ship>());
 	SetTargetPlanet(nullptr);
 	SetTargetSystem(nullptr);
-	ResetCommands();
+	commands.Clear();
 	isDisabled = false;
 	hyperspaceSystem = nullptr;
 	// TODO: add as an "escort" to this ship.
@@ -1739,4 +1755,130 @@ void Ship::CreateExplosion(list<Effect> &effects)
 			return;
 		}
 	}
+}
+
+
+
+// Each ship can have a target system (to travel to), a target planet (to
+// land on) and a target ship (to move to, and attack if hostile).
+shared_ptr<Ship> Ship::GetTargetShip() const
+{
+	return targetShip.lock();
+}
+
+
+
+shared_ptr<Ship> Ship::GetShipToAssist() const
+{
+	return shipToAssist.lock();
+}
+
+
+
+const StellarObject *Ship::GetTargetPlanet() const
+{
+	return targetPlanet;
+}
+
+
+
+const System *Ship::GetTargetSystem() const
+{
+	return targetSystem;
+}
+
+
+
+const Planet *Ship::GetDestination() const
+{
+	return destination;
+}
+
+
+
+// Set this ship's targets.
+void Ship::SetTargetShip(const weak_ptr<Ship> &ship)
+{
+	targetShip = ship;
+}
+
+
+
+void Ship::SetShipToAssist(const weak_ptr<Ship> &ship)
+{
+	shipToAssist = ship;
+}
+
+
+
+
+void Ship::SetTargetPlanet(const StellarObject *object)
+{
+	targetPlanet = object;
+}
+
+
+void Ship::SetTargetSystem(const System *system)
+{
+	targetSystem = system;
+}
+
+
+
+void Ship::SetDestination(const Planet *planet)
+{
+	destination = planet;
+}
+
+
+
+// Add escorts to this ship. Escorts look to the parent ship for movement
+// cues and try to stay with it when it lands or goes into hyperspace.
+void Ship::AddEscort(const weak_ptr<Ship> &ship)
+{
+	escorts.push_back(ship);
+}
+
+
+
+void Ship::SetParent(const weak_ptr<Ship> &ship)
+{
+	parent = ship;
+	targetShip.reset();
+	targetPlanet = nullptr;
+	targetSystem = nullptr;
+}
+
+
+
+void Ship::RemoveEscort(const Ship *ship)
+{
+	auto it = escorts.begin();
+	for( ; it != escorts.end(); ++it)
+		if(it->lock().get() == ship)
+		{
+			escorts.erase(it);
+			return;
+		}
+}
+
+
+
+void Ship::ClearEscorts()
+{
+	escorts.clear();
+}
+
+
+
+const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
+{
+	return escorts;
+}
+
+
+
+shared_ptr<Ship> Ship::GetParent() const
+{
+	return parent.lock();
 }
