@@ -13,12 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHIP_H_
 #define SHIP_H_
 
-#include "Controllable.h"
-
 #include "Angle.h"
 #include "Animation.h"
 #include "Armament.h"
 #include "CargoHold.h"
+#include "Command.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
@@ -35,6 +34,7 @@ class Government;
 class Planet;
 class Projectile;
 class Phrase;
+class StellarObject;
 class System;
 
 
@@ -47,7 +47,7 @@ class System;
 // weapons and weapon hardpoints on a ship. The same class is used for the
 // player's ship as for all other ships, so their capabilities are exactly the
 // same  within the limits of what the AI knows how to command them to do.
-class Ship : public Controllable, public std::enable_shared_from_this<Ship> {
+class Ship : public std::enable_shared_from_this<Ship> {
 public:
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
@@ -80,6 +80,9 @@ public:
 	std::string GetHail() const;
 	void SetHail(const Phrase *friendly, const Phrase *hostile);
 	
+	// Set the commands for this ship to follow this timestep.
+	void SetCommands(const Command &command);
+	const Command &Commands() const;
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
@@ -212,6 +215,31 @@ public:
 	// and add whatever heat it generates. Assume that CanFire() is true.
 	void ExpendAmmo(const Outfit *outfit);
 	
+	// Each ship can have a target system (to travel to), a target planet (to
+	// land on) and a target ship (to move to, and attack if hostile).
+	std::shared_ptr<Ship> GetTargetShip() const;
+	std::shared_ptr<Ship> GetShipToAssist() const;
+	const StellarObject *GetTargetPlanet() const;
+	const System *GetTargetSystem() const;
+	const Planet *GetDestination() const;
+	
+	// Set this ship's targets.
+	void SetTargetShip(const std::weak_ptr<Ship> &ship);
+	void SetShipToAssist(const std::weak_ptr<Ship> &ship);
+	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetSystem(const System *system);
+	void SetDestination(const Planet *planet);
+	
+	// Add escorts to this ship. Escorts look to the parent ship for movement
+	// cues and try to stay with it when it lands or goes into hyperspace.
+	void AddEscort(const std::weak_ptr<Ship> &ship);
+	void SetParent(const std::weak_ptr<Ship> &ship);
+	void RemoveEscort(const Ship *ship);
+	void ClearEscorts();
+	
+	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
+	std::shared_ptr<Ship> GetParent() const;
+	
 	
 private:
 	bool CannotAct() const;
@@ -252,6 +280,8 @@ private:
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	double cloak = 0.;
+	
+	Command commands;
 	
 	Personality personality;
 	const Phrase *hail[2] = {nullptr, nullptr};
@@ -303,6 +333,17 @@ private:
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;
 	unsigned explosionTotal = 0;
+	
+	// Target ships, planets, systems, etc.
+	std::weak_ptr<Ship> targetShip;
+	std::weak_ptr<Ship> shipToAssist;
+	const StellarObject *targetPlanet = nullptr;
+	const System *targetSystem = nullptr;
+	const Planet *destination = nullptr;
+	
+	// Links between escorts and parents.
+	std::vector<std::weak_ptr<Ship>> escorts;
+	std::weak_ptr<Ship> parent;
 };
 
 

@@ -319,7 +319,7 @@ void Engine::Step(bool isActive)
 		}
 		info.SetString("credits",
 			Format::Number(player.Accounts().Credits()) + " credits");
-		if(flagship && flagship->GetTargetPlanet() && !flagship->HasHyperspaceCommand())
+		if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
 		{
 			info.SetString("navigation mode", "Landing on:");
 			const string &name = flagship->GetTargetPlanet()->Name();

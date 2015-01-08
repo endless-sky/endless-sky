@@ -81,6 +81,9 @@ public:
 	// Get or set the turn amount.
 	void SetTurn(double amount);
 	double Turn() const;
+	// Get or set the fire commands.
+	bool HasFire(int index);
+	void SetFire(int index);
 	
 	// Check whether any commands are set.
 	explicit operator bool() const;
