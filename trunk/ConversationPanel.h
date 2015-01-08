@@ -44,15 +44,15 @@ template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	
 	// Draw this panel.
-	virtual void Draw() const;
+	virtual void Draw() const override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
-	virtual bool Click(int x, int y);
-	virtual bool Drag(int dx, int dy);
-	virtual bool Scroll(int dx, int dy);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y) override;
+	virtual bool Drag(int dx, int dy) override;
+	virtual bool Scroll(int dx, int dy) override;
 	
 	
 private:

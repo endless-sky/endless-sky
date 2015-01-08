@@ -30,8 +30,8 @@ class SpaceportPanel : public Panel {
 public:
 	SpaceportPanel(PlayerInfo &player);
 	
-	virtual void Step();
-	virtual void Draw() const;
+	virtual void Step() override;
+	virtual void Draw() const override;
 	
 	
 private:

@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <memory>
 
+class Command;
 class UI;
 
 
@@ -49,7 +50,7 @@ public:
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
 	virtual bool Click(int x, int y);
 	virtual bool RClick(int x, int y);
 	virtual bool Hover(int x, int y);
@@ -63,6 +64,12 @@ protected:
 	void DrawBackdrop() const;
 	
 	UI *GetUI() const;
+	
+	// This is not for overriding, but for calling KeyDown with only one or two
+	// arguments. In this form, the command is never set, so you can call this
+	// with a key representing a known keyboard shortcut without worrying that a
+	// user-defined command key will override it.
+	bool DoKey(SDL_Keycode key, Uint16 mod = 0);
 	
 	
 private:

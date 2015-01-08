@@ -147,7 +147,7 @@ void InfoPanel::Draw() const
 
 
 
-bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == 'd')
 		GetUI()->Pop(this);
@@ -191,8 +191,8 @@ bool InfoPanel::Click(int x, int y)
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+		if(key)
+			return DoKey(key);
 	}
 	
 	if(shipIt == player.Ships().end())

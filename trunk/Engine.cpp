@@ -243,7 +243,7 @@ void Engine::Step(bool isActive)
 			position = flagship->Position();
 			velocity = flagship->Velocity();
 		}
-		ai.UpdateKeys(GameData::Keys().State(), &player, isActive && wasActive);
+		ai.UpdateKeys(&player, isActive && wasActive);
 		wasActive = isActive;
 		Audio::Update(position, velocity);
 		
@@ -580,14 +580,14 @@ void Engine::EnterSystem()
 	if(today <= Date(21, 11, 3013))
 	{
 		Messages::Add(string("Press \"")
-			+ GameData::Keys().Name(Key::MAP)
+			+ Command::MAP.KeyName()
 			+ string("\" to view your map, and \"")
-			+ GameData::Keys().Name(Key::JUMP)
+			+ Command::JUMP.KeyName()
 			+ string("\" to make a hyperspace jump."));
 		Messages::Add(string("Or, press \"")
-			+ GameData::Keys().Name(Key::LAND)
+			+ Command::LAND.KeyName()
 			+ string("\" to land. For the main menu, press \"")
-			+ GameData::Keys().Name(Key::MENU) + string("\"."));
+			+ Command::MENU.KeyName() + string("\"."));
 	}
 }
 

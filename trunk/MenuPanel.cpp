@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MenuPanel.h"
 
+#include "Command.h"
 #include "ConversationPanel.h"
 #include "Files.h"
 #include "Font.h"
@@ -159,12 +160,12 @@ void MenuPanel::OnCallback(int)
 
 
 
-bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(GameData::Progress() < 1.)
 		return false;
 	
-	if(player.IsLoaded() && (key == 'e' || key == GameData::Keys().Get(Key::MENU)))
+	if(player.IsLoaded() && (key == 'e' || command == Command::MENU))
 		GetUI()->Pop(this);
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
@@ -194,8 +195,8 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 bool MenuPanel::Click(int x, int y)
 {
 	char key = GameData::Interfaces().Get("main menu")->OnClick(Point(x, y));
-	if(key != '\0')
-		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	if(key)
+		return DoKey(key);
 	
 	return true;
 }

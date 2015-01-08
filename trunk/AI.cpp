@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AI.h"
 
 #include "Armament.h"
+#include "Command.h"
 #include "DistanceMap.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Key.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "pi.h"
@@ -36,6 +36,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const Command &AutopilotCancelKeys()
+	{
+		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
+		
+		return keys;
+	}
+}
+
 
 
 AI::AI()
@@ -46,23 +56,23 @@ AI::AI()
 
 
 
-void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
+void AI::UpdateKeys(PlayerInfo *info, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	
-	keyDown = keys & ~keyHeld;
-	keyHeld = keys;
-	if(keys & AutopilotCancelKeys())
-		keyStuck = 0;
-	if((keyStuck & Key::Bit(Key::JUMP)) && !info->HasTravelPlan())
-		keyStuck -= Key::Bit(Key::JUMP);
+	keyHeld.ReadKeyboard();
+	keyDown = keyHeld & ~keyDown;
+	if(keyHeld & AutopilotCancelKeys())
+		keyStuck.Clear();
+	if(keyStuck.Has(Command::JUMP) && !info->HasTravelPlan())
+		keyStuck.Clear(Command::JUMP);
 	
 	const Ship *player = info->GetShip();
 	if(!isActive || !player)
 		return;
 	
 	// Cloaking device.
-	if((keyDown & Key::Bit(Key::CLOAK)) && player->Attributes().Get("cloak"))
+	if(keyDown.Has(Command::CLOAK) && player->Attributes().Get("cloak"))
 	{
 		isCloaking = !isCloaking;
 		Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
@@ -70,27 +80,27 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 	if(!player->IsTargetable())
 		return;
 	
-	if(keyDown & Key::Bit(Key::SELECT))
+	if(keyDown.Has(Command::SELECT))
 		info->SelectNext();
 	
 	// The commands below here only apply if you have escorts or fighters.
 	if(info->Ships().size() < 2)
 		return;
 	
-	if((keyDown & Key::Bit(Key::DEPLOY)) && player->HasBays())
+	if(keyDown.Has(Command::DEPLOY) && player->HasBays())
 	{
 		isLaunching = !isLaunching;
 		Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
 	}
 	shared_ptr<Ship> target = player->GetTargetShip();
-	if((keyDown & Key::Bit(Key::FIGHT)) && target)
+	if(keyDown.Has(Command::FIGHT) && target)
 	{
 		sharedTarget = target;
 		holdPosition = false;
 		moveToMe = false;
 		Messages::Add("All your ships are focusing their fire on \"" + target->Name() + "\".");
 	}
-	if(keyDown & Key::Bit(Key::HOLD))
+	if(keyDown.Has(Command::HOLD))
 	{
 		sharedTarget.reset();
 		holdPosition = !holdPosition;
@@ -98,7 +108,7 @@ void AI::UpdateKeys(int keys, PlayerInfo *info, bool isActive)
 		Messages::Add(holdPosition ? "Your fleet is holding position."
 			: "Your fleet is no longer holding position.");
 	}
-	if(keyDown & Key::Bit(Key::GATHER))
+	if(keyDown.Has(Command::GATHER))
 	{
 		sharedTarget.reset();
 		holdPosition = false;
@@ -1041,7 +1051,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			}
 	}
 	
-	if(keyDown & Key::Bit(Key::NEAREST))
+	if(keyDown.Has(Command::NEAREST))
 	{
 		double closest = numeric_limits<double>::infinity();
 		int closeState = 0;
@@ -1070,7 +1080,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				}
 			}
 	}
-	else if(keyDown & Key::Bit(Key::TARGET))
+	else if(keyDown.Has(Command::TARGET))
 	{
 		const Government *playerGovernment = info.GetShip()->GetGovernment();
 		
@@ -1091,7 +1101,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(selectNext)
 			control.SetTargetShip(weak_ptr<Ship>());
 	}
-	else if(keyDown & Key::Bit(Key::BOARD))
+	else if(keyDown.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = control.GetTargetShip();
 		if(!target || !target->IsDisabled() || target->IsDestroyed())
@@ -1112,7 +1122,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				}
 		}
 	}
-	else if(keyDown & Key::Bit(Key::LAND))
+	else if(keyDown.Has(Command::LAND))
 	{
 		// If the player is right over an uninhabited planet, display a message
 		// explaining why they cannot land there.
@@ -1191,7 +1201,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		if(!message.empty())
 			Messages::Add(message);
 	}
-	else if(keyDown & Key::Bit(Key::JUMP))
+	else if(keyDown.Has(Command::JUMP))
 	{
 		if(!control.GetTargetSystem())
 		{
@@ -1208,7 +1218,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 			}
 		}
 	}
-	else if(keyDown & Key::Bit(Key::SCAN))
+	else if(keyDown.Has(Command::SCAN))
 		control.SetScanCommand();
 	
 	bool hasGuns = Preferences::Has("Automatic firing");
@@ -1216,16 +1226,14 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 		control.SetFireCommands(AutoFire(ship, ships, false));
 	if(keyHeld)
 	{
-		if(keyHeld & Key::Bit(Key::BACK))
+		if(keyHeld.Has(Command::BACK))
 			control.SetTurnCommand(TurnBackward(ship));
 		else
-			control.SetTurnCommand(
-				((keyHeld & Key::Bit(Key::RIGHT)) != 0) -
-				((keyHeld & Key::Bit(Key::LEFT)) != 0));
+			control.SetTurnCommand(keyHeld.Has(Command::RIGHT) - keyHeld.Has(Command::LEFT));
 		
-		if(keyHeld & Key::Bit(Key::FORWARD))
+		if(keyHeld.Has(Command::FORWARD))
 			control.SetThrustCommand(1.);
-		if(keyHeld & Key::Bit(Key::PRIMARY))
+		if(keyHeld.Has(Command::PRIMARY))
 		{
 			int index = 0;
 			for(const Armament::Weapon &weapon : ship.Weapons())
@@ -1239,7 +1247,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				++index;
 			}
 		}
-		if(keyHeld & Key::Bit(Key::SECONDARY))
+		if(keyHeld.Has(Command::SECONDARY))
 		{
 			int index = 0;
 			for(const Armament::Weapon &weapon : ship.Weapons())
@@ -1250,7 +1258,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 				++index;
 			}
 		}
-		if(keyHeld & Key::Bit(Key::AFTERBURNER))
+		if(keyHeld.Has(Command::AFTERBURNER))
 			control.SetAfterburnerCommand();
 		
 		if(keyHeld & AutopilotCancelKeys())
@@ -1258,7 +1266,7 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	}
 	if(hasGuns && Preferences::Has("Automatic aiming") && !control.GetTurnCommand()
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
-			&& !(keyStuck & (Key::Bit(Key::LAND) || Key::Bit(Key::JUMP) || Key::Bit(Key::BOARD))))
+			&& !(keyStuck & (Command::LAND | Command::JUMP | Command::BOARD)))
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)
@@ -1266,29 +1274,29 @@ void AI::MovePlayer(Controllable &control, const PlayerInfo &info, const list<sh
 	}
 	
 	if(ship.IsBoarding())
-		keyStuck = 0;
-	else if((keyStuck & Key::Bit(Key::LAND)) && ship.GetTargetPlanet())
+		keyStuck.Clear();
+	else if(keyStuck.Has(Command::LAND) && ship.GetTargetPlanet())
 	{
 		if(ship.GetPlanet())
-			keyStuck = 0;
+			keyStuck.Clear();
 		else
 		{
 			MoveToPlanet(control, ship);
 			control.SetLandCommand();
 		}
 	}
-	else if((keyStuck & Key::Bit(Key::JUMP)) && ship.GetTargetSystem())
+	else if(keyStuck.Has(Command::JUMP) && ship.GetTargetSystem())
 	{
 		if(!ship.JumpsRemaining() && !ship.IsHyperspacing())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
-			keyStuck = 0;
+			keyStuck.Clear();
 			return;
 		}
 		PrepareForHyperspace(control, ship);
 		control.SetHyperspaceCommand();
 	}
-	else if((keyStuck & Key::Bit(Key::BOARD)) && ship.GetTargetShip())
+	else if(keyStuck.Has(Command::BOARD) && ship.GetTargetShip())
 	{
 		shared_ptr<const Ship> target = control.GetTargetShip();
 		MoveTo(control, ship, target->Position(), 40., .8);
@@ -1314,12 +1322,4 @@ bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) cons
 		return false;
 	
 	return (oit->second & type);
-}
-
-
-
-int AI::AutopilotCancelKeys()
-{
-	return Key::Bit(Key::LAND) | Key::Bit(Key::JUMP) | Key::Bit(Key::BOARD) |
-		Key::Bit(Key::BACK) | Key::Bit(Key::RIGHT) | Key::Bit(Key::LEFT) | Key::Bit(Key::FORWARD);
 }

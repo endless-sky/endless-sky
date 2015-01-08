@@ -52,14 +52,14 @@ template <class T>
 	Dialog(T *t, void (T::*fun)(), const std::string &text);
 	
 	// Draw this panel.
-	virtual void Draw() const;
+	virtual void Draw() const override;
 	
 	
 protected:
 	// The use can click "ok" or "cancel", or use the tab key to toggle which
 	// button is highlighted and the enter key to select it.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
-	virtual bool Click(int x, int y);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y) override;
 	
 	
 private:

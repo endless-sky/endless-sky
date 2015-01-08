@@ -109,7 +109,7 @@ void HiringPanel::Draw() const
 
 
 
-bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(!player.GetShip())
 		return false;
@@ -137,8 +137,8 @@ bool HiringPanel::Click(int x, int y)
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+		if(key)
+			return DoKey(key);
 	}
 	
 	return false;

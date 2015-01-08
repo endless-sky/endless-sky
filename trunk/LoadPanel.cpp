@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LoadPanel.h"
 
 #include "Color.h"
+#include "Command.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "Dialog.h"
@@ -123,7 +124,7 @@ void LoadPanel::OnCallback(int)
 
 
 
-bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == 'n')
 	{
@@ -196,7 +197,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		gamePanels.Reset();
 		gamePanels.Push(new MainPanel(player));
 	}
-	else if(key == 'b' || key == GameData::Keys().Get(Key::MENU))
+	else if(key == 'b' || command == Command::MENU)
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{
@@ -261,8 +262,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 bool LoadPanel::Click(int x, int y)
 {
 	char key = GameData::Interfaces().Get("load menu")->OnClick(Point(x, y));
-	if(key != '\0')
-		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	if(key)
+		return DoKey(key);
 	
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160)

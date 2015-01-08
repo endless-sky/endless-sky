@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MissionPanel.h"
 
+#include "Command.h"
 #include "Dialog.h"
 #include "DotShader.h"
 #include "FillShader.h"
@@ -146,7 +147,7 @@ void MissionPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == 'd')
 	{
@@ -221,7 +222,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == GameData::Keys().Get(Key::MAP))
+	else if(command == Command::MAP)
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
@@ -254,12 +255,12 @@ bool MissionPanel::Click(int x, int y)
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+		if(key)
+			return DoKey(key);
 	}
 	
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
-		return KeyDown('p', KMOD_NONE);
+		return DoKey('p');
 	
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{

@@ -161,7 +161,7 @@ void BoardingPanel::Draw() const
 
 
 
-bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if((key == 'd' || key == 'x') && CanExit())
 	{
@@ -317,7 +317,7 @@ bool BoardingPanel::Click(int x, int y)
 	{
 		char key = interface->OnClick(Point(x, y));
 		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+			return DoKey(key);
 	}
 	
 	return true;

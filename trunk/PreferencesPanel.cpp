@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Color.h"
+#include "Files.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -32,35 +33,35 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const Key::Command COMMANDS[] = {
-		Key::END,
-		Key::FORWARD,
-		Key::LEFT,
-		Key::RIGHT,
-		Key::BACK,
-		Key::AFTERBURNER,
-		Key::LAND,
-		Key::JUMP,
-		Key::END,
-		Key::PRIMARY,
-		Key::SELECT,
-		Key::SECONDARY,
-		Key::CLOAK,
-		Key::END,
-		Key::NEAREST,
-		Key::TARGET,
-		Key::SCAN,
-		Key::HAIL,
-		Key::END,
-		Key::MENU,
-		Key::MAP,
-		Key::INFO,
-		Key::FULLSCREEN,
-		Key::END,
-		Key::DEPLOY,
-		Key::FIGHT,
-		Key::GATHER,
-		Key::HOLD
+	static const Command COMMANDS[] = {
+		Command::NONE,
+		Command::FORWARD,
+		Command::LEFT,
+		Command::RIGHT,
+		Command::BACK,
+		Command::AFTERBURNER,
+		Command::LAND,
+		Command::JUMP,
+		Command::NONE,
+		Command::PRIMARY,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
+		Command::NONE,
+		Command::NEAREST,
+		Command::TARGET,
+		Command::SCAN,
+		Command::HAIL,
+		Command::NONE,
+		Command::MENU,
+		Command::MAP,
+		Command::INFO,
+		Command::FULLSCREEN,
+		Command::NONE,
+		Command::DEPLOY,
+		Command::FIGHT,
+		Command::GATHER,
+		Command::HOLD
 	};
 	static const string CATEGORIES[] = {
 		"Navigation",
@@ -75,7 +76,7 @@ namespace {
 		"Automatic firing",
 		"Automatic aiming"
 	};
-	static const Key::Command *BREAK = &COMMANDS[18];
+	static const Command *BREAK = &COMMANDS[18];
 }
 
 
@@ -106,9 +107,6 @@ void PreferencesPanel::Draw() const
 	
 	// Check for conflicts.
 	Color red(.3, 0., 0., .3);
-	map<int, int> count;
-	for(Key::Command c = Key::MENU; c != Key::END; c = static_cast<Key::Command>(c + 1))
-		++count[GameData::Keys().Get(c)];
 	
 	Table table;
 	table.AddColumn(-115, Table::LEFT);
@@ -121,7 +119,7 @@ void PreferencesPanel::Draw() const
 	Point endPoint;
 	const string *category = CATEGORIES;
 	zones.clear();
-	for(const Key::Command &command : COMMANDS)
+	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
 		if(&command == BREAK)
@@ -130,7 +128,7 @@ void PreferencesPanel::Draw() const
 			table.DrawAt(Point(130, firstY));
 		}
 		
-		if(command == Key::END)
+		if(command == Command::NONE)
 		{
 			table.DrawGap(10);
 			table.DrawUnderline(medium);
@@ -143,12 +141,9 @@ void PreferencesPanel::Draw() const
 		}
 		else
 		{
-			SDL_Keycode key = static_cast<SDL_Keycode>(GameData::Keys().Get(command));
-			string current = SDL_GetKeyName(key);
-			
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = (count[key] > 1);
+			bool isConflicted = command.HasConflict();
 			bool isEditing = (index == editing);
 			if(isConflicted || isEditing)
 			{
@@ -165,8 +160,8 @@ void PreferencesPanel::Draw() const
 			table.SetHighlight(-120, 120);
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 			
-			table.Draw(Key::Description(command), medium);
-			table.Draw(current, isEditing ? bright : medium);
+			table.Draw(command.Description(), medium);
+			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
 	
@@ -191,11 +186,11 @@ void PreferencesPanel::Draw() const
 
 
 
-bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
-		GameData::SetKey(zones[editing].Value(), key);
+		Command::SetKey(zones[editing].Value(), key);
 		editing = -1;
 		return true;
 	}
@@ -206,7 +201,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		--selected;
 	else if(key == SDLK_RETURN)
 		editing = selected;
-	else if(key == 'b' || key == GameData::Keys().Get(Key::MENU))
+	else if(key == 'b' || command == Command::MENU)
 		Exit();
 	else
 		return false;
@@ -222,8 +217,8 @@ bool PreferencesPanel::Click(int x, int y)
 	
 	Point point(x, y);
 	char key = GameData::Interfaces().Get("preferences")->OnClick(point);
-	if(key != '\0')
-		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	if(key)
+		return DoKey(key);
 	
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
 	{
@@ -247,7 +242,7 @@ bool PreferencesPanel::Click(int x, int y)
 void PreferencesPanel::Exit()
 {
 	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
-	GameData::Keys().Save(keysPath);
+	Command::SaveSettings(Files::Config() + "keys.txt");
 	
 	GetUI()->Pop(this);
 }

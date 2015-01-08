@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef AI_H_
 #define AI_H_
 
+#include "Command.h"
+
 #include <list>
 #include <map>
 #include <memory>
@@ -36,7 +38,7 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys(int keys, PlayerInfo *info, bool isActive);
+	void UpdateKeys(PlayerInfo *info, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
@@ -74,15 +76,13 @@ private:
 	
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	
-	// Return a bitmask of keys that cancel autopilot
-	int AutopilotCancelKeys();
 	
 private:
 	int step;
 	
-	int keyDown;
-	int keyHeld;
-	int keyStuck;
+	Command keyDown;
+	Command keyHeld;
+	Command keyStuck;
 	bool isLaunching;
 	bool isCloaking;
 	bool shift;

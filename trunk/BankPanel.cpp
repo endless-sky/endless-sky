@@ -186,7 +186,7 @@ void BankPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	int maxRow = player.Accounts().Mortgages().size() - !qualify;
 	if(key == SDLK_UP && selectedRow)
@@ -216,14 +216,14 @@ bool BankPanel::Click(int x, int y)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
 		if(x >= EXTRA_X)
-			KeyDown(SDLK_RETURN, KMOD_NONE);
+			DoKey(SDLK_RETURN);
 	}
 	else if(x >= EXTRA_X - 10 && x <= MAX_X && y >= FIRST_Y + 230 && y <= FIRST_Y + 250)
 	{
 		if(qualify)
 		{
 			selectedRow = player.Accounts().Mortgages().size();
-			KeyDown(SDLK_RETURN, KMOD_NONE);
+			DoKey(SDLK_RETURN);
 		}
 	}
 	else
