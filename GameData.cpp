@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
+#include "Command.h"
 #include "DataFile.h"
 #include "DotShader.h"
 #include "Files.h"
@@ -60,9 +61,6 @@ namespace {
 	Politics politics;
 	
 	Trade trade;
-	
-	Key keys;
-	Key defaultKeys;
 	
 	StarField background;
 	
@@ -147,10 +145,8 @@ void GameData::LoadShaders()
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
 	
 	// Load the key settings.
-	defaultKeys.Load(Files::Resources() + "keys.txt");
-	string keysPath = Files::Config() + "keys.txt";
-	keys = defaultKeys;
-	keys.Load(keysPath);
+	Command::LoadSettings(Files::Resources() + "keys.txt");
+	Command::LoadSettings(Files::Config() + "keys.txt");
 	
 	DotShader::Init();
 	FillShader::Init();
@@ -369,28 +365,6 @@ const vector<Trade::Commodity> &GameData::Commodities()
 const StarField &GameData::Background()
 {
 	return background;
-}
-
-
-
-// Get the mapping of keys to commands.
-const Key &GameData::Keys()
-{
-	return keys;
-}
-
-
-
-void GameData::SetKey(Key::Command command, int key)
-{
-	keys.Set(command, key);
-}
-
-
-
-const Key &GameData::DefaultKeys()
-{
-	return defaultKeys;
 }
 
 

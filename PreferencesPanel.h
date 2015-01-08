@@ -16,7 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "Key.h"
+#include "Command.h"
 
 #include <string>
 #include <vector>
@@ -29,13 +29,13 @@ public:
 	PreferencesPanel();
 	
 	// Draw this panel.
-	virtual void Draw() const;
+	virtual void Draw() const override;
 	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
-	virtual bool Click(int x, int y);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
+	virtual bool Click(int x, int y) override;
 	
 	
 private:
@@ -46,7 +46,7 @@ private:
 	int editing;
 	int selected;
 	
-	mutable std::vector<ClickZone<Key::Command>> zones;
+	mutable std::vector<ClickZone<Command>> zones;
 	mutable std::vector<ClickZone<std::string>> prefZones;
 };
 

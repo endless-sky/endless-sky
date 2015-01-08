@@ -171,7 +171,7 @@ void HailPanel::Draw() const
 
 
 
-bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	bool shipIsEnemy = ship && GameData::GetPolitics().IsEnemy(
 		GameData::PlayerGovernment(), ship->GetGovernment());
@@ -243,8 +243,8 @@ bool HailPanel::Click(int x, int y)
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+		if(key)
+			return DoKey(key);
 	}
 	
 	return true;

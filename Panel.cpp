@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Panel.h"
 
 #include "Color.h"
+#include "Command.h"
 #include "FillShader.h"
 #include "Screen.h"
 #include "UI.h"
@@ -69,7 +70,7 @@ bool Panel::TrapAllEvents()
 
 
 // Only override the ones you need; the default action is to return false.
-bool Panel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	return false;
 }
@@ -141,6 +142,17 @@ void Panel::DrawBackdrop() const
 UI *Panel::GetUI() const
 {
 	return ui;
+}
+
+
+
+// This is not for overriding, but for calling KeyDown with only one or two
+// arguments. In this form, the command is never set, so you can call this
+// with a key representing a known keyboard shortcut without worrying that a
+// user-defined command key will override it.
+bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
+{
+	return KeyDown(key, mod, Command());
 }
 
 

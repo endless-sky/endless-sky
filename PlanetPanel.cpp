@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Color.h"
+#include "Command.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
 #include "FontSet.h"
@@ -63,7 +64,7 @@ void PlanetPanel::Step()
 	// If the previous mission callback resulted in a "launch", take off now.
 	if(player.ShouldLaunch())
 	{
-		KeyDown('d', KMOD_NONE);
+		DoKey('d');
 		return;
 	}
 	if(GetUI()->IsTop(this))
@@ -105,7 +106,7 @@ void PlanetPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	Panel *oldPanel = selectedPanel;
 	const Ship *ship = player.GetShip();
@@ -158,12 +159,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
 	}
-	else if(key == GameData::Keys().Get(Key::MAP))
+	else if(command == Command::MAP)
 	{
 		GetUI()->Push(new MapDetailPanel(player));
 		return true;
 	}
-	else if(key == GameData::Keys().Get(Key::INFO))
+	else if(command == Command::INFO)
 	{
 		GetUI()->Push(new InfoPanel(player));
 		return true;
@@ -184,8 +185,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 bool PlanetPanel::Click(int x, int y)
 {
 	char key = ui.OnClick(Point(x, y));
-	if(key != '\0')
-		return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+	if(key)
+		return DoKey(key);
 	
 	return true;
 }

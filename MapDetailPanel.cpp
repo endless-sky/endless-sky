@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "MapDetailPanel.h"
 
+#include "Command.h"
 #include "Dialog.h"
 #include "DotShader.h"
 #include "Font.h"
@@ -62,16 +63,16 @@ void MapDetailPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == GameData::Keys().Get(Key::MAP) || key == 'd')
+	if(command == Command::MAP || key == 'd')
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
-	else if((key == SDLK_TAB || key == GameData::Keys().Get(Key::JUMP)) && player.GetShip())
+	else if((key == SDLK_TAB || command == Command::JUMP) && player.GetShip())
 	{
 		const vector<const System *> &links = player.GetShip()->Attributes().Get("jump drive") ?
 			player.GetSystem()->Neighbors() : player.GetSystem()->Links();
@@ -171,12 +172,12 @@ bool MapDetailPanel::Click(int x, int y)
 	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 335 && x < Screen::Right() - 265)
 	{
 		// The user clicked the "done" button.
-		return KeyDown(SDLK_d, KMOD_NONE);
+		return DoKey(SDLK_d);
 	}
 	else if(y >= Screen::Bottom() - 40 && x >= Screen::Right() - 415 && x < Screen::Right() - 345)
 	{
 		// The user clicked the "missions" button.
-		return KeyDown(SDLK_PAGEDOWN, KMOD_NONE);
+		return DoKey(SDLK_PAGEDOWN);
 	}
 	
 	MapPanel::Click(x, y);

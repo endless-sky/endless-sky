@@ -131,7 +131,7 @@ void Dialog::Draw() const
 
 
 
-bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod)
+bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key >= ' ' && key <= '~' && (intFun || stringFun))
 	{
@@ -172,7 +172,7 @@ bool Dialog::Click(int x, int y)
 	if(fabs(ok.X()) < 40. && fabs(ok.Y()) < 20.)
 	{
 		okIsActive = true;
-		return KeyDown(SDLK_RETURN, KMOD_NONE);
+		return DoKey(SDLK_RETURN);
 	}
 	
 	if(canCancel)
@@ -181,7 +181,7 @@ bool Dialog::Click(int x, int y)
 		if(fabs(cancel.X()) < 40. && fabs(cancel.Y()) < 20.)
 		{
 			okIsActive = false;
-			return KeyDown(SDLK_RETURN, KMOD_NONE);
+			return DoKey(SDLK_RETURN);
 		}
 	}
 	

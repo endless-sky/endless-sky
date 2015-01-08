@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "TradingPanel.h"
 
 #include "Color.h"
+#include "Command.h"
 #include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -71,7 +72,7 @@ void TradingPanel::Step()
 				"Earn money by buying commodities at a low price in one system, "
 				"and selling at a higher price elsewhere. "
 				"To view your map of commodity prices in other systems, press \"")
-			+ GameData::Keys().Name(Key::MAP)
+			+ Command::MAP.KeyName()
 			+ string("\". To buy or sell, click on [buy] or [sell], "
 				"or select a line with the up and down arrows and press \"+\" or \"-\" "
 				"(or Enter and Delete).\n"
@@ -160,7 +161,7 @@ void TradingPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == SDLK_UP && selectedRow)
 		--selectedRow;
@@ -185,7 +186,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 			player.Cargo().Transfer(it.first, it.second);
 		}
 	}
-	else if(key == GameData::Keys().Get(Key::MAP))
+	else if(command == Command::MAP)
 		GetUI()->Push(new MapDetailPanel(player, selectedRow));
 	else
 		return false;
@@ -202,8 +203,8 @@ bool TradingPanel::Click(int x, int y)
 	if(interface)
 	{
 		char key = interface->OnClick(Point(x, y));
-		if(key != '\0')
-			return KeyDown(static_cast<SDL_Keycode>(key), KMOD_NONE);
+		if(key)
+			return DoKey(key);
 	}
 	
 	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "Command.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
 #include "Font.h"
@@ -63,13 +64,13 @@ void MainPanel::Step()
 		Preferences::Set("help: navigation");
 		ostringstream out;
 		out << "Welcome to the sky! To travel to another star system, press \""
-			<< GameData::Keys().Name(Key::MAP) << "\" to view your map, "
+			<< Command::MAP.KeyName() << "\" to view your map, "
 			<< "and click on the system you want to travel to. "
 			<< "Your hyperdrive can only travel along the \"links\" shown on your map. "
 			<< "After selecting a destination, close your map and press \""
-			<< GameData::Keys().Name(Key::JUMP) << "\" to jump to that system.\n"
+			<< Command::JUMP.KeyName() << "\" to jump to that system.\n"
 			<< "\tWhen you reach a new system, you can press \""
-			<< GameData::Keys().Name(Key::LAND) << "\" to land on any inhabited planets that are there.\n"
+			<< Command::LAND.KeyName() << "\" to land on any inhabited planets that are there.\n"
 			<< "\tAlso, don't worry about crashing into asteroids or other ships; "
 			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
@@ -81,9 +82,9 @@ void MainPanel::Step()
 		ostringstream out;
 		out << "Oops! You just ran out of fuel in an uninhabited system. "
 			<< "Fortunately, other ships are willing to help you.\n\tPress \""
-			<< GameData::Keys().Name(Key::TARGET) << "\" to cycle through all the ships in this system. "
+			<< Command::TARGET.KeyName() << "\" to cycle through all the ships in this system. "
 			<< "When you have a friendly one selected, press \""
-			<< GameData::Keys().Name(Key::HAIL) << "\" to hail it. "
+			<< Command::HAIL.KeyName() << "\" to hail it. "
 			<< "You can then ask for help, "
 			<< "and if it has fuel to spare it will fly over and transfer fuel to your ship. "
 			<< "This is easiest for the other ship to do if your ship is nearly stationary.";
@@ -95,7 +96,7 @@ void MainPanel::Step()
 		ostringstream out;
 		out << "Uh-oh! You just died. The universe can a dangerous place for new captains!\n"
 			<< "\tFortunately, your game is automatically saved every time you leave a planet. "
-			<< "To load your most recent saved game, press \"" + GameData::Keys().Name(Key::MENU)
+			<< "To load your most recent saved game, press \"" + Command::MENU.KeyName()
 			<< "\" to return to the main menu, then click on \"Load / Save\" and \"Enter Ship.\"";
 		GetUI()->Push(new Dialog(out.str()));
 	}
@@ -164,13 +165,13 @@ void MainPanel::OnCallback()
 
 
 // Only override the ones you need; the default action is to return false.
-bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == GameData::Keys().Get(Key::MAP))
+	if(command == Command::MAP)
 		GetUI()->Push(new MapDetailPanel(player));
-	else if(key == GameData::Keys().Get(Key::INFO))
+	else if(command == Command::INFO)
 		GetUI()->Push(new InfoPanel(player));
-	else if(key == GameData::Keys().Get(Key::HAIL))
+	else if(command == Command::HAIL)
 		ShowHailPanel();
 	else
 		return false;

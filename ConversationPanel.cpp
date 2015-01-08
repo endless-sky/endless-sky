@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConversationPanel.h"
 
 #include "Color.h"
+#include "Command.h"
 #include "Conversation.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -135,7 +136,7 @@ void ConversationPanel::Draw() const
 
 
 // Only override the ones you need; the default action is to return false.
-bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(node < 0)
 	{
@@ -187,7 +188,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod)
 		++choice;
 	else if(key == SDLK_RETURN && choice < conversation.Choices(node))
 		Goto(conversation.NextNode(node, choice));
-	else if(key == GameData::Keys().Get(Key::MAP))
+	else if(command == Command::MAP)
 		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	else if(key > '0' && key <= static_cast<SDL_Keycode>('0' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'));

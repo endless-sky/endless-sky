@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "Audio.h"
+#include "Command.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -204,7 +205,7 @@ int main(int argc, char *argv[])
 					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
 				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-						&& event.key.keysym.sym == GameData::Keys().Get(Key::MENU))
+						&& Command(event.key.keysym.sym) == Command::MENU)
 				{
 					menuPanels.Push(shared_ptr<Panel>(
 						new MenuPanel(player, gamePanels)));
@@ -224,7 +225,7 @@ int main(int argc, char *argv[])
 					// No need to do anything more!
 				}
 				else if(event.type == SDL_KEYDOWN
-						&& event.key.keysym.sym == GameData::Keys().Get(Key::FULLSCREEN))
+						&& Command(event.key.keysym.sym) == Command::FULLSCREEN)
 				{
 					if(restoreWidth)
 					{

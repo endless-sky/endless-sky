@@ -31,8 +31,8 @@ class MainPanel : public Panel {
 public:
 	MainPanel(PlayerInfo &player);
 	
-	virtual void Step();
-	virtual void Draw() const;
+	virtual void Step() override;
+	virtual void Draw() const override;
 	
 	// The planet panel calls this when it closes.
 	void OnCallback();
@@ -40,7 +40,7 @@ public:
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
-	virtual bool KeyDown(SDL_Keycode key, Uint16 mod);
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	
 	
 private:

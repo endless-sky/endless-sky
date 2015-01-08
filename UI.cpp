@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "UI.h"
 
+#include "Command.h"
 #include "Panel.h"
 #include "Screen.h"
 
@@ -60,7 +61,10 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);
 		else if(event.type == SDL_KEYDOWN)
-			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod);
+		{
+			Command command(event.key.keysym.sym);
+			handled = (*it)->KeyDown(event.key.keysym.sym, event.key.keysym.mod, command);
+		}
 		
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.

@@ -21,7 +21,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Interface.h"
-#include "Key.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Phrase.h"
@@ -86,11 +85,6 @@ public:
 	static const std::vector<Trade::Commodity> &Commodities();
 	
 	static const StarField &Background();
-	
-	// Get the mapping of keys to commands.
-	static const Key &Keys();
-	static void SetKey(Key::Command command, int key);
-	static const Key &DefaultKeys();
 	
 	
 private:

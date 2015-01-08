@@ -305,7 +305,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 // Only override the ones you need; the default action is to return false.
-bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod)
+bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == 'l' && FlightCheck())
 	{
@@ -359,11 +359,11 @@ bool ShopPanel::Click(int x, int y)
 	{
 		x -= Screen::Right() - SIDE_WIDTH;
 		if(x < 80)
-			KeyDown(SDLK_b, KMOD_NONE);
+			DoKey(SDLK_b);
 		else if(x < 160)
-			KeyDown(SDLK_s, KMOD_NONE);
+			DoKey(SDLK_s);
 		else
-			KeyDown(SDLK_l, KMOD_NONE);
+			DoKey(SDLK_l);
 		
 		return true;
 	}
