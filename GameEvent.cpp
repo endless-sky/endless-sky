@@ -85,13 +85,12 @@ void GameEvent::Apply(PlayerInfo &player)
 	conditionsToApply.Apply(player.Conditions());
 	player.AddChanges(changes);
 	
-	Politics &politics = GameData::GetPolitics();
 	it = player.Conditions().lower_bound(lowerStr);
 	end = player.Conditions().lower_bound(upperString);
 	for( ; it != end; ++it)
 	{
 		string name = it->first.substr(lowerStr.length());
 		const Government *gov = GameData::Governments().Get(name);
-		politics.AddReputation(gov, it->second);
+		gov->AddReputation(it->second);
 	}
 }

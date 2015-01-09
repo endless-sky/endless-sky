@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Conversation;
 class DataNode;
+class PlayerInfo;
 
 
 
@@ -64,19 +65,42 @@ public:
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
 	bool IsEnemy(const Government *other) const;
+	// Check if this government is an enemy of the player.
+	bool IsEnemy() const;
+	
+	// Below are shortcut functions which actually alter the game state in the
+	// Politics object, but are provided as member functions here for clearer syntax.
+	
+	// Check if this is the player government.
+	bool IsPlayer() const;
+	// Commit the given "offense" against this government (which may not
+	// actually consider it to be an offense). This may result in temporary
+	// hostilities (if the even type is PROVOKE), or a permanent change to your
+	// reputation.
+	void Offend(int eventType, int count = 1) const;
+	// Bribe this government to be friendly to you for one day.
+	void Bribe() const;
+	// Check to see if the player has done anything they should be fined for.
+	// Each government can only fine you once per day.
+	std::string Fine(const PlayerInfo &player, int scan = 0, double security = 1.) const;
+	
+	// Get or set the player's reputation with this government.
+	double Reputation() const;
+	void AddReputation(double value) const;
+	void SetReputation(double value) const;
 	
 	
 private:
 	std::string name;
-	int swizzle;
+	int swizzle = 0;
 	Color color;
 	
 	std::map<const Government *, double> attitudeToward;
-	double initialPlayerReputation;
+	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
-	double bribe;
-	double fine;
-	const Conversation *deathSentence;
+	double bribe = 0.;
+	double fine = 1.;
+	const Conversation *deathSentence = nullptr;
 };
 
 

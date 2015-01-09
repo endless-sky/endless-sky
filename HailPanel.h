@@ -15,10 +15,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Point.h"
+
 #include <string>
 
+class Planet;
 class PlayerInfo;
 class Ship;
+class Sprite;
 class StellarObject;
 
 
@@ -29,7 +33,7 @@ class StellarObject;
 class HailPanel : public Panel {
 public:
 	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship);
-	HailPanel(PlayerInfo &player, const StellarObject *planet);
+	HailPanel(PlayerInfo &player, const StellarObject *object);
 	
 	virtual void Draw() const override;
 	
@@ -47,7 +51,9 @@ private:
 private:
 	PlayerInfo &player;
 	std::shared_ptr<Ship> ship = nullptr;
-	const StellarObject *planet = nullptr;
+	const Planet *planet = nullptr;
+	const Sprite *sprite = nullptr;
+	Point unit;
 	
 	std::string header;
 	std::string message;

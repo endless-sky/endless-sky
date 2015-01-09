@@ -372,7 +372,7 @@ void Ship::SetPersonality(const Personality &other)
 
 string Ship::GetHail() const
 {
-	bool isEnemy = GameData::GetPolitics().IsEnemy(government, GameData::PlayerGovernment());
+	bool isEnemy = government->IsEnemy();
 	const Phrase *name = hail[isEnemy];
 	
 	if(!name)
@@ -793,7 +793,7 @@ bool Ship::Move(list<Effect> &effects)
 		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 		if(isBoarding && !IsFighter())
 		{
-			if(!target->IsDisabled() && GameData::GetPolitics().IsEnemy(target->government, government))
+			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
 			else if(target->IsDestroyed())
 				isBoarding = false;
@@ -888,7 +888,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	}
 	
 	// Board a ship of your own government to repair/refuel it.
-	if(!GameData::GetPolitics().IsEnemy(victim->GetGovernment(), government))
+	if(!government->IsEnemy(victim->GetGovernment()))
 	{
 		SetShipToAssist(shared_ptr<Ship>());
 		victim->hull = max(victim->hull, victim->MinimumHull());
@@ -1063,7 +1063,7 @@ bool Ship::CanLand() const
 	if(!GetTargetPlanet() || isDisabled || IsDestroyed())
 		return false;
 	
-	if(!GameData::GetPolitics().CanLand(*this, GetTargetPlanet()->GetPlanet()))
+	if(!GetTargetPlanet()->GetPlanet()->CanLand(*this))
 		return false;
 	
 	Point distance = GetTargetPlanet()->Position() - position;

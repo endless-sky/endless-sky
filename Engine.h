@@ -92,7 +92,6 @@ private:
 	
 private:
 	PlayerInfo &player;
-	const Government *playerGovernment;
 	
 	AI ai;
 	

@@ -221,8 +221,8 @@ void PlayerInfo::Save() const
 	out.Write("reputation with");
 	out.BeginChild();
 		for(const auto &it : GameData::Governments())
-			if(&it.second != GameData::PlayerGovernment())
-				out.Write(it.first, GameData::GetPolitics().Reputation(&it.second));
+			if(!it.second.IsPlayer())
+				out.Write(it.first, it.second.Reputation());
 	out.EndChild();
 		
 	
@@ -320,7 +320,7 @@ void PlayerInfo::New()
 void PlayerInfo::ApplyChanges()
 {
 	for(const auto &it : reputationChanges)
-		GameData::GetPolitics().SetReputation(it.first, it.second);
+		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
 }
@@ -682,7 +682,7 @@ void PlayerInfo::Land(UI *ui)
 	while(it != ships.end())
 	{
 		if(!*it || (*it)->IsDestroyed() || (*it)->IsDisabled()
-				|| (*it)->GetGovernment() != GameData::PlayerGovernment())
+				|| !(*it)->GetGovernment()->IsPlayer())
 			it = ships.erase(it);
 		else
 			++it; 
@@ -693,7 +693,7 @@ void PlayerInfo::Land(UI *ui)
 		if(ship->GetSystem() == system)
 			ship->UnloadFighters();
 	
-	bool canRecharge = planet->HasSpaceport() && GameData::GetPolitics().CanUseServices(planet);
+	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
@@ -740,7 +740,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Check if the player is doing anything illegal.
 	const Government *gov = GetSystem()->GetGovernment();
-	string message = GameData::GetPolitics().Fine(*this, gov, 0, GetPlanet()->Security());
+	string message = gov->Fine(*this, 0, GetPlanet()->Security());
 	if(!message.empty())
 	{
 		if(message == "atrocity")
@@ -1018,7 +1018,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
 	// Combat rating increases when you disable an enemy ship.
-	if(event.ActorGovernment() == GameData::PlayerGovernment())
+	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
 			conditions["combat rating"] += event.Target()->RequiredCrew();
 	
@@ -1176,10 +1176,9 @@ void PlayerInfo::SelectNext()
 void PlayerInfo::CreateMissions()
 {
 	// Set up the "conditions" for the current status of the player.
-	const Politics &politics = GameData::GetPolitics();
 	for(const auto &it : GameData::Governments())
 	{
-		int rep = politics.Reputation(&it.second);
+		int rep = it.second.Reputation();
 		conditions["reputation: " + it.first] = rep;
 		if(&it.second == system->GetGovernment())
 			conditions["reputation"] = rep;

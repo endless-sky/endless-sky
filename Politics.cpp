@@ -30,10 +30,15 @@ using namespace std;
 void Politics::Reset()
 {
 	reputationWith.clear();
-	ResetProvocation();
+	ResetDaily();
 	
 	for(const auto &it : GameData::Governments())
 		reputationWith[&it.second] = it.second.InitialPlayerReputation();
+	
+	// Disable fines for today (because the game was just loaded, so any fines
+	// were already checked for when you first landed).
+	for(const auto &it : GameData::Governments())
+		fined.insert(&it.second);
 }
 
 
@@ -45,9 +50,9 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 	
 	// Just for simplicity, if one of the governments is the player, make sure
 	// it is the first one.
-	if(second == GameData::PlayerGovernment())
+	if(second->IsPlayer())
 		swap(first, second);
-	if(first == GameData::PlayerGovernment())
+	if(first->IsPlayer())
 	{
 		if(bribed.find(second) != bribed.end())
 			return false;
@@ -71,7 +76,7 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 // reputation.
 void Politics::Offend(const Government *gov, int eventType, int count)
 {
-	if(gov == GameData::PlayerGovernment())
+	if(gov->IsPlayer())
 		return;
 	
 	// If you bribe a government but then attack it, the effect of your bribe is
@@ -126,7 +131,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 	
 	const Government *gov = ship.GetGovernment();
 	const Government *systemGov = planet->GetSystem()->GetGovernment();
-	if(gov != GameData::PlayerGovernment())
+	if(!gov->IsPlayer())
 		return !IsEnemy(gov, systemGov);
 	
 	return CanLand(planet);
@@ -221,7 +226,7 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 	
 	if(maxFine < 0)
 	{
-		Offend(gov, ShipEvent::ATROCITY);
+		gov->Offend(ShipEvent::ATROCITY);
 		if(!scan)
 			reason = "atrocity";
 		else
@@ -238,16 +243,6 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 		fined.insert(gov);
 	}
 	return reason;
-}
-
-
-
-// Disable fines for today (because the game was just loaded, so any fines
-// were already checked for when you first landed).
-void Politics::DisableFines()
-{
-	for(const auto &it : GameData::Governments())
-		fined.insert(&it.second);
 }
 
 
@@ -276,7 +271,7 @@ void Politics::SetReputation(const Government *gov, double value)
 
 
 // Reset any temporary provocation (typically because a day has passed).
-void Politics::ResetProvocation()
+void Politics::ResetDaily()
 {
 	provoked.clear();
 	bribed.clear();

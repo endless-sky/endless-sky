@@ -60,8 +60,9 @@ void AI::UpdateKeys(PlayerInfo *info, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	
+	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	keyDown = keyHeld & ~keyDown;
+	keyDown = keyHeld & ~oldHeld;
 	if(keyHeld & AutopilotCancelKeys())
 		keyStuck.Clear();
 	if(keyStuck.Has(Command::JUMP) && !info->HasTravelPlan())
@@ -126,15 +127,14 @@ void AI::UpdateEvents(const std::list<ShipEvent> &events)
 	{
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
-			if(event.TargetGovernment() == GameData::PlayerGovernment())
+			if(event.TargetGovernment()->IsPlayer())
 				Messages::Add("You are being scanned by the " +
 					event.ActorGovernment()->GetName() + " ship \"" + event.Actor()->Name() + ".\"");
 		}
 		if(event.Actor() && event.Target())
 			actions[event.Actor()][event.Target()] |= event.Type();
-		if(event.ActorGovernment() == GameData::PlayerGovernment() && event.Target())
-			GameData::GetPolitics().Offend(
-				event.TargetGovernment(), event.Type(), event.Target()->RequiredCrew());
+		if(event.ActorGovernment()->IsPlayer() && event.Target())
+			event.TargetGovernment()->Offend(event.Type(), event.Target()->RequiredCrew());
 	}
 }
 
@@ -235,7 +235,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				continue;
 			}
 			
-			bool isPlayerEscort = it->GetGovernment() == GameData::PlayerGovernment();
+			bool isPlayerEscort = it->GetGovernment()->IsPlayer();
 			if(isPlayerEscort && holdPosition)
 			{
 				if(it->Velocity().Length() > .2 || !target)
@@ -285,7 +285,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	if(!gov)
 		return target;
 	
-	bool isPlayerEscort = (gov == GameData::PlayerGovernment());
+	bool isPlayerEscort = (gov->IsPlayer());
 	if(isPlayerEscort)
 	{
 		shared_ptr<Ship> locked = sharedTarget.lock();
@@ -318,7 +318,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 			if(ship.GetPersonality().IsTimid() && it->GetTargetShip().get() != &ship)
 				continue;
 			
-			if(person.IsNemesis() && it->GetGovernment() != GameData::PlayerGovernment())
+			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
 				continue;
 			
 			double range = it->Position().Distance(ship.Position());
@@ -406,7 +406,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else
 		{
 			CircleAround(ship, command, *target);
-			if(ship.GetGovernment() != GameData::PlayerGovernment())
+			if(!ship.GetGovernment()->IsPlayer())
 				command |= Command::SCAN;
 		}
 		return;
@@ -443,7 +443,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
-					&& GameData::GetPolitics().CanLand(ship, object.GetPlanet()))
+					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -970,6 +970,13 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	Command command;
 	int index = -1;
 	
+	// Special case: your target is not your enemy. Do not fire, because you do
+	// not want to risk damaging that target. The only time a ship other than
+	// the player will target a friendly ship is if the player has asked a ship
+	// for assistance.
+	if(ship.GetTargetShip() && !ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment()))
+		return command;
+	
 	// Only fire on disabled targets if you don't want to plunder them.
 	bool spareDisabled = (ship.GetPersonality().Disables() || ship.GetPersonality().Plunders());
 	
@@ -1119,8 +1126,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 	}
 	else if(keyDown.Has(Command::TARGET))
 	{
-		const Government *playerGovernment = info.GetShip()->GetGovernment();
-		
 		shared_ptr<const Ship> target = ship.GetTargetShip();
 		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
@@ -1128,7 +1133,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 			if(other == target)
 				selectNext = true;
 			else if(other.get() != &ship && selectNext && other->IsTargetable() &&
-					(other->GetGovernment() == playerGovernment) == shift)
+					other->GetGovernment()->IsPlayer() == shift)
 			{
 				ship.SetTargetShip(other);
 				selectNext = false;
@@ -1203,7 +1208,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 					}
 			}
 			ship.SetTargetPlanet(next);
-			if(next->GetPlanet() && !GameData::GetPolitics().CanLand(next->GetPlanet()))
+			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
 				message = "The authorities on this planet refuse to clear you to land here.";
 		}
 		else if(message.empty())
@@ -1229,7 +1234,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 				}
 			if(!ship.GetTargetPlanet())
 				message = "There are no planets in this system that you can land on.";
-			else if(!GameData::GetPolitics().CanLand(ship.GetTargetPlanet()->GetPlanet()))
+			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
 				message = "The authorities on this planet refuse to clear you to land here.";
 			else if(count > 1)
 				message = "You can land on more than one planet in this system. Landing on "

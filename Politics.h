@@ -39,7 +39,7 @@ public:
 	// actually consider it to be an offense). This may result in temporary
 	// hostilities (if the even type is PROVOKE), or a permanent change to your
 	// reputation.
-	void Offend(const Government *gov, int eventType, int count = 1);
+	void Offend(const Government *gov, int eventType, int count);
 	// Bribe the given government to be friendly to you for one day.
 	void Bribe(const Government *gov);
 	
@@ -49,22 +49,19 @@ public:
 	bool CanLand(const Planet *planet) const;
 	bool CanUseServices(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
-	void BribePlanet(const Planet *planet, bool fullAccess = true);
+	void BribePlanet(const Planet *planet, bool fullAccess);
 	
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(const PlayerInfo &player, const Government *gov, int scan = 0, double security = 1.);
-	// Disable fines for today (because the game was just loaded, so any fines
-	// were already checked for when you first landed).
-	void DisableFines();
+	std::string Fine(const PlayerInfo &player, const Government *gov, int scan, double security);
 	
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov) const;
 	void AddReputation(const Government *gov, double value);
 	void SetReputation(const Government *gov, double value);
 	
-	// Reset any temporary provocation (typically because a day has passed).
-	void ResetProvocation();
+	// Reset any temporary effects (typically because a day has passed).
+	void ResetDaily();
 	
 	
 private:
