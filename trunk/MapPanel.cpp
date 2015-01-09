@@ -292,12 +292,12 @@ void MapPanel::DrawSystems() const
 			}
 			else
 			{
-				double reputation = GameData::GetPolitics().Reputation(system.GetGovernment());
+				double reputation = system.GetGovernment()->Reputation();
 		
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
 					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
-						canLand |= GameData::GetPolitics().CanLand(object.GetPlanet());
+						canLand |= object.GetPlanet()->CanLand();
 				if(!canLand)
 					reputation = min(reputation, -1.);
 				if(reputation >= 0.)

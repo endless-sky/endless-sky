@@ -31,12 +31,13 @@ using namespace std;
 
 
 HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
-	: player(player), ship(ship)
+	: player(player), ship(ship),
+	sprite(ship->GetSprite().GetSprite()), unit(2. * ship->Unit())
 {
 	const Government *gov = ship->GetGovernment();
 	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
 	
-	if(GameData::GetPolitics().IsEnemy(GameData::PlayerGovernment(), gov))
+	if(gov->IsEnemy())
 	{
 		SetBribe(gov->GetBribeFraction());
 		if(bribe)
@@ -77,28 +78,29 @@ HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
 
 
 
-HailPanel::HailPanel(PlayerInfo &player, const StellarObject *planet)
-	: player(player), planet(planet)
+HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
+	: player(player), planet(object->GetPlanet()),
+	sprite(object->GetSprite().GetSprite()), unit(object->Position().Unit())
 {
 	const Government *gov = player.GetSystem()->GetGovernment();
-	if(planet->GetPlanet())
-		header = gov->GetName() + " planet \"" + planet->GetPlanet()->Name() + "\":";
+	if(planet)
+		header = gov->GetName() + " planet \"" + planet->Name() + "\":";
 	
 	if(player.GetShip())
 	{
 		for(const Mission &mission : player.Missions())
-			if(mission.HasClearance(planet->GetPlanet()) && mission.ClearanceMessage() != "auto"
+			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
 					&& mission.HasFullClearance())
 			{
-				GameData::GetPolitics().BribePlanet(planet->GetPlanet());
+				planet->Bribe();
 				message = mission.ClearanceMessage();
 				return;
 			}
-		if(GameData::GetPolitics().CanLand(planet->GetPlanet()))
+		if(planet->CanLand())
 			message = "You are cleared to land, " + player.GetShip()->Name() + ".";
 		else
 		{
-			SetBribe(planet->GetPlanet()->GetBribeFraction());
+			SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
 					+ Format::Number(bribe) + " credits.";
@@ -118,8 +120,7 @@ void HailPanel::Draw() const
 	interfaceInfo.SetString("header", header);
 	if(ship)
 	{
-		bool isEnemy = GameData::GetPolitics().IsEnemy(
-			GameData::PlayerGovernment(), ship->GetGovernment());
+		bool isEnemy = ship->GetGovernment()->IsEnemy();
 		if(isEnemy)
 		{
 			interfaceInfo.SetCondition("can bribe");
@@ -130,7 +131,7 @@ void HailPanel::Draw() const
 	}
 	else
 	{
-		if(!GameData::GetPolitics().CanLand(planet->GetPlanet()))
+		if(!planet->CanLand())
 			interfaceInfo.SetCondition("can bribe");
 		else
 			interfaceInfo.SetCondition("cannot bribe");
@@ -143,15 +144,13 @@ void HailPanel::Draw() const
 	
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
 	int swizzle = ship ? ship->GetGovernment()->GetSwizzle() : 0;
-	const Animation &animation = ship ? ship->GetSprite() : planet->GetSprite();
-	uint32_t tex = animation.GetSprite()->Texture();
+	uint32_t tex = sprite->Texture();
 	
 	float pos[2] = {-170.f, -10.f};
 	
-	Point unit = ship ? 2. * ship->Unit() : planet->Position().Unit();
-	double zoom = min(1., 200. / max(animation.Width(), animation.Height()));
-	Point uw = unit * (animation.Width() * zoom);
-	Point uh = unit * (animation.Height() * zoom);
+	double zoom = min(1., 200. / max(sprite->Width(), sprite->Height()));
+	Point uw = unit * (sprite->Width() * zoom);
+	Point uh = unit * (sprite->Height() * zoom);
 	float tr[4] = {
 		static_cast<float>(-uw.Y()), static_cast<float>(uw.X()),
 		static_cast<float>(-uh.X()), static_cast<float>(-uh.Y())};
@@ -173,8 +172,7 @@ void HailPanel::Draw() const
 
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	bool shipIsEnemy = ship && GameData::GetPolitics().IsEnemy(
-		GameData::PlayerGovernment(), ship->GetGovernment());
+	bool shipIsEnemy = ship && ship->GetGovernment()->IsEnemy();
 	if(key == 'd')
 		GetUI()->Pop(this);
 	else if(key == 'a' || key == 't' || key == 'h')
@@ -211,14 +209,14 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			if(ship)
 			{
-				GameData::GetPolitics().Bribe(ship->GetGovernment());
+				ship->GetGovernment()->Bribe();
 				Messages::Add("You bribed a " + ship->GetGovernment()->GetName() + " ship "
 					+ Format::Number(bribe) + " credits to refrain from attacking you today.");
 			}
 			else
 			{
-				GameData::GetPolitics().BribePlanet(planet->GetPlanet());
-				Messages::Add("You bribed the authorities on " + planet->GetPlanet()->Name() + " "
+				planet->Bribe();
+				Messages::Add("You bribed the authorities on " + planet->Name() + " "
 					+ Format::Number(bribe) + " credits to permit you to land.");
 			}
 			

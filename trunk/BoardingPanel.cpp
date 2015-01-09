@@ -354,9 +354,9 @@ bool BoardingPanel::CanExit() const
 bool BoardingPanel::CanTake(int index) const
 {
 	// If you ship or the other ship has been captured:
-	if(you->GetGovernment() != GameData::PlayerGovernment())
+	if(!you->GetGovernment()->IsPlayer())
 		return false;
-	if(victim->GetGovernment() == GameData::PlayerGovernment())
+	if(victim->GetGovernment()->IsPlayer())
 		return false;
 	if(isCapturing)
 		return false;
@@ -372,9 +372,9 @@ bool BoardingPanel::CanTake(int index) const
 bool BoardingPanel::CanCapture() const
 {
 	// If you ship or the other ship has been captured:
-	if(you->GetGovernment() != GameData::PlayerGovernment())
+	if(!you->GetGovernment()->IsPlayer())
 		return false;
-	if(victim->GetGovernment() == GameData::PlayerGovernment())
+	if(victim->GetGovernment()->IsPlayer())
 		return false;
 	
 	return !isCapturing && player.GetShip()->Crew() > 1;

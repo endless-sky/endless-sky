@@ -103,7 +103,6 @@ void MainPanel::Step()
 	
 	engine.Step(isActive);
 	
-	const Government *playerGov = GameData::PlayerGovernment();
 	for(const ShipEvent &event : engine.Events())
 	{
 		const Government *actor = event.ActorGovernment();
@@ -112,16 +111,16 @@ void MainPanel::Step()
 		if(event.Type() == ShipEvent::BOARD)
 		{
 			// TODO: handle player getting boarded.
-			if(actor == playerGov)
+			if(actor->IsPlayer())
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
-			if(actor == playerGov)
+			if(actor->IsPlayer())
 				ShowScanDialog(event);
-			else if(event.TargetGovernment() == playerGov)
+			else if(event.TargetGovernment()->IsPlayer())
 			{
-				string message = GameData::GetPolitics().Fine(player, actor, event.Type());
+				string message = actor->Fine(player, event.Type());
 				if(!message.empty())
 					GetUI()->Push(new Dialog(message));
 			}

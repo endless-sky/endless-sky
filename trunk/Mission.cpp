@@ -503,10 +503,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
 	
 	// Set the "reputation" conditions so we can check if this action changed
 	// any of them.
-	Politics &politics = GameData::GetPolitics();
 	for(const auto &it : GameData::Governments())
 	{
-		int rep = politics.Reputation(&it.second);
+		int rep = it.second.Reputation();
 		player.Conditions()["reputation: " + it.first] = rep;
 	}
 	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
@@ -514,10 +513,10 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
 	// Check if any reputation conditions were updated.
 	for(const auto &it : GameData::Governments())
 	{
-		int rep = politics.Reputation(&it.second);
+		int rep = it.second.Reputation();
 		int newRep = player.Conditions()["reputation: " + it.first];
 		if(newRep != rep)
-			politics.AddReputation(&it.second, newRep - rep);
+			it.second.AddReputation(newRep - rep);
 	}
 	return true;
 }
@@ -537,7 +536,7 @@ const list<NPC> &Mission::NPCs() const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment() == GameData::PlayerGovernment() && !hasFailed
+	if(event.TargetGovernment()->IsPlayer() && !hasFailed
 			&& (event.Type() & ShipEvent::DESTROY))
 	{
 		bool failed = false;
@@ -597,8 +596,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		for(const auto &it : GameData::Planets())
 		{
 			// Skip entries with incomplete data.
-			if(it.second.Name().empty()
-					|| (clearance.empty() && !GameData::GetPolitics().CanLand(&it.second)))
+			if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
 				continue;
 			if(it.second.IsWormhole() || !it.second.HasSpaceport())
 				continue;

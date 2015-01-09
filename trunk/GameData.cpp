@@ -213,7 +213,7 @@ void GameData::SetDate(const Date &date)
 {
 	for(auto &it : systems)
 		it.second.SetDate(date);
-	politics.ResetProvocation();
+	politics.ResetDaily();
 }
 
 

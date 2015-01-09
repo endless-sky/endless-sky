@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 
 #include "DataNode.h"
+#include "GameData.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "SpriteSet.h"
@@ -262,4 +263,34 @@ const System *Planet::WormholeDestination(const System *from) const
 	
 	++it;
 	return (it == systems.end() ? systems.front() : *it);
+}
+
+
+
+// Below are convenience functions which access the game state in Politics,
+// but do so with a less convoluted syntax:
+bool Planet::CanLand(const Ship &ship) const
+{
+	return GameData::GetPolitics().CanLand(ship, this);
+}
+
+
+
+bool Planet::CanLand() const
+{
+	return GameData::GetPolitics().CanLand(this);
+}
+
+
+
+bool Planet::CanUseServices() const
+{
+	return GameData::GetPolitics().CanUseServices(this);
+}
+
+
+
+void Planet::Bribe(bool fullAccess) const
+{
+	GameData::GetPolitics().BribePlanet(this, fullAccess);
 }

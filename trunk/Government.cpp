@@ -24,8 +24,7 @@ using namespace std;
 
 // Default constructor.
 Government::Government()
-	: name("Uninhabited"), swizzle(0), color(1.), initialPlayerReputation(0.),
-	bribe(0.), fine(1.), deathSentence(nullptr)
+	: name("Uninhabited")
 {
 	// Default penalties:
 	penaltyFor[ShipEvent::ASSIST] = -0.1;
@@ -175,4 +174,70 @@ const Conversation *Government::DeathSentence() const
 bool Government::IsEnemy(const Government *other) const
 {
 	return GameData::GetPolitics().IsEnemy(this, other);
+}
+
+
+
+// Check if this government is an enemy of the player.
+bool Government::IsEnemy() const
+{
+	return GameData::GetPolitics().IsEnemy(this, GameData::PlayerGovernment());
+}
+
+
+
+// Check if this is the player government.
+bool Government::IsPlayer() const
+{
+	return (this == GameData::PlayerGovernment());
+}
+
+
+
+// Commit the given "offense" against this government (which may not
+// actually consider it to be an offense). This may result in temporary
+// hostilities (if the even type is PROVOKE), or a permanent change to your
+// reputation.
+void Government::Offend(int eventType, int count) const
+{
+	return GameData::GetPolitics().Offend(this, eventType, count);
+}
+
+
+
+// Bribe this government to be friendly to you for one day.
+void Government::Bribe() const
+{
+	GameData::GetPolitics().Bribe(this);
+}
+
+
+
+// Check to see if the player has done anything they should be fined for.
+// Each government can only fine you once per day.
+string Government::Fine(const PlayerInfo &player, int scan, double security) const
+{
+	return GameData::GetPolitics().Fine(player, this, scan, security);
+}
+
+
+
+// Get or set the player's reputation with this government.
+double Government::Reputation() const
+{
+	return GameData::GetPolitics().Reputation(this);
+}
+
+
+
+void Government::AddReputation(double value) const
+{
+	GameData::GetPolitics().AddReputation(this, value);
+}
+
+
+
+void Government::SetReputation(double value) const
+{
+	GameData::GetPolitics().SetReputation(this, value);
 }

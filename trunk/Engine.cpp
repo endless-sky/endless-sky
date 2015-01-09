@@ -39,7 +39,7 @@ using namespace std;
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), playerGovernment(GameData::PlayerGovernment()),
+	: player(player),
 	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
 	flash(0.), doFlash(false), load(0.), loadCount(0), loadSum(0.)
 {
@@ -55,9 +55,7 @@ Engine::Engine(PlayerInfo &player)
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
-			GameData::GetPolitics().BribePlanet(mission.Destination(), mission.HasFullClearance());
-	// Also disable any fines.
-	GameData::GetPolitics().DisableFines();
+			mission.Destination()->Bribe(mission.HasFullClearance());
 	
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.GetPlanet())
@@ -83,8 +81,7 @@ Engine::Engine(PlayerInfo &player)
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
 				object.GetPlanet()->IsWormhole() ? Radar::ANOMALOUS :
-				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
-				Radar::FRIENDLY : Radar::HOSTILE;
+				object.GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
 			draw[calcTickTock].Add(object.GetSprite(), position, unit);
@@ -321,16 +318,16 @@ void Engine::Step(bool isActive)
 			Format::Number(player.Accounts().Credits()) + " credits");
 		if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
 		{
+			const StellarObject *object = flagship->GetTargetPlanet();
 			info.SetString("navigation mode", "Landing on:");
-			const string &name = flagship->GetTargetPlanet()->Name();
+			const string &name = object->Name();
 			info.SetString("destination", name.empty() ? "???" : name);
 			
 			targets.push_back({
-				flagship->GetTargetPlanet()->Position() - flagship->Position(),
+				object->Position() - flagship->Position(),
 				Angle(45.),
-				flagship->GetTargetPlanet()->Radius(),
-				GameData::GetPolitics().CanLand(flagship->GetTargetPlanet()->GetPlanet()) ?
-					Radar::FRIENDLY : Radar::HOSTILE});
+				object->Radius(),
+				object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
 		}
 		else if(flagship && flagship->GetTargetSystem())
 		{
@@ -369,10 +366,9 @@ void Engine::Step(bool isActive)
 				info.SetString("target government", target->GetGovernment()->GetName());
 			
 			shared_ptr<const Ship> targetTarget = target->GetTargetShip();
-			bool hostile = targetTarget &&
-				targetTarget->GetGovernment() == playerGovernment;
+			bool hostile = targetTarget && targetTarget->GetGovernment()->IsPlayer();
 			int targetType = (target->IsDisabled() || target->IsOverheated()) ? Radar::INACTIVE :
-				!target->GetGovernment()->IsEnemy(playerGovernment) ? Radar::FRIENDLY :
+				!target->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
 				hostile ? Radar::HOSTILE : Radar::UNFRIENDLY;
 			info.SetOutlineColor(Radar::GetColor(targetType));
 			
@@ -545,7 +541,7 @@ void Engine::EnterSystem()
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
-			GameData::GetPolitics().BribePlanet(mission.Destination(), mission.HasFullClearance());
+			mission.Destination()->Bribe(mission.HasFullClearance());
 	
 	asteroids.Clear();
 	for(const System::Asteroid &a : system->Asteroids())
@@ -689,8 +685,7 @@ void Engine::CalculateStep()
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
 				object.GetPlanet()->IsWormhole() ? Radar::ANOMALOUS :
-				GameData::GetPolitics().CanLand(object.GetPlanet()) ?
-				Radar::FRIENDLY : Radar::HOSTILE;
+				object.GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
 			draw[calcTickTock].Add(object.GetSprite(), position, unit);
@@ -742,7 +737,7 @@ void Engine::CalculateStep()
 				hasAntiMissile.push_back(ship.get());
 			
 			// Boarding:
-			bool autoPlunder = (ship->GetGovernment() != playerGovernment);
+			bool autoPlunder = !ship->GetGovernment()->IsPlayer();
 			shared_ptr<Ship> victim = ship->Board(autoPlunder);
 			if(victim)
 				eventQueue.emplace_back(ship, victim,
@@ -787,7 +782,7 @@ void Engine::CalculateStep()
 					Audio::Play(ship->Attributes().FlareSound(), pos, ship->Velocity());
 			}
 			
-			bool isPlayer = (ship->GetGovernment() == playerGovernment);
+			bool isPlayer = ship->GetGovernment()->IsPlayer();
 			if(ship->Cloaking())
 			{
 				if(isPlayer)
@@ -820,10 +815,10 @@ void Engine::CalculateStep()
 			
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
-				ship->GetGovernment() == playerGovernment ? Radar::PLAYER :
+				ship->GetGovernment()->IsPlayer() ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
-					!ship->GetGovernment()->IsEnemy(playerGovernment) ? Radar::FRIENDLY :
-					(target && target->GetGovernment() == playerGovernment) ?
+					!ship->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
+					(target && target->GetGovernment()->IsPlayer()) ?
 						Radar::HOSTILE : Radar::UNFRIENDLY,
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
@@ -954,7 +949,7 @@ void Engine::CalculateStep()
 				source = it;
 				break;
 			}
-		if(source->GetGovernment() != GameData::PlayerGovernment() && !source->IsDisabled())
+		if(!source->GetGovernment()->IsPlayer() && !source->IsDisabled())
 		{
 			string message = source->GetHail();
 			if(!message.empty() && source->GetSystem() == player.GetSystem())
@@ -977,7 +972,7 @@ void Engine::CalculateStep()
 
 void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker)
 {
-	if(attacker == GameData::PlayerGovernment())
+	if(attacker->IsPlayer())
 	{
 		shared_ptr<const Ship> previous = grudge[target->GetGovernment()].lock();
 		if(previous && previous->GetSystem() == player.GetSystem() && !previous->IsDisabled())
@@ -1001,11 +996,11 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	
 	// Do not ask the player's help if they are your enemy or are not an enemy
 	// of the ship that is attacking you.
-	if(target->GetGovernment() == GameData::PlayerGovernment())
+	if(target->GetGovernment()->IsPlayer())
 		return;
-	if(!GameData::GetPolitics().IsEnemy(attacker, GameData::PlayerGovernment()))
+	if(!attacker->IsEnemy())
 		return;
-	if(GameData::GetPolitics().IsEnemy(target->GetGovernment(), GameData::PlayerGovernment()))
+	if(target->GetGovernment()->IsEnemy())
 		return;
 	
 	// No active ship has a grudge already against this government.

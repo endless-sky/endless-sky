@@ -82,6 +82,13 @@ public:
 	bool IsWormhole() const;
 	const System *WormholeDestination(const System *from) const;
 	
+	// Below are convenience functions which access the game state in Politics,
+	// but do so with a less convoluted syntax:
+	bool CanLand(const Ship &ship) const;
+	bool CanLand() const;
+	bool CanUseServices() const;
+	void Bribe(bool fullAccess = true) const;
+	
 	
 private:
 	std::string name;

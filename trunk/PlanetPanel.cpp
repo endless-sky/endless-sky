@@ -87,7 +87,7 @@ void PlanetPanel::Draw() const
 	
 	Information info;
 	info.SetSprite("land", planet.Landscape());
-	bool hasAccess = GameData::GetPolitics().CanUseServices(&planet);
+	bool hasAccess = planet.CanUseServices();
 	if(player.GetShip())
 		info.SetCondition("has ship");
 	if(ship && planet.HasSpaceport() && hasAccess)
@@ -111,7 +111,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	Panel *oldPanel = selectedPanel;
 	const Ship *ship = player.GetShip();
 	
-	bool hasAccess = GameData::GetPolitics().CanUseServices(&planet);
+	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && ship)
 	{
 		player.Save();
