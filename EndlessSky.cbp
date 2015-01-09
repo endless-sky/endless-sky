@@ -72,10 +72,10 @@
 		<Unit filename="ClickZone.h" />
 		<Unit filename="Color.cpp" />
 		<Unit filename="Color.h" />
+		<Unit filename="Command.cpp" />
+		<Unit filename="Command.h" />
 		<Unit filename="ConditionSet.cpp" />
 		<Unit filename="ConditionSet.h" />
-		<Unit filename="Controllable.cpp" />
-		<Unit filename="Controllable.h" />
 		<Unit filename="Conversation.cpp" />
 		<Unit filename="Conversation.h" />
 		<Unit filename="ConversationPanel.cpp" />
@@ -134,8 +134,6 @@
 		<Unit filename="Information.h" />
 		<Unit filename="Interface.cpp" />
 		<Unit filename="Interface.h" />
-		<Unit filename="Key.cpp" />
-		<Unit filename="Key.h" />
 		<Unit filename="LineShader.cpp" />
 		<Unit filename="LineShader.h" />
 		<Unit filename="LoadPanel.cpp" />
