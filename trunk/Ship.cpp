@@ -1429,10 +1429,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	int type = 0;
 	
 	const Outfit &weapon = projectile.GetWeapon();
-	double shieldDamage = weapon.WeaponGet("shield damage");
-	double hullDamage = weapon.WeaponGet("hull damage");
+	double shieldDamage = weapon.ShieldDamage();
+	double hullDamage = weapon.HullDamage();
 	double hitForce =  weapon.WeaponGet("hit force");
-	double heatDamage = weapon.WeaponGet("heat damage");
+	double heatDamage = weapon.HeatDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	

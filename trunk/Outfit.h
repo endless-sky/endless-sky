@@ -88,6 +88,11 @@ public:
 	double Range() const;
 	double ShieldDamage() const;
 	double HullDamage() const;
+	double HeatDamage() const;
+	
+	
+private:
+	double SubSum(const std::string &attribute) const;
 	
 	
 private:

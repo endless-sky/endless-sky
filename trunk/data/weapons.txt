@@ -327,6 +327,7 @@ outfit "Proton Gun"
 	weapon
 		sprite "projectile/proton"
 		sound "particle"
+		"hit effect" "proton impact" 3
 		"inaccuracy" 4
 		"submunition" "Proton Fragment" 3
 		"velocity" 24
@@ -344,8 +345,6 @@ outfit "Proton Fragment"
 			"frame rate" 2
 		"hit effect" "proton impact"
 		"inaccuracy" 2
-		"velocity scale" .0001
-		"velocity" 24
 		"lifetime" 20
 		"hit force" 6
 		"shield damage" 8
