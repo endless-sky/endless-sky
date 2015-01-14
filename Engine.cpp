@@ -711,16 +711,18 @@ void Engine::CalculateStep()
 	// result in a "die" effect or a sub-munition being created. We could not
 	// move the projectiles before this because some of them are homing and need
 	// to know the current positions of the ships.
+	std::list<Projectile> newProjectiles;
 	for(auto it = projectiles.begin(); it != projectiles.end(); )
 	{
 		if(!it->Move(effects))
 		{
-			it->MakeSubmunitions(projectiles);
+			it->MakeSubmunitions(newProjectiles);
 			it = projectiles.erase(it);
 		}
 		else
 			++it;
 	}
+	projectiles.splice(projectiles.end(), newProjectiles);
 	
 	// Now, ships fire new projectiles, which includes launching fighters. If an
 	// anti-missile system is ready to fire, it does not actually fire unless a

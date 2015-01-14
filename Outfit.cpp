@@ -289,20 +289,30 @@ double Outfit::Range() const
 
 double Outfit::ShieldDamage() const
 {
-	double damage = 0.;
-	for(const auto &it : submunitions)
-		damage += it.first->ShieldDamage() * it.second;
-	
-	return damage + WeaponGet("shield damage");
+	return SubSum("shield damage");
 }
 
 
 
 double Outfit::HullDamage() const
 {
-	double damage = 0.;
+	return SubSum("hull damage");
+}
+
+
+
+double Outfit::HeatDamage() const
+{
+	return SubSum("heat damage");
+}
+
+
+
+double Outfit::SubSum(const std::string &attribute) const
+{
+	double sum = 0.;
 	for(const auto &it : submunitions)
-		damage += it.first->HullDamage() * it.second;
+		sum += it.first->SubSum(attribute) * it.second;
 	
-	return damage + WeaponGet("hull damage");
+	return sum + WeaponGet(attribute);
 }

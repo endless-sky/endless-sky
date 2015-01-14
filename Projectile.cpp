@@ -41,17 +41,21 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 
 Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 	: weapon(weapon), animation(weapon->WeaponSprite()),
-	position(parent.position), velocity(parent.velocity), angle(parent.angle),
+	position(parent.position + parent.velocity), velocity(parent.velocity), angle(parent.angle),
 	targetShip(parent.targetShip), government(parent.government),
 	lifetime(weapon->WeaponGet("lifetime"))
 {
 	double inaccuracy = weapon->WeaponGet("inaccuracy");
 	if(inaccuracy)
+	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-	double scale = weapon->WeaponGet("velocity scale");
-	if(scale)
-		velocity *= scale;
-	
+		if(!parent.weapon->WeaponGet("acceleration"))
+		{
+			// Move in this new direction at the same velocity.
+			double parentVelocity = parent.weapon->WeaponGet("velocity");
+			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
+		}
+	}
 	velocity += this->angle.Unit() * weapon->WeaponGet("velocity");
 }
 
@@ -158,6 +162,10 @@ bool Projectile::Move(list<Effect> &effects)
 // because it hit its target.
 void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 {
+	// Only make submunitions if you did *not* hit a target.
+	if(lifetime <= -100)
+		return;
+	
 	for(const auto &it : weapon->Submunitions())
 		for(int i = 0; i < it.second; ++i)
 			projectiles.emplace_back(*this, it.first);
