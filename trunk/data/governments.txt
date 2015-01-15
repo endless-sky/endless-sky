@@ -136,3 +136,12 @@ government "Quarg"
 	"attitude toward"
 		"Merchant" .1
 		"Pirate" -.1
+
+government "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Merchant" .1
+		"Pirate" -.1

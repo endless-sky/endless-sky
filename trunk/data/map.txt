@@ -3431,7 +3431,7 @@ system "Delta Velorum"
 
 system Deneb
 	pos -348 225
-	government Quarg
+	government Pug
 	habitable 625
 	asteroids "small rock" 4 4.62
 	asteroids "medium rock" 192 8.82
@@ -3449,38 +3449,39 @@ system Deneb
 	trade Medical 641
 	trade Metal 404
 	trade Plastic 336
-	fleet Quarg 1000
+	fleet "Small Pug" 400
+	fleet "Large Pug" 1000
 	object
 		sprite star/g5
 		period 10
-	object
-		sprite planet/dust6
-		distance 221.49
-		period 52.7413
-	object
-		sprite planet/ocean1
-		distance 558.85
-		period 211.379
-	object
-		sprite planet/desert7
-		distance 997.26
-		period 503.886
-	object
-		sprite planet/gas3
-		distance 2003.87
-		period 1435.24
+	object "Pug"
+		sprite planet/ocean2
+		distance 317.56
+		period 90.543791
 		object
-			sprite planet/lava1
-			distance 306
-			period 12.9498
+			sprite planet/dust3
+			distance 159
+			period 16.370052
+	object "Pug Prime"
+		sprite planet/desert3
+		distance 966.8
+		period 480.9777
 		object
-			sprite planet/tethys
-			distance 424
-			period 21.1217
-		object
-			sprite planet/dust5
-			distance 577
-			period 33.5308
+			sprite planet/rhea
+			distance 156
+			period 18.632773
+	object
+		sprite planet/dust7
+		distance 1538.84
+		period 965.85111
+	object
+		sprite planet/dust0
+		distance 1788.4
+		period 1210.0881
+	object
+		sprite planet/wormhole
+		distance 2320.29
+		period 1788.2712
 
 system Denebola
 	pos -478 70
@@ -12696,6 +12697,18 @@ planet Prime
 	"required reputation" 2
 	bribe .05
 	security .6
+
+planet "Pug"
+	landscape land/canyon3
+	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
+	spaceport `The primary spaceport here is marked by an enormous collection of arches forming an open-air dome. Based on the power cables and devices attached to the sides of the arches, you suspect that the entire dome can be protects by an energy shield if necessary. Inside it, landing platforms jut out from the arches at many different levels.`
+	security 1
+
+planet "Pug Prime"
+	landscape land/forest2
+	description `This planet has a handful of Pug cities on it, full of tall, graceful spires and arches. However, most of the land area is either left in its natural state, or in use for mining; it seems to abound in both oil reserves and metal ore. The climate is somewhat cold by human standards, but still quite livable. You are not sure if that is because the Pug were just lucky enough to have a star system with two hospitable planets, or whether they have employed some sort of terraforming.`
+	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
+	security 1
 
 planet Quicksilver
 	attributes core volcanic mining
