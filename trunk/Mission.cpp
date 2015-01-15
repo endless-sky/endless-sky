@@ -45,6 +45,7 @@ namespace {
 			weight.push_back(w);
 			total += w;
 		}
+		total += !total;
 		// Pick a random commodity based on those weights.
 		int r = Random::Int(total);
 		for(unsigned i = 0; i < weight.size(); ++i)
