@@ -941,7 +941,7 @@ void Engine::CalculateStep()
 			fleet.Get()->Enter(*player.GetSystem(), ships);
 	
 	// Occasionally have some ship hail you.
-	if(!Random::Int(600))
+	if(!Random::Int(600) && !ships.empty())
 	{
 		shared_ptr<Ship> source;
 		unsigned i = Random::Int(ships.size());

@@ -122,7 +122,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 				radius = max(0, static_cast<int>(object.Radius()));
 				break;
 			}
-		target = linkVector[Random::Int(links)];
+		if(links)
+			target = linkVector[Random::Int(links)];
 	}
 	else
 	{
@@ -315,7 +316,8 @@ void Fleet::SetCargo(Ship *ship) const
 		ship->Cargo().Transfer(commodity.name, -amount);
 	}
 	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();
-	ship->AddCrew(Random::Int(extraCrew + 1));
+	if(extraCrew > 0)
+		ship->AddCrew(Random::Int(extraCrew + 1));
 }
 
 

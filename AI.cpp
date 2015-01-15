@@ -492,7 +492,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		else if(ship.Position().Distance(ship.GetTargetPlanet()->Position()) < 100.)
 			ship.SetTargetPlanet(nullptr);
 	}
-	else if(ship.GetPersonality().IsStaying())
+	else if(ship.GetPersonality().IsStaying() && ship.GetSystem()->Objects().size())
 	{
 		unsigned i = Random::Int(ship.GetSystem()->Objects().size());
 		ship.SetTargetPlanet(&ship.GetSystem()->Objects()[i]);
