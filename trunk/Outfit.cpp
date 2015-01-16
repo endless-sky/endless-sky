@@ -17,7 +17,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "SpriteSet.h"
 
+#include <cmath>
+
 using namespace std;
+
+namespace {
+	static const double EPS = 0.0000000001;
+}
 
 
 
@@ -146,8 +152,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 	for(const auto &at : other.attributes)
 	{
 		double value = Get(at.first);
-		if(value + at.second * count < 0.)
-			count = value / -at.second;
+		// Allow for rounding errors:
+		if(value + at.second * count < -EPS)
+			count = value / -at.second + EPS;
 	}
 	
 	return count;
@@ -160,7 +167,11 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 void Outfit::Add(const Outfit &other, int count)
 {
 	for(const auto &at : other.attributes)
+	{
 		attributes[at.first] += at.second * count;
+		if(fabs(attributes[at.first]) < EPS)
+			attributes[at.first] = 0.;
+	}
 	
 	if(other.flare.GetSprite())
 		flare = other.flare;
@@ -174,6 +185,8 @@ void Outfit::Add(const Outfit &other, int count)
 void Outfit::Add(const string &attribute, double value)
 {
 	attributes[attribute] += value;
+	if(fabs(attributes[attribute]) < EPS)
+		attributes[attribute] = 0.;
 }
 
 

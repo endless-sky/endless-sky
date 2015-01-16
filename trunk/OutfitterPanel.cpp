@@ -250,6 +250,16 @@ bool OutfitterPanel::CanSell() const
 	if(!(playerShip && playerShip->OutfitCount(selectedOutfit)))
 		return false;
 	
+	// If this outfit requires ammo, check if we could sell it if we sold all
+	// the ammo for it first.
+	const Outfit *ammo = selectedOutfit->Ammo();
+	if(ammo && playerShip->OutfitCount(ammo))
+	{
+		Outfit attributes = playerShip->Attributes();
+		attributes.Add(*ammo, -playerShip->OutfitCount(ammo));
+		return attributes.CanAdd(*selectedOutfit, -1);
+	}
+	
 	return playerShip->Attributes().CanAdd(*selectedOutfit, -1);
 }
 
@@ -260,7 +270,26 @@ void OutfitterPanel::Sell()
 	if(player.Cargo().Get(selectedOutfit))
 		player.Cargo().Transfer(selectedOutfit, 1);
 	else
+	{
 		playerShip->AddOutfit(selectedOutfit, -1);
+		
+		const Outfit *ammo = selectedOutfit->Ammo();
+		if(ammo && playerShip->OutfitCount(ammo))
+		{
+			// Determine how many of this ammo I must sell to also sell the launcher.
+			int mustSell = 0;
+			for(const auto &it : playerShip->Attributes().Attributes())
+				if(it.second < 0.)
+					mustSell = max(mustSell, static_cast<int>(it.second / ammo->Get(it.first)));
+			
+			if(mustSell)
+			{
+				playerShip->AddOutfit(ammo, -mustSell);
+				player.Accounts().AddCredits(ammo->Cost() * mustSell);
+				available[ammo] += mustSell;
+			}
+		}
+	}
 	
 	player.Accounts().AddCredits(selectedOutfit->Cost());
 	++available[selectedOutfit];
