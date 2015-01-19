@@ -19,10 +19,10 @@ ship "Aerie"
 		"weapon capacity" 150
 		"engine capacity" 95
 		weapon
-			"blast radius" 30
-			"shield damage" 120
-			"hull damage" 60
-			"hit force" 180
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -69,7 +69,7 @@ ship "Argosy"
 		"weapon capacity" 90
 		"engine capacity" 80
 		weapon
-			"blast radius" 150
+			"blast radius" 60
 			"shield damage" 600
 			"hull damage" 300
 			"hit force" 900
@@ -120,10 +120,10 @@ ship "Arrow"
 		"weapon capacity" 50
 		"engine capacity" 60
 		weapon
-			"blast radius" 40
-			"shield damage" 160
-			"hull damage" 80
-			"hit force" 240
+			"blast radius" 24
+			"shield damage" 240
+			"hull damage" 120
+			"hit force" 360
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
@@ -168,10 +168,10 @@ ship Bactrian
 		"weapon capacity" 330
 		"engine capacity" 240
 		weapon
-			"blast radius" 400
-			"shield damage" 1600
-			"hull damage" 800
-			"hit force" 2400
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
 	outfits
 		"X5700 Ion Thruster"
 		"X5200 Ion Steering"
@@ -230,10 +230,10 @@ ship "Bastion"
 		"weapon capacity" 180
 		"engine capacity" 120
 		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
 	outfits
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -284,10 +284,10 @@ ship "Behemoth"
 		"weapon capacity" 280
 		"engine capacity" 90
 		weapon
-			"blast radius" 300
-			"shield damage" 1200
-			"hull damage" 600
-			"hit force" 1800
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
 	outfits
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -334,7 +334,7 @@ ship "Blackbird"
 		"weapon capacity" 90
 		"engine capacity" 110
 		weapon
-			"blast radius" 150
+			"blast radius" 60
 			"shield damage" 600
 			"hull damage" 300
 			"hit force" 900
@@ -376,10 +376,10 @@ ship "Bounder"
 		"weapon capacity" 50
 		"engine capacity" 110
 		weapon
-			"blast radius" 40
-			"shield damage" 160
-			"hull damage" 80
-			"hit force" 240
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
 	outfits
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
@@ -419,7 +419,7 @@ ship "Bulk Freighter"
 		"weapon capacity" 180
 		"engine capacity" 85
 		weapon
-			"blast radius" 300
+			"blast radius" 120
 			"shield damage" 1200
 			"hull damage" 600
 			"hit force" 1800
@@ -473,10 +473,10 @@ ship "Carrier"
 		"weapon capacity" 370
 		"engine capacity" 210
 		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
 	outfits
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -541,10 +541,10 @@ ship "Clipper"
 		"weapon capacity" 140
 		"engine capacity" 80
 		weapon
-			"blast radius" 70
-			"shield damage" 280
-			"hull damage" 140
-			"hit force" 420
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
 	outfits
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -613,10 +613,10 @@ ship "Corvette"
 		"weapon capacity" 150
 		"engine capacity" 100
 		weapon
-			"blast radius" 150
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
@@ -664,10 +664,10 @@ ship "Cruiser"
 		"weapon capacity" 320
 		"engine capacity" 170
 		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
 	outfits
 		"X4700 Ion Thruster"
 		"X4200 Ion Steering"
@@ -720,7 +720,7 @@ ship "Dagger"
 		"weapon capacity" 20
 		"engine capacity" 30
 		weapon
-			"blast radius" 20
+			"blast radius" 12
 			"shield damage" 120
 			"hull damage" 60
 			"hit force" 180
@@ -760,10 +760,10 @@ ship "Dreadnought"
 		"weapon capacity" 350
 		"engine capacity" 190
 		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
 	outfits
 		"Plasma Turret" 5
 		"Meteor Missile Launcher" 4
@@ -816,10 +816,10 @@ ship "Falcon"
 		"weapon capacity" 240
 		"engine capacity" 140
 		weapon
-			"blast radius" 300
-			"shield damage" 1200
-			"hull damage" 600
-			"hit force" 1800
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
 	outfits
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -869,10 +869,10 @@ ship "Firebird"
 		"weapon capacity" 160
 		"engine capacity" 100
 		weapon
-			"blast radius" 200
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
 	outfits
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
@@ -918,7 +918,7 @@ ship "Freighter"
 		"weapon capacity" 80
 		"engine capacity" 70
 		weapon
-			"blast radius" 100
+			"blast radius" 40
 			"shield damage" 400
 			"hull damage" 200
 			"hit force" 600
@@ -964,10 +964,10 @@ ship "Frigate"
 		"weapon capacity" 170
 		"engine capacity" 100
 		weapon
-			"blast radius" 200
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
 	outfits
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
@@ -1014,7 +1014,7 @@ ship "Fury"
 		"weapon capacity" 40
 		"engine capacity" 60
 		weapon
-			"blast radius" 60
+			"blast radius" 24
 			"shield damage" 240
 			"hull damage" 120
 			"hit force" 360
@@ -1058,10 +1058,10 @@ ship "Gunboat"
 		"weapon capacity" 100
 		"engine capacity" 90
 		weapon
-			"blast radius" 100
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
 	outfits
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
@@ -1103,7 +1103,7 @@ ship "Hawk"
 		"weapon capacity" 40
 		"engine capacity" 70
 		weapon
-			"blast radius" 75
+			"blast radius" 30
 			"shield damage" 300
 			"hull damage" 150
 			"hit force" 450
@@ -1143,7 +1143,7 @@ ship "Heavy Shuttle"
 		"weapon capacity" 10
 		"engine capacity" 60
 		weapon
-			"blast radius" 30
+			"blast radius" 12
 			"shield damage" 120
 			"hull damage" 60
 			"hit force" 180
@@ -1178,7 +1178,7 @@ ship "Lance"
 		"weapon capacity" 20
 		"engine capacity" 30
 		weapon
-			"blast radius" 20
+			"blast radius" 12
 			"shield damage" 120
 			"hull damage" 60
 			"hit force" 180
@@ -1219,7 +1219,7 @@ ship "Leviathan"
 		"weapon capacity" 240
 		"engine capacity" 120
 		weapon
-			"blast radius" 200
+			"blast radius" 80
 			"shield damage" 800
 			"hull damage" 400
 			"hit force" 1200
@@ -1270,10 +1270,10 @@ ship "Manta"
 		"weapon capacity" 140
 		"engine capacity" 100
 		weapon
-			"blast radius" 40
-			"shield damage" 160
-			"hull damage" 80
-			"hit force" 240
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
@@ -1320,10 +1320,10 @@ ship "Mule"
 		"weapon capacity" 210
 		"engine capacity" 110
 		weapon
-			"blast radius" 200
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
 	outfits
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
@@ -1372,7 +1372,7 @@ ship "Osprey"
 		"weapon capacity" 180
 		"engine capacity" 130
 		weapon
-			"blast radius" 200
+			"blast radius" 80
 			"shield damage" 800
 			"hull damage" 400
 			"hit force" 1200
@@ -1422,7 +1422,7 @@ ship "Protector"
 		"weapon capacity" 220
 		"engine capacity" 100
 		weapon
-			"blast radius" 400
+			"blast radius" 160
 			"shield damage" 1600
 			"hull damage" 800
 			"hit force" 2400
@@ -1474,10 +1474,10 @@ ship "Quicksilver"
 		"weapon capacity" 60
 		"engine capacity" 70
 		weapon
-			"blast radius" 50
-			"shield damage" 200
-			"hull damage" 100
-			"hit force" 300
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
 	outfits
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
@@ -1517,7 +1517,7 @@ ship "Rainmaker"
 		"weapon capacity" 60
 		"engine capacity" 50
 		weapon
-			"blast radius" 100
+			"blast radius" 40
 			"shield damage" 400
 			"hull damage" 200
 			"hit force" 600
@@ -1565,10 +1565,10 @@ ship Raven
 		"weapon capacity" 90
 		"engine capacity" 100
 		weapon
-			"blast radius" 100
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
 	outfits
 		"Heavy Laser" 4
 		"RT-I Radiothermal"
@@ -1611,7 +1611,7 @@ ship "Scout"
 		"weapon capacity" 40
 		"engine capacity" 100
 		weapon
-			"blast radius" 40
+			"blast radius" 16
 			"shield damage" 160
 			"hull damage" 80
 			"hit force" 240
@@ -1655,7 +1655,7 @@ ship "Shuttle"
 		"weapon capacity" 10
 		"engine capacity" 60
 		weapon
-			"blast radius" 30
+			"blast radius" 12
 			"shield damage" 120
 			"hull damage" 60
 			"hit force" 180
@@ -1695,10 +1695,10 @@ ship "Star Queen"
 		"weapon capacity" 120
 		"engine capacity" 100
 		weapon
-			"blast radius" 30
-			"shield damage" 120
-			"hull damage" 60
-			"hit force" 180
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
 	outfits
 		"Sidewinder Missile Launcher" 3
 		"Sidewinder Missile" 150
@@ -1742,7 +1742,7 @@ ship "Sparrow"
 		"weapon capacity" 20
 		"engine capacity" 40
 		weapon
-			"blast radius" 40
+			"blast radius" 16
 			"shield damage" 160
 			"hull damage" 80
 			"hit force" 240
@@ -1784,7 +1784,7 @@ ship "Splinter"
 		"weapon capacity" 150
 		"engine capacity" 100
 		weapon
-			"blast radius" 150
+			"blast radius" 60
 			"shield damage" 600
 			"hull damage" 300
 			"hit force" 900
@@ -1831,10 +1831,10 @@ ship "Star Barge"
 		"weapon capacity" 20
 		"engine capacity" 40
 		weapon
-			"blast radius" 45
-			"shield damage" 180
-			"hull damage" 90
-			"hit force" 270
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
 	outfits
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
@@ -1894,7 +1894,7 @@ ship "Wasp"
 		"weapon capacity" 28
 		"engine capacity" 60
 		weapon
-			"blast radius" 50
+			"blast radius" 20
 			"shield damage" 200
 			"hull damage" 100
 			"hit force" 300
