@@ -26,7 +26,7 @@ mission "Liberate Kornephoros"
 			
 			`	"Glad to hear it," he says. "Listen, we need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system just for the sake of trade with the rest of the galaxy, and on top of that, of course, Katya needs to be rescued."`
 			`	"Indeed," you say.
-			`	"We have a large fleet of reinforcements coming in from the Rim," he continues, "And a few ships here that are able to fight another battle. I need you to take off with them, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. But if they stay and fight, destroy them. Understood?"`
+			`	"We have a large fleet of reinforcements coming in from the Rim," he continues, "And a few ships here that are able to fight another battle. I need you to take off with them, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. If they stay and fight, disable them if you can, destroy them if you must. Understood?"`
 			choice
 				`	"Yes, sir."`
 					accept
@@ -38,14 +38,14 @@ mission "Liberate Kornephoros"
 		event "prepare for battle of Kornephoros"
 	
 	npc
-		personality heroic
+		personality heroic disables
 		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Large Free Worlds"
 		fleet "Large Free Worlds"
 	npc
-		personality heroic
+		personality heroic disables
 		government "Free Worlds"
 		system Zubenelgenubi
 		fleet "Small Free Worlds"
@@ -57,7 +57,7 @@ mission "Liberate Kornephoros"
 		fleet "Large Free Worlds"
 		fleet "Large Free Worlds"
 	
-	npc kill
+	npc evade
 		personality staying heroic
 		government Republic
 		system Kornephoros
@@ -178,6 +178,21 @@ mission "FW Prisoner Parole 2"
 			label next
 			`	"The Navy has had two crushing defeats," he says. "They will be hesitant to attack again until their numbers are much stronger. That gives us some time for diplomacy, to strengthen our position and look for allies, or at least for sympathizers. Which is where you come in. I'm going to ask you to carry a diplomatic mission to the Syndicate. Meet us in the spaceport when you are ready."`
 		"reputation: Republic" = -1000
+		event "oathkeepers founded" 50
+
+
+
+mission "oathkeepers founded"
+	landing
+	to offer
+		has "event: oathkeepers founded"
+	source
+		government "Free Worlds"
+	on offer
+		conversation
+			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
+			`	Furthermore, the leader of the Oathkeeprs will be General Danforth, an elderly general who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
+			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyways, it is a victory that cost them very little.`
 
 
 
@@ -236,7 +251,7 @@ mission "FW Syndicate Diplomacy 1"
 
 mission "FW Syndicate Diplomacy 1B"
 	landing
-	name "Syndicate Diplomacy"
+	name "Tarazed Diplomacy"
 	description "Transport Alondo Martins to <planet> to negotiate with Tarazed Corporation."
 	source Hephaestus
 	destination Wayfarer
@@ -300,14 +315,14 @@ mission "FW Syndicate Diplomacy 1B"
 
 mission "FW Syndicate Diplomacy 1C"
 	landing
-	name "Syndicate Diplomacy"
-	description "Travel home to <planet> with Alondo Martins and report the outcome of your diplomacy to the Council."
+	name "Poisonwood Diplomacy"
+	description "Travel to <planet> with Alondo Martins, to make one final diplomatic visit."
 	source Wayfarer
-	destination Longjump
+	destination Poisonwood
 	to offer
 		has "FW Syndicate Diplomacy 1B: done"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
-		attributes "dirt belt"
+		attributes "dirt belt" south
 	passengers 1
 
 	npc
@@ -324,10 +339,82 @@ mission "FW Syndicate Diplomacy 1C"
 			`	"I'm pleased to welcome you here," says Emily. "Many of us are sympathetic to your cause."`
 			`	"Thank you," says Alondo, "although for the time being the best way to support us, may be for you to remain neutral in this conflict." He explains the idea of Tarazed being a go-between with the Syndicate.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
-			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it." They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral. "Now, back to Longjump to meet with the Council," says Alondo.`
+			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it." They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral.`
+			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet Poisonwood has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us.`
 				accept
 		event "Tarazed neutrality"
-		
+	
+	
+	
+mission "FW Syndicate Diplomacy 1D"
+	landing
+	name "Return to <planet>"
+	description "Return to <planet> with Alondo, to report on the outcome of your diplomatic mission."
+	source Poisonwood
+	destination Longjump
+	to offer
+		has "FW Syndicate Diplomacy 1C: done"
+	on offer
+		conversation
+			`As you are landing on Poisonwood, Alondo explains, "Three decades ago, this was a slave colony. The Navy was responsible for liberating them, and they still feel a deep debt to the Republic as a result. But even if they do not join us, we can maybe establish more friendly relations with them."`
+			`	Soon after you land, the governor of Poisonwood sends an aide to escort you to her office. The governor is a woman probably in her late fifties, and as you are speaking the sunlight occasionally catches her face or arms at exactly the right angle to show the faint, criss-crossing lines of very old scars. She must be one of the slaves who was freed by the Navy.`
+			`	As soon as you are seated, she says, "Now, I don't want to give you false hope. We will not be joining the Free Worlds."`
+			`	"Understood," says Alondo. "We've come primarily to assure you that the Free Worlds will never attempt to take control of a planet that has not willingly chosen to join us. But without our support, your world is isolated and vulnerable."`
+			`	"Indeed," she says, grimacing. They talk for a while, but it is clear she does not think her people would ever support even a treaty of neutrality with the "rebellion." Finally, she changes the subject. "Captain <last>," she says, "what do you believe is the greatest threat that humanity faces today?"`
+			choice
+				`	"Corrupt government."`
+					goto government
+				`	"Powerful corporations and unbridled capitalism."`
+					goto corporations
+				`	"The return of the Alphas, or something like them."`
+					goto alphas
+				`	"Piracy and anarchy, like the pirates who dominated your world."`
+					goto anarchy
+				`	"Alien invasion."`
+					goto aliens
+			
+			label government
+			`	She laughs. "A typical Free Worlds answer. I will confess, I am none too fond of Parliament, ordering the Navy to spend its time up in the paradise sector assisting snobby rich pilots who've run out of fuel instead of down here defending against the very real threats that lurk on the pirate worlds."`
+				goto threat
+			
+			label corporations
+			`	"Since there is only one corporation in the galaxy that fits that description," she says, "I assume you are talking about the Syndicate. Any human organization can take on a life of its own, and act in ways that any of its individual members would consider immoral. That is a danger the Syndicate does face. but I find myself more concerned with certain threats that are closer to home."`
+				goto threat
+			
+			label alphas
+			`	She seems surprised. "Not many in your generation would say that," she says. "Even here on Poisonwood, where we ought to know better, many of those who were born after the days of slavery think the Alphas are no more than a myth, a story that Parliament uses to justify maintaining such a large Navy."`
+			`	Alondo looks concerned. "I've heard the stories from the liberation of Poisonwood," he says, "but there was never any evidence. No photos, none of them captured. I thought it was just hype."`
+				goto story
+			
+			label anarchy
+			`	She laughs. "Thugs. Children with no hope for the future. Petty criminals. The pirates are poorly organized, and their glory days are long past. But you are right, in a way, because those lawless worlds provide a hiding place for the few individuals who actually are a danger to our species. And that is the threat that weighs most heavily on my mind."`
+				goto threat
+			
+			label aliens
+			`	She laughs. "You must watch far too many videos. The most powerful species in this galaxy are also the most peace-loving. Trust me, I should know. Here on the edge of human space, we receive... visitors, on occasion. They do not interfere in human events, but they came seeking information on a threat that concerns us both."`
+				goto threat
+			
+			label threat
+			`	"What sort of threat?" you ask.`
+				goto story
+			
+			label story
+			`	"Our world was enslaved for nearly a decade," she says. "Most of my childhood. We had been little more than an anarchist colony ourselves before that, though, so the Republic did nothing to aid us. Until the Disappearance."`
+			choice
+				`	"What was the Disappearance?"`
+			
+			`	"I was a teenage slave working in the factories at the time," she says. "Exactly the wrong age, as it turned out. One day the overseers informed us that all the eighteen year old girls had to have mandatory 'health checkups' that day. I won't describe what the 'checkup' involved, but it was bewildering and unpleasant. And nearly all those girls disappeared, that day. They never returned from the 'checkups.' Only a few of us were left behind. Most of the leftovers were girls who had been unlucky enough to already be pregnant at that age. Or lucky, as it turned out. But I didn't understand why they didn't take me."`
+			`	Alondo seems very disturbed by the story. "They were selling girls into prostitution?" he says.`
+			`	"That's what we assumed," she says, "but there were dozens of girls like me who were not taken, even though we were not pregnant. It didn't make sense. Anyways, somehow news of that event got off-world and not long after, the Navy came in massive numbers, destroyed the slaver fleets and liberated our planet. In the process, they tried to invade an underground facility up in the mountains, which is where they thought the girls were being kept. But the facility was rigged to self-destruct, and they never found out what had been going on inside the facility. No one inside it survived."`
+			choice
+				`	"Did you ever find out why they let you go?"`
+			
+			`	"My parents said it was because I was so willful and stubborn, too hard to control," she says. "But years later, we began to discover that all of us who were passed over had one thing in common. We were all infertile. Had been already, the day of the Disappearance. Which means that either a bunch of pirates had suddenly decided they wanted to leave behind their lives of crime and settle down and raise families... or those girls were being used as incubators."`
+			`	Alondo says, "I hear that was common during the Alpha wars. Alpha genetics were so unstable, they needed hundreds of test subjects to produce a handful of viable Alpha babies. Those were evil days."`
+			`	"Days that may yet return," she says. "Somewhere, maybe even nearby on Bloodsea or Greenrock or Albatross, the remnants of the Alphas may still be hiding. Creatures bred to be strong and clever and able to kill without a hint of remorse. And now that this sector of space is yours, the duty of defending against them becomes yours, as well. That is why I agree to talk with you: to warn you of that reality."`
+			`	You and Alondo return to your ship with one more thing for the fledgling Free Worlds to worry about. "I guess now we should return to <planet> and report to the Council," he says.`
+				accept
+	
 	on complete
 		payment 200000
 		conversation
@@ -345,7 +432,7 @@ mission "FW Hope Recon 1"
 	source Longjump
 	destination Hope
 	to offer
-		has "FW Syndicate Diplomacy 1C: done"
+		has "FW Syndicate Diplomacy 1D: done"
 	cargo sensors 10
 	
 	on offer
@@ -485,6 +572,7 @@ mission "FW Plasma Testing 1B"
 	source Rust
 	to offer
 		has "FW Plasma Testing 1: done"
+	waypoint Ildaria
 	
 	npc accompany save
 		government "Escort"

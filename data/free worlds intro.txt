@@ -1408,7 +1408,7 @@ mission "Defend Sabik"
 			`	You take the paintbrush, climb on top of your ship, and begin painting it in the green and gold of the Free Worlds. Suddenly you hear a cheer from one of the other ships parked nearby; someone has seen what you are doing and is shouting, "For freedom! Another ship for freedom!" Soon several other people see you, and before long it seems like everyone in the port has picked up the cheer.`
 			`	Tomek stands by, silently, until you finish, and then says, "Let's hit the bar. I need a drink."`
 			`	An hour later you are in the bar celebrating your new employment when emergency sirens start blaring. Someone runs into the bar and says, "The Navy has entered the system. What do we do?"`
-			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly!" You hurry to join all the other ships taking off to defend the system.`
+			`	Tomek says, "We can't let them take this system, or they'll have us completely bottled up. This is where it begins. We need to fight. Get to your ships, quickly! But if you can, disable their ships instead of destroying them. These are Navy ships after all, and most of them don't want war any more than we do." You hurry to join all the other ships taking off to defend the system.`
 				launch
 		
 		"reputation: Republic" = -10
@@ -1416,11 +1416,11 @@ mission "Defend Sabik"
 		event "start of hostilities"
 		event "joined the free worlds"
 	
-	npc kill
+	npc evade
 		personality waiting heroic
 		government Republic
 		fleet "Large Republic"
-	npc kill
+	npc evade
 		personality entering heroic
 		government Republic
 		fleet "Large Republic"
@@ -1430,7 +1430,7 @@ mission "Defend Sabik"
 		fleet "Large Republic"
 	
 	npc
-		personality heroic
+		personality heroic disables
 		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
@@ -1440,7 +1440,7 @@ mission "Defend Sabik"
 		fleet "Large Free Worlds"
 		fleet "Large Free Worlds"
 	npc
-		personality heroic entering
+		personality heroic entering disables
 		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
@@ -1450,7 +1450,7 @@ mission "Defend Sabik"
 		fleet "Large Free Worlds"
 		fleet "Large Free Worlds"
 	npc
-		personality heroic waiting
+		personality heroic waiting disables
 		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"

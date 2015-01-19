@@ -663,6 +663,82 @@ event "recapture of Kornephoros"
 
 
 
+event "oathkeepers founded"
+	system Canopus
+		fleet "Small Northern Merchants" 900
+		fleet "Large Northern Merchants" 700
+		fleet "Small Oathkeeper" 1000
+		fleet "Large Oathkeeper" 2000
+	system Alheka
+		fleet "Small Northern Merchants" 1000
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Oathkeeper" 1200
+		fleet "Large Oathkeeper" 4000
+		fleet "Small Northern Pirates" 2000
+		fleet "Large Northern Pirates" 2000
+	system Mirzam
+		fleet "Small Northern Merchants" 2000
+		fleet "Large Northern Merchants" 2000
+		fleet "Small Oathkeeper" 3000
+		fleet "Large Oathkeeper" 4000
+		fleet "Small Northern Pirates" 5000
+		fleet "Large Northern Pirates" 8000
+	system Mebsuta
+		fleet "Small Northern Merchants" 3000
+		fleet "Large Northern Merchants" 5000
+		fleet "Small Northern Pirates" 4000
+		fleet "Large Northern Pirates" 8000
+		fleet "Small Oathkeeper" 12000
+	system Betelgeuse
+		fleet "Small Northern Merchants" 2000
+		fleet "Large Northern Merchants" 800
+		fleet "Small Oathkeeper" 1000
+		fleet "Large Oathkeeper" 2000
+		fleet "Large Northern Pirates" 4000
+	system Rigel
+		fleet "Small Northern Merchants" 2000
+		fleet "Large Northern Merchants" 4000
+		fleet "Small Oathkeeper" 1000
+		fleet "Large Oathkeeper" 2000
+		fleet "Small Northern Pirates" 3000
+		fleet "Large Northern Pirates" 5000
+	system Alnitak
+		fleet "Small Northern Pirates" 3000
+		fleet "Large Northern Pirates" 5000
+		fleet "Small Oathkeeper" 500
+		fleet "Large Oathkeeper" 1000
+	system Saiph
+		fleet "Small Northern Merchants" 1200
+		fleet "Large Northern Merchants" 2000
+		fleet "Small Northern Pirates" 2000
+		fleet "Large Northern Pirates" 3000
+		fleet "Small Oathkeeper" 1000
+		fleet "Large Oathkeeper" 2000
+	system Mintaka
+		fleet "Small Northern Pirates" 2000
+		fleet "Large Northern Pirates" 2000
+		fleet "Large Oathkeeper" 2000
+		fleet "Small Northern Merchants" 4000
+	system Almaaz
+		fleet "Small Northern Pirates" 500
+		fleet "Large Northern Pirates" 600
+		fleet "Large Oathkeeper" 4000
+	system Gorvi
+		fleet "Small Northern Pirates" 1000
+		fleet "Large Northern Pirates" 1000
+		fleet "Large Oathkeeper" 4000
+		fleet "Small Northern Merchants" 8000
+	system Tortor
+		fleet "Small Northern Pirates" 1000
+		fleet "Large Northern Pirates" 1000
+		fleet "Large Oathkeeper" 6000
+		fleet "Small Northern Merchants" 6000
+	planet Farpoint
+		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
+		description `	Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
+
+
+
 event "Tarazed neutrality"
 	system "Tarazed"
 		government "Neutral"
