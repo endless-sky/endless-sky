@@ -178,7 +178,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			if(isPresent)
 			{
 				command |= AutoFire(*it, ships);
-			
+				
 				// Each ship only switches targets twice a second, so that it can
 				// focus on damaging one particular ship.
 				targetTurn = (targetTurn + 1) & 31;
@@ -255,7 +255,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))
 						|| (isPlayerEscort && moveToMe))
 					&& (parent->GetSystem() != it->GetSystem()
-						|| !parent->GetGovernment()->IsEnemy(it->GetGovernment())))
+						|| !parent->GetGovernment()->IsEnemy(it->GetGovernment()))
+					&& (!target || !personality.IsHeroic()))
 				MoveEscort(*it, command);
 			else
 				MoveIndependent(*it, command);
@@ -326,6 +327,11 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 			// target if they are nearby.
 			if(it == oldTarget || it == parentTarget)
 				range -= 500.;
+			
+			// If your personality it to disable ships rather than destroy them,
+			// never target disabled ships.
+			if(it->IsDisabled() && person.Disables() && !person.Plunders())
+				continue;
 			
 			if(!person.Plunders())
 				range += 5000. * it->IsDisabled();
@@ -761,7 +767,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	double diameter = max(200., circumference / PI);
 	
 	// This isn't perfect, but it works well enough.
-	if(ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter)
+	if((ship.Facing().Unit().Dot(d) >= 0. && d.Length() > diameter)
+			|| (ship.Velocity().Dot(d) < 0. && ship.Facing().Unit().Dot(d.Unit()) >= .9))
 		command |= Command::FORWARD;
 }
 
