@@ -440,6 +440,69 @@ fleet "Small Deep"
 		"Dagger"
 		"Raven"
 
+fleet "Small Oathkeeper"
+	government "Navy (Oathkeeper)"
+	names "republic small"
+	cargo 0
+	personality
+		heroic
+	"friendly hail" "friendly navy"
+	variant 6
+		"Rainmaker" 2
+	variant 5
+		"Gunboat"
+		"Rainmaker"
+	variant 4
+		"Frigate"
+	variant 3
+		"Gunboat" 2
+	variant 1
+		"Rainmaker" 3
+	variant 6
+		"Gunboat"
+
+fleet "Large Oathkeeper"
+	government "Navy (Oathkeeper)"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		heroic
+	"friendly hail" "friendly navy"
+	variant 5
+		"Frigate" 2
+		"Rainmaker"
+		"Gunboat"
+	variant 3
+		"Cruiser"
+		"Combat Drone" 4
+	variant 3
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate"
+		"Rainmaker"
+	variant 2
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+	variant 1
+		"Carrier"
+		"Lance" 4
+		"Combat Drone" 6
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+		"Rainmaker" 2
+		"Gunboat" 2
+	variant 1
+		"Cruiser"
+		"Combat Drone" 4
+		"Frigate" 2
+	variant 1
+		"Frigate"
+		"Rainmaker" 2
+		"Gunboat"
+
 fleet "Large Deep"
 	government "Republic"
 	names "deep"
