@@ -249,10 +249,12 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 		return false;
 	
 	// Check what system each ship is in, if there is a requirement that we
-	// either evade them, or accompany them.
+	// either evade them, or accompany them. If you are accompanying a ship, it
+	// must not be disabled (so that it can land with you). If trying to evade
+	// it, disabling it is sufficient (you do not have to kill it).
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
-			if((ship->GetSystem() == playerSystem) ^ mustAccompany)
+			if((ship->GetSystem() == playerSystem && !ship->IsDisabled()) ^ mustAccompany)
 				return false;
 	
 	if(!succeedIf)
