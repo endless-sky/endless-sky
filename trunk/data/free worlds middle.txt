@@ -337,7 +337,7 @@ mission "FW Southern Battle 2"
 			variant
 				"Falcon" 2
 	
-	npc disable
+	npc evade
 		system Rastaban
 		personality heroic uninterested staying
 		government "Republic"
