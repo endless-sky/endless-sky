@@ -20,6 +20,7 @@
 		A959553A19957294005197E6 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553819957294005197E6 /* Table.cpp */; };
 		A959553D199572A7005197E6 /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553B199572A7005197E6 /* Format.cpp */; };
 		A9595540199572BB005197E6 /* InfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553E199572BB005197E6 /* InfoPanel.cpp */; };
+		A97A01F71A6EA62100E072A6 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97A01F51A6EA62100E072A6 /* Command.cpp */; };
 		A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A54195DF44B002C30B8 /* Account.cpp */; };
 		A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A56195DF44B002C30B8 /* AI.cpp */; };
@@ -31,7 +32,6 @@
 		A99F7AEF195DF44C002C30B8 /* BoardingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A62195DF44B002C30B8 /* BoardingPanel.cpp */; };
 		A99F7AF0195DF44C002C30B8 /* CargoHold.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A65195DF44B002C30B8 /* CargoHold.cpp */; };
 		A99F7AF1195DF44C002C30B8 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A67195DF44B002C30B8 /* Color.cpp */; };
-		A99F7AF2195DF44C002C30B8 /* Controllable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A69195DF44B002C30B8 /* Controllable.cpp */; };
 		A99F7AF3195DF44C002C30B8 /* Conversation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A6B195DF44B002C30B8 /* Conversation.cpp */; };
 		A99F7AF4195DF44C002C30B8 /* ConversationPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A6D195DF44B002C30B8 /* ConversationPanel.cpp */; };
 		A99F7AF5195DF44C002C30B8 /* credits.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A6F195DF44B002C30B8 /* credits.txt */; };
@@ -52,7 +52,6 @@
 		A99F7B04195DF44C002C30B8 /* Government.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A8C195DF44B002C30B8 /* Government.cpp */; };
 		A99F7B05195DF44C002C30B8 /* Information.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A8E195DF44B002C30B8 /* Information.cpp */; };
 		A99F7B06195DF44C002C30B8 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A90195DF44B002C30B8 /* Interface.cpp */; };
-		A99F7B07195DF44C002C30B8 /* Key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A92195DF44B002C30B8 /* Key.cpp */; };
 		A99F7B08195DF44C002C30B8 /* keys.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A94195DF44B002C30B8 /* keys.txt */; };
 		A99F7B09195DF44C002C30B8 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A95195DF44B002C30B8 /* license.txt */; };
 		A99F7B0A195DF44C002C30B8 /* LineShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A96195DF44B002C30B8 /* LineShader.cpp */; };
@@ -159,6 +158,8 @@
 		A959553C199572A7005197E6 /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
 		A959553E199572BB005197E6 /* InfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoPanel.cpp; sourceTree = "<group>"; };
 		A959553F199572BB005197E6 /* InfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPanel.h; sourceTree = "<group>"; };
+		A97A01F51A6EA62100E072A6 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
+		A97A01F61A6EA62100E072A6 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		A994B6501A2536CB007067E3 /* gl_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl_header.h; sourceTree = "<group>"; };
 		A99F7A4F195DF3E8002C30B8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XCode/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A99F7A51195DF3F9002C30B8 /* EndlessSky-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "EndlessSky-Info.plist"; path = "XCode/EndlessSky-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -182,8 +183,6 @@
 		A99F7A66195DF44B002C30B8 /* CargoHold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoHold.h; sourceTree = "<group>"; };
 		A99F7A67195DF44B002C30B8 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		A99F7A68195DF44B002C30B8 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
-		A99F7A69195DF44B002C30B8 /* Controllable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controllable.cpp; sourceTree = "<group>"; };
-		A99F7A6A195DF44B002C30B8 /* Controllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controllable.h; sourceTree = "<group>"; };
 		A99F7A6B195DF44B002C30B8 /* Conversation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversation.cpp; sourceTree = "<group>"; };
 		A99F7A6C195DF44B002C30B8 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		A99F7A6D195DF44B002C30B8 /* ConversationPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversationPanel.cpp; sourceTree = "<group>"; };
@@ -223,8 +222,6 @@
 		A99F7A8F195DF44B002C30B8 /* Information.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Information.h; sourceTree = "<group>"; };
 		A99F7A90195DF44B002C30B8 /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
 		A99F7A91195DF44B002C30B8 /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
-		A99F7A92195DF44B002C30B8 /* Key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Key.cpp; sourceTree = "<group>"; };
-		A99F7A93195DF44B002C30B8 /* Key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Key.h; sourceTree = "<group>"; };
 		A99F7A94195DF44B002C30B8 /* keys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = keys.txt; sourceTree = "<group>"; };
 		A99F7A95195DF44B002C30B8 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		A99F7A96195DF44B002C30B8 /* LineShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineShader.cpp; sourceTree = "<group>"; };
@@ -410,10 +407,10 @@
 				A9D445C71A1BFFD200AB5EE5 /* ClickZone.h */,
 				A99F7A67195DF44B002C30B8 /* Color.cpp */,
 				A99F7A68195DF44B002C30B8 /* Color.h */,
+				A97A01F51A6EA62100E072A6 /* Command.cpp */,
+				A97A01F61A6EA62100E072A6 /* Command.h */,
 				A9F4DBBC19D21F030015BBE2 /* ConditionSet.cpp */,
 				A9F4DBBD19D21F030015BBE2 /* ConditionSet.h */,
-				A99F7A69195DF44B002C30B8 /* Controllable.cpp */,
-				A99F7A6A195DF44B002C30B8 /* Controllable.h */,
 				A99F7A6B195DF44B002C30B8 /* Conversation.cpp */,
 				A99F7A6C195DF44B002C30B8 /* Conversation.h */,
 				A99F7A6D195DF44B002C30B8 /* ConversationPanel.cpp */,
@@ -474,8 +471,6 @@
 				A99F7A8F195DF44B002C30B8 /* Information.h */,
 				A99F7A90195DF44B002C30B8 /* Interface.cpp */,
 				A99F7A91195DF44B002C30B8 /* Interface.h */,
-				A99F7A92195DF44B002C30B8 /* Key.cpp */,
-				A99F7A93195DF44B002C30B8 /* Key.h */,
 				A99F7A94195DF44B002C30B8 /* keys.txt */,
 				A99F7A95195DF44B002C30B8 /* license.txt */,
 				A99F7A96195DF44B002C30B8 /* LineShader.cpp */,
@@ -732,7 +727,6 @@
 				A99F7B06195DF44C002C30B8 /* Interface.cpp in Sources */,
 				A99F7B27195DF44C002C30B8 /* Sprite.cpp in Sources */,
 				A959553A19957294005197E6 /* Table.cpp in Sources */,
-				A99F7B07195DF44C002C30B8 /* Key.cpp in Sources */,
 				A99F7AFF195DF44C002C30B8 /* Fleet.cpp in Sources */,
 				4644543F19BA9A7C00D5A235 /* HailPanel.cpp in Sources */,
 				A99F7B1E195DF44C002C30B8 /* Radar.cpp in Sources */,
@@ -778,6 +772,7 @@
 				A9C81F7C197873CD00EBA833 /* DataNode.cpp in Sources */,
 				A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */,
 				A9E84C7F196215140058DFB7 /* Personality.cpp in Sources */,
+				A97A01F71A6EA62100E072A6 /* Command.cpp in Sources */,
 				A99F7B28195DF44C002C30B8 /* SpriteQueue.cpp in Sources */,
 				A99F7B15195DF44C002C30B8 /* OutlineShader.cpp in Sources */,
 				A9C81F8A1978740400EBA833 /* Mission.cpp in Sources */,
@@ -811,7 +806,6 @@
 				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
 				A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
-				A99F7AF2195DF44C002C30B8 /* Controllable.cpp in Sources */,
 				A9C81F7F197873D800EBA833 /* DistanceMap.cpp in Sources */,
 				A99F7AEC195DF44C002C30B8 /* Armament.cpp in Sources */,
 				A99F7B0A195DF44C002C30B8 /* LineShader.cpp in Sources */,

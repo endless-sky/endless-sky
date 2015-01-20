@@ -30,7 +30,7 @@ namespace {
 	map<int, int> keycodeCount;
 }
 
-const Command Command::NONE;
+const Command Command::NONE(0, "");
 const Command Command::MENU(1uL << 0, "Show main menu");
 const Command Command::FORWARD(1uL << 1, "Forward thrust");
 const Command Command::LEFT(1uL << 2, "Turn left");
@@ -350,5 +350,6 @@ Command::Command(uint64_t state)
 Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
-	description[*this] = text;
+	if(!text.empty())
+		description[*this] = text;
 }
