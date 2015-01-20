@@ -1419,42 +1419,102 @@ mission "Defend Sabik"
 	npc evade
 		personality waiting heroic
 		government Republic
-		fleet "Large Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate" 2
+				"Gunboat" 3
+				"Rainmaker" 3
+			
 	npc evade
-		personality entering heroic
+		personality heroic
 		government Republic
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		system Kornephoros
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate" 2
+				"Gunboat" 3
+				"Rainmaker" 3
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate" 2
+				"Gunboat" 3
+				"Rainmaker" 3
 	
 	npc
 		personality heroic disables
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Hawk" 2
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Sparrow" 2
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Fury" 2
 	npc
-		personality heroic entering disables
+		personality heroic disables
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		system "Zubenelgenubi"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Osprey" 2
+				"Hawk" 3
+				"Sparrow" 5
+	npc
+		personality heroic disables
+		government "Free Worlds"
+		system "Zubeneschamali"
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion" 2
+				"Argosy" 4
+				"Fury" 6
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion" 2
+				"Argosy" 4
+	npc
+		personality heroic disables
+		government "Free Worlds"
+		system "Unukalhai"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon" 2
 	npc
 		personality heroic waiting disables
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk" 2
+				"Sparrow" 1
 	
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`

@@ -40,34 +40,82 @@ mission "Liberate Kornephoros"
 	npc
 		personality heroic disables
 		government "Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Osprey" 2
+			variant
+				"Bastion"
+				"Argosy" 2
+			variant
+				"Argosy"
+				"Hawk" 3
 	npc
 		personality heroic disables
 		government "Free Worlds"
 		system Zubenelgenubi
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Small Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
-		fleet "Large Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Hawk" 2
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Sparrow" 2
+		fleet
+			names "free worlds small"
+			variant
+				"Hawk"
+				"Fury" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Osprey" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+				"Osprey" 2
+				"Hawk" 3
+				"Sparrow" 5
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion" 2
+				"Argosy" 4
+				"Fury" 6
 	
 	npc evade
 		personality staying heroic
 		government Republic
 		system Kornephoros
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser" 2
+				"Combat Drone" 4
+				"Frigate" 2
+				"Rainmaker" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Combat Drone" 4
+				"Frigate" 2
+				"Gunboat" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Combat Drone" 4
+				"Gunboat" 2
+				"Rainmaker" 2
 	
 	on visit
 		dialog "There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea."
@@ -105,8 +153,7 @@ mission "Liberate Kornephoros"
 
 event "prepare for battle of Kornephoros"
 	system "Kornephoros"
-		fleet "Small Free Worlds" 1200
-		fleet "Large Free Worlds" 1700
+		fleet "Small Free Worlds" 10000
 
 
 
