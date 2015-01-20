@@ -1,3 +1,33 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+event "remembrance day"
+	date 19 2 3013
+
+
+
+mission "remembrance day"
+	landing
+	source
+		government "Republic"
+	to offer
+		has "event: remembrance day"
+	on offer
+		conversation
+			`Today, throughout human space, is Remembrance Day, the anniversary of the beginning of the Alpha Wars more than five centuries ago. The Alphas were genetically engineered soldiers, with superhuman agility and intelligence, and a complete lack of compassion or empathy. At the height of the War, dozens of planets had been enslaved by the Alphas.`
+			`	Remembrance Day commemorates the beginning of the war, rather than its end, as a perpetual reminder that the war is not over: although the Alphas were defeated, some of them escaped and remained in hiding, and they and their offspring are presumed to still be present in the galaxy today.`
+			`	Since the Alpha War, genetic resequencing technology has been very tightly controlled. Because the Alphas were the product of experimental genetic manipulation rather than natural evolution, it is believed that their genes are less robust than true human beings, and they are almost unable to have viable offspring without access to special technology. Therefore, most Alpha enclaves that have been discovered since the War have had very small populations, no more than a few dozen.`
+			`	In these days when the Navy ensures peace throughout much of the galaxy, on many worlds the Alphas are treated as nothing more than a bogeyman story to frighten children. Because the most striking physical feature of the Alphas was their photosynthetic skin, some people even run around wearing green face paint on Remembrance Day, trying to frighten people. But to others, especially on the fringes of space where the Navy seldom patrols, the Alphas are still spoken of with fear.`
+
+
+
 event "war begins"
 	date 4 7 3014
 	system "Gamma Corvi"
