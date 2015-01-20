@@ -210,7 +210,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 								break;
 							}
 				}
-				if(parent && !command.Has(Command::DEPLOY))
+				if(parent && !parent->Commands().Has(Command::DEPLOY))
 				{
 					it->SetTargetShip(parent);
 					MoveTo(*it, command, parent->Position(), 40., .8);
@@ -340,6 +340,8 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 				bool hasBoarded = Has(ship, it, ShipEvent::BOARD);
 				range += 2000. * hasBoarded;
 			}
+			// Focus on nearly dead ships.
+			range += 500. * (it->Shields() + it->Hull());
 			if(range < closest)
 			{
 				closest = range;
@@ -763,7 +765,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Calculate this ship's "turning radius; that is, the smallest circle it
 	// can make while at full speed.
 	double stepsInFullTurn = 360. / ship.TurnRate();
-	double circumference = stepsInFullTurn * ship.MaxVelocity();
+	double circumference = stepsInFullTurn * (ship.Velocity().Length() + ship.MaxVelocity()) * .5;
 	double diameter = max(200., circumference / PI);
 	
 	// This isn't perfect, but it works well enough.
