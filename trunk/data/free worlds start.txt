@@ -245,7 +245,7 @@ mission "oathkeepers founded"
 
 mission "FW Syndicate Diplomacy 1"
 	name "Syndicate Diplomacy"
-	description "Transport Alondo Martins to the Syndicate headquarters on <planet>."
+	description "Transport Alondo Gruyere to the Syndicate headquarters on <planet>."
 	source "Deep"
 	destination "Hephaestus"
 	to offer
@@ -299,7 +299,7 @@ mission "FW Syndicate Diplomacy 1"
 mission "FW Syndicate Diplomacy 1B"
 	landing
 	name "Tarazed Diplomacy"
-	description "Transport Alondo Martins to <planet> to negotiate with Tarazed Corporation."
+	description "Transport Alondo Gruyere to <planet> to negotiate with Tarazed Corporation."
 	source Hephaestus
 	destination Wayfarer
 	to offer
@@ -363,7 +363,7 @@ mission "FW Syndicate Diplomacy 1B"
 mission "FW Syndicate Diplomacy 1C"
 	landing
 	name "Poisonwood Diplomacy"
-	description "Travel to <planet> with Alondo Martins, to make one final diplomatic visit."
+	description "Travel to <planet> with Alondo Gruyere, to make one final diplomatic visit."
 	source Wayfarer
 	destination Poisonwood
 	to offer

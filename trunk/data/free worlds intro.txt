@@ -1279,7 +1279,7 @@ mission "FW Commitment"
 			`				Tomek Voigt`
 			`				Jean Jacques Soleau`
 			`				Freya Winters`
-			`				Alondo Martins`
+			`				Alondo Gruyere`
 			`				and Katerina Reynolds.`
 			``
 			`	You notice that Katya's name is printed, instead of signed like the others; she must still be undercover on Clink.`
