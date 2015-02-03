@@ -527,7 +527,7 @@ ship "Clipper"
 		Pilot's
 	attributes
 		category "Light Freighter"
-		"cost" 1300000
+		"cost" 900000
 		"shields" 2700
 		"hull" 800
 		"required crew" 3
@@ -537,8 +537,8 @@ ship "Clipper"
 		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 70
-		"outfit space" 300
-		"weapon capacity" 140
+		"outfit space" 260
+		"weapon capacity" 60
 		"engine capacity" 80
 		weapon
 			"blast radius" 36
