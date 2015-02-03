@@ -8,6 +8,150 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Pact Recon 0"
+	name "Pirate Reconaissance"
+	description "Fly through the Alniyat, Han, Atria, and Lesath systems, then report to <destination>, so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	waypoint "Alniyat"
+	waypoint "Han"
+	waypoint "Atria"
+	waypoint "Lesath"
+	source
+		attributes south
+	destination Glaze
+	to offer
+		random < 100
+		not "event: war begins"
+	
+	on offer
+		conversation
+			`You can't help noticing that the freighter parked next to the <ship> is in very bad shape, its hull pockmarked with blaster scars, as well as larger dents that may be from missiles. The crew is busy welding new hull plating onto it; the captain is having an animated conversation with a young female militia officer.`
+			choice
+				`	(Approach them and find out what happened.)`
+				`	(Ignore them.)`
+					decline
+			`	You overhear enough of the conversation to figure out that the freighter was attacked by pirates. Eventually, they stop talking, and the militia officer, seeing you nearby, walks over to you. "The pirate fleets keep getting stronger every year," she says.`
+			choice
+				`	"Is there something I can do to help?"`
+					goto help
+				`	"I wish I could help, but my ship is not a warship."`
+					goto warship
+			label help
+			`	"There is indeed," she says. "Have you heard of the Southern Mutual Defense Pact?"`
+				goto pact
+			label warship
+			`	"There are other ways you could help us," she says. "Have you heard of the Southern Mutual Defense Pact?"`
+				goto pact
+			label pact
+			choice
+				`	"Yes."`
+					goto eyes
+				`	"No. What is it?"`
+			`	She says, "we're a collection of worlds that have decided that since the Navy doesn't patrol this part of the galaxy anymore, it's up to us to keep the pirates in check. The idea is that if the pirates ever try something big, like capturing an entire planet, that planet can call on the entire Pact to assist them."`
+			`	"Sounds like a good idea," you say.`
+			label eyes
+			`	"The Pact is launching a new initiative," she says. "We're calling it the 'Thousand Eyes.' We're asking ship captains to let us access their scanner logs, basically using merchants as a surveillance network. You don't have to fight the pirates, just let us know if you see them. Interested?"`
+			choice
+				`	"Sure, I would be glad to help."`
+				`	"Sorry, sounds too risky."`
+					decline
+			`	"Great!" she says. "Right now, we need a few more eyes on a few systems on the edge of Southern space. All you need to do is fly through those systems, then report to our base on Glaze. I'll mark the target systems on your map."`
+				accept
+	
+	on complete
+		payment 25000
+		dialog
+			`A different female militia officer approaches you when you land on <planet>, and gives you <payment> in exchange for your scanner logs of the southern systems. "My name is Freya Winters," she says. "I'll be in touch when we've got a new assignment for you."`
+
+
+
+mission "Pact Recon 1"
+	landing
+	name "Pirate Reconaissance"
+	description "Fly through the Wei, Alnasl, Eber, and Alpha Arae systems, then report to <destination>, so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	waypoint "Wei"
+	waypoint "Alnasl"
+	waypoint "Eber"
+	waypoint "Alpha Arae"
+	source
+		attributes south "dirt belt" rim quarg "near earth"
+	destination Glaze
+	to offer
+		random < 20
+		not "event: war begins"
+		has "Pact Recon 0: done"
+	
+	on offer
+		dialog
+			`You receive a message from Freya, the militia officer in charge of tracking pirate activity. "We need some more eyes on the empty systems in the middle of the Dirt Belt," she says. "Pay would be a bit better than last time. Interested?"`
+	
+	on complete
+		payment 35000
+		dialog
+			`You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when if need your services again."`
+
+
+
+mission "Pact Recon 2"
+	landing
+	name "Pirate Reconaissance"
+	description "Fly through the Men, Antares, Shaula, and Nunki systems, then report to <destination>, so the Southern Defense Pact can analyze your logs of pirate activity (if any)."
+	waypoint "Men"
+	waypoint "Antares"
+	waypoint "Shaula"
+	waypoint "Nunki"
+	source
+		attributes south "dirt belt" rim quarg "near earth"
+	destination Glaze
+	to offer
+		random < 20
+		not "event: war begins"
+		has "Pact Recon 1: done"
+	
+	on offer
+		dialog
+			`You receive another message from Freya: "Hello Captain! I've got a more challenging and lucrative mission for you. We need someone to do a flyby of all four pirate systems here in the south, to gauge their strength. Again, no fighting is required. What do you say?"`
+	
+	on complete
+		payment 60000
+		dialog
+			`Freya Winters meets up with you in person soon after you land. "I hope you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
+
+
+
+mission "Pact Recon 3"
+	landing
+	name "Pirate Reconaissance"
+	description "Fly through the Orvala, Hintar, Naper, and Boral systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
+	waypoint "Orvala"
+	waypoint "Hintar"
+	waypoint "Naper"
+	waypoint "Boral"
+	source
+		attributes south "dirt belt" rim quarg "near earth"
+	destination Glaze
+	to offer
+		random < 20
+		not "event: war begins"
+		has "Pact Recon 2: done"
+	
+	on offer
+		dialog
+			`Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet massing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight them, just observe them."`
+	
+	npc
+		government Pirate
+		personality staying plunders disables
+		system Naper
+		fleet "Small Southern Pirates" 3
+		fleet "Large Northern Pirates"
+	
+	on complete
+		payment 80000
+		dialog
+			`You report to Freya that you found a sizable pirate fleet in the Naper system, as well as spotting some pirates elsewhere. She thanks you, and pays you <payment>. "Thank you for your assistance," she says. "Again, I'll be in touch if we need you."`
+
+
+
 mission "FW Recon 0"
 	name "Transport Militia Officer"
 	description "This militia officer asked if you could transport him to <destination>."
