@@ -134,7 +134,12 @@ void AI::UpdateEvents(const std::list<ShipEvent> &events)
 		if(event.Actor() && event.Target())
 			actions[event.Actor()][event.Target()] |= event.Type();
 		if(event.ActorGovernment()->IsPlayer() && event.Target())
-			event.TargetGovernment()->Offend(event.Type(), event.Target()->RequiredCrew());
+		{
+			int &bitmap = playerActions[event.Target()];
+			int newActions = event.Type() - (event.Type() & bitmap);
+			bitmap |= event.Type();
+			event.TargetGovernment()->Offend(newActions, event.Target()->RequiredCrew());
+		}
 	}
 }
 
