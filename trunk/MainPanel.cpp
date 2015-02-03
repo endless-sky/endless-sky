@@ -108,7 +108,7 @@ void MainPanel::Step()
 		const Government *actor = event.ActorGovernment();
 		
 		player.HandleEvent(event, GetUI());
-		if(event.Type() == ShipEvent::BOARD)
+		if(event.Type() == ShipEvent::BOARD && isActive)
 		{
 			// TODO: handle player getting boarded.
 			if(actor->IsPlayer())
@@ -116,7 +116,7 @@ void MainPanel::Step()
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
-			if(actor->IsPlayer())
+			if(actor->IsPlayer() && isActive)
 				ShowScanDialog(event);
 			else if(event.TargetGovernment()->IsPlayer())
 			{
