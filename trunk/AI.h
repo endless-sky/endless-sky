@@ -94,6 +94,7 @@ private:
 	
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
+	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 };
 
 
