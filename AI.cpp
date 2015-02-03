@@ -307,10 +307,14 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 		return target;
 	
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
+	if(oldTarget && !oldTarget->IsTargetable())
+		oldTarget.reset();
 	shared_ptr<Ship> parentTarget;
 	if(ship.GetParent())
 		parentTarget = ship.GetParent()->GetTargetShip();
-	
+	if(parentTarget && !parentTarget->IsTargetable())
+		parentTarget.reset();
+
 	// Find the closest enemy ship (if there is one).
 	const Personality &person = ship.GetPersonality();
 	double closest = numeric_limits<double>::infinity();
@@ -361,7 +365,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	{
 		closest = numeric_limits<double>::infinity();
 		for(const auto &it : ships)
-			if(it->GetSystem() == system && it->GetGovernment() != ship.GetGovernment())
+			if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
 			{
 				if((cargoScan && !Has(ship, it, ShipEvent::SCAN_CARGO))
 						|| (outfitScan && !Has(ship, it, ShipEvent::SCAN_OUTFITS)))
@@ -813,7 +817,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, const std::list<std::share
 		else
 			command |= Command::LAND;
 	}
-	else if(ship.GetTargetShip())
+	else if(ship.GetTargetShip() && ship.GetTargetShip()->IsTargetable()
+			&& ship.GetTargetShip()->GetSystem() == ship.GetSystem())
 	{
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
@@ -841,7 +846,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, const std::list<std::share
 		
 		if(cargoScan || outfitScan)
 			for(const auto &it : ships)
-				if(it->GetGovernment() != ship.GetGovernment())
+				if(it->GetGovernment() != ship.GetGovernment() && it->IsTargetable()
+						&& it->GetSystem() == ship.GetSystem())
 				{
 					if(Has(ship, it, ShipEvent::SCAN_CARGO) && Has(ship, it, ShipEvent::SCAN_OUTFITS))
 						continue;
