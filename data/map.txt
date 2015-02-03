@@ -1040,7 +1040,7 @@ system Alhena
 		distance 297.521
 		period 66.7759
 	object
-		sprite planet/forest2
+		sprite planet/desert3
 		distance 670.931
 		period 226.131
 		object
