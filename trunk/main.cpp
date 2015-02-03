@@ -14,6 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "Command.h"
+#include "Conversation.h"
+#include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -35,18 +37,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
 using namespace std;
 
 void PrintHelp();
 void PrintVersion();
+Conversation LoadConversation();
 
 
 
 int main(int argc, char *argv[])
 {
+	Conversation conversation;
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -60,6 +66,8 @@ int main(int argc, char *argv[])
 			PrintVersion();
 			return 0;
 		}
+		else if(arg == "-t" || arg == "--talk")
+			conversation = LoadConversation();
 	}
 	PlayerInfo player;
 	
@@ -166,6 +174,8 @@ int main(int argc, char *argv[])
 		UI gamePanels;
 		UI menuPanels;
 		menuPanels.Push(new MenuPanel(player, gamePanels));
+		if(!conversation.IsEmpty())
+			menuPanels.Push(new ConversationPanel(player, conversation));
 		
 		string swizzleName = "_texture_swizzle";
 #ifndef __APPLE__
@@ -295,6 +305,7 @@ void PrintHelp()
 	cerr << "    -v, --version: print version information." << endl;
 	cerr << "    -s, --ships: print table of ship statistics." << endl;
 	cerr << "    -w, --weapons: print table of weapon statistics." << endl;
+	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << endl;
@@ -314,3 +325,37 @@ void PrintVersion()
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
 }
+
+
+
+Conversation LoadConversation()
+{
+	Conversation conversation;
+	DataFile file(cin);
+	for(const DataNode &node : file)
+		if(node.Token(0) == "conversation")
+		{
+			conversation.Load(node);
+			break;
+		}
+	
+	const map<string, string> subs = {
+		{"<bunks>", "[N]"},
+		{"<cargo>", "[N tons of Commodity]"},
+		{"<commodity>", "[Commodity]"},
+		{"<date>", "[Day Mon Year]"},
+		{"<day>", "[The Nth of Month]"},
+		{"<destination>", "[Planet in the Star system]"},
+		{"<fare>", "[N passengers]"},
+		{"<first>", "[First]"},
+		{"<last>", "[Last]"},
+		{"<origin>", "[Origin Planet]"},
+		{"<passengers>", "[your passengers]"},
+		{"<planet>", "[Planet]"},
+		{"<ship>", "[Ship]"},
+		{"<system>", "[Star]"},
+		{"<tons>", "[N tons]"}
+	};
+	return conversation.Substitute(subs);
+}
+
