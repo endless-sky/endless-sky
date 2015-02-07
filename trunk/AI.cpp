@@ -788,6 +788,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 void AI::DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const
 {
 	const shared_ptr<Ship> &target = ship.GetTargetShip();
+	if(target && (!target->IsTargetable() || target->GetSystem() != ship.GetSystem()))
+		ship.SetTargetShip(shared_ptr<Ship>());
 	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
 	{
 		MoveIndependent(ship, command);

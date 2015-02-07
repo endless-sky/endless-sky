@@ -6707,7 +6707,7 @@ system Menkar
 		distance 413.52
 		period 157.58
 	object
-		sprite planet/forest2
+		sprite planet/cloud4
 		distance 742.77
 		period 379.348
 	object
@@ -11689,7 +11689,7 @@ planet "Carbuncle Station"
 planet "Charon Station"
 	attributes south station
 	landscape land/station3
-	description `Charon station provides hyperspace fuel for much of the sourthern galactic rim. It is a tiny, cramped, and aging station, with twice as many workers here as it was originally designed for. Centuries ago, before much of the Dirt Belt was settled, this was the first spot below Algorel where merchant caravan fleets from the Deep could stop over on their way to the worlds farther up the Rim.`
+	description `Charon Station provides hyperspace fuel for much of the sourthern galactic rim. It is a tiny, cramped, and aging station, with twice as many workers here as it was originally designed for. Centuries ago, before much of the Dirt Belt was settled, this was the first spot below Algorel where merchant caravan fleets from the Deep could stop over on their way to the worlds farther up the Rim.`
 	description `The close quarters have fostered an extreme scrupulosity about personal space. It is unnerving to walk down a densely crowded hallway and fail to make eye contact with anyone.`
 	spaceport `The refinery here operates in shifts, non-stop, so there are always people coming and going in the hallways and docking bays. The cafeteria is so crowded that many workers are just standing up against the walls eating off their trays instead of trying to find a place to sit. Every few minutes, light flashes in through one of the windows from welders outside in space suits trying to keep the aging hull in perfect shape. Others drift around outside checking up on the solar panels and replacing burnt-out modules.`
 	security .4
@@ -11937,6 +11937,7 @@ planet Foundry
 	shipyard "Syndicate Basics"
 	shipyard "Syndicate Advanced"
 	shipyard "Megaparsec Basics"
+	shipyard "Megaparsec Advanced"
 	outfitter "Common Outfits"
 	outfitter "Syndicate Advanced"
 	outfitter "Ammo North"
@@ -12019,7 +12020,7 @@ planet Glaze
 	spaceport `	You notice quite a few families with children sitting by the windows on the upper stories of the tower, watching starships landing and taking off. Many of them have brought folding chairs or blankets to sit on. That must be what passes for entertainment on this world.`
 	shipyard "Basic Ships"
 	shipyard "Southbound Basics"
-	outfitter "Basic Outfits"
+	outfitter "Common Outfits"
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	outfitter "Ammo South"

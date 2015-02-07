@@ -919,6 +919,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		pilotError = 120;
 	}
 	
+	// Stop targeting this ship (so you will not board it again right away).
+	SetTargetShip(shared_ptr<Ship>());
 	return victim;
 }
 

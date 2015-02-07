@@ -1048,7 +1048,7 @@ mission "Terraforming 2"
 			`	Just then, Eric and Alaric return, looking disappointed.`
 			choice
 				`	"No luck?"`
-			`	They shake their heads. "It would cost fifteen million just to bring a specialist out for an initial consultation," says Eric, "and besides, the cost of terrafroming machinery and upkeep is prohibitive. I think this whole Academy is just a money-making racket."`
+			`	They shake their heads. "It would cost fifteen million just to bring a specialist out for an initial consultation," says Eric, "and besides, the cost of terraforming machinery and upkeep is prohibitive. I think this whole Academy is just a money-making racket."`
 			choice
 				`	"Have a look at this poster. Maybe this student would help us. We could bill it as a sort of internship for her."`
 				`	"Indeed. They gave this student a failing grade just for suggesting it could be done more cheaply."`
