@@ -152,6 +152,79 @@ mission "Pact Recon 3"
 
 
 
+mission "Pact Questioning"
+	source
+		attributes "near earth" paradise
+		government Republic
+	to offer
+		not "chosen sides"
+		has "Pact Recon 1: done"
+		random < 15
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, a middle-aged man in a Navy uniform walks up to you and says, "Excuse me, Captain <last>. Could I speak with you for a few minutes?"`
+			choice
+				`	"Okay."`
+				`	"Sorry, I'm really busy right now."`
+					defer
+			branch free
+				has "event: war begins"
+			`	"Thank you," he says. "Am I correct that you have been assisting the Southern Mutual Defense Pact?"`
+				goto start
+			label free
+			`	"Thank you," he says. "Am I correct that you performed some missions for the Southern Defense Pact, back before they became the Free Worlds?"`
+			label start
+			`	His voice is very friendly, and he is not not armed or accompanied by any other officers that you can see, so it doesn't seem like you are in trouble or in danger of being arrested - especially since your work for the Pact was perfectly legal.`
+			choice
+				`	"I don't know what you are talking about."`
+				`	"I did take a few jobs helping out the local militias, yes."`
+					goto pact
+				`	"Yes, I ran several missions for the Pact."`
+					goto pact
+				`	"I'm sorry, but I don't want to talk to you about that."`
+					goto quit
+			`	He has been looking intently into your eye, and when you lie to him, he frowns. "It really isn't necessary to lie to me," he says. You are not sure what to say in response, so you remain quiet.`
+			label pact
+			`	"Tell me," he says, "Was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. All Navy personnel you have encountered in the past have a name badge on their lapel and rank insignia on their collar, but his uniform is entirely blank.`
+			choice
+				`	"I don't remember anyone's name in particular."`
+				`	"I would rather not name any names."`
+				`	"I usually reported to an officer named Freya Winters."`
+					goto freya
+				`	"I don't want to talk about this. I'm leaving."`
+					goto quit
+			`	"Oh well," he says, "it was worth asking. Would you at least be willing to tell me the nature of the missions you were performing?"`
+				goto missions
+			label freya
+			`	"Ah yes, Miss Winters," he says. "A very capable woman, although she's more skilled as an engineer than as a leader. Can you tell me what sort of work you were performing for her?"`
+			label missions
+			choice
+				`	"I'd rather not say."`
+					goto quit
+				`	"Who are you? Why are you asking me these questions?"`
+					goto questions
+				`	"Reconaissance missions, tracking pirate movements."`
+					goto recon
+				`	"Sorry, I'm done talking to you."`
+					goto quit
+			label recon
+			`	"Are you certain your reconaissance was only targeted at pirates?" he asks. "Did they collect only your logs on pirate ships, or on every ship you saw?"`
+			choice 
+				`	"I honestly don't know."`
+				`	"I think it was only the pirate ships."`
+				`	"I just gave them all my logs. I'm not sure what parts of them they ended up using."`
+			`	"I see," he says. "I wonder why they didn't share more of the details of their work with you."`
+			`	"Why are you asking me all these questions?" you say.`
+			label questions
+			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyways, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
+				decline
+			label quit
+			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you. As you walk away, you glance over your shoulder a few times to make sure you are not being watched or followed, but see no one.`
+				decline
+
+
+
 mission "FW Recon 0"
 	name "Transport Militia Officer"
 	description "This militia officer asked if you could transport him to <destination>."
@@ -633,8 +706,8 @@ mission "FW Katya 2B"
 	npc
 		personality nemesis plunder waiting
 		government Pirate
-		fleet "Large Core Pirates"
-		fleet "Large Core Pirates"
+		fleet "Small Core Pirates"
+		fleet "Small Core Pirates"
 	to offer
 		has "FW Katya 2: done"
 	to fail
@@ -818,7 +891,7 @@ mission "FW Katya 5"
 		has "chosen sides"
 	on offer
 		conversation
-			`You land on <planet>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes, "Guess we should move on."`
+			`You land on <origin>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes, "Guess we should move on."`
 			choice
 				`	"Are we just going to search every planet in this sector? Won't that take months?"`
 					goto months
@@ -864,7 +937,7 @@ mission "FW Katya 5"
 mission "FW Katya 5B"
 	landing
 	name "Information Gathering"
-	description "Travel to <planet> with Brother Greg and see if he can get any information from the pirates there."
+	description "Travel to <planet> with Brother Greg and see if he can get any information from the pirates there. (Hail the planet to have him negotiate landing clearance.)"
 	source Harmony
 	destination Greenrock
 	clearance `Brother Greg talks briefly with the spaceport traffic controller. When they realize who he is, they agree to let you land "without paying the usual fee."`
@@ -1371,6 +1444,7 @@ mission "FW Escort 3"
 	name "Stranded Freighter"
 	description "Repair the <npc>, which is stranded in the Lesath system, and escort it safely back to <destination>."
 	source Longjump
+	waypoint Lesath
 	to offer
 		has "FW Escort 2B: done"
 	to fail
@@ -1418,7 +1492,7 @@ mission "FW Commitment"
 			`Soon after you land, a courier arrives at your ship and hands you a formal looking letter. It reads:`
 			``
 			`Dear Captain <last>,`
-			`	The Free Worlds council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our navy, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
+			`	The Free Worlds council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
 			`	Sincerely,`
 			`				Tomek Voigt`
 			`				Jean Jacques Soleau`
