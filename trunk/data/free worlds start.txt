@@ -355,7 +355,7 @@ mission "FW Syndicate Diplomacy 1B"
 				accept
 			
 			label katya
-			`	"I will send the news to the Council immediately. But if she is a prisoner of the Intelligence bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission, and head to Tarazed."`
+			`	"We'll have to talk that over with the Council when we get back. But if she is a prisoner of the Intelligence bureau, there is no way we can rescue her. Her only hope is that they will recognize her innocence. For now, we must continue with our mission, and head to Tarazed."`
 				accept
 
 
@@ -387,7 +387,7 @@ mission "FW Syndicate Diplomacy 1C"
 			`	"Thank you," says Alondo, "although for the time being the best way to support us, may be for you to remain neutral in this conflict." He explains the idea of Tarazed being a go-between with the Syndicate.`
 			`	"I don't like dealing with the Syndicate," says Emily, "but like yourselves, we could not build ships without the systems they manufacture. Of course, the materials we receive from Free space are equally valuable. But if we remain nominally a part of the Republic, they will have full access to this system, including searching incoming and outgoing freighters."`
 			`	"True," says Alondo, "but a Navy fleet here would be vulnerable to being cut off from Republic space, so unless they occupy the whole Dirt Belt, I do not think they would risk it." They continue talking for a while, and you leave well convinced that Tarazed is willing to support you and that the best way they can do that for now is by remaining neutral.`
-			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet Poisonwood has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us.`
+			`	"Now," says Alondo, "I'd like to make one more diplomatic visit. The planet Poisonwood has insisted on remaining loyal to the Republic, even though they are deep inside our space. I'd like to meet with their leaders and see if they will reconsider joining us."`
 				accept
 		event "Tarazed neutrality"
 	
@@ -526,6 +526,8 @@ mission "FW Hope Recon 1C"
 				`	No, sounds risky.`
 					decline
 			
+			apply
+				set "fw caught navy planting sensors"
 			`	You approach the location, flying low to avoid detection, and come upon a Navy gunboat, landed on the planet. Some distance away from the ship, two figures in thick snowsuits are setting up some sort of equipment with lots of antennae. It seems that the Navy had the same idea as Freya, of using this world as a listening post. Your sensors show that the gunboat is powered down.`
 			`	The moment your ship comes over the horizon, they start running back toward the gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
 			`	A gunboat typically only has two crew members, which means if they are alone, you could kill them and steal their ship. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
@@ -565,7 +567,13 @@ mission "FW Hope Recon 1D"
 	
 	on offer
 		conversation
+			branch caught
+				has "fw caught navy planting sensors"
+			`You report back to Freya and Tomek. "I saw a weird sensor blip," you say, "but I was afraid to follow up on it. It may have been the Navy, planting sensors of their own, or doing something else on the planet."`
+				goto sensors
+			label caught
 			`You report back to Freya and Tomek. "The sensors are deployed," you say, "But I caught the Navy doing the same thing. I destroyed one of their installations, but there might be others."`
+			label sensors
 			`	Tomek frowns. "What do you think, Freya?"`
 			`	"I'd say, live and let live. We have no plans to expand north, so it doesn't cost us anything for them to know what is happening in that system. And we don't have resources to spare on sweeping the planet for their sensors."`
 			choice
@@ -1216,7 +1224,7 @@ mission "FW Pirates 2"
 				set "fw pirate suggestion: diplomacy"
 			`	He frowns. "Negotiate with criminals?"`
 			`	"I'm told that only a small portion of the people on those worlds actually engage in piracy," you say, "and many of them are children pressed into service as crew members."`
-			`	"Very well, we'll take your suggestion into consideration," he says.`
+			`	"That may be," he says, "but their leaders are dangerous criminals, perhaps even more dangerous than the Navy, because they have no honor or morality. And every anarchist world is a possible haven for other lawless individuals. Including any of the Alphas who are still in hiding. So I say, we need to capture and control those worlds."`
 			label next
 			`	"But I suppose we need to wait for the Senate to decide?" you ask.`
 			`	"Indeed," he says. "In the meantime, I've got a related mission for you. While the Senate is deliberating, I'd like you to lead a patrol through our systems in the southern rim, to keep up enough of a presence to keep the pirates at bay. Once you've finished patrolling, bring the fleet back to <planet>. By then I should be back there, and we'll discuss our next steps. Can you do that?"`
@@ -1722,4 +1730,4 @@ mission "FW Refinery 1A"
 		dialog
 			`After unloading the supplies, you send Freya and JJ a message letting them know that you arrived safely. You're a bit surprised when they don't immediately send you a message back. Something else must be going on that is occupying their attention. After months of just traveling around following other people's orders, it feels odd to be left to your own devices for a change.`
 		set "fw first chapter done"
-		event "navy occupying the south" 5
+		event "navy occupying the south" 8

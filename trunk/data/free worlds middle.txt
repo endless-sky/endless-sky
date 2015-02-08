@@ -23,6 +23,7 @@ mission "FW Diplomacy 1"
 			`			Sincerely,`
 			`				Jean Jacques and Freya`
 				accept
+		event "catalytic ramscoop available"
 	
 	on complete
 		dialog `As you are landing, Alondo contacts you and asks you to meet him in the spaceport as soon as you have a bunk prepared for him.`
@@ -493,8 +494,8 @@ mission "FW Southern Prisoners - Release"
 				`	"Why not just keep the prisoners until we have Katya back safely?"`
 			`	Freya sighs. "Alondo claims that the generals value their honor so highly that we can trust their promise. I am not so sure. Even if the generals do their best, what if Intelligence refuses to honor the deal we make?"`
 			`	Alondo says, "On the other hand, if we release these prisoners on parole as a gesture of good faith, it could bring us much closer to a diplomatic end to this war. Which would be far preferable to another battle as bloody as this one."`
-			`	Frey says, "And meanwhile, we just received word that three more star systems want to join us. JJ is off with the rest of our fleet securing those systems, so that the Navy will not get there first. But that means he's not available to consult with, and we need to make this decision now."`
-			`	"And since we cannot agree," says Alondo, "we are leaving it up to you to decide."`
+			`	Freya says, "And meanwhile, JJ is off on a top secret mission. And that means he's not available to consult with, and we need to make this decision now."`
+			`	"And since we cannot agree," says Alondo, "we are giving you the deciding vote."`
 			choice
 				`	"What do you mean?"`
 			`	"We will be putting you in charge of the prisoner convoy," says Alondo, "and arranging a week of safe passage for you. If you think we should return the prisoners as a gesture of goodwill to improve our chances of a diplomatic end to this war, bring the convoy to <planet>."`
@@ -505,7 +506,6 @@ mission "FW Southern Prisoners - Release"
 	on accept
 		event "fw safe passage starts"
 		event "fw safe passage ends" 7
-		event "fw northern expansion"
 	
 	npc accompany save
 		government Escort
@@ -602,324 +602,208 @@ mission "FW Southern Prisoners - Kept"
 
 
 
-mission "FW Alphas 1.1"
+mission "FW Northern 1"
 	landing
-	name "Liberate Poisonwood"
-	description "Destroy all pirates ships in the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
+	name "Northern Expansion"
+	description "Take a fleet to <destination> (visiting Alphecca and Seginus along the way), securing those systems to allow them to defect to the Free Worlds."
 	source Dancer
-	destination Poisonwood
+	destination "New Tibet"
+	waypoint Alphecca
+	waypoint Seginus
 	clearance
 	to offer
 		has "fw delivered prisoners"
-		"karma" >= 2
+	passengers 1
 	
 	on offer
-		event "alphas capture Poisonwood"
+		event "fw occupying the north"
 		conversation
 			`When you land on Dancer, the Free Worlds fleet appears to be preparing for another battle: missiles and torpedos are being loaded onto ships and crew members are running around. You eventually find Freya and Alondo, and ask them what is going on.`
-			`	"We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy elsewhere," says Alondo.`
-			`	"Poisonwood is in the Graffias system," says Freya. "Until now they have been stubbornly loyal to the Republic even though they're in our territory."`
-			choice
-				`	"If we liberate them, will they switch their loyalty to our side?"`
-					goto loyalty
-				`	"If they're not one of our worlds, why should we help them?"`
-					goto help
-			label loyalty
-			`	"Possibly," says Alondo. "But that's not what is important. Before they were overrun by pirate troops, one of the colonists managed to take a photo of the pirate leader."`
-				goto photo
-			label help
-			`	"Because one of the colonists took a picture of the leader of the pirates who attacked them," says Alondo.`
-				goto photo
-			label photo
-			`	He hands you a small printout of a photograph. It is a somewhat blurry picture of a group of armed pirates running down a street in a desert town. What grabs your attention immediately is that several of the pirates appear to have green skin. You recognize that as the mark of the Alphas, the sociopathic, genetically engineered super-humans who enslaved entire planets during the Alpha Wars, five centuries ago.`
-			choice
-				`	"It must be a trick. There can't still be Alphas around. Maybe the pirates dyed their skin green to make people fear them."`
-				`	"How is it possible that some of the Alphas are still alive?"`
-			`	Alondo says, "This may be a trick, but we can't afford to take that risk. The Alphas were the greatest threat humanity has ever faced. Which is why we took the liberty of forwarding this picture to the Navy." As he is speaking, a shadow passes overhead. You look up and see the unmistakable silhouette of a Navy cruiser, coming in for a landing.`
-			choice
-				`	"Are you insane? You invited the Navy here?"`
-				`	"We're going to work side by side with the Navy right after that awful battle?"`
-			`	Freya explains, "It's only one ship, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
-			`	The Navy ship lands, and a man steps off who you recognize immediately: General William Danforth, who is something of a folk hero throughout human space. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. Nguyen shakes your hand, and you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is oddly warm and affectionate.`
-			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
-			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
+			`	"Another three worlds have secretly told us they are ready to defect," says Alondo, "and this time around we want to get there before the Navy does."`
+			`	Freya says, "We need you to take Alondo, along with the ships that we've been able to muster, and fly through the Seginus and Alphecca systems, then land on <destination>. If all goes well, you will get through to <planet> before the Republic can muster reinforcements. Drive off any Republic ships you encounter along the way."`
 				accept
 	
-	npc accompany save
-		government "Navy (Oathkeeper)"
-		personality heroic
-		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
-		government "Escort"
-		personality heroic
-		ship "Falcon (Plasma)" "F.S. Alder"
-		ship "Falcon" "F.S. Starry Warrior"
-	npc kill
-		government "Pirate"
-		personality heroic staying
-		system Graffias
-		ship "Leviathan" "Dread Lord"
-		ship "Leviathan" "Dominator"
-		ship "Firebird" "Vengeance"
-		ship "Firebird" "Revenant"
-		ship "Firebird" "Draugbreath"
-
+		government Escort
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+	npc
+		government Republic
+		personality fleeing uninterested
+		system "Wei"
+		fleet "Large Republic"
+		fleet "Large Republic"
+	npc
+		government Republic
+		personality fleeing uninterested
+		system "Seginus"
+		fleet "Large Republic"
+		fleet "Large Republic"
+	npc
+		government Republic
+		personality fleeing uninterested
+		system "Alphecca"
+		fleet "Large Republic"
+		fleet "Large Republic"
+	
 	on complete
-		event "liberation of Poisonwood"
-		conversation
-			`The ships in orbit are eliminated, but there are still the Alphas and their servants here on the ground to take care of. Danforth's ship unloads a squadron of troops in heavy battle suits. The Navy troops move with far more precision and purpose than you have ever seen among the poorly trained Free Worlds soldiers.`
-			`	They sweep the city and quickly ascertain that the Alphas are holed up in a large factory. The troops encircle the building and burst through the doors, and soon you hear the sounds of explosions and gunfire within. You wait with Commander Nguyen in an alley facing the building. "I'm with the Humanitarian Corps," he explains. "Killing things is not in my job description."`
-			`	Just then, one of the second floor windows shatters and a figure comes tumbling out, rolls, and starts running in your direction. Then it does something you would swear no human being is capable of: while still moving in your direction, it begins leaping from one wall of the alley to the other as easily as you would run up a staircase, gaining altitude with each jump so that soon it will pass two or three meters above your heads. Several Navy troops are running after it, but they hold their fire to avoid hitting you and Nguyen.`
-			choice
-				`	(Try to shoot it.)`
-					goto shoot
-				`	(Try to grab it.)`
-					goto grab
-			label shoot
-			`	You open fire, but it is leaping back and forth so fast that it is almost impossible to hit. But then you see Commander Nguyen climb onto a nearby dumpster and leap into the air, managing to grab the creature by the leg as it flies by.`
-				goto pin
-			label grab
-			`	Unfortunately, by now the creature is far outside your reach. But then you see Commander Nguyen climb onto a nearby dumpster and leap into the air, managing to grab the creature by the leg as it flies by.`
-				goto pin
-			label pin
-			`	The two of them fall to the ground and roll over and over in a jumble of limbs. You and the Navy troops run after them, afraid to shoot for fear of hitting Nguyen. But somehow Nguyen gets the upper hand, pinning the creature in a full nelson hold, with his legs wrapped around its body to keep it from kicking him. "Kill it!" he shouts.`
-			choice
-				`	(Kill it.)`
-					goto kill
-				`	(Let the Navy troops deal with this.)`
-					goto navy
-			label kill
-			`	While Nguyen holds the creature still, you put a gun to its head and pull the trigger. Not even an Alpha can survive that; the creature goes limp. Now that you can get a good look at it, you can see that it does indeed have green skin.`
-				goto end
-			label navy
-			`	While Nguyen holds the creature still, one of the Navy troops puts a gun to its head and pulls the trigger. Not even an Alpha can survive that; the creature goes limp. Now that you can get a good look at it, you can see that it does indeed have green skin.`
-				goto end
-			label end
-			`	Nguyen gets shakily to his feet; he looks stunned and very pale. "Thank you," he says. The sounds of gunfire within the factory eventually dies down. "We'll continue to patrol the city," says Nguyen, "in case there are more of them. Then I'll meet you in the spaceport." He heads off back into the city.`
+		dialog
+			`As soon as you land, Alondo rushes out of your ship to meet with the governor of <planet> and "get these papers signed before they change their minds." He tells you to meet him back in the spaceport in an hour.`
 
 
 
-mission "FW Alphas 1.2"
-	landing
-	name "Liberate Poisonwood"
-	description "Destroy any pirate ships in orbit around <planet>, then land and eliminate the Alphas and their servants who have occupied the city."
-	source Dancer
-	destination Poisonwood
-	clearance
-	to offer
-		has "fw delivered prisoners"
-		"karma" < 2
-	
-	on offer
-		event "alphas capture Poisonwood"
-		conversation
-			`When you land on Dancer, the Free Worlds fleet appears to be preparing for another battle: missiles and torpedos are being loaded onto ships and crew members are running around. You eventually find Freya and Alondo, and ask them what is going on.`
-			`	"We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy elsewhere," says Alondo.`
-			`	"Poisonwood is in the Graffias system," says Freya. "Until now they have been stubbornly loyal to the Republic even though they're in our territory."`
-			choice
-				`	"If we liberate them, will they switch their loyalty to our side?"`
-					goto loyalty
-				`	"If they're not one of our worlds, why should we help them?"`
-					goto help
-			label loyalty
-			`	"Possibly," says Alondo. "But that's not what is important. Before they were overrun by pirate troops, one of the colonists managed to take a photo of the pirate leader."`
-				goto photo
-			label help
-			`	"Because one of the colonists took a picture of the leader of the pirates who attacked them," says Alondo.`
-				goto photo
-			label photo
-			`	He hands you a small printout of a photograph. It is a somewhat blurry picture of a group of armed pirates running down a street in a desert town. What grabs your attention immediately is that several of the pirates appear to have green skin. You recognize that as the mark of the Alphas, the sociopathic, genetically engineered super-humans who enslaved entire planets during the Alpha Wars, five centuries ago.`
-			choice
-				`	"It must be a trick. There can't still be Alphas around. Maybe the pirates dyed their skin green to make people fear them."`
-				`	"How is it possible that some of the Alphas are still alive?"`
-			`	Alondo says, "This may be a trick, but we can't afford to take that risk. The Alphas were the greatest threat humanity has ever faced. We have very few people trained in ground combat, but I've gathered some of our best and loaded them onto a fleet that will be accompanying you. Destroy any pirate ships in orbit, then land and secure the facility. Understood? And don't let any of your escorts die; they're carrying the troops you'll need for the ground battle." You nod, and prepare to take off for the <system> system.`
-				accept
-	
-	npc accompany save
-		government "Escort"
-		personality heroic
-		ship "Falcon (Plasma)" "F.S. Oak"
-		ship "Falcon (Plasma)" "F.S. Alder"
-		ship "Falcon" "F.S. Starry Warrior"
-	npc kill
-		government "Pirate"
-		personality heroic staying
-		system Graffias
-		ship "Leviathan" "Dread Lord"
-		ship "Leviathan" "Dominator"
-		ship "Firebird" "Vengeance"
-		ship "Firebird" "Revenant"
-		ship "Firebird" "Draugbreath"
-
-
-
-mission "FW Alphas 1.1A"
-	name "Danforth to <planet>"
-	description "Escort General Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
-	source Poisonwood
-	destination "New Tibet"
-	to offer
-		has "FW Alphas 1.1: done"
-	
-	npc accompany save
-		government "Navy (Oathkeeper)"
-		personality heroic
-		ship "Cruiser (Mark II)" "N.S. Peacemaker"
-	
-	on offer
-		conversation
-			`When you meet up with Nguyen, he still looks very worried. "We think we killed them all," he says, "but we can't be sure. Also, we recovered some instruments for genetic manipulation from the factory. The Alphas can't breed normally, because if their offspring inherit some of the Alpha mutations but not others, the result is rarely viable, and even those that live long enough to be born don't have all the Alpha traits. So, they rely on artificial insemination instead."`
-			choice
-				`	"Well, it's good news that you recovered those instruments, then."`
-			`	"It would be," says Nguyen, "except that we also discovered that several dozen of the women who were taken as slaves... are now pregnant. We'll have to ask them to terminate their pregnacies. It's the only safe decision, but I still don't like it." He sighs. "I'm a Buddhist, you know. Committed to doing harm to no living thing. That's why I joined the Humanitarian Corps. They promised me I'd never be asked to take a life."`
-			choice
-				`	"Is that why you didn't kill that Alpha yourself, on the street?"`
-					goto street
-				`	"That doesn't seem like a moral dilemma to me. We know those children will grow up to be monsters."`
-					goto kill
-				`	"Couldn't we let the children be born, if that's what the women want, then imprison them or something if they do turn out to be Alphas?"`
-					goto live
-			label street
-			`	"Yes," he says. "Silly, isn't it? Anyways, that's my job to deal with; you need to go find Danforth."`
-				goto end
-			label kill
-			`	"Well," he says, "I envy you for living in a universe where decision like this are easy. But to me it's still a painful choice to make. Anyways, that's my problem to deal with, not yours; you need to go find Danforth."`
-				goto end
-			label live
-			`	"The Alphas were originally bred to be super-soldiers," he says, "a weapon in the hands of a despotic government. As much as I hate to admit it, there are certain branches of the Republic who would love to get their hands on a small army of impressionable Alpha children. Far better for them to die than for that to happen. Anyways, that's my job to deal with; you need to go find Danforth."`
-				goto end
-			label end
-			`	He leaves, and you return to Danforth's ship. Danforth says, "Hello there, temporary ally. It was an honor to fight alongside you, while it lasted."`
-			choice
-				`	"You too. I wish we could bring this war to an end."`
-				`	"If the Republic would just leave us alone, we wouldn't need to be enemies."`
-			`	"I know," he says. "But for now, I need to return to my fleet. Which means I'll be needing an escort out of your territory, just to make sure no one attacks me. Maybe you could take us by way of New Tibet? I'm sure Commander Nguyen would appreciate one last visit to the Buddhist monasteries there before that world becomes closed off to us completely." You agree, and he begins preparing his ship for takeoff.`
-				accept
-
-
-
-mission "FW Alphas 1.2A"
-	landing
-	name "Return to the Front"
-	description "Travel to <destination>, which has just joined the Free Worlds, to bolster the defenses there."
-	source Poisonwood
-	destination "New Tibet"
-	to offer
-		has "FW Alphas 1.2: done"
-	
-	on offer
-		event "Poisonwood reverts to Republic"
-		conversation
-			`The ships in orbit are eliminated, but there are still the Alphas and their servants here on the ground to take care of. Your escorts unload the troops, who spread throughout the city and quickly determine that, as far as the locals know, the Alphas are all holed up in a large factory on the outskirts of town. The locals also inform you that the Alphas have taken dozens of prisoners and are holding them in the factory.`
-			`	As you are trying to prepare the Free Worlds troops to storm the building, suddenly one of your escorts, the Starry Warrior, takes off. You radio the captain, who responds, "Sorry, Captain, but I'm following orders. Alondo suspected you wouldn't like this." Then he opens fire on the factory, destroying everything within several blocks with blaster fire and torpedoes. He does not stop firing until there is nothing left but smoldering rubble in that entire section of the city.`
-			`	The Alphas are presumably dead. So are their prisoners, and any of the locals who were unlucky enough to be close to the factory when it was destroyed. The governor of Poisonwood, unable to conceal his anger, asks you to take your troops and your ships and leave his world immediately.`
-			`	You send a message to the Council asking what you should do, and they tell you to leave the planet and join JJ on <planet>, which has just joined the Free Worlds, to help bolster the defenses there.`
-				launch
-
-
-
-mission "FW Alphas 1.1B"
-	landing
-	name "Defend New Tibet"
-	description "Drive off the Syndicate ships that are attacking New Tibet."
+mission "FW Northern 2"
+	name "Meet With Freya"
+	description "Now that the northern star systems are secured, go back to <planet> to meet with Freya and work with her to remove any surveillance equipment the Navy installed in the Wei system or elsewhere."
 	source "New Tibet"
+	destination "Dancer"
 	to offer
-		has "FW Alphas 1.1A: done"
+		has "FW Northern 1: done"
+	
+	on offer
+		event "fw northern expansion"
+		conversation
+			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds is not able to hold this planet.`
+			`	Finally Alondo arrives. "Come on," he says, "Let's talk outside." He seems tired, but not frightened.`
+			choice
+				`	"Is everything okay?"`
+				`	"Did they agree to join us?"`
+			`	"Yes, yes, of course," he says. "But taking on six more worlds all of a sudden - I just hope it's not more than we can handle. When the Navy recovers from the battle at Rastaban and strikes back, now we have much less idea where that strike will fall."`
+			`	"So, what do we do next?" you ask.`
+			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have though of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her."`
+			choice
+				`	"No problem. Don't worry, we'll be able to handle this just fine."`
+					accept
+				`	"Aren't you afraid the Navy will strike while I'm off fetching her?"`
+			`	"Of course," he says. "But I talked with JJ, and he thinks they're still recovering from the last battle. And if their sensors all go dark, that will be a big deterrent to keep them from attacking - certainly more of a deterrent than you could add by staying here with our fleet."`
+			`	"Understood," you say. "I'll go get Freya."`
+				accept
+
+
+
+mission "FW Northern 2A"
+	landing
+	name "Sweep Hope"
+	description "Bring Freya to <planet> and destroy any Navy sensor emplacements that she finds there."
+	source "Dancer"
+	destination "Hope"
+	to offer
+		has "FW Northern 2: done"
+	passengers 1
 	
 	on offer
 		conversation
-			`As soon as you land on New Tibet, JJ meets up with you. "Alphas on Poisonwood," he says. "A new Navy base in Kaus Borealis. Half our fleet still down for repairs. We're stretched way too thin here, and it's showing. This is why I was so hesitant to expand our territory."`
-			`	As he is speaking, a single ship comes streaking down towards the spaceport, moving much too fast to land properly. It overshoots the landing pad, and skids for about a hundred meters through the dirt before coming to a stop. You recognize it as an Arrow class executive transport, a scout ship used mostly in Syndicate space. "What now?" says JJ, as you both run towards the ship.`
-			`	A man runs out of the ship, carrying a suitcase that appears to be very heavy. A few seconds later, several more ships swoop down towards the spaceport: Syndicate Quicksilvers. One of them fires on the Arrow transport, destroying it. The man dives for cover behind one of the spaceport buildings. JJ pulls a radio out of his pocket, switches it to the broadcast frequency, and begins shouting, "What the hell is going on here? You're in Free Worlds space."`
-			`	The radio crackles, and a man's voice says, "We are pursuing a dangerous criminal. Syndicate security forces will be landing shortly to apprehend him. Please do not interfere with us, and do not approach the criminal. He is extremely dangerous."`
-			`	JJ shuts the radio off and asks you, "Was that man carrying a weapon?"`
-			choice
-				`	"I didn't see anything, but a gun is easy to conceal."`
-				`	"I'm not sure, but maybe we should hear his side of the story before turning him over to the Syndicate."`
-					goto story
-			`	"Maybe," says JJ, "but still I don't quite trust the Syndicate. Let's track this man down."`
-				goto man
-			label story
-			`	"Agreed," says JJ.`
-			label man
-			`	You run toward the alley where you saw the man take cover. Meanwhile, you hear several of the Syndicate ships landing. The man is hiding in a doorway. He draws a gun when he sees you coming, then lowers it when you get close enough for him to see your uniforms. He beckons to you to follow, then ducks into the building. As you follow him, several shots ring out behind you: the Syndicate security forces, approaching quickly.`
-			`	A second later, there is an earth-shaking roar as Danforth's Navy cruiser, the Peacemaker, lifts off and begins flying toward you. Danforth's voice booms out over the ship's external speakers: "Syndicate troops, drop your weapons and stand down immediately, or you will be destroyed." JJ shoots a quick glance at you, and you can tell that he is totally bewildered by what is going on.`
-			`	The fugitive waves the suitcase and shouts, "The Syndicate built the nukes! The attack on Geminus! I have evidence!" A second later, two men in Syndicate uniforms run into the building and open fire on him. The fugitive dives behind a pile of crates, but you hear him shout in pain; he has been hit. You have only a split second to make a decision that could have extreme repercussions...`
-			choice
-				`	(Stop the Syndicate men from capturing the fugitive, at least long enough to hear his side of the story.)`
-					goto stop
-				`	(The Syndicate is a necessary ally. Allow them to capture the fugitive.)`
-			label capture
-				`	You stand aside as the Syndicate security officers run behind the stack of crates. You hear three gunshots, then the officers walk out from behind the crates and out the door without saying a word to you. One of them is carrying the suitcase. As they leave, you hear the other one speak into his radio: "All units, return to your ships."`
-				`	The Syndicate ships depart. The fugitive is dead, and whatever evidence he was carrying is gone.`
-					decline
-			label stop
-			`	You draw your gun and point it at the Syndicate troops. JJ does the same. "Drop your weapons," you say. Reluctantly, they lay down their rifles. A few seconds later, a shadow falls across the doorway: it is one of Danforth's battle-armored soldiers, and his gun is pointed at the Syndicate officers. With them safely disarmed, you hurry to check on the fugitive. He is alive, but is bleeding profusely from a wound in his thigh.`
-			`	Ten minutes later, you've stopped the fugitive's bleeding with a tourniquet, and Danforth's troops have seized control of the spaceport. JJ does not seem too happy with this turn of events, but he orders his ships not to attack Danforth's cruiser. You take the fugitive to the local Free Worlds infirmary. Danforth meets up with you there, and you are all about to begin questioning the fugitive when Danforth's communicator beeps and a voice says, "Sir, we're picking up more Syndicate ships incoming."`
-			`	Danforth swears. "Captain <last>," he says, "get to your ship and help drive them off. I'll make sure the ones on the ground stay pacified." You hurry back to your ship, and take off with a hastily assembled fleet of defenders...`
-				launch
+			`As soon as you land, Freya shows up at your ship with a small suitcase full of clothes. "No time to waste," she says, "Let's get going. Our first target will be <planet>, since we know for a fact that they were installing something there."`
+				accept
+
+
+
+mission "FW Northern 2B"
+	landing
+	name "Sweep Hope"
+	description "Bring Freya to <planet> to check for any Navy surveillance stations."
+	source "Hope"
+	destination "Clark"
+	to offer
+		has "FW Northern 2A: done"
+	passengers 1
 	
-	on accept
-		"reputation: Syndicate" = -100
-		event "fw at war with Syndicate"
+	on offer
+		conversation
+			`As you approach the planet, Freya sits down at your ship's sensor console and begins fiddling with some settings that you didn't even know existed. She seems entirely focused, and clearly knows what she is doing. You recall being told that she is an engineer, not a politician or a military commander, which makes the fact that she has been able to step up as such a strong leader in the Council very impressive.`
+			`	"Yup, eight different stations," she says finally, "including this one that I nearly overlooked, buried twenty feet under the ice, that is acting as a relay for them." She points out each station on your map, and you fly by each one and destroy it. "Now," she says, "that was what had me most worried, but for the sake of completeness we should sweep the other new worlds, too. Let's go to <planet> next."`
+				accept
+
+
+
+mission "FW Northern 2C"
+	landing
+	name "Sweep Clark"
+	description "Bring Freya to <planet> to check for any Navy surveillance stations."
+	source "Clark"
+	destination "New Holland"
+	to offer
+		has "FW Northern 2B: done"
+	passengers 1
 	
-	npc disable
-		government Syndicate
-		personality heroic staying
-		fleet
-			names "syndicate capital"
-			variant
-				"Splinter" 2
-				"Manta" 4
-				"Quicksilver" 9
-	npc
-		government "Free Worlds"
-		personality heroic
-		fleet
-			names "free worlds capital"
-			variant
-				"Falcon (Plasma)"
-				"Osprey"
-				"Hawk" 4
-				"Fury" 2
-				"Sparrow" 5
+	on offer
+		conversation
+			`Once again, Freya works some sort of magic with your ship's sensors and manages to locate another surveillance station. "Right in the middle of the city," she says. "We'll have to go there on foot and disable it."`
+			choice
+				`	"Are you worried that it might be guarded?"`
+					goto guard
+				`	"Okay, I'll grab my favorite guns and explosives!"`
+					goto guns
+			label guard
+			`	"A little worried," she says. "We should be armed, just in case. But I'm not picking up any human heat signatures from the building, and it wouldn't be like the Navy to leave some of their own behind for us to capture."`
+				goto destroy
+			label guns
+			`	"Now, now," she says, "we just convinced this world to join us, let's not go blowing up their whole factory district. I don't see any human heat signatures, but you can bring your weapons anyways just in case."`
+			label destroy
+			`	Warily, you approach the sensor installation, kicking down the door to an old abandoned warehouse. Freya is right - it's not guarded. She shuts down the transmitter, then asks for your help bringing some of the sensors and other equipment back to your ship. "I always love having a chance to look at Navy technology," she says. "Now, let's head to <planet>."`
+				accept
+
+
+
+mission "FW Northern 2D"
+	landing
+	name "Sweep Clark"
+	description "Bring Freya to <planet> to check for any Navy surveillance stations."
+	source "New Holland"
+	destination "New Tibet"
+	to offer
+		has "FW Northern 2C: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`You spend quite a while flying back and forth above the surface of <origin>, but Freya is unable to locate any Navy signals originating from the surface. Finally she gives up. "It's an out of the way planet," she says. "Any fleet coming here would pass through Alioth or Seginus first. So I guess they didn't bother to put anything here. Time to head to New Tibet and meet up with Alondo!"`
+				accept
+
+
+
+mission "FW Northern 3"
+	landing
+	name "Freya to Zug"
+	description "Bring Freya to <destination>, to help with ramping up Dreadnought production."
+	source "New Tibet"
+	destination "Zug"
+	to offer
+		has "FW Northern 2D: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`As you approach <origin>, Freya quickly locates two Navy surveillance stations and contacts Alondo, asking him to send some Free Worlds personnel to destroy them. Then you land, and Alondo comes aboard your ship to discuss your next steps in person.`
+			`	"There's a good chance we've taken care of all the sensors in this sector," says Freya, "so we can start moving our fleets around here without tipping the Navy off. And I just heard from Southbound Shipping that they've got two more Dreadnoughts ready for service."`
+			choice
+				`	"Only two? I was hoping to get a Dreadnought of my own soon!"`
+					goto two
+				`	"Don't we need to defend Rastaban and the other systems to the east, as well?"`
+					goto east
+			label two
+			`	"Patience, Captain," says Freya. "Building prototypes is very different from doing mass production."`
+				goto zug
+			label east
+			`	"Yes," says Freya. "Which means our fleets will be stretched thin. We really need them to ramp up Dreadnought production."`
+			label zug
+			`	Alondo asks Freya, "Do you think you could help them in the shipyards? After all, you were a superb fleet supply manager back in the Defense Pact days."`
+			`	"I'll do what I can, if you think you're all set here," says Freya.`
+			`	"I'm fine," says Alondo, "and JJ is on Rastaban now, guarding our other flank. So you can take a break from being on the front." He heads back outside, and you and Freya get ready to visit the shipyards on <planet>.`
+				accept
 	
 	on complete
-		"reputation: Republic" = 1
-		event "fw armistice"
+		"salary: Free Worlds" = 2500
 		conversation
-			`When you land, you find JJ in the midst of a heated argument with Danforth over the radio. He explains to you, "Right after you took off, Danforth took the fugitive into custody." Then he shouts into the radio, "I want him back in my control immediately."`
-			`	Danforth's voice replies, "Not yet. First, I need you to allow another Oathkeeper vessel to land. A gunboat. You should see it incoming soon."`
-			`	JJ swears, but then radios his ships and tells them to let the gunboat land. "Not much point in blocking a gunboat from landing when we've already got a cruiser overhead," he says apologetically.`
-			`	The gunboat lands, and a woman steps off it. She has dark skin, and is dressed entirely in black. Even the 'whites' of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
+			`As you are landing on <planet>, Freya says, "I miss Katya. It's hard being the only woman on the Council."`
 			choice
-				`	"I'm Captain <last> of the Free Worlds. What is your business here?"`
-				`	"Who are you, and what gives you the right to land on our planet?"`
-					goto hostile
-			`	"My name is Raven," she says. "I'm here to question your captive. If he is telling the truth, our war with you will end today." She pauses, then adds, grimly, "And, another war will begin."`
-				goto questioning
-			label hostile
-			`	She frowns. "My name is Raven," she says. "I am here to question your captive. If you are interested in knowing the truth, you will allow me to do so."`
-			label questioning
-			`	Danforth's ship lands, and Raven goes aboard. You and JJ follow her; no one makes any attempt to stop you. You meet up with Danforth and the fugitive in the ship's infirmary. "Now," says Raven, "I will question him alone. Please wait outside."`
+				`	"Don't worry, the Navy said they're trying to find her and return her to us."`
+				`	"Do you think the Navy reneged on their promise to free her?"`
+			`	"I don't know," she says. "I hope the Navy will keep their promise. But in the meantime, three people on Council is too few. We didn't want to say anything to you until the Senate cleared it, but we've nominated you to take Tomek's spot on the Council. What do you say?"`
 			choice
-				`	"No, we insist on being present for your interrogation."`
-					goto present
-				`	"Very well, we'll wait outside."`
-			`	"No!" says JJ. "We're staying here."`
-			label present
-			`	The woman glances at Danforth, who says, "Let them stay."`
-			`	She hesitates for a moment, then says, "Very well." The fugitive is lying on a hospital bed. She pulls up a chair next to the bed, and reaches out her hands to him. Hesitantly, he takes her hands. It's an oddly intimate scene, the two of them quietly holding hands and locking eyes - not like any interrogation you have seen before. "Now," she says, "tell me your story."`
-			`	"My name is Sawyer," says the man. "I'm a physicist, a Syndicate employee. We had a secret project on Mutiny, a planet in a pirate system. We were developing nuclear weapons." He hesitates, and looks away for a second, then says, "They told me it was for fighting the pirates. I didn't realize otherwise until-"`
-			`	"That is a lie," says Raven, calmly.`
-			`	He seems flustered. "Okay, they didn't tell me what the weapons were for, and I didn't ask."`
+				`	"I'd be honored. Thank you."`
+			`	She grins. "Don't mention it. You've been with us since the beginning, and we've all come to trust what you have to say. I wish we could throw you a big dinner or something to celebrate, but... well, we're all busy with the war right now. But Alondo and JJ both said to tell you they're glad to have you on board. And you'll get a salary increase, of course. Which you ought to celebrate by buying us both a few drinks in the spaceport bar before you leave. Okay?"`
 			choice
-				`	"Why would the Syndicate attack the Republic?"`
-				`	"Why did you wait so long to report this?"`
-					goto wait
-			`	They both seem surprised at you asking a question. "I don't know," says Sawyer, "But the Syndicate's profits have more than doubled since this war began. Maybe they knew they would benefit from it more than anyone."`
-			`	"What led you to report this?" asks Raven.`
-			label wait
-			`	He says, "It was when I heard that there had been another major battle. Up until then I had been telling myself that the worst of the damage was done. But after that battle, I knew that millions more could die because of our crime, and that I had the power to stop it."`
-			`	Raven continues to ask questions: who was involved, how the facility was hidden, where the raw materials come from. At one point, JJ pulls you aside and says, "She must be a Questioner. How they operate is a tightly kept secret. I'd always assumed their methods were... a bit more medieval."`
-			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the generals at once." Then she turns to you and JJ and says, "You probably have a lot of questions. Meet me back at the spaceport in an hour."`
+				`	"Okay, I'll meet you back at the spaceport in a few hours."`
+			`	"Great," she says, smiling. "See you then." She picks up her suitcase, and hurries over to the shipyard.`

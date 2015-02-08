@@ -1,0 +1,73 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "FW Wolf Pack 1"
+	name "Ramscoop Technology"
+	description "Travel to <planet> in the Deep, where Free Worlds sympathizers will share details of a new ramscoop technology. (You may have to bribe planets along the way to get permission to refuel.)"
+	destination Memory
+	clearance
+	to offer
+		has "event: catalytic ramscoop available"
+		random < 30
+	source
+		government "Free Worlds"
+	
+	on offer
+		conversation
+			`When you stop by the spaceport bar, a militia officer who you don't recognize gestures for you to join him. "Captain <last>!" he says. "I'd be honored if you'd let me buy you a drink."`
+			choice
+				`	"Thank you!"`
+					goto drink
+				`	"Sorry, I don't drink."`
+			`	"Then what are you doing in a bar?" he asks. "Never mind, don't answer that. I assume you're here looking for valuable work to do, and if that's the case, I could really use your help."`
+				goto mission
+			label drink
+			`	He buys you a drink, and you sit down at his table. After making small talk for a few minutes, he says, "By the way, I could really use your help with a mission for the Free Worlds."`
+			label mission
+			`	"Okay," you say, "tell me more."`
+			`	He says, "You probably know that we have a network of Free Worlds sympathizers throughout much of Republic space. One of our contacts recently sent us word of a new technology that is for sale in the Deep, which could be very useful to us. But they have no way to ship it to us, so I need someone who can travel up to the Deep and retrieve it."`
+			choice
+				`	"Will your contacts also provide me with planets to refuel on along the way?"`
+				`	"The Deep is farther away than my fuel tanks can take me."`
+			`	"You'll have to bribe some Dirt Belt worlds into letting you land, to get there," he says. "Or, you could wait for the next time there's a ceasefire. But here's the great part: if this works, you won't need to pay any bribes on the way back, because the new technology we're after is a super efficient ramscoop. What do you say?"`
+			choice
+				`	"Okay, I'll give it a try."`
+					accept
+				`	"Sorry, this sounds way to risky to me."`
+					decline
+
+
+
+mission "FW Wolf Pack 1B"
+	landing
+	name "Ramscoop Technology"
+	description "Return to Free space with the plans for a new, more efficient ramscoop, and deliver them to Delta V Corporation on <destination>."
+	destination Solace
+	to offer
+		has "FW Wolf Pack 1: done"
+	cargo "Ramscoop Data Card" 0
+	
+	on offer
+		conversation
+			`	You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own catalytic ramscoop. And before you leave, you may aso visit our private outfitter and purchase one of your own, if you wish."`
+			choice
+				`	"Thank you."`
+					goto leave
+				`	"May I ask who you are and why you sympathize with us?"`
+			`	"You can call me... Agent Falco. As to my true identity, naturally you will understand that I cannot divulge it."`
+			`	"Of course," you say.`
+			label leave
+			`	"I wish you the best of luck in your struggle against the evil plutocrats," he says. "May we yet live to see the day when all people live in prosperity and freedom. Farewell, brave insurgent." It is an overly dramatic speech, and sounds like he's been rehearsing it for a while. You respond with what you hope is a properly elegant salute, and he leaves.`
+				accept
+	
+	on complete
+		dialog
+			`You deliver the data card with the details of the catalytic ramscoop to the contact you were given in Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier."`
+		event "fw gets catalytic ramscoop" 24

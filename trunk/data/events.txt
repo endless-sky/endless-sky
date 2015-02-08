@@ -975,6 +975,52 @@ event "navy occupying the south"
 
 
 
+event "catalytic ramscoop available"
+	outfitter "Deep Sky Basics"
+		"Ramscoop"
+		"LP144a Battery Pack"
+		"Beam Laser"
+		"Laser Turret"
+		"Heavy Laser"
+		"Torpedo"
+		"D23-QP Shield Generator"
+		"D41-HY Shield Generator"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Catalytic Ramscoop"
+
+
+
+event "fw gets catalytic ramscoop"
+	outfitter "Delta V Advanced"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Heavy Rocket"
+		"Meteor Missile"
+		"Javelin"
+		"Javelin Pod"
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Tyrant Plasma Thruster"
+		"Tyrant Plasma Steering"
+		"Breeder Reactor"
+		"Heavy Rocket Launcher"
+		"Meteor Missile Launcher"
+		"Modified Blaster"
+		"Modified Blaster Turret"
+		"Scram Drive"
+		"Catalytic Ramscoop"
+
+
+
 event "terraforming Rand"
 	planet Rand
 		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
@@ -1174,9 +1220,8 @@ event "fw southern expansion"
 
 
 
-event "fw northern expansion"
+event "fw occupying the north"
 	system Alioth
-		government "Free Worlds"
 		fleet "Small Southern Merchants" 400
 		fleet "Large Northern Merchants" 600
 		fleet "Small Free Worlds" 500
@@ -1185,20 +1230,17 @@ event "fw northern expansion"
 		fleet "Large Republic" 6000
 		fleet "Navy Surveillance" 4000
 	system Alphecca
-		government "Free Worlds"
 		fleet "Small Southern Merchants" 2000
 		fleet "Large Northern Merchants" 3500
 		fleet "Small Free Worlds" 1200
 		fleet "Large Free Worlds" 2000
 		fleet "Navy Surveillance" 6000
 	system Boral
-		government "Free Worlds"
 		fleet "Small Southern Merchants" 3000
 		fleet "Large Northern Merchants" 8000
 		fleet "Small Free Worlds" 1500
 		fleet "Large Free Worlds" 3800
 	system Seginus
-		government "Free Worlds"
 		fleet "Small Southern Merchants" 1200
 		fleet "Large Southern Merchants" 2700
 		fleet "Small Free Worlds" 700
@@ -1207,12 +1249,25 @@ event "fw northern expansion"
 		fleet "Large Republic" 6000
 		fleet "Navy Surveillance" 4000
 	system Wei
-		government "Free Worlds"
 		fleet "Small Southern Merchants" 800
 		fleet "Large Southern Merchants" 2500
 		fleet "Small Free Worlds" 800
 		fleet "Large Free Worlds" 1000
 		fleet "Navy Surveillance" 4000
+
+
+
+event "fw northern expansion"
+	system Alioth
+		government "Free Worlds"
+	system Alphecca
+		government "Free Worlds"
+	system Boral
+		government "Free Worlds"
+	system Seginus
+		government "Free Worlds"
+	system Wei
+		government "Free Worlds"
 
 
 
