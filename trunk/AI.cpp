@@ -662,7 +662,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
 	if(!isVeryClose && (!isClose || !isFacing))
 		command.SetTurn(TurnToward(ship, distance));
-	if(isFacing || (isVeryClose && distance.Unit().Dot(angle.Unit()) > 0.))
+	if(isFacing || (isVeryClose && velocity.Dot(angle.Unit()) < 0.))
 		command |= Command::FORWARD;
 	
 	return false;
