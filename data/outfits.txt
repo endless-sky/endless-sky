@@ -129,7 +129,7 @@ outfit "Catalytic Ramscoop"
 	"mass" 16
 	"outfit space" -16
 	"ramscoop" 7
-	description "For centuries, ramscoop technology has remained almost unchanged, because once nearly every planet in human space was settled there was no longer a pressing need for a ship to generate its own fuel. When the Free Worlds found themselves in a situation where their ships were suddenly no longer welcome in many systems, they asked a team at Delta V Corporation to look at applying modern scientific insights to developing an improved ramscoop. This is the result."
+	description "For centuries, ramscoop technology has remained almost unchanged, because once nearly every planet in human space was settled there was no longer a pressing need for a ship to generate its own fuel. But with the Free Worlds war making travel once again more difficult, some engineers in the Deep recently invented a much-improved ramscoop for use in their merchant fleets."
 
 outfit "Hyperdrive"
 	category "Systems"
