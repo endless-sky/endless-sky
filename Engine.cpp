@@ -49,14 +49,7 @@ Engine::Engine(PlayerInfo &player)
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 	
-	// Make sure all stellar objects are correctly positioned. This is needed
-	// because EnterSystem() is not called the first time through.
-	GameData::SetDate(player.GetDate());
-	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
-	for(const Mission &mission : player.Missions())
-		if(mission.ClearanceMessage() == "auto")
-			mission.Destination()->Bribe(mission.HasFullClearance());
-	
+	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.GetPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());

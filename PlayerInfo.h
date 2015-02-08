@@ -162,6 +162,7 @@ private:
 	const System *system;
 	const Planet *planet;
 	bool shouldLaunch;
+	bool hasFullClearance;
 	bool isDead;
 	
 	Account accounts;
