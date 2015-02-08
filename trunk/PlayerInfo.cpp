@@ -99,6 +99,7 @@ void PlayerInfo::Load(const string &path)
 	filePath = path;
 	DataFile file(path);
 	
+	hasFullClearance = false;
 	for(const DataNode &child : file)
 	{
 		if(child.Token(0) == "pilot" && child.Size() >= 3)
@@ -161,6 +162,8 @@ void PlayerInfo::Load(const string &path)
 			gameEvents.push_back(GameEvent());
 			gameEvents.back().Load(child);
 		}
+		else if(child.Token(0) == "clearance")
+			hasFullClearance = true;
 		else if(child.Token(0) == "ship")
 		{
 			ships.push_back(shared_ptr<Ship>(new Ship()));
@@ -216,6 +219,8 @@ void PlayerInfo::Save() const
 		out.Write("system", system->Name());
 	if(planet)
 		out.Write("planet", planet->Name());
+	if(planet && planet->CanUseServices())
+		out.Write("clearance");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->Name());
 	out.Write("reputation with");
@@ -323,6 +328,18 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
+	
+	// Make sure all stellar objects are correctly positioned. This is needed
+	// because EnterSystem() is not called the first time through.
+	GameData::SetDate(GetDate());
+	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
+	for(const Mission &mission : Missions())
+		if(mission.ClearanceMessage() == "auto")
+			mission.Destination()->Bribe(mission.HasFullClearance());
+	
+	if(planet && hasFullClearance)
+		planet->Bribe();
+	hasFullClearance = false;
 }
 
 
