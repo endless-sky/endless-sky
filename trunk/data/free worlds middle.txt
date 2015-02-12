@@ -1144,18 +1144,219 @@ mission "FW Alphas 1.2A"
 
 
 
-mission "FW Northern 4B"
+mission "FW Bloodsea 1"
 	landing
-	name "Meet Freya on <planet>"
-	description "Return to <planet> to meet up with Freya, who has succeeded in working out most of the remaining kinks in the Dreadnought production line."
+	name "Alondo to <planet>"
+	description "Bring Alondo to <planet> to meet up with Freya, who has succeeded in working out most of the remaining kinks in the Dreadnought production line."
 	source "New Tibet"
-	destination "Zug"
+	destination "Bloodsea"
+	clearance `Alondo manages to convince the spaceport to let you land "free of charge."`
 	to offer
 		has "fw alphas done"
+	passengers 1
 	
 	on offer
-		event "dreadnoughts for sale"
-		event "dreadnought deployment" 20
 		conversation
-			`You report in to Alondo, who listens to your description of the battle for Poisonwood with a grim expression on his face. "It's not the end, of course," he says. "It seems like no matter how mny times we win a battle against the Alphas, there are more of them out there. But I'm glad that the immediate crisis has been dealt with. And, I have good news from Freya: she somehow managed to untangle everything at the shipyard and get them churning out Dreadnoughts at a regular pace. So, I'm sending you to meet up with her, and while you're there, you could even look into buying a Dreadnought of your own if you've got enough savings."`
+			`You report in to Alondo, who listens to your description of the battle for Poisonwood with a grim expression on his face. "It's not the end, of course," he says. "It seems like no matter how many times we win a battle against the Alphas, there are more of them out there. But I'm glad that the immediate crisis has been dealt with."`
+			choice
+				`	"Isn't there any way we can track down the rest of the Alphas?"`
+				`	"What is our next mission now?"`
+					goto next
+			`	"Not really," he says. "There are probably small enclaves throughout human space, and perhaps beyond human space as well. All we can do is make it harder for them to grow powerful."`
+			`	"And how do we do that?" you ask.`
+			label next
+			`	"The Senate has authorized a diplomatic mission to Bloodsea," he says. "It's the smallest of the pirate worlds, and we're going to see what we need to offer them to get them to join the Free Worlds. The official settlements there only amount to a few thousand people, so it shouldn't be too hard to convince them that joining us is better than resisting us."`
+			choice
+				`	"Okay, sounds like fun!"`
+					accept
+				`	"Wait, didn't things go south rather quickly the last time we attempted this?"`
+			`	Alondo grins. "Yes, but the Free Worlds is in a much stronger position now, and the pirate worlds know it's only a matter of time before they are forced to become civilized. And, the incident on Poisonwood proved that we can't afford to fight a war on two fronts. We need to eliminate the pirate threat, and a diplomatic solution with them is the only sort that will last. So, let's get going!"`
 				accept
+
+
+
+mission "FW Bloodsea 1.1"
+	landing
+	name "Ships from <planet>"
+	description "In order to work toward a peace treaty with Bloodsea, meet up with a convoy of heavily armed merchant ships on <planet>."
+	source Bloodsea
+	destination Zug
+	to offer
+		has "FW Bloodsea 1: done"
+	to fail
+		has "FW Bloodsea 1.2: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`The local leaders are unwilling to meet aboard your ship, and Alondo is afraid you will be ambushed if you venture too far away from it, so eventually they agree to set up a tent on the landing pad next to yours and meet there. Outside, a storm is raging, the rain mixing with salt spray from the blood-red ocean nearby.`
+			`	As you talk, it becomes clear that the inhabitants of Bloodsea are ashamed of how destitute and undeveloped their world is. Several of them have visited the island spaceport on Deep, and after dancing around the issue for a while, they make a request: if the Free Worlds builds them a real, modern island spaceport, they will join the Free Worlds.`
+			`	One of them lays out a detailed list of amenities the port must have: concrete seawalls, raised landing pads, floating docks, sturdy hangars and warehouses, and various defense systems "for when the others learn that we've decided to join you." Also, the deal is off if you show up in orbit with a fleet that "looks like an invasion fleet rather than a construction fleet."`
+			`	You thank them and return to your ship. Alondo asks, "What do you think?"`
+			choice
+				`	"Well, building a spaceport is probably cheaper than fighting a major battle."`
+					goto port
+				`	"They're asking a lot. Why don't we just invade them?"`
+					goto invade
+			label port
+			`	"Yes," he says, "except that I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
+				goto attack
+			label invade
+			`	"That's certainly the simpler option," he says, "especially because I can almost guarantee that when we show up on their doorstep with everything they asked for, some local warlord will attack our ships, steal our supplies, enslave our workers, and build himself a nice cozy island fortress."`
+				goto attack
+			label attack
+			`	"So, we attack them?" you ask.`
+			`	"You're on council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet."`
+				accept
+
+
+
+mission "FW Bloodsea 1.1A"
+	landing
+	name "Supplies from <planet>"
+	description "Stop on <planet> so that the ships you are escorting can pick up more supplies and workers, then bring them to Bloodsea to help build a new spaceport."
+	source Zug
+	destination Deep
+	to offer
+		has "FW Bloodsea 1.1: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`Waiting for you in the spaceport on <origin> are two Behemoth heavy freighters, which will be carrying the equipment and workers to Bloodsea. You can't help notice that nearly a third of their cargo space has been converted into extra outfit space, and both ships have a pair of plasma turrets mounted on them, and what looks like torpedo launchers as well.`
+			`	While you are on Zug, you and Alondo meet up with Freya and ask how the Dreadnought production is going. "We're nearly there," she says, "just one or two kinks left to work out. They've produced another two prototypes, but not enough to start selling them yet. I know, you're itching to pilot one of your own. Believe me, we're working as fast as possible."`
+			`	Your next stop is to pick up more workers and construction supplies on <destination>.`
+				accept
+	
+	npc accompany save
+		personality heroic
+		ship "Behemoth (Heavy)" "F.S. Bungles"
+		ship "Behemoth (Heavy)" "F.S. Humble"
+
+
+
+mission "FW Bloodsea 1.1B"
+	landing
+	name "Supplies to <planet>"
+	description "Escort these two freighters to <destination>, to help build a new spaceport. This may just be an excuse for pirates to attack you."
+	source Deep
+	destination Bloodsea
+	clearance
+	to offer
+		has "FW Bloodsea 1.1A: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`You stop on <origin>, and wait as more supplies are loaded onto the two Behemoths you are escorting. Your final stop is <planet>. Alondo thought it likely that some pirates would try to intercept your convoy and steal its cargo, but as long as both freighters land on the planet without being captured or destroyed, you will be able to begin the construction project and thus meet the demands of the people on <planet> to convince them to join the Free Worlds.`
+				accept
+	
+	npc accompany save
+		personality heroic
+		ship "Behemoth (Heavy)" "F.S. Bungles"
+		ship "Behemoth (Heavy)" "F.S. Humble"
+	
+	npc
+		government Pirate
+		personality plunders staying disables
+		system Antares
+		fleet
+			names pirate
+			"hostile hail" "hostile pirate"
+			variant
+				"Raven (Afterburner)" 2
+				Hawk 2
+				"Fury (Flamethrower)" 3
+				Sparrow 5
+	
+	on complete
+		set "fw bloodsea done"
+		event "dreadnoughts for sale"
+		event "dreadnought deployment" 40
+		event "bloodsea joins free worlds"
+		event "bloodsea spaceport completed" 100
+		conversation
+			`A few of the locals on Bloodsea appear surprised that you actually brought the supplies for a new spaceport, and that you arrived with all the supplies intact. But after meeting up with Alondo, they agree to hold their side of the bargain: from now on, Bloodsea will be a part of the Free Worlds, with all the rights and responsibilities that implies. And that means that they will refuse to knowingly harbor any pirate fleets or other known criminals.`
+			`	Alondo tells you that he will catch a ride back with the freighters when they return. "But, you'll probably want to head out sooner," he says, "because I've got some good news for you. Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
+				accept
+
+
+
+mission "FW Bloodsea 1.2"
+	landing
+	name "Invasion Fleet"
+	description "Rather than pursuing a diplomatic agreement, meet up with JJ on <planet> and gather a fleet to invade and subjugate Bloodsea."
+	source Bloodsea
+	destination Dancer
+	to offer
+		has "FW Bloodsea 1: done"
+	to fail
+		has "FW Bloodsea 1.1: done"
+
+
+
+mission "FW Bloodsea 1.2A"
+	landing
+	name "Capture Bloodsea"
+	description "Take a Free Worlds fleet to invade the <system> system and eliminate any pirate resistance, then land on <planet>."
+	source Dancer
+	destination Bloodsea
+	clearance
+	to offer
+		has "FW Bloodsea 1.2: done"
+	
+	on offer
+		event "battle for bloodsea"
+		karma --
+		conversation
+			`When you meet up with JJ, he says, "So, it's going to be battle rather than diplomacy? I suppose that may be for the best; I'm sure the pirates were planning some sort of double-cross. But still, it's too bad we couldn't find a peaceful solution."`
+			choice
+				`	"Alondo convinced me that the Bloodsea natives were just planning to betray us."`
+				`	"I don't think the pirates will understand any language except overwhelming force."`
+			`	"Perhaps," says JJ. "At any rate, we'll never know, now. I need to keep most of my fleet here, to defend against the Navy, but I've selected a few of the strongest ships to accompany you to Bloodsea. Good luck, Captain."`
+				accept
+	
+	npc
+		personality heroic
+		ship "Dreadnought" "F.S. Bombastic"
+		ship "Falcon (Plasma)" "F.S. Equalizer"
+		ship "Falcon (Plasma)" "F.S. Enforcer"
+	
+	npc evade
+		personality heroic staying
+		government "Pirate"
+		system "Antares"
+		fleet
+			names pirate
+			"hostile hail" "hostile pirate"
+			variant
+				"Firebird"
+				"Raven (Afterburner)" 2
+				Hawk 2
+				"Fury (Flamethrower)" 3
+				Sparrow 5
+		ship "Leviathan" "Freedom"
+		ship "Manta" "Lucifer"
+		ship "Bastion" "Punisher"
+	
+	on complete
+		set "fw bloodsea done"
+		event "dreadnoughts for sale"
+		event "dreadnought deployment" 40
+		event "bloodsea independent"
+		conversation
+			`You land at the main spaceport on Bloodsea with Free Worlds ships circling overhead, ready to bombard the locals if they show any sign of resistance. It is a tense atmosphere, and the leaders sullenly agree to give the Free Worlds access to their planet and to avoid knowingly supporting piracy or other criminal activity. You have won this world, but you have clearly not won the hearts of the locals.`
+			`	Alondo tells you that he will catch a ride back with the freighters when they return. "But, you'll probably want to head out sooner," he says, "because I've got some good news for you. Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
+				accept
+
+
+
+
+mission "FW Dreadnoughts Ready"
+	landing
+	name "Meet Freya on <planet>"
+	description "Freya is done overseeing the initial production run of Dreadnoughts in the shipyard on Zug. Meet up with her there, to give her a ride to wherever she is assigned next."
+	source Bloodsea
+	destination Zug
+	to offer
+		has "fw bloodsea done"
