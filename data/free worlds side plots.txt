@@ -71,3 +71,96 @@ mission "FW Wolf Pack 1B"
 		dialog
 			`You deliver the data card with the details of the catalytic ramscoop to the contact you were given in Delta V corporation. "Excellent," she says. "We have been trying to duplicate their work for months, but this will make it much easier."`
 		event "fw gets catalytic ramscoop" 24
+
+
+
+mission "FW Wolf Pack 2"
+	landing
+	name `"Wolf Pack" Recruiting`
+	description `A group identifying themselves as the "Free Worlds Wolf Pack" has asked you to visit them on <planet> if you want to aid their work against the Republic.`
+	source
+		government "Free Worlds"
+	destination Solace
+	to offer
+		has "FW Wolf Pack 1B: done"
+		has "event: fw gets catalytic ramscoop"
+	
+	on offer
+		conversation
+			`Soon after you land on <origin>, you receive an anonymous message. It reads:`
+			``
+			`Dear Captain <last>,`
+			`	Thanks to your assistance, the Delta V engineers have succeeded in duplicating Deep Sky's new ramscoop technology. The ramscoop is one piece in a larger plan we have to shift the tide of this war in favor of the Free Worlds, and to bring about an end to the conflict more quickly. If you are interested in hearing more, please visit <planet>, and our representatives will contact you promptly.`
+			`	Sincerely,`
+			`		The Free Worlds Wolf Pack`
+			``
+			`You have never heard of this organization before, but you know that "wolf pack" is pirate slang for a temporary alliance formed for the sake of taking on a target larger than any one band of pirates could handle alone.`
+				accept
+
+
+
+mission "FW Wolf Pack 2A"
+	landing
+	name "Attack Food Convoy"
+	description "Destroy three Republic freighters in the Sarin system that are carrying food, then report back to <planet> for payment."
+	source Solace
+	waypoint Sarin
+	to offer
+		has "FW Wolf Pack 2: done"
+	
+	on offer
+		conversation
+			`Soon after you land, two men in militia uniforms approach your ship, and tell you they represent the "Wolf Pack." They introduce themselves as Zeta and Sigma; you're pretty sure those are not their real names.`
+			`	Once you are in a private room inside your ship, Zeta, who is the younger one, says, "With ramscoop technology, our ships will be able to venture deep into the Dirt Belt. Now, Captain, why do you think the Republic is so determined to hold on to the Dirt Belt, even if it means fighting bloody battles? It's clear that the tax revenue isn't worth it."`
+			choice
+				`	"Maybe it's just the principle of not ceding territory without a fight."`
+				`	"Maybe they want the resources that the Dirt Belt produces?"`
+					goto resources
+				`	"Maybe to keep a buffer in between our territory and the worlds that really matter to them, like Earth and the Paradise Planets?"`
+			`	"That might be part of it," says Zeta, "but there is a larger reason."`
+				goto map
+			label resources
+			`	"Precisely," says Zeta, "and one resource in particular is more important to them than all the rest combined."`
+			label map
+			`	The man named Sigma, who is older and has a thick beard, spreads out a map on the table. You recognize it as a chart of food prices throughout human space. "Food," says Zeta. "The Dirt Belt is the breadbasket of the galaxy. And at the core of the Republic: teeming, overpopulated worlds that could never hope to feed themselves. If we cut off the supply of food, the Republic will be forced to make peace with us."`
+			`	Sigma says, "We are proposing a concentrated effort to destroy the freighter convoys that bring food to the richest, most densely populated Republic worlds. When their citizens find themselves lacking basic supplies, they will demand an end to the war."`
+			choice
+				`	"I'd be glad to join you. That does sound like a much quicker solution than our current policies that the Senate and the Council support."`
+					goto join
+				`	"You're trying to starve the Republic into submission? Won't that just just add more brutality to a war that has already been far too bloody?"`
+			`	"In the short run, perhaps," says Zeta. "But think how many lives will be saved - how many bloody battles will be averted - by forcing them to end this war quickly rather than dragging it out across years of time."`
+			choice
+				`	"I don't buy your argument. If we use such reprehensible tactics to build our new society, the society we build will be as corrupt as the old one."`
+				`	"Okay, you've convinced me. What do you want me to do?"`
+					goto join
+			`	"Very well," says Zeta. "Sorry for wasting your time." They leave`
+				decline
+			label join
+			`	"First, you should buy a ramscoop here, if you haven't got one already," says Zeta. "Then, your first target is a convoy of three freighters that will be departing from Big Sky in the Sarin system shortly. There may be escorts, but only the freighters themselves need to be destroyed."`
+				accept
+	
+	npc kill
+		government Republic
+		system Sarin
+		personality timid staying
+		ship "Freighter" "Horn of Plenty"
+		ship "Freighter" "Autumn Twilight"
+		ship "Freighter" "Bounty Harvest"
+	
+	npc
+		government Republic
+		system Sarin
+		personality heroic staying
+		ship "Gunboat (Mark II)" "R.N.S. Atherstone"
+		ship "Gunboat (Mark II)" "R.N.S. Tyndale"
+	
+	on complete
+		event "wolf pack 3 ready" 10
+		karma --
+		payment 200000
+		conversation
+			`	Zeta, one of the "Wolf Pack" men you spoke with earlier, meets you in the spaceport and hands you a credit chip for <payment>. "Good work," he says. "We'll contact you when we have another target selected."`
+
+
+
+event "wolf pack 3 ready"
