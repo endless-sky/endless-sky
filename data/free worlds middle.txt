@@ -1346,7 +1346,7 @@ mission "FW Bloodsea 1.2A"
 		event "bloodsea independent"
 		conversation
 			`You land at the main spaceport on Bloodsea with Free Worlds ships circling overhead, ready to bombard the locals if they show any sign of resistance. It is a tense atmosphere, and the leaders sullenly agree to give the Free Worlds access to their planet and to avoid knowingly supporting piracy or other criminal activity. You have won this world, but you have clearly not won the hearts of the locals.`
-			`	Alondo tells you that he will catch a ride back with the freighters when they return. "But, you'll probably want to head out sooner," he says, "because I've got some good news for you. Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
+			`	A while later, you receive new orders from Alondo. "I've got some good news for you," he says. "Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
 				accept
 
 
@@ -1360,3 +1360,42 @@ mission "FW Dreadnoughts Ready"
 	destination Zug
 	to offer
 		has "fw bloodsea done"
+
+
+
+mission "FW Albatross 1"
+	landing
+	name "Freya to <planet>"
+	description "Bring Freya to <planet>, to meet up with JJ and make plans for convincing Albatross to give up piracy and join the Free Worlds."
+	source Zug
+	destination Dancer
+	to offer
+		has "FW Dreadnoughts Ready: done"
+	
+	on offer
+		conversation
+			`Freya comes to your ship soon after you land. She is beaming, and looks more relaxed than you have seen her in months. "Southbound Shipyards is churning out Dreadnoughts now!" she says. "Still only at a rate or one a week or so, but for a ship this big that's quite impressive. And it means you can now buy one of your own, if you've got enough savings. Seriously, even if you can't afford one yet, be sure to stop by the shipyard and check them out." She is clearly very proud.`
+			choice
+				`	"Great job, Freya! I'm really glad to have a talented engineer on the Council to help get things done."`
+				`	"Glad to hear it. Now, what is our next action against the pirates?"`
+					goto pirates
+			`	She smiles. "Thanks. It was actually really refreshing to be able to tackle a concrete, solvable problem for a change, instead of all this nebulous political stuff. Speaking of which, our next step will be to go visit JJ. He's going to be doing the diplomatic outreach to Albatross."`
+				goto alondo
+			label pirates
+			`	"Right, right, back to work," she says. "Well, it sounds like the next order of business is for you to transport me to <planet> to take JJ's place there while he makes a diplomatic visit to Albatross."`
+				goto alondo
+			label alondo
+			`	You ask, "Wait, doesn't Alondo usually handle the diplomacy?"`
+			`	"Usually, yes," she says. "But the locals on Albatross specifically asked for JJ. They're a very traditional population, and JJ is well-known as both a family man and a brave soldier. Whereas Alondo is... Alondo."`
+			choice
+				`	"Fair enough. Let's head to <planet>!"`
+					accept
+				`	"Wait, I don't understand. Why don't they like Alondo?"`
+			`	She looks genuinely surprised that you don't know. "Alondo is gay," she says. "There are few worlds here in the South where that would bother anyone, but Albatross is one of them. So Alondo is taking a break to go visit the Senate, while JJ deals with this particular diplomatic situation."`
+			choice
+				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
+					accept
+				`	"Ah. That certainly explains a lot."`
+				`	"It seems crazy that anyone would be bothered by that in this day and age."`
+			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
+				accept
