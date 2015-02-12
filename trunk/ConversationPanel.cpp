@@ -187,11 +187,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice < conversation.Choices(node) - 1)
 		++choice;
 	else if(key == SDLK_RETURN && choice < conversation.Choices(node))
-		Goto(conversation.NextNode(node, choice));
+		Goto(conversation.NextNode(node, choice), choice);
 	else if(command == Command::MAP)
 		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	else if(key > '0' && key <= static_cast<SDL_Keycode>('0' + choices.size()))
-		Goto(conversation.NextNode(node, key - '1'));
+		Goto(conversation.NextNode(node, key - '1'), key - '1');
 	else
 		return false;
 	
@@ -226,7 +226,7 @@ bool ConversationPanel::Click(int x, int y)
 		for(unsigned i = 0; i < zones.size(); ++i)
 			if(zones[i].Contains(point))
 			{
-				Goto(conversation.NextNode(node, i));
+				Goto(conversation.NextNode(node, i), i);
 				break;
 			}
 	}
@@ -252,18 +252,18 @@ bool ConversationPanel::Scroll(int dx, int dy)
 
 
 
-void ConversationPanel::Goto(int index)
+void ConversationPanel::Goto(int index, int choice)
 {
 	if(index)
 	{
-		unsigned i = 0;
-		auto it = choices.begin();
-		for( ; it != choices.end(); ++it, ++i)
-			if(conversation.NextNode(node, i) == index)
-			{
-				text.splice(text.end(), choices, it);
-				break;
-			}
+		// Add the chosen option to the text.
+		if(static_cast<unsigned>(choice) < choices.size())
+		{
+			auto it = choices.begin();
+			while(choice--)
+				++it;
+			text.splice(text.end(), choices, it);
+		}
 		
 		// Scroll to the start of the new text, unless the conversation ended.
 		if(index >= 0)
@@ -302,7 +302,7 @@ void ConversationPanel::Goto(int index)
 		string altered = Format::Replace(conversation.Text(node, i), subs);
 		choices.emplace_back(altered);
 	}
-	choice = 0;
+	this->choice = 0;
 }
 
 

@@ -56,7 +56,7 @@ protected:
 	
 	
 private:
-	void Goto(int index);
+	void Goto(int index, int choice = -1);
 	
 	
 private:
