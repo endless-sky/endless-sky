@@ -697,3 +697,56 @@ ship "Carrier" "Carrier (Mark II)"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
+
+ship "Behemoth" "Behemoth (Heavy)"
+	sprite ship/behemoth
+	licenses Republic
+		Pilot's
+		Freight
+		"Capital Ship"
+	attributes
+		category "Heavy Freighter"
+		cost 7800000
+		shields 7600
+		hull 6300
+		"required crew" 16
+		bunks 30
+		mass 540
+		drag 11.7
+		"heat dissipation" 0.4
+		"fuel capacity" 600
+		"cargo space" 420
+		"outfit space" 510
+		"weapon capacity" 280
+		"engine capacity" 90
+	outfits
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Quad Blaster Turret" 2
+		"Plasma Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Breeder Reactor"
+		"Fission Reactor"
+		Supercapacitor
+		"D94-YV Shield Generator"
+		"Mass Expansion" 9
+		"Laser Rifle" 16
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		Hyperdrive
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+	engine -34 154
+	engine 34 154
+	gun -27 -83 "Torpedo Launcher"
+	gun 27 -83 "Torpedo Launcher"
+	turret -34 -64 "Quad Blaster Turret"
+	turret 24 78 "Heavy Anti-Missile Turret"
+	turret -58 11 "Plasma Turret"
+	turret 58 11 "Plasma Turret"
+	turret -24 78 "Heavy Anti-Missile Turret"
+	turret 34 -64 "Quad Blaster Turret"
+	explode "medium explosion" 25
+	explode "big explosion" 35
+	explode "small explosion" 15
+	explode "huge explosion" 20
