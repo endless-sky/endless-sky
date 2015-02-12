@@ -774,7 +774,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Calculate this ship's "turning radius; that is, the smallest circle it
 	// can make while at full speed.
 	double stepsInFullTurn = 360. / ship.TurnRate();
-	double circumference = stepsInFullTurn * (ship.Velocity().Length() + ship.MaxVelocity()) * .5;
+	double circumference = stepsInFullTurn * ship.Velocity().Length();
 	double diameter = max(200., circumference / PI);
 	
 	// This isn't perfect, but it works well enough.
