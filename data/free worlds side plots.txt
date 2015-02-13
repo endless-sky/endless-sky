@@ -8,6 +8,132 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+
+
+
+mission "FW Conservatory 1"
+	name "Take Ijs to Winter"
+	description "Transport Mr. Eyes and the Andersons to <destination>, where he will be helping to set up a public university."
+	source Bourne
+	destination Winter
+	to offer
+		has "FW Senate 1B: done"
+	
+	on offer
+		conversation
+			`When you meet Ijs in the spaceport, he has Lynn and Henry Anderson with him, the friends of Katya who you transported from Glory months ago. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
+			`	"A somewhat run-down community center," adds Henry.`
+			`	Ijs laughs. "True. Anyways, we were hoping you could give us a lift over there, and maybe help out with securing some equipment, too."`
+			choice
+				`	"Sure, I'd definitely like to help make this a reality!"`
+					accept
+				`	"Sorry, I've got more important business to attend to."`
+			`	Ijs seems really dejected. "Are you sure?" he asks. "This could make a big difference for the Free Worlds, as much as any military victory."`
+			choice
+				`	"Okay, I'll help you."`
+					accept
+				`	"Sorry, I'm just not interested."`
+					decline
+	
+	on complete
+		payment 50000
+		dialog `Ijs thanks you for the lift and gives you a credit chip for <payment>. He says, "Next we need to pick up some equipment from Tarazed Corporation. Meet me in the spaceport if you're willing to help out as an escort."`
+
+
+
+mission "FW Conservatory 2"
+	name "Escort to Wayfarer"
+	description "Escort this Free Worlds convoy to Wayfarer, to trade for terraforming equipment provided by Tarazed and the Syndicate."
+	source Winter
+	destination Wayfarer
+	to offer
+		has "FW Conservatory 1: done"
+	
+	on offer
+		conversation
+			`In the spaceport, it does not take long to locate Ijs; he is supervising a crew that is loading trade goods onto several Free Worlds ships. "Glad to see you, <first>," he says. "These three ships need to get to Tarazed and back without being destroyed by pirates... or by the Republic. Think you can tag along and protect them?"`
+			choice
+				`	"Sure thing!"`
+					accept
+				`	"I've got another pressing mission. Can I come back and do this later?"`
+			`	"Sure," he says, "But the longer we wait, the longer it will be until the Conservatory is up and running, so come back soon."`
+				defer
+	
+	npc accompany save
+		government Escort
+		personality timid
+		ship "Argosy" "F.M.S. Daybreak"
+		ship "Argosy" "F.M.S. Monsoon"
+		ship "Argosy" "F.M.S. Summer"
+	
+	npc
+		government Pirate
+		personality plunders
+		system Tarazed
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+
+
+
+mission "FW Conservatory 2B"
+	landing
+	name "Escort to Winter"
+	description "Escort this Free Worlds convoy of terraforming equipment back to Winter."
+	source Wayfarer
+	destination Winter
+	to offer
+		has "FW Conservatory 2: done"
+	
+	on offer
+		conversation
+			`Your three escorts land safely on Tarazed. Their cargo is quickly offloaded and exchanged for the terraforming equipment that the Conservatory needs.`
+				accept
+	
+	npc accompany save
+		government Escort
+		personality timid
+		ship "Argosy" "F.M.S. Daybreak"
+		ship "Argosy" "F.M.S. Monsoon"
+		ship "Argosy" "F.M.S. Summer"
+	
+	npc
+		government Pirate
+		personality plunders
+		system "Yed Prior"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+	
+	npc
+		government Pirate
+		personality plunders
+		system "Pherkad"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
+	
+	on complete
+		payment 300000
+		conversation
+			`Ijs meets your convoy as it lands, and checks off each item on a clipboard as it is unloaded. Lynn is with him, looking over the various machines to make sure they are all in working order. "I hope you didn't have any trouble," says Ijs, as he hands you your payment of <payment>.`
+			choice
+				`	"No, none at all."`
+				`	"A few pirates, nothing I couldn't handle."`
+				`	"Actually, we were lucky to make it back alive."`
+					goto lucky
+			`	"Glad to hear it," he says.`
+				goto next
+			label lucky
+			`	"That's too bad," he says. "This war must be making the Dirt Belt even more unstable than usual. Hopefully we'll be able to do something about that soon."`
+			label next
+			`	"Is there anything else you need me to do?" you ask.`
+			`	"Not at the moment," he says. "I'll send you a message when we do. Thanks for your help, and if you hear any more news about Katya, please let me know."`
+		event "fw conservatory founded" 30
+
+
+
 mission "FW Wolf Pack 1"
 	name "Ramscoop Technology"
 	description "Travel to <planet> in the Deep, where Free Worlds sympathizers will share details of a new ramscoop technology. (You may have to bribe planets along the way to get permission to refuel.)"
@@ -133,7 +259,7 @@ mission "FW Wolf Pack 2A"
 				`	"I don't buy your argument. If we use such reprehensible tactics to build our new society, the society we build will be as corrupt as the old one."`
 				`	"Okay, you've convinced me. What do you want me to do?"`
 					goto join
-			`	"Very well," says Zeta. "Sorry for wasting your time." They leave`
+			`	"Very well," says Zeta. "Sorry for wasting your time." They leave.`
 				decline
 			label join
 			`	"First, you should buy a ramscoop here, if you haven't got one already," says Zeta. "Then, your first target is a convoy of three freighters that will be departing from Big Sky in the Sarin system shortly. There may be escorts, but only the freighters themselves need to be destroyed."`
@@ -158,9 +284,143 @@ mission "FW Wolf Pack 2A"
 		event "wolf pack 3 ready" 10
 		karma --
 		payment 200000
-		conversation
+		dialog
 			`	Zeta, one of the "Wolf Pack" men you spoke with earlier, meets you in the spaceport and hands you a credit chip for <payment>. "Good work," he says. "We'll contact you when we have another target selected."`
 
 
 
 event "wolf pack 3 ready"
+
+event "wolf pack gacrux start"
+	system Gacrux
+		fleet "Small Southern Merchants" 2000
+		fleet "Large Southern Merchants" 5000
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 4000
+		fleet "Small Republic" 8000
+
+event "wolf pack gacrux end"
+	system Gacrux
+		fleet "Small Southern Merchants" 2000
+		fleet "Large Southern Merchants" 5000
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 4000
+		fleet "Small Republic" 2000
+		fleet "Large Republic" 3000
+		fleet "Navy Surveillance" 1600
+
+
+
+mission "FW Wolf Pack 3"
+	landing
+	name "Attack Food Convoy"
+	description "Destroy two Republic bulk freighters in the Gacrux system that are carrying food, then report back to <planet> for payment."
+	source
+		government "Free Worlds"
+	destination Solace
+	waypoint Gacrux
+	to offer
+		has "FW Wolf Pack 2A: done"
+		has "event: wolf pack 3 ready"
+	
+	on offer
+		dialog
+			`You receive another message from the Wolf Pack: "Great work with those freighters, Captain! We've got another target for you, if you're interested: a pair of bulk freighters, which you ought to be able to intercept in the Gacrux system. It's an uninhabited system, so you shouldn't have much interference from the Navy. As before, you only need to destroy the freighters, not any other ships you encounter."`
+			`	Every one of these missions you complete will create more animosity between the Republic and the Free Worlds. But on the other hand, they may be right that it's the fastest way to bring this war to a close.`
+	
+	on accept
+		event "wolf pack gacrux start"
+	on fail
+		event "wolf pack gacrux end"
+
+	npc kill
+		government Republic
+		system Gacrux
+		personality timid staying
+		ship "Bulk Freighter" "Dew of the Morning"
+		ship "Bulk Freighter" "Heaven's Blessing"
+	
+	npc
+		government Republic
+		system Gacrux
+		personality heroic staying
+		ship "Protector" "R.N.S. Bulwark"
+		ship "Protector" "R.N.S. Citadel"
+		ship "Protector" "R.N.S. Rampart"
+	
+	on complete
+		event "wolf pack gacrux end"
+		event "wolf pack 4 ready" 20
+		karma --
+		payment 300000
+		dialog
+			`	Once again, Zeta from the Wolf Pack meets you soon after your ship lands. This time, he pays you <payment>. "I hope they didn't give you any trouble," he says. "We'll be in touch when there's another target to strike."`
+
+
+
+event "wolf pack 4 ready"
+
+event "wolf pack mizar start"
+	system Mizar
+		fleet "Small Southern Merchants" 1400
+		fleet "Large Southern Merchants" 4500
+		fleet "Small Republic" 5000
+		fleet "Small Southern Pirates" 9000
+
+event "wolf pack mizar end"
+	system Mizar
+		fleet "Small Southern Merchants" 1400
+		fleet "Large Southern Merchants" 4500
+		fleet "Small Republic" 1000
+		fleet "Large Republic" 1400
+		fleet "Small Southern Pirates" 9000
+		fleet "Navy Surveillance" 2000
+
+
+
+mission "FW Wolf Pack 4"
+	landing
+	name "Attack Food Convoy"
+	description "Destroy a Republic Bactrian freighter in the Mizar system that is carrying food, then report back to <planet> for payment."
+	source
+		government "Free Worlds"
+	destination Solace
+	waypoint Mizar
+	to offer
+		has "FW Wolf Pack 3: done"
+		has "event: wolf pack 4 ready"
+	
+	on offer
+		dialog
+			`You receive another message from the Wolf Pack: "Hello Captain. If nothing else, we've certainly succeeded in getting some of the Navy's ships diverted from the front, to serve as escorts! Your next target, if you're willing to help us again, will be a bit tougher: a Bactrian freighter, probably with Navy escorts. The freighter is passing through the Mizar system. Interested?`
+	
+	on accept
+		event "wolf pack mizar start"
+	on fail
+		event "wolf pack mizar end"
+
+	npc kill
+		government Republic
+		system Mizar
+		personality timid staying
+		ship "Bactrian" "Golden Fleece"
+	
+	npc
+		government Republic
+		system Mizar
+		personality heroic staying
+		fleet "Large Republic"
+			names "republic capital"
+			fighters "republic fighter"
+			cargo 0
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+	
+	on complete
+		event "wolf pack mizar end"
+		karma --
+		payment 400000
+		dialog
+			`	Zeta meets up with you and thanks you for your continued service to the Free Worlds. "If we had a dozen captains as brave as you are," he says, "the war would be over tomorrow." He hands you <payment>, and walks away. You still don't know his real name or who the leaders of the Wolf Pack are, but you are glad to have been able to do something extra to assist the war effort.`
