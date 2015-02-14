@@ -1371,6 +1371,7 @@ mission "FW Albatross 1"
 	destination Dancer
 	to offer
 		has "FW Dreadnoughts Ready: done"
+	passengers 1
 	
 	on offer
 		conversation
@@ -1399,3 +1400,414 @@ mission "FW Albatross 1"
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
+
+
+
+mission "FW Albatross 2"
+	landing
+	name "Visit Albatross"
+	description "Bring JJ to Albatross to negotiate with the local leaders and perhaps convince them to join the Free Worlds and give up their support of piracy."
+	source Dancer
+	destination Albatross
+	clearance
+	to offer
+		has "FW Albatross 1: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`When you meet up with JJ, he looks exhausted. "Our scouts are reporting that the Navy is building a massive base on New Iceland," he says, "just a few jumps away from here. So every day I look up at the sky and wonder if today is the day when they will invade."`
+			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were domniated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principal at least, the locals ought to welcome the idea of Free Worlds protection.`
+			`	While you are traveling with JJ, Freya agrees to stay here and work on a better surveillance network, to give Dancer advance warning if the Navy decides to invade.`
+				accept
+	
+	npc
+		system Nunki
+		government Pirate
+		personality staying disables plunders
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+
+
+
+mission "FW Albatross 2A"
+	landing
+	name "Hunt Ryk Bartlett"
+	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
+	source Albatross
+	destination Albatross
+	clearance
+	to offer
+		has "FW Albatross 2: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`Your meeting with the elders of Albatross happens in secret, by night. They are afraid that if their current pirate overlord, Ryk Bartlett, finds out that they have met with you, they will face retribution. JJ begins by describing the Free Worlds' offer: all the benefits of the mutual defense pact, in exchange for an agreement to uphold human rights and the rule of law, plus offering financial support for the Free Worlds.`
+			`	"Begging your pardon," says one of the elders, "but what makes you different from any pirate organization that comes in here, demanding our money in return for 'protection'?"`
+			choice
+				`	(Let JJ answer that.)`
+					goto jj
+				`	(Try to give an explanation myself.)`
+			`	"We're a representative government," you say, "with open financial records and clear human rights guidelines that we uphold."`
+				goto unconvinced
+			label jj
+			`	JJ explains about the Senate, that each world has a say in how the Free Worlds income is spent. "And," he says, "we will not take your children as slaves, or force you to work in factories producing illegal drugs."`
+			label unconvinced
+			`	The elder who spoke seems unconvinced. "Seems to me that you 'council' folks are the real rulers, and your 'senate' is a figurehead," he says. "So I don't call that true democracy."`
+			`	"Maybe," says another of the elders, "but they're still better than Bartlett. I say, if the Free Worlds can free us from him, we'll at least give their new government a try." A few of the others nod in agreement.`
+			`	They explain that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
+				accept
+	
+	npc kill
+		personality staying plunders disables
+		system Orvala
+		government Pirate
+		ship "Bastion" "Dread"
+	
+	npc
+		personality staying plunders disables
+		system Orvala
+		government Pirate
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+		fleet "Small Southern Pirates"
+
+
+
+mission "FW Albatross 2B"
+	landing
+	name "Return to Dancer"
+	description "Return to Dancer with JJ, and meet up with Freya."
+	source Albatross
+	destination Dancer
+	clearance
+	to offer
+		has "FW Albatross 2A: done"
+	passengers 1
+	
+	on offer
+		event "albatross joins free worlds"
+		conversation
+			`When the elders on Albatross learn that you have destroyed Ryk Bartlett and freed them from his rule, they grudgingly agree to join the Free Worlds, "at least on a trial basis." You hope that you will be able to live up to the promises you have given them.`
+			`	After you return to your ship, JJ says, "So far Freya says there have been no hints of a Navy attack against Dancer, and she has a new set of surveillance satellites up and running in Alpha Arae to monitor fleet activity. So, let's go meet up with her and decide what our next steps should be."`
+				accept
+
+
+
+event "battle for zeta aquilae"
+	system "Zeta Aquilae"
+		fleet "Small Southern Merchants" 5000
+
+mission "FW Rand 1"
+	landing
+	name "Occupy Zeta Aquilae"
+	description "Take a Free Worlds fleet to Zeta Aquilae, drive away whatever Navy ships are there, and then land on Rand, which has decided to join the Free Worlds."
+	source Dancer
+	destination Rand
+	clearance
+	passengers 2
+	to offer
+		has "FW Albatross 2B: done"
+	
+	on offer
+		event "battle for zeta aquilae"
+		conversation
+			`When you land on Dancer, Freya has just received some exciting news. "It turns out taking out Bartlett had some unexpected side effects," she says. "Bartlett has been dogging the systems on the northwestern fringe of the Dirt Belt for years, and had a lot of enemies. The governments of Rand and Oblivion are so grateful to you for eliminating him that they've reached out to us to begin the process of joining the Free Worlds! And several other worlds in that region are interested now, too."`
+			`	JJ frowns. "That's really awful timing," he says, "and would put us in a really bad tactical position - spread out, and with the Navy right in the middle."`
+			choice
+				`	"Are you saying we shouldn't let them join, even though they want to?"`
+				`	"Well, I say, if they want to join us, we should let them. Who knows if they'll be this enthusiastic about the Free Worlds later if we let them down now."`
+			`	JJ thinks about that for a moment, then says, "Well, I guess we should let them join. It will mean we may need to launch an assault to drive the navy off New Iceland. But if we do that, our tactical position shifts from one that's worse than what we have now, to something much better. Freya, did they say if there's any sign that the Navy has gotten word of this?"`
+			`	"A few carriers are in orbit around Rand," she says, "so they must suspect something. But the bulk of the Navy fleet is still to the north and east of here."`
+			`	JJ thinks for a moment, then says, "Okay Captain, here's what I propose. We'll leave the bulk of our fleet here to defend Dancer and New Portland, but take a few of our best ships to Zeta Aquilae and drive out the Navy. Freya and I will travel with you so that if we need to make any decisions, we'll have most of the Council there in person. How does that sound?"`
+			choice
+				`	"It sounds like a good plan. Let's do it!"`
+					accept
+				`	"I'm still worried we're over-extending ourselves."`
+			`	"You may be right," he says. "Freya, what do you think?"`
+			`	"I think we need to take this opportunity while it's available," she says. "Sorry, Captain, but I'm with JJ on this one." They both board your ship, and you get ready to travel to Zeta Aquilae.`
+				accept
+	
+	npc
+		personality heroic disables
+		ship "Dreadnought" "F.S. Elder"
+		ship "Falcon (Plasma)" "F.S. Reliant"
+		ship "Falcon" "F.S. Bismark"
+		ship "Osprey" "F.S. Lapwing"
+		ship "Hawk" "F.S. Echo"
+		ship "Hawk" "F.S. Shadow"
+	npc
+		personality heroic disables
+		government "Free Worlds"
+		system "Kochab"
+		ship "Dreadnought" "F.S. Linden"
+	
+	npc evade
+		system "Zeta Aquilae"
+		government Republic
+		personality staying heroic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)"
+	
+	on complete
+		event "fw expanded and cut"
+
+
+
+mission "FW Rand 1B"
+	landing
+	name "Regroup at Wayfarer"
+	description "The Free Worlds fleet has been scattered by a Navy invasion. Regroup with the ships that fled to <destination>, and plan your next move."
+	source Rand
+	destination Wayfarer
+	passengers 2
+	to offer
+		has "FW Rand 1: done"
+	
+	on offer
+		conversation
+			`You meet up with the governor of Rand, and sign the papers to make her planet a part of the Free Worlds. The nearby systems are reporting no Navy interference: they seem to have been allowed to switch allegiances without any attempt by the Republic to stop them. Of course, that might partly be because these are mining planets, not as necessary to the Republic's survival as the farming worlds on the other end of the Dirt Belt.`
+			`	Freya leaves the meeting to check up on her surveillance network, and rushes back into the room a few minutes later. JJ takes one look at the expression on her face and quickly excuses himself from the table. You join him outside in the hallway, and he asks Freya what's going on.`
+			`	"The Navy just invaded Delta Sagittarii and Rastaban," she says. "We're cut off from the rest of Free space. Our defense fleet was woefully outnumbered. Many ships were destroyed, and the rest fled back toward the Rim, or to Tarazed."`
+			`	"I was afraid of this," says JJ, "but I didn't think it would happen so quickly. I wonder if they knew that these new worlds were joining us, and deliberately used them as a diversion."`
+			choice
+				`	"What do we do now?"`
+			`	JJ says, "Freya, you said part of our fleet fled to Tarazed?"`
+			`	"Yes," she says. "Probably not a strong enough fleet to drive them off, though."`
+			`	"Well, I guess we should regroup with them," he says. "Hopefully then we can plan a coordinated strike. Or if necessary, we can abandon this sector and get our fleet back to the Rim without losing too many ships. Captain <last>, can you take us to <destination>?"`
+			choice
+				`	"Sure."`
+					accept
+				`	"What if the Navy follows the fleet to Wayfarer? We're three of the four Council members. Shouldn't we avoid a situation where we could all be killed?"`
+			`	From JJ's expression, it's clear that he doesn't even want to dignify that question with a response. "If we die, the Free Worlds will live on," he says, "and there's no way we're abandoning a whole section of the fleet just to save our own skins. So, let's go to Wayfarer."`
+				accept
+	
+	npc
+		government "Free Worlds"
+		personality staying timid
+		system Tarazed
+		ship "Dreadnought" "F.S. Holly"
+		ship "Falcon (Plasma)" "F.S. Nebula"
+		ship "Osprey" "F.S. Larkspur"
+		ship "Bastion" "F.S. Ironwood"
+		ship "Argosy" "F.S. Nightingale"
+
+
+
+event "battle of alioth"
+	system Rutilicus
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Southern Pirates" 8000
+		fleet "Small Republic" 1000
+	system Cebalrai
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Southern Pirates" 4000
+		fleet "Small Republic" 1000
+	system Alioth
+		fleet "Small Southern Merchants" 400
+		fleet "Large Northern Merchants" 600
+		fleet "Small Southern Pirates" 1200
+		fleet "Large Southern Pirates" 2400
+		fleet "Small Republic" 3000
+			
+event "end battle of alioth"
+	system Rutilicus
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Southern Pirates" 8000
+		fleet "Small Republic" 1000
+		fleet "Large Republic" 2000
+		fleet "Navy Surveillance" 1600
+	system Cebalrai
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Southern Pirates" 4000
+		fleet "Small Republic" 1000
+		fleet "Large Republic" 2000
+		fleet "Navy Surveillance" 1600
+	system Alioth
+		fleet "Small Southern Merchants" 400
+		fleet "Large Northern Merchants" 600
+		fleet "Small Southern Pirates" 1200
+		fleet "Large Southern Pirates" 2400
+		fleet "Small Republic" 3000
+		fleet "Large Republic" 4000
+		fleet "Navy Surveillance" 1600
+
+
+
+mission "FW Defend New Tibet"
+	landing
+	name "Defend New Tibet"
+	description "Defend New Tibet from a Syndicate fleet that is attacking them, then land to rescue a Syndicate defector carrying vital evidence and information."
+	source Wayfarer
+	destination "New Tibet"
+	passengers 2
+	to offer
+		has "FW Rand 1B: done"
+	
+	on offer
+		conversation
+			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we're receiving communications from New Tibet. You need to talk to them."`
+			`	"Our fleet is there?" asks JJ.`
+			`	"No sir, the Syndicate. They're under attack by the Syndicate."`
+			`	"What?" says JJ. He rushes into the communication room, and you and Freya follow. On the video screen is a Buddhist monk in a maroon robe; behind him, you see other monks rushing about with none of the serenity you usually associate with Buddhist monastics. "What's going on there?" asks JJ.`
+			`	The monk explains, "Yesterday a Syndicate ship landed near our monastery, and the pilot sought refuge with us. He brings evidence that the Syndicate, or some faction within the Syndicate, was behind the attacks on Geminus and Martini."`
+			choice
+				`	"Why would the Syndicate do that?"`
+				`	"What sort of evidence?"`
+					goto evidence
+			`	"He claims that a certain faction within the Syndicate values economic growth above all else," says the monk, "and incited this war for that reason."`
+			`	"That's insane," says Freya.`
+			`	"But not completely implausible," says JJ.`
+			label evidence
+			`	The monk says, "He brought a great deal of evidence. Plans for a nuclear device. Data from underground testing. A manufactured bomb casing. Samples of fissile material. And he named the planet where the development was done: Mutiny, in the Gienah system. We hid his ship in a cave. A day later, a Syndicate fleet appeared in orbit. They do not know where the defector landed, but they say they will destroy whatever settlement is harboring him unless he is returned to them immediately."`
+			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds was innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
+			`	"And if it's a lie," says Freya, "and we refuse the Syndicate's demands, we lose our only ally. And many civilians will be killed, as well. I care about justice, but trading a definite ally for a slim possibility of peace: that is an unwise investment. I vote that we hand this man over to the Syndicate."`
+			`	The monk says, "We want to see justice done, and peace prevail. If you ask us to, we will flee to the mountains and take refuge until help arrives."`
+			`	As the third Council member present, you have the deciding vote, and the entire course of this war may rest on your decision.`
+			choice
+				`	"I say we rescue the defector, even if it means war with the Syndicate."`
+					goto rescue
+				`	"I say we hand the defector over to the Syndicate, and focus on winning the battle against the Republic."`
+					goto surrender
+			label rescue
+			`	"Are you sure?" asks Freya. "A lot of lives hang in the balance."`
+			choice
+				`	"Yes, I'm sure. We rescue the defector."`
+					goto "definitely rescue"
+				`	"Fine, we'll hand him over. But I don't think it's the right thing to do."`
+					goto "definitely surrender"
+			label surrender
+			`	"If Katya were here," says JJ, "she would tell us to choose justice over political expedience."`
+			choice
+				`	"Well, she's not here, and I say we can't afford to lose the Syndicate as an ally."`
+					goto "definitely surrender"
+				`	"I suppose you're right. Let's mount a rescue operation."`
+					goto "definitely rescue"
+			
+			label "definitely surrender"
+			apply
+				set "fw did not rescue defector"
+			`	"Very well," says JJ. "In that case, we'll need to meet with the fleet captains and figure out how to take on the Navy. Let's meet in the spaceport bar in an hour."`
+				decline
+			
+			label "definitely rescue"
+			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to drive the Syndicate ships away. Let's just hope these monks can stay hidden until then."
+				accept
+	
+	on accept
+		"reputation: Syndicate" = -1000
+		event "fw at war with Syndicate"
+		event "battle of alioth"
+	
+	npc evade
+		government Syndicate
+		personality heroic staying
+		system Alioth
+		fleet
+			names "syndicate capital"
+			variant
+				"Splinter (Mark II)" 2
+				"Manta (Mark II)" 3
+				"Quicksilver (Mark II)" 5
+	npc
+		personality heroic disables
+		ship "Dreadnought" "F.S. Holly"
+		ship "Falcon (Plasma)" "F.S. Nebula"
+		ship "Osprey" "F.S. Larkspur"
+		ship "Bastion" "F.S. Ironwood"
+		ship "Argosy" "F.S. Nightingale"
+	
+	on complete
+		"reputation: Republic" = 1
+		event "fw armistice"
+		event "end battle of alioth"
+		conversation
+			`It doesn't take long to find the monastery that contacted you earlier, but nothing is left of it but burnt-out shells of buildings. You land and look around for survivors. You find several corpses dressed in maroon robes, some of them badly burnt, but no sign of the defector or the monk you spoke with earlier.`
+			choice
+				`	(Wait to see if anyone approaches now that the Syndicate fleet is gone.)`
+				`	(Give up and contact the rest of the Free Worlds fleet to figure out what to do next.)`
+					goto leave
+			`	You wait around for a while, but this mountain valley seems to be entirely desolate. Then finally, when you are about to give up hope, Freya spots the distant figures of a few dozen people coming down the side of one of the mountains.`
+				goto gunboat
+			label leave
+			`	You are just about to leave when Freya spots something and points. "Look," he says, "Someone is coming down the mountain slope toward us." Sure enough, it's a group of several dozen people wearing the distinctive robes of the monks.`
+			label gunboat
+			`	As you wait for them to approach, JJ receives a message from one of the militia crews. "Sir, you have incoming! A scout ship, with Republic markings. Apparently unarmed. Shall we intercept them?"`
+			`	"Navy?" asks JJ. "Oathkeepers? Who are they?"`
+			`	The voice on the other end pauses. "Neither. Intelligence Bureau."`
+			`	JJ thinks about that for a second, then says, "Let them land. But follow them down, and if you see so much as a hint of them powering up weapons, blow them out of the sky. Understand?" The officer acknowledges his order and signs off.`
+			`	As the group of monks approaches from the mountainside, the scoutship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
+			choice
+				`	"I'm Captain <last> of the Free Worlds. What is your business here?"`
+				`	"Who are you, and what gives you the right to land on our planet?"`
+					goto hostile
+			`	"My name is Raven," she says. "I'm here to question this defector. If he is telling the truth, our war with you will end today." She pauses, then adds, grimly, "And, another war will begin."`
+				goto questioning
+			label hostile
+			`	She frowns. "My name is Raven," she says. "I am here to question this defector. If you are interested in knowing the truth, you will allow me to do so."`
+			label questioning
+			`	The monks approach, and you see that among them is a man in more ordinary attire, who must be the defector. "Now," says Raven, "I will question him alone, on my ship."`
+			choice
+				`	"No, we insist on being present for your interrogation."`
+					goto present
+				`	"Very well, we'll wait outside."`
+			`	"No!" says JJ. "We're staying here."`
+			label present
+			`	She hesitates for a long moment. This is probably going against whatever orders she is following. But finally she says, "Very well." The monks step aside. She approaches the defector, and reaches out her hands to him. Hesitantly, he takes her hands. It's an oddly intimate scene, the two of them quietly holding hands and locking eyes - not like any interrogation you have seen before. "Now," she says, "tell me your story."`
+			`	"My name is Sawyer," says the man. "I'm a physicist, a Syndicate employee. We had a secret project on Mutiny, a planet in a pirate system. We were developing nuclear weapons." He hesitates, and looks away for a second, then says, "They told me it was for fighting the pirates. I didn't realize otherwise until--"`
+			`	"That is a lie," says Raven, calmly.`
+			`	He seems flustered. "Okay, they didn't tell me what the weapons were for, and I didn't ask."`
+			choice
+				`	"Why would the Syndicate attack the Republic?"`
+				`	"Why did you wait so long to report this?"`
+					goto wait
+			`	They both seem surprised at you asking a question. "I'm not sure," says Sawyer, "but the Syndicate's profits have more than doubled since this war began. Maybe they knew they would benefit from it more than anyone."`
+			`	"What led you to report this?" asks Raven.`
+			label wait
+			`	He says, "It was when I heard that there had been another major battle. Up until then I had been telling myself that the worst of the damage was done. But after that battle, I knew that millions more could die because of our crime, and that I had the power to stop it."`
+			`	Raven continues to ask questions: who was involved, how the facility was hidden, where the raw materials come from. At one point, JJ pulls you aside and says, "She must be a Questioner. How they operate is a tightly kept secret. I'd always assumed their methods were... a bit more medieval."`
+			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the generals at once. And, release the captive."`
+			`	The door of her ship slides open, and another woman steps out - shakily, hesitantly, shielding her eyes against the sunlight. It takes you a few seconds to realize that it's Katya.`
+			`	As you all rush over to greet her, Raven taps your shoulder and says quietly, "Meet me in the main spaceport in a few hours and we'll figure out what's going to happen next." She returns to her ship.`
+
+
+
+mission "FW Liberate Delta Sagittarii"
+	name "Liberate Delta Sagittarii"
+	description "Lead a Free Worlds fleet to drive the Navy out of Delta Sagittarii. Another fleet ought to be arriving from the Rim at about the same time."
+	source Wayfarer
+	destination "New Portland"
+	passengers 2
+	to offer
+		has "FW Rand 1B: done"
+	
+	on offer
+		conversation
+			branch surrender
+				has "fw did not rescue defector"
+			`	A few of the Free Worlds crew members are still milling around the spaceport in confusion. You help to gether them together and explain that you are headed out on a very important mission to New Tibet.`
+				decline
+			
+			label surrender
+			`	You bloodthirsty fool! You let a perfectly innocent man die, and now you're stuck in a plot line that hasn't been implemented yet. I hope you have a recent saved game to revert to!`
+			`	(If not, you can skip back to the last planet you landed on by bringing up the main menu right now, going to Load / Save, and reloading your game. Be sure to do that before you depart from this planet, or your foolish decision will be saved forever...)`
+				decline
