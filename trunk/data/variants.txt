@@ -750,3 +750,143 @@ ship "Behemoth" "Behemoth (Heavy)"
 	explode "big explosion" 35
 	explode "small explosion" 15
 	explode "huge explosion" 20
+
+ship "Splinter (Mark II)"
+	sprite "ship/splinter"
+	licenses Republic
+		Pilot's
+		Warship
+	attributes
+		category "Light Warship"
+		"cost" 3100000
+		"shields" 5200
+		"hull" 1700
+		"required crew" 15
+		"bunks" 21
+		"mass" 250
+		"drag" 4.0
+		"heat dissipation" .7
+		"fuel capacity" 600
+		"cargo space" 75
+		"outfit space" 400
+		"weapon capacity" 150
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Particle Cannon" 2
+		"Quad Blaster Turret" 3
+		"Mass Expansion" 2
+		"Fusion Reactor"
+		"S-970 Regenerator"
+		"Water Coolant System" 4
+		Supercapacitor
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Ionic Afterburner"
+		Hyperdrive
+	engine -15 115
+	engine 15 115
+	gun -15 -80 "Particle Cannon"
+	gun 15 -80 "Particle Cannon"
+	turret -17 -28 "Quad Blaster Turret"
+	turret 0 -28 "Quad Blaster Turret"
+	turret 17 -28 "Quad Blaster Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+
+ship "Manta (Mark II)"
+	sprite "ship/manta"
+	licenses Republic
+		Pilot's
+		Warship
+	attributes
+		category "Light Warship"
+		"cost" 3400000
+		"shields" 5900
+		"hull" 1500
+		"required crew" 6
+		"bunks" 10
+		"mass" 170
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 100
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Particle Cannon" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Mass Expansion"
+		"Water Coolant System"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Ionic Afterburner"
+		"Hyperdrive"
+	engine -33 38
+	engine 33 38
+	gun -21 -35 "Particle Cannon"
+	gun 21 -35 "Particle Cannon"
+	gun -27 -35 "Particle Cannon"
+	gun 27 -35 "Particle Cannon"
+	gun -66 -32 "Meteor Missile Launcher"
+	gun 66 -32 "Meteor Missile Launcher"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15
+
+ship "Quicksilver (Mark II)"
+	sprite "ship/quicksilver"
+	licenses Republic
+		Pilot's
+		Warship
+	attributes
+		category "Light Warship"
+		"cost" 1590000
+		"shields" 3200
+		"hull" 800
+		"required crew" 3
+		"bunks" 6
+		"mass" 120
+		"drag" 2.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 240
+		"weapon capacity" 60
+		"engine capacity" 70
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"LP036a Battery Pack"
+		"Particle Cannon" 2
+		"D23-QP Shield Generator"
+		"RT-I Radiothermal"
+		"Cooling Ducts"
+		"Hyperdrive"
+	engine -17 54
+	engine 17 54
+	gun -6 -38 "Particle Cannon"
+	gun 6 -38 "Particle Cannon"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
