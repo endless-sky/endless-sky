@@ -261,7 +261,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 						|| (isPlayerEscort && moveToMe))
 					&& (parent->GetSystem() != it->GetSystem()
 						|| !parent->GetGovernment()->IsEnemy(it->GetGovernment()))
-					&& (!target || !personality.IsHeroic()))
+					&& (!target || !personality.IsHeroic() || parent->GetSystem() != it->GetSystem()))
 				MoveEscort(*it, command);
 			else
 				MoveIndependent(*it, command);
