@@ -609,8 +609,9 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		else
 			return result;
 	}
-	// If no destination is specified, it is the same as the source planet.
-	if(!result.destination)
+	// If no destination is specified, it is the same as the source planet. Also
+	// use the source planet if the given destination is not a valid planet name.
+	if(!result.destination || !result.destination->GetSystem())
 		result.destination = player.GetPlanet();
 	
 	// If cargo is being carried, see if we are supposed to replace a generic
