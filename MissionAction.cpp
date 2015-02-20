@@ -165,10 +165,17 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	}
 	else if(!dialogText.empty())
 	{
+		map<string, string> subs;
+		subs["<first>"] = player.FirstName();
+		subs["<last>"] = player.LastName();
+		if(player.GetShip())
+			subs["<ship>"] = player.GetShip()->Name();
+		string text = Format::Replace(dialogText, subs);
+		
 		if(isOffer)
-			ui->Push(new Dialog(dialogText, player));
+			ui->Push(new Dialog(text, player));
 		else
-			ui->Push(new Dialog(dialogText));
+			ui->Push(new Dialog(text));
 	}
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
