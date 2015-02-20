@@ -131,6 +131,7 @@ private:
 	AsteroidField asteroids;
 	double flash;
 	bool doFlash;
+	bool wasLeavingHyperspace;
 	
 	double load;
 	int loadCount;

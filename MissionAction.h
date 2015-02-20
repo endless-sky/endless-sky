@@ -59,6 +59,7 @@ public:
 	
 private:
 	std::string trigger;
+	std::string system;
 	
 	std::string dialogText;
 	

@@ -558,7 +558,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		else
 		{
 			PrepareForHyperspace(ship, command);
-			if(parent.IsHyperspacing() || parent.CanHyperspace())
+			if(parent.IsEnteringHyperspace() || parent.CanHyperspace())
 				command |= Command::JUMP;
 		}
 	}
@@ -824,7 +824,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const std::list<std::share
 	{
 		bool mustScanCargo = cargoScan && !Has(ship, target, ShipEvent::SCAN_CARGO);
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
-		bool isInSystem = (ship.GetSystem() == target->GetSystem() && !target->IsHyperspacing());
+		bool isInSystem = (ship.GetSystem() == target->GetSystem() && !target->IsEnteringHyperspace());
 		if(!isInSystem || (!mustScanCargo && !mustScanOutfits))
 			ship.SetTargetShip(weak_ptr<Ship>());
 		else
@@ -1351,7 +1351,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 	}
 	else if(keyStuck.Has(Command::JUMP) && ship.GetTargetSystem())
 	{
-		if(!ship.JumpsRemaining() && !ship.IsHyperspacing())
+		if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();

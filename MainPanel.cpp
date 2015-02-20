@@ -75,21 +75,6 @@ void MainPanel::Step()
 			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
 	}
-	if(isActive && player.GetShip() && !player.GetShip()->Fuel()
-			&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
-	{
-		Preferences::Set("help: stranded");
-		ostringstream out;
-		out << "Oops! You just ran out of fuel in an uninhabited system. "
-			<< "Fortunately, other ships are willing to help you.\n\tPress \""
-			<< Command::TARGET.KeyName() << "\" to cycle through all the ships in this system. "
-			<< "When you have a friendly one selected, press \""
-			<< Command::HAIL.KeyName() << "\" to hail it. "
-			<< "You can then ask for help, "
-			<< "and if it has fuel to spare it will fly over and transfer fuel to your ship. "
-			<< "This is easiest for the other ship to do if your ship is nearly stationary.";
-		GetUI()->Push(new Dialog(out.str()));
-	}
 	if(isActive && player.GetShip() && player.GetShip()->IsDestroyed() && !Preferences::Has("help: dead"))
 	{
 		Preferences::Set("help: dead");
@@ -124,6 +109,21 @@ void MainPanel::Step()
 				if(!message.empty())
 					GetUI()->Push(new Dialog(message));
 			}
+		}
+		if((event.Type() & ShipEvent::JUMP) && player.GetShip() && !player.GetShip()->Fuel()
+			&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
+		{
+			Preferences::Set("help: stranded");
+			ostringstream out;
+			out << "Oops! You just ran out of fuel in an uninhabited system. "
+				<< "Fortunately, other ships are willing to help you.\n\tPress \""
+				<< Command::TARGET.KeyName() << "\" to cycle through all the ships in this system. "
+				<< "When you have a friendly one selected, press \""
+				<< Command::HAIL.KeyName() << "\" to hail it. "
+				<< "You can then ask for help, "
+				<< "and if it has fuel to spare it will fly over and transfer fuel to your ship. "
+				<< "This is easiest for the other ship to do if your ship is nearly stationary.";
+			GetUI()->Push(new Dialog(out.str()));
 		}
 	}
 }
@@ -242,7 +242,7 @@ void MainPanel::ShowHailPanel()
 		shared_ptr<Ship> target = ship->GetTargetShip();
 		if(target)
 		{
-			if(target->IsHyperspacing())
+			if(target->IsEnteringHyperspace())
 				Messages::Add("Unable to send hail: ship is entering hyperspace.");
 			else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
 				GetUI()->Push(new HailPanel(player, target));

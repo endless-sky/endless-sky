@@ -113,6 +113,7 @@ public:
 	bool IsOverheated() const;
 	bool IsDisabled() const;
 	bool IsLanding() const;
+	bool IsEnteringHyperspace() const;
 	bool IsHyperspacing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;

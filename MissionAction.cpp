@@ -30,6 +30,8 @@ void MissionAction::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
+	if(node.Size() >= 3)
+		system = node.Token(2);
 	
 	for(const DataNode &child : node)
 	{
@@ -78,7 +80,10 @@ void MissionAction::Load(const DataNode &node)
 // a template, so it only has to save a subset of the data.
 void MissionAction::Save(DataWriter &out) const
 {
-	out.Write("on", trigger);
+	if(system.empty())
+		out.Write("on", trigger);
+	else
+		out.Write("on", trigger, system);
 	out.BeginChild();
 	
 	if(!dialogText.empty())
@@ -245,6 +250,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultP
 {
 	MissionAction result;
 	result.trigger = trigger;
+	result.system = system;
 	
 	result.events = events;
 	result.gifts = gifts;

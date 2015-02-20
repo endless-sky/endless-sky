@@ -110,10 +110,6 @@ public:
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
 	
-	// Visit a certain system. If it is one of this mission's waypoints, that
-	// waypoint will be removed from the list.
-	void Visit(const System *system);
-	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
 	Mission Instantiate(const PlayerInfo &player) const;
@@ -158,6 +154,7 @@ private:
 	LocationFilter destinationFilter;
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
+	std::map<const System *, MissionAction> onEnter;
 	
 	// NPCs:
 	std::list<NPC> npcs;
