@@ -290,27 +290,3 @@ outfit "Pilot's License"
 	cost 50000
 	thumbnail "outfit/license"
 	description "Without a pilot's license, you cannot purchase a ship on a Republic planet. And if you buy an unlicensed ship on another planet and then bring it into Republic space, you can be fined until you cough up the money for a license. Needless to say, this policy is not terribly popular with freelance merchant captains."
-
-outfit "Freight License"
-	category "Special"
-	cost 100000
-	thumbnail "outfit/license"
-	description "A freight license allows you to operate heavy freighters, in addition to some other ships that are not classified as freighters but have significant cargo capacity. This license is required throughout Republic space, and if you manage to acquire a freighter without a license, you can be fined for owning and operating it."
-
-outfit "Transport License"
-	category "Special"
-	cost 100000
-	thumbnail "outfit/license"
-	description "Because ships that can carry large numbers of people can potentially be used as military transports or for raiding and capturing other ships, the Republic requires a special license to operate them."
-
-outfit "Warship License"
-	category "Special"
-	cost 200000
-	thumbnail "outfit/license"
-	description "Naturally, the Republic wants to keep careful track of every pilot who has been licensed to own a ship that is designed primarily as a warship, or in general any ship with a significant armament. The cost of this license goes in part toward funding anti-piracy measures and starport security. This license is required throughout Republic space."
-
-outfit "Capital Ship License"
-	category "Special"
-	cost 400000
-	thumbnail "outfit/license"
-	description "A capital ship license qualifies you to operate the largest ships available to civilians, anywhere in Republic space."
