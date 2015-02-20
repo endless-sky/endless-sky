@@ -44,6 +44,8 @@ ship "Star Barge" "Star Barge (Armed)"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 
+
+
 ship "Sparrow" "Sparrow (Patrol)"
 	sprite "ship/sparrow"
 	attributes
@@ -83,11 +85,10 @@ ship "Sparrow" "Sparrow (Patrol)"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 
+
+
 ship Raven "Raven (Afterburner)"
 	sprite ship/raven
-	licenses Republic
-		Pilot's
-		Warship
 	attributes
 		category "Light Warship"
 		"cost" 2000000
@@ -127,10 +128,10 @@ ship Raven "Raven (Afterburner)"
 	explode "tiny explosion" 28
 	explode "small explosion" 40
 
+
+
 ship "Wasp" "Wasp (Proton)"
 	sprite "ship/wasp"
-	licenses Republic
-		Pilot's
 	attributes
 		category "Interceptor"
 		"cost" 400000
@@ -165,11 +166,10 @@ ship "Wasp" "Wasp (Proton)"
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 
+
+
 ship "Manta" "Manta (Proton)"
 	sprite "ship/manta"
-	licenses Republic
-		Pilot's
-		Warship
 	attributes
 		category "Light Warship"
 		"cost" 3400000
@@ -212,11 +212,10 @@ ship "Manta" "Manta (Proton)"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 
+
+
 ship "Quicksilver" "Quicksilver (Proton)"
 	sprite "ship/quicksilver"
-	licenses Republic
-		Pilot's
-		Warship
 	attributes
 		category "Light Warship"
 		"cost" 1590000
@@ -253,12 +252,11 @@ ship "Quicksilver" "Quicksilver (Proton)"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 
+
+
 ship "Cruiser" "Cruiser (Heavy)"
 	sprite "ship/cruiser"
 	licenses Republic
-		Pilot's
-		Warship
-		"Capital Ship"
 		Navy
 		Cruiser
 	attributes
@@ -323,12 +321,10 @@ ship "Cruiser" "Cruiser (Heavy)"
 	explode "big explosion" 40
 	explode "huge explosion" 10
 
+
+
 ship "Falcon" "Falcon (Plasma)"
 	sprite "ship/falcon"
-	licenses Republic
-		Pilot's
-		Warship
-		"Capital Ship"
 	attributes
 		category "Heavy Warship"
 		"cost" 10900000
@@ -372,10 +368,10 @@ ship "Falcon" "Falcon (Plasma)"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 
+
+
 ship "Fury" "Fury (Flamethrower)"
 	sprite "ship/fury"
-	licenses Republic
-		Pilot's
 	attributes
 		category "Interceptor"
 		"cost" 490000
@@ -414,11 +410,11 @@ ship "Fury" "Fury (Flamethrower)"
 	explode "small explosion" 30
 	explode "medium explosion" 40
 
+
+
 ship "Rainmaker" "Rainmaker (Mark II)"
 	sprite "ship/rainmaker"
 	licenses Republic
-		Pilot's
-		Warship
 		Navy
 	attributes
 		category "Light Warship"
@@ -462,11 +458,11 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 
+
+
 ship "Gunboat" "Gunboat (Mark II)"
 	sprite "ship/gunboat"
 	licenses Republic
-		Pilot's
-		Warship
 		Navy
 	attributes
 		category "Light Warship"
@@ -508,11 +504,11 @@ ship "Gunboat" "Gunboat (Mark II)"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 
+
+
 ship "Frigate" "Frigate (Mark II)"
 	sprite "ship/frigate"
 	licenses Republic
-		Pilot's
-		Warship
 		Navy
 	attributes
 		category "Light Warship"
@@ -561,12 +557,11 @@ ship "Frigate" "Frigate (Mark II)"
 	explode "medium explosion" 24
 	explode "big explosion" 8
 
+
+
 ship "Cruiser" "Cruiser (Mark II)"
 	sprite "ship/cruiser"
 	licenses Republic
-		Pilot's
-		Warship
-		"Capital Ship"
 		Navy
 		Cruiser
 	attributes
@@ -625,12 +620,11 @@ ship "Cruiser" "Cruiser (Mark II)"
 	explode "big explosion" 40
 	explode "huge explosion" 10
 
+
+
 ship "Carrier" "Carrier (Mark II)"
 	sprite "ship/carrier"
 	licenses Republic
-		Pilot's
-		Warship
-		"Capital Ship"
 		Navy
 		Carrier
 	attributes
@@ -698,12 +692,10 @@ ship "Carrier" "Carrier (Mark II)"
 	explode "big explosion" 40
 	explode "huge explosion" 10
 
+
+
 ship "Behemoth" "Behemoth (Heavy)"
 	sprite ship/behemoth
-	licenses Republic
-		Pilot's
-		Freight
-		"Capital Ship"
 	attributes
 		category "Heavy Freighter"
 		cost 7800000
@@ -751,11 +743,10 @@ ship "Behemoth" "Behemoth (Heavy)"
 	explode "small explosion" 15
 	explode "huge explosion" 20
 
+
+
 ship "Splinter (Mark II)"
 	sprite "ship/splinter"
-	licenses Republic
-		Pilot's
-		Warship
 	attributes
 		category "Light Warship"
 		"cost" 3100000
@@ -800,11 +791,10 @@ ship "Splinter (Mark II)"
 	explode "medium explosion" 24
 	explode "big explosion" 8
 
+
+
 ship "Manta (Mark II)"
 	sprite "ship/manta"
-	licenses Republic
-		Pilot's
-		Warship
 	attributes
 		category "Light Warship"
 		"cost" 3400000
@@ -850,11 +840,10 @@ ship "Manta (Mark II)"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 
+
+
 ship "Quicksilver (Mark II)"
 	sprite "ship/quicksilver"
-	licenses Republic
-		Pilot's
-		Warship
 	attributes
 		category "Light Warship"
 		"cost" 1590000
