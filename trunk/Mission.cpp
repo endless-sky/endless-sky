@@ -25,8 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "UI.h"
 
-#include <iostream>
-
 using namespace std;
 
 namespace {
@@ -146,6 +144,11 @@ void Mission::Load(const DataNode &node)
 			npcs.push_back(NPC());
 			npcs.back().Load(child);
 		}
+		else if(child.Token(0) == "on" && child.Size() >= 3 && child.Token(1) == "enter")
+		{
+			MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
+			action.Load(child);
+		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
 			static const map<string, Trigger> trigger = {
@@ -238,6 +241,8 @@ void Mission::Save(DataWriter &out, const std::string &tag) const
 	// Save all the actions, because this might be an "available mission" that
 	// has not been received yet but must still be included in the saved game.
 	for(const auto &it : actions)
+		it.second.Save(out);
+	for(const auto &it : onEnter)
 		it.second.Save(out);
 	
 	out.EndChild();
@@ -554,19 +559,25 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		}
 	}
 	
+	// Jump events are only created for the player's flagship.
+	if((event.Type() & ShipEvent::JUMP) && event.Actor())
+	{
+		const System *system = event.Actor()->GetSystem();
+		
+		auto it = waypoints.find(system);
+		if(it != waypoints.end())
+			waypoints.erase(it);
+		
+		auto eit = onEnter.find(system);
+		if(eit != onEnter.end())
+		{
+			eit->second.Do(player, ui);
+			onEnter.erase(eit);
+		}
+	}
+	
 	for(NPC &npc : npcs)
 		npc.Do(event, player, ui);
-}
-
-
-
-// Visit a certain system. If it is one of this mission's waypoints, that
-// waypoint will be removed from the list.
-void Mission::Visit(const System *system)
-{
-	auto it = waypoints.find(system);
-	if(it != waypoints.end())
-		waypoints.erase(it);
 }
 
 
@@ -698,6 +709,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
 		result.actions[it.first] = it.second.Instantiate(subs, defaultPayment);
+	for(const auto &it : onEnter)
+		result.onEnter[it.first] = it.second.Instantiate(subs, defaultPayment);
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);

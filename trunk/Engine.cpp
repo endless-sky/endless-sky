@@ -41,7 +41,8 @@ using namespace std;
 Engine::Engine(PlayerInfo &player)
 	: player(player),
 	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
-	flash(0.), doFlash(false), load(0.), loadCount(0), loadSum(0.)
+	flash(0.), doFlash(false), wasLeavingHyperspace(false),
+	load(0.), loadCount(0), loadSum(0.)
 {
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -224,7 +225,6 @@ void Engine::Step(bool isActive)
 		
 		events.swap(eventQueue);
 		eventQueue.clear();
-		ai.UpdateEvents(events);
 		
 		// The calculation thread is now paused, so it is safe to access things.
 		const Ship *flagship = player.GetShip();
@@ -232,7 +232,16 @@ void Engine::Step(bool isActive)
 		{
 			position = flagship->Position();
 			velocity = flagship->Velocity();
+			bool isLeavingHyperspace = flagship->IsHyperspacing();
+			if(!isLeavingHyperspace && wasLeavingHyperspace)
+			{
+				int type = ShipEvent::JUMP;
+				shared_ptr<Ship> ship = player.Ships().front();
+				events.emplace_back(ship, ship, type);
+			}
+			wasLeavingHyperspace = isLeavingHyperspace;
 		}
+		ai.UpdateEvents(events);
 		ai.UpdateKeys(&player, isActive && wasActive);
 		wasActive = isActive;
 		Audio::Update(position, velocity);
@@ -623,7 +632,7 @@ void Engine::CalculateStep()
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(ships, player);
 	const Ship *flagship = player.GetShip();
-	bool wasHyperspacing = (flagship && flagship->IsHyperspacing());
+	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	
 	// Now, move all the ships. We must finish moving all of them before any of
 	// them fire, or their turrets will be targeting where a given ship was
@@ -641,11 +650,11 @@ void Engine::CalculateStep()
 			++it;
 	}
 	
-	if(!wasHyperspacing && flagship && flagship->IsHyperspacing())
+	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 		Audio::Play(Audio::Get(flagship->Attributes().Get("jump drive") ? "jump_drive" : "hyperspace"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
-	if(wasHyperspacing && !flagship->IsHyperspacing())
+	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
 	{
 		doFlash = true;
 		EnterSystem();

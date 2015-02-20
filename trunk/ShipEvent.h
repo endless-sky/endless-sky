@@ -60,7 +60,9 @@ public:
 		// This is a crime that is so bad that it not only has a negative effect
 		// on your reputation, but entirely wipes out any positive reputation
 		// you had with the given government, first.
-		ATROCITY = (1 << 8)
+		ATROCITY = (1 << 8),
+		// This ship just jumped into a different system.
+		JUMP = (1 << 9)
 	};
 	
 	

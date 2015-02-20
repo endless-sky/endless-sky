@@ -1052,9 +1052,17 @@ bool Ship::IsLanding() const
 
 
 
-bool Ship::IsHyperspacing() const
+bool Ship::IsEnteringHyperspace() const
 {
 	return hyperspaceSystem;
+}
+
+
+
+
+bool Ship::IsHyperspacing() const
+{
+	return hyperspaceCount != 0;
 }
 
 
