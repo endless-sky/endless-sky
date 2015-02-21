@@ -443,3 +443,67 @@ mission "FW Wolf Pack 4"
 		payment 400000
 		dialog
 			`	Zeta meets up with you and thanks you for your continued service to the Free Worlds. "If we had a dozen captains as brave as you are," he says, "the war would be over tomorrow." He hands you <payment>, and walks away. You still don't know his real name or who the leaders of the Wolf Pack are, but you are glad to have been able to do something extra to assist the war effort.`
+
+
+
+mission "FW Stack Core 1"
+	name "Escort convoy from Rand"
+	description "Freya asked you to stop by Rand if you are able, to help escort a freighter convoy carrying vital supplies for building some exciting new equipment."
+	landing
+	destination Rand
+	to offer
+		has "FW Embassy 1: offered"
+	
+	on offer
+		conversation
+			`You receive a short, encoded message from Freya: "Hi there, Captain! If you happen to be passing by <planet> any time soon, would you mind swinging by there to help escort a freighter convoy? We're working on the development of some exciting new equipment, and the convoy is carrying the supplies we need to complete the project."`
+				accept
+
+
+
+mission "FW Stack Core 1B"
+	landing
+	source Rand
+	destination Solace
+	to offer
+		has "FW Stack Core 1: done"
+	
+	on offer
+		conversation
+			`Following Freya's instructions, you land on <origin> and tell the spaceport quartermaster that you've been assigned to escort a convoy to <planet>. "Ah yes," he says, "the last of their cargo was just made ready yesterday." He leads you to a cluster of landing pads where three Bulk Freighters are parked. "The pirates have not been much trouble lately," he says, "but the cargo is important enough that they wanted an escort anyways." He leaves before you have a chance to ask any questions about what the freighters are carrying.`
+				accept
+	
+	npc accompany save
+		fleet
+			names "civilian"
+			cargo 3
+			variant
+				"Bulk Freighter" 3
+	
+	npc
+		government "Republic"
+		system Menkent
+		personality surveillance
+		fleet
+			names "republic capital"
+			cargo 0
+			"friendly hail" "friendly navy"
+			variant
+				"Gunboat" 2
+	
+	on complete
+		event "stack core for sale" 25
+		payment 200000
+		dialog `You have escorted the convoy safely to its destination. The workers begin unloading some very heavy crates, and one of the freighter captains hands you <payment> and thanks you for your protection.`
+
+
+
+mission "FW Stack Core 1C"
+	landing
+	to offer
+		has "event: stack core for sale"
+	
+	on offer
+		conversation
+			`You receive another encoded message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
+				decline
