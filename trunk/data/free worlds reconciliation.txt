@@ -18,7 +18,6 @@ mission "FW Reconciliation 1"
 	passengers 2
 	
 	npc accompany save
-		personality timid
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on offer
@@ -119,7 +118,6 @@ mission "FW Reconciliation 1B"
 				accept
 	
 	npc accompany save
-		personality timid
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	npc evade
@@ -193,7 +191,6 @@ mission "FW Reconciliation 2"
 		has "FW Reconciliation 1C: done"
 	
 	npc accompany save
-		personality timid
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on offer
@@ -235,3 +232,94 @@ mission "FW Navy Out Of Rastaban"
 		conversation
 			`You receive a brief message from Alondo: "Good news, Captain! As a gesture of good faith the Navy is beginning to pull out of Rastaban and Delta Sagittarii. Those worlds will revert to our control soon. Be sure to tell the others. And, tell Katya I'm very glad she's free and am looking forward to seeing her." You pass on his message to Katya and Ijs.`
 				decline
+
+
+
+mission "FW Reconciliation 2A"
+	name "Oathkeepers on Farpoint"
+	description "Travel to <destination>, to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
+	landing
+	source Valhalla
+	destination Farpoint
+	passengers 2
+	to offer
+		has "FW Reconciliation 2: done"
+	
+	on offer
+		conversation
+			`When you land on Valhalla, a man shows up at your ship and introduces himself as Edrick Flint, the governor of Valhalla. He invites all of you to join him for dinner at his home, which turns out to be an apartment on the twenty-third floor of one of the downtown skyscrapers. There, he introduces you to several other regional governors and authorities.`
+			`	"You may be aware," Edrick says, "that the Deep was self-governing before the formation of the Republic. Indeed, during some of the darkest centuries of the space age, the Deep stood out as a beacon of civilization, a place where piracy was not tolerated and all travelers were safe. When we joined the Republic, we retained the authority to police our own territory, and that authority includes the right to track down fugitives who have fled beyond our usual jurisdiction."`
+			choice
+				`	"You're suggesting a 'police action' against the Syndicate?"`
+					goto police
+				`	"Wait, before we talk details, are you saying that you believe Sawyer's testimony against the Syndicate?"`
+			`	"Everyone believes him," says one of the other governors, "throughout human space, and in Parliament too. We can all see that the evidence is undeniable. What people don't agree on is how to respond to that evidence."`
+			label police
+			`	"We want to see justice done," says Edrick. "Our proposal is that a fleet under our jurisdiction, but joined by Free Worlds and Oathkeeper vessels, will travel into the Core and arrest at least one of the Syndicate masterminds behind the terrorist attacks. Such an action would satisfy the technical requirements of legality provided that immediately prior to the arrest, one of our courts hears Sawyer's testimony and pronounces that Syndicate individual guilty."`
+			choice
+				`	"'Technically legal' sounds to me like a euphemism for 'something we know full well is going to get us into trouble.'"`
+				`	"How exactly is a fleet of warships going to travel through Syndicate space without a massive battle?"`
+					goto travel
+			
+			`	Ijs laughs at that. "Relax, Captain. I've been doing 'technically legal' stuff for years. It only occasionally goes disastrously wrong. But governor, if the Syndicate sees you coming, you'll need a full-scale war fleet, not just a handful of ships."`
+			label travel
+			`	"That's why the fleet will be composed of ships from three different organizations," says Edrick. "You will find a reason to travel to Earth with perhaps one of your fancy new Dreadnoughts as an escort. When you arrive, there will just happen to be an Oathkeeper patrol passing through the same system. And a merchant convoy from the Deep. With its own set of escorts, of course."`
+			`	"We'd need to know exactly where and on what planet our target lives, prior to entering Syndicate space," says Katya. "And, if you want to have a court trial immediately prior to the arrest, it sounds like Sawyer will need to stay here."`
+			`	"Indeed," says Edrick, "but I assure you, he is safer from the Syndicate here than anywhere else in human space, your own territory included. As for locating a target, that's why the Oathkeepers have requested that you visit them on Farpoint."`
+			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. At one point, Edrick pulls you aside and says, "By the way, I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please find space on your ship for a ramscoop; you will need it for your next mission."`
+				accept
+	
+	npc accompany save
+		ship "Gunboat (Mark II)" "Eye of Horus"
+
+
+
+mission "FW Reconciliation 2B"
+	name "Travel to Stormhold"
+	description "Sawyer has named several Syndicate executives who were definitely part of the plot. Travel to the lawless world of Stormhold, where you will be able to purchase information about where those executives live."
+	landing
+	source Farpoint
+	destination Stormhold
+	waypoint Sumar
+	waypoint Oblate
+	clearance
+	passengers 2
+	to offer
+		has "FW Reconciliation 2A: done"
+	
+	on offer
+		conversation
+			branch know
+				has "FW Alphas 1.1: done"
+			`On Farpoint, you are met by none other than the famous leader of the Oathkeepers, General William Danforth. Even among the Free Worlds Danforth is spoken of with respect due to his courage and level-headedness in battle and his leadership of countless humanitarian missions.`
+				goto introductions
+			label know
+			`On Farpoint, you are met by General Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood. He is glad to see you again, and you express your sympathy over the loss of Commander Nguyen; Danforth tells you that his killer was never found.`
+			label introductions
+			`	Ijs and Katya introduce themselves to Danforth, and Katya says, "Sir, I was a child on Hope when the colony was evacuated. Your ship carried my family to safety, and I've never forgotten how every night during our journey, you would walk through the cargo bay where we were staying and check to make sure all our needs were met. I've never had a chance before now to thank you in person."`
+			`	Danforth is surprised. "Councilor Reynolds," he says, "thank you. I followed your career in Parliament with some interest, but it is a shame that we never met in person until now. But I am glad we have this chance to work together at last."`
+			`	Raven says, "Governor Edrick mentioned a plan for tracking down the Syndicate executives who were behind the attacks in the Castor and Pollux systems."`
+			`	"Indeed," says Danforth. "West of here is a region of uninhabited star systems, a sort of back entrance into Syndicate space. Few ships travel through there, because there is nowhere to refuel, but with a ramscoop or enough fuel capacity, travel is possible. One of the first inhabited worlds on the other side is the lawless world of Stormhold. There, you can surely find a contact who knows enough about the inner workings of the Syndicate to tell you the home of at least a few of our targets... for a price." He hands Katya a large stack of credit chips.`
+			`	Raven says, "I'm going to stay here with the Oathkeepers. Captain <last>, it's been a pleasure working with you. We're counting on you to fetch us this information and return here as quickly as possible."`
+				accept
+
+
+
+mission "FW Reconciliation 2C"
+	name "Return to Farpoint"
+	description "Return to <planet> with information about the whereabouts of certain Syndicate executives. Travel via the back route so that the Syndicate is not alerted to your presence."
+	landing
+	source Stormhold
+	destination Farpoint
+	waypoint Sumar
+	waypoint Oblate
+	passengers 2
+	to offer
+		has "FW Reconciliation 2B: done"
+	
+	on offer
+		conversation
+			`You land near one of the small villages on Stormhold, and after handing out a few small bribes from the money Danforth gave you, finally one of the villagers recalls that a local gang of pirates is led by a former Syndicate manager. With some trepidation, you fly to his stronghold, and he agrees to "do business" with you.`
+			`	Katya shows him Sawyer's list of names. "So, these are the bad boys, huh?" he says. Clearly the news of Sawyer's revelations has spread even to this remote world. He looks through the list, and is able to tell you where three of the five men live. "I'd love to see all these bastards taken down," he says.`
+			`	You give him the rest of Danforth's money and thank him for helping you - and ask that he keep your visit secret. "No problem," he says. As you are leaving, he adds, "Also, Mister Springborn... you're my hero, man. Glad you're still finding ways to pester the Syndicate." Ijs seems pleasantly surprised to be recognized.`
+				accept

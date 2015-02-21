@@ -1092,6 +1092,7 @@ mission "FW Alphas 1.1A"
 	
 	on offer
 		set "fw alphas done"
+		event "death of nguyen" 35
 		conversation
 			`When you meet up with Nguyen, he still looks very worried. "We think we killed them all," he says, "but we can't be sure. Also, we recovered some instruments for genetic manipulation from the factory. The Alphas can't breed normally, because if their offspring inherit some of the Alpha mutations but not others, the result is rarely viable, and even those that live long enough to be born don't have all the Alpha traits. So, they rely on artificial insemination instead."`
 			choice
@@ -1120,6 +1121,18 @@ mission "FW Alphas 1.1A"
 				`	"If the Republic would just leave us alone, we wouldn't need to be enemies."`
 			`	"I know," he says. "But for now, I need to return to my fleet. Which means I'll be needing an escort out of your territory, just to make sure no one attacks me. Maybe you could take us by way of New Tibet? I'm sure Commander Nguyen would appreciate one last visit to the Buddhist monasteries there before that world becomes closed off to us completely." You agree, and he begins preparing his ship for takeoff.`
 				accept
+
+
+
+mission "FW Death of Nguyen"
+	landing
+	to offer
+		has "event: death of nguyen"
+	
+	on offer
+		conversation
+			`Soon after landing on <origin>, you receive an encoded message from General Danforth, the leader of the Oathkeepers. "Captain <last>," he says, "I would like to thank you once again for allowing us to assist you on Poisonwood. Unfortunately, I have bad news that may concern you. Commander Nguyen, who was with you when one of the Alphas was apprehended, has been assassinated, shot in the head at point blank range. His attacker has not been found. We fear that this may be retribution for his part in the action on Poisonwood, and we urge you and your crew to be cautious. With deepest regards - Danforth."`
+				decline
 
 
 
