@@ -1301,6 +1301,8 @@ event "Poisonwood reverts to Republic"
 		fleet "Small Free Worlds" 1500
 		fleet "Small Free Worlds" 2600
 
+event "death of nguyen"
+
 
 
 event "dreadnoughts for sale"
