@@ -500,7 +500,7 @@ void MissionPanel::DrawMissionInfo() const
 		for(const shared_ptr<Ship> &ship : player.Ships())
 		{
 			cargoFree += ship->Attributes().Get("cargo space") - ship->Cargo().Used();
-			bunksFree += ship->Attributes().Get("bunks") - ship->Crew();
+			bunksFree += ship->Attributes().Get("bunks") - ship->Crew() - ship->Cargo().Passengers();
 		}
 	info.SetString("cargo free", to_string(cargoFree) + " tons");
 	info.SetString("bunks free", to_string(bunksFree) + " bunks");
