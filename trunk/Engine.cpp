@@ -912,6 +912,9 @@ void Engine::CalculateStep()
 						break;
 					}
 		}
+		else if(projectile.HasBlastRadius())
+			radar[calcTickTock].Add(
+				Radar::SPECIAL, projectile.Position() - center, 1.8);
 		
 		// Now, we can draw the projectile.
 		draw[calcTickTock].Add(

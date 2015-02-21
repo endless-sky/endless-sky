@@ -879,3 +879,50 @@ ship "Quicksilver (Mark II)"
 	gun 6 -38 "Particle Cannon"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
+
+
+
+ship "Manta (Nuclear)"
+	sprite "ship/manta"
+	attributes
+		category "Light Warship"
+		"cost" 3400000
+		"shields" 5900
+		"hull" 1500
+		"required crew" 6
+		"bunks" 10
+		"mass" 170
+		"drag" 4.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 100
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Particle Cannon" 4
+		"Nuclear Missile" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Mass Expansion"
+		"Water Coolant System"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	engine -33 38
+	engine 33 38
+	gun -21 -35 "Particle Cannon"
+	gun 21 -35 "Particle Cannon"
+	gun -27 -35 "Particle Cannon"
+	gun 27 -35 "Particle Cannon"
+	gun -66 -32 "Nuclear Missile"
+	gun 66 -32 "Nuclear Missile"
+	explode "tiny explosion" 10
+	explode "small explosion" 20
+	explode "medium explosion" 15

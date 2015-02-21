@@ -164,3 +164,34 @@ effect "large anti-missile"
 	sound "heavy_anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
+
+effect "nuke explosion"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "huge_explosion"
+	"lifetime" 15
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 5
+	"velocity scale" .4
+
+effect "nuke residue fast"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 36
+	"random angle" 360
+	"random velocity" 8
+	"random spin" 5
+	"velocity scale" 0.1
+
+effect "nuke residue slow"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 60
+	"random angle" 360
+	"random velocity" 5
+	"random spin" 5
+	"velocity scale" 0.1
