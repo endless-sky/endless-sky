@@ -384,10 +384,11 @@ void MapDetailPanel::DrawOrbits() const
 	}
 	
 	planets.clear();
-	static const Color planetColor[3] = {
+	static const Color planetColor[4] = {
 		Color(1., 1., 1., 1.),
 		Color(.3, .3, .3, 1.),
-		Color(0., .8, 1., 1.)
+		Color(0., .8, 1., 1.),
+		Color(.8, .4, .2, 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -399,7 +400,8 @@ void MapDetailPanel::DrawOrbits() const
 			planets[object.GetPlanet()] = pos;
 		DotShader::Draw(pos,
 			object.Radius() * scale + 1., 0.,
-				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)]);
+				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)
+					+ (object.GetPlanet() && !object.GetPlanet()->CanLand())]);
 	}
 	
 	// Draw the name of the selected planet.
