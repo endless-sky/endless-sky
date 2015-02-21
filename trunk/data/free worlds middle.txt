@@ -1752,8 +1752,8 @@ mission "FW Defend New Tibet"
 			`	You are just about to leave when Freya spots something and points. "Look," he says, "Someone is coming down the mountain slope toward us." Sure enough, it's a group of several dozen people wearing the distinctive robes of the monks.`
 			label gunboat
 			`	As you wait for them to approach, JJ receives a message from one of the militia crews. "Sir, you have incoming! A scout ship, with Republic markings. Apparently unarmed. Shall we intercept them?"`
-			`	"Navy?" asks JJ. "Oathkeepers? Who are they?"`
-			`	The voice on the other end pauses. "Neither. Intelligence Bureau."`
+			`	"Oathkeepers?" asks JJ. "Or ordinary Navy? Who are they?"`
+			`	The voice on the other end pauses. "Neither. Navy Intelligence."`
 			`	JJ thinks about that for a second, then says, "Let them land. But follow them down, and if you see so much as a hint of them powering up weapons, blow them out of the sky. Understand?" The officer acknowledges his order and signs off.`
 			`	As the group of monks approaches from the mountainside, the scoutship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
 			choice
