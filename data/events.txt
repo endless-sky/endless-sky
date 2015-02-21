@@ -1509,3 +1509,108 @@ event "fw armistice"
 		"required reputation" 70
 	planet Mainsail
 		"required reputation" 40
+
+
+
+event "deep sky tech available"
+	outfitter "Deep Sky Basics"
+		"Ramscoop"
+		"LP144a Battery Pack"
+		"Beam Laser"
+		"Laser Turret"
+		"Heavy Laser"
+		"Torpedo"
+		"D23-QP Shield Generator"
+		"D41-HY Shield Generator"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Catalytic Ramscoop"
+		"Typhoon Torpedo"
+		"Electron Beam"
+	outfitter "Deep Sky Advanced"
+		"Ramscoop"
+		"LP144a Battery Pack"
+		"Beam Laser"
+		"Laser Turret"
+		"Heavy Laser"
+		"Torpedo"
+		"D23-QP Shield Generator"
+		"D41-HY Shield Generator"
+		"LP288a Battery Pack"
+		"LP576a Battery Pack"
+		"nGVF-CC Fuel Cell"
+		"nGVF-DD Fuel Cell"
+		"NT-200 Nucleovoltaic"
+		"Torpedo Launcher"
+		"Heavy Laser Turret"
+		"D67-TM Shield Generator"
+		"D94-YV Shield Generator"
+		"Security Station"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"A860 Atomic Thruster"
+		"A865 Atomic Steering"
+		"Dwarf Core"
+		"Catalytic Ramscoop"
+		"Typhoon Torpedo"
+		"Electron Beam"
+		"Typhoon Launcher"
+		"Electron Turret"
+
+
+
+event "navy out of rastaban"
+	system Rastaban
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 2400
+		fleet "Small Free Worlds" 500
+		fleet "Large Free Worlds" 700
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+		fleet "Navy Surveillance" 2000
+	system Girtab
+		government "Neutral"
+		fleet "Small Southern Merchants" 900
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Free Worlds" 1000
+		fleet "Large Free Worlds" 1700
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+		fleet "Navy Surveillance" 5000
+	system "Delta Sagittarii"
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Free Worlds" 600
+		fleet "Large Free Worlds" 900
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+		fleet "Navy Surveillance" 3000
+	system Lesath
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 1600
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1100
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 5000
+		fleet "Navy Surveillance" 4000
+	system "Alpha Arae"
+		fleet "Small Southern Merchants" 2100
+		fleet "Large Southern Merchants" 8000
+		fleet "Small Southern Pirates" 6000
+		fleet "Large Southern Pirates" 13000
+		fleet "Small Republic" 900
+		fleet "Large Republic" 800
+		fleet "Navy Surveillance" 1200
+

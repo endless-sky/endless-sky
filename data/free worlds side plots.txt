@@ -18,6 +18,7 @@ mission "FW Conservatory 1"
 	destination Winter
 	to offer
 		has "FW Senate 1B: done"
+		not "fw conservatory founded"
 	
 	on offer
 		conversation
@@ -142,6 +143,9 @@ mission "FW Wolf Pack 1"
 	to offer
 		has "event: catalytic ramscoop available"
 		random < 30
+		not "event: fw armistice"
+	to fail
+		has "event: fw armistice"
 	source
 		government "Free Worlds"
 	
@@ -178,6 +182,9 @@ mission "FW Wolf Pack 1B"
 	destination Solace
 	to offer
 		has "FW Wolf Pack 1: done"
+		not "event: fw armistice"
+	to fail
+		has "event: fw armistice"
 	cargo "Ramscoop Data Card" 0
 	
 	on offer
@@ -210,6 +217,9 @@ mission "FW Wolf Pack 2"
 	to offer
 		has "FW Wolf Pack 1B: done"
 		has "event: fw gets catalytic ramscoop"
+		not "event: fw armistice"
+	to fail
+		has "event: fw armistice"
 	
 	on offer
 		conversation
@@ -233,6 +243,9 @@ mission "FW Wolf Pack 2A"
 	waypoint Sarin
 	to offer
 		has "FW Wolf Pack 2: done"
+		not "event: fw armistice"
+	to fail
+		has "event: fw armistice"
 	
 	on offer
 		conversation
@@ -322,6 +335,9 @@ mission "FW Wolf Pack 3"
 	to offer
 		has "FW Wolf Pack 2A: done"
 		has "event: wolf pack 3 ready"
+		not "event: fw armistice"
+	to fail
+		has "event: fw armistice"
 	
 	on offer
 		dialog
@@ -389,6 +405,9 @@ mission "FW Wolf Pack 4"
 	to offer
 		has "FW Wolf Pack 3: done"
 		has "event: wolf pack 4 ready"
+		not "event: fw armistice"
+	to fail
+		has "event: fw armistice"
 	
 	on offer
 		dialog

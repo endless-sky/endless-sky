@@ -1,0 +1,237 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "FW Reconciliation 1"
+	name "Pick up Ijs from <planet>"
+	description "Bring Katya and Sawyer to <destination>, along with Raven's ship (the Eye of Horus), and pick up Ijs and his equipment for detecting atomic testing."
+	source "New Tibet"
+	destination "Winter"
+	to offer
+		has "FW Defend New Tibet: done"
+	passengers 2
+	
+	npc accompany save
+		personality timid
+		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	on offer
+		event "fw conservatory founded"
+		conversation
+			`On your way to the spaceport, you fill Katya in on the state of the war. She says that Intelligence has been keeping her in a relatively comfortable but totally isolated cell; she's not even sure what world it was on. From the fact that her questioners seemed to be growing increasingly frustrated about the Free Worlds, she knew that you were still managing to resist the Navy, but they did not share any details with her.`
+			`	You meet up with Raven in a small tea shop, close enough to the spaceport that the tables shake each time another Free Worlds capital ship arrives in response to the Syndicate attack. "Thank you for allowing me to land here," says Raven. "Now, what questions do you have for me?"`
+			choice
+				`	"Are we at peace with the Republic now?"`
+					goto peace
+				`	"Are you some sort of mind reader?"`
+					goto read
+				`	"What exactly is the job of Navy Intelligence?"`
+					goto intelligence
+			
+			label peace
+			`	"Well," she says, "only Parliament can decide that. But the Navy has been ordered not to attack Free Worlds ships, and the news that Sawyer brought has become public knowledge, so you'll find that most Republic worlds will be willing to welcome you, now."`
+			choice
+				`	"Are you some sort of mind reader?"`
+					goto read2
+				`	"What exactly is the job of Navy Intelligence?"`
+					goto intelligence2
+			
+			label read
+			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical connection, honestly none of us knows that for sure."`
+			choice
+				`	"Are we at peace with the Republic now?"`
+					goto peace2
+				`	"What exactly is the job of Navy Intelligence?"`
+					goto intelligence2
+			
+			label intelligence
+			`	She says, "I assume your real question is, why does Navy Intelligence exist at all, since the Republic already has a very powerful, well-funded, and nearly omniscient Department of Intelligence that exists independent of the Navy? The short answer is, we don't trust them. Someone needs to watch the watchers."`
+			choice
+				`	"Are we at peace with the Republic now?"`
+					goto peace2
+				`	"Are you some sort of mind reader?"`
+					goto read2
+			
+			label peace2
+			`	"Well," she says, "only Parliament can decide that. But the Navy has been ordered not to attack Free Worlds ships, and the news that Sawyer brought has become public knowledge, so you'll find that most Republic worlds will be willing to welcome you, now."`
+				goto next
+			
+			label read2
+			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical connection, honestly none of us knows that for sure."`
+				goto next
+			
+			label intelligence2
+			`	She says, "I assume your real question is, why does Navy Intelligence exist at all, since the Republic already has a very powerful, well-funded, and nearly omniscient Department of Intelligence that exists independent of the Navy? The short answer is, we don't trust them. Someone needs to watch the watchers."`
+				goto next
+			
+			label next
+			`	Katya asks, "What do we do now? Will Sawyer's evidence be enough to end this war?"`
+			`	Raven says, "Possibly. Especially because the Syndicate incriminated themselves by chasing after him. But the Syndicate has so much power in Parliament that the more evidence we can collect, the better. And that means we should visit the world where he said the development was done, and look for more evidence there."`
+			`	Katya says, "Captain <last>, is Ijs Springborn still working for the Free Worlds?"`
+			`	You tell her that the last you heard, Ijs was helping to found a new university on <planet>. She says, "We should bring him with us. Raven, will you be traveling with us too?"`
+			`	"Yes," she says. "I'll tell my ship and crew to get ready."`
+				accept
+
+
+
+event "fw empty gienah"
+	system Gienah
+		fleet "Small Core Pirates" 5000
+
+event "fw restore gienah"
+	system Gienah
+		fleet "Small Core Pirates" 500
+		fleet "Large Core Pirates" 800
+		fleet "Large Syndicate" 5000
+
+mission "FW Reconciliation 1B"
+	name "Travel to <planet>"
+	description "Bring Ijs, Sawyer, and Katya to <system>. Destroy any Syndicate ships that are watching you, then land on <planet>. Make sure Raven's ship arrives there as well. You may need to bribe Syndicate worlds to let you refuel."
+	landing
+	source Winter
+	destination Mutiny
+	clearance
+	passengers 3
+	to offer
+		has "FW Reconciliation 1: done"
+	
+	on offer
+		event "fw empty gienah"
+		conversation
+			`The moment you land Katya is eager to visit the Conservatory and find Ijs. In the time that he has been here, it has grown into a small but bustling community, with crowds of students walking from building to building carrying backpacks and wrapped in thick coats. You find Ijs's office; Katya knocks and says, "Professor Springborn, are you having office hours right now?"`
+			`	He recognizes her voice immediately and comes running out of the office to hug her. "Katya! You're free! Is the war over?"`
+			`	"Not quite," she says, "but we've found the bombers. Apparently the whole thing was sponsored by the Syndicate. Do you still have those isotopic fingerprints we collected back when this whole thing began?"`
+			`	Ijs quickly finds the data and collects his equipment. "I'll just have to let them know I need a substitute for a while," he says.`
+			`	Back at the spaceport, you meet up with Raven. "Here's the deal," she says. "We need to get to <planet>, destroy any Syndicate ships that are watching, and then land and hope we have time to collect evidence before more of them arrive. Unless you've got a ramscoop, we may need to bribe our way onto a few Syndicate worlds to refuel. And of course, I'll be counting on you to help keep my ship safe. Any questions?"`
+			choice
+				`	"No, I'm ready to go!"`
+					accept
+				`	"Won't they have destroyed any evidence long before we get there?"`
+			`	"Probably," she says, "but if they did any testing there, we should be able to pick up the residue. Or at least, my people will be able to, because they've got military grade Navy equipment."`
+			`	"So do we," says Ijs, sheepishly.`
+			`	Raven looks surprised for a moment, then says, "Never mind, I'm sure there's a good story of how you got your hands on that equipment, but it can wait for another time. Let's get moving."`
+				accept
+	
+	npc accompany save
+		personality timid
+		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	npc evade
+		personality heroic staying nemesis
+		system Gienah
+		government Syndicate
+		ship "Splinter (Mark II)" "Silence"
+		ship "Quicksilver (Mark II)" "Light-Bearer"
+		ship "Manta (Mark II)" "Morning Star"
+	
+	on complete
+		event "fw restore gienah"
+
+
+
+mission "FW Reconciliation 1C"
+	name "Bring evidence to <planet>"
+	description "Travel to <planet>, without you or Raven being killed by the Syndicate, to present your evidence and Sawyer's confession to Parliament."
+	landing
+	source Mutiny
+	destination Earth
+	passengers 3
+	to offer
+		has "FW Reconciliation 1B: done"
+	
+	on offer
+		conversation
+			`You skim low over the surface of <origin>, with the airlock slightly open to allow Ijs to collect atmospheric samples. He's dressed in a pressure suit, and over the suit's radio he says, "Any residue that's here will be very faint. Just a few more minutes."`
+			`	Sawyer directs you to the site where the secret development took place. Nothing is left but a wide and slightly overgrown clearing. After checking your radar and seeing no incoming ships, you risk landing. Sawyer says that there were buildings here a few years ago, but now not even their foundations remain, and a sensor sweep for metallic objects turns up nothing, not even as small as a single nail.`
+			`	However, Ijs points out a few subtle signs of human habitation. "A clearing like this would normally form in a fire," he says, "but notice, no fire scars on the trees on the edges of the clearing.`
+			`	Raven says, "And our geophysical radar is picking up structures underground. Several deep shafts, and rock that's been stressed and fractured by a large explosion. They did a good job of hiding everything else, but if you scar a planet that badly, it doesn't go away. The stones speak."`
+			`	As you continue inspecting the site, suddenly Raven's copilot shouts out the door of her gunboat at you. "Syndicate ships have entered the system! We need to get back to Earth with the evidence, quickly!"`
+				launch
+	
+	npc accompany save
+		personality timid
+		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	npc
+		personality heroic nemesis
+		government Syndicate
+		fleet "Small Syndicate"
+	
+	npc
+		personality heroic nemesis waiting
+		government Syndicate
+		fleet "Small Syndicate"
+	
+	npc
+		personality heroic nemesis waiting
+		government Syndicate
+		fleet "Large Syndicate"
+		system Markab
+	
+	npc
+		personality heroic nemesis waiting
+		government Syndicate
+		fleet "Large Syndicate"
+		system Alnair
+
+
+
+mission "FW Reconciliation 2"
+	name "Visit to the Deep"
+	description "One of the representatives from the Deep gave you a note requesting that you visit them on <destination>. Travel there with Katya, Ijs, Sawyer, and Raven."
+	landing
+	source Earth
+	destination Valhalla
+	passengers 3
+	to offer
+		has "FW Reconciliation 1C: done"
+	
+	npc accompany save
+		personality timid
+		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	on offer
+		event "deep sky tech available"
+		conversation
+			`As you came fleeing out of Syndicate space with their ships in hot pursuit, you couldn't help noticing that no Republic ships moved to help you or attack your pursuers. Apparently, they are not ready to strike the Syndicate until Parliament has made a decision. As you are waiting for Parliament to hear your evidence, Katya asks you quietly, "So, how are you feeling about our chances here?"`
+			choice
+				`	"I think our evidence is undeniable. There's no way we could fail to convince them."`
+					goto optimism
+				`	"I'm worried about how much power the Syndicate has in Parliament. What if they refuse to believe us?"`
+					goto pessimism
+			
+			label optimism
+			`	You continue to feel optimistic as Sawyer presents his story and his evidence, corroborated by the additional data collected by Ijs and by Raven's team. But as the member of Parliament begin questioning Sawyer, nearly all their questions sound more like an attack on him than an attempt to learn more about the Syndicate's involvement in the terrorist attacks.`
+				goto why
+			
+			label pessimism
+			`	Your pessimism turns out to be justified. The hearing begins well enough, with Sawyer's testimony and the additional evidence collected by Ijs and by Raven's team. But when the floor is opened for questions, nearly every question the members of Parliament ask seems intended not to get to the bottom of the terrorist plot, but to attack or discredit Sawyer.`
+				goto why
+			
+			label why
+			`	You can't help but realize how many people here represent Syndicate worlds. One of them, an older man, asks, "What possible reason would the Syndicate have to launch such an attack?"`
+			`	Sawyer says, "They have complex mathematical models of the galactic economy, and those models predicted a coming recession, the worst in centuries. This war forestalled that recession. From the perspective of someone who values economic growth above all else, war was a better alternative than recession."`
+			`	"That's utter nonsense," says the man. "That's the sort of absurd conspiracy theory that someone with no understanding of business would invent."`
+			`	The rest of the hearing is little better, but as you are leaving one of the representatives from the Deep shakes your hand, and you feel a piece of paper being pressed into your palm. You pocket it quietly and open it once you have returned to your ship. It says, "Visit us on Valhalla."`
+				accept
+
+
+
+mission "FW Navy Out Of Rastaban"
+	landing
+	destination Rastaban
+	to offer
+		has "FW Reconciliation 2: offered"
+		karma > 0
+	
+	on offer
+		event "navy out of rastaban" 5
+		conversation
+			`You receive a brief message from Alondo: "Good news, Captain! As a gesture of good faith the Navy is beginning to pull out of Rastaban and Delta Sagittarii. Those worlds will revert to our control soon. Be sure to tell the others. And, tell Katya I'm very glad she's free and am looking forward to seeing her." You pass on his message to Katya and Ijs.`
+				decline
