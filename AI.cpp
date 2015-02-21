@@ -1052,6 +1052,9 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 			// forward one time step.
 			p += v;
 			
+			if(p.Length() < outfit->WeaponGet("blast radius"))
+				continue;
+			
 			double steps = Armament::RendevousTime(p, v, vp);
 			if(steps == steps && steps <= lifetime)
 			{
