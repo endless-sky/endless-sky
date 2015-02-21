@@ -383,7 +383,7 @@ outfit "A860 Atomic Thruster"
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
 	"flare sound" "ion_drive"
-	description "The A860 atomic thruster is the most powerful engine sold on the open market in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and colling systems to handle it."
+	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 outfit "A125 Atomic Steering"
 	category "Engines"
