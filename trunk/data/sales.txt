@@ -377,6 +377,9 @@ outfitter "Pirate Outfits"
 	"Scram Drive"
 	"Local Map"
 
+outfitter "stack core"
+	"Stack Core"
+
 # These are not available on any planet; listing them here is just a convenience
 # to allow them to be all turned on for testing.
 outfitter "Special Outfits"

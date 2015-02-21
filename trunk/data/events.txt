@@ -1616,3 +1616,24 @@ event "navy out of rastaban"
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
 
+
+
+event "stack core for sale"
+	planet Solace
+		outfitter "Delta V Advanced"
+		outfitter "Kraz Basics"
+		outfitter "Common Outfits"
+		outfitter "Ammo South"
+		outfitter "Stack Core"
+	planet Zug
+		outfitter "Delta V Advanced"
+		outfitter "Kraz Basics"
+		outfitter "Common Outfits"
+		outfitter "Ammo South"
+		outfitter "Stack Core"
+	planet Wayfarer
+		outfitter "Delta V Advanced"
+		outfitter "Kraz Advanced"
+		outfitter "Common Outfits"
+		outfitter "Ammo South"
+		"Stack Core"
