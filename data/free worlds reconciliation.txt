@@ -428,6 +428,7 @@ mission "FW Embassy 1B"
 	description "Escort this luxury vessel carrying Republic ambassadors to the Free Worlds capital of <destination>."
 	source Earth
 	destination Bourne
+	passengers 2
 	to offer
 		has "FW Embassy 1: done"
 	
@@ -448,6 +449,7 @@ mission "FW Embassy 1C"
 	description `Escort a Dreadnought carrying Free Worlds ambassadors to Earth. This Dreadnought will then take part in your combined "police action" against the Syndicate.`
 	source Bourne
 	destination Earth
+	passengers 2
 	to offer
 		has "FW Embassy 1B: done"
 	
@@ -496,4 +498,158 @@ mission "FW Embassy 1C"
 				"Splinter" 2
 				"Manta" 3
 				"Quicksilver" 6
+
+
+
+mission "FW Syndicate Capture 1"
+	landing
+	name "Raid on Nimbus"
+	description "Travel to <destination>, along with ships from the Oathkeepers, the Deep, and the Free Worlds, to capture Alexander Soylent, a Syndicate executive. Do not allow your escorts to be destroyed."
+	source Earth
+	destination Nimbus
+	clearance
+	passengers 2
+	to offer
+		has "FW Embassy 1C: done"
+	
+	on offer
+		conversation
+			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally your receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
+			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
+				accept
+	
+	npc save
+		personality heroic
+		ship "Dreadnought" "F.S. Gibraltar"
+	
+	npc save
+		personality heroic waiting
+		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+	
+	npc save
+		personality heroic waiting
+		ship "Bactrian" "Unbreakable"
+		ship "Aerie" "Eagle's Eye"
+
+
+
+mission "FW Syndicate Capture 1B"
+	landing
+	name "Escape to <planet>"
+	description "You have captured the Syndicate executive Alexander Soylent. Now, bring him safely to <planet>, where he will face trial."
+	source Nimbus
+	destination Valhalla
+	passengers 2
+	to offer
+		has "FW Syndicate Capture 1: done"
+	
+	on offer
+		conversation
+			`As you approach the planet, your ships spread out and begin scanning the ocean surface for a yacht matching the description you were given. After a few tense moments of wondering if Soylent is off-world at the moment, you find the ship.`
+			`	With neither deflector shields nor any weaponry that you can see, the yacht clearly poses no threat to an armed starship. The Aerie that Edrick sent launches its two fighters; when they land on the yacht's deck, armed police officers emerge. Meanwhile your fleet is ready to open fire at the first sign of resistance.`
+			`	The officers soon radio you that they have found Soylent, and they bring him aboard your ship. Amid all the confusion, you notice a figure in diving gear who jumps off the rear of the yacht and disappears beneath the waves - one of Soylent's men, trying to escape. But since his leader is now in your custody, and your mission is accomplished, you see no reason to chase after him.`
+			`	Now all you need to do is return to <planet> without being destroyed by Syndicate ships...`
+				accept
+	
+	npc
+		personality heroic
+		ship "Dreadnought" "F.S. Gibraltar"
+	npc
+		personality heroic
+		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
+		ship "Combat Drone" "Red One"
+		ship "Combat Drone" "Red Two"
+		ship "Combat Drone" "Red Three"
+		ship "Combat Drone" "Red Four"
+	npc
+		personality heroic
+		ship "Bactrian" "Unbreakable"
+		ship "Aerie" "Eagle's Eye"
+		ship "Dagger" "Alpha One"
+		ship "Dagger" "Alpha Two"
+		ship "Dagger" "Alpha Three"
+		ship "Dagger" "Alpha Four"
+		ship "Dagger" "Alpha Five"
+	
+	npc
+		system Ankaa
+		government Syndicate
+		personality heroic nemesis
+		fleet
+			names "syndicate capital"
+			variant
+				"Splinter (Mark II)" 2
+				"Manta (Mark II)" 3
+				"Quicksilver (Mark II)" 6
+	npc
+		system Ruchbah
+		government Syndicate
+		personality heroic staying nemesis
+		fleet
+			names "syndicate capital"
+			variant
+				"Protector" 4
+				"Wasp" 12
+	
+	npc
+		system Ankaa
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Scheat
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Sheratan
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	
+	on enter Ankaa
+		dialog
+			`There is a warning light on your ship's main control panel that has never turned on. It is a relic of the dark age of galactic travel, part of a sensor system that is built into every starship, to detect incoming nuclear warheads. You had almost forgotten it even existed, because you have never seen it flash.`
+			`	It begins flashing now.`
+	on enter Scheat
+		dialog
+			`There is a warning light on your ship's main control panel that has never turned on. It is a relic of the dark age of galactic travel, part of a sensor system that is built into every starship, to detect incoming nuclear warheads. You had almost forgotten it even existed, because you have never seen it flash.`
+			`	It begins flashing now.`
+	on enter Sheratan
+		dialog
+			`There is a warning light on your ship's main control panel that has never turned on. It is a relic of the dark age of galactic travel, part of a sensor system that is built into every starship, to detect incoming nuclear warheads. You had almost forgotten it even existed, because you have never seen it flash.`
+			`	It begins flashing now.`
 

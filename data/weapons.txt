@@ -696,7 +696,7 @@ outfit "Nuclear Missile"
 		"hit effect" "nuke residue slow" 10
 		"die effect" "missile death"
 		"inaccuracy" 1
-		"velocity" 8
+		"velocity" 6
 		"lifetime" 800
 		"reload" 400
 		"firing energy" 10
