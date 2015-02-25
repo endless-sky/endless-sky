@@ -41,6 +41,7 @@ public:
 	static const int DIE = -3;
 	static const int DEFER = -4;
 	static const int LAUNCH = -5;
+	static const int FLEE = -6;
 	
 	
 public:

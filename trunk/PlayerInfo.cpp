@@ -986,8 +986,8 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {
-	shouldLaunch = (response == Conversation::LAUNCH);
-	if(response == Conversation::ACCEPT || shouldLaunch)
+	shouldLaunch = (response == Conversation::LAUNCH || response == Conversation::FLEE);
+	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		availableMissions.front().Do(Mission::ACCEPT, *this);
 		cargo.AddMissionCargo(&*availableMissions.begin());
