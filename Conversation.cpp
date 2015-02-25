@@ -36,6 +36,8 @@ namespace {
 			return Conversation::DEFER;
 		if(token == "launch")
 			return Conversation::LAUNCH;
+		if(token == "flee")
+			return Conversation::FLEE;
 	
 		return 0;
 	}
@@ -52,6 +54,8 @@ namespace {
 			return "defer";
 		else if(index == Conversation::LAUNCH)
 			return "launch";
+		else if(index == Conversation::FLEE)
+			return "flee";
 		else
 			return to_string(index);
 	}
