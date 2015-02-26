@@ -764,3 +764,101 @@ mission "FW Pug 1 Return"
 		conversation
 			`You receive an urgent message from JJ: "Captain <last>, return to New Tibet at once! We've received word that the Syndicate is somehow severing their hyperspace connections to the rest of human space. We're calling an emergency council meeting, to convene as soon as you arrive here."`
 				decline
+
+
+
+mission "FW Pug 2"
+	landing
+	name "Meet with Parliament"
+	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the Syndicate threat seems."
+	source "New Tibet"
+	destination "Earth"
+	to offer
+		has "FW Pug 1: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why. Then, more recently, the Syndicate fleet that had been occupying the Sol system retreated to Syndicate space - and the moment the last of their ships left, the hyperspace link disappeared behind them. We think the Syndicate has found a way to alter hyperspace links and is using it to wall themselves in, to escape retribution from the rest of humanity now that their guilt is so conclusively proven."`
+			choice
+				`	"Why don't we just let them go, then?"`
+					goto go
+				`	"What is the Republic planning to do in response?"`
+					goto republic
+			
+			label go
+			`	"Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off -- our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
+			`	"And it's not just that," says Katya. "Think of how many workers are on Syndicate worlds right now, having left their families on a different planet in order to go earn money in a Syndicate factory for a few years. Imagine a future where those families are forever divided."`
+				goto communications
+			
+			label republic
+			`	"They're in a panic," says Katya. "Earth is on the very boundary of the area that was cut off, and that means at any moment, they could choose to cut off humanity's homeworld from the rest of human space. And we don't even know if it is possible to restore the links once they have been cut."`
+				goto communications
+			
+			label communications
+			`	"According to our embassy," says Alondo, "all communications links with Syndicate space have been cut. The Net relies on hyperspace links to transmit messages, and there are no transmitter relays in the uninhabited systems that now form the only remaining link to Syndicate space."`
+			`	JJ says, "The Senate has agreed that we must put our differences with the Republic aside, and meet with Parliament immediately to deal with this crisis. <first>, we're asking you and Alondo to go to Earth, and lend your assistance as you see fit. Any questions?"`
+			choice
+				`	"No, I'm ready to go."`
+					accept
+				`	"How do we know the Syndicate is really behind this?"`
+			
+			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing -- it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
+				accept
+
+
+
+mission "FW Pug 2A"
+	landing
+	name "Reason with the Syndicate"
+	description "Travel with Alondo to meet with the Syndicate leaders on Foundry, determine their intentions, and convince them not to completely seal themselves off from human space. Hurry, before they cut the last link."
+	source Earth
+	destination Foundry
+	clearance
+	passengers 1
+	to offer
+		has "FW Pug 2: done"
+	
+	on offer
+		event "fw syndicate welcoming" 11
+		conversation
+			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
+			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber asking the members of Parliament for more information, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they fear that the one remaining link will disappear any day now.`
+			`	As the conversation continues, it eventually becomes clear why you have been called here: the Republic wants you to take on the risk none of them is willing to face, and travel through to Syndicate space to reason with their leaders.`
+			choice
+				`	"If this is what it takes to keep human space from being torn into fragments, I will risk my ship to go meet with the Syndicate."`
+					goto yes
+				`	"This sounds like a job for the Navy, not for me. I can't risk being trapped in hostile Syndicate space forever."`
+					goto no
+				`	"Did the Syndicate communicate anything to you before the links were cut, that might help us guess at their intentions?"`
+			
+			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other, some sort of internal power struggle."`
+			`	Another man speaks up and adds, "We had also been aware for some time that the Syndicate had gained access to alien technology, through encounters with a nomadic alien species currently inhabiting the galactic core." From the surprised expressions on the faces of many of the other members of Parliament, it's clear that this information is new to them.`
+			choice
+				`	"Very well, we will accept this mission."`
+					goto yes
+				`	"Sorry, I'm not willing to risk my ship over this."`
+					goto no
+			
+			label no
+			`	Alondo says, quietly but firmly, "Captain <last>, the Senate has asked you to assist the Republic in this matter, and the Council agrees. I know the risk is great, but you swore to serve the Free Worlds, and the Free Worlds are now commanding you to take this mission."`
+			`	"Very well," you say, "I accept. But I'm afraid of what will happen when we reach Syndicate space."`
+			
+			label yes
+			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So, we must hurry to the Syndicate headquarters on <planet> immediately."`
+				accept
+
+
+
+mission "FW Pug 2A Visit"
+	landing
+	source
+		near Achernar 1 100
+		government Syndicate
+	to offer
+		has "FW Pug 2A: active"
+	
+	on offer
+		conversation
+			`Oddly, when you land on <origin> you find that the people here are in as much of a state of confusion and fear as back on Earth. Either no one knows what is going on and why they have been nearly cut off from the rest of human space, or every single person you talk to is united in a conspiracy to feign ignorance. They urge you to continue your journey to meet with the Syndicate executives on Foundry. "Maybe you can talk some sense into them," says one merchant captain. "First the nukes, and now this. The extremist faction within the Syndicate is getting out of hand."`
+				decline
