@@ -1657,49 +1657,117 @@ event "pug invasion"
 	unlink "Zeta Aquilae" Ascella
 	unlink Rasalhague Cebalrai
 	unlink Rasalhague Ascella
-	unlink Vega Menkent
-	unlink Vega Sol
-	unlink Altair Sol
-	unlink Altair Fomalhaut
-	unlink "Delta Capricorni" Markab
-	unlink "Delta Capricorni" Scheat
-	unlink Alderamin Alnair
 	link Deneb "Zeta Aquilae"
 	link Deneb Rasalhague
-	link Deneb Vega
-	link Deneb Altair
-	link Deneb "Delta Capricorni"
-	link Deneb Alderamin
+	unvisit "Zeta Aquilae"
+	unvisit Rasalhague
+	unvisit Orvala
+	unvisit Deneb
 	system "Zeta Aquilae"
+		government Pug
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
 		fleet "Small Pug" 1000
 		fleet "Large Pug" 2000
 	system Rasalhague
+		government Pug
 		fleet "Small Southern Merchants" 1500
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Pug" 800
 		fleet "Large Pug" 2000
+	system Orvala
+		government Pug
+
+
+
+event "pug invasion 2"
+	unlink Vega Menkent
+	unlink Vega Sol
+	unlink Altair Sol
+	unlink Fomalhaut Markab
+	link Deneb Vega
+	link Deneb Altair
+	unvisit Vega
+	unvisit Altair
+	unvisit Nocte
+	unvisit Fomalhaut
+	unvisit Markab
 	system Vega
+		government Pug
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 3000
 		fleet "Small Pug" 800
 		fleet "Large Pug" 1200
 	system Altair
+		government Pug
 		fleet "Small Core Merchants" 400
 		fleet "Large Core Merchants" 600
 		fleet "Small Northern Merchants" 1000
 		fleet "Large Northern Merchants" 3000
 		fleet "Small Pug" 700
 		fleet "Large Pug" 900
+	system Fomalhaut
+		government Pug
+		fleet "Small Core Merchants" 1000
+		fleet "Large Core Merchants" 1200
+		fleet "Small Pug" 1400
+		fleet "Large Pug" 2000
+	system Nocte
+		government Pug
+
+
+
+event "pug invasion 3"
+	unlink "Delta Capricorni" Markab
+	unlink "Delta Capricorni" Scheat
+	unlink Alderamin Alnair
+	link Deneb "Delta Capricorni"
+	link Deneb Alderamin
+	unvisit "Delta Capricorni"
+	unvisit Alderamin
+	unvisit Scheat
+	unvisit Alnair
 	system "Delta Capricorni"
+		government Pug
 		fleet "Small Core Merchants" 700
 		fleet "Large Core Merchants" 800
 		fleet "Small Pug" 800
 		fleet "Large Pug" 1100
 	system Alderamin
+		government Pug
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 3200
 		fleet "Small Pug" 1200
 		fleet "Large Pug" 2500
+
+
+
+event "pug invasion 4"
+	unlink Caph Sol
+	unlink Caph Eteron
+	unlink Diphda Acamar
+	unlink Diphda Ankaa
+	link Fomalhaut Caph
+	unvisit Caph
+	unvisit Diphda
+	unvisit Ankaa
+	system Sol
+		fleet "Small Northern Merchants" 300
+		fleet "Large Northern Merchants" 500
+		fleet "Small Republic" 600
+		fleet "Large Republic" 900
+		fleet "Small Core Merchants" 1000
+		fleet "Large Core Merchants" 2000
+	system Diphda
+		government Pug
+		fleet "Small Core Merchants" 2000
+		fleet "Large Core Merchants" 600
+		fleet "Small Pug" 1000
+		fleet "Large Pug" 1500
+	system Caph
+		government Pug
+		fleet "Small Core Merchants" 500
+		fleet "Large Core Merchants" 600
+		fleet "Small Pug" 700
+		fleet "Large Pug" 1000
 

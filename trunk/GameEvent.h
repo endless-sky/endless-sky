@@ -17,10 +17,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 
 #include <list>
+#include <vector>
 
 class DataNode;
 class DataWriter;
 class PlayerInfo;
+class System;
 
 
 
@@ -46,6 +48,7 @@ private:
 	Date date;
 	ConditionSet conditionsToApply;
 	std::list<DataNode> changes;
+	std::vector<const System *> systemsToUnvisit; 
 };
 
 

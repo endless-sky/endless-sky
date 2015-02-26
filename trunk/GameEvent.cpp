@@ -33,6 +33,8 @@ void GameEvent::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Token(0) == "unvisit" && child.Size() >= 2)
+			systemsToUnvisit.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "system" || child.Token(0) == "planet"
 				|| child.Token(0) == "shipyard" || child.Token(0) == "outfitter"
 				|| child.Token(0) == "fleet" || child.Token(0) == "government"
@@ -51,6 +53,10 @@ void GameEvent::Save(DataWriter &out) const
 	if(date)
 		out.Write("date", date.Day(), date.Month(), date.Year());
 	conditionsToApply.Save(out);
+	
+	for(const System *system : systemsToUnvisit)
+		if(system && !system->Name().empty())
+			out.Write("unvisit", system->Name());
 	
 	for(const DataNode &change : changes)
 		out.Write(change);
@@ -93,4 +99,7 @@ void GameEvent::Apply(PlayerInfo &player)
 		const Government *gov = GameData::Governments().Get(name);
 		gov->AddReputation(it->second);
 	}
+	
+	for(const System *system : systemsToUnvisit)
+		player.Unvisit(system);
 }

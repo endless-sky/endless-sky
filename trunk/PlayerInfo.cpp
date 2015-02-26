@@ -1112,6 +1112,16 @@ void PlayerInfo::Visit(const System *system)
 
 
 
+// Mark a system as unvisited, even if visited previously.
+void PlayerInfo::Unvisit(const System *system)
+{
+	auto it = visited.find(system);
+	if(it != visited.end())
+		visited.erase(it);
+}
+
+
+
 bool PlayerInfo::HasTravelPlan() const
 {
 	return !travelPlan.empty();

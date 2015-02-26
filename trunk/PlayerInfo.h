@@ -134,6 +134,8 @@ public:
 	bool HasVisited(const System *system) const;
 	bool KnowsName(const System *system) const;
 	void Visit(const System *system);
+	// Mark a system as unvisited, even if visited previously.
+	void Unvisit(const System *system);
 	
 	bool HasTravelPlan() const;
 	const std::vector<const System *> &TravelPlan() const;
