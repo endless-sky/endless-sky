@@ -82,22 +82,21 @@ void GameEvent::SetDate(const Date &date)
 
 void GameEvent::Apply(PlayerInfo &player)
 {
-	static const string lowerStr = "reputation: ";
-	// '!' = ' ' + 1.
-	static const string upperString = "reputation:!";
-	auto it = player.Conditions().lower_bound(lowerStr);
-	auto end = player.Conditions().lower_bound(upperString);
-	player.Conditions().erase(it, end);
+	for(const auto &it : GameData::Governments())
+	{
+		int rep = it.second.Reputation();
+		player.Conditions()["reputation: " + it.first] = rep;
+	}
+	
 	conditionsToApply.Apply(player.Conditions());
 	player.AddChanges(changes);
 	
-	it = player.Conditions().lower_bound(lowerStr);
-	end = player.Conditions().lower_bound(upperString);
-	for( ; it != end; ++it)
+	for(const auto &it : GameData::Governments())
 	{
-		string name = it->first.substr(lowerStr.length());
-		const Government *gov = GameData::Governments().Get(name);
-		gov->AddReputation(it->second);
+		int rep = it.second.Reputation();
+		int newRep = player.Conditions()["reputation: " + it.first];
+		if(rep != newRep)
+			it.second.AddReputation(newRep - rep);
 	}
 	
 	for(const System *system : systemsToUnvisit)
