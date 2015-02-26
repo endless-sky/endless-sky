@@ -30,7 +30,8 @@ After any text message, or in response to any choice, the conversation may jump 
 
   * accept: The player accepts this mission (if one is being offered).
   * launch: The mission is accepted, _and_ the player immediately takes off from this planet.
-  * decline: The mission is declined.
+  * decline: The mission is declined. (This is also useful for creating conversations that appear when you land or enter a spaceport, but that are intended just to provide flavor, not to lead to a mission.)
+  * flee: The mission is declined, _and_ the player immediately takes off from this planet.
   * defer: The mission is declined, but it will not be marked as "offered," so it can be offered again at a later date even if it is not a repeating mission.
   * die: The player is killed.
 
@@ -58,11 +59,11 @@ You can go to labels earlier on in the conversation if you want, but be careful 
 
 = Scenes =
 
-Each conversation can start with a "scene" image. This will generally be an image from images/scene/, but you can use other images as well, such as ship images or planet images. The image should be no more than 540 pixels wide.
+A conversation can contain a "scene" image at any point. This will generally be an image from images/scene/, but you can use other images as well, such as ship images or planet images. The image should be no more than 540 pixels wide.
 
 <img src="https://endless-sky.googlecode.com/svn/trunk/images/scene/engine.jpg">
 
-If it seems like there is a need for it, eventually the conversation format will be modified so that you can insert a scene at any point, but right now they always appear at the beginning and you can have only one scene per conversation.
+Try to avoid using very tall images for scenes, to avoid the need for scrolling on short screens.
 
 = Labels =
 
@@ -93,7 +94,7 @@ Each option is represented by a single line of text, which will generally be enc
 
 = Branch =
 
-A branch takes the conversation to one of two different labels depending on a set of conditions. The conditions are specified in the same format as in [CreatingMissions missions].
+A branch takes the conversation to one of two different labels depending on a set of conditions. The conditions are specified in the same format as when CreatingMissions.
 
 The "branch" keyword is followed by one or two label names. The first is the label to jump to if the subsequent conditions are all true. The second is the one to jump to if any of the conditions are false. If no second label is supplied, the "false" branch simply continues to the next entry in the conversation.
 
