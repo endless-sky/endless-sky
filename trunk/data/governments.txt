@@ -77,6 +77,17 @@ government "Syndicate"
 		"Korath" -.5
 	"bribe" .08
 
+government "Syndicate (Extremist)"
+	swizzle 1
+	color 0 .41 .71
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Syndicate" -.1
+		"Republic" -.1
+		"Free Worlds" -.1
+	"bribe" .08
+
 government "Pirate"
 	swizzle 6
 	color .78 0 0

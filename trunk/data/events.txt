@@ -1771,3 +1771,12 @@ event "pug invasion 4"
 		fleet "Small Pug" 700
 		fleet "Large Pug" 1000
 
+
+
+event "fw syndicate welcoming"
+	"reputation: Syndicate" = 1
+	system Algenib
+		government "Syndicate (Extremist)"
+		fleet "Small Core Pirates" 1500
+		fleet "Large Core Pirates" 2000
+		fleet "Syndicate Extremists" 200
