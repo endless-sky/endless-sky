@@ -3454,7 +3454,7 @@ system Deneb
 	object
 		sprite star/g5
 		period 10
-	object "Pug"
+	object "Pugglemug"
 		sprite planet/ocean2
 		distance 317.56
 		period 90.543791
@@ -3462,7 +3462,7 @@ system Deneb
 			sprite planet/dust3
 			distance 159
 			period 16.370052
-	object "Pug Prime"
+	object "Pugglequat"
 		sprite planet/desert3
 		distance 966.8
 		period 480.9777
@@ -12699,13 +12699,13 @@ planet Prime
 	bribe .05
 	security .6
 
-planet "Pug"
+planet Pugglemug
 	landscape land/canyon3
 	description `This planet appears to be the Pug capital. Cities with impossibly high towers, connected by arches and bridges, are sprinkled across the landscape, and surrounding the cities are shorter, uglier buildings used as factories. However, a surprising amount of the land area is unsettled, its natural beauty untouched. Given how much damage humans did to Earth before discovering the hyperdrive, you find it hard to fathom how a species isolated in a single star system could have enough restraint to leave their home so pristine.`
-	spaceport `The primary spaceport here is marked by an enormous collection of arches forming an open-air dome. Based on the power cables and devices attached to the sides of the arches, you suspect that the entire dome can be protects by an energy shield if necessary. Inside it, landing platforms jut out from the arches at many different levels.`
+	spaceport `The primary spaceport here is marked by an enormous collection of arches forming an open-air dome. Based on the power cables and devices attached to the sides of the arches, you suspect that the entire dome can be protected by an energy shield if necessary. Inside it, landing platforms jut out from the arches at many different levels.`
 	security 1
 
-planet "Pug Prime"
+planet Pugglequat
 	landscape land/forest2
 	description `This planet has a handful of Pug cities on it, full of tall, graceful spires and arches. However, most of the land area is either left in its natural state, or in use for mining; it seems to abound in both oil reserves and metal ore. The climate is somewhat cold by human standards, but still quite livable. You are not sure if that is because the Pug were just lucky enough to have a star system with two hospitable planets, or whether they have employed some sort of terraforming.`
 	spaceport `The spaceport here is a set of seven tall towers of varying heights, each with landing pads jutting out from its sides like leaves from the stalk of a plant. The towers are joined to each other at various levels by arches.`
