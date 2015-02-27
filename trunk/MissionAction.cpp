@@ -189,15 +189,24 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	for(const auto &it : gifts)
 	{
 		int count = it.second;
-		string message = to_string(abs(count)) + " " + it.first->Name();
-		if(count == 1)
-			message + " was added to your ";
-		else if(count == -1)
-			message += " was removed from your ";
-		else if(count > 0)
-			message += " were added to your ";
+		string name = it.first->Name();
+		if(!count || name.empty())
+			continue;
+		
+		string message;
+		if(abs(count) == 1)
+		{
+			char c = tolower(name.front());
+			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+			message = (isVowel ? "An " : "A ") + name + " was ";
+		}
 		else
-			message += " were removed from your ";
+			message = to_string(abs(count)) + " " + name + "s were ";
+		
+		if(count > 0)
+			message += "added to your ";
+		else
+			message += "removed from your ";
 		
 		bool didCargo = false;
 		bool didShip = false;
