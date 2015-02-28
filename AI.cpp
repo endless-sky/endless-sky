@@ -726,7 +726,10 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	}
 	// If we are moving too fast, point in the right direction.
 	else if(Stop(ship, command, ship.Attributes().Get("jump speed")))
-		command.SetTurn(TurnToward(ship, direction));
+	{
+		if(!ship.Attributes().Get("jump drive"))
+			command.SetTurn(TurnToward(ship, direction));
+	}
 }
 
 
@@ -1364,6 +1367,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 		{
 			PrepareForHyperspace(ship, command);
 			command |= Command::JUMP;
+			if(keyHeld.Has(Command::JUMP))
+				command |= Command::WAIT;
 		}
 	}
 	else if(keyStuck.Has(Command::BOARD) && ship.GetTargetShip())

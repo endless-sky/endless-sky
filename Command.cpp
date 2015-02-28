@@ -55,6 +55,7 @@ const Command Command::FULLSCREEN(1uL << 20, "Toggle fullscreen");
 const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
 const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
+const Command Command::WAIT(1uL << 24, "");
 
 
 

@@ -49,6 +49,7 @@ public:
 	static const Command FIGHT;
 	static const Command GATHER;
 	static const Command HOLD;
+	static const Command WAIT;
 	
 public:
 	Command() = default;
