@@ -1014,7 +1014,7 @@ mission "FW Pug 2C: Side"
 	
 	on offer
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, grey-skinned aliens who you assume are the Pug. Each one is holding a metal staff that you suspect is some sort of weapon.`
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that you suspect is some sort of weapon.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
@@ -1102,7 +1102,7 @@ mission "FW Pug 3"
 	on offer
 		conversation
 			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
-			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the grey-skinned, oddly delicate aliens. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
+			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, oddly delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
 			choice
 				`	"No, we are here to find out why you attacked us, and to demand that you leave us alone."`
 				`	"We are willing to make peace, but only if you give us back control of our star systems."`
@@ -1125,3 +1125,179 @@ mission "FW Pug 3"
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. And so we will send you back to your people now, to tell them that they have nothing to fear, and that they should await our peace and our protection."`
 			`	The aliens appear to think the conversation is over; they walk away and leave you puzzling over what they said. "We should report back to Earth," says Alondo. "This situation is far beyond what we can handle alone."`
 				accept
+
+
+
+mission "FW Pug 3: Deep"
+	landing
+	name "Visit the Deep (optional)"
+	description "The Pug hinted that they have helped the people of the Deep in the past. Talk to Edrick, the governor of Valhalla, to see what he knows about the Pug. (This mission is optional.)"
+	source Earth
+	destination Valhalla
+	to offer
+		has "FW Pug 3: done"
+	to fail
+		has "FW Pug 3A: done"
+	
+	on complete
+		conversation
+			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had had dealings with the Deep in the past. Do you know anything about that?"`
+			`	Edrick says, "Can you describe what these aliens look like?"`
+			`	"Pale skin, delicate physique, most of them a little under two meters tall," says Alondo. "Long legs, short torsos. And they probably have blue blood."`
+			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha War. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
+			choice
+				`	"Do you know what they wanted from humanity, back then?"`
+				`	"What strengths and weaknesses do their ships have?"`
+					goto strengths
+			
+			`	"If the stories are true, all they wanted was to help us win the war against the Alphas," says Edrick. "They never asked for any payment, except that they borrowed some of our ships, packed them full of alien technology, and fought alongside our ships, masquerading as human ships. They also gave us beam weapon technology; five centuries later, we've only just reached the point where we understand that technology well enough to improve on it."`
+			`	"What do you know about their warships?" asks Alondo.`
+			
+			label strengths
+			`	"I know that they had a technology that allowed their shields to recharge very quickly," says Edrick. "So to destroy one of their ships would require a considerable amount of concentrated firepower. But are you sure we need to fight them? My people have believed for generations that the 'elven folk' were a friendly species, not a hostile one."`
+			choice
+				`	"They seem intent on taking over all of human space and forcing us to submit to their authority. So we must fight them."`
+				`	"It's possible that they think they are helping us right now, by interrupting our civil war, but all the same we must fight back."`
+			`	Edrick looks disappointed at that. "I understand. I believe that they honestly think they are doing what is best for us, but clearly we cannot tolerate this invasion. Good luck, Captain." He dismisses you.`
+
+
+
+mission "FW Pug 3: Quarg"
+	landing
+	name "Visit the Quarg (optional)"
+	description "Visit the Quarg on <planet> to see if they know anything about the Pug or are willing to help you fight them. (This mission is optional.)"
+	source Earth
+	destination Lagrange
+	to offer
+		has "FW Pug 3: done"
+	to fail
+		has "FW Pug 3A: done"
+	
+	on complete
+		conversation
+			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can talk to us." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you direct us to someone we can talk to?"`
+			`	It nods and gestures for you to follow, and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Were you led to this individual because this is the governor of the station, or just because this is one who speaks human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			choice
+				`	"Can you help us to fight the Pug?"`
+				`	"Can you give us information about the Pug?"`
+					goto info
+			
+			`	"No," it says. Several stripes of skin on its grey face turn a dull red; you have heard that this might indicate sadness, or embarrasment, or possibly anger -- one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
+			`	"So you've encountered the Pug before?" asks Alondo.`
+			
+			label info
+			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. The came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They claim to be acting on a special knowledge of future events, but we do not know if that knowledge is genuine or only an excuse to play tricks on other species."`
+			choice
+				`	"If they're so advanced, do we have any chance of defeating them?"`
+					goto defeat
+				`	"Do you think the Drak would join us in fighting them?"`
+					goto drak
+			
+			label defeat
+			`	"Yes," it says. "In battle the Pug always respond with just enough force that their opponent has a fair chance at victory."`
+			`	Alondo is confused. "What do you mean?" he asks.`
+				goto balance
+			
+			label drak
+			`	"No," it says. "The Drak do not interfere in a war unless their rules are broken. And, it would not help you anyway; the Pug always adjust the strength of their fleet to give their opponent what they consider to be fair odds."`
+			`	"Wait," says Alondo, "you're saying they would intentionally attack us with a weaker force instead of using all their strength and guaranteeing victory?"`
+				goto balance
+			
+			label balance
+			`	"War is a game to the Pug," the Quarg says. "They are a strange species. Even if they start a war, their goal may not be to win it, but to lose in a certain way. We have seen them lose battles against species far less advanced than your own, even though they had weapons that would have guaranteed them victory. If they want war, you must play their game, and if you play their game, they may allow you to win."`
+			choice
+				`	"Thank you for your time."`
+					decline
+				`	"Is there any chance you could give us some jump drives, so we can bring a bigger fleet against the Pug?"`
+			
+			`	"No, I apologize," it says. "We see that you have somehow gained access to a jump drive, and we will not take it away from you, but we also cannot give your species more of them."`
+				decline
+
+
+
+mission "FW Pug 3A"
+	landing
+	name "Gather the fleet"
+	description "Travel to <destination>, and requisition two Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
+	source Earth
+	destination Zug
+	to offer
+		has "FW Pug 3: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`Your ship caused quite a stir when it entered the Sol system via jump drive. Fortunately Parliament allowed you to land in one of their private hangars, but even so a few press drones managed to follow your ship into the hangar and have cameras pointed at you from the moment you and Alondo disembark.`
+			`	You report to Parliament that the hyperspace links are being cut not by the Syndicate, but by an alien species, and that the Syndicate has offered to supply jump drives for an attack fleet if the Republic and the Free Worlds will supply the ships. You also report that the aliens' intention is to spread out to occupy more of human space and to demand a fraction of the resource production of all human planets, supposedly in the name of bringing "peace."`
+			`	One of the Senators asks, "Do you think we have any chance of defeating the aliens?"`
+			choice
+				`	"It's possible. They all live in a single star system, so we outnumber them."`
+				`	"It's unlikely. If we have any options other than fighting them, we should explore those options."`
+			`	They have many other questions after that; you answer them as best you can, and leave them with full copies of your sensor logs of the alien ships and planets. Parliament agrees that the next step is for you to convince the Free Worlds to contribute two Dreadnoughts to the attack fleet. "Also," one of the members of Parliament says, "maybe you could talk to those aliens who live down in your part of space, see if they can help us out in any way. It sure would be handy if the Pug turn out to be an enemy of theirs."`
+			`	During the hearing, you refrained from mentioning that the Pug claimed to have assisted the Deep in the past, but once you are back in your ship Alondo says, "Maybe we should also visit Valhalla and see if Governor Flint has any information for us."`
+				accept
+
+
+
+mission "FW Pug 3B"
+	landing
+	name "Escort to <planet>"
+	description "Travel to <planet> with two Free Worlds Dreadnoughts that will be joining the fight against the Pug."
+	source Zug
+	destination Geminus
+	to offer
+		has "FW Pug 3A: done"
+	passengers 1
+	
+	on offer
+		"salary: Free Worlds" = 6000
+		conversation
+			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your asault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
+			`	"I guess that makes sense," says Alondo.`
+			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be six thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
+			`	Alondo wishes you the best of luck and leaves to catch a transport to Bourne, while Freya takes you to the spaceport and introduces you to the captains of the two Dreadnoughts that have volunteered to fight the Pug. She also asks you all sorts of technical questions: what sort of propulsion and energy sources the Pug seem to use, what their weapon capabilities are, and whether you saw any sign of the technology that was used to destroy the hyperspace links. You have a hard time answering her, but are glad that she will be with you this time to see the aliens firsthand.`
+				accept
+	
+	npc accompany save
+		personality disables
+		ship "Dreadnought" "F.S. Independence"
+		ship "Dreadnought" "F.S. Freedom"
+
+
+
+mission "FW Pug 3C"
+	landing
+	name "Escort to Hephaestus"
+	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
+	source Geminus
+	destination Hephaestus
+	to offer
+		has "FW Pug 3B: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
+			choice
+				`	"Um, we're right in the middle of resisting an alien invasion, here."`
+				`	"Sorry, we aren't authorized to share military secrets with you."`
+				`	"Sure, I'm sure we could arrange something."`
+					goto yes
+			
+			`	Freya laughs. "Give him a break, <first>. He's just thinking like an engineer, rather than a tactician. I mean, I'd certainly jump at the chance to tour a Cruiser even at a time like this."`
+			
+			label yes
+			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Frey whispers to you, "Just think of this as another step toward peace and reconciliation."`
+			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few miles away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
+			`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
+			`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
+				accept
+	
+	npc accompany save
+		ship "Dreadnought" "F.S. Independence"
+		ship "Dreadnought" "F.S. Freedom"
+		ship "Cruiser (Mark II)" "F.S. Everest"
+		ship "Cruiser (Mark II)" "F.S. Denali"
+		ship "Carrier (Mark II)" "F.S. Vesuvius"
+		ship "Carrier (Mark II)" "F.S. Haleakala"
+
