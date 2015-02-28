@@ -617,6 +617,9 @@ void PlayerInfo::SellShip(const Ship *selected)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
+			for(const auto &it : selected->Outfits())
+				soldOutfits[it.first] += it.second;
+			
 			accounts.AddCredits(selected->Cost());
 			ships.erase(it);
 			return;
@@ -797,6 +800,7 @@ void PlayerInfo::TakeOff()
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
+	soldOutfits.clear();
 	
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
@@ -1190,6 +1194,15 @@ void PlayerInfo::SelectNext()
 			return;
 		}
 	selectedWeapon = nullptr;
+}
+
+
+
+// Keep track of any outfits that you have sold since landing. These will be
+// available to buy back until you take off.
+map<const Outfit *, int> &PlayerInfo::SoldOutfits()
+{
+	return soldOutfits;
 }
 
 

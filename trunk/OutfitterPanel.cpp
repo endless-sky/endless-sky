@@ -49,7 +49,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, CATEGORIES)
+	: ShopPanel(player, CATEGORIES), available(player.SoldOutfits())
 {
 	for(const pair<string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);

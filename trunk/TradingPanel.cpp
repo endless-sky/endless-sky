@@ -182,6 +182,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 		for(const auto &it : player.Cargo().Outfits())
 		{
+			player.SoldOutfits()[it.first] += it.second;
 			player.Accounts().AddCredits(it.second * it.first->Cost());
 			player.Cargo().Transfer(it.first, it.second);
 		}
