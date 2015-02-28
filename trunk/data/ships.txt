@@ -738,7 +738,7 @@ ship "Dreadnought"
 		"fuel capacity" 600
 		"cargo space" 100
 		"outfit space" 790
-		"weapon capacity" 350
+		"weapon capacity" 360
 		"engine capacity" 190
 		weapon
 			"blast radius" 260
