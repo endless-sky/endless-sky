@@ -1096,6 +1096,8 @@ bool Ship::CanHyperspace() const
 		return false;
 	if(fuel < attributes.Get("jump fuel"))
 		return false;
+	if(commands.Has(Command::WAIT))
+		return false;
 	
 	Point direction = GetTargetSystem()->Position() - currentSystem->Position();
 	
