@@ -118,7 +118,7 @@ outfit "RT-I Radiothermal"
 	category "Power"
 	cost 300000
 	thumbnail "outfit/small radiothermal"
-	"mass" 50
+	"mass" 45
 	"outfit space" -45
 	"energy generation" 4.4
 	"heat generation" 18
@@ -128,7 +128,7 @@ outfit "S3 Thermionic"
 	category "Power"
 	cost 360000
 	thumbnail "outfit/small thermionic"
-	"mass" 60
+	"mass" 55
 	"outfit space" -55
 	"energy generation" 5.0
 	"heat generation" 12
@@ -138,7 +138,7 @@ outfit "NT-200 Nucleovoltaic"
 	category "Power"
 	cost 570000
 	thumbnail "outfit/small nucleovoltaic"
-	"mass" 70
+	"mass" 65
 	"outfit space" -65
 	"energy generation" 7.2
 	"heat generation" 15
