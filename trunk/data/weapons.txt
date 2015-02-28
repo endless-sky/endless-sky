@@ -181,7 +181,7 @@ outfit "Electron Beam"
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2.1
+		"firing energy" 1.5
 		"firing heat" 2.6
 		"shield damage" 2.9
 		"hull damage" 5.9
@@ -250,7 +250,7 @@ outfit "Electron Turret"
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4.2
+		"firing energy" 3.0
 		"firing heat" 5.2
 		"shield damage" 5.8
 		"hull damage" 11.8
