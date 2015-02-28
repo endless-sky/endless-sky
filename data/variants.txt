@@ -926,3 +926,190 @@ ship "Manta (Nuclear)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
+
+
+
+ship "Cruiser" "Cruiser (Jump)"
+	sprite "ship/cruiser"
+	licenses Republic
+		Navy
+		Cruiser
+	attributes
+		category "Heavy Warship"
+		"cost" 11200000
+		"shields" 19600
+		"hull" 6400
+		"required crew" 84
+		"bunks" 136
+		"mass" 680
+		"drag" 10.1
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 60
+		"outfit space" 760
+		"weapon capacity" 320
+		"engine capacity" 170
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Electron Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Jump Drive"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+	engine -29 156
+	engine 29 156
+	gun -41 -52 "Typhoon Launcher"
+	gun 41 -52 "Typhoon Launcher"
+	gun -31 -63 "Sidewinder Missile Launcher"
+	gun 31 -63 "Sidewinder Missile Launcher"
+	gun -20 -44 "Sidewinder Missile Launcher"
+	gun 20 -44 "Sidewinder Missile Launcher"
+	turret 0 -40 "Electron Turret"
+	turret -33 -19 "Electron Turret"
+	turret 33 -19 "Electron Turret"
+	turret 0 0 "Heavy Anti-Missile Turret"
+	drone -25 18
+	drone 25 18
+	drone -25 49
+	drone 25 49
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
+
+
+
+ship "Carrier" "Carrier (Jump)"
+	sprite "ship/carrier"
+	licenses Republic
+		Navy
+		Carrier
+	attributes
+		category "Heavy Warship"
+		"cost" 15200000
+		"shields" 21400
+		"hull" 8300
+		"required crew" 114
+		"bunks" 184
+		"mass" 910
+		"drag" 17.7
+		"heat dissipation" .45
+		"fuel capacity" 700
+		"cargo space" 100
+		"outfit space" 820
+		"weapon capacity" 370
+		"engine capacity" 210
+		weapon
+			"blast radius" 500
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Particle Cannon" 4
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 200
+		"Electron Turret" 3
+		"Heavy Anti-Missile Turret"
+		"Dwarf Core"
+		"Armageddon Core"
+		"LP036a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Mass Expansion" 2
+		"Jump Drive"
+		"A860 Atomic Thruster"
+		"X4200 Ion Steering"
+	engine -35 200
+	engine 35 200
+	gun -25 -166 "Particle Cannon"
+	gun 25 -166 "Particle Cannon"
+	gun -16 -176 "Particle Cannon"
+	gun 16 -176 "Particle Cannon"
+	gun -25 -166 "Sidewinder Missile Launcher"
+	gun 25 -166 "Sidewinder Missile Launcher"
+	gun -16 -176 "Sidewinder Missile Launcher"
+	gun 16 -176 "Sidewinder Missile Launcher"
+	turret 0 15 "Electron Turret"
+	turret 0 -114 "Electron Turret"
+	turret 0 157 "Electron Turret"
+	turret 0 103 "Heavy Anti-Missile Turret"
+	fighter -37 -65
+	fighter 37 -65
+	fighter -46 40
+	fighter 46 40
+	drone -72 -46
+	drone 72 -46
+	drone -101 57
+	drone 101 57
+	drone -74 57
+	drone 74 57
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
+
+
+
+ship "Dreadnought" "Dreadnought (Jump)"
+	sprite "ship/dreadnought"
+	attributes
+		category "Heavy Warship"
+		"cost" 10900000
+		"shields" 18100
+		"hull" 7300
+		"required crew" 89
+		"bunks" 147
+		"mass" 630
+		"drag" 10.1
+		"heat dissipation" .65
+		"fuel capacity" 600
+		"cargo space" 100
+		"outfit space" 790
+		"weapon capacity" 360
+		"engine capacity" 190
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Plasma Turret" 5
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 140
+		"Stack Core"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Liquid Helium Cooler"
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Jump Drive"
+	engine -25 172
+	engine 25 172
+	gun -10 -167 "Meteor Missile Launcher"
+	gun 10 -167 "Meteor Missile Launcher"
+	gun -20 -151 "Meteor Missile Launcher"
+	gun -20 -151 "Meteor Missile Launcher"
+	turret 0 -94 "Plasma Turret"
+	turret -38 -56 "Plasma Turret"
+	turret 38 -56 "Plasma Turret"
+	turret -44 118 "Plasma Turret"
+	turret 44 118 "Plasma Turret"
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "big explosion" 50
+	explode "huge explosion" 20
