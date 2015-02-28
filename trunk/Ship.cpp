@@ -571,9 +571,6 @@ bool Ship::Move(list<Effect> &effects)
 			SetTargetPlanet(nullptr);
 			direction = -1;
 			
-			if(hasJumpDrive)
-				return true;
-			
 			Point target;
 			for(const StellarObject &object : currentSystem->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
@@ -588,6 +585,12 @@ bool Ship::Move(list<Effect> &effects)
 						target = object.Position();
 						break;
 					}
+			
+			if(hasJumpDrive)
+			{
+				position = target + Angle::Random().Unit() * 300. * (Random::Real() + 1.);
+				return true;
+			}
 			
 			// Have all ships exit hyperspace at the same distance so that
 			// your escorts always stay with you.
