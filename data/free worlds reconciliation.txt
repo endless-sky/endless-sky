@@ -1301,3 +1301,97 @@ mission "FW Pug 3C"
 		ship "Carrier (Mark II)" "F.S. Vesuvius"
 		ship "Carrier (Mark II)" "F.S. Haleakala"
 
+
+
+mission "FW Pug 4"
+	landing
+	name "Liberate <system>"
+	description "Attempt to drive the Pug out of the <system> system, then land on <planet>."
+	source Hephaestus
+	destination Maker
+	clearance
+	to offer
+		has "FW Pug 3C: done"
+	
+	on offer
+		event "at war with the pug"
+		conversation
+			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
+			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+				accept
+	
+	npc
+		ship "Dreadnought (Jump)" "F.S. Independence"
+		ship "Dreadnought (Jump)" "F.S. Freedom"
+		ship "Cruiser (Jump)" "F.S. Everest"
+		ship "Cruiser (Jump)" "F.S. Denali"
+		ship "Carrier (Jump)" "F.S. Vesuvius"
+		ship "Carrier (Jump)" "F.S. Haleakala"
+		ship "Dagger" "Red One"
+		ship "Dagger" "Red Two"
+		ship "Dagger" "Red Three"
+		ship "Dagger" "Red Four"
+		ship "Dagger" "Red Five"
+		ship "Dagger" "Red Six"
+		ship "Dagger" "Red Seven"
+		ship "Dagger" "Red Eight"
+		ship "Combat Drone" "Orange One"
+		ship "Combat Drone" "Orange Two"
+		ship "Combat Drone" "Orange Three"
+		ship "Combat Drone" "Orange Four"
+		ship "Combat Drone" "Orange Five"
+		ship "Combat Drone" "Orange Six"
+		ship "Combat Drone" "Orange Seven"
+		ship "Combat Drone" "Orange Eight"
+		ship "Combat Drone" "Yellow One"
+		ship "Combat Drone" "Yellow Two"
+		ship "Combat Drone" "Yellow Three"
+		ship "Combat Drone" "Yellow Four"
+		ship "Combat Drone" "Yellow Five"
+		ship "Combat Drone" "Yellow Six"
+		ship "Combat Drone" "Yellow Seven"
+		ship "Combat Drone" "Yellow Eight"
+		ship "Combat Drone" "Yellow Nine"
+		ship "Combat Drone" "Yellow Ten"
+		ship "Combat Drone" "Yellow Eleven"
+		ship "Combat Drone" "Yellow Twelve"
+	
+	npc evade
+		personality disables staying
+		system "Delta Capricorni"
+		government Pug
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+	
+	on complete
+		event "battle for delta capricorni"

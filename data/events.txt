@@ -1780,3 +1780,24 @@ event "fw syndicate welcoming"
 		fleet "Small Core Pirates" 1500
 		fleet "Large Core Pirates" 2000
 		fleet "Syndicate Extremists" 200
+
+
+
+event "at war with the pug"
+	"reputation: Pug" = -1000
+	government Pug
+		"attitude toward"
+			"Free Worlds" -.1
+			"Republic" -.1
+			"Syndicate" -.1
+			"Syndicate (Extremist)" -.5
+	system "Delta Capricorni"
+		fleet "Small Core Merchants" 1500
+
+
+
+event "battle for delta capricorni"
+	link "Delta Capricorni" Markab
+	link "Delta Capricorni" Scheat
+	system "Delta Capricorni"
+		government Syndicate
