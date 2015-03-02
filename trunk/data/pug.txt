@@ -189,14 +189,14 @@ outfit "Pug Biodefenses"
 	category "Hand to Hand"
 	cost 100000
 	thumbnail "outfit/nerve gas"
-	"capture defense" 40
+	"capture defense" 250
 
 
 ship "Pug Zibruka"
 	sprite "ship/pug zibruka"
 	attributes
 		category "Light Warship"
-		"cost" 5900000
+		"cost" 1900000
 		"shields" 4000
 		"hull" 1000
 		"required crew" 4
@@ -238,7 +238,7 @@ ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
 	attributes
 		category "Light Warship"
-		"cost" 12700000
+		"cost" 6300000
 		"shields" 6800
 		"hull" 1700
 		"required crew" 19
@@ -264,7 +264,7 @@ ship "Pug Enfolta"
 		"Pug Zapper" 2
 		"Pug Seeker" 2
 		"Pug Zapper Turret"
-		"Pug Biodefenses" 14
+		"Pug Biodefenses" 6
 		"Jump Drive"
 		"Pug Cormet Thruster"
 		"Pug Cormet Steering"
@@ -285,7 +285,7 @@ ship "Pug Maboro"
 	sprite "ship/pug maboro"
 	attributes
 		category "Light Warship"
-		"cost" 26500000
+		"cost" 9500000
 		"shields" 12600
 		"hull" 2700
 		"required crew" 54
@@ -311,7 +311,7 @@ ship "Pug Maboro"
 		"Pug Seeker" 4
 		"Pug Zapper Turret" 2
 		"Pug Anti-Missile"
-		"Pug Biodefenses" 40
+		"Pug Biodefenses" 8
 		"Jump Drive"
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
