@@ -1456,7 +1456,7 @@ mission "FW Pug 4A"
 		system Rasalhague
 		government Pug
 		personality disables
-		dialog `You receive a message from Freya: "Captain, I think I've figured out the transmitter, and there is indeed a chance that we can reopen the hyperspace links. Meet me back down on the planet as soon as possible."`
+		dialog `You receive a message from Freya: "Captain, I think I've figured out the transmitter, and there is indeed a chance that we can reopen the hyperspace links. Meet me back down on the planet as soon as possible - I'll need you to take some equipment back to Hephaestus and set it up there."`
 		fleet
 			names "quarg"
 			variant
@@ -1478,3 +1478,118 @@ mission "FW Pug 4A"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
+
+
+
+mission "FW Pug 4B"
+	landing
+	name "Reflector to Hephaestus"
+	description `Freya found a device that she believes is a "graviton reflector," which can somehow be set up in the <system> system to re-establish the hyperspace link between there and Delta Capricorni. Bring the transmitter to the Syndicate officials on <planet>.`
+	source Maker
+	destination Hephaestus
+	to offer
+		has "FW Pug 4A: done"
+	cargo "graviton reflector" 10
+	
+	on offer
+		conversation
+			`Freya meets you soon after you land. She has brought with her a large piece of alien machinery, mounted on a flat-bed truck for easy transportation. "I shut down the transmitter," she says, "and sure enough, the signal from Markab started to gradually become stronger. I think it was somehow jamming or suppressing the hyperspace link, rather than completely severing it. So then I found that the transmitter has a different setting, where instead of sending random graviton noise, it sends a steady, harmonic pulse. And that accelerated the process of reopening the link."`
+			choice
+				`	"Great! How soon until the link is open again?"`
+					goto time
+				`	"Are you sure we should be playing with alien technology we don't understand?"`
+			
+			`	"Do we really have any better options?" she asks. "Without reinforcements, how many more Pug attacks do you really think you can survive? Besides, there's a certain logic and balance to the rules of physics, so even when dealing with something we can't understand, sometimes intuition can guide us." She pauses for a second, and says, "And sometimes intuition steers us terribly wrong, but let's not think about that right now."`
+			`	"So, you succeeded in opening the link?" you say.`
+			label time
+			`	"Well, that's the bad news," she says. "At this rate, it will take several years to repoen the link. And I doubt this method would work at all if there weren't still the residual link in place. But that's where this equipment comes in."`
+			`	She points to the alien machine. "This machine is like the transmitter, but much simpler. The transmitter somehow redirects a planet's gravity spaceward; what this machine does is reflect a graviton beam back where it comes from. If we can mount the reflector on Hephaestus, and align them both very precisely, we can set up a standing wave between the two that will regenerate the hyperspace link much more quickly. Or for all I know it might create an artificial singularity that destroys us all. I'm mostly flying blind here."`
+			choice
+				`	"Well, I guess we should give it a try."`
+					goto load
+				`	"Sounds risky. Are their any other options we could try?"`
+			
+			`	"No," she says, "no, there are not. Sorry."`
+			label load
+			`	You load the reflector onto your ship, and get ready to travel to Hephaestus. You suspect that the Pug are going to try to stop you, once they realize what is happening...`
+				accept
+
+
+
+mission "FW Pug 4B: Enemies"
+	landing
+	invisible
+	source Maker
+	to offer
+		has "FW Pug 4A: done"
+	
+	npc kill
+		personality waiting disables
+		system Deneb
+		government Pug
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+
+
+
+mission "FW Pug 4B: Reinforcements"
+	landing
+	invisible
+	source Maker
+	to offer
+		has "FW Pug 4A: done"
+	
+	npc kill
+		personality disables
+		system Markab
+		fleet
+			names "syndicate capital"
+			variant
+				"Splinter (Mark II)"
+				"Manta (Mark II)" 2
+				"Quicksilver (Mark II)" 4
+		fleet
+			names "syndicate capital"
+			variant
+				"Protector" 2
+
+
+
+mission "FW Pug 4C"
+	landing
+	name "Return to <system>"
+	description "Return to <destination>, accompanied by your new reinforcement fleet supplied by the Syndicate, and talk with Freya to decide on what your next steps should be now that you have the ability to restore the links to human space."
+	source Hephaestus
+	destination Maker
+	to offer
+		has "FW Pug 4B: done"
+	
+	on offer
+		event "reconnected delta capricorni"
+		conversation
+			`Freya sent detailed instructions with the reflector for where it should be set up and how it should be adjusted to interface with the transmitter back in Pug space. You hand it over to a team of Syndicate engineers, who seem quite capable and confident that they can make it work; you suspect that these are the same engineers who have been playing with equipment stolen from the Korath, so they are no strangers to alien technology.`
+			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to repoen one of the connections to human space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in repoening the link.`
+			`	A few hours later, the engineers tell you that they think the link is beginning to reopen. Bugati says, "You should take off and return as soon as possible, in case Maker has been attacked in your absence."`
+				accept
