@@ -1797,7 +1797,15 @@ event "at war with the pug"
 
 
 event "battle for delta capricorni"
-	link "Delta Capricorni" Markab
-	link "Delta Capricorni" Scheat
 	system "Delta Capricorni"
 		government Syndicate
+
+
+
+event "reconnected delta capricorni"
+	link "Delta Capricorni" Markab
+	system "Delta Capricorni"
+		fleet "Small Core Merchants" 1500
+		fleet "Large Core Merchants" 3000
+		fleet "Large Pug" 1100
+		fleet "Large Syndicate" 400
