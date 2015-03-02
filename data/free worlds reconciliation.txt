@@ -1303,24 +1303,17 @@ mission "FW Pug 3C"
 
 
 
-mission "FW Pug 4"
+mission "FW Pug 4: Escorts"
 	landing
-	name "Liberate <system>"
-	description "Attempt to drive the Pug out of the <system> system, then land on <planet>."
+	invisible
 	source Hephaestus
-	destination Maker
-	clearance
 	to offer
 		has "FW Pug 3C: done"
 	
-	on offer
-		event "at war with the pug"
-		conversation
-			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
-			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
-				accept
+	to fail
+		has "FW Pug 6: done"
 	
-	npc
+	npc kill
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"
 		ship "Cruiser (Jump)" "F.S. Everest"
@@ -1355,6 +1348,26 @@ mission "FW Pug 4"
 		ship "Combat Drone" "Yellow Ten"
 		ship "Combat Drone" "Yellow Eleven"
 		ship "Combat Drone" "Yellow Twelve"
+
+
+
+mission "FW Pug 4"
+	landing
+	name "Liberate <system>"
+	description "Attempt to drive the Pug out of the <system> system, then land on <planet>."
+	source Hephaestus
+	destination Maker
+	clearance
+	to offer
+		has "FW Pug 3C: done"
+	passengers 1
+	
+	on offer
+		event "at war with the pug"
+		conversation
+			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
+			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+				accept
 	
 	npc evade
 		personality disables staying
@@ -1395,3 +1408,73 @@ mission "FW Pug 4"
 	
 	on complete
 		event "battle for delta capricorni"
+
+
+
+mission "FW Pug 4A"
+	landing
+	name "Defend Maker"
+	description "Keep the Pug from regaining control of Maker for long enough for Freya to figure out whether it is possible to restore the hyperspace link back to the Markab system."
+	source Maker
+	to offer
+		has "FW Pug 4: done"
+	
+	on offer
+		conversation
+			branch lost
+				has "FW Pug 4: Escorts: done"
+			`Along with the remaining ships from the combined attack fleet, you land at the main spaceport on <origin>. The other ships are carrying trained soldiers and equipment for planetary defense: ground-based laser turrets, surface to air missiles, and tracking radar for incoming ships. The soldiers have come armed and ready to fight the Pug on the ground if necessary, but it turns out that all the Pug who were here took off in one of the ships that were trying to repulse your attack.`
+				goto generator
+			
+			label lost
+			`You have liberated this planet, but with your entire fleet destroyed your victory may be short-lived. Still, you have no option but to continue on and try your best. Fortunately, it turns out that none of the Pug are left on the ground here on Maker; they all left theplanet to join in the fleet that you just destroyed. So at least you don't have a land war to worry about.`
+				goto generator
+			
+			label generator
+			`	Freya has some good news: she is picking up very faint, intermittent signals from the hyperspace communications relay back in the Markab system. "That means the link may not be closed completely," she says, "or at least, there's some residue remaining."`
+			`	Freya directs you to fly over the planet and survey the buildigns and equipment that the Pug left behind, and after searching for a while you discover an alien building that vaguely like a radio transmitter. You land nearby, and as you approach the building on foot, you feel as if the ground beneath you is heaving and rolling like the deck of a ship on choppy seas. "Graviton distortions," she says. "This may be it, the equipment they used to disrupt the hyperspace links. It will take me a while to figure out how it works, though."`
+			`	You agree that she will stay here to try to figure out the alien technology, while you do your best to defend the planet and to keep the Pug from retaking it.`
+				accept
+	
+	npc
+		system Deneb
+		government Pug
+		personality disables
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2	
+	
+	npc disable
+		system Rasalhague
+		government Pug
+		personality disables
+		dialog `You receive a message from Freya: "Captain, I think I've figured out the transmitter, and there is indeed a chance that we can reopen the hyperspace links. Meet me back down on the planet as soon as possible."`
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
