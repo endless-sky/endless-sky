@@ -1593,3 +1593,202 @@ mission "FW Pug 4C"
 			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to repoen one of the connections to human space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in repoening the link.`
 			`	A few hours later, the engineers tell you that they think the link is beginning to reopen. Bugati says, "You should take off and return as soon as possible, in case Maker has been attacked in your absence."`
 				accept
+
+
+
+mission "FW Pug 5"
+	landing
+	name "Liberate <planet>"
+	description "If you can drive the Pug away from <destination>, you will be able to re-establish the hyperspace link between Altair and the Sol system, and immediately bring in Navy ships as reinforcements."
+	source Maker
+	destination Shiver
+	clearance
+	to offer
+		has "FW Pug 4C: done"
+	cargo "graviton reflector" 10
+	passengers 1
+	
+	on offer
+		event "battle for altair"
+		conversation
+			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and six other ships, victory seemed unlikely."`
+			choice
+				`	"What should we do next?"`
+					goto next
+				`	"Are you sure that generating these graviton waves is safe?"`
+			
+			`	"I'm sure of nothing," she says, "but it seemed to work, and without any catastrophic side effects so far, so that's something."`
+			label next
+			`	Freya leads you to a warehouse in the spaceport where another one of the "graviton reflectors" is stored. "This should work the same as the one you brought to Hephaestus," she says, "If there's a transmitter on Shiver, we can bring the reflector to Sol and open a link back to the very heart of human space. And at that point, we may even have the Pug outgunned. But first, we need to drive them away from that star system for long enough for me to work the transmitter."`
+				accept
+	
+	npc evade
+		personality staying disables
+		system Altair
+		government Pug
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+
+
+
+mission "FW Pug 5A: Enemies"
+	landing
+	invisible
+	source Shiver
+	to offer
+		has "FW Pug 5: done"
+	
+	npc kill
+		personality waiting disables
+		system Deneb
+		government Pug
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 
+				"Pug Zibruka" 2
+
+
+
+mission "FW Pug 5A"
+	landing
+	name "Reflector to <planet>"
+	description `Bring this "graviton reflector" to <planet> and set it up there, in order to restore the hyperspace link between the Sol and Altair systems.`
+	source Shiver
+	destination Earth
+	to offer
+		has "FW Pug 5: done"
+	cargo "graviton reflector" 10
+	
+	on offer
+		conversation
+			`Sure enough, Freya finds a graviton wave transmitter on <origin>, set up to broadcast incoherent graviton noise in the direction of the Sol system. "This is it," she says. "If you can reach <planet> with the reflector before we are overrun by the Pug here, we can reopen the hyperspace link and the entire Navy will be at our backs. Hopefully the Syndicate got a message through and they'll have a fleet waiting for you when you arrive. Good luck, Captain."`
+				accept
+	
+	npc
+		government Republic
+		personality staying
+		system Sol
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)" 3
+
+
+
+mission "FW Pug 5B"
+	landing
+	name "Defend Altair"
+	description "Freya sent you a message that the <system> system is under attack. Return there, accompanied by your new Navy reinforcements, and drive off the Pug."
+	source Earth
+	destination Shiver
+	to offer
+		has "FW Pug 5A: done"
+	
+	on offer
+		event "reconnected altair"
+		conversation
+			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam hones in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspcae communications from Altair again, and from the Syndicate too."`
+			`	A second later your own communicator beeps. It's Freya. "Get back here quickly," she says. "Bring whatever reinforcements you can. A massive Pug fleet just appeared in orbit."`
+				accept
+	
+	npc
+		government Republic
+		personality disables waiting
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)" 3
+	
+	npc evade
+		government Pug
+		personality staying disables
+		system Altair
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "quarg"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+
