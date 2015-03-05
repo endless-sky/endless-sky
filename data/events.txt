@@ -1775,6 +1775,10 @@ event "pug invasion 4"
 
 event "fw syndicate welcoming"
 	"reputation: Syndicate" = 1
+	government Syndicate
+		"attitude toward"
+			"Free Worlds" 0
+			Republic 0
 	system Algenib
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
@@ -1807,5 +1811,29 @@ event "reconnected delta capricorni"
 	system "Delta Capricorni"
 		fleet "Small Core Merchants" 1500
 		fleet "Large Core Merchants" 3000
-		fleet "Large Pug" 1100
+		fleet "Small Pug" 2000
 		fleet "Large Syndicate" 400
+
+
+
+event "battle for altair"
+	system "Altair"
+		fleet "Small Core Merchants" 1500
+
+
+
+event "liberation of altair"
+	system "Altair"
+		government "Republic"
+		fleet "Small Core Merchants" 1000
+		fleet "Large Core Merchants" 2000
+		fleet "Small Pug" 2000
+		fleet "Large Syndicate" 800
+
+
+
+event "reconnected altair"
+	link Altair Sol
+	system "Altair"
+		fleet "Small Core Merchants" 800
+		fleet "Large Core Merchants" 1200
