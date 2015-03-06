@@ -1266,8 +1266,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
 				message = "The authorities on this planet refuse to clear you to land here.";
 			else if(count > 1)
-				message = "You can land on more than one planet in this system. Landing on "
-					+ ship.GetTargetPlanet()->Name() + ".";
+			{
+				message = "You can land on more than one planet in this system. Landing on ";
+				if(ship.GetTargetPlanet()->Name().empty())
+					message += "???.";
+				else
+					message += ship.GetTargetPlanet()->Name() + ".";
+			}
 		}
 		if(!message.empty())
 			Messages::Add(message);
@@ -1277,7 +1282,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 		if(!ship.GetTargetSystem())
 		{
 			double bestMatch = -2.;
-			for(const System *link : ship.GetSystem()->Links())
+			const auto &links = (ship.Attributes().Get("jump drive") ?
+				ship.GetSystem()->Neighbors() : ship.GetSystem()->Links());
+			for(const System *link : links)
 			{
 				Point direction = link->Position() - ship.GetSystem()->Position();
 				double match = ship.Facing().Unit().Dot(direction.Unit());
