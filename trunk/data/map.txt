@@ -3478,10 +3478,6 @@ system Deneb
 		sprite planet/dust0
 		distance 1788.4
 		period 1210.0881
-	object
-		sprite planet/wormhole
-		distance 2320.29
-		period 1788.2712
 
 system Denebola
 	pos -478 70

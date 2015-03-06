@@ -1837,3 +1837,175 @@ event "reconnected altair"
 	system "Altair"
 		fleet "Small Core Merchants" 800
 		fleet "Large Core Merchants" 1200
+
+
+
+event "pug flee"
+	unvisit Deneb
+	system "Zeta Aquilae"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 3000
+		fleet "Small Republic" 1000
+		fleet "Large Republic" 2000
+	system Rasalhague
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Republic" 1200
+		fleet "Large Republic" 2500
+	system Vega
+		fleet "Small Northern Merchants" 800
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Republic" 800
+		fleet "Large Republic" 1200
+	system Altair
+		fleet "Small Core Merchants" 400
+		fleet "Large Core Merchants" 600
+		fleet "Small Northern Merchants" 1000
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Republic" 700
+		fleet "Large Republic" 900
+	system Fomalhaut
+		fleet "Small Core Merchants" 1000
+		fleet "Large Core Merchants" 1200
+		fleet "Small Republic" 1600
+		fleet "Large Republic" 3000
+	system "Delta Capricorni"
+		fleet "Small Core Merchants" 700
+		fleet "Large Core Merchants" 800
+		fleet "Small Syndicate" 500
+		fleet "Large Syndicate" 600
+	system Alderamin
+		fleet "Small Core Merchants" 2000
+		fleet "Large Core Merchants" 3200
+		fleet "Small Syndicate" 700
+		fleet "Large Syndicate" 900
+	system Diphda
+		fleet "Small Core Merchants" 2000
+		fleet "Large Core Merchants" 600
+		fleet "Small Republic" 1600
+		fleet "Large Republic" 3000
+	system Caph
+		fleet "Small Core Merchants" 500
+		fleet "Large Core Merchants" 600
+		fleet "Small Republic" 1600
+		fleet "Large Republic" 3000
+	system Deneb
+		fleet "Small Core Merchants" 5000
+		object
+			sprite star/g5
+			period 10
+		object "Pugglemug"
+			sprite planet/ocean2
+			distance 317.56
+			period 90.543791
+			object
+				sprite planet/dust3
+				distance 159
+				period 16.370052
+		object "Pugglequat"
+			sprite planet/desert3
+			distance 966.8
+			period 480.9777
+			object
+				sprite planet/rhea
+				distance 156
+				period 18.632773
+		object
+			sprite planet/dust7
+			distance 1538.84
+			period 965.85111
+		object
+			sprite planet/dust0
+			distance 1788.4
+			period 1210.0881
+		object "Pug Wormhole"
+			sprite planet/wormhole
+			distance 2320.29
+			period 1788.2712
+
+
+
+event "pug territory liberated"
+	system "Zeta Aquilae"
+		government "Free Worlds"
+	system Rasalhague
+		government "Free Worlds"
+	system Vega
+		government Republic
+	system Altair
+		government Republic
+	system Fomalhaut
+		government Syndicate
+	system "Delta Capricorni"
+		government Syndicate
+	system Alderamin
+		government Syndicate
+	system Diphda
+		government Syndicate
+	system Caph
+		government Syndicate
+	system Deneb
+		government Neutral
+		fleet "Small Core Merchants" 400
+		fleet "Large Core Merchants" 600
+		fleet "Small Northern Merchants" 1000
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Republic" 700
+		fleet "Large Republic" 900 
+		fleet "Small Syndicate" 1200
+		fleet "Large Syndicate" 2000
+		object
+			sprite star/g5
+			period 10
+		object "Pugglemug"
+			sprite planet/ocean2
+			distance 317.56
+			period 90.543791
+			object
+				sprite planet/dust3
+				distance 159
+				period 16.370052
+		object "Pugglequat"
+			sprite planet/desert3
+			distance 966.8
+			period 480.9777
+			object
+				sprite planet/rhea
+				distance 156
+				period 18.632773
+		object
+			sprite planet/dust7
+			distance 1538.84
+			period 965.85111
+		object
+			sprite planet/dust0
+			distance 1788.4
+			period 1210.0881
+
+
+
+event "pug link restoration 1"
+	link Rasalhague Cebalrai
+	link Alderamin Alnair
+	link Vega Sol
+
+
+
+event "pug link restoration 2"
+	link "Zeta Aquilae" Ascella
+	link Caph Sol
+	link Vega Menkent
+
+
+
+event "pug link restoration 3"
+	link Diphda Ankaa
+	link Fomalhaut Markab
+	link Rasalhague Ascella
+
+
+
+event "pug link restoration 4"
+	link "Delta Capricorni" Scheat
+	link Caph Eteron
+	link Diphda Acamar
