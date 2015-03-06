@@ -118,6 +118,9 @@ government "Derelict"
 	swizzle 0
 	"player reputation" 10
 
+government "Uninhabited"
+	color .3 .3 .3
+
 government "Deep"
 	swizzle 0
 	"player reputation" -1000
