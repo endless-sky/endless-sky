@@ -802,9 +802,12 @@ void PlayerInfo::TakeOff()
 	doneMissions.clear();
 	soldOutfits.clear();
 	
+	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system)
 		{
+			if(canRecharge)
+				ship->Recharge();
 			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
 			cargo.TransferAll(&ship->Cargo());
 		}
