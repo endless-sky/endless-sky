@@ -145,9 +145,10 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			if(callback)
 				callback(node);
 			GetUI()->Pop(this);
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 	if(choices.empty())
 	{
