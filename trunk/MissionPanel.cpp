@@ -494,14 +494,13 @@ void MissionPanel::DrawMissionInfo() const
 	else
 		info.SetCondition("cannot abort");
 	
-	int cargoFree = player.Cargo().Free();
-	int bunksFree = player.Cargo().Bunks();
-	if(!cargoFree && !bunksFree)
-		for(const shared_ptr<Ship> &ship : player.Ships())
-		{
-			cargoFree += ship->Attributes().Get("cargo space") - ship->Cargo().Used();
-			bunksFree += ship->Attributes().Get("bunks") - ship->Crew() - ship->Cargo().Passengers();
-		}
+	int cargoFree = -player.Cargo().Used();
+	int bunksFree = -player.Cargo().Passengers();
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		cargoFree += ship->Attributes().Get("cargo space") - ship->Cargo().Used();
+		bunksFree += ship->Attributes().Get("bunks") - ship->Crew() - ship->Cargo().Passengers();
+	}
 	info.SetString("cargo free", to_string(cargoFree) + " tons");
 	info.SetString("bunks free", to_string(bunksFree) + " bunks");
 	

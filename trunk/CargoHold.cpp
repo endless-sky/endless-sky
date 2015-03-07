@@ -137,7 +137,7 @@ int CargoHold::Size() const
 
 int CargoHold::Free() const
 {
-	return max(0, size - Used());
+	return size - Used();
 }
 
 
@@ -307,12 +307,12 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 	// Take your free capacity into account here too.
 	amount = min(amount, Get(commodity));
 	if(Size())
-		amount = max(amount, -Free());
+		amount = max(amount, -max(Free(), 0));
 	if(to)
 	{
 		amount = max(amount, -to->Get(commodity));
 		if(to->Size())
-			amount = min(amount, to->Free());
+			amount = min(amount, max(to->Free(), 0));
 	}
 	if(!amount)
 		return 0;
@@ -332,12 +332,12 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	
 	amount = min(amount, Get(outfit));
 	if(Size() && mass)
-		amount = max(amount, -Free() / mass);
+		amount = max(amount, -max(Free(), 0) / mass);
 	if(to)
 	{
 		amount = max(amount, -to->Get(outfit));
 		if(to->Size() && mass)
-			amount = min(amount, to->Free() / mass);
+			amount = min(amount, max(to->Free(), 0) / mass);
 	}
 	if(!amount)
 		return 0;
@@ -360,12 +360,12 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold *to)
 		// Take your free capacity into account here too.
 		amount = min(amount, Get(mission));
 		if(Size())
-			amount = max(amount, -Free());
+			amount = max(amount, -max(Free(), 0));
 		if(to)
 		{
 			amount = max(amount, -to->Get(mission));
 			if(to->Size())
-				amount = min(amount, to->Free());
+				amount = min(amount, max(to->Free(), 0));
 		}
 		if(!amount)
 			return 0;
@@ -385,12 +385,12 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 	// Take your free capacity into account here too.
 	amount = min(amount, GetPassengers(mission));
 	if(Size())
-		amount = max(amount, -Bunks());
+		amount = max(amount, -max(Bunks(), 0));
 	if(to)
 	{
 		amount = max(amount, -to->GetPassengers(mission));
 		if(to->Size())
-			amount = min(amount, to->Bunks());
+			amount = min(amount, max(to->Bunks(), 0));
 	}
 	if(!amount)
 		return 0;

@@ -62,7 +62,7 @@ void HiringPanel::Draw() const
 	Information info;
 	
 	int flagshipBunks = flagship.Attributes().Get("bunks");
-	int flagshipRequired = flagship.Attributes().Get("required crew");
+	int flagshipRequired = flagship.RequiredCrew();
 	int flagshipExtra = flagship.Crew() - flagshipRequired;
 	int flagshipUnused = flagshipBunks - flagship.Crew();
 	info.SetString("flagship bunks", to_string(static_cast<int>(flagshipBunks)));
@@ -75,9 +75,8 @@ void HiringPanel::Draw() const
 	int fleetRequired = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
-		const Outfit &attr = ship->Attributes();
-		fleetBunks += static_cast<int>(attr.Get("bunks"));
-		fleetRequired += static_cast<int>(attr.Get("required crew"));
+		fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
+		fleetRequired += ship->RequiredCrew();
 	}
 	int passengers = player.Cargo().Passengers();
 	int fleetUnused = fleetBunks - fleetRequired - flagshipExtra;
