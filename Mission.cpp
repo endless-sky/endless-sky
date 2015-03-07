@@ -431,7 +431,11 @@ bool Mission::CanOffer(const PlayerInfo &player) const
 
 bool Mission::HasSpace(const PlayerInfo &player) const
 {
-	return (cargoSize <= player.Cargo().Free() && passengers <= player.Cargo().Bunks());
+	int extraCrew = 0;
+	if(player.GetShip())
+		extraCrew = player.GetShip()->Crew() - player.GetShip()->RequiredCrew();
+	return (cargoSize <= player.Cargo().Free() + player.Cargo().CommoditiesSize()
+		&& passengers <= player.Cargo().Bunks() + extraCrew);
 }
 
 

@@ -811,6 +811,18 @@ void PlayerInfo::TakeOff()
 			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
 			cargo.TransferAll(&ship->Cargo());
 		}
+	if(cargo.Passengers() && ships.size())
+	{
+		Ship &flagship = *ships.front();
+		int extra = min(cargo.Passengers(), flagship.Crew() - flagship.RequiredCrew());
+		if(extra)
+		{
+			flagship.AddCrew(-extra);
+			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.");
+			flagship.Cargo().SetBunks(flagship.Attributes().Get("bunks") - flagship.Crew());
+			cargo.TransferAll(&flagship.Cargo());
+		}
+	}
 	
 	// Extract the fighters from the list.
 	vector<shared_ptr<Ship>> fighters;
