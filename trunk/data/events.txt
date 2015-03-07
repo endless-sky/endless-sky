@@ -2021,3 +2021,33 @@ event "battle of algenib"
 			"Syndicate (Extremist)" -.1
 	system Algenib
 		fleet "Small Syndicate" 5000
+
+
+
+event "navy occupies algenib"
+	system Algenib
+		government Republic
+		fleet "Small Republic" 500
+		fleet "Large Republic" 800
+		fleet "Large Syndicate" 800
+	system Gienah
+		government Republic
+		fleet "Small Republic" 800
+		fleet "Large Republic" 1200
+		fleet "Large Syndicate" 1000
+
+
+
+event "navy done with algenib"
+	system Algenib
+		government Pirate
+		fleet "Small Core Pirates" 300
+		fleet "Large Core Pirates" 500
+		fleet "Large Syndicate" 800
+		fleet "Small Core Merchants" 600
+	system Gienah
+		government Pirate
+		fleet "Small Core Pirates" 500
+		fleet "Large Core Pirates" 800
+		fleet "Large Syndicate" 5000
+
