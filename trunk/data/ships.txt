@@ -608,14 +608,14 @@ ship "Corvette"
 		"Hyperdrive"
 		"Heavy Laser Turret" 2
 		"Heavy Laser" 4
-	engine -25 105
-	engine 25 105
-	gun -12 -80 "Heavy Laser"
-	gun 12 -80 "Heavy Laser"
-	gun -16 -72 "Heavy Laser"
-	gun 16 -72 "Heavy Laser"
-	turret 0 -30 "Heavy Laser Turret"
-	turret 0 73 "Heavy Laser Turret"
+	engine -11 118
+	engine 11 118
+	gun -14 -60 "Heavy Laser"
+	gun 14 -60 "Heavy Laser"
+	gun -12 -68 "Heavy Laser"
+	gun 12 -68 "Heavy Laser"
+	turret 0 -11 "Heavy Laser Turret"
+	turret 0 74 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
