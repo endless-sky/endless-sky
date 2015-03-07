@@ -197,12 +197,18 @@ fleet "Large Northern Merchants"
 		timid
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
-	variant 40
+	variant 20
 		"Freighter" 2
 		"Firebird"
-	variant 20
+	variant 10
 		"Freighter" 3
 		"Firebird"
+	variant 20
+		"Freighter" 2
+		"Corvette"
+	variant 10
+		"Freighter" 3
+		"Corvette"
 	variant 30
 		"Behemoth"
 	variant 10
@@ -439,6 +445,51 @@ fleet "Small Deep"
 		"Mule"
 		"Dagger"
 		"Raven"
+	variant 4
+		"Corvette"
+
+fleet "Large Deep"
+	government "Republic"
+	names "deep"
+	fighters "deep fighter"
+	cargo 0
+	personality
+		heroic
+	variant 5
+		"Aerie"
+		"Dagger" 2
+		"Corvette"
+	variant 3
+		"Aerie"
+		"Dagger" 2
+		"Raven"
+	variant 4
+		"Raven" 2
+	variant 3
+		"Aerie" 2
+		"Dagger" 4
+	variant 8
+		"Corvette"
+		"Raven"
+	variant 5
+		"Corvette" 2
+	variant 8
+		"Bactrian"
+		"Dagger" 3
+	variant 2
+		"Bactrian"
+		"Dagger" 3
+		"Raven"
+		"Aerie"
+		"Dagger" 2
+	variant 5
+		"Bactrian"
+		"Dagger" 3
+		"Mule" 2
+		"Dagger" 2
+	variant 1
+		"Star Queen"
+		"Raven" 2
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
@@ -502,46 +553,6 @@ fleet "Large Oathkeeper"
 		"Frigate"
 		"Rainmaker" 2
 		"Gunboat"
-
-fleet "Large Deep"
-	government "Republic"
-	names "deep"
-	fighters "deep fighter"
-	cargo 0
-	personality
-		heroic
-	variant 5
-		"Aerie"
-		"Dagger" 2
-		"Corvette"
-	variant 3
-		"Aerie"
-		"Dagger" 2
-		"Raven"
-	variant 4
-		"Raven" 2
-	variant 3
-		"Aerie" 2
-		"Dagger" 4
-	variant 1
-		"Corvette" 2
-	variant 8
-		"Bactrian"
-		"Dagger" 3
-	variant 2
-		"Bactrian"
-		"Dagger" 3
-		"Raven"
-		"Aerie"
-		"Dagger" 2
-	variant 5
-		"Bactrian"
-		"Dagger" 3
-		"Mule" 2
-		"Dagger" 2
-	variant 1
-		"Star Queen"
-		"Raven" 2
 
 fleet "Small Syndicate"
 	government "Syndicate"
@@ -740,6 +751,8 @@ fleet "Small Northern Pirates"
 		"Hawk"
 	variant 1
 		"Raven (Afterburner)"
+	variant 1
+		"Corvette"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -750,6 +763,9 @@ fleet "Large Northern Pirates"
 	"hostile hail" "hostile pirate"
 	variant 4
 		"Firebird"
+	variant 3
+		"Firebird"
+		"Corvette"
 	variant 2
 		"Firebird"
 		"Fury"
