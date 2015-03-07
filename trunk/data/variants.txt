@@ -882,7 +882,7 @@ ship "Quicksilver (Mark II)"
 
 
 
-ship "Manta (Nuclear)"
+ship "Manta" "Manta (Nuclear)"
 	sprite "ship/manta"
 	attributes
 		category "Light Warship"
