@@ -1113,7 +1113,13 @@ bool Ship::CanHyperspace() const
 		return false;
 	
 	if(attributes.Get("jump drive"))
-		return true;
+	{
+		// Allow jumping only to systems that are neighbors of this one.
+		for(const System *link : currentSystem->Neighbors())
+			if(link == GetTargetSystem())
+				return true;
+		return false;
+	}
 	if(!attributes.Get("hyperdrive"))
 		return false;
 	
@@ -1122,7 +1128,16 @@ bool Ship::CanHyperspace() const
 	Angle turned = angle + TurnRate() * (left - !left);
 	bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 	
-	return (left != stillLeft);
+	if(left == stillLeft)
+		return false;
+	
+	// Allow jumping only to systems that are linked to this one. This check is
+	// needed because links may have changed after the travel plan was set.
+	for(const System *link : currentSystem->Links())
+		if(link == GetTargetSystem())
+			return true;
+	
+	return false;
 }
 
 
