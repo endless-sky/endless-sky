@@ -2009,3 +2009,15 @@ event "pug link restoration 4"
 	link "Delta Capricorni" Scheat
 	link Caph Eteron
 	link Diphda Acamar
+
+
+
+event "battle of algenib"
+	government Republic
+		"attitude toward"
+			"Syndicate (Extremist)" -.1
+	government "Navy (Oathkeeper)"
+		"attitude toward"
+			"Syndicate (Extremist)" -.1
+	system Algenib
+		fleet "Small Syndicate" 5000
