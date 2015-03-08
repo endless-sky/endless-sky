@@ -173,6 +173,9 @@ mission "FW Prisoner Parole"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	
 	on offer
 		conversation
 			`When you have all gathered in the cafe, Tomek explains the situation to you. "Alondo has arranged for a one-week ceasefire to return the prisoners who have given us their parole," he says. "That gives you just enough time to transport them to New Tibet and return here. If you encounter Republic ships, do not engage them. Just drop off the prisoners and return. Any questions?"`
@@ -207,6 +210,9 @@ mission "FW Prisoner Parole 2"
 		ship "Falcon" "R.N.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	
 	on complete
 		conversation
@@ -639,6 +645,9 @@ mission "FW Plasma Testing 1B"
 		system Ildaria
 		ship "Leviathan" "Red Nile"
 	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	
 	on offer
 		conversation
 			scene "scene/loc5"
@@ -788,7 +797,7 @@ mission "FW Supply Convoy 1"
 				`	"Okay, whatever it takes to further the cause of freedom, I'll do it."`
 					accept
 	
-	npc save accompany
+	npc accompany save
 		government "Escort"
 		personality timid
 		fleet
@@ -796,6 +805,9 @@ mission "FW Supply Convoy 1"
 			names "civilian"
 			variant
 				"Star Barge (Armed)" 10
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
 		government "Pirate"
@@ -1136,6 +1148,9 @@ mission "FW Pirates 3"
 		government Escort
 		ship "Falcon" "F.S. Terebinth"
 	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	
 	on complete
 		karma ++
 
@@ -1431,6 +1446,9 @@ mission "FW Pirates 4B"
 		personality timid
 		government Escort
 		ship "Falcon" "F.S. Terebinth"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
 		event "Thule becomes independent"

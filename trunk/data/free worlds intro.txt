@@ -1252,6 +1252,9 @@ mission "FW Escort 1"
 		
 			`	"Great!" he says. "You'll be escorting six freighters. If they all make it safely there and back, your payment will be four hundred thousand credits."`
 				accept
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1315,6 +1318,9 @@ mission "FW Escort 1B"
 		payment 400000
 		conversation
 			`	You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "So meet me in the spaceport if you are willing to volunteer for escort duty again."`
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1373,6 +1379,9 @@ mission "FW Escort 2"
 			
 			`	"Great!" says Tomek. "Good luck to all of you, and I hope to see you all safely back here in a couple of weeks."`
 				accept
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1437,6 +1446,9 @@ mission "FW Escort 2B"
 		payment 400000
 		conversation
 			`	Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1472,6 +1484,9 @@ mission "FW Escort 3"
 		dialog
 			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 

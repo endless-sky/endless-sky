@@ -67,6 +67,9 @@ mission "FW Conservatory 2"
 		ship "Argosy" "F.M.S. Monsoon"
 		ship "Argosy" "F.M.S. Summer"
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	
 	npc
 		government Pirate
 		personality plunders
@@ -96,6 +99,9 @@ mission "FW Conservatory 2B"
 		ship "Argosy" "F.M.S. Daybreak"
 		ship "Argosy" "F.M.S. Monsoon"
 		ship "Argosy" "F.M.S. Summer"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
 		government Pirate
@@ -479,6 +485,9 @@ mission "FW Stack Core 1B"
 			cargo 3
 			variant
 				"Bulk Freighter" 3
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
 		government "Republic"

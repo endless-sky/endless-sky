@@ -20,6 +20,9 @@ mission "FW Reconciliation 1"
 	npc accompany save
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
+	on visit
+		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
+	
 	on offer
 		event "fw conservatory founded"
 		conversation
@@ -120,6 +123,9 @@ mission "FW Reconciliation 1B"
 	npc accompany save
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
+	on visit
+		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
+	
 	npc evade
 		personality heroic staying nemesis
 		system Gienah
@@ -155,6 +161,9 @@ mission "FW Reconciliation 1C"
 	npc accompany save
 		personality timid
 		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	on visit
+		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
 		personality heroic nemesis
@@ -192,6 +201,9 @@ mission "FW Reconciliation 2"
 	
 	npc accompany save
 		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	on visit
+		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
 		event "deep sky tech available"
@@ -271,6 +283,9 @@ mission "FW Reconciliation 2A"
 	
 	npc accompany save
 		ship "Gunboat (Mark II)" "Eye of Horus"
+	
+	on visit
+		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -440,6 +455,9 @@ mission "FW Embassy 1B"
 	npc accompany save
 		personality timid
 		ship "Star Queen" "Lady of the Lake"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -463,6 +481,9 @@ mission "FW Embassy 1C"
 	npc accompany save
 		personality heroic
 		ship "Dreadnought" "F.S. Gibraltar"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the ambassadors behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
 		government Pirate
@@ -1262,6 +1283,9 @@ mission "FW Pug 3B"
 		personality disables
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
+	
+	on visit
+		dialog "You have reached <planet>, but the dreadnoughts are lagging behind you because they are using ordinary hyperdrives. Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1300,6 +1324,9 @@ mission "FW Pug 3C"
 		ship "Cruiser (Mark II)" "F.S. Denali"
 		ship "Carrier (Mark II)" "F.S. Vesuvius"
 		ship "Carrier (Mark II)" "F.S. Haleakala"
+	
+	on visit
+		dialog "You have reached <planet>, but part of your fleet is not here yet. Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1999,6 +2026,9 @@ mission "FW Syndicate Extremists 1"
 		government "Navy (Oathkeeper)"
 		personality heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -2058,6 +2088,9 @@ mission "FW Syndicate Extremists 1A"
 		government "Navy (Oathkeeper)"
 		personality heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 
