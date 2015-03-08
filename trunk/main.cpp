@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
 		for(GLint i = 0; i < extensionCount && !hasSwizzle; ++i)
 		{
 			const char *extension = reinterpret_cast<const char *>(glGetStringi(GL_EXTENSIONS, i));
-			hasSwizzle = (extension && extension == swizzleName);
+			hasSwizzle = (extension && strstr(extension, swizzleName.c_str()));
 		}
 		if(!hasSwizzle)
 #endif
