@@ -36,6 +36,9 @@ mission "Escort (Small, Northern)"
 	on complete
 		payment 60000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Medium, Northern)"
 	name "Escort to <planet>"
@@ -69,6 +72,9 @@ mission "Escort (Medium, Northern)"
 	on complete
 		payment 90000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Large, Northern)"
 	name "Escort to <planet>"
@@ -98,6 +104,9 @@ mission "Escort (Large, Northern)"
 	on complete
 		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Extra Large, Northern)"
 	name "Escort to <planet>"
@@ -131,6 +140,9 @@ mission "Escort (Extra Large, Northern)"
 	on complete
 		payment 150000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 mission "Escort (Small, Core)"
@@ -161,6 +173,9 @@ mission "Escort (Small, Core)"
 	on complete
 		payment 60000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Medium, Core)"
 	name "Escort to <planet>"
@@ -194,6 +209,9 @@ mission "Escort (Medium, Core)"
 	on complete
 		payment 90000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Large, Core)"
 	name "Escort to <planet>"
@@ -223,6 +241,9 @@ mission "Escort (Large, Core)"
 	on complete
 		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Extra Large, Core)"
 	name "Escort to <planet>"
@@ -256,6 +277,9 @@ mission "Escort (Extra Large, Core)"
 	on complete
 		payment 150000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 mission "Escort (Small, Southern)"
@@ -286,6 +310,9 @@ mission "Escort (Small, Southern)"
 	on complete
 		payment 60000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Medium, Southern)"
 	name "Escort to <planet>"
@@ -319,6 +346,9 @@ mission "Escort (Medium, Southern)"
 	on complete
 		payment 90000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Large, Southern)"
 	name "Escort to <planet>"
@@ -348,6 +378,9 @@ mission "Escort (Large, Southern)"
 	on complete
 		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 mission "Escort (Extra Large, Southern)"
 	name "Escort to <planet>"
@@ -381,6 +414,9 @@ mission "Escort (Extra Large, Southern)"
 	on complete
 		payment 150000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
 mission "Bounty Hunting (Big)"

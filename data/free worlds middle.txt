@@ -249,6 +249,9 @@ mission "FW Southern Battle 1B"
 		ship "Fury (Flamethrower)" "F.S. Mildred"
 		ship "Fury (Flamethrower)" "F.S. Clarisse"
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	
 	on complete
 		dialog `You land on <planet> with the battle fleet. Time to meet up with Freya in the spaceport.`
 
@@ -524,6 +527,9 @@ mission "FW Southern Prisoners - Release"
 		fleet "Large Republic"
 		fleet "Large Republic"
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	
 	on complete
 		karma ++
 		set "fw delivered prisoners"
@@ -583,6 +589,9 @@ mission "FW Southern Prisoners - Released"
 		fleet "Large Republic"
 		fleet "Large Republic"
 		fleet "Large Republic"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -851,6 +860,9 @@ mission "FW Northern 3B"
 		personality timid
 		ship Dreadnought "F.S. Bartlett"
 		ship Dreadnought "F.S. Magnolia"
+	
+	on visit
+		dialog "You have reached <planet>, but without both the dreadnoughts you were assigned to escort! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -894,6 +906,9 @@ mission "FW Northern 4.1A"
 			variant
 				Freighter 4
 	
+	on visit
+		dialog "You have reached <planet>, but you left part of your convoy behind! Better depart and wait for them to arrive in this star system."
+	
 	npc save
 		government "Navy (Oathkeeper)"
 		personality heroic staying uninterested
@@ -929,6 +944,9 @@ mission "FW Northern 4.2A"
 		personality heroic
 		system Sarin
 		fleet "Small Republic"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -990,6 +1008,9 @@ mission "FW Alphas 1.1"
 		ship "Firebird" "Vengeance"
 		ship "Firebird" "Revenant"
 		ship "Firebird" "Draugbreath"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 	on complete
 		event "liberation of Poisonwood"
@@ -1074,6 +1095,9 @@ mission "FW Alphas 1.2"
 		ship "Firebird" "Vengeance"
 		ship "Firebird" "Revenant"
 		ship "Firebird" "Draugbreath"
+	
+	on visit
+		dialog "You have reached <planet>, but you left part of your fleet behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1089,6 +1113,9 @@ mission "FW Alphas 1.1A"
 		government "Navy (Oathkeeper)"
 		personality heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
 		set "fw alphas done"
@@ -1245,6 +1272,9 @@ mission "FW Bloodsea 1.1A"
 		personality heroic
 		ship "Behemoth (Heavy)" "F.S. Bungles"
 		ship "Behemoth (Heavy)" "F.S. Humble"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the freighters behind! Better depart and wait for them to arrive in this star system."
 
 
 
@@ -1268,6 +1298,9 @@ mission "FW Bloodsea 1.1B"
 		personality heroic
 		ship "Behemoth (Heavy)" "F.S. Bungles"
 		ship "Behemoth (Heavy)" "F.S. Humble"
+	
+	on visit
+		dialog "You have reached <planet>, but you left the freighters behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
 		government Pirate
