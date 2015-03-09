@@ -36,8 +36,9 @@ using namespace std;
 namespace {
 	static const vector<string> CATEGORIES = {
 		"Guns",
-		"Missiles",
 		"Turrets",
+		"Secondary Weapons",
+		"Ammunition",
 		"Systems",
 		"Power",
 		"Engines",
