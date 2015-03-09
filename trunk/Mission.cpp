@@ -599,6 +599,10 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.repeat = 0;
 	result.name = name;
 	result.waypoints = waypoints;
+	// If one of the waypoints is the current system, it is already visited.
+	auto it = result.waypoints.find(player.GetSystem());
+	if(it != result.waypoints.end())
+		result.waypoints.erase(it);
 	
 	// First, pick values for all the variables.
 	

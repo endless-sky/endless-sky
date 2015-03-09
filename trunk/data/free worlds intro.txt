@@ -46,7 +46,7 @@ mission "Pact Recon 0"
 				`	"Yes."`
 					goto eyes
 				`	"No. What is it?"`
-			`	She says, "we're a collection of worlds that have decided that since the Navy doesn't patrol this part of the galaxy anymore, it's up to us to keep the pirates in check. The idea is that if the pirates ever try something big, like capturing an entire planet, that planet can call on the entire Pact to assist them."`
+			`	She says, "We're a collection of worlds that have decided that since the Navy doesn't patrol this part of the galaxy anymore, it's up to us to keep the pirates in check. The idea is that if the pirates ever try something big, like capturing an entire planet, that planet can call on the entire Pact to assist them."`
 			`	"Sounds like a good idea," you say.`
 			label eyes
 			`	"The Pact is launching a new initiative," she says. "We're calling it the 'Thousand Eyes.' We're asking ship captains to let us access their scanner logs, basically using merchants as a surveillance network. You don't have to fight the pirates, just let us know if you see them. Interested?"`
