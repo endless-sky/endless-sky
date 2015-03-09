@@ -174,7 +174,11 @@ const string &Command::KeyName() const
 bool Command::HasConflict() const
 {
 	auto it = keycodeForCommand.find(*this);
-	return (it != keycodeForCommand.end() && it->second > 1);
+	if(it == keycodeForCommand.end())
+		return false;
+	
+	auto cit = keycodeCount.find(it->second);
+	return (cit != keycodeCount.end() && cit->second > 1);
 }
 
 

@@ -33,36 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const Command COMMANDS[] = {
-		Command::NONE,
-		Command::FORWARD,
-		Command::LEFT,
-		Command::RIGHT,
-		Command::BACK,
-		Command::AFTERBURNER,
-		Command::LAND,
-		Command::JUMP,
-		Command::NONE,
-		Command::PRIMARY,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
-		Command::NONE,
-		Command::NEAREST,
-		Command::TARGET,
-		Command::SCAN,
-		Command::HAIL,
-		Command::NONE,
-		Command::MENU,
-		Command::MAP,
-		Command::INFO,
-		Command::FULLSCREEN,
-		Command::NONE,
-		Command::DEPLOY,
-		Command::FIGHT,
-		Command::GATHER,
-		Command::HOLD
-	};
 	static const string CATEGORIES[] = {
 		"Navigation",
 		"Weapons",
@@ -76,7 +46,6 @@ namespace {
 		"Automatic firing",
 		"Automatic aiming"
 	};
-	static const Command *BREAK = &COMMANDS[18];
 }
 
 
@@ -119,6 +88,37 @@ void PreferencesPanel::Draw() const
 	Point endPoint;
 	const string *category = CATEGORIES;
 	zones.clear();
+	static const Command COMMANDS[] = {
+		Command::NONE,
+		Command::FORWARD,
+		Command::LEFT,
+		Command::RIGHT,
+		Command::BACK,
+		Command::AFTERBURNER,
+		Command::LAND,
+		Command::JUMP,
+		Command::NONE,
+		Command::PRIMARY,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
+		Command::NONE,
+		Command::NEAREST,
+		Command::TARGET,
+		Command::SCAN,
+		Command::HAIL,
+		Command::NONE,
+		Command::MENU,
+		Command::MAP,
+		Command::INFO,
+		Command::FULLSCREEN,
+		Command::NONE,
+		Command::DEPLOY,
+		Command::FIGHT,
+		Command::GATHER,
+		Command::HOLD
+	};
+	static const Command *BREAK = &COMMANDS[18];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
