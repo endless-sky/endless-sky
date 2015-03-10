@@ -726,6 +726,11 @@ void Engine::CalculateStep()
 	}
 	projectiles.splice(projectiles.end(), newProjectiles);
 	
+	// Keep track of the relative strength of each government in this sytem. Do
+	// not add more ships to make a winning team even stronger. This is mostly
+	// to avoid having the player get mobbed by pirates, say, if they hang out
+	// in one system for too long.
+	map<const Government *, int> strength;
 	// Now, ships fire new projectiles, which includes launching fighters. If an
 	// anti-missile system is ready to fire, it does not actually fire unless a
 	// missile is detected in range during collision detection, below.
@@ -733,6 +738,8 @@ void Engine::CalculateStep()
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
+			strength[ship->GetGovernment()] += ship->Cost();
+			
 			// Note: if a ship "fires" a fighter, that fighter was already in
 			// existence and under the control of the same AI as the ship, but
 			// its system was null to mark that it was not active.
@@ -943,7 +950,20 @@ void Engine::CalculateStep()
 	// Add incoming ships.
 	for(const System::FleetProbability &fleet : player.GetSystem()->Fleets())
 		if(!Random::Int(fleet.Period()))
+		{
+			const Government *gov = fleet.Get()->GetGovernment();
+			if(!gov)
+				continue;
+			
+			int enemyStrength = 0;
+			for(const auto &it : strength)
+				if(gov->IsEnemy(it.first))
+					enemyStrength += it.second;
+			if(enemyStrength && strength[gov] > 2 * enemyStrength)
+				continue;
+			
 			fleet.Get()->Enter(*player.GetSystem(), ships);
+		}
 	
 	// Occasionally have some ship hail you.
 	if(!Random::Int(600) && !ships.empty())
