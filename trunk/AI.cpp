@@ -318,7 +318,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 
 	// Find the closest enemy ship (if there is one).
 	const Personality &person = ship.GetPersonality();
-	double closest = numeric_limits<double>::infinity();
+	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() : 3000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
 	for(const auto &it : ships)
@@ -1302,6 +1302,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 	bool hasGuns = Preferences::Has("Automatic firing");
 	if(hasGuns)
 		command |= AutoFire(ship, ships, false);
+	hasGuns |= keyHeld.Has(Command::PRIMARY);
 	if(keyHeld)
 	{
 		if(keyHeld.Has(Command::BACK))

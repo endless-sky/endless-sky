@@ -75,6 +75,14 @@ void Fleet::Load(const DataNode &node)
 
 
 
+// Get the government of this fleet.
+const Government *Fleet::GetGovernment() const
+{
+	return government;
+}
+
+
+
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 {
 	if(!total || !government)

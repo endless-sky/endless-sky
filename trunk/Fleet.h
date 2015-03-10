@@ -39,6 +39,9 @@ public:
 	
 	void Load(const DataNode &node);
 	
+	// Get the government of this fleet.
+	const Government *GetGovernment() const;
+	
 	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
 	// Place a fleet in the given system, already "in action."
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
