@@ -547,8 +547,8 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			int count = hyperspaceCount;
 			count *= sprite.Width() * sprite.Height();
-			count /= 20000;
-			const Effect *effect = GameData::Effects().Get("skylance impact");
+			count /= 160000;
+			const Effect *effect = GameData::Effects().Get("jump drive");
 			while(--count >= 0)
 			{
 				Point point((Random::Real() - .5) * .5 * sprite.Width(),

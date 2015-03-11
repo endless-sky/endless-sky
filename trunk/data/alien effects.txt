@@ -23,6 +23,14 @@ effect "skylance impact"
 	"random angle" 180
 	"velocity scale" 0.
 
+effect "jump drive"
+	sprite "effect/jump drive"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
 effect "banisher impact"
 	sprite "effect/banisher impact"
 		"no repeat"
