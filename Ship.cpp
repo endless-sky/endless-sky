@@ -538,6 +538,7 @@ bool Ship::Move(list<Effect> &effects)
 		hyperspaceCount += direction;
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
+		static const double HYPER_D = 1000.;
 		bool hasJumpDrive = attributes.Get("jump drive");
 		
 		// Create the particle effects for the jump drive. This may create 100
@@ -594,7 +595,7 @@ bool Ship::Move(list<Effect> &effects)
 			
 			// Have all ships exit hyperspace at the same distance so that
 			// your escorts always stay with you.
-			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + 1000.;
+			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
 			position = (target - distance * angle.Unit());
 			position += hyperspaceOffset;
 			// Make sure your velocity is in exactly the direction you are
@@ -605,10 +606,30 @@ bool Ship::Move(list<Effect> &effects)
 		if(!hasJumpDrive)
 		{
 			velocity += (HYPER_A * direction) * angle.Unit();
-			if(velocity.Length() <= MaxVelocity() && !hyperspaceSystem)
+			if(!hyperspaceSystem)
 			{
-				velocity = angle.Unit() * MaxVelocity();
-				hyperspaceCount = 0;
+				// Exit hyperspace far enough from the planet to be able to land.
+				// This does not take drag into account, so it is always an over-
+				// estimate of how long it will take to stop.
+				// We start decellerating after rotating about 150 degrees (that
+				// is, about acos(.8) from the proper angle). So:
+				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
+				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
+				double exitV = MaxVelocity();
+				double a = (.5 / Acceleration() - .25);
+				double b = 150. / TurnRate();
+				double discriminant = b * b - 4. * a * -HYPER_D;
+				if(discriminant > 0.)
+				{
+					double altV = (-b + sqrt(discriminant)) / (2. * a);
+					if(altV > 0. && altV < exitV)
+						exitV = altV;
+				}
+				if(velocity.Length() <= exitV)
+				{
+					velocity = angle.Unit() * exitV;
+					hyperspaceCount = 0;
+				}
 			}
 		}
 		position += velocity;
