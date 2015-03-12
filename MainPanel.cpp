@@ -240,6 +240,8 @@ void MainPanel::ShowHailPanel()
 			return;
 		
 		shared_ptr<Ship> target = ship->GetTargetShip();
+		if((SDL_GetModState() & KMOD_SHIFT) && ship->GetTargetPlanet())
+			target.reset();
 		if(target)
 		{
 			if(target->IsEnteringHyperspace())
