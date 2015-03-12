@@ -782,7 +782,7 @@ mission "FW Katya 2C"
 		payment 100000
 		conversation
 			`As soon as you land, Mr. Eyes fires up his sensors and begins collecting data. A few minutes later, Katya shows up. "Eyes!" she says, "It's great to see you again."`
-			`	"You too, councilor," he says.`
+			`	"You too, Councilor," he says.`
 			`	Katya hands you a credit chip for another <payment>. "Thanks again, Captain. Did Eyes explain the plan to you?" You nod. "Well," she says, "if you've got space for the two of us and want to be a part of seeing justice done, let's meet up in the spaceport once Eyes is done analyzing his data."`
 
 
