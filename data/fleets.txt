@@ -357,6 +357,7 @@ fleet "Small Republic"
 	personality
 		heroic
 	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -379,6 +380,7 @@ fleet "Large Republic"
 	personality
 		heroic
 	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -421,6 +423,7 @@ fleet "Navy Surveillance"
 	personality
 		surveillance
 	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 	variant 10
 		"Cruiser"
 		"Surveillance Drone" 4
@@ -498,6 +501,7 @@ fleet "Small Oathkeeper"
 	personality
 		heroic
 	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -520,6 +524,7 @@ fleet "Large Oathkeeper"
 	personality
 		heroic
 	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -875,6 +880,8 @@ fleet "Small Pug"
 	cargo 1
 	personality
 		heroic
+	"friendly hail" "friendly pug"
+	"hostile hail" "hostile pug"
 	variant 1
 		"Pug Zibruka"
 	variant 2
@@ -891,6 +898,8 @@ fleet "Large Pug"
 	cargo 1
 	personality
 		heroic
+	"friendly hail" "friendly pug"
+	"hostile hail" "hostile pug"
 	variant 1
 		"Pug Enfolta"
 		"Pug Zibruka" 2
@@ -912,4 +921,3 @@ fleet "Large Pug"
 		"Pug Maboro"
 		"Pug Enfolta"
 		"Pug Zibruka" 2
-
