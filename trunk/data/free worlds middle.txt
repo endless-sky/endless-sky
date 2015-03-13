@@ -1714,7 +1714,7 @@ mission "FW Defend New Tibet"
 			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we're receiving communications from New Tibet. You need to talk to them."`
 			`	"Our fleet is there?" asks JJ.`
 			`	"No sir, the Syndicate. They're under attack by the Syndicate."`
-			`	"What?" says JJ. He rushes into the communication room, and you and Freya follow. On the video screen is a Buddhist monk in a maroon robe; behind him, you see other monks rushing about with none of the serenity you usually associate with Buddhist monastics. "What's going on there?" asks JJ.`
+			`	"What?" says JJ. He rushes into the communication room, and you and Freya follow. On the video screen is a Buddhist monk in a maroon robe; behind him, you see other monks rushing about with none of the serenity you would usually expect of them. "What's going on there?" asks JJ.`
 			`	The monk explains, "Yesterday a Syndicate ship landed near our monastery, and the pilot sought refuge with us. He brings evidence that the Syndicate, or some faction within the Syndicate, was behind the attacks on Geminus and Martini."`
 			choice
 				`	"Why would the Syndicate do that?"`
@@ -1842,18 +1842,121 @@ mission "FW Liberate Delta Sagittarii"
 	description "Lead a Free Worlds fleet to drive the Navy out of Delta Sagittarii. Another fleet ought to be arriving from the Rim at about the same time."
 	source Wayfarer
 	destination "New Portland"
+	clearance
 	passengers 2
 	to offer
 		has "FW Rand 1B: done"
 	
 	on offer
+		event "fwc southern battle"
 		conversation
 			branch surrender
 				has "fw did not rescue defector"
-			`	A few of the Free Worlds crew members are still milling around the spaceport in confusion. You help to gether them together and explain that you are headed out on a very important mission to New Tibet.`
+			`A few of the Free Worlds crew members are still milling around the spaceport in confusion. You help to gather them together and explain that you are headed out on a very important mission to New Tibet.`
 				decline
 			
 			label surrender
-			`	You bloodthirsty fool! You let a perfectly innocent man die, and now you're stuck in a plot line that hasn't been implemented yet. I hope you have a recent saved game to revert to!`
-			`	(If not, you can skip back to the last planet you landed on by bringing up the main menu right now, going to Load / Save, and reloading your game. Be sure to do that before you depart from this planet, or your foolish decision will be saved forever...)`
-				decline
+			`When you and Freya enter the spaceport bar, JJ is talking with someone on his communicator. "The code word is 'havoc,'" he says. "Yes, I'm certain. It's the only option we have left. Good luck."`
+			`	"What was that about?" asks Freya.`
+			`	JJ says, "I was calling in some reinforcements," he says. "A group of ex-militia folks and bounty hunters who want to further the cause of the Free Worlds, but want to do it freelance instead of taking orders from us or the Senate. They call themselves the 'Wolf Pack.' Have you heard of them?"`
+			branch know
+				has "FW Wolf Pack 2: offered"
+			choice
+				`	"No, I haven't."`
+			`	"Too bad," says JJ, "they've managed to get their hands on some technology I'd love to have access to. But anyways, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+				goto plan
+			label know
+			choice
+				`	"Yes, I helped them get access to some better ramscoop technology from the Deep."`
+					goto yes
+				`	"No, I haven't had any dealings with them."`
+			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyways,  they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+				goto plan
+			label yes
+			`	"Ah yes," says JJ, "an excellent piece of corporate espionage. A little shady and underhanded, of course, which is why we let the Wolf Pack handle things like that rather than doing it through official channels. But anyways, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			
+			label plan
+			`	"That'll need to be one hell of a strike for it to make any difference," says Freya.`
+			`	"Don't worry," says JJ, "it will be. They've been itching to get into the fray for months now. Captain <last>, we'd like you to fly along with the fleet and help to mop up whatever the Wolf Pack leaves behind in the Delta Sagittarii system. Then we'll land on New Portland and figure out what our next steps are. Freya and I will ride on your ship."`
+				accept
+	
+	on complete
+		event "fwc southern liberation"
+	
+	npc
+		personality heroic
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Plasma)"
+				"Osprey"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon"
+		fleet
+			names "free worlds capital"
+			variant
+				"Bastion" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+	
+	npc evade
+		personality staying heroic
+		system "Delta Sagittarii"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+				"Rainmaker (Mark II)" 4
+	
+	npc
+		personality staying derelict
+		system "Delta Sagittarii"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Frigate" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Frigate" 4
+	
+	npc
+		personality staying heroic
+		system "Rastaban"
+		government "Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+		fleet "Large Free Worlds"
+	npc
+		personality staying derelict
+		system "Rastaban"
+		government "Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"	
+	npc
+		personality staying heroic
+		system "Rastaban"
+		government "Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"

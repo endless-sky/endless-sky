@@ -1,0 +1,168 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+
+mission "FWC Scouting 1"
+	landing
+	name "Scout Kaus Borealis"
+	description "Travel through the <system> system to detemrine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	source "New Portland"
+	waypoint "Kaus Borealis"
+	to offer
+		has "FW Liberate Delta Sagittarii: done"
+	
+	on offer
+		conversation
+			`It was a close battle, and could have gone very differently if it were not for the Wolf Pack strike that happened before you arrived and that disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
+			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon, before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
+			choice
+				`	"No problem."`
+					goto freya
+				`	"Sure, but first, can you tell me how the Wolf Pack was able to do somuch damage to the Navy?"`
+			`	"As I said," says JJ, "They've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
+			label freya
+			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Rand system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
+				accept
+	
+	npc
+		personality staying heroic
+		system "Kaus Borealis"
+		government "Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+
+
+
+mission "FWC Attack Kaus Borealis"
+	landing
+	name "Attack Kaus Borealis"
+	description "Destroy the Navy fleet defending Kaus Borealis. The Wolf Pack will attack them first to soften them up."
+	source "New Portland"
+	destination "New Iceland"
+	clearance
+	to offer
+		has "FWC Scouting 1: done"
+	
+	on offer
+		event "fwc attack kaus borealis"
+		conversation
+			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut out territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
+			choice
+				`	"Are you saying we risk having members of our militia desert?"`
+					goto desert
+				`	"Well, the fact that they all returned to fight is a good sign."`
+					goto fight
+			label desert
+			`	"Yes," says JJ, "some of them already have. Think of it from the perspective of a militia member: you signed up to defend one planet against occasional pirates, not to spend years traveling from system to system battling the Navy. Some people have just had enough. This war needs to end, and end soon."`
+				goto battle
+			label fight
+			`	"Well," says JJ, "at least some of them returned to fight. But many of them didn't. Think of it from the perspective of a militia member: you signed up to defend one planet against occasional pirates, not to spend years traveling from system to system battling the Navy. Some people have just had enough. This war needs to end, and end soon."`
+				goto battle
+			label battle
+			choice
+				`	"Well, we can't exactly conquer the Republic. Shouldn't we try diplomacy?"`
+					goto diplomacy
+				`	"It sounds to me like we need to make a convincing enough show of strength that Parliament will agree to a ceasefire."`
+					goto strength
+			label diplomacy
+			`	"Yes," says JJ, "it will have to be a diplomatic solution in the end. But we must negotiate that solution from a position of strength, not weakness. And that means driving the Navy out of our territory."`
+				goto plan
+			label strength
+			`	"Precisely," says JJ, "and the only way to do that is to drive the Navy out of our territory. And if that isn't enough... we have plans for that contingency as well."`
+				goto plan
+			label plan
+			`	"So, now we attack Kaus Borealis?" you ask.`
+			`	"That's right," he says. "Once again, the Wolf Pack will go in first and soften them up, then you and your ships will clean up. I've already given the Wolf Pack orders to attack, so please head straight to Kaus Borealis so you can join the fray before they have time to recover."`
+				accept
+	
+	on complete
+		event "fwc capture kaus borealis"
+	
+	npc
+		personality heroic
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Plasma)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Osprey"
+	
+	npc evade
+		personality staying heroic
+		system "Kaus Borealis"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+	
+	npc
+		personality staying derelict
+		system "Kaus Borealis"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Frigate" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Frigate" 2
+
