@@ -178,6 +178,8 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'm')
 		GetUI()->Push(new MissionPanel(player));
+	else
+		return false;
 	
 	return true;
 }
