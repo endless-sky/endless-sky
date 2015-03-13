@@ -59,7 +59,8 @@ void MainPanel::Step()
 		player.Land(GetUI());
 		isActive = false;
 	}
-	if(isActive && !Preferences::Has("help: navigation"))
+	if(isActive && player.GetShip() && player.GetShip()->IsTargetable()
+			&& !Preferences::Has("help: navigation"))
 	{
 		Preferences::Set("help: navigation");
 		ostringstream out;
@@ -75,7 +76,8 @@ void MainPanel::Step()
 			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
 	}
-	if(isActive && player.GetShip() && player.GetShip()->IsDestroyed() && !Preferences::Has("help: dead"))
+	if(isActive && player.GetShip() && player.GetShip()->IsDestroyed()
+			&& !Preferences::Has("help: dead"))
 	{
 		Preferences::Set("help: dead");
 		ostringstream out;
@@ -111,7 +113,7 @@ void MainPanel::Step()
 			}
 		}
 		if((event.Type() & ShipEvent::JUMP) && player.GetShip() && !player.GetShip()->Fuel()
-			&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
+				&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
 		{
 			Preferences::Set("help: stranded");
 			ostringstream out;
