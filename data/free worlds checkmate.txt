@@ -166,3 +166,281 @@ mission "FWC Attack Kaus Borealis"
 				"Cruiser (Mark II)"
 				"Frigate" 2
 
+
+
+mission "FWC Cebalrai 1"
+	landing
+	name "Scout out Cebalrai"
+	description "Scout out the Navy presence in the Cebalrai system, then report back to Tomek on <planet>."
+	source "New Iceland"
+	waypoint "Cebalrai"
+	to offer
+		has "FWC Attack Kaus Borealis: done"
+	
+	on offer
+		conversation
+			`As you bring your ship in for a landing, it occurs to you that this is the first time that you have fought a battle for a star system that had not voluntarily decided to join the Free Worlds, and you are not sure what to do next. Fortunately, soon more Free Worlds ships begin arriving, and one of them is carrying Alondo. Tomek is with him. "Hi there, <first>," says Tomek. "Bet you didn't expect to see me again, huh?"`
+			`	Alondo says, "<first>, I'll leave you and Tomek to catch up. I should go talk to the governor immediately. There's no way the locals will have failed to notice the nuclear explosions happening in space right over their heads."`
+			choice
+				`	"What? We weren't using nukes, just conventional weapons."`
+					goto conventional
+				`	"Wait, is that what the Wolf Pack was using?"`
+					goto wolf
+			label conventional
+			`	"Yes," says Tomek, "but the Wolf Pack was using nukes." Seeing the incredulous look on your face, he says, "Well, how did you think they were doing all that damage? You thought they had some massive battle fleet hidden somewhere that no one knows about?"`
+				goto next
+			label wolf
+			`	"That's right," says Tomek. He doesn't seem terribly happy about it. "How else would they be doing so much damage to the Navy? It's not like they've got a massive battle fleet stashed away somewhere."`
+				goto next
+			label next
+			`	Alondo hurries off to the city hall to try to meet with the governor, and Tomek explains, "All the Wolf Pack has is a handful of very fast ships armed with nukes. They jump into the system, unload the missiles at whatever targets they can find, and then hightail it out of there before the Navy has a chance to respond. This is quite a mess you all have gotten into while I was gone, by the way."`
+			choice
+				`	"Weren't you under house arrest?"`
+				`	"So, does the fact that you're here mean the Senate pardoned you?"`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			choice
+				`	"So, what's our next step?"`
+					goto end
+				`	"I'm still really confused about why we're using nukes. Or where we got them from."`
+			`	Tomek frowns. "I'm not too happy about that, myself. The Wolf Pack is buying them from a warlord on Greenrock. And the way they're paying him is with uranium, so every nuke he gives to us means another one or two he can build for himself. Not a good situation, if you ask me, but I guess the Wolf Pack thought it was the only way to turn the tide of the war."`
+			`	"So, what do we do now?" you ask.`
+			label end
+			`	"Well," he says, "if we can take Cebalrai, our entire territory will be behind just two choke points, which will allow us to defend ourselves against the Navy without spreading the fleet too thin. So next, I'd like you to go scout out the Cebalrai system and report on the Navy's position there."`
+				accept
+	
+	on enter Cebalrai
+		dialog
+			`There are a few Navy ships here, but nowhere near as many as were in the Kaus Borealis system before your last attack. Perhaps the Navy has decided to pull back their forces.`
+	
+	npc
+		personality staying heroic
+		system "Cebalrai"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)" 2
+
+
+
+mission "FWC Cebalrai 1B"
+	landing
+	name "Capture Cebalrai"
+	description "Lead an attack on the Cebalrai system and drive out or destroy any Navy ships that you find there."
+	source "New Iceland"
+	destination "Tundra"
+	clearance
+	passengers 1
+	to offer
+		has "FWC Cebalrai 1: done"
+	
+	on offer
+		event "fwc attack cebalrai"
+		conversation
+			`You meet up with Tomek and Alondo and tell them that the defenses in the Cebalrai system did not seem particularly strong. "They must've seen the writing on the wall and pulled back the rest of their fleet," says Alondo.`
+			`	"Either that," says Tomek, "or they're wary of engaging us again now that they know we're willing to use nukes. Which I'm still not happy about, by the way. It's only a matter of time until they respond in kind. But in any case, our next move is clear: bring a fleet to Cebalrai and capture the system. <first>, you'll be in charge of that fleet. Alondo can travel with you to handle the diplomatic aftermath."`
+				accept
+	
+	on complete
+		event "fwc capture cebalrai"
+	
+	npc
+		personality heroic
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+				"Fury (Flamethrower)" 4
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon"
+				"Hawk" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Osprey"
+				"Argosy" 2
+	
+	npc evade
+		personality staying heroic
+		system "Cebalrai"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Frigate (Mark II)"
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Frigate"
+				"Gunboat" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser"
+				"Lance" 4
+				"Frigate" 2
+
+
+
+mission "FWC Nuke Supply 1"
+	landing
+	name "Uranium Convoy"
+	description "Travel to Oblivion to escort a freighter that is delivering uranium to a warlord on Greenrock."
+	source Tundra
+	destination Oblivion
+	to offer
+		has "FWC Cebalrai 1B: done"
+	
+	on offer
+		conversation
+			`As you are bringing your ship in for a landing, you hear an odd plinking sound from the hull, similar to the sound of flying through a swarm of micrometeorites. After a few seconds, you realize that it's the sound of your ship being hit by small arms fire from the town below. Your hull is far too strong to be damaged by bullets, but the message is clear: you are not welcome here.`
+			`	The spaceport is apparently deserted, and no one seems eager to come out and greet you. A few bullets continue to plink harmlessly off your hull, from snipers in the nearby buildings. "I think it would be best for me to just contact the governor via radio," says Alondo.`
+			choice
+				`	"Don't they know our fleet could easily destroy them if we wanted?"`
+					goto destroy
+				`	"Do you think we have any chance at a peace settlement?"`
+					goto peace
+			label destroy
+			`	"That would be an awful precedent," says Alondo, "perhaps worse than the fact we're using nukes. If civilian populations become a legitimate target, any of our worlds could be attacked at any time. And it's not like there's any way to defend a world from orbital bombardment. No one would ever be able to feel safe in their own homes again."`
+				goto next
+			label peace
+			`	"I hope so," says Alondo. "We'll let them keep shooting at us for a while, to vent their anger and let them prove their point. Then once they see the Navy isn't going to rescue them, we'll negotiate. That's really our only alternative. I do not want to be the person who authorizes the first attack on civilian targets since the dawn of the Republic."`
+				goto next
+			label next
+			`	You wait for about an hour. Meanwhile, more Free Worlds ships continue to enter the system, one of which is carrying Tomek. He radios you and says, "I think we've got things under control here, which means there's a new mission for you. You probably aren't going to like this, but we need you to escort a freighter from Oblivion. Part of our ongoing deal with the Devil: a shipment of uranium headed for Greenrock."`
+			`	A Free Worlds ship lands close enough to your own ship that Alondo can transfer over to it without being in sight of the snipers. "Good luck," he says as he departs. "I hope when you return we will have negotiated some sort of meeting with Parliament."`
+				accept
+
+
+
+mission "FWC Nuke Supply: Enemies"
+	landing
+	invisible
+	to offer
+		has "FWC Nuke Supply 1: done"
+	
+	to fail
+		has "FWC Nuke Supply 1C: done"
+	
+	npc kill
+		government Republic
+		personality nemesis heroic
+		system Cebalrai
+		fleet
+			names "republic capital"
+			variant
+				"Gunboat (Mark II)" 3	
+	npc kill
+		government Republic
+		personality nemesis heroic
+		system Castor
+		fleet
+			names "republic capital"
+			variant
+				"Gunboat (Mark II)" 3
+	npc kill
+		government Republic
+		personality nemesis heroic
+		system Betelgeuse
+		fleet
+			names "republic capital"
+			variant
+				"Gunboat (Mark II)" 3
+
+
+
+mission "FWC Nuke Supply 1B"
+	landing
+	name "Uranium Convoy"
+	description "Escort a freighter that is delivering uranium to a warlord on Greenrock."
+	source Oblivion
+	destination Greenrock
+	clearance
+	to offer
+		has "FWC Nuke Supply 1: done"
+	
+	on offer
+		conversation
+			`You land on <origin> and meet up with the grim-faced captain of a Bulk Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on Council know what you're doing."`
+				accept
+	
+	npc accompany save
+		personality timid
+		ship "Bulk Freighter" "F.S. Blue Yonder"
+	
+	on visit
+		dialog "You have reached <planet>, but the Blue Yonder is not here yet! Better depart and wait for them to arrive in this star system."
+
+
+
+mission "FWC Nuke Supply 1C"
+	landing
+	name "Warhead Convoy"
+	description "Escort a freighter carrying nuclear warheads to Solace."
+	source Greenrock
+	destination Solace
+	to offer
+		has "FWC Nuke Supply 1B: done"
+	
+	on offer
+		event "fwc solace has nukes"
+		conversation
+			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
+				accept
+	
+	npc accompany save
+		personality timid
+		ship "Bulk Freighter" "F.S. Blue Yonder"
+
+
+mission "FWC Diplomacy 1"
+	landing
+	name "Let's Try Diplomacy"
+	description "Return to Tundra to meet up with Alondo and take him on another visit to Parliament. Maybe this time they will be willing to negotiate a truce."
+	source Solace
+	destination Tundra
+	to offer
+		has "FWC Nuke Supply 1C: done"
+	
+	on offer
+		conversation
+			`A member of the Wolf Pack who identifies himself as "Odie" oversees the unloading of the warheads from your ship. "Excellent," he says. "It will take a while to install these in missiles, but in the meantime we already have a good stockpile. In recognition of how much you have assisted us, Fifi has authorized us to sell them to you in the outfitter if you want."`
+			choice
+				`	"Great! I think I'd like a dozen of them."`
+					goto yes
+				`	"Sorry, I'm following orders by bringing this convoy here, but I want no part in the use of nuclear weapons, even for the sake fo winning this war."`
+					goto no
+				`	"Wait, 'Fifi'? Is that your leader?"`
+					goto fifi
+			label yes
+			`	He laughs. "I'm afraid that's not possible. Unlike most missile systems, we haven't yet developed any sort of feed system that would let you fire multiple missiles from the same gun port. So, it's a weapon you can only fire once from a given gun port. But on the plus side, two of them are enough to bring down the shields on even the largest Navy vessel."`
+				goto next
+			label no
+			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no holds barred struggle for survival."`
+				goto next
+			label fifi
+			`	"Yes," he says, "Fifi is the leader of the Wolf Pack. And she is an absolutetly ferocious individual. I assure you that you do not want to be responsible for crossing her. Not that you'll ever have to, of course, because we're all on the same side here." He grins.`
+				goto next
+			label next
+			`	Soon after he is done unloading the cargo, you receive a message from Alondo: "Good news, <first>! The Republic has agreed to allow us to make a diplomatic visit to Parliament. Hurry back here to <planet> before they change their minds."`
+				accept
