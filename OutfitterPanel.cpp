@@ -138,6 +138,14 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 			OUTFIT_SIZE / 2 - 24);
 		font.Draw(count, pos, bright);
 	}
+	else if(!planet->Outfitter().Has(outfit) && !available[outfit])
+	{
+		static const string message = "(not sold here)";
+		Point pos = point + Point(
+			OUTFIT_SIZE / 2 - 20 - font.Width(message),
+			OUTFIT_SIZE / 2 - 24);
+		font.Draw(message, pos, bright);
+	}
 	
 	return true;
 }
