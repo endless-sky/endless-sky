@@ -192,7 +192,8 @@ void Engine::Place()
 				Angle angle = Angle::Random(360.);
 				// All your ships that are in system with the player act as if they are
 				// leaving the planet along with you.
-				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem())
+				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem()
+						&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer()))
 				{
 					// If a ship is "staying", it starts out in orbit.
 					if(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting())
@@ -202,6 +203,13 @@ void Engine::Place()
 					for(const StellarObject &object : ship->GetSystem()->Objects())
 						if(object.GetPlanet() == player.GetPlanet())
 							pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
+				}
+				else
+				{
+					pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+					for(const StellarObject &object : ship->GetSystem()->Objects())
+						if(object.GetPlanet() == player.GetPlanet())
+							pos += object.Position();
 				}
 				ship->Place(pos, angle.Unit(), angle);
 			}
