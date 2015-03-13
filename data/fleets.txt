@@ -845,7 +845,7 @@ fleet "Syndicate Extremists"
 
 fleet "Korath Raid"
 	government "Korath"
-	names "quarg"
+	names "korath"
 	cargo 3
 	personality
 		plunders
@@ -855,7 +855,7 @@ fleet "Korath Raid"
 
 fleet "Korath Home"
 	government "Korath"
-	names "quarg"
+	names "korath"
 	cargo 3
 	personality
 		timid
@@ -876,7 +876,7 @@ fleet "Quarg"
 
 fleet "Small Pug"
 	government "Pug"
-	names "quarg"
+	names "pug"
 	cargo 1
 	personality
 		heroic
@@ -894,7 +894,7 @@ fleet "Small Pug"
 
 fleet "Large Pug"
 	government "Pug"
-	names "quarg"
+	names "pug"
 	cargo 1
 	personality
 		heroic
