@@ -10,7 +10,6 @@
 
 
 
-
 mission "FW Conservatory 1"
 	name "Take Ijs to Winter"
 	description "Transport Mr. Eyes and the Andersons to <destination>, where he will be helping to set up a public university."
@@ -255,33 +254,33 @@ mission "FW Wolf Pack 2A"
 	
 	on offer
 		conversation
-			`Soon after you land, two men in militia uniforms approach your ship, and tell you they represent the "Wolf Pack." They introduce themselves as Zeta and Sigma; you're pretty sure those are not their real names.`
-			`	Once you are in a private room inside your ship, Zeta, who is the younger one, says, "With ramscoop technology, our ships will be able to venture deep into the Dirt Belt. Now, Captain, why do you think the Republic is so determined to hold on to the Dirt Belt, even if it means fighting bloody battles? It's clear that the tax revenue isn't worth it."`
+			`Soon after you land, two men in militia uniforms approach your ship, and tell you they represent the "Wolf Pack." They introduce themselves as Rex and Fido; you're pretty sure those are not their real names.`
+			`	Once you are in a private room inside your ship, Rex, who is the younger one, says, "With ramscoop technology, our ships will be able to venture deep into the Dirt Belt. Now, Captain, why do you think the Republic is so determined to hold on to the Dirt Belt, even if it means fighting bloody battles? It's clear that the tax revenue isn't worth it."`
 			choice
 				`	"Maybe it's just the principle of not ceding territory without a fight."`
 				`	"Maybe they want the resources that the Dirt Belt produces?"`
 					goto resources
 				`	"Maybe to keep a buffer in between our territory and the worlds that really matter to them, like Earth and the Paradise Planets?"`
-			`	"That might be part of it," says Zeta, "but there is a larger reason."`
+			`	"That might be part of it," says Rex, "but there is a larger reason."`
 				goto map
 			label resources
-			`	"Precisely," says Zeta, "and one resource in particular is more important to them than all the rest combined."`
+			`	"Precisely," says Rex, "and one resource in particular is more important to them than all the rest combined."`
 			label map
-			`	The man named Sigma, who is older and has a thick beard, spreads out a map on the table. You recognize it as a chart of food prices throughout human space. "Food," says Zeta. "The Dirt Belt is the breadbasket of the galaxy. And at the core of the Republic: teeming, overpopulated worlds that could never hope to feed themselves. If we cut off the supply of food, the Republic will be forced to make peace with us."`
-			`	Sigma says, "We are proposing a concentrated effort to destroy the freighter convoys that bring food to the richest, most densely populated Republic worlds. When their citizens find themselves lacking basic supplies, they will demand an end to the war."`
+			`	The man named Fido, who is older and has a thick beard, spreads out a map on the table. You recognize it as a chart of food prices throughout human space. "Food," says Rex. "The Dirt Belt is the breadbasket of the galaxy. And at the core of the Republic: teeming, overpopulated worlds that could never hope to feed themselves. If we cut off the supply of food, the Republic will be forced to make peace with us."`
+			`	Fido says, "We are proposing a concentrated effort to destroy the freighter convoys that bring food to the richest, most densely populated Republic worlds. When their citizens find themselves lacking basic supplies, they will demand an end to the war."`
 			choice
 				`	"I'd be glad to join you. That does sound like a much quicker solution than our current policies that the Senate and the Council support."`
 					goto join
 				`	"You're trying to starve the Republic into submission? Won't that just just add more brutality to a war that has already been far too bloody?"`
-			`	"In the short run, perhaps," says Zeta. "But think how many lives will be saved - how many bloody battles will be averted - by forcing them to end this war quickly rather than dragging it out across years of time."`
+			`	"In the short run, perhaps," says Rex. "But think how many lives will be saved - how many bloody battles will be averted - by forcing them to end this war quickly rather than dragging it out across years of time."`
 			choice
 				`	"I don't buy your argument. If we use such reprehensible tactics to build our new society, the society we build will be as corrupt as the old one."`
 				`	"Okay, you've convinced me. What do you want me to do?"`
 					goto join
-			`	"Very well," says Zeta. "Sorry for wasting your time." They leave.`
+			`	"Very well," says Rex. "Sorry for wasting your time." They leave.`
 				decline
 			label join
-			`	"First, you should buy a ramscoop here, if you haven't got one already," says Zeta. "Then, your first target is a convoy of three freighters that will be departing from Big Sky in the Sarin system shortly. There may be escorts, but only the freighters themselves need to be destroyed."`
+			`	"First, you should buy a ramscoop here, if you haven't got one already," says Rex. "Then, your first target is a convoy of three freighters that will be departing from Big Sky in the Sarin system shortly. There may be escorts, but only the freighters themselves need to be destroyed."`
 				accept
 	
 	npc kill
@@ -304,7 +303,7 @@ mission "FW Wolf Pack 2A"
 		karma --
 		payment 200000
 		dialog
-			`	Zeta, one of the "Wolf Pack" men you spoke with earlier, meets you in the spaceport and hands you a credit chip for <payment>. "Good work," he says. "We'll contact you when we have another target selected."`
+			`Rex, one of the "Wolf Pack" men you spoke with earlier, meets you in the spaceport and hands you a credit chip for <payment>. "Good work," he says. "We'll contact you when we have another target selected."`
 
 
 
@@ -376,7 +375,7 @@ mission "FW Wolf Pack 3"
 		karma --
 		payment 300000
 		dialog
-			`	Once again, Zeta from the Wolf Pack meets you soon after your ship lands. This time, he pays you <payment>. "I hope they didn't give you any trouble," he says. "We'll be in touch when there's another target to strike."`
+			`Once again, Rex from the Wolf Pack meets you soon after your ship lands. This time, he pays you <payment>. "I hope they didn't give you any trouble," he says. "We'll be in touch when there's another target to strike."`
 
 
 
@@ -448,7 +447,7 @@ mission "FW Wolf Pack 4"
 		karma --
 		payment 400000
 		dialog
-			`	Zeta meets up with you and thanks you for your continued service to the Free Worlds. "If we had a dozen captains as brave as you are," he says, "the war would be over tomorrow." He hands you <payment>, and walks away. You still don't know his real name or who the leaders of the Wolf Pack are, but you are glad to have been able to do something extra to assist the war effort.`
+			`Rex meets up with you and thanks you for your continued service to the Free Worlds. "If we had a dozen captains as brave as you are," he says, "the war would be over tomorrow." He hands you <payment>, and walks away. You still don't know his real name or who the leaders of the Wolf Pack are, but you are glad to have been able to do something extra to assist the war effort.`
 
 
 
@@ -464,6 +463,19 @@ mission "FW Stack Core 1"
 		conversation
 			`You receive a short, encoded message from Freya: "Hi there, Captain! If you happen to be passing by <planet> any time soon, would you mind swinging by there to help escort a freighter convoy? We're working on the development of some exciting new equipment, and the convoy is carrying the supplies we need to complete the project."`
 				accept
+
+
+
+mission "FWC Stack Core 1"
+	name "Escort convoy from Rand"
+	description "Freya asked you to stop by Rand if you are able, to help escort a freighter convoy carrying vital supplies for building some exciting new equipment."
+	landing
+	destination Rand
+	to offer
+		has "FW Liberate Delta Sagittarii: done"
+	
+	on complete
+		set "FW Stack Core 1: done"
 
 
 
@@ -514,5 +526,5 @@ mission "FW Stack Core 1C"
 	
 	on offer
 		conversation
-			`You receive another encoded message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
+			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
 				decline
