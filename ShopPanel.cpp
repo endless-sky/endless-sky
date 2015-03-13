@@ -304,6 +304,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 }
 
 
+
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
@@ -314,9 +315,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'b')
 	{
-		int modifier = Modifier();
-		for(int i = 0; i < modifier && CanBuy(); ++i)
-			Buy();
+		if(!CanBuy())
+			FailBuy();
+		else
+		{
+			int modifier = Modifier();
+			for(int i = 0; i < modifier && CanBuy(); ++i)
+				Buy();
+		}
 	}
 	else if(key == 's')
 	{

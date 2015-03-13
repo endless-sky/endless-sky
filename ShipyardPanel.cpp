@@ -146,6 +146,42 @@ void ShipyardPanel::Buy()
 
 
 
+void ShipyardPanel::FailBuy()
+{
+	if(!selectedShip)
+		return;
+	
+	int64_t cost = selectedShip->Cost();
+	
+	// Check that the player has any necessary licenses.
+	int64_t licenseCost = LicenseCost();
+	if(licenseCost < 0)
+	{
+		GetUI()->Push(new Dialog("Buying this ship requires a special license. "
+			"You will probably need to complete some sort of mission to get one."));
+		return;
+	}
+	
+	cost += licenseCost;
+	if(player.Accounts().Credits() < cost)
+	{
+		for(const auto &it : player.Ships())
+			cost -= it->Cost();
+		if(player.Accounts().Credits() < cost)
+			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
+				"Consider checking if the bank will offer you a loan."));
+		else
+		{
+			string ship = (player.Ships().size() == 1) ? "your current ship" : "one of your ships";
+			GetUI()->Push(new Dialog("You do not have enough credits to buy this ship. "
+				"If you want to buy it, you must sell " + ship + " first."));
+		}
+		return;
+	}
+}
+
+
+
 bool ShipyardPanel::CanSell() const
 {
 	return playerShip;

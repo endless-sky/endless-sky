@@ -45,6 +45,11 @@ namespace {
 		"Hand to Hand",
 		"Special"
 	};
+	
+	string Tons(int tons)
+	{
+		return to_string(tons) + (tons == 1 ? " ton" : " tons");
+	}
 }
 
 
@@ -244,6 +249,118 @@ void OutfitterPanel::Buy()
 		--available[selectedOutfit];
 	}
 	playerShip->AddOutfit(selectedOutfit, 1);
+}
+
+
+
+void OutfitterPanel::FailBuy()
+{
+	if(!selectedOutfit || !playerShip)
+		return;
+	
+	int64_t cost = selectedOutfit->Cost();
+	int64_t credits = player.Accounts().Credits();
+	bool isInCargo = player.Cargo().Get(selectedOutfit);
+	if(!isInCargo && cost > credits)
+	{
+		GetUI()->Push(new Dialog("You cannot buy this outfit, because it costs "
+			+ to_string(cost) + " credits, and you only have "
+			+ to_string(credits) + "."));
+		return;
+	}
+	
+	if(!(planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
+	{
+		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
+			"It is being shown in the list because you have one installed in your ship, "
+			"but this planet does not sell additional copies of it."));
+		return;
+	}
+	
+	double outfitNeeded = -selectedOutfit->Get("outfit space");
+	double outfitSpace = playerShip->Attributes().Get("outfit space");
+	if(outfitNeeded > outfitSpace)
+	{
+		string need =  to_string(outfitNeeded) + (outfitNeeded != 1. ? "tons" : "ton");
+		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
+			+ Tons(outfitNeeded) + " of outfit space, and this ship has "
+			+ Tons(outfitSpace) + " free."));
+		return;
+	}
+	
+	double weaponNeeded = -selectedOutfit->Get("weapon capacity");
+	double weaponSpace = playerShip->Attributes().Get("weapon capacity");
+	if(weaponNeeded > weaponSpace)
+	{
+		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for weapons. "
+			"You cannot install this outfit, because it takes up "
+			+ Tons(weaponNeeded) + " of weapon space, and this ship has "
+			+ Tons(weaponSpace) + " free."));
+		return;
+	}
+	
+	double engineNeeded = -selectedOutfit->Get("engine capacity");
+	double engineSpace = playerShip->Attributes().Get("engine capacity");
+	if(engineNeeded > engineSpace)
+	{
+		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for engines. "
+			"You cannot install this outfit, because it takes up "
+			+ Tons(engineNeeded) + " of engine space, and this ship has "
+			+ Tons(engineSpace) + " free."));
+		return;
+	}
+	
+	if(selectedOutfit->Category() == "Ammunition")
+	{
+		if(!playerShip->OutfitCount(selectedOutfit))
+			GetUI()->Push(new Dialog("This outfit is ammunition for a weapon. "
+				"You cannot install it without first installing the appropriate weapon."));
+		else
+			GetUI()->Push(new Dialog("You already have the maximum amount of ammunition for this weapon. "
+				"To install more ammunition, you must first install another copy of the weapon."));
+		return;
+	}
+	
+	int mountsNeeded = -selectedOutfit->Get("turret mounts");
+	int mountsFree = playerShip->Attributes().Get("turret mounts");
+	if(mountsNeeded && !mountsFree)
+	{
+		GetUI()->Push(new Dialog("This weapon is designed to be installed on a turret mount, "
+			"but your ship does not have any unused turret mounts available."));
+		return;
+	}
+	
+	int gunsNeeded = -selectedOutfit->Get("gun ports");
+	int gunsFree = playerShip->Attributes().Get("gun ports");
+	if(gunsNeeded && !gunsFree)
+	{
+		GetUI()->Push(new Dialog("This weapon is designed to be installed in a gun port, "
+			"but your ship does not have any unused gun ports available."));
+		return;
+	}
+	
+	if(!playerShip->Attributes().CanAdd(*selectedOutfit, 1))
+	{
+		GetUI()->Push(new Dialog("You cannot install this outfit in your ship, "
+			"because it would reduce one of your ship's attributes to a negative amount. "
+			"For example, perhaps it uses up more cargo space than you have left, "
+			"or has a constant energy draw greater than what your ship produces."));
+		return;
+	}
+	
+	if(selectedOutfit->Get("map"))
+	{
+		GetUI()->Push(new Dialog("You have already mapped all the systems shown by this map, "
+			"so there is no reason to buy another."));
+		return;
+	}
+	
+	if(HasLicense(selectedOutfit->Name()))
+	{
+		GetUI()->Push(new Dialog("You already have one of these licenses, "
+			"so there is no reason to buy another."));
+		return;
+	}
 }
 
 
