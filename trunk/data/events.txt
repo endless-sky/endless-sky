@@ -2119,3 +2119,38 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+
+
+
+event "fwc attack cebalrai"
+	system "Cebalrai"
+		fleet "Small Southern Merchants" 5000
+		fleet "Large Southern Merchants" 6000
+
+
+
+event "fwc capture cebalrai"
+	system "Cebalrai"
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 1500
+		fleet "Small Free Worlds" 400
+		fleet "Large Free Worlds" 400
+		fleet "Large Republic" 2000
+	system "Kaus Borealis"
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 2000
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Free Worlds" 600
+		fleet "Large Free Worlds" 700
+
+
+
+event "fwc solace has nukes"
+	planet Solace
+		outfitter "Delta V Advanced"
+		outfitter "Kraz Basics"
+		outfitter "Common Outfits"
+		outfitter "Ammo South"
+		outfitter "Stack Core"
+		outfitter "Nuke"

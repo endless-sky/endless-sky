@@ -373,6 +373,9 @@ outfitter "Pirate Outfits"
 outfitter "Stack Core"
 	"Stack Core"
 
+outfitter "Nuke"
+	"Nuclear Missile"
+
 # These are not available on any planet; listing them here is just a convenience
 # to allow them to be all turned on for testing.
 outfitter "Special Outfits"
