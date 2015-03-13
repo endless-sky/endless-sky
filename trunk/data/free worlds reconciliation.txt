@@ -1401,34 +1401,34 @@ mission "FW Pug 4"
 		system "Delta Capricorni"
 		government Pug
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
@@ -1468,13 +1468,13 @@ mission "FW Pug 4A"
 		government Pug
 		personality disables
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2	
@@ -1485,23 +1485,23 @@ mission "FW Pug 4A"
 		personality disables
 		dialog `You receive a message from Freya: "Captain, I think I've figured out the transmitter, and there is indeed a chance that we can reopen the hyperspace links. Meet me back down on the planet as soon as possible - I'll need you to take some equipment back to Hephaestus and set it up there."`
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
@@ -1557,25 +1557,25 @@ mission "FW Pug 4B: Enemies"
 		system Deneb
 		government Pug
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
@@ -1658,25 +1658,25 @@ mission "FW Pug 5"
 		system Altair
 		government Pug
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
@@ -1697,25 +1697,25 @@ mission "FW Pug 5A: Enemies"
 		system Deneb
 		government Pug
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
 				"Pug Zibruka" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 
@@ -1800,27 +1800,27 @@ mission "FW Pug 5B"
 		personality staying disables
 		system Altair
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 2
 		fleet
-			names "quarg"
+			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta" 2
