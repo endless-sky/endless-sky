@@ -47,6 +47,7 @@ protected:
 	virtual int DrawDetails(const Point &center) const;
 	virtual bool CanBuy() const;
 	virtual void Buy();
+	virtual void FailBuy();
 	virtual bool CanSell() const;
 	virtual void Sell();
 	virtual bool FlightCheck();
