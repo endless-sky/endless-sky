@@ -678,8 +678,8 @@ outfit "Heavy Rocket Launcher"
 
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
-	cost 40000
-	thumbnail "outfit/rocket"
+	cost 1000000
+	thumbnail "outfit/nuke"
 	"mass" 10
 	"outfit space" -10
 	"weapon capacity" -10
@@ -690,7 +690,7 @@ outfit "Nuclear Missile"
 			"frame rate" .25
 		sound "rocket"
 		ammo "Nuclear Missile"
-		icon "icon/rocket"
+		icon "icon/nuke"
 		"hit effect" "nuke explosion"
 		"hit effect" "nuke residue fast" 10
 		"hit effect" "nuke residue slow" 10
