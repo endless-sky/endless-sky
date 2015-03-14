@@ -152,13 +152,21 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_RETURN)
+	else if(key == SDLK_RETURN || key == 'a' || key == 'd')
 	{
+		// Shortcuts for "accept" and "decline."
+		if(key == 'a')
+			okIsActive = true;
+		if(key == 'd')
+			okIsActive = false;
 		if(okIsActive || isMission)
 			DoCallback();
 		
 		GetUI()->Pop(this);
 	}
+	else
+		return false;
+	
 	return true;
 }
 
