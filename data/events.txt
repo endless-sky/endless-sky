@@ -2119,6 +2119,8 @@ event "fwc capture kaus borealis"
 		fleet "Small Free Worlds" 400
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
+	planet "New Iceland"
+		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
 
 
 
@@ -2154,3 +2156,79 @@ event "fwc solace has nukes"
 		outfitter "Ammo South"
 		outfitter "Stack Core"
 		outfitter "Nuke"
+
+
+
+event "fwc defend cebalrai"
+	system "Cebalrai"
+		fleet "Large Free Worlds" 6000
+
+
+
+event "fwc defended cebalrai"
+	system "Cebalrai"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 1500
+		fleet "Small Free Worlds" 500
+		fleet "Large Free Worlds" 600
+		fleet "Large Republic" 5000
+	system Sargas
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2500
+		fleet "Small Free Worlds" 1000
+		fleet "Large Free Worlds" 1500
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+	system Lesath
+		fleet "Small Southern Merchants" 6000
+		fleet "Large Southern Merchants" 9000
+		fleet "Large Free Worlds" 800
+	system Dschubba
+		fleet "Small Southern Merchants" 800
+		fleet "Large Southern Merchants" 2600
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 6000
+		fleet "Small Free Worlds" 2000
+		fleet "Large Free Worlds" 3000
+	system Seginus
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 2700
+		fleet "Small Free Worlds" 700
+		fleet "Large Free Worlds" 1100
+	system Alnasl
+		fleet "Small Southern Merchants" 1300
+		fleet "Large Southern Merchants" 2500
+		fleet "Small Southern Pirates" 6000
+		fleet "Small Free Worlds" 2000
+		fleet "Large Free Worlds" 3000
+	system Eber
+		fleet "Small Southern Merchants" 1900
+		fleet "Large Southern Merchants" 2900
+		fleet "Small Southern Pirates" 3000
+		fleet "Small Free Worlds" 2000
+		fleet "Large Free Worlds" 3000
+	system "Delta Sagittarii"
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 4000
+		fleet "Small Free Worlds" 600
+		fleet "Large Free Worlds" 900
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+	system Rastaban
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1200
+		fleet "Large Southern Merchants" 2400
+		fleet "Small Free Worlds" 500
+		fleet "Large Free Worlds" 700
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+	system Albaldah
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 1200
+		fleet "Small Free Worlds" 900
+		fleet "Large Free Worlds" 1900
+		fleet "Small Southern Pirates" 3000
+		fleet "Large Southern Pirates" 7000
+
