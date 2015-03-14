@@ -327,7 +327,8 @@ void Ship::SetSystem(const System *system)
 
 void Ship::SetPlanet(const Planet *planet)
 {
-	zoom = 0.;
+	// Escorts should take off a bit behind their flagships.
+	zoom = parent.lock() ? -1. : 0.;
 	landingPlanet = planet;
 	SetDestination(nullptr);
 }
@@ -1194,7 +1195,7 @@ const Government *Ship::GetGovernment() const
 
 double Ship::Zoom() const
 {
-	return zoom;
+	return max(zoom, 0.);
 }
 
 
@@ -1252,7 +1253,7 @@ const Angle &Ship::Facing() const
 // Get the facing unit vector times the scale factor.
 Point Ship::Unit() const
 {
-	return angle.Unit() * (zoom * .5);
+	return angle.Unit() * (Zoom() * .5);
 }
 
 
