@@ -317,7 +317,7 @@ void OutfitterPanel::FailBuy()
 				"You cannot install it without first installing the appropriate weapon."));
 		else
 			GetUI()->Push(new Dialog("You already have the maximum amount of ammunition for this weapon. "
-				"To install more ammunition, you must first install another copy of the weapon."));
+				"If you want to install more ammunition, you must first install another copy of the weapon."));
 		return;
 	}
 	
