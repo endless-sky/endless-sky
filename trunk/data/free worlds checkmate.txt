@@ -403,7 +403,6 @@ mission "FWC Nuke Supply 1C"
 		has "FWC Nuke Supply 1B: done"
 	
 	on offer
-		event "fwc solace has nukes"
 		conversation
 			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
 				accept
@@ -424,7 +423,7 @@ mission "FWC Diplomacy 1"
 	
 	on offer
 		conversation
-			`A member of the Wolf Pack who identifies himself as "Odie" oversees the unloading of the warheads from your ship. "Excellent," he says. "It will take a while to install these in missiles, but in the meantime we already have a good stockpile. In recognition of how much you have assisted us, Fifi has authorized us to sell them to you in the outfitter if you want."`
+			`A member of the Wolf Pack who identifies himself as "Odie" oversees the unloading of the warheads from your ship. "Excellent," he says. "It will take a while to install these in missiles. But once we do, in recognition of how much you have assisted us, Fifi has authorized us to sell them to you if you want."`
 			choice
 				`	"Great! I think I'd like a dozen of them."`
 					goto yes
@@ -433,7 +432,7 @@ mission "FWC Diplomacy 1"
 				`	"Wait, 'Fifi'? Is that your leader?"`
 					goto fifi
 			label yes
-			`	He laughs. "I'm afraid that's not possible. Unlike most missile systems, we haven't yet developed any sort of feed system that would let you fire multiple missiles from the same gun port. So, it's a weapon you can only fire once from a given gun port. But on the plus side, two of them are enough to bring down the shields on even the largest Navy vessel."`
+			`	He laughs. "I'm afraid that's not possible. Unlike most missile systems, we haven't yet developed any sort of feed system that would let you fire multiple missiles from the same gun port. So, it's a weapon you can only fire once from a given port. But on the plus side, two of them are enough to bring down the shields on even the largest Navy vessel."`
 				goto next
 			label no
 			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no holds barred struggle for survival."`
@@ -444,3 +443,400 @@ mission "FWC Diplomacy 1"
 			label next
 			`	Soon after he is done unloading the cargo, you receive a message from Alondo: "Good news, <first>! The Republic has agreed to allow us to make a diplomatic visit to Parliament. Hurry back here to <planet> before they change their minds."`
 				accept
+
+
+
+mission "FWC Diplomacy 1B"
+	landing
+	name "Let's Try Diplomacy"
+	description "Travel to Earth with Alondo and meet with Parliament to try to negotiate terms of a truce."
+	source Tundra
+	destination Earth
+	clearance
+	to offer
+		has "FWC Diplomacy 1: done"
+	
+	on offer
+		event "fw safe passage starts"
+		event "fw safe passage ends" 7
+		conversation
+			`When you meet up with Alondo, he seems excited and optimistic. "The Republic has agreed to one week of safe passage," he says, "just enough time to get us to Earth and back. And what's more, I told them that one of our terms would be a mutual release of all prisoners of war, including Katya, and they agreed."`
+			choice
+				`	"That's great news! Let's get going!"`
+					goto escort
+				`	"Wait, isn't this the third time they've promised to give Katya back to us? I'm starting to think she isn't even alive anymore."`
+			`	"Well, I sincerely hope you're wrong," says Alondo. "I miss her. We might never have gotten into such dire straits if she had been leading us."`
+				goto escort
+			label escort
+			`	As you are returning to your ship, Alondo points out an Argosy parked next to you and says, "By the way, this ship will be escorting us on this mission. Providing a bit of extra defense."`
+			choice
+				`	"Um, I don't think an Argosy is strong enough to tip the scales in a battle against the Navy."`
+				`	"Please tell me that thing isn't armed with nukes. Because that would cause a major diplomatic incident."`
+					goto nukes
+			`	Alondo sighs. "Yes, but the Senate thought if we brought anything bigger, it might look like an attack fleet rather than an escort. And of course, it's not carrying nukes, because if the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyways, let's get going and hope for the best."`
+				accept
+			label nukes
+			`	"No, no, of course not," sys Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyways, let's get going and hope for the best."`
+				accept
+	
+	npc accompany save
+		personality timid
+		ship "Argosy" "F.S. Big Brother"
+
+	on visit
+		dialog "You have reached <planet>, but the Big Brother is not here yet! Better depart and wait for them to arrive in this star system."
+
+
+
+mission "FWC Diplomacy 1C"
+	landing
+	name "Return to <planet>"
+	description "The peace negotiations with Parliament failed. Return to <planet> without being destroyed by the Navy."
+	source Earth
+	destination Tundra
+	to offer
+		has "FWC Diplomacy 1B: done"
+	passengers 2
+	
+	on offer
+		event "fw safe passage ends" 1
+		conversation
+			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
+			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
+			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds are prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
+			`	Xao gestures to the guards, and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn-out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
+			choice
+				`	"It was the only way we could resist the Navy."`
+				`	"I didn't find out that's what they were doing until afterwards. I don't like it any more than you do."`
+			`	"Fair enough," she says, "but I hope it doesn't wreck our chances at negotiation."`
+			`	Xao addresses the three of you. "We have heard your demands," he says, "and now, here is our response. Katerina Reynolds, Alondo Gruyere, and <first> <last>, you are hereby charged with treason and insurrection. Your trial will begin immediately."`
+			choice
+				`	"What? We were guranteed safe passage!"`
+				`	"You will regret this! If you arrest us, the Free Worlds will retaliate against you."`
+			`	As you try to protest, Alondo speaks up. He is not shouting, but his voice carries over the murmur of other voices. "We have a ship in orbit. If we do not return--"`
+			`	Xao cuts him off. "Your ship is no threat to us. We have already verified that it carries no nuclear weapons, and this building's shielding and anti-missile systems are quite sufficient to defend against conventional weapons. And there is nothing in its cargo hold but ordinary, non-radioactive metals."`
+			`	Alondo says, "That's right. Tungsten, to be exact. Aerodynamic tungsten rods, each the size of a tree trunk, with a simple guidance system on one end. Our ship is in low earth orbit, traveling at a velocity of roughly eight kilometers per second." As he speaks, the Parliament chamber gradually grows very quiet. "So we will be returning to our ship," says Alondo, "with Miss Reynolds. If the ship in orbit does not hear from me every two minutes, it will jettison its cargo, and there will be nothing left of this building but a crater." He points to the watch he is wearing, and you realize that it must be some sort of communicator.`
+			`	After a brief whispered consultation with a few of the other members of Parliament, Xao says, "You will lose this war, and you will pay dearly for it. Guards, let them return to their ship." You hurry back to your ship and take off immediately, aware that as soon as you are out of range of Earth, the Navy will probably be more than willing to attack you.`
+				launch
+	
+	npc
+		personality timid
+		ship "Argosy" "F.S. Big Brother"
+
+	npc
+		personality staying heroic
+		system "Vega"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+	
+	npc
+		personality staying heroic
+		system "Denebola"
+		government "Republic"
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+
+
+
+mission "FWC Checkmate 1"
+	landing
+	name "Defend Cebalrai"
+	description "Destroy the Republic ships that are attacking this system, then land and decide what to do next. Free Worlds reinforcements should be on their way."
+	source Tundra
+	to offer
+		has "FWC Diplomacy 1C: done"
+	
+	on offer
+		event "fwc defend cebalrai"
+		conversation
+			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. ""Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
+			choice
+				`	"We only want this war to be over as soon as possible."`
+				`	"We've just been trying to avoid being destroyed by the Navy, and things have gotten a bit out of hand."`
+			`	"I see," she says. "Did you have a plan for what comes next, or are we just winging it now?"`
+			`	Alondo say, "Unfortunately, we do have a plan. Our very last contingency plan. We call it the 'checkmate' option. Our fleet will push north--"`
+			`	He is interrupted by one of Tomek's men running into the room. "Sir, we have a major Navy fleet incoming. We need all ships in the air immediately to repulse them. Reinforcements are on their way, but they may not get here for a while."`
+			`	Tomek says, "So, it begins. Captain <last>, get back to your ship and aid in the defenses."`
+				launch
+	
+	npc
+		personality heroic
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+				"Fury (Flamethrower)" 4
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon"
+				"Hawk" 2
+		fleet
+			names "free worlds capital"
+			variant
+				"Osprey"
+				"Argosy" 2
+	
+	npc
+		personality heroic waiting
+		government "Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon"
+	
+	npc evade
+		personality staying heroic
+		government "Republic"
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Frigate (Mark II)"
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Frigate (Mark II)"
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic small"
+			fighters "republic fighter"
+			variant
+				"Frigate (Mark II)"
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+	
+	npc evade
+		personality heroic
+		government "Republic"
+		system Menkent
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+	
+	npc evade
+		personality heroic
+		government "Republic"
+		system Sol
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+	
+	npc evade
+		personality heroic
+		government "Republic"
+		system Pollux
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Lance" 4
+	
+	npc
+		personality heroic
+		system Rastaban
+		government "Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Plasma)"
+	
+	npc
+		personality heroic
+		system Pherkad
+		government "Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Plasma)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Osprey"
+	
+	on complete
+		event "fwc defended cebalrai"
+		event "fwc solace has nukes"
+		"salary: Free Worlds" = 6000
+		conversation
+			`Tomek and Alondo meet you when you land. Tomek says, "Good work aiding in the defense. Now we need to move before the Navy has time to regroup. And the Senate has decided that you will be in charge of the fleet that makes our counterattack."`
+			`	Alondo says, "They have also approved a salary increase for you, to six thousand credits per diem. I know that's probably still not enough, but we are running a bit low on cash."`
+			`	"One other thing," says Tomek. "I don't know how you'll feel about this, but I received word from Solace that they have nukes for sale if you want any. I'd advise against it, but it's up to you. Also, since you will be the flagship of our assault, you should make any improvements you feel are necessary to your ship. Then meet us back here, in the spaceport. Of course, if you're ready to go immediately that's fine, too."`
+
+
+
+mission "FWC Checkmate 1: Equipment"
+	landing
+	name "Upgrade Your Ship"
+	description "If you want, travel to <destination> to install nuclear missiles in your ship. You may also want to invest in some other upgrades. Then meet Tomek and the others in the spaceport on Tundra."
+	source Tundra
+	destination Solace
+	to offer
+		has "FWC Checkmate 1: done"
+	
+	to fail
+		has "FWC Checkmate 1B: offered"
+
+
+
+mission "FWC Checkmate 1: Equipment 2"
+	landing
+	name "Upgrade Your Ship"
+	description "Make any further upgrades to your ship that you consider necessary. Then meet Tomek and the others in the spaceport on Tundra."
+	source Solace
+	destination Tundra
+	to offer
+		has "FWC Checkmate 1: Equipment: done"
+	
+	to fail
+		has "FWC Checkmate 1B: offered"
