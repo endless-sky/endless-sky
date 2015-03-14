@@ -1113,3 +1113,47 @@ ship "Dreadnought" "Dreadnought (Jump)"
 	explode "medium explosion" 50
 	explode "big explosion" 50
 	explode "huge explosion" 20
+
+
+
+ship "Clipper" "Clipper (Nuclear)"
+	sprite "ship/clipper"
+	attributes
+		category "Light Freighter"
+		"cost" 900000
+		"shields" 2700
+		"hull" 800
+		"required crew" 3
+		"bunks" 9
+		"mass" 150
+		"drag" 3.7
+		"heat dissipation" .8
+		"fuel capacity" 500
+		"cargo space" 70
+		"outfit space" 260
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 36
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 540
+	outfits
+		"Nuclear Missile" 4
+		"S3 Thermionic"
+		Supercapacitor
+		"D67-TM Shield Generator"
+		"Catalytic Ramscoop"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		Afterburner
+		Hyperdrive
+	engine -20 45
+	engine 20 45
+	gun -12 -7 "Nuclear Missile"
+	gun 12 -7 "Nuclear Missile"
+	gun -23 -19 "Nuclear Missile"
+	gun 23 -19 "Nuclear Missile"
+	explode "tiny explosion" 15
+	explode "small explosion" 20
+	explode "medium explosion" 10

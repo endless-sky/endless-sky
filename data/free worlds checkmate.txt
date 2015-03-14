@@ -135,19 +135,19 @@ mission "FWC Attack Kaus Borealis"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 	
 	npc
 		personality staying derelict
@@ -546,13 +546,13 @@ mission "FWC Diplomacy 1C"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 	
 	npc
 		personality staying heroic
@@ -577,13 +577,13 @@ mission "FWC Diplomacy 1C"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 
 
 
@@ -683,7 +683,7 @@ mission "FWC Checkmate 1"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -696,7 +696,7 @@ mission "FWC Checkmate 1"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 	
 	npc evade
 		personality heroic
@@ -714,19 +714,19 @@ mission "FWC Checkmate 1"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 	
 	npc evade
 		personality heroic
@@ -744,7 +744,7 @@ mission "FWC Checkmate 1"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -757,7 +757,7 @@ mission "FWC Checkmate 1"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 	
 	npc
 		personality heroic
@@ -840,3 +840,108 @@ mission "FWC Checkmate 1: Equipment 2"
 	
 	to fail
 		has "FWC Checkmate 1B: offered"
+
+
+
+mission "FWC Checkmate 1B"
+	name "Attack Menkent"
+	description "The Wolf Pack has launched an initial attack on the Menkent system. Follow up with your fleet and finish off the Navy defenses. Katya will ride with you."
+	source Tundra
+	destination "New Austria"
+	clearance
+	to offer
+		has "FWC Checkmate 1: done"
+	passengers 1
+	
+	on offer
+		event "fwc attack menkent"
+		conversation
+			`You meet up with Tomek in the spaceport. He is talking with the captain of one of a group of four Clippers that have landed next to each other some distance away from the rest of the Free Worlds fleet. The Clippers appear to have unusually large engines and afterburners, and in place of guns they are each carrying four missiles. Tomek sees you approaching and says, "And here's Captain <last>. Captain, are you ready to lead the attack?"`
+			choice
+				`	"Yes, I'm ready."`
+					goto ready
+				`	"Are these the Wolf Pack ships?"`
+			`	"Yes indeed," says Tomek. "I know, you probably have mixed feelings about this, but they really are the quickest way to win this war."`
+			label ready
+			`	Tomek tells the Wolf Pack captain, "Okay, we're ready to go. Launch immediately, and Captain <last> will follow behind you. <first>, Katya has asked to travel with you; she wants to get back into the action, and I thought she might have the best chance of anyone at dealing with the folks on the ground on <planet>. Once again, you'll need to drive off any Navy ships before landing there. Good luck."`
+				accept
+	
+	on complete
+		event "fwc capture menkent"
+
+	npc
+		personality heroic
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Plasma)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Osprey"
+	
+	npc
+		personality staying heroic uninterested disables
+		government "Free Worlds"
+		system Menkent
+		ship "Clipper (Nuclear)" "F.S. Warmaker"
+		ship "Clipper (Nuclear)" "F.S. Pestilence"
+		ship "Clipper (Nuclear)" "F.S. Disease"
+		ship "Clipper (Nuclear)" "F.S. Famine"
+	
+	npc evade
+		personality heroic staying
+		government "Republic"
+		system Menkent
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+	npc
+		personality derelict
+		government "Republic"
+		system Menkent
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 1
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Frigate (Mark II)" 1
+				"Gunboat (Mark II)" 2
+

@@ -1920,7 +1920,7 @@ mission "FW Liberate Delta Sagittarii"
 			fighters "republic fighter"
 			variant
 				"Cruiser (Mark II)"
-				"Lance" 4
+				"Combat Drone" 4
 				"Rainmaker (Mark II)" 4
 	
 	npc
