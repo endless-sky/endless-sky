@@ -2232,3 +2232,22 @@ event "fwc defended cebalrai"
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 7000
 
+
+
+event "fwc attack menkent"
+	system "Menkent"
+		fleet "Small Southern Merchants" 5000
+
+
+
+event "fwc capture menkent"
+	system Menkent
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 700
+		fleet "Large Southern Merchants" 1900
+		fleet "Small Free Worlds" 300
+		fleet "Large Free Worlds" 400
+		fleet "Large Republic" 2000
+	planet "New Austria"
+		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+
