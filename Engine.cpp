@@ -984,9 +984,9 @@ void Engine::CalculateStep()
 				source = it;
 				break;
 			}
-		if(!source->GetGovernment()->IsPlayer() && !source->IsDisabled())
+		if(source->GetGovernment() && !source->GetGovernment()->IsPlayer() && !source->IsDisabled())
 		{
-			string message = source->GetHail();
+			string message = source->GetGovernment()->GetHail();
 			if(!message.empty() && source->GetSystem() == player.GetSystem())
 				Messages::Add(source->GetGovernment()->GetName() + " ship \""
 					+ source->Name() + "\": " + message);

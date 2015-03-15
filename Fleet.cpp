@@ -51,10 +51,6 @@ void Fleet::Load(const DataNode &node)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "fighters" && child.Size() >= 2)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
-			friendlyHail = GameData::Phrases().Get(child.Token(1));
-		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
-			hostileHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "cargo" && child.Size() >= 2)
 			cargo = static_cast<int>(child.Value(1));
 		else if(child.Token(0) == "personality")
@@ -171,7 +167,6 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		ships.front()->SetGovernment(government);
 		ships.front()->SetName(names->Get());
 		ships.front()->SetPersonality(personality);
-		ships.front()->SetHail(friendlyHail, hostileHail);
 		
 		if(!placed.empty())
 		{
@@ -243,7 +238,6 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
 		ships.front()->SetGovernment(government);
 		ships.front()->SetName(names->Get());
 		ships.front()->SetPersonality(personality);
-		ships.front()->SetHail(friendlyHail, hostileHail);
 		
 		if(!placed.empty())
 		{

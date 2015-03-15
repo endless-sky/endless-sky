@@ -85,6 +85,10 @@ void Government::Load(const DataNode &node)
 			fine = child.Value(1);
 		else if(child.Token(0) == "death sentence" && child.Size() >= 2)
 			deathSentence = GameData::Conversations().Get(child.Token(1));
+		else if(child.Token(0) == "friendly hail" && child.Size() >= 2)
+			friendlyHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
+			hostileHail = GameData::Phrases().Get(child.Token(1));
 	}
 }
 
@@ -165,6 +169,15 @@ double Government::GetFineFraction() const
 const Conversation *Government::DeathSentence() const
 {
 	return deathSentence;
+}
+
+
+
+// Get a random hail message (depending on whether this is an enemy government).
+string Government::GetHail() const
+{
+	const Phrase *phrase = IsEnemy() ? hostileHail : friendlyHail;
+	return phrase ? phrase->Get() : "";
 }
 
 

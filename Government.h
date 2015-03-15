@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Conversation;
 class DataNode;
+class Phrase;
 class PlayerInfo;
 
 
@@ -62,6 +63,9 @@ public:
 	// sentence to the player (for carrying highly illegal cargo).
 	const Conversation *DeathSentence() const;
 	
+	// Get a hail message (which depends on whether this is an enemy government).
+	std::string GetHail() const;
+	
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
 	bool IsEnemy(const Government *other) const;
@@ -101,6 +105,8 @@ private:
 	double bribe = 0.;
 	double fine = 1.;
 	const Conversation *deathSentence = nullptr;
+	const Phrase *friendlyHail = nullptr;
+	const Phrase *hostileHail = nullptr;
 };
 
 

@@ -371,27 +371,6 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
-string Ship::GetHail() const
-{
-	bool isEnemy = government->IsEnemy();
-	const Phrase *name = hail[isEnemy];
-	
-	if(!name)
-		return "";
-	
-	return name->Get();
-}
-
-
-
-void Ship::SetHail(const Phrase *friendly, const Phrase *hostile)
-{
-	hail[0] = friendly;
-	hail[1] = hostile;
-}
-
-
-
 // Set the commands for this ship to follow this timestep.
 void Ship::SetCommands(const Command &command)
 {

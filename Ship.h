@@ -77,9 +77,6 @@ public:
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
 	
-	std::string GetHail() const;
-	void SetHail(const Phrase *friendly, const Phrase *hostile);
-	
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
 	const Command &Commands() const;
@@ -285,7 +282,6 @@ private:
 	Command commands;
 	
 	Personality personality;
-	const Phrase *hail[2] = {nullptr, nullptr};
 	
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;

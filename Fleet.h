@@ -69,8 +69,6 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
-	const Phrase *friendlyHail = nullptr;
-	const Phrase *hostileHail = nullptr;
 	std::vector<Variant> variants;
 	int cargo = 3;
 	int total = 0;

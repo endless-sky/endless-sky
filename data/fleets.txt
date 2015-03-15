@@ -15,8 +15,6 @@ fleet "Small Southern Merchants"
 	personality
 		confusion 40
 		timid
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
 	variant 60
 		"Shuttle"
 	variant 40
@@ -47,8 +45,6 @@ fleet "Large Southern Merchants"
 	personality
 		confusion 20
 		timid
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
 	variant 20
 		"Freighter"
 		"Hawk"
@@ -84,8 +80,6 @@ fleet "Small Core Merchants"
 	personality
 		confusion 30
 		timid
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
 	variant 40
 		"Shuttle"
 	variant 60
@@ -124,8 +118,6 @@ fleet "Large Core Merchants"
 	personality
 		confusion 10
 		timid
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
 	variant 30
 		"Freighter" 2
 		"Quicksilver" 2
@@ -168,8 +160,6 @@ fleet "Small Northern Merchants"
 	personality
 		confusion 40
 		timid
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
 	variant 80
 		"Shuttle"
 	variant 40
@@ -195,8 +185,6 @@ fleet "Large Northern Merchants"
 	personality
 		confusion 20
 		timid
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
 	variant 20
 		"Freighter" 2
 		"Firebird"
@@ -240,7 +228,6 @@ fleet "Small Free Worlds"
 	cargo 1
 	personality
 		heroic
-	"friendly hail" "friendly free worlds"
 	variant 4
 		"Hawk"
 		"Sparrow"
@@ -267,7 +254,6 @@ fleet "Large Free Worlds"
 	cargo 1
 	personality
 		heroic
-	"friendly hail" "friendly free worlds"
 	variant 5
 		"Bastion"
 	variant 4
@@ -298,7 +284,6 @@ fleet "Small Militia"
 	cargo 1
 	personality
 		heroic
-	"friendly hail" "friendly free worlds"
 	variant 4
 		"Hawk"
 		"Sparrow"
@@ -325,7 +310,6 @@ fleet "Large Militia"
 	cargo 1
 	personality
 		heroic
-	"friendly hail" "friendly free worlds"
 	variant 5
 		"Bastion"
 	variant 4
@@ -356,8 +340,6 @@ fleet "Small Republic"
 	cargo 0
 	personality
 		heroic
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -379,8 +361,6 @@ fleet "Large Republic"
 	cargo 0
 	personality
 		heroic
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -422,8 +402,6 @@ fleet "Navy Surveillance"
 	cargo 0
 	personality
 		surveillance
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
 	variant 10
 		"Cruiser"
 		"Surveillance Drone" 4
@@ -500,8 +478,6 @@ fleet "Small Oathkeeper"
 	cargo 0
 	personality
 		heroic
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -523,8 +499,6 @@ fleet "Large Oathkeeper"
 	cargo 0
 	personality
 		heroic
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -565,7 +539,6 @@ fleet "Small Syndicate"
 	cargo 2
 	personality
 		heroic
-	"friendly hail" "friendly syndicate"
 	variant 3
 		"Quicksilver" 3
 	variant 1
@@ -581,7 +554,6 @@ fleet "Large Syndicate"
 	cargo 2
 	personality
 		heroic
-	"friendly hail" "friendly syndicate"
 	variant 3
 		"Splinter"
 		"Quicksilver" 3
@@ -608,7 +580,6 @@ fleet "Small Southern Pirates"
 	cargo 1
 	personality
 		plunders
-	"hostile hail" "hostile pirate"
 	variant 8
 		"Sparrow"
 	variant 3
@@ -642,7 +613,6 @@ fleet "Large Southern Pirates"
 	cargo 1
 	personality
 		plunders
-	"hostile hail" "hostile pirate"
 	variant 3
 		"Sparrow" 4
 	variant 5
@@ -708,7 +678,6 @@ fleet "Small Core Pirates"
 	cargo 1
 	personality
 		plunders
-	"hostile hail" "hostile pirate"
 	variant 4
 		"Quicksilver (Proton)"
 	variant 2
@@ -726,7 +695,6 @@ fleet "Large Core Pirates"
 	cargo 1
 	personality
 		plunders
-	"hostile hail" "hostile pirate"
 	variant 5
 		"Quicksilver" 3
 	variant 3
@@ -747,7 +715,6 @@ fleet "Small Northern Pirates"
 	cargo 1
 	personality
 		plunders
-	"hostile hail" "hostile pirate"
 	variant 5
 		"Sparrow"
 	variant 3
@@ -765,7 +732,6 @@ fleet "Large Northern Pirates"
 	cargo 1
 	personality
 		plunders
-	"hostile hail" "hostile pirate"
 	variant 4
 		"Firebird"
 	variant 3
@@ -789,7 +755,6 @@ fleet "pirate raid"
 	personality
 		plunders
 		nemesis
-	"hostile hail" "hostile pirate"
 	variant 10
 		Sparrow 3
 	variant 10
@@ -868,7 +833,6 @@ fleet "Quarg"
 	cargo 3
 	personality
 		forbearing
-	"hostile hail" "hostile quarg"
 	variant
 		"Quarg Skylark"
 	variant
@@ -880,8 +844,6 @@ fleet "Small Pug"
 	cargo 1
 	personality
 		heroic
-	"friendly hail" "friendly pug"
-	"hostile hail" "hostile pug"
 	variant 1
 		"Pug Zibruka"
 	variant 2
@@ -898,8 +860,6 @@ fleet "Large Pug"
 	cargo 1
 	personality
 		heroic
-	"friendly hail" "friendly pug"
-	"hostile hail" "hostile pug"
 	variant 1
 		"Pug Enfolta"
 		"Pug Zibruka" 2
