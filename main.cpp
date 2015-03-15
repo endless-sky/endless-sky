@@ -310,7 +310,7 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << endl;
 	cerr << "Report bugs to: mzahniser@gmail.com" << endl;
-	cerr << "Home page: <http://endless-sky.googlecode.com>" << endl;
+	cerr << "Home page: <http://endless-sky.github.io>" << endl;
 	cerr << endl;
 }
 
