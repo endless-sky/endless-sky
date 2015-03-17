@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "RingShader.h"
 
 #include "Color.h"
+#include "pi.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Shader.h"
@@ -28,6 +29,7 @@ namespace {
 	GLint radiusI;
 	GLint widthI;
 	GLint angleI;
+	GLint dashI;
 	GLint colorI;
 	
 	GLuint vao;
@@ -57,6 +59,7 @@ void RingShader::Init()
 		"uniform float radius;\n"
 		"uniform float width;\n"
 		"uniform float angle;\n"
+		"uniform float dash;\n"
 		
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
@@ -64,6 +67,11 @@ void RingShader::Init()
 		"void main() {\n"
 		"  float arc = atan(coord.x, coord.y) + 3.141592654;\n"
 		"  float arcFalloff = 1 - min(6.283185307 - arc, arc - angle) * radius;\n"
+		"  if(dash != 0)\n"
+		"  {\n"
+		"    arc = mod(arc, dash);\n"
+		"    arcFalloff = min(arcFalloff, min(arc, dash - arc) * radius);\n"
+		"  }\n"
 		"  float len = length(coord);\n"
 		"  float lenFalloff = width - abs(len - radius);\n"
 		"  float alpha = clamp(min(arcFalloff, lenFalloff), 0, 1);\n"
@@ -76,6 +84,7 @@ void RingShader::Init()
 	radiusI = shader.Uniform("radius");
 	widthI = shader.Uniform("width");
 	angleI = shader.Uniform("angle");
+	dashI = shader.Uniform("dash");
 	colorI = shader.Uniform("color");
 	
 	// Generate the vertex data for drawing sprites.
@@ -104,11 +113,11 @@ void RingShader::Init()
 
 
 
-void RingShader::Draw(const Point &pos, float radius, float width, float angle, const Color &color)
+void RingShader::Draw(const Point &pos, float radius, float width, float fraction, const Color &color, float dash)
 {
 	Bind();
 	
-	Add(pos, radius, width, angle, color);
+	Add(pos, radius, width, fraction, color, dash);
 	
 	Unbind();
 }
@@ -129,14 +138,15 @@ void RingShader::Bind()
 
 
 
-void RingShader::Add(const Point &pos, float radius, float width, float angle, const Color &color)
+void RingShader::Add(const Point &pos, float radius, float width, float fraction, const Color &color, float dash)
 {
 	GLfloat position[2] = {static_cast<float>(pos.X()), static_cast<float>(pos.Y())};
 	glUniform2fv(positionI, 1, position);
 	
 	glUniform1f(radiusI, radius);
 	glUniform1f(widthI, width);
-	glUniform1f(angleI, angle);
+	glUniform1f(angleI, fraction * 2. * PI);
+	glUniform1f(dashI, dash ? 2. * PI / dash : 0.);
 	
 	glUniform4fv(colorI, 1, color.Get());
 	

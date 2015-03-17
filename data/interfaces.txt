@@ -268,11 +268,11 @@ interface "status"
 	ring "shields" -15 95
 		size 120 120
 		color "shields"
-		width 2
+		width 1.5
 	ring "hull" -20 100
 		size 110 110
 		color "hull"
-		width 2
+		width 1.5
 	bar "fuel" -53.5 425
 		size 0 -192
 		color "fuel"
@@ -314,11 +314,11 @@ interface "targets"
 	ring "target shields" 15 255
 		size 120 120
 		color "shields"
-		width 2
+		width 1.5
 	ring "target hull" 20 260
 		size 110 110
 		color "hull"
-		width 2
+		width 1.5
 
 interface "planet"
 	sprite "land" -60 -141 dynamic

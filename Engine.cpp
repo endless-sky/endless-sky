@@ -547,7 +547,7 @@ void Engine::Draw() const
 			Color(.5, .3, 0., .5)
 		};
 		RingShader::Draw(it.position, 24., 1.5, it.shields, color[it.isEnemy]);
-		RingShader::Draw(it.position, 21., 1.5, it.hull, color[2 + it.isEnemy]);
+		RingShader::Draw(it.position, 21., 1.5, it.hull, color[2 + it.isEnemy], 20.);
 	}
 }
 
@@ -1118,6 +1118,6 @@ Engine::Escort::Escort(const Ship &ship, bool isHere)
 
 
 Engine::Status::Status(const Point &position, double shields, double hull, bool isEnemy)
-	: position(position), shields(2. * PI * shields), hull(2. * PI * hull), isEnemy(isEnemy)
+	: position(position), shields(shields), hull(hull), isEnemy(isEnemy)
 {
 }

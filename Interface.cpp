@@ -20,7 +20,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
+#include "pi.h"
 #include "Radar.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -277,37 +279,11 @@ void Interface::Draw(const Information &info) const
 		double segments = info.BarSegments(spec.name);
 		if(!value)
 			continue;
+		if(segments <= 1.)
+			segments = 0.;
 		
-		// Approximate arc length: pi * diameter.
-		double length = (spec.size.X() + spec.size.Y()) * 1.57;
-		double step = 10.;
-		Point radius = spec.size * .5;
-		
-		// We will have (segments - 1) gaps between the segments.
-		double empty = segments ? (spec.width / length) : 0.;
-		double filled = segments ? 1. / segments - empty : 1.;
-		
-		double v = 0.;
 		Point center = spec.position + corner - spec.size * position;
-		while(v <= value)
-		{
-			double fromA = v * 360.;
-			v += filled;
-			double toA = min(v, value) * 360.;
-			v += empty;
-			
-			for(double a = fromA; a <= toA; a += step)
-			{
-				Angle start(a - .2);
-				Angle end(min(a + step, toA) + .2);
-				
-				LineShader::Draw(
-					center + start.Unit() * radius,
-					center + end.Unit() * radius,
-					spec.width,
-					spec.color);
-			}
-		}
+		RingShader::Draw(center, .5 * spec.size.X(), spec.width, value, spec.color, segments);
 	}
 	
 	if(info.GetRadar())
