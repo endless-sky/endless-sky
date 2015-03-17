@@ -1643,53 +1643,6 @@ ship "Shuttle"
 
 
 
-ship "Star Queen"
-	sprite "ship/star queen"
-	attributes
-		category "Transport"
-		"cost" 5500000
-		"shields" 4100
-		"hull" 2200
-		"required crew" 43
-		"bunks" 112
-		"mass" 230
-		"drag" 5.5
-		"heat dissipation" .65
-		"fuel capacity" 500
-		"cargo space" 60
-		"outfit space" 360
-		"weapon capacity" 120
-		"engine capacity" 100
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-	outfits
-		"Sidewinder Missile Launcher" 3
-		"Sidewinder Missile" 150
-		"Heavy Anti-Missile Turret" 2
-		"NT-200 Nucleovoltaic"
-		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
-		"Hyperdrive"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-	engine -18 116
-	engine 18 116
-	gun 0 -116 "Sidewinder Missile Launcher"
-	gun -22 -80 "Sidewinder Missile Launcher"
-	gun 22 -80 "Sidewinder Missile Launcher"
-	turret -28 -9 "Heavy Anti-Missile Turret"
-	turret 28 -9 "Heavy Anti-Missile Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 25
-	explode "medium explosion" 25
-	explode "big explosion" 10
-	description "The Star Queen is a relic of a more peaceful period of galactic history: a luxury liner for high-end tourists. Every cabin has its own mini-bar, and the bathrooms have marble tile and showers that use actual hot water instead of chemicals or sonic vibrations."
-
-
-
 ship "Sparrow"
 	sprite "ship/sparrow"
 	attributes
@@ -1814,6 +1767,53 @@ ship "Star Barge"
 	explode "small explosion" 10
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other. It is a slow and ugly ship, but it can carry enough cargo to earn its captain a steady income even in parts of the galaxy where it is hard to find passengers to carry or courier missions."
 	description "	Because they often carry valuable cargo, and because they are too slow to evade any attackers, Star Barges are a common target of pirates.
+
+
+
+ship "Star Queen"
+	sprite "ship/star queen"
+	attributes
+		category "Transport"
+		"cost" 5500000
+		"shields" 4100
+		"hull" 2200
+		"required crew" 43
+		"bunks" 112
+		"mass" 230
+		"drag" 5.5
+		"heat dissipation" .65
+		"fuel capacity" 500
+		"cargo space" 60
+		"outfit space" 360
+		"weapon capacity" 120
+		"engine capacity" 100
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 150
+		"Heavy Anti-Missile Turret" 2
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		"Hyperdrive"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+	engine -18 116
+	engine 18 116
+	gun 0 -116 "Sidewinder Missile Launcher"
+	gun -22 -80 "Sidewinder Missile Launcher"
+	gun 22 -80 "Sidewinder Missile Launcher"
+	turret -28 -9 "Heavy Anti-Missile Turret"
+	turret 28 -9 "Heavy Anti-Missile Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "big explosion" 10
+	description "The Star Queen is a relic of a more peaceful period of galactic history: a luxury liner for high-end tourists. Every cabin has its own mini-bar, and the bathrooms have marble tile and showers that use actual hot water instead of chemicals or sonic vibrations."
 
 
 
