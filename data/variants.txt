@@ -9,106 +9,32 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 ship "Star Barge" "Star Barge (Armed)"
-	sprite "ship/star barge"
-	attributes
-		category "Light Freighter"
-		"cost" 90000
-		"shields" 600
-		"hull" 1000
-		"required crew" 1
-		"bunks" 3
-		"mass" 70
-		"drag" 2.4
-		"heat dissipation" .7
-		"fuel capacity" 300
-		"cargo space" 50
-		"outfit space" 130
-		"weapon capacity" 20
-		"engine capacity" 40
-		weapon
-			"blast radius" 45
-			"shield damage" 180
-			"hull damage" 90
-			"hit force" 270
 	outfits
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"Blaster Turret"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-		"Blaster Turret"
-	engine -9 38
-	engine 9 38
-	turret 0 -8
-	explode "tiny explosion" 10
-	explode "small explosion" 10
 
 
 
 ship "Sparrow" "Sparrow (Patrol)"
-	sprite "ship/sparrow"
-	attributes
-		category "Interceptor"
-		"cost" 85000
-		"shields" 1200
-		"hull" 300
-		"required crew" 1
-		"bunks" 2
-		"mass" 50
-		"drag" 1.0
-		"heat dissipation" .8
-		"fuel capacity" 300
-		"cargo space" 15
-		"outfit space" 130
-		"weapon capacity" 20
-		"engine capacity" 40
-		weapon
-			"blast radius" 40
-			"shield damage" 160
-			"hull damage" 80
-			"hit force" 240
 	outfits
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"Beam Laser" 2
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
-		"Beam Laser" 2
 		"D14-RN Shield Generator"
 		"Cargo Scanner"
 		"Outfit Scanner"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
 		"Hyperdrive"
-	engine -4 35
-	engine 4 35
-	gun -7 -9
-	gun 7 -9
-	explode "tiny explosion" 15
-	explode "small explosion" 5
 
 
 
 ship Raven "Raven (Afterburner)"
-	sprite ship/raven
-	attributes
-		category "Light Warship"
-		"cost" 2000000
-		"shields" 4700
-		"hull" 1400
-		"required crew" 7
-		"bunks" 13
-		"mass" 130
-		"drag" 3.7
-		"heat dissipation" 0.8
-		"fuel capacity" 500
-		"cargo space" 30
-		"outfit space" 280
-		"weapon capacity" 90
-		"engine capacity" 100
-		weapon
-			"blast radius" 100
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
 	outfits
 		"Heavy Laser" 4
 		"NT-200 Nucleovoltaic"
@@ -117,41 +43,10 @@ ship Raven "Raven (Afterburner)"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		"Afterburner"
-	engine -12 43
-	engine 12 43
-	gun -10 -33 "Heavy Laser"
-	gun 10 -33 "Heavy Laser"
-	gun -16 -28 "Heavy Laser"
-	gun 16 -28 "Heavy Laser"
-	explode "medium explosion" 24
-	explode "big explosion" 16
-	explode "tiny explosion" 28
-	explode "small explosion" 40
 
 
 
 ship "Wasp" "Wasp (Proton)"
-	sprite "ship/wasp"
-	attributes
-		category "Interceptor"
-		"cost" 400000
-		"shields" 1500
-		"hull" 500
-		"required crew" 1
-		"bunks" 2
-		"mass" 60
-		"drag" 1.2
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 10
-		"outfit space" 150
-		"weapon capacity" 28
-		"engine capacity" 60
-		weapon
-			"blast radius" 50
-			"shield damage" 200
-			"hull damage" 100
-			"hit force" 300
 	outfits
 		"Proton Gun"
 		"nGVF-BB Fuel Cell"
@@ -160,282 +55,103 @@ ship "Wasp" "Wasp (Proton)"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
-	engine -6 33
-	engine 6 33
-	gun 0 -38 "Proton Gun"
-	explode "tiny explosion" 20
-	explode "small explosion" 10
 
 
 
 ship "Manta" "Manta (Proton)"
-	sprite "ship/manta"
-	attributes
-		category "Light Warship"
-		"cost" 3400000
-		"shields" 5900
-		"hull" 1500
-		"required crew" 6
-		"bunks" 10
-		"mass" 170
-		"drag" 4.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 340
-		"weapon capacity" 140
-		"engine capacity" 100
-		weapon
-			"blast radius" 40
-			"shield damage" 160
-			"hull damage" 80
-			"hit force" 240
 	outfits
-		"Proton Gun" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
+		"Proton Gun" 4
+		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
-		"RT-I Radiothermal"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
-	engine -33 38
-	engine 33 38
-	gun -21 -35 "Meteor Missile Launcher"
-	gun 21 -35 "Meteor Missile Launcher"
-	gun -27 -35 "Proton Gun"
-	gun 27 -35 "Proton Gun"
-	gun -66 -32 "Proton Gun"
-	gun 66 -32 "Proton Gun"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
 
 
 
 ship "Quicksilver" "Quicksilver (Proton)"
-	sprite "ship/quicksilver"
-	attributes
-		category "Light Warship"
-		"cost" 1590000
-		"shields" 3200
-		"hull" 800
-		"required crew" 3
-		"bunks" 6
-		"mass" 120
-		"drag" 2.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 10
-		"outfit space" 240
-		"weapon capacity" 60
-		"engine capacity" 70
-		weapon
-			"blast radius" 50
-			"shield damage" 200
-			"hull damage" 100
-			"hit force" 300
 	outfits
+		"Proton Gun" 2
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"LP036a Battery Pack"
-		"Proton Gun" 2
-		"D23-QP Shield Generator"
-		"RT-I Radiothermal"
-		"Cooling Ducts"
 		"Hyperdrive"
-	engine -17 54
-	engine 17 54
-	gun -6 -38 "Proton Gun"
-	gun 6 -38 "Proton Gun"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
 
 
 
 ship "Cruiser" "Cruiser (Heavy)"
-	sprite "ship/cruiser"
-	licenses Republic
-		Navy
-		Cruiser
-	attributes
-		category "Heavy Warship"
-		"cost" 11200000
-		"shields" 19600
-		"hull" 6400
-		"required crew" 84
-		"bunks" 136
-		"mass" 680
-		"drag" 10.1
-		"heat dissipation" .45
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 760
-		"weapon capacity" 320
-		"engine capacity" 170
-		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
 	outfits
-		Supercapacitor
-		"X2200 Ion Steering"
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
 		"Particle Cannon" 4
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
-		"Dwarf Core"
-		"Armageddon Core"
-		"Liquid Helium Cooler"
-		"D94-YV Shield Generator"
-		Ramscoop
-		"Scram Drive"
-		"Mass Expansion"
+		"Quad Blaster Turret"
 		"Laser Rifle" 20
 		"Fragmentation Grenades" 20
-		"Heavy Rocket" 40
-		"Heavy Rocket Launcher" 2
-		"Quad Blaster Turret"
-	engine -29 156
-	engine 29 156
-	gun -41 -52 "Heavy Rocket Launcher"
-	gun 41 -52 "Heavy Rocket Launcher"
-	gun -31 -63 "Particle Cannon"
-	gun 31 -63 "Particle Cannon"
-	gun -20 -44 "Particle Cannon"
-	gun 20 -44 "Particle Cannon"
-	turret 0 -40 "Heavy Laser Turret"
-	turret -33 -19 "Heavy Anti-Missile Turret"
-	turret 33 -19 "Heavy Laser Turret"
-	turret 0 0 "Quad Blaster Turret"
-	drone -25 18
-	drone 25 18
-	drone -25 49
-	drone 25 49
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "big explosion" 40
-	explode "huge explosion" 10
+		"Armageddon Core"
+		"Dwarf Core"
+		"Supercapacitor"
+		"D94-YV Shield Generator"
+		"Liquid Helium Cooler"
+		"Ramscoop"
+		"Mass Expansion"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"X2200 Ion Steering"
+		"Scram Drive"
+	gun "Heavy Rocket Launcher"
+	gun "Heavy Rocket Launcher"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Laser Turret"
+	turret "Quad Blaster Turret"
 
 
 
 ship "Falcon" "Falcon (Plasma)"
-	sprite "ship/falcon"
-	attributes
-		category "Heavy Warship"
-		"cost" 10900000
-		"shields" 12800
-		"hull" 3700
-		"required crew" 56
-		"bunks" 75
-		"mass" 510
-		"drag" 7.1
-		"heat dissipation" .7
-		"fuel capacity" 600
-		"cargo space" 90
-		"outfit space" 540
-		"weapon capacity" 240
-		"engine capacity" 140
-		weapon
-			"blast radius" 300
-			"shield damage" 1200
-			"hull damage" 600
-			"hit force" 1800
 	outfits
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"Plasma Turret" 4
 		"Breeder Reactor"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Liquid Nitrogen Cooler"
-		"Plasma Turret" 4
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
 		"Hyperdrive"
-	engine -17 143
-	engine 17 143
-	gun -17 -88
-	gun 17 -88
-	gun -17 -88
-	gun 17 -88
-	turret -57 40 "Plasma Turret"
-	turret 57 40 "Plasma Turret"
-	turret -16 -24 "Plasma Turret"
-	turret 16 -24 "Plasma Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 30
-	explode "medium explosion" 20
 
 
 
 ship "Fury" "Fury (Flamethrower)"
-	sprite "ship/fury"
-	attributes
-		category "Interceptor"
-		"cost" 490000
-		"shields" 2000
-		"hull" 400
-		"required crew" 1
-		"bunks" 3
-		"mass" 70
-		"drag" 1.6
-		"heat dissipation" .9
-		"fuel capacity" 600
-		"cargo space" 15
-		"outfit space" 160
-		"weapon capacity" 40
-		"engine capacity" 60
-		weapon
-			"blast radius" 60
-			"shield damage" 240
-			"hull damage" 120
-			"hit force" 360
 	outfits
 		"Flamethrower" 4
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		"Ramscoop"
-		"Hyperdrive"
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
-	engine -20 36
-	engine 20 36
-	gun -10 -32 "Flamethrower"
-	gun 10 -32 "Flamethrower"
-	gun -16 -22 "Flamethrower"
-	gun 16 -22 "Flamethrower"
-	explode "small explosion" 30
-	explode "medium explosion" 40
+		"Hyperdrive"
 
 
 
 ship "Rainmaker" "Rainmaker (Mark II)"
-	sprite "ship/rainmaker"
-	licenses Republic
-		Navy
-	attributes
-		category "Light Warship"
-		"cost" 1580000
-		"shields" 3500
-		"hull" 1200
-		"required crew" 7
-		"bunks" 14
-		"mass" 180
-		"drag" 3.8
-		"heat dissipation" .6
-		"fuel capacity" 500
-		"cargo space" 25
-		"outfit space" 230
-		"weapon capacity" 60
-		"engine capacity" 50
-		weapon
-			"blast radius" 100
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
 	outfits
 		"Sidewinder Missile Launcher" 4
 		"Sidewinder Missile" 200
@@ -443,47 +159,19 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 		"LP036a Battery Pack"
 		"D67-TM Shield Generator"
 		"Fuel Pod"
-		"Scram Drive"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
-	engine -8 46
-	engine 8 46
-	gun -10 -30
-	gun 10 -30
-	gun -27 -5 "Sidewinder Missile Launcher"
-	gun 27 -5 "Sidewinder Missile Launcher"
-	gun -17 -5 "Sidewinder Missile Launcher"
-	gun 17 -5 "Sidewinder Missile Launcher"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
+		"Scram Drive"
+	gun
+	gun
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
 
 
 
 ship "Gunboat" "Gunboat (Mark II)"
-	sprite "ship/gunboat"
-	licenses Republic
-		Navy
-	attributes
-		category "Light Warship"
-		"cost" 3200000
-		"shields" 5800
-		"hull" 1400
-		"required crew" 8
-		"bunks" 12
-		"mass" 150
-		"drag" 3.1
-		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 50
-		"outfit space" 270
-		"weapon capacity" 100
-		"engine capacity" 90
-		weapon
-			"blast radius" 100
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
 	outfits
 		"Electron Beam" 2
 		"Electron Turret"
@@ -492,44 +180,13 @@ ship "Gunboat" "Gunboat (Mark II)"
 		"D41-HY Shield Generator"
 		"Water Coolant System"
 		"Mass Expansion" 2
-		Hyperdrive
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-	engine -12 57
-	engine 12 57
-	gun -28 -28 "Electron Beam"
-	gun 28 -28 "Electron Beam"
-	turret 0 -8 "Electron Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
+		"Hyperdrive"
 
 
 
 ship "Frigate" "Frigate (Mark II)"
-	sprite "ship/frigate"
-	licenses Republic
-		Navy
-	attributes
-		category "Light Warship"
-		"cost" 5200000
-		"shields" 8000
-		"hull" 2500
-		"required crew" 24
-		"bunks" 44
-		"mass" 310
-		"drag" 5.2
-		"heat dissipation" .7
-		"fuel capacity" 500
-		"cargo space" 35
-		"outfit space" 410
-		"weapon capacity" 170
-		"engine capacity" 100
-		weapon
-			"blast radius" 200
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
 		"Anti-Missile Turret"
@@ -540,50 +197,16 @@ ship "Frigate" "Frigate (Mark II)"
 		"D41-HY Shield Generator"
 		"Water Coolant System"
 		"Mass Expansion"
-		Hyperdrive
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
-	engine -26 92
-	engine 26 92
-	gun -10 -83 "Particle Cannon"
-	gun 10 -83 "Particle Cannon"
-	gun -10 -83 "Particle Cannon"
-	gun 10 -83 "Particle Cannon"
-	turret 0 -37 "Anti-Missile Turret"
-	turret -12 -12 "Blaster Turret"
-	turret 12 -12 "Blaster Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "big explosion" 8
+		"Hyperdrive"
+	turret "Anti-Missile Turret"
+	turret "Blaster Turret"
+	turret "Blaster Turret"
 
 
 
 ship "Cruiser" "Cruiser (Mark II)"
-	sprite "ship/cruiser"
-	licenses Republic
-		Navy
-		Cruiser
-	attributes
-		category "Heavy Warship"
-		"cost" 11200000
-		"shields" 19600
-		"hull" 6400
-		"required crew" 84
-		"bunks" 136
-		"mass" 680
-		"drag" 10.1
-		"heat dissipation" .45
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 760
-		"weapon capacity" 320
-		"engine capacity" 170
-		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
 	outfits
 		"Typhoon Launcher" 2
 		"Typhoon Torpedo" 60
@@ -595,226 +218,97 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
-		Hyperdrive
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-	engine -29 156
-	engine 29 156
-	gun -41 -52 "Typhoon Launcher"
-	gun 41 -52 "Typhoon Launcher"
-	gun -31 -63 "Sidewinder Missile Launcher"
-	gun 31 -63 "Sidewinder Missile Launcher"
-	gun -20 -44 "Sidewinder Missile Launcher"
-	gun 20 -44 "Sidewinder Missile Launcher"
-	turret 0 -40 "Electron Turret"
-	turret -33 -19 "Electron Turret"
-	turret 33 -19 "Electron Turret"
-	turret 0 0 "Heavy Anti-Missile Turret"
-	drone -25 18
-	drone 25 18
-	drone -25 49
-	drone 25 49
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "big explosion" 40
-	explode "huge explosion" 10
+		"Hyperdrive"
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
 ship "Carrier" "Carrier (Mark II)"
-	sprite "ship/carrier"
-	licenses Republic
-		Navy
-		Carrier
-	attributes
-		category "Heavy Warship"
-		"cost" 15200000
-		"shields" 21400
-		"hull" 8300
-		"required crew" 114
-		"bunks" 184
-		"mass" 910
-		"drag" 17.7
-		"heat dissipation" .45
-		"fuel capacity" 700
-		"cargo space" 100
-		"outfit space" 820
-		"weapon capacity" 370
-		"engine capacity" 210
-		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 4
 		"Sidewinder Missile" 200
 		"Electron Turret" 3
 		"Heavy Anti-Missile Turret"
-		"Dwarf Core"
 		"Armageddon Core"
+		"Dwarf Core"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Mass Expansion" 2
-		Hyperdrive
 		"A860 Atomic Thruster"
 		"X4200 Ion Steering"
-	engine -35 200
-	engine 35 200
-	gun -25 -166 "Particle Cannon"
-	gun 25 -166 "Particle Cannon"
-	gun -16 -176 "Particle Cannon"
-	gun 16 -176 "Particle Cannon"
-	gun -25 -166 "Sidewinder Missile Launcher"
-	gun 25 -166 "Sidewinder Missile Launcher"
-	gun -16 -176 "Sidewinder Missile Launcher"
-	gun 16 -176 "Sidewinder Missile Launcher"
-	turret 0 15 "Electron Turret"
-	turret 0 -114 "Electron Turret"
-	turret 0 157 "Electron Turret"
-	turret 0 103 "Heavy Anti-Missile Turret"
-	fighter -37 -65
-	fighter 37 -65
-	fighter -46 40
-	fighter 46 40
-	drone -72 -46
-	drone 72 -46
-	drone -101 57
-	drone 101 57
-	drone -74 57
-	drone 74 57
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "big explosion" 40
-	explode "huge explosion" 10
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
 ship "Behemoth" "Behemoth (Heavy)"
-	sprite ship/behemoth
-	attributes
-		category "Heavy Freighter"
-		cost 7800000
-		shields 7600
-		hull 6300
-		"required crew" 16
-		bunks 30
-		mass 540
-		drag 11.7
-		"heat dissipation" 0.4
-		"fuel capacity" 600
-		"cargo space" 420
-		"outfit space" 510
-		"weapon capacity" 280
-		"engine capacity" 90
 	outfits
 		"Torpedo Launcher" 2
 		Torpedo 60
 		"Quad Blaster Turret" 2
 		"Plasma Turret" 2
 		"Heavy Anti-Missile Turret" 2
+		"Laser Rifle" 16
 		"Breeder Reactor"
 		"Fission Reactor"
-		Supercapacitor
+		"Supercapacitor"
 		"D94-YV Shield Generator"
 		"Mass Expansion" 9
-		"Laser Rifle" 16
 		"Liquid Helium Cooler"
 		"Liquid Nitrogen Cooler"
-		Hyperdrive
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
-	engine -34 154
-	engine 34 154
-	gun -27 -83 "Torpedo Launcher"
-	gun 27 -83 "Torpedo Launcher"
-	turret -34 -64 "Quad Blaster Turret"
-	turret 24 78 "Heavy Anti-Missile Turret"
-	turret -58 11 "Plasma Turret"
-	turret 58 11 "Plasma Turret"
-	turret -24 78 "Heavy Anti-Missile Turret"
-	turret 34 -64 "Quad Blaster Turret"
-	explode "medium explosion" 25
-	explode "big explosion" 35
-	explode "small explosion" 15
-	explode "huge explosion" 20
+		"Hyperdrive"
+	turret "Quad Blaster Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Plasma Turret"
+	turret "Plasma Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret "Quad Blaster Turret"
 
 
 
-ship "Splinter (Mark II)"
-	sprite "ship/splinter"
-	attributes
-		category "Light Warship"
-		"cost" 3100000
-		"shields" 5200
-		"hull" 1700
-		"required crew" 15
-		"bunks" 21
-		"mass" 250
-		"drag" 4.0
-		"heat dissipation" .7
-		"fuel capacity" 600
-		"cargo space" 75
-		"outfit space" 400
-		"weapon capacity" 150
-		"engine capacity" 100
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
+ship "Splinter" "Splinter (Mark II)"
 	outfits
 		"Particle Cannon" 2
 		"Quad Blaster Turret" 3
-		"Mass Expansion" 2
 		"Fusion Reactor"
+		"Supercapacitor"
 		"S-970 Regenerator"
 		"Water Coolant System" 4
-		Supercapacitor
+		"Mass Expansion" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
+		"Hyperdrive"
 		"Ionic Afterburner"
-		Hyperdrive
-	engine -15 115
-	engine 15 115
-	gun -15 -80 "Particle Cannon"
-	gun 15 -80 "Particle Cannon"
-	turret -17 -28 "Quad Blaster Turret"
-	turret 0 -28 "Quad Blaster Turret"
-	turret 17 -28 "Quad Blaster Turret"
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "big explosion" 8
 
 
 
-ship "Manta (Mark II)"
-	sprite "ship/manta"
-	attributes
-		category "Light Warship"
-		"cost" 3400000
-		"shields" 5900
-		"hull" 1500
-		"required crew" 6
-		"bunks" 10
-		"mass" 170
-		"drag" 4.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 350
-		"weapon capacity" 140
-		"engine capacity" 100
-		weapon
-			"blast radius" 80
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
+ship "Manta" "Manta (Mark II)"
 	outfits
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
@@ -822,138 +316,56 @@ ship "Manta (Mark II)"
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
-		"Mass Expansion"
 		"Water Coolant System"
+		"Mass Expansion"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Ionic Afterburner"
 		"Hyperdrive"
-	engine -33 38
-	engine 33 38
-	gun -21 -35 "Particle Cannon"
-	gun 21 -35 "Particle Cannon"
-	gun -27 -35 "Particle Cannon"
-	gun 27 -35 "Particle Cannon"
-	gun -66 -32 "Meteor Missile Launcher"
-	gun 66 -32 "Meteor Missile Launcher"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
+		"Ionic Afterburner"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Meteor Missile Launcher"
+	gun "Meteor Missile Launcher"
 
 
 
-ship "Quicksilver (Mark II)"
-	sprite "ship/quicksilver"
-	attributes
-		category "Light Warship"
-		"cost" 1590000
-		"shields" 3200
-		"hull" 800
-		"required crew" 3
-		"bunks" 6
-		"mass" 120
-		"drag" 2.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 10
-		"outfit space" 240
-		"weapon capacity" 60
-		"engine capacity" 70
-		weapon
-			"blast radius" 40
-			"shield damage" 400
-			"hull damage" 200
-			"hit force" 600
+ship "Quicksilver" "Quicksilver (Mark II)"
 	outfits
+		"Particle Cannon" 2
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"LP036a Battery Pack"
-		"Particle Cannon" 2
-		"D23-QP Shield Generator"
-		"RT-I Radiothermal"
-		"Cooling Ducts"
 		"Hyperdrive"
-	engine -17 54
-	engine 17 54
-	gun -6 -38 "Particle Cannon"
-	gun 6 -38 "Particle Cannon"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
 
 
 
 ship "Manta" "Manta (Nuclear)"
-	sprite "ship/manta"
-	attributes
-		category "Light Warship"
-		"cost" 3400000
-		"shields" 5900
-		"hull" 1500
-		"required crew" 6
-		"bunks" 10
-		"mass" 170
-		"drag" 4.7
-		"heat dissipation" .8
-		"fuel capacity" 400
-		"cargo space" 20
-		"outfit space" 350
-		"weapon capacity" 140
-		"engine capacity" 100
-		weapon
-			"blast radius" 80
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
 	outfits
 		"Particle Cannon" 4
 		"Nuclear Missile" 2
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
-		"Mass Expansion"
 		"Water Coolant System"
+		"Mass Expansion"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	engine -33 38
-	engine 33 38
-	gun -21 -35 "Particle Cannon"
-	gun 21 -35 "Particle Cannon"
-	gun -27 -35 "Particle Cannon"
-	gun 27 -35 "Particle Cannon"
-	gun -66 -32 "Nuclear Missile"
-	gun 66 -32 "Nuclear Missile"
-	explode "tiny explosion" 10
-	explode "small explosion" 20
-	explode "medium explosion" 15
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Nuclear Missile"
+	gun "Nuclear Missile"
 
 
 
 ship "Cruiser" "Cruiser (Jump)"
-	sprite "ship/cruiser"
-	licenses Republic
-		Navy
-		Cruiser
-	attributes
-		category "Heavy Warship"
-		"cost" 11200000
-		"shields" 19600
-		"hull" 6400
-		"required crew" 84
-		"bunks" 136
-		"mass" 680
-		"drag" 10.1
-		"heat dissipation" .45
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 760
-		"weapon capacity" 320
-		"engine capacity" 170
-		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
 	outfits
 		"Typhoon Launcher" 2
 		"Typhoon Torpedo" 60
@@ -965,131 +377,58 @@ ship "Cruiser" "Cruiser (Jump)"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
-		"Jump Drive"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
-	engine -29 156
-	engine 29 156
-	gun -41 -52 "Typhoon Launcher"
-	gun 41 -52 "Typhoon Launcher"
-	gun -31 -63 "Sidewinder Missile Launcher"
-	gun 31 -63 "Sidewinder Missile Launcher"
-	gun -20 -44 "Sidewinder Missile Launcher"
-	gun 20 -44 "Sidewinder Missile Launcher"
-	turret 0 -40 "Electron Turret"
-	turret -33 -19 "Electron Turret"
-	turret 33 -19 "Electron Turret"
-	turret 0 0 "Heavy Anti-Missile Turret"
-	drone -25 18
-	drone 25 18
-	drone -25 49
-	drone 25 49
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "big explosion" 40
-	explode "huge explosion" 10
+		"Jump Drive"
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
 ship "Carrier" "Carrier (Jump)"
-	sprite "ship/carrier"
-	licenses Republic
-		Navy
-		Carrier
-	attributes
-		category "Heavy Warship"
-		"cost" 15200000
-		"shields" 21400
-		"hull" 8300
-		"required crew" 114
-		"bunks" 184
-		"mass" 910
-		"drag" 17.7
-		"heat dissipation" .45
-		"fuel capacity" 700
-		"cargo space" 100
-		"outfit space" 820
-		"weapon capacity" 370
-		"engine capacity" 210
-		weapon
-			"blast radius" 500
-			"shield damage" 2000
-			"hull damage" 1000
-			"hit force" 3000
 	outfits
 		"Particle Cannon" 4
 		"Sidewinder Missile Launcher" 4
 		"Sidewinder Missile" 200
 		"Electron Turret" 3
 		"Heavy Anti-Missile Turret"
-		"Dwarf Core"
 		"Armageddon Core"
+		"Dwarf Core"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
 		"Mass Expansion" 2
-		"Jump Drive"
 		"A860 Atomic Thruster"
 		"X4200 Ion Steering"
-	engine -35 200
-	engine 35 200
-	gun -25 -166 "Particle Cannon"
-	gun 25 -166 "Particle Cannon"
-	gun -16 -176 "Particle Cannon"
-	gun 16 -176 "Particle Cannon"
-	gun -25 -166 "Sidewinder Missile Launcher"
-	gun 25 -166 "Sidewinder Missile Launcher"
-	gun -16 -176 "Sidewinder Missile Launcher"
-	gun 16 -176 "Sidewinder Missile Launcher"
-	turret 0 15 "Electron Turret"
-	turret 0 -114 "Electron Turret"
-	turret 0 157 "Electron Turret"
-	turret 0 103 "Heavy Anti-Missile Turret"
-	fighter -37 -65
-	fighter 37 -65
-	fighter -46 40
-	fighter 46 40
-	drone -72 -46
-	drone 72 -46
-	drone -101 57
-	drone 101 57
-	drone -74 57
-	drone 74 57
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "big explosion" 40
-	explode "huge explosion" 10
+		"Jump Drive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 
 ship "Dreadnought" "Dreadnought (Jump)"
-	sprite "ship/dreadnought"
-	attributes
-		category "Heavy Warship"
-		"cost" 10900000
-		"shields" 18100
-		"hull" 7300
-		"required crew" 89
-		"bunks" 147
-		"mass" 630
-		"drag" 10.1
-		"heat dissipation" .65
-		"fuel capacity" 600
-		"cargo space" 100
-		"outfit space" 790
-		"weapon capacity" 360
-		"engine capacity" 190
-		weapon
-			"blast radius" 260
-			"shield damage" 2600
-			"hull damage" 1300
-			"hit force" 3900
 	outfits
-		"Plasma Turret" 5
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
+		"Plasma Turret" 5
 		"Stack Core"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
@@ -1097,63 +436,17 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Jump Drive"
-	engine -25 172
-	engine 25 172
-	gun -10 -167 "Meteor Missile Launcher"
-	gun 10 -167 "Meteor Missile Launcher"
-	gun -20 -151 "Meteor Missile Launcher"
-	gun -20 -151 "Meteor Missile Launcher"
-	turret 0 -94 "Plasma Turret"
-	turret -38 -56 "Plasma Turret"
-	turret 38 -56 "Plasma Turret"
-	turret -44 118 "Plasma Turret"
-	turret 44 118 "Plasma Turret"
-	explode "tiny explosion" 50
-	explode "small explosion" 50
-	explode "medium explosion" 50
-	explode "big explosion" 50
-	explode "huge explosion" 20
 
 
 
 ship "Clipper" "Clipper (Nuclear)"
-	sprite "ship/clipper"
-	attributes
-		category "Light Freighter"
-		"cost" 900000
-		"shields" 2700
-		"hull" 800
-		"required crew" 3
-		"bunks" 9
-		"mass" 150
-		"drag" 3.7
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 70
-		"outfit space" 260
-		"weapon capacity" 60
-		"engine capacity" 80
-		weapon
-			"blast radius" 36
-			"shield damage" 360
-			"hull damage" 180
-			"hit force" 540
 	outfits
 		"Nuclear Missile" 4
 		"S3 Thermionic"
-		Supercapacitor
+		"Supercapacitor"
 		"D67-TM Shield Generator"
 		"Catalytic Ramscoop"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		Afterburner
-		Hyperdrive
-	engine -20 45
-	engine 20 45
-	gun -12 -7 "Nuclear Missile"
-	gun 12 -7 "Nuclear Missile"
-	gun -23 -19 "Nuclear Missile"
-	gun 23 -19 "Nuclear Missile"
-	explode "tiny explosion" 15
-	explode "small explosion" 20
-	explode "medium explosion" 10
+		"Hyperdrive"
+		"Afterburner"

@@ -36,6 +36,8 @@ void Ship::Load(const DataNode &node)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
 	modelName = node.Token(1);
+	if(node.Size() >= 3)
+		base = GameData::Ships().Get(modelName);
 	
 	government = GameData::PlayerGovernment();
 	equipped.clear();
@@ -65,6 +67,19 @@ void Ship::Load(const DataNode &node)
 				armament.AddGunPort(hardpoint, outfit);
 			else
 				armament.AddTurret(hardpoint, outfit);
+		}
+		else if(child.Token(0) == "gun" || child.Token(0) == "turret")
+		{
+			const Outfit *outfit = nullptr;
+			if(child.Size() >= 2)
+			{
+				outfit = GameData::Outfits().Get(child.Token(1));
+				++equipped[outfit];
+			}
+			if(child.Token(0) == "gun")
+				armament.AddGunPort(Point(), outfit);
+			else
+				armament.AddTurret(Point(), outfit);
 		}
 		else if(child.Token(0) == "licenses")
 		{
@@ -119,6 +134,80 @@ void Ship::Load(const DataNode &node)
 			description += '\n';
 		}
 	}
+}
+
+
+
+// When loading a ship, some of the outfits it lists may not have been
+// loaded yet. So, wait until everything has been loaded, then call this.
+void Ship::FinishLoading()
+{
+	// All copies of this ship should save pointers to the "explosion" weapon
+	// definition stored safely in the ship model, which will not be destroyed
+	// until GameData is when the program quits.
+	if(GameData::Ships().Has(modelName))
+		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
+	else
+		explosionWeapon = &baseAttributes;
+	
+	// If this ship has a base class, copy any attributes not defined here.
+	if(base && base != this)
+	{
+		if(sprite.IsEmpty())
+			sprite = base->sprite;
+		if(licenses.empty())
+			licenses = base->licenses;
+		if(baseAttributes.Attributes().empty())
+			baseAttributes = base->baseAttributes;
+		if(droneBays.empty() && !base->droneBays.empty())
+		{
+			for(const auto &it : base->droneBays)
+				droneBays.emplace_back(it.point.x, it.point.y);
+		}
+		if(fighterBays.empty() && !base->fighterBays.empty())
+		{
+			for(const auto &it : base->fighterBays)
+				fighterBays.emplace_back(it.point.x, it.point.y);
+		}
+		if(enginePoints.empty())
+			enginePoints = base->enginePoints;
+		if(explosionEffects.empty())
+		{
+			explosionEffects = base->explosionEffects;
+			explosionTotal = base->explosionTotal;
+		}
+		
+		// Check if any hardpoint locations were not specified.
+		auto bit = base->Weapons().begin();
+		auto bend = base->Weapons().end();
+		auto nextGun = armament.Get().begin();
+		auto nextTurret = armament.Get().begin();
+		auto end = armament.Get().end();
+		Armament merged;
+		for( ; bit != bend; ++bit)
+		{
+			if(!bit->IsTurret())
+			{
+				while(nextGun != end && nextGun->IsTurret())
+					++nextGun;
+				merged.AddGunPort(bit->GetPoint(),
+					(nextGun == end) ? nullptr : nextGun->GetOutfit());
+				if(nextGun != end)
+					++nextGun;
+			}
+			else
+			{
+				while(nextTurret != end && !nextTurret->IsTurret())
+					++nextTurret;
+				merged.AddTurret(bit->GetPoint(),
+					(nextTurret == end) ? nullptr : nextTurret->GetOutfit());
+				if(nextTurret != end)
+					++nextTurret;
+			}
+		}
+		armament = merged;
+	}
+	
 	// Different ships dissipate heat at different rates.
 	heatDissipation = baseAttributes.Get("heat dissipation");
 	if(!heatDissipation)
@@ -128,18 +217,13 @@ void Ship::Load(const DataNode &node)
 	
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
-	// All copies of this ship should save pointers to the "explosion" weapon
-	// definition stored safely in the ship model, which will not be destroyed
-	// until GameData is when the program quits.
-	explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
-}
-
-
-
-// When loading a ship, some of the outfits it lists may not have been
-// loaded yet. So, wait until everything has been loaded, then call this.
-void Ship::FinishLoading()
-{
+	
+	if(!explosionTotal)
+	{
+		++explosionEffects[GameData::Effects().Get("tiny explosion")];
+		++explosionTotal;
+	}
+	
 	// TODO: any way to do this through lazy evaluation, instead of having to
 	// call this function explicitly?
 	attributes = baseAttributes;

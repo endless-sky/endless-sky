@@ -258,6 +258,7 @@ private:
 	
 private:
 	// Characteristics of the chassis:
+	const Ship *base = nullptr;
 	std::string modelName;
 	std::string description;
 	Animation sprite;
