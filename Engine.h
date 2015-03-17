@@ -89,6 +89,16 @@ private:
 		double stats[5];
 	};
 	
+	class Status {
+	public:
+		Status(const Point &position, double shields, double hull, bool isEnemy);
+		
+		Point position;
+		double shields;
+		double hull;
+		bool isEnemy;
+	};
+	
 	
 private:
 	PlayerInfo &player;
@@ -112,6 +122,7 @@ private:
 	Information info;
 	std::vector<Target> targets;
 	std::vector<Escort> escorts;
+	std::vector<Status> statuses;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	
 	int step;

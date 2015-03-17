@@ -20,8 +20,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "FontSet.h"
 #include "LineShader.h"
-#include "PointerShader.h"
 #include "OutlineShader.h"
+#include "PointerShader.h"
+#include "RingShader.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 
@@ -153,6 +154,7 @@ void GameData::LoadShaders()
 	LineShader::Init();
 	OutlineShader::Init();
 	PointerShader::Init();
+	RingShader::Init();
 	SpriteShader::Init();
 	
 	background.Init(16384, 4096);

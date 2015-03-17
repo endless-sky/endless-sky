@@ -44,7 +44,9 @@ namespace {
 		"Show CPU / GPU load",
 		"",
 		"Automatic firing",
-		"Automatic aiming"
+		"Automatic aiming",
+		"",
+		"Show status overlays",
 	};
 }
 

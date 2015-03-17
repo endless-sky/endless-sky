@@ -23,10 +23,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "Messages.h"
 #include "OutlineShader.h"
+#include "pi.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "Random.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -296,6 +298,17 @@ void Engine::Step(bool isActive)
 		for(const shared_ptr<Ship> &escort : player.Ships())
 			if(escort.get() != flagship)
 				escorts.emplace_back(*escort, escort->GetSystem() == currentSystem);
+		statuses.clear();
+		if(isActive && Preferences::Has("Show status overlays"))
+			for(const auto &it : ships)
+			{
+				if(!it->GetGovernment() || it->GetSystem() != currentSystem)
+					continue;
+			
+				bool isEnemy = it->GetGovernment()->IsEnemy();
+				if(isEnemy || it->GetGovernment()->IsPlayer())
+					statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(), isEnemy);
+			}
 		
 		if(flagship && flagship->IsOverheated())
 			Messages::Add("Your ship has overheated.");
@@ -520,6 +533,21 @@ void Engine::Draw() const
 		Color color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
+	}
+	
+	for(const auto &it : statuses)
+	{
+		if(it.hull <= 0.)
+			continue;
+		
+		static const Color color[4] = {
+			Color(0., .5, 0., .5),
+			Color(.5, .15, 0., .5),
+			Color(.45, .5, 0., .5),
+			Color(.5, .3, 0., .5)
+		};
+		RingShader::Draw(it.position, 24., 1.5, it.shields, color[it.isEnemy]);
+		RingShader::Draw(it.position, 21., 1.5, it.hull, color[2 + it.isEnemy]);
 	}
 }
 
@@ -1084,5 +1112,12 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 Engine::Escort::Escort(const Ship &ship, bool isHere)
 	: sprite(ship.GetSprite().GetSprite()), isHere(isHere),
 	stats{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()}
+{
+}
+
+
+
+Engine::Status::Status(const Point &position, double shields, double hull, bool isEnemy)
+	: position(position), shields(2. * PI * shields), hull(2. * PI * hull), isEnemy(isEnemy)
 {
 }
