@@ -302,12 +302,13 @@ void Engine::Step(bool isActive)
 		if(isActive && Preferences::Has("Show status overlays"))
 			for(const auto &it : ships)
 			{
-				if(!it->GetGovernment() || it->GetSystem() != currentSystem)
+				if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
 					continue;
 			
 				bool isEnemy = it->GetGovernment()->IsEnemy();
 				if(isEnemy || it->GetGovernment()->IsPlayer())
-					statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(), isEnemy);
+					statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(),
+						it->Zoom() * max(20., it->GetSprite().Width() * .25), isEnemy);
 			}
 		
 		if(flagship && flagship->IsOverheated())
@@ -546,8 +547,8 @@ void Engine::Draw() const
 			Color(.45, .5, 0., .5),
 			Color(.5, .3, 0., .5)
 		};
-		RingShader::Draw(it.position, 24., 1.5, it.shields, color[it.isEnemy]);
-		RingShader::Draw(it.position, 21., 1.5, it.hull, color[2 + it.isEnemy], 20.);
+		RingShader::Draw(it.position, it.radius + 3., 1.5, it.shields, color[it.isEnemy]);
+		RingShader::Draw(it.position, it.radius, 1.5, it.hull, color[2 + it.isEnemy], 20.);
 	}
 }
 
@@ -1117,7 +1118,7 @@ Engine::Escort::Escort(const Ship &ship, bool isHere)
 
 
 
-Engine::Status::Status(const Point &position, double shields, double hull, bool isEnemy)
-	: position(position), shields(shields), hull(hull), isEnemy(isEnemy)
+Engine::Status::Status(const Point &position, double shields, double hull, double radius, bool isEnemy)
+	: position(position), shields(shields), hull(hull), radius(radius), isEnemy(isEnemy)
 {
 }
