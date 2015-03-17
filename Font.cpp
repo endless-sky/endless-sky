@@ -209,7 +209,7 @@ void Font::CalculateAdvances(ImageBuffer *image)
 	int width = image->Width() / GLYPHS;
 	height = image->Height();
 	unsigned mask = 0xFF000000;
-	unsigned half = (mask >> 1) & mask;
+	unsigned half = 0xC0000000;
 	int pitch = image->Width();
 	
 	// advance[previous * GLYPHS + next] is the x advance for each glyph pair.
@@ -254,10 +254,12 @@ void Font::CalculateAdvances(ImageBuffer *image)
 			}
 			// This is a fudge factor to avoid over-kerning, especially for the
 			// underscore and for glyph combinations like AV.
-			advance[previous * GLYPHS + next] = max(maxD, glyphWidth - 2);
+			advance[previous * GLYPHS + next] = max(maxD, glyphWidth - 4) / 2;
 		}
 	
 	// Set the space size based on the character width.
+	width /= 2;
+	height /= 2;
 	space = KERN + (width + 3) / 6;
 }
 
@@ -265,6 +267,9 @@ void Font::CalculateAdvances(ImageBuffer *image)
 
 void Font::SetUpShader(float glyphW, float glyphH)
 {
+	glyphW *= .5f;
+	glyphH *= .5f;
+	
 	shader = Shader(vertexCode, fragmentCode);
 	glUseProgram(shader.Object());
 	
