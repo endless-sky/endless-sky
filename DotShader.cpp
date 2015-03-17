@@ -81,13 +81,9 @@ void DotShader::Init()
 	
 	GLfloat vertexData[] = {
 		-1.f, -1.f,
-		 0.f,  0.f,
 		-1.f,  1.f,
-		 1.f,  1.f,
-		 1.f,  1.f,
 		 1.f, -1.f,
-		 0.f,  0.f,
-		-1.f, -1.f
+		 1.f,  1.f
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	
@@ -137,7 +133,7 @@ void DotShader::Add(const Point &pos, float out, float in, const Color &color)
 	
 	glUniform4fv(colorI, 1, color.Get());
 	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 8);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 
