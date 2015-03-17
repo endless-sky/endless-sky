@@ -69,9 +69,7 @@ Engine::Engine(PlayerInfo &player)
 		if(!object.GetSprite().IsEmpty())
 		{
 			Point position = object.Position();
-			Point unit(0., -1.);
-			if(position)
-				unit = position.Unit();
+			Point unit = object.Unit();
 			position -= center;
 			
 			int type = object.IsStar() ? Radar::SPECIAL :
