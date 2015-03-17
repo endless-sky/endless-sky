@@ -307,8 +307,11 @@ void Engine::Step(bool isActive)
 			
 				bool isEnemy = it->GetGovernment()->IsEnemy();
 				if(isEnemy || it->GetGovernment()->IsPlayer())
+				{
+					double width = min(it->GetSprite().Width(), it->GetSprite().Height());
 					statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(),
-						it->Zoom() * max(20., it->GetSprite().Width() * .25), isEnemy);
+						it->Zoom() * max(20., width * .25), isEnemy);
+				}
 			}
 		
 		if(flagship && flagship->IsOverheated())
@@ -542,10 +545,10 @@ void Engine::Draw() const
 			continue;
 		
 		static const Color color[4] = {
-			Color(0., .5, 0., .5),
-			Color(.5, .15, 0., .5),
-			Color(.45, .5, 0., .5),
-			Color(.5, .3, 0., .5)
+			Color(0., .5, 0., .25),
+			Color(.5, .15, 0., .25),
+			Color(.45, .5, 0., .25),
+			Color(.5, .3, 0., .25)
 		};
 		RingShader::Draw(it.position, it.radius + 3., 1.5, it.shields, color[it.isEnemy]);
 		RingShader::Draw(it.position, it.radius, 1.5, it.hull, color[2 + it.isEnemy], 20.);
