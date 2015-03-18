@@ -34,8 +34,6 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 	bool resetAttributes = !attributes.empty();
 	bool resetDescription = !description.empty();
 	bool resetSpaceport = !spaceport.empty();
-	bool resetShipyard = !shipSales.empty();
-	bool resetOutfitter = !outfitSales.empty();
 	
 	for(const DataNode &child : node)
 	{
@@ -75,24 +73,18 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			spaceport += child.Token(1);
 			spaceport += '\n';
 		}
-		else if(child.Token(0) == "shipyard")
+		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
 		{
-			if(resetShipyard)
-			{
-				resetShipyard = false;
+			if(child.Token(1) == "clear")
 				shipSales.clear();
-			}
-			if(child.Size() >= 2)
+			else
 				shipSales.push_back(ships.Get(child.Token(1)));
 		}
-		else if(child.Token(0) == "outfitter")
+		else if(child.Token(0) == "outfitter" && child.Size() >= 2)
 		{
-			if(resetOutfitter)
-			{
-				resetOutfitter = false;
+			if(child.Token(1) == "clear")
 				outfitSales.clear();
-			}
-			if(child.Size() >= 2)
+			else
 				outfitSales.push_back(outfits.Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "required reputation" && child.Size() >= 2)

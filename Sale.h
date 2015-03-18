@@ -39,9 +39,13 @@ public:
 template <class Item>
 void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 {
-	this->clear();
 	for(const DataNode &child : node)
-		this->insert(items.Get(child.Token(0)));
+	{
+		if(child.Token(0) == "clear")
+			this->clear();
+		else
+			this->insert(items.Get(child.Token(0)));
+	}
 }
 
 
