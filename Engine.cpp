@@ -442,6 +442,21 @@ void Engine::Draw() const
 	GameData::Background().Draw(position, velocity);
 	draw[drawTickTock].Draw();
 	
+	for(const auto &it : statuses)
+	{
+		if(it.hull <= 0.)
+			continue;
+		
+		static const Color color[4] = {
+			Color(0., .5, 0., .25),
+			Color(.5, .15, 0., .25),
+			Color(.45, .5, 0., .25),
+			Color(.5, .3, 0., .25)
+		};
+		RingShader::Draw(it.position, it.radius + 3., 1.5, it.shields, color[it.isEnemy]);
+		RingShader::Draw(it.position, it.radius, 1.5, it.hull, color[2 + it.isEnemy], 20.);
+	}
+	
 	if(flash)
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
@@ -535,21 +550,6 @@ void Engine::Draw() const
 		Color color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
-	}
-	
-	for(const auto &it : statuses)
-	{
-		if(it.hull <= 0.)
-			continue;
-		
-		static const Color color[4] = {
-			Color(0., .5, 0., .25),
-			Color(.5, .15, 0., .25),
-			Color(.45, .5, 0., .25),
-			Color(.5, .3, 0., .25)
-		};
-		RingShader::Draw(it.position, it.radius + 3., 1.5, it.shields, color[it.isEnemy]);
-		RingShader::Draw(it.position, it.radius, 1.5, it.hull, color[2 + it.isEnemy], 20.);
 	}
 }
 
