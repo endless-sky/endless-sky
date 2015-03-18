@@ -103,7 +103,7 @@ outfit "S-270 Regenerator"
 
 outfit "S-970 Regenerator"
 	category "Systems"
-	cost 220000
+	cost 800000
 	thumbnail "outfit/large regenerator"
 	"mass" 37
 	"outfit space" -37
