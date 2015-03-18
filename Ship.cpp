@@ -147,8 +147,6 @@ void Ship::FinishLoading()
 	// until GameData is when the program quits.
 	if(GameData::Ships().Has(modelName))
 		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
-	else
-		explosionWeapon = &baseAttributes;
 	
 	// If this ship has a base class, copy any attributes not defined here.
 	if(base && base != this)
