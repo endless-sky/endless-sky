@@ -31,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "SpriteQueue.h"
 #include "StarField.h"
+#include "StartConditions.h"
 #include "System.h"
 #include "Trade.h"
 
@@ -81,6 +82,7 @@ public:
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
+	static const StartConditions &Start();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
 	

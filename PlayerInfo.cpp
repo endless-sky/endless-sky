@@ -306,11 +306,11 @@ void PlayerInfo::New()
 {
 	Clear();
 	
-	SetSystem(GameData::Systems().Get("Rutilicus"));
-	SetPlanet(GameData::Planets().Get("New Boston"));
-	conditions["license: Pilot's"] = true;
-	
-	accounts.AddMortgage(480000);
+	date = GameData::Start().GetDate();
+	SetSystem(GameData::Start().GetSystem());
+	SetPlanet(GameData::Start().GetPlanet());
+	accounts = GameData::Start().GetAccounts();
+	GameData::Start().GetConditions().Apply(conditions);
 	
 	CreateMissions();
 	

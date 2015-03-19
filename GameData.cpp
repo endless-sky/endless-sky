@@ -60,6 +60,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
+	StartConditions startConditions;
 	
 	Trade trade;
 	
@@ -362,6 +363,13 @@ Politics &GameData::GetPolitics()
 
 
 
+const StartConditions &GameData::Start()
+{
+	return startConditions;
+}
+
+
+
 const vector<Trade::Commodity> &GameData::Commodities()
 {
 	return trade.Commodities();
@@ -444,6 +452,8 @@ void GameData::LoadFile(const string &path)
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
 			shipSales.Get(node.Token(1))->Load(node, ships);
+		else if(key == "start")
+			startConditions.Load(node);
 		else if(key == "system" && node.Size() >= 2)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
