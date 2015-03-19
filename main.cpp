@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 		}
 		
 		Preferences::Load();
-		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN;
+		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
 		if(Preferences::Has("fullscreen"))
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		
@@ -226,9 +226,11 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED)
 				{
+					int width, height;
 					Screen::Set(event.window.data1 & ~1, event.window.data2 & ~1);
 					SDL_SetWindowSize(window, Screen::Width(), Screen::Height());
-					glViewport(0, 0, Screen::Width(), Screen::Height());
+					SDL_GL_GetDrawableSize(window, &width, &height);
+					glViewport(0, 0, width, height);
 				}
 				else if(activeUI.Handle(event))
 				{
