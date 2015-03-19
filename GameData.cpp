@@ -67,6 +67,7 @@ namespace {
 	
 	SpriteQueue spriteQueue;
 	
+	vector<string> sources;
 	map<const Sprite *, pair<string, string>> deferred;
 }
 
@@ -90,13 +91,14 @@ void GameData::BeginLoad(const char * const *argv)
 	}
 	Files::Init(argv);
 	
+	// Initialize the list of "source" folders based on any active plugins.
+	LoadSources();
+	
 	// Now, read all the images in all the path directories. For each unique
 	// name, only remember one instance, letting things on the higher priority
 	// paths override the default images.
-	vector<string> imageFiles = Files::RecursiveList(Files::Images());
 	map<string, string> images;
-	for(const string &path : imageFiles)
-		LoadImage(path, images);
+	LoadImages(images);
 	
 	// From the name, strip out any frame number, plus the extension.
 	for(const auto &it : images)
@@ -108,12 +110,15 @@ void GameData::BeginLoad(const char * const *argv)
 			spriteQueue.Add(name, it.second);
 	}
 	
-	// Iterate through the paths starting with the last directory given. That
-	// is, things in folders near the start of the path have the ability to
-	// override things in folders later in the path.
-	vector<string> dataFiles = Files::RecursiveList(Files::Data());
-	for(const string &path : dataFiles)
-		LoadFile(path);
+	for(const string &source : sources)
+	{
+		// Iterate through the paths starting with the last directory given. That
+		// is, things in folders near the start of the path have the ability to
+		// override things in folders later in the path.
+		vector<string> dataFiles = Files::RecursiveList(source + "data/");
+		for(const string &path : dataFiles)
+			LoadFile(path);
+	}
 	
 	// Now that all the stars are loaded, update the neighbor lists.
 	for(auto &it : systems)
@@ -371,6 +376,28 @@ const StarField &GameData::Background()
 
 
 
+void GameData::LoadSources()
+{
+	sources.clear();
+	sources.push_back(Files::Resources());
+	
+	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
+	for(const string &path : globalPlugins)
+	{
+		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+			sources.push_back(path);
+	}
+	
+	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
+	for(const string &path : localPlugins)
+	{
+		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
+			sources.push_back(path);
+	}
+}
+
+
+
 void GameData::LoadFile(const string &path)
 {
 	// This is an ordinary file. Check to see if it is an image.
@@ -426,14 +453,27 @@ void GameData::LoadFile(const string &path)
 
 
 
-void GameData::LoadImage(const string &path, map<string, string> &images)
+void GameData::LoadImages(map<string, string> &images)
+{
+	for(const string &source : sources)
+	{
+		string directoryPath = source + "images/";
+		vector<string> imageFiles = Files::RecursiveList(directoryPath);
+		for(const string &path : imageFiles)
+			LoadImage(path, images, directoryPath.length());
+	}
+}
+
+
+
+void GameData::LoadImage(const string &path, map<string, string> &images, size_t start)
 {
 	bool isJpg = !path.compare(path.length() - 4, 4, ".jpg");
 	bool isPng = !path.compare(path.length() - 4, 4, ".png");
 	
 	// This is an ordinary file. Check to see if it is an image.
 	if(isJpg || isPng)
-		images[path.substr(Files::Images().length())] = path;
+		images[path.substr(start)] = path;
 }
 
 

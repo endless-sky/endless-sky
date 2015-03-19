@@ -167,20 +167,16 @@ const string &Files::Saves()
 
 
 
-vector<string> Files::List(const string &directory)
+vector<string> Files::List(string directory)
 {
+	if(directory.empty() || directory.back() != '/')
+		directory += '/';
+	
 	vector<string> list;
-	List(directory, &list);
-	return list;
-}
-
-
-
-void Files::List(const string &directory, vector<string> *list)
-{
+	
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
-		return;
+		return list;
 	
 	while(true)
 	{
@@ -199,10 +195,55 @@ void Files::List(const string &directory, vector<string> *list)
 		bool isRegularFile = S_ISREG(buf.st_mode);
 		
 		if(isRegularFile)
-			list->push_back(name);
+			list.push_back(name);
 	}
 	
 	closedir(dir);
+	
+	return list;
+}
+
+
+
+// Get a list of any directories in the given directory.
+vector<string> Files::ListDirectories(string directory)
+{
+	if(directory.empty() || directory.back() != '/')
+		directory += '/';
+	
+	vector<string> list;
+	
+	DIR *dir = opendir(directory.c_str());
+	if(!dir)
+		return list;
+	
+	while(true)
+	{
+		dirent *ent = readdir(dir);
+		if(!ent)
+			break;
+		// Skip dotfiles (including "." and "..").
+		if(ent->d_name[0] == '.')
+			continue;
+		
+		string name = directory + ent->d_name;
+		// Don't assume that this operating system's implementation of dirent
+		// includes the t_type field; in particular, on Windows it will not.
+		struct stat buf;
+		stat(name.c_str(), &buf);
+		bool isDirectory = S_ISDIR(buf.st_mode);
+		
+		if(isDirectory)
+		{
+			if(name.back() != '/')
+				name += '/';
+			list.push_back(name);
+		}
+	}
+	
+	closedir(dir);
+	
+	return list;
 }
 
 
@@ -216,8 +257,11 @@ vector<string> Files::RecursiveList(const string &directory)
 
 
 
-void Files::RecursiveList(const string &directory, vector<string> *list)
+void Files::RecursiveList(string directory, vector<string> *list)
 {
+	if(directory.empty() || directory.back() != '/')
+		directory += '/';
+	
 	DIR *dir = opendir(directory.c_str());
 	if(!dir)
 		return;

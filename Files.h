@@ -36,11 +36,14 @@ public:
 	static const std::string &Sounds();
 	static const std::string &Saves();
 	
-	static std::vector<std::string> List(const std::string &directory);
-	static void List(const std::string &directory, std::vector<std::string> *list);
-	
+	// Get a list of all regular files in the given directory.
+	static std::vector<std::string> List(std::string directory);
+	// Get a list of any directories in the given directory.
+	static std::vector<std::string> ListDirectories(std::string directory);
+	// Get a list of all regular files in the given directory or any directory
+	// that it contains, recursively.
 	static std::vector<std::string> RecursiveList(const std::string &directory);
-	static void RecursiveList(const std::string &directory, std::vector<std::string> *list);
+	static void RecursiveList(std::string directory, std::vector<std::string> *list);
 	
 	static bool Exists(const std::string &filePath);
 	static void Copy(const std::string &from, const std::string &to);
