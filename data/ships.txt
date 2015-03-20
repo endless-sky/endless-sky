@@ -597,7 +597,7 @@ ship "Corvette"
 		"required crew" 10
 		"bunks" 32
 		"mass" 150
-		"drag" 3.2
+		"drag" 3.5
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 40

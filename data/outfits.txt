@@ -236,8 +236,8 @@ outfit "Fuel Pod"
 	category "Systems"
 	cost 20000
 	thumbnail "outfit/fuel pod"
-	"mass" 10
-	"outfit space" -10
+	"mass" 8
+	"outfit space" -8
 	"fuel capacity" 100
 	description "A fuel pod increases your fuel capacity, allowing your ship to make one additional hyperspace jump before it needs to land and refuel."
 
