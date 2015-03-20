@@ -47,10 +47,10 @@
 			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libopengl32.a" />
 			<Add directory="C:/dev64/lib" />
 		</Linker>
-		<Unit filename="AI.cpp" />
-		<Unit filename="AI.h" />
 		<Unit filename="Account.cpp" />
 		<Unit filename="Account.h" />
+		<Unit filename="AI.cpp" />
+		<Unit filename="AI.h" />
 		<Unit filename="Angle.cpp" />
 		<Unit filename="Angle.h" />
 		<Unit filename="Animation.cpp" />
@@ -198,6 +198,8 @@
 		<Unit filename="Radar.h" />
 		<Unit filename="Random.cpp" />
 		<Unit filename="Random.h" />
+		<Unit filename="RingShader.cpp" />
+		<Unit filename="RingShader.h" />
 		<Unit filename="Sale.h" />
 		<Unit filename="SavedGame.cpp" />
 		<Unit filename="SavedGame.h" />
@@ -230,6 +232,8 @@
 		<Unit filename="SpriteShader.h" />
 		<Unit filename="StarField.cpp" />
 		<Unit filename="StarField.h" />
+		<Unit filename="StartConditions.cpp" />
+		<Unit filename="StartConditions.h" />
 		<Unit filename="StellarObject.cpp" />
 		<Unit filename="StellarObject.h" />
 		<Unit filename="System.cpp" />
