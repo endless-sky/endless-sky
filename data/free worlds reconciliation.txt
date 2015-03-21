@@ -1007,6 +1007,7 @@ mission "FW Pug 2C: Jump Drive"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
 	source Hephaestus
 	destination Pugglemug
+	clearance
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
@@ -1044,7 +1045,7 @@ mission "FW Pug 2C: Side"
 		
 			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
 			`	"What's going on here?" asks Alondo. "Who are these aliens?"`
-			`	"I'm a land-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
 			choice
 				`	"Did anyone try to resist them?"`
 					goto resist
@@ -1123,7 +1124,7 @@ mission "FW Pug 3"
 	on offer
 		conversation
 			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
-			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, oddly delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
+			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
 			choice
 				`	"No, we are here to find out why you attacked us, and to demand that you leave us alone."`
 				`	"We are willing to make peace, but only if you give us back control of our star systems."`

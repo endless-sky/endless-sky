@@ -412,6 +412,7 @@ mission "FWC Nuke Supply 1C"
 		ship "Bulk Freighter" "F.S. Blue Yonder"
 
 
+
 mission "FWC Diplomacy 1"
 	landing
 	name "Let's Try Diplomacy"
@@ -945,3 +946,456 @@ mission "FWC Checkmate 1B"
 				"Frigate (Mark II)" 1
 				"Gunboat (Mark II)" 2
 
+
+
+mission "FWC Checkmate 1C"
+	landing
+	name "Capture <planet>"
+	description "Bring a fleet to <destination>, driving off any Republic ships in the system."
+	source "New Austria"
+	destination "Silver"
+	clearance
+	to offer
+		has "FWC Checkmate 1B: done"
+	passengers 1
+	
+	on offer
+		event "fwc attack vega"
+		conversation
+			`As soon as you land, you and Katya contact Tomek and inform him that the system is yours. "Excellent," he says. "Press on with your fleet and take Vega before they have time to regroup. Another Wolf Pack fleet will meet you there for the final assault on the Sol system."`
+			choice
+				`	"Understood. We will depart immediately."`
+					accept
+				`	"Are we really sure we want to attack Earth?"`
+			`	"Have they given us any other choice?" asks Tomek. "We tried diplomacy. And we cannot hope to defeat the entire Navy. So, unless we wish to surrender and all be put on trial as war criminals, we need to press on and gain the upper hand in the only way we can. The Senate and the Council are agreed on this." You have no choice but to follow his orders.`
+				accept
+	
+	on complete
+		conversation
+			`The Vega system is eerily deserted. You suspect that the Navy must have pulled back all available ships to defend Earth, rather than trying to fight you here. You try not to think about how massive the fleet there must be, and how slim your chances are of destroying it.`
+			`	Katya says, "Well, this is it, the final assault. Meet me in the spaceport when you're ready for the attack on Earth."`
+
+
+
+mission "FWC Checkmate Escorts"
+	landing
+	invisible
+	to offer
+		has "FWC Checkmate 1B: done"
+	to fail
+		has "FWC Pug 4: done"
+	
+	npc kill
+		personality heroic disables
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion (Laser)"
+				"Argosy (Blaster)"
+				"Argosy (Laser)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Plasma)"
+				"Bastion (Heavy)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Laser)"
+				"Osprey (Laser)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Heavy)"
+				"Osprey (Laser)"
+				"Argosy (Turret)"
+
+
+
+mission "FWC Pug 1"
+	name "Defend <planet>
+	description "<planet> is under attack by ships of an unknown type. Drive them off, and then return to the planet to figure out what to do next."
+	to offer
+		has "FWC Checkmate 1C: done"
+	
+	on offer
+		event "fwc pug invasion"
+		conversation
+			`Once you have gathered in the spaceport with the captains in charge of your fleet, Katya contacts Tomek and asks for instructions. He says, "A Wolf Pack fleet should arrive there shortly. They're carrying all the nukes we had left. They will go in first and--"`
+			`	Abruptly, his voice cuts off in a burst of status. "What the hell?" says Katya. She tries to reestablish a connection to Tomek, but is unable to. Confused, she says, "What's going on? Is the Navy destroying the hyperspace communications relays, now? Or jamming them somehow?"`
+			`	One of the communications technicians says, "They must've taken out the relays. I can't get a signal from Earth, or Tundra, or Bourne, or, well, anywhere else, for that matter, except the Altair system, right next to this one."`
+			choice
+				`	"How do the hyperspace relays work? Is there any way around them?"`
+					goto around
+				`	"Are you sure the signal has been cut, and not just jammed?"`
+					goto jam
+			
+			label around
+			`	"Only if you want to communicate at the speed of light," says the technician, "And in that case you'd need to wait a few years to get a message out to Tomek. So no, there is not any way around the relays. They're essential to the galactic communications network, which is why even at the worst parts of this war we've never seriously considered destroying them."`
+				goto attack
+			
+			label jam
+			`	"I don't know of any technology that could jam them," says the technician. "It's possible, but I think the more likely explanation is that they've been destroyed. Which is crazy, because the entire galactic communications network depends on them. Even at the worst parts of this war we've never seriously considered destroying them."`
+				goto attack
+			
+			label attack
+			`	Just then, another militia officer runs into the room. "We're under attack!" he says. "We need every ship in our fleet in orbit, right now!"`
+			choice
+				`	"Who is attacking us? The Navy?"`
+				`	"Have the Wolf Pack reinforcements arrived yet?"`
+					goto reinforcements
+			
+			`	"No," he says. "I've never seen ships like these before in my life. The Wolf Pack reinforcements just arrived in orbit, and a second later, these ships appeared and started slicing them to ribbons. If you don't get your fleet up there, there won't be anything left of them."`
+				goto end
+			
+			label reinforcements
+			`	"Yes," he says, "and a second after they arrived in system, this other fleet of ships appeared, unlike any ships I've ever seen before. They're tearing the Wolf Pack fleet to ribbons. If you don't get up there immediately, none of them will be left alive."`
+			label end
+			`	You and hurry to your ship and fire it up for a hasty launch...`
+				launch
+	
+	npc
+		personality waiting heroic
+		government "Free Worlds"
+		fleet
+			names "free worlds small"
+			variant
+				"Bastion (Heavy)"
+				"Clipper"
+				"Clipper (Heavy)"
+				"Clipper (Speedy)"
+		fleet
+			names "free worlds small"
+			variant
+				"Clipper (Nuclear)"
+		fleet
+			names "free worlds small"
+			variant
+				"Clipper (Nuclear)"
+		fleet
+			names "free worlds small"
+			variant
+				"Clipper (Nuclear)"
+		fleet
+			names "free worlds small"
+			variant
+				"Clipper (Nuclear)"
+		fleet
+			names "free worlds small"
+			variant
+				"Bastion (Laser)"
+				"Argosy"
+				"Argosy (Blaster)"
+				"Argosy (Laser)"
+				"Argosy (Missile)"
+				"Argosy (Turret)"
+	
+	npc evade
+		personality staying disables heroic
+		government Pug
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+	
+	npc evade
+		personality entering disables heroic
+		government Pug
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+	
+	npc evade
+		personality disables heroic
+		government Pug
+		system "Delta Capricorni"
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 2
+
+
+
+mission "FWC Pug 1B"
+	landing
+	name "Investigate <system>"
+	description "This area of space has somehow been cut off from the rest of the galaxy. Visit <planet> to see if they, too, have been invaded by the aliens."
+	source "Silver"
+	destination "Shiver"
+	to offer
+		has "FWC Pug 1: done"
+	
+	on offer
+		event "fwc pug peaceful"
+		conversation
+			`The spaceport is in chaos. You eventually find Katya and report that the alien invasion fleet has been destroyed, but at a steep cost. "I'm sure we'll come to regret those losses deeply," she says. "The Wolf Pack nukes were all spent to repel that assault. And based on what we've found out here, we aren't going to be receiving reinforcements any time soon. We've somehow been cut off from the rest of human space."`
+			choice
+				`	"How is that possible?"`
+					goto possible
+				`	"Do we have any idea who these aliens are?"`
+					goto aliens
+			
+			label possible
+			`	"I have no idea," she says, "but the aliens must have the ability to collapse hyperspace links. That's why our communications were cut. It wasn't the relays that were destroyed, it was the hyperspace pathways themselves. And meanwhile, some new links have appeared, to here." She points on your map to a star that, until now, had been completely inaccessible via hyperspace. "Deneb. That must be where the aliens came from."`
+				goto next
+			
+			label aliens
+			`	"We have no idea," she says. "But, they appear to have the ability to destroy hyperspace links. That's why our communications went dead; it wasn't the relays we lost, it was the pathways themselves. And, they are apparently able to create new links as well." She points to a galactic map that she had been examining when you came in; several links have been scribbled out and new ones have been drawn in. "This is the star we call Deneb," she says, pointing to a star that, until now, had been inaccessible via hyperspace. This must be where they came from."`
+				goto next
+			
+			label next
+			`	"What do we do now?" you ask.`
+			`	"Well," she says, "to start out with, we need more information. I'm hoping you can somehow get past the aliens and land on <planet>, and see if they were attacked too and if so, whether anyone is still alive there. I'll stay here with the rest of the Wolf Pack in case we need to repel another attack."`
+				accept
+
+
+
+mission "FWC Pug 2"
+	landing
+	name "Report to Katya"
+	description "You met someone on Shiver who was able to give you more information about the aliens and their intentions. Report back to Katya with what you discovered."
+	source "Shiver"
+	destination "Silver"
+	to offer
+		has "FWC Pug 1B: done"
+	
+	on offer
+		conversation
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like sort of weapon, but none of them move to attack you.`
+			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
+			choice
+				`	(Stay around and talk to him.)`
+					goto board
+				`	(Take off before I draw the Pug's attention.)`
+			
+			`	You start to get ready to take off, but he gestures urgently to you. Reluctantly, you decide to wait and hear what he has to say.`
+			label board
+			`	You open your ship's hatch and allow him to come on board. "What's going on here?" you ask. "Who are these aliens?"`
+			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist
+				`	"What do you think their intentions are?"`
+					goto intentions
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut
+			
+			label resist
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			choice
+				`	"What do you think their intentions are?"`
+					goto intentions2
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut2
+			
+			label intentions
+			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist2
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut2
+			
+			label cut
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist2
+				`	"What do you think their intentions are?"`
+					goto intentions2
+			
+			label resist2
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+				goto end
+			
+			label intentions2
+			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
+				goto end
+			
+			label cut2
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+				goto end
+			
+			label end
+			`	You thank him for the information, and prepare to return to the <system> system to talk with Katya. Perhaps the fact that the aliens are no longer attacking you means you can negotiate some sort of truce.`
+				accept
+
+
+
+mission "FWC Pug 2B"
+	landing
+	name "Visit the Pug"
+	description "Locate the Pug homeworld, which is presumably in the <system> system, and see if you can negotiate with them."
+	source "Silver"
+	destination "Pugglemug"
+	clearance
+	to offer
+		has "FWC Pug 2: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`You report to Katya that the alien ships did not attack you on your trip to Shiver and back, and that the locals there seem to have consented to be governed by the aliens in exchange for peace. "We haven't had any further attacks here," she says. "Do you think it's safe to try to visit the alien home world?"`
+			choice
+				`	"I think as long as we don't attack them, they won't attack us."`
+					goto yes
+				`	"No, but I do want to get answers from them, and that may be the only way."`
+					goto no
+			
+			label yes
+			`	"I'm not so sure," she says. "After all, they did attack us once before. And from what I hear from the Wolf Pack captains, the aliens were the ones who fired first. On the other hand, I don't think we have much choice, unless we want to settle down and spend the rest of our lives as alien vassals, cut off from all our friends in the rest of the galaxy."`
+				goto end
+			
+			label no
+			`	"Agreed," she says. "They may choose to destroy us, but it's not like we have any other options. I don't particularly want to settle down and spend the rest of our lives as alien vassals, cut off from all our friends in the rest of the galaxy."`
+				goto end
+			
+			label end
+			`	Katya boards your ship, and you get ready for a diplomatic visit to the alien homeworld.`
+				accept
+
+
+
+mission "FWC Pug 2B: Pugglequat"
+	landing
+	source Pugglequat
+	to offer
+		has "FWC Pug 2B: active"
+		not "FWC Pug 2C: done"
+	
+	on offer
+		conversation
+			`This planet is clearly one of the native Pug worlds, and not a human world that has been occupied. The architecture is entirely alien, and you see no human ships or people here, only the aliens. But, it appears to be mostly a world for mining and factories; all the aliens are busy with their work, and none seem to speak your language or have any interest in talking with you; instead they gesture towards the sky, perhaps as a way of indicating that you should visit the other Pug planet in this system.`
+				decline
+
+
+
+mission "FWC Pug 2C"
+	name "Visit <planet>"
+	description "Visit <destination>, which was part of Free Worlds territory before the alien invasion, and see if any military equipment is still available there."
+	landing
+	source Pugglemug
+	destination Oblivion
+	to offer
+		has "FWC Pug 2B: done"
+	
+	on offer
+		conversation
+			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
+			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You are the ones who resisted us," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
+			choice
+				`	"No, we are here to find out why you attacked us, and to demand that you leave us alone."`
+				`	"We are willing to make peace, but only if you give us back control of our star systems."`
+			`	"We have no wish to harm you," says the alien. "In time you will come to recognize that. We intervened in your war only to bring peace and to keep your species from doing great harm to itself. And we must maintain control of these systems until we are certain that you will not continue fighting if the links are restored."`
+			choice
+				`	"If you wish us no harm, why did you slaughter our fleet?"`
+				`	"You have no business invading our space and interfering in our affairs, regardless of your intentions."`
+					goto interfere
+		
+			`	"The fleet that was carrying nuclear weapons, weapons of genocide? They chose violence, and so they perished by violence. That is justice."`
+			`	Katya says, "I still don't understand what makes you think you have the right to interfere in human affairs."`
+		
+			label interfere
+			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefitted. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
+			choice
+				`	"What do you want from us in return?"`
+				`	"What are you planning to do with these systems you have occupied?"`
+			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
+			`	"By 'spreading peace,' do you mean occuying more systems?" asks Katya.`
+			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. Now, are you prepared to pledge your loyalty?"`
+			choice
+				`	"I'm sorry, but you have no right to govern us."`
+					goto no
+				`	"Very well, we pledge our loyalty."`
+					goto yes
+			
+			label no
+			`	"Very well, if you are not yet ready to consent to be governed by us, we will give you more time," says the alien. "In the meantime, please do not attack our ships, or we will be forced to destroy you. Which we would regret deeply." It makes an odd gesture similar to a bow, and walks off.`
+				goto end
+			
+			label yes
+			`	"I am pleased to hear that," it says. "In time you will come to be thankful that you were present at the beginning of this new era of peace and prosperity for your species. And do not fear for your friends in other parts of human space who are, for a time, cut off from you. You will be reunited soon, under our protection." It makes an odd gesture similar to a bow, and walks off.`
+				goto end
+			
+			label end
+			`	"I don't like this at all," says Katya. "Let's head to <planet> and see if any of our equipment is left there from back when it was part of the front in the war against the Republic. Maybe we can find something useful there."`
+				accept
+
+
+
+mission "FWC Pug 2D"
+	landing
+	name "Escape Pug Space"
+	description "Disable one of the Pug ships, steal its jump drive, and use it to escape from their territory and report to the Free Worlds that an alien invasion is imminent."
+	source "Oblivion"
+	destination "New Iceland"
+	clearance "The locals are terrified by the fact that you have decided to fight the Pug, but eventually they agree to let you land."
+		planet Oblivion
+	to offer
+		has "FWC Pug 2C: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`Just like Shiver, the spaceport on Oblivion is being patrolled by the Pug, and the locals seem to be resigned to their fate. Not surprisingly, you find that there are not many supplies left from when the main Free Worlds fleet was located here for a few days. But, at least the spaceport has a working repair shop and outfitter.`
+			`	Back inside your ship, you and Katya talk. "It sounds like the aliens are planning to invade more systems," she says. "We need to get a warning out somehow. And the only way to do that is with a jump drive. We'll need to disable one of the alien ships, take out its jump drive, and install it on your ship. Then we can take your ship to <planet> and contact the Senate and the rest of the Council."`
+			choice
+				`	"Sounds risky, but let's give it a try!"`
+					accept
+				`	"Um, do we really want to risk getting the aliens mad at us?"`
+			
+			`	"I don't think we have any other choice," she says. "Our friends out there need to know what is happening here. And maybe this, at last, will give the Navy a reason to stop fighting us and to begin working together for peace." Reluctantly, you agree.`
+				accept

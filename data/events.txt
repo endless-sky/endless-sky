@@ -2107,3 +2107,78 @@ event "fwc capture menkent"
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
 
+
+
+event "fwc attack vega"
+	system "Vega"
+		fleet "Small Southern Merchants" 50000
+
+
+
+event "fwc pug invasion"
+	unlink Vega Sol
+	unlink Altair Sol
+	unlink Altair Fomalhaut
+	unlink "Delta Capricorni" Markab
+	unlink "Delta Capricorni" Scheat
+	unlink Alderamin Alnair
+	unlink "Zeta Aquilae" Ascella
+	unlink Rasalhague Ascella
+	unlink Rasalhague Cebalrai
+	unlink Vega Menkent
+	link Vega Deneb
+	link Altair Deneb
+	link "Delta Capricorni" Deneb
+	link Alderamin Deneb
+	link "Zeta Aquilae" Deneb
+	link Rasalhague Deneb
+	"reputation: Pug" = -1000
+	government Pug
+		"attitude toward"
+			"Free Worlds" -.1
+	system "Zeta Aquilae"
+		government Pug
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 3000
+		fleet "Small Pug" 1000
+		fleet "Large Pug" 2000
+	system Rasalhague
+		government Pug
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Pug" 800
+		fleet "Large Pug" 2000
+	system Orvala
+		government Pug
+	system Altair
+		government Pug
+		fleet "Small Core Merchants" 400
+		fleet "Large Core Merchants" 600
+		fleet "Small Northern Merchants" 1000
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Pug" 700
+		fleet "Large Pug" 900
+	system "Vega"
+		government "Free Worlds"
+	system "Delta Capricorni"
+		government Pug
+		fleet "Small Core Merchants" 700
+		fleet "Large Core Merchants" 800
+		fleet "Small Pug" 800
+		fleet "Large Pug" 1100
+	system Alderamin
+		government Pug
+		fleet "Small Core Merchants" 2000
+		fleet "Large Core Merchants" 3200
+		fleet "Small Pug" 1200
+		fleet "Large Pug" 2500
+	system Nocte
+		government Pug
+
+
+
+event "fwc pug peaceful"
+	"reputation: Pug" = 1
+	government Pug
+		"attitude toward"
+			"Free Worlds" 0
