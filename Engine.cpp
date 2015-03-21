@@ -920,7 +920,7 @@ void Engine::CalculateStep()
 			{
 				// Even friendly ships can be hit by the blast.
 				for(shared_ptr<Ship> &ship : ships)
-					if(ship->GetSystem() == player.GetSystem() && !ship->IsLanding())
+					if(ship->GetSystem() == player.GetSystem() && ship->Zoom() == 1.)
 						if(projectile.InBlastRadius(*ship, step))
 						{
 							int eventType = ship->TakeDamage(projectile, ship != hit);
