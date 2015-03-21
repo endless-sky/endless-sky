@@ -432,9 +432,9 @@ void GameData::LoadFile(const string &path)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
-		else if(key == "interface")
+		else if(key == "interface" && node.Size() >= 2)
 			interfaces.Get(node.Token(1))->Load(node);
-		else if(key == "mission")
+		else if(key == "mission" && node.Size() >= 2)
 			missions.Get(node.Token(1))->Load(node);
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
