@@ -4,11 +4,34 @@ version 0.7.8
 Programming
   Michael Zahniser
 
-Artwork
-  Michael Zahniser
-  NASA (public domain)
-  USGS (public domain)
-  morguefile.com (public domain)
+Photos from Wikimedia Commons
+  Berthold Werner (CC-BY-SA 3.0)
+  Dmitry A. Mottl (CC-BY-SA 3.0)
+  Myrabella (CC-BY-SA 3.0)
+  Matthew Field (CC-BY-SA 3.0)
+and from public domain sources
+  NASA
+  US Geological Survey
+  Library of Congress
+  US Army
+  morguefile.com
+  publicdomainarchive.com
+  unsplash.com
+  burningwell.com
+
+Other Artwork
+  Michael Zahniser (CC-BY-SA 4.0)
+
+Sounds from OpenGameArt.org
+  Stephen Cameron (CC-BY-SA 3.0)
+  HorrorPen (CC-BY-3.0)
+  Jesus Lastra (CC-BY-3.0)
+  Devin Watson (CC-BY-3.0)
+  Michel Baradari (CC-BY-3.0)
+  Dravenx (CC-BY-3.0)
+
+For a full list of attributions,
+see the "copyright" file.
 
 This game is open source.
 To contibute to story writing,
