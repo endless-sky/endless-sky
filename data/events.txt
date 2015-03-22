@@ -2182,3 +2182,81 @@ event "fwc pug peaceful"
 	government Pug
 		"attitude toward"
 			"Free Worlds" 0
+
+
+
+event "fwc navy retakes cebalrai"
+	unvisit Cebalrai
+	unvisit Menkent
+	system "Cebalrai"
+		government "Republic"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 1500
+		fleet "Small Republic" 500
+		fleet "Large Republic" 600
+		fleet "Large Free Worlds" 5000
+	system Menkent
+		government "Republic"
+		fleet "Small Southern Merchants" 700
+		fleet "Large Southern Merchants" 1900
+		fleet "Small Republic" 300
+		fleet "Large Republic" 400
+		fleet "Large Free Worlds" 2000
+
+
+
+event "fwc peace with the navy"
+	"reputation: Republic" = 1
+	government "Republic"
+		"attitude toward"
+			"Free Worlds" 0
+	government "Free Worlds"
+		"attitude toward"
+			"Republic" 0
+	system Vega
+		government Pug
+		fleet "Small Northern Merchants" 800
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Pug" 800
+		fleet "Large Pug" 1200
+
+
+
+event "fwc battle for rasalhague"
+	link Rasalhague Cebalrai
+	system Rasalhague
+		fleet "Small Southern Merchants" 10000
+	government "Pug"
+		"attitude toward"
+			"Free Worlds" -.1
+			"Republic" -.1
+			"Navy (Oathkeeper)" -.1
+
+
+
+event "fwc liberation of rasalhague"
+	system Rasalhague
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Republic" 400
+		fleet "Large Republic" 600
+		fleet "Small Free Worlds" 400
+		fleet "Large Free Worlds" 600
+	system "Zeta Aquilae"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 3000
+	system Rasalhague
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 2000
+	system Altair
+		fleet "Small Core Merchants" 400
+		fleet "Large Core Merchants" 600
+	system "Delta Capricorni"
+		fleet "Small Core Merchants" 700
+		fleet "Large Core Merchants" 800
+	system Alderamin
+		fleet "Small Core Merchants" 2000
+		fleet "Large Core Merchants" 3200
+	system Deneb
+		fleet "Small Core Merchants" 1000000
