@@ -193,12 +193,9 @@ void Engine::Place()
 				// All your ships that are in system with the player act as if they are
 				// leaving the planet along with you.
 				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem()
-						&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer()))
+						&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer())
+						&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
 				{
-					// If a ship is "staying", it starts out in orbit.
-					if(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting())
-						continue;
-					
 					ship->SetPlanet(player.GetPlanet());
 					for(const StellarObject &object : ship->GetSystem()->Objects())
 						if(object.GetPlanet() == player.GetPlanet())
