@@ -160,6 +160,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 	int targetTurn = 0;
 	for(const auto &it : ships)
 	{
+		// Skip any carried fighters or drones that are somehow in the list.
+		if(!it->GetSystem())
+			continue;
+		
 		if(it.get() == player)
 			MovePlayer(*it, info, ships);
 		else
