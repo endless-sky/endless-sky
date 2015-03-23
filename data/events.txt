@@ -2213,6 +2213,34 @@ event "fwc peace with the navy"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0
+	planet Martini
+		"required reputation" 80
+	planet Thrall
+		"required reputation" 30
+	planet Geminus
+		"required reputation" 80
+	planet Hestia
+		"required reputation" 40
+	planet Vinci
+		"required reputation" 50
+	planet Vail
+		"required reputation" 40
+	planet Calda
+		"required reputation" 40
+	planet Pearl
+		"required reputation" 50
+	planet Glory
+		"required reputation" 60
+	planet Farseer
+		"required reputation" 50
+	planet Pilot
+		"required reputation" 100
+	planet Ada
+		"required reputation" 60
+	planet Hermes
+		"required reputation" 70
+	planet Mainsail
+		"required reputation" 40
 	system Vega
 		government Pug
 		fleet "Small Northern Merchants" 800
@@ -2259,4 +2287,6 @@ event "fwc liberation of rasalhague"
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 3200
 	system Deneb
-		fleet "Small Core Merchants" 1000000
+		fleet "Small Core Merchants" 10000
+		fleet "Small Pug" 100
+		fleet "Large Pug" 100

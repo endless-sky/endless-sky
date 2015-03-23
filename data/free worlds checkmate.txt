@@ -1718,7 +1718,7 @@ mission "FWC Pug 3D: Reinforcements"
 
 
 
-mission "FWC Pug 3E"
+mission "FWC Pug 4"
 	landing
 	name "Defend <system>"
 	description "Drive off the Pug fleet that is invading <system>"
@@ -1839,4 +1839,50 @@ mission "FWC Pug 3E"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
+
+
+
+mission "FWC Pug 4A"
+	landing
+	name "Equipment from <planet>"
+	description "Travel with Freya to pick up the alien equipment that you installed on <planet> and bring it to Arabia to reopen another of the hyperspace links."
+	source Oblivion
+	destination Tundra
+	to offer
+		has "FWC Pug 4: done"
 	
+	on offer
+		conversation
+			`When you land on <origin>, the Navy and Free Worlds crews are congratulating each other on having succeeded in resisting the alien attack. Freya says, "I guess nothing creates camaraderie faster than fighting side by side against a common enemy."`
+			choice
+				`	"Yes, I hope our people don't get too comfortable viewing the Navy as allies."`
+					goto negative
+				`	"I don't think we could have won that battle without the Navy's help. Perhaps we were wrong to think we had no need for the Republic at all."`
+					goto positive
+			
+			label negative
+			`	"Indeed," she says. "Still, it will be hard going back to fighting them once all this is over."`
+				goto plan
+			
+			label positive
+			`	"You might be right," she says. "I wonder if instead of aiming for complete independence fromt he Republic, all along we should ahve tried for something closer to what the Syndicate has: relative autonomy, but within the framework of the Republic."`
+				goto plan
+			
+			label plan
+			`	You meet up with Danforth, and he says, "Well, we have a beachhead now, but it's a fragile one. Miss Winters, do you think you can open up more of the hyperspace links?"`
+			`	Freya says, "Sure, if we retrieve the equipment from Tundra. But, the transmitter station wasn't exactly portable, so if we want to open up other systems not linked to this one, we'll have to find transitters already installed there, too."`
+			`	Danforth says, "Let's start by trying to reestablish the connection from here to the Ascella system. If that works, I'll send part of my fleet to take Zeta Aquilae and see if they can secure another transmitter station. That would give us two routes into Pug space instead of the single bottleneck we have now. Captain <last>, would you be willing to travel back with Freya to <planet>?"`
+			choice
+				`	"Sure, we can leave immediately."`
+					accept
+				`	"What if the Pug attack here in the meantime?"`
+					goto defend
+				`	"Shouldn't we just attack the Pug homeworld while we have such a big fleet here?"`
+					goto attack
+			
+			label defend
+			`	"Don't worry," he says, "Navy reinforcements are arriving constantly. Soon our fleet here will be twice as strong as the one we committed to yesterday's attack." Reluctantly, you agree to trust the defenses to him and bring Freya back into Free space to help open more of the hyperlinks.`
+				accept
+			label attack
+			`	"'Such a big fleet'?" he says. "This is not even a twentieth of the Navy's current fighting power. And I think we'll need many more ships before we're ready to take on the alien homeworld. But don't worry, reinforcements are arriving here constantly. You go do your part, and we'll see to ours."`
+				accept
