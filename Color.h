@@ -28,6 +28,8 @@ public:
 	void Load(double r, double g, double b, double a);
 	const float *Get() const;
 	
+	Color Opaque() const;
+	
 	
 private:
 	float color[4];

@@ -42,3 +42,12 @@ const float *Color::Get() const
 {
 	return color;
 }
+
+
+
+Color Color::Opaque() const
+{
+	Color opaque = *this;
+	opaque.color[3] = 1.f;
+	return opaque;
+}

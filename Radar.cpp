@@ -56,7 +56,7 @@ void Radar::Add(int type, Point position, double outer, double inner)
 	if(type < 0 || type >= SIZE)
 		return;
 	
-	objects.emplace_back(color[type], position, outer, inner);
+	objects.emplace_back(color[type].Opaque(), position, outer, inner);
 }
 
 
