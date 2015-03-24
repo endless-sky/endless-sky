@@ -34,12 +34,14 @@ DistanceMap::DistanceMap(const System *center, int maxCount)
 
 
 
-DistanceMap::DistanceMap(const PlayerInfo &player)
+DistanceMap::DistanceMap(const PlayerInfo &player, const System *system)
 {
-	if(!player.GetShip() || !player.GetShip()->GetSystem())
+	if(!player.GetShip() || (!system && !player.GetShip()->GetSystem()))
 		return;
 	
-	distance[player.GetShip()->GetSystem()] = 0;
+	if(!system)
+		system = player.GetShip()->GetSystem();
+	distance[system] = 0;
 	
 	if(player.GetShip()->Attributes().Get("jump drive"))
 		InitJump(player);

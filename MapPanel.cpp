@@ -133,13 +133,32 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	
-	if(distance.HasRoute(system))
+	if(distance.HasRoute(system) && player.GetShip())
 	{
-		player.ClearTravel();
-		while(system != playerSystem)
+		bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
+		
+		if(shift)
 		{
-			player.AddTravel(system);
-			system = distance.Route(system);
+			vector<const System *> oldPath = player.TravelPlan();
+			DistanceMap localDistance(player, oldPath.front());
+			player.ClearTravel();
+			
+			while(system != oldPath.front())
+			{
+				player.AddTravel(system);
+				system = localDistance.Route(system);
+			}
+			for(const System *it : oldPath)
+				player.AddTravel(it);
+		}
+		else
+		{
+			player.ClearTravel();
+			while(system != playerSystem)
+			{
+				player.AddTravel(system);
+				system = distance.Route(system);
+			}
 		}
 	}
 }
