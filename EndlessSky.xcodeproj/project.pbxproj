@@ -122,6 +122,8 @@
 		A9F4DBC119D21F150015BBE2 /* MissionAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBBF19D21F150015BBE2 /* MissionAction.cpp */; };
 		A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBC219D21F260015BBE2 /* NPC.cpp */; };
 		A9F4DBC719D21F380015BBE2 /* LocationFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F4DBC519D21F380015BBE2 /* LocationFilter.cpp */; };
+		A9F82ABA1AC2101200A60858 /* StartConditions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F82AB81AC2101200A60858 /* StartConditions.cpp */; };
+		A9F82ABD1AC2102000A60858 /* RingShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9F82ABB1AC2102000A60858 /* RingShader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -360,6 +362,10 @@
 		A9F4DBC319D21F260015BBE2 /* NPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPC.h; sourceTree = "<group>"; };
 		A9F4DBC519D21F380015BBE2 /* LocationFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocationFilter.cpp; sourceTree = "<group>"; };
 		A9F4DBC619D21F380015BBE2 /* LocationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationFilter.h; sourceTree = "<group>"; };
+		A9F82AB81AC2101200A60858 /* StartConditions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StartConditions.cpp; sourceTree = "<group>"; };
+		A9F82AB91AC2101200A60858 /* StartConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartConditions.h; sourceTree = "<group>"; };
+		A9F82ABB1AC2102000A60858 /* RingShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingShader.cpp; sourceTree = "<group>"; };
+		A9F82ABC1AC2102000A60858 /* RingShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingShader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -539,6 +545,8 @@
 				A99F7ABE195DF44B002C30B8 /* Radar.h */,
 				A9C81F8C1978741400EBA833 /* Random.cpp */,
 				A9C81F8D1978741400EBA833 /* Random.h */,
+				A9F82ABB1AC2102000A60858 /* RingShader.cpp */,
+				A9F82ABC1AC2102000A60858 /* RingShader.h */,
 				A99F7ABF195DF44B002C30B8 /* Sale.h */,
 				A9D445C41A1BFFBD00AB5EE5 /* SavedGame.cpp */,
 				A9D445C51A1BFFBD00AB5EE5 /* SavedGame.h */,
@@ -572,6 +580,8 @@
 				A99F7AD9195DF44C002C30B8 /* SpriteShader.h */,
 				A99F7ADA195DF44C002C30B8 /* StarField.cpp */,
 				A99F7ADB195DF44C002C30B8 /* StarField.h */,
+				A9F82AB81AC2101200A60858 /* StartConditions.cpp */,
+				A9F82AB91AC2101200A60858 /* StartConditions.h */,
 				A99F7ADC195DF44C002C30B8 /* StellarObject.cpp */,
 				A99F7ADD195DF44C002C30B8 /* StellarObject.h */,
 				A99F7ADE195DF44C002C30B8 /* System.cpp */,
@@ -734,6 +744,7 @@
 				A99F7B11195DF44C002C30B8 /* Mortgage.cpp in Sources */,
 				A99F7B18195DF44C002C30B8 /* PlanetPanel.cpp in Sources */,
 				A99F7B24195DF44C002C30B8 /* ShipyardPanel.cpp in Sources */,
+				A9F82ABA1AC2101200A60858 /* StartConditions.cpp in Sources */,
 				A99F7B2C195DF44C002C30B8 /* StellarObject.cpp in Sources */,
 				A99F7AEA195DF44C002C30B8 /* Angle.cpp in Sources */,
 				A99F7B2A195DF44C002C30B8 /* SpriteShader.cpp in Sources */,
@@ -748,6 +759,7 @@
 				A99F7B03195DF44C002C30B8 /* GameData.cpp in Sources */,
 				A99F7AEB195DF44C002C30B8 /* Animation.cpp in Sources */,
 				A9D445C61A1BFFBD00AB5EE5 /* SavedGame.cpp in Sources */,
+				A9F82ABD1AC2102000A60858 /* RingShader.cpp in Sources */,
 				A9F4DBC719D21F380015BBE2 /* LocationFilter.cpp in Sources */,
 				A99F7AED195DF44C002C30B8 /* AsteroidField.cpp in Sources */,
 				A9C81F911978743100EBA833 /* DataWriter.cpp in Sources */,

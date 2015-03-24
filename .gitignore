@@ -1,3 +1,7 @@
 /endless-sky
 /build/
 /.sconsign.dblite
+/.DS_Store
+/EndlessSky.xcodeproj/project.xcworkspace/
+/EndlessSky.xcodeproj/xcuserdata/
+
