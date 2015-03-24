@@ -250,6 +250,7 @@ private:
 	public:
 		Bay() = default;
 		Bay(double x, double y) : point(x * .5, y * .5) {}
+		Bay(const Point &point) : point(point) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;

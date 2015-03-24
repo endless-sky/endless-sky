@@ -160,12 +160,12 @@ void Ship::FinishLoading()
 		if(droneBays.empty() && !base->droneBays.empty())
 		{
 			for(const auto &it : base->droneBays)
-				droneBays.emplace_back(it.point.x, it.point.y);
+				droneBays.emplace_back(it.point);
 		}
 		if(fighterBays.empty() && !base->fighterBays.empty())
 		{
 			for(const auto &it : base->fighterBays)
-				fighterBays.emplace_back(it.point.x, it.point.y);
+				fighterBays.emplace_back(it.point);
 		}
 		if(enginePoints.empty())
 			enginePoints = base->enginePoints;
