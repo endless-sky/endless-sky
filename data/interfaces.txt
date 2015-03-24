@@ -559,12 +559,12 @@ interface "boarding"
 		size 80 30
 	endif
 	
-	if "!can attack"
+	if "!can defend"
 	label "Defend" 210 177
 		size 14
 		color dim
 		align center
-	if "can attack"
+	if "can defend"
 	label "Defend" 210 177
 		size 14
 		color bright
