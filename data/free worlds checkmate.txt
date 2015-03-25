@@ -1657,7 +1657,7 @@ mission "FWC Pug 3D: Reinforcements"
 	to offer
 		has "FWC Pug 3C: done"
 	to fail
-		had "FWC Pug 4: done"
+		has "FWC Pug 4: done"
 	
 	npc kill
 		government "Navy (Oathkeeper)"
@@ -1759,9 +1759,9 @@ mission "FWC Pug 4"
 				"Pug Zibruka" 2
 	
 	npc disable
-		personality disables heroic entering
+		personality disables heroic
 		government Pug
-		system Deneb
+		system Alderamin
 		fleet
 			names "pug"
 			variant
@@ -1786,9 +1786,9 @@ mission "FWC Pug 4"
 				"Pug Zibruka" 2
 	
 	npc disable
-		personality disables heroic entering
+		personality disables heroic
 		government Pug
-		system "Delta Capricorni"
+		system Markab
 		fleet
 			names "pug"
 			variant
@@ -1815,9 +1815,15 @@ mission "FWC Pug 4"
 				"Pug Zibruka" 2
 	
 	npc disable
-		personality disables heroic entering
+		personality disables heroic
 		government Pug
-		system "Scheat"
+		system Alpheratz
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta"
+				"Pug Zibruka" 2
 		fleet
 			names "pug"
 			variant
