@@ -138,6 +138,10 @@ void ConversationPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
+	// Map popup happens when you press the map key, unless the name text entry
+	// fields are currently active.
+	if(command == Command::MAP && !choices.empty())
+		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	if(node < 0)
 	{
 		if(key == SDLK_RETURN)
@@ -189,8 +193,6 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		++choice;
 	else if(key == SDLK_RETURN && choice < conversation.Choices(node))
 		Goto(conversation.NextNode(node, choice), choice);
-	else if(command == Command::MAP)
-		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	else if(key > '0' && key <= static_cast<SDL_Keycode>('0' + choices.size()))
 		Goto(conversation.NextNode(node, key - '1'), key - '1');
 	else

@@ -400,7 +400,7 @@ void MapPanel::DrawMissions() const
 	{
 		Angle a = (angle[specialSystem] += Angle(30.));
 		Point pos = specialSystem->Position() + center;
-		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., white);
+		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
+		PointerShader::Draw(pos, a.Unit(), 11.5, 21.5, -6., white);
 	}
 }

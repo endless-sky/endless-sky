@@ -178,7 +178,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		string text = Format::Replace(dialogText, subs);
 		
 		if(isOffer)
-			ui->Push(new Dialog(text, player));
+			ui->Push(new Dialog(text, player, destination));
 		else
 			ui->Push(new Dialog(text));
 	}

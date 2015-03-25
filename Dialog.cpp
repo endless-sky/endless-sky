@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
@@ -48,8 +49,9 @@ Dialog::Dialog(const std::string &text)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player)
-	: intFun(bind(&PlayerInfo::MissionCallback, &player, std::placeholders::_1))
+Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
+	: intFun(bind(&PlayerInfo::MissionCallback, &player, std::placeholders::_1)),
+	system(system), player(&player)
 {
 	Init(text, true, true);
 }
@@ -133,7 +135,7 @@ void Dialog::Draw() const
 
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key >= ' ' && key <= '~' && (intFun || stringFun))
+	if(key >= ' ' && key <= '~' && !isMission && (intFun || stringFun))
 	{
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
 		if(stringFun)
@@ -164,6 +166,8 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		
 		GetUI()->Pop(this);
 	}
+	else if((key == 'm' || command == Command::MAP) && system && player)
+		GetUI()->Push(new MapDetailPanel(*player, -4, system));
 	else
 		return false;
 	

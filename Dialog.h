@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class PlayerInfo;
+class System;
 
 
 
@@ -36,7 +37,7 @@ public:
 	// only an "ok" button, not a "cancel" button.
 	Dialog(const std::string &text);
 	// Mission accept / decline dialog.
-	Dialog(const std::string &text, PlayerInfo &player);
+	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr);
 	virtual ~Dialog() = default;
 	
 	// Three different kinds of dialogs can be constructed: requesting numerical
@@ -84,6 +85,9 @@ private:
 	
 	mutable Point okPos;
 	mutable Point cancelPos;
+	
+	const System *system = nullptr;
+	PlayerInfo *player = nullptr;
 };
 
 
