@@ -2290,3 +2290,22 @@ event "fwc liberation of rasalhague"
 		fleet "Small Core Merchants" 10000
 		fleet "Small Pug" 100
 		fleet "Large Pug" 100
+
+
+
+event "fwc reconnect ascella"
+	link Rasalhague Ascella
+
+
+
+event "fwc reconnect zeta aquilae"
+	link "Zeta Aquilae" Ascella
+	system "Zeta Aquilae"
+		government "Free Worlds"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Republic" 400
+		fleet "Large Republic" 600
+		fleet "Small Free Worlds" 600
+		fleet "Large Free Worlds" 800
+		

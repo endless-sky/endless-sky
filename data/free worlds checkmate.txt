@@ -1899,7 +1899,7 @@ mission "FWC Pug 4A"
 mission "FWC Pug 4B"
 	landing
 	name "Equipment to <planet>"
-	description `Travel with Freya to <planet> to set up the alien equipment and see if you can reopen another one of the disrupted hyperspace links."
+	description "Travel with Freya to <planet> to set up the alien equipment and see if you can reopen another one of the disrupted hyperspace links."
 	source Tundra
 	destination Arabia
 	to offer
@@ -1939,6 +1939,8 @@ mission "FWC Pug 4B: Quarg"
 	destination Lagrange
 	to offer
 		has "FWC Pug 4: done"
+	to fail
+		has "FWC Pug 5: done"
 	
 	on complete
 		conversation
@@ -1978,3 +1980,105 @@ mission "FWC Pug 4B: Quarg"
 			`	"Their identity is communal, rather than individual?" says Freya.`
 			`	"Indeed. And because they are so deeply connected, they perceive all things as being connected to them. At least, that is the best understanding we have been able to gain of their species."`
 			`	You talk for a while longer, but gain no more information of value.`
+
+
+
+mission "FWC Pug 4C"
+	landing
+	name "Liberate <planet>"
+	description "Travel to the <system> system to assist the Navy in driving out the Pug and reestablishing a direct hyperspace link to the Ascella system."
+	source Arabia
+	destination Rand
+	clearance
+	to offer
+		has "FWC Pug 4B: done"
+	passengers 1
+	
+	on offer
+		event "fwc reconnect ascella"
+		conversation
+			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later General Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system, now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
+				accept
+	
+	on complete
+		event "fwc reconnect zeta aquilae"
+		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact General Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyways, meet me in the spaceport whenever you're ready to help with our next mission."`
+	
+	npc evade
+		personality disables heroic staying
+		government Pug
+		system "Zeta Aquilae"
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+		fleet
+			names "pug"
+			variant
+				"Pug Maboro"
+				"Pug Enfolta" 2
+
+	npc
+		government "Navy (Oathkeeper)"
+		system "Zeta Aquilae"
+		personality heroic staying
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Gunboat (Mark II)" 2
+	npc
+		government Republic
+		system "Zeta Aquilae"
+		personality heroic staying uninterested
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Gunboat (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
