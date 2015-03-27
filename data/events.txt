@@ -2274,7 +2274,7 @@ event "fwc liberation of rasalhague"
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
-	system Rasalhague
+	system Vega
 		fleet "Small Southern Merchants" 1500
 		fleet "Large Southern Merchants" 2000
 	system Altair
@@ -2308,4 +2308,20 @@ event "fwc reconnect zeta aquilae"
 		fleet "Large Republic" 600
 		fleet "Small Free Worlds" 600
 		fleet "Large Free Worlds" 800
-		
+
+
+
+event "fwc liberation of vega"
+	system Vega
+		government "Republic"
+
+
+
+event "fwc reconnect vega"
+	link Sol Vega
+	system Vega
+		government "Republic"
+		fleet "Small Southern Merchants" 1500
+		fleet "Large Southern Merchants" 2000
+		fleet "Small Republic" 500
+		fleet "Large Republic" 700

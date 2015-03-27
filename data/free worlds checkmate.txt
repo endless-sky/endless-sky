@@ -2082,3 +2082,219 @@ mission "FWC Pug 4C"
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
+
+
+
+mission "FWC Pug 5"
+	name "Liberate <system>"
+	description "Some of the Navy ships have been outfitted with jump drives. Travel with them to the <system> system, avoiding the main Pug fleet in their home system, and reclaim control of the planet."
+	source Rand
+	destination Silver
+	clearance
+	to offer
+		has "FWC Pug 4C: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`You find General Danforth supervising the repairs of the damaged Navy ships. "Glad you survived that battle!" he says. "These alien ships are much more advanced than ours, but we outnumber them, so now that we've established a strong beachhead I think we actually have a chance at defeating them. The only problem is, the majority of our fleet is still up north. With the Vega system cut off, our supply lines are having to go all the way around through the dirt belt. So I'd like to propose liberating Vega next."`
+			choice
+				`	"That does sound like a good strategic choice."`
+				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
+			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our cruisers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
+			`	"Sounds good to me," says Freya. "I wish more of our own ships had jump drives, so we could assist you."`
+			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing, so that they will be more amenable to a compromise between us."`
+			choice
+				`	"I'm glad to hear you say that. Your fleet is so much stronger than ours that you could easily take all the credit."`
+					goto navy
+				`	"We were the ones who discovered the aliens and the way to restore the hyperpace links. The Free Worlds deserve the real credit here."`
+					goto free
+			label navy
+			`	"I don't want the credit," he says, "I want peace." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
+				accept
+			label free
+			`	"Captain," he says, "the point isn't who deserves more credit. The point is, how do we tell this story in a way that makes people on my side and on yours more willing to make peace with each other? That's all I care about." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
+				accept
+	
+	on complete
+		event "fwc liberation of vega"
+	
+	npc
+		government "Navy (Oathkeeper)"
+		personality heroic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Jump)"
+				"Combat Drone" 6
+				"Dagger" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Jump)"
+				"Combat Drone" 6
+				"Dagger" 4
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Jump)"
+				"Combat Drone" 6
+				"Dagger" 4
+	
+	npc evade
+		personality disables heroic staying
+		government Pug
+		system Vega
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 4
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 3
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 4
+		fleet
+			names "pug"
+			variant
+				"Pug Enfolta"
+				"Pug Zibruka" 3
+
+
+
+mission "FWC Pug 5B"
+	landing
+	name "Travel to <planet>"
+	description `Travel with Freya to <planet>, where you can set up the "graviton reflector" to restore the hyperspace link from Sol to the Pug territory. (She thinks Mars is a better option than a heavily populated planet like Earth.)`
+	source Silver
+	destination Mars
+	to offer
+		has "FWC Pug 5: done"
+	passengers 1
+	cargo "graviton reflector" 10
+	
+	on offer
+		conversation
+			`Once again, the Pug seem to have anticipated your attack and evacuated all their personnel from the planet before your arrival. It's a little disconcerting that they seem to have planned for events to unfold in exactly this way. Once again, you find one of the transmitter stations, abandoned on <origin> but still in working order, and inside the station Freya locates another one of the "reflectors" that she needs in order to complete the link. "I don't get it," she says. "They should've destroyed all this before they left."`
+			choice
+				`	"Yes, I hope we're not playing into some sort of trap."`
+					goto trap
+				`	"Well, let's just be thankful they didn't."`
+			`	"I suppose," she says. "I just don't like not understanding things, and I do not understand these aliens at all."`
+				goto next
+			label trap
+			`	"Indeed," she says. "It's hard to imagine that a species so advanced could be making so many tactical errors."`
+			label next
+			`	You load the equipment onto your ship, and Freya says, "Let's set it up on <planet>, rather than Earth. I don't think the graviton radiation is harmful to human beings, but there's no point in placing it on such a densely populated planet."`
+				accept
+	
+	npc
+		government Republic
+		system Sol
+		personality heroic staying uninterested
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+
+
+
+mission "FWC Pug 5C"
+	landing
+	name "Return to <planet>"
+	description "Return to <planet>, and join the Navy fleet in preparing for an attack on the Pug home system. A Free Worlds fleet will be attacking from the south at the same time."
+	source Mars
+	destination Silver
+	to offer
+		has "FWC Pug 5B: done"
+	
+	on offer
+		event "fwc reconnect vega"
+		conversation
+			`As soon as Freya has set up her equipment and verified that it is working, you contact General Danforth. "We're on Mars," you tell him, "and we should have the hyperspace link to Vega restored soon."`
+			`	"Excellent," he says. "Please contact your Council and arrange for your fleet to strike from the south at the same time as the fleet from Vega jumps in from the north."`
+			`	You contact Tomek and tell him the Navy is ready for a final assault, and he agrees to send as many ships as he can spare to join you. Now it's time to return to <planet> and await the attack signal.`
+				accept
+	
+	npc
+		government Republic
+		system Sol
+		personality heroic waiting
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+
