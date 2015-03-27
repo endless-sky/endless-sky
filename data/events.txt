@@ -2325,3 +2325,79 @@ event "fwc reconnect vega"
 		fleet "Large Southern Merchants" 2000
 		fleet "Small Republic" 500
 		fleet "Large Republic" 700
+
+
+
+event "fwc pug defeated"
+	system Altair
+		government Republic
+	system "Delta Capricorni"
+		government Syndicate
+	system Alderamin
+		government Syndicate
+	system Deneb
+		government Neutral
+		fleet "Small Core Merchants" 400
+		fleet "Large Core Merchants" 600
+		fleet "Small Northern Merchants" 1000
+		fleet "Large Northern Merchants" 3000
+		fleet "Small Republic" 700
+		fleet "Large Republic" 900
+		fleet "Small Syndicate" 1200
+		fleet "Large Syndicate" 2000
+		object
+			sprite star/g5
+			period 10
+		object "Pugglemug"
+			sprite planet/ocean2
+			distance 317.56
+			period 90.543791
+			object
+				sprite planet/dust3
+				distance 159
+				period 16.370052
+		object "Pugglequat"
+			sprite planet/desert3
+			distance 966.8
+			period 480.9777
+			object
+				sprite planet/rhea
+				distance 156
+				period 18.632773
+		object
+			sprite planet/dust7
+			distance 1538.84
+			period 965.85111
+		object
+			sprite planet/dust0
+			distance 1788.4
+			period 1210.0881
+
+
+
+event "fwc link restoration 1"
+	link Vega Menkent
+	link Altair Sol
+
+
+
+event "fwc link restoration 2"
+	link "Delta Capricorni" Markab
+	link Alderamin Alnair
+
+
+
+event "fwc link restoration 3"
+	link Altair Fomalhaut
+	link "Delta Capricorni" Scheat
+
+
+
+event "syndicate tech available"
+	outfitter "Syndicate Basics"
+		"Ionic Afterburner"
+		"S-270 Regenerator"
+	outfitter "Syndicate Advanced"
+		"Ionic Afterburner"
+		"S-270 Regenerator"
+		"S-970 Regenerator"

@@ -2298,3 +2298,231 @@ mission "FWC Pug 5C"
 				"Gunboat (Mark II)" 2
 				"Rainmaker (Mark II)" 2
 
+
+
+mission "FWC Pug 6"
+	landing
+	name "Defeat the Pug"
+	description "Join the Navy fleet in attacking the Pug home system. Once their fleet is eliminated, land on their home world of <planet> to attempt to negotiate for peace."
+	source Silver
+	destination Pugglemug
+	clearance
+	to offer
+		has "FWC Pug 5C: done"
+	passengers 1
+	on enter Deneb
+		dialog
+			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
+	
+	on offer
+		event "pug flee"
+		conversation
+			`The tiny spaceport on Silver is packed with people as more and more Navy ships come in for a landing. The Navy generals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
+			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting corss-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
+			`	You find Freya sitting in a secluded nook on the upper floor of the spaceport building, watching the stars and the drifting sand out the window. "Ready for the last battle, Captain?" she asks.`
+			choice
+				`	"Sure, with the Navy at our backs I think we've got a good chance."`
+				`	"As ready as I'll ever be, I guess."`
+			`	She laughs. "I suppose that's the best we can hope for. Do you mind if I ride in your ship tomorrow, rather than one of the others? If this is the end, I'd rather face it with people I know." You agree. She turns back to look out the window.`
+			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot General Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
+			`	Eventually morning comes, and you prepare your ship for the assault on the Pug homeworld...`
+				accept
+	
+	npc
+		government Republic
+		personality heroic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+				"Gunboat (Mark II)" 2
+				"Rainmaker (Mark II)" 2
+	npc
+		government "Navy (Oathkeeper)"
+		personality heroic
+		system Cebalrai
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)" 3
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 4
+				"Combat Drone" 6
+				"Gunboat (Mark II)" 3
+	npc
+		personality heroic
+		system Cebalrai
+		government "Free Worlds"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Bastion (Laser)"
+				"Argosy (Blaster)"
+				"Argosy (Laser)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Plasma)"
+				"Bastion (Heavy)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Dreadnought"
+				"Falcon (Laser)"
+				"Osprey (Laser)"
+		fleet
+			names "free worlds capital"
+			variant
+				"Falcon (Heavy)"
+				"Osprey (Laser)"
+				"Argosy (Turret)"
+	
+	on complete
+		event "fwc pug defeated"
+		event "fwc link restoration 1" 10
+		event "fwc link restoration 2" 18
+		event "fwc link restoration 3" 29
+		conversation
+			`As you bring your fleet in for a landing, you find that the main Pug spaceport is surprisingly empty. However, a group of Pug children are gathered in a loose circle on one of the landing pads. They appear to be playing some sort of game; they ignore your fleet overhead.`
+			choice
+				`	(Attack them.)`
+				`	(Avoid harming them and land.)`
+					goto avoid
+			
+			`	You fire a single shot into the center of the circle, leaving a dark scar on the landing pad and sending a plume of dust and smoke into the air. The children continue their game, as if nothing has happened.`
+			label avoid
+			`	You land your ship near the circle of Pug children. They are bouncing a ball back and forth between them, and studiously ignoring your presence. Aside from the sound of the ball striking the pavement, the entire city is eerily quiet. "This is really weird," says Freya.`
+			choice
+				`	(Explore the city.)`
+					goto city
+				`	(Join the game.)`
+					goto join
+			
+			label join
+			`	You step into the circle and make a grab for the ball, but it passes straight through your fingers. Freya reaches out to touch one of the children, and her hand, too, passes through them. "Some sort of holographic projection," she says.`
+			`	The Navy ships are beginning to land and send crew out to explore. You and Freya walk into the city, passing by a pair of adult Pug who sit at a table outside what looks like some sort of cafe, playing a board game with black and white stones on a hexagonal grid. You check and find that they, too, are a holographic illusion.`
+				goto house
+			
+			label city
+			`	The Navy ships are beginning to land and send crew out to explore. You and Freya walk into the city. The streets are mostly deserted, but on one of them you pass by a pair of adult Pug who sit at a table outside what looks like some sort of cafe, playing a board game with black and white stones on a hexagonal grid.`
+			choice
+				`	(Attack them.)`
+					goto attack
+				`	(Try to talk to them.)`
+					goto talk
+			
+			label attack
+			`	You throw a punch at one of the Pug at the table, but your fist passes right through its head as if nothing is there. Surprised, Freya reaches out to touch the other one, and again her hand passes through them. "Some sort of holographic projection," she says. You continue exploring.`
+				goto house
+			
+			label talk
+			`	You try to talk to the Pug, but they, like the children, are ignoring you completely; they do not even seem to be aware of your existence. Finally, Freya reaches out to shake one of them by the shoulder, and her hand passes straight through it. Surprised, she waves her hands back and forth through both of them. "Some sort of holographic projection," she says.`
+				goto house
+			
+			label house
+			`	You continue to explore for a while. Aside from the illusions, the city seems to be deserted. "Let's check inside one of the houses," Freya says at last. You climb up the steps to what looks like an apartment building and find that all the doors are unlocked. Inside one of the living spaces, you explore the different rooms and find that the water fixtures and electricity are working, but a thick layer of dust covers everything. Freya, meanwhile, is staring at one of the electrical outlets. "<first>, she says, "do you see anything odd about this?"`
+			choice
+				`	"No, it's just an ordinary electric outlet."`
+				`	"Everything here is odd. The city, the holograms, all of it."`
+			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half again as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
+			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million -- all of whom have apparently departed to somewhere beyond the wormhole.`
+			`	Freya says, "Let's get back to the spaceport and meet up with the generals."`
+
+
+
+mission "FWC End"
+	name "Talk to Parliament"
+	description "Travel to Earth for another meeting with Parliament. Alondo and Katya will meet you there. (Hopefully it will go better than your last visit.)"
+	source Pugglemug
+	destination Earth
+	to offer
+		has "FWC Pug 6: done"
+	
+	on offer
+		"reputation: Republic" += 20
+		conversation
+			`You find General Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`
+			`	Freya says, "What should we do now?"`
+			`	"I've contacted New Austria and told them that Councilor Reynolds is free to leave," he says. "She told me that your Senate has agreed to the Free Worlds being a semi-autonomous district of the Republic, similar to the Syndicate systems. She also asked that you and Captain <last> meet up with her and Alondo Gruyere on Earth, where they will be meeting with Parliament. I sent a report to Earth that places a very heavy emphasis on the role that the Free Worlds played in this victory, so Parliament ought to be quite willing to negotiate with you."`
+			choice
+				`	"Thank you. It's been an honor to fight alongside you."`
+					goto honor
+				`	"Last time we visited Parliament, they violated our safe passage agreement and put us on trial."`
+					goto trial
+			label honor
+			`	"No, the honor has been mine," he says. "Feel free to drop by and visit me on Farpoint any time you're in the area."`
+				accept
+			label trial
+			`	"Trust me," he says, "you won't need to worry about that this time around. Having an alien attack so close to Earth be thwarted through the assistance of the Free Worlds has put Parliament in a very... receptive mood. Good luck, Captain <last>, and I hope our paths will cross again."`
+				accept
+	
+	on complete
+		event "deep sky tech available"
+		event "syndicate tech available"
+		conversation
+			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya, "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
+			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`
+			`	"Also," says Katya, "As their own expression of gratitude, the Syndicate members of Parliament have offered to make some of their new technology, developed during the war, available to us at an affordable price."`
+			choice
+				`	"That's very generous of them."`
+				`	"I wonder if that's their way of buying our support and keeping us quiet about tht supposed defector."`
+			`	"Maybe so," says Alondo. "Now, Captain, your salary will continue to be paid in gratitude for your service, but you are free to return to civilian life. What do you think you will do next?"`
+			choice
+				`	"Build a merchant fleet and live a safe, quiet life."`
+				`	"See if folks in the fringe worlds need any help against the pirates."`
+				`	"Use my jump drive to explore beyond human space."`
+			`	"Well, we all wish you the best of luck," says Freya. "We would never have won this war without you. Be sure to stay in touch." You hug each of them goodbye, and return to your ship. What you do next is up to you...`

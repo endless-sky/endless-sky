@@ -1840,7 +1840,7 @@ mission "FW Pug 6"
 	passengers 1
 	on enter Deneb
 		dialog
-			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up a massive anomaly outside the orbit of the outermost planet.`
+			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
 	
 	on offer
 		event "pug flee"
