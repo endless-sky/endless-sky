@@ -268,10 +268,10 @@ bool LoadPanel::Click(int x, int y)
 	// The first row of each panel is y = -160 to -140.
 	if(y < -160)
 		return false;
-	int selected = (y - -160) / 20;
 	
 	if(x >= -460 && x < -260)
 	{
+		int selected = (y + sideScroll - -160) / 20;
 		int i = 0;
 		for(const auto &it : files)
 			if(i++ == selected && selectedPilot != it.first)
@@ -283,6 +283,7 @@ bool LoadPanel::Click(int x, int y)
 	}
 	else if(x >= -100 && x < 100)
 	{
+		int selected = (y + centerScroll - -160) / 20;
 		int i = 0;
 		for(const string &file : files.find(selectedPilot)->second)
 			if(i++ == selected && selectedFile != file)
