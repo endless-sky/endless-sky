@@ -1054,6 +1054,10 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 		
 		if(ship.GetTargetShip() && (weapon.IsHoming() || weapon.IsTurret()))
 		{
+			bool hasBoarded = Has(ship, ship.GetTargetShip(), ShipEvent::BOARD);
+			if(ship.GetTargetShip()->IsDisabled() && spareDisabled && !hasBoarded)
+				continue;
+			
 			Point p = ship.GetTargetShip()->Position() - start;
 			Point v = ship.GetTargetShip()->Velocity() - ship.Velocity();
 			// By the time this action is performed, the ships will have moved
