@@ -67,7 +67,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 {
 	if(command == Command::MAP || key == 'd')
 		GetUI()->Pop(this);
-	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN || key == 'i')
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));

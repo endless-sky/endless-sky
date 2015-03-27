@@ -165,7 +165,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			shipIt = player.Ships().begin();
 		UpdateInfo();
 	}
-	else if(key == 'i')
+	else if(key == 'i' && showShip)
 	{
 		selected = -1;
 		hover = -1;
@@ -176,7 +176,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		showShip = true;
 		UpdateInfo();
 	}
-	else if(key == 'm')
+	else if(command == Command::INFO || command == Command::MAP || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else
 		return false;
