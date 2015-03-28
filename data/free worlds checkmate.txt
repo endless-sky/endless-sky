@@ -2481,7 +2481,7 @@ mission "FWC Pug 6"
 				`	"No, it's just an ordinary electric outlet."`
 				`	"Everything here is odd. The city, the holograms, all of it."`
 			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half again as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
-			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million -- all of whom have apparently departed to somewhere beyond the wormhole.`
+			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million - all of whom have apparently departed to somewhere beyond the wormhole.`
 			`	Freya says, "Let's get back to the spaceport and meet up with the generals."`
 
 

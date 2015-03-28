@@ -556,11 +556,13 @@ mission "FW Syndicate Capture 1"
 		ship "Dreadnought" "F.S. Gibraltar"
 	
 	npc save
-		personality heroic waiting
+		personality escort heroic waiting
+		government "Navy (Oathkeeper)"
 		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
 	
 	npc save
-		personality heroic waiting
+		personality escort heroic waiting
+		government "Republic"
 		ship "Bactrian" "Unbreakable"
 		ship "Aerie" "Eagle's Eye"
 
@@ -588,14 +590,16 @@ mission "FW Syndicate Capture 1B"
 		personality heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	npc
-		personality heroic
+		personality escort heroic waiting
+		government "Navy (Oathkeeper)"
 		ship "Cruiser (Mark II)" "R.S. Hand of Justice"
 		ship "Combat Drone" "Red One"
 		ship "Combat Drone" "Red Two"
 		ship "Combat Drone" "Red Three"
 		ship "Combat Drone" "Red Four"
 	npc
-		personality heroic
+		personality escort heroic waiting
+		government "Republic"
 		ship "Bactrian" "Unbreakable"
 		ship "Aerie" "Eagle's Eye"
 		ship "Dagger" "Alpha One"
@@ -821,7 +825,7 @@ mission "FW Pug 2"
 					goto republic
 			
 			label go
-			`	"Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off -- our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
+			`	"Freya says, "Somehow, they managed to annex several of our systems in the process of walling themselves off - our two best suppliers of heavy metals. That suggests that any of our systems on the border with the Syndicate may be taken over, and made completely inaccessible to us, at any time. That's not a risk we can take."`
 			`	"And it's not just that," says Katya. "Think of how many workers are on Syndicate worlds right now, having left their families on a different planet in order to go earn money in a Syndicate factory for a few years. Imagine a future where those families are forever divided."`
 				goto communications
 			
@@ -837,7 +841,7 @@ mission "FW Pug 2"
 					accept
 				`	"How do we know the Syndicate is really behind this?"`
 			
-			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing -- it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
+			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing - it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
 				accept
 
 
@@ -1210,14 +1214,14 @@ mission "FW Pug 3: Quarg"
 	
 	on complete
 		conversation
-			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can talk to us." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you direct us to someone we can talk to?"`
+			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can answer our questions." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you lead us to someone we can talk to?"`
 			`	It nods and gestures for you to follow, and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Were you led to this individual because this is the governor of the station, or just because this is one who speaks human languages? The Quarg behind the desk says, "Do you have questions for me?"`
 			choice
 				`	"Can you help us to fight the Pug?"`
 				`	"Can you give us information about the Pug?"`
 					goto info
 			
-			`	"No," it says. Several stripes of skin on its grey face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger -- one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
+			`	"No," it says. Several stripes of skin on its grey face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger - one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
 			`	"So you've encountered the Pug before?" asks Alondo.`
 			
 			label info
@@ -1325,7 +1329,7 @@ mission "FW Pug 3C"
 			`	Freya laughs. "Give him a break, <first>. He's just thinking like an engineer, rather than a tactician. I mean, I'd certainly jump at the chance to tour a Cruiser even at a time like this."`
 			
 			label yes
-			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Frey whispers to you, "Just think of this as another step toward peace and reconciliation."`
+			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
 			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few miles away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
 			`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
 			`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
@@ -1359,8 +1363,12 @@ mission "FW Pug 4: Escorts"
 		has "FW Pug 6: done"
 	
 	npc kill
+		personality escort heroic
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"
+	npc kill
+		personality escort heroic
+		government "Republic"
 		ship "Cruiser (Jump)" "F.S. Everest"
 		ship "Cruiser (Jump)" "F.S. Denali"
 		ship "Carrier (Jump)" "F.S. Vesuvius"
@@ -1547,7 +1555,7 @@ mission "FW Pug 4B"
 			`	"Do we really have any better options?" she asks. "Without reinforcements, how many more Pug attacks do you really think you can survive? Besides, there's a certain logic and balance to the rules of physics, so even when dealing with something we can't understand, sometimes intuition can guide us." She pauses for a second, and says, "And sometimes intuition steers us terribly wrong, but let's not think about that right now."`
 			`	"So, you succeeded in opening the link?" you say.`
 			label time
-			`	"Well, that's the bad news," she says. "At this rate, it will take several years to repoen the link. And I doubt this method would work at all if there weren't still the residual link in place. But that's where this equipment comes in."`
+			`	"Well, that's the bad news," she says. "At this rate, it will take several years to repoen the connection. And I doubt this method would work at all if there weren't still the residual link in place. But that's where this equipment comes in."`
 			`	She points to the alien machine. "This machine is like the transmitter, but much simpler. The transmitter somehow redirects a planet's gravity spaceward; what this machine does is reflect a graviton beam back where it comes from. If we can mount the reflector on Hephaestus, and align them both very precisely, we can set up a standing wave between the two that will regenerate the hyperspace link much more quickly. Or for all I know it might create an artificial singularity that destroys us all. I'm mostly flying blind here."`
 			choice
 				`	"Well, I guess we should give it a try."`
@@ -1791,13 +1799,13 @@ mission "FW Pug 5B"
 	on offer
 		event "reconnected altair"
 		conversation
-			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam hones in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspcae communications from Altair again, and from the Syndicate too."`
+			`You help some Navy engineers on Earth to set up the graviton reflector according to Freya's instructions. As before, soon after the reflector is operational the ground seems to tilt and roll as Freya's beam hones in on the reflector and sets up a harmonic oscillation between the two. "The link is reopening!" says one of the engineers. "We're beginning to receive hyperspace communications from Altair again, and from the Syndicate too."`
 			`	A second later your own communicator beeps. It's Freya. "Get back here quickly," she says. "Bring whatever reinforcements you can. A massive Pug fleet just appeared in orbit."`
 				accept
 	
 	npc
 		government Republic
-		personality disables waiting
+		personality escort disables waiting
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -2020,7 +2028,7 @@ mission "FW Pug 6"
 				`	"No, it's just an ordinary electric outlet."`
 				`	"Everything here is odd. The city, the holograms, all of it."`
 			`	She says, "It's an ordinary, human style electrical outlet. Human. In an alien city. And the steps we came up to get here: the Pug have legs half again as long as ours. But the tread spacing was at the normal human height. This building wasn't made for the Pug. It was made for us."`
-			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million -- all of whom have apparently departed to somewhere beyond the wormhole.`
+			`	Reports begin coming in as the Navy explores the rest of the planet, and they are all finding the same thing: the cities are abandoned, many of them with signs that they were never inhabited in the first place. The first time you visited this planet, you thought it must have a billion inhabitants, but now it seems that its true population was less than a million - all of whom have apparently departed to somewhere beyond the wormhole.`
 			`	Freya says, "Let's get back to the spaceport and meet up with the generals."`
 
 
@@ -2091,14 +2099,14 @@ mission "FW Syndicate Extremists 1A"
 			label information
 			`	"Very accurate," he says. "Our business flourished like never before. But then a month came when instead, the Oracle's predictions were bleak. A massive recession was coming, an end to the golden days of the Republic. We tried altering the model in every way we could: changing our production, our wages. We even asked the Oracle if dissolving the Syndicate would avert the recession. But its predictions remained the same. Then we learned from our contacts in Parliament about the Southern Defense Pact, and the fear that they were about to declare independence. So we asked the Oracle what would happen if war broke out."`
 			`	"You started a war... to save the economy?" says Danforth. He sounds disgusted.`
-			`	Alastair nods. "They were only too glad to help. Especially with the nuclear research. Which, incidentally, is why I'm telling you all this, because if your fleet tries to take out the Alphas, they'll strike back with nukes."`
+			`	Alastair nods. "The Alphas were only too glad to help. Especially with the nuclear research. Which, incidentally, is why I'm telling you all this, because if your fleet tries to take out the Alphas, they'll strike back with nukes."`
 			choice
 				`	"Do you have an alternative to attacking them?"`
 				`	"Is there any way we could disable the nukes?"`
 			
 			`	"We gave the Alphas most of the alien technology we recovered," he says, "but one device, we managed to keep secret from them. We found it in a Korath cargo hold, and it took us a long time to even figure out how to activate it. But when we did, we discovered that it's a cloaking device. It obscures a ship not just from the visible spectrum, but from radar as well, and every other sensor we've tested except for gravitational ones. I'm certain it would hide you from the tracking systems on the nukes."`
 			`	Freya says, "But it would only hide one ship. That doesn't sound like it would do much good."`
-			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many of their nukes we can get them to spend before the main attack fleet arrives."`
+			`	Alastair says, "They have a limited number of nukes. Our plan was to send a ship in cloaked, have it uncloak long enough to draw their fire, and then cloak to avoid the missiles. Basically, see how many of missiles we can get them to spend before the main attack fleet arrives."`
 			`	Danforth says, "That's not a bad idea. Captain <last>, would you be willing to serve as the decoy?"`
 			choice
 				`	"It sounds risky, but I'll do it."`
