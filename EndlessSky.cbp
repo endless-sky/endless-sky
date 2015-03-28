@@ -63,6 +63,8 @@
 		<Unit filename="Audio.h" />
 		<Unit filename="BankPanel.cpp" />
 		<Unit filename="BankPanel.h" />
+		<Unit filename="BlurShader.cpp" />
+		<Unit filename="BlurShader.h" />
 		<Unit filename="BoardingPanel.cpp" />
 		<Unit filename="BoardingPanel.h" />
 		<Unit filename="CaptureOdds.cpp" />
