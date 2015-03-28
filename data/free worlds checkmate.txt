@@ -385,7 +385,8 @@ mission "FWC Nuke Supply 1B"
 				accept
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government Merchant
 		ship "Bulk Freighter" "F.S. Blue Yonder"
 	
 	on visit
@@ -408,7 +409,8 @@ mission "FWC Nuke Supply 1C"
 				accept
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government Merchant
 		ship "Bulk Freighter" "F.S. Blue Yonder"
 
 

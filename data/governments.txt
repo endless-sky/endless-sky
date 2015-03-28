@@ -150,6 +150,11 @@ government "Navy (Oathkeeper)"
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
+government "Navy Intelligence"
+	swizzle 0
+	"attitude toward"
+		"Syndicate" -.1
+
 government "Korath"
 	swizzle 0
 	color .8 .5 .1

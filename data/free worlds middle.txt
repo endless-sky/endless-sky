@@ -899,7 +899,8 @@ mission "FW Northern 4.1A"
 				accept
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government Merchant
 		fleet
 			names "civilian"
 			cargo 4
@@ -933,7 +934,8 @@ mission "FW Northern 4.2A"
 				accept
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government Merchant
 		fleet
 			names "civilian"
 			cargo 4
@@ -992,7 +994,7 @@ mission "FW Alphas 1.1"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
 		government "Escort"
@@ -1111,7 +1113,7 @@ mission "FW Alphas 1.1A"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
@@ -1269,7 +1271,8 @@ mission "FW Bloodsea 1.1A"
 				accept
 	
 	npc accompany save
-		personality heroic
+		government Merchant
+		personality escort heroic
 		ship "Behemoth (Heavy)" "F.S. Bungles"
 		ship "Behemoth (Heavy)" "F.S. Humble"
 	
@@ -1295,7 +1298,8 @@ mission "FW Bloodsea 1.1B"
 				accept
 	
 	npc accompany save
-		personality heroic
+		government Merchant
+		personality escort heroic
 		ship "Behemoth (Heavy)" "F.S. Bungles"
 		ship "Behemoth (Heavy)" "F.S. Humble"
 	
@@ -1795,7 +1799,7 @@ mission "FW Defend New Tibet"
 			`	You wait around for a while, but this mountain valley seems to be entirely desolate. Then finally, when you are about to give up hope, Freya spots the distant figures of a few dozen people coming down the side of one of the mountains.`
 				goto gunboat
 			label leave
-			`	You are just about to leave when Freya spots something and points. "Look," he says, "Someone is coming down the mountain slope toward us." Sure enough, it's a group of several dozen people wearing the distinctive robes of the monks.`
+			`	You are just about to leave when Freya spots something and points. "Look," she says, "someone is coming down the mountain slope toward us." Sure enough, it's a group of several dozen people wearing the distinctive robes of the monks.`
 			label gunboat
 			`	As you wait for them to approach, JJ receives a message from one of the militia crews. "Sir, you have incoming! A scout ship, with Republic markings. Apparently unarmed. Shall we intercept them?"`
 			`	"Oathkeepers?" asks JJ. "Or ordinary Navy? Who are they?"`
@@ -1833,7 +1837,7 @@ mission "FW Defend New Tibet"
 			`	Raven continues to ask questions: who was involved, how the facility was hidden, where the raw materials come from. At one point, JJ pulls you aside and says, "She must be a Questioner. How they operate is a tightly kept secret. I'd always assumed their methods were... a bit more medieval."`
 			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the generals at once. And, release the captive."`
 			`	The door of her ship slides open, and another woman steps out - shakily, hesitantly, shielding her eyes against the sunlight. It takes you a few seconds to realize that it's Katya.`
-			`	As you all rush over to greet her, Raven taps your shoulder and says quietly, "Meet me in the main spaceport in a few hours and we'll figure out what's going to happen next." She returns to her ship.`
+			`	As you all rush over to greet Katya, Raven taps your shoulder and says quietly, "Meet me in the main spaceport in a few hours and we'll figure out what's going to happen next." She returns to her ship.`
 
 
 

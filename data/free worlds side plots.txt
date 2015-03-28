@@ -60,8 +60,8 @@ mission "FW Conservatory 2"
 				defer
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government Merchant
+		personality escort timid
 		ship "Argosy" "F.M.S. Daybreak"
 		ship "Argosy" "F.M.S. Monsoon"
 		ship "Argosy" "F.M.S. Summer"
@@ -93,8 +93,8 @@ mission "FW Conservatory 2B"
 				accept
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government Merchant
+		personality escort timid
 		ship "Argosy" "F.M.S. Daybreak"
 		ship "Argosy" "F.M.S. Monsoon"
 		ship "Argosy" "F.M.S. Summer"

@@ -18,6 +18,8 @@ mission "FW Reconciliation 1"
 	passengers 2
 	
 	npc accompany save
+		personality escort timid
+		government "Navy Intelligence"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
@@ -121,6 +123,8 @@ mission "FW Reconciliation 1B"
 				accept
 	
 	npc accompany save
+		personality escort timid
+		government "Navy Intelligence"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
@@ -145,6 +149,7 @@ mission "FW Reconciliation 1C"
 	landing
 	source Mutiny
 	destination Earth
+	clearance
 	passengers 3
 	to offer
 		has "FW Reconciliation 1B: done"
@@ -159,19 +164,20 @@ mission "FW Reconciliation 1C"
 				launch
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government "Navy Intelligence"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
 		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
 	
 	npc
-		personality heroic nemesis
+		personality heroic nemesis waiting
 		government Syndicate
 		fleet "Small Syndicate"
 	
 	npc
-		personality heroic nemesis waiting
+		personality heroic nemesis entering
 		government Syndicate
 		fleet "Small Syndicate"
 	
@@ -200,6 +206,8 @@ mission "FW Reconciliation 2"
 		has "FW Reconciliation 1C: done"
 	
 	npc accompany save
+		personality escort timid
+		government "Navy Intelligence"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
@@ -282,6 +290,8 @@ mission "FW Reconciliation 2A"
 				accept
 	
 	npc accompany save
+		personality escort timid
+		government "Navy Intelligence"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
@@ -453,7 +463,8 @@ mission "FW Embassy 1B"
 				accept
 	
 	npc accompany save
-		personality timid
+		personality escort timid
+		government Republic
 		ship "Star Queen" "Lady of the Lake"
 	
 	on visit
@@ -479,7 +490,7 @@ mission "FW Embassy 1C"
 				accept
 	
 	npc accompany save
-		personality heroic
+		personality escort heroic
 		ship "Dreadnought" "F.S. Gibraltar"
 	
 	on visit
@@ -1281,7 +1292,7 @@ mission "FW Pug 3B"
 				accept
 	
 	npc accompany save
-		personality disables
+		personality escort disables
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
 	
@@ -1319,8 +1330,12 @@ mission "FW Pug 3C"
 				accept
 	
 	npc accompany save
+		personality escort
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
+	npc accompany save
+		personality escort
+		government "Republic"
 		ship "Cruiser (Mark II)" "F.S. Everest"
 		ship "Cruiser (Mark II)" "F.S. Denali"
 		ship "Carrier (Mark II)" "F.S. Vesuvius"
@@ -2033,7 +2048,7 @@ mission "FW Syndicate Extremists 1"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit
@@ -2095,7 +2110,7 @@ mission "FW Syndicate Extremists 1A"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	
 	on visit

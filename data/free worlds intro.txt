@@ -1203,8 +1203,8 @@ mission "FW Escort 1"
 		has "chosen sides"
 	
 	npc accompany save
-		personality timid
-		government Escort
+		personality escort timid
+		government Merchant
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -1270,8 +1270,8 @@ mission "FW Escort 1B"
 		has "chosen sides"
 	
 	npc accompany save
-		personality timid
-		government Escort
+		personality escort timid
+		government Merchant
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -1335,8 +1335,8 @@ mission "FW Escort 2"
 		has "chosen sides"
 	
 	npc accompany save
-		personality timid
-		government Escort
+		personality escort timid
+		government Merchant
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -1397,8 +1397,8 @@ mission "FW Escort 2B"
 		has "chosen sides"
 	
 	npc accompany save
-		personality timid
-		government Escort
+		personality escort timid
+		government Merchant
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -1464,8 +1464,8 @@ mission "FW Escort 3"
 	
 	npc accompany save
 		system Lesath
-		personality derelict timid
-		government "Escort"
+		personality escort derelict timid
+		government "Merchant"
 		ship "Freighter" "F.S. Shackleton"
 	
 	on offer

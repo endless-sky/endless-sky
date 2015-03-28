@@ -27,8 +27,8 @@ mission "Escort (Small, Northern)"
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -63,8 +63,8 @@ mission "Escort (Medium, Northern)"
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -95,8 +95,8 @@ mission "Escort (Large, Northern)"
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -131,8 +131,8 @@ mission "Escort (Extra Large, Northern)"
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -164,8 +164,8 @@ mission "Escort (Small, Core)"
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -200,8 +200,8 @@ mission "Escort (Medium, Core)"
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -232,8 +232,8 @@ mission "Escort (Large, Core)"
 		government Pirate
 		fleet "Large Core Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -268,8 +268,8 @@ mission "Escort (Extra Large, Core)"
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -301,8 +301,8 @@ mission "Escort (Small, Southern)"
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -337,8 +337,8 @@ mission "Escort (Medium, Southern)"
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -369,8 +369,8 @@ mission "Escort (Large, Southern)"
 		government Pirate
 		fleet "Large Southern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
@@ -405,8 +405,8 @@ mission "Escort (Extra Large, Southern)"
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save
-		government "Escort"
-		personality "timid"
+		government Merchant
+		personality escort timid
 		fleet
 			names "civilian"
 			variant
