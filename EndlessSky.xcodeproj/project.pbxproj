@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4644543F19BA9A7C00D5A235 /* HailPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4644543D19BA9A7C00D5A235 /* HailPanel.cpp */; };
+		6F7BF16C1AC652A600795739 /* BlurShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7BF16B1AC652A600795739 /* BlurShader.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
@@ -144,6 +145,8 @@
 /* Begin PBXFileReference section */
 		4644543D19BA9A7C00D5A235 /* HailPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HailPanel.cpp; sourceTree = "<group>"; };
 		4644543E19BA9A7C00D5A235 /* HailPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HailPanel.h; sourceTree = "<group>"; };
+		6F7BF16B1AC652A600795739 /* BlurShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlurShader.cpp; sourceTree = "<group>"; };
+		6F7BF16D1AC652AF00795739 /* BlurShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurShader.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A941B0251A42387700317014 /* pi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pi.h; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 		A9CC52601950C9F6004E4E22 = {
 			isa = PBXGroup;
 			children = (
+				6F7BF16D1AC652AF00795739 /* BlurShader.h */,
+				6F7BF16B1AC652A600795739 /* BlurShader.cpp */,
 				A99F7A54195DF44B002C30B8 /* Account.cpp */,
 				A99F7A55195DF44B002C30B8 /* Account.h */,
 				A99F7A56195DF44B002C30B8 /* AI.cpp */,
@@ -780,6 +785,7 @@
 				A99F7B26195DF44C002C30B8 /* SpaceportPanel.cpp in Sources */,
 				A99F7B10195DF44C002C30B8 /* MenuPanel.cpp in Sources */,
 				A99F7AFD195DF44C002C30B8 /* Files.cpp in Sources */,
+				6F7BF16C1AC652A600795739 /* BlurShader.cpp in Sources */,
 				A99F7B1D195DF44C002C30B8 /* Projectile.cpp in Sources */,
 				A9C81F7C197873CD00EBA833 /* DataNode.cpp in Sources */,
 				A99F7AE9195DF44C002C30B8 /* AI.cpp in Sources */,
