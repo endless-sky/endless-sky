@@ -97,7 +97,58 @@ string Format::Number(double value)
 
 
 
-string Format::Replace(const string source, const map<string, string> keys)
+// Convert a string into a number. As with the output of Number(), the
+// string can have suffixes like "M", "B", etc.
+double Format::Parse(const string &str)
+{
+	double place = 1.;
+	double value = 0.;
+	
+	string::const_iterator it = str.begin();
+	string::const_iterator end = str.end();
+	while(it != end && (*it < '0' || *it > '9') && *it != '.')
+		++it;
+	
+	for( ; it != end; ++it)
+	{
+		if(*it == '.')
+			place = .1;
+		else if(*it < '0' || *it > '9')
+			break;
+		else
+		{
+			double digit = *it - '0';
+			if(place < 1.)
+			{
+				value += digit * place;
+				place *= .1;
+			}
+			else
+			{
+				value *= 10.;
+				value += digit;
+			}
+		}
+	}
+	
+	if(it != end)
+	{
+		if(*it == 'k' || *it == 'K')
+			value *= 1e3;
+		else if(*it == 'm' || *it == 'M')
+			value *= 1e6;
+		else if(*it == 'b' || *it == 'B')
+			value *= 1e9;
+		else if(*it == 't' || *it == 'T')
+			value *= 1e12;
+	}
+	
+	return value;
+}
+
+
+
+string Format::Replace(const string &source, const map<string, string> keys)
 {
 	string result;
 	result.reserve(source.length());

@@ -25,9 +25,12 @@ public:
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
 	static std::string Number(double value);
+	// Convert a string into a number. As with the output of Number(), the
+	// string can have suffixes like "M", "B", etc.
+	static double Parse(const std::string &str);
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
-	static std::string Replace(const std::string source, const std::map<std::string, std::string> keys);
+	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
 };
 
 

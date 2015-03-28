@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfo.h"
 
+#include <string>
+
 
 
 // This is an overlay drawn on top of the PlanetPanel when the player clicks on
@@ -37,8 +39,8 @@ protected:
 	
 	
 private:
-	void PayExtra(int amount);
-	void NewMortgage(int amount);
+	void PayExtra(const std::string &str);
+	void NewMortgage(const std::string &str);
 	
 	
 private:

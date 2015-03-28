@@ -264,10 +264,12 @@ bool BankPanel::Click(int x, int y)
 
 
 
-void BankPanel::PayExtra(int amount)
+void BankPanel::PayExtra(const string &str)
 {
+	int64_t amount = static_cast<int64_t>(Format::Parse(str));
+	
 	// You cannot pay more than you have or more than the mortgage principal.
-	amount = min(static_cast<int64_t>(amount), min(player.Accounts().Credits(),
+	amount = min(amount, min(player.Accounts().Credits(),
 		player.Accounts().Mortgages()[selectedRow].Principal()));
 	
 	if(amount > 0)
@@ -278,10 +280,12 @@ void BankPanel::PayExtra(int amount)
 
 
 
-void BankPanel::NewMortgage(int amount)
+void BankPanel::NewMortgage(const string &str)
 {
-	// You cannot pay more than you have or more than the mortgage principal.
-	amount = min(static_cast<int64_t>(amount), qualify);
+	int64_t amount = static_cast<int64_t>(Format::Parse(str));
+	
+	// Limit the amount to whatever you have qualified for.
+	amount = min(amount, qualify);
 	
 	if(amount > 0)
 		player.Accounts().AddMortgage(amount);
