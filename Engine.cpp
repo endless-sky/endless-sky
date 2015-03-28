@@ -617,7 +617,7 @@ void Engine::EnterSystem()
 	}
 	if(attraction > 2)
 		for(int i = 0; i < 10; ++i)
-			if(Random::Int(50) + 1 < attraction)
+			if(Random::Int(200) + 1 < attraction)
 				GameData::Fleets().Get("pirate raid")->Place(*system, ships);
 	
 	projectiles.clear();
