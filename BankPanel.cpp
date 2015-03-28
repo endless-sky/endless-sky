@@ -35,9 +35,9 @@ namespace {
 	static const int MAX_X = 190;
 	
 	static const int TYPE_X = -290;
-	static const int PRINCIPAL_X = -200;
-	static const int INTEREST_X = -120;
-	static const int TERM_X = -40;
+	static const int PRINCIPAL_X = -180;
+	static const int INTEREST_X = -100;
+	static const int TERM_X = -30;
 	static const int PAYMENT_X = 20;
 	static const int EXTRA_X = 100;
 	
