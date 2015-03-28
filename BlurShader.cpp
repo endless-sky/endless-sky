@@ -62,7 +62,7 @@ void BlurShader::Init()
 		"out vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
-		"  vec2 blurOff = 2. * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
+		"  vec2 blurOff = vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
 		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
@@ -79,6 +79,14 @@ void BlurShader::Init()
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
+		"  if(blur.x == 0 && blur.y == 0)\n"
+		"  {\n"
+		"    if(fade != 0)\n"
+		"     finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
+		"    else\n"
+		"      finalColor = texture(tex0, fragTexCoord);\n"
+		"    return;\n"
+		"  }\n"
 		"  const float divisor = range * (range + 2) + 1;\n"
 		"  vec4 color = vec4(0., 0., 0., 0.);\n"
 		"  for(int i = -range; i <= range; ++i)\n"

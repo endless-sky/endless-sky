@@ -988,8 +988,7 @@ void Engine::CalculateStep()
 		draw[calcTickTock].Add(
 			it->GetSprite(),
 			it->Position() - center,
-			it->Unit(),
-			it->Velocity() - centerVelocity);
+			it->Unit());
 		
 		if(!it->Move())
 			it = effects.erase(it);
