@@ -1140,7 +1140,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 Engine::Escort::Escort(const Ship &ship, bool isHere)
-	: sprite(ship.GetSprite().GetSprite()), isHere(isHere),
+	: sprite(ship.GetSprite().GetSprite()), isHere(isHere && !ship.IsDisabled()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	stats{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()}
 {
