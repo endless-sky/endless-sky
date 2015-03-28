@@ -481,6 +481,8 @@ mission "FWC Stack Core 1"
 
 mission "FW Stack Core 1B"
 	landing
+	name "Escort convoy from Rand"
+	description "Freya asked you to escort this convoy carrying vital supplies for building some exciting new equipment, to <destination>."
 	source Rand
 	destination Solace
 	to offer
