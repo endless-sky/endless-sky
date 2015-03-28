@@ -289,10 +289,19 @@ void Engine::Step(bool isActive)
 				}
 			}
 		
+		// Display escort information for all ships of the "Escort" government,
+		// and all ships with the "escort" personality, except for fighters that
+		// are not owned by the player.
 		escorts.clear();
+		for(const auto &it : ships)
+			if(it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
+				if(!it->IsFighter() && it.get() != flagship)
+					escorts.emplace_back(*it, it->GetSystem() == currentSystem);
 		for(const shared_ptr<Ship> &escort : player.Ships())
-			if(escort.get() != flagship)
+			if(escort->IsFighter())
 				escorts.emplace_back(*escort, escort->GetSystem() == currentSystem);
+		
+		// Create the status overlays.
 		statuses.clear();
 		if(isActive && Preferences::Has("Show status overlays"))
 			for(const auto &it : ships)
@@ -515,12 +524,18 @@ void Engine::Draw() const
 	Color elsewhereColor(.4, .4, .6, 1.);
 	for(const Escort &escort : escorts)
 	{
+		if(!escort.sprite)
+			continue;
+		
 		pos.Y() -= 30.;
+		if(!escort.system.empty())
+		{
+			pos.Y() -= 15.;
+			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
+		}
 		// Show only as many escorts as we have room for on screen.
 		if(pos.Y() <= Screen::Top() + 450.)
 			break;
-		if(!escort.sprite)
-			continue;
 		
 		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
@@ -1124,6 +1139,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 Engine::Escort::Escort(const Ship &ship, bool isHere)
 	: sprite(ship.GetSprite().GetSprite()), isHere(isHere),
+	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
 	stats{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()}
 {
 }

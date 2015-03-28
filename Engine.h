@@ -86,6 +86,7 @@ private:
 		
 		const Sprite *sprite;
 		bool isHere;
+		std::string system;
 		double stats[5];
 	};
 	

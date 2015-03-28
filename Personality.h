@@ -47,6 +47,7 @@ public:
 	bool IsWaiting() const;
 	bool IsDerelict() const;
 	bool IsFleeing() const;
+	bool IsEscort() const;
 	
 	const Point &Confusion() const;
 	

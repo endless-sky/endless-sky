@@ -35,6 +35,7 @@ namespace {
 	static const int WAITING = 2048;
 	static const int DERELICT = 4096;
 	static const int FLEEING = 8192;
+	static const int ESCORT = 16384;
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -50,7 +51,8 @@ namespace {
 		{"uninterested", UNINTERESTED},
 		{"waiting", WAITING},
 		{"derelict", DERELICT},
-		{"fleeing", FLEEING}
+		{"fleeing", FLEEING},
+		{"escort", ESCORT}
 	};
 	
 	double DEFAULT_CONFUSION = 10. * .001;
@@ -195,6 +197,13 @@ bool Personality::IsDerelict() const
 bool Personality::IsFleeing() const
 {
 	return flags & FLEEING;
+}
+
+
+
+bool Personality::IsEscort() const
+{
+	return flags & ESCORT;
 }
 
 
