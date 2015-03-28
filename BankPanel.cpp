@@ -19,6 +19,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Information.h"
+#include "Interface.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Table.h"
@@ -181,6 +183,13 @@ void BankPanel::Draw() const
 		table.Advance(4);
 		table.Draw("[apply]", selected);
 	}
+	
+	const Interface *interface = GameData::Interfaces().Get("bank");
+	Information info;
+	for(const Mortgage &mortgage : player.Accounts().Mortgages())
+		if(mortgage.Principal() <= player.Accounts().Credits())
+			info.SetCondition("can pay");
+	interface->Draw(info);
 }
 
 
@@ -201,6 +210,18 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == SDLK_RETURN && qualify)
 		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
+	else if(key == 'a')
+	{
+		unsigned i = 0;
+		while(i < player.Accounts().Mortgages().size())
+		{
+			int64_t principal = player.Accounts().Mortgages()[i].Principal();
+			if(principal <= player.Accounts().Credits())
+				player.Accounts().PayExtra(i, principal);
+			else
+				++i;
+		}
+	}
 	else
 		return false;
 	
@@ -211,6 +232,15 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool BankPanel::Click(int x, int y)
 {
+	// Handle clicks on the interface buttons.
+	const Interface *interface = GameData::Interfaces().Get("bank");
+	if(interface)
+	{
+		char key = interface->OnClick(Point(x, y));
+		if(key)
+			return DoKey(key);
+	}
+	
 	int maxY = FIRST_Y + 25 + 20 * player.Accounts().Mortgages().size();
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{

@@ -713,6 +713,22 @@ interface "trade"
 		align center
 	endif
 
+interface "bank"
+	sprite "ui/dialog cancel" 140 355
+	button a 140 355
+		size 80 40
+	if "!can pay"
+	label "Pay All" 140 348
+		size 14
+		color dim
+		align center
+	if "can pay"
+	label "Pay All" 140 348
+		size 14
+		color bright
+		align center
+	endif
+
 interface "mission"
 	position bottom center
 	sprite "ui/mission" 0 0
