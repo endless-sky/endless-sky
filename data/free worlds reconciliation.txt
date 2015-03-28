@@ -388,6 +388,7 @@ mission "FW Defend Farpoint"
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Rainmaker (Mark II)" 2
+				"Gunboat (Mark II)" 2
 	
 	npc disable
 		government Pirate
@@ -396,9 +397,9 @@ mission "FW Defend Farpoint"
 		fleet
 			names "pirate"
 			variant
-				"Leviathan"
-				"Firebird" 2
-				"Hawk" 2
+				"Leviathan (Heavy)"
+				"Firebird (Plasma)" 2
+				"Hawk (Rocket)" 2
 		fleet
 			names "pirate"
 			variant
@@ -407,12 +408,12 @@ mission "FW Defend Farpoint"
 		fleet
 			names "pirate"
 			variant
-				"Leviathan"
+				"Leviathan (Laser)"
 				"Firebird" 3
 		fleet
 			names "pirate"
 			variant
-				"Splinter"
+				"Splinter (Laser)"
 				"Manta" 2
 				"Quicksilver" 5
 	
@@ -512,8 +513,8 @@ mission "FW Embassy 1C"
 		fleet
 			names "pirate"
 			variant
-				"Leviathan"
-				"Firebird" 2
+				"Leviathan (Heavy)"
+				"Firebird (Plasma)" 2
 		fleet
 			names "pirate"
 			variant
@@ -527,7 +528,7 @@ mission "FW Embassy 1C"
 		fleet
 			names "pirate"
 			variant
-				"Splinter" 2
+				"Splinter (Laser)" 2
 				"Manta" 3
 				"Quicksilver" 6
 
@@ -620,7 +621,8 @@ mission "FW Syndicate Capture 1B"
 		fleet
 			names "syndicate capital"
 			variant
-				"Protector" 4
+				"Protector (Laser)"
+				"Protector" 3
 				"Wasp" 12
 	
 	npc

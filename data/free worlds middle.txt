@@ -318,12 +318,12 @@ mission "FW Southern Battle 2"
 			names "free worlds capital"
 			variant
 				"Falcon (Plasma)"
-				"Osprey" 2
+				"Osprey (Missile)" 2
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon (Plasma)"
-				"Osprey" 2
+				"Falcon (Heavy)"
+				"Osprey (Laser)" 2
 		fleet
 			names "free worlds capital"
 			variant
@@ -335,7 +335,7 @@ mission "FW Southern Battle 2"
 		fleet
 			names "free worlds capital"
 			variant
-				"Bastion" 2
+				"Bastion (Heavy)" 2
 		fleet
 			names "free worlds capital"
 			variant
@@ -401,7 +401,7 @@ mission "FW Southern Battle 2"
 			names "republic small"
 			fighters "republic fighter"
 			variant
-				"Gunboat (Mark II)" 2
+				"Gunboat (Mark II)" 3
 		fleet
 			names "republic small"
 			fighters "republic fighter"
@@ -411,7 +411,7 @@ mission "FW Southern Battle 2"
 			names "republic small"
 			fighters "republic fighter"
 			variant
-				"Gunboat (Mark II)" 2
+				"Gunboat (Mark II)" 3
 		fleet
 			names "republic small"
 			fighters "republic fighter"
@@ -1005,10 +1005,10 @@ mission "FW Alphas 1.1"
 		government "Pirate"
 		personality heroic staying
 		system Graffias
-		ship "Leviathan" "Dread Lord"
+		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
-		ship "Firebird" "Vengeance"
-		ship "Firebird" "Revenant"
+		ship "Firebird (Plasma)" "Vengeance"
+		ship "Firebird (Missile)" "Revenant"
 		ship "Firebird" "Draugbreath"
 	
 	on visit
@@ -1092,10 +1092,10 @@ mission "FW Alphas 1.2"
 		government "Pirate"
 		personality heroic staying
 		system Graffias
-		ship "Leviathan" "Dread Lord"
+		ship "Leviathan (Heavy)" "Dread Lord"
 		ship "Leviathan" "Dominator"
-		ship "Firebird" "Vengeance"
-		ship "Firebird" "Revenant"
+		ship "Firebird (Plasma)" "Vengeance"
+		ship "Firebird (Missile)" "Revenant"
 		ship "Firebird" "Draugbreath"
 	
 	on visit
@@ -1380,14 +1380,14 @@ mission "FW Bloodsea 1.2A"
 			names pirate
 			"hostile hail" "hostile pirate"
 			variant
-				"Firebird"
+				"Firebird (Plasma)"
 				"Raven (Afterburner)" 2
-				Hawk 2
+				"Hawk (Rocket)" 2
 				"Fury (Flamethrower)" 3
 				Sparrow 5
 		ship "Leviathan" "Freedom"
 		ship "Manta" "Lucifer"
-		ship "Bastion" "Punisher"
+		ship "Bastion (Heavy)" "Punisher"
 	
 	on complete
 		set "fw bloodsea done"
@@ -1513,7 +1513,7 @@ mission "FW Albatross 2A"
 		personality staying plunders disables
 		system Orvala
 		government Pirate
-		ship "Bastion" "Dread"
+		ship "Bastion (Heavy)" "Dread"
 	
 	npc
 		personality staying plunders disables
@@ -1583,9 +1583,9 @@ mission "FW Rand 1"
 		personality heroic disables
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
-		ship "Falcon" "F.S. Bismark"
+		ship "Falcon (Heavy)" "F.S. Bismark"
 		ship "Osprey" "F.S. Lapwing"
-		ship "Hawk" "F.S. Echo"
+		ship "Hawk (Rocket)" "F.S. Echo"
 		ship "Hawk" "F.S. Shadow"
 	npc
 		personality heroic disables
@@ -1654,7 +1654,7 @@ mission "FW Rand 1B"
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
 		ship "Osprey" "F.S. Larkspur"
-		ship "Bastion" "F.S. Ironwood"
+		ship "Bastion (Heavy)" "F.S. Ironwood"
 		ship "Argosy" "F.S. Nightingale"
 
 
@@ -1783,7 +1783,7 @@ mission "FW Defend New Tibet"
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
 		ship "Osprey" "F.S. Larkspur"
-		ship "Bastion" "F.S. Ironwood"
+		ship "Bastion (Heavy)" "F.S. Ironwood"
 		ship "Argosy" "F.S. Nightingale"
 	
 	on complete
@@ -1897,11 +1897,11 @@ mission "FW Liberate Delta Sagittarii"
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon"
+				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
-				"Bastion" 2
+				"Bastion (Heavy)" 2
 		fleet
 			names "free worlds capital"
 			variant
@@ -1918,7 +1918,7 @@ mission "FW Liberate Delta Sagittarii"
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
-				"Gunboat (Mark II)" 2
+				"Gunboat (Mark II)" 4
 		fleet
 			names "republic capital"
 			fighters "republic fighter"

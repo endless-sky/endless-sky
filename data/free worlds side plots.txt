@@ -365,7 +365,7 @@ mission "FW Wolf Pack 3"
 		government Republic
 		system Gacrux
 		personality heroic staying
-		ship "Protector" "R.N.S. Bulwark"
+		ship "Protector (Laser)" "R.N.S. Bulwark"
 		ship "Protector" "R.N.S. Citadel"
 		ship "Protector" "R.N.S. Rampart"
 	

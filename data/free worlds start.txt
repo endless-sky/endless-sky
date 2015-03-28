@@ -47,10 +47,11 @@ mission "Liberate Kornephoros"
 				"Osprey" 2
 			variant
 				"Bastion"
-				"Argosy" 2
+				"Argosy (Missile)" 2
 			variant
-				"Argosy"
-				"Hawk" 3
+				"Argosy (Blaster)"
+				"Hawk" 2
+				"Hawk (Rocket)" 1
 	npc
 		personality heroic disables
 		government "Free Worlds"
@@ -58,7 +59,7 @@ mission "Liberate Kornephoros"
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon"
+				"Falcon (Heavy)"
 				"Hawk" 2
 		fleet
 			names "free worlds small"
@@ -68,24 +69,26 @@ mission "Liberate Kornephoros"
 		fleet
 			names "free worlds small"
 			variant
-				"Hawk"
-				"Fury" 2
+				"Hawk (Rocket)"
+				"Fury (Missile)" 2
 		fleet
 			names "free worlds capital"
 			variant
-				"Osprey" 2
+				"Osprey"
+				"Osprey (Missile)"
 		fleet
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey" 2
+				"Osprey"
+				"Osprey (Laser)"
 				"Hawk" 3
 				"Sparrow" 5
 		fleet
 			names "free worlds capital"
 			variant
-				"Bastion" 2
-				"Argosy" 4
+				"Bastion (Heavy)" 2
+				"Argosy (Blaster)" 4
 				"Fury" 6
 	
 	npc evade
@@ -115,6 +118,7 @@ mission "Liberate Kornephoros"
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
 				"Gunboat" 2
+				"Frigate" 2
 				"Rainmaker" 2
 	
 	on visit
@@ -169,7 +173,7 @@ mission "FW Prisoner Parole"
 	npc accompany save
 		government "Escort"
 		personality timid
-		ship "Falcon" "F.S. Starry Warrior"
+		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
 	
@@ -207,7 +211,7 @@ mission "FW Prisoner Parole 2"
 	npc accompany save
 		government "Escort"
 		personality timid
-		ship "Falcon" "R.N.S. Starry Warrior"
+		ship "Falcon (Heavy)" "R.N.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
 	
@@ -643,7 +647,7 @@ mission "FW Plasma Testing 1B"
 		government "Pirate"
 		personality plunders staying
 		system Ildaria
-		ship "Leviathan" "Red Nile"
+		ship "Leviathan (Heavy)" "Red Nile"
 	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
@@ -1381,8 +1385,8 @@ mission "FW Pirates 4"
 	npc kill
 		personality plunders entering
 		government Pirate
-		ship "Leviathan" "Red Dawn"
-		ship "Leviathan" "Bleak Omen"
+		ship "Leviathan (Heavy)" "Red Dawn"
+		ship "Leviathan (Laser)" "Bleak Omen"
 	
 	npc
 		personality heroic

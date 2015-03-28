@@ -95,12 +95,12 @@ mission "FWC Attack Kaus Borealis"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Bastion"
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Falcon"
+				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -260,13 +260,13 @@ mission "FWC Cebalrai 1B"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Falcon"
+				"Falcon (Heavy)"
 				"Hawk" 2
 		fleet
 			names "free worlds capital"
 			variant
 				"Osprey"
-				"Argosy" 2
+				"Argosy (Blaster)" 2
 	
 	npc evade
 		personality staying heroic
@@ -617,19 +617,19 @@ mission "FWC Checkmate 1"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Bastion"
+				"Bastion (Heavy)"
 				"Fury (Flamethrower)" 4
 		fleet
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Falcon"
+				"Falcon (Heavy)"
 				"Hawk" 2
 		fleet
 			names "free worlds capital"
 			variant
 				"Osprey"
-				"Argosy" 2
+				"Argosy (Blaster)" 2
 	
 	npc
 		personality heroic waiting
@@ -638,12 +638,12 @@ mission "FWC Checkmate 1"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Bastion"
+				"Bastion (Laser)"
 		fleet
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Falcon"
+				"Falcon (Laser)"
 	
 	npc evade
 		personality staying heroic
@@ -790,12 +790,12 @@ mission "FWC Checkmate 1"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Bastion"
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Falcon"
+				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -805,7 +805,7 @@ mission "FWC Checkmate 1"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Osprey"
+				"Osprey (Missile)"
 	
 	on complete
 		event "fwc defended cebalrai"
@@ -878,7 +878,7 @@ mission "FWC Checkmate 1B"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Bastion"
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -888,7 +888,7 @@ mission "FWC Checkmate 1B"
 			names "free worlds capital"
 			variant
 				"Dreadnought"
-				"Osprey"
+				"Osprey (Missile)"
 	
 	npc
 		personality staying heroic uninterested disables
