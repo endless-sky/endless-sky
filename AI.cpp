@@ -305,10 +305,15 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	}
 	
 	// If this ship is not armed, do not make it fight.
-	bool isArmed = false;
+	double minRange = numeric_limits<double>::infinity();
+	double maxRange = 0.;
 	for(const Armament::Weapon &weapon : ship.Weapons())
-		isArmed |= (weapon.GetOutfit() != nullptr);
-	if(!isArmed)
+		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		{
+			minRange = min(minRange, weapon.GetOutfit()->Range());
+			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+		}
+	if(!maxRange)
 		return target;
 	
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -320,9 +325,14 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	if(parentTarget && !parentTarget->IsTargetable())
 		parentTarget.reset();
 
-	// Find the closest enemy ship (if there is one).
+	// Find the closest enemy ship (if there is one). If this ship is "heroic,"
+	// it will attack any ship in system. Otherwise, if all its weapons have a
+	// range higher than 2000, it will engage ships up to 50% beyond its range.
+	// If a ship has short range weapons and is not heroic, it will engage any
+	// ship that is within 3000 of it.
 	const Personality &person = ship.GetPersonality();
-	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() : 3000.;
+	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
+		(minRange > 1000.) ? maxRange * 1.5 : 3000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
 	for(const auto &it : ships)
@@ -758,10 +768,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
-		if(!outfit || outfit->WeaponGet("anti-missile"))
-			continue;
-		
-		shortestRange = min(outfit->Range(), shortestRange);
+		if(outfit && !weapon.IsAntiMissile())
+			shortestRange = min(outfit->Range(), shortestRange);
 	}
 	
 	// Deploy any fighters you are carrying.
