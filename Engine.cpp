@@ -744,7 +744,9 @@ void Engine::CalculateStep()
 				object.GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
-			draw[calcTickTock].Add(object.GetSprite(), position, unit, -centerVelocity);
+			// Don't apply motion blur to very large planets and stars.
+			bool isBig = (object.GetSprite().Width() >= 280);
+			draw[calcTickTock].Add(object.GetSprite(), position, unit, isBig ? Point() : -centerVelocity);
 			radar[calcTickTock].Add(type, position, r, r - 1.);
 		}
 	
@@ -885,7 +887,7 @@ void Engine::CalculateStep()
 			
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
-				ship->GetGovernment()->IsPlayer() ? Radar::PLAYER :
+				(ship->GetGovernment()->IsPlayer() || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
 					!ship->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
 					(target && target->GetGovernment()->IsPlayer()) ?

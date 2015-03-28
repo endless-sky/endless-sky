@@ -1175,10 +1175,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 		bool selectNext = !target || !target->IsTargetable();
 		for(const shared_ptr<Ship> &other : ships)
 		{
+			bool isPlayer = other->GetGovernment()->IsPlayer() || other->GetPersonality().IsEscort();
 			if(other == target)
 				selectNext = true;
-			else if(other.get() != &ship && selectNext && other->IsTargetable() &&
-					other->GetGovernment()->IsPlayer() == shift)
+			else if(other.get() != &ship && selectNext && other->IsTargetable() && isPlayer == shift)
 			{
 				ship.SetTargetShip(other);
 				selectNext = false;
