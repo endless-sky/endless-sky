@@ -116,8 +116,8 @@ private:
 	CaptureOdds defenseOdds;
 	std::vector<std::string> messages;
 	
-	int initialCrew;
-	int casualties = 0;
+	int64_t initialCrew;
+	int64_t casualties = 0;
 	int64_t crewBonus = 0;
 };
 

@@ -277,7 +277,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				you->AddEscort(victim);
 				isCapturing = false;
 				
-				int64_t bonus = (victim->Cost() * casualties) / initialCrew;
+				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
 				crewBonus += bonus;
 				
 				ShipEvent event(you, victim, ShipEvent::CAPTURE);

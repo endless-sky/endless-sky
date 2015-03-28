@@ -352,7 +352,7 @@ const string &Ship::Description() const
 
 
 // Get this ship's cost.
-int Ship::Cost() const
+int64_t Ship::Cost() const
 {
 	return attributes.Cost();
 }
