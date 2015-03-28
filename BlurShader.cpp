@@ -62,7 +62,7 @@ void BlurShader::Init()
 		"out vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
-		"  vec2 blurOff = vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
+		"  vec2 blurOff = 2 * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
 		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
