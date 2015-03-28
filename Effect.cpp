@@ -106,6 +106,13 @@ const Point &Effect::Position() const
 
 
 
+const Point &Effect::Velocity() const
+{
+	return velocity;
+}
+
+
+
 // Get the facing unit vector times the scale factor.
 Point Effect::Unit() const
 {

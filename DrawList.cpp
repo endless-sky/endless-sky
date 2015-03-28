@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DrawList.h"
 
 #include "Animation.h"
+#include "BlurShader.h"
+#include "Preferences.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -41,23 +43,23 @@ void DrawList::Clear(int step)
 
 
 // Add an animation.
-void DrawList::Add(const Animation &animation, Point pos, Point unit, double clip)
+void DrawList::Add(const Animation &animation, Point pos, Point unit, Point blur, double clip)
 {
 	if(!animation.IsEmpty())
-		items.emplace_back(animation, pos, unit, clip, step);
+		items.emplace_back(animation, pos, unit, blur, clip, step);
 }
 
 
 
 // Add a single sprite.
-void DrawList::Add(const Sprite *sprite, Point pos, Point unit, double cloak, int swizzle)
+void DrawList::Add(const Sprite *sprite, Point pos, Point unit, Point blur, double cloak, int swizzle)
 {
 	if(cloak >= 1.)
 		return;
 	
 	Animation animation(sprite, 1.f);
 	animation.SetSwizzle(swizzle);
-	Add(animation, pos, unit);
+	Add(animation, pos, unit, blur);
 	
 	if(cloak > 0.)
 		items.back().Cloak(cloak);
@@ -68,19 +70,33 @@ void DrawList::Add(const Sprite *sprite, Point pos, Point unit, double cloak, in
 // Draw all the items in this list.
 void DrawList::Draw() const
 {
-	SpriteShader::Bind();
+	if(Preferences::Has("Render motion blur"))
+	{
+		BlurShader::Bind();
 	
-	for(const Item &item : items)
-		SpriteShader::Add(item.Texture0(), item.Texture1(),
-			item.Position(), item.Transform(),
-			item.Swizzle(), item.Clip(), item.Fade());
+		for(const Item &item : items)
+			BlurShader::Add(item.Texture0(), item.Texture1(),
+				item.Position(), item.Transform(),
+				item.Swizzle(), item.Clip(), item.Fade(), item.Blur());
 	
-	SpriteShader::Unbind();
+		BlurShader::Unbind();
+	}
+	else
+	{
+		SpriteShader::Bind();
+	
+		for(const Item &item : items)
+			SpriteShader::Add(item.Texture0(), item.Texture1(),
+				item.Position(), item.Transform(),
+				item.Swizzle(), item.Clip(), item.Fade());
+	
+		SpriteShader::Unbind();
+	}
 }
 
 
 
-DrawList::Item::Item(const Animation &animation, Point pos, Point unit, float clip, int step)
+DrawList::Item::Item(const Animation &animation, Point pos, Point unit, Point blur, float clip, int step)
 	: position{static_cast<float>(pos.X()), static_cast<float>(pos.Y())},
 	clip(clip), flags(animation.GetSwizzle())
 {
@@ -107,6 +123,10 @@ DrawList::Item::Item(const Animation &animation, Point pos, Point unit, float cl
 	transform[1] = uw.X();
 	transform[2] = -uh.X();
 	transform[3] = -uh.Y();
+	
+	// Calculate the blur vector, in texture coordinates.
+	this->blur[0] = unit.Cross(blur) / animation.Width();
+	this->blur[1] = -unit.Dot(blur) / animation.Height();
 }
 
 
@@ -139,6 +159,14 @@ const float *DrawList::Item::Position() const
 const float *DrawList::Item::Transform() const
 {
 	return transform;
+}
+
+
+
+// Get the blur vector, in texture space.
+const float *DrawList::Item::Blur() const
+{
+	return blur;
 }
 
 

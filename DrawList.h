@@ -37,10 +37,10 @@ public:
 	void Clear(int step = 0);
 	
 	// Add an animation.
-	void Add(const Animation &animation, Point pos, Point unit, double clip = 1.);
+	void Add(const Animation &animation, Point pos, Point unit, Point blur = Point(), double clip = 1.);
 	
 	// Add a single sprite.
-	void Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.), double cloak = 0., int swizzle = 0);
+	void Add(const Sprite *sprite, Point pos, Point unit = Point(0., -1.), Point blur = Point(), double cloak = 0., int swizzle = 0);
 	
 	// Draw all the items in this list. The shader object may be shared between
 	// multiple DrawLists, so pass it in here.
@@ -51,7 +51,7 @@ private:
 	class Item {
 	public:
 		Item() = default;
-		Item(const Animation &animation, Point pos, Point unit, float clip, int step);
+		Item(const Animation &animation, Point pos, Point unit, Point blur, float clip, int step);
 		
 		// Get the texture of this sprite.
 		uint32_t Texture0() const;
@@ -62,6 +62,8 @@ private:
 		const float *Position() const;
 		// Get the [a, b; c, d] size and rotation matrix.
 		const float *Transform() const;
+		// Get the blur vector, in texture space.
+		const float *Blur() const;
 		
 		// Get the color swizzle.
 		uint32_t Swizzle() const;
@@ -76,6 +78,7 @@ private:
 		uint32_t tex1;
 		float position[2];
 		float transform[4];
+		float blur[2];
 		float clip;
 		uint32_t flags;
 	};

@@ -43,6 +43,7 @@ public:
 	// Get the projectiles characteristics, for drawing.
 	const Animation &GetSprite() const;
 	const Point &Position() const;
+	const Point &Velocity() const;
 	Point Unit() const;
 	
 	

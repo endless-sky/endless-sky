@@ -41,7 +41,7 @@ public:
 	void Add(const std::string &name, int count, double energy = 1.);
 	
 	void Step();
-	void Draw(DrawList &draw, const Point &center) const;
+	void Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const;
 	double Collide(const Projectile &projectile, int step, Point *hitVelocity = nullptr) const;
 	
 	
@@ -51,7 +51,7 @@ private:
 		Asteroid(const Sprite *sprite, double energy);
 		
 		void Step();
-		void Draw(DrawList &draw, const Point &center) const;
+		void Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const;
 		double Collide(const Projectile &projectile, int step) const;
 		
 		Point Velocity() const;

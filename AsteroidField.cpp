@@ -61,10 +61,10 @@ void AsteroidField::Step()
 
 
 
-void AsteroidField::Draw(DrawList &draw, const Point &center) const
+void AsteroidField::Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const
 {
 	for(const Asteroid &asteroid : asteroids)
-		asteroid.Draw(draw, center);
+		asteroid.Draw(draw, center, centerVelocity);
 }
 
 
@@ -119,12 +119,12 @@ void AsteroidField::Asteroid::Step()
 
 
 
-void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center) const
+void AsteroidField::Asteroid::Draw(DrawList &draw, const Point &center, const Point &centerVelocity) const
 {
 	Point pos = location - center;
 	pos = Point(remainder(pos.X(), WRAP), remainder(pos.Y(), WRAP));
 	
-	draw.Add(animation, pos, angle.Unit() * .5);
+	draw.Add(animation, pos, angle.Unit() * .5, velocity - centerVelocity);
 }
 
 

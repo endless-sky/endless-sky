@@ -704,8 +704,12 @@ void Engine::CalculateStep()
 	
 	// Now we know the player's current position. Draw the planets.
 	Point center;
+	Point centerVelocity;
 	if(flagship)
+	{
 		center = flagship->Position();
+		centerVelocity = flagship->Velocity();
+	}
 	else if(player.GetPlanet())
 	{
 		for(const StellarObject &object : player.GetSystem()->Objects())
@@ -725,7 +729,7 @@ void Engine::CalculateStep()
 				object.GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
-			draw[calcTickTock].Add(object.GetSprite(), position, unit);
+			draw[calcTickTock].Add(object.GetSprite(), position, unit, -centerVelocity);
 			radar[calcTickTock].Add(type, position, r, r - 1.);
 		}
 	
@@ -740,7 +744,7 @@ void Engine::CalculateStep()
 	// of them. This could be done later, as long as it is done before the
 	// collision detection.
 	asteroids.Step();
-	asteroids.Draw(draw[calcTickTock], center);
+	asteroids.Draw(draw[calcTickTock], center, centerVelocity);
 	
 	// Move existing projectiles. Do this before ships fire, which will create
 	// new projectiles, since those should just stay where they are created for
@@ -815,6 +819,7 @@ void Engine::CalculateStep()
 						ship->FlareSprite().GetSprite(),
 						pos,
 						ship->Unit(),
+						ship->Velocity() - centerVelocity,
 						ship->Cloaking());
 				}
 				else
@@ -822,7 +827,8 @@ void Engine::CalculateStep()
 					draw[calcTickTock].Add(
 						ship->FlareSprite(),
 						pos,
-						ship->Unit());
+						ship->Unit(),
+						ship->Velocity() - centerVelocity);
 				}
 				if(ship.get() == flagship && ship->Attributes().FlareSound())
 					Audio::Play(ship->Attributes().FlareSound(), pos, ship->Velocity());
@@ -838,12 +844,14 @@ void Engine::CalculateStep()
 					draw[calcTickTock].Add(
 						animation,
 						position,
-						ship->Unit());
+						ship->Unit(),
+						ship->Velocity() - centerVelocity);
 				}
 				draw[calcTickTock].Add(
 					ship->GetSprite().GetSprite(),
 					position,
 					ship->Unit(),
+					ship->Velocity() - centerVelocity,
 					ship->Cloaking(),
 					ship->GetSprite().GetSwizzle());
 			}
@@ -852,7 +860,8 @@ void Engine::CalculateStep()
 				draw[calcTickTock].Add(
 					ship->GetSprite(),
 					position,
-					ship->Unit());
+					ship->Unit(),
+					ship->Velocity() - centerVelocity);
 			}
 			
 			// Do not show cloaked ships on the radar, except the player's ships.
@@ -958,11 +967,16 @@ void Engine::CalculateStep()
 			radar[calcTickTock].Add(
 				Radar::SPECIAL, projectile.Position() - center, 1.8);
 		
-		// Now, we can draw the projectile.
+		// Now, we can draw the projectile. The motion blur should be reduced
+		// depending on how much motion blur is in the sprite itself:
+		double innateVelocity = max(0, projectile.GetSprite().Height() - projectile.GetSprite().Width());
+		Point relativeVelocity = projectile.Velocity() - centerVelocity
+			- projectile.Unit() * innateVelocity;
 		draw[calcTickTock].Add(
 			projectile.GetSprite(),
 			projectile.Position() - center + .5 * projectile.Velocity(),
 			projectile.Unit(),
+			relativeVelocity,
 			closestHit);
 	}
 	
@@ -974,7 +988,8 @@ void Engine::CalculateStep()
 		draw[calcTickTock].Add(
 			it->GetSprite(),
 			it->Position() - center,
-			it->Unit());
+			it->Unit(),
+			it->Velocity() - centerVelocity);
 		
 		if(!it->Move())
 			it = effects.erase(it);

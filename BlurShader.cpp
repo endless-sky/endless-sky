@@ -1,4 +1,4 @@
-/* SpriteShader.cpp
+/* BlurShader.cpp
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -10,7 +10,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
-#include "SpriteShader.h"
+#include "BlurShader.h"
 
 #include "Point.h"
 #include "Screen.h"
@@ -26,6 +26,7 @@ namespace {
 	GLint scaleI;
 	GLint transformI;
 	GLint positionI;
+	GLint blurI;
 	GLint clipI;
 	GLint fadeI;
 	
@@ -48,43 +49,56 @@ namespace {
 
 
 // Initialize the shaders.
-void SpriteShader::Init()
+void BlurShader::Init()
 {
 	static const char *vertexCode =
 		"uniform mat2 transform;\n"
 		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
+		"uniform vec2 blur;\n"
 		"uniform float clip;\n"
 		
 		"in vec2 vert;\n"
 		"out vec2 fragTexCoord;\n"
 		
 		"void main() {\n"
-		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
+		"  vec2 blurOff = 2. * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
+		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
-		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y));\n"
+		"  fragTexCoord = vec2(texCoord.x, max(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
 	static const char *fragmentCode =
 		"uniform sampler2D tex0;\n"
 		"uniform sampler2D tex1;\n"
 		"uniform float fade;\n"
+		"uniform vec2 blur;\n"
+		"const int range = 5;\n"
 		
 		"in vec2 fragTexCoord;\n"
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		// Since fade is a uniform, this branch will not cause performance trouble.
-		"  if(fade != 0)\n"
-		"    finalColor = mix(texture(tex0, fragTexCoord), texture(tex1, fragTexCoord), fade);\n"
-		"  else\n"
-		"    finalColor = texture(tex0, fragTexCoord);\n"
+		"  const float divisor = range * (range + 2) + 1;\n"
+		"  vec4 color = vec4(0., 0., 0., 0.);\n"
+		"  for(int i = -range; i <= range; ++i)\n"
+		"  {\n"
+		"    float scale = (range + 1 - abs(i)) / divisor;\n"
+		"    vec2 coord = fragTexCoord + (blur * i) / range;\n"
+		"    scale *= float((coord.x >= 0.) && (coord.x <= 1.) && (coord.y >= 0.) && (coord.y <= 1.));\n"
+		"    if(fade != 0)\n"
+		"      color += scale * mix(texture(tex0, coord), texture(tex1, coord), fade);\n"
+		"    else\n"
+		"      color += scale * texture(tex0, coord);\n"
+		"  }\n"
+		"  finalColor = color;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
 	transformI = shader.Uniform("transform");
 	positionI = shader.Uniform("position");
+	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
 	fadeI = shader.Uniform("fade");
 	
@@ -119,7 +133,7 @@ void SpriteShader::Init()
 
 
 
-void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle)
+void BlurShader::Draw(const Sprite *sprite, const Point &position, float zoom, int swizzle)
 {
 	if(!sprite)
 		return;
@@ -135,7 +149,7 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom,
 
 
 
-void SpriteShader::Bind()
+void BlurShader::Bind()
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -147,7 +161,7 @@ void SpriteShader::Bind()
 
 
 
-void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade)
+void BlurShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], const float transform[4], int swizzle, float clip, float fade, const float blur[2])
 {
 	glUniformMatrix2fv(transformI, 1, false, transform);
 	glUniform2fv(positionI, 1, position);
@@ -169,13 +183,15 @@ void SpriteShader::Add(uint32_t tex0, uint32_t tex1, const float position[2], co
 	// Set the clipping.
 	glUniform1f(clipI, 1.f - clip);
 	glUniform1f(fadeI, fade);
+	const float noBlur[2] = {0.f, 0.f};
+	glUniform2fv(blurI, 1, blur ? blur : noBlur);
 	
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 
 
-void SpriteShader::Unbind()
+void BlurShader::Unbind()
 {
 	glBindVertexArray(0);
 	glUseProgram(0);

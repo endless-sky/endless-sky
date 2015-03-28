@@ -42,6 +42,7 @@ namespace {
 	};
 	static const string SETTINGS[] = {
 		"Show CPU / GPU load",
+		"Render motion blur",
 		"",
 		"Automatic firing",
 		"Automatic aiming",
