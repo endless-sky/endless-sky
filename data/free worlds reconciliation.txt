@@ -1767,6 +1767,7 @@ mission "FW Pug 5B"
 	description "Freya sent you a message that the <system> system is under attack. Return there, accompanied by your new Navy reinforcements, and drive off the Pug."
 	source Earth
 	destination Shiver
+	clearance
 	to offer
 		has "FW Pug 5A: done"
 	
@@ -1780,6 +1781,13 @@ mission "FW Pug 5B"
 	npc
 		government Republic
 		personality disables waiting
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
+				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
