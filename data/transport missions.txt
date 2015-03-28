@@ -514,7 +514,7 @@ mission "Deep Archaeology 3"
 			`	"The second sample is infused with some sort of oil or tar," he says. "A varnish. And therefore it is from furniture or a building. A man-made artifact. The control sample has an isotopic ratio different from Earth, so unless you're playing games with me, these samples are not from Earth."`
 			`	"Go on," says the archaeologist.`
 			`	"However," says the lab tech, "again assuming the two samples are from the same planet, the second sample is between fifteen hundred and twenty-five hundred years old. Which means it predates the discovery of the hyperdrive by, at minimum, five centuries. So again I ask you, where did you get these samples?" His voice is raised.`
-			`	"Intriguing, isn't it?" says the archaeologist. Captain <last>, if you'd like to help us get to the bottom of this, make sure you've got space for us and some equipment, and meet us in the spaceport."`
+			`	"Intriguing, isn't it?" says the archaeologist. "Captain <last>, if you'd like to help us get to the bottom of this, make sure you've got space for us and some equipment, and meet us in the spaceport."`
 
 
 
@@ -621,7 +621,7 @@ mission "Drug Running 1"
 		"said no to drugs" < 4
 	
 	on offer
-		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on plantes with high security.)`
+		dialog `As you are walking through the spaceport, a man pulls you aside and asks if you would like to help transport some "recreational pharmaceuticals" to <planet>. (This sounds like an illegal mission, so you'll need to avoid getting scanned or landing on planets with high security.)`
 	
 	on accept
 		"said no to drugs" --
@@ -1021,7 +1021,7 @@ mission "Terraforming 1"
 				`	"What sort of trip?"`
 				`	"Sorry, I'm just in here for the drinks."`
 					defer
-			`	To Glory, to the Academy of Planetary Sciences," he says. "This world is rich in resources, and we're thinking that if we could only cool down the deserts a bit and get more plants to grow here, it would be a decent place to live. We've been dreaming about this for years, and I think it's time to go pay a terraforming consultant to tell us whether it's actually possible or not."`
+			`	"To Glory, to the Academy of Planetary Sciences," he says. "This world is rich in resources, and we're thinking that if we could only cool down the deserts a bit and get more plants to grow here, it would be a decent place to live. We've been dreaming about this for years, and I think it's time to go pay a terraforming consultant to tell us whether it's actually possible or not."`
 			choice
 				`	"Sure, I'd be glad to take you there."`
 					accept

@@ -184,7 +184,7 @@ mission "FW Prisoner Parole"
 					accept
 				`	"What should we do if they attack us?"`
 			
-			`	"If you can, return here without engaging them. No point is losing more lives."`
+			`	"If you can, return here without engaging them. No point in losing more lives."`
 				accept
 		"reputation: Republic" = 1
 		event "temporary ceasefire"
@@ -835,7 +835,7 @@ mission "FW Pirates 1"
 	
 	on offer
 		conversation
-			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic terrories. "Good to see you, <first>!" he says. "I hope whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
+			`Tomek is sitting at the bar with a galactic map and a tumbler of whiskey. The map has notes written all over it, with lines marking the current Free Worlds and Republic territories. "Good to see you, <first>!" he says. "I hope whatever weapons Barmy Edward had you testing worked well. Most of his inventions are pure genius, but some are just bizarre and useless."`
 			`	You describe to him the impressive performance of the Plasma Turrets, and the challenge of finding a ship with enough size for them. "Excellent!," he says. "That opens up some interesting tactical possibilities. But now it's time to switch gears entirely."`
 			`	He smooths out the map, sweeping a few stray peanuts and crumbs off it. Apparently he's been sitting here for quite a while. "Right now," he says, "the Navy is leaving us alone, and we have no good reason to attack them. So the Council has been turning its attention to other matters, namely the pirates. They're a big threat to our shipping, and plus if we could do something about them, it would gain us a whole lot of support in the nearby systems that have not yet joined us."`
 			choice

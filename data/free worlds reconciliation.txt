@@ -158,7 +158,7 @@ mission "FW Reconciliation 1C"
 		conversation
 			`You skim low over the surface of <origin>, with the airlock slightly open to allow Ijs to collect atmospheric samples. He's dressed in a pressure suit, and over the suit's radio he says, "Any residue that's here will be very faint. Just a few more minutes."`
 			`	Sawyer directs you to the site where the secret development took place. Nothing is left but a wide and slightly overgrown clearing. After checking your radar and seeing no incoming ships, you risk landing. Sawyer says that there were buildings here a few years ago, but now not even their foundations remain, and a sensor sweep for metallic objects turns up nothing, not even as small as a single nail.`
-			`	However, Ijs points out a few subtle signs of human habitation. "A clearing like this would normally form in a fire," he says, "but notice, no fire scars on the trees on the edges of the clearing.`
+			`	However, Ijs points out a few subtle signs of human habitation. "A clearing like this would normally form in a fire," he says, "but notice, no fire scars on the trees on the edges of the clearing."`
 			`	Raven says, "And our geophysical radar is picking up structures underground. Several deep shafts, and rock that's been stressed and fractured by a large explosion. They did a good job of hiding everything else, but if you scar a planet that badly, it doesn't go away. The stones speak."`
 			`	As you continue inspecting the site, suddenly Raven's copilot shouts out the door of her gunboat at you. "Syndicate ships have entered the system! We need to get back to Earth with the evidence, quickly!"`
 				launch
