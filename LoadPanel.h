@@ -61,7 +61,7 @@ private:
 	std::string selectedPilot;
 	std::string selectedFile;
 	
-	bool sideHasFocus;
+	bool sideHasFocus = false;
 	int sideScroll = 0;
 	int centerScroll = 0;
 };
