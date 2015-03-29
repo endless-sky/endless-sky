@@ -150,11 +150,12 @@ void CaptureOdds::Make(vector<double> *power, const Ship *ship, bool isDefender)
 		if(value > 0. && it.second > 0)
 			power->insert(power->end(), it.second, value);
 	}
-	// Resize the vector to have exactly one entry per crew member.
-	power->resize(ship->Crew(), 0.);
-	
 	// Use the best weapons first.
 	sort(power->begin(), power->end(), greater<double>());
+
+    // Resize the vector to have exactly one entry per crew member.
+    power->resize(ship->Crew(), 0.);
+    
 	power->front() += crewPower;
 	for(unsigned i = 1; i < power->size(); ++i)
 		(*power)[i] += (*power)[i - 1] + crewPower;
