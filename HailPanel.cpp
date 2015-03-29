@@ -86,7 +86,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	if(planet)
 		header = gov->GetName() + " planet \"" + planet->Name() + "\":";
 	
-	if(player.GetShip())
+	if(planet && player.GetShip())
 	{
 		for(const Mission &mission : player.Missions())
 			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
