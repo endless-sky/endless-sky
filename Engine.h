@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "Date.h"
 #include "DrawList.h"
+#include "EscortDisplay.h"
 #include "Information.h"
 #include "Point.h"
 #include "Projectile.h"
@@ -80,16 +81,6 @@ private:
 		int type;
 	};
 	
-	class Escort {
-	public:
-		Escort(const Ship &ship, bool isHere);
-		
-		const Sprite *sprite;
-		bool isHere;
-		std::string system;
-		double stats[5];
-	};
-	
 	class Status {
 	public:
 		Status(const Point &position, double shields, double hull, double radius, bool isEnemy);
@@ -123,7 +114,7 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
-	std::vector<Escort> escorts;
+	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	

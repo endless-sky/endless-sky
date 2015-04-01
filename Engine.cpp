@@ -292,14 +292,14 @@ void Engine::Step(bool isActive)
 		// Display escort information for all ships of the "Escort" government,
 		// and all ships with the "escort" personality, except for fighters that
 		// are not owned by the player.
-		escorts.clear();
+		escorts.Clear();
 		for(const auto &it : ships)
 			if(it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 				if(!it->IsFighter() && it.get() != flagship)
-					escorts.emplace_back(*it, it->GetSystem() == currentSystem);
+					escorts.Add(*it, it->GetSystem() == currentSystem);
 		for(const shared_ptr<Ship> &escort : player.Ships())
 			if(escort->IsFighter())
-				escorts.emplace_back(*escort, escort->GetSystem() == currentSystem);
+				escorts.Add(*escort, escort->GetSystem() == currentSystem);
 		
 		// Create the status overlays.
 		statuses.clear();
@@ -519,42 +519,7 @@ void Engine::Draw() const
 	}
 	
 	// Draw escort status.
-	pos = Point(Screen::Left() + 20., Screen::Bottom());
-	Color hereColor(.8, 1.);
-	Color elsewhereColor(.4, .4, .6, 1.);
-	for(const Escort &escort : escorts)
-	{
-		if(!escort.sprite)
-			continue;
-		
-		pos.Y() -= 30.;
-		if(!escort.system.empty())
-		{
-			pos.Y() -= 15.;
-			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
-		}
-		// Show only as many escorts as we have room for on screen.
-		if(pos.Y() <= Screen::Top() + 450.)
-			break;
-		
-		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
-		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
-		OutlineShader::Draw(escort.sprite, pos, size, escort.isHere ? hereColor : elsewhereColor);
-		
-		static const string name[5] = {"shields", "hull", "energy", "heat", "fuel"};
-		Point from(pos.X() + 15., pos.Y() - 8.5);
-		for(int i = 0; i < 5; ++i)
-		{
-			if(escort.stats[i] > 0.)
-			{
-				Point to = from + Point((70. - 5. * (i > 1)) * escort.stats[i], 0.);
-				LineShader::Draw(from, to, 1.5, *GameData::Colors().Get(name[i]));
-			}
-			from.Y() += 4.;
-			if(i == 1)
-				from.X() += 5.;
-		}
-	}
+	escorts.Draw();
 	
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1135,15 +1100,6 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message += ". Please assist us!";
 	}
 	Messages::Add(message);
-}
-
-
-
-Engine::Escort::Escort(const Ship &ship, bool isHere)
-	: sprite(ship.GetSprite().GetSprite()), isHere(isHere && !ship.IsDisabled()),
-	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
-	stats{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()}
-{
 }
 
 
