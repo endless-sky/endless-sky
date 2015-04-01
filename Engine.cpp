@@ -373,7 +373,9 @@ void Engine::Step(bool isActive)
 			info.SetString("navigation mode", "Navigation:");
 			info.SetString("destination", "no destination");
 		}
-		info.SetRadar(radar[drawTickTock]);
+		// Use the radar that was just populated. (The draw tick-tock has not
+		// yet been toggled, but it will be at the end of this function.)
+		info.SetRadar(radar[!drawTickTock]);
 		shared_ptr<const Ship> target;
 		if(flagship)
 			target = flagship->GetTargetShip();
