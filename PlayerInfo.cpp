@@ -823,6 +823,17 @@ void PlayerInfo::TakeOff()
 			cargo.TransferAll(&flagship.Cargo());
 		}
 	}
+	if(ships.size())
+	{
+		Ship &flagship = *ships.front();
+		int extra = flagship.Crew() + flagship.Cargo().Passengers() - flagship.Attributes().Get("bunks");
+		if(extra > 0)
+		{
+			flagship.AddCrew(-extra);
+			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.");
+			flagship.Cargo().SetBunks(flagship.Attributes().Get("bunks") - flagship.Crew());
+		}
+	}
 	
 	// Extract the fighters from the list.
 	vector<shared_ptr<Ship>> fighters;
