@@ -413,7 +413,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 	shared_ptr<const Ship> target = ship.GetTargetShip();
-	if(target && ship.GetGovernment()->IsEnemy(target->GetGovernment()))
+	if(target && (ship.GetGovernment()->IsEnemy(target->GetGovernment())
+			|| (ship.GetGovernment()->IsPlayer() && target == sharedTarget.lock())))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -1012,8 +1013,10 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	// not want to risk damaging that target. The only time a ship other than
 	// the player will target a friendly ship is if the player has asked a ship
 	// for assistance.
+	shared_ptr<Ship> currentTarget = ship.GetTargetShip();
 	if(ship.GetTargetShip() && !ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment()))
-		return command;
+		if(!ship.GetGovernment()->IsPlayer() || currentTarget != sharedTarget.lock())
+			return command;
 	
 	// Only fire on disabled targets if you don't want to plunder them.
 	bool spareDisabled = (ship.GetPersonality().Disables() || ship.GetPersonality().Plunders());
@@ -1029,11 +1032,15 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	// Find all enemy ships within range of at least one weapon.
 	const Government *gov = ship.GetGovernment();
 	vector<shared_ptr<const Ship>> enemies;
+	if(currentTarget && (currentTarget->GetGovernment()->IsEnemy() ||
+			(ship.GetGovernment()->IsPlayer() && currentTarget == sharedTarget.lock())))
+		enemies.push_back(currentTarget);
 	for(auto target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
 				&& target->Velocity().Length() < 20.
 				&& target->GetSystem() == ship.GetSystem()
-				&& target->Position().Distance(ship.Position()) < maxRange)
+				&& target->Position().Distance(ship.Position()) < maxRange
+				&& target != currentTarget)
 			enemies.push_back(target);
 	
 	for(const Armament::Weapon &weapon : ship.Weapons())
@@ -1088,7 +1095,7 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 		
 		for(const shared_ptr<const Ship> &target : enemies)
 		{
-			if(!target->IsTargetable() || !gov->IsEnemy(target->GetGovernment())
+			if(!target->IsTargetable()
 					|| target->Velocity().Length() > 20.
 					|| target->GetSystem() != ship.GetSystem())
 				continue;
@@ -1154,7 +1161,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 				// if the player is repeatedly targeting nearest to, say, target
 				// a bunch of fighters, they won't start firing on friendly
 				// ships as soon as the last one is gone.
-				if(!state && !shift)
+				if((!state && !shift) || other->GetGovernment()->IsPlayer())
 					continue;
 				
 				state += state * !other->IsDisabled();
