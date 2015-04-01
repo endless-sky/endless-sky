@@ -257,7 +257,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// the behavior depends on what the parent is doing, whether there
 			// are hostile targets nearby, and whether the escort has any
 			// immediate needs (like refueling).
-			else if(parent && !parent->IsDisabled()
+			else if(parent && !parent->IsDestroyed()
 					&& ((parent->Commands() & (Command::LAND | Command::JUMP))
 						|| parent->GetSystem() != it->GetSystem()
 						|| targetDistance > 2000. || personality.IsTimid() || !target
