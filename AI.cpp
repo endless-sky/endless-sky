@@ -1032,7 +1032,7 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	// Find all enemy ships within range of at least one weapon.
 	const Government *gov = ship.GetGovernment();
 	vector<shared_ptr<const Ship>> enemies;
-	if(currentTarget && (currentTarget->GetGovernment()->IsEnemy() ||
+	if(currentTarget && (currentTarget->GetGovernment()->IsEnemy(ship.GetGovernment()) ||
 			(ship.GetGovernment()->IsPlayer() && currentTarget == sharedTarget.lock())))
 		enemies.push_back(currentTarget);
 	for(auto target : ships)
