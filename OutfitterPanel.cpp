@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "OutfitInfoDisplay.h"
 #include "PlayerInfo.h"
@@ -65,6 +66,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 	
 void OutfitterPanel::Step()
 {
+	CheckRefill();
 	if(!Preferences::Has("help: outfitter"))
 	{
 		Preferences::Set("help: outfitter");
@@ -541,4 +543,67 @@ string OutfitterPanel::LicenseName(const string &name) const
 {
 	static const string &LICENSE = " License";
 	return "license: " + name.substr(0, name.length() - LICENSE.length());
+}
+
+
+
+void OutfitterPanel::CheckRefill()
+{
+	if(checkedRefill)
+		return;
+	checkedRefill = true;
+	
+	int64_t cost = 0;
+	for(const auto &ship : player.Ships())
+	{
+		set<const Outfit *> toRefill;
+		for(const auto &it : ship->Weapons())
+			if(it.GetOutfit() && it.GetOutfit()->Ammo())
+				toRefill.insert(it.GetOutfit()->Ammo());
+		
+		for(const Outfit *outfit : toRefill)
+		{
+			int needed = ship->Attributes().CanAdd(*outfit, 1000000);
+			if(!planet->Outfitter().Has(outfit))
+				needed = min(needed, player.Cargo().Get(outfit) + available[selectedOutfit]);
+			cost += needed * outfit->Cost();
+		}
+	}
+	
+	if(cost && cost < player.Accounts().Credits())
+	{
+		string message = player.Ships().size() == 1 ?
+			"Do you want to reload all the ammunition for your ship? It will cost " :
+			"Do you want to reload all the ammunition for your ships? It will cost ";
+		message += Format::Number(cost) + " credits.";
+		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
+	}
+}
+
+
+
+void OutfitterPanel::Refill()
+{
+	for(const auto &ship : player.Ships())
+	{
+		set<const Outfit *> toRefill;
+		for(const auto &it : ship->Weapons())
+			if(it.GetOutfit() && it.GetOutfit()->Ammo())
+				toRefill.insert(it.GetOutfit()->Ammo());
+		
+		// TODO: instead of adding these one by one, just calculate the proper
+		// number and which source each should come from.
+		for(const Outfit *outfit : toRefill)
+			while(ship->Attributes().CanAdd(*outfit))
+			{
+				if(player.Cargo().Get(outfit))
+					player.Cargo().Transfer(outfit, 1);
+				else
+				{
+					player.Accounts().AddCredits(-outfit->Cost());
+					--available[outfit];
+				}
+				ship->AddOutfit(outfit, 1);
+			}
+	}
 }

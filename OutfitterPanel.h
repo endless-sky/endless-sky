@@ -60,6 +60,8 @@ private:
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
 	std::string LicenseName(const std::string &name) const;
+	void CheckRefill();
+	void Refill();
 	
 	
 private:
@@ -67,6 +69,7 @@ private:
 	// in this particular shopping session (so that you can buy back things this
 	// outfitter does not normally carry that you sold by accident).
 	std::map<const Outfit *, int> &available;
+	bool checkedRefill = false;
 };
 
 
