@@ -93,7 +93,6 @@ void BlurShader::Init()
 		"  {\n"
 		"    float scale = (range + 1 - abs(i)) / divisor;\n"
 		"    vec2 coord = fragTexCoord + (blur * i) / range;\n"
-		"    scale *= float((coord.x >= 0.) && (coord.x <= 1.) && (coord.y >= 0.) && (coord.y <= 1.));\n"
 		"    if(fade != 0)\n"
 		"      color += scale * mix(texture(tex0, coord), texture(tex1, coord), fade);\n"
 		"    else\n"
