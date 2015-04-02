@@ -954,6 +954,7 @@ void Engine::CalculateStep()
 		// Now, we can draw the projectile. The motion blur should be reduced
 		// depending on how much motion blur is in the sprite itself:
 		double innateVelocity = max(0, projectile.GetSprite().Height() - projectile.GetSprite().Width());
+		innateVelocity = min(innateVelocity, projectile.GetWeapon().Velocity());
 		Point relativeVelocity = projectile.Velocity() - centerVelocity
 			- projectile.Unit() * innateVelocity;
 		draw[calcTickTock].Add(
