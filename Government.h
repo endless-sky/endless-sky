@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Conversation;
 class DataNode;
@@ -95,11 +96,12 @@ public:
 	
 	
 private:
+	unsigned id;
 	std::string name;
 	int swizzle = 0;
 	Color color;
 	
-	std::map<const Government *, double> attitudeToward;
+	std::vector<double> attitudeToward;
 	double initialPlayerReputation = 0.;
 	std::map<int, double> penaltyFor;
 	double bribe = 0.;

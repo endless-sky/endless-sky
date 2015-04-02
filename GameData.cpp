@@ -71,6 +71,8 @@ namespace {
 	
 	vector<string> sources;
 	map<const Sprite *, pair<string, string>> deferred;
+	
+	const Government *playerGovernment = nullptr;
 }
 
 
@@ -136,6 +138,7 @@ void GameData::BeginLoad(const char * const *argv)
 	defaultSystems = systems;
 	defaultShipSales = shipSales;
 	defaultOutfitSales = outfitSales;
+	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
 	
@@ -353,7 +356,7 @@ const Set<System> &GameData::Systems()
 
 const Government *GameData::PlayerGovernment()
 {
-	return governments.Get("Escort");
+	return playerGovernment;
 }
 
 

@@ -20,6 +20,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	static unsigned nextID = 0;
+}
+
 
 
 // Default constructor.
@@ -33,6 +37,8 @@ Government::Government()
 	penaltyFor[ShipEvent::CAPTURE] = 1.;
 	penaltyFor[ShipEvent::DESTROY] = 1.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
+	
+	id = nextID++;
 }
 
 
@@ -57,7 +63,8 @@ void Government::Load(const DataNode &node)
 				if(grand.Size() >= 2)
 				{
 					const Government *gov = GameData::Governments().Get(grand.Token(0));
-					attitudeToward[gov] = grand.Value(1);
+					attitudeToward.resize(nextID, 0.);
+					attitudeToward[gov->id] = grand.Value(1);
 				}
 		}
 		else if(child.Token(0) == "penalty for")
@@ -125,8 +132,10 @@ double Government::AttitudeToward(const Government *other) const
 	if(other == this)
 		return 1.;
 	
-	auto it = attitudeToward.find(other);
-	return (it == attitudeToward.end() ? 0. : it->second);
+	if(attitudeToward.size() <= other->id)
+		return 0.;
+	
+	return attitudeToward[other->id];
 }
 
 
