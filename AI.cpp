@@ -989,7 +989,7 @@ Point AI::TargetAim(const Ship &ship)
 		if(!(steps == steps))
 			continue;
 		
-		steps = min(steps, outfit->Lifetime());
+		steps = min(steps, outfit->TotalLifetime());
 		p += steps * v;
 		
 		double damage = outfit->ShieldDamage() + outfit->HullDamage();
@@ -1065,7 +1065,7 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 		
 		const Outfit *outfit = weapon.GetOutfit();
 		double vp = outfit->WeaponGet("velocity");
-		double lifetime = outfit->Lifetime();
+		double lifetime = outfit->TotalLifetime();
 		
 		if(ship.GetTargetShip() && (weapon.IsHoming() || weapon.IsTurret()))
 		{

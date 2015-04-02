@@ -260,21 +260,21 @@ double Outfit::WeaponGet(const string &attribute) const
 
 
 // Handle a weapon impacting something or reaching its end of life.
-const map<const Effect *, int> Outfit::HitEffects() const
+const map<const Effect *, int> &Outfit::HitEffects() const
 {
 	return hitEffects;
 }
 
 
 
-const map<const Effect *, int> Outfit::DieEffects() const
+const map<const Effect *, int> &Outfit::DieEffects() const
 {
 	return dieEffects;
 }
 
 
 
-const map<const Outfit *, int> Outfit::Submunitions() const
+const map<const Outfit *, int> &Outfit::Submunitions() const
 {
 	return submunitions;
 }
@@ -282,11 +282,11 @@ const map<const Outfit *, int> Outfit::Submunitions() const
 
 
 // Get weapon lifetime, including submunitions.
-double Outfit::Lifetime() const
+double Outfit::TotalLifetime() const
 {
 	double lifetime = 0.;
 	for(const auto &it : submunitions)
-		lifetime = max(lifetime, it.first->Lifetime());
+		lifetime = max(lifetime, it.first->TotalLifetime());
 	
 	return lifetime + WeaponGet("lifetime");
 }
@@ -295,7 +295,7 @@ double Outfit::Lifetime() const
 
 double Outfit::Range() const
 {
-	return Lifetime() * WeaponGet("velocity");
+	return TotalLifetime() * WeaponGet("velocity");
 }
 
 

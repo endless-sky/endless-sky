@@ -80,11 +80,11 @@ public:
 	// TODO: also check if this is a gun or a turret.
 	
 	// Handle a weapon impacting something or reaching its end of life.
-	const std::map<const Effect *, int> HitEffects() const;
-	const std::map<const Effect *, int> DieEffects() const;
-	const std::map<const Outfit *, int> Submunitions() const;
+	const std::map<const Effect *, int> &HitEffects() const;
+	const std::map<const Effect *, int> &DieEffects() const;
+	const std::map<const Outfit *, int> &Submunitions() const;
 	// Get weapon lifetime, including submunitions.
-	double Lifetime() const;
+	double TotalLifetime() const;
 	double Range() const;
 	double ShieldDamage() const;
 	double HullDamage() const;

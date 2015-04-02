@@ -127,8 +127,8 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 		
 		// Special case: RendevousTime() may return NaN. But in that case, this
 		// comparison will return false.
-		if(!(steps < outfit->Lifetime()))
-			steps = outfit->Lifetime();
+		if(!(steps < outfit->TotalLifetime()))
+			steps = outfit->TotalLifetime();
 		
 		p += steps * v;
 		
