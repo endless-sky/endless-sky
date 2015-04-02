@@ -363,10 +363,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	for(const auto &it : ship.Outfits())
 		if(it.first->IsWeapon())
 		{
-			firingEnergy += it.second * it.first->WeaponGet("firing energy")
-				/ it.first->WeaponGet("reload");
-			firingHeat += it.second * it.first->WeaponGet("firing heat")
-				/ it.first->WeaponGet("reload");
+			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
+			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
 		}
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));

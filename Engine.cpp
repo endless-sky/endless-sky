@@ -280,12 +280,12 @@ void Engine::Step(bool isActive)
 				if(it.first->Ammo())
 					ammo.emplace_back(it.first,
 						flagship->OutfitCount(it.first->Ammo()));
-				else if(it.first->WeaponGet("firing fuel"))
+				else if(it.first->FiringFuel())
 				{
 					double remaining = flagship->Fuel()
 						* flagship->Attributes().Get("fuel capacity");
 					ammo.emplace_back(it.first,
-						remaining / it.first->WeaponGet("firing fuel"));
+						remaining / it.first->FiringFuel());
 				}
 			}
 		

@@ -1214,7 +1214,7 @@ void PlayerInfo::SelectNext()
 		it = ship->Outfits().begin();
 	
 	while(++it != ship->Outfits().end())
-		if(it->first->Ammo() || it->first->WeaponGet("firing fuel"))
+		if(it->first->Ammo() || it->first->FiringFuel())
 		{
 			selectedWeapon = it->first;
 			return;

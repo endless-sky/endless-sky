@@ -74,14 +74,15 @@ public:
 	// Get the facing unit vector times the scale factor.
 	Point Unit() const;
 	
-	// Find out which ship this projectile is targeting.
+	// Find out which ship this projectile is targeting. Note: this pointer is
+	// not guaranteed to be dereferenceable, so only use it for comparing.
 	const Ship *Target() const;
 	// Find out which government this projectile belongs to.
 	const Government *GetGovernment() const;
 	
 	
 private:
-	const Outfit *weapon;
+	const Outfit *weapon = nullptr;
 	Animation animation;
 	
 	Point position;
@@ -89,9 +90,10 @@ private:
 	Angle angle;
 	
 	std::weak_ptr<const Ship> targetShip;
-	const Government *government;
+	const Ship *cachedTarget = nullptr;
+	const Government *government = nullptr;
 	
-	int lifetime;
+	int lifetime = 0;
 };
 
 

@@ -985,7 +985,7 @@ Point AI::TargetAim(const Ship &ship)
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
-		double steps = Armament::RendevousTime(p, v, outfit->WeaponGet("velocity"));
+		double steps = Armament::RendevousTime(p, v, outfit->Velocity());
 		if(!(steps == steps))
 			continue;
 		
@@ -1050,10 +1050,10 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 				|| (!secondary && weapon.GetOutfit()->Ammo()))
 			continue;
 		
-		if(weapon.GetOutfit()->WeaponGet("firing fuel"))
+		if(weapon.GetOutfit()->FiringFuel())
 		{
 			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
-			fuel -= weapon.GetOutfit()->WeaponGet("firing fuel");
+			fuel -= weapon.GetOutfit()->FiringFuel();
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
 			bool isStaying = ship.GetPersonality().IsStaying();
@@ -1064,7 +1064,7 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 		start += ship.GetPersonality().Confusion();
 		
 		const Outfit *outfit = weapon.GetOutfit();
-		double vp = outfit->WeaponGet("velocity");
+		double vp = outfit->Velocity();
 		double lifetime = outfit->TotalLifetime();
 		
 		if(ship.GetTargetShip() && (weapon.IsHoming() || weapon.IsTurret()))
@@ -1079,7 +1079,7 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 			// forward one time step.
 			p += v;
 			
-			if(p.Length() < outfit->WeaponGet("blast radius"))
+			if(p.Length() < outfit->BlastRadius())
 				continue;
 			
 			double steps = Armament::RendevousTime(p, v, vp);
@@ -1341,7 +1341,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 			for(const Armament::Weapon &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && !outfit->Ammo() && !outfit->WeaponGet("firing fuel"))
+				if(outfit && !outfit->Ammo() && !outfit->FiringFuel())
 				{
 					command.SetFire(index);
 					hasGuns |= !weapon.IsTurret();

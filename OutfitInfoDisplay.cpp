@@ -231,7 +231,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.push_back("shield damage / second:");
 		attributeValues.push_back(Format::Number(
-			60. * outfit.ShieldDamage() / outfit.WeaponGet("reload")));
+			60. * outfit.ShieldDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
@@ -239,11 +239,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.push_back("hull damage / second:");
 		attributeValues.push_back(Format::Number(
-			60. * outfit.HullDamage() / outfit.WeaponGet("reload")));
+			60. * outfit.HullDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
-	int homing = outfit.WeaponGet("homing");
+	int homing = outfit.Homing();
 	if(homing)
 	{
 		static const string skill[] = {
@@ -269,15 +269,21 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"blast radius",
 		"missile strength",
 		"anti-missile",
-		"capture attack",
-		"capture defense"
+	};
+	double values[6] = {
+		outfit.Inaccuracy(),
+		outfit.FiringEnergy(),
+		outfit.FiringHeat(),
+		outfit.BlastRadius(),
+		static_cast<double>(outfit.MissileStrength()),
+		static_cast<double>(outfit.AntiMissile())
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
 	for(int i = 0; i < NAMES; ++i)
-		if(outfit.WeaponGet(names[i]))
+		if(values[i])
 		{
 			attributeLabels.push_back(names[i]);
-			attributeValues.push_back(Format::Number(outfit.WeaponGet(names[i])));
+			attributeValues.push_back(Format::Number(values[i]));
 			attributesHeight += 20;
 		}
 }

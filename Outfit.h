@@ -14,8 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define OUTFIT_H_
 
 #include "Animation.h"
-#include "Effect.h"
-#include "Set.h"
+#include "Weapon.h"
 
 #include <map>
 #include <string>
@@ -33,10 +32,8 @@ class Sprite;
 // set of attributes unique to them, and outfits can also specify additional
 // information like the sprite to use in the outfitter panel for selling them,
 // or the sprite or sound to be used for an engine flare.
-class Outfit {
+class Outfit : public Weapon {
 public:
-	Outfit();
-	
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
@@ -66,55 +63,17 @@ public:
 	const Animation &FlareSprite() const;
 	const Sound *FlareSound() const;
 	
-	// Weapon attributes.
-	
-	// Check if this is a weapon.
-	bool IsWeapon() const;
-	// Get the weapon provided by this outfit, if any.
-	const Animation &WeaponSprite() const;
-	const Sound *WeaponSound() const;
-	const Outfit *Ammo() const;
-	const Sprite *Icon() const;
-	double WeaponGet(const std::string &attribute) const;
-	
-	// TODO: also check if this is a gun or a turret.
-	
-	// Handle a weapon impacting something or reaching its end of life.
-	const std::map<const Effect *, int> &HitEffects() const;
-	const std::map<const Effect *, int> &DieEffects() const;
-	const std::map<const Outfit *, int> &Submunitions() const;
-	// Get weapon lifetime, including submunitions.
-	double TotalLifetime() const;
-	double Range() const;
-	double ShieldDamage() const;
-	double HullDamage() const;
-	double HeatDamage() const;
-	
-	
-private:
-	double SubSum(const std::string &attribute) const;
-	
 	
 private:
 	std::string name;
 	std::string category;
 	std::string description;
-	const Sprite *thumbnail;
+	const Sprite *thumbnail = nullptr;
 	
 	std::map<std::string, double> attributes;
 	
 	Animation flare;
-	const Sound *flareSound;
-	Animation weaponSprite;
-	const Sound *weaponSound;
-	const Outfit *ammo;
-	const Sprite *icon;
-	// Die and hit effects.
-	std::map<const Effect *, int> hitEffects;
-	std::map<const Effect *, int> dieEffects;
-	std::map<const Outfit *, int> submunitions;
-	
-	std::map<std::string, double> weapon;
+	const Sound *flareSound = nullptr;
 };
 
 

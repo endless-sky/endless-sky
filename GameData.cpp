@@ -546,9 +546,9 @@ void GameData::PrintShipTable()
 		for(const auto &oit : ship.Outfits())
 			if(oit.first->IsWeapon())
 			{
-				double reload = oit.first->WeaponGet("reload");
-				energy += oit.second * oit.first->WeaponGet("firing energy") / reload;
-				heat += oit.second * oit.first->WeaponGet("firing heat") / reload;
+				double reload = oit.first->Reload();
+				energy += oit.second * oit.first->FiringEnergy() / reload;
+				heat += oit.second * oit.first->FiringHeat() / reload;
 			}
 		cout << 60. * attributes.Get("energy generation") << '\t';
 		cout << 60. * energy << '\t';
@@ -570,7 +570,7 @@ void GameData::PrintWeaponTable()
 	for(auto &it : outfits)
 	{
 		// Skip non-weapons and submunitions.
-		if(!it.second.IsWeapon() || !it.second.WeaponGet("reload"))
+		if(!it.second.IsWeapon() || !it.second.Reload())
 			continue;
 		
 		const Outfit &outfit = it.second;
@@ -580,18 +580,18 @@ void GameData::PrintWeaponTable()
 		
 		cout << outfit.Range() << '\t';
 		
-		double energy = outfit.WeaponGet("firing energy") * 60. / outfit.WeaponGet("reload");
+		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
 		cout << energy << '\t';
-		double heat = outfit.WeaponGet("firing heat") * 60. / outfit.WeaponGet("reload");
+		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
 		cout << heat << '\t';
 		
-		double shield = outfit.ShieldDamage() * 60. / outfit.WeaponGet("reload");
+		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
 		cout << shield << '\t';
-		double hull = outfit.HullDamage() * 60. / outfit.WeaponGet("reload");
+		double hull = outfit.HullDamage() * 60. / outfit.Reload();
 		cout << hull << '\t';
 		
-		cout << outfit.WeaponGet("homing") << '\t';
-		double strength = outfit.WeaponGet("missile strength") + outfit.WeaponGet("anti-missile");
+		cout << outfit.Homing() << '\t';
+		double strength = outfit.MissileStrength() + outfit.AntiMissile();
 		cout << strength << '\n';
 	}
 	cout.flush();

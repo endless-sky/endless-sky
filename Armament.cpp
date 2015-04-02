@@ -72,14 +72,14 @@ bool Armament::Weapon::IsTurret() const
 
 bool Armament::Weapon::IsHoming() const
 {
-	return outfit && outfit->WeaponGet("homing");
+	return outfit && outfit->Homing();
 }
 
 
 
 bool Armament::Weapon::IsAntiMissile() const
 {
-	return outfit && outfit->WeaponGet("anti-missile") >= 1.;
+	return outfit && outfit->AntiMissile() > 0;
 }
 
 
@@ -123,7 +123,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	{
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
-		double steps = RendevousTime(p, v, outfit->WeaponGet("velocity"));
+		double steps = RendevousTime(p, v, outfit->Velocity());
 		
 		// Special case: RendevousTime() may return NaN. But in that case, this
 		// comparison will return false.
@@ -138,12 +138,12 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	projectiles.emplace_back(ship, start, aim, outfit);
 	if(outfit->WeaponSound())
 		Audio::Play(outfit->WeaponSound(), start, ship.Velocity());
-	double force = outfit->WeaponGet("firing force");
+	double force = outfit->FiringForce();
 	if(force)
 		ship.ApplyForce(aim.Unit() * -force);
 	
 	// Reset the reload count.
-	reload += outfit->WeaponGet("reload");
+	reload += outfit->Reload();
 	ship.ExpendAmmo(outfit);
 }
 
@@ -152,11 +152,11 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 // Fire an anti-missile. Returns true if the missile should be killed.
 bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile, list<Effect> &effects)
 {
-	int strength = outfit->WeaponGet("anti-missile");
+	int strength = outfit->AntiMissile();
 	if(!strength)
 		return false;
 	
-	double range = outfit->WeaponGet("velocity");
+	double range = outfit->Velocity();
 	
 	// Check if the missile is in range.
 	Point start = ship.Position() + ship.Facing().Rotate(point);
@@ -176,7 +176,7 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 		}
 	
 	// Reset the reload count.
-	reload += outfit->WeaponGet("reload");
+	reload += outfit->Reload();
 	ship.ExpendAmmo(outfit);
 	
 	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
@@ -264,7 +264,7 @@ void Armament::Add(const Outfit *outfit, int count)
 	
 	// If this weapon is streamed, create a stream counter. Missiles and anti-
 	// missiles do not stream.
-	if(!outfit->WeaponGet("missile strength") && !outfit->WeaponGet("anti-missile"))
+	if(!outfit->MissileStrength() && !outfit->AntiMissile())
 	{
 		auto it = streamReload.find(outfit);
 		if(it == streamReload.end())
@@ -294,7 +294,7 @@ void Armament::FinishLoading()
 			weapon.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
 			// Missiles and anti-missiles do not stream.
-			if(!outfit->WeaponGet("missile strength") && !outfit->WeaponGet("anti-missile"))
+			if(!outfit->MissileStrength() && !outfit->AntiMissile())
 				++streamReload[outfit];
 		}
 }
@@ -356,7 +356,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
 	
 	weapons[index].Fire(ship, projectiles);
 	if(it != streamReload.end())
-		it->second += it->first->WeaponGet("reload");
+		it->second += it->first->Reload();
 }
 
 

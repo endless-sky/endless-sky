@@ -28,13 +28,14 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 	: weapon(weapon), animation(weapon->WeaponSprite()),
 	position(position), velocity(parent.Velocity()), angle(angle),
 	targetShip(parent.GetTargetShip()), government(parent.GetGovernment()),
-	lifetime(weapon->WeaponGet("lifetime"))
+	lifetime(weapon->Lifetime())
 {
-	double inaccuracy = weapon->WeaponGet("inaccuracy");
+	cachedTarget = targetShip.lock().get();
+	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 	
-	velocity += this->angle.Unit() * weapon->WeaponGet("velocity");
+	velocity += this->angle.Unit() * weapon->Velocity();
 }
 
 
@@ -43,27 +44,28 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 	: weapon(weapon), animation(weapon->WeaponSprite()),
 	position(parent.position + parent.velocity), velocity(parent.velocity), angle(parent.angle),
 	targetShip(parent.targetShip), government(parent.government),
-	lifetime(weapon->WeaponGet("lifetime"))
+	lifetime(weapon->Lifetime())
 {
-	double inaccuracy = weapon->WeaponGet("inaccuracy");
+	cachedTarget = targetShip.lock().get();
+	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
 	{
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
-		if(!parent.weapon->WeaponGet("acceleration"))
+		if(!parent.weapon->Acceleration())
 		{
 			// Move in this new direction at the same velocity.
-			double parentVelocity = parent.weapon->WeaponGet("velocity");
+			double parentVelocity = parent.weapon->Velocity();
 			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
 		}
 	}
-	velocity += this->angle.Unit() * weapon->WeaponGet("velocity");
+	velocity += this->angle.Unit() * weapon->Velocity();
 }
 
 
 
 // Ship explosion.
 Projectile::Projectile(Point position, const Outfit *weapon)
-	: weapon(weapon), position(position), government(nullptr), lifetime(0)
+	: weapon(weapon), position(position)
 {
 }
 
@@ -86,20 +88,25 @@ bool Projectile::Move(list<Effect> &effects)
 	}
 	
 	// If the target has left the system, stop following it.
-	const Ship *target = Target();
-	if(target && !target->IsTargetable())
+	const Ship *target = cachedTarget;
+	if(target)
 	{
-		targetShip.reset();
-		target = nullptr;
+		target = targetShip.lock().get();
+		if(!target || !target->IsTargetable())
+		{
+			targetShip.reset();
+			cachedTarget = nullptr;
+			target = nullptr;
+		}
 	}
 	
-	double turn = weapon->WeaponGet("turn");
-	double accel = weapon->WeaponGet("acceleration");
-	int homing = weapon->WeaponGet("homing");
+	double turn = weapon->Turn();
+	double accel = weapon->Acceleration();
+	int homing = weapon->Homing();
 	if(target && homing)
 	{
 		Point d = position - target->Position();
-		double drag = weapon->WeaponGet("drag");
+		double drag = weapon->Drag();
 		double trueVelocity = drag ? accel / drag : velocity.Length();
 		double stepsToReach = d.Length() / trueVelocity;
 		bool isFacingAway = d.Dot(angle.Unit()) > 0.;
@@ -148,7 +155,7 @@ bool Projectile::Move(list<Effect> &effects)
 	if(accel)
 	{
 		velocity += accel * angle.Unit();
-		velocity *= 1. - weapon->WeaponGet("drag");
+		velocity *= 1. - weapon->Drag();
 	}
 	
 	position += velocity;
@@ -177,13 +184,14 @@ void Projectile::MakeSubmunitions(list<Projectile> &projectiles) const
 // frame for the given step.
 double Projectile::CheckCollision(const Ship &ship, int step) const
 {
-	double radius = weapon->WeaponGet("trigger radius");
-	if(radius > 0. && ship.GetSprite().GetMask(step).WithinRange(
-			position - ship.Position(), angle, radius))
+	const Mask &mask = ship.GetSprite().GetMask(step);
+	Point offset = position - ship.Position();
+	
+	double radius = weapon->TriggerRadius();
+	if(radius > 0. && mask.WithinRange(offset, angle, radius))
 		return 0.;
 	
-	return ship.GetSprite().GetMask(step).Collide(
-		position - ship.Position(), velocity, ship.Facing());
+	return mask.Collide(offset, velocity, ship.Facing());
 }
 
 
@@ -191,7 +199,7 @@ double Projectile::CheckCollision(const Ship &ship, int step) const
 // Check if this projectile has a blast radius.
 bool Projectile::HasBlastRadius() const
 {
-	return (weapon->WeaponGet("blast radius") > 0.);
+	return (weapon->BlastRadius() > 0.);
 }
 
 
@@ -200,8 +208,8 @@ bool Projectile::HasBlastRadius() const
 // projectile will not explode unless it is also within the trigger radius.)
 bool Projectile::InBlastRadius(const Ship &ship, int step) const
 {
-	return ship.GetSprite().GetMask(step).WithinRange(
-		position - ship.Position(), ship.Facing(), weapon->WeaponGet("blast radius"));
+	const Mask &mask = ship.GetSprite().GetMask(step);
+	return mask.WithinRange(position - ship.Position(), ship.Facing(), weapon->BlastRadius());
 }
 
 
@@ -234,7 +242,7 @@ void Projectile::Kill()
 // chance an anti-missile shot has of destroying it).
 int Projectile::MissileStrength() const
 {
-	return static_cast<int>(weapon->WeaponGet("missile strength"));
+	return weapon->MissileStrength();
 }
 
 
@@ -287,8 +295,7 @@ Point Projectile::Unit() const
 // Find out which ship this projectile is targeting.
 const Ship *Projectile::Target() const
 {
-	auto ptr = targetShip.lock();
-	return ptr.get();
+	return cachedTarget;
 }
 
 

@@ -1059,7 +1059,7 @@ bool Ship::Fire(list<Projectile> &projectiles)
 		const Outfit *outfit = weapons[i].GetOutfit();
 		if(outfit && CanFire(outfit))
 		{
-			if(outfit->WeaponGet("anti-missile"))
+			if(outfit->AntiMissile())
 				hasAntiMissile = true;
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles);
@@ -1544,7 +1544,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	const Outfit &weapon = projectile.GetWeapon();
 	double shieldDamage = weapon.ShieldDamage();
 	double hullDamage = weapon.HullDamage();
-	double hitForce =  weapon.WeaponGet("hit force");
+	double hitForce = weapon.HitForce();
 	double heatDamage = weapon.HeatDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
@@ -1800,9 +1800,9 @@ bool Ship::CanFire(const Outfit *outfit) const
 			return false;
 	}
 	
-	if(energy < outfit->WeaponGet("firing energy"))
+	if(energy < outfit->FiringEnergy())
 		return false;
-	if(fuel < outfit->WeaponGet("firing fuel"))
+	if(fuel < outfit->FiringFuel())
 		return false;
 	
 	return true;
@@ -1819,9 +1819,9 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	if(outfit->Ammo())
 		AddOutfit(outfit->Ammo(), -1);
 	
-	energy -= outfit->WeaponGet("firing energy");
-	fuel -= outfit->WeaponGet("firing fuel");
-	heat += outfit->WeaponGet("firing heat");
+	energy -= outfit->FiringEnergy();
+	fuel -= outfit->FiringFuel();
+	heat += outfit->FiringHeat();
 }
 
 
