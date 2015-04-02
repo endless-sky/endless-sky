@@ -753,7 +753,7 @@ void Engine::CalculateStep()
 	// not add more ships to make a winning team even stronger. This is mostly
 	// to avoid having the player get mobbed by pirates, say, if they hang out
 	// in one system for too long.
-	map<const Government *, int> strength;
+	map<const Government *, int64_t> strength;
 	// Now, ships fire new projectiles, which includes launching fighters. If an
 	// anti-missile system is ready to fire, it does not actually fire unless a
 	// missile is detected in range during collision detection, below.
@@ -989,7 +989,7 @@ void Engine::CalculateStep()
 			if(!gov)
 				continue;
 			
-			int enemyStrength = 0;
+			int64_t enemyStrength = 0;
 			for(const auto &it : strength)
 				if(gov->IsEnemy(it.first))
 					enemyStrength += it.second;
