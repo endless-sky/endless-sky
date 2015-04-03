@@ -578,7 +578,7 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			if(!forget)
 				for(unsigned i = 0; i < explosionTotal; ++i)
-					CreateExplosion(effects);
+					CreateExplosion(effects, true);
 			energy = 0.;
 			heat = 0.;
 			fuel = 0.;
@@ -1841,7 +1841,7 @@ double Ship::MinimumHull() const
 
 
 
-void Ship::CreateExplosion(list<Effect> &effects)
+void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 {
 	if(sprite.IsEmpty() || !sprite.GetMask(0).IsLoaded() || explosionEffects.empty())
 		return;
@@ -1863,7 +1863,13 @@ void Ship::CreateExplosion(list<Effect> &effects)
 					break;
 			}
 			effects.push_back(*it->first);
-			effects.back().Place(angle.Rotate(point) + position, velocity, angle);
+			Point effectVelocity = velocity;
+			if(spread)
+			{
+				double scale = .02 * (sprite.Width() + sprite.Height());
+				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
+			}
+			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
 			++explosionCount;
 			return;
 		}

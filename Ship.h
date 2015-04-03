@@ -242,7 +242,7 @@ public:
 private:
 	bool CannotAct() const;
 	double MinimumHull() const;
-	void CreateExplosion(std::list<Effect> &effects);
+	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
 	
 	
 private:
