@@ -307,6 +307,8 @@ void PlayerInfo::New()
 	Clear();
 	
 	date = GameData::Start().GetDate();
+	GameData::SetDate(date);
+	
 	SetSystem(GameData::Start().GetSystem());
 	SetPlanet(GameData::Start().GetPlanet());
 	accounts = GameData::Start().GetAccounts();
