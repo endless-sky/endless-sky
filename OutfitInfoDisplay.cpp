@@ -227,19 +227,31 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.push_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 	
-	if(outfit.ShieldDamage())
+	if(outfit.ShieldDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("shield damage / second:");
-		attributeValues.push_back(Format::Number(
-			60. * outfit.ShieldDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.ShieldDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
-	if(outfit.HullDamage())
+	if(outfit.HullDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("hull damage / second:");
-		attributeValues.push_back(Format::Number(
-			60. * outfit.HullDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.HullDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
+	if(outfit.FiringEnergy() && outfit.Reload())
+	{
+		attributeLabels.push_back("firing energy / second:");
+		attributeValues.push_back(Format::Number(60. * outfit.FiringEnergy() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
+	if(outfit.Reload() > 1)
+	{
+		attributeLabels.push_back("shots / second:");
+		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
@@ -270,7 +282,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"missile strength",
 		"anti-missile",
 	};
-	double values[6] = {
+	double values[] = {
 		outfit.Inaccuracy(),
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
@@ -278,7 +290,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
-	static const int NAMES =  sizeof(names) / sizeof(names[0]);
+	static const int NAMES = sizeof(names) / sizeof(names[0]);
 	for(int i = 0; i < NAMES; ++i)
 		if(values[i])
 		{

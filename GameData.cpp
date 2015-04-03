@@ -547,7 +547,7 @@ void GameData::PrintShipTable()
 		double heat = attributes.Get("heat generation") - attributes.Get("cooling")
 			+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
 		for(const auto &oit : ship.Outfits())
-			if(oit.first->IsWeapon())
+			if(oit.first->IsWeapon() && oit.first->Reload())
 			{
 				double reload = oit.first->Reload();
 				energy += oit.second * oit.first->FiringEnergy() / reload;

@@ -465,7 +465,7 @@ outfit "Meteor Missile Launcher"
 		"inaccuracy" 10
 		"velocity" 10
 		"lifetime" 600
-		"reload" 45
+		"reload" 48
 		"firing energy" 1
 		"firing heat" 20
 		"acceleration" 1

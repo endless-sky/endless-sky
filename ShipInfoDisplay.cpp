@@ -361,7 +361,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
-		if(it.first->IsWeapon())
+		if(it.first->IsWeapon() && it.first->Reload())
 		{
 			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
 			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
