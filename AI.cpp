@@ -574,7 +574,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		else
 		{
 			PrepareForHyperspace(ship, command);
-			if(parent.IsEnteringHyperspace() || parent.CanHyperspace())
+			if(parent.IsEnteringHyperspace() || parent.CheckHyperspace())
 				command |= Command::JUMP;
 		}
 	}
@@ -707,8 +707,10 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
+	int type = ship.HyperspaceType();
+	
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
-	if(ship.Attributes().Get("scram drive"))
+	if(type == 150)
 	{
 		direction = direction.Unit();
 		Point normal(-direction.Y(), direction.X());
@@ -742,7 +744,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 	// If we are moving too fast, point in the right direction.
 	else if(Stop(ship, command, ship.Attributes().Get("jump speed")))
 	{
-		if(!ship.Attributes().Get("jump drive"))
+		if(type != 200)
 			command.SetTurn(TurnToward(ship, direction));
 	}
 }

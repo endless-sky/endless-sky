@@ -115,7 +115,10 @@ public:
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
-	bool CanHyperspace() const;
+	int CheckHyperspace() const;
+	// Check what type of hyperspce jump this ship is making (0 = not allowed,
+	// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
+	int HyperspaceType() const;
 	bool IsBoarding() const;
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
@@ -326,6 +329,7 @@ private:
 	
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
+	int hyperspaceType = 0;
 	Point hyperspaceOffset;
 	
 	std::map<const Effect *, int> explosionEffects;

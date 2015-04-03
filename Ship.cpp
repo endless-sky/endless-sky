@@ -601,7 +601,7 @@ bool Ship::Move(list<Effect> &effects)
 		static const int HYPER_C = 100;
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
-		bool hasJumpDrive = attributes.Get("jump drive");
+		bool hasJumpDrive = (hyperspaceType == 200);
 		
 		// Create the particle effects for the jump drive. This may create 100
 		// or more particles per ship per turn at the peak of the jump.
@@ -628,7 +628,7 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			currentSystem = hyperspaceSystem;
 			// If "jump fuel" is higher than 100, expend extra fuel now.
-			fuel -= attributes.Get("jump fuel") - HYPER_C;
+			fuel -= hyperspaceType - HYPER_C;
 			hyperspaceSystem = nullptr;
 			SetTargetSystem(nullptr);
 			SetTargetPlanet(nullptr);
@@ -753,8 +753,12 @@ bool Ship::Move(list<Effect> &effects)
 	}
 	if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetPlanet()->GetPlanet();
-	else if(commands.Has(Command::JUMP) && CanHyperspace())
-		hyperspaceSystem = GetTargetSystem();
+	else if(commands.Has(Command::JUMP))
+	{
+		hyperspaceType = CheckHyperspace();
+		if(hyperspaceType)
+			hyperspaceSystem = GetTargetSystem();
+	}
 	
 	double cloakingSpeed = attributes.Get("cloak");
 	bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
@@ -1164,56 +1168,79 @@ bool Ship::CanLand() const
 
 
 // Check if this ship is currently able to enter hyperspace to it target.
-bool Ship::CanHyperspace() const
+int Ship::CheckHyperspace() const
 {
-	if(IsDisabled())
-		return false;
-	if(!GetTargetSystem())
-		return false;
-	if(fuel < attributes.Get("jump fuel"))
-		return false;
 	if(commands.Has(Command::WAIT))
-		return false;
+		return 0;
 	
-	Point direction = GetTargetSystem()->Position() - currentSystem->Position();
+	// Find out where we're going and how we're getting there,
+	const System *destination = GetTargetSystem();
+	int type = HyperspaceType();
+	
+	// You can't jump to a system with no link to it.
+	if(!type)
+		return 0;
+	
+	if(fuel < type)
+		return 0;
+	
+	Point direction = destination->Position() - currentSystem->Position();
 	
 	// The ship can only enter hyperspace if it is traveling slowly enough
 	// and pointed in the right direction.
-	if(attributes.Get("scram drive"))
+	if(type == 150)
 	{
 		double deviation = fabs(direction.Unit().Cross(velocity));
 		if(deviation > attributes.Get("scram drive"))
-			return false;
+			return 0;
 	}
 	else if(velocity.Length() > attributes.Get("jump speed"))
-		return false;
+		return 0;
 	
-	if(attributes.Get("jump drive"))
+	if(type != 200)
 	{
-		// Allow jumping only to systems that are neighbors of this one.
-		for(const System *link : currentSystem->Neighbors())
-			if(link == GetTargetSystem())
-				return true;
-		return false;
+		// Figure out if we're within one turn step of facing this system.
+		bool left = direction.Cross(angle.Unit()) < 0.;
+		Angle turned = angle + TurnRate() * (left - !left);
+		bool stillLeft = direction.Cross(turned.Unit()) < 0.;
+	
+		if(left == stillLeft)
+			return 0;
 	}
-	if(!attributes.Get("hyperdrive"))
-		return false;
 	
-	// Figure out if we're within one turn step of facing this system.
-	bool left = direction.Cross(angle.Unit()) < 0.;
-	Angle turned = angle + TurnRate() * (left - !left);
-	bool stillLeft = direction.Cross(turned.Unit()) < 0.;
+	return type;
+}
+
+
+
+// Check what type of hyperspce jump this ship is making (0 = not allowed,
+// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
+int Ship::HyperspaceType() const
+{
+	if(IsDisabled())
+		return 0;
+	const System *destination = GetTargetSystem();
+	if(!destination)
+		return 0;
 	
-	if(left == stillLeft)
-		return false;
+	// Check what equipment this ship has.
+	bool hasHyperdrive = attributes.Get("hyperdrive");
+	bool hasScramDrive = attributes.Get("scram drive");
+	bool hasJumpDrive = attributes.Get("jump drive");
 	
-	// Allow jumping only to systems that are linked to this one. This check is
-	// needed because links may have changed after the travel plan was set.
-	for(const System *link : currentSystem->Links())
-		if(link == GetTargetSystem())
-			return true;
+	// Figure out what sort of jump we're making. 100 = normal hyperspace,
+	// 150 = scram drive, 200 = jump drive.
+	if(hasHyperdrive || hasScramDrive)
+		for(const System *link : currentSystem->Links())
+			if(link == destination)
+				return hasScramDrive ? 150 : 100;
 	
-	return false;
+	if(hasJumpDrive)
+		for(const System *link : currentSystem->Neighbors())
+			if(link == destination)
+				return 200;
+	
+	return 0;
 }
 
 
@@ -1380,7 +1407,7 @@ double Ship::Fuel() const
 
 int Ship::JumpsRemaining() const
 {
-	double jumpFuel = attributes.Get("jump fuel");
+	double jumpFuel = HyperspaceType();
 	if(!jumpFuel)
 		return 0;
 	return fuel / jumpFuel;
