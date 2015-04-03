@@ -27,46 +27,44 @@ using namespace std;
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
 DistanceMap::DistanceMap(const System *center, int maxCount)
+	: maxCount(maxCount)
 {
 	distance[center] = 0;
-	Init(maxCount);
+	Init();
 }
 
 
 
-DistanceMap::DistanceMap(const PlayerInfo &player, const System *system)
+// If a player is given, the map will only use hyperspace paths known to the
+// player; that is, one end of the path has been visited. Also, if the
+// player's flagship has a jump drive, the jumps will be make use of it.
+DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 {
-	if(!player.GetShip() || (!system && !player.GetShip()->GetSystem()))
+	if(!player.GetShip())
 		return;
 	
-	if(!system)
-		system = player.GetShip()->GetSystem();
-	distance[system] = 0;
+	if(!center)
+		center = player.GetShip()->GetSystem();
+	if(!center)
+		return;
 	
-	if(player.GetShip()->Attributes().Get("jump drive"))
-		InitJump(player);
-	else if(player.GetShip()->Attributes().Get("hyperdrive"))
-		InitHyper(player);
-	
-	// If the player has a ship but no hyperdrive capability, all systems are
-	// marked as unreachable except for this one.
+	distance[center] = 0;
+	Init(player.GetShip());
 }
 
 
 
 // Calculate the path for the given ship to get to the given system. The
-// ship will use a jump drive or hyperdrive depending on what it has.
+// ship will use a jump drive or hyperdrive depending on what it has. The
+// pathfinding will stop once a path to the destination is found.
 DistanceMap::DistanceMap(const Ship &ship, const System *destination)
+	: source(ship.GetSystem())
 {
-	if(!ship.GetSystem() || !destination)
+	if(!source || !destination)
 		return;
 	
 	distance[destination] = 0;
-	
-	if(ship.Attributes().Get("jump drive"))
-		InitJump(ship.GetSystem());
-	else if(ship.Attributes().Get("hyperdrive"))
-		InitHyper(ship.GetSystem());
+	Init(&ship);
 }
 
 
@@ -113,135 +111,78 @@ const map<const System *, int> DistanceMap::Distances() const
 
 
 
-void DistanceMap::Init(int maxCount)
+// Depending on the capabilities of the given ship, use hyperspace paths,
+// jump drive paths, or both to find the shortest route. Bail out if the
+// source system or the maximum count is reached.
+void DistanceMap::Init(const Ship *ship)
 {
-	vector<const System *> edge = {distance.begin()->first};
-	for(int steps = 1; !edge.empty(); ++steps)
-	{
-		vector<const System *> newEdge;
-		for(const System *system : edge)
-			for(const System *link : system->Links())
-			{
-				auto it = distance.find(link);
-				if(it != distance.end())
-					continue;
-				
-				distance[link] = steps;
-				route[link] = system;
-				newEdge.push_back(link);
-				
-				// Bail out if we've found the specified number of systems.
-				if(maxCount > 0 && !--maxCount)
-					return;
-			}
-		if(steps == -maxCount)
-			return;
-		newEdge.swap(edge);
-	}
-}
-
-
-
-void DistanceMap::InitHyper(const PlayerInfo &player)
-{
-	vector<const System *> edge = {distance.begin()->first};
-	for(int steps = 1; !edge.empty(); ++steps)
-	{
-		vector<const System *> newEdge;
-		for(const System *system : edge)
-			for(const System *link : system->Links())
-			{
-				if(!player.HasSeen(link))
-					continue;
-				if(!player.HasVisited(link) && !player.HasVisited(system))
-					continue;
-				
-				auto it = distance.find(link);
-				if(it != distance.end())
-					continue;
-				
-				distance[link] = steps;
-				route[link] = system;
-				newEdge.push_back(link);
-			}
-		newEdge.swap(edge);
-	}
-}
-
-
-
-void DistanceMap::InitJump(const PlayerInfo &player)
-{
-	hasJump = true;
+	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : true;
+	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
 	
-	vector<const System *> edge = {distance.begin()->first};
-	for(int steps = 1; !edge.empty(); ++steps)
-	{
-		vector<const System *> newEdge;
-		for(const System *system : edge)
-			for(const System *link : system->Neighbors())
-			{
-				if(!player.HasSeen(link))
-					continue;
-				
-				auto it = distance.find(link);
-				if(it != distance.end())
-					continue;
-				
-				distance[link] = steps;
-				route[link] = system;
-				newEdge.push_back(link);
-			}
-		newEdge.swap(edge);
-	}
-}
-
-
-
-void DistanceMap::InitHyper(const System *source)
-{
-	vector<const System *> edge = {distance.begin()->first};
-	for(int steps = 1; !edge.empty(); ++steps)
-	{
-		vector<const System *> newEdge;
-		for(const System *system : edge)
-			for(const System *link : system->Links())
-				if(distance.find(link) == distance.end())
-				{
-					distance[link] = steps;
-					route[link] = system;
-					
-					if(link == source)
-						return;
-					
-					newEdge.push_back(link);
-				}
-		newEdge.swap(edge);
-	}
-}
-
-
-
-void DistanceMap::InitJump(const System *source)
-{
-	hasJump = true;
+	// This only works if the starting system has been added to the distance map.
+	if(distance.empty() || !(hasHyper || hasJump))
+		return;
 	
-	vector<const System *> edge = {distance.begin()->first};
-	for(int steps = 1; !edge.empty(); ++steps)
+	edge.push(distance.begin()->first);
+	while(!edge.empty())
 	{
-		vector<const System *> newEdge;
-		for(const System *system : edge)
-			for(const System *link : system->Neighbors())
-				if(distance.find(link) == distance.end())
-				{
-					distance[link] = steps;
-					route[link] = system;
-					
-					if(link == source)
-						return;
-					
-					newEdge.push_back(link);
-				}
-		newEdge.swap(edge);
+		const System *system = edge.front();
+		edge.pop();
+		
+		int steps = distance[system];
+		if(hasHyper && !Propagate(system, false, steps))
+			break;
+		if(hasJump && !Propagate(system, true, steps))
+			break;
 	}
+}
+
+
+
+// Add the given links to the map. Return false if an end condition is hit.
+bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
+{
+	steps += 1 + useJump;
+	
+	for(const System *link : (useJump ? system->Neighbors() : system->Links()))
+	{
+		// Bail out if we've hit the limit of how many systems to map.
+		if(!maxCount)
+			return false;
+		
+		// Check whether this link can be traveled. If this route is being
+		// selected by the player, they are constrained to known routes.
+		if(!CheckLink(system, link))
+			continue;
+		
+		// Check if this system already has a path to it.
+		auto it = distance.find(link);
+		if(it != distance.end())
+			continue;
+	
+		distance[link] = steps;
+		route[link] = system;
+		if(link == source)
+			return false;
+		
+		edge.push(link);
+		--maxCount;
+	}
+	return true;
+}
+
+
+
+// Check whether the given link is mappable. If no player was given in the
+// constructor then this is always true; otherwise, the player must know
+// that the given link exists.
+bool DistanceMap::CheckLink(const System *from, const System *to) const
+{
+	if(!player)
+		return true;
+	
+	if(!player->HasSeen(to))
+		return false;
+	
+	return (player->HasVisited(from) || player->HasVisited(to));
 }

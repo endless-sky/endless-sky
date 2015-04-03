@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DISTANCE_MAP_H_
 
 #include <map>
+#include <queue>
 
 class Ship;
 class System;
@@ -35,9 +36,10 @@ public:
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
-	DistanceMap(const PlayerInfo &player, const System *system = nullptr);
+	DistanceMap(const PlayerInfo &player, const System *center = nullptr);
 	// Calculate the path for the given ship to get to the given system. The
-	// ship will use a jump drive or hyperdrive depending on what it has.
+	// ship will use a jump drive or hyperdrive depending on what it has. The
+	// pathfinding will stop once a path to the destination is found.
 	DistanceMap(const Ship &ship, const System *destination);
 	
 	// Find out if the given system is reachable.
@@ -53,17 +55,27 @@ public:
 	
 	
 private:
-	void Init(int maxCount);
-	void InitHyper(const PlayerInfo &player);
-	void InitJump(const PlayerInfo &player);
-	void InitHyper(const System *source);
-	void InitJump(const System *source);
+	// Depending on the capabilities of the given ship, use hyperspace paths,
+	// jump drive paths, or both to find the shortest route. Bail out if the
+	// source system or the maximum count is reached.
+	void Init(const Ship *ship = nullptr);
+	// Add the given links to the map. Return false if an end condition is hit.
+	bool Propagate(const System *system, bool useJump, int steps);
+	// Check whether the given link is mappable. If no player was given in the
+	// constructor then this is always true; otherwise, the player must know
+	// that the given link exists.
+	bool CheckLink(const System *from, const System *to) const;
 	
 	
 private:
 	std::map<const System *, int> distance;
 	std::map<const System *, const System *> route;
-	bool hasJump = false;
+	
+	// Variables only used during construction:
+	std::queue<const System *> edge;
+	const PlayerInfo *player = nullptr;
+	const System *source = nullptr;
+	int maxCount = -1;
 };
 
 
