@@ -176,6 +176,7 @@ void PlayerInfo::Load(const string &path)
 				ships.front()->AddEscort(ships.back());
 			}
 			ships.back()->FinishLoading();
+			ships.back()->SetIsYours();
 		}
 	}
 	UpdateCargoCapacities();
@@ -551,10 +552,12 @@ int64_t PlayerInfo::Salaries() const
 
 
 
-// Set the player ship.
+// Add a captured ship to your fleet.
 void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 {
 	ships.push_back(ship);
+	ship->SetIsSpecial();
+	ship->SetIsYours();
 }
 
 
@@ -601,6 +604,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
 		ships.back()->SetIsSpecial();
+		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		if(ships.size() > 1)
 		{

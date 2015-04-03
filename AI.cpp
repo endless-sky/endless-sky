@@ -56,7 +56,7 @@ AI::AI()
 
 
 
-void AI::UpdateKeys(PlayerInfo *info, bool isActive)
+void AI::UpdateKeys(PlayerInfo *player, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	
@@ -65,35 +65,42 @@ void AI::UpdateKeys(PlayerInfo *info, bool isActive)
 	keyDown = keyHeld & ~oldHeld;
 	if(keyHeld & AutopilotCancelKeys())
 		keyStuck.Clear();
-	if(keyStuck.Has(Command::JUMP) && !info->HasTravelPlan())
+	if(keyStuck.Has(Command::JUMP) && !player->HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
-	const Ship *player = info->GetShip();
-	if(!isActive || !player)
+	const Ship *flagship = player->GetShip();
+	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
 	
-	// Cloaking device.
-	if(keyDown.Has(Command::CLOAK) && player->Attributes().Get("cloak"))
-	{
-		isCloaking = !isCloaking;
-		Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
-	}
-	if(!player->IsTargetable())
-		return;
+	// Only toggle the "cloak" command if one of your ships has a cloaking device.
+	if(keyDown.Has(Command::CLOAK))
+		for(const auto &it : player->Ships())
+			if(it->Attributes().Get("cloak"))
+			{
+				isCloaking = !isCloaking;
+				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
+				break;
+			}
 	
+	// Toggle your secondary weapon.
 	if(keyDown.Has(Command::SELECT))
-		info->SelectNext();
+		player->SelectNext();
 	
 	// The commands below here only apply if you have escorts or fighters.
-	if(info->Ships().size() < 2)
+	if(player->Ships().size() < 2)
 		return;
 	
-	if(keyDown.Has(Command::DEPLOY) && player->HasBays())
-	{
-		isLaunching = !isLaunching;
-		Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
-	}
-	shared_ptr<Ship> target = player->GetTargetShip();
+	// Only toggle the "deploy" command if one of your ships has fighter bays.
+	if(keyDown.Has(Command::DEPLOY))
+		for(const auto &it : player->Ships())
+			if(it->HasBays())
+			{
+				isLaunching = !isLaunching;
+				Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
+				break;
+			}
+	
+	shared_ptr<Ship> target = flagship->GetTargetShip();
 	if(keyDown.Has(Command::FIGHT) && target)
 	{
 		sharedTarget = target;
@@ -169,6 +176,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		else
 		{
 			Command command;
+			if(it->IsYours())
+			{
+				if(isLaunching)
+					command |= Command::DEPLOY;
+				if(isCloaking)
+					command |= Command::CLOAK;
+			}
 			
 			const Personality &personality = it->GetPersonality();
 			shared_ptr<Ship> parent = it->GetParent();
@@ -228,6 +242,19 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 					continue;
 				}
 			}
+			bool mustRecall = false;
+			if(it->HasBays() && !(command & Command::DEPLOY))
+			{
+				for(const std::weak_ptr<Ship> &ptr : it->GetEscorts())
+				{
+					shared_ptr<Ship> escort = ptr.lock();
+					if(escort && escort->IsFighter() && escort->GetSystem() == it->GetSystem())
+					{
+						mustRecall = true;
+						break;
+					}
+				}
+			}
 			
 			shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
 			if(shipToAssist)
@@ -244,8 +271,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				continue;
 			}
 			
-			bool isPlayerEscort = it->GetGovernment()->IsPlayer();
-			if(isPlayerEscort && holdPosition)
+			bool isPlayerEscort = it->IsYours();
+			if((isPlayerEscort && holdPosition) || mustRecall)
 			{
 				if(it->Velocity().Length() > .2 || !target)
 					Stop(*it, command);
@@ -257,29 +284,48 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			// the behavior depends on what the parent is doing, whether there
 			// are hostile targets nearby, and whether the escort has any
 			// immediate needs (like refueling).
-			else if(parent && !parent->IsDestroyed()
-					&& ((parent->Commands() & (Command::LAND | Command::JUMP))
-						|| parent->GetSystem() != it->GetSystem()
-						|| targetDistance > 2000. || personality.IsTimid() || !target
-						|| (!it->JumpsRemaining() && it->Attributes().Get("fuel capacity"))
-						|| (isPlayerEscort && moveToMe))
-					&& (parent->GetSystem() != it->GetSystem()
-						|| !parent->GetGovernment()->IsEnemy(it->GetGovernment()))
-					&& (!target || personality.IsTimid() || parent->GetSystem() != it->GetSystem())
-					&& !(personality.IsStaying() && parent->GetSystem() != it->GetSystem()))
-				MoveEscort(*it, command);
-			else
+			else if(!parent || parent->IsDestroyed())
 				MoveIndependent(*it, command);
+			else if(parent->GetSystem() != it->GetSystem())
+				MoveEscort(*it, command);
+			// From here down, we're only dealing with ships that have a "parent"
+			// which is in the same system as them. If you're an enemy of your
+			// "parent," you don't take orders from them.
+			else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(it->GetGovernment()))
+				MoveIndependent(*it, command);
+			// This is a friendly escort. If the parent is getting ready to
+			// jump, always follow.
+			else if(parent->Commands() & Command::JUMP)
+				MoveEscort(*it, command);
+			// If the player is ordering escorts to gather, don't go off to fight.
+			else if(isPlayerEscort && moveToMe)
+				MoveEscort(*it, command);
+			// On the other hand, if the player ordered you to attack, do so even
+			// if you're usually more timid than that.
+			else if(isPlayerEscort && sharedTarget.lock())
+				MoveIndependent(*it, command);
+			// Otherwise, attack targets depending on how heroic you are.
+			else if(target && (targetDistance < 2000. || personality.IsHeroic()) && !personality.IsTimid())
+				MoveIndependent(*it, command);
+			// This ship does not feel like fighting.
+			else
+				MoveEscort(*it, command);
 			
+			// Apply the afterburner if you're in a heated battle and it will not
+			// use up your last jump worth of fuel.
 			if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled()
 					&& target->IsTargetable() && target->GetSystem() == it->GetSystem())
 			{
 				double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
-				if(fuel - it->Attributes().Get("afterburner fuel") >= it->Attributes().Get("jump fuel"))
+				if(fuel - it->Attributes().Get("afterburner fuel") >= it->JumpFuel())
 					if(command.Has(Command::FORWARD) && targetDistance < 1000.)
 						command |= Command::AFTERBURNER;
 			}
-			DoCloak(*it, command, ships);
+			// Your own ships cloak on your command; all others do it when the
+			// AI considers it appropriate.
+			if(!it->IsYours())
+				DoCloak(*it, command, ships);
+			
 			it->SetCommands(command);
 		}
 	}
@@ -296,7 +342,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	if(!gov)
 		return target;
 	
-	bool isPlayerEscort = (gov->IsPlayer());
+	bool isPlayerEscort = ship.IsYours();
 	if(isPlayerEscort)
 	{
 		shared_ptr<Ship> locked = sharedTarget.lock();
@@ -414,7 +460,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	if(target && (ship.GetGovernment()->IsEnemy(target->GetGovernment())
-			|| (ship.GetGovernment()->IsPlayer() && target == sharedTarget.lock())))
+			|| (ship.IsYours() && target == sharedTarget.lock())))
 	{
 		bool shouldBoard = ship.Cargo().Free() && ship.GetPersonality().Plunders();
 		bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
@@ -776,7 +822,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	}
 	
 	// Deploy any fighters you are carrying.
-	command |= Command::DEPLOY;
+	if(!ship.IsYours())
+		command |= Command::DEPLOY;
 	// If this ship only has long-range weapons, it should keep its distance
 	// instead of trying to close with the target ship.
 	if(shortestRange > 1000. && d.Length() < .5 * shortestRange)
@@ -917,7 +964,7 @@ void AI::DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<S
 		{
 			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
 			fuel -= ship.Attributes().Get("cloaking fuel");
-			if(fuel < ship.Attributes().Get("jump fuel"))
+			if(fuel < ship.JumpFuel())
 				return;
 		}
 		// Otherwise, always cloak if you are in imminent danger.
@@ -1016,9 +1063,11 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	// the player will target a friendly ship is if the player has asked a ship
 	// for assistance.
 	shared_ptr<Ship> currentTarget = ship.GetTargetShip();
-	if(ship.GetTargetShip() && !ship.GetTargetShip()->GetGovernment()->IsEnemy(ship.GetGovernment()))
-		if(!ship.GetGovernment()->IsPlayer() || currentTarget != sharedTarget.lock())
-			return command;
+	const Government *gov = ship.GetGovernment();
+	bool isSharingTarget = ship.IsYours() && currentTarget == sharedTarget.lock();
+	bool currentIsEnemy = currentTarget && currentTarget->GetGovernment()->IsEnemy(gov);
+	if(currentTarget && !(currentIsEnemy || isSharingTarget))
+		currentTarget.reset();
 	
 	// Only fire on disabled targets if you don't want to plunder them.
 	bool spareDisabled = (ship.GetPersonality().Disables() || ship.GetPersonality().Plunders());
@@ -1032,10 +1081,8 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	maxRange *= 1.5;
 	
 	// Find all enemy ships within range of at least one weapon.
-	const Government *gov = ship.GetGovernment();
 	vector<shared_ptr<const Ship>> enemies;
-	if(currentTarget && (currentTarget->GetGovernment()->IsEnemy(ship.GetGovernment()) ||
-			(ship.GetGovernment()->IsPlayer() && currentTarget == sharedTarget.lock())))
+	if(currentTarget && (currentIsEnemy || isSharingTarget))
 		enemies.push_back(currentTarget);
 	for(auto target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
@@ -1048,10 +1095,15 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
 		++index;
-		if(!weapon.IsReady() || (!ship.GetTargetShip() && weapon.IsHoming())
-				|| (!secondary && weapon.GetOutfit()->Ammo()))
+		// Skip weapons that are not ready to fire. Also skip homing weapons if
+		// no target is selected, and secondary weapons if only firing primaries.
+		if(!weapon.IsReady() || (!currentTarget && weapon.IsHoming()))
+			continue;
+		if(!secondary && weapon.GetOutfit()->Ammo())
 			continue;
 		
+		// Special case: if the weapon uses fuel, be careful not to spend so much
+		// fuel that you cannot leave the system if necessary.
 		if(weapon.GetOutfit()->FiringFuel())
 		{
 			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
@@ -1059,9 +1111,11 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 			// If the ship is not ever leaving this system, it does not need to
 			// reserve any fuel.
 			bool isStaying = ship.GetPersonality().IsStaying();
-			if(!secondary || (fuel < ship.Attributes().Get("jump fuel") * !isStaying))
+			if(!secondary || fuel < (isStaying ? 0. : ship.JumpFuel()))
 				continue;
 		}
+		// Figure out where this weapon will fire from, but add some randomness
+		// depending on how accurate this ship's pilot is.
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 		start += ship.GetPersonality().Confusion();
 		
@@ -1069,14 +1123,14 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 		double vp = outfit->Velocity();
 		double lifetime = outfit->TotalLifetime();
 		
-		if(ship.GetTargetShip() && (weapon.IsHoming() || weapon.IsTurret()))
+		if(currentTarget && (weapon.IsHoming() || weapon.IsTurret()))
 		{
-			bool hasBoarded = Has(ship, ship.GetTargetShip(), ShipEvent::BOARD);
-			if(ship.GetTargetShip()->IsDisabled() && spareDisabled && !hasBoarded)
+			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
+			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded)
 				continue;
 			
-			Point p = ship.GetTargetShip()->Position() - start;
-			Point v = ship.GetTargetShip()->Velocity() - ship.Velocity();
+			Point p = currentTarget->Position() - start;
+			Point v = currentTarget->Velocity() - ship.Velocity();
 			// By the time this action is performed, the ships will have moved
 			// forward one time step.
 			p += v;

@@ -128,6 +128,8 @@ void Ship::Load(const DataNode &node)
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
+		else if(child.Token(0) == "parked")
+			isParked = true;
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
@@ -331,6 +333,8 @@ void Ship::Save(DataWriter &out) const
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->Name());
+		if(isParked)
+			out.Write("parked");
 	out.EndChild();
 }
 
@@ -429,6 +433,34 @@ void Ship::SetGovernment(const Government *government)
 void Ship::SetIsSpecial(bool special)
 {
 	isSpecial = special;
+}
+
+
+
+void Ship::SetIsYours(bool yours)
+{
+	isYours = yours;
+}
+
+
+
+bool Ship::IsYours() const
+{
+	return isYours;
+}
+
+
+
+void Ship::SetIsParked(bool parked)
+{
+	isParked = parked;
+}
+
+
+
+bool Ship::IsParked() const
+{
+	return isParked;
 }
 
 
@@ -627,7 +659,7 @@ bool Ship::Move(list<Effect> &effects)
 		if(hyperspaceCount == HYPER_C)
 		{
 			currentSystem = hyperspaceSystem;
-			// If "jump fuel" is higher than 100, expend extra fuel now.
+			// If the jump fuel is higher than 100, expend extra fuel now.
 			fuel -= hyperspaceType - HYPER_C;
 			hyperspaceSystem = nullptr;
 			SetTargetSystem(nullptr);
@@ -978,7 +1010,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
-			TransferFuel(victim->attributes.Get("jump fuel"), victim.get());
+			TransferFuel(victim->JumpFuel(), victim.get());
 		return autoPlunder ? shared_ptr<Ship>() : victim;
 	}
 	if(!victim->IsDisabled())
@@ -1407,10 +1439,14 @@ double Ship::Fuel() const
 
 int Ship::JumpsRemaining() const
 {
-	double jumpFuel = HyperspaceType();
-	if(!jumpFuel)
-		return 0;
-	return fuel / jumpFuel;
+	return fuel / JumpFuel();
+}
+
+
+
+double Ship::JumpFuel() const
+{
+	return attributes.Get("jump drive") ? 200. : attributes.Get("scram drive") ? 150. : 100.;
 }
 
 
@@ -1456,8 +1492,7 @@ void Ship::AddCrew(int count)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	double needed = other.attributes.Get("jump fuel");
-	return (fuel - needed >= attributes.Get("jump fuel"));
+	return (fuel - other.JumpFuel() >= JumpFuel());
 }
 
 

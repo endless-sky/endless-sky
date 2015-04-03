@@ -74,6 +74,11 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	
+	void SetIsYours(bool yours = true);
+	bool IsYours() const;
+	void SetIsParked(bool parked = true);
+	bool IsParked() const;
+	
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
 	
@@ -158,6 +163,7 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	int JumpsRemaining() const;
+	double JumpFuel() const;
 	double Energy() const;
 	double Heat() const;
 	int Crew() const;
@@ -278,6 +284,8 @@ private:
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
+	bool isYours = false;
+	bool isParked = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
 	bool isBoarding = false;

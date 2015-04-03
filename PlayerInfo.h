@@ -91,7 +91,7 @@ public:
 	Account &Accounts();
 	int64_t Salaries() const;
 	
-	// Set the player ship.
+	// Add a captured ship to your fleet.
 	void AddShip(std::shared_ptr<Ship> &ship);
 	void RemoveShip(const std::shared_ptr<Ship> &ship);
 	const Ship *GetShip() const;
