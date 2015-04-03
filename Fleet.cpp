@@ -89,9 +89,12 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	for(int choice = Random::Int(total); choice >= variants[index].weight; ++index)
 		choice -= variants[index].weight;
 	
+	if(variants[index].ships.empty())
+		return;
+	
 	bool isEnemy = system.GetGovernment()->IsEnemy(government);
-	const vector<const System *> &linkVector = ships.front()->Attributes().Get("jump drive")
-		? system.Neighbors() : system.Links();
+	bool hasJump = variants[index].ships.front()->Attributes().Get("jump drive");
+	const vector<const System *> &linkVector = hasJump ? system.Neighbors() : system.Links();
 	int links = linkVector.size();
 	// Count the inhabited planets in this system.
 	int planets = 0;
