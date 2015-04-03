@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <queue>
+#include <utility>
 
 class Ship;
 class System;
@@ -58,7 +59,7 @@ private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
 	// source system or the maximum count is reached.
-	void Init(const Ship *ship = nullptr);
+	void Init(const System *center, const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(const System *system, bool useJump, int steps);
 	// Check whether the given link is mappable. If no player was given in the
@@ -72,7 +73,7 @@ private:
 	std::map<const System *, const System *> route;
 	
 	// Variables only used during construction:
-	std::queue<const System *> edge;
+	std::priority_queue<std::pair<int, const System *>> edge;
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
 	int maxCount = -1;
