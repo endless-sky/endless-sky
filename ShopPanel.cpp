@@ -374,10 +374,6 @@ bool ShopPanel::Click(int x, int y)
 		return true;
 	}
 	
-	// Handle clicks anywhere else by checking if they fell into any of the
-	// active click zones (main panel or side panel).
-	dragMain = (x < Screen::Right() - SIDE_WIDTH);
-	
 	// Check for clicks in the scroll arrows.
 	if(x >= Screen::Right() - 20)
 	{
@@ -394,6 +390,8 @@ bool ShopPanel::Click(int x, int y)
 			return Scroll(0, -4);
 	}
 	
+	// Handle clicks anywhere else by checking if they fell into any of the
+	// active click zones (main panel or side panel).
 	for(const ClickZone &zone : zones)
 		if(zone.Contains(x, y))
 		{
@@ -417,6 +415,14 @@ bool ShopPanel::Click(int x, int y)
 			}
 		}
 		
+	return true;
+}
+
+
+
+bool ShopPanel::Hover(int x, int y)
+{
+	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }
 
