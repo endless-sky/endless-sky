@@ -831,19 +831,12 @@ bool Ship::Move(list<Effect> &effects)
 				energy -= energyCost;
 				velocity += angle.Unit() * thrust / mass;
 				
-				if(!forget)
+				if(!forget && attributes.AfterburnerEffect())
 				{
-					const Effect *effect = GameData::Effects().Get("afterburner");
-					for(const auto &it : outfits)
-						if(it.first->Get("afterburner thrust") && !it.first->DieEffects().empty())
-						{
-							effect = it.first->DieEffects().begin()->first;
-							break;
-						}
 					for(const Point &point : enginePoints)
 					{
 						Point pos = angle.Rotate(point) * .5 * Zoom() + position;
-						effects.push_back(*effect);
+						effects.push_back(*attributes.AfterburnerEffect());
 						effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
 					}
 				}

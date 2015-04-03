@@ -41,6 +41,8 @@ void Outfit::Load(const DataNode &node)
 			flare.Load(child);
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			flareSound = Audio::Get(child.Token(1));
+		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
+			afterburnerEffect = GameData::Effects().Get(child.Token(1));
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
@@ -141,6 +143,8 @@ void Outfit::Add(const Outfit &other, int count)
 		flare = other.flare;
 	if(other.flareSound)
 		flareSound = other.flareSound;
+	if(other.afterburnerEffect)
+		afterburnerEffect = other.afterburnerEffect;
 }
 
 
@@ -174,4 +178,12 @@ const Animation &Outfit::FlareSprite() const
 const Sound *Outfit::FlareSound() const
 {
 	return flareSound;
+}
+
+
+
+// Get the afterburner effect, if any.
+const Effect *Outfit::AfterburnerEffect() const
+{
+	return afterburnerEffect;
 }

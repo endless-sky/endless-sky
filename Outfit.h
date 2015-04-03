@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
+class Effect;
 class Outfit;
 class Sound;
 class Sprite;
@@ -62,6 +63,8 @@ public:
 	// Get this outfit's engine flare sprite, if any.
 	const Animation &FlareSprite() const;
 	const Sound *FlareSound() const;
+	// Get the afterburner effect, if any.
+	const Effect *AfterburnerEffect() const;
 	
 	
 private:
@@ -74,6 +77,7 @@ private:
 	
 	Animation flare;
 	const Sound *flareSound = nullptr;
+	const Effect *afterburnerEffect = nullptr;
 };
 
 
