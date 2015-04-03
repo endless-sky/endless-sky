@@ -109,6 +109,9 @@ void Engine::Place()
 	EnterSystem();
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
+		if(ship->IsParked())
+			continue;
+		
 		ships.push_back(ship);
 		Point pos;
 		Angle angle = Angle::Random(360.);
@@ -298,7 +301,7 @@ void Engine::Step(bool isActive)
 				if(!it->IsFighter() && it.get() != flagship)
 					escorts.Add(*it, it->GetSystem() == currentSystem);
 		for(const shared_ptr<Ship> &escort : player.Ships())
-			if(escort->IsFighter())
+			if(escort->IsFighter() && !escort->IsParked())
 				escorts.Add(*escort, escort->GetSystem() == currentSystem);
 		
 		// Create the status overlays.

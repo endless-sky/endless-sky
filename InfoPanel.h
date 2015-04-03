@@ -52,6 +52,7 @@ private:
 	void DrawInfo() const;
 	void DrawShip() const;
 	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
+	void Rename(const std::string &name);
 	
 	
 private:
@@ -66,6 +67,7 @@ private:
 	int hover;
 	Point hoverPoint;
 	bool showShip;
+	bool canEdit;
 };
 
 

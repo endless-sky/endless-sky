@@ -543,7 +543,8 @@ int64_t PlayerInfo::Salaries() const
 {
 	int64_t crew = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		crew += ship->Crew();
+		if(!ship->IsParked())
+			crew += ship->Crew();
 	if(!crew)
 		return 0;
 	
@@ -628,6 +629,30 @@ void PlayerInfo::SellShip(const Ship *selected)
 			
 			accounts.AddCredits(selected->Cost());
 			ships.erase(it);
+			return;
+		}
+}
+
+
+
+void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == selected)
+		{
+			(*it)->SetIsParked(isParked);
+			return;
+		}
+}
+
+
+
+void PlayerInfo::RenameShip(const Ship *selected, const string &name)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == selected)
+		{
+			(*it)->SetName(name);
 			return;
 		}
 }
@@ -810,7 +835,7 @@ void PlayerInfo::TakeOff()
 	
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system)
+		if(!ship->IsParked() && ship->GetSystem() == system)
 		{
 			if(canRecharge)
 				ship->Recharge();
@@ -846,6 +871,9 @@ void PlayerInfo::TakeOff()
 	vector<shared_ptr<Ship>> drones;
 	for(shared_ptr<Ship> &ship : ships)
 	{
+		if(ship->IsParked() || ship->GetSystem() != system)
+			continue;
+		
 		bool fit = false;
 		const string &category = ship->Attributes().Category();
 		if(category == "Fighter")

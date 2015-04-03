@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Armament.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -110,7 +111,7 @@ namespace {
 
 
 InfoPanel::InfoPanel(PlayerInfo &player)
-	: player(player), shipIt(player.Ships().begin()), showShip(false)
+	: player(player), shipIt(player.Ships().begin()), showShip(false), canEdit(player.GetPlanet())
 {
 	UpdateInfo();
 }
@@ -125,6 +126,8 @@ void InfoPanel::Draw() const
 	if(showShip)
 	{
 		interfaceInfo.SetCondition("ship tab");
+		if(canEdit && shipIt != player.Ships().begin())
+			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		if(player.Ships().size() > 1)
 			interfaceInfo.SetCondition("four buttons");
 		else
@@ -133,6 +136,15 @@ void InfoPanel::Draw() const
 	else
 	{
 		interfaceInfo.SetCondition("player tab");
+		if(canEdit && player.Ships().size() > 1)
+		{
+			bool allParked = true;
+			auto it = player.Ships().begin() + 1;
+			for( ; it != player.Ships().end(); ++it)
+				allParked &= (*it)->IsParked();
+			
+			interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
+		}
 		interfaceInfo.SetCondition("two buttons");
 	}
 	const Interface *interface = GameData::Interfaces().Get("info panel");
@@ -151,14 +163,14 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if(key == 'd')
 		GetUI()->Pop(this);
-	else if(!player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
+	else if(showShip && !player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == player.Ships().begin())
 			shipIt = player.Ships().end();
 		--shipIt;
 		UpdateInfo();
 	}
-	else if(!player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
+	else if(showShip && !player.Ships().empty() && (key == 'n' || key == SDLK_RIGHT || key == SDLK_DOWN))
 	{
 		++shipIt;
 		if(shipIt == player.Ships().end())
@@ -175,6 +187,21 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		showShip = true;
 		UpdateInfo();
+	}
+	else if(showShip && key == 'R')
+		GetUI()->Push(new Dialog(this, &InfoPanel::Rename, "Change this ship's name?"));
+	else if(canEdit && showShip && key == 'P' && shipIt != player.Ships().begin())
+		player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
+	else if(canEdit && !showShip && key == 'n' && player.Ships().size() > 1)
+	{
+		bool allParked = true;
+		auto it = player.Ships().begin() + 1;
+		for( ; it != player.Ships().end(); ++it)
+			allParked &= (*it)->IsParked();
+		
+		it = player.Ships().begin() + 1;
+		for( ; it != player.Ships().end(); ++it)
+			player.ParkShip(it->get(), !allParked);
 	}
 	else if(command == Command::INFO || command == Command::MAP || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
@@ -215,7 +242,7 @@ bool InfoPanel::Click(int x, int y)
 		else if(selected)
 			selected = -1;
 	}
-	else if(player.GetPlanet())
+	else if(canEdit)
 	{
 		// Only allow changing your flagship when landed.
 		if(hover >= 0)
@@ -374,7 +401,7 @@ void InfoPanel::DrawInfo() const
 			ship->Attributes().Get("fuel capacity") * ship->Fuel()));
 		font.Draw(fuel, pos + Point(670. - font.Width(fuel), 0.), color);
 		
-		string crew = to_string(ship->Crew());
+		string crew = ship->IsParked() ? "Parked" : to_string(ship->Crew());
 		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
 		
 		zones.emplace_back(pos + Point(365, font.Height() / 2), Point(730, 20), index);
@@ -580,4 +607,15 @@ void InfoPanel::DrawWeapon(int index, const Point &pos, const Point &hardpoint) 
 	LineShader::Draw(mid, hardpoint, 1.5, color);
 	
 	zones.emplace_back(from + Point(120, 0), Point(240, 20), index);
+}
+
+
+
+void InfoPanel::Rename(const string &name)
+{
+	if(!name.empty())
+	{
+		player.RenameShip(shipIt->get(), name);
+		UpdateInfo();
+	}
 }
