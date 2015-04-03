@@ -1391,7 +1391,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 	}
 	else if(keyStuck.Has(Command::JUMP) && ship.GetTargetSystem())
 	{
-		if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
+		if(!ship.Attributes().Get("hyperdrive") && !ship.Attributes().Get("jump drive"))
+		{
+			Messages::Add("You do not have a hyperdrive installed.");
+			keyStuck.Clear();
+		}
+		else if(!ship.HyperspaceType())
+		{
+			Messages::Add("You cannot jump to the selected system.");
+			keyStuck.Clear();
+		}
+		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
