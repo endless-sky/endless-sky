@@ -32,6 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#include <limits>
+
 using namespace std;
 
 namespace {
@@ -127,15 +129,31 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	const Color &bright = *GameData::Colors().Get("bright");
 	if(playerShip || isLicense || mapSize)
 	{
-		int count = playerShip->OutfitCount(outfit);
+		int minCount = numeric_limits<int>::max();
+		int maxCount = 0;
 		if(isLicense)
-			count = player.GetCondition(LicenseName(name));
-		if(mapSize)
-			count = HasMapped(mapSize);
-		if(count)
-			font.Draw("installed: " + to_string(count),
-				point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38),
-				bright);
+			minCount = maxCount = player.GetCondition(LicenseName(name));
+		else if(mapSize)
+			minCount = maxCount = HasMapped(mapSize);
+		else
+		{
+			for(const Ship *ship : playerShips)
+			{
+				int count = ship->OutfitCount(outfit);
+				minCount = min(minCount, count);
+				maxCount = max(maxCount, count);
+			}
+		}
+		
+		if(maxCount)
+		{
+			string label = "installed: " + to_string(minCount);
+			if(maxCount > minCount)
+				label += " - " + to_string(maxCount);
+		
+			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
+			font.Draw(label, labelPos, bright);
+		}
 	}
 	if(player.Cargo().Get(outfit))
 	{
@@ -192,9 +210,6 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit || !playerShip)
 		return false;
 	
-	if(!playerShip->Attributes().CanAdd(*selectedOutfit, 1))
-		return false;
-	
 	// If you have this in your cargo hold, installing it is free.
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
@@ -209,7 +224,14 @@ bool OutfitterPanel::CanBuy() const
 	if(HasLicense(selectedOutfit->Name()))
 		return false;
 	
-	return selectedOutfit->Cost() < player.Accounts().Credits();
+	if(selectedOutfit->Cost() > player.Accounts().Credits())
+		return false;
+	
+	for(const Ship *ship : playerShips)
+		if(ShipCanBuy(ship, selectedOutfit))
+			return true;
+	
+	return false;
 }
 
 
@@ -243,14 +265,38 @@ void OutfitterPanel::Buy()
 		return;
 	}
 	
-	if(player.Cargo().Get(selectedOutfit))
-		player.Cargo().Transfer(selectedOutfit, 1);
-	else
+	// Find the ships with the fewest number of these outfits.
+	vector<Ship *> shipsToOutfit;
+	int fewest = numeric_limits<int>::max();
+	for(Ship *ship : playerShips)
 	{
-		player.Accounts().AddCredits(-selectedOutfit->Cost());
-		--available[selectedOutfit];
+		if(!ShipCanBuy(ship, selectedOutfit))
+			continue;
+		
+		int count = ship->OutfitCount(selectedOutfit);
+		if(count < fewest)
+		{
+			shipsToOutfit.clear();
+			fewest = count;
+		}
+		if(count == fewest)
+			shipsToOutfit.push_back(ship);
 	}
-	playerShip->AddOutfit(selectedOutfit, 1);
+	
+	for(Ship *ship : shipsToOutfit)
+	{
+		if(!CanBuy())
+			return;
+		
+		if(player.Cargo().Get(selectedOutfit))
+			player.Cargo().Transfer(selectedOutfit, 1);
+		else
+		{
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			--available[selectedOutfit];
+		}
+		ship->AddOutfit(selectedOutfit, 1);
+	}
 }
 
 
@@ -375,20 +421,11 @@ bool OutfitterPanel::CanSell() const
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
 	
-	if(!(playerShip && playerShip->OutfitCount(selectedOutfit)))
-		return false;
+	for(const Ship *ship : playerShips)
+		if(ShipCanSell(ship, selectedOutfit))
+			return true;
 	
-	// If this outfit requires ammo, check if we could sell it if we sold all
-	// the ammo for it first.
-	const Outfit *ammo = selectedOutfit->Ammo();
-	if(ammo && playerShip->OutfitCount(ammo))
-	{
-		Outfit attributes = playerShip->Attributes();
-		attributes.Add(*ammo, -playerShip->OutfitCount(ammo));
-		return attributes.CanAdd(*selectedOutfit, -1);
-	}
-	
-	return playerShip->Attributes().CanAdd(*selectedOutfit, -1);
+	return false;
 }
 
 
@@ -399,28 +436,48 @@ void OutfitterPanel::Sell()
 		player.Cargo().Transfer(selectedOutfit, 1);
 	else
 	{
-		playerShip->AddOutfit(selectedOutfit, -1);
-		
-		const Outfit *ammo = selectedOutfit->Ammo();
-		if(ammo && playerShip->OutfitCount(ammo))
+		int most = 0;
+		vector<Ship *> shipsToOutfit;
+		for(Ship *ship : playerShips)
 		{
-			// Determine how many of this ammo I must sell to also sell the launcher.
-			int mustSell = 0;
-			for(const auto &it : playerShip->Attributes().Attributes())
-				if(it.second < 0.)
-					mustSell = max(mustSell, static_cast<int>(it.second / ammo->Get(it.first)));
+			if(!ShipCanSell(ship, selectedOutfit))
+				continue;
 			
-			if(mustSell)
+			int count = ship->OutfitCount(selectedOutfit);
+			if(count > most)
 			{
-				playerShip->AddOutfit(ammo, -mustSell);
-				player.Accounts().AddCredits(ammo->Cost() * mustSell);
-				available[ammo] += mustSell;
+				shipsToOutfit.clear();
+				most = count;
+			}
+			
+			if(count == most)
+				shipsToOutfit.push_back(ship);
+		}
+		
+		for(Ship *ship : shipsToOutfit)
+		{
+			ship->AddOutfit(selectedOutfit, -1);
+			player.Accounts().AddCredits(selectedOutfit->Cost());
+			++available[selectedOutfit];
+			
+			const Outfit *ammo = selectedOutfit->Ammo();
+			if(ammo && ship->OutfitCount(ammo))
+			{
+				// Determine how many of this ammo I must sell to also sell the launcher.
+				int mustSell = 0;
+				for(const auto &it : ship->Attributes().Attributes())
+					if(it.second < 0.)
+						mustSell = max(mustSell, static_cast<int>(it.second / ammo->Get(it.first)));
+				
+				if(mustSell)
+				{
+					ship->AddOutfit(ammo, -mustSell);
+					player.Accounts().AddCredits(ammo->Cost() * mustSell);
+					available[ammo] += mustSell;
+				}
 			}
 		}
 	}
-	
-	player.Accounts().AddCredits(selectedOutfit->Cost());
-	++available[selectedOutfit];
 }
 
 
@@ -487,6 +544,33 @@ int OutfitterPanel::Modifier() const
 	return modifier;
 }
 
+
+
+bool OutfitterPanel::ShipCanBuy(const Ship *ship, const Outfit *outfit)
+{
+	return ship->Attributes().CanAdd(*outfit, 1);
+}
+
+
+
+bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
+{
+	if(!ship->OutfitCount(outfit))
+		return false;
+	
+	// If this outfit requires ammo, check if we could sell it if we sold all
+	// the ammo for it first.
+	const Outfit *ammo = outfit->Ammo();
+	if(ammo && ship->OutfitCount(ammo))
+	{
+		Outfit attributes = ship->Attributes();
+		attributes.Add(*ammo, -ship->OutfitCount(ammo));
+		return attributes.CanAdd(*outfit, -1);
+	}
+	
+	// Now, check whether this ship can sell this outfit.
+	return ship->Attributes().CanAdd(*outfit, -1);
+}
 
 
 	
