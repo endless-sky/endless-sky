@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -81,26 +82,49 @@ void ShopPanel::DrawSidebar() const
 	font.Draw(YOURS, yoursPoint, bright);
 	
 	// Start below the "Your Ships" label, and draw them.
+	const int ICON_TILE = 62;
+	const int ICON_COLS = 4;
+	const double ICON_SIZE = ICON_TILE - 8;
 	Point point(
-		Screen::Right() - SIDE_WIDTH / 2,
-		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40);
-	for(shared_ptr<Ship> ship : player.Ships())
+		Screen::Right() - SIDE_WIDTH / 2 - 93,
+		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
+	
+	if(player.Ships().size() > 1)
 	{
-		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem())
-			continue;
-		
-		bool isSelected = (ship.get() == playerShip);
-		DrawShip(*ship, point, isSelected);
-		zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship.get(), -sideDetailHeight);
-		
-		if(isSelected)
+		static const Color selected(.8, 1.);
+		static const Color unselected(.4, .4, .6, 1.);
+		for(shared_ptr<Ship> ship : player.Ships())
 		{
-			Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
-			sideDetailHeight = DrawPlayerShipInfo(point + offset);
-			point.Y() += sideDetailHeight;
+			// Skip any ships that are "absent" for whatever reason.
+			if(ship->GetSystem() != player.GetSystem())
+				continue;
+		
+			if(point.X() > Screen::Right())
+			{
+				point.X() -= ICON_TILE * ICON_COLS;
+				point.Y() += ICON_TILE;
+			}
+			const Sprite *sprite = ship->GetSprite().GetSprite();
+			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+			Point size(sprite->Width() * scale, sprite->Height() * scale);
+			OutlineShader::Draw(sprite, point, size, ship.get() == playerShip ? selected : unselected);
+		
+			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
+		
+			point.X() += ICON_TILE;
 		}
-		point.Y() += SHIP_SIZE;
+		point.Y() += ICON_TILE;
+	}
+	point.Y() += SHIP_SIZE / 2;
+	
+	if(playerShip)
+	{
+		point.X() = Screen::Right() - SIDE_WIDTH / 2;
+		DrawShip(*playerShip, point, true);
+		
+		Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
+		sideDetailHeight = DrawPlayerShipInfo(point + offset);
+		point.Y() += sideDetailHeight + SHIP_SIZE;
 	}
 	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70 - SHIP_SIZE / 2;
 	maxSideScroll = max(0, maxSideScroll);
@@ -300,7 +324,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
-	float zoom = min(.5f, zoomSize / max(sprite->Width(), sprite->Height()));
+	float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
 	int swizzle = GameData::PlayerGovernment()->GetSwizzle();
 	
 	SpriteShader::Draw(sprite, center, zoom, swizzle);

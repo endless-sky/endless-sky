@@ -332,13 +332,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	{
 		attributeLabels.push_back("drone bays:");
 		attributeValues.push_back(to_string(ship.DroneBaysFree()));
-		attributesHeight += 10;
+		attributesHeight += 20;
 	}
 	if(ship.FighterBaysFree())
 	{
 		attributeLabels.push_back("fighter bays:");
 		attributeValues.push_back(to_string(ship.FighterBaysFree()));
-		attributesHeight += 10;
+		attributesHeight += 20;
 	}
 	
 	tableLabels.clear();
