@@ -58,6 +58,12 @@ bool UI::Handle(const SDL_Event &event)
 			else if(event.button.button == 3)
 				handled = (*it)->RClick(x, y);
 		}
+		else if(event.type == SDL_MOUSEBUTTONUP)
+		{
+			int x = event.button.x - Screen::Width() / 2;
+			int y = event.button.y - Screen::Height() / 2;
+			handled = (*it)->Release(x, y);
+		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->Scroll(event.wheel.x, event.wheel.y);
 		else if(event.type == SDL_KEYDOWN)

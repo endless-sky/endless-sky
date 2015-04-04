@@ -701,6 +701,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 			ships.front()->AddEscort(it);
 		}
 	}
+	ships.front()->SetParent(weak_ptr<Ship>());
 }
 
 

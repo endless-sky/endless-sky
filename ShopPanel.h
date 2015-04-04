@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Point.h"
+
 #include <map>
 #include <set>
 #include <string>
@@ -22,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Planet;
 class PlayerInfo;
-class Point;
 class Ship;
 class Outfit;
 
@@ -64,6 +65,7 @@ protected:
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(int dx, int dy) override;
+	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(int dx, int dy) override;
 	
 	
@@ -101,20 +103,22 @@ protected:
 	
 protected:
 	PlayerInfo &player;
-	const Planet *planet;
+	const Planet *planet = nullptr;
 	
-	Ship *playerShip;
+	Ship *playerShip = nullptr;
+	Ship *dragShip = nullptr;
+	Point dragPoint;
 	std::set<Ship *> playerShips;
-	const Ship *selectedShip;
-	const Outfit *selectedOutfit;
+	const Ship *selectedShip = nullptr;
+	const Outfit *selectedOutfit = nullptr;
 	
-	int mainScroll;
-	int sideScroll;
-	mutable int maxMainScroll;
-	mutable int maxSideScroll;
-	bool dragMain;
-	mutable int mainDetailHeight;
-	mutable int sideDetailHeight;
+	int mainScroll = 0;
+	int sideScroll = 0;
+	mutable int maxMainScroll = 0;
+	mutable int maxSideScroll = 0;
+	bool dragMain = true;
+	mutable int mainDetailHeight = 0;
+	mutable int sideDetailHeight = 0;
 	
 	mutable std::vector<ClickZone> zones;
 	
@@ -123,6 +127,7 @@ protected:
 	
 	
 private:
+	bool DoScroll(int dy);
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();

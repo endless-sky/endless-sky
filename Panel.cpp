@@ -111,6 +111,13 @@ bool Panel::Scroll(int dx, int dy)
 }
 
 
+
+bool Panel::Release(int x, int y)
+{
+	return false;
+}
+
+
 	
 void Panel::SetIsFullScreen(bool set)
 {

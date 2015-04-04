@@ -33,13 +33,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const int ICON_TILE = 62;
+	const int ICON_COLS = 4;
+	const double ICON_SIZE = ICON_TILE - 8;
+}
+
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
-	: player(player), planet(player.GetPlanet()),
-	playerShip(player.GetShip()), selectedShip(nullptr), selectedOutfit(nullptr),
-	mainScroll(0), sideScroll(0), dragMain(true), 
-	mainDetailHeight(0), sideDetailHeight(0), categories(categories)
+	: player(player), planet(player.GetPlanet()), playerShip(player.GetShip()), categories(categories)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -58,6 +61,15 @@ void ShopPanel::Draw() const
 	DrawSidebar();
 	DrawButtons();
 	DrawMain();
+	
+	if(dragShip)
+	{
+		static const Color selected(.8, 1.);
+		const Sprite *sprite = dragShip->GetSprite().GetSprite();
+		double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		Point size(sprite->Width() * scale, sprite->Height() * scale);
+		OutlineShader::Draw(sprite, dragPoint, size, selected);
+	}
 }
 
 
@@ -86,9 +98,6 @@ void ShopPanel::DrawSidebar() const
 	font.Draw(YOURS, yoursPoint, bright);
 	
 	// Start below the "Your Ships" label, and draw them.
-	const int ICON_TILE = 62;
-	const int ICON_COLS = 4;
-	const double ICON_SIZE = ICON_TILE - 8;
 	Point point(
 		Screen::Right() - SIDE_WIDTH / 2 - 93,
 		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
@@ -399,9 +408,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return true;
 	}
 	else if(key == SDLK_PAGEUP)
-		return Drag(0, Screen::Bottom());
+		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
-		return Drag(0, Screen::Top());
+		return DoScroll(Screen::Top());
 	else
 		return false;
 	
@@ -412,6 +421,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool ShopPanel::Click(int x, int y)
 {
+	dragShip = nullptr;
 	// Handle clicks on the buttons.
 	if(x >= Screen::Right() - SIDE_WIDTH && y >= Screen::Bottom() - 70)
 	{
@@ -453,7 +463,9 @@ bool ShopPanel::Click(int x, int y)
 				for(const shared_ptr<Ship> &ship : player.Ships())
 					if(ship.get() == zone.GetShip())
 					{
-						SideSelect(ship.get());
+						dragShip = ship.get();
+						dragPoint.Set(x, y);
+						SideSelect(dragShip);
 						return true;
 					}
 				
@@ -481,10 +493,38 @@ bool ShopPanel::Hover(int x, int y)
 
 bool ShopPanel::Drag(int dx, int dy)
 {
-	int &scroll = dragMain ? mainScroll : sideScroll;
-	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
+	if(dragShip)
+	{
+		dragPoint += Point(dx, dy);
+		for(const ClickZone &zone : zones)
+			if(zone.Contains(dragPoint.x, dragPoint.y))
+				if(zone.GetShip() && zone.GetShip()->IsYours() && zone.GetShip() != dragShip)
+				{
+					int dragIndex = -1;
+					int dropIndex = -1;
+					for(unsigned i = 0; i < player.Ships().size(); ++i)
+					{
+						const Ship *ship = &*player.Ships()[i];
+						if(ship == dragShip)
+							dragIndex = i;
+						if(ship == zone.GetShip())
+							dropIndex = i;
+					}
+					if(dragIndex >= 0 && dropIndex >= 0)
+						player.ReorderShip(dragIndex, dropIndex);
+				}
+	}
+	else
+		DoScroll(dy);
 	
-	scroll = max(0, min(maximum, scroll - dy));
+	return true;
+}
+
+
+
+bool ShopPanel::Release(int x, int y)
+{
+	dragShip = nullptr;
 	return true;
 }
 
@@ -492,7 +532,7 @@ bool ShopPanel::Drag(int dx, int dy)
 
 bool ShopPanel::Scroll(int dx, int dy)
 {
-	return Drag(dx, dy * 50);
+	return DoScroll(dy * 50);
 }
 
 
@@ -551,6 +591,18 @@ int ShopPanel::ClickZone::CenterY() const
 int ShopPanel::ClickZone::ScrollY() const
 {
 	return scrollY;
+}
+
+
+
+bool ShopPanel::DoScroll(int dy)
+{
+	int &scroll = dragMain ? mainScroll : sideScroll;
+	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
+	
+	scroll = max(0, min(maximum, scroll - dy));
+	
+	return true;
 }
 
 
