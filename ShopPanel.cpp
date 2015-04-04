@@ -188,6 +188,7 @@ void ShopPanel::DrawMain() const
 	Point point = begin;
 	float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
+	int scrollY = 0;
 	for(const string &category : categories)
 	{
 		map<string, set<string>>::const_iterator it = catalog.find(category);
@@ -206,7 +207,7 @@ void ShopPanel::DrawMain() const
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
-			if(!DrawItem(name, point))
+			if(!DrawItem(name, point, scrollY))
 				continue;
 			isEmpty = false;
 			
@@ -244,6 +245,7 @@ void ShopPanel::DrawMain() const
 				point.X() = begin.X();
 				point.Y() = nextY;
 				nextY += TILE_SIZE;
+				scrollY = -mainDetailHeight;
 			}
 		}
 		
@@ -256,6 +258,7 @@ void ShopPanel::DrawMain() const
 				point.X() = begin.X();
 				point.Y() = nextY;
 				nextY += TILE_SIZE;
+				scrollY = -mainDetailHeight;
 			}
 			point.Y() += 40;
 			nextY += 40;
@@ -402,17 +405,17 @@ bool ShopPanel::Click(int x, int y)
 					if(ship.get() == zone.GetShip())
 					{
 						playerShip = ship.get();
+						sideScroll = max(0, sideScroll + zone.ScrollY());
 						return true;
 					}
 				
 				selectedShip = zone.GetShip();
-				return true;
 			}
 			else
-			{
 				selectedOutfit = zone.GetOutfit();
-				return true;
-			}
+			
+			mainScroll = max(0, mainScroll + zone.ScrollY());
+			return true;
 		}
 		
 	return true;
@@ -446,15 +449,17 @@ bool ShopPanel::Scroll(int dx, int dy)
 
 
 
-ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship)
-	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), ship(ship), outfit(nullptr)
+ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship, int scrollY)
+	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), scrollY(scrollY),
+	ship(ship), outfit(nullptr)
 {
 }
 
 
 
-ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Outfit *outfit)
-	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), ship(nullptr), outfit(outfit)
+ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, int scrollY)
+	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), scrollY(scrollY),
+	ship(nullptr), outfit(outfit)
 {
 }
 
@@ -491,6 +496,13 @@ int ShopPanel::ClickZone::CenterX() const
 int ShopPanel::ClickZone::CenterY() const
 {
 	return (top + bottom) / 2;
+}
+
+
+
+int ShopPanel::ClickZone::ScrollY() const
+{
+	return scrollY;
 }
 
 

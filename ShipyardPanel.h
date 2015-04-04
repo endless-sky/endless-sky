@@ -35,7 +35,7 @@ public:
 protected:
 	virtual int TileSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) const;
-	virtual bool DrawItem(const std::string &name, const Point &point) const;
+	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const;
 	virtual int DividerOffset() const;
 	virtual int DetailWidth() const;
 	virtual int DrawDetails(const Point &center) const;

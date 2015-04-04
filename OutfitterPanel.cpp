@@ -105,7 +105,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
+bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	if(!planet->Outfitter().Has(outfit)
@@ -117,7 +117,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point) const
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
 	DrawOutfit(*outfit, point, isSelected, isOwned);
 	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit);
+	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit, scrollY);
 	
 	// Check if this outfit is a "license".
 	bool isLicense = IsLicense(name);

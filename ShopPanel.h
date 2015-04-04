@@ -47,7 +47,7 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int DrawPlayerShipInfo(const Point &point) const = 0;
-	virtual bool DrawItem(const std::string &name, const Point &point) const = 0;
+	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) const = 0;
@@ -70,8 +70,8 @@ protected:
 protected:
 	class ClickZone {
 	public:
-		ClickZone(int x, int y, int rx, int ry, const Ship *ship);
-		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit);
+		ClickZone(int x, int y, int rx, int ry, const Ship *ship, int scrollY = 0);
+		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, int scrollY = 0);
 		
 		bool Contains(int x, int y) const;
 		const Ship *GetShip() const;
@@ -79,12 +79,14 @@ protected:
 		
 		int CenterX() const;
 		int CenterY() const;
+		int ScrollY() const;
 		
 	private:
 		int left;
 		int top;
 		int right;
 		int bottom;
+		int scrollY;
 		
 		const Ship *ship;
 		const Outfit *outfit;

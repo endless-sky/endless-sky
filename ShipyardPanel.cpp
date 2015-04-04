@@ -66,14 +66,14 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool ShipyardPanel::DrawItem(const string &name, const Point &point) const
+bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
 	if(!planet->Shipyard().Has(ship))
 		return false;
 	
 	DrawShip(*ship, point, ship == selectedShip);
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship);
+	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
 	
 	return true;
 }
