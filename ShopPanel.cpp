@@ -92,7 +92,7 @@ void ShopPanel::DrawSidebar() const
 		
 		bool isSelected = (ship.get() == playerShip);
 		DrawShip(*ship, point, isSelected);
-		zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship.get());
+		zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship.get(), -sideDetailHeight);
 		
 		if(isSelected)
 		{
