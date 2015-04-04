@@ -29,6 +29,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpriteShader.h"
 #include "UI.h"
 
+#include <SDL2/SDL.h>
+
 using namespace std;
 
 
@@ -39,6 +41,8 @@ ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
 	mainScroll(0), sideScroll(0), dragMain(true), 
 	mainDetailHeight(0), sideDetailHeight(0), categories(categories)
 {
+	if(playerShip)
+		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 }
 
@@ -92,7 +96,7 @@ void ShopPanel::DrawSidebar() const
 	if(player.Ships().size() > 1)
 	{
 		static const Color selected(.8, 1.);
-		static const Color unselected(.4, .4, .6, 1.);
+		static const Color unselected(.4, 1.);
 		for(shared_ptr<Ship> ship : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
@@ -104,10 +108,15 @@ void ShopPanel::DrawSidebar() const
 				point.X() -= ICON_TILE * ICON_COLS;
 				point.Y() += ICON_TILE;
 			}
+			
+			bool isSelected = (playerShips.find(ship.get()) != playerShips.end());
+			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
+			SpriteShader::Draw(background, point);
+			
 			const Sprite *sprite = ship->GetSprite().GetSprite();
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, ship.get() == playerShip ? selected : unselected);
+			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		
 			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
 		
@@ -357,20 +366,36 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		for(int i = 0; i < modifier && CanSell(); ++i)
 			Sell();
 	}
-	else if(key == SDLK_LEFT || key == SDLK_RIGHT || key == SDLK_UP || key == SDLK_DOWN)
+	else if(key == SDLK_LEFT)
 	{
-		// Handle arrow keys to move the selection.
-		if(!dragMain)
-			SideSelect(key == SDLK_RIGHT || key == SDLK_DOWN);
-		else if(key == SDLK_LEFT)
+		if(dragMain)
 			MainLeft();
-		else if(key == SDLK_RIGHT)
-			MainRight();
-		else if(key == SDLK_UP)
-			MainUp();
-		else if(key == SDLK_DOWN)
-			MainDown();
-		
+		else
+			SideSelect(-1);
+		return true;
+	}
+	else if(key == SDLK_RIGHT)
+	{
+		if(dragMain)
+			MainLeft();
+		else
+			SideSelect(1);
+		return true;
+	}
+	else if(key == SDLK_UP)
+	{
+		if(dragMain)
+			MainLeft();
+		else
+			SideSelect(-4);
+		return true;
+	}
+	else if(key == SDLK_DOWN)
+	{
+		if(dragMain)
+			MainLeft();
+		else
+			SideSelect(4);
 		return true;
 	}
 	else if(key == SDLK_PAGEUP)
@@ -428,8 +453,7 @@ bool ShopPanel::Click(int x, int y)
 				for(const shared_ptr<Ship> &ship : player.Ships())
 					if(ship.get() == zone.GetShip())
 					{
-						playerShip = ship.get();
-						sideScroll = max(0, sideScroll + zone.ScrollY());
+						SideSelect(ship.get());
 						return true;
 					}
 				
@@ -531,68 +555,80 @@ int ShopPanel::ClickZone::ScrollY() const
 
 
 
-void ShopPanel::SideSelect(bool next)
+void ShopPanel::SideSelect(int count)
 {
+	// Find the currently selected ship in the list.
 	vector<shared_ptr<Ship>>::const_iterator it = player.Ships().begin();
 	for( ; it != player.Ships().end(); ++it)
-	{
-		// Skip any ships that are "absent" for whatever reason.
-		if((*it)->GetSystem() != player.GetSystem())
-			continue;
-		
 		if((*it).get() == playerShip)
 			break;
-	}
+	
 	// Bail out if there are no ships to choose from.
 	if(it == player.Ships().end())
-		return;
-	
-	int previousY = 0;
-	for(vector<ClickZone>::const_iterator it = zones.begin(); it != zones.end(); ++it)
-		if(it->GetShip() == playerShip)
-		{
-			previousY = it->CenterY();
-			break;
-		}
-	
-	if(!next)
 	{
-		while(true)
+		playerShips.clear();
+		playerShip = player.GetShip();
+		if(playerShip)
+			playerShips.insert(playerShip);
+		
+		return;
+	}
+	
+	
+	if(count < 0)
+	{
+		while(count)
 		{
 			if(it == player.Ships().begin())
 				it = player.Ships().end();
 			--it;
 			
 			if((*it)->GetSystem() == player.GetSystem())
-				break;
+				++count;
 		}
 	}
 	else
 	{
-		while(true)
+		while(count)
 		{
 			++it;
 			if(it == player.Ships().end())
 				it = player.Ships().begin();
 			
 			if((*it)->GetSystem() == player.GetSystem())
-				break;
+				--count;
 		}
 	}
-	playerShip = &**it;
+	SideSelect(&**it);
+}
+
+
+
+void ShopPanel::SideSelect(Ship *ship)
+{
+	bool shift = (SDL_GetModState() & KMOD_SHIFT);
+	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	
-	// Scroll to this ship.
-	int newY = 0;
-	for(vector<ClickZone>::const_iterator it = zones.begin(); it != zones.end(); ++it)
-		if(it->GetShip() == playerShip)
+	if(shift)
+	{
+		bool on = false;
+		for(shared_ptr<Ship> other : player.Ships())
 		{
-			newY = it->CenterY();
-			break;
+			// Skip any ships that are "absent" for whatever reason.
+			if(other->GetSystem() != player.GetSystem())
+				continue;
+			
+			if(other.get() == ship || other.get() == playerShip)
+				on = !on;
+			else if(on)
+				playerShips.insert(other.get());
 		}
-	int delta = newY - previousY;
-	if(delta > 0)
-		delta -= sideDetailHeight;
-	sideScroll += delta;
+	}	
+	else if(!control)
+		playerShips.clear();
+	
+	playerShip = ship;
+	playerShips.insert(playerShip);
 }
 
 

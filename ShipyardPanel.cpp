@@ -191,8 +191,28 @@ bool ShipyardPanel::CanSell() const
 
 void ShipyardPanel::Sell()
 {
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip,
-		"Sell \"" + playerShip->Name() + "\"?"));
+	int count = playerShips.size();
+	string message = "Sell \"";
+	if(count == 1)
+		message += playerShip->Name();
+	else
+	{
+		auto it = playerShips.begin();
+		message += (*it++)->Name();
+		--count;
+		
+		if(count == 1)
+			message += "\" and \"";
+		else
+		{
+			while(count-- > 1)
+				message += "\",\n\"" + (*it++)->Name();
+			message += "\",\nand \"";
+		}
+		message += (*it)->Name();
+	}
+	message += "\"?";
+	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 
 
@@ -236,7 +256,9 @@ void ShipyardPanel::BuyShip(const string &name)
 
 void ShipyardPanel::SellShip()
 {
-	player.SellShip(playerShip);
+	for(Ship *ship : playerShips)
+		player.SellShip(ship);
+	playerShips.clear();
 	playerShip = nullptr;
 }
 

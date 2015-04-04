@@ -104,6 +104,7 @@ protected:
 	const Planet *planet;
 	
 	Ship *playerShip;
+	std::set<Ship *> playerShips;
 	const Ship *selectedShip;
 	const Outfit *selectedOutfit;
 	
@@ -122,7 +123,8 @@ protected:
 	
 	
 private:
-	void SideSelect(bool next);
+	void SideSelect(int count);
+	void SideSelect(Ship *ship);
 	void MainLeft();
 	void MainRight();
 	void MainUp();
