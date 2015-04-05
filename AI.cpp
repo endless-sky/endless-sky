@@ -173,6 +173,42 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		
 		if(it.get() == player)
 			MovePlayer(*it, info, ships);
+		else if(it->IsDisabled())
+		{
+			if(it->IsDestroyed() || it->IsYours())
+				continue;
+			
+			bool hasEnemy = false;
+			Ship *firstAlly = nullptr;
+			bool selectNext = false;
+			Ship *nextAlly = nullptr;
+			const Government *gov = it->GetGovernment();
+			for(const auto &ship : ships)
+			{
+				if(ship->IsDisabled() || !ship->IsTargetable())
+					continue;
+				
+				if(ship->GetGovernment() == gov)
+				{
+					if(!firstAlly)
+						firstAlly = &*ship;
+					else if(ship == it)
+						selectNext = true;
+					else if(selectNext && !nextAlly)
+						nextAlly = &*ship;
+				}
+				else if(ship->GetGovernment()->IsEnemy(gov))
+					hasEnemy = true;
+			}
+			
+			if(!hasEnemy)
+			{
+				if(!nextAlly)
+					nextAlly = firstAlly;
+				if(nextAlly)
+					nextAlly->SetShipToAssist(it);
+			}
+		}
 		else
 		{
 			Command command;
@@ -225,14 +261,15 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				{
 					// Handle orphaned fighters and drones.
 					for(const auto &other : ships)
-						if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled())
+						if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
+								&& other->GetSystem() == it->GetSystem())
 							if((isDrone && other->DroneBaysFree()) || (isFighter && other->FighterBaysFree()))
 							{
 								it->SetParent(other);
 								break;
 							}
 				}
-				else if(parent && !parent->Commands().Has(Command::DEPLOY))
+				else if(parent && !parent->Commands().Has(Command::DEPLOY) && (!target || it->IsYours()))
 				{
 					it->SetTargetShip(parent);
 					MoveTo(*it, command, parent->Position(), 40., .8);
@@ -242,12 +279,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 				}
 			}
 			bool mustRecall = false;
-			if(it->HasBays() && !(command & Command::DEPLOY))
+			if(it->HasBays() && !it->Commands().Has(Command::DEPLOY) && !target)
 			{
 				for(const std::weak_ptr<Ship> &ptr : it->GetEscorts())
 				{
 					shared_ptr<Ship> escort = ptr.lock();
-					if(escort && escort->IsFighter() && escort->GetSystem() == it->GetSystem())
+					if(escort && escort->IsFighter() && escort->GetSystem() == it->GetSystem()
+							&& !escort->IsDisabled())
 					{
 						mustRecall = true;
 						break;
