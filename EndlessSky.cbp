@@ -102,6 +102,8 @@
 		<Unit filename="Effect.h" />
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.h" />
+		<Unit filename="EscortDisplay.cpp" />
+		<Unit filename="EscortDisplay.h" />
 		<Unit filename="Files.cpp" />
 		<Unit filename="Files.h" />
 		<Unit filename="FillShader.cpp" />
@@ -248,6 +250,8 @@
 		<Unit filename="TradingPanel.h" />
 		<Unit filename="UI.cpp" />
 		<Unit filename="UI.h" />
+		<Unit filename="Weapon.cpp" />
+		<Unit filename="Weapon.h" />
 		<Unit filename="WrappedText.cpp" />
 		<Unit filename="WrappedText.h" />
 		<Unit filename="gl_header.h" />
