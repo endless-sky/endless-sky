@@ -2017,10 +2017,11 @@ void Ship::AddEscort(const weak_ptr<Ship> &ship)
 
 void Ship::SetParent(const weak_ptr<Ship> &ship)
 {
+	shared_ptr<Ship> oldParent = parent.lock();
+	if(oldParent)
+		oldParent->RemoveEscort(this);
+	
 	parent = ship;
-	targetShip.reset();
-	targetPlanet = nullptr;
-	targetSystem = nullptr;
 }
 
 

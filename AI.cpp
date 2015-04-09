@@ -257,7 +257,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			bool isFighter = (category == "Fighter");
 			if(isDrone || isFighter)
 			{
-				if(!parent || parent->IsDisabled())
+				if(!parent || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 				{
 					// Handle orphaned fighters and drones.
 					for(const auto &other : ships)
@@ -269,7 +269,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 								break;
 							}
 				}
-				else if(parent && !parent->Commands().Has(Command::DEPLOY) && (!target || it->IsYours()))
+				else if(parent && !(it->IsYours() ? isLaunching : parent->Commands().Has(Command::DEPLOY)))
 				{
 					it->SetTargetShip(parent);
 					MoveTo(*it, command, parent->Position(), 40., .8);
@@ -791,6 +791,8 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 void AI::PrepareForHyperspace(Ship &ship, Command &command)
 {
 	int type = ship.HyperspaceType();
+	if(!type)
+		return;
 	
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 	if(type == 150)
@@ -1497,6 +1499,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
 		}
+		else if(!ship.GetTargetSystem())
+			keyStuck.Clear();
 		else
 		{
 			PrepareForHyperspace(ship, command);

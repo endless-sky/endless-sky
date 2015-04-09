@@ -313,7 +313,7 @@ void Engine::Step(bool isActive)
 					continue;
 			
 				bool isEnemy = it->GetGovernment()->IsEnemy();
-				if(isEnemy || it->GetGovernment()->IsPlayer())
+				if(isEnemy || it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 				{
 					double width = min(it->GetSprite().Width(), it->GetSprite().Height());
 					statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(),
