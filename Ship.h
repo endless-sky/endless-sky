@@ -193,6 +193,9 @@ public:
 	
 	int FighterBaysFree() const;
 	int DroneBaysFree() const;
+	// Check if this ship has a bay free for the given fighter, and the bay is
+	// not reserved for one of its existing escorts.
+	bool CanHoldFighter(const Ship &ship) const;
 	bool AddFighter(const std::shared_ptr<Ship> &ship);
 	void UnloadFighters();
 	bool IsFighter() const;

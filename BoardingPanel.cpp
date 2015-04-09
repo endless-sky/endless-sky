@@ -274,7 +274,15 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuel(), &*victim);
 				player.AddShip(victim);
-				you->AddEscort(victim);
+				if(!victim->IsFighter())
+					you->AddEscort(victim);
+				else
+					for(const auto &ship : player.Ships())
+						if(ship->CanHoldFighter(*victim))
+						{
+							ship->AddEscort(victim);
+							break;
+						}
 				isCapturing = false;
 				
 				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);

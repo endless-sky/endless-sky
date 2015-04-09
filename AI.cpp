@@ -257,7 +257,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			bool isFighter = (category == "Fighter");
 			if(isDrone || isFighter)
 			{
-				if(!parent || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
+				bool hasSpace = true;
+				hasSpace &= parent && (!isDrone || parent->DroneBaysFree());
+				hasSpace &= parent && (!isFighter || parent->FighterBaysFree());
+				if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 				{
 					// Handle orphaned fighters and drones.
 					for(const auto &other : ships)

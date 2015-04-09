@@ -1682,6 +1682,37 @@ int Ship::DroneBaysFree() const
 
 
 
+// Check if this ship has a bay free for the given fighter, and the bay is
+// not reserved for one of its existing escorts.
+bool Ship::CanHoldFighter(const Ship &ship) const
+{
+	if(ship.attributes.Category() == "Fighter")
+	{
+		int free = FighterBaysFree();
+		for(const auto &it : escorts)
+		{
+			auto escort = it.lock();
+			if(escort && escort->attributes.Category() == "Fighter")
+				--free;
+		}
+		return (free > 0);
+	}
+	else if(ship.attributes.Category() == "Drone")
+	{
+		int free = DroneBaysFree();
+		for(const auto &it : escorts)
+		{
+			auto escort = it.lock();
+			if(escort && escort->attributes.Category() == "Drone")
+				--free;
+		}
+		return (free > 0);
+	}
+	return false;
+}
+
+
+
 bool Ship::AddFighter(const shared_ptr<Ship> &ship)
 {
 	if(!ship)
@@ -2011,6 +2042,9 @@ void Ship::SetDestination(const Planet *planet)
 void Ship::AddEscort(const weak_ptr<Ship> &ship)
 {
 	escorts.push_back(ship);
+	auto escort = ship.lock();
+	if(escort)
+		escort->SetParent(shared_from_this());
 }
 
 
