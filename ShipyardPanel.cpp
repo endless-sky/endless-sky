@@ -250,6 +250,8 @@ void ShipyardPanel::BuyShip(const string &name)
 		player.BuyShip(selectedShip, "Unnamed Ship");
 	else
 		player.BuyShip(selectedShip, name);
+	
+	playerShip = &*player.Ships().back();
 }
 
 
