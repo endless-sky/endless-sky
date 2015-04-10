@@ -92,6 +92,28 @@ bool PlayerInfo::IsLoaded() const
 
 
 
+// Make a new player.
+void PlayerInfo::New()
+{
+	Clear();
+	
+	date = GameData::Start().GetDate();
+	GameData::SetDate(date);
+	
+	SetSystem(GameData::Start().GetSystem());
+	SetPlanet(GameData::Start().GetPlanet());
+	accounts = GameData::Start().GetAccounts();
+	GameData::Start().GetConditions().Apply(conditions);
+	
+	CreateMissions();
+	
+	for(const auto &it : GameData::Events())
+		if(it.second.GetDate())
+			AddEvent(it.second, it.second.GetDate());
+}
+
+
+
 void PlayerInfo::Load(const string &path)
 {
 	Clear();
@@ -171,10 +193,7 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(GameData::PlayerGovernment());
 			if(ships.size() > 1)
-			{
 				ships.back()->SetParent(ships.front());
-				ships.front()->AddEscort(ships.back());
-			}
 			ships.back()->FinishLoading();
 			ships.back()->SetIsYours();
 		}
@@ -197,6 +216,21 @@ void PlayerInfo::Load(const string &path)
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
 	}
+}
+
+
+
+// Load the most recently saved player.
+void PlayerInfo::LoadRecent()
+{
+	string recentPath = Files::Config() + "recent.txt";
+	ifstream recent(recentPath);
+	getline(recent, recentPath);
+	
+	if(recentPath.empty())
+		Clear();
+	else
+		Load(recentPath);
 }
 
 
@@ -283,43 +317,6 @@ string PlayerInfo::Identifier() const
 		return "";
 	size_t length = filePath.length() - 4 - pos;
 	return filePath.substr(pos, length);
-}
-
-
-
-// Load the most recently saved player.
-void PlayerInfo::LoadRecent()
-{
-	string recentPath = Files::Config() + "recent.txt";
-	ifstream recent(recentPath);
-	getline(recent, recentPath);
-	
-	if(recentPath.empty())
-		Clear();
-	else
-		Load(recentPath);
-}
-
-
-
-// Make a new player.
-void PlayerInfo::New()
-{
-	Clear();
-	
-	date = GameData::Start().GetDate();
-	GameData::SetDate(date);
-	
-	SetSystem(GameData::Start().GetSystem());
-	SetPlanet(GameData::Start().GetPlanet());
-	accounts = GameData::Start().GetAccounts();
-	GameData::Start().GetConditions().Apply(conditions);
-	
-	CreateMissions();
-	
-	for(const auto &it : GameData::Events())
-		if(it.second.GetDate())
-			AddEvent(it.second, it.second.GetDate());
 }
 
 
@@ -584,18 +581,6 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 
 
 
-void PlayerInfo::RemoveShip(const shared_ptr<Ship> &ship)
-{
-	for(auto it = ships.begin(); it != ships.end(); ++it)
-		if(*it == ship)
-		{
-			ships.erase(it);
-			break;
-		}
-}
-
-
-
 void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(model && accounts.Credits() >= model->Cost())
@@ -608,10 +593,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		if(ships.size() > 1)
-		{
 			ships.back()->SetParent(ships.front());
-			ships.front()->AddEscort(ships.back());
-		}
 		
 		accounts.AddCredits(-model->Cost());
 	}
@@ -672,14 +654,14 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	{
 		if(ships.size() < 2)
 			return;
-		if(ships[1]->IsFighter())
+		if(ships[1]->CanBeCarried())
 			return;
 	}
 	
 	if(!toIndex)
 	{
 		// Check that this ship is eligible to be a flagship.
-		if(ships[fromIndex]->IsFighter())
+		if(ships[fromIndex]->CanBeCarried())
 			++toIndex;
 		if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->IsDestroyed())
 			++toIndex;
@@ -693,15 +675,11 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	
 	// Make sure all the ships know who the flagship is.
 	for(const shared_ptr<Ship> &it : ships)
-	{
-		it->ClearEscorts();
 		if(it != ships.front())
-		{
 			it->SetParent(ships.front());
-			ships.front()->AddEscort(it);
-		}
-	}
-	ships.front()->SetParent(weak_ptr<Ship>());
+	
+	// The flagship has no parent.
+	ships.front()->SetParent(shared_ptr<Ship>());
 }
 
 

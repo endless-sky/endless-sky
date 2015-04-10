@@ -384,7 +384,7 @@ void InfoPanel::DrawInfo() const
 		bool isDead = ship->IsDestroyed() || ship->IsDisabled();
 		bool isHovered = (index == hover);
 		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;
-		font.Draw(ship->Name(), pos + Point(10. * ship->IsFighter(), 0.), color);
+		font.Draw(ship->Name(), pos + Point(10. * ship->CanBeCarried(), 0.), color);
 		font.Draw(ship->ModelName(), pos + Point(220., 0.), color);
 		
 		const System *system = ship->GetSystem();

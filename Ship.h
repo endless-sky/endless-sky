@@ -57,6 +57,15 @@ public:
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 	
+	// Get information on this particular ship, for displaying it.
+	const Animation &GetSprite() const;
+	// Get the ship's government.
+	const Government *GetGovernment() const;
+	// Get this ship's zoom factor (due to landing on a planet).
+	double Zoom() const;
+	// Get the name of this particular ship.
+	const std::string &Name() const;
+	
 	// Get the name of this model of ship.
 	const std::string &ModelName() const;
 	// Get this ship's description.
@@ -74,11 +83,14 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	
+	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
 	bool IsYours() const;
+	// A parked ship stays on a planet and requires no daily salary payments.
 	void SetIsParked(bool parked = true);
 	bool IsParked() const;
 	
+	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
 	
@@ -111,32 +123,26 @@ public:
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 	
+	// Check the status of this ship.
 	bool IsTargetable() const;
 	bool IsOverheated() const;
 	bool IsDisabled() const;
+	bool IsBoarding() const;
 	bool IsLanding() const;
-	bool IsEnteringHyperspace() const;
-	bool IsHyperspacing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// Get the degree to which this ship is cloaked. 1 means invisible and
+	// impossible to hit or target; 0 means fully visible.
+	double Cloaking() const;
+	// Check if this ship is entering (rather than leaving) hyperspace.
+	bool IsEnteringHyperspace() const;
+	// Check if this ship is entering or leaving hyperspace.
+	bool IsHyperspacing() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	int CheckHyperspace() const;
 	// Check what type of hyperspce jump this ship is making (0 = not allowed,
 	// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
 	int HyperspaceType() const;
-	bool IsBoarding() const;
-	// Get the degree to which this ship is cloaked. 1 means invisible and
-	// impossible to hit or target; 0 means fully visible.
-	double Cloaking() const;
-	
-	// Get information on this particular ship, for displaying it.
-	const Animation &GetSprite() const;
-	// Get the ship's government.
-	const Government *GetGovernment() const;
-	// Get this ship's zoom factor (due to landing on a planet).
-	double Zoom() const;
-	// Get the name of this particular ship.
-	const std::string &Name() const;
 	
 	// Get the points from which engine flares should be drawn. If the ship is
 	// not thrusting right now, this will be empty.
@@ -144,36 +150,42 @@ public:
 	// Get the sprite to be used for an engine flare.
 	const Animation &FlareSprite() const;
 	
-	// Get the position of this ship.
+	// Get the position, velocity, and heading of this ship.
 	const Point &Position() const;
 	const Point &Velocity() const;
 	const Angle &Facing() const;
-	// Get the facing unit vector times the scale factor.
+	// Get the facing unit vector times the zoom factor.
 	Point Unit() const;
 	
-	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
 	// Mark a ship as destroyed.
 	void Destroy();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
+	// Recharge and repair this ship (e.g. because it has landed).
+	void Recharge(bool atSpaceport = true);
+	// Check if this ship is able to give the given ship enough fuel to jump.
+	bool CanRefuel(const Ship &other) const;
+	// Give the other ship enough fuel for it to jump.
+	double TransferFuel(double amount, Ship *to);
+	// Mark this ship as property of the given ship.
+	void WasCaptured(const std::shared_ptr<Ship> &capturer);
 	
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
 	double Hull() const;
-	double Fuel() const;
-	int JumpsRemaining() const;
-	double JumpFuel() const;
 	double Energy() const;
 	double Heat() const;
+	double Fuel() const;
+	// Get the number of jumps this ship can make before running out of fuel.
+	// This depends on how much fuel it has and what sort of hyperdrive it uses.
+	int JumpsRemaining() const;
+	// Get the amount of fuel expended per jump.
+	double JumpFuel() const;
+	
+	// Access how many crew members this ship has or needs.
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
-	bool CanRefuel(const Ship &other) const;
-	double TransferFuel(double amount, Ship *to);
-	void WasCaptured(const std::shared_ptr<Ship> &capturer);
-	// Check if this ship should be deleted.
-	bool ShouldDelete() const;
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;
@@ -191,27 +203,38 @@ public:
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force);
 	
+	// Check if this ship has fighter or drone bays.
+	bool HasBays() const;
+	// Check how many fighter and drone bays are not occupied at present. This
+	// does not check whether one of your escorts plans to use that bay.
 	int FighterBaysFree() const;
 	int DroneBaysFree() const;
 	// Check if this ship has a bay free for the given fighter, and the bay is
 	// not reserved for one of its existing escorts.
 	bool CanHoldFighter(const Ship &ship) const;
+	// Check if this is a ship of a type that can be carried (fighter or drone).
+	bool CanBeCarried() const;
+	// Move the given ship into one of the fighter or drone bays, if possible.
 	bool AddFighter(const std::shared_ptr<Ship> &ship);
+	// Empty the fighter bays. If the fighters are not special ships that are
+	// saved in the player data, they will be deleted. Otherwise, they become
+	// visible as ships landed on the same planet as their parent.
 	void UnloadFighters();
-	bool IsFighter() const;
-	bool HasBays() const;
+	// Get a list of any ships this ship is carrying.
 	std::vector<std::shared_ptr<Ship>> CarriedShips() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	
-	// Get outfit information.
-	const std::map<const Outfit *, int> &Outfits() const;
-	int OutfitCount(const Outfit *outfit) const;
+	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
+	// Get the list of all outfits installed in this ship.
+	const std::map<const Outfit *, int> &Outfits() const;
+	// Find out how many outfits of the given type this ship contains.
+	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count);
 	
@@ -240,20 +263,25 @@ public:
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
 	
-	// Add escorts to this ship. Escorts look to the parent ship for movement
-	// cues and try to stay with it when it lands or goes into hyperspace.
-	void AddEscort(const std::weak_ptr<Ship> &ship);
-	void SetParent(const std::weak_ptr<Ship> &ship);
-	void RemoveEscort(const Ship *ship);
-	void ClearEscorts();
-	
-	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
+	// Manage escorts. When you set this ship's parent, it will automatically
+	// register itself as an escort of that ship, and unregister itself from any
+	// previous parent it had.
+	void SetParent(const std::shared_ptr<Ship> &ship);
 	std::shared_ptr<Ship> GetParent() const;
+	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
 	
 	
 private:
+	// Add or remove a ship from this ship's list of escorts.
+	void AddEscort(const Ship &ship);
+	void RemoveEscort(const Ship &ship);
+	// Check if some condition is keeping this ship from acting. (That is, it is
+	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
 	bool CannotAct() const;
+	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
+	// Create one of this ship's explosions, within its mask. The explosions can
+	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
 	
 	
@@ -356,7 +384,7 @@ private:
 	const Planet *destination = nullptr;
 	
 	// Links between escorts and parents.
-	std::vector<std::weak_ptr<Ship>> escorts;
+	std::vector<std::weak_ptr<const Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 };
 

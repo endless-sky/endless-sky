@@ -340,6 +340,35 @@ void Ship::Save(DataWriter &out) const
 
 
 
+const Animation &Ship::GetSprite() const
+{
+	return sprite;
+}
+
+
+
+// Get the ship's government.
+const Government *Ship::GetGovernment() const
+{
+	return government;
+}
+
+
+
+double Ship::Zoom() const
+{
+	return max(zoom, 0.);
+}
+
+
+
+const string &Ship::Name() const
+{
+	return name;
+}
+
+
+
 const string &Ship::ModelName() const
 {
 	return modelName;
@@ -506,7 +535,8 @@ const Command &Ship::Commands() const
 bool Ship::Move(list<Effect> &effects)
 {
 	// Check if this ship has been in a different system from the player for so
-	// long that it should be "forgotten."
+	// long that it should be "forgotten." Also eliminate ships that have no
+	// system set because they just entered a fighter bay.
 	forget += !isInSystem;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 		return false;
@@ -898,7 +928,7 @@ bool Ship::Move(list<Effect> &effects)
 	// Boarding:
 	if(isBoarding && (commands.Has(Command::FORWARD | Command::BACK) || commands.Turn()))
 		isBoarding = false;
-	shared_ptr<const Ship> target = (IsFighter() ? GetParent() : GetTargetShip());
+	shared_ptr<const Ship> target = (CanBeCarried() ? GetParent() : GetTargetShip());
 	if(target && !isDisabled)
 	{
 		Point dp = (target->position - position);
@@ -906,7 +936,7 @@ bool Ship::Move(list<Effect> &effects)
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
 		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
-		if(isBoarding && !IsFighter())
+		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
@@ -930,7 +960,7 @@ bool Ship::Move(list<Effect> &effects)
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
 			
-			if(distance < 10. && speed < 1. && (IsFighter() || !turn))
+			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
 				isBoarding = false;
 				hasBoarded = true;
@@ -961,7 +991,6 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, angle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
-			AddEscort(bay.ship);
 			bay.ship.reset();
 		}
 	for(Bay &bay : droneBays)
@@ -973,7 +1002,6 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 			bay.ship->Place(position + angle.Rotate(bay.point), v, angle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
-			AddEscort(bay.ship);
 			bay.ship.reset();
 		}
 }
@@ -992,13 +1020,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 		return shared_ptr<Ship>();
 	
 	// For a fighter, "board" means "return to ship."
-	if(IsFighter())
+	if(CanBeCarried() && !victim->IsDisabled())
 	{
-		if(victim->AddFighter(shared_from_this()))
-		{
-			currentSystem = nullptr;
-			victim->RemoveEscort(this);
-		}
+		victim->AddFighter(shared_from_this());
 		return shared_ptr<Ship>();
 	}
 	
@@ -1160,24 +1184,16 @@ bool Ship::IsDisabled() const
 
 
 
+bool Ship::IsBoarding() const
+{
+	return isBoarding;
+}
+
+
+
 bool Ship::IsLanding() const
 {
 	return landingPlanet;
-}
-
-
-
-bool Ship::IsEnteringHyperspace() const
-{
-	return hyperspaceSystem;
-}
-
-
-
-
-bool Ship::IsHyperspacing() const
-{
-	return hyperspaceCount != 0;
 }
 
 
@@ -1195,6 +1211,28 @@ bool Ship::CanLand() const
 	double speed = velocity.Length();
 	
 	return (speed < 1. && distance.Length() < GetTargetPlanet()->Radius());
+}
+
+
+
+double Ship::Cloaking() const
+{
+	return cloak;
+}
+
+
+
+bool Ship::IsEnteringHyperspace() const
+{
+	return hyperspaceSystem;
+}
+
+
+
+
+bool Ship::IsHyperspacing() const
+{
+	return hyperspaceCount != 0;
 }
 
 
@@ -1277,49 +1315,6 @@ int Ship::HyperspaceType() const
 
 
 
-bool Ship::IsBoarding() const
-{
-	return isBoarding;
-}
-
-
-
-double Ship::Cloaking() const
-{
-	return cloak;
-}
-
-
-
-const Animation &Ship::GetSprite() const
-{
-	return sprite;
-}
-
-
-
-// Get the ship's government.
-const Government *Ship::GetGovernment() const
-{
-	return government;
-}
-
-
-
-double Ship::Zoom() const
-{
-	return max(zoom, 0.);
-}
-
-
-
-const string &Ship::Name() const
-{
-	return name;
-}
-
-
-
 // Get the points from which engine flares should be drawn. If the ship is
 // not thrusting right now, this will be empty.
 const vector<Point> &Ship::EnginePoints() const
@@ -1371,6 +1366,22 @@ Point Ship::Unit() const
 
 
 
+// Mark a ship as destroyed.
+void Ship::Destroy()
+{
+	hull = -1.;
+}
+
+
+
+// Check if this ship has been destroyed.
+bool Ship::IsDestroyed() const
+{
+	return (hull < 0.);
+}
+
+
+
 // Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(bool atSpaceport)
 {
@@ -1392,100 +1403,6 @@ void Ship::Recharge(bool atSpaceport)
 		energy = attributes.Get("energy capacity");
 	}
 	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
-}
-
-
-
-// Mark a ship as destroyed.
-void Ship::Destroy()
-{
-	hull = -1.;
-}
-
-
-
-// Check if this ship has been destroyed.
-bool Ship::IsDestroyed() const
-{
-	return (hull < 0.);
-}
-
-
-
-// Get characteristics of this ship, as a fraction between 0 and 1.
-double Ship::Shields() const
-{
-	double maximum = attributes.Get("shields");
-	return maximum ? min(1., shields / maximum) : 0.;
-}
-
-
-
-double Ship::Hull() const
-{
-	double maximum = attributes.Get("hull");
-	return maximum ? min(1., hull / maximum) : 1.;
-}
-
-
-
-double Ship::Fuel() const
-{
-	double maximum = attributes.Get("fuel capacity");
-	return maximum ? min(1., fuel / maximum) : 0.;
-}
-
-
-
-int Ship::JumpsRemaining() const
-{
-	return fuel / JumpFuel();
-}
-
-
-
-double Ship::JumpFuel() const
-{
-	return attributes.Get("jump drive") ? 200. : attributes.Get("scram drive") ? 150. : 100.;
-}
-
-
-
-double Ship::Energy() const
-{
-	double maximum = attributes.Get("energy capacity");
-	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
-}
-
-
-
-double Ship::Heat() const
-{
-	double maximum = Mass() * 100.;
-	return maximum ? min(1., heat / maximum) : 1.;
-}
-
-
-
-int Ship::Crew() const
-{
-	return crew;
-}
-
-
-
-int Ship::RequiredCrew() const
-{
-	// Drones do not need crew, but all other ships need at least one.
-	return max(attributes.Category() == "Drone" ? 0 : 1,
-		static_cast<int>(attributes.Get("required crew")));
-}
-
-
-
-void Ship::AddCrew(int count)
-{
-	crew += count;
 }
 
 
@@ -1544,10 +1461,80 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 
 
 
-// Check if this ship should be deleted.
-bool Ship::ShouldDelete() const
+// Get characteristics of this ship, as a fraction between 0 and 1.
+double Ship::Shields() const
 {
-	return (!zoom && !isSpecial) || (IsDestroyed() && explosionCount >= explosionTotal);
+	double maximum = attributes.Get("shields");
+	return maximum ? min(1., shields / maximum) : 0.;
+}
+
+
+
+double Ship::Hull() const
+{
+	double maximum = attributes.Get("hull");
+	return maximum ? min(1., hull / maximum) : 1.;
+}
+
+
+
+double Ship::Energy() const
+{
+	double maximum = attributes.Get("energy capacity");
+	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
+}
+
+
+
+double Ship::Heat() const
+{
+	double maximum = Mass() * 100.;
+	return maximum ? min(1., heat / maximum) : 1.;
+}
+
+
+
+double Ship::Fuel() const
+{
+	double maximum = attributes.Get("fuel capacity");
+	return maximum ? min(1., fuel / maximum) : 0.;
+}
+
+
+
+int Ship::JumpsRemaining() const
+{
+	return fuel / JumpFuel();
+}
+
+
+
+double Ship::JumpFuel() const
+{
+	return attributes.Get("jump drive") ? 200. : attributes.Get("scram drive") ? 150. : 100.;
+}
+
+
+
+int Ship::Crew() const
+{
+	return crew;
+}
+
+
+
+int Ship::RequiredCrew() const
+{
+	// Drones do not need crew, but all other ships need at least one.
+	return max(attributes.Category() == "Drone" ? 0 : 1,
+		static_cast<int>(attributes.Get("required crew")));
+}
+
+
+
+void Ship::AddCrew(int count)
+{
+	crew += count;
 }
 
 
@@ -1662,6 +1649,13 @@ void Ship::ApplyForce(const Point &force)
 
 
 
+bool Ship::HasBays() const
+{
+	return !droneBays.empty() || !fighterBays.empty();
+}
+
+
+
 int Ship::FighterBaysFree() const
 {
 	int count = 0;
@@ -1713,6 +1707,14 @@ bool Ship::CanHoldFighter(const Ship &ship) const
 
 
 
+bool Ship::CanBeCarried() const
+{
+	const string &category = attributes.Category();
+	return (category == "Fighter" || category == "Drone");
+}
+
+
+
 bool Ship::AddFighter(const shared_ptr<Ship> &ship)
 {
 	if(!ship)
@@ -1730,6 +1732,7 @@ bool Ship::AddFighter(const shared_ptr<Ship> &ship)
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
+			ship->SetParent(shared_ptr<Ship>());
 			return true;
 		}
 	return false;
@@ -1753,21 +1756,6 @@ void Ship::UnloadFighters()
 			bay.ship->SetPlanet(landingPlanet);
 			bay.ship.reset();
 		}
-}
-
-
-
-bool Ship::IsFighter() const
-{
-	const string &category = attributes.Category();
-	return (category == "Fighter" || category == "Drone");
-}
-
-
-
-bool Ship::HasBays() const
-{
-	return !droneBays.empty() || !fighterBays.empty();
 }
 
 
@@ -1801,6 +1789,21 @@ const CargoHold &Ship::Cargo() const
 
 
 
+const Outfit &Ship::Attributes() const
+{
+	return attributes;
+}
+
+
+
+
+const Outfit &Ship::BaseAttributes() const
+{
+	return baseAttributes;
+}
+
+
+
 // Get outfit information.
 const map<const Outfit *, int> &Ship::Outfits() const
 {
@@ -1813,21 +1816,6 @@ int Ship::OutfitCount(const Outfit *outfit) const
 {
 	auto it = outfits.find(outfit);
 	return (it == outfits.end()) ? 0 : it->second;
-}
-
-
-
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
-}
-
-
-
-
-const Outfit &Ship::BaseAttributes() const
-{
-	return baseAttributes;
 }
 
 
@@ -1912,58 +1900,6 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 
 
 
-bool Ship::CannotAct() const
-{
-	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
-}
-
-
-
-double Ship::MinimumHull() const
-{
-	double maximumHull = attributes.Get("hull");
-	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
-}
-
-
-
-void Ship::CreateExplosion(list<Effect> &effects, bool spread)
-{
-	if(sprite.IsEmpty() || !sprite.GetMask(0).IsLoaded() || explosionEffects.empty())
-		return;
-	
-	// Bail out if this loops enough times, just in case.
-	for(int i = 0; i < 10; ++i)
-	{
-		Point point((Random::Real() - .5) * .5 * sprite.Width(),
-			(Random::Real() - .5) * .5 * sprite.Height());
-		if(sprite.GetMask(0).Contains(point, Angle()))
-		{
-			// Pick an explosion.
-			int type = Random::Int(explosionTotal);
-			auto it = explosionEffects.begin();
-			for( ; it != explosionEffects.end(); ++it)
-			{
-				type -= it->second;
-				if(type < 0)
-					break;
-			}
-			effects.push_back(*it->first);
-			Point effectVelocity = velocity;
-			if(spread)
-			{
-				double scale = .02 * (sprite.Width() + sprite.Height());
-				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
-			}
-			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
-			++explosionCount;
-			return;
-		}
-	}
-}
-
-
-
 // Each ship can have a target system (to travel to), a target planet (to
 // land on) and a target ship (to move to, and attack if hostile).
 shared_ptr<Ship> Ship::GetTargetShip() const
@@ -2037,34 +1973,47 @@ void Ship::SetDestination(const Planet *planet)
 
 
 
-// Add escorts to this ship. Escorts look to the parent ship for movement
-// cues and try to stay with it when it lands or goes into hyperspace.
-void Ship::AddEscort(const weak_ptr<Ship> &ship)
-{
-	escorts.push_back(ship);
-	auto escort = ship.lock();
-	if(escort)
-		escort->SetParent(shared_from_this());
-}
-
-
-
-void Ship::SetParent(const weak_ptr<Ship> &ship)
+void Ship::SetParent(const shared_ptr<Ship> &ship)
 {
 	shared_ptr<Ship> oldParent = parent.lock();
 	if(oldParent)
-		oldParent->RemoveEscort(this);
+		oldParent->RemoveEscort(*this);
 	
 	parent = ship;
+	if(ship)
+		ship->AddEscort(*this);
 }
 
 
 
-void Ship::RemoveEscort(const Ship *ship)
+shared_ptr<Ship> Ship::GetParent() const
+{
+	return parent.lock();
+}
+
+
+
+const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
+{
+	return escorts;
+}
+
+
+
+// Add escorts to this ship. Escorts look to the parent ship for movement
+// cues and try to stay with it when it lands or goes into hyperspace.
+void Ship::AddEscort(const Ship &ship)
+{
+	escorts.push_back(ship.shared_from_this());
+}
+
+
+
+void Ship::RemoveEscort(const Ship &ship)
 {
 	auto it = escorts.begin();
 	for( ; it != escorts.end(); ++it)
-		if(it->lock().get() == ship)
+		if(it->lock().get() == &ship)
 		{
 			escorts.erase(it);
 			return;
@@ -2073,21 +2022,52 @@ void Ship::RemoveEscort(const Ship *ship)
 
 
 
-void Ship::ClearEscorts()
+bool Ship::CannotAct() const
 {
-	escorts.clear();
+	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
 }
 
 
 
-const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
+double Ship::MinimumHull() const
 {
-	return escorts;
+	double maximumHull = attributes.Get("hull");
+	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
 }
 
 
 
-shared_ptr<Ship> Ship::GetParent() const
+void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 {
-	return parent.lock();
+	if(sprite.IsEmpty() || !sprite.GetMask(0).IsLoaded() || explosionEffects.empty())
+		return;
+	
+	// Bail out if this loops enough times, just in case.
+	for(int i = 0; i < 10; ++i)
+	{
+		Point point((Random::Real() - .5) * .5 * sprite.Width(),
+			(Random::Real() - .5) * .5 * sprite.Height());
+		if(sprite.GetMask(0).Contains(point, Angle()))
+		{
+			// Pick an explosion.
+			int type = Random::Int(explosionTotal);
+			auto it = explosionEffects.begin();
+			for( ; it != explosionEffects.end(); ++it)
+			{
+				type -= it->second;
+				if(type < 0)
+					break;
+			}
+			effects.push_back(*it->first);
+			Point effectVelocity = velocity;
+			if(spread)
+			{
+				double scale = .02 * (sprite.Width() + sprite.Height());
+				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
+			}
+			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
+			++explosionCount;
+			return;
+		}
+	}
 }

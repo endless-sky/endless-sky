@@ -282,19 +282,17 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				}
 			}
 			bool mustRecall = false;
-			if(it->HasBays() && !it->Commands().Has(Command::DEPLOY) && !target)
-			{
-				for(const weak_ptr<Ship> &ptr : it->GetEscorts())
+			if(it->HasBays() && !(it->IsYours() ? isLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
+				for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
 				{
-					shared_ptr<Ship> escort = ptr.lock();
-					if(escort && escort->IsFighter() && escort->GetSystem() == it->GetSystem()
+					shared_ptr<const Ship> escort = ptr.lock();
+					if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
 							&& !escort->IsDisabled())
 					{
 						mustRecall = true;
 						break;
 					}
 				}
-			}
 			
 			shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
 			if(shipToAssist)
@@ -531,6 +529,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 	
+	// If this ship is moving independently because it has a target, not because
+	// it has no parent, don't let it make travel plans.
+	if(ship.GetParent())
+		return;
+	
 	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())
 	{
 		int jumps = ship.JumpsRemaining();
@@ -597,7 +600,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
 		{
 			shared_ptr<const Ship> locked = escort.lock();
-			mustWait = locked && locked->IsFighter();
+			mustWait = locked && locked->CanBeCarried();
 		}
 		
 		if(!mustWait)

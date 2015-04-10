@@ -141,7 +141,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
-		if(ship->IsFighter())
+		if(ship->CanBeCarried())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
 			fighter->SetGovernment(government);
@@ -172,10 +172,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 		ships.front()->SetPersonality(personality);
 		
 		if(!placed.empty())
-		{
 			ships.front()->SetParent(placed.front());
-			placed.front()->AddEscort(ships.front());
-		}
+		
 		placed.push_back(ships.front());
 		
 		SetCargo(&*ships.front());
@@ -219,7 +217,7 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
-		if(carried && ship->IsFighter())
+		if(carried && ship->CanBeCarried())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
 			fighter->SetGovernment(government);
@@ -243,10 +241,8 @@ void Fleet::Place(const System &system, std::list<std::shared_ptr<Ship>> &ships,
 		ships.front()->SetPersonality(personality);
 		
 		if(!placed.empty())
-		{
 			ships.front()->SetParent(placed.front());
-			placed.front()->AddEscort(ships.front());
-		}
+		
 		placed.push_back(ships.front());
 		
 		SetCargo(&*ships.front());

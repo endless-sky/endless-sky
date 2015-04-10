@@ -44,7 +44,7 @@ HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
 			message = "If you want us to leave you alone, it'll cost you "
 				+ Format::Number(bribe) + " credits.";
 	}
-	else if(!ship->GetPersonality().IsSurveillance() && !ship->IsFighter())
+	else if(!ship->GetPersonality().IsSurveillance() && !ship->CanBeCarried())
 	{
 		// Is the player in any need of assistance?
 		const Ship *flagship = player.Flagship();

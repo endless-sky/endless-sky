@@ -274,13 +274,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuel(), &*victim);
 				player.AddShip(victim);
-				if(!victim->IsFighter())
-					you->AddEscort(victim);
+				if(!victim->CanBeCarried())
+					victim->SetParent(you);
 				else
-					for(const auto &ship : player.Ships())
+					for(const shared_ptr<Ship> &ship : player.Ships())
 						if(ship->CanHoldFighter(*victim))
 						{
-							ship->AddEscort(victim);
+							victim->SetParent(ship);
 							break;
 						}
 				isCapturing = false;
