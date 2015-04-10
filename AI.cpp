@@ -416,7 +416,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	// ship that is within 3000 of it.
 	const Personality &person = ship.GetPersonality();
 	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
-		(minRange > 1000.) ? maxRange * 1.5 : 3000.;
+		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
 	for(const auto &it : ships)
@@ -447,7 +447,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			{
 				bool hasBoarded = Has(ship, it, ShipEvent::BOARD);
 				// Don't plunder unless there are no "live" enemies nearby.
-				range += 1200. * it->IsDisabled() - 2000. * !hasBoarded;
+				range += 2000. * (2 * it->IsDisabled() - !hasBoarded);
 			}
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
@@ -532,7 +532,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	
 	// If this ship is moving independently because it has a target, not because
 	// it has no parent, don't let it make travel plans.
-	if(ship.GetParent())
+	if(ship.GetParent() && !ship.GetPersonality().IsStaying())
 		return;
 	
 	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())

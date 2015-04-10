@@ -190,7 +190,7 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	
 	if(center)
 	{
-		DistanceMap distance(center, -centerMaxDistance);
+		DistanceMap distance(center, -1, centerMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
 		if(distance.Distance(system) < centerMinDistance)
@@ -198,7 +198,7 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	}
 	if(origin && originMaxDistance >= 0)
 	{
-		DistanceMap distance(origin, -originMaxDistance);
+		DistanceMap distance(origin, -1, originMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
 		if(distance.Distance(system) < originMinDistance)

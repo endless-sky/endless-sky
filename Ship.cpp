@@ -1623,7 +1623,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		heat += heatDamage;
 	}
 	
-	if(hitForce)
+	if(hitForce && !IsHyperspacing())
 	{
 		Point d = position - projectile.Position();
 		double distance = d.Length();

@@ -26,8 +26,8 @@ using namespace std;
 // If a player is given, the map will only use hyperspace paths known to the
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
-DistanceMap::DistanceMap(const System *center, int maxCount)
-	: maxCount(maxCount)
+DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
+	: maxCount(maxCount), maxDistance(maxDistance)
 {
 	Init(center);
 }
@@ -167,7 +167,8 @@ bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
 		// conceivable that a better one will be found.
 		distance[link] = steps;
 		route[link] = system;
-		edge.emplace(-steps, link);
+		if(maxDistance < 0 || steps < maxDistance)
+			edge.emplace(-steps, link);
 		if(!--maxCount)
 			return false;
 	}

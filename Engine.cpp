@@ -301,7 +301,7 @@ void Engine::Step(bool isActive)
 				if(!it->IsYours() && !it->CanBeCarried())
 					escorts.Add(*it, it->GetSystem() == currentSystem);
 		for(const shared_ptr<Ship> &escort : player.Ships())
-			if(!escort->IsParked())
+			if(!escort->IsParked() && escort.get() != flagship)
 				escorts.Add(*escort, escort->GetSystem() == currentSystem);
 		
 		// Create the status overlays.

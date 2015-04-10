@@ -773,7 +773,7 @@ mission "Rescue Miners 1"
 	destination
 		attributes core
 		attributes mining
-	passengers 5
+	passengers 15
 	cargo 15 "emergency supplies"
 	to offer
 		random < 100

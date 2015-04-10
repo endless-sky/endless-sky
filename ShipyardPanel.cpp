@@ -261,7 +261,9 @@ void ShipyardPanel::SellShip()
 	for(Ship *ship : playerShips)
 		player.SellShip(ship);
 	playerShips.clear();
-	playerShip = nullptr;
+	playerShip = player.Flagship();
+	if(playerShip)
+		playerShips.insert(playerShip);
 }
 
 

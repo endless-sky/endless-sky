@@ -54,7 +54,7 @@ mission "Pact Recon 0"
 				`	"Sure, I would be glad to help."`
 				`	"Sorry, sounds too risky."`
 					decline
-			`	"Great!" she says. "Right now, we need a few more eyes on a few systems on the edge of Southern space. All you need to do is fly through those systems, then report to our base on Glaze. I'll mark the target systems on your map."`
+			`	"Great!" she says. "Right now, we need more eyes on a few systems on the edge of Southern space. All you need to do is fly through those systems, then report to our base on Glaze. I'll mark the target systems on your map."`
 				accept
 	
 	on complete
@@ -445,7 +445,7 @@ mission "FW Katya 1"
 	name "Assist the Free Worlds"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
 	to offer
-		random < 20
+		random < 30
 	to fail
 		has "chosen sides"
 	source
