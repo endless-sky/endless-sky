@@ -171,11 +171,11 @@ void MainPanel::OnCallback()
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command == Command::MAP)
+	if(command.Has(Command::MAP))
 		GetUI()->Push(new MapDetailPanel(player));
-	else if(command == Command::INFO)
+	else if(command.Has(Command::INFO))
 		GetUI()->Push(new InfoPanel(player));
-	else if(command == Command::HAIL)
+	else if(command.Has(Command::HAIL))
 		ShowHailPanel();
 	else
 		return false;

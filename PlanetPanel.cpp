@@ -159,12 +159,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
 	}
-	else if(command == Command::MAP)
+	else if(command.Has(Command::MAP))
 	{
 		GetUI()->Push(new MapDetailPanel(player));
 		return true;
 	}
-	else if(command == Command::INFO)
+	else if(command.Has(Command::INFO))
 	{
 		GetUI()->Push(new InfoPanel(player));
 		return true;

@@ -62,8 +62,8 @@ void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	keyDown = keyHeld & ~oldHeld;
-	if(keyHeld & AutopilotCancelKeys())
+	keyDown = keyHeld.AndNot(oldHeld);
+	if(keyHeld.Has(AutopilotCancelKeys()))
 		keyStuck.Clear();
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
@@ -333,7 +333,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				MoveIndependent(*it, command);
 			// This is a friendly escort. If the parent is getting ready to
 			// jump, always follow.
-			else if(parent->Commands() & Command::JUMP)
+			else if(parent->Commands().Has(Command::JUMP))
 				MoveEscort(*it, command);
 			// If the player is ordering escorts to gather, don't go off to fight.
 			else if(isPlayerEscort && moveToMe)
@@ -1464,12 +1464,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(keyHeld.Has(Command::AFTERBURNER))
 			command |= Command::AFTERBURNER;
 		
-		if(keyHeld & AutopilotCancelKeys())
+		if(keyHeld.Has(AutopilotCancelKeys()))
 			keyStuck = keyHeld;
 	}
 	if(hasGuns && Preferences::Has("Automatic aiming") && !command.Turn()
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
-			&& !(keyStuck & (Command::LAND | Command::JUMP | Command::BOARD)))
+			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();
 		if(distance.Unit().Dot(ship.Facing().Unit()) >= .8)

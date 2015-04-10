@@ -72,12 +72,12 @@ public:
 	
 	// Clear all commands (i.e. set to the default state).
 	void Clear();
-	// Alias for operator-:
+	// Clear, set, or check the given bits. This ignores the turn field.
 	void Clear(Command command);
-	// Alias for operator|:
 	void Set(Command command);
-	// Alias for operator&:
 	bool Has(Command command) const;
+	// Get the commands that are set in this and not in the given command.
+	Command AndNot(Command command) const;
 	
 	// Get or set the turn amount.
 	void SetTurn(double amount);
@@ -86,26 +86,15 @@ public:
 	bool HasFire(int index);
 	void SetFire(int index);
 	
-	// Check whether any commands are set.
+	// Check if any bits are set in this command (including a nonzero turn).
 	explicit operator bool() const;
 	bool operator!() const;
-	// Equality check.
-	bool operator==(const Command &command) const;
-	bool operator!=(const Command &command) const;
 	// For sorting commands:
 	bool operator<(const Command &command) const;
 	
-	// Get the commands that are set in both of these commands.
-	Command operator&(const Command &command) const;
-	Command &operator&=(const Command &command);
 	// Get the commands that are set in either of these commands.
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
-	// Get the commands that are not set in this command.
-	Command operator~() const;
-	// Unset the given commands.
-	Command operator-(const Command &command) const;
-	Command &operator-=(const Command &command);
 	
 	
 private:

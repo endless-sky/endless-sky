@@ -191,26 +191,34 @@ void Command::Clear()
 
 
 
-// Alias for operator-:
+// Clear any commands that are set in the given command.
 void Command::Clear(Command command)
 {
-	*this -= command;
+	state &= ~command.state;
 }
 
 
 
-// Alias for operator|:
+// Set any commands that are set in the given command.
 void Command::Set(Command command)
 {
-	*this |= command;
+	state |= command.state;
 }
 
 
 
-// Alias for operator&:
+// Check if any of the given command's bits that are set, are also set here.
 bool Command::Has(Command command) const
 {
 	return (state & command.state);
+}
+
+
+
+// Get the commands that are set in this and not in the given command.
+Command Command::AndNot(Command command) const
+{
+	return (state & ~command.state);
 }
 
 
@@ -245,7 +253,7 @@ void Command::SetFire(int index)
 
 
 
-// Check whether any commands are set.
+// Check if any bits are set in this command (including a nonzero turn).
 Command::operator bool() const
 {
 	return !!*this;
@@ -255,22 +263,7 @@ Command::operator bool() const
 
 bool Command::operator!() const
 {
-	return !state & !turn;
-}
-
-
-
-// Equality check.
-bool Command::operator==(const Command &command) const
-{
-	return (state == command.state && turn == command.turn);
-}
-
-
-
-bool Command::operator!=(const Command &command) const
-{
-	return !(*this == command);
+	return !state && !turn;
 }
 
 
@@ -279,25 +272,6 @@ bool Command::operator!=(const Command &command) const
 bool Command::operator<(const Command &command) const
 {
 	return (state < command.state);
-}
-
-
-
-// Get the commands that are set in both of these commands.
-Command Command::operator&(const Command &command) const
-{
-	Command result = *this;
-	result &= command;
-	return result;
-}
-
-
-
-Command &Command::operator&=(const Command &command)
-{
-	state &= command.state;
-	turn *= command.turn;
-	return *this;
 }
 
 
@@ -317,32 +291,6 @@ Command &Command::operator|=(const Command &command)
 	state |= command.state;
 	if(command.turn)
 		turn = command.turn;
-	return *this;
-}
-
-
-
-// Get the commands that are not set in this command.
-Command Command::operator~() const
-{
-	return Command(~state);
-}
-
-
-
-// Unset the given commands.
-Command Command::operator-(const Command &command) const
-{
-	Command result = *this;
-	result -= command;
-	return result;
-}
-
-
-
-Command &Command::operator-=(const Command &command)
-{
-	state &= ~command.state;
 	return *this;
 }
 

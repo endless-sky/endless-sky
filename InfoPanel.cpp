@@ -203,7 +203,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		for( ; it != player.Ships().end(); ++it)
 			player.ParkShip(it->get(), !allParked);
 	}
-	else if(command == Command::INFO || command == Command::MAP || key == 'm')
+	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else
 		return false;

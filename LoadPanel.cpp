@@ -197,7 +197,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		gamePanels.Reset();
 		gamePanels.Push(new MainPanel(player));
 	}
-	else if(key == 'b' || command == Command::MENU)
+	else if(key == 'b' || command.Has(Command::MENU))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{

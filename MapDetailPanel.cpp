@@ -65,14 +65,14 @@ void MapDetailPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command == Command::MAP || key == 'd')
+	if(command.Has(Command::MAP) || key == 'd')
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN || key == 'i')
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
-	else if((key == SDLK_TAB || command == Command::JUMP) && player.Flagship())
+	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
 		const vector<const System *> &links =

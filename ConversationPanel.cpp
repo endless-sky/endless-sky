@@ -140,7 +140,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 {
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active.
-	if(command == Command::MAP && !choices.empty())
+	if(command.Has(Command::MAP) && !choices.empty())
 		GetUI()->Push(new MapDetailPanel(player, -4, system));
 	if(node < 0)
 	{

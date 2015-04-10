@@ -166,7 +166,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		
 		GetUI()->Pop(this);
 	}
-	else if((key == 'm' || command == Command::MAP) && system && player)
+	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, -4, system));
 	else
 		return false;

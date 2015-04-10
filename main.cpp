@@ -215,7 +215,7 @@ int main(int argc, char *argv[])
 					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
 				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-						&& Command(event.key.keysym.sym) == Command::MENU)
+						&& Command(event.key.keysym.sym).Has(Command::MENU))
 				{
 					menuPanels.Push(shared_ptr<Panel>(
 						new MenuPanel(player, gamePanels)));
@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
 					// No need to do anything more!
 				}
 				else if(event.type == SDL_KEYDOWN
-						&& Command(event.key.keysym.sym) == Command::FULLSCREEN)
+						&& Command(event.key.keysym.sym).Has(Command::FULLSCREEN))
 				{
 					if(restoreWidth)
 					{

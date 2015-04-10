@@ -131,7 +131,7 @@ void PreferencesPanel::Draw() const
 			table.DrawAt(Point(130, firstY));
 		}
 		
-		if(command == Command::NONE)
+		if(!command)
 		{
 			table.DrawGap(10);
 			table.DrawUnderline(medium);
@@ -204,7 +204,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		--selected;
 	else if(key == SDLK_RETURN)
 		editing = selected;
-	else if(key == 'b' || command == Command::MENU)
+	else if(key == 'b' || command.Has(Command::MENU))
 		Exit();
 	else
 		return false;

@@ -222,7 +222,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(command == Command::MAP)
+	else if(command.Has(Command::MAP))
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));

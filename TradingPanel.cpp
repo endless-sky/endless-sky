@@ -187,7 +187,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			player.Cargo().Transfer(it.first, it.second);
 		}
 	}
-	else if(command == Command::MAP)
+	else if(command.Has(Command::MAP))
 		GetUI()->Push(new MapDetailPanel(player, selectedRow));
 	else
 		return false;
