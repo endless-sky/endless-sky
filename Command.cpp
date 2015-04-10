@@ -296,6 +296,7 @@ Command Command::operator&(const Command &command) const
 Command &Command::operator&=(const Command &command)
 {
 	state &= command.state;
+	turn *= command.turn;
 	return *this;
 }
 
@@ -314,6 +315,8 @@ Command Command::operator|(const Command &command) const
 Command &Command::operator|=(const Command &command)
 {
 	state |= command.state;
+	if(command.turn)
+		turn = command.turn;
 	return *this;
 }
 
