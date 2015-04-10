@@ -250,7 +250,7 @@ void Engine::Step(bool isActive)
 			wasLeavingHyperspace = isLeavingHyperspace;
 		}
 		ai.UpdateEvents(events);
-		ai.UpdateKeys(&player, isActive && wasActive);
+		ai.UpdateKeys(player, isActive && wasActive);
 		wasActive = isActive;
 		Audio::Update(position, velocity);
 		

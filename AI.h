@@ -38,10 +38,10 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys(PlayerInfo *player, bool isActive);
+	void UpdateKeys(PlayerInfo &player, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
-	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &info);
+	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &player);
 	
 	
 private:
@@ -73,7 +73,7 @@ private:
 	// Return a bitmask giving the weapons to fire.
 	Command AutoFire(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships, bool secondary = true) const;
 	
-	void MovePlayer(Ship &ship, const PlayerInfo &info, const std::list<std::shared_ptr<Ship>> &ships);
+	void MovePlayer(Ship &ship, const PlayerInfo &player, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	

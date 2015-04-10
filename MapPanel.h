@@ -33,7 +33,7 @@ class System;
 // drawing routes in between systems.
 class MapPanel : public Panel {
 public:
-	MapPanel(PlayerInfo &info, int commodity = -4, const System *special = nullptr);
+	MapPanel(PlayerInfo &player, int commodity = -4, const System *special = nullptr);
 	
 	virtual void Draw() const override;
 	

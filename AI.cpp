@@ -56,7 +56,7 @@ AI::AI()
 
 
 
-void AI::UpdateKeys(PlayerInfo *player, bool isActive)
+void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	
@@ -65,16 +65,16 @@ void AI::UpdateKeys(PlayerInfo *player, bool isActive)
 	keyDown = keyHeld & ~oldHeld;
 	if(keyHeld & AutopilotCancelKeys())
 		keyStuck.Clear();
-	if(keyStuck.Has(Command::JUMP) && !player->HasTravelPlan())
+	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
-	const Ship *flagship = player->GetShip();
+	const Ship *flagship = player.GetShip();
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(keyDown.Has(Command::CLOAK))
-		for(const auto &it : player->Ships())
+		for(const auto &it : player.Ships())
 			if(it->Attributes().Get("cloak"))
 			{
 				isCloaking = !isCloaking;
@@ -84,15 +84,15 @@ void AI::UpdateKeys(PlayerInfo *player, bool isActive)
 	
 	// Toggle your secondary weapon.
 	if(keyDown.Has(Command::SELECT))
-		player->SelectNext();
+		player.SelectNext();
 	
 	// The commands below here only apply if you have escorts or fighters.
-	if(player->Ships().size() < 2)
+	if(player.Ships().size() < 2)
 		return;
 	
 	// Only toggle the "deploy" command if one of your ships has fighter bays.
 	if(keyDown.Has(Command::DEPLOY))
-		for(const auto &it : player->Ships())
+		for(const auto &it : player.Ships())
 			if(it->HasBays())
 			{
 				isLaunching = !isLaunching;
@@ -128,7 +128,7 @@ void AI::UpdateKeys(PlayerInfo *player, bool isActive)
 
 
 
-void AI::UpdateEvents(const std::list<ShipEvent> &events)
+void AI::UpdateEvents(const list<ShipEvent> &events)
 {
 	for(const ShipEvent &event : events)
 	{
@@ -159,9 +159,9 @@ void AI::Clean()
 
 
 
-void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
+void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 {
-	const Ship *player = info.GetShip();
+	const Ship *flagship = player.GetShip();
 	
 	step = (step + 1) & 31;
 	int targetTurn = 0;
@@ -171,8 +171,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 		if(!it->GetSystem())
 			continue;
 		
-		if(it.get() == player)
-			MovePlayer(*it, info, ships);
+		if(it.get() == flagship)
+			MovePlayer(*it, player, ships);
 		else if(it->IsDisabled())
 		{
 			if(it->IsDestroyed() || it->IsYours())
@@ -223,7 +223,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			const Personality &personality = it->GetPersonality();
 			shared_ptr<Ship> parent = it->GetParent();
 			
-			bool isPresent = (it->GetSystem() == info.GetSystem());
+			bool isPresent = (it->GetSystem() == player.GetSystem());
 			if(isPresent && personality.IsSurveillance())
 			{
 				DoSurveillance(*it, command, ships);
@@ -284,7 +284,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &info)
 			bool mustRecall = false;
 			if(it->HasBays() && !it->Commands().Has(Command::DEPLOY) && !target)
 			{
-				for(const std::weak_ptr<Ship> &ptr : it->GetEscorts())
+				for(const weak_ptr<Ship> &ptr : it->GetEscorts())
 				{
 					shared_ptr<Ship> escort = ptr.lock();
 					if(escort && escort->IsFighter() && escort->GetSystem() == it->GetSystem()
@@ -893,7 +893,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const
+void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships) const
 {
 	const shared_ptr<Ship> &target = ship.GetTargetShip();
 	if(target && (!target->IsTargetable() || target->GetSystem() != ship.GetSystem()))
@@ -997,7 +997,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const std::list<std::share
 
 
 
-void AI::DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships)
+void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
 {
 	if(ship.Attributes().Get("cloak"))
 	{
@@ -1095,7 +1095,7 @@ Point AI::TargetAim(const Ship &ship)
 
 
 // Fire whichever of the given ship's weapons can hit a hostile target.
-Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships, bool secondary) const
+Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool secondary) const
 {
 	Command command;
 	int index = -1;
@@ -1228,16 +1228,16 @@ Command AI::AutoFire(const Ship &ship, const list<std::shared_ptr<Ship>> &ships,
 
 
 
-void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Ship>> &ships)
+void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<Ship>> &ships)
 {
 	Command command;
 	
-	if(info.HasTravelPlan())
+	if(player.HasTravelPlan())
 	{
-		const System *system = info.TravelPlan().back();
+		const System *system = player.TravelPlan().back();
 		ship.SetTargetSystem(system);
 		// Check if there's a particular planet there we want to visit.
-		for(const Mission &mission : info.Missions())
+		for(const Mission &mission : player.Missions())
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
 			{
 				ship.SetDestination(mission.Destination());
@@ -1453,7 +1453,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &info, const list<shared_ptr<Sh
 			for(const Armament::Weapon &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && outfit == info.SelectedWeapon())
+				if(outfit && outfit == player.SelectedWeapon())
 					command.SetFire(index);
 				++index;
 			}
