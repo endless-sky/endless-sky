@@ -169,8 +169,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
-					conditions[grand.Token(0)] = grand.Value(1);
+				conditions[grand.Token(0)] = (grand.Size() >= 2) ? grand.Value(1) : 1;
 		}
 		else if(child.Token(0) == "launching")
 			shouldLaunch = true;
@@ -284,8 +283,12 @@ void PlayerInfo::Save() const
 		out.Write("conditions");
 		out.BeginChild();
 			for(const auto &it : conditions)
-				if(it.second)
+			{
+				if(it.second == 1)
+					out.Write(it.first);
+				else if(it.second)
 					out.Write(it.first, it.second);
+			}
 		out.EndChild();
 	}
 	if(shouldLaunch)
