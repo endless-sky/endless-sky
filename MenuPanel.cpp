@@ -78,11 +78,11 @@ void MenuPanel::Draw() const
 	{
 		info.SetCondition("pilot loaded");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
-		if(player.GetShip())
+		if(player.Flagship())
 		{
-			const Ship &ship = *player.GetShip();
-			info.SetSprite("ship sprite", ship.GetSprite().GetSprite());
-			info.SetString("ship", ship.Name());
+			const Ship &flagship = *player.Flagship();
+			info.SetSprite("ship sprite", flagship.GetSprite().GetSprite());
+			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->Name());

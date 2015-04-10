@@ -39,15 +39,15 @@ DistanceMap::DistanceMap(const System *center, int maxCount)
 // player's flagship has a jump drive, the jumps will be make use of it.
 DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 {
-	if(!player.GetShip())
+	if(!player.Flagship())
 		return;
 	
 	if(!center)
-		center = player.GetShip()->GetSystem();
+		center = player.Flagship()->GetSystem();
 	if(!center)
 		return;
 	
-	Init(center, player.GetShip());
+	Init(center, player.Flagship());
 }
 
 

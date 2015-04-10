@@ -47,15 +47,15 @@ HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
 	else if(!ship->GetPersonality().IsSurveillance() && !ship->IsFighter())
 	{
 		// Is the player in any need of assistance?
-		const Ship *playerShip = player.GetShip();
+		const Ship *flagship = player.Flagship();
 		// Check if the player is out of fuel.
-		if(!playerShip->JumpsRemaining())
+		if(!flagship->JumpsRemaining())
 		{
 			playerNeedsHelp = true;
-			canGiveFuel = ship->CanRefuel(*playerShip);
+			canGiveFuel = ship->CanRefuel(*flagship);
 		}
 		// Check if the player is disabled.
-		if(playerShip->IsDisabled())
+		if(flagship->IsDisabled())
 		{
 			playerNeedsHelp = true;
 			canRepair = true;
@@ -86,7 +86,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	if(planet)
 		header = gov->GetName() + " planet \"" + planet->Name() + "\":";
 	
-	if(planet && player.GetShip())
+	if(planet && player.Flagship())
 	{
 		for(const Mission &mission : player.Missions())
 			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
@@ -97,7 +97,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 				return;
 			}
 		if(planet->CanLand())
-			message = "You are cleared to land, " + player.GetShip()->Name() + ".";
+			message = "You are cleared to land, " + player.Flagship()->Name() + ".";
 		else
 		{
 			SetBribe(planet->GetBribeFraction());

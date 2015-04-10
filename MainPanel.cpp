@@ -59,7 +59,7 @@ void MainPanel::Step()
 		player.Land(GetUI());
 		isActive = false;
 	}
-	if(isActive && player.GetShip() && player.GetShip()->IsTargetable()
+	if(isActive && player.Flagship() && player.Flagship()->IsTargetable()
 			&& !Preferences::Has("help: navigation"))
 	{
 		Preferences::Set("help: navigation");
@@ -79,7 +79,7 @@ void MainPanel::Step()
 			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
 	}
-	if(isActive && player.GetShip() && player.GetShip()->IsDestroyed()
+	if(isActive && player.Flagship() && player.Flagship()->IsDestroyed()
 			&& !Preferences::Has("help: dead"))
 	{
 		Preferences::Set("help: dead");
@@ -115,7 +115,7 @@ void MainPanel::Step()
 					GetUI()->Push(new Dialog(message));
 			}
 		}
-		if((event.Type() & ShipEvent::JUMP) && player.GetShip() && !player.GetShip()->Fuel()
+		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->Fuel()
 				&& !player.GetSystem()->IsInhabited() && !Preferences::Has("help: stranded"))
 		{
 			Preferences::Set("help: stranded");
@@ -237,33 +237,30 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 void MainPanel::ShowHailPanel()
 {
-	const Ship *ship = player.GetShip();
-	if(ship)
+	// An exploding ship cannot communicate.
+	const Ship *flagship = player.Flagship();
+	if(!flagship || flagship->IsDestroyed())
+		return;
+	
+	shared_ptr<Ship> target = flagship->GetTargetShip();
+	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetPlanet())
+		target.reset();
+	if(target)
 	{
-		// An exploding ship cannot communicate.
-		if(ship->IsDestroyed())
-			return;
-		
-		shared_ptr<Ship> target = ship->GetTargetShip();
-		if((SDL_GetModState() & KMOD_SHIFT) && ship->GetTargetPlanet())
-			target.reset();
-		if(target)
-		{
-			if(target->IsEnteringHyperspace())
-				Messages::Add("Unable to send hail: ship is entering hyperspace.");
-			else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
-				GetUI()->Push(new HailPanel(player, target));
-			else
-				Messages::Add("Unable to hail target ship.");
-		}
-		else if(ship->GetTargetPlanet())
-		{
-			if(ship->GetTargetPlanet()->GetPlanet())
-				GetUI()->Push(new HailPanel(player, ship->GetTargetPlanet()));
-			else
-				Messages::Add("Unable to send hail: planet is not inhabited.");
-		}
+		if(target->IsEnteringHyperspace())
+			Messages::Add("Unable to send hail: ship is entering hyperspace.");
+		else if(!target->IsDestroyed() && target->GetSystem() == player.GetSystem())
+			GetUI()->Push(new HailPanel(player, target));
 		else
-			Messages::Add("Unable to send hail: no target selected.");
+			Messages::Add("Unable to hail target ship.");
 	}
+	else if(flagship->GetTargetPlanet())
+	{
+		if(flagship->GetTargetPlanet()->GetPlanet())
+			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
+		else
+			Messages::Add("Unable to send hail: planet is not inhabited.");
+	}
+	else
+		Messages::Add("Unable to send hail: no target selected.");
 }

@@ -72,10 +72,12 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
-	else if((key == SDLK_TAB || command == Command::JUMP) && player.GetShip())
+	else if((key == SDLK_TAB || command == Command::JUMP) && player.Flagship())
 	{
-		const vector<const System *> &links = player.GetShip()->Attributes().Get("jump drive") ?
-			player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
+		const vector<const System *> &links =
+			hasJumpDrive ? player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+		
 		if(!player.HasTravelPlan() && !links.empty())
 			Select(links.front());
 		else if(player.TravelPlan().size() == 1 && !links.empty())

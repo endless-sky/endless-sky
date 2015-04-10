@@ -490,9 +490,7 @@ bool OutfitterPanel::FlightCheck()
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
 		
-		playerShip = &*ship;
-		
-		const Outfit &attributes = player.GetShip()->Attributes();
+		const Outfit &attributes = ship->Attributes();
 		double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
 		if(!attributes.Get("thrust"))
 		{
@@ -518,7 +516,7 @@ bool OutfitterPanel::FlightCheck()
 				*GameData::Conversations().Get("flight check: no steering energy")));
 			return false;
 		}
-		double maxHeat = .1 * player.GetShip()->Mass() * attributes.Get("heat dissipation");
+		double maxHeat = .1 * ship->Mass() * attributes.Get("heat dissipation");
 		if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
 		{
 			GetUI()->Push(new ConversationPanel(player,

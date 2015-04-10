@@ -553,6 +553,27 @@ int64_t PlayerInfo::Salaries() const
 
 
 
+const Ship *PlayerInfo::Flagship() const
+{
+	return ships.empty() ? nullptr : ships.front().get();
+}
+
+
+
+Ship *PlayerInfo::Flagship()
+{
+	return ships.empty() ? nullptr : ships.front().get();
+}
+
+
+
+const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
+{
+	return ships;
+}
+
+
+
 // Add a captured ship to your fleet.
 void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 {
@@ -571,27 +592,6 @@ void PlayerInfo::RemoveShip(const shared_ptr<Ship> &ship)
 			ships.erase(it);
 			break;
 		}
-}
-
-
-
-const Ship *PlayerInfo::GetShip() const
-{
-	return ships.empty() ? nullptr : ships.front().get();
-}
-
-
-
-Ship *PlayerInfo::GetShip()
-{
-	return ships.empty() ? nullptr : ships.front().get();
-}
-
-
-
-const vector<shared_ptr<Ship>> &PlayerInfo::Ships() const
-{
-	return ships;
 }
 
 

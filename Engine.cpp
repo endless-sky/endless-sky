@@ -235,7 +235,7 @@ void Engine::Step(bool isActive)
 		eventQueue.clear();
 		
 		// The calculation thread is now paused, so it is safe to access things.
-		const Ship *flagship = player.GetShip();
+		const Ship *flagship = player.Flagship();
 		if(flagship)
 		{
 			position = flagship->Position();
@@ -542,7 +542,7 @@ void Engine::EnterSystem()
 	ai.Clean();
 	grudge.clear();
 	
-	const Ship *flagship = player.GetShip();
+	const Ship *flagship = player.Flagship();
 	if(!flagship)
 		return;
 	
@@ -651,7 +651,7 @@ void Engine::CalculateStep()
 	
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(ships, player);
-	const Ship *flagship = player.GetShip();
+	const Ship *flagship = player.Flagship();
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	
 	// Now, move all the ships. We must finish moving all of them before any of

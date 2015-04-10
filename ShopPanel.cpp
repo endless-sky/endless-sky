@@ -42,7 +42,7 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
-	: player(player), planet(player.GetPlanet()), playerShip(player.GetShip()), categories(categories)
+	: player(player), planet(player.GetPlanet()), playerShip(player.Flagship()), categories(categories)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -619,7 +619,7 @@ void ShopPanel::SideSelect(int count)
 	if(it == player.Ships().end())
 	{
 		playerShips.clear();
-		playerShip = player.GetShip();
+		playerShip = player.Flagship();
 		if(playerShip)
 			playerShips.insert(playerShip);
 		

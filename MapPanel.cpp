@@ -45,8 +45,8 @@ namespace {
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	: player(player), distance(player),
-	playerSystem(player.GetShip()->GetSystem()),
-	selectedSystem(special ? special : player.GetShip()->GetSystem()),
+	playerSystem(player.Flagship()->GetSystem()),
+	selectedSystem(special ? special : player.Flagship()->GetSystem()),
 	specialSystem(special),
 	commodity(commodity)
 {
@@ -133,7 +133,7 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	
-	if(distance.HasRoute(system) && player.GetShip())
+	if(distance.HasRoute(system) && player.Flagship())
 	{
 		bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
 		

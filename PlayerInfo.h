@@ -91,12 +91,12 @@ public:
 	Account &Accounts();
 	int64_t Salaries() const;
 	
+	const Ship *Flagship() const;
+	Ship *Flagship();
+	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Add a captured ship to your fleet.
 	void AddShip(std::shared_ptr<Ship> &ship);
 	void RemoveShip(const std::shared_ptr<Ship> &ship);
-	const Ship *GetShip() const;
-	Ship *GetShip();
-	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Buy or sell a ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);

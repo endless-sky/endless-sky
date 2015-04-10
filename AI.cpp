@@ -68,7 +68,7 @@ void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
-	const Ship *flagship = player.GetShip();
+	const Ship *flagship = player.Flagship();
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
 	
@@ -161,7 +161,7 @@ void AI::Clean()
 
 void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 {
-	const Ship *flagship = player.GetShip();
+	const Ship *flagship = player.Flagship();
 	
 	step = (step + 1) & 31;
 	int targetTurn = 0;

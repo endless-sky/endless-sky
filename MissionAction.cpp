@@ -136,7 +136,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 	if(player.Accounts().Credits() < -payment)
 		return false;
 	
-	const Ship *flagship = player.GetShip();
+	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
 		if(it.second >= 0)
@@ -173,8 +173,8 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		map<string, string> subs;
 		subs["<first>"] = player.FirstName();
 		subs["<last>"] = player.LastName();
-		if(player.GetShip())
-			subs["<ship>"] = player.GetShip()->Name();
+		if(player.Flagship())
+			subs["<ship>"] = player.Flagship()->Name();
 		string text = Format::Replace(dialogText, subs);
 		
 		if(isOffer)
@@ -185,7 +185,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
-	Ship *flagship = player.GetShip();
+	Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
 		int count = it.second;

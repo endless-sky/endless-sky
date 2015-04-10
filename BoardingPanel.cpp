@@ -50,7 +50,7 @@ namespace {
 
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.Ships().front()), victim(victim),
-	attackOdds(player.GetShip(), &*victim), defenseOdds(&*victim, player.GetShip()),
+	attackOdds(player.Flagship(), &*victim), defenseOdds(&*victim, player.Flagship()),
 	initialCrew(you->Crew())
 {
 	TrapAllEvents();
@@ -365,21 +365,23 @@ bool BoardingPanel::CanTake(int index) const
 	
 	if(index < 0)
 		index = selected;
-	return static_cast<unsigned>(index) < plunder.size() && player.GetShip()
-		&& plunder[index].CanTake(player.GetShip()->Cargo().Free());
+	if(static_cast<unsigned>(index) >= plunder.size())
+		return false;
+	
+	return plunder[index].CanTake(you->Cargo().Free());
 }
 
 
 
 bool BoardingPanel::CanCapture() const
 {
-	// If you ship or the other ship has been captured:
+	// If your ship or the other ship has been captured:
 	if(!you->GetGovernment()->IsPlayer())
 		return false;
 	if(victim->GetGovernment()->IsPlayer())
 		return false;
 	
-	return !isCapturing && player.GetShip()->Crew() > 1;
+	return !isCapturing && you->Crew() > 1;
 }
 
 

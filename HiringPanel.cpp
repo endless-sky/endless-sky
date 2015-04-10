@@ -51,9 +51,9 @@ void HiringPanel::Step()
 
 void HiringPanel::Draw() const
 {
-	if(!player.GetShip())
+	if(!player.Flagship())
 		return;
-	const Ship &flagship = *player.GetShip();
+	const Ship &flagship = *player.Flagship();
 	
 	// Draw a line in the same place as the trading and bank panels.
 	FillShader::Fill(Point(-60., 95.), Point(480., 1.), *GameData::Colors().Get("medium"));
@@ -110,17 +110,17 @@ void HiringPanel::Draw() const
 
 bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(!player.GetShip())
+	if(!player.Flagship())
 		return false;
 	
 	if(key == 'h' || key == '=' || key == SDLK_RETURN || key == SDLK_SPACE)
 	{
-		player.GetShip()->AddCrew(min(maxHire, Modifier()));
+		player.Flagship()->AddCrew(min(maxHire, Modifier()));
 		player.UpdateCargoCapacities();
 	}
 	else if(key == 'f' || key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 	{
-		player.GetShip()->AddCrew(-min(maxFire, Modifier()));
+		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();
 	}
 	

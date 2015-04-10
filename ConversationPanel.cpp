@@ -45,8 +45,8 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 {
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
-	if(player.GetShip())
-		subs["<ship>"] = player.GetShip()->Name();
+	if(player.Flagship())
+		subs["<ship>"] = player.Flagship()->Name();
 	
 	Goto(0);
 }
