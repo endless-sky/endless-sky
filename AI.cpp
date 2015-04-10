@@ -342,8 +342,11 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			// if you're usually more timid than that.
 			else if(isPlayerEscort && sharedTarget.lock())
 				MoveIndependent(*it, command);
+			// Timid ships always stay near their parent.
+			else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
+				MoveEscort(*it, command);
 			// Otherwise, attack targets depending on how heroic you are.
-			else if(target && (targetDistance < 2000. || personality.IsHeroic()) && !personality.IsTimid())
+			else if(target && (targetDistance < 2000. || personality.IsHeroic()))
 				MoveIndependent(*it, command);
 			// This ship does not feel like fighting.
 			else
@@ -422,11 +425,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
-			// "Timid" ships do not pick fights; they only attack ships that are
-			// already targeting them.
-			if(ship.GetPersonality().IsTimid() && it->GetTargetShip().get() != &ship)
-				continue;
-			
 			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
 				continue;
 			
