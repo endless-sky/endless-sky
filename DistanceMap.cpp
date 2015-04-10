@@ -38,6 +38,7 @@ DistanceMap::DistanceMap(const System *center, int maxCount)
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
 DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
+	: player(&player)
 {
 	if(!player.Flagship())
 		return;
