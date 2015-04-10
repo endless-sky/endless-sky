@@ -571,14 +571,15 @@ ship "Combat Drone"
 		"mass" 20
 		"drag" .59
 		"heat dissipation" .9
-		"outfit space" 56
+		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
 	outfits
-		"X1200 Ion Steering"
-		"X1700 Ion Thruster"
 		"Beam Laser"
 		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
 	engine -9 29
 	engine 9 29
 	gun 0 -29 "Beam Laser"
