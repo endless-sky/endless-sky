@@ -299,7 +299,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			{
 				it->SetTargetShip(shipToAssist);
 				if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem())
-					it->SetShipToAssist(weak_ptr<Ship>());
+					it->SetShipToAssist(shared_ptr<Ship>());
 				else if(!it->IsBoarding())
 				{
 					MoveTo(*it, command, shipToAssist->Position(), 40., .8);
@@ -372,10 +372,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 
 
 // Pick a new target for the given ship.
-weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships) const
+shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &ships) const
 {
 	// If this ship has no government, it has no enemies.
-	weak_ptr<Ship> target;
+	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
 	if(!gov)
 		return target;
@@ -385,7 +385,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	{
 		shared_ptr<Ship> locked = sharedTarget.lock();
 		if(locked && locked->GetSystem() == ship.GetSystem() && !locked->IsDisabled())
-			return sharedTarget;
+			return locked;
 	}
 	
 	// If this ship is not armed, do not make it fight.
@@ -460,7 +460,7 @@ weak_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &sh
 	
 	bool cargoScan = ship.Attributes().Get("cargo scan");
 	bool outfitScan = ship.Attributes().Get("outfit scan");
-	if(!target.lock() && (cargoScan || outfitScan) && !isPlayerEscort)
+	if(!target && (cargoScan || outfitScan) && !isPlayerEscort)
 	{
 		closest = numeric_limits<double>::infinity();
 		for(const auto &it : ships)
@@ -937,7 +937,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 		bool mustScanOutfits = outfitScan && !Has(ship, target, ShipEvent::SCAN_OUTFITS);
 		bool isInSystem = (ship.GetSystem() == target->GetSystem() && !target->IsEnteringHyperspace());
 		if(!isInSystem || (!mustScanCargo && !mustScanOutfits))
-			ship.SetTargetShip(weak_ptr<Ship>());
+			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
 			CircleAround(ship, command, *target);
@@ -946,14 +946,14 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 	}
 	else
 	{
-		shared_ptr<Ship> newTarget = FindTarget(ship, ships).lock();
+		shared_ptr<Ship> newTarget = FindTarget(ship, ships);
 		if(newTarget && ship.GetGovernment()->IsEnemy(newTarget->GetGovernment()))
 		{
 			ship.SetTargetShip(newTarget);
 			return;
 		}
 		
-		vector<weak_ptr<Ship>> targetShips;
+		vector<shared_ptr<Ship>> targetShips;
 		vector<const StellarObject *> targetPlanets;
 		vector<const System *> targetSystems;
 		
@@ -1294,7 +1294,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			}
 		}
 		if(selectNext)
-			ship.SetTargetShip(weak_ptr<Ship>());
+			ship.SetTargetShip(shared_ptr<Ship>());
 	}
 	else if(keyDown.Has(Command::BOARD))
 	{

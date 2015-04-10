@@ -1447,7 +1447,7 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	
 	// Set the capturer as this ship's parent.
 	SetParent(capturer);
-	SetTargetShip(weak_ptr<Ship>());
+	SetTargetShip(shared_ptr<Ship>());
 	SetTargetPlanet(nullptr);
 	SetTargetSystem(nullptr);
 	commands.Clear();
@@ -1938,14 +1938,14 @@ const Planet *Ship::GetDestination() const
 
 
 // Set this ship's targets.
-void Ship::SetTargetShip(const weak_ptr<Ship> &ship)
+void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
 	targetShip = ship;
 }
 
 
 
-void Ship::SetShipToAssist(const weak_ptr<Ship> &ship)
+void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
 {
 	shipToAssist = ship;
 }

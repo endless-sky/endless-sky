@@ -257,8 +257,8 @@ public:
 	const Planet *GetDestination() const;
 	
 	// Set this ship's targets.
-	void SetTargetShip(const std::weak_ptr<Ship> &ship);
-	void SetShipToAssist(const std::weak_ptr<Ship> &ship);
+	void SetTargetShip(const std::shared_ptr<Ship> &ship);
+	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
 	void SetTargetPlanet(const StellarObject *object);
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
