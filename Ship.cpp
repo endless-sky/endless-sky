@@ -639,8 +639,22 @@ bool Ship::Move(list<Effect> &effects)
 		if(explosionCount == explosionTotal || forget)
 		{
 			if(!forget)
-				for(unsigned i = 0; i < explosionTotal; ++i)
+			{
+				const Effect *effect = GameData::Effects().Get("small debris");
+				double scale = .04 * (sprite.Width() + sprite.Height());
+				int debrisCount = attributes.Get("mass") * .05;
+				for(int i = 0; i < debrisCount; ++i)
+				{
+					effects.push_back(*effect);
+					
+					Angle angle = Angle::Random();
+					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real() * Random::Real());
+					effects.back().Place(position, effectVelocity, angle);
+				}
+					
+				for(unsigned i = 0; i < explosionTotal / 2; ++i)
 					CreateExplosion(effects, true);
+			}
 			energy = 0.;
 			heat = 0.;
 			fuel = 0.;

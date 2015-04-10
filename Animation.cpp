@@ -76,12 +76,7 @@ void Animation::Load(const DataNode &node)
 			startAtZero = true;
 		}
 		else if(child.Token(0) == "random start frame")
-		{
-			if(child.Size() >= 2 && child.Value(1) >= 0.)
-				frameOffset += Random::Int(child.Value(1) + 1.);
-			else
-				randomize = true;
-		}
+			randomize = true;
 		else if(child.Token(0) == "no repeat")
 		{
 			repeat = false;
@@ -265,7 +260,7 @@ void Animation::DoFirst(int step) const
 		if(sprite && sprite->Frames())
 			frameOffset += Random::Int(sprite->Frames());
 	}
-	if(startAtZero)
+	else if(startAtZero)
 	{
 		startAtZero = false;
 		// Adjust frameOffset so that this step's frame is exactly 0 (no fade).
