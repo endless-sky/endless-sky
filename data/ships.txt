@@ -900,7 +900,7 @@ ship "Freighter"
 		"mass" 240
 		"drag" 5.6
 		"heat dissipation" .6
-		"fuel capacity" 400
+		"fuel capacity" 600
 		"cargo space" 150
 		"outfit space" 250
 		"weapon capacity" 80
@@ -918,7 +918,7 @@ ship "Freighter"
 		"D14-RN Shield Generator"
 		"Blaster Turret" 2
 		"Heavy Anti-Missile Turret"
-		"Hyperdrive"
+		"Scram Drive"
 	engine -9 97
 	engine 9 97
 	turret 0 -52 "Blaster Turret"
