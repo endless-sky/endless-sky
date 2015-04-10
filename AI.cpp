@@ -446,7 +446,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			else
 			{
 				bool hasBoarded = Has(ship, it, ShipEvent::BOARD);
-				range += 2000. * hasBoarded;
+				// Don't plunder unless there are no "live" enemies nearby.
+				range += 1200. * it->IsDisabled() - 2000. * !hasBoarded;
 			}
 			// Focus on nearly dead ships.
 			range += 500. * (it->Shields() + it->Hull());
