@@ -128,10 +128,10 @@ void NPC::Load(const DataNode &node)
 	// Since a ship's government is not serialized, set it now.
 	for(const shared_ptr<Ship> &ship : ships)
 	{
+		ship->FinishLoading();
 		ship->SetGovernment(government);
 		ship->SetPersonality(personality);
 		ship->SetIsSpecial();
-		ship->FinishLoading();
 	}
 }
 
