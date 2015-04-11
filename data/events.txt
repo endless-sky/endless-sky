@@ -1387,6 +1387,7 @@ event "fw at war with Syndicate"
 		"attitude toward"
 			"Free Worlds" -.3
 			"Republic" -.3
+			"Navy (Oathkeeper)" -.3
 			"Pirate" -.4
 			"Korath" -.5
 	system Rutilicus
@@ -1666,6 +1667,7 @@ event "fw syndicate welcoming"
 		"attitude toward"
 			"Free Worlds" 0
 			Republic 0
+			"Navy (Oathkeeper)" 0
 	system Algenib
 		government "Syndicate (Extremist)"
 		fleet "Small Core Pirates" 1500
@@ -1722,6 +1724,7 @@ event "liberation of altair"
 event "reconnected altair"
 	link Altair Sol
 	system "Altair"
+		government Republic
 		fleet "Small Core Merchants" 800
 		fleet "Large Core Merchants" 1200
 

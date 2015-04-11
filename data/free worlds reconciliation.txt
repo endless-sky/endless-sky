@@ -47,7 +47,7 @@ mission "FW Reconciliation 1"
 					goto intelligence2
 			
 			label read
-			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical connection, honestly none of us knows that for sure."`
+			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical powers, honestly none of us knows that for sure."`
 			choice
 				`	"Are we at peace with the Republic now?"`
 					goto peace2
@@ -67,7 +67,7 @@ mission "FW Reconciliation 1"
 				goto next
 			
 			label read2
-			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical connection, honestly none of us knows that for sure."`
+			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical powers, honestly none of us knows that for sure."`
 				goto next
 			
 			label intelligence2
@@ -473,6 +473,72 @@ mission "FW Embassy 1B"
 
 
 
+event "fw reconciliation break"
+
+mission "FW Reconciliation Break"
+	name "Katya and Ijs to <planet>"
+	description "Bring Katya and Ijs to <destination>, for a well-deserved sabbatical. Then you will be free to spend some time upgrading your ship while you wait for the Senate to select a team of ambassadors."
+	landing
+	source Bourne
+	destination Skymoot
+	to offer
+		has "FW Embassy 1B: done"
+	passengers 2
+	
+	on offer
+		event "fw reconciliation break" 30
+		conversation
+			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complementing their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
+			`	The moment they are dealt with he gives Katya a hug and says, "Katya! So good to have you back with us. The Council has five members once more. I assume you've been told about Tomek's... departure, and <first>'s promotion?" She nods.`
+			`	Alondo says, "Unfortunately, we don't have any ambassadors of our own picked out yet. The Senate insists on selecting them, and you wouldn't believe how slowly Senate deliberations move. They've interviewed half a dozen candiates so far, and found none to their liking. It pains me to say this, but we may have succeeded in creating a bureaucracy every bit as inefficient as the one we rebelled against."`
+			choice
+				`	"No problem. The important thing is, we're at peace, so their decisions can take as long as they need to."`
+					goto peace
+				`	"Have you volunteered to be one of the ambassadors? You're an obvious choice."`
+					goto volunteer
+				`	"What do we do while we're waiting?"`
+					goto wait
+			
+			label peace
+			`	"At peace for now," says Ijs, but so far a peace without justice. When the time is ripe, we will strike against the Syndicate."`
+				goto wait
+			
+			label volunteer
+			`	Alondo laughs. "No, that's no work for me," he says. "The ambassadors, as prestigious as their role may seem, are litte more than a symbolic gesture. And being cooped up in an embassy on a single planet while things of importance are taking place elsewhere is hardly a job I aspire to."`
+			`	"So, what will we do while we're waiting for the Senate to pick the ambassadors?" you ask.`
+				goto wait
+			
+			label wait
+			`	"Alondo says, "We should use this time of peace well, to prepare for another battle ahead. Those Syndicate ships on New Tibet had equipment I've never seen before, and who knows what else the Syndicate has up their sleeves - especially if they've begun producing nuclear weapons. Captain <last>, you should take this time to make sure your ship is as well armed as possible for our next strike. Ijs and Katya, what will you do with this time?"`
+			`	Katya glances at Ijs and then says, "I would certainly welcome a small sabbatical, and a chance to spend time together and catch up on all we've missed. Professor Springborn, do you think the Conservatory would extend your leave of absence long enough for us to make a trip to <planet>?"`
+			`	Ijs laughs. "That sounds wonderful, Councilor," he says. "<first>, do you think you could bring us there on your way to wherever you go next?"`
+			`	You tell him you would be glad to, and you all get ready for yet another journey together.`
+				accept
+	
+	on complete
+		conversation
+			`	You drop Ijs and Katya off on Skymoot, and wish them well. They both seem eager for a chance to relax, enjoy one another's company, and forget about matters of galactic importance for a while. "We'll see you soon, <first>," says Katya. "Just be sure your ship is in good fighting shape when the time comes to bring the Syndicate to justice."`
+
+
+
+mission "FW Reconciliation Break Ends"
+	name "Return to <planet>"
+	description "Rejoin Ijs, Katya, and Alondo on <destination>."
+	landing
+	source
+		near "Gamma Corvi" 1 1000
+	destination Bourne
+	to offer
+		has "event: fw reconciliation break"
+		not "FW Embassy 1C: offered"
+	
+	on offer
+		conversation
+			`You receive a coded message from Alondo: "The Senate has finished selecting the ambassadors, and all is in readiness for our other work as well. Please meet us back on <planet> as soon as you can."`
+				accept
+
+
+
 mission "FW Embassy 1C"
 	landing
 	name "Ambassadors to Earth"
@@ -481,13 +547,14 @@ mission "FW Embassy 1C"
 	destination Earth
 	passengers 2
 	to offer
-		has "FW Embassy 1B: done"
+		has "event: fw reconciliation break"
 	
 	on offer
 		conversation
-			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complementing their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
-			`	The moment they are dealt with he gives Katya a hug and says, "Katya! So good to have you back with us. The Council has five members once more. I assume you've been told about Tomek's... departure, and <first>'s promotion?" She nods.`
-			`	Later that evening Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. When the ambassadors see the luxury liner that the diplomats from Earth arrived in, their universal reaction is disgust. "No way am I flying in that gaudy thing," says one of them. "Let's requisition a Dreadnought." It turns out to be the perfect excuse to bring a warship back to the Sol system as your escort. You contact Edrick and Danforth and tell them you are on your way to the rendevous.`
+			`When you land on Bourne you discover that Katya and Ijs have already been back there for a week. Alondo is with them, too. "We just couldn't stay away from the action for long," says Ijs.`
+			`	The Star Queen luxury liner that brought the Earth ambassadors to Bourne is still parked in a somewhat out of the way hangar. "Don't worry, Captain," says Katya, "there's no way our ambassadors would travel in something as gaudy as that. They've requisitioned a Dreadnought instead. A good ship to remind the people of Earth that we have a strong fleet of our own."`
+			`	"Not to mention," says Ijs, "a good ship to take part in our strike against the Syndicate."`
+			`	Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. "I've already contacked Governor Flint and General Danforth," he says. "Their ships will be arriving in the Sol system about the same time as yours. Good luck, Captain." You help Ijs and Katya load their luggage onto your ship, and tell the Dreadnought carrying the ambassadors to be ready to follow you.`
 				accept
 	
 	npc accompany save
@@ -583,7 +650,7 @@ mission "FW Syndicate Capture 1B"
 			`As you approach the planet, your ships spread out and begin scanning the ocean surface for a yacht matching the description you were given. After a few tense moments of wondering if Soylent is off-world at the moment, you find the ship.`
 			`	With neither deflector shields nor any weaponry that you can see, the yacht clearly poses no threat to an armed starship. The Aerie that Edrick sent launches its two fighters; when they land on the yacht's deck, armed police officers emerge. Meanwhile your fleet is ready to open fire at the first sign of resistance.`
 			`	The officers soon radio you that they have found Soylent, and they bring him aboard your ship. Amid all the confusion, you notice a figure in diving gear who jumps off the rear of the yacht and disappears beneath the waves - one of Soylent's men, trying to escape. But since his leader is now in your custody, and your mission is accomplished, you see no reason to chase after him.`
-			`	Now all you need to do is return to <planet> without being destroyed by Syndicate ships...`
+			`	The Oathkeeper captain sends you a brief message: "Your first priority is to reach the Deep with the prisoner. Our crew is prepared to serve as a rearguard, staying behind if necessary to ensure that you survive. Good luck, Captain."`
 				accept
 	
 	npc
@@ -1053,7 +1120,7 @@ mission "FW Pug 2C: Side"
 	
 	on offer
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that you suspect is some sort of weapon.`
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff: probably some sort of weapon.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
@@ -1363,7 +1430,7 @@ mission "FW Pug 4: Escorts"
 		has "FW Pug 6: done"
 	
 	npc kill
-		personality escort heroic
+		personality escort heroic disables
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"
 	npc kill
@@ -1647,7 +1714,7 @@ mission "FW Pug 4C"
 		event "reconnected delta capricorni"
 		conversation
 			`Freya sent detailed instructions with the reflector for where it should be set up and how it should be adjusted to interface with the transmitter back in Pug space. You hand it over to a team of Syndicate engineers, who seem quite capable and confident that they can make it work; you suspect that these are the same engineers who have been playing with equipment stolen from the Korath, so they are no strangers to alien technology.`
-			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to repoen one of the connections to human space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in repoening the link.`
+			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to repoen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in repoening the link.`
 			`	A few hours later, the engineers tell you that they think the link is beginning to reopen. Bugati says, "You should take off and return as soon as possible, in case Maker has been attacked in your absence."`
 				accept
 
@@ -2193,7 +2260,7 @@ mission "FW Syndicate Extremists 1B"
 	npc
 		government "Navy (Oathkeeper)"
 		system Deneb
-		personality heroic
+		personality heroic escort
 		fleet
 			names "republic capital"
 			fighters "republic fighter"

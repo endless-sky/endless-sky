@@ -35,7 +35,7 @@ mission "FW Diplomacy 1B"
 	description "Bring Alondo to <planet> to meet with Parliament. Your guarantee of safe passage will expire on <day>."
 	source Longjump
 	destination Earth
-	deadline 21
+	deadline 24
 	to offer
 		has "FW Diplomacy 1: done"
 	
@@ -73,7 +73,7 @@ mission "FW Diplomacy 1B"
 	
 	on accept
 		event "fw safe passage starts"
-		event "fw safe passage ends" 21
+		event "fw safe passage ends" 24
 
 
 
@@ -231,7 +231,7 @@ mission "FW Southern Battle 1B"
 	
 	on offer
 		conversation
-			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews. He says, "The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far."`
+			`When you land on <origin>, a Southbound Shipyards executive leads you to a hangar. The hangar is huge, but it clearly was not meant to hold a ship as large as the one it now contains. There is barely enough space for the cranes and catwalks being used by the construction crews. He says, "The Dreadnought is a new design, the largest ship we've ever built. Only three of them have been completed so far." You can't help but be impressed at the size of the Dreadnought: as bulky as a Cruiser, it looks like a cross between a Bastion and an Argosy freighter.`
 			`	He then leads you out to a section of the spaceport where three Dreadnoughts are parked. Next to them, and looking tiny by comparison, are five Furies. You ask, "Are those Furies part of the battle fleet, too?"`
 			`	"Yes," he says, "equipped with some fancy new weapons from Barmy Edward up at Kraz Cybernetics. I haven't seen them in action yet, but he's convinced they'll be useful against the Navy."`
 			`	You thank him for his time, and meet up with the captains of the battle fleet, arranging for them to follow you back to Trinket.`
@@ -377,11 +377,6 @@ mission "FW Southern Battle 2"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic small"
-			fighters "republic fighter"
-			variant
-				"Rainmaker (Mark II)" 2
 		fleet
 			names "republic small"
 			fighters "republic fighter"
@@ -611,6 +606,44 @@ mission "FW Southern Prisoners - Kept"
 
 
 
+mission "FW Southern Break"
+	landing
+	source Dancer
+	to offer
+		has "fw delivered prisoners"
+	
+	on offer
+		event "fw occupying the north" 50
+		conversation
+			`You land on Dancer and report to Alondo and Freya that the prisoner transfer is complete. "What do we do now?" you ask.`
+			`	Freya says, "Well, I hope we're done with fighting for a while, now. We'll stay here to hold this system against any Navy retaliation. And, we'll keep hoping that Parliament might come to their senses and agree to a diplomatic end to this conflict. In the meantime I suggest you spend some time doing whatever it is you do to earn money on the side - carrying passengers or freight or hunting pirates. We'll contact you when things begin to move forward again."`
+			choice
+				`	"Sounds good. I'll hope to hear from you soon."`
+					decline
+				`	"You're sure there's nothing else I can do to help the Free Worlds right now?"`
+			`	Alondo says, "You might hear from some other folks who could use your assistance, but as for the Council, I think it's a waiting game for us right now. Please don't think we aren't grateful for your help, Captain. All we're saying is that hopefully, for a few months at least, we'll all be able to take a break from fighting and go back to actually living our lives. And don't worry, we'll contact you as soon as things get interesting again."`
+				decline
+
+
+
+mission "FW Southern Break Ends"
+	name "Return to <planet>"
+	description "Travel as quickly as possible to <destination>, to rejoin the main Free Worlds fleet."
+	landing
+	source
+		near Rastaban 1 1000
+	destination Dancer
+	to offer
+		has "event: fw occupying the north"
+		not "FW Northern 1: offered"
+	
+	on offer
+		conversation
+			`Soon after you land on <origin>, you receive a message from Freya: "Greetings, Captain <last>! I hope you've made good use of your time off, because we're about to be right in the thick of it once again. As soon as you're able, please come rejoin the fleet on Dancer. We have some urgent and sensitive work to do."`
+				accept
+
+
+
 mission "FW Northern 1"
 	landing
 	name "Northern Expansion"
@@ -621,11 +654,10 @@ mission "FW Northern 1"
 	waypoint Seginus
 	clearance
 	to offer
-		has "fw delivered prisoners"
+		has "event: fw occupying the north"
 	passengers 1
 	
 	on offer
-		event "fw occupying the north"
 		conversation
 			`When you land on Dancer, the Free Worlds fleet appears to be preparing for another battle: missiles and torpedos are being loaded onto ships and crew members are running around. You eventually find Freya and Alondo, and ask them what is going on.`
 			`	"Another three worlds have secretly told us they are ready to defect," says Alondo, "and this time around we want to get there before the Navy does."`
@@ -1204,7 +1236,7 @@ mission "FW Bloodsea 1"
 				`	"Isn't there any way we can track down the rest of the Alphas?"`
 				`	"What is our next mission now?"`
 					goto next
-			`	"Not really," he says. "There are probably small enclaves throughout human space, and perhaps beyond human space as well. All we can do is make it harder for them to grow powerful."`
+			`	"Not really," he says. "There are probably small enclaves throughout human space, and perhaps beyond our space as well. All we can do is make it harder for them to grow powerful."`
 			`	"And how do we do that?" you ask.`
 			label next
 			`	"The Senate has authorized a diplomatic mission to Bloodsea," he says. "It's the smallest of the pirate worlds, and we're going to see what we need to offer them to get them to join the Free Worlds. The official settlements there only amount to a few thousand people, so it shouldn't be too hard to convince them that joining us is better than resisting us."`
@@ -1504,7 +1536,7 @@ mission "FW Albatross 2A"
 			label jj
 			`	JJ explains about the Senate, that each world has a say in how the Free Worlds income is spent. "And," he says, "we will not take your children as slaves, or force you to work in factories producing illegal drugs."`
 			label unconvinced
-			`	The elder who spoke seems unconvinced. "Seems to me that you 'council' folks are the real rulers, and your 'senate' is a figurehead," he says. "So I don't call that true democracy."`
+			`	The elder who spoke seems unconvinced. "Seems to me that you 'Council' folks are the real rulers, and your 'Senate' is a figurehead," he says. "So I don't call that true democracy."`
 			`	"Maybe," says another of the elders, "but they're still better than Bartlett. I say, if the Free Worlds can free us from him, we'll at least give their new government a try." A few of the others nod in agreement.`
 			`	They explain that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
 				accept
