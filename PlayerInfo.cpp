@@ -1118,7 +1118,7 @@ const map<string, int> &PlayerInfo::Conditions() const
 
 bool PlayerInfo::HasSeen(const System *system) const
 {
-	return (seen.find(system) != seen.end());
+	return (seen.find(system) != seen.end() || KnowsName(system));
 }
 
 

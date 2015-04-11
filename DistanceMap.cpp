@@ -160,7 +160,7 @@ bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
 		
 		// Check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if(!CheckLink(system, link))
+		if(!CheckLink(system, link, useJump))
 			continue;
 		
 		// This is the best path we have found so far to this system, but it is
@@ -180,7 +180,7 @@ bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
 // Check whether the given link is mappable. If no player was given in the
 // constructor then this is always true; otherwise, the player must know
 // that the given link exists.
-bool DistanceMap::CheckLink(const System *from, const System *to) const
+bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) const
 {
 	if(!player)
 		return true;
@@ -188,5 +188,5 @@ bool DistanceMap::CheckLink(const System *from, const System *to) const
 	if(!player->HasSeen(to))
 		return false;
 	
-	return (player->HasVisited(from) || player->HasVisited(to));
+	return (useJump || player->HasVisited(from) || player->HasVisited(to));
 }

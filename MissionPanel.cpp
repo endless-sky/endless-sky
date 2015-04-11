@@ -300,8 +300,8 @@ bool MissionPanel::Click(int x, int y)
 	Point click = Point(x, y) - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10. && (player.HasSeen(&it.second)
-				|| destinations.find(&it.second) != destinations.end()))
+		if(click.Distance(it.second.Position()) < 10.
+				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
 		{
 			system = &it.second;
 			break;

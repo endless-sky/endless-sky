@@ -52,15 +52,6 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 {
 	SetIsFullScreen(true);
 	
-	// Special case: any systems which have not been seen but which are the
-	// destination of a mission, should be shown in the map.
-	for(const Mission &mission : player.AvailableJobs())
-		destinations.insert(mission.Destination()->GetSystem());
-	for(const Mission &mission : player.Missions())
-		destinations.insert(mission.Destination()->GetSystem());
-	if(specialSystem)
-		destinations.insert(specialSystem);
-	
 	center = Point(0., 0.) - selectedSystem->Position();
 }
 
@@ -107,8 +98,8 @@ bool MapPanel::Click(int x, int y)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) - center;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10. && (player.HasSeen(&it.second)
-				|| destinations.find(&it.second) != destinations.end()))
+		if(click.Distance(it.second.Position()) < 10.
+				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
 		{
 			Select(&it.second);
 			break;
@@ -255,7 +246,7 @@ void MapPanel::DrawSystems() const
 		// system record. Ignore those.
 		if(system.Name().empty())
 			continue;
-		if(!player.HasSeen(&system) && destinations.find(&system) == destinations.end())
+		if(!player.HasSeen(&system) && &system != specialSystem)
 			continue;
 		
 		Color color(.2, .2);

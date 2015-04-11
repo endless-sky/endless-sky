@@ -51,7 +51,6 @@ protected:
 	PlayerInfo &player;
 	
 	DistanceMap distance;
-	std::set<const System *> destinations;
 	
 	const System *playerSystem;
 	const System *selectedSystem;
