@@ -497,7 +497,7 @@ bool ShopPanel::Drag(int dx, int dy)
 	{
 		dragPoint += Point(dx, dy);
 		for(const ClickZone &zone : zones)
-			if(zone.Contains(dragPoint.x, dragPoint.y))
+			if(zone.Contains(dragPoint.X(), dragPoint.Y()))
 				if(zone.GetShip() && zone.GetShip()->IsYours() && zone.GetShip() != dragShip)
 				{
 					int dragIndex = -1;
