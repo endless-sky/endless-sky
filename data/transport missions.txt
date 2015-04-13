@@ -216,7 +216,7 @@ mission "Smuggler's Den: Payment"
 	on offer
 		payment 35000
 		conversation
-			`When you land, you are surprised to find a message waiting for you from Joe and Maria, the young couple who you transported from Smuggler's Den to Millrace a year ago to help them and their baby escpae their lives as pirate crew members. "Dear Captain <last>," they write, "we promised you we would save up enough money to pay you back for transporting us. Attached is <payment>. That you for giving us a chance at a new life." They've also enclosed a picture of themselves and their baby Jesse, who is now more than a year old.`
+			`When you land, you are surprised to find a message waiting for you from Joe and Maria, the young couple you transported from Smuggler's Den to Millrace a year ago to help them and their baby escape their lives as pirate crew members. "Dear Captain <last>," they write, "we promised you we would save up enough money to pay you back for transporting us. Attached is <payment>. That you for giving us a chance at a new life." They've also enclosed a picture of themselves and their baby Jesse, who is now more than a year old.`
 				decline
 
 
