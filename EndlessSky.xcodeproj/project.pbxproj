@@ -21,6 +21,8 @@
 		A959553A19957294005197E6 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553819957294005197E6 /* Table.cpp */; };
 		A959553D199572A7005197E6 /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553B199572A7005197E6 /* Format.cpp */; };
 		A9595540199572BB005197E6 /* InfoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A959553E199572BB005197E6 /* InfoPanel.cpp */; };
+		A973423B1ADC674400C7282C /* EscortDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97342391ADC674400C7282C /* EscortDisplay.cpp */; };
+		A973423E1ADC675400C7282C /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A973423C1ADC675400C7282C /* Weapon.cpp */; };
 		A97A01F71A6EA62100E072A6 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97A01F51A6EA62100E072A6 /* Command.cpp */; };
 		A99F7A50195DF3E8002C30B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99F7A4F195DF3E8002C30B8 /* Images.xcassets */; };
 		A99F7AE8195DF44C002C30B8 /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A99F7A54195DF44B002C30B8 /* Account.cpp */; };
@@ -163,6 +165,10 @@
 		A959553C199572A7005197E6 /* Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Format.h; sourceTree = "<group>"; };
 		A959553E199572BB005197E6 /* InfoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfoPanel.cpp; sourceTree = "<group>"; };
 		A959553F199572BB005197E6 /* InfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPanel.h; sourceTree = "<group>"; };
+		A97342391ADC674400C7282C /* EscortDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EscortDisplay.cpp; sourceTree = "<group>"; };
+		A973423A1ADC674400C7282C /* EscortDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EscortDisplay.h; sourceTree = "<group>"; };
+		A973423C1ADC675400C7282C /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
+		A973423D1ADC675400C7282C /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
 		A97A01F51A6EA62100E072A6 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
 		A97A01F61A6EA62100E072A6 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		A994B6501A2536CB007067E3 /* gl_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gl_header.h; sourceTree = "<group>"; };
@@ -447,6 +453,8 @@
 				A99F7A7B195DF44B002C30B8 /* Effect.h */,
 				A99F7A7C195DF44B002C30B8 /* Engine.cpp */,
 				A99F7A7D195DF44B002C30B8 /* Engine.h */,
+				A97342391ADC674400C7282C /* EscortDisplay.cpp */,
+				A973423A1ADC674400C7282C /* EscortDisplay.h */,
 				A99F7A7E195DF44B002C30B8 /* Files.cpp */,
 				A99F7A7F195DF44B002C30B8 /* Files.h */,
 				A99F7A80195DF44B002C30B8 /* FillShader.cpp */,
@@ -599,6 +607,8 @@
 				A99F7AE3195DF44C002C30B8 /* TradingPanel.h */,
 				A99F7AE4195DF44C002C30B8 /* UI.cpp */,
 				A99F7AE5195DF44C002C30B8 /* UI.h */,
+				A973423C1ADC675400C7282C /* Weapon.cpp */,
+				A973423D1ADC675400C7282C /* Weapon.h */,
 				A99F7AE6195DF44C002C30B8 /* WrappedText.cpp */,
 				A99F7AE7195DF44C002C30B8 /* WrappedText.h */,
 				A94408A41982F3E600610427 /* endless-sky.iconset */,
@@ -784,6 +794,7 @@
 				A9F4DBC119D21F150015BBE2 /* MissionAction.cpp in Sources */,
 				A99F7B26195DF44C002C30B8 /* SpaceportPanel.cpp in Sources */,
 				A99F7B10195DF44C002C30B8 /* MenuPanel.cpp in Sources */,
+				A973423E1ADC675400C7282C /* Weapon.cpp in Sources */,
 				A99F7AFD195DF44C002C30B8 /* Files.cpp in Sources */,
 				6F7BF16C1AC652A600795739 /* BlurShader.cpp in Sources */,
 				A99F7B1D195DF44C002C30B8 /* Projectile.cpp in Sources */,
@@ -824,6 +835,7 @@
 				A945B3E31963655400722981 /* ImageBuffer.cpp in Sources */,
 				A9F4DBC419D21F260015BBE2 /* NPC.cpp in Sources */,
 				A99F7B2F195DF44C002C30B8 /* TradingPanel.cpp in Sources */,
+				A973423B1ADC674400C7282C /* EscortDisplay.cpp in Sources */,
 				A9C81F7F197873D800EBA833 /* DistanceMap.cpp in Sources */,
 				A99F7AEC195DF44C002C30B8 /* Armament.cpp in Sources */,
 				A99F7B0A195DF44C002C30B8 /* LineShader.cpp in Sources */,
