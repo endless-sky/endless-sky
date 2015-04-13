@@ -197,9 +197,45 @@ mission "Smuggler's Den, Part 2"
 			`	"Don't worry about it," you say. You return to your ship and tell the bad news to Maria.`
 				accept
 	on complete
+		event "smuggler's den: payment" 365
 		conversation
 			`	You help Joe and Maria, and their daughter Jesse, to carry their few belongings down to the immigration desk, where a clerk lists the job openings available and asks them each to fill out a skill survey. Maria says, "Captain <last>, I don't know how to thank you, but I promise you that once we've got steady jobs, we'll save up and pay you our fare for transporting us here."`
 			`	You wish them the best of luck, and return to your ship.`
+
+event "smuggler's den: payment"
+
+
+
+mission "Smuggler's Den: Payment"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	to offer
+		has "event: smuggler's den: payment"
+	
+	on offer
+		payment 35000
+		conversation
+			`When you land, you are surprised to find a message waiting for you from Joe and Maria, the young couple who you transported from Smuggler's Den to Millrace a year ago to help them and their baby escpae their lives as pirate crew members. "Dear Captain <last>," they write, "we promised you we would save up enough money to pay you back for transporting us. Attached is <payment>. That you for giving us a chance at a new life." They've also enclosed a picture of themselves and their baby Jesse, who is now more than a year old.`
+				decline
+
+
+
+mission "Smuggler's Den: Follow Up"
+	landing
+	source Millrace
+	to offer
+		has "Smuggler's Den: Payment: offered"
+	
+	on offer
+		conversation
+			`As you're coming in for a landing, you realize that Millrace is where Joe and Maria live, the couple you transported from Smuggler's Den. They recently wrote to you thanking you for helping them to begin a new life. Do you want to stop by and see how they are doing?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You contact Joe and Maria and they say they would definitely enjoy seeing you. On your way to the workers' barracks where they live, you stop by a small store buy some chocolate, plus bread and fresh fruit and some canned goods you think they would be able to use. They are both very glad to see you. Jesse is continuing to grow up, and they have another baby too, now. Joe says the work in the factories is exhausting, and the hours are long, but they never need to worry about where their next meal will come from, or what they'll be required to do to earn it. You leave feeling very glad that you have been able to make such a difference in someone's life.`
+				decline
 
 
 
@@ -776,7 +812,7 @@ mission "Rescue Miners 1"
 	passengers 15
 	cargo 15 "emergency supplies"
 	to offer
-		random < 100
+		random < 60
 	
 	on offer
 		dialog `You've just sat down in the spaceport bar and ordered a drink when someone in uniform runs into the room and shouts, "There's been a mine explosion on <planet>! We need all available ships to carry relief workers and supplies and to evacuate the injured to a world where there are better medical facilities." Do you volunteer?`
