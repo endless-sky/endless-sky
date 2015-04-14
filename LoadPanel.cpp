@@ -176,7 +176,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		UpdateLists();
 		
 		selectedPilot = wasSelected;
-		selectedFile = to.substr(Files::Saves().size());
+		selectedFile = Files::Name(to);
 		loadedInfo.Load(Files::Saves() + selectedFile);
 	}
 	else if(key == 'r' && !selectedFile.empty())
