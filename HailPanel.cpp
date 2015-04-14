@@ -30,7 +30,7 @@ using namespace std;
 
 
 
-HailPanel::HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship)
+HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	: player(player), ship(ship),
 	sprite(ship->GetSprite().GetSprite()), unit(2. * ship->Unit())
 {

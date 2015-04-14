@@ -62,7 +62,7 @@ void Preferences::Save()
 
 
 
-bool Preferences::Has(const std::string &name)
+bool Preferences::Has(const string &name)
 {
 	auto it = settings.find(name);
 	return (it != settings.end() && it->second);
@@ -70,7 +70,7 @@ bool Preferences::Has(const std::string &name)
 
 
 
-void Preferences::Set(const std::string &name, bool on)
+void Preferences::Set(const string &name, bool on)
 {
 	settings[name] = on;
 }

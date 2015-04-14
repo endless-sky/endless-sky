@@ -190,7 +190,7 @@ bool MapDetailPanel::Click(int x, int y)
 
 
 
-void MapDetailPanel::DoFind(const std::string &text)
+void MapDetailPanel::DoFind(const string &text)
 {
 	const Planet *planet = Find(text);
 	if(planet)

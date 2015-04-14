@@ -17,6 +17,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Random.h"
 #include "SpriteSet.h"
 
+using namespace std;
+
 
 
 Effect::Effect()
@@ -27,7 +29,7 @@ Effect::Effect()
 
 
 
-const std::string &Effect::Name() const
+const string &Effect::Name() const
 {
 	return name;
 }

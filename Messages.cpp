@@ -26,7 +26,7 @@ namespace {
 
 
 // Add a message to the list.
-void Messages::Add(const std::string &message)
+void Messages::Add(const string &message)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message);

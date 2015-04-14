@@ -156,7 +156,7 @@ void MapPanel::Select(const System *system)
 
 
 
-const Planet *MapPanel::Find(const std::string &name)
+const Planet *MapPanel::Find(const string &name)
 {
 	for(const auto &it : GameData::Systems())
 		if(player.HasVisited(&it.second) && Contains(it.first, name))

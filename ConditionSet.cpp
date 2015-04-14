@@ -99,7 +99,7 @@ void ConditionSet::Add(const string &firstToken, const string &secondToken)
 void ConditionSet::Add(const string &name, const string &op, int value)
 {
 	BinFun fun = Op(op);
-	if(fun && !std::isnan(value))
+	if(fun && !isnan(value))
 		entries.emplace_back(name, op, value);
 }
 

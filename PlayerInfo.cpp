@@ -266,7 +266,7 @@ void PlayerInfo::Save() const
 	out.EndChild();
 		
 	
-	for(const std::shared_ptr<Ship> &ship : ships)
+	for(const shared_ptr<Ship> &ship : ships)
 		ship->Save(out);
 	
 	cargo.Save(out);
@@ -345,7 +345,7 @@ void PlayerInfo::ApplyChanges()
 
 
 
-void PlayerInfo::AddChanges(std::list<DataNode> &changes)
+void PlayerInfo::AddChanges(list<DataNode> &changes)
 {
 	for(const DataNode &change : changes)
 		GameData::Change(change);
@@ -709,7 +709,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Remove any ships that have been destroyed. Recharge the others if this is
 	// a planet with a spaceport.
-	vector<std::shared_ptr<Ship>>::iterator it = ships.begin();
+	vector<shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
 		if(!*it || (*it)->IsDestroyed() || (*it)->IsDisabled()

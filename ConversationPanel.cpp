@@ -307,7 +307,7 @@ void ConversationPanel::Goto(int index, int choice)
 
 
 
-ConversationPanel::Paragraph::Paragraph(const std::string &text, const Sprite *scene)
+ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene)
 	: scene(scene)
 {
 	wrap.SetAlignment(WrappedText::JUSTIFIED);

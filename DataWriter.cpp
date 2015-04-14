@@ -18,7 +18,7 @@ using namespace std;
 
 
 
-const std::string DataWriter::space = " ";
+const string DataWriter::space = " ";
 
 
 

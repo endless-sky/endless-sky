@@ -142,7 +142,7 @@ void Table::Advance(int fields) const
 
 
 // Draw a single text field, and move on to the next one.
-void Table::Draw(const std::string &text) const
+void Table::Draw(const string &text) const
 {
 	Draw(text, color);
 }
@@ -151,7 +151,7 @@ void Table::Draw(const std::string &text) const
 
 // If a color is given, this field is drawn using that color, but the
 // previously set color will be used for future fields.
-void Table::Draw(const std::string &text, const Color &color) const
+void Table::Draw(const string &text, const Color &color) const
 {
 	if(font)
 	{

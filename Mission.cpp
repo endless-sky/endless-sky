@@ -172,7 +172,7 @@ void Mission::Load(const DataNode &node)
 
 // Save a mission. It is safe to assume that any mission that is being saved
 // is already "instantiated," so only a subset of the data must be saved.
-void Mission::Save(DataWriter &out, const std::string &tag) const
+void Mission::Save(DataWriter &out, const string &tag) const
 {
 	out.Write(tag, name);
 	out.BeginChild();

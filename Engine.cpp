@@ -739,7 +739,7 @@ void Engine::CalculateStep()
 	// result in a "die" effect or a sub-munition being created. We could not
 	// move the projectiles before this because some of them are homing and need
 	// to know the current positions of the ships.
-	std::list<Projectile> newProjectiles;
+	list<Projectile> newProjectiles;
 	for(auto it = projectiles.begin(); it != projectiles.end(); )
 	{
 		if(!it->Move(effects))

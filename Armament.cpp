@@ -361,7 +361,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
 
 
 
-bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects)
+bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projectile, list<Effect> &effects)
 {
 	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return false;

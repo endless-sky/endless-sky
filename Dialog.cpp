@@ -41,7 +41,7 @@ namespace {
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const std::string &text)
+Dialog::Dialog(const string &text)
 {
 	Init(text, false);
 }
@@ -50,7 +50,7 @@ Dialog::Dialog(const std::string &text)
 
 // Mission accept / decline dialog.
 Dialog::Dialog(const string &text, PlayerInfo &player, const System *system)
-	: intFun(bind(&PlayerInfo::MissionCallback, &player, std::placeholders::_1)),
+	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	system(system), player(&player)
 {
 	Init(text, true, true);
@@ -203,7 +203,7 @@ bool Dialog::Click(int x, int y)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const std::string &message, bool canCancel, bool isMission)
+void Dialog::Init(const string &message, bool canCancel, bool isMission)
 {
 	TrapAllEvents();
 	

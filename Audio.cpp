@@ -147,7 +147,7 @@ void Audio::SetVolume(double level)
 
 // Get a pointer to the named sound. The name is the path relative to the
 // "sound/" folder, and without ~ if it's on the end, or the extension.
-const Sound *Audio::Get(const std::string &name)
+const Sound *Audio::Get(const string &name)
 {
 	unique_lock<mutex> lock(audioMutex);
 	return &sounds[name];

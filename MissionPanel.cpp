@@ -371,7 +371,7 @@ bool MissionPanel::Drag(int dx, int dy)
 
 
 
-void MissionPanel::DoFind(const std::string &text)
+void MissionPanel::DoFind(const string &text)
 {
 	Find(text);
 }
@@ -404,7 +404,7 @@ void MissionPanel::DrawSelectedSystem() const
 
 
 
-Point MissionPanel::DrawPanel(Point pos, const std::string &label, int entries) const
+Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 {
 	const Font &font = FontSet::Get(14);
 	Color back(.125, 1.);
