@@ -32,6 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "gl_header.h"
 
+#include <iterator>
+
 using namespace std;
 
 namespace {
@@ -260,13 +262,8 @@ void ConversationPanel::Goto(int index, int choice)
 	if(index)
 	{
 		// Add the chosen option to the text.
-		if(static_cast<unsigned>(choice) < choices.size())
-		{
-			auto it = choices.begin();
-			while(choice--)
-				++it;
-			text.splice(text.end(), choices, it);
-		}
+		if(choice >= 0 && choice < static_cast<int>(choices.size()))
+			text.splice(text.end(), choices, next(choices.begin(), choice));
 		
 		// Scroll to the start of the new text, unless the conversation ended.
 		if(index >= 0)
