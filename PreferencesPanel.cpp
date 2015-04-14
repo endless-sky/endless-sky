@@ -244,7 +244,6 @@ bool PreferencesPanel::Click(int x, int y)
 
 void PreferencesPanel::Exit()
 {
-	string keysPath = getenv("HOME") + string("/.config/endless-sky/keys.txt");
 	Command::SaveSettings(Files::Config() + "keys.txt");
 	
 	GetUI()->Pop(this);
