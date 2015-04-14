@@ -326,7 +326,7 @@ void LoadPanel::UpdateLists()
 	vector<string> fileList = Files::List(Files::Saves());
 	for(const string &path : fileList)
 	{
-		string fileName = path.substr(Files::Saves().size());
+		string fileName = Files::Name(path);
 		// The file name is either "Pilot Name.txt" or "Pilot Name~Date.txt".
 		size_t pos = fileName.find('~');
 		if(pos == string::npos)

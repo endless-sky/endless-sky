@@ -315,11 +315,8 @@ void PlayerInfo::Save() const
 
 string PlayerInfo::Identifier() const
 {
-	size_t pos = Files::Saves().size();
-	if(filePath.length() < pos + 4)
-		return "";
-	size_t length = filePath.length() - 4 - pos;
-	return filePath.substr(pos, length);
+	string name = Files::Name(filePath);
+	return (name.length() < 4) ? "" : name.substr(0, name.length() - 4);
 }
 
 
