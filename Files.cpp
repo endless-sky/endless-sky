@@ -25,7 +25,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	const string appName = "endless-sky";
 	string resources;
 	string config;
 	
@@ -294,7 +293,7 @@ void Files::RecursiveList(string directory, vector<string> *list)
 
 
 
-bool Files::Exists(const std::string &filePath)
+bool Files::Exists(const string &filePath)
 {
 	struct stat buf;
 	return !stat(filePath.c_str(), &buf);
@@ -302,7 +301,7 @@ bool Files::Exists(const std::string &filePath)
 
 
 
-void Files::Copy(const std::string &from, const std::string &to)
+void Files::Copy(const string &from, const string &to)
 {
 	ifstream in(from, ios::binary);
 	ofstream out(to, ios::binary);
@@ -312,14 +311,25 @@ void Files::Copy(const std::string &from, const std::string &to)
 
 
 
-void Files::Move(const std::string &from, const std::string &to)
+void Files::Move(const string &from, const string &to)
 {
 	rename(from.c_str(), to.c_str());
 }
 
 
 
-void Files::Delete(const std::string &filePath)
+void Files::Delete(const string &filePath)
 {
 	unlink(filePath.c_str());
+}
+
+
+
+// Get the filename from a path.
+string Files::Name(const string &path)
+{
+	for(size_t pos = path.length(); pos > 0; --pos)
+		if(path[pos - 1] == '/' || path[pos - 1] == '\\')
+			return path.substr(pos);
+	return path;
 }
