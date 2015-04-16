@@ -54,7 +54,7 @@ namespace {
 
 
 PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0)
+	: editing(-1), selected(0), hover(-1)
 {
 	SetIsFullScreen(true);
 }
@@ -153,14 +153,20 @@ void PreferencesPanel::Draw() const
 				table.SetHighlight(66, 120);
 				table.DrawHighlight(isEditing ? dim: red);
 			}
+			
 			// Mark the selected row.
-			if(index == selected)
+			bool isHovering = (index == hover && !isEditing);
+			if(!isHovering && index == selected)
 			{
 				table.SetHighlight(-120, 64);
 				table.DrawHighlight(back);
 			}
 			
+			// Highlight whichever row the mouse hovers over.
 			table.SetHighlight(-120, 120);
+			if(isHovering)
+				table.DrawHighlight(back);
+			
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 			
 			table.Draw(command.Description(), medium);
@@ -181,6 +187,8 @@ void PreferencesPanel::Draw() const
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
 		bool isOn = Preferences::Has(setting);
+		if(setting == hoverPreference)
+			table.DrawHighlight(back);
 		table.Draw(setting, isOn ? medium : dim);
 		table.Draw(isOn ? "on" : "off", isOn ? bright : medium);
 		table.DrawGap(-40);
@@ -236,6 +244,25 @@ bool PreferencesPanel::Click(int x, int y)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 			Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+	
+	return true;
+}
+
+
+
+bool PreferencesPanel::Hover(int x, int y)
+{
+	Point point(x, y);
+	
+	hover = -1;
+	for(unsigned index = 0; index < zones.size(); ++index)
+		if(zones[index].Contains(point))
+			hover = index;
+	
+	hoverPreference.clear();
+	for(const auto &zone : prefZones)
+		if(zone.Contains(point))
+			hoverPreference = zone.Value();
 	
 	return true;
 }
