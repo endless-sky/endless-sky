@@ -160,7 +160,7 @@ outfit "Cargo Scanner"
 	"mass" 1
 	"outfit space" -1
 	"cargo scan" 300
-	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband."
+	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol crafts use cargo scanners to detect illegal contraband."
 
 outfit "Outfit Scanner"
 	category "Systems"

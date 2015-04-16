@@ -275,12 +275,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight += 10;
 	
 	static const string names[] = {
-		"inaccuracy",
-		"firing energy",
-		"firing heat",
-		"blast radius",
-		"missile strength",
-		"anti-missile",
+		"inaccuracy:",
+		"firing energy:",
+		"firing heat:",
+		"blast radius:",
+		"missile strength:",
+		"anti-missile:",
 	};
 	double values[] = {
 		outfit.Inaccuracy(),
