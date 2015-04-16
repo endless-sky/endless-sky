@@ -281,11 +281,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeLabels.push_back((emptyMass == fullMass) ? "movement:" : "movement, full / no cargo:");
 	attributeValues.push_back(string());
 	attributesHeight += 20;
-	attributeLabels.push_back("max speed");
+	attributeLabels.push_back("max speed:");
 	attributeValues.push_back(Format::Number(60. * attributes.Get("thrust") / attributes.Get("drag")));
 	attributesHeight += 20;
 	
-	attributeLabels.push_back("acceleration");
+	attributeLabels.push_back("acceleration:");
 	if(emptyMass == fullMass)
 		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass));
 	else

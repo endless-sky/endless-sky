@@ -86,7 +86,7 @@ mission "Intro [1 Transport]"
 	
 	on offer
 		conversation
-			`You begin strolling through the spaceport, walking briskly in order to keep warm and wondering if it might be worth investing in a good winter coat for visiting planets like this one. Eventually you find James. He has an entire family in tow: a young couple, and elderly woman, and four children who range in age from probably about three or four up to twelve or thirteen.`
+			`You begin strolling through the spaceport, walking briskly in order to keep warm and wondering if it might be worth investing in a good winter coat for visiting planets like this one. Eventually you find James. He has an entire family in tow: a young couple, an elderly woman, and four children who range in age from probably about three or four up to twelve or thirteen.`
 			`	"Captain <last>!" he says, "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks, at least if the kids double up. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, and is a planet well worth visiting in its own right. What do you say?"`
 			`	You're absolutely sure that your shuttle was not designed to fit nine people including yourself, but if they're willing to squeeze into the available five bunks you've got no reason to discourage them.`
 			choice
@@ -131,7 +131,7 @@ mission "Intro [2 Transport]"
 		payment 15000
 		conversation
 			`As you made the final landing descent to the surface of Earth, Chuck and Sarah were staring out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Carl, meanwhile, has spent the entire journey playing a handheld video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
-			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? At take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
+			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
 			`	After they leave, James shakes his head ruefully. "It'll probably be a decade before that kid is old enough to realize what he's missing out on. Waste of money, doing a trip like this with a teenage boy. They should've gone to Skymoot and seen the dragons instead; I'm sure that would interest him a lot more than historical museums and ancient cities." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
