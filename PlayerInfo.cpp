@@ -30,6 +30,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <sstream>
+#ifndef __APPLE__
+#	include <random>
+#endif
 
 using namespace std;
 

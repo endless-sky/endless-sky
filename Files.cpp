@@ -67,7 +67,7 @@ void Files::Init(const char * const *argv)
 	}
 	if(resources.back() != SEP)
 		resources += SEP;
-#if defined __linux__
+#if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 	// Special case, for Linux: the resource files are not in the same place as
 	// the executable, but are under the same prefix (/usr or /usr/local).
 	static const string LOCAL_PATH = "/usr/local/";
