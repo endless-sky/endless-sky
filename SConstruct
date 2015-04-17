@@ -1,7 +1,7 @@
 import os
 
 env = Environment()
-env.Append(CCFLAGS = ["-std=c++0x", "-msse4.1", "-O3", "-Wall"])
+env.Append(CCFLAGS = ["-std=c++0x", "-msse3", "-O3", "-Wall"])
 env.Append(LIBS = [
 	"SDL2",
 	"png",
