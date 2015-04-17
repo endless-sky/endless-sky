@@ -166,6 +166,7 @@ int main(int argc, char *argv[])
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
 		glEnable(GL_BLEND);
+		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
 		GameData::LoadShaders();
