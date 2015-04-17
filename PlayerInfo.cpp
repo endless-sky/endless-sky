@@ -859,6 +859,9 @@ void PlayerInfo::TakeOff()
 	doneMissions.clear();
 	soldOutfits.clear();
 	
+	// Store the total cargo counts in case we need to adjust cost bases below.
+	map<string, int> originalTotals = cargo.Commodities();
+	
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && ship->GetSystem() == system)
@@ -971,19 +974,32 @@ void PlayerInfo::TakeOff()
 	
 	int64_t sold = cargo.Used();
 	int64_t income = 0;
+	int64_t totalBasis = 0;
 	if(sold)
 		for(auto &it : costBasis)
 		{
-			int64_t value = cargo.Get(it.first) * system->Trade(it.first);
+			// Figure out how much income you get for selling this cargo.
+			int tons = cargo.Get(it.first);
+			int64_t value = tons * system->Trade(it.first);
 			income += value;
-			it.second -= value;
+			
+			// Now, figure out how much of that income is profit by calculating
+			// the cost basis for this cargo (which is just the total cost basis
+			// multiplied by the percent of the cargo you are selling).
+			int64_t basis = it.second * tons / originalTotals[it.first];
+			it.second -= basis;
+			totalBasis += basis;
 		}
 	accounts.AddCredits(income);
 	cargo.Clear();
 	if(sold)
 	{
 		ostringstream out;
-		out << "You sold " << sold << " tons of excess cargo for " << income << " credits.";
+		out << "You sold " << sold << " tons of excess cargo for " << income << " credits";
+		if(totalBasis && totalBasis != income)
+			out << " (for a profit of " << (income - totalBasis) << " credits).";
+		else
+			out << ".";
 		Messages::Add(out.str());
 	}
 	
