@@ -25,6 +25,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "UI.h"
 
+#include <sstream>
+
 using namespace std;
 
 namespace {
@@ -73,6 +75,8 @@ void Mission::Load(const DataNode &node)
 			displayName = child.Token(1);
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
+		else if(child.Token(0) == "blocked" && child.Size() >= 2)
+			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 		{
 			hasDeadline = true;
@@ -180,6 +184,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 	out.Write("name", displayName);
 	if(!description.empty())
 		out.Write("description", description);
+	if(!blocked.empty())
+		out.Write("blocked", blocked);
 	if(hasDeadline)
 		out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 	if(cargoSize)
@@ -475,6 +481,46 @@ bool Mission::HasFailed(const PlayerInfo &player) const
 
 
 
+// Get a string to show if this mission is "blocked" from being offered
+// because it requires you to have more passenger or cargo space free. After
+// calling this function, any future calls to it will return an empty string
+// so that you do not display the same message multiple times.
+string Mission::BlockedMessage(const PlayerInfo &player)
+{
+	if(blocked.empty())
+		return "";
+	
+	int extraCrew = 0;
+	if(player.Flagship())
+		extraCrew = player.Flagship()->Crew() - player.Flagship()->RequiredCrew();
+	
+	int cargoNeeded = cargoSize - (player.Cargo().Free() + player.Cargo().CommoditiesSize());
+	int bunksNeeded = passengers - (player.Cargo().Bunks() + extraCrew);
+	if(cargoNeeded < 0 && bunksNeeded < 0)
+		return "";
+	
+	map<string, string> subs;
+	subs["<first>"] = player.FirstName();
+	subs["<last>"] = player.LastName();
+	if(player.Flagship())
+		subs["<ship>"] = player.Flagship()->Name();
+	
+	ostringstream out;
+	if(bunksNeeded > 0)
+		out << (bunksNeeded == 1 ? "another bunk" : to_string(bunksNeeded) + " more bunks");
+	if(bunksNeeded > 0 && cargoNeeded > 0)
+		out << " and ";
+	if(cargoNeeded > 0)
+		out << (cargoNeeded == 1 ? "another ton" : to_string(cargoNeeded) + " more tons") << " of cargo space";
+	subs["<capacity>"] = out.str();
+	
+	string message = Format::Replace(blocked, subs);
+	blocked.clear();
+	return message;
+}
+
+
+
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
@@ -724,6 +770,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.displayName = Format::Replace(displayName, subs);
 	result.description = Format::Replace(description, subs);
 	result.clearance = Format::Replace(clearance, subs);
+	result.blocked = Format::Replace(blocked, subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 	

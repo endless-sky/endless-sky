@@ -1030,6 +1030,30 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 
 
 
+// If one of your missions cannot be offered because you do not have enough
+// space for it, and it specifies a message to be shown in that situation,
+// show that message.
+void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+{
+	if(ships.empty())
+		return;
+	
+	// If a mission can be offered right now, move it to the start of the list
+	// so we know what mission the callback is referring to, and return it.
+	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
+		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->HasSpace(*this))
+		{
+			string message = it->BlockedMessage(*this);
+			if(!message.empty())
+			{
+				ui->Push(new Dialog(message));
+				return;
+			}
+		}
+}
+
+
+
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {

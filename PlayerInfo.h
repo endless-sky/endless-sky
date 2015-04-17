@@ -138,6 +138,10 @@ public:
 	void AcceptJob(const Mission &mission);
 	// Check to see if there is any mission to offer in the spaceport right now.
 	Mission *MissionToOffer(Mission::Location location);
+	// If one of your missions cannot be offered because you do not have enough
+	// space for it, and it specifies a message to be shown in that situation,
+	// show that message.
+	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Complete or fail a mission.

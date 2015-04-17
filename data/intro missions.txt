@@ -75,6 +75,7 @@ mission "Intro [1 Transport]"
 	priority
 	name "Transport family to <planet>"
 	description "Bring your new friend James, along with this large family, to <destination>. Payment will be <payment>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	source "New Greenland"
 	destination "New China"
 	passengers 5
@@ -111,6 +112,7 @@ mission "Intro [2 Transport]"
 	priority
 	name "Tourists to <planet>"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 3
 	source "New China"
 	destination "Earth"
@@ -140,6 +142,7 @@ mission "Intro [3 Transport]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -168,6 +171,7 @@ mission "Intro [1 Freighter]"
 	priority
 	name "Delivery to <planet>"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	cargo vaccines 48
 	passengers 1
 	source "New Greenland"
@@ -180,7 +184,7 @@ mission "Intro [1 Freighter]"
 	
 	on offer
 		conversation
-			`"The spaceport on <planet> is small enough that it doesn't take long to find James. He's talking with a man wearing what looks like a doctor's lab coat. "Captain <last>!" says James, "Glad you could join us. It turns out there's been a flu outbreak on <planet>, and they're asking every captain with space to spare to carry some vaccines and other medical supplies over there. Are you willing to help out?"`
+			`The spaceport on <planet> is small enough that it doesn't take long to find James. He's talking with a man wearing what looks like a doctor's lab coat. "Captain <last>!" says James, "Glad you could join us. It turns out there's been a flu outbreak on <planet>, and they're asking every captain with space to spare to carry some vaccines and other medical supplies over there. Are you willing to help out?"`
 			choice
 				`	"Sure, anything I can do to assist them!"`
 				`	"Sorry, I've heard bad things about that region of space. I think I'm going to head in the other direction."`
@@ -214,6 +218,7 @@ mission "Intro [2 Freighter]
 	priority
 	name "Rush delivery to <planet>"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	cargo "raw eel" 34
 	passengers 1
 	source "Heartland"
@@ -263,6 +268,7 @@ mission "Intro [3 Freighter]
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
 	destination "Hestia"
@@ -293,6 +299,7 @@ mission "Intro [1 Interceptor]"
 	priority
 	name "Escort convoy to <planet>"
 	description "Escort a merchant convoy to <destination>, along with your new friend James."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "New Greenland"
 	destination "Gemstone"
@@ -336,6 +343,7 @@ mission "Intro [2 Interceptor]"
 	priority
 	name "Delivery to <planet>"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	cargo gemstones 15
 	source "Gemstone"
@@ -382,6 +390,7 @@ mission "Intro [3 Interceptor]
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
 	destination "Hestia"

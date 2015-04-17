@@ -95,6 +95,11 @@ public:
 	bool HasSpace(const PlayerInfo &player) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
+	// Get a string to show if this mission is "blocked" from being offered
+	// because it requires you to have more passenger or cargo space free. After
+	// calling this function, any future calls to it will return an empty string
+	// so that you do not display the same message multiple times.
+	std::string BlockedMessage(const PlayerInfo &player);
 	
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
@@ -119,6 +124,7 @@ private:
 	std::string name;
 	std::string displayName;
 	std::string description;
+	std::string blocked;
 	Location location = SPACEPORT;
 	
 	bool hasFailed = false;
