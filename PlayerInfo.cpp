@@ -983,10 +983,14 @@ void PlayerInfo::TakeOff()
 			int64_t value = tons * system->Trade(it.first);
 			income += value;
 			
+			int original = originalTotals[it.first];
+			if(!original || !it.second)
+				continue;
+			
 			// Now, figure out how much of that income is profit by calculating
 			// the cost basis for this cargo (which is just the total cost basis
 			// multiplied by the percent of the cargo you are selling).
-			int64_t basis = it.second * tons / originalTotals[it.first];
+			int64_t basis = it.second * tons / original;
 			it.second -= basis;
 			totalBasis += basis;
 		}
