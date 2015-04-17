@@ -27,6 +27,7 @@ class System;
 class TradingPanel : public Panel {
 public:
 	TradingPanel(PlayerInfo &player);
+	~TradingPanel();
 	
 	virtual void Step() override;
 	virtual void Draw() const override;
@@ -48,6 +49,10 @@ private:
 	const System &system;
 	
 	int selectedRow;
+	
+	// Keep track of how much we sold and how much profit was made.
+	int tonsSold = 0;
+	int64_t profit = 0;
 };
 
 

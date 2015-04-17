@@ -18,10 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "UI.h"
@@ -58,6 +60,24 @@ TradingPanel::TradingPanel(PlayerInfo &player)
 	: player(player), system(*player.GetSystem()), selectedRow(0)
 {
 	SetTrapAllEvents(false);
+}
+
+
+
+TradingPanel::~TradingPanel()
+{
+	if(profit)
+	{
+		string message = "You sold " + to_string(tonsSold)
+			+ (tonsSold == 1 ? " ton" : " tons") + " of cargo ";
+		
+		if(profit < 0)
+			message += "at a loss of " + Format::Number(-profit) + " credits.";
+		else
+			message += "for a total profit of " + Format::Number(profit) + " credits.";
+		
+		Messages::Add(message);
+	}
 }
 
 
@@ -134,14 +154,23 @@ void TradingPanel::Draw() const
 		font.Draw(commodity.name, Point(NAME_X, y), color);
 		font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
-		int level = (price - commodity.low);
-		if(level < 0)
-			level = 0;
-		else if(level >= (commodity.high - commodity.low))
-			level = 4;
+		int basis = player.GetBasis(commodity.name);
+		if(basis && basis != price)
+		{
+			string profit = "(profit: " + to_string(price - basis) + ")";
+			font.Draw(profit, Point(LEVEL_X, y), color);
+		}
 		else
-			level = (5 * level) / (commodity.high - commodity.low);
-		font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
+		{
+			int level = (price - commodity.low);
+			if(level < 0)
+				level = 0;
+			else if(level >= (commodity.high - commodity.low))
+				level = 4;
+			else
+				level = (5 * level) / (commodity.high - commodity.low);
+			font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
+		}
 		
 		font.Draw("[buy]", Point(BUY_X, y), color);
 		font.Draw("[sell]", Point(SELL_X, y), color);
@@ -177,11 +206,20 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			int amount = player.Cargo().Get(it.name);
 			int price = system.Trade(it.name);
+			
+			int64_t basis = player.GetBasis(it.name, -amount);
+			player.AdjustBasis(it.name, basis);
+			profit += amount * price + basis;
+			tonsSold += amount;
+			
 			player.Cargo().Transfer(it.name, amount);
 			player.Accounts().AddCredits(amount * price);
 		}
 		for(const auto &it : player.Cargo().Outfits())
 		{
+			profit += it.second * it.first->Cost();
+			tonsSold += it.second * static_cast<int>(it.first->Get("mass"));
+			
 			player.SoldOutfits()[it.first] += it.second;
 			player.Accounts().AddCredits(it.second * it.first->Cost());
 			player.Cargo().Transfer(it.first, it.second);
@@ -231,7 +269,22 @@ void TradingPanel::Buy(int64_t amount)
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int price = system.Trade(type);
 	
-	amount = min(amount, player.Accounts().Credits() / price);
+	if(amount > 0)
+	{
+		amount = min(amount, player.Accounts().Credits() / price);
+		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
+		player.AdjustBasis(type, amount * price);
+	}
+	else
+	{
+		// Selling cargo:
+		amount = max(amount, static_cast<int64_t>(-player.Cargo().Get(type)));
+		
+		int64_t basis = player.GetBasis(type, amount);
+		player.AdjustBasis(type, basis);
+		profit += -amount * price + basis;
+		tonsSold += -amount;
+	}
 	amount = player.Cargo().Transfer(type, -amount);
 	player.Accounts().AddCredits(amount * price);
 }

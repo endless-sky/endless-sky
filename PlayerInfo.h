@@ -125,6 +125,9 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	// Get cost basis for commodities.
+	void AdjustBasis(const std::string &commodity, int64_t adjustment);
+	int64_t GetBasis(const std::string &commodity, int tons = 1) const;
 	// Call this when leaving the outfitter, shipyard, or hiring panel.
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
@@ -201,6 +204,7 @@ private:
 	
 	std::vector<std::shared_ptr<Ship>> ships;
 	CargoHold cargo;
+	std::map<std::string, int64_t> costBasis;
 	
 	std::list<Mission> missions;
 	// These lists are populated when you land on a planet, and saved so that

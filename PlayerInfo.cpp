@@ -60,6 +60,7 @@ void PlayerInfo::Clear()
 	
 	ships.clear();
 	cargo.Clear();
+	costBasis.clear();
 	
 	missions.clear();
 	availableJobs.clear();
@@ -153,6 +154,12 @@ void PlayerInfo::Load(const string &path)
 			Visit(GameData::Systems().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
+		else if(child.Token(0) == "basis")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					costBasis[grand.Token(0)] += grand.Value(1);
+		}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -263,9 +270,11 @@ void PlayerInfo::Save() const
 		out.Write("travel", system->Name());
 	out.Write("reputation with");
 	out.BeginChild();
+	{
 		for(const auto &it : GameData::Governments())
 			if(!it.second.IsPlayer())
 				out.Write(it.first, it.second.Reputation());
+	}
 	out.EndChild();
 		
 	
@@ -273,6 +282,17 @@ void PlayerInfo::Save() const
 		ship->Save(out);
 	
 	cargo.Save(out);
+	if(!costBasis.empty())
+	{
+		out.Write("basis");
+		out.BeginChild();
+		{
+			for(const auto &it : costBasis)
+				if(it.second)
+					out.Write(it.first, it.second);
+		}
+		out.EndChild();
+	}
 	accounts.Save(out);
 	
 	for(const Mission &mission : missions)
@@ -286,6 +306,7 @@ void PlayerInfo::Save() const
 	{
 		out.Write("conditions");
 		out.BeginChild();
+		{
 			for(const auto &it : conditions)
 			{
 				if(it.second == 1)
@@ -293,6 +314,7 @@ void PlayerInfo::Save() const
 				else if(it.second)
 					out.Write(it.first, it.second);
 			}
+		}
 		out.EndChild();
 	}
 	if(shouldLaunch)
@@ -304,10 +326,10 @@ void PlayerInfo::Save() const
 	{
 		out.Write("changes");
 		out.BeginChild();
-		
-		for(const DataNode &node : dataChanges)
-			out.Write(node);
-		
+		{
+			for(const DataNode &node : dataChanges)
+				out.Write(node);
+		}	
 		out.EndChild();
 	}
 	
@@ -703,6 +725,27 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
+// Get cost basis for commodities.
+void PlayerInfo::AdjustBasis(const std::string &commodity, int64_t adjustment)
+{
+	costBasis[commodity] += adjustment;
+}
+
+
+
+int64_t PlayerInfo::GetBasis(const std::string &commodity, int tons) const
+{
+	int total = cargo.Get(commodity);
+	if(!total)
+		return 0;
+	
+	auto it = costBasis.find(commodity);
+	int64_t basis = (it == costBasis.end()) ? 0 : it->second;
+	return (basis * tons) / total;
+}
+
+
+
 // Switch cargo from being stored in ships to being stored here.
 void PlayerInfo::Land(UI *ui)
 {
@@ -927,7 +970,14 @@ void PlayerInfo::TakeOff()
 		}
 	
 	int64_t sold = cargo.Used();
-	int64_t income = cargo.Value(system);
+	int64_t income = 0;
+	if(sold)
+		for(auto &it : costBasis)
+		{
+			int64_t value = cargo.Get(it.first) * system->Trade(it.first);
+			income += value;
+			it.second -= value;
+		}
 	accounts.AddCredits(income);
 	cargo.Clear();
 	if(sold)
