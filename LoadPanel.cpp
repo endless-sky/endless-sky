@@ -40,6 +40,11 @@ using namespace std;
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier())
 {
+	// If you have a player loaded, and the player is on a planet, makes sure
+	// the player is saved so that any snapshot you create will be of the
+	// player's current state, rather than one planet ago.
+	if(player.GetPlanet() && !player.IsDead())
+		player.Save();
 	UpdateLists();
 }
 
@@ -285,7 +290,10 @@ bool LoadPanel::Click(int x, int y)
 	{
 		int selected = (y + centerScroll - -160) / 20;
 		int i = 0;
-		for(const string &file : files.find(selectedPilot)->second)
+		auto filesIt = files.find(selectedPilot);
+		if(filesIt == files.end())
+			return true;
+		for(const string &file : filesIt->second)
 			if(i++ == selected && selectedFile != file)
 				selectedFile = file;
 		sideHasFocus = false;
@@ -293,7 +301,8 @@ bool LoadPanel::Click(int x, int y)
 	else
 		return false;
 	
-	loadedInfo.Load(Files::Saves() + selectedFile);
+	if(!selectedFile.empty())
+		loadedInfo.Load(Files::Saves() + selectedFile);
 	
 	return true;
 }
