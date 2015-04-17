@@ -90,6 +90,21 @@ void MainPanel::Step()
 			<< "\" to return to the main menu, then click on \"Load / Save\" and \"Enter Ship.\"";
 		GetUI()->Push(new Dialog(out.str()));
 	}
+	if(isActive && player.Flagship() && player.Flagship()->IsDisabled()
+			&& !player.Flagship()->IsDestroyed() && !Preferences::Has("help: disabled"))
+	{
+		Preferences::Set("help: disabled");
+		ostringstream out;
+		out << "Your ship just got disabled! "
+				<< "Before an enemy ship finishes you off, you should find someone to help you.\n\tPress \""
+				<< Command::TARGET.KeyName() << "\" to cycle through all the ships in this system. "
+				<< "When you have a friendly one selected, press \""
+				<< Command::HAIL.KeyName() << "\" to hail it. "
+				<< "You can then ask for help, and the ship will come over and patch you up."
+				<< "\n\tIf the ship that disabled you is still hanging around, "
+				<< "you might need to hail them first and bribe them to leave you alone.";
+		GetUI()->Push(new Dialog(out.str()));
+	}
 	
 	engine.Step(isActive);
 	

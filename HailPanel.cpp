@@ -197,7 +197,12 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					" to make it to the next system.";
 		}
 		else if(ship)
-			message = "You don't seem to be in need of repairs or fuel assistance.";
+		{
+			if(bribe)
+				message = "Yeah, right. Don't push your luck.";
+			else
+				message = "You don't seem to be in need of repairs or fuel assistance.";
+		}
 	}
 	else if(key == 'b' || key == 'o')
 	{
@@ -223,7 +228,6 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			// TODO: handle landing bribes to planets.
 			player.Accounts().AddCredits(-bribe);
 			message = "It's a pleasure doing business with you.";
-			bribe = 0;
 		}
 		else
 			message = "I do not want your money.";
