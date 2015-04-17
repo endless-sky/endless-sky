@@ -29,7 +29,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-march=corei7" />
+			<Add option="-msse3" />
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add directory="C:/dev64/include" />
