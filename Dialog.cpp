@@ -35,6 +35,49 @@ using namespace std;
 
 namespace {
 	static const int WIDTH = 250;
+	
+	// Map any conceivable numeric keypad keys to their ASCII values. Most of
+	// these will presumably only exist on special programming keyboards.
+	static const map<SDL_Keycode, char> KEY_MAP = {
+		{SDLK_KP_0, '0'},
+		{SDLK_KP_1, '1'},
+		{SDLK_KP_2, '2'},
+		{SDLK_KP_3, '3'},
+		{SDLK_KP_4, '4'},
+		{SDLK_KP_5, '5'},
+		{SDLK_KP_6, '6'},
+		{SDLK_KP_7, '7'},
+		{SDLK_KP_8, '8'},
+		{SDLK_KP_9, '9'},
+		{SDLK_KP_AMPERSAND, '&'},
+		{SDLK_KP_AT, '@'},
+		{SDLK_KP_A, 'a'},
+		{SDLK_KP_B, 'b'},
+		{SDLK_KP_C, 'c'},
+		{SDLK_KP_D, 'd'},
+		{SDLK_KP_E, 'e'},
+		{SDLK_KP_F, 'f'},
+		{SDLK_KP_COLON, ':'},
+		{SDLK_KP_COMMA, ','},
+		{SDLK_KP_DIVIDE, '/'},
+		{SDLK_KP_EQUALS, '='},
+		{SDLK_KP_EXCLAM, '!'},
+		{SDLK_KP_GREATER, '>'},
+		{SDLK_KP_HASH, '#'},
+		{SDLK_KP_LEFTBRACE, '{'},
+		{SDLK_KP_LEFTPAREN, '('},
+		{SDLK_KP_LESS, '<'},
+		{SDLK_KP_MINUS, '-'},
+		{SDLK_KP_MULTIPLY, '*'},
+		{SDLK_KP_PERCENT, '%'},
+		{SDLK_KP_PERIOD, '.'},
+		{SDLK_KP_PLUS, '+'},
+		{SDLK_KP_POWER, '^'},
+		{SDLK_KP_RIGHTBRACE, '}'},
+		{SDLK_KP_RIGHTPAREN, ')'},
+		{SDLK_KP_SPACE, ' '},
+		{SDLK_KP_VERTICALBAR, '|'}
+	};
 }
 
 
@@ -135,9 +178,11 @@ void Dialog::Draw() const
 
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key >= ' ' && key <= '~' && !isMission && (intFun || stringFun))
+	auto it = KEY_MAP.find(key);
+	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun))
 	{
-		char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
+		int ascii = (it != KEY_MAP.end()) ? it->second : key;
+		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
 		if(stringFun)
 			input += c;
 		// Integer input should not allow leading zeros.
@@ -154,7 +199,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_RETURN || key == 'a' || key == 'd')
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == 'a' || key == 'd')
 	{
 		// Shortcuts for "accept" and "decline."
 		if(key == 'a')
