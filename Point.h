@@ -13,7 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef POINT_H_
 #define POINT_H_
 
+#ifdef __SSE3__
 #include <pmmintrin.h>
+#endif
 
 
 
@@ -74,6 +76,7 @@ public:
 	
 	
 private:
+#ifdef __SSE3__
 	// Private constructor, using a vector.
 	Point(const __m128d &v);
 	
@@ -86,6 +89,10 @@ private:
 			double y;
 		};
 	};
+#else
+	double x;
+	double y;
+#endif
 };
 
 
