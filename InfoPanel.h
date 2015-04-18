@@ -45,6 +45,8 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(int dx, int dy) override;
+	virtual bool Release(int x, int y) override;
 	
 	
 private:
@@ -66,8 +68,10 @@ private:
 	int selected;
 	int hover;
 	Point hoverPoint;
+	Point dragStart;
 	bool showShip;
 	bool canEdit;
+	bool didDrag;
 };
 
 

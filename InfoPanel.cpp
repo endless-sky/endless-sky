@@ -227,45 +227,19 @@ bool InfoPanel::Click(int x, int y)
 	if(shipIt == player.Ships().end())
 		return true;
 	
+	dragStart = hoverPoint;
+	didDrag = false;
+	selected = -1;
 	if(showShip)
 	{
 		if(hover >= 0 && (**shipIt).GetPlanet())
-		{
-			if(selected == -1)
-				selected = hover;
-			else
-			{
-				(**shipIt).GetArmament().Swap(hover, selected);
-				selected = -1;
-			}
-		}
-		else if(selected)
-			selected = -1;
+			selected = hover;
 	}
 	else if(canEdit)
 	{
 		// Only allow changing your flagship when landed.
 		if(hover >= 0)
-		{
-			shipIt = player.Ships().begin() + hover;
-			if(hover == selected)
-			{
-				showShip = true;
-				UpdateInfo();
-			}
-			else
-			{
-				if(selected < 0)
-					selected = hover;
-				else
-				{
-					player.ReorderShip(selected, hover);
-					selected = -1;
-				}
-			}
-		}
-		else if(selected)
-			selected = -1;
+			selected = hover;
 	}
 	else if(hover >= 0)
 	{
@@ -291,6 +265,49 @@ bool InfoPanel::Hover(int x, int y)
 				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
 			hover = zone.Value();
 	
+	return true;
+}
+
+
+
+bool InfoPanel::Drag(int dx, int dy)
+{
+	Hover(hoverPoint.X() + dx, hoverPoint.Y() + dy);
+	if(hoverPoint.Distance(dragStart) > 10.)
+		didDrag = true;
+	
+	return true;
+}
+
+
+
+bool InfoPanel::Release(int x, int y)
+{
+	if(selected < 0 || hover < 0)
+	{
+		selected = -1;
+		hover = -1;
+		return true;
+	}
+	
+	if(showShip)
+	{
+		if(hover != selected)
+			(**shipIt).GetArmament().Swap(hover, selected);
+		selected = -1;
+	}
+	else if(canEdit)
+	{
+		if(hover != selected)
+			player.ReorderShip(selected, hover);
+		else if(!didDrag)
+		{
+			shipIt = player.Ships().begin() + hover;
+			showShip = true;
+			UpdateInfo();
+		}
+		selected = -1;
+	}
 	return true;
 }
 
@@ -372,6 +389,10 @@ void InfoPanel::DrawInfo() const
 	font.Draw("crew", pos + Point(730. - font.Width("crew"), 0.), bright);
 	FillShader::Fill(pos + Point(365., 15.), Point(730., 1.), dim);
 	
+	if(!player.Ships().size())
+		return;
+	int lastIndex = player.Ships().size() - 1;
+	
 	pos.Y() += 5.;
 	int index = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -404,7 +425,13 @@ void InfoPanel::DrawInfo() const
 		string crew = ship->IsParked() ? "Parked" : to_string(ship->Crew());
 		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
 		
-		zones.emplace_back(pos + Point(365, font.Height() / 2), Point(730, 20), index);
+		if(index < lastIndex || selected < 0)
+			zones.emplace_back(pos + Point(365, font.Height() / 2), Point(730, 20), index);
+		else
+		{
+			int height = 270. - pos.Y();
+			zones.emplace_back(pos + Point(365, height / 2), Point(730, height), index);
+		}
 		++index;
 	}
 	
