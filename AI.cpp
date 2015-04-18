@@ -177,6 +177,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		}
 		
+		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = !it->JumpsRemaining() && it->Attributes().Get("fuel capacity")
 			&& !it->GetSystem()->IsInhabited();
 		if(isStranded || it->IsDisabled())
@@ -191,7 +192,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			const Government *gov = it->GetGovernment();
 			for(const auto &ship : ships)
 			{
-				if(ship->IsDisabled() || !ship->IsTargetable())
+				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
 					continue;
 				
 				const Government *otherGov = ship->GetGovernment();
@@ -210,7 +211,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					else if(selectNext && !nextAlly)
 						nextAlly = &*ship;
 				}
-				else if(ship->GetGovernment()->IsEnemy(gov))
+				else if(ship->GetGovernment()->IsEnemy(gov) && isPresent)
 					hasEnemy = true;
 			}
 			
@@ -241,7 +242,6 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		const Personality &personality = it->GetPersonality();
 		shared_ptr<Ship> parent = it->GetParent();
 		
-		bool isPresent = (it->GetSystem() == player.GetSystem());
 		if(isPresent && personality.IsSurveillance())
 		{
 			DoSurveillance(*it, command, ships);

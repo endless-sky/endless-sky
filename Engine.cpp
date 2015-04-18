@@ -667,7 +667,16 @@ void Engine::CalculateStep()
 		if(!(*it)->Move(effects))
 			it = ships.erase(it);
 		else
+		{
+			// Boarding:
+			bool autoPlunder = !(*it)->GetGovernment()->IsPlayer();
+			shared_ptr<Ship> victim = (*it)->Board(autoPlunder);
+			if(victim)
+				eventQueue.emplace_back(*it, victim,
+					(*it)->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
+						ShipEvent::BOARD : ShipEvent::ASSIST);
 			++it;
+		}
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
@@ -772,14 +781,6 @@ void Engine::CalculateStep()
 			ship->Launch(ships);
 			if(ship->Fire(projectiles))
 				hasAntiMissile.push_back(ship.get());
-			
-			// Boarding:
-			bool autoPlunder = !ship->GetGovernment()->IsPlayer();
-			shared_ptr<Ship> victim = ship->Board(autoPlunder);
-			if(victim)
-				eventQueue.emplace_back(ship, victim,
-					ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
-						ShipEvent::BOARD : ShipEvent::ASSIST);
 			
 			int scan = ship->Scan();
 			if(scan)
