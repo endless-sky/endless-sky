@@ -1,6 +1,15 @@
 import os
 
+# Load any environment variables that alter the build.
 env = Environment()
+if 'CCFLAGS' in os.environ:
+	env.Append(CCFLAGS = os.environ['CCFLAGS'])
+if 'CXXFLAGS' in os.environ:
+	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
+if 'LDFLAGS' in os.environ:
+	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
+
+# Required build flags:
 env.Append(CCFLAGS = ["-std=c++0x", "-msse3", "-O3", "-Wall"])
 env.Append(LIBS = [
 	"SDL2",
@@ -11,6 +20,7 @@ env.Append(LIBS = [
 	"openal",
 	"pthread"
 ]);
+
 # Work with clang's static analyzer:
 env["CC"] = os.getenv("CC") or env["CC"]
 env["CXX"] = os.getenv("CXX") or env["CXX"]
