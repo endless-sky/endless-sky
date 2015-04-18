@@ -45,7 +45,7 @@ void DrawList::Clear(int step)
 // Add an animation.
 void DrawList::Add(const Animation &animation, Point pos, Point unit, Point blur, double clip)
 {
-	if(!animation.IsEmpty())
+	if(!animation.IsEmpty() && unit)
 		items.emplace_back(animation, pos, unit, blur, clip, step);
 }
 
@@ -105,8 +105,10 @@ DrawList::Item::Item(const Animation &animation, Point pos, Point unit, Point bl
 	tex1 = frame.second;
 	flags |= static_cast<uint32_t>(frame.fade * 256.f) << 8;
 	
-	Point uw = unit * animation.Width();
-	Point uh = unit * animation.Height();
+	double width = animation.Width();
+	double height = animation.Height();
+	Point uw = unit * width;
+	Point uh = unit * height;
 	
 	if(clip < 1.)
 	{
@@ -124,9 +126,14 @@ DrawList::Item::Item(const Animation &animation, Point pos, Point unit, Point bl
 	transform[2] = -uh.X();
 	transform[3] = -uh.Y();
 	
-	// Calculate the blur vector, in texture coordinates.
-	this->blur[0] = unit.Cross(blur) / animation.Width();
-	this->blur[1] = -unit.Dot(blur) / animation.Height();
+	// Calculate the blur vector, in texture coordinates. This should be done by
+	// projecting the blur vector onto the unit vector and then scaling it based
+	// on the sprite size. But, the unit vector first has to be normalized (i.e.
+	// divided by the unit vector length), and the sprite size also has to be
+	// multiplied by the unit vector size, so:
+	double zoomCorrection = 4. * unit.LengthSquared();
+	this->blur[0] = unit.Cross(blur) / (width * zoomCorrection);
+	this->blur[1] = -unit.Dot(blur) / (height * zoomCorrection);
 }
 
 
