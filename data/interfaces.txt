@@ -242,7 +242,7 @@ interface "preferences"
 	sprite "_menu/g0" 0 -280
 	sprite "_menu/forest2" 0 280
 	sprite "_menu/oberon" 140 180
-	sprite "ui/keys panel" 20 -20
+	sprite "ui/keys panel" -65 -20
 	button b 195 205
 		size 120 30
 	label "Back to Menu..." 195 198

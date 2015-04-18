@@ -108,8 +108,8 @@ void PreferencesPanel::Draw() const
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
-		Command::SCAN,
 		Command::HAIL,
+		Command::SCAN,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -193,6 +193,18 @@ void PreferencesPanel::Draw() const
 		table.Draw(isOn ? "on" : "off", isOn ? bright : medium);
 		table.DrawGap(-40);
 	}
+	
+	Table shiftTable;
+	shiftTable.AddColumn(125, Table::RIGHT);
+	shiftTable.SetUnderline(0, 130);
+	shiftTable.DrawAt(Point(-400, 60));
+	
+	shiftTable.DrawUnderline(medium);
+	shiftTable.Draw("With <shift> key", bright);
+	shiftTable.DrawGap(5);
+	shiftTable.Draw("Select nearest ship", medium);
+	shiftTable.Draw("Select next escort", medium);
+	shiftTable.Draw("Talk to planet", medium);
 }
 
 
