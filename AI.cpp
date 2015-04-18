@@ -172,10 +172,16 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		
 		if(it.get() == flagship)
-			MovePlayer(*it, player, ships);
-		else if(it->IsDisabled())
 		{
-			if(it->IsDestroyed() || it->IsYours())
+			MovePlayer(*it, player, ships);
+			continue;
+		}
+		
+		bool isStranded = !it->JumpsRemaining() && it->Attributes().Get("fuel capacity")
+			&& !it->GetSystem()->IsInhabited();
+		if(isStranded || it->IsDisabled())
+		{
+			if(it->IsDestroyed() || (it->IsDisabled() && it->IsYours()))
 				continue;
 			
 			bool hasEnemy = false;
@@ -188,8 +194,15 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				if(ship->IsDisabled() || !ship->IsTargetable())
 					continue;
 				
-				if(ship->GetGovernment() == gov)
+				const Government *otherGov = ship->GetGovernment();
+				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
+					continue;
+				
+				if(it->IsDisabled() ? (otherGov == gov) : (!otherGov->IsEnemy(gov)))
 				{
+					if(isStranded && !ship->CanRefuel(*it))
+						continue;
+					
 					if(!firstAlly)
 						firstAlly = &*ship;
 					else if(ship == it)
@@ -201,174 +214,178 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					hasEnemy = true;
 			}
 			
+			isStranded = false;
 			if(!hasEnemy)
 			{
 				if(!nextAlly)
 					nextAlly = firstAlly;
 				if(nextAlly)
+				{
 					nextAlly->SetShipToAssist(it);
+					isStranded = true;
+				}
 			}
+			if(it->IsDisabled())
+				continue;
 		}
-		else
+		
+		Command command;
+		if(it->IsYours())
 		{
-			Command command;
-			if(it->IsYours())
-			{
-				if(isLaunching)
-					command |= Command::DEPLOY;
-				if(isCloaking)
-					command |= Command::CLOAK;
-			}
-			
-			const Personality &personality = it->GetPersonality();
-			shared_ptr<Ship> parent = it->GetParent();
-			
-			bool isPresent = (it->GetSystem() == player.GetSystem());
-			if(isPresent && personality.IsSurveillance())
-			{
-				DoSurveillance(*it, command, ships);
-				it->SetCommands(command);
-				continue;
-			}
-			
-			// Fire any weapons that will hit the target. Only ships that are in
-			// the current system can fire.
-			shared_ptr<const Ship> target = it->GetTargetShip();
-			if(isPresent)
-			{
-				command |= AutoFire(*it, ships);
-				
-				// Each ship only switches targets twice a second, so that it can
-				// focus on damaging one particular ship.
-				targetTurn = (targetTurn + 1) & 31;
-				if(targetTurn == step || !target || !target->IsTargetable()
-						|| (target->IsDisabled() && personality.Disables()))
-					it->SetTargetShip(FindTarget(*it, ships));
-			}
-			
-			double targetDistance = numeric_limits<double>::infinity();
-			target = it->GetTargetShip();
-			if(target)
-				targetDistance = target->Position().Distance(it->Position());
-			
-			// Handle fighters:
-			const string &category = it->Attributes().Category();
-			bool isDrone = (category == "Drone");
-			bool isFighter = (category == "Fighter");
-			if(isDrone || isFighter)
-			{
-				bool hasSpace = true;
-				hasSpace &= parent && (!isDrone || parent->DroneBaysFree());
-				hasSpace &= parent && (!isFighter || parent->FighterBaysFree());
-				if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
-				{
-					// Handle orphaned fighters and drones.
-					for(const auto &other : ships)
-						if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
-								&& other->GetSystem() == it->GetSystem())
-							if((isDrone && other->DroneBaysFree()) || (isFighter && other->FighterBaysFree()))
-							{
-								it->SetParent(other);
-								break;
-							}
-				}
-				else if(parent && !(it->IsYours() ? isLaunching : parent->Commands().Has(Command::DEPLOY)))
-				{
-					it->SetTargetShip(parent);
-					MoveTo(*it, command, parent->Position(), 40., .8);
-					command |= Command::BOARD;
-					it->SetCommands(command);
-					continue;
-				}
-			}
-			bool mustRecall = false;
-			if(it->HasBays() && !(it->IsYours() ? isLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
-				for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
-				{
-					shared_ptr<const Ship> escort = ptr.lock();
-					if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
-							&& !escort->IsDisabled())
-					{
-						mustRecall = true;
-						break;
-					}
-				}
-			
-			shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
-			if(shipToAssist)
-			{
-				it->SetTargetShip(shipToAssist);
-				if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem())
-					it->SetShipToAssist(shared_ptr<Ship>());
-				else if(!it->IsBoarding())
-				{
-					MoveTo(*it, command, shipToAssist->Position(), 40., .8);
-					command |= Command::BOARD;
-				}
-				it->SetCommands(command);
-				continue;
-			}
-			
-			bool isPlayerEscort = it->IsYours();
-			if((isPlayerEscort && holdPosition) || mustRecall)
-			{
-				if(it->Velocity().Length() > .2 || !target)
-					Stop(*it, command);
-				else
-					command.SetTurn(TurnToward(*it, TargetAim(*it)));
-			}
-			// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
-			// escort behavior when in a different system from you. Otherwise,
-			// the behavior depends on what the parent is doing, whether there
-			// are hostile targets nearby, and whether the escort has any
-			// immediate needs (like refueling).
-			else if(!parent || parent->IsDestroyed())
-				MoveIndependent(*it, command);
-			else if(parent->GetSystem() != it->GetSystem())
-				MoveEscort(*it, command);
-			// From here down, we're only dealing with ships that have a "parent"
-			// which is in the same system as them. If you're an enemy of your
-			// "parent," you don't take orders from them.
-			else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(it->GetGovernment()))
-				MoveIndependent(*it, command);
-			// This is a friendly escort. If the parent is getting ready to
-			// jump, always follow.
-			else if(parent->Commands().Has(Command::JUMP))
-				MoveEscort(*it, command);
-			// If the player is ordering escorts to gather, don't go off to fight.
-			else if(isPlayerEscort && moveToMe)
-				MoveEscort(*it, command);
-			// On the other hand, if the player ordered you to attack, do so even
-			// if you're usually more timid than that.
-			else if(isPlayerEscort && sharedTarget.lock())
-				MoveIndependent(*it, command);
-			// Timid ships always stay near their parent.
-			else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
-				MoveEscort(*it, command);
-			// Otherwise, attack targets depending on how heroic you are.
-			else if(target && (targetDistance < 2000. || personality.IsHeroic()))
-				MoveIndependent(*it, command);
-			// This ship does not feel like fighting.
-			else
-				MoveEscort(*it, command);
-			
-			// Apply the afterburner if you're in a heated battle and it will not
-			// use up your last jump worth of fuel.
-			if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled()
-					&& target->IsTargetable() && target->GetSystem() == it->GetSystem())
-			{
-				double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
-				if(fuel - it->Attributes().Get("afterburner fuel") >= it->JumpFuel())
-					if(command.Has(Command::FORWARD) && targetDistance < 1000.)
-						command |= Command::AFTERBURNER;
-			}
-			// Your own ships cloak on your command; all others do it when the
-			// AI considers it appropriate.
-			if(!it->IsYours())
-				DoCloak(*it, command, ships);
-			
-			it->SetCommands(command);
+			if(isLaunching)
+				command |= Command::DEPLOY;
+			if(isCloaking)
+				command |= Command::CLOAK;
 		}
+		
+		const Personality &personality = it->GetPersonality();
+		shared_ptr<Ship> parent = it->GetParent();
+		
+		bool isPresent = (it->GetSystem() == player.GetSystem());
+		if(isPresent && personality.IsSurveillance())
+		{
+			DoSurveillance(*it, command, ships);
+			it->SetCommands(command);
+			continue;
+		}
+		
+		// Fire any weapons that will hit the target. Only ships that are in
+		// the current system can fire.
+		shared_ptr<const Ship> target = it->GetTargetShip();
+		if(isPresent)
+		{
+			command |= AutoFire(*it, ships);
+			
+			// Each ship only switches targets twice a second, so that it can
+			// focus on damaging one particular ship.
+			targetTurn = (targetTurn + 1) & 31;
+			if(targetTurn == step || !target || !target->IsTargetable()
+					|| (target->IsDisabled() && personality.Disables()))
+				it->SetTargetShip(FindTarget(*it, ships));
+		}
+		
+		double targetDistance = numeric_limits<double>::infinity();
+		target = it->GetTargetShip();
+		if(target)
+			targetDistance = target->Position().Distance(it->Position());
+		
+		// Handle fighters:
+		const string &category = it->Attributes().Category();
+		bool isDrone = (category == "Drone");
+		bool isFighter = (category == "Fighter");
+		if(isDrone || isFighter)
+		{
+			bool hasSpace = true;
+			hasSpace &= parent && (!isDrone || parent->DroneBaysFree());
+			hasSpace &= parent && (!isFighter || parent->FighterBaysFree());
+			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
+			{
+				// Handle orphaned fighters and drones.
+				for(const auto &other : ships)
+					if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
+							&& other->GetSystem() == it->GetSystem())
+						if((isDrone && other->DroneBaysFree()) || (isFighter && other->FighterBaysFree()))
+						{
+							it->SetParent(other);
+							break;
+						}
+			}
+			else if(parent && !(it->IsYours() ? isLaunching : parent->Commands().Has(Command::DEPLOY)))
+			{
+				it->SetTargetShip(parent);
+				MoveTo(*it, command, parent->Position(), 40., .8);
+				command |= Command::BOARD;
+				it->SetCommands(command);
+				continue;
+			}
+		}
+		bool mustRecall = false;
+		if(it->HasBays() && !(it->IsYours() ? isLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
+			for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
+			{
+				shared_ptr<const Ship> escort = ptr.lock();
+				if(escort && escort->CanBeCarried() && escort->GetSystem() == it->GetSystem()
+						&& !escort->IsDisabled())
+				{
+					mustRecall = true;
+					break;
+				}
+			}
+		
+		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+		if(shipToAssist)
+		{
+			it->SetTargetShip(shipToAssist);
+			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem())
+				it->SetShipToAssist(shared_ptr<Ship>());
+			else if(!it->IsBoarding())
+			{
+				MoveTo(*it, command, shipToAssist->Position(), 40., .8);
+				command |= Command::BOARD;
+			}
+			it->SetCommands(command);
+			continue;
+		}
+		
+		bool isPlayerEscort = it->IsYours();
+		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
+		{
+			if(it->Velocity().Length() > .2 || !target)
+				Stop(*it, command);
+			else
+				command.SetTurn(TurnToward(*it, TargetAim(*it)));
+		}
+		// Hostile "escorts" (i.e. NPCs that are trailing you) only revert to
+		// escort behavior when in a different system from you. Otherwise,
+		// the behavior depends on what the parent is doing, whether there
+		// are hostile targets nearby, and whether the escort has any
+		// immediate needs (like refueling).
+		else if(!parent || parent->IsDestroyed())
+			MoveIndependent(*it, command);
+		else if(parent->GetSystem() != it->GetSystem())
+			MoveEscort(*it, command);
+		// From here down, we're only dealing with ships that have a "parent"
+		// which is in the same system as them. If you're an enemy of your
+		// "parent," you don't take orders from them.
+		else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(it->GetGovernment()))
+			MoveIndependent(*it, command);
+		// This is a friendly escort. If the parent is getting ready to
+		// jump, always follow.
+		else if(parent->Commands().Has(Command::JUMP))
+			MoveEscort(*it, command);
+		// If the player is ordering escorts to gather, don't go off to fight.
+		else if(isPlayerEscort && moveToMe)
+			MoveEscort(*it, command);
+		// On the other hand, if the player ordered you to attack, do so even
+		// if you're usually more timid than that.
+		else if(isPlayerEscort && sharedTarget.lock())
+			MoveIndependent(*it, command);
+		// Timid ships always stay near their parent.
+		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
+			MoveEscort(*it, command);
+		// Otherwise, attack targets depending on how heroic you are.
+		else if(target && (targetDistance < 2000. || personality.IsHeroic()))
+			MoveIndependent(*it, command);
+		// This ship does not feel like fighting.
+		else
+			MoveEscort(*it, command);
+		
+		// Apply the afterburner if you're in a heated battle and it will not
+		// use up your last jump worth of fuel.
+		if(it->Attributes().Get("afterburner thrust") && target && !target->IsDisabled()
+				&& target->IsTargetable() && target->GetSystem() == it->GetSystem())
+		{
+			double fuel = it->Fuel() * it->Attributes().Get("fuel capacity");
+			if(fuel - it->Attributes().Get("afterburner fuel") >= it->JumpFuel())
+				if(command.Has(Command::FORWARD) && targetDistance < 1000.)
+					command |= Command::AFTERBURNER;
+		}
+		// Your own ships cloak on your command; all others do it when the
+		// AI considers it appropriate.
+		if(!it->IsYours())
+			DoCloak(*it, command, ships);
+		
+		it->SetCommands(command);
 	}
 }
 
