@@ -45,10 +45,7 @@ class UI;
 // and what their current travel plan is, if any.
 class PlayerInfo {
 public:
-	PlayerInfo();
-	// Don't allow copying, because pointers won't get transferred properly.
-	PlayerInfo(const PlayerInfo &) = delete;
-	PlayerInfo &operator=(const PlayerInfo &) = delete;
+	PlayerInfo() = default;
 	
 	// Reset the player to an "empty" state, i.e. no player is loaded.
 	void Clear();
@@ -184,6 +181,11 @@ public:
 	
 	
 private:
+	// Don't anyone else to copy this class, because pointers won't get
+	// transferred properly.
+	PlayerInfo(const PlayerInfo &) = default;
+	PlayerInfo &operator=(const PlayerInfo &) = default;
+	
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
 	
@@ -194,11 +196,11 @@ private:
 	std::string filePath;
 	
 	Date date;
-	const System *system;
-	const Planet *planet;
-	bool shouldLaunch;
-	bool hasFullClearance;
-	bool isDead;
+	const System *system = nullptr;
+	const Planet *planet = nullptr;
+	bool shouldLaunch = false;
+	bool hasFullClearance = true;
+	bool isDead = false;
 	
 	Account accounts;
 	
@@ -219,7 +221,7 @@ private:
 	std::set<const System *> visited;
 	std::vector<const System *> travelPlan;
 	
-	const Outfit *selectedWeapon;
+	const Outfit *selectedWeapon = nullptr;
 	
 	std::map<const Outfit *, int> soldOutfits;
 	
@@ -229,7 +231,7 @@ private:
 	// Events that are going to happen some time in the future:
 	std::list<GameEvent> gameEvents;
 	
-	bool freshlyLoaded;
+	bool freshlyLoaded = true;
 };
 
 
