@@ -9,8 +9,9 @@ if 'CXXFLAGS' in os.environ:
 if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
 
-# Required build flags:
-env.Append(CCFLAGS = ["-std=c++0x", "-msse3", "-O3", "-Wall"])
+# Required build flags. If you want to use SSE optimization, you can turn on
+# -msse3 or (if just building for your own computer) -march=native.
+env.Append(CCFLAGS = ["-std=c++0x", "-O3", "-Wall"])
 env.Append(LIBS = [
 	"SDL2",
 	"png",
