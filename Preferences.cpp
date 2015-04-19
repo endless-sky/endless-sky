@@ -33,7 +33,6 @@ void Preferences::Load()
 {
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
-	settings["fullscreen"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
