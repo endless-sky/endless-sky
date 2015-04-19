@@ -761,7 +761,7 @@ void Engine::CalculateStep()
 	}
 	projectiles.splice(projectiles.end(), newProjectiles);
 	
-	// Keep track of the relative strength of each government in this sytem. Do
+	// Keep track of the relative strength of each government in this system. Do
 	// not add more ships to make a winning team even stronger. This is mostly
 	// to avoid having the player get mobbed by pirates, say, if they hang out
 	// in one system for too long.

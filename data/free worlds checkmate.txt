@@ -514,7 +514,7 @@ mission "FWC Diplomacy 1C"
 			`	"Fair enough," she says, "but I hope it doesn't wreck our chances at negotiation."`
 			`	Xao addresses the three of you. "We have heard your demands," he says, "and now, here is our response. Katerina Reynolds, Alondo Gruyere, and <first> <last>, you are hereby charged with treason and insurrection. Your trial will begin immediately."`
 			choice
-				`	"What? We were guranteed safe passage!"`
+				`	"What? We were guaranteed safe passage!"`
 				`	"You will regret this! If you arrest us, the Free Worlds will retaliate against you."`
 			`	As you try to protest, Alondo speaks up. He is not shouting, but his voice carries over the murmur of other voices. "We have a ship in orbit. If we do not return--"`
 			`	Xao cuts him off. "Your ship is no threat to us. We have already verified that it carries no nuclear weapons, and this building's shielding and anti-missile systems are quite sufficient to defend against conventional weapons. And there is nothing in its cargo hold but ordinary, non-radioactive metals."`
@@ -1452,7 +1452,7 @@ mission "FWC Pug 3"
 					goto ceasefire
 			
 			label research
-			`	"Or maybe interrogating her," says Alondo, "in which case they've at least discovered that we're as confused as they are about the hyperspace links being cut. I think whatever we do next, we'll need Freya, and we'll need the Navy. I'll contact them and ask them not to fire on your ship. But I can't gurantee they'll let you leave once you're in their control."`
+			`	"Or maybe interrogating her," says Alondo, "in which case they've at least discovered that we're as confused as they are about the hyperspace links being cut. I think whatever we do next, we'll need Freya, and we'll need the Navy. I'll contact them and ask them not to fire on your ship. But I can't guarantee they'll let you leave once you're in their control."`
 				goto end
 			
 			label ceasefire
@@ -1948,7 +1948,7 @@ mission "FWC Pug 4B: Quarg"
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
-			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrasment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
 			choice
 				`	"Can you help us to fight the Pug?"`
 				`	"Can you give us information about the Pug?"`

@@ -634,7 +634,7 @@ outfit "Typhoon Launcher"
 		"hull damage" 480
 		"hit force" 70
 		"missile strength" 30
-	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedos. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
+	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 
 outfit "Heavy Rocket"
 	category "Ammunition"

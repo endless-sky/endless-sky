@@ -763,7 +763,7 @@ mission "FW Syndicate Capture 1B"
 mission "FW Syndicate Capture 1C"
 	landing
 	name "Return to <planet>
-	description "The Syndicate is massing a fleet in the Sol system. Return to <planet> to rendevous with the Free Worlds fleet in order to be ready to defend Earth if it is attacked."
+	description "The Syndicate is massing a fleet in the Sol system. Return to <planet> to rendezvous with the Free Worlds fleet in order to be ready to defend Earth if it is attacked."
 	source Valhalla
 	destination "New Tibet"
 	passengers 2

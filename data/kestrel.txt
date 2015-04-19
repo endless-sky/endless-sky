@@ -152,7 +152,7 @@ mission "Kestrel: More Weapons"
 	to offer
 		has "kestrel: more weapons"
 	on offer
-		event "kestrel avaliable: more weapons" 50
+		event "kestrel available: more weapons" 50
 	to complete
 		has "kestrel available"
 
@@ -164,7 +164,7 @@ mission "Kestrel: More Engines"
 	to offer
 		has "kestrel: more engines"
 	on offer
-		event "kestrel avaliable: more engines" 50
+		event "kestrel available: more engines" 50
 	to complete
 		has "kestrel available"
 
@@ -176,7 +176,7 @@ mission "Kestrel: More Shields"
 	to offer
 		has "kestrel: more shields"
 	on offer
-		event "kestrel avaliable: more shields" 50
+		event "kestrel available: more shields" 50
 	to complete
 		has "kestrel available"
 
@@ -195,15 +195,15 @@ mission "Kestrel Available"
 
 
 
-event "kestrel avaliable: more weapons"
+event "kestrel avialable: more weapons"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Weapons)"
-event "kestrel avaliable: more engines"
+event "kestrel available: more engines"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Engines)"
-event "kestrel avaliable: more shields"
+event "kestrel available: more shields"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Shields)"

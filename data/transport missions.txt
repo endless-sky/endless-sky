@@ -128,7 +128,7 @@ mission "Smuggler's Den, Part 1"
 			label legal
 			`	You ask, "Are you in some sort of trouble with the law?"`
 			`	The boy grins. "No, not at all. I mean, aside from the fact that we're pirates."`
-			`	Seeing the incredulous look on your face, she says, "Members of a pirate gang. Crew on a pirate ship. Captains are usualy older, but most of the pirate ships you see out there are crewed by kids like us. It's a hard place to grow up. We want something better for our daughter."`
+			`	Seeing the incredulous look on your face, she says, "Members of a pirate gang. Crew on a pirate ship. Captains are usually older, but most of the pirate ships you see out there are crewed by kids like us. It's a hard place to grow up. We want something better for our daughter."`
 				goto search
 			
 			label payment
@@ -929,7 +929,7 @@ mission "Courier 4"
 				`	"I'd be glad to."`
 				`	"Sorry, I'm not interested in that sort of work."`
 					decline
-			`	"Exellent!" he says. "Come, let me introduce you to your cargo." He leads you to a supply shed where an enormous lizard, taller than you and probably weighing several tons, is being held in a cage that looks far too flimsy for it. "I'll have my men load her aboard your ship at once," says the man, "along with some meat for her to eat on the journey. Watch out for your fingers when you feed her, by the way. Thank you!"`
+			`	"Excellent!" he says. "Come, let me introduce you to your cargo." He leads you to a supply shed where an enormous lizard, taller than you and probably weighing several tons, is being held in a cage that looks far too flimsy for it. "I'll have my men load her aboard your ship at once," says the man, "along with some meat for her to eat on the journey. Watch out for your fingers when you feed her, by the way. Thank you!"`
 				accept
 	
 	on complete
