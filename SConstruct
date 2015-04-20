@@ -33,7 +33,7 @@ opts.Update(env)
 
 Help(opts.GenerateHelpText(env))
 
-VariantDir("build", ".", duplicate = 0)
+VariantDir("build", "source", duplicate = 0)
 
 sky = env.Program("endless-sky", Glob("build/*.cpp"))
 
