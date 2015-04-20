@@ -328,7 +328,7 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << endl;
 	cerr << "Report bugs to: mzahniser@gmail.com" << endl;
-	cerr << "Home page: <http://endless-sky.github.io>" << endl;
+	cerr << "Home page: <https://endless-sky.github.io>" << endl;
 	cerr << endl;
 }
 
@@ -338,7 +338,7 @@ void PrintVersion()
 {
 	cerr << endl;
 	cerr << "Endless Sky 0.7.10" << endl;
-	cerr << "License GPLv3+: GNU GPL version 3 or later: <http://gnu.org/licenses/gpl.html>" << endl;
+	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;

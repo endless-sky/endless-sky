@@ -36,4 +36,4 @@ see the "copyright" file.
 This game is open source.
 To contribute to story writing,
 artwork, or programming, visit:
-http://endless-sky.github.io
+https://endless-sky.github.io
