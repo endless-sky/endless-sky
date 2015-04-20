@@ -163,6 +163,21 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 #endif
+		// Check that the OpenGL version is high enough.
+		const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
+		const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		if(!glVersion || !glslVersion || !*glVersion || !*glslVersion)
+		{
+			cerr << "Unable to query the OpenGL version!" << endl;
+			return 1;
+		}
+		if(*glVersion < '3')
+		{
+			cerr << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
+			cerr << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
+			cerr << "Please update your graphics drivers." << endl;
+			return 1;
+		}
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
 		glEnable(GL_BLEND);
