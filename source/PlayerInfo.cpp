@@ -794,12 +794,21 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Remove any ships that have been destroyed. Recharge the others if this is
 	// a planet with a spaceport.
+	map<string, int> lostCargo;
 	vector<shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
 		if(!*it || (*it)->IsDestroyed() || (*it)->IsDisabled()
 				|| !(*it)->GetGovernment()->IsPlayer())
+		{
+			// If any of your ships are destroyed, your cargo "cost basis" should
+			// be adjusted based on what you lost.
+			for(const auto &cargo : (*it)->Cargo().Commodities())
+				if(cargo.second)
+					lostCargo[cargo.first] += cargo.second;
+			
 			it = ships.erase(it);
+		}
 		else
 			++it; 
 	}
@@ -819,6 +828,9 @@ void PlayerInfo::Land(UI *ui)
 			
 			ship->Cargo().TransferAll(&cargo);
 		}
+	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
+	for(const auto &it : lostCargo)
+		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
 	
 	// Check for missions that are completed.
 	auto mit = missions.begin();
