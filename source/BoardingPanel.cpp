@@ -291,10 +291,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				player.HandleEvent(event, GetUI());
 			}
 		}
-		// Trim the list of status messages.
-		while(messages.size() > 5)
-			messages.erase(messages.begin());
 	}
+	// Trim the list of status messages.
+	while(messages.size() > 5)
+		messages.erase(messages.begin());
 	
 	return true;
 }
