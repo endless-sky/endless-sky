@@ -115,7 +115,8 @@ void MainPanel::Step()
 		player.HandleEvent(event, GetUI());
 		if(event.Type() == ShipEvent::BOARD && isActive)
 		{
-			// TODO: handle player getting boarded.
+			// There is no need to show a boarding panel if the player is the
+			// victim, because enemy ships never try to capture ships.
 			if(actor->IsPlayer())
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
 		}

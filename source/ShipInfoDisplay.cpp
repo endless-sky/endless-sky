@@ -223,7 +223,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	
 	const Outfit &attributes = ship.Attributes();
 	
-	// TODO: if in the millions, abbreviate, e.g. 1.45M
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;

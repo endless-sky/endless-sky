@@ -224,8 +224,7 @@ void Ship::FinishLoading()
 		++explosionTotal;
 	}
 	
-	// TODO: any way to do this through lazy evaluation, instead of having to
-	// call this function explicitly?
+	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
@@ -1467,7 +1466,6 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	commands.Clear();
 	isDisabled = false;
 	hyperspaceSystem = nullptr;
-	// TODO: add as an "escort" to this ship.
 	
 	isSpecial = capturer->isSpecial;
 	personality = capturer->personality;

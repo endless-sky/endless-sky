@@ -41,12 +41,9 @@ class System;
 
 // Class representing a ship (either a model for sale or an instance of it). A
 // ship's information can be saved to a file, so that it can later be read back
-// in exactly the same state. To simplify this code, several aspects of a ship
-// have been separated into other classes: Controllable for the AI's access to
-// a ship, CargoHold for everything the ship is carrying, and Armament for the
-// weapons and weapon hardpoints on a ship. The same class is used for the
-// player's ship as for all other ships, so their capabilities are exactly the
-// same  within the limits of what the AI knows how to command them to do.
+// in exactly the same state. The same class is used for the player's ship as
+// for all other ships, so their capabilities are exactly the same  within the
+// limits of what the AI knows how to command them to do.
 class Ship : public std::enable_shared_from_this<Ship> {
 public:
 	// Load data for a type of ship:

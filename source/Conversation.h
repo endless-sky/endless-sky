@@ -34,8 +34,6 @@ class Sprite;
 class Conversation {
 public:
 	// The possible outcomes of a conversation:
-	// TODO: Once the code can handle "defer" and "launch", give them unique
-	// indices instead of having them be equal to other options.
 	static const int ACCEPT = -1;
 	static const int DECLINE = -2;
 	static const int DIE = -3;

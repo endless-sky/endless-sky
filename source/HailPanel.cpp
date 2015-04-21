@@ -177,7 +177,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 	else if(key == 'a' || key == 't' || key == 'h')
 	{
-		// TODO: handle dominating planets.
+		// TODO: allow the player to demand tribute from planets.
 		if(planet)
 		{
 			message = "Please don't joke about that sort of thing.";
@@ -225,7 +225,6 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					+ Format::Number(bribe) + " credits to permit you to land.");
 			}
 			
-			// TODO: handle landing bribes to planets.
 			player.Accounts().AddCredits(-bribe);
 			message = "It's a pleasure doing business with you.";
 		}

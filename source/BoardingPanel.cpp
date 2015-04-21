@@ -124,7 +124,6 @@ void BoardingPanel::Draw() const
 	int crew = 0;
 	if(you)
 	{
-		// TODO: Tabulate attack and odds for each number of crew.
 		const Ship &ship = *you;
 		crew = ship.Crew();
 		info.SetString("cargo space", to_string(freeSpace));

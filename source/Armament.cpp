@@ -110,9 +110,9 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	// const access), assume Armament checked that this is a valid call.
 	Angle aim = ship.Facing();
 	
-	// TODO: This is a kludge to get projectiles to line up right, because they
-	// are drawn at an offset of (.5 * velocity) and that velocity includes the
-	// velocity of the ship that fired them.
+	// Get projectiles to start at the right position. They are drawn at an
+	// offset of (.5 * velocity) and that velocity includes the velocity of the
+	// ship that fired them.
 	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
 	
 	shared_ptr<const Ship> target = ship.GetTargetShip();

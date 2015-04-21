@@ -219,8 +219,7 @@ void ShipyardPanel::Sell()
 
 bool ShipyardPanel::FlightCheck()
 {
-	// TODO: Check, e.g. that all your fighters have a ship to carry them?
-	// Or, should that be a limit placed on buying fighters / selling carriers?
+	// The shipyard does not perform any flight checks.
 	return true;
 }
 
@@ -228,7 +227,7 @@ bool ShipyardPanel::FlightCheck()
 
 int ShipyardPanel::Modifier() const
 {
-	// Never allow buying ships in bulk?
+	// Never allow buying ships in bulk.
 	return 1;
 }
 

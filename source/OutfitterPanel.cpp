@@ -673,8 +673,8 @@ void OutfitterPanel::Refill()
 			if(it.GetOutfit() && it.GetOutfit()->Ammo())
 				toRefill.insert(it.GetOutfit()->Ammo());
 		
-		// TODO: instead of adding these one by one, just calculate the proper
-		// number and which source each should come from.
+		// This is slower than just calculating the proper number to add, but
+		// that does not matter because this is not so time-consuming anyways.
 		for(const Outfit *outfit : toRefill)
 			while(ship->Attributes().CanAdd(*outfit))
 			{

@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <memory>
 #include <string>
 
-class Controllable;
 class Point;
 class Ship;
 class ShipEvent;

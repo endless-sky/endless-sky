@@ -234,7 +234,6 @@ void GameData::SetDate(const Date &date)
 // Apply the given change to the universe.
 void GameData::Change(const DataNode &node)
 {
-	// TODO: Each of these classes needs a function that allows it to be changed.
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "government" && node.Size() >= 2)

@@ -143,7 +143,6 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 			continue;
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
-		// TODO: decide if taking it from an escort is acceptable too.
 		int available = player.Cargo().Get(it.first);
 		for(const auto &ship : player.Ships())
 			available += ship->Cargo().Get(it.first);
