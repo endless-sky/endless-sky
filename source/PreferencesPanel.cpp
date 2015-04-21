@@ -15,20 +15,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "Color.h"
 #include "Files.h"
-#include "FillShader.h"
-#include "Font.h"
-#include "FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
+#include "StarField.h"
 #include "Table.h"
 #include "UI.h"
 
 #include "gl_header.h"
-
-#include <cmath>
-#include <map>
 
 using namespace std;
 

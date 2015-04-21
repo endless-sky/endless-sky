@@ -15,9 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 
 #include "BankPanel.h"
-#include "Color.h"
 #include "Command.h"
-#include "ConversationPanel.h"
 #include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
@@ -26,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapDetailPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"

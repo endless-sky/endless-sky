@@ -14,7 +14,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "DataNode.h"
+#include "Effect.h"
 #include "GameData.h"
+#include "Outfit.h"
 #include "SpriteSet.h"
 
 #include <iostream>

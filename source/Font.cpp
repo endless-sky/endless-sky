@@ -16,11 +16,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ImageBuffer.h"
 #include "Point.h"
 #include "Screen.h"
-#include "SpriteQueue.h"
 
 #include <cmath>
 #include <cstring>
-#include <stdexcept>
 
 using namespace std;
 

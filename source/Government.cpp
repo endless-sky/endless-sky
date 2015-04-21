@@ -12,11 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Government.h"
 
+#include "Conversation.h"
 #include "DataNode.h"
 #include "GameData.h"
+#include "Phrase.h"
+#include "Politics.h"
 #include "ShipEvent.h"
-
-#include <algorithm>
 
 using namespace std;
 

@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 #include "Point.h"
 
-#include <set>
 #include <string>
 
 class Planet;

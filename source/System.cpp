@@ -15,11 +15,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
+#include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
 
 using namespace std;
 

@@ -17,11 +17,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Animation.h"
 #include "Point.h"
 
-class DrawList;
-class Projectile;
-
 #include <string>
 #include <vector>
+
+class DrawList;
+class Projectile;
+class Sprite;
 
 
 

@@ -17,13 +17,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "UI.h"
+#include "System.h"
 
 #include <sstream>
 

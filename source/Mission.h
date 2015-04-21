@@ -21,16 +21,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <map>
-#include <memory>
 #include <string>
 #include <set>
 
 class DataNode;
 class DataWriter;
-class Government;
 class Planet;
 class PlayerInfo;
-class Ship;
 class ShipEvent;
 class System;
 class UI;

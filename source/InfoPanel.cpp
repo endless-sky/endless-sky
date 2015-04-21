@@ -25,12 +25,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "LineShader.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
-#include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "Sprite.h"
-#include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "System.h"
 #include "Table.h"
 #include "UI.h"
 

@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define INTERFACE_H_
 
 #include "Color.h"
-#include "Set.h"
 #include "Point.h"
 
 #include <string>

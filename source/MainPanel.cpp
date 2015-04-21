@@ -14,24 +14,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BoardingPanel.h"
 #include "Command.h"
-#include "ConversationPanel.h"
 #include "Dialog.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "Government.h"
 #include "HailPanel.h"
 #include "InfoPanel.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "StellarObject.h"
+#include "System.h"
 #include "UI.h"
 
-#include <functional>
-#include <set>
 #include <sstream>
 #include <string>
 

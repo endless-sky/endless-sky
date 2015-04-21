@@ -13,9 +13,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpaceportPanel.h"
 
 #include "Color.h"
-#include "Font.h"
 #include "FontSet.h"
 #include "GameData.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "UI.h"

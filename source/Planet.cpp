@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "GameData.h"
-#include "Outfit.h"
+#include "Politics.h"
 #include "Ship.h"
 #include "SpriteSet.h"
 

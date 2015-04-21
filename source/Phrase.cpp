@@ -15,8 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "Random.h"
 
-#include <cstdlib>
-
 using namespace std;
 
 

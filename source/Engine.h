@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "AI.h"
 #include "AsteroidField.h"
-#include "Date.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
@@ -24,16 +23,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Radar.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "System.h"
 
+#include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
 #include <thread>
 #include <vector>
-#include <condition_variable>
 
 class Government;
+class Outfit;
 class PlayerInfo;
 
 

@@ -13,10 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef ESCORT_DISPLAY_H_
 #define ESCORT_DISPLAY_H_
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
-class Point;
 class Ship;
 class Sprite;
 

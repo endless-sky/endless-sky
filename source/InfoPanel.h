@@ -19,10 +19,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
-class Color;
 class Outfit;
 class PlayerInfo;
 

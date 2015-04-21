@@ -15,16 +15,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Angle.h"
 #include "Animation.h"
-#include "Effect.h"
 #include "Point.h"
 
 #include <list>
 #include <memory>
 
+class Effect;
 class Government;
 class Outfit;
 class Ship;
-class System;
 
 
 

@@ -18,10 +18,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "Ship.h"
 #include "ShipEvent.h"
+#include "System.h"
 #include "UI.h"
 
 #include <vector>

@@ -20,9 +20,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "Table.h"
 
-#include <cmath>
+#include <algorithm>
 #include <map>
-#include <sstream>
 
 using namespace std;
 

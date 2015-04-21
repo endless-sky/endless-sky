@@ -24,7 +24,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -33,7 +32,6 @@ class DataWriter;
 class Government;
 class Planet;
 class Projectile;
-class Phrase;
 class StellarObject;
 class System;
 

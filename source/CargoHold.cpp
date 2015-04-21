@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Mission.h"
 #include "Outfit.h"
+#include "System.h"
 
 #include <algorithm>
 

@@ -13,10 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include <cctype>
-#include <map>
+#include <cstdint>
 #include <string>
-#include <vector>
 
 
 

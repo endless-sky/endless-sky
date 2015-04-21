@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Interface.h"
 
-#include "Angle.h"
 #include "DataNode.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -20,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
-#include "pi.h"
 #include "Radar.h"
 #include "RingShader.h"
 #include "Screen.h"

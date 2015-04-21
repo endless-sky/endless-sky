@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LoadPanel.h"
 #include "MainPanel.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
@@ -30,6 +31,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipyardPanel.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
+#include "StarField.h"
+#include "System.h"
 #include "UI.h"
 
 #include <fstream>

@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Projectile.h"
 
+#include "Effect.h"
 #include "Mask.h"
 #include "Outfit.h"
 #include "pi.h"

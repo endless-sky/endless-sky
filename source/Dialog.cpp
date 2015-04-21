@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Dialog.h"
 
 #include "Color.h"
+#include "Command.h"
 #include "Conversation.h"
 #include "FillShader.h"
 #include "Font.h"
@@ -21,7 +22,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "Screen.h"
 #include "shift.h"
 #include "Sprite.h"
 #include "SpriteSet.h"

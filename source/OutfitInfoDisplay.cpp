@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Color.h"
-#include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"

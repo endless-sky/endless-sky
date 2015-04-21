@@ -14,23 +14,47 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Audio.h"
 #include "BlurShader.h"
+#include "Color.h"
 #include "Command.h"
+#include "Conversation.h"
 #include "DataFile.h"
+#include "DataNode.h"
 #include "DotShader.h"
+#include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
+#include "Fleet.h"
 #include "FontSet.h"
+#include "Galaxy.h"
+#include "GameEvent.h"
+#include "Government.h"
+#include "Interface.h"
 #include "LineShader.h"
+#include "Mission.h"
+#include "Outfit.h"
 #include "OutlineShader.h"
+#include "Phrase.h"
+#include "Planet.h"
 #include "PointerShader.h"
+#include "Politics.h"
 #include "RingShader.h"
+#include "Sale.h"
+#include "Set.h"
+#include "Ship.h"
+#include "SpriteQueue.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+#include "StarField.h"
+#include "StartConditions.h"
+#include "System.h"
 
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <utility>
 #include <vector>
+
+class Sprite;
 
 using namespace std;
 

@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Audio.h"
 #include "DataNode.h"
 #include "Random.h"
-#include "SpriteSet.h"
 
 using namespace std;
 

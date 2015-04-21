@@ -13,12 +13,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef STAR_FIELD_H_
 #define STAR_FIELD_H_
 
-#include "Point.h"
 #include "Shader.h"
 
 #include "gl_header.h"
 
 #include <vector>
+
+class Point;
 
 
 
@@ -32,7 +33,7 @@ class StarField {
 public:
 	void Init(int stars, int width);
 	
-	void Draw(Point pos, Point vel) const;
+	void Draw(const Point &pos, const Point &vel) const;
 	
 	
 private:

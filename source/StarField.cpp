@@ -12,13 +12,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StarField.h"
 
+#include "Point.h"
 #include "Random.h"
 #include "Screen.h"
 
 #include <cassert>
 #include <cmath>
-#include <cstdint>
-#include <cstdlib>
 
 using namespace std;
 
@@ -32,7 +31,7 @@ void StarField::Init(int stars, int width)
 
 
 
-void StarField::Draw(Point pos, Point vel) const
+void StarField::Draw(const Point &pos, const Point &vel) const
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);

@@ -25,12 +25,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 #include "Screen.h"
 #include "shift.h"
+#include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
-
-#include "gl_header.h"
 
 #include <iterator>
 

@@ -14,8 +14,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Phrase.h"
 #include "pi.h"
+#include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
 #include "StellarObject.h"

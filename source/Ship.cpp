@@ -14,14 +14,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Effect.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Planet.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
-#include "SpriteSet.h"
 #include "System.h"
 
 #include <algorithm>

@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
-#include "Animation.h"
 #include "Point.h"
 #include "Set.h"
 #include "StellarObject.h"

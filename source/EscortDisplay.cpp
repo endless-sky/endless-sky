@@ -15,13 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Font.h"
 #include "FontSet.h"
-#include "GameData.h"
 #include "LineShader.h"
 #include "Point.h"
 #include "OutlineShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "System.h"
 
 #include <algorithm>
 #include <set>

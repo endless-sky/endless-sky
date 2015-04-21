@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "PlayerInfo.h"
 #include "ShipyardPanel.h"
+#include "StarField.h"
 #include "UI.h"
 
 #include <algorithm>

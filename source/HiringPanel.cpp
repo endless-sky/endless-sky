@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Ship.h"
 #include "UI.h"
 
 using namespace std;

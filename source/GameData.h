@@ -13,33 +13,33 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef GAME_DATA_H_
 #define GAME_DATA_H_
 
-#include "Color.h"
-#include "Conversation.h"
-#include "Effect.h"
-#include "Fleet.h"
-#include "Galaxy.h"
-#include "GameEvent.h"
-#include "Government.h"
-#include "Interface.h"
-#include "Mission.h"
-#include "Outfit.h"
-#include "Phrase.h"
-#include "Planet.h"
-#include "Politics.h"
-#include "Sale.h"
 #include "Set.h"
-#include "Ship.h"
-#include "SpriteQueue.h"
-#include "StarField.h"
-#include "StartConditions.h"
-#include "System.h"
 #include "Trade.h"
 
 #include <map>
 #include <string>
+#include <vector>
 
-class Date;
+class Color;
+class Conversation;
 class DataNode;
+class Date;
+class Effect;
+class Fleet;
+class Galaxy;
+class GameEvent;
+class Government;
+class Interface;
+class Mission;
+class Outfit;
+class Phrase;
+class Planet;
+class Politics;
+class Ship;
+class Sprite;
+class StarField;
+class StartConditions;
+class System;
 
 
 

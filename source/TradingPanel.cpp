@@ -24,8 +24,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "Messages.h"
+#include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "System.h"
 #include "UI.h"
 
 #include <string>

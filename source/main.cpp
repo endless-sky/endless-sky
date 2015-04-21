@@ -18,12 +18,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
-#include "DataWriter.h"
 #include "Dialog.h"
-#include "Files.h"
 #include "FrameTimer.h"
 #include "GameData.h"
-#include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
@@ -34,13 +31,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "gl_header.h"
 #include <SDL2/SDL.h>
 
-#include <cstring>
-#include <fstream>
 #include <iostream>
 #include <map>
 #include <stdexcept>
 #include <string>
-#include <vector>
 
 using namespace std;
 

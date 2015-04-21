@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef DATE_H_
 #define DATE_H_
 
-#include <ctime>
 #include <string>
 
 

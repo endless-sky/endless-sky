@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataNode.h"
 #include "GameData.h"
 #include "Planet.h"
+#include "System.h"
 
 using namespace std;
 

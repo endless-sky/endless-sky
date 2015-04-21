@@ -25,16 +25,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "Mission.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
 #include "UI.h"
-
-#include <map>
 
 using namespace std;
 

@@ -17,8 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "WrappedText.h"
 
-#include <string>
-
 class PlayerInfo;
 
 

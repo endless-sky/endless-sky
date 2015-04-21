@@ -21,18 +21,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Outfit.h"
 #include "OutfitInfoDisplay.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
-#include "Screen.h"
+#include "Ship.h"
 #include "ShipInfoDisplay.h"
-#include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
 
 #include <limits>
+
+class Sprite;
 
 using namespace std;
 

@@ -15,13 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Mortgage.h"
 
-#include <memory>
+#include <cstdint>
 #include <string>
 #include <vector>
 
 class DataNode;
 class DataWriter;
-class Ship;
 
 
 
