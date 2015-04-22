@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cstring>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 
@@ -41,6 +42,8 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
+int DoError(const string &message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
+void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
 
 
@@ -79,12 +82,7 @@ int main(int argc, char *argv[])
 		// Check how big the window can be.
 		SDL_DisplayMode mode;
 		if(SDL_GetCurrentDisplayMode(0, &mode))
-		{
-			cerr << "Unable to query monitor resolution!" << endl;
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
+			return DoError("Unable to query monitor resolution!");
 		
 		Preferences::Load();
 		Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -98,12 +96,8 @@ int main(int argc, char *argv[])
 		int restoreWidth = 0;
 		int restoreHeight = 0;
 		if(maxWidth < 640 || maxHeight < 480)
-		{
-			cerr << "Monitor resolution is too small!" << endl;
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
+			return DoError("Monitor resolution is too small!");
+		
 		if(Screen::Width() && Screen::Height())
 		{
 			// Never allow the saved screen width to be leaving less than 100
@@ -122,93 +116,48 @@ int main(int argc, char *argv[])
 			Screen::Set(maxWidth - 100, maxHeight - 100);
 		
 		// Create the window.
-#ifdef _WIN32
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+#ifndef __APPLE__
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);		
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
-#else
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 #endif
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 		
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			Screen::Width(), Screen::Height(), flags);
 		if(!window)
-		{
-			cerr << "Unable to create window!" << endl;
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
+			return DoError("Unable to create window!");
 		
 		SDL_GLContext context = SDL_GL_CreateContext(window);
 		if(!context)
-		{
-			cerr << "Unable to create OpenGL context!" << endl;
-			SDL_DestroyWindow(window);
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
+			return DoError("Unable to create OpenGL context!", window);
 		
 		if(SDL_GL_MakeCurrent(window, context))
-		{
-			cerr << "Unable to set the current OpenGL context!" << endl;
-#ifndef _WIN32
-			// Under windows, this cleanup code causes intermittent crashes.
-			SDL_GL_DeleteContext(context);
-#endif
-			SDL_DestroyWindow(window);
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
+			return DoError("Unable to set the current OpenGL context!", window, context);
+		
 		SDL_GL_SetSwapInterval(1);
 		
 		// Initialize GLEW.
 #ifndef __APPLE__
 		glewExperimental = GL_TRUE;
 		if(glewInit() != GLEW_OK)
-		{
-			cerr << "Unable to initialize GLEW!" << endl;
-#ifndef _WIN32
-			// Under windows, this cleanup code causes intermittent crashes.
-			SDL_GL_DeleteContext(context);
+			return DoError("Unable to initialize GLEW!", window, context);
 #endif
-			SDL_DestroyWindow(window);
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
-#endif
+		
 		// Check that the OpenGL version is high enough.
 		const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
 		const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 		if(!glVersion || !glslVersion || !*glVersion || !*glslVersion)
-		{
-			cerr << "Unable to query the OpenGL version!" << endl;
-#ifndef _WIN32
-			// Under windows, this cleanup code causes intermittent crashes.
-			SDL_GL_DeleteContext(context);
-#endif
-			SDL_DestroyWindow(window);
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
-		}
+			return DoError("Unable to query the OpenGL version!", window, context);
+		
 		if(*glVersion < '3')
 		{
-			cerr << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
-			cerr << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
-			cerr << "Please update your graphics drivers." << endl;
-#ifndef _WIN32
-			// Under windows, this cleanup code causes intermittent crashes.
-			SDL_GL_DeleteContext(context);
-#endif
-			SDL_DestroyWindow(window);
-			Audio::Quit();
-			SDL_Quit();
-			return 1;
+			ostringstream out;
+			out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
+			out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
+			out << "Please update your graphics drivers.";
+			return DoError(out.str(), window, context);
 		}
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
@@ -330,17 +279,11 @@ int main(int argc, char *argv[])
 			Screen::Set(restoreWidth, restoreHeight);
 		Preferences::Save();
 		
-		Audio::Quit();
-#ifndef _WIN32
-		// Under windows, this cleanup code causes intermittent crashes.
-		SDL_GL_DeleteContext(context);
-#endif
-		SDL_DestroyWindow(window);
-		SDL_Quit();
+		Cleanup(window, context);
 	}
 	catch(const runtime_error &error)
 	{
-		cerr << error.what() << endl;
+		DoError(error.what());
 	}
 	
 	return 0;
@@ -375,6 +318,52 @@ void PrintVersion()
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
 	cerr << endl;
+}
+
+
+
+int DoError(const string &message, SDL_Window *window, SDL_GLContext context)
+{
+	Cleanup(window, context);
+	
+	// Print the error message in the terminal.
+	cerr << message << endl;
+	
+	// Show the error message both in a message box and in the terminal.
+	SDL_MessageBoxData box;
+	box.flags = SDL_MESSAGEBOX_ERROR;
+	box.window = nullptr;
+	box.title = "Endless Sky: Error";
+	box.message = message.c_str();
+	box.colorScheme = nullptr;
+	
+	SDL_MessageBoxButtonData button;
+	button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+	button.buttonid = 0;
+	button.text = "OK";
+	box.numbuttons = 1;
+	box.buttons = &button;
+	
+	int result = 0;
+	SDL_ShowMessageBox(&box, &result);
+	
+	return 1;
+}
+
+
+
+void Cleanup(SDL_Window *window, SDL_GLContext context)
+{
+	// Clean up in the reverse order that everything is launched.
+#ifndef _WIN32
+	// Under windows, this cleanup code causes intermittent crashes.
+	if(context)
+		SDL_GL_DeleteContext(context);
+#endif
+	if(window)
+		SDL_DestroyWindow(window);
+	Audio::Quit();
+	SDL_Quit();
 }
 
 
