@@ -1254,6 +1254,9 @@ mission "FW Escort 1"
 			`	"Great!" he says. "You'll be escorting six freighters. If they all make it safely there and back, your payment will be four hundred thousand credits."`
 				accept
 	
+	on fail
+		set "fw intro escort failed"
+	
 	on visit
 		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
@@ -1320,6 +1323,9 @@ mission "FW Escort 1B"
 		conversation
 			`	You are met at the spaceport by Tomek Voigt, one of the members of the Free Worlds council. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "So meet me in the spaceport if you are willing to volunteer for escort duty again."`
 	
+	on fail
+		set "fw intro escort failed"
+	
 	on visit
 		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
@@ -1380,6 +1386,9 @@ mission "FW Escort 2"
 			
 			`	"Great!" says Tomek. "Good luck to all of you, and I hope to see you all safely back here in a couple of weeks."`
 				accept
+	
+	on fail
+		set "fw intro escort failed"
 	
 	on visit
 		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
@@ -1448,6 +1457,9 @@ mission "FW Escort 2B"
 		conversation
 			`	Again, Tomek Voigt meets you at the spaceport, thanks you all for your courage and dedication, and pays you <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 	
+	on fail
+		set "fw intro escort failed"
+	
 	on visit
 		dialog "You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system."
 
@@ -1486,8 +1498,61 @@ mission "FW Escort 3"
 			`	Voigt is immensely relieved to see the <npc> returned safely home. "You have done us a great service today, Captain," he says, as he hands you credit chips for <payment>. "I'll be sure to let the Council know how helpful you have been."`
 		"assisted free worlds" ++
 	
+	on fail
+		set "fw intro escort failed"
+	
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+
+
+
+mission "FW Escort Second Chance"
+	name "Second Chance"
+	description "Return to <destination>, to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
+	source
+		near Sabik 1 1000
+		government "Free Worlds"
+	destination Longjump
+	to offer
+		has "fw intro escort failed"
+		not "chosen sides"
+		"assisted free worlds" == 2
+	
+	on offer
+		conversation
+			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya and JJ both speak so highly of you that I would like to see you join us, even though you messed up that escort mission."`
+			choice
+				`	"Yes, I'm very sorry about that."`
+				`	"Sorry, but I decided I don't want to assist the Free Worlds anyways."`
+					decline
+			
+			`	"I'm sure," he says, "but I'm not the one you need to say that to. Right now Tomek is refusing to let us offer you a job, but if you speak with him in person, he might change his mind. Or he might not. But if you really want to work for us, you should visit him on <planet>, take full responsibility for what happened, and apologize. Just a suggestion." He walks off.`
+				accept
+	
+	on complete
+		conversation
+			`Nervously, you contact Tomek and ask if he would be willing to meet with you. After a long pause, he says, "Okay. Meet me at the cantina in fifteen minutes." You wait for about twenty minutes before he finally shows up and says, without preamble, "Now, what do you have to say for yourself?"`
+			choice
+				`	"I take full responsibility for the loss of that freighter. I'm sorry."`
+					goto responsible
+				`	"There was really nothing I could have done aginst so many pirates."`
+				`	"I'm sorry for what happened. It won't happen again."`
+			`	He doesn't look entirely satisfied with that response. "I had to write letters to five different families telling them why their son or daughter or husband had been killed on a routine cargo mission. You promised to keep them safe, and you failed. You understand that, right?"`
+			choice
+				`	"Well, space is a dangerous place. Bad things happen. I can't stop that."`
+				`	"Yes, I know that I failed, and I'm very sorry for their loss."`
+					goto responsible
+			`	"That is not an appropriate response," he says. "If we offer you a mission, we have to be able to trust that you will complete it, with no excuses. I'm sorry, but I have no interest in working with you in the future. Goodbye, Captain." He walks away.`
+				decline
+			
+			label responsible
+			`	"If we offer you a mission in the future," he says, "we have to be able to trust that you will complete it. No excuses, no second tries. Do you understand?" You nod. "Fine," he says, with a long sigh. "Katya said she trusted you, and Jean Jacques as well, so I'll recommend that they give you a chance. But please try to be more responsible in the future, okay?"`
+			choice
+				`	"I will. Thank you for giving me a second chance, sir."`
+				`	"I'll try my best."`
+			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
+			apply
+				"assisted free worlds" ++
 
 
 
@@ -1514,7 +1579,7 @@ mission "FW Commitment"
 			`				Jean Jacques Soleau`
 			`				Freya Winters`
 			`				Alondo Gruyere`
-			`				and Katerina Reynolds.`
+			`				Katerina Reynolds`
 			``
 			`	You notice that Katya's name is printed, instead of signed like the others; she must still be undercover on Clink.`
 				accept
