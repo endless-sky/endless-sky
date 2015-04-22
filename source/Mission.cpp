@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipEvent.h"
 #include "System.h"
 
+#include <cmath>
 #include <sstream>
 
 using namespace std;
