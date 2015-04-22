@@ -80,6 +80,8 @@ int main(int argc, char *argv[])
 		if(SDL_GetCurrentDisplayMode(0, &mode))
 		{
 			cerr << "Unable to query monitor resolution!" << endl;
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		
@@ -97,6 +99,8 @@ int main(int argc, char *argv[])
 		if(maxWidth < 640 || maxHeight < 480)
 		{
 			cerr << "Monitor resolution is too small!" << endl;
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		if(Screen::Width() && Screen::Height())
@@ -131,6 +135,8 @@ int main(int argc, char *argv[])
 		if(!window)
 		{
 			cerr << "Unable to create window!" << endl;
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		
@@ -138,12 +144,22 @@ int main(int argc, char *argv[])
 		if(!context)
 		{
 			cerr << "Unable to create OpenGL context!" << endl;
+			SDL_DestroyWindow(window);
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		
 		if(SDL_GL_MakeCurrent(window, context))
 		{
 			cerr << "Unable to set the current OpenGL context!" << endl;
+#ifndef _WIN32
+			// Under windows, this cleanup code causes intermittent crashes.
+			SDL_GL_DeleteContext(context);
+#endif
+			SDL_DestroyWindow(window);
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		SDL_GL_SetSwapInterval(1);
@@ -154,6 +170,13 @@ int main(int argc, char *argv[])
 		if(glewInit() != GLEW_OK)
 		{
 			cerr << "Unable to initialize GLEW!" << endl;
+#ifndef _WIN32
+			// Under windows, this cleanup code causes intermittent crashes.
+			SDL_GL_DeleteContext(context);
+#endif
+			SDL_DestroyWindow(window);
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 #endif
@@ -163,6 +186,13 @@ int main(int argc, char *argv[])
 		if(!glVersion || !glslVersion || !*glVersion || !*glslVersion)
 		{
 			cerr << "Unable to query the OpenGL version!" << endl;
+#ifndef _WIN32
+			// Under windows, this cleanup code causes intermittent crashes.
+			SDL_GL_DeleteContext(context);
+#endif
+			SDL_DestroyWindow(window);
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		if(*glVersion < '3')
@@ -170,6 +200,13 @@ int main(int argc, char *argv[])
 			cerr << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
 			cerr << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
 			cerr << "Please update your graphics drivers." << endl;
+#ifndef _WIN32
+			// Under windows, this cleanup code causes intermittent crashes.
+			SDL_GL_DeleteContext(context);
+#endif
+			SDL_DestroyWindow(window);
+			Audio::Quit();
+			SDL_Quit();
 			return 1;
 		}
 		
