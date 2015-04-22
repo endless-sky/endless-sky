@@ -102,6 +102,7 @@ mission "FW Reconciliation 1B"
 	destination Mutiny
 	clearance
 	passengers 3
+	blocked "You need another bunk free (for Ijs) in order to continue this mission."
 	to offer
 		has "FW Reconciliation 1: done"
 	
@@ -546,6 +547,7 @@ mission "FW Embassy 1C"
 	source Bourne
 	destination Earth
 	passengers 2
+	blocked "You do not have bunks available for Ijs and Katya. Return here when you do."
 	to offer
 		has "event: fw reconciliation break"
 	
@@ -881,6 +883,7 @@ mission "FW Pug 2"
 	to offer
 		has "FW Pug 1: done"
 	passengers 1
+	blocked `As you are landing, Alondo contacts you and says, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	
 	on offer
 		conversation
@@ -1204,6 +1207,7 @@ mission "FW Pug 3"
 	destination Earth
 	to offer
 		has "fw given jump drive"
+	passengers 1
 	
 	on offer
 		conversation
@@ -1610,6 +1614,7 @@ mission "FW Pug 4B"
 	to offer
 		has "FW Pug 4A: done"
 	cargo "graviton reflector" 10
+	blocked `Freya contacts you and says, "Captain, you're going to need ten tons of cargo space." You do not have that much available, so you should return here when you do.`
 	
 	on offer
 		conversation
@@ -1731,6 +1736,7 @@ mission "FW Pug 5"
 		has "FW Pug 4C: done"
 	cargo "graviton reflector" 10
 	passengers 1
+	blocked `Freya contacts you and says, "<first>, we're going to need space for me, plus ten tons of cargo, on your ship. Think you can do that?" You tell her you will contact her here on <origin> as soon as you have made the space available.`
 	
 	on offer
 		event "battle for altair"
@@ -1938,6 +1944,7 @@ mission "FW Pug 6"
 	to offer
 		has "FW Pug 5B: done"
 	passengers 1
+	blocked "You need a bunk free for Freya to continue this mission."
 	on enter Deneb
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`

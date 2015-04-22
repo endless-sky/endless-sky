@@ -38,6 +38,8 @@ mission "FW Diplomacy 1B"
 	deadline 24
 	to offer
 		has "FW Diplomacy 1: done"
+	passengers 1
+	blocked "You do not have a bunk free for Alondo. Return here when you do."
 	
 	on offer
 		conversation
@@ -86,6 +88,7 @@ mission "FW Diplomacy 1C"
 	clearance
 	to offer
 		has "FW Diplomacy 1B: done"
+	passengers 1
 	
 	on offer
 		conversation
@@ -120,6 +123,7 @@ mission "FW Diplomacy 1D"
 	destination Longjump
 	to offer
 		has "FW Diplomacy 1C: done"
+	passengers 1
 	
 	on offer
 		conversation
@@ -656,6 +660,7 @@ mission "FW Northern 1"
 	to offer
 		has "event: fw occupying the north"
 	passengers 1
+	blocked `You receive a message from Freya: "Captain, please meet up with us as soon as you have a bunk free for Alondo." You have no bunks free, so you should return here once you have made one available.`
 	
 	on offer
 		conversation
@@ -732,6 +737,7 @@ mission "FW Northern 2A"
 	to offer
 		has "FW Northern 2: done"
 	passengers 1
+	blocked "To continue this mission, you need a bunk free for Freya. Return here when you have made one available."
 	
 	on offer
 		conversation
@@ -1228,6 +1234,7 @@ mission "FW Bloodsea 1"
 	to offer
 		has "fw alphas done"
 	passengers 1
+	blocked `Alondo contacts you and asks, "Do you have a bunk ready for me?" You do not, so you will need to free one up to continue this mission.`
 	
 	on offer
 		conversation
@@ -1589,6 +1596,7 @@ mission "FW Rand 1"
 	destination Rand
 	clearance
 	passengers 2
+	blocked "You need a bunk free for Freya (in addition to JJ) to continue this mission."
 	to offer
 		has "FW Albatross 2B: done"
 	

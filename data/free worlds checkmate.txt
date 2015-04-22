@@ -458,6 +458,8 @@ mission "FWC Diplomacy 1B"
 	clearance
 	to offer
 		has "FWC Diplomacy 1: done"
+	passengers 2
+	blocked "You have reached <origin>, but you don't have a bunk free for Alondo! You should return to <origin> once you have freed one up."
 	
 	on offer
 		event "fw safe passage starts"
@@ -855,6 +857,7 @@ mission "FWC Checkmate 1B"
 	to offer
 		has "FWC Checkmate 1: done"
 	passengers 1
+	blocked "You have returned to <origin>, but you do not have a bunk free for Katya. You should return here once you have a bunk free."
 	
 	on offer
 		event "fwc attack menkent"
@@ -1287,6 +1290,7 @@ mission "FWC Pug 2B"
 	to offer
 		has "FWC Pug 2: done"
 	passengers 1
+	blocked "You need to have a bunk free for Katya to continue with the next mission. Complete or abort whatever mission is using up all your passenger space, then return here to <origin>."
 	
 	on offer
 		conversation
@@ -1333,6 +1337,7 @@ mission "FWC Pug 2C"
 	destination Oblivion
 	to offer
 		has "FWC Pug 2B: done"
+	passengers 1
 	
 	on offer
 		conversation
@@ -1593,6 +1598,7 @@ mission "FWC Pug 3C"
 		has "FWC Pug 3B: done"
 	passengers 1
 	cargo "graviton reflector" 10
+	blocked `As you are landing, Freya contacts you and says, "You're going to need ten tons of cargo space for this next mission, and a bunk for me, as well." That means you have to free up <capacity>.`
 	
 	on offer
 		conversation
@@ -1908,6 +1914,7 @@ mission "FWC Pug 4B"
 		has "FWC Pug 4: done"
 	cargo "graviton reflector" 10
 	passengers 1
+	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
 	
 	on offer
 		conversation
@@ -2183,6 +2190,7 @@ mission "FWC Pug 5B"
 		has "FWC Pug 5: done"
 	passengers 1
 	cargo "graviton reflector" 10
+	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
 	
 	on offer
 		conversation
@@ -2312,6 +2320,7 @@ mission "FWC Pug 6"
 	to offer
 		has "FWC Pug 5C: done"
 	passengers 1
+	blocked "You need at least one bunk free for Freya in order to continue this mission."
 	on enter Deneb
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`

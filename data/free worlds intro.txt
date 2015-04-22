@@ -451,8 +451,6 @@ mission "FW Katya 1"
 	source
 		government "Free Worlds"
 	destination Glory
-	passengers 2
-	cargo (reserved) 10
 	on offer
 		conversation
 			`Wandering through the spaceport, you have stopped for a moment to read the menu posted in front of a restaurant, when your thoughts are interrupted by the click of a gun being cocked right behind your head, and a woman's voice saying, "Think fast, Captain."`
@@ -535,6 +533,7 @@ mission "FW Katya 1B"
 	destination Skymoot
 	passengers 2
 	cargo "surgical gear" 10
+	blocked "You have reached <origin>, but you need <capacity> in order to take on Katya's mission for the Free Worlds. Return here when you have the required space free."
 	on offer
 		conversation
 			`Soon after you land, a middle-aged tourist couple approach you and ask if you'd be willing to take them to Skymoot, "to see the dragons. Katerina recommended you." You tell them you would be glad to.`
@@ -644,6 +643,7 @@ mission "FW Katya Alt 2"
 	source
 		government "Free Worlds"
 	destination Foundry
+	blocked "You have reached <origin>, but you have no bunks free for Mr. Eyes. Return here when you have a bunk available, or abort one of your other missions to make room for this one."
 	passengers 1
 	to offer
 		has "FW Katya 1: offered"
@@ -791,6 +791,7 @@ mission "FW Katya 3"
 	name "Drone Hunting"
 	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>.`
 	source Rand
+	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
 	passengers 2
 	to offer
 		has "FW Katya 2C: done"

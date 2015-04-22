@@ -263,6 +263,7 @@ mission "FW Syndicate Diplomacy 1"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt"
 	passengers 1
+	blocked `Alondo contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for him, then return here.`
 	
 	on offer
 		conversation
@@ -411,6 +412,7 @@ mission "FW Syndicate Diplomacy 1D"
 	destination Longjump
 	to offer
 		has "FW Syndicate Diplomacy 1C: done"
+	passengers 1
 	on offer
 		conversation
 			`As you are landing on Poisonwood, Alondo explains, "Three decades ago, this was a slave colony. The Navy was responsible for liberating them, and they still feel a deep debt to the Republic as a result. But even if they do not join us, we can maybe establish more friendly relations with them."`
@@ -491,6 +493,7 @@ mission "FW Hope Recon 1"
 	to offer
 		has "FW Syndicate Diplomacy 1D: done"
 	cargo sensors 10
+	blocked `Freya contacts you and says, "<first>, you're going to need ten tons of cargo space for this next mission." You should return here after freeing up <capacity>.`
 	
 	on offer
 		conversation
@@ -939,6 +942,8 @@ mission "FW Senate 1B"
 	destination Bourne
 	to offer
 		has "FW Senate 1: done"
+	passengers 1
+	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
 	
 	on offer
 		conversation
@@ -987,7 +992,7 @@ mission "FW Senate 1B"
 mission "FW Flamethrower 1"
 	landing
 	name "Weapon Testing"
-	description "When you have time, report to <destination>, where barmy Edward has another weapon he would like you to test."
+	description "When you have time, report to <destination>, where Barmy Edward has another weapon he would like you to test."
 	destination Rust
 	to offer
 		has "event: plasma turret available"
@@ -1619,6 +1624,7 @@ mission "FW Refinery 1A"
 	to offer
 		has "FW Refinery 1: done"
 	cargo "refinery equipment" 10
+	blocked "You have reached <origin>, but you do not have ten tons of cargo space free for the equipment. Return here when you have made more space available."
 	
 	on offer
 		conversation
