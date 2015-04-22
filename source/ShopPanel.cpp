@@ -387,7 +387,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == SDLK_RIGHT)
 	{
 		if(dragMain)
-			MainLeft();
+			MainRight();
 		else
 			SideSelect(1);
 		return true;
@@ -395,7 +395,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == SDLK_UP)
 	{
 		if(dragMain)
-			MainLeft();
+			MainUp();
 		else
 			SideSelect(-4);
 		return true;
@@ -403,7 +403,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == SDLK_DOWN)
 	{
 		if(dragMain)
-			MainLeft();
+			MainDown();
 		else
 			SideSelect(4);
 		return true;
