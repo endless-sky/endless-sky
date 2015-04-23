@@ -21,7 +21,7 @@ mission "FW Diplomacy 1"
 			`As you are landing, you receive a message from JJ, on behalf of the Council. The message reads:`
 			`	Captain <last>, sorry that we have been out of contact. We need your help once again, to assist in a diplomatic mission. Please meet up with Alondo on <planet> as soon as possible. He will give you more information.`
 			`			Sincerely,`
-			`				Jean Jacques and Freya`
+			`				Jean-Jacques and Freya`
 				accept
 		event "catalytic ramscoop available"
 	

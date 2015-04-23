@@ -332,7 +332,7 @@ mission "FW Recon 2"
 	
 	on offer
 		conversation
-			`You meet up with the militia officer in the spaceport bar. "Glad you showed up," he says, "I'm Jean Jacques, by the way, but you can call me JJ."`
+			`You meet up with the militia officer in the spaceport bar. "Glad you showed up," he says, "I'm Jean-Jacques, by the way, but you can call me JJ."`
 			`	You introduce yourself in return, and he continues. "Here's the deal. I'm the commander of the militia on Glaze. So far, we and the Navy are not shooting at each other, because no one wants to fire the first shot. But if they're getting ready to change that, they'll start refitting their cruisers with heavy weaponry instead of surveillance equipment. So, I need to know how many more of their ships are equipped like the one you just scanned."`
 			`	He continues, "I'd like you to go to Menkent, where they're building some sort of secret base. Scan any ships you think match the one we just saw, then bring your scanner logs back here for me to look at."`
 			choice
@@ -404,7 +404,7 @@ mission "FW Recon 3B"
 	
 	on offer
 		conversation
-			`You walk through the new section of the spaceport spaceport that the Navy is building, trying to look inconspicuous. When it seems that no one is watching, you snap a few photographs. You count seven hangars large enough to house a carrier, and workers are clearing and blasting level surfaces for many more. An entire new village of identical prefabricated houses has sprung up nearby. And every few minutes, a warship flies overhead with a roar that shakes the entire mountain. It is an intimidating sight.`
+			`You walk through the new section of the spaceport that the Navy is building, trying to look inconspicuous. When it seems that no one is watching, you snap a few photographs. You count seven hangars large enough to house a carrier, and workers are clearing and blasting level surfaces for many more. An entire new village of identical prefabricated houses has sprung up nearby. And every few minutes, a warship flies overhead with a roar that shakes the entire mountain. It is an intimidating sight.`
 			`	As you are heading back to your ship after taking note of everything you think JJ would be interested in, two officers walk past you and you overhear one saying to the other, "Secret message from fleet command."`
 			`	You stop to tie your shoe and try to listen in. "What's the message?" asks the other.`
 			`	"I can't tell you here," says the first, and they duck behind one of the storage sheds.`
@@ -1581,7 +1581,7 @@ mission "FW Commitment"
 			`	The Free Worlds council would like to thank you for the invaluable assistance you have rendered to us recently. We are prepared to offer you a position as an officer in our militia, remaining in command of your own ship. Your starting salary will be 300 credits per diem. If you want to join us, please report to our headquarters on Bourne at your earliest convenience.`
 			`	Sincerely,`
 			`				Tomek Voigt`
-			`				Jean Jacques Soleau`
+			`				Jean-Jacques Soleau`
 			`				Freya Winters`
 			`				Alondo Gruyere`
 			`				Katerina Reynolds`
