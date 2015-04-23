@@ -113,6 +113,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "autosave")
+			autosave = true;
 		else if(child.Token(0) == "job")
 			location = JOB;
 		else if(child.Token(0) == "landing")
@@ -206,6 +208,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		out.Write("invisible");
 	if(hasPriority)
 		out.Write("priority");
+	if(autosave)
+		out.Write("autosave");
 	if(location == LANDING)
 		out.Write("landing");
 	if(location == JOB)
@@ -526,6 +530,16 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 
 
 
+// Check if this mission recommends that the game be autosaved when it is
+// accepted. This should be set for main story line missions that have a
+// high chance of failing, such as escort missions.
+bool Mission::RecommendsAutosave() const
+{
+	return autosave;
+}
+
+
+
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
@@ -646,6 +660,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.hasFailed = true;
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
+	result.autosave = autosave;
 	result.location = location;
 	result.repeat = 0;
 	result.name = name;

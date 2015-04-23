@@ -33,6 +33,7 @@ mission "FW Diplomacy 1"
 mission "FW Diplomacy 1B"
 	name "Free Worlds Diplomacy"
 	description "Bring Alondo to <planet> to meet with Parliament. Your guarantee of safe passage will expire on <day>."
+	autosave
 	source Longjump
 	destination Earth
 	deadline 24
@@ -142,6 +143,7 @@ mission "FW Diplomacy 1D"
 mission "FW Southern Recon 1"
 	name "Reconnaissance"
 	description "Fly through Rastaban, Delta Sagittarii, and Albaldah to get a sense of the Navy's strength in those systems, then report to <destination>."
+	autosave
 	source Longjump
 	waypoint Rastaban
 	waypoint "Delta Sagittarii"
@@ -162,6 +164,7 @@ mission "FW Southern Recon 1B"
 	landing
 	name "Electron Beam"
 	description "Steal an Electron Beam from a Navy gunboat and return it to <planet> for Freya to look at. She thought your best bet for finding lone gunboats might be the Wei or Alnasl systems."
+	autosave
 	source Trinket
 	destination Trinket
 	to offer
@@ -228,6 +231,7 @@ mission "FW Southern Battle 1B"
 	landing
 	name "Escort Battle Fleet"
 	description "Escort a fleet of experimental warships to <destination>."
+	autosave
 	source Zug
 	destination Trinket
 	to offer
@@ -278,6 +282,7 @@ event "battle for Rastaban"
 mission "FW Southern Battle 2"
 	name "Attack Rastaban"
 	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in system."
+	autosave
 	source Trinket
 	destination Dancer
 	clearance
@@ -426,6 +431,7 @@ mission "FW Southern Battle 3"
 	landing
 	name "Sweep for Navy Ships"
 	description "Travel through the systems near Rastaban and make sure that the remainder of the Navy occupation fleet is retreating. (If they are fleeing, let them flee.)"
+	autosave
 	source Dancer
 	to offer
 		has "FW Southern Battle 2: done"
@@ -613,6 +619,7 @@ mission "FW Southern Prisoners - Kept"
 mission "FW Southern Break"
 	landing
 	source Dancer
+	autosave
 	to offer
 		has "fw delivered prisoners"
 	
@@ -652,6 +659,7 @@ mission "FW Northern 1"
 	landing
 	name "Northern Expansion"
 	description "Take a fleet to <destination> (visiting Alphecca and Seginus along the way), securing those systems to allow them to defect to the Free Worlds."
+	autosave
 	source Dancer
 	destination "New Tibet"
 	waypoint Alphecca
@@ -860,6 +868,7 @@ mission "FW Northern 3"
 mission "FW Northern 3B"
 	name "Dreadnoughts to <planet>"
 	description "Escort two more Dreadnoughts to <destination>, to help defend the front against any Navy incursions."
+	autosave
 	source "Zug"
 	destination "Clark"
 	to offer
@@ -908,6 +917,7 @@ mission "FW Northern 4"
 	landing
 	name "Meet Convoy"
 	description "Travel to <destination>, to escort a convoy of medical supplies. Watch out for Republic attacks."
+	autosave
 	source "Clark"
 	destination "New Kansas"
 	to offer
@@ -925,6 +935,7 @@ mission "FW Northern 4.1A"
 	landing
 	name "Medical Convoy"
 	description "Escort a convoy carrying medical supplies safely to <planet>. Do not fire on the Navy Oathkeeper ship that is in orbit there."
+	autosave
 	source "New Kansas"
 	destination "New Tibet"
 	to offer
@@ -960,6 +971,7 @@ mission "FW Northern 4.2A"
 	landing
 	name "Medical Convoy"
 	description "Escort a convoy carrying medical supplies safely to <planet>."
+	autosave
 	source "New Kansas"
 	destination "New Tibet"
 	to offer
@@ -994,6 +1006,7 @@ mission "FW Alphas 1.1"
 	landing
 	name "Liberate Poisonwood"
 	description "Destroy all pirates ships in the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
+	autosave
 	source "New Tibet"
 	destination Poisonwood
 	clearance
@@ -1091,6 +1104,7 @@ mission "FW Alphas 1.2"
 	landing
 	name "Liberate Poisonwood"
 	description "Destroy any pirate ships in orbit around <planet>, then land and eliminate the Alphas and their servants who have occupied the city."
+	autosave
 	source "New Tibet"
 	destination Poisonwood
 	clearance
@@ -1144,6 +1158,7 @@ mission "FW Alphas 1.2"
 mission "FW Alphas 1.1A"
 	name "Danforth to <planet>"
 	description "Escort General Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
+	autosave
 	source Poisonwood
 	destination "New Tibet"
 	to offer
@@ -1260,6 +1275,7 @@ mission "FW Bloodsea 1.1"
 	landing
 	name "Ships from <planet>"
 	description "In order to work toward a peace treaty with Bloodsea, meet up with a convoy of heavily armed merchant ships on <planet>."
+	autosave
 	source Bloodsea
 	destination Zug
 	to offer
@@ -1296,6 +1312,7 @@ mission "FW Bloodsea 1.1A"
 	landing
 	name "Supplies from <planet>"
 	description "Stop on <planet> so that the ships you are escorting can pick up more supplies and workers, then bring them to Bloodsea to help build a new spaceport."
+	autosave
 	source Zug
 	destination Deep
 	to offer
@@ -1324,6 +1341,7 @@ mission "FW Bloodsea 1.1B"
 	landing
 	name "Supplies to <planet>"
 	description "Escort these two freighters to <destination>, to help build a new spaceport. This may just be an excuse for pirates to attack you."
+	autosave
 	source Deep
 	destination Bloodsea
 	clearance
@@ -1456,6 +1474,7 @@ mission "FW Albatross 1"
 	landing
 	name "Freya to <planet>"
 	description "Bring Freya to <planet>, to meet up with JJ and make plans for convincing Albatross to give up piracy and join the Free Worlds."
+	autosave
 	source Zug
 	destination Dancer
 	to offer
@@ -1496,6 +1515,7 @@ mission "FW Albatross 2"
 	landing
 	name "Visit Albatross"
 	description "Bring JJ to Albatross to negotiate with the local leaders and perhaps convince them to join the Free Worlds and give up their support of piracy."
+	autosave
 	source Dancer
 	destination Albatross
 	clearance
@@ -1523,6 +1543,7 @@ mission "FW Albatross 2A"
 	landing
 	name "Hunt Ryk Bartlett"
 	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
+	autosave
 	source Albatross
 	destination Albatross
 	clearance
@@ -1568,6 +1589,7 @@ mission "FW Albatross 2B"
 	landing
 	name "Return to Dancer"
 	description "Return to Dancer with JJ, and meet up with Freya."
+	autosave
 	source Albatross
 	destination Dancer
 	clearance
@@ -1592,6 +1614,7 @@ mission "FW Rand 1"
 	landing
 	name "Occupy Zeta Aquilae"
 	description "Take a Free Worlds fleet to Zeta Aquilae, drive away whatever Navy ships are there, and then land on Rand, which has decided to join the Free Worlds."
+	autosave
 	source Dancer
 	destination Rand
 	clearance
@@ -1663,6 +1686,7 @@ mission "FW Rand 1B"
 	landing
 	name "Regroup at Wayfarer"
 	description "The Free Worlds fleet has been scattered by a Navy invasion. Regroup with the ships that fled to <destination>, and plan your next move."
+	autosave
 	source Rand
 	destination Wayfarer
 	passengers 2

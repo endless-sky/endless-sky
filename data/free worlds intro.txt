@@ -1194,6 +1194,7 @@ mission "FW Katya 7C"
 mission "FW Escort 1"
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
+	autosave
 	source
 		government "Free Worlds"
 	destination Wayfarer
@@ -1266,6 +1267,7 @@ mission "FW Escort 1B"
 	landing
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
+	autosave
 	source Wayfarer
 	destination Longjump
 	to offer
@@ -1334,6 +1336,7 @@ mission "FW Escort 1B"
 mission "FW Escort 2"
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
+	autosave
 	source Longjump
 	destination Wayfarer
 	to offer
@@ -1398,6 +1401,7 @@ mission "FW Escort 2"
 mission "FW Escort 2B"
 	landing
 	name "Free Worlds Escort"
+	autosave
 	description "Escort a Free Worlds supply convoy safely to <destination>."
 	source Wayfarer
 	destination Longjump
@@ -1468,6 +1472,7 @@ mission "FW Escort 2B"
 mission "FW Escort 3"
 	name "Stranded Freighter"
 	description "Repair the <npc>, which is stranded in the Lesath system, and escort it safely back to <destination>."
+	autosave
 	source Longjump
 	waypoint Lesath
 	to offer
@@ -1687,6 +1692,7 @@ mission "Defend Sabik"
 	landing
 	name "Defend Sabik"
 	description "Help to repulse a Navy attack on Sabik, then land on Longjump to debrief."
+	autosave
 	source Longjump
 	to offer
 		has "Rescue Katya 2: done"

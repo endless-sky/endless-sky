@@ -242,93 +242,7 @@ void PlayerInfo::Save() const
 		recent << filePath << "\n";
 	}
 	
-	DataWriter out(filePath);
-	
-	out.Write("pilot", firstName, lastName);
-	out.Write("date", date.Day(), date.Month(), date.Year());
-	if(system)
-		out.Write("system", system->Name());
-	if(planet)
-		out.Write("planet", planet->Name());
-	if(planet && planet->CanUseServices())
-		out.Write("clearance");
-	for(const System *system : travelPlan)
-		out.Write("travel", system->Name());
-	out.Write("reputation with");
-	out.BeginChild();
-	{
-		for(const auto &it : GameData::Governments())
-			if(!it.second.IsPlayer())
-				out.Write(it.first, it.second.Reputation());
-	}
-	out.EndChild();
-		
-	// Save all the data for all the player's ships.
-	for(const shared_ptr<Ship> &ship : ships)
-		ship->Save(out);
-	
-	// Save accounting information, cargo, and cargo cost bases.
-	cargo.Save(out);
-	if(!costBasis.empty())
-	{
-		out.Write("basis");
-		out.BeginChild();
-		{
-			for(const auto &it : costBasis)
-				if(it.second)
-					out.Write(it.first, it.second);
-		}
-		out.EndChild();
-	}
-	accounts.Save(out);
-	
-	// Save all missions (accepted or available).
-	for(const Mission &mission : missions)
-		mission.Save(out);
-	for(const Mission &mission : availableJobs)
-		mission.Save(out, "available job");
-	for(const Mission &mission : availableMissions)
-		mission.Save(out, "available mission");
-	
-	// Save any "condition" flags that are set.
-	if(!conditions.empty())
-	{
-		out.Write("conditions");
-		out.BeginChild();
-		{
-			for(const auto &it : conditions)
-			{
-				// If the condition's value is 1, don't bother writing the 1.
-				if(it.second == 1)
-					out.Write(it.first);
-				else if(it.second)
-					out.Write(it.first, it.second);
-			}
-		}
-		out.EndChild();
-	}
-	// This flag is set if the player must leave the planet immediately upon
-	// loading the game (i.e. because a mission forced them to take off).
-	if(shouldLaunch)
-		out.Write("launching");
-	
-	// Save pending events, and changes that have happened due to past events.
-	for(const GameEvent &event : gameEvents)
-		event.Save(out);
-	if(!dataChanges.empty())
-	{
-		out.Write("changes");
-		out.BeginChild();
-		{
-			for(const DataNode &node : dataChanges)
-				out.Write(node);
-		}	
-		out.EndChild();
-	}
-	
-	// Save a list of systems the player has visited.
-	for(const System *system : visited)
-		out.Write("visited", system->Name());
+	Save(filePath);
 }
 
 
@@ -1195,10 +1109,13 @@ void PlayerInfo::MissionCallback(int response)
 	shouldLaunch = (response == Conversation::LAUNCH || response == Conversation::FLEE);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
+		bool shouldAutosave = availableMissions.front().RecommendsAutosave();
 		availableMissions.front().Do(Mission::ACCEPT, *this);
 		cargo.AddMissionCargo(&*availableMissions.begin());
 		missions.splice(missions.end(), availableMissions, availableMissions.begin());
 		UpdateCargoCapacities();
+		if(shouldAutosave)
+			Autosave();
 	}
 	else if(response == Conversation::DECLINE)
 	{
@@ -1493,4 +1410,108 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+}
+
+
+
+void PlayerInfo::Autosave() const
+{
+	if(filePath.length() < 4)
+		return;
+	
+	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
+	Save(path);
+}
+
+
+
+void PlayerInfo::Save(const string &path) const
+{
+	DataWriter out(path);
+	
+	out.Write("pilot", firstName, lastName);
+	out.Write("date", date.Day(), date.Month(), date.Year());
+	if(system)
+		out.Write("system", system->Name());
+	if(planet)
+		out.Write("planet", planet->Name());
+	if(planet && planet->CanUseServices())
+		out.Write("clearance");
+	for(const System *system : travelPlan)
+		out.Write("travel", system->Name());
+	out.Write("reputation with");
+	out.BeginChild();
+	{
+		for(const auto &it : GameData::Governments())
+			if(!it.second.IsPlayer())
+				out.Write(it.first, it.second.Reputation());
+	}
+	out.EndChild();
+		
+	// Save all the data for all the player's ships.
+	for(const shared_ptr<Ship> &ship : ships)
+		ship->Save(out);
+	
+	// Save accounting information, cargo, and cargo cost bases.
+	cargo.Save(out);
+	if(!costBasis.empty())
+	{
+		out.Write("basis");
+		out.BeginChild();
+		{
+			for(const auto &it : costBasis)
+				if(it.second)
+					out.Write(it.first, it.second);
+		}
+		out.EndChild();
+	}
+	accounts.Save(out);
+	
+	// Save all missions (accepted or available).
+	for(const Mission &mission : missions)
+		mission.Save(out);
+	for(const Mission &mission : availableJobs)
+		mission.Save(out, "available job");
+	for(const Mission &mission : availableMissions)
+		mission.Save(out, "available mission");
+	
+	// Save any "condition" flags that are set.
+	if(!conditions.empty())
+	{
+		out.Write("conditions");
+		out.BeginChild();
+		{
+			for(const auto &it : conditions)
+			{
+				// If the condition's value is 1, don't bother writing the 1.
+				if(it.second == 1)
+					out.Write(it.first);
+				else if(it.second)
+					out.Write(it.first, it.second);
+			}
+		}
+		out.EndChild();
+	}
+	// This flag is set if the player must leave the planet immediately upon
+	// loading the game (i.e. because a mission forced them to take off).
+	if(shouldLaunch)
+		out.Write("launching");
+	
+	// Save pending events, and changes that have happened due to past events.
+	for(const GameEvent &event : gameEvents)
+		event.Save(out);
+	if(!dataChanges.empty())
+	{
+		out.Write("changes");
+		out.BeginChild();
+		{
+			for(const DataNode &node : dataChanges)
+				out.Write(node);
+		}	
+		out.EndChild();
+	}
+	
+	// Save a list of systems the player has visited.
+	for(const System *system : visited)
+		out.Write("visited", system->Name());
 }

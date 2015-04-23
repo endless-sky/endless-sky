@@ -11,6 +11,7 @@
 mission "FW Reconciliation 1"
 	name "Pick up Ijs from <planet>"
 	description "Bring Katya and Sawyer to <destination>, along with Raven's ship (the Eye of Horus), and pick up Ijs and his equipment for detecting atomic testing."
+	autosave
 	source "New Tibet"
 	destination "Winter"
 	to offer
@@ -97,6 +98,7 @@ event "fw restore gienah"
 mission "FW Reconciliation 1B"
 	name "Travel to <planet>"
 	description "Bring Ijs, Sawyer, and Katya to <system>. Destroy any Syndicate ships that are watching you, then land on <planet>. Make sure Raven's ship arrives there as well. You may need to bribe Syndicate worlds to let you refuel."
+	autosave
 	landing
 	source Winter
 	destination Mutiny
@@ -199,6 +201,7 @@ mission "FW Reconciliation 1C"
 mission "FW Reconciliation 2"
 	name "Visit to the Deep"
 	description "One of the representatives from the Deep gave you a note requesting that you visit them on <destination>. Travel there with Katya, Ijs, Sawyer, and Raven."
+	autosave
 	landing
 	source Earth
 	destination Valhalla
@@ -259,6 +262,7 @@ mission "FW Navy Out Of Rastaban"
 mission "FW Reconciliation 2A"
 	name "Oathkeepers on Farpoint"
 	description "Travel to <destination>, to meet with the Navy Oathkeepers. Raven's ship will continue to travel with you."
+	autosave
 	landing
 	source Valhalla
 	destination Farpoint
@@ -303,6 +307,7 @@ mission "FW Reconciliation 2A"
 mission "FW Reconciliation 2B"
 	name "Travel to Stormhold"
 	description "Sawyer has named several Syndicate executives who were definitely part of the plot. Travel to the lawless world of Stormhold, where you will be able to purchase information about where those executives live."
+	autosave
 	landing
 	source Farpoint
 	destination Stormhold
@@ -334,6 +339,7 @@ mission "FW Reconciliation 2B"
 mission "FW Reconciliation 2C"
 	name "Return to Farpoint"
 	description "Return to <planet> with information about the whereabouts of certain Syndicate executives. Travel via the back route so that the Syndicate is not alerted to your presence."
+	autosave
 	landing
 	source Stormhold
 	destination Farpoint
@@ -356,6 +362,7 @@ mission "FW Defend Farpoint"
 	landing
 	name "Defend Farpoint"
 	description "Assist the Oathkeepers in defending <planet> from a pirate attack, then land back on the planet."
+	autosave
 	source Farpoint
 	passengers 2
 	to offer
@@ -426,6 +433,7 @@ mission "FW Defend Farpoint"
 mission "FW Embassy 1"
 	name "Ambassadors from Earth"
 	description "The Republic has agreed to set up an embassy to the Free Worlds. Travel to Earth to meet the ambassadors and escort them to Free space."
+	autosave
 	landing
 	source Farpoint
 	destination Earth
@@ -453,6 +461,7 @@ mission "FW Embassy 1B"
 	landing
 	name "Ambassadors to Bourne"
 	description "Escort this luxury vessel carrying Republic ambassadors to the Free Worlds capital of <destination>."
+	autosave
 	source Earth
 	destination Bourne
 	passengers 2
@@ -479,6 +488,7 @@ event "fw reconciliation break"
 mission "FW Reconciliation Break"
 	name "Katya and Ijs to <planet>"
 	description "Bring Katya and Ijs to <destination>, for a well-deserved sabbatical. Then you will be free to spend some time upgrading your ship while you wait for the Senate to select a team of ambassadors."
+	autosave
 	landing
 	source Bourne
 	destination Skymoot
@@ -544,6 +554,7 @@ mission "FW Embassy 1C"
 	landing
 	name "Ambassadors to Earth"
 	description `Escort a Dreadnought carrying Free Worlds ambassadors to Earth. This Dreadnought will then take part in your combined "police action" against the Syndicate.`
+	autosave
 	source Bourne
 	destination Earth
 	passengers 2
@@ -607,6 +618,7 @@ mission "FW Syndicate Capture 1"
 	landing
 	name "Raid on Nimbus"
 	description "Travel to <destination>, along with ships from the Oathkeepers, the Deep, and the Free Worlds, to capture Alexander Soylent, a Syndicate executive. Do not allow your escorts to be destroyed."
+	autosave
 	source Earth
 	destination Nimbus
 	clearance
@@ -766,6 +778,7 @@ mission "FW Syndicate Capture 1C"
 	landing
 	name "Return to <planet>
 	description "The Syndicate is massing a fleet in the Sol system. Return to <planet> to rendezvous with the Free Worlds fleet in order to be ready to defend Earth if it is attacked."
+	autosave
 	source Valhalla
 	destination "New Tibet"
 	passengers 2
@@ -805,6 +818,7 @@ mission "FW Pug 1"
 	landing
 	name "What happened to Rand?"
 	description "Try to determine why communications with the Rand system were cut off. If you cannot reach Rand, at least look for anything odd in the neighboring systems."
+	autosave
 	source "New Tibet"
 	waypoint "Cebalrai"
 	waypoint "Ascella"
@@ -878,6 +892,7 @@ mission "FW Pug 2"
 	landing
 	name "Meet with Parliament"
 	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the Syndicate threat seems."
+	autosave
 	source "New Tibet"
 	destination "Earth"
 	to offer
@@ -920,6 +935,7 @@ mission "FW Pug 2A"
 	landing
 	name "Reason with the Syndicate"
 	description "Travel with Alondo to meet with the Syndicate leaders on Foundry, determine their intentions, and convince them not to completely seal themselves off from human space. Hurry, before they cut the last link."
+	autosave
 	source Earth
 	destination Foundry
 	clearance
@@ -977,6 +993,7 @@ mission "FW Pug 2B"
 	landing
 	name "Install a Jump Drive"
 	description "Travel to the Syndicate world of Hephaestus, where the Syndicate Systems personnel have been isntructed to install a jump drive on your ship, so that you can investigate the systems that the Pug has cut off."
+	autosave
 	source Foundry
 	destination Hephaestus
 	to offer
@@ -1202,6 +1219,7 @@ mission "FW Pug 2C: Pugglequat"
 mission "FW Pug 3"
 	name "Bring news to Earth"
 	description "Now that you have met with the Pug, travel to Earth and explain the situation to Parliament, and send word to the Free Worlds as well, so you can decide how to respond."
+	autosave
 	landing
 	source Pugglemug
 	destination Earth
@@ -1329,6 +1347,7 @@ mission "FW Pug 3A"
 	landing
 	name "Gather the fleet"
 	description "Travel to <destination>, and requisition two Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
+	autosave
 	source Earth
 	destination Zug
 	to offer
@@ -1353,6 +1372,7 @@ mission "FW Pug 3B"
 	landing
 	name "Escort to <planet>"
 	description "Travel to <planet> with two Free Worlds Dreadnoughts that will be joining the fight against the Pug."
+	autosave
 	source Zug
 	destination Geminus
 	to offer
@@ -1382,6 +1402,7 @@ mission "FW Pug 3C"
 	landing
 	name "Escort to Hephaestus"
 	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
+	autosave
 	source Geminus
 	destination Hephaestus
 	to offer
@@ -1479,6 +1500,7 @@ mission "FW Pug 4"
 	landing
 	name "Liberate <system>"
 	description "Attempt to drive the Pug out of the <system> system, then land on <planet>."
+	autosave
 	source Hephaestus
 	destination Maker
 	clearance
@@ -1938,6 +1960,7 @@ mission "FW Pug 6"
 	landing
 	name "Defeat the Pug"
 	description "Now that the Navy has joined you, it is time to take the battle directly to the Pug home system. Once their fleet is eliminated, land on their home world of <planet> to attempt to negotiate for peace."
+	autosave
 	source Shiver
 	destination Pugglemug
 	clearance
@@ -2110,6 +2133,7 @@ mission "FW Pug 6"
 mission "FW Syndicate Extremists 1"
 	name "Deal with the Syndicate"
 	description "Now that the Pug appear to have been driven off, it's time to get some answers from the Syndicate. Travel with General Danforth back to <destination>, for another meeting with the CEO of the Syndicate."
+	autosave
 	source Pugglemug
 	destination Foundry
 	to offer
@@ -2144,6 +2168,7 @@ mission "FW Syndicate Extremists 1A"
 	landing
 	name "Cloaking Device"
 	description "Alastair Korban has agreed to give you a cloaking device that will allow you to evade missile attacks. Travel to Hephaestus, where they will install the device on your ship."
+	autosave
 	source Foundry
 	destination Hephaestus
 	to offer
@@ -2294,6 +2319,7 @@ mission "FW Syndicate Extremists 1C"
 	landing
 	name "Report to Parliament"
 	description "Return to Earth to report to Parliament on the resolution of the conflicts with the Pug and with the Syndicate extremists."
+	autosave
 	source "Buccaneer Bay"
 	destination Earth
 	to offer

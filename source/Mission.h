@@ -97,6 +97,10 @@ public:
 	// calling this function, any future calls to it will return an empty string
 	// so that you do not display the same message multiple times.
 	std::string BlockedMessage(const PlayerInfo &player);
+	// Check if this mission recommends that the game be autosaved when it is
+	// accepted. This should be set for main story line missions that have a
+	// high chance of failing, such as escort missions.
+	bool RecommendsAutosave() const;
 	
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
@@ -127,6 +131,7 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+	bool autosave = false;
 	bool hasDeadline = false;
 	bool doDefaultDeadline = false;
 	Date deadline;

@@ -188,6 +188,8 @@ private:
 	
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
+	void Autosave() const;
+	void Save(const std::string &path) const;
 	
 	
 private:

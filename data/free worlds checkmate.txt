@@ -14,6 +14,7 @@ mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
 	description "Travel through the <system> system to detemrine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
 	to offer
@@ -48,6 +49,7 @@ mission "FWC Attack Kaus Borealis"
 	landing
 	name "Attack Kaus Borealis"
 	description "Destroy the Navy fleet defending Kaus Borealis. The Wolf Pack will attack them first to soften them up."
+	autosave
 	source "New Portland"
 	destination "New Iceland"
 	clearance
@@ -172,6 +174,7 @@ mission "FWC Cebalrai 1"
 	landing
 	name "Scout out Cebalrai"
 	description "Scout out the Navy presence in the Cebalrai system, then report back to Tomek on <planet>."
+	autosave
 	source "New Iceland"
 	waypoint "Cebalrai"
 	to offer
@@ -231,6 +234,7 @@ mission "FWC Cebalrai 1B"
 	landing
 	name "Capture Cebalrai"
 	description "Lead an attack on the Cebalrai system and drive out or destroy any Navy ships that you find there."
+	autosave
 	source "New Iceland"
 	destination "Tundra"
 	clearance
@@ -306,6 +310,7 @@ mission "FWC Nuke Supply 1"
 	landing
 	name "Uranium Convoy"
 	description "Travel to Oblivion to escort a freighter that is delivering uranium to a warlord on Greenrock."
+	autosave
 	source Tundra
 	destination Oblivion
 	to offer
@@ -373,6 +378,7 @@ mission "FWC Nuke Supply 1B"
 	landing
 	name "Uranium Convoy"
 	description "Escort a freighter that is delivering uranium to a warlord on Greenrock."
+	autosave
 	source Oblivion
 	destination Greenrock
 	clearance
@@ -419,6 +425,7 @@ mission "FWC Diplomacy 1"
 	landing
 	name "Let's Try Diplomacy"
 	description "Return to Tundra to meet up with Alondo and take him on another visit to Parliament. Maybe this time they will be willing to negotiate a truce."
+	autosave
 	source Solace
 	destination Tundra
 	to offer
@@ -453,6 +460,7 @@ mission "FWC Diplomacy 1B"
 	landing
 	name "Let's Try Diplomacy"
 	description "Travel to Earth with Alondo and meet with Parliament to try to negotiate terms of a truce."
+	autosave
 	source Tundra
 	destination Earth
 	clearance
@@ -596,6 +604,7 @@ mission "FWC Checkmate 1"
 	landing
 	name "Defend Cebalrai"
 	description "Destroy the Republic ships that are attacking this system, then land and decide what to do next. Free Worlds reinforcements should be on their way."
+	autosave
 	source Tundra
 	to offer
 		has "FWC Diplomacy 1C: done"
@@ -851,6 +860,7 @@ mission "FWC Checkmate 1: Equipment 2"
 mission "FWC Checkmate 1B"
 	name "Attack Menkent"
 	description "The Wolf Pack has launched an initial attack on the Menkent system. Follow up with your fleet and finish off the Navy defenses. Katya will ride with you."
+	autosave
 	source Tundra
 	destination "New Austria"
 	clearance
@@ -957,6 +967,7 @@ mission "FWC Checkmate 1C"
 	landing
 	name "Capture <planet>"
 	description "Bring a fleet to <destination>, driving off any Republic ships in the system."
+	autosave
 	source "New Austria"
 	destination "Silver"
 	clearance
@@ -1860,6 +1871,7 @@ mission "FWC Pug 4A"
 	landing
 	name "Equipment from <planet>"
 	description "Travel with Freya to pick up the alien equipment that you installed on <planet> and bring it to Arabia to reopen another of the hyperspace links."
+	autosave
 	source Oblivion
 	destination Tundra
 	to offer
@@ -1996,6 +2008,7 @@ mission "FWC Pug 4C"
 	landing
 	name "Liberate <planet>"
 	description "Travel to the <system> system to assist the Navy in driving out the Pug and reestablishing a direct hyperspace link to the Ascella system."
+	autosave
 	source Arabia
 	destination Rand
 	clearance
@@ -2097,6 +2110,7 @@ mission "FWC Pug 4C"
 mission "FWC Pug 5"
 	name "Liberate <system>"
 	description "Some of the Navy ships have been outfitted with jump drives. Travel with them to the <system> system, avoiding the main Pug fleet in their home system, and reclaim control of the planet."
+	autosave
 	source Rand
 	destination Silver
 	clearance
@@ -2184,6 +2198,7 @@ mission "FWC Pug 5B"
 	landing
 	name "Travel to <planet>"
 	description `Travel with Freya to <planet>, where you can set up the "graviton reflector" to restore the hyperspace link from Sol to the Pug territory. (She thinks Mars is a better option than a heavily populated planet like Earth.)`
+	autosave
 	source Silver
 	destination Mars
 	to offer
@@ -2254,6 +2269,7 @@ mission "FWC Pug 5C"
 	landing
 	name "Return to <planet>"
 	description "Return to <planet>, and join the Navy fleet in preparing for an attack on the Pug home system. A Free Worlds fleet will be attacking from the south at the same time."
+	autosave
 	source Mars
 	destination Silver
 	to offer
@@ -2314,6 +2330,7 @@ mission "FWC Pug 6"
 	landing
 	name "Defeat the Pug"
 	description "Join the Navy fleet in attacking the Pug home system. Once their fleet is eliminated, land on their home world of <planet> to attempt to negotiate for peace."
+	autosave
 	source Silver
 	destination Pugglemug
 	clearance
@@ -2498,6 +2515,7 @@ mission "FWC Pug 6"
 mission "FWC End"
 	name "Talk to Parliament"
 	description "Travel to Earth for another meeting with Parliament. Alondo and Katya will meet you there. (Hopefully it will go better than your last visit.)"
+	autosave
 	source Pugglemug
 	destination Earth
 	to offer

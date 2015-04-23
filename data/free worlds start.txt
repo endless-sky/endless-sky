@@ -10,6 +10,7 @@
 
 mission "Liberate Kornephoros"
 	description "Travel with the Free Worlds militia to the <system> system and drive off the Navy fleet that is occupying the system."
+	autosave
 	source Longjump
 	destination Deep
 	clearance
@@ -256,6 +257,7 @@ mission "oathkeepers founded"
 mission "FW Syndicate Diplomacy 1"
 	name "Syndicate Diplomacy"
 	description "Transport Alondo Gruyere to the Syndicate headquarters on <planet>."
+	autosave
 	source "Deep"
 	destination "Hephaestus"
 	to offer
@@ -488,6 +490,7 @@ mission "FW Syndicate Diplomacy 1D"
 mission "FW Hope Recon 1"
 	name "Early Warning Systems"
 	description "Land on the abandoned planet <destination>, and place sensor there to monitor Navy fleet activity in the system."
+	autosave
 	source Longjump
 	destination Hope
 	to offer
@@ -637,6 +640,7 @@ mission "FW Plasma Testing 1B"
 	landing
 	name "Weapons Testing"
 	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the Ildaria system. Then return to <planet>."
+	autosave
 	source Rust
 	to offer
 		has "FW Plasma Testing 1: done"
@@ -776,6 +780,7 @@ mission "plasma turret available"
 mission "FW Supply Convoy 1"
 	name "Escort Supply Convoy"
 	description "Escort this convoy carrying equipment from Kraz Cybernetics to the militia base on <destination>."
+	autosave
 	source Rust
 	destination Longjump
 	to offer
@@ -1070,6 +1075,7 @@ mission "FW Pirates 2"
 	landing
 	name "Southern Patrol"
 	description "Lead a patrol through the Free Worlds systems on the southern rim, driving off any pirates you encounter, then meet up with Tomek on <destination>."
+	autosave
 	source Bourne
 	waypoint "Yed Prior"
 	waypoint "Beta Lupi"
@@ -1377,6 +1383,7 @@ mission "FW Pirates 4"
 	landing
 	name "Defend Thule"
 	description "Destroy the pirate fleet that is attacking the spaceport on Thule. Free Worlds reinforcements ought to be on their way."
+	autosave
 	source Thule
 	clearance
 	to offer
@@ -1445,6 +1452,7 @@ event "battle for Thule"
 mission "FW Pirates 4B"
 	name "Return to Longjump"
 	description "Escort the newly repaired F.S. Terebinth back to the Free Worlds base on <destination>."
+	autosave
 	landing
 	source Thule
 	destination Longjump
@@ -1565,6 +1573,7 @@ mission "FW Refinery 1"
 	landing
 	name "Smuggler's Den Repairs"
 	description "Travel to Tundra and pick up a shipment of equipment for repairing the refinery on Smuggler's Den."
+	autosave
 	source Longjump
 	destination Tundra
 	clearance
