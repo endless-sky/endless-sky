@@ -1540,7 +1540,7 @@ mission "FW Escort Second Chance"
 			choice
 				`	"I take full responsibility for the loss of that freighter. I'm sorry."`
 					goto responsible
-				`	"There was really nothing I could have done aginst so many pirates."`
+				`	"There was really nothing I could have done against so many pirates."`
 				`	"I'm sorry for what happened. It won't happen again."`
 			`	He doesn't look entirely satisfied with that response. "I had to write letters to five different families telling them why their son or daughter or husband had been killed on a routine cargo mission. You promised to keep them safe, and you failed. You understand that, right?"`
 			choice
