@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-#ifndef __APPLE__
+#ifdef _WIN32
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 #endif
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 		
 		SDL_GLContext context = SDL_GL_CreateContext(window);
 		if(!context)
-			return DoError("Unable to create OpenGL context!", window);
+			return DoError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.", window);
 		
 		if(SDL_GL_MakeCurrent(window, context))
 			return DoError("Unable to set the current OpenGL context!", window, context);
