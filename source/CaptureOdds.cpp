@@ -32,11 +32,12 @@ CaptureOdds::CaptureOdds(const Ship *attacker, const Ship *defender)
 
 double CaptureOdds::Odds(int attackingCrew, int defendingCrew) const
 {
+	if(!defendingCrew)
+		return 1.;
+	
 	int index = Index(attackingCrew, defendingCrew);
 	if(attackingCrew < 2 || index < 0)
 		return 0.;
-	else if(!defendingCrew)
-		return 1.;
 	
 	return capture[index];
 }
