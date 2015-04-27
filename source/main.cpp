@@ -147,9 +147,16 @@ int main(int argc, char *argv[])
 		
 		// Check that the OpenGL version is high enough.
 		const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-		const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
-		if(!glVersion || !glslVersion || !*glVersion || !*glslVersion)
+		if(!glVersion || !*glVersion)
 			return DoError("Unable to query the OpenGL version!", window, context);
+		
+		const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+		if(!glslVersion || !*glslVersion)
+		{
+			ostringstream out;
+			out << "Unable to query the GLSL version. OpenGL version is " << glVersion << ".";
+			return DoError(out.str(), window, context);
+		}
 		
 		if(*glVersion < '3')
 		{
