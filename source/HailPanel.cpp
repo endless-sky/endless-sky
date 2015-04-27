@@ -196,9 +196,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				ship->SetShipToAssist(player.Ships().front());
 				message = "Hang on, we'll be there in a minute.";
 			}
-			else
+			else if(ship->Fuel())
 				message = "Sorry, but if we give you fuel we won't have enough"
 					" to make it to the next system.";
+			else
+				message = "Sorry, we don't have any fuel.";
 		}
 		else if(ship)
 		{
