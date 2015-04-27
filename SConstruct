@@ -29,6 +29,7 @@ env["ENV"].update(x for x in os.environ.items() if x[0].startswith("CCC_"))
 
 opts = Variables()
 opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", PathVariable.PathIsDirCreate))
+opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
 opts.Update(env)
 
 Help(opts.GenerateHelpText(env))
@@ -39,17 +40,17 @@ sky = env.Program("endless-sky", Glob("build/*.cpp"))
 
 
 # Install the binary:
-env.Install("$PREFIX/games", sky)
+env.Install("$DESTDIR$PREFIX/games", sky)
 
 # Install the desktop file:
-env.Install("$PREFIX/share/applications", "endless-sky.desktop")
+env.Install("$DESTDIR$PREFIX/share/applications", "endless-sky.desktop")
 
 # Install icons, keeping track of all the paths.
 # Most Ubuntu apps supply 16, 22, 24, 32, 48, and 256, and sometimes others.
 sizes = ["16x16", "22x22", "24x24", "32x32", "48x48", "256x256"]
 icons = []
 for size in sizes:
-	destination = "$PREFIX/share/icons/hicolor/" + size + "/apps/endless-sky.png"
+	destination = "$DESTDIR$PREFIX/share/icons/hicolor/" + size + "/apps/endless-sky.png"
 	icons.append(destination)
 	env.InstallAs(destination, "endless-sky.iconset/icon_" + size + ".png")
 
@@ -60,11 +61,11 @@ if env.get("PREFIX").startswith("/usr/"):
 	env.Command(
 		[],
 		icons,
-		"gtk-update-icon-cache -t $PREFIX/share/icons/hicolor/")
+		"gtk-update-icon-cache -t $DESTDIR$PREFIX/share/icons/hicolor/")
 
 # Install the man page.
 env.Command(
-	"$PREFIX/share/man/man6/endless-sky.6.gz",
+	"$DESTDIR$PREFIX/share/man/man6/endless-sky.6.gz",
 	"endless-sky.6",
 	"gzip -c $SOURCE > $TARGET")
 
@@ -77,11 +78,11 @@ def RecursiveInstall(env, target, source):
 			RecursiveInstall(env, os.path.join(target, name), node.abspath)
 		else:
 			env.Install(target, node)
-RecursiveInstall(env, "$PREFIX/share/games/endless-sky/data", "data")
-RecursiveInstall(env, "$PREFIX/share/games/endless-sky/images", "images")
-RecursiveInstall(env, "$PREFIX/share/games/endless-sky/sounds", "sounds")
-env.Install("$PREFIX/share/games/endless-sky", "credits.txt")
-env.Install("$PREFIX/share/games/endless-sky", "keys.txt")
+RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/data", "data")
+RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/images", "images")
+RecursiveInstall(env, "$DESTDIR$PREFIX/share/games/endless-sky/sounds", "sounds")
+env.Install("$DESTDIR$PREFIX/share/games/endless-sky", "credits.txt")
+env.Install("$DESTDIR$PREFIX/share/games/endless-sky", "keys.txt")
 
 # Make the word "install" in the command line do an installation.
-env.Alias("install", "$PREFIX")
+env.Alias("install", "$DESTDIR$PREFIX")
