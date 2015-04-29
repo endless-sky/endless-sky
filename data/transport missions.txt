@@ -668,7 +668,6 @@ mission "Drug Running 1"
 		payment
 		payment 80000
 		dialog `Some disreputable-looking locals unload the illegal drugs from your cargo bay, and hand you your payment of <payment>.`
-		"reputation: Republic" -= 1
 
 
 
@@ -693,7 +692,6 @@ mission "Drug Running 2"
 		payment
 		payment 100000
 		dialog `Immediately after you land, some workers show up to unload the "stuff." They give you <payment>.`
-		"reputation: Republic" -= 2
 
 
 
@@ -718,7 +716,6 @@ mission "Drug Running 3"
 		payment
 		payment 120000
 		dialog `You hand off the illegal "substances" to your contact on <planet>, who pays you <payment>.`
-		"reputation: Republic" -= 3
 
 
 
