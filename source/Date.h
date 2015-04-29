@@ -30,12 +30,13 @@ public:
 	std::string LongString() const;
 	
 	// Check if this date has been initialized.
-	operator bool() const;
+	explicit operator bool() const;
 	bool operator!() const;
 	
 	void operator++();
 	void operator++(int);
 	Date operator+(int days) const;
+	int operator-(const Date &other) const;
 	// Comparison operator, ignoring fractions of a day.
 	bool operator<(const Date &other) const;
 	bool operator<=(const Date &other) const;

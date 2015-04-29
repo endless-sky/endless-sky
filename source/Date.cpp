@@ -161,6 +161,13 @@ Date Date::operator+(int days) const
 
 
 
+int Date::operator-(const Date &other) const
+{
+	return DaysSinceEpoch() - other.DaysSinceEpoch();
+}
+
+
+
 bool Date::operator<(const Date &other) const
 {
 	return date < other.date;

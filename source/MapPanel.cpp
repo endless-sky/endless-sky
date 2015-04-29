@@ -373,6 +373,7 @@ void MapPanel::DrawMissions() const
 		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
 			mission.HasSpace(player) ? availableColor : unavailableColor);
 	}
+	++step;
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -380,9 +381,18 @@ void MapPanel::DrawMissions() const
 		
 		const System *system = mission.Destination()->GetSystem();
 		Angle a = (angle[system] += Angle(30.));
+		
+		bool blink = false;
+		if(mission.HasDeadline())
+		{
+			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
+			blink = (step % (10 * days) > 5 * days);
+		}
 		Point pos = system->Position() + center;
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		PointerShader::Draw(pos, a.Unit(), 8., 15., -6., currentColor);
+		if(!blink)
+			PointerShader::Draw(pos, a.Unit(), 8., 15., -6., currentColor);
+		
 		
 		for(const System *waypoint : mission.Waypoints())
 		{

@@ -57,6 +57,7 @@ protected:
 	
 	Point center;
 	int commodity;
+	mutable int step = 0;
 	
 	
 private:
