@@ -267,7 +267,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultP
 	result.payment = payment + (giveDefaultPayment ? defaultPayment : 0);
 	// Fill in the payment amount if this is the "complete" action (which comes
 	// before all the others in the list).
-	if(trigger == "complete")
+	if(trigger == "complete" || result.payment)
 		subs["<payment>"] = Format::Number(result.payment)
 			+ (result.payment == 1 ? " credit" : " credits");
 	
