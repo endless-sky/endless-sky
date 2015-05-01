@@ -140,7 +140,7 @@ mission "Smuggler's Den, Part 1"
 			label search
 			`	As you are conversing, someone else walks into the bar: a bearded man, and a rough-looking teenage boy. They stand in the doorway, scanning the room. "That's our captain," she says, "Please, you have to help us. There's a service tunnel that connects to the back entrance of the bar. We can escape through there."`
 			`	You've heard of these service passageways: the most dangerous part of this lawless station, dimly lit and seldom travelled, except by drug addicts and prostitutes. This whole thing might just be a ruse to lure you into one, where they can attack you without anyone interfering. "No," says the boy, "If we head for the service tunnel, they'll be sure to notice us. Let's just stay at the table until they go away."`
-			`	The baby begins to cry, softly, and she bounces it gently, trying desparately to quiet it. "Shh. Shh." For the moment, it falls silent.`
+			`	The baby begins to cry, softly, and she bounces it gently, trying desperately to quiet it. "Shh. Shh." For the moment, it falls silent.`
 			choice
 				`	(Try the service tunnel.)`
 					goto tunnel
@@ -458,7 +458,7 @@ mission "Deep Archaeology 1"
 			`	"Well, let's just say I've made myself somewhat unpopular in the Deep," he says. "Asking too many questions. If I were seen walking around on Midgard, they would probably ask me to leave immediately."`
 			`	You say, "And, is the work you're asking me to do going to make me equally unpopular?"`
 			label samples
-			`	"Not if you are circumspect," he says. "I need two samples from a certain village. One is simple: wood from a livng or recently deceased tree. Any tree will do."`
+			`	"Not if you are circumspect," he says. "I need two samples from a certain village. One is simple: wood from a living or recently deceased tree. Any tree will do."`
 			`	He pauses for a minute, then continues. "The other is more... sensitive. There is a historical site on Midgard, an ancient church. Not something they publish in the official tourist guides, mind you. I need a small sample of the wood that the church is built with. A small splinter would suffice."`
 			choice
 				`	"Sure, if it's in the interest of science, I can do that."`
@@ -620,7 +620,7 @@ mission "Deep Archaeology 5"
 		payment 300000
 		conversation
 			`You breathe a sigh of relief as you land safely in the spaceport on <planet>. "Okay, what was that all about?" you ask.`
-			`	I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already establised in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
+			`	I honestly don't know," says Albert. "I can tell you what I suspect, though. The history books don't actually say when the Deep was first settled. The first documented expedition to the Deep was in the 24th century, and they found several human colonies already established in the region, claiming to date back to the very dawn of space flight. But I think the first settlers were brought there long before that. Brought there on alien ships."`
 			choice
 				`	"For what purpose?"`
 					goto purpose

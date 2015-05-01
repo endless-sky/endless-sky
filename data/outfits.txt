@@ -228,7 +228,7 @@ outfit "Small Bunk Room"
 	"mass" 3
 	"bunks" 2
 	"outfit space" -12
-	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makshift way to make space for more people."
+	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
 outfit "Fuel Pod"
 	category "Systems"
