@@ -52,6 +52,8 @@ private:
 	void DrawMissionInfo() const;
 	
 	bool CanAccept() const;
+	void Accept();
+	void MakeSpaceAndAccept();
 	void AbortMission();
 	
 	int AcceptedVisible() const;

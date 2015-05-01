@@ -36,6 +36,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <sstream>
+
 using namespace std;
 
 namespace {
@@ -157,13 +159,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'a')
 	{
 		if(CanAccept())
-		{
-			const Mission &toAccept = *availableIt;
-			++availableIt;
-			player.AcceptJob(toAccept);
-			if(availableIt == available.end() && !available.empty())
-				--availableIt;
-		}
+			Accept();
 		else if(acceptedIt != accepted.end())
 		{
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
@@ -527,6 +523,64 @@ bool MissionPanel::CanAccept() const
 		return false;
 	
 	return availableIt->HasSpace(player);
+}
+
+
+
+void MissionPanel::Accept()
+{
+	const Mission &toAccept = *availableIt;
+	int cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
+	int crewToFire = toAccept.Passengers() - player.Cargo().Bunks();
+	if(cargoToSell > 0 || crewToFire > 0)
+	{
+		ostringstream out;
+		if(cargoToSell > 0 && crewToFire > 0)
+			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
+				<< cargoToSell << " tons of ordinary commodities to make room for this mission. Continue?";
+		else if(crewToFire > 0)
+			out << "You must fire " << crewToFire
+				<< " of your flagship's non-essential crew members to make room for this mission. Continue?";
+		else
+			out << "You must sell " << cargoToSell
+				<< " tons of ordinary commodities to make room for this mission. Continue?";
+		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		return;
+	}
+	
+	++availableIt;
+	player.AcceptJob(toAccept);
+	if(availableIt == available.end() && !available.empty())
+		--availableIt;
+}
+
+
+
+void MissionPanel::MakeSpaceAndAccept()
+{
+	const Mission &toAccept = *availableIt;
+	int cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
+	int crewToFire = toAccept.Passengers() - player.Cargo().Bunks();
+	
+	if(crewToFire > 0)
+		player.Flagship()->AddCrew(-crewToFire);
+	
+	for(const auto &it : player.Cargo().Commodities())
+	{
+		if(cargoToSell <= 0)
+			break;
+		
+		int toSell = min(cargoToSell, it.second);
+		int64_t price = player.GetSystem()->Trade(it.first);
+		
+		int64_t basis = player.GetBasis(it.first, toSell);
+		player.AdjustBasis(it.first, -basis);
+		player.Cargo().Transfer(it.first, toSell);
+		player.Accounts().AddCredits(toSell * price);
+	}
+	
+	player.UpdateCargoCapacities();
+	Accept();
 }
 
 
