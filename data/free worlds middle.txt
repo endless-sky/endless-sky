@@ -1016,7 +1016,7 @@ mission "FW Alphas 1.1"
 	on offer
 		event "alphas capture Poisonwood"
 		conversation
-			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo aluded to; no one appraches you to help unload the ships. Eventually you track down Alondo and ask what is going on, and why there is a neutral Navy ship in orbit. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy guarding the front," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
+			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo alluded to; no one approaches you to help unload the ships. Eventually you track down Alondo and ask what is going on, and why there is a neutral Navy ship in orbit. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy guarding the front," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
 			choice
 				`	"If we liberate them, will they switch their loyalty to our side?"`
 					goto loyalty
@@ -1114,7 +1114,7 @@ mission "FW Alphas 1.2"
 	on offer
 		event "alphas capture Poisonwood"
 		conversation
-			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo aluded to; no one appraches you to help unload the ships. Eventually you track down Alondo and ask what is going on. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy elsewhere," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
+			`You land the convoy safely on <origin>, but everyone seems to be busy with whatever new crisis it is that Alondo alluded to; no one approaches you to help unload the ships. Eventually you track down Alondo and ask what is going on. "We just received word that Poisonwood has been captured by pirates, while all of our fleets were busy elsewhere," says Alondo. You recall that Poisonwood has remained loyal to the Republic, even though they are deep inside Free Worlds territory.`
 			choice
 				`	"If we liberate them, will they switch their loyalty to our side?"`
 					goto loyalty
@@ -1179,7 +1179,7 @@ mission "FW Alphas 1.1A"
 			`When you meet up with Nguyen, he still looks very worried. "We think we killed them all," he says, "but we can't be sure. Also, we recovered some instruments for genetic manipulation from the factory. The Alphas can't breed normally, because if their offspring inherit some of the Alpha mutations but not others, the result is rarely viable, and even those that live long enough to be born don't have all the Alpha traits. So, they rely on artificial insemination instead."`
 			choice
 				`	"Well, it's good news that you recovered those instruments, then."`
-			`	"It would be," says Nguyen, "except that we also discovered that several dozen of the women who were taken as slaves... are now pregnant. We'll have to ask them to terminate their pregnacies. It's the only safe decision, but I still don't like it." He sighs. "I'm a Buddhist, you know. Committed to doing harm to no living thing. That's why I joined the Humanitarian Corps. They promised me I'd never be asked to take a life."`
+			`	"It would be," says Nguyen, "except that we also discovered that several dozen of the women who were taken as slaves... are now pregnant. We'll have to ask them to terminate their pregnancies. It's the only safe decision, but I still don't like it." He sighs. "I'm a Buddhist, you know. Committed to doing harm to no living thing. That's why I joined the Humanitarian Corps. They promised me I'd never be asked to take a life."`
 			choice
 				`	"Is that why you didn't kill that Alpha yourself, on the street?"`
 					goto street
@@ -1526,7 +1526,7 @@ mission "FW Albatross 2"
 	on offer
 		conversation
 			`When you meet up with JJ, he looks exhausted. "Our scouts are reporting that the Navy is building a massive base on New Iceland," he says, "just a few jumps away from here. So every day I look up at the sky and wonder if today is the day when they will invade."`
-			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were domniated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principal at least, the locals ought to welcome the idea of Free Worlds protection.`
+			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were dominated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principal at least, the locals ought to welcome the idea of Free Worlds protection.`
 			`	While you are traveling with JJ, Freya agrees to stay here and work on a better surveillance network, to give Dancer advance warning if the Navy decides to invade.`
 				accept
 	
@@ -1869,7 +1869,7 @@ mission "FW Defend New Tibet"
 			`	"Oathkeepers?" asks JJ. "Or ordinary Navy? Who are they?"`
 			`	The voice on the other end pauses. "Neither. Navy Intelligence."`
 			`	JJ thinks about that for a second, then says, "Let them land. But follow them down, and if you see so much as a hint of them powering up weapons, blow them out of the sky. Understand?" The officer acknowledges his order and signs off.`
-			`	As the group of monks approaches from the mountainside, the scoutship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
+			`	As the group of monks approaches from the mountainside, the scout ship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
 			choice
 				`	"I'm Captain <last> of the Free Worlds. What is your business here?"`
 				`	"Who are you, and what gives you the right to land on our planet?"`

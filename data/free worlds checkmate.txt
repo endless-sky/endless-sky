@@ -13,7 +13,7 @@
 mission "FWC Scouting 1"
 	landing
 	name "Scout Kaus Borealis"
-	description "Travel through the <system> system to detemrine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+	description "Travel through the <system> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
 	autosave
 	source "New Portland"
 	waypoint "Kaus Borealis"
@@ -27,7 +27,7 @@ mission "FWC Scouting 1"
 			choice
 				`	"No problem."`
 					goto freya
-				`	"Sure, but first, can you tell me how the Wolf Pack was able to do somuch damage to the Navy?"`
+				`	"Sure, but first, can you tell me how the Wolf Pack was able to do so much damage to the Navy?"`
 			`	"As I said," says JJ, "They've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
 			label freya
 			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Rand system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
@@ -437,7 +437,7 @@ mission "FWC Diplomacy 1"
 			choice
 				`	"Great! I think I'd like a dozen of them."`
 					goto yes
-				`	"Sorry, I'm following orders by bringing this convoy here, but I want no part in the use of nuclear weapons, even for the sake fo winning this war."`
+				`	"Sorry, I'm following orders by bringing this convoy here, but I want no part in the use of nuclear weapons, even for the sake of winning this war."`
 					goto no
 				`	"Wait, 'Fifi'? Is that your leader?"`
 					goto fifi
@@ -448,7 +448,7 @@ mission "FWC Diplomacy 1"
 			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no holds barred struggle for survival."`
 				goto next
 			label fifi
-			`	"Yes," he says, "Fifi is the leader of the Wolf Pack. And she is an absolutetly ferocious individual. I assure you that you do not want to be responsible for crossing her. Not that you'll ever have to, of course, because we're all on the same side here." He grins.`
+			`	"Yes," he says, "Fifi is the leader of the Wolf Pack. And she is an absolutely ferocious individual. I assure you that you do not want to be responsible for crossing her. Not that you'll ever have to, of course, because we're all on the same side here." He grins.`
 				goto next
 			label next
 			`	Soon after he is done unloading the cargo, you receive a message from Alondo: "Good news, <first>! The Republic has agreed to allow us to make a diplomatic visit to Parliament. Hurry back here to <planet> before they change their minds."`
@@ -1372,7 +1372,7 @@ mission "FWC Pug 2C"
 				`	"What do you want from us in return?"`
 				`	"What are you planning to do with these systems you have occupied?"`
 			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
-			`	"By 'spreading peace,' do you mean occuying more systems?" asks Katya.`
+			`	"By 'spreading peace,' do you mean occupying more systems?" asks Katya.`
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. Now, are you prepared to pledge your loyalty?"`
 			choice
 				`	"I'm sorry, but you have no right to govern us."`
@@ -1897,7 +1897,7 @@ mission "FWC Pug 4A"
 			
 			label plan
 			`	You meet up with Danforth, and he says, "Well, we have a beachhead now, but it's a fragile one. Miss Winters, do you think you can open up more of the hyperspace links?"`
-			`	Freya says, "Sure, if we retrieve the equipment from Tundra. But, the transmitter station wasn't exactly portable, so if we want to open up other systems not linked to this one, we'll have to find transitters already installed there, too."`
+			`	Freya says, "Sure, if we retrieve the equipment from Tundra. But, the transmitter station wasn't exactly portable, so if we want to open up other systems not linked to this one, we'll have to find transmitters already installed there, too."`
 			`	Danforth says, "Let's start by trying to reestablish the connection from here to the Ascella system. If that works, I'll send part of my fleet to take Zeta Aquilae and see if they can secure another transmitter station. That would give us two routes into Pug space instead of the single bottleneck we have now. Captain <last>, would you be willing to travel back with Freya to <planet>?"`
 			choice
 				`	"Sure, we can leave immediately."`
@@ -2346,7 +2346,7 @@ mission "FWC Pug 6"
 		event "pug flee"
 		conversation
 			`The tiny spaceport on Silver is packed with people as more and more Navy ships come in for a landing. The Navy generals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
-			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting corss-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
+			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting cross-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
 			`	You find Freya sitting in a secluded nook on the upper floor of the spaceport building, watching the stars and the drifting sand out the window. "Ready for the last battle, Captain?" she asks.`
 			choice
 				`	"Sure, with the Navy at our backs I think we've got a good chance."`
@@ -2550,7 +2550,7 @@ mission "FWC End"
 			`	"Also," says Katya, "As their own expression of gratitude, the Syndicate members of Parliament have offered to make some of their new technology, developed during the war, available to us at an affordable price."`
 			choice
 				`	"That's very generous of them."`
-				`	"I wonder if that's their way of buying our support and keeping us quiet about tht supposed defector."`
+				`	"I wonder if that's their way of buying our support and keeping us quiet about the supposed defector."`
 			`	"Maybe so," says Alondo. "Now, Captain, your salary will continue to be paid in gratitude for your service, but you are free to return to civilian life. What do you think you will do next?"`
 			choice
 				`	"Build a merchant fleet and live a safe, quiet life."`

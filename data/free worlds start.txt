@@ -249,7 +249,7 @@ mission "oathkeepers founded"
 	on offer
 		conversation
 			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
-			`	Furthermore, the leader of the Oathkeeprs will be General Danforth, an elderly general who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
+			`	Furthermore, the leader of the Oathkeepers will be General Danforth, an elderly general who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
 			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyways, it is a victory that cost them very little.`
 
 
@@ -1060,7 +1060,7 @@ mission "FW Flamethrower 2"
 				goto available
 			label damage
 			`	"No, doing damage isn't the point," he says. "The idea is to heat up the target to the point where it goes into emergency thermal shutdown. Basically a way to temporarily disable even a ship with full shields. Of course, big ships can absorb an awful lot of heat without changing temperature much, so I suspect it will be most useful against smaller targets."`
-			`	"That is an interestng idea," you say. "Are they available for sale yet?"`
+			`	"That is an interesting idea," you say. "Are they available for sale yet?"`
 				goto available
 			label bad
 			`	"Oh." He seems somewhat dejected. "Well, if you were flying a smaller ship, you might think differently. Or if your ship didn't have adequate cooling. My idea was to target pirate ships with those illegal modified blasters that run hotter than usual."`
@@ -1116,7 +1116,7 @@ mission "FW Pirates 2"
 			label greenrock
 			apply
 				set "fw pirate suggestion: greenrock"
-			`	"That's defintely the fastest solution," he says, "and it would be a great show of strength to impress worlds that are still undecided about joining us."`
+			`	"That's definitely the fastest solution," he says, "and it would be a great show of strength to impress worlds that are still undecided about joining us."`
 				goto next
 			label antares
 			apply

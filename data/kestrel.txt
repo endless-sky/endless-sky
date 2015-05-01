@@ -195,7 +195,7 @@ mission "Kestrel Available"
 
 
 
-event "kestrel avialable: more weapons"
+event "kestrel available: more weapons"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Weapons)"

@@ -501,7 +501,7 @@ mission "FW Reconciliation Break"
 		conversation
 			`From the way Alondo's eyes light up when he sees Katya, you can tell that all he wants to do right now is to get caught up with her and celebrate her freedom. But he plays the part of a good diplomat, escorting the Republic ambassadors to their new quarters. Along the way he makes pleasant small talk with them, complementing their style and sophistication. Knowing him as well as you do, you can tell he is saving up his more scathing comments about them until they are out of earshot.`
 			`	The moment they are dealt with he gives Katya a hug and says, "Katya! So good to have you back with us. The Council has five members once more. I assume you've been told about Tomek's... departure, and <first>'s promotion?" She nods.`
-			`	Alondo says, "Unfortunately, we don't have any ambassadors of our own picked out yet. The Senate insists on selecting them, and you wouldn't believe how slowly Senate deliberations move. They've interviewed half a dozen candiates so far, and found none to their liking. It pains me to say this, but we may have succeeded in creating a bureaucracy every bit as inefficient as the one we rebelled against."`
+			`	Alondo says, "Unfortunately, we don't have any ambassadors of our own picked out yet. The Senate insists on selecting them, and you wouldn't believe how slowly Senate deliberations move. They've interviewed half a dozen candidates so far, and found none to their liking. It pains me to say this, but we may have succeeded in creating a bureaucracy every bit as inefficient as the one we rebelled against."`
 			choice
 				`	"No problem. The important thing is, we're at peace, so their decisions can take as long as they need to."`
 					goto peace
@@ -515,7 +515,7 @@ mission "FW Reconciliation Break"
 				goto wait
 			
 			label volunteer
-			`	Alondo laughs. "No, that's no work for me," he says. "The ambassadors, as prestigious as their role may seem, are litte more than a symbolic gesture. And being cooped up in an embassy on a single planet while things of importance are taking place elsewhere is hardly a job I aspire to."`
+			`	Alondo laughs. "No, that's no work for me," he says. "The ambassadors, as prestigious as their role may seem, are little more than a symbolic gesture. And being cooped up in an embassy on a single planet while things of importance are taking place elsewhere is hardly a job I aspire to."`
 			`	"So, what will we do while we're waiting for the Senate to pick the ambassadors?" you ask.`
 				goto wait
 			
@@ -567,7 +567,7 @@ mission "FW Embassy 1C"
 			`When you land on Bourne you discover that Katya and Ijs have already been back there for a week. Alondo is with them, too. "We just couldn't stay away from the action for long," says Ijs.`
 			`	The Star Queen luxury liner that brought the Earth ambassadors to Bourne is still parked in a somewhat out of the way hangar. "Don't worry, Captain," says Katya, "there's no way our ambassadors would travel in something as gaudy as that. They've requisitioned a Dreadnought instead. A good ship to remind the people of Earth that we have a strong fleet of our own."`
 			`	"Not to mention," says Ijs, "a good ship to take part in our strike against the Syndicate."`
-			`	Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. "I've already contacked Governor Flint and General Danforth," he says. "Their ships will be arriving in the Sol system about the same time as yours. Good luck, Captain." You help Ijs and Katya load their luggage onto your ship, and tell the Dreadnought carrying the ambassadors to be ready to follow you.`
+			`	Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. "I've already contacted Governor Flint and General Danforth," he says. "Their ships will be arriving in the Sol system about the same time as yours. Good luck, Captain." You help Ijs and Katya load their luggage onto your ship, and tell the Dreadnought carrying the ambassadors to be ready to follow you.`
 				accept
 	
 	npc accompany save
@@ -992,7 +992,7 @@ mission "FW Pug 2A Visit"
 mission "FW Pug 2B"
 	landing
 	name "Install a Jump Drive"
-	description "Travel to the Syndicate world of Hephaestus, where the Syndicate Systems personnel have been isntructed to install a jump drive on your ship, so that you can investigate the systems that the Pug has cut off."
+	description "Travel to the Syndicate world of Hephaestus, where the Syndicate Systems personnel have been instructed to install a jump drive on your ship, so that you can investigate the systems that the Pug has cut off."
 	autosave
 	source Foundry
 	destination Hephaestus
@@ -1249,7 +1249,7 @@ mission "FW Pug 3"
 				`	"What do you want from us in return?"`
 				`	"What are you planning to do with these systems you have occupied?"`
 			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
-			`	"By 'spreading peace,' do you mean occuying more systems?" asks Alondo.`
+			`	"By 'spreading peace,' do you mean occupying more systems?" asks Alondo.`
 			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. And so we will send you back to your people now, to tell them that they have nothing to fear, and that they should await our peace and our protection."`
 			`	The aliens appear to think the conversation is over; they walk away and leave you puzzling over what they said. "We should report back to Earth," says Alondo. "This situation is far beyond what we can handle alone."`
 				accept
@@ -1382,7 +1382,7 @@ mission "FW Pug 3B"
 	on offer
 		"salary: Free Worlds" = 6000
 		conversation
-			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your asault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
+			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your assault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
 			`	"I guess that makes sense," says Alondo.`
 			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be six thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
 			`	Alondo wishes you the best of luck and leaves to catch a transport to Bourne, while Freya takes you to the spaceport and introduces you to the captains of the two Dreadnoughts that have volunteered to fight the Pug. She also asks you all sorts of technical questions: what sort of propulsion and energy sources the Pug seem to use, what their weapon capabilities are, and whether you saw any sign of the technology that was used to destroy the hyperspace links. You have a hard time answering her, but are glad that she will be with you this time to see the aliens firsthand.`
@@ -1573,7 +1573,7 @@ mission "FW Pug 4A"
 				goto generator
 			
 			label lost
-			`You have liberated this planet, but with your entire fleet destroyed your victory may be short-lived. Still, you have no option but to continue on and try your best. Fortunately, it turns out that none of the Pug are left on the ground here on Maker; they all left theplanet to join in the fleet that you just destroyed. So at least you don't have a land war to worry about.`
+			`You have liberated this planet, but with your entire fleet destroyed your victory may be short-lived. Still, you have no option but to continue on and try your best. Fortunately, it turns out that none of the Pug are left on the ground here on Maker; they all left the planet to join in the fleet that you just destroyed. So at least you don't have a land war to worry about.`
 				goto generator
 			
 			label generator
@@ -1649,7 +1649,7 @@ mission "FW Pug 4B"
 			`	"Do we really have any better options?" she asks. "Without reinforcements, how many more Pug attacks do you really think you can survive? Besides, there's a certain logic and balance to the rules of physics, so even when dealing with something we can't understand, sometimes intuition can guide us." She pauses for a second, and says, "And sometimes intuition steers us terribly wrong, but let's not think about that right now."`
 			`	"So, you succeeded in opening the link?" you say.`
 			label time
-			`	"Well, that's the bad news," she says. "At this rate, it will take several years to repoen the connection. And I doubt this method would work at all if there weren't still the residual link in place. But that's where this equipment comes in."`
+			`	"Well, that's the bad news," she says. "At this rate, it will take several years to reopen the connection. And I doubt this method would work at all if there weren't still the residual link in place. But that's where this equipment comes in."`
 			`	She points to the alien machine. "This machine is like the transmitter, but much simpler. The transmitter somehow redirects a planet's gravity spaceward; what this machine does is reflect a graviton beam back where it comes from. If we can mount the reflector on Hephaestus, and align them both very precisely, we can set up a standing wave between the two that will regenerate the hyperspace link much more quickly. Or for all I know it might create an artificial singularity that destroys us all. I'm mostly flying blind here."`
 			choice
 				`	"Well, I guess we should give it a try."`
@@ -1741,7 +1741,7 @@ mission "FW Pug 4C"
 		event "reconnected delta capricorni"
 		conversation
 			`Freya sent detailed instructions with the reflector for where it should be set up and how it should be adjusted to interface with the transmitter back in Pug space. You hand it over to a team of Syndicate engineers, who seem quite capable and confident that they can make it work; you suspect that these are the same engineers who have been playing with equipment stolen from the Korath, so they are no strangers to alien technology.`
-			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to repoen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in repoening the link.`
+			`	You also meet with Marco Bugati, the Syndicate executive who oversaw the installation of your jump drives, and tell him that you may soon be able to reopen one of the connections to Republic space, as well. You ask if he can send a courier ship to Earth to inform them of the new situation, to have them begin massing a fleet there. He agrees. He also tells you that a few of the Syndicate ships that met you in orbit have been designated as additions to your attack fleet, so they will be traveling back to Maker with you if the reflector succeeds in reopening the link.`
 			`	A few hours later, the engineers tell you that they think the link is beginning to reopen. Bugati says, "You should take off and return as soon as possible, in case Maker has been attacked in your absence."`
 				accept
 
@@ -1976,7 +1976,7 @@ mission "FW Pug 6"
 		event "pug flee"
 		conversation
 			`The tiny spaceport on Shiver is packed with people as more and more Navy ships come in for a landing. The Navy generals have decided that there is no sense in delaying: you will be launching an attack on the Pug homeworld in the morning. Despite your success so far in battling the Pug, you know that if their entire fleet opposes you, even the Navy may not be strong enough to defeat them. This may be the last time you see many of these officers and crew members alive.`
-			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting corss-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
+			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting cross-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
 			`	You find Freya sitting in a secluded nook on the upper floor of the spaceport building, watching the drifting snow out the window. "Ready for the last battle, Captain?" she asks.`
 			choice
 				`	"Sure, with the Navy at our backs I think we've got a good chance."`

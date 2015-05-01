@@ -19,7 +19,7 @@ mission "First Contact: Quarg"
 			`	One of the Quarg notices you gawking at them and walks over. It squats down on its haunches so that its eyes are level with your own, and says, "Hello." Its voice is deep, sounding like an accordion or the buzz of a beehive blended with the hum of a starship engine.`
 			choice
 				`	"Hello."`
-			`	Speaking slowly and delibrately, it says, "I think you are new here. Are you what is called a tourist?"`
+			`	Speaking slowly and deliberately, it says, "I think you are new here. Are you what is called a tourist?"`
 			choice
 				`	"Yes."`
 				`	"No, I'm a merchant captain, I'm here to buy and sell cargo."`
