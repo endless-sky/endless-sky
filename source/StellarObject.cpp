@@ -48,7 +48,6 @@ const Point &StellarObject::Position() const
 
 
 
-
 // Get the unit vector representing the rotation of this object.
 const Point &StellarObject::Unit() const
 {

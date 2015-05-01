@@ -64,7 +64,6 @@ public:
 public:
 	// Load a system's description.
 	void Load(const DataNode &node, Set<Planet> &planets);
-	void Change(const DataNode &node, Set<Planet> &planets);
 	// Once the star map is fully loaded, figure out which stars are "neighbors"
 	// of this one, i.e. close enough to see or to reach via jump drive.
 	void UpdateNeighbors(const Set<System> &systems);
