@@ -777,12 +777,11 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 	if(isClose && speed < slow)
 		return true;
 	
-	bool isVeryClose = (distance.Length() < .5 * radius);
 	distance = target - StoppingPoint(ship);
 	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
-	if(!isVeryClose && (!isClose || !isFacing))
+	if(!isClose || !isFacing)
 		command.SetTurn(TurnToward(ship, distance));
-	if(isFacing || (isVeryClose && velocity.Dot(angle.Unit()) < 0.))
+	if(isFacing)
 		command |= Command::FORWARD;
 	
 	return false;
