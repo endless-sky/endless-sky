@@ -690,15 +690,14 @@ mission "FW Syndicate Capture 1B"
 		ship "Dagger" "Alpha Five"
 	
 	npc
-		system Ankaa
 		government Syndicate
-		personality heroic nemesis
+		personality heroic nemesis entering
 		fleet
 			names "syndicate capital"
 			variant
 				"Splinter (Mark II)" 2
 				"Manta (Mark II)" 3
-				"Quicksilver (Mark II)" 6
+				"Quicksilver (Mark II)" 4
 	npc
 		system Ruchbah
 		government Syndicate
@@ -1375,6 +1374,7 @@ mission "FW Pug 3B"
 	autosave
 	source Zug
 	destination Geminus
+	clearance
 	to offer
 		has "FW Pug 3A: done"
 	passengers 1
