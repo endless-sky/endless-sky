@@ -69,6 +69,16 @@ effect "particle impact"
 	"velocity scale" -.05
 	"random spin" 10
 
+effect "ion impact"
+	sprite "effect/ion impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random angle" 360
+	"velocity scale" -.05
+	"random spin" 30
+	"random velocity" 2
+
 effect "plasma explosion"
 	sprite "effect/plasma explosion"
 		"no repeat"
@@ -228,3 +238,12 @@ effect "sidewinder fire"
 		"frame rate" 30
 	"lifetime" 9
 	"random velocity" 2
+
+effect "ion spark"
+	sprite "effect/spark"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1

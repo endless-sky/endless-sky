@@ -76,6 +76,7 @@ public:
 	double ShieldDamage() const;
 	double HullDamage() const;
 	double HeatDamage() const;
+	double IonDamage() const;
 	
 	double TotalLifetime() const;
 	double Range() const;
@@ -123,12 +124,14 @@ private:
 	double shieldDamage = 0.;
 	double hullDamage = 0.;
 	double heatDamage = 0.;
+	double ionDamage = 0.;
 	double hitForce = 0.;
 	
 	// Cache the calculation of these values, for faster access.
 	mutable double totalShieldDamage = -1.;
 	mutable double totalHullDamage = -1.;
 	mutable double totalHeatDamage = -1.;
+	mutable double totalIonDamage = -1.;
 	mutable double totalLifetime = -1.;
 };
 

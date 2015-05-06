@@ -345,6 +345,7 @@ private:
 	double energy = 0.;
 	double heat = 0.;
 	double heatDissipation = .999;
+	double ionization = 0.;
 	
 	int crew = 0;
 	int pilotError = 0;

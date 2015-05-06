@@ -544,6 +544,28 @@ bool Ship::Move(list<Effect> &effects)
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
 		hyperspaceSystem = nullptr;
 	
+	// Handle ionization effects.
+	if(ionization)
+	{
+		ionization *= .99;
+		
+		const Effect *effect = GameData::Effects().Get("ion spark");
+		double ion = ionization * .1;
+		while(true)
+		{
+			ion -= Random::Real();
+			if(ion <= 0.)
+				break;
+			
+			Point point((Random::Real() - .5) * .5 * sprite.Width(),
+				(Random::Real() - .5) * .5 * sprite.Height());
+			if(sprite.GetMask(0).Contains(point, Angle()))
+			{
+				effects.push_back(*effect);
+				effects.back().Place(angle.Rotate(point) + position, velocity, angle);
+			}
+		}
+	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -578,7 +600,8 @@ bool Ship::Move(list<Effect> &effects)
 		if(attributes.Get("ramscoop"))
 			TransferFuel(-.03 * sqrt(attributes.Get("ramscoop")), nullptr);
 		
-		energy += attributes.Get("energy generation");
+		energy += attributes.Get("energy generation") - ionization;
+		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
@@ -657,6 +680,7 @@ bool Ship::Move(list<Effect> &effects)
 			}
 			energy = 0.;
 			heat = 0.;
+			ionization = 0.;
 			fuel = 0.;
 			return false;
 		}
@@ -1417,6 +1441,7 @@ void Ship::Recharge(bool atSpaceport)
 		energy = attributes.Get("energy capacity");
 	}
 	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
+	ionization = 0.;
 }
 
 
@@ -1601,6 +1626,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double hullDamage = weapon.HullDamage();
 	double hitForce = weapon.HitForce();
 	double heatDamage = weapon.HeatDamage();
+	double ionDamage = weapon.IonDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
@@ -1610,6 +1636,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	{
 		shields -= shieldDamage;
 		heat += .5 * heatDamage;
+		ionization += .5 * ionDamage;
 	}
 	else if(!shields || shieldDamage)
 	{
@@ -1620,6 +1647,7 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 		}
 		hull -= hullDamage;
 		heat += heatDamage;
+		ionization += ionDamage;
 	}
 	
 	if(hitForce && !IsHyperspacing())

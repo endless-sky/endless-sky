@@ -100,6 +100,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				hullDamage = child.Value(1);
 			else if(child.Token(0) == "heat damage")
 				heatDamage = child.Value(1);
+			else if(child.Token(0) == "ion damage")
+				ionDamage = child.Value(1);
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
 			else
@@ -211,6 +213,20 @@ double Weapon::HeatDamage() const
 			totalHeatDamage += it.first->HeatDamage() * it.second;
 	}
 	return totalHeatDamage;
+}
+
+
+
+
+double Weapon::IonDamage() const
+{
+	if(totalIonDamage < 0.)
+	{
+		totalIonDamage = ionDamage;
+		for(const auto &it : submunitions)
+			totalIonDamage += it.first->IonDamage() * it.second;
+	}
+	return totalIonDamage;
 }
 
 

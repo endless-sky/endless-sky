@@ -374,6 +374,31 @@ outfit "Plasma Cannon"
 		"heat damage" 340
 	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
+outfit "Ion Cannon"
+	category "Guns"
+	cost 490000
+	thumbnail "outfit/particle cannon"
+	"mass" 47
+	"outfit space" -47
+	"weapon capacity" -47
+	"gun ports" -1
+	weapon
+		sprite "projectile/ion bolt"
+		sound "particle"
+		"hit effect" "ion impact" 2
+		"inaccuracy" 1
+		"velocity" 16
+		"lifetime" 50
+		"reload" 60
+		"firing energy" 120
+		"firing force" 10
+		"firing heat" 150
+		"hit force" 120
+		"shield damage" 120
+		"hull damage" 90
+		"ion damage" 5
+	description "Ion cannons do not do as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizeable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
+
 outfit "Plasma Turret"
 	category "Turrets"
 	cost 560000

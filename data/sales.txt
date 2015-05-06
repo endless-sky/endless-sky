@@ -396,6 +396,7 @@ outfitter "Special Outfits"
 	"Pug Zapper Turret"
 	"Pug Seeker"
 	"Pug Anti-Missile"
+	"Ion Cannon"
 
 shipyard "Alien Ships"
 	"Pug Zibruka"
