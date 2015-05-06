@@ -42,7 +42,8 @@ public:
 	const Outfit *Ammo() const;
 	const Sprite *Icon() const;
 	
-	// Handle a weapon impacting something or reaching its end of life.
+	// Effects to be created at the start or end of the weapon's lifetime.
+	const std::map<const Effect *, int> &FireEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::map<const Outfit *, int> &Submunitions() const;
@@ -87,7 +88,8 @@ private:
 	const Outfit *ammo = nullptr;
 	const Sprite *icon = nullptr;
 	
-	// Die and hit effects.
+	// Fire, die and hit effects.
+	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::map<const Outfit *, int> submunitions;

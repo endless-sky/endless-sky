@@ -780,7 +780,7 @@ void Engine::CalculateStep()
 			// existence and under the control of the same AI as the ship, but
 			// its system was null to mark that it was not active.
 			ship->Launch(ships);
-			if(ship->Fire(projectiles))
+			if(ship->Fire(projectiles, effects))
 				hasAntiMissile.push_back(ship.get());
 			
 			int scan = ship->Scan();

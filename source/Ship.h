@@ -109,7 +109,7 @@ public:
 	// Fire any weapons that are ready to fire. If an anti-missile is ready,
 	// instead of firing here this function returns true and it can be fired if
 	// collision detection finds a missile in range.
-	bool Fire(std::list<Projectile> &projectiles);
+	bool Fire(std::list<Projectile> &projectiles, std::list<Effect> &effects);
 	// Fire an anti-missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::list<Effect> &effects);
 	

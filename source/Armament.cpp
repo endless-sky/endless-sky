@@ -104,7 +104,7 @@ void Armament::Weapon::Step()
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
-void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
+void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, std::list<Effect> &effects)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
@@ -141,6 +141,13 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles)
 	double force = outfit->FiringForce();
 	if(force)
 		ship.ApplyForce(aim.Unit() * -force);
+	
+	for(const auto &eit : outfit->FireEffects())
+		for(int i = 0; i < eit.second; ++i)
+		{
+			effects.push_back(*eit.first);
+			effects.back().Place(start, ship.Velocity(), aim);
+		}
 	
 	// Reset the reload count.
 	reload += outfit->Reload();
@@ -345,7 +352,7 @@ int Armament::TurretCount() const
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
+void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, std::list<Effect> &effects)
 {
 	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return;
@@ -354,7 +361,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles)
 	if(it != streamReload.end() && it->second > 0)
 		return;
 	
-	weapons[index].Fire(ship, projectiles);
+	weapons[index].Fire(ship, projectiles, effects);
 	if(it != streamReload.end())
 		it->second += it->first->Reload();
 }

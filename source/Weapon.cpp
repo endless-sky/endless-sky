@@ -40,6 +40,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			ammo = GameData::Outfits().Get(child.Token(1));
 		else if(child.Token(0) == "icon" && child.Size() >= 2)
 			icon = SpriteSet::Get(child.Token(1));
+		else if(child.Token(0) == "fire effect" && child.Size() >= 2)
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			fireEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(child.Token(0) == "hit effect" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -141,7 +146,14 @@ const Sprite *Weapon::Icon() const
 
 
 
-// Handle a weapon impacting something or reaching its end of life.
+// Effects to be created at the start or end of the weapon's lifetime.
+const map<const Effect *, int> &Weapon::FireEffects() const
+{
+	return fireEffects;
+}
+
+
+
 const map<const Effect *, int> &Weapon::HitEffects() const
 {
 	return hitEffects;

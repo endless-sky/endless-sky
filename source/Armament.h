@@ -62,7 +62,7 @@ public:
 		// Fire this weapon. If it is a turret, it automatically points toward
 		// the given ship's target. If the weapon requires ammunition, it will
 		// be subtracted from the given ship.
-		void Fire(Ship &ship, std::list<Projectile> &projectiles);
+		void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
 		// Fire an anti-missile. Returns true if the missile should be killed.
 		bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
 		
@@ -105,7 +105,7 @@ public:
 	
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles);
+	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
 	// Fire the given anti-missile system.
 	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
 	

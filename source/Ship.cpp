@@ -1105,7 +1105,7 @@ int Ship::Scan() const
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(list<Projectile> &projectiles)
+bool Ship::Fire(list<Projectile> &projectiles, std::list<Effect> &effects)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1129,7 +1129,7 @@ bool Ship::Fire(list<Projectile> &projectiles)
 			if(outfit->AntiMissile())
 				hasAntiMissile = true;
 			else if(commands.HasFire(i))
-				armament.Fire(i, *this, projectiles);
+				armament.Fire(i, *this, projectiles, effects);
 		}
 	}
 	
