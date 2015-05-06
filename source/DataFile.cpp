@@ -97,8 +97,6 @@ void DataFile::Load(istream &in)
 				}
 			}
 		}
-		
-		children.back().raw.swap(line);
 	}
 }
 

@@ -37,7 +37,6 @@ public:
 	
 	
 private:
-	std::string raw;
 	std::list<DataNode> children;
 	std::vector<std::string> tokens;
 	
