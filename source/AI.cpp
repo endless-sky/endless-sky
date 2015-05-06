@@ -195,6 +195,12 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					continue;
 				
 				const Government *otherGov = ship->GetGovernment();
+				// If any enemies of this ship are in system, it cannot call for help.
+				if(otherGov->IsEnemy(gov) && isPresent)
+				{
+					hasEnemy = true;
+					break;
+				}
 				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
 					continue;
 				
@@ -210,8 +216,6 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					else if(selectNext && !nextAlly)
 						nextAlly = &*ship;
 				}
-				else if(ship->GetGovernment()->IsEnemy(gov) && isPresent)
-					hasEnemy = true;
 			}
 			
 			isStranded = false;
@@ -339,7 +343,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// the behavior depends on what the parent is doing, whether there
 		// are hostile targets nearby, and whether the escort has any
 		// immediate needs (like refueling).
-		else if(!parent || parent->IsDestroyed())
+		else if(!parent || parent->IsDestroyed() || (parent->IsDisabled() && !isPlayerEscort))
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 			MoveEscort(*it, command);
