@@ -1513,6 +1513,8 @@ mission "FW Pug 4"
 		conversation
 			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
 			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+			``
+			`[Take good care of this fleet: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]
 				accept
 	
 	npc evade
@@ -1856,7 +1858,11 @@ mission "FW Pug 5A"
 	
 	on offer
 		conversation
-			`Sure enough, Freya finds a graviton wave transmitter on <origin>, set up to broadcast incoherent graviton noise in the direction of the Sol system. "This is it," she says. "If you can reach <planet> with the reflector before we are overrun by the Pug here, we can reopen the hyperspace link and the entire Navy will be at our backs. Hopefully the Syndicate got a message through and they'll have a fleet waiting for you when you arrive. Good luck, Captain."`
+			`Sure enough, Freya finds a graviton wave transmitter on <origin>, set up to broadcast incoherent graviton noise in the direction of the Sol system. "This is it," she says. "If you can reach <planet> with the reflector before we are overrun by the Pug here, we can reopen the hyperspace link and the entire Navy will be at our backs. Hopefully the Syndicate got a message through and they'll have a fleet waiting for you when you arrive."`
+		choice
+			`	"You really think you can hold off the Pug if I make a run for <planet>?"`
+			`	"I'm worried that you won't survive if I leave this system undefended."`
+		`	"Don't worry about us here," she says. "We have a fair number of ships here on the ground, if it comes to that. But the most important thing is that you rendezvous with the Navy reinforcements in the <system> system, and if you can draw the Pug fleet to pursue you, all the better. Good luck, <first>."`
 				accept
 	
 	npc
