@@ -235,6 +235,14 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		{
 			player.Cargo().Transfer(it.first, -count);
 			didCargo = true;
+			if(count > 0)
+			{
+				string special = "The " + name + (count == 1 ? " was" : "s were");
+				special += " put in your cargo hold because there is not enough space to install ";
+				special += (count == 1) ? "it" : "them";
+				special += " in your ship.";
+				ui->Push(new Dialog(special));
+			}
 		}
 		if(didCargo && didShip)
 			message += "cargo hold and your flagship.";
