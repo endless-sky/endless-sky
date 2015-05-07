@@ -42,6 +42,7 @@ outfit "Quarg Skylance"
 		"firing heat" 10
 		"shield damage" 50
 		"hull damage" 60
+		"ion damage" .1
 
 outfit "Quarg Anti-Missile"
 	category "Turrets"
