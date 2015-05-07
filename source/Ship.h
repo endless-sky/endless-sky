@@ -316,6 +316,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool neverDisabled = false;
 	double cloak = 0.;
 	
 	Command commands;

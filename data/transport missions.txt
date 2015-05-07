@@ -753,6 +753,7 @@ ship "Hallucination"
 	sprite "ship/hallucination"
 		"frame rate" 1
 		"random start frame"
+	"never disabled"
 	attributes
 		"hull" 1000
 		"mass" 180
@@ -789,7 +790,7 @@ mission "Hallucination"
 	
 	npc kill
 		government "Bad Trip"
-		personality nemesis
+		personality nemesis heroic
 		ship "Hallucination" "Love"
 		ship "Hallucination" "Peace"
 		ship "Hallucination" "Happy"

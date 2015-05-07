@@ -92,6 +92,8 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				vec.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "never disabled")
+			neverDisabled = true;
 		else if(child.Token(0) == "fighter" && child.Size() >= 3)
 			fighterBays.emplace_back(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "drone" && child.Size() >= 3)
@@ -276,6 +278,8 @@ void Ship::Save(DataWriter &out) const
 				out.Write(license);
 			out.EndChild();
 		}
+		if(neverDisabled)
+			out.Write("never disabled");
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -2072,6 +2076,9 @@ bool Ship::CannotAct() const
 
 double Ship::MinimumHull() const
 {
+	if(neverDisabled)
+		return 0.;
+	
 	double maximumHull = attributes.Get("hull");
 	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
 }
