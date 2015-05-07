@@ -1072,11 +1072,20 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	if(!government->IsEnemy(victim->GetGovernment()))
 	{
 		SetShipToAssist(shared_ptr<Ship>());
+		bool helped = victim->isDisabled;
 		victim->hull = max(victim->hull, victim->MinimumHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(!victim->JumpsRemaining() && CanRefuel(*victim))
+		{
+			helped = true;
 			TransferFuel(victim->JumpFuel(), victim.get());
+		}
+		if(helped)
+		{
+			pilotError = 120;
+			victim->pilotError = 120;
+		}
 		return autoPlunder ? shared_ptr<Ship>() : victim;
 	}
 	if(!victim->IsDisabled())
