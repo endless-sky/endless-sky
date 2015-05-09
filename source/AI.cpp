@@ -388,6 +388,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if(!it->IsYours())
 			DoCloak(*it, command, ships);
 		
+		// Force ships that are overlapping each other to "scatter":
+		DoScatter(*it, command, ships);
+		
 		it->SetCommands(command);
 	}
 }
@@ -1046,6 +1049,36 @@ void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &shi
 		// not cost you fuel.
 		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel"))
 			command |= Command::CLOAK;
+	}
+}
+
+
+
+void AI::DoScatter(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
+{
+	if(!command.Has(Command::FORWARD))
+		return;
+	
+	double turnRate = ship.TurnRate();
+	double acceleration = ship.Acceleration();
+	for(const shared_ptr<Ship> &other : ships)
+	{
+		if(other.get() == &ship)
+			continue;
+		
+		// Check for any ships that have nearly the same movement profile as
+		// this ship and are in nearly the same location.
+		Point offset = other->Position() - ship.Position();
+		if(offset.LengthSquared() > 400.)
+			continue;
+		if(fabs(other->TurnRate() / turnRate - 1.) > .05)
+			continue;
+		if(fabs(other->Acceleration() / acceleration - 1.) > .05)
+			continue;
+		
+		// Move away from this ship. What side of me is it on?
+		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
+		return;
 	}
 }
 

@@ -60,6 +60,7 @@ private:
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	void DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const;
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
+	static void DoScatter(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	static Point StoppingPoint(const Ship &ship);
 	// Get a vector giving the direction this ship should aim in in order to do
