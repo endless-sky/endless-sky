@@ -1,0 +1,148 @@
+# Copyright (c) 2014-2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+government "Hai"
+	swizzle 0
+	
+	"player reputation" 0
+	"bribe" .02
+	"fine" 0
+	"friendly hail" "friendly hai"
+
+fleet "Small Hai"
+	government "Hai"
+	names "hai"
+	cargo 3
+	personality
+		disables
+	variant
+		"Lightning Bug" 4
+
+ship "Lightning Bug"
+	sprite "ship/hai lightning bug"
+	attributes
+		category "Light Warship"
+		"cost" 3900000
+		"shields" 6700
+		"hull" 1700
+		"required crew" 4
+		"bunks" 10
+		"mass" 180
+		"drag" 3.8
+		"heat dissipation" .85
+		"fuel capacity" 600
+		"cargo space" 73
+		"outfit space" 278
+		"weapon capacity" 84
+		"engine capacity" 93
+		weapon
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Ion Cannon"
+		"Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Cooling Ducts"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+	engine -40 22
+	engine 40 22
+	gun 0 -40
+	turret -47 18
+	turret 47 18
+	explode "tiny explosion" 20
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	description "The Lightning Bug is a small defensive ship, designed to carry a single ion cannon."
+
+phrase "hai"
+	word
+		"Du"
+		"Mon"
+		"Luf"
+		"Vai"
+		"Woh"
+		"Far"
+	word
+		" "
+		" "
+		" e "
+		" e "
+		" Cor "
+		" Yo "
+		" Sook "
+		" Woa "
+		" Ood "
+	word
+		"Loh"
+		"Eh"
+		"Ow"
+		"Hey"
+		"Lur"
+		"Sen"
+		"Bin"
+
+phrase "friendly hai"
+	word
+		"Any "
+		"Every "
+		"A "
+	word
+		"seeker of "
+		"being of "
+		"bringer of "
+		"sentient being of "
+		"being who offers "
+		"being who seeks "
+		"being who values "
+		"being who brings "
+		"species that offers "
+		"species that seeks "
+		"species that values "
+		"species that brings "
+		"creature of "
+		"species of "
+		"individual of "
+		"person of "
+		"sentient creature of "
+	word
+		"peace "
+		"an open heart "
+		"peacefulness "
+		"nonviolence "
+		"understanding "
+		"reconciliation "
+		"harmony "
+		"concord "
+	word
+		"and "
+	word
+		"love "
+		"a tender heart "
+		"compassion "
+		"friendship "
+		"amity "
+		"good intentions "
+		"friendly intentions "
+		"empathy "
+	word
+		"is welcome "
+	word
+		"in Hai space."
+		"in our territory."
+		"on our worlds."
+		"to visit us."
+		"to coexist with us."
+		"in our space."
