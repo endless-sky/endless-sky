@@ -251,6 +251,8 @@ void ShipyardPanel::BuyShip(const string &name)
 		player.BuyShip(selectedShip, name);
 	
 	playerShip = &*player.Ships().back();
+	playerShips.clear();
+	playerShips.insert(playerShip);
 }
 
 
