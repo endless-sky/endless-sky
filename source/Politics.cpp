@@ -119,6 +119,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 void Politics::Bribe(const Government *gov)
 {
 	bribed.insert(gov);
+	fined.insert(gov);
 }
 
 

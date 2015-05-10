@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "Politics.h"
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -273,6 +274,8 @@ void PlayerInfo::ApplyChanges()
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
 			mission.Destination()->Bribe(mission.HasFullClearance());
+	if(system)
+		GameData::GetPolitics().Bribe(system->GetGovernment());
 	
 	// It is sometimes possible for the player to be landed on a planet where
 	// they do not have access to any services. So, this flag is used to specify
