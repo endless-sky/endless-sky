@@ -39,10 +39,11 @@ outfit "Pug Zapper"
 		"firing heat" 2.9
 		"shield damage" 7.4
 		"hull damage" 8.9
+	description "This is a formidable beam weapon, more damaging than even the most advanced energy beams that humanity has developed. Pug ships have integrated power plants that produce the considerable amount of energy that is needed to drive weapons like this one."
 
 outfit "Pug Zapper Turret"
-	category "Turret"
-	cost 170000
+	category "Turrets"
+	cost 420000
 	thumbnail "outfit/electron turret"
 	"mass" 66
 	"outfit space" -66
@@ -61,9 +62,10 @@ outfit "Pug Zapper Turret"
 		"firing heat" 2.9
 		"shield damage" 7.4
 		"hull damage" 8.9
+	description "Mounted on a turret, this Pug weapon becomes even more devastatingly powerful. However, its energy requirements are higher than most human ships can support."
 
 outfit "Pug Seeker"
-	category "Missiles"
+	category "Guns"
 	cost 540000
 	thumbnail "outfit/meteor launcher"
 	"mass" 34
@@ -90,6 +92,7 @@ outfit "Pug Seeker"
 		"hull damage" 19
 		"hit force" 2
 		"missile strength" 40
+	description "You have no idea how this weapon works. It requires no ammunition, but its energy-based projectiles have the ability to home in on a target ship."
 
 outfit "Pug Anti-Missile"
 	category "Turrets"
@@ -107,12 +110,13 @@ outfit "Pug Anti-Missile"
 		"reload" 2
 		"firing energy" 8
 		"firing heat" 2
+	description "This anti-missile system designed by the Pug draws a lot of energy, but its fast firing rate makes it twice as effective as anything that Lovelace Labs has been able to come up with. A ship with one of these turrets will be very difficult to hit with missiles."
 
 
 outfit "Pug Akfar Thruster"
 	category "Engines"
-	"cost" 760000
-	thumbnail "outfit/medium ion thruster"
+	"cost" 608000
+	thumbnail "outfit/small ion thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
@@ -122,22 +126,24 @@ outfit "Pug Akfar Thruster"
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 8
 	"flare sound" "ion_drive"
+	description "This is a small thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Akfar Steering"
 	category "Engines"
-	"cost" 590000
-	thumbnail "outfit/medium ion steering"
+	"cost" 472000
+	thumbnail "outfit/small ion steering"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
 	"turn" 750
 	"turning energy" 1.3
 	"turning heat" 2.1
+	description "This is a small steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Cormet Thruster"
 	category "Engines"
-	"cost" 1310000
-	thumbnail "outfit/large ion thruster"
+	"cost" 1050000
+	thumbnail "outfit/medium ion thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -147,21 +153,23 @@ outfit "Pug Cormet Thruster"
 	"flare sprite" "effect/ion flare/big"
 		"frame rate" 9
 	"flare sound" "ion_drive"
+	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Cormet Steering"
 	category "Engines"
-	"cost" 1100000
-	thumbnail "outfit/large ion steering"
+	"cost" 880000
+	thumbnail "outfit/medium ion steering"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
 	"turn" 1130
 	"turning energy" 1.9
 	"turning heat" 3.1
+	description "This is a medium-sized steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Lohmar Thruster"
 	category "Engines"
-	"cost" 2180000
+	"cost" 1740000
 	thumbnail "outfit/large ion thruster"
 	"mass" 84
 	"outfit space" -84
@@ -169,13 +177,14 @@ outfit "Pug Lohmar Thruster"
 	"thrust" 66.0
 	"thrusting energy" 4.9
 	"thrusting heat" 6.9
-	"flare sprite" "effect/ion flare/big"
+	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 9
 	"flare sound" "ion_drive"
+	description "This is a large thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Lohmar Steering"
 	category "Engines"
-	"cost" 1970000
+	"cost" 1580000
 	thumbnail "outfit/large ion steering"
 	"mass" 64
 	"outfit space" -64
@@ -183,6 +192,7 @@ outfit "Pug Lohmar Steering"
 	"turn" 1700
 	"turning energy" 2.8
 	"turning heat" 4.7
+	description "This is a large steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 
 outfit "Pug Biodefenses"
@@ -190,6 +200,7 @@ outfit "Pug Biodefenses"
 	cost 100000
 	thumbnail "outfit/nerve gas"
 	"capture defense" 250
+	description "This defense system is designed to release a suite of toxins that are lethal to human beings (and probably to some other speicies, as well) but which have no effect at all on the Pug."
 
 
 ship "Pug Zibruka"
@@ -284,7 +295,7 @@ ship "Pug Enfolta"
 ship "Pug Maboro"
 	sprite "ship/pug maboro"
 	attributes
-		category "Light Warship"
+		category "Heavy Warship"
 		"cost" 9500000
 		"shields" 12600
 		"hull" 2700
