@@ -194,7 +194,7 @@ mission "FW Wolf Pack 1B"
 	
 	on offer
 		conversation
-			`	You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own catalytic ramscoop. And before you leave, you may also visit our private outfitter and purchase one of your own, if you wish."`
+			`You land your ship by night in a private hangar that you assume is owned by one of the elite families on <origin>. Your contact is wearing a black mask over his face. That seems unnecessary to you, but perhaps he is just really enjoying the thrill of being involved in something illegal. He hands you a data card and says, "This contains all the information you will need to build your own catalytic ramscoop. And before you leave, you may also visit our private outfitter and purchase one of your own, if you wish."`
 			choice
 				`	"Thank you."`
 					goto leave

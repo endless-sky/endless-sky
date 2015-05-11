@@ -13,7 +13,7 @@ mission "First Contact: Korath"
 	source "Far'en Lai"
 	on offer
 		conversation
-			`	Almost immediately after you step out of your ship, two Korath fighters come hurtling toward your ship and land, skidding to a stop in the sand about ten meters away from you. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
+			`Almost immediately after you step out of your ship, two Korath fighters come hurtling toward your ship and land, skidding to a stop in the sand about ten meters away from you. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
 			choice
 				`	(Try to talk to them.)`
 					goto talk
