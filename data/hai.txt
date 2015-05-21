@@ -24,6 +24,15 @@ fleet "Small Hai"
 		disables
 	variant
 		"Lightning Bug" 4
+	variant
+		"Lightning Bug" 3
+	variant
+		"Lightning Bug (Pulse)" 4
+	variant
+		"Lightning Bug (Pulse)" 3
+	variant
+		"Lightning Bug (Pulse)"
+		"Lightning Bug" 2
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
@@ -66,6 +75,18 @@ ship "Lightning Bug"
 	explode "small explosion" 30
 	explode "medium explosion" 20
 	description "The Lightning Bug is a small defensive ship, designed to carry a single ion cannon."
+
+ship "Lightning Bug" "Lightning Bug (Pulse)"
+	outfits
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Cooling Ducts"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
 
 phrase "hai"
 	word

@@ -214,9 +214,9 @@ outfit "Heavy Laser Turret"
 	category "Turrets"
 	cost 180000
 	thumbnail "outfit/heavy laser turret"
-	"mass" 42
-	"outfit space" -42
-	"weapon capacity" -42
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
 	"turret mounts" -1
 	weapon
 		sprite "projectile/2x heavy laser"
@@ -374,10 +374,54 @@ outfit "Plasma Cannon"
 		"heat damage" 340
 	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
+outfit "Pulse Cannon"
+	category "Guns"
+	cost 110000
+	thumbnail "outfit/unknown"
+	"mass" 13
+	"outfit space" -13
+	"weapon capacity" -13
+	"gun ports" -1
+	weapon
+		sprite "projectile/pulse"
+		sound "blaster"
+		"hit effect" "pulse impact"
+		"inaccuracy" 1
+		"velocity" 15
+		"lifetime" 30
+		"reload" 20
+		"firing energy" 24
+		"firing heat" 70
+		"shield damage" 49
+		"hull damage" 42
+	description "Like most examples of Hai engineering that you have seen, the Pulse Cannon does not stand out as a particularly advanced or elegant technology, but it has a reputation for being efficient, reliable, and well-balanced."
+
+outfit "Pulse Turret"
+	category "Turrets"
+	cost 320000
+	thumbnail "outfit/unknown"
+	"mass" 34
+	"outfit space" -34
+	"weapon capacity" -34
+	"turret mounts" -1
+	weapon
+		sprite "projectile/pulse"
+		sound "blaster"
+		"hit effect" "pulse impact"
+		"inaccuracy" 1
+		"velocity" 15
+		"lifetime" 30
+		"reload" 10
+		"firing energy" 24
+		"firing heat" 70
+		"shield damage" 49
+		"hull damage" 42
+	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
+
 outfit "Ion Cannon"
 	category "Guns"
 	cost 490000
-	thumbnail "outfit/particle cannon"
+	thumbnail "outfit/unknown"
 	"mass" 47
 	"outfit space" -47
 	"weapon capacity" -47

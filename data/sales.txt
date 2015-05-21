@@ -404,6 +404,8 @@ outfitter "Special Outfits"
 	"Pug Lohmar Steering"
 	"Pug Biodefenses"
 	"Ion Cannon"
+	"Pulse Cannon"
+	"Pulse Turret"
 
 shipyard "Alien Ships"
 	"Pug Zibruka"

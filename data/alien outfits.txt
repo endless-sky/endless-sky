@@ -11,6 +11,7 @@
 outfit "Nanotech Battery"
 	category "Power"
 	cost 3000000
+	thumbnail "outfit/unknown"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 30000
@@ -18,6 +19,7 @@ outfit "Nanotech Battery"
 outfit "Antimatter Core"
 	category "Power"
 	cost 100000000
+	thumbnail "outfit/unknown"
 	"mass" 80
 	"outfit space" -80
 	"energy generation" 80
@@ -26,6 +28,7 @@ outfit "Antimatter Core"
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
+	thumbnail "outfit/unknown"
 	"mass" 60
 	"outfit space" -60
 	"weapon capacity" -60
@@ -47,6 +50,7 @@ outfit "Quarg Skylance"
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
+	thumbnail "outfit/unknown"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
@@ -61,14 +65,14 @@ outfit "Quarg Anti-Missile"
 
 outfit "Intrusion Countermeasures"
 	category "Hand to Hand"
-	thumbnail "outfit/security station"
+	thumbnail "outfit/unknown"
 	"capture defense" 60
 	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
-	thumbnail "outfit/medium graviton thruster"
+	thumbnail "outfit/unknown"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
@@ -80,6 +84,7 @@ outfit "Medium Graviton Thruster"
 outfit "Medium Graviton Steering"
 	category "Engines"
 	"cost" 16000000
+	thumbnail "outfit/unknown"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
@@ -90,6 +95,7 @@ outfit "Medium Graviton Steering"
 outfit "Quantum Shield Generator"
 	category "Systems"
 	cost 30000000
+	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -120
 	"shield generation" 10
@@ -108,7 +114,7 @@ outfit "Jump Drive"
 outfit "Korath Grab-Strike"
 	category "Turrets"
 	cost 820000
-	thumbnail "outfit/particle cannon"
+	thumbnail "outfit/unknown"
 	"mass" 52
 	"outfit space" -52
 	"weapon capacity" -52
@@ -139,7 +145,7 @@ outfit "Korath Grab-Strike"
 outfit "Korath Banisher"
 	category "Turrets"
 	cost 480000
-	thumbnail "outfit/heavy laser turret"
+	thumbnail "outfit/unknown"
 	"mass" 41
 	"outfit space" -41
 	"weapon capacity" -41
@@ -163,7 +169,7 @@ outfit "Korath Banisher"
 outfit "Korath Warder"
 	category "Turrets"
 	cost 250000
-	thumbnail "outfit/heavy anti-missile"
+	thumbnail "outfit/unknown"
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
@@ -182,7 +188,7 @@ outfit "Korath Warder"
 outfit "Korath Fire-Lance"
 	category "Guns"
 	cost 600000
-	thumbnail "outfit/heavy laser"
+	thumbnail "outfit/unknown"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
@@ -207,7 +213,7 @@ outfit "Korath Fire-Lance"
 outfit "Korath Tek'far Reactor"
 	category "Power"
 	cost 1200000
-	thumbnail "outfit/dwarf core"
+	thumbnail "outfit/unknown"
 	"mass" 25
 	"outfit space" -25
 	"energy generation" 3.9
@@ -217,7 +223,7 @@ outfit "Korath Tek'far Reactor"
 outfit "Korath Tek'nel Reactor"
 	category "Power"
 	cost 14000000
-	thumbnail "outfit/core"
+	thumbnail "outfit/unknown"
 	"mass" 140
 	"outfit space" -140
 	"energy generation" 27.1
@@ -228,7 +234,7 @@ outfit "Korath Tek'nel Reactor"
 outfit "Korath Shield Generator"
 	category "Systems"
 	cost 1700000
-	thumbnail "outfit/huge shield"
+	thumbnail "outfit/unknown"
 	"mass" 52
 	"outfit space" -52
 	"shield generation" 2.4
@@ -237,7 +243,7 @@ outfit "Korath Shield Generator"
 outfit "Korath Heat Shunt"
 	category "Systems"
 	cost 450000
-	thumbnail "outfit/liquid helium"
+	thumbnail "outfit/unknown"
 	"mass" 34
 	"outfit space" -34
 	"cooling" 78
@@ -247,7 +253,7 @@ outfit "Korath Heat Shunt"
 outfit "Korath Ark'torbal Thruster"
 	category "Engines"
 	"cost" 40000
-	thumbnail "outfit/tiny plasma thruster"
+	thumbnail "outfit/unknown"
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
@@ -262,7 +268,7 @@ outfit "Korath Ark'torbal Thruster"
 outfit "Korath Ark'parat Steering"
 	category "Engines"
 	"cost" 36000
-	thumbnail "outfit/tiny plasma steering"
+	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -274,7 +280,7 @@ outfit "Korath Ark'parat Steering"
 outfit "Korath Jak'torbal Thruster"
 	category "Engines"
 	"cost" 317000
-	thumbnail "outfit/large plasma thruster"
+	thumbnail "outfit/unknown"
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
@@ -289,7 +295,7 @@ outfit "Korath Jak'torbal Thruster"
 outfit "Korath Jak'parat Steering"
 	category "Engines"
 	"cost" 2740000
-	thumbnail "outfit/large plasma steering"
+	thumbnail "outfit/unknown"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67

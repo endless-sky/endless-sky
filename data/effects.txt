@@ -89,6 +89,16 @@ effect "plasma explosion"
 	"random spin" 4
 	"velocity scale" -.05
 
+effect "pulse impact"
+	sprite "effect/pulse impact"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 20
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 4
+	"velocity scale" -.1
+
 effect "proton impact"
 	sprite "effect/proton impact"
 		"no repeat"
