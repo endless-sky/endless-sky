@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Information.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
@@ -257,8 +258,9 @@ void MapShipyardPanel::DrawItems() const
 				const Sprite *sprite = ship->GetSprite().GetSprite();
 				if(sprite)
 				{
+					int swizzle = GameData::PlayerGovernment()->GetSwizzle();
 					double scale = min(.5, ICON_HEIGHT / sprite->Height());
-					SpriteShader::Draw(sprite, corner + iconOffset, scale);
+					SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 				}
 				
 				zones.emplace_back(corner + .5 * size, size, ship);
