@@ -167,13 +167,13 @@ bool MapDetailPanel::Click(int x, int y)
 					selectedPlanet = it.first;
 					if(y >= it.second + 50 && y < it.second + 70)
 					{
-						if(commodity == -1)
+						if(commodity == -1 && selectedPlanet->HasShipyard())
 							ListShips();
 						commodity = -1;
 					}
 					else if(y >= it.second + 70 && y < it.second + 90)
 					{
-						if(commodity == -2)
+						if(commodity == -2 && selectedPlanet->HasOutfitter())
 							ListOutfits();
 						commodity = -2;
 					}
