@@ -232,6 +232,7 @@ void MapOutfitterPanel::DrawItems() const
 	Color selectionColor(0., .2);
 	
 	Point corner = Screen::TopLeft() + Point(0, scroll);
+	double firstY = corner.Y();
 	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - 4. - font.Height());
 	Point priceOffset(ICON_HEIGHT, .5 * ICON_HEIGHT + 4.);
@@ -244,6 +245,8 @@ void MapOutfitterPanel::DrawItems() const
 		if(it == catalog.end())
 			continue;
 		
+		if(corner.Y() != firstY)
+			corner.Y() += 50.;
 		bigFont.Draw(category, corner + Point(5., 15.), textColor);
 		corner += Point(0., 40.);
 		
