@@ -406,6 +406,8 @@ outfitter "Special Outfits"
 	"Ion Cannon"
 	"Pulse Cannon"
 	"Pulse Turret"
+	"Hai Tracker"
+	"Hai Tracker Pod"
 
 shipyard "Alien Ships"
 	"Pug Zibruka"

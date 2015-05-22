@@ -625,6 +625,49 @@ outfit "Javelin Pod"
 		"missile strength" 2
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
 
+outfit "Hai Tracker"
+	category "Ammunition"
+	cost 1000
+	thumbnail "outfit/unknown"
+	"tracker capacity" -1
+	description "This is ammunition for a Tracker Pod."
+
+outfit "Hai Tracker Pod"
+	category "Secondary Weapons"
+	cost 150000
+	thumbnail "outfit/unknown"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"gun ports" -1
+	"tracker capacity" 56
+	weapon
+		sprite "projectile/tracker"
+			"frame rate" 10
+			"random start frame"
+		sound "torpedo"
+		ammo "Hai Tracker"
+		icon "icon/tracker"
+		"fire effect" "tracker fire"
+		"hit effect" "tracker impact"
+		"hit effect" "tracker cloud" 3
+		"die effect" "tracker impact"
+		"inaccuracy" 20
+		"velocity" 14
+		"lifetime" 600
+		"reload" 60
+		"firing energy" 45
+		"firing heat" 5
+		"acceleration" .7
+		"drag" .05
+		"turn" 1.2
+		"homing" 4
+		"shield damage" 200
+		"hull damage" 160
+		"hit force" 50
+		"missile strength" 16
+	description "Trackers are a fast, powerful, and accurate homing weapon. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
+
 outfit "Torpedo"
 	category "Ammunition"
 	cost 1400
