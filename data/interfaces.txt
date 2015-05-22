@@ -794,6 +794,83 @@ interface "mission"
 	button d 70 -10
 		size 80 30
 
+interface "map buttons"
+	position bottom right
+	sprite "ui/dialog cancel" 0 0
+	sprite "ui/dialog cancel" -80 0
+	sprite "ui/wide button" -160 0
+	sprite "ui/wide button" -260 0
+	
+	if "!is ports"
+	label "Ports" -45 -33
+		size 14
+		color bright
+		align center
+	endif
+	if "is ports"
+	label "Ports" -45 -33
+		size 14
+		color dim
+		align center
+	endif
+	button p -10 -10
+		size 70 30
+	
+	if "!is missions"
+	label "Missions" -125 -33
+		size 14
+		color bright
+		align center
+	endif
+	if "is missions"
+	label "Missions" -125 -33
+		size 14
+		color dim
+		align center
+	endif
+	button i -90 -10
+		size 70 30
+	
+	if "!is outfitters"
+	label "Outfitters" -215 -33
+		size 14
+		color bright
+		align center
+	endif
+	if "is outfitters"
+	label "Outfitters" -215 -33
+		size 14
+		color dim
+		align center
+	endif
+	button o -170 -10
+		size 90 30
+	
+	if "!is shipyards"
+	label "Shipyards" -315 -33
+		size 14
+		color bright
+		align center
+	endif
+	if "is shipyards"
+	label "Shipyards" -315 -33
+		size 14
+		color dim
+		align center
+	endif
+	button s -270 -10
+		size 90 30
+	
+	if "!is missions"
+	sprite "ui/dialog cancel" -370 0
+	label "Done" -415 -33
+		size 14
+		color bright
+		align center
+	endif
+	button d -380 -10
+		size 70 30
+
 interface "info panel"
 	sprite "ui/info panel" 0 -5
 	if "four buttons"

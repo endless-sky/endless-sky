@@ -24,6 +24,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -135,15 +137,11 @@ void MissionPanel::Draw() const
 		DotShader::Draw(acceptedIt->Destination()->GetSystem()->Position() + center,
 			22., 20.5, currentColor);
 	
-	// Draw the "Commodities" button.
-	const Font &font = FontSet::Get(14);
-	const Sprite *buttonSprite = SpriteSet::Get("ui/dialog cancel");
-	Point buttonCenter(Screen::Right() - 40, Screen::Bottom() - 25);
-	SpriteShader::Draw(buttonSprite, buttonCenter);
-	static const string PORTS = "Ports";
-	buttonCenter.X() -= .5 * font.Width(PORTS);
-	buttonCenter.Y() -= .5 * font.Height();
-	font.Draw(PORTS, buttonCenter, *GameData::Colors().Get("bright"));
+	// Draw the buttons to switch to other map modes.
+	Information info;
+	info.SetCondition("is missions");
+	const Interface *interface = GameData::Interfaces().Get("map buttons");
+	interface->Draw(info);
 }
 
 
@@ -171,6 +169,16 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
+	}
+	else if(key == 'o')
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapOutfitterPanel(*this));
+	}
+	else if(key == 's')
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapShipyardPanel(*this));
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
 	{
@@ -247,11 +255,18 @@ bool MissionPanel::Click(int x, int y)
 	dragSide = 0;
 	
 	// Handle clicks on the interface buttons.
-	const Interface *interface = GameData::Interfaces().Get("mission");
-	if(interface)
 	{
+		const Interface *interface = GameData::Interfaces().Get("mission");
 		char key = interface->OnClick(Point(x, y));
 		if(key)
+			return DoKey(key);
+	}
+	{
+		const Interface *interface = GameData::Interfaces().Get("map buttons");
+		char key = interface->OnClick(Point(x, y));
+		// In the mission panel, the "Done" button in the button bar should be
+		// ignored (and is not shown).
+		if(key && key != 'd')
 			return DoKey(key);
 	}
 	

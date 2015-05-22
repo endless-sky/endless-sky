@@ -62,6 +62,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 
 
 
+void MapPanel::SetCommodity(int index)
+{
+	commodity = index;
+}
+
+
+
 void MapPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -119,6 +126,13 @@ bool MapPanel::Drag(int dx, int dy)
 {
 	center += Point(dx, dy);
 	return true;
+}
+
+
+
+double MapPanel::SystemValue(const System *system) const
+{
+	return 0;
 }
 
 
@@ -257,7 +271,7 @@ void MapPanel::DrawSystems() const
 		Color color(.2, .2);
 		if(system.IsInhabited() && player.HasVisited(&system))
 		{
-			if(commodity > -3)
+			if(commodity >= -2 || commodity == -5)
 			{
 				double value = 0.;
 				if(commodity >= 0)
@@ -282,6 +296,9 @@ void MapPanel::DrawSystems() const
 							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
+				else
+					value = SystemValue(&system);
+				
 				// Color the systems with a gradient from blue to cyan to gold.
 				if(value < 0.f)
 					color = Color(

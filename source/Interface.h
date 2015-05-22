@@ -31,7 +31,7 @@ class Interface {
 public:
 	void Load(const DataNode &node);
 	
-	void Draw(const Information &info) const;
+	void Draw(const Information &info, const Point &offset = Point()) const;
 	
 	char OnClick(const Point &point) const;
 	

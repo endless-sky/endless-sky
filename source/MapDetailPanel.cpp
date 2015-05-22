@@ -20,6 +20,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
+#include "Interface.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "MissionPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -76,6 +80,16 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		GetUI()->Pop(this);
 		GetUI()->Push(new MissionPanel(*this));
 	}
+	else if(key == 'o')
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapOutfitterPanel(*this));
+	}
+	else if(key == 's')
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapShipyardPanel(*this));
+	}
 	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
@@ -126,6 +140,14 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 bool MapDetailPanel::Click(int x, int y)
 {
+	{
+		const Interface *interface = GameData::Interfaces().Get("map buttons");
+		char key = interface->OnClick(Point(x + 250, y));
+		// In the mission panel, the "Done" button in the button bar should be
+		// ignored (and is not shown).
+		if(key)
+			return DoKey(key);
+	}
 	if(x < Screen::Left() + 160)
 	{
 		if(y >= tradeY && y < tradeY + 200)
@@ -309,22 +331,11 @@ void MapDetailPanel::DrawInfo() const
 		text.Draw(Point(Screen::Right() - 500, Screen::Top() + 20), closeColor);
 	}
 	
-	// Draw the "Done" button.
-	const Sprite *buttonSprite = SpriteSet::Get("ui/dialog cancel");
-	Point buttonCenter(Screen::Right() - 300, Screen::Bottom() - 25);
-	SpriteShader::Draw(buttonSprite, buttonCenter);
-	static const string DONE = "Done";
-	buttonCenter.X() -= .5 * font.Width(DONE);
-	buttonCenter.Y() -= .5 * font.Height();
-	font.Draw(DONE, buttonCenter, *GameData::Colors().Get("bright"));
-	
-	// Draw the "Missions" button.
-	buttonCenter = Point(Screen::Right() - 380, Screen::Bottom() - 25);
-	SpriteShader::Draw(buttonSprite, buttonCenter);
-	static const string MISSIONS = "Missions";
-	buttonCenter.X() -= .5 * font.Width(MISSIONS);
-	buttonCenter.Y() -= .5 * font.Height();
-	font.Draw(MISSIONS, buttonCenter, *GameData::Colors().Get("bright"));
+	// Draw the buttons.
+	Information info;
+	info.SetCondition("is ports");
+	const Interface *interface = GameData::Interfaces().Get("map buttons");
+	interface->Draw(info, Point(-250., 0.));
 }
 
 

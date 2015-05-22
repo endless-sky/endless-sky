@@ -164,9 +164,10 @@ void Interface::Load(const DataNode &node)
 
 
 
-void Interface::Draw(const Information &info) const
+void Interface::Draw(const Information &info, const Point &offset) const
 {
 	Point corner(Screen::Width() * position.X(), Screen::Height() * position.Y());
+	corner += offset;
 	
 	for(const SpriteSpec &sprite : sprites)
 	{
