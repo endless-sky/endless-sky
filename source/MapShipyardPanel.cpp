@@ -242,7 +242,7 @@ void MapShipyardPanel::DrawItems() const
 	{
 		auto it = catalog.find(category);
 		if(it == catalog.end())
-			return;
+			continue;
 		
 		bigFont.Draw(category, corner + Point(5., 15.), textColor);
 		corner += Point(0., 40.);

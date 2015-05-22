@@ -154,7 +154,7 @@ bool MapOutfitterPanel::Hover(int x, int y)
 bool MapOutfitterPanel::Drag(int dx, int dy)
 {
 	if(isDragging)
-		scroll = max(-maxScroll, min(0, scroll + dy));
+		scroll = min(0, max(-maxScroll, scroll + dy));
 	else
 		return MapPanel::Drag(dx, dy);
 	
@@ -166,7 +166,7 @@ bool MapOutfitterPanel::Drag(int dx, int dy)
 bool MapOutfitterPanel::Scroll(int dx, int dy)
 {
 	if(isDragging)
-		scroll = max(-maxScroll, min(0, scroll + 50 * dy));
+		scroll = min(0, max(-maxScroll, scroll + 50 * dy));
 	else
 		return MapPanel::Scroll(dx, dy);
 	
@@ -242,7 +242,7 @@ void MapOutfitterPanel::DrawItems() const
 	{
 		auto it = catalog.find(category);
 		if(it == catalog.end())
-			return;
+			continue;
 		
 		bigFont.Draw(category, corner + Point(5., 15.), textColor);
 		corner += Point(0., 40.);
