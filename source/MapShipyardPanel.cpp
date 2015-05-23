@@ -51,6 +51,7 @@ namespace {
 		"Drone"
 	};
 	static const double ICON_HEIGHT = 90.;
+	static const double PAD = 8.;
 	static const int WIDTH = 270;
 }
 
@@ -228,15 +229,17 @@ void MapShipyardPanel::DrawItems() const
 {
 	const Font &bigFont = FontSet::Get(18);
 	const Font &font = FontSet::Get(14);
-	Color textColor(.6, .6);
-	Color selectionColor(0., .2);
+	Color textColor = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	Color selectionColor(0., .3);
 	
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	double firstY = corner.Y();
 	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - 4. - font.Height());
-	Point priceOffset(ICON_HEIGHT, .5 * ICON_HEIGHT + 4.);
-	Point size(WIDTH, ICON_HEIGHT);
+	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - PAD - 1.5 * font.Height());
+	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + PAD);
+	Point shieldsOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + PAD);
+	Point blockSize(WIDTH, ICON_HEIGHT);
 	
 	zones.clear();
 	for(const string &category : CATEGORIES)
@@ -247,7 +250,7 @@ void MapShipyardPanel::DrawItems() const
 		
 		if(corner.Y() != firstY)
 			corner.Y() += 50.;
-		bigFont.Draw(category, corner + Point(5., 15.), textColor);
+		bigFont.Draw(category, corner + Point(5., 15.), bright);
 		corner += Point(0., 40.);
 		
 		for(const string &name : it->second)
@@ -256,7 +259,7 @@ void MapShipyardPanel::DrawItems() const
 			{
 				const Ship *ship = GameData::Ships().Get(name);
 				if(ship == selected)
-					FillShader::Fill(corner + .5 * size, size, selectionColor);
+					FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 				
 				const Sprite *sprite = ship->GetSprite().GetSprite();
 				if(sprite)
@@ -266,11 +269,16 @@ void MapShipyardPanel::DrawItems() const
 					SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 				}
 				
-				zones.emplace_back(corner + .5 * size, size, ship);
+				zones.emplace_back(corner + .5 * blockSize, blockSize, ship);
 				
 				font.Draw(name, corner + nameOffset, textColor);
+				
 				string price = Format::Number(ship->Cost()) + " credits";
 				font.Draw(price, corner + priceOffset, textColor);
+				
+				string shields = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
+				shields += Format::Number(ship->Attributes().Get("hull")) + " hull";
+				font.Draw(shields, corner + shieldsOffset, textColor);
 			}
 			corner += Point(0., ICON_HEIGHT);
 		}

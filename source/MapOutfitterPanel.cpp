@@ -36,6 +36,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <cmath>
+
 using namespace std;
 
 namespace {
@@ -51,6 +53,7 @@ namespace {
 		"Special"
 	};
 	static const double ICON_HEIGHT = 90.;
+	static const double PAD = 8.;
 	static const int WIDTH = 270;
 }
 
@@ -228,15 +231,17 @@ void MapOutfitterPanel::DrawItems() const
 {
 	const Font &bigFont = FontSet::Get(18);
 	const Font &font = FontSet::Get(14);
-	Color textColor(.6, .6);
-	Color selectionColor(0., .2);
+	Color textColor = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	Color selectionColor(0., .3);
 	
 	Point corner = Screen::TopLeft() + Point(0, scroll);
 	double firstY = corner.Y();
 	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
-	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - 4. - font.Height());
-	Point priceOffset(ICON_HEIGHT, .5 * ICON_HEIGHT + 4.);
-	Point size(WIDTH, ICON_HEIGHT);
+	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - PAD - 1.5 * font.Height());
+	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + PAD);
+	Point sizeOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + PAD);
+	Point blockSize(WIDTH, ICON_HEIGHT);
 	
 	zones.clear();
 	for(const string &category : CATEGORIES)
@@ -247,7 +252,7 @@ void MapOutfitterPanel::DrawItems() const
 		
 		if(corner.Y() != firstY)
 			corner.Y() += 50.;
-		bigFont.Draw(category, corner + Point(5., 15.), textColor);
+		bigFont.Draw(category, corner + Point(5., 15.), bright);
 		corner += Point(0., 40.);
 		
 		for(const string &name : it->second)
@@ -256,7 +261,7 @@ void MapOutfitterPanel::DrawItems() const
 			{
 				const Outfit *outfit = GameData::Outfits().Get(name);
 				if(outfit == selected)
-					FillShader::Fill(corner + .5 * size, size, selectionColor);
+					FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 				
 				const Sprite *sprite = outfit->Thumbnail();
 				if(sprite)
@@ -265,11 +270,23 @@ void MapOutfitterPanel::DrawItems() const
 					SpriteShader::Draw(sprite, corner + iconOffset, scale);
 				}
 				
-				zones.emplace_back(corner + .5 * size, size, outfit);
+				zones.emplace_back(corner + .5 * blockSize, blockSize, outfit);
 				
 				font.Draw(name, corner + nameOffset, textColor);
+				
 				string price = Format::Number(outfit->Cost()) + " credits";
 				font.Draw(price, corner + priceOffset, textColor);
+				
+				double space = -outfit->Get("outfit space");
+				string size = Format::Number(space);
+				size += (abs(space) == 1. ? " ton" : " tons");
+				if(space && -outfit->Get("weapon capacity") == space)
+					size += " of weapon space";
+				else if(space && -outfit->Get("engine capacity") == space)
+					size += " of engine space";
+				else
+					size += " of outfit space";
+				font.Draw(size, corner + sizeOffset, textColor);
 			}
 			corner += Point(0., ICON_HEIGHT);
 		}
