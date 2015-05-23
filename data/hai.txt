@@ -22,17 +22,28 @@ fleet "Small Hai"
 	cargo 3
 	personality
 		disables
+	variant 3
+		"Lightning Bug" 2
+		"Aphid" 3
 	variant
-		"Lightning Bug" 4
+		"Lightning Bug"
+		"Aphid" 5
+	variant 2
+		"Lightning Bug (Pulse)" 2
+		"Aphid (Anti-Missile)" 3
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Aphid (Anti-Missile)" 5
 	variant
 		"Lightning Bug" 3
-	variant
-		"Lightning Bug (Pulse)" 4
 	variant
 		"Lightning Bug (Pulse)" 3
 	variant
 		"Lightning Bug (Pulse)"
 		"Lightning Bug" 2
+	variant
+		"Lightning Bug"
+		"Lightning Bug (Pulse)" 2
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
@@ -43,7 +54,7 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 180
+		"mass" 220
 		"drag" 3.8
 		"heat dissipation" .85
 		"fuel capacity" 600
@@ -52,10 +63,10 @@ ship "Lightning Bug"
 		"weapon capacity" 87
 		"engine capacity" 93
 		weapon
-			"blast radius" 72
-			"shield damage" 720
-			"hull damage" 360
-			"hit force" 1080
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
 	outfits
 		"Ion Cannon"
 		"Anti-Missile Turret" 2
@@ -74,7 +85,7 @@ ship "Lightning Bug"
 	explode "tiny explosion" 20
 	explode "small explosion" 30
 	explode "medium explosion" 20
-	description "The Lightning Bug is a small defensive ship, designed to carry a single ion cannon."
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
@@ -86,6 +97,55 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"S-270 Regenerator"
 		"Cooling Ducts"
 		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+ship "Aphid"
+	sprite "ship/hai aphid"
+	attributes
+		category "Light Freighter"
+		"cost" 3900000
+		"shields" 1700
+		"hull" 1400
+		"required crew" 1
+		"bunks" 5
+		"mass" 100
+		"drag" 1.9
+		"heat dissipation" .90
+		"fuel capacity" 400
+		"cargo space" 51
+		"outfit space" 185
+		"weapon capacity" 37
+		"engine capacity" 48
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Pulse Turret"
+		"Dwarf Core"
+		"LP036a Battery Pack"
+		"S-270 Regenerator"
+		"Cooling Ducts"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
+	engine -8 40
+	engine 8 40
+	turret 0 24
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+	description "The Aphid is a light freighter designed by the Hai. It has only minimal armament."
+
+ship "Aphid" "Aphid (Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret"
+		"Dwarf Core"
+		"LP036a Battery Pack"
+		"S-270 Regenerator"
+		"Cooling Ducts"
+		"A120 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 
