@@ -108,6 +108,49 @@ fleet "Large Hai"
 		"Shield Beetle (Tracker)"
 		"Water Bug" 3
 
+fleet "Small Unfettered"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 3
+	personality
+		disables
+	variant 3
+		"Lightning Bug (Pulse)" 2
+	variant 3
+		"Lightning Bug" 2
+	variant
+		"Lightning Bug"
+	variant
+		"Lightning Bug (Pulse)"
+
+fleet "Large Unfettered"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 3
+	personality
+		disables
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
 	attributes
@@ -230,10 +273,10 @@ ship "Water Bug"
 		"weapon capacity" 145
 		"engine capacity" 64
 		weapon
-			"blast radius" 84
-			"shield damage" 840
-			"hull damage" 420
-			"hit force" 1260
+			"blast radius" 124
+			"shield damage" 1240
+			"hull damage" 620
+			"hit force" 1860
 	outfits
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
@@ -276,7 +319,7 @@ ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	attributes
 		category "Heavy Warship"
-		"cost" 8900000
+		"cost" 14900000
 		"shields" 32000
 		"hull" 9800
 		"required crew" 47
@@ -290,10 +333,10 @@ ship "Shield Beetle"
 		"weapon capacity" 333
 		"engine capacity" 150
 		weapon
-			"blast radius" 84
-			"shield damage" 840
-			"hull damage" 420
-			"hit force" 1260
+			"blast radius" 400
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 3000
 	outfits
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
