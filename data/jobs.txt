@@ -10,9 +10,10 @@
 
 mission "Escort (Small, Northern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 70
 		"combat rating" > 5
@@ -42,9 +43,10 @@ mission "Escort (Small, Northern)"
 
 mission "Escort (Medium, Northern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 40
 		"combat rating" > 20
@@ -78,9 +80,10 @@ mission "Escort (Medium, Northern)"
 
 mission "Escort (Large, Northern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 50
 		"combat rating" > 60
@@ -110,9 +113,10 @@ mission "Escort (Large, Northern)"
 
 mission "Escort (Extra Large, Northern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 20
 		"combat rating" > 100
@@ -147,9 +151,10 @@ mission "Escort (Extra Large, Northern)"
 
 mission "Escort (Small, Core)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 70
 		"combat rating" > 5
@@ -179,9 +184,10 @@ mission "Escort (Small, Core)"
 
 mission "Escort (Medium, Core)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 40
 		"combat rating" > 20
@@ -215,9 +221,10 @@ mission "Escort (Medium, Core)"
 
 mission "Escort (Large, Core)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 50
 		"combat rating" > 60
@@ -247,9 +254,10 @@ mission "Escort (Large, Core)"
 
 mission "Escort (Extra Large, Core)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 20
 		"combat rating" > 100
@@ -284,9 +292,10 @@ mission "Escort (Extra Large, Core)"
 
 mission "Escort (Small, Southern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 70
 		"combat rating" > 5
@@ -316,9 +325,10 @@ mission "Escort (Small, Southern)"
 
 mission "Escort (Medium, Southern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 40
 		"combat rating" > 20
@@ -352,9 +362,10 @@ mission "Escort (Medium, Southern)"
 
 mission "Escort (Large, Southern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 50
 		"combat rating" > 60
@@ -384,9 +395,10 @@ mission "Escort (Large, Southern)"
 
 mission "Escort (Extra Large, Southern)"
 	name "Escort to <planet>"
-	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination>."
+	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <deadline>."
 	repeat
 	job
+	deadline 10
 	to offer
 		random < 20
 		"combat rating" > 100
