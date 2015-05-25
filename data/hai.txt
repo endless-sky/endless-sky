@@ -23,6 +23,19 @@ fleet "Small Hai"
 	personality
 		disables
 	variant 3
+		"Water Bug"
+		"Lightning Bug (Pulse)" 2
+	variant 3
+		"Water Bug (Pulse)"
+		"Lightning Bug" 2
+	variant
+		"Water Bug"
+		"Water Bug (Pulse)"
+		"Lightning Bug"
+	variant
+		"Water Bug" 2
+		"Lightning Bug (Pulse)"
+	variant 3
 		"Lightning Bug" 2
 		"Aphid" 3
 	variant
@@ -49,7 +62,7 @@ ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
 	attributes
 		category "Light Warship"
-		"cost" 3900000
+		"cost" 3200000
 		"shields" 6700
 		"hull" 1700
 		"required crew" 4
@@ -104,7 +117,7 @@ ship "Aphid"
 	sprite "ship/hai aphid"
 	attributes
 		category "Light Freighter"
-		"cost" 3900000
+		"cost" 570000
 		"shields" 1700
 		"hull" 1400
 		"required crew" 1
@@ -146,6 +159,66 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		"S-270 Regenerator"
 		"Cooling Ducts"
 		"A120 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+
+ship "Water Bug"
+	sprite "ship/hai water bug"
+	attributes
+		category "Heavy Freighter"
+		"cost" 6500000
+		"shields" 7900
+		"hull" 4500
+		"required crew" 5
+		"bunks" 29
+		"mass" 270
+		"drag" 5.9
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 197
+		"outfit space" 368
+		"weapon capacity" 145
+		"engine capacity" 64
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret"
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"S-970 Regenerator"
+		"Cooling Ducts"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	engine -50 33
+	engine 50 33
+	gun -24 -53 "Hai Tracker Pod"
+	gun 24 -53 "Hai Tracker Pod"
+	turret 0 -10 "Pulse Turret"
+	turret -17 17 "Anti-Missile Turret"
+	turret 17 17 "Anti-Missile Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 40
+	explode "medium explosion" 30
+	explode "big explosion" 10
+	description "The Water Bug is the primary freight ship used by the Hai."
+
+ship "Water Bug" "Water Bug (Pulse)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret" 3
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"S-970 Regenerator"
+		"Cooling Ducts"
+		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 
