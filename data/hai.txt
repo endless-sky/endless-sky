@@ -10,11 +10,24 @@
 
 government "Hai"
 	swizzle 0
+	color .69 .33 .82
 	
 	"player reputation" 0
+	"attitude toward"
+		"Hai (Unfettered)" -.5
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
+
+government "Hai (Unfettered)"
+	swizzle 4
+	color .84 .42 .81
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Hai" -.1
+	"bribe" .02
+	"fine" 0
 
 fleet "Small Hai"
 	government "Hai"
@@ -57,6 +70,43 @@ fleet "Small Hai"
 	variant
 		"Lightning Bug"
 		"Lightning Bug (Pulse)" 2
+
+fleet "Large Hai"
+	government "Hai"
+	names "hai"
+	cargo 3
+	personality
+		disables
+	variant 2
+		"Shield Beetle"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+		"Aphid" 4
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+		"Aphid (Anti-Missile)" 4
+	variant 3
+		"Shield Beetle"
+		"Lightning Bug (Pulse)"
+		"Water Bug"
+		"Water Bug (Pulse)"
+	variant 3
+		"Shield Beetle"
+		"Water Bug"
+		"Water Bug (Pulse)"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+		"Water Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Water Bug" 3
 
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
@@ -220,6 +270,74 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Cooling Ducts"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Hyperdrive"
+
+ship "Shield Beetle"
+	sprite "ship/hai shield beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 8900000
+		"shields" 32000
+		"hull" 9800
+		"required crew" 47
+		"bunks" 95
+		"mass" 650
+		"drag" 8.8
+		"heat dissipation" .60
+		"fuel capacity" 500
+		"cargo space" 142
+		"outfit space" 798
+		"weapon capacity" 333
+		"engine capacity" 150
+		weapon
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Heavy Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"S-970 Regenerator"
+		"Cooling Ducts" 4
+		"A370 Atomic Thruster"
+		"A865 Atomic Steering"
+		"Hyperdrive"
+	engine -44 133
+	engine 44 133
+	gun -22 -102 "Ion Cannon"
+	gun 22 -102 "Ion Cannon"
+	gun -49 -38 "Ion Cannon"
+	gun 49 -38 "Ion Cannon"
+	gun -34 -68 "Hai Tracker Pod"
+	gun 34 -68 "Hai Tracker Pod"
+	gun -61 -14 "Hai Tracker Pod"
+	gun 61 -14 "Hai Tracker Pod"
+	turret -57 75 "Heavy Anti-Missile Turret"
+	turret 57 75 "Heavy Anti-Missile Turret"
+	turret -39 48
+	turret 39 48
+	explode "tiny explosion" 20
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
+
+ship "Shield Beetle" "Shield Beetle (Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 448
+		"Pulse Turret" 4
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"S-970 Regenerator"
+		"Cooling Ducts" 4
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
 		"Hyperdrive"
 
 phrase "hai"
