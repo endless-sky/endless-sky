@@ -4139,8 +4139,13 @@ system Eber
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
-	habitable nan
+	habitable 486.68
 	link "Wah Yoot"
+	asteroids "small rock" 1 3.276
+	asteroids "medium rock" 1 1.7472
+	asteroids "large rock" 3 3.0576
+	asteroids "medium metal" 3 3.9858
+	asteroids "large metal" 1 3.549
 	trade Clothing 308
 	trade Electronics 795
 	trade Equipment 550
@@ -4154,6 +4159,45 @@ system "Ehma Ti"
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
 	fleet "Large Hai" 2800
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava5
+		distance 140.21
+		period 30.1028
+	object Firelode
+		sprite planet/rock4
+		distance 481.46
+		period 191.548
+	object
+		sprite planet/gas17
+		distance 1361.82
+		period 911.209
+		object
+			sprite planet/callisto
+			distance 254
+			period 17.2951
+		object
+			sprite planet/lava0
+			distance 365
+			period 29.7929
+		object
+			sprite planet/dust4
+			distance 488
+			period 46.0578
+	object
+		sprite planet/gas1
+		distance 2334.98
+		period 2045.8
+		object
+			sprite planet/rhea
+			distance 263
+			period 17.047
+		object
+			sprite planet/ice0
+			distance 356
+			period 26.8467
 
 system Elnath
 	pos -288 -77
@@ -5572,8 +5616,14 @@ system "Heia Due"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
-	habitable nan
+	habitable 625
 	link "Wah Yoot"
+	asteroids "small rock" 18 5.9136
+	asteroids "medium rock" 65 5.4656
+	asteroids "large rock" 26 3.8976
+	asteroids "small metal" 34 5.6896
+	asteroids "medium metal" 78 4.4352
+	asteroids "large metal" 5 5.6448
 	trade Clothing 438
 	trade Electronics 605
 	trade Equipment 580
@@ -5587,6 +5637,36 @@ system "Hi Yahr"
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
 	fleet "Large Hai" 2800
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock19
+		distance 219.25
+		period 51.9433
+	object
+		sprite planet/mercury
+		distance 420.26
+		period 137.847
+	object Warfeed
+		sprite planet/ocean2
+		distance 625.02
+		period 250.012
+		offset 47.6623
+	object
+		sprite planet/gas15
+		distance 1187.26
+		period 654.544
+		offset 19.1907
+	object
+		sprite planet/rock18
+		distance 1939.51
+		period 1366.65
+		offset 5.57518
+		object
+			sprite planet/rock7
+			distance 156
+			period 24.4934
 
 system Hintar
 	pos -422 311
@@ -12003,10 +12083,16 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
-	habitable nan
+	habitable 1080
 	link "Wah Ki"
 	link "Ehma Ti"
 	link "Hi Yahr"
+	asteroids "small rock" 44 2.0592
+	asteroids "medium rock" 26 3.4452
+	asteroids "large rock" 9 2.6532
+	asteroids "small metal" 1 4.4352
+	asteroids "medium metal" 10 2.2968
+	asteroids "large metal" 2 5.6628
 	trade Clothing 418
 	trade Electronics 695
 	trade Equipment 470
@@ -12020,6 +12106,41 @@ system "Wah Yoot"
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
 	fleet "Large Hai" 800
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/cloud3
+		distance 163.44
+		period 25.4323
+	object
+		sprite planet/desert4
+		distance 474.85
+		period 125.946
+	object
+		sprite planet/desert2
+		distance 852.94
+		period 303.198
+		object
+			sprite planet/ice0
+			distance 152
+			period 20.989
+	object Darkcloak
+		sprite planet/cloud4
+		distance 1297.43
+		period 568.819
+	object
+		sprite planet/gas7
+		distance 2677.43
+		period 1686.26
+		object
+			sprite planet/rock0
+			distance 225
+			period 12.0062
+		object
+			sprite planet/dust3
+			distance 361
+			period 24.4001
 
 system Waypoint
 	pos -184 -515
@@ -13118,6 +13239,16 @@ planet Dancer
 	outfitter "Basic Outfits"
 	security 0.05
 
+planet Darkcloak
+	attributes unfettered
+	landscape land/water6
+	description `Darkcloak is a world that is almost always obscured by a thick layer of clouds, making it difficult to produce food here.`
+	description `	Although the Hai tend to be an easygoing and nonviolent species, there are always a few in each generation for yearn for excitement, warfare, and conquest. These "Unfettered" Hai have built a major military base here, and they launch raids from here on convoys traveling through the nearby systems.`
+	spaceport `The occupants of this spaceport are not visibly different from the Hai you have encountered elsewhere, but they seem much more tense, angry, and hostile. As the only human here, you are being watched very closely, but no one threatens you directly.`
+	spaceport `	It is likely that most of the goods available for trade here were stolen from one of the nearby Hai systems.`
+	shipyard "Hai Basics"
+	outfitter "Hai Basics"
+
 planet Darkmetal
 	attributes hai
 	landscape land/canyon6
@@ -13258,6 +13389,12 @@ planet "Fenrir Station"
 	spaceport `This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you.`
 	bribe 0.05
 	security 0.8
+
+planet Firelode
+	attributes unfettered
+	landscape land/canyon5
+	description `The Unfettered are operating several large strip mines here to collect uranium and plutonium to fuel the generators in their warships. Older, abandoned mining pits are scattered throughout the planet's surface. As a result of the mining activity, the groundwater here has become badly contaminated.`
+	spaceport `The spaceport is in the middle of a large city with typical Hai architecture: raw metal and chamfered corners. However, much of the city appears to have been ruined long ago, probably in a battle. The ruins have not been rebuilt, but instead it appears that most of the ruined buildings have been torn down for scrap metal. Several of the spaceport hangars are in bad repair, as well.`
 
 planet Flood
 	attributes rim tourism farming
@@ -14529,6 +14666,12 @@ planet Vinci
 	description `Many centuries ago, some of the first settlers on Vinci included a small group of electrical engineers who formed a revolutionary new company for designing computers and microchips. Today, Vinci is the foremost manufacturer of CPUs in all of human space, and their processors are found in everything from navigational computers to video phones to intelligent toasters. Because this world is home to so many cleanroom fabrication plants, pollution is very tightly controlled.`
 	spaceport `The spaceport is so full of high-fidelity holographic displays that you have trouble at times telling where the virtual reality ends and the physical reality begins; what looks like a paper poster on the wall will suddenly change to a different picture every minute, and the department store mannequins follow you with their eyes. You feel like you are trapped in someone's drug-assisted vision of the future.`
 	security 0.6
+
+planet Warfeed
+	attributes unfettered
+	landscape land/sea5
+	description `Warfeed is mostly covered in oceans, and much of its land area devoted to agriculture. Most of the fields are tilled and harvested by robots, but there are also many scattered homesteads of subsistence farmers, who survive with the aid of little or no technology. Aside from a few fishing villages, the oceans here are unexploited.`
+	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
 
 planet Watcher
 	attributes "dirt belt" research
