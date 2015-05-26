@@ -13193,7 +13193,7 @@ planet Cloudfire
 	attributes hai
 	landscape land/sky3
 	description `Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
-	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accomodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
+	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 	shipyard "Hai Basics"
 	outfitter "Hai Intermediate"
 
@@ -13372,7 +13372,7 @@ planet Farwater
 	attributes hai
 	landscape land/beach2
 	description `In human space, this system would probably have been left unsettled, because its sun produces too much ultraviolet radiation for animals to survive for long on its surface. But the Hai have instead turned this warm ocean world into a massive incubator for photosynthetic algae and bacteria. Each species is genetically engineered to produce one or more medical or nutritional compounds that they can make use of. Barges travel slowly through the oceans harvesting these microorganisms out of the water and separating out the chemical compounds they provide.`
-	spaceport `The spaceport appears to have been built by expanding a natural set of caves in a cliff facing the ocean. At high tide the lower caves flood, allowing barges to dock and unload the compounds they have harvested. Tunnels lead deep into the rock to rooms that have been carved out as warehouse space and living quarters. The rock remains somewhat cool, even at midday, but the air is still oppresively humid.`
+	spaceport `The spaceport appears to have been built by expanding a natural set of caves in a cliff facing the ocean. At high tide the lower caves flood, allowing barges to dock and unload the compounds they have harvested. Tunnels lead deep into the rock to rooms that have been carved out as warehouse space and living quarters. The rock remains somewhat cool, even at midday, but the air is still oppressively humid.`
 
 planet Featherweight
 	attributes north research frontier
@@ -13463,8 +13463,8 @@ planet Freedom
 planet Frostmark
 	attributes hai
 	landscape land/mountain3
-	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extemely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
-	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millenia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
+	description `There are several large Hai cities near the equator on Frostmark, but much of the planet's surface is cold and uninhabited except by herds of extremely large, six-legged herbivores, and other equally large and frightening animals that prey on them.`
+	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
 
 planet Furnace
 	attributes core military
@@ -13521,7 +13521,7 @@ planet Giverstone
 	attributes hai
 	landscape land/valley5
 	description `On this mining world, the Hai are using boring machines to drill tunnels straight into the hearts of the mountains. Each tunnel twists and turns to intersect the regions of rock with the highest concentrations of valuable ore. Most of the tunnels also join up with other tunnels that have been dug through the same mountains, so that there are multiple exits from any given point in the mines.`
-	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enourmous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
+	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enormous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Intermediate"
 
@@ -13561,7 +13561,7 @@ planet Greenbloom
 	attributes hai
 	landscape land/water3
 	description `The islands and continents on this planet are almost entirely covered in marshes, rainforests, and (near the poles) dense coniferous forests, and the oceans appear green from above due to thick algae blooms and floating kelp mats. The overabundance of flora is caused by Greenbloom's major volcanoes, which constantly spew carbon dioxide into the atmosphere.`
-	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accomodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
+	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
 
 planet Greenrock
 	attributes pirate
@@ -13584,7 +13584,7 @@ planet Greenrock
 planet Greenwater
 	attributes hai
 	landscape land/myrabella2
-	description `Greenwater is one of the few worlds in Hai space that is home to a sizeable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
+	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
 	shipyard "Hai Basics"
 	outfitter "Hai Basics"
@@ -14418,7 +14418,7 @@ planet Skyfarm
 	attributes hai
 	landscape land/myrabella6
 	description `Due to the low gravity here, some of the alien crops planted by the Hai grow to heights of five meters or more. The air is too thin for humans or Hai to breathe without carrying supplemental oxygen tanks, so the population is very small. The fields are tended by enormous spider-like robots which are equipped not only for irrigation and harvesting, but also for pollination, since the thin atmosphere has made it impossible for native insects to evolve here.`
-	spaceport `The spaceport is a small city built under a pressurized glass dome, with a ring of hangars and landing pads around its periphery. As with most Hai architecture, the dome and the buildings within it are simple and sparsely decorated, but as you walk through the city everything feels very solid, and ancient. Everything is metal, even the roads and walkways, and the center of many of the roads dips down slightly due to millenia of foot traffic slowly wearing down the metal.`
+	spaceport `The spaceport is a small city built under a pressurized glass dome, with a ring of hangars and landing pads around its periphery. As with most Hai architecture, the dome and the buildings within it are simple and sparsely decorated, but as you walk through the city everything feels very solid, and ancient. Everything is metal, even the roads and walkways, and the center of many of the roads dips down slightly due to millennia of foot traffic slowly wearing down the metal.`
 
 planet Skymoot
 	attributes rim tourism
@@ -14447,7 +14447,7 @@ planet "Smuggler's Den"
 planet Snowfeather
 	attributes hai
 	landscape land/dmottl4
-	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be envigorating.`
+	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be invigorating.`
 	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs sloping backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash flooding.`
 	outfitter "Hai Basics"
 
@@ -14484,7 +14484,7 @@ planet Stonebreak
 	attributes hai
 	landscape land/fog7
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities build in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
-	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slighty irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
+	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
 	spaceport `	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
 	shipyard "Hai Intermediate"
 	outfitter "Hai Intermediate"
