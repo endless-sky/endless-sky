@@ -2739,8 +2739,15 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
+	habitable 625
 	link "Wah Ki"
 	link "Bote Asu"
+	asteroids "small rock" 29 3.0912
+	asteroids "medium rock" 108 5.8443
+	asteroids "large rock" 27 4.2021
+	asteroids "small metal" 6 4.5885
+	asteroids "medium metal" 25 4.3953
+	asteroids "large metal" 1 4.8783
 	trade Clothing 328
 	trade Electronics 695
 	trade Equipment 440
@@ -2755,14 +2762,48 @@ system "Bore Fah"
 	fleet "Large Hai" 1000
 	fleet "Small Northern Merchants" 12000
 	fleet "Large Northern Merchants" 18000
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/ice3
+		distance 347.69
+		period 103.731
+		object
+			sprite planet/callisto
+			distance 150
+			period 17.5682
+	object Snowfeather
+		sprite planet/ice2
+		distance 678.69
+		period 282.896
+	object
+		sprite planet/gas13
+		distance 1704.93
+		period 1126.37
+		object
+			sprite planet/lava0
+			distance 285
+			period 13.5824
+		object
+			sprite planet/luna
+			distance 388
+			period 21.5754
 
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
+	habitable 2859.44
 	link "Wah Ki"
 	link "Ula Mon"
 	link "Ya Hai"
 	link "Bore Fah"
+	asteroids "small rock" 10 5.4758
+	asteroids "medium rock" 58 4.1382
+	asteroids "large rock" 4 3.6366
+	asteroids "small metal" 62 4.598
+	asteroids "medium metal" 96 2.2572
+	asteroids "large metal" 5 4.0546
 	trade Clothing 268
 	trade Electronics 665
 	trade Equipment 430
@@ -2777,6 +2818,63 @@ system "Bote Asu"
 	fleet "Large Hai" 600
 	fleet "Small Northern Merchants" 8000
 	fleet "Large Northern Merchants" 12000
+	object
+		sprite star/f0
+		distance 17.3605
+		period 7.70584
+	object
+		sprite star/k0
+		distance 84.6395
+		period 7.70584
+		offset 180
+	object
+		sprite planet/rock1
+		distance 242.889
+		period 28.316
+	object
+		sprite planet/rock16
+		distance 634.139
+		period 119.453
+		object
+			sprite planet/ice7
+			distance 173
+			period 31.0553
+	object
+		sprite planet/gas11
+		distance 1111.15
+		period 277.063
+	object
+		sprite planet/neptune
+		distance 2561.56
+		period 969.787
+		object
+			sprite planet/rock7
+			distance 212
+			period 15.3793
+		object
+			sprite planet/luna
+			distance 325
+			period 29.1916
+		object
+			sprite planet/rock17
+			distance 411
+			period 41.514
+	object
+		sprite planet/gas12
+		distance 4312.6
+		period 2118.5
+		object
+			sprite planet/rhea
+			distance 293
+			period 13.1731
+		object
+			sprite planet/lava0
+			distance 446
+			period 24.7393
+		object
+			sprite planet/rock14
+			distance 601
+			period 38.6987
 
 system Canopus
 	pos -421 -225
@@ -4041,6 +4139,7 @@ system Eber
 system "Ehma Ti"
 	pos 39.1085 -749.244
 	government "Hai (Unfettered)"
+	habitable nan
 	link "Wah Yoot"
 	trade Clothing 308
 	trade Electronics 795
@@ -5473,6 +5572,7 @@ system "Heia Due"
 system "Hi Yahr"
 	pos 82.3672 -641.6
 	government "Hai (Unfettered)"
+	habitable nan
 	link "Wah Yoot"
 	trade Clothing 438
 	trade Electronics 605
@@ -5645,7 +5745,14 @@ system Ildaria
 system "Imo Dep"
 	pos -95.7867 -717.668
 	government Hai
+	habitable 1715
 	link "Zuba Zub"
+	asteroids "small rock" 11 2.66
+	asteroids "medium rock" 3 4.8944
+	asteroids "large rock" 27 5.0008
+	asteroids "small metal" 98 4.4156
+	asteroids "medium metal" 124 5.9052
+	asteroids "large metal" 4 2.9792
 	trade Clothing 338
 	trade Electronics 765
 	trade Equipment 550
@@ -5660,6 +5767,45 @@ system "Imo Dep"
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 10000
 	fleet "Large Northern Merchants" 14000
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/gas11
+		distance 571.36
+		period 131.915
+		object
+			sprite planet/ice8
+			distance 271
+			period 14.714
+		object
+			sprite planet/rock14
+			distance 409
+			period 27.2812
+	object
+		sprite planet/rock19
+		distance 1157.36
+		period 380.304
+	object Stonebreak
+		sprite planet/forest4
+		distance 1708.25
+		period 681.954
+	object
+		sprite planet/gas10
+		distance 2475.25
+		period 1189.48
+		object
+			sprite planet/ice0
+			distance 192
+			period 14.0039
+		object
+			sprite planet/miranda
+			distance 322
+			period 30.4145
+		object
+			sprite planet/dust0
+			distance 399
+			period 41.9524
 
 system "Io Lowe"
 	pos -94.7566 -527.728
@@ -7180,9 +7326,15 @@ system Mebsuta
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
+	habitable 425.92
 	link "Zuba Zub"
 	link "Ula Mon"
 	link "Io Lowe"
+	asteroids "medium rock" 1 5.1282
+	asteroids "large rock" 1 3.7884
+	asteroids "small metal" 2 4.851
+	asteroids "medium metal" 1 5.9136
+	asteroids "large metal" 8 3.7422
 	trade Clothing 348
 	trade Electronics 785
 	trade Equipment 550
@@ -7197,6 +7349,41 @@ system "Mei Yohn"
 	fleet "Large Hai" 1000
 	fleet "Small Northern Merchants" 7000
 	fleet "Large Northern Merchants" 10000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/cloud8
+		distance 228.21
+		period 66.8187
+	object Darkmetal
+		sprite planet/rock1
+		distance 578.21
+		period 269.479
+	object
+		sprite planet/gas14
+		distance 1432.42
+		period 1050.76
+		object
+			sprite planet/callisto
+			distance 229
+			period 14.1128
+		object
+			sprite planet/rock17
+			distance 340
+			period 25.5315
+	object
+		sprite planet/gas15
+		distance 2245.38
+		period 2062.2
+		object
+			sprite planet/desert4
+			distance 202
+			period 15.1121
+		object
+			sprite planet/dust4
+			distance 312
+			period 29.0088
 
 system Men
 	pos -888 361
@@ -11172,10 +11359,17 @@ system Turais
 system "Ula Mon"
 	pos -64.1218 -559.868
 	government Hai
+	habitable 640
 	link "Bote Asu"
 	link "Mei Yohn"
 	link "Io Lowe"
 	link "Ya Hai"
+	asteroids "small rock" 1 3.2319
+	asteroids "medium rock" 12 2.793
+	asteroids "large rock" 14 5.3865
+	asteroids "small metal" 1 3.2319
+	asteroids "medium metal" 5 3.99
+	asteroids "large metal" 2 2.793
 	trade Clothing 278
 	trade Electronics 675
 	trade Equipment 440
@@ -11190,6 +11384,47 @@ system "Ula Mon"
 	fleet "Large Hai" 900
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
+	object
+		sprite star/m0
+		distance 56.5
+		period 18.9927
+		offset 180
+	object
+		sprite star/m0
+		distance 56.5
+		period 18.9927
+	object
+		sprite planet/rock5
+		distance 194.91
+		period 43.025
+	object
+		sprite planet/ganymede
+		distance 365.32
+		period 110.403
+	object Makerplace
+		sprite planet/desert2
+		distance 597.32
+		period 230.824
+		offset 221.651
+	object
+		sprite planet/desert0
+		distance 1109.57
+		period 584.389
+		offset 301.398
+	object
+		sprite planet/rock6
+		distance 1370.41
+		period 802.132
+		offset 325.062
+	object
+		sprite planet/gas8
+		distance 7288.57
+		period 9838.6
+		offset 359.444
+		object
+			sprite planet/rock0
+			distance 191
+			period 14.0516
 
 system "Ultima Thule"
 	pos -336 -211
@@ -11632,10 +11867,16 @@ system Volax
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
+	habitable 425.92
 	link "Zuba Zub"
 	link "Wah Yoot"
 	link "Bote Asu"
 	link "Bore Fah"
+	asteroids "small rock" 39 5.9598
+	asteroids "medium rock" 1 5.4978
+	asteroids "large rock" 24 2.4024
+	asteroids "small metal" 17 4.7586
+	asteroids "large metal" 22 2.772
 	trade Clothing 378
 	trade Electronics 595
 	trade Equipment 360
@@ -11651,10 +11892,46 @@ system "Wah Ki"
 	fleet "Large Unfettered" 800
 	fleet "Small Northern Merchants" 18000
 	fleet "Large Northern Merchants" 28000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/rock11
+		distance 131.84
+		period 29.3404
+	object Cloudfire
+		sprite planet/cloud0
+		distance 492.05
+		period 211.548
+		object
+			sprite planet/luna
+			distance 138
+			period 19.978
+	object
+		sprite planet/rock14
+		distance 764.14
+		period 409.407
+	object
+		sprite planet/mars
+		distance 1456.55
+		period 1077.42
+	object
+		sprite planet/rock7
+		distance 1787.44
+		period 1464.68
+	object
+		sprite planet/gas6
+		distance 2204.44
+		period 2006.06
+		object
+			sprite planet/dust0
+			distance 258
+			period 10.5851
 
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
+	habitable 5000
 	link "Io Mann"
 	link "Due Yoot"
 	link "Fah Root"
@@ -11726,6 +12003,7 @@ system "Wah Oh"
 system "Wah Yoot"
 	pos 40.9382 -685.994
 	government "Hai (Unfettered)"
+	habitable nan
 	link "Wah Ki"
 	link "Ehma Ti"
 	link "Hi Yahr"
@@ -12344,9 +12622,15 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
+	habitable 425.92
 	link "Mei Yohn"
 	link "Imo Dep"
 	link "Wah Ki"
+	asteroids "small rock" 3 3.12
+	asteroids "large rock" 5 2.76
+	asteroids "small metal" 4 1.776
+	asteroids "medium metal" 3 1.944
+	asteroids "large metal" 1 2.928
 	trade Clothing 428
 	trade Electronics 695
 	trade Equipment 460
@@ -12361,6 +12645,41 @@ system "Zuba Zub"
 	fleet "Large Hai" 800
 	fleet "Small Northern Merchants" 10000
 	fleet "Large Northern Merchants" 18000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/dust6
+		distance 221.16
+		period 63.7464
+	object Giverstone
+		sprite planet/desert0
+		distance 403.97
+		period 157.369
+	object
+		sprite planet/gas15
+		distance 909.22
+		period 531.373
+		object
+			sprite planet/callisto
+			distance 192
+			period 14.0039
+		object
+			sprite planet/dust3
+			distance 313
+			period 29.1483
+	object
+		sprite planet/cloud5
+		distance 1458.86
+		period 1079.98
+	object
+		sprite planet/gas3
+		distance 3987.87
+		period 4880.98
+		object
+			sprite planet/europa
+			distance 298
+			period 13.1398
 
 system Zubenelgenubi
 	pos -710 353
@@ -12749,6 +13068,14 @@ planet Clink
 	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
 
+planet Cloudfire
+	attributes hai
+	landscape land/sky3
+	description `Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
+	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accomodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
+	shipyard "Hai Basics"
+	outfitter "Hai Intermediate"
+
 planet Cornucopia
 	attributes south farming research frontier
 	landscape land/fields0
@@ -12790,6 +13117,12 @@ planet Dancer
 	spaceport `The spaceport town is a rather normal collection of wood and stone buildings, with large sheds for trade goods and a handful of pubs and restaurants. The only unusual thing is the fact that every single building has lightning rods mounted on its roof. The sky is perpetually cloudy here, with only occasional beams of sunlight glancing through. The clouds are moving awfully fast.`
 	outfitter "Basic Outfits"
 	security 0.05
+
+planet Darkmetal
+	attributes hai
+	landscape land/canyon6
+	description `Darkmetal is a cold, dry mining world, the source of much of the heavy metals that are used in Hai space. A haze of slightly radioactive dust hangs in the sky whenever it has been more than a week since the last rainstorm. Most of the mining is carried out by slow-moving vehicles the size of a small city, which ingest layers of dirt and bedrock, crush it to extract any valuable elements, then mix the remaining material with water to form a cement-like slurry that can be extruded in solid blocks, to reduce the amount of additional dust that is added to the atmosphere.`
+	spaceport `The spaceport is hermetically sealed, with gantry tubes that can adapt to fit the hatches of human ships as well as Hai. The seal is to keep radioactive dust out of the living spaces, but its purpose is primarily to reduce the long-term exposure of the station's permanent inhabitants; for visitors, the risks are minimal.`
 
 planet Darkstone
 	attributes south farming frontier
@@ -13046,6 +13379,14 @@ planet Geyser
 	outfitter "Syndicate Basics"
 	outfitter "Lovelace Basics"
 	security 0.3
+
+planet Giverstone
+	attributes hai
+	landscape land/valley5
+	description `On this mining world, the Hai are using boring machines to drill tunnels straight into the hearts of the mountains. Each tunnel twists and turns to intersect the regions of rock with the highest concentrations of valuable ore. Most of the tunnels also join up with other tunnels that have been dug through the same mountains, so that there are multiple exits from any given point in the mines.`
+	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enourmous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
+	shipyard "Hai Intermediate"
+	outfitter "Hai Intermediate"
 
 planet Glaze
 	attributes south tourism
@@ -13394,6 +13735,14 @@ planet Maker
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
 	security 0.4
+
+planet Makerplace
+	attributes hai
+	landscape land/lava0
+	description `Makerplace has an unusual degree of volcanic activity due to high concentrations of radioactive elements in the planet's mantle. Although it is warm by Hai standards, the abundance of geothermal energy, combined with plentiful solar energy and wind power, has made it an ideal world for manufacturing. Several cities in the temperate regions have populations of over a hundred million Hai, and the factories surrounding the cities spread out for dozens of kilometers in all directions. Near the equator, much of the land is desert or volcanic wasteland.`
+	spaceport `A fair number of the Hai walking through this spaceport are wearing no clothing at all, perhaps as a response to the warm temperatures. Given that they seem to attract no notice or disapproval by doing so, it appears that this is perfectly normal behavior. Others appear to have trimmed their fur shorter than normal as an alternative way to deal with the heat.`
+	shipyard "Hai Intermediate"
+	outfitter "Hai Advanced"
 
 planet Mani
 	attributes deep
@@ -13958,6 +14307,13 @@ planet "Smuggler's Den"
 	bribe 0.06
 	security 0
 
+planet Snowfeather
+	attributes hai
+	landscape land/dmottl4
+	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be envigorating.`
+	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs sloping backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash flooding.`
+	outfitter "Hai Basics"
+
 planet Solace
 	attributes south urban factory frontier
 	landscape land/valley6
@@ -13986,6 +14342,15 @@ planet Starcross
 	spaceport `The spaceport is rudimentary: just a couple of landing pads, each with thick cement walls around it to protect your ship from being buffeted by any storms that strike. The central building is a squat, windowless cement fortress. Inside, however, it is completely different: the ceilings are high, with sun-lamps that provide some sense of warmth and cheer, and native wood paneling or stucco on most of the walls to soften them.`
 	outfitter "Ammo South"
 	security 0.05
+
+planet Stonebreak
+	attributes hai
+	landscape land/fog7
+	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities build in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
+	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slighty irregular grey color. The corners of each building are slightly beveled instead of meeting at right angles.`
+	spaceport `	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
+	shipyard "Hai Intermediate"
+	outfitter "Hai Intermediate"
 
 planet Stormhold
 	attributes pirate
