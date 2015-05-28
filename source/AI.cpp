@@ -1480,10 +1480,15 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	hasGuns |= keyHeld.Has(Command::PRIMARY);
 	if(keyHeld)
 	{
-		if(keyHeld.Has(Command::BACK))
-			command.SetTurn(TurnBackward(ship));
-		else
+		if(keyHeld.Has(Command::RIGHT | Command::LEFT))
 			command.SetTurn(keyHeld.Has(Command::RIGHT) - keyHeld.Has(Command::LEFT));
+		else if(keyHeld.Has(Command::BACK))
+		{
+			if(ship.Attributes().Get("reverse thrust"))
+				command |= Command::BACK;
+			else
+				command.SetTurn(TurnBackward(ship));
+		}
 		
 		if(keyHeld.Has(Command::FORWARD))
 			command |= Command::FORWARD;
