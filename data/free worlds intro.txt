@@ -351,6 +351,7 @@ mission "FW Recon 2"
 			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)" 4
+		dialog "You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment."
 	
 	on complete
 		dialog `JJ meets you as soon as you land, and you hand over the scanner data. "Thank you again," he says. "If you're willing to take on one more recon mission, meet me in the bar." He hands you <payment>.`
