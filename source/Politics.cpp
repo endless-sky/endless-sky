@@ -203,6 +203,10 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 					reason = "operating a " + ship->ModelName() + " without a " + name + " License.";
 				}
 			}
+		// Check if the ship evades being scanned due to interference plating.
+		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
+			continue;
+		
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine();

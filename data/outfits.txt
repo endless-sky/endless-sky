@@ -239,6 +239,15 @@ outfit "Fuel Pod"
 	"fuel capacity" 100
 	description "A fuel pod increases your fuel capacity, allowing your ship to make one additional hyperspace jump before it needs to land and refuel."
 
+outfit "Interference Plating"
+	category "Systems"
+	cost 50000
+	thumbnail "outfit/interference plating"
+	"mass" 4
+	"outfit space" -4
+	"scan interference" .5
+	description "If you're in the habit of carrying illegal cargo or outfits, this plating increases the odds that a scan of your ship will fail to detect it. The more of these you install, the better your chances of evading detection. They won't keep anyone from noticing if you're flying an unlicensed ship, however."
+
 
 outfit "Laser Rifle"
 	category "Hand to Hand"

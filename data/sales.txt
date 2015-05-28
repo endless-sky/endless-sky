@@ -369,6 +369,7 @@ outfitter "Pirate Outfits"
 	"Nerve Gas"
 	"Scram Drive"
 	"Local Map"
+	"Interference Plating"
 
 outfitter "Stack Core"
 	"Stack Core"
