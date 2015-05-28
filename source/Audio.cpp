@@ -379,19 +379,22 @@ namespace {
 		string path;
 		while(true)
 		{
+			{
+				unique_lock<mutex> lock(audioMutex);
+				// If this is not the first time through, remove the previous item
+				// in the queue. This is a signal that it has been loaded, so we
+				// must not remove it until after loading the file.
+				if(!path.empty())
+					loadQueue.pop_back();
+				if(loadQueue.empty())
+					return;
+				path = loadQueue.back();
+			}
+			
+			// Unlock the mutex for the time-intensive part of the loop.
 			string name = Name(path);
 			if(!name.empty())
 				sounds[name].Load(path);
-			
-			{
-				// If Load() was called, the file list was not initially empty.
-				unique_lock<mutex> lock(audioMutex);
-				loadQueue.pop_back();
-				if(loadQueue.empty())
-					return;
-				
-				path = loadQueue.back();
-			}
 		}
 	}
 	
