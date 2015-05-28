@@ -32,19 +32,22 @@ namespace {
 	string images;
 	string sounds;
 	string saves;
+	
+	// Convert windows-style directory separators ('\\') to standard '/'.
+#if defined _WIN32
+	void FixWindowsSlashes(string &path)
+	{
+		for(char &c : path)
+			if(c == '\\')
+				c = '/';
+	}
+#endif
 }
 
 
 
 void Files::Init(const char * const *argv)
 {
-	// The directory separator character is different on Windows:
-#if defined _WIN32
-	static const char SEP = '\\';
-#else
-	static const char SEP = '/';
-#endif
-	
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
 	for(const char * const *it = argv + 1; *it; ++it)
@@ -65,8 +68,11 @@ void Files::Init(const char * const *argv)
 		resources = str;
 		SDL_free(str);
 	}
-	if(resources.back() != SEP)
-		resources += SEP;
+#if defined _WIN32
+	FixWindowsSlashes(resources);
+#endif
+	if(resources.back() != '/')
+		resources += '/';
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 	// Special case, for Linux: the resource files are not in the same place as
 	// the executable, but are under the same prefix (/usr or /usr/local).
@@ -80,12 +86,12 @@ void Files::Init(const char * const *argv)
 #elif defined __APPLE__
 	// Special case for Mac OS X: the resources are in ../Resources relative to
 	// the folder the binary is in.
-	size_t pos = resources.rfind(SEP, resources.length() - 2) + 1;
+	size_t pos = resources.rfind('/', resources.length() - 2) + 1;
 	resources = resources.substr(0, pos) + "Resources/";
 #elif defined _WIN32
 	while(!Exists(resources + "credits.txt"))
 	{
-		size_t pos = resources.rfind(SEP, resources.length() - 2);
+		size_t pos = resources.rfind('/', resources.length() - 2);
 		if(pos == string::npos)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
@@ -93,9 +99,9 @@ void Files::Init(const char * const *argv)
 #else
 #error "Unsupported operating system. No code for Files::Init()."
 #endif
-	data = resources + "data" + SEP;
-	images = resources + "images" + SEP;
-	sounds = resources + "sounds" + SEP;
+	data = resources + "data/";
+	images = resources + "images/";
+	sounds = resources + "sounds/";
 	
 	if(config.empty())
 	{
@@ -103,16 +109,22 @@ void Files::Init(const char * const *argv)
 		// not already exist). This can also be overridden in the command line.
 		char *str = SDL_GetPrefPath("endless-sky", "saves");
 		saves = str;
+#if defined _WIN32
+		FixWindowsSlashes(saves);
+#endif
 		SDL_free(str);
-		if(saves.back() != SEP)
-			saves += SEP;
-		config = saves.substr(0, saves.rfind(SEP, saves.length() - 2) + 1);
+		if(saves.back() != '/')
+			saves += '/';
+		config = saves.substr(0, saves.rfind('/', saves.length() - 2) + 1);
 	}
 	else
 	{
-		if(config.back() != SEP)
-			config += SEP;
-		saves = config + "saves" + SEP;
+#if defined _WIN32
+		FixWindowsSlashes(config);
+#endif
+		if(config.back() != '/')
+			config += '/';
+		saves = config + "saves/";
 	}
 	
 	// Check that all the directories exist.
@@ -328,8 +340,7 @@ void Files::Delete(const string &filePath)
 // Get the filename from a path.
 string Files::Name(const string &path)
 {
-	for(size_t pos = path.length(); pos > 0; --pos)
-		if(path[pos - 1] == '/' || path[pos - 1] == '\\')
-			return path.substr(pos);
-	return path;
+	// string::npos = -1, so if there is no '/' in the path this will
+	// return the entire string, i.e. path.substr(0).
+	return path.substr(path.rfind('/') + 1);
 }
