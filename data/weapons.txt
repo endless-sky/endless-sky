@@ -377,7 +377,7 @@ outfit "Plasma Cannon"
 outfit "Pulse Cannon"
 	category "Guns"
 	cost 110000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pulse cannon"
 	"mass" 13
 	"outfit space" -13
 	"weapon capacity" -13
@@ -399,7 +399,7 @@ outfit "Pulse Cannon"
 outfit "Pulse Turret"
 	category "Turrets"
 	cost 320000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/pulse turret"
 	"mass" 34
 	"outfit space" -34
 	"weapon capacity" -34
