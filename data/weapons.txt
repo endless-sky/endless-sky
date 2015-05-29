@@ -421,7 +421,7 @@ outfit "Pulse Turret"
 outfit "Ion Cannon"
 	category "Guns"
 	cost 490000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ion cannon"
 	"mass" 47
 	"outfit space" -47
 	"weapon capacity" -47
@@ -628,14 +628,14 @@ outfit "Javelin Pod"
 outfit "Hai Tracker"
 	category "Ammunition"
 	cost 1000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/hai tracker"
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/hai tracker pod"
 	"mass" 19
 	"outfit space" -19
 	"weapon capacity" -19
