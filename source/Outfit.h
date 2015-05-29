@@ -18,6 +18,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <string>
+#include <utility>
+#include <vector>
 
 class DataNode;
 class Effect;
@@ -60,10 +62,10 @@ public:
 	void Reset(const std::string &attribute, double value = 0.);
 	
 	// Get this outfit's engine flare sprite, if any.
-	const Animation &FlareSprite() const;
-	const Sound *FlareSound() const;
+	const std::vector<std::pair<Animation, int>> &FlareSprites() const;
+	const std::map<const Sound *, int> &FlareSounds() const;
 	// Get the afterburner effect, if any.
-	const Effect *AfterburnerEffect() const;
+	const std::map<const Effect *, int> &AfterburnerEffects() const;
 	
 	
 private:
@@ -74,9 +76,9 @@ private:
 	
 	std::map<std::string, double> attributes;
 	
-	Animation flare;
-	const Sound *flareSound = nullptr;
-	const Effect *afterburnerEffect = nullptr;
+	std::vector<std::pair<Animation, int>> flareSprites;
+	std::map<const Sound *, int> flareSounds;
+	std::map<const Effect *, int> afterburnerEffects;
 };
 
 

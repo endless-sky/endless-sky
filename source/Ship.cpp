@@ -939,15 +939,17 @@ bool Ship::Move(list<Effect> &effects)
 				energy -= energyCost;
 				velocity += angle.Unit() * thrust / mass;
 				
-				if(!forget && attributes.AfterburnerEffect())
-				{
+				if(!forget)
 					for(const Point &point : enginePoints)
 					{
 						Point pos = angle.Rotate(point) * .5 * Zoom() + position;
-						effects.push_back(*attributes.AfterburnerEffect());
-						effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
+						for(const auto &it : attributes.AfterburnerEffects())
+							for(int i = 0; i < it.second; ++i)
+							{
+								effects.push_back(*it.first);
+								effects.back().Place(pos + velocity, velocity - 6. * angle.Unit(), angle);
+							}
 					}
-				}
 			}
 		}
 		if(thrustCommand || applyAfterburner)
@@ -1366,24 +1368,18 @@ int Ship::HyperspaceType() const
 
 
 
-// Get the points from which engine flares should be drawn. If the ship is
-// not thrusting right now, this will be empty.
-const vector<Point> &Ship::EnginePoints() const
+// Check if the ship is thrusting. If so, the engine sound should be played.
+bool Ship::IsThrusting() const
 {
-	static const vector<Point> empty;
-	if(!commands.Has(Command::FORWARD) || isDisabled || attributes.FlareSprite().IsEmpty())
-		return empty;
-	
-	return enginePoints;
+	return (commands.Has(Command::FORWARD) && !isDisabled);
 }
 
 
 
-// Get the sprite to be used for an engine flare, if the engines are firing
-// at the moment. Otherwise, this returns null.
-const Animation &Ship::FlareSprite() const
+// Get the points from which engine flares should be drawn.
+const vector<Point> &Ship::EnginePoints() const
 {
-	return attributes.FlareSprite();
+	return enginePoints;
 }
 
 

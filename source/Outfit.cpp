@@ -39,11 +39,14 @@ void Outfit::Load(const DataNode &node)
 		if(child.Token(0) == "category" && child.Size() >= 2)
 			category = child.Token(1);
 		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
-			flare.Load(child);
+		{
+			flareSprites.emplace_back(Animation(), 1);
+			flareSprites.back().first.Load(child);
+		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
-			flareSound = Audio::Get(child.Token(1));
+			++flareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
-			afterburnerEffect = GameData::Effects().Get(child.Token(1));
+			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(child.Token(0) == "weapon")
@@ -140,12 +143,22 @@ void Outfit::Add(const Outfit &other, int count)
 			attributes[at.first] = 0.;
 	}
 	
-	if(other.flare.GetSprite())
-		flare = other.flare;
-	if(other.flareSound)
-		flareSound = other.flareSound;
-	if(other.afterburnerEffect)
-		afterburnerEffect = other.afterburnerEffect;
+	for(const auto &it : other.flareSprites)
+	{
+		auto oit = flareSprites.begin();
+		for( ; oit != flareSprites.end(); ++oit)
+			if(oit->first.GetSprite() == it.first.GetSprite())
+				break;
+		
+		if(oit == flareSprites.end())
+			flareSprites.emplace_back(it.first, count * it.second);
+		else
+			oit->second += count * it.second;
+	}
+	for(const auto &it : other.flareSounds)
+		flareSounds[it.first] += count * it.second;
+	for(const auto &it : other.afterburnerEffects)
+		afterburnerEffects[it.first] += count * it.second;
 }
 
 
@@ -169,22 +182,22 @@ void Outfit::Reset(const string &attribute, double value)
 
 	
 // Get this outfit's engine flare sprite, if any.
-const Animation &Outfit::FlareSprite() const
+const vector<pair<Animation, int>> &Outfit::FlareSprites() const
 {
-	return flare;
+	return flareSprites;
 }
 
 
 
-const Sound *Outfit::FlareSound() const
+const map<const Sound *, int> &Outfit::FlareSounds() const
 {
-	return flareSound;
+	return flareSounds;
 }
 
 
 
 // Get the afterburner effect, if any.
-const Effect *Outfit::AfterburnerEffect() const
+const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 {
-	return afterburnerEffect;
+	return afterburnerEffects;
 }

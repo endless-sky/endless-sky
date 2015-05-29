@@ -139,11 +139,10 @@ public:
 	// 100 = hyperdrive, 150 = scram drive, 200 = jump drive).
 	int HyperspaceType() const;
 	
-	// Get the points from which engine flares should be drawn. If the ship is
-	// not thrusting right now, this will be empty.
+	// Check if the ship is thrusting. If so, the engine sound should be played.
+	bool IsThrusting() const;
+	// Get the points from which engine flares should be drawn.
 	const std::vector<Point> &EnginePoints() const;
-	// Get the sprite to be used for an engine flare.
-	const Animation &FlareSprite() const;
 	
 	// Get the position, velocity, and heading of this ship.
 	const Point &Position() const;

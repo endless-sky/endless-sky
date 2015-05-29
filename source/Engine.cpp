@@ -797,30 +797,39 @@ void Engine::CalculateStep()
 			
 			Point position = ship->Position() - center;
 			
-			// EnginePoints() returns empty if there is no flare sprite, or if
-			// the ship is not thrusting right now.
-			for(const Point &point : ship->EnginePoints())
+			if(ship->IsThrusting())
 			{
-				Point pos = ship->Facing().Rotate(point) * .5 * ship->Zoom() + position;
-				if(ship->Cloaking())
+				for(const Point &point : ship->EnginePoints())
 				{
-					draw[calcTickTock].Add(
-						ship->FlareSprite().GetSprite(),
-						pos,
-						ship->Unit(),
-						ship->Velocity() - centerVelocity,
-						ship->Cloaking());
+					Point pos = ship->Facing().Rotate(point) * .5 * ship->Zoom() + position;
+					for(const auto &it : ship->Attributes().FlareSprites())
+						for(int i = 0; i < it.second; ++i)
+						{
+							if(ship->Cloaking())
+							{
+								draw[calcTickTock].Add(
+									it.first.GetSprite(),
+									pos,
+									ship->Unit(),
+									ship->Velocity() - centerVelocity,
+									ship->Cloaking());
+							}
+							else
+							{
+								draw[calcTickTock].Add(
+									it.first,
+									pos,
+									ship->Unit(),
+									ship->Velocity() - centerVelocity);
+							}
+						}
 				}
-				else
+				if(ship.get() == flagship)
 				{
-					draw[calcTickTock].Add(
-						ship->FlareSprite(),
-						pos,
-						ship->Unit(),
-						ship->Velocity() - centerVelocity);
+					for(const auto &it : ship->Attributes().FlareSounds())
+						if(it.second > 0)
+							Audio::Play(it.first);
 				}
-				if(ship.get() == flagship && ship->Attributes().FlareSound())
-					Audio::Play(ship->Attributes().FlareSound(), pos, ship->Velocity());
 			}
 			
 			bool isPlayer = ship->GetGovernment()->IsPlayer();
