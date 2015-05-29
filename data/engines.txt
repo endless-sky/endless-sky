@@ -45,11 +45,12 @@ outfit "X1700 Ion Thruster"
 	"engine capacity" -16
 	"thrust" 6.0
 	"thrusting energy" .6
-	"thrusting heat" 1.0
+	"thrusting heat" .9
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"flare sound" "ion_drive"
 	description "This is the smallest thruster that you can buy, so weak that anything larger than a drone will accelerate quite slowly when using this engine. On the other hand, it is also very energy-efficient."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X2700 Ion Thruster"
 	category "Engines"
@@ -60,11 +61,12 @@ outfit "X2700 Ion Thruster"
 	"engine capacity" -27
 	"thrust" 11.5
 	"thrusting energy" 1.1
-	"thrusting heat" 1.9
+	"thrusting heat" 1.7
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.1
 	"flare sound" "ion_drive"
 	description "The X2700 ion thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X3700 Ion Thruster"
 	category "Engines"
@@ -75,11 +77,12 @@ outfit "X3700 Ion Thruster"
 	"engine capacity" -46
 	"thrust" 22.1
 	"thrusting energy" 1.9
-	"thrusting heat" 3.6
+	"thrusting heat" 3.2
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.0
 	"flare sound" "ion_drive"
 	description "The X3700 ion thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X4700 Ion Thruster"
 	category "Engines"
@@ -90,11 +93,12 @@ outfit "X4700 Ion Thruster"
 	"engine capacity" -79
 	"thrust" 42.5
 	"thrusting energy" 3.5
-	"thrusting heat" 6.9
+	"thrusting heat" 6.2
 	"flare sprite" "effect/ion flare/big"
 		"frame rate" 0.9
 	"flare sound" "ion_drive"
 	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X5700 Ion Thruster"
 	category "Engines"
@@ -105,11 +109,12 @@ outfit "X5700 Ion Thruster"
 	"engine capacity" -134
 	"thrust" 81.5
 	"thrusting energy" 6.3
-	"thrusting heat" 13.0
+	"thrusting heat" 11.7
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 0.8
 	"flare sound" "ion_drive"
 	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X1200 Ion Steering"
 	category "Engines"
@@ -122,6 +127,7 @@ outfit "X1200 Ion Steering"
 	"turning energy" .3
 	"turning heat" .6
 	description "This is the smallest set of steering thrusters that you can buy, generally considered suitable only for tiny, pilotless drones. Occasionally pilots looking for some extra outfit space will try swapping out their larger steering systems for one of these, but the results are invariably disappointing."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X2200 Ion Steering"
 	category "Engines"
@@ -132,8 +138,9 @@ outfit "X2200 Ion Steering"
 	"engine capacity" -20
 	"turn" 307
 	"turning energy" .6
-	"turning heat" 1.2
+	"turning heat" 1.1
 	description "The X2200 steering system is designed for fighters and other small spacecraft, as well as for use in larger ships when maneuverability is not needed."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X3200 Ion Steering"
 	category "Engines"
@@ -144,8 +151,9 @@ outfit "X3200 Ion Steering"
 	"engine capacity" -35
 	"turn" 590
 	"turning energy" 1.1
-	"turning heat" 2.3
+	"turning heat" 2.0
 	description "The X3200 steering system is intended for small warships ships and freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X4200 Ion Steering"
 	category "Engines"
@@ -156,8 +164,9 @@ outfit "X4200 Ion Steering"
 	"engine capacity" -59
 	"turn" 1132
 	"turning energy" 1.9
-	"turning heat" 4.3
+	"turning heat" 3.9
 	description "The X4200 is a powerful steering system, designed mostly for warships because quick steering is seldom a requirement in freighter design."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X5200 Ion Steering"
 	category "Engines"
@@ -168,8 +177,9 @@ outfit "X5200 Ion Steering"
 	"engine capacity" -100
 	"turn" 2174
 	"turning energy" 3.5
-	"turning heat" 8.1
+	"turning heat" 7.3
 	description "The X5200 is a steering system so powerful that only a handful of ships use it. It is standard equipment for Republic cruisers and carriers, ships so large that they are practically a self-contained city."
+	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 
 outfit "Chipmunk Plasma Thruster"
@@ -186,6 +196,7 @@ outfit "Chipmunk Plasma Thruster"
 		"frame rate" 5
 	"flare sound" "plasma_drive"
 	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Greyhound Plasma Thruster"
 	category "Engines"
@@ -201,6 +212,7 @@ outfit "Greyhound Plasma Thruster"
 		"frame rate" 6
 	"flare sound" "plasma_drive"
 	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Impala Plasma Thruster"
 	category "Engines"
@@ -215,7 +227,8 @@ outfit "Impala Plasma Thruster"
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma_drive"
-	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. They also, of course, produce a large amount of heat."
+	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Orca Plasma Thruster"
 	category "Engines"
@@ -231,6 +244,7 @@ outfit "Orca Plasma Thruster"
 		"frame rate" 8
 	"flare sound" "plasma_drive"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Tyrant Plasma Thruster"
 	category "Engines"
@@ -246,6 +260,7 @@ outfit "Tyrant Plasma Thruster"
 		"frame rate" 9
 	"flare sound" "plasma_drive"
 	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Chipmunk Plasma Steering"
 	category "Engines"
@@ -258,6 +273,7 @@ outfit "Chipmunk Plasma Steering"
 	"turning energy" .5
 	"turning heat" 1.1
 	description "This is the smallest plasma steering system that Delta V produces. The packaging features a cartoon of what appears to be a very highly caffeinated rodent."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Greyhound Plasma Steering"
 	category "Engines"
@@ -270,6 +286,7 @@ outfit "Greyhound Plasma Steering"
 	"turning energy" 0.9
 	"turning heat" 2.1
 	description "The Greyhound class plasma propulsion systems are Delta V's most popular product, suitable for a wide range of small starships."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Impala Plasma Steering"
 	category "Engines"
@@ -282,6 +299,7 @@ outfit "Impala Plasma Steering"
 	"turning energy" 1.6
 	"turning heat" 4.1
 	description "Impala class plasma steering systems are suitable for most freighters and all but the largest warships, and are also considerably more compact than the ion propulsion systems produced by the Syndicate."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Orca Plasma Steering"
 	category "Engines"
@@ -294,6 +312,7 @@ outfit "Orca Plasma Steering"
 	"turning energy" 2.9
 	"turning heat" 7.7
 	description "An Orca class steering system will allow any mid-sized ship to turn as quickly as a fighter, and is powerful enough to serve even the largest of warships."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 outfit "Tyrant Plasma Steering"
 	category "Engines"
@@ -305,7 +324,8 @@ outfit "Tyrant Plasma Steering"
 	"turn" 3479
 	"turning energy" 5.2
 	"turning heat" 14.7
-	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships could make use of it. Its primary function appears to be proving the prowess of the Delta V engineers."
+	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships can make use of it."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
 
 outfit "A120 Atomic Thruster"
