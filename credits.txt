@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.7.10
+version 0.7.11
 
 Programming
   Michael Zahniser
@@ -32,6 +32,12 @@ Sounds from OpenGameArt.org
 
 For a full list of attributions,
 see the "copyright" file.
+
+Beta Testers
+  Remi Verschelde
+  Adam Borowski
+  Greg Pettigrew
+  Russell Zahniser
 
 This game is open source.
 To contribute to story writing,
