@@ -1084,14 +1084,22 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 
 Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 {
+	// Do not create missions from NPC's or the player's ships.
+	if(ship->IsSpecial())
+		return nullptr;
+	ship->SetIsSpecial();
+	
 	UpdateAutoConditions();
 	boardingMissions.clear();
 	boardingShip = ship;
 	
+	bool isEnemy = ship->GetGovernment()->IsEnemy();
+	Mission::Location location = (isEnemy ? Mission::BOARDING : Mission::ASSISTING);
+	
 	// Check for available missions.
 	for(const auto &it : GameData::Missions())
 	{
-		if(!it.second.IsAtLocation(Mission::BOARDING))
+		if(!it.second.IsAtLocation(location))
 			continue;
 		
 		conditions["random"] = Random::Int(100);

@@ -77,6 +77,7 @@ public:
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
+	bool IsSpecial() const;
 	
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);

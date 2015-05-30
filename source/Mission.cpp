@@ -119,6 +119,8 @@ void Mission::Load(const DataNode &node)
 			location = JOB;
 		else if(child.Token(0) == "landing")
 			location = LANDING;
+		else if(child.Token(0) == "assisting")
+			location = ASSISTING;
 		else if(child.Token(0) == "boarding")
 			location = BOARDING;
 		else if(child.Token(0) == "repeat")
@@ -214,6 +216,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		out.Write("autosave");
 	if(location == LANDING)
 		out.Write("landing");
+	if(location == ASSISTING)
+		out.Write("assisting");
 	if(location == BOARDING)
 		out.Write("boarding");
 	if(location == JOB)
@@ -409,7 +413,7 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player) const
 {
-	if(location == BOARDING)
+	if(location == BOARDING || location == ASSISTING)
 	{
 		if(!player.BoardingShip())
 			return false;

@@ -470,6 +470,13 @@ void Ship::SetIsSpecial(bool special)
 
 
 
+bool Ship::IsSpecial() const
+{
+	return isSpecial;
+}
+
+
+
 void Ship::SetIsYours(bool yours)
 {
 	isYours = yours;
