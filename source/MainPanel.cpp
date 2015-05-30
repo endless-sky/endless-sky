@@ -114,11 +114,12 @@ void MainPanel::Step()
 		const Government *actor = event.ActorGovernment();
 		
 		player.HandleEvent(event, GetUI());
-		if(event.Type() == ShipEvent::BOARD && isActive)
+		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer())
 		{
-			// There is no need to show a boarding panel if the player is the
-			// victim, because enemy ships never try to capture ships.
-			if(actor->IsPlayer())
+			const Mission *mission = player.BoardingMission(event.Target());
+			if(mission)
+				mission->Do(Mission::OFFER, player, GetUI());
+			else if(event.Type() == ShipEvent::BOARD)
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))

@@ -119,6 +119,8 @@ void Mission::Load(const DataNode &node)
 			location = JOB;
 		else if(child.Token(0) == "landing")
 			location = LANDING;
+		else if(child.Token(0) == "boarding")
+			location = BOARDING;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -212,6 +214,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		out.Write("autosave");
 	if(location == LANDING)
 		out.Write("landing");
+	if(location == BOARDING)
+		out.Write("boarding");
 	if(location == JOB)
 		out.Write("job");
 	if(!clearance.empty())
@@ -405,11 +409,22 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player) const
 {
-	if(source && source != player.GetPlanet())
-		return false;
+	if(location == BOARDING)
+	{
+		if(!player.BoardingShip())
+			return false;
+		
+		if(!sourceFilter.Matches(*player.BoardingShip()))
+			return false;
+	}
+	else
+	{
+		if(source && source != player.GetPlanet())
+			return false;
 	
-	if(!sourceFilter.Matches(player.GetPlanet()))
-		return false;
+		if(!sourceFilter.Matches(player.GetPlanet()))
+			return false;
+	}
 	
 	if(!toOffer.Test(player.Conditions()))
 		return false;
@@ -694,7 +709,12 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// If no destination is specified, it is the same as the source planet. Also
 	// use the source planet if the given destination is not a valid planet name.
 	if(!result.destination || !result.destination->GetSystem())
-		result.destination = player.GetPlanet();
+	{
+		if(player.GetPlanet())
+			result.destination = player.GetPlanet();
+		else
+			return result;
+	}
 	
 	// If cargo is being carried, see if we are supposed to replace a generic
 	// cargo name with something more specific.
@@ -765,7 +785,10 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<bunks>"] = to_string(result.passengers);
 	subs["<passengers>"] = (result.passengers == 1) ? "your passenger" : "your passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
-	subs["<origin>"] = player.GetPlanet()->Name();
+	if(player.GetPlanet())
+		subs["<origin>"] = player.GetPlanet()->Name();
+	else if(player.BoardingShip())
+		subs["<origin>"] = player.BoardingShip()->Name();
 	subs["<planet>"] = result.destination ? result.destination->Name() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";

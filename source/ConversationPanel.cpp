@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ConversationPanel.h"
 
+#include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -20,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "Government.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -147,9 +149,21 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	{
 		if(key == SDLK_RETURN)
 		{
-			if(callback)
-				callback(node);
 			GetUI()->Pop(this);
+			if(callback)
+			{
+				if(player.BoardingShip())
+				{
+					if(node == Conversation::LAUNCH || node == Conversation::FLEE)
+						player.BoardingShip()->Destroy();
+					else if(player.BoardingShip()->GetGovernment()->IsEnemy())
+					{
+						if(node != Conversation::ACCEPT)
+							GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
+					}
+				}
+				callback(node);
+			}
 			return true;
 		}
 		

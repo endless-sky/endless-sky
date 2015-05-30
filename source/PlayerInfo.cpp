@@ -1082,6 +1082,41 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 
 
 
+Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
+{
+	UpdateAutoConditions();
+	boardingMissions.clear();
+	boardingShip = ship;
+	
+	// Check for available missions.
+	for(const auto &it : GameData::Missions())
+	{
+		if(!it.second.IsAtLocation(Mission::BOARDING))
+			continue;
+		
+		conditions["random"] = Random::Int(100);
+		if(it.second.CanOffer(*this))
+		{
+			boardingMissions.push_back(it.second.Instantiate(*this));
+			if(boardingMissions.back().HasFailed(*this))
+				boardingMissions.pop_back();
+			else
+				return &boardingMissions.back();
+		}
+	}
+	boardingShip.reset();
+	return nullptr;
+}
+
+
+
+const shared_ptr<Ship> &PlayerInfo::BoardingShip() const
+{
+	return boardingShip;
+}
+
+
+
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
@@ -1109,26 +1144,31 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 // Callback for accepting or declining whatever mission has been offered.
 void PlayerInfo::MissionCallback(int response)
 {
+	boardingShip.reset();
+	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
+	if(missionList.empty())
+		return;
+	
 	shouldLaunch = (response == Conversation::LAUNCH || response == Conversation::FLEE);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
-		bool shouldAutosave = availableMissions.front().RecommendsAutosave();
-		availableMissions.front().Do(Mission::ACCEPT, *this);
-		cargo.AddMissionCargo(&*availableMissions.begin());
-		missions.splice(missions.end(), availableMissions, availableMissions.begin());
+		bool shouldAutosave = missionList.front().RecommendsAutosave();
+		missionList.front().Do(Mission::ACCEPT, *this);
+		cargo.AddMissionCargo(&*missionList.begin());
+		missions.splice(missions.end(), missionList, missionList.begin());
 		UpdateCargoCapacities();
 		if(shouldAutosave)
 			Autosave();
 	}
 	else if(response == Conversation::DECLINE)
 	{
-		availableMissions.front().Do(Mission::DECLINE, *this);
-		availableMissions.pop_front();
+		missionList.front().Do(Mission::DECLINE, *this);
+		missionList.pop_front();
 	}
 	else if(response == Conversation::DEFER)
 	{
-		availableMissions.front().Do(Mission::DEFER, *this);
-		availableMissions.pop_front();
+		missionList.front().Do(Mission::DEFER, *this);
+		missionList.pop_front();
 	}
 	else if(response == Conversation::DIE)
 	{
@@ -1349,10 +1389,8 @@ map<const Outfit *, int> &PlayerInfo::SoldOutfits()
 
 
 
-// New missions are generated each time you land on a planet. This also means
-// that random missions that didn't show up might show up if you reload the
-// game, but that's a minor detail and I can fix it later.
-void PlayerInfo::CreateMissions()
+// Update the conditions that reflect the current status of the player.
+void PlayerInfo::UpdateAutoConditions()
 {
 	// Set up the "conditions" for the current status of the player.
 	for(const auto &it : GameData::Governments())
@@ -1377,12 +1415,24 @@ void PlayerInfo::CreateMissions()
 		conditions["ships: " + category] = 0;
 	for(const shared_ptr<Ship> &ship : ships)
 		++conditions["ships: " + ship->Attributes().Category()];
+}
+
+
+
+// New missions are generated each time you land on a planet.
+void PlayerInfo::CreateMissions()
+{
+	UpdateAutoConditions();
+	boardingMissions.clear();
+	boardingShip.reset();
 	
 	// Check for available missions.
 	bool skipJobs = planet && !planet->HasSpaceport();
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
+		if(it.second.IsAtLocation(Mission::BOARDING))
+			continue;
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
 		

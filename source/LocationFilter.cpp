@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Ship.h"
 #include "System.h"
 
 using namespace std;
@@ -208,5 +209,25 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 			return false;
 	}
 	
+	return true;
+}
+
+
+
+bool LocationFilter::Matches(const Ship &ship) const
+{
+	if(!systems.empty() && systems.find(ship.GetSystem()) == systems.end())
+		return false;
+	if(!governments.empty() && governments.find(ship.GetGovernment()) == governments.end())
+		return false;
+	
+	if(center)
+	{
+		DistanceMap distance(center, -1, centerMaxDistance);
+		// Distance() will return -1 if the system was not within the given max
+		// distance, so this checks for that as well as for the minimum:
+		if(distance.Distance(ship.GetSystem()) < centerMinDistance)
+			return false;
+	}
 	return true;
 }

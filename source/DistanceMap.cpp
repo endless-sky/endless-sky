@@ -115,6 +115,10 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	if(!center)
 		return;
 	
+	distance[center] = 0;
+	if(!maxDistance)
+		return;
+	
 	// Check what travel capabilities this ship has. If no ship is given, assume
 	// hyperdrive capability and no jump drive.
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : true;
@@ -124,7 +128,6 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	hasHyper |= !(hasHyper | hasJump);
 	
 	edge.emplace(0, center);
-	distance[center] = 0;
 	while(maxCount && !edge.empty())
 	{
 		pair<int, const System *> top = edge.top();

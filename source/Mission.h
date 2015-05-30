@@ -59,7 +59,7 @@ public:
 	bool HasPriority() const;
 	
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB};
+	enum Location {SPACEPORT, LANDING, JOB, BOARDING};
 	bool IsAtLocation(Location location) const;
 	
 	// Information about what you are doing.

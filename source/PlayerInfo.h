@@ -138,6 +138,8 @@ public:
 	void AcceptJob(const Mission &mission);
 	// Check to see if there is any mission to offer in the spaceport right now.
 	Mission *MissionToOffer(Mission::Location location);
+	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	const std::shared_ptr<Ship> &BoardingShip() const;
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
@@ -187,6 +189,7 @@ private:
 	PlayerInfo &operator=(const PlayerInfo &) = default;
 	
 	// New missions are generated each time you land on a planet.
+	void UpdateAutoConditions();
 	void CreateMissions();
 	void Autosave() const;
 	void Save(const std::string &path) const;
@@ -215,6 +218,8 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
+	std::list<Mission> boardingMissions;
+	std::shared_ptr<Ship> boardingShip;
 	std::list<Mission> doneMissions;
 	
 	std::map<std::string, int> conditions;
