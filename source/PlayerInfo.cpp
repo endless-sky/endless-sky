@@ -1234,7 +1234,7 @@ int PlayerInfo::GetCondition(const string &name) const
 
 
 
-// Get mutable access tot he player's list of conditions.
+// Get mutable access to the player's list of conditions.
 map<string, int> &PlayerInfo::Conditions()
 {
 	return conditions;

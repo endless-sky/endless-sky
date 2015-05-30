@@ -30,26 +30,24 @@ namespace {
 		int pitch = image->Width();
 		
 		// First, find a non-empty pixel.
-		// This points tot he current pixel. We will be added the inter-row
-		// pitch first thing, so subtract it here:
+		// This points to the current pixel.
 		const uint32_t *it = begin;
-		// This is where we will store the current point:
+		// This is where we will store the point:
 		Point point;
 		
 		for(int y = 0; y < image->Height(); ++y)
-		{
 			for(int x = 0; x < image->Width(); ++x)
 			{
 				// If this pixel is occupied, bail out of both loops.
 				if(*it & on)
 				{
 					point.Set(x, y);
+					// Break out of both loops.
 					y = image->Height();
 					break;
 				}
 				++it;
 			}
-		}
 		
 		// Now "it" points to the first pixel, whose coordinates are in "point".
 		// We will step around the outline in these 8 basic directions:
@@ -271,32 +269,6 @@ double Mask::Collide(Point sA, Point vA, Angle facing) const
 		return 0.;
 	
 	return Intersection(sA, vA);
-}
-
-
-
-// Check whether the given vector intersects this object, and if it does,
-// find the closest point of intersection. The mask is assumed to be
-// rotated and scaled according to the given unit vector. The vector start
-// should be translated so that this object's center is the origin.
-bool Mask::Intersects(Point sA, Point vA, Angle facing, Point *result) const
-{
-	// Bail out if we're too far away to possibly be touching.
-	if(outline.empty() || sA.Length() > radius + vA.Length())
-		return false;
-	
-	// Rotate into the mask's frame of reference.
-	sA = (-facing).Rotate(sA);
-	vA = (-facing).Rotate(vA);
-	
-	// Keep track of the closest intersection point found.
-	double closest = Intersection(sA, vA);
-	if(closest == 1.)
-		return false;
-	
-	if(result)
-		*result = facing.Rotate(sA + closest * vA);
-	return true;
 }
 
 

@@ -45,17 +45,11 @@ public:
 	// is no collision, the return value is 1.
 	double Collide(Point sA, Point vA, Angle facing) const;
 	
-	// Check whether the given vector intersects this object, and if it does,
-	// find the closest point of intersection. The mask is assumed to be
-	// rotated and scaled according to the given unit vector. The vector start
-	// should be translated so that this object's center is the origin.
-	bool Intersects(Point sA, Point vA, Angle facing, Point *result = nullptr) const;
-	
 	// Check whether the mask contains the given point.
 	bool Contains(Point point, Angle facing) const;
 	
 	// Find out whether this object (rotated and scaled as represented by the
-	// given unit vector) 
+	// given unit vector) is within the given range of the given point.
 	bool WithinRange(Point p, Angle facing, double range) const;
 	
 	
