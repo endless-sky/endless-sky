@@ -148,8 +148,12 @@
 		<Unit filename="source/MainPanel.h" />
 		<Unit filename="source/MapDetailPanel.cpp" />
 		<Unit filename="source/MapDetailPanel.h" />
+		<Unit filename="source/MapOutfitterPanel.cpp" />
+		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapShipyardPanel.cpp" />
+		<Unit filename="source/MapShipyardPanel.h" />
 		<Unit filename="source/Mask.cpp" />
 		<Unit filename="source/Mask.h" />
 		<Unit filename="source/MenuPanel.cpp" />
