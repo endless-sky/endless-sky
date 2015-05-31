@@ -127,6 +127,10 @@ void Files::Init(const char * const *argv)
 		saves = config + "saves/";
 	}
 	
+	// Create the "plugins" directory if it does not yet exist, so that it is
+	// clear to the user where plugins should go.
+	SDL_GetPrefPath("endless-sky", "plugins");
+	
 	// Check that all the directories exist.
 	if(!Exists(data) || !Exists(images) || !Exists(sounds))
 		throw runtime_error("Unable to find the resource directories!");
