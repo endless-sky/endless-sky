@@ -434,6 +434,7 @@ mission "Deep Archaeology 1"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
 	source
 		attributes paradise north "near earth"
+		near Miaplacidus 1 20
 	destination Vinci
 	to offer
 		random < 15

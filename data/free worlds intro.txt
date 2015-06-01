@@ -230,6 +230,7 @@ mission "FW Recon 0"
 	description "This militia officer asked if you could transport him to <destination>."
 	source
 		government "Free Worlds"
+		near Aldhibain 1 10
 	destination Glaze
 	to offer
 		random < 25
