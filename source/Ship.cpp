@@ -1646,8 +1646,6 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	isBoarding = false;
-	
 	if(shields > shieldDamage)
 	{
 		shields -= shieldDamage;
