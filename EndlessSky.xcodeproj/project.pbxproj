@@ -959,6 +959,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/opt/libjpeg-turbo/lib",
@@ -988,6 +989,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "XCode/EndlessSky-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/opt/libjpeg-turbo/lib",
