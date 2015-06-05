@@ -11,7 +11,7 @@
 "Talk to selected ship" 116
 "Scan selected ship" 115
 "Initiate hyperspace jump" 106
-"Select next ship" 96
+"Select next ship" 110
 "Select nearest hostile ship" 114
 "Deploy / recall fighters" 100
 "Fire afterburner" 97
