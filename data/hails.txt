@@ -359,7 +359,7 @@ phrase "hostile navy"
 		" imposing "
 		" massive "
 		" monumental "
-		" marshal "
+		" martial "
 		" naval "
 		" fighting "
 	word
