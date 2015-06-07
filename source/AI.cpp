@@ -181,7 +181,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			&& !it->GetSystem()->IsInhabited();
 		if(isStranded || it->IsDisabled())
 		{
-			if(it->IsDestroyed() || (it->IsDisabled() && it->IsYours()))
+			if(it->IsDestroyed() || (it->IsDisabled() && it->IsYours()) || it->GetPersonality().IsDerelict())
 				continue;
 			
 			bool hasEnemy = false;
