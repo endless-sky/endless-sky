@@ -719,7 +719,7 @@ mission "FW Northern 2"
 		event "fw northern expansion"
 		conversation
 			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds is not able to hold this planet.`
-			`	Finally Alondo arrives. "Come on," he says, "Let's talk outside." He seems tired, but not frightened.`
+			`	Finally Alondo arrives. "Come on," he says. "Let's talk outside." He seems tired, but not frightened.`
 			choice
 				`	"Is everything okay?"`
 				`	"Did they agree to join us?"`
@@ -749,7 +749,7 @@ mission "FW Northern 2A"
 	
 	on offer
 		conversation
-			`As soon as you land, Freya shows up at your ship with a small suitcase full of clothes. "No time to waste," she says, "Let's get going. Our first target will be <planet>, since we know for a fact that they were installing something there."`
+			`As soon as you land, Freya shows up at your ship with a small suitcase full of clothes. "No time to waste," she says. "Let's get going. Our first target will be <planet>, since we know for a fact that they were installing something there."`
 				accept
 
 

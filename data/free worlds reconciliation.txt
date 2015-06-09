@@ -370,7 +370,7 @@ mission "FW Defend Farpoint"
 	
 	on offer
 		conversation
-			`When you land back on Farpoint, Danforth eagerly meets you and asks what information you were able to obtain. You tell him. "So," he says, "One executive on Foundry, and one on Hephaestus. Both of those are core Syndicate planets, with billions of people on them. No way that would work. But this financial guy, Alexander Solyent... your contact says he lives on a giant yacht that sails around the ocean on Nimbus. Now, that's a much more inviting target. And from what Sawyer says, the Syndicate's financial arm were the ones who decided war would be beneficial in the first place."`
+			`When you land back on Farpoint, Danforth eagerly meets you and asks what information you were able to obtain. You tell him. "So," he says, "one executive on Foundry, and one on Hephaestus. Both of those are core Syndicate planets, with billions of people on them. No way that would work. But this financial guy, Alexander Solyent... your contact says he lives on a giant yacht that sails around the ocean on Nimbus. Now, that's a much more inviting target. And from what Sawyer says, the Syndicate's financial arm were the ones who decided war would be beneficial in the first place."`
 			`	As you're talking, one of Danforth's officers runs into the room. "Sir," he says, "we're detecting a pirate fleet incoming."`
 			`	Danforth swears. "This is my real job, of course," he explains, "defending the North from pirate invasion. This isn't the first attack we've had to repulse, and lately Parliament has been finding reasons to reassign my best ships elsewhere. Captain <last>, would you be willing to join the defense fleet? We'll finish this conversation once they've been driven off."`
 			`	You hurry to your ship and join the defenders...`
@@ -1042,7 +1042,7 @@ mission "FW Pug 2B"
 				goto help
 			
 			label help
-			`	"Assuming you're telling the truth," says Alondo, "What sort of help do you need from us?"`
+			`	"Assuming you're telling the truth," says Alondo, "what sort of help do you need from us?"`
 			`	Alastair says, "We have only seven jump drives, so whatever fleet attacks the Pug can only contain seven ships. Unless the Quarg or someone else will give you more drives, I suppose. So those ships must be stronger than any ship we have here in Syndicate space, because the Pug are very strong. They obliterated our fleet that had been occupying the Sol system, even though that fleet was armed with the majority of our nuclear arsenal."`
 			choice
 				`	"You're saying you'll provide the jump drives, and we'll provide the ships? Sounds fair enough."`
@@ -1773,7 +1773,7 @@ mission "FW Pug 5"
 			
 			`	"I'm sure of nothing," she says, "but it seemed to work, and without any catastrophic side effects so far, so that's something."`
 			label next
-			`	Freya leads you to a warehouse in the spaceport where another one of the "graviton reflectors" is stored. "This should work the same as the one you brought to Hephaestus," she says, "If there's a transmitter on Shiver, we can bring the reflector to Sol and open a link back to the very heart of human space. And at that point, we may even have the Pug outgunned. But first, we need to drive them away from that star system for long enough for me to work the transmitter."`
+			`	Freya leads you to a warehouse in the spaceport where another one of the "graviton reflectors" is stored. "This should work the same as the one you brought to Hephaestus," she says. "If there's a transmitter on Shiver, we can bring the reflector to Sol and open a link back to the very heart of human space. And at that point, we may even have the Pug outgunned. But first, we need to drive them away from that star system for long enough for me to work the transmitter."`
 				accept
 	
 	npc evade

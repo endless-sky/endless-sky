@@ -28,7 +28,7 @@ mission "FWC Scouting 1"
 				`	"No problem."`
 					goto freya
 				`	"Sure, but first, can you tell me how the Wolf Pack was able to do so much damage to the Navy?"`
-			`	"As I said," says JJ, "They've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
+			`	"As I said," says JJ, "they've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
 			label freya
 			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Rand system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
 				accept
@@ -1052,7 +1052,7 @@ mission "FWC Pug 1"
 					goto jam
 			
 			label around
-			`	"Only if you want to communicate at the speed of light," says the technician, "And in that case you'd need to wait a few years to get a message out to Tomek. So no, there is not any way around the relays. They're essential to the galactic communications network, which is why even at the worst parts of this war we've never seriously considered destroying them."`
+			`	"Only if you want to communicate at the speed of light," says the technician, "and in that case you'd need to wait a few years to get a message out to Tomek. So no, there is not any way around the relays. They're essential to the galactic communications network, which is why even at the worst parts of this war we've never seriously considered destroying them."`
 				goto attack
 			
 			label jam
@@ -1458,7 +1458,7 @@ mission "FWC Pug 3"
 			
 			label links
 			`	Alondo says, "That's what Freya was working on. As soon as your fleet disappeared, she began investigating, and she went to <planet> to set up something she called a 'graviton detector' pointed towards Vega. Right before that system was taken, she sent us a message that she had found some sort of residual trace of the link, maybe a way to reopen it."`
-			`	"Wait," says Katya, "What do you mean, 'right before the system was taken'? By whom?"`
+			`	"Wait," says Katya, "what do you mean, 'right before the system was taken'? By whom?"`
 			`	"The Navy," says Alondo. "They think the Free Worlds is behind the disappearance of those systems. And with your fleet gone, we didn't have enough ships left to resist them. Freya could have evacuated, but she stayed behind to finish her research. I believe her exact words were, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
 				goto next
 			
@@ -1506,7 +1506,7 @@ mission "FWC Pug 3A"
 			label introductions
 			`	Standing next to Danforth is someone you think might be his bodyguard: a dark-skinned woman dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. Surprisingly, Katya recognizes her. "Raven!" says Katya. You aren't sure if Katya sounds happy to see her, or scared.`
 			`	"Hello Councilor," says the woman.`
-			`	Danforth says, "We hear you have come from the disconnected territory, and that you bring word of a potential alien invasion. Come with us, please." He ushers you into one of the Navy cruisers that are parked nearby, and into a room you assume is his private office; the guards check you and Katya for weapons and then leave you alone with Danforth and Raven. "Now," says Danforth, "You will answer our questions."`
+			`	Danforth says, "We hear you have come from the disconnected territory, and that you bring word of a potential alien invasion. Come with us, please." He ushers you into one of the Navy cruisers that are parked nearby, and into a room you assume is his private office; the guards check you and Katya for weapons and then leave you alone with Danforth and Raven. "Now," says Danforth, "you will answer our questions."`
 			`	He gestures to Raven, who walks up to you and holds out her hands. "Take my hands, please, Captain," she says.`
 			choice
 				`	(Take her hands.)`
@@ -1534,7 +1534,7 @@ mission "FWC Pug 3A"
 				`	"What if Freya can't restore the link?"`
 			
 			`	"Then Councilor Reynolds will remain here as our prisoner," he says.`
-			`	"Go, <first>," says Katya, "It's our best chance."`
+			`	"Go, <first>," says Katya. "It's our best chance."`
 			label end
 			`	You return to your ship with Freya, who is carrying a large collection of sensors and equipment. "Let's try <planet> first," she says, "and see if there's any alien technology there that we can use. I hope you still have some ships left in your battle fleet to help defend us."`
 				accept
@@ -1949,7 +1949,7 @@ mission "FWC Pug 4B"
 				accept
 			label detour
 			`	"Trust me," she says, "it's worth it, if we can get some real answers."`
-			`	"Straight answers from the Quarg?" you say, "Not likely, but it can't hurt to try."`
+			`	"Straight answers from the Quarg?" you say. "Not likely, but it can't hurt to try."`
 				accept
 
 
@@ -2547,9 +2547,9 @@ mission "FWC End"
 		set "main plot completed"
 		set "free worlds plot completed"
 		conversation
-			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya, "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
+			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya. "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
 			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`
-			`	"Also," says Katya, "As their own expression of gratitude, the Syndicate members of Parliament have offered to make some of their new technology, developed during the war, available to us at an affordable price."`
+			`	"Also," says Katya, "as their own expression of gratitude, the Syndicate members of Parliament have offered to make some of their new technology, developed during the war, available to us at an affordable price."`
 			choice
 				`	"That's very generous of them."`
 				`	"I wonder if that's their way of buying our support and keeping us quiet about the supposed defector."`

@@ -588,7 +588,7 @@ mission "FW Hope Recon 1D"
 			`You report back to Freya and Tomek. "I saw a weird sensor blip," you say, "but I was afraid to follow up on it. It may have been the Navy, planting sensors of their own, or doing something else on the planet."`
 				goto sensors
 			label caught
-			`You report back to Freya and Tomek. "The sensors are deployed," you say, "But I caught the Navy doing the same thing. I destroyed one of their installations, but there might be others."`
+			`You report back to Freya and Tomek. "The sensors are deployed," you say, "but I caught the Navy doing the same thing. I destroyed one of their installations, but there might be others."`
 			label sensors
 			`	Tomek frowns. "What do you think, Freya?"`
 			`	"I'd say, live and let live. We have no plans to expand north, so it doesn't cost us anything for them to know what is happening in that system. And we don't have resources to spare on sweeping the planet for their sensors."`
@@ -610,7 +610,7 @@ mission "FW Hope Recon 1D"
 				`	"Okay, you've convinced me."`
 					decline
 			
-			`	"Fine," says Freya, "But report to Rust when you're done. And try not to get yourself killed." She's clearly disappointed in you.`
+			`	"Fine," says Freya, "but report to Rust when you're done. And try not to get yourself killed." She's clearly disappointed in you.`
 				accept
 	
 	npc
@@ -713,7 +713,7 @@ mission "FW Plasma Testing 1B"
 					accept
 				`	"What sort of ship is the Red Nile?"`
 			
-			`	"One of those antiques from Betelgeuse," he says, "Shouldn't give you any bother. Meet us back here when you're done."`
+			`	"One of those antiques from Betelgeuse," he says. "Shouldn't give you any bother. Meet us back here when you're done."`
 				accept
 	
 	on complete
@@ -1208,7 +1208,7 @@ mission "FW Pirates 3.1"
 			`You find Tomek in the spaceport bar, talking with Freya and JJ. "Well, Captain," says Tomek, "you're going to be happy to hear this. The Senate recommended the same approach you did: negotiating with the pirates." He seems very upset at this.`
 				goto orders
 			label antares
-			`You find Tomek in the spaceport bar, talking with Freya and JJ. "Well, Captain," says Tomek, "The Senate doesn't see things your way. Instead of attacking the pirates, they want us to negotiate with them." He seems very upset at this.`
+			`You find Tomek in the spaceport bar, talking with Freya and JJ. "Well, Captain," says Tomek, "the Senate doesn't see things your way. Instead of attacking the pirates, they want us to negotiate with them." He seems very upset at this.`
 			label orders
 			`	JJ explains, "We've been asked to deliver an ultimatum to each pirate world, starting with the ruling authorities on Thule, in the Men system. The Free Worlds maintains the right to attack any ships engaged in piracy. Any world that continues to support piracy, slavery, or illegal weapons manufacture will be a valid military target for us. But first, we are to offer each world the opportunity to become truly autonomous and free from outside intervention, if they will pledge to cease those activities."`
 			`	Freya says, "The thing is, just like any other world, most people on the 'pirate' planets are just ordinary farmers, or factory workers, or whatever. The only difference is, they want no off-world government telling them how to live. So that's what we're going to offer them."`
@@ -1222,7 +1222,7 @@ mission "FW Pirates 3.1"
 				goto plan
 			label disagree
 			`	"Absolutely," says Tomek. "The Senate doesn't know what's best for them. Perhaps we should save them from their own stupidity and make sure the right thing gets done."`
-			`	"Tomek," says Freya, "This is a diplomacy. We follow the Senate's orders."`
+			`	"Tomek," says Freya, "this is a diplomacy. We follow the Senate's orders."`
 			label plan
 			`	JJ says, "Captain <last>, the Senate wants you to travel to Thule and deliver their ultimatum. You will be given a single Falcon as an escort: not enough for a battle fleet, just enough to keep you safe. You are to avoid engaging any pirates you meet, if possible."`
 			`	"I'll introduce you to your escort," says Tomek, and he leads you out of the bar. Once you are outside, he pulls you aside and says, "If by any chance you are attacked by pirates along the way, and if you have any reason to suspect that they originate from the <system> system, you would be totally justified in attacking that system instead of following your initial orders. I could even supply you with a backup fleet, if that happened."`
@@ -1429,7 +1429,7 @@ mission "FW Pirates 4"
 	on offer
 		conversation
 			`One of the first people to step off the Terebinth when it lands is Alondo, the Free Worlds diplomat. You ask him what the plan is, now.`
-			`	"Well," he says, "The people I'll be meeting with here are tribal elders, of a sort. But the tribes are separated not so much by ethnicity, as by geography and ideology. I can't claim to understand all the intricacies, really, but in matters affecting the entire planet they have authority to make consensus decisions. Of course, there are hundreds of independent settlements and groups that may or may not abide by that decision."`
+			`	"Well," he says, "the people I'll be meeting with here are tribal elders, of a sort. But the tribes are separated not so much by ethnicity, as by geography and ideology. I can't claim to understand all the intricacies, really, but in matters affecting the entire planet they have authority to make consensus decisions. Of course, there are hundreds of independent settlements and groups that may or may not abide by that decision."`
 			choice
 				`	"What do you think our odds are of a successful negotiation?"`
 				`	"What do we do if diplomacy doesn't work?"`
@@ -1499,7 +1499,7 @@ mission "FW Pirates 4.1"
 	
 	on offer
 		conversation
-			`JJ and Freya meet you soon after you land on <origin>. "Congratulations," says JJ, "You're a goddamn hero. Now, what exactly were you planning on doing next?"`
+			`JJ and Freya meet you soon after you land on <origin>. "Congratulations," says JJ, "you're a goddamn hero. Now, what exactly were you planning on doing next?"`
 			choice
 				`	"Station a fleet in orbit to keep the locals pacified."`
 					goto fleet

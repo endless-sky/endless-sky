@@ -186,7 +186,7 @@ mission "Pact Questioning"
 					goto quit
 			`	He has been looking intently into your eye, and when you lie to him, he frowns. "It really isn't necessary to lie to me," he says. You are not sure what to say in response, so you remain quiet.`
 			label pact
-			`	"Tell me," he says, "Was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. All Navy personnel you have encountered in the past have a name badge on their lapel and rank insignia on their collar, but his uniform is entirely blank.`
+			`	"Tell me," he says, "was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. All Navy personnel you have encountered in the past have a name badge on their lapel and rank insignia on their collar, but his uniform is entirely blank.`
 			choice
 				`	"I don't remember anyone's name in particular."`
 				`	"I would rather not name any names."`
@@ -298,7 +298,7 @@ mission "FW Recon 1"
 			variant
 				"Cruiser (Heavy)"
 		conversation
-			`As soon as you scan the <npc> its captain hails you. "Excuse me, captain," he says, "Can I assist you with something?"`
+			`As soon as you scan the <npc> its captain hails you. "Excuse me, captain," he says, "can I assist you with something?"`
 			choice
 				`	"I was just wondering what sort of engines you've got that let you move so fast."`
 					goto engines
@@ -476,13 +476,13 @@ mission "FW Katya 1"
 			`	You make a grab for the gun. A second later she's got your arm twisted behind your back, using just enough force to make it clear that things could get really painful if you continue to struggle. "Smart, and playful too," she says, "I like that. But, it'll be a cold day in hell before a kid like you gets the drop on me. Now, shall we talk?" She lets go of you, and you shake out your arm gingerly.`
 	
 			label `explanation`
-			`	"I need a civilian for some courier work," she says, "Nothing illegal, at least nothing the Republic can pin on you. It just needs to be done by a ship that isn't flying our colors, and by a captain who isn't going to scream, 'Death to all tyrants!' and go in with guns blazing the first time your cargo gets scanned. What do you say?"`
+			`	"I need a civilian for some courier work," she says. "Nothing illegal, at least nothing the Republic can pin on you. It just needs to be done by a ship that isn't flying our colors, and by a captain who isn't going to scream, 'Death to all tyrants!' and go in with guns blazing the first time your cargo gets scanned. What do you say?"`
 			choice
 				`	"I'm not sure I'm ready to pick sides in this war, yet."`
 				`	"Okay, tell me more."`
 					goto `more`
 	
-			`	"Look kid," she says, "When I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
+			`	"Look kid," she says, "when I ask you to pick sides, when I offer you a mission that's gonna burn some bridges for you, I won't be sneaky about it. I'll tell you exactly what you're signing up for. What I'm offering you now is just a chance to get to know us, and let us get to know you, with no expectations. Heck, you can even run missions for the Reps at the same time."`
 			choice
 				`	"That sounds fair. I'll hear you out."`
 				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns."`
@@ -692,7 +692,7 @@ mission "FW Katya 2"
 				`	"Sorry, but I've decided working for the Free Worlds just isn't worth the risk."`
 					decline
 			
-			`	"Great!" she says, "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though."`
+			`	"Great!" she says. "His name is Mr. Eyes, and he'll meet you on <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though."`
 				accept
 
 
@@ -759,7 +759,7 @@ mission "FW Katya 2B"
 				`	"Well, then, what's our plan?"`
 			
 			label plan
-			`	"First," he says, "We need to go to Geminus, where the attack happened. I can explain more when we get there. In the meantime, I should also warn you that I seem to have terrible luck with pirates showing up wherever I go. It's almost like someone has put a price on my head." He grins.`
+			`	"First," he says, "we need to go to Geminus, where the attack happened. I can explain more when we get there. In the meantime, I should also warn you that I seem to have terrible luck with pirates showing up wherever I go. It's almost like someone has put a price on my head." He grins.`
 				accept
 
 
@@ -783,7 +783,7 @@ mission "FW Katya 2C"
 	on complete
 		payment 100000
 		conversation
-			`As soon as you land, Mr. Eyes fires up his sensors and begins collecting data. A few minutes later, Katya shows up. "Eyes!" she says, "It's great to see you again."`
+			`As soon as you land, Mr. Eyes fires up his sensors and begins collecting data. A few minutes later, Katya shows up. "Eyes!" she says. "It's great to see you again."`
 			`	"You too, Councilor," he says.`
 			`	Katya hands you a credit chip for another <payment>. "Thanks again, Captain. Did Eyes explain the plan to you?" You nod. "Well," she says, "if you've got space for the two of us and want to be a part of seeing justice done, let's meet up in the spaceport once Eyes is done analyzing his data."`
 
@@ -802,7 +802,7 @@ mission "FW Katya 3"
 	on offer
 		conversation
 			`You find Eyes and Katya sitting in the shade of one of the few trees in the port, drinking some sort of frozen milkshakes while they stare out at the desert and talk in hushed voices. When you join them, Katya says, "I was just filling Eyes in on the Navy's recent fleet mobilization. Half the Dirt Belt is swarming with cruisers and surveillance drones right now. It's hard to believe that we can find the attackers before they do, unless they're somewhere the Navy hasn't thought to look."`
-			`	"Agreed," says Eyes, "And to make matters worse, their sensors are probably much better than mine."`
+			`	"Agreed," says Eyes, "and to make matters worse, their sensors are probably much better than mine."`
 			`	Katya appears to be struck by a sudden idea. "The sensors on their drones," she says, "their unmanned drones..."`
 			`	Eyes glances at her, sees her expression, and says, "No, Councilor, don't even think of it. That's a horrible idea."`
 			`	"No," she says, "it's brilliant. Captain <last>, are you familiar with the Dereliction and Salvage Act of 2976?"`
@@ -836,7 +836,7 @@ mission "FW Katya 3"
 					decline
 			
 			label agree
-			`	"Great!" Says Katya, "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
+			`	"Great!" Says Katya. "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
 				accept
 	
 	on complete
@@ -860,13 +860,13 @@ mission "FW Katya 4"
 	on offer
 		conversation
 			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
-			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "And then work our way toward the Rim."`
-			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native like yourself, from a planet named Hope. "No longer settled," she explains, "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
+			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "and then work our way toward the Rim."`
+			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native like yourself, from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
 			choice
 				`	"Was anyone killed?"`
 				`	"How did you escape?"`
 			
-			`	"The eruption was on the other continent," she explains, "So no one was killed in the blast. It was a slow-moving disaster. We had six months or so to move two million settlers off-world before the temperatures would drop too low to be livable. More than half of the Navy was mobilized to ferry our people to other planets."`
+			`	"The eruption was on the other continent," she explains, "so no one was killed in the blast. It was a slow-moving disaster. We had six months or so to move two million settlers off-world before the temperatures would drop too low to be livable. More than half of the Navy was mobilized to ferry our people to other planets."`
 			`	"Here's the best part," says Eyes. "The Navy operates with a certain amount of autonomy. Turns out when they found out about the disaster, they mobilized without even waiting to clear it with Parliament. Which was technically within their mandate, this being a natural disaster. But the Navy is funded by taxes, and the Paradise Planets pay ten times as much in taxes as the Dirt Belt."`
 			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those generals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
 			choice
@@ -894,7 +894,7 @@ mission "FW Katya 5"
 		has "chosen sides"
 	on offer
 		conversation
-			`You land on <origin>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes, "Guess we should move on."`
+			`You land on <origin>, and Mr. Eyes fires up the new Navy surveillance equipment to make atmospheric measurements. "Nothing here," he says after a few minutes. "Guess we should move on."`
 			choice
 				`	"Are we just going to search every planet in this sector? Won't that take months?"`
 					goto months
@@ -956,7 +956,7 @@ mission "FW Katya 5B"
 				`	"I'm <first>. Pleased to meet you."`
 			
 			`	Katya asks, "Is Brother Greg here?"`
-			`	"Sure," says David, "Come inside." The monastery building is a stone and brick structure that looks like pictures you have seen of ancient Earth. He leads you down a long hallway and into a sitting room with furniture that looks equally antique, and then leaves.`
+			`	"Sure," says David. "Come inside." The monastery building is a stone and brick structure that looks like pictures you have seen of ancient Earth. He leads you down a long hallway and into a sitting room with furniture that looks equally antique, and then leaves.`
 			`	As you are waiting, Eyes explains, "Brother Greg is in charge of the monastery's outreach and ministry to pirate crew members."`
 			choice
 				`	"That sounds even odder than being a vigilante nuclear inspector."`
@@ -980,7 +980,7 @@ mission "FW Katya 5B"
 					goto excuse
 			
 			label excuse
-			`	"No problem," he says, "See you in the morning."`
+			`	"No problem," he says. "See you in the morning."`
 				goto morning
 			
 			label prayer
@@ -1062,7 +1062,7 @@ mission "FW Katya 6B"
 		has "chosen sides"
 	on offer
 		conversation
-			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says, "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
+			`Mr. Eyes fires up his instruments and looks at the results for a few minutes. "Nothing," he says. "Even underground testing would've thrown up a debris plume large enough to measure traces of it. But I'm picking up nothing."`
 			`	"No problem," says Katya, "let's continue to <planet>."`
 				accept
 
@@ -1168,8 +1168,8 @@ mission "FW Katya 7C"
 			`You land some distance from the mining settlement, and Mr. Eyes goes into the airlock in a pressure suit, cycling it to bring in some of the moon's thin atmosphere for him to test. "Firing up my instruments now," he says through the comm link. There is a long pause, and then he starts spouting a long string of creative profanity. Katya runs over to the airlock window to see what is happening.`
 			`	Finally, Eyes calms down enough to say, "It's a match! Not only has there been a recent test here, but the signature matches the one we took on Geminus. This is it."`
 			`	He cycles the airlock and comes back inside. "Let's fly around the planet and see if we can find the site," he says. After a few hours of flying low over the surface and scanning for radiation signatures, you find a spot that looks like all the other meteorite craters but is full of radiation. Katya and Eyes look at the images of the surface almost in disbelief.`
-			`	"Based on the isotopic decay rates, this explosion happened in mid-June," says Eyes, "Just before the attacks happened."`
-			`	"It makes no sense," says Katya, "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment. Captain, is the outpost reporting any miner's jobs open?"`
+			`	"Based on the isotopic decay rates, this explosion happened in mid-June," says Eyes. "Just before the attacks happened."`
+			`	"It makes no sense," says Katya. "It's a blatant atmospheric test. No way the Navy hasn't found this. The Navy could act on this at any moment. Captain, is the outpost reporting any miner's jobs open?"`
 			choice
 				`	(Check what my computer says.)`
 			
@@ -1488,7 +1488,7 @@ mission "FW Escort 3"
 	
 	on offer
 		conversation
-			`	When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says, "One of our freighters, the <npc>, was just disabled in the Lesath system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
+			`	When you walk into the bar, Voigt looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the Lesath system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by the pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
@@ -1608,10 +1608,10 @@ mission "Rescue Katya 1"
 				`	Not yet.`
 					defer
 			
-			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "This is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
+			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "this is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
 			`	That night, the Council takes you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
 			`	After a long silence, JJ asks, "How many casualties?"`
-			`	"None," says Tomek, "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
+			`	"None," says Tomek. "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
 			choice
 				`	"Was Katya still there? We need to rescue her!"`
 					goto rescue
@@ -1619,7 +1619,7 @@ mission "Rescue Katya 1"
 					goto attack
 			
 			label rescue
-			`	"Indeed," says Freya, "That should be our first priority."`
+			`	"Indeed," says Freya. "That should be our first priority."`
 				goto help
 			
 			label attack
@@ -1628,7 +1628,7 @@ mission "Rescue Katya 1"
 				goto help
 			
 			label help
-			`	"Well," says Alondo, "It's a good thing we haven't yet publicly announced that Captain <last> is working for us. Captain, we have one final mission for you as an independent merchant captain. We need you to stop on Clink, locate Katya, and bring her safely to Longjump without being stopped by the Navy."`
+			`	"Well," says Alondo, "it's a good thing we haven't yet publicly announced that Captain <last> is working for us. Captain, we have one final mission for you as an independent merchant captain. We need you to stop on Clink, locate Katya, and bring her safely to Longjump without being stopped by the Navy."`
 				accept
 	
 	on accept

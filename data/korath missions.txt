@@ -68,6 +68,6 @@ mission "First Contact: Korath"
 				goto alone
 			
 			label alone
-			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "If the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
+			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "if the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
 			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied. They say, "Nik lak'mal," then get back in their fighters and take off.`
 				decline

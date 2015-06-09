@@ -56,7 +56,7 @@ mission "FW Conservatory 2"
 				`	"Sure thing!"`
 					accept
 				`	"I've got another pressing mission. Can I come back and do this later?"`
-			`	"Sure," he says, "But the longer we wait, the longer it will be until the Conservatory is up and running, so come back soon."`
+			`	"Sure," he says. "But the longer we wait, the longer it will be until the Conservatory is up and running, so come back soon."`
 				defer
 	
 	npc accompany save
