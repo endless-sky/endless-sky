@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 int Screen::width = 0;
 int Screen::height = 0;
+int Screen::zoom = 100;
 
 
 
@@ -23,6 +24,20 @@ void Screen::Set(int width, int height)
 {
 	Screen::width = width;
 	Screen::height = height;
+}
+
+
+
+int Screen::Zoom()
+{
+	return zoom;
+}
+
+
+
+void Screen::SetZoom(int percent)
+{
+	zoom = percent;
 }
 
 

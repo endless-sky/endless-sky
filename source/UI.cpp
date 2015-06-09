@@ -43,16 +43,18 @@ bool UI::Handle(const SDL_Event &event)
 		if(event.type == SDL_MOUSEMOTION)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
-				handled = (*it)->Drag(event.motion.xrel, event.motion.yrel);
+				handled = (*it)->Drag(
+					event.motion.xrel * 100 / Screen::Zoom(),
+					event.motion.yrel * 100 / Screen::Zoom());
 			else
 				handled = (*it)->Hover(
-					event.motion.x - Screen::Width() / 2,
-					event.motion.y - Screen::Height() / 2);
+					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),
+					Screen::Top() + event.motion.y * 100 / Screen::Zoom());
 		}
 		else if(event.type == SDL_MOUSEBUTTONDOWN)
 		{
-			int x = event.button.x - Screen::Width() / 2;
-			int y = event.button.y - Screen::Height() / 2;
+			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
+			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			if(event.button.button == 1)
 				handled = (*it)->Click(x, y);
 			else if(event.button.button == 3)
@@ -60,8 +62,8 @@ bool UI::Handle(const SDL_Event &event)
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
-			int x = event.button.x - Screen::Width() / 2;
-			int y = event.button.y - Screen::Height() / 2;
+			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
+			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			handled = (*it)->Release(x, y);
 		}
 		else if(event.type == SDL_MOUSEWHEEL)

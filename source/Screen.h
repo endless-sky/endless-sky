@@ -24,6 +24,9 @@ class Screen {
 public:
 	static void Set(int width, int height);
 	
+	static int Zoom();
+	static void SetZoom(int percent);
+	
 	static int Width();
 	static int Height();
 	
@@ -42,6 +45,7 @@ public:
 private:
 	static int width;
 	static int height;
+	static int zoom;
 };
 
 

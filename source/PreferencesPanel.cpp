@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
+#include "Screen.h"
 #include "StarField.h"
 #include "Table.h"
 #include "UI.h"
@@ -172,6 +173,15 @@ void PreferencesPanel::Draw() const
 	
 	table.DrawAt(endPoint);
 	prefZones.clear();
+	{
+		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), "zoom factor");
+		if(hoverPreference == "zoom factor")
+			table.DrawHighlight(back);
+		
+		table.Draw("zoom factor", medium);
+		table.Draw(to_string(Screen::Zoom()));
+		table.DrawGap(-40);
+	}
 	for(const string &setting : SETTINGS)
 	{
 		if(setting.empty())
@@ -251,7 +261,19 @@ bool PreferencesPanel::Click(int x, int y)
 	
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
-			Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+		{
+			if(zone.Value() != "zoom factor")
+				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
+			else
+			{
+				int zoom = Screen::Zoom();
+				int width = Screen::Width() * zoom / 100;
+				int height = Screen::Height() * zoom / 100;
+				zoom = (zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
+				Screen::SetZoom(zoom);
+				Screen::Set(width * 100 / zoom, height * 100 / zoom);
+			}
+		}
 	
 	return true;
 }
