@@ -38,7 +38,7 @@ void Preferences::Load()
 	for(const DataNode &node : prefs)
 	{
 		if(node.Token(0) == "window size" && node.Size() >= 3)
-			Screen::Set(node.Value(1), node.Value(2));
+			Screen::SetRaw(node.Value(1), node.Value(2));
 		else if(node.Token(0) == "zoom" && node.Size() >= 2)
 			Screen::SetZoom(node.Value(1));
 		else if(node.Token(0) == "volume" && node.Size() >= 2)
@@ -55,7 +55,7 @@ void Preferences::Save()
 	DataWriter out(Files::Config() + "preferences.txt");
 	
 	out.Write("volume", Audio::Volume());
-	out.Write("window size", Screen::Width(), Screen::Height());
+	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::Zoom());
 	
 	for(const auto &it : settings)

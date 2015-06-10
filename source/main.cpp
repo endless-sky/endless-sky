@@ -98,28 +98,24 @@ int main(int argc, char *argv[])
 		if(maxWidth < 640 || maxHeight < 480)
 			return DoError("Monitor resolution is too small!");
 		
-		if(Screen::Width() && Screen::Height())
+		if(Screen::RawWidth() && Screen::RawHeight())
 		{
 			// Never allow the saved screen width to be leaving less than 100
 			// pixels free around the window. This avoids the problem where you
 			// maximize without going full-screen, and next time the window pops
 			// up you can't access the resize control because it is offscreen.
-			int zoom = Screen::Zoom();
-			Screen::Set(
-				min(Screen::Width(), (maxWidth - 100) * 100 / zoom),
-				min(Screen::Height(), (maxHeight - 100) * 100 / zoom));
+			Screen::SetRaw(
+				min(Screen::RawWidth(), (maxWidth - 100)),
+				min(Screen::RawHeight(), (maxHeight - 100)));
 			if(flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
 			{
-				restoreWidth = Screen::Width() * zoom / 100;
-				restoreHeight = Screen::Height() * zoom / 100;
-				Screen::Set(maxWidth * 100 / zoom, maxHeight * 100 / zoom);
+				restoreWidth = Screen::RawWidth();
+				restoreHeight = Screen::RawHeight();
+				Screen::SetRaw(maxWidth, maxHeight);
 			}
 		}
 		else
-		{
-			int zoom = Screen::Zoom();
-			Screen::Set((maxWidth - 100) * 100 / zoom, (maxHeight - 100) * 100 / zoom);
-		}
+			Screen::SetRaw(maxWidth - 100, maxHeight - 100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -236,11 +232,9 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED)
 				{
-					int zoom = Screen::Zoom();
-					int width = ((event.window.data1 & ~1) * 100) / zoom;
-					int height = ((event.window.data2 & ~1) * 100) / zoom;
-					Screen::Set(width, height);
-					SDL_SetWindowSize(window, (width * zoom) / 100, (height * zoom) / 100);
+					Screen::SetRaw(event.window.data1 & ~1, event.window.data2 & ~1);
+					SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
+					int width, height;
 					SDL_GL_GetDrawableSize(window, &width, &height);
 					glViewport(0, 0, width, height);
 				}
@@ -252,20 +246,19 @@ int main(int argc, char *argv[])
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && event.key.keysym.mod & KMOD_ALT)))
 				{
-					int zoom = Screen::Zoom();
 					if(restoreWidth)
 					{
 						SDL_SetWindowFullscreen(window, 0);
-						Screen::Set(restoreWidth * 100 / zoom, restoreHeight * 100 / zoom);
-						SDL_SetWindowSize(window, Screen::Width() * zoom / 100, Screen::Height() * zoom / 100);
+						Screen::SetRaw(restoreWidth, restoreHeight);
+						SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
 						restoreWidth = 0;
 						restoreHeight = 0;
 					}
 					else
 					{
-						restoreWidth = Screen::Width() * zoom / 100;
-						restoreHeight = Screen::Height() * zoom / 100;
-						Screen::Set(maxWidth * 100 / zoom, maxHeight * 100 / zoom);
+						restoreWidth = Screen::RawWidth();
+						restoreHeight = Screen::RawHeight();
+						Screen::SetRaw(maxWidth, maxHeight);
 						SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 					}
 					int width, height;
@@ -294,7 +287,7 @@ int main(int argc, char *argv[])
 		bool isFullscreen = (restoreWidth != 0);
 		Preferences::Set("fullscreen", isFullscreen);
 		if(isFullscreen)
-			Screen::Set(restoreWidth * 100 / Screen::Zoom(), restoreHeight * 100 / Screen::Zoom());
+			Screen::SetRaw(restoreWidth, restoreHeight);
 		Preferences::Save();
 		
 		Cleanup(window, context);

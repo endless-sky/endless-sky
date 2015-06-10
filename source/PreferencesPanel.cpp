@@ -267,11 +267,7 @@ bool PreferencesPanel::Click(int x, int y)
 			else
 			{
 				int zoom = Screen::Zoom();
-				int width = Screen::Width() * zoom / 100;
-				int height = Screen::Height() * zoom / 100;
-				zoom = (zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
-				Screen::SetZoom(zoom);
-				Screen::Set(width * 100 / zoom, height * 100 / zoom);
+				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
 			}
 		}
 	

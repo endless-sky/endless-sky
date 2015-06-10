@@ -22,13 +22,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // is allowed to use it.
 class Screen {
 public:
-	static void Set(int width, int height);
+	static void SetRaw(int width, int height);
 	
 	static int Zoom();
 	static void SetZoom(int percent);
 	
 	static int Width();
 	static int Height();
+	
+	static int RawWidth();
+	static int RawHeight();
 	
 	// Get the positions of the edges and corners of the viewport.
 	static int Left();
@@ -40,12 +43,6 @@ public:
 	static Point TopRight();
 	static Point BottomLeft();
 	static Point BottomRight();
-	
-	
-private:
-	static int width;
-	static int height;
-	static int zoom;
 };
 
 

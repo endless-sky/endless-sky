@@ -12,100 +12,126 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Screen.h"
 
+#include <algorithm>
 
-
-int Screen::width = 0;
-int Screen::height = 0;
-int Screen::zoom = 100;
+using namespace std;
 
 
 
-void Screen::Set(int width, int height)
+namespace {
+	static int RAW_WIDTH = 0;
+	static int RAW_HEIGHT = 0;
+	static int WIDTH = 0;
+	static int HEIGHT = 0;
+	static int ZOOM = 100;
+}
+
+
+
+void Screen::SetRaw(int width, int height)
 {
-	Screen::width = width;
-	Screen::height = height;
+	RAW_WIDTH = width;
+	RAW_HEIGHT = height;
+	SetZoom(ZOOM);
 }
 
 
 
 int Screen::Zoom()
 {
-	return zoom;
+	return ZOOM;
 }
 
 
 
 void Screen::SetZoom(int percent)
 {
-	zoom = percent;
+	ZOOM = max(100, min(200, percent));
+	WIDTH = RAW_WIDTH * 100 / ZOOM;
+	HEIGHT = RAW_HEIGHT * 100 / ZOOM;
 }
 
 
 
 int Screen::Width()
 {
-	return width;
+	return WIDTH;
 }
 
 
 
 int Screen::Height()
 {
-	return height;
+	return HEIGHT;
 }
+
+
+
+int Screen::RawWidth()
+{
+	return RAW_WIDTH;
+}
+
+
+
+int Screen::RawHeight()
+{
+	return RAW_HEIGHT;
+}
+
 
 
 
 int Screen::Left()
 {
-	return width / -2;
+	return WIDTH / -2;
 }
 
 
 
 int Screen::Top()
 {
-	return height / -2;
+	return HEIGHT / -2;
 }
 
 
 
 int Screen::Right()
 {
-	return width / 2;
+	return WIDTH / 2;
 }
 
 
 
 int Screen::Bottom()
 {
-	return height / 2;
+	return HEIGHT / 2;
 }
 
 
 
 Point Screen::TopLeft()
 {
-	return Point(-.5 * width, -.5 * height);
+	return Point(-.5 * WIDTH, -.5 * HEIGHT);
 }
 
 
 
 Point Screen::TopRight()
 {
-	return Point(.5 * width, -.5 * height);
+	return Point(.5 * WIDTH, -.5 * HEIGHT);
 }
 
 
 
 Point Screen::BottomLeft()
 {
-	return Point(-.5 * width, .5 * height);
+	return Point(-.5 * WIDTH, .5 * HEIGHT);
 }
 
 
 
 Point Screen::BottomRight()
 {
-	return Point(.5 * width, .5 * height);
+	return Point(.5 * WIDTH, .5 * HEIGHT);
 }
