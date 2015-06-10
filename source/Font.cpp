@@ -115,7 +115,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 	}
 	
 	GLfloat textPos[2] = {
-		static_cast<float>(round(point.X())),
+		static_cast<float>(round(point.X() - 1.)),
 		static_cast<float>(round(point.Y()))};
 	int previous = 0;
 	
@@ -258,7 +258,7 @@ void Font::CalculateAdvances(ImageBuffer *image)
 	// Set the space size based on the character width.
 	width /= 2;
 	height /= 2;
-	space = KERN + (width + 3) / 6;
+	space = (width + 3) / 6 + 1;
 }
 
 

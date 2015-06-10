@@ -110,7 +110,7 @@ outfit "S-970 Regenerator"
 	"shield generation" 2.3
 	"energy generation" -.9
 	"heat generation" 6
-	description "The S-970 Shield Regenerator is a significant step forward in shield recharging technology. Unfortunately, its power needs are rather high, and the shifts it makes in your shield configuration also results in some feedback that causes heat to build up in the regenerator, even when your shields are at full strength."
+	description "The S-970 Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are rather high, and the shifts it makes in your shield configuration also result in some feedback that causes heat to build up in the regenerator, even when your shields are at full strength."
 
 
 outfit "Ramscoop"
