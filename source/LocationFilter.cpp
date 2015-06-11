@@ -21,6 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "System.h"
 
+#include <mutex>
+
 using namespace std;
 
 namespace {
@@ -43,10 +45,14 @@ namespace {
 		return false;
 	}
 	
-	// Assume this is only ever called from a single thread, so caching the most
-	// recent distance map is safe.
+	// Check if the given system is within the given distance of the center.
 	int Distance(const System *center, const System *system, int maximum)
 	{
+		// This function should only ever be called from the main thread, but
+		// just to be sure, use mutex protection on the static locals.
+		static mutex distanceMutex;
+		lock_guard<mutex> lock(distanceMutex);
+		
 		static const System *previousCenter = center;
 		static DistanceMap distance(center, -1, maximum);
 		int previousMaximum = maximum;
