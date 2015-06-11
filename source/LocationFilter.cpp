@@ -42,6 +42,25 @@ namespace {
 		}
 		return false;
 	}
+	
+	// Assume this is only ever called from a single thread, so caching the most
+	// recent distance map is safe.
+	int Distance(const System *center, const System *system, int maximum)
+	{
+		static const System *previousCenter = center;
+		static DistanceMap distance(center, -1, maximum);
+		int previousMaximum = maximum;
+		
+		if(center != previousCenter || maximum > previousMaximum)
+		{
+			previousCenter = center;
+			previousMaximum = maximum;
+			distance = DistanceMap(center, -1, maximum);
+		}
+		// If the distance is greater than the maximum, this is not a match.
+		int d = distance.Distance(system);
+		return (d > maximum) ? -1 : d;
+	}
 }
 
 
@@ -194,18 +213,16 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 	
 	if(center)
 	{
-		DistanceMap distance(center, -1, centerMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
-		if(distance.Distance(system) < centerMinDistance)
+		if(Distance(center, system, centerMaxDistance) < centerMinDistance)
 			return false;
 	}
 	if(origin && originMaxDistance >= 0)
 	{
-		DistanceMap distance(origin, -1, originMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
-		if(distance.Distance(system) < originMinDistance)
+		if(Distance(origin, system, originMaxDistance) < originMinDistance)
 			return false;
 	}
 	
@@ -223,10 +240,9 @@ bool LocationFilter::Matches(const Ship &ship) const
 	
 	if(center)
 	{
-		DistanceMap distance(center, -1, centerMaxDistance);
 		// Distance() will return -1 if the system was not within the given max
 		// distance, so this checks for that as well as for the minimum:
-		if(distance.Distance(ship.GetSystem()) < centerMinDistance)
+		if(Distance(center, ship.GetSystem(), centerMaxDistance) < centerMinDistance)
 			return false;
 	}
 	return true;
