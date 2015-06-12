@@ -27,6 +27,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // quotation marks, it should be enclosed in backticks instead.
 class DataNode {
 public:
+	DataNode();
+	
 	int Size() const;
 	const std::string &Token(int index) const;
 	double Value(int index) const;

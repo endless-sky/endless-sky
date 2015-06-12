@@ -28,7 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // strings or as floating point values; see DataNode for more information.
 class DataFile {
 public:
-	DataFile();
+	DataFile() = default;
 	DataFile(const std::string &path);
 	DataFile(std::istream &in);
 	
@@ -37,6 +37,10 @@ public:
 	
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
+	
+	
+private:
+	void Load(const char *it, const char *end);
 	
 	
 private:

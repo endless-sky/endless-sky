@@ -5994,7 +5994,6 @@ system "Io Mann"
 		sprite planet/gas2
 		distance 1068.21
 		period 447.619
-		offset 5.68434e-14
 		object Skyfarm
 			sprite planet/ice7
 			distance 182
