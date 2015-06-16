@@ -414,7 +414,7 @@ fleet "Small Free Worlds"
 	names "free worlds small"
 	cargo 1
 	personality
-		heroic
+		heroic disables
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -459,7 +459,7 @@ fleet "Large Free Worlds"
 	names "free worlds capital"
 	cargo 1
 	personality
-		heroic
+		heroic disables
 	variant 10
 		"Bastion"
 	variant 5
