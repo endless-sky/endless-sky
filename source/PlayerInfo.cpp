@@ -951,22 +951,25 @@ void PlayerInfo::TakeOff()
 	int64_t income = 0;
 	int64_t totalBasis = 0;
 	if(sold)
-		for(auto &it : costBasis)
+		for(const auto &commodity : cargo.Commodities())
 		{
+			if(!commodity.second)
+				continue;
+			
 			// Figure out how much income you get for selling this cargo.
-			int tons = cargo.Get(it.first);
-			int64_t value = tons * system->Trade(it.first);
+			int64_t value = commodity.second * system->Trade(commodity.first);
 			income += value;
 			
-			int original = originalTotals[it.first];
-			if(!original || !it.second)
+			int original = originalTotals[commodity.first];
+			auto it = costBasis.find(commodity.first);
+			if(!original || it == costBasis.end() || !it->second)
 				continue;
 			
 			// Now, figure out how much of that income is profit by calculating
 			// the cost basis for this cargo (which is just the total cost basis
 			// multiplied by the percent of the cargo you are selling).
-			int64_t basis = it.second * tons / original;
-			it.second -= basis;
+			int64_t basis = it->second * commodity.second / original;
+			it->second -= basis;
 			totalBasis += basis;
 		}
 	accounts.AddCredits(income);
