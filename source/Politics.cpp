@@ -188,21 +188,6 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 	int64_t maxFine = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
-		const vector<string> &licenses = ship->Licenses(gov);
-		for(const string &name : licenses)
-			if(player.GetCondition("license: " + name) <= 0)
-			{
-				const Outfit *outfit = GameData::Outfits().Get(name + " License");
-				int64_t fine = outfit->Cost() / 10;
-				if(!fine)
-					fine = 100000;
-				
-				if((fine > maxFine && maxFine >= 0) || fine < 0)
-				{
-					maxFine = fine;
-					reason = "operating a " + ship->ModelName() + " without a " + name + " License.";
-				}
-			}
 		// Check if the ship evades being scanned due to interference plating.
 		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
 			continue;
