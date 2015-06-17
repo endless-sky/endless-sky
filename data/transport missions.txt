@@ -809,7 +809,7 @@ mission "Rescue Miners 1"
 		attributes core
 		attributes mining
 	passengers 15
-	cargo 15 "emergency supplies"
+	cargo "emergency supplies" 15
 	to offer
 		random < 60
 	
