@@ -42,26 +42,22 @@ private:
 	
 	
 private:
-	class Tile {
-	public:
-		Tile(std::vector<float>::iterator it);
-		
-		void Add(short x, short y);
-		
-		std::vector<float>::iterator first;
-		std::vector<float>::iterator last;
-	};
-	
-	
-private:
 	int widthMod;
-	int tileMod;
-	std::vector<float> data;
-	std::vector<std::vector<Tile>> tiles;
+	int tileCols;
+	std::vector<int> tileIndex;
 	
 	Shader shader;
 	GLuint vao;
 	GLuint vbo;
+	
+	GLuint offsetI;
+	GLuint sizeI;
+	GLuint cornerI;
+	
+	GLuint scaleI;
+	GLuint rotateI;
+	GLuint lengthI;
+	GLuint translateI;
 };
 
 

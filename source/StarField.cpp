@@ -12,14 +12,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StarField.h"
 
+#include "pi.h"
 #include "Point.h"
 #include "Random.h"
 #include "Screen.h"
 
 #include <cassert>
 #include <cmath>
+#include <numeric>
 
 using namespace std;
+
+namespace {
+	static const int TILE_SIZE = 256;
+}
 
 
 
@@ -39,47 +45,42 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 	float length = vel.Length();
 	Point unit = length ? vel.Unit() : Point(1., 0.);
 	
-	double screenWidth = Screen::Width();
-	double screenHeight = Screen::Height();
-	double widthScale = 2. / screenWidth;
-	double heightScale = 2. / screenHeight;
-	
-	Point uw = unit * widthScale;
-	Point uh = unit * heightScale;
+	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
+	glUniform2fv(scaleI, 1, scale);
 	
 	GLfloat rotate[4] = {
-		static_cast<float>(-uw.Y()), static_cast<float>(-uh.X()),
-		static_cast<float>(-uw.X()), static_cast<float>(uh.Y())};
-	glUniformMatrix2fv(shader.Uniform("rotate"), 1, false, rotate);
+		static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
+		static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
+	glUniformMatrix2fv(rotateI, 1, false, rotate);
 	
-	float alpha = 4.f / (4.f + length);
-	glUniform1f(shader.Uniform("alpha"), alpha);
+	glUniform1f(lengthI, length);
 	
-	long minX = pos.X() - screenWidth / 2 - static_cast<long>(fabs(vel.X()) + 1);
-	long minY = pos.Y() - screenHeight / 2 - static_cast<long>(fabs(vel.Y()) + 1);
-	long maxX = minX + screenWidth + 2 * static_cast<long>(fabs(vel.X()) + 1);
-	long maxY = minY + screenHeight + 2 * static_cast<long>(fabs(vel.Y()) + 1);
-	minX &= ~255l;
-	minY &= ~255l;
+	// Stars this far beyond the border may still overlap the screen.
+	double borderX = fabs(vel.X()) + 1.;
+	double borderY = fabs(vel.Y()) + 1.;
+	// Find the absolute bounds of the star field we must draw.
+	long minX = Screen::Left() + pos.X() - borderX;
+	long minY = Screen::Top() + pos.Y() - borderY;
+	long maxX = Screen::Right() + pos.X() + borderX;
+	long maxY = Screen::Bottom() + pos.Y() + borderY;
+	// Round down to the start of the nearest tile.
+	minX &= ~(TILE_SIZE - 1l);
+	minY &= ~(TILE_SIZE - 1l);
 	
-	for(long gy = minY; gy < maxY; gy += 256)
-		for(long gx = minX; gx < maxX; gx += 256)
+	for(long gy = minY; gy < maxY; gy += TILE_SIZE)
+		for(long gx = minX; gx < maxX; gx += TILE_SIZE)
 		{
-			Point off = pos - Point(gx, gy);
+			Point off = Point(gx, gy) - pos;
+			GLfloat translate[2] = {
+				static_cast<float>(off.X()),
+				static_cast<float>(off.Y())
+			};
+			glUniform2fv(translateI, 1, translate);
 			
-			const Tile &tile = tiles[(gx & widthMod) / 256][(gy & widthMod) / 256];
-			for(auto it = tile.first; it != tile.last; it += 3)
-			{
-				GLfloat translate[2] = {
-					static_cast<float>((it[0] - off.X()) * widthScale),
-					static_cast<float>((it[1] - off.Y()) * -heightScale)};
-				glUniform2fv(shader.Uniform("translate"), 1, translate);
-				
-				GLfloat scale[2] = {it[2], it[2] + length};
-				glUniform2fv(shader.Uniform("scale"), 1, scale);
-				
-				glDrawArrays(GL_TRIANGLE_STRIP, 0, 8);
-			}
+			int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
+			int first = 6 * tileIndex[index];
+			int count = 6 * tileIndex[index + 1] - first;
+			glDrawArrays(GL_TRIANGLES, first, count);
 		}
 	
 	glBindVertexArray(0);
@@ -92,25 +93,31 @@ void StarField::SetUpGraphics()
 {
 	static const char *vertexCode =
 		"uniform mat2 rotate;\n"
-		"uniform float alpha;\n"
-		"uniform vec2 scale;\n"
 		"uniform vec2 translate;\n"
+		"uniform vec2 scale;\n"
+		"uniform float length;\n"
 		
-		"in vec2 vert;\n"
-		"in float vertAlpha;\n"
+		"in vec2 offset;\n"
+		"in float size;\n"
+		"in float corner;\n"
 		"out float fragmentAlpha;\n"
+		"out vec2 coord;\n"
 		
 		"void main() {\n"
-		"  fragmentAlpha = alpha * vertAlpha * scale.x * .1 + .05;\n"
-		"  gl_Position = vec4(rotate * (vert * scale) + translate, 0, 1);\n"
+		"  fragmentAlpha = (4. / (4. + length)) * size * .2 + .05;\n"
+		"  coord = vec2(sin(corner), cos(corner));\n"
+		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + length));\n"
+		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"}\n";
 
 	static const char *fragmentCode =
 		"in float fragmentAlpha;\n"
+		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		"  finalColor = vec4(1, 1, 1, 1) * fragmentAlpha;\n"
+		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
+		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
 		"}\n";
 	
 	shader = Shader(vertexCode, fragmentCode);
@@ -123,32 +130,14 @@ void StarField::SetUpGraphics()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	
-	// Stars are a diamond that is opaque in the center and transparent on the
-	// edges. Store this as a triangle strip (4 non-degenerate triangles).
-	GLfloat vertexData[] = {
-		-.5f,  0.f,  0.f,
-		 0.f, -.5f,  0.f,
-		 0.f,  0.f,  1.f,
-		 .5f,  0.f,  0.f,
-		 .5f,  0.f,  0.f,
-		 0.f,  .5f,  0.f,
-		 0.f,  0.f,  1.f,
-		-.5f,  0.f,  0.f
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+	offsetI = shader.Attrib("offset");
+	sizeI = shader.Attrib("size");
+	cornerI = shader.Attrib("corner");
 	
-	// connect the xy to the "vert" attribute of the vertex shader
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE,
-		3 * sizeof(GLfloat), NULL);
-	
-	glEnableVertexAttribArray(shader.Attrib("vertAlpha"));
-	glVertexAttribPointer(shader.Attrib("vertAlpha"), 1, GL_FLOAT, GL_FALSE,
-		3 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
-	
-	// unbind the VBO and VAO
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	scaleI = shader.Uniform("scale");
+	rotateI = shader.Uniform("rotate");
+	lengthI = shader.Uniform("length");
+	translateI = shader.Uniform("translate");
 }
 
 
@@ -156,16 +145,13 @@ void StarField::SetUpGraphics()
 void StarField::MakeStars(int stars, int width)
 {
 	// We can only work with power-of-two widths above 256.
-	assert(width >= 256 && !(width & (width - 1)));
-	
-	data.resize(stars * 3);
-	
-	tiles.resize(width / 256);
-	for(auto &row : tiles)
-		row.resize(tiles.size(), Tile(data.begin()));
+	assert(width >= TILE_SIZE && !(width & (width - 1)));
 	
 	widthMod = width - 1;
-	tileMod = tiles.size() - 1;
+	
+	tileCols = (width / TILE_SIZE);
+	tileIndex.clear();
+	tileIndex.resize(tileCols * tileCols, 0);
 	
 	vector<short> off;
 	static const short MAX_OFF = 50;
@@ -202,40 +188,61 @@ void StarField::MakeStars(int stars, int width)
 		}
 		temp.push_back(x);
 		temp.push_back(y);
-		tiles[y / 256][x / 256].last += 3;
+		int index = (x / TILE_SIZE) + (y / TILE_SIZE) * tileCols;
+		++tileIndex[index];
 	}
 	
-	// Figure out where in the array we will store data for each point.
-	int total = 0;
-	for(auto &row : tiles)
-		for(auto &tile : row)
-		{
-			tile.first += total;
-			total += tile.last - data.begin();
-			tile.last = tile.first;
-		}
+	// Accumulate item counts so that tileIndex[i] is the index in the array of
+	// the first star that falls within tile i, and tileIndex.back() == stars.
+	tileIndex.insert(tileIndex.begin(), 0);
+	tileIndex.pop_back();
+	partial_sum(tileIndex.begin(), tileIndex.end(), tileIndex.begin());
 	
+	// Each star consists of five vertices, each with four data elements.
+	vector<GLfloat> data(6 * 4 * stars, 0.f);
 	for(auto it = temp.begin(); it != temp.end(); )
 	{
+		// Figure out what tile this star is in.
 		short x = *it++;
 		short y = *it++;
-		tiles[y / 256][x / 256].Add(x, y);
+		int index = (x / TILE_SIZE) + (y / TILE_SIZE) * tileCols;
+		
+		// Randomize its sub-pixel position and its size / brightness.
+		short random = Random::Int(4096);
+		float fx = (x & (TILE_SIZE - 1)) + (random & 15) * 0.0625f;
+		float fy = (y & (TILE_SIZE - 1)) + (random >> 8) * 0.0625f;
+		float size = (((random >> 4) & 15) + 20) * 0.0625f;
+		
+		// Fill in the data array.
+		auto dataIt = data.begin() + 6 * 4 * tileIndex[index]++;
+		const float CORNER[6] = {0. * PI, .5 * PI, 1.5 * PI, 1.5 * PI, .5 * PI, 1. * PI};
+		for(float corner : CORNER)
+		{
+			*dataIt++ = fx;
+			*dataIt++ = fy;
+			*dataIt++ = size;
+			*dataIt++ = corner;
+		}
 	}
-}
+	// Adjust the tile indices so that tileIndex[i] is the start of tile i.
+	tileIndex.insert(tileIndex.begin(), 0);
 
-
-
-StarField::Tile::Tile(vector<float>::iterator it)
-	: first(it), last(it)
-{
-}
-
-
-
-void StarField::Tile::Add(short x, short y)
-{
-	short random = Random::Int(4096);
-	*last++ = (x & 255) + (random & 15) * 0.0625f;
-	*last++ = (y & 255) + (random >> 8) * 0.0625f;
-	*last++ = (((random >> 4) & 15) + 20) * 0.125f;
+	glBufferData(GL_ARRAY_BUFFER, sizeof(data.front()) * data.size(), data.data(), GL_STATIC_DRAW);
+	
+	// connect the xy to the "vert" attribute of the vertex shader
+	glEnableVertexAttribArray(offsetI);
+	glVertexAttribPointer(offsetI, 2, GL_FLOAT, GL_FALSE,
+		4 * sizeof(GLfloat), nullptr);
+	
+	glEnableVertexAttribArray(sizeI);
+	glVertexAttribPointer(sizeI, 1, GL_FLOAT, GL_FALSE,
+		4 * sizeof(GLfloat), (const GLvoid*)(2 * sizeof(GLfloat)));
+	
+	glEnableVertexAttribArray(cornerI);
+	glVertexAttribPointer(cornerI, 1, GL_FLOAT, GL_FALSE,
+		4 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+	
+	// unbind the VBO and VAO
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }
