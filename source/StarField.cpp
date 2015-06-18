@@ -95,7 +95,7 @@ void StarField::SetUpGraphics()
 		"uniform mat2 rotate;\n"
 		"uniform vec2 translate;\n"
 		"uniform vec2 scale;\n"
-		"uniform float length;\n"
+		"uniform float elongation;\n"
 		
 		"in vec2 offset;\n"
 		"in float size;\n"
@@ -104,9 +104,9 @@ void StarField::SetUpGraphics()
 		"out vec2 coord;\n"
 		
 		"void main() {\n"
-		"  fragmentAlpha = (4. / (4. + length)) * size * .2 + .05;\n"
+		"  fragmentAlpha = (4. / (4. + elongation)) * size * .2 + .05;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
-		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + length));\n"
+		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
 		"}\n";
 
@@ -136,7 +136,7 @@ void StarField::SetUpGraphics()
 	
 	scaleI = shader.Uniform("scale");
 	rotateI = shader.Uniform("rotate");
-	lengthI = shader.Uniform("length");
+	lengthI = shader.Uniform("elongation");
 	translateI = shader.Uniform("translate");
 }
 
@@ -215,7 +215,14 @@ void StarField::MakeStars(int stars, int width)
 		
 		// Fill in the data array.
 		auto dataIt = data.begin() + 6 * 4 * tileIndex[index]++;
-		const float CORNER[6] = {0. * PI, .5 * PI, 1.5 * PI, 1.5 * PI, .5 * PI, 1. * PI};
+		const float CORNER[6] = {
+			static_cast<float>(0. * PI),
+			static_cast<float>(.5 * PI),
+			static_cast<float>(1.5 * PI),
+			static_cast<float>(.5 * PI),
+			static_cast<float>(1.5 * PI),
+			static_cast<float>(1. * PI)
+		};
 		for(float corner : CORNER)
 		{
 			*dataIt++ = fx;
