@@ -50,7 +50,26 @@ MainPanel::MainPanel(PlayerInfo &player)
 
 void MainPanel::Step()
 {
+	engine.Wait();
+	
 	bool isActive = GetUI()->IsTop(this);
+	
+	if(show.Has(Command::MAP))
+	{
+		GetUI()->Push(new MapDetailPanel(player));
+		isActive = false;
+	}
+	else if(show.Has(Command::INFO))
+	{
+		GetUI()->Push(new InfoPanel(player));
+		isActive = false;
+	}
+	else if(show.Has(Command::HAIL))
+	{
+		ShowHailPanel();
+		isActive = false;
+	}
+	show = Command::NONE;
 	
 	// If the player just landed, pop up the planet panel. When it closes, it
 	// will call this object's OnCallback() function;
@@ -79,6 +98,7 @@ void MainPanel::Step()
 			<< "\tAlso, don't worry about crashing into asteroids or other ships; "
 			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
+		isActive = false;
 	}
 	if(isActive && player.Flagship() && player.Flagship()->IsDestroyed()
 			&& !Preferences::Has("help: dead"))
@@ -90,6 +110,7 @@ void MainPanel::Step()
 			<< "To load your most recent saved game, press \"" + Command::MENU.KeyName()
 			<< "\" to return to the main menu, then click on \"Load / Save\" and \"Enter Ship.\"";
 		GetUI()->Push(new Dialog(out.str()));
+		isActive = false;
 	}
 	if(isActive && player.Flagship() && player.Flagship()->IsDisabled()
 			&& !player.Flagship()->IsDestroyed() && !Preferences::Has("help: disabled"))
@@ -105,6 +126,7 @@ void MainPanel::Step()
 				<< "\n\tIf the ship that disabled you is still hanging around, "
 				<< "you might need to hail them first and bribe them to leave you alone.";
 		GetUI()->Push(new Dialog(out.str()));
+		isActive = false;
 	}
 	
 	engine.Step(isActive);
@@ -120,7 +142,10 @@ void MainPanel::Step()
 			if(mission)
 				mission->Do(Mission::OFFER, player, GetUI());
 			else if(event.Type() == ShipEvent::BOARD)
+			{
 				GetUI()->Push(new BoardingPanel(player, event.Target()));
+				isActive = false;
+			}
 		}
 		if(event.Type() & (ShipEvent::SCAN_CARGO | ShipEvent::SCAN_OUTFITS))
 		{
@@ -130,7 +155,10 @@ void MainPanel::Step()
 			{
 				string message = actor->Fine(player, event.Type());
 				if(!message.empty())
+				{
 					GetUI()->Push(new Dialog(message));
+					isActive = false;
+				}
 			}
 		}
 		if((event.Type() & ShipEvent::JUMP) && player.Flagship() && !player.Flagship()->Fuel()
@@ -147,8 +175,12 @@ void MainPanel::Step()
 				<< "and if it has fuel to spare it will fly over and transfer fuel to your ship. "
 				<< "This is easiest for the other ship to do if your ship is nearly stationary.";
 			GetUI()->Push(new Dialog(out.str()));
+			isActive = false;
 		}
 	}
+	
+	if(isActive)
+		engine.Go();
 }
 
 
@@ -189,12 +221,8 @@ void MainPanel::OnCallback()
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player));
-	else if(command.Has(Command::INFO))
-		GetUI()->Push(new InfoPanel(player));
-	else if(command.Has(Command::HAIL))
-		ShowHailPanel();
+	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
+		show = command;
 	else
 		return false;
 	

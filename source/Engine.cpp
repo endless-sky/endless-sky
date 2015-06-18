@@ -221,222 +221,230 @@ void Engine::Place()
 
 
 
+// Wait for the previous calculations (if any) to be done.
+void Engine::Wait()
+{
+	unique_lock<mutex> lock(swapMutex);
+	while(calcTickTock != drawTickTock)
+		condition.wait(lock);
+}
+
+
+
 // Begin the next step of calculations.
 void Engine::Step(bool isActive)
 {
+	events.swap(eventQueue);
+	eventQueue.clear();
+	
+	// The calculation thread is now paused, so it is safe to access things.
+	const Ship *flagship = player.Flagship();
+	if(flagship)
 	{
-		unique_lock<mutex> lock(swapMutex);
-		while(calcTickTock != drawTickTock)
-			condition.wait(lock);
-		
-		if(isActive)
-			++step;
-		
-		events.swap(eventQueue);
-		eventQueue.clear();
-		
-		// The calculation thread is now paused, so it is safe to access things.
-		const Ship *flagship = player.Flagship();
-		if(flagship)
+		position = flagship->Position();
+		velocity = flagship->Velocity();
+		bool isLeavingHyperspace = flagship->IsHyperspacing();
+		if(!isLeavingHyperspace && wasLeavingHyperspace)
 		{
-			position = flagship->Position();
-			velocity = flagship->Velocity();
-			bool isLeavingHyperspace = flagship->IsHyperspacing();
-			if(!isLeavingHyperspace && wasLeavingHyperspace)
-			{
-				int type = ShipEvent::JUMP;
-				shared_ptr<Ship> ship = player.Ships().front();
-				events.emplace_back(ship, ship, type);
-			}
-			wasLeavingHyperspace = isLeavingHyperspace;
+			int type = ShipEvent::JUMP;
+			shared_ptr<Ship> ship = player.Ships().front();
+			events.emplace_back(ship, ship, type);
 		}
-		ai.UpdateEvents(events);
-		ai.UpdateKeys(player, isActive && wasActive);
-		wasActive = isActive;
-		Audio::Update(position, velocity);
-		
-		// Any of the player's ships that are in system are assumed to have
-		// landed along with the player.
-		if(flagship && flagship->GetPlanet() && isActive)
-			player.SetPlanet(flagship->GetPlanet());
-		
-		const System *currentSystem = player.GetSystem();
-		// Update this here, for thread safety.
-		if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-			player.AddTravel(flagship->GetTargetSystem());
-		if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
-			player.PopTravel();
-		if(doFlash)
+		wasLeavingHyperspace = isLeavingHyperspace;
+	}
+	ai.UpdateEvents(events);
+	ai.UpdateKeys(player, isActive && wasActive);
+	wasActive = isActive;
+	Audio::Update(position, velocity);
+	
+	// Any of the player's ships that are in system are assumed to have
+	// landed along with the player.
+	if(flagship && flagship->GetPlanet() && isActive)
+		player.SetPlanet(flagship->GetPlanet());
+	
+	const System *currentSystem = player.GetSystem();
+	// Update this here, for thread safety.
+	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
+		player.AddTravel(flagship->GetTargetSystem());
+	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
+		player.PopTravel();
+	if(doFlash)
+	{
+		flash = .4;
+		doFlash = false;
+	}
+	else if(flash)
+		flash = max(0., flash * .99 - .002);
+	
+	targets.clear();
+	
+	// Update the player's ammo amounts.
+	ammo.clear();
+	if(flagship)
+		for(const auto &it : flagship->Outfits())
 		{
-			flash = .4;
-			doFlash = false;
-		}
-		else if(flash)
-			flash = max(0., flash * .99 - .002);
-		
-		targets.clear();
-		
-		// Update the player's ammo amounts.
-		ammo.clear();
-		if(flagship)
-			for(const auto &it : flagship->Outfits())
+			if(it.first->Ammo())
+				ammo.emplace_back(it.first,
+					flagship->OutfitCount(it.first->Ammo()));
+			else if(it.first->FiringFuel())
 			{
-				if(it.first->Ammo())
-					ammo.emplace_back(it.first,
-						flagship->OutfitCount(it.first->Ammo()));
-				else if(it.first->FiringFuel())
-				{
-					double remaining = flagship->Fuel()
-						* flagship->Attributes().Get("fuel capacity");
-					ammo.emplace_back(it.first,
-						remaining / it.first->FiringFuel());
-				}
+				double remaining = flagship->Fuel()
+					* flagship->Attributes().Get("fuel capacity");
+				ammo.emplace_back(it.first,
+					remaining / it.first->FiringFuel());
 			}
-		
-		// Display escort information for all ships of the "Escort" government,
-		// and all ships with the "escort" personality, except for fighters that
-		// are not owned by the player.
-		escorts.Clear();
+		}
+	
+	// Display escort information for all ships of the "Escort" government,
+	// and all ships with the "escort" personality, except for fighters that
+	// are not owned by the player.
+	escorts.Clear();
+	for(const auto &it : ships)
+		if(it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
+			if(!it->IsYours() && !it->CanBeCarried())
+				escorts.Add(*it, it->GetSystem() == currentSystem);
+	for(const shared_ptr<Ship> &escort : player.Ships())
+		if(!escort->IsParked() && escort.get() != flagship)
+			escorts.Add(*escort, escort->GetSystem() == currentSystem);
+	
+	// Create the status overlays.
+	statuses.clear();
+	if(isActive && Preferences::Has("Show status overlays"))
 		for(const auto &it : ships)
-			if(it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
-				if(!it->IsYours() && !it->CanBeCarried())
-					escorts.Add(*it, it->GetSystem() == currentSystem);
-		for(const shared_ptr<Ship> &escort : player.Ships())
-			if(!escort->IsParked() && escort.get() != flagship)
-				escorts.Add(*escort, escort->GetSystem() == currentSystem);
+		{
+			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
+				continue;
 		
-		// Create the status overlays.
-		statuses.clear();
-		if(isActive && Preferences::Has("Show status overlays"))
-			for(const auto &it : ships)
+			bool isEnemy = it->GetGovernment()->IsEnemy();
+			if(isEnemy || it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 			{
-				if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
-					continue;
-			
-				bool isEnemy = it->GetGovernment()->IsEnemy();
-				if(isEnemy || it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
-				{
-					double width = min(it->GetSprite().Width(), it->GetSprite().Height());
-					statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(),
-						it->Zoom() * max(20., width * .25), isEnemy);
-				}
+				double width = min(it->GetSprite().Width(), it->GetSprite().Height());
+				statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(),
+					it->Zoom() * max(20., width * .25), isEnemy);
 			}
-		
-		if(flagship && flagship->IsOverheated())
-			Messages::Add("Your ship has overheated.");
-		
-		if(flagship && flagship->Hull())
-			info.SetSprite("player sprite", flagship->GetSprite().GetSprite());
-		else
-			info.SetSprite("player sprite", nullptr);
-		if(currentSystem)
-			info.SetString("location", currentSystem->Name());
-		info.SetString("date", player.GetDate().ToString());
-		if(flagship)
-		{
-			info.SetBar("fuel", flagship->Fuel(),
-				flagship->Attributes().Get("fuel capacity") * .01);
-			info.SetBar("energy", flagship->Energy());
-			info.SetBar("heat", flagship->Heat());
-			info.SetBar("shields", flagship->Shields());
-			info.SetBar("hull", flagship->Hull(), 20.);
 		}
+	
+	if(flagship && flagship->IsOverheated())
+		Messages::Add("Your ship has overheated.");
+	
+	if(flagship && flagship->Hull())
+		info.SetSprite("player sprite", flagship->GetSprite().GetSprite());
+	else
+		info.SetSprite("player sprite", nullptr);
+	if(currentSystem)
+		info.SetString("location", currentSystem->Name());
+	info.SetString("date", player.GetDate().ToString());
+	if(flagship)
+	{
+		info.SetBar("fuel", flagship->Fuel(),
+			flagship->Attributes().Get("fuel capacity") * .01);
+		info.SetBar("energy", flagship->Energy());
+		info.SetBar("heat", flagship->Heat());
+		info.SetBar("shields", flagship->Shields());
+		info.SetBar("hull", flagship->Hull(), 20.);
+	}
+	else
+	{
+		info.SetBar("fuel", 0.);
+		info.SetBar("energy", 0.);
+		info.SetBar("heat", 0.);
+		info.SetBar("shields", 0.);
+		info.SetBar("hull", 0.);
+	}
+	info.SetString("credits",
+		Format::Number(player.Accounts().Credits()) + " credits");
+	if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
+	{
+		const StellarObject *object = flagship->GetTargetPlanet();
+		info.SetString("navigation mode", "Landing on:");
+		const string &name = object->Name();
+		info.SetString("destination", name.empty() ? "???" : name);
+		
+		targets.push_back({
+			object->Position() - flagship->Position(),
+			Angle(45.),
+			object->Radius(),
+			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
+	}
+	else if(flagship && flagship->GetTargetSystem())
+	{
+		info.SetString("navigation mode", "Hyperspace:");
+		if(player.HasVisited(flagship->GetTargetSystem()))
+			info.SetString("destination", flagship->GetTargetSystem()->Name());
 		else
+			info.SetString("destination", "unexplored system");
+	}
+	else
+	{
+		info.SetString("navigation mode", "Navigation:");
+		info.SetString("destination", "no destination");
+	}
+	// Use the radar that was just populated. (The draw tick-tock has not
+	// yet been toggled, but it will be at the end of this function.)
+	info.SetRadar(radar[!drawTickTock]);
+	shared_ptr<const Ship> target;
+	if(flagship)
+		target = flagship->GetTargetShip();
+	if(!target)
+	{
+		info.SetSprite("target sprite", nullptr);
+		info.SetString("target name", "no target");
+		info.SetString("target type", "");
+		info.SetString("target government", "");
+		info.SetBar("target shields", 0.);
+		info.SetBar("target hull", 0.);
+	}
+	else
+	{
+		info.SetSprite("target sprite", target->GetSprite().GetSprite());
+		info.SetString("target name", target->Name());
+		info.SetString("target type", target->ModelName());
+		if(!target->GetGovernment())
+			info.SetString("target government", "No Government");
+		else
+			info.SetString("target government", target->GetGovernment()->GetName());
+		
+		shared_ptr<const Ship> targetTarget = target->GetTargetShip();
+		bool hostile = targetTarget && targetTarget->GetGovernment()->IsPlayer();
+		int targetType = (target->IsDisabled() || target->IsOverheated()) ? Radar::INACTIVE :
+			!target->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
+			hostile ? Radar::HOSTILE : Radar::UNFRIENDLY;
+		info.SetOutlineColor(Radar::GetColor(targetType));
+		
+		if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
 		{
-			info.SetBar("fuel", 0.);
-			info.SetBar("energy", 0.);
-			info.SetBar("heat", 0.);
-			info.SetBar("shields", 0.);
-			info.SetBar("hull", 0.);
-		}
-		info.SetString("credits",
-			Format::Number(player.Accounts().Credits()) + " credits");
-		if(flagship && flagship->GetTargetPlanet() && !flagship->Commands().Has(Command::JUMP))
-		{
-			const StellarObject *object = flagship->GetTargetPlanet();
-			info.SetString("navigation mode", "Landing on:");
-			const string &name = object->Name();
-			info.SetString("destination", name.empty() ? "???" : name);
-			
+			info.SetBar("target shields", target->Shields());
+			info.SetBar("target hull", target->Hull(), 20.);
+		
+			// The target area will be a square, with sides equal to the average
+			// of the width and the height of the sprite.
+			const Animation &anim = target->GetSprite();
+			double size = target->Zoom() * (anim.Width() + anim.Height()) * .175;
 			targets.push_back({
-				object->Position() - flagship->Position(),
-				Angle(45.),
-				object->Radius(),
-				object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
-		}
-		else if(flagship && flagship->GetTargetSystem())
-		{
-			info.SetString("navigation mode", "Hyperspace:");
-			if(player.HasVisited(flagship->GetTargetSystem()))
-				info.SetString("destination", flagship->GetTargetSystem()->Name());
-			else
-				info.SetString("destination", "unexplored system");
+				target->Position() - flagship->Position(),
+				Angle(45.) + target->Facing(),
+				size,
+				targetType});
 		}
 		else
 		{
-			info.SetString("navigation mode", "Navigation:");
-			info.SetString("destination", "no destination");
-		}
-		// Use the radar that was just populated. (The draw tick-tock has not
-		// yet been toggled, but it will be at the end of this function.)
-		info.SetRadar(radar[!drawTickTock]);
-		shared_ptr<const Ship> target;
-		if(flagship)
-			target = flagship->GetTargetShip();
-		if(!target)
-		{
-			info.SetSprite("target sprite", nullptr);
-			info.SetString("target name", "no target");
-			info.SetString("target type", "");
-			info.SetString("target government", "");
 			info.SetBar("target shields", 0.);
 			info.SetBar("target hull", 0.);
 		}
-		else
-		{
-			info.SetSprite("target sprite", target->GetSprite().GetSprite());
-			info.SetString("target name", target->Name());
-			info.SetString("target type", target->ModelName());
-			if(!target->GetGovernment())
-				info.SetString("target government", "No Government");
-			else
-				info.SetString("target government", target->GetGovernment()->GetName());
-			
-			shared_ptr<const Ship> targetTarget = target->GetTargetShip();
-			bool hostile = targetTarget && targetTarget->GetGovernment()->IsPlayer();
-			int targetType = (target->IsDisabled() || target->IsOverheated()) ? Radar::INACTIVE :
-				!target->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
-				hostile ? Radar::HOSTILE : Radar::UNFRIENDLY;
-			info.SetOutlineColor(Radar::GetColor(targetType));
-			
-			if(target->GetSystem() == player.GetSystem() && target->IsTargetable())
-			{
-				info.SetBar("target shields", target->Shields());
-				info.SetBar("target hull", target->Hull(), 20.);
-			
-				// The target area will be a square, with sides equal to the average
-				// of the width and the height of the sprite.
-				const Animation &anim = target->GetSprite();
-				double size = target->Zoom() * (anim.Width() + anim.Height()) * .175;
-				targets.push_back({
-					target->Position() - flagship->Position(),
-					Angle(45.) + target->Facing(),
-					size,
-					targetType});
-			}
-			else
-			{
-				info.SetBar("target shields", 0.);
-				info.SetBar("target hull", 0.);
-			}
-		}
-		
-		// Begin the next frame's calculations.
-		if(isActive)
-			drawTickTock = !drawTickTock;
 	}
-	if(isActive)
-		condition.notify_one();
+}
+
+
+
+// Begin the next step of calculations.
+void Engine::Go()
+{
+	{
+		unique_lock<mutex> lock(swapMutex);
+		++step;
+		drawTickTock = !drawTickTock;
+	}
+	condition.notify_all();
 }
 
 

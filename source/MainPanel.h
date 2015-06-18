@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Command.h"
 #include "Engine.h"
 
 class PlayerInfo;
@@ -51,6 +52,8 @@ private:
 	PlayerInfo &player;
 	
 	Engine engine;
+	
+	Command show;
 	
 	mutable double load;
 	mutable double loadSum;

@@ -52,8 +52,13 @@ public:
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
 	
-	// Begin the next step of calculations.
+	// Wait for the previous calculations (if any) to be done.
+	void Wait();
+	// Perform all the work that can only be done while the calculation thread
+	// is paused (for thread safety reasons).
 	void Step(bool isActive);
+	// Begin the next step of calculations.
+	void Go();
 	
 	// Get any special events that happened in this step.
 	const std::list<ShipEvent> &Events() const;

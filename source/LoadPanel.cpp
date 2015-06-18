@@ -43,8 +43,9 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 {
 	// If you have a player loaded, and the player is on a planet, makes sure
 	// the player is saved so that any snapshot you create will be of the
-	// player's current state, rather than one planet ago.
-	if(player.GetPlanet() && !player.IsDead())
+	// player's current state, rather than one planet ago. Only do this if the
+	// game is paused, i.e. the "main panel" is not on top:
+	if(player.GetPlanet() && !player.IsDead() && !gamePanels.IsTop(&*gamePanels.Root()))
 		player.Save();
 	UpdateLists();
 }
@@ -193,6 +194,10 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'e')
 	{
+		// First, make sure the previous MainPanel has been deleted, so
+		// its background thread is no longer running.
+		gamePanels.Reset();
+		
 		GameData::Revert();
 		player.Load(loadedInfo.Path());
 		player.ApplyChanges();
@@ -200,7 +205,6 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Messages::Reset();
 		GetUI()->Pop(this);
 		GetUI()->Pop(GetUI()->Root().get());
-		gamePanels.Reset();
 		gamePanels.Push(new MainPanel(player));
 	}
 	else if(key == 'b' || command.Has(Command::MENU))
