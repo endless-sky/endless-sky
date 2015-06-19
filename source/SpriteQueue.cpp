@@ -21,6 +21,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Check if the given image is an @2x image.
+	bool Is2x(const string &path)
+	{
+		size_t len = path.length();
+		return (len > 7 && path[len - 7] == '@' && path[len - 6] == '2' && path[len - 5] == 'x');
+	}
+}
+
 
 
 SpriteQueue::SpriteQueue()
@@ -54,7 +63,10 @@ void SpriteQueue::Add(const string &name, const string &path)
 		// Do nothing if we are destroying the queue already.
 		if(added < 0)
 			return;
-		toRead.emplace(sprite, name, path, count[name]++);
+		
+		bool is2x = Is2x(path);
+		int &frame = (is2x ? count2x[name] : count[name]);
+		toRead.emplace(sprite, name, path, frame++, is2x);
 		++added;
 	}
 	readCondition.notify_one();
@@ -119,7 +131,9 @@ void SpriteQueue::operator()()
 				lock.lock();
 				continue;
 			}
-			if(!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/"))
+			// Don't ever create masks for @2x sprites; just use the ordinary
+			// sprite masks instead.
+			if(!item.is2x && (!item.name.compare(0, 5, "ship/") || !item.name.compare(0, 9, "asteroid/")))
 			{
 				item.mask = new Mask;
 				item.mask->Create(item.image);
@@ -152,7 +166,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 		
 		lock.unlock();
 		
-		item.sprite->AddFrame(item.frame, item.image, item.mask);
+		item.sprite->AddFrame(item.frame, item.image, item.mask, item.is2x);
 		
 		lock.lock();
 		++completed;
@@ -169,7 +183,7 @@ double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 
 
 
-SpriteQueue::Item::Item(Sprite *sprite, const string &name, const string &path, int frame)
-	: sprite(sprite), name(name), path(path), image(nullptr), mask(nullptr), frame(frame)
+SpriteQueue::Item::Item(Sprite *sprite, const string &name, const string &path, int frame, bool is2x)
+	: sprite(sprite), name(name), path(path), image(nullptr), mask(nullptr), frame(frame), is2x(is2x)
 {
 }

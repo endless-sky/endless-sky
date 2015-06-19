@@ -52,7 +52,7 @@ private:
 private:
 	class Item {
 	public:
-		Item(Sprite *sprite, const std::string &name, const std::string &path, int frame);
+		Item(Sprite *sprite, const std::string &name, const std::string &path, int frame, bool is2x);
 		
 		Sprite *sprite;
 		std::string name;
@@ -60,6 +60,7 @@ private:
 		ImageBuffer *image;
 		Mask *mask;
 		int frame;
+		bool is2x;
 	};
 	
 	
@@ -71,6 +72,7 @@ private:
 	std::condition_variable readCondition;
 	int added;
 	std::map<std::string, int> count;
+	std::map<std::string, int> count2x;
 	
 	mutable std::queue<Item> toLoad;
 	mutable std::mutex loadMutex;

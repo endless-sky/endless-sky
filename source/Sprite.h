@@ -33,7 +33,7 @@ class Sprite {
 public:
 	Sprite();
 	
-	void AddFrame(int frame, ImageBuffer *image, Mask *mask = nullptr);
+	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
 	
 	float Width() const;
 	float Height() const;
@@ -49,6 +49,7 @@ public:
 	
 private:
 	std::vector<uint32_t> textures;
+	std::vector<uint32_t> textures2x;
 	std::vector<Mask> masks;
 	
 	float width;

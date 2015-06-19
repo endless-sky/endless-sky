@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sprite.h"
 
 #include "ImageBuffer.h"
+#include "Screen.h"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -30,18 +31,19 @@ Sprite::Sprite()
 
 
 
-void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask)
+void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 {
 	if(!image || frame < 0)
 		return;
 	
-	width = max(width, static_cast<float>(image->Width()));
-	height = max(height, static_cast<float>(image->Height()));
+	width = max(width, static_cast<float>(image->Width() / (1 + is2x)));
+	height = max(height, static_cast<float>(image->Height() / (1 + is2x)));
 	
-	if(textures.size() <= static_cast<unsigned>(frame))
-		textures.resize(frame + 1, 0);
-	glGenTextures(1, &textures[frame]);
-	glBindTexture(GL_TEXTURE_2D, textures[frame]);
+	vector<uint32_t> &textureIndex = (is2x ? textures2x : textures);
+	if(textureIndex.size() <= static_cast<unsigned>(frame))
+		textureIndex.resize(frame + 1, 0);
+	glGenTextures(1, &textureIndex[frame]);
+	glBindTexture(GL_TEXTURE_2D, textureIndex[frame]);
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -97,6 +99,9 @@ Point Sprite::Center() const
 
 uint32_t Sprite::Texture(int frame) const
 {
+	if(Screen::IsHighResolution() && !textures2x.empty())
+		return textures2x[frame % textures2x.size()];
+	
 	if(textures.empty())
 		return 0;
 	

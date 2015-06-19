@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 		
 		SDL_Window *window = SDL_CreateWindow("Endless Sky",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			Screen::Width() * Screen::Zoom() / 100, Screen::Height() * Screen::Zoom() / 100, flags);
+			Screen::RawWidth(), Screen::RawHeight(), flags);
 		if(!window)
 			return DoError("Unable to create window!");
 		
@@ -173,6 +173,14 @@ int main(int argc, char *argv[])
 		glEnable(GL_BLEND);
 		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		
+		{
+			// Check whether this is a high-DPI window.
+			int width = 0;
+			int height = 0;
+			SDL_GL_GetDrawableSize(window, &width, &height);
+			Screen::SetHighDPI(width > Screen::RawWidth() && height > Screen::RawHeight());
+		}
 		
 		GameData::LoadShaders();
 		

@@ -24,6 +24,7 @@ namespace {
 	static int WIDTH = 0;
 	static int HEIGHT = 0;
 	static int ZOOM = 100;
+	static bool HIGH_DPI = false;
 }
 
 
@@ -49,6 +50,22 @@ void Screen::SetZoom(int percent)
 	ZOOM = max(100, min(200, percent));
 	WIDTH = RAW_WIDTH * 100 / ZOOM;
 	HEIGHT = RAW_HEIGHT * 100 / ZOOM;
+}
+
+
+
+// Specify that this is a high-DPI window.
+void Screen::SetHighDPI(bool isHighDPI)
+{
+	HIGH_DPI = isHighDPI;
+}
+
+
+
+// This is true if the screen is high DPI, or if the zoom is above 100%.
+bool Screen::IsHighResolution()
+{
+	return HIGH_DPI || (ZOOM > 100);
 }
 
 

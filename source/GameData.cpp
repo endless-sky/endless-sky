@@ -94,7 +94,7 @@ namespace {
 	SpriteQueue spriteQueue;
 	
 	vector<string> sources;
-	map<const Sprite *, pair<string, string>> deferred;
+	multimap<const Sprite *, pair<string, string>> deferred;
 	
 	const Government *playerGovernment = nullptr;
 }
@@ -133,7 +133,7 @@ void GameData::BeginLoad(const char * const *argv)
 	{
 		string name = Name(it.first);
 		if(name.substr(0, 5) == "land/")
-			deferred[SpriteSet::Get(name)] = pair<string, string>(name, it.second);
+			deferred.emplace(SpriteSet::Get(name), pair<string, string>(name, it.second));
 		else
 			spriteQueue.Add(name, it.second);
 	}
@@ -208,12 +208,14 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
-	auto it = deferred.find(sprite);
-	if(it != deferred.end())
-	{
+	auto range = deferred.equal_range(sprite);
+	if(range.first == range.second)
+		return;
+	
+	for(auto it = range.first; it != range.second; ++it)
 		spriteQueue.Add(it->second.first, it->second.second);
-		deferred.erase(it);
-	}
+	
+	deferred.erase(range.first, range.second);
 }
 
 
@@ -520,18 +522,25 @@ string GameData::Name(const string &path)
 {
 	// The path always ends in a three-letter extension, ".png" or ".jpg".
 	int end = path.length() - 4;
-	while(end--)
-		if(path[end] < '0' || path[end] > '9')
+	
+	// Check if the name ends in "@2x". If so, that's not part of the name.
+	if(end > 3 && path[end - 3] == '@' && path[end - 2] == '2' && path[end - 1] == 'x')
+		end -= 3;
+	
+	// Skip any numbers at the end of the name.
+	int pos = end;
+	while(pos--)
+		if(path[pos] < '0' || path[pos] > '9')
 			break;
 	
 	// This should never happen, but just in case someone creates a file named
 	// "images/123.jpg" or something:
-	if(end < 0)
-		end = path.length() - 4;
-	else if(path[end] != '-' && path[end] != '~' && path[end] != '+' && path[end] != '=')
-		end = path.length() - 4;
+	if(pos < 0)
+		pos = end;
+	else if(path[pos] != '-' && path[pos] != '~' && path[pos] != '+' && path[pos] != '=')
+		pos = end;
 	
-	return path.substr(0, end);
+	return path.substr(0, pos);
 }
 
 
