@@ -90,24 +90,24 @@ void LoadPanel::Draw() const
 	
 	// The list has space for 14 entries. Alpha should be 100% for Y = -157 to
 	// 103, and fade to 0 at 10 pixels beyond that.
-	Point point(-460., -157. - sideScroll);
+	Point point(-470., -157. - sideScroll);
 	for(const auto &it : files)
 	{
 		double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 		if(it.first == selectedPilot)
-			FillShader::Fill(point + Point(100., 7.), Point(210., 20.), Color(.1 * alpha, 0.));
+			FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
 		font.Draw(it.first, point, Color(.5 * alpha, 0.));
 		point += Point(0., 20.);
 	}
 	
 	if(!selectedPilot.empty() && files.find(selectedPilot) != files.end())
 	{
-		point = Point(-100., -157. - centerScroll);
+		point = Point(-110., -157. - centerScroll);
 		for(const string &file : files.find(selectedPilot)->second)
 		{
 			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			if(file == selectedFile)
-				FillShader::Fill(point + Point(100., 7.), Point(210., 20.), Color(.1 * alpha, 0.));
+				FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
 			font.Draw(file.substr(0, file.size() - 4), point, Color(.5 * alpha, 0.));
 			point += Point(0., 20.);
 		}
@@ -279,7 +279,7 @@ bool LoadPanel::Click(int x, int y)
 	if(y < -160)
 		return false;
 	
-	if(x >= -460 && x < -260)
+	if(x >= -470 && x < -250)
 	{
 		int selected = (y + sideScroll - -160) / 20;
 		int i = 0;
@@ -291,7 +291,7 @@ bool LoadPanel::Click(int x, int y)
 			}
 		sideHasFocus = true;
 	}
-	else if(x >= -100 && x < 100)
+	else if(x >= -110 && x < 110)
 	{
 		int selected = (y + centerScroll - -160) / 20;
 		int i = 0;

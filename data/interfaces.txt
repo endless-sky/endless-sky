@@ -28,88 +28,88 @@ interface "main menu"
 	sprite "_menu/side panel" 360 0
 	outline "ship sprite" 360 -90 dynamic
 		size 120 120
-	label "pilot:" 260 -15
+	label "pilot:" 250 -15
 		size 14
 		color medium
 		align left
-	string "pilot" 320 -15
+	string "pilot" 310 -15
 		size 14
 		color bright
 		align left
-	label "ship:" 260 5
+	label "ship:" 250 5
 		size 14
 		color medium
 		align left
-	string "ship" 320 5
+	string "ship" 310 5
 		size 14
 		color bright
 		align left
-	label "planet:" 260 35
+	label "planet:" 250 35
 		size 14
 		color medium
 		align left
-	string "planet" 320 35
+	string "planet" 310 35
 		size 14
 		color bright
 		align left
-	label "system:" 260 55
+	label "system:" 250 55
 		size 14
 		color medium
 		align left
-	string "system" 320 55
+	string "system" 310 55
 		size 14
 		color bright
 		align left
-	label "credits:" 260 85
+	label "credits:" 250 85
 		size 14
 		color medium
 		align left
-	string "credits" 320 85
+	string "credits" 310 85
 		size 14
 		color bright
 		align left
-	label "date:" 260 105
+	label "date:" 250 105
 		size 14
 		color medium
 		align left
-	string "date" 320 105
+	string "date" 310 105
 		size 14
 		color bright
 		align left
 	
 	if "pilot loaded"
-	button e 425 155
+	button e 435 155
 		size 90 30
-	label "Enter Ship" 425 148
+	label "Enter Ship" 435 148
 		size 14
 		color bright
 		align center
 	if "no pilot loaded"
-	button n 425 155
+	button n 435 155
 		size 90 30
-	label "New Pilot" 425 148
+	label "New Pilot" 435 148
 		size 14
 		color bright
 		align center
 	endif
 	
-	button l 310 155
+	button l 300 155
 		size 120 30
-	label "Load / Save..." 310 148
+	label "Load / Save..." 300 148
 		size 14
 		color bright
 		align center
 	
 	# Left panel:
-	button q -295 155
+	button q -285 155
 		size 90 30
-	label "Quit" -295 148
+	label "Quit" -285 148
 		size 14
 		color bright
 		align center
-	button p -410 155
+	button p -420 155
 		size 120 30
-	label "Preferences..." -410 148
+	label "Preferences..." -420 148
 		size 14
 		color bright
 		align center
@@ -123,116 +123,116 @@ interface "load menu"
 	sprite "_menu/side panel" 360 0
 	outline "ship sprite" 360 -90 dynamic
 		size 120 120
-	label "pilot:" 260 -15
+	label "pilot:" 250 -15
 		size 14
 		color medium
 		align left
-	string "pilot" 320 -15
+	string "pilot" 310 -15
 		size 14
 		color bright
 		align left
-	label "ship:" 260 5
+	label "ship:" 250 5
 		size 14
 		color medium
 		align left
-	string "ship" 320 5
+	string "ship" 310 5
 		size 14
 		color bright
 		align left
-	label "planet:" 260 35
+	label "planet:" 250 35
 		size 14
 		color medium
 		align left
-	string "planet" 320 35
+	string "planet" 310 35
 		size 14
 		color bright
 		align left
-	label "system:" 260 55
+	label "system:" 250 55
 		size 14
 		color medium
 		align left
-	string "system" 320 55
+	string "system" 310 55
 		size 14
 		color bright
 		align left
-	label "credits:" 260 85
+	label "credits:" 250 85
 		size 14
 		color medium
 		align left
-	string "credits" 320 85
+	string "credits" 310 85
 		size 14
 		color bright
 		align left
-	label "date:" 260 105
+	label "date:" 250 105
 		size 14
 		color medium
 		align left
-	string "date" 320 105
+	string "date" 310 105
 		size 14
 		color bright
 		align left
 	
 	# Greyed out buttons:
 	if "!pilot selected"
-	label "Delete" -295 148
+	label "Delete" -285 148
 		size 14
 		color dim
 		align center
-	label "Add Snapshot" -50 148
+	label "Add Snapshot" -60 148
 		size 14
 		color dim
 		align center
 	if "!snapshot selected"
-	label "Remove" 65 148
+	label "Remove" 75 148
 		size 14
 		color dim
 		align center
 	if "!pilot loaded"
-	label "Enter Ship" 425 148
+	label "Enter Ship" 435 148
 		size 14
 		color dim
 		align center
 	endif
 	
-	button n -410 155
+	button n -420 155
 		size 120 30
-	label "New Pilot" -410 148
+	label "New Pilot" -420 148
 		size 14
 		color bright
 		align center
 	if "pilot selected"
-	button d -295 155
+	button d -285 155
 		size 90 30
-	label "Delete" -295 148
+	label "Delete" -285 148
 		size 14
 		color bright
 		align center
 	
-	button a -50 155
+	button a -60 155
 		size 120 30
-	label "Add Snapshot" -50 148
+	label "Add Snapshot" -60 148
 		size 14
 		color bright
 		align center
 	if "snapshot selected"
-	button r 65 155
+	button r 75 155
 		size 90 30
-	label "Remove" 65 148
+	label "Remove" 75 148
 		size 14
 		color bright
 		align center
 	endif
 	
-	button b 310 155
+	button b 300 155
 		size 120 30
-	label "Back to Menu" 310 148
+	label "Back to Menu" 300 148
 		size 14
 		color bright
 		align center
 	if "pilot loaded"
-	button e 425 155
+	button e 435 155
 		size 90 30
-	label "Enter Ship" 425 148
+	label "Enter Ship" 435 148
 		size 14
 		color bright
 		align center
