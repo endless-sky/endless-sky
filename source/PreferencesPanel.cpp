@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include "gl_header.h"
+#include <SDL2/SDL.h>
 
 using namespace std;
 
@@ -268,7 +269,13 @@ bool PreferencesPanel::Click(int x, int y)
 			{
 				int zoom = Screen::Zoom();
 				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
+				
+				// Convert to raw window coordinates, at the new zoom level.
+				point *= Screen::Zoom() / 100.;
+				point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
+				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
+			break;
 		}
 	
 	return true;
