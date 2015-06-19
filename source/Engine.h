@@ -66,6 +66,9 @@ public:
 	// Draw a frame.
 	void Draw() const;
 	
+	// Select the object the player clicked on.
+	void Click(const Point &point);
+	
 	
 private:
 	void EnterSystem();
@@ -140,6 +143,9 @@ private:
 	double flash;
 	bool doFlash;
 	bool wasLeavingHyperspace;
+	
+	bool doClick = false;
+	Point clickPoint;
 	
 	double load;
 	int loadCount;

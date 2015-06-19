@@ -231,6 +231,14 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 
 
+bool MainPanel::Click(int x, int y)
+{
+	engine.Click(Point(x, y));
+	return true;
+}
+
+
+
 void MainPanel::ShowScanDialog(const ShipEvent &event)
 {
 	shared_ptr<Ship> target = event.Target();

@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
+#include "Mask.h"
 #include "Messages.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -546,6 +547,15 @@ void Engine::Draw() const
 
 
 
+// Select the object the player clicked on.
+void Engine::Click(const Point &point)
+{
+	doClick = true;
+	clickPoint = point;
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
@@ -719,6 +729,9 @@ void Engine::CalculateStep()
 			if(object.GetPlanet() == player.GetPlanet())
 				center = object.Position();
 	}
+	if(!flagship)
+		doClick = false;
+	
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
 		{
@@ -736,6 +749,9 @@ void Engine::CalculateStep()
 			bool isBig = (object.GetSprite().Width() >= 280);
 			draw[calcTickTock].Add(object.GetSprite(), position, unit, isBig ? Point() : -centerVelocity);
 			radar[calcTickTock].Add(type, position, r, r - 1.);
+			
+			if(doClick && object.GetPlanet() && (clickPoint - position).Length() < object.Radius())
+				player.Flagship()->SetTargetPlanet(&object);
 		}
 	
 	// Add all neighboring systems to the radar.
@@ -873,6 +889,20 @@ void Engine::CalculateStep()
 			// Do not show cloaked ships on the radar, except the player's ships.
 			if(ship->Cloaking() == 1. && !isPlayer)
 				continue;
+			
+			if(doClick && &*ship != player.Flagship())
+			{
+				const Mask &mask = ship->GetSprite().GetMask(step);
+				if(mask.WithinRange(clickPoint - position, ship->Facing(), 50.))
+				{
+					player.Flagship()->SetTargetShip(ship);
+					// If we've found an enemy within the click zone, favor
+					// targeting it rather than any other ship. Otherwise, keep
+					// checking for hits because another ship might be an enemy.
+					if(ship->GetGovernment()->IsEnemy())
+						doClick = false;
+				}
+			}
 			
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
@@ -1039,6 +1069,9 @@ void Engine::CalculateStep()
 					+ source->Name() + "\": " + message);
 		}
 	}
+	
+	// A mouse click should only be active for a single step.
+	doClick = false;
 	
 	// Keep track of how much of the CPU time we are using.
 	loadSum += loadTimer.Time();
