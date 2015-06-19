@@ -34,7 +34,10 @@ DataFile::DataFile(istream &in)
 
 void DataFile::Load(const string &path)
 {
+	// Check if the file exists before doing anything with it.
 	ifstream in(path);
+	if(!in.is_open())
+		return;
 	
 	// Find out how big the file is.
 	in.seekg(0, ios_base::end);
