@@ -1945,8 +1945,7 @@ event "navy done with algenib"
 
 event "fwc southern battle"
 	system "Delta Sagittarii"
-		fleet "Small Southern Merchants" 2000
-		fleet "Large Southern Merchants" 6000
+		fleet "Large Free Worlds" 4000
 	system "Rastaban"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 4000
