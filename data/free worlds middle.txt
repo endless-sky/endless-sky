@@ -725,7 +725,7 @@ mission "FW Northern 2"
 				`	"Did they agree to join us?"`
 			`	"Yes, yes, of course," he says. "But taking on six more worlds all of a sudden - I just hope it's not more than we can handle. When the Navy recovers from the battle at Rastaban and strikes back, now we have much less idea where that strike will fall."`
 			`	"So, what do we do next?" you ask.`
-			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have though of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her."`
+			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have though of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her on Dancer."`
 			choice
 				`	"No problem. Don't worry, we'll be able to handle this just fine."`
 					accept
@@ -1483,7 +1483,7 @@ mission "FW Albatross 1"
 	
 	on offer
 		conversation
-			`Freya comes to your ship soon after you land. She is beaming, and looks more relaxed than you have seen her in months. "Southbound Shipyards is churning out Dreadnoughts now!" she says. "Still only at a rate or one a week or so, but for a ship this big that's quite impressive. And it means you can now buy one of your own, if you've got enough savings. Seriously, even if you can't afford one yet, be sure to stop by the shipyard and check them out." She is clearly very proud.`
+			`Freya comes to your ship soon after you land. She is beaming, and looks more relaxed than you have seen her in months. "Southbound Shipyards is churning out Dreadnoughts now!" she says. "Still only at a rate of one a week or so, but for a ship this big that's quite impressive. And it means you can now buy one of your own, if you've got enough savings. Seriously, even if you can't afford one yet, be sure to stop by the shipyard and check them out." She is clearly very proud.`
 			choice
 				`	"Great job, Freya! I'm really glad to have a talented engineer on the Council to help get things done."`
 				`	"Glad to hear it. Now, what is our next action against the pirates?"`
@@ -1631,9 +1631,9 @@ mission "FW Rand 1"
 			choice
 				`	"Are you saying we shouldn't let them join, even though they want to?"`
 				`	"Well, I say, if they want to join us, we should let them. Who knows if they'll be this enthusiastic about the Free Worlds later if we let them down now."`
-			`	JJ thinks about that for a moment, then says, "Well, I guess we should let them join. It will mean we may need to launch an assault to drive the navy off New Iceland. But if we do that, our tactical position shifts from one that's worse than what we have now, to something much better. Freya, did they say if there's any sign that the Navy has gotten word of this?"`
+			`	JJ thinks about that for a moment, then says, "Well, I guess we should let them join. It will mean we may need to launch an assault to drive the Navy off New Iceland. But if we do that, our tactical position shifts from one that's worse than what we have now, to something much better. Freya, did they say if there's any sign that the Navy has gotten word of this?"`
 			`	"A few carriers are in orbit around Rand," she says, "so they must suspect something. But the bulk of the Navy fleet is still to the north and east of here."`
-			`	JJ thinks for a moment, then says, "Okay Captain, here's what I propose. We'll leave the bulk of our fleet here to defend Dancer and New Portland, but take a few of our best ships to Zeta Aquilae and drive out the Navy. Freya and I will travel with you so that if we need to make any decisions, we'll have most of the Council there in person. How does that sound?"`
+			`	JJ says, "Okay Captain, here's what I propose. We'll leave the bulk of our fleet here to defend Dancer and New Portland, but take a few of our best ships to Zeta Aquilae and drive out the Navy. Freya and I will travel with you so that if we need to make any decisions, we'll have most of the Council there in person. How does that sound?"`
 			choice
 				`	"It sounds like a good plan. Let's do it!"`
 					accept
