@@ -827,3 +827,4 @@ outfit "Nuclear Missile"
 		"hull damage" 7000
 		"hit force" 4000
 	description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
+	description "	[Nuclear missiles are a one-shot weapon: they occupy a gun slot, then disappear when fired.]"
