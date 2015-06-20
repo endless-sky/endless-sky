@@ -1696,10 +1696,6 @@ void Ship::ApplyForce(const Point &force)
 		return;
 	
 	velocity += force / currentMass;
-	double maxVelocity = MaxVelocity();
-	double currentVelocity = velocity.Length();
-	if(currentVelocity > maxVelocity)
-		velocity *= maxVelocity / currentVelocity;
 }
 
 
