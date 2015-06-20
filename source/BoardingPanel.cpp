@@ -340,7 +340,7 @@ bool BoardingPanel::Drag(int dx, int dy)
 
 bool BoardingPanel::Scroll(int dx, int dy)
 {
-	return Drag(dx, dy * 50);
+	return Drag(dx, dy * -50);
 }
 
 
