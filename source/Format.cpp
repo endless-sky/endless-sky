@@ -62,6 +62,10 @@ string Format::Number(double value)
 		right = min(right, 3);
 	nonzero |= !right;
 	int rounded = round(fabs(value) * pow(10., right));
+    int dellimiterIndex = -1;
+    
+    if (left > 3)
+        dellimiterIndex = left - 3;
 	
 	while(rounded | right)
 	{
@@ -83,6 +87,12 @@ string Format::Number(double value)
 				nonzero = true;
 			}
 		}
+        else
+        {
+            --left;
+            if(left == dellimiterIndex)
+                result += ',';
+        }
 	}
 	
 	// Add the negative sign if needed.
