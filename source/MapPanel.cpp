@@ -403,7 +403,8 @@ void MapPanel::DrawMissions() const
 		if(mission.HasDeadline())
 		{
 			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
-			blink = (step % (10 * days) > 5 * days);
+			if(days > 0)
+				blink = (step % (10 * days) > 5 * days);
 		}
 		Point pos = system->Position() + center;
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
