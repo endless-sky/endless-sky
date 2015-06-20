@@ -1043,7 +1043,7 @@ mission "FWC Pug 1"
 		event "fwc pug invasion"
 		conversation
 			`Once you have gathered in the spaceport with the captains in charge of your fleet, Katya contacts Tomek and asks for instructions. He says, "A Wolf Pack fleet should arrive there shortly. They're carrying all the nukes we had left. They will go in first and--"`
-			`	Abruptly, his voice cuts off in a burst of status. "What the hell?" says Katya. She tries to reestablish a connection to Tomek, but is unable to. Confused, she says, "What's going on? Is the Navy destroying the hyperspace communications relays, now? Or jamming them somehow?"`
+			`	Abruptly, his voice cuts off in a burst of static. "What the hell?" says Katya. She tries to reestablish a connection to Tomek, but is unable to. Confused, she says, "What's going on? Is the Navy destroying the hyperspace communications relays, now? Or jamming them somehow?"`
 			`	One of the communications technicians says, "They must've taken out the relays. I can't get a signal from Earth, or Tundra, or Bourne, or, well, anywhere else, for that matter, except the Altair system, right next to this one."`
 			choice
 				`	"How do the hyperspace relays work? Is there any way around them?"`
