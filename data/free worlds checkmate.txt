@@ -1981,7 +1981,7 @@ mission "FWC Pug 4B: Quarg"
 			`	"So you've encountered the Pug before?" asks Freya. "You know about them?"`
 			
 			label info
-			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. The came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They are either entirely illogical, or operating on a logic so far above ours that it appears as nonsense to us. They claim it is the latter: that they operate on some special knowledge of time and future."`
+			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They are either entirely illogical, or operating on a logic so far above ours that it appears as nonsense to us. They claim it is the latter: that they operate on some special knowledge of time and future."`
 			choice
 				`	"If they're so advanced, do we have any chance of defeating them?"`
 					goto defeat

@@ -1313,7 +1313,7 @@ mission "FW Pug 3: Quarg"
 			`	"So you've encountered the Pug before?" asks Alondo.`
 			
 			label info
-			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. The came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They claim to be acting on a special knowledge of future events, but we do not know if that knowledge is genuine or only an excuse to play tricks on other species."`
+			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They claim to be acting on a special knowledge of future events, but we do not know if that knowledge is genuine or only an excuse to play tricks on other species."`
 			choice
 				`	"If they're so advanced, do we have any chance of defeating them?"`
 					goto defeat
