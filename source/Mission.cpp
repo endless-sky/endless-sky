@@ -487,6 +487,12 @@ bool Mission::CanComplete(const PlayerInfo &player) const
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
 	
+	// If any of the cargo for this mission is being carried by a ship that is
+	// not in this system, the mission cannot be completed right now.
+	for(const auto &ship : player.Ships())
+		if(ship->GetSystem() != player.GetSystem() && ship->Cargo().Get(this))
+			return false;
+	
 	return true;
 }
 
