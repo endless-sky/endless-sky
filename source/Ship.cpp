@@ -84,13 +84,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "licenses")
 		{
-			const Government *gov = nullptr;
-			if(child.Size() >= 2)
-				gov = GameData::Governments().Get(child.Token(1));
-			
-			vector<string> &vec = licenses[gov];
 			for(const DataNode &grand : child)
-				vec.push_back(grand.Token(0));
+				licenses.push_back(grand.Token(0));
 		}
 		else if(child.Token(0) == "never disabled")
 			neverDisabled = true;
@@ -158,8 +153,6 @@ void Ship::FinishLoading()
 	{
 		if(sprite.IsEmpty())
 			sprite = base->sprite;
-		if(licenses.empty())
-			licenses = base->licenses;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(droneBays.empty() && !base->droneBays.empty())
@@ -266,18 +259,6 @@ void Ship::Save(DataWriter &out) const
 		out.Write("name", name);
 		sprite.Save(out);
 		
-		for(const auto &it : licenses)
-		{
-			if(it.first)
-				out.Write("licenses", it.first->GetName());
-			else
-				out.Write("licenses");
-			
-			out.BeginChild();
-			for(const auto &license : it.second)
-				out.Write(license);
-			out.EndChild();
-		}
 		if(neverDisabled)
 			out.Write("never disabled");
 		
@@ -397,16 +378,9 @@ int64_t Ship::Cost() const
 
 
 // Get the licenses needed to buy or operate this ship.
-const vector<string> &Ship::Licenses(const Government *government) const
+const vector<string> &Ship::Licenses() const
 {
-	// Find out if we have any licenses specifically for this government. If
-	// not, check if there are any universally required licenses.
-	auto it = licenses.find(government);
-	if(it == licenses.end())
-		it = licenses.find(nullptr);
-	
-	static const vector<string> empty;
-	return (it == licenses.end()) ? empty : it->second;
+	return licenses;
 }
 
 

@@ -258,7 +258,7 @@ ship "Bastion"
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
-	description "The Southbound Shipyards Bastion is designed as a heavy defense platform to accompany freighter convoys, in addition to having enough cargo capacity to serve as a freighter in its own right. Because of its heavy armament, it is classified as a Warship, and throughout Republic space any captain without a warship license is barred from purchasing or operating a Bastion."
+	description "The Southbound Shipyards Bastion is designed as a heavy defense platform to accompany freighter convoys, in addition to having enough cargo capacity to serve as a freighter in its own right. Because of its heavy armament, it is classified as a warship rather than a freighter."
 
 
 
@@ -446,7 +446,7 @@ ship "Bulk Freighter"
 
 ship "Carrier"
 	sprite "ship/carrier"
-	licenses Republic
+	licenses
 		Navy
 		Carrier
 	attributes
@@ -562,7 +562,7 @@ ship "Clipper"
 
 ship "Combat Drone"
 	sprite "ship/combat drone"
-	licenses Republic
+	licenses
 		Navy
 	attributes
 		category "Drone"
@@ -637,7 +637,7 @@ ship "Corvette"
 
 ship "Cruiser"
 	sprite "ship/cruiser"
-	licenses Republic
+	licenses
 		Navy
 		Cruiser
 	attributes
@@ -934,7 +934,7 @@ ship "Freighter"
 
 ship "Frigate"
 	sprite "ship/frigate"
-	licenses Republic
+	licenses
 		Navy
 	attributes
 		category "Light Warship"
@@ -1028,7 +1028,7 @@ ship "Fury"
 
 ship "Gunboat"
 	sprite "ship/gunboat"
-	licenses Republic
+	licenses
 		Navy
 	attributes
 		category "Light Warship"
@@ -1478,7 +1478,7 @@ ship "Quicksilver"
 
 ship "Rainmaker"
 	sprite "ship/rainmaker"
-	licenses Republic
+	licenses
 		Navy
 	attributes
 		category "Light Warship"
@@ -1830,7 +1830,7 @@ ship "Star Queen"
 
 ship "Surveillance Drone"
 	sprite "ship/surveillance drone"
-	licenses Republic
+	licenses
 		Navy
 	attributes
 		category "Drone"

@@ -185,12 +185,12 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *syst
 	description.SetWrapWidth(WIDTH - 20);
 	description.SetFont(FontSet::Get(14));
 	
-	const vector<string> &licenses = ship.Licenses(systemGovernment);
+	const vector<string> &licenses = ship.Licenses();
 	if(licenses.empty())
 		description.Wrap(ship.Description());
 	else
 	{
-		string text = ship.Description() + "\tTo purchase or operate this ship you must have ";
+		string text = ship.Description() + "\tTo purchase this ship you must have ";
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
 			if(i)
