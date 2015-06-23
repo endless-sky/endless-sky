@@ -59,7 +59,9 @@ private:
 	
 	
 private:
+	bool isOr = false;
 	std::vector<Entry> entries;
+	std::vector<ConditionSet> children;
 };
 
 

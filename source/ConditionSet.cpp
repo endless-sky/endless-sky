@@ -45,6 +45,7 @@ namespace {
 // Load a set of conditions from the children of this node.
 void ConditionSet::Load(const DataNode &node)
 {
+	isOr = (node.Token(0) == "or");
 	for(const DataNode &child : node)
 		Add(child);
 }
@@ -55,6 +56,15 @@ void ConditionSet::Save(DataWriter &out) const
 {
 	for(const Entry &entry : entries)
 		out.Write(entry.name, entry.op, entry.value);
+	for(const ConditionSet &child : children)
+	{
+		out.Write(child.isOr ? "or" : "and");
+		out.BeginChild();
+		{
+			child.Save(out);
+		}
+		out.EndChild();
+	}
 }
 
 
@@ -74,6 +84,11 @@ void ConditionSet::Add(const DataNode &node)
 		Add(node.Token(0), node.Token(1), node.Value(2));
 	else if(node.Size() == 1 && node.Token(0) == "never")
 		entries.emplace_back("", "!=", 0);
+	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
+	{
+		children.emplace_back();
+		children.back().Load(node);
+	}
 }
 
 
@@ -110,10 +125,22 @@ bool ConditionSet::Test(const map<string, int> &conditions) const
 	for(const Entry &entry : entries)
 	{
 		auto it = conditions.find(entry.name);
-		if(!entry.fun(it != conditions.end() ? it->second : 0, entry.value))
-			return false;
+		bool result = entry.fun(it != conditions.end() ? it->second : 0, entry.value);
+		// If this is a set of "and" conditions, bail out as soon as one of them
+		// returns false. If it is an "or", bail out if anything returns true.
+		if(result == isOr)
+			return result;
 	}
-	return true;
+	for(const ConditionSet &child : children)
+	{
+		bool result = child.Test(conditions);
+		if(result == isOr)
+			return result;
+	}
+	// If this is an "and" condition, we got here because all the above conditions
+	// returned true, so we should return true. If it is an "or," we got here because
+	// no condition returned true, so we should return false.
+	return !isOr;
 }
 
 
@@ -125,6 +152,8 @@ void ConditionSet::Apply(map<string, int> &conditions) const
 		int &c = conditions[entry.name];
 		c = entry.fun(c, entry.value);
 	}
+	for(const ConditionSet &child : children)
+		child.Apply(conditions);
 }
 
 
