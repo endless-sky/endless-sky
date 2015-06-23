@@ -256,6 +256,7 @@ void Ship::Save(DataWriter &out) const
 {
 	out.Write("ship", modelName);
 	out.BeginChild();
+	{
 		out.Write("name", name);
 		sprite.Save(out);
 		
@@ -264,14 +265,17 @@ void Ship::Save(DataWriter &out) const
 		
 		out.Write("attributes");
 		out.BeginChild();
+		{
 			out.Write("category", baseAttributes.Category());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
+		}
 		out.EndChild();
 		
 		out.Write("outfits");
 		out.BeginChild();
+		{
 			for(const auto &it : outfits)
 				if(it.first && it.second)
 				{
@@ -280,6 +284,7 @@ void Ship::Save(DataWriter &out) const
 					else
 						out.Write(it.first->Name(), it.second);
 				}
+		}
 		out.EndChild();
 		
 		cargo.Save(out);
@@ -320,6 +325,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->Name());
 		if(isParked)
 			out.Write("parked");
+	}
 	out.EndChild();
 }
 

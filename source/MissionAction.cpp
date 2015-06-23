@@ -87,38 +87,39 @@ void MissionAction::Save(DataWriter &out) const
 	else
 		out.Write("on", trigger, system);
 	out.BeginChild();
-	
-	if(!dialogText.empty())
 	{
-		out.Write("dialog");
-		out.BeginChild();
-		
-		// Break the text up into paragraphs.
-		size_t begin = 0;
-		while(true)
+		if(!dialogText.empty())
 		{
-			size_t pos = dialogText.find("\n\t", begin);
-			if(pos == string::npos)
-				pos = dialogText.length();
-			out.Write(dialogText.substr(begin, pos - begin));
-			if(pos == dialogText.length())
-				break;
-			begin = pos + 2;
+			out.Write("dialog");
+			out.BeginChild();
+			{
+				// Break the text up into paragraphs.
+				size_t begin = 0;
+				while(true)
+				{
+					size_t pos = dialogText.find("\n\t", begin);
+					if(pos == string::npos)
+						pos = dialogText.length();
+					out.Write(dialogText.substr(begin, pos - begin));
+					if(pos == dialogText.length())
+						break;
+					begin = pos + 2;
+				}
+			}
+			out.EndChild();
 		}
-		out.EndChild();
+		if(!conversation.IsEmpty())
+			conversation.Save(out);
+		
+		for(const auto &it : gifts)
+			out.Write("outfit", it.first->Name(), it.second);
+		if(payment)
+			out.Write("payment", payment);
+		for(const auto &it : events)
+			out.Write("event", it.first, it.second);
+		
+		conditions.Save(out);
 	}
-	if(!conversation.IsEmpty())
-		conversation.Save(out);
-	
-	for(const auto &it : gifts)
-		out.Write("outfit", it.first->Name(), it.second);
-	if(payment)
-		out.Write("payment", payment);
-	for(const auto &it : events)
-		out.Write("event", it.first, it.second);
-	
-	conditions.Save(out);
-	
 	out.EndChild();
 }
 

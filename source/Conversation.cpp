@@ -63,12 +63,12 @@ namespace {
 	static void WriteToken(int index, DataWriter &out)
 	{
 		out.BeginChild();
-			
-		if(index >= 0)
-			out.Write("goto", index);
-		else
-			out.Write(TokenName(index));
-					
+		{
+			if(index >= 0)
+				out.Write("goto", index);
+			else
+				out.Write(TokenName(index));
+		}
 		out.EndChild();
 	}
 }
@@ -244,55 +244,57 @@ void Conversation::Save(DataWriter &out) const
 	else
 		out.Write("conversation");
 	out.BeginChild();
-	
-	for(unsigned i = 0; i < nodes.size(); ++i)
 	{
-		out.Write("label", i);
-		const Node &node = nodes[i];
-		
-		if(node.scene)
-			out.Write("scene", node.sceneName);	
-		if(!node.conditions.IsEmpty())
+		for(unsigned i = 0; i < nodes.size(); ++i)
 		{
-			if(node.data.size() > 1)
-				out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
-			else
-				out.Write("apply", TokenName(node.data[0].second));
+			out.Write("label", i);
+			const Node &node = nodes[i];
 			
-			out.BeginChild();
-			node.conditions.Save(out);
-			out.EndChild();
-			continue;
-		}
-		if(node.isChoice)
-		{
-			out.Write(node.data.empty() ? "name" : "choice");
-			out.BeginChild();
-		}
-		for(const auto &it : node.data)
-		{
-			// Break the text up into paragraphs.
-			size_t begin = 0;
-			while(begin != it.first.length())
+			if(node.scene)
+				out.Write("scene", node.sceneName);	
+			if(!node.conditions.IsEmpty())
 			{
-				size_t pos = it.first.find('\n', begin);
-				if(pos == string::npos)
-					pos = it.first.length();
-				out.Write(it.first.substr(begin, pos - begin));
-				if(pos == it.first.length())
-					break;
-				begin = pos + 1;
+				if(node.data.size() > 1)
+					out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
+				else
+					out.Write("apply", TokenName(node.data[0].second));
+				
+				out.BeginChild();
+				{
+					node.conditions.Save(out);
+				}
+				out.EndChild();
+				continue;
 			}
-			int index = it.second;
-			if(index > 0 && static_cast<unsigned>(index) >= nodes.size())
-				index = -1;
-			
-			WriteToken(index, out);
+			if(node.isChoice)
+			{
+				out.Write(node.data.empty() ? "name" : "choice");
+				out.BeginChild();
+			}
+			for(const auto &it : node.data)
+			{
+				// Break the text up into paragraphs.
+				size_t begin = 0;
+				while(begin != it.first.length())
+				{
+					size_t pos = it.first.find('\n', begin);
+					if(pos == string::npos)
+						pos = it.first.length();
+					out.Write(it.first.substr(begin, pos - begin));
+					if(pos == it.first.length())
+						break;
+					begin = pos + 1;
+				}
+				int index = it.second;
+				if(index > 0 && static_cast<unsigned>(index) >= nodes.size())
+					index = -1;
+				
+				WriteToken(index, out);
+			}
+			if(node.isChoice)
+				out.EndChild();
 		}
-		if(node.isChoice)
-			out.EndChild();
 	}
-	
 	out.EndChild();
 }
 

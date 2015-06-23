@@ -51,18 +51,18 @@ void GameEvent::Save(DataWriter &out) const
 {
 	out.Write("event");
 	out.BeginChild();
-	
-	if(date)
-		out.Write("date", date.Day(), date.Month(), date.Year());
-	conditionsToApply.Save(out);
-	
-	for(const System *system : systemsToUnvisit)
-		if(system && !system->Name().empty())
-			out.Write("unvisit", system->Name());
-	
-	for(const DataNode &change : changes)
-		out.Write(change);
-	
+	{
+		if(date)
+			out.Write("date", date.Day(), date.Month(), date.Year());
+		conditionsToApply.Save(out);
+		
+		for(const System *system : systemsToUnvisit)
+			if(system && !system->Name().empty())
+				out.Write("unvisit", system->Name());
+		
+		for(const DataNode &change : changes)
+			out.Write(change);
+	}
 	out.EndChild();
 }
 

@@ -67,6 +67,7 @@ void Account::Save(DataWriter &out) const
 {
 	out.Write("account");
 	out.BeginChild();
+	{
 		out.Write("credits", credits);
 		if(salariesOwed)
 			out.Write("salaries", salariesOwed);
@@ -74,12 +75,15 @@ void Account::Save(DataWriter &out) const
 		
 		out.Write("history");
 		out.BeginChild();
+		{
 			for(int worth : history)
 				out.Write(worth);
+		}
 		out.EndChild();
 		
 		for(const Mortgage &mortgage : mortgages)
 			mortgage.Save(out);
+	}
 	out.EndChild();
 }
 

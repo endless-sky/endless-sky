@@ -92,12 +92,12 @@ void Personality::Save(DataWriter &out) const
 {
 	out.Write("personality");
 	out.BeginChild();
-	
-	out.Write("confusion", confusionMultiplier * 1000.);
-	for(const auto &it : TOKEN)
-		if(flags & it.second)
-			out.Write(it.first);
-	
+	{
+		out.Write("confusion", confusionMultiplier * 1000.);
+		for(const auto &it : TOKEN)
+			if(flags & it.second)
+				out.Write(it.first);
+	}
 	out.EndChild();
 }
 

@@ -80,9 +80,11 @@ void Mortgage::Save(DataWriter &out) const
 {
 	out.Write("mortgage", type);
 	out.BeginChild();
+	{
 		out.Write("principal", principal);
 		out.Write("interest", interest);
 		out.Write("term", term);
+	}
 	out.EndChild();
 }
 

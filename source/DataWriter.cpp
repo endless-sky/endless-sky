@@ -40,8 +40,10 @@ void DataWriter::Write(const DataNode &node)
 	if(node.begin() != node.end())
 	{
 		BeginChild();
-		for(const DataNode &child : node)
-			Write(child);
+		{
+			for(const DataNode &child : node)
+				Write(child);
+		}
 		EndChild();
 	}
 }

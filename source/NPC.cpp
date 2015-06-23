@@ -146,55 +146,58 @@ void NPC::Save(DataWriter &out) const
 {
 	out.Write("npc");
 	out.BeginChild();
-	
-	if(succeedIf)
-		out.Write("succeed", succeedIf);
-	if(failIf)
-		out.Write("fail", failIf);
-	if(mustEvade)
-		out.Write("evade");
-	if(mustAccompany)
-		out.Write("accompany");
-	
-	if(government)
-		out.Write("government", government->GetName());
-	personality.Save(out);
-	
-	if(!dialogText.empty())
 	{
-		out.Write("dialog");
-		out.BeginChild();
+		if(succeedIf)
+			out.Write("succeed", succeedIf);
+		if(failIf)
+			out.Write("fail", failIf);
+		if(mustEvade)
+			out.Write("evade");
+		if(mustAccompany)
+			out.Write("accompany");
 		
-		// Break the text up into paragraphs.
-		size_t begin = 0;
-		while(true)
+		if(government)
+			out.Write("government", government->GetName());
+		personality.Save(out);
+		
+		if(!dialogText.empty())
 		{
-			size_t pos = dialogText.find("\n\t", begin);
-			if(pos == string::npos)
-				pos = dialogText.length();
-			out.Write(dialogText.substr(begin, pos - begin));
-			if(pos == dialogText.length())
-				break;
-			begin = pos + 2;
-		}
-		out.EndChild();
-	}
-	if(!conversation.IsEmpty())
-		conversation.Save(out);
-	
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		ship->Save(out);
-		auto it = actions.find(ship.get());
-		if(it != actions.end() && it->second)
-		{
-			// Append an "actions" tag to the end of the ship data.
+			out.Write("dialog");
 			out.BeginChild();
-			out.Write("actions", it->second);
+			{
+				// Break the text up into paragraphs.
+				size_t begin = 0;
+				while(true)
+				{
+					size_t pos = dialogText.find("\n\t", begin);
+					if(pos == string::npos)
+						pos = dialogText.length();
+					out.Write(dialogText.substr(begin, pos - begin));
+					if(pos == dialogText.length())
+						break;
+					begin = pos + 2;
+				}
+			}
 			out.EndChild();
 		}
+		if(!conversation.IsEmpty())
+			conversation.Save(out);
+		
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			ship->Save(out);
+			auto it = actions.find(ship.get());
+			if(it != actions.end() && it->second)
+			{
+				// Append an "actions" tag to the end of the ship data.
+				out.BeginChild();
+				{
+					out.Write("actions", it->second);
+				}
+				out.EndChild();
+			}
+		}
 	}
-	
 	out.EndChild();
 }
 

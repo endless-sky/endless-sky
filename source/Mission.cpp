@@ -188,83 +188,85 @@ void Mission::Save(DataWriter &out, const string &tag) const
 {
 	out.Write(tag, name);
 	out.BeginChild();
-	
-	out.Write("name", displayName);
-	if(!description.empty())
-		out.Write("description", description);
-	if(!blocked.empty())
-		out.Write("blocked", blocked);
-	if(hasDeadline)
-		out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
-	if(cargoSize)
 	{
-		out.Write("cargo", cargo, cargoSize);
-		if(illegalCargoFine)
+		out.Write("name", displayName);
+		if(!description.empty())
+			out.Write("description", description);
+		if(!blocked.empty())
+			out.Write("blocked", blocked);
+		if(hasDeadline)
+			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
+		if(cargoSize)
 		{
+			out.Write("cargo", cargo, cargoSize);
+			if(illegalCargoFine)
+			{
+				out.BeginChild();
+				{
+					out.Write("illegal", illegalCargoFine);
+				}
+				out.EndChild();
+			}
+		}
+		if(passengers)
+			out.Write("passengers", passengers);
+		if(!isVisible)
+			out.Write("invisible");
+		if(hasPriority)
+			out.Write("priority");
+		if(autosave)
+			out.Write("autosave");
+		if(location == LANDING)
+			out.Write("landing");
+		if(location == ASSISTING)
+			out.Write("assisting");
+		if(location == BOARDING)
+			out.Write("boarding");
+		if(location == JOB)
+			out.Write("job");
+		if(!clearance.empty())
+		{
+			out.Write("clearance", clearance);
+			clearanceFilter.Save(out);
+		}
+		if(!hasFullClearance)
+			out.Write("infiltrating");
+		if(repeat != 1)
+			out.Write("repeat", repeat);
+		
+		if(!toComplete.IsEmpty())
+		{
+			out.Write("to", "complete");
 			out.BeginChild();
-			out.Write("illegal", illegalCargoFine);
+			{
+				toComplete.Save(out);
+			}
 			out.EndChild();
 		}
-	}
-	if(passengers)
-		out.Write("passengers", passengers);
-	if(!isVisible)
-		out.Write("invisible");
-	if(hasPriority)
-		out.Write("priority");
-	if(autosave)
-		out.Write("autosave");
-	if(location == LANDING)
-		out.Write("landing");
-	if(location == ASSISTING)
-		out.Write("assisting");
-	if(location == BOARDING)
-		out.Write("boarding");
-	if(location == JOB)
-		out.Write("job");
-	if(!clearance.empty())
-	{
-		out.Write("clearance", clearance);
-		clearanceFilter.Save(out);
-	}
-	if(!hasFullClearance)
-		out.Write("infiltrating");
-	if(repeat != 1)
-		out.Write("repeat", repeat);
-	
-	if(!toComplete.IsEmpty())
-	{
-		out.Write("to", "complete");
-		out.BeginChild();
+		if(!toFail.IsEmpty())
+		{
+			out.Write("to", "fail");
+			out.BeginChild();
+			{
+				toFail.Save(out);
+			}
+			out.EndChild();
+		}
+		if(destination)
+			out.Write("destination", destination->Name());
+		for(const System *system : waypoints)
+			out.Write("waypoint", system->Name());
 		
-		toComplete.Save(out);
+		for(const NPC &npc : npcs)
+			npc.Save(out);
 		
-		out.EndChild();
+		// Save all the actions, because this might be an "available mission" that
+		// has not been received yet but must still be included in the saved game.
+		for(const auto &it : actions)
+			it.second.Save(out);
+		for(const auto &it : onEnter)
+			it.second.Save(out);
 	}
-	if(!toFail.IsEmpty())
-	{
-		out.Write("to", "fail");
-		out.BeginChild();
-		
-		toFail.Save(out);
-		
-		out.EndChild();
-	}
-	if(destination)
-		out.Write("destination", destination->Name());
-	for(const System *system : waypoints)
-		out.Write("waypoint", system->Name());
-	
-	for(const NPC &npc : npcs)
-		npc.Save(out);
-	
-	// Save all the actions, because this might be an "available mission" that
-	// has not been received yet but must still be included in the saved game.
-	for(const auto &it : actions)
-		it.second.Save(out);
-	for(const auto &it : onEnter)
-		it.second.Save(out);
-	
 	out.EndChild();
 }
 

@@ -96,10 +96,12 @@ void Animation::Save(DataWriter &out) const
 {
 	out.Write("sprite", spriteName);
 	out.BeginChild();
+	{
 		if(frameRate != 1.)
 			out.Write("frame rate", frameRate * 60.);
 		if(rewind)
 			out.Write("rewind");
+	}
 	out.EndChild();
 }
 

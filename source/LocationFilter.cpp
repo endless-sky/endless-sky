@@ -143,42 +143,50 @@ void LocationFilter::Load(const DataNode &node)
 void LocationFilter::Save(DataWriter &out) const
 {
 	out.BeginChild();
-	
-	if(!planets.empty())
 	{
-		out.Write("planet");
-		out.BeginChild();
-		for(const Planet *planet : planets)
-			out.Write(planet->Name());
-		out.EndChild();
+		if(!planets.empty())
+		{
+			out.Write("planet");
+			out.BeginChild();
+			{
+				for(const Planet *planet : planets)
+					out.Write(planet->Name());
+			}
+			out.EndChild();
+		}
+		if(!systems.empty())
+		{
+			out.Write("system");
+			out.BeginChild();
+			{
+				for(const System *system : systems)
+					out.Write(system->Name());
+			}
+			out.EndChild();
+		}
+		if(!governments.empty())
+		{
+			out.Write("government");
+			out.BeginChild();
+			{
+				for(const Government *government : governments)
+					out.Write(government->GetName());
+			}
+			out.EndChild();
+		}
+		for(const auto &it : attributes)
+		{
+			out.Write("attributes");
+			out.BeginChild();
+			{
+				for(const string &name : it)
+					out.Write(name);
+			}
+			out.EndChild();
+		}
+		if(center)
+			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
 	}
-	if(!systems.empty())
-	{
-		out.Write("system");
-		out.BeginChild();
-		for(const System *system : systems)
-			out.Write(system->Name());
-		out.EndChild();
-	}
-	if(!governments.empty())
-	{
-		out.Write("government");
-		out.BeginChild();
-		for(const Government *government : governments)
-			out.Write(government->GetName());
-		out.EndChild();
-	}
-	for(const auto &it : attributes)
-	{
-		out.Write("attributes");
-		out.BeginChild();
-		for(const string &name : it)
-			out.Write(name);
-		out.EndChild();
-	}
-	if(center)
-		out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
-	
 	out.EndChild();
 }
 
