@@ -33,6 +33,7 @@ outfit "Quarg Skylance"
 	"outfit space" -60
 	"weapon capacity" -60
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
@@ -120,6 +121,7 @@ outfit "Korath Grab-Strike"
 	"weapon capacity" -52
 	"energy capacity" 50
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/grab-strike"
 			"frame rate" 50
@@ -150,6 +152,7 @@ outfit "Korath Banisher"
 	"outfit space" -41
 	"weapon capacity" -41
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60

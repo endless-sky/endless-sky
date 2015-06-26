@@ -49,6 +49,7 @@ outfit "Pug Zapper Turret"
 	"outfit space" -66
 	"weapon capacity" -66
 	"turret mounts" -1
+	"required crew" 1
 	weapon
 		sprite "projectile/lightning"
 			"frame rate" 60

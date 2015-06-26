@@ -15,7 +15,7 @@ ship "Aerie"
 		"cost" 3500000
 		"shields" 5700
 		"hull" 1900
-		"required crew" 12
+		"required crew" 10
 		"bunks" 28
 		"mass" 130
 		"drag" 4.1
@@ -31,15 +31,18 @@ ship "Aerie"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"D41-HY Shield Generator"
-		"LP072a Battery Pack"
-		"NT-200 Nucleovoltaic"
-		"Hyperdrive"
 		"Heavy Laser" 2
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
+		
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -10 91
 	engine 10 91
 	gun -13 -79 "Heavy Laser"
@@ -64,7 +67,7 @@ ship "Argosy"
 		"cost" 1560000
 		"shields" 4200
 		"hull" 2600
-		"required crew" 6
+		"required crew" 4
 		"bunks" 14
 		"mass" 330
 		"drag" 5.9
@@ -80,16 +83,19 @@ ship "Argosy"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"D23-QP Shield Generator"
-		"LP072a Battery Pack"
-		"RT-I Radiothermal"
-		"Hyperdrive"
 		"Energy Blaster" 2
-		"Blaster Turret" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
+		"Blaster Turret" 2
+		
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
 	engine -16 82
 	engine 16 82
 	gun -22 -37 "Energy Blaster"
@@ -133,12 +139,15 @@ ship "Arrow"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
 		"Anti-Missile Turret"
-		"Supercapacitor"
+		
 		"Dwarf Core"
+		"Supercapacitor"
 		"D14-RN Shield Generator"
-		"Hyperdrive"
+		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
+		"Hyperdrive"
+		
 	engine -10 60
 	engine 10 60
 	gun -8 -34 "Sidewinder Missile Launcher"
@@ -158,7 +167,7 @@ ship Bactrian
 		"cost" 12600000
 		"shields" 17500
 		"hull" 8600
-		"required crew" 74
+		"required crew" 70
 		"bunks" 245
 		"mass" 820
 		"drag" 14.8
@@ -174,19 +183,22 @@ ship Bactrian
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"X5700 Ion Thruster"
-		"X5200 Ion Steering"
-		"D94-YV Shield Generator"
-		"LP144a Battery Pack"
-		"Fusion Reactor"
-		"Hyperdrive"
-		"Ramscoop"
-		"Heavy Laser Turret" 4
-		"Heavy Anti-Missile Turret" 2
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
 		"Torpedo Launcher" 2
 		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Ramscoop"
+		
+		"X5700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -18 230
 	engine 18 230
 	gun -15 -226 "Torpedo Launcher"
@@ -217,7 +229,7 @@ ship "Bastion"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
-		"required crew" 35
+		"required crew" 32
 		"bunks" 47
 		"mass" 580
 		"drag" 10.3
@@ -233,18 +245,21 @@ ship "Bastion"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"D67-TM Shield Generator"
-		"LP144a Battery Pack"
-		"S3 Thermionic"
-		"nGVF-BB Fuel Cell"
-		"Water Coolant System"
-		"Hyperdrive"
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
 		"Heavy Rocket" 40
 		"Blaster Turret" 3
+		
+		"S3 Thermionic"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
 	engine -28 85
 	engine 28 85
 	gun -54 -14 "Plasma Cannon"
@@ -269,7 +284,7 @@ ship "Behemoth"
 		"cost" 7800000
 		"shields" 7600
 		"hull" 6300
-		"required crew" 16
+		"required crew" 12
 		"bunks" 30
 		"mass" 540
 		"drag" 11.7
@@ -285,14 +300,17 @@ ship "Behemoth"
 			"hull damage" 700
 			"hit force" 2100
 	outfits
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"D41-HY Shield Generator"
-		"LP144a Battery Pack"
-		"NT-200 Nucleovoltaic"
-		"Scram Drive"
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
 	engine -34 154
 	engine 34 154
 	gun -27 -83
@@ -318,7 +336,7 @@ ship "Blackbird"
 		"cost" 2230000
 		"shields" 4400
 		"hull" 900
-		"required crew" 5
+		"required crew" 3
 		"bunks" 28
 		"mass" 220
 		"drag" 5.0
@@ -334,13 +352,16 @@ ship "Blackbird"
 			"hull damage" 300
 			"hit force" 900
 	outfits
+		"Heavy Laser Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
-		"D23-QP Shield Generator"
-		"LP072a Battery Pack"
-		"S3 Thermionic"
 		"Hyperdrive"
-		"Heavy Laser Turret" 2
+		
 	engine -40 55
 	engine 40 55
 	turret -18 0 "Heavy Laser Turret"
@@ -360,7 +381,7 @@ ship "Bounder"
 		"cost" 1140000
 		"shields" 2200
 		"hull" 700
-		"required crew" 3
+		"required crew" 1
 		"bunks" 17
 		"mass" 130
 		"drag" 3.7
@@ -376,13 +397,16 @@ ship "Bounder"
 			"hull damage" 150
 			"hit force" 450
 	outfits
+		"Blaster Turret" 2
+		
+		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"nGVF-CC Fuel Cell"
-		"Blaster Turret" 2
+		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		
 	engine -12 44
 	engine 12 44
 	turret -37 4 "Blaster Turret"
@@ -401,7 +425,7 @@ ship "Bulk Freighter"
 		"cost" 9400000
 		"shields" 4000
 		"hull" 7600
-		"required crew" 14
+		"required crew" 6
 		"bunks" 18
 		"mass" 870
 		"drag" 15.8
@@ -417,16 +441,19 @@ ship "Bulk Freighter"
 			"hull damage" 600
 			"hit force" 1800
 	outfits
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"D23-QP Shield Generator"
-		"LP144a Battery Pack"
-		"RT-I Radiothermal"
-		"Scram Drive"
-		"Laser Turret" 3
-		"Heavy Anti-Missile Turret" 2
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
+		"Laser Turret" 3
+		"Heavy Anti-Missile Turret" 2
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
 	engine -22 198
 	engine 22 198
 	gun -20 -175 "Sidewinder Missile Launcher"
@@ -454,7 +481,7 @@ ship "Carrier"
 		"cost" 15200000
 		"shields" 21400
 		"hull" 8300
-		"required crew" 114
+		"required crew" 111
 		"bunks" 184
 		"mass" 910
 		"drag" 17.7
@@ -470,18 +497,21 @@ ship "Carrier"
 			"hull damage" 1500
 			"hit force" 4500
 	outfits
-		"X5700 Ion Thruster"
-		"X4200 Ion Steering"
-		"D94-YV Shield Generator"
-		"LP288a Battery Pack"
-		"Fusion Reactor"
-		"Water Coolant System"
-		"Hyperdrive"
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
 		"Heavy Laser Turret" 3
 		"Heavy Anti-Missile Turret"
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		
+		"X5700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -35 200
 	engine 35 200
 	gun -25 -166 "Particle Cannon"
@@ -538,15 +568,18 @@ ship "Clipper"
 			"hull damage" 180
 			"hit force" 540
 	outfits
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"D23-QP Shield Generator"
-		"LP072a Battery Pack"
-		"nGVF-DD Fuel Cell"
-		"Hyperdrive"
 		"Beam Laser" 2
 		"Javelin Pod" 2
 		"Javelin" 400
+		
+		"nGVF-DD Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+		
 	engine -20 45
 	engine 20 45
 	gun -12 -7 "Beam Laser"
@@ -576,10 +609,13 @@ ship "Combat Drone"
 		"engine capacity" 28
 	outfits
 		"Beam Laser"
+		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
+		
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
+		
 	engine -9 29
 	engine 9 29
 	gun 0 -29 "Beam Laser"
@@ -595,7 +631,7 @@ ship "Corvette"
 		"cost" 4400000
 		"shields" 6400
 		"hull" 1200
-		"required crew" 10
+		"required crew" 8
 		"bunks" 32
 		"mass" 150
 		"drag" 3.5
@@ -611,14 +647,17 @@ ship "Corvette"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		
+		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
-		"X3200 Ion Steering"
+		
 		"X3700 Ion Thruster"
-		"NT-200 Nucleovoltaic"
+		"X3200 Ion Steering"
 		"Hyperdrive"
-		"Heavy Laser Turret" 2
-		"Heavy Laser" 4
+		
 	engine -11 118
 	engine 11 118
 	gun -14 -60 "Heavy Laser"
@@ -645,7 +684,7 @@ ship "Cruiser"
 		"cost" 11200000
 		"shields" 19600
 		"hull" 6400
-		"required crew" 84
+		"required crew" 81
 		"bunks" 136
 		"mass" 680
 		"drag" 10.1
@@ -661,18 +700,21 @@ ship "Cruiser"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"X4700 Ion Thruster"
-		"X4200 Ion Steering"
-		"D67-TM Shield Generator"
-		"LP288a Battery Pack"
-		"Fusion Reactor"
-		"Liquid Nitrogen Cooler"
-		"Hyperdrive"
 		"Particle Cannon" 4
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 100
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		
+		"X4700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -29 156
 	engine 29 156
 	gun -41 -52 "Particle Cannon"
@@ -719,11 +761,14 @@ ship "Dagger"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"X1200 Ion Steering"
-		"X1700 Ion Thruster"
-		"nGVF-BB Fuel Cell"
 		"Beam Laser" 2
+		
+		"nGVF-BB Fuel Cell"
 		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Beam Laser"
@@ -741,7 +786,7 @@ ship "Dreadnought"
 		"cost" 11900000
 		"shields" 18100
 		"hull" 7300
-		"required crew" 89
+		"required crew" 84
 		"bunks" 147
 		"mass" 630
 		"drag" 10.1
@@ -757,17 +802,20 @@ ship "Dreadnought"
 			"hull damage" 1300
 			"hit force" 3900
 	outfits
-		"Plasma Turret" 5
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
+		"Plasma Turret" 5
+		
 		"Breeder Reactor"
 		"S3 Thermionic"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Liquid Helium Cooler"
+		
 		"Orca Plasma Thruster"
 		"Orca Plasma Steering"
 		"Hyperdrive"
+		
 	engine -25 172
 	engine 25 172
 	gun -10 -167 "Meteor Missile Launcher"
@@ -795,7 +843,7 @@ ship "Falcon"
 		"cost" 10900000
 		"shields" 12800
 		"hull" 3700
-		"required crew" 56
+		"required crew" 52
 		"bunks" 75
 		"mass" 510
 		"drag" 7.1
@@ -811,17 +859,20 @@ ship "Falcon"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Quad Blaster Turret" 4
+		
 		"Breeder Reactor"
 		"LP144a Battery Pack"
 		"D41-HY Shield Generator"
 		"Liquid Nitrogen Cooler"
-		"Quad Blaster Turret" 4
-		"Plasma Cannon" 2
-		"Torpedo Launcher" 2
-		"Torpedo" 60
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
 		"Hyperdrive"
+		
 	engine -17 143
 	engine 17 143
 	gun -17 -88 "Plasma Cannon"
@@ -847,7 +898,7 @@ ship "Firebird"
 		"cost" 4000000
 		"shields" 6100
 		"hull" 2800
-		"required crew" 9
+		"required crew" 7
 		"bunks" 22
 		"mass" 290
 		"drag" 4.5
@@ -863,15 +914,18 @@ ship "Firebird"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
-		"RT-I Radiothermal"
-		"nGVF-AA Fuel Cell"
-		"Hyperdrive"
 		"Heavy Laser" 4
 		"Heavy Laser Turret" 2
+		
+		"RT-I Radiothermal"
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -33 65
 	engine 33 65
 	gun -39 -13 "Heavy Laser"
@@ -895,7 +949,7 @@ ship "Freighter"
 		"cost" 730000
 		"shields" 2000
 		"hull" 2000
-		"required crew" 4
+		"required crew" 2
 		"bunks" 7
 		"mass" 240
 		"drag" 5.6
@@ -911,14 +965,17 @@ ship "Freighter"
 			"hull damage" 200
 			"hit force" 600
 	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
 		"nGVF-EE Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Scram Drive"
+		
 	engine -9 97
 	engine 9 97
 	turret 0 -52 "Blaster Turret"
@@ -941,7 +998,7 @@ ship "Frigate"
 		"cost" 5200000
 		"shields" 8000
 		"hull" 2500
-		"required crew" 24
+		"required crew" 21
 		"bunks" 44
 		"mass" 310
 		"drag" 5.2
@@ -957,16 +1014,19 @@ ship "Frigate"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
-		"NT-200 Nucleovoltaic"
-		"Hyperdrive"
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
 		"Torpedo" 60
 		"Blaster Turret" 3
+		
+		"NT-200 Nucleovoltaic"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -26 92
 	engine 26 92
 	gun -10 -83 "Particle Cannon"
@@ -1007,13 +1067,16 @@ ship "Fury"
 			"hull damage" 120
 			"hit force" 360
 	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"Energy Blaster" 4
+		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
-		"Energy Blaster" 4
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
+		
 	engine -20 36
 	engine 20 36
 	gun -10 -32
@@ -1035,7 +1098,7 @@ ship "Gunboat"
 		"cost" 3200000
 		"shields" 5800
 		"hull" 1400
-		"required crew" 8
+		"required crew" 7
 		"bunks" 12
 		"mass" 150
 		"drag" 3.1
@@ -1051,16 +1114,19 @@ ship "Gunboat"
 			"hull damage" 360
 			"hit force" 1080
 	outfits
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"X3700 Ion Thruster"
-		"X2200 Ion Steering"
-		"RT-I Radiothermal"
-		"Hyperdrive"
 		"Heavy Laser" 2
 		"Heavy Laser Turret"
+		
+		"RT-I Radiothermal"
+		"LP144a Battery Pack"
+		"D14-RN Shield Generator"
 		"Cargo Scanner"
 		"Outfit Scanner"
+		
+		"X3700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -12 57
 	engine 12 57
 	gun -28 -28 "Heavy Laser"
@@ -1096,13 +1162,16 @@ ship "Hawk"
 			"hull damage" 150
 			"hit force" 450
 	outfits
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"Heavy Laser" 2
+		
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
-		"Heavy Laser" 2
 		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
+		
 	engine -13 36
 	engine 13 36
 	gun -13 -11
@@ -1136,12 +1205,14 @@ ship "Heavy Shuttle"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
+		
 	engine 6 30
 	engine -6 30
 	gun -7 -37
@@ -1173,12 +1244,15 @@ ship "Lance"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"X1200 Ion Steering"
-		"X1700 Ion Thruster"
+		"Beam Laser" 2
+		
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
-		"Beam Laser" 2
 		"D14-RN Shield Generator"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
 	engine -15 30
 	engine 15 30
 	gun -14 -10 "Beam Laser"
@@ -1196,7 +1270,7 @@ ship "Leviathan"
 		"cost" 9800000
 		"shields" 14400
 		"hull" 5000
-		"required crew" 47
+		"required crew" 43
 		"bunks" 64
 		"mass" 480
 		"drag" 6.9
@@ -1212,15 +1286,18 @@ ship "Leviathan"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"LP144a Battery Pack"
-		"D67-TM Shield Generator"
-		"X4200 Ion Steering"
-		"X3700 Ion Thruster"
-		"Fusion Reactor"
-		"Liquid Helium Cooler"
-		"Hyperdrive"
 		"Particle Cannon" 4
 		"Quad Blaster Turret" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Helium Cooler"
+		
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -25 125
 	engine 25 125
 	gun -51 -21 "Particle Cannon"
@@ -1265,12 +1342,15 @@ ship "Manta"
 		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 70
+		
+		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D14-RN Shield Generator"
-		"RT-I Radiothermal"
+		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		
 	engine -33 38
 	engine 33 38
 	gun -21 -35 "Particle Cannon"
@@ -1293,7 +1373,7 @@ ship "Mule"
 		"cost" 2580000
 		"shields" 5400
 		"hull" 4400
-		"required crew" 9
+		"required crew" 6
 		"bunks" 43
 		"mass" 320
 		"drag" 5.7
@@ -1309,17 +1389,20 @@ ship "Mule"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"Heavy Laser Turret" 3
+		"Heavy Anti-Missile Turret"
+		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
-		"Hyperdrive"
 		"Ramscoop"
-		"Heavy Laser Turret" 3
-		"Heavy Anti-Missile Turret"
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -12 123
 	engine 12 123
 	gun -9 -119 "Sidewinder Missile Launcher"
@@ -1343,7 +1426,7 @@ ship "Osprey"
 		"cost" 4400000
 		"shields" 7200
 		"hull" 1600
-		"required crew" 11
+		"required crew" 9
 		"bunks" 24
 		"mass" 270
 		"drag" 6.1
@@ -1359,15 +1442,18 @@ ship "Osprey"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
+		"Plasma Cannon" 4
+		"Quad Blaster Turret" 2
+		
 		"Breeder Reactor"
 		"LP072a Battery Pack"
-		"Liquid Helium Cooler"
-		"Quad Blaster Turret" 2
-		"Plasma Cannon" 4
-		Hyperdrive
 		"D41-HY Shield Generator"
+		"Liquid Helium Cooler"
+		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
+		"Hyperdrive"
+		
 	engine -40 67
 	engine 40 67
 	gun -8 -100 "Plasma Cannon"
@@ -1391,7 +1477,7 @@ ship "Protector"
 		"cost" 5500000
 		"shields" 9500
 		"hull" 6500
-		"required crew" 62
+		"required crew" 36
 		"bunks" 69
 		"mass" 500
 		"drag" 10.3
@@ -1407,16 +1493,19 @@ ship "Protector"
 			"hull damage" 800
 			"hit force" 2400
 	outfits
-		"LP288a Battery Pack"
-		"D67-TM Shield Generator"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
-		"Fusion Reactor"
-		"Liquid Nitrogen Cooler"
-		"Hyperdrive"
-		"Quad Blaster Turret" 6
 		"Torpedo Launcher" 2
 		"Torpedo" 60
+		"Quad Blaster Turret" 6
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -11 125
 	engine 11 125
 	gun -15 -100 "Torpedo Launcher"
@@ -1458,14 +1547,17 @@ ship "Quicksilver"
 			"hull damage" 200
 			"hit force" 600
 	outfits
+		"Particle Cannon" 2
+		
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"LP036a Battery Pack"
-		"Particle Cannon" 2
-		"D23-QP Shield Generator"
-		"RT-I Radiothermal"
-		"Cooling Ducts"
 		"Hyperdrive"
+		
 	engine -17 54
 	engine 17 54
 	gun -6 -38 "Particle Cannon"
@@ -1502,14 +1594,17 @@ ship "Rainmaker"
 			"hit force" 600
 	outfits
 		"Energy Blaster" 2
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"nGVF-CC Fuel Cell"
-		"Hyperdrive"
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 140
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -8 46
 	engine 8 46
 	gun -10 -30 "Energy Blaster"
@@ -1532,7 +1627,7 @@ ship Raven
 		"cost" 2000000
 		"shields" 4700
 		"hull" 1400
-		"required crew" 7
+		"required crew" 6
 		"bunks" 13
 		"mass" 130
 		"drag" 3.7
@@ -1549,12 +1644,15 @@ ship Raven
 			"hit force" 900
 	outfits
 		"Heavy Laser" 4
+		
 		"RT-I Radiothermal"
 		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
+		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		
 	engine -12 43
 	engine 12 43
 	gun -10 -33 "Heavy Laser"
@@ -1578,7 +1676,7 @@ ship "Scout"
 		"cost" 850000
 		"shields" 1200
 		"hull" 400
-		"required crew" 3
+		"required crew" 2
 		"bunks" 12
 		"mass" 110
 		"drag" 3.4
@@ -1594,15 +1692,18 @@ ship "Scout"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"nGVF-CC Fuel Cell"
-		"Hyperdrive"
-		"Ramscoop"
 		"Energy Blaster" 2
 		"Anti-Missile Turret"
+		
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Ramscoop"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -8 46
 	engine 8 46
 	gun -20 -7 "Energy Blaster"
@@ -1638,12 +1739,14 @@ ship "Shuttle"
 			"hull damage" 60
 			"hit force" 180
 	outfits
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
 		"Hyperdrive"
+		
 	engine 6 30
 	engine -6 30
 	gun 0 -30
@@ -1677,13 +1780,16 @@ ship "Sparrow"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"Beam Laser" 2
+		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
-		"Beam Laser" 2
 		"D14-RN Shield Generator"
+		
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		
 	engine -4 35
 	engine 4 35
 	gun -7 -9
@@ -1702,7 +1808,7 @@ ship "Splinter"
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700
-		"required crew" 15
+		"required crew" 12
 		"bunks" 21
 		"mass" 250
 		"drag" 4.0
@@ -1718,15 +1824,18 @@ ship "Splinter"
 			"hull damage" 300
 			"hit force" 900
 	outfits
+		"Proton Gun" 2
+		"Blaster Turret" 3
+		
+		"RT-I Radiothermal"
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
-		"X3200 Ion Steering"
-		"X3700 Ion Thruster"
-		"RT-I Radiothermal"
 		"Water Coolant System"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
 		"Hyperdrive"
-		"Blaster Turret" 3
-		"Proton Gun" 2
+		
 	engine -15 115
 	engine 15 115
 	gun -15 -80 "Proton Gun"
@@ -1765,12 +1874,14 @@ ship "Star Barge"
 			"hull damage" 80
 			"hit force" 240
 	outfits
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
 		"Hyperdrive"
+		
 	engine -9 38
 	engine 9 38
 	turret 0 -8
@@ -1807,12 +1918,15 @@ ship "Star Queen"
 		"Sidewinder Missile Launcher" 3
 		"Sidewinder Missile" 150
 		"Heavy Anti-Missile Turret" 2
+		
 		"NT-200 Nucleovoltaic"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
-		"Hyperdrive"
+		
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
+		"Hyperdrive"
+		
 	engine -18 116
 	engine 18 116
 	gun 0 -116 "Sidewinder Missile Launcher"
@@ -1843,10 +1957,12 @@ ship "Surveillance Drone"
 		"weapon capacity" 0
 		"engine capacity" 28
 	outfits
-		"X1200 Ion Steering"
-		"X1700 Ion Thruster"
-		"Surveillance Pod"
 		"nGVF-AA Fuel Cell"
+		"Surveillance Pod"
+		
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		
 	engine -5 29
 	engine 5 29
 	explode "tiny explosion" 15
@@ -1877,15 +1993,18 @@ ship "Wasp"
 			"hull damage" 100
 			"hit force" 300
 	outfits
+		"Energy Blaster" 2
 		"Javelin Pod"
 		"Javelin" 200
-		"Energy Blaster" 2
+		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+		
 		"X2700 Ion Thruster"
 		"X2200 Ion Steering"
 		"Hyperdrive"
+		
 	engine -6 33
 	engine 6 33
 	gun 0 -38 "Javelin Pod"
