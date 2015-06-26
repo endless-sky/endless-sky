@@ -107,12 +107,12 @@ void EscortDisplay::Draw() const
 				bool isSplit = (escort.low[i] != escort.high[i]);
 				const Color &color = (isSplit ? halfColor : fullColor)[i];
 				
-				Point to = from + Point(width * escort.high[i], 0.);
+				Point to = from + Point(width * min(1., escort.high[i]), 0.);
 				LineShader::Draw(from, to, 1.5, color);
 				
 				if(isSplit)
 				{
-					Point to = from + Point(width * escort.low[i], 0.);
+					Point to = from + Point(width * max(0., escort.low[i]), 0.);
 					LineShader::Draw(from, to, 1.5, color);
 				}
 			}
@@ -199,7 +199,7 @@ void EscortDisplay::MergeStacks() const
 		vector<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
-			if(&*it == cheapest || it->sprite != cheapest->sprite)
+			if(&*it == cheapest || it->sprite != cheapest->sprite || it->isHere != cheapest->isHere)
 			{
 				++it;
 				continue;
