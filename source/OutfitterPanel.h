@@ -51,7 +51,6 @@ protected:
 	virtual bool CanSell() const;
 	virtual void Sell();
 	virtual bool FlightCheck();
-	virtual int Modifier() const;
 	
 	
 private:

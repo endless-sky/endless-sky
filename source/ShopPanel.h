@@ -44,6 +44,8 @@ protected:
 	void DrawMain() const;
 	
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
+	// Get the multiplier based on what modifier keys are held.
+	int Modifier() const;
 	
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
@@ -58,7 +60,6 @@ protected:
 	virtual bool CanSell() const = 0;
 	virtual void Sell() = 0;
 	virtual bool FlightCheck() = 0;
-	virtual int Modifier() const = 0;
 	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;

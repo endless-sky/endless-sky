@@ -351,6 +351,21 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
+int ShopPanel::Modifier() const
+{
+	SDL_Keymod mod = SDL_GetModState();
+	
+	int modifier = 1;
+	if(mod & KMOD_CTRL)
+		modifier *= 20;
+	if(mod & KMOD_SHIFT)
+		modifier *= 5;
+	
+	return modifier;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
@@ -364,11 +379,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(!CanBuy())
 			FailBuy();
 		else
-		{
-			int modifier = Modifier();
-			for(int i = 0; i < modifier && CanBuy(); ++i)
-				Buy();
-		}
+			Buy();
 	}
 	else if(key == 's')
 	{

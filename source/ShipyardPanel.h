@@ -45,13 +45,16 @@ protected:
 	virtual bool CanSell() const;
 	virtual void Sell();
 	virtual bool FlightCheck();
-	virtual int Modifier() const;
 	
 	
 private:
 	void BuyShip(const std::string &name);
 	void SellShip();
 	int64_t LicenseCost() const;
+	
+	
+private:
+	int modifier;
 };
 
 

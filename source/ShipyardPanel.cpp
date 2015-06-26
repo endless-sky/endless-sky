@@ -133,6 +133,7 @@ void ShipyardPanel::Buy()
 	if(licenseCost < 0)
 		return;
 	
+	modifier = Modifier();
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::Number(licenseCost)
@@ -225,14 +226,6 @@ bool ShipyardPanel::FlightCheck()
 
 
 
-int ShipyardPanel::Modifier() const
-{
-	// Never allow buying ships in bulk.
-	return 1;
-}
-
-
-
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost();
@@ -244,10 +237,17 @@ void ShipyardPanel::BuyShip(const string &name)
 				player.Conditions()["license: " + name] = true;
 	}
 	
-	if(name.empty())
-		player.BuyShip(selectedShip, "Unnamed Ship");
-	else
-		player.BuyShip(selectedShip, name);
+	string shipName = name.empty() ? "Unnamed Ship" : name;
+	if(modifier > 1)
+		shipName += ' ';
+	
+	for(int i = 1; i <= modifier; ++i)
+	{
+		if(modifier > 1)
+			player.BuyShip(selectedShip, shipName + to_string(i));
+		else
+			player.BuyShip(selectedShip, shipName);
+	}
 	
 	playerShip = &*player.Ships().back();
 	playerShips.clear();

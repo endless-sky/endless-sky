@@ -241,64 +241,68 @@ bool OutfitterPanel::CanBuy() const
 
 void OutfitterPanel::Buy()
 {
-	// Special case: maps.
-	int mapSize = selectedOutfit->Get("map");
-	if(mapSize > 0)
+	int modifier = Modifier();
+	for(int i = 0; i < modifier && CanBuy(); ++i)
 	{
-		if(!HasMapped(mapSize))
+		// Special case: maps.
+		int mapSize = selectedOutfit->Get("map");
+		if(mapSize > 0)
 		{
-			DistanceMap distance(player.GetSystem(), mapSize);
-			for(const auto &it : distance.Distances())
-				if(!player.HasVisited(it.first))
-					player.Visit(it.first);
-			player.Accounts().AddCredits(-selectedOutfit->Cost());
-		}
-		return;
-	}
-	
-	// Special case: licenses.
-	if(IsLicense(selectedOutfit->Name()))
-	{
-		int &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
-		if(entry <= 0)
-		{
-			entry = true;
-			player.Accounts().AddCredits(-selectedOutfit->Cost());
-		}
-		return;
-	}
-	
-	// Find the ships with the fewest number of these outfits.
-	vector<Ship *> shipsToOutfit;
-	int fewest = numeric_limits<int>::max();
-	for(Ship *ship : playerShips)
-	{
-		if(!ShipCanBuy(ship, selectedOutfit))
-			continue;
-		
-		int count = ship->OutfitCount(selectedOutfit);
-		if(count < fewest)
-		{
-			shipsToOutfit.clear();
-			fewest = count;
-		}
-		if(count == fewest)
-			shipsToOutfit.push_back(ship);
-	}
-	
-	for(Ship *ship : shipsToOutfit)
-	{
-		if(!CanBuy())
+			if(!HasMapped(mapSize))
+			{
+				DistanceMap distance(player.GetSystem(), mapSize);
+				for(const auto &it : distance.Distances())
+					if(!player.HasVisited(it.first))
+						player.Visit(it.first);
+				player.Accounts().AddCredits(-selectedOutfit->Cost());
+			}
 			return;
-		
-		if(player.Cargo().Get(selectedOutfit))
-			player.Cargo().Transfer(selectedOutfit, 1);
-		else
-		{
-			player.Accounts().AddCredits(-selectedOutfit->Cost());
-			--available[selectedOutfit];
 		}
-		ship->AddOutfit(selectedOutfit, 1);
+	
+		// Special case: licenses.
+		if(IsLicense(selectedOutfit->Name()))
+		{
+			int &entry = player.Conditions()[LicenseName(selectedOutfit->Name())];
+			if(entry <= 0)
+			{
+				entry = true;
+				player.Accounts().AddCredits(-selectedOutfit->Cost());
+			}
+			return;
+		}
+	
+		// Find the ships with the fewest number of these outfits.
+		vector<Ship *> shipsToOutfit;
+		int fewest = numeric_limits<int>::max();
+		for(Ship *ship : playerShips)
+		{
+			if(!ShipCanBuy(ship, selectedOutfit))
+				continue;
+		
+			int count = ship->OutfitCount(selectedOutfit);
+			if(count < fewest)
+			{
+				shipsToOutfit.clear();
+				fewest = count;
+			}
+			if(count == fewest)
+				shipsToOutfit.push_back(ship);
+		}
+	
+		for(Ship *ship : shipsToOutfit)
+		{
+			if(!CanBuy())
+				return;
+		
+			if(player.Cargo().Get(selectedOutfit))
+				player.Cargo().Transfer(selectedOutfit, 1);
+			else
+			{
+				player.Accounts().AddCredits(-selectedOutfit->Cost());
+				--available[selectedOutfit];
+			}
+			ship->AddOutfit(selectedOutfit, 1);
+		}
 	}
 }
 
@@ -528,21 +532,6 @@ bool OutfitterPanel::FlightCheck()
 		}
 	}
 	return true;
-}
-
-
-
-int OutfitterPanel::Modifier() const
-{
-	SDL_Keymod mod = SDL_GetModState();
-	
-	int modifier = 1;
-	if(mod & KMOD_CTRL)
-		modifier *= 20;
-	if(mod & KMOD_SHIFT)
-		modifier *= 5;
-	
-	return modifier;
 }
 
 
