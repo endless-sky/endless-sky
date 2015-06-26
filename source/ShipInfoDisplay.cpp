@@ -263,9 +263,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributeLabels.push_back("cargo space:");
 	attributeValues.push_back(Format::Number(attributes.Get("cargo space")));
 	attributesHeight += 20;
-	attributeLabels.push_back("crew / bunks:");
-	int crew = ship.Crew() ? ship.Crew() : ship.RequiredCrew();
-	attributeValues.push_back(Format::Number(crew)
+	attributeLabels.push_back("required crew / bunks:");
+	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back("fuel capacity:");
