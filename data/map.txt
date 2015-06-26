@@ -2183,7 +2183,6 @@ system Arcturus
 	trade Plastic 461
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 3000
-	fleet "Small Southern Pirates" 4000
 	fleet "Small Militia" 10000
 	object
 		sprite star/k5
@@ -9948,7 +9947,6 @@ system Rutilicus
 	trade Plastic 415
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
-	fleet "Small Southern Pirates" 8000
 	fleet "Small Militia" 6000
 	object
 		sprite star/g5
