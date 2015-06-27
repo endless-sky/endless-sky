@@ -655,7 +655,8 @@ bool Ship::Move(list<Effect> &effects)
 			if(!forget)
 			{
 				const Effect *effect = GameData::Effects().Get("smoke");
-				double scale = .01 * (sprite.Width() + sprite.Height()) + 1.;
+				double scale = .015 * (sprite.Width() + sprite.Height()) + .5;
+				double radius = .1 * (sprite.Width() + sprite.Height());
 				int debrisCount = attributes.Get("mass") * .07;
 				for(int i = 0; i < debrisCount; ++i)
 				{
@@ -663,7 +664,8 @@ bool Ship::Move(list<Effect> &effects)
 					
 					Angle angle = Angle::Random();
 					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
-					effects.back().Place(position, effectVelocity, angle);
+					Point effectPosition = position + radius * angle.Unit();
+					effects.back().Place(effectPosition, effectVelocity, angle);
 				}
 					
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
