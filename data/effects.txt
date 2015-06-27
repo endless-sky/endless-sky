@@ -191,12 +191,14 @@ effect "huge explosion"
 	"random spin" 5
 	"velocity scale" .4
 
-effect "small debris"
-	sprite "effect/debris/small"
+effect "smoke"
+	sprite "effect/smoke"
 		"no repeat"
 		"random start frame"
-		"frame rate" 30
-	"lifetime" 40
+		"frame rate" 8
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
 
 effect "missile death"
 	sprite "effect/missile death"

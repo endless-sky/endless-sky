@@ -654,15 +654,15 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			if(!forget)
 			{
-				const Effect *effect = GameData::Effects().Get("small debris");
-				double scale = .04 * (sprite.Width() + sprite.Height());
-				int debrisCount = attributes.Get("mass") * .05;
+				const Effect *effect = GameData::Effects().Get("smoke");
+				double scale = .01 * (sprite.Width() + sprite.Height()) + 1.;
+				int debrisCount = attributes.Get("mass") * .07;
 				for(int i = 0; i < debrisCount; ++i)
 				{
 					effects.push_back(*effect);
 					
 					Angle angle = Angle::Random();
-					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real() * Random::Real());
+					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 					effects.back().Place(position, effectVelocity, angle);
 				}
 					
