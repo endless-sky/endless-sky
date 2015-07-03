@@ -494,6 +494,8 @@ int BoardingPanel::Plunder::CanTake(int freeSpace) const
 	double mass = UnitMass();
 	if(mass <= 0.)
 		return count;
+	if(freeSpace <= 0)
+		return 0;
 	
 	return min(count, static_cast<int>(freeSpace / mass));
 }
