@@ -658,6 +658,8 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	
 	// The flagship has no parent.
 	ships.front()->SetParent(shared_ptr<Ship>());
+	// Make sure the new flagship is not "parked."
+	ships.front()->SetIsParked(false);
 }
 
 
