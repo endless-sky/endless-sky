@@ -190,6 +190,10 @@ fleet "Small Core Merchants"
 		"Heavy Shuttle"
 	variant 3
 		"Heavy Shuttle (Armed)"
+	variant 1
+		"Flivver"
+	variant 1
+		"Flivver (Racing)"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -284,6 +288,12 @@ fleet "Small Northern Merchants"
 	variant 20
 		"Freighter"
 		"Shuttle" 4
+	variant 6
+		"Freighter"
+		"Berserker"
+	variant 3
+		"Freighter"
+		"Berserker (Afterburner)"
 	variant 5
 		"Freighter (Fancy)"
 		"Shuttle" 4
@@ -298,6 +308,10 @@ fleet "Small Northern Merchants"
 		"Dagger"
 	variant 2
 		"Bounder"
+	variant 1
+		"Flivver"
+	variant 1
+		"Flivver (Racing)"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -309,6 +323,12 @@ fleet "Large Northern Merchants"
 	variant 20
 		"Freighter" 2
 		"Firebird"
+	variant 6
+		"Freighter" 2
+		"Berserker" 2
+	variant 3
+		"Freighter" 2
+		"Berserker (Afterburner)" 2
 	variant 10
 		"Freighter" 2
 		"Firebird (Plasma)"
@@ -368,6 +388,12 @@ fleet "Large Northern Merchants"
 	variant 4
 		"Bulk Freighter (Heavy)"
 		"Sparrow" 2
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Berserker" 2
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Berserker (Afterburner)" 2
 	variant 4
 		"Bulk Freighter (Blaster)"
 		"Sparrow" 2
@@ -396,6 +422,9 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Star Queen"
 		"Leviathan"
+	variant 1
+		"Star Queen"
+		"Berserker (Afterburner)" 2
 	variant 1
 		"Star Queen"
 		"Leviathan (Heavy)"
@@ -756,6 +785,10 @@ fleet "Small Deep"
 		"Corvette (Speedy)"
 	variant 2
 		"Corvette (Missile)"
+	variant 3
+		"Flivver"
+	variant 2
+		"Flivver (Racing)"
 
 fleet "Large Deep"
 	government "Republic"
@@ -1285,6 +1318,10 @@ fleet "Small Northern Pirates"
 	variant 1
 		"Fury (Laser)"
 	variant 2
+		"Berserker"
+	variant 2
+		"Berserker (Afterburner)"
+	variant 2
 		"Hawk"
 	variant 1
 		"Hawk (Rocket)"
@@ -1331,6 +1368,9 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird"
 		"Fury"
+	variant 2
+		"Firebird"
+		"Berserker" 2
 	variant 1
 		"Firebird (Plasma)"
 		"Fury (Missile)"
@@ -1359,6 +1399,14 @@ fleet "Large Northern Pirates"
 		"Leviathan (Laser)"
 	variant 1
 		"Leviathan (Heavy)"
+	variant 1
+		"Berserker" 3
+	variant 1
+		"Berserker (Afterburner)" 3
+	variant 2
+		"Berserker" 2
+	variant 2
+		"Berserker (Afterburner)" 2
 
 fleet "pirate raid"
 	government "Pirate"

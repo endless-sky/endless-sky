@@ -329,6 +329,51 @@ ship "Behemoth"
 
 
 
+ship "Berserker"
+	sprite "ship/berserker"
+	attributes
+		category "Interceptor"
+		"cost" 520000
+		"shields" 2200
+		"hull" 500
+		"required crew" 1
+		"bunks" 2
+		"mass" 110
+		"drag" 2.2
+		"heat dissipation" .85
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 200
+		"weapon capacity" 35
+		"engine capacity" 65
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Beam Laser" 4
+		
+		"nGVF-CC Fuel Cell"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"X2700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -10 45
+	engine 10 45
+	gun -20 12
+	gun 20 12
+	gun -44 10
+	gun 44 10
+	explode "tiny explosion" 10
+	explode "small explosion" 15
+	description "Once one of the most popular interceptor-class ships, the Berserker's popularity is now waning in favor of more modern and versatile ships like the Hawk. Although limited numbers are still produced by Betelgeuse Shipyards, most Berserkers that are in service today are more than half a century old."
+
+
+
 ship "Blackbird"
 	sprite "ship/blackbird"
 	attributes
@@ -939,6 +984,50 @@ ship "Firebird"
 	explode "medium explosion" 24
 	explode "big explosion" 8
 	description "The Betelgeuse Shipyards Firebird is a warship with a long and storied past; Firebirds fought on both sides of the Alpha Wars nearly half a millennium ago, and although the equipment and systems have been upgraded continuously since then, the basic design remains almost the same. The Firebird is also a very rugged ship and easy to repair; supposedly a few of the Firebirds that fought in those wars are still in service today."
+
+
+
+ship "Flivver"
+	sprite "ship/flivver"
+	attributes
+		category "Transport"
+		"cost" 180000
+		"shields" 1400
+		"hull" 200
+		"required crew" 1
+		"bunks" 3
+		"mass" 40
+		"drag" 1.0
+		"heat dissipation" .9
+		"fuel capacity" 500
+		"cargo space" 5
+		"outfit space" 130
+		"weapon capacity" 25
+		"engine capacity" 45
+		weapon
+			"blast radius" 16
+			"shield damage" 160
+			"hull damage" 80
+			"hit force" 240
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"A120 Atomic Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -16 27
+	engine 16 27
+	gun -6 -31
+	gun 6 -31
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+	description "With space for neither cargo nor passengers nor heavy weaponry, the Flivver's only selling point is speed. Flivvers are sold mostly to wealthy individuals who want to be able to travel the stars without needing to share a bunk room on a merchant transport with common people."
 
 
 
