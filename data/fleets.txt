@@ -61,6 +61,13 @@ fleet "Small Southern Merchants"
 		"Heavy Shuttle"
 	variant 2
 		"Heavy Shuttle (Armed)"
+	variant 3
+		"Hauler III"
+	variant 5
+		"Hauler II"
+	variant 7
+		"Hauler"
+		"Berserker"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -136,6 +143,16 @@ fleet "Large Southern Merchants"
 	variant 2
 		"Bactrian"
 		"Dagger" 3
+	variant 12
+		"Hauler III"
+		"Hauler II"
+		"Hauler"
+	variant 8
+		"Hauler II"
+		"Hauler" 2
+	variant 6
+		"Hauler III"
+		"Berserker" 2
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -276,7 +293,7 @@ fleet "Small Northern Merchants"
 	personality
 		confusion 40
 		timid
-	variant 80
+	variant 50
 		"Shuttle"
 	variant 40
 		"Star Barge"
@@ -308,10 +325,17 @@ fleet "Small Northern Merchants"
 		"Dagger"
 	variant 2
 		"Bounder"
-	variant 1
+	variant 3
 		"Flivver"
-	variant 1
+	variant 2
 		"Flivver (Racing)"
+	variant 4
+		"Hauler II"
+	variant 3
+		"Hauler"
+	variant 2
+		"Hauler II"
+		"Hauler"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -437,6 +461,14 @@ fleet "Large Northern Merchants"
 	variant 1
 		"Star Queen"
 		"Firebird (Plasma)" 2
+	variant 8
+		"Hauler III"
+		"Hauler II"
+	variant 6
+		"Hauler II"
+		"Hauler" 3
+	variant 4
+		"Hauler III" 2
 
 fleet "Small Free Worlds"
 	government "Free Worlds"

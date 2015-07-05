@@ -63,7 +63,7 @@ ship "Aerie"
 ship "Argosy"
 	sprite "ship/argosy"
 	attributes
-		category "Heavy Freighter"
+		category "Light Freighter"
 		"cost" 1560000
 		"shields" 4200
 		"hull" 2600
@@ -290,7 +290,7 @@ ship "Behemoth"
 		"drag" 11.7
 		"heat dissipation" .4
 		"fuel capacity" 600
-		"cargo space" 420
+		"cargo space" 490
 		"outfit space" 510
 		"weapon capacity" 280
 		"engine capacity" 90
@@ -1225,6 +1225,162 @@ ship "Gunboat"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	description "The Navy gunboat is designed for engaging targets at short range, and also serves as the Navy's mobile sensor platform, scanning ships for illegal equipment or cargo."
+
+
+
+ship "Hauler"
+	sprite "ship/hauler i"
+	attributes
+		category "Light Freighter"
+		"cost" 1430000
+		"shields" 2500
+		"hull" 3700
+		"required crew" 3
+		"bunks" 12
+		"mass" 250
+		"drag" 10.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 130
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 122
+	engine 45 122
+	gun -15 -91
+	gun 15 -91
+	turret -26 -49 "Quad Blaster Turret"
+	turret 26 -49 "Heavy Anti-Missile Turret"
+	turret -19 77 "Heavy Anti-Missile Turret"
+	turret 19 77 "Quad Blaster Turret"
+	explode "tiny explosion" 20
+	explode "small explosion" 35
+	explode "medium explosion" 20
+	explode "big explosion" 5
+	description "Several centuries ago, in the early days of the Republic, the sudden increase in commerce and space travel led to high demand for cargo ships. Haulers were first created simply by bolting a cockpit and engine block onto a cargo container, and the basic design has not changed much since then."
+
+
+
+ship "Hauler II"
+	sprite "ship/hauler ii"
+	attributes
+		category "Heavy Freighter"
+		"cost" 2340000
+		"shields" 2900
+		"hull" 5200
+		"required crew" 3
+		"bunks" 12
+		"mass" 360
+		"drag" 11.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 260
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 160
+	engine 45 160
+	gun -15 -128
+	gun 15 -128
+	turret -26 -85 "Quad Blaster Turret"
+	turret 26 -85 "Heavy Anti-Missile Turret"
+	turret -19 115 "Heavy Anti-Missile Turret"
+	turret 19 115 "Quad Blaster Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "big explosion" 15
+	description "This is a mid-sized freighter, designed for a balance between cargo capacity and defensive capability. Centuries ago, various Hauler models made up nearly half of the merchant vessels in service, but today the design is considered somewhat outdated."
+
+
+
+ship "Hauler III"
+	sprite "ship/hauler iii"
+	attributes
+		category "Heavy Freighter"
+		"cost" 3260000
+		"shields" 3300
+		"hull" 6700
+		"required crew" 3
+		"bunks" 12
+		"mass" 470
+		"drag" 12.5
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 360
+		"outfit space" 350
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 196
+	engine 45 196
+	gun -15 -165
+	gun 15 -165
+	turret -26 -122 "Quad Blaster Turret"
+	turret 26 -122 "Heavy Anti-Missile Turret"
+	turret -19 151 "Heavy Anti-Missile Turret"
+	turret 19 151 "Quad Blaster Turret"
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "big explosion" 20
+	explode "huge explosion" 5
+	description "Considered by many to be outdated, there are nonetheless many Haulers still in service due to their combination of comparatively low price and simple construction. This large version of the Hauler provides the best tradeoff between price and cargo space."
 
 
 
