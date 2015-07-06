@@ -1859,10 +1859,10 @@ mission "FW Pug 5A"
 	on offer
 		conversation
 			`Sure enough, Freya finds a graviton wave transmitter on <origin>, set up to broadcast incoherent graviton noise in the direction of the Sol system. "This is it," she says. "If you can reach <planet> with the reflector before we are overrun by the Pug here, we can reopen the hyperspace link and the entire Navy will be at our backs. Hopefully the Syndicate got a message through and they'll have a fleet waiting for you when you arrive."`
-		choice
-			`	"You really think you can hold off the Pug if I make a run for <planet>?"`
-			`	"I'm worried that you won't survive if I leave this system undefended."`
-		`	"Don't worry about us here," she says. "We have a fair number of ships here on the ground, if it comes to that. But the most important thing is that you rendezvous with the Navy reinforcements in the <system> system, and if you can draw the Pug fleet to pursue you, all the better. Good luck, <first>."`
+			choice
+				`	"You really think you can hold off the Pug if I make a run for <planet>?"`
+				`	"I'm worried that you won't survive if I leave this system undefended."`
+			`	"Don't worry about us here," she says. "We have a fair number of ships here on the ground, if it comes to that. But the most important thing is that you rendezvous with the Navy reinforcements in the <system> system, and if you can draw the Pug fleet to pursue you, all the better. Good luck, <first>."`
 				accept
 	
 	npc
