@@ -1166,12 +1166,12 @@ ship "Fury"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -20 36
-	engine 20 36
-	gun -10 -32
-	gun 10 -32
-	gun -16 -22
-	gun 16 -22
+	engine -17 35
+	engine 17 35
+	gun -10 -26
+	gun 10 -26
+	gun -16 -20
+	gun 16 -20
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	description "The Fury is Southbound Shipyard's most popular design of escort ship. They have greater firepower than any other interceptor-class vessel, meaning that any pirate flying solo will think twice before attacking a convoy that is accompanied by a Fury. However, Furies are also much less maneuverable than other small ships."
@@ -1417,10 +1417,10 @@ ship "Hawk"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 		
-	engine -13 36
-	engine 13 36
-	gun -13 -11
-	gun 13 -11
+	engine -24 41
+	engine 24 41
+	gun -9 -17
+	gun 9 -17
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Tarazed Hawk is an interceptor-class warship often used as an escort for freighters or in a planetary militia's patrol squadron. Hawks are fast enough to chase down most smaller ships, while also being much more heavily armed and armored. They are also, of course, a favorite ship of pirate captains who have earned enough money to afford one."
