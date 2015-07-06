@@ -2035,10 +2035,10 @@ ship "Sparrow"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 		
-	engine -4 35
-	engine 4 35
-	gun -7 -9
-	gun 7 -9
+	engine -5 35
+	engine 5 35
+	gun -7 -10
+	gun 7 -10
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "Classified as an interceptor rather than a fighter because it has its own hyperdrive instead of needing to be carried inside a larger ship, the Tarazed Sparrow is the smallest and cheapest combat ship available. Because of its limited cargo and passenger space, the primary way for a Sparrow pilot to pay the bills is by hunting pirates... or by becoming one. In either case, it is a perilous way to earn a living."
