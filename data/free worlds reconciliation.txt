@@ -311,8 +311,6 @@ mission "FW Reconciliation 2B"
 	landing
 	source Farpoint
 	destination Stormhold
-	waypoint Sumar
-	waypoint Oblate
 	clearance
 	passengers 2
 	to offer
@@ -343,8 +341,6 @@ mission "FW Reconciliation 2C"
 	landing
 	source Stormhold
 	destination Farpoint
-	waypoint Sumar
-	waypoint Oblate
 	passengers 2
 	to offer
 		has "FW Reconciliation 2B: done"
