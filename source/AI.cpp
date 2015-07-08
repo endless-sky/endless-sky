@@ -1161,7 +1161,9 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 	shared_ptr<Ship> currentTarget = ship.GetTargetShip();
 	const Government *gov = ship.GetGovernment();
 	bool isSharingTarget = ship.IsYours() && currentTarget == sharedTarget.lock();
-	bool currentIsEnemy = currentTarget && currentTarget->GetGovernment()->IsEnemy(gov);
+	bool currentIsEnemy = currentTarget
+		&& currentTarget->GetGovernment()->IsEnemy(gov)
+		&& currentTarget->GetSystem() == ship.GetSystem();
 	if(currentTarget && !(currentIsEnemy || isSharingTarget))
 		currentTarget.reset();
 	
@@ -1178,7 +1180,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 	
 	// Find all enemy ships within range of at least one weapon.
 	vector<shared_ptr<const Ship>> enemies;
-	if(currentTarget && (currentIsEnemy || isSharingTarget))
+	if(currentTarget)
 		enemies.push_back(currentTarget);
 	for(auto target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
