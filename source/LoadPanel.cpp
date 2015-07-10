@@ -207,7 +207,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(GetUI()->Root().get());
 		gamePanels.Push(new MainPanel(player));
 	}
-	else if(key == 'b' || command.Has(Command::MENU))
+	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{

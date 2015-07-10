@@ -369,7 +369,7 @@ int ShopPanel::Modifier() const
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'l' && FlightCheck())
+	if((key == 'l' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);

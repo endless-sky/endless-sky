@@ -159,7 +159,7 @@ void InfoPanel::Draw() const
 
 bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'd')
+	if(key == 'd' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(showShip && !player.Ships().empty() && (key == 'p' || key == SDLK_LEFT || key == SDLK_UP))
 	{

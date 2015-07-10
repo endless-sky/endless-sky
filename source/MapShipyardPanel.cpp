@@ -92,7 +92,7 @@ void MapShipyardPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MapShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP) || key == 'd')
+	if(command.Has(Command::MAP) || key == 'd' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 'o')
 	{

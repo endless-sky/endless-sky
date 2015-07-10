@@ -177,7 +177,7 @@ void HailPanel::Draw() const
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	bool shipIsEnemy = ship && ship->GetGovernment()->IsEnemy();
-	if(key == 'd' || key == SDLK_RETURN)
+	if(key == 'd' || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 'a' || key == 't' || key == 'h')
 	{

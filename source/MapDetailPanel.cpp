@@ -73,7 +73,7 @@ void MapDetailPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(command.Has(Command::MAP) || key == 'd')
+	if(command.Has(Command::MAP) || key == 'd' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN || key == 'i')
 	{
