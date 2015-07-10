@@ -987,31 +987,6 @@ void PlayerInfo::TakeOff()
 			out << ".";
 		Messages::Add(out.str());
 	}
-	
-	// Transfer all hand to hand weapons to the flagship, because only the
-	// flagship can make use of them.
-	if(ships.empty())
-		return;
-	shared_ptr<Ship> flagship = ships.front();
-	for(shared_ptr<Ship> &ship : ships)
-	{
-		if(ship == flagship)
-			continue;
-		
-		auto it = ship->Outfits().begin();
-		while(it != ship->Outfits().end())
-		{
-			const Outfit *outfit = it->first;
-			int count = it->second;
-			++it;
-			
-			if(outfit->Category() == "Hand to Hand")
-			{
-				ship->AddOutfit(outfit, -count);
-				flagship->AddOutfit(outfit, count);
-			}
-		}
-	}
 }
 
 
