@@ -398,8 +398,8 @@ outfit "Pulse Cannon"
 		"reload" 20
 		"firing energy" 24
 		"firing heat" 70
-		"shield damage" 49
-		"hull damage" 42
+		"shield damage" 45
+		"hull damage" 41
 	description "Like most examples of Hai engineering that you have seen, the Pulse Cannon does not stand out as a particularly advanced or elegant technology, but it has a reputation for being efficient, reliable, and well-balanced."
 
 outfit "Pulse Turret"
@@ -421,8 +421,8 @@ outfit "Pulse Turret"
 		"reload" 10
 		"firing energy" 24
 		"firing heat" 70
-		"shield damage" 49
-		"hull damage" 42
+		"shield damage" 45
+		"hull damage" 41
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
 outfit "Ion Cannon"
@@ -445,7 +445,7 @@ outfit "Ion Cannon"
 		"firing force" 10
 		"firing heat" 150
 		"hit force" 120
-		"shield damage" 120
+		"shield damage" 168
 		"hull damage" 90
 		"ion damage" 5
 	description "Ion cannons do not do as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizeable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."

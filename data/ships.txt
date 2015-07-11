@@ -674,7 +674,7 @@ ship "Corvette"
 	attributes
 		category "Light Warship"
 		"cost" 4400000
-		"shields" 6400
+		"shields" 6100
 		"hull" 1200
 		"required crew" 8
 		"bunks" 32
@@ -940,8 +940,8 @@ ship "Firebird"
 	sprite "ship/firebird"
 	attributes
 		category "Light Warship"
-		"cost" 4000000
-		"shields" 6100
+		"cost" 3700000
+		"shields" 6400
 		"hull" 2800
 		"required crew" 7
 		"bunks" 22
