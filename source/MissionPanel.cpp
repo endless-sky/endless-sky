@@ -545,8 +545,12 @@ bool MissionPanel::CanAccept() const
 void MissionPanel::Accept()
 {
 	const Mission &toAccept = *availableIt;
-	int cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
-	int crewToFire = toAccept.Passengers() - player.Cargo().Bunks();
+	int cargoToSell = 0;
+	if(toAccept.CargoSize())
+		cargoToSell = toAccept.CargoSize() - player.Cargo().Free();
+	int crewToFire = 0;
+	if(toAccept.Passengers())
+		crewToFire = toAccept.Passengers() - player.Cargo().Bunks();
 	if(cargoToSell > 0 || crewToFire > 0)
 	{
 		ostringstream out;
