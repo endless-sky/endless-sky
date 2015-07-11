@@ -310,7 +310,8 @@ void MainPanel::ShowHailPanel()
 	}
 	else if(flagship->GetTargetPlanet())
 	{
-		if(flagship->GetTargetPlanet()->GetPlanet())
+		const Planet *planet = flagship->GetTargetPlanet()->GetPlanet();
+		if(planet && planet->IsInhabited())
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
 		else
 			Messages::Add("Unable to send hail: planet is not inhabited.");
