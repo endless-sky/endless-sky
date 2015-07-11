@@ -146,6 +146,15 @@ const string &Planet::SpaceportDescription() const
 }
 
 
+
+// Check if this planet is inhabited (i.e. it has a spaceport, and does not
+// have the "uninhabited" attribute).
+bool Planet::IsInhabited() const
+{
+	return HasSpaceport() && attributes.find("uninhabited") == attributes.end();
+}
+
+
 	
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const

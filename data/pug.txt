@@ -481,6 +481,7 @@ system "World's End"
 		offset 290
 
 planet Ruin
+	attributes uninhabited
 	landscape land/hills3
 	description `This is a stormy, cloud-covered planet, where fog banks flow through the valleys like dark, cold, slow-moving rivers, and the sun is seldom visible. Aside from some dull blue-grey moss and lichen, there are few living things here. The ground is warmer than the air above it, due to an abundance of radioactive elements in the planet's crust.`
 	description `	Most of the surface is ocean, but atop one of the higher mountains is an odd, abandoned spaceport.`

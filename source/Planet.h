@@ -52,6 +52,10 @@ public:
 	// Get the spaceport's descriptive text.
 	const std::string &SpaceportDescription() const;
 	
+	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
+	// have the "uninhabited" attribute).
+	bool IsInhabited() const;
+	
 	// Check if this planet has a shipyard.
 	bool HasShipyard() const;
 	// Get the list of ships in the shipyard.

@@ -344,7 +344,7 @@ interface "planet"
 	button o 280 150
 		size 140 40
 	
-	if "has spaceport"
+	if "is inhabited"
 	sprite "ui/planet dialog button" -400 150
 	label "Job Board" -460 142
 		size 18
@@ -360,8 +360,16 @@ interface "planet"
 		align left
 	button t -400 90
 		size 140 40
-	endif
 	
+	sprite "ui/planet dialog button" 280 210
+	label "Hire Crew" 340 202
+		size 18
+		color bright
+		align right
+	button h 280 210
+		size 140 40
+	
+	if "has bank"
 	sprite "ui/planet dialog button" -400 210
 	label "Bank" -460 202
 		size 18
@@ -371,14 +379,6 @@ interface "planet"
 		size 140 40
 	
 	if "has spaceport"
-	sprite "ui/planet dialog button" 280 210
-	label "Hire Crew" 340 202
-		size 18
-		color bright
-		align right
-	button h 280 210
-		size 140 40
-	
 	sprite "ui/planet dialog button" -400 270
 	label "Space Port" -460 262
 		size 18

@@ -13704,6 +13704,7 @@ planet Hippocrates
 	security 0.1
 
 planet Hope
+	attributes uninhabited
 	landscape land/snow9
 	description `In the year 2994, Hope was a somewhat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable. As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
 	description `	The abandoned villages and towns are now buried deep beneath the snow, and occasional treasure hunters come here to explore them and find items of value that were left behind.`
@@ -13824,6 +13825,7 @@ planet Luna
 	landscape land/earthrise
 	description `In the early days of space travel, back when engines were still so inefficient that escaping from a planet's gravity was costly and difficult, an enormous shipyard was built on the Moon where asteroids, harvested from the asteroid belt, were mined for raw materials for ships.`
 	description `	The facility is still in operation, although it is now overshadowed by the far more advanced shipbuilding centers like Geminus in the Castor system.`
+	spaceport `The spaceport is rudimentary, and the main pressurized dome of the facility is probably at least half a millenium old. So many metal foil patches have been cemented to its outer wall to stop slow air leaks that in places they entirely cover the surface. Everything is so ancient and ramshackle that it feels almost like you have stepped back in time to the early days of human space flight. Perhaps that's what the tourists come here to experience.`
 	shipyard "Basic Ships"
 	shipyard "Navy Basics"
 	shipyard "Betelgeuse Basics"
@@ -14671,7 +14673,7 @@ planet Warfeed
 	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
 
 planet Watcher
-	attributes "dirt belt" research
+	attributes "dirt belt" research uninhabited
 	landscape land/hills4
 	description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
 	security 0
