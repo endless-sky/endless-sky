@@ -147,6 +147,7 @@ void TradingPanel::Draw() const
 	}
 	
 	int i = 0;
+	bool canSell = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
@@ -154,37 +155,44 @@ void TradingPanel::Draw() const
 		
 		const Color &color = (i++ == selectedRow ? selected : unselected);
 		font.Draw(commodity.name, Point(NAME_X, y), color);
-		font.Draw(to_string(price), Point(PRICE_X, y), color);
 		
-		int basis = player.GetBasis(commodity.name);
-		if(basis && basis != price)
+		if(price)
 		{
-			string profit = "(profit: " + to_string(price - basis) + ")";
-			font.Draw(profit, Point(LEVEL_X, y), color);
-		}
-		else
-		{
-			int level = (price - commodity.low);
-			if(level < 0)
-				level = 0;
-			else if(level >= (commodity.high - commodity.low))
-				level = 4;
+			font.Draw(to_string(price), Point(PRICE_X, y), color);
+		
+			int basis = player.GetBasis(commodity.name);
+			if(basis && basis != price)
+			{
+				string profit = "(profit: " + to_string(price - basis) + ")";
+				font.Draw(profit, Point(LEVEL_X, y), color);
+			}
 			else
-				level = (5 * level) / (commodity.high - commodity.low);
-			font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
-		}
+			{
+				int level = (price - commodity.low);
+				if(level < 0)
+					level = 0;
+				else if(level >= (commodity.high - commodity.low))
+					level = 4;
+				else
+					level = (5 * level) / (commodity.high - commodity.low);
+				font.Draw(TRADE_LEVEL[level], Point(LEVEL_X, y), color);
+			}
 		
-		font.Draw("[buy]", Point(BUY_X, y), color);
-		font.Draw("[sell]", Point(SELL_X, y), color);
+			font.Draw("[buy]", Point(BUY_X, y), color);
+			font.Draw("[sell]", Point(SELL_X, y), color);
+		}
 		
 		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
+		{
+			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
+		}
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");
 	Information info;
-	if(player.Cargo().HasOutfits() || player.Cargo().CommoditiesSize())
+	if(player.Cargo().HasOutfits() || canSell)
 		info.SetCondition("can sell");
 	interface->Draw(info);
 }
@@ -208,6 +216,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			int amount = player.Cargo().Get(it.name);
 			int price = system.Trade(it.name);
+			if(!price)
+				continue;
 			
 			int64_t basis = player.GetBasis(it.name, -amount);
 			player.AdjustBasis(it.name, basis);
@@ -270,6 +280,8 @@ void TradingPanel::Buy(int64_t amount)
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int price = system.Trade(type);
+	if(!price)
+		return;
 	
 	if(amount > 0)
 	{
