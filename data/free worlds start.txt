@@ -538,8 +538,8 @@ mission "FW Hope Recon 1C"
 		conversation
 			`You land on Hope, place Freya's surveillance rigs in the locations she specified, and fire them up. Telemetry starts coming in, and you verify that your own ship is showing up in their scans. However, they are also picking up an unidentified heat signature on another part of Hope. Do you investigate?`
 			choice
-				`	Of course!`
-				`	No, sounds risky.`
+				`	(Of course!)`
+				`	(No, sounds risky.)`
 					decline
 			
 			apply
@@ -548,11 +548,11 @@ mission "FW Hope Recon 1C"
 			`	The moment your ship comes over the horizon, they start running back toward the gunboat. You destroy their equipment with a few well-placed shots, then train your guns on the crew members, who are still some distance from their ship. When they realize they cannot get back to it before being shot, they raise their hands in surrender.`
 			`	A gunboat typically only has two crew members, which means if they are alone, you could kill them and steal their ship. On the other hand, if there are more crew aboard the ship it would be better to destroy it first, then finish off the landing crew.`
 			choice
-				`	Destroy the ship, then finish off the crew.`
+				`	(Destroy the ship, then finish off the crew.)`
 					goto destroy
-				`	Kill the landing crew, then steal their ship.`
+				`	(Kill the landing crew, then steal their ship.)`
 					goto steal
-				`	Spare the crew, and chase their ship out of this system.`
+				`	(Spare the crew, and chase their ship out of this system.)`
 					goto spare
 			
 			label destroy

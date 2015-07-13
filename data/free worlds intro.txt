@@ -1604,8 +1604,8 @@ mission "Rescue Katya 1"
 		conversation
 			`You are on Bourne, the capital of the Free Worlds. Do you take them up on their job offer and volunteer to officially join them?`
 			choice
-				`	Yes.`
-				`	Not yet.`
+				`	(Yes.)`
+				`	(Not yet.)`
 					defer
 			
 			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who employed you as an escort captain, comes down the stairs to greet you, accompanied by a man you don't recognize. "Captain <last>," he says, "this is Alondo, another council member, a diplomat by training. We are very happy to formally offer you a job." You shake hands with both of them.`
