@@ -595,6 +595,7 @@ void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 		if(it->get() == selected)
 		{
 			(*it)->SetIsParked(isParked);
+			UpdateCargoCapacities();
 			return;
 		}
 }
@@ -998,7 +999,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int size = 0;
 	int bunks = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system)
+		if(ship->GetSystem() == system && !ship->IsParked())
 		{
 			size += ship->Attributes().Get("cargo space");
 			bunks += ship->Attributes().Get("bunks") - ship->Crew();
