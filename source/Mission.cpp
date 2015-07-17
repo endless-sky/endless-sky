@@ -159,7 +159,7 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "on" && child.Size() >= 3 && child.Token(1) == "enter")
 		{
 			MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
-			action.Load(child);
+			action.Load(child, name);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
@@ -172,7 +172,7 @@ void Mission::Load(const DataNode &node)
 				{"visit", VISIT}};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				actions[it->second].Load(child);
+				actions[it->second].Load(child, name);
 		}
 	}
 	
@@ -671,6 +671,16 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	
 	for(NPC &npc : npcs)
 		npc.Do(event, player, ui);
+}
+
+
+
+// Get the internal name used for this mission. This name is unique and is
+// never modified by string substitution, so it can be used in condition
+// variables, etc.
+const string &Mission::Identifier() const
+{
+	return name;
 }
 
 

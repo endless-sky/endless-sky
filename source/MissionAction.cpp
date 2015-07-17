@@ -24,11 +24,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "UI.h"
 
+#include <vector>
+
 using namespace std;
 
 
 
-void MissionAction::Load(const DataNode &node)
+void MissionAction::Load(const DataNode &node, const string &missionName)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -71,6 +73,8 @@ void MissionAction::Load(const DataNode &node)
 			int days = (child.Size() >= 3 ? child.Value(2) : 0);
 			events[child.Token(1)] = days;
 		}
+		else if(child.Token(0) == "fail")
+			fail.insert(child.Size() >= 2 ? child.Token(1) : missionName);
 		else
 			conditions.Add(child);
 	}
@@ -117,6 +121,8 @@ void MissionAction::Save(DataWriter &out) const
 			out.Write("payment", payment);
 		for(const auto &it : events)
 			out.Write("event", it.first, it.second);
+		for(const auto &name : fail)
+			out.Write("fail", name);
 		
 		conditions.Save(out);
 	}
@@ -260,6 +266,20 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	for(const auto &it : events)
 		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second);
 	
+	if(!fail.empty())
+	{
+		// Failing missions invalidates iterators into the player's mission list,
+		// but does not immediately delete those missions. So, the safe way to
+		// iterate over all missions is to make a copy of the list before we
+		// begin to remove items from it.
+		vector<const Mission *> failedMissions;
+		for(const Mission &mission : player.Missions())
+			if(fail.find(mission.Identifier()) != fail.end())
+				failedMissions.push_back(&mission);
+		for(const Mission *mission : failedMissions)
+			player.RemoveMission(Mission::FAIL, *mission, ui);
+	}
+	
 	conditions.Apply(player.Conditions());
 }
 
@@ -287,6 +307,8 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultP
 		result.conversation = stockConversation->Substitute(subs);
 	else if(!conversation.IsEmpty())
 		result.conversation = conversation.Substitute(subs);
+	
+	result.fail = fail;
 	
 	result.conditions = conditions;
 	

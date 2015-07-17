@@ -1141,10 +1141,10 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = missionList.front().RecommendsAutosave();
-		missionList.front().Do(Mission::ACCEPT, *this);
 		cargo.AddMissionCargo(&*missionList.begin());
 		missions.splice(missions.end(), missionList, missionList.begin());
 		UpdateCargoCapacities();
+		missions.back().Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();
 	}
@@ -1174,13 +1174,16 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 	for(auto it = missions.begin(); it != missions.end(); ++it)
 		if(&*it == &mission)
 		{
-			it->Do(trigger, *this, ui);
+			// Don't delete the mission yet, because the conversation or dialog
+			// panel may still be showing. Instead, just mark it as done. Doing
+			// this first avoids the possibility of an infinite loop, e.g. if a
+			// mission's "on fail" fails the mission itself.
+			doneMissions.splice(doneMissions.end(), missions, it);
+			
+			mission.Do(trigger, *this, ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
-			// Don't get rid of the mission yet, because the conversation or
-			// dialog panel may still be showing.
-			doneMissions.splice(doneMissions.end(), missions, it);
 			return;
 		}
 }

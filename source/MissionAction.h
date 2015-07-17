@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Conversation.h"
 
 #include <map>
+#include <set>
 #include <string>
 
 class DataNode;
@@ -35,7 +36,7 @@ class UI;
 // special item, modifying condition flags, or queueing an event to occur.
 class MissionAction {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
@@ -70,6 +71,9 @@ private:
 	std::map<const Outfit *, int> gifts;
 	int payment = 0;
 	bool giveDefaultPayment = false;
+	
+	// When this action is performed, the missions with these names fail.
+	std::set<std::string> fail;
 	
 	ConditionSet conditions;
 };

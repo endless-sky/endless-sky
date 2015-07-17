@@ -116,6 +116,11 @@ public:
 	// about it. This may affect the mission status or display a message.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
 	
+	// Get the internal name used for this mission. This name is unique and is
+	// never modified by string substitution, so it can be used in condition
+	// variables, etc.
+	const std::string &Identifier() const;
+	
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
 	Mission Instantiate(const PlayerInfo &player) const;
