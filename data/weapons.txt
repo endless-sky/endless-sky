@@ -278,7 +278,7 @@ outfit "Anti-Missile Turret"
 		"reload" 8
 		"firing energy" 5
 		"firing heat" 3
-	description "Centuries ago, space battle were fought mostly with missiles, with the outcome dependent only on which ship had more shielding or ammunition. Lovelace Labs was originally founded to remedy that situation by developing a protective system that could shoot missiles out of the air, defending freighter convoys from pirates who could otherwise simply bombard them into submission without ever venturing within range of their guns."
+	description "Centuries ago, space battles were fought mostly with missiles, with the outcome dependent only on which ship had more shielding or ammunition. Lovelace Labs was originally founded to remedy that situation by developing a protective system that could shoot missiles out of the air, defending freighter convoys from pirates who could otherwise simply bombard them into submission without ever venturing within range of their guns."
 
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
