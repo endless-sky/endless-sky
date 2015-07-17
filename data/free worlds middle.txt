@@ -12,6 +12,8 @@ mission "FW Diplomacy 1"
 	landing
 	name "Free Worlds Diplomacy"
 	description "Travel to <planet> to meet up with Alondo, who will explain more."
+	source
+		near Sabik 1 100
 	destination Longjump
 	to offer
 		has "event: navy occupying the south"
