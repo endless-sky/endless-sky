@@ -1352,10 +1352,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	else if(keyDown.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !target->IsDisabled() || target->IsDestroyed())
+		if(!target || !target->IsDisabled() || target->IsDestroyed() || target->GetSystem() != ship.GetSystem())
 		{
 			double closest = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
+			bool foundAnything = false;
 			for(const shared_ptr<Ship> &other : ships)
 				if(other->IsTargetable() && other->IsDisabled() && !other->IsDestroyed())
 				{
@@ -1365,9 +1366,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 					{
 						closest = d;
 						foundEnemy = isEnemy;
+						foundAnything = true;
 						ship.SetTargetShip(other);
 					}
 				}
+			if(!foundAnything)
+				keyDown.Clear(Command::BOARD);
 		}
 	}
 	else if(keyDown.Has(Command::LAND))
