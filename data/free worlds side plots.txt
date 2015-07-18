@@ -291,6 +291,7 @@ mission "FW Wolf Pack 2A"
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Autumn Twilight"
 		ship "Freighter" "Bounty Harvest"
+		dialog "You have destroyed all the target freighters. Time to report back to the Wolf Pack on Solace."
 	
 	npc
 		government Republic
@@ -361,6 +362,7 @@ mission "FW Wolf Pack 3"
 		personality timid staying
 		ship "Bulk Freighter" "Dew of the Morning"
 		ship "Bulk Freighter" "Heaven's Blessing"
+		dialog "The food convoy has been destroyed. You can now return to Solace."
 	
 	npc
 		government Republic
@@ -429,6 +431,7 @@ mission "FW Wolf Pack 4"
 		system Mizar
 		personality timid staying
 		ship "Bactrian" "Golden Fleece"
+		dialog "You have eliminated the Bactrian that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	
 	npc
 		government Republic
