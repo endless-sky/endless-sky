@@ -452,11 +452,53 @@ mission "Bounty Hunting (Big)"
 			variant
 				"Leviathan"
 			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
 				"Falcon"
 			variant
-				"Protector"
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
+		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
+
+mission "Bounty Hunting (Medium)"
+	name "Hunt down <npc>"
+	description "A pirate vessel named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 400
+		random < 20
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes rim south north "dirt belt" core "near earth" frontier
+	npc kill
+		personality staying nemesis
+		government Pirate
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Laser)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
+	on complete
+		payment 200000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
 
 mission "Bounty Hunting (Small)"
@@ -480,13 +522,22 @@ mission "Bounty Hunting (Small)"
 			variant
 				"Firebird"
 			variant
+				"Firebird (Missile)"
+			variant
 				"Splinter"
 			variant
+				"Splinter (Laser)"
+			variant
 				"Osprey"
+			variant
+				"Osprey (Laser)"
 			variant
 				"Bastion"
 			variant
 				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 150000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."

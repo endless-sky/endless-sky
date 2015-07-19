@@ -1576,6 +1576,7 @@ mission "FW Albatross 2A"
 		system Orvala
 		government Pirate
 		ship "Bastion (Heavy)" "Dread"
+		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
 		personality staying plunders disables
