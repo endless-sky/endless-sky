@@ -39,6 +39,7 @@ Beta Testers
   Greg Pettigrew
   Russell Zahniser
   John Harvey
+  Sean Fahey
 
 This game is open source.
 To contribute to story writing,
