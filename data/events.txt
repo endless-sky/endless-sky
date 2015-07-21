@@ -1551,6 +1551,9 @@ event "pug invasion"
 	unvisit Rasalhague
 	unvisit Orvala
 	unvisit Deneb
+	unvisit Cebalrai
+	unvisit Ascella
+	unvisit Peacock
 	system "Zeta Aquilae"
 		government Pug
 		fleet "Small Southern Merchants" 1000

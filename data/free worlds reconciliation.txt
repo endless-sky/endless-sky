@@ -713,10 +713,18 @@ mission "FW Syndicate Capture 1B"
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
+	npc
+		system Ankaa
+		government Syndicate
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
+	npc
+		system Ankaa
+		government Syndicate
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
@@ -729,10 +737,18 @@ mission "FW Syndicate Capture 1B"
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
+	npc
+		system Scheat
+		government Syndicate
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
+	npc
+		system Scheat
+		government Syndicate
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
@@ -745,10 +761,18 @@ mission "FW Syndicate Capture 1B"
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
+	npc
+		system Sheratan
+		government Syndicate
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)"
+	npc
+		system Sheratan
+		government Syndicate
+		personality heroic nemesis staying
 		fleet
 			names "syndicate capital"
 			variant
@@ -952,7 +976,7 @@ mission "FW Pug 2A"
 				`	"Did the Syndicate communicate anything to you before the links were cut, that might help us guess at their intentions?"`
 			
 			`	One of the members of Parliament says, "It's all terribly confusing. Our sources in Syndicate space were reporting massive fleet movements just before it happened. We also heard rumors of Syndicate fleets fighting each other, some sort of internal power struggle."`
-			`	Another man speaks up and adds, "We had also been aware for some time that the Syndicate had gained access to alien technology, through encounters with a nomadic alien species currently inhabiting the galactic core." From the surprised expressions on the faces of many of the other members of Parliament, it's clear that this information is new to them.`
+			`	Another man speaks up and adds, "We had also been aware for some time that the Syndicate had gained access to alien technology, through encounters with a nomadic alien species currently inhabiting the galactic core. They may have found a way to use that technology to alter the links." From the surprised expressions on the faces of many of the other members of Parliament, it's clear that this information is new to them.`
 			choice
 				`	"Very well, we will accept this mission."`
 					goto yes
@@ -1309,7 +1333,7 @@ mission "FW Pug 3: Quarg"
 			`	"So you've encountered the Pug before?" asks Alondo.`
 			
 			label info
-			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They claim to be acting on a special knowledge of future events, but we do not know if that knowledge is genuine or only an excuse to play tricks on other species."`
+			`	The Quarg is silent for a long moment. "The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They claim to be acting on a special knowledge of future events, but we do not know if that knowledge is genuine or only an excuse to play tricks on other species."`
 			choice
 				`	"If they're so advanced, do we have any chance of defeating them?"`
 					goto defeat
@@ -1328,6 +1352,10 @@ mission "FW Pug 3: Quarg"
 			
 			label balance
 			`	"War is a game to the Pug," the Quarg says. "They are a strange species. Even if they start a war, their goal may not be to win it, but to lose in a certain way. We have seen them lose battles against species far less advanced than your own, even though they had weapons that would have guaranteed them victory. If they want war, you must play their game, and if you play their game, they may allow you to win."`
+			`	"That makes no sense," says Freya. "They would die for the sake of a game?"`
+			`	The Quarg pauses for a moment as if struggling for words. "I am myself, and also I am Quarg. You are yourselves, and also you are human. But we think perhaps a Pug is Pug first, and then also itself."`
+			`	"Their identity is communal, rather than individual?" says Freya.`
+			`	"Indeed. And because they are so deeply connected, they perceive all things as being connected to them. At least, that is the best understanding we have been able to gain of their species."`
 			choice
 				`	"Thank you for your time."`
 					decline
@@ -1356,7 +1384,10 @@ mission "FW Pug 3A"
 			`	One of the Senators asks, "Do you think we have any chance of defeating the aliens?"`
 			choice
 				`	"It's possible. They all live in a single star system, so we outnumber them."`
+					goto questions
 				`	"It's unlikely. If we have any options other than fighting them, we should explore those options."`
+			`	"I think we have no choice," says one of the older members. "Even if it is a losing battle, we can't let the human race be enslaved without a fight."`
+			label questions
 			`	They have many other questions after that; you answer them as best you can, and leave them with full copies of your sensor logs of the alien ships and planets. Parliament agrees that the next step is for you to convince the Free Worlds to contribute two Dreadnoughts to the attack fleet. "Also," one of the members of Parliament says, "maybe you could talk to those aliens who live down in your part of space, see if they can help us out in any way. It sure would be handy if the Pug turn out to be an enemy of theirs."`
 			`	During the hearing, you refrained from mentioning that the Pug claimed to have assisted the Deep in the past, but once you are back in your ship Alondo says, "Maybe we should also visit Valhalla and see if Governor Flint has any information for us."`
 				accept
@@ -1455,7 +1486,7 @@ mission "FW Pug 4: Escorts"
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"
 	npc kill
-		personality escort heroic
+		personality escort heroic disables
 		government "Republic"
 		ship "Cruiser (Jump)" "F.S. Everest"
 		ship "Cruiser (Jump)" "F.S. Denali"
@@ -2256,18 +2287,34 @@ mission "FW Syndicate Extremists 1B"
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
 		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
 		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
 		fleet
 			names "syndicate capital"
 			variant
 				"Manta (Nuclear)" 2
+	npc evade
+		government "Syndicate (Extremist)"
+		system Algenib
+		personality staying heroic
 		fleet
 			names "syndicate capital"
 			variant
