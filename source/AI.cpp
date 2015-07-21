@@ -346,7 +346,12 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		else if(!parent || parent->IsDestroyed() || (parent->IsDisabled() && !isPlayerEscort))
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
-			MoveEscort(*it, command);
+		{
+			if(personality.IsStaying())
+				MoveIndependent(*it, command);
+			else
+				MoveEscort(*it, command);
+		}
 		// From here down, we're only dealing with ships that have a "parent"
 		// which is in the same system as them. If you're an enemy of your
 		// "parent," you don't take orders from them.
