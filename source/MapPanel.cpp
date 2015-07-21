@@ -143,7 +143,7 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	
-	if(distance.HasRoute(system) && player.Flagship())
+	if(distance.Distance(system) > 0 && player.Flagship())
 	{
 		bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
 		
@@ -200,11 +200,25 @@ void MapPanel::DrawTravelPlan() const
 {
 	Color color(.4, .4, 0., 0.);
 	
+	Ship *ship = player.Flagship();
+	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
+	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
+	
 	// Draw your current travel plan.
 	const System *previous = playerSystem;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{
 		const System *next = player.TravelPlan()[i];
+		
+		bool hasLink = false;
+		if(hasHyper)
+			hasLink |= (find(previous->Links().begin(), previous->Links().end(), next)
+				!= previous->Links().end());
+		if(hasJump)
+			hasLink |= (find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
+				!= previous->Neighbors().end());
+		if(!hasLink)
+			break;
 		
 		Point from = next->Position() + center;
 		Point to = previous->Position() + center;
