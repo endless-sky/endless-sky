@@ -1581,8 +1581,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	else if(keyStuck.Has(Command::BOARD) && ship.GetTargetShip())
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		MoveTo(ship, command, target->Position(), 40., .8);
-		command |= Command::BOARD;
+		if(!target || !target->IsTargetable() || !target->IsDisabled() || target->IsDestroyed())
+			keyStuck.Clear(Command::BOARD);
+		else
+		{
+			MoveTo(ship, command, target->Position(), 40., .8);
+			command |= Command::BOARD;
+		}
 	}
 	
 	if(isLaunching)
