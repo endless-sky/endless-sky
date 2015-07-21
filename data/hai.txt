@@ -319,7 +319,7 @@ ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	attributes
 		category "Heavy Warship"
-		"cost" 14900000
+		"cost" 17900000
 		"shields" 32000
 		"hull" 9800
 		"required crew" 47
