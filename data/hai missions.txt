@@ -79,7 +79,7 @@ mission "First Contact: Unfettered"
 			label masters
 			choice
 				`	"Where was your territory? Why have I never heard of you before?"`
-				`	"What do you mean, the Hai were were altered?"`
+				`	"What do you mean, the Hai were altered?"`
 	
 			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, million years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
