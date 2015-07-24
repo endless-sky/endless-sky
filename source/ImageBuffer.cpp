@@ -113,6 +113,8 @@ ImageBuffer *ImageBuffer::Read(const string &path)
 		
 		// Check if the sprite uses additive blending.
 		int pos = path.length() - 4;
+		if(pos > 3 && !path.compare(pos - 3, 3, "@2x"))
+			pos -= 3;
 		while(--pos)
 			if(path[pos] < '0' || path[pos] > '9')
 				break;
