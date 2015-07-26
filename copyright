@@ -92,8 +92,6 @@ License: CC-BY-SA-3.0
  Taken from Wikimedia commons. Cropped and edited.
 
 Files:
- images/land/fog2.jpg
- images/land/lava0.jpg
  images/land/mountain7.jpg
  images/land/valley5.jpg
  images/land/water3.jpg
@@ -119,10 +117,12 @@ Files:
  images/land/fields5.jpg
  images/land/fields9.jpg
  images/land/fog0.jpg
+ images/land/fog2.jpg
  images/land/forest1.jpg
  images/land/forest2.jpg
  images/land/forest3.jpg
  images/land/forest5.jpg
+ images/land/lava2.jpg
  images/land/mountain3.jpg
 Copyright: Various
 License: public-domain
@@ -140,8 +140,6 @@ License: public-domain
 Files:
  images/land/snow9.jpg
  images/land/lava0.jpg
- images/land/lava6.jpg
- images/land/lava8.jpg
  images/land/mountain8.jpg
  images/land/mountain9.jpg
 Copyright: USGS
@@ -161,8 +159,7 @@ License: public-domain
 Files:
  images/land/lava1.jpg
  images/land/lava5.jpg
- images/land/lava7.jpg
- images/land/lava9.jpg
+ images/land/lava6.jpg
 Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
