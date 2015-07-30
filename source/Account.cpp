@@ -133,9 +133,9 @@ string Account::Step(int64_t assets, int64_t salaries)
 	{
 		if(salariesOwed > credits)
 		{
-			salariesPaid = credits;
-			salariesOwed -= credits;
-			credits = 0;
+			salariesPaid = max(credits, static_cast<int64_t>(0));
+			salariesOwed -= salariesPaid;
+			credits -= salariesPaid;
 			paid = false;
 			out << "You could not pay all your crew salaries. ";
 		}
