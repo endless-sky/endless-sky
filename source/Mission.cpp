@@ -113,6 +113,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "minor")
+			isMinor = true;
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -214,6 +216,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
+		if(isMinor)
+			out.Write("minor");
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -302,6 +306,15 @@ bool Mission::IsVisible() const
 bool Mission::HasPriority() const
 {
 	return hasPriority;
+}
+
+
+
+// Check if this mission is a "minor" mission. Minor missions will only be
+// offered if no other missions (minor or otherwise) are being offered.
+bool Mission::IsMinor() const
+{
+	return isMinor;
 }
 
 
@@ -694,6 +707,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.hasFailed = true;
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
+	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
 	result.repeat = 0;

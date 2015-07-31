@@ -10,6 +10,7 @@
 
 mission "Immigrant Workers"
 	description "This young couple wants to start a new life on <destination>."
+	minor
 	passengers 2
 	cargo "luggage and furniture" 2
 	to offer
@@ -42,6 +43,7 @@ mission "Immigrant Workers"
 mission "Pookie, Part 1"
 	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
+	minor
 	to offer
 		random < 50
 	source "Hestia"
@@ -101,6 +103,7 @@ mission "Pookie, Part 2"
 mission "Smuggler's Den, Part 1"
 	name "Refugees to <planet>"
 	description "You met Joe and Maria, a young couple with a newborn baby, on the Smuggler's Den station. They want to start a new life on <destination>."
+	minor
 	source "Smuggler's Den"
 	destination "Arabia"
 	passengers 2
@@ -242,12 +245,13 @@ mission "Smuggler's Den: Follow Up"
 mission "Expedition to Hope 1"
 	name "Expedition to Hope"
 	description "Transport a team of scientists to the abandoned world of <planet>, where they will be placing some meteorological equipment."
+	minor
 	source
-		near Wei 2 5
+		near Wei 2 8
 		attributes "dirt belt"
 	destination Hope
 	to offer
-		random < 5
+		random < 10
 	cargo "scientific equipment" 4
 	passengers 4
 	
@@ -302,6 +306,7 @@ mission "Expedition to Hope 2"
 mission "Transport Workers A"
 	name "Transport Family"
 	description "Transport this family to <destination>, where they hope that steady work will be more easy to come by."
+	minor
 	source
 		attributes "dirt belt"
 	destination
@@ -325,6 +330,7 @@ mission "Transport Workers A"
 mission "Transport Workers B"
 	name "Transport Worker"
 	description `This young man is headed to the factories on <destination>. He says he wants to save enough money to be able to ask his "true love" to marry him.`
+	minor
 	source
 		attributes "dirt belt"
 	destination
@@ -376,6 +382,7 @@ mission "Transport Workers B"
 mission "Transport Workers C"
 	name "Farming Family"
 	description "Transport this family of farmers, and their livestock, to <destination>."
+	minor
 	source
 		attributes "dirt belt"
 		attributes "farming"
@@ -411,6 +418,7 @@ mission "Transport Workers C"
 mission "WR Star 1"
 	name "Star Research"
 	description "Fly through the Ildaria system with this team of scientists, then return them to <destination>."
+	minor
 	source
 		attributes deep
 		attributes urban research
@@ -646,6 +654,7 @@ mission "Deep Archaeology 5"
 mission "Drug Running 1"
 	name "Drug Running"
 	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	minor
 	repeat
 	source
 		attributes "near earth" "dirt belt" "north"
@@ -675,6 +684,7 @@ mission "Drug Running 1"
 mission "Drug Running 2"
 	name "Drug Running"
 	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	minor
 	repeat
 	source
 		attributes "near earth" "dirt belt" "north"
@@ -699,6 +709,7 @@ mission "Drug Running 2"
 mission "Drug Running 3"
 	name "Drug Running"
 	description "Bring a shipment of illegal drugs to <destination>. If you are caught with this cargo, you may be fined."
+	minor
 	repeat
 	source
 		attributes "near earth" "dirt belt" "north"
@@ -802,6 +813,7 @@ mission "Hallucination"
 mission "Rescue Miners 1"
 	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
 	name "Rescue Miners"
+	minor
 	source
 		attributes core
 		attributes urban
@@ -822,6 +834,7 @@ mission "Rescue Miners 2"
 	landing
 	description "Participate in the medical evacuation of some miners injured in a recent accident on <planet>."
 	name "Rescue Miners"
+	minor
 	destination
 		attributes core
 		attributes urban
@@ -844,6 +857,7 @@ mission "Courier 1"
 	repeat
 	deadline
 	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	minor
 	cargo random 5 2 .1
 	to offer
 		random < 5
@@ -866,6 +880,7 @@ mission "Courier 2"
 	repeat
 	deadline
 	description "Deliver a package to <destination> by <date>. Payment is <payment>."
+	minor
 	cargo package 2
 	to offer
 		random < 5
@@ -887,6 +902,7 @@ mission "Courier 3"
 	name "Papers to <planet>"
 	deadline
 	description "Deliver some legal papers to <destination> by <date>. Payment is <payment>."
+	minor
 	cargo "legal papers" 1
 	to offer
 		random < 5
@@ -907,6 +923,7 @@ mission "Courier 4"
 	name "Lizard to <planet>"
 	deadline
 	description "Deliver an exotic pet to <destination> by <date>. Payment is <payment>."
+	minor
 	cargo "exotic lizard" 3
 	to offer
 		random < 5
@@ -941,6 +958,7 @@ mission "Courier 4"
 mission "Migrant Workers 1"
 	name "Migrant Workers"
 	description "Bring this group of migrant workers to <planet>."
+	minor
 	source
 		attributes "dirt belt"
 		attributes "farming"
@@ -972,6 +990,7 @@ mission "Migrant Workers 1"
 mission "Humanitarian 1"
 	name "Vaccine to <planet>"
 	description "Bring a shipment of flu vaccines to the lawless world of <planet>. Be sure the medicine gets into the right hands."
+	minor
 	cargo "vaccine" 20
 	to offer
 		random < 5
@@ -1009,6 +1028,7 @@ mission "Humanitarian 1"
 mission "Humanitarian 2"
 	name "Food to <planet>"
 	description "Bring a shipment of food to the lawless world of <planet>, to help alleviate a famine."
+	minor
 	cargo "emergency rations" 50
 	to offer
 		random < 5

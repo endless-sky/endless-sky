@@ -57,6 +57,9 @@ public:
 	// are available, no others will be shown at landing or in the spaceport.
 	// This is to be used for missions that are part of a series.
 	bool HasPriority() const;
+	// Check if this mission is a "minor" mission. Minor missions will only be
+	// offered if no other missions (minor or otherwise) are being offered.
+	bool IsMinor() const;
 	
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
@@ -136,6 +139,7 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+	bool isMinor = false;
 	bool autosave = false;
 	bool hasDeadline = false;
 	bool doDefaultDeadline = false;

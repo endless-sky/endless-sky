@@ -1455,6 +1455,24 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
+	else if(availableMissions.size() > 1)
+	{
+		// Minor missions only get offered if no other missions (including other
+		// minor missions) are competing with them. This is to avoid having two
+		// or three missions pop up as soon as you enter the spaceport.
+		auto it = availableMissions.begin();
+		while(it != availableMissions.end())
+		{
+			if(it->IsMinor())
+			{
+				it = availableMissions.erase(it);
+				if(availableMissions.size() <= 1)
+					break;
+			}
+			else
+				++it;
+		}
+	}
 }
 
 
