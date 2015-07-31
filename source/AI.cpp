@@ -464,7 +464,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			
 			// If your personality it to disable ships rather than destroy them,
 			// never target disabled ships.
-			if(it->IsDisabled() && person.Disables() && !person.Plunders())
+			if(it->IsDisabled() && !person.Plunders()
+					&& (person.Disables() || (!person.IsNemesis() && it != oldTarget)))
 				continue;
 			
 			if(!person.Plunders())
