@@ -92,7 +92,6 @@ License: CC-BY-SA-3.0
  Taken from Wikimedia commons. Cropped and edited.
 
 Files:
- images/land/mountain7.jpg
  images/land/valley5.jpg
  images/land/water3.jpg
 Copyright: Various
@@ -123,7 +122,12 @@ Files:
  images/land/forest3.jpg
  images/land/forest5.jpg
  images/land/lava2.jpg
+ images/land/mountain1.jpg
  images/land/mountain3.jpg
+ images/land/mountain4.jpg
+ images/land/mountain7.jpg
+ images/land/mountain8.jpg
+ images/land/mountain9.jpg
 Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
@@ -140,8 +144,6 @@ License: public-domain
 Files:
  images/land/snow9.jpg
  images/land/lava0.jpg
- images/land/mountain8.jpg
- images/land/mountain9.jpg
 Copyright: USGS
 License: public-domain
  From the USGS, and therefore in the public domain because they were created by
@@ -150,7 +152,8 @@ License: public-domain
 Files:
  images/land/desert0.jpg
  images/land/earthrise.jpg
- images/land/space*.jpg
+ images/land/nasa*
+ images/land/space*
  images/land/station1.jpg
  images/land/station2.jpg
  images/land/station3.jpg
