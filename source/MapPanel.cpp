@@ -394,6 +394,7 @@ void MapPanel::DrawMissions() const
 	Color availableColor(1., .7, 0., 1.);
 	Color unavailableColor(.6, .3, 0., 1.);
 	Color currentColor(.2, 1., 0., 1.);
+	Color blockedColor(0., .6, 0., 1.);
 	Color waypointColor(1., 0., 0., 1.);
 	for(const Mission &mission : player.AvailableJobs())
 	{
@@ -413,6 +414,10 @@ void MapPanel::DrawMissions() const
 		const System *system = mission.Destination()->GetSystem();
 		Angle a = (angle[system] += Angle(30.));
 		
+		bool isBlocked = !mission.Waypoints().empty();
+		for(const NPC &npc : mission.NPCs())
+			isBlocked |= !npc.HasSucceeded(player.GetSystem());
+		
 		bool blink = false;
 		if(mission.HasDeadline())
 		{
@@ -423,8 +428,7 @@ void MapPanel::DrawMissions() const
 		Point pos = system->Position() + center;
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		if(!blink)
-			PointerShader::Draw(pos, a.Unit(), 8., 15., -6., currentColor);
-		
+			PointerShader::Draw(pos, a.Unit(), 8., 15., -6., isBlocked ? blockedColor : currentColor);
 		
 		for(const System *waypoint : mission.Waypoints())
 		{

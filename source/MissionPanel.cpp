@@ -130,12 +130,19 @@ void MissionPanel::Draw() const
 	Color availableColor(.5, .4, 0., .5);
 	Color unavailableColor(.3, .1, 0., .5);
 	Color currentColor(0., .5, 0., .5);
+	Color blockedColor(0., .2, 0., .2);
 	if(availableIt != available.end() && availableIt->Destination())
 		DotShader::Draw(availableIt->Destination()->GetSystem()->Position() + center,
 			22., 20.5, CanAccept() ? availableColor : unavailableColor);
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
+	{
+		bool isBlocked = !acceptedIt->Waypoints().empty();
+		for(const NPC &npc : acceptedIt->NPCs())
+			isBlocked |= !npc.HasSucceeded(player.GetSystem());
+		
 		DotShader::Draw(acceptedIt->Destination()->GetSystem()->Position() + center,
-			22., 20.5, currentColor);
+			22., 20.5, isBlocked ? blockedColor : currentColor);
+	}
 	
 	// Draw the buttons to switch to other map modes.
 	Information info;
