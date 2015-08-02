@@ -13548,7 +13548,7 @@ planet Glory
 
 planet Grakhord
 	attributes quarg
-	landscape land/water9
+	landscape land/badlands6
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quargs have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
 	bribe 0
