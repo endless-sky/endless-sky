@@ -35,7 +35,7 @@ DataFile::DataFile(istream &in)
 void DataFile::Load(const string &path)
 {
 	// Check if the file exists before doing anything with it.
-	ifstream in(path);
+	ifstream in(path, ios_base::binary);
 	if(!in.is_open())
 		return;
 	

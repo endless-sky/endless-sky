@@ -985,7 +985,7 @@ mission "FWC Checkmate 1C"
 				`	"Are we really sure we want to attack Earth?"`
 			`	"Have they given us any other choice?" asks Tomek. "We tried diplomacy. And we cannot hope to defeat the entire Navy. So, unless we wish to surrender and all be put on trial as war criminals, we need to press on and gain the upper hand in the only way we can. The Senate and the Council are agreed on this." You have no choice but to follow his orders and to begin getting your fleet ready for the next attack.`
 			``
-			`[Take good care of this fleet, because it will have to last you for the rest of this campaign: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]
+			`[Take good care of this fleet, because it will have to last you for the rest of this campaign: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
 				accept
 	
 	on complete
