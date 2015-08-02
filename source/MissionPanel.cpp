@@ -127,10 +127,11 @@ void MissionPanel::Draw() const
 	
 	DrawMissionInfo();
 	
-	Color availableColor(.5, .4, 0., .5);
-	Color unavailableColor(.3, .1, 0., .5);
-	Color currentColor(0., .5, 0., .5);
-	Color blockedColor(0., .2, 0., .2);
+	const Set<Color> &colors = GameData::Colors();
+	const Color &availableColor = *colors.Get("available back");
+	const Color &unavailableColor = *colors.Get("unavailable back");
+	const Color &currentColor = *colors.Get("active back");
+	const Color &blockedColor = *colors.Get("blocked back");
 	if(availableIt != available.end() && availableIt->Destination())
 		DotShader::Draw(availableIt->Destination()->GetSystem()->Position() + center,
 			22., 20.5, CanAccept() ? availableColor : unavailableColor);

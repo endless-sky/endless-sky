@@ -391,11 +391,13 @@ void MapPanel::DrawMissions() const
 	map<const System *, Angle> angle;
 	Color black(0., 1.);
 	Color white(1., 1.);
-	Color availableColor(1., .7, 0., 1.);
-	Color unavailableColor(.6, .3, 0., 1.);
-	Color currentColor(.2, 1., 0., 1.);
-	Color blockedColor(0., .6, 0., 1.);
-	Color waypointColor(1., 0., 0., 1.);
+	
+	const Set<Color> &colors = GameData::Colors();
+	const Color &availableColor = *colors.Get("available job");
+	const Color &unavailableColor = *colors.Get("unavailable job");
+	const Color &currentColor = *colors.Get("active mission");
+	const Color &blockedColor = *colors.Get("blocked mission");
+	const Color &waypointColor = *colors.Get("waypoint");
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
