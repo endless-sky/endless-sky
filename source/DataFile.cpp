@@ -141,7 +141,14 @@ void DataFile::Load(const char *it, const char *end)
 			// Find the end of this token.
 			while(*it != '\n' && (isQuoted ? (*it != endQuote) : (*it > ' ')))
 				++it;
-			node.tokens.emplace_back(start, it);
+			
+			// It ought to be legal to construct a string from an empty iterator
+			// range, but it appears that some libraries do not handle that case
+			// correctly. So:
+			if(start == it)
+				node.tokens.emplace_back();
+			else
+				node.tokens.emplace_back(start, it);
 			
 			if(*it != '\n')
 			{
