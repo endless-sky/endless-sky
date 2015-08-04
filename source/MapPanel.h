@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <string>
 
+class Mission;
 class Planet;
 class PlayerInfo;
 class System;
@@ -47,6 +48,10 @@ protected:
 	
 	void Select(const System *system);
 	const Planet *Find(const std::string &name);
+	
+	// Check whether the NPC and waypoint conditions of the given mission have
+	// been satisfied.
+	bool IsSatisfied(const Mission &mission) const;
 	
 	
 protected:

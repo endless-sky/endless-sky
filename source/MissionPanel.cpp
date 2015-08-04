@@ -142,7 +142,7 @@ void MissionPanel::Draw() const
 			isBlocked |= !npc.HasSucceeded(player.GetSystem());
 		
 		DotShader::Draw(acceptedIt->Destination()->GetSystem()->Position() + center,
-			22., 20.5, isBlocked ? blockedColor : currentColor);
+			22., 20.5, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	}
 	
 	// Draw the buttons to switch to other map modes.
@@ -488,7 +488,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos) const
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
 		
-		bool canAccept = (&list != &available || it->HasSpace(player));
+		bool canAccept = (&list == &available ? it->HasSpace(player) : IsSatisfied(*it));
 		font.Draw(it->Name(), pos,
 			(!canAccept ? dim : isSelected ? selected : unselected));
 	}
