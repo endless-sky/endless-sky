@@ -123,7 +123,7 @@ void MenuPanel::Draw() const
 		Angle a(0.);
 		for(int i = 0; i < progress; ++i)
 		{
-			Color color(alpha, 0.f);
+			Color color(.5 * alpha, 0.f);
 			PointerShader::Draw(Point(), a.Unit(), 8., 20., 140. * alpha, color);
 			a += da;
 		}

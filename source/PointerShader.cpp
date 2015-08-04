@@ -63,8 +63,11 @@ void PointerShader::Init()
 		"out vec4 finalColor;\n"
 		
 		"void main() {\n"
-		"  float mask = clamp(min(coord.x, coord.y), 0, 1);\n"
-		"  float alpha = mask * (1 - (coord.x + coord.y) / size.x);\n"
+		"  float height = (coord.x + coord.y) / size.x;\n"
+		"  float taper = height * height * height;\n"
+		"  taper *= taper * .5 * size.x;\n"
+		"  float alpha = clamp(.8 * min(coord.x, coord.y) - taper, 0, 1);\n"
+		"  alpha *= clamp(1.8 * (1. - height), 0, 1);\n"
 		"  finalColor = color * alpha;\n"
 		"}\n";
 	
