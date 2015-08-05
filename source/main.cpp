@@ -51,6 +51,7 @@ Conversation LoadConversation();
 int main(int argc, char *argv[])
 {
 	Conversation conversation;
+	bool debugMode = false;
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
@@ -66,6 +67,8 @@ int main(int argc, char *argv[])
 		}
 		else if(arg == "-t" || arg == "--talk")
 			conversation = LoadConversation();
+		else if(arg == "-d" || arg == "--debug")
+			debugMode = true;
 	}
 	PlayerInfo player;
 	
@@ -223,7 +226,7 @@ int main(int argc, char *argv[])
 				
 				// The caps lock key slows the game down (to make it easier to
 				// see and debug things that are happening quickly).
-				if((event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+				if(debugMode && (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
 						&& event.key.keysym.sym == SDLK_CAPSLOCK)
 				{
 					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
@@ -321,6 +324,7 @@ void PrintHelp()
 	cerr << "    -t, --talk: read and display a conversation from STDIN." << endl;
 	cerr << "    -r, --resources <path>: load resources from given directory." << endl;
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
+	cerr << "    -d, --debug: turn on debugging features (e.g. caps lock slow motion)." << endl;
 	cerr << endl;
 	cerr << "Report bugs to: mzahniser@gmail.com" << endl;
 	cerr << "Home page: <https://endless-sky.github.io>" << endl;
