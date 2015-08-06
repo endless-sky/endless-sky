@@ -34,6 +34,7 @@ effect "beam laser impact"
 		"frame rate" 30
 	"lifetime" 5
 	"random angle" 2
+	"random spin" 1
 	"velocity scale" -.005
 
 effect "heavy laser impact"
@@ -42,7 +43,9 @@ effect "heavy laser impact"
 		"frame rate" 30
 	"lifetime" 5
 	"random angle" 2
-	"velocity scale" -.005
+	"random spin" 1
+	"random velocity" 1
+	"velocity scale" -.007
 
 effect "electron impact"
 	sprite "effect/electron impact"
@@ -50,6 +53,7 @@ effect "electron impact"
 		"frame rate" 30
 	"lifetime" 5
 	"random angle" 2
+	"random spin" 1
 	"velocity scale" -.003
 
 effect "blaster impact"
@@ -221,6 +225,14 @@ effect "large anti-missile"
 		"frame rate" 2
 	sound "heavy_anti-missile"
 	"lifetime" 31
+	"velocity scale" 1
+
+effect "pug anti-missile"
+	sprite "effect/large anti missile"
+		"no repeat"
+		"frame rate" 6
+	sound "heavy_anti-missile"
+	"lifetime" 11
 	"velocity scale" 1
 
 effect "nuke explosion"

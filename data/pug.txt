@@ -104,7 +104,7 @@ outfit "Pug Anti-Missile"
 	"weapon capacity" -41
 	"turret mounts" -1
 	weapon
-		"hit effect" "large anti-missile"
+		"hit effect" "pug anti-missile"
 		"anti-missile" 5
 		"velocity" 200
 		"lifetime" 1
