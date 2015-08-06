@@ -1352,9 +1352,11 @@ void PlayerInfo::SelectNext()
 	auto it = ship->Outfits().find(selectedWeapon);
 	if(it == ship->Outfits().end())
 		it = ship->Outfits().begin();
+	else
+		++it;
 	
 	// Find the next secondary weapon.
-	while(++it != ship->Outfits().end())
+	for( ; it != ship->Outfits().end(); ++it)
 		if(it->first->Ammo() || it->first->FiringFuel())
 		{
 			selectedWeapon = it->first;
