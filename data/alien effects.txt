@@ -33,9 +33,9 @@ effect "jump drive"
 
 effect "banisher impact"
 	sprite "effect/banisher impact"
-		"no repeat"
-		"frame rate" 12
-	"lifetime" 10
+		"random start frame"
+		"frame rate" 60
+	"lifetime" 2
 	"velocity scale" 0.
 
 effect "grab-strike impact"

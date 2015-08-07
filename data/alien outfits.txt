@@ -124,7 +124,7 @@ outfit "Korath Grab-Strike"
 	"required crew" 1
 	weapon
 		sprite "projectile/grab-strike"
-			"frame rate" 50
+			"frame rate" 25
 			"random start frame"
 		sound "particle"
 		"hit effect" "grab-strike impact"
@@ -159,7 +159,7 @@ outfit "Korath Banisher"
 		sound "heavy_laser"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"velocity" 600
+		"velocity" 590
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 2.8
