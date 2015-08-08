@@ -216,6 +216,7 @@ int main(int argc, char *argv[])
 				"may be confusing. Consider upgrading your graphics driver (or your OS)."));
 		
 		FrameTimer timer(60);
+		bool isPaused = false;
 		while(!menuPanels.IsDone())
 		{
 			// Handle any events that occurred in this frame.
@@ -230,6 +231,10 @@ int main(int argc, char *argv[])
 						&& event.key.keysym.sym == SDLK_CAPSLOCK)
 				{
 					timer.SetFrameRate((event.key.keysym.mod & KMOD_CAPS) ? 10 : 60);
+				}
+				else if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+				{
+					isPaused = !isPaused;
 				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 						&& Command(event.key.keysym.sym).Has(Command::MENU))
@@ -279,7 +284,7 @@ int main(int argc, char *argv[])
 			}
 			
 			// Tell all the panels to step forward, then draw them.
-			(menuPanels.IsEmpty() ? gamePanels : menuPanels).StepAll();
+			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 			Audio::Step();
 			// That may have cleared out the menu, in which case we should draw
 			// the game panels instead:
