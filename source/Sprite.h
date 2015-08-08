@@ -34,6 +34,8 @@ public:
 	Sprite();
 	
 	void AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x);
+	// Free up all textures loaded for this sprite.
+	void Unload();
 	
 	float Width() const;
 	float Height() const;

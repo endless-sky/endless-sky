@@ -36,6 +36,8 @@ public:
 	
 	// Add a sprite to load.
 	void Add(const std::string &name, const std::string &path);
+	// Unload the texture for the given sprite (to free up memory).
+	void Unload(const std::string &name);
 	// Find out our percent completion.
 	double Progress() const;
 	// Finish loading.
@@ -78,6 +80,8 @@ private:
 	mutable std::mutex loadMutex;
 	mutable std::condition_variable loadCondition;
 	mutable int completed;
+	
+	mutable std::queue<std::string> toUnload;
 	
 	std::vector<std::thread> threads;
 };

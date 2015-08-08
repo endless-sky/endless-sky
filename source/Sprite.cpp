@@ -42,7 +42,8 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 	vector<uint32_t> &textureIndex = (is2x ? textures2x : textures);
 	if(textureIndex.size() <= static_cast<unsigned>(frame))
 		textureIndex.resize(frame + 1, 0);
-	glGenTextures(1, &textureIndex[frame]);
+	if(!textureIndex[frame])
+		glGenTextures(1, &textureIndex[frame]);
 	glBindTexture(GL_TEXTURE_2D, textureIndex[frame]);
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -65,6 +66,27 @@ void Sprite::AddFrame(int frame, ImageBuffer *image, Mask *mask, bool is2x)
 		masks[frame] = move(*mask);
 		delete mask;
 	}
+}
+
+
+
+// Free up all textures loaded for this sprite.
+void Sprite::Unload()
+{
+	if(!textures.empty())
+	{
+		glDeleteTextures(textures.size(), &textures.front());
+		textures.clear();
+	}
+	if(!textures2x.empty())
+	{
+		glDeleteTextures(textures2x.size(), &textures2x.front());
+		textures2x.clear();
+	}
+	
+	masks.clear();
+	width = 0.f;
+	height = 0.f;
 }
 
 

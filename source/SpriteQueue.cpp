@@ -74,6 +74,21 @@ void SpriteQueue::Add(const string &name, const string &path)
 
 
 
+// Unload the texture for the given sprite (to free up memory).
+void SpriteQueue::Unload(const string &name)
+{
+	{
+		lock_guard<mutex> lock(readMutex);
+		count2x[name] = 0;
+		count[name] = 0;
+	}
+	
+	unique_lock<mutex> lock(loadMutex);
+	toUnload.push(name);
+}
+
+
+
 // Find out our percent completion.
 double SpriteQueue::Progress() const
 {
@@ -159,6 +174,16 @@ void SpriteQueue::operator()()
 
 double SpriteQueue::DoLoad(unique_lock<mutex> &lock) const
 {
+	while(!toUnload.empty())
+	{
+		Sprite *sprite = SpriteSet::Modify(toUnload.front());
+		toUnload.pop();
+		
+		lock.unlock();
+		sprite->Unload();
+		lock.lock();
+	}
+	
 	for(int i = 0; !toLoad.empty() && i < 30; ++i)
 	{
 		Item item = toLoad.front();

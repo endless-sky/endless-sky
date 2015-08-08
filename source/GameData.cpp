@@ -51,6 +51,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -95,6 +96,7 @@ namespace {
 	
 	vector<string> sources;
 	multimap<const Sprite *, pair<string, string>> deferred;
+	multimap<const Sprite *, tuple<string, string, int>> preloaded;
 	
 	const Government *playerGovernment = nullptr;
 }
@@ -210,10 +212,40 @@ void GameData::Preload(const Sprite *sprite)
 {
 	auto range = deferred.equal_range(sprite);
 	if(range.first == range.second)
+	{
+		auto loadedRange = preloaded.equal_range(sprite);
+		if(loadedRange.first != loadedRange.second)
+		{
+			int priority = get<2>(loadedRange.first->second);
+			for(auto &it : preloaded)
+				if(get<2>(it.second) < priority)
+					++get<2>(it.second);
+			for( ; loadedRange.first != loadedRange.second; ++loadedRange.first)
+				get<2>(loadedRange.first->second) = 0;
+		}
 		return;
+	}
 	
+	// Remove the oldest thing in the priority queue if it has grown big enough.
+	vector<multimap<const Sprite *, tuple<string, string, int>>::iterator> toErase;
+	for(auto it = preloaded.begin(); it != preloaded.end(); ++it)
+		if(++get<2>(it->second) >= 20)
+			toErase.push_back(it);
+	while(!toErase.empty())
+	{
+		const auto &next = *toErase.back();
+		deferred.emplace(next.first, make_pair(get<0>(next.second), get<1>(next.second)));
+		spriteQueue.Unload(get<0>(toErase.back()->second));
+		preloaded.erase(toErase.back());
+		toErase.pop_back();
+	}
+	
+	// Load this new sprite.
 	for(auto it = range.first; it != range.second; ++it)
+	{
 		spriteQueue.Add(it->second.first, it->second.second);
+		preloaded.emplace(sprite, make_tuple(it->second.first, it->second.second, 0));
+	}
 	
 	deferred.erase(range.first, range.second);
 }
