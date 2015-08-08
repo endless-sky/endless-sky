@@ -289,7 +289,6 @@ bool LoadPanel::Click(int x, int y)
 				selectedPilot = it.first;
 				selectedFile = it.second.front();
 			}
-		sideHasFocus = true;
 	}
 	else if(x >= -110 && x < 110)
 	{
@@ -301,13 +300,24 @@ bool LoadPanel::Click(int x, int y)
 		for(const string &file : filesIt->second)
 			if(i++ == selected && selectedFile != file)
 				selectedFile = file;
-		sideHasFocus = false;
 	}
 	else
 		return false;
 	
 	if(!selectedFile.empty())
 		loadedInfo.Load(Files::Saves() + selectedFile);
+	
+	return true;
+}
+
+
+
+bool LoadPanel::Hover(int x, int y)
+{
+	if(x >= -470 && x < -250)
+		sideHasFocus = true;
+	else if(x >= -110 && x < 110)
+		sideHasFocus = false;
 	
 	return true;
 }
