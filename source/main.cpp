@@ -42,7 +42,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-int DoError(const string &message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
+int DoError(string message, SDL_Window *window = nullptr, SDL_GLContext context = nullptr);
 void Cleanup(SDL_Window *window, SDL_GLContext context);
 Conversation LoadConversation();
 
@@ -350,9 +350,18 @@ void PrintVersion()
 
 
 
-int DoError(const string &message, SDL_Window *window, SDL_GLContext context)
+int DoError(string message, SDL_Window *window, SDL_GLContext context)
 {
 	Cleanup(window, context);
+	
+	// Check if SDL has more details.
+	const char *sdlMessage = SDL_GetError();
+	if(sdlMessage)
+	{
+		message += " (SDL message: \"";
+		message += sdlMessage;
+		message += "\")";
+	}
 	
 	// Print the error message in the terminal.
 	cerr << message << endl;
