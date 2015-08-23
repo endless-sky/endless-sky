@@ -119,7 +119,7 @@ void Engine::Place()
 		Angle angle = Angle::Random(360.);
 		// All your ships that are in system with the player act as if they are
 		// leaving the planet along with you.
-		if(player.GetPlanet() && ship->GetSystem() == player.GetSystem())
+		if(player.GetPlanet() && ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
 			ship->SetPlanet(player.GetPlanet());
 			for(const StellarObject &object : ship->GetSystem()->Objects())
@@ -127,6 +127,13 @@ void Engine::Place()
 				{
 					pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
 				}
+		}
+		else
+		{
+			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+			for(const StellarObject &object : ship->GetSystem()->Objects())
+				if(object.GetPlanet() == player.GetPlanet())
+					pos += object.Position();
 		}
 		ship->Place(pos, angle.Unit(), angle);
 	}
@@ -141,7 +148,7 @@ void Engine::Place()
 			for(const shared_ptr<Ship> &ship : npc.Ships())
 			{
 				// Skip ships that have been destroyed.
-				if(ship->IsDestroyed())
+				if(ship->IsDestroyed() || ship->IsDisabled())
 					continue;
 				
 				if(ship->DroneBaysFree())
@@ -158,7 +165,8 @@ void Engine::Place()
 				if(ship->IsDestroyed())
 					continue;
 				
-				ship->Recharge();
+				if(!ship->IsDisabled())
+					ship->Recharge();
 				
 				if(ship->CanBeCarried())
 				{
@@ -197,7 +205,7 @@ void Engine::Place()
 				Angle angle = Angle::Random(360.);
 				// All your ships that are in system with the player act as if they are
 				// leaving the planet along with you.
-				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem()
+				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem() && !ship->IsDisabled()
 						&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer())
 						&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
 				{

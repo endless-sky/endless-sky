@@ -705,14 +705,12 @@ void PlayerInfo::Land(UI *ui)
 	if(!system || !planet)
 		return;
 	
-	// Remove any ships that have been destroyed. Recharge the others if this is
-	// a planet with a spaceport.
+	// Remove any ships that have been destroyed or captured.
 	map<string, int> lostCargo;
 	vector<shared_ptr<Ship>>::iterator it = ships.begin();
 	while(it != ships.end())
 	{
-		if(!*it || (*it)->IsDestroyed() || (*it)->IsDisabled()
-				|| !(*it)->GetGovernment()->IsPlayer())
+		if(!*it || (*it)->IsDestroyed() || !(*it)->GetGovernment()->IsPlayer())
 		{
 			// If any of your ships are destroyed, your cargo "cost basis" should
 			// be adjusted based on what you lost.
@@ -728,13 +726,14 @@ void PlayerInfo::Land(UI *ui)
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system)
+		if(ship->GetSystem() == system && !ship->IsDisabled())
 			ship->UnloadFighters();
 	
+	// Recharge any ships that are landed with you on the planet.
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system)
+		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			if(canRecharge)
 				ship->Recharge();
@@ -828,7 +827,7 @@ void PlayerInfo::TakeOff()
 	
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && ship->GetSystem() == system)
+		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			if(canRecharge)
 				ship->Recharge();
@@ -865,7 +864,7 @@ void PlayerInfo::TakeOff()
 	vector<shared_ptr<Ship>> drones;
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(ship->IsParked() || ship->GetSystem() != system)
+		if(ship->IsParked() || ship->GetSystem() != system || ship->IsDisabled())
 			continue;
 		
 		bool fit = false;
@@ -992,7 +991,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int size = 0;
 	int bunks = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsParked())
+		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
 		{
 			size += ship->Attributes().Get("cargo space");
 			bunks += ship->Attributes().Get("bunks") - ship->Crew();
