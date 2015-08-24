@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.8.0
+version 0.8.1
 
 Programming
   Michael Zahniser
@@ -38,6 +38,7 @@ Beta Testers
   Russell Zahniser
   John Harvey
   Sean Fahey
+  Mauricio Gomes
 
 This game is open source.
 To contribute to story writing,
