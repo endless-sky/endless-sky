@@ -1,0 +1,26 @@
+Version 0.8.1:
+  * Bug fixes:
+    * Fixed a bug that made it impossible to select a secondary weapon that is your very first outfit.
+    * Made the scroll wheel affect the column the mouse is hovering over in the load / save panel.
+    * Fixed the Windows random number generator to not produce the same fleets every time you visit a given system.
+    * Fixed a bug where paying a bribe could result in negative credits.
+    * Additive blending now works correctly for @2x (high resolution) sprites.
+  * Changes to game mechanics:
+    * Disabled escorts are no longer lost if you land; instead they just remain where they are, disabled.
+    * Missions that can't be completed yet due to an NPC requirement or waypoint are now "dimmed out."
+    * Added the ability to mark missions as "minor" so they will not interrupt story line missions.
+    * Modified the AI to leave disabled ships alone (unless it plunders them).
+  * Improved graphics:
+    * Replaced some landscape images with higher-resolution ones.
+    * Replaced most of the space staion landscape images with NASA images.
+    * Modified some projectile sprites to be more detailed.
+    * Switched the colors of the mission pointers to be easier for color blind people to distinguish.
+    * Toned down the brightness of the galaxy backdrop image in the map.
+  * Development:
+    * Added a debug mode (-d / --debug).
+    * Made the slow-motion key (caps lock) and pause key (backtick) only work in debug mode.
+  * Optimization:
+    * Added a limit of 20 landscapes loaded at once, to reduce memory usage.
+
+Version 0.8.0:
+  * First stable release.
