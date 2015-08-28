@@ -160,8 +160,8 @@ ship "Arrow"
 
 
 
-ship Bactrian
-	sprite ship/bactrian
+ship "Bactrian"
+	sprite "ship/bactrian"
 	attributes
 		category "Heavy Warship"
 		"cost" 12600000
@@ -644,7 +644,7 @@ ship "Combat Drone"
 		Navy
 	attributes
 		category "Drone"
-		"cost" "83000"
+		"cost" 83000
 		"hull" 500
 		"mass" 20
 		"drag" .59
@@ -1478,7 +1478,7 @@ ship "Lance"
 		"required crew" 1
 		"bunks" 1
 		"mass" 30
-		"drag" 0.7
+		"drag" .7
 		"heat dissipation" .8
 		"outfit space" 100
 		"weapon capacity" 20
@@ -1865,8 +1865,8 @@ ship "Rainmaker"
 
 
 
-ship Raven
-	sprite ship/raven
+ship "Raven"
+	sprite "ship/raven"
 	attributes
 		category "Light Warship"
 		"cost" 2000000
@@ -1876,7 +1876,7 @@ ship Raven
 		"bunks" 13
 		"mass" 130
 		"drag" 3.7
-		"heat dissipation" 0.8
+		"heat dissipation" .8
 		"fuel capacity" 500
 		"cargo space" 30
 		"outfit space" 280
@@ -2193,7 +2193,7 @@ ship "Surveillance Drone"
 		Navy
 	attributes
 		category "Drone"
-		"cost" "50000"
+		"cost" 50000
 		"hull" 300
 		"mass" 15
 		"drag" .53
