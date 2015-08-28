@@ -495,7 +495,7 @@ int64_t PlayerInfo::Salaries() const
 	// A ship that is "parked" remains on a planet and requires no salaries.
 	int64_t crew = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked())
+		if(!ship->IsParked() && !ship->IsDestroyed())
 			crew += ship->Crew();
 	if(!crew)
 		return 0;
