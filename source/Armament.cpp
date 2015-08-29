@@ -116,6 +116,9 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, std::list
 	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
 	
 	shared_ptr<const Ship> target = ship.GetTargetShip();
+	// If you are boarding your target, do not fire on it.
+	if(ship.IsBoarding() || ship.Commands().Has(Command::BOARD))
+		target.reset();
 	
 	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
 		aim += angle;

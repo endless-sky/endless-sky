@@ -31,6 +31,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 	targetShip(parent.GetTargetShip()), government(parent.GetGovernment()),
 	lifetime(weapon->Lifetime())
 {
+	// If you are boarding your target, do not fire on it.
+	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
+		targetShip.reset();
+	
 	cachedTarget = targetShip.lock().get();
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
