@@ -128,7 +128,7 @@ void Engine::Place()
 					pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
 				}
 		}
-		else
+		else if(ship->GetSystem())
 		{
 			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
 			for(const StellarObject &object : ship->GetSystem()->Objects())
@@ -214,7 +214,7 @@ void Engine::Place()
 						if(object.GetPlanet() == player.GetPlanet())
 							pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
 				}
-				else
+				else if(ship->GetSystem())
 				{
 					pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
 					for(const StellarObject &object : ship->GetSystem()->Objects())
