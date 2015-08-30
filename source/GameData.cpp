@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mission.h"
 #include "Outfit.h"
 #include "OutlineShader.h"
+#include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PointerShader.h"
@@ -70,6 +71,7 @@ namespace {
 	Set<Interface> interfaces;
 	Set<Mission> missions;
 	Set<Outfit> outfits;
+	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
 	Set<Ship> ships;
@@ -156,6 +158,8 @@ void GameData::BeginLoad(const char * const *argv)
 	// And, update the ships with the outfits we've now finished loading.
 	for(auto &it : ships)
 		it.second.FinishLoading();
+	for(const auto &it : persons)
+		it.second.GetShip()->FinishLoading();
 	
 	// Store the current state, to revert back to later.
 	defaultFleets = fleets;
@@ -274,6 +278,8 @@ void GameData::Revert()
 		it.second = *defaultShipSales.Get(it.first);
 	for(auto &it : outfitSales)
 		it.second = *defaultOutfitSales.Get(it.first);
+	for(auto &it : persons)
+		it.second.GetShip()->Restore();
 	
 	politics.Reset();
 }
@@ -379,6 +385,13 @@ const Set<Mission> &GameData::Missions()
 const Set<Outfit> &GameData::Outfits()
 {
 	return outfits;
+}
+
+
+
+const Set<Person> &GameData::Persons()
+{
+	return persons;
 }
 
 
@@ -502,6 +515,8 @@ void GameData::LoadFile(const string &path)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
+		else if(key == "person" && node.Size() >= 2)
+			persons.Get(node.Token(1))->Load(node);
 		else if(key == "phrase" && node.Size() >= 2)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && node.Size() >= 2)

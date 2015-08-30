@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -501,6 +502,20 @@ void Ship::SetPersonality(const Personality &other)
 		hull = .5 * MinimumHull();
 		isDisabled = true;
 	}
+}
+
+
+
+void Ship::SetHail(const Phrase &phrase)
+{
+	hail = &phrase;
+}
+
+
+
+string Ship::GetHail() const
+{
+	return hail ? hail->Get() : government ? government->GetHail() : "";
 }
 
 
@@ -1406,6 +1421,14 @@ Point Ship::Unit() const
 void Ship::Destroy()
 {
 	hull = -1.;
+}
+
+
+
+void Ship::Restore()
+{
+	hull = 0;
+	Recharge(true);
 }
 
 

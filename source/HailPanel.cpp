@@ -76,8 +76,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			message += "patch you up?";
 	}
 	
-	if(message.empty() && ship->GetGovernment())
-		message = ship->GetGovernment()->GetHail();
+	if(message.empty())
+		message = ship->GetHail();
 }
 
 

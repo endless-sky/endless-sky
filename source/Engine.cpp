@@ -24,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Interface.h"
 #include "Mask.h"
 #include "Messages.h"
+#include "Person.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -1057,6 +1058,42 @@ void Engine::CalculateStep()
 			
 			fleet.Get()->Enter(*player.GetSystem(), ships);
 		}
+	if(!Random::Int(36000))
+	{
+		// Loop through all persons once to see if there are any who can enter
+		// this system.
+		int sum = 0;
+		for(const auto &it : GameData::Persons())
+			sum += it.second.Frequency(player.GetSystem());
+		
+		if(sum)
+		{
+			// Adjustment factor: special persons will appear once every ten
+			// minutes, but much less frequently if the game only specifies a
+			// few of them. This way, they will become more common as I add
+			// more, without needing to change the 10-minute constant above.
+			sum = Random::Int(sum + 1000);
+			for(const auto &it : GameData::Persons())
+			{
+				const Person &person = it.second;
+				sum -= person.Frequency(player.GetSystem());
+				if(sum < 0)
+				{
+					shared_ptr<Ship> ship = person.GetShip();
+					ship->Recharge(true);
+					ship->SetName(it.first);
+					ship->SetGovernment(person.GetGovernment());
+					ship->SetPersonality(person.GetPersonality());
+					ship->SetHail(person.GetHail());
+					Fleet::Enter(*player.GetSystem(), *ship);
+					
+					ships.push_front(ship);
+					
+					break;
+				}
+			}
+		}
+	}
 	
 	// Occasionally have some ship hail you.
 	if(!Random::Int(600) && !ships.empty())
@@ -1071,7 +1108,7 @@ void Engine::CalculateStep()
 			}
 		if(source->GetGovernment() && !source->GetGovernment()->IsPlayer() && !source->IsDisabled())
 		{
-			string message = source->GetGovernment()->GetHail();
+			string message = source->GetHail();
 			if(!message.empty() && source->GetSystem() == player.GetSystem())
 				Messages::Add(source->GetGovernment()->GetName() + " ship \""
 					+ source->Name() + "\": " + message);

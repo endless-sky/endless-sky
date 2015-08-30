@@ -180,6 +180,8 @@
 		<Unit filename="source/OutlineShader.h" />
 		<Unit filename="source/Panel.cpp" />
 		<Unit filename="source/Panel.h" />
+		<Unit filename="source/Person.cpp" />
+		<Unit filename="source/Person.h" />
 		<Unit filename="source/Personality.cpp" />
 		<Unit filename="source/Personality.h" />
 		<Unit filename="source/Phrase.cpp" />

@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Mission.h"
 #include "Outfit.h"
+#include "Person.h"
 #include "Planet.h"
 #include "Politics.h"
 #include "Random.h"
@@ -121,6 +122,8 @@ void PlayerInfo::Load(const string &path)
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
+			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "basis")
@@ -276,6 +279,13 @@ void PlayerInfo::ApplyChanges()
 	if(planet && hasFullClearance)
 		planet->Bribe();
 	hasFullClearance = false;
+	
+	// Check if any special persons have been destroyed.
+	while(!destroyedPersons.empty())
+	{
+		destroyedPersons.back()->GetShip()->Destroy();
+		destroyedPersons.pop_back();
+	}
 }
 
 
@@ -821,6 +831,11 @@ void PlayerInfo::TakeOff()
 	availableMissions.clear();
 	doneMissions.clear();
 	soldOutfits.clear();
+	
+	// Special persons who appeared last time you left the planet, can appear
+	// again.
+	for(const auto &it : GameData::Persons())
+		it.second.GetShip()->SetSystem(nullptr);
 	
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
@@ -1567,6 +1582,10 @@ void PlayerInfo::Save(const string &path) const
 		}	
 		out.EndChild();
 	}
+	
+	for(const auto &it : GameData::Persons())
+		if(it.second.GetShip()->IsDestroyed())
+			out.Write("destroyed", it.first);
 	
 	// Save a list of systems the player has visited.
 	for(const System *system : visited)

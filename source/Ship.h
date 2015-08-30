@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class Phrase;
 class Planet;
 class Projectile;
 class StellarObject;
@@ -89,6 +90,10 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	// Get a random hail message, or set the object used to generate them. If no
+	// object is given the government's default will be used.
+	void SetHail(const Phrase &phrase);
+	std::string GetHail() const;
 	
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -152,8 +157,9 @@ public:
 	// Get the facing unit vector times the zoom factor.
 	Point Unit() const;
 	
-	// Mark a ship as destroyed.
+	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
+	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
@@ -322,6 +328,7 @@ private:
 	Command commands;
 	
 	Personality personality;
+	const Phrase *hail = nullptr;
 	
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;

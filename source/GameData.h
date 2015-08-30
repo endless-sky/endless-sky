@@ -32,6 +32,7 @@ class Government;
 class Interface;
 class Mission;
 class Outfit;
+class Person;
 class Phrase;
 class Planet;
 class Politics;
@@ -75,6 +76,7 @@ public:
 	static const Set<Interface> &Interfaces();
 	static const Set<Mission> &Missions();
 	static const Set<Outfit> &Outfits();
+	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Ship> &Ships();

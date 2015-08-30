@@ -106,6 +106,7 @@ government "Pirate"
 		"Merchant" -.1
 		"Syndicate" -.1
 		"Korath" -.1
+		"Author" -.1
 	"bribe" .05
 	"fine" 0
 	"hostile hail" "hostile pirate"
@@ -181,3 +182,7 @@ government "Pug"
 		"Pirate" -.1
 	"friendly hail" "friendly pug"
 	"hostile hail" "hostile pug"
+
+government "Author"
+	"player reputation" 1
+	"bribe" 0
