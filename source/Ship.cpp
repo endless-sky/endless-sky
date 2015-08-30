@@ -187,7 +187,7 @@ void Ship::FinishLoading()
 			{
 				while(nextGun != end && nextGun->IsTurret())
 					++nextGun;
-				merged.AddGunPort(bit->GetPoint(),
+				merged.AddGunPort(bit->GetPoint() * 2.,
 					(nextGun == end) ? nullptr : nextGun->GetOutfit());
 				if(nextGun != end)
 					++nextGun;
@@ -196,7 +196,7 @@ void Ship::FinishLoading()
 			{
 				while(nextTurret != end && !nextTurret->IsTurret())
 					++nextTurret;
-				merged.AddTurret(bit->GetPoint(),
+				merged.AddTurret(bit->GetPoint() * 2.,
 					(nextTurret == end) ? nullptr : nextTurret->GetOutfit());
 				if(nextTurret != end)
 					++nextTurret;
