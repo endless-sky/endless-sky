@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define AUDIO_H_
 
 #include <string>
+#include <vector>
 
 class Point;
 class Sound;
@@ -32,7 +33,7 @@ class Sound;
 class Audio {
 public:
 	// Begin loading sounds (in a separate thread).
-	static void Init();
+	static void Init(const std::vector<std::string> &sources);
 	
 	// Check the progress of loading sounds.
 	static double Progress();

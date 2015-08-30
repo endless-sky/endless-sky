@@ -92,7 +92,7 @@ namespace {
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init()
+void Audio::Init(const vector<string> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -107,7 +107,8 @@ void Audio::Init()
 	
 	mainThreadID = this_thread::get_id();
 	
-	Files::RecursiveList(Files::Sounds(), &loadQueue);
+	for(const string &source : sources)
+		Files::RecursiveList(source + "sounds/", &loadQueue);
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
 }
@@ -292,7 +293,8 @@ void Audio::Quit()
 	}
 	sounds.clear();
 	
-	loadThread.join();
+	if(loadThread.joinable())
+		loadThread.join();
 	
 	alcMakeContextCurrent(nullptr);
 	alcDestroyContext(context);

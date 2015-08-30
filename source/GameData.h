@@ -60,6 +60,9 @@ public:
 	static void Preload(const Sprite *sprite);
 	static void FinishLoading();
 	
+	// Get the list of resource sources (i.e. plugin folders).
+	static const std::vector<std::string> &Sources();
+	
 	// Revert any changes that have been made to the universe.
 	static void Revert();
 	static void SetDate(const Date &date);

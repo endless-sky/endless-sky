@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 		
 		// Begin loading the game data.
 		GameData::BeginLoad(argv);
-		Audio::Init();
+		Audio::Init(GameData::Sources());
 		
 		player.LoadRecent();
 		player.ApplyChanges();

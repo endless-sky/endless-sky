@@ -263,6 +263,14 @@ void GameData::FinishLoading()
 
 
 
+// Get the list of resource sources (i.e. plugin folders).
+const vector<string> &GameData::Sources()
+{
+	return sources;
+}
+
+
+
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
