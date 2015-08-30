@@ -440,7 +440,11 @@ bool OutfitterPanel::CanSell() const
 void OutfitterPanel::Sell()
 {
 	if(player.Cargo().Get(selectedOutfit))
+	{
 		player.Cargo().Transfer(selectedOutfit, 1);
+		player.Accounts().AddCredits(selectedOutfit->Cost());
+		++available[selectedOutfit];
+	}
 	else
 	{
 		int most = 0;
