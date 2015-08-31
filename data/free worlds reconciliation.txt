@@ -1461,10 +1461,10 @@ mission "FW Pug 3C"
 	npc accompany save
 		personality escort
 		government "Republic"
-		ship "Cruiser (Mark II)" "F.S. Everest"
-		ship "Cruiser (Mark II)" "F.S. Denali"
-		ship "Carrier (Mark II)" "F.S. Vesuvius"
-		ship "Carrier (Mark II)" "F.S. Haleakala"
+		ship "Cruiser (Mark II)" "R.N.S. Everest"
+		ship "Cruiser (Mark II)" "R.N.S. Denali"
+		ship "Carrier (Mark II)" "R.N.S. Vesuvius"
+		ship "Carrier (Mark II)" "R.N.S. Haleakala"
 	
 	on visit
 		dialog "You have reached <planet>, but part of your fleet is not here yet. Better depart and wait for them to arrive in this star system."
@@ -1488,10 +1488,10 @@ mission "FW Pug 4: Escorts"
 	npc kill
 		personality escort heroic disables
 		government "Republic"
-		ship "Cruiser (Jump)" "F.S. Everest"
-		ship "Cruiser (Jump)" "F.S. Denali"
-		ship "Carrier (Jump)" "F.S. Vesuvius"
-		ship "Carrier (Jump)" "F.S. Haleakala"
+		ship "Cruiser (Jump)" "R.N.S. Everest"
+		ship "Cruiser (Jump)" "R.N.S. Denali"
+		ship "Carrier (Jump)" "R.N.S. Vesuvius"
+		ship "Carrier (Jump)" "R.N.S. Haleakala"
 		ship "Dagger" "Red One"
 		ship "Dagger" "Red Two"
 		ship "Dagger" "Red Three"
