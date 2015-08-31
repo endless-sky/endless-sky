@@ -246,13 +246,18 @@ int main(int argc, char *argv[])
 				{
 					menuPanels.Quit();
 				}
-				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED)
+				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				{
-					Screen::SetRaw(event.window.data1 & ~1, event.window.data2 & ~1);
-					SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
-					int width, height;
-					SDL_GL_GetDrawableSize(window, &width, &height);
-					glViewport(0, 0, width, height);
+					int width = event.window.data1 & ~1;
+					int height = event.window.data2 & ~1;
+					if(width != Screen::RawWidth() || height != Screen::RawHeight())
+					{
+						Screen::SetRaw(width, height);
+						if((event.window.data1 | event.window.data2) & 1)
+							SDL_SetWindowSize(window, Screen::RawWidth(), Screen::RawHeight());
+						SDL_GL_GetDrawableSize(window, &width, &height);
+						glViewport(0, 0, width, height);
+					}
 				}
 				else if(activeUI.Handle(event))
 				{
