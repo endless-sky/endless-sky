@@ -9,10 +9,9 @@
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 person "Michael Zahniser"
-	government "Militia"
+	government "Author"
 	personality
 		plunders
-		heroic
 	phrase
 		word
 			"I hope you're enjoying the game!"
@@ -76,3 +75,55 @@ person "Michael Zahniser"
 		explode "big explosion" 120
 		explode "huge explosion" 60
 
+
+
+person "Cap'n Pester"
+	government "Parrot"
+	frequency 300
+	personality
+		surveillance
+	phrase
+		word
+			"This game "
+			"Endless Sky "
+		word
+			"is open source. You can "
+		word
+			"help out "
+			"improve the game "
+			"get involved "
+			"help make it a better game "
+			"assist us "
+			"make your mark on the universe "
+			"give back to the community "
+		word
+			"by contributing "
+		word
+			"bug reports."
+			"typo fixes."
+			"constructive feedback."
+			"ideas for improvements."
+			"landscape photos."
+			"artwork."
+			"new ships of your own design."
+			"plugins."
+			"new special missions."
+			"new weapons or other outfits."
+			"improved planet descriptions."
+			"more varied hail messages."
+	ship "Quarg Wardragon" "Quarg Wardragon"
+		"never disabled"
+		outfits
+			"Quarg Skylance" 2
+			"Quarg Anti-Missile" 2
+		
+			"Antimatter Core"
+			"Nanotech Battery"
+			"Quantum Shield Generator"
+			"Intrusion Countermeasures" 160
+			"Cargo Scanner"
+			"Outfit Scanner"
+		
+			"Medium Graviton Thruster"
+			"Medium Graviton Steering"
+			"Scram Drive"
