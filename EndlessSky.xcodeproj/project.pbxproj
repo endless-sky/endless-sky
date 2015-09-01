@@ -13,6 +13,7 @@
 		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
+		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
 		A96863A11AE6FD0E004FE1FE /* AI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CF1AE6FD0A004FE1FE /* AI.cpp */; };
 		A96863A21AE6FD0E004FE1FE /* Angle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D11AE6FD0A004FE1FE /* Angle.cpp */; };
@@ -150,6 +151,8 @@
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
+		A966A5A91B964E6300DFF69C /* Person.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Person.cpp; path = source/Person.cpp; sourceTree = "<group>"; };
+		A966A5AA1B964E6300DFF69C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = source/Person.h; sourceTree = "<group>"; };
 		A96862CD1AE6FD0A004FE1FE /* Account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Account.cpp; path = source/Account.cpp; sourceTree = "<group>"; };
 		A96862CE1AE6FD0A004FE1FE /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account.h; path = source/Account.h; sourceTree = "<group>"; };
 		A96862CF1AE6FD0A004FE1FE /* AI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AI.cpp; path = source/AI.cpp; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				A968634D1AE6FD0C004FE1FE /* OutlineShader.h */,
 				A968634E1AE6FD0C004FE1FE /* Panel.cpp */,
 				A968634F1AE6FD0C004FE1FE /* Panel.h */,
+				A966A5A91B964E6300DFF69C /* Person.cpp */,
+				A966A5AA1B964E6300DFF69C /* Person.h */,
 				A96863501AE6FD0C004FE1FE /* Personality.cpp */,
 				A96863511AE6FD0C004FE1FE /* Personality.h */,
 				A96863521AE6FD0C004FE1FE /* Phrase.cpp */,
@@ -780,6 +785,7 @@
 				A96863B31AE6FD0E004FE1FE /* DataWriter.cpp in Sources */,
 				A96863A61AE6FD0E004FE1FE /* Audio.cpp in Sources */,
 				A96863A21AE6FD0E004FE1FE /* Angle.cpp in Sources */,
+				A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */,
 				A96863FE1AE6FD0E004FE1FE /* StartConditions.cpp in Sources */,
 				A96863A71AE6FD0E004FE1FE /* BankPanel.cpp in Sources */,
 				A96863DA1AE6FD0E004FE1FE /* Mortgage.cpp in Sources */,
