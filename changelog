@@ -1,3 +1,15 @@
+Version 0.8.2:
+  * Bug fixes:
+    * Fixed the crash when you depart a planet with a fighter as an escort or NPC.
+    * Fixed the bug of paying crew salaries for ships that have been destroyed.
+    * Added safeguards against the AI firing on a ship it is boarding to assist it.
+    * Fixed improper hardpoint placement in ship variants.
+    * Fixed sounds from plugins not being loaded.
+    * Fixed the bug where selling plundered outfits in the outfitter pays you nothing.
+    * Possibly fixed the window maximizing bug on Windows.
+  * Changes to game mechanics:
+    * Added support for "persons" - unique ships with custom hail messages, e.g Cap'n Pester.
+
 Version 0.8.1:
   * Bug fixes:
     * Fixed a bug that made it impossible to select a secondary weapon that is your very first outfit.
@@ -12,7 +24,7 @@ Version 0.8.1:
     * Modified the AI to leave disabled ships alone (unless it plunders them).
   * Improved graphics:
     * Replaced some landscape images with higher-resolution ones.
-    * Replaced most of the space staion landscape images with NASA images.
+    * Replaced most of the space station landscape images with NASA images.
     * Modified some projectile sprites to be more detailed.
     * Switched the colors of the mission pointers to be easier for color blind people to distinguish.
     * Toned down the brightness of the galaxy backdrop image in the map.
