@@ -214,21 +214,20 @@ double GameData::Progress()
 // done with all landscapes to speed up the program's startup.
 void GameData::Preload(const Sprite *sprite)
 {
+	auto loadedRange = preloaded.equal_range(sprite);
+	if(loadedRange.first != loadedRange.second)
+	{
+		int priority = get<2>(loadedRange.first->second);
+		for(auto &it : preloaded)
+			if(get<2>(it.second) < priority)
+				++get<2>(it.second);
+		for( ; loadedRange.first != loadedRange.second; ++loadedRange.first)
+			get<2>(loadedRange.first->second) = 0;
+	}
+	
 	auto range = deferred.equal_range(sprite);
 	if(range.first == range.second)
-	{
-		auto loadedRange = preloaded.equal_range(sprite);
-		if(loadedRange.first != loadedRange.second)
-		{
-			int priority = get<2>(loadedRange.first->second);
-			for(auto &it : preloaded)
-				if(get<2>(it.second) < priority)
-					++get<2>(it.second);
-			for( ; loadedRange.first != loadedRange.second; ++loadedRange.first)
-				get<2>(loadedRange.first->second) = 0;
-		}
 		return;
-	}
 	
 	// Remove the oldest thing in the priority queue if it has grown big enough.
 	vector<multimap<const Sprite *, tuple<string, string, int>>::iterator> toErase;
