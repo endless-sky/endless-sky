@@ -781,12 +781,15 @@ void PlayerInfo::Land(UI *ui)
 	for(const Mission &it : missions)
 		active.insert(&it);
 	
+	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
 		if(active.find(it.first) == active.end())
-			cargo.RemoveMissionCargo(it.first);
+			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
 		if(active.find(it.first) == active.end())
-			cargo.RemoveMissionCargo(it.first);
+			missionsToRemove.push_back(it.first);
+	for(const Mission *mission : missionsToRemove)
+		cargo.RemoveMissionCargo(mission);
 	
 	// Check if the player is doing anything illegal.
 	const Government *gov = GetSystem()->GetGovernment();
@@ -941,20 +944,24 @@ void PlayerInfo::TakeOff()
 	// By now, all cargo should have been divvied up among your ships. So, any
 	// mission cargo or passengers left behind cannot be carried, and those
 	// missions have failed.
+	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
 		if(it.second)
 		{
 			Messages::Add("Mission \"" + it.first->Name()
 				+ "\" failed because you do not have space for the cargo.");
-			RemoveMission(Mission::FAIL, *it.first, nullptr);
+			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
 			Messages::Add("Mission \"" + it.first->Name()
 				+ "\" failed because you do not have enough passenger bunks free.");
-			RemoveMission(Mission::FAIL, *it.first, nullptr);
+			missionsToRemove.push_back(it.first);
+			
 		}
+	for(const Mission *mission : missionsToRemove)
+		RemoveMission(Mission::FAIL, *mission, nullptr);
 	
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
