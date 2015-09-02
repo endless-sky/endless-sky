@@ -1896,6 +1896,8 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		
 		if(outfit->Get("cargo space"))
 			cargo.SetSize(attributes.Get("cargo space"));
+		if(outfit->Get("hull"))
+			hull += outfit->Get("hull") * count;
 	}
 }
 

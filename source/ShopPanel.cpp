@@ -103,14 +103,18 @@ void ShopPanel::DrawSidebar() const
 		Screen::Right() - SIDE_WIDTH / 2 - 93,
 		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
 	
-	if(player.Ships().size() > 1)
+	int shipsHere = 0;
+	for(shared_ptr<Ship> ship : player.Ships())
+		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
+	
+	if(shipsHere > 1)
 	{
 		static const Color selected(.8, 1.);
 		static const Color unselected(.4, 1.);
 		for(shared_ptr<Ship> ship : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
-			if(ship->GetSystem() != player.GetSystem())
+			if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 				continue;
 		
 			if(point.X() > Screen::Right())
