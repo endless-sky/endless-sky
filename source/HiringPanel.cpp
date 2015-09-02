@@ -96,12 +96,12 @@ void HiringPanel::Draw() const
 	if(modifier > 1)
 		info.SetString("modifier", "x " + to_string(modifier));
 	
-	maxFire = flagshipExtra;
+	maxFire = max(flagshipExtra, 0);
 	maxHire = min(flagshipUnused, fleetUnused - passengers);
 	
 	if(maxHire)
 		info.SetCondition("can hire");
-	if(flagshipExtra)
+	if(maxFire)
 		info.SetCondition("can fire");
 	
 	interface->Draw(info);
