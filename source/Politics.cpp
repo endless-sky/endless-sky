@@ -176,7 +176,7 @@ void Politics::BribePlanet(const Planet *planet, bool fullAccess)
 
 
 // Check to see if the player has done anything they should be fined for.
-string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan, double security)
+string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, double security)
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.

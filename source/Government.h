@@ -87,7 +87,7 @@ public:
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(const PlayerInfo &player, int scan = 0, double security = 1.) const;
+	std::string Fine(PlayerInfo &player, int scan = 0, double security = 1.) const;
 	
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
