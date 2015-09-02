@@ -232,6 +232,7 @@ string Politics::Fine(const PlayerInfo &player, const Government *gov, int scan,
 		maxFine = maxFine * gov->GetFineFraction() + .5;
 		reason = "The " + gov->GetName() + " fines you "
 			+ Format::Number(maxFine) + " credits for " + reason;
+		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
 	return reason;
