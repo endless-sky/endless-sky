@@ -552,14 +552,16 @@ mission "Southern Pirate Attack"
 	source
 		attributes frontier
 		attributes rim south "dirt belt"
-	npc kill
+	npc evade
 		personality staying
 		government Pirate
 		fleet "Small Southern Pirates"
 		fleet "Large Southern Pirates"
+		fleet "Large Southern Pirates"
 	npc
 		personality heroic
 		government Militia
+		fleet "Small Militia"
 		fleet "Small Militia"
 	on offer
 		conversation
@@ -584,14 +586,16 @@ mission "Northern Pirate Attack"
 	source
 		attributes frontier
 		attributes north paradise deep
-	npc kill
+	npc evade
 		personality staying
 		government Pirate
 		fleet "Small Northern Pirates"
 		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
 	npc
 		personality heroic
 		government Republic
+		fleet "Small Republic"
 		fleet "Small Republic"
 	on offer
 		conversation
@@ -616,14 +620,16 @@ mission "Core Pirate Attack"
 	source
 		attributes frontier
 		attributes core "near earth"
-	npc kill
+	npc evade
 		personality staying
 		government Pirate
 		fleet "Small Core Pirates"
 		fleet "Large Core Pirates"
+		fleet "Large Core Pirates"
 	npc
 		personality heroic
 		government Syndicate
+		fleet "Small Syndicate"
 		fleet "Small Syndicate"
 	on offer
 		conversation

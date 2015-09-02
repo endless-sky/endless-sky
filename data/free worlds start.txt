@@ -1389,12 +1389,12 @@ mission "FW Pirates 4"
 	to offer
 		has "FW Pirates 3: done"
 	
-	npc kill
+	npc evade
 		personality plunders
 		government Pirate
 		ship "Leviathan" "Dire Rain"
 	
-	npc kill
+	npc evade
 		personality plunders entering
 		government Pirate
 		ship "Leviathan (Heavy)" "Red Dawn"
