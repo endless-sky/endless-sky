@@ -1570,6 +1570,9 @@ int Ship::JumpsRemaining() const
 
 double Ship::JumpFuel() const
 {
+	int type = HyperspaceType();
+	if(type)
+		return type;
 	return attributes.Get("jump drive") ? 200. : attributes.Get("scram drive") ? 150. : 100.;
 }
 
