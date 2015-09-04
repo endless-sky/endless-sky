@@ -586,18 +586,12 @@ bool Ship::Move(list<Effect> &effects)
 		isOverheated = false;
 	
 	double maxShields = attributes.Get("shields");
-	shields = min(shields, attributes.Get("shields"));
-	hull = min(hull, attributes.Get("hull"));
+	shields = min(shields, maxShields);
+	double maxHull = attributes.Get("hull");
+	hull = min(hull, maxHull);
 	isDisabled = isOverheated || IsDisabled();
 	
 	// Update ship supply levels.
-	if(!isOverheated)
-	{
-		// Note: If the ship is disabled because of low hull percent, _and_ it
-		// has the capability of repairing its hull, it can repair enough to
-		// cease to be disabled.
-		hull += attributes.Get("hull repair rate");
-	}
 	if(!isDisabled)
 	{
 		// If you have a ramscoop, you recharge enough fuel to make one jump in
@@ -611,6 +605,12 @@ bool Ship::Move(list<Effect> &effects)
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
+		
+		// Hull repair.
+		double oldHull = hull;
+		hull = min(hull + attributes.Get("hull repair rate"), maxHull);
+		static const double HULL_EXCHANGE_RATE = 1.;
+		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
 		
 		// Recharge shields, but only up to the max. If there is extra shield
 		// energy, use it to recharge fighters and drones.
