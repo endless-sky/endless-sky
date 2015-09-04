@@ -169,14 +169,14 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 820
-		"drag" 14.8
+		"mass" 940
+		"drag" 16.1
 		"heat dissipation" .4
 		"fuel capacity" 700
 		"cargo space" 530
-		"outfit space" 800
+		"outfit space" 740
 		"weapon capacity" 330
-		"engine capacity" 240
+		"engine capacity" 180
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -195,7 +195,7 @@ ship "Bactrian"
 		"D94-YV Shield Generator"
 		"Ramscoop"
 		
-		"X5700 Ion Thruster"
+		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Hyperdrive"
 		
