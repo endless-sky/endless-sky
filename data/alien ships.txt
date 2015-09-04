@@ -25,6 +25,7 @@ ship "Quarg Skylark"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
+		"energy generation" 80
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
@@ -33,7 +34,6 @@ ship "Quarg Skylark"
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
-		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 120
@@ -70,6 +70,7 @@ ship "Quarg Wardragon"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
+		"energy generation" 80
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
@@ -78,7 +79,6 @@ ship "Quarg Wardragon"
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
-		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 160
