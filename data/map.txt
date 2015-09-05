@@ -12942,7 +12942,10 @@ planet Ada
 	"required reputation" 2
 	bribe 0.1
 	security 0.9
-
+	tribute 4200
+		threshold 8000
+		fleet "Large Republic" 16
+	
 planet Albatross
 	attributes pirate
 	landscape land/snow6
@@ -12956,6 +12959,9 @@ planet Albatross
 	outfitter "Pirate Outfits"
 	"required reputation" -20
 	security 0
+	tribute 400
+		threshold 2500
+		fleet "Small Southern Pirates" 20
 
 planet Alfheim
 	attributes deep oil factory
@@ -12968,6 +12974,9 @@ planet Alfheim
 	outfitter "Ammo North"
 	bribe 0.05
 	security 0.7
+	tribute 1200
+		threshold 5000
+		fleet "Small Deep" 27
 
 planet Allhome
 	attributes hai
@@ -12983,6 +12992,9 @@ planet Amazon
 	description `	The forests are home to a stunning variety of wildlife, some of it dangerous but most of it entirely indifferent to human presence. Plant life is so abundant here that even the oceans are green rather than blue, teeming with kelp and algae.`
 	spaceport `The Amazon spaceport is unique, built on top of tall pillars more than fifty meters above the ground, directly above the forest canopy. The landing pads, buildings, and catwalks between them are laid out in a random branching pattern, forming a shape that from above looks almost organic. Directly over the railings, you can see brightly colored birds circling beneath your feet.`
 	security 0.3
+	tribute 900
+		threshold 3500
+		fleet "Small Syndicate" 10
 
 planet Antipode
 	attributes core mining frontier
@@ -12991,6 +13003,9 @@ planet Antipode
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off. As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
 	security 0.1
+	tribute 600
+		threshold 2500
+		fleet "Small Syndicate" 7
 
 planet Arabia
 	attributes "dirt belt" oil
@@ -13000,6 +13015,9 @@ planet Arabia
 	spaceport `The spaceport consists mostly of a wide, open field paved in asphalt, the cheapest material available here. The pavement shimmers with heat, and is pockmarked with divots where ships' landing gear has sunk several centimeters in to the surface.`
 	spaceport `	At the center of the pavement is a small cluster of refrigerated sheds and stacks of crates carrying various goods for trade; a few armed guards patrol around them to prevent theft. A food truck is parked nearby, serving burgers and tacos to the port workers and to the crews of the few starships that are parked here at the moment.`
 	security 0.1
+	tribute 600
+		threshold 2500
+		fleet "Small Militia" 45
 
 planet "Arachne Station"
 	attributes south station
@@ -13008,6 +13026,9 @@ planet "Arachne Station"
 	"required reputation" 20
 	bribe 0.05
 	security 0.4
+	tribute 900
+		threshold 3000
+		fleet "Large Militia" 14
 
 planet Asgard
 	attributes deep factory urban rich
@@ -13024,6 +13045,9 @@ planet Asgard
 	outfitter "Ammo North"
 	bribe 0.05
 	security 0.7
+	tribute 4000
+		threshold 7000
+		fleet "Large Deep" 39
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -13032,6 +13056,9 @@ planet "Big Sky"
 	description `	The Big Sky government recently financed a major project to genetically engineer a goat species so ravenous that it can control the growth of local vegetation. These "ubergoats" pose so great a threat to the typical biosphere that they are export-controlled as biological weapons.`
 	spaceport `The landing pads here are being gradually consumed by the local plant life. In most places grass and ivy has crept out to cover at least a meter of the pad on all sides, and every small crack or crevice has been colonized by moss and by the roots of larger plants. In places the forest has been cleared to make roads leading to the nearby farming villages, but in most directions all you see is green. It is a beautiful sight, and oddly peaceful, but you know what a nuisance these plants are to the locals.`
 	security 0.1
+	tribute 600
+		threshold 3000
+		fleet "Small Militia" 50
 
 planet Bivrost
 	attributes deep mining urban
@@ -13043,6 +13070,9 @@ planet Bivrost
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	security 0.8
+	tribute 3600
+		threshold 7000
+		fleet "Large Deep" 35
 
 planet Bloodsea
 	attributes pirate
@@ -13057,6 +13087,9 @@ planet Bloodsea
 	outfitter "Pirate Outfits"
 	"required reputation" -10
 	security 0
+	tribute 200
+		threshold 1500
+		fleet "Small Southern Pirates" 12
 
 planet Bluestone
 	attributes core oil research frontier
@@ -13065,6 +13098,9 @@ planet Bluestone
 	description `	Bluestone is sparsely populated. Aside from one small research village dedicated to cultivating edible hybrid crops that can grow on similar worlds, most of the industry here is focused on drilling and refining oil to make a variety of plastics.`
 	spaceport `Aside from the metal roofs on a few of the largest warehouses, the spaceport buildings are constructed largely of durable plastic resin, pre-cast into interlocking beams and panels. There is a small pub in the center of the port, with its exterior walls painted a cheerful yellow. All the other buildings are the same red-brown color of the raw plastic.`
 	security 0.2
+	tribute 400
+		threshold 3000
+		fleet "Small Syndicate" 6
 
 planet Bounty
 	attributes "dirt belt" farming factory
@@ -13073,6 +13109,9 @@ planet Bounty
 	description `	The focus on skilled manufacturing has had a dramatic effect on both the local education system and the sports scene. One can garner great respect - and a sizable income - simply by being the best at folding tiny paper cranes by microscope.`
 	spaceport `The spaceport is not fancy, but it is serviceable: the landing pads are very level and show only minor signs of wear and tear, and the one warehouse is tiny but recently built, and its roof is in good repair. Next to it is a marketplace building, with three walls and a pitched roof, and the fourth side open for people and trucks to come and go. An enterprising cook is selling lamb kebabs from a small grill and cart in one corner of the building.`
 	security 0.1
+	tribute 700
+		threshold 3000
+		fleet "Large Militia" 11
 
 planet Bourne
 	attributes rim factory urban
@@ -13086,6 +13125,9 @@ planet Bourne
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
 	security 0.4
+	tribute 2200
+		threshold 4500
+		fleet "Large Militia" 32
 
 planet "Buccaneer Bay"
 	attributes pirate
@@ -13101,6 +13143,9 @@ planet "Buccaneer Bay"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	security 0
+	tribute 800
+		threshold 3000
+		fleet "Large Core Pirates" 9
 
 planet Burthen
 	attributes core mining
@@ -13109,6 +13154,9 @@ planet Burthen
 	description `	Some of the excavation vehicles used here are as large and costly as a capital starship and as noisy as a volcano. Vast scars of strip mines span across the landscape. On this planet the environment is something to be endured rather than cherished.`
 	spaceport `You could feel the oppressive force of this planet's gravity as soon as you landed. The spaceport is a small cluster of single-story buildings. More cargo seems to be handled by robotic vehicles than by actual human operators, but the few people walking past you are all much shorter than you are. You feel like a giant, clearly out of place.`
 	security 0.2
+	tribute 500
+		threshold 4000
+		fleet "Small Syndicate" 7
 
 planet Calda
 	attributes paradise tourism rich
@@ -13119,6 +13167,9 @@ planet Calda
 	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercrafts and helicopters!) are far more prominent than the amenities that interest a captain like yourself.`
 	bribe 0.05
 	security 0.5
+	tribute 3300
+		threshold 5500
+		fleet "Large Republic" 13
 
 planet Canyon
 	attributes core farming frontier
@@ -13127,6 +13178,9 @@ planet Canyon
 	description `	The angular rock formations that cover most of the mesa land are identified in local mythology as the ruins of an unspeakably vast and ancient alien city. A gullible tourist can find any number of opportunities to tour these alleged sites. Off-world science has been largely skeptical of these claims.`
 	spaceport `The spaceport is a wide, flat stone field with no individual landing spots marked out; you're simply responsible for finding an unoccupied space large enough for your ship, A quarter mile away from the field is a small village with a marketplace and a pub. There are only a few starships parked here. In the village, you can recognize the locals because of their stout, muscular stature; you are taller than almost everyone here.`
 	security 0.1
+	tribute 400
+		threshold 3000
+		fleet "Small Syndicate" 5
 
 planet "Carbuncle Station"
 	attributes north station research
@@ -13135,6 +13189,9 @@ planet "Carbuncle Station"
 	"required reputation" 100
 	bribe 0.05
 	security 0.9
+	tribute 2700
+		threshold 5500
+		fleet "Large Republic" 10
 
 planet "Charon Station"
 	attributes south station
@@ -13143,6 +13200,9 @@ planet "Charon Station"
 	description `	The close quarters have fostered an extreme scrupulosity about personal space. It is unnerving to walk down a densely crowded hallway and fail to make eye contact with anyone.`
 	spaceport `The refinery here operates in shifts, non-stop, so there are always people coming and going in the hallways and docking bays. The cafeteria is so crowded that many workers are just standing up against the walls eating off their trays instead of trying to find a place to sit. Every few minutes, light flashes in through one of the windows from welders outside in space suits trying to keep the aging hull in perfect shape. Others drift around outside checking up on the solar panels and replacing burnt-out modules.`
 	security 0.4
+	tribute 200
+		threshold 1500
+		fleet "Small Militia" 15
 
 planet "Charybdis Station"
 	attributes core station
@@ -13151,6 +13211,9 @@ planet "Charybdis Station"
 	"required reputation" 20
 	bribe 0.05
 	security 0.6
+	tribute 300
+		threshold 2500
+		fleet "Small Syndicate" 4
 
 planet Chiron
 	attributes "near earth" urban
@@ -13168,6 +13231,9 @@ planet Chiron
 	outfitter "Syndicate Basics"
 	bribe 0.02
 	security 0.3
+	tribute 4400
+		threshold 7500
+		fleet "Large Republic" 17
 
 planet Clark
 	attributes "dirt belt" forest factory
@@ -13179,12 +13245,18 @@ planet Clark
 	shipyard "Basic Ships"
 	outfitter "Basic Outfits"
 	security 0.1
+	tribute 400
+		threshold 2500
+		fleet "Small Militia" 30
 
 planet Clink
 	attributes mining
 	landscape land/desert3
 	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
+	tribute 200
+		threshold 1500
+		fleet "Small Militia" 15
 
 planet Cloudfire
 	attributes hai
@@ -13202,6 +13274,9 @@ planet Cornucopia
 	spaceport `The spaceport on Cornucopia is a set of massive hangars in the center of a wide-open plain. Before leaving your ship you had to sign several documents regarding the use and disposal of various chemicals used in ship operations, and the department of agriculture requires that any luggage you bring on or off world be submitted to a scan for biological material.`
 	spaceport `	When you leave your hangar, you find yourself in an immense farmers' market, with hundreds of fruits and grains that you do not even know words for. The smell of this world is rich and earthy - you feel like you could almost receive all the nourishment your body needs just by breathing this air.`
 	security 0.1
+	tribute 800
+		threshold 4000
+		fleet "Large Militia" 12
 
 planet Covert
 	attributes pirate mining
@@ -13215,6 +13290,9 @@ planet Covert
 	"required reputation" 10
 	bribe 0.1
 	security 0
+	tribute 1300
+		threshold 3000
+		fleet "Large Core Pirates" 16
 
 planet Crossroads
 	attributes core mining
@@ -13226,6 +13304,9 @@ planet Crossroads
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	security 0.2
+	tribute 1100
+		threshold 3500
+		fleet "Small Syndicate" 11
 
 planet Dancer
 	attributes south research
@@ -13235,6 +13316,9 @@ planet Dancer
 	spaceport `The spaceport town is a rather normal collection of wood and stone buildings, with large sheds for trade goods and a handful of pubs and restaurants. The only unusual thing is the fact that every single building has lightning rods mounted on its roof. The sky is perpetually cloudy here, with only occasional beams of sunlight glancing through. The clouds are moving awfully fast.`
 	outfitter "Basic Outfits"
 	security 0.05
+	tribute 300
+		threshold 2000
+		fleet "Small Militia" 23
 
 planet Darkcloak
 	attributes unfettered
@@ -13260,6 +13344,9 @@ planet Darkstone
 	spaceport `Once every few months, one pirate band or another will land here demanding tribute in the form of food. The locals respond by just keeping a big enough supply on hand to satisfy them; any sort of planetary defenses would cost far more than the price of the amount of food that an average fleet of warships can carry. But once they recognize that you are here to trade and not to steal, they greet you quite enthusiastically.`
 	outfitter "Ammo South"
 	security 0.1
+	tribute 200
+		threshold 1500
+		fleet "Small Militia" 18
 
 planet Darkwaste
 	landscape land/canyon0
@@ -13276,6 +13363,9 @@ planet "Deadman's Cove"
 	outfitter "Pirate Outfits"
 	bribe 0.03
 	security 0
+	tribute 600
+		threshold 2500
+		fleet "Small Core Pirates" 45
 
 planet Deep
 	attributes south fishing
@@ -13284,6 +13374,9 @@ planet Deep
 	description `	The fishing settlements are actually the second colonization attempt on this planet. In the early days of hyperdrive the Kingsburg Corporation sent out what was then one of the largest and most technologically advanced colonization fleets, penetrating deep into the then-unexplored southern galactic rim. After two centuries of sporadic and guarded contact, the colony fell silent, and when human expansion finally reached this area again, surprisingly little trace of the original colony was found.`
 	spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 	security 0.1
+	tribute 500
+		threshold 3000
+		fleet "Small Militia" 37
 
 planet Delve
 	attributes core mining
@@ -13296,6 +13389,9 @@ planet Delve
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	security 0.2
+	tribute 1600
+		threshold 4500
+		fleet "Large Syndicate" 9
 
 planet Dune
 	attributes rim mining
@@ -13306,6 +13402,9 @@ planet Dune
 	outfitter "Ammo South"
 	outfitter "Kraz Basics"
 	security 0.05
+	tribute 300
+		threshold 3000
+		fleet "Small Militia" 23
 
 planet Dustmaker
 	attributes hai
@@ -13327,6 +13426,9 @@ planet Earth
 	"required reputation" 2
 	bribe 0.03
 	security 0.3
+	tribute 10000
+		threshold 20000
+		fleet "Large Republic" 50
 
 planet Echo
 	attributes quarg
@@ -13355,6 +13457,9 @@ planet Farpoint
 	"required reputation" 2
 	bribe 0.08
 	security 0.8
+	tribute 900
+		threshold 5500
+		fleet "Large Republic" 6
 
 planet Farseer
 	attributes paradise tourism rich
@@ -13364,6 +13469,9 @@ planet Farseer
 	spaceport `The spaceport is in one of the industrial regions near the pole; presumably the sight and sound of starships landing and taking off is too distasteful and plebeian for this world's richer inhabitants. Most of the people here are terraforming technicians or mechanics; they hurry through the streets without giving you a second glance. Next to the tin-roofed marketplace, children are playing in a concrete-paved lot; across the street are a few run-down pubs and a restaurant.`
 	bribe 0.05
 	security 0.6
+	tribute 3500
+		threshold 6500
+		fleet "Large Republic" 14
 
 planet Farwater
 	attributes hai
@@ -13377,6 +13485,9 @@ planet Featherweight
 	description `Featherweight is a small world, with lighter than normal gravity. Centuries ago, because of its remoteness, this world was the site of some illegal genetic experiments, and rumors say that the current inhabitants are the result of those experiments. Because they are so well adapted to low gravity, few of them choose to leave, and very few outsiders choose to settle here, so this world's culture remains quite insular and detached from the rest of the galaxy.`
 	spaceport `Although this is a human planet, as you walk through this spaceport you feel as if you are on an alien world. The ceilings and doorways are all a bit higher than you are used to, and the locals tower over you. Aside from a few food carts in the marketplace, there are no shops or restaurants in the spaceport, and the nearest village is several kilometers away. It is as if the entire port was designed in order to limit interactions with outsiders to the bare minimum that is necessary.`
 	security 0.5
+	tribute 800
+		threshold 4500
+		fleet "Small Republic" 30
 
 planet "Fenrir Station"
 	attributes deep station
@@ -13386,6 +13497,9 @@ planet "Fenrir Station"
 	spaceport `This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you.`
 	bribe 0.05
 	security 0.8
+	tribute 600
+		threshold 3000
+		fleet "Small Deep" 14
 
 planet Firelode
 	attributes unfettered
@@ -13400,6 +13514,9 @@ planet Flood
 	spaceport `You have never seen this many shops in a single spaceport. Hand-glazed pottery, wooden furniture, dolls, sweaters, scarves, paintings - the variety is overwhelming. Crowds of tourists bustle around from shop to shop, making it very difficult for you to get through.`
 	spaceport `	The spaceport is built on a mountainside, apparently designed to look like a village, except that in place of terrace gardens are landing pads (placed haphazardly to look more natural), and the buildings are much larger than you imagine the huts up in the villages would be. The cement tiles covering the roofs have been molded and colored to look like wood shingles, and although some of the larger buildings must have steel structures underneath, they have been made to look as if they are held up only by wooden beams.`
 	security 0.2
+	tribute 700
+		threshold 3000
+		fleet "Large Militia" 11
 
 planet Follower
 	attributes paradise factory
@@ -13415,6 +13532,9 @@ planet Follower
 	outfitter "Ammo North"
 	bribe 0.03
 	security 0.4
+	tribute 2400
+		threshold 4500
+		fleet "Small Republic" 86
 
 planet Forpelog
 	attributes quarg
@@ -13439,6 +13559,9 @@ planet Foundry
 	outfitter "Ammo North"
 	bribe 0.1
 	security 0.5
+	tribute 2900
+		threshold 5500
+		fleet "Large Syndicate" 18
 
 planet Freedom
 	attributes pirate farming
@@ -13456,6 +13579,9 @@ planet Freedom
 	outfitter "Basic Outfits"
 	"required reputation" -10
 	security 0
+	tribute 500
+		threshold 2000
+		fleet "Small Northern Pirates" 15
 
 planet Frostmark
 	attributes hai
@@ -13474,6 +13600,9 @@ planet Furnace
 	outfitter "Ammo North"
 	bribe 0.05
 	security 0.1
+	tribute 1200
+		threshold 3500
+		fleet "Large Syndicate" 7
 
 planet Geminus
 	attributes paradise factory mining
@@ -13493,6 +13622,9 @@ planet Geminus
 	outfitter "Syndicate Basics"
 	bribe 0.1
 	security 0.9
+	tribute 4800
+		threshold 7500
+		fleet "Large Republic" 18
 
 planet Gemstone
 	attributes "dirt belt" mining
@@ -13501,6 +13633,9 @@ planet Gemstone
 	description `	The miners are paid on commission on the stones they find. As a result most as dirt-poor, but full of stories of some distant acquaintance who became mind-bogglingly wealthy after striking a previously untapped gemstone deposit.`
 	spaceport `The spaceport is perched on top of a peak in one of the older and more stable mountain ranges. The landing pads here are used both by starships and by the helicopters that bring cargo to and from the mines. Overhead, helicopters fly by carrying heavy loads dangling from cables. A few low cement buildings serve as warehouses, and on the far end of the port, where an explosion would do the least damage if a sudden, severe earthquake struck, large steel tanks hold deuterium for refueling ships. Asphalt roads with flimsy guard rails connect the landing pads to the warehouses.`
 	security 0.2
+	tribute 500
+		threshold 2500
+		fleet "Large Militia" 8
 
 planet Geyser
 	attributes "near earth" oil factory
@@ -13513,6 +13648,9 @@ planet Geyser
 	outfitter "Syndicate Basics"
 	outfitter "Lovelace Basics"
 	security 0.3
+	tribute 1300
+		threshold 3500
+		fleet "Large Militia" 20
 
 planet Giverstone
 	attributes hai
@@ -13535,6 +13673,9 @@ planet Glaze
 	outfitter "Kraz Basics"
 	outfitter "Ammo South"
 	security 0.2
+	tribute 1700
+		threshold 3500
+		fleet "Large Militia" 25
 
 planet Glory
 	attributes paradise medical
@@ -13545,6 +13686,9 @@ planet Glory
 	spaceport `	It is almost impossible to tell the age of the locals who are walking by: there is a frightening monotony of wrinkle-free, nearly identically proportioned faces. When they speak, only their lips move; their expressions remain mask-like, immobile.`
 	bribe 0.05
 	security 0.6
+	tribute 4300
+		threshold 7500
+		fleet "Large Republic" 16
 
 planet Grakhord
 	attributes quarg
@@ -13577,6 +13721,9 @@ planet Greenrock
 	outfitter "Pirate Outfits"
 	bribe 0.05
 	security 0
+	tribute 1800
+		threshold 3500
+		fleet "Large Northern Pirates" 13
 
 planet Greenwater
 	attributes hai
@@ -13616,6 +13763,9 @@ planet Haven
 	outfitter "Pirate Outfits"
 	bribe 0.03
 	security 0
+	tribute 700
+		threshold 3000
+		fleet "Small Northern Pirates" 21
 
 planet Haze
 	attributes deep factory
@@ -13629,6 +13779,9 @@ planet Haze
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	security 0.6
+	tribute 2600
+		threshold 5500
+		fleet "Large Deep" 26
 
 planet Heartland
 	attributes "dirt belt" farming
@@ -13638,6 +13791,9 @@ planet Heartland
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	security 0.2
+	tribute 900
+		threshold 3500
+		fleet "Large Republic" 4
 
 planet Heartvalley
 	attributes hai
@@ -13654,6 +13810,9 @@ planet Helheim
 	spaceport `The spaceport is also the main city in Helheim, and it is built around a series of glass domes of all different sizes. Each dome is a greenhouse housing a different sort of plant life, and in some cases animals as well: hermetically sealed parks, protected from the caustic air outside, where the locals can come when their hunger to be among living things becomes unbearable. The docking bays each have an airlock to protect the atmosphere inside the city.`
 	bribe 0.05
 	security 0.6
+	tribute 700
+		threshold 3000
+		fleet "Small Deep" 15
 
 planet Hephaestus
 	attributes core factory urban
@@ -13671,6 +13830,9 @@ planet Hephaestus
 	outfitter "Ammo North"
 	bribe 0.1
 	security 0.7
+	tribute 3400
+		threshold 6500
+		fleet "Large Syndicate" 20
 
 planet Hermes
 	attributes paradise research medical
@@ -13683,6 +13845,9 @@ planet Hermes
 	"required reputation" 10
 	bribe 0.1
 	security 0.9
+	tribute 1400
+		threshold 3500
+		fleet "Large Republic" 6
 
 planet Hestia
 	attributes paradise rich
@@ -13694,6 +13859,9 @@ planet Hestia
 	outfitter "Lovelace Basics"
 	bribe 0.04
 	security 0.5
+	tribute 4900
+		threshold 8500
+		fleet "Large Republic" 18
 
 planet Hippocrates
 	attributes core research frontier
@@ -13702,6 +13870,9 @@ planet Hippocrates
 	spaceport `The spaceport is a single building, and half the landing pads are just packed dirt. This port was not designed for large volumes of cargo or of visitors. Within the building is a sun-lit atrium, with separate storefronts for the commodity exchange, the job center, and the bank. The only place you can see where you might be able to get something to eat is a bar, advertised by a sign showing an Erlenmeyer flask with a folding paper umbrella hung over the rim.`
 	outfitter "Ammo North"
 	security 0.1
+	tribute 800
+		threshold 2500
+		fleet "Small Syndicate" 9
 
 planet Hope
 	attributes uninhabited
@@ -13717,6 +13888,9 @@ planet Hopper
 	spaceport `The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn. Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees.`
 	outfitter "Ammo South"
 	security 0.05
+	tribute 300
+		threshold 2000
+		fleet "Large Militia" 5
 
 planet "Huginn Station"
 	attributes deep station
@@ -13726,6 +13900,9 @@ planet "Huginn Station"
 	"required reputation" 20
 	bribe 0.1
 	security 0.9
+	tribute 1800
+		threshold 5500
+		fleet "Large Deep" 18
 
 planet Humanika
 	attributes south farming
@@ -13735,12 +13912,18 @@ planet Humanika
 	outfitter "Ammo South"
 	bribe 0.05
 	security 0.9
+	tribute 1000
+		threshold 8000
+		fleet "Quarg" 2
 
 planet "Hydra Station"
 	attributes "dirt belt" station
 	landscape land/space4
 	description `This station is so run down that most of the workers carry oxygen masks in case a meteorite punctures the hull, and a few of them are even dressed in full space suits. The deuterium refinery here is barely operating, the number of workers is minimal, and nearly half of them seem to be busy just welding patches onto the hull to hold the station together. At the moment there are no repair or refueling services available here.`
 	security 0.3
+	tribute 100
+		threshold 3500
+		fleet "Small Militia" 8
 
 planet Icefall
 	attributes core farming oil frontier
@@ -13749,6 +13932,9 @@ planet Icefall
 	description `	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres.`
 	spaceport `The spaceport is located near the equator, in this world's industrial zone. Along the horizon are fields of pumpjacks and oil derricks. The port consists of rows of hangars, plus two large square towers that house the marketplace and storage space for cargo. A constant howling wind sweeps in between the buildings, but thankfully they are well constructed out of sturdy cement.`
 	security 0.2
+	tribute 700
+		threshold 3000
+		fleet "Small Syndicate" 8
 
 planet Icelake
 	attributes hai
@@ -13766,6 +13952,9 @@ planet Ingot
 	spaceport `	In addition to being the spaceport, this complex is also the repair and control center for the mining robots. There are a handful of buildings elsewhere on Ingot, but not many. You cannot imagine spending so much time with so little space or change of scenery.`
 	outfitter "Basic Outfits"
 	security 0.1
+	tribute 200
+		threshold 1500
+		fleet "Small Militia" 15
 
 planet "Kraken Station"
 	attributes "near earth" station
@@ -13773,6 +13962,9 @@ planet "Kraken Station"
 	description `Kraken Station is seven centuries old; it was the first space station built outside of the Sol system. The station has been modified and repaired so often since that time that in all likelihood not a single deck panel or bulkhead that was part of the original station remains. Four centuries ago it was nearly destroyed by an asteroid impact, but other than that it has been a working deuterium refinery for its entire lifetime.`
 	spaceport `The main ring the station consists of three different levels, with living quarters, repair shops, a few small cafeterias, and even a barber. The lower levels also house some of the refinery equipment, but much of the harvesting is done automatically by robotic drones. For a station that is so old, everything feels surprisingly sturdy; the bolts and beams that make up the station are much thicker than they probably need to be.`
 	security 0.3
+	tribute 500
+		threshold 3500
+		fleet "Small Republic" 17
 
 planet Lagrange
 	attributes quarg tourism
@@ -13791,6 +13983,9 @@ planet "Leviathan Station"
 	"required reputation" 10
 	bribe 0.08
 	security 0.9
+	tribute 1200
+		threshold 3500
+		fleet "Small Deep" 27
 
 planet Lichen
 	attributes south farming frontier
@@ -13801,6 +13996,9 @@ planet Lichen
 	spaceport `	A noodle soup restaurant near the center of the port town seems to be the gathering place of choice. Whatever they're cooking inside, it smells delicious.`
 	outfitter "Ammo South"
 	security 0.05
+	tribute 500
+		threshold 3000
+		fleet "Large Militia" 8
 
 planet Lodestone
 	attributes core volcanic mining
@@ -13809,6 +14007,9 @@ planet Lodestone
 	description `	The only reason Lodestone is inhabited is because of the planet's unusually rich reserves of heavy metals and other rare minerals.`
 	spaceport `This port is known as "Fourth Port." The previous three ports are partly or completely buried under lava flows. The present port is built on a raised platform a hundred meters above the ground. The steel stilts supporting the platform are intended to keep the port from being buried by any encroaching lava flow. However, given that some explosive eruptions here have been known to launch lava nearly a kilometer into the air, sooner or later Fourth Port will need to be replaced by a fifth.`
 	security 0.05
+	tribute 500
+		threshold 3000
+		fleet "Small Syndicate" 6
 
 planet Longjump
 	attributes rim tourism factory
@@ -13819,6 +14020,9 @@ planet Longjump
 	outfitter "Delta V Basics"
 	outfitter "Ammo South"
 	security 0.1
+	tribute 600
+		threshold 3000
+		fleet "Large Militia" 9
 
 planet Luna
 	attributes "near earth" tourism factory
@@ -13836,6 +14040,9 @@ planet Luna
 	outfitter "Ammo North"
 	bribe 0.05
 	security 0.2
+	tribute 2500
+		threshold 7500
+		fleet "Large Republic" 10
 
 planet Maelstrom
 	attributes north mining frontier
@@ -13847,6 +14054,9 @@ planet Maelstrom
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	security 0.5
+	tribute 2700
+		threshold 5500
+		fleet "Large Republic" 11
 
 planet Mainsail
 	attributes paradise rich
@@ -13861,6 +14071,9 @@ planet Mainsail
 	outfitter "Ammo North"
 	bribe 0.06
 	security 0.5
+	tribute 1600
+		threshold 3500
+		fleet "Small Republic" 57
 
 planet Maker
 	attributes core factory mining
@@ -13871,6 +14084,9 @@ planet Maker
 	outfitter "Basic Outfits"
 	outfitter "Syndicate Basics"
 	security 0.4
+	tribute 1700
+		threshold 4500
+		fleet "Large Syndicate" 10
 
 planet Makerplace
 	attributes hai
@@ -13887,6 +14103,9 @@ planet Mani
 	spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it. Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
 	outfitter "Ammo North"
 	security 0.6
+	tribute 500
+		threshold 3000
+		fleet "Small Deep" 11
 
 planet Mars
 	attributes "near earth" tourism farming
@@ -13894,6 +14113,9 @@ planet Mars
 	description `Mars was humanity's first attempt at terraforming. Although it remains a dry, cold desert, the air is now breathable without an oxygen tank, and there are sections of the planet where a fair number of plants can grow. Because far more hospitable planets are available to those with enough money to pay for interstellar travel, the farms and ranches of Mars are run mostly by poorer Earth families who want to escape the pollution and congestion, along with some young adults who do farm work to help finance their once-in-a-lifetime opportunity to stand on another world.`
 	spaceport `The spaceport on Mars is situated next to the northern Polar Basin, one of the few places where, post-terraforming, a natural lake exists. Here, far more trees grow than elsewhere on the planet, and in the few warm months when the lake is not frozen, Mars almost looks like a friendly place.`
 	security 0.2
+	tribute 1800
+		threshold 4500
+		fleet "Small Republic" 64
 
 planet Martini
 	attributes paradise rich
@@ -13902,6 +14124,9 @@ planet Martini
 	spaceport `The spaceport is a set of four skyscrapers joined by bridges and platforms at various levels. Hangars are built directly into the towers themselves, with deflector shield generators set up to ensure that ships do not crash, intentionally or otherwise, while approaching the towers to dock. Inside, all the floors and walls are gleaming granite, with teams of workers constantly polishing everything to ensure that not even so much as a fingerprint smudge is visible.`
 	bribe 0.1
 	security 0.5
+	tribute 5600
+		threshold 8500
+		fleet "Large Republic" 22
 
 planet Memory
 	attributes deep research factory medical
@@ -13912,6 +14137,9 @@ planet Memory
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	security 0.8
+	tribute 700
+		threshold 4000
+		fleet "Small Deep" 16
 
 planet Mere
 	attributes rim fishing
@@ -13920,6 +14148,9 @@ planet Mere
 	spaceport `The spaceport is on the largest island on the planet. The marketplace is a large, open plaza down by the docks, where the captains of whichever city-ships are moored here at the moment can sell their goods directly to customers. Behind the plaza are large warehouses. If a storm approaches, the goods can quickly be moved inside, while the ships launch out into the deep sea where they have a better change of weathering the storm without being smashed against the rocks.`
 	spaceport `	The entire port is filled with the almost overpowering smell of fish. You have heard that this is the best place in the galaxy for good, cheap sushi, but the smell is doing nothing for your appetite.`
 	security 0.1
+	tribute 900
+		threshold 3000
+		fleet "Large Militia" 14
 
 planet Midgard
 	attributes deep urban factory mining
@@ -13935,6 +14166,9 @@ planet Midgard
 	outfitter "Deep Sky Advanced"
 	bribe 0.05
 	security 0.8
+	tribute 3000
+		threshold 6000
+		fleet "Large Deep" 30
 
 planet Millrace
 	attributes "near earth" factory urban
@@ -13946,6 +14180,9 @@ planet Millrace
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
 	security 0.2
+	tribute 1400
+		threshold 4000
+		fleet "Large Syndicate" 8
 
 planet Mirrorlake
 	attributes hai
@@ -13962,6 +14199,9 @@ planet Moonshake
 	outfitter "Common Outfits"
 	outfitter "Syndicate Basics"
 	security 0.2
+	tribute 1200
+		threshold 3500
+		fleet "Large Syndicate" 7
 
 planet "Muninn Station"
 	attributes deep station military
@@ -13971,6 +14211,9 @@ planet "Muninn Station"
 	"required reputation" 10
 	bribe 0.05
 	security 0.8
+	tribute 1100
+		threshold 5500
+		fleet "Small Deep" 25
 
 planet Muspel
 	attributes deep mining factory
@@ -13980,6 +14223,9 @@ planet Muspel
 	spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
 	bribe 0.03
 	security 0.6
+	tribute 600
+		threshold 3000
+		fleet "Small Deep" 14
 
 planet Mutiny
 	attributes pirate
@@ -13996,6 +14242,9 @@ planet "New Argentina"
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	security 0.05
+	tribute 1000
+		threshold 3500
+		fleet "Large Republic" 4
 
 planet "New Austria"
 	attributes "dirt belt" mining
@@ -14003,6 +14252,9 @@ planet "New Austria"
 	description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
 	spaceport `The spaceport is nothing but a couple of landing pads built on the outskirts of one of the larger mining villages, high up on a mountain ridge to allow easy access for starships. A few roads lead down from there to the village, where you can trade for local goods or get food from the miners' cafeteria. By the time you have walked to the center of the town, several people have already tried to sell you large "diamonds" that you strongly suspect are just clear sapphires.`
 	security 0.05
+	tribute 500
+		threshold 3000
+		fleet "Large Militia" 5
 
 planet "New Boston"
 	attributes "dirt belt" textiles farming
@@ -14013,6 +14265,9 @@ planet "New Boston"
 	outfitter "Basic Outfits"
 	outfitter "Ammo South"
 	security 0.05
+	tribute 300
+		threshold 2500
+		fleet "Small Militia" 23
 
 planet "New Britain"
 	attributes "dirt belt" farming factory urban
@@ -14027,6 +14282,9 @@ planet "New Britain"
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	security 0.2
+	tribute 1300
+		threshold 4500
+		fleet "Large Militia" 20
 
 planet "New China"
 	attributes "near earth" urban
@@ -14039,6 +14297,9 @@ planet "New China"
 	outfitter "Delta V Basics"
 	outfitter "Kraz Basics"
 	security 0.1
+	tribute 1400
+		threshold 4000
+		fleet "Small Republic" 50
 
 planet "New Greenland"
 	attributes "dirt belt" textiles
@@ -14047,6 +14308,9 @@ planet "New Greenland"
 	spaceport `The spaceport is near the equator, but it is still cold enough that there is always some snow on the ground. In addition to the outdoor landing pads a few hangars are available: an effort by the locals to make their world a little more appealing to merchants passing through the system. You have never seen as many people in fur coats as there are here; what might be considered a luxury in other parts of the galaxy is a necessity here, where the cheapest clothing material is the pelts of indigenous animals.`
 	spaceport `	From the size of the claws hanging decoratively off some of the coats, you have to give a grudging respect to the hunters. High fashion is not an industry that usually involves risk of dismemberment.`
 	security 0.05
+	tribute 200
+		threshold 2000
+		fleet "Small Militia" 15
 
 planet "New Holland"
 	attributes "dirt belt" farming
@@ -14058,6 +14322,9 @@ planet "New Holland"
 	outfitter "Ammo South"
 	outfitter "Delta V Basics"
 	security 0.1
+	tribute 700
+		threshold 3000
+		fleet "Large Militia" 11
 
 planet "New Iceland"
 	attributes "dirt belt" oil mining volcanic
@@ -14067,6 +14334,9 @@ planet "New Iceland"
 	spaceport `Almost as soon as you stepped off your ship, your eyes began to sting. You try to breathe as shallowly as possible.`
 	spaceport `	This port consists of a single large hangar, only big enough for two or three bulk freighters, plus some overflow landing pads and old rusted storage sheds outside. There is a small cafeteria, offering you a choice between two kinds of soup, some pre-made sandwiches, or the hot meal of the day.`
 	security 0.05
+	tribute 300
+		threshold 2000
+		fleet "Small Militia" 24
 
 planet "New India"
 	attributes "dirt belt" farming textiles frontier
@@ -14076,6 +14346,9 @@ planet "New India"
 	spaceport `	Most of the buildings are for storage, but from somewhere nearby you can smell fresh-baked bread.`
 	outfitter "Ammo South"
 	security 0.05
+	tribute 200
+		threshold 2000
+		fleet "Small Militia" 16
 
 planet "New Kansas"
 	attributes "dirt belt" textiles
@@ -14085,6 +14358,9 @@ planet "New Kansas"
 	spaceport `The spaceport includes several stores selling wool garments, each worth easily ten times as much as the clothes you are wearing. A few of the visitors milling around seem genuinely interested in the clothing, but most of them, like you, are just ship captains who see wool clothing as nothing more than a pricey luxury good that can be sold elsewhere for a good profit.`
 	spaceport `	The port authority employs several people on horseback whose sole job is to keep the landing pads clear of wild sheep.`
 	security 0.05
+	tribute 300
+		threshold 2500
+		fleet "Small Militia" 22
 
 planet "New Portland"
 	attributes "dirt belt" farming
@@ -14093,6 +14369,9 @@ planet "New Portland"
 	description `	Some of the farms near the spaceport are planted with different crops forming abstract patterns visible from the air. Such a whimsical extravagance seems particularly odd when you consider that the owners will never be able to afford to see their fields from that angle. But perhaps that is precisely the point.`
 	spaceport `The largest town on New Portland has set aside a landing area for ships, but it is barely what could be called a spaceport. Aside from the refueling station and a few sheds, there are no other buildings, just an open field of packed gravel, with grass and weeds peeking up in places where it has avoided the blast from landing spacecraft. A few farmers have parked wagons here and are trading food and other goods with the visiting ships.`
 	security 0.05
+	tribute 200
+		threshold 2000
+		fleet "Small Militia" 12
 
 planet "New Sahara"
 	attributes "dirt belt" factory
@@ -14100,6 +14379,9 @@ planet "New Sahara"
 	description `New Sahara is mostly desert and savanna, with very little precipitation. A century ago, some entrepreneurs settled here and built a factory complex that is entirely powered by wind and solar energy, because there are so few cloudy days here and the wind and sunshine are so reliable. The factory is mostly autonomous, with only a few thousand people living here to perform maintenance or to grow crops in irrigated fields.`
 	spaceport `The spaceport consists of a few large concrete slabs, each big enough for a dozen small ships or a pair of bulk freighters to land on. Farther away are fields of solar panels and the factories that they power. The spaceport buildings themselves, however, are underground, where less energy is needed to keep the air cool. Light pipes bring sunlight down from the surface to illuminate the subterranean storage caverns and living quarters, while keeping the searing heat of the sunlight out.`
 	security 0.05
+	tribute 400
+		threshold 3000
+		fleet "Small Militia" 30
 
 planet "New Switzerland"
 	attributes "near earth" tourism mining
@@ -14107,6 +14389,9 @@ planet "New Switzerland"
 	description `New Switzerland is a world where tectonic activity has left deeply folded and fractured mountains across much of the planet's surface. In many places, the topsoil is too thin and rocky to support farming, but many people have settled here anyway, drawn to the beauty of the mountains. A few ski resorts operate in the mountains, and in recent years a gemstone mining industry has begun to develop as well.`
 	spaceport `The spaceport is in a valley, surrounded by mountains so high that their tops are often lost in the clouds. From the port town, tourists can ride a cog railway to the tops of several of the tallest mountains nearby. Most of the buildings in town are wood framed, and some are old fashioned half-timber buildings with whitewashed plaster packed in between the beams. It is not a technologically advanced world, but it is a very beautiful place.`
 	security 0.1
+	tribute 300
+		threshold 2000
+		fleet "Small Republic" 11
 
 planet "New Tibet"
 	attributes "dirt belt" religious factory
@@ -14124,6 +14409,9 @@ planet "New Wales"
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
 	security 0.2
+	tribute 400
+		threshold 3000
+		fleet "Large Militia" 6
 
 planet "New Washington"
 	attributes "dirt belt" mining oil
@@ -14131,6 +14419,9 @@ planet "New Washington"
 	description `New Washington is a planet huddled close to a dim, red sun in an otherwise frozen system. It orbits so close to the sun that the two are locked together, with one side of New Washington continuously facing the sun and the other in perpetual darkness. The only villages are in the twilight region in between, and there the settlers make a living by mining for metal and for oil, a relic of a warmer period when more life flourished here and the planet spun more quickly on its axis.`
 	spaceport `In this narrow ring between the baking sun of New Washington's day side, and the endless night beyond, a few native plants and animals still flourish: weirdly colored trees and grasses, and a few insect-like creatures flying among them. Rats, accidentally introduced by the settlers, also flourish here. A small, nearly deserted cafeteria is selling stew and mashed potatoes. You are almost certain the stew is made with rat meat.`
 	security 0.05
+	tribute 200
+		threshold 2000
+		fleet "Large Militia" 3
 
 planet Newhome
 	attributes hai
@@ -14151,6 +14442,9 @@ planet Nifel
 	outfitter "Ammo North"
 	bribe 0.05
 	security 0.7
+	tribute 1500
+		threshold 4000
+		fleet "Large Deep" 16
 
 planet Nimbus
 	attributes core fishing medical
@@ -14162,6 +14456,9 @@ planet Nimbus
 	outfitter "Syndicate Basics"
 	outfitter "Ammo North"
 	security 0.3
+	tribute 300
+		threshold 2500
+		fleet "Small Syndicate" 4
 
 planet Norn
 	attributes deep fishing
@@ -14174,6 +14471,9 @@ planet Norn
 	outfitter "Deep Sky Basics"
 	bribe 0.04
 	security 0.6
+	tribute 500
+		threshold 3000
+		fleet "Small Deep" 12
 
 planet Oasis
 	attributes rim farming textiles
@@ -14182,6 +14482,9 @@ planet Oasis
 	description `	Many outsiders, of course, view the Oasis lifestyle as backward and primitive.`
 	spaceport `Most cargo on Oasis is carried by horse-drawn wagons. Some of them are made of steel, but others seem to be built of hand-hewn wood. The sight of horses drawing loads onto and off of gleaming starships is almost surreal.`
 	security 0.05
+	tribute 300
+		threshold 2000
+		fleet "Large Militia" 5
 
 planet "Oberon Station"
 	attributes core station
@@ -14190,6 +14493,9 @@ planet "Oberon Station"
 	"required reputation" 10
 	bribe 0.03
 	security 0.4
+	tribute 400
+		threshold 2000
+		fleet "Small Syndicate" 5
 
 planet Oblivion
 	attributes "dirt belt" oil mining
@@ -14198,6 +14504,9 @@ planet Oblivion
 	spaceport `The spaceport is a long landing strip paved in asphalt, with warehouses on either side of it constructed from stone and mortar.  Inside are stacked lead-lined crates of radioactive materials for sale. Unlike many Dirt Belt worlds, you see few curious children watching ships land or playing among the buildings; this is not the sort of world where many people choose to put down roots and build a family.`
 	outfitter "Ammo South"
 	security 0.05
+	tribute 500
+		threshold 3000
+		fleet "Large Militia" 8
 
 planet Pearl
 	attributes paradise tourism
@@ -14207,6 +14516,9 @@ planet Pearl
 	spaceport `The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent.`
 	bribe 0.03
 	security 0.7
+	tribute 2800
+		threshold 6000
+		fleet "Large Republic" 11
 
 planet "Phoenix Station"
 	attributes deep station
@@ -14215,6 +14527,9 @@ planet "Phoenix Station"
 	"required reputation" 10
 	bribe 0.07
 	security 0.7
+	tribute 500
+		threshold 2000
+		fleet "Large Deep" 5
 
 planet Pilot
 	attributes north research
@@ -14225,6 +14540,9 @@ planet Pilot
 	"required reputation" 100
 	bribe 0.1
 	security 0.9
+	tribute 600
+		threshold 2000
+		fleet "Small Republic" 21
 
 planet Placer
 	attributes core mining frontier
@@ -14232,6 +14550,9 @@ planet Placer
 	description `Placer is uninhabited aside from one small mining outpost; the atmosphere contains uncomfortable levels of ammonia and sulfur dioxide, and although brief exposure is not considered a health threat, those who live here must wear breathing gear when they leave their pressurized homes and mine shafts. Several scientific experiments over the last few centuries have sought to introduce microorganisms that would break down the harmful chemicals and transform the atmosphere to make it safer for human beings to breathe, but none have been successful.`
 	spaceport `The port consists of a large atmospheric dome, with landing pads and airlocks around the periphery. Although brief exposure to the air is not considered harmful, you find yourself holding your breath as you run from your ship to the airlock. Inside the dome, hanging gardens and open park land create a much more hospitable place, but the spaceport is nearly deserted, aside from one small pub that seems to be full of mine workers whose shift has just ended.`
 	security 0.2
+	tribute 300
+		threshold 2000
+		fleet "Small Syndicate" 4
 
 planet Poisonwood
 	attributes south factory farming frontier
@@ -14244,6 +14565,9 @@ planet Poisonwood
 	"required reputation" 2
 	bribe 0.04
 	security 0.5
+	tribute 300
+		threshold 2000
+		fleet "Large Militia" 7
 
 planet Poseidos
 	attributes rim fishing
@@ -14255,6 +14579,9 @@ planet Poseidos
 	outfitter "Kraz Basics"
 	outfitter "Ammo South"
 	security 0.1
+	tribute 400
+		threshold 3000
+		fleet "Large Militia" 6
 
 planet Prime
 	attributes north urban factory
@@ -14271,6 +14598,9 @@ planet Prime
 	"required reputation" 2
 	bribe 0.05
 	security 0.6
+	tribute 4400
+		threshold 8000
+		fleet "Large Republic" 17
 
 planet Pugglemug
 	landscape land/myrabella5
@@ -14294,6 +14624,9 @@ planet Quicksilver
 	spaceport `The spaceport is a single, enormous hangar built as a geodesic dome. It is filled with the constant dull roar of rain beating against the dome from above. When an especially strong blast of wind strikes the dome, its joints flex slightly and you can see the whole structure ripple and move.`
 	spaceport `	Amenities here are minimal: a small cafeteria selling hot drinks and warm stew, and a marketplace mostly filled with stacks of refined steel and aluminum and titanium for sale. A smaller stack of lead-lined crates hold radioactive metals. The air is not particularly cold here, but it is very damp, and the howling weather outside seems to weigh on everyone's spirits.`
 	security 0.2
+	tribute 400
+		threshold 2500
+		fleet "Small Syndicate" 5
 
 planet Rand
 	attributes "dirt belt" mining
@@ -14301,6 +14634,9 @@ planet Rand
 	description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 	spaceport `The landing pads here are poured concrete, raised up slightly above the level of the desert to keep them from being buried in sand. A few workers are constantly driving brush sweepers across the unoccupied pads. The air is filled with sand particles and dust. Aside from the storage sheds, there are only two buildings, each with a large sign out front: "Labor" and "Trade."`
 	security 0.05
+	tribute 500
+		threshold 3000
+		fleet "Large Militia" 8
 
 planet Relic
 	attributes "near earth"
@@ -14309,6 +14645,9 @@ planet Relic
 	spaceport `The spaceport on Relic consists of one low building surrounded by open-air concrete slabs for ships to land on. If rain were more common here, you would worry about your ship rusting, but in this environment the only threat to it is the infrequent sand storms.`
 	outfitter "Ammo North"
 	security 0.2
+	tribute 700
+		threshold 3000
+		fleet "Small Republic" 25
 
 planet Reunion
 	attributes "near earth" urban factory
@@ -14323,6 +14662,9 @@ planet Reunion
 	outfitter "Lovelace Basics"
 	outfitter "Ammo North"
 	security 0.3
+	tribute 2900
+		threshold 5000
+		fleet "Large Republic" 11
 
 planet Rust
 	attributes rim farming factory
@@ -14339,6 +14681,9 @@ planet Rust
 	outfitter "Ammo South"
 	bribe 0.04
 	security 0.5
+	tribute 1200
+		threshold 5000
+		fleet "Large Militia" 18
 
 planet Serpens
 	attributes north medical research
@@ -14346,6 +14691,9 @@ planet Serpens
 	description `Serpens is a sparsely populated world of ancient canyonlands and barren deserts. There were no permanent settlements here until a century ago when visiting biologists discovered an indigenous snake whose venom is useful as a painkiller and heart medication. That led to a few small laboratories being set up in the desert, and to the eventually discovery of other useful compounds that can be extracted from the local flora and fauna.`
 	spaceport `The spaceport's landing pads are just a set of flat cleared areas on top of a mesa, surrounding a jumble of small adobe buildings. Inside the spaceport, scientists in lab coats rub shoulders with "snake wranglers" who ride in and out on horseback, dressed in denim and wearing oversized straw hats. The whole place smells of antiseptic and manure.`
 	security 0.05
+	tribute 900
+		threshold 3000
+		fleet "Large Republic" 3
 
 planet Shangri-La
 	attributes core rich urban frontier
@@ -14360,6 +14708,9 @@ planet Shangri-La
 	"required reputation" 5
 	bribe 0.07
 	security 0.7
+	tribute 1200
+		threshold 4000
+		fleet "Large Syndicate" 7
 
 planet Shiver
 	attributes "near earth"
@@ -14368,6 +14719,9 @@ planet Shiver
 	spaceport `The spaceport is protected from the wind and blowing snow by a perimeter wall about fifty meters tall. Aside from running the fueling station, one of the few jobs for the workers here is to operate the bulldozers that push away the snowdrifts and keep the station from being buried beneath them. Although the air is breathable, ships that land here connect directly to docking tubes, to protect their crews from the icy air.`
 	spaceport `	There are no children here, and almost no women. Most of the workers are men in their early twenties. No one makes an effort to greet you.`
 	security 0.1
+	tribute 300
+		threshold 2000
+		fleet "Small Republic" 10
 
 planet Shorebreak
 	attributes rim research medical
@@ -14378,6 +14732,9 @@ planet Shorebreak
 	"required reputation" 2
 	bribe 0.06
 	security 0.3
+	tribute 500
+		threshold 3000
+		fleet "Large Militia" 8
 
 planet Shroud
 	attributes north rich textiles frontier
@@ -14391,6 +14748,9 @@ planet Shroud
 	outfitter "Lovelace Advanced"
 	bribe 0.04
 	security 0.8
+	tribute 3800
+		threshold 7000
+		fleet "Large Republic" 14
 
 planet Silver
 	attributes "near earth" oil
@@ -14398,6 +14758,9 @@ planet Silver
 	description `Eons ago, Silver was a lush tropical world. It is now mostly desert, but large oil deposits remain below the surface. The petrochemicals mined here are refined to produce plastics, fuel for terrestrial vehicles, and some components of medical ointments and antibiotics. The deserts are hot in daylight and surprisingly cool at night, and as a result most settlers live in houses sunk into the ground in regions where there is enough plant cover to keep the dunes from shifting in the wind and slowly burying their dwellings.`
 	spaceport `The spaceport is near an oasis. Cactus-like plants and a few palm trees stand as tall as radio towers, on the outskirts. The landing pads are made of concrete, rising several meters above the ground to protect both against the encroaching sand and against the flash floods that come in the rare times when it rains here. Under the clear sky and with white sand in all directions, the sunlight is painfully bright, and you have been warned to avoid prolonged exposure to it.`
 	security 0.1
+	tribute 700
+		threshold 4000
+		fleet "Small Republic" 25
 
 planet Sinter
 	attributes "dirt belt" mining
@@ -14405,6 +14768,9 @@ planet Sinter
 	description `Sinter is a world where life never developed; the atmosphere is unbreathable, but warm enough and dense enough that people can survive here in pressurized homes or outside when wearing oxygen tanks. The only industry here is mining, which is mostly done with remotely controlled robots, so the population of the entire planet is only a few thousand people.`
 	spaceport `The spaceport is built next to a large smelter where ore is processed into metal ingots. Even on a planet as inhospitable as this one, the cost of extracting metal from ore is still cheaper than the cost of shipping the ore off-world for processing. A long enclosed terminal building extends out from the smelter, with docking tubes and landing pads every few hundred meters for connecting to visiting ships. Small robotic trolleys carry cargo crates back and forth; only a handful of people are walking around here, and most of them are probably off-worlders.`
 	security 0.05
+	tribute 400
+		threshold 3000
+		fleet "Small Militia" 28
 
 planet Skillet
 	attributes north mining farming frontier
@@ -14412,6 +14778,9 @@ planet Skillet
 	description `Skillet is a sparsely populated planet whose red hills and canyonlands are strip mined for placer deposits of iron ore and precious metals, mostly to supply the needs of the shipyards in Betelgeuse. This world is also used for ranching, and even for growing corn in a few less arid regions. The weather is usually quite mild, although hot and dry; the only reasons so few people have settled here are because it is so remote, and because the mining and farming industries need far fewer human workers than machines.`
 	spaceport `The spaceport mostly consists of a row of adobe warehouses, with tin roofs polished to mirror brightness to reflect the heat of the sun. Around the warehouses is a ring of concrete landing pads. Forklift trucks carrying pallets of iron and steel ingots weave their way in between men and women on horseback and others on foot. The air is hot, but too dry to feel oppressive.`
 	security 0.3
+	tribute 600
+		threshold 4000
+		fleet "Small Republic" 22
 
 planet Skyfarm
 	attributes hai
@@ -14427,6 +14796,9 @@ planet Skymoot
 	spaceport `The spaceport is unusually large and clean for a planet with such a low population. It is clear that tourism here is a profitable industry. One large booth offers airplane rides to view the "dragons" up close, for anyone willing to sign a waiver; even with energy shields, it is not unheard of for a plane to be snatched out of midair by one of the creatures. Other booths offer safari tours of the forest; the tourists in line at those booths are carrying a wide variety of knives and guns.`
 	bribe 0.02
 	security 0.1
+	tribute 400
+		threshold 2000
+		fleet "Large Militia" 6
 
 planet "Smuggler's Den"
 	attributes pirate
@@ -14442,6 +14814,9 @@ planet "Smuggler's Den"
 	outfitter "Pirate Outfits"
 	bribe 0.06
 	security 0
+	tribute 400
+		threshold 2000
+		fleet "Small Southern Pirates" 21
 
 planet Snowfeather
 	attributes hai
@@ -14463,6 +14838,9 @@ planet Solace
 	outfitter "Ammo South"
 	bribe 0.04
 	security 0.5
+	tribute 1000
+		threshold 4000
+		fleet "Large Militia" 15
 
 planet Splashdown
 	attributes north farming
@@ -14470,6 +14848,9 @@ planet Splashdown
 	description `Splashdown is an aging world where plate tectonics have long since died down and the weather has worn the surface down into lowlands, marshes, and shallow seas. Most of the land area is not suitable for growing anything but rice, and only a few settlements have been built here. Most visitors find this world boring, but the locals say they find beauty in the big sky and the subtle colors of the grasslands.`
 	spaceport `The spaceport is in the "highlands," a wide plateau only a few hundred meters above sea level. In all directions, the horizon is an almost perfectly flat line, varied only slightly by low hills and copses of trees. The port itself consists of some grain silos and warehouses, an open air marketplace, and a barbecue restaurant with outdoor seating. The buildings are all single-story, wood-framed construction.`
 	security 0.2
+	tribute 600
+		threshold 3000
+		fleet "Large Republic" 3
 
 planet Starcross
 	attributes rim farming
@@ -14478,6 +14859,9 @@ planet Starcross
 	spaceport `The spaceport is rudimentary: just a couple of landing pads, each with thick cement walls around it to protect your ship from being buffeted by any storms that strike. The central building is a squat, windowless cement fortress. Inside, however, it is completely different: the ceilings are high, with sun-lamps that provide some sense of warmth and cheer, and native wood paneling or stucco on most of the walls to soften them.`
 	outfitter "Ammo South"
 	security 0.05
+	tribute 300
+		threshold 2500
+		fleet "Small Militia" 22
 
 planet Stonebreak
 	attributes hai
@@ -14499,6 +14883,9 @@ planet Stormhold
 	outfitter "Pirate Outfits"
 	bribe 0.03
 	security 0
+	tribute 500
+		threshold 2000
+		fleet "Large Core Pirates" 7
 
 planet Sundive
 	attributes core farming research frontier
@@ -14508,6 +14895,9 @@ planet Sundive
 	spaceport `The spaceport is in a wide, open plain; most of the landing sites are just packed dirt. Surrounding it is nothing but farmland and forests; the laboratory and telescopes are far beyond the horizon, where incoming ships will not interfere with their operation.`
 	spaceport `	The buildings are short and made of wood; even the roofs are clapboard shingles rather than metal or rubber. Several farmers have brought in goods to sell; most of them came in trucks, but you also see a few horse-drawn wagons.`
 	security 0.3
+	tribute 300
+		threshold 2000
+		fleet "Small Syndicate" 4
 
 planet Sundrinker
 	attributes south farming frontier
@@ -14515,6 +14905,9 @@ planet Sundrinker
 	description `Most of this world is barren deserts and oceans; for whatever reason almost no life evolved here. The only human settlement is a small town in one of the few hilly regions, and the locals survive by ranching and farming. It is the sort of world that is ideal for people who enjoy being alone, because it has almost no appeal for anyone else. In addition to the oppressively hot weather, flash floods are quite frequent.`
 	spaceport `There are only two concrete landing platforms in the spaceport, and that is plenty for the amount of traffic they receive. A wide cleared-off field of dirt is available beyond that in case an unusual number of ships ever need to land. The two platforms and the spaceport buildings are all built near to the tops of the hills, out of the way of the flood waters. This is both the spaceport and the only town on Sundrinker. A single road winds between a few buildings; one seems to be a saloon, and another, a general store.`
 	security 0.1
+	tribute 200
+		threshold 2000
+		fleet "Small Militia" 15
 
 planet Sunracer
 	attributes core urban factory farming fishing frontier
@@ -14532,6 +14925,9 @@ planet Sunracer
 	outfitter "Ammo North"
 	bribe 0.06
 	security 0.7
+	tribute 1700
+		threshold 5000
+		fleet "Large Syndicate" 10
 
 planet Thrall
 	attributes paradise textiles
@@ -14543,6 +14939,9 @@ planet Thrall
 	outfitter "Ammo North"
 	bribe 0.04
 	security 0.5
+	tribute 2000
+		threshold 5000
+		fleet "Large Republic" 8
 
 planet Thule
 	attributes pirate
@@ -14557,6 +14956,9 @@ planet Thule
 	outfitter "Pirate Outfits"
 	bribe 0.05
 	security 0.6
+	tribute 900
+		threshold 2500
+		fleet "Large Southern Pirates" 16
 
 planet Thunder
 	attributes rim
@@ -14566,6 +14968,9 @@ planet Thunder
 	outfitter "Basic Outfits"
 	outfitter "Kraz Basics"
 	security 0.1
+	tribute 300
+		threshold 2500
+		fleet "Small Militia" 20
 
 planet Tinker
 	attributes "near earth" factory mining
@@ -14582,6 +14987,9 @@ planet Tinker
 	outfitter "Lovelace Basics"
 	bribe 0.04
 	security 0.4
+	tribute 1100
+		threshold 4000
+		fleet "Large Syndicate" 7
 
 planet Trinket
 	attributes south tourism
@@ -14595,6 +15003,9 @@ planet Trinket
 	outfitter "Pirate Outfits"
 	bribe 0.02
 	security 0.4
+	tribute 500
+		threshold 2500
+		fleet "Small Militia" 36
 
 planet "Triton Station"
 	attributes north station military
@@ -14604,6 +15015,9 @@ planet "Triton Station"
 	"required reputation" 10
 	bribe 0.08
 	security 0.8
+	tribute 600
+		threshold 4000
+		fleet "Small Republic" 24
 
 planet Trove
 	attributes core mining
@@ -14611,6 +15025,9 @@ planet Trove
 	description `Trove is a tiny moon, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
 	spaceport `Within the mining complex, you find a small cafeteria with an uninspiring menu, and windows overlooking offices where dozens of people are staring at flickering video screens. Because of the low gravity, everyone moves languidly, as if in a dream. It is nearly silent.`
 	security 0.05
+	tribute 400
+		threshold 2500
+		fleet "Small Syndicate" 5
 
 planet Tundra
 	attributes "dirt belt" oil textiles
@@ -14620,6 +15037,9 @@ planet Tundra
 	spaceport `The spaceport village consists of several large domes, which keep out the wind and driving snow; ships enter and exit the largest of the domes through a hatch that closes as soon as they have come through. Every decade or so, enough snow piles up on top of one of the domes that it is in danger of collapsing under its own weight; the locals simply move out of that dome and build another one higher up on the snowpack.`
 	outfitter "Ammo South"
 	security 0.1
+	tribute 400
+		threshold 3000
+		fleet "Large Militia" 6
 
 planet Twinstar
 	attributes south tourism frontier
@@ -14628,12 +15048,18 @@ planet Twinstar
 	spaceport `The depot consists mostly of large storage racks, with automatic lifts constantly clanking up and down. Very few people are in sight, aside from a small cafe near the center of the port. It is not a hospitable place.`
 	outfitter "Ammo South"
 	security 0.2
+	tribute 200
+		threshold 2000
+		fleet "Small Militia" 15
 
 planet "Typhon Station"
 	attributes rim station
 	landscape land/station4
 	description `Typhon Station is one of the major fuel refining stations in the galactic Rim. It is privately owned by Southbound Shipyards, and all the fuel produced here is shipped directly to them rather than being made available to visiting ships.`
 	security 0.3
+	tribute 500
+		threshold 2000
+		fleet "Large Militia" 8
 
 planet Vail
 	attributes paradise tourism farming
@@ -14642,6 +15068,9 @@ planet Vail
 	spaceport `The spaceport is near the equator where the weather will be most amenable for landing ships, but with airplane shuttles and a few high speed rail lines leading to the various resort towns. As a result, the air is full of a confusing mixture of deep space ships and atmospheric vehicles, and runways are available in addition to the vertical take-off pads that starships use. In order to come anywhere near the port, you are required to surrender control of your ship to the port's autopilot computer; there is no other way that collisions could be avoided.`
 	bribe 0.04
 	security 0.6
+	tribute 2900
+		threshold 5000
+		fleet "Large Republic" 11
 
 planet Valhalla
 	attributes deep farming fishing urban factory
@@ -14658,6 +15087,9 @@ planet Valhalla
 	outfitter "Deep Sky Advanced"
 	bribe 0.08
 	security 0.8
+	tribute 3600
+		threshold 7000
+		fleet "Large Deep" 35
 
 planet Vinci
 	attributes paradise factory
@@ -14665,6 +15097,9 @@ planet Vinci
 	description `Many centuries ago, some of the first settlers on Vinci included a small group of electrical engineers who formed a revolutionary new company for designing computers and microchips. Today, Vinci is the foremost manufacturer of CPUs in all of human space, and their processors are found in everything from navigational computers to video phones to intelligent toasters. Because this world is home to so many cleanroom fabrication plants, pollution is very tightly controlled.`
 	spaceport `The spaceport is so full of high-fidelity holographic displays that you have trouble at times telling where the virtual reality ends and the physical reality begins; what looks like a paper poster on the wall will suddenly change to a different picture every minute, and the department store mannequins follow you with their eyes. You feel like you are trapped in someone's drug-assisted vision of the future.`
 	security 0.6
+	tribute 2800
+		threshold 5000
+		fleet "Large Republic" 11
 
 planet Warfeed
 	attributes unfettered
@@ -14694,6 +15129,9 @@ planet Wayfarer
 	outfitter "Ammo South"
 	bribe 0.07
 	security 0.3
+	tribute 1700
+		threshold 5000
+		fleet "Large Militia" 26
 
 planet Windblain
 	attributes deep oil textiles
@@ -14705,6 +15143,9 @@ planet Windblain
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
 	security 0.6
+	tribute 800
+		threshold 3500
+		fleet "Small Deep" 18
 
 planet Winter
 	attributes south factory frontier
@@ -14714,6 +15155,9 @@ planet Winter
 	spaceport `The spaceport is built on a large rock outcropping, with brilliant blue glaciers flowing to either side down into a lake below. The sight is stunning, and all the more appealing because you are able to view it from behind plate glass windows, in the warmth of the spaceport, rather than in the frigid air outside. Above you, several layers of clouds are scudding across the sky in different directions.`
 	spaceport `	Faded posters on the walls advise you to buy an estate on Winter now before prices skyrocket. The posters depict children playing in a lush green landscape while their grandparents stand by, looking quietly pleased with the wisdom of their investment.`
 	security 0.1
+	tribute 300
+		threshold 2500
+		fleet "Large Militia" 5
 
 planet "Wyvern Station"
 	attributes rim station
@@ -14721,6 +15165,9 @@ planet "Wyvern Station"
 	description `Wyvern Station was once one of the end destinations for the merchant caravans traveling along the Rim, back in the days before the Republic existed when most systems were not policed and the only way to avoid being plundered by pirates was for ships to travel in large convoys. It has also been a continuously operating hyperspace fuel refinery for more than three centuries.`
 	spaceport `This station is old, and some parts are dirty and in need of repair, but it is at least structurally sound, and the workers here seem optimistic and energetic. The cafeteria is loud and raucous, and the repair shop is more than willing to work on starships as a break from the tedium of repairing the harvester drones that dip into the planet's atmosphere to bring back pressurized tanks full of hydrogen gas.`
 	security 0.4
+	tribute 400
+		threshold 3500
+		fleet "Large Militia" 6
 
 planet Zenith
 	attributes pirate
@@ -14731,6 +15178,9 @@ planet Zenith
 	outfitter "Ammo North"
 	bribe 0.04
 	security 0
+	tribute 400
+		threshold 2500
+		fleet "Small Northern Pirates" 13
 
 planet Zug
 	attributes rim farming factory
@@ -14747,4 +15197,7 @@ planet Zug
 	outfitter "Ammo South"
 	bribe 0.03
 	security 0.5
+	tribute 1200
+		threshold 3000
+		fleet "Large Militia" 18
 
