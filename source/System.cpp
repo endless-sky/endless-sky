@@ -303,6 +303,9 @@ void System::SetDate(const Date &date)
 		
 		if(object.position)
 			object.unit = object.position.Unit();
+		
+		if(object.planet)
+			object.planet->ResetDefense();
 	}
 }
 

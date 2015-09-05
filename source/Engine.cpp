@@ -759,6 +759,9 @@ void Engine::CalculateStep()
 			draw[calcTickTock].Add(object.GetSprite(), position, unit, isBig ? Point() : -centerVelocity);
 			radar[calcTickTock].Add(type, position, r, r - 1.);
 			
+			if(object.GetPlanet())
+				object.GetPlanet()->DeployDefense(ships);
+			
 			if(doClick && object.GetPlanet() && (clickPoint - position).Length() < object.Radius())
 				player.Flagship()->SetTargetPlanet(&object);
 		}

@@ -286,6 +286,17 @@ void PlayerInfo::ApplyChanges()
 		destroyedPersons.back()->GetShip()->Destroy();
 		destroyedPersons.pop_back();
 	}
+	
+	// Check which planets you have dominated.
+	static const string prefix = "tribute: ";
+	for(auto it = conditions.lower_bound(prefix); it != conditions.end(); ++it)
+	{
+		if(it->first.compare(0, prefix.length(), prefix))
+			break;
+		
+		const Planet *planet = GameData::Planets().Get(it->first.substr(prefix.length()));
+		GameData::GetPolitics().DominatePlanet(planet);
+	}
 }
 
 

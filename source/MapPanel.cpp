@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
+#include "Politics.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteShader.h"
@@ -339,14 +340,21 @@ void MapPanel::DrawSystems() const
 			else
 			{
 				double reputation = system.GetGovernment()->Reputation();
-		
+				
+				bool hasDominated = false;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
 					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+					{
 						canLand |= object.GetPlanet()->CanLand();
+						hasDominated |= GameData::GetPolitics().HasDominated(object.GetPlanet());
+					}
 				if(!canLand)
 					reputation = min(reputation, -1.);
-				if(reputation >= 0.)
+				
+				if(hasDominated)
+					color = Color(.1, .6, 0., .4);
+				else if(reputation >= 0.)
 				{
 					reputation = min(1., .1 * log(1. + reputation) + .1);
 					color = Color(0., .6 * (1. - reputation), .6, .4);

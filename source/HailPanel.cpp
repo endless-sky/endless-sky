@@ -184,7 +184,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		// TODO: allow the player to demand tribute from planets.
 		if(planet)
 		{
-			message = "Please don't joke about that sort of thing.";
+			message = planet->DemandTribute(player);
 			return true;
 		}
 		else if(shipIsEnemy)

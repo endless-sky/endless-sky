@@ -15,12 +15,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sale.h"
 
+#include <list>
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
 
 class DataNode;
+class Fleet;
 class Outfit;
+class PlayerInfo;
 class Ship;
 class Sprite;
 class System;
@@ -93,6 +97,11 @@ public:
 	bool CanUseServices() const;
 	void Bribe(bool fullAccess = true) const;
 	
+	// Demand tribute, and get the planet's response.
+	std::string DemandTribute(PlayerInfo &player) const;
+	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
+	void ResetDefense() const;
+	
 	
 private:
 	std::string name;
@@ -112,6 +121,14 @@ private:
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
+	
+	int tribute = 0;
+	const Fleet *defenseFleet = nullptr;
+	int defenseCount = 0;
+	mutable int defenseDeployed = 0;
+	int defenseThreshold = 4000;
+	mutable bool isDefending = false;
+	mutable std::list<std::shared_ptr<Ship>> defenders;
 	
 	std::vector<const System *> systems;
 };

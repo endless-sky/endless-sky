@@ -37,9 +37,9 @@ public:
 	
 	// Commit the given "offense" against the given government (which may not
 	// actually consider it to be an offense). This may result in temporary
-	// hostilities (if the even type is PROVOKE), or a permanent change to your
+	// hostilities (if the event type is PROVOKE), or a permanent change to your
 	// reputation.
-	void Offend(const Government *gov, int eventType, int count);
+	void Offend(const Government *gov, int eventType, int count = 1);
 	// Bribe the given government to be friendly to you for one day.
 	void Bribe(const Government *gov);
 	
@@ -50,6 +50,8 @@ public:
 	bool CanUseServices(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
 	void BribePlanet(const Planet *planet, bool fullAccess);
+	void DominatePlanet(const Planet *planet);
+	bool HasDominated(const Planet *planet) const;
 	
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
@@ -74,6 +76,7 @@ private:
 	std::set<const Government *> provoked;
 	std::set<const Government *> bribed;
 	std::map<const Planet *, bool> bribedPlanets;
+	std::set<const Planet *> dominatedPlanets;
 	std::set<const Government *> fined;
 };
 

@@ -81,7 +81,7 @@ const Government *Fleet::GetGovernment() const
 
 
 
-void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
+void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
 	if(!total || !government)
 		return;
@@ -110,12 +110,22 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships) const
 	
 	int choice = Random::Int(links + planets);
 	
-	const Planet *planet = nullptr;
 	const System *source = &system;
 	const System *target = &system;
 	Point position;
 	unsigned radius = 0;
-	if(choice >= links)
+	
+	if(planet)
+	{
+		for(const StellarObject &object : system.Objects())
+			if(object.GetPlanet() == planet)
+			{
+				position = object.Position();
+				radius = max(0, static_cast<int>(object.Radius()));
+				break;
+			}
+	}
+	else if(choice >= links)
 	{
 		choice -= links;
 		

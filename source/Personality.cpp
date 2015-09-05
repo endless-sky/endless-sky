@@ -217,6 +217,15 @@ const Point &Personality::Confusion() const
 
 
 
+Personality Personality::Defender()
+{
+	Personality defender;
+	defender.flags = STAYING | NEMESIS | HEROIC;
+	return defender;
+}
+
+
+
 void Personality::Parse(const string &token)
 {
 	auto it = TOKEN.find(token);

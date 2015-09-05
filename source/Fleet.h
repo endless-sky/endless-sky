@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Phrase;
+class Planet;
 class Ship;
 class System;
 
@@ -42,7 +43,7 @@ public:
 	// Get the government of this fleet.
 	const Government *GetGovernment() const;
 	
-	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships) const;
+	void Enter(const System &system, std::list<std::shared_ptr<Ship>> &ships, const Planet *planet = nullptr) const;
 	// Place a fleet in the given system, already "in action."
 	void Place(const System &system, std::list<std::shared_ptr<Ship>> &ships, bool carried = true) const;
 	

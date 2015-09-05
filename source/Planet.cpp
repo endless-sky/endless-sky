@@ -13,10 +13,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 
 #include "DataNode.h"
+#include "Format.h"
 #include "GameData.h"
+#include "PlayerInfo.h"
 #include "Politics.h"
+#include "Random.h"
 #include "Ship.h"
+#include "ShipEvent.h"
 #include "SpriteSet.h"
+#include "System.h"
 
 using namespace std;
 
@@ -93,6 +98,20 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			bribe = child.Value(1);
 		else if(child.Token(0) == "security" && child.Size() >= 2)
 			security = child.Value(1);
+		else if(child.Token(0) == "tribute" && child.Size() >= 2)
+		{
+			tribute = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "threshold" && grand.Size() >= 2)
+					defenseThreshold = grand.Value(1);
+				else if(grand.Token(0) == "fleet" && grand.Size() >= 3)
+				{
+					defenseCount = (grand.Size() >= 3 ? grand.Value(2) : 1);
+					defenseFleet = GameData::Fleets().Get(grand.Token(1));
+				}
+			}
+		}
 	}
 }
 
@@ -294,4 +313,71 @@ bool Planet::CanUseServices() const
 void Planet::Bribe(bool fullAccess) const
 {
 	GameData::GetPolitics().BribePlanet(this, fullAccess);
+}
+
+
+
+// Demand tribute, and get the planet's response.
+string Planet::DemandTribute(PlayerInfo &player) const
+{
+	if(player.GetCondition("tribute: " + name))
+		return "We are already paying you as much as we can afford.";
+	if(!tribute || !defenseFleet || !defenseCount || player.GetCondition("combat rating") < defenseThreshold)
+		return "Please don't joke about that sort of thing.";
+	
+	// The player is scary enough for this planet to take notice. Check whether
+	// this is the first demand for tribute, or not.
+	if(!isDefending)
+	{
+		isDefending = true;
+		GameData::GetPolitics().Offend(defenseFleet->GetGovernment(), ShipEvent::PROVOKE);
+		GameData::GetPolitics().Offend(GetSystem()->GetGovernment(), ShipEvent::PROVOKE);
+		return "Our defense fleet will make short work of you.";
+	}
+	
+	// The player has already demanded tribute. Have they killed off the entire
+	// defense fleet?
+	bool isDefeated = (defenseDeployed == defenseCount);
+	for(const shared_ptr<Ship> &ship : defenders)
+		if(!ship->IsDisabled())
+		{
+			isDefeated = false;
+			break;
+		}
+	
+	if(!isDefeated)
+		return "We're not ready to surrender yet.";
+	
+	player.Conditions()["tribute: " + name] = tribute;
+	GameData::GetPolitics().DominatePlanet(this);
+	return "We surrender. We will pay you " + Format::Number(tribute) + " credits per day to leave us alone.";
+}
+
+
+
+void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
+{
+	if(!isDefending || Random::Int(60) || defenseDeployed == defenseCount)
+		return;
+	
+	// Have another defense fleet take off from the planet.
+	auto end = defenders.begin();
+	defenseFleet->Enter(*GetSystem(), defenders, this);
+	ships.insert(ships.begin(), defenders.begin(), end);
+	
+	// All defenders get a special personality.
+	Personality defenderPersonality = Personality::Defender();
+	for(auto it = defenders.begin(); it != end; ++it)
+		(**it).SetPersonality(defenderPersonality);
+	
+	++defenseDeployed;
+}
+
+
+
+void Planet::ResetDefense() const
+{
+	isDefending = false;
+	defenseDeployed = 0;
+	defenders.clear();
 }

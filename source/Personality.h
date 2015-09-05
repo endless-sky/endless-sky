@@ -51,6 +51,8 @@ public:
 	
 	const Point &Confusion() const;
 	
+	static Personality Defender();
+	
 	
 private:
 	void Parse(const std::string &token);

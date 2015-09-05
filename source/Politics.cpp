@@ -32,6 +32,7 @@ using namespace std;
 void Politics::Reset()
 {
 	reputationWith.clear();
+	dominatedPlanets.clear();
 	ResetDaily();
 	
 	for(const auto &it : GameData::Governments())
@@ -148,6 +149,10 @@ bool Politics::CanLand(const Planet *planet) const
 		return false;
 	if(!planet->HasSpaceport())
 		return true;
+	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
+		return true;
+	if(provoked.find(planet->GetSystem()->GetGovernment()) != provoked.end())
+		return false;
 	if(bribedPlanets.find(planet) != bribedPlanets.end())
 		return true;
 	
@@ -171,6 +176,20 @@ bool Politics::CanUseServices(const Planet *planet) const
 void Politics::BribePlanet(const Planet *planet, bool fullAccess)
 {
 	bribedPlanets[planet] = fullAccess;
+}
+
+
+
+void Politics::DominatePlanet(const Planet *planet)
+{
+	dominatedPlanets.insert(planet);
+}
+
+
+
+bool Politics::HasDominated(const Planet *planet) const
+{
+	return (dominatedPlanets.find(planet) != dominatedPlanets.end());
 }
 
 
