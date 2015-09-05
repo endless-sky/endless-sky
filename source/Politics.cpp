@@ -163,6 +163,9 @@ bool Politics::CanLand(const Planet *planet) const
 
 bool Politics::CanUseServices(const Planet *planet) const
 {
+	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
+		return true;
+	
 	auto it = bribedPlanets.find(planet);
 	if(it != bribedPlanets.end())
 		return it->second;
