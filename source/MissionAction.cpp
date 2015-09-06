@@ -64,6 +64,8 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 			gifts[GameData::Outfits().Get(child.Token(1))] = count;
 		}
+		else if(child.Token(0) == "require" && child.Size() >= 2)
+			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
 		else if(child.Token(0) == "payment" && child.Size() >= 2)
 			payment += child.Value(1);
 		else if(child.Token(0) == "payment")
@@ -148,7 +150,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
-		if(it.second >= 0)
+		if(it.second > 0)
 			continue;
 		
 		// The outfit can be taken from the player's cargo or from the flagship.
@@ -158,7 +160,9 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 		if(flagship)
 			available += flagship->OutfitCount(it.first);
 		
-		if(available < -it.second)
+		// If the gift "count" is 0, that means to check that the player has at
+		// least one of these items.
+		if(available < -it.second + !it.second)
 			return false;
 	}
 	return true;
