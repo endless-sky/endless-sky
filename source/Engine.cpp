@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Person.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Politics.h"
 #include "PointerShader.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -78,6 +79,7 @@ Engine::Engine(PlayerInfo &player)
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
 				object.GetPlanet()->IsWormhole() ? Radar::ANOMALOUS :
+				GameData::GetPolitics().HasDominated(object.GetPlanet()) ? Radar::PLAYER :
 				object.GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
@@ -391,7 +393,6 @@ void Engine::Step(bool isActive)
 	}
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
-	info.SetRadar(radar[!drawTickTock]);
 	shared_ptr<const Ship> target;
 	if(flagship)
 		target = flagship->GetTargetShip();
@@ -518,6 +519,7 @@ void Engine::Draw() const
 		}
 	}
 	
+	info.SetRadar(radar[drawTickTock]);
 	GameData::Interfaces().Get("status")->Draw(info);
 	GameData::Interfaces().Get("targets")->Draw(info);
 	
@@ -751,6 +753,7 @@ void Engine::CalculateStep()
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
 				object.GetPlanet()->IsWormhole() ? Radar::ANOMALOUS :
+				GameData::GetPolitics().HasDominated(object.GetPlanet()) ? Radar::PLAYER :
 				object.GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE;
 			double r = max(2., object.Radius() * .03 + .5);
 			
