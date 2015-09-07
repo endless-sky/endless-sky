@@ -496,6 +496,9 @@ void InfoPanel::DrawShip() const
 	{
 		for(const auto &it : cargo.Commodities())
 		{
+			if(!it.second)
+				continue;
+			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
 			font.Draw(it.first, pos, dim);

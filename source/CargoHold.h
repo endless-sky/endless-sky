@@ -96,8 +96,8 @@ public:
 	
 	
 private:
-	int size = 0;
-	int bunks = 0;
+	int size = -1;
+	int bunks = -1;
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
 	std::map<const Mission *, int> missionCargo;

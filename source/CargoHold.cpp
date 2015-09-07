@@ -307,12 +307,12 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 {
 	// Take your free capacity into account here too.
 	amount = min(amount, Get(commodity));
-	if(Size())
+	if(size >= 0)
 		amount = max(amount, -max(Free(), 0));
 	if(to)
 	{
 		amount = max(amount, -to->Get(commodity));
-		if(to->Size())
+		if(to->size >= 0)
 			amount = min(amount, max(to->Free(), 0));
 	}
 	if(!amount)
@@ -332,12 +332,12 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	int mass = outfit->Get("mass");
 	
 	amount = min(amount, Get(outfit));
-	if(Size() && mass)
+	if(size >= 0 && mass)
 		amount = max(amount, -max(Free(), 0) / mass);
 	if(to)
 	{
 		amount = max(amount, -to->Get(outfit));
-		if(to->Size() && mass)
+		if(to->size >= 0 && mass)
 			amount = min(amount, max(to->Free(), 0) / mass);
 	}
 	if(!amount)
@@ -360,12 +360,12 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold *to)
 	{
 		// Take your free capacity into account here too.
 		amount = min(amount, Get(mission));
-		if(Size())
+		if(size >= 0)
 			amount = max(amount, -max(Free(), 0));
 		if(to)
 		{
 			amount = max(amount, -to->Get(mission));
-			if(to->Size())
+			if(to->size >= 0)
 				amount = min(amount, max(to->Free(), 0));
 		}
 		if(!amount)
@@ -385,12 +385,12 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 {
 	// Take your free capacity into account here too.
 	amount = min(amount, GetPassengers(mission));
-	if(Size())
+	if(bunks >= 0)
 		amount = max(amount, -max(Bunks(), 0));
 	if(to)
 	{
 		amount = max(amount, -to->GetPassengers(mission));
-		if(to->Size())
+		if(to->bunks >= 0)
 			amount = min(amount, max(to->Bunks(), 0));
 	}
 	if(!amount)
