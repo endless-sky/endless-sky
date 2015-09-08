@@ -448,7 +448,7 @@ mission "FW Embassy 1"
 			`	"That's purely for you as a private captain, to compensate you for your assistance," he says. "I wouldn't want you to think that I am in any way giving financial support to the Free Worlds, since that would be illegal."`
 			`	"Of course not, sir," you say. "Thank you."`
 			label next
-			`	"Don't mention it," he says, with a wink. "And now, I think it's best that you be off. From what I hear, now that Raven is not traveling with you, people are beginning to ask questions about what this Free Worlds captain is doing flying all around Republic space unescorted."`
+			`	"Don't mention it," he says, with a wink. "And now, I think it's best that you head to Earth and pick up those ambassadors. From what I hear, now that Raven is not traveling with you, people are beginning to ask questions about what this Free Worlds captain is doing flying all around Republic space unescorted."`
 				accept
 
 
@@ -1540,6 +1540,7 @@ mission "FW Pug 4"
 		conversation
 			`The Syndicate directs you to land your ships in the private hangars for Syndicated Systems. Once you have landed, they quickly work to install jump drives in the Navy and Free Worlds ships. As they work, you hear one of the workers saying to another, "Golly, I'd forgotten how big those Navy ships are. Makes a Protector look puny by comparison, doesn't it?"`
 			`	Once the work is done, you meet with a senior Syndicate executive named Marco Bugati. "I really hope this works," he says, "because these are the only jump drives we've been able to acquire. If your fleet is destroyed, we will have lost access to the occupied territory entirely."`
+			`	You gather your fleet and prepare for an assault on Delta Capricorni, which is the occupied star system closest to Syndicate space.`
 			``
 			`[Take good care of this fleet: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
 				accept

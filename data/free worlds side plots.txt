@@ -267,7 +267,7 @@ mission "FW Wolf Pack 2A"
 			label resources
 			`	"Precisely," says Rex, "and one resource in particular is more important to them than all the rest combined."`
 			label map
-			`	The man named Fido, who is older and has a thick beard, spreads out a map on the table. You recognize it as a chart of food prices throughout human space. "Food," says Rex. "The Dirt Belt is the breadbasket of the galaxy. And at the core of the Republic: teeming, overpopulated worlds that could never hope to feed themselves. If we cut off the supply of food, the Republic will be forced to make peace with us."`
+			`	The man named Fido, who is older and has a thick beard, spreads out a map on the table. You recognize it as a chart of food prices throughout human space. "Food," says Rex. "The Dirt Belt is the breadbasket of the galaxy. And the Republic is full of teeming, overpopulated worlds that could never hope to feed themselves. If we cut off the supply of food, the Republic will be forced to make peace with us."`
 			`	Fido says, "We are proposing a concentrated effort to destroy the freighter convoys that bring food to the richest, most densely populated Republic worlds. When their citizens find themselves lacking basic supplies, they will demand an end to the war."`
 			choice
 				`	"I'd be glad to join you. That does sound like a much quicker solution than our current policies that the Senate and the Council support."`

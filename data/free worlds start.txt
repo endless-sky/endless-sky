@@ -1197,9 +1197,11 @@ mission "FW Pirates 3.1"
 		system Antares
 		fleet "Small Southern Pirates"
 		fleet "Small Southern Pirates"
-		fleet "Small Southern Pirates"
+		fleet "Small Northern Pirates"
 		fleet "Large Southern Pirates"
 		fleet "Large Southern Pirates"
+		fleet "Large Core Pirates"
+		fleet "Large Northern Pirates"
 	
 	on offer
 		conversation
