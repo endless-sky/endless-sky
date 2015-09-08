@@ -557,7 +557,7 @@ bool Ship::Move(list<Effect> &effects)
 		
 		const Effect *effect = GameData::Effects().Get("ion spark");
 		double ion = ionization * .1;
-		while(true)
+		while(!forget)
 		{
 			ion -= Random::Real();
 			if(ion <= 0.)
