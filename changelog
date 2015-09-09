@@ -1,3 +1,20 @@
+Version 0.8.3:
+  * Bug fixes:
+    * Fines are now correctly applied to the player.
+    * A possible out-of-bounds memory access when cleaning up cargo from failed missions is fixed.
+    * Outfits that increase your maximum hull no longer cause the ship to become disabled.
+    * The Hire panel now correctly handles cases where you have more crew than you can hold.
+    * Fixed "out of fuel" handling for ships with both a hyperdrive and a jump drive.
+    * The "hull repair rate" attribute now works correctly.
+    * Ships with zero cargo space are no longer treated as if they have infinite space.
+    * Radar now displays correctly when the game is first loaded.
+    * Ion sparks are no longer displayed from ships in other systems.
+  * Changes to game mechanics:
+    * You can now demand tribute from planets.
+    * Added a "require <outfit>" mission action.
+    * Reduced the Bactrian's speed and engine space to balance it with the other large warships.
+    * Quarg power generators are no longer a separate outfit that you can steal.
+
 Version 0.8.2:
   * Bug fixes:
     * Fixed the crash when you depart a planet with a fighter as an escort or NPC.
