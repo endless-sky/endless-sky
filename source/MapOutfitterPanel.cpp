@@ -180,14 +180,19 @@ bool MapOutfitterPanel::Scroll(int dx, int dy)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
+	double value = -.5;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet() && !object.GetPlanet()->Outfitter().empty())
+			value = 0.;
+
 	if(!system || !selected)
-		return 0.;
+		return value;
 	
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet() && object.GetPlanet()->Outfitter().Has(selected))
 			return 1.;
 	
-	return 0.;
+	return value;
 }
 
 
