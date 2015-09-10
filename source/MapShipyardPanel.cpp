@@ -178,12 +178,15 @@ bool MapShipyardPanel::Scroll(int dx, int dy)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
+	if(!system)
+		return 0.;
+	
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet() && !object.GetPlanet()->Shipyard().empty())
 			value = 0.;
 
-	if(!system || !selected)
+	if(!selected)
 		return value;
 	
 	for(const StellarObject &object : system->Objects())
@@ -234,6 +237,7 @@ void MapShipyardPanel::DrawItems() const
 {
 	const Font &bigFont = FontSet::Get(18);
 	const Font &font = FontSet::Get(14);
+	Color dimTextColor = *GameData::Colors().Get("dim");
 	Color textColor = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	Color selectionColor(0., .3);
@@ -276,14 +280,24 @@ void MapShipyardPanel::DrawItems() const
 				
 				zones.emplace_back(corner + .5 * blockSize, blockSize, ship);
 				
-				font.Draw(name, corner + nameOffset, textColor);
+				bool isForSale = true;
+				if(selectedSystem)
+				{
+					isForSale = false;
+					for(const StellarObject &object : selectedSystem->Objects())
+						if(object.GetPlanet() && object.GetPlanet()->Shipyard().Has(ship))
+							isForSale = true;
+				}
+				
+				const Color &color = (isForSale ? textColor : dimTextColor);
+				font.Draw(name, corner + nameOffset, color);
 				
 				string price = Format::Number(ship->Cost()) + " credits";
-				font.Draw(price, corner + priceOffset, textColor);
+				font.Draw(price, corner + priceOffset, color);
 				
 				string shields = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 				shields += Format::Number(ship->Attributes().Get("hull")) + " hull";
-				font.Draw(shields, corner + shieldsOffset, textColor);
+				font.Draw(shields, corner + shieldsOffset, color);
 			}
 			corner += Point(0., ICON_HEIGHT);
 		}

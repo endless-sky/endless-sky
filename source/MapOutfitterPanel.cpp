@@ -180,12 +180,15 @@ bool MapOutfitterPanel::Scroll(int dx, int dy)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
+	if(!system)
+		return 0.;
+	
 	double value = -.5;
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet() && !object.GetPlanet()->Outfitter().empty())
 			value = 0.;
 
-	if(!system || !selected)
+	if(!selected)
 		return value;
 	
 	for(const StellarObject &object : system->Objects())
@@ -236,6 +239,7 @@ void MapOutfitterPanel::DrawItems() const
 {
 	const Font &bigFont = FontSet::Get(18);
 	const Font &font = FontSet::Get(14);
+	Color dimTextColor = *GameData::Colors().Get("dim");
 	Color textColor = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	Color selectionColor(0., .3);
@@ -277,10 +281,20 @@ void MapOutfitterPanel::DrawItems() const
 				
 				zones.emplace_back(corner + .5 * blockSize, blockSize, outfit);
 				
-				font.Draw(name, corner + nameOffset, textColor);
+				bool isForSale = true;
+				if(selectedSystem)
+				{
+					isForSale = false;
+					for(const StellarObject &object : selectedSystem->Objects())
+						if(object.GetPlanet() && object.GetPlanet()->Outfitter().Has(outfit))
+							isForSale = true;
+				}
+				
+				const Color &color = (isForSale ? textColor : dimTextColor);
+				font.Draw(name, corner + nameOffset, color);
 				
 				string price = Format::Number(outfit->Cost()) + " credits";
-				font.Draw(price, corner + priceOffset, textColor);
+				font.Draw(price, corner + priceOffset, color);
 				
 				double space = -outfit->Get("outfit space");
 				string size = Format::Number(space);
@@ -291,7 +305,7 @@ void MapOutfitterPanel::DrawItems() const
 					size += " of engine space";
 				else
 					size += " of outfit space";
-				font.Draw(size, corner + sizeOffset, textColor);
+				font.Draw(size, corner + sizeOffset, color);
 			}
 			corner += Point(0., ICON_HEIGHT);
 		}
