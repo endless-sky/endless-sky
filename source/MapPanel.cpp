@@ -283,8 +283,10 @@ void MapPanel::DrawSystems() const
 		if(!player.HasSeen(&system) && &system != specialSystem)
 			continue;
 		
-		Color color(.2, .2);
-		if(system.IsInhabited() && player.HasVisited(&system))
+		Color color(.2, 0.);
+		if(!player.HasVisited(&system))
+			color = Color(.1, 0.);
+		else if(system.IsInhabited())
 		{
 			if(commodity >= -2 || commodity == -5)
 			{
