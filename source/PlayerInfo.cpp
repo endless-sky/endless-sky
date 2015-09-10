@@ -513,11 +513,15 @@ Account &PlayerInfo::Accounts()
 // Calculate how much the player pays in daily salaries.
 int64_t PlayerInfo::Salaries() const
 {
-	// A ship that is "parked" remains on a planet and requires no salaries.
+	// Don't count extra crew on anything but the flagship.
 	int64_t crew = 0;
+	if(!ships.empty())
+		crew = ships.front()->Crew() - ships.front()->RequiredCrew();
+	
+	// A ship that is "parked" remains on a planet and requires no salaries.
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDestroyed())
-			crew += ship->Crew();
+			crew += ship->RequiredCrew();
 	if(!crew)
 		return 0;
 	
