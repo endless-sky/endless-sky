@@ -131,7 +131,7 @@ int ShipInfoDisplay::SaleHeight() const
 // Draw each of the panels.
 void ShipInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	description.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+	description.Draw(topLeft + Point(10., 12.), *GameData::Colors().Get("medium"));
 }
 
 

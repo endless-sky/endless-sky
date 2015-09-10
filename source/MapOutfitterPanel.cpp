@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapShipyardPanel.h"
 #include "MissionPanel.h"
 #include "Outfit.h"
+#include "OutfitInfoDisplay.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -87,6 +88,31 @@ void MapOutfitterPanel::Draw() const
 	info.SetCondition("is outfitters");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
+	
+	if(selected)
+	{
+		OutfitInfoDisplay infoDisplay(*selected);
+		
+		Color back(.125, 1.);
+		Point size(infoDisplay.PanelWidth(), infoDisplay.AttributesHeight());
+		Point topLeft(Screen::Right() - size.X(), Screen::Top());
+		FillShader::Fill(topLeft + .5 * size, size, back);
+		
+		const Sprite *left = SpriteSet::Get("ui/left edge");
+		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+		Point leftPos = topLeft + Point(
+			-.5 * left->Width(),
+			size.Y() - .5 * left->Height());
+		SpriteShader::Draw(left, leftPos);
+		// The top left corner of the bottom sprite should be 10 x units right
+		// of the bottom left corner of the left edge sprite.
+		Point bottomPos = leftPos + Point(
+			10. + .5 * (bottom->Width() - left->Width()),
+			.5 * (left->Height() + bottom->Height()));
+		SpriteShader::Draw(bottom, bottomPos);
+		
+		infoDisplay.DrawAttributes(topLeft + Point(0., 10.));
+	}
 }
 
 

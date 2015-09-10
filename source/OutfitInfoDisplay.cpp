@@ -123,7 +123,7 @@ int OutfitInfoDisplay::AttributesHeight() const
 // Draw each of the panels.
 void OutfitInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	description.Draw(topLeft + Point(10., 3.), *GameData::Colors().Get("medium"));
+	description.Draw(topLeft + Point(10., 2.), *GameData::Colors().Get("medium"));
 }
 
 
