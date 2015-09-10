@@ -291,7 +291,7 @@ bool MissionPanel::Click(int x, int y)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			Select(availableIt->Destination()->GetSystem());
+			selectedSystem = availableIt->Destination()->GetSystem();
 			center = Point(0., -80.) - selectedSystem->Position();
 			return true;
 		}
@@ -309,7 +309,7 @@ bool MissionPanel::Click(int x, int y)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			Select(acceptedIt->Destination()->GetSystem());
+			selectedSystem = acceptedIt->Destination()->GetSystem();
 			center = Point(0., -80.) - selectedSystem->Position();
 			return true;
 		}
