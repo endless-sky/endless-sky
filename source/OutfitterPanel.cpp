@@ -122,7 +122,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
 	DrawOutfit(*outfit, point, isSelected, isOwned);
 	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, outfit, scrollY);
+	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);
 	
 	// Check if this outfit is a "license".
 	bool isLicense = IsLicense(name);
