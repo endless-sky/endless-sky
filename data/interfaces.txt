@@ -299,10 +299,9 @@ interface "status"
 interface "targets"
 	position top left
 	sprite "ui/radar" 0 0
-	radar 128 128
-		scale .025
-		radius 110
-		pointerRadius 130
+	point radar
+		position 128 128
+		size 110 130
 	sprite "ui/navigation" 200 0
 	sprite "ui/target" 0 240
 	string "navigation mode" 215 12

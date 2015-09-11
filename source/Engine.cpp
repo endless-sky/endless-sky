@@ -519,9 +519,22 @@ void Engine::Draw() const
 		}
 	}
 	
-	info.SetRadar(radar[drawTickTock]);
-	GameData::Interfaces().Get("status")->Draw(info);
-	GameData::Interfaces().Get("targets")->Draw(info);
+	const Interface *interfaces[2] = {
+		GameData::Interfaces().Get("status"),
+		GameData::Interfaces().Get("targets")
+	};
+	for(const Interface *interface : interfaces)
+	{
+		interface->Draw(info);
+		if(interface->HasPoint("radar"))
+		{
+			radar[drawTickTock].Draw(
+				interface->GetPoint("radar"),
+				.025,
+				interface->GetSize("radar").X(),
+				interface->GetSize("radar").Y());
+		}
+	}
 	
 	// Draw ammo status.
 	Point pos(Screen::Right() - 80, Screen::Bottom());

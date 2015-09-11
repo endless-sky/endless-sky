@@ -119,7 +119,7 @@ private:
 	Point position;
 	Point velocity;
 	// Other information to display.
-	mutable Information info;
+	Information info;
 	std::vector<Target> targets;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;

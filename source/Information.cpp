@@ -18,13 +18,6 @@ using namespace std;
 
 
 
-Information::Information()
-	: radar(nullptr), outlineColor(1., 1.)
-{
-}
-
-
-
 void Information::SetSprite(const string &name, const Sprite *sprite)
 {
 	sprites[name] = sprite;
@@ -81,20 +74,6 @@ double Information::BarSegments(const string &name) const
 	auto it = barSegments.find(name);
 	
 	return (it == barSegments.end()) ? 1. : it->second;
-}
-
-
-	
-void Information::SetRadar(const Radar &radar)
-{
-	this->radar = &radar;
-}
-
-
-
-const Radar *Information::GetRadar() const
-{
-	return radar;
 }
 
 

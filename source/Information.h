@@ -20,7 +20,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class Sprite;
-class Radar;
 
 
 
@@ -28,8 +27,6 @@ class Radar;
 // of how that information is laid out or shown.
 class Information {
 public:
-	Information();
-	
 	void SetSprite(const std::string &name, const Sprite *sprite);
 	const Sprite *GetSprite(const std::string &name) const;
 	
@@ -39,9 +36,6 @@ public:
 	void SetBar(const std::string &name, double value, double segments = 0.);
 	double BarValue(const std::string &name) const;
 	double BarSegments(const std::string &name) const;
-	
-	void SetRadar(const Radar &radar);
-	const Radar *GetRadar() const;
 	
 	void SetCondition(const std::string &condition);
 	bool HasCondition(const std::string &condition) const;
@@ -55,8 +49,6 @@ private:
 	std::map<std::string, std::string> strings;
 	std::map<std::string, double> bars;
 	std::map<std::string, double> barSegments;
-	
-	const Radar *radar;
 	
 	std::set<std::string> conditions;
 	

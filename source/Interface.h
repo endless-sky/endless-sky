@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Point.h"
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -34,6 +35,10 @@ public:
 	void Draw(const Information &info, const Point &offset = Point()) const;
 	
 	char OnClick(const Point &point) const;
+	
+	bool HasPoint(const std::string &name) const;
+	Point GetPoint(const std::string &name) const;
+	Point GetSize(const std::string &name) const;
 	
 	
 private:
@@ -84,20 +89,12 @@ private:
 		Point position;
 		Point size;
 		char key;
-		
-		std::string condition;
 	};
 	
-	class RadarSpec {
+	class PointSpec {
 	public:
-		RadarSpec(const Point &position = Point());
-		
 		Point position;
-		double scale;
-		double radius;
-		double pointerRadius;
-		
-		std::string condition;
+		Point size;
 	};
 	
 	
@@ -115,7 +112,7 @@ private:
 	
 	std::vector<ButtonSpec> buttons;
 	
-	std::vector<RadarSpec> radars;
+	std::map<std::string, PointSpec> points;
 };
 
 

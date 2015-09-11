@@ -19,7 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
-#include "Radar.h"
 #include "RingShader.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -139,25 +138,17 @@ void Interface::Load(const DataNode &node)
 					buttons.back().size = Point(
 						grand.Value(1), grand.Value(2));
 			}
-			
-			buttons.back().condition = condition;
 		}
-		else if(key == "radar" && child.Size() >= 3)
+		else if(key == "point" && child.Size() >= 2)
 		{
-			Point position(child.Value(1), child.Value(2));
-			radars.emplace_back(position);
-			
+			PointSpec &spec = points[child.Token(1)];
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "radius" && grand.Size() >= 2)
-					radars.back().radius = grand.Value(1);
-				else if(grand.Token(0) == "scale" && grand.Size() >= 2)
-					radars.back().scale = grand.Value(1);
-				else if(grand.Token(0) == "pointerRadius" && grand.Size() >= 2)
-					radars.back().pointerRadius = grand.Value(1);
+				if(grand.Token(0) == "position" && grand.Size() >= 3)
+					spec.position = Point(grand.Value(1), grand.Value(2));
+				if(grand.Token(0) == "size" && grand.Size() >= 3)
+					spec.size = Point(grand.Value(1), grand.Value(2));
 			}
-			
-			radars.back().condition = condition;
 		}
 	}
 }
@@ -284,19 +275,6 @@ void Interface::Draw(const Information &info, const Point &offset) const
 		Point center = spec.position + corner - spec.size * position;
 		RingShader::Draw(center, .5 * spec.size.X(), spec.width, value, spec.color, segments);
 	}
-	
-	if(info.GetRadar())
-		for(const RadarSpec &radar : radars)
-		{
-			if(!info.HasCondition(radar.condition))
-				continue;
-		
-			info.GetRadar()->Draw(
-				corner + radar.position,
-				radar.scale,
-				radar.radius,
-				radar.pointerRadius);
-		}
 }
 
 
@@ -317,6 +295,30 @@ char Interface::OnClick(const Point &point) const
 	}
 	
 	return '\0';
+}
+
+
+
+bool Interface::HasPoint(const std::string &name) const
+{
+	return points.find(name) != points.end();
+}
+
+
+
+Point Interface::GetPoint(const std::string &name) const
+{
+	Point corner(Screen::Width() * position.X(), Screen::Height() * position.Y());
+	auto it = points.find(name);
+	return corner + (it == points.end() ? Point() : it->second.position);
+}
+
+
+
+Point Interface::GetSize(const std::string &name) const
+{
+	auto it = points.find(name);
+	return (it == points.end() ? Point() : it->second.size);
 }
 
 
@@ -351,12 +353,5 @@ Interface::BarSpec::BarSpec(const string &name, const Point &position)
 
 Interface::ButtonSpec::ButtonSpec(char key, const Point &position)
 	: position(position), key(key)
-{
-}
-
-
-
-Interface::RadarSpec::RadarSpec(const Point &position)
-	: position(position), scale(.025), radius(110.), pointerRadius(130.)
 {
 }
