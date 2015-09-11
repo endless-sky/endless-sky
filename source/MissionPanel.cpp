@@ -241,15 +241,18 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return true;
 	}
 	else if(key == 'f')
+	{
 		GetUI()->Push(new Dialog(
 			this, &MissionPanel::DoFind, "Search for:"));
+		return true;
+	}
 	else
 		return false;
 	
 	if(availableIt != available.end())
-		Select(availableIt->Destination()->GetSystem());
+		selectedSystem = availableIt->Destination()->GetSystem();
 	else if(acceptedIt != accepted.end())
-		Select(acceptedIt->Destination()->GetSystem());
+		selectedSystem = acceptedIt->Destination()->GetSystem();
 	if(selectedSystem)
 		center = Point(0., -80.) - selectedSystem->Position();
 	
