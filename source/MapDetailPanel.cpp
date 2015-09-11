@@ -303,12 +303,30 @@ void MapDetailPanel::DrawInfo() const
 		
 		font.Draw(commodity.name, uiPoint, color);
 		
-		if(player.HasVisited(selectedSystem))
+		string price;
+		
+		bool hasVisited = player.HasVisited(selectedSystem);
+		if(hasVisited && selectedSystem->IsInhabited())
 		{
-			string price = to_string(selectedSystem->Trade(commodity.name));
-			Point pos = uiPoint + Point(140. - font.Width(price), 0.);
-			font.Draw(price, pos, color);
+			int value = selectedSystem->Trade(commodity.name);
+			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			if(!player.GetSystem() || player.GetSystem() == selectedSystem || !value || !localValue)
+				price = to_string(value);
+			else
+			{
+				value -= localValue;
+				price += "(";
+				if(value > 0)
+					price += '+';
+				price += to_string(value);
+				price += ")";
+			}
 		}
+		else
+			price = (hasVisited ? "n/a" : "?");
+		
+		Point pos = uiPoint + Point(140. - font.Width(price), 0.);
+		font.Draw(price, pos, color);
 		
 		if(isSelected)
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
