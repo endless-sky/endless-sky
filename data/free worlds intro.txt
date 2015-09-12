@@ -972,7 +972,7 @@ mission "FW Katya 5B"
 			`	Just then, Brother Greg walks in. Mr. Eyes introduces you to him and explains your situation. Greg frowns, thoughtfully. "What do we have to offer in exchange for that information?" he asks.`
 			`	Katya says, "Ever since this conflict began, southern space has been swarming not only with an increased militia presence, but with the whole Republic Navy. That must make it awfully hard to be a pirate. Seems like the pirates would be glad if the Navy got what they were looking for and went back up north."`
 			`	Brother Greg nods. "It's worth a try. Why don't you join us for dinner, and we'll depart for Greenrock in the morning. When we get there, just hail the planet and let me do the talking, and I can probably get permission to land for free."`
-			`	You join the brothers for a simple but delicious dinner, soup and salad made entirely from their own gardens. After dinner, Greg asks you, "Do you want to join us from evening prayer?"`
+			`	You join the brothers for a simple but delicious dinner, soup and salad made entirely from their own gardens. After dinner, Greg asks you, "Do you want to join us for evening prayer?"`
 			choice
 				`	"Sure, I'd be glad to."`
 					goto prayer
