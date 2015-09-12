@@ -71,7 +71,7 @@ void ConditionSet::Save(DataWriter &out) const
 
 bool ConditionSet::IsEmpty() const
 {
-	return entries.empty();
+	return entries.empty() && children.empty();
 }
 
 
