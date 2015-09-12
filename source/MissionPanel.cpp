@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "LineShader.h"
 #include "MapDetailPanel.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
@@ -111,6 +112,23 @@ void MissionPanel::Step()
 void MissionPanel::Draw() const
 {
 	MapPanel::Draw();
+	
+	Color routeColor(.2, .1, 0., 0.);
+	const System *system = selectedSystem;
+	while(distance.Distance(system) > 0)
+	{
+		const System *next = distance.Route(system);
+		
+		Point from = next->Position() + center;
+		Point to = system->Position() + center;
+		Point unit = (from - to).Unit() * 7.;
+		from -= unit;
+		to += unit;
+		
+		LineShader::Draw(from, to, 5., routeColor);
+		
+		system = next;
+	}
 	
 	DrawSelectedSystem();
 	Point pos = DrawPanel(
