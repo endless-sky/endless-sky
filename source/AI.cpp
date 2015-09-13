@@ -1181,7 +1181,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 	// Find the longest range of any of your non-homing weapons.
 	double maxRange = 0.;
 	for(const Armament::Weapon &weapon : ship.Weapons())
-		if(weapon.IsReady() && !weapon.IsHoming() && (secondary || !weapon.GetOutfit()->Ammo()))
+		if(weapon.IsReady() && !weapon.IsHoming() && (secondary || !weapon.GetOutfit()->Icon()))
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
@@ -1205,7 +1205,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		// no target is selected, and secondary weapons if only firing primaries.
 		if(!weapon.IsReady() || (!currentTarget && weapon.IsHoming()))
 			continue;
-		if(!secondary && weapon.GetOutfit()->Ammo())
+		if(!secondary && weapon.GetOutfit()->Icon())
 			continue;
 		
 		// Special case: if the weapon uses fuel, be careful not to spend so much
@@ -1513,7 +1513,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			for(const Armament::Weapon &weapon : ship.Weapons())
 			{
 				const Outfit *outfit = weapon.GetOutfit();
-				if(outfit && !outfit->Ammo() && !outfit->FiringFuel())
+				if(outfit && !outfit->Icon())
 				{
 					command.SetFire(index);
 					hasGuns |= !weapon.IsTurret();

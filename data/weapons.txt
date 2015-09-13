@@ -505,7 +505,6 @@ outfit "Flamethrower Projectile"
 			"frame rate" 17
 			"random start frame"
 		sound "plasma"
-		icon "icon/flamethrower"
 		"hit effect" "medium explosion"
 		"die effect" "small explosion"
 		"inaccuracy" 20

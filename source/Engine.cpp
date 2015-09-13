@@ -295,6 +295,9 @@ void Engine::Step(bool isActive)
 	if(flagship)
 		for(const auto &it : flagship->Outfits())
 		{
+			if(!it.first->Icon())
+				continue;
+			
 			if(it.first->Ammo())
 				ammo.emplace_back(it.first,
 					flagship->OutfitCount(it.first->Ammo()));
@@ -305,6 +308,8 @@ void Engine::Step(bool isActive)
 				ammo.emplace_back(it.first,
 					remaining / it.first->FiringFuel());
 			}
+			else
+				ammo.emplace_back(it.first, -1);
 		}
 	
 	// Display escort information for all ships of the "Escort" government,
@@ -551,6 +556,11 @@ void Engine::Draw() const
 		SpriteShader::Draw(it.first->Icon(), pos);
 		SpriteShader::Draw(
 			isSelected ? selectedSprite : unselectedSprite, pos + Point(35., 0.));
+		
+		// Some secondary weapons may not have limited ammo. In that case, just
+		// show the icon without a number.
+		if(it.second < 0)
+			continue;
 		
 		string amount = to_string(it.second);
 		Point textPos = pos + Point(55 - font.Width(amount), -(30 - font.Height()) / 2);
