@@ -88,9 +88,14 @@ Engine::Engine(PlayerInfo &player)
 		}
 	
 	// Add all neighboring systems to the radar.
-	Point pos = player.GetSystem()->Position();
-	for(const System *system : player.GetSystem()->Links())
-		radar[calcTickTock].AddPointer(Radar::INACTIVE, system->Position() - pos);
+	const Ship *flagship = player.Flagship();
+	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
+	const vector<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
+		player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+	for(const System *system : links)
+		radar[calcTickTock].AddPointer(
+			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
+			system->Position() - player.GetSystem()->Position());
 }
 
 
@@ -794,7 +799,9 @@ void Engine::CalculateStep()
 	
 	// Add all neighboring systems to the radar.
 	const System *targetSystem = flagship ? flagship->GetTargetSystem() : nullptr;
-	for(const System *system : player.GetSystem()->Links())
+	const vector<const System *> &links = (flagship && flagship->Attributes().Get("jump drive")) ?
+		player.GetSystem()->Neighbors() : player.GetSystem()->Links();
+	for(const System *system : links)
 		radar[calcTickTock].AddPointer(
 			(system == targetSystem) ? Radar::SPECIAL : Radar::INACTIVE,
 			system->Position() - player.GetSystem()->Position());
