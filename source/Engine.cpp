@@ -404,6 +404,7 @@ void Engine::Step(bool isActive)
 	// Use the radar that was just populated. (The draw tick-tock has not
 	// yet been toggled, but it will be at the end of this function.)
 	shared_ptr<const Ship> target;
+	targetAngle = Point();
 	if(flagship)
 		target = flagship->GetTargetShip();
 	if(!target)
@@ -446,6 +447,8 @@ void Engine::Step(bool isActive)
 				Angle(45.) + target->Facing(),
 				size,
 				targetType});
+			
+			targetAngle = (target->Position() - flagship->Position()).Unit();
 		}
 		else
 		{
@@ -543,6 +546,12 @@ void Engine::Draw() const
 				.025,
 				interface->GetSize("radar").X(),
 				interface->GetSize("radar").Y());
+		}
+		if(interface->HasPoint("target") && targetAngle)
+		{
+			Point center = interface->GetPoint("target");
+			double radius = interface->GetSize("target").X();
+			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}
 	

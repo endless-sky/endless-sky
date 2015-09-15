@@ -121,6 +121,7 @@ private:
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
+	Point targetAngle;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<std::pair<const Outfit *, int>> ammo;

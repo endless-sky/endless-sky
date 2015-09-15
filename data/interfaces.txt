@@ -303,6 +303,9 @@ interface "targets"
 		position 128 128
 		size 110 130
 	sprite "ui/navigation" 200 0
+	point target
+		position 75 315
+		size 70 70
 	sprite "ui/target" 0 240
 	string "navigation mode" 215 12
 		color medium
