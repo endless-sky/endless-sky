@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitterPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "TradingPanel.h"
@@ -89,7 +90,7 @@ void PlanetPanel::Draw() const
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	bool hasAccess = planet.CanUseServices();
-	if(flagship)
+	if(flagship && !flagship->CanBeCarried())
 		info.SetCondition("has ship");
 	if(planet.IsInhabited() && hasAccess)
 		info.SetCondition("has bank");
@@ -117,7 +118,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	const Ship *flagship = player.Flagship();
 	
 	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship)
+	if(key == 'd' && flagship && !flagship->CanBeCarried())
 	{
 		player.Save();
 		player.TakeOff();
