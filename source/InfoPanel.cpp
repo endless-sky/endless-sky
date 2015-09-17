@@ -420,7 +420,7 @@ void InfoPanel::DrawInfo() const
 			ship->Attributes().Get("fuel capacity") * ship->Fuel()));
 		font.Draw(fuel, pos + Point(670. - font.Width(fuel), 0.), color);
 		
-		string crew = ship->IsParked() ? "Parked" : to_string(ship->Crew());
+		string crew = ship->IsParked() ? "Parked" : to_string(index ? ship->RequiredCrew() : ship->Crew());
 		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
 		
 		if(index < lastIndex || selected < 0)
