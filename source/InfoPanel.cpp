@@ -230,7 +230,7 @@ bool InfoPanel::Click(int x, int y)
 	selected = -1;
 	if(showShip)
 	{
-		if(hover >= 0 && (**shipIt).GetPlanet())
+		if(hover >= 0 && (**shipIt).GetSystem() == player.GetSystem() && !(**shipIt).IsDisabled())
 			selected = hover;
 	}
 	else if(canEdit)
