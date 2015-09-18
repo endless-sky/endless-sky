@@ -1064,7 +1064,8 @@ void PlayerInfo::AcceptJob(const Mission &mission)
 			cargo.AddMissionCargo(&mission);
 			it->Do(Mission::OFFER, *this);
 			it->Do(Mission::ACCEPT, *this);
-			missions.splice(missions.end(), availableJobs, it);
+			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
+			missions.splice(spliceIt, availableJobs, it);
 			break;
 		}
 }
@@ -1172,7 +1173,8 @@ void PlayerInfo::MissionCallback(int response)
 	{
 		bool shouldAutosave = missionList.front().RecommendsAutosave();
 		cargo.AddMissionCargo(&*missionList.begin());
-		missions.splice(missions.end(), missionList, missionList.begin());
+		auto spliceIt = missionList.begin()->IsUnique() ? missions.begin() : missions.end();
+		missions.splice(spliceIt, missionList, missionList.begin());
 		UpdateCargoCapacities();
 		missions.back().Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)

@@ -577,6 +577,15 @@ bool Mission::RecommendsAutosave() const
 
 
 
+// Check if this mission is unique, i.e. not something that will be offered
+// over and over again in different variants.
+bool Mission::IsUnique() const
+{
+	return (repeat == 1);
+}
+
+
+
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
@@ -710,7 +719,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
-	result.repeat = 0;
+	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
 	// If one of the waypoints is the current system, it is already visited.

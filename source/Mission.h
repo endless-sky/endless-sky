@@ -104,6 +104,9 @@ public:
 	// accepted. This should be set for main story line missions that have a
 	// high chance of failing, such as escort missions.
 	bool RecommendsAutosave() const;
+	// Check if this mission is unique, i.e. not something that will be offered
+	// over and over again in different variants.
+	bool IsUnique() const;
 	
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
