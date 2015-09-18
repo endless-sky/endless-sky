@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cmath>
 #include <map>
+#include <set>
 #include <sstream>
 
 using namespace std;
@@ -53,6 +54,26 @@ namespace {
 		}
 		return table.GetPoint();
 	}
+	
+	static const set<string> ATTRIBUTES_TO_SCALE = {
+		"afterburner energy",
+		"afterburner fuel",
+		"afterburner heat",
+		"cloaking energy",
+		"cloaking fuel",
+		"cooling",
+		"energy generation",
+		"heat generation",
+		"hull repair rate",
+		"reverse thrusting energy",
+		"reverse thrusting heat",
+		"shield generation",
+		"thrusting energy",
+		"thrusting heat",
+		"turn",
+		"turning energy",
+		"turning heat"
+	};
 }
 
 
@@ -203,8 +224,15 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				|| it.first == "gun ports" || it.first == "turret mounts")
 			continue;
 		
+		string value;
+		double scale = 1.;
+		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
+			scale = 60. * 60.;
+		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
+			scale = 60.;
+		
 		attributeLabels.push_back(it.first + ':');
-		attributeValues.push_back(Format::Number(it.second));
+		attributeValues.push_back(Format::Number(it.second * scale));
 		attributesHeight += 20;
 	}
 	
@@ -240,6 +268,20 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
+	if(outfit.HeatDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("heat damage / second:");
+		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
+	if(outfit.IonDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("ion damage / second:");
+		attributeValues.push_back(Format::Number(6000. * outfit.IonDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
 	if(outfit.FiringEnergy() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing energy / second:");
@@ -247,12 +289,27 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
-	if(outfit.Reload() > 1)
+	if(outfit.FiringHeat() && outfit.Reload())
 	{
-		attributeLabels.push_back("shots / second:");
-		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
+		attributeLabels.push_back("firing heat / second:");
+		attributeValues.push_back(Format::Number(60. * outfit.FiringHeat() / outfit.Reload()));
 		attributesHeight += 20;
 	}
+	
+	if(outfit.FiringFuel() && outfit.Reload())
+	{
+		attributeLabels.push_back("firing fuel / second:");
+		attributeValues.push_back(Format::Number(60. * outfit.FiringFuel() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
+	bool isContinuous = (outfit.Reload() <= 1);
+	attributeLabels.push_back("shots / second:");
+	if(isContinuous)
+		attributeValues.push_back("continuous");
+	else
+		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
+	attributesHeight += 20;
 	
 	int homing = outfit.Homing();
 	if(homing)
@@ -274,23 +331,33 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributesHeight += 10;
 	
 	static const string names[] = {
+		"shield damage / shot: ",
+		"hull damage / shot: ",
+		"heat damage / shot: ",
+		"ion damage / shot: ",
+		"firing energy / shot:",
+		"firing heat / shot:",
+		"firing fuel / shot:",
 		"inaccuracy:",
-		"firing energy:",
-		"firing heat:",
 		"blast radius:",
 		"missile strength:",
 		"anti-missile:",
 	};
 	double values[] = {
-		outfit.Inaccuracy(),
+		outfit.ShieldDamage(),
+		outfit.HullDamage(),
+		outfit.HeatDamage(),
+		outfit.IonDamage() * 100.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
+		outfit.FiringFuel(),
+		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile())
 	};
 	static const int NAMES = sizeof(names) / sizeof(names[0]);
-	for(int i = 0; i < NAMES; ++i)
+	for(int i = (isContinuous ? 7 : 0); i < NAMES; ++i)
 		if(values[i])
 		{
 			attributeLabels.push_back(names[i]);
