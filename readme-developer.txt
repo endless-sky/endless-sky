@@ -34,7 +34,7 @@ You can install g++ separately through mingw-w64:
 
   http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.8.5/threads-posix/seh/
 
-*** Be sure to install the "pthread" version of MinGW. The "win32-thread" one does not come with support for C++11 threading. ***
+*** Be sure to install the "pthread" version of MinGW. The "win32-thread" one does not come with support for C++11 threading. If you are using 32-bit Windows, install the compiler for "dwarf" exceptions, not "sjlj." ***
 
 If you are on 64-bit Windows, a full set of development libraries are available here:
 
@@ -42,7 +42,11 @@ If you are on 64-bit Windows, a full set of development libraries are available 
 
 If you don't want to have to edit the paths in the Code::Blocks file, unpack the "dev64" folder directly into C:\.
 
-If you are using 32-bit Windows, you'll have to track down 32-bit versions of all the libraries.
+If you are using 32-bit Windows, a full set of development libraries are available here:
+
+  http://endless-sky.github.io/win32-dev.zip
+
+You will probably need to adjust the paths to your compiler binaries, and you should also switch to the "Win32" build instead of the "Debug" or "Release" build.
 
 You will also need libmingw32.a and libopengl32.a. Those should be included in the MinGW g++ install. If they are not in C:\Program Files\mingw64\x86_64-w64-mingw32\lib\ you will have to adjust the paths in the Code::Blocks file.
 
