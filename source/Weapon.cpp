@@ -208,7 +208,7 @@ double Weapon::HeatDamage() const
 {
 	if(totalHeatDamage < 0.)
 	{
-		totalHeatDamage = shieldDamage;
+		totalHeatDamage = heatDamage;
 		for(const auto &it : submunitions)
 			totalHeatDamage += it.first->HeatDamage() * it.second;
 	}
