@@ -9,7 +9,7 @@
 			<Target title="Debug">
 				<Option output="bin/Debug/EndlessSky" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
@@ -18,18 +18,43 @@
 			<Target title="Release">
 				<Option output="bin/Release/EndlessSky" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-msse3" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="Win32">
+				<Option output="bin/Win32/EndlessSky" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Win32/" />
+				<Option type="0" />
+				<Option compiler="gnu_gcc_compiler_win32" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Option projectIncludeDirsRelation="1" />
+				<Option projectLibDirsRelation="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="C:/dev32/include" />
+				</Compiler>
+				<Linker>
+					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libmingw32.a" />
+					<Add library="C:\dev32\lib\libsdl2main.a" />
+					<Add library="C:\dev32\lib\libsdl2.dll.a" />
+					<Add library="C:\dev32\lib\libpng.dll.a" />
+					<Add library="C:\dev32\lib\libturbojpeg.dll.a" />
+					<Add library="C:\dev32\lib\libjpeg.dll.a" />
+					<Add library="C:\dev32\lib\libopenal32.dll.a" />
+					<Add library="C:\dev32\lib\libglew32.dll.a" />
+					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libopengl32.a" />
+					<Add directory="C:/dev32/lib" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-msse3" />
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add directory="C:/dev64/include" />
