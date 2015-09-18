@@ -54,8 +54,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
-	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
-	availableScroll(0), acceptedScroll(0), dragSide(0)
+	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end())
 {
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
@@ -400,13 +399,42 @@ bool MissionPanel::Drag(int dx, int dy)
 	else if(dragSide > 0)
 	{
 		acceptedScroll = max(0,
-			min(static_cast<int>(accepted.size() * 20 + 70 - Screen::Height()),
+			min(static_cast<int>(accepted.size() * 20 + 120 - Screen::Height()),
 				acceptedScroll - dy));
 	}
 	else
 		MapPanel::Drag(dx, dy);
 	
 	return true;
+}
+
+
+
+bool MissionPanel::Hover(int x, int y)
+{
+	dragSide = 0;
+	unsigned index = max(0, (y + availableScroll - 36 - Screen::Top()) / 20);
+	if(x < Screen::Left() + SIDE_WIDTH)
+	{
+		if(index < available.size())
+			dragSide = -1;
+	}
+	else if(x >= Screen::Right() - SIDE_WIDTH)
+	{
+		if(static_cast<int>(index) < AcceptedVisible())
+			dragSide = 1;
+	}
+	return true;
+}
+
+
+
+bool MissionPanel::Scroll(int dx, int dy)
+{
+	if(dragSide)
+		return Drag(0, dy * 50);
+	
+	return false;
 }
 
 
