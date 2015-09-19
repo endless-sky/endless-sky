@@ -115,7 +115,7 @@ public:
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
-	static double RendevousTime(const Point &p, const Point &v, double vp);
+	static double RendezvousTime(const Point &p, const Point &v, double vp);
 	
 	
 private:

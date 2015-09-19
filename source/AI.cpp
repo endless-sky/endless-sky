@@ -888,12 +888,25 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	
 	// First, figure out what your shortest-range weapon is.
 	double shortestRange = 4000.;
+	bool isArmed = false;
+	bool hasAmmo = false;
 	for(const Armament::Weapon &weapon : ship.Weapons())
 	{
 		const Outfit *outfit = weapon.GetOutfit();
 		if(outfit && !weapon.IsAntiMissile())
+		{
+			isArmed = true;
+			if(!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()))
+				hasAmmo = true;
 			shortestRange = min(outfit->Range(), shortestRange);
+		}
 	}
+	// If this ship was using the missile boat AI to run away and bombard its
+	// target from a distance, have it stop running once it is out of ammo. This
+	// is not realistic, but it's a whole lot less annoying for the player when
+	// they are trying to hunt down and kill the last missile boat in a fleet.
+	if(isArmed && !hasAmmo)
+		shortestRange = 0.;
 	
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours())
@@ -1138,7 +1151,7 @@ Point AI::TargetAim(const Ship &ship)
 		Point start = ship.Position() + ship.Facing().Rotate(weapon.GetPoint());
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
-		double steps = Armament::RendevousTime(p, v, outfit->Velocity());
+		double steps = Armament::RendezvousTime(p, v, outfit->Velocity());
 		if(!(steps == steps))
 			continue;
 		
@@ -1244,7 +1257,12 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 			if(p.Length() < outfit->BlastRadius())
 				continue;
 			
-			double steps = Armament::RendevousTime(p, v, vp);
+			// If this is a homing weapon, it is not necessary to take the
+			// velocity of the ship firing it into account.
+			if(weapon.IsHoming())
+				v = currentTarget->Velocity();
+			// Calculate how long it will take the projectile to reach its target.
+			double steps = Armament::RendezvousTime(p, v, vp);
 			if(steps == steps && steps <= lifetime)
 			{
 				command.SetFire(index);

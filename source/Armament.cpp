@@ -126,9 +126,9 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, std::list
 	{
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
-		double steps = RendevousTime(p, v, outfit->Velocity());
+		double steps = RendezvousTime(p, v, outfit->Velocity());
 		
-		// Special case: RendevousTime() may return NaN. But in that case, this
+		// Special case: RendezvousTime() may return NaN. But in that case, this
 		// comparison will return false.
 		if(!(steps < outfit->TotalLifetime()))
 			steps = outfit->TotalLifetime();
@@ -402,7 +402,7 @@ void Armament::Step(const Ship &ship)
 // target, assuming it can be fired in any direction (i.e. turreted). For
 // non-turreted weapons this can be used to calculate the ideal direction to
 // point the ship in.
-double Armament::RendevousTime(const Point &p, const Point &v, double vp)
+double Armament::RendezvousTime(const Point &p, const Point &v, double vp)
 {
 	// How many steps will it take this projectile
 	// to intersect the target?
