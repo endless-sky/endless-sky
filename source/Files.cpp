@@ -88,7 +88,10 @@ void Files::Init(const char * const *argv)
 	// the folder the binary is in.
 	size_t pos = resources.rfind('/', resources.length() - 2) + 1;
 	resources = resources.substr(0, pos) + "Resources/";
-#elif defined _WIN32
+#endif
+	// If the resources are not here, search in the directories containing this
+	// one. This allows, for example, a Mac app that does not actually have the
+	// resources embedded within it.
 	while(!Exists(resources + "credits.txt"))
 	{
 		size_t pos = resources.rfind('/', resources.length() - 2);
@@ -96,9 +99,6 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
 	}
-#else
-#error "Unsupported operating system. No code for Files::Init()."
-#endif
 	data = resources + "data/";
 	images = resources + "images/";
 	sounds = resources + "sounds/";
