@@ -248,8 +248,8 @@ mission "FW Southern Battle 1B"
 				accept
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		ship "Dreadnought" "F.S. Sequoia"
 		ship "Dreadnought" "F.S. Sitka"
 		ship "Dreadnought" "F.S. Rosewood"
@@ -305,8 +305,8 @@ mission "FW Southern Battle 2"
 				accept
 	
 	npc
-		government Escort
-		personality heroic disables
+		government "Free Worlds"
+		personality heroic disables escort
 		ship "Dreadnought" "F.S. Sequoia"
 		ship "Dreadnought" "F.S. Sitka"
 		ship "Dreadnought" "F.S. Rosewood"
@@ -680,7 +680,8 @@ mission "FW Northern 1"
 				accept
 	
 	npc
-		government Escort
+		government "Free Worlds"
+		personality heroic escort
 		fleet "Large Free Worlds"
 		fleet "Large Free Worlds"
 		fleet "Large Free Worlds"

@@ -810,8 +810,8 @@ mission "FW Supply Convoy 1"
 					accept
 	
 	npc accompany save
-		government "Escort"
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		fleet
 			cargo 4
 			names "civilian"
@@ -1136,8 +1136,8 @@ mission "FW Pirates 2"
 				accept
 	
 	npc
-		personality heroic
-		government "Escort"
+		personality heroic escort
+		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Large Free Worlds"
@@ -1159,8 +1159,8 @@ mission "FW Pirates 3"
 		has "fw pirates: disobeyed senate"
 	
 	npc accompany save
-		personality timid
-		government Escort
+		personality timid escort
+		government "Free Worlds"
 		ship "Falcon" "F.S. Terebinth"
 	
 	on visit
@@ -1462,8 +1462,8 @@ mission "FW Pirates 4B"
 		has "FW Pirates 4: done"
 	
 	npc accompany save
-		personality timid
-		government Escort
+		personality timid escort
+		government "Free Worlds"
 		ship "Falcon" "F.S. Terebinth"
 	
 	on visit

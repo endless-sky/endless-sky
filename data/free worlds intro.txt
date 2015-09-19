@@ -1216,8 +1216,8 @@ mission "FW Escort 1"
 		ship Freighter "F.S. Magellan"
 		ship Freighter "F.S. Franklin"
 	npc
-		personality heroic
-		government Escort
+		personality heroic escort
+		government "Free Worlds"
 		fleet
 			cargo 0
 			names "free worlds small"
@@ -1286,8 +1286,8 @@ mission "FW Escort 1B"
 		ship Freighter "F.S. Magellan"
 		ship Freighter "F.S. Franklin"
 	npc
-		personality heroic
-		government Escort
+		personality heroic escort
+		government "Free Worlds"
 		fleet
 			cargo 0
 			names "free worlds small"
@@ -1354,8 +1354,8 @@ mission "FW Escort 2"
 		ship Freighter "F.S. Magellan"
 		ship Freighter "F.S. Franklin"
 	npc
-		personality heroic
-		government Escort
+		personality heroic escort
+		government "Free Worlds"
 		fleet
 			cargo 0
 			names "free worlds small"
@@ -1420,8 +1420,8 @@ mission "FW Escort 2B"
 		ship Freighter "F.S. Magellan"
 		ship Freighter "F.S. Franklin"
 	npc
-		personality heroic
-		government Escort
+		personality heroic escort
+		government "Free Worlds"
 		fleet
 			cargo 0
 			names "free worlds small"
