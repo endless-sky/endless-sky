@@ -1168,26 +1168,28 @@ void PlayerInfo::MissionCallback(int response)
 	if(missionList.empty())
 		return;
 	
+	Mission &mission = missionList.front();
+	
 	shouldLaunch = (response == Conversation::LAUNCH || response == Conversation::FLEE);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
-		bool shouldAutosave = missionList.front().RecommendsAutosave();
-		cargo.AddMissionCargo(&*missionList.begin());
-		auto spliceIt = missionList.begin()->IsUnique() ? missions.begin() : missions.end();
+		bool shouldAutosave = mission.RecommendsAutosave();
+		cargo.AddMissionCargo(&mission);
+		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
 		UpdateCargoCapacities();
-		missions.back().Do(Mission::ACCEPT, *this);
+		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();
 	}
 	else if(response == Conversation::DECLINE)
 	{
-		missionList.front().Do(Mission::DECLINE, *this);
+		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DEFER)
 	{
-		missionList.front().Do(Mission::DEFER, *this);
+		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DIE)
