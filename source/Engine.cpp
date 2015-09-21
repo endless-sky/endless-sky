@@ -448,7 +448,13 @@ void Engine::Step(bool isActive)
 				size,
 				targetType});
 			
-			targetAngle = (target->Position() - flagship->Position()).Unit();
+			// Don't show the angle to the target if it is very close.
+			targetAngle = target->Position() - flagship->Position();
+			double length = targetAngle.Length();
+			if(length > 20.)
+				targetAngle /= length;
+			else
+				targetAngle = Point();
 		}
 		else
 		{
