@@ -44,8 +44,6 @@ protected:
 	void DrawMain() const;
 	
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
-	// Get the multiplier based on what modifier keys are held.
-	int Modifier() const;
 	
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;

@@ -673,10 +673,10 @@ interface "hiring"
 		color bright
 		align center
 	endif
-	string "modifier" -50 145
+	string "modifier" -65 145
 		size 14
 		color dim
-		align center
+		align left
 	
 	label "passenger space" -290 175
 		size 14

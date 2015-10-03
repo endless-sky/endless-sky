@@ -70,6 +70,10 @@ protected:
 	// user-defined command key will override it.
 	bool DoKey(SDL_Keycode key, Uint16 mod = 0);
 	
+	// A lot of different UI elements allow a modifier to change the number of
+	// something you are buying, so the shared function is defined here:
+	static int Modifier();
+	
 	
 private:
 	void SetUI(UI *ui);

@@ -302,18 +302,3 @@ void TradingPanel::Buy(int64_t amount)
 	amount = player.Cargo().Transfer(type, -amount);
 	player.Accounts().AddCredits(amount * price);
 }
-
-
-
-int TradingPanel::Modifier()
-{
-	SDL_Keymod mod = SDL_GetModState();
-	
-	int modifier = 1;
-	if(mod & KMOD_CTRL)
-		modifier *= 20;
-	if(mod & KMOD_SHIFT)
-		modifier *= 5;
-	
-	return modifier;
-}

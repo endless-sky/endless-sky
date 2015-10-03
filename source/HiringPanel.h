@@ -37,10 +37,6 @@ protected:
 	
 	
 private:
-	static int Modifier();
-	
-	
-private:
 	PlayerInfo &player;
 	
 	mutable int maxHire;

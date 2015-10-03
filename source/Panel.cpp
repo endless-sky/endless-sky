@@ -164,6 +164,25 @@ bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
 
 
 
+// A lot of different UI elements allow a modifier to change the number of
+// something you are buying, so the shared function is defined here:
+int Panel::Modifier()
+{
+	SDL_Keymod mod = SDL_GetModState();
+	
+	int modifier = 1;
+	if(mod & KMOD_ALT)
+		modifier *= 500;
+	if(mod & (KMOD_CTRL | KMOD_GUI))
+		modifier *= 20;
+	if(mod & KMOD_SHIFT)
+		modifier *= 5;
+	
+	return modifier;
+}
+
+
+
 void Panel::SetUI(UI *ui)
 {
 	this->ui = ui;

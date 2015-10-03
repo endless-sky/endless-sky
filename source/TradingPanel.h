@@ -41,7 +41,6 @@ protected:
 	
 private:
 	void Buy(int64_t amount);
-	static int Modifier();
 	
 	
 private:

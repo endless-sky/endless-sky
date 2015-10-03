@@ -143,18 +143,3 @@ bool HiringPanel::Click(int x, int y)
 	
 	return false;
 }
-
-
-
-int HiringPanel::Modifier()
-{
-	SDL_Keymod mod = SDL_GetModState();
-	
-	int modifier = 1;
-	if(mod & KMOD_CTRL)
-		modifier *= 20;
-	if(mod & KMOD_SHIFT)
-		modifier *= 5;
-	
-	return modifier;
-}
