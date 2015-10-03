@@ -244,7 +244,11 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		}
 		if(count > 0)
 		{
+			// Ignore cargo size limits.
+			int size = player.Cargo().Size();
+			player.Cargo().SetSize(-1);
 			player.Cargo().Transfer(it.first, -count);
+			player.Cargo().SetSize(size);
 			didCargo = true;
 			if(count > 0)
 			{
