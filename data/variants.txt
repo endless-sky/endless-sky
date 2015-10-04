@@ -34,7 +34,7 @@ ship "Sparrow" "Sparrow (Patrol)"
 
 
 
-ship Raven "Raven (Afterburner)"
+ship "Raven" "Raven (Afterburner)"
 	outfits
 		"Heavy Laser" 4
 		"NT-200 Nucleovoltaic"
@@ -1012,3 +1012,20 @@ ship "Clipper" "Clipper (Nuclear)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		"Afterburner"
+
+
+
+ship "Osprey" "Osprey (Alien Weapons)"
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Anti-Missile Turret"
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Mass Expansion" 2
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"

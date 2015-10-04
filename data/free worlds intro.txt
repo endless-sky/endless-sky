@@ -651,7 +651,7 @@ mission "FW Katya Alt 2"
 		has "FW Katya 1: offered"
 		not "FW Katya 1: done"
 		not "FW Katya 1: active"
-		"assisted free worlds" >= 2
+		has "assisted free worlds"
 		random < 50
 	to fail
 		has "chosen sides"
@@ -1561,6 +1561,110 @@ mission "FW Escort Second Chance"
 
 
 
+mission "FW Bounty 1"
+	name "Free Worlds Bounty Hunting"
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny." They were last seen attacking freighters in the Seginus system.`
+	source
+		government "Free Worlds"
+	to offer
+		"combat rating" > 200
+		random <= 25
+		not "chosen sides"
+	
+	on offer
+		conversation
+			`As you walk through the spaceport, a woman in a militia uniform approaches you. "Are you Captain <last>?" she asks. You nod. "I'm the commander of the local militia," she says. "There's a pirate fleet that has attacked freighters in this sector several times in the last few months, but now it seems they've moved outside of Free space. I'd like to strike at them before they return and do more damage here, but right now the Free Worlds Council won't allow militia ships to be used for preemptive attacks."`
+			choice
+				`	"Well, I'd be glad to destroy them for you."`
+				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
+					decline
+			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unkonwn reason their flagship is just named 'Cluny.' They were last seen in the Segninus system, just east of Free space. Thank you in advance for your help."`
+				accept
+	npc kill
+		personality heroic staying nemesis
+		government Pirate
+		system
+			near Seginus 1 2
+		ship "Hawk (Rocket)" "Cluny"
+		ship "Hawk (Speedy)" "Ferret"
+		ship "Berserker (Afterburner)" "Weasel"
+		ship "Wasp (Proton)" "Vixen"
+		ship "Fury (Laser)" "Stoat"
+		ship "Sparrow" "Rat"
+		dialog `The "Rat Pack" has been destroyed. You can claim the bounty payment by returning to <destination>.`
+	
+	on complete
+		payment 200000
+		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you <payment> and says she'll tell other militia leaders how helpful you were.`
+
+
+
+mission "FW Bounty 2"
+	name "Free Worlds Bounty Hunting"
+	description `A Free Worlds militia officer from <destination> asked you to hunt down the Moonless Night, a pirate ship last seen in the Delta Sagittarii system.`
+	source
+		government "Free Worlds"
+	to offer
+		has "FW Bounty 1: done"
+		random <= 25
+		not "chosen sides"
+	
+	on offer
+		conversation
+			`A Free Worlds officer waves to you as you are walking through the spaceport. "Hello Captain <last>," he says. "I've heard you've helped us in the past to deal with pirate threats. Interested in another bounty-hunting mission?"`
+			choice
+				`	"Sure, I do love destroying pirates!"`
+				`	"Sorry, I'm way too busy right now."`
+					defer
+			`	He grins. "Your target this time is a retrofitted heavy freighter by the name of Moonless Night that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Good luck, Captain."`
+				accept
+	npc kill
+		personality heroic staying nemesis
+		government Pirate
+		system
+			near "Delta Sagittarii" 1 2
+		ship "Behemoth (Speedy)" "Moonless Night"
+		dialog `The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>.`
+	
+	on complete
+		payment 200000
+		dialog `The militia officer who asked you to hunt down the <npc> meets you in the spaceport and pays you <payment>. "Once again, thank you for assisting us," he says.`
+
+
+
+mission "FW Bounty 3"
+	name "Free Worlds Bounty Hunting"
+	description `A Free Worlds militia officer from <destination> asked you to hunt down the Silverhawk, a pirate ship last seen in the Shaula system.`
+	source
+		government "Free Worlds"
+	to offer
+		has "FW Bounty 2: done"
+		random <= 25
+		not "chosen sides"
+	
+	on offer
+		conversation
+			`Once again, as you are walking through the spaceport a Free Worlds officer flags you down. "We've got another bounty hunting mission for you," he says. "This one is a bit more dangerous; this pirate ship has weapons we've never seen before, that may be alien in origin. Interested in helping us to destroy it?"`
+			choice
+				`	"Yes, I'm sure my ship will be up to the challenge."`
+				`	"Sorry, I'm not interested in giving the Free Worlds more assistance."`
+					decline
+			`	"Great," he says. "Your target is named the Silverhawk. After we nearly destroyed it, we think it went to the Shaula system to hide out. Which means that you'll probably have to deal with other pirates at the same time. The Silverhawk has weapons that seem to interfere with a ship's electrical systems, draining power from them. Good luck, Captain."`
+				accept
+	npc kill
+		personality heroic staying nemesis
+		government Pirate
+		system "Shaula"
+		ship "Osprey (Alien Weapons)" "Silverhawk"
+		dialog `The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>.`
+	
+	on complete
+		"assisted free worlds" ++
+		payment 300000
+		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
+
+
+
 mission "FW Commitment"
 	landing
 	name "Join the Free Worlds"
@@ -1570,6 +1674,7 @@ mission "FW Commitment"
 	destination "Bourne"
 	to offer
 		"assisted free worlds" >= 3
+		has "FW Katya 7C: done"
 	to fail
 		has "chosen sides"
 	
