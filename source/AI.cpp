@@ -43,6 +43,21 @@ namespace {
 		
 		return keys;
 	}
+	
+	bool IsStranded(const Ship &ship)
+	{
+		return ship.GetSystem() && !ship.GetSystem()->IsInhabited()
+			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
+	}
+	
+	bool CanBoard(const Ship &ship, const Ship &target)
+	{
+		if(target.IsDestroyed() || !target.IsTargetable() || target.GetSystem() != ship.GetSystem())
+			return false;
+		if(IsStranded(target) && !ship.GetGovernment()->IsEnemy(target.GetGovernment()))
+			return true;
+		return target.IsDisabled();
+	}
 }
 
 
@@ -179,8 +194,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		}
 		
 		bool isPresent = (it->GetSystem() == player.GetSystem());
-		bool isStranded = !it->JumpsRemaining() && it->Attributes().Get("fuel capacity")
-			&& !it->GetSystem()->IsInhabited();
+		bool isStranded = IsStranded(*it);
 		if(isStranded || it->IsDisabled())
 		{
 			if(it->IsDestroyed() || (it->IsDisabled() && it->IsYours()) || it->GetPersonality().IsDerelict())
@@ -234,6 +248,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(it->IsDisabled())
 				continue;
 		}
+		// Special case: if the player's flagship tries to board a ship to
+		// refuel it, that escort should hold position for boarding.
+		isStranded |= (it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
+			&& keyStuck.Has(Command::BOARD));
 		
 		Command command;
 		if(it->IsYours())
@@ -1378,13 +1396,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	else if(keyDown.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !target->IsDisabled() || target->IsDestroyed() || target->GetSystem() != ship.GetSystem())
+		if(!target || !CanBoard(ship, *target))
 		{
 			double closest = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
 			bool foundAnything = false;
 			for(const shared_ptr<Ship> &other : ships)
-				if(other->IsTargetable() && other->IsDisabled() && !other->IsDestroyed())
+				if(CanBoard(ship, *other))
 				{
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double d = other->Position().Distance(ship.Position());
@@ -1594,8 +1612,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
 		}
-		else if(!ship.GetTargetSystem())
-			keyStuck.Clear();
 		else
 		{
 			PrepareForHyperspace(ship, command);
@@ -1607,7 +1623,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	else if(keyStuck.Has(Command::BOARD) && ship.GetTargetShip())
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !target->IsTargetable() || !target->IsDisabled() || target->IsDestroyed())
+		if(!CanBoard(ship, *target))
 			keyStuck.Clear(Command::BOARD);
 		else
 		{
