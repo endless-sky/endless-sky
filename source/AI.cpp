@@ -1223,7 +1223,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		enemies.push_back(currentTarget);
 	for(auto target : ships)
 		if(target->IsTargetable() && gov->IsEnemy(target->GetGovernment())
-				&& target->Velocity().Length() < 20.
+				&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
 				&& target->GetSystem() == ship.GetSystem()
 				&& target->Position().Distance(ship.Position()) < maxRange
 				&& target != currentTarget)
@@ -1265,6 +1265,13 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
 			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded)
 				continue;
+			// Don't fire turrets at targets that are accelerating or decelerating
+			// rapidly due to hyperspace jumping.
+			if(weapon.IsTurret() && currentTarget->IsHyperspacing() && currentTarget->Velocity().Length() > 10.)
+				continue;
+			// Don't fire secondary weapons as targets that have started jumping.
+			if(outfit->Icon() && currentTarget->IsEnteringHyperspace())
+				continue;
 			
 			Point p = currentTarget->Position() - start;
 			Point v = currentTarget->Velocity() - ship.Velocity();
@@ -1293,11 +1300,6 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		
 		for(const shared_ptr<const Ship> &target : enemies)
 		{
-			if(!target->IsTargetable()
-					|| target->Velocity().Length() > 20.
-					|| target->GetSystem() != ship.GetSystem())
-				continue;
-			
 			// Don't shoot ships we want to plunder.
 			bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
 			if(target->IsDisabled() && spareDisabled && !hasBoarded)
