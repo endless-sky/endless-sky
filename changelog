@@ -1,3 +1,43 @@
+Version 0.8.4:
+  * Bug fixes:
+    * You can no longer end up with extra crew members on ships other than your flagship.
+    * If you tell your fleet to fight a target and then capture it, they no longer fire on it.
+    * Fixed a bug where mission conditions inside an "and" or "or" might not be saved.
+    * You can no longer depart a planet with a fighter as your flagship (which could crash the game).
+    * Fixed a bug where reassigning weapons to different slots in the info panel was not working.
+    * Fixed a bug where a weapon's "shield damage" was being applied instead of its "heat damage."
+    * The cargo and bunk space numbers in the job panel no longer include your parked or absent escorts.
+    * Fixed a bug where outfit "gifts" were not received if the player had no outfit or cargo space.
+  * Changes to game mechanics:
+    * Any weapon that has an icon is now secondary, rather than any weapon that uses ammo or fuel.
+    * The long-range missile boat AI now stops running away once it is out of ammunition.
+    * Added a 500x multiplier key (Alt / Option) for players with huge cargo fleets.
+    * Made it possible to board a stranded, out-of-fuel escort to share fuel with it.
+    * The AI no longer fires turrets at fast-moving ships entering or leaving hyperspace.
+  * User interface changes:
+    * Heads-up display:
+      * Added a pointer to the target info to show what direction the target is in.
+      * If you have a jump drive, the radar now includes pointers to "neighbor" systems.
+    * Main map panel ("Ports"):
+      * The map now shows commodity prices relative to the current system, rather than absolute price.
+      * Unexplored systems are now a dimmer grey than uninhabited ones.
+    * Jobs / missions panel:
+      * Unique missions are now shown at the start of your mission list instead of the end.
+      * Mission lists now support the scroll wheel in addition to click and drag.
+      * Selecting a different mission in the jobs map no longer changes your travel plan.
+    * Maps of shipyards and outfitters:
+      * Show the attributes of the currently selected item.
+      * Grey out items that are not for sale in the selected system.
+      * Distinguish between systems with nothing for sale vs. systems with other items but not the selected one.
+    * Outfitter panel:
+      * Attributes are now always shown in units per second instead of units per frame.
+  * Porting:
+    * 32-bit Windows is now supported.
+    * The Mac OS X version can now read data from outside the .app bundle.
+    * To support Steam, libstdc++ is static linked if doing a Steam build.
+  * Story changes:
+    * Added a fourth "intro" Free Worlds thread in case you fail one of the other three.
+
 Version 0.8.3:
   * Bug fixes:
     * Fines are now correctly applied to the player.
