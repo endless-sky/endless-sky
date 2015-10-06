@@ -198,7 +198,7 @@ bool Politics::HasDominated(const Planet *planet) const
 
 
 // Check to see if the player has done anything they should be fined for.
-string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, double security)
+string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
@@ -212,6 +212,10 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, doubl
 	{
 		// Check if the ship evades being scanned due to interference plating.
 		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
+			continue;
+		if(target && target != &*ship)
+			continue;
+		if(ship->GetSystem() != player.GetSystem())
 			continue;
 		
 		if(!scan || (scan & ShipEvent::SCAN_CARGO))

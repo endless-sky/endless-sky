@@ -808,7 +808,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Check if the player is doing anything illegal.
 	const Government *gov = GetSystem()->GetGovernment();
-	string message = gov->Fine(*this, 0, GetPlanet()->Security());
+	string message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
 	if(!message.empty())
 	{
 		if(message == "atrocity")

@@ -55,7 +55,7 @@ public:
 	
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, const Government *gov, int scan, double security);
+	std::string Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security);
 	
 	// Get or set your reputation with the given government.
 	double Reputation(const Government *gov) const;

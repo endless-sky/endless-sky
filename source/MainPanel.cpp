@@ -153,7 +153,7 @@ void MainPanel::Step()
 				ShowScanDialog(event);
 			else if(event.TargetGovernment()->IsPlayer())
 			{
-				string message = actor->Fine(player, event.Type());
+				string message = actor->Fine(player, event.Type(), &*event.Target());
 				if(!message.empty())
 				{
 					GetUI()->Push(new Dialog(message));
