@@ -232,7 +232,7 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
-				catalog[outfit->Category()].insert(outfit->Name());
+				catalog[outfit->Category()].insert(outfit);
 }
 
 
@@ -290,11 +290,11 @@ void MapOutfitterPanel::DrawItems() const
 		bigFont.Draw(category, corner + Point(5., 15.), bright);
 		corner += Point(0., 40.);
 		
-		for(const string &name : it->second)
+		for(const Outfit *outfit : it->second)
 		{
 			if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 			{
-				const Outfit *outfit = GameData::Outfits().Get(name);
+				const string &name = outfit->Name();
 				if(outfit == selected)
 					FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 				

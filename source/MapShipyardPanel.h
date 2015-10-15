@@ -56,7 +56,7 @@ private:
 	
 	
 private:
-	std::map<std::string, std::set<std::string>> catalog;
+	std::map<std::string, std::set<const Ship *>> catalog;
 	const Ship *selected = nullptr;
 	
 	mutable std::vector<ClickZone<const Ship *>> zones;

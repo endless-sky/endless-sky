@@ -230,7 +230,7 @@ void MapShipyardPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				catalog[ship->Attributes().Category()].insert(ship->ModelName());
+				catalog[ship->Attributes().Category()].insert(ship);
 }
 
 
@@ -288,11 +288,11 @@ void MapShipyardPanel::DrawItems() const
 		bigFont.Draw(category, corner + Point(5., 15.), bright);
 		corner += Point(0., 40.);
 		
-		for(const string &name : it->second)
+		for(const Ship *ship : it->second)
 		{
 			if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 			{
-				const Ship *ship = GameData::Ships().Get(name);
+				const string &name = ship->ModelName();
 				if(ship == selected)
 					FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
 				
