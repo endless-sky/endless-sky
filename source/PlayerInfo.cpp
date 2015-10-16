@@ -327,6 +327,7 @@ void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 void PlayerInfo::Die()
 {
 	isDead = true;
+	ships.clear();
 }
 
 
@@ -1193,10 +1194,7 @@ void PlayerInfo::MissionCallback(int response)
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DIE)
-	{
 		Die();
-		ships.clear();
-	}
 }
 
 

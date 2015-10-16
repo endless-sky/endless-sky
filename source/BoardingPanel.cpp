@@ -166,6 +166,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	if((key == 'd' || key == 'x' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
+		if(playerDied)
+			player.Die();
 		if(crewBonus)
 		{
 			Messages::Add(("You must pay " + Format::Number(crewBonus)
@@ -176,6 +178,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 		GetUI()->Pop(this);
 	}
+	else if(playerDied)
+		return false;
 	else if(key == 't' && CanTake())
 	{
 		CargoHold &cargo = you->Cargo();
@@ -262,7 +266,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			{
 				messages.push_back("You have been killed. Your ship is lost.");
 				player.Ships().front()->WasCaptured(victim);
-				player.Die();
+				playerDied = true;
 				isCapturing = false;
 			}
 			else if(!victim->Crew())
@@ -359,7 +363,7 @@ bool BoardingPanel::CanTake(int index) const
 		return false;
 	if(victim->GetGovernment()->IsPlayer())
 		return false;
-	if(isCapturing)
+	if(isCapturing || playerDied)
 		return false;
 	
 	if(index < 0)
@@ -375,7 +379,7 @@ bool BoardingPanel::CanTake(int index) const
 bool BoardingPanel::CanCapture() const
 {
 	// You can't click the "capture" button if you're already in combat mode.
-	if(isCapturing)
+	if(isCapturing || playerDied)
 		return false;
 	
 	// If your ship or the other ship has been captured:

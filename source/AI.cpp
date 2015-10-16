@@ -250,7 +250,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		}
 		// Special case: if the player's flagship tries to board a ship to
 		// refuel it, that escort should hold position for boarding.
-		isStranded |= (it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
+		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
 			&& keyStuck.Has(Command::BOARD));
 		
 		Command command;

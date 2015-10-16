@@ -112,6 +112,7 @@ private:
 	int selected = 0;
 	int scroll = 0;
 	
+	bool playerDied = false;
 	bool isCapturing = false;
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
