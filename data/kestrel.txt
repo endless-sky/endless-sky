@@ -53,7 +53,7 @@ mission "Kestrel Testing"
 		government "Test Dummy"
 		personality staying nemesis heroic
 		system Umbral
-		ship "Kestrel" "Tarazed Prototype"
+		ship "Unknown Ship Type" "Tarazed Prototype"
 	
 	on complete
 		payment 2000000
@@ -207,6 +207,57 @@ event "kestrel available: more shields"
 	set "kestrel available"
 	shipyard "Tarazed Advanced"
 		"Kestrel (More Shields)"
+
+ship "Unknown Ship Type"
+	sprite ship/kestrel
+	attributes
+		category "Heavy Warship"
+		"cost" 10300000
+		"shields" 17400
+		"hull" 6200
+		"required crew" 72
+		"bunks" 128
+		"mass" 740
+		"drag" 12.5
+		"heat dissipation" .45
+		"fuel capacity" 500
+		"cargo space" 120
+		"outfit space" 810
+		"weapon capacity" 380
+		"engine capacity" 210
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1300
+			"hit force" 3900
+	outfits
+		"Particle Cannon" 4
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Orca Plasma Thruster"
+		"X5200 Ion Steering"
+		"Hyperdrive"
+	engine -14 177
+	engine 14 177
+	gun -31 66 "Particle Cannon"
+	gun 31 66 "Particle Cannon"
+	gun -53 61 "Particle Cannon"
+	gun 53 61 "Particle Cannon"
+	gun -75 57 "Torpedo Launcher"
+	gun 75 57 "Torpedo Launcher"
+	turret -7 -4 "Heavy Laser Turret"
+	turret 7 4 "Heavy Laser Turret"
+	turret -23	14 "Heavy Laser Turret"
+	turret 23 14 "Heavy Laser Turret"
+	explode "small explosion" 25
+	explode "medium explosion" 35
+	explode "big explosion" 45
+	explode "huge explosion" 30
 
 ship "Kestrel"
 	sprite ship/kestrel
