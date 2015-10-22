@@ -109,6 +109,7 @@ private:
 	std::condition_variable condition;
 	std::mutex swapMutex;
 	
+	Point center;
 	bool calcTickTock;
 	bool drawTickTock;
 	bool terminate;

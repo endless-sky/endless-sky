@@ -770,7 +770,6 @@ void Engine::CalculateStep()
 	}
 	
 	// Now we know the player's current position. Draw the planets.
-	Point center;
 	Point centerVelocity;
 	if(flagship)
 	{

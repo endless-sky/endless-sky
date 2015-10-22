@@ -167,7 +167,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	if((key == 'd' || key == 'x' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
 		if(playerDied)
-			player.Die();
+			player.Die(true);
 		if(crewBonus)
 		{
 			Messages::Add(("You must pay " + Format::Number(crewBonus)

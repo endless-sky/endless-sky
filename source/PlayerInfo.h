@@ -74,7 +74,7 @@ public:
 	void AddEvent(const GameEvent &event, const Date &date);
 	
 	// Mark the player as dead, or check if they have died.
-	void Die();
+	void Die(bool allShipsDie = false);
 	bool IsDead() const;
 	
 	// Get or set the player's name.
