@@ -632,8 +632,13 @@ void OutfitterPanel::CheckRefill()
 	checkedRefill = true;
 	
 	int64_t cost = 0;
+	int count = 0;
 	for(const auto &ship : player.Ships())
 	{
+		if(ship->GetSystem() != player.GetSystem())
+			continue;
+		
+		++count;
 		set<const Outfit *> toRefill;
 		for(const auto &it : ship->Weapons())
 			if(it.GetOutfit() && it.GetOutfit()->Ammo())
@@ -650,7 +655,7 @@ void OutfitterPanel::CheckRefill()
 	
 	if(cost && cost < player.Accounts().Credits())
 	{
-		string message = player.Ships().size() == 1 ?
+		string message = (count == 1) ?
 			"Do you want to reload all the ammunition for your ship? It will cost " :
 			"Do you want to reload all the ammunition for your ships? It will cost ";
 		message += Format::Number(cost) + " credits.";
@@ -664,6 +669,9 @@ void OutfitterPanel::Refill()
 {
 	for(const auto &ship : player.Ships())
 	{
+		if(ship->GetSystem() != player.GetSystem())
+			continue;
+		
 		set<const Outfit *> toRefill;
 		for(const auto &it : ship->Weapons())
 			if(it.GetOutfit() && it.GetOutfit()->Ammo())
