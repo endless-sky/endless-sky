@@ -339,7 +339,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		if(shipToAssist)
 		{
 			it->SetTargetShip(shipToAssist);
-			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem())
+			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
+					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
+					|| (!shipToAssist->IsDisabled() && shipToAssist->JumpsRemaining()))
 				it->SetShipToAssist(shared_ptr<Ship>());
 			else if(!it->IsBoarding())
 			{

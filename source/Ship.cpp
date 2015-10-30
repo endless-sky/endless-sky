@@ -988,7 +988,7 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
-			else if(target->IsDestroyed())
+			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing())
 				isBoarding = false;
 		}
 		if(isBoarding && !pilotError)
