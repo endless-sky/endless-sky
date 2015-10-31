@@ -93,9 +93,9 @@ void ConversationPanel::Draw() const
 	zones.clear();
 	if(node < 0)
 	{
-		string done = "[done]";
+		static const string done = "[done]";
 		int width = font.Width(done);
-		Point off(Screen::Width() / -2 + 20 + WIDTH - font.Width(done), point.Y());
+		Point off(Screen::Left() + 20 + WIDTH - width, point.Y());
 		font.Draw(done, off, bright);
 		
 		Point size(width, font.Height());
@@ -116,6 +116,14 @@ void ConversationPanel::Draw() const
 		
 		font.Draw("Last name:", point + Point(270, 0), dim);
 		font.Draw(lastName, point + Point(350, 0), choice ? bright : grey);
+		
+		static const string ok = "[ok]";
+		width = font.Width(ok);
+		Point off(Screen::Left() + 20 + WIDTH - width, point.Y());
+		font.Draw(ok, off, bright);
+		size = Point(width, font.Height());
+		zones.emplace_back(off + .5 * size, size);
+		
 		return;
 	}
 	
@@ -172,11 +180,12 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(choices.empty())
 	{
 		string &name = (choice ? lastName : firstName);
+		string &otherName = (choice ? firstName : lastName);
 		if(key >= ' ' && key <= '~')
 			name += ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && name.size())
 			name.erase(name.size() - 1);
-		else if(key == '\t')
+		else if(key == '\t' || (key == SDLK_RETURN && otherName.empty()))
 			choice = !choice;
 		else if(key == SDLK_RETURN && !firstName.empty() && !lastName.empty())
 		{
@@ -232,8 +241,11 @@ bool ConversationPanel::Click(int x, int y)
 	}
 	else if(choices.empty() && node >= 0)
 	{
+		if(!zones.empty() && zones.front().Contains(point))
+			return DoKey(SDLK_RETURN);
+		
 		// Get the x position relative to the left side of the screen.
-		x -= -Screen::Width() / 2;
+		x -= Screen::Left();
 		if(x > 135 && x < 285)
 			choice = 0;
 		else if(x > 365 && x < 515)
