@@ -638,7 +638,7 @@ phrase "hostile pirate"
 		"I'm going to make you "
 		"I hope you're ready to "
 		"Be prepared to "
-		"Unless you pay me a heft bribe, you're going to "
+		"Unless you pay me a hefty bribe, you're going to "
 		"I'm here to make you "
 		"I'm here to see to it that you "
 	word
