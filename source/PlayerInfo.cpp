@@ -907,7 +907,7 @@ void PlayerInfo::TakeOff()
 		if(category == "Fighter")
 		{
 			for(shared_ptr<Ship> &parent : ships)
-				if(parent->FighterBaysFree())
+				if(parent->GetSystem() == system && !parent->IsParked() && parent->FighterBaysFree())
 				{
 					parent->AddFighter(ship);
 					fit = true;
@@ -919,7 +919,7 @@ void PlayerInfo::TakeOff()
 		else if(category == "Drone")
 		{
 			for(shared_ptr<Ship> &parent : ships)
-				if(parent->DroneBaysFree())
+				if(parent->GetSystem() == system && !parent->IsParked() && parent->DroneBaysFree())
 				{
 					parent->AddFighter(ship);
 					fit = true;
@@ -949,9 +949,23 @@ void PlayerInfo::TakeOff()
 		
 		int64_t income = 0;
 		for(const shared_ptr<Ship> &ship : fighters)
-			income += ship->Cost();
+		{
+			auto it = find(ships.begin(), ships.end(), ship);
+			if(it != ships.end())
+			{
+				income += ship->Cost();
+				ships.erase(it);
+			}
+		}
 		for(const shared_ptr<Ship> &ship : drones)
-			income += ship->Cost();
+		{
+			auto it = find(ships.begin(), ships.end(), ship);
+			if(it != ships.end())
+			{
+				income += ship->Cost();
+				ships.erase(it);
+			}
+		}
 		
 		out << ", earning " << income << " credits.";
 		accounts.AddCredits(income);
