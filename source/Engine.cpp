@@ -652,6 +652,9 @@ void Engine::EnterSystem()
 	unsigned attraction = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
+		if(ship->IsParked())
+			continue;
+		
 		const string &category = ship->Attributes().Category();
 		if(category == "Light Freighter")
 			attraction += 1;
