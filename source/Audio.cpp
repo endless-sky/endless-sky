@@ -273,6 +273,14 @@ void Audio::Step()
 void Audio::Quit()
 {
 	unique_lock<mutex> lock(audioMutex);
+	if(!loadQueue.empty())
+		loadQueue.clear();
+	if(loadThread.joinable())
+	{
+		lock.unlock();
+		loadThread.join();
+		lock.lock();
+	}
 	
 	for(const Source &source : sources)
 	{
@@ -292,9 +300,6 @@ void Audio::Quit()
 		alDeleteBuffers(1, &id);
 	}
 	sounds.clear();
-	
-	if(loadThread.joinable())
-		loadThread.join();
 	
 	alcMakeContextCurrent(nullptr);
 	alcDestroyContext(context);
@@ -386,7 +391,7 @@ namespace {
 				// If this is not the first time through, remove the previous item
 				// in the queue. This is a signal that it has been loaded, so we
 				// must not remove it until after loading the file.
-				if(!path.empty())
+				if(!path.empty() && !loadQueue.empty())
 					loadQueue.pop_back();
 				if(loadQueue.empty())
 					return;
