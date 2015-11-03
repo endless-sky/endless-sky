@@ -361,7 +361,7 @@ int DoError(string message, SDL_Window *window, SDL_GLContext context)
 	
 	// Check if SDL has more details.
 	const char *sdlMessage = SDL_GetError();
-	if(sdlMessage)
+	if(sdlMessage && sdlMessage[0])
 	{
 		message += " (SDL message: \"";
 		message += sdlMessage;
