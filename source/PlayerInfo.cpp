@@ -537,7 +537,11 @@ int64_t PlayerInfo::Salaries() const
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
-	return ships.empty() ? nullptr : ships.front().get();
+	for(const shared_ptr<Ship> &it : ships)
+		if(!it->IsParked() && it->GetSystem() == system)
+			return it.get();
+	
+	return nullptr;
 }
 
 
@@ -546,7 +550,11 @@ const Ship *PlayerInfo::Flagship() const
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
-	return ships.empty() ? nullptr : ships.front().get();
+	for(const shared_ptr<Ship> &it : ships)
+		if(!it->IsParked() && it->GetSystem() == system)
+			return it.get();
+	
+	return nullptr;
 }
 
 

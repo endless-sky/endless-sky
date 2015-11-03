@@ -261,7 +261,13 @@ void ShipyardPanel::SellShip()
 	for(Ship *ship : playerShips)
 		player.SellShip(ship);
 	playerShips.clear();
-	playerShip = player.Flagship();
+	playerShip = nullptr;
+	for(shared_ptr<Ship> ship : player.Ships())
+		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+		{
+			playerShip = ship.get();
+			break;
+		}
 	if(playerShip)
 		playerShips.insert(playerShip);
 }

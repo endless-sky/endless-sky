@@ -197,7 +197,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		for( ; it != player.Ships().end(); ++it)
 			allParked &= (*it)->IsParked();
 		
-		it = player.Ships().begin() + 1;
+		it = player.Ships().begin() + !allParked;
 		for( ; it != player.Ships().end(); ++it)
 			player.ParkShip(it->get(), !allParked);
 	}
