@@ -48,6 +48,14 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			message = "If you want us to leave you alone, it'll cost you "
 				+ Format::Number(bribe) + " credits.";
 	}
+	else if(ship->IsDisabled())
+	{
+		const Ship *flagship = player.Flagship();
+		if(!flagship->JumpsRemaining() || flagship->IsDisabled())
+			message = "Sorry, we can't help you, because our ship is disabled.";
+		else
+			message = "Our ship has been disabled! Please come board our ship and patch us up!";
+	}
 	else
 	{
 		// Is the player in any need of assistance?
