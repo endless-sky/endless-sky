@@ -137,11 +137,17 @@ void InfoPanel::Draw() const
 		if(canEdit && player.Ships().size() > 1)
 		{
 			bool allParked = true;
+			bool hasOtherShips = false;
 			auto it = player.Ships().begin() + 1;
 			for( ; it != player.Ships().end(); ++it)
-				allParked &= (*it)->IsParked();
+				if(!(*it)->IsDisabled())
+				{
+					allParked &= (*it)->IsParked();
+					hasOtherShips = true;
+				}
 			
-			interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
+			if(hasOtherShips)
+				interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
 		}
 		interfaceInfo.SetCondition("two buttons");
 	}
@@ -195,11 +201,13 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		bool allParked = true;
 		auto it = player.Ships().begin() + 1;
 		for( ; it != player.Ships().end(); ++it)
-			allParked &= (*it)->IsParked();
+			if(!(*it)->IsDisabled())
+				allParked &= (*it)->IsParked();
 		
 		it = player.Ships().begin() + !allParked;
 		for( ; it != player.Ships().end(); ++it)
-			player.ParkShip(it->get(), !allParked);
+			if(!(*it)->IsDisabled())
+				player.ParkShip(it->get(), !allParked);
 	}
 	else if(command.Has(Command::INFO | Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
