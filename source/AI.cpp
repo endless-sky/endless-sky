@@ -725,7 +725,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 
 void AI::Refuel(Ship &ship, Command &command)
 {
-	if(ship.GetParent() && ship.GetParent()->GetTargetPlanet())
+	if(ship.GetParent() && ship.GetParent()->GetTargetPlanet()
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->HasSpaceport())
 		ship.SetTargetPlanet(ship.GetParent()->GetTargetPlanet());
 	else if(!ship.GetTargetPlanet())
 	{
