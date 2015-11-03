@@ -58,7 +58,7 @@ mission "First Contact: Quarg"
 			
 			`	"You have done what? Awakened the atom? There are weapons far worse than that. Consuming planets. Snuffing out stars. Tearing the flesh of space and time itself. Weapons of chaos I pray your reckless race cannot yet even conceive of. These things will attract the attention of the Drak, because they nearly destroyed this galaxy once, and must not be allowed to do so again."`
 			choice
-				`	"Well, if there are technologies that dangerous out there, I hope the Drak to continue to succeed in keeping them from being used."`
+				`	"Well, if there are technologies that dangerous out there, I hope the Drak do continue to succeed in keeping them from being used."`
 			
 			label closing
 			`	"I hope so too, human." The Quarg stands up, towering over you once again. "As long as you are a seeker of peace, you are most welcome on our worlds at any time." It bows to you. You are not sure if that is a Quarg gesture too, or if it is simply imitating a human custom, but you bow in return, and the Quarg walks quietly away.`
