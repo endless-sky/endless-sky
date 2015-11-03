@@ -152,7 +152,7 @@ outfit "X3200 Ion Steering"
 	"turn" 590
 	"turning energy" 1.1
 	"turning heat" 2.0
-	description "The X3200 steering system is intended for small warships ships and freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
+	description "The X3200 steering system is intended for small warships and freighters. It produces enough turning force to lend agility to all but the largest of human ships, and it is considerably more energy-efficient than the plasma-drive alternatives."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
 outfit "X4200 Ion Steering"
