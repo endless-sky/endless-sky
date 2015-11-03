@@ -620,7 +620,6 @@ void Engine::EnterSystem()
 		return;
 	
 	const System *system = flagship->GetSystem();
-	player.SetSystem(system);
 	
 	player.IncrementDate();
 	const Date &today = player.GetDate();
@@ -762,6 +761,7 @@ void Engine::CalculateStep()
 	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
 	{
 		doFlash = true;
+		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}
 	else if(flagship && player.GetSystem() != flagship->GetSystem())
@@ -769,6 +769,7 @@ void Engine::CalculateStep()
 		// Wormhole travel:
 		player.ClearTravel();
 		doFlash = true;
+		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}
 	
