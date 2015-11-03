@@ -403,7 +403,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A9CC52601950C9F6004E4E22 = {
+		654D33611BE92C9200D1E5AB /* source */ = {
 			isa = PBXGroup;
 			children = (
 				A96862CD1AE6FD0A004FE1FE /* Account.cpp */,
@@ -623,6 +623,14 @@
 				A968639D1AE6FD0D004FE1FE /* Weapon.h */,
 				A968639E1AE6FD0D004FE1FE /* WrappedText.cpp */,
 				A968639F1AE6FD0E004FE1FE /* WrappedText.h */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
+		A9CC52601950C9F6004E4E22 = {
+			isa = PBXGroup;
+			children = (
+				654D33611BE92C9200D1E5AB /* source */,
 				A99F7A6F195DF44B002C30B8 /* credits.txt */,
 				A99F7A94195DF44B002C30B8 /* keys.txt */,
 				A99F7A95195DF44B002C30B8 /* license.txt */,
