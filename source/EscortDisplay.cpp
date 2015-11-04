@@ -57,6 +57,7 @@ void EscortDisplay::Draw() const
 	Point pos = Point(Screen::Left() + 20., Screen::Bottom());
 	static const Color hereColor(.8, 1.);
 	static const Color elsewhereColor(.4, .4, .6, 1.);
+	static const Color readyToJumpColor(.2, .8, .2, 1.);
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -70,11 +71,19 @@ void EscortDisplay::Draw() const
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
+
+		Color color;
+		if (!escort.isHere)
+			color = elsewhereColor;
+		else if (escort.isReadyToJump)
+			color = readyToJumpColor;
+		else
+			color = hereColor;
 		
 		// Figure out what scale should be applied to the ship sprite.
 		double scale = min(20. / escort.sprite->Width(), 20. / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
-		OutlineShader::Draw(escort.sprite, pos, size, escort.isHere ? hereColor : elsewhereColor);
+		OutlineShader::Draw(escort.sprite, pos, size, color);
 		// Draw the number of ships in this stack.
 		double width = 70.;
 		if(escort.stackSize > 1)
@@ -131,6 +140,7 @@ void EscortDisplay::Draw() const
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere)
 	: sprite(ship.GetSprite().GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
+	isReadyToJump(ship.CheckHyperspace()),
 	stackSize(1),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
@@ -159,6 +169,7 @@ int EscortDisplay::Icon::Height() const
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
 	isHere &= other.isHere;
+	isReadyToJump &= other.isReadyToJump;
 	stackSize += other.stackSize;
 	if(system.empty() && !other.system.empty())
 		system = other.system;
