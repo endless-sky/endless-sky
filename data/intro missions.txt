@@ -184,7 +184,7 @@ mission "Intro [1 Freighter]"
 	
 	on offer
 		conversation
-			`The spaceport on <planet> is small enough that it doesn't take long to find James. He's talking with a man wearing what looks like a doctor's lab coat. "Captain <last>!" says James. "Glad you could join us. It turns out there's been a flu outbreak on <planet>, and they're asking every captain with space to spare to carry some vaccines and other medical supplies over there. Are you willing to help out?"`
+			`The spaceport on <origin> is small enough that it doesn't take long to find James. He's talking with a man wearing what looks like a doctor's lab coat. "Captain <last>!" says James. "Glad you could join us. It turns out there's been a flu outbreak on <planet>, and they're asking every captain with space to spare to carry some vaccines and other medical supplies over there. Are you willing to help out?"`
 			choice
 				`	"Sure, anything I can do to assist them!"`
 				`	"Sorry, I've heard bad things about that region of space. I think I'm going to head in the other direction."`
