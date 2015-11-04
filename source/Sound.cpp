@@ -12,13 +12,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Sound.h"
 
+#include "Files.h"
+
 #ifndef __APPLE__
 #include <AL/al.h>
 #else
 #include <OpenAL/al.h>
 #endif
 
-#include <fstream>
+#include <cstdio>
 #include <vector>
 
 using namespace std;
@@ -27,9 +29,9 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(istream &in, uint32_t &frequency);
-	uint32_t Read4(istream &in);
-	uint16_t Read2(istream &in);
+	uint32_t ReadHeader(FILE *&in, uint32_t &frequency);
+	uint32_t Read4(FILE *&in);
+	uint16_t Read2(FILE *&in);
 }
 
 
@@ -41,13 +43,14 @@ void Sound::Load(const string &path)
 	
 	isLooped = path[path.length() - 5] == '~';
 	
-	ifstream in(path, ios::in | ios::binary);
+	FILE *in = Files::Open(path);
 	uint32_t frequency = 0;
 	uint32_t bytes = ReadHeader(in, frequency);
 	if(bytes)
 	{
 		vector<char> data(bytes);
-		in.read(&data.front(), bytes);
+		if(fread(&data[0], 1, bytes, in) != bytes)
+			return;
 		
 		alGenBuffers(1, &buffer);
 		alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
@@ -74,7 +77,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(istream &in, uint32_t &frequency)
+	uint32_t ReadHeader(FILE *&in, uint32_t &frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -107,7 +110,7 @@ namespace {
 				
 				// Skip any further bytes in this chunk.
 				if(subchunkSize > 16)
-					in.ignore(subchunkSize - 16);
+					fseek(in, subchunkSize - 16, SEEK_CUR);
 				
 				if(audioFormat != 1)
 					return 0;
@@ -127,31 +130,33 @@ namespace {
 				return subchunkSize;
 			}
 			else
-				in.ignore(subchunkSize);
+				fseek(in, subchunkSize, SEEK_CUR);
 		}
 	}
 	
 	
 	
-	uint32_t Read4(istream &in)
+	uint32_t Read4(FILE *&in)
 	{
-		char data[4];
-		in.read(data, 4);
+		unsigned char data[4];
+		if(fread(data, 1, 4, in) != 4)
+			return 0;
 		uint32_t result = 0;
 		for(int i = 0; i < 4; ++i)
-			result |= static_cast<uint32_t>(static_cast<unsigned char>(data[i])) << (i * 8);
+			result |= static_cast<uint32_t>(data[i]) << (i * 8);
 		return result;
 	}
 	
 	
 	
-	uint16_t Read2(istream &in)
+	uint16_t Read2(FILE *&in)
 	{
-		char data[2];
-		in.read(data, 2);
+		unsigned char data[2];
+		if(fread(data, 1, 2, in) != 2)
+			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)
-			result |= static_cast<uint16_t>(static_cast<unsigned char>(data[i])) << (i * 8);
+			result |= static_cast<uint16_t>(data[i]) << (i * 8);
 		return result;
 	}
 }

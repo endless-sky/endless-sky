@@ -319,10 +319,7 @@ bool Files::Exists(const string &filePath)
 
 void Files::Copy(const string &from, const string &to)
 {
-	ifstream in(from, ios::binary);
-	ofstream out(to, ios::binary);
-	
-	out << in.rdbuf();
+	Write(to, Read(from));
 }
 
 
@@ -347,4 +344,58 @@ string Files::Name(const string &path)
 	// string::npos = -1, so if there is no '/' in the path this will
 	// return the entire string, i.e. path.substr(0).
 	return path.substr(path.rfind('/') + 1);
+}
+
+
+
+FILE *Files::Open(const string &path, bool write)
+{
+	return fopen(path.c_str(), write ? "wb" : "rb");
+}
+
+
+
+string Files::Read(const string &path)
+{
+	return Read(Open(path));
+}
+
+
+
+string Files::Read(FILE *file)
+{
+	string result;
+	if(!file)
+		return result;
+	
+	// Find the remaining number of bytes in the file.
+	size_t start = ftell(file);
+	fseek(file, 0, SEEK_END);
+	size_t size = ftell(file) - start;
+	// Reserve one extra byte because DataFile appends a '\n' to the end of each
+	// file it reads, and that's the most common use of this function.
+	result.reserve(size + 1);
+	result.resize(size);
+	fseek(file, start, SEEK_SET);
+	
+	// Read the file data.
+	size_t bytes = fread(&result[0], 1, result.size(), file);
+	if(bytes != result.size())
+		throw runtime_error("Error reading file!");
+	
+	return result;
+}
+
+
+
+void Files::Write(const string &path, const string &data)
+{
+	Write(Open(path, true), data);
+}
+
+
+
+void Files::Write(FILE *file, const string &data)
+{
+	fwrite(&data[0], 1, data.size(), file);
 }

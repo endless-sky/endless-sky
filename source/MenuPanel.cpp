@@ -35,8 +35,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
-#include <fstream>
-
 using namespace std;
 
 namespace {
@@ -51,10 +49,17 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 {
 	SetIsFullScreen(true);
 	
-	ifstream in(Files::Resources() + "credits.txt");
-	string line;
-	while(getline(in, line))
-		credits.push_back(line);
+	string data = Files::Read(Files::Resources() + "credits.txt");
+	size_t pos = 0;
+	while(pos < data.size())
+	{
+		size_t end = data.find('\n', pos);
+		if(end == string::npos)
+			end = data.size();
+		
+		credits.push_back(data.substr(pos, end - pos));
+		pos = end + 1;
+	}
 }
 
 

@@ -14,7 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define DATA_WRITER_H_
 
 #include <string>
-#include <fstream>
+#include <sstream>
 
 class DataNode;
 
@@ -28,6 +28,7 @@ class DataNode;
 class DataWriter {
 public:
 	DataWriter(const std::string &path);
+	~DataWriter();
 	
   template <class ...B>
 	void Write(const char *a, B... others);
@@ -49,10 +50,11 @@ private:
 	
 	
 private:
+	std::string path;
 	std::string indent;
 	static const std::string space;
 	const std::string *before;
-	std::ofstream out;
+	std::ostringstream out;
 };
 
 

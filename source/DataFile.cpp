@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataFile.h"
 
-#include <fstream>
+#include "Files.h"
 
 using namespace std;
 
@@ -34,21 +34,13 @@ DataFile::DataFile(istream &in)
 
 void DataFile::Load(const string &path)
 {
-	// Check if the file exists before doing anything with it.
-	ifstream in(path, ios_base::binary);
-	if(!in.is_open())
+	string data = Files::Read(path);
+	if(data.empty())
 		return;
 	
-	// Find out how big the file is.
-	in.seekg(0, ios_base::end);
-	size_t size = in.tellg();
-	in.seekg(0, ios_base::beg);
-	
-	// Allocate one extra character for the sentinel '\n' character.
-	vector<char> data(size + 1);
-	in.read(&*data.begin(), size);
 	// As a sentinel, make sure the file always ends in a newline.
-	data.back() = '\n';
+	if(data.back() != '\n')
+		data.push_back('\n');
 	
 	Load(&*data.begin(), &*data.end());
 }

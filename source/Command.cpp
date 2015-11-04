@@ -14,11 +14,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 
 #include <SDL2/SDL.h>
 
 #include <algorithm>
-#include <fstream>
 #include <map>
 
 using namespace std;
@@ -121,13 +121,13 @@ void Command::LoadSettings(const string &path)
 
 void Command::SaveSettings(const string &path)
 {
-	ofstream out(path);
+	DataWriter out(path);
 	
 	for(const auto &it : commandForKeycode)
 	{
 		auto dit = description.find(it.second);
 		if(dit != description.end())
-			out << '"' << dit->second << '"' << ' ' << it.first << '\n';
+			out.Write(dit->second, it.first);
 	}
 }
 

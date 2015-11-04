@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef FILES_H_
 #define FILES_H_
 
+#include <cstdio>
 #include <string>
 #include <vector>
 
@@ -52,6 +53,13 @@ public:
 	
 	// Get the filename from a path.
 	static std::string Name(const std::string &path);
+	
+	// File IO.
+	static FILE *Open(const std::string &path, bool write = false);
+	static std::string Read(const std::string &path);
+	static std::string Read(FILE *file);
+	static void Write(const std::string &path, const std::string &data);
+	static void Write(FILE *file, const std::string &data);
 };
 
 

@@ -213,9 +213,10 @@ void PlayerInfo::Load(const string &path)
 // Load the most recently saved player (if any).
 void PlayerInfo::LoadRecent()
 {
-	string recentPath = Files::Config() + "recent.txt";
-	ifstream recent(recentPath);
-	getline(recent, recentPath);
+	string recentPath = Files::Read(Files::Config() + "recent.txt");
+	size_t pos = recentPath.find('\n');
+	if(pos != string::npos)
+		recentPath.erase(pos);
 	
 	if(recentPath.empty())
 		Clear();
@@ -233,11 +234,7 @@ void PlayerInfo::Save() const
 		return;
 	
 	// Remember that this was the most recently saved player.
-	{
-		string recentPath = Files::Config() + "recent.txt";
-		ofstream recent(recentPath);
-		recent << filePath << "\n";
-	}
+	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
 	
 	Save(filePath);
 }

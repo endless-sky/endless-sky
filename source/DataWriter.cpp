@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 
 #include "DataNode.h"
+#include "Files.h"
 
 using namespace std;
 
@@ -23,10 +24,16 @@ const string DataWriter::space = " ";
 
 
 DataWriter::DataWriter(const string &path)
-	: before(&indent)
+	: path(path), before(&indent)
 {
-	out.open(path);
 	out.precision(8);
+}
+
+
+
+DataWriter::~DataWriter()
+{
+	Files::Write(path, out.str());
 }
 
 

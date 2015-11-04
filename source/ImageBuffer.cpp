@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ImageBuffer.h"
 
+#include "Files.h"
+
 #include <png.h>
 #include <jpeglib.h>
 
@@ -134,7 +136,7 @@ namespace {
 	public:
 		File(const string &path)
 		{
-			file = fopen(path.c_str(), "rb");
+			file = Files::Open(path);
 		}
 		~File()
 		{
