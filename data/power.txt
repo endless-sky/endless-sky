@@ -81,7 +81,7 @@ outfit "nGVF-BB Fuel Cell"
 	"outfit space" -30
 	"energy generation" 1.8
 	"heat generation" 6
-	description "This is a step up form the smallest fuel cells, providing enough energy to power a few small guns in addition to your engines."
+	description "This is a step up from the smallest fuel cells, providing enough energy to power a few small guns in addition to your engines."
 
 outfit "nGVF-CC Fuel Cell"
 	category "Power"
