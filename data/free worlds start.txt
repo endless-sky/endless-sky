@@ -958,7 +958,7 @@ mission "FW Senate 1B"
 			`	"Don't play dumb. I mean the Council, deciding everything."`
 			choice
 				`	"Don't worry, it was never their intention to hold on to power once each world had had sufficient time to elect their own representatives."`
-				`	"Hey, the Council has provided great leadership at a time when no one else was ready to take charge. Give then some respect."`
+				`	"Hey, the Council has provided great leadership at a time when no one else was ready to take charge. Give them some respect."`
 			`	She looks angry for a minute, then her expression softens. "Oh, pardon me," she says. "I was treating you like another scheming politician, but now I realize you're way too clueless for that. Tell me, Captain, do you know what makes politics similar to piloting a ship?"`
 			choice
 				`	"I have no idea."`
