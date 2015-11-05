@@ -48,7 +48,6 @@ public:
 	
 	static bool Exists(const std::string &filePath);
 	static void Copy(const std::string &from, const std::string &to);
-	static void Move(const std::string &from, const std::string &to);
 	static void Delete(const std::string &filePath);
 	
 	// Get the filename from a path.
