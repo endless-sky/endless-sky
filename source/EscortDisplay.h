@@ -47,6 +47,7 @@ private:
 		
 		const Sprite *sprite;
 		bool isHere;
+		bool isReadyToJump;
 		int stackSize;
 		int64_t cost;
 		std::string system;
