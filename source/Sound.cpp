@@ -55,6 +55,7 @@ void Sound::Load(const string &path)
 		alGenBuffers(1, &buffer);
 		alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 	}
+	fclose(in);
 }
 
 

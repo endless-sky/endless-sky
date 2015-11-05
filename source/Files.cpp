@@ -448,7 +448,10 @@ FILE *Files::Open(const string &path, bool write)
 
 string Files::Read(const string &path)
 {
-	return Read(Open(path));
+	FILE *file = Open(path);
+	string result = Read(file);
+	fclose(file);
+	return result;
 }
 
 
@@ -481,7 +484,9 @@ string Files::Read(FILE *file)
 
 void Files::Write(const string &path, const string &data)
 {
-	Write(Open(path, true), data);
+	FILE *file = Open(path, true);
+	Write(file, data);
+	fclose(file);
 }
 
 
