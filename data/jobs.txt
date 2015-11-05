@@ -545,6 +545,7 @@ mission "Bounty Hunting (Small)"
 mission "Southern Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
+	minor
 	repeat
 	to offer
 		"combat rating" > 100
@@ -579,6 +580,7 @@ mission "Southern Pirate Attack"
 mission "Northern Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
+	minor
 	repeat
 	to offer
 		"combat rating" > 100
@@ -613,6 +615,7 @@ mission "Northern Pirate Attack"
 mission "Core Pirate Attack"
 	name "Defend <planet>"
 	description "Defeat a pirate raid on <destination>."
+	minor
 	repeat
 	to offer
 		"combat rating" > 100
