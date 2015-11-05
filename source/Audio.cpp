@@ -80,6 +80,7 @@ namespace {
 	map<string, Sound> sounds;
 	vector<Source> sources;
 	vector<unsigned> recycledSources;
+	vector<unsigned> endingSources;
 	unsigned maxSources = 255;
 	
 	vector<string> loadQueue;
@@ -221,8 +222,8 @@ void Audio::Step()
 			}
 			else
 			{
-				alSourceStop(source.ID());
-				recycledSources.push_back(source.ID());
+				alSourcei(source.ID(), AL_LOOPING, false);
+				endingSources.push_back(source.ID());
 			}
 		}
 		else
@@ -234,6 +235,20 @@ void Audio::Step()
 				newSources.push_back(source);
 			else
 				recycledSources.push_back(source.ID());
+		}
+	}
+	// These sources were looping and are now wrapping up a loop.
+	auto it = endingSources.begin();
+	while(it != endingSources.end())
+	{
+		ALint state;
+		alGetSourcei(*it, AL_SOURCE_STATE, &state);
+		if(state == AL_PLAYING)
+			++it;
+		else
+		{
+			recycledSources.push_back(*it);
+			it = endingSources.erase(it);
 		}
 	}
 	newSources.swap(sources);
