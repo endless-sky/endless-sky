@@ -73,9 +73,9 @@ void EscortDisplay::Draw() const
 			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if (!escort.isHere)
+		if(!escort.isHere)
 			color = elsewhereColor;
-		else if (escort.isReadyToJump)
+		else if(escort.isReadyToJump)
 			color = readyToJumpColor;
 		else
 			color = hereColor;
