@@ -211,7 +211,8 @@ void ShopPanel::DrawButtons() const
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);	
+		if(CanSellMultiple())
+			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);	
 	}
 }
 
