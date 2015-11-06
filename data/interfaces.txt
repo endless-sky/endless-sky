@@ -198,7 +198,7 @@ interface "load menu"
 		color dim
 		align center
 	if "!pilot loaded"
-	label "Enter Ship" 435 148
+	label "Load Game" 435 148
 		size 14
 		color dim
 		align center
@@ -242,7 +242,7 @@ interface "load menu"
 	if "pilot loaded"
 	button e 435 155
 		size 90 30
-	label "Enter Ship" 435 148
+	label "Load Game" 435 148
 		size 14
 		color bright
 		align center
