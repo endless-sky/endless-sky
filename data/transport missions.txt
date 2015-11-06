@@ -1154,7 +1154,7 @@ mission "Terraforming 3"
 	
 	npc assist
 		government Derelict
-		personality derelict fleeing uninterested waiting
+		personality derelict fleeing uninterested waiting pacifist
 		ship Asteroid
 			name "Target Asteroid"
 			sprite "asteroid/medium rock/spin"

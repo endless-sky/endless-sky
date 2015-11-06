@@ -430,7 +430,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	// If this ship has no government, it has no enemies.
 	shared_ptr<Ship> target;
 	const Government *gov = ship.GetGovernment();
-	if(!gov)
+	if(!gov || ship.GetPersonality().IsPacifist())
 		return target;
 	
 	bool isPlayerEscort = ship.IsYours();
@@ -1194,6 +1194,8 @@ Point AI::TargetAim(const Ship &ship)
 Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool secondary) const
 {
 	Command command;
+	if(ship.GetPersonality().IsPacifist())
+		return command;
 	int index = -1;
 	
 	// Special case: your target is not your enemy. Do not fire, because you do

@@ -1687,7 +1687,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	// If this ship was hit directly and did not consider itself an enemy of the
 	// ship that hit it, it is now "provoked" against that government.
 	if(!isBlast && projectile.GetGovernment() && !projectile.GetGovernment()->IsEnemy(government)
-			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing()))
+			&& (Shields() < .9 || Hull() < .9 || !personality.IsForbearing())
+			&& !personality.IsPacifist())
 		type |= ShipEvent::PROVOKE;
 	
 	return type;
