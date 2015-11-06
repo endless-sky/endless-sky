@@ -66,7 +66,7 @@ namespace {
 
 AI::AI()
 	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false),
-	isCloaking(false), shift(false), holdPosition(false), moveToMe(false)
+	isCloaking(false), shift(false), holdPosition(false), moveToMe(false), landKeyInterval(0)
 {
 }
 
@@ -87,6 +87,10 @@ void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 	const Ship *flagship = player.Flagship();
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
+	
+	++landKeyInterval;
+	if(oldHeld.Has(Command::LAND))
+		landKeyInterval = 0;
 	
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(keyDown.Has(Command::CLOAK))
@@ -1446,7 +1450,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			// selected, then press "land" again, do not toggle to the other if
 			// you are within landing range of the one you have selected.
 		}
-		else if(message.empty() && target)
+		else if(message.empty() && target && landKeyInterval < 60)
 		{
 			bool found = false;
 			const StellarObject *next = nullptr;

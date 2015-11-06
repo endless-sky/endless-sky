@@ -89,7 +89,9 @@ private:
 	
 	bool holdPosition;
 	bool moveToMe;
-	std::weak_ptr<Ship> sharedTarget; 
+	std::weak_ptr<Ship> sharedTarget;
+	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
+	int landKeyInterval;
 	
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
