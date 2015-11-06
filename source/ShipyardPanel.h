@@ -45,6 +45,7 @@ protected:
 	virtual bool CanSell() const;
 	virtual void Sell();
 	virtual bool FlightCheck();
+	virtual bool CanSellMultiple() const override;
 	
 	
 private:

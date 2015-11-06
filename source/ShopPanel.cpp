@@ -355,6 +355,13 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
+bool ShopPanel::CanSellMultiple() const
+{
+	return true;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
@@ -372,7 +379,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 's')
 	{
-		int modifier = Modifier();
+		int modifier = CanSellMultiple() ? Modifier() : 1;
 		for(int i = 0; i < modifier && CanSell(); ++i)
 			Sell();
 	}

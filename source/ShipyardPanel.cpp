@@ -226,6 +226,13 @@ bool ShipyardPanel::FlightCheck()
 
 
 
+bool ShipyardPanel::CanSellMultiple() const
+{
+	return false;
+}
+
+
+
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost();
