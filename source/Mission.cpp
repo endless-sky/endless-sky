@@ -591,12 +591,13 @@ bool Mission::IsUnique() const
 // used as the callback for any UI panel that returns a value.
 bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
 {
-	if(trigger == OFFER)
+	if(trigger == ACCEPT)
+	{
 		++player.Conditions()[name + ": offered"];
-	else if(trigger == DEFER)
-		--player.Conditions()[name + ": offered"];
-	else if(trigger == ACCEPT)
 		++player.Conditions()[name + ": active"];
+	}
+	else if(trigger == DECLINE)
+		++player.Conditions()[name + ": offered"];
 	else if(trigger == FAIL)
 		--player.Conditions()[name + ": active"];
 	else if(trigger == COMPLETE)
