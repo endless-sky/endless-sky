@@ -38,6 +38,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	: player(player), ship(ship),
 	sprite(ship->GetSprite().GetSprite()), unit(2. * ship->Unit())
 {
+	SetInterruptible(false);
+	
 	const Government *gov = ship->GetGovernment();
 	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
 	
@@ -94,6 +96,8 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	: player(player), planet(object->GetPlanet()),
 	sprite(object->GetSprite().GetSprite()), unit(object->Position().Unit())
 {
+	SetInterruptible(false);
+	
 	const Government *gov = player.GetSystem()->GetGovernment();
 	if(planet)
 		header = gov->GetName() + " planet \"" + planet->Name() + "\":";
@@ -185,7 +189,7 @@ void HailPanel::Draw() const
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
 	bool shipIsEnemy = ship && ship->GetGovernment()->IsEnemy();
-	if(key == 'd' || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 'a' || key == 't' || key == 'h')
 	{

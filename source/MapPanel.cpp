@@ -57,6 +57,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	commodity(commodity)
 {
 	SetIsFullScreen(true);
+	SetInterruptible(false);
 	
 	center = Point(0., 0.) - selectedSystem->Position();
 }

@@ -163,6 +163,20 @@ bool UI::IsTop(const Panel *panel) const
 
 
 
+// Get the top panel.
+shared_ptr<Panel> UI::Top() const
+{
+	if(!toPush.empty())
+		return toPush.back();
+	
+	if(!stack.empty())
+		return stack.back();
+	
+	return shared_ptr<Panel>();
+}
+
+
+
 // Delete all the panels and clear the "done" flag.
 void UI::Reset()
 {

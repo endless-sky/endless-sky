@@ -48,6 +48,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
 	if(playerShip)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
+	SetInterruptible(false);
 }
 
 
@@ -365,7 +366,7 @@ bool ShopPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if((key == 'l' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
+	if((key == 'l' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);

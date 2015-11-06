@@ -27,8 +27,6 @@ class UI;
 // allow them to receive any events that it does not know how to handle.
 class Panel {
 public:
-	// Constructor.
-	Panel();
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel();
 	
@@ -44,6 +42,8 @@ public:
 	// Return true if, when this panel is on the stack, no events should be
 	// passed to any panel under it. By default, all panels do this.
 	bool TrapAllEvents();
+	// Check if this panel can be "interrupted" to return to the main menu.
+	bool IsInterruptible() const;
 	
 	
 protected:
@@ -58,6 +58,7 @@ protected:
 	
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);
+	void SetInterruptible(bool set);
 	
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
@@ -77,10 +78,11 @@ protected:
 	
 private:
 	void SetUI(UI *ui);
-	UI *ui;
+	UI *ui = nullptr;
 	
-	bool isFullScreen;
-	bool trapAllEvents;
+	bool isFullScreen = false;
+	bool trapAllEvents = true;
+	bool isInterruptible = true;
 	
 	friend class UI;
 };

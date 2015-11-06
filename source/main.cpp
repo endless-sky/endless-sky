@@ -237,7 +237,8 @@ int main(int argc, char *argv[])
 					isPaused = !isPaused;
 				}
 				else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-						&& Command(event.key.keysym.sym).Has(Command::MENU))
+						&& Command(event.key.keysym.sym).Has(Command::MENU)
+						&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 				{
 					menuPanels.Push(shared_ptr<Panel>(
 						new MenuPanel(player, gamePanels)));

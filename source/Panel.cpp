@@ -22,14 +22,6 @@ using namespace std;
 
 
 
-// Constructor.
-Panel::Panel()
-	: ui(nullptr), isFullScreen(false), trapAllEvents(true)
-{
-}
-
-
-
 // Make the destructor just in case any derived class needs it.
 Panel::~Panel()
 {
@@ -65,6 +57,14 @@ bool Panel::IsFullScreen()
 bool Panel::TrapAllEvents()
 {
 	return trapAllEvents;
+}
+
+
+
+// Check if this panel can be "interrupted" to return to the main menu.
+bool Panel::IsInterruptible() const
+{
+	return isInterruptible;
 }
 
 
@@ -129,6 +129,13 @@ void Panel::SetIsFullScreen(bool set)
 void Panel::SetTrapAllEvents(bool set)
 {
 	trapAllEvents = set;
+}
+
+
+
+void Panel::SetInterruptible(bool set)
+{
+	isInterruptible = set;
 }
 
 

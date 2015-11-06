@@ -174,7 +174,7 @@ void MissionPanel::Draw() const
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(key == 'd' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		GetUI()->Pop(this);
 		return true;

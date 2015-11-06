@@ -53,7 +53,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	attackOdds(player.Flagship(), &*victim), defenseOdds(&*victim, player.Flagship()),
 	initialCrew(you->Crew())
 {
-	TrapAllEvents();
+	SetInterruptible(false);
 	
 	const System &system = *player.GetSystem();
 	for(const auto &it : victim->Cargo().Commodities())
@@ -164,7 +164,7 @@ void BoardingPanel::Draw() const
 
 bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if((key == 'd' || key == 'x' || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
+	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
 		if(playerDied)
 			player.Die(true);

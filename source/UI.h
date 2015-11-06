@@ -51,6 +51,8 @@ public:
 	
 	// Check whether the given panel is on top, i.e. is the active one.
 	bool IsTop(const Panel *panel) const;
+	// Get the top panel.
+	std::shared_ptr<Panel> Top() const;
 	
 	// Delete all the panels and clear the "done" flag.
 	void Reset();

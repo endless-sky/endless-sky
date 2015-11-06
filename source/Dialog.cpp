@@ -250,8 +250,6 @@ bool Dialog::Click(int x, int y)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, bool canCancel, bool isMission)
 {
-	TrapAllEvents();
-	
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
