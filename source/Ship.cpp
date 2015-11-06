@@ -1104,8 +1104,24 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	{
 		// Take any outfits that fit.
 		for(auto &it : victim->outfits)
+		{
+			int stolen = 0;
 			while(it.second && cargo.Transfer(it.first, -1))
+			{
+				++stolen;
 				--it.second;
+			}
+			if(stolen && victim->IsYours())
+			{
+				ostringstream out;
+				if(stolen == 1)
+					out << "A " << it.first->Name() << " was";
+				else
+					out << stolen << " " << it.first->Name() << "s were";
+				out << " stolen from " << victim->Name() << ".";
+				Messages::Add(out.str());
+			}
+		}
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(&cargo);
 		// Stop targeting this ship.
