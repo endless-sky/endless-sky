@@ -1109,6 +1109,13 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 			stolen = 0;
 			for(auto &it : victim->outfits)
 			{
+				// Don't allow other ships to steal engines or hyperdrives. It's
+				// unrealistic, but a stolen hyperdrive is the one thing you
+				// might fail to notice and land anyways, in which case your
+				// game may autosave in a state where you are stranded.
+				if(it.first->Get("hyperdrive") ||  it.first->Get("jump drive"))
+					continue;
+				
 				int count = it.second;
 				while(stolen < count && cargo.Transfer(it.first, -1))
 					++stolen;
