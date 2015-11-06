@@ -54,6 +54,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
+	GameData::Preload(planet.Landscape());
 	GameData::FinishLoading();
 }
 
