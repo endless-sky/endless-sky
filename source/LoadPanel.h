@@ -36,6 +36,8 @@ public:
 	
 	// New player "conversation" callback.
 	void OnCallback(int value);
+	// Snapshot name callback.
+	void SnapshotCallback(const std::string &name);
 	
 	
 protected:

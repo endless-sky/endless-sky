@@ -108,7 +108,9 @@ void LoadPanel::Draw() const
 			double alpha = min(1., max(0., min(.1 * (113. - point.Y()), .1 * (point.Y() - -167.))));
 			if(file == selectedFile)
 				FillShader::Fill(point + Point(110., 7.), Point(230., 20.), Color(.1 * alpha, 0.));
-			font.Draw(file.substr(0, file.size() - 4), point, Color(.5 * alpha, 0.));
+			size_t pos = file.find('~') + 1;
+			string name = file.substr(pos, file.size() - 4 - pos);
+			font.Draw(name, point, Color(.5 * alpha, 0.));
 			point += Point(0., 20.);
 		}
 	}
@@ -127,6 +129,50 @@ void LoadPanel::OnCallback(int)
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
 	panel->Step();
 	gamePanels.Push(new ShipyardPanel(player));
+}
+
+
+
+// Snapshot name callback.
+void LoadPanel::SnapshotCallback(const std::string &name)
+{
+	string wasSelected = selectedPilot;
+	auto it = files.find(selectedPilot);
+	if(it == files.end() || it->second.empty() || it->second.front().size() < 4)
+		return;
+	
+	string from = Files::Saves() + it->second.front();
+	string extension = "~" + name + ".txt";
+	if(name.empty())
+	{
+		// Extract the date from this pilot's most recent save.
+		extension = "~0000-00-00.txt";
+		DataFile file(from);
+		for(const DataNode &node : file)
+			if(node.Token(0) == "date")
+			{
+				int year = node.Value(3);
+				int month = node.Value(2);
+				int day = node.Value(1);
+				extension[1] += (year / 1000) % 10;
+				extension[2] += (year / 100) % 10;
+				extension[3] += (year / 10) % 10;
+				extension[4] += year % 10;
+				extension[6] += (month / 10) % 10;
+				extension[7] += month % 10;
+				extension[9] += (day / 10) % 10;
+				extension[10] += day % 10;
+			}
+	}
+	
+	// Copy the autosave to a new, named file.
+	string to = from.substr(0, from.size() - 4) + extension;
+	Files::Copy(from, to);
+	UpdateLists();
+	
+	selectedPilot = wasSelected;
+	selectedFile = Files::Name(to);
+	loadedInfo.Load(Files::Saves() + selectedFile);
 }
 
 
@@ -157,34 +203,8 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(it == files.end() || it->second.empty() || it->second.front().size() < 4)
 			return false;
 		
-		// Extract the date from this pilot's most recent save.
-		string date = "~0000-00-00.txt";
-		string from = Files::Saves() + it->second.front();
-		DataFile file(from);
-		for(const DataNode &node : file)
-			if(node.Token(0) == "date")
-			{
-				int year = node.Value(3);
-				int month = node.Value(2);
-				int day = node.Value(1);
-				date[1] += (year / 1000) % 10;
-				date[2] += (year / 100) % 10;
-				date[3] += (year / 10) % 10;
-				date[4] += year % 10;
-				date[6] += (month / 10) % 10;
-				date[7] += month % 10;
-				date[9] += (day / 10) % 10;
-				date[10] += day % 10;
-			}
-		
-		// Copy the autosave to a new, named file.
-		string to = from.substr(0, from.size() - 4) + date;
-		Files::Copy(from, to);
-		UpdateLists();
-		
-		selectedPilot = wasSelected;
-		selectedFile = Files::Name(to);
-		loadedInfo.Load(Files::Saves() + selectedFile);
+		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+			"Enter a name for this snapshot, or leave the name empty to use the current date:"));
 	}
 	else if(key == 'r' && !selectedFile.empty())
 	{
