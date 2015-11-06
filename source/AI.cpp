@@ -52,6 +52,8 @@ namespace {
 	
 	bool CanBoard(const Ship &ship, const Ship &target)
 	{
+		if(&ship == &target)
+			return false;
 		if(target.IsDestroyed() || !target.IsTargetable() || target.GetSystem() != ship.GetSystem())
 			return false;
 		if(IsStranded(target) && !ship.GetGovernment()->IsEnemy(target.GetGovernment()))

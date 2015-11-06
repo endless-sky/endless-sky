@@ -988,7 +988,8 @@ bool Ship::Move(list<Effect> &effects)
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
-			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing())
+			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
+					|| target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
 		if(isBoarding && !pilotError)
@@ -1059,12 +1060,12 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 // Check if this ship is boarding another ship.
 shared_ptr<Ship> Ship::Board(bool autoPlunder)
 {
-	if(!hasBoarded || CannotAct())
+	if(!hasBoarded)
 		return shared_ptr<Ship>();
 	hasBoarded = false;
 	
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(!victim || victim->IsDestroyed())
+	if(CannotAct() || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 	
 	// For a fighter, "board" means "return to ship."
