@@ -56,12 +56,12 @@ double DataNode::Value(int index) const
 	it += (*it == '-' || *it == '+');
 	
 	// Digits before the decimal point.
-	int value = 0;
+	int64_t value = 0;
 	while(*it >= '0' && *it <= '9')
 		value = (value * 10) + (*it++ - '0');
 	
 	// Digits after the decimal point (if any).
-	int power = 0;
+	int64_t power = 0;
 	if(*it == '.')
 	{
 		++it;
@@ -76,10 +76,10 @@ double DataNode::Value(int index) const
 	if(*it == 'e' || *it == 'E')
 	{
 		++it;
-		int sign = (*it == '-') ? -1 : 1;
+		int64_t sign = (*it == '-') ? -1 : 1;
 		it += (*it == '-' || *it == '+');
 		
-		int exponent = 0;
+		int64_t exponent = 0;
 		while(*it >= '0' && *it <= '9')
 			exponent = (exponent * 10) + (*it++ - '0');
 		
