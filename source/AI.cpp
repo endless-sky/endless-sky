@@ -115,7 +115,7 @@ void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 			}
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if(keyDown.Has(Command::FIGHT) && target)
+	if(keyDown.Has(Command::FIGHT) && target && !target->IsYours())
 	{
 		sharedTarget = target;
 		holdPosition = false;
