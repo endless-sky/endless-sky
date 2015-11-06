@@ -1445,21 +1445,15 @@ void PlayerInfo::UpdateAutoConditions()
 		if(&it.second == system->GetGovernment())
 			conditions["reputation"] = rep;
 	}
-	// Store special conditions for what sorts of ships the player owns.
-	static const vector<string> CATEGORIES = {
-		"Transport",
-		"Light Freighter",
-		"Heavy Freighter",
-		"Interceptor",
-		"Light Warship",
-		"Heavy Warship",
-		"Fighter",
-		"Drone"
-	};
-	for(const string &category : CATEGORIES)
-		conditions["ships: " + category] = 0;
+	// Store special conditions for cargo and passenger space.
+	conditions["cargo space"] = 0;
+	conditions["passenger space"] = 0;
 	for(const shared_ptr<Ship> &ship : ships)
-		++conditions["ships: " + ship->Attributes().Category()];
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetSystem() == system)
+		{
+			conditions["cargo space"] += ship->Attributes().Get("cargo space");
+			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+		}
 }
 
 
