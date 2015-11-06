@@ -1797,7 +1797,6 @@ mission "Defend Sabik"
 	landing
 	name "Defend Sabik"
 	description "Help to repulse a Navy attack on Sabik, then land on Longjump to debrief."
-	autosave
 	source Longjump
 	to offer
 		has "Rescue Katya 2: done"
