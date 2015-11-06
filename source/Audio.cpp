@@ -97,11 +97,11 @@ void Audio::Init(const vector<string> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
-		throw runtime_error("Unable to open audio device!");
+		return;
 	
 	context = alcCreateContext(device, nullptr);
 	if(!context || !alcMakeContextCurrent(context))
-		throw runtime_error("Unable to create audio context!");
+		return;
 	
 	alListener3f(AL_POSITION, 0., 0., 0.);
 	alListenerf(AL_GAIN, volume);
@@ -316,9 +316,13 @@ void Audio::Quit()
 	}
 	sounds.clear();
 	
-	alcMakeContextCurrent(nullptr);
-	alcDestroyContext(context);
-	alcCloseDevice(device);
+	if(context)
+	{
+		alcMakeContextCurrent(nullptr);
+		alcDestroyContext(context);
+	}
+	if(device)
+		alcCloseDevice(device);
 }
 
 
