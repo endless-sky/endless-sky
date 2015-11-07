@@ -946,12 +946,12 @@ event "terraforming Rand"
 
 
 event "fw safe passage starts"
-	"reputation: Republic" += 10000
+	"reputation: Republic" = 1
 
 
 
 event "fw safe passage ends"
-	"reputation: Republic" -= 10000
+	"reputation: Republic" = -1000
 
 
 

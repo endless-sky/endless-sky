@@ -268,6 +268,7 @@ mission "FW Southern Battle 1B"
 
 
 event "battle for Rastaban"
+	"reputation: Republic" = -1000
 	system Rastaban
 		fleet "Small Free Worlds" 10000
 	system Lesath
@@ -1611,6 +1612,7 @@ mission "FW Albatross 2B"
 
 
 event "battle for zeta aquilae"
+	"reputation: Republic" = -1000
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 5000
 
