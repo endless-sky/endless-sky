@@ -1499,7 +1499,7 @@ mission "FWC Pug 3A"
 		conversation
 			branch know
 				has "FW Alphas 1.1: done"
-			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by a Navy general who you recognize as William Danforth, the leader of the Navy Oathkeepers. Even among the Free Worlds Danforth is spoken of with respect due to his courage and level-headedness in battle and his leadership of countless humanitarian missions.`
+			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by a Navy general who you recognize as William Danforth, the leader of the Navy Oathkeepers. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
 				goto introductions
 			label know
 			`Surprisingly, the Navy lets you land without firing on you; the fact that you entered the system via jump drive probably made a big impression on them. But when your ship lands, it is immediately surrounded by Navy troops. Hesitantly, you and Katya disembark. You are greeted by General Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood.`

@@ -1578,7 +1578,7 @@ mission "FW Bounty 1"
 				`	"Well, I'd be glad to destroy them for you."`
 				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
 					decline
-			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unkonwn reason their flagship is just named 'Cluny.' They were last seen in the Segninus system, just east of Free space. Thank you in advance for your help."`
+			`	"Excellent," she says. "They call themselves the 'Rat Pack,' and you'll recognize them because most of their ships are named after various vermin, although for some unknown reason their flagship is just named 'Cluny.' They were last seen in the Seginus system, just east of Free space. Thank you in advance for your help."`
 				accept
 	npc kill
 		personality heroic staying nemesis

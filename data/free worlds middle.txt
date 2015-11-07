@@ -268,6 +268,7 @@ mission "FW Southern Battle 1B"
 
 
 event "battle for Rastaban"
+	"reputation: Republic" = -1000
 	system Rastaban
 		fleet "Small Free Worlds" 10000
 	system Lesath
@@ -816,7 +817,7 @@ mission "FW Northern 2D"
 	
 	on offer
 		conversation
-			`You spend quite a while flying back and forth above the surface of <origin>, but Freya is unable to locate any Navy signals originating from the surface. Finally she gives up. "It's an out of the way planet," she says. "Any fleet coming here would pass through Alioth or Seginus first. So I guess they didn't bother to put anything here. Time to head to New Tibet and meet up with Alondo!"`
+			`You spend quite a while flying back and forth above the surface of <origin>, but Freya is unable to locate any Navy signals originating from the surface. Finally she gives up. "It's an out-of-the-way planet," she says. "Any fleet coming here would pass through Alioth or Seginus first. So I guess they didn't bother to put anything here. Time to head to New Tibet and meet up with Alondo!"`
 				accept
 
 
@@ -1066,7 +1067,7 @@ mission "FW Alphas 1.1"
 		ship "Firebird" "Draugbreath"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but the battle is not over - you've either failed to kill one of the pirates, or left one of your ships behind in a different system."
 
 	on complete
 		event "liberation of Poisonwood"
@@ -1154,7 +1155,7 @@ mission "FW Alphas 1.2"
 		ship "Firebird" "Draugbreath"
 	
 	on visit
-		dialog "You have reached <planet>, but you left part of your fleet behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but the battle is not over - you've either failed to kill one of the pirates, or left one of your ships behind in a different system."
 
 
 
@@ -1611,6 +1612,7 @@ mission "FW Albatross 2B"
 
 
 event "battle for zeta aquilae"
+	"reputation: Republic" = -1000
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 5000
 
