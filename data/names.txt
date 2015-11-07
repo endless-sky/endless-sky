@@ -518,7 +518,7 @@ phrase "republic small"
 		Allegheny
 		Irawaddy
 		Orange
-		Orinocco
+		Orinoco
 		Pilcomayo
 		Columbia
 		Don
@@ -629,7 +629,7 @@ phrase "free worlds small"
 		Sage
 		Rosemary
 		Thyme
-		Trilium
+		Trillium
 		Violet
 		Purslane
 		Vetch
@@ -808,7 +808,7 @@ phrase "pirate"
 		"Princess Augusta"
 		"Eliza Battle"
 		"Iron Mountain"
-		"Euridyce"
+		"Eurydice"
 		"Valencia"
 		"Octavius"
 		"Jenny"
