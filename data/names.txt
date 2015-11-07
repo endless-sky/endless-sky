@@ -578,7 +578,7 @@ phrase "free worlds small"
 		Banksia
 		Carnation
 		Aster
-		Columbina
+		Columbine
 		Orchid
 		Daffodil
 		Primrose
@@ -587,8 +587,8 @@ phrase "free worlds small"
 		Foxtail
 		Gentian
 		Ginger
-		Gilly
-		Amarath
+		Gillyflower
+		Amaranth
 		Goldenrod
 		Viburnum
 		Hyacinth
