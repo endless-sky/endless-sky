@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FrameTimer.h"
 
+#include <algorithm>
 #include <thread>
 
 using namespace std;
