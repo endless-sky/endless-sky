@@ -1066,7 +1066,7 @@ mission "FW Alphas 1.1"
 		ship "Firebird" "Draugbreath"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but the battle is not over - you've either failed to kill one of the pirates, or left one of your ships behind in a different system."
 
 	on complete
 		event "liberation of Poisonwood"
@@ -1154,7 +1154,7 @@ mission "FW Alphas 1.2"
 		ship "Firebird" "Draugbreath"
 	
 	on visit
-		dialog "You have reached <planet>, but you left part of your fleet behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but the battle is not over - you've either failed to kill one of the pirates, or left one of your ships behind in a different system."
 
 
 
