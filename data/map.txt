@@ -14029,7 +14029,7 @@ planet Luna
 	landscape land/earthrise
 	description `In the early days of space travel, back when engines were still so inefficient that escaping from a planet's gravity was costly and difficult, an enormous shipyard was built on the Moon where asteroids, harvested from the asteroid belt, were mined for raw materials for ships.`
 	description `	The facility is still in operation, although it is now overshadowed by the far more advanced shipbuilding centers like Geminus in the Castor system.`
-	spaceport `The spaceport is rudimentary, and the main pressurized dome of the facility is probably at least half a millenium old. So many metal foil patches have been cemented to its outer wall to stop slow air leaks that in places they entirely cover the surface. Everything is so ancient and ramshackle that it feels almost like you have stepped back in time to the early days of human space flight. Perhaps that's what the tourists come here to experience.`
+	spaceport `The spaceport is rudimentary, and the main pressurized dome of the facility is probably at least half a millennium old. So many metal foil patches have been cemented to its outer wall to stop slow air leaks that in places they entirely cover the surface. Everything is so ancient and ramshackle that it feels almost like you have stepped back in time to the early days of human space flight. Perhaps that's what the tourists come here to experience.`
 	shipyard "Basic Ships"
 	shipyard "Navy Basics"
 	shipyard "Betelgeuse Basics"

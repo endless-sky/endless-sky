@@ -175,7 +175,7 @@ mission "FW Wolf Pack 1"
 			choice
 				`	"Okay, I'll give it a try."`
 					accept
-				`	"Sorry, this sounds way to risky to me."`
+				`	"Sorry, this sounds way too risky to me."`
 					decline
 
 

@@ -817,7 +817,7 @@ mission "FW Northern 2D"
 	
 	on offer
 		conversation
-			`You spend quite a while flying back and forth above the surface of <origin>, but Freya is unable to locate any Navy signals originating from the surface. Finally she gives up. "It's an out of the way planet," she says. "Any fleet coming here would pass through Alioth or Seginus first. So I guess they didn't bother to put anything here. Time to head to New Tibet and meet up with Alondo!"`
+			`You spend quite a while flying back and forth above the surface of <origin>, but Freya is unable to locate any Navy signals originating from the surface. Finally she gives up. "It's an out-of-the-way planet," she says. "Any fleet coming here would pass through Alioth or Seginus first. So I guess they didn't bother to put anything here. Time to head to New Tibet and meet up with Alondo!"`
 				accept
 
 

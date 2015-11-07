@@ -320,7 +320,7 @@ mission "FW Reconciliation 2B"
 		conversation
 			branch know
 				has "FW Alphas 1.1: done"
-			`On Farpoint, you are met by none other than the famous leader of the Oathkeepers, General William Danforth. Even among the Free Worlds Danforth is spoken of with respect due to his courage and level-headedness in battle and his leadership of countless humanitarian missions.`
+			`On Farpoint, you are met by none other than the famous leader of the Oathkeepers, General William Danforth. Even among the Free Worlds Danforth is spoken of with respect due to his courage and levelheadedness in battle and his leadership of countless humanitarian missions.`
 				goto introductions
 			label know
 			`On Farpoint, you are met by General Danforth, the leader of the Oathkeepers who previously assisted you to drive the Alphas and their mercenary fleet away from Poisonwood. He is glad to see you again, and you express your sympathy over the loss of Commander Nguyen; Danforth tells you that his killer was never found.`
@@ -561,7 +561,7 @@ mission "FW Embassy 1C"
 	on offer
 		conversation
 			`When you land on Bourne you discover that Katya and Ijs have already been back there for a week. Alondo is with them, too. "We just couldn't stay away from the action for long," says Ijs.`
-			`	The Star Queen luxury liner that brought the Earth ambassadors to Bourne is still parked in a somewhat out of the way hangar. "Don't worry, Captain," says Katya, "there's no way our ambassadors would travel in something as gaudy as that. They've requisitioned a Dreadnought instead. A good ship to remind the people of Earth that we have a strong fleet of our own."`
+			`	The Star Queen luxury liner that brought the Earth ambassadors to Bourne is still parked in a somewhat out-of-the-way hangar. "Don't worry, Captain," says Katya, "there's no way our ambassadors would travel in something as gaudy as that. They've requisitioned a Dreadnought instead. A good ship to remind the people of Earth that we have a strong fleet of our own."`
 			`	"Not to mention," says Ijs, "a good ship to take part in our strike against the Syndicate."`
 			`	Alondo introduces you to the Free Worlds ambassadors who will be returning to Earth. "I've already contacted Governor Flint and General Danforth," he says. "Their ships will be arriving in the Sol system about the same time as yours. Good luck, Captain." You help Ijs and Katya load their luggage onto your ship, and tell the Dreadnought carrying the ambassadors to be ready to follow you.`
 				accept
