@@ -33,18 +33,18 @@ public:
 	
 	
 protected:
-	virtual int TileSize() const;
-	virtual int DrawPlayerShipInfo(const Point &point) const;
-	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const;
-	virtual int DividerOffset() const;
-	virtual int DetailWidth() const;
-	virtual int DrawDetails(const Point &center) const;
-	virtual bool CanBuy() const;
-	virtual void Buy();
-	virtual void FailBuy();
-	virtual bool CanSell() const;
-	virtual void Sell();
-	virtual bool FlightCheck();
+	virtual int TileSize() const override;
+	virtual int DrawPlayerShipInfo(const Point &point) const override;
+	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const override;
+	virtual int DividerOffset() const override;
+	virtual int DetailWidth() const override;
+	virtual int DrawDetails(const Point &center) const override;
+	virtual bool CanBuy() const override;
+	virtual void Buy() override;
+	virtual void FailBuy() override;
+	virtual bool CanSell() const override;
+	virtual void Sell() override;
+	virtual bool FlightCheck() override;
 	virtual bool CanSellMultiple() const override;
 	
 	
