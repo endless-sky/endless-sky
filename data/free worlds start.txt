@@ -657,7 +657,7 @@ mission "FW Plasma Testing 1B"
 		ship "Leviathan (Heavy)" "Red Nile"
 	
 	on visit
-		dialog "You have reached <planet>, but you left the Walloping Window-Blind behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."
 	
 	on offer
 		conversation
