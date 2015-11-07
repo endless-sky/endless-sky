@@ -137,6 +137,46 @@ bool MapOutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
 	}
+	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
+	{
+		// First, find the currently selected item, if any
+		auto it = zones.begin();
+		if(!selected)
+		{
+			if(key == SDLK_DOWN)
+				it = --zones.end();
+		}
+		else
+		{
+			for( ; it != zones.end() - 1; ++it)
+				if(it->Value() == selected)
+					break;
+		}
+		if(key == SDLK_DOWN)
+		{
+			++it;
+			if(it == zones.end())
+				it = zones.begin();
+		}
+		else
+		{
+			if(it == zones.begin())
+				it = zones.end();
+			--it;
+		}
+		double top = (it->Center() - it->Size()).Y();
+		double bottom = (it->Center() + it->Size()).Y();
+		if(bottom > Screen::Bottom())
+			scroll += Screen::Bottom() - bottom;
+		if(top < Screen::Top())
+			scroll += Screen::Top() - top;
+		selected = it->Value();
+	}
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	{
+		scroll += (Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN));
+		scroll = min(0, max(-maxScroll, scroll));
+	}
 	else
 		return false;
 	
@@ -305,8 +345,6 @@ void MapOutfitterPanel::DrawItems() const
 					SpriteShader::Draw(sprite, corner + iconOffset, scale);
 				}
 				
-				zones.emplace_back(corner + .5 * blockSize, blockSize, outfit);
-				
 				bool isForSale = true;
 				if(selectedSystem)
 				{
@@ -333,6 +371,7 @@ void MapOutfitterPanel::DrawItems() const
 					size += " of outfit space";
 				font.Draw(size, corner + sizeOffset, color);
 			}
+			zones.emplace_back(corner + .5 * blockSize, blockSize, outfit);
 			corner += Point(0., ICON_HEIGHT);
 		}
 	}

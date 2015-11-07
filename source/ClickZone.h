@@ -27,6 +27,9 @@ public:
 	bool Contains(Point point) const;
 	Type Value() const;
 	
+	const Point &Center() const;
+	const Point &Size() const;
+	
 	
 private:
 	Point center;
@@ -59,6 +62,22 @@ template <class Type>
 Type ClickZone<Type>::Value() const
 {
 	return value;
+}
+
+
+
+template <class Type>
+const Point &ClickZone<Type>::Center() const
+{
+	return center;
+}
+
+
+
+template <class Type>
+const Point &ClickZone<Type>::Size() const
+{
+	return size;
 }
 
 
