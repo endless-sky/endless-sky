@@ -231,7 +231,7 @@ void MapPanel::DrawTravelPlan() const
 		
 		Color drawColor = defaultColor;
 		if(player.TravelPlan().size() - i > ship->JumpsRemaining())
-        	drawColor = outOfCurrentFuelRangeColor;
+			drawColor = outOfCurrentFuelRangeColor;
         
 		LineShader::Draw(from, to, 3., drawColor);
 		
