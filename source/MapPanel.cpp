@@ -199,9 +199,9 @@ const Planet *MapPanel::Find(const string &name)
 
 void MapPanel::DrawTravelPlan() const
 {
-	Color defaultColor(.2, .2, .6, 0.);
-	Color outOfFlagshipFuelRangeColor(.4, .2, 0., 0.);
-	Color outOfFleetFuelRangeColor(.4, .4, 0., 0.);
+	Color defaultColor(.2, .4, .1, 0.);
+	Color outOfFlagshipFuelRangeColor(.6, .2, .1, 0.);
+	Color outOfFleetFuelRangeColor(.5, .4, 0., 0.);
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
