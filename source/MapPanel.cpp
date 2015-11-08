@@ -197,15 +197,20 @@ const Planet *MapPanel::Find(const string &name)
 }
 
 
-
 void MapPanel::DrawTravelPlan() const
 {
-	Color defaultColor(.4, .4, 0., 0.);
-	Color outOfCurrentFuelRangeColor(.4, .2, 0., 0.);
+	Color defaultColor(.2, .2, .6, 0.);
+	Color outOfFlagshipFuelRangeColor(.4, .2, 0., 0.);
+	Color outOfFleetFuelRangeColor(.4, .4, 0., 0.);
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
 	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
+	
+	int fleetMaxJumpsRemaining = 0;
+	auto it = player.Ships().begin() + 1;
+	for( ; it != player.Ships().end(); ++it)
+		fleetMaxJumpsRemaining = max(fleetMaxJumpsRemaining,(*it)->JumpsRemaining());
 	
 	// Draw your current travel plan.
 	const System *previous = playerSystem;
@@ -230,8 +235,10 @@ void MapPanel::DrawTravelPlan() const
 		to += unit;
 		
 		Color drawColor = defaultColor;
-		if(player.TravelPlan().size() - i > ship->JumpsRemaining())
-			drawColor = outOfCurrentFuelRangeColor;
+		if(player.TravelPlan().size() - i >= fleetMaxJumpsRemaining)
+			drawColor = outOfFleetFuelRangeColor;
+		if(player.TravelPlan().size() - i >= ship->JumpsRemaining())
+			drawColor = outOfFlagshipFuelRangeColor;
         
 		LineShader::Draw(from, to, 3., drawColor);
 		
