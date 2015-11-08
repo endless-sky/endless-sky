@@ -210,7 +210,8 @@ void MapPanel::DrawTravelPlan() const
 	int fleetMaxJumpsRemaining = 0;
 	auto it = player.Ships().begin() + 1;
 	for( ; it != player.Ships().end(); ++it)
-		fleetMaxJumpsRemaining = max(fleetMaxJumpsRemaining,(*it)->JumpsRemaining());
+		if (!(*it)->IsParked())
+			fleetMaxJumpsRemaining = max(fleetMaxJumpsRemaining,(*it)->JumpsRemaining());
 	
 	// Draw your current travel plan.
 	const System *previous = playerSystem;
