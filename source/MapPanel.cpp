@@ -207,11 +207,11 @@ void MapPanel::DrawTravelPlan() const
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
 	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
 	
-	int fleetMaxJumpsRemaining = 0;
+	int fleetMinJumpsRemaining = 999;
 	auto it = player.Ships().begin() + 1;
 	for( ; it != player.Ships().end(); ++it)
 		if (!(*it)->IsParked())
-			fleetMaxJumpsRemaining = max(fleetMaxJumpsRemaining,(*it)->JumpsRemaining());
+			fleetMinJumpsRemaining = min(fleetMinJumpsRemaining,(*it)->JumpsRemaining());
 	
 	// Draw your current travel plan.
 	const System *previous = playerSystem;
@@ -236,7 +236,7 @@ void MapPanel::DrawTravelPlan() const
 		to += unit;
 		
 		Color drawColor = defaultColor;
-		if(player.Ships().size() > 0 && player.TravelPlan().size() - i < fleetMaxJumpsRemaining)
+		if(fleetMinJumpsRemaining < 999 && player.TravelPlan().size() - i <= fleetMinJumpsRemaining)
 			drawColor = withinFleetFuelRangeColor;
 		if(player.TravelPlan().size() - i >= ship->JumpsRemaining())
 			drawColor = outOfFlagshipFuelRangeColor;
