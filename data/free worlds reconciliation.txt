@@ -131,7 +131,7 @@ mission "FW Reconciliation 1B"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
-		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
+		dialog "You have reached <planet>, but you've either left Raven's ship behind, or failed to destroy some of the Syndicate ships watching you."
 	
 	npc evade
 		personality heroic staying nemesis
