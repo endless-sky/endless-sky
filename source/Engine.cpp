@@ -969,7 +969,8 @@ void Engine::CalculateStep()
 			
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
-				(ship->GetGovernment()->IsPlayer() || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
+				(ship == flagship->GetTargetShip()) ? Radar::SPECIAL :
+					(ship->GetGovernment()->IsPlayer() || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
 					!ship->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
 					(target && target->GetGovernment()->IsPlayer()) ?
