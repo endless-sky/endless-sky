@@ -197,6 +197,7 @@ const Planet *MapPanel::Find(const string &name)
 }
 
 
+
 void MapPanel::DrawTravelPlan() const
 {
 	Color defaultColor(.5, .4, 0., 0.);
@@ -207,11 +208,30 @@ void MapPanel::DrawTravelPlan() const
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
 	bool hasJump = ship ? ship->Attributes().Get("jump drive") : false;
 	
-	int fleetMinJumpsRemaining = 999;
-	auto it = player.Ships().begin() + 1;
-	for( ; it != player.Ships().end(); ++it)
-		if (!(*it)->IsParked())
-			fleetMinJumpsRemaining = min(fleetMinJumpsRemaining,(*it)->JumpsRemaining());
+	// Find out how much fuel your ship and your escorts use per jump.
+	double flagshipCapacity = 0.;
+	if(ship)
+		flagshipCapacity = ship->Attributes().Get("fuel capacity") * ship->Fuel();
+	double flagshipJumpFuel = 0.;
+	if(ship)
+		flagshipJumpFuel = hasHyper ? ship->Attributes().Get("scram drive") ? 150. : 100. : 200.;
+	double escortCapacity = 0.;
+	double escortJumpFuel = 1.;
+	bool escortHasJump = false;
+	// Skip your flagship, parked ships, and fighters.
+	for(const shared_ptr<Ship> &it : player.Ships())
+		if(it.get() != ship && !it->IsParked() && !it->CanBeCarried())
+		{
+			double capacity = it->Attributes().Get("fuel capacity") * it->Fuel();
+			double jumpFuel = it->Attributes().Get("hyperdrive") ?
+				it->Attributes().Get("scram drive") ? 150. : 100. : 200.;
+			if(escortJumpFuel < 100. || capacity / jumpFuel < escortCapacity / escortJumpFuel)
+			{
+				escortCapacity = capacity;
+				escortJumpFuel = jumpFuel;
+				escortHasJump = it->Attributes().Get("jump drive");
+			}
+		}
 	
 	// Draw your current travel plan.
 	const System *previous = playerSystem;
@@ -219,14 +239,15 @@ void MapPanel::DrawTravelPlan() const
 	{
 		const System *next = player.TravelPlan()[i];
 		
-		bool hasLink = false;
-		if(hasHyper)
-			hasLink |= (find(previous->Links().begin(), previous->Links().end(), next)
+		// Figure out what kind of jump this is, and check if the player is able
+		// to make jumps of that kind.
+		bool isHyper = 
+			(find(previous->Links().begin(), previous->Links().end(), next)
 				!= previous->Links().end());
-		if(hasJump)
-			hasLink |= (find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
+		bool isJump = isHyper ||
+			(find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
 				!= previous->Neighbors().end());
-		if(!hasLink)
+		if(!((isHyper && hasHyper) || (isJump && hasJump)))
 			break;
 		
 		Point from = next->Position() + center;
@@ -235,11 +256,24 @@ void MapPanel::DrawTravelPlan() const
 		from -= unit;
 		to += unit;
 		
-		Color drawColor = defaultColor;
-		if(fleetMinJumpsRemaining < 999 && player.TravelPlan().size() - i <= fleetMinJumpsRemaining)
+		if(!isHyper)
+		{
+			if(!escortHasJump)
+				escortCapacity = 0.;
+			flagshipCapacity -= 200.;
+			escortCapacity -= 200.;
+		}
+		else
+		{
+			flagshipCapacity -= flagshipJumpFuel;
+			escortCapacity -= escortJumpFuel;
+		}
+		
+		Color drawColor = outOfFlagshipFuelRangeColor;
+		if(flagshipCapacity >= 0. && escortCapacity >= 0.)
 			drawColor = withinFleetFuelRangeColor;
-		if(player.TravelPlan().size() - i >= ship->JumpsRemaining())
-			drawColor = outOfFlagshipFuelRangeColor;
+		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
+			drawColor = defaultColor;
         
 		LineShader::Draw(from, to, 3., drawColor);
 		
