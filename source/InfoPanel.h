@@ -47,6 +47,7 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(int dx, int dy) override;
 	virtual bool Release(int x, int y) override;
+	virtual bool Scroll(int dx, int dy) override;
 	
 	
 private:
@@ -67,6 +68,7 @@ private:
 	mutable std::vector<ClickZone<int>> zones;
 	int selected;
 	int hover;
+	int scroll = 0;
 	Point hoverPoint;
 	Point dragStart;
 	bool showShip;

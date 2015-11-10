@@ -194,6 +194,8 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		showShip = true;
 		UpdateInfo();
 	}
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+		Scroll(0, 6 * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 	else if(showShip && key == 'R')
 		GetUI()->Push(new Dialog(this, &InfoPanel::Rename, "Change this ship's name?"));
 	else if(canEdit && showShip && key == 'P' && shipIt != player.Ships().begin())
@@ -321,6 +323,15 @@ bool InfoPanel::Release(int x, int y)
 
 
 
+bool InfoPanel::Scroll(int dx, int dy)
+{
+	if(!showShip)
+		scroll = max(0, min(static_cast<int>(player.Ships().size() - 25), scroll - 4 * dy));
+	return true;
+}
+
+
+
 void InfoPanel::UpdateInfo()
 {
 	selected = -1;
@@ -403,8 +414,10 @@ void InfoPanel::DrawInfo() const
 	
 	pos.Y() += 5.;
 	int index = 0;
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	auto sit = player.Ships().begin() + scroll;
+	for( ; sit < player.Ships().end(); ++sit)
 	{
+		const shared_ptr<Ship> &ship = *sit;
 		pos.Y() += 20.;
 		if(pos.Y() >= 250.)
 			break;
