@@ -260,6 +260,16 @@ int main(int argc, char *argv[])
 						glViewport(0, 0, width, height);
 					}
 				}
+				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_MINIMIZED)
+				{
+					Audio::Mute();
+					isPaused = true;
+				}
+				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESTORED)
+				{
+					Audio::Unmute();
+					isPaused = false;
+				}
 				else if(activeUI.Handle(event))
 				{
 					// No need to do anything more!

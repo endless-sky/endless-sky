@@ -142,7 +142,24 @@ double Audio::Volume()
 void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
-	alListenerf(AL_GAIN, volume);
+	if(context)
+		alListenerf(AL_GAIN, volume);
+}
+
+
+
+void Audio::Mute()
+{
+	if(context)
+		alListenerf(AL_GAIN, 0);
+}
+
+
+
+void Audio::Unmute()
+{
+	if(context)
+		alListenerf(AL_GAIN, volume);
 }
 
 
