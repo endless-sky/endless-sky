@@ -32,7 +32,6 @@ void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
-	category = "Other";
 	
 	for(const DataNode &child : node)
 	{
