@@ -16,6 +16,8 @@ mission "Liberate Kornephoros"
 	clearance
 	to offer
 		has "Defend Sabik: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -170,6 +172,8 @@ mission "FW Prisoner Parole"
 	destination "New Tibet"
 	to offer
 		has "Liberate Kornephoros: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
 		government "Escort"
@@ -208,6 +212,8 @@ mission "FW Prisoner Parole 2"
 	destination "Deep"
 	to offer
 		has "FW Prisoner Parole: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
 		government "Escort"
@@ -266,6 +272,8 @@ mission "FW Syndicate Diplomacy 1"
 		attributes "dirt belt"
 	passengers 1
 	blocked `Alondo contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for him, then return here.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -320,6 +328,8 @@ mission "FW Syndicate Diplomacy 1B"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc
 		personality heroic
@@ -384,6 +394,8 @@ mission "FW Syndicate Diplomacy 1C"
 	clearance "Alondo has a brief chat with the spaceport controller and manages to get you permission to land."
 		attributes "dirt belt" south
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 	npc
 		personality heroic
@@ -415,6 +427,9 @@ mission "FW Syndicate Diplomacy 1D"
 	to offer
 		has "FW Syndicate Diplomacy 1C: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
 	on offer
 		conversation
 			`As you are landing on Poisonwood, Alondo explains, "Three decades ago, this was a slave colony. The Navy was responsible for liberating them, and they still feel a deep debt to the Republic as a result. But even if they do not join us, we can maybe establish more friendly relations with them."`
@@ -497,6 +512,8 @@ mission "FW Hope Recon 1"
 		has "FW Syndicate Diplomacy 1D: done"
 	cargo sensors 10
 	blocked `Freya contacts you and says, "<first>, you're going to need ten tons of cargo space for this next mission." You should return here after freeing up <capacity>.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -517,6 +534,8 @@ mission "FW Hope Recon 1B"
 	destination Longjump
 	to offer
 		has "FW Hope Recon 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 
 
@@ -633,6 +652,8 @@ mission "FW Plasma Testing 1"
 	destination Rust
 	to offer
 		has "FW Hope Recon 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 
 
@@ -645,6 +666,8 @@ mission "FW Plasma Testing 1B"
 	to offer
 		has "FW Plasma Testing 1: done"
 	waypoint Ildaria
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
 		government "Escort"
@@ -785,6 +808,8 @@ mission "FW Supply Convoy 1"
 	destination Longjump
 	to offer
 		has "FW Plasma Testing 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -844,6 +869,8 @@ mission "FW Pirates 1"
 	waypoint Nunki
 	to offer
 		has "FW Supply Convoy 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -931,6 +958,8 @@ mission "FW Senate 1"
 	destination Mere
 	to offer
 		has "FW Pirates 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -949,6 +978,8 @@ mission "FW Senate 1B"
 		has "FW Senate 1: done"
 	passengers 1
 	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1088,6 +1119,8 @@ mission "FW Pirates 2"
 	destination Longjump
 	to offer
 		has "FW Senate 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1353,6 +1386,8 @@ mission "FW Pirates 3.1B"
 	destination Longjump
 	to offer
 		has "FW Pirates 3.1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		set "fw pirates: victory"
@@ -1371,6 +1406,8 @@ mission "FW Pirates 3.2B"
 	destination Longjump
 	to offer
 		has "FW Pirates 3.2A: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		set "fw pirates: victory"
@@ -1390,6 +1427,8 @@ mission "FW Pirates 4"
 	clearance
 	to offer
 		has "FW Pirates 3: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc evade
 		personality plunders
@@ -1460,6 +1499,8 @@ mission "FW Pirates 4B"
 	destination Longjump
 	to offer
 		has "FW Pirates 4: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
 		personality timid escort
@@ -1498,6 +1539,8 @@ mission "FW Pirates 4.1"
 	deadline 14
 	to offer
 		has "fw pirates: victory"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1581,6 +1624,8 @@ mission "FW Refinery 1"
 	clearance
 	to offer
 		has "FW Pirates 4B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1636,6 +1681,8 @@ mission "FW Refinery 1A"
 		has "FW Refinery 1: done"
 	cargo "refinery equipment" 10
 	blocked "You have reached <origin>, but you do not have ten tons of cargo space free for the equipment. Return here when you have made more space available."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation

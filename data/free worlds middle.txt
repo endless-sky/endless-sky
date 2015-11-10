@@ -17,6 +17,8 @@ mission "FW Diplomacy 1"
 	destination Longjump
 	to offer
 		has "event: navy occupying the south"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -43,6 +45,8 @@ mission "FW Diplomacy 1B"
 		has "FW Diplomacy 1: done"
 	passengers 1
 	blocked "You do not have a bunk free for Alondo. Return here when you do."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -92,6 +96,8 @@ mission "FW Diplomacy 1C"
 	to offer
 		has "FW Diplomacy 1B: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -127,6 +133,8 @@ mission "FW Diplomacy 1D"
 	to offer
 		has "FW Diplomacy 1C: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -153,6 +161,8 @@ mission "FW Southern Recon 1"
 	destination Trinket
 	to offer
 		has "FW Diplomacy 1D: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -171,6 +181,8 @@ mission "FW Southern Recon 1B"
 	destination Trinket
 	to offer
 		has "FW Southern Recon 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "gunboats in Alnasl"
@@ -203,6 +215,8 @@ mission "FW Southern Battle 1"
 	destination Zug
 	to offer
 		has "FW Southern Recon 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -238,6 +252,8 @@ mission "FW Southern Battle 1B"
 	destination Trinket
 	to offer
 		has "FW Southern Battle 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -285,13 +301,14 @@ event "battle for Rastaban"
 mission "FW Southern Battle 2"
 	name "Attack Rastaban"
 	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in system."
-	autosave
 	source Trinket
 	destination Dancer
 	clearance
 	to offer
 		has "FW Southern Battle 1B: done"
 	deadline 3
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "battle for Rastaban"
@@ -441,6 +458,8 @@ mission "FW Southern Battle 3"
 	waypoint Girtab
 	waypoint Albaldah
 	waypoint "Delta Sagittarii"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -569,6 +588,8 @@ mission "FW Southern Prisoners - Released"
 	destination Dancer
 	to offer
 		has "FW Southern Prisoners - Release: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -611,6 +632,8 @@ mission "FW Southern Prisoners - Kept"
 	destination Dancer
 	to offer
 		has "FW Southern Prisoners - Keep: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -672,6 +695,8 @@ mission "FW Northern 1"
 		has "event: fw occupying the north"
 	passengers 1
 	blocked `You receive a message from Freya: "Captain, please meet up with us as soon as you have a bunk free for Alondo." You have no bunks free, so you should return here once you have made one available.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -718,6 +743,8 @@ mission "FW Northern 2"
 	destination "Dancer"
 	to offer
 		has "FW Northern 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fw northern expansion"
@@ -750,6 +777,8 @@ mission "FW Northern 2A"
 		has "FW Northern 2: done"
 	passengers 1
 	blocked "To continue this mission, you need a bunk free for Freya. Return here when you have made one available."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -767,6 +796,8 @@ mission "FW Northern 2B"
 	to offer
 		has "FW Northern 2A: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -785,6 +816,8 @@ mission "FW Northern 2C"
 	to offer
 		has "FW Northern 2B: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -814,6 +847,8 @@ mission "FW Northern 2D"
 	to offer
 		has "FW Northern 2C: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -831,6 +866,8 @@ mission "FW Northern 3"
 	to offer
 		has "FW Northern 2D: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -877,6 +914,8 @@ mission "FW Northern 3B"
 	destination "Clark"
 	to offer
 		has "FW Northern 3: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -927,6 +966,8 @@ mission "FW Northern 4"
 	to offer
 		has "FW Northern 3B: done"
 	clearance
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -945,6 +986,8 @@ mission "FW Northern 4.1A"
 	to offer
 		has "FW Northern 4: done"
 		karma >= 2
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -981,6 +1024,8 @@ mission "FW Northern 4.2A"
 	to offer
 		has "FW Northern 4: done"
 		karma < 2
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1016,6 +1061,8 @@ mission "FW Alphas 1.1"
 	clearance
 	to offer
 		has "FW Northern 4.1A: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "alphas capture Poisonwood"
@@ -1114,6 +1161,8 @@ mission "FW Alphas 1.2"
 	clearance
 	to offer
 		has "FW Northern 4.2A: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "alphas capture Poisonwood"
@@ -1167,6 +1216,8 @@ mission "FW Alphas 1.1A"
 	destination "New Tibet"
 	to offer
 		has "FW Alphas 1.1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
@@ -1230,6 +1281,8 @@ mission "FW Alphas 1.2A"
 	destination "New Tibet"
 	to offer
 		has "FW Alphas 1.2: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "Poisonwood reverts to Republic"
@@ -1254,6 +1307,8 @@ mission "FW Bloodsea 1"
 		has "fw alphas done"
 	passengers 1
 	blocked `Alondo contacts you and asks, "Do you have a bunk ready for me?" You do not, so you will need to free one up to continue this mission.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1322,6 +1377,8 @@ mission "FW Bloodsea 1.1A"
 	to offer
 		has "FW Bloodsea 1.1: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1352,6 +1409,8 @@ mission "FW Bloodsea 1.1B"
 	to offer
 		has "FW Bloodsea 1.1A: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1415,6 +1474,8 @@ mission "FW Bloodsea 1.2A"
 	clearance
 	to offer
 		has "FW Bloodsea 1.2: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "battle for bloodsea"
@@ -1471,6 +1532,8 @@ mission "FW Dreadnoughts Ready"
 	destination Zug
 	to offer
 		has "fw bloodsea done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 
 
@@ -1484,6 +1547,8 @@ mission "FW Albatross 1"
 	to offer
 		has "FW Dreadnoughts Ready: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1526,6 +1591,8 @@ mission "FW Albatross 2"
 	to offer
 		has "FW Albatross 1: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1554,6 +1621,8 @@ mission "FW Albatross 2A"
 	to offer
 		has "FW Albatross 2: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1601,6 +1670,8 @@ mission "FW Albatross 2B"
 	to offer
 		has "FW Albatross 2A: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "albatross joins free worlds"
@@ -1628,6 +1699,8 @@ mission "FW Rand 1"
 	blocked "You need a bunk free for Freya (in addition to JJ) to continue this mission."
 	to offer
 		has "FW Albatross 2B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "battle for zeta aquilae"
@@ -1698,6 +1771,8 @@ mission "FW Rand 1B"
 	passengers 2
 	to offer
 		has "FW Rand 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation

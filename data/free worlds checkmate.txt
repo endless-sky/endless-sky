@@ -19,6 +19,8 @@ mission "FWC Scouting 1"
 	waypoint "Kaus Borealis"
 	to offer
 		has "FW Liberate Delta Sagittarii: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -55,6 +57,8 @@ mission "FWC Attack Kaus Borealis"
 	clearance
 	to offer
 		has "FWC Scouting 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack kaus borealis"
@@ -179,6 +183,8 @@ mission "FWC Cebalrai 1"
 	waypoint "Cebalrai"
 	to offer
 		has "FWC Attack Kaus Borealis: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -241,6 +247,8 @@ mission "FWC Cebalrai 1B"
 	passengers 1
 	to offer
 		has "FWC Cebalrai 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack cebalrai"
@@ -315,6 +323,8 @@ mission "FWC Nuke Supply 1"
 	destination Oblivion
 	to offer
 		has "FWC Cebalrai 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -384,6 +394,8 @@ mission "FWC Nuke Supply 1B"
 	clearance
 	to offer
 		has "FWC Nuke Supply 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -408,6 +420,8 @@ mission "FWC Nuke Supply 1C"
 	destination Solace
 	to offer
 		has "FWC Nuke Supply 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -430,6 +444,8 @@ mission "FWC Diplomacy 1"
 	destination Tundra
 	to offer
 		has "FWC Nuke Supply 1C: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -468,6 +484,8 @@ mission "FWC Diplomacy 1B"
 		has "FWC Diplomacy 1: done"
 	passengers 2
 	blocked "You have reached <origin>, but you don't have a bunk free for Alondo! You should return to <origin> once you have freed one up."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fw safe passage starts"
@@ -510,6 +528,8 @@ mission "FWC Diplomacy 1C"
 	to offer
 		has "FWC Diplomacy 1B: done"
 	passengers 2
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fw safe passage ends" 1
@@ -608,6 +628,8 @@ mission "FWC Checkmate 1"
 	source Tundra
 	to offer
 		has "FWC Diplomacy 1C: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc defend cebalrai"
@@ -868,6 +890,8 @@ mission "FWC Checkmate 1B"
 		has "FWC Checkmate 1: done"
 	passengers 1
 	blocked "You have returned to <origin>, but you do not have a bunk free for Katya. You should return here once you have a bunk free."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack menkent"
@@ -974,6 +998,8 @@ mission "FWC Checkmate 1C"
 	to offer
 		has "FWC Checkmate 1B: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack vega"
@@ -1038,6 +1064,8 @@ mission "FWC Pug 1"
 	description "<planet> is under attack by ships of an unknown type. Drive them off, and then return to the planet to figure out what to do next."
 	to offer
 		has "FWC Checkmate 1C: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc pug invasion"
@@ -1195,6 +1223,8 @@ mission "FWC Pug 1B"
 	destination "Shiver"
 	to offer
 		has "FWC Pug 1: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc pug peaceful"
@@ -1229,6 +1259,8 @@ mission "FWC Pug 2"
 	destination "Silver"
 	to offer
 		has "FWC Pug 1B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1304,6 +1336,8 @@ mission "FWC Pug 2B"
 		has "FWC Pug 2: done"
 	passengers 1
 	blocked "You need to have a bunk free for Katya to continue with the next mission. Complete or abort whatever mission is using up all your passenger space, then return here to <origin>."
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1351,6 +1385,8 @@ mission "FWC Pug 2C"
 	to offer
 		has "FWC Pug 2B: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1407,6 +1443,8 @@ mission "FWC Pug 2D"
 	to offer
 		has "FWC Pug 2C: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc navy retakes cebalrai"
@@ -1437,6 +1475,8 @@ mission "FWC Pug 3"
 	to offer
 		has "FWC Pug 2D: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc peace with the navy"
@@ -1494,6 +1534,8 @@ mission "FWC Pug 3A"
 	to offer
 		has "FWC Pug 3: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1551,6 +1593,8 @@ mission "FWC Pug 3B"
 	clearance
 	to offer
 		has "FWC Pug 3A: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		"reputation: Pug" = -10
@@ -1614,6 +1658,8 @@ mission "FWC Pug 3C"
 	passengers 1
 	cargo "graviton reflector" 10
 	blocked `As you are landing, Freya contacts you and says, "You're going to need ten tons of cargo space for this next mission, and a bunk for me, as well." That means you have to free up <capacity>.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1642,6 +1688,8 @@ mission "FWC Pug 3D"
 	to offer
 		has "FWC Pug 3C: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc battle for rasalhague"
@@ -1751,6 +1799,8 @@ mission "FWC Pug 4"
 	to offer
 		has "FWC Pug 3D: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1881,6 +1931,8 @@ mission "FWC Pug 4A"
 	to offer
 		has "FWC Pug 4: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1927,10 +1979,12 @@ mission "FWC Pug 4B"
 	source Tundra
 	destination Arabia
 	to offer
-		has "FWC Pug 4: done"
+		has "FWC Pug 4A: done"
 	cargo "graviton reflector" 10
 	passengers 1
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -2019,6 +2073,8 @@ mission "FWC Pug 4C"
 	to offer
 		has "FWC Pug 4B: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc reconnect ascella"
@@ -2121,6 +2177,8 @@ mission "FWC Pug 5"
 	to offer
 		has "FWC Pug 4C: done"
 	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -2210,6 +2268,8 @@ mission "FWC Pug 5B"
 	passengers 1
 	cargo "graviton reflector" 10
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -2278,6 +2338,8 @@ mission "FWC Pug 5C"
 	destination Silver
 	to offer
 		has "FWC Pug 5B: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc reconnect vega"
@@ -2345,6 +2407,8 @@ mission "FWC Pug 6"
 	on enter Deneb
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "pug flee"
@@ -2524,6 +2588,8 @@ mission "FWC End"
 	destination Earth
 	to offer
 		has "FWC Pug 6: done"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		"reputation: Republic" += 20
