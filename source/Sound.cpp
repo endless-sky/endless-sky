@@ -44,6 +44,8 @@ void Sound::Load(const string &path)
 	isLooped = path[path.length() - 5] == '~';
 	
 	FILE *in = Files::Open(path);
+	if(!in)
+		return;
 	uint32_t frequency = 0;
 	uint32_t bytes = ReadHeader(in, frequency);
 	if(bytes)
