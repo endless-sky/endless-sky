@@ -1,3 +1,10 @@
+Version 0.8.6:
+  * Bug fixes:
+    * Fixed a bug that makes fighter bays stop working in the previous release.
+    * Fixed a crash in the map panel if the player has no flagship.
+  * Missions:
+    * Added some large cargo and passenger missions, for bigger ships and fleets.
+
 Version 0.8.5:
   * Bug fixes:
     * Pops and crackles with looping sounds like thrusters should now be fixed.
