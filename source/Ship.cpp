@@ -117,7 +117,7 @@ void Ship::Load(const DataNode &node)
 				droneBays.clear();
 				hasBays = true;
 			}
-			auto bays = (child.Token(0) == "fighter" ? fighterBays : droneBays);
+			vector<Bay> &bays = (child.Token(0) == "fighter" ? fighterBays : droneBays);
 			bays.emplace_back(child.Value(1), child.Value(2));
 		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
