@@ -117,7 +117,7 @@ void Ship::Load(const DataNode &node)
 				droneBays.clear();
 				hasBays = true;
 			}
-			auto bays = (child.Token(0) == "fighter" ? fighterBays : droneBays);
+			vector<Bay> &bays = (child.Token(0) == "fighter" ? fighterBays : droneBays);
 			bays.emplace_back(child.Value(1), child.Value(2));
 		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
@@ -1145,40 +1145,6 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder)
 	victim->TransferFuel(victim->fuel, this);
 	if(autoPlunder)
 	{
-		// Take any outfits that fit.
-		int stolen;
-		do {
-			stolen = 0;
-			for(auto &it : victim->outfits)
-			{
-				// Don't allow other ships to steal engines or hyperdrives. It's
-				// unrealistic, but a stolen hyperdrive is the one thing you
-				// might fail to notice and land anyways, in which case your
-				// game may autosave in a state where you are stranded.
-				if(it.first->Get("hyperdrive") ||  it.first->Get("jump drive"))
-					continue;
-				
-				int count = it.second;
-				while(stolen < count && cargo.Transfer(it.first, -1))
-					++stolen;
-				
-				if(stolen && victim->IsYours())
-				{
-					ostringstream out;
-					if(stolen == 1)
-						out << "A " << it.first->Name() << " was";
-					else
-						out << stolen << " " << it.first->Name() << "s were";
-					out << " stolen from " << victim->Name() << ".";
-					Messages::Add(out.str());
-				}
-				if(stolen)
-				{
-					victim->AddOutfit(it.first, -stolen);
-					break;
-				}
-			}
-		} while(stolen);
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(&cargo);
 		// Stop targeting this ship.

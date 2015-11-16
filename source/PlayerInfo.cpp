@@ -865,15 +865,26 @@ void PlayerInfo::TakeOff()
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
+	Ship *flagship = Flagship();
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			if(canRecharge)
 				ship->Recharge();
-			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
-			cargo.TransferAll(&ship->Cargo());
+			if(ship.get() != flagship)
+			{
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+				cargo.TransferAll(&ship->Cargo());
+			}
 		}
+	if(flagship)
+	{
+		// Load up your flagship last, so that it will have space free for any
+		// plunder that you happen to acquire.
+		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->RequiredCrew());
+		cargo.TransferAll(&flagship->Cargo());
+	}
 	if(cargo.Passengers() && ships.size())
 	{
 		Ship &flagship = *ships.front();

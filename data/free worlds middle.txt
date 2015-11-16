@@ -506,7 +506,7 @@ mission "FW Southern Battle 3"
 
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
-	description "As a goodwill gesture, eturn the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	description "As a goodwill gesture, return the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
 	destination "New Iceland"
@@ -530,7 +530,7 @@ mission "FW Southern Prisoners - Release"
 				`	"What do you mean?"`
 			`	"We will be putting you in charge of the prisoner convoy," says Alondo, "and arranging a week of safe passage for you. If you think we should return the prisoners as a gesture of goodwill to improve our chances of a diplomatic end to this war, bring the convoy to <planet>."`
 			`	"But if you think we should hold on to the prisoners until we receive Katya safely back," says Freya, "bring the convoy to Clink. Understand?"`
-			`	It's a serious choice facing you, with no clear right decision. You thanks them for trusting you, and begin preparations to escort the prisoners.`
+			`	It's a serious choice facing you, with no clear right decision. You thank them for trusting you, and begin preparations to escort the prisoners.`
 				accept
 	
 	on accept

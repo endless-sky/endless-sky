@@ -413,7 +413,7 @@ void InfoPanel::DrawInfo() const
 	int lastIndex = player.Ships().size() - 1;
 	
 	pos.Y() += 5.;
-	int index = 0;
+	int index = scroll;
 	auto sit = player.Ships().begin() + scroll;
 	for( ; sit < player.Ships().end(); ++sit)
 	{

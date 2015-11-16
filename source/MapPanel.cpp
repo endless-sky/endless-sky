@@ -51,15 +51,16 @@ namespace {
 
 MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	: player(player), distance(player),
-	playerSystem(player.Flagship()->GetSystem()),
-	selectedSystem(special ? special : player.Flagship()->GetSystem()),
+	playerSystem(player.GetSystem()),
+	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
 	commodity(commodity)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	
-	center = Point(0., 0.) - selectedSystem->Position();
+	if(selectedSystem)
+		center = Point(0., 0.) - selectedSystem->Position();
 }
 
 
@@ -82,9 +83,9 @@ void MapPanel::Draw() const
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1, 0.);
-	DotShader::Draw(playerSystem->Position() + center, 100.5, 99.5, dimColor);
+	DotShader::Draw((playerSystem ? playerSystem->Position() + center : center), 100.5, 99.5, dimColor);
 	Color brightColor(.4, 0.);
-	DotShader::Draw(selectedSystem->Position() + center, 11., 9., brightColor);
+	DotShader::Draw((selectedSystem ? selectedSystem->Position() + center : center), 11., 9., brightColor);
 	
 	DrawLinks();
 	DrawSystems();
@@ -163,7 +164,7 @@ void MapPanel::Select(const System *system)
 			for(const System *it : oldPath)
 				player.AddTravel(it);
 		}
-		else
+		else if(playerSystem)
 		{
 			player.ClearTravel();
 			while(system != playerSystem)
@@ -234,6 +235,8 @@ void MapPanel::DrawTravelPlan() const
 		}
 	
 	// Draw your current travel plan.
+	if(!playerSystem)
+		return;
 	const System *previous = playerSystem;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
 	{

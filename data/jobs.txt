@@ -1143,3 +1143,321 @@ mission "Tourists back [2]"
 		payment
 		payment 8000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Family [0]"
+	name "Transport family to <planet>"
+	job
+	repeat
+	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
+	passengers 2 4 .5
+	to offer
+		random < 60
+		"passenger space" > 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 4 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 20000
+		dialog "The family you have been transporting departs your ship after paying you <payment>."
+
+mission "Family [1]"
+	name "Transport family to <planet>"
+	job
+	repeat
+	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
+	passengers 2 4 .5
+	to offer
+		random < 50
+		"passenger space" > 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 5 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 30000
+		dialog "The family you have been transporting departs your ship after paying you <payment>."
+
+mission "Family [2]"
+	name "Transport family to <planet>"
+	job
+	repeat
+	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
+	passengers 2 4 .5
+	to offer
+		random < 40
+		"passenger space" > 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 6 24
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 40000
+		dialog "The family you have been transporting departs your ship after paying you <payment>."
+
+mission "Family [3]"
+	name "Transport family to <planet>"
+	job
+	repeat
+	description "This family of <bunks> is relocating to <destination>. They will pay you <payment> to take them there."
+	passengers 2 4 .5
+	to offer
+		random < 30
+		"passenger space" > 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		distance 8 32
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 50000
+		dialog "The family you have been transporting departs your ship after paying you <payment>."
+
+mission "Strike Breakers [mining]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of mine workers who are on strike. The company will pay you <payment>."
+	passengers 5 5 .2
+	to offer
+		random < 10
+		"passenger space" > 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		attributes "mining"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 40000
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
+mission "Strike Breakers [textile]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of textile workers who are on strike. The company will pay you <payment>."
+	passengers 5 5 .2
+	to offer
+		random < 10
+		"passenger space" > 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		attributes "textiles"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 40000
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
+mission "Strike Breakers [factory]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of factory workers who are on strike. The company will pay you <payment>."
+	passengers 5 5 .2
+	to offer
+		random < 10
+		"passenger space" > 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		attributes "factory"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on complete
+		payment
+		payment 40000
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
+mission "Colonists [0]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < 30
+		"passenger space" > 30
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 60000
+		dialog "The colonists depart your ship after paying you <payment>."
+
+mission "Colonists [1]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < 20
+		"passenger space" > 30
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 80000
+		dialog "The colonists depart your ship after paying you <payment>."
+
+mission "Large Bulk Delivery [0]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 40 2 .02
+	to offer
+		random < 70
+		"cargo space" > 160
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 30000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [1]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 40 2 .02
+	to offer
+		random < 60
+		"cargo space" > 160
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 40000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Bulk Delivery [2]"
+	name "Large bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 40 2 .02
+	to offer
+		random < 50
+		"cargo space" > 160
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 4 16
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 50000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [0]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 90
+		"cargo space" > 80
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 4 10
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 60000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [1]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 80
+		"cargo space" > 80
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 5 12
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 70000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [2]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 70
+		"cargo space" > 80
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 6 14
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 80000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Large Rush Delivery [3]"
+	name "Large rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 20 6 .1
+	to offer
+		random < 60
+		"cargo space" > 80
+	source
+		attributes mining textiles factory farming fishing oil
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	destination
+		distance 7 16
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+	on complete
+		payment
+		payment 90000
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."

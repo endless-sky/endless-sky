@@ -1,3 +1,52 @@
+Version 0.8.7:
+  * Bug fixes:
+    * Fixed a bug in the info panel scrolling.
+    * Fixed a crash when you lose your flagship through hand to hand combat.
+  * Game mechanics:
+    * Pirates no longer plunder outfits, because that is way too confusing for new players.
+    * Load cargo onto escorts when taking off to leave the flagship free for plunder.
+
+Version 0.8.6:
+  * Bug fixes:
+    * Fixed a bug that makes fighter bays stop working in the previous release.
+    * Fixed a crash in the map panel if the player has no flagship.
+  * Missions:
+    * Added some large cargo and passenger missions, for bigger ships and fleets.
+
+Version 0.8.5:
+  * Bug fixes:
+    * Pops and crackles with looping sounds like thrusters should now be fixed.
+    * File paths with non-ASCII characters are now supported even on Windows.
+    * The Outfitter no longer offers to reload ammo on ships that are parked or absent.
+    * You no longer retain control of your ship if it is captured in ship to ship combat.
+    * Fighters you cannot carry are now sold off properly when you leave the planet.
+    * Fixed a bug where escorts try to refuel on an uninhabited planet.
+    * Better handling of selling your flagship when you have other ships that are parked or absent.
+    * Bringing up the menu while in a mission conversation no longer declines that mission.
+    * Fixed a bug on Windows where you lose money if loading a pilot with over two billion credits.
+    * Being plundered now takes effect immediately instead of waiting until the game is reloaded.
+    * If audio initialization fails, the game will now start with no sound instead of quitting.
+  * Game mechanics:
+    * Pirate raid strength no longer takes your parked ships into account.
+    * It is no longer possible to "park" a disabled ship.
+    * If you need help and hail a ship that is disabled, it will now say that it cannot help you.
+    * Pirates will no longer steal your hyperdrive, but may still steal your engines or power.
+  * User interface changes:
+    * Made the name entry in the New Pilot dialog clearer.
+    * The Escape key now means "back one level" instead of "toggle main menu."
+    * Made it possible to scroll the list of ships in the player info panel.
+    * The "Land" key now only toggles between landing options if pressed more than once per second.
+    * Escort icons turn green when they are ready to hyperjump.
+    * Game snapshots can now be given a name instead of just being identified by date.
+    * Escorts can no longer be ordered to attack themselves.
+    * Renamed "Enter Ship" to "Load Game" in the Load / Save panel.
+    * If you get plundered, added messages informing you of what was stolen.
+    * The multiplier keys no longer apply to selling a ship.
+    * Your jump path is now colored based on how much fuel you and your escorts have.
+  * Missions:
+    * Added warning dialogs if you fail any critical Free Worlds missions.
+    * Fixed a few inaccurate messages shown when an NPC condition is not yet met.
+
 Version 0.8.4:
   * Bug fixes:
     * You can no longer end up with extra crew members on ships other than your flagship.

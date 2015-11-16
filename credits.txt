@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.8.4
+version 0.8.7
 
 Programming
   Michael Zahniser
