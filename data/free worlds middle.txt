@@ -506,7 +506,7 @@ mission "FW Southern Battle 3"
 
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
-	description "As a goodwill gesture, eturn the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	description "As a goodwill gesture, return the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
 	destination "New Iceland"
