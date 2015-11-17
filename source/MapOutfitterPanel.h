@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ClickZone.h"
 
 #include <map>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -56,7 +55,7 @@ private:
 	
 	
 private:
-	std::map<std::string, std::set<const Outfit *>> catalog;
+	std::map<std::string, std::vector<const Outfit *>> catalog;
 	const Outfit *selected = nullptr;
 	
 	mutable std::vector<ClickZone<const Outfit *>> zones;

@@ -38,6 +38,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
+#include <set>
+
 using namespace std;
 
 namespace {
@@ -267,10 +270,19 @@ double MapShipyardPanel::SystemValue(const System *system) const
 void MapShipyardPanel::Init()
 {
 	catalog.clear();
+	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				catalog[ship->Attributes().Category()].insert(ship);
+				if(seen.find(ship) == seen.end())
+				{
+					catalog[ship->Attributes().Category()].push_back(ship);
+					seen.insert(ship);
+				}
+	
+	for(auto &it : catalog)
+		sort(it.second.begin(), it.second.end(),
+			[](const Ship *a, const Ship *b) {return a->ModelName() < b->ModelName();});
 }
 
 
