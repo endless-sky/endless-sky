@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define ESCORT_DISPLAY_H_
 
 #include <cstdint>
+#include <list>
 #include <string>
 #include <vector>
 
@@ -61,7 +62,7 @@ private:
 	
 	
 private:
-	mutable std::vector<Icon> icons;
+	mutable std::list<Icon> icons;
 };
 
 
