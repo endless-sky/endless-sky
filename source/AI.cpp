@@ -60,6 +60,8 @@ namespace {
 			return true;
 		return target.IsDisabled();
 	}
+	
+	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
 }
 
 
@@ -483,6 +485,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		{
 			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
 				continue;
+			// Non-escort ships should not target ships outside the range where AI ships will travel.
+			if(!ship.IsYours() && it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+				continue;
 			
 			double range = it->Position().Distance(ship.Position());
 			// Preferentially focus on your previous target or your parent ship's
@@ -547,7 +552,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
-	if(ship.Position().Length() >= 10000.)
+	if(!ship.IsYours() && ship.Position().Length() >= MAX_DISTANCE_FROM_CENTER)
 	{
 		MoveTo(ship, command, Point(), 40., .8);
 		return;
