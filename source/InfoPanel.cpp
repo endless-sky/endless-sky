@@ -425,6 +425,7 @@ void InfoPanel::DrawInfo() const
 			break;
 		
 		bool isElsewhere = (ship->GetSystem() != player.GetSystem());
+		isElsewhere |= (ship->CanBeCarried() && player.GetSystem());
 		bool isDead = ship->IsDestroyed() || ship->IsDisabled();
 		bool isHovered = (index == hover);
 		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;

@@ -552,7 +552,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system)
+			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried())
 				return it;
 	}
 	
@@ -647,33 +647,12 @@ void PlayerInfo::RenameShip(const Ship *selected, const string &name)
 void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 {
 	// Make sure the indices are valid.
+	if(fromIndex == toIndex)
+		return;
 	if(static_cast<unsigned>(fromIndex) >= ships.size())
 		return;
 	if(static_cast<unsigned>(toIndex) >= ships.size())
 		return;
-	
-	// Fighters and drones are not allowed to be flagships. Therefore, the
-	// flagship cannot be moved if the second ship is a fighter or drone.
-	if(!fromIndex)
-	{
-		if(ships.size() < 2)
-			return;
-		if(ships[1]->CanBeCarried())
-			return;
-	}
-	
-	// If the player tries to make the flagship a fighter, a drone, a disabled
-	// or destroyed ship, or a ship that is not present here, do not allow it.
-	if(!toIndex)
-	{
-		// Check that this ship is eligible to be a flagship.
-		if(ships[fromIndex]->CanBeCarried())
-			++toIndex;
-		else if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->IsDestroyed())
-			++toIndex;
-		else if(ships[fromIndex]->GetSystem() != system)
-			++toIndex;
-	}
 	
 	// Reorder the list.
 	shared_ptr<Ship> ship = ships[fromIndex];
