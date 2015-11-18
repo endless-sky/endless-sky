@@ -174,8 +174,6 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->Load(child);
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(GameData::PlayerGovernment());
-			if(ships.size() > 1)
-				ships.back()->SetParent(ships.front());
 			ships.back()->FinishLoading();
 			ships.back()->SetIsYours();
 		}
@@ -514,8 +512,9 @@ int64_t PlayerInfo::Salaries() const
 {
 	// Don't count extra crew on anything but the flagship.
 	int64_t crew = 0;
-	if(!ships.empty())
-		crew = ships.front()->Crew() - ships.front()->RequiredCrew();
+	const Ship *flagship = Flagship();
+	if(flagship)
+		crew = flagship->Crew() - flagship->RequiredCrew();
 	
 	// A ship that is "parked" remains on a planet and requires no salaries.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -534,11 +533,7 @@ int64_t PlayerInfo::Salaries() const
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
-	for(const shared_ptr<Ship> &it : ships)
-		if(!it->IsParked() && it->GetSystem() == system)
-			return it.get();
-	
-	return nullptr;
+	return const_cast<PlayerInfo *>(this)->FlagshipPtr().get();
 }
 
 
@@ -547,11 +542,21 @@ const Ship *PlayerInfo::Flagship() const
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
-	for(const shared_ptr<Ship> &it : ships)
-		if(!it->IsParked() && it->GetSystem() == system)
-			return it.get();
+	return FlagshipPtr().get();
+}
+
+
+
+const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
+{
+	if(!flagship)
+	{
+		for(const shared_ptr<Ship> &it : ships)
+			if(!it->IsParked() && it->GetSystem() == system)
+				return it;
+	}
 	
-	return nullptr;
+	return flagship;
 }
 
 
@@ -586,8 +591,6 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
-		if(ships.size() > 1)
-			ships.back()->SetParent(ships.front());
 		
 		accounts.AddCredits(-model->Cost());
 	}
@@ -676,20 +679,10 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	shared_ptr<Ship> ship = ships[fromIndex];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
-	
-	// Make sure all the ships know who the flagship is.
-	for(const shared_ptr<Ship> &it : ships)
-		if(it != ships.front())
-			it->SetParent(ships.front());
-	
-	// The flagship has no parent.
-	ships.front()->SetParent(shared_ptr<Ship>());
-	// Make sure the new flagship is not "parked."
-	ships.front()->SetIsParked(false);
 }
 
 
-	
+
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
 {
@@ -838,6 +831,8 @@ void PlayerInfo::Land(UI *ui)
 		else
 			ui->Push(new Dialog(message));
 	}
+	
+	flagship.reset();
 }
 
 
@@ -865,48 +860,60 @@ void PlayerInfo::TakeOff()
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
-	Ship *flagship = Flagship();
+	flagship = FlagshipPtr();
+	if(!flagship)
+		return;
+	// Move the flagship to the start of your list of ships. It does not make
+	// sense that the flagship would change if you are reunited with a different
+	// ship that was higher up the list.
+	auto it = find(ships.begin(), ships.end(), flagship);
+	if(it != ships.begin() && it != ships.end())
+	{
+		ships.erase(it);
+		ships.insert(ships.begin(), flagship);
+	}
+	// Make sure your ships all know who the flagship is.
+	flagship->SetParent(shared_ptr<Ship>());
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship != flagship)
+			ship->SetParent(flagship);
+	
+	// Recharge any ships that can be recharged.
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			if(canRecharge)
 				ship->Recharge();
-			if(ship.get() != flagship)
+			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
 				cargo.TransferAll(&ship->Cargo());
 			}
 		}
-	if(flagship)
+	// Load up your flagship last, so that it will have space free for any
+	// plunder that you happen to acquire.
+	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->RequiredCrew());
+	cargo.TransferAll(&flagship->Cargo());
+
+	if(cargo.Passengers())
 	{
-		// Load up your flagship last, so that it will have space free for any
-		// plunder that you happen to acquire.
-		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->RequiredCrew());
-		cargo.TransferAll(&flagship->Cargo());
-	}
-	if(cargo.Passengers() && ships.size())
-	{
-		Ship &flagship = *ships.front();
-		int extra = min(cargo.Passengers(), flagship.Crew() - flagship.RequiredCrew());
+		int extra = min(cargo.Passengers(), flagship->Crew() - flagship->RequiredCrew());
 		if(extra)
 		{
-			flagship.AddCrew(-extra);
+			flagship->AddCrew(-extra);
 			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.");
-			flagship.Cargo().SetBunks(flagship.Attributes().Get("bunks") - flagship.Crew());
-			cargo.TransferAll(&flagship.Cargo());
+			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
+			cargo.TransferAll(&flagship->Cargo());
 		}
 	}
-	if(ships.size())
+
+	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().Get("bunks");
+	if(extra > 0)
 	{
-		Ship &flagship = *ships.front();
-		int extra = flagship.Crew() + flagship.Cargo().Passengers() - flagship.Attributes().Get("bunks");
-		if(extra > 0)
-		{
-			flagship.AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.");
-			flagship.Cargo().SetBunks(flagship.Attributes().Get("bunks") - flagship.Crew());
-		}
+		flagship->AddCrew(-extra);
+		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.");
+		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
 	// For each fighter and drone you own, try to find a ship that has a bay to
@@ -1265,7 +1272,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 		mission.Do(event, *this, ui);
 	
 	// If the player's flagship was destroyed, the player is dead.
-	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target() == ships.front())
+	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
 }
 
@@ -1410,22 +1417,18 @@ const Outfit *PlayerInfo::SelectedWeapon() const
 // Cycle through all available secondary weapons.
 void PlayerInfo::SelectNext()
 {
-	if(ships.empty())
-		return;
-	
-	shared_ptr<Ship> &ship = ships.front();
-	if(ship->Outfits().empty())
+	if(!flagship || flagship->Outfits().empty())
 		return;
 	
 	// Start with the currently selected weapon, if any.
-	auto it = ship->Outfits().find(selectedWeapon);
-	if(it == ship->Outfits().end())
-		it = ship->Outfits().begin();
+	auto it = flagship->Outfits().find(selectedWeapon);
+	if(it == flagship->Outfits().end())
+		it = flagship->Outfits().begin();
 	else
 		++it;
 	
 	// Find the next secondary weapon.
-	for( ; it != ship->Outfits().end(); ++it)
+	for( ; it != flagship->Outfits().end(); ++it)
 		if(it->first->Icon())
 		{
 			selectedWeapon = it->first;

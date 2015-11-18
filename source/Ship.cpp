@@ -441,7 +441,10 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	this->angle = angle;
 	// If landed, place the ship right above the planet.
 	if(landingPlanet)
+	{
 		landingPlanet = nullptr;
+		zoom = parent.lock() ? -1. : 0.;
+	}
 	else
 		zoom = 1.;
 	forget = 1;
@@ -470,7 +473,7 @@ void Ship::SetSystem(const System *system)
 void Ship::SetPlanet(const Planet *planet)
 {
 	// Escorts should take off a bit behind their flagships.
-	zoom = parent.lock() ? -1. : 0.;
+	zoom = 0.;
 	landingPlanet = planet;
 	SetDestination(nullptr);
 }

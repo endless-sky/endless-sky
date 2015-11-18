@@ -145,9 +145,8 @@ void Engine::Place()
 		}
 		ship->Place(pos, angle.Unit(), angle);
 	}
-	shared_ptr<Ship> flagship;
-	if(!player.Ships().empty())
-		flagship = player.Ships().front();
+	// Get a shared pointer to the player's flagship.
+	shared_ptr<Ship> flagship = player.FlagshipPtr();
 	for(const Mission &mission : player.Missions())
 		for(const NPC &npc : mission.NPCs())
 		{
@@ -255,7 +254,7 @@ void Engine::Step(bool isActive)
 	eventQueue.clear();
 	
 	// The calculation thread is now paused, so it is safe to access things.
-	const Ship *flagship = player.Flagship();
+	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	if(flagship)
 	{
 		position = flagship->Position();
@@ -264,8 +263,7 @@ void Engine::Step(bool isActive)
 		if(!isLeavingHyperspace && wasLeavingHyperspace)
 		{
 			int type = ShipEvent::JUMP;
-			shared_ptr<Ship> ship = player.Ships().front();
-			events.emplace_back(ship, ship, type);
+			events.emplace_back(flagship, flagship, type);
 		}
 		wasLeavingHyperspace = isLeavingHyperspace;
 	}
@@ -326,7 +324,7 @@ void Engine::Step(bool isActive)
 			if(!it->IsYours() && !it->CanBeCarried())
 				escorts.Add(*it, it->GetSystem() == currentSystem);
 	for(const shared_ptr<Ship> &escort : player.Ships())
-		if(!escort->IsParked() && escort.get() != flagship)
+		if(!escort->IsParked() && escort != flagship)
 			escorts.Add(*escort, escort->GetSystem() == currentSystem);
 	
 	// Create the status overlays.
