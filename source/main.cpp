@@ -38,6 +38,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <stdexcept>
 #include <string>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 using namespace std;
 
 void PrintHelp();
@@ -78,6 +82,12 @@ int main(int argc, char *argv[])
 		// Begin loading the game data.
 		GameData::BeginLoad(argv);
 		Audio::Init(GameData::Sources());
+		
+		// On Windows, make sure that the sleep timer has at least 1 ms resolution
+		// to avoid irregular frame rates.
+#ifdef _WIN32
+		timeBeginPeriod(1);
+#endif
 		
 		player.LoadRecent();
 		player.ApplyChanges();
@@ -264,11 +274,19 @@ int main(int argc, char *argv[])
 				{
 					Audio::Mute();
 					isPaused = true;
+#ifdef _WIN32
+					// When paused, slow the interrupt rate to conserve power.
+					timeEndPeriod(1);
+#endif
 				}
 				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESTORED)
 				{
 					Audio::Unmute();
 					isPaused = false;
+#ifdef _WIN32
+					// When unpausing, restore the high interrupt rate.
+					timeBeginPeriod(1);
+#endif
 				}
 				else if(activeUI.Handle(event))
 				{
