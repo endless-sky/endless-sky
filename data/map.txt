@@ -13080,7 +13080,7 @@ planet Bloodsea
 	description `Bloodsea is nearly uninhabited, except for a few pirate outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
 	description `	The pirates have no industry of their own, but instead make a living by reselling stolen cargo from raids on merchant fleets.`
 	spaceport `When you landed your ship near one of the larger outposts, no one even came out to greet you or to check your paperwork - not that anyone on a pirate world would care about such things. In the center of town is an open-air marketplace where large men armed with large guns stand guard over piles of crates, while others examine the wares that are for sale and haggle over prices.`
-	spaceport `	The local slang incorporates threats of extreme violence as a seemingly meaningless verbal tic. "Hey, I'm gonna cut off your fingers one by one until you buy a meat patty!" a vender calls out cheerfully as you pass. "First one's free, and I'll tie a knot in your spine if you don't like it."`
+	spaceport `	The local slang incorporates threats of extreme violence as a seemingly meaningless verbal tic. "Hey, I'm gonna cut off your fingers one by one until you buy a meat patty!" a vendor calls out cheerfully as you pass. "First one's free, and I'll tie a knot in your spine if you don't like it."`
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
