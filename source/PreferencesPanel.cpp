@@ -269,6 +269,9 @@ bool PreferencesPanel::Click(int x, int y)
 			{
 				int zoom = Screen::Zoom();
 				Screen::SetZoom(zoom == 100 ? 150 : zoom == 150 ? 200 : 100);
+				// Make sure there is enough vertical space for the full UI.
+				if(Screen::Height() < 700)
+					Screen::SetZoom(100);
 				
 				// Convert to raw window coordinates, at the new zoom level.
 				point *= Screen::Zoom() / 100.;

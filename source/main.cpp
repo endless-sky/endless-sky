@@ -129,6 +129,9 @@ int main(int argc, char *argv[])
 		}
 		else
 			Screen::SetRaw(maxWidth - 100, maxHeight - 100);
+		// Make sure the zoom factor is not set too high for the full UI to fit.
+		if(Screen::Height() < 700)
+			Screen::SetZoom(100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
