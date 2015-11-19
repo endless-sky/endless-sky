@@ -648,7 +648,7 @@ mission "FW Syndicate Capture 1"
 	
 	on offer
 		conversation
-			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally your receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
+			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	
