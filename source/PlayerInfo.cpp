@@ -730,7 +730,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled())
+		if(!ship->IsDisabled())
 			ship->UnloadFighters();
 	
 	// Recharge any ships that are landed with you on the planet.
@@ -901,7 +901,7 @@ void PlayerInfo::TakeOff()
 	vector<shared_ptr<Ship>> drones;
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(ship->IsParked() || ship->GetSystem() != system || ship->IsDisabled())
+		if(ship->IsParked() || ship->IsDisabled())
 			continue;
 		
 		bool fit = false;
@@ -909,7 +909,8 @@ void PlayerInfo::TakeOff()
 		if(category == "Fighter")
 		{
 			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == system && !parent->IsParked() && parent->FighterBaysFree())
+				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
+						&& !parent->IsDisabled() && parent->FighterBaysFree())
 				{
 					parent->AddFighter(ship);
 					fit = true;
@@ -921,7 +922,8 @@ void PlayerInfo::TakeOff()
 		else if(category == "Drone")
 		{
 			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == system && !parent->IsParked() && parent->DroneBaysFree())
+				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
+						&& !parent->IsDisabled() && parent->DroneBaysFree())
 				{
 					parent->AddFighter(ship);
 					fit = true;
