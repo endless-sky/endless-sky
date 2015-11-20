@@ -62,7 +62,7 @@ private:
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	static void DoScatter(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	
-	static Point StoppingPoint(const Ship &ship);
+	static Point StoppingPoint(const Ship &ship, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damaged to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
