@@ -194,6 +194,8 @@ void TradingPanel::Draw() const
 	Information info;
 	if(player.Cargo().HasOutfits() || canSell)
 		info.SetCondition("can sell");
+	if(player.Cargo().Free() > 0)
+		info.SetCondition("can buy");
 	interface->Draw(info);
 }
 
@@ -210,7 +212,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Buy(1);
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'a')
+	else if(key == 'B')
+		Buy(1000000000);
+	else if(key == 'S')
 	{
 		for(const auto &it : GameData::Commodities())
 		{
