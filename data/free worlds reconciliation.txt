@@ -1740,7 +1740,7 @@ mission "FW Pug 4B"
 			choice
 				`	"Well, I guess we should give it a try."`
 					goto load
-				`	"Sounds risky. Are their any other options we could try?"`
+				`	"Sounds risky. Are there any other options we could try?"`
 			
 			`	"No," she says, "no, there are not. Sorry."`
 			label load
