@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 
+#include <algorithm>
 #include <cassert>
 
 using namespace std;
@@ -28,13 +29,21 @@ void Trade::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "commodity" && child.Size() >= 4)
 		{
-			commodities.push_back(Commodity());
-			commodities.back().name = child.Token(1);
-			commodities.back().low = child.Value(2);
-			commodities.back().high = child.Value(3);
+			auto it = commodities.begin();
+			for( ; it != commodities.end(); ++it)
+				if(it->name == child.Token(1))
+					break;
+			if(it == commodities.end())
+				it = commodities.insert(it, Commodity());
+			
+			it->name = child.Token(1);
+			it->low = child.Value(2);
+			it->high = child.Value(3);
 			for(const DataNode &grand : child)
-				commodities.back().items.push_back(grand.Token(0));
+				it->items.push_back(grand.Token(0));
 		}
+		else if(child.Token(0) == "clear")
+			commodities.clear();
 	}
 }
 
