@@ -1164,7 +1164,7 @@ mission "FW Pug 2C: Scram Drive"
 
 
 
-mission "FW Pug 2C: Jump Drive"
+mission "FW Pug 2C:  Jump Drive"
 	landing
 	name "Investigate the Pug"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
