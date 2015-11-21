@@ -173,14 +173,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) const
 {
 	bool isOffer = (trigger == "offer");
-	if(!conversation.IsEmpty())
+	if(!conversation.IsEmpty() && ui)
 	{
 		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		ui->Push(panel);
 	}
-	else if(!dialogText.empty())
+	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
 		subs["<first>"] = player.FirstName();
@@ -250,7 +250,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 			player.Cargo().Transfer(it.first, -count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
-			if(count > 0)
+			if(count > 0 && ui)
 			{
 				string special = "The " + name + (count == 1 ? " was" : "s were");
 				special += " put in your cargo hold because there is not enough space to install ";

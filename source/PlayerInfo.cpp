@@ -818,7 +818,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-void PlayerInfo::TakeOff()
+void PlayerInfo::TakeOff(UI *ui)
 {
 	shouldLaunch = false;
 	// This can only be done while landed.
@@ -996,7 +996,7 @@ void PlayerInfo::TakeOff()
 			
 		}
 	for(const Mission *mission : missionsToRemove)
-		RemoveMission(Mission::FAIL, *mission, nullptr);
+		RemoveMission(Mission::FAIL, *mission, ui);
 	
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
