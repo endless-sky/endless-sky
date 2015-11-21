@@ -1773,8 +1773,8 @@ ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
 		category "Light Warship"
-		"cost" 1590000
-		"shields" 3200
+		"cost" 1090000
+		"shields" 3000
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
