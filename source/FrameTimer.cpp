@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "FrameTimer.h"
 
-#include <algorithm>
 #include <thread>
 
 using namespace std;
@@ -23,7 +22,7 @@ using namespace std;
 // elapses until Time() is called.
 FrameTimer::FrameTimer()
 {
-	next = chrono::high_resolution_clock::now();
+	next = chrono::steady_clock::now();
 }
 
 
@@ -35,7 +34,7 @@ FrameTimer::FrameTimer(int fps, int maxLagMsec)
 	: step(chrono::nanoseconds(1000000000 / fps)),
 	maxLag(chrono::milliseconds(maxLagMsec))
 {
-	next = chrono::high_resolution_clock::now();
+	next = chrono::steady_clock::now();
 	Step();
 }
 
@@ -44,15 +43,22 @@ FrameTimer::FrameTimer(int fps, int maxLagMsec)
 // Wait until the next frame should begin.
 void FrameTimer::Wait()
 {
-	chrono::high_resolution_clock::time_point now = chrono::high_resolution_clock::now();
+	// Note: in theory this could get interrupted by a signal handler, although
+	// it's unlikely the program will receive any signals that do not terminate
+	// it and that it does not ignore. But, the worst that would happen in that
+	// case is that this particular frame will end too quickly, and then it will
+	// go back to normal for the next one.
+	chrono::steady_clock::time_point now = chrono::steady_clock::now();
 	if(now < next)
 	{
-		// If the clock somehow got confused, don't allow it to sleep for longer
-		// than the step interval.
-		this_thread::sleep_for(min(next - now, step));
-		now = chrono::high_resolution_clock::now();
+		// This should never happen with a true steady clock, but make sure that
+		// the sleep time is never longer than one frame.
+		if(now + step + maxLag < next)
+			next = now + step;
+		
+		this_thread::sleep_until(next);
+		now = chrono::steady_clock::now();
 	}
-	
 	// If the lag is too high, don't try to do catch-up.
 	if(now - next > maxLag)
 		next = now;
@@ -65,7 +71,7 @@ void FrameTimer::Wait()
 // Find out how long it has been since this timer was created, in seconds.
 double FrameTimer::Time() const
 {
-	chrono::high_resolution_clock::time_point now = chrono::high_resolution_clock::now();
+	chrono::steady_clock::time_point now = chrono::steady_clock::now();
 	return chrono::duration_cast<chrono::nanoseconds>(now - next).count() * .000000001;
 }
 

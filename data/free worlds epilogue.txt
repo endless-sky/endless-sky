@@ -114,7 +114,7 @@ mission "FW Epilogue: Freya"
 				goto next
 			
 			label next
-			`	"What have you fund out about the Pug?" you ask.`
+			`	"What have you found out about the Pug?" you ask.`
 			`	"Not much," she says. "There's no way to reopen that wormhole, of course, and even if we did, I don't think it led to their real home, just another red herring. The real breakthrough, of course, would be if we could find some hints in the stuff they left behind about how to build more jump drives of our own. But so far, we can't even figure out how to create new hyperspace links where there wasn't one originally. I'm starting to think that those graviton transmitters we used were just one more game - a toy, not the real thing. Not what created the links in the first place, I mean, unless they were created by someone with the patience to wait a million years for them to work."`
 			choice
 				`	"Have you found any other interesting technology?"`

@@ -205,7 +205,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			if(canGiveFuel || canRepair)
 			{
-				ship->SetShipToAssist(player.Ships().front());
+				ship->SetShipToAssist(player.FlagshipPtr());
 				message = "Hang on, we'll be there in a minute.";
 			}
 			else if(ship->Fuel())

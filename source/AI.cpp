@@ -60,6 +60,8 @@ namespace {
 			return true;
 		return target.IsDisabled();
 	}
+	
+	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
 }
 
 
@@ -483,6 +485,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		{
 			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
 				continue;
+			// Non-escort ships should not target ships outside the range where AI ships will travel.
+			if(!ship.IsYours() && it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
+				continue;
 			
 			double range = it->Position().Distance(ship.Position());
 			// Preferentially focus on your previous target or your parent ship's
@@ -547,7 +552,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
-	if(ship.Position().Length() >= 10000.)
+	if(!ship.IsYours() && ship.Position().Length() >= MAX_DISTANCE_FROM_CENTER)
 	{
 		MoveTo(ship, command, Point(), 40., .8);
 		return;
@@ -759,32 +764,19 @@ void AI::Refuel(Ship &ship, Command &command)
 
 double AI::TurnBackward(const Ship &ship)
 {
-	Angle angle = ship.Facing();
-	bool left = ship.Velocity().Cross(angle.Unit()) > 0.;
-	double turn = left - !left;
-	
-	// Check if the ship will still be pointing to the same side of the target
-	// angle if it turns by this amount.
-	angle += ship.TurnRate() * turn;
-	bool stillLeft = ship.Velocity().Cross(angle.Unit()) > 0.;
-	if(left == stillLeft)
-		return turn;
-	
-	// If we're within one step of the correct direction, stop turning.
-	return 0.;
+	return TurnToward(ship, -ship.Velocity());
 }
 
 
 
 double AI::TurnToward(const Ship &ship, const Point &vector)
 {
-	static const double RAD_TO_DEG = 180. / 3.14159265358979;
 	Point facing = ship.Facing().Unit();
 	double cross = vector.Cross(facing);
 	
 	if(vector.Dot(facing) > 0.)
 	{
-		double angle = asin(cross / vector.Length()) * RAD_TO_DEG;
+		double angle = asin(cross / vector.Length()) * TO_DEG;
 		if(fabs(angle) <= ship.TurnRate())
 			return -angle / ship.TurnRate();
 	}
@@ -819,12 +811,15 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 	if(isClose && speed < slow)
 		return true;
 	
-	distance = target - StoppingPoint(ship);
+	bool shouldReverse = false;
+	distance = target - StoppingPoint(ship, shouldReverse);
 	bool isFacing = (distance.Unit().Dot(angle.Unit()) > .8);
-	if(!isClose || !isFacing)
+	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, distance));
 	if(isFacing)
 		command |= Command::FORWARD;
+	else if(shouldReverse)
+		command |= Command::BACK;
 	
 	return false;
 }
@@ -840,6 +835,27 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 	
 	if(speed <= slow)
 		return true;
+	
+	if(ship.Attributes().Get("reverse thrust"))
+	{
+		// Figure out your stopping time using your main engine:
+		double degreesToTurn = TO_DEG * acos(-velocity.Unit().Dot(angle.Unit()));
+		double forwardTime = degreesToTurn / ship.TurnRate();
+		forwardTime += speed / ship.Acceleration();
+		
+		// Figure out your reverse thruster stopping time:
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
+		reverseTime += speed / reverseAcceleration;
+		
+		if(reverseTime < forwardTime)
+		{
+			command.SetTurn(TurnToward(ship, velocity));
+			if(velocity.Unit().Dot(angle.Unit()) > .8)
+				command |= Command::BACK;
+			return false;
+		}
+	}
 	
 	command.SetTurn(TurnBackward(ship));
 	if(velocity.Unit().Dot(angle.Unit()) < -.8)
@@ -1132,13 +1148,14 @@ void AI::DoScatter(Ship &ship, Command &command, const list<shared_ptr<Ship>> &s
 
 
 
-Point AI::StoppingPoint(const Ship &ship)
+Point AI::StoppingPoint(const Ship &ship, bool &shouldReverse)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
 	double acceleration = ship.Acceleration();
 	double turnRate = ship.TurnRate();
+	shouldReverse = false;
 	
 	// If I were to turn around and stop now, where would that put me?
 	double v = velocity.Length();
@@ -1152,6 +1169,20 @@ Point AI::StoppingPoint(const Ship &ship)
 	// The number of terms will be v / a.
 	// The average term's value will be v / 2. So:
 	stopDistance += .5 * v * v / acceleration;
+	
+	if(ship.Attributes().Get("reverse thrust"))
+	{
+		// Figure out your reverse thruster stopping distance:
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
+		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
+		reverseDistance += .5 * v * v / reverseAcceleration;
+		
+		if(reverseDistance < stopDistance)
+		{
+			shouldReverse = true;
+			stopDistance = reverseDistance;
+		}
+	}
 	
 	return position + stopDistance * velocity.Unit();
 }

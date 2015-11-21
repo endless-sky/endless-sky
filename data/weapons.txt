@@ -560,7 +560,7 @@ outfit "Sidewinder Missile"
 	cost 800
 	thumbnail "outfit/sidewinder"
 	"sidewinder capacity" -1
-	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 40 of them. You cannot install a missile without a launcher to fire it from."
+	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 50 of them. You cannot install a missile without a launcher to fire it from."
 
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"

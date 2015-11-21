@@ -506,7 +506,7 @@ mission "FW Southern Battle 3"
 
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
-	description "As a goodwill gesture, eturn the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	description "As a goodwill gesture, return the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
 	destination "New Iceland"
@@ -756,7 +756,7 @@ mission "FW Northern 2"
 				`	"Did they agree to join us?"`
 			`	"Yes, yes, of course," he says. "But taking on six more worlds all of a sudden - I just hope it's not more than we can handle. When the Navy recovers from the battle at Rastaban and strikes back, now we have much less idea where that strike will fall."`
 			`	"So, what do we do next?" you ask.`
-			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have though of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her on Dancer."`
+			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have thought of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her on Dancer."`
 			choice
 				`	"No problem. Don't worry, we'll be able to handle this just fine."`
 					accept
@@ -1597,7 +1597,7 @@ mission "FW Albatross 2"
 	on offer
 		conversation
 			`When you meet up with JJ, he looks exhausted. "Our scouts are reporting that the Navy is building a massive base on New Iceland," he says, "just a few jumps away from here. So every day I look up at the sky and wonder if today is the day when they will invade."`
-			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were dominated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principal at least, the locals ought to welcome the idea of Free Worlds protection.`
+			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were dominated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principle at least, the locals ought to welcome the idea of Free Worlds protection.`
 			`	While you are traveling with JJ, Freya agrees to stay here and work on a better surveillance network, to give Dancer advance warning if the Navy decides to invade.`
 				accept
 	

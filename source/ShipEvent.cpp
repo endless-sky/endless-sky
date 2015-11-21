@@ -18,7 +18,7 @@ using namespace std;
 
 
 
-ShipEvent::ShipEvent(const Government *actor, shared_ptr<Ship> &target, int type)
+ShipEvent::ShipEvent(const Government *actor, const shared_ptr<Ship> &target, int type)
 	: actorGovernment(actor), target(target), type(type)
 {
 	if(target)
@@ -27,8 +27,7 @@ ShipEvent::ShipEvent(const Government *actor, shared_ptr<Ship> &target, int type
 
 
 
-
-ShipEvent::ShipEvent(shared_ptr<Ship> &actor, shared_ptr<Ship> &target, int type)
+ShipEvent::ShipEvent(const shared_ptr<Ship> &actor, const shared_ptr<Ship> &target, int type)
 	: actor(actor), target(target), type(type)
 {
 	if(actor)

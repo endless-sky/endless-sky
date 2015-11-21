@@ -710,8 +710,23 @@ interface "hiring"
 		align center
 
 interface "trade"
+	sprite "ui/dialog cancel" 60 355
+	button B 60 355
+		size 80 40
+	if "!can buy"
+	label "Buy All" 60 348
+		size 14
+		color dim
+		align center
+	if "can buy"
+	label "Buy All" 60 348
+		size 14
+		color bright
+		align center
+	endif
+	
 	sprite "ui/dialog cancel" 140 355
-	button a 140 355
+	button S 140 355
 		size 80 40
 	if "!can sell"
 	label "Sell All" 140 348

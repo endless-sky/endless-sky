@@ -37,7 +37,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
 #include <cmath>
+#include <set>
 
 using namespace std;
 
@@ -269,10 +271,19 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 void MapOutfitterPanel::Init()
 {
 	catalog.clear();
+	set<const Outfit *> seen;
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
-				catalog[outfit->Category()].insert(outfit);
+				if(seen.find(outfit) == seen.end())
+				{
+					catalog[outfit->Category()].push_back(outfit);
+					seen.insert(outfit);
+				}
+	
+	for(auto &it : catalog)
+		sort(it.second.begin(), it.second.end(),
+			[](const Outfit *a, const Outfit *b) {return a->Name() < b->Name();});
 }
 
 

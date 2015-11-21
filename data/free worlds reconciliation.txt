@@ -340,7 +340,7 @@ mission "FW Reconciliation 2B"
 			`	Ijs and Katya introduce themselves to Danforth, and Katya says, "Sir, I was a child on Hope when the colony was evacuated. Your ship carried my family to safety, and I've never forgotten how every night during our journey, you would walk through the cargo bay where we were staying and check to make sure all our needs were met. I've never had a chance before now to thank you in person."`
 			`	Danforth is surprised. "Councilor Reynolds," he says, "thank you. I followed your career in Parliament with some interest, but it is a shame that we never met in person until now. But I am glad we have this chance to work together at last."`
 			`	Raven says, "Governor Edrick mentioned a plan for tracking down the Syndicate executives who were behind the attacks in the Castor and Pollux systems."`
-			`	"Indeed," says Danforth. "West of here is a region of uninhabited star systems, a sort of back entrance into Syndicate space. Few ships travel through there, because there is nowhere to refuel, but with a ramscoop or enough fuel capacity, travel is possible. One of the first inhabited worlds on the other side is the lawless world of Stormhold. There, you can surely find a contact who knows enough about the inner workings of the Syndicate to tell you the home of at least a few of our targets... for a price." He hands Katya a large stack of credit chips.`
+			`	"Indeed," says Danforth. "Southeast of here is a region of uninhabited star systems, a sort of back entrance into Syndicate space. Few ships travel through there, because there is nowhere to refuel, but with a ramscoop or enough fuel capacity, travel is possible. One of the first inhabited worlds on the other side is the lawless world of Stormhold. There, you can surely find a contact who knows enough about the inner workings of the Syndicate to tell you the home of at least a few of our targets... for a price." He hands Katya a large stack of credit chips.`
 			`	Raven says, "I'm going to stay here with the Oathkeepers. Captain <last>, it's been a pleasure working with you. We're counting on you to fetch us this information and return here as quickly as possible."`
 				accept
 
@@ -648,7 +648,7 @@ mission "FW Syndicate Capture 1"
 	
 	on offer
 		conversation
-			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally your receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
+			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	
@@ -1740,7 +1740,7 @@ mission "FW Pug 4B"
 			choice
 				`	"Well, I guess we should give it a try."`
 					goto load
-				`	"Sounds risky. Are their any other options we could try?"`
+				`	"Sounds risky. Are there any other options we could try?"`
 			
 			`	"No," she says, "no, there are not. Sorry."`
 			label load

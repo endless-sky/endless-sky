@@ -50,7 +50,7 @@ void EscortDisplay::Add(const Ship &ship, bool isHere)
 void EscortDisplay::Draw() const
 {
 	MergeStacks();
-	sort(icons.begin(), icons.end());
+	icons.sort();
 	
 	// Draw escort status.
 	static const Font &font = FontSet::Get(14);
@@ -207,7 +207,7 @@ void EscortDisplay::MergeStacks() const
 			break;
 		
 		// Merge all other instances of this ship's sprite with this icon.
-		vector<Icon>::iterator it = icons.begin();
+		list<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
 			if(&*it == cheapest || it->sprite != cheapest->sprite || it->isHere != cheapest->isHere)

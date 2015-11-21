@@ -192,27 +192,37 @@ bool ShipyardPanel::CanSell() const
 
 void ShipyardPanel::Sell()
 {
+	static const int MAX_LIST = 20;
+	
 	int count = playerShips.size();
-	string message = "Sell \"";
+	string message = "Sell ";
 	if(count == 1)
 		message += playerShip->Name();
-	else
+	else if(count <= MAX_LIST)
 	{
 		auto it = playerShips.begin();
 		message += (*it++)->Name();
 		--count;
 		
 		if(count == 1)
-			message += "\" and \"";
+			message += " and ";
 		else
 		{
 			while(count-- > 1)
-				message += "\",\n\"" + (*it++)->Name();
-			message += "\",\nand \"";
+				message += ",\n" + (*it++)->Name();
+			message += ",\nand ";
 		}
 		message += (*it)->Name();
 	}
-	message += "\"?";
+	else
+	{
+		auto it = playerShips.begin();
+		for(int i = 0; i < MAX_LIST - 1; ++i)
+			message += (*it++)->Name() + ",\n";
+		
+		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
+	}
+	message += "?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 

@@ -108,6 +108,7 @@ public:
 	// the player does not have any ships.
 	const Ship *Flagship() const;
 	Ship *Flagship();
+	const std::shared_ptr<Ship> &FlagshipPtr();
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;
 	// Add a captured ship to your fleet.
@@ -210,6 +211,7 @@ private:
 	
 	Account accounts;
 	
+	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
 	CargoHold cargo;
 	std::map<std::string, int64_t> costBasis;
