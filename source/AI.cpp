@@ -118,7 +118,7 @@ void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 			if(it->HasBays())
 			{
 				isLaunching = !isLaunching;
-				Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
+				Messages::Add(isLaunching ? "Deploying fighters." : "Recalling fighters.");
 				break;
 			}
 	
