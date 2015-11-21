@@ -623,6 +623,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
 	if(!it->second.CanBeDone(player))
 		return false;
 	
+	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
+	static const int64_t limit = 2000000000;
+	player.Conditions()["net worth"] = min(limit, max(-limit, player.Accounts().NetWorth()));
 	// Set the "reputation" conditions so we can check if this action changed
 	// any of them.
 	for(const auto &it : GameData::Governments())
