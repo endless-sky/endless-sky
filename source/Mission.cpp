@@ -238,6 +238,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(repeat != 1)
 			out.Write("repeat", repeat);
 		
+		if(!toOffer.IsEmpty())
+		{
+			out.Write("to", "offer");
+			out.BeginChild();
+			{
+				toOffer.Save(out);
+			}
+			out.EndChild();
+		}
 		if(!toComplete.IsEmpty())
 		{
 			out.Write("to", "complete");
