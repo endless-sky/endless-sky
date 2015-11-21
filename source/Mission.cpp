@@ -818,8 +818,9 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.deadline = player.GetDate() + (defaultDeadline + daysToDeadline);
 	}
 	
-	// Copy the completion conditions. No need to copy the offer conditions,
-	// because they have already been checked.
+	// Copy the conditions. The offer conditions must be copied too, because they
+	// may depend on a condition that other mission offers might change.
+	result.toOffer = toOffer;
 	result.toComplete = toComplete;
 	result.toFail = toFail;
 	
