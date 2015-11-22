@@ -72,7 +72,7 @@ namespace {
 	
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
-	double volume = 1.;
+	double volume = .5;
 	
 	thread::id mainThreadID;
 	map<const Sound *, QueueEntry> queue;
