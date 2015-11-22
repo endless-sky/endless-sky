@@ -856,6 +856,7 @@ void Engine::CalculateStep()
 	// anti-missile system is ready to fire, it does not actually fire unless a
 	// missile is detected in range during collision detection, below.
 	vector<Ship *> hasAntiMissile;
+	double clickRange = 50.;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -954,13 +955,15 @@ void Engine::CalculateStep()
 			if(doClick && &*ship != player.Flagship())
 			{
 				const Mask &mask = ship->GetSprite().GetMask(step);
-				if(mask.WithinRange(clickPoint - position, ship->Facing(), 50.))
+				double range = mask.Range(clickPoint - position, ship->Facing());
+				if(range <= clickRange)
 				{
+					clickRange = range;
 					player.Flagship()->SetTargetShip(ship);
 					// If we've found an enemy within the click zone, favor
 					// targeting it rather than any other ship. Otherwise, keep
 					// checking for hits because another ship might be an enemy.
-					if(ship->GetGovernment()->IsEnemy())
+					if(!range && ship->GetGovernment()->IsEnemy())
 						doClick = false;
 				}
 			}

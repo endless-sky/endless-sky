@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -303,6 +304,24 @@ bool Mask::WithinRange(Point point, Angle facing, double range) const
 			return true;
 	
 	return false;
+}
+
+
+
+// Find out how close the given point is to the mask.
+double Mask::Range(Point point, Angle facing) const
+{
+	double range = numeric_limits<double>::infinity();
+	
+	// Rotate into the mask's frame of reference.
+	point = (-facing).Rotate(point);
+	if(Contains(point))
+		return 0.;
+	
+	for(const Point &p : outline)
+		range = min(range, p.Distance(point));
+	
+	return range;
 }
 
 
