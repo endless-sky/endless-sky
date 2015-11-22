@@ -14,7 +14,7 @@ fleet "Small Southern Merchants"
 	cargo 3
 	personality
 		confusion 40
-		timid
+		timid frugal
 	variant 60
 		"Shuttle"
 	variant 30
@@ -75,7 +75,7 @@ fleet "Large Southern Merchants"
 	cargo 4
 	personality
 		confusion 20
-		timid
+		timid frugal
 	variant 20
 		"Freighter"
 		"Hawk"
@@ -160,7 +160,7 @@ fleet "Small Core Merchants"
 	cargo 3
 	personality
 		confusion 30
-		timid
+		timid frugal
 	variant 40
 		"Shuttle"
 	variant 60
@@ -218,7 +218,7 @@ fleet "Large Core Merchants"
 	cargo 4
 	personality
 		confusion 10
-		timid
+		timid frugal
 	variant 30
 		"Freighter" 2
 		"Quicksilver" 2
@@ -292,7 +292,7 @@ fleet "Small Northern Merchants"
 	cargo 3
 	personality
 		confusion 40
-		timid
+		timid frugal
 	variant 50
 		"Shuttle"
 	variant 40
@@ -343,7 +343,7 @@ fleet "Large Northern Merchants"
 	cargo 4
 	personality
 		confusion 20
-		timid
+		timid frugal
 	variant 20
 		"Freighter" 2
 		"Firebird"
@@ -494,7 +494,7 @@ fleet "Small Free Worlds"
 	names "free worlds small"
 	cargo 1
 	personality
-		heroic disables
+		heroic disables frugal
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -539,7 +539,7 @@ fleet "Large Free Worlds"
 	names "free worlds capital"
 	cargo 1
 	personality
-		heroic disables
+		heroic disables frugal
 	variant 10
 		"Bastion"
 	variant 5
@@ -619,7 +619,7 @@ fleet "Small Militia"
 	names "free worlds small"
 	cargo 1
 	personality
-		heroic
+		heroic frugal
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -664,7 +664,7 @@ fleet "Large Militia"
 	names "free worlds capital"
 	cargo 1
 	personality
-		heroic
+		heroic frugal
 	variant 10
 		"Bastion"
 	variant 5

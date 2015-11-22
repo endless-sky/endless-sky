@@ -30,8 +30,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
-#include <limits>
 #include <cmath>
+#include <limits>
+#include <set>
 
 using namespace std;
 
@@ -186,6 +187,29 @@ void AI::Clean()
 void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 {
 	const Ship *flagship = player.Flagship();
+	
+	// First, figure out the comparative strengths of the present governments.
+	map<const Government *, int64_t> strength;
+	for(const auto &it : ships)
+		if(it->GetGovernment() && it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+			strength[it->GetGovernment()] += it->Cost();
+	enemyStrength.clear();
+	allyStrength.clear();
+	for(const auto &it : strength)
+	{
+		set<const Government *> allies;
+		for(const auto &eit : strength)
+			if(eit.first->IsEnemy(it.first))
+			{
+				enemyStrength[it.first] += eit.second;
+				for(const auto &ait : strength)
+					if(ait.first->IsEnemy(eit.first) && allies.find(ait.first) == allies.end())
+					{
+						allyStrength[it.first] += ait.second;
+						allies.insert(ait.first);
+					}
+			}
+	}
 	
 	step = (step + 1) & 31;
 	int targetTurn = 0;
@@ -1235,6 +1259,18 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		return command;
 	int index = -1;
 	
+	bool beFrugal = false;
+	if(ship.GetPersonality().IsFrugal())
+	{
+		// Frugal ships only expend ammunition if they have lost 50% of shields
+		// or hull, or if they are outgunned.
+		beFrugal = (ship.Hull() + ship.Shields() > 1.5);
+		auto ait = allyStrength.find(ship.GetGovernment());
+		auto eit = enemyStrength.find(ship.GetGovernment());
+		if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
+			beFrugal = false;
+	}
+	
 	// Special case: your target is not your enemy. Do not fire, because you do
 	// not want to risk damaging that target. The only time a ship other than
 	// the player will target a friendly ship is if the player has asked a ship
@@ -1279,6 +1315,8 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		if(!weapon.IsReady() || (!currentTarget && weapon.IsHoming()))
 			continue;
 		if(!secondary && weapon.GetOutfit()->Icon())
+			continue;
+		if(beFrugal && weapon.GetOutfit()->Ammo())
 			continue;
 		
 		// Special case: if the weapon uses fuel, be careful not to spend so much

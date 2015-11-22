@@ -48,6 +48,7 @@ public:
 	bool IsDerelict() const;
 	bool IsFleeing() const;
 	bool IsEscort() const;
+	bool IsFrugal() const;
 	
 	const Point &Confusion() const;
 	
