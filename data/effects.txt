@@ -149,6 +149,7 @@ effect "tiny explosion"
 	"random angle" 360
 	"random velocity" .2
 	"random spin" 1
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "small explosion"
@@ -160,6 +161,7 @@ effect "small explosion"
 	"random angle" 360
 	"random velocity" .4
 	"random spin" 2
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "medium explosion"
@@ -171,6 +173,7 @@ effect "medium explosion"
 	"random angle" 360
 	"random velocity" .6
 	"random spin" 3
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "big explosion"
@@ -182,6 +185,7 @@ effect "big explosion"
 	"random angle" 360
 	"random velocity" .8
 	"random spin" 4
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "huge explosion"
@@ -193,6 +197,7 @@ effect "huge explosion"
 	"random angle" 360
 	"random velocity" 1
 	"random spin" 5
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "smoke"
