@@ -2464,7 +2464,7 @@ mission "FW Syndicate Extremists 1C"
 			
 			`	"What, does peace and reconciliation sound boring to you?" he says. "Don't worry about that. With that jump drive installed in your ship, the whole galaxy is open to you. Who knows what you might discover beyond the boundaries of human space?"`
 			label end
-			`	You return to your ship, and prepare for the journey back to Earth, hopeful that at last the war with the Syndicate will be over.`
+			`	You return to your ship, and prepare for the journey back to Earth, hopeful that at last Parliament will be willing to negotiate a permanent peace with the Free Worlds.`
 				accept
 	
 	on complete
