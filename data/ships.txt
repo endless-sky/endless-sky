@@ -1427,6 +1427,52 @@ ship "Hawk"
 
 
 
+ship "Headhunter"
+	sprite "ship/headhunter"
+	attributes
+		category "Interceptor"
+		"cost" 1400000
+		"shields" 3800
+		"hull" 700
+		"required crew" 2
+		"bunks" 4
+		"mass" 120
+		"drag" 2.6
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 250
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 44
+			"shield damage" 440
+			"hull damage" 220
+			"hit force" 660
+	outfits
+		"Heavy Laser" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+	
+	engine -16 47
+	engine 16 47
+	gun -13 -27 "Heavy Laser"
+	gun 13 -27 "Heavy Laser"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	explode "tiny explosion" 20
+	explode "small explosion" 25
+	explode "medium explosion" 15
+	description "The Headhunter is one of the newest ships designed by Lionheart: a versatile ship that can serve equally well for carrying cargo or for bounty hunting. As with many of Lionheart's designs, the hull is mostly composite fiber rather than metal, sacrificing armor strength for the sake of lighter weight and faster movement."
+
+
+
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
 	attributes
@@ -1608,6 +1654,56 @@ ship "Manta"
 	explode "small explosion" 20
 	explode "medium explosion" 15
 	description "After their Quicksilver light warship with its armament of particle cannons became a large success with convoy escorts and planetary defense forces, Megaparsec decided to develop a larger ship with similar maneuverability but heavier firepower. The Manta is the result: a ship with enough long-range firepower that fleeing from a battle with it is almost impossible."
+
+
+
+ship "Modified Argosy"
+	sprite "ship/modified argosy"
+	attributes
+		category "Light Warship"
+		"cost" 1960000
+		"shields" 4800
+		"hull" 1900
+		"required crew" 5
+		"bunks" 12
+		"mass" 250
+		"drag" 6.2
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 60
+		"outfit space" 340
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -16 82
+	engine 16 82
+	gun -22 -37 "Heavy Laser"
+	gun 22 -37 "Heavy Laser"
+	gun -23 -37 "Heavy Laser"
+	gun 23 -37 "Heavy Laser"
+	turret 0 -8 "Heavy Laser Turret"
+	turret 0 12 "Heavy Laser Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "big explosion" 15
+	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
 
 
 
