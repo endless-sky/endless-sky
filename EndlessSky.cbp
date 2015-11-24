@@ -41,6 +41,8 @@
 					<Add directory="C:/dev32/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-Wl,--subsystem,windows" />
+					<Add option="-lwinmm" />
 					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libmingw32.a" />
 					<Add library="C:\dev32\lib\libsdl2main.a" />
 					<Add library="C:\dev32\lib\libsdl2.dll.a" />
