@@ -53,6 +53,54 @@ namespace {
 		}
 		return table.GetPoint();
 	}
+    
+    Point DrawBoth(Point lpoint, Point rpoint, const vector<string> &llabels, const vector<string> &lvalues, const vector<string> &rlabels, const vector<string> &rvalues)
+    {
+        // Get standard colors to draw with.
+        Color labelColor = *GameData::Colors().Get("medium");
+        Color valueColor = *GameData::Colors().Get("bright");
+        
+        Table ltable;
+        // Use 10-pixel margins on both sides.
+        ltable.AddColumn(10, Table::LEFT);
+        ltable.AddColumn(WIDTH - 10, Table::RIGHT);
+        ltable.DrawAt(lpoint);
+        
+        for(unsigned i = 0; i < llabels.size() && i < lvalues.size(); ++i)
+        {
+            if(llabels[i].empty())
+            {
+                ltable.DrawGap(10);
+                continue;
+            }
+            
+            ltable.Draw(llabels[i], lvalues[i].empty() ? valueColor : labelColor);
+            ltable.Draw(lvalues[i], valueColor);
+        }
+        
+        Table rtable;
+        // Use 10-pixel margins on both sides.
+        rtable.AddColumn(10, Table::LEFT);
+        rtable.AddColumn(WIDTH - 10, Table::RIGHT);
+        rtable.DrawAt(rpoint);
+        
+        for(unsigned i = 0; i < rlabels.size() && i < rvalues.size(); ++i)
+        {
+            if(rlabels[i].empty())
+            {
+                rtable.DrawGap(10);
+                continue;
+            }
+            
+            rtable.Draw(rlabels[i], rvalues[i].empty() ? valueColor : labelColor);
+            rtable.Draw(rvalues[i], valueColor);
+        }
+
+        return ltable.GetPoint();
+        
+        
+    }
+    
 }
 
 
@@ -63,7 +111,11 @@ ShipInfoDisplay::ShipInfoDisplay()
 {
 }
 
-
+ShipInfoDisplay::ShipInfoDisplay(const Ship &stcShip, const Ship &ship, const Government *systemGovernment)
+{
+    UpdateStcAttributes(stcShip);
+    UpdateAttributes(ship);
+}
 
 ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Government *systemGovernment)
 {
@@ -163,7 +215,50 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 	}
 }
 
+void ShipInfoDisplay::DrawBothAttributes(const Point &topLeft) const
+{
+    Point point = DrawBoth(topLeft, topLeft+Point(PanelWidth(),0), stcAttributeLabels,stcAttributeValues,attributeLabels, attributeValues);
+    
+    // Get standard colors to draw with.
+    Color labelColor = *GameData::Colors().Get("medium");
+    Color valueColor = *GameData::Colors().Get("bright");
+    
+    Table ltable;
+    ltable.AddColumn(10, Table::LEFT);
+    ltable.AddColumn(WIDTH - 90, Table::RIGHT);
+    ltable.AddColumn(WIDTH - 10, Table::RIGHT);
+    ltable.DrawAt(point);
+    ltable.DrawGap(10.);
 
+    ltable.Advance();
+    ltable.Draw("energy", labelColor);
+    ltable.Draw("heat", labelColor);
+    
+    for(unsigned i = 0; i < tableLabels.size(); ++i)
+    {
+        ltable.Draw(stcTableLabels[i], labelColor);
+        ltable.Draw(stcEnergyTable[i], valueColor);
+        ltable.Draw(stcHeatTable[i], valueColor);
+    }
+    
+    Table rtable;
+    rtable.AddColumn(10, Table::LEFT);
+    rtable.AddColumn(WIDTH - 90, Table::RIGHT);
+    rtable.AddColumn(WIDTH - 10, Table::RIGHT);
+    rtable.DrawAt(point+Point(PanelWidth(),0));
+    rtable.DrawGap(10.);
+    
+    rtable.Advance();
+    rtable.Draw("energy", labelColor);
+    rtable.Draw("heat", labelColor);
+    
+    for(unsigned i = 0; i < tableLabels.size(); ++i)
+    {
+        rtable.Draw(tableLabels[i], labelColor);
+        rtable.Draw(energyTable[i], valueColor);
+        rtable.Draw(heatTable[i], valueColor);
+    }
+}
 
 void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 {
@@ -342,7 +437,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	energyTable.clear();
 	heatTable.clear();
 	// Skip a spacer and the table header.
-	attributesHeight += 30;
+	attributesHeight += 40;
+    attributeLabels.push_back(string());
+    attributeValues.push_back(string());
 	
 	tableLabels.push_back("idle:");
 	energyTable.push_back(Format::Number(60. * attributes.Get("energy generation")));
@@ -372,6 +469,171 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	heatTable.push_back(Format::Number(60. * emptyMass * .1 * attributes.Get("heat dissipation")));
 	// Pad by 10 pixels on the top and bottom.
 	attributesHeight += 30;
+}
+
+void ShipInfoDisplay::UpdateStcAttributes(const Ship &ship)
+{
+    stcAttributeLabels.clear();
+    stcAttributeValues.clear();
+    int tempAttributesHeight = 10;
+    
+    const Outfit &attributes = ship.Attributes();
+    
+    stcAttributeLabels.push_back(string());
+    stcAttributeValues.push_back(string());
+    tempAttributesHeight += 10;
+    stcAttributeLabels.push_back("cost:");
+    stcAttributeValues.push_back(Format::Number(ship.Cost()));
+    tempAttributesHeight += 20;
+    
+    stcAttributeLabels.push_back(string());
+    stcAttributeValues.push_back(string());
+    tempAttributesHeight += 10;
+    if(attributes.Get("shield generation"))
+    {
+        stcAttributeLabels.push_back("shields charge / max:");
+        stcAttributeValues.push_back(Format::Number(60. * attributes.Get("shield generation"))
+                                  + " / " + Format::Number(attributes.Get("shields")));
+    }
+    else
+    {
+        stcAttributeLabels.push_back("shields:");
+        stcAttributeValues.push_back(Format::Number(attributes.Get("shields")));
+    }
+    tempAttributesHeight += 20;
+    if(attributes.Get("hull repair rate"))
+    {
+        stcAttributeLabels.push_back("hull repair / max:");
+        stcAttributeValues.push_back(Format::Number(60. * attributes.Get("hull repair rate"))
+                                  + " / " + Format::Number(attributes.Get("hull")));
+    }
+    else
+    {
+        stcAttributeLabels.push_back("hull:");
+        stcAttributeValues.push_back(Format::Number(attributes.Get("hull")));
+    }
+    tempAttributesHeight += 20;
+    double emptyMass = attributes.Get("mass");
+    stcAttributeLabels.push_back("mass with no cargo:");
+    stcAttributeValues.push_back(Format::Number(emptyMass));
+    tempAttributesHeight += 20;
+    stcAttributeLabels.push_back("cargo space:");
+    stcAttributeValues.push_back(Format::Number(attributes.Get("cargo space")));
+    tempAttributesHeight += 20;
+    stcAttributeLabels.push_back("required crew / bunks:");
+    stcAttributeValues.push_back(Format::Number(ship.RequiredCrew())
+                              + " / " + Format::Number(attributes.Get("bunks")));
+    tempAttributesHeight += 20;
+    stcAttributeLabels.push_back("fuel capacity:");
+    stcAttributeValues.push_back(Format::Number(attributes.Get("fuel capacity")));
+    tempAttributesHeight += 20;
+    
+    double fullMass = emptyMass + attributes.Get("cargo space");
+    stcAttributeLabels.push_back(string());
+    stcAttributeValues.push_back(string());
+    tempAttributesHeight += 10;
+    stcAttributeLabels.push_back((emptyMass == fullMass) ? "movement:" : "movement, full / no cargo:");
+    stcAttributeValues.push_back(string());
+    tempAttributesHeight += 20;
+    stcAttributeLabels.push_back("max speed:");
+    stcAttributeValues.push_back(Format::Number(60. * attributes.Get("thrust") / attributes.Get("drag")));
+    tempAttributesHeight += 20;
+    
+    stcAttributeLabels.push_back("acceleration:");
+    if(emptyMass == fullMass)
+        stcAttributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass));
+    else
+        stcAttributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass)
+                                  + " / " + Format::Number(3600. * attributes.Get("thrust") / emptyMass));
+    tempAttributesHeight += 20;
+    
+    stcAttributeLabels.push_back("turning:");
+    if(emptyMass == fullMass)
+        stcAttributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass));
+    else
+        stcAttributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)
+                                  + " / " + Format::Number(60. * attributes.Get("turn") / emptyMass));
+    tempAttributesHeight += 20;
+    
+    // Find out how much outfit, engine, and weapon space the chassis has.
+    map<string, double> chassis;
+    static const string names[] = {
+        "outfit space free:", "outfit space",
+        "    weapon capacity:", "weapon capacity",
+        "    engine capacity:", "engine capacity",
+        "guns ports free:", "gun ports",
+        "turret mounts free:", "turret mounts"
+    };
+    static const int NAMES =  sizeof(names) / sizeof(names[0]);
+    for(int i = 1; i < NAMES; i += 2)
+        chassis[names[i]] = attributes.Get(names[i]);
+    for(const auto &it : ship.Outfits())
+        for(auto &cit : chassis)
+            cit.second -= it.second * it.first->Get(cit.first);
+    
+    stcAttributeLabels.push_back(string());
+    stcAttributeValues.push_back(string());
+    tempAttributesHeight += 10;
+    for(int i = 0; i < NAMES; i += 2)
+    {
+        stcAttributeLabels.push_back(names[i]);
+        stcAttributeValues.push_back(Format::Number(attributes.Get(names[i + 1]))
+                                  + " / " + Format::Number(chassis[names[i + 1]]));
+        tempAttributesHeight += 20;
+    }
+    
+    if(ship.DroneBaysFree())
+    {
+        stcAttributeLabels.push_back("drone bays:");
+        stcAttributeValues.push_back(to_string(ship.DroneBaysFree()));
+        tempAttributesHeight += 20;
+    }
+    if(ship.FighterBaysFree())
+    {
+        stcAttributeLabels.push_back("fighter bays:");
+        stcAttributeValues.push_back(to_string(ship.FighterBaysFree()));
+        tempAttributesHeight += 20;
+    }
+    
+    stcTableLabels.clear();
+    stcEnergyTable.clear();
+    stcHeatTable.clear();
+    // Skip a spacer and the table header.
+    tempAttributesHeight += 40;
+    stcAttributeLabels.push_back(string());
+    stcAttributeValues.push_back(string());
+    
+    stcTableLabels.push_back("idle:");
+    stcEnergyTable.push_back(Format::Number(60. * attributes.Get("energy generation")));
+    stcHeatTable.push_back(Format::Number(
+                                       60. * (attributes.Get("heat generation") - attributes.Get("cooling"))));
+    tempAttributesHeight += 20;
+    stcTableLabels.push_back("moving:");
+    stcEnergyTable.push_back(Format::Number(
+                                         -60. * (attributes.Get("thrusting energy") + attributes.Get("turning energy"))));
+    stcHeatTable.push_back(Format::Number(
+                                       60. * (attributes.Get("thrusting heat") + attributes.Get("turning heat"))));
+    tempAttributesHeight += 20;
+    double firingEnergy = 0.;
+    double firingHeat = 0.;
+    for(const auto &it : ship.Outfits())
+        if(it.first->IsWeapon() && it.first->Reload())
+        {
+            firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
+            firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+        }
+    stcTableLabels.push_back("firing:");
+    stcEnergyTable.push_back(Format::Number(-60. * firingEnergy));
+    stcHeatTable.push_back(Format::Number(60. * firingHeat));
+    tempAttributesHeight += 20;
+    stcTableLabels.push_back("max:");
+    stcEnergyTable.push_back(Format::Number(attributes.Get("energy capacity")));
+    stcHeatTable.push_back(Format::Number(60. * emptyMass * .1 * attributes.Get("heat dissipation")));
+    // Pad by 10 pixels on the top and bottom.
+    tempAttributesHeight += 30;
+    
+    if(tempAttributesHeight>attributesHeight)
+        attributesHeight=tempAttributesHeight;
 }
 
 

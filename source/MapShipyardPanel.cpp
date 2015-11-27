@@ -90,7 +90,7 @@ void MapShipyardPanel::Draw() const
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
 	
-	if(selected)
+	if(selected and !compare)
 	{
 		ShipInfoDisplay infoDisplay(*selected);
 		
@@ -114,6 +114,35 @@ void MapShipyardPanel::Draw() const
 		
 		infoDisplay.DrawAttributes(topLeft);
 	}
+    else if(selected)
+    {
+        ShipInfoDisplay infoDisplay(*compare,*selected);
+        
+        Color back(.125, 1.);
+        Point size(infoDisplay.PanelWidth(), infoDisplay.AttributesHeight());
+        Point topLeft(Screen::Right() - size.X(), Screen::Top());
+        Point fillCenter(topLeft + 0.5 * size);
+        fillCenter = fillCenter + Point(-0.5 * size. X(), 0.);
+        FillShader::Fill(fillCenter, Point(2*size.X(), size.Y()), back);
+        
+        const Sprite *left = SpriteSet::Get("ui/left edge");
+        const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+        const Sprite *bottom2 = SpriteSet::Get("ui/bottom edge");
+        Point leftPos = topLeft + Point(
+                                        -.5 * left->Width(),
+                                        size.Y() - .5 * left->Height());
+        SpriteShader::Draw(left, leftPos+Point(-size.X(),0.));
+        // The top left corner of the bottom sprite should be 10 x units right
+        // of the bottom left corner of the left edge sprite.
+        Point bottomPos = leftPos + Point(
+                                          10. + .5 * (bottom->Width() - left->Width()),
+                                          .5 * (left->Height() + bottom->Height()));
+        SpriteShader::Draw(bottom, bottomPos+Point(-size.X(),0.));
+        SpriteShader::Draw(bottom2, bottomPos);
+        
+        
+        infoDisplay.DrawBothAttributes(topLeft+Point(-size.X(),0.));
+    }
 }
 
 
@@ -138,6 +167,15 @@ bool MapShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
 	}
+    else if(key == 'c')
+    {
+        if(!compare)
+            compare = selected;
+        else if (compare!=selected)
+            compare = selected;
+        else
+            compare = nullptr;
+    }
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
 		// First, find the currently selected item, if any
@@ -193,16 +231,41 @@ bool MapShipyardPanel::Click(int x, int y)
 	if(key)
 		return DoKey(key);
 	
+    
 	if(x < Screen::Left() + WIDTH)
 	{
 		Point point(x, y);
 		
-		selected = nullptr;
-		for(const ClickZone<const Ship *> &zone : zones)
-			if(zone.Contains(point))
-				selected = zone.Value();
-		
-		return true;
+        if(SDL_GetModState() & KMOD_SHIFT)
+        {
+            const Ship *click = nullptr;
+            
+            for(const ClickZone<const Ship *> & zone : zones)
+                if(zone.Contains(point))
+                {
+                    click = zone.Value();
+                }
+            
+            
+            if(compare && click)
+                compare = click;
+            else if (compare == click && click)
+                compare = nullptr;
+            else if (click)
+                selected = click;
+            
+            
+            return true;
+        }
+        else
+        {
+            selected = nullptr;
+            for(const ClickZone<const Ship *> &zone : zones)
+                if(zone.Contains(point))
+                    selected = zone.Value();
+            
+            return true;
+        }
 	}
 	else
 		return MapPanel::Click(x, y);

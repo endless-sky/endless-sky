@@ -57,6 +57,7 @@ private:
 private:
 	std::map<std::string, std::vector<const Outfit *>> catalog;
 	const Outfit *selected = nullptr;
+    const Outfit *compare = nullptr;
 	
 	mutable std::vector<ClickZone<const Outfit *>> zones;
 	
