@@ -1049,8 +1049,9 @@ void Engine::CalculateStep()
 		}
 		else if(projectile.MissileStrength())
 		{
+			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
 			radar[calcTickTock].Add(
-				Radar::SPECIAL, projectile.Position() - center, 1.);
+				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position() - center, 1.);
 			
 			// If the projectile did not hit anything, give the anti-missile
 			// systems a chance to shoot it down.
