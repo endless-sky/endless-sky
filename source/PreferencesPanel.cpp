@@ -107,7 +107,7 @@ void PreferencesPanel::Draw() const
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
-	    Command::CLEAR,
+		Command::CLEAR,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
