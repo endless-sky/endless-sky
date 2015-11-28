@@ -536,7 +536,7 @@ mission "FW Reconciliation Break"
 				goto wait
 			
 			label wait
-			`	"Alondo says, "We should use this time of peace well, to prepare for another battle ahead. Those Syndicate ships on New Tibet had equipment I've never seen before, and who knows what else the Syndicate has up their sleeves - especially if they've begun producing nuclear weapons. Captain <last>, you should take this time to make sure your ship is as well armed as possible for our next strike. Ijs and Katya, what will you do with this time?"`
+			`	Alondo says, "We should use this time of peace well, to prepare for another battle ahead. Those Syndicate ships on New Tibet had equipment I've never seen before, and who knows what else the Syndicate has up their sleeves - especially if they've begun producing nuclear weapons. Captain <last>, you should take this time to make sure your ship is as well armed as possible for our next strike. Ijs and Katya, what will you do with this time?"`
 			`	Katya glances at Ijs and then says, "I would certainly welcome a small sabbatical, and a chance to spend time together and catch up on all we've missed. Professor Springborn, do you think the Conservatory would extend your leave of absence long enough for us to make a trip to <planet>?"`
 			`	Ijs laughs. "That sounds wonderful, Councilor," he says. "<first>, do you think you could bring us there on your way to wherever you go next?"`
 			`	You tell him you would be glad to, and you all get ready for yet another journey together.`
