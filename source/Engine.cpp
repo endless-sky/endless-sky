@@ -753,7 +753,7 @@ void Engine::CalculateStep()
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump_drive" : "hyperspace"));
+		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
 	if(wasHyperspacing && !flagship->IsEnteringHyperspace())

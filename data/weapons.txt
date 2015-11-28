@@ -40,7 +40,7 @@ outfit "Modified Blaster"
 	"gun ports" -1
 	weapon
 		sprite "projectile/mod blaster"
-		sound "mod_blaster"
+		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"velocity" 7.5
@@ -86,7 +86,7 @@ outfit "Modified Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/mod blaster"
-		sound "mod_blaster"
+		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"velocity" 7.5
@@ -155,7 +155,7 @@ outfit "Heavy Laser"
 	weapon
 		sprite "projectile/heavy laser"
 			"frame rate" 1
-		sound "heavy_laser"
+		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"velocity" 400
@@ -226,7 +226,7 @@ outfit "Heavy Laser Turret"
 	weapon
 		sprite "projectile/2x heavy laser"
 			"frame rate" 1
-		sound "heavy_laser"
+		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"velocity" 400
