@@ -70,6 +70,7 @@ effect "particle impact"
 	sprite "effect/particle impact"
 		"no repeat"
 		"frame rate" 30
+	sound "explosion small"
 	"lifetime" 35
 	"random angle" 2
 	"velocity scale" -.05
@@ -79,6 +80,7 @@ effect "ion impact"
 	sprite "effect/ion impact"
 		"no repeat"
 		"frame rate" 30
+	sound "ion impact"
 	"lifetime" 9
 	"random angle" 360
 	"velocity scale" -.05
@@ -89,6 +91,7 @@ effect "plasma explosion"
 	sprite "effect/plasma explosion"
 		"no repeat"
 		"frame rate" 20
+	sound "explosion tiny"
 	"lifetime" 21
 	"random angle" 360
 	"random velocity" .1
@@ -109,6 +112,7 @@ effect "tracker impact"
 	sprite "effect/tracker impact"
 		"no repeat"
 		"frame rate" 20
+	sound "explosion medium"
 	"lifetime" 16
 	"random angle" 360
 	"random velocity" .2
