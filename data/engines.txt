@@ -48,7 +48,7 @@ outfit "X1700 Ion Thruster"
 	"thrusting heat" .9
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
-	"flare sound" "ion_drive"
+	"flare sound" "ion tiny"
 	description "This is the smallest thruster that you can buy, so weak that anything larger than a drone will accelerate quite slowly when using this engine. On the other hand, it is also very energy-efficient."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -64,7 +64,7 @@ outfit "X2700 Ion Thruster"
 	"thrusting heat" 1.7
 	"flare sprite" "effect/ion flare/small"
 		"frame rate" 1.1
-	"flare sound" "ion_drive"
+	"flare sound" "ion small"
 	description "The X2700 ion thruster is intended mostly for use in small, single-person or two-person ships, as well as in fighters. It is also used in larger ships, such as freighters, that have very little space for propulsion systems or energy to drive them. But these larger ships move unbearably slowly as a result."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -80,7 +80,7 @@ outfit "X3700 Ion Thruster"
 	"thrusting heat" 3.2
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 1.0
-	"flare sound" "ion_drive"
+	"flare sound" "ion medium"
 	description "The X3700 ion thruster is designed for heavy freighters and small capital ships. In theory, it could be installed in smaller ships too, if they have enough engine space, to attain almost ridiculous speeds."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -96,7 +96,7 @@ outfit "X4700 Ion Thruster"
 	"thrusting heat" 6.2
 	"flare sprite" "effect/ion flare/big"
 		"frame rate" 0.9
-	"flare sound" "ion_drive"
+	"flare sound" "ion large"
 	description "The X4700 ion thruster was developed when the Republic Navy began building warships so large that the X3700 was not sufficient for them. It allows even a capital ship to move at a respectable speed."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -112,7 +112,7 @@ outfit "X5700 Ion Thruster"
 	"thrusting heat" 11.7
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 0.8
-	"flare sound" "ion_drive"
+	"flare sound" "ion huge"
 	description "The X5700 thruster is intended for only the largest of capital ships. When the Syndicate first began producing them, these engines were considered little more than a publicity stunt, because no ship at the time was large enough to hold one."
 	description "	Ion engines consume less energy than plasma engines and produce less heat, but they also take up more space."
 
@@ -194,7 +194,7 @@ outfit "Chipmunk Plasma Thruster"
 	"thrusting heat" 1.8
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma tiny"
 	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -210,7 +210,7 @@ outfit "Greyhound Plasma Thruster"
 	"thrusting heat" 3.4
 	"flare sprite" "effect/plasma flare/small"
 		"frame rate" 6
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma small"
 	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -226,7 +226,7 @@ outfit "Impala Plasma Thruster"
 	"thrusting heat" 6.5
 	"flare sprite" "effect/plasma flare/medium"
 		"frame rate" 7
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma medium"
 	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -242,7 +242,7 @@ outfit "Orca Plasma Thruster"
 	"thrusting heat" 12.3
 	"flare sprite" "effect/plasma flare/big"
 		"frame rate" 8
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma large"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -258,7 +258,7 @@ outfit "Tyrant Plasma Thruster"
 	"thrusting heat" 23.5
 	"flare sprite" "effect/plasma flare/huge"
 		"frame rate" 9
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma huge"
 	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
 
@@ -340,7 +340,7 @@ outfit "A120 Atomic Thruster"
 	"thrusting heat" 3.5
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
-	"flare sound" "ion_drive"
+	"flare sound" "atomic tiny"
 	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
 
 outfit "A250 Atomic Thruster"
@@ -355,7 +355,7 @@ outfit "A250 Atomic Thruster"
 	"thrusting heat" 6.1
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
-	"flare sound" "ion_drive"
+	"flare sound" "atomic small"
 	description "Deep Sky's atomic thrusters have been in production for centuries, but remain a niche product due to their high prices and high energy requirements."
 
 outfit "A370 Atomic Thruster"
@@ -370,7 +370,7 @@ outfit "A370 Atomic Thruster"
 	"thrusting heat" 10.3
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
-	"flare sound" "ion_drive"
+	"flare sound" "atomic medium"
 	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
 
 outfit "A520 Atomic Thruster"
@@ -385,7 +385,7 @@ outfit "A520 Atomic Thruster"
 	"thrusting heat" 17.4
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
-	"flare sound" "ion_drive"
+	"flare sound" "atomic large"
 	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."
 
 outfit "A860 Atomic Thruster"
@@ -400,7 +400,7 @@ outfit "A860 Atomic Thruster"
 	"thrusting heat" 29.1
 	"flare sprite" "effect/atomic flare/huge"
 		"frame rate" 10
-	"flare sound" "ion_drive"
+	"flare sound" "atomic huge"
 	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 outfit "A125 Atomic Steering"

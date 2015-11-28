@@ -262,7 +262,14 @@ void Audio::Step()
 		ALint state;
 		alGetSourcei(*it, AL_SOURCE_STATE, &state);
 		if(state == AL_PLAYING)
+		{
+			// Fade out the sound.
+			float gain = 1.f;
+			alGetSourcef(*it, AL_GAIN, &gain);
+			gain = max(0.f, gain - .05f);
+			alSourcef(*it, AL_GAIN, gain);
 			++it;
+		}
 		else
 		{
 			recycledSources.push_back(*it);
