@@ -20,13 +20,8 @@ and from public domain sources
 Other Artwork
   Michael Zahniser (CC-BY-SA 4.0)
 
-Sounds from OpenGameArt.org
-  Stephen Cameron (CC-BY-SA 3.0)
-  HorrorPen (CC-BY-3.0)
-  Jesus Lastra (CC-BY-3.0)
-  Devin Watson (CC-BY-3.0)
-  Michel Baradari (CC-BY-3.0)
-  Dravenx (CC-BY-3.0)
+Sounds from public domain sources
+  freesound.org
 
 For a full list of attributions,
 see the "copyright" file.
