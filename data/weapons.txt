@@ -811,7 +811,7 @@ outfit "Nuclear Missile"
 		sprite "projectile/missile"
 			"no repeat"
 			"frame rate" .25
-		sound "rocket"
+		sound "nuke"
 		ammo "Nuclear Missile"
 		icon "icon/nuke"
 		"hit effect" "nuke explosion"
