@@ -72,7 +72,7 @@ SDL2
 
 Just downloading the SDL binary won't work, because XCode 5 checks that the framework is signed, and it isn't. Instead, build it from source:
 
-hg clone https://hg.libsdl.org/SDL open SDL/Xcode/SDL/SDL.xcodeproj
+hg clone https://hg.libsdl.org/SDL; open SDL/Xcode/SDL/SDL.xcodeproj
 
 Build the framework, then copy it into /Library/Frameworks. When I did this, for some reason it built to some obscure directory that I had to look up in the logs.
 
