@@ -1548,7 +1548,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			ship.SetTargetPlanet(next);
 			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
 			else if(count > 1)
 			{
 				message = "Switching landing targets. Now landing on ";
@@ -1580,12 +1581,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 					}
 				}
 			if(!ship.GetTargetPlanet())
-				message = "There are no planets in this system that you can land on.";
+				message = "There are no objects in this system that you can land on.";
 			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
 			else if(count > 1)
 			{
-				message = "You can land on more than one planet in this system. Landing on ";
+				message = "You can land or dock with more than one object in this system. Landing on ";
 				if(ship.GetTargetPlanet()->Name().empty())
 					message += "???.";
 				else

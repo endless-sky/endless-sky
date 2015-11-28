@@ -148,7 +148,21 @@ const set<string> &Planet::Attributes() const
 }
 
 
+// Get planet's noun descriptor from attributes
+string Planet::Noun() const
+{
+	string noun = "planet";
+//	for(const string &attribute : attributes) {
+//		if (attribute == "moon")
+//			noun = "moon";
+//		else if (attribute == "station")
+//			noun = "station";
+//	}
 	
+	return noun;
+}
+
+
 // Check whether there is a spaceport (which implies there is also trading,
 // jobs, banking, and hiring).
 bool Planet::HasSpaceport() const
