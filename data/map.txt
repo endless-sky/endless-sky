@@ -12968,7 +12968,7 @@ planet Alfheim
 	landscape land/nasa3
 	description `Alfheim is a world of wide grassy plains, deserts, a few small oceans, and scattered rainforests. Not a pleasant enough planet to support large cities, it is instead mostly a site for oil drilling and manufacturing. So far only a tiny fraction of the surface has been developed, mostly clustered around the sites where the largest oil deposits have been discovered.`
 	description `	Settlements show up as small bright points on the dark side of the planet - not from city lights, but from natural gas burnoff at the drilling stations.`
-	spaceport `The spaceport is in the middle of a field of oil derricks so vast that from above, the desert seemed to be covered in spiky grey fur. The spaceport itself is a soaring canopy, made to look like a tent, or sails on a ship. But it is built of a sturdy composite of plastic and carbon fiber, and coated in reflective plastic. Inside, hovercrafts and massive sand-crawlers are bringing cargo to and from the refineries and factories scattered across the planet's surface.`
+	spaceport `The spaceport is in the middle of a field of oil derricks so vast that from above, the desert seemed to be covered in spiky grey fur. The spaceport itself is a soaring canopy, made to look like a tent, or sails on a ship. But it is built of a sturdy composite of plastic and carbon fiber, and coated in reflective plastic. Inside, hovercraft and massive sand-crawlers are bringing cargo to and from the refineries and factories scattered across the planet's surface.`
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
@@ -13164,7 +13164,7 @@ planet Calda
 	description `Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the uncomfortably warm and humid summer months, the very rich view Calda more as a tourist destination than as a place to live.`
 	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population in moments. This incident has had hardly any effect on the tourism industry. Many of the regulars believe they are rich enough that no volcano would dare provoke them in such a way.`
 	spaceport `This is one of the few planets in this sector whose spaceport does not include private hangars, or at least gangway tunnels connecting to ships that land. The reason, of course, is so that visitors can experience the warm and pleasant air the moment they disembark. There is, however, a network of canvas-covered awnings branching out from the main buildings, offering shade and protection from the weather.`
-	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercrafts and helicopters!) are far more prominent than the amenities that interest a captain like yourself.`
+	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercraft and helicopters!) are far more prominent than the amenities that interest a captain like yourself.`
 	bribe 0.05
 	security 0.5
 	tribute 3300
@@ -13440,7 +13440,7 @@ planet Echo
 
 planet "Far'en Lai"
 	landscape land/dune3
-	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and un-exploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
+	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	"required reputation" -1000
 	bribe 0
 	security 0
