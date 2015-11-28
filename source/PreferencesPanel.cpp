@@ -106,7 +106,8 @@ void PreferencesPanel::Draw() const
 		Command::NEAREST,
 		Command::TARGET,
 		Command::HAIL,
-		Command::BOARD,
+        Command::BOARD,
+        Command::CLEAR,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -119,7 +120,7 @@ void PreferencesPanel::Draw() const
 		Command::GATHER,
 		Command::HOLD
 	};
-	static const Command *BREAK = &COMMANDS[18];
+	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
@@ -131,7 +132,7 @@ void PreferencesPanel::Draw() const
 		
 		if(!command)
 		{
-			table.DrawGap(10);
+			table.DrawGap(7);
 			table.DrawUnderline(medium);
 			if(category != end(CATEGORIES))
 				table.Draw(*category++, bright);
