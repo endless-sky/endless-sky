@@ -126,7 +126,7 @@ outfit "Korath Grab-Strike"
 		sprite "projectile/grab-strike"
 			"frame rate" 25
 			"random start frame"
-		sound "particle"
+		sound "grab-strike"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
@@ -156,6 +156,7 @@ outfit "Korath Banisher"
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
+		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
 		"velocity" 590
@@ -199,6 +200,7 @@ outfit "Korath Fire-Lance"
 		sprite "projectile/fire-lance"
 			"frame rate" 12
 			"random start frame"
+		sound "fire-lance"
 		"hit effect" "fire-lance impact"
 		"inaccuracy" .4
 		"velocity" 350
