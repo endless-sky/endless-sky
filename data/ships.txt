@@ -1510,7 +1510,7 @@ ship "Heavy Shuttle"
 	gun 7 -37
 	explode "tiny explosion" 10
 	explode "small explosion" 5
-	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perrenial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
+	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perennial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
 
 
 
@@ -1807,7 +1807,7 @@ ship "Osprey"
 	explode "big explosion" 16
 	explode "small explosion" 40
 	explode "tiny explosion" 28
-	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perrenial favorite among those who have the extra cash to spend on it."
+	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perennial favorite among those who have the extra cash to spend on it."
 
 
 
