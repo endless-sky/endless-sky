@@ -228,7 +228,7 @@ effect "large anti-missile"
 	sprite "effect/large anti missile"
 		"no repeat"
 		"frame rate" 2
-	sound "heavy anti-missile"
+	sound "heavy_anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
@@ -236,7 +236,7 @@ effect "pug anti-missile"
 	sprite "effect/large anti missile"
 		"no repeat"
 		"frame rate" 6
-	sound "pug anti-missile"
+	sound "heavy_anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
 

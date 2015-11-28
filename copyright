@@ -12,24 +12,24 @@ Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
- images/ui/galaxy*
- images/planet/callisto*
- images/planet/earth*
- images/planet/europa*
- images/planet/ganymede*
- images/planet/io*
- images/planet/jupiter*
- images/planet/luna*
- images/planet/mars*
- images/planet/mercury*
- images/planet/miranda*
- images/planet/neptune*
- images/planet/oberon*
- images/planet/rhea*
- images/planet/tethys*
- images/planet/titan*
- images/planet/uranus*
- images/planet/venus*
+ images/ui/galaxy.jpg
+ images/planet/callisto.png
+ images/planet/earth.png
+ images/planet/europa.png
+ images/planet/ganymede.png
+ images/planet/io.png
+ images/planet/jupiter.png
+ images/planet/luna.png
+ images/planet/mars.png
+ images/planet/mercury.png
+ images/planet/miranda.png
+ images/planet/neptune.png
+ images/planet/oberon.png
+ images/planet/rhea.png
+ images/planet/tethys.png
+ images/planet/titan.png
+ images/planet/uranus.png
+ images/planet/venus.png
 Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
@@ -54,8 +54,8 @@ License: public-domain
  government employee as part of their job.
 
 Files:
- images/scene/engine*
- images/scene/engine2*
+ images/scene/engine.jpg
+ images/scene/engine2.jpg
 Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
@@ -70,91 +70,95 @@ License: public-domain
 Files: images/land/bwerner*
 Copyright: Berthold Werner (commons.wikimedia.org/wiki/User:Berthold_Werner)
 License: CC-BY-SA-3.0
-Comment: Taken from Wikimedia commons. Cropped and edited.
+ (creativecommons.org/licenses/by-sa/3.0)
+ Taken from Wikimedia commons. Cropped and edited.
 
 Files: images/land/myrabella*
 Copyright: Myrabella (commons.wikimedia.org/wiki/User:Myrabella)
 License: CC-BY-SA-3.0
-Comment: Taken from Wikimedia commons. Cropped and edited.
+ (creativecommons.org/licenses/by-sa/3.0)
+ Taken from Wikimedia commons. Cropped and edited.
 
 Files: images/land/dmottl*
 Copyright: Dmitry A. Mottl (commons.wikimedia.org/wiki/User:Dmottl)
 License: CC-BY-SA-3.0
-Comment: Taken from Wikimedia commons. Cropped and edited.
+ (creativecommons.org/licenses/by-sa/3.0)
+ Taken from Wikimedia commons. Cropped and edited.
 
 Files: images/land/mfield*
 Copyright: Matthew Field (commons.wikimedia.org/wiki/User:Mfield)
 License: CC-BY-SA-3.0
-Comment: Taken from Wikimedia commons. Cropped and edited.
+ (creativecommons.org/licenses/by-sa/3.0)
+ Taken from Wikimedia commons. Cropped and edited.
 
 Files:
- images/land/beach0*
- images/land/beach2*
- images/land/beach3*
- images/land/beach4*
- images/land/beach5*
- images/land/beach6*
- images/land/city9*
- images/land/city11*
- images/land/city12*
- images/land/desert1*
- images/land/desert2*
- images/land/fields1*
- images/land/fields2*
- images/land/fields5*
- images/land/fields9*
- images/land/fog0*
- images/land/fog2*
- images/land/forest1*
- images/land/forest2*
- images/land/forest3*
- images/land/forest5*
- images/land/lava2*
- images/land/mountain1*
- images/land/mountain3*
- images/land/mountain4*
- images/land/mountain7*
- images/land/mountain8*
- images/land/mountain9*
- images/land/sea8*
- images/land/sky2*
- images/land/sky9*
- images/land/snow0*
- images/land/snow1*
- images/land/snow2*
- images/land/snow4*
- images/land/snow6*
- images/land/water8*
+ images/land/beach0.jpg
+ images/land/beach2.jpg
+ images/land/beach3.jpg
+ images/land/beach4.jpg
+ images/land/beach5.jpg
+ images/land/beach6.jpg
+ images/land/city9.jpg
+ images/land/city11.jpg
+ images/land/city12.jpg
+ images/land/desert1.jpg
+ images/land/desert2.jpg
+ images/land/fields1.jpg
+ images/land/fields2.jpg
+ images/land/fields5.jpg
+ images/land/fields9.jpg
+ images/land/fog0.jpg
+ images/land/fog2.jpg
+ images/land/forest1.jpg
+ images/land/forest2.jpg
+ images/land/forest3.jpg
+ images/land/forest5.jpg
+ images/land/lava2.jpg
+ images/land/mountain1.jpg
+ images/land/mountain3.jpg
+ images/land/mountain4.jpg
+ images/land/mountain7.jpg
+ images/land/mountain8.jpg
+ images/land/mountain9.jpg
+ images/land/sea8.jpg
+ images/land/sky2.jpg
+ images/land/sky9.jpg
+ images/land/snow0.jpg
+ images/land/snow1.jpg
+ images/land/snow2.jpg
+ images/land/snow4.jpg
+ images/land/snow6.jpg
+ images/land/water8.jpg
 Copyright: Various
 License: public-domain
  Taken from unsplash.com, a collection of photographs that have been donated and
  placed in the public domain.
 
 Files:
- images/land/lava0*
+ images/land/lava0.jpg
 Copyright: USGS
 License: public-domain
  From the USGS, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files:
- images/land/desert0*
- images/land/earthrise*
+ images/land/desert0.jpg
+ images/land/earthrise.jpg
  images/land/nasa*
  images/land/space*
- images/land/station1*
- images/land/station2*
- images/land/station3*
- images/land/station4*
+ images/land/station1.jpg
+ images/land/station2.jpg
+ images/land/station3.jpg
+ images/land/station4.jpg
 Copyright: NASA
 License: public-domain
  From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files:
- images/land/lava1*
- images/land/lava5*
- images/land/lava6*
+ images/land/lava1.jpg
+ images/land/lava5.jpg
+ images/land/lava6.jpg
 Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
@@ -172,6 +176,7 @@ Files:
  sounds/huge_explosion.wav
 Copyright: Stephen M. Cameron
 License: CC-BY-SA-3.0
+ (creativecommons.org/licenses/by-sa/3.0)
 
 Files:
  sounds/heavy_anti-missile.wav
@@ -180,22 +185,27 @@ Files:
  sounds/rocket.wav
 Copyright: HorrorPen (opengameart.org/users/horrorpen)
 License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
 
 Files: sounds/laser~.wav sounds/heavy_laser~.wav sounds/particle.wav
 Copyright: Jesús Lastra
 License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
 
 Files: sounds/blaster.wav sounds/plasma.wav
 Copyright: dklon (Devin Watson, opengameart.org/users/dklon)
 License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
 
 Files: sounds/meteor.wav sounds/sidewinder.wav
 Copyright: Michel Baradari (apollo-music.de)
 License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
 
 Files: sounds/mod_blaster.wav
 Copyright: Dravenx (www.dravenxgames.com)
 License: CC-BY-3.0
+ (creativecommons.org/licenses/by/3.0)
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify

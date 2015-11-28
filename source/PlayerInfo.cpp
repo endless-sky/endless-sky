@@ -12,7 +12,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfo.h"
 
-#include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -710,8 +709,6 @@ void PlayerInfo::Land(UI *ui)
 	if(!system || !planet)
 		return;
 	
-	Audio::Play(Audio::Get("landing"));
-	
 	// Remove any ships that have been destroyed or captured.
 	map<string, int> lostCargo;
 	vector<shared_ptr<Ship>>::iterator it = ships.begin();
@@ -827,8 +824,6 @@ void PlayerInfo::TakeOff(UI *ui)
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
-	
-	Audio::Play(Audio::Get("takeoff"));
 	
 	// Jobs are only available when you are landed.
 	availableJobs.clear();
