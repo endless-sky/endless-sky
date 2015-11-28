@@ -178,7 +178,7 @@ outfit "Electron Beam"
 	weapon
 		sprite "projectile/electron"
 			"frame rate" 60
-		sound "heavy_laser"
+		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
 		"velocity" 450
@@ -250,7 +250,7 @@ outfit "Electron Turret"
 	weapon
 		sprite "projectile/2x electron"
 			"frame rate" 60
-		sound "heavy_laser"
+		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
 		"velocity" 450
