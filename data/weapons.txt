@@ -737,7 +737,7 @@ outfit "Typhoon Launcher"
 		sprite "projectile/typhoon"
 			"frame rate" 4
 			"random start frame"
-		sound "torpedo"
+		sound "typhoon"
 		ammo "Typhoon Torpedo"
 		icon "icon/typhoon"
 		"fire effect" "typhoon fire"
