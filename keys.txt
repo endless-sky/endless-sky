@@ -13,6 +13,7 @@
 "Initiate hyperspace jump" 106
 "Select next ship" 110
 "Select nearest hostile ship" 114
+"Clear selection" 8
 "Deploy / recall fighters" 100
 "Fire afterburner" 97
 "Toggle cloaking device" 99
