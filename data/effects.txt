@@ -12,6 +12,7 @@ effect "afterburner"
 	sprite "effect/afterburner"
 		"no repeat"
 		"frame rate" 30
+	sound "afterburner"
 	"lifetime" 10
 	"velocity scale" 1.
 	"random velocity" 1.
@@ -22,6 +23,7 @@ effect "ionic afterburner"
 	sprite "effect/ionic afterburner"
 		"no repeat"
 		"frame rate" 30
+	sound "ionic afterburner"
 	"lifetime" 12
 	"velocity scale" 1.
 	"random velocity" 1.
