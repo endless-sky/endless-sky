@@ -339,8 +339,8 @@ double Point::DistanceSquared(const Point &point) const
 
 #ifdef __SSE3__
 // Private constructor, using a vector.
-inline Point::Point(const __m128d &v)
-	: v(v)
+inline Point::Point(const __m128d &o)
+	: v(o)
 {
 }
 #endif
