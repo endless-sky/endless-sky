@@ -57,95 +57,105 @@ namespace {
 		return table.GetPoint();
 	}
 	
-    Point DrawWithColor(Point lpoint, Point rpoint, const vector<string> &llabels, const vector<string> &lvalues, const vector<string> &rlabels, const vector<string> &rvalues)
-    {
-        // Get standard colors to draw with.
-        Color defLabelColor = *GameData::Colors().Get("medium");
-        Color defValueColor = *GameData::Colors().Get("bright");
-        Color negLabel;
-        Color posLabel;
-        Color negValue;
-        Color posValue;
-        
-        Table ltable;
-        ltable.AddColumn(10, Table::LEFT);
-        ltable.AddColumn(WIDTH - 10, Table::RIGHT);
-        ltable.DrawAt(lpoint);
-        Table rtable;
-        rtable.AddColumn(10, Table::LEFT);
-        rtable.AddColumn(WIDTH - 10, Table::RIGHT);
-        rtable.DrawAt(rpoint);
-        
-        for(unsigned i = 0; (i < llabels.size() && i < lvalues.size()) || (rlabels.size() && i < rvalues.size()); ++i)
-        {
-            Color llabelColor=defLabelColor;
-            Color lvalueColor=defValueColor;
-            Color rlabelColor=defLabelColor;
-            Color rvalueColor=defValueColor;
-            
-            
-            //Compare here  (cbb someone else can work on this...)
-
-            //End
-            
-            //Draw gaps, ect.
-            if (i >= llabels.size() && i >= lvalues.size()) {//add lines onto right
-                if (rlabels[i].empty())
-                {
-                    rtable.DrawGap(10);
-                }
-                else
-                {
-                    rtable.Draw(rlabels[i], rvalues[i].empty() ? rvalueColor : rlabelColor);
-                    rtable.Draw(rvalues[i], rvalueColor);
-                }
-                continue;
-            }
-            else if (i >= rlabels.size() && i >= rvalues.size()) {//add lines onto left
-                if (llabels[i].empty())
-                {
-                    ltable.DrawGap(10);
-                }
-                else
-                {
-                    ltable.Draw(llabels[i], lvalues[i].empty() ? lvalueColor : llabelColor);
-                    ltable.Draw(lvalues[i], lvalueColor);
-                }
-                continue;
-            }
-            
-            if(llabels[i].empty() && rlabels[i].empty())
-            {
-                ltable.DrawGap(10);
-                rtable.DrawGap(10);
-                continue;
-            }
-            else if(llabels[i].empty())
-            {
-                ltable.DrawGap(10);
-                rtable.Draw(rlabels[i], rvalues[i].empty() ? rvalueColor : rlabelColor);
-                rtable.Draw(rvalues[i], rvalueColor);
-                continue;
-            }
-            else if (rlabels[i].empty())
-            {
-                rtable.DrawGap(10);
-                ltable.Draw(llabels[i], lvalues[i].empty() ? lvalueColor : llabelColor);
-                ltable.Draw(lvalues[i], lvalueColor);
-                continue;
-            }
-                
-            ltable.Draw(llabels[i], lvalues[i].empty() ? lvalueColor : llabelColor);
-            ltable.Draw(lvalues[i], lvalueColor);
-            rtable.Draw(rlabels[i], rvalues[i].empty() ? rvalueColor : rlabelColor);
-            rtable.Draw(rvalues[i], rvalueColor);
-            
-        }
-        
-        
-        return ltable.GetPoint();
-    }
-    
+	
+	
+	Point DrawWithColor(Point lpoint, Point rpoint, const vector<string> &llabels, const vector<string> &lvalues, const vector<string> &rlabels, const vector<string> &rvalues)
+	{
+		// Get standard colors to draw with.
+		Color defLabelColor = *GameData::Colors().Get("medium");
+		Color defValueColor = *GameData::Colors().Get("bright");
+		
+		//Colors for comparing need to be added
+		Color negLabel;
+		Color posLabel;
+		Color negValue;
+		Color posValue;
+		
+		Table ltable;
+		ltable.AddColumn(10, Table::LEFT);
+		ltable.AddColumn(WIDTH - 10, Table::RIGHT);
+		ltable.DrawAt(lpoint);
+		
+		Table rtable;
+		rtable.AddColumn(10, Table::LEFT);
+		rtable.AddColumn(WIDTH - 10, Table::RIGHT);
+		rtable.DrawAt(rpoint);
+		
+		
+		for(unsigned i = 0; (i < llabels.size() && i < lvalues.size()) || (rlabels.size() && i < rvalues.size()); ++i)
+		{
+			Color llabelColor = defLabelColor;
+			Color lvalueColor = defValueColor;
+			Color rlabelColor = defLabelColor;
+			Color rvalueColor = defValueColor;
+			
+			
+			//Compare here  (cbb someone else can work on this...)
+			//Change colors as needed
+			//End
+			
+			//Draw gaps, etc. if length of vec are not equal
+			if (i >= llabels.size() && i >= lvalues.size()) {//add lines onto right
+				if (rlabels[i].empty())
+				{
+					rtable.DrawGap(10);
+				}
+				else
+				{
+					rtable.Draw(rlabels[i], rvalues[i].empty() ? rvalueColor : rlabelColor);
+					rtable.Draw(rvalues[i], rvalueColor);
+				}
+				continue;
+			}
+			else if (i >= rlabels.size() && i >= rvalues.size()) {//add lines onto left
+				if (llabels[i].empty())
+				{
+					ltable.DrawGap(10);
+				}
+				else
+				{
+					ltable.Draw(llabels[i], lvalues[i].empty() ? lvalueColor : llabelColor);
+					ltable.Draw(lvalues[i], lvalueColor);
+				}
+				continue;
+			}
+			
+			
+			//Draw gap for when it's empty
+			if(llabels[i].empty() && rlabels[i].empty())
+			{
+				ltable.DrawGap(10);
+				rtable.DrawGap(10);
+				continue;
+			}
+			else if(llabels[i].empty())
+			{
+				ltable.DrawGap(10);
+				rtable.Draw(rlabels[i], rvalues[i].empty() ? rvalueColor : rlabelColor);
+				rtable.Draw(rvalues[i], rvalueColor);
+				continue;
+			}
+			else if (rlabels[i].empty())
+			{
+				rtable.DrawGap(10);
+				ltable.Draw(llabels[i], lvalues[i].empty() ? lvalueColor : llabelColor);
+				ltable.Draw(lvalues[i], lvalueColor);
+				continue;
+			}
+			
+			
+			//Standard draw
+			ltable.Draw(llabels[i], lvalues[i].empty() ? lvalueColor : llabelColor);
+			ltable.Draw(lvalues[i], lvalueColor);
+			rtable.Draw(rlabels[i], rvalues[i].empty() ? rvalueColor : rlabelColor);
+			rtable.Draw(rvalues[i], rvalueColor);
+			
+		}
+		
+		
+		return ltable.GetPoint();
+	}
+	
 	static const set<string> ATTRIBUTES_TO_SCALE = {
 		"afterburner energy",
 		"afterburner fuel",
@@ -174,16 +184,22 @@ OutfitInfoDisplay::OutfitInfoDisplay()
 {
 }
 
+
+
 OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit)
 {
 	Update(outfit);
 }
 
+
+
 OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const Outfit &stcOutfit)
 {
-    UpdateBothAtt(stcOutfit,outfit);
-    
+	//Assume that this is only used for the comparing panels in map
+	UpdateBothAtt(stcOutfit,outfit);
 }
+
+
 
 // Call this every time the ship changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit)
@@ -251,16 +267,17 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 void OutfitInfoDisplay::DrawAttributes(const Point &topLeft, bool comparative) const
 {
-    if(comparative)
-    {
-        Point size(PanelWidth(), AttributesHeight());
-        Point sec = topLeft + Point(-size.X()-0.5,0);
-        DrawWithColor(sec, topLeft, stcAttributeLabels, stcAttributeValues, attributeLabels, attributeValues);
-    }
-    else
-    {
-        Draw(topLeft, attributeLabels, attributeValues);
-    }
+	if(comparative)
+	{
+		Point size(PanelWidth(), AttributesHeight());
+		Point sec = topLeft + Point(-size.X()-0.5,0);
+		DrawWithColor(sec, topLeft, stcAttributeLabels, stcAttributeValues, attributeLabels, attributeValues);
+	}
+	else
+	{
+		//standard
+		Draw(topLeft, attributeLabels, attributeValues);
+	}
 }
 
 
@@ -312,200 +329,184 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 
 void OutfitInfoDisplay::UpdateBothAtt(const Outfit &lftOft, const Outfit &rgtOft)
 {
-    UpdateAttributes(rgtOft);
-    stcAttributeLabels.clear();
-    stcAttributeValues.clear();
-    int tempAttributesHeight = 20;
-    
-    map<string, map<string, int>> listing;
-    for(const auto &it : lftOft.Attributes())
-    {
-        if(it.first == "cost" || it.first == "outfit space"
-           || it.first == "weapon capacity" || it.first == "engine capacity"
-           || it.first == "gun ports" || it.first == "turret mounts")
-            continue;
-        
-        string value;
-        double scale = 1.;
-        if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
-            scale = 60. * 60.;
-        else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
-            scale = 60.;
-        
-        stcAttributeLabels.push_back(it.first + ':');
-        stcAttributeValues.push_back(Format::Number(it.second * scale));
-        tempAttributesHeight += 20;
-    }
-    
-    if(!lftOft.IsWeapon())
-        return;
-    
-    stcAttributeLabels.push_back(string());
-    stcAttributeValues.push_back(string());
-    tempAttributesHeight += 10;
-    
-    if(lftOft.Ammo())
-    {
-        stcAttributeLabels.push_back("ammo:");
-        stcAttributeValues.push_back(lftOft.Ammo()->Name());
-        tempAttributesHeight += 20;
-    }
-    
-    stcAttributeLabels.push_back("range:");
-    stcAttributeValues.push_back(Format::Number(lftOft.Range()));
-    tempAttributesHeight += 20;
-    
-    if(lftOft.ShieldDamage() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("shield damage / second:");
-        stcAttributeValues.push_back(Format::Number(60. * lftOft.ShieldDamage() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    if(lftOft.HullDamage() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("hull damage / second:");
-        stcAttributeValues.push_back(Format::Number(60. * lftOft.HullDamage() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    if(lftOft.HeatDamage() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("heat damage / second:");
-        stcAttributeValues.push_back(Format::Number(60. * lftOft.HeatDamage() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    if(lftOft.IonDamage() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("ion damage / second:");
-        stcAttributeValues.push_back(Format::Number(6000. * lftOft.IonDamage() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    if(lftOft.FiringEnergy() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("firing energy / second:");
-        stcAttributeValues.push_back(Format::Number(60. * lftOft.FiringEnergy() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    if(lftOft.FiringHeat() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("firing heat / second:");
-        stcAttributeValues.push_back(Format::Number(60. * lftOft.FiringHeat() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    if(lftOft.FiringFuel() && lftOft.Reload())
-    {
-        stcAttributeLabels.push_back("firing fuel / second:");
-        stcAttributeValues.push_back(Format::Number(60. * lftOft.FiringFuel() / lftOft.Reload()));
-        tempAttributesHeight += 20;
-    }
-    
-    bool isContinuous = (lftOft.Reload() <= 1);
-    stcAttributeLabels.push_back("shots / second:");
-    if(isContinuous)
-        stcAttributeValues.push_back("continuous");
-    else
-        stcAttributeValues.push_back(Format::Number(60. / lftOft.Reload()));
-    tempAttributesHeight += 20;
-    
-    int homing = lftOft.Homing();
-    if(homing)
-    {
-        static const string skill[] = {
-            "no",
-            "poor",
-            "fair",
-            "good",
-            "excellent"
-        };
-        stcAttributeLabels.push_back("homing:");
-        stcAttributeValues.push_back(skill[max(0, min(4, homing))]);
-        tempAttributesHeight += 20;
-    }
-    
-    stcAttributeLabels.push_back(string());
-    stcAttributeValues.push_back(string());
-    tempAttributesHeight += 10;
-    
-    static const string names[] = {
-        "shield damage / shot: ",
-        "hull damage / shot: ",
-        "heat damage / shot: ",
-        "ion damage / shot: ",
-        "firing energy / shot:",
-        "firing heat / shot:",
-        "firing fuel / shot:",
-        "inaccuracy:",
-        "blast radius:",
-        "missile strength:",
-        "anti-missile:",
-    };
-    double values[] = {
-        lftOft.ShieldDamage(),
-        lftOft.HullDamage(),
-        lftOft.HeatDamage(),
-        lftOft.IonDamage() * 100.,
-        lftOft.FiringEnergy(),
-        lftOft.FiringHeat(),
-        lftOft.FiringFuel(),
-        lftOft.Inaccuracy(),
-        lftOft.BlastRadius(),
-        static_cast<double>(lftOft.MissileStrength()),
-        static_cast<double>(lftOft.AntiMissile())
-    };
-    static const int NAMES = sizeof(names) / sizeof(names[0]);
-    for(int i = (isContinuous ? 7 : 0); i < NAMES; ++i)
-        if(values[i])
-        {
-            stcAttributeLabels.push_back(names[i]);
-            stcAttributeValues.push_back(Format::Number(values[i]));
-            tempAttributesHeight += 20;
-        }
-    
-    if(tempAttributesHeight>attributesHeight)
-        while (tempAttributesHeight>attributesHeight) {
-            
-            attributeLabels.push_back(string());
-            attributeValues.push_back(string());
-            attributesHeight+=10;
-        }
-    
-    if(tempAttributesHeight<attributesHeight)
-    {
-        while (tempAttributesHeight<attributesHeight) {
-            
-            stcAttributeLabels.push_back(string());
-            stcAttributeValues.push_back(string());
-            tempAttributesHeight+=10;
-        }
-    }
-    
-    
-//    int index = 0;
-//    for(const auto &it : stcAttributeLabels)
-//    {
-//
-//        if(std::find(attributeLabels.begin(), attributeLabels.end(), (it + ':')) != attributeLabels.end())
-//        {//label on left is inside right
-//            while(attributeLabels[index]!=(it + ':'))//add blank lines until left matches right
-//            {
-//                stcAttributeLabels.push_back(string());
-//                stcAttributeValues.push_back(string());
-//            }
-//        }
-//        else //left is not inside right
-//        {
-//            attributeLabels.insert(attributeLabels.begin()+index, string());
-//            attributeValues.insert(attributeValues.begin()+index, string());//adds blank line in right
-//        }
-//        
-//        index++;
-//    }
-    
+	//Update normally
+	UpdateAttributes(rgtOft);
+	
+	
+	stcAttributeLabels.clear();
+	stcAttributeValues.clear();
+	
+	//temp to ensure height is the maximum
+	int tempAttributesHeight = 20;
+	
+	map<string, map<string, int>> listing;
+	for(const auto &it : lftOft.Attributes())
+	{
+		if(it.first == "cost" || it.first == "outfit space"
+		   || it.first == "weapon capacity" || it.first == "engine capacity"
+		   || it.first == "gun ports" || it.first == "turret mounts")
+			continue;
+		
+		string value;
+		double scale = 1.;
+		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
+			scale = 60. * 60.;
+		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
+			scale = 60.;
+		
+		stcAttributeLabels.push_back(it.first + ':');
+		stcAttributeValues.push_back(Format::Number(it.second * scale));
+		tempAttributesHeight += 20;
+	}
+	
+	if(!lftOft.IsWeapon())
+		return;
+	
+	stcAttributeLabels.push_back(string());
+	stcAttributeValues.push_back(string());
+	tempAttributesHeight += 10;
+	
+	if(lftOft.Ammo())
+	{
+		stcAttributeLabels.push_back("ammo:");
+		stcAttributeValues.push_back(lftOft.Ammo()->Name());
+		tempAttributesHeight += 20;
+	}
+	
+	stcAttributeLabels.push_back("range:");
+	stcAttributeValues.push_back(Format::Number(lftOft.Range()));
+	tempAttributesHeight += 20;
+	
+	if(lftOft.ShieldDamage() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("shield damage / second:");
+		stcAttributeValues.push_back(Format::Number(60. * lftOft.ShieldDamage() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	if(lftOft.HullDamage() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("hull damage / second:");
+		stcAttributeValues.push_back(Format::Number(60. * lftOft.HullDamage() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	if(lftOft.HeatDamage() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("heat damage / second:");
+		stcAttributeValues.push_back(Format::Number(60. * lftOft.HeatDamage() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	if(lftOft.IonDamage() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("ion damage / second:");
+		stcAttributeValues.push_back(Format::Number(6000. * lftOft.IonDamage() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	if(lftOft.FiringEnergy() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("firing energy / second:");
+		stcAttributeValues.push_back(Format::Number(60. * lftOft.FiringEnergy() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	if(lftOft.FiringHeat() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("firing heat / second:");
+		stcAttributeValues.push_back(Format::Number(60. * lftOft.FiringHeat() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	if(lftOft.FiringFuel() && lftOft.Reload())
+	{
+		stcAttributeLabels.push_back("firing fuel / second:");
+		stcAttributeValues.push_back(Format::Number(60. * lftOft.FiringFuel() / lftOft.Reload()));
+		tempAttributesHeight += 20;
+	}
+	
+	bool isContinuous = (lftOft.Reload() <= 1);
+	stcAttributeLabels.push_back("shots / second:");
+	if(isContinuous)
+		stcAttributeValues.push_back("continuous");
+	else
+		stcAttributeValues.push_back(Format::Number(60. / lftOft.Reload()));
+	
+	tempAttributesHeight += 20;
+	
+	int homing = lftOft.Homing();
+	if(homing)
+	{
+		static const string skill[] = {
+			"no",
+			"poor",
+			"fair",
+			"good",
+			"excellent"
+		};
+		stcAttributeLabels.push_back("homing:");
+		stcAttributeValues.push_back(skill[max(0, min(4, homing))]);
+		tempAttributesHeight += 20;
+	}
+	
+	stcAttributeLabels.push_back(string());
+	stcAttributeValues.push_back(string());
+	tempAttributesHeight += 10;
+	
+	static const string names[] = {
+		"shield damage / shot: ",
+		"hull damage / shot: ",
+		"heat damage / shot: ",
+		"ion damage / shot: ",
+		"firing energy / shot:",
+		"firing heat / shot:",
+		"firing fuel / shot:",
+		"inaccuracy:",
+		"blast radius:",
+		"missile strength:",
+		"anti-missile:",
+	};
+	double values[] = {
+		lftOft.ShieldDamage(),
+		lftOft.HullDamage(),
+		lftOft.HeatDamage(),
+		lftOft.IonDamage() * 100.,
+		lftOft.FiringEnergy(),
+		lftOft.FiringHeat(),
+		lftOft.FiringFuel(),
+		lftOft.Inaccuracy(),
+		lftOft.BlastRadius(),
+		static_cast<double>(lftOft.MissileStrength()),
+		static_cast<double>(lftOft.AntiMissile())
+	};
+	static const int NAMES = sizeof(names) / sizeof(names[0]);
+	for(int i = (isContinuous ? 7 : 0); i < NAMES; ++i)
+		if(values[i])
+		{
+			stcAttributeLabels.push_back(names[i]);
+			stcAttributeValues.push_back(Format::Number(values[i]));
+			tempAttributesHeight += 20;
+		}
+	
+	if(tempAttributesHeight>attributesHeight)
+		while (tempAttributesHeight>attributesHeight) {
+			
+			attributeLabels.push_back(string());
+			attributeValues.push_back(string());
+			attributesHeight+=10;
+		}
+	
+	if(tempAttributesHeight<attributesHeight)
+	{
+		while (tempAttributesHeight<attributesHeight) {
+			
+			stcAttributeLabels.push_back(string());
+			stcAttributeValues.push_back(string());
+			tempAttributesHeight+=10;
+		}
+	}
+	
 }
 
 void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)

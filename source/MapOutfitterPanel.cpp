@@ -114,36 +114,41 @@ void MapOutfitterPanel::Draw() const
 			10. + .5 * (bottom->Width() - left->Width()),
 			.5 * (left->Height() + bottom->Height()));
 		SpriteShader::Draw(bottom, bottomPos);
-        infoDisplay.DrawAttributes(topLeft + Point(0., 10.), false);
-    }
-    else if (selected)
-    {
-        OutfitInfoDisplay infoDisplay(*selected, *compare);
-        
-        Color back(.125, 1.);
-        Point size(infoDisplay.PanelWidth(), infoDisplay.AttributesHeight());
-        Point topLeft(Screen::Right() - size.X(), Screen::Top());
-        Point fillCenter(topLeft + 0.5 * size);
-        fillCenter = fillCenter + Point(-0.5 * size. X(), 0.);
-        FillShader::Fill(fillCenter, Point(2*size.X(), size.Y()), back);
-        
-        const Sprite *left = SpriteSet::Get("ui/left edge");
-        const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
-        const Sprite *bottom2 = SpriteSet::Get("ui/bottom edge");
+		infoDisplay.DrawAttributes(topLeft + Point(0., 10.), false);
+	}
+	else if (selected)
+	{
+		OutfitInfoDisplay infoDisplay(*selected, *compare);
+		
+		Color back(.125, 1.);
+		Point size(infoDisplay.PanelWidth(), infoDisplay.AttributesHeight());
+		Point topLeft(Screen::Right() - size.X(), Screen::Top());
+		
+		Point fillCenter(topLeft + 0.5 * size);
+		fillCenter = fillCenter + Point(-0.5 * size. X(), 0.);
+		
+		FillShader::Fill(fillCenter, Point(2 * size.X(), size.Y()), back);
+		
+		const Sprite *left = SpriteSet::Get("ui/left edge");
+		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+		const Sprite *bottom2 = SpriteSet::Get("ui/bottom edge");
 
-        Point leftPos = topLeft + Point(
-                                        -.5 * left->Width(),
-                                        size.Y() - .5 * left->Height());
-        SpriteShader::Draw(left, leftPos+Point(-size.X(),0));
-        // The top left corner of the bottom sprite should be 10 x units right
-        // of the bottom left corner of the left edge sprite.
-        Point bottomPos = leftPos + Point(
-                                          10. + .5 * (bottom->Width() - left->Width()),
-                                          .5 * (left->Height() + bottom->Height()));
-        SpriteShader::Draw(bottom, bottomPos);
-        SpriteShader::Draw(bottom2, bottomPos+Point(-size.X(),0));
-        infoDisplay.DrawAttributes(topLeft + Point(0., 10.), true);
-    }
+		Point leftPos = topLeft + Point(
+										-.5 * left->Width(),
+										size.Y() - .5 * left->Height());
+		SpriteShader::Draw(left, leftPos + Point(-size.X(), 0));
+		
+		// The top left corner of the bottom sprite should be 10 x units right
+		// of the bottom left corner of the left edge sprite.
+		Point bottomPos = leftPos + Point(
+										  10. + .5 * (bottom->Width() - left->Width()),
+										  .5 * (left->Height() + bottom->Height()));
+		SpriteShader::Draw(bottom, bottomPos);
+		
+		
+		SpriteShader::Draw(bottom2, bottomPos + Point(-size.X(), 0));
+		infoDisplay.DrawAttributes(topLeft + Point(0., 10.), true);
+	}
 }
 
 
@@ -168,15 +173,15 @@ bool MapOutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this));
 	}
-    else if(key == 'c')
-    {
-        if(!compare)
-            compare = selected;
-        else if (compare!=selected)
-            compare = selected;
-        else
-            compare = nullptr;
-    }
+	else if(key == 'c')
+	{
+		if(!compare)
+			compare = selected;
+		else if (compare!=selected)
+			compare = selected;
+		else
+			compare = nullptr;
+	}
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
 		// First, find the currently selected item, if any
@@ -236,36 +241,35 @@ bool MapOutfitterPanel::Click(int x, int y)
 	{
 		Point point(x, y);
 		
-        if(SDL_GetModState() & KMOD_SHIFT)
-        {
-            const Outfit *click = nullptr;
-            
-            for(const ClickZone<const Outfit *> & zone : zones)
-                if(zone.Contains(point))
-                {
-                    click = zone.Value();
-                }
-            
-            
-            if(compare && click)
-                compare = click;
-            else if (compare == click && click)
-                compare = nullptr;
-            else if (click)
-                selected = click;
-                
-                
-            return true;
-        }
-        else
-        {
-            selected = nullptr;
-            for(const ClickZone<const Outfit *> &zone : zones)
-                if(zone.Contains(point))
-                    selected = zone.Value();
-            
-            return true;
-        }
+		if(SDL_GetModState() & KMOD_SHIFT)
+		{
+			const Outfit *click = nullptr;
+			
+			for(const ClickZone<const Outfit *> & zone : zones)
+				if(zone.Contains(point))
+				{
+					click = zone.Value();
+				}
+			
+			if(compare && click)
+				compare = click;
+			else if(compare == click && click)
+				compare = nullptr;
+			else if(click)
+				selected = click;
+				
+			return true;
+		}
+		else
+		{
+			selected = nullptr;
+			
+			for(const ClickZone<const Outfit *> &zone : zones)
+				if(zone.Contains(point))
+					selected = zone.Value();
+			
+			return true;
+		}
 	}
 	else
 		return MapPanel::Click(x, y);

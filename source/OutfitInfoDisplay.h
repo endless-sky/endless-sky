@@ -30,7 +30,7 @@ class OutfitInfoDisplay {
 public:
 	OutfitInfoDisplay();
 	OutfitInfoDisplay(const Outfit &outfit);
-    OutfitInfoDisplay(const Outfit &outfit, const Outfit &stcOutfit);
+	OutfitInfoDisplay(const Outfit &outfit, const Outfit &stcOutfit);
 	
 	// Call this every time the ship changes.
 	void Update(const Outfit &outfit);
@@ -53,8 +53,7 @@ private:
 	void UpdateDescription(const Outfit &outfit);
 	void UpdateRequirements(const Outfit &outfit);
 	void UpdateAttributes(const Outfit &outfit);
-    void UpdateBothAtt(const Outfit &lftOft, const Outfit &rgtOft);
-
+	void UpdateBothAtt(const Outfit &lftOft, const Outfit &rgtOft);
 	
 	
 private:
@@ -65,15 +64,16 @@ private:
 	std::vector<std::string> requirementValues;
 	int requirementsHeight;
 	
-    std::vector<std::string> attributeLabels;
-    std::vector<std::string> attributeValues;
+	//The new description that 'sticks'
+	std::vector<std::string> stcAttributeLabels;
+	std::vector<std::string> stcAttributeValues;
+	
+	std::vector<std::string> attributeLabels;
+	std::vector<std::string> attributeValues;
 	int attributesHeight;
 	
 	int maximumHeight;
-    
-    //The new description that 'sticks'
-    std::vector<std::string> stcAttributeLabels;
-    std::vector<std::string> stcAttributeValues;
+	
 };
 
 

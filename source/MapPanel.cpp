@@ -277,7 +277,7 @@ void MapPanel::DrawTravelPlan() const
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
-        
+		
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;

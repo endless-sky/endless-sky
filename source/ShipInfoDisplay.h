@@ -32,8 +32,8 @@ class ShipInfoDisplay {
 public:
 	ShipInfoDisplay();
 	ShipInfoDisplay(const Ship &ship, const Government *systemGovernment = nullptr);
-    ShipInfoDisplay(const Ship &stcShip, const Ship &ship, const Government *systemGovernment = nullptr);
-
+	ShipInfoDisplay(const Ship &stcShip, const Ship &ship, const Government *systemGovernment = nullptr);
+	
 	
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const Government *systemGovernment = nullptr);
@@ -50,7 +50,7 @@ public:
 	// Draw each of the panels.
 	void DrawDescription(const Point &topLeft) const;
 	void DrawAttributes(const Point &topLeft) const;
-    void DrawBothAttributes(const Point &topLeft) const;
+	void DrawBothAttributes(const Point &topLeft) const;
 	void DrawOutfits(const Point &topLeft) const;
 	void DrawSale(const Point &topLeft) const;
 	
@@ -58,7 +58,7 @@ public:
 private:
 	void UpdateDescription(const Ship &ship, const Government *systemGovernment);
 	void UpdateAttributes(const Ship &ship);
-    void UpdateStcAttributes(const Ship &stcShip);
+	void UpdateStcAttributes(const Ship &stcShip);
 	void UpdateOutfits(const Ship &ship);
 	
 	
@@ -66,18 +66,17 @@ private:
 	WrappedText description;
 	int descriptionHeight;
 	
+	std::vector<std::string> stcAttributeLabels;
+	std::vector<std::string> stcAttributeValues;
+	
+	std::vector<std::string> stcTableLabels;
+	std::vector<std::string> stcEnergyTable;
+	std::vector<std::string> stcHeatTable;
+	
 	std::vector<std::string> attributeLabels;
 	std::vector<std::string> attributeValues;
 	int attributesHeight;
-    
-    std::vector<std::string> stcAttributeLabels;
-    std::vector<std::string> stcAttributeValues;
-    std::vector<std::string> stcTableLabels;
-    std::vector<std::string> stcEnergyTable;
-    std::vector<std::string> stcHeatTable;
-    
-    
-    
+	
 	std::vector<std::string> tableLabels;
 	std::vector<std::string> energyTable;
 	std::vector<std::string> heatTable;
