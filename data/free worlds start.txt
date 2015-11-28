@@ -1289,7 +1289,7 @@ mission "FW Pirates 3.2"
 	
 	on offer
 		conversation
-			`Tomek meets you outside the spaceport bar and pulls you roughly aside into an alley. "Do you still think that an all-out assault on Greenrock is our best option?" he asks. Standing so close to him, you can't help notice the whisky on his breath.`
+			`Tomek meets you outside the spaceport bar and pulls you roughly aside into an alley. "Do you still think that an all-out assault on Greenrock is our best option?" he asks. Standing so close to him, you can't help notice the whiskey on his breath.`
 			choice
 				`	"Yes, it's our best chance for eliminating the pirates."`
 					goto yes
@@ -1301,7 +1301,7 @@ mission "FW Pirates 3.2"
 			`	"Then head to <planet> immediately. There are some militia captains there who will join you in a battle fleet. It's now or never, before the Senate finishes their work of castrating our military."`
 			label others
 			`	Just then, JJ walks out of the bar and sees you talking with Tomek. "Tomek," he says, "what are you doing? Freya and I are waiting inside." He beckons you into the bar.`
-			`	Inside, Freya is sitting at a table looking at Tomek's battered and whisky-stained galactic map. As you all sit down, JJ explains, "We've been asked to deliver an ultimatum to each pirate world, starting with the ruling authorities on Thule, in the Men system. The Free Worlds maintains the right to attack any ships engaged in piracy. Any world that continues to support piracy, slavery, or illegal weapons manufacture will be a valid military target for us. But first, we are to offer each world the opportunity to become truly autonomous and free from outside intervention, if they will pledge to cease those activities."`
+			`	Inside, Freya is sitting at a table looking at Tomek's battered and whiskey-stained galactic map. As you all sit down, JJ explains, "We've been asked to deliver an ultimatum to each pirate world, starting with the ruling authorities on Thule, in the Men system. The Free Worlds maintains the right to attack any ships engaged in piracy. Any world that continues to support piracy, slavery, or illegal weapons manufacture will be a valid military target for us. But first, we are to offer each world the opportunity to become truly autonomous and free from outside intervention, if they will pledge to cease those activities."`
 			`	Freya says, "The thing is, just like any other world, most people on the 'pirate' planets are just ordinary farmers, or factory workers, or whatever. The only difference is, they want no off-world government telling them how to live. So that's what we're going to offer them."`
 			`	JJ says, "Captain <last>, the Senate wants you to travel to Thule and deliver their ultimatum. You will be given a single Falcon as an escort: not enough for a battle fleet, just enough to keep you safe. You are to avoid engaging any pirates you meet, if possible. Understood?"`
 			choice
