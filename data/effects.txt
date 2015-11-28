@@ -144,7 +144,7 @@ effect "tiny explosion"
 	sprite "effect/explosion/tiny"
 		"no repeat"
 		"frame rate" 15
-	sound "tiny_explosion"
+	sound "explosion tiny"
 	"lifetime" 20
 	"random angle" 360
 	"random velocity" .2
@@ -156,7 +156,7 @@ effect "small explosion"
 	sprite "effect/explosion/small"
 		"no repeat"
 		"frame rate" 15
-	sound "small_explosion"
+	sound "explosion small"
 	"lifetime" 24
 	"random angle" 360
 	"random velocity" .4
@@ -168,7 +168,7 @@ effect "medium explosion"
 	sprite "effect/explosion/medium"
 		"no repeat"
 		"frame rate" 15
-	sound "medium_explosion"
+	sound "explosion medium"
 	"lifetime" 28
 	"random angle" 360
 	"random velocity" .6
@@ -180,7 +180,7 @@ effect "big explosion"
 	sprite "effect/explosion/big"
 		"no repeat"
 		"frame rate" 15
-	sound "big_explosion"
+	sound "explosion large"
 	"lifetime" 32
 	"random angle" 360
 	"random velocity" .8
@@ -192,7 +192,7 @@ effect "huge explosion"
 	sprite "effect/explosion/huge"
 		"no repeat"
 		"frame rate" 15
-	sound "huge_explosion"
+	sound "explosion huge"
 	"lifetime" 36
 	"random angle" 360
 	"random velocity" 1
@@ -244,7 +244,7 @@ effect "nuke explosion"
 	sprite "effect/explosion/nuke"
 		"no repeat"
 		"frame rate" 30
-	sound "huge_explosion"
+	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
 	"random velocity" 1
