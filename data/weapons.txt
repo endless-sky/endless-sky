@@ -487,7 +487,7 @@ outfit "Flamethrower"
 		sprite "effect/explosion/small"
 			"frame rate" 60
 			"no repeat"
-		sound "plasma"
+		sound "flamethrower"
 		icon "icon/flamethrower"
 		"submunition" "Flamethrower Projectile"
 		"inaccuracy" 12
@@ -505,8 +505,8 @@ outfit "Flamethrower Projectile"
 			"frame rate" 17
 			"random start frame"
 		sound "plasma"
-		"hit effect" "medium explosion"
-		"die effect" "small explosion"
+		"hit effect" "flamethrower hit"
+		"die effect" "flamethrower die"
 		"inaccuracy" 20
 		"lifetime" 22
 		"shield damage" .8

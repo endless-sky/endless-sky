@@ -146,6 +146,30 @@ effect "proton impact"
 	"random angle" 2
 	"velocity scale" -.005
 
+effect "flamethrower die"
+	sprite "effect/explosion/small"
+		"no repeat"
+		"frame rate" 15
+		"random start frame"
+	"lifetime" 24
+	"random angle" 360
+	"random velocity" .4
+	"random spin" 2
+	"random frame rate" 5
+	"velocity scale" .4
+
+effect "flamethrower hit"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+		"random start frame"
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"random frame rate" 5
+	"velocity scale" .4
+
 effect "tiny explosion"
 	sprite "effect/explosion/tiny"
 		"no repeat"
