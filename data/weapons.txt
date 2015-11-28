@@ -332,7 +332,7 @@ outfit "Proton Gun"
 	"gun ports" -1
 	weapon
 		sprite "projectile/proton"
-		sound "particle"
+		sound "proton"
 		"hit effect" "proton impact" 3
 		"inaccuracy" 4
 		"submunition" "Proton Fragment" 3
@@ -435,7 +435,7 @@ outfit "Ion Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion bolt"
-		sound "particle"
+		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1
 		"velocity" 16
