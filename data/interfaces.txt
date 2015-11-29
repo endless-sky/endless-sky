@@ -1007,12 +1007,12 @@ interface "hail panel"
 		align left
 	
 	if "can dominate"
-	label "_Demand Tribute" -20 108
+	label "Demand _Tribute" -20 108
 		size 14
 		color bright
 		align center
 	if "cannot dominate"
-	label "_Demand Tribute" -20 108
+	label "Demand _Tribute" -20 108
 		size 14
 		color dim
 		align center
