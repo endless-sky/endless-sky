@@ -159,7 +159,11 @@ void Files::Init(const char * const *argv)
 	
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	SDL_GetPrefPath("endless-sky", "plugins");
+	{
+		char *str = SDL_GetPrefPath("endless-sky", "plugins");
+		if(str != nullptr)
+			SDL_free(str);
+	}
 	
 	// Check that all the directories exist.
 	if(!Exists(data) || !Exists(images) || !Exists(sounds))
