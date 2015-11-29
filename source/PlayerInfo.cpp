@@ -876,10 +876,16 @@ void PlayerInfo::TakeOff(UI *ui)
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
 				cargo.TransferAll(&ship->Cargo());
 			}
+			else
+			{
+				// Your flagship takes first priority for passengers but last for cargo.
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
+				for(const auto &it : cargo.PassengerList())
+					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
+			}
 		}
 	// Load up your flagship last, so that it will have space free for any
 	// plunder that you happen to acquire.
-	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->RequiredCrew());
 	cargo.TransferAll(&flagship->Cargo());
 
 	if(cargo.Passengers())
