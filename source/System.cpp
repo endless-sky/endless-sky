@@ -160,19 +160,37 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			root = &objects[root->parent];
 		
 		static const string STAR = "You cannot land on a star!";
-		static const string HOT = "This planet is too hot to land on.";
-		static const string COLD = "This planet is too cold to land on.";
-		static const string UNINHABITED = "This planet is uninhabited.";
+		static const string HOTPLANET = "This planet is too hot to land on.";
+		static const string COLDPLANET = "This planet is too cold to land on.";
+		static const string UNINHABITEDPLANET = "This planet is uninhabited.";
+		static const string HOTMOON = "This moon is too hot to land on.";
+		static const string COLDMOON = "This moon is too cold to land on.";
+		static const string UNINHABITEDMOON = "This moon is uninhabited.";
+		static const string STATION = "This station cannot be docked with.";
 		
 		double fraction = root->distance / habitable;
 		if(object.IsStar())
 			object.message = &STAR;
-		else if(fraction < .5)
-			object.message = &HOT;
-		else if(fraction >= 2.)
-			object.message = &COLD;
+		else if (object.IsStation())
+			object.message = &STATION;
+		else if (object.IsMoon())
+		{
+			if(fraction < .5)
+				object.message = &HOTMOON;
+			else if(fraction >= 2.)
+				object.message = &COLDMOON;
+			else
+				object.message = &UNINHABITEDMOON;
+		}
 		else
-			object.message = &UNINHABITED;
+		{
+			if(fraction < .5)
+				object.message = &HOTPLANET;
+			else if(fraction >= 2.)
+				object.message = &COLDPLANET;
+			else
+				object.message = &UNINHABITEDPLANET;
+		}
 	}
 }
 
@@ -408,6 +426,11 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		{
 			object.animation.Load(child);
 			object.isStar = !child.Token(1).compare(0, 5, "star/");
+			if (!object.isStar)
+			{
+				object.isStation = !child.Token(1).compare(0, 14, "planet/station");
+				object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
+			}
 		}
 		else if(child.Token(0) == "distance" && child.Size() >= 2)
 			object.distance = child.Value(1);
