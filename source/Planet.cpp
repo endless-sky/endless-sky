@@ -148,6 +148,7 @@ const set<string> &Planet::Attributes() const
 }
 
 
+
 // Get planet's noun descriptor from attributes
 string Planet::Noun() const
 {
@@ -161,6 +162,7 @@ string Planet::Noun() const
 	
 	return noun;
 }
+
 
 
 // Check whether there is a spaceport (which implies there is also trading,
