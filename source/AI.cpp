@@ -1522,6 +1522,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		else if(message.empty() && target && landKeyInterval < 60)
 		{
 			bool found = false;
+			int count = 0;
 			const StellarObject *next = nullptr;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
@@ -1544,8 +1545,21 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 					}
 			}
 			ship.SetTargetPlanet(next);
+			
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.GetPlanet())
+					++count;
+			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
 				message = "The authorities on this planet refuse to clear you to land here.";
+			else if(count > 1)
+			{
+				message = "Switching landing targets, now landing on ";
+				if(ship.GetTargetPlanet()->Name().empty())
+					message += "???.";
+				else
+					message += ship.GetTargetPlanet()->Name() + ".";
+			}
 		}
 		else if(message.empty())
 		{
