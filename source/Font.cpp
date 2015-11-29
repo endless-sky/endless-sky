@@ -118,6 +118,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		static_cast<float>(round(point.X() - 1.)),
 		static_cast<float>(round(point.Y()))};
 	int previous = 0;
+	char prevc = ' ';
 	
 	for(char c : str)
 	{
@@ -130,12 +131,13 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		
 		glUniform1i(shader.Uniform("glyph"), glyph);
 		
-		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
+		if(prevc != '_') textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
 		glUniform2fv(shader.Uniform("position"), 1, textPos);
 		
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 		
 		previous = glyph;
+		prevc = c;
 	}
 }
 

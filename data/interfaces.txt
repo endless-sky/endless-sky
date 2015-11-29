@@ -340,7 +340,7 @@ interface "planet"
 	
 	if "has shipyard"
 	sprite "ui/planet dialog button" 280 90
-	label "Shipyard" 340 82
+	label "_Shipyard" 340 82
 		size 18
 		color bright
 		align right
@@ -349,7 +349,7 @@ interface "planet"
 	
 	if "has outfitter"
 	sprite "ui/planet dialog button" 280 150
-	label "Outfitter" 340 142
+	label "_Outfitter" 340 142
 		size 18
 		color bright
 		align right
@@ -358,7 +358,7 @@ interface "planet"
 	
 	if "is inhabited"
 	sprite "ui/planet dialog button" -400 150
-	label "Job Board" -460 142
+	label "_Job Board" -460 142
 		size 18
 		color bright
 		align left
@@ -366,7 +366,7 @@ interface "planet"
 		size 140 40
 	
 	sprite "ui/planet dialog button" -400 90
-	label "Trading" -460 82
+	label "_Trading" -460 82
 		size 18
 		color bright
 		align left
@@ -374,7 +374,7 @@ interface "planet"
 		size 140 40
 	
 	sprite "ui/planet dialog button" 280 210
-	label "Hire Crew" 340 202
+	label "_Hire Crew" 340 202
 		size 18
 		color bright
 		align right
@@ -383,7 +383,7 @@ interface "planet"
 	
 	if "has bank"
 	sprite "ui/planet dialog button" -400 210
-	label "Bank" -460 202
+	label "_Bank" -460 202
 		size 18
 		color bright
 		align left
@@ -392,7 +392,7 @@ interface "planet"
 	
 	if "has spaceport"
 	sprite "ui/planet dialog button" -400 270
-	label "Space Port" -460 262
+	label "Space _Port" -460 262
 		size 18
 		color bright
 		align left
@@ -401,7 +401,7 @@ interface "planet"
 	
 	if "has ship"
 	sprite "ui/planet dialog button" 280 270
-	label "Depart" 340 262
+	label "_Depart" 340 262
 		size 18
 		color bright
 		align right
