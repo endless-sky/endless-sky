@@ -357,6 +357,12 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
+void ShopPanel::FailSell() const
+{
+}
+
+
+
 bool ShopPanel::CanSellMultiple() const
 {
 	return true;
@@ -381,9 +387,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 's')
 	{
-		int modifier = CanSellMultiple() ? Modifier() : 1;
-		for(int i = 0; i < modifier && CanSell(); ++i)
-			Sell();
+		if(!CanSell())
+			FailSell();
+		else
+		{
+			int modifier = CanSellMultiple() ? Modifier() : 1;
+			for(int i = 0; i < modifier && CanSell(); ++i)
+				Sell();
+		}
 	}
 	else if(key == SDLK_LEFT)
 	{

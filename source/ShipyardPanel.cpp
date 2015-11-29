@@ -147,7 +147,7 @@ void ShipyardPanel::Buy()
 
 
 
-void ShipyardPanel::FailBuy()
+void ShipyardPanel::FailBuy() const
 {
 	if(!selectedShip)
 		return;
