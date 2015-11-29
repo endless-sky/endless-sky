@@ -152,12 +152,12 @@ const set<string> &Planet::Attributes() const
 string Planet::Noun() const
 {
 	string noun = "planet";
-//	for(const string &attribute : attributes) {
-//		if (attribute == "moon")
-//			noun = "moon";
-//		else if (attribute == "station")
-//			noun = "station";
-//	}
+	for(const string &attribute : attributes) {
+		if (attribute == "moon")
+			noun = "moon";
+		else if (attribute == "station")
+			noun = "station";
+	}
 	
 	return noun;
 }
