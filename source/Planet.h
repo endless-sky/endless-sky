@@ -51,7 +51,7 @@ public:
 	const std::set<std::string> &Attributes() const;
 	
 	// Get planet's noun descriptor from attributes
-	std::string Noun() const;
+	const std::string &Noun() const;
 	
 	// Check whether there is a spaceport (which implies there is also trading,
 	// jobs, banking, and hiring).

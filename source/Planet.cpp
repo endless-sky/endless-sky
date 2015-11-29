@@ -25,6 +25,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	static const string &WORMHOLE = "wormhole";
+	static const string &PLANET = "planet";
+}
+
 
 
 // Load a planet's description from a file.
@@ -150,17 +155,16 @@ const set<string> &Planet::Attributes() const
 
 
 // Get planet's noun descriptor from attributes
-string Planet::Noun() const
+const string &Planet::Noun() const
 {
-	string noun = "planet";
-	for(const string &attribute : attributes) {
-		if (attribute == "moon")
-			noun = "moon";
-		else if (attribute == "station")
-			noun = "station";
-	}
+	if(IsWormhole())
+		return WORMHOLE;
 	
-	return noun;
+	for(const string &attribute : attributes)
+		if(attribute == "moon" || attribute == "station")
+			return attribute;
+	
+	return PLANET;
 }
 
 
