@@ -38,16 +38,10 @@ using namespace std;
 namespace {
 	class QueueEntry {
 	public:
-		// Get the coalesced position.
-		Point Position() const;
-		Point Velocity() const;
-		
-		void Add(const Point &position, const Point &velocity);
+		void Add(Point position);
 		void Add(const QueueEntry &other);
 		
-	private:
 		Point sum;
-		double speed = 0.;
 		double weight = 0.;
 	};
 	
@@ -55,7 +49,7 @@ namespace {
 	public:
 		Source(const Sound *sound, unsigned source);
 		
-		void Move(const Point &position, const Point &velocity) const;
+		void Move(const QueueEntry &entry) const;
 		unsigned ID() const;
 		const Sound *GetSound() const;
 		
@@ -104,8 +98,9 @@ void Audio::Init(const vector<string> &sources)
 	if(!context || !alcMakeContextCurrent(context))
 		return;
 	
-	alListener3f(AL_POSITION, 0., 0., 10.);
-	alListenerf(AL_GAIN, volume);
+	alListener3f(AL_POSITION, 0., 0., 0.);
+	alListenerf(AL_GAIN, volume * .5);
+	alDopplerFactor(0.);
 	
 	mainThreadID = this_thread::get_id();
 	
@@ -144,7 +139,7 @@ void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
 	if(context)
-		alListenerf(AL_GAIN, volume);
+		alListenerf(AL_GAIN, volume * .5);
 }
 
 
@@ -160,7 +155,7 @@ void Audio::Mute()
 void Audio::Unmute()
 {
 	if(context)
-		alListenerf(AL_GAIN, volume);
+		alListenerf(AL_GAIN, volume * .5);
 }
 
 
@@ -178,10 +173,9 @@ const Sound *Audio::Get(const string &name)
 // Set the listener's position, and also update any sounds that have been
 // added but deferred because they were added from a thread other than the
 // main one (the one that called Init()).
-void Audio::Update(const Point &listenerPosition, const Point &velocity)
+void Audio::Update(const Point &listenerPosition)
 {
 	listener = listenerPosition;
-	listenerVelocity = velocity;
 	
 	for(const auto &it : deferred)
 		queue[it.first].Add(it.second);
@@ -193,24 +187,24 @@ void Audio::Update(const Point &listenerPosition, const Point &velocity)
 // Play the given sound, at full volume.
 void Audio::Play(const Sound *sound)
 {
-	Play(sound, listener, listenerVelocity);
+	Play(sound, listener);
 }
 
 
 
 // Play the given sound, as if it is at the given distance from the
 // "listener". This will make it softer and change the left / right balance.
-void Audio::Play(const Sound *sound, const Point &position, const Point &velocity)
+void Audio::Play(const Sound *sound, const Point &position)
 {
 	if(!sound || !sound->Buffer() || !volume)
 		return;
 	
 	if(this_thread::get_id() == mainThreadID)
-		queue[sound].Add(position - listener, velocity - listenerVelocity);
+		queue[sound].Add(position - listener);
 	else
 	{
 		unique_lock<mutex> lock(audioMutex);
-		deferred[sound].Add(position - listener, velocity - listenerVelocity);
+		deferred[sound].Add(position - listener);
 	}
 }
 
@@ -234,7 +228,7 @@ void Audio::Step()
 			auto it = queue.find(source.GetSound());
 			if(it != queue.end())
 			{
-				source.Move(it->second.Position(), it->second.Velocity());
+				source.Move(it->second);
 				newSources.push_back(source);
 				queue.erase(it);
 			}
@@ -301,7 +295,7 @@ void Audio::Step()
 			recycledSources.pop_back();
 		}
 		sources.emplace_back(it.first, source);
-		sources.back().Move(it.second.Position(), it.second.Velocity());
+		sources.back().Move(it.second);
 		alSourcePlay(source);
 	}
 	queue.clear();
@@ -360,31 +354,11 @@ void Audio::Quit()
 
 
 namespace {
-	// Get the coalesced position.
-	Point QueueEntry::Position() const
+	void QueueEntry::Add(Point position)
 	{
-		return weight ? (sum / weight) : sum;
-	}
-	
-	
-	
-	Point QueueEntry::Velocity() const
-	{
-		Point pos = Position();
-		double length = pos.Length();
-		if(!length)
-			return pos;
-		
-		return pos * (speed / length);
-	}
-	
-	
-	
-	void QueueEntry::Add(const Point &position, const Point &velocity)
-	{
-		double d = 1. / max(1., position.Dot(position));
+		position *= .002;
+		double d = 1. / (1. + position.Dot(position));
 		sum += d * position;
-		speed += d * sqrt(d) * position.Dot(velocity);
 		weight += d;
 	}
 	
@@ -393,7 +367,6 @@ namespace {
 	void QueueEntry::Add(const QueueEntry &other)
 	{
 		sum += other.sum;
-		speed += other.speed;
 		weight += other.weight;
 	}
 	
@@ -410,10 +383,13 @@ namespace {
 	
 	
 	
-	void Source::Move(const Point &position, const Point &velocity) const
+	void Source::Move(const QueueEntry &entry) const
 	{
-		alSource3f(source, AL_POSITION, position.X() * .01, position.Y() * .01, 0.f);
-		alSource3f(source, AL_VELOCITY, velocity.X() * .01, velocity.Y() * .01, 0.f);
+		Point angle = entry.sum / entry.weight;
+		// The source should be along the vector (angle.X(), angle.Y(), 1).
+		// The length of the vector should be sqrt(1 / weight).
+		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
+		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, scale);
 	}
 	
 	

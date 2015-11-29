@@ -140,7 +140,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, std::list
 	
 	projectiles.emplace_back(ship, start, aim, outfit);
 	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start, ship.Velocity());
+		Audio::Play(outfit->WeaponSound(), start);
 	double force = outfit->FiringForce();
 	if(force)
 		ship.ApplyForce(aim.Unit() * -force);
