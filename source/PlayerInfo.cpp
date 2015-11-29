@@ -770,7 +770,6 @@ void PlayerInfo::Land(UI *ui)
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
-	freshlyLoaded = false;
 	
 	// Search for any missions that have failed but for which we are still
 	// holding on to some cargo.
@@ -790,7 +789,9 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Check if the player is doing anything illegal.
 	const Government *gov = GetSystem()->GetGovernment();
-	string message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
+	string message;
+	if(!freshlyLoaded && !GameData::GetPolitics().HasDominated(GetPlanet()))
+		message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
 	if(!message.empty())
 	{
 		if(message == "atrocity")
@@ -814,6 +815,7 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
+	freshlyLoaded = false;
 	flagship.reset();
 }
 
