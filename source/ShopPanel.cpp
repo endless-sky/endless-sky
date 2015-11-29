@@ -189,18 +189,27 @@ void ShopPanel::DrawButtons() const
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
 	string buy = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "Install" : "Buy";
+	bigFont.Draw("_",
+				 buyCenter - .5 * Point(bigFont.Width(buy), bigFont.Height()),
+				 CanBuy() ? bright : dim);
 	bigFont.Draw(buy,
 		buyCenter - .5 * Point(bigFont.Width(buy), bigFont.Height()),
 		CanBuy() ? bright : dim);
 	
 	Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
+	bigFont.Draw("_",
+				 sellCenter - .5 * Point(bigFont.Width("Sell"), bigFont.Height()),
+				 CanSell() ? bright : dim);
 	bigFont.Draw("Sell",
 		sellCenter - .5 * Point(bigFont.Width("Sell"), bigFont.Height()),
 		CanSell() ? bright : dim);
 	
 	Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	FillShader::Fill(leaveCenter, Point(70, 30), Color(.1, 1.));
+	bigFont.Draw("_",
+				 leaveCenter - .5 * Point(bigFont.Width("Leave"), bigFont.Height()),
+				 bright);
 	bigFont.Draw("Leave",
 		leaveCenter - .5 * Point(bigFont.Width("Leave"), bigFont.Height()),
 		bright);
