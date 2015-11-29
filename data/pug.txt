@@ -30,6 +30,7 @@ outfit "Pug Zapper"
 		sprite "projectile/lightning"
 			"frame rate" 60
 			"random start frame"
+		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
 		"velocity" 320
@@ -54,6 +55,7 @@ outfit "Pug Zapper Turret"
 		sprite "projectile/lightning"
 			"frame rate" 60
 			"random start frame"
+		sound "zapper"
 		"hit effect" "skylance impact"
 		"inaccuracy" .3
 		"velocity" 320
@@ -77,6 +79,7 @@ outfit "Pug Seeker"
 		sprite "projectile/seeker"
 			"frame rate" 20
 			"random start frame"
+		sound "seeker"
 		"hit effect" "seeker impact"
 		"die effect" "seeker impact"
 		"inaccuracy" 2
@@ -126,7 +129,7 @@ outfit "Pug Akfar Thruster"
 	"thrusting heat" 3.1
 	"flare sprite" "effect/ion flare/medium"
 		"frame rate" 8
-	"flare sound" "ion_drive"
+	"flare sound" "ion medium"
 	description "This is a small thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Akfar Steering"
@@ -153,7 +156,7 @@ outfit "Pug Cormet Thruster"
 	"thrusting heat" 4.6
 	"flare sprite" "effect/ion flare/big"
 		"frame rate" 9
-	"flare sound" "ion_drive"
+	"flare sound" "ion large"
 	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Cormet Steering"
@@ -180,7 +183,7 @@ outfit "Pug Lohmar Thruster"
 	"thrusting heat" 6.9
 	"flare sprite" "effect/ion flare/huge"
 		"frame rate" 9
-	"flare sound" "ion_drive"
+	"flare sound" "ion huge"
 	description "This is a large thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 outfit "Pug Lohmar Steering"

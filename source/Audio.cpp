@@ -104,7 +104,7 @@ void Audio::Init(const vector<string> &sources)
 	if(!context || !alcMakeContextCurrent(context))
 		return;
 	
-	alListener3f(AL_POSITION, 0., 0., 20.);
+	alListener3f(AL_POSITION, 0., 0., 10.);
 	alListenerf(AL_GAIN, volume);
 	
 	mainThreadID = this_thread::get_id();
