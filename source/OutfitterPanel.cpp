@@ -302,6 +302,8 @@ void OutfitterPanel::Buy()
 				--available[selectedOutfit];
 			}
 			ship->AddOutfit(selectedOutfit, 1);
+			if(selectedOutfit->Get("required crew"))
+				ship->AddCrew(selectedOutfit->Get("required crew"));
 		}
 	}
 }
@@ -468,6 +470,8 @@ void OutfitterPanel::Sell()
 		for(Ship *ship : shipsToOutfit)
 		{
 			ship->AddOutfit(selectedOutfit, -1);
+			if(selectedOutfit->Get("required crew"))
+				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			player.Accounts().AddCredits(selectedOutfit->Cost());
 			++available[selectedOutfit];
 			
