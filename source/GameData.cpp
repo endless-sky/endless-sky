@@ -173,6 +173,7 @@ void GameData::BeginLoad(const char * const *argv)
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
+	reserves.Reset();
 	
 	if(printShips)
 		PrintShipTable();

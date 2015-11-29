@@ -84,8 +84,6 @@ void PlayerInfo::New()
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
 			AddEvent(it.second, it.second.GetDate());
-	
-	GameData::GetReserves().Reset();
 }
 
 
@@ -208,8 +206,6 @@ void PlayerInfo::Load(const string &path)
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
 	}
-	
-	GameData::GetReserves().Reset();
 }
 
 
@@ -298,8 +294,6 @@ void PlayerInfo::ApplyChanges()
 		const Planet *planet = GameData::Planets().Get(it->first.substr(prefix.length()));
 		GameData::GetPolitics().DominatePlanet(planet);
 	}
-	
-	GameData::GetReserves().Reset();
 }
 
 

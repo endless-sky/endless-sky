@@ -34,11 +34,8 @@ void Reserves::Reset()
 	amounts.clear();
 	
 	for(const auto &it : GameData::Systems())
-		amounts[&it.second] = {{"", 100}};
-	
-	for(const auto &it : GameData::Systems())
 		for(const auto &gd : GameData::Commodities())
-			amounts[&it.second][gd.name] = 100;//it.second.Reserves(gd.name);
+			amounts[&it.second][gd.name] = it.second.InitialReserves(gd.name);
 }
 
 
@@ -47,7 +44,7 @@ void Reserves::Reset()
 int64_t Reserves::Amounts(const System *sys, const std::string &commodity) const
 {
 	auto it = amounts.find(sys);
-	return (it == amounts.end() ? 20 : (it->second).find(commodity)->second);
+	return (it == amounts.end() ? -1 : (it->second).find(commodity)->second);
 }
 
 

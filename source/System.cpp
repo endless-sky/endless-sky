@@ -21,6 +21,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Planet.h"
 
+#include <cmath>
+
 using namespace std;
 
 namespace {
@@ -427,7 +429,7 @@ int System::Consumption(const string &commodity) const
 int64_t System::InitialReserves(const string &commodity) const
 {
 	auto it = initialReserves.find(commodity);
-	return (it == initialReserves.end()) ? 0 : it->second;
+	return (it == initialReserves.end()) ? 0 : round(it->second/10.);
 }
 
 
