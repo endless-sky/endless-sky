@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Trade.h"
 
 #include <cmath>
 
@@ -410,8 +411,14 @@ int System::Trade(const string &commodity) const
 // Get the price of the given commodity in this system.
 int System::Production(const string &commodity) const
 {
-	auto it = production.find(commodity);
-	return (it == production.end()) ? 0 : it->second;
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return round(0.001*(com.high - price)*habitable);
+	
+	return 0;
 }
 
 
@@ -419,8 +426,14 @@ int System::Production(const string &commodity) const
 // Get the price of the given commodity in this system.
 int System::Consumption(const string &commodity) const
 {
-	auto it = consumption.find(commodity);
-	return (it == consumption.end()) ? 0 : it->second;
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return round(0.001*(price - com.low)*habitable);
+	
+	return 0;
 }
 
 
@@ -428,8 +441,14 @@ int System::Consumption(const string &commodity) const
 // Get the price of the given commodity in this system.
 int64_t System::InitialReserves(const string &commodity) const
 {
-	auto it = initialReserves.find(commodity);
-	return (it == initialReserves.end()) ? 0 : round(it->second/10.);
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return round((com.high - price)*habitable);
+	
+	return 0;
 }
 
 

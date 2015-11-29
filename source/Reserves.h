@@ -38,6 +38,8 @@ public:
 	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
 	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
 	
+	void EvolveDaily();
+	
 	
 private:
 	// attitude[target][other] stores how much an action toward the given target

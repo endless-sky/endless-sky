@@ -448,6 +448,8 @@ void PlayerInfo::IncrementDate()
 	string message = accounts.Step(assets, Salaries());
 	if(!message.empty())
 		Messages::Add(message);
+	
+	GameData::GetReserves().EvolveDaily();
 }
 
 

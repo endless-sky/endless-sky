@@ -52,7 +52,8 @@ int64_t Reserves::Amounts(const System *sys, const std::string &commodity) const
 void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment)
 {
 	auto it = amounts.find(sys);
-	if (it != amounts.end()) (it->second).find(commodity)->second += adjustment;
+	if (it != amounts.end()) (it->second).find(commodity)->second =
+		max((it->second).find(commodity)->second + adjustment, (int64_t) 0);
 }
 
 
@@ -61,4 +62,15 @@ void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64
 {
 	auto it = amounts.find(sys);
 	if (it != amounts.end()) (it->second).find(commodity)->second = adjustment;
+}
+
+
+
+// Reset any temporary provocation (typically because a day has passed).
+void Reserves::EvolveDaily()
+{
+	for(const auto &it : GameData::Systems())
+		for(const auto &gd : GameData::Commodities())
+			AdjustAmounts(&it.second, gd.name,
+						  it.second.Production(gd.name) - it.second.Consumption(gd.name));
 }
