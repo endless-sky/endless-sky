@@ -623,7 +623,7 @@ void Engine::EnterSystem()
 	const Date &today = player.GetDate();
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited() ?
-			"." : ". No inhabited planets detected."));
+			"." : ". No inhabited objects detected."));
 	
 	for(const StellarObject &object : system->Objects())
 		if(object.GetPlanet())

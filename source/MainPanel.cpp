@@ -94,7 +94,7 @@ void MainPanel::Step()
 			<< "you can hold the key to get them ready to jump, "
 			<< "then release it to have them all jump simultaneously.\n"
 			<< "\tWhen you reach a new system, you can press \""
-			<< Command::LAND.KeyName() << "\" to land on any inhabited planets that are there.\n"
+			<< Command::LAND.KeyName() << "\" to land on any inhabited objects that are there.\n"
 			<< "\tAlso, don't worry about crashing into asteroids or other ships; "
 			<< "your ship will fly safely below or above them.";
 		GetUI()->Push(new Dialog(out.str()));
@@ -106,7 +106,7 @@ void MainPanel::Step()
 		Preferences::Set("help: dead");
 		ostringstream out;
 		out << "Uh-oh! You just died. The universe can a dangerous place for new captains!\n"
-			<< "\tFortunately, your game is automatically saved every time you leave a planet. "
+			<< "\tFortunately, your game is automatically saved every time you leave a planet / moon / station. "
 			<< "To load your most recent saved game, press \"" + Command::MENU.KeyName()
 			<< "\" to return to the main menu, then click on \"Load / Save\" and \"Enter Ship.\"";
 		GetUI()->Push(new Dialog(out.str()));
@@ -314,7 +314,7 @@ void MainPanel::ShowHailPanel()
 		if(planet && planet->IsInhabited())
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
 		else
-			Messages::Add("Unable to send hail: planet is not inhabited.");
+			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.");
 	}
 	else
 		Messages::Add("Unable to send hail: no target selected.");

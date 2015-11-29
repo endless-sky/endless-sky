@@ -328,7 +328,7 @@ void OutfitterPanel::FailBuy()
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
-			"but this planet does not sell additional copies of it."));
+			"but this " + planet->Noun() + " does not sell additional copies of it."));
 		return;
 	}
 	

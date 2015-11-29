@@ -108,6 +108,22 @@ bool StellarObject::IsStar() const
 
 
 
+// Check if this is a station.
+bool StellarObject::IsStation() const
+{
+	return isStation;
+}
+
+
+
+// Check if this is a moon.
+bool StellarObject::IsMoon() const
+{
+	return isMoon;
+}
+
+
+
 // Get this object's parent index (in the System's vector of objects).
 int StellarObject::Parent() const
 {
