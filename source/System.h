@@ -104,6 +104,17 @@ public:
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
 	
+	// Get the price of the given commodity in this system.
+	int Production(const std::string &commodity) const;
+	
+	// Get the price of the given commodity in this system.
+	int Consumption(const std::string &commodity) const;
+	
+	// Get the price of the given commodity in this system.
+	int Reserves(const std::string &commodity) const;
+	
+	void AdjustReserves(const std::string &commodity, int64_t adjustment) const;
+	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
 	
@@ -132,6 +143,12 @@ private:
 	
 	// Commodity prices.
 	std::map<std::string, int> trade;
+	
+	std::map<std::string, int> production;
+	
+	std::map<std::string, int> consumption;
+	
+	std::map<std::string, int64_t> reserves;
 };
 
 

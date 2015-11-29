@@ -26,6 +26,7 @@ class DataNode;
 class Date;
 class Effect;
 class Fleet;
+class Finances;
 class Galaxy;
 class GameEvent;
 class Government;
@@ -87,6 +88,7 @@ public:
 	
 	static const Government *PlayerGovernment();
 	static Politics &GetPolitics();
+	static Finances &GetFinances();
 	static const StartConditions &Start();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
