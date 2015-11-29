@@ -110,8 +110,10 @@ public:
 	// Get the price of the given commodity in this system.
 	int Consumption(const std::string &commodity) const;
 	
+	int64_t Reserves(const std::string &commodity) const;
+	
 	// Get the price of the given commodity in this system.
-	int Reserves(const std::string &commodity) const;
+	int64_t InitialReserves(const std::string &commodity) const;
 	
 	void AdjustReserves(const std::string &commodity, int64_t adjustment) const;
 	
@@ -148,7 +150,7 @@ private:
 	
 	std::map<std::string, int> consumption;
 	
-	std::map<std::string, int64_t> reserves;
+	std::map<std::string, int64_t> initialReserves;
 };
 
 

@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Random.h"
+#include "Reserves.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
@@ -83,6 +84,8 @@ void PlayerInfo::New()
 	for(const auto &it : GameData::Events())
 		if(it.second.GetDate())
 			AddEvent(it.second, it.second.GetDate());
+	
+	GameData::GetReserves().Reset();
 }
 
 
@@ -205,6 +208,8 @@ void PlayerInfo::Load(const string &path)
 		if(ship->GetSystem() == system)
 			ship->SetPlanet(planet);
 	}
+	
+	GameData::GetReserves().Reset();
 }
 
 
@@ -293,6 +298,8 @@ void PlayerInfo::ApplyChanges()
 		const Planet *planet = GameData::Planets().Get(it->first.substr(prefix.length()));
 		GameData::GetPolitics().DominatePlanet(planet);
 	}
+	
+	GameData::GetReserves().Reset();
 }
 
 

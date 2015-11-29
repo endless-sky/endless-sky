@@ -1,4 +1,4 @@
-/* Finances.h
+/* Reserves.h
  Copyright (c) 2014 by Michael Zahniser
  
  Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -28,18 +28,15 @@ class System;
 // in the game, and in particular the relationship of each government to the
 // player. The player has a reputation with each government, which is affected
 // by what they do for a government or its allies or enemies.
-class Finances {
+class Reserves {
 public:
 	// Reset to the initial political state defined in the game data.
 	void Reset();
 	
 	// Get or set your reputation with the given government.
-	double Reserves(const System *sys) const;
-	void AdjustReserves(const System *sys, const std::string &commodity, int64_t adjustment);
-	void SetReserves(const System *sys, const std::string &commodity, int64_t adjustment);
-	
-	// Reset any temporary effects (typically because a day has passed).
-	void ResetDaily();
+	int64_t Amounts(const System *sys, const std::string &commodity) const;
+	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
+	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
 	
 	
 private:
@@ -48,7 +45,7 @@ private:
 	// The relationships need not be perfectly symmetrical. For example, just
 	// because Republic ships will help a merchant under attack does not mean
 	// that merchants will come to the aid of Republic ships.
-	std::map<const System *, int64_t> reserves;
+	std::map<const System *, std::map<std::string, int64_t>> amounts;
 };
 
 

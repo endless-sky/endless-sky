@@ -23,7 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
-#include "Finances.h"
+#include "Reserves.h"
 #include "Fleet.h"
 #include "FontSet.h"
 #include "Galaxy.h"
@@ -89,7 +89,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
-	Finances finances;
+	Reserves reserves;
 	StartConditions startConditions;
 	
 	Trade trade;
@@ -447,9 +447,9 @@ Politics &GameData::GetPolitics()
 
 
 
-Set<Finances> &GameData::GetFinances()
+Reserves &GameData::GetReserves()
 {
-	return finances;
+	return reserves;
 }
 
 

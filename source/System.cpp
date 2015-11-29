@@ -15,7 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
-#include "Finances.h"
+#include "Reserves.h"
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
@@ -128,7 +128,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(child.Token(0) == "consumption" && child.Size() >= 3)
 			consumption[child.Token(1)] = child.Value(2);
 		else if(child.Token(0) == "reserves" && child.Size() >= 3)
-			reserves[child.Token(1)] = child.Value(2);
+			initialReserves[child.Token(1)] = child.Value(2);
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -424,10 +424,18 @@ int System::Consumption(const string &commodity) const
 
 
 // Get the price of the given commodity in this system.
-int System::Reserves(const string &commodity) const
+int64_t System::InitialReserves(const string &commodity) const
 {
-	auto it = reserves.find(commodity);
-	return (it == reserves.end()) ? 0 : it->second;
+	auto it = initialReserves.find(commodity);
+	return (it == initialReserves.end()) ? 0 : it->second;
+}
+
+
+
+// Get the price of the given commodity in this system.
+int64_t System::Reserves(const string &commodity) const
+{
+	return GameData::GetReserves().Amounts(this, commodity);
 }
 
 
@@ -435,7 +443,7 @@ int System::Reserves(const string &commodity) const
 // Get the price of the given commodity in this system.
 void System::AdjustReserves(const std::string &commodity, int64_t adjustment) const
 {
-	GameData::GetFinances().AdjustReserves(this, commodity, value);
+	GameData::GetReserves().AdjustAmounts(this, commodity, adjustment);
 }
 
 

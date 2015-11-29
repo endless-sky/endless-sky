@@ -45,7 +45,7 @@ private:
 	
 private:
 	PlayerInfo &player;
-	System *system;
+	const System &system;
 	
 	int selectedRow;
 	

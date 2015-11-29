@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Reserves.h"
 #include "System.h"
 #include "UI.h"
 
@@ -60,9 +61,8 @@ namespace {
 
 
 TradingPanel::TradingPanel(PlayerInfo &player)
-	: player(player), selectedRow(0)
+	: player(player), system(*player.GetSystem()), selectedRow(0)
 {
-	system = new System(*player.GetSystem());
 	SetTrapAllEvents(false);
 }
 
@@ -70,7 +70,6 @@ TradingPanel::TradingPanel(PlayerInfo &player)
 
 TradingPanel::~TradingPanel()
 {
-	delete system;
 	if(profit)
 	{
 		string message = "You sold " + to_string(tonsSold)
@@ -154,7 +153,7 @@ void TradingPanel::Draw() const
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
-		int price = system->Trade(commodity.name);
+		int price = system.Trade(commodity.name);
 		
 		const Color &color = (i++ == selectedRow ? selected : unselected);
 		font.Draw(commodity.name, Point(NAME_X, y), color);
@@ -191,7 +190,7 @@ void TradingPanel::Draw() const
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
-		font.Draw(to_string(system->Reserves(commodity.name)), Point(RESERVES_X, y), selected);
+		font.Draw(to_string(GameData::GetReserves().Amounts(&system, commodity.name)), Point(RESERVES_X, y), selected);
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");
@@ -223,7 +222,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		for(const auto &it : GameData::Commodities())
 		{
 			int amount = player.Cargo().Get(it.name);
-			int price = system->Trade(it.name);
+			int price = system.Trade(it.name);
 			if(!price)
 				continue;
 			
@@ -287,7 +286,7 @@ void TradingPanel::Buy(int64_t amount)
 {
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
-	int price = system->Trade(type);
+	int price = system.Trade(type);
 	
 	if(!price)
 		return;
@@ -297,17 +296,7 @@ void TradingPanel::Buy(int64_t amount)
 		amount = min(amount, player.Accounts().Credits() / price);
 		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
 		player.AdjustBasis(type, amount * price);
-		system->AdjustReserves(type, -amount);
-		
-//		Set<System> systems = GameData::Systems();
-//		System *currentSystem = systems.Get(system->Name());
-//		currentSystem->AdjustReserves(type, -amount);
-//		player.SetSystem(system);
-		
-		for(const auto &it : GameData::Systems())
-		{
-			it.second.AdjustReserves(type, -amount);
-		}
+		GameData::GetReserves().AdjustAmounts(&system, type, -amount);
 	}
 	else
 	{
