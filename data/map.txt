@@ -13964,7 +13964,7 @@ planet "Kraken Station"
 	security 0.3
 	tribute 500
 		threshold 3500
-		fleet "Small Republic" 17
+		fleet "Small Syndicate" 7
 
 planet Lagrange
 	attributes quarg tourism
@@ -14664,7 +14664,7 @@ planet Reunion
 	security 0.3
 	tribute 2900
 		threshold 5000
-		fleet "Large Republic" 11
+		fleet "Large Syndicate" 17
 
 planet Rust
 	attributes rim farming factory
