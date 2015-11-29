@@ -40,7 +40,7 @@ const Command Command::BACK(1uL << 4, "Reverse");
 const Command Command::PRIMARY(1uL << 5, "Fire primary weapon");
 const Command Command::SECONDARY(1uL << 6, "Fire secondary weapon");
 const Command Command::SELECT(1uL << 7, "Select secondary weapon");
-const Command Command::LAND(1uL << 8, "Land on planet / moon / station");
+const Command Command::LAND(1uL << 8, "Land on planet / station");
 const Command Command::BOARD(1uL << 9, "Board selected ship");
 const Command Command::HAIL(1uL << 10, "Talk to selected ship");
 const Command Command::SCAN(1uL << 11, "Scan selected ship");
