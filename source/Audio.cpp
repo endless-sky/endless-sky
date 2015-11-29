@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "Point.h"
+#include "Random.h"
 #include "Sound.h"
 
 #ifndef __APPLE__
@@ -359,7 +360,7 @@ namespace {
 	Source::Source(const Sound *sound, unsigned source)
 		: sound(sound), source(source)
 	{
-		alSourcef(source, AL_PITCH, 1);
+		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .1);
 		alSourcef(source, AL_GAIN, 1);
 		alSourcei(source, AL_LOOPING, sound->IsLooping());
 		alSourcei(source, AL_BUFFER, sound->Buffer());
