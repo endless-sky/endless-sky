@@ -426,7 +426,7 @@ int System::Production(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(PRODUCTION_MULTIPLIER*(com.high - price)/(com.high + com.low)*habitable);
+			return round(PRODUCTION_MULTIPLIER*(price - com.low)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -440,7 +440,7 @@ int System::Consumption(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(CONSUMPTION_MULTIPLIER*(price - com.low)/(com.high + com.low)*habitable);
+			return round(CONSUMPTION_MULTIPLIER*(com.high - price)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -487,10 +487,12 @@ int System::Trading(const string &commodity) const
 		for(const auto &it : GameData::Systems())
 			if (dm.HasRoute(&it.second) && &it.second != this)
 			{
+				// Trade falls off as (number of jumps)^2.
 				double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
-				tradeAmount += TRADE_MULTIPLIER/
-					(1.0 + log(static_cast<double>(min(reserves, (&it.second)->Reserves(commodity)))))/dist2*
-					(price - (&it.second)->Trade(commodity))/comNormalization*(habitable + (&it.second)->habitable);
+				double shortageFactor = (1.0 + log(static_cast<double>(min(reserves, (&it.second)->Reserves(commodity)))));
+				double population = (habitable + (&it.second)->habitable);
+				tradeAmount += TRADE_MULTIPLIER/shortageFactor/dist2*
+					(price - (&it.second)->Trade(commodity))/comNormalization*population;
 			}
 	
 		// Jumpable systems next.
