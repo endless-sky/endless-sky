@@ -292,6 +292,7 @@ void GameData::Revert()
 		it.second.GetShip()->Restore();
 	
 	politics.Reset();
+	reserves.Reset();
 }
 
 

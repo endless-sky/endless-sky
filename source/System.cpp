@@ -28,6 +28,10 @@ using namespace std;
 
 namespace {
 	static const double NEIGHBOR_DISTANCE = 100.;
+	static const double RESERVE_MULTIPLIER = 500.;
+	static const double PRODUCTION_MULTIPLIER = 0.5;
+	static const double CONSUMPTION_MULTIPLIER = 0.5;
+	static const double TRADE_MULTIPLIER = 50.;
 }
 
 
@@ -399,14 +403,16 @@ int System::Trade(const string &commodity) const
 	auto it = trade.find(commodity);
 	int price = (it == trade.end()) ? 0 : it->second;
 	
+	// This calculates the prices using the present commodity reserves,
+	// and is usually done unless the player is starting a new game or
+	// loading a game prior to the implementation of the dynamic economy.
 	int reserves = Reserves(commodity) - RecentActivity(commodity);
-	
 	if (reserves != 0)
 	{
 		for(const Trade::Commodity &com : GameData::Commodities())
 			if (com.name == commodity)
 				return max((int64_t) com.low, min((int64_t) com.high,
-					(int64_t) round((com.high - 0.01*reserves*(com.high + com.low)/habitable))));
+					(int64_t) round((com.high - reserves*(com.high + com.low)/habitable/RESERVE_MULTIPLIER))));
 	}
 	
 	return price;
@@ -421,7 +427,7 @@ int System::Production(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(0.1*(com.high - price)/(com.high + com.low)*habitable);
+			return round(PRODUCTION_MULTIPLIER*(com.high - price)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -435,7 +441,7 @@ int System::Consumption(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(0.1*(price - com.low)/(com.high + com.low)*habitable);
+			return round(CONSUMPTION_MULTIPLIER*(price - com.low)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -443,6 +449,9 @@ int System::Consumption(const string &commodity) const
 
 
 // Get the rate of interstellar trading of a commodity between this system and neighboring systems.
+// Currently, we are only considering systems that are reachable via hyperdrive; however there
+// should eventually be some logic for races with access to jump drives to be able to trade with
+// neighbors they can jump to.
 int System::Trading(const string &commodity) const
 {
 	int price = Trade(commodity);
@@ -457,8 +466,10 @@ int System::Trading(const string &commodity) const
 			break;
 		}
 	
+	//
 	for(const System *link : links)
-		tradeAmount += 10./log((double) reserves)*(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
+		tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
+			(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
 	
 	return round(tradeAmount);
 }
@@ -472,7 +483,7 @@ int64_t System::InitialReserves(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(100.*(com.high - price)/(com.high + com.low)*habitable);
+			return round(RESERVE_MULTIPLIER*(com.high - price)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -487,7 +498,9 @@ int64_t System::Reserves(const string &commodity) const
 
 
 
-// Get the current reserves of a commodity in this system.
+// Get the amount of recently transacted commodity by the player. This is used
+// to give prices some sluggishness in response to large transactions in order
+// to prevent abuse.
 int64_t System::RecentActivity(const string &commodity) const
 {
 	return GameData::GetReserves().RecentActivity(this, commodity);

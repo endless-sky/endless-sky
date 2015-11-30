@@ -49,12 +49,12 @@ namespace {
 	
 	static const int NAME_X = -295;
 	static const int PRICE_X = -190;
-	static const int LEVEL_X = -145;
-	static const int BUY_X = -60;
-	static const int SELL_X = -20;
-	static const int HOLD_X = 30;
-	static const int RESERVES_X = 90;
-	static const int FLUX_X = 140;
+	static const int LEVEL_X = -150;
+	static const int BUY_X = -65;
+	static const int SELL_X = -25;
+	static const int HOLD_X = 25;
+	static const int RESERVES_X = 85;
+	static const int FLUX_X = 135;
 	
 	static const int FIRST_Y = 80;
 }
@@ -126,10 +126,10 @@ void TradingPanel::Draw() const
 	
 	string mod = "x " + to_string(Modifier());
 	font.Draw(mod, Point(BUY_X, y), unselected);
-	font.Draw(mod, Point(SELL_X, y), unselected);
+	//font.Draw(mod, Point(SELL_X, y), unselected);
 	
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
-	font.Draw("Available", Point(RESERVES_X, y), selected);
+	font.Draw("Available (flux)", Point(RESERVES_X, y), selected);
 	
 	y += 5;
 	int lastY = y + 20 * GameData::Commodities().size() + 25;
@@ -192,11 +192,11 @@ void TradingPanel::Draw() const
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
-		font.Draw(to_string(GameData::GetReserves().Amounts(&system, commodity.name)), Point(RESERVES_X, y), selected);
+		font.Draw(Format::Number(GameData::GetReserves().Amounts(&system, commodity.name)), Point(RESERVES_X, y), selected);
 		int flux = system.Trading(commodity.name) + system.Production(commodity.name) -
 			system.Consumption(commodity.name);
 		std::string plus = ((flux > 0) ? "+" : "");
-		font.Draw("(" + plus + to_string(flux) + ")", Point(FLUX_X, y), selected);
+		font.Draw("(" + plus + Format::Number(flux) + ")", Point(FLUX_X, y), selected);
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");

@@ -1,5 +1,5 @@
 /* Reserves.h
- Copyright (c) 2014 by Michael Zahniser
+ Copyright (c) 2015 by Michael Zahniser and James Guillochon
  
  Endless Sky is free software: you can redistribute it and/or modify it under the
  terms of the GNU General Public License as published by the Free Software
@@ -27,9 +27,14 @@
 
 using namespace std;
 
+namespace {
+	static const double RECENT_DECAY = 0.95;
+}
 
 
-// Reset to the initial political state defined in the game data.
+
+// Reset to the initial commodity reserve state, which is calculated from
+// the price of the commodity set in each system.
 void Reserves::Reset()
 {
 	amounts.clear();
@@ -45,7 +50,7 @@ void Reserves::Reset()
 
 
 
-// Get or set your reputation with the given government.
+// Get the amount of commodity reserved in a given system.
 int64_t Reserves::Amounts(const System *sys, const std::string &commodity) const
 {
 	auto it = amounts.find(sys);
@@ -54,7 +59,7 @@ int64_t Reserves::Amounts(const System *sys, const std::string &commodity) const
 
 
 
-// Get or set your reputation with the given government.
+// Get the amount of commodity that was recently transacted by the player in a given system.
 int64_t Reserves::RecentActivity(const System *sys, const std::string &commodity) const
 {
 	auto it = recentActivity.find(sys);
@@ -63,6 +68,7 @@ int64_t Reserves::RecentActivity(const System *sys, const std::string &commodity
 
 
 
+// Adjust the amount of commodity in a given system.
 void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment, bool recent)
 {
 	auto it = amounts.find(sys);
@@ -77,15 +83,20 @@ void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, in
 
 
 
+// Slowly decay the amount of commodity recently purchsed in a given system by
+// the paper. This does allow for a tiny fraction of profit by simply taking
+// off and landing at the same planet, but minuscule relative to normal trading gains.
 void Reserves::ReduceRecent(const System *sys, const std::string &commodity)
 {
 	auto it = recentActivity.find(sys);
 	if (it != amounts.end()) (it->second).find(commodity)->second =
-		floor(0.95*(it->second).find(commodity)->second);
+		floor(RECENT_DECAY*(it->second).find(commodity)->second);
 }
 
 
 
+// Set the amount of commodity in a given system, and the amount that was recently
+// transcated by the player.
 void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment, int64_t recent)
 {
 	auto it = amounts.find(sys);
@@ -96,7 +107,8 @@ void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64
 
 
 
-// Reset any temporary provocation (typically because a day has passed).
+// Evolve the amount of commodities available in each system through a combination
+// of production, consumption, and trade. This function is run once per day.
 void Reserves::EvolveDaily()
 {
 	for(const auto &it : GameData::Systems())

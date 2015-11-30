@@ -120,6 +120,7 @@ void PlayerInfo::Load(const string &path)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
+		// Load commodity reserve information here.
 		else if(child.Token(0) == "reserves of")
 		{
 			for(const DataNode &grand : child)

@@ -1,5 +1,5 @@
 /* Reserves.h
- Copyright (c) 2014 by Michael Zahniser
+ Copyright (c) 2015 by Michael Zahniser and James Guillochon
  
  Endless Sky is free software: you can redistribute it and/or modify it under the
  terms of the GNU General Public License as published by the Free Software
@@ -17,37 +17,35 @@
 #include <set>
 #include <string>
 
-class Planet;
-class PlayerInfo;
-class Ship;
 class System;
 
 
 
-// This class represents the current state of relationships between governments
-// in the game, and in particular the relationship of each government to the
-// player. The player has a reputation with each government, which is affected
-// by what they do for a government or its allies or enemies.
+// This class represents the current state of commodity holdings within each system.
+// Each system has a finite amount of each commodity, which is determined by the
+// system's commodity price at the start of the game. As commodities are traded
+// between worlds by the player, and as time elapses and goods are produced, consumed,
+// and traded between systems, the prices of the commodities slowly adjust to
+// a new equilibrium. In the future this system could be modified to account for other
+// factors, such as events that could suddenly reduce the amount of goods in a system.
 class Reserves {
 public:
 	// Reset to the initial political state defined in the game data.
 	void Reset();
 	
-	// Get or set your reputation with the given government.
+	// Get or set the amount of commodity in a given system.
 	int64_t Amounts(const System *sys, const std::string &commodity) const;
 	int64_t RecentActivity(const System *sys, const std::string &commodity) const;
 	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment, bool recent);
 	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment, int64_t recent);
-	void ReduceRecent(const System *sys, const std::string &commodity);
 	
+	// Functions that affect the amount of commodity in a system as time elapses.
+	void ReduceRecent(const System *sys, const std::string &commodity);
 	void EvolveDaily();
 	
 private:
-	// attitude[target][other] stores how much an action toward the given target
-	// government will affect your reputation with the given other government.
-	// The relationships need not be perfectly symmetrical. For example, just
-	// because Republic ships will help a merchant under attack does not mean
-	// that merchants will come to the aid of Republic ships.
+	// amounts stores the amount of each commodity in each system, whereas recentActivity
+	// stores the amount of each commodity recently transcated by the player in each system.
 	std::map<const System *, std::map<std::string, int64_t>> amounts;
 	std::map<const System *, std::map<std::string, int64_t>> recentActivity;
 };
