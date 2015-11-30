@@ -424,7 +424,7 @@ int System::Trade(const string &commodity) const
 // Get rate of production of a commodity in this system.
 int System::Production(const string &commodity) const
 {
-	// Production now uses initial price always.
+    // Production rate based upon equilibrium commodity price.
 	auto it = trade.find(commodity);
 	int price = (it == trade.end()) ? 0 : it->second;
 	
@@ -440,7 +440,9 @@ int System::Production(const string &commodity) const
 // Get the rate of consumption of a commodity in this system.
 int System::Consumption(const string &commodity) const
 {
-	int price = Trade(commodity);
+    // Consumption rate based upon equilibrium commodity price.
+    auto it = trade.find(commodity);
+    int price = (it == trade.end()) ? 0 : it->second;
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
