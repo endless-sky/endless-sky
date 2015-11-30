@@ -159,8 +159,6 @@ private:
 	
 	// Commodity prices.
 	std::map<std::string, int> trade;
-	
-	std::map<std::string, int64_t> initialReserves;
 };
 
 
