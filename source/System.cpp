@@ -466,12 +466,42 @@ int System::Trading(const string &commodity) const
 			break;
 		}
 	
-	// Conduct trade between neighboring inhabited hyperspace systems, if we are ourselves inhabited.
+	set<string> allAttributes;
+	for(const StellarObject &object : objects)
+		if(object.GetPlanet())
+		{
+			set<string> planetAttributes = object.GetPlanet()->Attributes();
+			allAttributes.insert(planetAttributes.begin(), planetAttributes.end());
+		}
+	
+	double jumpMultiplier = 0.01;
+	string govName = government->GetName();
+	if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
+		jumpMultiplier = 1.0;
+	
+	// Conduct trade between neighboring inhabited systems, if we are ourselves are inhabited.
 	if (IsInhabited())
+	{
+		// Hyperspace first
 		for(const System *link : links)
 			if (link->IsInhabited())
 				tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
 					(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
+	
+		// Jumpable systems next.
+		for(const System *neighbor : neighbors)
+			// Exclude the hyperspace systems as we've already counted them.
+			if (neighbor->IsInhabited() && find(links.begin(), links.end(), neighbor) == links.end())
+			{
+				double neighborJumpMultiplier = 0.01;
+				govName = neighbor->government->GetName();
+				if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
+					neighborJumpMultiplier = 1.0;
+				tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
+					(price - neighbor->Trade(commodity))/comNormalization*
+					(jumpMultiplier*habitable + neighborJumpMultiplier*neighbor->habitable);
+			}
+	}
 	
 	return round(tradeAmount);
 }
