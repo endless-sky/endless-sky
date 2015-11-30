@@ -48,13 +48,13 @@ namespace {
 	static const int MAX_X = 190;
 	
 	static const int NAME_X = -295;
-	static const int PRICE_X = -190;
-	static const int LEVEL_X = -150;
-	static const int BUY_X = -65;
-	static const int SELL_X = -25;
-	static const int HOLD_X = 25;
-	static const int RESERVES_X = 85;
-	static const int FLUX_X = 135;
+	static const int PRICE_X = -195;
+	static const int LEVEL_X = -155;
+	static const int BUY_X = -70;
+	static const int SELL_X = -30;
+	static const int HOLD_X = 20;
+	static const int RESERVES_X = 80;
+	static const int FLUX_X = 140;
 	
 	static const int FIRST_Y = 80;
 }
@@ -129,7 +129,8 @@ void TradingPanel::Draw() const
 	//font.Draw(mod, Point(SELL_X, y), unselected);
 	
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
-	font.Draw("Available (flux)", Point(RESERVES_X, y), selected);
+	font.Draw("Avail.", Point(RESERVES_X, y), selected);
+	font.Draw("(Flux)", Point(FLUX_X, y), selected);
 	
 	y += 5;
 	int lastY = y + 20 * GameData::Commodities().size() + 25;

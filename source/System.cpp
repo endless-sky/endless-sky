@@ -20,7 +20,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Messages.h"
 #include "Planet.h"
+#include "Random.h"
 #include "Trade.h"
 
 #include <cmath>
@@ -29,7 +31,7 @@ using namespace std;
 
 namespace {
 	static const double NEIGHBOR_DISTANCE = 100.;
-	static const double RESERVE_MULTIPLIER = 500.;
+	static const double RESERVE_MULTIPLIER = 2000.;
 	static const double PRODUCTION_MULTIPLIER = 0.5;
 	static const double CONSUMPTION_MULTIPLIER = 0.5;
 	static const double TRADE_MULTIPLIER = 5.;
@@ -422,7 +424,9 @@ int System::Trade(const string &commodity) const
 // Get rate of production of a commodity in this system.
 int System::Production(const string &commodity) const
 {
-	int price = Trade(commodity);
+	// Production now uses initial price always.
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
@@ -511,6 +515,23 @@ int System::Trading(const string &commodity) const
 	}
 	
 	return round(tradeAmount);
+}
+
+
+
+// Randomly destroy a large fraction of a system's commodity.
+int System::Disaster(const string &commodity) const
+{
+	if (IsInhabited() && Random::Real() < 0.0005)
+	{
+		int64_t reserves = Reserves(commodity);
+		double fraction = 0.2 + 0.7*Random::Real();
+		Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100.*fraction)) +
+			"% of its \"" + commodity + "\" was destroyed!");
+		return fraction * reserves;
+	}
+	
+	return 0;
 }
 
 
