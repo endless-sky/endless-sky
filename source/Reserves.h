@@ -35,11 +35,12 @@ public:
 	
 	// Get or set your reputation with the given government.
 	int64_t Amounts(const System *sys, const std::string &commodity) const;
-	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
-	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
+	int64_t RecentActivity(const System *sys, const std::string &commodity) const;
+	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment, bool recent);
+	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment, int64_t recent);
+	void ReduceRecent(const System *sys, const std::string &commodity);
 	
 	void EvolveDaily();
-	
 	
 private:
 	// attitude[target][other] stores how much an action toward the given target
@@ -48,6 +49,7 @@ private:
 	// because Republic ships will help a merchant under attack does not mean
 	// that merchants will come to the aid of Republic ships.
 	std::map<const System *, std::map<std::string, int64_t>> amounts;
+	std::map<const System *, std::map<std::string, int64_t>> recentActivity;
 };
 
 

@@ -22,6 +22,7 @@
 #include "ShipEvent.h"
 #include "System.h"
 
+#include <cmath>
 #include <algorithm>
 
 using namespace std;
@@ -32,10 +33,14 @@ using namespace std;
 void Reserves::Reset()
 {
 	amounts.clear();
+	recentActivity.clear();
 	
 	for(const auto &it : GameData::Systems())
 		for(const auto &gd : GameData::Commodities())
+		{
 			amounts[&it.second][gd.name] = it.second.InitialReserves(gd.name);
+			recentActivity[&it.second][gd.name] = 0;
+		}
 }
 
 
@@ -44,24 +49,49 @@ void Reserves::Reset()
 int64_t Reserves::Amounts(const System *sys, const std::string &commodity) const
 {
 	auto it = amounts.find(sys);
-	return (it == amounts.end() ? -1 : (it->second).find(commodity)->second);
+	return (it == amounts.end() ? 0 : (it->second).find(commodity)->second);
 }
 
 
 
-void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment)
+// Get or set your reputation with the given government.
+int64_t Reserves::RecentActivity(const System *sys, const std::string &commodity) const
+{
+	auto it = recentActivity.find(sys);
+	return (it == recentActivity.end() ? 0 : (it->second).find(commodity)->second);
+}
+
+
+
+void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment, bool recent)
 {
 	auto it = amounts.find(sys);
-	if (it != amounts.end()) (it->second).find(commodity)->second =
-		max((it->second).find(commodity)->second + adjustment, (int64_t) 0);
+	int64_t newVal = max((it->second).find(commodity)->second + adjustment, (int64_t) 0);
+	if (it != amounts.end()) (it->second).find(commodity)->second = newVal;
+	if (recent)
+	{
+		it = recentActivity.find(sys);
+		if (it != recentActivity.end()) (it->second).find(commodity)->second += adjustment;
+	}
 }
 
 
 
-void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment)
+void Reserves::ReduceRecent(const System *sys, const std::string &commodity)
+{
+	auto it = recentActivity.find(sys);
+	if (it != amounts.end()) (it->second).find(commodity)->second =
+		floor(0.95*(it->second).find(commodity)->second);
+}
+
+
+
+void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment, int64_t recent)
 {
 	auto it = amounts.find(sys);
 	if (it != amounts.end()) (it->second).find(commodity)->second = adjustment;
+	it = recentActivity.find(sys);
+	if (it != recentActivity.end()) (it->second).find(commodity)->second = recent;
 }
 
 
@@ -71,6 +101,9 @@ void Reserves::EvolveDaily()
 {
 	for(const auto &it : GameData::Systems())
 		for(const auto &gd : GameData::Commodities())
+		{
 			AdjustAmounts(&it.second, gd.name,
-						  it.second.Production(gd.name) - it.second.Consumption(gd.name));
+				it.second.Production(gd.name) + it.second.Trading(gd.name) - it.second.Consumption(gd.name), false);
+			ReduceRecent(&it.second, gd.name);
+		}
 }

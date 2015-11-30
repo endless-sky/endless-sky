@@ -126,12 +126,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
 			trade[child.Token(1)] = child.Value(2);
-		else if(child.Token(0) == "production" && child.Size() >= 3)
-			production[child.Token(1)] = child.Value(2);
-		else if(child.Token(0) == "consumption" && child.Size() >= 3)
-			consumption[child.Token(1)] = child.Value(2);
-		else if(child.Token(0) == "reserves" && child.Size() >= 3)
-			initialReserves[child.Token(1)] = child.Value(2);
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -403,57 +397,89 @@ const vector<System::Asteroid> &System::Asteroids() const
 int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
-	return (it == trade.end()) ? 0 : it->second;
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	int reserves = Reserves(commodity) - RecentActivity(commodity);
+	
+	if (reserves != 0)
+	{
+		for(const Trade::Commodity &com : GameData::Commodities())
+			if (com.name == commodity)
+				return max((int64_t) com.low, min((int64_t) com.high,
+					(int64_t) round((com.high - 0.01*reserves*(com.high + com.low)/habitable))));
+	}
+	
+	return price;
 }
 
 
 
-// Get the price of the given commodity in this system.
+// Get rate of production of a commodity in this system.
 int System::Production(const string &commodity) const
 {
-	auto it = trade.find(commodity);
-	int price = (it == trade.end()) ? 0 : it->second;
+	int price = Trade(commodity);
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(0.001*(com.high - price)*habitable);
+			return round(0.1*(com.high - price)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
 
 
 
-// Get the price of the given commodity in this system.
+// Get the rate of consumption of a commodity in this system.
 int System::Consumption(const string &commodity) const
 {
-	auto it = trade.find(commodity);
-	int price = (it == trade.end()) ? 0 : it->second;
+	int price = Trade(commodity);
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(0.001*(price - com.low)*habitable);
+			return round(0.1*(price - com.low)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
 
 
 
-// Get the price of the given commodity in this system.
+// Get the rate of interstellar trading of a commodity between this system and neighboring systems.
+int System::Trading(const string &commodity) const
+{
+	int price = Trade(commodity);
+	double tradeAmount = 0.0;
+	double comNormalization = 1.0;
+	int reserves = Reserves(commodity);
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+		{
+			comNormalization = (com.high + com.low);
+			break;
+		}
+	
+	for(const System *link : links)
+		tradeAmount += 10./log((double) reserves)*(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
+	
+	return round(tradeAmount);
+}
+
+
+
+// Get the initial reserves of a commodity in this system.
 int64_t System::InitialReserves(const string &commodity) const
 {
-	auto it = trade.find(commodity);
-	int price = (it == trade.end()) ? 0 : it->second;
+	int price = Trade(commodity);
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round((com.high - price)*habitable);
+			return round(100.*(com.high - price)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
 
 
 
-// Get the price of the given commodity in this system.
+// Get the current reserves of a commodity in this system.
 int64_t System::Reserves(const string &commodity) const
 {
 	return GameData::GetReserves().Amounts(this, commodity);
@@ -461,10 +487,26 @@ int64_t System::Reserves(const string &commodity) const
 
 
 
-// Get the price of the given commodity in this system.
-void System::AdjustReserves(const std::string &commodity, int64_t adjustment) const
+// Get the current reserves of a commodity in this system.
+int64_t System::RecentActivity(const string &commodity) const
 {
-	GameData::GetReserves().AdjustAmounts(this, commodity, adjustment);
+	return GameData::GetReserves().RecentActivity(this, commodity);
+}
+
+
+
+// Adjust the amount of reserves of a commodity in this system.
+void System::AdjustReserves(const std::string &commodity, int64_t adjustment, bool recent) const
+{
+	GameData::GetReserves().AdjustAmounts(this, commodity, adjustment, recent);
+}
+
+
+
+// Set the amount of reserves of a commodity in this system.
+void System::SetReserves(const std::string &commodity, int64_t adjustment, int64_t recent) const
+{
+	GameData::GetReserves().SetAmounts(this, commodity, adjustment, recent);
 }
 
 

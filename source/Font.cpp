@@ -30,7 +30,7 @@ namespace {
 		"uniform vec2 position;\n"
 		// The glyph to draw. (ASCII value - 32).
 		"uniform int glyph;\n"
-		
+	
 		// Inputs from the VBO.
 		"in vec2 vert;\n"
 		"in vec2 corner;\n"
