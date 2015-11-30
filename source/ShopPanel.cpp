@@ -378,7 +378,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b')
+	else if(key == 'b' || key == 'i')
 	{
 		if(!CanBuy())
 			FailBuy();
