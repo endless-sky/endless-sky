@@ -198,7 +198,7 @@ interface "load menu"
 		color dim
 		align center
 	if "!pilot loaded"
-	label "Load Game" 435 148
+	label "_Load Game" 435 148
 		size 14
 		color dim
 		align center
@@ -240,9 +240,9 @@ interface "load menu"
 		color bright
 		align center
 	if "pilot loaded"
-	button e 435 155
+	button l 435 155
 		size 90 30
-	label "Load Game" 435 148
+	label "_Load Game" 435 148
 		size 14
 		color bright
 		align center
@@ -953,13 +953,13 @@ interface "info panel"
 		size 90 30
 	
 	if "four buttons"
-	label "Next" 250 287
+	label "_Next" 250 287
 		size 14
 		color bright
 		align center
 	button n 250 295
 		size 90 30
-	label "Previous" 150 287
+	label "_Previous" 150 287
 		size 14
 		color bright
 		align center
@@ -1017,12 +1017,12 @@ interface "hail panel"
 		color dim
 		align center
 	if "can assist"
-	label "_Ask For _Help" -20 108
+	label "Ask For _Help" -20 108
 		size 14
 		color bright
 		align center
 	if "cannot assist"
-	label "_Ask For _Help" -20 108
+	label "Ask For _Help" -20 108
 		size 14
 		color dim
 		align center
@@ -1031,12 +1031,12 @@ interface "hail panel"
 		size 140 30
 	
 	if "can bribe"
-	label "_Offer _Bribe" 130 108
+	label "Offer _Bribe" 130 108
 		size 14
 		color bright
 		align center
 	if "!can bribe"
-	label "_Offer _Bribe" 130 108
+	label "Offer _Bribe" 130 108
 		size 14
 		color dim
 		align center

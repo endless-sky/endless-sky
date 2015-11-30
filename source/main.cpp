@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "MenuPanel.h"
@@ -301,6 +302,7 @@ int main(int argc, char *argv[])
 					glViewport(0, 0, width, height);
 				}
 			}
+			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();

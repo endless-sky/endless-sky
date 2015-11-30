@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	static bool showUnderlines = false;
+	
 	static const char *vertexCode =
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
@@ -125,8 +127,9 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 	
 	for(char c : str)
 	{
-		if (c == '_') {
-			underlineChar = true;
+		if(c == '_')
+		{
+			underlineChar = showUnderlines;
 			continue;
 		}
 		
@@ -145,11 +148,11 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 		
-		if (underlineChar)
+		if(underlineChar)
 		{
 			glUniform1i(shader.Uniform("glyph"), underscoreGlyph);
-			glUniform1f(shader.Uniform("aspect"), (float) (advance[glyph * GLYPHS] + KERN)/
-						(advance[underscoreGlyph * GLYPHS] + KERN));
+			glUniform1f(shader.Uniform("aspect"), static_cast<float>(advance[glyph * GLYPHS] + KERN)
+				/ (advance[underscoreGlyph * GLYPHS] + KERN));
 			
 			glUniform2fv(shader.Uniform("position"), 1, textPos);
 			
@@ -203,6 +206,13 @@ int Font::Height() const
 int Font::Space() const
 {
 	return space;
+}
+
+
+
+void Font::ShowUnderlines(bool show)
+{
+	showUnderlines = show;
 }
 
 
