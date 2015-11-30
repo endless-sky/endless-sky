@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
+#include "DistanceMap.h"
 #include "Reserves.h"
 #include "Fleet.h"
 #include "GameData.h"
@@ -31,7 +32,7 @@ namespace {
 	static const double RESERVE_MULTIPLIER = 500.;
 	static const double PRODUCTION_MULTIPLIER = 0.5;
 	static const double CONSUMPTION_MULTIPLIER = 0.5;
-	static const double TRADE_MULTIPLIER = 50.;
+	static const double TRADE_MULTIPLIER = 5.;
 }
 
 
@@ -407,13 +408,11 @@ int System::Trade(const string &commodity) const
 	// and is usually done unless the player is starting a new game or
 	// loading a game prior to the implementation of the dynamic economy.
 	int reserves = Reserves(commodity) - RecentActivity(commodity);
-	if (reserves != 0)
-	{
-		for(const Trade::Commodity &com : GameData::Commodities())
-			if (com.name == commodity)
-				return max((int64_t) com.low, min((int64_t) com.high,
-					(int64_t) round((com.high - reserves*(com.high + com.low)/habitable/RESERVE_MULTIPLIER))));
-	}
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return max((int64_t) com.low, min((int64_t) com.high,
+				(int64_t) round((com.high - reserves*(com.high + com.low)/habitable/RESERVE_MULTIPLIER))));
 	
 	return price;
 }
@@ -457,7 +456,7 @@ int System::Trading(const string &commodity) const
 	int price = Trade(commodity);
 	double tradeAmount = 0.0;
 	double comNormalization = 1.0;
-	int reserves = Reserves(commodity);
+	int64_t reserves = Reserves(commodity);
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
@@ -482,11 +481,17 @@ int System::Trading(const string &commodity) const
 	// Conduct trade between neighboring inhabited systems, if we are ourselves are inhabited.
 	if (IsInhabited())
 	{
+		DistanceMap dm = DistanceMap(this, 32, 3, false);
+		
 		// Hyperspace first
-		for(const System *link : links)
-			if (link->IsInhabited())
-				tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
-					(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
+		for(const auto &it : GameData::Systems())
+			if (dm.HasRoute(&it.second) && &it.second != this)
+			{
+				double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
+				tradeAmount += TRADE_MULTIPLIER/
+					(1.0 + log(static_cast<double>(min(reserves, (&it.second)->Reserves(commodity)))))/dist2*
+					(price - (&it.second)->Trade(commodity))/comNormalization*(habitable + (&it.second)->habitable);
+			}
 	
 		// Jumpable systems next.
 		for(const System *neighbor : neighbors)
@@ -497,7 +502,7 @@ int System::Trading(const string &commodity) const
 				govName = neighbor->government->GetName();
 				if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
 					neighborJumpMultiplier = 1.0;
-				tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
+				tradeAmount += TRADE_MULTIPLIER/(1.0 + log(static_cast<double>(reserves)))*
 					(price - neighbor->Trade(commodity))/comNormalization*
 					(jumpMultiplier*habitable + neighborJumpMultiplier*neighbor->habitable);
 			}
@@ -511,7 +516,8 @@ int System::Trading(const string &commodity) const
 // Get the initial reserves of a commodity in this system.
 int64_t System::InitialReserves(const string &commodity) const
 {
-	int price = Trade(commodity);
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)

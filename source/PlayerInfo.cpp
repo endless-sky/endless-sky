@@ -461,7 +461,8 @@ void PlayerInfo::IncrementDate()
 	if(!message.empty())
 		Messages::Add(message);
 	
-	GameData::GetReserves().EvolveDaily();
+	//for(int i = 0; i < 100; ++i)
+		GameData::GetReserves().EvolveDaily();
 }
 
 
