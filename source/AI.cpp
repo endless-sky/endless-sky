@@ -1548,7 +1548,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			ship.SetTargetPlanet(next);
 			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
 			else if(count > 1)
 			{
 				message = "Switching landing targets. Now landing on ";
@@ -1562,10 +1563,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		{
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
+			set<string> types;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
 				{
 					++count;
+					types.insert(object.GetPlanet()->Noun());
 					double distance = ship.Position().Distance(object.Position());
 					const Planet *planet = object.GetPlanet();
 					if(planet == ship.GetDestination())
@@ -1582,10 +1585,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			if(!ship.GetTargetPlanet())
 				message = "There are no planets in this system that you can land on.";
 			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
 			else if(count > 1)
 			{
-				message = "You can land on more than one planet in this system. Landing on ";
+				message = "You can land on more than one ";
+				set<string>::const_iterator it = types.begin();
+				message += *it++;
+				if(it != types.end())
+				{
+					set<string>::const_iterator last = --types.end();
+					if(it != last)
+						message += ',';
+					while(it != last)
+						message += ' ' + *it++ + ',';
+					message += " or " + *it;
+				}
+				message += " in this system. Landing on ";
 				if(ship.GetTargetPlanet()->Name().empty())
 					message += "???.";
 				else

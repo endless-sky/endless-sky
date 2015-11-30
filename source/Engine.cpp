@@ -270,7 +270,7 @@ void Engine::Step(bool isActive)
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, isActive && wasActive);
 	wasActive = isActive;
-	Audio::Update(position, velocity);
+	Audio::Update(position);
 	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.

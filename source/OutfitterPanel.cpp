@@ -302,13 +302,15 @@ void OutfitterPanel::Buy()
 				--available[selectedOutfit];
 			}
 			ship->AddOutfit(selectedOutfit, 1);
+			if(selectedOutfit->Get("required crew"))
+				ship->AddCrew(selectedOutfit->Get("required crew"));
 		}
 	}
 }
 
 
 
-void OutfitterPanel::FailBuy()
+void OutfitterPanel::FailBuy() const
 {
 	if(!selectedOutfit || !playerShip)
 		return;
@@ -328,7 +330,7 @@ void OutfitterPanel::FailBuy()
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
-			"but this planet does not sell additional copies of it."));
+			"but this " + planet->Noun() + " does not sell additional copies of it."));
 		return;
 	}
 	
@@ -468,6 +470,8 @@ void OutfitterPanel::Sell()
 		for(Ship *ship : shipsToOutfit)
 		{
 			ship->AddOutfit(selectedOutfit, -1);
+			if(selectedOutfit->Get("required crew"))
+				ship->AddCrew(-selectedOutfit->Get("required crew"));
 			player.Accounts().AddCredits(selectedOutfit->Cost());
 			++available[selectedOutfit];
 			
@@ -487,6 +491,54 @@ void OutfitterPanel::Sell()
 					available[ammo] += mustSell;
 				}
 			}
+		}
+	}
+}
+
+
+
+void OutfitterPanel::FailSell() const
+{
+	if(!planet || !selectedOutfit)
+		return;
+	else if(selectedOutfit->Get("map"))
+		GetUI()->Push(new Dialog("You cannot sell maps. Once you buy one, it is yours permanently."));
+	else if(HasLicense(selectedOutfit->Name()))
+		GetUI()->Push(new Dialog("You cannot sell licenses. Once you buy one, it is yours permanently."));
+	else
+	{
+		bool hasOutfit = false;
+		for(const Ship *ship : playerShips)
+			if(ship->OutfitCount(selectedOutfit))
+			{
+				hasOutfit = true;
+				break;
+			}
+		if(!hasOutfit)
+			GetUI()->Push(new Dialog("You do not have any of these outfits to sell."));
+		else
+		{
+			for(const Ship *ship : playerShips)
+				for(const auto &it : selectedOutfit->Attributes())
+					if(ship->Attributes().Get(it.first) < it.second)
+					{
+						for(const auto &sit : ship->Outfits())
+							if(sit.first->Get(it.first) < 0.)
+							{
+								GetUI()->Push(new Dialog("You cannot sell this outfit, "
+									"because that would cause your ship's \"" + it.first +
+									"\" value to be reduced to less than zero. "
+									"To sell this outfit, you must sell the " +
+									sit.first->Name() + " outfit first."));
+								return;
+							}
+						GetUI()->Push(new Dialog("You cannot sell this outfit, "
+							"because that would cause your ship's \"" + it.first +
+							"\" value to be reduced to less than zero."));
+						return;
+					}
+			GetUI()->Push(new Dialog("You cannot sell this outfit, "
+				"because something else in your ship depends on it."));
 		}
 	}
 }

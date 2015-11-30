@@ -212,7 +212,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			"Are you sure you want to delete the selected saved game file, \""
 				+ selectedFile + "\"?"));
 	}
-	else if(key == 'e')
+	else if(key == 'l')
 	{
 		// First, make sure the previous MainPanel has been deleted, so
 		// its background thread is no longer running.

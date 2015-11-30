@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "MenuPanel.h"
@@ -273,24 +274,6 @@ int main(int argc, char *argv[])
 						glViewport(0, 0, width, height);
 					}
 				}
-				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_MINIMIZED)
-				{
-					Audio::Mute();
-					isPaused = true;
-#ifdef _WIN32
-					// When paused, slow the interrupt rate to conserve power.
-					timeEndPeriod(1);
-#endif
-				}
-				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESTORED)
-				{
-					Audio::Unmute();
-					isPaused = false;
-#ifdef _WIN32
-					// When unpausing, restore the high interrupt rate.
-					timeBeginPeriod(1);
-#endif
-				}
 				else if(activeUI.Handle(event))
 				{
 					// No need to do anything more!
@@ -319,6 +302,7 @@ int main(int argc, char *argv[])
 					glViewport(0, 0, width, height);
 				}
 			}
+			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();

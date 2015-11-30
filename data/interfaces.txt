@@ -90,14 +90,14 @@ interface "main menu"
 	if "pilot loaded"
 	button e 435 155
 		size 90 30
-	label "Enter Ship" 435 148
+	label "_Enter Ship" 435 148
 		size 14
 		color bright
 		align center
 	if "no pilot loaded"
 	button n 435 155
 		size 90 30
-	label "New Pilot" 435 148
+	label "_New Pilot" 435 148
 		size 14
 		color bright
 		align center
@@ -105,7 +105,7 @@ interface "main menu"
 	
 	button l 300 155
 		size 120 30
-	label "Load / Save..." 300 148
+	label "_Load / Save..." 300 148
 		size 14
 		color bright
 		align center
@@ -113,13 +113,13 @@ interface "main menu"
 	# Left panel:
 	button q -285 155
 		size 90 30
-	label "Quit" -285 148
+	label "_Quit" -285 148
 		size 14
 		color bright
 		align center
 	button p -420 155
 		size 120 30
-	label "Preferences..." -420 148
+	label "_Preferences..." -420 148
 		size 14
 		color bright
 		align center
@@ -184,21 +184,21 @@ interface "load menu"
 	
 	# Greyed out buttons:
 	if "!pilot selected"
-	label "Delete" -285 148
+	label "_Delete" -285 148
 		size 14
 		color dim
 		align center
-	label "Add Snapshot" -60 148
+	label "_Add Snapshot" -60 148
 		size 14
 		color dim
 		align center
 	if "!snapshot selected"
-	label "Remove" 75 148
+	label "_Remove" 75 148
 		size 14
 		color dim
 		align center
 	if "!pilot loaded"
-	label "Load Game" 435 148
+	label "_Load Game" 435 148
 		size 14
 		color dim
 		align center
@@ -206,28 +206,28 @@ interface "load menu"
 	
 	button n -420 155
 		size 120 30
-	label "New Pilot" -420 148
+	label "_New Pilot" -420 148
 		size 14
 		color bright
 		align center
 	if "pilot selected"
 	button d -285 155
 		size 90 30
-	label "Delete" -285 148
+	label "_Delete" -285 148
 		size 14
 		color bright
 		align center
 	
 	button a -60 155
 		size 120 30
-	label "Add Snapshot" -60 148
+	label "_Add Snapshot" -60 148
 		size 14
 		color bright
 		align center
 	if "snapshot selected"
 	button r 75 155
 		size 90 30
-	label "Remove" 75 148
+	label "_Remove" 75 148
 		size 14
 		color bright
 		align center
@@ -235,14 +235,14 @@ interface "load menu"
 	
 	button b 300 155
 		size 120 30
-	label "Back to Menu" 300 148
+	label "_Back to Menu" 300 148
 		size 14
 		color bright
 		align center
 	if "pilot loaded"
-	button e 435 155
+	button l 435 155
 		size 90 30
-	label "Load Game" 435 148
+	label "_Load Game" 435 148
 		size 14
 		color bright
 		align center
@@ -255,7 +255,7 @@ interface "preferences"
 	sprite "ui/keys panel" -65 -20
 	button b 195 205
 		size 120 30
-	label "Back to Menu..." 195 198
+	label "_Back to Menu..." 195 198
 		size 14
 		color bright
 		align center
@@ -340,7 +340,7 @@ interface "planet"
 	
 	if "has shipyard"
 	sprite "ui/planet dialog button" 280 90
-	label "Shipyard" 340 82
+	label "_Shipyard" 340 82
 		size 18
 		color bright
 		align right
@@ -349,7 +349,7 @@ interface "planet"
 	
 	if "has outfitter"
 	sprite "ui/planet dialog button" 280 150
-	label "Outfitter" 340 142
+	label "_Outfitter" 340 142
 		size 18
 		color bright
 		align right
@@ -358,7 +358,7 @@ interface "planet"
 	
 	if "is inhabited"
 	sprite "ui/planet dialog button" -400 150
-	label "Job Board" -460 142
+	label "_Job Board" -460 142
 		size 18
 		color bright
 		align left
@@ -366,7 +366,7 @@ interface "planet"
 		size 140 40
 	
 	sprite "ui/planet dialog button" -400 90
-	label "Trading" -460 82
+	label "_Trading" -460 82
 		size 18
 		color bright
 		align left
@@ -374,7 +374,7 @@ interface "planet"
 		size 140 40
 	
 	sprite "ui/planet dialog button" 280 210
-	label "Hire Crew" 340 202
+	label "_Hire Crew" 340 202
 		size 18
 		color bright
 		align right
@@ -383,7 +383,7 @@ interface "planet"
 	
 	if "has bank"
 	sprite "ui/planet dialog button" -400 210
-	label "Bank" -460 202
+	label "_Bank" -460 202
 		size 18
 		color bright
 		align left
@@ -392,7 +392,7 @@ interface "planet"
 	
 	if "has spaceport"
 	sprite "ui/planet dialog button" -400 270
-	label "Space Port" -460 262
+	label "Space _Port" -460 262
 		size 18
 		color bright
 		align left
@@ -401,7 +401,7 @@ interface "planet"
 	
 	if "has ship"
 	sprite "ui/planet dialog button" 280 270
-	label "Depart" 340 262
+	label "_Depart" 340 262
 		size 18
 		color bright
 		align right
@@ -516,12 +516,12 @@ interface "boarding"
 		align right
 	
 	if "!can take"
-	label "Take" -235 107
+	label "_Take" -235 107
 		size 14
 		color dim
 		align center
 	if "can take"
-	label "Take" -235 107
+	label "_Take" -235 107
 		size 14
 		color bright
 		align center
@@ -530,12 +530,12 @@ interface "boarding"
 	endif
 	
 	if "!can exit"
-	label "Done" -155 107
+	label "_Done" -155 107
 		size 14
 		color dim
 		align center
 	if "can exit"
-	label "Done" -155 107
+	label "_Done" -155 107
 		size 14
 		color bright
 		align center
@@ -544,12 +544,12 @@ interface "boarding"
 	endif
 	
 	if "!can capture"
-	label "Attempt Capture" -40 107
+	label "Attempt _Capture" -40 107
 		size 14
 		color dim
 		align center
 	if "can capture"
-	label "Attempt Capture" -40 107
+	label "Attempt _Capture" -40 107
 		size 14
 		color bright
 		align center
@@ -558,12 +558,12 @@ interface "boarding"
 	endif
 	
 	if "!can attack"
-	label "Attack" 120 177
+	label "_Attack" 120 177
 		size 14
 		color dim
 		align center
 	if "can attack"
-	label "Attack" 120 177
+	label "_Attack" 120 177
 		size 14
 		color bright
 		align center
@@ -572,12 +572,12 @@ interface "boarding"
 	endif
 	
 	if "!can defend"
-	label "Defend" 210 177
+	label "_Defend" 210 177
 		size 14
 		color dim
 		align center
 	if "can defend"
-	label "Defend" 210 177
+	label "_Defend" 210 177
 		size 14
 		color bright
 		align center
@@ -648,12 +648,12 @@ interface "hiring"
 	button h 140 355
 		size 80 40
 	if "!can hire"
-	label "Hire" 140 348
+	label "_Hire" 140 348
 		size 14
 		color dim
 		align center
 	if "can hire"
-	label "Hire" 140 348
+	label "_Hire" 140 348
 		size 14
 		color bright
 		align center
@@ -663,12 +663,12 @@ interface "hiring"
 	button f 60 355
 		size 80 40
 	if "!can fire"
-	label "Fire" 60 348
+	label "_Fire" 60 348
 		size 14
 		color dim
 		align center
 	if "can fire"
-	label "Fire" 60 348
+	label "_Fire" 60 348
 		size 14
 		color bright
 		align center
@@ -745,12 +745,12 @@ interface "bank"
 	button a 140 355
 		size 80 40
 	if "!can pay"
-	label "Pay All" 140 348
+	label "Pay _All" 140 348
 		size 14
 		color dim
 		align center
 	if "can pay"
-	label "Pay All" 140 348
+	label "Pay _All" 140 348
 		size 14
 		color bright
 		align center
@@ -788,25 +788,25 @@ interface "mission"
 		align center
 	
 	if "can accept"
-	label "Accept Mission" -45 -33
+	label "_Accept Mission" -45 -33
 		size 14
 		color bright
 		align center
 	endif
 	if "can abort"
-	label "Abort Mission" -45 -33
+	label "_Abort Mission" -45 -33
 		size 14
 		color bright
 		align center
 	endif
 	if "cannot accept"
-	label "Accept Mission" -45 -33
+	label "_Accept Mission" -45 -33
 		size 14
 		color dim
 		align center
 	endif
 	if "cannot abort"
-	label "Abort Mission" -45 -33
+	label "_Abort Mission" -45 -33
 		size 14
 		color dim
 		align center
@@ -814,7 +814,7 @@ interface "mission"
 	button a -45 -10
 		size 130 30
 	
-	label "Done" 70 -33
+	label "_Done" 70 -33
 		size 14
 		color bright
 		align center
@@ -829,13 +829,13 @@ interface "map buttons"
 	sprite "ui/wide button" -260 0
 	
 	if "!is ports"
-	label "Ports" -45 -33
+	label "_Ports" -45 -33
 		size 14
 		color bright
 		align center
 	endif
 	if "is ports"
-	label "Ports" -45 -33
+	label "_Ports" -45 -33
 		size 14
 		color dim
 		align center
@@ -844,13 +844,13 @@ interface "map buttons"
 		size 70 30
 	
 	if "!is missions"
-	label "Missions" -125 -33
+	label "M_issions" -125 -33
 		size 14
 		color bright
 		align center
 	endif
 	if "is missions"
-	label "Missions" -125 -33
+	label "M_issions" -125 -33
 		size 14
 		color dim
 		align center
@@ -859,13 +859,13 @@ interface "map buttons"
 		size 70 30
 	
 	if "!is outfitters"
-	label "Outfitters" -215 -33
+	label "_Outfitters" -215 -33
 		size 14
 		color bright
 		align center
 	endif
 	if "is outfitters"
-	label "Outfitters" -215 -33
+	label "_Outfitters" -215 -33
 		size 14
 		color dim
 		align center
@@ -874,13 +874,13 @@ interface "map buttons"
 		size 90 30
 	
 	if "!is shipyards"
-	label "Shipyards" -315 -33
+	label "_Shipyards" -315 -33
 		size 14
 		color bright
 		align center
 	endif
 	if "is shipyards"
-	label "Shipyards" -315 -33
+	label "_Shipyards" -315 -33
 		size 14
 		color dim
 		align center
@@ -890,7 +890,7 @@ interface "map buttons"
 	
 	if "!is missions"
 	sprite "ui/dialog cancel" -370 0
-	label "Done" -415 -33
+	label "_Done" -415 -33
 		size 14
 		color bright
 		align center
@@ -912,11 +912,11 @@ interface "info panel"
 	
 	if "ship tab"
 	sprite "ui/ship tab" 0 -300
-	label "Ship Info" -300 -303
+	label "_Ship Info" -300 -303
 		size 14
 		color bright
 		align center
-	label "Player Info" -420 -303
+	label "_Player Info" -420 -303
 		size 14
 		color medium
 		align center
@@ -926,11 +926,11 @@ interface "info panel"
 	
 	if "player tab"
 	sprite "ui/player tab" 0 -300
-	label "Ship Info" -300 -303
+	label "_Ship Info" -300 -303
 		size 14
 		color medium
 		align center
-	label "Player Info" -420 -303
+	label "_Player Info" -420 -303
 		size 14
 		color bright
 		align center
@@ -938,14 +938,14 @@ interface "info panel"
 		size 120 30
 	endif
 	
-	label "Done" 455 287
+	label "_Done" 455 287
 		size 14
 		color bright
 		align center
 	button d 455 295
 		size 90 30
 	
-	label "Missions..." 355 287
+	label "_Missions..." 355 287
 		size 14
 		color bright
 		align center
@@ -953,13 +953,13 @@ interface "info panel"
 		size 90 30
 	
 	if "four buttons"
-	label "Next" 250 287
+	label "_Next" 250 287
 		size 14
 		color bright
 		align center
 	button n 250 295
 		size 90 30
-	label "Previous" 150 287
+	label "_Previous" 150 287
 		size 14
 		color bright
 		align center
@@ -1007,22 +1007,22 @@ interface "hail panel"
 		align left
 	
 	if "can dominate"
-	label "Demand Tribute" -20 108
+	label "Demand _Tribute" -20 108
 		size 14
 		color bright
 		align center
 	if "cannot dominate"
-	label "Demand Tribute" -20 108
+	label "Demand _Tribute" -20 108
 		size 14
 		color dim
 		align center
 	if "can assist"
-	label "Ask For Help" -20 108
+	label "Ask For _Help" -20 108
 		size 14
 		color bright
 		align center
 	if "cannot assist"
-	label "Ask For Help" -20 108
+	label "Ask For _Help" -20 108
 		size 14
 		color dim
 		align center
@@ -1031,12 +1031,12 @@ interface "hail panel"
 		size 140 30
 	
 	if "can bribe"
-	label "Offer Bribe" 130 108
+	label "Offer _Bribe" 130 108
 		size 14
 		color bright
 		align center
 	if "!can bribe"
-	label "Offer Bribe" 130 108
+	label "Offer _Bribe" 130 108
 		size 14
 		color dim
 		align center
@@ -1044,7 +1044,7 @@ interface "hail panel"
 	button b 130 115
 		size 140 30
 	
-	label "Done" 250 108
+	label "_Done" 250 108
 		size 14
 		color bright
 		align center

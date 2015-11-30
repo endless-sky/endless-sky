@@ -75,10 +75,11 @@ void HiringPanel::Draw() const
 	int fleetBunks = 0;
 	int fleetRequired = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
-		fleetRequired += ship->RequiredCrew();
-	}
+		if(!ship->IsParked())
+		{
+			fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
+			fleetRequired += ship->RequiredCrew();
+		}
 	int passengers = player.Cargo().Passengers();
 	int fleetUnused = fleetBunks - fleetRequired - flagshipExtra;
 	info.SetString("fleet bunks", to_string(static_cast<int>(fleetBunks)));

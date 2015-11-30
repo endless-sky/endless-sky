@@ -41,8 +41,6 @@ public:
 	// Get or set the volume (between 0 and 1).
 	static double Volume();
 	static void SetVolume(double level);
-	static void Mute();
-	static void Unmute();
 	
 	// Get a pointer to the named sound. The name is the path relative to the
 	// "sound/" folder, and without ~ if it's on the end, or the extension.
@@ -52,14 +50,14 @@ public:
 	// Set the listener's position, and also update any sounds that have been
 	// added but deferred because they were added from a thread other than the
 	// main one (the one that called Init()).
-	static void Update(const Point &listenerPosition, const Point &velocity);
+	static void Update(const Point &listenerPosition);
 	
 	// Play the given sound, at full volume.
 	static void Play(const Sound *sound);
 	
 	// Play the given sound, as if it is at the given distance from the
 	// "listener". This will make it softer and change the left / right balance.
-	static void Play(const Sound *sound, const Point &position, const Point &velocity);
+	static void Play(const Sound *sound, const Point &position);
 	
 	// Begin playing all the sounds that have been added since the last time
 	// this function was called.

@@ -314,7 +314,7 @@ void MainPanel::ShowHailPanel()
 		if(planet && planet->IsInhabited())
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetPlanet()));
 		else
-			Messages::Add("Unable to send hail: planet is not inhabited.");
+			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.");
 	}
 	else
 		Messages::Add("Unable to send hail: no target selected.");
