@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Reserves.h"
 #include "System.h"
 #include "UI.h"
 
@@ -46,12 +47,14 @@ namespace {
 	static const int MIN_X = -310;
 	static const int MAX_X = 190;
 	
-	static const int NAME_X = -290;
-	static const int PRICE_X = -150;
-	static const int LEVEL_X = -110;
-	static const int BUY_X = 0;
-	static const int SELL_X = 60;
-	static const int HOLD_X = 120;
+	static const int NAME_X = -295;
+	static const int PRICE_X = -195;
+	static const int LEVEL_X = -155;
+	static const int BUY_X = -70;
+	static const int SELL_X = -30;
+	static const int HOLD_X = 20;
+	static const int RESERVES_X = 80;
+	static const int FLUX_X = 140;
 	
 	static const int FIRST_Y = 80;
 }
@@ -123,9 +126,11 @@ void TradingPanel::Draw() const
 	
 	string mod = "x " + to_string(Modifier());
 	font.Draw(mod, Point(BUY_X, y), unselected);
-	font.Draw(mod, Point(SELL_X, y), unselected);
+	//font.Draw(mod, Point(SELL_X, y), unselected);
 	
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
+	font.Draw("Avail.", Point(RESERVES_X, y), selected);
+	font.Draw("(Flux)", Point(FLUX_X, y), selected);
 	
 	y += 5;
 	int lastY = y + 20 * GameData::Commodities().size() + 25;
@@ -188,6 +193,11 @@ void TradingPanel::Draw() const
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
+		font.Draw(Format::Number(GameData::GetReserves().Amounts(&system, commodity.name)), Point(RESERVES_X, y), selected);
+		int flux = system.Trading(commodity.name) + system.Production(commodity.name) -
+			system.Consumption(commodity.name);
+		std::string plus = ((flux > 0) ? "+" : "");
+		font.Draw("(" + plus + Format::Number(flux) + ")", Point(FLUX_X, y), selected);
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");
@@ -225,6 +235,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			int64_t basis = player.GetBasis(it.name, -amount);
 			player.AdjustBasis(it.name, basis);
+			GameData::GetReserves().AdjustAmounts(&system, it.name, amount, true);
 			profit += amount * price + basis;
 			tonsSold += amount;
 			
@@ -284,6 +295,7 @@ void TradingPanel::Buy(int64_t amount)
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int price = system.Trade(type);
+	
 	if(!price)
 		return;
 	
@@ -291,7 +303,9 @@ void TradingPanel::Buy(int64_t amount)
 	{
 		amount = min(amount, player.Accounts().Credits() / price);
 		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
+		amount = min(amount, GameData::GetReserves().Amounts(&system, type));
 		player.AdjustBasis(type, amount * price);
+		GameData::GetReserves().AdjustAmounts(&system, type, -amount, true);
 	}
 	else
 	{
@@ -300,6 +314,7 @@ void TradingPanel::Buy(int64_t amount)
 		
 		int64_t basis = player.GetBasis(type, amount);
 		player.AdjustBasis(type, basis);
+		GameData::GetReserves().AdjustAmounts(&system, type, -amount, true);
 		profit += -amount * price + basis;
 		tonsSold += -amount;
 	}

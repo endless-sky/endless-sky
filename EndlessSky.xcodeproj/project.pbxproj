@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A8502D71C0B606900FCD810 /* Reserves.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A8502D51C0B606900FCD810 /* Reserves.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
@@ -148,6 +149,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A8502D51C0B606900FCD810 /* Reserves.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Reserves.cpp; path = source/Reserves.cpp; sourceTree = "<group>"; };
+		1A8502D61C0B606900FCD810 /* Reserves.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reserves.h; path = source/Reserves.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
@@ -570,6 +573,8 @@
 				A96863681AE6FD0C004FE1FE /* Radar.h */,
 				A96863691AE6FD0D004FE1FE /* Random.cpp */,
 				A968636A1AE6FD0D004FE1FE /* Random.h */,
+				1A8502D51C0B606900FCD810 /* Reserves.cpp */,
+				1A8502D61C0B606900FCD810 /* Reserves.h */,
 				A968636B1AE6FD0D004FE1FE /* RingShader.cpp */,
 				A968636C1AE6FD0D004FE1FE /* RingShader.h */,
 				A968636D1AE6FD0D004FE1FE /* Sale.h */,
@@ -766,6 +771,7 @@
 				A96863A81AE6FD0E004FE1FE /* BlurShader.cpp in Sources */,
 				A96863AD1AE6FD0E004FE1FE /* Command.cpp in Sources */,
 				A96863E71AE6FD0E004FE1FE /* PointerShader.cpp in Sources */,
+				1A8502D71C0B606900FCD810 /* Reserves.cpp in Sources */,
 				A96863E51AE6FD0E004FE1FE /* PlayerInfo.cpp in Sources */,
 				A96863B81AE6FD0E004FE1FE /* DrawList.cpp in Sources */,
 				A96863FB1AE6FD0E004FE1FE /* SpriteSet.cpp in Sources */,

@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
+#include "Reserves.h"
 #include "Fleet.h"
 #include "FontSet.h"
 #include "Galaxy.h"
@@ -88,6 +89,7 @@ namespace {
 	Set<Sale<Outfit>> defaultOutfitSales;
 	
 	Politics politics;
+	Reserves reserves;
 	StartConditions startConditions;
 	
 	Trade trade;
@@ -171,6 +173,7 @@ void GameData::BeginLoad(const char * const *argv)
 	playerGovernment = governments.Get("Escort");
 	
 	politics.Reset();
+	reserves.Reset();
 	
 	if(printShips)
 		PrintShipTable();
@@ -289,6 +292,7 @@ void GameData::Revert()
 		it.second.GetShip()->Restore();
 	
 	politics.Reset();
+	reserves.Reset();
 }
 
 
@@ -441,6 +445,13 @@ const Government *GameData::PlayerGovernment()
 Politics &GameData::GetPolitics()
 {
 	return politics;
+}
+
+
+
+Reserves &GameData::GetReserves()
+{
+	return reserves;
 }
 
 

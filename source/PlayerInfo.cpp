@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Random.h"
+#include "Reserves.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
@@ -118,6 +119,15 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
+		}
+		// Load commodity reserve information here.
+		else if(child.Token(0) == "reserves of")
+		{
+			for(const DataNode &grand : child)
+				for(const DataNode &greatgrand : grand)
+					if(greatgrand.Size() >= 3)
+						reserveChanges.emplace_back(GameData::Systems().Get(grand.Token(0)),
+							greatgrand.Token(0), greatgrand.Value(1), greatgrand.Value(2));
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
@@ -257,6 +267,9 @@ void PlayerInfo::ApplyChanges()
 	for(const auto &it : reputationChanges)
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
+	for(const auto &it : reserveChanges)
+		get<0>(it)->SetReserves(get<1>(it), get<2>(it), get<3>(it));
+	reserveChanges.clear();
 	AddChanges(dataChanges);
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
@@ -447,6 +460,9 @@ void PlayerInfo::IncrementDate()
 	string message = accounts.Step(assets, Salaries());
 	if(!message.empty())
 		Messages::Add(message);
+	
+	//for(int i = 0; i < 100; ++i)
+		GameData::GetReserves().EvolveDaily();
 }
 
 
@@ -1563,6 +1579,20 @@ void PlayerInfo::Save(const string &path) const
 		for(const auto &it : GameData::Governments())
 			if(!it.second.IsPlayer())
 				out.Write(it.first, it.second.Reputation());
+	}
+	out.EndChild();
+	out.Write("reserves of");
+	out.BeginChild();
+	{
+		for(const auto &it : GameData::Systems())
+		{
+			out.Write(it.first);
+			out.BeginChild();
+				for(const Trade::Commodity &com : GameData::Commodities())
+					out.Write(com.name, GameData::GetReserves().Amounts(&it.second, com.name),
+							  GameData::GetReserves().RecentActivity(&it.second, com.name));
+			out.EndChild();
+		}
 	}
 	out.EndChild();
 		
