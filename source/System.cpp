@@ -466,10 +466,12 @@ int System::Trading(const string &commodity) const
 			break;
 		}
 	
-	//
-	for(const System *link : links)
-		tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
-			(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
+	// Conduct trade between neighboring inhabited hyperspace systems, if we are ourselves inhabited.
+	if (IsInhabited())
+		for(const System *link : links)
+			if (link->IsInhabited())
+				tradeAmount += TRADE_MULTIPLIER/log((double) reserves)*
+					(price - link->Trade(commodity))/comNormalization*(habitable + link->habitable);
 	
 	return round(tradeAmount);
 }
