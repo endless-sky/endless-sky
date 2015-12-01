@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
+#include "File.h"
+
 #include <SDL2/SDL.h>
 
 #if defined _WIN32
@@ -452,14 +454,8 @@ FILE *Files::Open(const string &path, bool write)
 
 string Files::Read(const string &path)
 {
-	FILE *file = Open(path);
-	string result;
-	if(file)
-	{
-		result = Read(file);
-		fclose(file);
-	}
-	return result;
+	File file(path);
+	return Read(file);
 }
 
 
@@ -492,12 +488,8 @@ string Files::Read(FILE *file)
 
 void Files::Write(const string &path, const string &data)
 {
-	FILE *file = Open(path, true);
-	if(file)
-	{
-		Write(file, data);
-		fclose(file);
-	}
+	File file(path, true);
+	Write(file, data);
 }
 
 

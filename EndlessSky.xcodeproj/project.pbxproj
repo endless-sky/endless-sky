@@ -127,6 +127,7 @@
 		A99F7B35195DF45E002C30B8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B33195DF45E002C30B8 /* images */; };
 		A9A5297419996C9F002D7C35 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = A9A5297319996C9F002D7C35 /* sounds */; };
 		A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
+		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A9D40D1A195DFAA60086EE52 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D40D19195DFAA60086EE52 /* OpenGL.framework */; };
@@ -377,6 +378,8 @@
 		A99F7B33195DF45E002C30B8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		A9A5297319996C9F002D7C35 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		A9A5297519996CC3002D7C35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		A9C70E0E1C0E5B51000B3D14 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = source/File.cpp; sourceTree = "<group>"; };
+		A9C70E0F1C0E5B51000B3D14 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = source/File.h; sourceTree = "<group>"; };
 		A9CC52691950C9F6004E4E22 /* EndlessSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessSky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CC526C1950C9F6004E4E22 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A9CC526F1950C9F6004E4E22 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -463,6 +466,8 @@
 				A96863031AE6FD0B004FE1FE /* Engine.h */,
 				A96863041AE6FD0B004FE1FE /* EscortDisplay.cpp */,
 				A96863051AE6FD0B004FE1FE /* EscortDisplay.h */,
+				A9C70E0E1C0E5B51000B3D14 /* File.cpp */,
+				A9C70E0F1C0E5B51000B3D14 /* File.h */,
 				A96863061AE6FD0B004FE1FE /* Files.cpp */,
 				A96863071AE6FD0B004FE1FE /* Files.h */,
 				A96863081AE6FD0B004FE1FE /* FillShader.cpp */,
@@ -818,6 +823,7 @@
 				A96863D51AE6FD0E004FE1FE /* MenuPanel.cpp in Sources */,
 				A96863EA1AE6FD0E004FE1FE /* PreferencesPanel.cpp in Sources */,
 				A96863F11AE6FD0E004FE1FE /* Shader.cpp in Sources */,
+				A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */,
 				A96863F41AE6FD0E004FE1FE /* ShipInfoDisplay.cpp in Sources */,
 				A96863C21AE6FD0E004FE1FE /* FrameTimer.cpp in Sources */,
 				A96863D81AE6FD0E004FE1FE /* MissionAction.cpp in Sources */,

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Sound.h"
 
 #include "Files.h"
+#include "File.h"
 
 #ifndef __APPLE__
 #include <AL/al.h>
@@ -29,9 +30,9 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(FILE *&in, uint32_t &frequency);
-	uint32_t Read4(FILE *&in);
-	uint16_t Read2(FILE *&in);
+	uint32_t ReadHeader(File &in, uint32_t &frequency);
+	uint32_t Read4(File &in);
+	uint16_t Read2(File &in);
 }
 
 
@@ -43,7 +44,7 @@ void Sound::Load(const string &path)
 	
 	isLooped = path[path.length() - 5] == '~';
 	
-	FILE *in = Files::Open(path);
+	File in(path);
 	if(!in)
 		return;
 	uint32_t frequency = 0;
@@ -52,16 +53,12 @@ void Sound::Load(const string &path)
 	{
 		vector<char> data(bytes);
 		if(fread(&data[0], 1, bytes, in) != bytes)
-		{
-			fclose(in);
 			return;
-		}
 		
 		if(!buffer)
 			alGenBuffers(1, &buffer);
 		alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 	}
-	fclose(in);
 }
 
 
@@ -84,7 +81,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(FILE *&in, uint32_t &frequency)
+	uint32_t ReadHeader(File &in, uint32_t &frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -143,7 +140,7 @@ namespace {
 	
 	
 	
-	uint32_t Read4(FILE *&in)
+	uint32_t Read4(File &in)
 	{
 		unsigned char data[4];
 		if(fread(data, 1, 4, in) != 4)
@@ -156,7 +153,7 @@ namespace {
 	
 	
 	
-	uint16_t Read2(FILE *&in)
+	uint16_t Read2(File &in)
 	{
 		unsigned char data[2];
 		if(fread(data, 1, 2, in) != 2)
