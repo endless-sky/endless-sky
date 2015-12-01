@@ -118,8 +118,7 @@ void Files::Init(const char * const *argv)
 #elif defined __APPLE__
 	// Special case for Mac OS X: the resources are in ../Resources relative to
 	// the folder the binary is in.
-	size_t pos = resources.rfind('/', resources.length() - 2) + 1;
-	resources = resources.substr(0, pos) + "Resources/";
+	resources = resources + "../Resources/";
 #endif
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
@@ -127,7 +126,7 @@ void Files::Init(const char * const *argv)
 	while(!Exists(resources + "credits.txt"))
 	{
 		size_t pos = resources.rfind('/', resources.length() - 2);
-		if(pos == string::npos)
+		if(pos == string::npos || pos == 0)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
 	}
