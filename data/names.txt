@@ -54,8 +54,9 @@ phrase "civilian"
 		"Gorgon"
 		"Winston Churchill"
 		"Saint Felix"
-		"Queen Anne"
+		"Queen Mary"
 		"King Henry"
+		"Orca"
 
 phrase "civilian"
 	word
@@ -1032,6 +1033,7 @@ phrase "pirate"
 		"Sea Wolf"
 		"Morning Star"
 		"Antelope"
+		"Dead Dog"
 
 phrase "pirate"
 	word
@@ -1067,6 +1069,8 @@ phrase "pirate"
 		"Boiling "
 		"Shackled "
 		"Blinded "
+		"Savage "
+		"Bloody "
 	word
 		"Star"
 		"Nymph"
