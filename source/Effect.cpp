@@ -22,7 +22,7 @@ using namespace std;
 
 Effect::Effect()
 	: sound(nullptr), velocityScale(1.), randomVelocity(0.),
-	randomAngle(0.), randomSpin(0.), lifetime(0)
+	randomAngle(0.), randomSpin(0.), randomFrameRate(0.), lifetime(0)
 {
 }
 
@@ -56,6 +56,8 @@ void Effect::Load(const DataNode &node)
 			randomAngle = child.Value(1);
 		if(child.Token(0) == "random spin" && child.Size() >= 2)
 			randomSpin = child.Value(1);
+		if(child.Token(0) == "random frame rate" && child.Size() >= 2)
+			randomFrameRate = child.Value(1);
 	}
 }
 
@@ -73,7 +75,10 @@ void Effect::Place(Point pos, Point vel, Angle angle, Point hitVelocity)
 		+ this->angle.Unit() * Random::Real() * randomVelocity;
 	
 	if(sound)
-		Audio::Play(sound, position, velocity);
+		Audio::Play(sound, position);
+	
+	if(randomFrameRate)
+		animation.AddFrameRate(randomFrameRate * Random::Real());
 }
 
 

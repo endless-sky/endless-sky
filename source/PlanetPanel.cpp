@@ -122,7 +122,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	if(key == 'd' && flagship && !flagship->CanBeCarried())
 	{
 		player.Save();
-		player.TakeOff();
+		player.TakeOff(GetUI());
 		if(callback)
 			callback();
 		GetUI()->Pop(this);

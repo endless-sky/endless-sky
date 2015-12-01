@@ -132,7 +132,7 @@ public:
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
-	void TakeOff();
+	void TakeOff(UI *ui);
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;

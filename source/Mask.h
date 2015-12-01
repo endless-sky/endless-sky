@@ -50,7 +50,10 @@ public:
 	
 	// Find out whether this object (rotated and scaled as represented by the
 	// given unit vector) is within the given range of the given point.
-	bool WithinRange(Point p, Angle facing, double range) const;
+	bool WithinRange(Point point, Angle facing, double range) const;
+	
+	// Find out how close the given point is to the mask.
+	double Range(Point point, Angle facing) const;
 	
 	
 private:

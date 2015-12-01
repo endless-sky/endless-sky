@@ -40,7 +40,7 @@ outfit "Modified Blaster"
 	"gun ports" -1
 	weapon
 		sprite "projectile/mod blaster"
-		sound "mod_blaster"
+		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"velocity" 7.5
@@ -86,7 +86,7 @@ outfit "Modified Blaster Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/mod blaster"
-		sound "mod_blaster"
+		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
 		"velocity" 7.5
@@ -155,7 +155,7 @@ outfit "Heavy Laser"
 	weapon
 		sprite "projectile/heavy laser"
 			"frame rate" 1
-		sound "heavy_laser"
+		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"velocity" 400
@@ -178,7 +178,7 @@ outfit "Electron Beam"
 	weapon
 		sprite "projectile/electron"
 			"frame rate" 60
-		sound "heavy_laser"
+		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
 		"velocity" 450
@@ -226,7 +226,7 @@ outfit "Heavy Laser Turret"
 	weapon
 		sprite "projectile/2x heavy laser"
 			"frame rate" 1
-		sound "heavy_laser"
+		sound "heavy laser"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" .4
 		"velocity" 400
@@ -250,7 +250,7 @@ outfit "Electron Turret"
 	weapon
 		sprite "projectile/2x electron"
 			"frame rate" 60
-		sound "heavy_laser"
+		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
 		"velocity" 450
@@ -332,7 +332,7 @@ outfit "Proton Gun"
 	"gun ports" -1
 	weapon
 		sprite "projectile/proton"
-		sound "particle"
+		sound "proton"
 		"hit effect" "proton impact" 3
 		"inaccuracy" 4
 		"submunition" "Proton Fragment" 3
@@ -390,7 +390,7 @@ outfit "Pulse Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/pulse"
-		sound "blaster"
+		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
 		"velocity" 15
@@ -413,7 +413,7 @@ outfit "Pulse Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/pulse"
-		sound "blaster"
+		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
 		"velocity" 15
@@ -435,7 +435,7 @@ outfit "Ion Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion bolt"
-		sound "particle"
+		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1
 		"velocity" 16
@@ -487,7 +487,7 @@ outfit "Flamethrower"
 		sprite "effect/explosion/small"
 			"frame rate" 60
 			"no repeat"
-		sound "plasma"
+		sound "flamethrower"
 		icon "icon/flamethrower"
 		"submunition" "Flamethrower Projectile"
 		"inaccuracy" 12
@@ -505,8 +505,8 @@ outfit "Flamethrower Projectile"
 			"frame rate" 17
 			"random start frame"
 		sound "plasma"
-		"hit effect" "medium explosion"
-		"die effect" "small explosion"
+		"hit effect" "flamethrower hit"
+		"die effect" "flamethrower die"
 		"inaccuracy" 20
 		"lifetime" 22
 		"shield damage" .8
@@ -652,7 +652,7 @@ outfit "Hai Tracker Pod"
 		sprite "projectile/tracker"
 			"frame rate" 10
 			"random start frame"
-		sound "torpedo"
+		sound "tracker"
 		ammo "Hai Tracker"
 		icon "icon/tracker"
 		"fire effect" "tracker fire"
@@ -737,7 +737,7 @@ outfit "Typhoon Launcher"
 		sprite "projectile/typhoon"
 			"frame rate" 4
 			"random start frame"
-		sound "torpedo"
+		sound "typhoon"
 		ammo "Typhoon Torpedo"
 		icon "icon/typhoon"
 		"fire effect" "typhoon fire"
@@ -811,7 +811,7 @@ outfit "Nuclear Missile"
 		sprite "projectile/missile"
 			"no repeat"
 			"frame rate" .25
-		sound "rocket"
+		sound "nuke"
 		ammo "Nuclear Missile"
 		icon "icon/nuke"
 		"hit effect" "nuke explosion"

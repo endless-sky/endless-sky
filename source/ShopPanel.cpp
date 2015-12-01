@@ -188,20 +188,20 @@ void ShopPanel::DrawButtons() const
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	string buy = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "Install" : "Buy";
+	string buy = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
 	bigFont.Draw(buy,
 		buyCenter - .5 * Point(bigFont.Width(buy), bigFont.Height()),
 		CanBuy() ? bright : dim);
 	
 	Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
-	bigFont.Draw("Sell",
+	bigFont.Draw("_Sell",
 		sellCenter - .5 * Point(bigFont.Width("Sell"), bigFont.Height()),
 		CanSell() ? bright : dim);
 	
 	Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	FillShader::Fill(leaveCenter, Point(70, 30), Color(.1, 1.));
-	bigFont.Draw("Leave",
+	bigFont.Draw("_Leave",
 		leaveCenter - .5 * Point(bigFont.Width("Leave"), bigFont.Height()),
 		bright);
 	
@@ -357,6 +357,12 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
+void ShopPanel::FailSell() const
+{
+}
+
+
+
 bool ShopPanel::CanSellMultiple() const
 {
 	return true;
@@ -372,7 +378,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b')
+	else if(key == 'b' || key == 'i')
 	{
 		if(!CanBuy())
 			FailBuy();
@@ -381,9 +387,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 's')
 	{
-		int modifier = CanSellMultiple() ? Modifier() : 1;
-		for(int i = 0; i < modifier && CanSell(); ++i)
-			Sell();
+		if(!CanSell())
+			FailSell();
+		else
+		{
+			int modifier = CanSellMultiple() ? Modifier() : 1;
+			for(int i = 0; i < modifier && CanSell(); ++i)
+				Sell();
+		}
 	}
 	else if(key == SDLK_LEFT)
 	{

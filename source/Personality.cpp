@@ -36,6 +36,7 @@ namespace {
 	static const int DERELICT = 4096;
 	static const int FLEEING = 8192;
 	static const int ESCORT = 16384;
+	static const int FRUGAL = 32768;
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -52,7 +53,8 @@ namespace {
 		{"waiting", WAITING},
 		{"derelict", DERELICT},
 		{"fleeing", FLEEING},
-		{"escort", ESCORT}
+		{"escort", ESCORT},
+		{"frugal", FRUGAL}
 	};
 	
 	double DEFAULT_CONFUSION = 10. * .001;
@@ -62,7 +64,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION)
+	: flags(DISABLES | FRUGAL), confusionMultiplier(DEFAULT_CONFUSION)
 {
 }
 
@@ -204,6 +206,14 @@ bool Personality::IsFleeing() const
 bool Personality::IsEscort() const
 {
 	return flags & ESCORT;
+}
+
+
+
+
+bool Personality::IsFrugal() const
+{
+	return flags & FRUGAL;
 }
 
 

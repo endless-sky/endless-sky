@@ -12,6 +12,7 @@ effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
 		"no repeat"
 		"frame rate" 3
+	sound "quarg anti-missile"
 	"lifetime" 21
 	"velocity scale" 1
 
@@ -50,6 +51,7 @@ effect "korath warder"
 	sprite "effect/warder"
 		"no repeat"
 		"frame rate" 6
+	sound "warder"
 	"lifetime" 11
 	"velocity scale" 1
 

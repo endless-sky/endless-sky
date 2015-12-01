@@ -15,10 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
 
+class Government;
 class Point;
 class Ship;
 class ShipEvent;
@@ -96,6 +98,9 @@ private:
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
+	
+	std::map<const Government *, int64_t> enemyStrength;
+	std::map<const Government *, int64_t> allyStrength;
 };
 
 

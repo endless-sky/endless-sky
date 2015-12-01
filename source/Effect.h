@@ -65,6 +65,7 @@ private:
 	double randomVelocity;
 	double randomAngle;
 	double randomSpin;
+	double randomFrameRate;
 	
 	int lifetime;
 };

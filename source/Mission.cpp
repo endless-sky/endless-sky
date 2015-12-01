@@ -238,6 +238,15 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(repeat != 1)
 			out.Write("repeat", repeat);
 		
+		if(!toOffer.IsEmpty())
+		{
+			out.Write("to", "offer");
+			out.BeginChild();
+			{
+				toOffer.Save(out);
+			}
+			out.EndChild();
+		}
 		if(!toComplete.IsEmpty())
 		{
 			out.Write("to", "complete");
@@ -623,6 +632,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
 	if(!it->second.CanBeDone(player))
 		return false;
 	
+	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
+	static const int64_t limit = 2000000000;
+	player.Conditions()["net worth"] = min(limit, max(-limit, player.Accounts().NetWorth()));
 	// Set the "reputation" conditions so we can check if this action changed
 	// any of them.
 	for(const auto &it : GameData::Governments())
@@ -818,8 +830,9 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		result.deadline = player.GetDate() + (defaultDeadline + daysToDeadline);
 	}
 	
-	// Copy the completion conditions. No need to copy the offer conditions,
-	// because they have already been checked.
+	// Copy the conditions. The offer conditions must be copied too, because they
+	// may depend on a condition that other mission offers might change.
+	result.toOffer = toOffer;
 	result.toComplete = toComplete;
 	result.toFail = toFail;
 	

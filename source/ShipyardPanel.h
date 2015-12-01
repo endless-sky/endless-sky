@@ -41,7 +41,7 @@ protected:
 	virtual int DrawDetails(const Point &center) const override;
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
-	virtual void FailBuy() override;
+	virtual void FailBuy() const override;
 	virtual bool CanSell() const override;
 	virtual void Sell() override;
 	virtual bool FlightCheck() override;

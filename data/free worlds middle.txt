@@ -919,7 +919,7 @@ mission "FW Northern 3B"
 	
 	on offer
 		conversation
-			`Freya turns out to be a whisky drinker, like Tomek. By the time she has finished her first drink, she is chattering quite passionately about starship design: load balancing, stress lines, shield matrices, shipboard computers. Rather than dulling her intelligence, alcohol just seems to reduce her ability to explain things in ways a non-specialist can understand. You try to steer the conversation towards something less technical...`
+			`Freya turns out to be a whiskey drinker, like Tomek. By the time she has finished her first drink, she is chattering quite passionately about starship design: load balancing, stress lines, shield matrices, shipboard computers. Rather than dulling her intelligence, alcohol just seems to reduce her ability to explain things in ways a non-specialist can understand. You try to steer the conversation towards something less technical...`
 			choice
 				`	"So, why did you join the Council, initially?"`
 					goto council

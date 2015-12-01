@@ -30,8 +30,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <SDL2/SDL.h>
 
-#include <limits>
 #include <cmath>
+#include <limits>
+#include <set>
 
 using namespace std;
 
@@ -118,7 +119,7 @@ void AI::UpdateKeys(PlayerInfo &player, bool isActive)
 			if(it->HasBays())
 			{
 				isLaunching = !isLaunching;
-				Messages::Add(isLaunching ? "Deploying fighters" : "Recalling fighters.");
+				Messages::Add(isLaunching ? "Deploying fighters." : "Recalling fighters.");
 				break;
 			}
 	
@@ -186,6 +187,29 @@ void AI::Clean()
 void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 {
 	const Ship *flagship = player.Flagship();
+	
+	// First, figure out the comparative strengths of the present governments.
+	map<const Government *, int64_t> strength;
+	for(const auto &it : ships)
+		if(it->GetGovernment() && it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+			strength[it->GetGovernment()] += it->Cost();
+	enemyStrength.clear();
+	allyStrength.clear();
+	for(const auto &it : strength)
+	{
+		set<const Government *> allies;
+		for(const auto &eit : strength)
+			if(eit.first->IsEnemy(it.first))
+			{
+				enemyStrength[it.first] += eit.second;
+				for(const auto &ait : strength)
+					if(ait.first->IsEnemy(eit.first) && allies.find(ait.first) == allies.end())
+					{
+						allyStrength[it.first] += ait.second;
+						allies.insert(ait.first);
+					}
+			}
+	}
 	
 	step = (step + 1) & 31;
 	int targetTurn = 0;
@@ -1235,6 +1259,18 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		return command;
 	int index = -1;
 	
+	bool beFrugal = false;
+	if(ship.GetPersonality().IsFrugal())
+	{
+		// Frugal ships only expend ammunition if they have lost 50% of shields
+		// or hull, or if they are outgunned.
+		beFrugal = (ship.Hull() + ship.Shields() > 1.5);
+		auto ait = allyStrength.find(ship.GetGovernment());
+		auto eit = enemyStrength.find(ship.GetGovernment());
+		if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
+			beFrugal = false;
+	}
+	
 	// Special case: your target is not your enemy. Do not fire, because you do
 	// not want to risk damaging that target. The only time a ship other than
 	// the player will target a friendly ship is if the player has asked a ship
@@ -1279,6 +1315,8 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		if(!weapon.IsReady() || (!currentTarget && weapon.IsHoming()))
 			continue;
 		if(!secondary && weapon.GetOutfit()->Icon())
+			continue;
+		if(beFrugal && weapon.GetOutfit()->Ammo())
 			continue;
 		
 		// Special case: if the weapon uses fuel, be careful not to spend so much
@@ -1484,10 +1522,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		else if(message.empty() && target && landKeyInterval < 60)
 		{
 			bool found = false;
+			int count = 0;
 			const StellarObject *next = nullptr;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
 				{
+					++count;
 					if(found)
 					{
 						next = &object;
@@ -1506,17 +1546,29 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 					}
 			}
 			ship.SetTargetPlanet(next);
+			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
+			else if(count > 1)
+			{
+				message = "Switching landing targets. Now landing on ";
+				if(ship.GetTargetPlanet()->Name().empty())
+					message += "???.";
+				else
+					message += ship.GetTargetPlanet()->Name() + ".";
+			}
 		}
 		else if(message.empty())
 		{
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
+			set<string> types;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
 				{
 					++count;
+					types.insert(object.GetPlanet()->Noun());
 					double distance = ship.Position().Distance(object.Position());
 					const Planet *planet = object.GetPlanet();
 					if(planet == ship.GetDestination())
@@ -1533,10 +1585,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			if(!ship.GetTargetPlanet())
 				message = "There are no planets in this system that you can land on.";
 			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
 			else if(count > 1)
 			{
-				message = "You can land on more than one planet in this system. Landing on ";
+				message = "You can land on more than one ";
+				set<string>::const_iterator it = types.begin();
+				message += *it++;
+				if(it != types.end())
+				{
+					set<string>::const_iterator last = --types.end();
+					if(it != last)
+						message += ',';
+					while(it != last)
+						message += ' ' + *it++ + ',';
+					message += " or " + *it;
+				}
+				message += " in this system. Landing on ";
 				if(ship.GetTargetPlanet()->Name().empty())
 					message += "???.";
 				else

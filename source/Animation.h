@@ -69,6 +69,9 @@ public:
 	// Get the mask for the given step.
 	const Mask &GetMask(int step) const;
 	
+	// Modify the frame rate.
+	void AddFrameRate(float framesPerSecond);
+	
 	
 private:
 	void DoFirst(int step) const;

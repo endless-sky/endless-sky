@@ -136,6 +136,8 @@ const Sprite *Animation::GetSprite() const
 	return sprite;
 }
 
+
+
 // Set or get the color swizzle.
 void Animation::SetSwizzle(int swizzle)
 {
@@ -248,6 +250,14 @@ const Mask &Animation::GetMask(int step) const
 	
 	// Return the mask.
 	return sprite->GetMask(step);
+}
+
+
+
+// Modify the frame rate.
+void Animation::AddFrameRate(float framesPerSecond)
+{
+	frameRate = max(0.f, frameRate + framesPerSecond / 60.f);
 }
 
 

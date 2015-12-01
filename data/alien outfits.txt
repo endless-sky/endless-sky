@@ -126,7 +126,7 @@ outfit "Korath Grab-Strike"
 		sprite "projectile/grab-strike"
 			"frame rate" 25
 			"random start frame"
-		sound "particle"
+		sound "grab-strike"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
@@ -156,7 +156,7 @@ outfit "Korath Banisher"
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
-		sound "heavy_laser"
+		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
 		"velocity" 590
@@ -200,7 +200,7 @@ outfit "Korath Fire-Lance"
 		sprite "projectile/fire-lance"
 			"frame rate" 12
 			"random start frame"
-		sound "heavy_laser"
+		sound "fire-lance"
 		"hit effect" "fire-lance impact"
 		"inaccuracy" .4
 		"velocity" 350
@@ -265,7 +265,7 @@ outfit "Korath Ark'torbal Thruster"
 	"thrusting heat" 1.0
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 5
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma tiny"
 	description "This engine is used by Korath fighters."
 
 outfit "Korath Ark'parat Steering"
@@ -292,7 +292,7 @@ outfit "Korath Jak'torbal Thruster"
 	"thrusting heat" 14.3
 	"flare sprite" "effect/plasma flare/big"
 		"frame rate" 8
-	"flare sound" "plasma_drive"
+	"flare sound" "plasma large"
 	description "This engine is used in the Korath capital ships."
 
 outfit "Korath Jak'parat Steering"

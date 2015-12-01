@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	static bool showUnderlines = false;
+	
 	static const char *vertexCode =
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
@@ -30,6 +32,8 @@ namespace {
 		"uniform vec2 position;\n"
 		// The glyph to draw. (ASCII value - 32).
 		"uniform int glyph;\n"
+		// Aspect ratio of rendered glyph (unity by default).
+		"uniform float aspect = 1.f;\n"
 		
 		// Inputs from the VBO.
 		"in vec2 vert;\n"
@@ -41,7 +45,7 @@ namespace {
 		// Pick the proper glyph out of the texture.
 		"void main() {\n"
 		"  texCoord = vec2((glyph + corner.x) / 96.f, corner.y);\n"
-		"  gl_Position = vec4((vert + position) * scale, 0, 1);\n"
+		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0, 1);\n"
 		"}\n";
 	
 	static const char *fragmentCode =
@@ -118,9 +122,17 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		static_cast<float>(round(point.X() - 1.)),
 		static_cast<float>(round(point.Y()))};
 	int previous = 0;
+	bool underlineChar = false;
+	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 	
 	for(char c : str)
 	{
+		if(c == '_')
+		{
+			underlineChar = showUnderlines;
+			continue;
+		}
+		
 		int glyph = max(0, min(GLYPHS - 1, c - 32));
 		if(!glyph)
 		{
@@ -129,11 +141,24 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		}
 		
 		glUniform1i(shader.Uniform("glyph"), glyph);
+		glUniform1f(shader.Uniform("aspect"), 1.f);
 		
 		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
 		glUniform2fv(shader.Uniform("position"), 1, textPos);
 		
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		
+		if(underlineChar)
+		{
+			glUniform1i(shader.Uniform("glyph"), underscoreGlyph);
+			glUniform1f(shader.Uniform("aspect"), static_cast<float>(advance[glyph * GLYPHS] + KERN)
+				/ (advance[underscoreGlyph * GLYPHS] + KERN));
+			
+			glUniform2fv(shader.Uniform("position"), 1, textPos);
+			
+			glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+			underlineChar = false;
+		}
 		
 		previous = glyph;
 	}
@@ -181,6 +206,13 @@ int Font::Height() const
 int Font::Space() const
 {
 	return space;
+}
+
+
+
+void Font::ShowUnderlines(bool show)
+{
+	showUnderlines = show;
 }
 
 

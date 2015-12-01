@@ -45,6 +45,8 @@ public:
 	
 	int Space() const;
 	
+	static void ShowUnderlines(bool show);
+	
 	
 private:
 	void LoadTexture(ImageBuffer *image);

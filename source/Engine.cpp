@@ -270,7 +270,7 @@ void Engine::Step(bool isActive)
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, isActive && wasActive);
 	wasActive = isActive;
-	Audio::Update(position, velocity);
+	Audio::Update(position);
 	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
@@ -753,7 +753,7 @@ void Engine::CalculateStep()
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump_drive" : "hyperspace"));
+		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
 	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
@@ -856,6 +856,7 @@ void Engine::CalculateStep()
 	// anti-missile system is ready to fire, it does not actually fire unless a
 	// missile is detected in range during collision detection, below.
 	vector<Ship *> hasAntiMissile;
+	double clickRange = 50.;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -954,13 +955,15 @@ void Engine::CalculateStep()
 			if(doClick && &*ship != player.Flagship())
 			{
 				const Mask &mask = ship->GetSprite().GetMask(step);
-				if(mask.WithinRange(clickPoint - position, ship->Facing(), 50.))
+				double range = mask.Range(clickPoint - position, ship->Facing());
+				if(range <= clickRange)
 				{
+					clickRange = range;
 					player.Flagship()->SetTargetShip(ship);
 					// If we've found an enemy within the click zone, favor
 					// targeting it rather than any other ship. Otherwise, keep
 					// checking for hits because another ship might be an enemy.
-					if(ship->GetGovernment()->IsEnemy())
+					if(!range && ship->GetGovernment()->IsEnemy())
 						doClick = false;
 				}
 			}
@@ -1046,8 +1049,9 @@ void Engine::CalculateStep()
 		}
 		else if(projectile.MissileStrength())
 		{
+			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
 			radar[calcTickTock].Add(
-				Radar::SPECIAL, projectile.Position() - center, 1.);
+				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position() - center, 1.);
 			
 			// If the projectile did not hit anything, give the anti-missile
 			// systems a chance to shoot it down.

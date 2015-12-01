@@ -100,7 +100,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	
 	const Government *gov = player.GetSystem()->GetGovernment();
 	if(planet)
-		header = gov->GetName() + " planet \"" + planet->Name() + "\":";
+		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
 	
 	if(planet && player.Flagship())
 	{

@@ -14,7 +14,7 @@ fleet "Small Southern Merchants"
 	cargo 3
 	personality
 		confusion 40
-		timid
+		timid frugal
 	variant 60
 		"Shuttle"
 	variant 30
@@ -75,7 +75,7 @@ fleet "Large Southern Merchants"
 	cargo 4
 	personality
 		confusion 20
-		timid
+		timid frugal
 	variant 20
 		"Freighter"
 		"Hawk"
@@ -160,7 +160,7 @@ fleet "Small Core Merchants"
 	cargo 3
 	personality
 		confusion 30
-		timid
+		timid frugal
 	variant 40
 		"Shuttle"
 	variant 60
@@ -218,7 +218,7 @@ fleet "Large Core Merchants"
 	cargo 4
 	personality
 		confusion 10
-		timid
+		timid frugal
 	variant 30
 		"Freighter" 2
 		"Quicksilver" 2
@@ -292,7 +292,7 @@ fleet "Small Northern Merchants"
 	cargo 3
 	personality
 		confusion 40
-		timid
+		timid frugal
 	variant 50
 		"Shuttle"
 	variant 40
@@ -343,7 +343,7 @@ fleet "Large Northern Merchants"
 	cargo 4
 	personality
 		confusion 20
-		timid
+		timid frugal
 	variant 20
 		"Freighter" 2
 		"Firebird"
@@ -403,6 +403,18 @@ fleet "Large Northern Merchants"
 		"Behemoth (Speedy)"
 	variant 10
 		"Behemoth" 2
+	variant 4
+		"Behemoth"
+		"Headhunter" 2
+	variant 2
+		"Behemoth"
+		"Headhunter (Particle)" 2
+	variant 4
+		"Bulk Freighter"
+		"Headhunter" 2
+	variant 2
+		"Bulk Freighter"
+		"Headhunter (Particle)" 2
 	variant 3
 		"Behemoth (Heavy)"
 		"Behemoth (Speedy)"
@@ -448,6 +460,9 @@ fleet "Large Northern Merchants"
 		"Leviathan"
 	variant 1
 		"Star Queen"
+		"Headhunter (Particle)" 3
+	variant 1
+		"Star Queen"
 		"Berserker (Afterburner)" 2
 	variant 1
 		"Star Queen"
@@ -469,13 +484,17 @@ fleet "Large Northern Merchants"
 		"Hauler" 3
 	variant 4
 		"Hauler III" 2
+	variant 4
+		"Hauler III"
+		"Hauler II"
+		"Headhunter" 3
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
 	names "free worlds small"
 	cargo 1
 	personality
-		heroic disables
+		heroic disables frugal
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -520,7 +539,7 @@ fleet "Large Free Worlds"
 	names "free worlds capital"
 	cargo 1
 	personality
-		heroic disables
+		heroic disables frugal
 	variant 10
 		"Bastion"
 	variant 5
@@ -600,7 +619,7 @@ fleet "Small Militia"
 	names "free worlds small"
 	cargo 1
 	personality
-		heroic
+		heroic frugal
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -645,7 +664,7 @@ fleet "Large Militia"
 	names "free worlds capital"
 	cargo 1
 	personality
-		heroic
+		heroic frugal
 	variant 10
 		"Bastion"
 	variant 5
@@ -811,6 +830,10 @@ fleet "Small Deep"
 		"Mule (Heavy)"
 		"Dagger"
 		"Raven (Heavy)"
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
 	variant 4
 		"Corvette"
 	variant 2
@@ -857,6 +880,10 @@ fleet "Large Deep"
 		"Raven" 2
 	variant 2
 		"Raven (Heavy)" 2
+	variant 3
+		"Headhunter" 2
+	variant 2
+		"Headhunter (Particle)" 2
 	variant 3
 		"Aerie" 2
 		"Dagger" 4
@@ -905,6 +932,9 @@ fleet "Large Deep"
 	variant 1
 		"Star Queen"
 		"Raven (Heavy)" 2
+	variant 1
+		"Star Queen"
+		"Headhunter" 2
 	variant 1
 		"Star Queen"
 		"Raven (Afterburner)" 2
@@ -1094,6 +1124,8 @@ fleet "Small Southern Pirates"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
+	variant 1
+		"Modified Argosy"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -1113,6 +1145,14 @@ fleet "Large Southern Pirates"
 		"Argosy (Missile)"
 	variant 2
 		"Argosy (Turret)"
+	variant 1
+		"Modified Argosy"
+	variant 1
+		"Modified Argosy (Heavy)"
+	variant 1
+		"Modified Argosy (Laser)"
+	variant 1
+		"Modified Argosy (Missile)"
 	variant 4
 		"Clipper"
 	variant 2
@@ -1143,6 +1183,17 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Argosy (Missile)"
 		"Hawk (Rocket)"
+	variant 1
+		"Modified Argosy"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Heavy)"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Laser)"
+		"Sparrow" 2
+	variant 1
+		"Modified Argosy (Missile)" 2
 	variant 4
 		"Bastion"
 	variant 2
@@ -1295,6 +1346,10 @@ fleet "Small Core Pirates"
 		"Fury (Laser)"
 	variant 1
 		"Fury (Missile)"
+	variant 1
+		"Headhunter"
+	variant 1
+		"Headhunter (Particle)"
 	variant 2
 		"Quicksilver" 2
 
@@ -1359,6 +1414,10 @@ fleet "Small Northern Pirates"
 		"Hawk (Rocket)"
 	variant 1
 		"Hawk (Speedy)"
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
 	variant 2
 		"Raven (Afterburner)"
 	variant 1
@@ -1410,6 +1469,10 @@ fleet "Large Northern Pirates"
 		"Raven (Afterburner)" 2
 	variant 2
 		"Raven (Heavy)" 2
+	variant 2
+		"Headhunter (Particle)" 2
+	variant 1
+		"Headhunter (Particle)" 3
 	variant 2
 		"Leviathan"
 		"Firebird"

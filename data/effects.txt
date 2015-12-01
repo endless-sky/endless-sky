@@ -12,6 +12,7 @@ effect "afterburner"
 	sprite "effect/afterburner"
 		"no repeat"
 		"frame rate" 30
+	sound "afterburner"
 	"lifetime" 10
 	"velocity scale" 1.
 	"random velocity" 1.
@@ -22,6 +23,7 @@ effect "ionic afterburner"
 	sprite "effect/ionic afterburner"
 		"no repeat"
 		"frame rate" 30
+	sound "ionic afterburner"
 	"lifetime" 12
 	"velocity scale" 1.
 	"random velocity" 1.
@@ -68,6 +70,7 @@ effect "particle impact"
 	sprite "effect/particle impact"
 		"no repeat"
 		"frame rate" 30
+	sound "explosion small"
 	"lifetime" 35
 	"random angle" 2
 	"velocity scale" -.05
@@ -77,6 +80,7 @@ effect "ion impact"
 	sprite "effect/ion impact"
 		"no repeat"
 		"frame rate" 30
+	sound "ion impact"
 	"lifetime" 9
 	"random angle" 360
 	"velocity scale" -.05
@@ -87,6 +91,7 @@ effect "plasma explosion"
 	sprite "effect/plasma explosion"
 		"no repeat"
 		"frame rate" 20
+	sound "explosion tiny"
 	"lifetime" 21
 	"random angle" 360
 	"random velocity" .1
@@ -107,6 +112,7 @@ effect "tracker impact"
 	sprite "effect/tracker impact"
 		"no repeat"
 		"frame rate" 20
+	sound "explosion medium"
 	"lifetime" 16
 	"random angle" 360
 	"random velocity" .2
@@ -140,59 +146,88 @@ effect "proton impact"
 	"random angle" 2
 	"velocity scale" -.005
 
+effect "flamethrower die"
+	sprite "effect/explosion/small"
+		"no repeat"
+		"frame rate" 15
+		"random start frame"
+	"lifetime" 24
+	"random angle" 360
+	"random velocity" .4
+	"random spin" 2
+	"random frame rate" 5
+	"velocity scale" .4
+
+effect "flamethrower hit"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+		"random start frame"
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"random frame rate" 5
+	"velocity scale" .4
+
 effect "tiny explosion"
 	sprite "effect/explosion/tiny"
 		"no repeat"
 		"frame rate" 15
-	sound "tiny_explosion"
+	sound "explosion tiny"
 	"lifetime" 20
 	"random angle" 360
 	"random velocity" .2
 	"random spin" 1
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "small explosion"
 	sprite "effect/explosion/small"
 		"no repeat"
 		"frame rate" 15
-	sound "small_explosion"
+	sound "explosion small"
 	"lifetime" 24
 	"random angle" 360
 	"random velocity" .4
 	"random spin" 2
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "medium explosion"
 	sprite "effect/explosion/medium"
 		"no repeat"
 		"frame rate" 15
-	sound "medium_explosion"
+	sound "explosion medium"
 	"lifetime" 28
 	"random angle" 360
 	"random velocity" .6
 	"random spin" 3
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "big explosion"
 	sprite "effect/explosion/big"
 		"no repeat"
 		"frame rate" 15
-	sound "big_explosion"
+	sound "explosion large"
 	"lifetime" 32
 	"random angle" 360
 	"random velocity" .8
 	"random spin" 4
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "huge explosion"
 	sprite "effect/explosion/huge"
 		"no repeat"
 		"frame rate" 15
-	sound "huge_explosion"
+	sound "explosion huge"
 	"lifetime" 36
 	"random angle" 360
 	"random velocity" 1
 	"random spin" 5
+	"random frame rate" 5
 	"velocity scale" .4
 
 effect "smoke"
@@ -223,7 +258,7 @@ effect "large anti-missile"
 	sprite "effect/large anti missile"
 		"no repeat"
 		"frame rate" 2
-	sound "heavy_anti-missile"
+	sound "heavy anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
@@ -231,7 +266,7 @@ effect "pug anti-missile"
 	sprite "effect/large anti missile"
 		"no repeat"
 		"frame rate" 6
-	sound "heavy_anti-missile"
+	sound "pug anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
 
@@ -239,7 +274,7 @@ effect "nuke explosion"
 	sprite "effect/explosion/nuke"
 		"no repeat"
 		"frame rate" 30
-	sound "huge_explosion"
+	sound "explosion nuke"
 	"lifetime" 15
 	"random angle" 360
 	"random velocity" 1

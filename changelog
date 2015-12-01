@@ -1,3 +1,24 @@
+Version 0.8.8:
+  * Bug fixes:
+    * Fixed various bugs with how the game determines which ship is your "flagship."
+    * The "Uninhabited" government on Ruin will no longer fine the player for illegal outfits.
+    * Fixed a crash that could happen while taking off if missions failed due to lack of space.
+    * Typo fixes (@naehc, @kkuchta, @luiges90, @fcfort, @maxrd2)
+  * New content:
+    * Added two new ships, the Headhunter and the Modified Argosy.
+  * Game mechanics:
+    * The AI will now use reverse thrusters for landing, boarding, and jumping.
+    * Added a "frugal" personality that expends ammo only if outgunned (and applied it to your escorts).
+    * Added a "net worth" condition variable for mission creators to use.
+  * User interface:
+    * Added a "buy all" button in the trading panel.
+    * Made mouse click targeting more accurate when ships are overlapping.
+  * Other:
+    * Tweaked the audio balance for a less abrupt left / right transition.
+    * Fresh installs now default to 50% volume instead of 100%.
+    * Animations can now have randomized frame rates so they aren't perfectly synchronized.
+    * Plugins can now override the existing commodities.
+
 Version 0.8.7:
   * Bug fixes:
     * Fixed a bug in the info panel scrolling.
@@ -36,13 +57,14 @@ Version 0.8.5:
     * The Escape key now means "back one level" instead of "toggle main menu."
     * Made it possible to scroll the list of ships in the player info panel.
     * The "Land" key now only toggles between landing options if pressed more than once per second.
-    * Escort icons turn green when they are ready to hyperjump.
+    * Escort icons turn green when they are ready to hyperjump. (@rlane)
     * Game snapshots can now be given a name instead of just being identified by date.
     * Escorts can no longer be ordered to attack themselves.
     * Renamed "Enter Ship" to "Load Game" in the Load / Save panel.
     * If you get plundered, added messages informing you of what was stolen.
     * The multiplier keys no longer apply to selling a ship.
-    * Your jump path is now colored based on how much fuel you and your escorts have.
+    * Your jump path is now colored based on how much fuel you and your escorts have. (@hexarobi)
+    * Selected target is now white on the radar. (@hexarobi)
   * Missions:
     * Added warning dialogs if you fail any critical Free Worlds missions.
     * Fixed a few inaccurate messages shown when an NPC condition is not yet met.
