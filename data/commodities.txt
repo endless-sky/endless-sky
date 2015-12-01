@@ -169,7 +169,7 @@ trade
 		"battlefield trauma kits"
 		"tourniquets"
 		"tampons"
-		"disponible syringes"
+		"disposable syringes"
 		"prophylactics"
 		"painkillers"
 	commodity "Industrial" 520 920
