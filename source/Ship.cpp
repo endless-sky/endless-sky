@@ -257,12 +257,6 @@ void Ship::FinishLoading()
 	baseAttributes.Reset("gun ports", armament.GunCount());
 	baseAttributes.Reset("turret mounts", armament.TurretCount());
 	
-	if(!explosionTotal)
-	{
-		++explosionEffects[GameData::Effects().Get("tiny explosion")];
-		++explosionTotal;
-	}
-	
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
 	for(const auto &it : outfits)
@@ -1057,7 +1051,16 @@ bool Ship::Move(list<Effect> &effects)
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
 				isBoarding = false;
-				hasBoarded = true;
+				if(government->IsEnemy(target->government) && target->Attributes().Get("self destruct"))
+				{
+					Messages::Add("The " + target->ModelName() + " \"" + target->Name()
+						+ "\" has activated its self-destruct mechanism.");
+					shared_ptr<Ship> victim = targetShip.lock();
+					victim->hull = -1.;
+					victim->explosionRate = 1024;
+				}
+				else
+					hasBoarded = true;
 			}
 		}
 	}
@@ -1197,7 +1200,7 @@ bool Ship::Fire(list<Projectile> &projectiles, std::list<Effect> &effects)
 	
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
-	if(explosionCount == explosionTotal && explosionWeapon)
+	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
 		projectiles.emplace_back(position, explosionWeapon);
 	
 	if(CannotAct())
