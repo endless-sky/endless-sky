@@ -146,7 +146,9 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	
-	if(player.Flagship())
+	if(system == playerSystem)
+		player.ClearTravel();
+	else if(distance.Distance(system) > 0 && player.Flagship())
 	{
 		bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
 		

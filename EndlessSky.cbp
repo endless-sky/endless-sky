@@ -132,6 +132,8 @@
 		<Unit filename="source/Engine.h" />
 		<Unit filename="source/EscortDisplay.cpp" />
 		<Unit filename="source/EscortDisplay.h" />
+		<Unit filename="source/File.cpp" />
+		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
 		<Unit filename="source/Files.h" />
 		<Unit filename="source/FillShader.cpp" />
