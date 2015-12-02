@@ -78,7 +78,8 @@ namespace {
 			return;
 		
 		int otherCount = list.size() - maxCount;
-		if(otherCount > 0)
+		
+		if(otherCount > 0 && maxCount > 0)
 		{
 			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " Others)";
 			while(otherCount--)
