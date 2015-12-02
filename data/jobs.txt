@@ -8,6 +8,39 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+mission "Escort (Tiny, Northern)"
+	name "Escort to <planet>"
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> to escort her Shuttlecraft safely to <destination> by <date>."
+	repeat
+	job
+	deadline 8
+	to offer
+		random < 70
+		"combat rating" < 6
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes north "near earth"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		distance 2 3
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Shuttle"
+	on complete
+		payment 15000
+		dialog "The captain of the <npc> thanks you for escorting her safely, and pays you <payment>."
+
 mission "Escort (Small, Northern)"
 	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
@@ -149,6 +182,39 @@ mission "Escort (Extra Large, Northern)"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
 
+mission "Escort (Tiny, Core)"
+	name "Escort to <planet>"
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> to escort his Star Barge safely to <destination> by <date>."
+	repeat
+	job
+	deadline 8
+	to offer
+		random < 70
+		"combat rating" < 6
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes core "near earth" "dirt belt"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		distance 2 3
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Wasp"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Barge (Armed)"
+	on complete
+		payment 20000
+		dialog "The captain of the <npc> thanks you for escorting him safely, and pays you <payment>."
+
 mission "Escort (Small, Core)"
 	name "Escort to <planet>"
 	description "The captain of the <npc> will pay you <payment> to escort them safely to <destination> by <date>."
@@ -289,6 +355,39 @@ mission "Escort (Extra Large, Core)"
 	on visit
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 
+
+mission "Escort (Tiny, Southern)"
+	name "Escort to <planet>"
+	description "Despite your relative inexperience, the captain of the <npc> is willing to pay you <payment> to escort her Heavy Shuttle safely to <destination> by <date>."
+	repeat
+	job
+	deadline 8
+	to offer
+		random < 70
+		"combat rating" < 6
+	source
+		government Republic "Free Worlds" Syndicate Neutral
+		attributes south rim "dirt belt"
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		distance 2 3
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet
+			names "pirate"
+			variant
+				"Sparrow"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Heavy Shuttle"
+	on complete
+		payment 15000
+		dialog "The captain of the <npc> thanks you for escorting her safely, and pays you <payment>."
 
 mission "Escort (Small, Southern)"
 	name "Escort to <planet>"
