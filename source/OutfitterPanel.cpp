@@ -201,7 +201,7 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	
 	info.DrawDescription(center - offset * 1.5);
 	info.DrawRequirements(center - offset * .5);
-	info.DrawAttributes(center + offset * .5);
+	info.DrawAttributes(center + offset * .5, false);
 	
 	return info.MaximumHeight() + 40;
 }

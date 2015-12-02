@@ -57,6 +57,7 @@ private:
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
 	const Ship *selected = nullptr;
+	const Ship *compare = nullptr;
 	
 	mutable std::vector<ClickZone<const Ship *>> zones;
 	
