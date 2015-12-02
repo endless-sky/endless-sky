@@ -404,8 +404,6 @@ void InfoPanel::DrawInfo() const
 	auto commendations = Match(player, "commendation: ", "");
 	DrawList(commendations, table, "commendations:", 10, false);
 	
-	auto reputations = Match(player, "reputation: ", " License");
-	
 	const Sprite *goldBlueAwardSprite = SpriteSet::Get("commendations/award_star_gold_blue");
 	for (int i = 0; i < commendations.size(); i++)
 	{
