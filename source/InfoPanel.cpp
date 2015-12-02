@@ -404,15 +404,11 @@ void InfoPanel::DrawInfo() const
 	auto commendations = Match(player, "commendation: ", "");
 	DrawList(commendations, table, "commendations:", 10, false);
 	
-	const Sprite *goldBlueAwardSprite = SpriteSet::Get("commendations/award_star_gold_blue");
 	for (int i = 0; i < commendations.size(); i++)
 	{
+		const Sprite *commendationSprite = SpriteSet::Get("commendations/" + commendations[i].second);
 		Point medalPos(-table.GetRowSize().X()-35, table.GetPoint().Y()-10-20*i);
-		string lowerCase = commendations[i].second;
-		transform(lowerCase.begin(), lowerCase.end(), lowerCase.begin(), ::tolower);
-		if (lowerCase.find("defender of humanity") != string::npos) {
-			SpriteShader::Draw(goldBlueAwardSprite, medalPos);
-		}
+		SpriteShader::Draw(commendationSprite, medalPos);
 	}
 	// Fleet listing.
 	Point pos = Point(-240., -270.);
