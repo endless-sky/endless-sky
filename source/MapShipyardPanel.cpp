@@ -50,6 +50,7 @@ namespace {
 		"Heavy Freighter",
 		"Interceptor",
 		"Light Warship",
+		"Medium Warship",
 		"Heavy Warship",
 		"Fighter",
 		"Drone"
