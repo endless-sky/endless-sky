@@ -164,7 +164,7 @@ ship "Bactrian"
 	sprite "ship/bactrian"
 	attributes
 		category "Heavy Warship"
-		"cost" 12600000
+		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
 		"required crew" 70
@@ -1431,7 +1431,7 @@ ship "Headhunter"
 	sprite "ship/headhunter"
 	attributes
 		category "Light Warship"
-		"cost" 1400000
+		"cost" 1850000
 		"shields" 3800
 		"hull" 700
 		"required crew" 2
