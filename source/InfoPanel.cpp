@@ -404,46 +404,16 @@ void InfoPanel::DrawInfo() const
 	auto commendations = Match(player, "commendation: ", "");
 	DrawList(commendations, table, "commendations:", 10, false);
 	
-	const Sprite *bronzeRedAwardSprite = SpriteSet::Get("commendations/award_star_bronze_red");
-	const Sprite *silverRedAwardSprite = SpriteSet::Get("commendations/award_star_silver_red");
-	const Sprite *goldRedAwardSprite = SpriteSet::Get("commendations/award_star_gold_red");
-	const Sprite *bronzeGreenAwardSprite = SpriteSet::Get("commendations/award_star_bronze_green");
-	const Sprite *silverGreenAwardSprite = SpriteSet::Get("commendations/award_star_silver_green");
-	const Sprite *goldGreenAwardSprite = SpriteSet::Get("commendations/award_star_gold_green");
-	const Sprite *bronzeBlueAwardSprite = SpriteSet::Get("commendations/award_star_bronze_blue");
-	const Sprite *silverBlueAwardSprite = SpriteSet::Get("commendations/award_star_silver_blue");
-	const Sprite *goldBlueAwardSprite = SpriteSet::Get("commendations/award_star_gold_blue");
-	
 	auto reputations = Match(player, "reputation: ", " License");
 	
-	Sprite medalSprite;
+	const Sprite *goldBlueAwardSprite = SpriteSet::Get("commendations/award_star_gold_blue");
 	for (int i = 0; i < commendations.size(); i++)
 	{
-		Point posBronze(-table.GetRowSize().X()-75, table.GetPoint().Y()-10-20*i);
-		Point posSilver(-table.GetRowSize().X()-55, table.GetPoint().Y()-10-20*i);
-		Point posGold(-table.GetRowSize().X()-35, table.GetPoint().Y()-10-20*i);
+		Point medalPos(-table.GetRowSize().X()-35, table.GetPoint().Y()-10-20*i);
 		string lowerCase = commendations[i].second;
 		transform(lowerCase.begin(), lowerCase.end(), lowerCase.begin(), ::tolower);
-		if (lowerCase.find("pirate defender") != string::npos) {
-			SpriteShader::Draw(bronzeRedAwardSprite, posBronze);
-			if (commendations[i].first >= 100)
-				SpriteShader::Draw(silverRedAwardSprite, posSilver);
-			if (commendations[i].first >= 1000)
-				SpriteShader::Draw(goldRedAwardSprite, posGold);
-		}
-		if (lowerCase.find("syndicate slayer") != string::npos) {
-			SpriteShader::Draw(bronzeGreenAwardSprite, posBronze);
-			if (commendations[i].first >= 100)
-				SpriteShader::Draw(silverGreenAwardSprite, posSilver);
-			if (commendations[i].first >= 1000)
-				SpriteShader::Draw(goldGreenAwardSprite, posGold);
-		}
-		if (lowerCase.find("free worlds liberator") != string::npos) {
-			SpriteShader::Draw(bronzeBlueAwardSprite, posBronze);
-			if (commendations[i].first >= 100)
-				SpriteShader::Draw(silverBlueAwardSprite, posSilver);
-			if (commendations[i].first >= 1000)
-				SpriteShader::Draw(goldBlueAwardSprite, posGold);
+		if (lowerCase.find("defender of humanity") != string::npos) {
+			SpriteShader::Draw(goldBlueAwardSprite, medalPos);
 		}
 	}
 	// Fleet listing.
