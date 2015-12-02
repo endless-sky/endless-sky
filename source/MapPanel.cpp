@@ -422,7 +422,16 @@ void MapPanel::DrawSystems() const
 			}
 		}
 		
-		DotShader::Draw(system.Position() + center, 6., 3.5, color);
+		// Determine if all planets in system have been visited, if so draw filled circle.
+		// If not, draw open circle.
+		double innerRadius = 0.0;
+		if(!player.HasVisited(&system))
+			innerRadius = 3.5;
+		for(const StellarObject &object : system.Objects())
+			if(object.GetPlanet() && !player.HasVisited(object.GetPlanet()))
+				innerRadius = 3.5;
+		
+		DotShader::Draw(system.Position() + center, 6., innerRadius, color);
 	}
 }
 
