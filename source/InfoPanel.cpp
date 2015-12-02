@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "Sprite.h"
+#include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
 #include "Table.h"
@@ -398,6 +399,16 @@ void InfoPanel::DrawInfo() const
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
 	auto licenses = Match(player, "license: ", " License");
 	DrawList(licenses, table, "licenses:", maxRows, false);
+
+	auto commendations = Match(player, "commendation: ", " Commendations");
+	DrawList(commendations, table, "commendations:", 1, false);
+	
+//	const Sprite *medalSprite = SpriteSet::Get("commendations/award star bronze red");
+//	if(medalSprite->Height())
+//	{
+//		Point pos(table.GetPoint().X() + 12, table.GetPoint().Y() - 30);
+//		SpriteShader::Draw(medalSprite, pos);
+//	}
 	
 	// Fleet listing.
 	Point pos = Point(-240., -270.);
