@@ -1259,7 +1259,7 @@ mission "Family [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 20000
+		payment 4000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
 mission "Family [1]"
@@ -1278,7 +1278,7 @@ mission "Family [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 30000
+		payment 6000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
 mission "Family [2]"
@@ -1297,7 +1297,7 @@ mission "Family [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 40000
+		payment 8000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
 mission "Family [3]"
@@ -1316,7 +1316,7 @@ mission "Family [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 50000
+		payment 10000
 		dialog "The family you have been transporting departs your ship after paying you <payment>."
 
 mission "Strike Breakers [mining]"
@@ -1336,7 +1336,7 @@ mission "Strike Breakers [mining]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 40000
+		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [textile]"
@@ -1356,7 +1356,7 @@ mission "Strike Breakers [textile]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 40000
+		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [factory]"
@@ -1376,7 +1376,7 @@ mission "Strike Breakers [factory]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	on complete
 		payment
-		payment 40000
+		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Colonists [0]"
@@ -1397,7 +1397,7 @@ mission "Colonists [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 60000
+		payment 8000
 		dialog "The colonists depart your ship after paying you <payment>."
 
 mission "Colonists [1]"
@@ -1418,7 +1418,7 @@ mission "Colonists [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 80000
+		payment 10000
 		dialog "The colonists depart your ship after paying you <payment>."
 
 mission "Large Bulk Delivery [0]"
@@ -1437,7 +1437,7 @@ mission "Large Bulk Delivery [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 30000
+		payment 4000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Large Bulk Delivery [1]"
@@ -1456,7 +1456,7 @@ mission "Large Bulk Delivery [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 40000
+		payment 6000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Large Bulk Delivery [2]"
@@ -1476,7 +1476,7 @@ mission "Large Bulk Delivery [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 50000
+		payment 8000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Large Rush Delivery [0]"
@@ -1496,7 +1496,7 @@ mission "Large Rush Delivery [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 60000
+		payment 36000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Large Rush Delivery [1]"
@@ -1516,7 +1516,7 @@ mission "Large Rush Delivery [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 70000
+		payment 38000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Large Rush Delivery [2]"
@@ -1537,7 +1537,7 @@ mission "Large Rush Delivery [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 80000
+		payment 40000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
 mission "Large Rush Delivery [3]"
@@ -1558,5 +1558,5 @@ mission "Large Rush Delivery [3]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 90000
+		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
