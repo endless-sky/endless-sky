@@ -50,6 +50,7 @@ namespace {
 		"Heavy Freighter",
 		"Interceptor",
 		"Light Warship",
+		"Medium Warship",
 		"Heavy Warship",
 		"Fighter",
 		"Drone"
@@ -93,14 +94,20 @@ void MapShipyardPanel::Draw() const
 	if(selected)
 	{
 		ShipInfoDisplay infoDisplay(*selected);
+		ShipInfoDisplay compareDisplay;
+		if(compare)
+			compareDisplay.Update(*compare);
+		int infoHeight = max(infoDisplay.AttributesHeight(), 120);
+		int compareHeight = compare ? max(compareDisplay.AttributesHeight(), 120) : 0;
 		
 		Color back(.125, 1.);
-		Point size(infoDisplay.PanelWidth(), infoDisplay.AttributesHeight());
+		Point size(infoDisplay.PanelWidth(), infoHeight + compareHeight);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);
 		
 		const Sprite *left = SpriteSet::Get("ui/left edge");
 		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+		const Sprite *box = SpriteSet::Get("ui/thumb box");
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
 			size.Y() - .5 * left->Height());
@@ -112,7 +119,34 @@ void MapShipyardPanel::Draw() const
 			.5 * (left->Height() + bottom->Height()));
 		SpriteShader::Draw(bottom, bottomPos);
 		
+		Point iconOffset(-.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
+		const Sprite *sprite = selected->GetSprite().GetSprite();
+		int swizzle = GameData::PlayerGovernment()->GetSwizzle();
+		if(sprite)
+		{
+			double scale = min(.5, ICON_HEIGHT / sprite->Height());
+			SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
+			SpriteShader::Draw(sprite, topLeft + iconOffset + Point(0., 5.), scale, swizzle);
+		}
 		infoDisplay.DrawAttributes(topLeft);
+		
+		if(compare)
+		{
+			topLeft.Y() += infoHeight;
+			
+			sprite = compare->GetSprite().GetSprite();
+			if(sprite)
+			{
+				double scale = min(.5, ICON_HEIGHT / sprite->Height());
+				SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
+				SpriteShader::Draw(sprite, topLeft + iconOffset + Point(0., 5.), scale, swizzle);
+			}
+			
+			Color line(.5);
+			size.Y() = 1.;
+			FillShader::Fill(topLeft + .5 * size - Point(0., 1.), size, line);
+			compareDisplay.DrawAttributes(topLeft + Point(0., 10.));
+		}
 	}
 }
 
@@ -197,10 +231,14 @@ bool MapShipyardPanel::Click(int x, int y)
 	{
 		Point point(x, y);
 		
-		selected = nullptr;
+		bool isCompare = (SDL_GetModState() & KMOD_SHIFT);
+		if(!isCompare)
+			selected = nullptr;
+		compare = nullptr;
+		
 		for(const ClickZone<const Ship *> &zone : zones)
 			if(zone.Contains(point))
-				selected = zone.Value();
+				(isCompare ? compare : selected) = zone.Value();
 		
 		return true;
 	}
