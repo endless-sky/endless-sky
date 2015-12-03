@@ -17,6 +17,9 @@ mission "Escort (Tiny, Northern)"
 	to offer
 		random < 70
 		"combat rating" < 6
+		or
+			"combat rating" > 0
+			"cargo space" < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes north "near earth"
@@ -191,6 +194,9 @@ mission "Escort (Tiny, Core)"
 	to offer
 		random < 70
 		"combat rating" < 6
+		or
+			"combat rating" > 0
+			"cargo space" < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core "near earth" "dirt belt"
@@ -365,6 +371,9 @@ mission "Escort (Tiny, Southern)"
 	to offer
 		random < 70
 		"combat rating" < 6
+		or
+			"combat rating" > 0
+			"cargo space" < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes south rim "dirt belt"
