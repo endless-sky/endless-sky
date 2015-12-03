@@ -50,11 +50,11 @@ namespace {
 	static const int NAME_X = -295;
 	static const int PRICE_X = -195;
 	static const int LEVEL_X = -155;
-	static const int BUY_X = -70;
-	static const int SELL_X = -30;
-	static const int HOLD_X = 20;
-	static const int RESERVES_X = 80;
-	static const int FLUX_X = 140;
+	static const int RESERVES_X = -70;
+	static const int FLUX_X = -10;
+	static const int BUY_X = 45;
+	static const int SELL_X = 85;
+	static const int HOLD_X = 130;
 	
 	static const int FIRST_Y = 80;
 }
@@ -130,7 +130,7 @@ void TradingPanel::Draw() const
 	
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
 	font.Draw("Avail.", Point(RESERVES_X, y), selected);
-	font.Draw("(Flux)", Point(FLUX_X, y), selected);
+	font.Draw("(+/-)", Point(FLUX_X, y), selected);
 	
 	y += 5;
 	int lastY = y + 20 * GameData::Commodities().size() + 25;
