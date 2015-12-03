@@ -127,7 +127,7 @@ void PlayerInfo::Load(const string &path)
 				for(const DataNode &greatgrand : grand)
 					if(greatgrand.Size() >= 3)
 						reserveChanges.emplace_back(GameData::Systems().Get(grand.Token(0)),
-							greatgrand.Token(0), greatgrand.Value(1), greatgrand.Value(2));
+							greatgrand.Token(0), greatgrand.Value(1));
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
@@ -268,7 +268,7 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	for(const auto &it : reserveChanges)
-		get<0>(it)->SetReserves(get<1>(it), get<2>(it), get<3>(it));
+		get<0>(it)->SetReserves(get<1>(it), get<2>(it));
 	reserveChanges.clear();
 	AddChanges(dataChanges);
 	
@@ -1589,8 +1589,7 @@ void PlayerInfo::Save(const string &path) const
 			out.Write(it.first);
 			out.BeginChild();
 				for(const Trade::Commodity &com : GameData::Commodities())
-					out.Write(com.name, GameData::GetReserves().Amounts(&it.second, com.name),
-							  GameData::GetReserves().RecentActivity(&it.second, com.name));
+					out.Write(com.name, GameData::GetReserves().Amounts(&it.second, com.name));
 			out.EndChild();
 		}
 	}

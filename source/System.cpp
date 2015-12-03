@@ -401,7 +401,7 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 // Get the price of the given commodity in this system.
-int System::Trade(const string &commodity) const
+int System::Trade(const string &commodity, int64_t quantity) const
 {
 	auto it = trade.find(commodity);
 	int price = (it == trade.end()) ? 0 : it->second;
@@ -409,12 +409,13 @@ int System::Trade(const string &commodity) const
 	// This calculates the prices using the present commodity reserves,
 	// and is usually done unless the player is starting a new game or
 	// loading a game prior to the implementation of the dynamic economy.
-	int reserves = Reserves(commodity) - RecentActivity(commodity);
+	int64_t reserves = Reserves(commodity);
 	
+	double scaleFactor = habitable*RESERVE_MULTIPLIER;
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return max((int64_t) com.low, min((int64_t) com.high,
-				(int64_t) round((com.high - reserves*(com.high + com.low)/habitable/RESERVE_MULTIPLIER))));
+			return round(static_cast<double>((-1+quantity-2*reserves)*com.low+
+				(-1+2*scaleFactor+quantity-2*reserves)*com.high)/(2.0*scaleFactor));
 	
 	return price;
 }
@@ -561,28 +562,18 @@ int64_t System::Reserves(const string &commodity) const
 
 
 
-// Get the amount of recently transacted commodity by the player. This is used
-// to give prices some sluggishness in response to large transactions in order
-// to prevent abuse.
-int64_t System::RecentActivity(const string &commodity) const
-{
-	return GameData::GetReserves().RecentActivity(this, commodity);
-}
-
-
-
 // Adjust the amount of reserves of a commodity in this system.
-void System::AdjustReserves(const std::string &commodity, int64_t adjustment, bool recent) const
+void System::AdjustReserves(const std::string &commodity, int64_t adjustment) const
 {
-	GameData::GetReserves().AdjustAmounts(this, commodity, adjustment, recent);
+	GameData::GetReserves().AdjustAmounts(this, commodity, adjustment);
 }
 
 
 
 // Set the amount of reserves of a commodity in this system.
-void System::SetReserves(const std::string &commodity, int64_t adjustment, int64_t recent) const
+void System::SetReserves(const std::string &commodity, int64_t adjustment) const
 {
-	GameData::GetReserves().SetAmounts(this, commodity, adjustment, recent);
+	GameData::GetReserves().SetAmounts(this, commodity, adjustment);
 }
 
 

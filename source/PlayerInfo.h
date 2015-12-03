@@ -237,7 +237,7 @@ private:
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
-	std::vector<std::tuple<const System *, std::string, int64_t, int64_t>> reserveChanges;
+	std::vector<std::tuple<const System *, std::string, int64_t>> reserveChanges;
 	std::list<DataNode> dataChanges;
 	// Persons that have been killed in this player's universe:
 	std::list<const Person *> destroyedPersons;

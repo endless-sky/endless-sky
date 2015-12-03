@@ -102,7 +102,7 @@ public:
 	const std::vector<Asteroid> &Asteroids() const;
 	
 	// Get the price of the given commodity in this system.
-	int Trade(const std::string &commodity) const;
+	int Trade(const std::string &commodity, int64_t quantity = 0) const;
 	
 	// Get the production rate of the given commodity in this system.
 	int Production(const std::string &commodity) const;
@@ -119,20 +119,16 @@ public:
 	// Return the amount of a given commodity in this system.
 	int64_t Reserves(const std::string &commodity) const;
 	
-	// Return the amount of a given commodity recently transacted by the player
-	// in this system.
-	int64_t RecentActivity(const std::string &commodity) const;
-	
 	// Get the price of the given commodity in this system.
 	int64_t InitialReserves(const std::string &commodity) const;
 	
 	// Adjust the amount of a given commodity recently transcated by the player
 	// in this system.
-	void AdjustReserves(const std::string &commodity, int64_t adjustment, bool recent) const;
+	void AdjustReserves(const std::string &commodity, int64_t adjustment) const;
 	
 	// Set the amount of a given commodity recently transcated by the player
 	// in this system.
-	void SetReserves(const std::string &commodity, int64_t adjustment, int64_t recent) const;
+	void SetReserves(const std::string &commodity, int64_t adjustment) const;
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;

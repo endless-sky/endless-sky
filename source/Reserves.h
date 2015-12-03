@@ -35,19 +35,16 @@ public:
 	
 	// Get or set the amount of commodity in a given system.
 	int64_t Amounts(const System *sys, const std::string &commodity) const;
-	int64_t RecentActivity(const System *sys, const std::string &commodity) const;
-	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment, bool recent);
-	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment, int64_t recent);
+	void AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
+	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
 	
 	// Functions that affect the amount of commodity in a system as time elapses.
-	void ReduceRecent(const System *sys, const std::string &commodity);
 	void EvolveDaily();
 	
 private:
 	// amounts stores the amount of each commodity in each system, whereas recentActivity
 	// stores the amount of each commodity recently transcated by the player in each system.
 	std::map<const System *, std::map<std::string, int64_t>> amounts;
-	std::map<const System *, std::map<std::string, int64_t>> recentActivity;
 };
 
 
