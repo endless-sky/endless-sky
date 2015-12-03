@@ -122,8 +122,9 @@ void TradingPanel::Draw() const
 	int y = FIRST_Y;
 	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
 	
+	string pricePrefix = selling ? "Selling" : "Buying";
 	font.Draw("Commodity", Point(NAME_X, y), selected);
-	font.Draw("Price", Point(PRICE_X, y), selected);
+	font.Draw(pricePrefix + " Price", Point(PRICE_X, y), selected);
 	
 	string mod = "x " + to_string(Modifier());
 	font.Draw(mod, Point(BUY_X, y), unselected);
