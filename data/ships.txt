@@ -891,13 +891,13 @@ ship "Falcon"
 		"required crew" 52
 		"bunks" 75
 		"mass" 510
-		"drag" 7.1
+		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 90
 		"outfit space" 540
 		"weapon capacity" 240
-		"engine capacity" 140
+		"engine capacity" 150
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1564,7 +1564,7 @@ ship "Leviathan"
 		"required crew" 43
 		"bunks" 64
 		"mass" 480
-		"drag" 6.9
+		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 80
