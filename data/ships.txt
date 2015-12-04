@@ -175,7 +175,7 @@ ship "Bactrian"
 		"fuel capacity" 700
 		"cargo space" 530
 		"outfit space" 740
-		"weapon capacity" 330
+		"weapon capacity" 300
 		"engine capacity" 180
 		weapon
 			"blast radius" 260
@@ -1818,7 +1818,7 @@ ship "Protector"
 		"cost" 5500000
 		"shields" 9500
 		"hull" 6500
-		"required crew" 36
+		"required crew" 30
 		"bunks" 69
 		"mass" 500
 		"drag" 10.3
