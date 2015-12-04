@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -45,10 +46,15 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	
 	if(gov->IsEnemy())
 	{
-		SetBribe(gov->GetBribeFraction());
-		if(bribe)
-			message = "If you want us to leave you alone, it'll cost you "
-				+ Format::Number(bribe) + " credits.";
+		if(ship->IsDisabled())
+			message = GameData::Phrases().Get("hostile disabled")->Get();
+		else
+		{
+			SetBribe(gov->GetBribeFraction());
+			if(bribe)
+				message = "If you want us to leave you alone, it'll cost you "
+					+ Format::Number(bribe) + " credits.";
+		}
 	}
 	else if(ship->IsDisabled())
 	{
@@ -139,7 +145,8 @@ void HailPanel::Draw() const
 		bool isEnemy = ship->GetGovernment()->IsEnemy();
 		if(isEnemy)
 		{
-			interfaceInfo.SetCondition("can bribe");
+			if(!ship->IsDisabled())
+				interfaceInfo.SetCondition("can bribe");
 			interfaceInfo.SetCondition("cannot assist");
 		}
 		else
