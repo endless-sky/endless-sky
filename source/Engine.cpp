@@ -592,7 +592,7 @@ void Engine::Draw() const
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
 		Color color = *GameData::Colors().Get("medium");
-		FontSet::Get(14).Draw(loadString,
+		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
 }
