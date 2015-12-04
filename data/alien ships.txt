@@ -181,7 +181,7 @@ ship "Korath Chaser"
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
 
 ship "Korath World-Ship"
-	sprite "ship/world-ship b"
+	sprite "ship/world-ship a"
 	attributes
 		category "Heavy Freighter"
 		cost 8000000
