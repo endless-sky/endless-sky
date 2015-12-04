@@ -997,12 +997,13 @@ bool Ship::Move(list<Effect> &effects)
 			}
 		}
 		if(acceleration)
+			velocity += acceleration;
+		// There's no actual drag in space, so we only apply it to our speed
+		// above our speed limit
+		if (velocity.Length() > MaxVelocity())
 		{
-			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
-			// What direction will the net acceleration be if this drag is applied?
-			// If the net acceleration will be opposite the thrust, do not apply drag.
-			dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
-			velocity += dragAcceleration;
+			Point excessVelocity = velocity - velocity.Unit()*MaxVelocity();
+			velocity -= excessVelocity * (attributes.Get("drag") / mass);
 		}
 		if(commands.Turn())
 		{
