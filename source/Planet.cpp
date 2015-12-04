@@ -73,15 +73,20 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		}
 		else if(child.Token(0) == "spaceport" && child.Size() >= 2)
 		{
-			if(resetSpaceport)
-			{
-				resetSpaceport = false;
+			if(child.Token(1) == "clear")
 				spaceport.clear();
+			else
+			{
+				if(resetSpaceport)
+				{
+					resetSpaceport = false;
+					spaceport.clear();
+				}
+				if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
+					spaceport += '\t';
+				spaceport += child.Token(1);
+				spaceport += '\n';
 			}
-			if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
-				spaceport += '\t';
-			spaceport += child.Token(1);
-			spaceport += '\n';
 		}
 		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
 		{
