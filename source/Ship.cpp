@@ -194,7 +194,7 @@ void Ship::FinishLoading()
 	// If this ship has a base class, copy any attributes not defined here.
 	if(base && base != this)
 	{
-		if(sprite.IsEmpty())
+		if(!sprite.GetSprite())
 			sprite = base->sprite;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
@@ -215,6 +215,10 @@ void Ship::FinishLoading()
 			explosionEffects = base->explosionEffects;
 			explosionTotal = base->explosionTotal;
 		}
+		if(outfits.empty())
+			outfits = base->outfits;
+		if(description.empty())
+			description = base->description;
 		
 		// Check if any hardpoint locations were not specified.
 		auto bit = base->Weapons().begin();
