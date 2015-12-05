@@ -178,8 +178,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if((key == 'h' || key == 'c') && flagship && planet.IsInhabited() && hasAccess)
 	{
-		if (selectedPanel == hiring.get() && key == 'c')
-			selectedPanel = nullptr;
+		if (selectedPanel == hiring.get())
+			if (key == 'c') selectedPanel = nullptr;
 		else
 		{
 			selectedPanel = hiring.get();
