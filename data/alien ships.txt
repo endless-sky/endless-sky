@@ -235,3 +235,13 @@ ship "Korath World-Ship"
 	explode "huge explosion" 50
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
+ship "Korath World-Ship" "Korath World-Ship B"
+	sprite "ship/world-ship b"
+	turret -76 -219 "Korath Grab-Strike"
+	turret 76 -219 "Korath Grab-Strike"
+	turret -75 -112 "Korath Banisher"
+	turret 0 -92 "Korath Warder"
+	turret 75 -112 "Korath Banisher"
+	turret -83 165 "Korath Warder"
+	turret 83 165 "Korath Warder"
+	turret 0 277 "Korath Banisher"
