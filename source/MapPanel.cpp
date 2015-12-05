@@ -472,14 +472,14 @@ void MapPanel::DrawNames() const
 	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
-	Point offset(6., -.5 * font.Height());
+	Point offset((Zoom() > 2.0) ? 8. : 6., -.5 * font.Height());
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
 		if(!player.KnowsName(&system) || system.Name().empty())
 			continue;
 		
-		font.Draw(system.Name(), Zoom()*(system.Position() + offset + center),
+		font.Draw(system.Name(), Zoom()*(system.Position() + center) + offset,
 			(&system == playerSystem) ? closeColor : farColor);
 	}
 }
