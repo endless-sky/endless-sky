@@ -338,7 +338,6 @@ void ShopPanel::DrawMain() const
 
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
 {
-	const Sprite *sprite = ship.GetSprite().GetSprite();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
 	SpriteShader::Draw(back, center);
@@ -351,10 +350,14 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
 	
-	float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
-	int swizzle = GameData::PlayerGovernment()->GetSwizzle();
-	
-	SpriteShader::Draw(sprite, center, zoom, swizzle);
+	const Sprite *sprite = ship.GetSprite().GetSprite();
+	if(sprite)
+	{
+		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
+		int swizzle = GameData::PlayerGovernment()->GetSwizzle();
+		
+		SpriteShader::Draw(sprite, center, zoom, swizzle);
+	}
 }
 
 
