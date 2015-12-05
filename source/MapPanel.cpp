@@ -148,7 +148,7 @@ bool MapPanel::Click(int x, int y)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y)/Zoom() - center;
 	for(const auto &it : GameData::Systems())
-		if(click.Distance(it.second.Position()) < 10.
+		if(Zoom()*click.Distance(it.second.Position()) < 10.
 				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
 		{
 			Select(&it.second);
@@ -221,14 +221,14 @@ const Planet *MapPanel::Find(const string &name)
 		if(player.HasVisited(&it.second) && Contains(it.first, name))
 		{
 			selectedSystem = &it.second;
-			center = Point() - selectedSystem->Position();
+			center = Zoom()*(Point() - selectedSystem->Position());
 			return nullptr;
 		}
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()) && Contains(it.first, name))
 		{
 			selectedSystem = it.second.GetSystem();
-			center = Point() - selectedSystem->Position();
+			center = Zoom()*(Point() - selectedSystem->Position());
 			return &it.second;
 		}
 	return nullptr;

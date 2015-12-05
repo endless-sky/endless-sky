@@ -360,8 +360,8 @@ void MapDetailPanel::DrawInfo() const
 	// Draw the buttons.
 	Information info;
 	info.SetCondition("is ports");
-	if (MaxZoom()) info.SetCondition("!is zoom in");
-	if (MinZoom()) info.SetCondition("!is zoom out");
+	if (MaxZoom()) info.SetCondition("max zoom");
+	if (MinZoom()) info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, Point(-250., 0.));
 }

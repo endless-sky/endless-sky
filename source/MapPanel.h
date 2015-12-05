@@ -71,7 +71,7 @@ protected:
 	
 	Point center;
 	int commodity;
-	const int maxZoom = 3;
+	const int maxZoom = 2;
 	mutable int zoom = 0;
 	mutable int step = 0;
 	
