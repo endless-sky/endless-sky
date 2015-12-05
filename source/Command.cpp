@@ -167,8 +167,13 @@ const string &Command::Description() const
 const string &Command::KeyName() const
 {
 	static const string empty = "";
+	static const string backspace = "Bkspc";
 	auto it = keyName.find(*this);
-	return (it == keyName.end() ? empty : it->second);
+	if (it == keyName.end())
+		return empty;
+	if (it->second == "Backspace")
+		return backspace;
+	return it->second;
 }
 
 
