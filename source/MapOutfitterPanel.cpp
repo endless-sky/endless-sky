@@ -88,6 +88,10 @@ void MapOutfitterPanel::Draw() const
 	
 	Information info;
 	info.SetCondition("is outfitters");
+	if(ZoomIsMax())
+		info.SetCondition("max zoom");
+	if(ZoomIsMin())
+		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
 	
@@ -212,13 +216,9 @@ bool MapOutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		scroll = min(0, max(-maxScroll, scroll));
 	}
 	else if(key == '+' || key == '=')
-	{
 		ZoomMap();
-	}
 	else if(key == '-')
-	{
 		UnzoomMap();
-	}
 	else
 		return false;
 	

@@ -88,6 +88,10 @@ void MapShipyardPanel::Draw() const
 	
 	Information info;
 	info.SetCondition("is shipyards");
+	if(ZoomIsMax())
+		info.SetCondition("max zoom");
+	if(ZoomIsMin())
+		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
 	
@@ -213,13 +217,9 @@ bool MapShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		scroll = min(0, max(-maxScroll, scroll));
 	}
 	else if(key == '+' || key == '=')
-	{
 		ZoomMap();
-	}
 	else if(key == '-')
-	{
 		UnzoomMap();
-	}
 	else
 		return false;
 	

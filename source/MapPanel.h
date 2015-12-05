@@ -49,11 +49,11 @@ protected:
 	void Select(const System *system);
 	const Planet *Find(const std::string &name);
 	
-	void ZoomMap() const;
-	void UnzoomMap() const;
+	void ZoomMap();
+	void UnzoomMap();
 	double Zoom() const;
-	bool MaxZoom() const;
-	bool MinZoom() const;
+	bool ZoomIsMax() const;
+	bool ZoomIsMin() const;
 	
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
@@ -72,7 +72,7 @@ protected:
 	Point center;
 	int commodity;
 	const int maxZoom = 2;
-	mutable int zoom = 0;
+	int zoom = 0;
 	mutable int step = 0;
 	
 	
