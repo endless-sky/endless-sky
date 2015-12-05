@@ -770,13 +770,15 @@ void AI::MoveEscort(Ship &ship, Command &command)
 void AI::Refuel(Ship &ship, Command &command)
 {
 	if(ship.GetParent() && ship.GetParent()->GetTargetPlanet()
-			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->HasSpaceport())
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->HasSpaceport()
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->CanLand(ship))
 		ship.SetTargetPlanet(ship.GetParent()->GetTargetPlanet());
 	else if(!ship.GetTargetPlanet())
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)
