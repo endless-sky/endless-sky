@@ -256,13 +256,15 @@ public:
 	const StellarObject *GetTargetPlanet() const;
 	const System *GetTargetSystem() const;
 	const Planet *GetDestination() const;
+	bool PlanetSelectedByClick() const;
 	
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
-	void SetTargetPlanet(const StellarObject *object);
+	void SetTargetPlanet(const StellarObject *object, bool clickSelected = false);
 	void SetTargetSystem(const System *system);
 	void SetDestination(const Planet *planet);
+	void ClearPlanetClick();
 	
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -386,6 +388,7 @@ private:
 	const StellarObject *targetPlanet = nullptr;
 	const System *targetSystem = nullptr;
 	const Planet *destination = nullptr;
+	bool planetSelectedByClick = false;
 	
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<const Ship>> escorts;
