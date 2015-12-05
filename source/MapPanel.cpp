@@ -152,7 +152,7 @@ bool MapPanel::Click(int x, int y)
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	for(const auto &it : GameData::Systems())
-		if(Zoom() * click.Distance(it.second.Position()) < 10.
+		if(click.Distance(it.second.Position()) < 10.
 				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
 		{
 			Select(&it.second);
@@ -167,6 +167,23 @@ bool MapPanel::Click(int x, int y)
 bool MapPanel::Drag(int dx, int dy)
 {
 	center += Point(dx, dy) / Zoom();
+	return true;
+}
+
+
+
+bool MapPanel::Scroll(int dx, int dy)
+{
+	// The mouse should be pointing to the same map position before and after zooming.
+	Point mouse = UI::GetMouse();
+	Point anchor = mouse / Zoom() - center;
+	if(dy > 0)
+		ZoomMap();
+	else
+		UnzoomMap();
+	// Now, Zoom() has changed (unless at one of the limits). But, we still want
+	// anchor to be the same, so:
+	center = mouse / Zoom() - anchor;
 	return true;
 }
 

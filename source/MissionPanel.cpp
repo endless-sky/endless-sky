@@ -167,6 +167,10 @@ void MissionPanel::Draw() const
 	// Draw the buttons to switch to other map modes.
 	Information info;
 	info.SetCondition("is missions");
+	if(ZoomIsMax())
+		info.SetCondition("max zoom");
+	if(ZoomIsMin())
+		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
 }
@@ -441,7 +445,7 @@ bool MissionPanel::Scroll(int dx, int dy)
 	if(dragSide)
 		return Drag(0, dy * 50);
 	
-	return false;
+	return MapPanel::Scroll(dx, dy);
 }
 
 

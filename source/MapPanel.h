@@ -43,6 +43,7 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool Click(int x, int y) override;
 	virtual bool Drag(int dx, int dy) override;
+	virtual bool Scroll(int dx, int dy) override;
 	
 	virtual double SystemValue(const System *system) const;
 	
