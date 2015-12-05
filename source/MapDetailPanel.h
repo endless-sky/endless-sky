@@ -49,8 +49,6 @@ private:
 	
 	void ListShips() const;
 	void ListOutfits() const;
-	
-	
 private:
 	mutable int governmentY;
 	mutable int tradeY;

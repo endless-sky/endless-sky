@@ -129,7 +129,15 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(
-			this, &MapDetailPanel::DoFind, "Search for:"));
+								 this, &MapDetailPanel::DoFind, "Search for:"));
+	else if(key == '+' || key == '=')
+	{
+		ZoomMap();
+	}
+	else if(key == '-')
+	{
+		UnzoomMap();
+	}
 	else
 		return false;
 	
@@ -352,6 +360,8 @@ void MapDetailPanel::DrawInfo() const
 	// Draw the buttons.
 	Information info;
 	info.SetCondition("is ports");
+	if (MaxZoom()) info.SetCondition("max zoom");
+	if (MinZoom()) info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, Point(-250., 0.));
 }

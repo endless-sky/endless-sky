@@ -263,6 +263,15 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			this, &MissionPanel::DoFind, "Search for:"));
 		return true;
 	}
+	else if(key == '+' || key == '=')
+	{
+		ZoomMap();
+	}
+	else if(key == '-')
+	{
+		UnzoomMap();
+	}
+
 	else
 		return false;
 	
