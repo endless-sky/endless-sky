@@ -180,6 +180,9 @@ int Font::Width(const char *str, char after) const
 	
 	for( ; *str; ++str)
 	{
+		if(*str == '_')
+			continue;
+		
 		int glyph = max(0, min(GLYPHS - 1, *str - 32));
 		if(!glyph)
 			width += space;

@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef UI_H_
 #define UI_H_
 
+#include "Point.h"
+
 #include <memory>
 #include <vector>
 
@@ -65,6 +67,9 @@ public:
 	bool IsDone() const;
 	// Check if there are no panels left.
 	bool IsEmpty() const;
+	
+	// Get the current mouse position.
+	static Point GetMouse();
 	
 	
 private:
