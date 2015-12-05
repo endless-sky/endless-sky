@@ -38,6 +38,8 @@ public:
 	void OnCallback(int value);
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
+	// Load snapshot callback.
+	void LoadCallback();
 	
 	
 protected:
