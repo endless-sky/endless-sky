@@ -569,6 +569,10 @@ mission "Bounty Hunting (Big)"
 				"Falcon (Heavy)"
 			variant
 				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
 		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
