@@ -44,7 +44,11 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	const Government *gov = ship->GetGovernment();
 	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
 	
-	if(gov->IsEnemy())
+	if(gov->GetName() == "Derelict")
+	{
+		message = "There is no response to your hail";
+	}
+	else if(gov->IsEnemy())
 	{
 		if(ship->IsDisabled())
 			message = GameData::Phrases().Get("hostile disabled")->Get();
@@ -150,7 +154,12 @@ void HailPanel::Draw() const
 			interfaceInfo.SetCondition("cannot assist");
 		}
 		else
-			interfaceInfo.SetCondition("can assist");
+		{
+			if(ship->GetGovernment()->GetName() == "Derelict")
+				interfaceInfo.SetCondition("cannot assist");
+			else
+				interfaceInfo.SetCondition("can assist");
+		}
 	}
 	else
 	{
@@ -206,7 +215,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			message = planet->DemandTribute(player);
 			return true;
 		}
-		else if(shipIsEnemy)
+		else if(shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")
 			return false;
 		if(playerNeedsHelp)
 		{
@@ -232,7 +241,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'b' || key == 'o')
 	{
 		// Make sure it actually makes sense to bribe this ship.
-		if(ship && !shipIsEnemy)
+		if(ship && (!shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict"))
 			return true;
 		
 		if(bribe > player.Accounts().Credits())
