@@ -11,7 +11,7 @@
 ship "Aerie"
 	sprite "ship/aerie"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3500000
 		"shields" 5700
 		"hull" 1900
@@ -164,7 +164,7 @@ ship "Bactrian"
 	sprite "ship/bactrian"
 	attributes
 		category "Heavy Warship"
-		"cost" 12600000
+		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
 		"required crew" 70
@@ -175,7 +175,7 @@ ship "Bactrian"
 		"fuel capacity" 700
 		"cargo space" 530
 		"outfit space" 740
-		"weapon capacity" 330
+		"weapon capacity" 300
 		"engine capacity" 180
 		weapon
 			"blast radius" 260
@@ -225,7 +225,7 @@ ship "Bactrian"
 ship "Bastion"
 	sprite "ship/bastion"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
@@ -672,7 +672,7 @@ ship "Combat Drone"
 ship "Corvette"
 	sprite "ship/corvette"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 4400000
 		"shields" 6100
 		"hull" 1200
@@ -891,13 +891,13 @@ ship "Falcon"
 		"required crew" 52
 		"bunks" 75
 		"mass" 510
-		"drag" 7.1
+		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 90
 		"outfit space" 540
 		"weapon capacity" 240
-		"engine capacity" 140
+		"engine capacity" 150
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -939,7 +939,7 @@ ship "Falcon"
 ship "Firebird"
 	sprite "ship/firebird"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3700000
 		"shields" 6400
 		"hull" 2800
@@ -1083,7 +1083,7 @@ ship "Frigate"
 	licenses
 		Navy
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 5200000
 		"shields" 8000
 		"hull" 2500
@@ -1430,8 +1430,8 @@ ship "Hawk"
 ship "Headhunter"
 	sprite "ship/headhunter"
 	attributes
-		category "Interceptor"
-		"cost" 1400000
+		category "Light Warship"
+		"cost" 1850000
 		"shields" 3800
 		"hull" 700
 		"required crew" 2
@@ -1564,7 +1564,7 @@ ship "Leviathan"
 		"required crew" 43
 		"bunks" 64
 		"mass" 480
-		"drag" 6.9
+		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 80
@@ -1610,7 +1610,7 @@ ship "Leviathan"
 ship "Manta"
 	sprite "ship/manta"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3400000
 		"shields" 5900
 		"hull" 1500
@@ -1710,7 +1710,7 @@ ship "Modified Argosy"
 ship "Mule"
 	sprite "ship/mule"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 2580000
 		"shields" 5400
 		"hull" 4400
@@ -1763,7 +1763,7 @@ ship "Mule"
 ship "Osprey"
 	sprite "ship/osprey"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 4400000
 		"shields" 7200
 		"hull" 1600
@@ -1818,7 +1818,7 @@ ship "Protector"
 		"cost" 5500000
 		"shields" 9500
 		"hull" 6500
-		"required crew" 36
+		"required crew" 30
 		"bunks" 69
 		"mass" 500
 		"drag" 10.3
@@ -2145,7 +2145,7 @@ ship "Sparrow"
 ship "Splinter"
 	sprite "ship/splinter"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700

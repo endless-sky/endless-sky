@@ -1575,6 +1575,9 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
+	if(!planet || !system)
+		return;
+	
 	DataWriter out(path);
 	
 	out.Write("pilot", firstName, lastName);

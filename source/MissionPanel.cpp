@@ -118,8 +118,8 @@ void MissionPanel::Draw() const
 	{
 		const System *next = distance.Route(system);
 		
-		Point from = next->Position() + center;
-		Point to = system->Position() + center;
+		Point from = Zoom() * (next->Position() + center);
+		Point to = Zoom() * (system->Position() + center);
 		Point unit = (from - to).Unit() * 7.;
 		from -= unit;
 		to += unit;
@@ -150,21 +150,27 @@ void MissionPanel::Draw() const
 	const Color &currentColor = *colors.Get("active back");
 	const Color &blockedColor = *colors.Get("blocked back");
 	if(availableIt != available.end() && availableIt->Destination())
-		DotShader::Draw(availableIt->Destination()->GetSystem()->Position() + center,
-			22., 20.5, CanAccept() ? availableColor : unavailableColor);
+	{
+		Point pos = Zoom() * (availableIt->Destination()->GetSystem()->Position() + center);
+		DotShader::Draw(pos, 22., 20.5, CanAccept() ? availableColor : unavailableColor);
+	}
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 	{
 		bool isBlocked = !acceptedIt->Waypoints().empty();
 		for(const NPC &npc : acceptedIt->NPCs())
 			isBlocked |= !npc.HasSucceeded(player.GetSystem());
 		
-		DotShader::Draw(acceptedIt->Destination()->GetSystem()->Position() + center,
-			22., 20.5, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
+		Point pos = Zoom() * (acceptedIt->Destination()->GetSystem()->Position() + center);
+		DotShader::Draw(pos, 22., 20.5, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	}
 	
 	// Draw the buttons to switch to other map modes.
 	Information info;
 	info.SetCondition("is missions");
+	if(ZoomIsMax())
+		info.SetCondition("max zoom");
+	if(ZoomIsMin())
+		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
 }
@@ -263,6 +269,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			this, &MissionPanel::DoFind, "Search for:"));
 		return true;
 	}
+	else if(key == '+' || key == '=')
+		ZoomMap();
+	else if(key == '-')
+		UnzoomMap();
+
 	else
 		return false;
 	
@@ -434,7 +445,7 @@ bool MissionPanel::Scroll(int dx, int dy)
 	if(dragSide)
 		return Drag(0, dy * 50);
 	
-	return false;
+	return MapPanel::Scroll(dx, dy);
 }
 
 

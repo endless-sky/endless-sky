@@ -274,10 +274,6 @@ int main(int argc, char *argv[])
 						glViewport(0, 0, width, height);
 					}
 				}
-				else if(activeUI.Handle(event))
-				{
-					// No need to do anything more!
-				}
 				else if(event.type == SDL_KEYDOWN
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && event.key.keysym.mod & KMOD_ALT)))
@@ -300,6 +296,10 @@ int main(int argc, char *argv[])
 					int width, height;
 					SDL_GL_GetDrawableSize(window, &width, &height);
 					glViewport(0, 0, width, height);
+				}
+				else if(activeUI.Handle(event))
+				{
+					// No need to do anything more!
 				}
 			}
 			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);

@@ -10,7 +10,7 @@
 
 mission "Kestrel Testing"
 	name "Warship Testing"
-	description "Travel to the <system> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
+	description "Travel to the Umbral system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
 	source Wayfarer
 	waypoint Umbral
 	to offer

@@ -260,13 +260,16 @@ void Dialog::Init(const string &message, bool canCancel, bool isMission)
 	
 	text.Wrap(message);
 	
-	// If there is a text input, we need 20 pixels for it and 10 pixels padding.
-	height = text.Height() + 20 + 30 * (intFun || stringFun);
+	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
+	// bottom are "padding," but text.Height() over-reports the height by about
+	// 5 pixels because it includes its own padding at the bottom. If there is a
+	// text input, we need another 20 pixels for it and 10 pixels padding.
+	height = 10 + (text.Height() - 5) + 10 + 30 * (intFun || stringFun);
 	// Determine how many 40-pixel extension panels we need.
-	if(height < 80)
+	if(height <= 80)
 		height = 0;
 	else
-		height = (height - 41) / 40;
+		height = (height - 40) / 40;
 }
 
 

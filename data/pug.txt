@@ -252,7 +252,7 @@ ship "Pug Zibruka"
 ship "Pug Enfolta"
 	sprite "ship/pug enfolta"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 6300000
 		"shields" 6800
 		"hull" 1700

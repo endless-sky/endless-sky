@@ -1587,6 +1587,10 @@ fleet "Korath Home"
 		timid
 	variant
 		"Korath World-Ship"
+	variant
+		"Korath World-Ship B"
+	variant
+		"Korath World-Ship C"
 
 fleet "Quarg"
 	government "Quarg"

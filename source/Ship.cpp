@@ -194,7 +194,7 @@ void Ship::FinishLoading()
 	// If this ship has a base class, copy any attributes not defined here.
 	if(base && base != this)
 	{
-		if(sprite.IsEmpty())
+		if(!sprite.GetSprite())
 			sprite = base->sprite;
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
@@ -215,6 +215,10 @@ void Ship::FinishLoading()
 			explosionEffects = base->explosionEffects;
 			explosionTotal = base->explosionTotal;
 		}
+		if(outfits.empty())
+			outfits = base->outfits;
+		if(description.empty())
+			description = base->description;
 		
 		// Check if any hardpoint locations were not specified.
 		auto bit = base->Weapons().begin();
@@ -943,6 +947,7 @@ bool Ship::Move(list<Effect> &effects)
 	else if(!pilotError)
 	{
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		Point acceleration;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
@@ -963,7 +968,7 @@ bool Ship::Move(list<Effect> &effects)
 					energy -= cost;
 					heat += attributes.Get((thrustCommand > 0.) ?
 						"thrusting heat" : "reverse thrusting heat");
-					velocity += angle.Unit() * (thrustCommand * thrust / mass);
+					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
 		}
@@ -980,7 +985,7 @@ bool Ship::Move(list<Effect> &effects)
 				heat += attributes.Get("afterburner heat");
 				fuel -= cost;
 				energy -= energyCost;
-				velocity += angle.Unit() * thrust / mass;
+				acceleration += angle.Unit() * thrust / mass;
 				
 				if(!forget)
 					for(const Point &point : enginePoints)
@@ -995,8 +1000,14 @@ bool Ship::Move(list<Effect> &effects)
 					}
 			}
 		}
-		if(thrustCommand || applyAfterburner)
-			velocity *= 1. - attributes.Get("drag") / mass;
+		if(acceleration)
+		{
+			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
+			// What direction will the net acceleration be if this drag is applied?
+			// If the net acceleration will be opposite the thrust, do not apply drag.
+			dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+			velocity += dragAcceleration;
+		}
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
