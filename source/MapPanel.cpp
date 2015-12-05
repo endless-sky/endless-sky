@@ -60,7 +60,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	SetInterruptible(false);
 	
 	if(selectedSystem)
-		center = Point(0., 0.) - selectedSystem->Position();
+		center = Point(0., 0.) - Zoom()*(selectedSystem->Position());
 }
 
 
@@ -77,15 +77,15 @@ void MapPanel::Draw() const
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	for(const auto &it : GameData::Galaxies())
-		SpriteShader::Draw(it.second.GetSprite(), center + it.second.Position());
+		SpriteShader::Draw(it.second.GetSprite(), Zoom()*(center + it.second.Position()), Zoom());
 	
 	DrawTravelPlan();
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1, 0.);
-	DotShader::Draw((playerSystem ? playerSystem->Position() + center : center), 100.5, 99.5, dimColor);
+	DotShader::Draw(Zoom()*(playerSystem ? playerSystem->Position() + center : center), 100.5*Zoom(), 99.5*Zoom(), dimColor);
 	Color brightColor(.4, 0.);
-	DotShader::Draw((selectedSystem ? selectedSystem->Position() + center : center), 11., 9., brightColor);
+	DotShader::Draw(Zoom()*(selectedSystem ? selectedSystem->Position() + center : center), 11., 9., brightColor);
 	
 	DrawLinks();
 	DrawSystems();
@@ -108,10 +108,45 @@ void MapPanel::Draw() const
 
 
 
+void MapPanel::ZoomMap() const
+{
+	if (zoom < maxZoom) zoom++;
+}
+
+
+
+void MapPanel::UnzoomMap() const
+{
+	if (zoom > -maxZoom) zoom--;
+}
+
+
+
+double MapPanel::Zoom() const
+{
+	return pow(1.5, zoom);
+}
+
+
+
+bool MapPanel::MaxZoom() const
+{
+	return (zoom == maxZoom);
+}
+
+
+
+bool MapPanel::MinZoom() const
+{
+	return (zoom == -maxZoom);
+}
+
+
+
 bool MapPanel::Click(int x, int y)
 {
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) - center;
+	Point click = Point(x, y)/Zoom() - center;
 	for(const auto &it : GameData::Systems())
 		if(click.Distance(it.second.Position()) < 10.
 				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
@@ -127,7 +162,7 @@ bool MapPanel::Click(int x, int y)
 
 bool MapPanel::Drag(int dx, int dy)
 {
-	center += Point(dx, dy);
+	center += Point(dx, dy)/Zoom();
 	return true;
 }
 
@@ -255,8 +290,8 @@ void MapPanel::DrawTravelPlan() const
 		if(!((isHyper && hasHyper) || (isJump && hasJump)))
 			break;
 		
-		Point from = next->Position() + center;
-		Point to = previous->Position() + center;
+		Point from = Zoom()*(next->Position() + center);
+		Point to = Zoom()*(previous->Position() + center);
 		Point unit = (from - to).Unit() * 7.;
 		from -= unit;
 		to += unit;
@@ -308,8 +343,8 @@ void MapPanel::DrawLinks() const
 				if(!player.HasVisited(system) && !player.HasVisited(link))
 					continue;
 				
-				Point from = system->Position() + center;
-				Point to = link->Position() + center;
+				Point from = Zoom()*(system->Position() + center);
+				Point to = Zoom()*(link->Position() + center);
 				Point unit = (from - to).Unit() * 7.;
 				from -= unit;
 				to += unit;
@@ -422,7 +457,7 @@ void MapPanel::DrawSystems() const
 			}
 		}
 		
-		DotShader::Draw(system.Position() + center, 6., 3.5, color);
+		DotShader::Draw(Zoom()*(system.Position() + center), 6., 3.5, color);
 	}
 }
 
@@ -430,8 +465,11 @@ void MapPanel::DrawSystems() const
 
 void MapPanel::DrawNames() const
 {
+	// Don't draw if too small.
+	if (Zoom() <= 0.5) return;
+	
 	// Draw names for all systems you have visited.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
 	Point offset(6., -.5 * font.Height());
@@ -441,7 +479,7 @@ void MapPanel::DrawNames() const
 		if(!player.KnowsName(&system) || system.Name().empty())
 			continue;
 		
-		font.Draw(system.Name(), system.Position() + offset + center,
+		font.Draw(system.Name(), Zoom()*(system.Position() + offset + center),
 			(&system == playerSystem) ? closeColor : farColor);
 	}
 }
@@ -465,7 +503,7 @@ void MapPanel::DrawMissions() const
 	{
 		const System *system = mission.Destination()->GetSystem();
 		Angle a = (angle[system] += Angle(30.));
-		Point pos = system->Position() + center;
+		Point pos = Zoom()*(system->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
 			mission.HasSpace(player) ? availableColor : unavailableColor);
@@ -486,7 +524,7 @@ void MapPanel::DrawMissions() const
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
-		Point pos = system->Position() + center;
+		Point pos = Zoom()*(system->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		if(!blink)
 			PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
@@ -503,7 +541,7 @@ void MapPanel::DrawMissions() const
 	if(specialSystem)
 	{
 		Angle a = (angle[specialSystem] += Angle(30.));
-		Point pos = specialSystem->Position() + center;
+		Point pos = Zoom()*(specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 11.5, 21.5, -6., white);
 	}

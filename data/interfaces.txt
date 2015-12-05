@@ -827,7 +827,33 @@ interface "map buttons"
 	sprite "ui/dialog cancel" -80 0
 	sprite "ui/wide button" -160 0
 	sprite "ui/wide button" -260 0
-	
+	sprite "ui/dialog cancel" 0 -40
+	sprite "ui/dialog cancel" 0 -80
+
+	if "!is zoom in"
+	label "_+" -45 -113
+		size 14
+		color dim
+		align center
+	label "_+" -45 -113
+		size 14
+		color bright
+		align center
+	button + -10 -90
+		size 70 30
+
+	if "!is zoom out"
+	label "_-" -45 -73
+		size 14
+		color dim
+		align center
+	label "_-" -45 -73
+		size 14
+		color bright
+		align center
+	button - -10 -50
+		size 70 30
+
 	if "!is ports"
 	label "_Ports" -45 -33
 		size 14
