@@ -297,7 +297,6 @@ mission "Intro [3 Freighter]
 
 mission "Intro [1 Interceptor]"
 	priority
-	autosave
 	name "Escort convoy to <planet>"
 	description "Escort a merchant convoy to <destination>, along with your new friend James."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
@@ -343,7 +342,6 @@ mission "Intro [1 Interceptor]"
 
 mission "Intro [2 Interceptor]"
 	priority
-	autosave
 	name "Delivery to <planet>"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`

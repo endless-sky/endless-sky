@@ -99,8 +99,14 @@ void Audio::Init(const vector<string> &sources)
 	if(!context || !alcMakeContextCurrent(context))
 		return;
 	
-	alListener3f(AL_POSITION, 0., 0., 0.);
-	alListenerf(AL_GAIN, volume * .5);
+	ALfloat zero[3] = {0., 0., 0.};
+	ALfloat	orientation[6] = {0., 0., -1., 0., 1., 0.};
+	
+	alListenerf(AL_GAIN, volume);
+	alListenerfv(AL_POSITION, zero);
+	alListenerfv(AL_VELOCITY, zero);
+	alListenerfv(AL_ORIENTATION, orientation);
+	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 	
 	mainThreadID = this_thread::get_id();
@@ -140,7 +146,7 @@ void Audio::SetVolume(double level)
 {
 	volume = min(1., max(0., level));
 	if(context)
-		alListenerf(AL_GAIN, volume * .5);
+		alListenerf(AL_GAIN, volume);
 }
 
 
@@ -361,7 +367,10 @@ namespace {
 		: sound(sound), source(source)
 	{
 		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .1);
-		alSourcef(source, AL_GAIN, 1);
+		alSourcef(source, AL_GAIN, 1.);
+		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
+		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
+		alSourcef(source, AL_MAX_DISTANCE, 100.);
 		alSourcei(source, AL_LOOPING, sound->IsLooping());
 		alSourcei(source, AL_BUFFER, sound->Buffer());
 	}

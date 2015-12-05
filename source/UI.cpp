@@ -225,3 +225,16 @@ bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();
 }
+
+
+
+// Get the current mouse position.
+Point UI::GetMouse()
+{
+	int x = 0;
+	int y = 0;
+	SDL_GetMouseState(&x, &y);
+	return Point(
+		Screen::Left() + x * 100. / Screen::Zoom(),
+		Screen::Top() + y * 100. / Screen::Zoom());
+}
