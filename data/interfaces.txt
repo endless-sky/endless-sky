@@ -374,7 +374,7 @@ interface "planet"
 		size 140 40
 	
 	sprite "ui/planet dialog button" 280 210
-	label "_Hire Crew" 340 202
+	label "Hire _Crew" 340 202
 		size 18
 		color bright
 		align right

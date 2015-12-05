@@ -133,18 +133,33 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 't' && flagship && planet.IsInhabited() && hasAccess)
 	{
-		selectedPanel = trading.get();
-		GetUI()->Push(trading);
+		if (selectedPanel == trading.get())
+			selectedPanel = nullptr;
+		else
+		{
+			selectedPanel = trading.get();
+			GetUI()->Push(trading);
+		}
 	}
 	else if(key == 'b' && planet.IsInhabited() && hasAccess)
 	{
-		selectedPanel = bank.get();
-		GetUI()->Push(bank);
+		if (selectedPanel == bank.get())
+			selectedPanel = nullptr;
+		else
+		{
+			selectedPanel = bank.get();
+			GetUI()->Push(bank);
+		}
 	}
 	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
 	{
-		selectedPanel = spaceport.get();
-		GetUI()->Push(spaceport);
+		if (selectedPanel == spaceport.get())
+			selectedPanel = nullptr;
+		else
+		{
+			selectedPanel = spaceport.get();
+			GetUI()->Push(spaceport);
+		}
 	}
 	else if(key == 's' && planet.HasShipyard() && hasAccess)
 	{
@@ -161,10 +176,15 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && flagship && planet.IsInhabited() && hasAccess)
+	else if((key == 'h' || key == 'c') && flagship && planet.IsInhabited() && hasAccess)
 	{
-		selectedPanel = hiring.get();
-		GetUI()->Push(hiring);
+		if (selectedPanel == hiring.get() && key == 'c')
+			selectedPanel = nullptr;
+		else
+		{
+			selectedPanel = hiring.get();
+			GetUI()->Push(hiring);
+		}
 	}
 	else if(command.Has(Command::MAP))
 	{
