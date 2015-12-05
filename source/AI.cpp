@@ -485,8 +485,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	if(!maxRange)
 		return target;
 	
+	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
 	if(oldTarget && !oldTarget->IsTargetable())
+		oldTarget.reset();
+	if(oldTarget && person.IsTimid() && oldTarget->IsDisabled()
+			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
 	shared_ptr<Ship> parentTarget;
 	if(ship.GetParent())
@@ -499,7 +503,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	// range higher than 2000, it will engage ships up to 50% beyond its range.
 	// If a ship has short range weapons and is not heroic, it will engage any
 	// ship that is within 3000 of it.
-	const Personality &person = ship.GetPersonality();
 	double closest = person.IsHeroic() ? numeric_limits<double>::infinity() :
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
@@ -509,11 +512,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		{
 			if(person.IsNemesis() && !it->GetGovernment()->IsPlayer())
 				continue;
-			// Non-escort ships should not target ships outside the range where AI ships will travel.
-			if(!ship.IsYours() && it->Position().Length() >= MAX_DISTANCE_FROM_CENTER)
-				continue;
 			
-			double range = it->Position().Distance(ship.Position());
+			// Calculate what the range will be a second from now, so that ships
+			// will prefer targets that they are headed toward.
+			double range = (it->Position() + 60. * it->Velocity()).Distance(
+				ship.Position() + 60. * ship.Velocity());
 			// Preferentially focus on your previous target or your parent ship's
 			// target if they are nearby.
 			if(it == oldTarget || it == parentTarget)
@@ -576,12 +579,18 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
-	if(!ship.IsYours() && ship.Position().Length() >= MAX_DISTANCE_FROM_CENTER)
-	{
-		MoveTo(ship, command, Point(), 40., .8);
-		return;
-	}
 	shared_ptr<const Ship> target = ship.GetTargetShip();
+	if(target && !ship.IsYours())
+	{
+		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
+		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
+		{
+			MoveTo(ship, command, Point(), 40., .8);
+			if(ship.Velocity().Dot(ship.Position()) > 0.)
+				command |= Command::FORWARD;
+			return;
+		}
+	}
 	if(target && (ship.GetGovernment()->IsEnemy(target->GetGovernment())
 			|| (ship.IsYours() && target == sharedTarget.lock())))
 	{
@@ -761,13 +770,15 @@ void AI::MoveEscort(Ship &ship, Command &command)
 void AI::Refuel(Ship &ship, Command &command)
 {
 	if(ship.GetParent() && ship.GetParent()->GetTargetPlanet()
-			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->HasSpaceport())
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->HasSpaceport()
+			&& ship.GetParent()->GetTargetPlanet()->GetPlanet()->CanLand(ship))
 		ship.SetTargetPlanet(ship.GetParent()->GetTargetPlanet());
 	else if(!ship.GetTargetPlanet())
 	{
 		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : ship.GetSystem()->Objects())
-			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+			if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
 			{
 				double distance = ship.Position().Distance(object.Position());
 				if(distance < closest)
@@ -1526,10 +1537,12 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		else if(message.empty() && target && landKeyInterval < 60)
 		{
 			bool found = false;
+			int count = 0;
 			const StellarObject *next = nullptr;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
 				{
+					++count;
 					if(found)
 					{
 						next = &object;
@@ -1548,17 +1561,29 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 					}
 			}
 			ship.SetTargetPlanet(next);
+			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
+			else if(count > 1)
+			{
+				message = "Switching landing targets. Now landing on ";
+				if(ship.GetTargetPlanet()->Name().empty())
+					message += "???.";
+				else
+					message += ship.GetTargetPlanet()->Name() + ".";
+			}
 		}
 		else if(message.empty())
 		{
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
+			set<string> types;
 			for(const StellarObject &object : ship.GetSystem()->Objects())
 				if(object.GetPlanet())
 				{
 					++count;
+					types.insert(object.GetPlanet()->Noun());
 					double distance = ship.Position().Distance(object.Position());
 					const Planet *planet = object.GetPlanet();
 					if(planet == ship.GetDestination())
@@ -1575,10 +1600,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			if(!ship.GetTargetPlanet())
 				message = "There are no planets in this system that you can land on.";
 			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
-				message = "The authorities on this planet refuse to clear you to land here.";
+				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
+					" refuse to clear you to land here.";
 			else if(count > 1)
 			{
-				message = "You can land on more than one planet in this system. Landing on ";
+				message = "You can land on more than one ";
+				set<string>::const_iterator it = types.begin();
+				message += *it++;
+				if(it != types.end())
+				{
+					set<string>::const_iterator last = --types.end();
+					if(it != last)
+						message += ',';
+					while(it != last)
+						message += ' ' + *it++ + ',';
+					message += " or " + *it;
+				}
+				message += " in this system. Landing on ";
 				if(ship.GetTargetPlanet()->Name().empty())
 					message += "???.";
 				else
@@ -1662,6 +1700,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	}
 	if(hasGuns && Preferences::Has("Automatic aiming") && !command.Turn()
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
+			&& !ship.GetTargetShip()->IsDestroyed()
 			&& !keyStuck.Has(Command::LAND | Command::JUMP | Command::BOARD))
 	{
 		Point distance = ship.GetTargetShip()->Position() - ship.Position();

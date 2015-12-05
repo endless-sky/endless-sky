@@ -770,7 +770,6 @@ void PlayerInfo::Land(UI *ui)
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
-	freshlyLoaded = false;
 	
 	// Search for any missions that have failed but for which we are still
 	// holding on to some cargo.
@@ -790,7 +789,9 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Check if the player is doing anything illegal.
 	const Government *gov = GetSystem()->GetGovernment();
-	string message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
+	string message;
+	if(!freshlyLoaded && !GameData::GetPolitics().HasDominated(GetPlanet()))
+		message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
 	if(!message.empty())
 	{
 		if(message == "atrocity")
@@ -814,6 +815,7 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
+	freshlyLoaded = false;
 	flagship.reset();
 }
 
@@ -874,10 +876,16 @@ void PlayerInfo::TakeOff(UI *ui)
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
 				cargo.TransferAll(&ship->Cargo());
 			}
+			else
+			{
+				// Your flagship takes first priority for passengers but last for cargo.
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
+				for(const auto &it : cargo.PassengerList())
+					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
+			}
 		}
 	// Load up your flagship last, so that it will have space free for any
 	// plunder that you happen to acquire.
-	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->RequiredCrew());
 	cargo.TransferAll(&flagship->Cargo());
 
 	if(cargo.Passengers())
@@ -1537,6 +1545,9 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
+	if(!planet || !system)
+		return;
+	
 	DataWriter out(path);
 	
 	out.Write("pilot", firstName, lastName);

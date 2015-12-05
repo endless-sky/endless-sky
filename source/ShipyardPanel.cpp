@@ -32,6 +32,7 @@ namespace {
 		"Heavy Freighter",
 		"Interceptor",
 		"Light Warship",
+		"Medium Warship",
 		"Heavy Warship",
 		"Fighter",
 		"Drone"
@@ -147,7 +148,7 @@ void ShipyardPanel::Buy()
 
 
 
-void ShipyardPanel::FailBuy()
+void ShipyardPanel::FailBuy() const
 {
 	if(!selectedShip)
 		return;

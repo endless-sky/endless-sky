@@ -270,7 +270,7 @@ void Engine::Step(bool isActive)
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, isActive && wasActive);
 	wasActive = isActive;
-	Audio::Update(position, velocity);
+	Audio::Update(position);
 	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
@@ -592,7 +592,7 @@ void Engine::Draw() const
 	{
 		string loadString = to_string(static_cast<int>(load * 100. + .5)) + "% CPU";
 		Color color = *GameData::Colors().Get("medium");
-		FontSet::Get(14).Draw(loadString,
+		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
 }
@@ -753,7 +753,7 @@ void Engine::CalculateStep()
 	}
 	
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump_drive" : "hyperspace"));
+		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
 	if(wasHyperspacing && !flagship->IsEnteringHyperspace())

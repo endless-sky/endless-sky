@@ -75,7 +75,7 @@ void Effect::Place(Point pos, Point vel, Angle angle, Point hitVelocity)
 		+ this->angle.Unit() * Random::Real() * randomVelocity;
 	
 	if(sound)
-		Audio::Play(sound, position, velocity);
+		Audio::Play(sound, position);
 	
 	if(randomFrameRate)
 		animation.AddFrameRate(randomFrameRate * Random::Real());

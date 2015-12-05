@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ImageBuffer.h"
 
-#include "Files.h"
+#include "File.h"
 
 #include <png.h>
 #include <jpeglib.h>
@@ -131,28 +131,6 @@ ImageBuffer *ImageBuffer::Read(const string &path)
 
 
 namespace {
-	// RAII wrapper for File, to make sure it gets closed if an error occurs.
-	class File {
-	public:
-		File(const string &path)
-		{
-			file = Files::Open(path);
-		}
-		~File()
-		{
-			if(file)
-				fclose(file);
-		}
-		
-		operator bool() const { return file; }
-		operator FILE*() const { return file; }
-		
-	private:
-		FILE *file;
-	};
-	
-	
-	
 	ImageBuffer *ReadPNG(const string &path)
 	{
 		// Open the file, and make sure it really is a PNG.

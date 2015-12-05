@@ -25,6 +25,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	static const string &WORMHOLE = "wormhole";
+	static const string &PLANET = "planet";
+}
+
 
 
 // Load a planet's description from a file.
@@ -68,15 +73,20 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		}
 		else if(child.Token(0) == "spaceport" && child.Size() >= 2)
 		{
-			if(resetSpaceport)
-			{
-				resetSpaceport = false;
+			if(child.Token(1) == "clear")
 				spaceport.clear();
+			else
+			{
+				if(resetSpaceport)
+				{
+					resetSpaceport = false;
+					spaceport.clear();
+				}
+				if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
+					spaceport += '\t';
+				spaceport += child.Token(1);
+				spaceport += '\n';
 			}
-			if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
-				spaceport += '\t';
-			spaceport += child.Token(1);
-			spaceport += '\n';
 		}
 		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
 		{
@@ -148,7 +158,22 @@ const set<string> &Planet::Attributes() const
 }
 
 
+
+// Get planet's noun descriptor from attributes
+const string &Planet::Noun() const
+{
+	if(IsWormhole())
+		return WORMHOLE;
 	
+	for(const string &attribute : attributes)
+		if(attribute == "moon" || attribute == "station")
+			return attribute;
+	
+	return PLANET;
+}
+
+
+
 // Check whether there is a spaceport (which implies there is also trading,
 // jobs, banking, and hiring).
 bool Planet::HasSpaceport() const

@@ -51,6 +51,10 @@ public:
 	
 	// Check if this is a star.
 	bool IsStar() const;
+	// Check if this is a station.
+	bool IsStation() const;
+	// Check if this is a moon.
+	bool IsMoon() const;
 	// Get this object's parent index (in the System's vector of objects).
 	int Parent() const;
 	// Find out how far this object is from its parent.
@@ -70,6 +74,8 @@ private:
 	
 	const std::string *message;
 	bool isStar;
+	bool isStation;
+	bool isMoon;
 	
 	// Let System handle setting all the values of an Object.
 	friend class System;

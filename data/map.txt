@@ -12968,7 +12968,7 @@ planet Alfheim
 	landscape land/nasa3
 	description `Alfheim is a world of wide grassy plains, deserts, a few small oceans, and scattered rainforests. Not a pleasant enough planet to support large cities, it is instead mostly a site for oil drilling and manufacturing. So far only a tiny fraction of the surface has been developed, mostly clustered around the sites where the largest oil deposits have been discovered.`
 	description `	Settlements show up as small bright points on the dark side of the planet - not from city lights, but from natural gas burnoff at the drilling stations.`
-	spaceport `The spaceport is in the middle of a field of oil derricks so vast that from above, the desert seemed to be covered in spiky grey fur. The spaceport itself is a soaring canopy, made to look like a tent, or sails on a ship. But it is built of a sturdy composite of plastic and carbon fiber, and coated in reflective plastic. Inside, hovercrafts and massive sand-crawlers are bringing cargo to and from the refineries and factories scattered across the planet's surface.`
+	spaceport `The spaceport is in the middle of a field of oil derricks so vast that from above, the desert seemed to be covered in spiky grey fur. The spaceport itself is a soaring canopy, made to look like a tent, or sails on a ship. But it is built of a sturdy composite of plastic and carbon fiber, and coated in reflective plastic. Inside, hovercraft and massive sand-crawlers are bringing cargo to and from the refineries and factories scattered across the planet's surface.`
 	outfitter "Basic Outfits"
 	outfitter "Deep Sky Basics"
 	outfitter "Ammo North"
@@ -13164,7 +13164,7 @@ planet Calda
 	description `Calda is a tropical resort world, a pleasant place to unwind after a few days skiing on its sister planet, Vail. The most popular tourist destination is the hot springs, and the spa complexes that have been built up around them. Constant pesticide use has nearly eliminated insect pests. Because of the uncomfortably warm and humid summer months, the very rich view Calda more as a tourist destination than as a place to live.`
 	description `	In Calda's early days as a spa planet, a nearly silent eruption of carbon dioxide filled a resort valley and suffocated the whole population in moments. This incident has had hardly any effect on the tourism industry. Many of the regulars believe they are rich enough that no volcano would dare provoke them in such a way.`
 	spaceport `This is one of the few planets in this sector whose spaceport does not include private hangars, or at least gangway tunnels connecting to ships that land. The reason, of course, is so that visitors can experience the warm and pleasant air the moment they disembark. There is, however, a network of canvas-covered awnings branching out from the main buildings, offering shade and protection from the weather.`
-	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercrafts and helicopters!) are far more prominent than the amenities that interest a captain like yourself.`
+	spaceport `	Inside, the counters for hotel shuttles and rental vehicles (including hovercraft and helicopters!) are far more prominent than the amenities that interest a captain like yourself.`
 	bribe 0.05
 	security 0.5
 	tribute 3300
@@ -13250,7 +13250,7 @@ planet Clark
 		fleet "Small Militia" 30
 
 planet Clink
-	attributes mining
+	attributes mining moon
 	landscape land/desert3
 	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
@@ -13431,7 +13431,7 @@ planet Earth
 		fleet "Large Republic" 50
 
 planet Echo
-	attributes quarg
+	attributes quarg moon
 	landscape land/desert2
 	description `This is a small Quarg outpost, which you suspect was built mostly to keep an eye on Tarazed Corporation and their alien-influenced research on the planet below. Like most Quarg worlds, the gravity is much too low here for it to be a feasible human colony, and although there is an atmosphere, it is too thin for a human being to breathe. Supposedly the Quarg have lungs designed for a continuous one way airflow, like a bird's lungs, rather than the ordinary in and out flow of human lungs; this is what enables them to survive on low-gravity, low-atmosphere worlds.`
 	spaceport `This outpost was really not designed with human beings in mind. The indoor air is not pressurized, so even there you need an oxygen mask to be able to breathe comfortably. And all the rooms and hallways are taller and narrower than you are used to. The station feels like a maze, full of winding passageways with no clear order or pattern to them, although perhaps the order would be readily apparent if you had an alien mind.`
@@ -13440,7 +13440,7 @@ planet Echo
 
 planet "Far'en Lai"
 	landscape land/dune3
-	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and un-exploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
+	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	"required reputation" -1000
 	bribe 0
 	security 0
@@ -13493,7 +13493,7 @@ planet "Fenrir Station"
 	attributes deep station
 	landscape land/space5
 	description `Fenrir Station is a bustling refinery, and from the way the foremen looked at you when you stepped off your ship, they seem to be eager for new recruits. In addition to harvesting deuterium, this is one of the few refinery stations in human space which also collects helium-3, an isotope with some exotic uses in medical imaging and in energy research.`
-	description `	The diversity of isotopes found here is partly due to the station being a relatively new construction and benefitting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion.`
+	description `	The diversity of isotopes found here is partly due to the station being a relatively new construction and benefiting from modern technology. But the gas giant which the station harvests from also has a composition unlike any other known planet. One theory is that it is on the cusp of becoming a brown dwarf star, in which case the isotopes now being stirred into the upper atmosphere by convection will eventually be depleted by fusion.`
 	spaceport `This station is composed of two rings, one containing the refinery and the other, the living quarters and cafeteria for the workers, in addition to a docking bay for visiting freighters. The workers all seem to be very busy, and few of them pay any attention to you.`
 	bribe 0.05
 	security 0.8
@@ -13537,7 +13537,7 @@ planet Follower
 		fleet "Small Republic" 86
 
 planet Forpelog
-	attributes quarg
+	attributes quarg moon
 	landscape land/badlands4
 	description `Forpelog is a Quarg mining world, barely habitable by their standards and, because of its low gravity, unsuitable for long-term human habitation. The Quarg city is a marvel of advanced technology, entirely enclosed within glass and steel, with gardens and terraces where alien trees and plants grow. Outside the city, the landscape is rugged and beautiful, but the atmosphere is too thin to breathe and contains almost no oxygen.`
 	spaceport `Your ship is docked on a metal pad immediately outside the dome of the city, which towers over you. Immediately after you landed, a smaller canopy unfolded around your ship, sealing it in and providing enough air for you to breathe as you make your way inside. The stark, lifeless badlands outside give way to bustling streets and lush blue foliage within. No other human beings are in sight.`
@@ -13590,7 +13590,7 @@ planet Frostmark
 	spaceport `Every Hai city has an appearance of great age and permanence, but this one, even more so. In Hai cities, transport vehicles carry freight and passengers along underground passages or elevated railways, while the pathways at ground level are reserved for foot traffic. Here, millennia of foot traffic have rounded off the corners of every metal staircase, and polished the railings as smooth as glass. The Hai locals do not seem to have trouble keeping their footing, but you wish your shoes gave you more traction.`
 
 planet Furnace
-	attributes core military
+	attributes core military moon
 	landscape land/bwerner4
 	description `Furnace is a nearly uninhabited world, used mostly as a waypoint for shipping and as a staging point for the Syndicate fleets that seek to keep this region of space free from pirates. The atmosphere is barely thick enough to be breathable, and none of the plants that grow here are useful for eating. However, because it is only a large moon instead of a full-sized planet, moving cargo and fleets of ships to and from its surface is fairly easy and inexpensive.`
 	description `	Conducting any business here is a nightmare of tedium. Syndicate doctrine claims that corporate structure and process produce a leaner and more effective military force without the perceived wastage of the Republic Navy. But in practice, they seem to have combined all the worst aspects of military and corporate bureaucracy.`
@@ -13691,7 +13691,7 @@ planet Glory
 		fleet "Large Republic" 16
 
 planet Grakhord
-	attributes quarg
+	attributes quarg moon
 	landscape land/badlands6
 	description `Although human beings who do not mind living in low gravity are welcome to settle here, Grakhord is part of Quarg territory, and has been terraformed to meet their environmental needs rather than those of human beings. The full extent of the Quarg mining operations here are not known, but rumors say that they have tunnels reaching down almost halfway to the moon's core, and Quarg ships can also sometimes be seen harvesting hydrogen gas from the upper atmosphere of the gas giant that Grakhord orbits.`
 	spaceport `Here, you feel like a young child lost among a crowd of tall, indifferent adults. The average adult Quarg is over three meters tall, and although they move slowly and gracefully, on their long legs they easily speed by you. Worse, the counters for the merchant exchange, bank, and job board are high enough that you can barely see over them. But, the Quargs have helpfully provided stepping stools stashed under the counters so that shorter humans can carry out business without having to constantly crane their necks upwards.`
@@ -13945,7 +13945,7 @@ planet Icelake
 	outfitter "Hai Advanced"
 
 planet Ingot
-	attributes "dirt belt" volcanic mining
+	attributes "dirt belt" volcanic mining moon
 	landscape land/mountain8
 	description `Ingot is a volcanic moon, totally unsuitable for life but rich in metal. The miners who work here must spend all their time inside pressurized buildings. Because Ingot has almost no atmosphere to slow them down, meteorites are a constant danger to the colonists. The shells of the buildings have multiple layers, designed to be self-sealing in any but the largest of impacts. Most of the mining is done remotely by robotic vehicles, but someone still needs to be present to control them and to make repairs when something goes wrong.`
 	spaceport `In this spaceport, ships dock inside a hangar whose ceiling protects them from meteorite impacts. The hangar is not pressurized, so there are also landing tubes that connect to each of the visiting ships. Many of the people inside are carrying emergency oxygen masks in case a sudden impact ruptures the building.`
@@ -13964,7 +13964,7 @@ planet "Kraken Station"
 	security 0.3
 	tribute 500
 		threshold 3500
-		fleet "Small Republic" 17
+		fleet "Small Syndicate" 7
 
 planet Lagrange
 	attributes quarg tourism
@@ -14025,7 +14025,7 @@ planet Longjump
 		fleet "Large Militia" 9
 
 planet Luna
-	attributes "near earth" tourism factory
+	attributes "near earth" tourism factory moon
 	landscape land/earthrise
 	description `In the early days of space travel, back when engines were still so inefficient that escaping from a planet's gravity was costly and difficult, an enormous shipyard was built on the Moon where asteroids, harvested from the asteroid belt, were mined for raw materials for ships.`
 	description `	The facility is still in operation, although it is now overshadowed by the far more advanced shipbuilding centers like Geminus in the Castor system.`
@@ -14097,7 +14097,7 @@ planet Makerplace
 	outfitter "Hai Advanced"
 
 planet Mani
-	attributes deep
+	attributes deep moon
 	landscape land/nasa6
 	description `Mani is a small moon, with an atmosphere thick enough to keep your blood from boiling off but too thin to breathe without assistance. It is used only as a cargo depot and a spot for refueling and repairs. The native plant life mostly consists of pale-colored lichens and a few species of grass. The only animals are insects.`
 	spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it. Inside are about a dozen people and a couple hundred robots. The people and robots alike seem uninterested in any interactions with you. It is a strange sort of aloofness that you have heard is common to all the worlds in the Deep.`
@@ -14185,7 +14185,7 @@ planet Millrace
 		fleet "Large Syndicate" 8
 
 planet Mirrorlake
-	attributes hai
+	attributes hai moon
 	landscape land/bwerner1
 	description `The Hai homeworld is orbited by a moon that is large and dense enough to have been able to hold on to its own supply of surface water, and although the atmosphere is cold, much of that water is in liquid form due to the strong tides. In a few places, granite and basalt cliffs rise out of the water, and the Hai have built a few small settlements on the moon, as well.`
 	spaceport `This spaceport appears to be a tourist destination. The architecture is different than on other Hai worlds, and much more primitive: stone and mortar instead of polished metal. However, all the buildings are in good repair: despite their ancient appearance, they must be maintained and rebuilt on a regular basis.`
@@ -14664,7 +14664,7 @@ planet Reunion
 	security 0.3
 	tribute 2900
 		threshold 5000
-		fleet "Large Republic" 11
+		fleet "Large Syndicate" 17
 
 planet Rust
 	attributes rim farming factory
@@ -14783,7 +14783,7 @@ planet Skillet
 		fleet "Small Republic" 22
 
 planet Skyfarm
-	attributes hai
+	attributes hai moon
 	landscape land/myrabella6
 	description `Due to the low gravity here, some of the alien crops planted by the Hai grow to heights of five meters or more. The air is too thin for humans or Hai to breathe without carrying supplemental oxygen tanks, so the population is very small. The fields are tended by enormous spider-like robots which are equipped not only for irrigation and harvesting, but also for pollination, since the thin atmosphere has made it impossible for native insects to evolve here.`
 	spaceport `The spaceport is a small city built under a pressurized glass dome, with a ring of hangars and landing pads around its periphery. As with most Hai architecture, the dome and the buildings within it are simple and sparsely decorated, but as you walk through the city everything feels very solid, and ancient. Everything is metal, even the roads and walkways, and the center of many of the roads dips down slightly due to millennia of foot traffic slowly wearing down the metal.`
@@ -15020,7 +15020,7 @@ planet "Triton Station"
 		fleet "Small Republic" 24
 
 planet Trove
-	attributes core mining
+	attributes core mining moon
 	landscape land/badlands3
 	description `Trove is a tiny moon, too small to have a breathable atmosphere. It is home to an experimental "jack mining" operation that has split is surface open in order to gain access to the metal-rich core. Most of the work here is done by machines, but a few people live inside an airtight complex in order to supervise the work and to sell ore and metal to visiting ships.`
 	spaceport `Within the mining complex, you find a small cafeteria with an uninspiring menu, and windows overlooking offices where dozens of people are staring at flickering video screens. Because of the low gravity, everyone moves languidly, as if in a dream. It is nearly silent.`
@@ -15108,7 +15108,7 @@ planet Warfeed
 	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
 
 planet Watcher
-	attributes "dirt belt" research uninhabited
+	attributes "dirt belt" research uninhabited moon
 	landscape land/hills4
 	description `Watcher is a small moon, the only world in this system that sustains any indigenous life. Because of the low gravity, humans have not yet built a permanent settlement here, but it is occasionally visited by biologists interested in studying low-gravity life forms. There are forests here where the trees grow over two hundred meters tall.`
 	security 0

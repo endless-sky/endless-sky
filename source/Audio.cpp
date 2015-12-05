@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 #include "Point.h"
+#include "Random.h"
 #include "Sound.h"
 
 #ifndef __APPLE__
@@ -38,16 +39,10 @@ using namespace std;
 namespace {
 	class QueueEntry {
 	public:
-		// Get the coalesced position.
-		Point Position() const;
-		Point Velocity() const;
-		
-		void Add(const Point &position, const Point &velocity);
+		void Add(Point position);
 		void Add(const QueueEntry &other);
 		
-	private:
 		Point sum;
-		double speed = 0.;
 		double weight = 0.;
 	};
 	
@@ -55,7 +50,7 @@ namespace {
 	public:
 		Source(const Sound *sound, unsigned source);
 		
-		void Move(const Point &position, const Point &velocity) const;
+		void Move(const QueueEntry &entry) const;
 		unsigned ID() const;
 		const Sound *GetSound() const;
 		
@@ -104,8 +99,15 @@ void Audio::Init(const vector<string> &sources)
 	if(!context || !alcMakeContextCurrent(context))
 		return;
 	
-	alListener3f(AL_POSITION, 0., 0., 20.);
+	ALfloat zero[3] = {0., 0., 0.};
+	ALfloat	orientation[6] = {0., 0., -1., 0., 1., 0.};
+	
 	alListenerf(AL_GAIN, volume);
+	alListenerfv(AL_POSITION, zero);
+	alListenerfv(AL_VELOCITY, zero);
+	alListenerfv(AL_ORIENTATION, orientation);
+	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
+	alDopplerFactor(0.);
 	
 	mainThreadID = this_thread::get_id();
 	
@@ -149,22 +151,6 @@ void Audio::SetVolume(double level)
 
 
 
-void Audio::Mute()
-{
-	if(context)
-		alListenerf(AL_GAIN, 0);
-}
-
-
-
-void Audio::Unmute()
-{
-	if(context)
-		alListenerf(AL_GAIN, volume);
-}
-
-
-
 // Get a pointer to the named sound. The name is the path relative to the
 // "sound/" folder, and without ~ if it's on the end, or the extension.
 const Sound *Audio::Get(const string &name)
@@ -178,10 +164,9 @@ const Sound *Audio::Get(const string &name)
 // Set the listener's position, and also update any sounds that have been
 // added but deferred because they were added from a thread other than the
 // main one (the one that called Init()).
-void Audio::Update(const Point &listenerPosition, const Point &velocity)
+void Audio::Update(const Point &listenerPosition)
 {
 	listener = listenerPosition;
-	listenerVelocity = velocity;
 	
 	for(const auto &it : deferred)
 		queue[it.first].Add(it.second);
@@ -193,24 +178,24 @@ void Audio::Update(const Point &listenerPosition, const Point &velocity)
 // Play the given sound, at full volume.
 void Audio::Play(const Sound *sound)
 {
-	Play(sound, listener, listenerVelocity);
+	Play(sound, listener);
 }
 
 
 
 // Play the given sound, as if it is at the given distance from the
 // "listener". This will make it softer and change the left / right balance.
-void Audio::Play(const Sound *sound, const Point &position, const Point &velocity)
+void Audio::Play(const Sound *sound, const Point &position)
 {
 	if(!sound || !sound->Buffer() || !volume)
 		return;
 	
 	if(this_thread::get_id() == mainThreadID)
-		queue[sound].Add(position - listener, velocity - listenerVelocity);
+		queue[sound].Add(position - listener);
 	else
 	{
 		unique_lock<mutex> lock(audioMutex);
-		deferred[sound].Add(position - listener, velocity - listenerVelocity);
+		deferred[sound].Add(position - listener);
 	}
 }
 
@@ -234,7 +219,7 @@ void Audio::Step()
 			auto it = queue.find(source.GetSound());
 			if(it != queue.end())
 			{
-				source.Move(it->second.Position(), it->second.Velocity());
+				source.Move(it->second);
 				newSources.push_back(source);
 				queue.erase(it);
 			}
@@ -301,7 +286,7 @@ void Audio::Step()
 			recycledSources.pop_back();
 		}
 		sources.emplace_back(it.first, source);
-		sources.back().Move(it.second.Position(), it.second.Velocity());
+		sources.back().Move(it.second);
 		alSourcePlay(source);
 	}
 	queue.clear();
@@ -360,31 +345,11 @@ void Audio::Quit()
 
 
 namespace {
-	// Get the coalesced position.
-	Point QueueEntry::Position() const
+	void QueueEntry::Add(Point position)
 	{
-		return weight ? (sum / weight) : sum;
-	}
-	
-	
-	
-	Point QueueEntry::Velocity() const
-	{
-		Point pos = Position();
-		double length = pos.Length();
-		if(!length)
-			return pos;
-		
-		return pos * (speed / length);
-	}
-	
-	
-	
-	void QueueEntry::Add(const Point &position, const Point &velocity)
-	{
-		double d = 1. / max(1., position.Dot(position));
+		position *= .002;
+		double d = 1. / (1. + position.Dot(position));
 		sum += d * position;
-		speed += d * sqrt(d) * position.Dot(velocity);
 		weight += d;
 	}
 	
@@ -393,7 +358,6 @@ namespace {
 	void QueueEntry::Add(const QueueEntry &other)
 	{
 		sum += other.sum;
-		speed += other.speed;
 		weight += other.weight;
 	}
 	
@@ -402,18 +366,24 @@ namespace {
 	Source::Source(const Sound *sound, unsigned source)
 		: sound(sound), source(source)
 	{
-		alSourcef(source, AL_PITCH, 1);
-		alSourcef(source, AL_GAIN, 1);
+		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .1);
+		alSourcef(source, AL_GAIN, 1.);
+		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
+		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
+		alSourcef(source, AL_MAX_DISTANCE, 100.);
 		alSourcei(source, AL_LOOPING, sound->IsLooping());
 		alSourcei(source, AL_BUFFER, sound->Buffer());
 	}
 	
 	
 	
-	void Source::Move(const Point &position, const Point &velocity) const
+	void Source::Move(const QueueEntry &entry) const
 	{
-		alSource3f(source, AL_POSITION, position.X() * .01, position.Y() * .01, 0.f);
-		alSource3f(source, AL_VELOCITY, velocity.X() * .01, velocity.Y() * .01, 0.f);
+		Point angle = entry.sum / entry.weight;
+		// The source should be along the vector (angle.X(), angle.Y(), 1).
+		// The length of the vector should be sqrt(1 / weight).
+		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
+		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, scale);
 	}
 	
 	
