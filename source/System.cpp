@@ -32,9 +32,9 @@ using namespace std;
 namespace {
 	static const double NEIGHBOR_DISTANCE = 100.;
 	static const double RESERVE_MULTIPLIER = 2000.;
-	static const double PRODUCTION_MULTIPLIER = 0.5;
+	static const double PRODUCTION_MULTIPLIER = 0.51;
 	static const double CONSUMPTION_MULTIPLIER = 0.5;
-	static const double TRADE_MULTIPLIER = 5.;
+	static const double TRADE_MULTIPLIER = 1.0;
 }
 
 
@@ -414,8 +414,9 @@ int System::Trade(const string &commodity, int64_t quantity) const
 	double scaleFactor = habitable*RESERVE_MULTIPLIER;
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(static_cast<double>((-1+quantity-2*reserves)*com.low+
-				(-1+2*scaleFactor+quantity-2*reserves)*com.high)/(2.0*scaleFactor));
+			return max(static_cast<int64_t>(com.low),min(static_cast<int64_t>(com.high),
+				static_cast<int64_t>(round(static_cast<double>((-1+quantity-2*reserves)*com.low+
+				(-1+2*scaleFactor+quantity-2*reserves)*com.high)/(2.0*scaleFactor)))));
 	
 	return price;
 }
@@ -431,7 +432,7 @@ int System::Production(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(PRODUCTION_MULTIPLIER*(price - com.low)/(com.high + com.low)*habitable);
+			return round(PRODUCTION_MULTIPLIER*(com.high - price)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -447,7 +448,7 @@ int System::Consumption(const string &commodity) const
 	
 	for(const Trade::Commodity &com : GameData::Commodities())
 		if (com.name == commodity)
-			return round(CONSUMPTION_MULTIPLIER*(com.high - price)/(com.high + com.low)*habitable);
+			return round(CONSUMPTION_MULTIPLIER*(price - com.low)/(com.high + com.low)*habitable);
 	
 	return 0;
 }
@@ -470,14 +471,6 @@ int System::Trading(const string &commodity) const
 		{
 			comNormalization = (com.high + com.low);
 			break;
-		}
-	
-	set<string> allAttributes;
-	for(const StellarObject &object : objects)
-		if(object.GetPlanet())
-		{
-			set<string> planetAttributes = object.GetPlanet()->Attributes();
-			allAttributes.insert(planetAttributes.begin(), planetAttributes.end());
 		}
 	
 	double jumpMultiplier = 0.01;
@@ -525,10 +518,10 @@ int System::Trading(const string &commodity) const
 // Randomly destroy a large fraction of a system's commodity.
 int System::Disaster(const string &commodity) const
 {
-	if (IsInhabited() && Random::Real() < 0.0005)
+	if (IsInhabited() && Random::Real() < 0.00025)
 	{
 		int64_t reserves = Reserves(commodity);
-		double fraction = 0.2 + 0.7*Random::Real();
+		double fraction = 0.2 + 0.6*Random::Real();
 		Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100.*fraction)) +
 			"% of its \"" + commodity + "\" was destroyed!");
 		return fraction * reserves;
