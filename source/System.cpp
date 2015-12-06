@@ -34,7 +34,7 @@ namespace {
 	static const double RESERVE_MULTIPLIER = 2000.;
 	static const double PRODUCTION_MULTIPLIER = 0.51;
 	static const double CONSUMPTION_MULTIPLIER = 0.5;
-	static const double TRADE_MULTIPLIER = 1.0;
+	static const double TRADE_MULTIPLIER = 10.0;
 }
 
 
