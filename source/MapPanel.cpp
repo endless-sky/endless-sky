@@ -326,8 +326,17 @@ void MapPanel::DrawTravelPlan() const
 		}
 		else
 		{
-			flagshipCapacity -= flagshipJumpFuel;
-			escortCapacity -= escortJumpFuel;
+			bool isWormhole = false;
+			for (const auto &it : previous->Objects())
+				if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+					it.GetPlanet()->WormholeDestination(next))
+					isWormhole = true;
+			
+			if (!isWormhole)
+			{
+				flagshipCapacity -= flagshipJumpFuel;
+				escortCapacity -= escortJumpFuel;
+			}
 		}
 		
 		Color drawColor = outOfFlagshipFuelRangeColor;
