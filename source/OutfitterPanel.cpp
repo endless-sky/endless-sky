@@ -241,8 +241,8 @@ bool OutfitterPanel::CanBuy() const
 
 void OutfitterPanel::Buy()
 {
-	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanBuy(); ++i)
+	int64_t modifier = Modifier();
+	for(int64_t i = 0; i < modifier && CanBuy(); ++i)
 	{
 		// Special case: maps.
 		int mapSize = selectedOutfit->Get("map");

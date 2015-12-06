@@ -210,7 +210,7 @@ void ShopPanel::DrawButtons() const
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
-		string mod = "x " + to_string(modifier);
+		string mod = "x " + Format::Number(modifier);
 		int modWidth = font.Width(mod);
 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
 		if(CanSellMultiple())
@@ -396,8 +396,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			FailSell();
 		else
 		{
-			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanSell(); ++i)
+			int64_t modifier = CanSellMultiple() ? Modifier() : 1;
+			for(int64_t i = 0; i < modifier && CanSell(); ++i)
 				Sell();
 		}
 	}
