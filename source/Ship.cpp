@@ -2055,6 +2055,13 @@ const Planet *Ship::GetDestination() const
 
 
 
+bool Ship::PlanetSelectedByClick() const
+{
+	return planetSelectedByClick;
+}
+
+
+
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
@@ -2071,9 +2078,10 @@ void Ship::SetShipToAssist(const shared_ptr<Ship> &ship)
 
 
 
-void Ship::SetTargetPlanet(const StellarObject *object)
+void Ship::SetTargetPlanet(const StellarObject *object, bool clickSelected)
 {
 	targetPlanet = object;
+	planetSelectedByClick = clickSelected;
 }
 
 
@@ -2087,6 +2095,13 @@ void Ship::SetTargetSystem(const System *system)
 void Ship::SetDestination(const Planet *planet)
 {
 	destination = planet;
+}
+
+
+
+void Ship::ClearPlanetClick()
+{
+	planetSelectedByClick = false;
 }
 
 

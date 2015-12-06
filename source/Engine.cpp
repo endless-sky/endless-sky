@@ -810,7 +810,7 @@ void Engine::CalculateStep()
 				object.GetPlanet()->DeployDefense(ships);
 			
 			if(doClick && object.GetPlanet() && (clickPoint - position).Length() < object.Radius())
-				player.Flagship()->SetTargetPlanet(&object);
+				player.Flagship()->SetTargetPlanet(&object, true);
 		}
 	
 	// Add all neighboring systems to the radar.

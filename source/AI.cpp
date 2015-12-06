@@ -1524,11 +1524,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 					message = object.LandingMessage();
 			}
 		const StellarObject *target = ship.GetTargetPlanet();
-		if(target && ship.Position().Distance(target->Position()) < target->Radius())
+		if(target && (ship.PlanetSelectedByClick() || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
 			// Special case: if there are two planets in system and you have one
 			// selected, then press "land" again, do not toggle to the other if
 			// you are within landing range of the one you have selected.
+			
+			// Or, if the player selected a planet by clicking it, attempt to land
+			// on it with first land press, but then clear click status.
+			if (ship.PlanetSelectedByClick())
+			{
+				message = "Landing on selected planet, ";
+				if(ship.GetTargetPlanet()->Name().empty())
+					message += "???.";
+				else
+					message += ship.GetTargetPlanet()->Name() + ".";
+				ship.ClearPlanetClick();
+			}
 		}
 		else if(message.empty() && target && landKeyInterval < 60)
 		{
