@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "Command.h"
 #include "DistanceMap.h"
-#include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"

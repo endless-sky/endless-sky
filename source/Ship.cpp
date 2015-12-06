@@ -877,7 +877,6 @@ bool Ship::Move(list<Effect> &effects)
 					for(const StellarObject &object : currentSystem->Objects())
 						if(object.GetPlanet() == landingPlanet)
 							position = object.Position();
-					Messages::Add("Traversing wormhole to " + currentSystem->Name());
 					SetTargetPlanet(nullptr);
 					landingPlanet = nullptr;
 				}

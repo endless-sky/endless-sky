@@ -349,6 +349,7 @@ void MapPanel::DrawLinks() const
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
+	Color wormholeColor(0.5, 0.2, 0.9, 0.99);
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
@@ -370,8 +371,18 @@ void MapPanel::DrawLinks() const
 				from -= unit;
 				to += unit;
 				
-				bool isClose = (system == playerSystem || link == playerSystem);
-				LineShader::Draw(from, to, 1.2, isClose ? closeColor : farColor);
+				bool wormholeLink = false;
+				for (const auto &it : system->Objects())
+					if (it.GetPlanet() && it.GetPlanet()->IsWormhole() && it.GetPlanet()->WormholeDestination(system) == link)
+						wormholeLink = true;
+				
+				if (wormholeLink)
+					LineShader::Draw(from, to, 0.5, wormholeColor);
+				else
+				{
+					bool isClose = (system == playerSystem || link == playerSystem);
+					LineShader::Draw(from, to, 1.2, isClose ? closeColor : farColor);
+				}
 			}
 	}
 }

@@ -765,7 +765,7 @@ void Engine::CalculateStep()
 	else if(flagship && player.GetSystem() != flagship->GetSystem())
 	{
 		// Wormhole travel:
-		player.ClearTravel();
+		//playerm.ClearTravel();
 		doFlash = true;
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
