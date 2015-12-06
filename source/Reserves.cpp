@@ -75,10 +75,13 @@ void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64
 void Reserves::EvolveDaily()
 {
 	for(const auto &it : GameData::Systems())
-		for(const auto &gd : GameData::Commodities())
-		{
-			AdjustAmounts(&it.second, gd.name,
-				it.second.Production(gd.name) + it.second.Trading(gd.name) -
-				it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(gd.name));
-		}
+	{
+		if (it.second.IsInhabited())
+			for(const auto &gd : GameData::Commodities())
+			{
+				AdjustAmounts(&it.second, gd.name,
+							  it.second.Production(gd.name) + it.second.Trading(gd.name) -
+							  it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(gd.name));
+			}
+	}
 }

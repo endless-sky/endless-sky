@@ -426,9 +426,6 @@ int System::Trade(const string &commodity, int64_t quantity) const
 // Get rate of production of a commodity in this system.
 int System::Production(const string &commodity) const
 {
-	if (!IsInhabited())
-		return 0;
-	
     // Production rate based upon equilibrium commodity price.
 	auto it = trade.find(commodity);
 	int price = (it == trade.end()) ? 0 : it->second;
@@ -445,9 +442,6 @@ int System::Production(const string &commodity) const
 // Get the rate of consumption of a commodity in this system.
 int System::Consumption(const string &commodity) const
 {
-	if (!IsInhabited())
-		return 0;
-	
     // Consumption rate based upon equilibrium commodity price.
     auto it = trade.find(commodity);
     int price = (it == trade.end()) ? 0 : it->second;
@@ -485,36 +479,33 @@ int System::Trading(const string &commodity) const
 		jumpMultiplier = 1.0;
 	
 	// Conduct trade between neighboring inhabited systems, if we are ourselves are inhabited.
-	if (IsInhabited())
-	{
-		DistanceMap dm = DistanceMap(this, 32, 3, false);
-		
-		// Hyperspace first
-		for(const auto &it : GameData::Systems())
-			if (it.second.IsInhabited() && &it.second != this && dm.HasRoute(&it.second))
-			{
-				// Trade falls off as (number of jumps)^2.
-				double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
-				double shortageFactor = (1.0 + log(static_cast<double>(min(reserves, (&it.second)->Reserves(commodity)))));
-				double population = (habitable + (&it.second)->habitable);
-				tradeAmount += TRADE_MULTIPLIER/shortageFactor/dist2*
-					(price - (&it.second)->Trade(commodity))/comNormalization*population;
-			}
+	DistanceMap dm = DistanceMap(this, 32, 3, false);
 	
-		// Jumpable systems next.
-		for(const System *neighbor : neighbors)
-			// Exclude the hyperspace systems as we've already counted them.
-			if (neighbor->IsInhabited() && find(links.begin(), links.end(), neighbor) == links.end())
-			{
-				double neighborJumpMultiplier = 0.01;
-				govName = neighbor->government->GetName();
-				if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
-					neighborJumpMultiplier = 1.0;
-				tradeAmount += TRADE_MULTIPLIER/(1.0 + log(static_cast<double>(reserves)))*
-					(price - neighbor->Trade(commodity))/comNormalization*
-					(jumpMultiplier*habitable + neighborJumpMultiplier*neighbor->habitable);
-			}
-	}
+	// Hyperspace first
+	for(const auto &it : GameData::Systems())
+		if (it.second.IsInhabited() && &it.second != this && dm.HasRoute(&it.second))
+		{
+			// Trade falls off as (number of jumps)^2.
+			double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
+			double shortageFactor = (1.0 + log(static_cast<double>(min(reserves, (&it.second)->Reserves(commodity)))));
+			double population = (habitable + (&it.second)->habitable);
+			tradeAmount += TRADE_MULTIPLIER/shortageFactor/dist2*
+			(price - (&it.second)->Trade(commodity))/comNormalization*population;
+		}
+	
+	// Jumpable systems next.
+	for(const System *neighbor : neighbors)
+		// Exclude the hyperspace systems as we've already counted them.
+		if (neighbor->IsInhabited() && find(links.begin(), links.end(), neighbor) == links.end())
+		{
+			double neighborJumpMultiplier = 0.01;
+			govName = neighbor->government->GetName();
+			if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
+				neighborJumpMultiplier = 1.0;
+			tradeAmount += TRADE_MULTIPLIER/(1.0 + log(static_cast<double>(reserves)))*
+			(price - neighbor->Trade(commodity))/comNormalization*
+			(jumpMultiplier*habitable + neighborJumpMultiplier*neighbor->habitable);
+		}
 	
 	return round(tradeAmount);
 }
@@ -524,27 +515,25 @@ int System::Trading(const string &commodity) const
 // Randomly destroy a large fraction of a system's commodity.
 int System::BlessingsAndDisasters(const string &commodity) const
 {
-	if (IsInhabited() && Random::Real() < 0.00025)
-	{
-		int64_t reserves = Reserves(commodity);
-		double fraction;
-		if (Random::Int(2) == 0)
-		{
-			double fraction = 0.2 + 0.6*Random::Real();
-			Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100.*(1.0-fraction))) +
-				"% of its " + commodity + " was destroyed!");
-		}
-		else
-		{
-			double fraction = 1.25 + 3.75*Random::Real();
-			Messages::Add("A large shipment has arrived in " + name + ", " + to_string((int) round(100.*(fraction-1.0))) +
-						  "% increase in its holdings of " + commodity + "!");
-			
-		}
-		return fraction * reserves;
-	}
+	if (Random::Real() > 0.00025)
+		return 0;
 	
-	return 0;
+	int64_t reserves = Reserves(commodity);
+	double fraction;
+	if (Random::Int(2) == 0)
+	{
+		double fraction = 0.2 + 0.6*Random::Real();
+		Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100.*(1.0-fraction))) +
+					  "% of its " + commodity + " was destroyed!");
+	}
+	else
+	{
+		double fraction = 1.25 + 3.75*Random::Real();
+		Messages::Add("A large shipment has arrived in " + name + ", " + to_string((int) round(100.*(fraction-1.0))) +
+					  "% increase in its holdings of " + commodity + "!");
+		
+	}
+	return fraction * reserves;
 }
 
 
