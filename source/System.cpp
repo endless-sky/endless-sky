@@ -417,7 +417,6 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	{
 		Planet *planet = planets.Get(node.Token(1));
 		object.planet = planet;
-		object.name = node.Token(1);
 		planet->SetSystem(this);
 	}
 	

@@ -378,7 +378,9 @@ void Engine::Step(bool isActive)
 		const StellarObject *object = flagship->GetTargetPlanet();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
-		info.SetString("destination", name.empty() ? "???" : name);
+		info.SetString("destination",
+			((object->GetPlanet()->IsWormhole() && !player.HasVisited(object->GetPlanet())) ||
+			 name.empty()) ? "???" : name);
 		
 		targets.push_back({
 			object->Position() - flagship->Position(),

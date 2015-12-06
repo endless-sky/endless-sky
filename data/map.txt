@@ -15161,6 +15161,8 @@ planet Winter
 		threshold 2500
 		fleet "Large Militia" 5
 
+planet "Wormhole Alpha"
+
 planet "Wyvern Station"
 	attributes rim station
 	landscape land/station0
