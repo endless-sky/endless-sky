@@ -482,7 +482,7 @@ int System::Trading(const string &commodity) const
 		{
 			// Trade falls off as (number of jumps)^2.
 			double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
-			double shortageFactor = (1.0 + log(static_cast<double>(min(reserves, (&it.second)->Reserves(commodity)))));
+			double shortageFactor = (1.0 + log(static_cast<double>(max(1LL, min(reserves, (&it.second)->Reserves(commodity))))));
 			double population = habitable + (&it.second)->habitable;
 			tradeAmount += RESERVE_MULTIPLIER * TRADE_MULTIPLIER / shortageFactor / dist2 *
 			(price - (&it.second)->Trade(commodity)) / comNormalization * population;
@@ -502,7 +502,7 @@ int System::Trading(const string &commodity) const
 			govName = neighbor->government->GetName();
 			if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
 				neighborJumpMultiplier = 1.0;
-			double shortageFactor = (1.0 + log(static_cast<double>(min(reserves, neighbor->Reserves(commodity)))));
+			double shortageFactor = (1.0 + log(static_cast<double>(max(1LL, min(reserves, neighbor->Reserves(commodity))))));
 			double population = jumpMultiplier * habitable + neighborJumpMultiplier * neighbor->habitable;
 			tradeAmount += RESERVE_MULTIPLIER * TRADE_MULTIPLIER / shortageFactor *
 			(price - neighbor->Trade(commodity)) / comNormalization * population;
