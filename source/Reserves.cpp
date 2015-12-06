@@ -80,8 +80,8 @@ void Reserves::EvolveDaily()
 			for(const auto &gd : GameData::Commodities())
 			{
 				AdjustAmounts(&it.second, gd.name,
-							  it.second.Production(gd.name) + it.second.Trading(gd.name) -
-							  it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(gd.name));
+					it.second.Production(gd.name) + it.second.Trading(gd.name) -
+					it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(gd.name));
 			}
 	}
 }

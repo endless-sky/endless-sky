@@ -122,12 +122,10 @@ public:
 	// Get the price of the given commodity in this system.
 	int64_t InitialReserves(const std::string &commodity) const;
 	
-	// Adjust the amount of a given commodity recently transcated by the player
-	// in this system.
+	// Adjust the reserves of a given commodity in this system.
 	void AdjustReserves(const std::string &commodity, int64_t adjustment) const;
 	
-	// Set the amount of a given commodity recently transcated by the player
-	// in this system.
+	// Set the reserves of a given commodity in this system.
 	void SetReserves(const std::string &commodity, int64_t adjustment) const;
 	
 	// Get the probabilities of various fleets entering this system.

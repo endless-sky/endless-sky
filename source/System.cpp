@@ -416,7 +416,7 @@ int System::Trade(const string &commodity, int64_t quantity) const
 		if (com.name == commodity)
 			return max(static_cast<int64_t>(com.low), min(static_cast<int64_t>(com.high),
 				static_cast<int64_t>(round(static_cast<double>((-1 + quantity - 2 * reserves) * com.low +
-				(-1 + 2 * scaleFactor + quantity - 2 * reserves) * com.high)/(2.0 * scaleFactor)))));
+				(-1 + 2 * scaleFactor + quantity - 2 * reserves) * com.high) / (2.0 * scaleFactor)))));
 	
 	return price;
 }
@@ -529,7 +529,7 @@ int System::BlessingsAndDisasters(const string &commodity) const
 	}
 	else
 	{
-		fraction = 1.0/(0.5 + 0.15 * Random::Real());
+		fraction = 1.0 / (0.5 + 0.15 * Random::Real());
 		Messages::Add("A large shipment has arrived in " + name + ", " + to_string((int) round(100. * (fraction - 1.0))) +
 					  "% increase in its holdings of " + commodity + "!");
 		
