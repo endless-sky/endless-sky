@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "Command.h"
 #include "DistanceMap.h"
+#include "GameData.h"
 #include "Government.h"
 #include "Mask.h"
 #include "Messages.h"
@@ -706,7 +707,13 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		if(!ship.GetPersonality().IsStaying())
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetPlanet()->Position()) < 100.)
+		{
+			if (ship.GetTargetPlanet()->GetPlanet()->IsWormhole())
+				for (auto it : GameData::Systems())
+					if (ship.GetSystem() == &it.second)
+						it.second.Link()
 			ship.SetTargetPlanet(nullptr);
+		}
 	}
 	else if(ship.GetPersonality().IsStaying() && ship.GetSystem()->Objects().size())
 	{
