@@ -463,7 +463,7 @@ outfit "A865 Atomic Steering"
 	"turning heat" 17.5
 	description "Atomic engines are considered by many to be Deep Sky's crowning achievement. Although they are so expensive that relatively few of them are in use, there are few captains who do not dream of one day installing a set of them."
 
-outfit "Reverse Thruster"
+outfit "AR120 Reverse Thruster"
 	category "Engines"
 	"cost" 140000
 	thumbnail "outfit/reverse thruster"
@@ -474,3 +474,15 @@ outfit "Reverse Thruster"
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+# Legacy support (renamed to "AR120 Reverse Thruster").
+outfit "Reverse Thruster"
+	category "Engines"
+	"cost" 140000
+	thumbnail "outfit/reverse thruster"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"reverse thrust" 15.4
+	"reverse thrusting energy" 1.8
+	"reverse thrusting heat" 3.5
