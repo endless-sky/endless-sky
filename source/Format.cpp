@@ -42,13 +42,13 @@ string Format::Number(double value)
 	bool isNegative = (value < 0.);
 	bool nonzero = false;
 	
-	if(power >= 6)
+	if(power >= 3)
 	{
 		nonzero = true;
-		int place = (power - 6) / 3;
+		int place = (power - 3) / 3;
 		
-		static const char suffix[3] = {'M', 'B', 'T'};
-		static const double multiplier[3] = {1e-6, 1e-9, 1e-12};
+		static const char suffix[4] = {'K', 'M', 'B', 'T'};
+		static const double multiplier[4] = {1e-3, 1e-6, 1e-9, 1e-12};
 		result += suffix[place];
 		value *= multiplier[place];
 		power %= 3;
@@ -57,11 +57,11 @@ string Format::Number(double value)
 	// The number of digits to the left of the decimal is max(0, power + 1).
 	// e.g. if power = 0, 10 > value >= 1.
 	int left = max(0, power + 1);
-	int right = max(0, 5 - left);
+	int right = max(0, 4 - left);
 	if(nonzero)
 		right = min(right, 3);
 	nonzero |= !right;
-	int rounded = round(fabs(value) * pow(10., right));
+	int64_t rounded = round(fabs(value) * pow(10., right));
 	int delimiterIndex = -1;
 	
 	if (left > 3)
@@ -69,7 +69,7 @@ string Format::Number(double value)
 	
 	while(rounded | right)
 	{
-		int digit = rounded % 10;
+		int64_t digit = rounded % 10;
 		if(nonzero | digit)
 		{
 			result += digit + '0';

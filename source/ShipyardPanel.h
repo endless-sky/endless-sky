@@ -55,7 +55,7 @@ private:
 	
 	
 private:
-	int modifier;
+	int64_t modifier;
 };
 
 

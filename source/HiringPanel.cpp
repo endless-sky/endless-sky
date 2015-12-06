@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Dialog.h"
 #include "FillShader.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -93,9 +94,9 @@ void HiringPanel::Draw() const
 	info.SetString("salary required", to_string(static_cast<int>(salary)));
 	info.SetString("salary extra", to_string(static_cast<int>(extraSalary)));
 	
-	int modifier = Modifier();
+	int64_t modifier = Modifier();
 	if(modifier > 1)
-		info.SetString("modifier", "x " + to_string(modifier));
+		info.SetString("modifier", "x " + Format::Number(modifier));
 	
 	maxFire = max(flagshipExtra, 0);
 	maxHire = min(flagshipUnused, fleetUnused - passengers);

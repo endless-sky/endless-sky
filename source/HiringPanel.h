@@ -39,8 +39,8 @@ protected:
 private:
 	PlayerInfo &player;
 	
-	mutable int maxHire;
-	mutable int maxFire;
+	mutable int64_t maxHire;
+	mutable int64_t maxFire;
 };
 
 

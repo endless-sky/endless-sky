@@ -73,7 +73,7 @@ protected:
 	
 	// A lot of different UI elements allow a modifier to change the number of
 	// something you are buying, so the shared function is defined here:
-	static int Modifier();
+	static int64_t Modifier();
 	
 	
 private:
