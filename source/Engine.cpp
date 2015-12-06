@@ -268,7 +268,7 @@ void Engine::Step(bool isActive)
 		wasLeavingHyperspace = isLeavingHyperspace;
 	}
 	ai.UpdateEvents(events);
-	ai.UpdateKeys(player, isActive && wasActive);
+	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
 	wasActive = isActive;
 	Audio::Update(position);
 	
@@ -810,7 +810,22 @@ void Engine::CalculateStep()
 				object.GetPlanet()->DeployDefense(ships);
 			
 			if(doClick && object.GetPlanet() && (clickPoint - position).Length() < object.Radius())
-				player.Flagship()->SetTargetPlanet(&object);
+			{
+				if(&object == player.Flagship()->GetTargetPlanet())
+				{
+					if(!object.GetPlanet()->CanLand())
+						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
+							" refuse to let you land.");
+					else
+					{
+						clickCommands |= Command::LAND;
+						Messages::Add("Landing on " +
+							(object.GetPlanet()->Name().empty() ? "???" : object.GetPlanet()->Name()) + ".");
+					}
+				}
+				else
+					player.Flagship()->SetTargetPlanet(&object);
+			}
 		}
 	
 	// Add all neighboring systems to the radar.
@@ -857,6 +872,11 @@ void Engine::CalculateStep()
 	// missile is detected in range during collision detection, below.
 	vector<Ship *> hasAntiMissile;
 	double clickRange = 50.;
+	const Ship *previousTarget = nullptr;
+	const Ship *clickTarget = nullptr;
+	if(player.Flagship() && player.Flagship()->GetTargetShip())
+		previousTarget = &*player.Flagship()->GetTargetShip();
+	
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -959,6 +979,7 @@ void Engine::CalculateStep()
 				if(range <= clickRange)
 				{
 					clickRange = range;
+					clickTarget = ship.get();
 					player.Flagship()->SetTargetShip(ship);
 					// If we've found an enemy within the click zone, favor
 					// targeting it rather than any other ship. Otherwise, keep
@@ -979,6 +1000,8 @@ void Engine::CalculateStep()
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
+	if(clickTarget && clickTarget == previousTarget)
+		clickCommands |= Command::BOARD;
 	
 	// Collision detection:
 	for(Projectile &projectile : projectiles)
