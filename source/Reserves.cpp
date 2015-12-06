@@ -61,8 +61,7 @@ void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, in
 
 
 
-// Set the amount of commodity in a given system, and the amount that was recently
-// transcated by the player.
+// Set the amount of commodity in a given system.
 void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment)
 {
 	auto it = amounts.find(sys);

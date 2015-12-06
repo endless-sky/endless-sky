@@ -125,7 +125,7 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				for(const DataNode &greatgrand : grand)
-					if(greatgrand.Size() >= 3)
+					if(greatgrand.Size() >= 2)
 						reserveChanges.emplace_back(GameData::Systems().Get(grand.Token(0)),
 							greatgrand.Token(0), greatgrand.Value(1));
 		}

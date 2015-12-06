@@ -42,8 +42,7 @@ public:
 	void EvolveDaily();
 	
 private:
-	// amounts stores the amount of each commodity in each system, whereas recentActivity
-	// stores the amount of each commodity recently transcated by the player in each system.
+	// amounts stores the amount of each commodity in each system.
 	std::map<const System *, std::map<std::string, int64_t>> amounts;
 };
 
