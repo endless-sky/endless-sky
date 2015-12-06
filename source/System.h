@@ -114,7 +114,7 @@ public:
 	int Trading(const std::string &commodity) const;
 	
 	// Randomly destroy a large fraction of a system's commodity.
-	int Disaster(const std::string &commodity) const;
+	int BlessingsAndDisasters(const std::string &commodity) const;
 	
 	// Return the amount of a given commodity in this system.
 	int64_t Reserves(const std::string &commodity) const;

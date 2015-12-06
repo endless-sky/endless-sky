@@ -516,14 +516,25 @@ int System::Trading(const string &commodity) const
 
 
 // Randomly destroy a large fraction of a system's commodity.
-int System::Disaster(const string &commodity) const
+int System::BlessingsAndDisasters(const string &commodity) const
 {
 	if (IsInhabited() && Random::Real() < 0.00025)
 	{
 		int64_t reserves = Reserves(commodity);
-		double fraction = 0.2 + 0.6*Random::Real();
-		Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100.*fraction)) +
-			"% of its \"" + commodity + "\" was destroyed!");
+		double fraction;
+		if (Random::Int(2) == 0)
+		{
+			double fraction = 0.2 + 0.6*Random::Real();
+			Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100.*(1.0-fraction))) +
+				"% of its " + commodity + " was destroyed!");
+		}
+		else
+		{
+			double fraction = 1.25 + 3.75*Random::Real();
+			Messages::Add("A large shipment has arrived in " + name + ", " + to_string((int) round(100.*(fraction-1.0))) +
+						  "% increase in its holdings of " + commodity + "!");
+			
+		}
 		return fraction * reserves;
 	}
 	

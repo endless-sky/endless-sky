@@ -80,6 +80,6 @@ void Reserves::EvolveDaily()
 		{
 			AdjustAmounts(&it.second, gd.name,
 				it.second.Production(gd.name) + it.second.Trading(gd.name) -
-				it.second.Consumption(gd.name) - it.second.Disaster(gd.name));
+				it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(gd.name));
 		}
 }
