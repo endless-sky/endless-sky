@@ -34,7 +34,7 @@ namespace {
 	static const double RESERVE_MULTIPLIER = 2000.;
 	static const double PRODUCTION_MULTIPLIER = 0.51;
 	static const double CONSUMPTION_MULTIPLIER = 0.5;
-	static const double TRADE_MULTIPLIER = 10.0;
+	static const double TRADE_MULTIPLIER = 20.0;
 }
 
 
@@ -485,7 +485,7 @@ int System::Trading(const string &commodity) const
 		
 		// Hyperspace first
 		for(const auto &it : GameData::Systems())
-			if (dm.HasRoute(&it.second) && &it.second != this)
+			if (it.second.IsInhabited() && &it.second != this && dm.HasRoute(&it.second))
 			{
 				// Trade falls off as (number of jumps)^2.
 				double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
@@ -546,6 +546,9 @@ int System::BlessingsAndDisasters(const string &commodity) const
 // Get the initial reserves of a commodity in this system.
 int64_t System::InitialReserves(const string &commodity) const
 {
+	if (!IsInhabited())
+		return 0;
+	
 	auto it = trade.find(commodity);
 	int price = (it == trade.end()) ? 0 : it->second;
 	
