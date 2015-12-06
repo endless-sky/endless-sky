@@ -426,6 +426,9 @@ int System::Trade(const string &commodity, int64_t quantity) const
 // Get rate of production of a commodity in this system.
 int System::Production(const string &commodity) const
 {
+	if (!IsInhabited())
+		return 0;
+	
     // Production rate based upon equilibrium commodity price.
 	auto it = trade.find(commodity);
 	int price = (it == trade.end()) ? 0 : it->second;
@@ -442,6 +445,9 @@ int System::Production(const string &commodity) const
 // Get the rate of consumption of a commodity in this system.
 int System::Consumption(const string &commodity) const
 {
+	if (!IsInhabited())
+		return 0;
+	
     // Consumption rate based upon equilibrium commodity price.
     auto it = trade.find(commodity);
     int price = (it == trade.end()) ? 0 : it->second;
