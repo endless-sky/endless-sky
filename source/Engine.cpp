@@ -514,11 +514,19 @@ void Engine::Draw() const
 	Point messagePoint(
 		Screen::Left() + 120.,
 		Screen::Bottom() - 20. * messages.size());
-	for(const auto &it : messages)
+	auto it = messages.begin();
+	double firstY = Screen::Top() - font.Height();
+	if(messagePoint.Y() < firstY)
 	{
-		float alpha = (it.step + 1000 - step) * .001f;
+		int skip = (firstY - messagePoint.Y()) / 20.;
+		it += skip;
+		messagePoint.Y() += 20. * skip;
+	}
+	for( ; it != messages.end(); ++it)
+	{
+		float alpha = (it->step + 1000 - step) * .001f;
 		Color color(alpha, 0.);
-		font.Draw(it.message, messagePoint, color);
+		font.Draw(it->message, messagePoint, color);
 		messagePoint.Y() += 20.;
 	}
 	
