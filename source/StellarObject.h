@@ -62,6 +62,7 @@ public:
 	
 	
 private:
+	std::string name;
 	Animation animation;
 	Point position;
 	Point unit;

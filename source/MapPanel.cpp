@@ -371,13 +371,16 @@ void MapPanel::DrawLinks() const
 				from -= unit;
 				to += unit;
 				
-				bool wormholeLink = false;
+				const Planet *wormholePlanet = nullptr;
 				for (const auto &it : system->Objects())
 					if (it.GetPlanet() && it.GetPlanet()->IsWormhole() && it.GetPlanet()->WormholeDestination(system) == link)
-						wormholeLink = true;
+						wormholePlanet = it.GetPlanet();
 				
-				if (wormholeLink)
-					LineShader::Draw(from, to, 0.5, wormholeColor);
+				if (wormholePlanet)
+				{
+					if (player.HasVisited(wormholePlanet))
+						LineShader::Draw(from, to, 0.5, wormholeColor);
+				}
 				else
 				{
 					bool isClose = (system == playerSystem || link == playerSystem);
