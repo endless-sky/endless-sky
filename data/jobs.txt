@@ -549,7 +549,7 @@ mission "Bounty Hunting (Big)"
 		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core "near earth" frontier
+		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
 		government Pirate
@@ -584,7 +584,7 @@ mission "Bounty Hunting (Medium)"
 		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core "near earth" frontier
+		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
 		government Pirate
@@ -619,7 +619,7 @@ mission "Bounty Hunting (Small)"
 		random < 40
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core "near earth" frontier
+		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
 		government Pirate
