@@ -49,7 +49,7 @@ private:
 private:
 	PlayerInfo &player;
 	const System &system;
-	bool selling;
+	bool selling = false;
 	
 	int selectedRow;
 	
