@@ -648,6 +648,26 @@ ship "Protector" "Protector (Laser)"
 
 
 
+ship "Vanguard" "Vanguard (Particle)"
+	outfits
+		"Particle Cannon" 7
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+
+
+
 ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 	outfits
 		"Energy Blaster" 2

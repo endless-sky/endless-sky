@@ -1865,6 +1865,59 @@ ship "Protector"
 
 
 
+ship "Vanguard"
+	sprite "ship/vanguard"
+	attributes
+		category "Heavy Warship"
+		"cost" 7200000
+		"shields" 9800
+		"hull" 6000
+		"required crew" 23
+		"bunks" 45
+		"mass" 500
+		"drag" 8
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 560
+		"weapon capacity" 220
+		"engine capacity" 120
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Proton Gun" 7
+		"Anti-Missile Turret"
+
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	
+	engine -15 145
+	engine 15 145
+	gun 0 -140 "Proton Gun"
+	gun -18 -140 "Proton Gun"
+	gun 18 -140 "Proton Gun"
+	gun -20 -55 "Proton Gun"
+	gun 20 -55 "Proton Gun"
+	gun -30 -55 "Proton Gun"
+	gun 30 -55 "Proton Gun"
+	turret 0 30 "Anti-Missile Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+	description `The Vanguard is Syndicated Systems' newest warship intended for the heavy anti-pirate defense market. Vanguards offer an unusual feature set, focusing on powerful fixed guns and featuring Syndicated Systems' latest automation technologies, resulting in an atypically low crew complement for a ship its size. In its stock configuration, a Vanguard is ill suited for long-range combat or boarding operations, but few capital ships will endure for long under the withering fusillade of gunfire that it can unleash against those in front of it.`
+
+
+
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
