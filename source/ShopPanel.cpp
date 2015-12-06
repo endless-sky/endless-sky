@@ -207,7 +207,7 @@ void ShopPanel::DrawButtons() const
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		bright);
 	
-	int modifier = Modifier();
+	int64_t modifier = Modifier();
 	if(modifier > 1)
 	{
 		string mod = "x " + Format::Number(modifier);
