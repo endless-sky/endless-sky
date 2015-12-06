@@ -358,7 +358,10 @@ void MapPanel::DrawLinks() const
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
-	Color wormholeColor(0.5, 0.2, 0.9, 0.99);
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
+	Color wormholeDimColor(0.5/4., 0.2/4., 0.9/4., 1.);
+	const double wormholeWidth = 1.;
+	const double wormholeLength = 4.;
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
@@ -388,7 +391,20 @@ void MapPanel::DrawLinks() const
 				if (wormholePlanet)
 				{
 					if (player.HasVisited(wormholePlanet))
-						LineShader::Draw(from, to, 0.5, wormholeColor);
+					{
+						Angle left(45.);
+						Angle right(-45.);
+						Point wormholeUnit = Zoom() * wormholeLength * unit;
+						Point arrowLeft = left.Rotate(wormholeUnit / 2.);
+						Point arrowRight = right.Rotate(wormholeUnit / 2.);
+						LineShader::Draw(from, to, wormholeWidth, wormholeDimColor);
+						LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+						LineShader::Draw(to + wormholeUnit - arrowLeft, to + wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(to + wormholeUnit - arrowRight, to + wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(to, to + (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+					}
 				}
 				else
 				{
