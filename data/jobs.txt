@@ -549,7 +549,7 @@ mission "Bounty Hunting (Big)"
 		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core "near earth" frontier
+		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
 		government Pirate
@@ -569,6 +569,10 @@ mission "Bounty Hunting (Big)"
 				"Falcon (Heavy)"
 			variant
 				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
 		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
@@ -584,7 +588,7 @@ mission "Bounty Hunting (Medium)"
 		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core "near earth" frontier
+		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
 		government Pirate
@@ -619,7 +623,7 @@ mission "Bounty Hunting (Small)"
 		random < 40
 	source
 		government Republic "Free Worlds" Syndicate Neutral
-		attributes rim south north "dirt belt" core "near earth" frontier
+		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
 		government Pirate

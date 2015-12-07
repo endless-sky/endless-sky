@@ -75,12 +75,14 @@ AI::AI()
 
 
 
-void AI::UpdateKeys(PlayerInfo &player, bool isActive)
+void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
+	keyHeld |= clickCommands;
+	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
 		keyStuck.Clear();
