@@ -90,6 +90,7 @@ void MapPanel::Draw() const
 	DotShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11., 9., brightColor);
 	
+	DrawWormholes();
 	DrawLinks();
 	DrawSystems();
 	DrawNames();
@@ -263,6 +264,7 @@ void MapPanel::DrawTravelPlan() const
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
 	Color withinFleetFuelRangeColor(.2, .5, .0, 0.);
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
@@ -342,7 +344,9 @@ void MapPanel::DrawTravelPlan() const
 		}
 		
 		Color drawColor = outOfFlagshipFuelRangeColor;
-		if(flagshipCapacity >= 0. && escortCapacity >= 0.)
+		if(isWormhole)
+			drawColor = wormholeColor;
+		else if(flagshipCapacity >= 0. && escortCapacity >= 0.)
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
@@ -350,6 +354,59 @@ void MapPanel::DrawTravelPlan() const
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;
+	}
+}
+
+
+
+void MapPanel::DrawWormholes() const
+{
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
+	Color wormholeDimColor(0.5/3., 0.2/3., 0.9/3., 1.);
+	const double wormholeWidth = 1.2;
+	const double wormholeLength = 4.;
+	const double wormholeArrowHeadRatio = 1./3.;
+	
+	for(const auto &it : GameData::Systems())
+	{
+		const System *previous = &it.second;
+		for(const auto &it2 : GameData::Systems())
+		{
+			const System *next = &it2.second;
+		
+			bool isWormhole = false;
+			const Planet *wormholePlanet = nullptr;
+			for(const StellarObject &object : previous->Objects())
+			{
+				isWormhole |= (object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next);
+				if(isWormhole)
+					wormholePlanet = object.GetPlanet();
+			}
+			
+			if(wormholePlanet && player.HasVisited(wormholePlanet))
+			{
+				Point from = Zoom() * (next->Position() + center);
+				Point to = Zoom() * (previous->Position() + center);
+				Point unit = (from - to).Unit() * 7.;
+				from -= unit;
+				to += unit;
+				
+				Angle left(45.);
+				Angle right(-45.);
+				
+				Point wormholeUnit = Zoom() * wormholeLength * unit;
+				Point arrowLeft = left.Rotate(wormholeUnit * wormholeArrowHeadRatio);
+				Point arrowRight = right.Rotate(wormholeUnit * wormholeArrowHeadRatio);
+				
+				LineShader::Draw(from, to, wormholeWidth, wormholeDimColor);
+				LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
+				LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
+				LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+				LineShader::Draw(to + wormholeUnit - arrowLeft, to + wormholeUnit, wormholeWidth, wormholeColor);
+				LineShader::Draw(to + wormholeUnit - arrowRight, to + wormholeUnit, wormholeWidth, wormholeColor);
+				LineShader::Draw(to, to + (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+			}
+		}
 	}
 }
 
