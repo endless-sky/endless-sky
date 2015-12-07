@@ -768,18 +768,12 @@ void Engine::CalculateStep()
 	// If the player has entered a new system, update the asteroids, etc.
 	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
 	{
-		doFlash = true;
-		player.SetSystem(flagship->GetSystem());
-		EnterSystem();
-	}
-	else if(flagship && player.GetSystem() != flagship->GetSystem())
-	{
 		// Wormhole travel:
 		for (const auto &it : player.GetSystem()->Objects())
 			if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
 				it.GetPlanet()->WormholeDestination(flagship->GetSystem()))
 				player.Visit(it.GetPlanet());
-		//player.ClearTravel();
+		
 		doFlash = true;
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
