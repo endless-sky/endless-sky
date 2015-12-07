@@ -379,7 +379,7 @@ void MapPanel::DrawWormholes() const
 				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next)
 				{
 					wormholePlanet = object.GetPlanet();
-					continue;
+					break;
 				}
 			
 			if(wormholePlanet && player.HasVisited(wormholePlanet))
