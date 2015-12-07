@@ -181,7 +181,7 @@ trade
 		"storage tanks"
 		"unplasticized PVC"
 		"vinylesters"
-		"zylene"
+		"xylene"
 	commodity "Equipment" 330 730
 		"CNC machines"
 		"air conditioners"
