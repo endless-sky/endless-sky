@@ -262,6 +262,7 @@ void MapPanel::DrawTravelPlan() const
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
 	Color withinFleetFuelRangeColor(.2, .5, .0, 0.);
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
@@ -317,6 +318,7 @@ void MapPanel::DrawTravelPlan() const
 		from -= unit;
 		to += unit;
 		
+		bool isWormhole = false;
 		if(!isHyper)
 		{
 			if(!escortHasJump)
@@ -326,10 +328,9 @@ void MapPanel::DrawTravelPlan() const
 		}
 		else
 		{
-			bool isWormhole = false;
 			for (const auto &it : previous->Objects())
 				if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
-					it.GetPlanet()->WormholeDestination(next))
+					it.GetPlanet()->WormholeDestination(previous) == next)
 					isWormhole = true;
 			
 			if (!isWormhole)
@@ -340,7 +341,9 @@ void MapPanel::DrawTravelPlan() const
 		}
 		
 		Color drawColor = outOfFlagshipFuelRangeColor;
-		if(flagshipCapacity >= 0. && escortCapacity >= 0.)
+		if(isWormhole)
+			drawColor = wormholeColor;
+		else if(flagshipCapacity >= 0. && escortCapacity >= 0.)
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
@@ -360,7 +363,7 @@ void MapPanel::DrawLinks() const
 	Color farColor(.3, .3);
 	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	Color wormholeDimColor(0.5/4., 0.2/4., 0.9/4., 1.);
-	const double wormholeWidth = 1.;
+	const double wormholeWidth = 1.2;
 	const double wormholeLength = 4.;
 	for(const auto &it : GameData::Systems())
 	{
