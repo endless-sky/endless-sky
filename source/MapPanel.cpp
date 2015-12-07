@@ -374,14 +374,13 @@ void MapPanel::DrawWormholes() const
 		{
 			const System *next = &it2.second;
 		
-			bool isWormhole = false;
 			const Planet *wormholePlanet = nullptr;
 			for(const StellarObject &object : previous->Objects())
-			{
-				isWormhole |= (object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next);
-				if(isWormhole)
+				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next)
+				{
 					wormholePlanet = object.GetPlanet();
-			}
+					continue;
+				}
 			
 			if(wormholePlanet && player.HasVisited(wormholePlanet))
 			{
