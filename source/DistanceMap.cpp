@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DistanceMap.h"
 
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "System.h"
@@ -86,6 +87,21 @@ int DistanceMap::Distance(const System *system) const
 
 
 
+// Find out how much the jump from the given system will cost: 1 means it is
+// a normal hyperjump, 2 means it is a jump drive jump, and 0 means it is a
+// wormhole. If there is no path from the given system, this returns -1.
+int DistanceMap::Cost(const System *system) const
+{
+	int distance = Distance(system);
+	if(distance < 0)
+		return -1;
+	
+	int nextDistance = Distance(Route(system));
+	return (nextDistance < 0) ? -1 : distance - nextDistance;
+}
+
+
+
 // If I am in the given system, going to the player's system, what system
 // should I jump to next?
 const System *DistanceMap::Route(const System *system) const
@@ -138,6 +154,24 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 		if(system == source)
 			break;
 		
+		// Check for wormholes (which cost zero fuel). Wormhole travel should
+		// not be included in maps or mission itineraries.
+		if(maxCount < 0 && maxDistance < 0)
+			for(const StellarObject &object : system->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->IsWormhole())
+				{
+					const System *link = object.GetPlanet()->WormholeDestination(system);
+					if(HasBetter(link, steps))
+						continue;
+					
+					// TODO: replace this with a check for whether the player has
+					// "visited" this particular wormhole.
+					if(player && !(player->HasVisited(system) && player->HasVisited(link)))
+						continue;
+					
+					Add(system, link, steps);
+				}
+		
 		if(hasHyper && !Propagate(system, false, steps))
 			break;
 		if(hasJump && !Propagate(system, true, steps))
@@ -154,26 +188,39 @@ bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
 	steps += 1 + useJump;
 	for(const System *link : (useJump ? system->Neighbors() : system->Links()))
 	{
-		// Find out whether we already have a better path to this system.
-		auto it = distance.find(link);
-		if(it != distance.end() && it->second <= steps)
-			continue;
-		
-		// Check whether this link can be traveled. If this route is being
+		// Find out whether we already have a better path to this system, and
+		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if(!CheckLink(system, link, useJump))
+		if(HasBetter(link, steps) || !CheckLink(system, link, useJump))
 			continue;
 		
-		// This is the best path we have found so far to this system, but it is
-		// conceivable that a better one will be found.
-		distance[link] = steps;
-		route[link] = system;
-		if(maxDistance < 0 || steps < maxDistance)
-			edge.emplace(-steps, link);
+		Add(system, link, steps);
 		if(!--maxCount)
 			return false;
 	}
 	return true;
+}
+
+
+
+// Check if we already have a better path to the given system.
+bool DistanceMap::HasBetter(const System *to, int steps)
+{
+	auto it = distance.find(to);
+	return (it != distance.end() && it->second <= steps);
+}
+
+
+
+// Add the given path to the record.
+void DistanceMap::Add(const System *from, const System *to, int steps)
+{
+	// This is the best path we have found so far to this system, but it is
+	// conceivable that a better one will be found.
+	distance[to] = steps;
+	route[to] = from;
+	if(maxDistance < 0 || steps < maxDistance)
+		edge.emplace(-steps, to);
 }
 
 

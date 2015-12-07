@@ -764,16 +764,8 @@ void Engine::CalculateStep()
 		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
-	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
+	if(flagship && player.GetSystem() != flagship->GetSystem())
 	{
-		doFlash = true;
-		player.SetSystem(flagship->GetSystem());
-		EnterSystem();
-	}
-	else if(flagship && player.GetSystem() != flagship->GetSystem())
-	{
-		// Wormhole travel:
-		player.ClearTravel();
 		doFlash = true;
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();

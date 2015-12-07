@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteShader.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
 #include "UI.h"
@@ -308,8 +309,14 @@ void MapPanel::DrawTravelPlan() const
 		bool isJump = isHyper ||
 			(find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
 				!= previous->Neighbors().end());
+		bool isWormhole = false;
 		if(!((isHyper && hasHyper) || (isJump && hasJump)))
-			break;
+		{
+			for(const StellarObject &object : previous->Objects())
+				isWormhole |= (object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next);
+			if(!isWormhole)
+				break;
+		}
 		
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
@@ -317,7 +324,11 @@ void MapPanel::DrawTravelPlan() const
 		from -= unit;
 		to += unit;
 		
-		if(!isHyper)
+		if(isWormhole)
+		{
+			// Wormholes cost no fuel to travel through.
+		}
+		else if(!isHyper)
 		{
 			if(!escortHasJump)
 				escortCapacity = 0.;
