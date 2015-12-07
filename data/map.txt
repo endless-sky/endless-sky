@@ -11508,6 +11508,7 @@ system "Ultima Thule"
 	government Republic
 	habitable 2560
 	link Rajak
+	link Waypoint
 	asteroids "small rock" 2 2.4966
 	asteroids "medium rock" 22 1.9836
 	asteroids "large rock" 6 2.7018
@@ -12144,6 +12145,7 @@ system Waypoint
 	government Hai
 	habitable 78.125
 	link "Heia Due"
+	link "Ultima Thule"
 	asteroids "small rock" 9 2.8028
 	asteroids "medium rock" 90 2.0328
 	asteroids "large rock" 1 3.2956
@@ -15158,6 +15160,8 @@ planet Winter
 	tribute 300
 		threshold 2500
 		fleet "Large Militia" 5
+
+planet "Wormhole Alpha"
 
 planet "Wyvern Station"
 	attributes rim station

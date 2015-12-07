@@ -1737,8 +1737,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		}
 		else
 		{
-			PrepareForHyperspace(ship, command);
-			command |= Command::JUMP;
+			bool traversingWormhole = false;
+			for (auto &it : ship.GetSystem()->Objects())
+				if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+					it.GetPlanet()->WormholeDestination(ship.GetSystem()) == ship.GetTargetSystem())
+				{
+					ship.SetTargetPlanet(&it);
+					MoveToPlanet(ship, command);
+					command |= Command::LAND;
+					traversingWormhole = true;
+				}
+			
+			if (!traversingWormhole)
+			{
+				PrepareForHyperspace(ship, command);
+				command |= Command::JUMP;
+			}
+			
 			if(keyHeld.Has(Command::JUMP))
 				command |= Command::WAIT;
 		}

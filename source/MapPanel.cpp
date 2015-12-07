@@ -262,6 +262,7 @@ void MapPanel::DrawTravelPlan() const
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
 	Color withinFleetFuelRangeColor(.2, .5, .0, 0.);
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
@@ -317,6 +318,7 @@ void MapPanel::DrawTravelPlan() const
 		from -= unit;
 		to += unit;
 		
+		bool isWormhole = false;
 		if(!isHyper)
 		{
 			if(!escortHasJump)
@@ -326,12 +328,22 @@ void MapPanel::DrawTravelPlan() const
 		}
 		else
 		{
-			flagshipCapacity -= flagshipJumpFuel;
-			escortCapacity -= escortJumpFuel;
+			for (const auto &it : previous->Objects())
+				if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+					it.GetPlanet()->WormholeDestination(previous) == next)
+					isWormhole = true;
+			
+			if (!isWormhole)
+			{
+				flagshipCapacity -= flagshipJumpFuel;
+				escortCapacity -= escortJumpFuel;
+			}
 		}
 		
 		Color drawColor = outOfFlagshipFuelRangeColor;
-		if(flagshipCapacity >= 0. && escortCapacity >= 0.)
+		if(isWormhole)
+			drawColor = wormholeColor;
+		else if(flagshipCapacity >= 0. && escortCapacity >= 0.)
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
@@ -349,6 +361,10 @@ void MapPanel::DrawLinks() const
 	// Draw the links between the systems.
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
+	Color wormholeDimColor(0.5/4., 0.2/4., 0.9/4., 1.);
+	const double wormholeWidth = 1.2;
+	const double wormholeLength = 4.;
 	for(const auto &it : GameData::Systems())
 	{
 		const System *system = &it.second;
@@ -370,8 +386,34 @@ void MapPanel::DrawLinks() const
 				from -= unit;
 				to += unit;
 				
-				bool isClose = (system == playerSystem || link == playerSystem);
-				LineShader::Draw(from, to, 1.2, isClose ? closeColor : farColor);
+				const Planet *wormholePlanet = nullptr;
+				for (const auto &it : system->Objects())
+					if (it.GetPlanet() && it.GetPlanet()->IsWormhole() && it.GetPlanet()->WormholeDestination(system) == link)
+						wormholePlanet = it.GetPlanet();
+				
+				if (wormholePlanet)
+				{
+					if (player.HasVisited(wormholePlanet))
+					{
+						Angle left(45.);
+						Angle right(-45.);
+						Point wormholeUnit = Zoom() * wormholeLength * unit;
+						Point arrowLeft = left.Rotate(wormholeUnit / 2.);
+						Point arrowRight = right.Rotate(wormholeUnit / 2.);
+						LineShader::Draw(from, to, wormholeWidth, wormholeDimColor);
+						LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+						LineShader::Draw(to + wormholeUnit - arrowLeft, to + wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(to + wormholeUnit - arrowRight, to + wormholeUnit, wormholeWidth, wormholeColor);
+						LineShader::Draw(to, to + (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+					}
+				}
+				else
+				{
+					bool isClose = (system == playerSystem || link == playerSystem);
+					LineShader::Draw(from, to, 1.2, isClose ? closeColor : farColor);
+				}
 			}
 	}
 }

@@ -189,5 +189,10 @@ bool DistanceMap::CheckLink(const System *from, const System *to, bool useJump) 
 	if(!player->HasSeen(to))
 		return false;
 	
+	for (const auto &it : from->Objects())
+		if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+			it.GetPlanet()->WormholeDestination(from) == to && !player->HasVisited(it.GetPlanet()))
+			return false;
+	
 	return (useJump || player->HasVisited(from) || player->HasVisited(to));
 }
