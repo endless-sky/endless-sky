@@ -38,7 +38,7 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys(PlayerInfo &player, bool isActive);
+	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &player);

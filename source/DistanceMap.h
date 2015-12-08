@@ -47,6 +47,11 @@ public:
 	bool HasRoute(const System *system) const;
 	// Find out how many jumps away the given system is.
 	int Distance(const System *system) const;
+	// Find out how much the jump from the given system will cost: 1 means it is
+	// a normal hyperjump, 2 means it is a jump drive jump, and 0 means it is a
+	// wormhole. If there is no path from the given system, or if the given
+	// system is the center of the search, this returns -1.
+	int Cost(const System *system) const;
 	// If I am in the given system, going to the player's system, what system
 	// should I jump to next?
 	const System *Route(const System *system) const;
@@ -62,6 +67,10 @@ private:
 	void Init(const System *center, const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(const System *system, bool useJump, int steps);
+	// Check if we already have a better path to the given system.
+	bool HasBetter(const System *to, int steps);
+	// Add the given path to the record.
+	void Add(const System *from, const System *to, int steps);
 	// Check whether the given link is mappable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
@@ -78,6 +87,7 @@ private:
 	const System *source = nullptr;
 	int maxCount = -1;
 	int maxDistance = -1;
+	bool useWormholes = true;
 };
 
 

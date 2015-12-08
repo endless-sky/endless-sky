@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteShader.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
 #include "UI.h"
@@ -60,7 +61,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 	SetInterruptible(false);
 	
 	if(selectedSystem)
-		center = Point(0., 0.) - selectedSystem->Position();
+		center = Point(0., 0.) - Zoom() * (selectedSystem->Position());
 }
 
 
@@ -77,16 +78,19 @@ void MapPanel::Draw() const
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	for(const auto &it : GameData::Galaxies())
-		SpriteShader::Draw(it.second.GetSprite(), center + it.second.Position());
+		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
 	
 	DrawTravelPlan();
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1, 0.);
-	DotShader::Draw((playerSystem ? playerSystem->Position() + center : center), 100.5, 99.5, dimColor);
+	DotShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+		100.5 * Zoom(), 99.5 * Zoom(), dimColor);
 	Color brightColor(.4, 0.);
-	DotShader::Draw((selectedSystem ? selectedSystem->Position() + center : center), 11., 9., brightColor);
+	DotShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
+		11., 9., brightColor);
 	
+	DrawWormholes();
 	DrawLinks();
 	DrawSystems();
 	DrawNames();
@@ -108,10 +112,47 @@ void MapPanel::Draw() const
 
 
 
+void MapPanel::ZoomMap()
+{
+	if(zoom < maxZoom)
+		zoom++;
+}
+
+
+
+void MapPanel::UnzoomMap()
+{
+	if(zoom > -maxZoom)
+		zoom--;
+}
+
+
+
+double MapPanel::Zoom() const
+{
+	return pow(1.5, zoom);
+}
+
+
+
+bool MapPanel::ZoomIsMax() const
+{
+	return (zoom == maxZoom);
+}
+
+
+
+bool MapPanel::ZoomIsMin() const
+{
+	return (zoom == -maxZoom);
+}
+
+
+
 bool MapPanel::Click(int x, int y)
 {
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) - center;
+	Point click = Point(x, y) / Zoom() - center;
 	for(const auto &it : GameData::Systems())
 		if(click.Distance(it.second.Position()) < 10.
 				&& (player.HasSeen(&it.second) || &it.second == specialSystem))
@@ -127,7 +168,24 @@ bool MapPanel::Click(int x, int y)
 
 bool MapPanel::Drag(int dx, int dy)
 {
-	center += Point(dx, dy);
+	center += Point(dx, dy) / Zoom();
+	return true;
+}
+
+
+
+bool MapPanel::Scroll(int dx, int dy)
+{
+	// The mouse should be pointing to the same map position before and after zooming.
+	Point mouse = UI::GetMouse();
+	Point anchor = mouse / Zoom() - center;
+	if(dy > 0)
+		ZoomMap();
+	else
+		UnzoomMap();
+	// Now, Zoom() has changed (unless at one of the limits). But, we still want
+	// anchor to be the same, so:
+	center = mouse / Zoom() - anchor;
 	return true;
 }
 
@@ -186,14 +244,14 @@ const Planet *MapPanel::Find(const string &name)
 		if(player.HasVisited(&it.second) && Contains(it.first, name))
 		{
 			selectedSystem = &it.second;
-			center = Point() - selectedSystem->Position();
+			center = Zoom() * (Point() - selectedSystem->Position());
 			return nullptr;
 		}
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()) && Contains(it.first, name))
 		{
 			selectedSystem = it.second.GetSystem();
-			center = Point() - selectedSystem->Position();
+			center = Zoom() * (Point() - selectedSystem->Position());
 			return &it.second;
 		}
 	return nullptr;
@@ -206,6 +264,7 @@ void MapPanel::DrawTravelPlan() const
 	Color defaultColor(.5, .4, 0., 0.);
 	Color outOfFlagshipFuelRangeColor(.55, .1, .0, 0.);
 	Color withinFleetFuelRangeColor(.2, .5, .0, 0.);
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
 	
 	Ship *ship = player.Flagship();
 	bool hasHyper = ship ? ship->Attributes().Get("hyperdrive") : false;
@@ -252,16 +311,26 @@ void MapPanel::DrawTravelPlan() const
 		bool isJump = isHyper ||
 			(find(previous->Neighbors().begin(), previous->Neighbors().end(), next)
 				!= previous->Neighbors().end());
+		bool isWormhole = false;
 		if(!((isHyper && hasHyper) || (isJump && hasJump)))
-			break;
+		{
+			for(const StellarObject &object : previous->Objects())
+				isWormhole |= (object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next);
+			if(!isWormhole)
+				break;
+		}
 		
-		Point from = next->Position() + center;
-		Point to = previous->Position() + center;
+		Point from = Zoom() * (next->Position() + center);
+		Point to = Zoom() * (previous->Position() + center);
 		Point unit = (from - to).Unit() * 7.;
 		from -= unit;
 		to += unit;
 		
-		if(!isHyper)
+		if(isWormhole)
+		{
+			// Wormholes cost no fuel to travel through.
+		}
+		else if(!isHyper)
 		{
 			if(!escortHasJump)
 				escortCapacity = 0.;
@@ -275,7 +344,9 @@ void MapPanel::DrawTravelPlan() const
 		}
 		
 		Color drawColor = outOfFlagshipFuelRangeColor;
-		if(flagshipCapacity >= 0. && escortCapacity >= 0.)
+		if(isWormhole)
+			drawColor = wormholeColor;
+		else if(flagshipCapacity >= 0. && escortCapacity >= 0.)
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
@@ -283,6 +354,44 @@ void MapPanel::DrawTravelPlan() const
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;
+	}
+}
+
+
+
+void MapPanel::DrawWormholes() const
+{
+	Color wormholeColor(0.5, 0.2, 0.9, 1.);
+	Color wormholeDimColor(0.5/3., 0.2/3., 0.9/3., 1.);
+	const double wormholeWidth = 1.2;
+	const double wormholeLength = 4.;
+	const double wormholeArrowHeadRatio = 1./3.;
+	
+	for(const auto &it : GameData::Systems())
+	{
+		const System *previous = &it.second;
+		for(const StellarObject &object : previous->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
+			{
+				const System *next = object.GetPlanet()->WormholeDestination(previous);
+				Point from = Zoom() * (previous->Position() + center);
+				Point to = Zoom() * (next->Position() + center);
+				Point unit = (from - to).Unit() * 7.;
+				from -= unit;
+				to += unit;
+				
+				Angle left(45.);
+				Angle right(-45.);
+				
+				Point wormholeUnit = Zoom() * wormholeLength * unit;
+				Point arrowLeft = left.Rotate(wormholeUnit * wormholeArrowHeadRatio);
+				Point arrowRight = right.Rotate(wormholeUnit * wormholeArrowHeadRatio);
+				
+				LineShader::Draw(from, to, wormholeWidth, wormholeDimColor);
+				LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
+				LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
+				LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
+			}
 	}
 }
 
@@ -308,8 +417,8 @@ void MapPanel::DrawLinks() const
 				if(!player.HasVisited(system) && !player.HasVisited(link))
 					continue;
 				
-				Point from = system->Position() + center;
-				Point to = link->Position() + center;
+				Point from = Zoom() * (system->Position() + center);
+				Point to = Zoom() * (link->Position() + center);
 				Point unit = (from - to).Unit() * 7.;
 				from -= unit;
 				to += unit;
@@ -422,7 +531,7 @@ void MapPanel::DrawSystems() const
 			}
 		}
 		
-		DotShader::Draw(system.Position() + center, 6., 3.5, color);
+		DotShader::Draw(Zoom() * (system.Position() + center), 6., 3.5, color);
 	}
 }
 
@@ -430,18 +539,21 @@ void MapPanel::DrawSystems() const
 
 void MapPanel::DrawNames() const
 {
+	// Don't draw if too small.
+	if (Zoom() <= 0.5) return;
+	
 	// Draw names for all systems you have visited.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);
 	Color closeColor(.6, .6);
 	Color farColor(.3, .3);
-	Point offset(6., -.5 * font.Height());
+	Point offset((Zoom() > 2.0) ? 8. : 6., -.5 * font.Height());
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;
 		if(!player.KnowsName(&system) || system.Name().empty())
 			continue;
 		
-		font.Draw(system.Name(), system.Position() + offset + center,
+		font.Draw(system.Name(), Zoom() * (system.Position() + center) + offset,
 			(&system == playerSystem) ? closeColor : farColor);
 	}
 }
@@ -465,7 +577,7 @@ void MapPanel::DrawMissions() const
 	{
 		const System *system = mission.Destination()->GetSystem();
 		Angle a = (angle[system] += Angle(30.));
-		Point pos = system->Position() + center;
+		Point pos = Zoom() * (system->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
 			mission.HasSpace(player) ? availableColor : unavailableColor);
@@ -486,7 +598,7 @@ void MapPanel::DrawMissions() const
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
-		Point pos = system->Position() + center;
+		Point pos = Zoom() * (system->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
 		if(!blink)
 			PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
@@ -503,7 +615,7 @@ void MapPanel::DrawMissions() const
 	if(specialSystem)
 	{
 		Angle a = (angle[specialSystem] += Angle(30.));
-		Point pos = specialSystem->Position() + center;
+		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
 		PointerShader::Draw(pos, a.Unit(), 11.5, 21.5, -6., white);
 	}

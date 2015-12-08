@@ -268,9 +268,15 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter" 2
 		"Protector" 1
+	variant 10
+		"Bulk Freighter" 2
+		"Vanguard" 1
 	variant 1
 		"Bulk Freighter (Heavy)" 2
 		"Protector (Laser)" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Vanguard (Particle)" 1
 	variant 20
 		"Bounder"
 		"Quicksilver" 2
@@ -1061,12 +1067,20 @@ fleet "Large Syndicate"
 	variant 1
 		"Protector"
 	variant 1
+		"Vanguard"
+	variant 1
 		"Protector (Laser)"
 	variant 1
 		"Protector"
 		"Quicksilver" 2
 	variant 1
 		"Protector (Laser)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Vanguard (Particle)"
+		"Quicksilver" 2
+	variant 1
+		"Vanguard"
 		"Quicksilver (Proton)" 2
 
 fleet "Small Southern Pirates"
@@ -1560,6 +1574,9 @@ fleet "Syndicate Extremists"
 		"Protector"
 		"Quicksilver" 2
 	variant 1
+		"Vanguard"
+		"Quicksilver" 2
+	variant 1
 		"Leviathan"
 		"Firebird" 2
 	variant 1
@@ -1589,6 +1606,8 @@ fleet "Korath Home"
 		"Korath World-Ship"
 	variant
 		"Korath World-Ship B"
+	variant
+		"Korath World-Ship C"
 
 fleet "Quarg"
 	government "Quarg"

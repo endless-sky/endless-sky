@@ -147,6 +147,7 @@ private:
 	bool wasLeavingHyperspace;
 	
 	bool doClick = false;
+	Command clickCommands;
 	Point clickPoint;
 	
 	double load;

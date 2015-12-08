@@ -131,6 +131,10 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(
 			this, &MapDetailPanel::DoFind, "Search for:"));
+	else if(key == '+' || key == '=')
+		ZoomMap();
+	else if(key == '-')
+		UnzoomMap();
 	else
 		return false;
 	
@@ -263,7 +267,7 @@ void MapDetailPanel::DrawInfo() const
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[object.GetPlanet()] = uiPoint.Y() - 50;
 			
-				font.Draw(object.GetPlanet()->Name(),
+				font.Draw(object.Name(),
 					uiPoint + Point(-70., -42.),
 					object.GetPlanet() == selectedPlanet ? closeColor : farColor);
 				font.Draw("Space Port",
@@ -415,7 +419,7 @@ void MapDetailPanel::DrawInfo() const
 		}
 	}
 	
-	if(selectedPlanet)
+	if(selectedPlanet && !selectedPlanet->Description().empty())
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - .5 * panelSprite->Width(),
@@ -433,6 +437,10 @@ void MapDetailPanel::DrawInfo() const
 	// Draw the buttons.
 	Information info;
 	info.SetCondition("is ports");
+	if(ZoomIsMax())
+		info.SetCondition("max zoom");
+	if(ZoomIsMin())
+		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info, Point(-250., 0.));
 }
@@ -500,11 +508,12 @@ void MapDetailPanel::DrawOrbits() const
 	}
 	
 	planets.clear();
-	static const Color planetColor[4] = {
+	static const Color planetColor[5] = {
 		Color(1., 1., 1., 1.),
 		Color(.3, .3, .3, 1.),
 		Color(0., .8, 1., 1.),
-		Color(.8, .4, .2, 1.)
+		Color(.8, .4, .2, 1.),
+		Color(.8, .3, 1., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -517,7 +526,8 @@ void MapDetailPanel::DrawOrbits() const
 		DotShader::Draw(pos,
 			object.Radius() * scale + 1., 0.,
 				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)
-					+ (object.GetPlanet() && !object.GetPlanet()->CanLand())]);
+					+ (object.GetPlanet() && !object.GetPlanet()->CanLand() && !object.GetPlanet()->IsWormhole())
+					+ 2 * (object.GetPlanet() && object.GetPlanet()->IsWormhole())]);
 	}
 	
 	// Draw the name of the selected planet.

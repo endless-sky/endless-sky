@@ -13339,7 +13339,7 @@ planet Darkmetal
 planet Darkstone
 	attributes south farming frontier
 	landscape land/valley8
-	description `Darkstone is a rainy, mountainous planet. The major continents are spidered with rivers and green valleys. A few enterprising settlers have build farming communities here, but the population remains low because of the threat of piracy from neighboring systems.`
+	description `Darkstone is a rainy, mountainous planet. The major continents are spidered with rivers and green valleys. A few enterprising settlers have built farming communities here, but the population remains low because of the threat of piracy from neighboring systems.`
 	description `	Among the farmers who choose to stay, the attitude seems to be that piracy can't last forever, but good land will always be good land. Despite some low-level cynicism and bitterness, there is surprisingly little outright anger at either the pirates themselves or any government that might have been expected to control them.`
 	spaceport `Once every few months, one pirate band or another will land here demanding tribute in the form of food. The locals respond by just keeping a big enough supply on hand to satisfy them; any sort of planetary defenses would cost far more than the price of the amount of food that an average fleet of warships can carry. But once they recognize that you are here to trade and not to steal, they greet you quite enthusiastically.`
 	outfitter "Ammo South"
@@ -15158,6 +15158,8 @@ planet Winter
 	tribute 300
 		threshold 2500
 		fleet "Large Militia" 5
+
+planet "Wormhole Alpha"
 
 planet "Wyvern Station"
 	attributes rim station

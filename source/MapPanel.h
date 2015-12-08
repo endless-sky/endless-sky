@@ -43,11 +43,18 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool Click(int x, int y) override;
 	virtual bool Drag(int dx, int dy) override;
+	virtual bool Scroll(int dx, int dy) override;
 	
 	virtual double SystemValue(const System *system) const;
 	
 	void Select(const System *system);
 	const Planet *Find(const std::string &name);
+	
+	void ZoomMap();
+	void UnzoomMap();
+	double Zoom() const;
+	bool ZoomIsMax() const;
+	bool ZoomIsMin() const;
 	
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
@@ -65,11 +72,14 @@ protected:
 	
 	Point center;
 	int commodity;
+	const int maxZoom = 2;
+	int zoom = 0;
 	mutable int step = 0;
 	
 	
 private:
 	void DrawTravelPlan() const;
+	void DrawWormholes() const;
 	void DrawLinks() const;
 	void DrawSystems() const;
 	void DrawNames() const;
