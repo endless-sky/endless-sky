@@ -164,9 +164,7 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					if(HasBetter(link, steps))
 						continue;
 					
-					// TODO: replace this with a check for whether the player has
-					// "visited" this particular wormhole.
-					if(player && !(player->HasVisited(system) && player->HasVisited(link)))
+					if(player && !player->HasVisited(object.GetPlanet()))
 						continue;
 					
 					Add(system, link, steps);
