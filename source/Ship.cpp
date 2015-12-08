@@ -1003,10 +1003,14 @@ bool Ship::Move(list<Effect> &effects)
 		if(acceleration)
 		{
 			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
-			// What direction will the net acceleration be if this drag is applied?
-			// If the net acceleration will be opposite the thrust, do not apply drag.
-			dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
-			velocity += dragAcceleration;
+			// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
+			if(dragAcceleration)
+			{
+				// What direction will the net acceleration be if this drag is applied?
+				// If the net acceleration will be opposite the thrust, do not apply drag.
+				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				velocity += dragAcceleration;
+			}
 		}
 		if(commands.Turn())
 		{
@@ -1314,7 +1318,7 @@ bool Ship::IsLanding() const
 // Check if this ship is currently able to begin landing on its target.
 bool Ship::CanLand() const
 {
-	if(!GetTargetPlanet() || isDisabled || IsDestroyed())
+	if(!GetTargetPlanet() || !GetTargetPlanet()->GetPlanet() || isDisabled || IsDestroyed())
 		return false;
 	
 	if(!GetTargetPlanet()->GetPlanet()->CanLand(*this))

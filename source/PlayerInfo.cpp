@@ -1361,7 +1361,9 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	visitedPlanets.insert(planet);
+	static const string EMPTY;
+	if (planet->Name() != EMPTY)
+		visitedPlanets.insert(planet);
 }
 
 
