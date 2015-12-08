@@ -303,6 +303,18 @@ bool Planet::IsWormhole() const
 
 
 
+const System *Planet::WormholeSource(const System *to) const
+{
+	auto it = find(systems.begin(), systems.end(), to);
+	if(it == systems.end())
+		return to;
+	
+	return (it == systems.begin() ? systems.back() : *--it);
+}
+
+
+
+
 const System *Planet::WormholeDestination(const System *from) const
 {
 	auto it = find(systems.begin(), systems.end(), from);

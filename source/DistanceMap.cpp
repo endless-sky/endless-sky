@@ -26,7 +26,7 @@ using namespace std;
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: maxCount(maxCount), maxDistance(maxDistance)
+	: maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
 {
 	Init(center);
 }
@@ -156,11 +156,15 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 		
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in maps or mission itineraries.
-		if(maxCount < 0 && maxDistance < 0)
+		if(useWormholes)
 			for(const StellarObject &object : system->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->IsWormhole())
 				{
-					const System *link = object.GetPlanet()->WormholeDestination(system);
+					// If we're seeking a path toward a "source," travel through
+					// wormholes in the reverse of the normal direction.
+					const System *link = source ?
+						object.GetPlanet()->WormholeSource(system) :
+						object.GetPlanet()->WormholeDestination(system);
 					if(HasBetter(link, steps))
 						continue;
 					

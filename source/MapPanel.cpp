@@ -370,22 +370,12 @@ void MapPanel::DrawWormholes() const
 	for(const auto &it : GameData::Systems())
 	{
 		const System *previous = &it.second;
-		for(const auto &it2 : GameData::Systems())
-		{
-			const System *next = &it2.second;
-		
-			const Planet *wormholePlanet = nullptr;
-			for(const StellarObject &object : previous->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next)
-				{
-					wormholePlanet = object.GetPlanet();
-					break;
-				}
-			
-			if(wormholePlanet && player.HasVisited(wormholePlanet))
+		for(const StellarObject &object : previous->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
-				Point from = Zoom() * (next->Position() + center);
-				Point to = Zoom() * (previous->Position() + center);
+				const System *next = object.GetPlanet()->WormholeDestination(previous);
+				Point from = Zoom() * (previous->Position() + center);
+				Point to = Zoom() * (next->Position() + center);
 				Point unit = (from - to).Unit() * 7.;
 				from -= unit;
 				to += unit;
@@ -401,11 +391,7 @@ void MapPanel::DrawWormholes() const
 				LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
 				LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
 				LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
-				LineShader::Draw(to + wormholeUnit - arrowLeft, to + wormholeUnit, wormholeWidth, wormholeColor);
-				LineShader::Draw(to + wormholeUnit - arrowRight, to + wormholeUnit, wormholeWidth, wormholeColor);
-				LineShader::Draw(to, to + (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
 			}
-		}
 	}
 }
 
