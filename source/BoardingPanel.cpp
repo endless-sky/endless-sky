@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "InfoPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
@@ -313,6 +314,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			}
 		}
 	}
+	else if(command.Has(Command::INFO))
+		GetUI()->Push(new InfoPanel(player, true));
+	
 	// Trim the list of status messages.
 	while(messages.size() > 5)
 		messages.erase(messages.begin());

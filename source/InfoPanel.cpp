@@ -33,7 +33,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
-#include <cctype>
 
 using namespace std;
 
@@ -109,10 +108,14 @@ namespace {
 
 
 
-InfoPanel::InfoPanel(PlayerInfo &player)
-	: player(player), shipIt(player.Ships().begin()), showShip(false), canEdit(player.GetPlanet())
+InfoPanel::InfoPanel(PlayerInfo &player, bool showFlagship)
+	: player(player), shipIt(player.Ships().begin()), showShip(showFlagship), canEdit(player.GetPlanet())
 {
 	SetInterruptible(false);
+	
+	if(showFlagship)
+		while(shipIt != player.Ships().end() && shipIt->get() != player.Flagship())
+			++shipIt;
 	
 	UpdateInfo();
 }
@@ -129,6 +132,8 @@ void InfoPanel::Draw() const
 		interfaceInfo.SetCondition("ship tab");
 		if(canEdit && (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
+		else if(!canEdit)
+			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");
 		if(player.Ships().size() > 1)
 			interfaceInfo.SetCondition("four buttons");
 		else
@@ -158,6 +163,7 @@ void InfoPanel::Draw() const
 	interface->Draw(interfaceInfo);
 	
 	zones.clear();
+	commodityZones.clear();
 	if(showShip)
 		DrawShip();
 	else
@@ -204,6 +210,21 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
 	}
+	else if((key == 'P' || key == 'c') && showShip && !canEdit)
+	{
+		if(CanDump())
+		{
+			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
+			if(amount)
+				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+					"Are you sure you want to jettison "
+						+ (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+						+ " of " + Format::LowerCase(selectedCommodity) + "?"));
+			else
+				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+					"Are you sure you want to jettison all this ship's regular (non-mission) cargo?"));
+		}
+	}
 	else if(canEdit && !showShip && key == 'n' && player.Ships().size() > 1)
 	{
 		bool allParked = true;
@@ -228,11 +249,13 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool InfoPanel::Click(int x, int y)
 {
+	Point point(x, y);
+	
 	// Handle clicks on the interface buttons.
 	const Interface *interface = GameData::Interfaces().Get("info panel");
 	if(interface)
 	{
-		char key = interface->OnClick(Point(x, y));
+		char key = interface->OnClick(point);
 		if(key)
 			return DoKey(key);
 	}
@@ -261,6 +284,10 @@ bool InfoPanel::Click(int x, int y)
 		showShip = true;
 		UpdateInfo();
 	}
+	selectedCommodity.clear();
+	for(const auto &zone : commodityZones)
+		if(zone.Contains(point))
+			selectedCommodity = zone.Value();
 	
 	return true;
 }
@@ -521,16 +548,23 @@ void InfoPanel::DrawShip() const
 	}
 	if(cargo.CommoditiesSize())
 	{
+		Color backColor = *GameData::Colors().Get("faint");
 		for(const auto &it : cargo.Commodities())
 		{
 			if(!it.second)
 				continue;
 			
+			static const Point size(230., 20.);
+			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
+			commodityZones.emplace_back(center, size, it.first);
+			if(it.first == selectedCommodity)
+				FillShader::Fill(center, size, backColor);
+			
 			string number = to_string(it.second);
-			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
+			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
 			font.Draw(it.first, pos, dim);
 			font.Draw(number, numberPos, bright);
-			pos.Y() += 20.;
+			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
 			if(pos.Y() >= 250.)
@@ -559,19 +593,7 @@ void InfoPanel::DrawShip() const
 		for(const auto &it : cargo.MissionCargo())
 		{
 			// Capitalize the name of the cargo.
-			string name = it.first->Cargo();
-			bool first = true;
-			for(char &c : name)
-			{
-				if(isspace(c))
-					first = true;
-				else
-				{
-					if(first && islower(c))
-						c = toupper(c);
-					first = false;
-				}
-			}
+			string name = Format::Capitalize(it.first->Cargo());
 			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
@@ -673,4 +695,33 @@ void InfoPanel::Rename(const string &name)
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
 	}
+}
+
+
+
+bool InfoPanel::CanDump() const
+{
+	if(canEdit || !showShip || shipIt == player.Ships().end())
+		return false;
+	
+	return (*shipIt)->Cargo().CommoditiesSize();
+}
+
+
+
+void InfoPanel::Dump()
+{
+	if(!CanDump())
+		return;
+	
+	CargoHold &cargo = (*shipIt)->Cargo();
+	int amount = cargo.Get(selectedCommodity);
+	if(amount)
+		cargo.Transfer(selectedCommodity, amount);
+	else
+	{
+		for(const auto &it : cargo.Commodities())
+			cargo.Transfer(it.first, it.second);
+	}
+	selectedCommodity.clear();
 }
