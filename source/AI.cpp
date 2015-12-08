@@ -1589,13 +1589,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 			else if(count > 1)
-			{
-				message = "Switching landing targets. Now landing on ";
-				if(ship.GetTargetPlanet()->Name().empty())
-					message += "???.";
-				else
-					message += ship.GetTargetPlanet()->Name() + ".";
-			}
+				message = "Switching landing targets. Now landing on " + next->Name() + ".";
 		}
 		else if(message.empty())
 		{
@@ -1620,9 +1614,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 						closest = distance;
 					}
 				}
-			if(!ship.GetTargetPlanet())
+			const StellarObject *target = ship.GetTargetPlanet();
+			if(!target)
 				message = "There are no planets in this system that you can land on.";
-			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
+			else if(!target->GetPlanet()->CanLand())
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 			else if(count > 1)
@@ -1639,11 +1634,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 						message += ' ' + *it++ + ',';
 					message += " or " + *it;
 				}
-				message += " in this system. Landing on ";
-				if(ship.GetTargetPlanet()->Name().empty())
-					message += "???.";
-				else
-					message += ship.GetTargetPlanet()->Name() + ".";
+				message += " in this system. Landing on " + target->Name() + ".";
 			}
 		}
 		if(!message.empty())

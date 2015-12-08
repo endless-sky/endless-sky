@@ -378,9 +378,7 @@ void Engine::Step(bool isActive)
 		const StellarObject *object = flagship->GetTargetPlanet();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
-		info.SetString("destination",
-			((object->GetPlanet()->IsWormhole() && !player.HasVisited(object->GetPlanet())) ||
-			 name.empty()) ? "???" : name);
+		info.SetString("destination", name);
 		
 		targets.push_back({
 			object->Position() - flagship->Position(),
@@ -765,20 +763,14 @@ void Engine::CalculateStep()
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
-	// If the player has entered a new system, update the asteroids, etc.
-	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
-	{
-		doFlash = true;
-		player.SetSystem(flagship->GetSystem());
-		EnterSystem();
-	}
-	else if(flagship && player.GetSystem() != flagship->GetSystem())
+	if(flagship && player.GetSystem() != flagship->GetSystem())
 	{
 		// Wormhole travel:
-		for (const auto &it : player.GetSystem()->Objects())
-			if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
-				it.GetPlanet()->WormholeDestination(flagship->GetSystem()))
-				player.Visit(it.GetPlanet());
+		if(!wasHyperspacing)
+			for(const auto &it : player.GetSystem()->Objects())
+				if(it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+						it.GetPlanet()->WormholeDestination(player.GetSystem()) == flagship->GetSystem())
+					player.Visit(it.GetPlanet());
 		
 		doFlash = true;
 		player.SetSystem(flagship->GetSystem());
@@ -833,8 +825,7 @@ void Engine::CalculateStep()
 					else
 					{
 						clickCommands |= Command::LAND;
-						Messages::Add("Landing on " +
-							(object.GetPlanet()->Name().empty() ? "???" : object.GetPlanet()->Name()) + ".");
+						Messages::Add("Landing on " + object.GetPlanet()->Name() + ".");
 					}
 				}
 				else
