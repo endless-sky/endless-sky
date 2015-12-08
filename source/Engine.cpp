@@ -39,6 +39,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <cmath>
+#include <boost/range/adaptor/reversed.hpp>
 
 using namespace std;
 
@@ -117,7 +118,7 @@ void Engine::Place()
 	ships.clear();
 	
 	EnterSystem();
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	for(const shared_ptr<Ship> &ship : boost::adaptors::reverse(player.Ships()))
 	{
 		if(ship->IsParked())
 			continue;
