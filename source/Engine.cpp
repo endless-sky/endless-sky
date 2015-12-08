@@ -378,7 +378,9 @@ void Engine::Step(bool isActive)
 		const StellarObject *object = flagship->GetTargetPlanet();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
-		info.SetString("destination", name.empty() ? "???" : name);
+		info.SetString("destination",
+			((object->GetPlanet()->IsWormhole() && !player.HasVisited(object->GetPlanet())) ||
+			 name.empty()) ? "???" : name);
 		
 		targets.push_back({
 			object->Position() - flagship->Position(),
@@ -764,8 +766,20 @@ void Engine::CalculateStep()
 		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
 	// If the player has entered a new system, update the asteroids, etc.
-	if(flagship && player.GetSystem() != flagship->GetSystem())
+	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
 	{
+		doFlash = true;
+		player.SetSystem(flagship->GetSystem());
+		EnterSystem();
+	}
+	else if(flagship && player.GetSystem() != flagship->GetSystem())
+	{
+		// Wormhole travel:
+		for (const auto &it : player.GetSystem()->Objects())
+			if (it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+				it.GetPlanet()->WormholeDestination(flagship->GetSystem()))
+				player.Visit(it.GetPlanet());
+		
 		doFlash = true;
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
