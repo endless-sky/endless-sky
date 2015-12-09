@@ -117,8 +117,9 @@ void Engine::Place()
 	ships.clear();
 	
 	EnterSystem();
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	for(auto it = player.Ships().rbegin(); it != player.Ships().rend(); ++it)
 	{
+		const auto &ship = *it;
 		if(ship->IsParked())
 			continue;
 		
