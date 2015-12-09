@@ -820,7 +820,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// How far is it to the destination?
 	DistanceMap distance(player.GetSystem());
 	int jumps = distance.Distance(result.destination->GetSystem());
-	int defaultPayment = (jumps + 1) * (150 * result.cargoSize + 1500 * result.passengers);
+	int payload = result.cargoSize + 10 * result.passengers;
 	int defaultDeadline = doDefaultDeadline ? (2 * jumps) : 0;
 	
 	// Set the deadline, if requested.
@@ -861,9 +861,9 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, defaultPayment);
+		result.actions[it.first] = it.second.Instantiate(subs, jumps, payload);
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, defaultPayment);
+		result.onEnter[it.first] = it.second.Instantiate(subs, jumps, payload);
 	
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(displayName, subs);
