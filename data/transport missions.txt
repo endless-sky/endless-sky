@@ -354,7 +354,7 @@ mission "Transport Workers B"
 					goto thanks
 				`	"Are you sure about that? I've heard some bad things about the Syndicate's company towns."`
 					goto towns
-				`	"Do your really think she's going to wait around for you?"`
+				`	"Do you really think she's going to wait around for you?"`
 					goto wait
 			label towns
 			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`

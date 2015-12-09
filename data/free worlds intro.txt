@@ -791,7 +791,7 @@ mission "FW Katya 2C"
 
 mission "FW Katya 3"
 	name "Drone Hunting"
-	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>.`
+	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
 	source Rand
 	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
 	passengers 2
@@ -836,7 +836,8 @@ mission "FW Katya 3"
 					decline
 			
 			label agree
-			`	"Great!" Says Katya. "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
+			`	"Great!" says Katya. "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
+			`	Ijs says, "Captain, we should warn you: when you attack a drone, any Republic folks in that system will get mad at you. But once you jump out of the system, they'll calm down again."`
 				accept
 	
 	on complete

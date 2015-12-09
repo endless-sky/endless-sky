@@ -79,6 +79,7 @@ protected:
 	
 private:
 	void DrawTravelPlan() const;
+	void DrawWormholes() const;
 	void DrawLinks() const;
 	void DrawSystems() const;
 	void DrawNames() const;

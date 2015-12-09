@@ -75,12 +75,14 @@ AI::AI()
 
 
 
-void AI::UpdateKeys(PlayerInfo &player, bool isActive)
+void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
+	keyHeld |= clickCommands;
+	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
 		keyStuck.Clear();
@@ -728,14 +730,29 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
 		DistanceMap distance(ship, parent.GetSystem());
-		const System *system = distance.Route(ship.GetSystem());
-		ship.SetTargetSystem(system);
-		if(!system || (ship.GetSystem()->IsInhabited() && !system->IsInhabited() && ship.JumpsRemaining() == 1))
-			Refuel(ship, command);
+		const System *from = ship.GetSystem();
+		const System *to = distance.Route(from);
+		if(!distance.Cost(from))
+		{
+			for(const StellarObject &object : from->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+				{
+					ship.SetTargetPlanet(&object);
+					MoveToPlanet(ship, command);
+					command |= Command::LAND;
+					break;
+				}
+		}
 		else
 		{
-			PrepareForHyperspace(ship, command);
-			command |= Command::JUMP;
+			ship.SetTargetSystem(to);
+			if(!to || (from->IsInhabited() && !to->IsInhabited() && ship.JumpsRemaining() == 1))
+				Refuel(ship, command);
+			else
+			{
+				PrepareForHyperspace(ship, command);
+				command |= Command::JUMP;
+			}
 		}
 	}
 	else if(parent.Commands().Has(Command::LAND) && parent.GetTargetPlanet())
@@ -811,7 +828,7 @@ double AI::TurnToward(const Ship &ship, const Point &vector)
 	
 	if(vector.Dot(facing) > 0.)
 	{
-		double angle = asin(cross / vector.Length()) * TO_DEG;
+		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
 		if(fabs(angle) <= ship.TurnRate())
 			return -angle / ship.TurnRate();
 	}
@@ -874,7 +891,7 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Figure out your stopping time using your main engine:
-		double degreesToTurn = TO_DEG * acos(-velocity.Unit().Dot(angle.Unit()));
+		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
 		double forwardTime = degreesToTurn / ship.TurnRate();
 		forwardTime += speed / ship.Acceleration();
 		
@@ -1198,7 +1215,7 @@ Point AI::StoppingPoint(const Ship &ship, bool &shouldReverse)
 		return position;
 	
 	// This assumes you're facing exactly the wrong way.
-	double degreesToTurn = TO_DEG * acos(-velocity.Unit().Dot(angle.Unit()));
+	double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
 	double stopDistance = v * (degreesToTurn / turnRate);
 	// Sum of: v + (v - a) + (v - 2a) + ... + 0.
 	// The number of terms will be v / a.
@@ -1428,7 +1445,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	if(player.HasTravelPlan())
 	{
 		const System *system = player.TravelPlan().back();
-		ship.SetTargetSystem(system);
+		bool isWormhole = false;
+		for(const StellarObject &object : ship.GetSystem()->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(ship.GetSystem()) == system)
+			{
+				isWormhole = true;
+				ship.SetTargetPlanet(&object);
+				keyStuck |= Command::LAND;
+				break;
+			}
+		if(!isWormhole)
+			ship.SetTargetSystem(system);
 		// Check if there's a particular planet there we want to visit.
 		for(const Mission &mission : player.Missions())
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
@@ -1562,13 +1589,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 			else if(count > 1)
-			{
-				message = "Switching landing targets. Now landing on ";
-				if(ship.GetTargetPlanet()->Name().empty())
-					message += "???.";
-				else
-					message += ship.GetTargetPlanet()->Name() + ".";
-			}
+				message = "Switching landing targets. Now landing on " + next->Name() + ".";
 		}
 		else if(message.empty())
 		{
@@ -1593,9 +1614,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 						closest = distance;
 					}
 				}
-			if(!ship.GetTargetPlanet())
+			const StellarObject *target = ship.GetTargetPlanet();
+			if(!target)
 				message = "There are no planets in this system that you can land on.";
-			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
+			else if(!target->GetPlanet()->CanLand())
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 			else if(count > 1)
@@ -1612,11 +1634,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 						message += ' ' + *it++ + ',';
 					message += " or " + *it;
 				}
-				message += " in this system. Landing on ";
-				if(ship.GetTargetPlanet()->Name().empty())
-					message += "???.";
-				else
-					message += ship.GetTargetPlanet()->Name() + ".";
+				message += " in this system. Landing on " + target->Name() + ".";
 			}
 		}
 		if(!message.empty())

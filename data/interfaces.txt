@@ -1015,6 +1015,23 @@ interface "info panel"
 		align center
 	endif
 	
+	button c 10 295
+		size 20 30
+	if "enable dump"
+	sprite "ui/wide button" 45 295
+	label "Dump _Cargo" 45 287
+		size 14
+		color bright
+		align center
+	endif
+	if "show dump"
+	sprite "ui/wide button" 45 295
+	label "Dump _Cargo" 45 287
+		size 14
+		color dim
+		align center
+	endif
+	
 	if "show park all"
 	sprite "ui/wide button" 250 295
 	label "Park All" 250 287

@@ -130,6 +130,9 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 // Get the name of the planet.
 const string &Planet::Name() const
 {
+	static const string UNKNOWN = "???";
+	if(IsWormhole())
+		return UNKNOWN;
 	return name;
 }
 
@@ -297,6 +300,18 @@ bool Planet::IsWormhole() const
 {
 	return (systems.size() > 1);
 }
+
+
+
+const System *Planet::WormholeSource(const System *to) const
+{
+	auto it = find(systems.begin(), systems.end(), to);
+	if(it == systems.end())
+		return to;
+	
+	return (it == systems.begin() ? systems.back() : *--it);
+}
+
 
 
 

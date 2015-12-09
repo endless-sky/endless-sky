@@ -31,6 +31,10 @@ public:
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);
+	
+	// Convert a string to title caps or to lower case.
+	static std::string Capitalize(const std::string &str);
+	static std::string LowerCase(const std::string &str);
 };
 
 

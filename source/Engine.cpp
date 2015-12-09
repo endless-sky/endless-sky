@@ -268,7 +268,7 @@ void Engine::Step(bool isActive)
 		wasLeavingHyperspace = isLeavingHyperspace;
 	}
 	ai.UpdateEvents(events);
-	ai.UpdateKeys(player, isActive && wasActive);
+	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
 	wasActive = isActive;
 	Audio::Update(position);
 	
@@ -378,7 +378,7 @@ void Engine::Step(bool isActive)
 		const StellarObject *object = flagship->GetTargetPlanet();
 		info.SetString("navigation mode", "Landing on:");
 		const string &name = object->Name();
-		info.SetString("destination", name.empty() ? "???" : name);
+		info.SetString("destination", name);
 		
 		targets.push_back({
 			object->Position() - flagship->Position(),
@@ -514,11 +514,19 @@ void Engine::Draw() const
 	Point messagePoint(
 		Screen::Left() + 120.,
 		Screen::Bottom() - 20. * messages.size());
-	for(const auto &it : messages)
+	auto it = messages.begin();
+	double firstY = Screen::Top() - font.Height();
+	if(messagePoint.Y() < firstY)
 	{
-		float alpha = (it.step + 1000 - step) * .001f;
+		int skip = (firstY - messagePoint.Y()) / 20.;
+		it += skip;
+		messagePoint.Y() += 20. * skip;
+	}
+	for( ; it != messages.end(); ++it)
+	{
+		float alpha = (it->step + 1000 - step) * .001f;
 		Color color(alpha, 0.);
-		font.Draw(it.message, messagePoint, color);
+		font.Draw(it->message, messagePoint, color);
 		messagePoint.Y() += 20.;
 	}
 	
@@ -755,17 +763,15 @@ void Engine::CalculateStep()
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 		Audio::Play(Audio::Get(flagship->HyperspaceType() >= 200 ? "jump drive" : "hyperdrive"));
 	
-	// If the player has entered a new system, update the asteroids, etc.
-	if(wasHyperspacing && !flagship->IsEnteringHyperspace())
-	{
-		doFlash = true;
-		player.SetSystem(flagship->GetSystem());
-		EnterSystem();
-	}
-	else if(flagship && player.GetSystem() != flagship->GetSystem())
+	if(flagship && player.GetSystem() != flagship->GetSystem())
 	{
 		// Wormhole travel:
-		player.ClearTravel();
+		if(!wasHyperspacing)
+			for(const auto &it : player.GetSystem()->Objects())
+				if(it.GetPlanet() && it.GetPlanet()->IsWormhole() &&
+						it.GetPlanet()->WormholeDestination(player.GetSystem()) == flagship->GetSystem())
+					player.Visit(it.GetPlanet());
+		
 		doFlash = true;
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
@@ -810,7 +816,21 @@ void Engine::CalculateStep()
 				object.GetPlanet()->DeployDefense(ships);
 			
 			if(doClick && object.GetPlanet() && (clickPoint - position).Length() < object.Radius())
-				player.Flagship()->SetTargetPlanet(&object);
+			{
+				if(&object == player.Flagship()->GetTargetPlanet())
+				{
+					if(!object.GetPlanet()->CanLand())
+						Messages::Add("The authorities on " + object.GetPlanet()->Name() +
+							" refuse to let you land.");
+					else
+					{
+						clickCommands |= Command::LAND;
+						Messages::Add("Landing on " + object.GetPlanet()->Name() + ".");
+					}
+				}
+				else
+					player.Flagship()->SetTargetPlanet(&object);
+			}
 		}
 	
 	// Add all neighboring systems to the radar.
@@ -857,6 +877,11 @@ void Engine::CalculateStep()
 	// missile is detected in range during collision detection, below.
 	vector<Ship *> hasAntiMissile;
 	double clickRange = 50.;
+	const Ship *previousTarget = nullptr;
+	const Ship *clickTarget = nullptr;
+	if(player.Flagship() && player.Flagship()->GetTargetShip())
+		previousTarget = &*player.Flagship()->GetTargetShip();
+	
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -959,6 +984,7 @@ void Engine::CalculateStep()
 				if(range <= clickRange)
 				{
 					clickRange = range;
+					clickTarget = ship.get();
 					player.Flagship()->SetTargetShip(ship);
 					// If we've found an enemy within the click zone, favor
 					// targeting it rather than any other ship. Otherwise, keep
@@ -979,6 +1005,8 @@ void Engine::CalculateStep()
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
+	if(clickTarget && clickTarget == previousTarget)
+		clickCommands |= Command::BOARD;
 	
 	// Collision detection:
 	for(Projectile &projectile : projectiles)

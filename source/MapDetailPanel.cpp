@@ -266,7 +266,7 @@ void MapDetailPanel::DrawInfo() const
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[object.GetPlanet()] = uiPoint.Y() - 50;
 			
-				font.Draw(object.GetPlanet()->Name(),
+				font.Draw(object.Name(),
 					uiPoint + Point(-70., -42.),
 					object.GetPlanet() == selectedPlanet ? closeColor : farColor);
 				font.Draw("Space Port",
@@ -338,7 +338,7 @@ void MapDetailPanel::DrawInfo() const
 		uiPoint.Y() += 20.;
 	}
 	
-	if(selectedPlanet)
+	if(selectedPlanet && !selectedPlanet->Description().empty())
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - .5 * panelSprite->Width(),
@@ -427,11 +427,12 @@ void MapDetailPanel::DrawOrbits() const
 	}
 	
 	planets.clear();
-	static const Color planetColor[4] = {
+	static const Color planetColor[5] = {
 		Color(1., 1., 1., 1.),
 		Color(.3, .3, .3, 1.),
 		Color(0., .8, 1., 1.),
-		Color(.8, .4, .2, 1.)
+		Color(.8, .4, .2, 1.),
+		Color(.8, .3, 1., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -444,7 +445,8 @@ void MapDetailPanel::DrawOrbits() const
 		DotShader::Draw(pos,
 			object.Radius() * scale + 1., 0.,
 				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)
-					+ (object.GetPlanet() && !object.GetPlanet()->CanLand())]);
+					+ (object.GetPlanet() && !object.GetPlanet()->CanLand() && !object.GetPlanet()->IsWormhole())
+					+ 2 * (object.GetPlanet() && object.GetPlanet()->IsWormhole())]);
 	}
 	
 	// Draw the name of the selected planet.
