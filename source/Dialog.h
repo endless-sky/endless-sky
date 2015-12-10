@@ -45,6 +45,8 @@ public:
 	// case, the callback is called only if the user selects "ok", not "cancel."
 template <class T>
 	Dialog(T *t, void (T::*fun)(int), const std::string &text);
+template <class T>
+	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue);
 	
 template <class T>
 	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text);
@@ -97,6 +99,16 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text)
 	: intFun(std::bind(fun, t, std::placeholders::_1))
 {
 	Init(text);
+}
+
+
+
+template <class T>
+Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue)
+	: intFun(std::bind(fun, t, std::placeholders::_1))
+{
+	Init(text);
+	input = std::to_string(initialValue);
 }
 
 
