@@ -491,7 +491,7 @@ int System::Trading(const string &commodity) const
 	// Jumpable systems next.
 	double jumpMultiplier = 0.01;
 	string govName = government->GetName();
-	if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
+	if (govName == "Quarg" || govName == "Korath" || govName == "Pug")
 		jumpMultiplier = 1.0;
 	
 	for(const System *neighbor : neighbors)
@@ -500,7 +500,7 @@ int System::Trading(const string &commodity) const
 		{
 			double neighborJumpMultiplier = 0.01;
 			govName = neighbor->government->GetName();
-			if (govName == "Quarg" || govName == "Korgoth" || govName == "Pug")
+			if (govName == "Quarg" || govName == "Korath" || govName == "Pug")
 				neighborJumpMultiplier = 1.0;
 			double shortageFactor = (1.0 + log(static_cast<double>(max(1LL, min(reserves, neighbor->Reserves(commodity))))));
 			double population = jumpMultiplier * habitable + neighborJumpMultiplier * neighbor->habitable;
