@@ -87,6 +87,7 @@ private:
 	const System *source = nullptr;
 	int maxCount = -1;
 	int maxDistance = -1;
+	bool useWormholes = true;
 };
 
 
