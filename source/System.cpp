@@ -490,19 +490,15 @@ int System::Trading(const string &commodity) const
 		}
 	
 	// Jumpable systems next.
-	double jumpMultiplier = 0.01;
 	string govName = government->GetName();
-	if (govName == "Quarg" || govName == "Korath" || govName == "Pug")
-		jumpMultiplier = 1.0;
+	double jumpMultiplier = government->JumpDriveFraction();
 	
 	for(const System *neighbor : neighbors)
 		// Exclude the hyperspace systems as we've already counted them.
 		if (neighbor->IsInhabited() && find(links.begin(), links.end(), neighbor) == links.end())
 		{
-			double neighborJumpMultiplier = 0.01;
 			govName = neighbor->government->GetName();
-			if (govName == "Quarg" || govName == "Korath" || govName == "Pug")
-				neighborJumpMultiplier = 1.0;
+			double neighborJumpMultiplier = neighbor->government->JumpDriveFraction();
 			double shortageFactor = (1.0 + log(static_cast<double>(max(1LL, min(reserves, neighbor->Reserves(commodity))))));
 			double population = jumpMultiplier * habitable + neighborJumpMultiplier * neighbor->habitable;
 			tradeAmount += RESERVE_MULTIPLIER * TRADE_MULTIPLIER / shortageFactor *
