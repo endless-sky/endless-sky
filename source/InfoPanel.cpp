@@ -744,6 +744,7 @@ void InfoPanel::Dump()
 		return;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
+	int originalCargo = cargo.Used();
 	int amount = cargo.Get(selectedCommodity);
 	int plunderAmount = cargo.Get(selectedPlunder);
 	if(amount)
@@ -757,6 +758,7 @@ void InfoPanel::Dump()
 	}
 	selectedCommodity.clear();
 	info.Update(**shipIt);
+	(*shipIt)->Jettison(originalCargo - cargo.Used());
 }
 
 
@@ -764,8 +766,12 @@ void InfoPanel::Dump()
 void InfoPanel::DumpPlunder(int count)
 {
 	CargoHold &cargo = (*shipIt)->Cargo();
+	int originalCargo = cargo.Used();
 	count = min(count, cargo.Get(selectedPlunder));
 	if(count > 0)
+	{
 		cargo.Transfer(selectedPlunder, count);
-	info.Update(**shipIt);
+		info.Update(**shipIt);
+		(*shipIt)->Jettison(originalCargo - cargo.Used());
+	}
 }

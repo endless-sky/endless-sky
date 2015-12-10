@@ -335,3 +335,13 @@ effect "ion spark"
 	"random angle" 360
 	"random spin" 10
 	"random velocity" 1
+
+effect "box"
+	sprite "effect/box"
+		"frame rate" 6
+		"random start frame"
+	"random frame rate" 12
+	"lifetime" 600
+	"random angle" 30
+	"random spin" 10
+	"random velocity" -1

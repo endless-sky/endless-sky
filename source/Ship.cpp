@@ -615,6 +615,14 @@ bool Ship::Move(list<Effect> &effects)
 			}
 		}
 	}
+	// Jettisoned cargo effects.
+	static const int JETTISON_BOX = 5;
+	if(jettisoned >= JETTISON_BOX)
+	{
+		jettisoned -= JETTISON_BOX;
+		effects.push_back(*GameData::Effects().Get("box"));
+		effects.back().Place(position, velocity, angle);
+	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -1905,6 +1913,14 @@ CargoHold &Ship::Cargo()
 const CargoHold &Ship::Cargo() const
 {
 	return cargo;
+}
+
+
+
+// Display box effects from jettisoning this much cargo.
+void Ship::Jettison(int tons)
+{
+	jettisoned += tons;
 }
 
 
