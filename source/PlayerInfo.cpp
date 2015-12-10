@@ -463,6 +463,8 @@ void PlayerInfo::IncrementDate()
 	if(!message.empty())
 		Messages::Add(message);
 	
+	RemoveStaleNews();
+	
 	//for(int i = 0; i < 1000; ++i)
 		GameData::GetReserves().EvolveDaily(this);
 }
@@ -1275,16 +1277,27 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 
 
 
-void PlayerInfo::AddNews(const string &news)
+void PlayerInfo::AddNews(const string &news, const Date &date)
 {
-	newsItems.push_back(news);
+	newsItems.push_back(pair<string, Date>(news, date));
+}
+
+
+
+void PlayerInfo::RemoveStaleNews()
+{
+	auto it = newsItems.begin();
+	
+	while (it != newsItems.end())
+		if (GetDate() - it->second > 14)
+			it = newsItems.erase(it);
 }
 
 
 
 string PlayerInfo::GetRandomNewsItem() const
 {
-	return newsItems[Random::Int(newsItems.size())];
+	return newsItems[Random::Int(newsItems.size())].first;
 }
 
 

@@ -97,7 +97,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 			message += "patch you up?";
 	}
 	
-	if(Random::Real() < 0.5)
+	if(Random::Real() < 0.3)
 		message = player.GetRandomNewsItem();
 	
 	if(message.empty())
