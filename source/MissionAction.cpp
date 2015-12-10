@@ -66,10 +66,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		}
 		else if(child.Token(0) == "require" && child.Size() >= 2)
 			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
-		else if(child.Token(0) == "payment" && child.Size() >= 2)
-			payment += child.Value(1);
 		else if(child.Token(0) == "payment")
-			giveDefaultPayment = true;
+		{
+			if(child.Size() == 1)
+				paymentMultiplier += 150;
+			if(child.Size() >= 2)
+				payment += child.Value(1);
+			if(child.Size() >= 3)
+				paymentMultiplier += child.Value(2);
+		}
 		else if(child.Token(0) == "event" && child.Size() >= 2)
 		{
 			int days = (child.Size() >= 3 ? child.Value(2) : 0);
@@ -293,7 +298,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultPayment) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -301,7 +306,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultP
 	
 	result.events = events;
 	result.gifts = gifts;
-	result.payment = payment + (giveDefaultPayment ? defaultPayment : 0);
+	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action (which comes
 	// before all the others in the list).
 	if(trigger == "complete" || result.payment)

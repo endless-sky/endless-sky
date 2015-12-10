@@ -117,35 +117,16 @@ void Engine::Place()
 	ships.clear();
 	
 	EnterSystem();
+	auto it = ships.end();
+	
+	// Add the player's flagship and escorts to the list of ships. The TakeOff()
+	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		if(ship->IsParked())
-			continue;
-		
-		ships.push_back(ship);
-		Point pos;
-		Angle angle = Angle::Random(360.);
-		// All your ships that are in system with the player act as if they are
-		// leaving the planet along with you.
-		if(player.GetPlanet() && ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
-		{
-			ship->SetPlanet(player.GetPlanet());
-			for(const StellarObject &object : ship->GetSystem()->Objects())
-				if(object.GetPlanet() == player.GetPlanet())
-				{
-					pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
-				}
-		}
-		else if(ship->GetSystem())
-		{
-			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
-			for(const StellarObject &object : ship->GetSystem()->Objects())
-				if(object.GetPlanet() == player.GetPlanet())
-					pos += object.Position();
-		}
-		ship->Place(pos, angle.Unit(), angle);
-	}
-	// Get a shared pointer to the player's flagship.
+		if(!ship->IsParked())
+			it = ships.insert(it, ship);
+	
+	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
+	// and all but "uninterested" ships should follow the player.
 	shared_ptr<Ship> flagship = player.FlagshipPtr();
 	for(const Mission &mission : player.Missions())
 		for(const NPC &npc : mission.NPCs())
@@ -178,59 +159,66 @@ void Engine::Place()
 				if(ship->CanBeCarried())
 				{
 					bool docked = false;
-					if(ship->Attributes().Category() == "Drone")
-					{
-						for(auto &it : droneCarriers)
-							if(it.second)
-							{
-								it.first->AddFighter(ship);
-								--it.second;
-								docked = true;
-								break;
-							}
-					}
-					else if(ship->Attributes().Category() == "Fighter")
-					{
-						for(auto &it : fighterCarriers)
-							if(it.second)
-							{
-								it.first->AddFighter(ship);
-								--it.second;
-								docked = true;
-								break;
-							}
-					}
+					map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
+						droneCarriers : fighterCarriers;
+					for(auto &it : carriers)
+						if(it.second)
+						{
+							it.first->AddFighter(ship);
+							--it.second;
+							docked = true;
+							break;
+						}
 					if(docked)
 						continue;
 				}
 				
-				ships.push_back(ship);
+				it = ships.insert(it, ship);
 				if(!ship->GetPersonality().IsUninterested())
 					ship->SetParent(flagship);
-				
-				Point pos;
-				Angle angle = Angle::Random(360.);
-				// All your ships that are in system with the player act as if they are
-				// leaving the planet along with you.
-				if(player.GetPlanet() && ship->GetSystem() == player.GetSystem() && !ship->IsDisabled()
-						&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer())
-						&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
-				{
-					ship->SetPlanet(player.GetPlanet());
-					for(const StellarObject &object : ship->GetSystem()->Objects())
-						if(object.GetPlanet() == player.GetPlanet())
-							pos = object.Position() + angle.Unit() * Random::Real() * object.Radius();
-				}
-				else if(ship->GetSystem())
-				{
-					pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
-					for(const StellarObject &object : ship->GetSystem()->Objects())
-						if(object.GetPlanet() == player.GetPlanet())
-							pos += object.Position();
-				}
-				ship->Place(pos, angle.Unit(), angle);
 			}
 		}
+	
+	// Get the coordinates of the planet the player is leaving.
+	Point planetPos;
+	double planetRadius = 0.;
+	if(player.GetPlanet())
+		for(const StellarObject &object : player.GetSystem()->Objects())
+			if(object.GetPlanet() == player.GetPlanet())
+			{
+				planetPos = object.Position();
+				planetRadius = object.Radius();
+				break;
+			}
+	
+	// Give each ship a random heading and position. The iterator points to the
+	// first ship that was an escort or NPC (i.e. the first ship after any
+	// fleets that were placed starting out in this system).
+	while(it != ships.end())
+	{
+		const shared_ptr<Ship> &ship = *it++;
+		
+		Point pos;
+		Angle angle = Angle::Random(360.);
+		// Any ships in the same system as the player should be either
+		// taking off from the player's planet or nearby.
+		bool isHere = (ship->GetSystem() == player.GetSystem());
+		if(isHere)
+			pos = planetPos;
+		// Check whether this ship should take off with you.
+		if(isHere && !ship->IsDisabled()
+				&& (player.GetPlanet()->CanLand(*ship) || ship->GetGovernment()->IsPlayer())
+				&& !(ship->GetPersonality().IsStaying() || ship->GetPersonality().IsWaiting()))
+		{
+			if(player.GetPlanet())
+				ship->SetPlanet(player.GetPlanet());
+			pos += angle.Unit() * Random::Real() * planetRadius;
+		}
+		else
+			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+		
+		ship->Place(pos, angle.Unit(), angle);
+	}
 	
 	player.SetPlanet(nullptr);
 }

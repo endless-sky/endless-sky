@@ -58,6 +58,7 @@ private:
 	void Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
+	void DumpPlunder(int count);
 	
 	
 private:
@@ -69,6 +70,7 @@ private:
 	
 	mutable std::vector<ClickZone<int>> zones;
 	mutable std::vector<ClickZone<std::string>> commodityZones;
+	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
 	int selected;
 	int hover;
 	int scroll = 0;
@@ -78,6 +80,7 @@ private:
 	bool canEdit;
 	bool didDrag;
 	std::string selectedCommodity;
+	const Outfit *selectedPlunder = nullptr;
 };
 
 

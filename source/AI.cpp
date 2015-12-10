@@ -769,7 +769,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
-		if(!dest || (dest != parent.GetTargetSystem() && !dest->IsInhabited() && ship.JumpsRemaining() == 1))
+		if(!dest || (ship.GetSystem()->IsInhabited() && !dest->IsInhabited() && ship.JumpsRemaining() == 1))
 			Refuel(ship, command);
 		else
 		{
