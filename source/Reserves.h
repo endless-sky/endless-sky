@@ -17,6 +17,7 @@
 #include <set>
 #include <string>
 
+class PlayerInfo;
 class System;
 
 
@@ -39,7 +40,7 @@ public:
 	void SetAmounts(const System *sys, const std::string &commodity, int64_t adjustment);
 	
 	// Functions that affect the amount of commodity in a system as time elapses.
-	void EvolveDaily();
+	void EvolveDaily(PlayerInfo *player);
 	
 private:
 	// amounts stores the amount of each commodity in each system.

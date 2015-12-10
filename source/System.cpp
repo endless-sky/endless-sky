@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Government.h"
 #include "Messages.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Random.h"
 #include "Trade.h"
 
@@ -513,10 +514,10 @@ int System::Trading(const string &commodity) const
 
 
 
-// Randomly destroy a large fraction of a system's commodity.
-int System::BlessingsAndDisasters(const string &commodity) const
+// Randomly destroy or produce a large amount of a system's commodity.
+int System::BlessingsAndDisasters(PlayerInfo *player, const string &commodity) const
 {
-	if (Random::Real() > 0.0002)
+	if (Random::Real() > 0.002)
 		return 0;
 	
 	int64_t reserves = Reserves(commodity);
@@ -524,13 +525,13 @@ int System::BlessingsAndDisasters(const string &commodity) const
 	if (Random::Int(2) == 0)
 	{
 		fraction = 0.5 + 0.15 * Random::Real();
-		Messages::Add("Disaster has struck " + name + ", " + to_string((int) round(100. * (1.0 - fraction))) +
+		player->AddNews("Disaster has struck " + name + ", " + to_string((int) round(100. * (1.0 - fraction))) +
 					  "% of its " + commodity + " was destroyed!");
 	}
 	else
 	{
 		fraction = 1.0 / (0.5 + 0.15 * Random::Real());
-		Messages::Add("A large shipment has arrived in " + name + ", " + to_string((int) round(100. * (fraction - 1.0))) +
+		player->AddNews("A large shipment has arrived in " + name + ", " + to_string((int) round(100. * (fraction - 1.0))) +
 					  "% increase in its holdings of " + commodity + "!");
 		
 	}

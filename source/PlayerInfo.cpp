@@ -464,7 +464,7 @@ void PlayerInfo::IncrementDate()
 		Messages::Add(message);
 	
 	//for(int i = 0; i < 1000; ++i)
-		GameData::GetReserves().EvolveDaily();
+		GameData::GetReserves().EvolveDaily(this);
 }
 
 
@@ -1271,6 +1271,20 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 				ship->Cargo().RemoveMissionCargo(&mission);
 			return;
 		}
+}
+
+
+
+void PlayerInfo::AddNews(const string &news)
+{
+	newsItems.push_back(news);
+}
+
+
+
+string PlayerInfo::GetRandomNewsItem() const
+{
+	return newsItems[Random::Int(newsItems.size())];
 }
 
 

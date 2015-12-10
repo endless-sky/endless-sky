@@ -72,7 +72,7 @@ void Reserves::SetAmounts(const System *sys, const std::string &commodity, int64
 
 // Evolve the amount of commodities available in each system through a combination
 // of production, consumption, and trade. This function is run once per day.
-void Reserves::EvolveDaily()
+void Reserves::EvolveDaily(PlayerInfo *player)
 {
 	for(const auto &it : GameData::Systems())
 	{
@@ -81,7 +81,7 @@ void Reserves::EvolveDaily()
 			{
 				AdjustAmounts(&it.second, gd.name,
 					it.second.Production(gd.name) + it.second.Trading(gd.name) -
-					it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(gd.name));
+					it.second.Consumption(gd.name) - it.second.BlessingsAndDisasters(player, gd.name));
 			}
 	}
 }

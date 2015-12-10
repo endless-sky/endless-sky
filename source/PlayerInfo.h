@@ -151,6 +151,10 @@ public:
 	void MissionCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	// Add an item to the list of news items.
+	void AddNews(const std::string &news);
+	// Return a random piece of news.
+	std::string GetRandomNewsItem() const;
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
@@ -234,6 +238,8 @@ private:
 	std::set<const System *> visitedSystems;
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
+	
+	std::vector<std::string> newsItems;
 	
 	const Outfit *selectedWeapon = nullptr;
 	
