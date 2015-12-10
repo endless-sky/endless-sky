@@ -48,14 +48,12 @@ namespace {
 	static const int MIN_X = -310;
 	static const int MAX_X = 190;
 	
-	static const int NAME_X = -295;
-	static const int PRICE_X = -195;
-	static const int LEVEL_X = -155;
-	static const int RESERVES_X = -70;
-	static const int FLUX_X = -10;
-	static const int BUY_X = 45;
-	static const int SELL_X = 85;
-	static const int HOLD_X = 130;
+	static const int NAME_X = -290;
+	static const int PRICE_X = -150;
+	static const int LEVEL_X = -110;
+	static const int BUY_X = 0;
+	static const int SELL_X = 60;
+	static const int HOLD_X = 120;
 	
 	static const int FIRST_Y = 80;
 }
@@ -128,11 +126,9 @@ void TradingPanel::Draw() const
 	
 	string mod = "x " + to_string(Modifier());
 	font.Draw(mod, Point(BUY_X, y), unselected);
-	//font.Draw(mod, Point(SELL_X, y), unselected);
+	font.Draw(mod, Point(SELL_X, y), unselected);
 	
 	font.Draw("In Hold", Point(HOLD_X, y), selected);
-	font.Draw("Avail.", Point(RESERVES_X, y), selected);
-	font.Draw("(+/-)", Point(FLUX_X, y), selected);
 	
 	y += 5;
 	int lastY = y + 20 * GameData::Commodities().size() + 25;
@@ -202,11 +198,6 @@ void TradingPanel::Draw() const
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(HOLD_X, y), selected);
 		}
-		font.Draw(Format::Number(GameData::GetReserves().Amounts(&system, commodity.name)), Point(RESERVES_X, y), selected);
-		int flux = system.Trading(commodity.name) + system.Production(commodity.name) -
-			system.Consumption(commodity.name);
-		std::string plus = ((flux > 0) ? "+" : "");
-		font.Draw("(" + plus + Format::Number(flux) + ")", Point(FLUX_X, y), selected);
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("trade");
@@ -317,14 +308,12 @@ void TradingPanel::Buy(int64_t amount)
 	amount *= Modifier();
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int price = system.Trade(type);
-	
 	if(!price)
 		return;
 	
 	if(amount > 0)
 	{
 		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
-		amount = min(amount, GameData::GetReserves().Amounts(&system, type));
 		// Converge to actual price
 		for (int i = 1; i <= 20; i++)
 		{

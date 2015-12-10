@@ -26,9 +26,9 @@ using namespace std;
 // player; that is, one end of the path has been visited. Also, if the
 // player's flagship has a jump drive, the jumps will be make use of it.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
+	: maxCount(maxCount), maxDistance(maxDistance)
 {
-	Init(center, hasJump);
+	Init(center);
 }
 
 
@@ -156,60 +156,21 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 		
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in maps or mission itineraries.
-		if(useWormholes)
+		if(maxCount < 0 && maxDistance < 0)
 			for(const StellarObject &object : system->Objects())
 				if(object.GetPlanet() && object.GetPlanet()->IsWormhole())
 				{
-					// If we're seeking a path toward a "source," travel through
-					// wormholes in the reverse of the normal direction.
-					const System *link = source ?
-						object.GetPlanet()->WormholeSource(system) :
-						object.GetPlanet()->WormholeDestination(system);
+					const System *link = object.GetPlanet()->WormholeDestination(system);
 					if(HasBetter(link, steps))
 						continue;
 					
-					if(player && !player->HasVisited(object.GetPlanet()))
+					// TODO: replace this with a check for whether the player has
+					// "visited" this particular wormhole.
+					if(player && !(player->HasVisited(system) && player->HasVisited(link)))
 						continue;
 					
 					Add(system, link, steps);
 				}
-		
-		if(hasHyper && !Propagate(system, false, steps))
-			break;
-		if(hasJump && !Propagate(system, true, steps))
-			break;
-	}
-}
-
-
-
-// Depending on the capabilities of the given ship, use hyperspace paths,
-// jump drive paths, or both to find the shortest route. Bail out if the
-// source system or the maximum count is reached.
-void DistanceMap::Init(const System *center, bool hasJump)
-{
-	if(!center)
-		return;
-	
-	distance[center] = 0;
-	if(!maxDistance)
-		return;
-	
-	bool hasHyper = true;
-	// If the ship has no jump capability, do pathfinding as if it has a
-	// hyperdrive. The Ship class still won't let it jump, though.
-	hasHyper |= !(hasHyper | hasJump);
-	
-	edge.emplace(0, center);
-	while(maxCount && !edge.empty())
-	{
-		pair<int, const System *> top = edge.top();
-		edge.pop();
-		
-		int steps = -top.first;
-		const System *system = top.second;
-		if(system == source)
-			break;
 		
 		if(hasHyper && !Propagate(system, false, steps))
 			break;

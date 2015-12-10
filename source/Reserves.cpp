@@ -55,7 +55,7 @@ int64_t Reserves::Amounts(const System *sys, const std::string &commodity) const
 void Reserves::AdjustAmounts(const System *sys, const std::string &commodity, int64_t adjustment)
 {
 	auto it = amounts.find(sys);
-	int64_t newVal = max((it->second).find(commodity)->second + adjustment, (int64_t) 0);
+	int64_t newVal = it->second.find(commodity)->second + adjustment;
 	if (it != amounts.end()) (it->second).find(commodity)->second = newVal;
 }
 

@@ -33,7 +33,7 @@ public:
 	// Find paths to the given system. If the given maximum count is above zero,
 	// it is a limit on how many systems should be returned. If it is below zero
 	// it specifies the maximum distance away that paths should be found.
-	DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1, bool hasJump = false);
+	DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
@@ -65,8 +65,6 @@ private:
 	// jump drive paths, or both to find the shortest route. Bail out if the
 	// source system or the maximum count is reached.
 	void Init(const System *center, const Ship *ship = nullptr);
-	// Init without Ship object.
-	void Init(const System *center, bool hasJump);
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(const System *system, bool useJump, int steps);
 	// Check if we already have a better path to the given system.
@@ -89,7 +87,6 @@ private:
 	const System *source = nullptr;
 	int maxCount = -1;
 	int maxDistance = -1;
-	bool useWormholes = true;
 };
 
 

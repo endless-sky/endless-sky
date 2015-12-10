@@ -474,7 +474,7 @@ int System::Trading(const string &commodity) const
 		}
 	
 	// Conduct trade between neighboring inhabited systems, if we are ourselves are inhabited.
-	DistanceMap dm = DistanceMap(this, 32, 3, false);
+	DistanceMap dm = DistanceMap(this, 32, 3);
 	
 	// Hyperspace first
 	for(const auto &it : GameData::Systems())
