@@ -517,7 +517,7 @@ int System::Trading(const string &commodity) const
 // Randomly destroy or produce a large amount of a system's commodity.
 int System::BlessingsAndDisasters(PlayerInfo *player, const string &commodity) const
 {
-	if (Random::Real() > 0.0002)
+	if (Random::Real() > 0.0005)
 		return 0;
 	
 	int64_t reserves = Reserves(commodity);

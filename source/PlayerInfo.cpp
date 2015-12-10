@@ -145,6 +145,12 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
+		else if(child.Token(0) == "news")
+			for(const DataNode &grand : child)
+			{
+				if  (grand.Size() >= 4)
+					AddNews(grand.Token(0), Date(grand.Value(1), grand.Value(2), grand.Value(3)));
+			}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -1289,15 +1295,23 @@ void PlayerInfo::RemoveStaleNews()
 	auto it = newsItems.begin();
 	
 	while (it != newsItems.end())
+	{
 		if (GetDate() - it->second > 14)
 			it = newsItems.erase(it);
+		else
+			++it;
+	}
 }
 
 
 
 string PlayerInfo::GetRandomNewsItem() const
 {
-	return newsItems[Random::Int(newsItems.size())].first;
+	static const string EMPTY;
+	if (!newsItems.empty())
+		return newsItems[Random::Int(newsItems.size())].first;
+	
+	return EMPTY;
 }
 
 
@@ -1731,4 +1745,16 @@ void PlayerInfo::Save(const string &path) const
 	// Save a list of planets the player has visited.
 	for(const Planet *planet : visitedPlanets)
 		out.Write("visited planet", planet->Name());
+	
+	// Save the list of news items
+	if(!newsItems.empty())
+	{
+		out.Write("news");
+		out.BeginChild();
+		{
+			for(const auto &item : newsItems)
+				out.Write(item.first, item.second.Day(), item.second.Month(), item.second.Year());
+		}
+		out.EndChild();
+	}
 }
