@@ -236,8 +236,8 @@ void MapDetailPanel::DrawKey() const
 	const Sprite *back = SpriteSet::Get("ui/map key");
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 	
-	Color closeColor(.6, .6);
-	Color farColor(.3, .3);
+	Color bright(.6, .6);
+	Color dim(.3, .3);
 	const Font &font = FontSet::Get(14);
 	
 	Point pos(Screen::Left() + 10., Screen::Bottom() - 7. * 20. + 5.);
@@ -252,7 +252,7 @@ void MapDetailPanel::DrawKey() const
 		"System:"
 	};
 	const string &header = HEADER[-min(0, max(-4, commodity))];
-	font.Draw(header, pos + headerOff, closeColor);
+	font.Draw(header, pos + headerOff, bright);
 	pos.Y() += 20.;
 	
 	if(commodity >= 0)
@@ -266,7 +266,7 @@ void MapDetailPanel::DrawKey() const
 		{
 			DotShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
-			font.Draw(Format::Number(price), pos + textOff, farColor);
+			font.Draw(Format::Number(price), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -280,7 +280,7 @@ void MapDetailPanel::DrawKey() const
 		for(int i = 0; i < 4; ++i)
 		{
 			DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
-			font.Draw(LABEL[commodity == -2][i], pos + textOff, farColor);
+			font.Draw(LABEL[commodity == -2][i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -293,7 +293,7 @@ void MapDetailPanel::DrawKey() const
 		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
 		{
 			DotShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
-			font.Draw(distances[i].second->GetName(), pos + textOff, farColor);
+			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
@@ -302,30 +302,30 @@ void MapDetailPanel::DrawKey() const
 		DotShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
 		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
 		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
-		font.Draw("Friendly", pos + textOff + Point(24., 0.), farColor);
+		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
 		DotShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, true, false));
 		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, true, false));
 		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, true, false));
-		font.Draw("Hostile", pos + textOff + Point(24., 0.), farColor);
+		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
 		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
-		font.Draw("Restricted", pos + textOff, farColor);
+		font.Draw("Restricted", pos + textOff, dim);
 		pos.Y() += 20.;
 		
 		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
-		font.Draw("Dominated", pos + textOff, farColor);
+		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
 	
 	DotShader::Draw(pos, OUTER, INNER, UninhabitedColor());
-	font.Draw("Uninhabited", pos + textOff, farColor);
+	font.Draw("Uninhabited", pos + textOff, dim);
 	pos.Y() += 20.;
 	
 	DotShader::Draw(pos, OUTER, INNER, UnexploredColor());
-	font.Draw("Unexplored", pos + textOff, farColor);
+	font.Draw("Unexplored", pos + textOff, dim);
 }
 
 
