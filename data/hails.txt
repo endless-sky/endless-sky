@@ -491,7 +491,7 @@ phrase "friendly syndicate"
 		"! Did you know that the average ship contains 39% Syndicated Systems components by weight?"
 		"! If you're looking for affordable radioisotopes, you've come to the right place!"
 		"! Apply to become a Syndicated captain today!"
-		"! We welcome any and all applications to join the Syndicated systems team!"
+		"! We welcome any and all applications to join the Syndicated Systems team!"
 
 phrase "friendly syndicate"
 	word
