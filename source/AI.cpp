@@ -1516,17 +1516,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	else if(keyDown.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !CanBoard(ship, *target))
+		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
 		{
+			if(shift)
+				ship.SetTargetShip(shared_ptr<Ship>());
+			
 			double closest = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
 			bool foundAnything = false;
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
 				{
+					if(shift && !other->IsYours())
+						continue;
+					
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double d = other->Position().Distance(ship.Position());
-					if((isEnemy && !foundEnemy) || d < closest)
+					if((isEnemy && !foundEnemy) || (d < closest && isEnemy == foundEnemy))
 					{
 						closest = d;
 						foundEnemy = isEnemy;

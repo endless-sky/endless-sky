@@ -82,7 +82,7 @@ void PreferencesPanel::Draw() const
 	table.AddColumn(115, Table::RIGHT);
 	table.SetUnderline(-120, 120);
 	
-	int firstY = -240;
+	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 	
 	Point endPoint;
@@ -107,11 +107,11 @@ void PreferencesPanel::Draw() const
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
+		Command::SCAN,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
 		Command::INFO,
-		Command::SCAN,
 		Command::FULLSCREEN,
 		Command::NONE,
 		Command::DEPLOY,
@@ -119,7 +119,7 @@ void PreferencesPanel::Draw() const
 		Command::GATHER,
 		Command::HOLD
 	};
-	static const Command *BREAK = &COMMANDS[18];
+	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
 	{
 		// The "BREAK" line is where to go to the next column.
@@ -204,7 +204,7 @@ void PreferencesPanel::Draw() const
 	Table shiftTable;
 	shiftTable.AddColumn(125, Table::RIGHT);
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 60));
+	shiftTable.DrawAt(Point(-400, 52));
 	
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
@@ -212,6 +212,7 @@ void PreferencesPanel::Draw() const
 	shiftTable.Draw("Select nearest ship", medium);
 	shiftTable.Draw("Select next escort", medium);
 	shiftTable.Draw("Talk to planet", medium);
+	shiftTable.Draw("Board disabled escort", medium);
 }
 
 
