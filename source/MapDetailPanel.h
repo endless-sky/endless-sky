@@ -44,6 +44,7 @@ protected:
 	
 private:
 	void DoFind(const std::string &text);
+	void DrawKey() const;
 	void DrawInfo() const;
 	void DrawOrbits() const;
 	

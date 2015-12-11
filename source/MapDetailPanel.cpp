@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -64,6 +65,7 @@ void MapDetailPanel::Draw() const
 {
 	MapPanel::Draw();
 	
+	DrawKey();
 	DrawInfo();
 	DrawOrbits();
 }
@@ -225,6 +227,105 @@ void MapDetailPanel::DoFind(const string &text)
 	const Planet *planet = Find(text);
 	if(planet)
 		selectedPlanet = planet;
+}
+
+
+
+void MapDetailPanel::DrawKey() const
+{
+	const Sprite *back = SpriteSet::Get("ui/map key");
+	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	
+	Color closeColor(.6, .6);
+	Color farColor(.3, .3);
+	const Font &font = FontSet::Get(14);
+	
+	Point pos(Screen::Left() + 10., Screen::Bottom() - 7. * 20. + 5.);
+	Point headerOff(-5., -.5 * font.Height());
+	Point textOff(10., -.5 * font.Height());
+	
+	static const string HEADER[] = {
+		"Trade prices:",
+		"Ships for sale:",
+		"Outfits for sale:",
+		"Government:",
+		"System:"
+	};
+	const string &header = HEADER[-min(0, max(-4, commodity))];
+	font.Draw(header, pos + headerOff, closeColor);
+	pos.Y() += 20.;
+	
+	if(commodity >= 0)
+	{
+		const std::vector<Trade::Commodity> &commodities = GameData::Commodities();
+		const auto &range = commodities[commodity];
+		if(static_cast<unsigned>(commodity) >= commodities.size())
+			return;
+		
+		for(int i = 0; i <= 3; ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			int price = range.low + ((range.high - range.low) * i) / 3;
+			font.Draw(Format::Number(price), pos + textOff, farColor);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity >= -2)
+	{
+		static const string LABEL[2][4] = {
+			{"None", "1", "5", "10+"},
+			{"None", "1", "30", "60+"}};
+		static const double VALUE[4] = {-1., 0., .5, 1.};
+		
+		for(int i = 0; i < 4; ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+			font.Draw(LABEL[commodity == -2][i], pos + textOff, farColor);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == -3)
+	{
+		vector<pair<double, const Government *>> distances;
+		for(const auto &it : closeGovernments)
+			distances.emplace_back(it.second, it.first);
+		sort(distances.begin(), distances.end());
+		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
+			font.Draw(distances[i].second->GetName(), pos + textOff, farColor);
+			pos.Y() += 20.;
+		}
+	}
+	else
+	{
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
+		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
+		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
+		font.Draw("Friendly", pos + textOff + Point(24., 0.), farColor);
+		pos.Y() += 20.;
+		
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, true, false));
+		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, true, false));
+		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, true, false));
+		font.Draw("Hostile", pos + textOff + Point(24., 0.), farColor);
+		pos.Y() += 20.;
+		
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
+		font.Draw("Restricted", pos + textOff, farColor);
+		pos.Y() += 20.;
+		
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
+		font.Draw("Dominated", pos + textOff, farColor);
+		pos.Y() += 20.;
+	}
+	
+	DotShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+	font.Draw("Uninhabited", pos + textOff, farColor);
+	pos.Y() += 20.;
+	
+	DotShader::Draw(pos, OUTER, INNER, UnexploredColor());
+	font.Draw("Unexplored", pos + textOff, farColor);
 }
 
 
