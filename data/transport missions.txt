@@ -1223,7 +1223,7 @@ mission "Terraforming 5"
 			choice
 				`	"Looks good, let's head back to Rand."`
 					accept
-				`	"So, how do you plan to seed the whole planet with these, anyways?"`
+				`	"So, how do you plan to seed the whole planet with these, anyway?"`
 			`	She says, "My idea is to just disperse them in a few different locations, and trust that they will spread out over the next decade or so. We picked plants that are hardy and can spread very rapidly."`
 			choice
 				`	"Sounds good to me."`
