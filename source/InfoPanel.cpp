@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Messages.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -747,18 +748,34 @@ void InfoPanel::Dump()
 	int originalCargo = cargo.Used();
 	int amount = cargo.Get(selectedCommodity);
 	int plunderAmount = cargo.Get(selectedPlunder);
+	int64_t loss = 0;
 	if(amount)
+	{
+		int64_t basis = player.GetBasis(selectedCommodity, amount);
+		loss += basis;
+		player.AdjustBasis(selectedCommodity, -basis);
 		cargo.Transfer(selectedCommodity, amount);
+	}
 	else if(plunderAmount > 0)
+	{
 		cargo.Transfer(selectedPlunder, plunderAmount);
+		loss += plunderAmount * selectedPlunder->Cost();
+	}
 	else
 	{
 		for(const auto &it : cargo.Commodities())
+		{
+			int64_t basis = player.GetBasis(it.first, it.second);
+			loss += basis;
+			player.AdjustBasis(it.first, -basis);
 			cargo.Transfer(it.first, it.second);
+		}
 	}
 	selectedCommodity.clear();
 	info.Update(**shipIt);
 	(*shipIt)->Jettison(originalCargo - cargo.Used());
+	if(loss)
+		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 }
 
 
