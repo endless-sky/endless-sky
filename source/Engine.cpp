@@ -215,7 +215,10 @@ void Engine::Place()
 			pos += angle.Unit() * Random::Real() * planetRadius;
 		}
 		else
+		{
+			ship->SetPlanet(nullptr);
 			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+		}
 		
 		ship->Place(pos, angle.Unit(), angle);
 	}

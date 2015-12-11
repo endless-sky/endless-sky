@@ -471,7 +471,7 @@ void Ship::SetSystem(const System *system)
 void Ship::SetPlanet(const Planet *planet)
 {
 	// Escorts should take off a bit behind their flagships.
-	zoom = 0.;
+	zoom = !planet;
 	landingPlanet = planet;
 	SetDestination(nullptr);
 }
