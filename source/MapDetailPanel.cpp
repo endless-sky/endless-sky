@@ -57,6 +57,8 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity, const System *
 MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 	: MapPanel(panel), governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {
+	// Don't use the "special" coloring in this view.
+	commodity = max(commodity, -4);
 }
 
 

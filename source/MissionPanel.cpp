@@ -79,6 +79,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	// Don't use the "special" coloring in this view.
+	commodity = max(commodity, -4);
+	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
