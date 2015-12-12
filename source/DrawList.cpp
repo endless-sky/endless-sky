@@ -15,9 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Animation.h"
 #include "BlurShader.h"
 #include "Preferences.h"
+#include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
+
+#include <cmath>
 
 using namespace std;
 
@@ -41,26 +44,44 @@ void DrawList::Clear(int step)
 
 
 // Add an animation.
-void DrawList::Add(const Animation &animation, Point pos, Point unit, Point blur, double clip)
+bool DrawList::Add(const Animation &animation, Point pos, Point unit, Point blur, double clip)
 {
-	if(!animation.IsEmpty() && unit)
-		items.emplace_back(animation, pos, unit, blur, clip, step);
+	if(animation.IsEmpty() || !unit)
+		return false;
+	
+	// Cull sprites that are completely off screen, to reduce the number of draw
+	// calls that we issue (which may be the bottleneck on some systems).
+	Point size(
+		.5 * (fabs(unit.X() * animation.Height()) + fabs(unit.Y() * animation.Width()) + fabs(blur.X())),
+		.5 * (fabs(unit.X() * animation.Width()) + fabs(unit.Y() * animation.Height()) + fabs(blur.Y())));
+	Point topLeft = pos - size;
+	Point bottomRight = pos + size;
+	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
+		return false;
+	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
+		return false;
+		
+	items.emplace_back(animation, pos, unit, blur, clip, step);
+	return true;
 }
 
 
 
 // Add a single sprite.
-void DrawList::Add(const Sprite *sprite, Point pos, Point unit, Point blur, double cloak, int swizzle)
+bool DrawList::Add(const Sprite *sprite, Point pos, Point unit, Point blur, double cloak, int swizzle)
 {
 	if(cloak >= 1.)
-		return;
+		return false;
 	
 	Animation animation(sprite, 1.f);
 	animation.SetSwizzle(swizzle);
-	Add(animation, pos, unit, blur);
+	if(!Add(animation, pos, unit, blur))
+		return false;
 	
 	if(cloak > 0.)
 		items.back().Cloak(cloak);
+	
+	return true;
 }
 
 

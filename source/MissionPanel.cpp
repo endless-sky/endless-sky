@@ -79,6 +79,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	// Don't use the "special" coloring in this view.
+	commodity = max(commodity, -4);
+	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
@@ -406,13 +409,13 @@ bool MissionPanel::Drag(int dx, int dy)
 	if(dragSide < 0)
 	{
 		availableScroll = max(0,
-			min(static_cast<int>(available.size() * 20 + 70 - Screen::Height()),
+			min(static_cast<int>(available.size() * 20 + 190 - Screen::Height()),
 				availableScroll - dy));
 	}
 	else if(dragSide > 0)
 	{
 		acceptedScroll = max(0,
-			min(static_cast<int>(accepted.size() * 20 + 120 - Screen::Height()),
+			min(static_cast<int>(accepted.size() * 20 + 160 - Screen::Height()),
 				acceptedScroll - dy));
 	}
 	else

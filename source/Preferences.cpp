@@ -33,6 +33,8 @@ void Preferences::Load()
 {
 	settings["Automatic aiming"] = true;
 	settings["Render motion blur"] = true;
+	settings["Escorts use ammo frugally"] = true;
+	settings["Escorts expend ammo"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)

@@ -64,7 +64,7 @@ mission "Intro [0]"
 		conversation
 			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
 			`	"Including you?" you ask.`
-			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyways, here's your pay." He hands you <payment>.`
+			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
 			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
 			``
 			`	(Click the "Space Port" button to continue this mission.)`
@@ -153,7 +153,7 @@ mission "Intro [3 Transport]"
 		conversation
 			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
 			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Ten billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
-			`	After taking one last glance out the window, he says, "Anyways, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
+			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
 				`	"Sorry, but I was planning on heading out in a different direction from here."`
@@ -205,7 +205,7 @@ mission "Intro [1 Freighter]"
 			`	"Some. That's why you can't just go traipsing around the galaxy in a fleet of unarmed star barges; every pirate within a week's travel will hear you're coming through and come after you. In the long term, having a few heavy freighters with good defenses is more cost effective than losing a star barge or two to the pirates on every journey."`
 				goto port
 			label quick
-			`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And, no one's going to give you those sorts of missions until you've proved yourself in combat, anyways."`
+			`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And, no one's going to give you those sorts of missions until you've proved yourself in combat, anyway."`
 				goto port
 			label port
 			`	He picks up his suitcase. "If you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a bit higher profit margin this time."`
@@ -281,7 +281,7 @@ mission "Intro [3 Freighter]
 			choice
 				`	"It does seem awfully isolated. But some people might enjoy the solitude."`
 				`	"Well, if you need the money, at least it's a steady job."`
-			`	"I suppose," he says. "Anyways, I think it's time for the last leg of my journey. Do you think you can give me a lift to <planet>? I'll pay you quite well for your services, of course."`
+			`	"I suppose," he says. "Anyway, I think it's time for the last leg of my journey. Do you think you can give me a lift to <planet>? I'll pay you quite well for your services, of course."`
 			choice
 				`	"Sure, I can take you there."`
 				`	"Sorry, I was thinking of heading in a different direction from here."`
@@ -382,7 +382,7 @@ mission "Intro [2 Interceptor]"
 			choice
 				`	"Sure, but I can't wait until I've got a ship big enough to stand up to pirates instead of running from them."`
 				`	"Well, maybe I should've bought a freighter instead."`
-			`	"Better start saving up then," he says. "Anyways, let's go get your payment." You walk out of the ship and sign the papers to hand off the <commodity> to the dock workers on <planet>. They hand you a credit chip worth <payment>.`
+			`	"Better start saving up then," he says. "Anyway, let's go get your payment." You walk out of the ship and sign the papers to hand off the <commodity> to the dock workers on <planet>. They hand you a credit chip worth <payment>.`
 			`	"If you're willing to take me on one more journey," says James, "meet me in the spaceport bar in a little while."`
 
 
@@ -407,7 +407,7 @@ mission "Intro [3 Interceptor]
 					goto end
 			`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on New Boston.`
 			label end
-			`	"Anyways," says James, "would you be willing to take me on one more journey? It's time for me to head for that retirement home."`
+			`	"Anyway," says James, "would you be willing to take me on one more journey? It's time for me to head for that retirement home."`
 			choice
 				`	"Of course."`
 				`	"Sorry, I think I'll go hunt some pirates instead."`

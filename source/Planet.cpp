@@ -379,7 +379,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	// defense fleet?
 	bool isDefeated = (defenseDeployed == defenseCount);
 	for(const shared_ptr<Ship> &ship : defenders)
-		if(!ship->IsDisabled())
+		if(!ship->IsDisabled() && !ship->IsYours())
 		{
 			isDefeated = false;
 			break;
