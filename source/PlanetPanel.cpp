@@ -91,6 +91,8 @@ void PlanetPanel::Draw() const
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	bool hasAccess = planet.CanUseServices();
+	if(canLeave)
+		info.SetCondition("can leave");
 	if(flagship && !flagship->CanBeCarried())
 		info.SetCondition("has ship");
 	if(planet.IsInhabited() && hasAccess)
@@ -130,20 +132,24 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'l')
 	{
 		selectedPanel = nullptr;
+		canLeave = false;
 	}
 	else if(key == 't' && flagship && planet.IsInhabited() && hasAccess)
 	{
 		selectedPanel = trading.get();
+		canLeave = true;
 		GetUI()->Push(trading);
 	}
 	else if(key == 'b' && planet.IsInhabited() && hasAccess)
 	{
 		selectedPanel = bank.get();
+		canLeave = true;
 		GetUI()->Push(bank);
 	}
 	else if(key == 'p' && flagship && planet.HasSpaceport() && hasAccess)
 	{
 		selectedPanel = spaceport.get();
+		canLeave = true;
 		GetUI()->Push(spaceport);
 	}
 	else if(key == 's' && planet.HasShipyard() && hasAccess)
@@ -164,6 +170,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	else if(key == 'h' && flagship && planet.IsInhabited() && hasAccess)
 	{
 		selectedPanel = hiring.get();
+		canLeave = true;
 		GetUI()->Push(hiring);
 	}
 	else if(command.Has(Command::MAP))

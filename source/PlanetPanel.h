@@ -57,6 +57,7 @@ private:
 	std::shared_ptr<Panel> spaceport;
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel;
+	bool canLeave;
 	
 	WrappedText text;
 };
