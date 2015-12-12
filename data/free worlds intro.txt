@@ -217,7 +217,7 @@ mission "Pact Questioning"
 			`	"I see," he says. "I wonder why they didn't share more of the details of their work with you."`
 			`	"Why are you asking me all these questions?" you say.`
 			label questions
-			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyways, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
+			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyway, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
 				decline
 			label quit
 			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you. As you walk away, you glance over your shoulder a few times to make sure you are not being watched or followed, but see no one.`
@@ -489,7 +489,7 @@ mission "FW Katya 1"
 					decline
 	
 			label `more`
-			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyways. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
+			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyway. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
 			choice
 				`	"I like the way you think. Count me in."`
 					goto `details`
@@ -1529,7 +1529,7 @@ mission "FW Escort Second Chance"
 			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya and JJ both speak so highly of you that I would like to see you join us, even though you messed up that escort mission."`
 			choice
 				`	"Yes, I'm very sorry about that."`
-				`	"Sorry, but I decided I don't want to assist the Free Worlds anyways."`
+				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
 					decline
 			
 			`	"I'm sure," he says, "but I'm not the one you need to say that to. Right now Tomek is refusing to let us offer you a job, but if you speak with him in person, he might change his mind. Or he might not. But if you really want to work for us, you should visit him on <planet>, take full responsibility for what happened, and apologize. Just a suggestion." He walks off.`

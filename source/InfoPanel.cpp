@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
+#include "Messages.h"
 #include "MissionPanel.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -33,7 +34,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "UI.h"
 
 #include <algorithm>
-#include <cctype>
 
 using namespace std;
 
@@ -109,10 +109,14 @@ namespace {
 
 
 
-InfoPanel::InfoPanel(PlayerInfo &player)
-	: player(player), shipIt(player.Ships().begin()), showShip(false), canEdit(player.GetPlanet())
+InfoPanel::InfoPanel(PlayerInfo &player, bool showFlagship)
+	: player(player), shipIt(player.Ships().begin()), showShip(showFlagship), canEdit(player.GetPlanet())
 {
 	SetInterruptible(false);
+	
+	if(showFlagship)
+		while(shipIt != player.Ships().end() && shipIt->get() != player.Flagship())
+			++shipIt;
 	
 	UpdateInfo();
 }
@@ -129,6 +133,8 @@ void InfoPanel::Draw() const
 		interfaceInfo.SetCondition("ship tab");
 		if(canEdit && (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
+		else if(!canEdit)
+			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");
 		if(player.Ships().size() > 1)
 			interfaceInfo.SetCondition("four buttons");
 		else
@@ -158,6 +164,7 @@ void InfoPanel::Draw() const
 	interface->Draw(interfaceInfo);
 	
 	zones.clear();
+	commodityZones.clear();
 	if(showShip)
 		DrawShip();
 	else
@@ -204,6 +211,37 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
 			player.ParkShip(shipIt->get(), !(*shipIt)->IsParked());
 	}
+	else if((key == 'P' || key == 'c') && showShip && !canEdit)
+	{
+		if(CanDump())
+		{
+			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
+			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
+			if(amount)
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+					"Are you sure you want to jettison "
+						+ (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+						+ " of " + Format::LowerCase(selectedCommodity) + " cargo?"));
+			}
+			else if(plunderAmount == 1)
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+					"Are you sure you want to jettison a " + selectedPlunder->Name() + "?"));
+			}
+			else if(plunderAmount > 1)
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::DumpPlunder,
+					"How many of the " + selectedPlunder->Name() + " outfits to you want to jettison?",
+					plunderAmount));
+			}
+			else
+			{
+				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
+					"Are you sure you want to jettison all this ship's regular cargo?"));
+			}
+		}
+	}
 	else if(canEdit && !showShip && key == 'n' && player.Ships().size() > 1)
 	{
 		bool allParked = true;
@@ -228,11 +266,13 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 
 bool InfoPanel::Click(int x, int y)
 {
+	Point point(x, y);
+	
 	// Handle clicks on the interface buttons.
 	const Interface *interface = GameData::Interfaces().Get("info panel");
 	if(interface)
 	{
-		char key = interface->OnClick(Point(x, y));
+		char key = interface->OnClick(point);
 		if(key)
 			return DoKey(key);
 	}
@@ -261,6 +301,14 @@ bool InfoPanel::Click(int x, int y)
 		showShip = true;
 		UpdateInfo();
 	}
+	selectedCommodity.clear();
+	selectedPlunder = nullptr;
+	for(const auto &zone : commodityZones)
+		if(zone.Contains(point))
+			selectedCommodity = zone.Value();
+	for(const auto &zone : plunderZones)
+		if(zone.Contains(point))
+			selectedPlunder = zone.Value();
 	
 	return true;
 }
@@ -514,6 +562,8 @@ void InfoPanel::DrawShip() const
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
 	pos = Point(260., -270.);
+	static const Point size(230., 20.);
+	Color backColor = *GameData::Colors().Get("faint");
 	if(cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize())
 	{
 		font.Draw("Cargo", pos, bright);
@@ -526,52 +576,53 @@ void InfoPanel::DrawShip() const
 			if(!it.second)
 				continue;
 			
+			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
+			commodityZones.emplace_back(center, size, it.first);
+			if(it.first == selectedCommodity)
+				FillShader::Fill(center, size + Point(10., 0.), backColor);
+			
 			string number = to_string(it.second);
-			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
+			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
 			font.Draw(it.first, pos, dim);
 			font.Draw(number, numberPos, bright);
-			pos.Y() += 20.;
+			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 250.)
+			if(pos.Y() >= 220.)
 				break;
 		}
 		pos.Y() += 10.;
 	}
-	if(cargo.HasOutfits())
+	if(cargo.HasOutfits() && pos.Y() < 220.)
 	{
 		for(const auto &it : cargo.Outfits())
 		{
+			if(!it.second)
+				continue;
+			
+			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
+			plunderZones.emplace_back(center, size, it.first);
+			if(it.first == selectedPlunder)
+				FillShader::Fill(center, size + Point(10., 0.), backColor);
+			
 			string number = to_string(it.second);
-			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
+			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
 			font.Draw(it.first->Name(), pos, dim);
 			font.Draw(number, numberPos, bright);
-			pos.Y() += 20.;
+			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 250.)
+			if(pos.Y() >= 220.)
 				break;
 		}
 		pos.Y() += 10.;
 	}
-	if(cargo.HasMissionCargo())
+	if(cargo.HasMissionCargo() && pos.Y() < 220.)
 	{
 		for(const auto &it : cargo.MissionCargo())
 		{
 			// Capitalize the name of the cargo.
-			string name = it.first->Cargo();
-			bool first = true;
-			for(char &c : name)
-			{
-				if(isspace(c))
-					first = true;
-				else
-				{
-					if(first && islower(c))
-						c = toupper(c);
-					first = false;
-				}
-			}
+			string name = Format::Capitalize(it.first->Cargo());
 			
 			string number = to_string(it.second);
 			Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
@@ -580,7 +631,7 @@ void InfoPanel::DrawShip() const
 			pos.Y() += 20.;
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 250.)
+			if(pos.Y() >= 220.)
 				break;
 		}
 		pos.Y() += 10.;
@@ -672,5 +723,72 @@ void InfoPanel::Rename(const string &name)
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
+	}
+}
+
+
+
+bool InfoPanel::CanDump() const
+{
+	if(canEdit || !showShip || shipIt == player.Ships().end())
+		return false;
+	
+	CargoHold &cargo = (*shipIt)->Cargo();
+	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize();
+}
+
+
+
+void InfoPanel::Dump()
+{
+	if(!CanDump())
+		return;
+	
+	CargoHold &cargo = (*shipIt)->Cargo();
+	int originalCargo = cargo.Used();
+	int amount = cargo.Get(selectedCommodity);
+	int plunderAmount = cargo.Get(selectedPlunder);
+	int64_t loss = 0;
+	if(amount)
+	{
+		int64_t basis = player.GetBasis(selectedCommodity, amount);
+		loss += basis;
+		player.AdjustBasis(selectedCommodity, -basis);
+		cargo.Transfer(selectedCommodity, amount);
+	}
+	else if(plunderAmount > 0)
+	{
+		cargo.Transfer(selectedPlunder, plunderAmount);
+		loss += plunderAmount * selectedPlunder->Cost();
+	}
+	else
+	{
+		for(const auto &it : cargo.Commodities())
+		{
+			int64_t basis = player.GetBasis(it.first, it.second);
+			loss += basis;
+			player.AdjustBasis(it.first, -basis);
+			cargo.Transfer(it.first, it.second);
+		}
+	}
+	selectedCommodity.clear();
+	info.Update(**shipIt);
+	(*shipIt)->Jettison(originalCargo - cargo.Used());
+	if(loss)
+		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
+}
+
+
+
+void InfoPanel::DumpPlunder(int count)
+{
+	CargoHold &cargo = (*shipIt)->Cargo();
+	int originalCargo = cargo.Used();
+	count = min(count, cargo.Get(selectedPlunder));
+	if(count > 0)
+	{
+		cargo.Transfer(selectedPlunder, count);
+		info.Update(**shipIt);
+		(*shipIt)->Jettison(originalCargo - cargo.Used());
 	}
 }

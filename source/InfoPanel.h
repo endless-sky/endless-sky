@@ -35,7 +35,7 @@ class PlayerInfo;
 // hardpoints.
 class InfoPanel : public Panel {
 public:
-	InfoPanel(PlayerInfo &player);
+	InfoPanel(PlayerInfo &player, bool showFlagship = false);
 	
 	virtual void Draw() const override;
 	
@@ -56,6 +56,9 @@ private:
 	void DrawShip() const;
 	void DrawWeapon(int index, const Point &pos, const Point &hardpoint) const;
 	void Rename(const std::string &name);
+	bool CanDump() const;
+	void Dump();
+	void DumpPlunder(int count);
 	
 	
 private:
@@ -66,6 +69,8 @@ private:
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 	
 	mutable std::vector<ClickZone<int>> zones;
+	mutable std::vector<ClickZone<std::string>> commodityZones;
+	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
 	int selected;
 	int hover;
 	int scroll = 0;
@@ -74,6 +79,8 @@ private:
 	bool showShip;
 	bool canEdit;
 	bool didDrag;
+	std::string selectedCommodity;
+	const Outfit *selectedPlunder = nullptr;
 };
 
 

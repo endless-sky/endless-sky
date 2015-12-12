@@ -693,7 +693,10 @@ void PlayerInfo::AdjustBasis(const string &commodity, int64_t adjustment)
 // of the commodity that you own is assumed to have the same basis.
 int64_t PlayerInfo::GetBasis(const string &commodity, int tons) const
 {
+	// Handle cost basis even when not landed on a planet.
 	int total = cargo.Get(commodity);
+	for(const auto &ship : ships)
+		total += ship->Cargo().Get(commodity);
 	if(!total)
 		return 0;
 	

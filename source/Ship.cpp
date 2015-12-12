@@ -471,7 +471,7 @@ void Ship::SetSystem(const System *system)
 void Ship::SetPlanet(const Planet *planet)
 {
 	// Escorts should take off a bit behind their flagships.
-	zoom = 0.;
+	zoom = !planet;
 	landingPlanet = planet;
 	SetDestination(nullptr);
 }
@@ -614,6 +614,14 @@ bool Ship::Move(list<Effect> &effects)
 				effects.back().Place(angle.Rotate(point) + position, velocity, angle);
 			}
 		}
+	}
+	// Jettisoned cargo effects.
+	static const int JETTISON_BOX = 5;
+	if(jettisoned >= JETTISON_BOX)
+	{
+		jettisoned -= JETTISON_BOX;
+		effects.push_back(*GameData::Effects().Get("box"));
+		effects.back().Place(position, velocity, angle);
 	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
@@ -1905,6 +1913,14 @@ CargoHold &Ship::Cargo()
 const CargoHold &Ship::Cargo() const
 {
 	return cargo;
+}
+
+
+
+// Display box effects from jettisoning this much cargo.
+void Ship::Jettison(int tons)
+{
+	jettisoned += tons;
 }
 
 

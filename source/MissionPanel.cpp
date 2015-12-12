@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "PointerShader.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -78,6 +79,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	// Don't use the "special" coloring in this view.
+	commodity = max(commodity, -4);
+	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
@@ -129,6 +133,7 @@ void MissionPanel::Draw() const
 		system = next;
 	}
 	
+	DrawKey();
 	DrawSelectedSystem();
 	Point pos = DrawPanel(
 		Screen::TopLeft() + Point(0., -availableScroll),
@@ -404,13 +409,13 @@ bool MissionPanel::Drag(int dx, int dy)
 	if(dragSide < 0)
 	{
 		availableScroll = max(0,
-			min(static_cast<int>(available.size() * 20 + 70 - Screen::Height()),
+			min(static_cast<int>(available.size() * 20 + 190 - Screen::Height()),
 				availableScroll - dy));
 	}
 	else if(dragSide > 0)
 	{
 		acceptedScroll = max(0,
-			min(static_cast<int>(accepted.size() * 20 + 120 - Screen::Height()),
+			min(static_cast<int>(accepted.size() * 20 + 160 - Screen::Height()),
 				acceptedScroll - dy));
 	}
 	else
@@ -453,6 +458,51 @@ bool MissionPanel::Scroll(int dx, int dy)
 void MissionPanel::DoFind(const string &text)
 {
 	Find(text);
+}
+
+
+
+void MissionPanel::DrawKey() const
+{
+	const Sprite *back = SpriteSet::Get("ui/mission key");
+	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	
+	Color bright(.6, .6);
+	Color dim(.3, .3);
+	const Font &font = FontSet::Get(14);
+	Point angle = Point(1., 1.).Unit();
+	
+	Point pos(Screen::Left() + 10., Screen::Bottom() - 5. * 20. + 5.);
+	Point pointerOff(5., 5.);
+	Point textOff(8., -.5 * font.Height());
+
+	const Set<Color> &colors = GameData::Colors();
+	const Color COLOR[5] = {
+		*colors.Get("available job"),
+		*colors.Get("unavailable job"),
+		*colors.Get("active mission"),
+		*colors.Get("blocked mission"),
+		*colors.Get("waypoint")
+	};
+	static const string LABEL[5] = {
+		"Available job; can accept",
+		"Too little space to accept",
+		"Active job; go here to complete",
+		"Has unfinished requirements",
+		"Waypoint you must visit"
+	};
+	int selected = -1;
+	if(availableIt != available.end())
+		selected = 0 + !CanAccept();
+	if(acceptedIt != accepted.end() && acceptedIt->Destination())
+		selected = 2 + !IsSatisfied(*acceptedIt);
+	
+	for(int i = 0; i < 5; ++i)
+	{
+		PointerShader::Draw(pos + pointerOff, angle, 10., 18., 0., COLOR[i]);
+		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
+		pos.Y() += 20.;
+	}
 }
 
 

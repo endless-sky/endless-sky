@@ -91,6 +91,8 @@ private:
 	
 	bool holdPosition;
 	bool moveToMe;
+	bool escortsAreFrugal = true;
+	bool escortsUseAmmo = true;
 	std::weak_ptr<Ship> sharedTarget;
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
 	int landKeyInterval;

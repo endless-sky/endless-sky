@@ -89,6 +89,9 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
+	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
+	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
+	
 	const Ship *flagship = player.Flagship();
 	if(!isActive || !flagship || flagship->IsDestroyed())
 		return;
@@ -769,7 +772,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
-		if(!dest || (dest != parent.GetTargetSystem() && !dest->IsInhabited() && ship.JumpsRemaining() == 1))
+		if(!dest || (ship.GetSystem()->IsInhabited() && !dest->IsInhabited() && ship.JumpsRemaining() == 1))
 			Refuel(ship, command);
 		else
 		{
@@ -1287,8 +1290,8 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		return command;
 	int index = -1;
 	
-	bool beFrugal = false;
-	if(ship.GetPersonality().IsFrugal())
+	bool beFrugal = (ship.IsYours() && !escortsUseAmmo);
+	if(ship.GetPersonality().IsFrugal() || (ship.IsYours() && escortsAreFrugal && escortsUseAmmo))
 	{
 		// Frugal ships only expend ammunition if they have lost 50% of shields
 		// or hull, or if they are outgunned.
@@ -1516,17 +1519,23 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 	else if(keyDown.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();
-		if(!target || !CanBoard(ship, *target))
+		if(!target || !CanBoard(ship, *target) || (shift && !target->IsYours()))
 		{
+			if(shift)
+				ship.SetTargetShip(shared_ptr<Ship>());
+			
 			double closest = numeric_limits<double>::infinity();
 			bool foundEnemy = false;
 			bool foundAnything = false;
 			for(const shared_ptr<Ship> &other : ships)
 				if(CanBoard(ship, *other))
 				{
+					if(shift && !other->IsYours())
+						continue;
+					
 					bool isEnemy = other->GetGovernment()->IsEnemy(ship.GetGovernment());
 					double d = other->Position().Distance(ship.Position());
-					if((isEnemy && !foundEnemy) || d < closest)
+					if((isEnemy && !foundEnemy) || (d < closest && isEnemy == foundEnemy))
 					{
 						closest = d;
 						foundEnemy = isEnemy;
@@ -1589,13 +1598,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 			else if(count > 1)
-			{
-				message = "Switching landing targets. Now landing on ";
-				if(ship.GetTargetPlanet()->Name().empty())
-					message += "???.";
-				else
-					message += ship.GetTargetPlanet()->Name() + ".";
-			}
+				message = "Switching landing targets. Now landing on " + next->Name() + ".";
 		}
 		else if(message.empty())
 		{
@@ -1620,9 +1623,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 						closest = distance;
 					}
 				}
-			if(!ship.GetTargetPlanet())
+			const StellarObject *target = ship.GetTargetPlanet();
+			if(!target)
 				message = "There are no planets in this system that you can land on.";
-			else if(!ship.GetTargetPlanet()->GetPlanet()->CanLand())
+			else if(!target->GetPlanet()->CanLand())
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 			else if(count > 1)
@@ -1639,11 +1643,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 						message += ' ' + *it++ + ',';
 					message += " or " + *it;
 				}
-				message += " in this system. Landing on ";
-				if(ship.GetTargetPlanet()->Name().empty())
-					message += "???.";
-				else
-					message += ship.GetTargetPlanet()->Name() + ".";
+				message += " in this system. Landing on " + target->Name() + ".";
 			}
 		}
 		if(!message.empty())

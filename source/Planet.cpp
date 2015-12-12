@@ -130,6 +130,9 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 // Get the name of the planet.
 const string &Planet::Name() const
 {
+	static const string UNKNOWN = "???";
+	if(IsWormhole())
+		return UNKNOWN;
 	return name;
 }
 
@@ -300,6 +303,18 @@ bool Planet::IsWormhole() const
 
 
 
+const System *Planet::WormholeSource(const System *to) const
+{
+	auto it = find(systems.begin(), systems.end(), to);
+	if(it == systems.end())
+		return to;
+	
+	return (it == systems.begin() ? systems.back() : *--it);
+}
+
+
+
+
 const System *Planet::WormholeDestination(const System *from) const
 {
 	auto it = find(systems.begin(), systems.end(), from);
@@ -364,7 +379,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	// defense fleet?
 	bool isDefeated = (defenseDeployed == defenseCount);
 	for(const shared_ptr<Ship> &ship : defenders)
-		if(!ship->IsDisabled())
+		if(!ship->IsDisabled() && !ship->IsYours())
 		{
 			isDefeated = false;
 			break;

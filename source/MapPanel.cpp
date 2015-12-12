@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
-#include "Color.h"
 #include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -47,6 +46,9 @@ namespace {
 		return (it != str.end());
 	}
 }
+
+const double MapPanel::OUTER = 6.;
+const double MapPanel::INNER = 3.5;
 
 
 
@@ -187,6 +189,73 @@ bool MapPanel::Scroll(int dx, int dy)
 	// anchor to be the same, so:
 	center = mouse / Zoom() - anchor;
 	return true;
+}
+
+
+
+Color MapPanel::MapColor(double value)
+{
+	value = min(1., max(-1., value));
+	if(value < 0.)
+		return Color(
+			.12 + .12 * value,
+			.48 + .36 * value,
+			.48 - .12 * value,
+			.4);
+	else
+		return Color(
+			.12 + .48 * value,
+			.48,
+			.48 - .48 * value,
+			.4);
+}
+
+
+
+Color MapPanel::ReputationColor(double reputation, bool canLand, bool hasDominated)
+{
+	if(hasDominated)
+		return Color(.1, .6, 0., .4);
+	else if(reputation < 0.)
+	{
+		reputation = min(1., .1 * log(1. - reputation) + .1);
+		return Color(.6, .4 * (1. - reputation), 0., .4);
+	}
+	else if(!canLand)
+		return Color(.6, .54, 0., .4);
+	else
+	{
+		reputation = min(1., .1 * log(1. + reputation) + .1);
+		return Color(0., .6 * (1. - reputation), .6, .4);
+	}
+}
+
+
+
+Color MapPanel::GovernmentColor(const Government *government)
+{
+	if(!government)
+		return UninhabitedColor();
+	
+	return Color(
+		.6 * government->GetColor().Get()[0],
+		.6 * government->GetColor().Get()[1],
+		.6 * government->GetColor().Get()[2],
+		.4);
+}
+
+
+
+Color MapPanel::UninhabitedColor()
+{
+	return Color(.2, 0.);
+}
+
+
+
+Color MapPanel::UnexploredColor()
+{
+	return Color(.1, 0.);
 }
 
 
@@ -362,7 +431,7 @@ void MapPanel::DrawTravelPlan() const
 void MapPanel::DrawWormholes() const
 {
 	Color wormholeColor(0.5, 0.2, 0.9, 1.);
-	Color wormholeDimColor(0.5/3., 0.2/3., 0.9/3., 1.);
+	Color wormholeDimColor(0.5 / 3., 0.2 / 3., 0.9 / 3., 1.);
 	const double wormholeWidth = 1.2;
 	const double wormholeLength = 4.;
 	const double wormholeArrowHeadRatio = 1./3.;
@@ -370,22 +439,12 @@ void MapPanel::DrawWormholes() const
 	for(const auto &it : GameData::Systems())
 	{
 		const System *previous = &it.second;
-		for(const auto &it2 : GameData::Systems())
-		{
-			const System *next = &it2.second;
-		
-			const Planet *wormholePlanet = nullptr;
-			for(const StellarObject &object : previous->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(previous) == next)
-				{
-					wormholePlanet = object.GetPlanet();
-					break;
-				}
-			
-			if(wormholePlanet && player.HasVisited(wormholePlanet))
+		for(const StellarObject &object : previous->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
-				Point from = Zoom() * (next->Position() + center);
-				Point to = Zoom() * (previous->Position() + center);
+				const System *next = object.GetPlanet()->WormholeDestination(previous);
+				Point from = Zoom() * (previous->Position() + center);
+				Point to = Zoom() * (next->Position() + center);
 				Point unit = (from - to).Unit() * 7.;
 				from -= unit;
 				to += unit;
@@ -401,11 +460,7 @@ void MapPanel::DrawWormholes() const
 				LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
 				LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
 				LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
-				LineShader::Draw(to + wormholeUnit - arrowLeft, to + wormholeUnit, wormholeWidth, wormholeColor);
-				LineShader::Draw(to + wormholeUnit - arrowRight, to + wormholeUnit, wormholeWidth, wormholeColor);
-				LineShader::Draw(to, to + (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);
 			}
-		}
 	}
 }
 
@@ -447,6 +502,9 @@ void MapPanel::DrawLinks() const
 
 void MapPanel::DrawSystems() const
 {
+	if(commodity == -3)
+		closeGovernments.clear();
+	
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	for(const auto &it : GameData::Systems())
@@ -459,9 +517,11 @@ void MapPanel::DrawSystems() const
 		if(!player.HasSeen(&system) && &system != specialSystem)
 			continue;
 		
-		Color color(.2, 0.);
+		Point pos = Zoom() * (system.Position() + center);
+		
+		Color color = UninhabitedColor();
 		if(!player.HasVisited(&system))
-			color = Color(.1, 0.);
+			color = UnexploredColor();
 		else if(system.IsInhabited())
 		{
 			if(commodity >= -2 || commodity == -5)
@@ -492,28 +552,22 @@ void MapPanel::DrawSystems() const
 				else
 					value = SystemValue(&system);
 				
-				// Color the systems with a gradient from blue to cyan to gold.
-				if(value < 0.f)
-					color = Color(
-						.12 + .12 * value,
-						.48 + .36 * value,
-						.48 - .12 * value,
-						.4f);
-				else
-					color = Color(
-						.12 + .48 * value,
-						.48,
-						.48 - .48 * value,
-						.4f);
+				color = MapColor(value);
 			}
 			else if(commodity == -3)
 			{
-				// Color based on the government's specified color.
-				color = Color(
-					.6f * system.GetGovernment()->GetColor().Get()[0],
-					.6f * system.GetGovernment()->GetColor().Get()[1],
-					.6f * system.GetGovernment()->GetColor().Get()[2],
-					.4f);
+				const Government *gov = system.GetGovernment();
+				color = GovernmentColor(gov);
+				
+				// For every government that is draw, keep track of how close it
+				// is to the center of the view. The four closest governments
+				// will be displayed in the key.
+				double distance = pos.Length();
+				auto it = closeGovernments.find(gov);
+				if(it == closeGovernments.end())
+					closeGovernments[gov] = distance;
+				else
+					it->second = min(it->second, distance);
 			}
 			else
 			{
@@ -527,21 +581,7 @@ void MapPanel::DrawSystems() const
 						canLand |= object.GetPlanet()->CanLand();
 						hasDominated |= GameData::GetPolitics().HasDominated(object.GetPlanet());
 					}
-				if(!canLand)
-					reputation = min(reputation, -1.);
-				
-				if(hasDominated)
-					color = Color(.1, .6, 0., .4);
-				else if(reputation >= 0.)
-				{
-					reputation = min(1., .1 * log(1. + reputation) + .1);
-					color = Color(0., .6 * (1. - reputation), .6, .4);
-				}
-				else
-				{
-					reputation = min(1., .1 * log(1. - reputation) + .1);
-					color = Color(.6, .6 * (1. - reputation), 0., .4);
-				}
+				color = ReputationColor(reputation, canLand, hasDominated);
 			}
 		}
 		
@@ -549,12 +589,12 @@ void MapPanel::DrawSystems() const
 		// If not, draw open circle.
 		double innerRadius = 0.0;
 		if(!player.HasVisited(&system))
-			innerRadius = 3.5;
+			innerRadius = INNER;
 		for(const StellarObject &object : system.Objects())
 			if(object.GetPlanet() && !player.HasVisited(object.GetPlanet()))
-				innerRadius = 3.5;
+				innerRadius = INNER;
 		
-		DotShader::Draw(Zoom() * (system.Position() + center), 6., innerRadius, color);
+		DotShader::Draw(pos, OUTER, innerRadius, color);
 	}
 }
 

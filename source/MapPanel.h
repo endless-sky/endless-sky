@@ -15,11 +15,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
 
+#include <map>
 #include <string>
 
+class Government;
 class Mission;
 class Planet;
 class PlayerInfo;
@@ -44,6 +47,13 @@ protected:
 	virtual bool Click(int x, int y) override;
 	virtual bool Drag(int dx, int dy) override;
 	virtual bool Scroll(int dx, int dy) override;
+	
+	// Get the color mapping for various system attributes.
+	static Color MapColor(double value);
+	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
+	static Color GovernmentColor(const Government *government);
+	static Color UninhabitedColor();
+	static Color UnexploredColor();
 	
 	virtual double SystemValue(const System *system) const;
 	
@@ -75,6 +85,11 @@ protected:
 	const int maxZoom = 2;
 	int zoom = 0;
 	mutable int step = 0;
+	
+	static const double OUTER;
+	static const double INNER;
+	
+	mutable std::map<const Government *, double> closeGovernments;
 	
 	
 private:

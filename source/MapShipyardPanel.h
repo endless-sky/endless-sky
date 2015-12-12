@@ -50,6 +50,7 @@ protected:
 	
 private:
 	void Init();
+	void DrawKey() const;
 	void DrawPanel() const;
 	void DrawItems() const;
 	
