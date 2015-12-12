@@ -138,6 +138,14 @@ const string &Planet::Name() const
 
 
 
+// Get the name used for this planet in the data files.
+const string &Planet::TrueName() const
+{
+	return name;
+}
+
+
+
 // Get the planet's descriptive text.
 const string &Planet::Description() const
 {

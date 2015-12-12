@@ -434,8 +434,9 @@ void MapPanel::DrawWormholes() const
 	Color wormholeDimColor(0.5 / 3., 0.2 / 3., 0.9 / 3., 1.);
 	const double wormholeWidth = 1.2;
 	const double wormholeLength = 4.;
-	const double wormholeArrowHeadRatio = 1./3.;
+	const double wormholeArrowHeadRatio = .3;
 	
+	map<const System *, const System *> drawn;
 	for(const auto &it : GameData::Systems())
 	{
 		const System *previous = &it.second;
@@ -443,6 +444,7 @@ void MapPanel::DrawWormholes() const
 			if(object.GetPlanet() && object.GetPlanet()->IsWormhole() && player.HasVisited(object.GetPlanet()))
 			{
 				const System *next = object.GetPlanet()->WormholeDestination(previous);
+				drawn[previous] = next;
 				Point from = Zoom() * (previous->Position() + center);
 				Point to = Zoom() * (next->Position() + center);
 				Point unit = (from - to).Unit() * 7.;
@@ -456,7 +458,9 @@ void MapPanel::DrawWormholes() const
 				Point arrowLeft = left.Rotate(wormholeUnit * wormholeArrowHeadRatio);
 				Point arrowRight = right.Rotate(wormholeUnit * wormholeArrowHeadRatio);
 				
-				LineShader::Draw(from, to, wormholeWidth, wormholeDimColor);
+				// Don't double-draw the links.
+				if(drawn[next] != previous)
+					LineShader::Draw(from, to, wormholeWidth, wormholeDimColor);
 				LineShader::Draw(from - wormholeUnit + arrowLeft, from - wormholeUnit, wormholeWidth, wormholeColor);
 				LineShader::Draw(from - wormholeUnit + arrowRight, from - wormholeUnit, wormholeWidth, wormholeColor);
 				LineShader::Draw(from, from - (wormholeUnit + Zoom() * 0.1 * unit), wormholeWidth, wormholeColor);

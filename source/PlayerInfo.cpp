@@ -1421,8 +1421,7 @@ void PlayerInfo::Visit(const System *system)
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const Planet *planet)
 {
-	static const string EMPTY;
-	if (planet->Name() != EMPTY)
+	if(!planet->TrueName().empty())
 		visitedPlanets.insert(planet);
 }
 
@@ -1747,7 +1746,7 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save a list of planets the player has visited.
 	for(const Planet *planet : visitedPlanets)
-		out.Write("visited planet", planet->Name());
+		out.Write("visited planet", planet->TrueName());
 	
 	// Save the list of news items
 	if(!newsItems.empty())

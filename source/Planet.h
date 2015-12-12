@@ -42,6 +42,8 @@ public:
 	
 	// Get the name of the planet.
 	const std::string &Name() const;
+	// Get the name used for this planet in the data files.
+	const std::string &TrueName() const;
 	// Get the planet's descriptive text.
 	const std::string &Description() const;
 	// Get the landscape sprite.

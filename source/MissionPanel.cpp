@@ -365,6 +365,15 @@ bool MissionPanel::Click(int x, int y)
 	{
 		Select(system);
 		int options = available.size() + accepted.size();
+		// If you just aborted your last mission, it is possible that neither
+		// iterator is valid. In that case, start over from the beginning.
+		if(availableIt == available.end() && acceptedIt == accepted.end())
+		{
+			if(!available.empty())
+				availableIt = available.begin();
+			else
+				acceptedIt = accepted.begin();
+		}
 		while(options--)
 		{
 			if(availableIt != available.end())
