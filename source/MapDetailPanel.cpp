@@ -395,6 +395,18 @@ void MapDetailPanel::DrawInfo() const
 	uiPoint.Y() += 55.;
 	tradeY = uiPoint.Y() - 95.;
 	
+	if (commodity >= 0)
+	{
+		uiPoint.X() += 110;
+		uiPoint.Y() = tradeY + 96;
+	
+		const Sprite *keySprite = SpriteSet::Get("ui/thumb box right");
+		SpriteShader::Draw(keySprite, uiPoint);
+	
+		uiPoint.X() -= 110;
+		uiPoint.Y() = tradeY + 95;
+	}
+	
 	// Trade sprite goes from 310 to 540.
 	const Sprite *tradeSprite = SpriteSet::Get("ui/map trade");
 	SpriteShader::Draw(tradeSprite, uiPoint);
@@ -439,6 +451,74 @@ void MapDetailPanel::DrawInfo() const
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10., 10., 0., color);
 		
 		uiPoint.Y() += 20.;
+	}
+	
+	if (commodity >= 0)
+	{
+		uiPoint.X() += 165.;
+		uiPoint.Y() -= 145.;
+		
+		Color color = closeColor;
+		font.Draw("Price Key", uiPoint, color);
+		
+		uiPoint.X() += 10.;
+		uiPoint.Y() += 25.;
+		
+		for(unsigned i = 0; i < 4; ++i)
+		{
+			double value = 0.;
+			string label;
+			if(commodity >= 0)
+			{
+				const Trade::Commodity &com = GameData::Commodities()[commodity];
+				value = (2. * (static_cast<double>(i)/3.)*(com.high - com.low))
+					/ (com.high - com.low) - 1.;
+				label = Format::Number(round(com.low + (com.high - com.low)*(static_cast<double>(i)/3.)));
+			}
+			//		else if(commodity == -1)
+			//		{
+			//			double size = 0;
+			//			for(const StellarObject &object : system.Objects())
+			//				if(object.GetPlanet())
+			//					size += object.GetPlanet()->Shipyard().size();
+			//			value = size ? min(10., size) / 10. : -1.;
+			//		}
+			//		else if(commodity == -2)
+			//		{
+			//			double size = 0;
+			//			for(const StellarObject &object : system.Objects())
+			//				if(object.GetPlanet())
+			//					size += object.GetPlanet()->Outfitter().size();
+			//			value = size ? min(60., size) / 60. : -1.;
+			//		}
+			else
+			{
+				value = 0.0;
+				label = "";
+			}
+			
+			if(value < 0.f)
+				color = Color(
+							  .12 + .12 * value,
+							  .48 + .36 * value,
+							  .48 - .12 * value,
+							  .4f);
+			else
+				color = Color(
+							  .12 + .48 * value,
+							  .48,
+							  .48 - .48 * value,
+							  .4f);
+			
+			DotShader::Draw(uiPoint, 6., 3.5, color);
+			
+			Color labelColor = closeColor;
+			
+			Point pos = uiPoint + Point(15., -8.);
+			font.Draw(label, pos, labelColor);
+			
+			uiPoint.Y() += 17.;
+		}
 	}
 	
 	if(selectedPlanet && !selectedPlanet->Description().empty())
