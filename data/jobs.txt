@@ -552,7 +552,7 @@ mission "Bounty Hunting (Big)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			distance 1 2
 		fleet
@@ -573,7 +573,7 @@ mission "Bounty Hunting (Big)"
 				"Vanguard"
 			variant
 				"Vanguard (Particle)"
-		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
+		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 250000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
@@ -591,7 +591,7 @@ mission "Bounty Hunting (Medium)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			distance 1 2
 		fleet
@@ -608,7 +608,7 @@ mission "Bounty Hunting (Medium)"
 				"Bastion (Laser)"
 			variant
 				"Firebird (Plasma)"
-		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
+		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 200000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
@@ -626,7 +626,7 @@ mission "Bounty Hunting (Small)"
 		attributes rim south north "dirt belt" core frontier
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			distance 1 2
 		fleet
@@ -649,7 +649,7 @@ mission "Bounty Hunting (Small)"
 				"Manta"
 			variant
 				"Manta (Proton)"
-		dialog "The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>."
+		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 150000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
