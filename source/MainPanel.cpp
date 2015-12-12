@@ -214,6 +214,7 @@ void MainPanel::Draw() const
 void MainPanel::OnCallback()
 {
 	engine.Place();
+	engine.Step(true);
 }
 
 
