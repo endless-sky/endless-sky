@@ -37,10 +37,13 @@ namespace {
 		"Menus",
 		"Fleet"
 	};
+	static const string EXPEND_AMMO = "Escorts expend ammo";
+	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string SETTINGS[] = {
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"",
+		EXPEND_AMMO,
 		"Automatic firing",
 		"Automatic aiming",
 		"",
@@ -194,10 +197,16 @@ void PreferencesPanel::Draw() const
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
 		bool isOn = Preferences::Has(setting);
+		string text;
+		if(setting == EXPEND_AMMO)
+			text = isOn ? Preferences::Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+		else
+			text = isOn ? "on" : "off";
+		
 		if(setting == hoverPreference)
 			table.DrawHighlight(back);
 		table.Draw(setting, isOn ? medium : dim);
-		table.Draw(isOn ? "on" : "off", isOn ? bright : medium);
+		table.Draw(text, isOn ? bright : medium);
 		table.DrawGap(-40);
 	}
 	
@@ -264,7 +273,14 @@ bool PreferencesPanel::Click(int x, int y)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
-			if(zone.Value() != "zoom factor")
+			if(zone.Value() == EXPEND_AMMO)
+			{
+				bool expend = Preferences::Has(EXPEND_AMMO);
+				bool frugal = Preferences::Has(FRUGAL_ESCORTS);
+				Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
+				Preferences::Set(FRUGAL_ESCORTS, !expend);
+			}
+			else if(zone.Value() != "zoom factor")
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 			else
 			{

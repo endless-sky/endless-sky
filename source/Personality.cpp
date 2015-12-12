@@ -64,7 +64,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES | FRUGAL), confusionMultiplier(DEFAULT_CONFUSION)
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION)
 {
 }
 
