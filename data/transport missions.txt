@@ -251,7 +251,7 @@ mission "Expedition to Hope 1"
 		attributes "dirt belt"
 	destination Hope
 	to offer
-		random < 10
+		random < 40
 	cargo "scientific equipment" 4
 	passengers 4
 	

@@ -724,13 +724,6 @@ mission "FWC Checkmate 1"
 			names "republic capital"
 			fighters "republic fighter"
 			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 	
