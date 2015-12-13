@@ -634,7 +634,7 @@ mission "FWC Checkmate 1"
 	on offer
 		event "fwc defend cebalrai"
 		conversation
-			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. ""Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
+			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. "Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
 			choice
 				`	"We only want this war to be over as soon as possible."`
 				`	"We've just been trying to avoid being destroyed by the Navy, and things have gotten a bit out of hand."`
@@ -720,13 +720,6 @@ mission "FWC Checkmate 1"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -2206,7 +2199,7 @@ mission "FWC Pug 5"
 	
 	npc
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality heroic escort
 		fleet
 			names "republic capital"
 			fighters "republic fighter"

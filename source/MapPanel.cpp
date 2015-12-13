@@ -273,12 +273,11 @@ void MapPanel::Select(const System *system)
 		return;
 	selectedSystem = system;
 	
-	if(system == playerSystem)
+	bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
+	if(system == playerSystem && !shift)
 		player.ClearTravel();
-	else if(distance.Distance(system) > 0 && player.Flagship())
+	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
-		bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
-		
 		if(shift)
 		{
 			vector<const System *> oldPath = player.TravelPlan();

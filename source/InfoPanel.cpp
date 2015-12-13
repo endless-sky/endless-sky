@@ -462,6 +462,7 @@ void InfoPanel::DrawInfo() const
 	if(!player.Ships().size())
 		return;
 	int lastIndex = player.Ships().size() - 1;
+	const Ship *flagship = player.Flagship();
 	
 	pos.Y() += 5.;
 	int index = scroll;
@@ -495,7 +496,8 @@ void InfoPanel::DrawInfo() const
 			ship->Attributes().Get("fuel capacity") * ship->Fuel()));
 		font.Draw(fuel, pos + Point(670. - font.Width(fuel), 0.), color);
 		
-		string crew = ship->IsParked() ? "Parked" : to_string(index ? ship->RequiredCrew() : ship->Crew());
+		string crew = ship->IsParked() ? "Parked" :
+			to_string(ship.get() == flagship ? ship->Crew() : ship->RequiredCrew());
 		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
 		
 		if(index < lastIndex || selected < 0)

@@ -304,8 +304,9 @@ void OutfitterPanel::Buy()
 				--available[selectedOutfit];
 			}
 			ship->AddOutfit(selectedOutfit, 1);
-			if(selectedOutfit->Get("required crew"))
-				ship->AddCrew(selectedOutfit->Get("required crew"));
+			int required = selectedOutfit->Get("required crew");
+			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
+				ship->AddCrew(required);
 		}
 	}
 }
