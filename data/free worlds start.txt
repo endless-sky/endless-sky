@@ -678,6 +678,7 @@ mission "FW Plasma Testing 1B"
 		personality plunders staying
 		system Ildaria
 		ship "Leviathan (Heavy)" "Red Nile"
+		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
 	
 	on visit
 		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."

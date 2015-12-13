@@ -296,6 +296,8 @@ void OutfitterPanel::Buy()
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Transfer(selectedOutfit, 1);
+			else if(!available[selectedOutfit] && !planet->Outfitter().Has(selectedOutfit))
+				break;
 			else
 			{
 				player.Accounts().AddCredits(-selectedOutfit->Cost());
@@ -736,6 +738,8 @@ void OutfitterPanel::Refill()
 			{
 				if(player.Cargo().Get(outfit))
 					player.Cargo().Transfer(outfit, 1);
+				else if(!available[outfit] && !planet->Outfitter().Has(outfit))
+					break;
 				else
 				{
 					player.Accounts().AddCredits(-outfit->Cost());

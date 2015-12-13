@@ -19,7 +19,7 @@ mission "Pact Recon 0"
 		attributes south
 	destination Glaze
 	to offer
-		random < 100
+		random < 60
 		not "event: war begins"
 	
 	on offer
@@ -76,7 +76,7 @@ mission "Pact Recon 1"
 		attributes south "dirt belt" rim quarg "near earth"
 	destination Glaze
 	to offer
-		random < 20
+		random < 30
 		not "event: war begins"
 		has "Pact Recon 0: done"
 	
@@ -103,7 +103,7 @@ mission "Pact Recon 2"
 		attributes south "dirt belt" rim quarg "near earth"
 	destination Glaze
 	to offer
-		random < 20
+		random < 30
 		not "event: war begins"
 		has "Pact Recon 1: done"
 	
@@ -130,7 +130,7 @@ mission "Pact Recon 3"
 		attributes south "dirt belt" rim quarg "near earth"
 	destination Glaze
 	to offer
-		random < 20
+		random < 30
 		not "event: war begins"
 		has "Pact Recon 2: done"
 	
@@ -233,7 +233,7 @@ mission "FW Recon 0"
 		near Aldhibain 1 10
 	destination Glaze
 	to offer
-		random < 25
+		random < 35
 		has "event: initial deployment 4"
 	passengers 1
 	to fail
@@ -1583,7 +1583,7 @@ mission "FW Bounty 1"
 				accept
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			near Seginus 1 2
 		ship "Hawk (Rocket)" "Cluny"
@@ -1592,7 +1592,7 @@ mission "FW Bounty 1"
 		ship "Wasp (Proton)" "Vixen"
 		ship "Fury (Laser)" "Stoat"
 		ship "Sparrow" "Rat"
-		dialog `The "Rat Pack" has been destroyed. You can claim the bounty payment by returning to <destination>.`
+		dialog `The "Rat Pack" has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on complete
 		payment 200000
@@ -1607,7 +1607,7 @@ mission "FW Bounty 2"
 		government "Free Worlds"
 	to offer
 		has "FW Bounty 1: done"
-		random <= 25
+		random <= 30
 		not "chosen sides"
 	
 	on offer
@@ -1621,11 +1621,11 @@ mission "FW Bounty 2"
 				accept
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			near "Delta Sagittarii" 1 2
 		ship "Behemoth (Speedy)" "Moonless Night"
-		dialog `The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>.`
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on complete
 		payment 200000
@@ -1640,7 +1640,7 @@ mission "FW Bounty 3"
 		government "Free Worlds"
 	to offer
 		has "FW Bounty 2: done"
-		random <= 25
+		random <= 30
 		not "chosen sides"
 	
 	on offer
@@ -1654,10 +1654,10 @@ mission "FW Bounty 3"
 				accept
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
-		dialog `The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>.`
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on complete
 		"assisted free worlds" ++

@@ -111,6 +111,12 @@ government "Pirate"
 	"fine" 0
 	"hostile hail" "hostile pirate"
 
+government "Bounty"
+	swizzle 6
+	"player reputation" -1000
+	"fine" 0
+	"hostile hail" "hostile pirate"
+
 government "Independent"
 	swizzle 6
 	color .78 .36 .36

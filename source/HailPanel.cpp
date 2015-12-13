@@ -47,7 +47,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	
 	if(gov->GetName() == "Derelict")
 	{
-		message = "There is no response to your hail";
+		message = "There is no response to your hail.";
 	}
 	else if(gov->IsEnemy())
 	{
