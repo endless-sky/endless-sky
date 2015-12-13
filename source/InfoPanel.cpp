@@ -56,6 +56,14 @@ namespace {
 		"terror of the galaxy"
 	};
 	
+	static const int SHIP_X = 0;
+	static const int MODEL_X = 200;
+	static const int SYSTEM_X = 330;
+	static const int SHIELDS_X = 510;
+	static const int HULL_X = 570;
+	static const int FUEL_X = 630;
+	static const int CREW_X = 730;
+	
 	vector<pair<int, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
 	{
 		vector<pair<int, string>> match;
@@ -450,13 +458,13 @@ void InfoPanel::DrawInfo() const
 	
 	// Fleet listing.
 	Point pos = Point(-240., -270.);
-	font.Draw("ship", pos + Point(0., 0.), bright);
-	font.Draw("model", pos + Point(220., 0.), bright);
-	font.Draw("system", pos + Point(350., 0.), bright);
-	font.Draw("shields", pos + Point(550. - font.Width("shields"), 0.), bright);
-	font.Draw("hull", pos + Point(610. - font.Width("hull"), 0.), bright);
-	font.Draw("fuel", pos + Point(670. - font.Width("fuel"), 0.), bright);
-	font.Draw("crew", pos + Point(730. - font.Width("crew"), 0.), bright);
+	font.Draw("ship", pos + Point(SHIP_X, 0.), bright);
+	font.Draw("model", pos + Point(MODEL_X, 0.), bright);
+	font.Draw("system", pos + Point(SYSTEM_X, 0.), bright);
+	font.Draw("shields", pos + Point(SHIELDS_X - font.Width("shields"), 0.), bright);
+	font.Draw("hull", pos + Point(HULL_X - font.Width("hull"), 0.), bright);
+	font.Draw("fuel", pos + Point(FUEL_X - font.Width("fuel"), 0.), bright);
+	font.Draw("crew / bunks", pos + Point(CREW_X - font.Width("crew / bunks"), 0.), bright);
 	FillShader::Fill(pos + Point(365., 15.), Point(730., 1.), dim);
 	
 	if(!player.Ships().size())
@@ -479,24 +487,25 @@ void InfoPanel::DrawInfo() const
 		bool isHovered = (index == hover);
 		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;
 		font.Draw(ship->Name(), pos + Point(10. * ship->CanBeCarried(), 0.), color);
-		font.Draw(ship->ModelName(), pos + Point(220., 0.), color);
+		font.Draw(ship->ModelName(), pos + Point(MODEL_X, 0.), color);
 		
 		const System *system = ship->GetSystem();
 		if(system)
-			font.Draw(system->Name(), pos + Point(350., 0.), color);
+			font.Draw(system->Name(), pos + Point(SYSTEM_X, 0.), color);
 		
 		string shields = to_string(static_cast<int>(100. * max(0., ship->Shields()))) + "%";
-		font.Draw(shields, pos + Point(550. - font.Width(shields), 0.), color);
+		font.Draw(shields, pos + Point(SHIELDS_X - font.Width(shields), 0.), color);
 		
 		string hull = to_string(static_cast<int>(100. * max(0., ship->Hull()))) + "%";
-		font.Draw(hull, pos + Point(610. - font.Width(hull), 0.), color);
+		font.Draw(hull, pos + Point(HULL_X - font.Width(hull), 0.), color);
 		
 		string fuel = to_string(static_cast<int>(
 			ship->Attributes().Get("fuel capacity") * ship->Fuel()));
-		font.Draw(fuel, pos + Point(670. - font.Width(fuel), 0.), color);
+		font.Draw(fuel, pos + Point(FUEL_X - font.Width(fuel), 0.), color);
 		
-		string crew = ship->IsParked() ? "Parked" : to_string(index ? ship->RequiredCrew() : ship->Crew());
-		font.Draw(crew, pos + Point(730. - font.Width(crew), 0.), color);
+		string crew = ship->IsParked() ? "Parked" : (Format::Number(ship->Crew())
+			+ " / " + Format::Number(ship->Attributes().Get("bunks")));
+		font.Draw(crew, pos + Point(CREW_X - font.Width(crew), 0.), color);
 		
 		if(index < lastIndex || selected < 0)
 			zones.emplace_back(pos + Point(365, font.Height() / 2), Point(730, 20), index);
