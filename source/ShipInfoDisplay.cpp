@@ -269,8 +269,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")));
 	attributesHeight += 20;
-	attributeLabels.push_back(isGeneric ? "required crew / bunks:" : "crew / bunks:");
-	attributeValues.push_back(Format::Number(isGeneric ? ship.RequiredCrew() : ship.Crew())
+	attributeLabels.push_back("required crew / bunks:");
+	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
