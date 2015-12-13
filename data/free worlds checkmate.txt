@@ -634,7 +634,7 @@ mission "FWC Checkmate 1"
 	on offer
 		event "fwc defend cebalrai"
 		conversation
-			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. ""Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
+			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. "Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
 			choice
 				`	"We only want this war to be over as soon as possible."`
 				`	"We've just been trying to avoid being destroyed by the Navy, and things have gotten a bit out of hand."`
