@@ -52,6 +52,7 @@ Version 0.8.9:
     * The outfit list in the boarding panel now supports arrow keys and page up / down.
     * In the outfitter and shipyard maps you can now shift-click to compare items.
     * Added support for zooming in the map views. (@guillochon)
+    * Wormhole paths now shown on the map once traversed. (@guillochon)
     * Loading a snapshot now displays a warning that it will overwrite your main game.
     * You can now double click a ship to board it or a planet to land.
     * Added a key to each of the map panels.
