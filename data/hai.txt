@@ -431,7 +431,7 @@ ship "Mite"
 	gun 14 -10 "Pulse Cannon"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description "The Mite is a point defense fighter developed by the Hai for protecting conveys and large warships."
+	description "The Mite is a point defense fighter developed by the Hai for protecting convoys and large warships."
 
 ship "Arachnid"
 	sprite "ship/hai arachnid"
