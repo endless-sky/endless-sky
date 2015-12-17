@@ -7267,9 +7267,13 @@ system Markeb
 			distance 235
 			period 11.6896
 	object
-		sprite planet/ganymede
-		distance 1598.68
-		period 1197.84
+		sprite planet/cloud0
+		distance 1906.67
+		period 1560.16
+		object "Alexandria"
+			sprite planet/station7
+			distance 178.482
+			period 29.3849
 	object
 		sprite planet/miranda
 		distance 2787.49
@@ -12962,6 +12966,19 @@ planet Albatross
 	tribute 400
 		threshold 2500
 		fleet "Small Southern Pirates" 20
+
+planet Alexandria
+	attributes deep station
+	landscape land/space7
+	description `At the height of the Alpha War, the government of the Deep constructed Alexandria as the galaxy's largest storehouse of human literature, scientific writing, and technology. It also houses a vast museum of cultural artifacts dating back to long before the start of the space age. Today the station is mostly populated by visitors looking for particularly arcane writings or information, and librarians who have devoted their lives to keeping the archives well-indexed and up to date.`
+	description `	Entire sections of the station are off limits to ordinary visitors. There are many rumors about what those restricted areas contain.`
+	spaceport `The station's cavernous visitor center is by far the quietest spaceport you have ever been in. Many people are bustling back and forth, wheeling carts of old books or carrying data pads, but they are entirely silent except for the occasional startled outburst when a scholar, walking deep in thought or immersed in reading, accidentally collides with someone.`
+	spaceport `	From here, passageways lead off into the wings of the library in a veritable labyrinth of hallways, stairs, and library stacks. A few particularly heavy doors require key cards to enter, and others have no opening controls of any sort that you can see.`
+	"required reputation" 100
+	bribe 0
+	tribute 1000
+		threshold 8000
+		fleet "Large Republic" 7
 
 planet Alfheim
 	attributes deep oil factory
