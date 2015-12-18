@@ -170,6 +170,8 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 		}
 		if(event.Actor() && event.Target())
 			actions[event.Actor()][event.Target()] |= event.Type();
+		if(event.ActorGovernment() && event.Target())
+			governmentActions[event.ActorGovernment()][event.Target()] |= event.Type();
 		if(event.ActorGovernment()->IsPlayer() && event.Target())
 		{
 			int &bitmap = playerActions[event.Target()];
@@ -185,6 +187,8 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 void AI::Clean()
 {
 	actions.clear();
+	governmentActions.clear();
+	playerActions.clear();
 }
 
 
@@ -572,8 +576,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		for(const auto &it : ships)
 			if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
 			{
-				if((cargoScan && !Has(ship, it, ShipEvent::SCAN_CARGO))
-						|| (outfitScan && !Has(ship, it, ShipEvent::SCAN_OUTFITS)))
+				if((cargoScan && !Has(ship.GetGovernment(), it, ShipEvent::SCAN_CARGO))
+						|| (outfitScan && !Has(ship.GetGovernment(), it, ShipEvent::SCAN_OUTFITS)))
 				{
 					double range = it->Position().Distance(ship.Position());
 					if(range < closest)
@@ -629,8 +633,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		bool cargoScan = ship.Attributes().Get("cargo scan");
 		bool outfitScan = ship.Attributes().Get("outfit scan");
-		if((!cargoScan || Has(ship, target, ShipEvent::SCAN_CARGO))
-				&& (!outfitScan || Has(ship, target, ShipEvent::SCAN_OUTFITS)))
+		if((!cargoScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_OUTFITS)))
 			target.reset();
 		else
 		{
@@ -1811,6 +1815,21 @@ bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) cons
 	
 	auto oit = sit->second.find(other);
 	if(oit == sit->second.end())
+		return false;
+	
+	return (oit->second & type);
+}
+
+
+
+bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, int type) const
+{
+	auto git = governmentActions.find(government);
+	if(git == governmentActions.end())
+		return false;
+	
+	auto oit = git->second.find(other);
+	if(oit == git->second.end())
 		return false;
 	
 	return (oit->second & type);
