@@ -273,7 +273,7 @@ outfit "Anti-Missile Turret"
 	weapon
 		"hit effect" "small anti-missile"
 		"anti-missile" 5
-		"velocity" 100
+		"velocity" 150
 		"lifetime" 1
 		"reload" 8
 		"firing energy" 5
