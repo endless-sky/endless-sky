@@ -35,8 +35,21 @@ class System;
 // the systems based on a selected criterion. It also handles finding and
 // drawing routes in between systems.
 class MapPanel : public Panel {
+protected:
+	// Enumeration for how the systems should be colored:
+	static const int SHOW_SHIPYARD = -1;
+	static const int SHOW_OUTFITTER = -2;
+	static const int SHOW_VISITED = -3;
+	static const int SHOW_SPECIAL = -4;
+	static const int SHOW_GOVERNMENT = -5;
+	static const int SHOW_REPUTATION = -6;
+	
+	static const double OUTER;
+	static const double INNER;
+	
+	
 public:
-	MapPanel(PlayerInfo &player, int commodity = -4, const System *special = nullptr);
+	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	void SetCommodity(int index);
 	virtual void Draw() const override;
@@ -85,9 +98,6 @@ protected:
 	const int maxZoom = 2;
 	int zoom = 0;
 	mutable int step = 0;
-	
-	static const double OUTER;
-	static const double INNER;
 	
 	mutable std::map<const Government *, double> closeGovernments;
 	

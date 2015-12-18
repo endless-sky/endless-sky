@@ -80,7 +80,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
 	// Don't use the "special" coloring in this view.
-	commodity = max(commodity, -4);
+	if(commodity == SHOW_SPECIAL)
+		commodity = SHOW_REPUTATION;
 	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;

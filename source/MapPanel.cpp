@@ -505,7 +505,7 @@ void MapPanel::DrawLinks() const
 
 void MapPanel::DrawSystems() const
 {
-	if(commodity == -3)
+	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 	
 	// Draw the circles for the systems, colored based on the selected criterion,
@@ -527,7 +527,7 @@ void MapPanel::DrawSystems() const
 			color = UnexploredColor();
 		else if(system.IsInhabited())
 		{
-			if(commodity >= -2 || commodity == -5)
+			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
 				if(commodity >= 0)
@@ -536,7 +536,7 @@ void MapPanel::DrawSystems() const
 					value = (2. * (system.Trade(com.name) - com.low))
 						/ (com.high - com.low) - 1.;
 				}
-				else if(commodity == -1)
+				else if(commodity == SHOW_SHIPYARD)
 				{
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
@@ -544,7 +544,7 @@ void MapPanel::DrawSystems() const
 							size += object.GetPlanet()->Shipyard().size();
 					value = size ? min(10., size) / 10. : -1.;
 				}
-				else if(commodity == -2)
+				else if(commodity == SHOW_OUTFITTER)
 				{
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
@@ -552,12 +552,25 @@ void MapPanel::DrawSystems() const
 							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
+				else if(commodity == SHOW_VISITED)
+				{
+					bool all = true;
+					bool some = false;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet())
+						{
+							bool visited = player.HasVisited(object.GetPlanet());
+							all &= visited;
+							some |= visited;
+						}
+					value = -1 + some + all;
+				}
 				else
 					value = SystemValue(&system);
 				
 				color = MapColor(value);
 			}
-			else if(commodity == -3)
+			else if(commodity == SHOW_GOVERNMENT)
 			{
 				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);

@@ -64,7 +64,7 @@ namespace {
 
 
 MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
-	: MapPanel(player, -5)
+	: MapPanel(player, SHOW_SPECIAL)
 {
 	Init();
 }
@@ -74,7 +74,7 @@ MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
 MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel)
 	: MapPanel(panel)
 {
-	SetCommodity(-5);
+	SetCommodity(SHOW_SPECIAL);
 	Init();
 }
 
