@@ -1,6 +1,6 @@
 Version 0.8.9:
   * Bugs fixes:
-    * Typo fixes. (@dplepage, @guillochon, @Wrzlprnft)
+    * Typo fixes. (@anonybosch, @dplepage, @guillochon, @Wrzlprnft)
     * Fixed a bug where Earth would not let you land in a "safe passage" Free Worlds mission.
     * The hiring panel no longer lists crew from parked ships.
     * Auto-aim no longer points you at where a destroyed target used to be.
