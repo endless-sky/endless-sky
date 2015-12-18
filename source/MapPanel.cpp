@@ -662,7 +662,7 @@ void MapPanel::DrawMissions() const
 		Angle a = (angle[system] += Angle(30.));
 		
 		bool blink = false;
-		if(mission.HasDeadline())
+		if(mission.Deadline())
 		{
 			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
 			if(days > 0)

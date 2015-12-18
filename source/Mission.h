@@ -73,7 +73,6 @@ public:
 	int IllegalCargoFine() const;
 	int Passengers() const;
 	// The mission must be completed by this deadline (if there is a deadline).
-	bool HasDeadline() const;
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
 	// marked as failing already, mark it and return true.
@@ -144,10 +143,9 @@ private:
 	bool hasPriority = false;
 	bool isMinor = false;
 	bool autosave = false;
-	bool hasDeadline = false;
-	bool doDefaultDeadline = false;
 	Date deadline;
-	int daysToDeadline = 0;
+	int deadlineBase = 0;
+	int deadlineMultiplier = 0;
 	std::string clearance;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;

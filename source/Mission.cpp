@@ -80,14 +80,16 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
-		{
-			hasDeadline = true;
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
-		}
-		else if(child.Token(0) == "deadline" && child.Size() >= 2)
-			daysToDeadline = child.Value(1);
 		else if(child.Token(0) == "deadline")
-			doDefaultDeadline = true;
+		{
+			if(child.Size() == 1)
+				deadlineMultiplier += 2;
+			if(child.Size() >= 2)
+				deadlineBase += child.Value(1);
+			if(child.Size() >= 3)
+				deadlineMultiplier += child.Value(3);
+		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
 			cargo = child.Token(1);
@@ -196,7 +198,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("description", description);
 		if(!blocked.empty())
 			out.Write("blocked", blocked);
-		if(hasDeadline)
+		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 		if(cargoSize)
 		{
@@ -379,13 +381,6 @@ int Mission::Passengers() const
 
 
 // The mission must be completed by this deadline (if there is a deadline).
-bool Mission::HasDeadline() const
-{
-	return hasDeadline;
-}
-
-
-
 const Date &Mission::Deadline() const
 {
 	return deadline;
@@ -397,7 +392,7 @@ const Date &Mission::Deadline() const
 // marked as failing already, mark it and return true.
 bool Mission::CheckDeadline(const Date &today)
 {
-	if(!hasFailed && hasDeadline && deadline < today)
+	if(!hasFailed && deadline && deadline < today)
 	{
 		hasFailed = true;
 		return true;
@@ -821,14 +816,10 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	DistanceMap distance(player.GetSystem());
 	int jumps = distance.Distance(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
-	int defaultDeadline = doDefaultDeadline ? (2 * jumps) : 0;
 	
 	// Set the deadline, if requested.
-	if(daysToDeadline || defaultDeadline)
-	{
-		result.hasDeadline = true;
-		result.deadline = player.GetDate() + (defaultDeadline + daysToDeadline);
-	}
+	if(deadlineBase || deadlineMultiplier)
+		result.deadline = player.GetDate() + deadlineBase + deadlineMultiplier * jumps;
 	
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
