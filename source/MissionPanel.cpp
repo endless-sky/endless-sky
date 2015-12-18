@@ -700,15 +700,18 @@ void MissionPanel::Accept()
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
 	
-	// Check if any other jobs are available with the same destination.
+	// Check if any other jobs are available with the same destination. Prefer
+	// jobs that also have the same destination planet.
 	if(toAccept.Destination())
 	{
-		const System *system = toAccept.Destination()->GetSystem();
+		const Planet *planet = toAccept.Destination();
+		const System *system = planet->GetSystem();
 		for(auto it = available.begin(); it != available.end(); ++it)
 			if(it->Destination() && it->Destination()->GetSystem() == system)
 			{
 				availableIt = it;
-				break;
+				if(it->Destination() == planet)
+					break;
 			}
 	}
 }
