@@ -696,7 +696,7 @@ void MissionPanel::Accept()
 	}
 	
 	++availableIt;
-	player.AcceptJob(toAccept);
+	player.AcceptJob(toAccept, GetUI());
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
 }

@@ -1097,14 +1097,14 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission)
+void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
 			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			break;
