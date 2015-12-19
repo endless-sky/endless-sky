@@ -1,0 +1,197 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Summer Leaf"
+	sprite "ship/summer leaf"
+	attributes
+		category "Light Warship"
+		"cost" 9500000
+		"shields" 14400
+		"hull" 6700
+		"required crew" 6
+		"bunks" 15
+		"mass" 110
+		"drag" 2.6
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 36
+		"outfit space" 355
+		"weapon capacity" 84
+		"engine capacity" 103
+		weapon
+			"blast radius" 70
+			"shield damage" 700
+			"hull damage" 350
+			"hit force" 1050
+	outfits
+		"Sunbeam" 2
+		
+		"Fusion Reactor"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Nitrogen Cooler"
+		
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		
+	engine -23 80
+	engine 23 80
+	gun -36 -13
+	gun 36 -13
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	description "The Summer Leaf is mostly used by the Wanderers as a light transport, but it is also quite effective in combat."
+
+ship "Strong Wind"
+	sprite "ship/strong wind"
+	attributes
+		category "Medium Warship"
+		"cost" 16100000
+		"shields" 28500
+		"hull" 19600
+		"required crew" 17
+		"bunks" 39
+		"mass" 260
+		"drag" 4.7
+		"heat dissipation" .7
+		"fuel capacity" 400
+		"cargo space" 36
+		"outfit space" 563
+		"weapon capacity" 198
+		"engine capacity" 114
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Sunbeam" 4
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		
+		"Armageddon Core"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler"
+		
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+		
+	engine -30 127
+	engine 30 127
+	gun -64 13
+	gun 64 13
+	gun -57 21
+	gun 57 21
+	gun -32 57
+	gun 32 57
+	explode "small explosion" 60
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
+
+outfit "Sunbeam"
+	category "Guns"
+	cost 2350000
+	thumbnail "outfit/sunbeam"
+	"mass" 34
+	"outfit space" -34
+	"weapon capacity" -34
+	"gun ports" -1
+	weapon
+		sprite "projectile/sunbeam"
+			"frame rate" 1.3
+			"random start frame"
+		sound "electron beam"
+		"hit effect" "sunbeam impact"
+		"inaccuracy" .2
+		"velocity" 540
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.3
+		"firing heat" 6.2
+		"shield damage" 7.2
+		"hull damage" 4.5
+		"heat damage" 12.1
+	description "The Wanderers do not devote much time to developing weapon technology, preferring to focus their attention on more constructive endeavors. However, the few weapons they have created are efficient and deadly."
+
+outfit "Thunderhead Missile"
+	category "Ammunition"
+	cost 1800
+	thumbnail "outfit/thunderhead"
+	"thunderhead capacity" -1
+	description "Thunderhead cluster munitions are long-range Wanderer missiles that splits into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
+
+outfit "Thunderhead Launcher"
+	category "Secondary Weapons"
+	cost 450000
+	thumbnail "outfit/thunderhead launcher"
+	"mass" 26
+	"outfit space" -26
+	"weapon capacity" -26
+	"gun ports" -1
+	"thunderhead capacity" 40
+	weapon
+		sprite "projectile/thunderhead"
+			"no repeat"
+			"frame rate" .1
+		sound "meteor"
+		ammo "Thunderhead Missile"
+		icon "icon/thunderhead"
+		"submunition" "Thunderhead" 5
+		"split range" 600
+		"fire effect" "meteor fire"
+		"die effect" "missile death"
+		"hit effect" "medium explosion"
+		"inaccuracy" 10
+		"velocity" 4
+		"lifetime" 400
+		"reload" 75
+		"firing energy" 18
+		"firing heat" 36
+		"acceleration" 1.2
+		"drag" .1
+		"turn" 2
+		"homing" 4
+		"missile strength" 12
+	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+
+outfit "Thunderhead"
+	weapon
+		sprite "projectile/thunderhead fragment"
+			"no repeat"
+			"frame rate" .1
+		"die effect" "missile death"
+		"hit effect" "small explosion"
+		"inaccuracy" 90
+		"velocity" 2
+		"lifetime" 400
+		"acceleration" 1.4
+		"drag" .1
+		"turn" 3
+		"homing" 4
+		"shield damage" 80
+		"hull damage" 60
+		"hit force" 20
+		"missile strength" 3
+
+effect "sunbeam impact"
+	sprite "effect/sunbeam impact"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 3
+	"random angle" 360
+	"random spin" 360
+	"random velocity" 4
+	"velocity scale" -.0001
+
