@@ -809,7 +809,6 @@ phrase "hostile civilian"
 		"the Navy "
 		"the Militia "
 		"someone "
-		"God"
 	word
 		"burns "
 		"cuts "
@@ -837,8 +836,6 @@ phrase "hostile civilian"
 		"you to pieces"
 		"you to bits"
 		"you apart"
-		"your mother to pieces"
-		"your mother to bits"
 	word
 		", you"
 	word
