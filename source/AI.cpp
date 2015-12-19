@@ -195,26 +195,11 @@ void AI::Clean()
 
 void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 {
-	const Ship *flagship = player.Flagship();
-	
 	// First, figure out the comparative strengths of the present governments.
 	map<const Government *, int64_t> strength;
 	for(const auto &it : ships)
-	{
 		if(it->GetGovernment() && it->GetSystem() == player.GetSystem() && !it->IsDisabled())
 			strength[it->GetGovernment()] += it->Cost();
-		if(it.get() == flagship)
-		{
-			// To make sure all your escorts jump at the same time as you,
-			// update the flagship's "wait" state immediately:
-			Command currentCommands = it->Commands();
-			if(currentCommands.Has(Command::WAIT) && !keyHeld.Has(Command::JUMP))
-			{
-				currentCommands.Clear(Command::WAIT);
-				it->SetCommands(currentCommands);
-			}
-		}
-	}
 	enemyStrength.clear();
 	allyStrength.clear();
 	for(const auto &it : strength)
@@ -233,6 +218,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			}
 	}
 	
+	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	for(const auto &it : ships)

@@ -123,7 +123,11 @@ void Engine::Place()
 	// code already took care of loading up fighters and assigning parents.
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked())
-			it = ships.insert(it, ship);
+		{
+			ships.push_back(ship);
+			if(it == ships.end())
+				--it;
+		}
 	
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
@@ -173,7 +177,7 @@ void Engine::Place()
 						continue;
 				}
 				
-				it = ships.insert(it, ship);
+				ships.push_back(ship);
 				if(!ship->GetPersonality().IsUninterested())
 					ship->SetParent(flagship);
 			}
@@ -898,73 +902,12 @@ void Engine::CalculateStep()
 				continue;
 			
 			Point position = ship->Position() - center;
-			
-			if(ship->IsThrusting())
-			{
-				for(const Point &point : ship->EnginePoints())
-				{
-					Point pos = ship->Facing().Rotate(point) * .5 * ship->Zoom() + position;
-					for(const auto &it : ship->Attributes().FlareSprites())
-						for(int i = 0; i < it.second; ++i)
-						{
-							if(ship->Cloaking())
-							{
-								draw[calcTickTock].Add(
-									it.first.GetSprite(),
-									pos,
-									ship->Unit(),
-									ship->Velocity() - centerVelocity,
-									ship->Cloaking());
-							}
-							else
-							{
-								draw[calcTickTock].Add(
-									it.first,
-									pos,
-									ship->Unit(),
-									ship->Velocity() - centerVelocity);
-							}
-						}
-				}
-				if(ship.get() == flagship)
-				{
-					for(const auto &it : ship->Attributes().FlareSounds())
-						if(it.second > 0)
-							Audio::Play(it.first);
-				}
-			}
-			
-			bool isPlayer = ship->GetGovernment()->IsPlayer();
-			if(ship->Cloaking())
-			{
-				if(isPlayer)
-				{
-					Animation animation = ship->GetSprite();
-					animation.SetSwizzle(7);
-					draw[calcTickTock].Add(
-						animation,
-						position,
-						ship->Unit(),
-						ship->Velocity() - centerVelocity);
-				}
-				draw[calcTickTock].Add(
-					ship->GetSprite().GetSprite(),
-					position,
-					ship->Unit(),
-					ship->Velocity() - centerVelocity,
-					ship->Cloaking(),
-					ship->GetSprite().GetSwizzle());
-			}
-			else
-			{
-				draw[calcTickTock].Add(
-					ship->GetSprite(),
-					position,
-					ship->Unit(),
-					ship->Velocity() - centerVelocity);
-			}
+			// Draw the flagship separately, on top of everything else.
+			if(ship.get() != flagship)
+				AddSprites(*ship, position, ship->Velocity() - centerVelocity);
 			
 			// Do not show cloaked ships on the radar, except the player's ships.
+			bool isPlayer = ship->GetGovernment()->IsPlayer();
 			if(ship->Cloaking() == 1. && !isPlayer)
 				continue;
 			
@@ -988,7 +931,7 @@ void Engine::CalculateStep()
 			auto target = ship->GetTargetShip();
 			radar[calcTickTock].Add(
 				(flagship && ship == flagship->GetTargetShip()) ? Radar::SPECIAL :
-					(ship->GetGovernment()->IsPlayer() || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
+					(isPlayer || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
 					!ship->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
 					(target && target->GetGovernment()->IsPlayer()) ?
@@ -996,6 +939,16 @@ void Engine::CalculateStep()
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
+	if(flagship)
+	{
+		AddSprites(*flagship, Point(), Point());
+		if(flagship->IsThrusting())
+		{
+			for(const auto &it : flagship->Attributes().FlareSounds())
+				if(it.second > 0)
+					Audio::Play(it.first);
+		}
+	}
 	if(clickTarget && clickTarget == previousTarget)
 		clickCommands |= Command::BOARD;
 	
@@ -1201,6 +1154,67 @@ void Engine::CalculateStep()
 		load = loadSum;
 		loadSum = 0.;
 		loadCount = 0;
+	}
+}
+
+
+
+void Engine::AddSprites(const Ship &ship, const Point &position, const Point &velocity)
+{
+	if(ship.IsThrusting())
+		for(const Point &point : ship.EnginePoints())
+		{
+			Point pos = ship.Facing().Rotate(point) * .5 * ship.Zoom() + position;
+			for(const auto &it : ship.Attributes().FlareSprites())
+				for(int i = 0; i < it.second; ++i)
+				{
+					if(ship.Cloaking())
+					{
+						draw[calcTickTock].Add(
+							it.first.GetSprite(),
+							pos,
+							ship.Unit(),
+							velocity,
+							ship.Cloaking());
+					}
+					else
+					{
+						draw[calcTickTock].Add(
+							it.first,
+							pos,
+							ship.Unit(),
+							velocity);
+					}
+				}
+		}
+	
+	if(ship.Cloaking())
+	{
+		if(ship.GetGovernment()->IsPlayer())
+		{
+			Animation animation = ship.GetSprite();
+			animation.SetSwizzle(7);
+			draw[calcTickTock].Add(
+				animation,
+				position,
+				ship.Unit(),
+				velocity);
+		}
+		draw[calcTickTock].Add(
+			ship.GetSprite().GetSprite(),
+			position,
+			ship.Unit(),
+			velocity,
+			ship.Cloaking(),
+			ship.GetSprite().GetSwizzle());
+	}
+	else
+	{
+		draw[calcTickTock].Add(
+			ship.GetSprite(),
+			position,
+			ship.Unit(),
+			velocity);
 	}
 }
 
