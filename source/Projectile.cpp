@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mask.h"
 #include "Outfit.h"
 #include "pi.h"
+#include "Random.h"
 #include "Ship.h"
 #include "Sprite.h"
 
@@ -167,6 +168,9 @@ bool Projectile::Move(list<Effect> &effects)
 	}
 	
 	position += velocity;
+	
+	if(target && (position - target->Position()).Length() < weapon->SplitRange() && !Random::Int(10))
+		lifetime = 0;
 	
 	return true;
 }
