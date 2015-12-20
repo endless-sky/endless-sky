@@ -26,6 +26,8 @@ government "Hai (Unfettered)"
 	"player reputation" -1000
 	"attitude toward"
 		"Hai" -.1
+		"Wanderer" -.1
+		"Pug" -.1
 	"bribe" .02
 	"fine" 0
 

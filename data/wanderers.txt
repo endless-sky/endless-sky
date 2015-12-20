@@ -8,6 +8,11 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+government "Wanderer"
+	swizzle 2
+	"player reputation" 1
+
+
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
 	attributes
@@ -100,6 +105,239 @@ ship "Strong Wind"
 	explode "large explosion" 20
 	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
 
+ship "Deep River"
+	sprite "ship/deep river"
+	attributes
+		category "Heavy Freighter"
+		"cost" 18300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 750
+		"drag" 9.4
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 760
+		"outfit space" 405
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+	outfits
+		"Thunderhead Launcher" 6
+		"Thunderhead Missile" 240
+		
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"S-970 Regenerator"
+		
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		
+	engine 53 345
+	engine 0 345
+	engine -53 345
+	gun -56 -217
+	gun -40 -217
+	gun -18 -217
+	gun 18 -217
+	gun 40 -217
+	gun 56 -217
+	explode "small explosion" 80
+	explode "medium explosion" 60
+	explode "large explosion" 30
+	explode "huge explosion" 20
+	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
+
+ship "Deep River" "Deep River 0"
+	sprite "ship/deep river 0"
+	attributes
+		category "Heavy Freighter"
+		"cost" 8300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 350
+		"drag" 7.4
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 0
+		"outfit space" 405
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 1"
+	sprite "ship/deep river 1"
+	attributes
+		category "Heavy Freighter"
+		"cost" 10300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 430
+		"drag" 7.8
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 152
+		"outfit space" 405
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 2"
+	sprite "ship/deep river 2"
+	attributes
+		category "Heavy Freighter"
+		"cost" 12300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 510
+		"drag" 8.2
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 304
+		"outfit space" 405
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 3"
+	sprite "ship/deep river 3"
+	attributes
+		category "Heavy Freighter"
+		"cost" 14300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 590
+		"drag" 8.6
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 456
+		"outfit space" 405
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 4"
+	sprite "ship/deep river 4"
+	attributes
+		category "Heavy Freighter"
+		"cost" 16300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 670
+		"drag" 9.0
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 608
+		"outfit space" 405
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+
+phrase "wanderer"
+	word
+		"Iyik'"
+		"Ai'"
+		"Yek'"
+		"K'ch'"
+		"Rei'"
+		"Vek'"
+		"Sa'"
+		"Ik'k'"
+		"Kach'"
+		"Vori'"
+		"Vek'"
+		"Sach'"
+		"Kri'"
+	word
+		"cach"
+		"sek"
+		"esei"
+		"ai"
+		"key"
+		"ik"
+		"kur"
+		"ar"
+		"cha"
+		"rek"
+		"rai"
+		"sek"
+
+
+fleet "Wanderer Freight"
+	government "Wanderer"
+	names "wanderer"
+	cargo 3
+	personality
+		timid
+	variant
+		"Deep River 0"
+	variant
+		"Deep River 1"
+	variant
+		"Deep River 2"
+	variant
+		"Deep River 3"
+	variant
+		"Deep River 4"
+	variant
+		"Deep River"
+	variant
+		"Deep River 0"
+		"Summer Leaf" 2
+	variant
+		"Deep River 1"
+		"Summer Leaf" 1
+	variant
+		"Deep River 2"
+		"Summer Leaf" 2
+	variant
+		"Deep River 3"
+		"Summer Leaf" 1
+	variant
+		"Deep River 4"
+		"Summer Leaf" 2
+	variant
+		"Deep River"
+		"Summer Leaf" 3
+
+
 outfit "Sunbeam"
 	category "Guns"
 	cost 2350000
@@ -184,6 +422,7 @@ outfit "Thunderhead"
 		"hull damage" 60
 		"hit force" 20
 		"missile strength" 3
+
 
 effect "sunbeam impact"
 	sprite "effect/sunbeam impact"
