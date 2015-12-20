@@ -42,10 +42,10 @@ ship "Summer Leaf"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -23 80
-	engine 23 80
-	gun -36 -13
-	gun 36 -13
+	engine -18 64
+	engine 18 64
+	gun -29 -9
+	gun 29 -9
 	explode "tiny explosion" 40
 	explode "small explosion" 20
 	explode "medium explosion" 10
