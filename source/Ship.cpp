@@ -659,15 +659,19 @@ bool Ship::Move(list<Effect> &effects)
 		
 		// Hull repair.
 		double oldHull = hull;
-		hull = min(hull + attributes.Get("hull repair rate"), maxHull);
-		static const double HULL_EXCHANGE_RATE = 1.;
+		double hullGeneration = attributes.Get("hull repair rate");
+		hull = min(hull + hullGeneration, maxHull);
+		static const double HULL_EXCHANGE_RATE = 1. +
+			(hullGeneration ? attributes.Get("hull energy") / hullGeneration : 0.);
 		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
 		
 		// Recharge shields, but only up to the max. If there is extra shield
 		// energy, use it to recharge fighters and drones.
-		shields += attributes.Get("shield generation");
-		static const double SHIELD_EXCHANGE_RATE = 1.;
-		energy -= SHIELD_EXCHANGE_RATE * attributes.Get("shield generation");
+		double shieldGeneration = attributes.Get("shield generation");
+		shields += shieldGeneration;
+		double SHIELD_EXCHANGE_RATE = 1. +
+			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
+		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
 		double excessShields = max(0., shields - maxShields);
 		shields -= excessShields;
 		
