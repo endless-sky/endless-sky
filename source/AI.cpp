@@ -554,7 +554,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			
 			// Unless this ship is heroic, it will not chase much stronger ships
 			// unless it has strong allies nearby.
-			if(maxStrength && range > 1000.)
+			if(maxStrength && range > 1000. && !it->IsDisabled())
 			{
 				auto otherStrengthIt = shipStrength.find(it.get());
 				if(otherStrengthIt != shipStrength.end() && otherStrengthIt->second > maxStrength)
