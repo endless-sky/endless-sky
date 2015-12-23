@@ -877,6 +877,7 @@ void Engine::CalculateStep()
 	if(player.Flagship() && player.Flagship()->GetTargetShip())
 		previousTarget = &*player.Flagship()->GetTargetShip();
 	
+	bool showFlagship = false;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -905,6 +906,8 @@ void Engine::CalculateStep()
 			// Draw the flagship separately, on top of everything else.
 			if(ship.get() != flagship)
 				AddSprites(*ship, position, ship->Velocity() - centerVelocity);
+			else
+				showFlagship = true;
 			
 			// Do not show cloaked ships on the radar, except the player's ships.
 			bool isPlayer = ship->GetGovernment()->IsPlayer();
@@ -939,7 +942,7 @@ void Engine::CalculateStep()
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
-	if(flagship)
+	if(flagship && showFlagship)
 	{
 		AddSprites(*flagship, Point(), Point());
 		if(flagship->IsThrusting())
