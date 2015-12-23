@@ -217,6 +217,23 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					}
 			}
 	}
+	shipStrength.clear();
+	for(const auto &it : ships)
+	{
+		const Government *gov = it->GetGovernment();
+		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled())
+			continue;
+		int64_t &strength = shipStrength[it.get()];
+		for(const auto &oit : ships)
+		{
+			const Government *ogov = oit->GetGovernment();
+			if(!ogov || oit->GetSystem() != player.GetSystem() || oit->IsDisabled())
+				continue;
+			
+			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
+				strength += it->Cost();
+		}
+	}		
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -515,6 +532,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
+	// Figure out how strong this ship is.
+	int64_t maxStrength = 0;
+	auto strengthIt = shipStrength.find(&ship);
+	if(!person.IsHeroic() && strengthIt != shipStrength.end())
+		maxStrength = 2 * strengthIt->second;
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
@@ -529,6 +551,15 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			// target if they are nearby.
 			if(it == oldTarget || it == parentTarget)
 				range -= 500.;
+			
+			// Unless this ship is heroic, it will not chase much stronger ships
+			// unless it has strong allies nearby.
+			if(maxStrength && range > 1000.)
+			{
+				auto otherStrengthIt = shipStrength.find(it.get());
+				if(otherStrengthIt != shipStrength.end() && otherStrengthIt->second > maxStrength)
+					continue;
+			}
 			
 			// If your personality it to disable ships rather than destroy them,
 			// never target disabled ships.

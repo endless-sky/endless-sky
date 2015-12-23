@@ -103,6 +103,8 @@ private:
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
 	
+	std::map<const Ship *, int64_t> shipStrength;
+	
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;
 };

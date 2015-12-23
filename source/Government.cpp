@@ -130,6 +130,8 @@ const Color &Government::GetColor() const
 // toward the player.
 double Government::AttitudeToward(const Government *other) const
 {
+	if(!other)
+		return 0.;
 	if(other == this)
 		return 1.;
 	
