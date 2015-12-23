@@ -294,7 +294,7 @@ void MainPanel::ShowHailPanel()
 {
 	// An exploding ship cannot communicate.
 	const Ship *flagship = player.Flagship();
-	if(!flagship || flagship->IsDestroyed())
+	if(!flagship || flagship->IsDestroyed() || flagship->IsEnteringHyperspace())
 		return;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();
