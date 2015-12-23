@@ -1635,7 +1635,10 @@ double Ship::Fuel() const
 
 int Ship::JumpsRemaining() const
 {
-	return fuel / JumpFuel();
+	// Make sure this ship has some sort of hyperdrive, and if so return how
+	// many jumps it can make.
+	double jumpFuel = JumpFuel();
+	return jumpFuel ? fuel / jumpFuel : 0.;
 }
 
 
@@ -1645,7 +1648,9 @@ double Ship::JumpFuel() const
 	int type = HyperspaceType();
 	if(type)
 		return type;
-	return attributes.Get("jump drive") ? 200. : attributes.Get("scram drive") ? 150. : 100.;
+	return attributes.Get("jump drive") ? 200. :
+		attributes.Get("scram drive") ? 150. : 
+		attributes.Get("hyperdrive") ? 100. : 0.;
 }
 
 

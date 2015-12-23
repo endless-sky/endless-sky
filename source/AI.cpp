@@ -426,7 +426,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
-			if(personality.IsStaying())
+			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
@@ -438,7 +438,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
-		else if(parent->Commands().Has(Command::JUMP))
+		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
 			MoveEscort(*it, command);
 		// If the player is ordering escorts to gather, don't go off to fight.
 		else if(isPlayerEscort && moveToMe)
@@ -665,7 +665,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// If this ship is moving independently because it has a target, not because
 	// it has no parent, don't let it make travel plans.
 	if(ship.GetParent() && !ship.GetPersonality().IsStaying())
+	{
+		if(!ship.JumpsRemaining())
+			Refuel(ship, command);
 		return;
+	}
 	
 	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())
 	{
