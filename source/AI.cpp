@@ -1151,10 +1151,11 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 				if(!object.IsStar() && object.Radius() < 130.)
 					targetPlanets.push_back(&object);
 		
-		if(jumpDrive)
+		bool canJump = (ship.JumpsRemaining() != 0);
+		if(jumpDrive && canJump)
 			for(const System *link : ship.GetSystem()->Neighbors())
 				targetSystems.push_back(link);
-		else if(hyperdrive)
+		else if(hyperdrive && canJump)
 			for(const System *link : ship.GetSystem()->Links())
 				targetSystems.push_back(link);
 		
