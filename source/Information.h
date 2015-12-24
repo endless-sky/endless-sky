@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define INFORMATION_H_
 
 #include "Color.h"
+#include "Point.h"
 
 #include <map>
 #include <set>
@@ -27,8 +28,9 @@ class Sprite;
 // of how that information is laid out or shown.
 class Information {
 public:
-	void SetSprite(const std::string &name, const Sprite *sprite);
+	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.));
 	const Sprite *GetSprite(const std::string &name) const;
+	const Point &GetSpriteUnit(const std::string &name) const;
 	
 	void SetString(const std::string &name, const std::string &value);
 	const std::string &GetString(const std::string &name) const;
@@ -46,6 +48,7 @@ public:
 	
 private:
 	std::map<std::string, const Sprite *> sprites;
+	std::map<std::string, Point> spriteUnits;
 	std::map<std::string, std::string> strings;
 	std::map<std::string, double> bars;
 	std::map<std::string, double> barSegments;

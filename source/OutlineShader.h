@@ -13,9 +13,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef OUTLINE_SHADER_H_
 #define OUTLINE_SHADER_H_
 
+#include "Point.h"
+
 class Color;
 class Sprite;
-class Point;
 
 
 
@@ -25,7 +26,7 @@ class OutlineShader {
 public:
 	static void Init();
 	
-	static void Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color);
+	static void Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color, const Point &unit = Point(0., -1.));
 };
 
 

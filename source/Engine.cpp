@@ -411,7 +411,9 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		info.SetSprite("target sprite", target->GetSprite().GetSprite());
+		if(target->GetSystem() == player.GetSystem())
+			targetUnit = target->Facing().Unit();
+		info.SetSprite("target sprite", target->GetSprite().GetSprite(), targetUnit);
 		info.SetString("target name", target->Name());
 		info.SetString("target type", target->ModelName());
 		if(!target->GetGovernment())

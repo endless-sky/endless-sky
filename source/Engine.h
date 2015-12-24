@@ -124,6 +124,7 @@ private:
 	Information info;
 	std::vector<Target> targets;
 	Point targetAngle;
+	Point targetUnit;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<std::pair<const Outfit *, int>> ammo;
