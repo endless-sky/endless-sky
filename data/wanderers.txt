@@ -13,6 +13,38 @@ government "Wanderer"
 	"player reputation" 1
 
 
+ship "Earth Shaper"
+	name "Test Ship"
+	sprite "ship/earth shaper"
+	attributes
+		category "Interceptor"
+		"cost" 500000
+		"hull" 3300
+		"mass" 30
+		"drag" .5
+		"heat dissipation" .9
+		"fuel capacity" 300
+		"outfit space" 49
+		"engine capacity" 26
+		"atmosphere scan" 100
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Small Biochemical Cell"
+		
+		"Type 1 Radiant Thruster"
+		"Type 1 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -9 30
+	engine 9 30
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+	description "The Earth Shaper is a robotic drone that the Wanderers use for mining, terraforming, and surveying."
+
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
 	attributes
@@ -332,6 +364,18 @@ fleet "Wanderer Freight"
 		"Deep River"
 		"Summer Leaf" 3
 
+fleet "Wanderer Drones"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		surveillance
+	variant 4
+		"Earth Shaper"
+	variant 2
+		"Earth Shaper" 2
+	variant
+		"Earth Shaper" 3
+
 
 outfit "Sunbeam"
 	category "Guns"
@@ -464,15 +508,15 @@ outfit "White Sun Reactor"
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
-	"cost" 310000
+	"cost" 250000
 	thumbnail "outfit/unknown"
-	"mass" 18
-	"outfit space" -18
-	"engine capacity" -18
-	"thrust" 9.9
-	"thrusting energy" 0.8
-	"thrusting heat" 1.4
-	"cooling" 2.0
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"thrust" 6.6
+	"thrusting energy" 0.5
+	"thrusting heat" 0.9
+	"cooling" 1.5
 	"flare sprite" "effect/plasma flare/tiny"
 		"frame rate" 12
 	"flare sound" "plasma tiny"
@@ -528,15 +572,15 @@ outfit "Type 4 Radiant Thruster"
 
 outfit "Type 1 Radiant Steering"
 	category "Engines"
-	"cost" 250000
+	"cost" 190000
 	thumbnail "outfit/unknown"
-	"mass" 13
-	"outfit space" -13
-	"engine capacity" -13
-	"turn" 249.6
-	"turning energy" .4
-	"turning heat" 0.8
-	"cooling" 1.2
+	"mass" 9
+	"outfit space" -9
+	"engine capacity" -9
+	"turn" 172.8
+	"turning energy" .3
+	"turning heat" 0.6
+	"cooling" 1.0
 	description "This tiny steering system is used by the Wanderers to power their unpiloted mining and surveying drones."
 
 outfit "Type 2 Radiant Steering"
