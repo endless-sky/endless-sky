@@ -389,7 +389,7 @@ outfit "Sunbeam"
 		sprite "projectile/sunbeam"
 			"frame rate" 1.3
 			"random start frame"
-		sound "electron beam"
+		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
 		"velocity" 540
@@ -422,7 +422,7 @@ outfit "Thunderhead Launcher"
 		sprite "projectile/thunderhead"
 			"no repeat"
 			"frame rate" .1
-		sound "meteor"
+		sound "thunderhead"
 		ammo "Thunderhead Missile"
 		icon "icon/thunderhead"
 		"submunition" "Thunderhead" 5
