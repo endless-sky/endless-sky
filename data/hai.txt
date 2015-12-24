@@ -298,8 +298,8 @@ ship "Water Bug"
 	gun -24 -53 "Hai Tracker Pod"
 	gun 24 -53 "Hai Tracker Pod"
 	turret 0 -10 "Pulse Turret"
-	turret -17 17 "Anti-Missile Turret"
-	turret 17 17 "Anti-Missile Turret"
+	turret -17 17 "Heavy Anti-Missile Turret"
+	turret 17 17 "Heavy Anti-Missile Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
