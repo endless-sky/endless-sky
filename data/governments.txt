@@ -31,7 +31,6 @@ government "Neutral"
 	"player reputation" 1
 	"attitude toward"
 		"Pirate" -.2
-		"Korath" -.2
 	"bribe" .05
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -45,7 +44,6 @@ government "Republic"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Korath" -.3
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
@@ -58,7 +56,6 @@ government "Free Worlds"
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
-		"Korath" -.2
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
 
@@ -70,7 +67,6 @@ government "Militia"
 	"attitude toward"
 		"Merchant" .3
 		"Pirate" -.4
-		"Korath" -.2
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
 
@@ -122,8 +118,6 @@ government "Independent"
 	color .78 .36 .36
 	
 	"player reputation" 10
-	"attitude toward"
-		"Korath" -.1
 	"bribe" .05
 	"fine" 0
 	"friendly hail" "friendly civilian"
@@ -153,7 +147,6 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Korath" -.3
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
