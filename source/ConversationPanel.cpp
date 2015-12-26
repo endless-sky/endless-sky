@@ -182,7 +182,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		if(key >= ' ' && key <= '~')
-			name += ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
+			name += ((mod & (KMOD_SHIFT | KMOD_CAPS)) ? SHIFT[key] : key);
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && name.size())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || (key == SDLK_RETURN && otherName.empty()))
