@@ -1711,7 +1711,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		command |= Command::SCAN;
 	
 	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()
-		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD);
+		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
 	if(hasGuns)
 		command |= AutoFire(ship, ships, false);
 	hasGuns |= keyHeld.Has(Command::PRIMARY);
