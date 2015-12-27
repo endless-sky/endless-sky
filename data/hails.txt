@@ -521,6 +521,7 @@ phrase "friendly militia"
 		"illegal "
 		"criminal "
 		"unlawful "
+		"abnormal "
 	word
 		"vessels."
 		"behavior."
@@ -538,10 +539,11 @@ phrase "friendly syndicate"
 		
 phrase "friendly syndicate"
 	word
-	"The Syndicate"
+		"The Syndicate"
 	word
 		" Bulk Freighter: "
 		" Freighter: "
+		" Star Barge"
 	word
 		"backbone"
 		"motor"
@@ -580,9 +582,11 @@ phrase "friendly syndicate"
 	word
 		" choose"
 		" shop"
+		" go for"
+		" buy at"
 
 	word
-		" Syndicated Shipyards", the gold standard for reliability."
+		" Syndicated Shipyards"
 		" Syndicated Systems"
 	word
 		"."
@@ -611,6 +615,7 @@ phrase "friendly syndicate"
 		"! If you're looking for affordable radioisotopes, you've come to the right place!"
 		"! Apply to become a Syndicated captain today!"
 		"! We welcome any and all applications to join the Syndicated Systems team!"
+		"!"
 
 phrase "friendly syndicate"
 	word
@@ -633,6 +638,8 @@ phrase "friendly syndicate"
 		"shipyards"
 		"affordable outfits"
 		"user-friendly products"
+		"ethics"
+		"offers"
 	word
 		" are the best!"
 		" are unmatched!"
@@ -667,6 +674,7 @@ phrase "friendly free worlds"
 		"courage"
 	word
 		" there can be no "
+		" you cannot have "
 	word
 		"peace!"
 		"freedom!"
@@ -733,18 +741,24 @@ phrase "friendly pug"
 		"work for "
 		"bring about "
 	word
-		"peace."
-		"healing."
-		"justice."
-		"freedom."
-		"an end of conflict."
-		"an end to violence."
-		"an end to warfare."
-		"prosperity."
-		"reconciliation."
-		"friendship."
-		"unity."
-		"the end of violence."
+		"peace"
+		"healing"
+		"justic "
+		"freedom"
+		"an end of conflict"
+		"an end to violence"
+		"an end to warfare"
+		"prosperity"
+		"reconciliation"
+		"friendship"
+		"unity"
+		"the end of violence"
+	word
+		" in the "
+		" through-out the "
+	word
+		"galaxy."
+		"universe."
 
 
 
@@ -760,6 +774,7 @@ phrase "hostile disabled"
 		"I can't believe I'm at the mercy of such a "
 		"You'd better not cross me, you "
 		"My friends will avenge me, you "
+		"Stay away from me, you "
 	word
 		"artless"
 		"bawdy"
@@ -919,7 +934,7 @@ phrase "hostile disabled"
 		"vassal"
 		"whey-face"
 		"wagtail"
-	word"
+	word
 		"."
 		"!"
 
