@@ -625,7 +625,7 @@ outfit "Type 4 Radiant Steering"
 outfit "Bright Cloud Shielding"
 	category "Systems"
 	cost 220000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/bright cloud"
 	"mass" 19
 	"outfit space" -19
 	"shield generation" 1.2
@@ -635,7 +635,7 @@ outfit "Bright Cloud Shielding"
 outfit "Dark Storm Shielding"
 	category "Systems"
 	cost 800000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/dark storm"
 	"mass" 41
 	"outfit space" -41
 	"shield generation" 2.8
