@@ -162,7 +162,7 @@ phrase "friendly civilian"
 		"Just made a big delivery of "
 	word
 		"limburger cheese"
-		"blue cheese"
+		"bleu cheese"
 		"livestock"
 		"cattle"
 		"sheep"
