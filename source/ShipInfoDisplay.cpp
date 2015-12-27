@@ -216,7 +216,7 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *syst
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 {
-	bool isGeneric = ship.Name().empty();
+	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 	
 	attributeLabels.clear();
 	attributeValues.clear();
@@ -282,7 +282,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 	
-	double fullMass = emptyMass + attributes.Get("cargo space");
+	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
 	isGeneric &= (fullMass != emptyMass);
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
