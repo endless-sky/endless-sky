@@ -1288,7 +1288,7 @@ phrase "hostile pug"
 		"fault."
 		"misdeed."
 		
-phrase "hostile Syndicate"
+phrase "hostile syndicate"
 	word
 		"We defend the Syndicate"
 	word 
