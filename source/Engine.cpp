@@ -907,7 +907,15 @@ void Engine::CalculateStep()
 			Point position = ship->Position() - center;
 			// Draw the flagship separately, on top of everything else.
 			if(ship.get() != flagship)
+			{
 				AddSprites(*ship, position, ship->Velocity() - centerVelocity);
+				if(ship->IsThrusting())
+				{
+					for(const auto &it : ship->Attributes().FlareSounds())
+						if(it.second > 0)
+							Audio::Play(it.first, ship->Position());
+				}
+			}
 			else
 				showFlagship = true;
 			
