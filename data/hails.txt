@@ -399,7 +399,7 @@ phrase "friendly civilian"
 		" a couple of "
 		" a number of "
 	word
-		" "
+		""
 		"quite "
 		"very "
 		"relatively "
@@ -543,7 +543,7 @@ phrase "friendly syndicate"
 	word
 		" Bulk Freighter: "
 		" Freighter: "
-		" Star Barge"
+		" Star Barge: "
 	word
 		"backbone"
 		"motor"
@@ -754,11 +754,10 @@ phrase "friendly pug"
 		"unity"
 		"the end of violence"
 	word
-		" in the "
-		" through-out the "
-	word
-		"galaxy."
-		"universe."
+		"."
+		" in the galaxy."
+		" through-out the universe."
+		" among all sentient beings."
 
 
 
@@ -825,8 +824,7 @@ phrase "hostile disabled"
 		"warped"
 		"wayward"
 		"weedy"
-		"yeasty
-		""
+		"yeasty"
 	word
 		" "
 	word
@@ -880,7 +878,6 @@ phrase "hostile disabled"
 		"toad-spotted"
 		"unchin-snouted"
 		"weather-bitten"
-		""
 	word
 		" "
 	word
@@ -1011,7 +1008,7 @@ phrase "hostile navy"
 		"You will not "
 		"It is impossible to "
 		"No one can "
-		"You cannot"
+		"You cannot "
 	word
 		"prevail against "
 		"overcome "
