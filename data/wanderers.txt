@@ -14,7 +14,6 @@ government "Wanderer"
 
 
 ship "Earth Shaper"
-	name "Test Ship"
 	sprite "ship/earth shaper"
 	attributes
 		category "Interceptor"
@@ -465,7 +464,7 @@ outfit "Thunderhead"
 outfit "Small Biochemical Cell"
 	category "Power"
 	cost 60000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small biochemical"
 	"mass" 17
 	"outfit space" -17
 	"energy generation" 1.3
@@ -476,7 +475,7 @@ outfit "Small Biochemical Cell"
 outfit "Large Biochemical Cell"
 	category "Power"
 	cost 270000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large biochemical"
 	"mass" 63
 	"outfit space" -63
 	"energy generation" 5.2
