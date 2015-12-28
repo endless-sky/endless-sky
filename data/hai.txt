@@ -202,7 +202,7 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
 		"Fission Reactor"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"S-270 Regenerator"
 		"Cooling Ducts"
 		"A370 Atomic Thruster"
