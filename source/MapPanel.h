@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 #include <string>
 
+class Angle;
 class Government;
 class Mission;
 class Planet;
@@ -109,6 +110,7 @@ private:
 	void DrawSystems() const;
 	void DrawNames() const;
 	void DrawMissions() const;
+	void DrawPointer(const System *system, Angle &angle, const Color &color) const;
 };
 
 

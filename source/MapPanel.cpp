@@ -114,43 +114,6 @@ void MapPanel::Draw() const
 
 
 
-void MapPanel::ZoomMap()
-{
-	if(zoom < maxZoom)
-		zoom++;
-}
-
-
-
-void MapPanel::UnzoomMap()
-{
-	if(zoom > -maxZoom)
-		zoom--;
-}
-
-
-
-double MapPanel::Zoom() const
-{
-	return pow(1.5, zoom);
-}
-
-
-
-bool MapPanel::ZoomIsMax() const
-{
-	return (zoom == maxZoom);
-}
-
-
-
-bool MapPanel::ZoomIsMin() const
-{
-	return (zoom == -maxZoom);
-}
-
-
-
 bool MapPanel::Click(int x, int y)
 {
 	// Figure out if a system was clicked on.
@@ -323,6 +286,56 @@ const Planet *MapPanel::Find(const string &name)
 			return &it.second;
 		}
 	return nullptr;
+}
+
+
+
+void MapPanel::ZoomMap()
+{
+	if(zoom < maxZoom)
+		zoom++;
+}
+
+
+
+void MapPanel::UnzoomMap()
+{
+	if(zoom > -maxZoom)
+		zoom--;
+}
+
+
+
+double MapPanel::Zoom() const
+{
+	return pow(1.5, zoom);
+}
+
+
+
+bool MapPanel::ZoomIsMax() const
+{
+	return (zoom == maxZoom);
+}
+
+
+
+bool MapPanel::ZoomIsMin() const
+{
+	return (zoom == -maxZoom);
+}
+
+
+
+// Check whether the NPC and waypoint conditions of the given mission have
+// been satisfied.
+bool MapPanel::IsSatisfied(const Mission &mission) const
+{
+	for(const NPC &npc : mission.NPCs())
+		if(!npc.HasSucceeded(player.GetSystem()))
+			return false;
+	
+	return mission.Waypoints().empty() && mission.Stopovers().empty();
 }
 
 
@@ -646,11 +659,7 @@ void MapPanel::DrawMissions() const
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		Angle a = (angle[system] += Angle(30.));
-		Point pos = Zoom() * (system->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
-			mission.HasSpace(player) ? availableColor : unavailableColor);
+		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
 	}
 	++step;
 	for(const Mission &mission : player.Missions())
@@ -659,8 +668,6 @@ void MapPanel::DrawMissions() const
 			continue;
 		
 		const System *system = mission.Destination()->GetSystem();
-		Angle a = (angle[system] += Angle(30.));
-		
 		bool blink = false;
 		if(mission.Deadline())
 		{
@@ -668,22 +675,17 @@ void MapPanel::DrawMissions() const
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
-		Point pos = Zoom() * (system->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		if(!blink)
-			PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
-				IsSatisfied(mission) ? currentColor : blockedColor);
+		DrawPointer(system, angle[system],
+			blink ? black : IsSatisfied(mission) ? currentColor : blockedColor);
 		
 		for(const System *waypoint : mission.Waypoints())
-		{
-			Angle a = (angle[waypoint] += Angle(30.));
-			Point pos = Zoom() * (waypoint->Position() + center);
-			PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-			PointerShader::Draw(pos, a.Unit(), 8., 15., -6., waypointColor);
-		}
+			DrawPointer(waypoint, angle[waypoint], waypointColor);
+		for(const Planet *stopover : mission.Stopovers())
+			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
 	}
 	if(specialSystem)
 	{
+		// The special system pointer is larger than the others.
 		Angle a = (angle[specialSystem] += Angle(30.));
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
@@ -693,13 +695,12 @@ void MapPanel::DrawMissions() const
 
 
 
-// Check whether the NPC and waypoint conditions of the given mission have
-// been satisfied.
-bool MapPanel::IsSatisfied(const Mission &mission) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color) const
 {
-	for(const NPC &npc : mission.NPCs())
-		if(!npc.HasSucceeded(player.GetSystem()))
-			return false;
+	static const Color black(0., 1.);
 	
-	return mission.Waypoints().empty();
+	angle += Angle(30.);
+	Point pos = Zoom() * (system->Position() + center);
+	PointerShader::Draw(pos, angle.Unit(), 14., 19., -4., black);
+	PointerShader::Draw(pos, angle.Unit(), 8., 15., -6., color);
 }

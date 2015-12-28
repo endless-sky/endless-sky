@@ -156,19 +156,9 @@ void MissionPanel::Draw() const
 	const Color &currentColor = *colors.Get("active back");
 	const Color &blockedColor = *colors.Get("blocked back");
 	if(availableIt != available.end() && availableIt->Destination())
-	{
-		Point pos = Zoom() * (availableIt->Destination()->GetSystem()->Position() + center);
-		DotShader::Draw(pos, 22., 20.5, CanAccept() ? availableColor : unavailableColor);
-	}
+		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
-	{
-		bool isBlocked = !acceptedIt->Waypoints().empty();
-		for(const NPC &npc : acceptedIt->NPCs())
-			isBlocked |= !npc.HasSucceeded(player.GetSystem());
-		
-		Point pos = Zoom() * (acceptedIt->Destination()->GetSystem()->Position() + center);
-		DotShader::Draw(pos, 22., 20.5, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
-	}
+		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	
 	// Draw the buttons to switch to other map modes.
 	Information info;
@@ -539,6 +529,20 @@ void MissionPanel::DrawSelectedSystem() const
 	const Font &font = FontSet::Get(14);
 	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
 	font.Draw(text, pos, *GameData::Colors().Get("bright"));
+}
+
+
+
+void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
+{
+	const Color &waypointColor = *GameData::Colors().Get("waypoint back");
+	
+	Point pos = Zoom() * (mission.Destination()->GetSystem()->Position() + center);
+	DotShader::Draw(pos, 22., 20.5, color);
+	for(const System *system : mission.Waypoints())
+		DotShader::Draw(Zoom() * (system->Position() + center), 22., 20.5, waypointColor);
+	for(const Planet *planet : mission.Stopovers())
+		DotShader::Draw(Zoom() * (planet->GetSystem()->Position() + center), 22., 20.5, waypointColor);
 }
 
 

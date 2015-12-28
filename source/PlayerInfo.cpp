@@ -763,8 +763,11 @@ void PlayerInfo::Land(UI *ui)
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
-		const Mission &mission = *mit;
+		Mission &mission = *mit;
 		++mit;
+		
+		// If this is a stopover for the mission, perform the stopover action.
+		mission.Do(Mission::STOPOVER, *this, ui);
 		
 		if(mission.HasFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -1252,7 +1255,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 			
-			mission.Do(trigger, *this, ui);
+			it->Do(trigger, *this, ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);

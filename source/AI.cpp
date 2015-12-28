@@ -1500,11 +1500,18 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			ship.SetTargetSystem(system);
 		// Check if there's a particular planet there we want to visit.
 		for(const Mission &mission : player.Missions())
+		{
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
 			{
 				ship.SetDestination(mission.Destination());
 				break;
 			}
+			// Also prefer landing on stopovers if there are no missions with
+			// a planet in this system as their final destination.
+			for(const Planet *planet : mission.Stopovers())
+				if(planet->GetSystem() == system)
+					ship.SetDestination(planet);
+		}
 	}
 	
 	if(keyDown.Has(Command::NEAREST))

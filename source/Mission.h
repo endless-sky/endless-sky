@@ -68,6 +68,7 @@ public:
 	// Information about what you are doing.
 	const Planet *Destination() const;
 	std::set<const System *> Waypoints() const;
+	std::set<const Planet *> Stopovers() const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int IllegalCargoFine() const;
@@ -111,8 +112,8 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for any UI panel that returns a value. If it is not
 	// possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT};
-	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr) const;
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, DEFER, VISIT, STOPOVER};
+	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr);
 	
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
@@ -129,6 +130,10 @@ public:
 	// "Instantiate" a mission by replacing randomly selected values and places
 	// with a single choice, and then replacing any wildcard text as well.
 	Mission Instantiate(const PlayerInfo &player) const;
+	
+	
+private:
+	const Planet *PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const;
 	
 	
 private:
@@ -173,6 +178,8 @@ private:
 	// Systems that must be visited:
 	std::set<const System *> waypoints;
 	std::map<const System *, MissionAction> onEnter;
+	std::set<const Planet *> stopovers;
+	std::list<LocationFilter> stopoverFilters;
 	
 	// NPCs:
 	std::list<NPC> npcs;

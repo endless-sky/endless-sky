@@ -27,6 +27,7 @@ color "active back" 0. .4 .5 .5
 color "blocked mission" 0. .5 .5 1.
 color "blocked back" 0. .2 .2 .5
 color "waypoint" .1 .2 .9 1.
+color "waypoint back" 0. .3 .7 .5
 
 interface "main menu"
 	sprite "_menu/compass" 0 0
