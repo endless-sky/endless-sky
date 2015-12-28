@@ -24,7 +24,7 @@ ship "Earth Shaper"
 		"drag" .5
 		"heat dissipation" .9
 		"fuel capacity" 300
-		"outfit space" 49
+		"outfit space" 59
 		"engine capacity" 26
 		"atmosphere scan" 100
 		weapon

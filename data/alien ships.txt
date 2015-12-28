@@ -114,7 +114,7 @@ ship "Korath Raider"
 		"cargo space" 143
 		"outfit space" 721
 		"weapon capacity" 284
-		"engine capacity" 155
+		"engine capacity" 159
 		weapon
 			"blast radius" 500
 			"shield damage" 2000
@@ -194,9 +194,9 @@ ship "Korath World-Ship"
 		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 734
-		"outfit space" 721
-		"weapon capacity" 284
-		"engine capacity" 155
+		"outfit space" 728
+		"weapon capacity" 314
+		"engine capacity" 165
 		weapon
 			"blast radius" 800
 			"shield damage" 8000
