@@ -1573,3 +1573,31 @@ mission "Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Provide security for pleasure cruise"
+	name "Provide security for pleasure cruise"
+	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
+	job
+	repeat
+	cargo "Luxury Goods" 10 20
+	to offer
+		random < 60
+		"combat rating" > 15
+	source
+		attributes paradise "near earth" rich
+	stopover
+		attributes tourism religious quarg pirate volcanic frontier moon fishing
+	destination
+		attributes paradise "near earth" rich core
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	on stopover
+		dialog "The passengers of the <npc> wander off, bedecked in the most conspicuous tourist attire they seem to have been able to find, and begin oohing and aahing at the exoticism of this faraway world. Hopefully none of them gets robbed. You prepare for the return journey to <destination>."
+	on complete
+		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
+		payment 130000 500
