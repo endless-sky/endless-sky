@@ -298,6 +298,26 @@ Command &Command::operator|=(const Command &command)
 
 
 
+// Get the commands that are set in both of these commands.
+Command Command::operator&(const Command &command) const
+{
+	Command result = *this;
+	result &= command;
+	return result;
+}
+
+
+
+Command &Command::operator&=(const Command &command)
+{
+	state &= command.state;
+	if(turn && command.turn)
+		turn = command.turn;
+	return *this;
+}
+
+
+
 Command::Command(uint64_t state)
 	: state(state)
 {

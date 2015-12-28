@@ -95,6 +95,9 @@ public:
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
 	
+	// Get the commands that are set in both of these commands.
+	Command operator&(const Command &command) const;
+	Command &operator&=(const Command &command);
 	
 private:
 	Command(uint64_t state);
