@@ -1311,7 +1311,7 @@ Point AI::TargetAim(const Ship &ship)
 		p += steps * v;
 		
 		double damage = outfit->ShieldDamage() + outfit->HullDamage();
-		result += p.Unit() * damage;
+		result += p.Unit() * abs(damage);
 	}
 	
 	if(!result)
