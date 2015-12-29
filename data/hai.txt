@@ -576,12 +576,12 @@ phrase "friendly hai"
 		"among us"
 		"in our space"
 	word
-		", you"
-		", one"
-	word 
-		" needs to "
-		" must "
-		" has to "
+		", you need to "
+		", you must "
+		", you have to "
+		", one needs to "
+		", one must "
+		", one has to "
 	word
 		"promote"
 		"bring"
