@@ -227,7 +227,6 @@ phrase "friendly civilian"
 		"if you're "
 		"if you ever find yourself "
 		"when you're "
-		"as you're "
 	word
 		"flying through "
 		"visiting "
