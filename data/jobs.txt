@@ -1141,10 +1141,11 @@ mission "Transport workers to <planet>"
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [0]"
-	name "Bring a tourist to <planet>"
+	name "Bring a tourist to <planet> by <date>."
 	job
 	repeat
-	description "This tourist wants to see <destination>, and will pay you <payment>."
+	deadline 2 2
+	description "This tourist wants to see <destination>, and will pay you <payment>. He expects to be there by <day>."
 	passengers 1
 	to offer
 		random < 20
@@ -1160,10 +1161,11 @@ mission "Tourists out [0]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
-	name "Bring tourists to <planet>"
+	name "Bring tourists to <planet> by <date>."
 	job
 	repeat
-	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
+	deadline 2 2
+	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>. They expects to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -1179,10 +1181,11 @@ mission "Tourists out [1]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [2]"
-	name "Bring tourists to <planet>"
+	name "Bring tourists to <planet> by <date>."
 	job
 	repeat
-	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
+	deadline 2 2
+	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>. They expects to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 75
@@ -1199,10 +1202,11 @@ mission "Tourists out [2]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [0]"
-	name "Bring a tourist home to <planet>"
+	name "Bring a tourist home to <planet> by <date>."
 	job
 	repeat
-	description "This tourist is headed home to <destination>, and will pay you <payment>."
+	deadline 2 2
+	description "This tourist is headed home to <destination>, and will pay you <payment>. He expects to be there by <day>."
 	passengers 1
 	to offer
 		random < 20
@@ -1218,10 +1222,11 @@ mission "Tourists back [0]"
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
-	name "Bring tourists home to <planet>"
+	name "Bring tourists home to <planet> by <date>."
 	job
 	repeat
-	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
+	deadline 2 2
+	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>. They expect to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -1240,7 +1245,8 @@ mission "Tourists back [2]"
 	name "Bring tourists home to <planet>"
 	job
 	repeat
-	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
+	deadline 2 2
+	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>. They expect to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 75
