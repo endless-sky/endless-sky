@@ -482,6 +482,7 @@ phrase "friendly navy"
 	word
 		" the biggest "
 		" the largest "
+		" the greatest "
 	word
 		"humanitarian "
 		"peacekeeping "
@@ -522,6 +523,7 @@ phrase "friendly militia"
 		"criminal "
 		"unlawful "
 		"abnormal "
+		"irregular "
 	word
 		"vessels."
 		"behavior."
@@ -534,8 +536,8 @@ phrase "friendly syndicate"
 		"Smart captains know cargo space is key. Smart captains choose the Syndicate "
 	word
 		"Star Barge."
-		"Bulk Freighter"
-		"Freighter"
+		"Bulk Freighter."
+		"Freighter."
 		
 phrase "friendly syndicate"
 	word
@@ -552,6 +554,7 @@ phrase "friendly syndicate"
 		"engine"
 	word
 		"of the galactic economy."
+		"of galactic trade."
 		
 		
 phrase "friendly syndicate"	
@@ -575,6 +578,7 @@ phrase "friendly syndicate"
 		"Intelligent"
 		"Wise"
 		"Bright"
+		"Intuitive"
 	word
 		" captains"
 		" ship captains"
