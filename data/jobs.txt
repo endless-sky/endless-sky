@@ -29,6 +29,8 @@ mission "Escort (Tiny, Northern)"
 	npc
 		personality nemesis waiting
 		government Pirate
+		system
+			distance 1 3
 		fleet
 			names "pirate"
 			variant
@@ -60,6 +62,8 @@ mission "Escort (Small, Northern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
@@ -71,7 +75,7 @@ mission "Escort (Small, Northern)"
 			variant
 				"Freighter"
 	on complete
-		payment 60000
+		payment 40000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -93,10 +97,14 @@ mission "Escort (Medium, Northern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
@@ -108,7 +116,7 @@ mission "Escort (Medium, Northern)"
 			variant
 				"Freighter"
 	on complete
-		payment 90000
+		payment 70000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -130,6 +138,8 @@ mission "Escort (Large, Northern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Northern Pirates"
@@ -141,7 +151,7 @@ mission "Escort (Large, Northern)"
 			variant
 				"Behemoth"
 	on complete
-		payment 120000
+		payment 100000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -163,10 +173,14 @@ mission "Escort (Extra Large, Northern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
@@ -178,7 +192,7 @@ mission "Escort (Extra Large, Northern)"
 			variant
 				"Behemoth"
 	on complete
-		payment 150000
+		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -204,6 +218,8 @@ mission "Escort (Tiny, Core)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 2 3
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet
@@ -237,6 +253,8 @@ mission "Escort (Small, Core)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
@@ -248,7 +266,7 @@ mission "Escort (Small, Core)"
 			variant
 				"Freighter"
 	on complete
-		payment 60000
+		payment 40000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -270,10 +288,14 @@ mission "Escort (Medium, Core)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
@@ -285,7 +307,7 @@ mission "Escort (Medium, Core)"
 			variant
 				"Freighter"
 	on complete
-		payment 90000
+		payment 70000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -307,6 +329,8 @@ mission "Escort (Large, Core)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Core Pirates"
@@ -318,7 +342,7 @@ mission "Escort (Large, Core)"
 			variant
 				"Bulk Freighter"
 	on complete
-		payment 120000
+		payment 100000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -340,10 +364,14 @@ mission "Escort (Extra Large, Core)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Core Pirates"
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
@@ -355,7 +383,7 @@ mission "Escort (Extra Large, Core)"
 			variant
 				"Bulk Freighter"
 	on complete
-		payment 150000
+		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -381,6 +409,8 @@ mission "Escort (Tiny, Southern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 2 3
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet
@@ -414,6 +444,8 @@ mission "Escort (Small, Southern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
@@ -425,7 +457,7 @@ mission "Escort (Small, Southern)"
 			variant
 				"Freighter"
 	on complete
-		payment 60000
+		payment 40000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -447,6 +479,8 @@ mission "Escort (Medium, Southern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
@@ -462,7 +496,7 @@ mission "Escort (Medium, Southern)"
 			variant
 				"Freighter"
 	on complete
-		payment 90000
+		payment 70000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -484,6 +518,8 @@ mission "Escort (Large, Southern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Southern Pirates"
@@ -495,7 +531,7 @@ mission "Escort (Large, Southern)"
 			variant
 				"Bulk Freighter"
 	on complete
-		payment 120000
+		payment 100000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
@@ -517,10 +553,14 @@ mission "Escort (Extra Large, Southern)"
 		government Republic "Free Worlds" Syndicate Neutral
 		distance 3 4
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Southern Pirates"
 	npc
+		system
+			distance 1 3
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
@@ -532,7 +572,7 @@ mission "Escort (Extra Large, Southern)"
 			variant
 				"Behemoth"
 	on complete
-		payment 150000
+		payment 120000
 		dialog "The captain of the <npc> thanks you for escorting them safely, and pays you <payment>."
 	
 	on visit
