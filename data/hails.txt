@@ -1287,3 +1287,33 @@ phrase "hostile pug"
 		"misstep."
 		"fault."
 		"misdeed."
+		
+phrase "hostile syndicate"
+	word
+		"We defend the Syndicate"
+	word 
+		"'s best interests"
+		"'s values"
+		"'s goals"
+		"'s purpose"
+		"'s employees"
+		"'s organizations"
+		"'s members"
+		""
+	word
+		" from "
+	word
+		"brutes"
+		"bullies"
+		"beasts"
+		"barbarians"
+		"savages"
+		"criminals"
+	word
+		" like you!"
+
+phrase "hostile Syndicate"		
+	word
+		"You are attacking the Syndicate, we must defend it."
+		"You have made a bad commecial move."
+
