@@ -1246,6 +1246,108 @@ phrase "hostile quarg"
 		"You have only a short time to learn to live together in peace."
 		"You must live in peace... or leave the galaxy."
 
+
+phrase "hostile bounty hunter"
+	word
+		"You're going to make"
+	word
+		" me rich!"
+		" me filthy rich!"
+		" me a rich man!"
+		" me a rich woman!"
+		" me a lot of money!"
+		" me comfortable retirement!"
+		" my bank account happy!"
+		" for a nice bit of target practice!
+
+phrase "hostile bounty hunter"
+	word
+		"I'm getting paid"
+		"I'm being paid"
+		"They paid me"
+		"My client paid me"
+	word
+		" handsomely"
+		" a lot of money"
+		" a huge amount of money"
+		" an enormous sum"
+		" an enormous sum of money"
+		" quite a bit"
+		" quite a bit of money"
+	word
+		" to"
+	word
+		" kill you"
+		" take you out"
+		" eliminate you"
+		" vaporize you"
+		" turn you into space debris"
+		" terminate you"
+		" destroy you"
+		" end your life"
+		" get rid of you"
+		" make you disappear"
+		" make you go away"
+	word
+		"."
+		"!"
+
+phrase "hostile bounty hunter"
+	word
+		"I have you now"
+		"You're mine"
+		"You will be destroyed"
+	word
+		","
+		", you"
+		"! Die,"
+		"! Prepare to die,"
+	word
+		" scum!"
+		" worm!"
+		" maggot!"
+		" filth!"
+		" miscreant!"
+		" fool!"
+		" poor fool!"
+		" unlucky sap!"
+
+phrase "hostile bounty hunter"
+	word
+		"Quarry"
+		"Prey"
+		"Target"
+		"Target ship"
+		"Bounty"
+	word
+		" sighted"
+		" found"
+		" located"
+		" in my sights"
+	word
+		". "
+		"; "
+		"! "
+	word
+		"Closing in for the kill"
+		"Going the distance"
+		"Terminating now"
+		"Beginning attack run"
+		"Disengaging weapon safeties"
+		"Arming weapons"
+		"Locking weapons"
+		"Loading weapons"
+		"Charging weapons"
+		"Powering weapons"
+		"Bringing cannons on-line"
+		"Getting a lock"
+		"Acquiring target lock"
+		"Accelerating to full speed"
+		"Confirming permission to open fire"
+	word
+		"."
+		"!"
+
 phrase "hostile pug"
 	word
 		"You "
