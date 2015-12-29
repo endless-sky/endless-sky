@@ -696,7 +696,7 @@ phrase "hostile unfettered"
 		"frail"
 		"pathetic"
 	word
-		", we are the "
+		"; we are the "
 		"! We are the "
 	word
 		"true"
