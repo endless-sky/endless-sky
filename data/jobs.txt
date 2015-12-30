@@ -1588,9 +1588,9 @@ mission "Wealthy Executive Short [0]"
 	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will not have time to stop to refuel."
 	to offer
 		random < 10
-		has "ships: luxury transport"
+		has "ship: Luxury Transport"
 	to fail
-		not "ships: luxury transport"
+		not "ship: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1610,9 +1610,9 @@ mission "Wealthy Executive Short [1]"
 	passengers 2 4 .9
 	to offer
 		random < 5
-		has "ships: luxury transport"
+		has "ship: Luxury Transport"
 	to fail
-		not "ships: luxury transport"
+		not "ship: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1631,9 +1631,9 @@ mission "Wealthy Executive Long [0]"
 	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will only have time to refuel once."
 	to offer
 		random > 90
-		has "ships: luxury transport"
+		has "ship: Luxury Transport"
 	to fail
-		not "ships: luxury transport"
+		not "ship: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1653,9 +1653,9 @@ mission "Wealthy Executive Long [1]"
 	passengers 2 4 .9
 	to offer
 		random > 95
-		has "ships: luxury transport"
+		has "ship: Luxury Transport"
 	to fail
-		not "ships: luxury transport"
+		not "ship: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
