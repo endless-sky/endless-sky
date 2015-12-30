@@ -1697,16 +1697,18 @@ mission "Escort science vessel"
 		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
 		payment 100000
 
-mission "Gather research data"
-	name "Gather research data"
-	description "The <npc> is about to enter this system. Locate it and make detailed scans of its cargo, which are of considerable interest to a team of researchers on <destination>; proceed there for <payment> after retrieving the data."
+mission "Corporate espionage"
+	name "Corporate espionage"
+	description "The <npc> is about to enter this system. Locate it and make detailed scans of its cargo, which are of considerable interest to a team of Syndicate researchers on <destination>; proceed there for <payment> after retrieving the data."
 	job
 	repeat
 	to offer
 		random < 10
+		"reputation: Syndicate" > 100
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
+		government "Syndicate"
 		attributes research
 		distance 7
 	npc "scan cargo"
@@ -1754,9 +1756,9 @@ mission "VIP transport"
 		personality nemesis waiting
 		government "Bounty Hunter"
 		fleet "Bounty Hunters"
-    npc
-        system
-            distance 2 3
-        personality nemesis waiting
-        government "Bounty Hunter"
-        fleet "Bounty Hunters"
+	npc
+		system
+			distance 2 3
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"
