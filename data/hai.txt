@@ -18,7 +18,6 @@ government "Hai"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly hai"
-	"hostile hail" "hostile hai"
 
 government "Hai (Unfettered)"
 	swizzle 4
@@ -31,7 +30,6 @@ government "Hai (Unfettered)"
 		"Pug" -.1
 	"bribe" .02
 	"fine" 0
-	"hostile hail" "hostile unfettered"
 
 fleet "Small Hai"
 	government "Hai"
@@ -566,143 +564,3 @@ phrase "friendly hai"
 		"to coexist with us."
 		"in our space."
 		
-phrase "friendly hai"
-	word
-		"To be welcome "
-	word
-		"in Hai space"
-		"in our territory"
-		"on our worlds"
-		"among us"
-		"in our space"
-	word
-		", you"
-		", one"
-	word 
-		" needs to "
-		" must "
-		" has to "
-	word
-		"promote"
-		"bring"
-		"believe in"
-		"offer"
-		"seek"
-		"value"
-	word
-		"love "
-		"tenderness "
-		"compassion "
-		"friendship "
-		"amity "
-		"good intentions "
-		"friendly intentions "
-		"empathy "
-		
-	word 
-		"and "
-	word 
-		"peace "
-		"an open heart "
-		"peacefulness "
-		"nonviolence "
-		"understanding "
-		"reconciliation "
-		"harmony "
-		"concord "
-		"cooperation "
-		
-phrase "hostile hai"
-	word
-		"You "
-	word 
-		" came to "
-		" entered "
-	word
-		" Hai "
-		" our "
-	word	
-		"space"
-		"territory"
-		"worlds"
-	word
-		" with "
-	word
-		"impure"
-		"unclean"
-		"tainted"
-		"foul"
-		"shameful"
-		"violent"
-		"greedy"
-		"immoral"
-		"belligerent"
-		"brutal"
-		"cruel"
-		"heartless"
-	word 
-		" "
-	word
-		"thoughts"
-		"beliefs"
-		"principles"
-		"intentions"
-		"resolves"
-	word
-		", we "
-	word
-		"must "
-		"have to "
-		"have no choice but to "
-	word
-		"drive you out"
-		"eject you"
-		"exclude you"
-		"remove you"
-	word 
-		" from "
-	word
-		"Hai "
-		"our "
-	word	
-		"space."
-		"territory."
-		"worlds."
-		
-phrase "hostile unfettered"
-	word
-		"Peace"
-		"Peacefulness"
-		"Nonviolence"
-		"Understanding"
-		"Reconciliation"
-		"Harmony"
-		"Concord"
-		"Cooperation"
-		"Love"
-		"Tenderness"
-		"Compassion"
-		"Friendship"
-		"Amity"
-		"Good intentions"
-		"Friendly intentions"
-		"Empathy"
-		"Care"
-		"Kindness"
-	word
-		" is for the "
-	word
-		"fragile"
-		"frail"
-		"pathetic"
-	word
-		", we are the "
-		"! We are the "
-	word
-		"true"
-		"strong"
-		"original"
-		"strong"
-		"unaltered"
-	word
-		" Hai!"
