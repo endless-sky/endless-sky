@@ -10,6 +10,7 @@
 
 government "Wanderer"
 	swizzle 2
+	color .70 .91 .12
 	"player reputation" 1
 
 
