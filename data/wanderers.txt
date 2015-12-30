@@ -16,6 +16,8 @@ government "Wanderer"
 
 ship "Earth Shaper"
 	sprite "ship/earth shaper"
+	licenses
+		Wanderer
 	attributes
 		category "Interceptor"
 		"cost" 500000
@@ -47,6 +49,8 @@ ship "Earth Shaper"
 
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
+	licenses
+		Wanderer
 	attributes
 		category "Light Warship"
 		"cost" 9500000
@@ -88,6 +92,8 @@ ship "Summer Leaf"
 
 ship "Strong Wind"
 	sprite "ship/strong wind"
+	licenses
+		"Wanderer Military"
 	attributes
 		category "Medium Warship"
 		"cost" 16100000
@@ -135,6 +141,8 @@ ship "Strong Wind"
 
 ship "Deep River"
 	sprite "ship/deep river"
+	licenses
+		Wanderer
 	attributes
 		category "Heavy Freighter"
 		"cost" 18300000
@@ -674,3 +682,46 @@ effect "sunbeam impact"
 	"random velocity" 4
 	"velocity scale" -.0001
 
+
+shipyard "Wanderer Basics"
+	"Earth Shaper"
+	"Summer Leaf"
+
+shipyard "Wanderer Advanced"
+	"Earth Shaper"
+	"Summer Leaf"
+	"Strong Wind"
+	"Deep River"
+
+outfitter "Wanderer Basics"
+	"Thunderhead Missile"
+	"Small Biochemical Cell"
+	"Large Biochemical Cell"
+	"Yellow Sun Reactor"
+	"Type 1 Radiant Thruster"
+	"Type 2 Radiant Thruster"
+	"Type 3 Radiant Thruster"
+	"Type 1 Radiant Steering"
+	"Type 2 Radiant Steering"
+	"Type 3 Radiant Steering"
+	"Bright Cloud Shielding"
+
+outfitter "Wanderer Advanced"
+	"Sunbeam"
+	"Thunderhead Missile"
+	"Thunderhead Launcher"
+	"Thunderhead"
+	"Small Biochemical Cell"
+	"Large Biochemical Cell"
+	"Yellow Sun Reactor"
+	"White Sun Reactor"
+	"Type 1 Radiant Thruster"
+	"Type 2 Radiant Thruster"
+	"Type 3 Radiant Thruster"
+	"Type 4 Radiant Thruster"
+	"Type 1 Radiant Steering"
+	"Type 2 Radiant Steering"
+	"Type 3 Radiant Steering"
+	"Type 4 Radiant Steering"
+	"Bright Cloud Shielding"
+	"Dark Storm Shielding"
