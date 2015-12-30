@@ -97,5 +97,33 @@ private:
 
 
 
-#endif
+// Inline accessor functions, for speed:
+inline double &Point::X()
+{
+	return x;
+}
 
+
+
+inline const double &Point::X() const
+{
+	return x;
+}
+
+
+
+inline double &Point::Y()
+{
+	return y;
+}
+
+
+
+inline const double &Point::Y() const
+{
+	return y;
+}
+
+
+
+#endif
