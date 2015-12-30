@@ -81,7 +81,7 @@ phrase "friendly civilian"
 		" blow them out of the sky with a barrage of missiles before they can get anywhere near you!"
 		" buy a light warship that still has decent passenger capacity."
 		" use a multipurpose ship that can carry a lot of cargo, has decent shields, and mounts some heavy weapons."
-		" equip your ship with anti-missile turrets so they can't get you away with missiles, and then you can escape if you can't beat them up close."
+		" equip your ship with anti-missile turrets so they can't get you with missiles, and then you can run away!"
 		" travel with a fleet that includes some interceptors to tie them up while the cargo ships can warp to safety."
 
 phrase "friendly civilian"
