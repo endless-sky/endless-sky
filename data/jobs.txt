@@ -1579,3 +1579,90 @@ mission "Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		
+mission "Wealthy Executive Short [0]"
+	name "Transport a wealthy executive  to <planet>"
+	job
+	repeat
+	deadline 0 1
+	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will not have time to stop to refuel."
+	to offer
+		random < 10
+		has "ships: luxury transport"
+	to fail
+		not "ships: luxury transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 2 4
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 10000 300
+
+mission "Wealthy Executive Short [1]"
+	name "Transport <bunks> wealthy executives  to <planet>"
+	job
+	repeat
+	deadline 0 1
+	description "Bring <bunks> wealthy and important executives to <destination> by <date>. They are in a hurry so you will not have time to stop to refuel."
+	passengers 2 4 .9
+	to offer
+		random < 5
+		has "ships: luxury transport"
+	to fail
+		not "ships: luxury transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 2 4
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 25000 300
+		
+mission "Wealthy Executive Long [0]"
+	name "Transport a wealthy executive to <planet>"
+	job
+	repeat
+	deadline 1 1
+	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will only have time to refuel once."
+	to offer
+		random > 90
+		has "ships: luxury transport"
+	to fail
+		not "ships: luxury transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 5 8
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 30000 300
+
+mission "Wealthy Executive Long [1]"
+	name "Transport <bunks> wealthy executives to <planet>"
+	job
+	repeat
+	deadline 1 1
+	description "Bring <bunks> wealthy and important executive to <destination> by <date>. He is in a hurry so you will only have time to refuel once."
+	passengers 2 4 .9
+	to offer
+		random > 95
+		has "ships: luxury transport"
+	to fail
+		not "ships: luxury transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 5 8
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 75000 300
+
