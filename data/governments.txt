@@ -85,7 +85,6 @@ government "Syndicate"
 		"Korath" -.5
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
-	"hostile hail" "hostile syndicate"
 
 government "Syndicate (Extremist)"
 	swizzle 1
@@ -97,7 +96,6 @@ government "Syndicate (Extremist)"
 		"Republic" -.1
 		"Free Worlds" -.1
 	"bribe" .08
-	"hostile hail" "hostile syndicate"
 
 government "Pirate"
 	swizzle 6
