@@ -4373,7 +4373,6 @@ system "Ehma Ti"
 	trade Plastic 532
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
-	fleet "Large Hai" 2800
 	object
 		sprite star/k0
 		period 10
@@ -5961,7 +5960,6 @@ system "Hi Yahr"
 	trade Plastic 372
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
-	fleet "Large Hai" 2800
 	object
 		sprite star/g5
 		period 10
@@ -13080,7 +13078,6 @@ system "Wah Yoot"
 	trade Plastic 472
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
-	fleet "Large Hai" 800
 	object
 		sprite star/g0
 		period 10
