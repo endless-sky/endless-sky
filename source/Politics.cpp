@@ -121,6 +121,10 @@ void Politics::Bribe(const Government *gov)
 {
 	bribed.insert(gov);
 	fined.insert(gov);
+	
+	auto it = provoked.find(gov);
+	if(it != provoked.end())
+		provoked.erase(it);
 }
 
 
