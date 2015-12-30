@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoDisplay.h"
 #include "System.h"
@@ -46,6 +47,9 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
+	
+	if(player.GetPlanet())
+		shipyard = player.GetPlanet()->Shipyard();
 }
 
 
@@ -70,11 +74,14 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	if(!planet->Shipyard().Has(ship))
+	if(!shipyard.Has(ship))
 		return false;
 	
-	DrawShip(*ship, point, ship == selectedShip);
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
+	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
+		return true;
+	
+	DrawShip(*ship, point, ship == selectedShip);
 	
 	return true;
 }
