@@ -471,7 +471,7 @@ void MapDetailPanel::DrawInfo() const
 		uiPoint.Y() += 20.;
 	}
 	
-	if(selectedPlanet && !selectedPlanet->Description().empty())
+	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - .5 * panelSprite->Width(),
