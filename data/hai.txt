@@ -540,7 +540,6 @@ phrase "friendly hai"
 		"reconciliation "
 		"harmony "
 		"concord "
-		"serenity "
 	word
 		"and "
 	word
@@ -552,8 +551,6 @@ phrase "friendly hai"
 		"good intentions "
 		"friendly intentions "
 		"empathy "
-		"care "
-		"kindness "
 	word
 		"is welcome "
 	word
@@ -563,4 +560,3 @@ phrase "friendly hai"
 		"to visit us."
 		"to coexist with us."
 		"in our space."
-		
