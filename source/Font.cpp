@@ -107,7 +107,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
 	
-	glUniform4fv(shader.Uniform("color"), 1, color.Get());
+	glUniform4fv(colorI, 1, color.Get());
 	
 	// Update the scale, only if the screen size has changed.
 	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
@@ -115,7 +115,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
 		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
-		glUniform2fv(shader.Uniform("scale"), 1, scale);
+		glUniform2fv(scaleI, 1, scale);
 	}
 	
 	GLfloat textPos[2] = {
@@ -140,21 +140,21 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 			continue;
 		}
 		
-		glUniform1i(shader.Uniform("glyph"), glyph);
-		glUniform1f(shader.Uniform("aspect"), 1.f);
+		glUniform1i(glyphI, glyph);
+		glUniform1f(aspectI, 1.f);
 		
 		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
-		glUniform2fv(shader.Uniform("position"), 1, textPos);
+		glUniform2fv(positionI, 1, textPos);
 		
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 		
 		if(underlineChar)
 		{
-			glUniform1i(shader.Uniform("glyph"), underscoreGlyph);
-			glUniform1f(shader.Uniform("aspect"), static_cast<float>(advance[glyph * GLYPHS] + KERN)
+			glUniform1i(glyphI, underscoreGlyph);
+			glUniform1f(aspectI, static_cast<float>(advance[glyph * GLYPHS] + KERN)
 				/ (advance[underscoreGlyph * GLYPHS] + KERN));
 			
-			glUniform2fv(shader.Uniform("position"), 1, textPos);
+			glUniform2fv(positionI, 1, textPos);
 			
 			glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 			underlineChar = false;
@@ -336,4 +336,10 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	
 	// The texture always comes from texture unit 0.
 	glUniform1ui(shader.Uniform("tex"), 0);
+
+	colorI = shader.Uniform("color");
+	scaleI = shader.Uniform("scale");
+	glyphI = shader.Uniform("glyph");
+	aspectI = shader.Uniform("aspect");
+	positionI = shader.Uniform("position");
 }
