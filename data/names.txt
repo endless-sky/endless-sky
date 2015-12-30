@@ -885,7 +885,6 @@ phrase "republic fighter"
 		"Gamma "
 		"Delta "
 		"Epsilon "
-		"Sierra "
 	word
 		"One"
 		"Two"
