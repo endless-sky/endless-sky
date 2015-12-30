@@ -1157,7 +1157,7 @@ mission "Tourists out [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 6000
+		payment 9000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
@@ -1177,7 +1177,7 @@ mission "Tourists out [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 4000
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [2]"
@@ -1198,7 +1198,7 @@ mission "Tourists out [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 8000
+		payment 12000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [0]"
@@ -1218,7 +1218,7 @@ mission "Tourists back [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 6000
+		payment 9000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
@@ -1238,7 +1238,7 @@ mission "Tourists back [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 4000
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [2]"
@@ -1259,7 +1259,7 @@ mission "Tourists back [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 8000
+		payment 12000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Family [0]"
