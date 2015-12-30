@@ -376,6 +376,27 @@ fleet "Wanderer Drones"
 	variant
 		"Earth Shaper" 3
 
+fleet "Wanderer Defense"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		heroic
+	variant 3
+		"Strong Wind"
+		"Summer Leaf" 2
+	variant
+		"Summer Leaf" 5
+	variant 2
+		"Strong Wind" 2
+	variant 2
+		"Strong Wind"
+		"Summer Leaf"
+	variant
+		"Strong Wind"
+		"Summer Leaf" 3
+	variant
+		"Strong Wind" 3
+
 
 outfit "Sunbeam"
 	category "Guns"

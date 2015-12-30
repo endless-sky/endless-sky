@@ -2179,6 +2179,9 @@ system Ap'arak
 	trade Medical 636
 	trade Metal 577
 	trade Plastic 452
+	fleet "Wanderer Freight" 500
+	fleet "Wanderer Drones" 2000
+	fleet "Wanderer Defense" 3000
 	object
 		sprite star/g0
 		period 10
@@ -2568,6 +2571,9 @@ system Aya'k'k
 	trade Medical 781
 	trade Metal 587
 	trade Plastic 254
+	fleet "Wanderer Freight" 900
+	fleet "Wanderer Drones" 2000
+	fleet "Wanderer Defense" 800
 	object
 		sprite star/k0
 		period 10
@@ -3353,6 +3359,9 @@ system Chirr'ay'akai
 	trade Medical 688
 	trade Metal 459
 	trade Plastic 381
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 600
+	fleet "Wanderer Defense" 2000
 	object
 		sprite star/k0
 		period 10
@@ -3398,6 +3407,10 @@ system Chy'chra
 	trade Medical 842
 	trade Metal 285
 	trade Plastic 509
+	fleet "Wanderer Freight" 1500
+	fleet "Wanderer Drones" 1000
+	fleet "Wanderer Defense" 300
+	fleet "Unfettered Raid" 5000
 	object
 		sprite star/g5
 		period 10
@@ -4424,6 +4437,9 @@ system Ek'kek'ru
 	trade Medical 549
 	trade Metal 446
 	trade Plastic 428
+	fleet "Wanderer Freight" 500
+	fleet "Wanderer Drones" 400
+	fleet "Wanderer Defense" 6000
 	object
 		sprite star/m0
 		period 10
@@ -4741,6 +4757,9 @@ system Es'sprak'ai
 	trade Medical 758
 	trade Metal 426
 	trade Plastic 404
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 4000
+	fleet "Wanderer Defense" 2000
 	object
 		sprite star/k0
 		period 10
@@ -6099,6 +6118,9 @@ system Ik'kara'ka
 	trade Medical 912
 	trade Metal 307
 	trade Plastic 432
+	fleet "Wanderer Freight" 600
+	fleet "Wanderer Drones" 700
+	fleet "Wanderer Defense" 600
 	object
 		sprite star/g5
 		period 10
@@ -6459,6 +6481,9 @@ system Iyech'yek
 	trade Medical 434
 	trade Metal 375
 	trade Plastic 503
+	fleet "Wanderer Freight" 600
+	fleet "Wanderer Drones" 2000
+	fleet "Wanderer Defense" 5000
 	object
 		sprite star/m0
 		period 10
@@ -6566,6 +6591,9 @@ system Ka'ch'chrai
 	trade Medical 542
 	trade Metal 508
 	trade Plastic 533
+	fleet "Wanderer Freight" 300
+	fleet "Wanderer Drones" 1000
+	fleet "Wanderer Defense" 1000
 	object
 		sprite star/k5
 		period 10
@@ -6614,6 +6642,9 @@ system Ka'pru
 	trade Medical 600
 	trade Metal 486
 	trade Plastic 539
+	fleet "Wanderer Freight" 1500
+	fleet "Wanderer Drones" 800
+	fleet "Wanderer Defense" 5000
 	object
 		sprite star/g0
 		distance 29.4144
@@ -6845,6 +6876,9 @@ system Kiro'ku
 	trade Medical 654
 	trade Metal 560
 	trade Plastic 498
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 3000
+	fleet "Wanderer Defense" 7000
 	object
 		sprite star/g5
 		distance 50.3456
@@ -6912,6 +6946,9 @@ system Kiru'kichi
 	trade Medical 522
 	trade Metal 288
 	trade Plastic 527
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 300
+	fleet "Wanderer Defense" 2000
 	object
 		sprite star/f5
 		distance 53.7102
@@ -9889,6 +9926,9 @@ system Pik'ro'iyak
 	trade Medical 666
 	trade Metal 514
 	trade Plastic 317
+	fleet "Wanderer Freight" 500
+	fleet "Wanderer Drones" 3000
+	fleet "Wanderer Defense" 4000
 	object
 		sprite star/m4
 		period 10
@@ -10096,6 +10136,10 @@ system Prakacha'a
 	trade Medical 804
 	trade Metal 372
 	trade Plastic 470
+	fleet "Wanderer Freight" 400
+	fleet "Wanderer Drones" 400
+	fleet "Wanderer Defense" 400
+	fleet "Unfettered Raid" 5000
 	object
 		sprite star/g0
 		distance 32.5255
@@ -11430,6 +11474,9 @@ system Si'yak'ku
 	trade Medical 641
 	trade Metal 470
 	trade Plastic 388
+	fleet "Wanderer Freight" 1300
+	fleet "Wanderer Drones" 700
+	fleet "Wanderer Defense" 9000
 	object
 		sprite star/g0
 		distance 19.5395
@@ -11498,6 +11545,9 @@ system Sich'ka'ara
 	trade Medical 703
 	trade Metal 480
 	trade Plastic 423
+	fleet "Wanderer Freight" 600
+	fleet "Wanderer Drones" 3000
+	fleet "Wanderer Defense" 2000
 	object
 		sprite star/f5
 		period 10
@@ -11604,6 +11654,7 @@ system Sko'karak
 	trade Medical 448
 	trade Metal 513
 	trade Plastic 458
+	fleet "Wanderer Defense" 4000
 	object
 		sprite star/m0
 		period 10
