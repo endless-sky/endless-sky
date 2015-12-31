@@ -1146,7 +1146,8 @@ mission "Tourists out [0]"
 	name "Bring a tourist to <planet> by <date>."
 	job
 	repeat
-	deadline 2 2
+	deadline
+	deadline
 	description "This tourist wants to see <destination>, and will pay you <payment>. He expects to be there by <day>."
 	passengers 1
 	to offer
@@ -1166,7 +1167,8 @@ mission "Tourists out [1]"
 	name "Bring tourists to <planet> by <date>."
 	job
 	repeat
-	deadline 2 2
+	deadline
+	deadline
 	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>. They expects to be there by <day>."
 	passengers 2 10 .9
 	to offer
@@ -1186,7 +1188,8 @@ mission "Tourists out [2]"
 	name "Bring tourists to <planet> by <date>."
 	job
 	repeat
-	deadline 2 2
+	deadline
+	deadline
 	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>. They expects to be there by <day>."
 	passengers 2 10 .9
 	to offer
