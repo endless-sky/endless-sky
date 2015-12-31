@@ -65,9 +65,18 @@ Engine::Engine(PlayerInfo &player)
 	Point center;
 	if(player.GetPlanet())
 	{
+		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : player.GetSystem()->Objects())
 			if(object.GetPlanet() == player.GetPlanet())
-				center = object.Position();
+			{
+				double distance = !player.Flagship() ? 0. :
+					player.Flagship()->Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					closest = distance;
+					center = object.Position();
+				}
+			}
 	}
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
@@ -187,13 +196,20 @@ void Engine::Place()
 	Point planetPos;
 	double planetRadius = 0.;
 	if(player.GetPlanet())
+	{
+		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : player.GetSystem()->Objects())
 			if(object.GetPlanet() == player.GetPlanet())
 			{
-				planetPos = object.Position();
-				planetRadius = object.Radius();
-				break;
+				double distance = flagship->Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					closest = distance;
+					planetPos = object.Position();
+					planetRadius = object.Radius();
+				}
 			}
+	}
 	
 	// Give each ship a random heading and position. The iterator points to the
 	// first ship that was an escort or NPC (i.e. the first ship after any
@@ -783,9 +799,17 @@ void Engine::CalculateStep()
 	}
 	else if(player.GetPlanet())
 	{
+		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : player.GetSystem()->Objects())
 			if(object.GetPlanet() == player.GetPlanet())
-				center = object.Position();
+			{
+				double distance = flagship->Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					closest = distance;
+					center = object.Position();
+				}
+			}
 	}
 	if(!flagship)
 		doClick = false;
