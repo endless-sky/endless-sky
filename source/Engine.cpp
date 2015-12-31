@@ -1148,7 +1148,8 @@ void Engine::CalculateStep()
 				source = it;
 				break;
 			}
-		if(source->GetGovernment() && !source->GetGovernment()->IsPlayer() && !source->IsDisabled())
+		if(source->GetGovernment() && !source->GetGovernment()->IsPlayer()
+				&& !source->IsDisabled() && source->Crew())
 		{
 			string message = source->GetHail();
 			if(!message.empty() && source->GetSystem() == player.GetSystem())
