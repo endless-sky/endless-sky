@@ -1590,9 +1590,15 @@ mission "Wealthy Executive Short [0]"
 	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will not have time to stop to refuel."
 	to offer
 		random < 10
-		has "ship: Luxury Transport"
+		or 
+			has "ship: Flivver"
+			has "ship: Arrow"
+			has "ship: Star Queen"
 	to fail
-		not "ship: Luxury Transport"
+		and 
+			not "ship: Flivver"
+			not "ship: Arrow"
+			not "ship: Star Queen"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1612,9 +1618,15 @@ mission "Wealthy Executive Short [1]"
 	passengers 2 4 .9
 	to offer
 		random < 5
-		has "ship: Luxury Transport"
+		or 
+			has "ship: Flivver"
+			has "ship: Arrow"
+			has "ship: Star Queen"
 	to fail
-		not "ship: Luxury Transport"
+		and 
+			not "ship: Flivver"
+			not "ship: Arrow"
+			not "ship: Star Queen"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1633,9 +1645,15 @@ mission "Wealthy Executive Long [0]"
 	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will only have time to refuel once."
 	to offer
 		random > 90
-		has "ship: Luxury Transport"
+		or 
+			has "ship: Flivver"
+			has "ship: Arrow"
+			has "ship: Star Queen"
 	to fail
-		not "ship: Luxury Transport"
+		and 
+			not "ship: Flivver"
+			not "ship: Arrow"
+			not "ship: Star Queen"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1655,9 +1673,15 @@ mission "Wealthy Executive Long [1]"
 	passengers 2 4 .9
 	to offer
 		random > 95
-		has "ship: Luxury Transport"
+		or 
+			has "ship: Flivver"
+			has "ship: Arrow"
+			has "ship: Star Queen"
 	to fail
-		not "ship: Luxury Transport"
+		and 
+			not "ship: Flivver"
+			not "ship: Arrow"
+			not "ship: Star Queen"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
