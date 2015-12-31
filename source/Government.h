@@ -115,6 +115,7 @@ private:
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *hostileHail = nullptr;
+	std::string language;
 	double jumpDriveFraction = 0.;
 };
 
