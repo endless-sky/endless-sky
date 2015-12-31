@@ -1574,9 +1574,9 @@ mission "Large Rush Delivery [3]"
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 
-mission "Dump garbage"
-	name "Dump garbage"
-	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <tons> of it to the industrial solid waste incinerator on <destination>. Payment is <payment>.
+mission "Recycle garbage"
+	name "Recycle garbage"
+	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <tons> of it to the industrial solid waste recycler on <destination>. Payment is <payment>.
 	job
 	repeat
 	cargo "Heavy Metals" 15 100
@@ -1586,7 +1586,7 @@ mission "Dump garbage"
 		attributes factory mining "dirt belt"
 		distance 10
 	on complete
-		dialog "You dump the garbage at an especially smelly solid waste incinerator and collect your payment of <payment>."
+		dialog "You drop off the garbage at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment 20000 200
 
 mission "Provide security for pleasure cruise"
