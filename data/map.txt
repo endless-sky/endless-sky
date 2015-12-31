@@ -4199,6 +4199,7 @@ system "Due Yoot"
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 3000
 	fleet "Large Northern Merchants" 6000
+	fleet "Quarg" 2000
 	object
 		sprite star/m4
 		period 10
@@ -4875,6 +4876,7 @@ system "Fah Root"
 	fleet "Large Hai" 4000
 	fleet "Small Northern Merchants" 15000
 	fleet "Large Northern Merchants" 25000
+	fleet "Quarg" 2000
 	object
 		sprite star/k0
 		period 10
@@ -4915,6 +4917,7 @@ system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
 	habitable 425.92
+	link "Hevru Hai"
 	link "Wah Oh"
 	asteroids "medium rock" 5 3.2648
 	asteroids "large rock" 1 2.9568
@@ -4935,6 +4938,7 @@ system "Fah Soom"
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
+	fleet "Quarg" 1000
 	object
 		sprite star/k5
 		period 10
@@ -5936,6 +5940,120 @@ system "Heia Due"
 			sprite planet/lava0
 			distance 395
 			period 41.3231
+
+system "Hevru Hai"
+	pos -189 -310
+	government Quarg
+	habitable 700
+	link "Fah Soom"
+	trade Clothing 362
+	trade Electronics 763
+	trade Equipment 644
+	trade Food 165
+	trade "Heavy Metals" 1280
+	trade Industrial 848
+	trade "Luxury Goods" 1055
+	trade Medical 509
+	trade Metal 457
+	trade Plastic 503
+	fleet "Small Hai" 1000
+	fleet "Large Hai" 2500
+	fleet "Small Northern Merchants" 9000
+	fleet "Large Northern Merchants" 15000
+	fleet "Quarg" 600
+	object
+		sprite star/g5
+		period 10
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 0
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 20
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 40
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 60
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 80
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 100
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 160
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 180
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 260
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 280
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 320
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 340
 
 system "Hi Yahr"
 	pos 82.3672 -641.6
@@ -7720,6 +7838,7 @@ system "Lom Tahr"
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
+	fleet "Quarg" 4000
 	object
 		sprite star/f0
 		period 10
@@ -13386,6 +13505,7 @@ system "Ya Hai"
 	fleet "Large Hai" 500
 	fleet "Small Northern Merchants" 12000
 	fleet "Large Northern Merchants" 17000
+	fleet "Quarg" 6000
 	object
 		sprite star/k5
 		period 10
@@ -13972,6 +14092,15 @@ planet Allhome
 	description `This earthlike planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
 	outfitter "Hai Basics"
+
+planet "Alta Hai"
+	attributes quarg station
+	landscape land/station2
+	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
+	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
+	spaceport `If this section of the ring is any indication, there must be trillions of Quarg here. Since the construction work on the ring has long since ended, many of them seem to spend their time with creative or scientific endeavors instead. The spaceport is decorated with artwork of every imaginable kind: sculptures, mobiles, paintings, music, and even one hallway that cycles through various artificial odors, some of them intensely unpleasant to your human senses.`
+	bribe 0
+	security 0.9
 
 planet Amazon
 	attributes core tourism oil frontier
