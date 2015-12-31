@@ -271,3 +271,86 @@ mission "Unfettered Tribute 3"
 	on stopover
 		dialog
 			`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
+
+mission "Unfettered Jump Drive 3"
+	name "More Jump Drives"
+	description "If you find more Jump Drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
+	landing
+	to offer
+		has "Unfettered Jump Drive 2: offered"
+	to complete
+		has "Unfettered Jump Drive 4: offered"
+	source
+		attributes "unfettered"
+	on offer
+		conversation
+			`You have another jump drive, and the Unfettered will certainly be willing to pay you well for it. They also hinted that they might be willing to give you more information about what they plan to use the jump drives for. Do you want to sell them another drive?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	You meet up with some local Unfettered leaders, and they again pay you five million credits and arrange for your jump drive to be swapped out of your ship. "If you bring more, we will continue to pay you," they say.`
+			choice
+				`	"Can you tell me what you are using the jump drives for?"`
+				`	"Thank you, I will certainly bring more of them when I am able."`
+					accept
+			`	After a brief and hushed discussion in their own language, one of the leaders says, "You have proven your worth, so we will share our secret. The Hai once owned many worlds on the galactic fringe, a territory we can only visit using the jump drive. Those worlds are fruitful and nearly uninhabited. We will reclaim them as our own, and there will be food there to feed the Unfettered for many thousands of years to come."`
+			branch know
+				has "First Contact: Wanderer: offered"
+			choice
+				`	"Is there any other way I can help you to reclaim those worlds?"`
+					goto help
+				`	"'Nearly uninhabited?' You mean another species inhabits some of those worlds now?"`
+					goto wanderers
+			
+			label know
+			`	You suspect that they are talking about the territory that is now inhabited by the Wanderers.`
+			choice
+				`	"Are you at war with the Wanderers? Can I help you to reclaim your territory?"`
+					goto help
+				`	"What are you going to do to the species that owns those worlds right now?"`
+					goto wanderers
+			
+			label help
+			`	"Your help may indeed be beneficial to us," says the leader. "I will tell the others to contact you if they have any particular missions you can undertake."`
+			choice
+				`	"I look forward to hearing from them."`
+					accept
+				`	"What do you plan to do to the species that inhabits those worlds now?"`
+			
+			label wanderers
+			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
+			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
+				accept
+	
+	on accept
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 5000000
+		"reputation: Hai (Unfettered)" >?= 30
+		fail "Unfettered Jump Drive 2"
+
+mission "Unfettered Jump Drive 4"
+	to offer
+		has "Unfettered Jump Drive 3: offered"
+	to complete
+		never
+	source
+		attributes "unfettered"
+	on offer
+		conversation
+			`Would you like to sell another jump drive to the Unfettered?`
+			choice
+				`	(No.)`
+					defer
+				`	(Yes.)`
+			`	As usual, they are more than willing to pay you five million credits for your jump drive, but you do not gain any additional information by talking with them.`
+				accept
+	
+	on accept
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 5000000
+		"reputation: Hai (Unfettered)" >?= 40
+		fail "Unfettered Jump Drive 3"
+		fail "Unfettered Jump Drive 4"
