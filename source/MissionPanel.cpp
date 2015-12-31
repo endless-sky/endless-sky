@@ -51,7 +51,7 @@ namespace {
 
 
 MissionPanel::MissionPanel(PlayerInfo &player)
-	: MapPanel(player, -4),
+	: MapPanel(player),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
