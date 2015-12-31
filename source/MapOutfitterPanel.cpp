@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
+#include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -63,7 +64,7 @@ namespace {
 
 
 MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
-	: MapPanel(player, -5)
+	: MapPanel(player, SHOW_SPECIAL)
 {
 	Init();
 }
@@ -73,7 +74,7 @@ MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
 MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel)
 	: MapPanel(panel)
 {
-	SetCommodity(-5);
+	SetCommodity(SHOW_SPECIAL);
 	Init();
 }
 
@@ -83,6 +84,7 @@ void MapOutfitterPanel::Draw() const
 {
 	MapPanel::Draw();
 	
+	DrawKey();
 	DrawPanel();
 	DrawItems();
 	
@@ -328,6 +330,40 @@ void MapOutfitterPanel::Init()
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
 			[](const Outfit *a, const Outfit *b) {return a->Name() < b->Name();});
+}
+
+
+
+void MapOutfitterPanel::DrawKey() const
+{
+	const Sprite *back = SpriteSet::Get("ui/sales key");
+	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	
+	Color bright(.6, .6);
+	Color dim(.3, .3);
+	const Font &font = FontSet::Get(14);
+	
+	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
+	Point textOff(10., -.5 * font.Height());
+	
+	static const string LABEL[] = {
+		"Has no outfitter",
+		"Has outfitter",
+		"Sells this outfit"
+	};
+	static const double VALUE[] = {
+		-.5,
+		0.,
+		1.
+	};
+	
+	for(int i = 0; i < 3; ++i)
+	{
+		bool isSelected = (selectedSystem && VALUE[i] == SystemValue(selectedSystem));
+		DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+		font.Draw(LABEL[i], pos + textOff, isSelected ? bright : dim);
+		pos.Y() += 20.;
+	}
 }
 
 

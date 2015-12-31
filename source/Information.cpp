@@ -18,9 +18,10 @@ using namespace std;
 
 
 
-void Information::SetSprite(const string &name, const Sprite *sprite)
+void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit)
 {
 	sprites[name] = sprite;
+	spriteUnits[name] = unit;
 }
 
 
@@ -31,6 +32,16 @@ const Sprite *Information::GetSprite(const string &name) const
 	
 	auto it = sprites.find(name);
 	return (it == sprites.end()) ? &empty : it->second;
+}
+
+
+
+const Point &Information::GetSpriteUnit(const std::string &name) const
+{
+	static const Point up(0., -1.);
+	
+	auto it = spriteUnits.find(name);
+	return (it == spriteUnits.end()) ? up : it->second;
 }
 
 

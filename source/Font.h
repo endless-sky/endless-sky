@@ -60,6 +60,12 @@ private:
 	GLuint vao;
 	GLuint vbo;
 	
+	GLint colorI;
+	GLint scaleI;
+	GLint glyphI;
+	GLint aspectI;
+	GLint positionI;
+	
 	int height;
 	int space;
 	mutable int screenWidth;

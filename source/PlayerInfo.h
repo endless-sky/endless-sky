@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Date.h"
 #include "GameEvent.h"
 #include "Mission.h"
+#include "Planet.h"
 
 #include <list>
 #include <map>
@@ -137,7 +138,7 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
-	void AcceptJob(const Mission &mission);
+	void AcceptJob(const Mission &mission, UI *ui);
 	// Check to see if there is any mission to offer in the spaceport right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
@@ -158,12 +159,14 @@ public:
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
 	
-	// Check what the player knows about the given system.
+	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System *system) const;
 	bool HasVisited(const System *system) const;
+	bool HasVisited(const Planet *planet) const;
 	bool KnowsName(const System *system) const;
 	void Visit(const System *system);
-	// Mark a system as unvisited, even if visited previously.
+	void Visit(const Planet *planet);
+	// Mark a system and its planets as unvisited, even if visited previously.
 	void Unvisit(const System *system);
 	
 	// Access the player's travel plan.
@@ -228,7 +231,8 @@ private:
 	std::map<std::string, int> conditions;
 	
 	std::set<const System *> seen;
-	std::set<const System *> visited;
+	std::set<const System *> visitedSystems;
+	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	
 	const Outfit *selectedWeapon = nullptr;

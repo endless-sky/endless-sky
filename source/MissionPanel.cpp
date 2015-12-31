@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "PointerShader.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -78,6 +79,10 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	// Don't use the "special" coloring in this view.
+	if(commodity == SHOW_SPECIAL)
+		commodity = SHOW_REPUTATION;
+	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
@@ -129,6 +134,7 @@ void MissionPanel::Draw() const
 		system = next;
 	}
 	
+	DrawKey();
 	DrawSelectedSystem();
 	Point pos = DrawPanel(
 		Screen::TopLeft() + Point(0., -availableScroll),
@@ -150,19 +156,9 @@ void MissionPanel::Draw() const
 	const Color &currentColor = *colors.Get("active back");
 	const Color &blockedColor = *colors.Get("blocked back");
 	if(availableIt != available.end() && availableIt->Destination())
-	{
-		Point pos = Zoom() * (availableIt->Destination()->GetSystem()->Position() + center);
-		DotShader::Draw(pos, 22., 20.5, CanAccept() ? availableColor : unavailableColor);
-	}
+		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
-	{
-		bool isBlocked = !acceptedIt->Waypoints().empty();
-		for(const NPC &npc : acceptedIt->NPCs())
-			isBlocked |= !npc.HasSucceeded(player.GetSystem());
-		
-		Point pos = Zoom() * (acceptedIt->Destination()->GetSystem()->Position() + center);
-		DotShader::Draw(pos, 22., 20.5, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
-	}
+		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	
 	// Draw the buttons to switch to other map modes.
 	Information info;
@@ -347,7 +343,7 @@ bool MissionPanel::Click(int x, int y)
 	}
 	
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) - center;
+	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
 		if(click.Distance(it.second.Position()) < 10.
@@ -360,6 +356,15 @@ bool MissionPanel::Click(int x, int y)
 	{
 		Select(system);
 		int options = available.size() + accepted.size();
+		// If you just aborted your last mission, it is possible that neither
+		// iterator is valid. In that case, start over from the beginning.
+		if(availableIt == available.end() && acceptedIt == accepted.end())
+		{
+			if(!available.empty())
+				availableIt = available.begin();
+			else
+				acceptedIt = accepted.begin();
+		}
 		while(options--)
 		{
 			if(availableIt != available.end())
@@ -404,13 +409,13 @@ bool MissionPanel::Drag(int dx, int dy)
 	if(dragSide < 0)
 	{
 		availableScroll = max(0,
-			min(static_cast<int>(available.size() * 20 + 70 - Screen::Height()),
+			min(static_cast<int>(available.size() * 20 + 190 - Screen::Height()),
 				availableScroll - dy));
 	}
 	else if(dragSide > 0)
 	{
 		acceptedScroll = max(0,
-			min(static_cast<int>(accepted.size() * 20 + 120 - Screen::Height()),
+			min(static_cast<int>(accepted.size() * 20 + 160 - Screen::Height()),
 				acceptedScroll - dy));
 	}
 	else
@@ -457,6 +462,51 @@ void MissionPanel::DoFind(const string &text)
 
 
 
+void MissionPanel::DrawKey() const
+{
+	const Sprite *back = SpriteSet::Get("ui/mission key");
+	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	
+	Color bright(.6, .6);
+	Color dim(.3, .3);
+	const Font &font = FontSet::Get(14);
+	Point angle = Point(1., 1.).Unit();
+	
+	Point pos(Screen::Left() + 10., Screen::Bottom() - 5. * 20. + 5.);
+	Point pointerOff(5., 5.);
+	Point textOff(8., -.5 * font.Height());
+
+	const Set<Color> &colors = GameData::Colors();
+	const Color COLOR[5] = {
+		*colors.Get("available job"),
+		*colors.Get("unavailable job"),
+		*colors.Get("active mission"),
+		*colors.Get("blocked mission"),
+		*colors.Get("waypoint")
+	};
+	static const string LABEL[5] = {
+		"Available job; can accept",
+		"Too little space to accept",
+		"Active job; go here to complete",
+		"Has unfinished requirements",
+		"Waypoint you must visit"
+	};
+	int selected = -1;
+	if(availableIt != available.end())
+		selected = 0 + !CanAccept();
+	if(acceptedIt != accepted.end() && acceptedIt->Destination())
+		selected = 2 + !IsSatisfied(*acceptedIt);
+	
+	for(int i = 0; i < 5; ++i)
+	{
+		PointerShader::Draw(pos + pointerOff, angle, 10., 18., 0., COLOR[i]);
+		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
+		pos.Y() += 20.;
+	}
+}
+
+
+
 void MissionPanel::DrawSelectedSystem() const
 {
 	const Sprite *sprite = SpriteSet::Get("ui/selected system");
@@ -479,6 +529,20 @@ void MissionPanel::DrawSelectedSystem() const
 	const Font &font = FontSet::Get(14);
 	Point pos(-.5 * font.Width(text), Screen::Top() + .5 * (30. - font.Height()));
 	font.Draw(text, pos, *GameData::Colors().Get("bright"));
+}
+
+
+
+void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
+{
+	const Color &waypointColor = *GameData::Colors().Get("waypoint back");
+	
+	Point pos = Zoom() * (mission.Destination()->GetSystem()->Position() + center);
+	DotShader::Draw(pos, 22., 20.5, color);
+	for(const System *system : mission.Waypoints())
+		DotShader::Draw(Zoom() * (system->Position() + center), 22., 20.5, waypointColor);
+	for(const Planet *planet : mission.Stopovers())
+		DotShader::Draw(Zoom() * (planet->GetSystem()->Position() + center), 22., 20.5, waypointColor);
 }
 
 
@@ -637,9 +701,24 @@ void MissionPanel::Accept()
 	}
 	
 	++availableIt;
-	player.AcceptJob(toAccept);
+	player.AcceptJob(toAccept, GetUI());
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
+	
+	// Check if any other jobs are available with the same destination. Prefer
+	// jobs that also have the same destination planet.
+	if(toAccept.Destination())
+	{
+		const Planet *planet = toAccept.Destination();
+		const System *system = planet->GetSystem();
+		for(auto it = available.begin(); it != available.end(); ++it)
+			if(it->Destination() && it->Destination()->GetSystem() == system)
+			{
+				availableIt = it;
+				if(it->Destination() == planet)
+					break;
+			}
+	}
 }
 
 

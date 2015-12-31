@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 
 #include <algorithm>
+#include <cctype>
 #include <cmath>
 #include <sstream>
 
@@ -194,5 +195,35 @@ string Format::Replace(const string &source, const map<string, string> keys)
 	}
 	
 	result.append(source, start, source.length() - start);
+	return result;
+}
+
+
+
+string Format::Capitalize(const string &str)
+{
+	string result = str;
+	bool first = true;
+	for(char &c : result)
+	{
+		if(!isalpha(c))
+			first = true;
+		else
+		{
+			if(first && islower(c))
+				c = toupper(c);
+			first = false;
+		}
+	}
+	return result;
+}
+
+
+
+string Format::LowerCase(const string &str)
+{
+	string result = str;
+	for(char &c : result)
+		c = tolower(c);
 	return result;
 }

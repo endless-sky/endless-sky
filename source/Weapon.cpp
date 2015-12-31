@@ -90,6 +90,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = child.Value(1);
 			else if(child.Token(0) == "firing heat")
 				firingHeat = child.Value(1);
+			else if(child.Token(0) == "split range")
+				splitRange = child.Value(1);
 			else if(child.Token(0) == "trigger radius")
 				triggerRadius = child.Value(1);
 			else if(child.Token(0) == "blast radius")

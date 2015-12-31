@@ -97,6 +97,8 @@ void Government::Load(const DataNode &node)
 			friendlyHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "hostile hail" && child.Size() >= 2)
 			hostileHail = GameData::Phrases().Get(child.Token(1));
+		else if(child.Token(0) == "language" && child.Size() >= 2)
+			language = child.Token(1);
 	}
 }
 
@@ -130,6 +132,8 @@ const Color &Government::GetColor() const
 // toward the player.
 double Government::AttitudeToward(const Government *other) const
 {
+	if(!other)
+		return 0.;
 	if(other == this)
 		return 1.;
 	
@@ -188,6 +192,14 @@ string Government::GetHail() const
 {
 	const Phrase *phrase = IsEnemy() ? hostileHail : friendlyHail;
 	return phrase ? phrase->Get() : "";
+}
+
+
+
+// Find out if this government speaks a different language.
+const string &Government::Language() const
+{
+	return language;
 }
 
 

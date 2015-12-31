@@ -19,7 +19,7 @@ mission "Pact Recon 0"
 		attributes south
 	destination Glaze
 	to offer
-		random < 100
+		random < 60
 		not "event: war begins"
 	
 	on offer
@@ -76,7 +76,7 @@ mission "Pact Recon 1"
 		attributes south "dirt belt" rim quarg "near earth"
 	destination Glaze
 	to offer
-		random < 20
+		random < 30
 		not "event: war begins"
 		has "Pact Recon 0: done"
 	
@@ -103,7 +103,7 @@ mission "Pact Recon 2"
 		attributes south "dirt belt" rim quarg "near earth"
 	destination Glaze
 	to offer
-		random < 20
+		random < 30
 		not "event: war begins"
 		has "Pact Recon 1: done"
 	
@@ -130,7 +130,7 @@ mission "Pact Recon 3"
 		attributes south "dirt belt" rim quarg "near earth"
 	destination Glaze
 	to offer
-		random < 20
+		random < 30
 		not "event: war begins"
 		has "Pact Recon 2: done"
 	
@@ -217,7 +217,7 @@ mission "Pact Questioning"
 			`	"I see," he says. "I wonder why they didn't share more of the details of their work with you."`
 			`	"Why are you asking me all these questions?" you say.`
 			label questions
-			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyways, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
+			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyway, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
 				decline
 			label quit
 			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you. As you walk away, you glance over your shoulder a few times to make sure you are not being watched or followed, but see no one.`
@@ -233,7 +233,7 @@ mission "FW Recon 0"
 		near Aldhibain 1 10
 	destination Glaze
 	to offer
-		random < 25
+		random < 35
 		has "event: initial deployment 4"
 	passengers 1
 	to fail
@@ -489,7 +489,7 @@ mission "FW Katya 1"
 					decline
 	
 			label `more`
-			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyways. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
+			`	"Okay, here's the deal. We need some cargo carried from <planet> to Skymoot. It's just medical supplies - no bombs, no contraband. But we'll load it onto your ship in the dead of night, trying our best to avoid any notice. But the Reps have the sharpest eyes in the galaxy, so you'll get noticed anyway. And since anything done in the dead of night is likely to arouse their suspicions, you'll get boarded and searched. Meanwhile, the real cargo will have been loaded onto one of our ships in broad daylight, and will pass through Republic space entirely unnoticed."`
 			choice
 				`	"I like the way you think. Count me in."`
 					goto `details`
@@ -791,7 +791,7 @@ mission "FW Katya 2C"
 
 mission "FW Katya 3"
 	name "Drone Hunting"
-	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>.`
+	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
 	source Rand
 	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
 	passengers 2
@@ -836,7 +836,8 @@ mission "FW Katya 3"
 					decline
 			
 			label agree
-			`	"Great!" Says Katya. "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
+			`	"Great!" says Katya. "All we have to do is disable a drone, board it, yank out the surveillance equipment, and bring it back here to test it out."`
+			`	Ijs says, "Captain, we should warn you: when you attack a drone, any Republic folks in that system will get mad at you. But once you jump out of the system, they'll calm down again."`
 				accept
 	
 	on complete
@@ -1528,7 +1529,7 @@ mission "FW Escort Second Chance"
 			`Soon after you exit your ship a man approaches you. "Captain <last>?" he asks. You nod. "My name is Alondo," he says. "I'm a member of the Free Worlds council. Katya and JJ both speak so highly of you that I would like to see you join us, even though you messed up that escort mission."`
 			choice
 				`	"Yes, I'm very sorry about that."`
-				`	"Sorry, but I decided I don't want to assist the Free Worlds anyways."`
+				`	"Sorry, but I decided I don't want to assist the Free Worlds anyway."`
 					decline
 			
 			`	"I'm sure," he says, "but I'm not the one you need to say that to. Right now Tomek is refusing to let us offer you a job, but if you speak with him in person, he might change his mind. Or he might not. But if you really want to work for us, you should visit him on <planet>, take full responsibility for what happened, and apologize. Just a suggestion." He walks off.`
@@ -1582,7 +1583,7 @@ mission "FW Bounty 1"
 				accept
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			near Seginus 1 2
 		ship "Hawk (Rocket)" "Cluny"
@@ -1591,7 +1592,7 @@ mission "FW Bounty 1"
 		ship "Wasp (Proton)" "Vixen"
 		ship "Fury (Laser)" "Stoat"
 		ship "Sparrow" "Rat"
-		dialog `The "Rat Pack" has been destroyed. You can claim the bounty payment by returning to <destination>.`
+		dialog `The "Rat Pack" has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on complete
 		payment 200000
@@ -1606,7 +1607,7 @@ mission "FW Bounty 2"
 		government "Free Worlds"
 	to offer
 		has "FW Bounty 1: done"
-		random <= 25
+		random <= 30
 		not "chosen sides"
 	
 	on offer
@@ -1620,11 +1621,11 @@ mission "FW Bounty 2"
 				accept
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system
 			near "Delta Sagittarii" 1 2
 		ship "Behemoth (Speedy)" "Moonless Night"
-		dialog `The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>.`
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on complete
 		payment 200000
@@ -1639,7 +1640,7 @@ mission "FW Bounty 3"
 		government "Free Worlds"
 	to offer
 		has "FW Bounty 2: done"
-		random <= 25
+		random <= 30
 		not "chosen sides"
 	
 	on offer
@@ -1653,10 +1654,10 @@ mission "FW Bounty 3"
 				accept
 	npc kill
 		personality heroic staying nemesis
-		government Pirate
+		government Bounty
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
-		dialog `The <npc> has been destroyed. You can claim the bounty payment by returning to <destination>.`
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on complete
 		"assisted free worlds" ++

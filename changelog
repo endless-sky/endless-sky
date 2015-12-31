@@ -1,3 +1,71 @@
+Version 0.8.9:
+  * Bugs fixes:
+    * Typo fixes. (@anonybosch, @dplepage, @guillochon, @Wrzlprnft)
+    * Fixed a bug where Earth would not let you land in a "safe passage" Free Worlds mission.
+    * The hiring panel no longer lists crew from parked ships.
+    * Auto-aim no longer points you at where a destroyed target used to be.
+    * The fullscreen toggle key now works regardless of what GUI panel is active.
+    * Derelicts will no longer converse with you if you hail them. (@ItsNickBarry)
+    * Fixed a shop panel crash when a ship has no sprite defined.
+    * Escorts no longer get stuck trying to refuel on a planet that will not let them land.
+    * Escorts will now leave your fleet to refuel if the alternative is ending up stranded.
+    * When dominating a planet, capturing a defender now counts as destroying it.
+    * Fixed the graphics flicker when taking off.
+  * Game content:
+    * Caph now uses Syndicate defense fleets, since it is a Syndicate system.
+    * Many new names for mission cargoes. (@Pointedstick, @anonybosch)
+    * New names for civilian and pirate ships. (@Pointedstick)
+    * New hail messages, especially for civilians and the Syndicate. (@Pointedstick)
+    * Tiny escort missions, available to new pilots. (@Pointedstick)
+    * Added a "Medium Warship" category.
+    * Price increases for the Headhunter and Bactrian.
+    * Made the Falcon faster compared to the Leviathan.
+    * Reduced the bonuses for the new jumbo missions.
+    * Changed the world-ship sprite to something less tacky, with three variants.
+    * The intro interceptor missions no longer create an autosave.
+    * Added more clarification in the Free Worlds drone salvage mission.
+    * Changed the Reverse Thruster name to "AR120 Reverse Thruster."
+    * Added a new Syndicate ship, the Vanguard. (@Pointedstick)
+  * Game mechanics:
+    * Planets you have dominated will no longer fine you for illegal items.
+    * Flagships now take last priority for cargo but first priority for passengers.
+    * Adding or removing outfits that require crew automatically hires or fires crew.
+    * Added a "self destruct" attribute for ships that explode if boarded.
+    * Tweaked the AI behavior when near the "invisible fence" on the outskirts of the system.
+    * If you hail a disabled enemy, they now insult you instead of demanding a bribe.
+    * It's now possible for an event to "clear" a planet's spaceport (making it uninhabited).
+    * Ship variants can now inherit descriptions and outfit lists.
+    * Firing normal thrusters after using the afterburner no longer slows you down.
+    * All pathfinding now includes wormhole travel.
+    * You can now dump cargo in the info panel to make room for plunder.
+    * The player’s flagship is now always displayed on top of all other ships.
+    * Missions can now specify a custom payment multiplier as well as a custom base payment.
+    * Other ships no longer interfere when you are fighting a bounty - you must fight alone.
+  * User interface:
+    * Added messages when changing landing targets. (@guillochon)
+    * Button names now have underlined letters as hints of the key shortcut. (@guillochon)
+    * Underlines for key shortcut hints are shown only when Alt / Option is held.
+    * Moons, stations, etc. are no longer called "planets." (@guillochon)
+    * The game no longer pauses when the window is minimized.
+    * In the map, clicking the system you are in will now clear the jump route.
+    * If you cannot sell an outfit, a helpful message is now shown explaining why.
+    * The outfit list in the boarding panel now supports arrow keys and page up / down.
+    * In the outfitter and shipyard maps you can now shift-click to compare items.
+    * Added support for zooming in the map views. (@guillochon)
+    * Wormhole paths now shown on the map once traversed. (@guillochon)
+    * Loading a snapshot now displays a warning that it will overwrite your main game.
+    * You can now double click a ship to board it or a planet to land.
+    * Added a key to each of the map panels.
+    * Shift + Board will now select any of your escorts that are disabled.
+    * Added a preference for whether escorts expend ammo always, frugally, or never.
+  * Audio:
+    * Redid all the sound effects, striving for better volume balance.
+    * Added sounds for landing and takeoff and for many weapons that previously had none.
+    * Looping sounds now fade smoothly when they stop instead of continuing to the end of the loop.
+    * Large numbers of overlapping sounds no longer cause phasing / grinding noise.
+    * All audio parameters are set on startup to make sure they are the same on every OS.
+    * Improved the math for combining multiple instances of the same sound.
+
 Version 0.8.8:
   * Bug fixes:
     * Fixed various bugs with how the game determines which ship is your "flagship."

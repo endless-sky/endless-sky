@@ -67,6 +67,8 @@ public:
 	
 	// Get a hail message (which depends on whether this is an enemy government).
 	std::string GetHail() const;
+	// Find out if this government speaks a different language.
+	const std::string &Language() const;
 	
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -110,6 +112,7 @@ private:
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *hostileHail = nullptr;
+	std::string language;
 };
 
 

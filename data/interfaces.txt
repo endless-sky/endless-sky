@@ -27,6 +27,7 @@ color "active back" 0. .4 .5 .5
 color "blocked mission" 0. .5 .5 1.
 color "blocked back" 0. .2 .2 .5
 color "waypoint" .1 .2 .9 1.
+color "waypoint back" 0. .3 .7 .5
 
 interface "main menu"
 	sprite "_menu/compass" 0 0
@@ -253,13 +254,13 @@ interface "preferences"
 	sprite "_menu/forest2" 0 280
 	sprite "_menu/oberon" 140 180
 	sprite "ui/keys panel" -65 -20
-	button b 195 205
+	button b 195 210
 		size 120 30
-	label "_Back to Menu..." 195 198
+	label "_Back to Menu..." 195 203
 		size 14
 		color bright
 		align center
-	bar "volume" 280.5 20
+	bar "volume" 280.5 15
 		size 0 -200
 		color "energy"
 		width 3
@@ -1012,6 +1013,23 @@ interface "info panel"
 	label "Unpark" 55 287
 		size 14
 		color bright
+		align center
+	endif
+	
+	button c 10 295
+		size 20 30
+	if "enable dump"
+	sprite "ui/wide button" 45 295
+	label "Dump _Cargo" 45 287
+		size 14
+		color bright
+		align center
+	endif
+	if "show dump"
+	sprite "ui/wide button" 45 295
+	label "Dump _Cargo" 45 287
+		size 14
+		color dim
 		align center
 	endif
 	

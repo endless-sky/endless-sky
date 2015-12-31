@@ -68,6 +68,7 @@ public:
 	double FiringFuel() const;
 	double FiringHeat() const;
 	
+	double SplitRange() const;
 	double TriggerRadius() const;
 	double BlastRadius() const;
 	double HitForce() const;
@@ -118,6 +119,7 @@ private:
 	double firingFuel = 0.;
 	double firingHeat = 0.;
 	
+	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	
@@ -157,6 +159,7 @@ inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
 
+inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::HitForce() const { return hitForce; }

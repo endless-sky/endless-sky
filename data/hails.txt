@@ -11,6 +11,7 @@
 phrase "friendly civilian"
 	word
 		"May "
+		"Let "
 	word
 		"peace"
 		"luck"
@@ -33,7 +34,7 @@ phrase "friendly civilian"
 		" be with you today!"
 		" journey with you!"
 		" go with you!"
-		" follow your wake!"
+		" follow in your wake!"
 		" be with you in your travels!"
 		" always be with you!"
 
@@ -41,6 +42,8 @@ phrase "friendly civilian"
 	word
 		"Being"
 		"Becoming"
+		"Life as"
+		"The life of"
 	word
 		" an independent"
 		" a free"
@@ -71,12 +74,14 @@ phrase "friendly civilian"
 	word
 		" have a fast ship than can outrun them."
 		" stay close to the Paradise worlds and the Deep."
+		" stick to systems patrolled by the Navy."
+		" get so rich that you can just buy them off."
 		" equip any ship you own with particle cannons and blast them to bits before they can get within close range!"
 		" put a pair of heavy laser turrets on each of your cargo ships."
 		" blow them out of the sky with a barrage of missiles before they can get anywhere near you!"
 		" buy a light warship that still has decent passenger capacity."
 		" use a multipurpose ship that can carry a lot of cargo, has decent shields, and mounts some heavy weapons."
-		" equip your ship with anti-missile turrets so they can't get you away with missiles, and then you can escape if you can't beat them up close."
+		" equip your ship with anti-missile turrets so they can't get you with missiles, and then you can run away!"
 		" travel with a fleet that includes some interceptors to tie them up while the cargo ships can warp to safety."
 
 phrase "friendly civilian"
@@ -104,6 +109,8 @@ phrase "friendly civilian"
 		"Thundergods"
 		"Stonemasons"
 		"Plasmaticas"
+		"Greasemonkeys"
+		"Void Dragons"
 	word
 		" totally beat the "
 		" creamed the "
@@ -132,6 +139,8 @@ phrase "friendly civilian"
 		"Goblins"
 		"Airhammers"
 		"Redeemers"
+		"Antelopes"
+		"Pythons"
 	word
 		" last night"
 		" yesterday"
@@ -155,6 +164,9 @@ phrase "friendly civilian"
 		"limburger cheese"
 		"bleu cheese"
 		"livestock"
+		"cattle"
+		"garlic"
+		"sheep"
 		"fertilizer"
 		"manure"
 		"processed sewage"
@@ -210,6 +222,7 @@ phrase "friendly civilian"
 		"thugs "
 		"scam artists "
 		"panhandlers "
+		"raiders "
 	word
 		"if you're "
 		"if you ever find yourself "
@@ -289,6 +302,7 @@ phrase "friendly civilian"
 		"I really do think "
 		"I believe that "
 		"I really do believe that "
+		"I'm sure that "
 	word
 		"the leaders of the Syndicate "
 		"the Quarg "
@@ -335,7 +349,9 @@ phrase "friendly civilian"
 		"are trying to get along just like you and me."
 		"are a bunch of big softies deep down inside."
 		"think they know best, but they really don't."
+		"are manipulating commodity prices."
 		"are out to consume the whole galaxy's resources and leave scraps for the rest of us!"
+		"are building a superweapon to destroy us all!"
 		"are secretly being controlled by the Lizard Illuminati!"
 		"are under the control of a hidden race of chipmunk aliens!"
 
@@ -350,6 +366,7 @@ phrase "friendly civilian"
 		"Parliament needs to do more to help any citizen "
 		"I've nearly given up on being able "
 		"This economy makes it almost impossible "
+		"The government makes it almost impossible "
 	word
 		"to be an independent merchant."
 		"to earn a living."
@@ -367,16 +384,68 @@ phrase "friendly civilian"
 		"to get a pilot's license."
 		"to stay in business as an independent merchant."
 		"to live an independent merchant's life."
+		
+phrase "friendly civilian"
+	word
+		"I've "
+	word
+		"found"
+		"discovered"
+		"been using"
+		"stumbled upon"
+	word
+		" some "
+		" a few "
+		" a couple of "
+		" a number of "
+	word
+		""
+		"quite "
+		"very "
+		"relatively "
+	word
+		"juicy"
+		"interesting"
+		"good"
+		"lucrative"
+		"profitable"
+		"rewarding"
+		"money-spinning"
+		"money-making"
+		"worthwhile"
+	word
+		" trade routes, but I'm not "
+	word
+		"divulging"
+		"revealing"
+		"telling"
+		"disclosing"
+	word
+		" the secrets "
+		" the paths "
+		" them "
+	word
+		"to anyone"
+		"to you"
+		"to someone else"
+		"to another trader"
+	word
+		"."
+		"!"
 
 phrase "friendly navy"
 	word
-		"The Navy is here to "
+		"The Navy"
+	word
+		" is here to "
+		"'s mission is to "
 	word
 		"protect"
 		"defend"
 		"safeguard"
 		"shield"
 		"guard"
+		"keep you safe"
 	word
 		" and "
 	word
@@ -398,13 +467,22 @@ phrase "friendly navy"
 		"Defend"
 		"Protect"
 		"Travel"
+		"View"
 	word
 		" the galaxy!"
 		" the Republic!"
+		" the world!"
 
 phrase "friendly navy"
 	word
-		"Join the Navy, the largest "
+		"Join "
+		"Become part of "
+	word
+		"the Navy, "
+	word
+		" the biggest "
+		" the largest "
+		" the greatest "
 	word
 		"humanitarian "
 		"peacekeeping "
@@ -425,10 +503,17 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
+		"We need YOU for the Navy!"
 
 phrase "friendly militia"
 	word
-		"We are on the lookout for any "
+		"We are "
+	word
+		"on the lookout for"
+		"searching for"
+	word
+		" any "
+		" "
 	word
 		"suspicious "
 		"unusual "
@@ -436,16 +521,43 @@ phrase "friendly militia"
 		"strange "
 		"illegal "
 		"criminal "
+		"unlawful "
+		"abnormal "
+		"irregular "
 	word
 		"vessels."
 		"behavior."
 		"activity."
 		"ships."
+		"starships."
 
 phrase "friendly syndicate"
 	word
-		"Smart captains know cargo space is key. Smart captains choose the Syndicate Star Barge."
-		"The Syndicate Bulk Freighter: backbone of the galactic economy."
+		"Smart captains know cargo space is key. Smart captains choose the Syndicate "
+	word
+		"Star Barge."
+		"Bulk Freighter."
+		"Freighter."
+		
+phrase "friendly syndicate"
+	word
+		"The Syndicate"
+	word
+		" Bulk Freighter: "
+		" Freighter: "
+		" Star Barge: "
+	word
+		"backbone"
+		"motor"
+		"center"
+		"heart"
+		"engine"
+	word
+		"of the galactic economy."
+		"of galactic trade."
+		
+		
+phrase "friendly syndicate"	
 		"Remember that unauthorized blaster modifications void the warranty. Buy from the Syndicate directly!"
 		"Smart captains choose Syndicated Shipyards, the gold standard for reliability."
 		"Smart captains shop Syndicated Systems."
@@ -459,6 +571,32 @@ phrase "friendly syndicate"
 		"Syndicate worlds are the modern-day land of opportunity!"
 		"Syndicated Systems: powering interstellar commerce, one reactor at a time."
 		"Have you heard about the Syndicated Systems Proton Gun? Schedule a test-firing today!"
+		
+phrase "friendly syndicate"	
+	word
+		"Smart"
+		"Intelligent"
+		"Wise"
+		"Bright"
+		"Intuitive"
+	word
+		" captains"
+		" ship captains"
+		" starship captains"
+	word
+		" choose"
+		" shop"
+		" go for"
+		" buy at"
+
+	word
+		" Syndicated Shipyards"
+		" Syndicated Systems"
+	word
+		"."
+		", the guarantee of quality"
+		", the gold standard for reliability."
+	
 
 phrase "friendly syndicate"
 	word
@@ -479,6 +617,9 @@ phrase "friendly syndicate"
 		"! Were you aware of our Plutonium recycling program?"
 		"! Did you know that the average ship contains 39% Syndicated Systems components by weight?"
 		"! If you're looking for affordable radioisotopes, you've come to the right place!"
+		"! Apply to become a Syndicated captain today!"
+		"! We welcome any and all applications to join the Syndicated Systems team!"
+		"!"
 
 phrase "friendly syndicate"
 	word
@@ -501,8 +642,12 @@ phrase "friendly syndicate"
 		"shipyards"
 		"affordable outfits"
 		"user-friendly products"
+		"ethics"
+		"offers"
 	word
 		" are the best!"
+		" are unmatched!"
+		" are unbeatable!"
 		" can't be beat!"
 		" will keep you smiling!"
 
@@ -519,6 +664,7 @@ phrase "friendly free worlds"
 		"self-sufficient"
 		"confident"
 		"equitable"
+		"brave"
 	word
 		"! Be free!"
 
@@ -532,6 +678,7 @@ phrase "friendly free worlds"
 		"courage"
 	word
 		" there can be no "
+		" you cannot have "
 	word
 		"peace!"
 		"freedom!"
@@ -598,18 +745,23 @@ phrase "friendly pug"
 		"work for "
 		"bring about "
 	word
-		"peace."
-		"healing."
-		"justice."
-		"freedom."
-		"an end of conflict."
-		"an end to violence."
-		"an end to warfare."
-		"prosperity."
-		"reconciliation."
-		"friendship."
-		"unity."
-		"the end of violence."
+		"peace"
+		"healing"
+		"justic "
+		"freedom"
+		"an end of conflict"
+		"an end to violence"
+		"an end to warfare"
+		"prosperity"
+		"reconciliation"
+		"friendship"
+		"unity"
+		"the end of violence"
+	word
+		"."
+		" in the galaxy."
+		" through-out the universe."
+		" among all sentient beings."
 
 
 
@@ -625,163 +777,164 @@ phrase "hostile disabled"
 		"I can't believe I'm at the mercy of such a "
 		"You'd better not cross me, you "
 		"My friends will avenge me, you "
+		"Stay away from me, you "
 	word
-		artless
-		bawdy
-		beslubbering
-		bootless
-		churlish
-		cockered
-		clouted
-		craven
-		currish
-		dankish
-		dissembling
-		droning
-		errant
-		fawning
-		fobbing
-		froward
-		frothy
-		gleeking
-		goatish
-		gorbellied
-		impertinent
-		infectious
-		jarring
-		loggerheaded
-		lumpish
-		mammering
-		mangled
-		mewling
-		paunchy
-		pribbling
-		puking
-		puny
-		qualling
-		rank
-		reeky
-		roguish
-		ruttish
-		saucy
-		spleeny
-		spongy
-		surly
-		tottering
-		unmuzzled
-		vain
-		venomed
-		villainous
-		warped
-		wayward
-		weedy
-		yeasty
-	word
-		" "
-	word
-		base-court
-		bat-fowling
-		beef-witted
-		beetle-headed
-		boil-brained
-		clapper-clawed
-		clay-brained
-		common-kissing
-		crook-pated
-		dismal-dreaming
-		dizzy-eyed
-		doghearted
-		dread-bolted
-		earth-vexing
-		elf-skinned
-		fat-kidneyed
-		fen-sucked
-		flap-mouthed
-		fly-bitten
-		folly-fallen
-		fool-born
-		full-gorged
-		guts-griping
-		half-faced
-		hasty-witted
-		hedge-born
-		hell-hated
-		idle-headed
-		ill-breeding
-		ill-nurtured
-		knotty-pated
-		milk-livered
-		motley-minded
-		onion-eyed
-		plume-plucked
-		pottle-deep
-		pox-marked
-		reeling-ripe
-		rough-hewn
-		rude-growing
-		rump-fed
-		shard-borne
-		sheep-biting
-		spur-galled
-		swag-bellied
-		tardy-gaited
-		tickle-brained
-		toad-spotted
-		unchin-snouted
-		weather-bitten
+		"artless"
+		"bawdy"
+		"beslubbering"
+		"bootless"
+		"churlish"
+		"cockered"
+		"clouted"
+		"craven"
+		"currish"
+		"dankish"
+		"dissembling"
+		"droning"
+		"errant"
+		"fawning"
+		"fobbing"
+		"froward"
+		"frothy"
+		"gleeking"
+		"goatish"
+		"gorbellied"
+		"impertinent"
+		"infectious"
+		"jarring"
+		"loggerheaded"
+		"lumpish"
+		"mammering"
+		"mangled"
+		"mewling"
+		"paunchy"
+		"pribbling"
+		"puking"
+		"puny"
+		"qualling"
+		"rank"
+		"reeky"
+		"roguish"
+		"ruttish"
+		"saucy"
+		"spleeny"
+		"spongy"
+		"surly"
+		"tottering"
+		"unmuzzled"
+		"vain"
+		"venomed"
+		"villainous"
+		"warped"
+		"wayward"
+		"weedy"
+		"yeasty"
 	word
 		" "
 	word
-		apple-john
-		baggage
-		barnacle
-		bladder
-		boar-pig
-		bugbear
-		bum-bailey
-		canker-blossom
-		clack-dish
-		clotpole
-		coxcomb
-		codpiece
-		death-token
-		dewberry
-		flap-dragon
-		flax-wench
-		flirt-gill
-		foot-licker
-		fustilarian
-		giglet
-		gudgeon
-		haggard
-		harpy
-		hedge-pig
-		horn-beast
-		hugger-mugger
-		joithead
-		lewdster
-		lout
-		maggot-pie
-		malt-worm
-		mammet
-		measle
-		minnow
-		miscreant
-		moldwarp
-		mumble-news
-		nut-hook
-		pigeon-egg
-		pignut
-		puttock
-		pumpion
-		ratsbane
-		scut
-		skainsmate
-		strumpet
-		varlot
-		vassal
-		whey-face
-		wagtail
+		"base-court"
+		"bat-fowling"
+		"beef-witted"
+		"beetle-headed"
+		"boil-brained"
+		"clapper-clawed"
+		"clay-brained"
+		"common-kissing"
+		"crook-pated"
+		"dismal-dreaming"
+		"dizzy-eyed"
+		"doghearted"
+		"dread-bolted"
+		"earth-vexing"
+		"elf-skinned"
+		"fat-kidneyed"
+		"fen-sucked"
+		"flap-mouthed"
+		"fly-bitten"
+		"folly-fallen"
+		"fool-born"
+		"full-gorged"
+		"guts-griping"
+		"half-faced"
+		"hasty-witted"
+		"hedge-born"
+		"hell-hated"
+		"idle-headed"
+		"ill-breeding"
+		"ill-nurtured"
+		"knotty-pated"
+		"milk-livered"
+		"motley-minded"
+		"onion-eyed"
+		"plume-plucked"
+		"pottle-deep"
+		"pox-marked"
+		"reeling-ripe"
+		"rough-hewn"
+		"rude-growing"
+		"rump-fed"
+		"shard-borne"
+		"sheep-biting"
+		"spur-galled"
+		"swag-bellied"
+		"tardy-gaited"
+		"tickle-brained"
+		"toad-spotted"
+		"unchin-snouted"
+		"weather-bitten"
+	word
+		" "
+	word
+		"apple-john"
+		"baggage"
+		"barnacle"
+		"bladder"
+		"boar-pig"
+		"bugbear"
+		"bum-bailey"
+		"canker-blossom"
+		"clack-dish"
+		"clotpole"
+		"coxcomb"
+		"codpiece"
+		"death-token"
+		"dewberry"
+		"flap-dragon"
+		"flax-wench"
+		"flirt-gill"
+		"foot-licker"
+		"fustilarian"
+		"giglet"
+		"gudgeon"
+		"haggard"
+		"harpy"
+		"hedge-pig"
+		"horn-beast"
+		"hugger-mugger"
+		"joithead"
+		"lewdster"
+		"lout"
+		"maggot-pie"
+		"malt-worm"
+		"mammet"
+		"measle"
+		"minnow"
+		"miscreant"
+		"moldwarp"
+		"mumble-news"
+		"nut-hook"
+		"pigeon-egg"
+		"pignut"
+		"puttock"
+		"pumpion"
+		"ratsbane"
+		"scut"
+		"skainsmate"
+		"strumpet"
+		"varlot"
+		"vassal"
+		"whey-face"
+		"wagtail"
 	word
 		"."
 		"!"
@@ -794,7 +947,6 @@ phrase "hostile civilian"
 		"the Navy "
 		"the Militia "
 		"someone "
-		"God"
 	word
 		"burns "
 		"cuts "
@@ -822,8 +974,6 @@ phrase "hostile civilian"
 		"you to pieces"
 		"you to bits"
 		"you apart"
-		"your mother to pieces"
-		"your mother to bits"
 	word
 		", you"
 	word
@@ -862,6 +1012,7 @@ phrase "hostile navy"
 		"You will not "
 		"It is impossible to "
 		"No one can "
+		"You cannot "
 	word
 		"prevail against "
 		"overcome "
@@ -891,6 +1042,7 @@ phrase "hostile navy"
 		" martial "
 		" naval "
 		" fighting "
+		" famous " 
 	word
 		"strength "
 		"might "
@@ -959,6 +1111,7 @@ phrase "hostile navy"
 		"safety"
 		"justice for all"
 		"harmony"
+		"security"
 	word
 		". We regret that "
 		". It is unfortunate that "
@@ -981,6 +1134,7 @@ phrase "hostile navy"
 		"end your life."
 		"be your enemy."
 		"be your destroyer."
+		"terminate you."
 
 phrase "hostile pirate"
 	word
@@ -988,6 +1142,8 @@ phrase "hostile pirate"
 		"We're"
 		"You're about to be plundered by"
 		"You've been chosen as the next target of"
+		"You're the next target of"
+		"You're the next victim of"
 		"You better know we're"
 		"You have no chance against us,"
 	word
@@ -998,11 +1154,15 @@ phrase "hostile pirate"
 		"fiercest"
 		"deadliest"
 		"scariest"
-		"most feared"
+		"nastiest"
+		"most dangerous"
 	word
-		" ship"
-		" warship"
-		" pirate ship"
+		" pirate "
+	word
+		"starship"
+		"warship"
+		"ship"
+		""
 	word
 		" in the "
 	word
@@ -1025,6 +1185,8 @@ phrase "hostile pirate"
 		"Raiding "
 		"Pummeling "
 		"Crushing "
+		"Ravaging "
+		"Stealing from"
 	word
 		"merchants "
 		"ships "
@@ -1035,6 +1197,7 @@ phrase "hostile pirate"
 		"defenseless ships "
 		"weak ships "
 		"wimpy ships "
+		"merchant ships "
 	word
 		"and "
 	word
@@ -1049,8 +1212,10 @@ phrase "hostile pirate"
 		"our gains"
 		"wealth"
 		"plunder"
+		"the booty"
 	word
 		": I love the pirate's life!"
+		": that's the way to live!"
 
 phrase "hostile pirate"
 	word
@@ -1058,7 +1223,6 @@ phrase "hostile pirate"
 		"Get ready to "
 		"I'm going to make you "
 		"I hope you're ready to "
-		"Be prepared to "
 		"Unless you pay me a hefty bribe, you're going to "
 		"I'm here to make you "
 		"I'm here to see to it that you "
@@ -1077,6 +1241,7 @@ phrase "hostile pirate"
 		"die a horrific death!"
 		"get boarded and plundered!"
 		"contribute your wealth to furthering the cause of anarchy!"
+		"wind up a lot poorer!"
 
 # From the "Southern Television broadcast interruption."
 phrase "hostile quarg"
@@ -1123,3 +1288,33 @@ phrase "hostile pug"
 		"misstep."
 		"fault."
 		"misdeed."
+		
+phrase "hostile syndicate"
+	word
+		"We defend the Syndicate"
+	word 
+		"'s best interests"
+		"'s values"
+		"'s goals"
+		"'s purpose"
+		"'s employees"
+		"'s organizations"
+		"'s members"
+		""
+	word
+		" from "
+	word
+		"brutes"
+		"bullies"
+		"beasts"
+		"barbarians"
+		"savages"
+		"criminals"
+	word
+		" like you!"
+
+phrase "hostile Syndicate"		
+	word
+		"You are attacking the Syndicate, we must defend it."
+		"You have made a bad commecial move."
+

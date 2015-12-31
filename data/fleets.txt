@@ -268,9 +268,15 @@ fleet "Large Core Merchants"
 	variant 10
 		"Bulk Freighter" 2
 		"Protector" 1
+	variant 10
+		"Bulk Freighter" 2
+		"Vanguard" 1
 	variant 1
 		"Bulk Freighter (Heavy)" 2
 		"Protector (Laser)" 1
+	variant 1
+		"Bulk Freighter (Heavy)" 2
+		"Vanguard (Particle)" 1
 	variant 20
 		"Bounder"
 		"Quicksilver" 2
@@ -616,7 +622,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Militia"
 	government "Militia"
-	names "free worlds small"
+	names "militia"
 	cargo 1
 	personality
 		heroic frugal
@@ -661,7 +667,7 @@ fleet "Small Militia"
 
 fleet "Large Militia"
 	government "Militia"
-	names "free worlds capital"
+	names "militia"
 	cargo 1
 	personality
 		heroic frugal
@@ -1061,12 +1067,20 @@ fleet "Large Syndicate"
 	variant 1
 		"Protector"
 	variant 1
+		"Vanguard"
+	variant 1
 		"Protector (Laser)"
 	variant 1
 		"Protector"
 		"Quicksilver" 2
 	variant 1
 		"Protector (Laser)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Vanguard (Particle)"
+		"Quicksilver" 2
+	variant 1
+		"Vanguard"
 		"Quicksilver (Proton)" 2
 
 fleet "Small Southern Pirates"
@@ -1558,6 +1572,9 @@ fleet "Syndicate Extremists"
 		"Quicksilver" 5
 	variant 1
 		"Protector"
+		"Quicksilver" 2
+	variant 1
+		"Vanguard"
 		"Quicksilver" 2
 	variant 1
 		"Leviathan"

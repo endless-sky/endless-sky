@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -56,6 +57,9 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity, const System *
 MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 	: MapPanel(panel), governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {
+	// Don't use the "special" coloring in this view.
+	if(commodity == SHOW_SPECIAL)
+		commodity = SHOW_REPUTATION;
 }
 
 
@@ -64,6 +68,7 @@ void MapDetailPanel::Draw() const
 {
 	MapPanel::Draw();
 	
+	DrawKey();
 	DrawInfo();
 	DrawOrbits();
 }
@@ -160,27 +165,29 @@ bool MapDetailPanel::Click(int x, int y)
 			return true;
 		}
 		else if(y < governmentY)
-			commodity = -4;
+			commodity = SHOW_REPUTATION;
 		else if(y >= governmentY && y < governmentY + 20)
-			commodity = -3;
+			commodity = SHOW_GOVERNMENT;
 		else
 		{
 			for(const auto &it : planetY)
-				if(y >= it.second && y < it.second + 90)
+				if(y >= it.second && y < it.second + 110)
 				{
 					selectedPlanet = it.first;
 					if(y >= it.second + 50 && y < it.second + 70)
 					{
-						if(commodity == -1 && selectedPlanet->HasShipyard())
+						if(commodity == SHOW_SHIPYARD && selectedPlanet->HasShipyard())
 							ListShips();
-						commodity = -1;
+						commodity = SHOW_SHIPYARD;
 					}
 					else if(y >= it.second + 70 && y < it.second + 90)
 					{
-						if(commodity == -2 && selectedPlanet->HasOutfitter())
+						if(commodity == SHOW_OUTFITTER && selectedPlanet->HasOutfitter())
 							ListOutfits();
-						commodity = -2;
+						commodity = SHOW_OUTFITTER;
 					}
+					else if(y >= it.second + 90 && y < it.second + 110)
+						commodity = SHOW_VISITED;
 					return true;
 				}
 		}
@@ -229,6 +236,121 @@ void MapDetailPanel::DoFind(const string &text)
 
 
 
+void MapDetailPanel::DrawKey() const
+{
+	const Sprite *back = SpriteSet::Get("ui/map key");
+	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+	
+	Color bright(.6, .6);
+	Color dim(.3, .3);
+	const Font &font = FontSet::Get(14);
+	
+	Point pos(Screen::Left() + 10., Screen::Bottom() - 7. * 20. + 5.);
+	Point headerOff(-5., -.5 * font.Height());
+	Point textOff(10., -.5 * font.Height());
+	
+	static const string HEADER[] = {
+		"Trade prices:",
+		"Ships for sale:",
+		"Outfits for sale:",
+		"You have visited:",
+		"", // Special should never be active in this mode.
+		"Government:",
+		"System:"
+	};
+	const string &header = HEADER[-min(0, max(-6, commodity))];
+	font.Draw(header, pos + headerOff, bright);
+	pos.Y() += 20.;
+	
+	if(commodity >= 0)
+	{
+		const std::vector<Trade::Commodity> &commodities = GameData::Commodities();
+		const auto &range = commodities[commodity];
+		if(static_cast<unsigned>(commodity) >= commodities.size())
+			return;
+		
+		for(int i = 0; i <= 3; ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			int price = range.low + ((range.high - range.low) * i) / 3;
+			font.Draw(Format::Number(price), pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity >= SHOW_OUTFITTER)
+	{
+		static const string LABEL[2][4] = {
+			{"None", "1", "5", "10+"},
+			{"None", "1", "30", "60+"}};
+		static const double VALUE[4] = {-1., 0., .5, 1.};
+		
+		for(int i = 0; i < 4; ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == SHOW_VISITED)
+	{
+		static const string LABEL[3] = {
+			"All planets",
+			"Some",
+			"None"
+		};
+		for(int i = 0; i < 3; ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
+			font.Draw(LABEL[i], pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == SHOW_GOVERNMENT)
+	{
+		vector<pair<double, const Government *>> distances;
+		for(const auto &it : closeGovernments)
+			distances.emplace_back(it.second, it.first);
+		sort(distances.begin(), distances.end());
+		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
+		{
+			DotShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
+			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
+	else if(commodity == SHOW_REPUTATION)
+	{
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
+		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
+		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
+		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
+		pos.Y() += 20.;
+		
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, true, false));
+		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, true, false));
+		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, true, false));
+		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
+		pos.Y() += 20.;
+		
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
+		font.Draw("Restricted", pos + textOff, dim);
+		pos.Y() += 20.;
+		
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
+		font.Draw("Dominated", pos + textOff, dim);
+		pos.Y() += 20.;
+	}
+	
+	DotShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+	font.Draw("Uninhabited", pos + textOff, dim);
+	pos.Y() += 20.;
+	
+	DotShader::Draw(pos, OUTER, INNER, UnexploredColor());
+	font.Draw("Unexplored", pos + textOff, dim);
+}
+
+
+
 void MapDetailPanel::DrawInfo() const
 {
 	Color dimColor(.1, 0.);
@@ -249,12 +371,12 @@ void MapDetailPanel::DrawInfo() const
 	governmentY = uiPoint.Y() + 10.;
 	string gov = player.HasVisited(selectedSystem) ?
 		selectedSystem->GetGovernment()->GetName() : "Unknown Government";
-	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == -3) ? closeColor : farColor);
-	if(commodity == -3)
+	font.Draw(gov, uiPoint + Point(-90., 13.), (commodity == SHOW_GOVERNMENT) ? closeColor : farColor);
+	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(-90., 20.), Point(1., 0.),
 			10., 10., 0., closeColor);
 	
-	uiPoint.Y() += 105.;
+	uiPoint.Y() += 115.;
 	
 	planetY.clear();
 	if(player.HasVisited(selectedSystem))
@@ -264,32 +386,43 @@ void MapDetailPanel::DrawInfo() const
 			if(object.GetPlanet())
 			{
 				SpriteShader::Draw(planetSprite, uiPoint);
-				planetY[object.GetPlanet()] = uiPoint.Y() - 50;
+				planetY[object.GetPlanet()] = uiPoint.Y() - 60;
 			
-				font.Draw(object.GetPlanet()->Name(),
-					uiPoint + Point(-70., -42.),
+				font.Draw(object.Name(),
+					uiPoint + Point(-70., -52.),
 					object.GetPlanet() == selectedPlanet ? closeColor : farColor);
+				
 				font.Draw("Space Port",
-					uiPoint + Point(-60., -22.),
+					uiPoint + Point(-60., -32.),
 					object.GetPlanet()->HasSpaceport() ? closeColor : dimColor);
+				
 				font.Draw("Shipyard",
-					uiPoint + Point(-60., -2.),
+					uiPoint + Point(-60., -12.),
 					object.GetPlanet()->HasShipyard() ? closeColor : dimColor);
-				if(commodity == -1)
-					PointerShader::Draw(uiPoint + Point(-60., 5.), Point(1., 0.),
+				if(commodity == SHOW_SHIPYARD)
+					PointerShader::Draw(uiPoint + Point(-60., -5.), Point(1., 0.),
 						10., 10., 0., closeColor);
+				
 				font.Draw("Outfitter",
-					uiPoint + Point(-60., 18.),
+					uiPoint + Point(-60., 8.),
 					object.GetPlanet()->HasOutfitter() ? closeColor : dimColor);
-				if(commodity == -2)
-					PointerShader::Draw(uiPoint + Point(-60., 25.), Point(1., 0.),
+				if(commodity == SHOW_OUTFITTER)
+					PointerShader::Draw(uiPoint + Point(-60., 15.), Point(1., 0.),
 						10., 10., 0., closeColor);
-			
-				uiPoint.Y() += 110.;
+				
+				bool hasVisited = player.HasVisited(object.GetPlanet());
+				font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
+					uiPoint + Point(-70., 28.),
+					farColor);
+				if(commodity == SHOW_VISITED)
+					PointerShader::Draw(uiPoint + Point(-70., 35.), Point(1., 0.),
+						10., 10., 0., closeColor);
+				
+				uiPoint.Y() += 130.;
 			}
 	}
 	
-	uiPoint.Y() += 55.;
+	uiPoint.Y() += 45.;
 	tradeY = uiPoint.Y() - 95.;
 	
 	// Trade sprite goes from 310 to 540.
@@ -338,7 +471,7 @@ void MapDetailPanel::DrawInfo() const
 		uiPoint.Y() += 20.;
 	}
 	
-	if(selectedPlanet)
+	if(selectedPlanet && !selectedPlanet->Description().empty() && player.HasVisited(selectedPlanet))
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
 		Point pos(Screen::Right() - .5 * panelSprite->Width(),
@@ -427,11 +560,12 @@ void MapDetailPanel::DrawOrbits() const
 	}
 	
 	planets.clear();
-	static const Color planetColor[4] = {
+	static const Color planetColor[5] = {
 		Color(1., 1., 1., 1.),
 		Color(.3, .3, .3, 1.),
 		Color(0., .8, 1., 1.),
-		Color(.8, .4, .2, 1.)
+		Color(.8, .4, .2, 1.),
+		Color(.8, .3, 1., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -444,7 +578,8 @@ void MapDetailPanel::DrawOrbits() const
 		DotShader::Draw(pos,
 			object.Radius() * scale + 1., 0.,
 				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)
-					+ (object.GetPlanet() && !object.GetPlanet()->CanLand())]);
+					+ (object.GetPlanet() && !object.GetPlanet()->CanLand() && !object.GetPlanet()->IsWormhole())
+					+ 2 * (object.GetPlanet() && object.GetPlanet()->IsWormhole())]);
 	}
 	
 	// Draw the name of the selected planet.

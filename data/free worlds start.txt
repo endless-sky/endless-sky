@@ -256,7 +256,7 @@ mission "oathkeepers founded"
 		conversation
 			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
 			`	Furthermore, the leader of the Oathkeepers will be General Danforth, an elderly general who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
-			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyways, it is a victory that cost them very little.`
+			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyway, it is a victory that cost them very little.`
 
 
 
@@ -481,7 +481,7 @@ mission "FW Syndicate Diplomacy 1D"
 			
 			`	"I was a teenage slave working in the factories at the time," she says. "Exactly the wrong age, as it turned out. One day the overseers informed us that all the eighteen year old girls had to have mandatory 'health checkups' that day. I won't describe what the 'checkup' involved, but it was bewildering and unpleasant. And nearly all those girls disappeared, that day. They never returned from the 'checkups.' Only a few of us were left behind. Most of the leftovers were girls who had been unlucky enough to already be pregnant at that age. Or lucky, as it turned out. But I didn't understand why they didn't take me."`
 			`	Alondo seems very disturbed by the story. "They were selling girls into prostitution?" he says.`
-			`	"That's what we assumed," she says, "but there were dozens of girls like me who were not taken, even though we were not pregnant. It didn't make sense. Anyways, somehow news of that event got off-world and not long after, the Navy came in massive numbers, destroyed the slaver fleets and liberated our planet. In the process, they tried to invade an underground facility up in the mountains, which is where they thought the girls were being kept. But the facility was rigged to self-destruct, and they never found out what had been going on inside the facility. No one inside it survived."`
+			`	"That's what we assumed," she says, "but there were dozens of girls like me who were not taken, even though we were not pregnant. It didn't make sense. Anyway, somehow news of that event got off-world and not long after, the Navy came in massive numbers, destroyed the slaver fleets and liberated our planet. In the process, they tried to invade an underground facility up in the mountains, which is where they thought the girls were being kept. But the facility was rigged to self-destruct, and they never found out what had been going on inside the facility. No one inside it survived."`
 			choice
 				`	"Did you ever find out why they let you go?"`
 			
@@ -678,6 +678,7 @@ mission "FW Plasma Testing 1B"
 		personality plunders staying
 		system Ildaria
 		ship "Leviathan (Heavy)" "Red Nile"
+		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
 	
 	on visit
 		dialog "You have reached <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind."
@@ -704,7 +705,7 @@ mission "FW Plasma Testing 1B"
 				`	"Well, we try to only blow things up when strictly necessary."`
 			
 			label explain
-			`	"Of course," he says. "Anyways, I bet you're wondering what new toys we're going to let you play with." You nod. He says, "We've been trying to come up with a weapon for our capital ships, something that's a match for one of the Navy's heavy laser turrets. Something more elegant than those awful quad blaster turrets the Syndicate makes. So I thought, why not take the biggest thing we've got, and then mount a pair of them on a turret?" He beckons for you to follow, and leads you through a door and into a hangar.`
+			`	"Of course," he says. "Anyway, I bet you're wondering what new toys we're going to let you play with." You nod. He says, "We've been trying to come up with a weapon for our capital ships, something that's a match for one of the Navy's heavy laser turrets. Something more elegant than those awful quad blaster turrets the Syndicate makes. So I thought, why not take the biggest thing we've got, and then mount a pair of them on a turret?" He beckons for you to follow, and leads you through a door and into a hangar.`
 			scene "outfit/plasma turret"
 			`	In front of you is a turret. It is almost absurdly large: a pair of plasma cannons mounted on a massive rotating base. "Sixty tons," says Barmy Edward. "Draws more power than... well, than anything else, practically. Runs a little hot, too."`
 			choice
@@ -1021,7 +1022,7 @@ mission "FW Senate 1B"
 			choice
 				`	"So you're here to talk to the Senators?"`
 				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
-			`	"Indeed," he says. "Anyways, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
+			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
 
 
 
@@ -1098,7 +1099,7 @@ mission "FW Flamethrower 2"
 			`	"I guess that makes sense," you say, "although I wouldn't want to run out of jump fuel by accident. Are you going to be making them available for sale?"`
 				goto available
 			label available
-			`	"Well, I should have an initial model for sale in a month or so," he says. "I'll be interested to see what uses you or anyone else might find for them. Anyways, thanks for your help." You say goodbye and head back to your ship.`
+			`	"Well, I should have an initial model for sale in a month or so," he says. "I'll be interested to see what uses you or anyone else might find for them. Anyway, thanks for your help." You say goodbye and head back to your ship.`
 
 
 

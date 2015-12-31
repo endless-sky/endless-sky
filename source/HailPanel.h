@@ -63,6 +63,7 @@ private:
 	bool playerNeedsHelp = false;
 	bool canGiveFuel = false;
 	bool canRepair = false;
+	bool hasLanguage = true;
 };
 
 

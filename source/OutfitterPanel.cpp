@@ -27,6 +27,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoDisplay.h"
 #include "SpriteSet.h"
@@ -65,6 +66,9 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 {
 	for(const pair<string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
+	
+	if(player.GetPlanet())
+		outfitter = player.GetPlanet()->Outfitter();
 }
 
 
@@ -113,16 +117,18 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if(!planet->Outfitter().Has(outfit)
+	if(!outfitter.Has(outfit)
 			&& (!playerShip || !playerShip->OutfitCount(outfit))
 			&& !available[outfit] && !player.Cargo().Get(outfit))
 		return false;
 	
+	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);
+	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
+		return true;
+	
 	bool isSelected = (outfit == selectedOutfit);
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
 	DrawOutfit(*outfit, point, isSelected, isOwned);
-	
-	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);
 	
 	// Check if this outfit is a "license".
 	bool isLicense = IsLicense(name);
@@ -166,7 +172,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			OUTFIT_SIZE / 2 - 24);
 		font.Draw(count, pos, bright);
 	}
-	else if(!planet->Outfitter().Has(outfit) && !available[outfit])
+	else if(!outfitter.Has(outfit) && !available[outfit])
 	{
 		static const string message = "(not sold here)";
 		Point pos = point + Point(
@@ -217,7 +223,7 @@ bool OutfitterPanel::CanBuy() const
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
 	
-	if(!(planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit]))
+	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit]))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -296,14 +302,17 @@ void OutfitterPanel::Buy()
 		
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Transfer(selectedOutfit, 1);
+			else if(!available[selectedOutfit] && !outfitter.Has(selectedOutfit))
+				break;
 			else
 			{
 				player.Accounts().AddCredits(-selectedOutfit->Cost());
 				--available[selectedOutfit];
 			}
 			ship->AddOutfit(selectedOutfit, 1);
-			if(selectedOutfit->Get("required crew"))
-				ship->AddCrew(selectedOutfit->Get("required crew"));
+			int required = selectedOutfit->Get("required crew");
+			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
+				ship->AddCrew(required);
 		}
 	}
 }
@@ -326,7 +335,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-	if(!(planet->Outfitter().Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
+	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
@@ -699,7 +708,7 @@ void OutfitterPanel::CheckRefill()
 		for(const Outfit *outfit : toRefill)
 		{
 			int needed = ship->Attributes().CanAdd(*outfit, 1000000);
-			if(!planet->Outfitter().Has(outfit))
+			if(!outfitter.Has(outfit))
 				needed = min(needed, player.Cargo().Get(outfit) + available[selectedOutfit]);
 			cost += needed * outfit->Cost();
 		}
@@ -736,6 +745,8 @@ void OutfitterPanel::Refill()
 			{
 				if(player.Cargo().Get(outfit))
 					player.Cargo().Transfer(outfit, 1);
+				else if(!available[outfit] && !outfitter.Has(outfit))
+					break;
 				else
 				{
 					player.Accounts().AddCredits(-outfit->Cost());

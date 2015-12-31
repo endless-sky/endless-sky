@@ -227,6 +227,8 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	// Display box effects from jettisoning this much cargo.
+	void Jettison(int tons);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
@@ -324,6 +326,7 @@ private:
 	bool hasBoarded = false;
 	bool neverDisabled = false;
 	double cloak = 0.;
+	int jettisoned = 0;
 	
 	Command commands;
 	

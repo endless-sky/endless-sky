@@ -216,6 +216,8 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *syst
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 {
+	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
+	
 	attributeLabels.clear();
 	attributeValues.clear();
 	attributesHeight = 10;
@@ -256,26 +258,36 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributeValues.push_back(Format::Number(attributes.Get("hull")));
 	}
 	attributesHeight += 20;
-	double emptyMass = attributes.Get("mass");
-	attributeLabels.push_back("mass with no cargo:");
+	double emptyMass = ship.Mass();
+	attributeLabels.push_back(isGeneric ? "mass with no cargo:" : "mass:");
 	attributeValues.push_back(Format::Number(emptyMass));
 	attributesHeight += 20;
-	attributeLabels.push_back("cargo space:");
-	attributeValues.push_back(Format::Number(attributes.Get("cargo space")));
+	attributeLabels.push_back(isGeneric ? "cargo space:" : "cargo:");
+	if(isGeneric)
+		attributeValues.push_back(Format::Number(attributes.Get("cargo space")));
+	else
+		attributeValues.push_back(Format::Number(ship.Cargo().Used())
+			+ " / " + Format::Number(attributes.Get("cargo space")));
 	attributesHeight += 20;
 	attributeLabels.push_back("required crew / bunks:");
 	attributeValues.push_back(Format::Number(ship.RequiredCrew())
 		+ " / " + Format::Number(attributes.Get("bunks")));
 	attributesHeight += 20;
-	attributeLabels.push_back("fuel capacity:");
-	attributeValues.push_back(Format::Number(attributes.Get("fuel capacity")));
+	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
+	double fuelCapacity = attributes.Get("fuel capacity");
+	if(isGeneric)
+		attributeValues.push_back(Format::Number(fuelCapacity));
+	else
+		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
+			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
 	
-	double fullMass = emptyMass + attributes.Get("cargo space");
+	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
+	isGeneric &= (fullMass != emptyMass);
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	attributeLabels.push_back((emptyMass == fullMass) ? "movement:" : "movement, full / no cargo:");
+	attributeLabels.push_back(isGeneric ? "movement, full / no cargo:" : "movement:");
 	attributeValues.push_back(string());
 	attributesHeight += 20;
 	attributeLabels.push_back("max speed:");
@@ -283,7 +295,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("acceleration:");
-	if(emptyMass == fullMass)
+	if(!isGeneric)
 		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass));
 	else
 		attributeValues.push_back(Format::Number(3600. * attributes.Get("thrust") / fullMass)
@@ -291,7 +303,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 20;
 	
 	attributeLabels.push_back("turning:");
-	if(emptyMass == fullMass)
+	if(!isGeneric)
 		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass));
 	else
 		attributeValues.push_back(Format::Number(60. * attributes.Get("turn") / fullMass)

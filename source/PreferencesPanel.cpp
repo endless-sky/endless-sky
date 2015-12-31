@@ -37,10 +37,13 @@ namespace {
 		"Menus",
 		"Fleet"
 	};
+	static const string EXPEND_AMMO = "Escorts expend ammo";
+	static const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	static const string SETTINGS[] = {
 		"Show CPU / GPU load",
 		"Render motion blur",
 		"",
+		EXPEND_AMMO,
 		"Automatic firing",
 		"Automatic aiming",
 		"",
@@ -82,7 +85,7 @@ void PreferencesPanel::Draw() const
 	table.AddColumn(115, Table::RIGHT);
 	table.SetUnderline(-120, 120);
 	
-	int firstY = -240;
+	int firstY = -248;
 	table.DrawAt(Point(-130, firstY));
 	
 	Point endPoint;
@@ -112,7 +115,6 @@ void PreferencesPanel::Draw() const
 		Command::MENU,
 		Command::MAP,
 		Command::INFO,
-		Command::SCAN,
 		Command::FULLSCREEN,
 		Command::NONE,
 		Command::DEPLOY,
@@ -195,17 +197,23 @@ void PreferencesPanel::Draw() const
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 		
 		bool isOn = Preferences::Has(setting);
+		string text;
+		if(setting == EXPEND_AMMO)
+			text = isOn ? Preferences::Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+		else
+			text = isOn ? "on" : "off";
+		
 		if(setting == hoverPreference)
 			table.DrawHighlight(back);
 		table.Draw(setting, isOn ? medium : dim);
-		table.Draw(isOn ? "on" : "off", isOn ? bright : medium);
+		table.Draw(text, isOn ? bright : medium);
 		table.DrawGap(-40);
 	}
 	
 	Table shiftTable;
 	shiftTable.AddColumn(125, Table::RIGHT);
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 60));
+	shiftTable.DrawAt(Point(-400, 52));
 	
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
@@ -213,6 +221,7 @@ void PreferencesPanel::Draw() const
 	shiftTable.Draw("Select nearest ship", medium);
 	shiftTable.Draw("Select next escort", medium);
 	shiftTable.Draw("Talk to planet", medium);
+	shiftTable.Draw("Board disabled escort", medium);
 }
 
 
@@ -264,7 +273,14 @@ bool PreferencesPanel::Click(int x, int y)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
-			if(zone.Value() != "zoom factor")
+			if(zone.Value() == EXPEND_AMMO)
+			{
+				bool expend = Preferences::Has(EXPEND_AMMO);
+				bool frugal = Preferences::Has(FRUGAL_ESCORTS);
+				Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
+				Preferences::Set(FRUGAL_ESCORTS, !expend);
+			}
+			else if(zone.Value() != "zoom factor")
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
 			else
 			{

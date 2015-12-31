@@ -123,6 +123,8 @@ void PlayerInfo::Load(const string &path)
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
+			Visit(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
 			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
@@ -691,7 +693,10 @@ void PlayerInfo::AdjustBasis(const string &commodity, int64_t adjustment)
 // of the commodity that you own is assumed to have the same basis.
 int64_t PlayerInfo::GetBasis(const string &commodity, int tons) const
 {
+	// Handle cost basis even when not landed on a planet.
 	int total = cargo.Get(commodity);
+	for(const auto &ship : ships)
+		total += ship->Cargo().Get(commodity);
 	if(!total)
 		return 0;
 	
@@ -711,6 +716,9 @@ void PlayerInfo::Land(UI *ui)
 		return;
 	
 	Audio::Play(Audio::Get("landing"));
+	
+	// Mark this planet as visited.
+	Visit(planet);
 	
 	// Remove any ships that have been destroyed or captured.
 	map<string, int> lostCargo;
@@ -755,8 +763,11 @@ void PlayerInfo::Land(UI *ui)
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
-		const Mission &mission = *mit;
+		Mission &mission = *mit;
 		++mit;
+		
+		// If this is a stopover for the mission, perform the stopover action.
+		mission.Do(Mission::STOPOVER, *this, ui);
 		
 		if(mission.HasFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -1089,14 +1100,14 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission)
+void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
 			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			break;
@@ -1244,7 +1255,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 			
-			mission.Do(trigger, *this, ui);
+			it->Do(trigger, *this, ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
@@ -1309,7 +1320,15 @@ bool PlayerInfo::HasSeen(const System *system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System *system) const
 {
-	return (visited.find(system) != visited.end());
+	return (visitedSystems.find(system) != visitedSystems.end());
+}
+
+
+
+// Check if the player has visited the given system.
+bool PlayerInfo::HasVisited(const Planet *planet) const
+{
+	return (visitedPlanets.find(planet) != visitedPlanets.end());
 }
 
 
@@ -1337,7 +1356,7 @@ bool PlayerInfo::KnowsName(const System *system) const
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const System *system)
 {
-	visited.insert(system);
+	visitedSystems.insert(system);
 	seen.insert(system);
 	for(const System *neighbor : system->Neighbors())
 		seen.insert(neighbor);
@@ -1345,12 +1364,30 @@ void PlayerInfo::Visit(const System *system)
 
 
 
+// Mark the given system as visited, and mark all its neighbors as seen.
+void PlayerInfo::Visit(const Planet *planet)
+{
+	if(!planet->TrueName().empty())
+		visitedPlanets.insert(planet);
+}
+
+
+
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
-	auto it = visited.find(system);
-	if(it != visited.end())
-		visited.erase(it);
+	auto it = visitedSystems.find(system);
+	if(it != visitedSystems.end())
+	{
+		visitedSystems.erase(it);
+		for(const StellarObject &object : system->Objects())
+			if(object.GetPlanet())
+			{
+				auto it2 = visitedPlanets.find(object.GetPlanet());
+				if(it2 != visitedPlanets.end())
+					visitedPlanets.erase(it2);
+			}
+	}
 }
 
 
@@ -1637,6 +1674,10 @@ void PlayerInfo::Save(const string &path) const
 			out.Write("destroyed", it.first);
 	
 	// Save a list of systems the player has visited.
-	for(const System *system : visited)
+	for(const System *system : visitedSystems)
 		out.Write("visited", system->Name());
+	
+	// Save a list of planets the player has visited.
+	for(const Planet *planet : visitedPlanets)
+		out.Write("visited planet", planet->TrueName());
 }

@@ -504,10 +504,10 @@ mission "FWC Diplomacy 1B"
 				`	"Um, I don't think an Argosy is strong enough to tip the scales in a battle against the Navy."`
 				`	"Please tell me that thing isn't armed with nukes. Because that would cause a major diplomatic incident."`
 					goto nukes
-			`	Alondo sighs. "Yes, but the Senate thought if we brought anything bigger, it might look like an attack fleet rather than an escort. And of course, it's not carrying nukes, because if the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyways, let's get going and hope for the best."`
+			`	Alondo sighs. "Yes, but the Senate thought if we brought anything bigger, it might look like an attack fleet rather than an escort. And of course, it's not carrying nukes, because if the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
 				accept
 			label nukes
-			`	"No, no, of course not," sys Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyways, let's get going and hope for the best."`
+			`	"No, no, of course not," sys Alondo. "If the Navy picked those up on their sensors, they'd blast us out of the sky long before we could land on Earth. Anyway, let's get going and hope for the best."`
 				accept
 	
 	npc accompany save
@@ -634,7 +634,7 @@ mission "FWC Checkmate 1"
 	on offer
 		event "fwc defend cebalrai"
 		conversation
-			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. ""Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
+			`When you land on Tundra, Tomek seems glad to see Katya back, but you sense that he's also a little wary of how she will respond to the choices the Free Worlds have been making. "Using nukes, threatening orbital bombardment," says Katya, "treating the Syndicate as an ally. Anything else I missed while I was gone?"`
 			choice
 				`	"We only want this war to be over as soon as possible."`
 				`	"We've just been trying to avoid being destroyed by the Navy, and things have gotten a bit out of hand."`
@@ -720,13 +720,6 @@ mission "FWC Checkmate 1"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-		fleet
-			names "republic capital"
-			fighters "republic fighter"
-			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
@@ -2084,7 +2077,7 @@ mission "FWC Pug 4C"
 	
 	on complete
 		event "fwc reconnect zeta aquilae"
-		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact General Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyways, meet me in the spaceport whenever you're ready to help with our next mission."`
+		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact General Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyway, meet me in the spaceport whenever you're ready to help with our next mission."`
 	
 	npc evade
 		personality disables heroic staying
@@ -2206,7 +2199,7 @@ mission "FWC Pug 5"
 	
 	npc
 		government "Navy (Oathkeeper)"
-		personality heroic
+		personality heroic escort
 		fleet
 			names "republic capital"
 			fighters "republic fighter"

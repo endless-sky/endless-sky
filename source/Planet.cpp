@@ -130,6 +130,17 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 // Get the name of the planet.
 const string &Planet::Name() const
 {
+	static const string UNKNOWN = "???";
+	if(IsWormhole())
+		return UNKNOWN;
+	return name;
+}
+
+
+
+// Get the name used for this planet in the data files.
+const string &Planet::TrueName() const
+{
 	return name;
 }
 
@@ -195,7 +206,8 @@ const string &Planet::SpaceportDescription() const
 // have the "uninhabited" attribute).
 bool Planet::IsInhabited() const
 {
-	return HasSpaceport() && attributes.find("uninhabited") == attributes.end();
+	return (HasSpaceport() || requiredReputation || defenseFleet)
+		&& attributes.find("uninhabited") == attributes.end();
 }
 
 
@@ -300,6 +312,18 @@ bool Planet::IsWormhole() const
 
 
 
+const System *Planet::WormholeSource(const System *to) const
+{
+	auto it = find(systems.begin(), systems.end(), to);
+	if(it == systems.end())
+		return to;
+	
+	return (it == systems.begin() ? systems.back() : *--it);
+}
+
+
+
+
 const System *Planet::WormholeDestination(const System *from) const
 {
 	auto it = find(systems.begin(), systems.end(), from);
@@ -364,7 +388,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	// defense fleet?
 	bool isDefeated = (defenseDeployed == defenseCount);
 	for(const shared_ptr<Ship> &ship : defenders)
-		if(!ship->IsDisabled())
+		if(!ship->IsDisabled() && !ship->IsYours())
 		{
 			isDefeated = false;
 			break;

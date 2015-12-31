@@ -251,7 +251,7 @@ mission "Expedition to Hope 1"
 		attributes "dirt belt"
 	destination Hope
 	to offer
-		random < 10
+		random < 40
 	cargo "scientific equipment" 4
 	passengers 4
 	
@@ -354,7 +354,7 @@ mission "Transport Workers B"
 					goto thanks
 				`	"Are you sure about that? I've heard some bad things about the Syndicate's company towns."`
 					goto towns
-				`	"Do your really think she's going to wait around for you?"`
+				`	"Do you really think she's going to wait around for you?"`
 					goto wait
 			label towns
 			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`
@@ -1223,7 +1223,7 @@ mission "Terraforming 5"
 			choice
 				`	"Looks good, let's head back to Rand."`
 					accept
-				`	"So, how do you plan to seed the whole planet with these, anyways?"`
+				`	"So, how do you plan to seed the whole planet with these, anyway?"`
 			`	She says, "My idea is to just disperse them in a few different locations, and trust that they will spread out over the next decade or so. We picked plants that are hardy and can spread very rapidly."`
 			choice
 				`	"Sounds good to me."`

@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "Sale.h"
+
 #include <map>
 #include <string>
 
@@ -72,6 +74,8 @@ private:
 	// outfitter does not normally carry that you sold by accident).
 	std::map<const Outfit *, int> &available;
 	bool checkedRefill = false;
+	
+	Sale<Outfit> outfitter;
 };
 
 

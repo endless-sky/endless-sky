@@ -15,10 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "Sale.h"
+
 #include <string>
 
 class PlayerInfo;
 class Point;
+class Ship;
 
 
 
@@ -56,6 +59,8 @@ private:
 	
 private:
 	int modifier;
+	
+	Sale<Ship> shipyard;
 };
 
 

@@ -23,7 +23,7 @@ using namespace std;
 namespace {
 	Shader shader;
 	GLint scaleI;
-	GLint sizeI;
+	GLint transformI;
 	GLint positionI;
 	GLint colorI;
 	
@@ -36,7 +36,7 @@ namespace {
 void OutlineShader::Init()
 {
 	static const char *vertexCode =
-		"uniform vec2 size;\n"
+		"uniform mat2 transform;\n"
 		"uniform vec2 position;\n"
 		"uniform vec2 scale;\n"
 		"in vec2 vert;\n"
@@ -45,8 +45,9 @@ void OutlineShader::Init()
 		"out vec2 off;\n"
 		"void main() {\n"
 		"  tc = vertTexCoord;\n"
-		"  off = vec2(.5, .5) / size;\n"
-		"  gl_Position = vec4((vert * size + position) * scale, 0, 1);\n"
+		"  mat2 sq = matrixCompMult(transform, transform);\n"
+		"  off = vec2(.5 / sqrt(sq[0][0] + sq[0][1]), .5 / sqrt(sq[1][0] + sq[1][1]));\n"
+		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
 		"}\n";
 
 	static const char *fragmentCode =
@@ -71,7 +72,7 @@ void OutlineShader::Init()
 	
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
-	sizeI = shader.Uniform("size");
+	transformI = shader.Uniform("transform");
 	positionI = shader.Uniform("position");
 	colorI = shader.Uniform("color");
 	
@@ -107,7 +108,7 @@ void OutlineShader::Init()
 
 
 
-void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color)
+void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &size, const Color &color, const Point &unit)
 {
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);
@@ -116,9 +117,15 @@ void OutlineShader::Draw(const Sprite *sprite, const Point &pos, const Point &si
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
 	
-	GLfloat wh[2] = {
-		static_cast<float>(size.X()), static_cast<float>(size.Y())};
-	glUniform2fv(sizeI, 1, wh);
+	Point uw = unit * size.X();
+	Point uh = unit * size.Y();
+	GLfloat transform[4] = {
+		static_cast<float>(-uw.Y()),
+		static_cast<float>(uw.X()),
+		static_cast<float>(-uh.X()),
+		static_cast<float>(-uh.Y())
+	};
+	glUniformMatrix2fv(transformI, 1, false, transform);
 	
 	GLfloat position[2] = {
 		static_cast<float>(pos.X()), static_cast<float>(pos.Y())};

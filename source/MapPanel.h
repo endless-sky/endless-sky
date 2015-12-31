@@ -15,11 +15,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
 
+#include <map>
 #include <string>
 
+class Angle;
+class Government;
 class Mission;
 class Planet;
 class PlayerInfo;
@@ -32,8 +36,21 @@ class System;
 // the systems based on a selected criterion. It also handles finding and
 // drawing routes in between systems.
 class MapPanel : public Panel {
+protected:
+	// Enumeration for how the systems should be colored:
+	static const int SHOW_SHIPYARD = -1;
+	static const int SHOW_OUTFITTER = -2;
+	static const int SHOW_VISITED = -3;
+	static const int SHOW_SPECIAL = -4;
+	static const int SHOW_GOVERNMENT = -5;
+	static const int SHOW_REPUTATION = -6;
+	
+	static const double OUTER;
+	static const double INNER;
+	
+	
 public:
-	MapPanel(PlayerInfo &player, int commodity = -4, const System *special = nullptr);
+	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	void SetCommodity(int index);
 	virtual void Draw() const override;
@@ -44,6 +61,13 @@ protected:
 	virtual bool Click(int x, int y) override;
 	virtual bool Drag(int dx, int dy) override;
 	virtual bool Scroll(int dx, int dy) override;
+	
+	// Get the color mapping for various system attributes.
+	static Color MapColor(double value);
+	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
+	static Color GovernmentColor(const Government *government);
+	static Color UninhabitedColor();
+	static Color UnexploredColor();
 	
 	virtual double SystemValue(const System *system) const;
 	
@@ -76,13 +100,17 @@ protected:
 	int zoom = 0;
 	mutable int step = 0;
 	
+	mutable std::map<const Government *, double> closeGovernments;
+	
 	
 private:
 	void DrawTravelPlan() const;
+	void DrawWormholes() const;
 	void DrawLinks() const;
 	void DrawSystems() const;
 	void DrawNames() const;
 	void DrawMissions() const;
+	void DrawPointer(const System *system, Angle &angle, const Color &color) const;
 };
 
 

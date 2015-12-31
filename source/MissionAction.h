@@ -55,7 +55,7 @@ public:
 	
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(std::map<std::string, std::string> &subs, int defaultPayment) const;
+	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
 private:
@@ -70,7 +70,7 @@ private:
 	std::map<std::string, int> events;
 	std::map<const Outfit *, int> gifts;
 	int payment = 0;
-	bool giveDefaultPayment = false;
+	int paymentMultiplier = 0;
 	
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

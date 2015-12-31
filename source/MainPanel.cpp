@@ -138,7 +138,7 @@ void MainPanel::Step()
 		player.HandleEvent(event, GetUI());
 		if((event.Type() & (ShipEvent::BOARD | ShipEvent::ASSIST)) && isActive && actor->IsPlayer())
 		{
-			const Mission *mission = player.BoardingMission(event.Target());
+			Mission *mission = player.BoardingMission(event.Target());
 			if(mission)
 				mission->Do(Mission::OFFER, player, GetUI());
 			else if(event.Type() == ShipEvent::BOARD)
@@ -214,6 +214,7 @@ void MainPanel::Draw() const
 void MainPanel::OnCallback()
 {
 	engine.Place();
+	engine.Step(true);
 }
 
 
@@ -293,7 +294,7 @@ void MainPanel::ShowHailPanel()
 {
 	// An exploding ship cannot communicate.
 	const Ship *flagship = player.Flagship();
-	if(!flagship || flagship->IsDestroyed())
+	if(!flagship || flagship->IsDestroyed() || flagship->IsEnteringHyperspace())
 		return;
 	
 	shared_ptr<Ship> target = flagship->GetTargetShip();

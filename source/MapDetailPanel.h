@@ -30,7 +30,7 @@ class PlayerInfo;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	MapDetailPanel(PlayerInfo &player, int commodity = -4, const System *system = nullptr);
+	MapDetailPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *system = nullptr);
 	MapDetailPanel(const MapPanel &panel);
 	
 	virtual void Draw() const override;
@@ -44,6 +44,7 @@ protected:
 	
 private:
 	void DoFind(const std::string &text);
+	void DrawKey() const;
 	void DrawInfo() const;
 	void DrawOrbits() const;
 	

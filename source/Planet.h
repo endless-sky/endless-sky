@@ -42,6 +42,8 @@ public:
 	
 	// Get the name of the planet.
 	const std::string &Name() const;
+	// Get the name used for this planet in the data files.
+	const std::string &TrueName() const;
 	// Get the planet's descriptive text.
 	const std::string &Description() const;
 	// Get the landscape sprite.
@@ -91,6 +93,7 @@ public:
 	
 	// Check if this is a wormhole (that is, it appears in multiple systems).
 	bool IsWormhole() const;
+	const System *WormholeSource(const System *from) const;
 	const System *WormholeDestination(const System *from) const;
 	
 	// Below are convenience functions which access the game state in Politics,

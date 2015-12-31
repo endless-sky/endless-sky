@@ -219,34 +219,6 @@ Point &Point::operator/=(double scalar)
 
 
 
-double &Point::X()
-{
-	return x;
-}
-
-
-
-const double &Point::X() const
-{
-	return x;
-}
-
-
-
-double &Point::Y()
-{
-	return y;
-}
-
-
-
-const double &Point::Y() const
-{
-	return y;
-}
-
-
-
 void Point::Set(double x, double y)
 {
 #ifdef __SSE3__
