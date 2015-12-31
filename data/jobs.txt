@@ -1589,22 +1589,17 @@ mission "Large Rush Delivery [3]"
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
 		
 mission "Wealthy Executive Short [0]"
-	name "Transport a wealthy executive  to <planet>"
+	name "Transport a wealthy executive to <planet>"
 	job
 	repeat
 	deadline 0 1
-	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will not have time to stop to refuel."
+	passengers 1
+	description "Bring a wealthy and important executive to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	to offer
-		random < 10
-		or 
-			has "ship: Flivver"
-			has "ship: Arrow"
-			has "ship: Star Queen"
-	to fail
-		and 
-			not "ship: Flivver"
-			not "ship: Arrow"
-			not "ship: Star Queen"
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1614,25 +1609,21 @@ mission "Wealthy Executive Short [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment 10000 300
+		outfit "Luxury Bunks" 1
+		dialog "You wish your executive <fare> the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Wealthy Executive Short [1]"
-	name "Transport <bunks> wealthy executives  to <planet>"
+mission "Wealthy Administrators Short [1]"
+	name "Transport <bunks> wealthy administrators to <planet>"
 	job
 	repeat
 	deadline 0 1
-	description "Bring <bunks> wealthy and important executives to <destination> by <date>. They are in a hurry so you will not have time to stop to refuel."
+	description "Bring <bunks> wealthy and important administrators to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	passengers 2 4 .9
 	to offer
-		random < 5
-		or 
-			has "ship: Flivver"
-			has "ship: Arrow"
-			has "ship: Star Queen"
-	to fail
-		and 
-			not "ship: Flivver"
-			not "ship: Arrow"
-			not "ship: Star Queen"
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1642,24 +1633,21 @@ mission "Wealthy Executive Short [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment 25000 300
-		
-mission "Wealthy Executive Long [0]"
-	name "Transport a wealthy executive to <planet>"
+		dialog "You wish your <bunks> administrator <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
+
+mission "Wealthy Politician Long [0]"
+	name "Transport a wealthy politician to <planet>"
 	job
 	repeat
+	passengers 1
 	deadline 1 1
-	description "Bring a wealthy and important executive to <destination> by <date>. He is in a hurry so you will only have time to refuel once."
+	description "Bring a wealthy and important politician to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunk space or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	to offer
-		random > 90
-		or 
-			has "ship: Flivver"
-			has "ship: Arrow"
-			has "ship: Star Queen"
-	to fail
-		and 
-			not "ship: Flivver"
-			not "ship: Arrow"
-			not "ship: Star Queen"
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1669,25 +1657,21 @@ mission "Wealthy Executive Long [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment 30000 300
+		dialog "You wish your politician <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
 
 mission "Wealthy Executive Long [1]"
 	name "Transport <bunks> wealthy executives to <planet>"
 	job
 	repeat
 	deadline 1 1
-	description "Bring <bunks> wealthy and important executive to <destination> by <date>. He is in a hurry so you will only have time to refuel once."
+	description "Bring <bunks> wealthy and important executive to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	passengers 2 4 .9
 	to offer
-		random > 95
-		or 
-			has "ship: Flivver"
-			has "ship: Arrow"
-			has "ship: Star Queen"
-	to fail
-		and 
-			not "ship: Flivver"
-			not "ship: Arrow"
-			not "ship: Star Queen"
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1697,4 +1681,5 @@ mission "Wealthy Executive Long [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on complete
 		payment 75000 300
-
+		dialog "You wish your <bunks> executive <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
