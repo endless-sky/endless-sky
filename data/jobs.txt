@@ -1005,7 +1005,9 @@ mission "Passengers [1]"
 	passengers 1 10 .9
 	to offer
 		random < 75
-		has "ship: Transport"
+		or
+			has "ship: Transport" 
+			has "ship: Luxury Transport"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
@@ -1141,10 +1143,12 @@ mission "Transport workers to <planet>"
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [0]"
-	name "Bring a tourist to <planet>"
+	name "Bring a tourist to <planet> by <date>."
 	job
 	repeat
-	description "This tourist wants to see <destination>, and will pay you <payment>."
+	deadline
+	deadline
+	description "This tourist wants to see <destination>, and will pay you <payment>. He expects to be there by <day>."
 	passengers 1
 	to offer
 		random < 20
@@ -1156,14 +1160,16 @@ mission "Tourists out [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 6000
+		payment 9000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [1]"
-	name "Bring tourists to <planet>"
+	name "Bring tourists to <planet> by <date>."
 	job
 	repeat
-	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
+	deadline
+	deadline
+	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>. They expects to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -1175,14 +1181,16 @@ mission "Tourists out [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 4000
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists out [2]"
-	name "Bring tourists to <planet>"
+	name "Bring tourists to <planet> by <date>."
 	job
 	repeat
-	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>."
+	deadline
+	deadline
+	description "These <bunks> tourists want to see <destination>. They are willing to pay you <payment>. They expects to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 75
@@ -1195,14 +1203,16 @@ mission "Tourists out [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 8000
+		payment 12000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [0]"
-	name "Bring a tourist home to <planet>"
+	name "Bring a tourist home to <planet> by <date>."
 	job
 	repeat
-	description "This tourist is headed home to <destination>, and will pay you <payment>."
+	deadline
+	deadline
+	description "This tourist is headed home to <destination>, and will pay you <payment>. He expects to be there by <day>."
 	passengers 1
 	to offer
 		random < 20
@@ -1214,14 +1224,16 @@ mission "Tourists back [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 6000
+		payment 9000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [1]"
-	name "Bring tourists home to <planet>"
+	name "Bring tourists home to <planet> by <date>."
 	job
 	repeat
-	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
+	deadline
+	deadline
+	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>. They expect to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 50
@@ -1233,14 +1245,16 @@ mission "Tourists back [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 4000
+		payment 6000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Tourists back [2]"
 	name "Bring tourists home to <planet>"
 	job
 	repeat
-	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>."
+	deadline
+	deadline
+	description "These <bunks> tourists are headed home to <destination>. They are willing to pay you <payment>. They expect to be there by <day>."
 	passengers 2 10 .9
 	to offer
 		random < 75
@@ -1253,7 +1267,7 @@ mission "Tourists back [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	on complete
 		payment
-		payment 8000
+		payment 12000
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Family [0]"
@@ -1573,3 +1587,99 @@ mission "Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		
+mission "Wealthy Executive Short [0]"
+	name "Transport a wealthy executive to <planet>"
+	job
+	repeat
+	deadline 0 1
+	passengers 1
+	description "Bring a wealthy and important executive to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	to offer
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 2 4
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 10000 300
+		outfit "Luxury Bunks" 1
+		dialog "You wish your executive <fare> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Wealthy Administrators Short [1]"
+	name "Transport <bunks> wealthy administrators to <planet>"
+	job
+	repeat
+	deadline 0 1
+	description "Bring <bunks> wealthy and important administrators to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	passengers 2 4 .9
+	to offer
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 2 4
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 25000 300
+		dialog "You wish your <bunks> administrator <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
+
+mission "Wealthy Politician Long [0]"
+	name "Transport a wealthy politician to <planet>"
+	job
+	repeat
+	passengers 1
+	deadline 1 1
+	description "Bring a wealthy and important politician to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunk space or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	to offer
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 5 8
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 30000 300
+		dialog "You wish your politician <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
+
+mission "Wealthy Executive Long [1]"
+	name "Transport <bunks> wealthy executives to <planet>"
+	job
+	repeat
+	deadline 1 1
+	description "Bring <bunks> wealthy and important executive to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	passengers 2 4 .9
+	to offer
+		require "Luxury Bunks"
+	on accept
+		outfit "Luxury Bunks" -1
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 5 8
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 75000 300
+		dialog "You wish your <bunks> executive <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
