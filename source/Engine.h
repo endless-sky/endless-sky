@@ -75,6 +75,7 @@ private:
 	
 	void ThreadEntryPoint();
 	void CalculateStep();
+	void AddSprites(const Ship &ship, const Point &position, const Point &velocity);
 	
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 	
@@ -123,6 +124,7 @@ private:
 	Information info;
 	std::vector<Target> targets;
 	Point targetAngle;
+	Point targetUnit;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
 	std::vector<std::pair<const Outfit *, int>> ammo;

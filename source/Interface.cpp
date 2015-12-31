@@ -198,7 +198,8 @@ void Interface::Draw(const Information &info, const Point &offset) const
 		
 		Point pos = outline.position + corner - outline.size * position;
 		OutlineShader::Draw(s, pos, size,
-			outline.isColored ? info.GetOutlineColor() : Color(1., 1.));
+			outline.isColored ? info.GetOutlineColor() : Color(1., 1.),
+			info.GetSpriteUnit(outline.name));
 	}
 	
 	double defaultAlign = position.X() + .5;

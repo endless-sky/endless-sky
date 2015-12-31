@@ -787,8 +787,11 @@ void PlayerInfo::Land(UI *ui)
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
-		const Mission &mission = *mit;
+		Mission &mission = *mit;
 		++mit;
+		
+		// If this is a stopover for the mission, perform the stopover action.
+		mission.Do(Mission::STOPOVER, *this, ui);
 		
 		if(mission.HasFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -1121,14 +1124,14 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission)
+void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
 			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			break;
@@ -1276,7 +1279,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 			
-			mission.Do(trigger, *this, ui);
+			it->Do(trigger, *this, ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);

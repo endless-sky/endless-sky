@@ -64,7 +64,7 @@ namespace {
 
 
 MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
-	: MapPanel(player, -5)
+	: MapPanel(player, SHOW_SPECIAL)
 {
 	Init();
 }
@@ -74,7 +74,7 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
 	: MapPanel(panel)
 {
-	SetCommodity(-5);
+	SetCommodity(SHOW_SPECIAL);
 	Init();
 }
 

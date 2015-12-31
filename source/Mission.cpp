@@ -80,14 +80,16 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
-		{
-			hasDeadline = true;
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
-		}
-		else if(child.Token(0) == "deadline" && child.Size() >= 2)
-			daysToDeadline = child.Value(1);
 		else if(child.Token(0) == "deadline")
-			doDefaultDeadline = true;
+		{
+			if(child.Size() == 1)
+				deadlineMultiplier += 2;
+			if(child.Size() >= 2)
+				deadlineBase += child.Value(1);
+			if(child.Size() >= 3)
+				deadlineMultiplier += child.Value(3);
+		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
 			cargo = child.Token(1);
@@ -153,6 +155,13 @@ void Mission::Load(const DataNode &node)
 			destinationFilter.Load(child);
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 			waypoints.insert(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "stopover" && child.Size() >= 2)
+			stopovers.insert(GameData::Planets().Get(child.Token(1)));
+		else if(child.Token(0) == "stopover")
+		{
+			stopoverFilters.emplace_back();
+			stopoverFilters.back().Load(child);
+		}
 		else if(child.Token(0) == "npc")
 		{
 			npcs.push_back(NPC());
@@ -171,7 +180,8 @@ void Mission::Load(const DataNode &node)
 				{"accept", ACCEPT},
 				{"decline", DECLINE},
 				{"fail", FAIL},
-				{"visit", VISIT}};
+				{"visit", VISIT},
+				{"stopover", STOPOVER}};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child, name);
@@ -196,7 +206,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("description", description);
 		if(!blocked.empty())
 			out.Write("blocked", blocked);
-		if(hasDeadline)
+		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 		if(cargoSize)
 		{
@@ -269,6 +279,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("destination", destination->Name());
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->Name());
+		for(const Planet *planet : stopovers)
+			out.Write("stopover", planet->Name());
 		
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -350,6 +362,13 @@ set<const System *> Mission::Waypoints() const
 
 
 
+set<const Planet *> Mission::Stopovers() const
+{
+	return stopovers;
+}
+
+
+
 const string &Mission::Cargo() const
 {
 	return cargo;
@@ -379,13 +398,6 @@ int Mission::Passengers() const
 
 
 // The mission must be completed by this deadline (if there is a deadline).
-bool Mission::HasDeadline() const
-{
-	return hasDeadline;
-}
-
-
-
 const Date &Mission::Deadline() const
 {
 	return deadline;
@@ -397,7 +409,7 @@ const Date &Mission::Deadline() const
 // marked as failing already, mark it and return true.
 bool Mission::CheckDeadline(const Date &today)
 {
-	if(!hasFailed && hasDeadline && deadline < today)
+	if(!hasFailed && deadline && deadline < today)
 	{
 		hasFailed = true;
 		return true;
@@ -410,8 +422,11 @@ bool Mission::CheckDeadline(const Date &today)
 // Check if you have special clearance to land on your destination.
 bool Mission::HasClearance(const Planet *planet) const
 {
-	return !clearance.empty() && (planet == destination ||
-		(!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet)));
+	if(clearance.empty())
+		return false;
+	if(planet == destination || stopovers.find(planet) != stopovers.end())
+		return true;
+	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
 
 
@@ -497,7 +512,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination || !waypoints.empty())
+	if(player.GetPlanet() != destination || !waypoints.empty() || !stopovers.empty())
 		return false;
 	
 	if(!toComplete.Test(player.Conditions()))
@@ -598,8 +613,19 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui) const
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 {
+	if(trigger == STOPOVER)
+	{
+		// If this is not one of this mission's stopover planets, or if it is
+		// not the very last one that must be visited, do nothing.
+		auto it = stopovers.find(player.GetPlanet());
+		if(it == stopovers.end())
+			return false;
+		stopovers.erase(it);
+		if(!stopovers.empty())
+			return false;
+	}
 	if(trigger == ACCEPT)
 	{
 		++player.Conditions()[name + ": offered"];
@@ -740,6 +766,17 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	if(it != result.waypoints.end())
 		result.waypoints.erase(it);
 	
+	// Copy the stopover planet list, and populate the list based on the filters
+	// that were given.
+	result.stopovers = stopovers;
+	for(const LocationFilter &filter : stopoverFilters)
+	{
+		const Planet *planet = PickPlanet(filter, player);
+		if(!planet)
+			return result;
+		result.stopovers.insert(planet);
+	}
+	
 	// First, pick values for all the variables.
 	
 	// If a specific destination is not specified in the mission, pick a random
@@ -747,21 +784,8 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		// Find a destination that satisfies the filter.
-		vector<const Planet *> options;
-		for(const auto &it : GameData::Planets())
-		{
-			// Skip entries with incomplete data.
-			if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
-				continue;
-			if(it.second.IsWormhole() || !it.second.HasSpaceport())
-				continue;
-			if(destinationFilter.Matches(&it.second, player.GetSystem()))
-				options.push_back(&it.second);
-		}
-		if(!options.empty())
-			result.destination = options[Random::Int(options.size())];
-		else
+		result.destination = PickPlanet(destinationFilter, player);
+		if(!result.destination)
 			return result;
 	}
 	// If no destination is specified, it is the same as the source planet. Also
@@ -821,14 +845,10 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	DistanceMap distance(player.GetSystem());
 	int jumps = distance.Distance(result.destination->GetSystem());
 	int payload = result.cargoSize + 10 * result.passengers;
-	int defaultDeadline = doDefaultDeadline ? (2 * jumps) : 0;
 	
 	// Set the deadline, if requested.
-	if(daysToDeadline || defaultDeadline)
-	{
-		result.hasDeadline = true;
-		result.deadline = player.GetDate() + (defaultDeadline + daysToDeadline);
-	}
+	if(deadlineBase || deadlineMultiplier)
+		result.deadline = player.GetDate() + deadlineBase + deadlineMultiplier * jumps;
 	
 	// Copy the conditions. The offer conditions must be copied too, because they
 	// may depend on a condition that other mission offers might change.
@@ -853,6 +873,21 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
+	if(!result.stopovers.empty())
+	{
+		string planets;
+		const Planet * const *last = &*--result.stopovers.end();
+		int count = 0;
+		// Iterate by reference to the pointers so we can check when we're at
+		// the very last one in the set.
+		for(const Planet * const &planet : result.stopovers)
+		{
+			if(count++)
+				planets += (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
+			planets += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
+		}
+		subs["<stopovers>"] = planets;
+	}
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
@@ -875,4 +910,23 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	result.hasFailed = false;
 	return result;
+}
+
+
+
+const Planet *Mission::PickPlanet(const LocationFilter &filter, const PlayerInfo &player) const
+{
+	// Find a planet that satisfies the filter.
+	vector<const Planet *> options;
+	for(const auto &it : GameData::Planets())
+	{
+		// Skip entries with incomplete data.
+		if(it.second.Name().empty() || (clearance.empty() && !it.second.CanLand()))
+			continue;
+		if(it.second.IsWormhole() || !it.second.HasSpaceport())
+			continue;
+		if(filter.Matches(&it.second, player.GetSystem()))
+			options.push_back(&it.second);
+	}
+	return options.empty() ? nullptr : options[Random::Int(options.size())];
 }

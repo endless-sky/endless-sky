@@ -91,6 +91,7 @@ private:
 	std::weak_ptr<const Ship> targetShip;
 	const Ship *cachedTarget = nullptr;
 	const Government *government = nullptr;
+	const Government *targetGovernment = nullptr;
 	
 	int lifetime = 0;
 };

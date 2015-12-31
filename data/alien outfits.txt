@@ -37,6 +37,7 @@ outfit "Quarg Skylance"
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
+		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
 		"velocity" 500

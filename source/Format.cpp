@@ -206,7 +206,7 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(isspace(c))
+		if(!isalpha(c))
 			first = true;
 		else
 		{

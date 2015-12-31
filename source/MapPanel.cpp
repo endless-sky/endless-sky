@@ -114,43 +114,6 @@ void MapPanel::Draw() const
 
 
 
-void MapPanel::ZoomMap()
-{
-	if(zoom < maxZoom)
-		zoom++;
-}
-
-
-
-void MapPanel::UnzoomMap()
-{
-	if(zoom > -maxZoom)
-		zoom--;
-}
-
-
-
-double MapPanel::Zoom() const
-{
-	return pow(1.5, zoom);
-}
-
-
-
-bool MapPanel::ZoomIsMax() const
-{
-	return (zoom == maxZoom);
-}
-
-
-
-bool MapPanel::ZoomIsMin() const
-{
-	return (zoom == -maxZoom);
-}
-
-
-
 bool MapPanel::Click(int x, int y)
 {
 	// Figure out if a system was clicked on.
@@ -323,6 +286,56 @@ const Planet *MapPanel::Find(const string &name)
 			return &it.second;
 		}
 	return nullptr;
+}
+
+
+
+void MapPanel::ZoomMap()
+{
+	if(zoom < maxZoom)
+		zoom++;
+}
+
+
+
+void MapPanel::UnzoomMap()
+{
+	if(zoom > -maxZoom)
+		zoom--;
+}
+
+
+
+double MapPanel::Zoom() const
+{
+	return pow(1.5, zoom);
+}
+
+
+
+bool MapPanel::ZoomIsMax() const
+{
+	return (zoom == maxZoom);
+}
+
+
+
+bool MapPanel::ZoomIsMin() const
+{
+	return (zoom == -maxZoom);
+}
+
+
+
+// Check whether the NPC and waypoint conditions of the given mission have
+// been satisfied.
+bool MapPanel::IsSatisfied(const Mission &mission) const
+{
+	for(const NPC &npc : mission.NPCs())
+		if(!npc.HasSucceeded(player.GetSystem()))
+			return false;
+	
+	return mission.Waypoints().empty() && mission.Stopovers().empty();
 }
 
 
@@ -505,7 +518,7 @@ void MapPanel::DrawLinks() const
 
 void MapPanel::DrawSystems() const
 {
-	if(commodity == -3)
+	if(commodity == SHOW_GOVERNMENT)
 		closeGovernments.clear();
 	
 	// Draw the circles for the systems, colored based on the selected criterion,
@@ -527,7 +540,7 @@ void MapPanel::DrawSystems() const
 			color = UnexploredColor();
 		else if(system.IsInhabited())
 		{
-			if(commodity >= -2 || commodity == -5)
+			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
 				if(commodity >= 0)
@@ -536,7 +549,7 @@ void MapPanel::DrawSystems() const
 					value = (2. * (system.Trade(com.name) - com.low))
 						/ (com.high - com.low) - 1.;
 				}
-				else if(commodity == -1)
+				else if(commodity == SHOW_SHIPYARD)
 				{
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
@@ -544,7 +557,7 @@ void MapPanel::DrawSystems() const
 							size += object.GetPlanet()->Shipyard().size();
 					value = size ? min(10., size) / 10. : -1.;
 				}
-				else if(commodity == -2)
+				else if(commodity == SHOW_OUTFITTER)
 				{
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
@@ -552,12 +565,25 @@ void MapPanel::DrawSystems() const
 							size += object.GetPlanet()->Outfitter().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
+				else if(commodity == SHOW_VISITED)
+				{
+					bool all = true;
+					bool some = false;
+					for(const StellarObject &object : system.Objects())
+						if(object.GetPlanet())
+						{
+							bool visited = player.HasVisited(object.GetPlanet());
+							all &= visited;
+							some |= visited;
+						}
+					value = -1 + some + all;
+				}
 				else
 					value = SystemValue(&system);
 				
 				color = MapColor(value);
 			}
-			else if(commodity == -3)
+			else if(commodity == SHOW_GOVERNMENT)
 			{
 				const Government *gov = system.GetGovernment();
 				color = GovernmentColor(gov);
@@ -633,11 +659,7 @@ void MapPanel::DrawMissions() const
 	for(const Mission &mission : player.AvailableJobs())
 	{
 		const System *system = mission.Destination()->GetSystem();
-		Angle a = (angle[system] += Angle(30.));
-		Point pos = Zoom() * (system->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
-			mission.HasSpace(player) ? availableColor : unavailableColor);
+		DrawPointer(system, angle[system], mission.HasSpace(player) ? availableColor : unavailableColor);
 	}
 	++step;
 	for(const Mission &mission : player.Missions())
@@ -646,31 +668,24 @@ void MapPanel::DrawMissions() const
 			continue;
 		
 		const System *system = mission.Destination()->GetSystem();
-		Angle a = (angle[system] += Angle(30.));
-		
 		bool blink = false;
-		if(mission.HasDeadline())
+		if(mission.Deadline())
 		{
 			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
 			if(days > 0)
 				blink = (step % (10 * days) > 5 * days);
 		}
-		Point pos = Zoom() * (system->Position() + center);
-		PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-		if(!blink)
-			PointerShader::Draw(pos, a.Unit(), 8., 15., -6.,
-				IsSatisfied(mission) ? currentColor : blockedColor);
+		DrawPointer(system, angle[system],
+			blink ? black : IsSatisfied(mission) ? currentColor : blockedColor);
 		
 		for(const System *waypoint : mission.Waypoints())
-		{
-			Angle a = (angle[waypoint] += Angle(30.));
-			Point pos = waypoint->Position() + center;
-			PointerShader::Draw(pos, a.Unit(), 14., 19., -4., black);
-			PointerShader::Draw(pos, a.Unit(), 8., 15., -6., waypointColor);
-		}
+			DrawPointer(waypoint, angle[waypoint], waypointColor);
+		for(const Planet *stopover : mission.Stopovers())
+			DrawPointer(stopover->GetSystem(), angle[stopover->GetSystem()], waypointColor);
 	}
 	if(specialSystem)
 	{
+		// The special system pointer is larger than the others.
 		Angle a = (angle[specialSystem] += Angle(30.));
 		Point pos = Zoom() * (specialSystem->Position() + center);
 		PointerShader::Draw(pos, a.Unit(), 20., 27., -4., black);
@@ -680,13 +695,12 @@ void MapPanel::DrawMissions() const
 
 
 
-// Check whether the NPC and waypoint conditions of the given mission have
-// been satisfied.
-bool MapPanel::IsSatisfied(const Mission &mission) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color) const
 {
-	for(const NPC &npc : mission.NPCs())
-		if(!npc.HasSucceeded(player.GetSystem()))
-			return false;
+	static const Color black(0., 1.);
 	
-	return mission.Waypoints().empty();
+	angle += Angle(30.);
+	Point pos = Zoom() * (system->Position() + center);
+	PointerShader::Draw(pos, angle.Unit(), 14., 19., -4., black);
+	PointerShader::Draw(pos, angle.Unit(), 8., 15., -6., color);
 }

@@ -76,7 +76,7 @@ void Account::Save(DataWriter &out) const
 		out.Write("history");
 		out.BeginChild();
 		{
-			for(int worth : history)
+			for(int64_t worth : history)
 				out.Write(worth);
 		}
 		out.EndChild();

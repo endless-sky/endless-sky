@@ -783,10 +783,10 @@ mission "Cargo [1]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -801,10 +801,10 @@ mission "Cargo [2]"
 		random < 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -819,10 +819,10 @@ mission "Cargo [3]"
 		random < 70
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 3 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 2000
@@ -838,10 +838,10 @@ mission "Cargo [4]"
 		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 4000
@@ -856,10 +856,10 @@ mission "Bulk Delivery [0]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
@@ -873,10 +873,10 @@ mission "Bulk Delivery [1]"
 	to offer
 		random < 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 2000
@@ -892,10 +892,10 @@ mission "Bulk Delivery [2]"
 		random < 50
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 4000
@@ -911,10 +911,10 @@ mission "Rush Delivery [0]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 16000
@@ -930,10 +930,10 @@ mission "Rush Delivery [1]"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 18000
@@ -950,10 +950,10 @@ mission "Rush Delivery [2]"
 		random < 70
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 20000
@@ -970,10 +970,10 @@ mission "Rush Delivery [3]"
 		random < 60
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 22000
@@ -988,10 +988,10 @@ mission "Passengers [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 2000
@@ -1007,10 +1007,10 @@ mission "Passengers [1]"
 		random < 75
 		has "ship: Transport"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1024,10 +1024,10 @@ mission "Passengers [2]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1041,10 +1041,10 @@ mission "Passengers [3]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		dialog "You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>."
@@ -1266,10 +1266,10 @@ mission "Family [0]"
 		random < 60
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 4000
@@ -1285,10 +1285,10 @@ mission "Family [1]"
 		random < 50
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 5 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 6000
@@ -1304,10 +1304,10 @@ mission "Family [2]"
 		random < 40
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 6 24
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 8000
@@ -1323,10 +1323,10 @@ mission "Family [3]"
 		random < 30
 		"passenger space" > 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 8 32
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 10000
@@ -1444,10 +1444,10 @@ mission "Large Bulk Delivery [0]"
 		random < 70
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 4000
@@ -1463,10 +1463,10 @@ mission "Large Bulk Delivery [1]"
 		random < 60
 		"cargo space" > 160
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 6000
@@ -1483,10 +1483,10 @@ mission "Large Bulk Delivery [2]"
 		"cargo space" > 160
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 8000
@@ -1503,10 +1503,10 @@ mission "Large Rush Delivery [0]"
 		random < 90
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 36000
@@ -1523,10 +1523,10 @@ mission "Large Rush Delivery [1]"
 		random < 80
 		"cargo space" > 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 38000
@@ -1544,10 +1544,10 @@ mission "Large Rush Delivery [2]"
 		"cargo space" > 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 40000
@@ -1565,10 +1565,10 @@ mission "Large Rush Delivery [3]"
 		"cargo space" > 80
 	source
 		attributes mining textiles factory farming fishing oil
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	on complete
 		payment
 		payment 42000

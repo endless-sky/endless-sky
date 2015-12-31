@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 
+class Color;
 class Mission;
 
 
@@ -50,6 +51,7 @@ private:
 	
 	void DrawKey() const;
 	void DrawSelectedSystem() const;
+	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	Point DrawPanel(Point pos, const std::string &label, int entries) const;
 	Point DrawList(const std::list<Mission> &list, Point pos) const;
 	void DrawMissionInfo() const;

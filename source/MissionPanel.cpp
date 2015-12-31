@@ -80,7 +80,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
 	// Don't use the "special" coloring in this view.
-	commodity = max(commodity, -4);
+	if(commodity == SHOW_SPECIAL)
+		commodity = SHOW_REPUTATION;
 	
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
@@ -155,19 +156,9 @@ void MissionPanel::Draw() const
 	const Color &currentColor = *colors.Get("active back");
 	const Color &blockedColor = *colors.Get("blocked back");
 	if(availableIt != available.end() && availableIt->Destination())
-	{
-		Point pos = Zoom() * (availableIt->Destination()->GetSystem()->Position() + center);
-		DotShader::Draw(pos, 22., 20.5, CanAccept() ? availableColor : unavailableColor);
-	}
+		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
-	{
-		bool isBlocked = !acceptedIt->Waypoints().empty();
-		for(const NPC &npc : acceptedIt->NPCs())
-			isBlocked |= !npc.HasSucceeded(player.GetSystem());
-		
-		Point pos = Zoom() * (acceptedIt->Destination()->GetSystem()->Position() + center);
-		DotShader::Draw(pos, 22., 20.5, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
-	}
+		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
 	
 	// Draw the buttons to switch to other map modes.
 	Information info;
@@ -352,7 +343,7 @@ bool MissionPanel::Click(int x, int y)
 	}
 	
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) - center;
+	Point click = Point(x, y) / Zoom() - center;
 	const System *system = nullptr;
 	for(const auto &it : GameData::Systems())
 		if(click.Distance(it.second.Position()) < 10.
@@ -542,6 +533,20 @@ void MissionPanel::DrawSelectedSystem() const
 
 
 
+void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
+{
+	const Color &waypointColor = *GameData::Colors().Get("waypoint back");
+	
+	Point pos = Zoom() * (mission.Destination()->GetSystem()->Position() + center);
+	DotShader::Draw(pos, 22., 20.5, color);
+	for(const System *system : mission.Waypoints())
+		DotShader::Draw(Zoom() * (system->Position() + center), 22., 20.5, waypointColor);
+	for(const Planet *planet : mission.Stopovers())
+		DotShader::Draw(Zoom() * (planet->GetSystem()->Position() + center), 22., 20.5, waypointColor);
+}
+
+
+
 Point MissionPanel::DrawPanel(Point pos, const string &label, int entries) const
 {
 	const Font &font = FontSet::Get(14);
@@ -696,9 +701,24 @@ void MissionPanel::Accept()
 	}
 	
 	++availableIt;
-	player.AcceptJob(toAccept);
+	player.AcceptJob(toAccept, GetUI());
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
+	
+	// Check if any other jobs are available with the same destination. Prefer
+	// jobs that also have the same destination planet.
+	if(toAccept.Destination())
+	{
+		const Planet *planet = toAccept.Destination();
+		const System *system = planet->GetSystem();
+		for(auto it = available.begin(); it != available.end(); ++it)
+			if(it->Destination() && it->Destination()->GetSystem() == system)
+			{
+				availableIt = it;
+				if(it->Destination() == planet)
+					break;
+			}
+	}
 }
 
 

@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mask.h"
 #include "Outfit.h"
 #include "pi.h"
+#include "Random.h"
 #include "Ship.h"
 #include "Sprite.h"
 
@@ -36,6 +37,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 		targetShip.reset();
 	
 	cachedTarget = targetShip.lock().get();
+	if(cachedTarget)
+		targetGovernment = cachedTarget->GetGovernment();
 	double inaccuracy = weapon->Inaccuracy();
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
@@ -49,7 +52,7 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 	: weapon(weapon), animation(weapon->WeaponSprite()),
 	position(parent.position + parent.velocity), velocity(parent.velocity), angle(parent.angle),
 	targetShip(parent.targetShip), government(parent.government),
-	lifetime(weapon->Lifetime())
+	targetGovernment(parent.targetGovernment), lifetime(weapon->Lifetime())
 {
 	cachedTarget = targetShip.lock().get();
 	double inaccuracy = weapon->Inaccuracy();
@@ -92,12 +95,13 @@ bool Projectile::Move(list<Effect> &effects)
 		return false;
 	}
 	
-	// If the target has left the system, stop following it.
+	// If the target has left the system, stop following it. Also stop if the
+	// target has been captured by a different government.
 	const Ship *target = cachedTarget;
 	if(target)
 	{
 		target = targetShip.lock().get();
-		if(!target || !target->IsTargetable())
+		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment)
 		{
 			targetShip.reset();
 			cachedTarget = nullptr;
@@ -164,6 +168,9 @@ bool Projectile::Move(list<Effect> &effects)
 	}
 	
 	position += velocity;
+	
+	if(target && (position - target->Position()).Length() < weapon->SplitRange() && !Random::Int(10))
+		lifetime = 0;
 	
 	return true;
 }

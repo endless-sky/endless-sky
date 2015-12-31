@@ -77,6 +77,7 @@ private:
 	void MovePlayer(Ship &ship, const PlayerInfo &player, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
+	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
 	
 	
 private:
@@ -99,7 +100,10 @@ private:
 	
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
+	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
+	
+	std::map<const Ship *, int64_t> shipStrength;
 	
 	std::map<const Government *, int64_t> enemyStrength;
 	std::map<const Government *, int64_t> allyStrength;

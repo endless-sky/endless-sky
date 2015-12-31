@@ -2158,6 +2158,58 @@ system Antares
 		distance 2778.76
 		period 2744.94
 
+system Ap'arak
+	pos -164.62 -781.858
+	government Wanderer
+	habitable 1080
+	link Chirr'ay'akai
+	link Sich'ka'ara
+	link Ka'ch'chrai
+	asteroids "medium rock" 6 7.383
+	asteroids "large rock" 2 4.485
+	asteroids "medium metal" 1 7.797
+	asteroids "large metal" 3 5.382
+	trade Clothing 419
+	trade Electronics 652
+	trade Equipment 406
+	trade Food 382
+	trade "Heavy Metals" 1126
+	trade Industrial 763
+	trade "Luxury Goods" 1090
+	trade Medical 636
+	trade Metal 577
+	trade Plastic 452
+	fleet "Wanderer Freight" 500
+	fleet "Wanderer Drones" 2000
+	fleet "Wanderer Defense" 3000
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/ice3
+		distance 262.16
+		period 51.6652
+	object "Varu Tev'kei"
+		sprite planet/desert3
+		distance 804.77
+		period 277.879
+	object
+		sprite planet/gas11
+		distance 1880.77
+		period 992.777
+		object
+			sprite planet/rock17
+			distance 246
+			period 12.7257
+		object
+			sprite planet/rhea
+			distance 345
+			period 21.1352
+		object
+			sprite planet/dust1
+			distance 464
+			period 32.9651
+
 system Arcturus
 	pos -589 226
 	government Republic
@@ -2497,6 +2549,62 @@ system Avior
 			sprite planet/station3
 			distance 212
 			period 15.2148
+
+system Aya'k'k
+	pos -434.245 -616.57
+	government Wanderer
+	habitable 486.68
+	link Pik'ro'iyak
+	asteroids "small rock" 6 1.9152
+	asteroids "medium rock" 121 1.9404
+	asteroids "large rock" 8 1.3608
+	asteroids "small metal" 4 2.016
+	asteroids "medium metal" 89 3.78
+	asteroids "large metal" 96 1.5624
+	trade Clothing 331
+	trade Electronics 843
+	trade Equipment 501
+	trade Food 222
+	trade "Heavy Metals" 1289
+	trade Industrial 640
+	trade "Luxury Goods" 924
+	trade Medical 781
+	trade Metal 587
+	trade Plastic 254
+	fleet "Wanderer Freight" 900
+	fleet "Wanderer Drones" 2000
+	fleet "Wanderer Defense" 800
+	object
+		sprite star/k0
+		period 10
+	object "Varu K'prai"
+		sprite planet/ice4
+		distance 334.24
+		period 110.796
+		object
+			sprite planet/callisto
+			distance 168
+			period 27.3733
+	object
+		sprite planet/oberon
+		distance 748.24
+		period 371.107
+	object
+		sprite planet/gas13
+		distance 1614.25
+		period 1175.97
+		object
+			sprite planet/rock3
+			distance 272
+			period 12.6638
+		object
+			sprite planet/europa
+			distance 353
+			period 18.7229
+	object
+		sprite planet/gas11
+		distance 3009.66
+		period 2993.74
 
 system Bellatrix
 	pos -225 -82
@@ -3230,6 +3338,114 @@ system Cebalrai
 		sprite planet/tethys
 		distance 2206.54
 		period 1658.39
+
+system Chirr'ay'akai
+	pos -102.761 -749.614
+	government Wanderer
+	habitable 486.68
+	link Prakacha'a
+	link Ap'arak
+	asteroids "large rock" 1 3.762
+	asteroids "small metal" 2 2.964
+	asteroids "medium metal" 3 5.548
+	asteroids "large metal" 1 3.154
+	trade Clothing 370
+	trade Electronics 729
+	trade Equipment 483
+	trade Food 280
+	trade "Heavy Metals" 1052
+	trade Industrial 840
+	trade "Luxury Goods" 1148
+	trade Medical 688
+	trade Metal 459
+	trade Plastic 381
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 600
+	fleet "Wanderer Defense" 2000
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/lava5
+		distance 225.49
+		period 61.3945
+	object "Kort Vek'kri"
+		sprite planet/rock1
+		distance 624.98
+		period 283.294
+	object
+		sprite planet/gas1
+		distance 1283.62
+		period 833.86
+	object
+		sprite planet/jupiter
+		distance 2657.98
+		period 2484.65
+		object
+			sprite planet/desert4
+			distance 266
+			period 13.6328
+
+system Chy'chra
+	pos 85.5308 -829.667
+	government Wanderer
+	habitable 625
+	link Prakacha'a
+	link Ik'kara'ka
+	asteroids "small rock" 5 3.8019
+	asteroids "medium rock" 6 5.0141
+	asteroids "large rock" 2 3.0305
+	asteroids "medium metal" 9 6.8875
+	asteroids "large metal" 11 5.1794
+	trade Clothing 197
+	trade Electronics 888
+	trade Equipment 449
+	trade Food 453
+	trade "Heavy Metals" 859
+	trade Industrial 872
+	trade "Luxury Goods" 1145
+	trade Medical 842
+	trade Metal 285
+	trade Plastic 509
+	fleet "Wanderer Freight" 1500
+	fleet "Wanderer Drones" 1000
+	fleet "Wanderer Defense" 300
+	fleet "Unfettered Raid" 5000
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/lava3
+		distance 156.64
+		period 31.3671
+	object
+		sprite planet/dust6
+		distance 399.89
+		period 127.947
+	object "Varu K'est"
+		sprite planet/dust2
+		distance 681.1
+		period 284.404
+	object
+		sprite planet/gas10
+		distance 1515.91
+		period 944.344
+		object
+			sprite planet/ice7
+			distance 193
+			period 14.1134
+		object
+			sprite planet/ice0
+			distance 295
+			period 26.6704
+		object
+			sprite planet/dust4
+			distance 429
+			period 46.7717
+		object
+			sprite planet/rock0
+			distance 614
+			period 80.0847
 
 system "Cor Caroli"
 	pos -682 201
@@ -4148,16 +4364,15 @@ system "Ehma Ti"
 	trade Clothing 308
 	trade Electronics 795
 	trade Equipment 550
-	trade Food 407
-	trade "Heavy Metals" 625
+	trade Food 570
+	trade "Heavy Metals" 785
 	trade Industrial 901
-	trade "Luxury Goods" 1355
+	trade "Luxury Goods" 1155
 	trade Medical 915
 	trade Metal 188
 	trade Plastic 532
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
-	fleet "Large Hai" 2800
 	object
 		sprite star/k0
 		period 10
@@ -4197,6 +4412,60 @@ system "Ehma Ti"
 			sprite planet/ice0
 			distance 356
 			period 26.8467
+
+system Ek'kek'ru
+	pos -287.517 -727.738
+	government Wanderer
+	habitable 320
+	link Ka'ch'chrai
+	link Si'yak'ku
+	link Pik'ro'iyak
+	link Iyech'yek
+	asteroids "small rock" 54 1.683
+	asteroids "medium rock" 12 1.1385
+	asteroids "large rock" 50 1.5015
+	asteroids "small metal" 15 2.0625
+	asteroids "large metal" 10 1.0725
+	trade Clothing 324
+	trade Electronics 672
+	trade Equipment 386
+	trade Food 392
+	trade "Heavy Metals" 1129
+	trade Industrial 641
+	trade "Luxury Goods" 1091
+	trade Medical 549
+	trade Metal 446
+	trade Plastic 428
+	fleet "Wanderer Freight" 500
+	fleet "Wanderer Drones" 400
+	fleet "Wanderer Defense" 6000
+	object
+		sprite star/m0
+		period 10
+	object "Kort Kehai"
+		sprite planet/rock13
+		distance 287.96
+		period 109.266
+		object
+			sprite planet/ice0
+			distance 168
+			period 27.3733
+	object
+		sprite planet/lava4
+		distance 804.65
+		period 510.382
+	object
+		sprite planet/uranus
+		distance 1667.41
+		period 1522.47
+		object
+			sprite planet/oberon
+			distance 209
+			period 12.909
+	object
+		sprite planet/gas7
+		distance 2129.85
+		period 2197.9
 
 system Elnath
 	pos -288 -77
@@ -4465,6 +4734,62 @@ system "Epsilon Leonis"
 			sprite planet/mercury
 			distance 515
 			period 37.9234
+
+system Es'sprak'ai
+	pos -469.044 -733.375
+	government Wanderer
+	habitable 486.68
+	link Pik'ro'iyak
+	asteroids "small rock" 3 2.2275
+	asteroids "medium rock" 2 3.9875
+	asteroids "large rock" 4 1.87
+	asteroids "small metal" 2 1.705
+	asteroids "medium metal" 50 3.9875
+	asteroids "large metal" 21 2.0625
+	trade Clothing 230
+	trade Electronics 870
+	trade Equipment 452
+	trade Food 206
+	trade "Heavy Metals" 1188
+	trade Industrial 593
+	trade "Luxury Goods" 932
+	trade Medical 758
+	trade Metal 426
+	trade Plastic 404
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 4000
+	fleet "Wanderer Defense" 2000
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/cloud4
+		distance 168.84
+		period 39.7788
+	object "Vara Rakak"
+		sprite planet/cloud6
+		distance 498.48
+		period 201.795
+		object
+			sprite planet/tethys
+			distance 127
+			period 14.6525
+	object
+		sprite planet/rock4
+		distance 1009.57
+		period 581.625
+		object
+			sprite planet/rhea
+			distance 157
+			period 17.9093
+	object
+		sprite planet/gas5
+		distance 2576.18
+		period 2370.84
+		object
+			sprite planet/miranda
+			distance 266
+			period 14.4268
 
 system Eteron
 	pos -330 33
@@ -5626,7 +5951,7 @@ system "Hi Yahr"
 	trade Clothing 438
 	trade Electronics 605
 	trade Equipment 580
-	trade Food 377
+	trade Food 540
 	trade "Heavy Metals" 795
 	trade Industrial 881
 	trade "Luxury Goods" 1355
@@ -5635,7 +5960,6 @@ system "Hi Yahr"
 	trade Plastic 372
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
-	fleet "Large Hai" 2800
 	object
 		sprite star/g5
 		period 10
@@ -5770,6 +6094,63 @@ system Holeb
 		distance 3958.09
 		period 2405.23
 
+system Ik'kara'ka
+	pos 56.2159 -888.296
+	government Wanderer
+	habitable 625
+	link Chy'chra
+	link Prakacha'a
+	asteroids "small rock" 1 7.3138
+	asteroids "medium rock" 1 5.3534
+	asteroids "large rock" 1 6.5598
+	asteroids "small metal" 4 4.7502
+	asteroids "medium metal" 64 7.3138
+	asteroids "large metal" 130 3.8454
+	trade Clothing 209
+	trade Electronics 834
+	trade Equipment 372
+	trade Food 371
+	trade "Heavy Metals" 960
+	trade Industrial 815
+	trade "Luxury Goods" 1120
+	trade Medical 912
+	trade Metal 307
+	trade Plastic 432
+	fleet "Wanderer Freight" 600
+	fleet "Wanderer Drones" 700
+	fleet "Wanderer Defense" 600
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/lava2
+		distance 147.09
+		period 28.5427
+	object
+		sprite planet/rock8
+		distance 351.78
+		period 105.567
+	object "Varu Mer'ek"
+		sprite planet/desert2
+		distance 871.99
+		period 411.991
+		object
+			sprite planet/rock14
+			distance 166
+			period 23.9546
+	object
+		sprite planet/gas4
+		distance 2659.95
+		period 2194.98
+		object
+			sprite planet/io
+			distance 263
+			period 15.0429
+		object
+			sprite planet/dust0
+			distance 369
+			period 24.9998
+
 system Ildaria
 	pos -702 317
 	government Republic
@@ -5822,7 +6203,7 @@ system Ildaria
 		period 2260.87
 
 system "Imo Dep"
-	pos -95.7867 -717.668
+	pos -56.2764 -600.1
 	government Hai
 	habitable 1715
 	link "Zuba Zub"
@@ -6076,6 +6457,55 @@ system Ipsing
 			distance 667
 			period 43.1032
 
+system Iyech'yek
+	pos -277.37 -693.913
+	government Wanderer
+	habitable 320
+	link Ek'kek'ru
+	link Kiru'kichi
+	asteroids "small rock" 20 2.208
+	asteroids "medium rock" 5 2.048
+	asteroids "large rock" 21 2.304
+	asteroids "small metal" 6 1.152
+	asteroids "medium metal" 3 2.256
+	asteroids "large metal" 6 2.256
+	trade Clothing 218
+	trade Electronics 741
+	trade Equipment 418
+	trade Food 476
+	trade "Heavy Metals" 1075
+	trade Industrial 721
+	trade "Luxury Goods" 1043
+	trade Medical 434
+	trade Metal 375
+	trade Plastic 503
+	fleet "Wanderer Freight" 600
+	fleet "Wanderer Drones" 2000
+	fleet "Wanderer Defense" 5000
+	object
+		sprite star/m0
+		period 10
+	object "Tik Klai"
+		sprite planet/rock15
+		distance 146.25
+		period 39.5484
+	object "Vara Kehi'ki"
+		sprite planet/ice1
+		distance 359.49
+		period 152.411
+	object
+		sprite planet/gas10
+		distance 875.85
+		period 579.602
+		object
+			sprite planet/rock3
+			distance 220
+			period 17.1764
+	object
+		sprite planet/neptune
+		distance 2050.85
+		period 2076.76
+
 system Izar
 	pos -784 231
 	government Republic
@@ -6135,6 +6565,125 @@ system Izar
 			sprite planet/station1
 			distance 201
 			period 12.6652
+
+system Ka'ch'chrai
+	pos -240.163 -822.448
+	government Wanderer
+	habitable 425.92
+	link Ap'arak
+	link Ek'kek'ru
+	link Sko'karak
+	asteroids "small rock" 6 1.485
+	asteroids "medium rock" 166 1.89
+	asteroids "large rock" 2 3.753
+	asteroids "small metal" 20 2.916
+	asteroids "medium metal" 86 3.726
+	asteroids "large metal" 1 1.431
+	trade Clothing 430
+	trade Electronics 591
+	trade Equipment 331
+	trade Food 501
+	trade "Heavy Metals" 1208
+	trade Industrial 709
+	trade "Luxury Goods" 1158
+	trade Medical 542
+	trade Metal 508
+	trade Plastic 533
+	fleet "Wanderer Freight" 300
+	fleet "Wanderer Drones" 1000
+	fleet "Wanderer Defense" 1000
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/europa
+		distance 191.36
+		period 51.3065
+	object "Vara K'chrai"
+		sprite planet/earth
+		distance 458.36
+		period 190.198
+	object
+		sprite planet/ocean5
+		distance 718.97
+		period 373.648
+	object
+		sprite planet/ice5
+		distance 1280.61
+		period 888.222
+		object
+			sprite planet/rock7
+			distance 153
+			period 18.7183
+	object
+		sprite planet/gas13
+		distance 3482.61
+		period 3983.39
+
+system Ka'pru
+	pos -76.6756 -994.955
+	government Wanderer
+	habitable 1505.92
+	link Kiro'ku
+	asteroids "medium rock" 2 2.7573
+	asteroids "large rock" 1 2.7573
+	asteroids "small metal" 14 2.184
+	asteroids "medium metal" 1 3.6855
+	asteroids "large metal" 3 2.1294
+	trade Clothing 157
+	trade Electronics 887
+	trade Equipment 720
+	trade Food 103
+	trade "Heavy Metals" 1224
+	trade Industrial 920
+	trade "Luxury Goods" 1043
+	trade Medical 600
+	trade Metal 486
+	trade Plastic 539
+	fleet "Wanderer Freight" 1500
+	fleet "Wanderer Drones" 800
+	fleet "Wanderer Defense" 5000
+	object
+		sprite star/g0
+		distance 29.4144
+		period 10.9322
+	object
+		sprite star/k5
+		distance 74.5856
+		period 10.9322
+		offset 180
+	object
+		sprite planet/titan
+		distance 261.426
+		period 43.5694
+	object
+		sprite planet/desert0
+		distance 510.986
+		period 119.062
+	object
+		sprite planet/lava1
+		distance 785.026
+		period 226.717
+	object "Vara Ke'stai"
+		sprite planet/forest0
+		distance 1178.24
+		period 416.876
+	object
+		sprite planet/gas11
+		distance 2026.49
+		period 940.317
+		object
+			sprite planet/dust4
+			distance 260
+			period 13.8273
+		object
+			sprite planet/rhea
+			distance 381
+			period 24.5282
+		object
+			sprite planet/rock3
+			distance 508
+			period 37.7636
 
 system "Kappa Centauri"
 	pos -867 480
@@ -6302,6 +6851,131 @@ system "Kaus Borealis"
 			sprite planet/rock14
 			distance 371
 			period 35.2227
+
+system Kiro'ku
+	pos -131.923 -884.46
+	government Wanderer
+	habitable 1111.68
+	link Sich'ka'ara
+	link Ka'pru
+	asteroids "small rock" 32 4.9572
+	asteroids "medium rock" 25 5.4675
+	asteroids "large rock" 14 6.1965
+	asteroids "small metal" 25 10.1331
+	asteroids "medium metal" 29 6.1965
+	asteroids "large metal" 20 6.7797
+	trade Clothing 261
+	trade Electronics 813
+	trade Equipment 601
+	trade Food 180
+	trade "Heavy Metals" 1107
+	trade Industrial 908
+	trade "Luxury Goods" 1094
+	trade Medical 654
+	trade Metal 560
+	trade Plastic 498
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 3000
+	fleet "Wanderer Defense" 7000
+	object
+		sprite star/g5
+		distance 50.3456
+		period 14.7951
+		offset 180
+	object
+		sprite star/k0
+		distance 64.6544
+		period 14.7951
+	object
+		sprite planet/ice4
+		distance 228.654
+		period 41.4801
+	object
+		sprite planet/rock10
+		distance 664.814
+		period 205.646
+	object "Var' Kar'i'i"
+		sprite planet/forest1
+		distance 948.574
+		period 350.491
+	object
+		sprite planet/desert5
+		distance 1482.38
+		period 684.717
+		object
+			sprite planet/rock0
+			distance 167
+			period 23.7306
+	object
+		sprite planet/gas10
+		distance 2974.99
+		period 1946.7
+		object
+			sprite planet/luna
+			distance 226
+			period 17.8838
+		object
+			sprite planet/io
+			distance 333
+			period 31.9863
+		object
+			sprite planet/dust3
+			distance 478
+			period 55.0097
+
+system Kiru'kichi
+	pos -195.063 -662.343
+	government Wanderer
+	habitable 2795
+	link Iyech'yek
+	asteroids "small rock" 11 5.032
+	asteroids "medium rock" 107 4.454
+	asteroids "large rock" 23 3.774
+	asteroids "small metal" 43 2.38
+	asteroids "medium metal" 138 3.774
+	asteroids "large metal" 19 4.114
+	trade Clothing 145
+	trade Electronics 825
+	trade Equipment 524
+	trade Food 540
+	trade "Heavy Metals" 959
+	trade Industrial 833
+	trade "Luxury Goods" 984
+	trade Medical 522
+	trade Metal 288
+	trade Plastic 527
+	fleet "Wanderer Freight" 800
+	fleet "Wanderer Drones" 300
+	fleet "Wanderer Defense" 2000
+	object
+		sprite star/f5
+		distance 53.7102
+		period 12.3991
+		offset 180
+	object
+		sprite star/g0
+		distance 85.2898
+		period 12.3991
+	object
+		sprite planet/cloud3
+		distance 255.7
+		period 30.936
+	object
+		sprite planet/desert10
+		distance 575.39
+		period 104.427
+		object
+			sprite planet/io
+			distance 138
+			period 16.5968
+	object
+		sprite planet/gas17
+		distance 1450.68
+		period 418.048
+	object "Varu Ek'lak'lai"
+		sprite planet/cloud0
+		distance 2756.64
+		period 1095.06
 
 system Kochab
 	pos -731 279
@@ -7267,9 +7941,13 @@ system Markeb
 			distance 235
 			period 11.6896
 	object
-		sprite planet/ganymede
-		distance 1598.68
-		period 1197.84
+		sprite planet/cloud0
+		distance 1906.67
+		period 1560.16
+		object "Alexandria"
+			sprite planet/station7
+			distance 178.482
+			period 29.3849
 	object
 		sprite planet/miranda
 		distance 2787.49
@@ -9227,6 +9905,52 @@ system Phurad
 		distance 2639.02
 		period 1650.11
 
+system Pik'ro'iyak
+	pos -378.845 -677.001
+	government Wanderer
+	habitable 233.28
+	link Si'yak'ku
+	link Ek'kek'ru
+	link Aya'k'k
+	link Es'sprak'ai
+	asteroids "large metal" 1 3.7488
+	trade Clothing 270
+	trade Electronics 760
+	trade Equipment 478
+	trade Food 298
+	trade "Heavy Metals" 1245
+	trade Industrial 531
+	trade "Luxury Goods" 986
+	trade Medical 666
+	trade Metal 514
+	trade Plastic 317
+	fleet "Wanderer Freight" 500
+	fleet "Wanderer Drones" 3000
+	fleet "Wanderer Defense" 4000
+	object
+		sprite star/m4
+		period 10
+	object "Var' Kayi"
+		sprite planet/forest1
+		distance 243.09
+		period 99.2595
+	object
+		sprite planet/desert8
+		distance 484.09
+		period 278.94
+	object
+		sprite planet/gas2
+		distance 1091.09
+		period 943.87
+	object
+		sprite planet/cloud3
+		distance 1353.5
+		period 1304.09
+	object
+		sprite planet/europa
+		distance 3272.11
+		period 4901.88
+
 system Polaris
 	pos -35 126
 	government Syndicate
@@ -9385,6 +10109,80 @@ system Porrima
 			sprite planet/dust0
 			distance 294
 			period 11.4255
+
+system Prakacha'a
+	pos -35.1114 -802.607
+	government Wanderer
+	habitable 1505.92
+	link Chy'chra
+	link Ik'kara'ka
+	link Sich'ka'ara
+	link Chirr'ay'akai
+	asteroids "small rock" 32 1.974
+	asteroids "medium rock" 45 1.484
+	asteroids "large rock" 20 1.75
+	asteroids "small metal" 18 1.75
+	asteroids "medium metal" 186 1.638
+	asteroids "large metal" 24 1.092
+	trade Clothing 258
+	trade Electronics 802
+	trade Equipment 426
+	trade Food 362
+	trade "Heavy Metals" 942
+	trade Industrial 915
+	trade "Luxury Goods" 1197
+	trade Medical 804
+	trade Metal 372
+	trade Plastic 470
+	fleet "Wanderer Freight" 400
+	fleet "Wanderer Drones" 400
+	fleet "Wanderer Defense" 400
+	fleet "Unfettered Raid" 5000
+	object
+		sprite star/g0
+		distance 32.5255
+		period 12.7118
+		offset 180
+	object
+		sprite star/k5
+		distance 82.4745
+		period 12.7118
+	object
+		sprite planet/rock18
+		distance 247.965
+		period 40.2479
+	object
+		sprite planet/desert5
+		distance 458.205
+		period 101.099
+	object
+		sprite planet/rock19
+		distance 692.455
+		period 187.822
+	object
+		sprite planet/tethys
+		distance 846.065
+		period 253.667
+	object
+		sprite planet/gas6
+		distance 4036.31
+		period 2643.24
+		object
+			sprite planet/callisto
+			distance 294
+			period 12.8761
+		object
+			sprite planet/rock3
+			distance 437
+			period 23.3339
+		object
+			sprite planet/io
+			distance 540
+			period 32.052
+		object
+			sprite planet/dust3
+			distance 723
+			period 49.6561
 
 system Procyon
 	pos -411 23
@@ -10652,6 +11450,131 @@ system Sheratan
 		distance 4399.99
 		period 2587.95
 
+system Si'yak'ku
+	pos -329.235 -760.435
+	government Wanderer
+	habitable 1313.28
+	link Ek'kek'ru
+	link Pik'ro'iyak
+	asteroids "small rock" 19 3.78
+	asteroids "medium rock" 27 5.256
+	asteroids "large rock" 51 2.412
+	asteroids "small metal" 23 3.708
+	asteroids "medium metal" 24 4.356
+	asteroids "large metal" 1 4.968
+	trade Clothing 360
+	trade Electronics 765
+	trade Equipment 368
+	trade Food 334
+	trade "Heavy Metals" 1154
+	trade Industrial 590
+	trade "Luxury Goods" 1060
+	trade Medical 641
+	trade Metal 470
+	trade Plastic 388
+	fleet "Wanderer Freight" 1300
+	fleet "Wanderer Drones" 700
+	fleet "Wanderer Defense" 9000
+	object
+		sprite star/g0
+		distance 19.5395
+		period 12.7342
+	object
+		sprite star/m4
+		distance 90.4605
+		period 12.7342
+		offset 180
+	object
+		sprite planet/cloud7
+		distance 309.501
+		period 60.0999
+		object
+			sprite planet/oberon
+			distance 123
+			period 19.018
+	object
+		sprite planet/gas13
+		distance 1215.75
+		period 467.895
+		object "Var' Roi"
+			sprite planet/ice8
+			distance 251
+			period 11.2259
+		object
+			sprite planet/io
+			distance 355
+			period 18.8822
+		object "Varu Tek'kai"
+			sprite planet/dust5
+			distance 496
+			period 31.1841
+		object
+			sprite planet/rock7
+			distance 643
+			period 46.0285
+	object
+		sprite planet/gas9
+		distance 2341.11
+		period 1250.3
+		object
+			sprite planet/lava0
+			distance 252
+			period 15
+		object
+			sprite planet/desert4
+			distance 367
+			period 26.3627
+
+system Sich'ka'ara
+	pos -97.1237 -831.921
+	government Wanderer
+	habitable 1715
+	link Prakacha'a
+	link Ap'arak
+	link Kiro'ku
+	asteroids "large metal" 1 2.3738
+	trade Clothing 327
+	trade Electronics 745
+	trade Equipment 512
+	trade Food 264
+	trade "Heavy Metals" 1036
+	trade Industrial 859
+	trade "Luxury Goods" 1124
+	trade Medical 703
+	trade Metal 480
+	trade Plastic 423
+	fleet "Wanderer Freight" 600
+	fleet "Wanderer Drones" 3000
+	fleet "Wanderer Defense" 2000
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/gas10
+		distance 368
+		period 68.1867
+		object
+			sprite planet/dust1
+			distance 225
+			period 17.7652
+	object
+		sprite planet/mars
+		distance 926
+		period 272.173
+		object
+			sprite planet/rock17
+			distance 132
+			period 20.2683
+	object
+		sprite planet/tethys
+		distance 1182.49
+		period 392.757
+	object "Vara Ke'sok"
+		sprite planet/ocean6
+		distance 2370.98
+		period 1115.12
+		offset 337.352
+
 system Sirius
 	pos -378 44
 	government Republic
@@ -10708,6 +11631,59 @@ system Sirius
 		sprite planet/tethys
 		distance 2162.3
 		period 949.79
+
+system Sko'karak
+	pos -304.43 -930.688
+	government Wanderer
+	habitable 320
+	link Ka'ch'chrai
+	asteroids "medium rock" 8 2.4495
+	asteroids "large rock" 2 1.9665
+	asteroids "small metal" 40 5.175
+	asteroids "medium metal" 59 2.4495
+	asteroids "large metal" 12 5.1405
+	trade Clothing 351
+	trade Electronics 650
+	trade Equipment 397
+	trade Food 571
+	trade "Heavy Metals" 1275
+	trade Industrial 774
+	trade "Luxury Goods" 1105
+	trade Medical 448
+	trade Metal 513
+	trade Plastic 458
+	fleet "Wanderer Defense" 4000
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/rock8
+		distance 154.36
+		period 42.8832
+	object
+		sprite planet/rock18
+		distance 384.05
+		period 168.293
+	object
+		sprite planet/desert1
+		distance 617.3
+		period 342.949
+	object
+		sprite planet/gas4
+		distance 1227.46
+		period 961.603
+		object
+			sprite planet/callisto
+			distance 272
+			period 15.8216
+		object
+			sprite planet/rock3
+			distance 406
+			period 28.8527
+	object
+		sprite planet/gas11
+		distance 2331.95
+		period 2518.05
 
 system Sol
 	pos -400 100
@@ -12093,7 +13069,7 @@ system "Wah Yoot"
 	trade Clothing 418
 	trade Electronics 695
 	trade Equipment 470
-	trade Food 477
+	trade Food 598
 	trade "Heavy Metals" 705
 	trade Industrial 811
 	trade "Luxury Goods" 1245
@@ -12102,7 +13078,6 @@ system "Wah Yoot"
 	trade Plastic 472
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
-	fleet "Large Hai" 800
 	object
 		sprite star/g0
 		period 10
@@ -12962,6 +13937,19 @@ planet Albatross
 	tribute 400
 		threshold 2500
 		fleet "Small Southern Pirates" 20
+
+planet Alexandria
+	attributes deep station
+	landscape land/space7
+	description `At the height of the Alpha War, the government of the Deep constructed Alexandria as the galaxy's largest storehouse of human literature, scientific writing, and technology. It also houses a vast museum of cultural artifacts dating back to long before the start of the space age. Today the station is mostly populated by visitors looking for particularly arcane writings or information, and librarians who have devoted their lives to keeping the archives well-indexed and up to date.`
+	description `	Entire sections of the station are off limits to ordinary visitors. There are many rumors about what those restricted areas contain.`
+	spaceport `The station's cavernous visitor center is by far the quietest spaceport you have ever been in. Many people are bustling back and forth, wheeling carts of old books or carrying data pads, but they are entirely silent except for the occasional startled outburst when a scholar, walking deep in thought or immersed in reading, accidentally collides with someone.`
+	spaceport `	From here, passageways lead off into the wings of the library in a veritable labyrinth of hallways, stairs, and library stacks. A few particularly heavy doors require key cards to enter, and others have no opening controls of any sort that you can see.`
+	"required reputation" 100
+	bribe 0
+	tribute 1000
+		threshold 8000
+		fleet "Large Republic" 7
 
 planet Alfheim
 	attributes deep oil factory
@@ -13914,7 +14902,7 @@ planet Humanika
 	security 0.9
 	tribute 1000
 		threshold 8000
-		fleet "Quarg" 2
+		fleet Quarg 2
 
 planet "Hydra Station"
 	attributes "dirt belt" station
@@ -13955,6 +14943,23 @@ planet Ingot
 	tribute 200
 		threshold 1500
 		fleet "Small Militia" 15
+
+planet "Kort Kehai"
+	attributes wanderer
+	landscape land/lava6
+	description `This planet has a temperate climate, yet its surface is nearly lifeless, perhaps due in part to the high concentration of radioactive isotopes in the soil. The only plant growing on most of the land is a hardy bioengineered moss designed by the Wanderers to accumulate heavy metals and other toxins in its root system. These plants are then periodically harvested by flocks of unpiloted robots and buried in deep pits near the planet's poles.`
+	spaceport `This is the only Wanderer spaceport on the entire planet, with a population of no more than a few hundred Wanderers, most of them engineers and robot technicians. At the center of the port is a glass dome nearly a hundred meters tall, enclosing a garden with cliffs, streams, and towering trees, where the Wanderers can stretch their wings and relax in a green and growing environment without being exposed to the outside air.`
+	spaceport `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
+	"required reputation" 2
+	bribe 0
+
+planet "Kort Vek'kri"
+	attributes wanderer
+	landscape land/mountain2
+	description `This world is nearly unpopulated, with very little animal life and strange, twisted plants with odd coloration. In small patches of land, the native vegetation gives way to green forests and fields, which were probably planted there by the Wanderers. In some of the larger forests, birds and insects have begun to flourish.`
+	spaceport `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
+	"required reputation" 2
+	bribe 0
 
 planet "Kraken Station"
 	attributes "near earth" station
@@ -14620,7 +15625,7 @@ planet Quicksilver
 	attributes core volcanic mining
 	landscape land/snow0
 	description `Quicksilver is a world of highly variable, violent weather: hurricanes, hail, and earth-shaking thunderstorms. Under the planet's crust, it is equally turbulent and unpredictable, leading to frequent earthquakes and volcanic activity.`
-	description `	Although Quicksilver has vast mineral resources, the tectonic activity makes underground mining far too dangerous. However, a few enterprising settlers work in surface mining and mountaintop removal. The result are ugly, but this is a far too inhospitable world for anyone to care what it looks like.`
+	description `	Although Quicksilver has vast mineral resources, the tectonic activity makes underground mining far too dangerous. However, a few enterprising settlers work in surface mining and mountaintop removal. The results are ugly, but this is a far too inhospitable world for anyone to care what it looks like.`
 	spaceport `The spaceport is a single, enormous hangar built as a geodesic dome. It is filled with the constant dull roar of rain beating against the dome from above. When an especially strong blast of wind strikes the dome, its joints flex slightly and you can see the whole structure ripple and move.`
 	spaceport `	Amenities here are minimal: a small cafeteria selling hot drinks and warm stew, and a marketplace mostly filled with stacks of refined steel and aluminum and titanium for sale. A smaller stack of lead-lined crates hold radioactive metals. The air is not particularly cold here, but it is very damp, and the howling weather outside seems to weigh on everyone's spirits.`
 	security 0.2
@@ -14972,6 +15977,15 @@ planet Thunder
 		threshold 2500
 		fleet "Small Militia" 20
 
+planet "Tik Klai"
+	attributes wanderer research
+	landscape land/badlands2
+	description `This world is uncomfortably hot, even for the Wanderers, and so close to its star that the surface is bathed in dangerous levels of ultraviolet light. The few Wanderer installations here are buried underground, with only a few access hatches and storage buildings on the surface.`
+	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
+	spaceport `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
+	"required reputation" 35
+	bribe 0
+
 planet Tinker
 	attributes "near earth" factory mining
 	landscape land/mfield0
@@ -15091,6 +16105,138 @@ planet Valhalla
 		threshold 7000
 		fleet "Large Deep" 35
 
+planet "Var' Kar'i'i"
+	attributes wanderer urban farming
+	landscape land/valley8
+	description `This is a populous Wanderer world, with small farming villages scattered across all the land, and even a few larger population centers that might almost qualify as a city. But from the air, it is not evident at first that the planet is so heavily settled, because the village tree-houses are mostly hidden beneath the forest canopies. The farms, too, are almost indistinguishable from natural land, due to a permaculture system where many varieties of plants are growing side by side.`
+	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly eight feet tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
+	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
+	shipyard "Wanderer Basics"
+	outfitter "Wanderer Basics"
+	"required reputation" 5
+	bribe 0
+
+planet "Var' Kayi"
+	attributes wanderer urban
+	landscape land/water1
+	description `This is an earth-like world with one major Wanderer city and countless smaller settlements. The settlements mostly consist of tree-houses built high up in living trees. The architecture of the city skyscrapers is full of cantilevered balconies and arches, mimicking the natural shape of a forest. Here and there a bit of smoke or steam rises from what must be a factory or power plant, but most of the land outside the city is green fields and pristine oceans.`
+	spaceport `This spaceport is as busy and chaotic as any major human trade hub, with the added complication that many of the Wanderers are flying from building to building instead of walking. Most of the buildings have balconies on every level, allowing visitors to enter from the air as well as from the streets.`
+	spaceport `	The starship landing pads are well outside the city, and ships land and take off along very tightly controlled vectors, probably to avoid midair collisions between the ships and the Wanderers who are flying on their own wings.`
+	shipyard "Wanderer Advanced"
+	outfitter "Wanderer Advanced"
+	"required reputation" 5
+	bribe 0
+
+planet "Var' Roi"
+	attributes wanderer research
+	landscape land/snow9
+	description `The surface of this small icy moon is constantly cracked and broken by tidal force from the gas giant that it orbits. The tidal disturbances also heat the moon enough to keep its oceans warm enough to support life despite the small amount of sunlight that reaches here.`
+	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
+	"required reputation" 25
+	bribe 0
+
+planet "Vara K'chrai"
+	attributes wanderer urban
+	landscape land/sea8
+	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
+	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
+	spaceport `The streets in Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
+	shipyard "Wanderer Advanced"
+	bribe 0
+
+planet "Vara Ke'sok"
+	attributes wanderer fishing
+	landscape land/beach6
+	description `The surface of this world is almost entirely ocean, and the Wanderers who inhabit it live on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
+	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
+	"required reputation" 5
+	bribe 0
+
+planet "Vara Ke'stai"
+	attributes wanderer farming
+	landscape land/myrabella6
+	description `This is a desert world, but the Wanderers are working little by little to make the desert bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
+	spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. A few mechanical lifts have been built into the sides of the trees to carry cargo up to the forest canopy where the Wanderers live, but the Wanderers themselves seem content to fly between the houses rather than using the lifts.`
+	outfitter "Wanderer Basics"
+	"required reputation" 5
+	bribe 0
+
+planet "Vara Kehi'ki"
+	attributes wanderer research farming
+	landscape land/sky9
+	description `This is a farming world, but the primary crops are medicinal plants rather than food: fields of brightly colored flowers and delicate shrubs. Large factories near the farms process the raw plants and extract useful chemical compounds. Their gleaming metal smokestacks belching steam into the air seem incongruous amid the natural beauty and bright colors of the fields of flowers.`
+	spaceport `The spaceport village is apparently not just a processing facility for the medicinal plants, but also a hospital of sorts. The village is designed to allow easy foot traffic as well as flight between buildings, and thousands of Wanderers, many of them appearing sick or elderly, live here. The main streets of the village are lined with vine trellises with flowers of every color imaginable, and mechanical lifts allow even the most frail Wanderers to travel up to the higher terraces and balconies.`
+	outfitter "Wanderer Basics"
+	"required reputation" 15
+	bribe 0
+
+planet "Vara Rakak"
+	attributes wanderer farming
+	landscape land/forest1
+	description `This is one of those rare worlds whose climate is already nearly perfect without the need for terraforming. The Wanderers have made it into a farming planet. The fields follow the natural contours and geology of the land rather than being laid out in rectangular lots like most human farms, and each field contains several different crop species designed to form a symbiotic ecosystem.`
+	spaceport `This could be a spaceport on any human farming world, except that the farmers hawking their wares have wings and beaks, and the wagons bringing produce to the market are drawn by massive lizards instead of horses. In several repair shops on the outskirts of town, Wanderer technicians work on massive harvester robots. The robots have four legs to walk on and dozens of dexterous manipulator arms for picking crops, and each arm has a camera eye on it.`
+	shipyard "Wanderer Basics"
+	outfitter "Wanderer Advanced"
+	"required reputation" 5
+	bribe 0
+
+planet "Varu Ek'lak'lai"
+	attributes wanderer mining
+	landscape land/water8
+	description `The Wanderers harvest metal ores not from planets, but from asteroids, in order to not expend even more of the resources of the planets that are under their care. This star system contains an unusually high concentration of metallic asteroids, and as a result they have built many large refineries here to process the ore that their drones harvest.`
+	spaceport `The vast majority of ships landing and taking off from this port are unmanned Wanderer drones used for mining asteroids. The drones are maneuverable enough to avoid collisions with the few ships that land under manual control.`
+	spaceport `	The port itself is a small village surrounded by towering refineries. Unlike other Wanderer architecture, the refineries are ugly, brutal buildings made of weathered concrete.`
+	outfitter "Wanderer Basics"
+	"required reputation" 15
+	bribe 0
+
+planet "Varu K'est"
+	attributes wanderer military
+	landscape land/canyon5
+	description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. The Wanderers have converted nearly all their villages on this planet into military bases in order to oppose the encroaching Hai raiders, and have also been forced to postpone their attempts at improving the local ecology.`
+	spaceport `The spaceport is a massive shipyard, with facilities for repairing the few warships that the Wanderers possess as well as creating new ships and weapons. Dozens of battle-scarred ships are parked in the hangars here, a stark contrast to the ports in the more peaceful regions of the Wanderer territory.`
+	shipyard "Wanderer Basics"
+	outfitter "Wanderer Advanced"
+	"required reputation" 15
+	bribe 0
+
+planet "Varu K'prai"
+	attributes wanderer oil
+	landscape land/beach1
+	description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
+	spaceport `Plastics and other refined oil products are as essential to Wanderer technology as to humans, but it is clear that those responsible for harvesting them are not held in high regard. The crews of visiting ships seem eager to interact with the locals as little as possible. However, that does not appear to stop the Wanderer freighters from purchasing large shipments of plastic, which will no doubt yield a substantial profit elsewhere in Wanderer space.`
+	outfitter "Wanderer Basics"
+	"required reputation" 15
+	bribe 0
+
+planet "Varu Mer'ek"
+	attributes wanderer factory
+	landscape land/valley5
+	description `This Wanderer factory world is now home to more abandoned villages than populated ones: entire factories rusting and decaying as a result of the recent threat from the Unfettered Hai. Most of the factories that remain active have been repurposed to produce weapons or ammunition for the defense of Wanderer space.`
+	spaceport `Very few Wanderer children are present in the spaceport. Most of the inhabitants still live far above the ground in the customary Wanderer tree-houses, but that portion of the village is dwarfed by the more recently constructed factories and warehouses for war supplies. A steady stream of freighters brings in new equipment and raw materials for the factories.`
+	shipyard "Wanderer Advanced"
+	outfitter "Wanderer Advanced"
+	"required reputation" 15
+	bribe 0
+
+planet "Varu Tek'kai"
+	attributes wanderer factory
+	landscape land/badlands4
+	description `This Wanderer world is almost uninhabited and devoid of any indigenous ecosystem, except perhaps on the microscopic level. It has none of the beauty of other Wanderer settlements. Here, factories have been built to process the most dangerous and destructive of industrial chemicals. If disaster strikes one of the factories, the only result will be the contamination of a world that is already dead and lifeless - far better, in the judgment of the Wanderers, than allowing such risky industries to operate on a living world.`
+	spaceport `Nearly all the operations of the factories here are automated, and the outside atmosphere is too thin for even the Wanderers to breathe. The workers live in dormitory apartments in a ring surrounding a large central dome. Inside the dome, protected from the elements, is a park whose gardens contain everything from towering conifers to fields of wildflowers; a necessary place of sanctuary and rest for the Wanderers who must spend the rest of their time servicing machines in the bleak environment outside the spaceport.`
+	outfitter "Wanderer Basics"
+	"required reputation" 15
+	bribe 0
+
+planet "Varu Tev'kei"
+	attributes wanderer factory
+	landscape land/dune4
+	description `This is a desert world, too hot and too close to its sun to support much animal or plant life. The Wanderers have covered large stretches of the desert with solar-powered factories: smelters that use the sun's reflected heat to melt ore, and fields of solar panels that support other industries.`
+	spaceport `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the building here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
+	outfitter "Wanderer Basics"
+	"required reputation" 15
+	bribe 0
+
 planet Vinci
 	attributes paradise factory
 	landscape land/nasa5
@@ -15104,7 +16250,8 @@ planet Vinci
 planet Warfeed
 	attributes unfettered
 	landscape land/sea5
-	description `Warfeed is mostly covered in oceans, and much of its land area devoted to agriculture. Most of the fields are tilled and harvested by robots, but there are also many scattered homesteads of subsistence farmers, who survive with the aid of little or no technology. Aside from a few fishing villages, the oceans here are unexploited.`
+	description `Warfeed is mostly covered in oceans, and much of its land area devoted to agriculture. Most of the fields are tilled and harvested by robots, but there are also many scattered homesteads of subsistence farmers, who survive with the aid of little or no technology.`
+	description `	In recent years, both the land and the seas of Warfeed have begun to show the toll of centuries of overharvesting. Large portions of the continents near the equator are now nothing but growing deserts, and even the best remaining farmland is sandy and nutrient-poor. All but the smallest marine organisms have been nearly fished to extinction.`
 	spaceport `This spaceport is a collection of ramshackle wooden buildings and packed dirt landing pads. The wagons piled high with produce and bags of grain would not look out of place in many human ports, but they are being drawn by giant lizards instead of horses or oxen. There are no human beings here, and most of the Hai eye you with suspicion and distaste.`
 
 planet Watcher

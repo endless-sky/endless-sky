@@ -170,6 +170,8 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 		}
 		if(event.Actor() && event.Target())
 			actions[event.Actor()][event.Target()] |= event.Type();
+		if(event.ActorGovernment() && event.Target())
+			governmentActions[event.ActorGovernment()][event.Target()] |= event.Type();
 		if(event.ActorGovernment()->IsPlayer() && event.Target())
 		{
 			int &bitmap = playerActions[event.Target()];
@@ -185,14 +187,14 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 void AI::Clean()
 {
 	actions.clear();
+	governmentActions.clear();
+	playerActions.clear();
 }
 
 
 
 void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 {
-	const Ship *flagship = player.Flagship();
-	
 	// First, figure out the comparative strengths of the present governments.
 	map<const Government *, int64_t> strength;
 	for(const auto &it : ships)
@@ -215,7 +217,25 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					}
 			}
 	}
+	shipStrength.clear();
+	for(const auto &it : ships)
+	{
+		const Government *gov = it->GetGovernment();
+		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled())
+			continue;
+		int64_t &strength = shipStrength[it.get()];
+		for(const auto &oit : ships)
+		{
+			const Government *ogov = oit->GetGovernment();
+			if(!ogov || oit->GetSystem() != player.GetSystem() || oit->IsDisabled())
+				continue;
+			
+			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
+				strength += it->Cost();
+		}
+	}		
 	
+	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
 	for(const auto &it : ships)
@@ -406,7 +426,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			MoveIndependent(*it, command);
 		else if(parent->GetSystem() != it->GetSystem())
 		{
-			if(personality.IsStaying())
+			if(personality.IsStaying() || !it->Attributes().Get("fuel capacity"))
 				MoveIndependent(*it, command);
 			else
 				MoveEscort(*it, command);
@@ -418,7 +438,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
-		else if(parent->Commands().Has(Command::JUMP))
+		else if(parent->Commands().Has(Command::JUMP) && it->JumpsRemaining())
 			MoveEscort(*it, command);
 		// If the player is ordering escorts to gather, don't go off to fight.
 		else if(isPlayerEscort && moveToMe)
@@ -512,6 +532,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
 	const System *system = ship.GetSystem();
 	bool isDisabled = false;
+	// Figure out how strong this ship is.
+	int64_t maxStrength = 0;
+	auto strengthIt = shipStrength.find(&ship);
+	if(!person.IsHeroic() && strengthIt != shipStrength.end())
+		maxStrength = 2 * strengthIt->second;
 	for(const auto &it : ships)
 		if(it->GetSystem() == system && it->IsTargetable() && gov->IsEnemy(it->GetGovernment()))
 		{
@@ -526,6 +551,15 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			// target if they are nearby.
 			if(it == oldTarget || it == parentTarget)
 				range -= 500.;
+			
+			// Unless this ship is heroic, it will not chase much stronger ships
+			// unless it has strong allies nearby.
+			if(maxStrength && range > 1000. && !it->IsDisabled())
+			{
+				auto otherStrengthIt = shipStrength.find(it.get());
+				if(otherStrengthIt != shipStrength.end() && otherStrengthIt->second > maxStrength)
+					continue;
+			}
 			
 			// If your personality it to disable ships rather than destroy them,
 			// never target disabled ships.
@@ -559,8 +593,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 		for(const auto &it : ships)
 			if(it->GetSystem() == system && it->GetGovernment() != gov && it->IsTargetable())
 			{
-				if((cargoScan && !Has(ship, it, ShipEvent::SCAN_CARGO))
-						|| (outfitScan && !Has(ship, it, ShipEvent::SCAN_OUTFITS)))
+				if((cargoScan && !Has(ship.GetGovernment(), it, ShipEvent::SCAN_CARGO))
+						|| (outfitScan && !Has(ship.GetGovernment(), it, ShipEvent::SCAN_OUTFITS)))
 				{
 					double range = it->Position().Distance(ship.Position());
 					if(range < closest)
@@ -616,8 +650,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		bool cargoScan = ship.Attributes().Get("cargo scan");
 		bool outfitScan = ship.Attributes().Get("outfit scan");
-		if((!cargoScan || Has(ship, target, ShipEvent::SCAN_CARGO))
-				&& (!outfitScan || Has(ship, target, ShipEvent::SCAN_OUTFITS)))
+		if((!cargoScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(ship.GetGovernment(), target, ShipEvent::SCAN_OUTFITS)))
 			target.reset();
 		else
 		{
@@ -631,7 +665,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// If this ship is moving independently because it has a target, not because
 	// it has no parent, don't let it make travel plans.
 	if(ship.GetParent() && !ship.GetPersonality().IsStaying())
+	{
+		if(!ship.JumpsRemaining())
+			Refuel(ship, command);
 		return;
+	}
 	
 	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())
 	{
@@ -1113,10 +1151,11 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 				if(!object.IsStar() && object.Radius() < 130.)
 					targetPlanets.push_back(&object);
 		
-		if(jumpDrive)
+		bool canJump = (ship.JumpsRemaining() != 0);
+		if(jumpDrive && canJump)
 			for(const System *link : ship.GetSystem()->Neighbors())
 				targetSystems.push_back(link);
-		else if(hyperdrive)
+		else if(hyperdrive && canJump)
 			for(const System *link : ship.GetSystem()->Links())
 				targetSystems.push_back(link);
 		
@@ -1272,7 +1311,7 @@ Point AI::TargetAim(const Ship &ship)
 		p += steps * v;
 		
 		double damage = outfit->ShieldDamage() + outfit->HullDamage();
-		result += p.Unit() * damage;
+		result += p.Unit() * abs(damage);
 	}
 	
 	if(!result)
@@ -1461,11 +1500,18 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			ship.SetTargetSystem(system);
 		// Check if there's a particular planet there we want to visit.
 		for(const Mission &mission : player.Missions())
+		{
 			if(mission.Destination() && mission.Destination()->GetSystem() == system)
 			{
 				ship.SetDestination(mission.Destination());
 				break;
 			}
+			// Also prefer landing on stopovers if there are no missions with
+			// a planet in this system as their final destination.
+			for(const Planet *planet : mission.Stopovers())
+				if(planet->GetSystem() == system)
+					ship.SetDestination(planet);
+		}
 	}
 	
 	if(keyDown.Has(Command::NEAREST))
@@ -1672,7 +1718,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		command |= Command::SCAN;
 	
 	bool hasGuns = Preferences::Has("Automatic firing") && !ship.IsBoarding()
-		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD);
+		&& !(keyStuck | keyHeld).Has(Command::LAND | Command::JUMP | Command::BOARD)
+		&& (!ship.GetTargetShip() || ship.GetTargetShip()->GetGovernment()->IsEnemy());
 	if(hasGuns)
 		command |= AutoFire(ship, ships, false);
 	hasGuns |= keyHeld.Has(Command::PRIMARY);
@@ -1798,6 +1845,21 @@ bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) cons
 	
 	auto oit = sit->second.find(other);
 	if(oit == sit->second.end())
+		return false;
+	
+	return (oit->second & type);
+}
+
+
+
+bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, int type) const
+{
+	auto git = governmentActions.find(government);
+	if(git == governmentActions.end())
+		return false;
+	
+	auto oit = git->second.find(other);
+	if(oit == git->second.end())
 		return false;
 	
 	return (oit->second & type);
