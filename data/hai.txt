@@ -153,6 +153,20 @@ fleet "Large Unfettered"
 	variant 1
 		"Lightning Bug" 5
 
+fleet "Unfettered Raid"
+	government "Hai (Unfettered)"
+	names "hai"
+	personality
+		plunders
+	variant
+		"Shield Beetle (Jump)" 3
+	variant
+		"Shield Beetle (Jump)" 2
+		"Shield Beetle (Jump, Tracker)" 1
+	variant
+		"Shield Beetle (Jump)" 1
+		"Shield Beetle (Jump, Tracker)" 2
+
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
 	attributes
@@ -202,7 +216,7 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
 		"Fission Reactor"
-		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"S-270 Regenerator"
 		"Cooling Ducts"
 		"A370 Atomic Thruster"
@@ -298,8 +312,8 @@ ship "Water Bug"
 	gun -24 -53 "Hai Tracker Pod"
 	gun 24 -53 "Hai Tracker Pod"
 	turret 0 -10 "Pulse Turret"
-	turret -17 17 "Anti-Missile Turret"
-	turret 17 17 "Anti-Missile Turret"
+	turret -17 17 "Heavy Anti-Missile Turret"
+	turret 17 17 "Heavy Anti-Missile Turret"
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
@@ -388,6 +402,49 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Jump)"
+	outfits
+		"Ion Cannon" 4
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Heavy Anti-Missile Turret" 2
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"Mass Expansion" 4
+		"S-970 Regenerator" 2
+		"Fuel Pod" 3
+		"Cooling Ducts" 4
+		"A370 Atomic Thruster"
+		"A865 Atomic Steering"
+		"Jump Drive"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	gun "Hai Tracker Pod"
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+
+ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
+	outfits
+		"Hai Tracker Pod" 8
+		"Hai Tracker" 448
+		"Pulse Turret" 4
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"Mass Expansion" 1
+		"S-970 Regenerator" 2
+		"Fuel Pod" 3
+		"Cooling Ducts" 4
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Jump Drive"
 
 shipyard "Hai Basics"
 	"Aphid"

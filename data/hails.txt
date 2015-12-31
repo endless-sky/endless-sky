@@ -81,7 +81,7 @@ phrase "friendly civilian"
 		" blow them out of the sky with a barrage of missiles before they can get anywhere near you!"
 		" buy a light warship that still has decent passenger capacity."
 		" use a multipurpose ship that can carry a lot of cargo, has decent shields, and mounts some heavy weapons."
-		" equip your ship with anti-missile turrets so they can't get you away with missiles, and then you can escape if you can't beat them up close."
+		" equip your ship with anti-missile turrets so they can't get you with missiles, and then you can run away!"
 		" travel with a fleet that includes some interceptors to tie them up while the cargo ships can warp to safety."
 
 phrase "friendly civilian"
@@ -165,6 +165,7 @@ phrase "friendly civilian"
 		"bleu cheese"
 		"livestock"
 		"cattle"
+		"garlic"
 		"sheep"
 		"fertilizer"
 		"manure"
@@ -226,7 +227,6 @@ phrase "friendly civilian"
 		"if you're "
 		"if you ever find yourself "
 		"when you're "
-		"as you're "
 	word
 		"flying through "
 		"visiting "
@@ -399,7 +399,7 @@ phrase "friendly civilian"
 		" a couple of "
 		" a number of "
 	word
-		" "
+		""
 		"quite "
 		"very "
 		"relatively "
@@ -482,6 +482,7 @@ phrase "friendly navy"
 	word
 		" the biggest "
 		" the largest "
+		" the greatest "
 	word
 		"humanitarian "
 		"peacekeeping "
@@ -522,6 +523,7 @@ phrase "friendly militia"
 		"criminal "
 		"unlawful "
 		"abnormal "
+		"irregular "
 	word
 		"vessels."
 		"behavior."
@@ -534,8 +536,8 @@ phrase "friendly syndicate"
 		"Smart captains know cargo space is key. Smart captains choose the Syndicate "
 	word
 		"Star Barge."
-		"Bulk Freighter"
-		"Freighter"
+		"Bulk Freighter."
+		"Freighter."
 		
 phrase "friendly syndicate"
 	word
@@ -543,7 +545,7 @@ phrase "friendly syndicate"
 	word
 		" Bulk Freighter: "
 		" Freighter: "
-		" Star Barge"
+		" Star Barge: "
 	word
 		"backbone"
 		"motor"
@@ -552,6 +554,7 @@ phrase "friendly syndicate"
 		"engine"
 	word
 		"of the galactic economy."
+		"of galactic trade."
 		
 		
 phrase "friendly syndicate"	
@@ -575,6 +578,7 @@ phrase "friendly syndicate"
 		"Intelligent"
 		"Wise"
 		"Bright"
+		"Intuitive"
 	word
 		" captains"
 		" ship captains"
@@ -754,11 +758,10 @@ phrase "friendly pug"
 		"unity"
 		"the end of violence"
 	word
-		" in the "
-		" through-out the "
-	word
-		"galaxy."
-		"universe."
+		"."
+		" in the galaxy."
+		" through-out the universe."
+		" among all sentient beings."
 
 
 
@@ -825,8 +828,7 @@ phrase "hostile disabled"
 		"warped"
 		"wayward"
 		"weedy"
-		"yeasty
-		""
+		"yeasty"
 	word
 		" "
 	word
@@ -880,7 +882,6 @@ phrase "hostile disabled"
 		"toad-spotted"
 		"unchin-snouted"
 		"weather-bitten"
-		""
 	word
 		" "
 	word
@@ -1011,7 +1012,7 @@ phrase "hostile navy"
 		"You will not "
 		"It is impossible to "
 		"No one can "
-		"You cannot"
+		"You cannot "
 	word
 		"prevail against "
 		"overcome "
