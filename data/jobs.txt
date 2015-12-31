@@ -1005,7 +1005,9 @@ mission "Passengers [1]"
 	passengers 1 10 .9
 	to offer
 		random < 75
-		has "ship: Transport"
+		or
+			has "ship: Transport" 
+			has "ship: Luxury Transport"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai"
 	destination
