@@ -993,9 +993,9 @@ ship "Flivver"
 	sprite "ship/flivver"
 	attributes
 		category "Transport"
-		"cost" 200000
+		"cost" 180000
 		"shields" 1400
-		"hull" 400
+		"hull" 200
 		"required crew" 1
 		"bunks" 3
 		"luxury bunks" 3
