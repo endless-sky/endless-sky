@@ -1326,7 +1326,6 @@ phrase "hostile bounty hunter"
 		" in my sights"
 	word
 		". "
-		"; "
 		"! "
 	word
 		"Closing in for the kill"
