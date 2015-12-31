@@ -1586,6 +1586,8 @@ mission "Wealthy Executive Short [0]"
 		require "Luxury Bunks"
 	on accept
 		outfit "Luxury Bunks" -1
+	on fail
+		outfit "Luxury Bunks" 1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1610,6 +1612,8 @@ mission "Wealthy Administrators Short [1]"
 		require "Luxury Bunks"
 	on accept
 		outfit "Luxury Bunks" -1
+	on fail
+		outfit "Luxury Bunks" 1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1634,6 +1638,8 @@ mission "Wealthy Politician Long [0]"
 		require "Luxury Bunks"
 	on accept
 		outfit "Luxury Bunks" -1
+	on fail
+		outfit "Luxury Bunks" 1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1658,11 +1664,8 @@ mission "Wealthy Executive Long [1]"
 		require "Luxury Bunks"
 	on accept
 		outfit "Luxury Bunks" -1
-	to fail
-		and 
-			not "Flivver"
-			not "Arrow"
-			not "Star Queen"
+	on fail
+		outfit "Luxury Bunks" 1
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
