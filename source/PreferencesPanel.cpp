@@ -110,6 +110,7 @@ void PreferencesPanel::Draw() const
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
+		Command::SCAN,
 		Command::CLEAR,
 		Command::NONE,
 		Command::MENU,
