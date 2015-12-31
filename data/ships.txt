@@ -122,6 +122,7 @@ ship "Arrow"
 		"hull" 400
 		"required crew" 1
 		"bunks" 5
+		"luxury bunks" 5
 		"mass" 130
 		"drag" 2.7
 		"heat dissipation" .85
@@ -147,6 +148,8 @@ ship "Arrow"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
+		
+		"Luxury Bunks" 5
 		
 	engine -10 60
 	engine 10 60
@@ -986,16 +989,16 @@ ship "Firebird"
 	description "The Betelgeuse Shipyards Firebird is a warship with a long and storied past; Firebirds fought on both sides of the Alpha Wars nearly half a millennium ago, and although the equipment and systems have been upgraded continuously since then, the basic design remains almost the same. The Firebird is also a very rugged ship and easy to repair; supposedly a few of the Firebirds that fought in those wars are still in service today."
 
 
-
 ship "Flivver"
 	sprite "ship/flivver"
 	attributes
 		category "Transport"
-		"cost" 180000
+		"cost" 200000
 		"shields" 1400
-		"hull" 200
+		"hull" 400
 		"required crew" 1
 		"bunks" 3
+		"luxury bunks" 3
 		"mass" 40
 		"drag" 1.0
 		"heat dissipation" .9
@@ -1020,6 +1023,7 @@ ship "Flivver"
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
 		"Hyperdrive"
+		"Luxury Bunks" 3
 		
 	engine -16 27
 	engine 16 27
@@ -1028,7 +1032,6 @@ ship "Flivver"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	description "With space for neither cargo nor passengers nor heavy weaponry, the Flivver's only selling point is speed. Flivvers are sold mostly to wealthy individuals who want to be able to travel the stars without needing to share a bunk room on a merchant transport with common people."
-
 
 
 ship "Freighter"
@@ -2295,6 +2298,7 @@ ship "Star Queen"
 		"hull" 2200
 		"required crew" 43
 		"bunks" 112
+		"luxury bunks" 112
 		"mass" 230
 		"drag" 5.5
 		"heat dissipation" .65
@@ -2320,6 +2324,7 @@ ship "Star Queen"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+		outfit "Luxury Bunks" 112
 		
 	engine -18 116
 	engine 18 116
