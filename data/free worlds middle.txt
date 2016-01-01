@@ -1432,7 +1432,6 @@ mission "FW Bloodsea 1.1B"
 		system Antares
 		fleet
 			names pirate
-			"hostile hail" "hostile pirate"
 			variant
 				"Raven (Afterburner)" 2
 				Hawk 2
@@ -1500,7 +1499,6 @@ mission "FW Bloodsea 1.2A"
 		system "Antares"
 		fleet
 			names pirate
-			"hostile hail" "hostile pirate"
 			variant
 				"Firebird (Plasma)"
 				"Raven (Afterburner)" 2

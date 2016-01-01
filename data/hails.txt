@@ -557,7 +557,8 @@ phrase "friendly syndicate"
 		"of galactic trade."
 		
 		
-phrase "friendly syndicate"	
+phrase "friendly syndicate"
+	word
 		"Remember that unauthorized blaster modifications void the warranty. Buy from the Syndicate directly!"
 		"Smart captains choose Syndicated Shipyards, the gold standard for reliability."
 		"Smart captains shop Syndicated Systems."

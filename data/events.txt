@@ -674,7 +674,6 @@ event "recapture of Kornephoros"
 		cargo 0
 		personality
 			heroic
-		"friendly hail" "friendly navy"
 		variant 6
 			"Rainmaker" 2
 		variant 5
@@ -790,7 +789,6 @@ event "plasma turret available"
 		cargo 1
 		personality
 			heroic
-		"friendly hail" "friendly free worlds"
 		variant 5
 			"Bastion"
 		variant 4
@@ -962,7 +960,6 @@ event "navy using mark ii ships"
 		cargo 0
 		personality
 			heroic
-		"friendly hail" "friendly navy"
 		variant 4
 			"Rainmaker (Mark II)" 2
 		variant 2
@@ -994,7 +991,6 @@ event "navy using mark ii ships"
 		cargo 0
 		personality
 			heroic
-		"friendly hail" "friendly navy"
 		variant 4
 			"Frigate (Mark II)" 2
 			"Rainmaker (Mark II)"
@@ -1053,7 +1049,6 @@ fleet "gunboat only"
 	cargo 0
 	personality
 		heroic
-	"friendly hail" "friendly navy"
 	variant
 		"Gunboat (Mark II)"
 
@@ -1235,7 +1230,6 @@ event "dreadnought deployment"
 		cargo 1
 		personality
 			heroic
-		"friendly hail" "friendly free worlds"
 		variant 5
 			"Bastion"
 		variant 4

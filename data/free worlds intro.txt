@@ -294,7 +294,6 @@ mission "FW Recon 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
-			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)"
 		conversation
@@ -349,7 +348,6 @@ mission "FW Recon 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
-			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)" 4
 		dialog "You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment."
@@ -429,7 +427,6 @@ mission "FW Recon 3B"
 		personality timid
 		fleet
 			names "republic capital"
-			"friendly hail" "friendly navy"
 			variant
 				"Gunboat"
 	
