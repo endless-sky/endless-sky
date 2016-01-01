@@ -543,18 +543,18 @@ phrase "friendly syndicate"
 	word
 		"The Syndicate"
 	word
-		" Bulk Freighter: "
-		" Freighter: "
-		" Star Barge: "
+		" Bulk Freighter:"
+		" Freighter:"
+		" Star Barge:"
 	word
-		"backbone"
-		"motor"
-		"center"
-		"heart"
-		"engine"
+		" backbone"
+		" motor"
+		" center"
+		" heart"
+		" engine"
 	word
-		"of the galactic economy."
-		"of galactic trade."
+		" of the galactic economy."
+		" of galactic trade."
 		
 		
 phrase "friendly syndicate"
