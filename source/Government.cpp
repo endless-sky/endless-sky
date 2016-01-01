@@ -61,12 +61,16 @@ void Government::Load(const DataNode &node)
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
+			{
 				if(grand.Size() >= 2)
 				{
 					const Government *gov = GameData::Governments().Get(grand.Token(0));
 					attitudeToward.resize(nextID, 0.);
 					attitudeToward[gov->id] = grand.Value(1);
 				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
 		else if(child.Token(0) == "penalty for")
 		{
@@ -75,16 +79,18 @@ void Government::Load(const DataNode &node)
 				{
 					if(grand.Token(0) == "assist")
 						penaltyFor[ShipEvent::ASSIST] = grand.Value(1);
-					if(grand.Token(0) == "disable")
+					else if(grand.Token(0) == "disable")
 						penaltyFor[ShipEvent::DISABLE] = grand.Value(1);
-					if(grand.Token(0) == "board")
+					else if(grand.Token(0) == "board")
 						penaltyFor[ShipEvent::BOARD] = grand.Value(1);
-					if(grand.Token(0) == "capture")
+					else if(grand.Token(0) == "capture")
 						penaltyFor[ShipEvent::CAPTURE] = grand.Value(1);
-					if(grand.Token(0) == "destroy")
+					else if(grand.Token(0) == "destroy")
 						penaltyFor[ShipEvent::DESTROY] = grand.Value(1);
-					if(grand.Token(0) == "atrocity")
+					else if(grand.Token(0) == "atrocity")
 						penaltyFor[ShipEvent::ATROCITY] = grand.Value(1);
+					else
+						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
 		}
 		else if(child.Token(0) == "bribe" && child.Size() >= 2)
@@ -99,6 +105,8 @@ void Government::Load(const DataNode &node)
 			hostileHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "language" && child.Size() >= 2)
 			language = child.Token(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

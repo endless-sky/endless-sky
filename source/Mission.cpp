@@ -100,8 +100,12 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
+			{
 				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
 					illegalCargoFine = grand.Value(1);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -144,6 +148,8 @@ void Mission::Load(const DataNode &node)
 				toComplete.Load(child);
 			else if(child.Token(1) == "fail")
 				toFail.Load(child);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
 			source = GameData::Planets().Get(child.Token(1));
@@ -185,7 +191,11 @@ void Mission::Load(const DataNode &node)
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child, name);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	if(displayName.empty())

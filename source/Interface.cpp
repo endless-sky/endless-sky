@@ -61,6 +61,8 @@ void Interface::Load(const DataNode &node)
 					position += Point(.5, 0.);
 				else if(token == "bottom")
 					position += Point(0., .5);
+				else if(token != "center")
+					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if((key == "sprite" || key == "outline") && child.Size() >= 4)
@@ -80,6 +82,8 @@ void Interface::Load(const DataNode &node)
 						grand.Value(1), grand.Value(2));
 				else if(grand.Token(0) == "colored")
 					vec.back().isColored = true;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 			
 			vec.back().condition = condition;
@@ -102,6 +106,8 @@ void Interface::Load(const DataNode &node)
 				else if(grand.Token(0) == "size" && grand.Size() >= 2)
 					vec.back().size =
 						static_cast<int>(grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 			
 			vec.back().condition = condition;
@@ -123,6 +129,8 @@ void Interface::Load(const DataNode &node)
 				else if(grand.Token(0) == "width" && grand.Size() >= 2)
 					vec.back().width =
 						static_cast<float>(grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 			
 			vec.back().condition = condition;
@@ -137,6 +145,8 @@ void Interface::Load(const DataNode &node)
 				if(grand.Token(0) == "size" && grand.Size() >= 3)
 					buttons.back().size = Point(
 						grand.Value(1), grand.Value(2));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "point" && child.Size() >= 2)
@@ -146,10 +156,14 @@ void Interface::Load(const DataNode &node)
 			{
 				if(grand.Token(0) == "position" && grand.Size() >= 3)
 					spec.position = Point(grand.Value(1), grand.Value(2));
-				if(grand.Token(0) == "size" && grand.Size() >= 3)
+				else if(grand.Token(0) == "size" && grand.Size() >= 3)
 					spec.size = Point(grand.Value(1), grand.Value(2));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

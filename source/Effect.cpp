@@ -44,20 +44,22 @@ void Effect::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "sprite")
 			animation.Load(child);
-		if(child.Token(0) == "sound" && child.Size() >= 2)
+		else if(child.Token(0) == "sound" && child.Size() >= 2)
 			sound = Audio::Get(child.Token(1));
-		if(child.Token(0) == "lifetime" && child.Size() >= 2)
+		else if(child.Token(0) == "lifetime" && child.Size() >= 2)
 			lifetime = child.Value(1);
-		if(child.Token(0) == "velocity scale" && child.Size() >= 2)
+		else if(child.Token(0) == "velocity scale" && child.Size() >= 2)
 			velocityScale = child.Value(1);
-		if(child.Token(0) == "random velocity" && child.Size() >= 2)
+		else if(child.Token(0) == "random velocity" && child.Size() >= 2)
 			randomVelocity = child.Value(1);
-		if(child.Token(0) == "random angle" && child.Size() >= 2)
+		else if(child.Token(0) == "random angle" && child.Size() >= 2)
 			randomAngle = child.Value(1);
-		if(child.Token(0) == "random spin" && child.Size() >= 2)
+		else if(child.Token(0) == "random spin" && child.Size() >= 2)
 			randomSpin = child.Value(1);
-		if(child.Token(0) == "random frame rate" && child.Size() >= 2)
+		else if(child.Token(0) == "random frame rate" && child.Size() >= 2)
 			randomFrameRate = child.Value(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

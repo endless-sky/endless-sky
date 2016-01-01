@@ -44,6 +44,8 @@ void Trade::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "clear")
 			commodities.clear();
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
