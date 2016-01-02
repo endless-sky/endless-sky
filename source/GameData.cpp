@@ -462,6 +462,14 @@ const vector<Trade::Commodity> &GameData::Commodities()
 
 
 
+
+const vector<Trade::Commodity> &GameData::SpecialCommodities()
+{
+	return trade.SpecialCommodities();
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;

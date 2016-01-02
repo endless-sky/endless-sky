@@ -823,6 +823,12 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 					commodity = &option;
 					break;
 				}
+			for(const Trade::Commodity &option : GameData::SpecialCommodities())
+				if(option.name == cargo)
+				{
+					commodity = &option;
+					break;
+				}
 		}
 		if(commodity)
 			result.cargo = commodity->items[Random::Int(commodity->items.size())];

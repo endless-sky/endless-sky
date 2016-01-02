@@ -90,6 +90,7 @@ public:
 	static const StartConditions &Start();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
+	static const std::vector<Trade::Commodity> &SpecialCommodities();
 	
 	static const StarField &Background();
 	
