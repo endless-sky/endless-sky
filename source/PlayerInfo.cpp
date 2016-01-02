@@ -194,8 +194,16 @@ void PlayerInfo::Load(const string &path)
 	
 	// If a system was not specified in the player data, but the flagship is in
 	// a particular system, set the system to that.
-	if(!system && !ships.empty())
-		system = ships.front()->GetSystem();
+	if(!planet && !ships.empty())
+	{
+		for(shared_ptr<Ship> &ship : ships)
+			if(ship->GetPlanet() && !ship->IsDisabled() && !ship->IsParked() && !ship->CanBeCarried())
+			{
+				planet = ship->GetPlanet();
+				system = ship->GetSystem();
+				break;
+			}
+	}
 	
 	// For any ship that did not store what system it is in or what planet it is
 	// on, place it with the player. (In practice, every ship ought to have
@@ -555,7 +563,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried())
+			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried() && !it->IsDisabled())
 				return it;
 	}
 	
