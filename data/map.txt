@@ -4199,7 +4199,7 @@ system "Due Yoot"
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 3000
 	fleet "Large Northern Merchants" 6000
-	fleet "Quarg" 2000
+	fleet Quarg 2000
 	object
 		sprite star/m4
 		period 10
@@ -4876,7 +4876,7 @@ system "Fah Root"
 	fleet "Large Hai" 4000
 	fleet "Small Northern Merchants" 15000
 	fleet "Large Northern Merchants" 25000
-	fleet "Quarg" 2000
+	fleet Quarg 2000
 	object
 		sprite star/k0
 		period 10
@@ -4938,7 +4938,7 @@ system "Fah Soom"
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
-	fleet "Quarg" 1000
+	fleet Quarg 1000
 	object
 		sprite star/k5
 		period 10
@@ -5960,7 +5960,7 @@ system "Hevru Hai"
 	fleet "Large Hai" 2500
 	fleet "Small Northern Merchants" 9000
 	fleet "Large Northern Merchants" 15000
-	fleet "Quarg" 600
+	fleet Quarg 600
 	object
 		sprite star/g5
 		period 10
@@ -5968,7 +5968,6 @@ system "Hevru Hai"
 		sprite planet/ringworld
 		distance 812
 		period 360
-		offset 0
 	object "Alta Hai"
 		sprite planet/ringworld
 		distance 812
@@ -7838,7 +7837,7 @@ system "Lom Tahr"
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
-	fleet "Quarg" 4000
+	fleet Quarg 4000
 	object
 		sprite star/f0
 		period 10
@@ -8063,7 +8062,7 @@ system Markeb
 		sprite planet/cloud0
 		distance 1906.67
 		period 1560.16
-		object "Alexandria"
+		object Alexandria
 			sprite planet/station7
 			distance 178.482
 			period 29.3849
@@ -10353,6 +10352,60 @@ system Procyon
 		sprite planet/dust3
 		distance 3148.97
 		period 3311.38
+
+system "Pug Iyik"
+	pos -361.149 -883.233
+	government Pug
+	habitable 625
+	asteroids "small rock" 35 7.6356
+	asteroids "medium rock" 5 6.9552
+	asteroids "large rock" 28 6.5016
+	asteroids "small metal" 8 7.7112
+	asteroids "medium metal" 179 8.5428
+	asteroids "large metal" 34 10.962
+	trade Clothing 274
+	trade Electronics 700
+	trade Equipment 430
+	trade Food 451
+	trade "Heavy Metals" 1195
+	trade Industrial 682
+	trade "Luxury Goods" 1020
+	trade Medical 552
+	trade Metal 414
+	trade Plastic 409
+	fleet "Small Pug" 600
+	fleet "Large Pug" 1200
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock6
+		distance 268.89
+		period 70.5476
+		object
+			sprite planet/europa
+			distance 160
+			period 25.4415
+	object "Vara Pug"
+		sprite planet/ocean4
+		distance 643.85
+		period 261.395
+	object
+		sprite planet/lava3
+		distance 1271.1
+		period 725.086
+	object
+		sprite planet/gas15
+		distance 2701.19
+		period 2246.22
+		object
+			sprite planet/dust5
+			distance 234
+			period 18.8417
+		object
+			sprite planet/desert4
+			distance 365
+			period 36.706
 
 system Rajak
 	pos -270 -236
@@ -13505,7 +13558,7 @@ system "Ya Hai"
 	fleet "Large Hai" 500
 	fleet "Small Northern Merchants" 12000
 	fleet "Large Northern Merchants" 17000
-	fleet "Quarg" 6000
+	fleet Quarg 6000
 	object
 		sprite star/k5
 		period 10
@@ -14040,7 +14093,7 @@ planet Ada
 	tribute 4200
 		threshold 8000
 		fleet "Large Republic" 16
-	
+
 planet Albatross
 	attributes pirate
 	landscape land/snow6
@@ -16294,6 +16347,16 @@ planet "Vara Kehi'ki"
 	spaceport `The spaceport village is apparently not just a processing facility for the medicinal plants, but also a hospital of sorts. The village is designed to allow easy foot traffic as well as flight between buildings, and thousands of Wanderers, many of them appearing sick or elderly, live here. The main streets of the village are lined with vine trellises with flowers of every color imaginable, and mechanical lifts allow even the most frail Wanderers to travel up to the higher terraces and balconies.`
 	"required reputation" 15
 	bribe 0
+
+planet "Vara Pug"
+	attributes pug
+	landscape land/beach4
+	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a bulk freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
+	description `	To avoid contact with these marine creatures, when the Pug travel to other parts of the planet they use massive solar-powered airships rather than boats.`
+	spaceport `The Pug here all seem to be busy with various tasks, none of which make any sense to you: rushing from building to building on their long, spindly legs; playing a game involving colored stones on a hexagonal table; constructing what appears to be collaborative holographic artwork.`
+	spaceport `None of them speak to you, but a worker in the spaceport digs around in a closet for a while and comes up with a conversion attachment that allows your fuel tanks to be filled using their style of fuel nozzle.`
+	bribe 0
+	security 0.9
 
 planet "Vara Rakak"
 	attributes wanderer farming
