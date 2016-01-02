@@ -1579,7 +1579,7 @@ mission "Recycle garbage"
 	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <tons> of it to the industrial solid waste recycler on <destination>. Payment is <payment>.
 	job
 	repeat
-	cargo "garbage" 15 100
+	cargo "Garbage" 15 100
 	source
 		attributes station
 	destination
