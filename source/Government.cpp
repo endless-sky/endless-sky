@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Conversation.h"
 #include "DataNode.h"
+#include "Fleet.h"
 #include "GameData.h"
 #include "Phrase.h"
 #include "Politics.h"
@@ -105,6 +106,8 @@ void Government::Load(const DataNode &node)
 			hostileHail = GameData::Phrases().Get(child.Token(1));
 		else if(child.Token(0) == "language" && child.Size() >= 2)
 			language = child.Token(1);
+		else if(child.Token(0) == "raid" && child.Size() >= 2)
+			raidFleet = GameData::Fleets().Get(child.Token(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -208,6 +211,15 @@ string Government::GetHail() const
 const string &Government::Language() const
 {
 	return language;
+}
+
+
+
+// Pirate raids in this government's systems use this fleet definition. If
+// it is null, there are no pirate raids.
+const Fleet *Government::RaidFleet() const
+{
+	return raidFleet;
 }
 
 
