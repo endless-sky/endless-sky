@@ -520,7 +520,18 @@ void MissionPanel::DrawSelectedSystem() const
 	else	
 		text = "Selected system: " + selectedSystem->Name();
 	
-	int jumps = distance.Distance(selectedSystem);
+	int jumps = 0;
+	const vector<const System *> &plan = player.TravelPlan();
+	auto it = find(plan.begin(), plan.end(), selectedSystem);
+	if(it != plan.end())
+		jumps = plan.end() - it;
+	else if(distance.HasRoute(selectedSystem))
+	{
+		// Figure out how many jumps (not how much fuel) getting to the selected
+		// system will take.
+		for(const System *system = selectedSystem; system != player.GetSystem(); system = distance.Route(system))
+			++jumps;
+	}
 	if(jumps == 1)
 		text += " (1 jump away)";
 	else if(jumps > 0)
