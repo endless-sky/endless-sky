@@ -12,10 +12,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 
+#include "Files.h"
+
 #include <algorithm>
 #include <cctype>
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 
@@ -142,27 +143,30 @@ list<DataNode>::const_iterator DataNode::end() const
 int DataNode::PrintTrace(const std::string &message) const
 {
 	if(!message.empty())
-		cerr << endl << message << endl;
+	{
+		Files::LogError("");
+		Files::LogError(message);
+	}
 	
 	int indent = 0;
 	if(parent)
 		indent = parent->PrintTrace() + 2;
 	if(tokens.empty())
 		return indent;
-	cerr << string(indent, ' ');
 	
+	string line(indent, ' ');
 	for(const string &token : tokens)
 	{
 		if(&token != &tokens.front())
-			cerr << ' ';
+			line += ' ';
 		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
 		if(hasSpace)
-			cerr << '"';
-		cerr << token;
+			line += '"';
+		line += token;
 		if(hasSpace)
-			cerr << '"';
+			line += '"';
 	}
-	cerr << endl;
+	Files::LogError(line);
 	
 	return indent;
 }

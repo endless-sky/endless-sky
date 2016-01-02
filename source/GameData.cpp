@@ -499,7 +499,7 @@ void GameData::LoadFile(const string &path, bool debugMode)
 	
 	DataFile data(path);
 	if(debugMode)
-		cerr << "Parsing: " << path << endl;
+		Files::LogError("Parsing: " + path);
 	
 	for(const DataNode &node : data)
 	{

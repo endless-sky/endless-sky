@@ -26,6 +26,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
+#include <mutex>
 #include <stdexcept>
 
 using namespace std;
@@ -38,6 +40,9 @@ namespace {
 	string images;
 	string sounds;
 	string saves;
+	
+	mutex errorMutex;
+	FILE *errorLog = nullptr;
 	
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
@@ -499,4 +504,18 @@ void Files::Write(FILE *file, const string &data)
 		return;
 	
 	fwrite(&data[0], 1, data.size(), file);
+}
+
+
+
+void Files::LogError(const std::string &message)
+{
+	lock_guard<mutex> lock(errorMutex);
+	cerr << message << endl;
+	if(!errorLog)
+		errorLog = Open(config + "errors.txt", true);
+	
+	Write(errorLog, message);
+	fwrite("\n", 1, 1, errorLog);
+	fflush(errorLog);
 }
