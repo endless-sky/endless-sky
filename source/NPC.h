@@ -50,6 +50,8 @@ public:
 	// Handle the given ShipEvent.
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr);
 	bool HasSucceeded(const System *playerSystem) const;
+	// Check if the NPC is supposed to be accompanied and is not.
+	bool IsLeftBehind(const System *playerSystem) const;
 	bool HasFailed() const;
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual

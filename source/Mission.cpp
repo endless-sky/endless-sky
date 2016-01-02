@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Dialog.h"
 #include "DistanceMap.h"
 #include "Format.h"
 #include "GameData.h"
@@ -25,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "UI.h"
 
 #include <cmath>
 #include <sstream>
@@ -632,6 +634,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		auto it = stopovers.find(player.GetPlanet());
 		if(it == stopovers.end())
 			return false;
+		
+		for(const NPC &npc : npcs)
+			if(npc.IsLeftBehind(player.GetSystem()))
+			{
+				ui->Push(new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
+				return false;
+			}
+		
 		stopovers.erase(it);
 		if(!stopovers.empty())
 			return false;
