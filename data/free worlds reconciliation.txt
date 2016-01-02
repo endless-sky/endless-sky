@@ -979,6 +979,21 @@ mission "FW Pug 2"
 			
 			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing - it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
 				accept
+	
+	npc
+		system "Sol"
+		personality heroic uninterested staying
+		government "Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
 
 
 
@@ -1024,6 +1039,21 @@ mission "FW Pug 2A"
 			label yes
 			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So, we must hurry to the Syndicate headquarters on <planet> immediately."`
 				accept
+	
+	npc
+		system "Sol"
+		personality heroic uninterested staying
+		government "Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
 
 
 
