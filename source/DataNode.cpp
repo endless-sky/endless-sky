@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cctype>
 #include <cmath>
 #include <iostream>
-#include <limits>
 
 using namespace std;
 
@@ -64,12 +63,18 @@ double DataNode::Value(int index) const
 {
 	// Check for empty strings and out-of-bounds indices.
 	if(static_cast<size_t>(index) >= tokens.size() || tokens[index].empty())
-		return numeric_limits<double>::quiet_NaN();
+	{
+		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
+		return 0.;
+	}
 	
 	// Allowed format: "[+-]?[0-9]*[.]?[0-9]*([eE][+-]?[0-9]*)?".
 	const char *it = tokens[index].c_str();
 	if(*it != '-' && *it != '.' && *it != '+' && !(*it >= '0' && *it <= '9'))
-		return numeric_limits<double>::quiet_NaN();
+	{
+		PrintTrace("Cannot convert value \"" + tokens[index] + "\" to a number:");
+		return 0.;
+	}
 	
 	// Check for leading sign.
 	double sign = (*it == '-') ? -1. : 1.;
