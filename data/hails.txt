@@ -594,9 +594,9 @@ phrase "friendly syndicate"
 		" Syndicated Shipyards"
 		" Syndicated Systems"
 	word
-		"."
-		", the guarantee of quality"
-		", the gold standard for reliability."
+		"!"
+		", the guarantee of quality!"
+		", the gold standard for reliability!"
 	
 
 phrase "friendly syndicate"
