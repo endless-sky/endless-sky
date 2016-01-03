@@ -116,13 +116,12 @@ ship "Argosy"
 ship "Arrow"
 	sprite "ship/arrow"
 	attributes
-		category "Transport"
+		category "Luxury Transport"
 		"cost" 1200000
 		"shields" 2000
 		"hull" 400
 		"required crew" 1
 		"bunks" 5
-		"luxury bunks" 5
 		"mass" 130
 		"drag" 2.7
 		"heat dissipation" .85
@@ -148,8 +147,6 @@ ship "Arrow"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		"Hyperdrive"
-		
-		"Luxury Bunks" 5
 		
 	engine -10 60
 	engine 10 60
@@ -992,13 +989,12 @@ ship "Firebird"
 ship "Flivver"
 	sprite "ship/flivver"
 	attributes
-		category "Transport"
+		category "Luxury Transport"
 		"cost" 180000
 		"shields" 1400
 		"hull" 200
 		"required crew" 1
 		"bunks" 3
-		"luxury bunks" 3
 		"mass" 40
 		"drag" 1.0
 		"heat dissipation" .9
@@ -1023,7 +1019,6 @@ ship "Flivver"
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
 		"Hyperdrive"
-		"Luxury Bunks" 3
 		
 	engine -16 27
 	engine 16 27
@@ -2292,7 +2287,7 @@ ship "Star Barge"
 ship "Star Queen"
 	sprite "ship/star queen"
 	attributes
-		category "Transport"
+		category "Luxury Transport"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200

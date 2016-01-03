@@ -1583,11 +1583,9 @@ mission "Wealthy Executive Short [0]"
 	description "Bring a wealthy and important executive to <destination> by <date>."
 	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	to offer
-		require "Luxury Bunks"
-	on accept
-		outfit "Luxury Bunks" -1
-	on fail
-		outfit "Luxury Bunks" 1
+		has "ships: Luxury Transport"
+	to fail
+		not "ships: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1609,11 +1607,9 @@ mission "Wealthy Administrators Short [1]"
 	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	passengers 2 4 .9
 	to offer
-		require "Luxury Bunks"
-	on accept
-		outfit "Luxury Bunks" -1
-	on fail
-		outfit "Luxury Bunks" 1
+		has "ships: Luxury Transport"
+	to fail
+		not "ships: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1635,11 +1631,9 @@ mission "Wealthy Politician Long [0]"
 	description "Bring a wealthy and important politician to <destination> by <date>."
 	blocked "You cannot accept this mission, you have either run out of bunk space or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	to offer
-		require "Luxury Bunks"
-	on accept
-		outfit "Luxury Bunks" -1
-	on fail
-		outfit "Luxury Bunks" 1
+		has "ships: Luxury Transport"
+	to fail
+		not "ships: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
@@ -1661,11 +1655,9 @@ mission "Wealthy Executive Long [1]"
 	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	passengers 2 4 .9
 	to offer
-		require "Luxury Bunks"
-	on accept
-		outfit "Luxury Bunks" -1
-	on fail
-		outfit "Luxury Bunks" 1
+		has "ships: Luxury Transport"
+	to fail
+		not "ships: Luxury Transport"
 	source
 		attributes rich paradise
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
