@@ -284,7 +284,7 @@ mission "Wanderers Conversation"
 			`	"It is now nearly ten thousand [years, cycles] since we passed through the Eye and entered this [region, territory]," he says.`
 				goto eye
 			label history
-			`	"We are an ancient people," he says. "This [region, territory is not our homeland. We came here through the Eye nearly ten thousand [years, cycles] ago."`
+			`	"We are an ancient people," he says. "This [region, territory] is not our homeland. We came here through the Eye nearly ten thousand [years, cycles] ago."`
 			label eye
 			`	"The Eye?" you ask.
 			`	"A wormhole," he says. "Once in an [eon, era] the Eye opens, and the Wanderers journey through it to a new home. Since the time of our oldest [history, legends] it has been so. A hundred times, maybe a thousand, we have left one home and journeyed to another. Each new home the Eye brings us to is full of [devastation, destruction], and it takes many lifetimes to set things right. Then the Eye beckons again, and we move on. And each time we pass through the eye we become something new."`
