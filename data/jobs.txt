@@ -1573,3 +1573,104 @@ mission "Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+		
+mission "Wealthy Executive Short [0]"
+	name "Transport a wealthy executive to <planet>"
+	job
+	repeat
+	deadline 0 1
+	passengers 1
+	description "Bring a wealthy and important executive to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	to offer
+		has "ships: Luxury Transport"
+		random < 20
+	to fail
+		not "ships: Luxury Transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 2 4
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 10000 300
+		outfit "Luxury Bunks" 1
+		dialog "You wish your executive <fare> the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Wealthy Administrators Short [1]"
+	name "Transport <bunks> wealthy administrators to <planet>"
+	job
+	repeat
+	deadline 0 1
+	description "Bring <bunks> wealthy and important administrators to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	passengers 2 4 .9
+	to offer
+		has "ships: Luxury Transport"
+		random < 10
+	to fail
+		not "ships: Luxury Transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 2 4
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 25000 300
+		dialog "You wish your <bunks> administrator <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
+
+mission "Wealthy Politician Long [0]"
+	name "Transport a wealthy politician to <planet>"
+	job
+	repeat
+	passengers 1
+	deadline 1 1
+	description "Bring a wealthy and important politician to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunk space or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	to offer
+		has "ships: Luxury Transport"
+		random > 80
+	to fail
+		not "ships: Luxury Transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 5 8
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 30000 300
+		dialog "You wish your politician <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
+
+mission "Wealthy Executive Long [1]"
+	name "Transport <bunks> wealthy executives to <planet>"
+	job
+	repeat
+	deadline
+	description "Bring <bunks> wealthy and important executive to <destination> by <date>."
+	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
+	passengers 2 4 .9
+	to offer
+		has "ships: Luxury Transport"
+		random > 90
+	to fail
+		not "ships: Luxury Transport"
+	source
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	destination
+		distance 5 8
+		attributes rich paradise
+		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+	on complete
+		payment 75000 300
+		dialog "You wish your <bunks> executive <fare> the best of luck on <planet>, and collect your payment of <payment>."
+		outfit "Luxury Bunks" 1
+
