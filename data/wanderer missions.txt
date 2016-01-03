@@ -303,3 +303,28 @@ mission "Wanderers Conversation"
 			`	"Those are questions that we do not ask," he says. "It is a [taboo? religion? mystery?] for us."`
 			`	You ask a few other questions, but do not gain much more information. He does mention that the other Wanderer worlds have agreed to sell you some of their technology, and that you will be allowed to "[view, admire, envy]" their ships, but not to purchase them. You thank him for his time and his willingness to trust a member of an entirely unknown species, and return to your ship.`
 				decline
+
+mission "Tell Wanderers about the Pug"
+	landing
+	source "Vara K'chrai"
+	to offer
+		has "Wanderers Conversation: offered"
+		has "Pug in Wanderer Space: offered"
+	on offer
+		conversation
+			`You have discovered that there is a Pug outpost north of Wanderer space. Since the Pug are known to be able to control wormholes, it is likely that they are the ones that control where and when the Wanderers travel to new worlds. Do you want to tell Iktat Rek about this?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You meet with Rek and explain that the Pug are a species known for interfering in the affairs of others, and that you suspect that they are the ones who open the wormhole that causes the whole Wanderer species to migrate. Rek seems unfazed by this information. "I hope you will do nothing to [anger, offend] them," he says.`
+			choice
+				`	"Of course, but doesn't it bother you that they are controlling your species?"`
+				`	"They are manipulating your whole species, using you as a planetary cleanup crew. Don't you want to be free from their control?"`
+			`	His feathers ruffle up a bit in response to your comment, but all he says is, "It is a great [gift, blessing] to our species that the Eye leads us to new lands and new challenges whenever we become [complacent, bored]. If another species gains some [advantage, benefit] from our work as well, should that not make us more [glad, eager] to do that work, rather than less?"`
+			choice
+				`	"But wouldn't you rather be free from their control, free remain on these worlds you have worked so hard to restore?"`
+				`	"If your species is being secretly controlled by another, doesn't that bother you?"`
+			`	"Are we being controlled," he says, "or is it a partnership? We have gifts for making [ruined, corrupted] worlds bloom with new life. They give us worlds where our gifts can be [put to use, valuable]. We need new challenges to drive our species to greater [transformation, perfection]. They open new galaxies to us."`
+			`	He pauses, and then says, "Of course we know that how the Eye works is too [convenient, tailor-made] to be a random phenomenon. But it is a [gift, blessing] to us, and you must do nothing to drive them away, or we will be [trapped, stranded] on these few worlds and will stagnate and decline."`
+				decline
