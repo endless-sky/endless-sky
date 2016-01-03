@@ -29,6 +29,7 @@ using namespace std;
 namespace {
 	static const vector<string> CATEGORIES = {
 		"Transport",
+		"Luxury Transport",
 		"Light Freighter",
 		"Heavy Freighter",
 		"Interceptor",
