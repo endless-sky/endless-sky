@@ -39,7 +39,7 @@ ship "Earth Shaper"
 			"hit force" 250
 	outfits
 		"Small Biochemical Cell"
-		
+		"Small Hyperspace Fuel Generator"
 		"Type 1 Radiant Thruster"
 		"Type 1 Radiant Steering"
 		"Hyperdrive"
@@ -76,7 +76,7 @@ ship "Summer Leaf"
 			"hit force" 1050
 	outfits
 		"Sunbeam" 2
-		
+		"Small Hyperspace Fuel Generator"
 		"Yellow Sun Reactor"
 		"Bright Cloud Shielding"
 		
@@ -121,7 +121,7 @@ ship "Strong Wind"
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
 		"Thunderhead Missile" 80
-		
+		"Large Hyperspace Fuel Generator"
 		"White Sun Reactor"
 		"Dark Storm Shielding"
 		
@@ -172,7 +172,7 @@ ship "Deep River"
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"
-		
+		"Large Hyperspace Fuel Generator"
 		"Type 2 Radiant Thruster"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
@@ -739,7 +739,7 @@ outfitter "Wanderer Basics"
 	"Type 2 Radiant Steering"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
-	"Hyperspace Fuel Regenerator"
+	"Small Hyperspace Fuel Generator"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
@@ -760,7 +760,8 @@ outfitter "Wanderer Advanced"
 	"Type 4 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
-	"Hyperspace Fuel Regenerator"
+	"Small Hyperspace Fuel Generator"
+	"Large Hyperspace Fuel Generator"
 
 
 phrase "wanderer untranslated"
