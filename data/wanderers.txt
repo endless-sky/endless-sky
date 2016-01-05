@@ -674,6 +674,17 @@ outfit "Dark Storm Shielding"
 	"shield energy" 4.2
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
 
+outfit "Hyperspace Fuel Regenerator"
+	categoty "Systems"
+	cost 40000
+	thumbnail "outfit/unknown"
+	"mass" 5
+	"outfit space" -5
+	"ramscoop" 20
+	"cooling" 1
+	"energy capacity" 500
+	description "Due to their long travels, the Wanderers have found the need for an efficient way to produce hyperspace fuel. This specially created culture of bacteria uses excess heat coming from your ship to create hyperspace fuel at an alarming rate. As with most Wanderer technologies, it also stores a small amount of charge."
+
 
 effect "sunbeam impact"
 	sprite "effect/sunbeam impact"
@@ -708,6 +719,7 @@ outfitter "Wanderer Basics"
 	"Type 2 Radiant Steering"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
+	"Hyperspace Fuel Regenerator"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
@@ -728,6 +740,7 @@ outfitter "Wanderer Advanced"
 	"Type 4 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
+	"Hyperspace Fuel Regenerator"
 
 
 phrase "wanderer untranslated"
