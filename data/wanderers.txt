@@ -674,16 +674,36 @@ outfit "Dark Storm Shielding"
 	"shield energy" 4.2
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
 
-outfit "Hyperspace Fuel Regenerator"
-	categoty "Systems"
+outfit "Small Hyperspace Fuel Generator"
+	category "Systems"
 	cost 40000
 	thumbnail "outfit/unknown"
 	"mass" 5
 	"outfit space" -5
-	"ramscoop" 20
+	"ramscoop" 10
 	"cooling" 1
 	"energy capacity" 500
 	description "Due to their long travels, the Wanderers have found the need for an efficient way to produce hyperspace fuel. This specially created culture of bacteria uses excess heat coming from your ship to create hyperspace fuel at an alarming rate. As with most Wanderer technologies, it also stores a small amount of charge."
+	
+outfit "Large Hyperspace Fuel Generator"
+	category "Systems"
+	cost 100000
+	thumbnail "outfit/unknown"
+	"mass" 20
+	"outfit space" -20
+	"ramscoop" 30
+	"cooling" 5
+	"energy capacity" 2500
+	description "This hyperspace fuel generator is required only when long journeys through hyperspace are required, and was developed only as reliable means to travel through the Eye should the time come."
+	
+outfit "Sleeping Gas"
+	category "Hand to Hand"
+	cost 80000
+	thumbnail "outfit/unknown"
+	"mass" 15
+	"outfit space" -15
+	"capture defense" 200
+	description "This specially created sleeping gas was created by the Wanderers as a means of defence only, to pacify the crews of any hostile ship that attempted to board Wanderer ships. It is very effective."
 
 
 effect "sunbeam impact"
