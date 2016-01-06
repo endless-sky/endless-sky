@@ -109,8 +109,8 @@ ship "Strong Wind"
 		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 36
-		"outfit space" 493
-		"weapon capacity" 198
+		"outfit space" 547
+		"weapon capacity" 246
 		"engine capacity" 114
 		weapon
 			"blast radius" 200
@@ -137,6 +137,8 @@ ship "Strong Wind"
 	gun 57 21 "Sunbeam"
 	gun -32 57 "Thunderhead Launcher"
 	gun 32 57 "Thunderhead Launcher"
+	turret 35 103.5 "Wanderer Anti-Missile"
+	turret -37.5 104.5 "Wanderer Anti-Missile"
 	explode "small explosion" 60
 	explode "medium explosion" 40
 	explode "large explosion" 20
@@ -493,6 +495,24 @@ outfit "Thunderhead"
 		"hull damage" 60
 		"hit force" 20
 		"missile strength" 3
+
+outfit "Wanderer Anti-Missile"
+	category "Turrets"
+	cost 150000
+	thumbnail "outfit/unknown"
+	"mass" 45
+	"outfit space" -45
+	"weapon capacity" -45
+	"turret mounts" -1
+	weapon
+		"hit effect" "large anti-missile"
+		"anti-missile" 15
+		"velocity" 250
+		"lifetime" 1.5
+		"reload" 4
+		"firing energy" 5
+		"firing heat" -2
+	description "This Wanderer marvel takes excess heat from your ship to heat up plasma to form anti-missile beams, cooling your ship and reducing energy costs at the same time"
 
 outfit "Small Biochemical Cell"
 	category "Power"
