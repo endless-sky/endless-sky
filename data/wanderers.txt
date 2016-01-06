@@ -508,7 +508,7 @@ outfit "Wanderer Anti-Missile"
 		"hit effect" "large anti-missile"
 		"anti-missile" 15
 		"velocity" 250
-		"lifetime" 1.5
+		"lifetime" 1
 		"reload" 4
 		"firing energy" 5
 		"firing heat" -2
@@ -784,6 +784,7 @@ outfitter "Wanderer Advanced"
 	"Small Hyperspace Fuel Generator"
 	"Large Hyperspace Fuel Generator"
 	"Sleeping Gas"
+	"Wanderer Anti-Missile"
 
 
 phrase "wanderer untranslated"
