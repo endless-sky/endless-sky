@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Dialog.h"
 #include "DistanceMap.h"
 #include "Format.h"
 #include "GameData.h"
@@ -25,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
+#include "UI.h"
 
 #include <cmath>
 #include <sstream>
@@ -100,8 +102,12 @@ void Mission::Load(const DataNode &node)
 				cargoProb = child.Value(4);
 			
 			for(const DataNode &grand : child)
+			{
 				if(grand.Token(0) == "illegal" && grand.Size() >= 2)
 					illegalCargoFine = grand.Value(1);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
 		else if(child.Token(0) == "passengers" && child.Size() >= 2)
 		{
@@ -144,6 +150,8 @@ void Mission::Load(const DataNode &node)
 				toComplete.Load(child);
 			else if(child.Token(1) == "fail")
 				toFail.Load(child);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
 			source = GameData::Planets().Get(child.Token(1));
@@ -185,7 +193,11 @@ void Mission::Load(const DataNode &node)
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child, name);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	if(displayName.empty())
@@ -622,6 +634,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 		auto it = stopovers.find(player.GetPlanet());
 		if(it == stopovers.end())
 			return false;
+		
+		for(const NPC &npc : npcs)
+			if(npc.IsLeftBehind(player.GetSystem()))
+			{
+				ui->Push(new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
+				return false;
+			}
+		
 		stopovers.erase(it);
 		if(!stopovers.empty())
 			return false;
@@ -658,9 +678,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	if(!it->second.CanBeDone(player))
 		return false;
 	
-	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
-	static const int64_t limit = 2000000000;
-	player.Conditions()["net worth"] = min(limit, max(-limit, player.Accounts().NetWorth()));
 	// Set the "reputation" conditions so we can check if this action changed
 	// any of them.
 	for(const auto &it : GameData::Governments())
@@ -808,6 +825,12 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
+				if(option.name == cargo)
+				{
+					commodity = &option;
+					break;
+				}
+			for(const Trade::Commodity &option : GameData::SpecialCommodities())
 				if(option.name == cargo)
 				{
 					commodity = &option;

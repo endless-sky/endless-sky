@@ -27,7 +27,6 @@ void GameEvent::Load(const DataNode &node)
 {
 	// If the event has a name, a condition should be automatically created that
 	// represents the fact that this event has occurred.
-	conditionsToApply.Load(node);
 	if(node.Size() >= 2)
 		conditionsToApply.Add("set", "event: " + node.Token(1));
 	
@@ -42,6 +41,8 @@ void GameEvent::Load(const DataNode &node)
 				|| child.Token(0) == "fleet" || child.Token(0) == "government"
 				|| child.Token(0) == "link" || child.Token(0) == "unlink")
 			changes.push_back(child);
+		else
+			conditionsToApply.Add(child);
 	}
 }
 

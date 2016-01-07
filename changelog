@@ -1,3 +1,57 @@
+Version 0.8.10:
+  * Bug fixes:
+    * Mouse clicks on the map are now correctly handled at all zoom levels.
+    * Escorts now once again jump simultaneously with your ship.
+    * Net worth is no longer clipped to the +-2 billion range in saved games.
+    * Escorts that cannot jump will now ignore jump commands instead of lining up to jump.
+    * Fixed a bug where the Water Bug had the wrong anti-missiles linked to its hardpoints.
+    * Fixed some ship variants that had negative space available.
+    * You can now bribe planets even if you have also provoked their government.
+    * The outfitter panel's drawing code has been optimized to no longer max out the CPU.
+    * The mission panel map is now colored by reputation by default, rather than uncolored.
+    * Distances in the mission panel now show number of jumps, not amount of fuel.
+    * In the outfitter, outfits are now shown if any selected ship has one, not just the first.
+    * Human pirate "raids" no longer appear in alien star systems if you have many freighters.
+  * Game content:
+    * New species, the Wanderers (4 ship types, 18 outfits, 17 planets).
+    * New missions involving the Hai and the Wanderers.
+    * Increased the range of the small anti-missile by 50%.
+    * Water cooling is now available in more places.
+    * New hail messages. (@ph2000bis, @Pointedstick, @Thunderforge)
+    * New commodity names. (@lehgogh, @Pointedstick)
+    * New ship names. (@lehgogh)
+    * Typo fixes. (@Pointedstick, @Wrzlprnft)
+    * New job types. (@Pointedstick)
+  * Game mechanics:
+    * Projectiles now clear their target if that target is captured.
+    * Governments now only scan you once per day, instead of once per ship.
+    * Jobs are now allowed to have "on accept" dialogs or conversations.
+    * Deadlines can now be specified in (base + multiplier * jumps) format.
+    * Weapons can now specify that they split into submunitions when close to their target.
+    * Shield and hull generators can now specify an extra energy cost per unit recharged.
+    * Non-heroic ships no longer attack far away groups of ships that have them outgunned.
+    * You can no longer hail other ships while you are entering hyperspace.
+    * Surveillance ships no longer get "stuck" once they run out of fuel.
+    * Missions can now specify "stopover" planets that you must visit.
+    * Missions can have "on stopover" actions to perform when the last stopover is visited.
+    * A government can now be marked as speaking a language that you may or may not know.
+    * The hail panel commands now only work if you speak the language of a ship or planet.
+    * Added support for "<?=" and ">?=" (min and max) condition operators.
+    * Support for large stations / ringworlds with several different places you can land.
+    * Warning messages are now printed for all unexpected values found in the game data.
+    * Warning messages are now saved to "errors.txt" in the config / preferences folder.
+    * Added support for "special" commodity classes, to provide varied names for missions.
+    * New "coward" NPC personality that flees once its shields are down.
+  * User interface:
+    * If you accept a job, the next available job in the same system (if any) is selected.
+    * The "ports" map page now shows whether each planet has been visited.
+    * In the "ports" map, planet descriptions are now only shown for visited planets.
+    * The targeting display now shows what direction the target ship is facing in.
+    * Caps lock now works properly when entering text.
+    * Automatic firing is now entirely disabled if your target is friendly.
+    * Thruster noise from other ships is now audible.
+    * If a new ship's name is left blank, it is now called "<first>'s <model name>."
+
 Version 0.8.9:
   * Bugs fixes:
     * Typo fixes. (@anonybosch, @dplepage, @guillochon, @Wrzlprnft)

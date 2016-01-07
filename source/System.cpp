@@ -159,6 +159,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			LoadObject(child, planets);
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
 	// Set planet messages based on what zone they are in.
@@ -620,5 +622,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 			object.offset = child.Value(1);
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }

@@ -278,6 +278,23 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 
 
 
+// Check if the NPC is supposed to be accompanied and is not.
+bool NPC::IsLeftBehind(const System *playerSystem) const
+{
+	if(HasFailed())
+		return true;
+	if(!mustAccompany)
+		return false;
+	
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->IsDisabled() || ship->GetSystem() != playerSystem)
+			return true;
+	
+	return false;
+}
+
+
+
 bool NPC::HasFailed() const
 {
 	for(const auto &it : actions)

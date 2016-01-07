@@ -48,7 +48,7 @@ ship "Earth Shaper"
 	engine 9 30
 	explode "tiny explosion" 20
 	explode "small explosion" 10
-	description "The Earth Shaper is a robotic drone that the Wanderers use for mining, terraforming, and surveying."
+	description "The Earth Shaper is a robotic drone that the Wanderers use for mining, exploring, surveying, and terraforming."
 
 ship "Summer Leaf"
 	sprite "ship/summer leaf"
@@ -850,3 +850,46 @@ phrase "wanderer untranslated"
 		"'ar."
 		" kar."
 		" esek'cha."
+
+phrase "friendly wanderer"
+	word
+		"We are "
+		"We are the Wanderers, "
+		"This [space, territory] belongs to "
+		"This [space, territory] belongs to the Wanderers, "
+		"You are a guest of the Wanderers, "
+	word
+		"the "
+	word
+		"[repairers, fixers] "
+		"restorers "
+		"healers "
+		"[shapers, remakers] "
+		"[transformers, renewers] "
+		"revitalizers "
+		"ones who take care "
+		"renewers "
+		"settlers "
+		"friends "
+	word
+		"of "
+	word
+		"[harmed, abused] "
+		"broken "
+		"[brutalized, mistreated] "
+		"[wasted, spent] "
+		"dead "
+		"[lifeless, barren] "
+		"ruined "
+		"[consumed, devoured] "
+		"exploited "
+		"poisoned "
+		"wrecked "
+		"abandoned "
+	word
+		"worlds."
+		"planets."
+		"places."
+		"lands."
+		"ecosystems."
+		"biospheres."

@@ -114,7 +114,7 @@ void DataFile::Load(const char *it, const char *end)
 		
 		// Add this node as a child of the proper node.
 		list<DataNode> &children = stack.back()->children;
-		children.push_back(DataNode());
+		children.emplace_back(stack.back());
 		DataNode &node = children.back();
 		
 		// Remember where in the tree we are.

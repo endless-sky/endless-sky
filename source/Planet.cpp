@@ -120,8 +120,12 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 					defenseCount = (grand.Size() >= 3 ? grand.Value(2) : 1);
 					defenseFleet = GameData::Fleets().Get(grand.Token(1));
 				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

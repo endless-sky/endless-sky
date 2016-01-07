@@ -37,6 +37,7 @@ namespace {
 	static const int FLEEING = 8192;
 	static const int ESCORT = 16384;
 	static const int FRUGAL = 32768;
+	static const int COWARD = 65536;
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -54,7 +55,8 @@ namespace {
 		{"derelict", DERELICT},
 		{"fleeing", FLEEING},
 		{"escort", ESCORT},
-		{"frugal", FRUGAL}
+		{"frugal", FRUGAL},
+		{"coward", COWARD}
 	};
 	
 	double DEFAULT_CONFUSION = 10. * .001;
@@ -210,10 +212,16 @@ bool Personality::IsEscort() const
 
 
 
-
 bool Personality::IsFrugal() const
 {
 	return flags & FRUGAL;
+}
+
+
+
+bool Personality::IsCoward() const
+{
+	return flags & COWARD;
 }
 
 

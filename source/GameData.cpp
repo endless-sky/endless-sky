@@ -111,6 +111,7 @@ void GameData::BeginLoad(const char * const *argv)
 {
 	bool printShips = false;
 	bool printWeapons = false;
+	bool debugMode = false;
 	for(const char * const *it = argv + 1; *it; ++it)
 	{
 		if((*it)[0] == '-')
@@ -120,6 +121,8 @@ void GameData::BeginLoad(const char * const *argv)
 				printShips = true;
 			if(arg == "-w" || arg == "--weapons")
 				printWeapons = true;
+			if(arg == "-d" || arg == "--debug")
+				debugMode = true;
 			continue;
 		}
 	}
@@ -151,7 +154,7 @@ void GameData::BeginLoad(const char * const *argv)
 		// override things in folders later in the path.
 		vector<string> dataFiles = Files::RecursiveList(source + "data/");
 		for(const string &path : dataFiles)
-			LoadFile(path);
+			LoadFile(path, debugMode);
 	}
 	
 	// Now that all the stars are loaded, update the neighbor lists.
@@ -470,6 +473,14 @@ const vector<Trade::Commodity> &GameData::Commodities()
 
 
 
+
+const vector<Trade::Commodity> &GameData::SpecialCommodities()
+{
+	return trade.SpecialCommodities();
+}
+
+
+
 const StarField &GameData::Background()
 {
 	return background;
@@ -499,13 +510,15 @@ void GameData::LoadSources()
 
 
 
-void GameData::LoadFile(const string &path)
+void GameData::LoadFile(const string &path, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
 		return;
 	
 	DataFile data(path);
+	if(debugMode)
+		Files::LogError("Parsing: " + path);
 	
 	for(const DataNode &node : data)
 	{
@@ -553,6 +566,8 @@ void GameData::LoadFile(const string &path)
 			systems.Get(node.Token(1))->Load(node, planets);
 		else if(key == "trade")
 			trade.Load(node);
+		else
+			node.PrintTrace("Skipping unrecognized root object:");
 	}
 }
 

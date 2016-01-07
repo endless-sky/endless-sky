@@ -210,8 +210,16 @@ void PlayerInfo::Load(const string &path)
 	
 	// If a system was not specified in the player data, but the flagship is in
 	// a particular system, set the system to that.
-	if(!system && !ships.empty())
-		system = ships.front()->GetSystem();
+	if(!planet && !ships.empty())
+	{
+		for(shared_ptr<Ship> &ship : ships)
+			if(ship->GetPlanet() && !ship->IsDisabled() && !ship->IsParked() && !ship->CanBeCarried())
+			{
+				planet = ship->GetPlanet();
+				system = ship->GetSystem();
+				break;
+			}
+	}
 	
 	// For any ship that did not store what system it is in or what planet it is
 	// on, place it with the player. (In practice, every ship ought to have
@@ -579,7 +587,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried())
+			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried() && !it->IsDisabled())
 				return it;
 	}
 	
@@ -1539,14 +1547,21 @@ map<const Outfit *, int> &PlayerInfo::SoldOutfits()
 // Update the conditions that reflect the current status of the player.
 void PlayerInfo::UpdateAutoConditions()
 {
-	// Set up the "conditions" for the current status of the player.
+	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
+	static const int64_t limit = 2000000000;
+	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
+	// Set the player's reputation with each government. This must also be set
+	// by Mission whenever an action is performed, in case it is modified.
 	for(const auto &it : GameData::Governments())
 	{
 		int rep = it.second.Reputation();
 		conditions["reputation: " + it.first] = rep;
-		if(&it.second == system->GetGovernment())
-			conditions["reputation"] = rep;
 	}
+	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
+	auto first = conditions.lower_bound("ships: ");
+	auto last = conditions.lower_bound("ships:!");
+	if(first != last)
+		conditions.erase(first, last);
 	// Store special conditions for cargo and passenger space.
 	conditions["cargo space"] = 0;
 	conditions["passenger space"] = 0;
@@ -1555,6 +1570,7 @@ void PlayerInfo::UpdateAutoConditions()
 		{
 			conditions["cargo space"] += ship->Attributes().Get("cargo space");
 			conditions["passenger space"] += ship->Attributes().Get("bunks") - ship->RequiredCrew();
+			++conditions["ships: " + ship->Attributes().Category()];
 		}
 }
 
@@ -1572,7 +1588,7 @@ void PlayerInfo::CreateMissions()
 	bool hasPriorityMissions = false;
 	for(const auto &it : GameData::Missions())
 	{
-		if(it.second.IsAtLocation(Mission::BOARDING))
+		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
 			continue;
 		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
 			continue;
@@ -1745,7 +1761,8 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save a list of systems the player has visited.
 	for(const System *system : visitedSystems)
-		out.Write("visited", system->Name());
+		if(!system->Name().empty())
+			out.Write("visited", system->Name());
 	
 	// Save a list of planets the player has visited.
 	for(const Planet *planet : visitedPlanets)

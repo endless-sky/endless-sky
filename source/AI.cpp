@@ -329,6 +329,9 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		}
 		
+		if(parent && personality.IsCoward() && it->Shields() + it->Hull() < 1.)
+			it->SetParent(shared_ptr<Ship>());
+		
 		// Fire any weapons that will hit the target. Only ships that are in
 		// the current system can fire.
 		shared_ptr<const Ship> target = it->GetTargetShip();

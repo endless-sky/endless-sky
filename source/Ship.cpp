@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -176,6 +177,8 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(child.Token(0) != "actions")
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -265,6 +268,11 @@ void Ship::FinishLoading()
 	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
+		if(it.first->Name().empty())
+		{
+			cerr << "Unrecognized outfit in " << modelName << " \"" << name << "\"" << endl;
+			continue;
+		}
 		attributes.Add(*it.first, it.second);
 		if(it.first->IsWeapon())
 		{

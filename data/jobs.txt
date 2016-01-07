@@ -1005,7 +1005,6 @@ mission "Passengers [1]"
 	passengers 1 10 .9
 	to offer
 		random < 75
-		has "ship: Transport"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral" "Hai" "Wanderer"
 	destination
@@ -1573,3 +1572,192 @@ mission "Large Rush Delivery [3]"
 		payment
 		payment 42000
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>."
+
+mission "Recycle garbage"
+	name "Recycle garbage"
+	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <tons> of it to the industrial solid waste recycler on <destination>. Payment is <payment>.
+	job
+	repeat
+	cargo "Garbage" 15 100
+	source
+		attributes station
+	destination
+		attributes factory mining "dirt belt"
+		distance 10
+	on complete
+		dialog "You drop off the garbage at an especially smelly solid waste recycler and collect your payment of <payment>."
+		payment 20000 200
+
+mission "Provide security for pleasure cruise"
+	name "Provide security for pleasure cruise"
+	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
+	job
+	repeat
+	cargo "Luxury Goods" 10 20
+	to offer
+		random < 50
+		"combat rating" > 15
+	source
+		attributes paradise "near earth" rich
+	stopover
+		attributes tourism religious quarg pirate volcanic frontier moon fishing
+	destination
+		attributes paradise "near earth" rich core
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	on stopover
+		dialog "The passengers of the <npc> wander off, bedecked in the most conspicuous tourist attire they seem to have been able to find, and begin oohing and aahing at the exoticism of this faraway world. Hopefully none of them gets robbed. You prepare for the return journey to <destination>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
+		payment 130000 500
+
+mission "Transport scientists"
+	name "Transport scientists"
+	description "A team of <bunks> scientists needs to have their research notes analyzed at the facility on <stopovers>. Take them there and then return them to <planet> for <payment>."
+	job
+	repeat
+	to offer
+		random < 40
+	passengers 7 12
+	source
+		attributes research
+	stopover
+		attributes research
+		distance 2 50
+	on stopover
+		dialog "The scientists have been giddily discussing the results of their research during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
+	on complete
+		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
+		payment 100000 200
+
+mission "Escort science vessel"
+	name "Escort science vessel"
+	description "The crew of the science vessel <npc> requests an escort to <stopovers> where they plan to study some unusual phenomena. Escort them there and then return them to <planet> for <payment>."
+	job
+	repeat
+	to offer
+		random < 40
+		"combat rating" > 10
+	passengers 7 12
+	source
+		attributes research
+	stopover
+		attributes quarg pirate volcanic frontier "dirt belt" north south
+		distance 6 50
+	npc
+		system
+			distance 1 2
+		government Pirate
+		personality nemesis waiting plunders
+		fleet
+			names "pirate"
+			cargo 1
+			variant
+				"Sparrow"
+				"Sparrow"
+				"Sparrow"
+			variant
+				"Fury"
+				"Fury"
+			variant
+				"Hawk"
+				"Hawk"
+			variant
+				"Berserker"
+				"Fury"
+			variant
+				"Headhunter (Particle)"
+				"Sparrow"
+			variant
+				"Raven"
+			variant
+				"Corvette"
+	npc accompany save
+		government Merchant
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Scout"
+			variant
+				"Bounder"
+	on stopover
+		dialog "The <npc> lands alongside you and teams of scientists wearing crisp white lab coats and serious-looking boots and gloves descend on the test site with all manner of exotic equipment. As they take their measurements, you prepare for the return journey to <planet>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
+		payment 100000
+
+mission "Corporate espionage"
+	name "Corporate espionage"
+	description "The <npc> is about to enter this system. Locate it and make detailed scans of its cargo, which are of considerable interest to a team of Syndicate researchers on <destination>; proceed there for <payment> after retrieving the data."
+	job
+	repeat
+	to offer
+		random < 10
+		"reputation: Syndicate" > 100
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination
+		government "Syndicate"
+		attributes research
+		distance 7
+	npc "scan cargo"
+		government Merchant
+		personality timid fleeing uninterested entering
+		fleet
+			names "civilian"
+			variant
+				"Scout"
+			variant
+				"Bounder"
+		dialog "You manage to make the requested scans of the <npc>'s cargo. Time to head to <planet>."
+	on complete
+		dialog `You transmit your scans and receive a hearty congratulations, as well as <payment>. "This will set them back months!" You hear in the background.`
+		payment 45000
+
+mission "VIP transport"
+	name "Transport VIP to <planet>"
+	description "A VIP [name and position withheld for security purposes] requires fast and secure conveyance to <destination> by <date>. Payment is <payment>."
+	job
+	repeat
+	deadline
+	passengers 1
+	to offer
+		random < 40
+		"combat rating" > 100
+	source
+		government Republic Syndicate
+		attributes rich paradise
+	destination
+		government Republic "Free Worlds" Syndicate Neutral
+		distance 6 50
+	on complete
+		dialog "You bid goodbye to the VIP (who has said barely a word during the entire trip) and collect your payment of <payment>."
+		payment 50000 500
+	npc
+		system
+			distance 1 2
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"
+	npc
+		system
+			distance 1 3
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"
+	npc
+		system
+			distance 2 3
+		personality nemesis waiting
+		government "Bounty Hunter"
+		fleet "Bounty Hunters"

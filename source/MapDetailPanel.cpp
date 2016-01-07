@@ -40,6 +40,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include <algorithm>
+#include <set>
 #include <sstream>
 #include <vector>
 
@@ -381,10 +382,17 @@ void MapDetailPanel::DrawInfo() const
 	planetY.clear();
 	if(player.HasVisited(selectedSystem))
 	{
+		set<const Planet *> shown;
 		const Sprite *planetSprite = SpriteSet::Get("ui/map planet");
 		for(const StellarObject &object : selectedSystem->Objects())
 			if(object.GetPlanet())
 			{
+				// Allow the same "planet" to appear multiple times in one system.
+				auto it = shown.find(object.GetPlanet());
+				if(it != shown.end())
+					continue;
+				shown.insert(object.GetPlanet());
+				
 				SpriteShader::Draw(planetSprite, uiPoint);
 				planetY[object.GetPlanet()] = uiPoint.Y() - 60;
 			

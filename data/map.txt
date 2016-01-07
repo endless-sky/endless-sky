@@ -4199,6 +4199,7 @@ system "Due Yoot"
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 3000
 	fleet "Large Northern Merchants" 6000
+	fleet Quarg 2000
 	object
 		sprite star/m4
 		period 10
@@ -4875,6 +4876,7 @@ system "Fah Root"
 	fleet "Large Hai" 4000
 	fleet "Small Northern Merchants" 15000
 	fleet "Large Northern Merchants" 25000
+	fleet Quarg 2000
 	object
 		sprite star/k0
 		period 10
@@ -4915,6 +4917,7 @@ system "Fah Soom"
 	pos -179.891 -335.011
 	government Hai
 	habitable 425.92
+	link "Hevru Hai"
 	link "Wah Oh"
 	asteroids "medium rock" 5 3.2648
 	asteroids "large rock" 1 2.9568
@@ -4935,6 +4938,7 @@ system "Fah Soom"
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
+	fleet Quarg 1000
 	object
 		sprite star/k5
 		period 10
@@ -5936,6 +5940,119 @@ system "Heia Due"
 			sprite planet/lava0
 			distance 395
 			period 41.3231
+
+system "Hevru Hai"
+	pos -189 -310
+	government Quarg
+	habitable 700
+	link "Fah Soom"
+	trade Clothing 362
+	trade Electronics 763
+	trade Equipment 644
+	trade Food 165
+	trade "Heavy Metals" 1280
+	trade Industrial 848
+	trade "Luxury Goods" 1055
+	trade Medical 509
+	trade Metal 457
+	trade Plastic 503
+	fleet "Small Hai" 1000
+	fleet "Large Hai" 2500
+	fleet "Small Northern Merchants" 9000
+	fleet "Large Northern Merchants" 15000
+	fleet Quarg 600
+	object
+		sprite star/g5
+		period 10
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 20
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 40
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 60
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 80
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 100
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 120
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 140
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 160
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 180
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 220
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 240
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 260
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 280
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 300
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 320
+	object "Alta Hai"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 340
 
 system "Hi Yahr"
 	pos 82.3672 -641.6
@@ -7720,6 +7837,7 @@ system "Lom Tahr"
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
 	fleet "Large Northern Merchants" 9000
+	fleet Quarg 4000
 	object
 		sprite star/f0
 		period 10
@@ -7944,7 +8062,7 @@ system Markeb
 		sprite planet/cloud0
 		distance 1906.67
 		period 1560.16
-		object "Alexandria"
+		object Alexandria
 			sprite planet/station7
 			distance 178.482
 			period 29.3849
@@ -10234,6 +10352,60 @@ system Procyon
 		sprite planet/dust3
 		distance 3148.97
 		period 3311.38
+
+system "Pug Iyik"
+	pos -361.149 -883.233
+	government Pug
+	habitable 625
+	asteroids "small rock" 35 7.6356
+	asteroids "medium rock" 5 6.9552
+	asteroids "large rock" 28 6.5016
+	asteroids "small metal" 8 7.7112
+	asteroids "medium metal" 179 8.5428
+	asteroids "large metal" 34 10.962
+	trade Clothing 274
+	trade Electronics 700
+	trade Equipment 430
+	trade Food 451
+	trade "Heavy Metals" 1195
+	trade Industrial 682
+	trade "Luxury Goods" 1020
+	trade Medical 552
+	trade Metal 414
+	trade Plastic 409
+	fleet "Small Pug" 600
+	fleet "Large Pug" 1200
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock6
+		distance 268.89
+		period 70.5476
+		object
+			sprite planet/europa
+			distance 160
+			period 25.4415
+	object "Vara Pug"
+		sprite planet/ocean4
+		distance 643.85
+		period 261.395
+	object
+		sprite planet/lava3
+		distance 1271.1
+		period 725.086
+	object
+		sprite planet/gas15
+		distance 2701.19
+		period 2246.22
+		object
+			sprite planet/dust5
+			distance 234
+			period 18.8417
+		object
+			sprite planet/desert4
+			distance 365
+			period 36.706
 
 system Rajak
 	pos -270 -236
@@ -13386,6 +13558,7 @@ system "Ya Hai"
 	fleet "Large Hai" 500
 	fleet "Small Northern Merchants" 12000
 	fleet "Large Northern Merchants" 17000
+	fleet Quarg 6000
 	object
 		sprite star/k5
 		period 10
@@ -13920,7 +14093,7 @@ planet Ada
 	tribute 4200
 		threshold 8000
 		fleet "Large Republic" 16
-	
+
 planet Albatross
 	attributes pirate
 	landscape land/snow6
@@ -13972,6 +14145,15 @@ planet Allhome
 	description `This earthlike planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
 	outfitter "Hai Basics"
+
+planet "Alta Hai"
+	attributes quarg station
+	landscape land/station2
+	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
+	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
+	spaceport `If this section of the ring is any indication, there must be trillions of Quarg here. Since the construction work on the ring has long since ended, many of them seem to spend their time with creative or scientific endeavors instead. The spaceport is decorated with artwork of every imaginable kind: sculptures, mobiles, paintings, music, and even one hallway that cycles through various artificial odors, some of them intensely unpleasant to your human senses.`
+	bribe 0
+	security 0.9
 
 planet Amazon
 	attributes core tourism oil frontier
@@ -16112,7 +16294,6 @@ planet "Var' Kar'i'i"
 	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly eight feet tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
 	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
 	shipyard "Wanderer Basics"
-	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
 
@@ -16123,7 +16304,6 @@ planet "Var' Kayi"
 	spaceport `This spaceport is as busy and chaotic as any major human trade hub, with the added complication that many of the Wanderers are flying from building to building instead of walking. Most of the buildings have balconies on every level, allowing visitors to enter from the air as well as from the streets.`
 	spaceport `	The starship landing pads are well outside the city, and ships land and take off along very tightly controlled vectors, probably to avoid midair collisions between the ships and the Wanderers who are flying on their own wings.`
 	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
 
@@ -16157,7 +16337,6 @@ planet "Vara Ke'stai"
 	landscape land/myrabella6
 	description `This is a desert world, but the Wanderers are working little by little to make the desert bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
 	spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. A few mechanical lifts have been built into the sides of the trees to carry cargo up to the forest canopy where the Wanderers live, but the Wanderers themselves seem content to fly between the houses rather than using the lifts.`
-	outfitter "Wanderer Basics"
 	"required reputation" 5
 	bribe 0
 
@@ -16166,9 +16345,18 @@ planet "Vara Kehi'ki"
 	landscape land/sky9
 	description `This is a farming world, but the primary crops are medicinal plants rather than food: fields of brightly colored flowers and delicate shrubs. Large factories near the farms process the raw plants and extract useful chemical compounds. Their gleaming metal smokestacks belching steam into the air seem incongruous amid the natural beauty and bright colors of the fields of flowers.`
 	spaceport `The spaceport village is apparently not just a processing facility for the medicinal plants, but also a hospital of sorts. The village is designed to allow easy foot traffic as well as flight between buildings, and thousands of Wanderers, many of them appearing sick or elderly, live here. The main streets of the village are lined with vine trellises with flowers of every color imaginable, and mechanical lifts allow even the most frail Wanderers to travel up to the higher terraces and balconies.`
-	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
+
+planet "Vara Pug"
+	attributes pug
+	landscape land/beach4
+	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a bulk freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
+	description `	To avoid contact with these marine creatures, when the Pug travel to other parts of the planet they use massive solar-powered airships rather than boats.`
+	spaceport `The Pug here all seem to be busy with various tasks, none of which make any sense to you: rushing from building to building on their long, spindly legs; playing a game involving colored stones on a hexagonal table; constructing what appears to be collaborative holographic artwork.`
+	spaceport `None of them speak to you, but a worker in the spaceport digs around in a closet for a while and comes up with a conversion attachment that allows your fuel tanks to be filled using their style of fuel nozzle.`
+	bribe 0
+	security 0.9
 
 planet "Vara Rakak"
 	attributes wanderer farming
@@ -16176,7 +16364,6 @@ planet "Vara Rakak"
 	description `This is one of those rare worlds whose climate is already nearly perfect without the need for terraforming. The Wanderers have made it into a farming planet. The fields follow the natural contours and geology of the land rather than being laid out in rectangular lots like most human farms, and each field contains several different crop species designed to form a symbiotic ecosystem.`
 	spaceport `This could be a spaceport on any human farming world, except that the farmers hawking their wares have wings and beaks, and the wagons bringing produce to the market are drawn by massive lizards instead of horses. In several repair shops on the outskirts of town, Wanderer technicians work on massive harvester robots. The robots have four legs to walk on and dozens of dexterous manipulator arms for picking crops, and each arm has a camera eye on it.`
 	shipyard "Wanderer Basics"
-	outfitter "Wanderer Advanced"
 	"required reputation" 5
 	bribe 0
 
@@ -16186,7 +16373,6 @@ planet "Varu Ek'lak'lai"
 	description `The Wanderers harvest metal ores not from planets, but from asteroids, in order to not expend even more of the resources of the planets that are under their care. This star system contains an unusually high concentration of metallic asteroids, and as a result they have built many large refineries here to process the ore that their drones harvest.`
 	spaceport `The vast majority of ships landing and taking off from this port are unmanned Wanderer drones used for mining asteroids. The drones are maneuverable enough to avoid collisions with the few ships that land under manual control.`
 	spaceport `	The port itself is a small village surrounded by towering refineries. Unlike other Wanderer architecture, the refineries are ugly, brutal buildings made of weathered concrete.`
-	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
 
@@ -16196,7 +16382,6 @@ planet "Varu K'est"
 	description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. The Wanderers have converted nearly all their villages on this planet into military bases in order to oppose the encroaching Hai raiders, and have also been forced to postpone their attempts at improving the local ecology.`
 	spaceport `The spaceport is a massive shipyard, with facilities for repairing the few warships that the Wanderers possess as well as creating new ships and weapons. Dozens of battle-scarred ships are parked in the hangars here, a stark contrast to the ports in the more peaceful regions of the Wanderer territory.`
 	shipyard "Wanderer Basics"
-	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
 
@@ -16205,7 +16390,6 @@ planet "Varu K'prai"
 	landscape land/beach1
 	description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
 	spaceport `Plastics and other refined oil products are as essential to Wanderer technology as to humans, but it is clear that those responsible for harvesting them are not held in high regard. The crews of visiting ships seem eager to interact with the locals as little as possible. However, that does not appear to stop the Wanderer freighters from purchasing large shipments of plastic, which will no doubt yield a substantial profit elsewhere in Wanderer space.`
-	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
 
@@ -16215,7 +16399,6 @@ planet "Varu Mer'ek"
 	description `This Wanderer factory world is now home to more abandoned villages than populated ones: entire factories rusting and decaying as a result of the recent threat from the Unfettered Hai. Most of the factories that remain active have been repurposed to produce weapons or ammunition for the defense of Wanderer space.`
 	spaceport `Very few Wanderer children are present in the spaceport. Most of the inhabitants still live far above the ground in the customary Wanderer tree-houses, but that portion of the village is dwarfed by the more recently constructed factories and warehouses for war supplies. A steady stream of freighters brings in new equipment and raw materials for the factories.`
 	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
 	"required reputation" 15
 	bribe 0
 
@@ -16224,7 +16407,6 @@ planet "Varu Tek'kai"
 	landscape land/badlands4
 	description `This Wanderer world is almost uninhabited and devoid of any indigenous ecosystem, except perhaps on the microscopic level. It has none of the beauty of other Wanderer settlements. Here, factories have been built to process the most dangerous and destructive of industrial chemicals. If disaster strikes one of the factories, the only result will be the contamination of a world that is already dead and lifeless - far better, in the judgment of the Wanderers, than allowing such risky industries to operate on a living world.`
 	spaceport `Nearly all the operations of the factories here are automated, and the outside atmosphere is too thin for even the Wanderers to breathe. The workers live in dormitory apartments in a ring surrounding a large central dome. Inside the dome, protected from the elements, is a park whose gardens contain everything from towering conifers to fields of wildflowers; a necessary place of sanctuary and rest for the Wanderers who must spend the rest of their time servicing machines in the bleak environment outside the spaceport.`
-	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
 
@@ -16233,7 +16415,6 @@ planet "Varu Tev'kei"
 	landscape land/dune4
 	description `This is a desert world, too hot and too close to its sun to support much animal or plant life. The Wanderers have covered large stretches of the desert with solar-powered factories: smelters that use the sun's reflected heat to melt ore, and fields of solar panels that support other industries.`
 	spaceport `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the building here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
-	outfitter "Wanderer Basics"
 	"required reputation" 15
 	bribe 0
 

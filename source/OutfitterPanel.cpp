@@ -117,9 +117,15 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if(!outfitter.Has(outfit)
-			&& (!playerShip || !playerShip->OutfitCount(outfit))
-			&& !available[outfit] && !player.Cargo().Get(outfit))
+	bool hasOutfit = (outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit));
+	if(!hasOutfit)
+		for(const Ship *ship : playerShips)
+			if(ship->OutfitCount(outfit))
+			{
+				hasOutfit = true;
+				break;
+			}
+	if(!hasOutfit)
 		return false;
 	
 	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);

@@ -79,7 +79,7 @@ private:
 	
 private:
 	// Add a label, pointing to whatever node is created next.
-	void AddLabel(const std::string &label);
+	void AddLabel(const std::string &label, const DataNode &node);
 	// Set up a "goto". Depending on whether the named label has been seen yet
 	// or not, it is either resolved immediately or added to the unresolved set.
 	void Goto(const std::string &label, int node, int choice = 0);
