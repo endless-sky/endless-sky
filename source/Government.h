@@ -120,6 +120,7 @@ private:
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	std::string language;
+	const Fleet *raidFleet = nullptr;
 	double jumpDriveFraction = 0.;
 };
 

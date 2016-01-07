@@ -1766,7 +1766,8 @@ void PlayerInfo::Save(const string &path) const
 	
 	// Save a list of planets the player has visited.
 	for(const Planet *planet : visitedPlanets)
-		out.Write("visited planet", planet->TrueName());
+		if(!planet->TrueName().empty())
+			out.Write("visited planet", planet->TrueName());
 	
 	// Save the list of news items
 	if(!newsItems.empty())
