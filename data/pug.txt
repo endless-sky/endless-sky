@@ -515,8 +515,7 @@ mission "Pug in Wanderer Space"
 	landing
 	to offer
 		has "main plot completed"
-	source
-		"Vara Pug"
+	source "Vara Pug"
 	on offer
 		conversation
 			`This world is populated by the Pug, the same enigmatic species that recently invaded human space - and left without giving you any clear answers about why they did so. Here, they appear peaceful enough, but they are ignoring you completely. Do you want to try to talk to one of them?`
