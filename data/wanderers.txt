@@ -588,7 +588,7 @@ outfit "Type 3 Radiant Thruster"
 
 outfit "Type 4 Radiant Thruster"
 	category "Engines"
-	"cost" 1370
+	"cost" 1370000
 	thumbnail "outfit/large radiant thruster"
 	"mass" 65
 	"outfit space" -65
