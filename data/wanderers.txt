@@ -531,7 +531,7 @@ outfit "White Sun Reactor"
 	category "Power"
 	cost 9000000
 	thumbnail "outfit/white sun"
-	"mass" 126
+	"mass" 127
 	"outfit space" -127
 	"energy generation" 20.4
 	"heat generation" 32
