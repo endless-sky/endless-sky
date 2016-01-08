@@ -14119,7 +14119,7 @@ planet Alexandria
 	spaceport `The station's cavernous visitor center is by far the quietest spaceport you have ever been in. Many people are bustling back and forth, wheeling carts of old books or carrying data pads, but they are entirely silent except for the occasional startled outburst when a scholar, walking deep in thought or immersed in reading, accidentally collides with someone.`
 	spaceport `	From here, passageways lead off into the wings of the library in a veritable labyrinth of hallways, stairs, and library stacks. A few particularly heavy doors require key cards to enter, and others have no opening controls of any sort that you can see.`
 	"required reputation" 100
-	bribe 0
+	bribe .1
 	tribute 1000
 		threshold 8000
 		fleet "Large Republic" 7
