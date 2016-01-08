@@ -1645,7 +1645,6 @@ mission "Escort science vessel"
 	to offer
 		random < 40
 		"combat rating" > 10
-	passengers 7 12
 	source
 		attributes research
 	stopover
