@@ -7143,7 +7143,6 @@ system "Kor Ak'Mari"
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
 	fleet "Korath Raid" 2800
-	fleet "Korath Home" 2000
 	object
 		sprite star/wr
 		period 100
