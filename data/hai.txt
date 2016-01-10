@@ -210,6 +210,7 @@ ship "Lightning Bug"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
+	explode "final explosion medium" 1
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
@@ -262,6 +263,7 @@ ship "Aphid"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
+	explode "final explosion small" 1
 	description "The Aphid is a light freighter designed by the Hai. It has only minimal armament."
 
 ship "Aphid" "Aphid (Anti-Missile)"
@@ -320,6 +322,7 @@ ship "Water Bug"
 	explode "medium explosion" 30
 	explode "big explosion" 20
 	explode "huge explosion" 5
+	explode "final explosion medium" 1
 	description "The Water Bug is the primary freight ship used by the Hai."
 
 ship "Water Bug" "Water Bug (Pulse)"
@@ -389,6 +392,7 @@ ship "Shield Beetle"
 	explode "medium explosion" 50
 	explode "big explosion" 50
 	explode "huge explosion" 20
+	explode "final explosion large" 1
 	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
