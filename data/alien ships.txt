@@ -51,6 +51,7 @@ ship "Quarg Skylark"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
+	explode "final explosion large" 1
 	description "The Skylark is used by the Quarg as a freighter and warship."
 
 ship "Quarg Wardragon"
@@ -96,6 +97,7 @@ ship "Quarg Wardragon"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
+	explode "final explosion medium" 1
 	description "The Skylark is used by the Quarg as a light warship."
 
 ship "Korath Raider"
@@ -147,6 +149,7 @@ ship "Korath Raider"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
+	explode "final explosion large" 1
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
 
 ship "Korath Chaser"
@@ -233,6 +236,7 @@ ship "Korath World-Ship"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 50
+	explode "final explosion large" 1
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
 ship "Korath World-Ship" "Korath World-Ship B"

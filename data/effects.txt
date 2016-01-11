@@ -230,6 +230,42 @@ effect "huge explosion"
 	"random frame rate" 5
 	"velocity scale" .4
 
+effect "final explosion small"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+	sound "final explosion small"
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"random frame rate" 5
+	"velocity scale" .4
+
+effect "final explosion medium"
+	sprite "effect/explosion/big"
+		"no repeat"
+		"frame rate" 15
+	sound "final explosion medium"
+	"lifetime" 32
+	"random angle" 360
+	"random velocity" .8
+	"random spin" 4
+	"random frame rate" 5
+	"velocity scale" .4
+
+effect "final explosion large"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 15
+	sound "final explosion large"
+	"lifetime" 36
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 5
+	"random frame rate" 5
+	"velocity scale" .4
+
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"

@@ -91,6 +91,7 @@ ship "Summer Leaf"
 	explode "tiny explosion" 40
 	explode "small explosion" 20
 	explode "medium explosion" 10
+	explode "final explosion medium" 1
 	description "The Summer Leaf is mostly used by the Wanderers as a light transport, but it is also quite effective in combat."
 
 ship "Strong Wind"
@@ -140,6 +141,7 @@ ship "Strong Wind"
 	explode "small explosion" 60
 	explode "medium explosion" 40
 	explode "large explosion" 20
+	explode "final explosion large" 1
 	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
 
 ship "Deep River"
@@ -190,6 +192,7 @@ ship "Deep River"
 	explode "medium explosion" 60
 	explode "large explosion" 30
 	explode "huge explosion" 20
+	explode "final explosion large" 1
 	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
 
 ship "Deep River" "Deep River 0"
