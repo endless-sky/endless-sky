@@ -1772,7 +1772,6 @@ mission "Wealthy Executive Short [0]"
 	deadline 0 1
 	passengers 1
 	description "Bring a wealthy and important executive to <destination> by <date>."
-	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	to offer
 		has "ships: Luxury Transport"
 		random < 20
@@ -1796,7 +1795,6 @@ mission "Wealthy Administrators Short [1]"
 	repeat
 	deadline 0 1
 	description "Bring <bunks> wealthy and important administrators to <destination> by <date>."
-	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	passengers 2 4 .9
 	to offer
 		has "ships: Luxury Transport"
@@ -1822,7 +1820,6 @@ mission "Wealthy Politician Long [0]"
 	passengers 1
 	deadline 1 1
 	description "Bring a wealthy and important politician to <destination> by <date>."
-	blocked "You cannot accept this mission, you have either run out of bunk space or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	to offer
 		has "ships: Luxury Transport"
 		random > 80
@@ -1846,7 +1843,6 @@ mission "Wealthy Executive Long [1]"
 	repeat
 	deadline
 	description "Bring <bunks> wealthy and important executive to <destination> by <date>."
-	blocked "You cannot accept this mission, you have either run out of bunks or of luxury bunks for your rich and important travelers (the base number of bunks on your ship)"
 	passengers 2 4 .9
 	to offer
 		has "ships: Luxury Transport"
