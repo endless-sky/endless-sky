@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class Conversation;
 class DataNode;
+class Fleet;
 class Phrase;
 class PlayerInfo;
 class Ship;
@@ -69,6 +70,9 @@ public:
 	std::string GetHail() const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
+	// Pirate raids in this government's systems use this fleet definition. If
+	// it is null, there are no pirate raids.
+	const Fleet *RaidFleet() const;
 	
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -113,6 +117,7 @@ private:
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	std::string language;
+	const Fleet *raidFleet = nullptr;
 };
 
 

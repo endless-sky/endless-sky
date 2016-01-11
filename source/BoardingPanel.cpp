@@ -189,8 +189,21 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		const Outfit *outfit = plunder[selected].GetOutfit();
 		if(outfit)
 		{
-			cargo.Transfer(outfit, -count);
-			victim->AddOutfit(outfit, -count);
+			// Check if this outfit is ammo for one of your weapons. If so, use
+			// it to refill your ammo rather than putting it in cargo.
+			int taken = 0;
+			for(const auto &it : you->Outfits())
+				if(it.first != outfit && it.first->Ammo() == outfit)
+				{
+					for( ; taken < count && you->Attributes().CanAdd(*outfit); ++taken)
+					{
+						you->AddOutfit(outfit, 1);
+						victim->AddOutfit(outfit, -1);
+					}
+					break;
+				}
+			cargo.Transfer(outfit, -(count - taken));
+			victim->AddOutfit(outfit, -(count - taken));
 		}
 		else
 			victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);

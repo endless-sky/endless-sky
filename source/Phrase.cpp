@@ -33,6 +33,8 @@ void Phrase::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				words.back().back().push_back(grand.Token(0));
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

@@ -1586,6 +1586,42 @@ fleet "Syndicate Extremists"
 		"Leviathan (Heavy)"
 		"Firebird (Plasma)" 2
 
+fleet "Bounty Hunters"
+	government "Bounty Hunter"
+	names "bounty hunter"
+	personality
+		nemesis waiting heroic
+	variant 5
+		"Fury" 2
+		"Fury (Missile)" 2
+	variant 5
+		"Hawk" 2
+		"Hawk (Rocket)" 2
+	variant 5
+		"Quicksilver" 2
+		"Headhunter (Particle)"
+	variant 3
+		"Raven"
+		"Fury (Missile)" 2
+	variant 1
+		"Firebird"
+		"Fury (Missile)"
+	variant 1
+		"Aerie"
+		"Fury (Missile)"
+	variant 1
+		"Corvette"
+		"Fury (Missile)"
+	variant 1
+		"Osprey"
+		"Fury (Missile)"
+	variant 1
+		"Manta"
+		"Fury (Missile)"
+	variant 1
+		"Splinter"
+		"Fury (Missile)"
+
 fleet "Korath Raid"
 	government "Korath"
 	names "korath"

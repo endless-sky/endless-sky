@@ -38,8 +38,8 @@ public:
 	
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
-	void Add(const std::string &firstToken, const std::string &secondToken);
-	void Add(const std::string &name, const std::string &op, int value);
+	bool Add(const std::string &firstToken, const std::string &secondToken);
+	bool Add(const std::string &name, const std::string &op, int value);
 	
 	bool Test(const std::map<std::string, int> &conditions) const;
 	void Apply(std::map<std::string, int> &conditions) const;

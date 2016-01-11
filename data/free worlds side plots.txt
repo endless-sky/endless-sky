@@ -514,7 +514,6 @@ mission "FW Stack Core 1B"
 		fleet
 			names "republic capital"
 			cargo 0
-			"friendly hail" "friendly navy"
 			variant
 				"Gunboat" 2
 	

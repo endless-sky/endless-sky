@@ -90,13 +90,14 @@ public:
 	static const StartConditions &Start();
 	
 	static const std::vector<Trade::Commodity> &Commodities();
+	static const std::vector<Trade::Commodity> &SpecialCommodities();
 	
 	static const StarField &Background();
 	
 	
 private:
 	static void LoadSources();
-	static void LoadFile(const std::string &path);
+	static void LoadFile(const std::string &path, bool debugMode);
 	static void LoadImages(std::map<std::string, std::string> &images);
 	static void LoadImage(const std::string &path, std::map<std::string, std::string> &images, size_t start);
 	static std::string Name(const std::string &path);

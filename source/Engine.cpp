@@ -65,9 +65,18 @@ Engine::Engine(PlayerInfo &player)
 	Point center;
 	if(player.GetPlanet())
 	{
+		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : player.GetSystem()->Objects())
 			if(object.GetPlanet() == player.GetPlanet())
-				center = object.Position();
+			{
+				double distance = !player.Flagship() ? 0. :
+					player.Flagship()->Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					closest = distance;
+					center = object.Position();
+				}
+			}
 	}
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
@@ -187,13 +196,20 @@ void Engine::Place()
 	Point planetPos;
 	double planetRadius = 0.;
 	if(player.GetPlanet())
+	{
+		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : player.GetSystem()->Objects())
 			if(object.GetPlanet() == player.GetPlanet())
 			{
-				planetPos = object.Position();
-				planetRadius = object.Radius();
-				break;
+				double distance = flagship->Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					closest = distance;
+					planetPos = object.Position();
+					planetRadius = object.Radius();
+				}
 			}
+	}
 	
 	// Give each ship a random heading and position. The iterator points to the
 	// first ship that was an escort or NPC (i.e. the first ship after any
@@ -649,24 +665,29 @@ void Engine::EnterSystem()
 		for(const System::FleetProbability &fleet : system->Fleets())
 			if(Random::Int(fleet.Period()) < 60)
 				fleet.Get()->Place(*system, ships);
-	// Find out how attractive the player's fleet is to pirates. Aside from a
-	// heavy freighter, no single ship should attract extra pirate attention.
-	unsigned attraction = 0;
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	
+	const Fleet *raidFleet = system->GetGovernment()->RaidFleet();
+	if(raidFleet)
 	{
-		if(ship->IsParked())
-			continue;
+		// Find out how attractive the player's fleet is to pirates. Aside from a
+		// heavy freighter, no single ship should attract extra pirate attention.
+		unsigned attraction = 0;
+		for(const shared_ptr<Ship> &ship : player.Ships())
+		{
+			if(ship->IsParked())
+				continue;
 		
-		const string &category = ship->Attributes().Category();
-		if(category == "Light Freighter")
-			attraction += 1;
-		if(category == "Heavy Freighter")
-			attraction += 2;
+			const string &category = ship->Attributes().Category();
+			if(category == "Light Freighter")
+				attraction += 1;
+			if(category == "Heavy Freighter")
+				attraction += 2;
+		}
+		if(attraction > 2)
+			for(int i = 0; i < 10; ++i)
+				if(Random::Int(200) + 1 < attraction)
+					raidFleet->Place(*system, ships);
 	}
-	if(attraction > 2)
-		for(int i = 0; i < 10; ++i)
-			if(Random::Int(200) + 1 < attraction)
-				GameData::Fleets().Get("pirate raid")->Place(*system, ships);
 	
 	projectiles.clear();
 	effects.clear();
@@ -783,9 +804,17 @@ void Engine::CalculateStep()
 	}
 	else if(player.GetPlanet())
 	{
+		double closest = numeric_limits<double>::infinity();
 		for(const StellarObject &object : player.GetSystem()->Objects())
 			if(object.GetPlanet() == player.GetPlanet())
-				center = object.Position();
+			{
+				double distance = flagship->Position().Distance(object.Position());
+				if(distance < closest)
+				{
+					closest = distance;
+					center = object.Position();
+				}
+			}
 	}
 	if(!flagship)
 		doClick = false;

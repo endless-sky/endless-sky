@@ -23,8 +23,6 @@ using namespace std;
 
 void StartConditions::Load(const DataNode &node)
 {
-	conditions.Load(node);
-	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "date" && child.Size() >= 4)
@@ -35,6 +33,8 @@ void StartConditions::Load(const DataNode &node)
 			planet = GameData::Planets().Get(child.Token(1));
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
+		else
+			conditions.Add(child);
 	}
 }
 

@@ -263,7 +263,9 @@ void ShipyardPanel::BuyShip(const string &name)
 				player.Conditions()["license: " + name] = true;
 	}
 	
-	string shipName = name.empty() ? "Unnamed Ship" : name;
+	string shipName = name;
+	if(shipName.empty())
+		shipName = player.FirstName() + "'s " + selectedShip->ModelName();
 	if(modifier > 1)
 		shipName += ' ';
 	

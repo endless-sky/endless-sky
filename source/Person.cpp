@@ -42,6 +42,8 @@ void Person::Load(const DataNode &node)
 			personality.Load(child);
 		else if(child.Token(0) == "phrase")
 			hail.Load(child);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

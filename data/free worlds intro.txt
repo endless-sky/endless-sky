@@ -294,7 +294,6 @@ mission "FW Recon 1"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
-			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)"
 		conversation
@@ -349,7 +348,6 @@ mission "FW Recon 2"
 		fleet
 			names "republic capital"
 			fighters "republic fighter"
-			"friendly hail" "friendly navy"
 			variant
 				"Cruiser (Heavy)" 4
 		dialog "You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment."
@@ -429,7 +427,6 @@ mission "FW Recon 3B"
 		personality timid
 		fleet
 			names "republic capital"
-			"friendly hail" "friendly navy"
 			variant
 				"Gunboat"
 	
@@ -793,8 +790,6 @@ mission "FW Katya 3"
 	name "Drone Hunting"
 	description `Disable a surveillance drone (ideally when no cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
 	source Rand
-	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
-	passengers 2
 	to offer
 		has "FW Katya 2C: done"
 	to fail
@@ -853,6 +848,7 @@ mission "FW Katya 4"
 	description "Stop on <destination>, and check the planet for signs of nuclear testing."
 	source Rand
 	destination Oblivion
+	blocked "You need bunks for both Katya and Eyes in order to continue this mission."
 	passengers 2
 	to offer
 		has "FW Katya 3: done"

@@ -17,8 +17,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "SpriteSet.h"
 
-#include <iostream>
-
 using namespace std;
 
 namespace {
@@ -101,7 +99,7 @@ void Conversation::Load(const DataNode &node)
 			// You cannot merge text above a label with text below it.
 			if(!nodes.empty())
 				nodes.back().canMergeOnto = false;
-			AddLabel(child.Token(1));
+			AddLabel(child.Token(1), child);
 		}
 		else if(child.Token(0) == "choice")
 		{
@@ -131,8 +129,7 @@ void Conversation::Load(const DataNode &node)
 			}
 			if(nodes.back().data.empty())
 			{
-				cerr << "Warning: conversation \"" << identifier
-					<< "\" contains an empty \"choice\" node. Deleting it." << endl;
+				child.PrintTrace("Conversation contains an empty \"choice\" node:");
 				nodes.pop_back();
 			}
 		}
@@ -209,21 +206,18 @@ void Conversation::Load(const DataNode &node)
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
-			cerr << "Warning: in conversation \"" << identifier << "\": label \""
-				<< it.first << "\" is referred to but never defined." << endl;
+			node.PrintTrace("Conversation contains unused label \"" + it.first + "\":");
 	
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
 	{
-		int node = it.second;
-		while(node >= 0 && Choices(node) <= 1)
+		int nodeIndex = it.second;
+		while(nodeIndex >= 0 && Choices(nodeIndex) <= 1)
 		{
-			node = NextNode(node);
-			if(node == it.second)
+			nodeIndex = NextNode(nodeIndex);
+			if(nodeIndex == it.second)
 			{
-				cerr << "Error: conversation \"" << identifier
-					<< "\" contains an infinite loop beginning with label \""
-					<< it.first << "\". The conversation data has been cleared." << endl;
+				node.PrintTrace("Conversation contains infinite loop beginning with label \"" + it.first + "\":");
 				nodes.clear();
 				return;
 			}
@@ -418,12 +412,11 @@ Conversation::Node::Node(bool isChoice)
 
 
 // Add a label, pointing to whatever node is created next.
-void Conversation::AddLabel(const string &label)
+void Conversation::AddLabel(const string &label, const DataNode &node)
 {
 	if(labels.find(label) != labels.end())
 	{
-		cerr << "Warning: in conversation \"" << identifier << "\": label \""
-			<< label << "\" is used more than once." << endl;
+		node.PrintTrace("Conversation: label \"" + label + "\" is used more than once:");
 		return;
 	}
 	

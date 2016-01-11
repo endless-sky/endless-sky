@@ -49,6 +49,7 @@ public:
 	bool IsFleeing() const;
 	bool IsEscort() const;
 	bool IsFrugal() const;
+	bool IsCoward() const;
 	
 	const Point &Confusion() const;
 	

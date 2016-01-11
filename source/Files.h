@@ -59,6 +59,8 @@ public:
 	static std::string Read(FILE *file);
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
+	
+	static void LogError(const std::string &message);
 };
 
 

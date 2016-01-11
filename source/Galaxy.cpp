@@ -27,6 +27,8 @@ void Galaxy::Load(const DataNode &node)
 			position = Point(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "sprite" && child.Size() >= 2)
 			sprite = SpriteSet::Get(child.Token(1));
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
