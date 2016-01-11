@@ -69,7 +69,7 @@ phrase "civilian"
 		"Nomad"
 		"Redoubtable"
 		"Primarch"
-		""
+		"Great Egret"
 
 phrase "civilian"
 	word
