@@ -28,6 +28,79 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
+	{
+		Ship *flagship = player.Flagship();
+		string name = outfit->Name();
+		if(!flagship || !count || name.empty())
+			return;
+		
+		string message;
+		if(abs(count) == 1)
+		{
+			char c = tolower(name.front());
+			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+			message = (isVowel ? "An " : "A ") + name + " was ";
+		}
+		else
+			message = to_string(abs(count)) + " " + name + "s were ";
+		
+		if(count > 0)
+			message += "added to your ";
+		else
+			message += "removed from your ";
+		
+		bool didCargo = false;
+		bool didShip = false;
+		int cargoCount = player.Cargo().Get(outfit);
+		if(count < 0 && cargoCount)
+		{
+			int moved = min(cargoCount, -count);
+			count += moved;
+			player.Cargo().Transfer(outfit, moved);
+			didCargo = true;
+		}
+		while(flagship && count)
+		{
+			int moved = (count > 0) ? 1 : -1;
+			if(flagship->Attributes().CanAdd(*outfit, moved))
+			{
+				flagship->AddOutfit(outfit, moved);
+				didShip = true;
+			}
+			else
+				break;
+			count -= moved;
+		}
+		if(count > 0)
+		{
+			// Ignore cargo size limits.
+			int size = player.Cargo().Size();
+			player.Cargo().SetSize(-1);
+			player.Cargo().Transfer(outfit, -count);
+			player.Cargo().SetSize(size);
+			didCargo = true;
+			if(count > 0 && ui)
+			{
+				string special = "The " + name + (count == 1 ? " was" : "s were");
+				special += " put in your cargo hold because there is not enough space to install ";
+				special += (count == 1) ? "it" : "them";
+				special += " in your ship.";
+				ui->Push(new Dialog(special));
+			}
+		}
+		if(didCargo && didShip)
+			message += "cargo hold and your flagship.";
+		else if(didCargo)
+			message += "cargo hold.";
+		else
+			message += "flagship.";
+		Messages::Add(message);
+
+	}
+}
+
 
 
 void MissionAction::Load(const DataNode &node, const string &missionName)
@@ -202,76 +275,14 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 	
-	Ship *flagship = player.Flagship();
+	// If multiple outfits are being transferred, first remove them before
+	// adding any new ones.
 	for(const auto &it : gifts)
-	{
-		int count = it.second;
-		string name = it.first->Name();
-		if(!count || name.empty())
-			continue;
-		
-		string message;
-		if(abs(count) == 1)
-		{
-			char c = tolower(name.front());
-			bool isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
-			message = (isVowel ? "An " : "A ") + name + " was ";
-		}
-		else
-			message = to_string(abs(count)) + " " + name + "s were ";
-		
-		if(count > 0)
-			message += "added to your ";
-		else
-			message += "removed from your ";
-		
-		bool didCargo = false;
-		bool didShip = false;
-		int cargoCount = player.Cargo().Get(it.first);
-		if(count < 0 && cargoCount)
-		{
-			int moved = min(cargoCount, -count);
-			count += moved;
-			player.Cargo().Transfer(it.first, moved);
-			didCargo = true;
-		}
-		while(flagship && count)
-		{
-			int moved = (count > 0) ? 1 : -1;
-			if(flagship->Attributes().CanAdd(*it.first, moved))
-			{
-				flagship->AddOutfit(it.first, moved);
-				didShip = true;
-			}
-			else
-				break;
-			count -= moved;
-		}
-		if(count > 0)
-		{
-			// Ignore cargo size limits.
-			int size = player.Cargo().Size();
-			player.Cargo().SetSize(-1);
-			player.Cargo().Transfer(it.first, -count);
-			player.Cargo().SetSize(size);
-			didCargo = true;
-			if(count > 0 && ui)
-			{
-				string special = "The " + name + (count == 1 ? " was" : "s were");
-				special += " put in your cargo hold because there is not enough space to install ";
-				special += (count == 1) ? "it" : "them";
-				special += " in your ship.";
-				ui->Push(new Dialog(special));
-			}
-		}
-		if(didCargo && didShip)
-			message += "cargo hold and your flagship.";
-		else if(didCargo)
-			message += "cargo hold.";
-		else
-			message += "flagship.";
-		Messages::Add(message);
-	}
+		if(it.second < 0)
+			DoGift(player, it.first, it.second, ui);
+	for(const auto &it : gifts)
+		if(it.second > 0)
+			DoGift(player, it.first, it.second, ui);
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);
