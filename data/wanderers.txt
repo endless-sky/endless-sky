@@ -708,6 +708,7 @@ outfitter "Wanderer Basics"
 	"Type 2 Radiant Steering"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
+	"Local Map"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
@@ -728,6 +729,7 @@ outfitter "Wanderer Advanced"
 	"Type 4 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
+	"Local Map"
 
 
 phrase "wanderer untranslated"
