@@ -14520,7 +14520,7 @@ planet Darkstone
 
 planet Darkwaste
 	landscape land/canyon0
-	description `This planet seems to have all the conditions necessary for a vibrant, earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
+	description `This planet seems to have all the conditions necessary for a vibrant, Earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
 
 planet "Deadman's Cove"
 	attributes pirate
@@ -16300,7 +16300,7 @@ planet "Var' Kar'i'i"
 planet "Var' Kayi"
 	attributes wanderer urban
 	landscape land/water1
-	description `This is an earth-like world with one major Wanderer city and countless smaller settlements. The settlements mostly consist of tree-houses built high up in living trees. The architecture of the city skyscrapers is full of cantilevered balconies and arches, mimicking the natural shape of a forest. Here and there a bit of smoke or steam rises from what must be a factory or power plant, but most of the land outside the city is green fields and pristine oceans.`
+	description `This is an Earth-like world with one major Wanderer city and countless smaller settlements. The settlements mostly consist of tree-houses built high up in living trees. The architecture of the city skyscrapers is full of cantilevered balconies and arches, mimicking the natural shape of a forest. Here and there a bit of smoke or steam rises from what must be a factory or power plant, but most of the land outside the city is green fields and pristine oceans.`
 	spaceport `This spaceport is as busy and chaotic as any major human trade hub, with the added complication that many of the Wanderers are flying from building to building instead of walking. Most of the buildings have balconies on every level, allowing visitors to enter from the air as well as from the streets.`
 	spaceport `	The starship landing pads are well outside the city, and ships land and take off along very tightly controlled vectors, probably to avoid midair collisions between the ships and the Wanderers who are flying on their own wings.`
 	shipyard "Wanderer Advanced"
