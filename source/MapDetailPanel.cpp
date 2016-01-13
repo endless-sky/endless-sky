@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
+#include "Politics.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -568,12 +569,13 @@ void MapDetailPanel::DrawOrbits() const
 	}
 	
 	planets.clear();
-	static const Color planetColor[5] = {
+	static const Color planetColor[6] = {
 		Color(1., 1., 1., 1.),
 		Color(.3, .3, .3, 1.),
 		Color(0., .8, 1., 1.),
 		Color(.8, .4, .2, 1.),
-		Color(.8, .3, 1., 1.)
+		Color(.8, .3, 1., 1.),
+		Color(0., .8, 0., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
@@ -581,13 +583,18 @@ void MapDetailPanel::DrawOrbits() const
 			continue;
 		
 		Point pos = orbitCenter + object.Position() * scale;
+		int colorIndex = !object.IsStar() + (object.GetPlanet() != nullptr);
 		if(object.GetPlanet())
+		{
 			planets[object.GetPlanet()] = pos;
-		DotShader::Draw(pos,
-			object.Radius() * scale + 1., 0.,
-				planetColor[!object.IsStar() + (object.GetPlanet() != nullptr)
-					+ (object.GetPlanet() && !object.GetPlanet()->CanLand() && !object.GetPlanet()->IsWormhole())
-					+ 2 * (object.GetPlanet() && object.GetPlanet()->IsWormhole())]);
+			if(!object.GetPlanet()->CanLand())
+				colorIndex = 3;
+			if(object.GetPlanet()->IsWormhole())
+				colorIndex = 4;
+			if(GameData::GetPolitics().HasDominated(object.GetPlanet()))
+				colorIndex = 5;
+		}
+		DotShader::Draw(pos, object.Radius() * scale + 1., 0., planetColor[colorIndex]);
 	}
 	
 	// Draw the name of the selected planet.

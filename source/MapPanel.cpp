@@ -177,6 +177,11 @@ Color MapPanel::MapColor(double value)
 
 Color MapPanel::ReputationColor(double reputation, bool canLand, bool hasDominated)
 {
+	// If the system allows you to land, always show it in blue even if the
+	// government is hostile.
+	if(canLand)
+		reputation = max(reputation, 0.);
+	
 	if(hasDominated)
 		return Color(.1, .6, 0., .4);
 	else if(reputation < 0.)
@@ -602,15 +607,16 @@ void MapPanel::DrawSystems() const
 			{
 				double reputation = system.GetGovernment()->Reputation();
 				
-				bool hasDominated = false;
+				bool hasDominated = true;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
 					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 					{
 						canLand |= object.GetPlanet()->CanLand();
-						hasDominated |= GameData::GetPolitics().HasDominated(object.GetPlanet());
+						hasDominated &= (!object.GetPlanet()->IsInhabited()
+							|| GameData::GetPolitics().HasDominated(object.GetPlanet()));
 					}
-				color = ReputationColor(reputation, canLand, hasDominated);
+				color = ReputationColor(reputation, canLand, canLand && hasDominated);
 			}
 		}
 		
