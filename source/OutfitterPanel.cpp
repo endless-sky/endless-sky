@@ -319,6 +319,7 @@ void OutfitterPanel::Buy()
 			int required = selectedOutfit->Get("required crew");
 			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 				ship->AddCrew(required);
+			ship->Recharge(true);
 		}
 	}
 }
@@ -487,6 +488,7 @@ void OutfitterPanel::Sell()
 			ship->AddOutfit(selectedOutfit, -1);
 			if(selectedOutfit->Get("required crew"))
 				ship->AddCrew(-selectedOutfit->Get("required crew"));
+			ship->Recharge(true);
 			player.Accounts().AddCredits(selectedOutfit->Cost());
 			++available[selectedOutfit];
 			
