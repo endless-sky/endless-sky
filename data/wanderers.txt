@@ -39,7 +39,7 @@ ship "Earth Shaper"
 			"hit force" 250
 	outfits
 		"Small Biochemical Cell"
-		
+		"Small Hyperspace Fuel Generator"
 		"Type 1 Radiant Thruster"
 		"Type 1 Radiant Steering"
 		"Hyperdrive"
@@ -76,10 +76,10 @@ ship "Summer Leaf"
 			"hit force" 1050
 	outfits
 		"Sunbeam" 2
-		
+		"Small Hyperspace Fuel Generator"
 		"Yellow Sun Reactor"
 		"Bright Cloud Shielding"
-		
+		"Sleeping Gas" 5
 		"Type 3 Radiant Thruster"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
@@ -109,8 +109,8 @@ ship "Strong Wind"
 		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 36
-		"outfit space" 493
-		"weapon capacity" 198
+		"outfit space" 547
+		"weapon capacity" 246
 		"engine capacity" 114
 		weapon
 			"blast radius" 200
@@ -121,10 +121,10 @@ ship "Strong Wind"
 		"Sunbeam" 4
 		"Thunderhead Launcher" 2
 		"Thunderhead Missile" 80
-		
+		"Large Hyperspace Fuel Generator"
 		"White Sun Reactor"
 		"Dark Storm Shielding"
-		
+		"Sleeping Gas" 10
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
@@ -137,6 +137,8 @@ ship "Strong Wind"
 	gun 57 21 "Sunbeam"
 	gun -32 57 "Thunderhead Launcher"
 	gun 32 57 "Thunderhead Launcher"
+	turret 35 103.5 "Wanderer Anti-Missile"
+	turret -37.5 104.5 "Wanderer Anti-Missile"
 	explode "small explosion" 60
 	explode "medium explosion" 40
 	explode "large explosion" 20
@@ -169,10 +171,10 @@ ship "Deep River"
 	outfits
 		"Thunderhead Launcher" 6
 		"Thunderhead Missile" 240
-		
+		"Sleeping Gas" 10
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"
-		
+		"Large Hyperspace Fuel Generator"
 		"Type 2 Radiant Thruster"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
@@ -494,6 +496,24 @@ outfit "Thunderhead"
 		"hit force" 20
 		"missile strength" 3
 
+outfit "Wanderer Anti-Missile"
+	category "Turrets"
+	cost 150000
+	thumbnail "outfit/unknown"
+	"mass" 45
+	"outfit space" -45
+	"weapon capacity" -45
+	"turret mounts" -1
+	weapon
+		"hit effect" "large anti-missile"
+		"anti-missile" 15
+		"velocity" 250
+		"lifetime" 1
+		"reload" 4
+		"firing energy" 5
+		"firing heat" -2
+	description "This Wanderer marvel takes excess heat from your ship to heat up plasma to form anti-missile beams, cooling your ship and reducing energy costs at the same time"
+
 outfit "Small Biochemical Cell"
 	category "Power"
 	cost 60000
@@ -674,6 +694,37 @@ outfit "Dark Storm Shielding"
 	"shield energy" 4.2
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
 
+outfit "Small Hyperspace Fuel Generator"
+	category "Systems"
+	cost 40000
+	thumbnail "outfit/unknown"
+	"mass" 5
+	"outfit space" -5
+	"ramscoop" 10
+	"cooling" 1
+	"energy capacity" 500
+	description "Due to their long travels, the Wanderers have found the need for an efficient way to produce hyperspace fuel. This specially created culture of bacteria uses excess heat coming from your ship to create hyperspace fuel at an alarming rate. As with most Wanderer technologies, it also stores a small amount of charge."
+	
+outfit "Large Hyperspace Fuel Generator"
+	category "Systems"
+	cost 100000
+	thumbnail "outfit/unknown"
+	"mass" 20
+	"outfit space" -20
+	"ramscoop" 30
+	"cooling" 5
+	"energy capacity" 2500
+	description "This hyperspace fuel generator is required only when long journeys through hyperspace are required, and was developed only as reliable means to travel through the Eye should the time come."
+	
+outfit "Sleeping Gas"
+	category "Hand to Hand"
+	cost 80000
+	thumbnail "outfit/unknown"
+	"mass" 5
+	"outfit space" -5
+	"capture defense" 200
+	description "This specially created sleeping gas was created by the Wanderers as a means of defence only, to pacify the crews of any hostile ship that attempted to board Wanderer ships. It is very compact and effective."
+
 
 effect "sunbeam impact"
 	sprite "effect/sunbeam impact"
@@ -708,6 +759,8 @@ outfitter "Wanderer Basics"
 	"Type 2 Radiant Steering"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
+	"Small Hyperspace Fuel Generator"
+	"Sleeping Gas"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
@@ -728,6 +781,10 @@ outfitter "Wanderer Advanced"
 	"Type 4 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
+	"Small Hyperspace Fuel Generator"
+	"Large Hyperspace Fuel Generator"
+	"Sleeping Gas"
+	"Wanderer Anti-Missile"
 
 
 phrase "wanderer untranslated"
