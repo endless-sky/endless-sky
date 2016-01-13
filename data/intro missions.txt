@@ -81,7 +81,7 @@ mission "Intro [1 Transport]"
 	passengers 5
 	to offer
 		has "Intro [0]: done"
-		"passenger space" > 4
+		has "ships: Transport"
 		not "Intro [1 Freighter]: offered"
 		not "Intro [1 Interceptor]: offered"
 	
@@ -178,7 +178,7 @@ mission "Intro [1 Freighter]"
 	destination "Heartland"
 	to offer
 		has "Intro [0]: done"
-		"cargo space" > 30
+		has "ships: Light Freighter"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Interceptor]: offered"
 	
@@ -305,8 +305,7 @@ mission "Intro [1 Interceptor]"
 	destination "Gemstone"
 	to offer
 		has "Intro [0]: done"
-		"cargo space" <= 30
-		"passenger space" <= 4
+		has "ships: Interceptor"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Freighter]: offered"
 	npc save
