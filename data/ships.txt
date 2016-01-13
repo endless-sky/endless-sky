@@ -932,7 +932,7 @@ ship "Falcon"
 	explode "small explosion" 55
 	explode "medium explosion" 60
 	explode "big explosion" 40
-	description "The Tarazed Falcon is one of the most powerful warship that civilians can buy, a sleeker and more maneuverable alternative to the venerable and somewhat outdated Leviathan."
+	description "The Tarazed Falcon is one of the most powerful warships that civilians can buy, a sleeker and more maneuverable alternative to the venerable and somewhat outdated Leviathan."
 
 
 
