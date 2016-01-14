@@ -75,6 +75,14 @@ void MapPanel::SetCommodity(int index)
 
 
 
+void MapPanel::Step()
+{
+	if(tradeCommodity && commodity > 0)
+		*tradeCommodity = commodity;
+}
+
+
+
 void MapPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);

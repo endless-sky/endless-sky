@@ -56,6 +56,14 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, int commodity, const System *
 
 
 
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, int *commodity)
+	: MapDetailPanel(player, *commodity)
+{
+	tradeCommodity = commodity;
+}
+
+
+
 MapDetailPanel::MapDetailPanel(const MapPanel &panel)
 	: MapPanel(panel), governmentY(0), tradeY(0), selectedPlanet(nullptr)
 {

@@ -53,6 +53,7 @@ public:
 	MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
 	
 	void SetCommodity(int index);
+	virtual void Step() override;
 	virtual void Draw() const override;
 	
 	
@@ -96,6 +97,7 @@ protected:
 	
 	Point center;
 	int commodity;
+	int *tradeCommodity = nullptr;
 	const int maxZoom = 2;
 	int zoom = 0;
 	mutable int step = 0;

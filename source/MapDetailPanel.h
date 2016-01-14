@@ -31,6 +31,7 @@ class PlayerInfo;
 class MapDetailPanel : public MapPanel {
 public:
 	MapDetailPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *system = nullptr);
+	MapDetailPanel(PlayerInfo &player, int *commodity);
 	MapDetailPanel(const MapPanel &panel);
 	
 	virtual void Draw() const override;
