@@ -283,6 +283,8 @@ private:
 	bool CannotAct() const;
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
+	// Get the heat level at idle.
+	double IdleHeat() const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);

@@ -331,6 +331,7 @@ mission "Unfettered Jump Drive 3"
 		fail "Unfettered Jump Drive 2"
 
 mission "Unfettered Jump Drive 4"
+	repeat
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 	to complete

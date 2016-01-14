@@ -453,6 +453,13 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	}
 	else
 		zoom = 1.;
+	// Make sure various special status values are reset.
+	heat = IdleHeat();
+	ionization = 0.;
+	cloak = 0.;
+	jettisoned = 0;
+	hyperspaceCount = 0;
+	hyperspaceType = 0;
 	forget = 1;
 	if(government)
 		sprite.SetSwizzle(government->GetSwizzle());
@@ -1541,7 +1548,7 @@ void Ship::Recharge(bool atSpaceport)
 		hull = attributes.Get("hull");
 		energy = attributes.Get("energy capacity");
 	}
-	heat = max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
+	heat = IdleHeat();
 	ionization = 0.;
 }
 
@@ -2191,6 +2198,14 @@ double Ship::MinimumHull() const
 	
 	double maximumHull = attributes.Get("hull");
 	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+}
+
+
+
+// Get the heat level at idle.
+double Ship::IdleHeat() const
+{
+	return max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
 }
 
 

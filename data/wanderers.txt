@@ -65,8 +65,8 @@ ship "Summer Leaf"
 		"drag" 2.6
 		"heat dissipation" .8
 		"fuel capacity" 600
-		"cargo space" 36
-		"outfit space" 295
+		"cargo space" 41
+		"outfit space" 320
 		"weapon capacity" 84
 		"engine capacity" 103
 		weapon
@@ -108,7 +108,7 @@ ship "Strong Wind"
 		"drag" 4.7
 		"heat dissipation" .7
 		"fuel capacity" 400
-		"cargo space" 36
+		"cargo space" 68
 		"outfit space" 493
 		"weapon capacity" 198
 		"engine capacity" 114
@@ -531,7 +531,7 @@ outfit "White Sun Reactor"
 	category "Power"
 	cost 9000000
 	thumbnail "outfit/white sun"
-	"mass" 126
+	"mass" 127
 	"outfit space" -127
 	"energy generation" 20.4
 	"heat generation" 32
@@ -588,7 +588,7 @@ outfit "Type 3 Radiant Thruster"
 
 outfit "Type 4 Radiant Thruster"
 	category "Engines"
-	"cost" 1370
+	"cost" 1370000
 	thumbnail "outfit/large radiant thruster"
 	"mass" 65
 	"outfit space" -65
@@ -708,6 +708,7 @@ outfitter "Wanderer Basics"
 	"Type 2 Radiant Steering"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
+	"Local Map"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
@@ -728,6 +729,7 @@ outfitter "Wanderer Advanced"
 	"Type 4 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
+	"Local Map"
 
 
 phrase "wanderer untranslated"

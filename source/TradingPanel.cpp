@@ -253,7 +253,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 	}
 	else if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player, selectedRow));
+		GetUI()->Push(new MapDetailPanel(player, &selectedRow));
 	else
 		return false;
 	

@@ -14119,7 +14119,7 @@ planet Alexandria
 	spaceport `The station's cavernous visitor center is by far the quietest spaceport you have ever been in. Many people are bustling back and forth, wheeling carts of old books or carrying data pads, but they are entirely silent except for the occasional startled outburst when a scholar, walking deep in thought or immersed in reading, accidentally collides with someone.`
 	spaceport `	From here, passageways lead off into the wings of the library in a veritable labyrinth of hallways, stairs, and library stacks. A few particularly heavy doors require key cards to enter, and others have no opening controls of any sort that you can see.`
 	"required reputation" 100
-	bribe 0
+	bribe .1
 	tribute 1000
 		threshold 8000
 		fleet "Large Republic" 7
@@ -14520,7 +14520,7 @@ planet Darkstone
 
 planet Darkwaste
 	landscape land/canyon0
-	description `This planet seems to have all the conditions necessary for a vibrant, earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
+	description `This planet seems to have all the conditions necessary for a vibrant, Earth-like ecology. The gravity and temperature are moderate, and there is a fair amount of surface water, although the oceans are quite small. However, aside from a few stunted plants and lichen, there is almost no native life here. Given how skilled the Hai appear to be at terraforming other worlds, it is strange that this one has been left barren.`
 
 planet "Deadman's Cove"
 	attributes pirate
@@ -15839,7 +15839,7 @@ planet Relic
 planet Reunion
 	attributes "near earth" urban factory
 	landscape land/mfield4
-	description `Reunion is one of the most earth-like planets found by the early settlers, all the way down to its moon and tides. It has grown into a mostly urban world, which supplies manufactured goods of all sorts to the neighboring systems.`
+	description `Reunion is one of the most Earth-like planets found by the early settlers, all the way down to its moon and tides. It has grown into a mostly urban world, which supplies manufactured goods of all sorts to the neighboring systems.`
 	description `	Local politics are unusually lively for a Republic world, to the point where a seat in the local parliament is often more hotly contested than one in the Republic Senate. Topics of debate include trade and taxation, of course, but also seemingly fringe issues like biodiversity regulations for city green space. It may be that a world with no terraforming needs is focusing instead on tweaking society itself.`
 	spaceport `The spaceport, although designed as a clean and modern building, is a place of barely controlled chaos: vendors selling food on the sides of the hallways, tourist families with young children, and even a few farmers driving cattle. People of every age and race and occupation rub shoulders here, but there is no sign of the extreme sort of poverty that you have seen on some other worlds.`
 	shipyard "Basic Ships"
@@ -16300,7 +16300,7 @@ planet "Var' Kar'i'i"
 planet "Var' Kayi"
 	attributes wanderer urban
 	landscape land/water1
-	description `This is an earth-like world with one major Wanderer city and countless smaller settlements. The settlements mostly consist of tree-houses built high up in living trees. The architecture of the city skyscrapers is full of cantilevered balconies and arches, mimicking the natural shape of a forest. Here and there a bit of smoke or steam rises from what must be a factory or power plant, but most of the land outside the city is green fields and pristine oceans.`
+	description `This is an Earth-like world with one major Wanderer city and countless smaller settlements. The settlements mostly consist of tree-houses built high up in living trees. The architecture of the city skyscrapers is full of cantilevered balconies and arches, mimicking the natural shape of a forest. Here and there a bit of smoke or steam rises from what must be a factory or power plant, but most of the land outside the city is green fields and pristine oceans.`
 	spaceport `This spaceport is as busy and chaotic as any major human trade hub, with the added complication that many of the Wanderers are flying from building to building instead of walking. Most of the buildings have balconies on every level, allowing visitors to enter from the air as well as from the streets.`
 	spaceport `	The starship landing pads are well outside the city, and ships land and take off along very tightly controlled vectors, probably to avoid midair collisions between the ships and the Wanderers who are flying on their own wings.`
 	shipyard "Wanderer Advanced"

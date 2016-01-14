@@ -586,7 +586,7 @@ ship "Carrier"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
-	description "The Carrier is more than just a warship: it is practically a mobile space station, with docking bays for an entire squadron of drones and fighters and enough crew to fill a small village. Designed primarily for engaging enemies from a distance, the Carrier is slightly less well shielded than the Republic Cruiser, but it carries just as heavy a load of weaponry."
+	description "The Carrier is more than just a warship: it is practically a mobile space station, with docking bays for an entire squadron of drones and fighters and enough crew to fill a small village. Although designed primarily for engaging enemies from a distance, a Carrier can also do significant damage in close combat."
 
 
 
@@ -932,7 +932,7 @@ ship "Falcon"
 	explode "small explosion" 55
 	explode "medium explosion" 60
 	explode "big explosion" 40
-	description "The Tarazed Falcon is the most powerful warship that civilians can buy... or at least, civilians who have also paid for a Republic warship license."
+	description "The Tarazed Falcon is one of the most powerful warships that civilians can buy, a sleeker and more maneuverable alternative to the venerable and somewhat outdated Leviathan."
 
 
 

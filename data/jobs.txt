@@ -1575,7 +1575,7 @@ mission "Large Rush Delivery [3]"
 
 mission "Recycle garbage"
 	name "Recycle garbage"
-	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <tons> of it to the industrial solid waste recycler on <destination>. Payment is <payment>.
+	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>.
 	job
 	repeat
 	cargo "Garbage" 15 100
@@ -1585,7 +1585,7 @@ mission "Recycle garbage"
 		attributes factory mining "dirt belt"
 		distance 10
 	on complete
-		dialog "You drop off the garbage at an especially smelly solid waste recycler and collect your payment of <payment>."
+		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment 20000 200
 
 mission "Provide security for pleasure cruise"
@@ -1645,7 +1645,6 @@ mission "Escort science vessel"
 	to offer
 		random < 40
 		"combat rating" > 10
-	passengers 7 12
 	source
 		attributes research
 	stopover
