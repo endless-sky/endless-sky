@@ -610,9 +610,21 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	}
 	
 	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && (ship.GetPersonality().IsFleeing() ||
-			(ship.Shields() + ship.Hull() < 1. && !ship.GetPersonality().IsHeroic())))
-		target.reset();
+	if(!isDisabled && (person.IsFleeing() || (ship.Shields() + ship.Hull() < 1. && !person.IsHeroic())))
+	{
+		// Make sure the ship has somewhere to flee to.
+		const System *system = ship.GetSystem();
+		if(ship.JumpsRemaining() && (!system->Links().empty() || ship.Attributes().Get("jump drive")))
+			target.reset();
+		else
+			for(const StellarObject &object : system->Objects())
+				if(object.GetPlanet() && object.GetPlanet()->HasSpaceport()
+						&& object.GetPlanet()->CanLand(ship))
+				{
+					target.reset();
+					break;
+				}
+	}
 	
 	return target;
 }
