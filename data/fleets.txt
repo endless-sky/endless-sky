@@ -404,8 +404,6 @@ fleet "Large Northern Merchants"
 	variant 30
 		"Behemoth"
 	variant 10
-		"Behemoth (Heavy)"
-	variant 10
 		"Behemoth (Speedy)"
 	variant 10
 		"Behemoth" 2
@@ -421,9 +419,6 @@ fleet "Large Northern Merchants"
 	variant 2
 		"Bulk Freighter"
 		"Headhunter (Particle)" 2
-	variant 3
-		"Behemoth (Heavy)"
-		"Behemoth (Speedy)"
 	variant 10
 		"Bulk Freighter"
 		"Sparrow" 2
@@ -442,9 +437,6 @@ fleet "Large Northern Merchants"
 	variant 10
 		"Behemoth" 2
 		"Firebird" 1
-	variant 3
-		"Behemoth (Heavy)" 2
-		"Firebird (Missile)" 1
 	variant 10
 		"Freighter" 4
 		"Sparrow" 2
