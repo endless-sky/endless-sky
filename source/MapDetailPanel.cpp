@@ -336,9 +336,9 @@ void MapDetailPanel::DrawKey() const
 		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
-		DotShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, true, false));
-		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, true, false));
-		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, true, false));
+		DotShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
+		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
+		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
 		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
