@@ -160,11 +160,12 @@ int DataNode::PrintTrace(const std::string &message) const
 		if(&token != &tokens.front())
 			line += ' ';
 		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
+		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
 		if(hasSpace)
-			line += '"';
+			line += hasQuote ? '`' : '"';
 		line += token;
 		if(hasSpace)
-			line += '"';
+			line += hasQuote ? '`' : '"';
 	}
 	Files::LogError(line);
 	

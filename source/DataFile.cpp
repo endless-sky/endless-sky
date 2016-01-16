@@ -141,6 +141,8 @@ void DataFile::Load(const char *it, const char *end)
 				node.tokens.emplace_back();
 			else
 				node.tokens.emplace_back(start, it);
+			if(isQuoted && *it == '\n')
+				node.PrintTrace("Closing quotation mark is missing:");
 			
 			if(*it != '\n')
 			{
