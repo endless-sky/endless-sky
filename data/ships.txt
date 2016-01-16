@@ -116,7 +116,7 @@ ship "Argosy"
 ship "Arrow"
 	sprite "ship/arrow"
 	attributes
-		category "Transport"
+		category "Luxury Transport"
 		"cost" 1200000
 		"shields" 2000
 		"hull" 400
@@ -990,7 +990,7 @@ ship "Firebird"
 ship "Flivver"
 	sprite "ship/flivver"
 	attributes
-		category "Transport"
+		category "Luxury Transport"
 		"cost" 180000
 		"shields" 1400
 		"hull" 200
@@ -2289,7 +2289,7 @@ ship "Star Barge"
 ship "Star Queen"
 	sprite "ship/star queen"
 	attributes
-		category "Transport"
+		category "Luxury Transport"
 		"cost" 5500000
 		"shields" 4100
 		"hull" 2200
