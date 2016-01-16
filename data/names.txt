@@ -249,7 +249,7 @@ phrase "civilian"
 		"Chen's"
 		"Mon Ping's"
 		"Ruslan's"
-		"Vladimir's
+		"Vladimir's"
 		"Olga's"
 		"Fyodor's"
 		"Hammurabi's"

@@ -65,7 +65,7 @@ phrase "friendly civilian"
 		" is easiest if you stick to the safe parts of the galaxy."
 		" is easiest if you take a lot of risks at the beginning so you can afford a better ship quickly."
 		" offers the best life in the galaxy."
-		" is the biggest thrill you'll ever know.
+		" is the biggest thrill you'll ever know."
 		" is the only way to control your own destiny."
 
 phrase "friendly civilian"

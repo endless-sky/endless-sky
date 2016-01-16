@@ -301,7 +301,7 @@ mission "FW Recon 1"
 			choice
 				`	"I was just wondering what sort of engines you've got that let you move so fast."`
 					goto engines
-				`	"Never mind sir, I was just admiring your... impressive equipment."
+				`	"Never mind sir, I was just admiring your... impressive equipment."`
 					goto equipment
 			label engines
 			`	"Nice, aren't they?" he says. "Atomic engines, the very latest in propulsion technology from Deep Sky. They're so smooth and responsive, I feel like I'm back piloting a shuttlecraft again."`
@@ -1142,9 +1142,9 @@ mission "FW Katya 7B"
 			`	"One more try," she says. "One last world, and then we give up. I want you to take me... there." She points at the moon, hanging just above the horizon.`
 			`	Eyes says, "Mining world. Dusty atmosphere. Frequent meteorite impacts. You could set off a nuke on the far side of that world and the miners would probably sleep right through it."`
 			choice
-				`	"Okay, I'll take you to this one last world, and then we're done."
+				`	"Okay, I'll take you to this one last world, and then we're done."`
 					accept
-				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."
+				`	"Sorry, 'one more world' is what you said two planets ago. I'm done with this."`
 					decline
 
 

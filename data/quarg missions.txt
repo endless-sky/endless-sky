@@ -30,7 +30,7 @@ mission "First Contact: Quarg"
 				`	"Can you tell me about the Quarg?"`
 					goto quarg
 				`	"Are there other alien species in the galaxy?"`
-				`	"It is an honor to speak with you, but I do not have any questions."
+				`	"It is an honor to speak with you, but I do not have any questions."`
 					decline
 			
 			`	"Many. Most of them young, so much younger than the Quarg. Many foolish. A few wise. Many travel only along the ancient roads between the stars. A few need no roads to travel by. And some reshape the galaxy at will. But the Quarg are like no other, because we have nothing that the others covet."`

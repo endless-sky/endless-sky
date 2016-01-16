@@ -1575,7 +1575,7 @@ mission "Large Rush Delivery [3]"
 
 mission "Recycle garbage"
 	name "Recycle garbage"
-	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>.
+	description "<origin> produces a lot of garbage that needs to be disposed of off-station. Transport <cargo> to the industrial solid waste recycler on <destination>. Payment is <payment>."
 	job
 	repeat
 	cargo "Garbage" 15 100

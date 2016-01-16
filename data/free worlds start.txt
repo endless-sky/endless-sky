@@ -28,7 +28,7 @@ mission "Liberate Kornephoros"
 				`	"Just fine. It'd take more than a few cruisers to destroy the <ship>."`
 			
 			`	"Glad to hear it," he says. "Listen, we need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system just for the sake of trade with the rest of the galaxy, and on top of that, of course, Katya needs to be rescued."`
-			`	"Indeed," you say.
+			`	"Indeed," you say.`
 			`	"We have a large fleet of reinforcements coming in from the Rim," he continues, "and a few ships here that are able to fight another battle. I need you to take off with them, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. If they stay and fight, disable them if you can, destroy them if you must. Understood?"`
 			choice
 				`	"Yes, sir."`

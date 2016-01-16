@@ -1903,7 +1903,7 @@ mission "FW Defend New Tibet"
 				decline
 			
 			label "definitely rescue"
-			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to drive the Syndicate ships away. Let's just hope these monks can stay hidden until then."
+			`	JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to drive the Syndicate ships away. Let's just hope these monks can stay hidden until then."`
 				accept
 	
 	on accept
