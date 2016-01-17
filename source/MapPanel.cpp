@@ -258,6 +258,8 @@ void MapPanel::Select(const System *system)
 		{
 			vector<const System *> oldPath = player.TravelPlan();
 			DistanceMap localDistance(player, oldPath.front());
+			if(localDistance.Distance(system) <= 0)
+				return;
 			player.ClearTravel();
 			
 			while(system != oldPath.front())
