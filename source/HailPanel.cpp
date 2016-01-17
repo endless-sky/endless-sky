@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
+#include "Random.h"
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteShader.h"
@@ -96,6 +97,9 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 		else if(canRepair)
 			message += "patch you up?";
 	}
+	
+	if(Random::Real() < 0.3)
+		message = player.GetRandomNewsItem();
 	
 	if(message.empty())
 		message = ship->GetHail();

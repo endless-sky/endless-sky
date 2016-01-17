@@ -175,8 +175,9 @@ government "Navy Intelligence"
 government "Korath"
 	swizzle 0
 	color .8 .5 .1
-	
+
 	"player reputation" -10
+	"jump drive fraction" 1.
 
 government "Quarg"
 	swizzle 0
@@ -187,6 +188,7 @@ government "Quarg"
 		"Merchant" .1
 		"Pirate" -.1
 	"hostile hail" "hostile quarg"
+	"jump drive fraction" 1.
 
 government "Pug"
 	swizzle 0
@@ -198,6 +200,7 @@ government "Pug"
 		"Pirate" -.1
 	"friendly hail" "friendly pug"
 	"hostile hail" "hostile pug"
+	"jump drive fraction" 1.
 
 government "Author"
 	"player reputation" 1

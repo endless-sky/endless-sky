@@ -15,15 +15,27 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Angle.h"
 #include "DataNode.h"
 #include "Date.h"
+#include "DistanceMap.h"
+#include "Reserves.h"
 #include "Fleet.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Messages.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
+#include "Random.h"
+#include "Trade.h"
+
+#include <cmath>
 
 using namespace std;
 
 namespace {
 	static const double NEIGHBOR_DISTANCE = 100.;
+	static const double RESERVE_MULTIPLIER = 1000.;
+	static const double PRODUCTION_MULTIPLIER = 0.51;
+	static const double CONSUMPTION_MULTIPLIER = 0.5;
+	static const double TRADE_MULTIPLIER = 0.02;
 }
 
 
@@ -392,10 +404,178 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 // Get the price of the given commodity in this system.
-int System::Trade(const string &commodity) const
+int System::Trade(const string &commodity, int64_t quantity) const
 {
 	auto it = trade.find(commodity);
-	return (it == trade.end()) ? 0 : it->second;
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	// This calculates the prices using the present commodity reserves,
+	// and is usually done unless the player is starting a new game or
+	// loading a game prior to the implementation of the dynamic economy.
+	int64_t reserves = Reserves(commodity);
+	
+	double scaleFactor = habitable*RESERVE_MULTIPLIER;
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return max(static_cast<int64_t>(com.low), min(static_cast<int64_t>(com.high),
+				static_cast<int64_t>(round(static_cast<double>((-1 + quantity - 2 * reserves) * com.low +
+				(-1 + 2 * scaleFactor + quantity - 2 * reserves) * com.high) / (2.0 * scaleFactor)))));
+	
+	return price;
+}
+
+
+
+// Get rate of production of a commodity in this system.
+int System::Production(const string &commodity) const
+{
+    // Production rate based upon equilibrium commodity price.
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return round(PRODUCTION_MULTIPLIER * (com.high - price) / (com.high + com.low) * habitable);
+	
+	return 0;
+}
+
+
+
+// Get the rate of consumption of a commodity in this system.
+int System::Consumption(const string &commodity) const
+{
+    // Consumption rate based upon equilibrium commodity price.
+    auto it = trade.find(commodity);
+    int price = (it == trade.end()) ? 0 : it->second;
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return round(CONSUMPTION_MULTIPLIER * (price - com.low) / (com.high + com.low) * habitable);
+	
+	return 0;
+}
+
+
+
+// Get the rate of interstellar trading of a commodity between this system and neighboring systems.
+// Currently, we are only considering systems that are reachable via hyperdrive; however there
+// should eventually be some logic for races with access to jump drives to be able to trade with
+// neighbors they can jump to.
+int System::Trading(const string &commodity) const
+{
+	int price = Trade(commodity);
+	double tradeAmount = 0.0;
+	double comNormalization = 1.0;
+	int64_t reserves = Reserves(commodity);
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+		{
+			comNormalization = (com.high + com.low);
+			break;
+		}
+	
+	// Conduct trade between neighboring inhabited systems, if we are ourselves are inhabited.
+	DistanceMap dm = DistanceMap(this, 32, 3);
+	
+	// Hyperspace first
+	for(const auto &it : GameData::Systems())
+		if (it.second.IsInhabited() && &it.second != this && dm.HasRoute(&it.second))
+		{
+			// Trade falls off as (number of jumps)^2.
+			double dist2 = pow(static_cast<double>(dm.Distance(&it.second)), 2);
+			double shortageFactor = (1.0 + log(static_cast<double>(max(1LL, min(reserves, (&it.second)->Reserves(commodity))))));
+			double population = habitable + (&it.second)->habitable;
+			tradeAmount += RESERVE_MULTIPLIER * TRADE_MULTIPLIER / shortageFactor / dist2 *
+			(price - (&it.second)->Trade(commodity)) / comNormalization * population;
+		}
+	
+	// Jumpable systems next.
+	string govName = government->GetName();
+	double jumpMultiplier = government->JumpDriveFraction();
+	
+	for(const System *neighbor : neighbors)
+		// Exclude the hyperspace systems as we've already counted them.
+		if (neighbor->IsInhabited() && find(links.begin(), links.end(), neighbor) == links.end())
+		{
+			govName = neighbor->government->GetName();
+			double neighborJumpMultiplier = neighbor->government->JumpDriveFraction();
+			double shortageFactor = (1.0 + log(static_cast<double>(max(1LL, min(reserves, neighbor->Reserves(commodity))))));
+			double population = jumpMultiplier * habitable + neighborJumpMultiplier * neighbor->habitable;
+			tradeAmount += RESERVE_MULTIPLIER * TRADE_MULTIPLIER / shortageFactor *
+			(price - neighbor->Trade(commodity)) / comNormalization * population;
+		}
+	
+	return round(tradeAmount);
+}
+
+
+
+// Randomly destroy or produce a large amount of a system's commodity.
+int System::BlessingsAndDisasters(PlayerInfo *player, const string &commodity) const
+{
+	if (Random::Real() > 0.0005)
+		return 0;
+	
+	int64_t reserves = Reserves(commodity);
+	double fraction;
+	if (Random::Int(2) == 0)
+	{
+		fraction = 0.5 + 0.15 * Random::Real();
+		player->AddNews("Disaster has struck " + name + ", " + to_string((int) round(100. * (1.0 - fraction))) +
+			"% of its " + commodity + " was destroyed!", player->GetDate());
+	}
+	else
+	{
+		fraction = 1.0 / (0.5 + 0.15 * Random::Real());
+		player->AddNews("A large shipment has arrived in " + name + ", " + to_string((int) round(100. * (fraction - 1.0))) +
+			"% increase in its holdings of " + commodity + "!", player->GetDate());
+		
+	}
+	return fraction * reserves;
+}
+
+
+
+// Get the initial reserves of a commodity in this system.
+int64_t System::InitialReserves(const string &commodity) const
+{
+	if (!IsInhabited())
+		return 0;
+	
+	auto it = trade.find(commodity);
+	int price = (it == trade.end()) ? 0 : it->second;
+	
+	for(const Trade::Commodity &com : GameData::Commodities())
+		if (com.name == commodity)
+			return round(RESERVE_MULTIPLIER * (com.high - price) / (com.high + com.low) * habitable);
+	
+	return 0;
+}
+
+
+
+// Get the current reserves of a commodity in this system.
+int64_t System::Reserves(const string &commodity) const
+{
+	return GameData::GetReserves().Amounts(this, commodity);
+}
+
+
+
+// Adjust the amount of reserves of a commodity in this system.
+void System::AdjustReserves(const std::string &commodity, int64_t adjustment) const
+{
+	GameData::GetReserves().AdjustAmounts(this, commodity, adjustment);
+}
+
+
+
+// Set the amount of reserves of a commodity in this system.
+void System::SetReserves(const std::string &commodity, int64_t adjustment) const
+{
+	GameData::GetReserves().SetAmounts(this, commodity, adjustment);
 }
 
 

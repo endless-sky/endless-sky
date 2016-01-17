@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 
 class DataNode;
+class Date;
 class Government;
 class Outfit;
 class Person;
@@ -151,6 +152,12 @@ public:
 	void MissionCallback(int response);
 	// Complete or fail a mission.
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
+	// Add an item to the list of news items.
+	void AddNews(const std::string &news, const Date &date);
+	// Return a random piece of news.
+	std::string GetRandomNewsItem() const;
+	// Remove news older than a certain number of days.
+	void RemoveStaleNews();
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 	
@@ -235,12 +242,15 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	
+	std::vector<std::pair<std::string, Date>> newsItems;
+	
 	const Outfit *selectedWeapon = nullptr;
 	
 	std::map<const Outfit *, int> soldOutfits;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
+	std::vector<std::tuple<const System *, std::string, int64_t>> reserveChanges;
 	std::list<DataNode> dataChanges;
 	// Persons that have been killed in this player's universe:
 	std::list<const Person *> destroyedPersons;

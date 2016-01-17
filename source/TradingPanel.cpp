@@ -26,7 +26,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Point.h"
 #include "Preferences.h"
+#include "Reserves.h"
 #include "System.h"
 #include "UI.h"
 
@@ -118,8 +120,9 @@ void TradingPanel::Draw() const
 	int y = FIRST_Y;
 	FillShader::Fill(Point(-60., y + 15.), Point(480., 1.), unselected);
 	
+	string pricePrefix = selling ? "Selling" : "Buying";
 	font.Draw("Commodity", Point(NAME_X, y), selected);
-	font.Draw("Price", Point(PRICE_X, y), selected);
+	font.Draw(pricePrefix + " Price", Point(PRICE_X, y), selected);
 	
 	string mod = "x " + to_string(Modifier());
 	font.Draw(mod, Point(BUY_X, y), unselected);
@@ -151,7 +154,15 @@ void TradingPanel::Draw() const
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		y += 20;
-		int price = system.Trade(commodity.name);
+		int hold = player.Cargo().Get(commodity.name);
+		
+		int amount;
+		if (selling)
+			amount = -min(Modifier(),hold);
+		else
+			amount = min(player.Cargo().Free(),Modifier());
+		
+		int price = system.Trade(commodity.name, amount);
 		
 		const Color &color = (i++ == selectedRow ? selected : unselected);
 		font.Draw(commodity.name, Point(NAME_X, y), color);
@@ -182,7 +193,6 @@ void TradingPanel::Draw() const
 			font.Draw("[sell]", Point(SELL_X, y), color);
 		}
 		
-		int hold = player.Cargo().Get(commodity.name);
 		if(hold)
 		{
 			canSell |= (price != 0);
@@ -219,12 +229,13 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		for(const auto &it : GameData::Commodities())
 		{
 			int amount = player.Cargo().Get(it.name);
-			int price = system.Trade(it.name);
+			int price = system.Trade(it.name, -amount);
 			if(!price)
 				continue;
 			
 			int64_t basis = player.GetBasis(it.name, -amount);
 			player.AdjustBasis(it.name, basis);
+			GameData::GetReserves().AdjustAmounts(&system, it.name, amount);
 			profit += amount * price + basis;
 			tonsSold += amount;
 			
@@ -245,6 +256,19 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(new MapDetailPanel(player, &selectedRow));
 	else
 		return false;
+	
+	return true;
+}
+
+
+
+bool TradingPanel::Hover(int x, int y)
+{
+	int maxY = FIRST_Y + 25 + 20 * GameData::Commodities().size();
+	if (x >= SELL_X && x < HOLD_X && y >= FIRST_Y + 25 && y < maxY)
+		selling = true;
+	else if (x >= BUY_X && x < SELL_X && y >= FIRST_Y + 25 && y < maxY)
+		selling = false;
 	
 	return true;
 }
@@ -289,17 +313,25 @@ void TradingPanel::Buy(int64_t amount)
 	
 	if(amount > 0)
 	{
-		amount = min(amount, player.Accounts().Credits() / price);
 		amount = min(amount, static_cast<int64_t>(player.Cargo().Free()));
+		// Converge to actual price
+		for (int i = 1; i <= 20; i++)
+		{
+			price = system.Trade(type, amount);
+			amount = min(amount, player.Accounts().Credits() / price);
+		}
 		player.AdjustBasis(type, amount * price);
+		GameData::GetReserves().AdjustAmounts(&system, type, -amount);
 	}
 	else
 	{
 		// Selling cargo:
 		amount = max(amount, static_cast<int64_t>(-player.Cargo().Get(type)));
+		price = system.Trade(type, amount);
 		
 		int64_t basis = player.GetBasis(type, amount);
 		player.AdjustBasis(type, basis);
+		GameData::GetReserves().AdjustAmounts(&system, type, -amount);
 		profit += -amount * price + basis;
 		tonsSold += -amount;
 	}

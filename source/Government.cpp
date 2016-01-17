@@ -59,6 +59,8 @@ void Government::Load(const DataNode &node)
 			color = Color(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "player reputation" && child.Size() >= 2)
 			initialPlayerReputation = child.Value(1);
+		else if(child.Token(0) == "jump drive fraction" && child.Size() >= 2)
+			jumpDriveFraction = child.Value(1);
 		else if(child.Token(0) == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -295,4 +297,11 @@ void Government::AddReputation(double value) const
 void Government::SetReputation(double value) const
 {
 	GameData::GetPolitics().SetReputation(this, value);
+}
+
+
+
+double Government::JumpDriveFraction() const
+{
+	return jumpDriveFraction;
 }

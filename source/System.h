@@ -25,6 +25,7 @@ class Date;
 class Fleet;
 class Government;
 class Planet;
+class PlayerInfo;
 
 
 
@@ -102,7 +103,31 @@ public:
 	const std::vector<Asteroid> &Asteroids() const;
 	
 	// Get the price of the given commodity in this system.
-	int Trade(const std::string &commodity) const;
+	int Trade(const std::string &commodity, int64_t quantity = 0) const;
+	
+	// Get the production rate of the given commodity in this system.
+	int Production(const std::string &commodity) const;
+	
+	// Get the consumition rate of the given commodity in this system.
+	int Consumption(const std::string &commodity) const;
+	
+	// Get the rate of interstellar trade of a given commodity in this system.
+	int Trading(const std::string &commodity) const;
+	
+	// Randomly destroy a large fraction of a system's commodity.
+	int BlessingsAndDisasters(PlayerInfo *player, const std::string &commodity) const;
+	
+	// Return the amount of a given commodity in this system.
+	int64_t Reserves(const std::string &commodity) const;
+	
+	// Get the price of the given commodity in this system.
+	int64_t InitialReserves(const std::string &commodity) const;
+	
+	// Adjust the reserves of a given commodity in this system.
+	void AdjustReserves(const std::string &commodity, int64_t adjustment) const;
+	
+	// Set the reserves of a given commodity in this system.
+	void SetReserves(const std::string &commodity, int64_t adjustment) const;
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;

@@ -101,6 +101,9 @@ public:
 	void AddReputation(double value) const;
 	void SetReputation(double value) const;
 	
+	// Get the fraction of ships in this government that have jump drives.
+	double JumpDriveFraction() const;
+	
 	
 private:
 	unsigned id;
@@ -118,6 +121,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	std::string language;
 	const Fleet *raidFleet = nullptr;
+	double jumpDriveFraction = 0.;
 };
 
 

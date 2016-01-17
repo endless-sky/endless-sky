@@ -28,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Random.h"
+#include "Reserves.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
@@ -119,6 +120,15 @@ void PlayerInfo::Load(const string &path)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
+		// Load commodity reserve information here.
+		else if(child.Token(0) == "reserves of")
+		{
+			for(const DataNode &grand : child)
+				for(const DataNode &greatgrand : grand)
+					if(greatgrand.Size() >= 2)
+						reserveChanges.emplace_back(GameData::Systems().Get(grand.Token(0)),
+							greatgrand.Token(0), greatgrand.Value(1));
+		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
@@ -135,6 +145,12 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
+		else if(child.Token(0) == "news")
+			for(const DataNode &grand : child)
+			{
+				if  (grand.Size() >= 4)
+					AddNews(grand.Token(0), Date(grand.Value(1), grand.Value(2), grand.Value(3)));
+			}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -267,6 +283,9 @@ void PlayerInfo::ApplyChanges()
 	for(const auto &it : reputationChanges)
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
+	for(const auto &it : reserveChanges)
+		get<0>(it)->SetReserves(get<1>(it), get<2>(it));
+	reserveChanges.clear();
 	AddChanges(dataChanges);
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
@@ -457,6 +476,11 @@ void PlayerInfo::IncrementDate()
 	string message = accounts.Step(assets, Salaries());
 	if(!message.empty())
 		Messages::Add(message);
+	
+	RemoveStaleNews();
+	
+	//for(int i = 0; i < 1000; ++i)
+		GameData::GetReserves().EvolveDaily(this);
 }
 
 
@@ -1273,6 +1297,39 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 
 
 
+void PlayerInfo::AddNews(const string &news, const Date &date)
+{
+	newsItems.push_back(pair<string, Date>(news, date));
+}
+
+
+
+void PlayerInfo::RemoveStaleNews()
+{
+	auto it = newsItems.begin();
+	
+	while (it != newsItems.end())
+	{
+		if (GetDate() - it->second > 14)
+			it = newsItems.erase(it);
+		else
+			++it;
+	}
+}
+
+
+
+string PlayerInfo::GetRandomNewsItem() const
+{
+	static const string EMPTY;
+	if (!newsItems.empty())
+		return newsItems[Random::Int(newsItems.size())].first;
+	
+	return EMPTY;
+}
+
+
+
 // Update mission status based on an event.
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
@@ -1621,6 +1678,19 @@ void PlayerInfo::Save(const string &path) const
 				out.Write(it.first, it.second.Reputation());
 	}
 	out.EndChild();
+	out.Write("reserves of");
+	out.BeginChild();
+	{
+		for(const auto &it : GameData::Systems())
+		{
+			out.Write(it.first);
+			out.BeginChild();
+				for(const Trade::Commodity &com : GameData::Commodities())
+					out.Write(com.name, GameData::GetReserves().Amounts(&it.second, com.name));
+			out.EndChild();
+		}
+	}
+	out.EndChild();
 		
 	// Save all the data for all the player's ships.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1698,4 +1768,16 @@ void PlayerInfo::Save(const string &path) const
 	for(const Planet *planet : visitedPlanets)
 		if(!planet->TrueName().empty())
 			out.Write("visited planet", planet->TrueName());
+	
+	// Save the list of news items
+	if(!newsItems.empty())
+	{
+		out.Write("news");
+		out.BeginChild();
+		{
+			for(const auto &item : newsItems)
+				out.Write(item.first, item.second.Day(), item.second.Month(), item.second.Year());
+		}
+		out.EndChild();
+	}
 }
