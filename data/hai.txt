@@ -335,6 +335,20 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 
+ship "Water Bug" "Water Bug (Jump)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret"
+		"Heavy Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"S-970 Regenerator"
+		"Cooling Ducts"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Jump Drive"
+
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	attributes

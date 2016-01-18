@@ -4374,6 +4374,7 @@ system "Ehma Ti"
 	trade Plastic 532
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
+	fleet "Unfettered Raid" 2500
 	object
 		sprite star/k0
 		period 10

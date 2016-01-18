@@ -335,7 +335,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Conversation: offered"
-		random < 100
+		random < 50
 	on offer
 		conversation
 			`Soon after you land in the spaceport, there is a flurry of activity as many of the Wanderers fly to their ships, which begin to take off from the planet. In the sky, you see bright flashes that may be distant weapons fire or explosions.`
@@ -409,3 +409,151 @@ mission "Wanderers: Defended Vara Ke'sok"
 		conversation
 			`One of the Wanderers thanks you for your assistance. "These foes become more [dangerous, aggressive]," it says. "You will report to [leaders, elders] on <planet>. They must decide our [action, response]."`
 				accept
+
+mission "Wanderers: Unfettered Diplomacy 1"
+	name "Unfettered Diplomacy"
+	description "Pick up a shipment of food on the Wanderer planet <destination>, to be delivered to the Unfettered as a peace offering."
+	landing
+	source "Vara K'chrai"
+	destination "Var' Kar'i'i"
+	passengers 1
+	to offer
+		has "Wanderers: Defended Vara Ke'sok: done"
+	on offer
+		conversation
+			`On <origin>, you meet up with Iktat Rek and the Hai ambassador Sayari, and tell them that you just helped to drive off an Unfettered raid on the Wanderer water world of Vara Ke'sok. "The situation is not [sustainable, livable]," says Rek. "Perhaps the Unfettered are the ones [chosen, intended] to [inherit, receive] the fruit of our labors here, but until the Eye beckons us to a new [home, place] we have nowhere else to go."`
+			choice
+				`	"You're saying that after working so hard to restore these worlds, you would give them to someone as destructive as the Unfettered?"`
+				`	"That can't be right. The Unfettered wrecked their own worlds. They would wreck yours as well."`
+			`	"That is the [way, calling] of the Wanderers," says Rek. "We [restore, repair] worlds and leave them to others, knowing that their new [caretakers, overseers] will squander their wealth."`
+			`	"But why?" you ask. "Why do so much work for the sake of others who will waste what you have made?"`
+			`	"Because we have tended the graveyards of a hundred failed species," says Rek, "who [spent, burned] all their resources before learning [wisdom, balance]. Put any creature in too small a cage, and it will [befoul, soil, defile] its own home and die. Give it more [space, opportunity] and it may flourish." He says to Sayari, "Ambassador, are we [foolish, simple] to have this hope?"`
+			`	Sayari says, "The Unfettered did not make war with you or with us until recently, when their three worlds began to die. Give them a new frontier, and we may have peace again."`
+			choice
+				`	"But what can we do about their attacks?"`
+					goto attacks
+				`	"Rather than helping to expand and clean up those 'cages,' why not do something about the ones who built those cages in the first place?"`
+			`	Sayari says, "Set every species loose to make war on each other? That would be foolishness. War favors the strong, not the wise."`
+			`	Iktat Rek nods in agreement. "Life is too [prolific, creative]," he says. "New species are born too often, and new planets, too seldom, if each species were to take all that it [demands, covets]. So, there must be [limits, divisions]."`
+			`	"Then what can we do about the Unfettered?" you ask, "Won't they eventually desire even more?"`
+			label attacks
+			`	Sayari says, "To buy time, you can offer them food in exchange for peace. Call it 'tribute,' not charity, or you will offend their pride."`
+			`	Rek says, "This is the best [plan, option] I have heard. <last>, will you carry me to <planet> to arrange for a shipment of food?"`
+			choice
+				`	"Sure, I can do that."`
+					accept
+				`	"Sorry, I don't want to assist the Wanderers any more."`
+					decline
+
+ship "Deep River" "Deep River (Jump, Unarmed)"
+	outfits
+		"White Sun Reactor"
+		"Dark Storm Shielding" 3
+		"Fuel Pod"
+		"Type 2 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Jump Drive"
+
+mission "Wanderers: Unfettered Diplomacy 1A"
+	name "Unfettered Diplomacy"
+	description `Escort a freighter carrying "tribute" to the Unfettered world of <destination>. You may need to bribe the Unfettered to keep them from attacking you.`
+	landing
+	source "Var' Kar'i'i"
+	destination "Firelode"
+	clearance
+	passengers 1
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1: done"
+	on offer
+		conversation
+			`Once you arrive on <origin>, Iktat Rek explains, "We have [captured, salvaged] a few jump drives from the Unfettered, and installed one in a freighter. To avoid [provoking, threatening] the Unfettered, the freighter is unarmed. It would be a bad start to our [diplomacy, peacemaking] to strike the Unfettered with Wanderer weapons."`
+			choice
+				`	"Does that mean I should not fire on them either?"`
+				`	"What should we do if they attack us, then?"`
+			`	"I would prefer that you avoid combat," he says. "The Unfettered are said to be [greedy, eager] for bribes, if you are willing to spend money to buy peace. Or simply avoid returning fire; the freighter is well shielded."`
+			`	It takes several hours for the massive Wanderer freighter to be loaded. Rek explains that they have kept track of which kinds of food the Unfettered prefer to steal, so they know what will be edible for them. He says, "Our destination is called <planet>. Sayari tells me that all Hai share a [custom, taboo] concerning guests, so once we land on their planet we will be able to [speak, parley] with them in safety."`
+				accept
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
+
+mission "Wanderers: Unfettered Diplomacy 1B"
+	name "Unfettered Diplomacy"
+	description "Escort this Wanderer freighter safely back to <destination>."
+	landing
+	source "Firelode"
+	destination "Var' Kar'i'i"
+	passengers 1
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1A: done"
+	on offer
+		conversation
+			`The Unfettered make no attempt to attack you once you have landed on their planet. The Wanderer crew begins unloading the crates of food onto the landing pad, and eventually a small delegation of Unfettered leaders approaches. Itkat Rek explains that the food is a peace offering.`
+			`	"It is far too little," says the Unfettered leader, "too little to pay us back for the ships you have destroyed and the worlds you have stolen. Until you give us back our worlds, we cannot have peace."`
+			choice
+				`	(Let Iktat Rek do the talking.)`
+					goto rek
+				`	"You mean the ships that were destroyed while they were pillaging the Wanderers? You expect them to pay you back for those?"`
+			`	"Peace, human," says Iktat Rek. "We are not here to decide who is right." He gestures to you to step back and allow him to speak with the Hai alone.`
+			label rek
+			`	"This is indeed only a [token, foretaste]," says Iktat Rek. "We have plenty more to offer, and surely you see that for us to fight each other is wasteful."`
+			`	They talk for a while longer. Eventually the Hai leader settles on a deal: "We will send you freighters. Whenever the freighter comes, you will fill it with food. If not, it is war. If you attack the freighter, it is war. And you must let us reclaim one of our worlds."`
+			`	Iktat Rek says, "We will give you food, but I am not [authorized, permitted] to give you a world. I must speak to our [government, elders]." The Hai agree to that, and you get ready to return the freighter to <planet>.`
+				accept
+	on accept
+		event "wanderer / unfettered peace"
+	npc accompany save
+		government "Wanderer"
+		personality timid escort
+		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
+
+fleet "Unfettered Tribute"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 3
+	variant
+		"Water Bug (Jump)"
+
+event "wanderer / unfettered peace"
+	"reputation: Hai (Unfettered)" >?= 1
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Hai" -.1
+			"Wanderer" 0
+			"Pug" -.1
+	system "Ehma Ti"
+		fleet "Small Unfettered" 500
+		fleet "Large Unfettered" 500
+		fleet "Unfettered Tribute" 1000
+	system "Chy'chra"
+		fleet "Wanderer Freight" 1500
+		fleet "Wanderer Drones" 1000
+		fleet "Wanderer Defense" 300
+		fleet "Unfettered Tribute" 2000
+	system "Prakacha'a"
+		fleet "Wanderer Freight" 400
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Defense" 400
+		fleet "Unfettered Tribute" 2000
+
+mission "Wanderers: Unfettered Diplomacy 1C"
+	name "Unfettered Diplomacy"
+	description "Return Iktat Rek to <destination>."
+	landing
+	source "Var' Kar'i'i"
+	destination "Vara K'chrai"
+	passengers 1
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1B: done"
+	on offer
+		conversation
+			`You drop the freighter off safely on <origin>. Iktat Rek says, "Now I must return to our home, to [discuss, plan] with our elders. We cannot trust the Unfettered with a world in our space; they would build a [garrison, war fleet] there and attack us. But perhaps this [agreement, settlement] will give us peace for long enough to find a better solution."`
+				accept
+	on complete
+		"reputation: Wanderer" >?= 20
+		set "license: Wanderer"
+		conversation
+			`When you return to <planet>, Iktat Rek meets with ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our ships, all but the [ship of war, battleship]."`
+			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
+			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
