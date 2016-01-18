@@ -36,8 +36,6 @@ class PlayerInfo;
 // the same target over and over.
 class AI {
 public:
-	AI();
-	
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
@@ -81,22 +79,23 @@ private:
 	
 	
 private:
-	int step;
+	int step = 0;
 	
 	Command keyDown;
 	Command keyHeld;
 	Command keyStuck;
-	bool isLaunching;
-	bool isCloaking;
-	bool shift;
+	bool isLaunching = false;
+	bool isCloaking = false;
+	bool shift = false;
 	
-	bool holdPosition;
-	bool moveToMe;
+	bool holdPosition = false;
+	bool moveToMe = false;
+	bool killDisabledSharedTarget = false;
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
 	std::weak_ptr<Ship> sharedTarget;
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
-	int landKeyInterval;
+	int landKeyInterval = 0;
 	
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;

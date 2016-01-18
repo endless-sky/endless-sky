@@ -67,14 +67,6 @@ namespace {
 
 
 
-AI::AI()
-	: step(0), keyDown(0), keyHeld(0), keyStuck(0), isLaunching(false),
-	isCloaking(false), shift(false), holdPosition(false), moveToMe(false), landKeyInterval(0)
-{
-}
-
-
-
 void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 {
 	shift = (SDL_GetModState() & KMOD_SHIFT);
@@ -134,6 +126,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		sharedTarget = target;
 		holdPosition = false;
 		moveToMe = false;
+		killDisabledSharedTarget = target->IsDisabled();
 		Messages::Add("All your ships are focusing their fire on \"" + target->Name() + "\".");
 	}
 	if(keyDown.Has(Command::HOLD))
@@ -153,7 +146,8 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 			: "Your fleet is no longer gathering around your flagship.");
 	}
 	if(sharedTarget.lock() && sharedTarget.lock()->IsDisabled())
-		sharedTarget.reset();
+		if(!killDisabledSharedTarget || sharedTarget.lock()->IsDestroyed())
+			sharedTarget.reset();
 }
 
 
@@ -497,8 +491,9 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	if(isPlayerEscort)
 	{
 		shared_ptr<Ship> locked = sharedTarget.lock();
-		if(locked && locked->GetSystem() == ship.GetSystem() && !locked->IsDisabled())
-			return locked;
+		if(locked && locked->GetSystem() == ship.GetSystem() && !locked->IsDestroyed())
+			if(killDisabledSharedTarget || !locked->IsDisabled())
+				return locked;
 	}
 	
 	// If this ship is not armed, do not make it fight.
@@ -1429,7 +1424,8 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 		{
 			bool hasBoarded = Has(ship, currentTarget, ShipEvent::BOARD);
 			if(currentTarget->IsDisabled() && spareDisabled && !hasBoarded)
-				continue;
+				if(!(isSharingTarget && killDisabledSharedTarget))
+					continue;
 			// Don't fire turrets at targets that are accelerating or decelerating
 			// rapidly due to hyperspace jumping.
 			if(weapon.IsTurret() && currentTarget->IsHyperspacing() && currentTarget->Velocity().Length() > 10.)
@@ -1468,7 +1464,8 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 			// Don't shoot ships we want to plunder.
 			bool hasBoarded = Has(ship, target, ShipEvent::BOARD);
 			if(target->IsDisabled() && spareDisabled && !hasBoarded)
-				continue;
+				if(!(ship.IsYours() && target == sharedTarget.lock() && killDisabledSharedTarget))
+					continue;
 			
 			Point p = target->Position() - start;
 			Point v = target->Velocity() - ship.Velocity();
