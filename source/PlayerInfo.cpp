@@ -564,10 +564,14 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	{
 		for(const shared_ptr<Ship> &it : ships)
 			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried() && !it->IsDisabled())
-				return it;
+			{
+				flagship = it;
+				break;
+			}
 	}
 	
-	return flagship;
+	static const shared_ptr<Ship> empty;
+	return flagship->IsYours() ? flagship : empty;
 }
 
 
