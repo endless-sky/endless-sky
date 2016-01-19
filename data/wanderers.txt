@@ -8,15 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-government "Wanderer"
-	swizzle 2
-	color .70 .91 .12
-	"player reputation" 1
-	language "Wanderer"
-	"friendly hail" "wanderer untranslated"
-	"hostile hail" "wanderer untranslated"
-
-
 ship "Earth Shaper"
 	sprite "ship/earth shaper"
 	licenses

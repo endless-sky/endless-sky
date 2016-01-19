@@ -8,46 +8,36 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+government "Author"
+	"player reputation" 1
+	"bribe" 0
+
+government "Bounty"
+	swizzle 6
+	"player reputation" -1000
+	"fine" 0
+	"hostile hail" "hostile pirate"
+
+government "Bounty Hunter"
+	swizzle 6
+	color .78 0 0
+
+	"player reputation" -1000
+	"bribe" .2
+	"fine" 0
+	"hostile hail" "hostile bounty hunter"
+
+government "Deep"
+	swizzle 0
+	"player reputation" -1000
+
+government "Derelict"
+	swizzle 0
+	"player reputation" 10
+
 government "Escort"
 	swizzle 5
 	"fine" 0
-
-government "Merchant"
-	swizzle 5
-	
-	"player reputation" 10
-	"attitude toward"
-		"Pirate" -.2
-		"Korath" -.2
-	"bribe" .05
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
-
-government "Neutral"
-	swizzle 0
-	color .84 .61 .37
-	
-	"player reputation" 1
-	"attitude toward"
-		"Pirate" -.2
-	"bribe" .05
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
-	raid "pirate raid"
-
-government "Republic"
-	swizzle 0
-	color .91 .42 .09
-	
-	"player reputation" 2
-	"attitude toward"
-		"Merchant" .25
-		"Militia" .1
-		"Pirate" -.3
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
-	raid "pirate raid"
 
 government "Free Worlds"
 	swizzle 2
@@ -62,6 +52,60 @@ government "Free Worlds"
 	"friendly hail" "friendly free worlds"
 	raid "pirate raid"
 
+government "Hai"
+	swizzle 0
+	color .69 .33 .82
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai (Unfettered)" -.5
+	"bribe" .02
+	"fine" 0
+	"friendly hail" "friendly hai"
+	"hostile hail" "hostile hai"
+
+government "Hai (Unfettered)"
+	swizzle 4
+	color .84 .42 .81
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Hai" -.1
+		"Wanderer" -.1
+		"Pug" -.1
+	"bribe" .02
+	"fine" 0
+	"hostile hail" "hostile unfettered"
+
+government "Independent"
+	swizzle 6
+	color .78 .36 .36
+	
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+	raid "Large Southern Pirates"
+
+government "Korath"
+	swizzle 0
+	color .8 .5 .1
+	
+	"player reputation" -10
+
+government "Merchant"
+	swizzle 5
+	
+	"player reputation" 10
+	"attitude toward"
+		"Pirate" -.2
+		"Korath" -.2
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
 government "Militia"
 	swizzle 2
 	color .06 .68 0
@@ -72,6 +116,89 @@ government "Militia"
 		"Pirate" -.4
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
+
+government "Navy Intelligence"
+	swizzle 0
+	"attitude toward"
+		"Syndicate" -.1
+
+government "Navy (Oathkeeper)"
+	swizzle 0
+	color .91 .42 .09
+	
+	"player reputation" 100
+	"attitude toward"
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
+
+government "Neutral"
+	swizzle 0
+	color .84 .61 .37
+	
+	"player reputation" 1
+	"attitude toward"
+		"Pirate" -.2
+	"bribe" .05
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+	raid "pirate raid"
+
+government "Parrot"
+	swizzle 2
+	"player reputation" 1
+	"bribe" 0
+
+government "Pirate"
+	swizzle 6
+	color .78 0 0
+	
+	"player reputation" -10
+	"attitude toward"
+		"Merchant" -.1
+		"Syndicate" -.1
+		"Korath" -.1
+		"Author" -.1
+	"bribe" .05
+	"fine" 0
+	"hostile hail" "hostile pirate"
+	raid "Large Southern Pirates"
+
+government "Pug"
+	swizzle 0
+	color .99 .89 .70
+	
+	"player reputation" 1
+	"attitude toward"
+		"Merchant" .1
+		"Pirate" -.1
+	"friendly hail" "friendly pug"
+	"hostile hail" "hostile pug"
+
+government "Quarg"
+	swizzle 0
+	color .88 .77 0
+	
+	"player reputation" 1
+	"attitude toward"
+		"Merchant" .1
+		"Pirate" -.1
+	"hostile hail" "hostile quarg"
+
+government "Republic"
+	swizzle 0
+	color .91 .42 .09
+	
+	"player reputation" 2
+	"attitude toward"
+		"Merchant" .25
+		"Militia" .1
+		"Pirate" -.3
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
+	raid "pirate raid"
 
 government "Syndicate"
 	swizzle 4
@@ -99,111 +226,17 @@ government "Syndicate (Extremist)"
 	"bribe" .08
 	"hostile hail" "hostile syndicate"
 
-government "Pirate"
-	swizzle 6
-	color .78 0 0
-	
-	"player reputation" -10
-	"attitude toward"
-		"Merchant" -.1
-		"Syndicate" -.1
-		"Korath" -.1
-		"Author" -.1
-	"bribe" .05
-	"fine" 0
-	"hostile hail" "hostile pirate"
-	raid "Large Southern Pirates"
-
-government "Bounty"
-	swizzle 6
-	"player reputation" -1000
-	"fine" 0
-	"hostile hail" "hostile pirate"
-
-government "Bounty Hunter"
-	swizzle 6
-	color .78 0 0
-
-	"player reputation" -1000
-	"bribe" .2
-	"fine" 0
-	"hostile hail" "hostile bounty hunter"
-
-government "Independent"
-	swizzle 6
-	color .78 .36 .36
-	
-	"player reputation" 10
-	"bribe" .05
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
-	raid "Large Southern Pirates"
-
 government "Test Dummy"
 	swizzle 3
 	"player reputation" -1000
 
-government "Derelict"
-	swizzle 0
-	"player reputation" 10
-
 government "Uninhabited"
 	color .3 .3 .3
 
-government "Deep"
-	swizzle 0
-	"player reputation" -1000
-
-government "Navy (Oathkeeper)"
-	swizzle 0
-	color .91 .42 .09
-	
-	"player reputation" 100
-	"attitude toward"
-		"Merchant" .25
-		"Militia" .1
-		"Pirate" -.3
-	"friendly hail" "friendly navy"
-	"hostile hail" "hostile navy"
-
-government "Navy Intelligence"
-	swizzle 0
-	"attitude toward"
-		"Syndicate" -.1
-
-government "Korath"
-	swizzle 0
-	color .8 .5 .1
-	
-	"player reputation" -10
-
-government "Quarg"
-	swizzle 0
-	color .88 .77 0
-	
-	"player reputation" 1
-	"attitude toward"
-		"Merchant" .1
-		"Pirate" -.1
-	"hostile hail" "hostile quarg"
-
-government "Pug"
-	swizzle 0
-	color .99 .89 .70
-	
-	"player reputation" 1
-	"attitude toward"
-		"Merchant" .1
-		"Pirate" -.1
-	"friendly hail" "friendly pug"
-	"hostile hail" "hostile pug"
-
-government "Author"
-	"player reputation" 1
-	"bribe" 0
-
-government "Parrot"
+government "Wanderer"
 	swizzle 2
+	color .70 .91 .12
 	"player reputation" 1
-	"bribe" 0
+	language "Wanderer"
+	"friendly hail" "wanderer untranslated"
+	"hostile hail" "wanderer untranslated"

@@ -8,31 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-government "Hai"
-	swizzle 0
-	color .69 .33 .82
-	
-	"player reputation" 0
-	"attitude toward"
-		"Hai (Unfettered)" -.5
-	"bribe" .02
-	"fine" 0
-	"friendly hail" "friendly hai"
-	"hostile hail" "hostile hai"
-
-government "Hai (Unfettered)"
-	swizzle 4
-	color .84 .42 .81
-	
-	"player reputation" -1000
-	"attitude toward"
-		"Hai" -.1
-		"Wanderer" -.1
-		"Pug" -.1
-	"bribe" .02
-	"fine" 0
-	"hostile hail" "hostile unfettered"
-
 fleet "Small Hai"
 	government "Hai"
 	names "hai"
