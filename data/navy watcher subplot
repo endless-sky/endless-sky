@@ -468,7 +468,7 @@ mission "Laboratory on Watcher 1"
 mission "Laboratory on Watcher 2"
 	landing
 	name "Build a research lab on Watcher"
-	description "Deliver prefab building materials and cosntruction workers to Watcher."
+	description "Deliver prefab building materials and construction workers to Watcher."
 	source
 		government Republic "Free Worlds" Neutral Syndicate
 	destination Watcher
