@@ -190,7 +190,7 @@ mission "Expedition to Watcher 1"
 					accept
 				`	"What are you paying?"`
 				`	"Sorry, I'm not heading that way."`
-					decline
+					defer
 			`	"In our research grant, we budgeted for thirty-two thousand credits. I know it's not much, but..." One of the younger scientists, perhaps in his mid-thirties, excitedly interrupts, "We have reason to believe there might be novel compounds useful in anesthesia. I mean, this could be a huge medical breakthrough!"`
 			choice
 				`	"You sold me. Let's go."`
