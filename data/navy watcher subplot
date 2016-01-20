@@ -263,7 +263,7 @@ mission "Poachers 1"
 				`	"Okay, where do I pick him up?"`
 					goto equip
 				`	"Sorry, I'm not heading back toward Hermes any time soon."`
-					decline
+					defer
 			label equip
 			`	"Okay, where do I pick him up?" you ask cheerfully, trying to put the officer at ease.`
 			`	"He's still on Hermes. But his... I mean the equipment he needs, his research equipment, is here. Not much, just a couple tons. So you'll take that to Hermes, pick up my brother, go to Watcher..." His voice trails off.`
