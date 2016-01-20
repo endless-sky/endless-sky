@@ -571,7 +571,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	}
 	
 	static const shared_ptr<Ship> empty;
-	return flagship->IsYours() ? flagship : empty;
+	return (flagship && flagship->IsYours()) ? flagship : empty;
 }
 
 
