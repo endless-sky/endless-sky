@@ -1107,6 +1107,11 @@ bool Ship::Move(list<Effect> &effects)
 		}
 	}
 	
+	// Clear your target if it is destroyed.
+	target = targetShip.lock();
+	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+		targetShip.reset();
+	
 	// And finally: move the ship!
 	position += velocity;
 	
