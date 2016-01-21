@@ -715,7 +715,7 @@ ship "Corvette"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "Incorporating new, experimental lightweight materials, the Lionheart Corvette combines the speed and agility of a fighter with the armament of a heavy warship. It weak hull is more than compensated for by its advanced shielding matrix."
+	description "Incorporating new, experimental lightweight materials, the Lionheart Corvette combines the speed and agility of a fighter with the armament of a heavy warship. Its weak hull is more than compensated for by its advanced shielding matrix."
 
 
 
