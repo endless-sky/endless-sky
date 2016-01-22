@@ -4253,10 +4253,10 @@ system Durax
 	trade Medical 791
 	trade Metal 329
 	trade Plastic 372
-	fleet "Small Southern Pirates" 300
-	fleet "Large Southern Pirates" 500
-	fleet "Large Syndicate" 2000
-	fleet "Korath Raid" 20000
+	fleet "Small Southern Pirates" 600
+	fleet "Large Southern Pirates" 900
+	fleet "Large Syndicate" 2500
+	fleet "Korath Raid" 5000
 	object
 		sprite star/g0
 		period 10
