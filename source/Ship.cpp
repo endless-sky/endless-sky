@@ -1602,9 +1602,12 @@ void Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	SetTargetShip(shared_ptr<Ship>());
 	SetTargetPlanet(nullptr);
 	SetTargetSystem(nullptr);
+	shipToAssist.reset();
 	commands.Clear();
 	isDisabled = false;
 	hyperspaceSystem = nullptr;
+	destination = nullptr;
+	landingPlanet = nullptr;
 	
 	isSpecial = capturer->isSpecial;
 	personality = capturer->personality;
