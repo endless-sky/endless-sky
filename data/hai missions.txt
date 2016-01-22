@@ -120,6 +120,7 @@ mission "First Contact: Unfettered"
 
 mission "Unfettered Jump Drive 1"
 	name "More Jump Drives"
+	minor
 	description "The Unfettered Hai have promised you rich rewards if you bring them more Jump Drives."
 	landing
 	to offer
@@ -174,6 +175,7 @@ mission "Unfettered Jump Drive 1"
 
 mission "Unfettered Jump Drive 2"
 	name "More Jump Drives"
+	minor
 	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more Jump Drives."
 	landing
 	to offer
@@ -274,6 +276,7 @@ mission "Unfettered Tribute 3"
 
 mission "Unfettered Jump Drive 3"
 	name "More Jump Drives"
+	minor
 	description "If you find more Jump Drives, you can sell them to the Unfettered Hai for considerably more money than they are worth elsewhere."
 	landing
 	to offer
@@ -332,6 +335,7 @@ mission "Unfettered Jump Drive 3"
 
 mission "Unfettered Jump Drive 4"
 	repeat
+	minor
 	to offer
 		has "Unfettered Jump Drive 3: offered"
 	to complete
@@ -358,6 +362,7 @@ mission "Unfettered Jump Drive 4"
 
 mission "Unfettered returning home"
 	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
+	minor
 	source
 		attributes unfettered
 	destination Hai-home
