@@ -461,6 +461,8 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
 	forget = 1;
+	targetShip.reset();
+	shipToAssist.reset();
 	if(government)
 		sprite.SetSwizzle(government->GetSwizzle());
 }
