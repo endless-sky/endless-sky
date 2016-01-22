@@ -608,6 +608,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		
 		accounts.AddCredits(-model->Cost());
+		flagship.reset();
 	}
 }
 
@@ -624,6 +625,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 			
 			accounts.AddCredits(selected->Cost());
 			ships.erase(it);
+			flagship.reset();
 			return;
 		}
 }
@@ -639,6 +641,7 @@ void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 		{
 			(*it)->SetIsParked(isParked);
 			UpdateCargoCapacities();
+			flagship.reset();
 			return;
 		}
 }
@@ -673,6 +676,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	shared_ptr<Ship> ship = ships[fromIndex];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
+	flagship.reset();
 }
 
 
@@ -869,6 +873,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
+	flagship.reset();
 	flagship = FlagshipPtr();
 	if(!flagship)
 		return;
