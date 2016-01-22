@@ -73,10 +73,10 @@ mission "Pact Recon 1"
 	waypoint "Eber"
 	waypoint "Alpha Arae"
 	source
-		attributes south "dirt belt" rim quarg "near earth"
+		attributes south "dirt belt" rim "near earth"
 	destination Glaze
 	to offer
-		random < 30
+		random < 40
 		not "event: war begins"
 		has "Pact Recon 0: done"
 	
@@ -100,10 +100,10 @@ mission "Pact Recon 2"
 	waypoint "Shaula"
 	waypoint "Nunki"
 	source
-		attributes south "dirt belt" rim quarg "near earth"
+		attributes south "dirt belt" rim "near earth"
 	destination Glaze
 	to offer
-		random < 30
+		random < 40
 		not "event: war begins"
 		has "Pact Recon 1: done"
 	
@@ -127,10 +127,10 @@ mission "Pact Recon 3"
 	waypoint "Naper"
 	waypoint "Boral"
 	source
-		attributes south "dirt belt" rim quarg "near earth"
+		attributes south "dirt belt" rim "near earth"
 	destination Glaze
 	to offer
-		random < 30
+		random < 40
 		not "event: war begins"
 		has "Pact Recon 2: done"
 	
