@@ -36,7 +36,7 @@ class System;
 // the systems based on a selected criterion. It also handles finding and
 // drawing routes in between systems.
 class MapPanel : public Panel {
-protected:
+public:
 	// Enumeration for how the systems should be colored:
 	static const int SHOW_SHIPYARD = -1;
 	static const int SHOW_OUTFITTER = -2;
