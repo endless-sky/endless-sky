@@ -72,6 +72,12 @@ void MenuPanel::Step()
 		if(scroll >= (20 * credits.size() + 300) * scrollSpeed)
 			scroll = 0;
 	}
+	progress = static_cast<int>(GameData::Progress() * 60.);
+	if(progress == 60 && !isReady)
+	{
+		gamePanels.Push(new MainPanel(player));
+		isReady = true;
+	}
 }
 
 
@@ -114,14 +120,8 @@ void MenuPanel::Draw() const
 	const Interface *menu = GameData::Interfaces().Get("main menu");
 	menu->Draw(info);
 	
-	int progress = static_cast<int>(GameData::Progress() * 60.);
-	
 	if(progress == 60)
-	{
-		if(!gamePanels.Root())
-			gamePanels.Push(new MainPanel(player));
 		alpha -= .02f;
-	}
 	if(alpha > 0.f)
 	{
 		Angle da(6.);
@@ -170,7 +170,7 @@ void MenuPanel::OnCallback(int)
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
-	if(GameData::Progress() < 1.)
+	if(!isReady)
 		return false;
 	
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
