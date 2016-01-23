@@ -786,6 +786,14 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	// Copy the stopover planet list, and populate the list based on the filters
 	// that were given.
 	result.stopovers = stopovers;
+	// Make sure they all exist in a valid system.
+	for(auto it = result.stopovers.begin(); it != result.stopovers.end(); )
+	{
+		if((*it)->GetSystem())
+			++it;
+		else
+			it = result.stopovers.erase(it);
+	}
 	for(const LocationFilter &filter : stopoverFilters)
 	{
 		const Planet *planet = PickPlanet(filter, player);

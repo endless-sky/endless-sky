@@ -220,6 +220,8 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 
 bool LocationFilter::Matches(const System *system, const System *origin) const
 {
+	if(!system || !origin)
+		return false;
 	if(!systems.empty() && systems.find(system) == systems.end())
 		return false;
 	if(!governments.empty() && governments.find(system->GetGovernment()) == governments.end())

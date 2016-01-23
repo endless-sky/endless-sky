@@ -1337,6 +1337,8 @@ bool PlayerInfo::HasSeen(const System *system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System *system) const
 {
+	if(!system)
+		return false;
 	return (visitedSystems.find(system) != visitedSystems.end());
 }
 
@@ -1345,6 +1347,8 @@ bool PlayerInfo::HasVisited(const System *system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const Planet *planet) const
 {
+	if(!planet)
+		return false;
 	return (visitedPlanets.find(planet) != visitedPlanets.end());
 }
 
@@ -1373,6 +1377,9 @@ bool PlayerInfo::KnowsName(const System *system) const
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const System *system)
 {
+	if(!system)
+		return;
+	
 	visitedSystems.insert(system);
 	seen.insert(system);
 	for(const System *neighbor : system->Neighbors())

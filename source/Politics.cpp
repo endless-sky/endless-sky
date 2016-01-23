@@ -132,7 +132,7 @@ void Politics::Bribe(const Government *gov)
 // Check if the given ship can land on the given planet.
 bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
-	if(!planet)
+	if(!planet || !planet->GetSystem())
 		return false;
 	if(!planet->HasSpaceport())
 		return true;
@@ -149,7 +149,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 
 bool Politics::CanLand(const Planet *planet) const
 {
-	if(!planet)
+	if(!planet || !planet->GetSystem())
 		return false;
 	if(!planet->HasSpaceport())
 		return true;
@@ -167,6 +167,8 @@ bool Politics::CanLand(const Planet *planet) const
 
 bool Politics::CanUseServices(const Planet *planet) const
 {
+	if(!planet || !planet->GetSystem())
+		return false;
 	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
 		return true;
 	
