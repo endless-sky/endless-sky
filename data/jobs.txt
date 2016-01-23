@@ -1583,7 +1583,7 @@ mission "Recycle garbage"
 		attributes station
 	destination
 		attributes factory mining "dirt belt"
-		distance 10
+		distance 9 12
 	on complete
 		dialog "You drop off the <commodity> at an especially smelly solid waste recycler and collect your payment of <payment>."
 		payment 20000 200
@@ -1601,8 +1601,10 @@ mission "Provide security for pleasure cruise"
 		attributes paradise "near earth" rich
 	stopover
 		attributes tourism religious quarg pirate volcanic frontier moon fishing
+		distance 6 15
 	destination
 		attributes paradise "near earth" rich core
+		distance 1 6
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -1708,7 +1710,7 @@ mission "Corporate espionage"
 	destination
 		government "Syndicate"
 		attributes research
-		distance 7
+		distance 6 8
 	npc "scan cargo"
 		government Merchant
 		personality timid fleeing uninterested entering
