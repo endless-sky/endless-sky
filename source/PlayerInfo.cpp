@@ -770,6 +770,7 @@ void PlayerInfo::Land(UI *ui)
 				ship->Recharge();
 			
 			ship->Cargo().TransferAll(&cargo);
+			ship->SetPlanet(planet);
 		}
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
