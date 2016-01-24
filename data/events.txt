@@ -1813,8 +1813,10 @@ event "pug flee"
 
 
 event "pug territory liberated"
-	system "Orvala"
+	system Orvala
 		government "Free Worlds"
+	system Nocte
+		government Republic
 	system "Zeta Aquilae"
 		government "Free Worlds"
 	system Rasalhague
@@ -2347,6 +2349,8 @@ event "fwc pug defeated"
 		fleet "Large Republic" 900
 		fleet "Small Syndicate" 1200
 		fleet "Large Syndicate" 2000
+	system Nocte
+		government Republic
 
 
 
