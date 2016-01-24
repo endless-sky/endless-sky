@@ -1,3 +1,40 @@
+Version 0.8.11:
+  * Bug fixes:
+    * The new Pug mission is now offered on the proper planet.
+    * Typo fixes. (@Pointedstick, @zwparchman)
+    * Missions that take away one outfit and give another now always work properly.
+    * Fixed a bug where escorts in mid-jump when you land end up far from the system center.
+    * The game no longer hangs in the map if you shift-click an unreachable system.
+    * Fixed a bug where you retain control of your flagship after it is captured.
+    * If a target NPC dies, turrets no longer continue to fire in its direction.
+    * Fixed a bug where reordering your ships was not changing your flagship.
+    * If you land while an escort is your target, then park it, your target is now cleared.
+    * Fixed the system coloring when you pop up the map from a conversation panel.
+    * Main menu no longer freezes if you "enter ship" just as it finishes loading.
+    * Planets with no star system defined for them will no longer crash the game.
+  * Game content:
+    * Added a mission string that gives you permission to buy most Wanderer ships.
+    * Fixed an incorrect mass for the White Sun Reactor.
+    * Fixed the price of the Wanderer Type 4 Thruster.
+    * Alexandria Station can now be bribed, for players without a good Republic reputation.
+    * More ship names (@Pointedstick).
+    * The Wanderers now sell local maps.
+    * Fixed some inaccurate ship descriptions.
+    * Gave the Wanderer "Summer Leaf" ship a bit more cargo and outfit space.
+    * Made the Southern Mutual Defense Pact missions get offered a bit more often.
+    * Made Korath raids more frequent in one system so you can hunt them without save-scumming.
+    * Fixed some jobs that had no maximum distance specified.
+    * Fixed an annoying click in the jump drive sound effect.
+  * Game mechanics:
+    * Plundered ammo now reloads your weapons if you have the proper launcher.
+    * Ships now recharge / refuel when you buy or sell outfits (e.g. fuel pods).
+    * Ships with nowhere to flee to will now fight to the death instead of giving up.
+    * Ships now clear their "ship to assist" order if they are captured.
+  * User interface:
+    * A system is now shown as dominated only if every inhabited planet is dominated.
+    * The "fight current target" key can now order escorts to kill a disabled ship.
+    * The data parser now reports unmatched quotation marks.
+
 Version 0.8.10:
   * Bug fixes:
     * Mouse clicks on the map are now correctly handled at all zoom levels.
