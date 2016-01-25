@@ -14584,7 +14584,7 @@ planet Dustmaker
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
 
 planet Earth
-	attributes "near earth" urban tourism
+	attributes "near earth" urban tourism religious
 	landscape land/city3
 	description `The ancestral home world of humanity, Earth has a population ten times that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
