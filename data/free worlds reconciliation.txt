@@ -1039,6 +1039,8 @@ mission "FW Pug 2A"
 			label yes
 			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship. "There's no telling how long the link will remain open," he says. "So, we must hurry to the Syndicate headquarters on <planet> immediately."`
 				accept
+	on complete
+		"reputation: Syndicate" >?= 1
 	
 	npc
 		system "Sol"
@@ -1066,6 +1068,7 @@ mission "FW Pug 2A Visit"
 		has "FW Pug 2A: active"
 	
 	on offer
+		"reputation: Syndicate" >?= 1
 		conversation
 			`Oddly, when you land on <origin> you find that the people here are in as much of a state of confusion and fear as back on Earth. Either no one knows what is going on and why they have been nearly cut off from the rest of human space, or every single person you talk to is united in a conspiracy to feign ignorance. They urge you to continue your journey to meet with the Syndicate executives on Foundry. "Maybe you can talk some sense into them," says one merchant captain. "First the nukes, and now this. The extremist faction within the Syndicate is getting out of hand."`
 				decline

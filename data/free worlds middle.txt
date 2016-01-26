@@ -1641,7 +1641,7 @@ mission "FW Albatross 2A"
 				accept
 	
 	npc kill
-		personality staying plunders disables
+		personality staying plunders disables heroic nemesis
 		system Orvala
 		government Pirate
 		ship "Bastion (Heavy)" "Dread"
