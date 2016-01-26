@@ -1709,7 +1709,7 @@ mission "Corporate espionage"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		government "Syndicate"
-		attributes research
+		planet Sunracer Foundry Hephaestus Tinker
 		distance 6 8
 	npc "scan cargo"
 		government Merchant
