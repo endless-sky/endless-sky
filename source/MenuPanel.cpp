@@ -38,6 +38,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	static bool isReady = false;
 	static float alpha = 1.;
 	static const int scrollSpeed = 2;
 }
@@ -75,7 +76,8 @@ void MenuPanel::Step()
 	progress = static_cast<int>(GameData::Progress() * 60.);
 	if(progress == 60 && !isReady)
 	{
-		gamePanels.Push(new MainPanel(player));
+		if(gamePanels.IsEmpty())
+			gamePanels.Push(new MainPanel(player));
 		isReady = true;
 	}
 }

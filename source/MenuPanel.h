@@ -49,7 +49,6 @@ private:
 	std::vector<std::string> credits;
 	unsigned scroll;
 	int progress = 0;
-	bool isReady = false;
 };
 
 
