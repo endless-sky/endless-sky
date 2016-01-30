@@ -2097,7 +2097,7 @@ const StellarObject *Ship::GetTargetPlanet() const
 
 const System *Ship::GetTargetSystem() const
 {
-	return targetSystem;
+	return (targetSystem == currentSystem) ? nullptr : targetSystem;
 }
 
 
