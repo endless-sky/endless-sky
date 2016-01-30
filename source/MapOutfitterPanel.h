@@ -61,6 +61,8 @@ private:
 	const Outfit *compare = nullptr;
 	
 	mutable std::vector<ClickZone<const Outfit *>> zones;
+	mutable std::vector<ClickZone<std::string>> categoryZones;
+	std::map<std::string, bool> hideCategory;
 	
 	int scroll = 0;
 	mutable int maxScroll = 0;

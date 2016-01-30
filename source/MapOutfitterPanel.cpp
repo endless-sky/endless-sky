@@ -249,6 +249,19 @@ bool MapOutfitterPanel::Click(int x, int y)
 			if(zone.Contains(point))
 				(isCompare ? compare : selected) = zone.Value();
 		
+		for(const ClickZone<string> &zone : categoryZones)
+			if(zone.Contains(point))
+			{
+				bool set = !hideCategory[zone.Value()];
+				if(!isCompare)
+					hideCategory[zone.Value()] = set;
+				else
+					for(const string &category : CATEGORIES)
+						hideCategory[category] = set;
+				
+				break;
+			}
+		
 		return true;
 	}
 	else
@@ -402,7 +415,6 @@ void MapOutfitterPanel::DrawItems() const
 	Color selectionColor(0., .3);
 	
 	Point corner = Screen::TopLeft() + Point(0, scroll);
-	double firstY = corner.Y();
 	Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 	Point nameOffset(ICON_HEIGHT, .5 * ICON_HEIGHT - PAD - 1.5 * font.Height());
 	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + PAD);
@@ -410,16 +422,24 @@ void MapOutfitterPanel::DrawItems() const
 	Point blockSize(WIDTH, ICON_HEIGHT);
 	
 	zones.clear();
+	categoryZones.clear();
+	bool hidPrevious = true;
 	for(const string &category : CATEGORIES)
 	{
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
 		
-		if(corner.Y() != firstY)
+		auto hit = hideCategory.find(category);
+		bool hide = (hit != hideCategory.end() && hit->second);
+		if(!hidPrevious)
 			corner.Y() += 50.;
-		bigFont.Draw(category, corner + Point(5., 15.), bright);
+		hidPrevious = hide;
+		bigFont.Draw(category, corner + Point(5., 15.), hide ? dimTextColor : bright);
+		categoryZones.emplace_back(corner + Point(WIDTH * .5, 20.), Point(WIDTH, 40.), category);
 		corner += Point(0., 40.);
+		if(hide)
+			continue;
 		
 		for(const Outfit *outfit : it->second)
 		{

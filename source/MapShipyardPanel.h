@@ -61,6 +61,8 @@ private:
 	const Ship *compare = nullptr;
 	
 	mutable std::vector<ClickZone<const Ship *>> zones;
+	mutable std::vector<ClickZone<std::string>> categoryZones;
+	std::map<std::string, bool> hideCategory;
 	
 	int scroll = 0;
 	mutable int maxScroll = 0;
