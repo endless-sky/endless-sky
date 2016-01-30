@@ -27,6 +27,7 @@ using namespace std;
 void Weapon::LoadWeapon(const DataNode &node)
 {
 	isWeapon = true;
+	bool isClustered = false;
 	
 	for(const DataNode &child : node)
 	{
@@ -65,6 +66,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 		}
 		else if(child.Token(0) == "stream")
 			isStreamed = true;
+		else if(child.Token(0) == "cluster")
+			isClustered = true;
 		else if(child.Size() >= 2)
 		{
 			if(child.Token(0) == "lifetime")
@@ -122,6 +125,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// firing all at once (clustering) if the weapon is not an anti-missile and
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	isStreamed |= !(MissileStrength() || AntiMissile());
+	isStreamed &= !isClustered;
 	
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
