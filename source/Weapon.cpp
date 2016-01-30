@@ -43,6 +43,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			fireEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(child.Token(0) == "live effect" && child.Size() >= 2)
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			liveEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(child.Token(0) == "hit effect" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -110,6 +115,19 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	
+	if(lifetime <= 0)
+		liveEffects.clear();
+	for(auto it = liveEffects.begin(); it != liveEffects.end(); )
+	{
+		if(!it->second)
+			it = liveEffects.erase(it);
+		else
+		{
+			it->second = max(1, lifetime / it->second);
+			++it;
+		}
+	}
 }
 
 
@@ -154,6 +172,13 @@ const Sprite *Weapon::Icon() const
 const map<const Effect *, int> &Weapon::FireEffects() const
 {
 	return fireEffects;
+}
+
+
+
+const map<const Effect *, int> &Weapon::LiveEffects() const
+{
+	return liveEffects;
 }
 
 

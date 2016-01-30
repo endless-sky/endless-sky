@@ -44,6 +44,7 @@ public:
 	
 	// Effects to be created at the start or end of the weapon's lifetime.
 	const std::map<const Effect *, int> &FireEffects() const;
+	const std::map<const Effect *, int> &LiveEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::map<const Outfit *, int> &Submunitions() const;
@@ -92,6 +93,7 @@ private:
 	
 	// Fire, die and hit effects.
 	std::map<const Effect *, int> fireEffects;
+	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::map<const Outfit *, int> submunitions;
