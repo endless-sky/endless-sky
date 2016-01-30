@@ -63,6 +63,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
 		}
+		else if(child.Token(0) == "stream")
+			isStreamed = true;
 		else if(child.Size() >= 2)
 		{
 			if(child.Token(0) == "lifetime")
@@ -116,6 +118,13 @@ void Weapon::LoadWeapon(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 	
+	// Weapons of the same type will alternate firing (streaming) rather than
+	// firing all at once (clustering) if the weapon is not an anti-missile and
+	// is not vulnerable to anti-missile, or has the "stream" attribute.
+	isStreamed |= !(MissileStrength() || AntiMissile());
+	
+	// Convert the "live effect" counts from occurrences per projectile lifetime
+	// into chance of occurring per frame.
 	if(lifetime <= 0)
 		liveEffects.clear();
 	for(auto it = liveEffects.begin(); it != liveEffects.end(); )

@@ -274,7 +274,7 @@ void Armament::Add(const Outfit *outfit, int count)
 	
 	// If this weapon is streamed, create a stream counter. Missiles and anti-
 	// missiles do not stream.
-	if(!outfit->MissileStrength() && !outfit->AntiMissile())
+	if(outfit->IsStreamed())
 	{
 		auto it = streamReload.find(outfit);
 		if(it == streamReload.end())
@@ -304,7 +304,7 @@ void Armament::FinishLoading()
 			weapon.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
 			// Missiles and anti-missiles do not stream.
-			if(!outfit->MissileStrength() && !outfit->AntiMissile())
+			if(outfit->IsStreamed())
 				++streamReload[outfit];
 		}
 }

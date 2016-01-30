@@ -56,6 +56,10 @@ public:
 	
 	int MissileStrength() const;
 	int AntiMissile() const;
+	// Weapons of the same type will alternate firing (streaming) rather than
+	// firing all at once (clustering) if the weapon is not an anti-missile and
+	// is not vulnerable to anti-missile, or has the "stream" attribute.
+	bool IsStreamed() const;
 	
 	double Velocity() const;
 	double Acceleration() const;
@@ -100,6 +104,7 @@ private:
 	
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
+	bool isStreamed = false;
 	
 	// Attributes.
 	int lifetime = 0;
@@ -148,6 +153,7 @@ inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
+inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
