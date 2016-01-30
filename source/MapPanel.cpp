@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
-#include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Galaxy.h"
@@ -25,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteShader.h"
@@ -94,10 +94,10 @@ void MapPanel::Draw() const
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1, 0.);
-	DotShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
 		100.5 * Zoom(), 99.5 * Zoom(), dimColor);
 	Color brightColor(.4, 0.);
-	DotShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
+	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11., 9., brightColor);
 	
 	DrawWormholes();
@@ -630,7 +630,7 @@ void MapPanel::DrawSystems() const
 			}
 		}
 		
-		DotShader::Draw(pos, OUTER, INNER, color);
+		RingShader::Draw(pos, OUTER, INNER, color);
 	}
 }
 

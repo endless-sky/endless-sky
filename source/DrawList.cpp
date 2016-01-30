@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DrawList.h"
 
 #include "Animation.h"
-#include "BlurShader.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -89,28 +88,15 @@ bool DrawList::Add(const Sprite *sprite, Point pos, Point unit, Point blur, doub
 // Draw all the items in this list.
 void DrawList::Draw() const
 {
-	if(Preferences::Has("Render motion blur"))
-	{
-		BlurShader::Bind();
-	
-		for(const Item &item : items)
-			BlurShader::Add(item.Texture0(), item.Texture1(),
-				item.Position(), item.Transform(),
-				item.Swizzle(), item.Clip(), item.Fade(), item.Blur());
-	
-		BlurShader::Unbind();
-	}
-	else
-	{
-		SpriteShader::Bind();
-	
-		for(const Item &item : items)
-			SpriteShader::Add(item.Texture0(), item.Texture1(),
-				item.Position(), item.Transform(),
-				item.Swizzle(), item.Clip(), item.Fade());
-	
-		SpriteShader::Unbind();
-	}
+	bool showBlur = Preferences::Has("Render motion blur");
+	SpriteShader::Bind();
+
+	for(const Item &item : items)
+		SpriteShader::Add(item.Texture0(), item.Texture1(),
+			item.Position(), item.Transform(),
+			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.Blur() : nullptr);
+
+	SpriteShader::Unbind();
 }
 
 

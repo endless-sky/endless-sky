@@ -22,7 +22,6 @@
 		A96863A51AE6FD0E004FE1FE /* AsteroidField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D71AE6FD0A004FE1FE /* AsteroidField.cpp */; };
 		A96863A61AE6FD0E004FE1FE /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862D91AE6FD0A004FE1FE /* Audio.cpp */; };
 		A96863A71AE6FD0E004FE1FE /* BankPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862DB1AE6FD0A004FE1FE /* BankPanel.cpp */; };
-		A96863A81AE6FD0E004FE1FE /* BlurShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862DD1AE6FD0A004FE1FE /* BlurShader.cpp */; };
 		A96863A91AE6FD0E004FE1FE /* BoardingPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */; };
 		A96863AA1AE6FD0E004FE1FE /* CaptureOdds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */; };
 		A96863AB1AE6FD0E004FE1FE /* CargoHold.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862E31AE6FD0A004FE1FE /* CargoHold.cpp */; };
@@ -37,7 +36,6 @@
 		A96863B41AE6FD0E004FE1FE /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F61AE6FD0A004FE1FE /* Date.cpp */; };
 		A96863B51AE6FD0E004FE1FE /* Dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862F81AE6FD0A004FE1FE /* Dialog.cpp */; };
 		A96863B61AE6FD0E004FE1FE /* DistanceMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */; };
-		A96863B71AE6FD0E004FE1FE /* DotShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862FC1AE6FD0B004FE1FE /* DotShader.cpp */; };
 		A96863B81AE6FD0E004FE1FE /* DrawList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */; };
 		A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863001AE6FD0B004FE1FE /* Effect.cpp */; };
 		A96863BA1AE6FD0E004FE1FE /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96863021AE6FD0B004FE1FE /* Engine.cpp */; };
@@ -170,8 +168,6 @@
 		A96862DA1AE6FD0A004FE1FE /* Audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Audio.h; path = source/Audio.h; sourceTree = "<group>"; };
 		A96862DB1AE6FD0A004FE1FE /* BankPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BankPanel.cpp; path = source/BankPanel.cpp; sourceTree = "<group>"; };
 		A96862DC1AE6FD0A004FE1FE /* BankPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankPanel.h; path = source/BankPanel.h; sourceTree = "<group>"; };
-		A96862DD1AE6FD0A004FE1FE /* BlurShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BlurShader.cpp; path = source/BlurShader.cpp; sourceTree = "<group>"; };
-		A96862DE1AE6FD0A004FE1FE /* BlurShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlurShader.h; path = source/BlurShader.h; sourceTree = "<group>"; };
 		A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoardingPanel.cpp; path = source/BoardingPanel.cpp; sourceTree = "<group>"; };
 		A96862E01AE6FD0A004FE1FE /* BoardingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardingPanel.h; path = source/BoardingPanel.h; sourceTree = "<group>"; };
 		A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CaptureOdds.cpp; path = source/CaptureOdds.cpp; sourceTree = "<group>"; };
@@ -201,8 +197,6 @@
 		A96862F91AE6FD0B004FE1FE /* Dialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dialog.h; path = source/Dialog.h; sourceTree = "<group>"; };
 		A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DistanceMap.cpp; path = source/DistanceMap.cpp; sourceTree = "<group>"; };
 		A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistanceMap.h; path = source/DistanceMap.h; sourceTree = "<group>"; };
-		A96862FC1AE6FD0B004FE1FE /* DotShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DotShader.cpp; path = source/DotShader.cpp; sourceTree = "<group>"; };
-		A96862FD1AE6FD0B004FE1FE /* DotShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DotShader.h; path = source/DotShader.h; sourceTree = "<group>"; };
 		A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawList.cpp; path = source/DrawList.cpp; sourceTree = "<group>"; };
 		A96862FF1AE6FD0B004FE1FE /* DrawList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawList.h; path = source/DrawList.h; sourceTree = "<group>"; };
 		A96863001AE6FD0B004FE1FE /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effect.cpp; path = source/Effect.cpp; sourceTree = "<group>"; };
@@ -425,8 +419,6 @@
 				A96862DA1AE6FD0A004FE1FE /* Audio.h */,
 				A96862DB1AE6FD0A004FE1FE /* BankPanel.cpp */,
 				A96862DC1AE6FD0A004FE1FE /* BankPanel.h */,
-				A96862DD1AE6FD0A004FE1FE /* BlurShader.cpp */,
-				A96862DE1AE6FD0A004FE1FE /* BlurShader.h */,
 				A96862DF1AE6FD0A004FE1FE /* BoardingPanel.cpp */,
 				A96862E01AE6FD0A004FE1FE /* BoardingPanel.h */,
 				A96862E11AE6FD0A004FE1FE /* CaptureOdds.cpp */,
@@ -456,8 +448,6 @@
 				A96862F91AE6FD0B004FE1FE /* Dialog.h */,
 				A96862FA1AE6FD0B004FE1FE /* DistanceMap.cpp */,
 				A96862FB1AE6FD0B004FE1FE /* DistanceMap.h */,
-				A96862FC1AE6FD0B004FE1FE /* DotShader.cpp */,
-				A96862FD1AE6FD0B004FE1FE /* DotShader.h */,
 				A96862FE1AE6FD0B004FE1FE /* DrawList.cpp */,
 				A96862FF1AE6FD0B004FE1FE /* DrawList.h */,
 				A96863001AE6FD0B004FE1FE /* Effect.cpp */,
@@ -768,7 +758,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A96863A81AE6FD0E004FE1FE /* BlurShader.cpp in Sources */,
 				A96863AD1AE6FD0E004FE1FE /* Command.cpp in Sources */,
 				A96863E71AE6FD0E004FE1FE /* PointerShader.cpp in Sources */,
 				A96863E51AE6FD0E004FE1FE /* PlayerInfo.cpp in Sources */,
@@ -811,7 +800,6 @@
 				A96863AA1AE6FD0E004FE1FE /* CaptureOdds.cpp in Sources */,
 				A96863B61AE6FD0E004FE1FE /* DistanceMap.cpp in Sources */,
 				A96863CF1AE6FD0E004FE1FE /* LocationFilter.cpp in Sources */,
-				A96863B71AE6FD0E004FE1FE /* DotShader.cpp in Sources */,
 				A96863C11AE6FD0E004FE1FE /* Format.cpp in Sources */,
 				A96863BF1AE6FD0E004FE1FE /* Font.cpp in Sources */,
 				A96863ED1AE6FD0E004FE1FE /* Random.cpp in Sources */,

@@ -13,13 +13,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include "Audio.h"
-#include "BlurShader.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
-#include "DotShader.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -192,14 +190,12 @@ void GameData::LoadShaders()
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");
 	
-	DotShader::Init();
 	FillShader::Init();
 	LineShader::Init();
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
 	SpriteShader::Init();
-	BlurShader::Init();
 	
 	background.Init(16384, 4096);
 }

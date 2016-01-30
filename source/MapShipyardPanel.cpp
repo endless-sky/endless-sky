@@ -14,7 +14,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
-#include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -29,6 +28,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoDisplay.h"
@@ -374,7 +374,7 @@ void MapShipyardPanel::DrawKey() const
 	for(int i = 0; i < 3; ++i)
 	{
 		bool isSelected = (selectedSystem && VALUE[i] == SystemValue(selectedSystem));
-		DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(LABEL[i], pos + textOff, isSelected ? bright : dim);
 		pos.Y() += 20.;
 	}
