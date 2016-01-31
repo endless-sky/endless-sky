@@ -104,7 +104,7 @@ void Armament::Weapon::Step()
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
-void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, std::list<Effect> &effects)
+void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
@@ -355,7 +355,7 @@ int Armament::TurretCount() const
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, std::list<Effect> &effects)
+void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
 {
 	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return;

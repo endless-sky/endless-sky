@@ -134,7 +134,7 @@ void LoadPanel::OnCallback(int)
 
 
 // Snapshot name callback.
-void LoadPanel::SnapshotCallback(const std::string &name)
+void LoadPanel::SnapshotCallback(const string &name)
 {
 	string wasSelected = selectedPilot;
 	auto it = files.find(selectedPilot);

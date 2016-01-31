@@ -108,7 +108,7 @@ void DataWriter::WriteToken(const char *a)
 
 
 
-void DataWriter::WriteToken(const std::string &a)
+void DataWriter::WriteToken(const string &a)
 {
 	WriteToken(a.c_str());
 }

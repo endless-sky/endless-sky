@@ -408,7 +408,7 @@ void GameData::StepEconomy()
 
 
 
-void GameData::AddPurchase(const System &system, const std::string &commodity, int tons)
+void GameData::AddPurchase(const System &system, const string &commodity, int tons)
 {
 	purchases[&system][commodity] += tons;
 }

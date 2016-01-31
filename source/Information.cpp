@@ -36,7 +36,7 @@ const Sprite *Information::GetSprite(const string &name) const
 
 
 
-const Point &Information::GetSpriteUnit(const std::string &name) const
+const Point &Information::GetSpriteUnit(const string &name) const
 {
 	static const Point up(0., -1.);
 	

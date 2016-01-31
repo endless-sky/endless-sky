@@ -274,7 +274,7 @@ void MapDetailPanel::DrawKey() const
 	
 	if(commodity >= 0)
 	{
-		const std::vector<Trade::Commodity> &commodities = GameData::Commodities();
+		const vector<Trade::Commodity> &commodities = GameData::Commodities();
 		const auto &range = commodities[commodity];
 		if(static_cast<unsigned>(commodity) >= commodities.size())
 			return;

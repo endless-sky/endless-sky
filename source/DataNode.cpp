@@ -140,7 +140,7 @@ list<DataNode>::const_iterator DataNode::end() const
 
 
 // Print a message followed by a "trace" of this node and its parents.
-int DataNode::PrintTrace(const std::string &message) const
+int DataNode::PrintTrace(const string &message) const
 {
 	if(!message.empty())
 	{
