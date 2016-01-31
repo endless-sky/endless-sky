@@ -30,10 +30,6 @@ public:
 	DataWriter(const std::string &path);
 	~DataWriter();
 	
-  template <class ...B>
-	void Write(const char *a, B... others);
-  template <class ...B>
-	void Write(const std::string &a, B... others);
   template <class A, class ...B>
 	void Write(const A &a, B... others);
 	void Write(const DataNode &node);
@@ -44,9 +40,11 @@ public:
 	
 	void WriteComment(const std::string &str);
 	
-	
-private:
+	// Write a token, without writing a whole line. Use this very carefully.
 	void WriteToken(const char *a);
+	void WriteToken(const std::string &a);
+  template <class A>
+	void WriteToken(const A &a);
 	
 	
 private:
@@ -59,8 +57,8 @@ private:
 
 
 
-template <class ...B>
-void DataWriter::Write(const char *a, B... others)
+template <class A, class ...B>
+void DataWriter::Write(const A &a, B... others)
 {
 	WriteToken(a);
 	Write(others...);
@@ -68,24 +66,14 @@ void DataWriter::Write(const char *a, B... others)
 
 
 
-template <class ...B>
-void DataWriter::Write(const std::string &a, B... others)
-{
-	Write(a.c_str(), others...);
-}
-
-
-
-template <class A, class ...B>
-void DataWriter::Write(const A &a, B... others)
+template <class A>
+void DataWriter::WriteToken(const A &a)
 {
 	static_assert(std::is_arithmetic<A>::value,
 		"DataWriter cannot output anything but strings and arithmetic types.");
 	
 	out << *before << a;
 	before = &space;
-	
-	Write(others...);
 }
 
 

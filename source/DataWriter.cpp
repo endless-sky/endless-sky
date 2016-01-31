@@ -105,3 +105,10 @@ void DataWriter::WriteToken(const char *a)
 		out << a;
 	before = &space;
 }
+
+
+
+void DataWriter::WriteToken(const std::string &a)
+{
+	WriteToken(a.c_str());
+}
