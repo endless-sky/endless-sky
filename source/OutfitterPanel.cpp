@@ -91,7 +91,7 @@ void OutfitterPanel::Step()
 			"Also, missiles can only be bought if you have the right launcher installed.\n"
 			"\tUse your scroll wheel, or click and drag, to scroll the view.\n"
 			"\tAs in the trading panel, you can hold down Shift or Control "
-			"to buy 5 or 20 copies of an outfit at once, or both keys to buy 100."));
+			"to buy 5 or 20 of an outfit at once, or both keys to buy 100."));
 	}
 }
 
@@ -346,7 +346,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
-			"but this " + planet->Noun() + " does not sell additional copies of it."));
+			"but this " + planet->Noun() + " does not sell them."));
 		return;
 	}
 	
