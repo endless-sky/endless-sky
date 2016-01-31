@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Conversation.h"
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Effect.h"
 #include "Files.h"
 #include "FillShader.h"
@@ -89,6 +90,7 @@ namespace {
 	StartConditions startConditions;
 	
 	Trade trade;
+	map<const System *, map<string, int>> purchases;
 	
 	StarField background;
 	
@@ -288,6 +290,7 @@ void GameData::Revert()
 		it.second.GetShip()->Restore();
 	
 	politics.Reset();
+	purchases.clear();
 }
 
 
@@ -297,6 +300,117 @@ void GameData::SetDate(const Date &date)
 	for(auto &it : systems)
 		it.second.SetDate(date);
 	politics.ResetDaily();
+}
+
+
+
+void GameData::ReadEconomy(const DataNode &node)
+{
+	if(!node.Size() || node.Token(0) != "economy")
+		return;
+	
+	vector<string> headings;
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "purchases")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 3 && grand.Value(2))
+					purchases[systems.Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
+		}
+		else if(child.Token(0) == "system")
+		{
+			headings.clear();
+			for(int index = 1; index < child.Size(); ++index)
+				headings.push_back(child.Token(index));
+		}
+		else
+		{
+			System &system = *systems.Get(child.Token(0));
+			
+			int index = 0;
+			for(const string &commodity : headings)
+				system.SetSupply(commodity, child.Value(++index));
+		}
+	}
+}
+
+
+
+void GameData::WriteEconomy(DataWriter &out)
+{
+	out.Write("economy");
+	out.BeginChild();
+	{
+		if(!purchases.empty())
+		{
+			out.Write("purchases");
+			out.BeginChild();
+			for(const auto &pit : purchases)
+				for(const auto &cit : pit.second)
+					out.Write(pit.first->Name(), cit.first, cit.second);
+			out.EndChild();
+		}
+		out.WriteToken("system");
+		for(const auto &cit : GameData::Commodities())
+			out.WriteToken(cit.name);
+		out.Write();
+		
+		for(const auto &sit : GameData::Systems())
+		{
+			out.WriteToken(sit.second.Name());
+			for(const auto &cit : GameData::Commodities())
+				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
+			out.Write();
+		}
+	}
+	out.EndChild();
+}
+
+
+
+void GameData::StepEconomy()
+{
+	// First, apply any purchases the player made. These are deferred until now
+	// so that prices will not change as you are buying or selling goods.
+	for(const auto &pit : purchases)
+	{
+		System &system = const_cast<System &>(*pit.first);
+		for(const auto &cit : pit.second)
+			system.SetSupply(cit.first, system.Supply(cit.first) - cit.second);
+	}
+	purchases.clear();
+	
+	// Then, have each system generate new goods for local use and trade.
+	for(auto &it : systems)
+		it.second.StepEconomy();
+	
+	// Finally, send out the trade goods. This has to be done in a separate step
+	// because otherwise whichever systems trade last would already have gotten
+	// supplied by the other systems.
+	for(auto &it : systems)
+	{
+		System &system = it.second;
+		if(system.Links().size())
+			for(const Trade::Commodity &commodity : trade.Commodities())
+			{
+				double supply = system.Supply(commodity.name);
+				for(const System *neighbor : system.Links())
+				{
+					double scale = neighbor->Links().size();
+					if(scale)
+						supply += neighbor->Exports(commodity.name) / scale;
+				}
+				system.SetSupply(commodity.name, supply);
+			}
+	}
+}
+
+
+
+void GameData::AddPurchase(const System &system, const std::string &commodity, int tons)
+{
+	purchases[&system][commodity] += tons;
 }
 
 

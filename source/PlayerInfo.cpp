@@ -163,6 +163,8 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				dataChanges.push_back(grand);
 		}
+		else if(child.Token(0) == "economy")
+			economy = child;
 		else if(child.Token(0) == "event")
 		{
 			gameEvents.push_back(GameEvent());
@@ -268,6 +270,8 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
+	GameData::ReadEconomy(economy);
+	economy = DataNode();
 	
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
@@ -1701,6 +1705,7 @@ void PlayerInfo::Save(const string &path) const
 		}	
 		out.EndChild();
 	}
+	GameData::WriteEconomy(out);
 	
 	for(const auto &it : GameData::Persons())
 		if(it.second.GetShip()->IsDestroyed())

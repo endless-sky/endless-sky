@@ -103,6 +103,11 @@ public:
 	
 	// Get the price of the given commodity in this system.
 	int Trade(const std::string &commodity) const;
+	// Update the economy. Returns the amount of trade goods this system exports.
+	void StepEconomy();
+	void SetSupply(const std::string &commodity, double tons);
+	double Supply(const std::string &commodity) const;
+	double Exports(const std::string &commodity) const;
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
@@ -110,6 +115,19 @@ public:
 	
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
+	
+	
+private:
+	class Price {
+	public:
+		void SetBase(int base);
+		void Update();
+		
+		int base = 0;
+		int price = 0;
+		double supply = 0.;
+		double exports = 0.;
+	};
 	
 	
 private:
@@ -131,7 +149,7 @@ private:
 	double habitable = 1000.;
 	
 	// Commodity prices.
-	std::map<std::string, int> trade;
+	std::map<std::string, Price> trade;
 };
 
 

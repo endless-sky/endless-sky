@@ -651,6 +651,7 @@ void Engine::EnterSystem()
 			GameData::Preload(object.GetPlanet()->Landscape());
 	
 	GameData::SetDate(today);
+	GameData::StepEconomy();
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
