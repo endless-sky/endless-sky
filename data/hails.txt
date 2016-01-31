@@ -581,7 +581,7 @@ phrase "friendly syndicate"
 		"Syndicated Systems: powering interstellar commerce, one reactor at a time."
 		"Have you heard about the Syndicated Systems Proton Gun? Schedule a test-firing today!"
 		
-phrase "friendly syndicate"	
+phrase "friendly syndicate"
 	word
 		"Smart"
 		"Intelligent"
@@ -1051,7 +1051,7 @@ phrase "hostile navy"
 		" martial "
 		" naval "
 		" fighting "
-		" famous " 
+		" famous "
 	word
 		"strength "
 		"might "
@@ -1403,7 +1403,7 @@ phrase "hostile pug"
 phrase "hostile syndicate"
 	word
 		"We defend the Syndicate"
-	word 
+	word
 		"'s best interests"
 		"'s values"
 		"'s goals"
@@ -1427,7 +1427,7 @@ phrase "hostile syndicate"
 	word
 		" like you!"
 
-phrase "hostile Syndicate"		
+phrase "hostile Syndicate"
 	word
 		"You are attacking the Syndicate; we must defend it."
 		"You have made a bad commercial move."
