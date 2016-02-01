@@ -1441,6 +1441,8 @@ const vector<const System *> &PlayerInfo::TravelPlan() const
 void PlayerInfo::ClearTravel()
 {
 	travelPlan.clear();
+	if(Flagship())
+		Flagship()->SetTargetSystem(nullptr);
 }
 
 
