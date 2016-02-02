@@ -511,7 +511,7 @@ mission "FW Katya 1"
 					decline
 				`	"Oh yeah? Well you ARE a girl!"`
 	
-			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don’t fight like one," she says. "I... fight like a she-badger."`
+			`	She turns back around, with a fearsome gleam in her eyes, and walks up to you until your faces are only inches apart. "Yeah, but I don't fight like one," she says. "I... fight like a she-badger."`
 			choice
 				`	"A she... badger?"`
 	
