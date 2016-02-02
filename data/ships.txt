@@ -877,7 +877,7 @@ ship "Dreadnought"
 	explode "medium explosion" 50
 	explode "big explosion" 50
 	explode "huge explosion" 20
-	description "The Dreadnought is a new warship that was designed by Southbound Shipyards in order to provide a large capital ships for the Free Worlds fleets, something capable of standing up to a Navy Cruiser or even a Carrier."
+	description "The Dreadnought is a new warship that was designed by Southbound Shipyards in order to provide a large capital ship for the Free Worlds fleets, something capable of standing up to a Navy Cruiser or even a Carrier."
 
 
 
