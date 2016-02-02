@@ -41,18 +41,6 @@ class Sprite;
 using namespace std;
 
 namespace {
-	static const vector<string> CATEGORIES = {
-		"Guns",
-		"Turrets",
-		"Secondary Weapons",
-		"Ammunition",
-		"Systems",
-		"Power",
-		"Engines",
-		"Hand to Hand",
-		"Special"
-	};
-	
 	string Tons(int tons)
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
@@ -62,7 +50,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, CATEGORIES), available(player.SoldOutfits())
+	: ShopPanel(player, Outfit::CATEGORIES), available(player.SoldOutfits())
 {
 	for(const pair<string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
@@ -211,11 +199,11 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	OutfitInfoDisplay info(*selectedOutfit);
 	Point offset(info.PanelWidth(), 0.);
 	
-	info.DrawDescription(center - offset * 1.5);
-	info.DrawRequirements(center - offset * .5);
-	info.DrawAttributes(center + offset * .5);
+	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+	info.DrawRequirements(center - offset * .5 - Point(0., 10.));
+	info.DrawAttributes(center + offset * .5 - Point(0., 10.));
 	
-	return info.MaximumHeight() + 40;
+	return info.MaximumHeight();
 }
 
 

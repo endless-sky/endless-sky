@@ -45,17 +45,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const vector<string> CATEGORIES = {
-		"Guns",
-		"Turrets",
-		"Secondary Weapons",
-		"Ammunition",
-		"Systems",
-		"Power",
-		"Engines",
-		"Hand to Hand",
-		"Special"
-	};
 	static const double ICON_HEIGHT = 90.;
 	static const double PAD = 8.;
 	static const int WIDTH = 270;
@@ -133,7 +122,7 @@ void MapOutfitterPanel::Draw() const
 			SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
 			SpriteShader::Draw(sprite, topLeft + iconOffset + Point(0., 5.), scale);
 		}
-		infoDisplay.DrawAttributes(topLeft + Point(0., 10.));
+		infoDisplay.DrawAttributes(topLeft);
 		
 		if(compare)
 		{
@@ -150,7 +139,7 @@ void MapOutfitterPanel::Draw() const
 			Color line(.5);
 			size.Y() = 1.;
 			FillShader::Fill(topLeft + .5 * size - Point(0., 1.), size, line);
-			compareDisplay.DrawAttributes(topLeft + Point(0., 10.));
+			compareDisplay.DrawAttributes(topLeft);
 		}
 	}
 }
@@ -256,7 +245,7 @@ bool MapOutfitterPanel::Click(int x, int y)
 				if(!isCompare)
 					hideCategory[zone.Value()] = set;
 				else
-					for(const string &category : CATEGORIES)
+					for(const string &category : Outfit::CATEGORIES)
 						hideCategory[category] = set;
 				
 				break;
@@ -284,7 +273,7 @@ bool MapOutfitterPanel::Hover(int x, int y)
 bool MapOutfitterPanel::Drag(int dx, int dy)
 {
 	if(isDragging)
-		scroll = min(0, max(-maxScroll, scroll + dy));
+		scroll = max(-maxScroll, min(0, scroll + dy));
 	else
 		return MapPanel::Drag(dx, dy);
 	
@@ -296,7 +285,7 @@ bool MapOutfitterPanel::Drag(int dx, int dy)
 bool MapOutfitterPanel::Scroll(int dx, int dy)
 {
 	if(isDragging)
-		scroll = min(0, max(-maxScroll, scroll + 50 * dy));
+		scroll = max(-maxScroll, min(0, scroll + 50 * dy));
 	else
 		return MapPanel::Scroll(dx, dy);
 	
@@ -424,7 +413,7 @@ void MapOutfitterPanel::DrawItems() const
 	zones.clear();
 	categoryZones.clear();
 	bool hidPrevious = true;
-	for(const string &category : CATEGORIES)
+	for(const string &category : Outfit::CATEGORIES)
 	{
 		auto it = catalog.find(category);
 		if(it == catalog.end())

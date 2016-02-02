@@ -26,6 +26,18 @@ namespace {
 	static const double EPS = 0.0000000001;
 }
 
+const vector<string> Outfit::CATEGORIES = {
+	"Guns",
+	"Turrets",
+	"Secondary Weapons",
+	"Ammunition",
+	"Systems",
+	"Power",
+	"Engines",
+	"Hand to Hand",
+	"Special"
+};
+
 
 
 void Outfit::Load(const DataNode &node)

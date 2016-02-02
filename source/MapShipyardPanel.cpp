@@ -45,17 +45,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const vector<string> CATEGORIES = {
-		"Transport",
-		"Light Freighter",
-		"Heavy Freighter",
-		"Interceptor",
-		"Light Warship",
-		"Medium Warship",
-		"Heavy Warship",
-		"Fighter",
-		"Drone"
-	};
 	static const double ICON_HEIGHT = 90.;
 	static const double PAD = 8.;
 	static const int WIDTH = 270;
@@ -151,7 +140,7 @@ void MapShipyardPanel::Draw() const
 			Color line(.5);
 			size.Y() = 1.;
 			FillShader::Fill(topLeft + .5 * size - Point(0., 1.), size, line);
-			compareDisplay.DrawAttributes(topLeft + Point(0., 10.));
+			compareDisplay.DrawAttributes(topLeft);
 		}
 	}
 }
@@ -257,7 +246,7 @@ bool MapShipyardPanel::Click(int x, int y)
 				if(!isCompare)
 					hideCategory[zone.Value()] = set;
 				else
-					for(const string &category : CATEGORIES)
+					for(const string &category : Ship::CATEGORIES)
 						hideCategory[category] = set;
 				
 				break;
@@ -425,7 +414,7 @@ void MapShipyardPanel::DrawItems() const
 	zones.clear();
 	categoryZones.clear();
 	bool hidPrevious = true;
-	for(const string &category : CATEGORIES)
+	for(const string &category : Ship::CATEGORIES)
 	{
 		auto it = catalog.find(category);
 		if(it == catalog.end())

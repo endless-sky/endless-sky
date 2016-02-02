@@ -146,21 +146,21 @@ int OutfitInfoDisplay::AttributesHeight() const
 // Draw each of the panels.
 void OutfitInfoDisplay::DrawDescription(const Point &topLeft) const
 {
-	description.Draw(topLeft + Point(10., 2.), *GameData::Colors().Get("medium"));
+	description.Draw(topLeft + Point(10., 12.), *GameData::Colors().Get("medium"));
 }
 
 
 
 void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 {
-	Draw(topLeft, requirementLabels, requirementValues);
+	Draw(topLeft + Point(0., 10.), requirementLabels, requirementValues);
 }
 
 
 
 void OutfitInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Draw(topLeft, attributeLabels, attributeValues);
+	Draw(topLeft + Point(0., 10.), attributeLabels, attributeValues);
 }
 
 

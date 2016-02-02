@@ -138,7 +138,7 @@ void ShipInfoDisplay::DrawDescription(const Point &topLeft) const
 
 void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Point point = Draw(topLeft, attributeLabels, attributeValues);
+	Point point = Draw(topLeft + Point(0., 10.), attributeLabels, attributeValues);
 	
 	// Get standard colors to draw with.
 	Color labelColor = *GameData::Colors().Get("medium");
@@ -167,14 +167,14 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 {
-	Draw(topLeft, outfitLabels, outfitValues);
+	Draw(topLeft + Point(0., 10.), outfitLabels, outfitValues);
 }
 
 
 
 void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 {
-	Draw(topLeft, saleLabels, saleValues);
+	Draw(topLeft + Point(0., 10.), saleLabels, saleValues);
 }
 
 
@@ -220,13 +220,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	
 	attributeLabels.clear();
 	attributeValues.clear();
-	attributesHeight = 10;
+	attributesHeight = 20;
 	
 	const Outfit &attributes = ship.Attributes();
 	
-	attributeLabels.push_back(string());
-	attributeValues.push_back(string());
-	attributesHeight += 10;
 	attributeLabels.push_back("cost:");
 	attributeValues.push_back(Format::Number(ship.Cost()));
 	attributesHeight += 20;
@@ -392,7 +389,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 {
 	outfitLabels.clear();
 	outfitValues.clear();
-	outfitsHeight = 0;
+	outfitsHeight = 20;
 	int outfitsValue = 0;
 	
 	map<string, map<string, int>> listing;
@@ -405,9 +402,13 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	for(const auto &cit : listing)
 	{
 		// Pad by 10 pixels before each category.
-		outfitLabels.push_back(string());
-		outfitValues.push_back(string());
-		outfitsHeight += 10;
+		if(&cit != &*listing.begin())
+		{
+			outfitLabels.push_back(string());
+			outfitValues.push_back(string());
+			outfitsHeight += 10;
+		}
+				
 		outfitLabels.push_back(cit.first + ':');
 		outfitValues.push_back(string());
 		outfitsHeight += 20;
@@ -419,18 +420,13 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 			outfitsHeight += 20;
 		}
 	}
-	// Pad by 10 pixels on the top and bottom.
-	outfitsHeight += 10;
 	
 	
 	saleLabels.clear();
 	saleValues.clear();
-	saleHeight = 0;
+	saleHeight = 20;
 	int totalValue = ship.Attributes().Cost();
 	
-	saleLabels.push_back(string());
-	saleValues.push_back(string());
-	saleHeight += 10;
 	saleLabels.push_back("This ship will sell for:");
 	saleValues.push_back(string());
 	saleHeight += 20;
@@ -443,7 +439,4 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleLabels.push_back("= total:");
 	saleValues.push_back(Format::Number(totalValue) + " credits");
 	saleHeight += 20;
-	
-	// Pad by 10 pixels on the top and bottom.
-	saleHeight += 10;
 }
