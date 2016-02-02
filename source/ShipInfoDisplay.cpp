@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
-#include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Outfit.h"
@@ -24,44 +23,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <map>
 
 using namespace std;
-
-namespace {
-	static const int WIDTH = 250;
-	
-	Point Draw(Point point, const vector<string> &labels, const vector<string> &values)
-	{
-		// Get standard colors to draw with.
-		Color labelColor = *GameData::Colors().Get("medium");
-		Color valueColor = *GameData::Colors().Get("bright");
-		
-		Table table;
-		// Use 10-pixel margins on both sides.
-		table.AddColumn(10, Table::LEFT);
-		table.AddColumn(WIDTH - 10, Table::RIGHT);
-		table.DrawAt(point);
-		
-		for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
-		{
-			if(labels[i].empty())
-			{
-				table.DrawGap(10);
-				continue;
-			}
-			
-			table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
-			table.Draw(values[i], valueColor);
-		}
-		return table.GetPoint();
-	}
-}
-
-
-
-ShipInfoDisplay::ShipInfoDisplay()
-	: descriptionHeight(0), attributesHeight(0), outfitsHeight(0),
-	saleHeight(0), maximumHeight(0)
-{
-}
 
 
 
@@ -84,36 +45,6 @@ void ShipInfoDisplay::Update(const Ship &ship, const Government *systemGovernmen
 
 
 
-// Get the panel width.
-int ShipInfoDisplay::PanelWidth()
-{
-	return WIDTH;
-}
-
-
-
-// Get the height of each of the three panels.
-int ShipInfoDisplay::MaximumHeight() const
-{
-	return maximumHeight;
-}
-
-
-
-int ShipInfoDisplay::DescriptionHeight() const
-{
-	return descriptionHeight;
-}
-
-
-
-int ShipInfoDisplay::AttributesHeight() const
-{
-	return attributesHeight;
-}
-
-
-
 int ShipInfoDisplay::OutfitsHeight() const
 {
 	return outfitsHeight;
@@ -129,16 +60,9 @@ int ShipInfoDisplay::SaleHeight() const
 
 
 // Draw each of the panels.
-void ShipInfoDisplay::DrawDescription(const Point &topLeft) const
-{
-	description.Draw(topLeft + Point(10., 12.), *GameData::Colors().Get("medium"));
-}
-
-
-
 void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
-	Point point = Draw(topLeft + Point(0., 10.), attributeLabels, attributeValues);
+	Point point = Draw(topLeft, attributeLabels, attributeValues);
 	
 	// Get standard colors to draw with.
 	Color labelColor = *GameData::Colors().Get("medium");
@@ -167,27 +91,23 @@ void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 {
-	Draw(topLeft + Point(0., 10.), outfitLabels, outfitValues);
+	Draw(topLeft, outfitLabels, outfitValues);
 }
 
 
 
 void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 {
-	Draw(topLeft + Point(0., 10.), saleLabels, saleValues);
+	Draw(topLeft, saleLabels, saleValues);
 }
 
 
 
 void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *systemGovernment)
 {
-	description.SetAlignment(WrappedText::JUSTIFIED);
-	description.SetWrapWidth(WIDTH - 20);
-	description.SetFont(FontSet::Get(14));
-	
 	const vector<string> &licenses = ship.Licenses();
 	if(licenses.empty())
-		description.Wrap(ship.Description());
+		ItemInfoDisplay::UpdateDescription(ship.Description());
 	else
 	{
 		string text = ship.Description() + "\tTo purchase this ship you must have ";
@@ -205,11 +125,8 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *syst
 			text += "a " + licenses[i] + " License";
 		}
 		text += ".";
-		description.Wrap(text);
+		ItemInfoDisplay::UpdateDescription(text);
 	}
-	
-	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
 }
 
 
