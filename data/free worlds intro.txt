@@ -865,7 +865,7 @@ mission "FW Katya 4"
 			
 			`	"The eruption was on the other continent," she explains, "so no one was killed in the blast. It was a slow-moving disaster. We had six months or so to move two million settlers off-world before the temperatures would drop too low to be livable. More than half of the Navy was mobilized to ferry our people to other planets."`
 			`	"Here's the best part," says Eyes. "The Navy operates with a certain amount of autonomy. Turns out when they found out about the disaster, they mobilized without even waiting to clear it with Parliament. Which was technically within their mandate, this being a natural disaster. But the Navy is funded by taxes, and the Paradise Planets pay ten times as much in taxes as the Dirt Belt."`
-			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those generals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
+			`	"The Paradise Planets viewed the Navy as their own private security force," says Katya, "so they got really mad when half the Navy suddenly vanished to assist some dirty refugees. Because those admirals gave the order to assist us, millions of lives were saved. And then Parliament fired them."`
 			choice
 				`	"You're making the Navy sound like heroes. I thought they were your enemies."`
 				`	"You've almost convinced me to join the Navy."`
