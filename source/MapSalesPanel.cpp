@@ -119,40 +119,22 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
-		// First, find the currently selected item, if any
-		auto it = zones.begin();
+		selected += (key == SDLK_DOWN) - (key == SDLK_UP);
 		if(selected < 0)
-		{
-			if(key == SDLK_DOWN)
-				it = --zones.end();
-		}
-		else
-		{
-			for( ; it != zones.end() - 1; ++it)
-				if(it->Value() == selected)
-					break;
-		}
-		if(key == SDLK_DOWN)
-		{
-			++it;
-			if(it == zones.end())
-				it = zones.begin();
-		}
-		else
-		{
-			if(it == zones.begin())
-				it = zones.end();
-			--it;
-		}
-		double top = (it->Center() - it->Size()).Y();
-		double bottom = (it->Center() + it->Size()).Y();
+			selected = zones.size() - 1;
+		else if(selected > static_cast<int>(zones.size() - 1))
+			selected = 0;
+		
+		const ClickZone<int> &it = zones[selected];
+		double top = (it.Center() - it.Size()).Y();
+		double bottom = (it.Center() + it.Size()).Y();
 		if(bottom > Screen::Bottom())
 			scroll += Screen::Bottom() - bottom;
 		if(top < Screen::Top())
 			scroll += Screen::Top() - top;
 		
 		Compare(compare = -1);
-		Select(selected = it->Value());
+		Select(selected);
 	}
 	else if(key == '+' || key == '=')
 		ZoomMap();
