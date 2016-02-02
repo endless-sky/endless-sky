@@ -95,7 +95,7 @@ void MapPanel::Draw() const
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1, 0.);
 	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-		100.5 * Zoom(), 99.5 * Zoom(), dimColor);
+		(System::NEIGHBOR_DISTANCE + .5) * Zoom(), (System::NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
 	Color brightColor(.4, 0.);
 	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11., 9., brightColor);

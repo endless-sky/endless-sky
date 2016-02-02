@@ -34,6 +34,9 @@ class Planet;
 // objects in each system, and the hyperspace links between systems.
 class System {
 public:
+	static const double NEIGHBOR_DISTANCE;
+	
+public:
 	class Asteroid {
 	public:
 		Asteroid(const std::string &name, int count, double energy);

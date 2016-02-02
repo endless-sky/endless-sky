@@ -21,11 +21,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Random.h"
 
+#include <cmath>
+
 using namespace std;
 
 namespace {
-	static const double NEIGHBOR_DISTANCE = 100.;
-	
 	// Dynamic economy parameters: how much of its production each system keeps
 	// and exports each day:
 	static const double KEEP = .89;
@@ -35,6 +35,8 @@ namespace {
 	// Above this supply amount, price differences taper off:
 	static const double LIMIT = 20000.;
 }
+
+const double System::NEIGHBOR_DISTANCE = 100.;
 
 
 
