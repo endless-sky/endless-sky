@@ -125,6 +125,8 @@
 		A99F7B35195DF45E002C30B8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = A99F7B33195DF45E002C30B8 /* images */; };
 		A9A5297419996C9F002D7C35 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = A9A5297319996C9F002D7C35 /* sounds */; };
 		A9A5297619996CC3002D7C35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A5297519996CC3002D7C35 /* OpenAL.framework */; };
+		A9B99D021C616AD000BE7C2E /* ItemInfoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */; };
+		A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */; };
 		A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C70E0E1C0E5B51000B3D14 /* File.cpp */; };
 		A9CC526D1950C9F6004E4E22 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC526C1950C9F6004E4E22 /* Cocoa.framework */; };
 		A9CC52A11950CA16004E4E22 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
@@ -372,6 +374,10 @@
 		A99F7B33195DF45E002C30B8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		A9A5297319996C9F002D7C35 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		A9A5297519996CC3002D7C35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemInfoDisplay.cpp; path = source/ItemInfoDisplay.cpp; sourceTree = "<group>"; };
+		A9B99D011C616AD000BE7C2E /* ItemInfoDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInfoDisplay.h; path = source/ItemInfoDisplay.h; sourceTree = "<group>"; };
+		A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapSalesPanel.cpp; path = source/MapSalesPanel.cpp; sourceTree = "<group>"; };
+		A9B99D041C616AF200BE7C2E /* MapSalesPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapSalesPanel.h; path = source/MapSalesPanel.h; sourceTree = "<group>"; };
 		A9C70E0E1C0E5B51000B3D14 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = source/File.cpp; sourceTree = "<group>"; };
 		A9C70E0F1C0E5B51000B3D14 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = File.h; path = source/File.h; sourceTree = "<group>"; };
 		A9CC52691950C9F6004E4E22 /* EndlessSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EndlessSky.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -493,6 +499,8 @@
 				A96863261AE6FD0B004FE1FE /* Information.h */,
 				A96863271AE6FD0B004FE1FE /* Interface.cpp */,
 				A96863281AE6FD0B004FE1FE /* Interface.h */,
+				A9B99D001C616AD000BE7C2E /* ItemInfoDisplay.cpp */,
+				A9B99D011C616AD000BE7C2E /* ItemInfoDisplay.h */,
 				A96863291AE6FD0B004FE1FE /* LineShader.cpp */,
 				A968632A1AE6FD0B004FE1FE /* LineShader.h */,
 				A968632B1AE6FD0B004FE1FE /* LoadPanel.cpp */,
@@ -508,6 +516,8 @@
 				A97C24E91B17BE35007DDFA1 /* MapOutfitterPanel.h */,
 				A96863341AE6FD0C004FE1FE /* MapPanel.cpp */,
 				A96863351AE6FD0C004FE1FE /* MapPanel.h */,
+				A9B99D031C616AF200BE7C2E /* MapSalesPanel.cpp */,
+				A9B99D041C616AF200BE7C2E /* MapSalesPanel.h */,
 				A97C24EB1B17BE3C007DDFA1 /* MapShipyardPanel.cpp */,
 				A97C24EC1B17BE3C007DDFA1 /* MapShipyardPanel.h */,
 				A96863361AE6FD0C004FE1FE /* Mask.cpp */,
@@ -809,6 +819,7 @@
 				A96863E91AE6FD0E004FE1FE /* Preferences.cpp in Sources */,
 				A96863F31AE6FD0E004FE1FE /* ShipEvent.cpp in Sources */,
 				A96863D51AE6FD0E004FE1FE /* MenuPanel.cpp in Sources */,
+				A9B99D021C616AD000BE7C2E /* ItemInfoDisplay.cpp in Sources */,
 				A96863EA1AE6FD0E004FE1FE /* PreferencesPanel.cpp in Sources */,
 				A96863F11AE6FD0E004FE1FE /* Shader.cpp in Sources */,
 				A9C70E101C0E5B51000B3D14 /* File.cpp in Sources */,
@@ -835,6 +846,7 @@
 				A96863CB1AE6FD0E004FE1FE /* Information.cpp in Sources */,
 				A96863F91AE6FD0E004FE1FE /* Sprite.cpp in Sources */,
 				A96863A91AE6FD0E004FE1FE /* BoardingPanel.cpp in Sources */,
+				A9B99D051C616AF200BE7C2E /* MapSalesPanel.cpp in Sources */,
 				A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */,
 				A96863F51AE6FD0E004FE1FE /* ShipyardPanel.cpp in Sources */,
 				A96863A31AE6FD0E004FE1FE /* Animation.cpp in Sources */,
