@@ -14,15 +14,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "FontSet.h"
-//#include "Format.h"
 #include "GameData.h"
-//#include "Outfit.h"
 #include "Table.h"
-
-//#include <cmath>
-//#include <map>
-//#include <set>
-//#include <sstream>
 
 using namespace std;
 
@@ -73,7 +66,7 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 
 
-void ItemInfoDisplay::UpdateDescription(const std::string &text)
+void ItemInfoDisplay::UpdateDescription(const string &text)
 {
 	description.SetAlignment(WrappedText::JUSTIFIED);
 	description.SetWrapWidth(WIDTH - 20);
