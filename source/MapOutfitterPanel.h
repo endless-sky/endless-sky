@@ -44,6 +44,7 @@ protected:
 	virtual void Compare(int index) override;
 	virtual bool HasAny(const Planet *planet) const override;
 	virtual bool HasThis(const Planet *planet) const override;
+	virtual int FindItem(const std::string &text) const override;
 	
 	virtual void DrawItems() const override;
 	

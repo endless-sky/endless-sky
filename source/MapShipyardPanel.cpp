@@ -114,6 +114,16 @@ bool MapShipyardPanel::HasThis(const Planet *planet) const
 
 
 
+int MapShipyardPanel::FindItem(const std::string &text) const
+{
+	for(unsigned i = 0; i < list.size(); ++i)
+		if(Contains(list[i]->ModelName(), text))
+			return i;
+	return -1;
+}
+
+
+
 void MapShipyardPanel::DrawItems() const
 {
 	list.clear();

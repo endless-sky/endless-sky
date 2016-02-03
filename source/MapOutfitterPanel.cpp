@@ -115,6 +115,16 @@ bool MapOutfitterPanel::HasThis(const Planet *planet) const
 
 
 
+int MapOutfitterPanel::FindItem(const std::string &text) const
+{
+	for(unsigned i = 0; i < list.size(); ++i)
+		if(Contains(list[i]->Name(), text))
+			return i;
+	return -1;
+}
+
+
+
 void MapOutfitterPanel::DrawItems() const
 {
 	list.clear();

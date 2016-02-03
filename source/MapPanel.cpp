@@ -38,15 +38,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	bool Contains(const string &str, const string &sub)
-	{
-		auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-			[](char a, char b) { return toupper(a) == toupper(b); });
-		return (it != str.end());
-	}
-}
-
 const double MapPanel::OUTER = 6.;
 const double MapPanel::INNER = 3.5;
 
@@ -351,6 +342,15 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 			return false;
 	
 	return mission.Waypoints().empty() && mission.Stopovers().empty();
+}
+
+
+
+bool MapPanel::Contains(const string &str, const string &sub)
+{
+	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+		[](char a, char b) { return toupper(a) == toupper(b); });
+	return (it != str.end());
 }
 
 

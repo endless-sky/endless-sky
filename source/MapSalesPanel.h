@@ -53,6 +53,7 @@ protected:
 	virtual void Compare(int index) = 0;
 	virtual bool HasAny(const Planet *planet) const = 0;
 	virtual bool HasThis(const Planet *planet) const = 0;
+	virtual int FindItem(const std::string &text) const = 0;
 	
 	virtual void DrawItems() const = 0;
 	
@@ -65,6 +66,9 @@ protected:
 	void DrawSprite(const Point &corner, const Sprite *sprite) const;
 	void Draw(Point &corner, const Sprite *sprite, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &price, const std::string &info) const;
+	
+	void DoFind(const std::string &text);
+	void ScrollTo(int index);
 	
 	
 protected:

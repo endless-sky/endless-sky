@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapSalesPanel.h"
 
 #include "Command.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -125,17 +126,13 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		else if(selected > static_cast<int>(zones.size() - 1))
 			selected = 0;
 		
-		const ClickZone<int> &it = zones[selected];
-		double top = (it.Center() - it.Size()).Y();
-		double bottom = (it.Center() + it.Size()).Y();
-		if(bottom > Screen::Bottom())
-			scroll += Screen::Bottom() - bottom;
-		if(top < Screen::Top())
-			scroll += Screen::Top() - top;
-		
 		Compare(compare = -1);
 		Select(selected);
+		ScrollTo(selected);
 	}
+	else if(key == 'f')
+		GetUI()->Push(new Dialog(
+			this, &MapSalesPanel::DoFind, "Search for:"));
 	else if(key == '+' || key == '=')
 		ZoomMap();
 	else if(key == '-')
@@ -433,4 +430,33 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, bool isForSale, bo
 	}
 	zones.emplace_back(corner + .5 * blockSize, blockSize, zones.size());
 	corner.Y() += ICON_HEIGHT;
+}
+
+
+
+void MapSalesPanel::DoFind(const std::string &text)
+{
+	int index = FindItem(text);
+	if(index >= 0 && index < static_cast<int>(zones.size()))
+	{
+		Compare(compare = -1);
+		Select(selected = index);
+		ScrollTo(index);
+	}
+}
+
+
+
+void MapSalesPanel::ScrollTo(int index)
+{
+	if(index < 0 || index >= static_cast<int>(zones.size()))
+		return;
+	
+	const ClickZone<int> &it = zones[selected];
+	double top = (it.Center() - it.Size()).Y();
+	double bottom = (it.Center() + it.Size()).Y();
+	if(bottom > Screen::Bottom())
+		scroll += Screen::Bottom() - bottom;
+	if(top < Screen::Top())
+		scroll += Screen::Top() - top;
 }
