@@ -652,6 +652,12 @@ ship "Combat Drone"
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
+		"automaton" 1
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
 	outfits
 		"Beam Laser"
 		
@@ -2350,6 +2356,12 @@ ship "Surveillance Drone"
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
+		"automaton" 1
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
 	outfits
 		"nGVF-AA Fuel Cell"
 		"Surveillance Pod"
