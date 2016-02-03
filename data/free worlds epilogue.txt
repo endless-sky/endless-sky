@@ -148,7 +148,7 @@ mission "FW Epilogue: Danforth"
 	
 	on offer
 		conversation
-			`Would you like to stop by and see how General Danforth is doing?`
+			`Would you like to stop by and see how Admiral Danforth is doing?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
