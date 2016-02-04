@@ -618,14 +618,17 @@ void MapPanel::DrawSystems() const
 				double reputation = system.GetGovernment()->Reputation();
 				
 				bool hasDominated = true;
+				bool isInhabited = false;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
 					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 					{
 						canLand |= object.GetPlanet()->CanLand();
+						isInhabited |= object.GetPlanet()->IsInhabited();
 						hasDominated &= (!object.GetPlanet()->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(object.GetPlanet()));
 					}
+				hasDominated &= isInhabited;
 				color = ReputationColor(reputation, canLand, canLand && hasDominated);
 			}
 		}
