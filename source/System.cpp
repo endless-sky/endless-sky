@@ -479,7 +479,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		{
 			object.animation.Load(child);
 			object.isStar = !child.Token(1).compare(0, 5, "star/");
-			if (!object.isStar)
+			if(!object.isStar)
 			{
 				object.isStation = !child.Token(1).compare(0, 14, "planet/station");
 				object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());

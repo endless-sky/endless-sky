@@ -59,9 +59,16 @@ const Point &StellarObject::Unit() const
 // Get the radius of this planet, i.e. how close you must be to land.
 double StellarObject::Radius() const
 {
-	// If the object is rectangular, you must land in the middle section.
-	return animation.IsEmpty() ? -1. :
-		.5 * min(animation.Width(), animation.Height());
+	double radius = -1.;
+	if(!animation.IsEmpty())
+		radius = .5 * min(animation.Width(), animation.Height());
+	
+	// Special case: stars may have a huge cloud around them, but only count the
+	// core of the cloud as part of the radius.
+	if(isStar)
+		radius = min(radius, 80.);
+	
+	return radius;
 }
 
 
