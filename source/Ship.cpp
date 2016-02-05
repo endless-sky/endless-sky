@@ -1326,7 +1326,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull > 0.);
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull > 0. && !sprite.IsEmpty());
 }
 
 
@@ -1380,7 +1380,7 @@ bool Ship::CanLand() const
 
 double Ship::Cloaking() const
 {
-	return cloak;
+	return sprite.IsEmpty() ? 1. : cloak;
 }
 
 
