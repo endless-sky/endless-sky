@@ -206,18 +206,32 @@ void EscortDisplay::MergeStacks() const
 		if(height < maxHeight || !cheapest)
 			break;
 		
-		// Merge all other instances of this ship's sprite with this icon.
+		// Merge together each group of escorts that have this icon annd are in
+		// the same system.
+		map<string, Icon *> merged;
+		
 		list<Icon>::iterator it = icons.begin();
 		while(it != icons.end())
 		{
-			if(&*it == cheapest || it->sprite != cheapest->sprite || it->isHere != cheapest->isHere)
+			if(it->sprite != cheapest->sprite)
 			{
 				++it;
 				continue;
 			}
 			
-			cheapest->Merge(*it);
-			it = icons.erase(it);	
+			// If this is the first escort we've seen so far in its system, it
+			// is the one we will merge all others in this system into.
+			auto mit = merged.find(it->system);
+			if(mit == merged.end())
+			{
+				merged[it->system] = &*it;
+				++it;
+			}
+			else
+			{
+				merged[it->system]->Merge(*it);
+				it = icons.erase(it);	
+			}
 		}
 		unstackable.insert(cheapest->sprite);
 	}
