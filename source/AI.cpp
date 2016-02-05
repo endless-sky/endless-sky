@@ -620,6 +620,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 					break;
 				}
 	}
+	if(!target && person.IsVindictive())
+	{
+		target = ship.GetTargetShip();
+		if(target && target->Cloaking() == 1.)
+			target.reset();
+	}
 	
 	return target;
 }
