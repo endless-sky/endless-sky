@@ -59,10 +59,15 @@ public:
 		// Perform one step (i.e. decrement the reload count).
 		void Step();
 		
+		
+		// Check if weapon has finished it's burst
+		bool BurstCheck(int charge);
+		
 		// Fire this weapon. If it is a turret, it automatically points toward
 		// the given ship's target. If the weapon requires ammunition, it will
 		// be subtracted from the given ship.
-		void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
+		// Burst weapon will only trigger reload increment once.
+		void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects, bool firing);
 		// Fire an anti-missile. Returns true if the missile should be killed.
 		bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
 		
@@ -105,9 +110,16 @@ public:
 	
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
-	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
+	// Burst weapon will only trigger reload increment only for first time when
+	// it is firing.
+	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects, bool isburst, bool checkfire);
 	// Fire the given anti-missile system.
 	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
+	
+	// These are meant to serve as records for burst weapon.
+	// Arrays are used as it provides simplicity for programming.
+	bool Fired[32767] = {};
+	 int Value[32767] = {};
 	
 	// Update the reload counters.
 	void Step(const Ship &ship);

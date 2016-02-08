@@ -99,62 +99,73 @@ void Armament::Weapon::Step()
 		--reload;
 }
 
+// Check if weapon has finished it's burst
+bool Armament::Weapon::BurstCheck(int charge)
+{
+    if(charge < outfit->Burst())
+        return true;
+    return false;
+}
+
 
 
 // Fire this weapon. If it is a turret, it automatically points toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
-void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
+// Burst weapon will only trigger reload increment once.
+void Armament::Weapon::Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects, bool firing)
 {
-	// Since this is only called internally by Armament (no one else has non-
+    // Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
-	Angle aim = ship.Facing();
-	
-	// Get projectiles to start at the right position. They are drawn at an
-	// offset of (.5 * velocity) and that velocity includes the velocity of the
-	// ship that fired them.
-	Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
-	
-	shared_ptr<const Ship> target = ship.GetTargetShip();
-	// If you are boarding your target, do not fire on it.
-	if(ship.IsBoarding() || ship.Commands().Has(Command::BOARD))
-		target.reset();
-	
-	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
-		aim += angle;
-	else
-	{
-		Point p = target->Position() - start + ship.GetPersonality().Confusion();
-		Point v = target->Velocity() - ship.Velocity();
-		double steps = RendezvousTime(p, v, outfit->Velocity());
-		
-		// Special case: RendezvousTime() may return NaN. But in that case, this
-		// comparison will return false.
-		if(!(steps < outfit->TotalLifetime()))
-			steps = outfit->TotalLifetime();
-		
-		p += steps * v;
-		
-		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
-	}
-	
-	projectiles.emplace_back(ship, start, aim, outfit);
-	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start);
-	double force = outfit->FiringForce();
-	if(force)
-		ship.ApplyForce(aim.Unit() * -force);
-	
-	for(const auto &eit : outfit->FireEffects())
-		for(int i = 0; i < eit.second; ++i)
-		{
-			effects.push_back(*eit.first);
-			effects.back().Place(start, ship.Velocity(), aim);
-		}
-	
-	// Reset the reload count.
-	reload += outfit->Reload();
-	ship.ExpendAmmo(outfit);
+    Angle aim = ship.Facing();
+
+    // Get projectiles to start at the right position. They are drawn at an
+    // offset of (.5 * velocity) and that velocity includes the velocity of the
+    // ship that fired them.
+    Point start = ship.Position() + aim.Rotate(point) - .5 * ship.Velocity();
+
+    shared_ptr<const Ship> target = ship.GetTargetShip();
+    // If you are boarding your target, do not fire on it.
+    if(ship.IsBoarding() || ship.Commands().Has(Command::BOARD))
+        target.reset();
+
+    if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
+        aim += angle;
+    else
+    {
+        Point p = target->Position() - start + ship.GetPersonality().Confusion();
+        Point v = target->Velocity() - ship.Velocity();
+        double steps = RendezvousTime(p, v, outfit->Velocity());
+
+        // Special case: RendezvousTime() may return NaN. But in that case, this
+        // comparison will return false.
+        if(!(steps < outfit->TotalLifetime()))
+            steps = outfit->TotalLifetime();
+
+        p += steps * v;
+
+        aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
+    }
+
+    projectiles.emplace_back(ship, start, aim, outfit);
+    if(outfit->WeaponSound())
+        Audio::Play(outfit->WeaponSound(), start);
+    double force = outfit->FiringForce();
+    if(force)
+        ship.ApplyForce(aim.Unit() * -force);
+
+    for(const auto &eit : outfit->FireEffects())
+        for(int i = 0; i < eit.second; ++i)
+        {
+            effects.push_back(*eit.first);
+            effects.back().Place(start, ship.Velocity(), aim);
+        }
+    if(firing == false)
+    {
+        // Reset the reload count.
+        reload += outfit->Reload();
+        ship.ExpendAmmo(outfit);
+    }
 }
 
 
@@ -355,18 +366,50 @@ int Armament::TurretCount() const
 
 // Fire the given weapon, if it is ready. If it did not fire because it is
 // not ready, return false.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
+// Burst weapon will only trigger reload increment only for first time when
+// it is firing.
+void Armament::Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects, bool isburst, bool checkfire)
 {
-	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
-		return;
-	
-	auto it = streamReload.find(weapons[index].GetOutfit());
-	if(it != streamReload.end() && it->second > 0)
-		return;
-	
-	weapons[index].Fire(ship, projectiles, effects);
-	if(it != streamReload.end())
-		it->second += it->first->Reload();
+    if(static_cast<unsigned>(index) >= weapons.size())
+        return;
+
+    auto it = streamReload.find(weapons[index].GetOutfit());
+
+    // Any weapons that is not ready will not fire. Burst weapon will be
+    // go through a couple of checks to determine whether they are still
+    // firing or just finished their burst
+    if(!weapons[index].IsReady() || (it != streamReload.end() && it->second > 0) || checkfire == true)
+    {
+        if(isburst == false)
+            return;
+        // For burst weapon that hasn't fired yet
+        else if(Fired[index] == false)
+            return;
+        // For burst weapon that have reached the end of their burst time.
+        else if(weapons[index].BurstCheck(Value[index]) == false)
+        {
+            Fired[index] = false;
+            Value[index] = 0;
+            return;
+        }
+    }
+    // Burst weapon will only reload once during the start of firing
+    weapons[index].Fire(ship, projectiles, effects, Fired[index]);
+
+    if(isburst == true)
+        Value[index] += 1;
+
+    // Update stream counter once for Burst weapon during start of
+    // Firing cycle.
+	if(Fired[index] == false)
+    {
+        if(it != streamReload.end())
+        {
+            it->second += it->first->Reload();
+        }
+        if(isburst == true)
+            Fired[index] = true;
+    }
 }
 
 

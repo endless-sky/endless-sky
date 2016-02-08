@@ -794,14 +794,14 @@ void GameData::PrintWeaponTable()
 		
 		cout << outfit.Range() << '\t';
 		
-		double energy = outfit.FiringEnergy() * 60. / outfit.Reload();
+		double energy = outfit.FiringEnergy() * outfit.Burst() * 60. / outfit.Reload();
 		cout << energy << '\t';
-		double heat = outfit.FiringHeat() * 60. / outfit.Reload();
+		double heat = outfit.FiringHeat() * outfit.Burst() * 60. / outfit.Reload();
 		cout << heat << '\t';
 		
-		double shield = outfit.ShieldDamage() * 60. / outfit.Reload();
+		double shield = outfit.ShieldDamage() * outfit.Burst() * 60. / outfit.Reload();
 		cout << shield << '\t';
-		double hull = outfit.HullDamage() * 60. / outfit.Reload();
+		double hull = outfit.HullDamage() * outfit.Burst() * 60. / outfit.Reload();
 		cout << hull << '\t';
 		
 		cout << outfit.Homing() << '\t';
