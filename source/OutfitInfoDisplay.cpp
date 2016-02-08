@@ -161,49 +161,49 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.ShieldDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("shield damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.ShieldDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.ShieldDamage() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
 	if(outfit.HullDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("hull damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.HullDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.HullDamage() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
 	if(outfit.HeatDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("heat damage / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
 	if(outfit.IonDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("ion damage / second:");
-		attributeValues.push_back(Format::Number(6000. * outfit.IonDamage() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(6000. * outfit.IonDamage() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
 	if(outfit.FiringEnergy() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing energy / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.FiringEnergy() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.FiringEnergy() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
 	if(outfit.FiringHeat() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing heat / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.FiringHeat() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.FiringHeat() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
 	if(outfit.FiringFuel() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing fuel / second:");
-		attributeValues.push_back(Format::Number(60. * outfit.FiringFuel() / outfit.Reload()));
+		attributeValues.push_back(Format::Number(60. * outfit.FiringFuel() * outfit.Burst() / outfit.Reload()));
 		attributesHeight += 20;
 	}
 	
@@ -248,13 +248,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"anti-missile:",
 	};
 	double values[] = {
-		outfit.ShieldDamage(),
-		outfit.HullDamage(),
-		outfit.HeatDamage(),
-		outfit.IonDamage() * 100.,
-		outfit.FiringEnergy(),
-		outfit.FiringHeat(),
-		outfit.FiringFuel(),
+		outfit.ShieldDamage() * outfit.Burst(),
+		outfit.HullDamage() * outfit.Burst(),
+		outfit.HeatDamage() * outfit.Burst(),
+		outfit.IonDamage() * 100. * outfit.Burst(),
+		outfit.FiringEnergy() * outfit.Burst(),
+		outfit.FiringHeat() * outfit.Burst(),
+		outfit.FiringFuel() * outfit.Burst(),
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
