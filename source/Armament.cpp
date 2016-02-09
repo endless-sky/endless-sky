@@ -269,46 +269,39 @@ void Armament::Add(const Outfit *outfit, int count)
 	if(!count || !outfit || !outfit->IsWeapon())
 		return;
 	
-	int installed = 0;
+	int total = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	
-	if(count < 0)
+	for(Weapon &weapon : weapons)
 	{
-		// Look for slots where this weapon is installed.
-		for(Weapon &weapon : weapons)
-			if(weapon.GetOutfit() == outfit)
+		if(weapon.GetOutfit() == outfit)
+		{
+			if(count < 0)
 			{
 				weapon.Uninstall();
-				if(--installed == count)
-					break;
+				++count;
 			}
-	}
-	else
-	{
-		// Look for empty, compatible slots.
-		for(Weapon &weapon : weapons)
-			if(!weapon.GetOutfit() && weapon.IsTurret() == isTurret)
+			else
+				++total;
+		}
+		else if(!weapon.GetOutfit() && weapon.IsTurret() == isTurret)
+		{
+			if(count > 0)
 			{
 				weapon.Install(outfit);
-				if(++installed == count)
-					break;
+				--count;
+				++total;
 			}
-	}
-	
-	// If this weapon is streamed, create a stream counter. Missiles and anti-
-	// missiles do not stream.
-	if(outfit->IsStreamed())
-	{
-		auto it = streamReload.find(outfit);
-		if(it == streamReload.end())
-			streamReload[outfit] = count;
-		else
-		{
-			it->second += count;
-			if(!it->second)
-				streamReload.erase(it);
 		}
 	}
+	
+	// If this weapon is streamed, create a stream counter. If it is not
+	// streamed, or if the last of this weapon has been uninstalled, erase the
+	// stream counter (if there is one).
+	if(total && outfit->IsStreamed())
+		streamReload[outfit] = 0;
+	else
+		streamReload.erase(outfit);
 }
 
 
@@ -326,9 +319,8 @@ void Armament::FinishLoading()
 			// Make sure the firing angle is set properly.
 			weapon.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
-			// Missiles and anti-missiles do not stream.
 			if(outfit->IsStreamed())
-				++streamReload[outfit];
+				streamReload[outfit] = 0;
 		}
 }
 
