@@ -138,30 +138,30 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
 		Point v = target->Velocity() - ship.Velocity();
 		double steps = RendezvousTime(p, v, outfit->Velocity());
-	
+		
 		// Special case: RendezvousTime() may return NaN. But in that case, this
 		// comparison will return false.
 		if(!(steps < outfit->TotalLifetime()))
 			steps = outfit->TotalLifetime();
-
+		
 		p += steps * v;
-
+		
 		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
 	}
-	
+		
 	projectiles.emplace_back(ship, start, aim, outfit);
 	if(outfit->WeaponSound())
 		Audio::Play(outfit->WeaponSound(), start);
 	double force = outfit->FiringForce();
 	if(force)
-	ship.ApplyForce(aim.Unit() * -force);
+		ship.ApplyForce(aim.Unit() * -force);
 	
 	for(const auto &eit : outfit->FireEffects())
-	for(int i = 0; i < eit.second; ++i)
-	{
-		effects.push_back(*eit.first);
-		effects.back().Place(start, ship.Velocity(), aim);
-	}
+		for(int i = 0; i < eit.second; ++i)
+		{
+			effects.push_back(*eit.first);
+			effects.back().Place(start, ship.Velocity(), aim);
+		}
 		
 	if(firing == false)
 	{
