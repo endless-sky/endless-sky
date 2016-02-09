@@ -171,6 +171,8 @@ inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
 
+inline double Weapon::Piercing() const { return piercing; }
+
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
