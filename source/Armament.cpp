@@ -115,7 +115,7 @@ bool Armament::Weapon::BurstCheck(int charge)
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
 // Burst weapon will only trigger reload increment once.
-void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects, bool firing)
+void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects, bool fired)
 {
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
@@ -148,7 +148,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 		
 		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
 	}
-		
+	
 	projectiles.emplace_back(ship, start, aim, outfit);
 	if(outfit->WeaponSound())
 		Audio::Play(outfit->WeaponSound(), start);
@@ -163,7 +163,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 			effects.back().Place(start, ship.Velocity(), aim);
 		}
 		
-	if(firing == false)
+	if(fired == false)
 	{
 		// Reset the reload count.
 		reload += outfit->Reload();
@@ -371,47 +371,48 @@ int Armament::TurretCount() const
 // not ready, return false.
 // Burst weapon will only trigger reload increment only for first time when
 // it is firing.
-void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects, bool isBurst, bool firing)
+void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<Effect> &effects, bool isBurst, bool checkFire)
 {
 	if(static_cast<unsigned>(index) >= weapons.size())
 		return;
-
+	
 	auto it = streamReload.find(weapons[index].GetOutfit());
-
+	
 	// Any weapons that is not ready will not fire. Burst weapon will be
 	// go through a couple of checks to determine whether they are still
 	// firing or just finished their burst
-	if(!weapons[index].IsReady() || (it != streamReload.end() && it->second > 0) || firing == true)
+	if(!weapons[index].IsReady() || (it != streamReload.end() && it->second > 0) || checkFire == true)
 	{
 		if(isBurst == false)
 			return;
 		// For burst weapon that hasn't fired yet
-		else if(Fired[index] == false)
+		else if(fired[index] == false)
 			return;
 		// For burst weapon that have reached the end of their burst time.
-		else if(weapons[index].BurstCheck(Value[index]) == false)
+		else if(weapons[index].BurstCheck(value[index]) == false)
 		{
-			Fired[index] = false;
-			Value[index] = 0;
+			fired[index] = false;
+			value[index] = 0;
 			return;
 		}
 	}
-	// Burst weapon will only reload once during the start of firing
-	weapons[index].Fire(ship, projectiles, effects, Fired[index]);
 	
+	// Burst weapon will only reload once during the start of firing
+	weapons[index].Fire(ship, projectiles, effects, fired[index]);
+		
 	if(isBurst == true)
-		Value[index] += 1;
+		value[index] += 1;
 	
 	// Update stream counter once for Burst weapon during start of
 	// Firing cycle.
-	if(Fired[index] == false)
+	if(fired[index] == false)
 	{
 		if(it != streamReload.end())
 		{
 			it->second += it->first->Reload();
 		}
-		if(isburst == true)
-			Fired[index] = true;
+		if(isBurst == true)
+			fired[index] = true;
 	}
 }
 
