@@ -1254,47 +1254,48 @@ int Ship::Scan() const
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(list<Projectile> &projectiles, std::list<Effect> &effects)
+bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 {
 	isInSystem = true;
 	forget = 0;
-
+	
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
 	if(IsDestroyed() && explosionCount == explosionTotal && explosionWeapon)
 		projectiles.emplace_back(position, explosionWeapon);
-
+	
 	if(CannotAct())
 		return false;
-
+	
 	bool hasAntiMissile = false;
-
+	
 	const vector<Armament::Weapon> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
 	{
 		const Outfit *outfit = weapons[i].GetOutfit();
 		if(outfit && CanFire(outfit))
-        	{
-            		bool burst = false;
-
-        		// Check if this is a burst weapon.
-        		if(outfit->Burst() > 1)
-        			burst = true;
-
-            		if(outfit->AntiMissile())
-                		hasAntiMissile = true;
-            		else if(commands.HasFire(i))
-                		armament.Fire(i, *this, projectiles, effects, burst, false);
-            		// All burst weapon will be forced to access the armament.Fire
-            		// line even if command to fire is not set in order for them to
-            		// complete their burst if any.
-        		 else if(burst == true && !commands.HasFire(i))
-        			 armament.Fire(i, *this, projectiles, effects, burst, true);
-        	}
+		{
+			bool burst = false;
+	
+			// Check if this is a burst weapon.
+			if(outfit->Burst() > 1)
+				burst = true;
+	
+			if(outfit->AntiMissile())
+				hasAntiMissile = true;
+			else if(commands.HasFire(i))
+				armament.Fire(i, *this, projectiles, effects, burst, false);
+	
+			// All burst weapon will be forced to access the armament.Fire
+			// line even if command to fire is not set in order for them to
+			// complete their burst if any.
+			else if(burst == true && !commands.HasFire(i))
+				armament.Fire(i, *this, projectiles, effects, burst, true);
+		}
 	}
-
+	
 	armament.Step(*this);
-
+	
 	return hasAntiMissile;
 }
 
