@@ -1769,12 +1769,12 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	bool wasDestroyed = IsDestroyed();
 	
 	double shieldFraction = 1. - weapon.Piercing();
-	if(weapon.ShieldDamage() > shields)
-	    shieldFraction = min(shieldFraction, shields / weapon.ShieldDamage());
-	shields -= weapon.ShieldDamage() * shieldFraction;
-	hull -= weapon.HullDamage() * (1. - shieldFraction);
-	heat += weapon.HeatDamage() * (1. - .5 * shieldFraction);
-	ionization += weapon.IonDamage() * (1. - .5 * shieldFraction);
+	if(shieldDamage > shields)
+	    shieldFraction = min(shieldFraction, shields / shieldDamage;
+	shields -= shieldDamage * shieldFraction;
+	hull -= hullDamage * (1. - shieldFraction);
+	heat += heatDamage * (1. - .5 * shieldFraction);
+	ionization += ionDamage * (1. - .5 * shieldFraction);
 	
 	if(hitForce && !IsHyperspacing())
 	{
