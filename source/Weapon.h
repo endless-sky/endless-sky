@@ -52,6 +52,8 @@ public:
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int Reload() const;
+	int BurstReload() const;
+	int BurstCount() const;
 	int Homing() const;
 	
 	int MissileStrength() const;
@@ -109,6 +111,8 @@ private:
 	// Attributes.
 	int lifetime = 0;
 	int reload = 0;
+	int burstReload = 0;
+	int burstCount = 0;
 	int homing = 0;
 	
 	int missileStrength = 0.;
@@ -149,6 +153,8 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::Reload() const { return reload; }
+inline int Weapon::BurstReload() const { return burstReload; }
+inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }

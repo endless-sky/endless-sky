@@ -74,6 +74,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				lifetime = child.Value(1);
 			else if(child.Token(0) == "reload")
 				reload = child.Value(1);
+			else if(child.Token(0) == "burst reload")
+				burstReload = child.Value(1);
+			else if(child.Token(0) == "burst count")
+				burstCount = child.Value(1);
 			else if(child.Token(0) == "homing")
 				homing = child.Value(1);
 			else if(child.Token(0) == "missile strength")
