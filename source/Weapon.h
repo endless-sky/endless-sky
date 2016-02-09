@@ -84,6 +84,8 @@ public:
 	double HeatDamage() const;
 	double IonDamage() const;
 	
+	double Piercing() const;
+	
 	double TotalLifetime() const;
 	double Range() const;
 	
@@ -135,6 +137,8 @@ private:
 	double heatDamage = 0.;
 	double ionDamage = 0.;
 	double hitForce = 0.;
+	
+	double piercing = 0.;
 	
 	// Cache the calculation of these values, for faster access.
 	mutable double totalShieldDamage = -1.;
