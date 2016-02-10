@@ -118,6 +118,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				ionDamage = child.Value(1);
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
+			else if(child.Token(0) == "piercing")
+				piercing = child.Value(1);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
 		}
