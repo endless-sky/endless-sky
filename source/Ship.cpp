@@ -1107,13 +1107,12 @@ bool Ship::Move(list<Effect> &effects)
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
 				isBoarding = false;
-				if(government->IsEnemy(target->government) && target->Attributes().Get("self destruct"))
+				bool isEnemy = government->IsEnemy(target->government);
+				if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 				{
 					Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 						+ "\" has activated its self-destruct mechanism.");
-					shared_ptr<Ship> victim = targetShip.lock();
-					victim->hull = -1.;
-					victim->explosionRate = 1024;
+					targetShip.lock()->SelfDestruct();
 				}
 				else
 					hasBoarded = true;
@@ -1527,6 +1526,14 @@ Point Ship::Unit() const
 void Ship::Destroy()
 {
 	hull = -1.;
+}
+
+
+
+void Ship::SelfDestruct()
+{
+	Destroy();
+	explosionRate = 1024;
 }
 
 
