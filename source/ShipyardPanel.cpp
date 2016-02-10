@@ -63,7 +63,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	ShipInfoDisplay info(*playerShip, player.GetSystem()->GetGovernment());
+	ShipInfoDisplay info(*playerShip, player.GetPlanet()->GetGovernment());
 	info.DrawSale(point);
 	
 	return info.SaleHeight();
@@ -105,7 +105,7 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	ShipInfoDisplay info(*selectedShip, player.GetSystem()->GetGovernment());
+	ShipInfoDisplay info(*selectedShip, player.GetPlanet()->GetGovernment());
 	Point offset(info.PanelWidth(), 0.);
 	
 	info.DrawDescription(center - offset * 1.5);

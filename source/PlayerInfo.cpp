@@ -816,7 +816,7 @@ void PlayerInfo::Land(UI *ui)
 		cargo.RemoveMissionCargo(mission);
 	
 	// Check if the player is doing anything illegal.
-	const Government *gov = GetSystem()->GetGovernment();
+	const Government *gov = GetPlanet()->GetGovernment();
 	string message;
 	if(!freshlyLoaded && !GameData::GetPolitics().HasDominated(GetPlanet()))
 		message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());

@@ -109,7 +109,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 {
 	SetInterruptible(false);
 	
-	const Government *gov = player.GetSystem()->GetGovernment();
+	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
 		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
 	hasLanguage = (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
