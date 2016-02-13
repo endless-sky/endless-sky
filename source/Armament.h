@@ -41,7 +41,7 @@ public:
 	class Weapon {
 	public:
 		Weapon(const Point &point, bool isTurret, const Outfit *outfit = nullptr);
-		
+
 		// Be sure to check if this is nullptr!
 		const Outfit *GetOutfit() const;
 		// Get the point, in ship image coordinates, from which projectiles of
@@ -53,29 +53,34 @@ public:
 		bool IsTurret() const;
 		bool IsHoming() const;
 		bool IsAntiMissile() const;
-		
+
 		// Check if this weapon is ready to fire.
 		bool IsReady() const;
 		bool IsMidBurst() const;
+		// Determine whether if burst weapon has stopped bursting before.
+		bool IsBurstCut() const;
+		// Adjust the reload counter of burst weapon that stopped firing.
+		// and reduce the streamreload time for the next weapon.
+		int ReloadAdjustment();
 		// Perform one step (i.e. decrement the reload count).
 		void Step();
-		
+
 		// Fire this weapon. If it is a turret, it automatically points toward
 		// the given ship's target. If the weapon requires ammunition, it will
 		// be subtracted from the given ship.
 		void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
 		// Fire an anti-missile. Returns true if the missile should be killed.
 		bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
-		
+
 		// Install a weapon here (assuming it is empty). This is only for
 		// Armament to call internally.
 		void Install(const Outfit *outfit);
 		// Uninstall the outfit from this port (if it has one).
 		void Uninstall();
-		
+
 	private:
 		void Fire(Ship &ship);
-		
+
 	private:
 		const Outfit *outfit = nullptr;
 		Point point;
@@ -84,10 +89,11 @@ public:
 		int reload = 0;
 		int burstReload = 0;
 		int burstCount = 0;
+		int lastReload = 0;
 		bool isTurret = false;
 	};
-	
-	
+
+
 public:
 	// Add a gun or turret hard-point.
 	void AddGunPort(const Point &point, const Outfit *outfit = nullptr);
@@ -100,30 +106,30 @@ public:
 	// Call this once all the outfits have been loaded to make sure they are all
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
 	void FinishLoading();
-	
+
 	// Swap the weapons in the given two hardpoints.
 	void Swap(int first, int second);
-	
+
 	// Access the array of weapons.
 	const std::vector<Weapon> &Get() const;
 	int GunCount() const;
 	int TurretCount() const;
-	
+
 	// Fire the given weapon, if it is ready. If it did not fire because it is
 	// not ready, return false.
 	void Fire(int index, Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
 	// Fire the given anti-missile system.
 	bool FireAntiMissile(int index, Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
-	
+
 	// Update the reload counters.
 	void Step(const Ship &ship);
-	
+
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
-	
-	
+
+
 private:
 	// Note: the Armament must be copied when an instance of a Ship is made, so
 	// it should not hold any pointers specific to one ship (including to
