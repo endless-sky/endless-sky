@@ -92,8 +92,8 @@ public:
 		int lastReload = 0;
 		bool isTurret = false;
 	};
-
-
+	
+	
 public:
 	// Add a gun or turret hard-point.
 	void AddGunPort(const Point &point, const Outfit *outfit = nullptr);
