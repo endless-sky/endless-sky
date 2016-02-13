@@ -56,6 +56,7 @@ public:
 		
 		// Check if this weapon is ready to fire.
 		bool IsReady() const;
+		bool IsMidBurst() const;
 		// Perform one step (i.e. decrement the reload count).
 		void Step();
 		
@@ -73,12 +74,17 @@ public:
 		void Uninstall();
 		
 	private:
-		const Outfit *outfit;
+		void Fire(Ship &ship);
+		
+	private:
+		const Outfit *outfit = nullptr;
 		Point point;
 		// Angle adjustment for convergence.
 		Angle angle;
-		int reload;
-		bool isTurret;
+		int reload = 0;
+		int burstReload = 0;
+		int burstCount = 0;
+		bool isTurret = false;
 	};
 	
 	

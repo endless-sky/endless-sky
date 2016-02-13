@@ -94,6 +94,12 @@ bool Projectile::Move(list<Effect> &effects)
 		
 		return false;
 	}
+	for(const auto &it : weapon->LiveEffects())
+		if(!Random::Int(it.second))
+		{
+			effects.push_back(*it.first);
+			effects.back().Place(position, velocity, angle);
+		}
 	
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.

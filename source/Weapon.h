@@ -44,6 +44,7 @@ public:
 	
 	// Effects to be created at the start or end of the weapon's lifetime.
 	const std::map<const Effect *, int> &FireEffects() const;
+	const std::map<const Effect *, int> &LiveEffects() const;
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::map<const Outfit *, int> &Submunitions() const;
@@ -51,10 +52,16 @@ public:
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int Reload() const;
+	int BurstReload() const;
+	int BurstCount() const;
 	int Homing() const;
 	
 	int MissileStrength() const;
 	int AntiMissile() const;
+	// Weapons of the same type will alternate firing (streaming) rather than
+	// firing all at once (clustering) if the weapon is not an anti-missile and
+	// is not vulnerable to anti-missile, or has the "stream" attribute.
+	bool IsStreamed() const;
 	
 	double Velocity() const;
 	double Acceleration() const;
@@ -79,6 +86,8 @@ public:
 	double HeatDamage() const;
 	double IonDamage() const;
 	
+	double Piercing() const;
+	
 	double TotalLifetime() const;
 	double Range() const;
 	
@@ -92,16 +101,20 @@ private:
 	
 	// Fire, die and hit effects.
 	std::map<const Effect *, int> fireEffects;
+	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::map<const Outfit *, int> submunitions;
 	
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
+	bool isStreamed = false;
 	
 	// Attributes.
 	int lifetime = 0;
 	int reload = 0;
+	int burstReload = 0;
+	int burstCount = 0;
 	int homing = 0;
 	
 	int missileStrength = 0.;
@@ -129,6 +142,8 @@ private:
 	double ionDamage = 0.;
 	double hitForce = 0.;
 	
+	double piercing = 0.;
+	
 	// Cache the calculation of these values, for faster access.
 	mutable double totalShieldDamage = -1.;
 	mutable double totalHullDamage = -1.;
@@ -142,10 +157,13 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::Reload() const { return reload; }
+inline int Weapon::BurstReload() const { return burstReload; }
+inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
+inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
@@ -158,6 +176,8 @@ inline double Weapon::FiringEnergy() const { return firingEnergy; }
 inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
+
+inline double Weapon::Piercing() const { return piercing; }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }

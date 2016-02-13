@@ -45,6 +45,10 @@ class System;
 // limits of what the AI knows how to command them to do.
 class Ship : public std::enable_shared_from_this<Ship> {
 public:
+	// These are all the possible category strings for ships.
+	static const std::vector<std::string> CATEGORIES;
+	
+public:
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
@@ -159,6 +163,7 @@ public:
 	
 	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
+	void SelfDestruct();
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;

@@ -108,7 +108,7 @@ ship "Argosy"
 	explode "small explosion" 25
 	explode "medium explosion" 25
 	explode "big explosion" 10
-	description "The Argosy from Southbound Shipyards is very popular with merchants not because of its capacity, which is actually slightly smaller than the Syndicate Freighter, but because it can hold it own in combat even against a small pirate fleet."
+	description "The Argosy from Southbound Shipyards is very popular with merchants not because of its capacity, which is actually slightly smaller than the Syndicate Freighter, but because it can hold its own in combat even against a small pirate fleet."
 	description "	The Argosy is also a very easy ship to upgrade with faster engines or more powerful weapons as needed, so many privately owned Argosies have very different capabilities than the stock model."
 
 
@@ -652,6 +652,12 @@ ship "Combat Drone"
 		"outfit space" 58
 		"weapon capacity" 8
 		"engine capacity" 28
+		"automaton" 1
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
 	outfits
 		"Beam Laser"
 		
@@ -877,7 +883,7 @@ ship "Dreadnought"
 	explode "medium explosion" 50
 	explode "big explosion" 50
 	explode "huge explosion" 20
-	description "The Dreadnought is a new warship that was designed by Southbound Shipyards in order to provide a large capital ships for the Free Worlds fleets, something capable of standing up to a Navy Cruiser or even a Carrier."
+	description "The Dreadnought is a new warship that was designed by Southbound Shipyards in order to provide a large capital ship for the Free Worlds fleets, something capable of standing up to a Navy Cruiser or even a Carrier."
 
 
 
@@ -2350,6 +2356,12 @@ ship "Surveillance Drone"
 		"outfit space" 53
 		"weapon capacity" 0
 		"engine capacity" 28
+		"automaton" 1
+		weapon
+			"blast radius" 3
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
 	outfits
 		"nGVF-AA Fuel Cell"
 		"Surveillance Pod"

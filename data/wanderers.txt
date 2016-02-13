@@ -13,16 +13,18 @@ ship "Earth Shaper"
 	licenses
 		Wanderer
 	attributes
-		category "Interceptor"
+		category "Light Freighter"
 		"cost" 500000
 		"hull" 3300
 		"mass" 30
 		"drag" .5
 		"heat dissipation" .9
 		"fuel capacity" 300
+		"cargo space" 27
 		"outfit space" 59
 		"engine capacity" 26
 		"atmosphere scan" 100
+		"automaton" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 100

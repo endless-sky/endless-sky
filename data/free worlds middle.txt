@@ -139,7 +139,7 @@ mission "FW Diplomacy 1D"
 	on offer
 		conversation
 			`When you land on <origin>, Alondo says, "You should join me for this meeting. You may find it eye-opening."`
-			`	Four of the Navy generals who are stationed here have agreed to meet with you. You discover that one of them is from the Dirt Belt. Another grew up in the Rim, and admits to you that if he were not serving the Navy, he would be fighting for the Free Worlds. All four of them seem sympathetic to your cause, and express genuine regret not just for the Navy lives that have been lost, but for the Free Worlds losses as well.`
+			`	Four of the Navy admirals who are stationed here have agreed to meet with you. You discover that one of them is from the Dirt Belt. Another grew up in the Rim, and admits to you that if he were not serving the Navy, he would be fighting for the Free Worlds. All four of them seem sympathetic to your cause, and express genuine regret not just for the Navy lives that have been lost, but for the Free Worlds losses as well.`
 			`	And all four of them state, without any hesitation or equivocation, that if the Senate orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
 			`	Alondo thanks them for their time and their honesty, and you return to your ship. "Well, it was worth a try. Now we just have to get home safely," he says.`
 				accept
@@ -470,7 +470,7 @@ mission "FW Southern Battle 3"
 				`	"What are we going to do with the prisoners?"`
 					goto prisoners
 			label patrol
-			`	"If they're fleeing, let them flee," she says, "but if you discover a strong Navy presence remaining in one of those systems, report back to Dancer before engaging them. Meanwhile, I'll ask Alondo to contact the Navy generals and see if we can get Katya back in exchange for those prisoners."`
+			`	"If they're fleeing, let them flee," she says, "but if you discover a strong Navy presence remaining in one of those systems, report back to Dancer before engaging them. Meanwhile, I'll ask Alondo to contact the Navy admirals and see if we can get Katya back in exchange for those prisoners."`
 				goto katya
 			label prisoners
 			`	"Well," she says, "my hope is that we can trade them for any of our people who have been captured so far in this war. Including Katya."`
@@ -518,11 +518,11 @@ mission "FW Southern Prisoners - Release"
 	
 	on offer
 		conversation
-			`You find Freya and Alondo watching over a large hangar where several hundred Navy crew and support staff are being kept under guard. Alondo says, "I contacted the Navy generals. They say Katya is not under their control; she is a prisoner of the Intelligence bureau, and arranging her release could take weeks. But they promised that if we return their prisoners now, they will ensure Katya's release and return her to us soon."`
+			`You find Freya and Alondo watching over a large hangar where several hundred Navy crew and support staff are being kept under guard. Alondo says, "I contacted the Navy admirals. They say Katya is not under their control; she is a prisoner of the Intelligence bureau, and arranging her release could take weeks. But they promised that if we return their prisoners now, they will ensure Katya's release and return her to us soon."`
 			choice
 				`	"How do we know they won't break that promise?"`
 				`	"Why not just keep the prisoners until we have Katya back safely?"`
-			`	Freya sighs. "Alondo claims that the generals value their honor so highly that we can trust their promise. I am not so sure. Even if the generals do their best, what if Intelligence refuses to honor the deal we make?"`
+			`	Freya sighs. "Alondo claims that the admirals value their honor so highly that we can trust their promise. I am not so sure. Even if the admirals do their best, what if Intelligence refuses to honor the deal we make?"`
 			`	Alondo says, "On the other hand, if we release these prisoners on parole as a gesture of good faith, it could bring us much closer to a diplomatic end to this war. Which would be far preferable to another battle as bloody as this one."`
 			`	Freya says, "And meanwhile, JJ is off on a top secret mission. And that means he's not available to consult with, and we need to make this decision now."`
 			`	"And since we cannot agree," says Alondo, "we are giving you the deciding vote."`
@@ -593,12 +593,12 @@ mission "FW Southern Prisoners - Released"
 	
 	on offer
 		conversation
-			`<origin> has become the home of a major Navy base almost overnight; the number of ships and people here is almost overwhelming. You return the prisoners, who have all taken an oath of parole to take no further part in the war against the Free Worlds. One of the four Navy generals who you and Alondo met with earlier is here, and as you are unloading the prisoners, he says, "More volunteers for the 'Oathkeepers,' I see."`
+			`<origin> has become the home of a major Navy base almost overnight; the number of ships and people here is almost overwhelming. You return the prisoners, who have all taken an oath of parole to take no further part in the war against the Free Worlds. One of the four Navy admirals who you and Alondo met with earlier is here, and as you are unloading the prisoners, he says, "More volunteers for the 'Oathkeepers,' I see."`
 			choice
 				`	"Who are the 'Oathkeepers'?"`
 			`	"The officers you granted parole to months ago. We reassigned them all to duty in the north, patrolling for pirates."`
 			`	"You mean they really do honor their promise not to fight us?" you ask.`
-			`	"Of course. They swore a vow, after all." You suspect it's not quite that simple, but decide that questioning this general's word would be pointless. As you are getting ready to leave, he says, "Don't worry, we will be returning Miss Reynolds to you shortly. The ship carrying her should arrive here in a week or two."`
+			`	"Of course. They swore a vow, after all." You suspect it's not quite that simple, but decide that questioning this admiral's word would be pointless. As you are getting ready to leave, he says, "Don't worry, we will be returning Miss Reynolds to you shortly. The ship carrying her should arrive here in a week or two."`
 			`	You hope he is telling the truth. Now, it is time to meet with Freya and Alondo and decide what should be done next.`
 				launch
 	
@@ -1089,7 +1089,7 @@ mission "FW Alphas 1.1"
 				`	"Are you insane? You're letting the Navy come here?"`
 				`	"We're going to work side by side with the Navy right after that awful battle?"`
 			`	Alondo explains, "It's only one cruiser, an 'Oathkeeper' ship, sworn to take no part in our war. The Free Worlds have almost no troops trained for ground combat, so without the Navy's help we would be unlikely to be able to eliminate the Alphas."`
-			`	The Navy ship lands, and a man steps off who you recognize immediately: General William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
+			`	The Navy ship lands, and a man steps off who you recognize immediately: Admiral William Danforth, who is something of a folk hero throughout human space, and who you have heard is the commander of the entire Oathkeepers regiment. With him is a man who he introduces as Commander Aaron Nguyen of the Navy Humanitarian Corps. As Nguyen shakes your hand, you are struck by the fact that although he is your enemy, you see no trace of hostility in his eyes - in fact, his expression is surprisingly warm and affectionate.`
 			`	"We have no room for error," says Danforth. "These Alphas must be eliminated, and they must not be allowed to escape. On that, at least, we can all agree."`
 			`	Freya says, "Captain <last> will lead the attack." She beckons to two of the Free Worlds captains. "Marco, Emily, you will join them with your Falcons. Destroy any pirate ships in orbit, then land and secure the facility. Understood?" You nod, and prepare to take off for the <system> system.`
 				accept
@@ -1210,7 +1210,7 @@ mission "FW Alphas 1.2"
 
 mission "FW Alphas 1.1A"
 	name "Danforth to <planet>"
-	description "Escort General Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
+	description "Escort Admiral Danforth's ship to <destination>, so that he can leave Free space without being accidentally attacked."
 	autosave
 	source Poisonwood
 	destination "New Tibet"
@@ -1268,7 +1268,7 @@ mission "FW Death of Nguyen"
 	
 	on offer
 		conversation
-			`Soon after landing on <origin>, you receive an encoded message from General Danforth, the leader of the Oathkeepers. "Captain <last>," he says, "I would like to thank you once again for allowing us to assist you on Poisonwood. Unfortunately, I have bad news that may concern you. Commander Nguyen, who was with you when one of the Alphas was apprehended, has been assassinated, shot in the head at point blank range. His attacker has not been found. We fear that this may be retribution for his part in the action on Poisonwood, and we urge you and your crew to be cautious. With deepest regards - Danforth."`
+			`Soon after landing on <origin>, you receive an encoded message from Admiral Danforth, the leader of the Oathkeepers. "Captain <last>," he says, "I would like to thank you once again for allowing us to assist you on Poisonwood. Unfortunately, I have bad news that may concern you. Commander Nguyen, who was with you when one of the Alphas was apprehended, has been assassinated, shot in the head at point blank range. His attacker has not been found. We fear that this may be retribution for his part in the action on Poisonwood, and we urge you and your crew to be cautious. With deepest regards - Danforth."`
 				decline
 
 
@@ -1290,7 +1290,7 @@ mission "FW Alphas 1.2A"
 		conversation
 			`The ships in orbit are eliminated, but there are still the Alphas and their servants here on the ground to take care of. Your escorts unload the troops, who spread throughout the city and quickly determine that, as far as the locals know, the Alphas are all holed up in a large factory on the outskirts of town. The locals also inform you that the Alphas have taken dozens of prisoners and are holding them in the factory.`
 			`	As you are trying to prepare the Free Worlds troops to storm the building, suddenly one of your escorts, the Starry Warrior, takes off. You radio the captain, who responds, "Sorry, Captain, but I'm following orders. Alondo suspected you wouldn't like this." Then he opens fire on the factory, destroying everything within several blocks with blaster fire and torpedoes. He does not stop firing until there is nothing left but smoldering rubble in that entire section of the city.`
-			`	The Alphas are presumably dead. So are their prisoners, and any of the locals who were unlucky enough to be close to the factory when it was destroyed. The governor of Poisonwood, unable to conceal his anger, asks you to take your troops and your ships and leave his world immediately.`
+			`	The Alphas are presumably dead. So are their prisoners, and any of the locals who were unlucky enough to be close to the factory when it was destroyed. The governor of Poisonwood, unable to conceal her anger, asks you to take your troops and your ships and leave her world immediately.`
 			`	You send a message to the Council asking what you should do, and they tell you to leave the planet and join Alondo on <planet>, to help bolster the defenses there. You leave <origin> with a heavy heart, glad that the Alphas are gone but wishing things here on <origin> had ended differently.`
 				launch
 
@@ -1978,7 +1978,7 @@ mission "FW Defend New Tibet"
 			label wait
 			`	He says, "It was when I heard that there had been another major battle. Up until then I had been telling myself that the worst of the damage was done. But after that battle, I knew that millions more could die because of our crime, and that I had the power to stop it."`
 			`	Raven continues to ask questions: who was involved, how the facility was hidden, where the raw materials come from. At one point, JJ pulls you aside and says, "She must be a Questioner. How they operate is a tightly kept secret. I'd always assumed their methods were... a bit more medieval."`
-			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the generals at once. And, release the captive."`
+			`	Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the admirals at once. And, release the captive."`
 			`	The door of her ship slides open, and another woman steps out - shakily, hesitantly, shielding her eyes against the sunlight. It takes you a few seconds to realize that it's Katya.`
 			`	As you all rush over to greet Katya, Raven taps your shoulder and says quietly, "Meet me in the main spaceport in a few hours and we'll figure out what's going to happen next." She returns to her ship.`
 

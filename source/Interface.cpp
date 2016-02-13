@@ -314,14 +314,14 @@ char Interface::OnClick(const Point &point) const
 
 
 
-bool Interface::HasPoint(const std::string &name) const
+bool Interface::HasPoint(const string &name) const
 {
 	return points.find(name) != points.end();
 }
 
 
 
-Point Interface::GetPoint(const std::string &name) const
+Point Interface::GetPoint(const string &name) const
 {
 	Point corner(Screen::Width() * position.X(), Screen::Height() * position.Y());
 	auto it = points.find(name);
@@ -330,7 +330,7 @@ Point Interface::GetPoint(const std::string &name) const
 
 
 
-Point Interface::GetSize(const std::string &name) const
+Point Interface::GetSize(const string &name) const
 {
 	auto it = points.find(name);
 	return (it == points.end() ? Point() : it->second.size);

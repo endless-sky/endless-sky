@@ -91,8 +91,6 @@
 		<Unit filename="source/Audio.h" />
 		<Unit filename="source/BankPanel.cpp" />
 		<Unit filename="source/BankPanel.h" />
-		<Unit filename="source/BlurShader.cpp" />
-		<Unit filename="source/BlurShader.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/CaptureOdds.cpp" />
@@ -122,8 +120,6 @@
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
-		<Unit filename="source/DotShader.cpp" />
-		<Unit filename="source/DotShader.h" />
 		<Unit filename="source/DrawList.cpp" />
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />
@@ -168,6 +164,8 @@
 		<Unit filename="source/Information.h" />
 		<Unit filename="source/Interface.cpp" />
 		<Unit filename="source/Interface.h" />
+		<Unit filename="source/ItemInfoDisplay.cpp" />
+		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
 		<Unit filename="source/LoadPanel.cpp" />
@@ -182,6 +180,8 @@
 		<Unit filename="source/MapOutfitterPanel.h" />
 		<Unit filename="source/MapPanel.cpp" />
 		<Unit filename="source/MapPanel.h" />
+		<Unit filename="source/MapSalesPanel.cpp" />
+		<Unit filename="source/MapSalesPanel.h" />
 		<Unit filename="source/MapShipyardPanel.cpp" />
 		<Unit filename="source/MapShipyardPanel.h" />
 		<Unit filename="source/Mask.cpp" />

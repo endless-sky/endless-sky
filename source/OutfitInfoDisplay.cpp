@@ -13,48 +13,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "OutfitInfoDisplay.h"
 
 #include "Color.h"
-#include "FontSet.h"
 #include "Format.h"
-#include "GameData.h"
 #include "Outfit.h"
-#include "Table.h"
 
-#include <cmath>
+#include <algorithm>
 #include <map>
 #include <set>
-#include <sstream>
 
 using namespace std;
 
 namespace {
-	static const int WIDTH = 250;
-	
-	Point Draw(Point point, const vector<string> &labels, const vector<string> &values)
-	{
-		// Get standard colors to draw with.
-		Color labelColor = *GameData::Colors().Get("medium");
-		Color valueColor = *GameData::Colors().Get("bright");
-		
-		Table table;
-		// Use 10-pixel margins on both sides.
-		table.AddColumn(10, Table::LEFT);
-		table.AddColumn(WIDTH - 10, Table::RIGHT);
-		table.DrawAt(point);
-		
-		for(unsigned i = 0; i < labels.size() && i < values.size(); ++i)
-		{
-			if(labels[i].empty())
-			{
-				table.DrawGap(10);
-				continue;
-			}
-			
-			table.Draw(labels[i], values[i].empty() ? valueColor : labelColor);
-			table.Draw(values[i], valueColor);
-		}
-		return table.GetPoint();
-	}
-	
 	static const set<string> ATTRIBUTES_TO_SCALE = {
 		"afterburner energy",
 		"afterburner fuel",
@@ -80,13 +48,6 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay()
-	: descriptionHeight(0), requirementsHeight(0), attributesHeight(0), maximumHeight(0)
-{
-}
-
-
-
 OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit)
 {
 	Update(outfit);
@@ -97,34 +58,11 @@ OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit)
 // Call this every time the ship changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit)
 {
-	UpdateDescription(outfit);
+	UpdateDescription(outfit.Description());
 	UpdateRequirements(outfit);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
-}
-
-
-
-// Get the panel width.
-int OutfitInfoDisplay::PanelWidth()
-{
-	return WIDTH;
-}
-
-
-
-// Get the height of each of the three panels.
-int OutfitInfoDisplay::MaximumHeight() const
-{
-	return maximumHeight;
-}
-
-
-
-int OutfitInfoDisplay::DescriptionHeight() const
-{
-	return descriptionHeight;
 }
 
 
@@ -136,45 +74,9 @@ int OutfitInfoDisplay::RequirementsHeight() const
 
 
 
-int OutfitInfoDisplay::AttributesHeight() const
-{
-	return attributesHeight;
-}
-
-
-
-// Draw each of the panels.
-void OutfitInfoDisplay::DrawDescription(const Point &topLeft) const
-{
-	description.Draw(topLeft + Point(10., 2.), *GameData::Colors().Get("medium"));
-}
-
-
-
 void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 {
 	Draw(topLeft, requirementLabels, requirementValues);
-}
-
-
-
-void OutfitInfoDisplay::DrawAttributes(const Point &topLeft) const
-{
-	Draw(topLeft, attributeLabels, attributeValues);
-}
-
-
-
-void OutfitInfoDisplay::UpdateDescription(const Outfit &outfit)
-{
-	description.SetAlignment(WrappedText::JUSTIFIED);
-	description.SetWrapWidth(WIDTH - 20);
-	description.SetFont(FontSet::Get(14));
-	
-	description.Wrap(outfit.Description());
-	
-	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
 }
 
 

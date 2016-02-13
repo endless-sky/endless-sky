@@ -651,6 +651,7 @@ void Engine::EnterSystem()
 			GameData::Preload(object.GetPlanet()->Landscape());
 	
 	GameData::SetDate(today);
+	GameData::StepEconomy();
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
@@ -759,6 +760,9 @@ void Engine::CalculateStep()
 	// where they may create explosions if they are dying.
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
+		int hyperspaceType = (*it)->HyperspaceType();
+		bool wasHere = (flagship && (*it)->GetSystem() == flagship->GetSystem());
+		bool wasHyperspacing = (*it)->IsHyperspacing();
 		// Give the ship the list of effects so that if it is dying, it can
 		// create explosions. Eventually ships might create other effects too.
 		// Note that engine flares are handled separately, so that they will be
@@ -767,6 +771,21 @@ void Engine::CalculateStep()
 			it = ships.erase(it);
 		else
 		{
+			if(&**it != flagship)
+			{
+				// Did this ship just begin hyperspacing?
+				if(wasHere && !wasHyperspacing && (*it)->IsHyperspacing())
+					Audio::Play(
+						Audio::Get(hyperspaceType >= 200 ? "jump out" : "hyperdrive out"),
+						(*it)->Position());
+				
+				// Did this ship just jump into the player's system?
+				if(!wasHere && flagship && (*it)->GetSystem() == flagship->GetSystem())
+					Audio::Play(
+						Audio::Get(hyperspaceType >= 200 ? "jump in" : "hyperdrive in"),
+						(*it)->Position());
+			}
+			
 			// Boarding:
 			bool autoPlunder = !(*it)->GetGovernment()->IsPlayer();
 			shared_ptr<Ship> victim = (*it)->Board(autoPlunder);

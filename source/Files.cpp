@@ -508,7 +508,7 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-void Files::LogError(const std::string &message)
+void Files::LogError(const string &message)
 {
 	lock_guard<mutex> lock(errorMutex);
 	cerr << message << endl;

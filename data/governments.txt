@@ -35,6 +35,12 @@ government "Derelict"
 	swizzle 0
 	"player reputation" 10
 
+government "Drak"
+	swizzle 5
+	color 1 1 1
+	"player reputation" 1
+	"fine" 0
+
 government "Escort"
 	swizzle 5
 	"fine" 0
@@ -48,6 +54,7 @@ government "Free Worlds"
 		"Merchant" .3
 		"Militia" .3
 		"Pirate" -.4
+		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
 	raid "pirate raid"
@@ -196,6 +203,8 @@ government "Republic"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
+		"Navy (Oathkeeper)" 1
+		"Neutral" .1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 	raid "pirate raid"

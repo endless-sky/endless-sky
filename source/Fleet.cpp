@@ -180,7 +180,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			angle = TO_DEG * atan2(offset.X(), -offset.Y());
 			ships.front()->Place(pos, Point(), angle);
 		}
-		ships.front()->SetTargetSystem(target);
+		if(target != source)
+			ships.front()->SetTargetSystem(target);
 		ships.front()->SetGovernment(government);
 		ships.front()->SetName(names->Get());
 		ships.front()->SetPersonality(personality);

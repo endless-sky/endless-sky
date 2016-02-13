@@ -21,23 +21,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	static const int PACIFIST = 1;
-	static const int FORBEARING = 2;
-	static const int TIMID = 4;
-	static const int DISABLES = 8;
-	static const int PLUNDERS = 16;
-	static const int HEROIC = 32;
-	static const int STAYING = 64;
-	static const int ENTERING = 128;
-	static const int NEMESIS = 256;
-	static const int SURVEILLANCE = 512;
-	static const int UNINTERESTED = 1024;
-	static const int WAITING = 2048;
-	static const int DERELICT = 4096;
-	static const int FLEEING = 8192;
-	static const int ESCORT = 16384;
-	static const int FRUGAL = 32768;
-	static const int COWARD = 65536;
+	static const int PACIFIST = (1 << 0);
+	static const int FORBEARING = (1 << 1);
+	static const int TIMID = (1 << 2);
+	static const int DISABLES = (1 << 3);
+	static const int PLUNDERS = (1 << 4);
+	static const int HEROIC = (1 << 5);
+	static const int STAYING = (1 << 6);
+	static const int ENTERING = (1 << 7);
+	static const int NEMESIS = (1 << 8);
+	static const int SURVEILLANCE = (1 << 9);
+	static const int UNINTERESTED = (1 << 10);
+	static const int WAITING = (1 << 11);
+	static const int DERELICT = (1 << 12);
+	static const int FLEEING = (1 << 13);
+	static const int ESCORT = (1 << 14);
+	static const int FRUGAL = (1 << 15);
+	static const int COWARD = (1 << 16);
+	static const int VINDICTIVE = (1 << 17);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -56,7 +57,8 @@ namespace {
 		{"fleeing", FLEEING},
 		{"escort", ESCORT},
 		{"frugal", FRUGAL},
-		{"coward", COWARD}
+		{"coward", COWARD},
+		{"vindictive", VINDICTIVE}
 	};
 	
 	double DEFAULT_CONFUSION = 10. * .001;
@@ -222,6 +224,13 @@ bool Personality::IsFrugal() const
 bool Personality::IsCoward() const
 {
 	return flags & COWARD;
+}
+
+
+
+bool Personality::IsVindictive() const
+{
+	return flags & VINDICTIVE;
 }
 
 
