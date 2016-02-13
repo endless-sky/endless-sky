@@ -37,8 +37,7 @@ ship "Quarg Skylark"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 120
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
+		"Medium Graviton Engine" 2
 		"Jump Drive"
 	engine -15 117
 	engine 15 117
@@ -82,8 +81,7 @@ ship "Quarg Wardragon"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 160
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
+		"Medium Graviton Engine" 2
 		"Jump Drive"
 	engine -14 47
 	engine 14 47
