@@ -98,6 +98,30 @@ bool Armament::Weapon::IsMidBurst() const
 }
 
 
+// Determine whether if burst weapon has stopped bursting before.
+bool Armament::Weapon::IsBurstCut() const
+{
+	return (lastReload - reload > 0);
+}
+
+
+
+// Adjust the reload counter of burst weapon that stopped firing
+// and reduce the streamreload time for the next weapon.
+int Armament::Weapon::ReloadAdjustment()
+{
+	int reloadChange = (outfit->Reload() + max(outfit->BurstReload(), 1)) * (outfit->BurstCount() - burstCount) / outfit->BurstCount();
+	reload -= reloadChange;
+	burstCount = 0;
+	burstReload = 0;
+
+	if(reload < 0)
+		reload = 0;
+
+	return reloadChange;
+}
+
+
 
 // Perform one step (i.e. decrement the reload count).
 void Armament::Weapon::Step()
@@ -234,10 +258,13 @@ void Armament::Weapon::Uninstall()
 void Armament::Weapon::Fire(Ship &ship)
 {
 	// Reset the reload count.
-	reload += outfit->Reload();
+	if(burstCount <= 0)
+		reload += outfit->Reload() + outfit->BurstCount() * max(outfit->BurstReload(), 1);
+
 	burstReload += outfit->BurstReload();
+	lastReload = reload - max(burstReload, 1);
 	++burstCount;
-	
+
 	// Expend any ammo that this weapon uses.
 	ship.ExpendAmmo(outfit);
 }
@@ -374,7 +401,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 {
 	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return;
-	
+
 	// A weapon that has already started a burst ignores stream timing.
 	if(!weapons[index].IsMidBurst())
 	{
@@ -383,7 +410,19 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * max(1, it->first->BurstCount());
+			it->second += it->first->Reload();
+		}
+	}
+	// Reduce the reload time of burst weapon that only used up it's burst halfway.
+	if(weapons[index].IsBurstCut() && weapons[index].IsMidBurst())
+	{
+		auto it = streamReload.find(weapons[index].GetOutfit());
+		if(it != streamReload.end())
+		{
+			it->second -= weapons[index].ReloadAdjustment();
+			if(it->second < 0)
+				it->second = 0;
+			return;
 		}
 	}
 	weapons[index].Fire(ship, projectiles, effects);
