@@ -260,11 +260,11 @@ void Armament::Weapon::Fire(Ship &ship)
 	// Reset the reload count.
 	if(burstCount <= 0)
 		reload += outfit->Reload() + outfit->BurstCount() * max(outfit->BurstReload(), 1);
-
+	
 	burstReload += outfit->BurstReload();
 	lastReload = reload - max(burstReload, 1);
 	++burstCount;
-
+	
 	// Expend any ammo that this weapon uses.
 	ship.ExpendAmmo(outfit);
 }
@@ -401,7 +401,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 {
 	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return;
-
+	
 	// A weapon that has already started a burst ignores stream timing.
 	if(!weapons[index].IsMidBurst())
 	{
