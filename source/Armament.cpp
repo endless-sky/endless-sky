@@ -106,18 +106,12 @@ bool Armament::Weapon::IsBurstCut() const
 
 
 
-// Adjust the reload counter of burst weapon that stopped firing
-// and reduce the streamreload time for the next weapon.
+// Reduce the streamreload time for next burst weapon.
 int Armament::Weapon::ReloadAdjustment()
 {
-	int reloadChange = (outfit->Reload() + max(outfit->BurstReload(), 1)) * (outfit->BurstCount() - burstCount) / outfit->BurstCount();
-	reload -= reloadChange;
+	int reloadChange = outfit->Reload() * (outfit->BurstCount() - burstCount);
 	burstCount = 0;
 	burstReload = 0;
-
-	if(reload < 0)
-		reload = 0;
-
 	return reloadChange;
 }
 
@@ -258,9 +252,7 @@ void Armament::Weapon::Uninstall()
 void Armament::Weapon::Fire(Ship &ship)
 {
 	// Reset the reload count.
-	if(burstCount <= 0)
-		reload += outfit->Reload() + outfit->BurstCount() * max(outfit->BurstReload(), 1);
-	
+	reload += outfit->Reload();
 	burstReload += outfit->BurstReload();
 	lastReload = reload - max(burstReload, 1);
 	++burstCount;
@@ -410,10 +402,9 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload();
+			it->second += it->first->Reload() * max(1, it->first->BurstCount());
 		}
 	}
-	// Reduce the reload time of burst weapon that only used up it's burst halfway.
 	if(weapons[index].IsBurstCut() && weapons[index].IsMidBurst())
 	{
 		auto it = streamReload.find(weapons[index].GetOutfit());
