@@ -59,8 +59,7 @@ public:
 		bool IsMidBurst() const;
 		// Determine whether if burst weapon has stopped bursting before.
 		bool IsBurstCut() const;
-		// Adjust the reload counter of burst weapon that stopped firing.
-		// and reduce the streamreload time for the next weapon.
+		// Reduce the streamreload time for next burst weapon.
 		int ReloadAdjustment();
 		// Perform one step (i.e. decrement the reload count).
 		void Step();
