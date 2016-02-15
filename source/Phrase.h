@@ -29,7 +29,11 @@ public:
 	
 	
 private:
-	std::vector<std::vector<std::vector<std::string>>> words;
+	struct Part {
+		std::vector<std::string> words;
+		const Phrase *phrase;
+	};
+	std::vector<std::vector<Part>> parts;
 };
 
 
