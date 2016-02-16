@@ -131,7 +131,7 @@ void InfoPanel::Draw() const
 	if(showShip)
 	{
 		interfaceInfo.SetCondition("ship tab");
-		if(canEdit && (shipIt->get() != player.Flagship() || (*shipIt)->IsParked()))
+		if(canEdit && ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		else if(!canEdit)
 			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");

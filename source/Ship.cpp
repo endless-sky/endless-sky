@@ -1107,13 +1107,12 @@ bool Ship::Move(list<Effect> &effects)
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
 				isBoarding = false;
-				if(government->IsEnemy(target->government) && target->Attributes().Get("self destruct"))
+				bool isEnemy = government->IsEnemy(target->government);
+				if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 				{
 					Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 						+ "\" has activated its self-destruct mechanism.");
-					shared_ptr<Ship> victim = targetShip.lock();
-					victim->hull = -1.;
-					victim->explosionRate = 1024;
+					targetShip.lock()->SelfDestruct();
 				}
 				else
 					hasBoarded = true;
@@ -1531,6 +1530,14 @@ void Ship::Destroy()
 
 
 
+void Ship::SelfDestruct()
+{
+	Destroy();
+	explosionRate = 1024;
+}
+
+
+
 void Ship::Restore()
 {
 	hull = 0;
@@ -1768,23 +1775,13 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	if(shields > shieldDamage)
-	{
-		shields -= shieldDamage;
-		heat += .5 * heatDamage;
-		ionization += .5 * ionDamage;
-	}
-	else if(!shields || shieldDamage)
-	{
-		if(shieldDamage)
-		{
-			hullDamage *= (1. - (shields / shieldDamage));
-			shields = 0.;
-		}
-		hull -= hullDamage;
-		heat += heatDamage;
-		ionization += ionDamage;
-	}
+	double shieldFraction = 1. - weapon.Piercing();
+	if(shieldDamage > shields)
+	    shieldFraction = min(shieldFraction, shields / shieldDamage);
+	shields -= shieldDamage * shieldFraction;
+	hull -= hullDamage * (1. - shieldFraction);
+	heat += heatDamage * (1. - .5 * shieldFraction);
+	ionization += ionDamage * (1. - .5 * shieldFraction);
 	
 	if(hitForce && !IsHyperspacing())
 	{

@@ -31,7 +31,7 @@ using namespace std;
 
 // Constructor.
 Armament::Weapon::Weapon(const Point &point, bool isTurret, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), reload(0), isTurret(isTurret)
+	: outfit(outfit), point(point * .5), isTurret(isTurret)
 {
 }
 
@@ -87,7 +87,14 @@ bool Armament::Weapon::IsAntiMissile() const
 // Check if this weapon is ready to fire.
 bool Armament::Weapon::IsReady() const
 {
-	return outfit && reload <= 0;
+	return outfit && burstReload <= 0 && (reload <= 0 || IsMidBurst());
+}
+
+
+
+bool Armament::Weapon::IsMidBurst() const
+{
+	return (outfit && burstCount && burstCount < outfit->BurstCount());
 }
 
 
@@ -97,6 +104,10 @@ void Armament::Weapon::Step()
 {
 	if(reload)
 		--reload;
+	if(!reload)
+		burstCount = 0;
+	if(burstReload)
+		--burstReload;
 }
 
 
@@ -152,9 +163,7 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 			effects.back().Place(start, ship.Velocity(), aim);
 		}
 	
-	// Reset the reload count.
-	reload += outfit->Reload();
-	ship.ExpendAmmo(outfit);
+	Fire(ship);
 }
 
 
@@ -185,9 +194,7 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 			effects.back().Place(start, ship.Velocity(), aim);
 		}
 	
-	// Reset the reload count.
-	reload += outfit->Reload();
-	ship.ExpendAmmo(outfit);
+	Fire(ship);
 	
 	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
 }
@@ -203,6 +210,9 @@ void Armament::Weapon::Install(const Outfit *outfit)
 	else if(!outfit->Get("turret mounts") || isTurret)
 	{
 		this->outfit = outfit;
+		reload = 0;
+		burstReload = 0;
+		burstCount = 0;
 		
 		// Find the point of convergence of shots fired from this gun.
 		double d = outfit->Range();
@@ -217,6 +227,19 @@ void Armament::Weapon::Install(const Outfit *outfit)
 void Armament::Weapon::Uninstall()
 {
 	outfit = nullptr;
+}
+
+
+
+void Armament::Weapon::Fire(Ship &ship)
+{
+	// Reset the reload count.
+	reload += outfit->Reload();
+	burstReload += outfit->BurstReload();
+	++burstCount;
+	
+	// Expend any ammo that this weapon uses.
+	ship.ExpendAmmo(outfit);
 }
 
 
@@ -246,46 +269,39 @@ void Armament::Add(const Outfit *outfit, int count)
 	if(!count || !outfit || !outfit->IsWeapon())
 		return;
 	
-	int installed = 0;
+	int total = 0;
 	bool isTurret = outfit->Get("turret mounts");
 	
-	if(count < 0)
+	for(Weapon &weapon : weapons)
 	{
-		// Look for slots where this weapon is installed.
-		for(Weapon &weapon : weapons)
-			if(weapon.GetOutfit() == outfit)
+		if(weapon.GetOutfit() == outfit)
+		{
+			if(count < 0)
 			{
 				weapon.Uninstall();
-				if(--installed == count)
-					break;
+				++count;
 			}
-	}
-	else
-	{
-		// Look for empty, compatible slots.
-		for(Weapon &weapon : weapons)
-			if(!weapon.GetOutfit() && weapon.IsTurret() == isTurret)
+			else
+				++total;
+		}
+		else if(!weapon.GetOutfit() && weapon.IsTurret() == isTurret)
+		{
+			if(count > 0)
 			{
 				weapon.Install(outfit);
-				if(++installed == count)
-					break;
+				--count;
+				++total;
 			}
-	}
-	
-	// If this weapon is streamed, create a stream counter. Missiles and anti-
-	// missiles do not stream.
-	if(outfit->IsStreamed())
-	{
-		auto it = streamReload.find(outfit);
-		if(it == streamReload.end())
-			streamReload[outfit] = count;
-		else
-		{
-			it->second += count;
-			if(!it->second)
-				streamReload.erase(it);
 		}
 	}
+	
+	// If this weapon is streamed, create a stream counter. If it is not
+	// streamed, or if the last of this weapon has been uninstalled, erase the
+	// stream counter (if there is one).
+	if(total && outfit->IsStreamed())
+		streamReload[outfit] = 0;
+	else
+		streamReload.erase(outfit);
 }
 
 
@@ -303,9 +319,8 @@ void Armament::FinishLoading()
 			// Make sure the firing angle is set properly.
 			weapon.Install(outfit);
 			// If this weapon is streamed, create a stream counter.
-			// Missiles and anti-missiles do not stream.
 			if(outfit->IsStreamed())
-				++streamReload[outfit];
+				streamReload[outfit] = 0;
 		}
 }
 
@@ -360,13 +375,18 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 	if(static_cast<unsigned>(index) >= weapons.size() || !weapons[index].IsReady())
 		return;
 	
-	auto it = streamReload.find(weapons[index].GetOutfit());
-	if(it != streamReload.end() && it->second > 0)
-		return;
-	
+	// A weapon that has already started a burst ignores stream timing.
+	if(!weapons[index].IsMidBurst())
+	{
+		auto it = streamReload.find(weapons[index].GetOutfit());
+		if(it != streamReload.end())
+		{
+			if(it->second > 0)
+				return;
+			it->second += it->first->Reload() * max(1, it->first->BurstCount());
+		}
+	}
 	weapons[index].Fire(ship, projectiles, effects);
-	if(it != streamReload.end())
-		it->second += it->first->Reload();
 }
 
 

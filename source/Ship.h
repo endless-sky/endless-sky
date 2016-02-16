@@ -163,6 +163,7 @@ public:
 	
 	// Mark a ship as destroyed, or bring back a destroyed ship.
 	void Destroy();
+	void SelfDestruct();
 	void Restore();
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;

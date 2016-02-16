@@ -643,6 +643,7 @@ void PlayerInfo::ParkShip(const Ship *selected, bool isParked)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
+			isParked &= !(*it)->IsDisabled();
 			(*it)->SetIsParked(isParked);
 			UpdateCargoCapacities();
 			flagship.reset();

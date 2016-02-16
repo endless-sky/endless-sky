@@ -52,6 +52,8 @@ public:
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int Reload() const;
+	int BurstReload() const;
+	int BurstCount() const;
 	int Homing() const;
 	
 	int MissileStrength() const;
@@ -84,6 +86,8 @@ public:
 	double HeatDamage() const;
 	double IonDamage() const;
 	
+	double Piercing() const;
+	
 	double TotalLifetime() const;
 	double Range() const;
 	
@@ -109,6 +113,8 @@ private:
 	// Attributes.
 	int lifetime = 0;
 	int reload = 0;
+	int burstReload = 0;
+	int burstCount = 0;
 	int homing = 0;
 	
 	int missileStrength = 0.;
@@ -136,6 +142,8 @@ private:
 	double ionDamage = 0.;
 	double hitForce = 0.;
 	
+	double piercing = 0.;
+	
 	// Cache the calculation of these values, for faster access.
 	mutable double totalShieldDamage = -1.;
 	mutable double totalHullDamage = -1.;
@@ -149,6 +157,8 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::Reload() const { return reload; }
+inline int Weapon::BurstReload() const { return burstReload; }
+inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
@@ -166,6 +176,8 @@ inline double Weapon::FiringEnergy() const { return firingEnergy; }
 inline double Weapon::FiringForce() const { return firingForce; }
 inline double Weapon::FiringFuel() const { return firingFuel; }
 inline double Weapon::FiringHeat() const { return firingHeat; }
+
+inline double Weapon::Piercing() const { return piercing; }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }

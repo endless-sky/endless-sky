@@ -147,6 +147,7 @@ government "Neutral"
 	
 	"player reputation" 1
 	"attitude toward"
+		"Merchant" .3
 		"Pirate" -.2
 	"bribe" .05
 	"friendly hail" "friendly civilian"
