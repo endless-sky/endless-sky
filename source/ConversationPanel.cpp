@@ -157,24 +157,9 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	{
 		if(key == SDLK_RETURN)
 		{
-			GetUI()->Pop(this);
-			if(callback)
-			{
-				if(player.BoardingShip())
-				{
-					if(node == Conversation::LAUNCH || node == Conversation::FLEE)
-						player.BoardingShip()->Destroy();
-					else if(player.BoardingShip()->GetGovernment()->IsEnemy())
-					{
-						if(node != Conversation::ACCEPT)
-							GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
-					}
-				}
-				callback(node);
-			}
+			SelectNode();
 			return true;
 		}
-		
 		return false;
 	}
 	if(choices.empty())
@@ -234,9 +219,7 @@ bool ConversationPanel::Click(int x, int y)
 	{
 		if(zones.empty() || zones.front().Contains(point))
 		{
-			if(callback)
-				callback(node);
-			GetUI()->Pop(this);
+			SelectNode();
 		}
 	}
 	else if(choices.empty() && node >= 0)
@@ -328,6 +311,29 @@ void ConversationPanel::Goto(int index, int choice)
 		choices.emplace_back(altered);
 	}
 	this->choice = 0;
+}
+
+
+
+// Called by KeyDown or Click when a conversation node is selected (by clicking or pressing enter).  
+void ConversationPanel::SelectNode()
+{
+	GetUI()->Pop(this);
+	if(callback)
+	{
+		if(player.BoardingShip())
+		{
+			if(node == Conversation::LAUNCH || node == Conversation::FLEE)
+				player.BoardingShip()->Destroy();
+			else if(player.BoardingShip()->GetGovernment()->IsEnemy())
+			{
+				if(node != Conversation::ACCEPT)
+					//This isn't the same as if you used the mouse to end the conversation!!
+					GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
+			}
+		}
+		callback(node);
+	}
 }
 
 
