@@ -49,7 +49,7 @@ void Phrase::Load(const DataNode &node)
 
 
 
-string Phrase::Get() const
+string Phrase::Get(int recursion_limit) const
 {
 	string result;
 	if(parts.empty())
@@ -57,8 +57,8 @@ string Phrase::Get() const
 	
 	for(const Part &part : parts[Random::Int(parts.size())])
 	{
-		if(part.phrase)
-			result += part.phrase->Get();
+		if(part.phrase && (recursion_limit > 0))
+			result += part.phrase->Get(recursion_limit - 1);
 		else if(!part.words.empty())
 			result += part.words[Random::Int(part.words.size())];
 	}

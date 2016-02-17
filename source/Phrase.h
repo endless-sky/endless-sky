@@ -25,7 +25,7 @@ class Phrase {
 public:
 	void Load(const DataNode &node);
 	
-	std::string Get() const;
+	std::string Get(int recursion_limit=16) const;
 	
 	
 private:
