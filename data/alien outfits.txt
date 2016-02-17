@@ -71,6 +71,7 @@ outfit "Intrusion Countermeasures"
 	"capture defense" 60
 	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
 
+# Legacy support (replaced with "Medium Graviton Engine").
 outfit "Medium Graviton Thruster"
 	category "Engines"
 	"cost" 20000000
@@ -83,6 +84,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting heat" 10
 	"flare sprite" "effect/medium graviton flare"
 
+# Legacy support (replaced with "Medium Graviton Engine").
 outfit "Medium Graviton Steering"
 	category "Engines"
 	"cost" 16000000
@@ -93,6 +95,25 @@ outfit "Medium Graviton Steering"
 	"turn" 1600
 	"turning energy" 10
 	"turning heat" 5
+
+outfit "Medium Graviton Engine"
+	category "Engines"
+	"cost" 18000000
+	thumbnail "outfit/unknown"
+	"mass" 60
+	"outfit space" -60
+	"engine capacity" -60
+	"turn" 800
+	"turning energy" 5
+	"turning heat" 2.5
+	"thrust" 40
+	"thrusting energy" 10
+	"thrusting heat" 5
+	"reverse thrust" 40
+	"reverse thrusting energy" 10
+	"reverse thrusting heat" 5
+	"flare sprite" "effect/medium graviton flare"
+	description "This Quarg engine appears to function by creating and manipulating gravity fields causing your ship to simply 'fall' in the desired direction. It doesn't expel any kind of propellant, but requires a huge amount of energy compared to any other engine you've seen. It's unique design, however, gives it unparalelled flexibility - it provides forward, reverse, and angular thrust all with equal ease."
 
 outfit "Quantum Shield Generator"
 	category "Systems"

@@ -124,6 +124,5 @@ person "Cap'n Pester"
 			"Cargo Scanner"
 			"Outfit Scanner"
 		
-			"Medium Graviton Thruster"
-			"Medium Graviton Steering"
+			"Medium Graviton Engine" 2
 			"Scram Drive"

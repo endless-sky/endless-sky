@@ -198,8 +198,7 @@ ship Archon
 		"Drak Distancer" 2
 		"Drak Turret" 3
 		
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
+		"Medium Graviton Engine" 2
 		"Hyperdrive"
 		"Jump Drive"
 	
