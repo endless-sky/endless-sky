@@ -85,6 +85,9 @@ protected:
 	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
 	
+	// Function for the "find" dialogs:
+	static bool Contains(const std::string &str, const std::string &sub);
+	
 	
 protected:
 	PlayerInfo &player;

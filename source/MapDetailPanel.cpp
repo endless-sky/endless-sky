@@ -15,7 +15,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -30,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -274,14 +274,14 @@ void MapDetailPanel::DrawKey() const
 	
 	if(commodity >= 0)
 	{
-		const std::vector<Trade::Commodity> &commodities = GameData::Commodities();
+		const vector<Trade::Commodity> &commodities = GameData::Commodities();
 		const auto &range = commodities[commodity];
 		if(static_cast<unsigned>(commodity) >= commodities.size())
 			return;
 		
 		for(int i = 0; i <= 3; ++i)
 		{
-			DotShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
 			font.Draw(Format::Number(price), pos + textOff, dim);
 			pos.Y() += 20.;
@@ -296,7 +296,7 @@ void MapDetailPanel::DrawKey() const
 		
 		for(int i = 0; i < 4; ++i)
 		{
-			DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 			font.Draw(LABEL[commodity == SHOW_OUTFITTER][i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -310,7 +310,7 @@ void MapDetailPanel::DrawKey() const
 		};
 		for(int i = 0; i < 3; ++i)
 		{
-			DotShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
 			font.Draw(LABEL[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
@@ -323,39 +323,39 @@ void MapDetailPanel::DrawKey() const
 		sort(distances.begin(), distances.end());
 		for(unsigned i = 0; i < 4 && i < distances.size(); ++i)
 		{
-			DotShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
+			RingShader::Draw(pos, OUTER, INNER, GovernmentColor(distances[i].second));
 			font.Draw(distances[i].second->GetName(), pos + textOff, dim);
 			pos.Y() += 20.;
 		}
 	}
 	else if(commodity == SHOW_REPUTATION)
 	{
-		DotShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
-		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
-		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(1e-1, true, false));
+		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(1e2, true, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(1e4, true, false));
 		font.Draw("Friendly", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
-		DotShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
-		DotShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
-		DotShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(-1e-1, false, false));
+		RingShader::Draw(pos + Point(12., 0.), OUTER, INNER, ReputationColor(-1e2, false, false));
+		RingShader::Draw(pos + Point(24., 0.), OUTER, INNER, ReputationColor(-1e4, false, false));
 		font.Draw("Hostile", pos + textOff + Point(24., 0.), dim);
 		pos.Y() += 20.;
 		
-		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, false));
 		font.Draw("Restricted", pos + textOff, dim);
 		pos.Y() += 20.;
 		
-		DotShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
+		RingShader::Draw(pos, OUTER, INNER, ReputationColor(0., false, true));
 		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
 	
-	DotShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 	font.Draw("Uninhabited", pos + textOff, dim);
 	pos.Y() += 20.;
 	
-	DotShader::Draw(pos, OUTER, INNER, UnexploredColor());
+	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
 	font.Draw("Unexplored", pos + textOff, dim);
 }
 
@@ -566,12 +566,12 @@ void MapDetailPanel::DrawOrbits() const
 		}
 		
 		double radius = object.Distance() * scale;
-		DotShader::Draw(orbitCenter + parentPos * scale,
+		RingShader::Draw(orbitCenter + parentPos * scale,
 			radius + .7, radius - .7,
 			habitColor[habit]);
 		
 		if(selectedPlanet && object.GetPlanet() == selectedPlanet)
-			DotShader::Draw(orbitCenter + object.Position() * scale,
+			RingShader::Draw(orbitCenter + object.Position() * scale,
 				object.Radius() * scale + 5., object.Radius() * scale + 4.,
 				habitColor[6]);
 	}
@@ -602,7 +602,7 @@ void MapDetailPanel::DrawOrbits() const
 			if(GameData::GetPolitics().HasDominated(object.GetPlanet()))
 				colorIndex = 5;
 		}
-		DotShader::Draw(pos, object.Radius() * scale + 1., 0., planetColor[colorIndex]);
+		RingShader::Draw(pos, object.Radius() * scale + 1., 0., planetColor[colorIndex]);
 	}
 	
 	// Draw the name of the selected planet.

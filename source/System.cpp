@@ -19,12 +19,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Planet.h"
+#include "Random.h"
+
+#include <cmath>
 
 using namespace std;
 
 namespace {
-	static const double NEIGHBOR_DISTANCE = 100.;
+	// Dynamic economy parameters: how much of its production each system keeps
+	// and exports each day:
+	static const double KEEP = .89;
+	static const double EXPORT = .10;
+	// Standard deviation of the daily production of each commodity:
+	static const double VOLUME = 2000.;
+	// Above this supply amount, price differences taper off:
+	static const double LIMIT = 20000.;
 }
+
+const double System::NEIGHBOR_DISTANCE = 100.;
 
 
 
@@ -121,7 +133,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
 		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
-			trade[child.Token(1)] = child.Value(2);
+			trade[child.Token(1)].SetBase(child.Value(2));
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -395,7 +407,46 @@ const vector<System::Asteroid> &System::Asteroids() const
 int System::Trade(const string &commodity) const
 {
 	auto it = trade.find(commodity);
-	return (it == trade.end()) ? 0 : it->second;
+	return (it == trade.end()) ? 0 : it->second.price;
+}
+
+
+
+// Update the economy.
+void System::StepEconomy()
+{
+	for(auto &it : trade)
+	{
+		it.second.exports = EXPORT * it.second.supply;
+		it.second.supply *= KEEP;
+		it.second.supply += Random::Normal() * VOLUME;
+		it.second.Update();
+	}
+}
+
+
+
+void System::SetSupply(const string &commodity, double tons)
+{
+	auto &it = trade[commodity];
+	it.supply = tons;
+	it.Update();
+}
+
+
+
+double System::Supply(const string &commodity) const
+{
+	auto it = trade.find(commodity);
+	return (it == trade.end()) ? 0 : it->second.supply;
+}
+
+
+
+double System::Exports(const string &commodity) const
+{
+	auto it = trade.find(commodity);
+	return (it == trade.end()) ? 0 : it->second.exports;
 }
 
 
@@ -428,7 +479,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		{
 			object.animation.Load(child);
 			object.isStar = !child.Token(1).compare(0, 5, "star/");
-			if (!object.isStar)
+			if(!object.isStar)
 			{
 				object.isStation = !child.Token(1).compare(0, 14, "planet/station");
 				object.isMoon = (!object.isStation && parent >= 0 && !objects[parent].IsStar());
@@ -445,4 +496,19 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+void System::Price::SetBase(int base)
+{
+	this->base = base;
+	this->price = base;
+}
+
+
+
+void System::Price::Update()
+{
+	price = base + static_cast<int>(-100. * erf(supply / LIMIT));
 }

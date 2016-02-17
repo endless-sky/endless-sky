@@ -41,18 +41,6 @@ class Sprite;
 using namespace std;
 
 namespace {
-	static const vector<string> CATEGORIES = {
-		"Guns",
-		"Turrets",
-		"Secondary Weapons",
-		"Ammunition",
-		"Systems",
-		"Power",
-		"Engines",
-		"Hand to Hand",
-		"Special"
-	};
-	
 	string Tons(int tons)
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
@@ -62,7 +50,7 @@ namespace {
 
 
 OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, CATEGORIES), available(player.SoldOutfits())
+	: ShopPanel(player, Outfit::CATEGORIES), available(player.SoldOutfits())
 {
 	for(const pair<string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].insert(it.first);
@@ -91,7 +79,7 @@ void OutfitterPanel::Step()
 			"Also, missiles can only be bought if you have the right launcher installed.\n"
 			"\tUse your scroll wheel, or click and drag, to scroll the view.\n"
 			"\tAs in the trading panel, you can hold down Shift or Control "
-			"to buy 5 or 20 copies of an outfit at once, or both keys to buy 100."));
+			"to buy 5 or 20 of an outfit at once, or both keys to buy 100."));
 	}
 }
 
@@ -211,11 +199,11 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	OutfitInfoDisplay info(*selectedOutfit);
 	Point offset(info.PanelWidth(), 0.);
 	
-	info.DrawDescription(center - offset * 1.5);
-	info.DrawRequirements(center - offset * .5);
-	info.DrawAttributes(center + offset * .5);
+	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+	info.DrawRequirements(center - offset * .5 - Point(0., 10.));
+	info.DrawAttributes(center + offset * .5 - Point(0., 10.));
 	
-	return info.MaximumHeight() + 40;
+	return info.MaximumHeight();
 }
 
 
@@ -346,7 +334,7 @@ void OutfitterPanel::FailBuy() const
 	{
 		GetUI()->Push(new Dialog("You cannot buy this outfit here. "
 			"It is being shown in the list because you have one installed in your ship, "
-			"but this " + planet->Noun() + " does not sell additional copies of it."));
+			"but this " + planet->Noun() + " does not sell them."));
 		return;
 	}
 	
@@ -390,7 +378,7 @@ void OutfitterPanel::FailBuy() const
 				"You cannot install it without first installing the appropriate weapon."));
 		else
 			GetUI()->Push(new Dialog("You already have the maximum amount of ammunition for this weapon. "
-				"If you want to install more ammunition, you must first install another copy of the weapon."));
+				"If you want to install more ammunition, you must first install another of these weapons."));
 		return;
 	}
 	

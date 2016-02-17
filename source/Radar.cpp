@@ -12,8 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Radar.h"
 
-#include "DotShader.h"
 #include "PointerShader.h"
+#include "RingShader.h"
 
 using namespace std;
 
@@ -75,7 +75,7 @@ void Radar::AddPointer(int type, const Point &position)
 // Draw the radar display at the given coordinates.
 void Radar::Draw(const Point &center, double scale, double radius, double pointerRadius) const
 {
-	DotShader::Bind();
+	RingShader::Bind();
 	for(const Object &object : objects)
 	{
 		Point position = object.position * scale;
@@ -84,9 +84,9 @@ void Radar::Draw(const Point &center, double scale, double radius, double pointe
 			position *= radius / length;
 		position += center;
 		
-		DotShader::Add(position, object.outer, object.inner, object.color);
+		RingShader::Add(position, object.outer, object.inner, object.color);
 	}
-	DotShader::Unbind();
+	RingShader::Unbind();
 	
 	PointerShader::Bind();
 	for(const Pointer &pointer : pointers)

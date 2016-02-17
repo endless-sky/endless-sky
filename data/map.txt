@@ -14580,7 +14580,7 @@ planet Dune
 planet Dustmaker
 	attributes hai
 	landscape land/badlands0
-	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there almost no water on the planet's surface except near the poles.`
+	description `The surface of this planet, when it is not obscured by dust storms, receives enough sunlight to power not only large solar farms, but solar furnaces as well, which the Hai use for manufacturing a large variety of goods. Some of the solar farms are so large that from orbit, the light reflecting off them could almost be mistaken for lakes and small oceans. However, there is almost no water on the planet's surface except near the poles.`
 	spaceport `Like most Hai architecture, the spaceport is made of bare, unpainted metal, so weathered that you would not be surprised to learn that it is tens of thousands of years old. Tall, curved walls around the outskirts of the port create a sort of labyrinth with the port building itself at the center; they are probably intended to block sandstorms while allowing gentler breezes to pass through.`
 
 planet Earth

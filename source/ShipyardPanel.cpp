@@ -26,24 +26,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-namespace {
-	static const vector<string> CATEGORIES = {
-		"Transport",
-		"Light Freighter",
-		"Heavy Freighter",
-		"Interceptor",
-		"Light Warship",
-		"Medium Warship",
-		"Heavy Warship",
-		"Fighter",
-		"Drone"
-	};
-}
-
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, CATEGORIES)
+	: ShopPanel(player, Ship::CATEGORIES)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);

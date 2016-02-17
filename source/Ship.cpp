@@ -33,6 +33,18 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+const vector<string> Ship::CATEGORIES = {
+	"Transport",
+	"Light Freighter",
+	"Heavy Freighter",
+	"Interceptor",
+	"Light Warship",
+	"Medium Warship",
+	"Heavy Warship",
+	"Fighter",
+	"Drone"
+};
+
 
 
 void Ship::Load(const DataNode &node)
@@ -1095,13 +1107,12 @@ bool Ship::Move(list<Effect> &effects)
 			if(distance < 10. && speed < 1. && (CanBeCarried() || !turn))
 			{
 				isBoarding = false;
-				if(government->IsEnemy(target->government) && target->Attributes().Get("self destruct"))
+				bool isEnemy = government->IsEnemy(target->government);
+				if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 				{
 					Messages::Add("The " + target->ModelName() + " \"" + target->Name()
 						+ "\" has activated its self-destruct mechanism.");
-					shared_ptr<Ship> victim = targetShip.lock();
-					victim->hull = -1.;
-					victim->explosionRate = 1024;
+					targetShip.lock()->SelfDestruct();
 				}
 				else
 					hasBoarded = true;
@@ -1242,7 +1253,7 @@ int Ship::Scan() const
 // Fire any weapons that are ready to fire. If an anti-missile is ready,
 // instead of firing here this function returns true and it can be fired if
 // collision detection finds a missile in range.
-bool Ship::Fire(list<Projectile> &projectiles, std::list<Effect> &effects)
+bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1314,7 +1325,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull > 0.);
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull > 0. && !sprite.IsEmpty());
 }
 
 
@@ -1368,7 +1379,7 @@ bool Ship::CanLand() const
 
 double Ship::Cloaking() const
 {
-	return cloak;
+	return sprite.IsEmpty() ? 1. : cloak;
 }
 
 
@@ -1515,6 +1526,14 @@ Point Ship::Unit() const
 void Ship::Destroy()
 {
 	hull = -1.;
+}
+
+
+
+void Ship::SelfDestruct()
+{
+	Destroy();
+	explosionRate = 1024;
 }
 
 
@@ -1690,7 +1709,7 @@ int Ship::Crew() const
 int Ship::RequiredCrew() const
 {
 	// Drones do not need crew, but all other ships need at least one.
-	return max(attributes.Category() == "Drone" ? 0 : 1,
+	return max(attributes.Get("automaton") ? 0 : 1,
 		static_cast<int>(attributes.Get("required crew")));
 }
 
@@ -1756,23 +1775,13 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
-	if(shields > shieldDamage)
-	{
-		shields -= shieldDamage;
-		heat += .5 * heatDamage;
-		ionization += .5 * ionDamage;
-	}
-	else if(!shields || shieldDamage)
-	{
-		if(shieldDamage)
-		{
-			hullDamage *= (1. - (shields / shieldDamage));
-			shields = 0.;
-		}
-		hull -= hullDamage;
-		heat += heatDamage;
-		ionization += ionDamage;
-	}
+	double shieldFraction = 1. - weapon.Piercing();
+	if(shieldDamage > shields)
+	    shieldFraction = min(shieldFraction, shields / shieldDamage);
+	shields -= shieldDamage * shieldFraction;
+	hull -= hullDamage * (1. - shieldFraction);
+	heat += heatDamage * (1. - .5 * shieldFraction);
+	ionization += ionDamage * (1. - .5 * shieldFraction);
 	
 	if(hitForce && !IsHyperspacing())
 	{
@@ -2097,7 +2106,7 @@ const StellarObject *Ship::GetTargetPlanet() const
 
 const System *Ship::GetTargetSystem() const
 {
-	return targetSystem;
+	return (targetSystem == currentSystem) ? nullptr : targetSystem;
 }
 
 

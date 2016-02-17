@@ -255,7 +255,7 @@ mission "oathkeepers founded"
 	on offer
 		conversation
 			`When you land on <origin>, it seems that everyone in the spaceport is talking about a recent news story: the Navy has just announced the formation of a new regiment, called the Oathkeepers. This regiment is staffed mostly by prisoners you paroled from Kornephoros, who want to honor their oath to take no further part in the conflict against the Free Worlds. They will be headquartered on Farpoint, in the far north, to defend that region of space against pirate incursions.`
-			`	Furthermore, the leader of the Oathkeepers will be General Danforth, an elderly general who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
+			`	Furthermore, the leader of the Oathkeepers will be Admiral Danforth, an elderly admiral who is something of a folk hero and is spoken of with admiration and respect even here in Free space. Although he was not one of the paroled prisoners, he has become an outspoken advocate for a diplomatic solution to the Free Worlds conflict.`
 			`	It's heartening news, but you also can't help noticing how many people in the spaceport are talking now about how the Navy really is full of "decent" and "honorable" people, and it's a shame that the Free Worlds had to fight them. By responding to your generous gesture with one of their own, the Navy has won a definite political victory, and given that they needed to defend the North anyway, it is a victory that cost them very little.`
 
 
@@ -1258,7 +1258,7 @@ mission "FW Pirates 3.1"
 				goto plan
 			label disagree
 			`	"Absolutely," says Tomek. "The Senate doesn't know what's best for them. Perhaps we should save them from their own stupidity and make sure the right thing gets done."`
-			`	"Tomek," says Freya, "this is a diplomacy. We follow the Senate's orders."`
+			`	"Tomek," says Freya, "this is a democracy. We follow the Senate's orders."`
 			label plan
 			`	JJ says, "Captain <last>, the Senate wants you to travel to Thule and deliver their ultimatum. You will be given a single Falcon as an escort: not enough for a battle fleet, just enough to keep you safe. You are to avoid engaging any pirates you meet, if possible."`
 			`	"I'll introduce you to your escort," says Tomek, and he leads you out of the bar. Once you are outside, he pulls you aside and says, "If by any chance you are attacked by pirates along the way, and if you have any reason to suspect that they originate from the <system> system, you would be totally justified in attacking that system instead of following your initial orders. I could even supply you with a backup fleet, if that happened."`
@@ -1294,7 +1294,7 @@ mission "FW Pirates 3.2"
 			choice
 				`	"Yes, it's our best chance for eliminating the pirates."`
 					goto yes
-				`	"Only if the Senate agrees. This is a diplomatic government, after all."`
+				`	"Only if the Senate agrees. This is a democratic government, after all."`
 				`	"What's going on? Are you drunk?"`
 			`	"Those fools in the Senate want us to negotiate with the pirates," he says. "We need to save them from their own stupidity. I've got a battle fleet waiting for you on <planet>, brave captains who are willing to join you."`
 				goto others
@@ -1310,7 +1310,7 @@ mission "FW Pirates 3.2"
 					goto leave
 				`	"So, we're not going to attack the pirates?"`
 			`	Tomek says, "No, we're just going to let them sit there waiting to stab us in the back at the first opportunity."`
-			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the diplomatic process even when we don't like the decisions they make. Captain, I hope your mission to Thule is a success."`
+			`	JJ puts a hand on his shoulder and says, "Calm down. We're obeying the orders of the Senate. We have to honor the democratic process even when we don't like the decisions they make. Captain, I hope your mission to Thule is a success."`
 			label leave
 			`	As you stand up to leave the bar, Tomek says, "Remember what we talked about, <first>."`
 				accept

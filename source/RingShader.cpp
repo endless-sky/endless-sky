@@ -113,6 +113,14 @@ void RingShader::Init()
 
 
 
+void RingShader::Draw(const Point &pos, float out, float in, const Color &color)
+{
+	float width = .5f * (1.f + out - in) ;
+	Draw(pos, out - width, width, 1.f, color);
+}
+
+
+
 void RingShader::Draw(const Point &pos, float radius, float width, float fraction, const Color &color, float dash)
 {
 	Bind();
@@ -134,6 +142,14 @@ void RingShader::Bind()
 	
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
+}
+
+
+
+void RingShader::Add(const Point &pos, float out, float in, const Color &color)
+{
+	float width = .5f * (1.f + out - in) ;
+	Add(pos, out - width, width, 1.f, color);
 }
 
 

@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "BoardingPanel.h"
 
 #include "CargoHold.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -235,6 +236,13 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'c' && CanCapture())
 	{
+		if(Random::Real() < victim->Attributes().Get("self destruct"))
+		{
+			victim->SelfDestruct();
+			GetUI()->Pop(this);
+			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship. They appear to have set off their self-destruct sequence..."));
+			return true;
+		}
 		isCapturing = true;
 		messages.push_back("The airlock blasts open. Combat has begun!");
 		messages.push_back("(It will end if you both choose to \"defend.\")");

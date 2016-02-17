@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Color;
 class Conversation;
 class DataNode;
+class DataWriter;
 class Date;
 class Effect;
 class Fleet;
@@ -66,6 +67,11 @@ public:
 	// Revert any changes that have been made to the universe.
 	static void Revert();
 	static void SetDate(const Date &date);
+	// Functions for the dynamic economy.
+	static void ReadEconomy(const DataNode &node);
+	static void WriteEconomy(DataWriter &out);
+	static void StepEconomy();
+	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
 	static void Change(const DataNode &node);
 	

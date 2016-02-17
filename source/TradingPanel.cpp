@@ -220,7 +220,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		{
 			int amount = player.Cargo().Get(it.name);
 			int price = system.Trade(it.name);
-			if(!price)
+			if(!price || !amount)
 				continue;
 			
 			int64_t basis = player.GetBasis(it.name, -amount);
@@ -230,6 +230,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			
 			player.Cargo().Transfer(it.name, amount);
 			player.Accounts().AddCredits(amount * price);
+			GameData::AddPurchase(system, it.name, -amount);
 		}
 		for(const auto &it : player.Cargo().Outfits())
 		{
@@ -305,4 +306,5 @@ void TradingPanel::Buy(int64_t amount)
 	}
 	amount = player.Cargo().Transfer(type, -amount);
 	player.Accounts().AddCredits(amount * price);
+	GameData::AddPurchase(system, type, -amount);
 }

@@ -50,6 +50,7 @@ public:
 	bool IsEscort() const;
 	bool IsFrugal() const;
 	bool IsCoward() const;
+	bool IsVindictive() const;
 	
 	const Point &Confusion() const;
 	

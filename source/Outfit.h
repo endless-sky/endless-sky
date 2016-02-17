@@ -36,6 +36,10 @@ class Sprite;
 // or the sprite or sound to be used for an engine flare.
 class Outfit : public Weapon {
 public:
+	// These are all the possible category strings for outfits.
+	static const std::vector<std::string> CATEGORIES;
+	
+public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);

@@ -16,7 +16,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 #include "Dialog.h"
-#include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -32,6 +31,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Preferences.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -549,11 +549,11 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 	const Color &waypointColor = *GameData::Colors().Get("waypoint back");
 	
 	Point pos = Zoom() * (mission.Destination()->GetSystem()->Position() + center);
-	DotShader::Draw(pos, 22., 20.5, color);
+	RingShader::Draw(pos, 22., 20.5, color);
 	for(const System *system : mission.Waypoints())
-		DotShader::Draw(Zoom() * (system->Position() + center), 22., 20.5, waypointColor);
+		RingShader::Draw(Zoom() * (system->Position() + center), 22., 20.5, waypointColor);
 	for(const Planet *planet : mission.Stopovers())
-		DotShader::Draw(Zoom() * (planet->GetSystem()->Position() + center), 22., 20.5, waypointColor);
+		RingShader::Draw(Zoom() * (planet->GetSystem()->Position() + center), 22., 20.5, waypointColor);
 }
 
 

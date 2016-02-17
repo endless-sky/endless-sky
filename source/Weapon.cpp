@@ -27,6 +27,7 @@ using namespace std;
 void Weapon::LoadWeapon(const DataNode &node)
 {
 	isWeapon = true;
+	bool isClustered = false;
 	
 	for(const DataNode &child : node)
 	{
@@ -43,6 +44,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			fireEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(child.Token(0) == "live effect" && child.Size() >= 2)
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			liveEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(child.Token(0) == "hit effect" && child.Size() >= 2)
 		{
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -58,12 +64,20 @@ void Weapon::LoadWeapon(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			submunitions[GameData::Outfits().Get(child.Token(1))] += count;
 		}
+		else if(child.Token(0) == "stream")
+			isStreamed = true;
+		else if(child.Token(0) == "cluster")
+			isClustered = true;
 		else if(child.Size() >= 2)
 		{
 			if(child.Token(0) == "lifetime")
 				lifetime = child.Value(1);
 			else if(child.Token(0) == "reload")
 				reload = child.Value(1);
+			else if(child.Token(0) == "burst reload")
+				burstReload = child.Value(1);
+			else if(child.Token(0) == "burst count")
+				burstCount = child.Value(1);
 			else if(child.Token(0) == "homing")
 				homing = child.Value(1);
 			else if(child.Token(0) == "missile strength")
@@ -104,11 +118,34 @@ void Weapon::LoadWeapon(const DataNode &node)
 				ionDamage = child.Value(1);
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
+			else if(child.Token(0) == "piercing")
+				piercing = child.Value(1);
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	
+	// Weapons of the same type will alternate firing (streaming) rather than
+	// firing all at once (clustering) if the weapon is not an anti-missile and
+	// is not vulnerable to anti-missile, or has the "stream" attribute.
+	isStreamed |= !(MissileStrength() || AntiMissile());
+	isStreamed &= !isClustered;
+	
+	// Convert the "live effect" counts from occurrences per projectile lifetime
+	// into chance of occurring per frame.
+	if(lifetime <= 0)
+		liveEffects.clear();
+	for(auto it = liveEffects.begin(); it != liveEffects.end(); )
+	{
+		if(!it->second)
+			it = liveEffects.erase(it);
+		else
+		{
+			it->second = max(1, lifetime / it->second);
+			++it;
+		}
 	}
 }
 
@@ -154,6 +191,13 @@ const Sprite *Weapon::Icon() const
 const map<const Effect *, int> &Weapon::FireEffects() const
 {
 	return fireEffects;
+}
+
+
+
+const map<const Effect *, int> &Weapon::LiveEffects() const
+{
+	return liveEffects;
 }
 
 

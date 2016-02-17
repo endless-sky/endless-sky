@@ -13,7 +13,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapPanel.h"
 
 #include "Angle.h"
-#include "DotShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Galaxy.h"
@@ -25,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PointerShader.h"
 #include "Politics.h"
+#include "RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "SpriteShader.h"
@@ -37,15 +37,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cctype>
 
 using namespace std;
-
-namespace {
-	bool Contains(const string &str, const string &sub)
-	{
-		auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-			[](char a, char b) { return toupper(a) == toupper(b); });
-		return (it != str.end());
-	}
-}
 
 const double MapPanel::OUTER = 6.;
 const double MapPanel::INNER = 3.5;
@@ -94,10 +85,10 @@ void MapPanel::Draw() const
 	
 	// Draw the "visible range" circle around your current location.
 	Color dimColor(.1, 0.);
-	DotShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
-		100.5 * Zoom(), 99.5 * Zoom(), dimColor);
+	RingShader::Draw(Zoom() * (playerSystem ? playerSystem->Position() + center : center),
+		(System::NEIGHBOR_DISTANCE + .5) * Zoom(), (System::NEIGHBOR_DISTANCE - .5) * Zoom(), dimColor);
 	Color brightColor(.4, 0.);
-	DotShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
+	RingShader::Draw(Zoom() * (selectedSystem ? selectedSystem->Position() + center : center),
 		11., 9., brightColor);
 	
 	DrawWormholes();
@@ -351,6 +342,15 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 			return false;
 	
 	return mission.Waypoints().empty() && mission.Stopovers().empty();
+}
+
+
+
+bool MapPanel::Contains(const string &str, const string &sub)
+{
+	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
+		[](char a, char b) { return toupper(a) == toupper(b); });
+	return (it != str.end());
 }
 
 
@@ -618,19 +618,22 @@ void MapPanel::DrawSystems() const
 				double reputation = system.GetGovernment()->Reputation();
 				
 				bool hasDominated = true;
+				bool isInhabited = false;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
 					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 					{
 						canLand |= object.GetPlanet()->CanLand();
+						isInhabited |= object.GetPlanet()->IsInhabited();
 						hasDominated &= (!object.GetPlanet()->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(object.GetPlanet()));
 					}
+				hasDominated &= isInhabited;
 				color = ReputationColor(reputation, canLand, canLand && hasDominated);
 			}
 		}
 		
-		DotShader::Draw(pos, OUTER, INNER, color);
+		RingShader::Draw(pos, OUTER, INNER, color);
 	}
 }
 
