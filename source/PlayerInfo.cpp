@@ -1237,7 +1237,7 @@ void PlayerInfo::MissionCallback(int response)
 	
 	Mission &mission = missionList.front();
 	
-	shouldLaunch = (response == Conversation::LAUNCH || response == Conversation::FLEE);
+	shouldLaunch = Conversation::LeaveImmediately(response);
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
@@ -1249,12 +1249,12 @@ void PlayerInfo::MissionCallback(int response)
 		if(shouldAutosave)
 			Autosave();
 	}
-	else if(response == Conversation::DECLINE)
+	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{
 		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DEFER)
+	else if(response == Conversation::DEFER || response == Conversation::DEPART)
 	{
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();

@@ -323,12 +323,11 @@ void ConversationPanel::SelectNode()
 	{
 		if(player.BoardingShip())
 		{
-			if(node == Conversation::LAUNCH || node == Conversation::FLEE)
+			if(Conversation::LeaveImmediately(node))
 				player.BoardingShip()->Destroy();
 			else if(player.BoardingShip()->GetGovernment()->IsEnemy())
 			{
 				if(node != Conversation::ACCEPT)
-					//This isn't the same as if you used the mouse to end the conversation!!
 					GetUI()->Push(new BoardingPanel(player, player.BoardingShip()));
 			}
 		}
