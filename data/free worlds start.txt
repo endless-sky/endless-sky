@@ -1610,7 +1610,7 @@ mission "FW Pirates 4.1"
 			`	"Indeed," says the senator. "And I bet it wasn't long after the battle that you realized saving the galaxy isn't that easy."`
 			`	"I suppose so," you admit.`
 			label sentence
-			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we to want your continued services."`
+			`	A third senator speaks up, a woman whose name card identifies her as Sara, from Skymoot. "That will be all, Captain <last>. The Senate will confer and decide whether we want your continued services."`
 			`	You are led back out to the lobby, where you wait for what feels like another hour. Finally, a messenger comes and hands you a small slip of paper. You open it. The message reads: "We have decided that you will be suspended without pay. When we are in need of your services again, we will contact you." It looks like for now, you are back to being a simple merchant captain.`
 
 
