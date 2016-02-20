@@ -283,7 +283,7 @@ outfit "Korath Ark'parat Steering"
 
 outfit "Korath Jak'torbal Thruster"
 	category "Engines"
-	"cost" 317000
+	"cost" 3170000
 	thumbnail "outfit/unknown"
 	"mass" 89
 	"outfit space" -89
