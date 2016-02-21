@@ -45,9 +45,9 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 private:
@@ -59,6 +59,7 @@ private:
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);
+	bool Hover(double x, double y);
 	
 	
 private:
@@ -73,7 +74,7 @@ private:
 	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
 	int selected;
 	int hover;
-	int scroll = 0;
+	double scroll = 0.;
 	Point hoverPoint;
 	Point dragStart;
 	bool showShip;

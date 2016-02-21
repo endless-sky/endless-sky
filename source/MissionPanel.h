@@ -41,9 +41,9 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 private:
@@ -69,8 +69,8 @@ private:
 	const std::list<Mission> &accepted;
 	std::list<Mission>::const_iterator availableIt;
 	std::list<Mission>::const_iterator acceptedIt;
-	int availableScroll = 0;
-	int acceptedScroll = 0;
+	double availableScroll = 0.;
+	double acceptedScroll = 0.;
 	
 	int dragSide = 0;
 	mutable WrappedText wrap;

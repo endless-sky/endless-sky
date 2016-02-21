@@ -44,7 +44,7 @@ namespace {
 
 
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system)
-	: player(player), conversation(conversation), scroll(0), system(system)
+	: player(player), conversation(conversation), scroll(0.), system(system)
 {
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -265,18 +265,18 @@ bool ConversationPanel::Click(int x, int y)
 
 
 
-bool ConversationPanel::Drag(int dx, int dy)
+bool ConversationPanel::Drag(double dx, double dy)
 {
-	scroll = min(0, scroll + dy);
+	scroll = min(0., scroll + dy);
 	
 	return true;
 }
 
 
 
-bool ConversationPanel::Scroll(int dx, int dy)
+bool ConversationPanel::Scroll(double dx, double dy)
 {
-	return Drag(50 * dx, 50 * dy);
+	return Drag(50. * dx, 50. * dy);
 }
 
 

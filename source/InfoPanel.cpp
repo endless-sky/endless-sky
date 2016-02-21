@@ -313,10 +313,7 @@ bool InfoPanel::Click(int x, int y)
 	return true;
 }
 
-
-
-bool InfoPanel::Hover(int x, int y)
-{
+bool InfoPanel::Hover(double x, double y) {
 	hoverPoint = Point(x, y);
 	
 	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
@@ -326,12 +323,17 @@ bool InfoPanel::Hover(int x, int y)
 				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
 			hover = zone.Value();
 	
-	return true;
+	return true;	
+}
+
+bool InfoPanel::Hover(int x, int y)
+{
+	return Hover(static_cast<double>(x), static_cast<double>(y));
 }
 
 
 
-bool InfoPanel::Drag(int dx, int dy)
+bool InfoPanel::Drag(double dx, double dy)
 {
 	Hover(hoverPoint.X() + dx, hoverPoint.Y() + dy);
 	if(hoverPoint.Distance(dragStart) > 10.)
@@ -374,10 +376,10 @@ bool InfoPanel::Release(int x, int y)
 
 
 
-bool InfoPanel::Scroll(int dx, int dy)
+bool InfoPanel::Scroll(double dx, double dy)
 {
 	if(!showShip)
-		scroll = max(0, min(static_cast<int>(player.Ships().size() - 25), scroll - 4 * dy));
+		scroll = max(0., min(player.Ships().size() - 25., scroll - 4. * dy));
 	return true;
 }
 

@@ -500,7 +500,7 @@ bool ShopPanel::Click(int x, int y)
 			else
 				selectedOutfit = zone.GetOutfit();
 			
-			mainScroll = max(0, mainScroll + zone.ScrollY());
+			mainScroll = max(0., mainScroll + zone.ScrollY());
 			return true;
 		}
 		
@@ -517,7 +517,7 @@ bool ShopPanel::Hover(int x, int y)
 
 
 
-bool ShopPanel::Drag(int dx, int dy)
+bool ShopPanel::Drag(double dx, double dy)
 {
 	if(dragShip)
 	{
@@ -556,14 +556,14 @@ bool ShopPanel::Release(int x, int y)
 
 
 
-bool ShopPanel::Scroll(int dx, int dy)
+bool ShopPanel::Scroll(double dx, double dy)
 {
-	return DoScroll(dy * 50);
+	return DoScroll(dy * 50.);
 }
 
 
 
-ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship, int scrollY)
+ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship, double scrollY)
 	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), scrollY(scrollY),
 	ship(ship), outfit(nullptr)
 {
@@ -571,7 +571,7 @@ ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship, 
 
 
 
-ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, int scrollY)
+ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, double scrollY)
 	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), scrollY(scrollY),
 	ship(nullptr), outfit(outfit)
 {
@@ -614,19 +614,19 @@ int ShopPanel::ClickZone::CenterY() const
 
 
 
-int ShopPanel::ClickZone::ScrollY() const
+double ShopPanel::ClickZone::ScrollY() const
 {
 	return scrollY;
 }
 
 
 
-bool ShopPanel::DoScroll(int dy)
+bool ShopPanel::DoScroll(double dy)
 {
-	int &scroll = dragMain ? mainScroll : sideScroll;
+	double &scroll = dragMain ? mainScroll : sideScroll;
 	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
 	
-	scroll = max(0, min(maximum, scroll - dy));
+	scroll = max(0., min(static_cast<double>(maximum), scroll - dy));
 	
 	return true;
 }
