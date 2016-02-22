@@ -76,6 +76,19 @@ void ShopPanel::Draw() const
 
 
 
+void ShopPanel::Step() {
+	// perform autoscroll to bring item details into view.
+	if (scrollDetailsIntoView && selectedBottomY > 0)
+	{
+		if (selectedBottomY > Screen::Bottom())
+			DoScroll(-30.);
+		else
+			scrollDetailsIntoView = false;
+	}
+}
+
+
+
 void ShopPanel::DrawSidebar() const
 {
 	const Font &font = FontSet::Get(14);
@@ -288,6 +301,7 @@ void ShopPanel::DrawMain() const
 				
 				mainDetailHeight = DrawDetails(center);
 				nextY += mainDetailHeight;
+				selectedBottomY = nextY - TILE_SIZE / 2;
 			}
 			
 			point.X() += columnWidth;
@@ -378,6 +392,7 @@ bool ShopPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
+	scrollDetailsIntoView = false;
 	if((key == 'l' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && FlightCheck())
 	{
 		player.UpdateCargoCapacities();
@@ -500,6 +515,10 @@ bool ShopPanel::Click(int x, int y)
 			else
 				selectedOutfit = zone.GetOutfit();
 			
+			scrollDetailsIntoView = true;
+			// reset selectedBottomY so that Step() waits for it to be updated
+			// with the proper value computed in Draw().
+			selectedBottomY = 0;
 			mainScroll = max(0, mainScroll + zone.ScrollY());
 			return true;
 		}
@@ -541,7 +560,10 @@ bool ShopPanel::Drag(int dx, int dy)
 				}
 	}
 	else
+	{
+		scrollDetailsIntoView = false;
 		DoScroll(dy);
+	}
 	
 	return true;
 }
@@ -558,6 +580,7 @@ bool ShopPanel::Release(int x, int y)
 
 bool ShopPanel::Scroll(int dx, int dy)
 {
+	scrollDetailsIntoView = false;
 	return DoScroll(dy * 50);
 }
 
