@@ -25,10 +25,14 @@ class Phrase {
 public:
 	void Load(const DataNode &node);
 	
-	std::string Get(int recursion_limit=16) const;
+	std::string Get() const;
 	
 	
 private:
+	bool ReferencesPhrase(const std::string& name) const;
+	
+	std::string _name;
+	
 	struct Part {
 		std::vector<std::string> words;
 		const Phrase *phrase;
