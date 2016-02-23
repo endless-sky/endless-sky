@@ -145,7 +145,7 @@ void CaptureOdds::Make(vector<double> *power, const Ship *ship, bool isDefender)
 	const double crewPower = (isDefender ? 2. : 1.);
 	
 	// First calculate the automated attack or defense power, which serves as a base-value.
-	double automatedPower = 0.;
+	double automatedPower = ship->BaseAttributes().Get(automatedAttribute);
 	for(const auto &it : ship->Outfits())
 	{
 		double value = it.first->Get(automatedAttribute);
