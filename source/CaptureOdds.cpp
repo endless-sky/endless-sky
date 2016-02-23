@@ -140,14 +140,25 @@ void CaptureOdds::Make(vector<double> *power, const Ship *ship, bool isDefender)
 	if(!crew)
 		return;
 	
-	const string attribute = (isDefender ? "capture defense" : "capture attack");
+	const string weaponAttribute = (isDefender ? "capture defense" : "capture attack");
+	const string automatedAttribute = (isDefender ? "automated capture defense" : "automated capture attack");
 	const double crewPower = (isDefender ? 2. : 1.);
 	
+	// First calculate the automated attack or defense power, which serves as a base-value.
+	double automatedPower = 0.;
+	for(const auto &it : ship->Outfits())
+	{
+		double value = it.first->Get(automatedAttribute);
+		// value is the power of each outfit, it.second is the number that you have.
+		if(value > 0. && it.second > 0) 
+			automatedPower += it.second * value;
+	}
+
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
 	for(const auto &it : ship->Outfits())
 	{
-		double value = it.first->Get(attribute);
+		double value = it.first->Get(weaponAttribute);
 		if(value > 0. && it.second > 0)
 			power->insert(power->end(), it.second, value);
 	}
@@ -157,7 +168,9 @@ void CaptureOdds::Make(vector<double> *power, const Ship *ship, bool isDefender)
 	// Resize the vector to have exactly one entry per crew member.
 	power->resize(ship->Crew(), 0.);
 	
-	power->front() += crewPower;
+	// The final power vector contains the total remaining power
+	// when i crew members are still fighting at each index i. 
+	power->front() += crewPower + automatedPower;
 	for(unsigned i = 1; i < power->size(); ++i)
 		(*power)[i] += (*power)[i - 1] + crewPower;
 }
