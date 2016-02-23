@@ -323,7 +323,7 @@ bool InfoPanel::Hover(double x, double y) {
 				|| weapons[selected].IsTurret() == weapons[zone.Value()].IsTurret()))
 			hover = zone.Value();
 	
-	return true;	
+	return true;
 }
 
 bool InfoPanel::Hover(int x, int y)
