@@ -92,6 +92,7 @@ private:
 	std::map<std::string, std::string> subs;
 	
 	mutable std::vector<ClickZone<int>> zones;
+	mutable int maxScroll = 0.;
 	
 	const System *system;
 };
