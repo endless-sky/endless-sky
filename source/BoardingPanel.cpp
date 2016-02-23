@@ -378,7 +378,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 	// The list is 240 pixels tall, and there are 10 pixels padding on the top
 	// and the bottom, so:
 	double maximumScroll = max(0., 20. * plunder.size() - 220.);
-	scroll = max(0., min(maximumScroll, scroll + dy));
+	scroll = max(0., min(maximumScroll, scroll - dy));
 	
 	return true;
 }
