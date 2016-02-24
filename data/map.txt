@@ -2373,6 +2373,55 @@ system Ascella
 			distance 273
 			period 12.5478
 
+system Asikafarnut
+	pos 253.431 -584.812
+	government "Kor Sestor"
+	habitable 320
+	link Silikatakfar
+	link Sobarati
+	link Makferuti
+	link Celeborim
+	asteroids "small rock" 1 4.1328
+	asteroids "medium rock" 3 4.536
+	asteroids "large rock" 3 2.184
+	asteroids "medium metal" 5 1.7472
+	asteroids "large metal" 1 4.5024
+	object
+		sprite star/m0
+		period 10
+	object "Sestor Ikfar"
+		sprite planet/desert0
+		distance 237.16
+		period 81.6671
+	object
+		sprite planet/titan
+		distance 447.52
+		period 211.692
+	object
+		sprite planet/ice4
+		distance 646.77
+		period 367.798
+	object
+		sprite planet/desert2
+		distance 884.13
+		period 587.84
+	object
+		sprite planet/gas7
+		distance 2686.82
+		period 3114.17
+		object
+			sprite planet/dust7
+			distance 261
+			period 15
+		object
+			sprite planet/tethys
+			distance 363
+			period 24.6031
+		object
+			sprite planet/rock17
+			distance 508
+			period 40.7311
+
 system Aspidiske
 	pos -690 -282
 	government Republic
@@ -3339,6 +3388,145 @@ system Cebalrai
 		distance 2206.54
 		period 1658.39
 
+system Celeborim
+	pos 181.431 -633.812
+	government "Kor Sestor"
+	habitable 320
+	link Asikafarnut
+	asteroids "small rock" 4 3.9
+	asteroids "medium rock" 5 4.4616
+	asteroids "large rock" 6 3.7128
+	asteroids "small metal" 20 4.368
+	asteroids "medium metal" 1 4.5864
+	asteroids "large metal" 21 2.5584
+	object
+		sprite star/m0
+		period 10
+	object "Firka Tesk"
+		sprite planet/lava3
+		distance 194.84
+		period 60.8138
+	object
+		sprite planet/ocean9
+		distance 541.25
+		period 281.567
+	object
+		sprite planet/lava7
+		distance 901.09
+		period 604.835
+	object
+		sprite planet/dust2
+		distance 1764.34
+		period 1657.14
+	object
+		sprite planet/gas5
+		distance 3744.58
+		period 5123.77
+		object
+			sprite planet/dust4
+			distance 274
+			period 15.0825
+		object
+			sprite planet/callisto
+			distance 373
+			period 23.9558
+
+system Chikatip
+	pos -77.5695 -307.812
+	government Uninhabited
+	habitable 425.92
+	link Furmeliki
+	link Seketra
+	asteroids "small rock" 112 4.4965
+	asteroids "medium rock" 59 2.8152
+	asteroids "large rock" 5 2.8934
+	asteroids "small metal" 18 2.5415
+	asteroids "medium metal" 89 2.6979
+	asteroids "large metal" 22 4.0664
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/ganymede
+		distance 124.36
+		period 26.8792
+	object
+		sprite planet/uranus
+		distance 690.755
+		period 351.87
+		object "Selefkar Refinery"
+			sprite planet/station3k
+			distance 279.557
+			period 19.97
+	object
+		sprite planet/dust3
+		distance 1174.6
+		period 780.247
+	object
+		sprite planet/cloud5
+		distance 1387.21
+		period 1001.41
+	object
+		sprite planet/gas14
+		distance 3728.22
+		period 4412.13
+
+system Chimitarp
+	pos 150.431 -287.812
+	government "Kor Mereti"
+	habitable 912.6
+	link Mekislepti
+	link Sepetrosk
+	link Farbutero
+	link Similisti
+	asteroids "small rock" 3 2.717
+	asteroids "medium rock" 103 4.0546
+	asteroids "large rock" 7 4.7234
+	asteroids "small metal" 5 5.9356
+	asteroids "medium metal" 64 5.7684
+	asteroids "large metal" 17 3.1768
+	object
+		sprite star/k0
+		distance 53.205
+		period 16.1167
+		offset 180
+	object
+		sprite star/k5
+		distance 60.795
+		period 16.1167
+	object
+		sprite planet/cloud8
+		distance 275.405
+		period 60.517
+	object
+		sprite planet/desert9
+		distance 585.045
+		period 187.372
+	object "Korbatri Eska"
+		sprite planet/earth
+		distance 886.135
+		period 349.277
+		object
+			sprite planet/desert4
+			distance 130
+			period 15.1748
+	object
+		sprite planet/gas3
+		distance 1601.13
+		period 848.322
+		object "Rekat Moraski"
+			sprite planet/station1k
+			distance 355.513
+			period 17.1217
+	object
+		sprite planet/gas16
+		distance 2391.9
+		period 1548.93
+		object
+			sprite planet/europa
+			distance 192
+			period 14.0039
+
 system Chirr'ay'akai
 	pos -102.761 -749.614
 	government Wanderer
@@ -3385,6 +3573,53 @@ system Chirr'ay'akai
 			sprite planet/desert4
 			distance 266
 			period 13.6328
+
+system Chornifath
+	pos 40.4305 -214.812
+	government Uninhabited
+	habitable 486.68
+	link Dokdobaru
+	asteroids "small rock" 2 6.9776
+	asteroids "medium rock" 11 7.448
+	asteroids "large rock" 1 7.9968
+	asteroids "small metal" 5 6.0368
+	asteroids "medium metal" 2 9.4864
+	asteroids "large metal" 4 5.0176
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock4
+		distance 320.84
+		period 104.201
+		object
+			sprite planet/rock17
+			distance 168
+			period 19.8241
+	object "Eskar Kortuka"
+		sprite planet/ocean7
+		distance 804.591
+		period 413.81
+		object
+			sprite planet/station1kd
+			distance 150.27
+			period 20.2555
+	object
+		sprite planet/ice3
+		distance 1233.75
+		period 785.741
+	object
+		sprite planet/gas12
+		distance 1945.96
+		period 1556.47
+		object
+			sprite planet/ice7
+			distance 312
+			period 14.4749
+		object
+			sprite planet/rhea
+			distance 450
+			period 25.0729
 
 system Chy'chra
 	pos 85.5308 -829.667
@@ -4051,6 +4286,93 @@ system Diphda
 		distance 2262.04
 		period 1770.73
 
+system Dokdobaru
+	pos -21.5695 -241.812
+	government Quarg
+	habitable 320
+	link Hesselpost
+	link Kashikt
+	link Furmeliki
+	link Meftarkata
+	link Chornifath
+	asteroids "small rock" 4 5.6295
+	asteroids "medium rock" 1 5.751
+	asteroids "large rock" 2 2.349
+	asteroids "small metal" 1 4.05
+	asteroids "medium metal" 2 4.05
+	asteroids "large metal" 3 2.0655
+	object
+		sprite star/g5
+		period 10
+	object "Korati Efreti"
+		sprite planet/station1k
+		distance 680
+		period 360
+	object
+		sprite planet/lava3
+		distance 812
+		period 360
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset -30
+	object "Kuwaru Efreti"
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset -50
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset -70
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset -90
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 40
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 60
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 80
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 130
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 150
+	object
+		sprite "planet/ringworld right"
+		distance 812
+		period 360
+		offset 180
+	object
+		sprite planet/ringworld
+		distance 812
+		period 360
+		offset 200
+	object
+		sprite "planet/ringworld left"
+		distance 812
+		period 360
+		offset 220
+
 system Dschubba
 	pos -598 501
 	government Republic
@@ -4584,6 +4906,44 @@ system Eltanin
 		distance 2165.97
 		period 1889.01
 
+system Eneremprukt
+	pos 311.431 -448.812
+	government "Kor Sestor"
+	habitable 486.68
+	link Silikatakfar
+	link Mesuket
+	link Ferukistek
+	asteroids "medium rock" 11 3.456
+	asteroids "large rock" 10 7.29
+	asteroids "large metal" 4 7.506
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/desert7
+		distance 210.96
+		period 55.557
+	object "Sopi Lefarkata"
+		sprite planet/ice3
+		distance 589.2
+		period 259.318
+	object
+		sprite planet/gas17
+		distance 1477.84
+		period 1030.1
+		object
+			sprite planet/io
+			distance 240
+			period 15.8851
+		object
+			sprite planet/luna
+			distance 342
+			period 27.0217
+	object
+		sprite planet/gas6
+		distance 2137.8
+		period 1792.21
+
 system Enif
 	pos -177 498
 	government Quarg
@@ -4792,6 +5152,62 @@ system Es'sprak'ai
 			sprite planet/miranda
 			distance 266
 			period 14.4268
+
+system Eshkoshtar
+	pos 156.431 -381.812
+	government "Kor Mereti"
+	habitable 806.68
+	link Mekislepti
+	link Similisti
+	link Mesuket
+	asteroids "small rock" 4 4.44
+	asteroids "medium rock" 31 2.49
+	asteroids "large rock" 2 4.02
+	asteroids "small metal" 12 4.5
+	asteroids "medium metal" 53 2.31
+	asteroids "large metal" 155 3.51
+	object
+		sprite star/k0
+		distance 47.9992
+		period 18.7451
+		offset 180
+	object
+		sprite star/m0
+		distance 73.0008
+		period 18.7451
+	object
+		sprite planet/neptune
+		distance 403.411
+		period 114.112
+		object
+			sprite planet/luna
+			distance 214
+			period 15.5974
+	object "Esayaku Fen"
+		sprite planet/desert10
+		distance 796.251
+		period 316.435
+	object
+		sprite planet/gas11
+		distance 1598.86
+		period 900.379
+		object
+			sprite planet/station2kd
+			distance 237.94
+			period 12.1054
+			offset 203.816
+	object
+		sprite planet/gas4
+		distance 2400.09
+		period 1655.96
+		object
+			sprite planet/rock14
+			distance 257
+			period 14.531
+		object
+			sprite planet/dust7
+			distance 367
+			period 24.7968
 
 system Eteron
 	pos -330 33
@@ -5023,6 +5439,245 @@ system Fala
 			distance 229
 			period 17.0811
 
+system Farbutero
+	pos 93.4305 -251.812
+	government Uninhabited
+	habitable 625
+	link Meftarkata
+	link Feroteri
+	link Korsmanath
+	link Chimitarp
+	asteroids "small rock" 2 4.7357
+	asteroids "medium rock" 9 9.1379
+	asteroids "large rock" 16 8.8044
+	asteroids "small metal" 2 4.4689
+	asteroids "medium metal" 1 6.7367
+	asteroids "large metal" 1 6.8701
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/rock6
+		distance 180.25
+		period 38.7198
+	object "Solima Skarati"
+		sprite planet/cloud3
+		distance 668.54
+		period 276.574
+		object
+			sprite planet/rock3
+			distance 175
+			period 25.456
+	object
+		sprite planet/cloud4
+		distance 1129.7
+		period 607.526
+	object
+		sprite planet/gas15
+		distance 1651.04
+		period 1073.39
+		object
+			sprite planet/station2kd
+			distance 227.081
+			period 18.0122
+	object
+		sprite planet/gas11
+		distance 3202.36
+		period 2899.52
+		object
+			sprite planet/rock7
+			distance 250
+			period 13.0373
+		object
+			sprite planet/dust1
+			distance 339
+			period 20.5863
+		object
+			sprite planet/luna
+			distance 457
+			period 32.222
+
+system Faronektu
+	pos 292.431 -309.812
+	government "Kor Mereti"
+	habitable 1080
+	link Similisti
+	link Salipastart
+	asteroids "small rock" 32 2.244
+	asteroids "medium rock" 53 2.754
+	asteroids "large rock" 15 1.9125
+	asteroids "small metal" 116 2.448
+	asteroids "medium metal" 132 3.366
+	asteroids "large metal" 13 2.295
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/rock16
+		distance 165.44
+		period 25.9005
+	object
+		sprite planet/gas8
+		distance 616.53
+		period 186.329
+		object
+			sprite planet/io
+			distance 188
+			period 13.7219
+	object
+		sprite planet/uranus
+		distance 1360.42
+		period 610.739
+		offset 126.212
+		object "Fara Skaeruti"
+			sprite planet/station2k
+			distance 270.911
+			period 19.0508
+	object
+		sprite planet/desert0
+		distance 1968.77
+		period 1063.26
+	object
+		sprite planet/gas17
+		distance 3570.81
+		period 2597.15
+		object
+			sprite planet/rock0
+			distance 229
+			period 14.8056
+
+system Fasitopfar
+	pos 92.4305 -105.812
+	government Uninhabited
+	habitable 100
+	asteroids "small rock" 24 7.722
+	asteroids "medium rock" 58 6.75
+	asteroids "large rock" 25 3.348
+	asteroids "small metal" 50 6.264
+	asteroids "medium metal" 67 7.236
+	asteroids "large metal" 83 4.968
+	object
+		sprite star/nova
+		period 1000
+	object
+		sprite planet/lava1
+		distance 863.513
+		period 491.812
+	object
+		sprite planet/lava6
+		distance 1181.27
+		period 786.9
+	object
+		sprite planet/rock4
+		distance 1471.99
+		period 1094.59
+	object
+		sprite planet/dust0
+		distance 1927.7
+		period 1640.42
+
+system Feroteri
+	pos 149.431 -205.812
+	government Uninhabited
+	habitable 5425.92
+	link Farbutero
+	link Korsmanath
+	link Sepetrosk
+	asteroids "medium rock" 1 2.652
+	asteroids "large rock" 1 2.886
+	asteroids "small metal" 3 3.081
+	asteroids "medium metal" 12 5.265
+	asteroids "large metal" 11 4.758
+	object
+		sprite star/a0
+		distance 9.18418
+		period 6.8723
+		offset 180
+	object
+		sprite star/k5
+		distance 107.816
+		period 6.8723
+	object
+		sprite planet/gas17
+		distance 732.656
+		period 107.689
+		object
+			sprite planet/dust7
+			distance 212
+			period 13.1879
+		object
+			sprite planet/rock14
+			distance 322
+			period 24.6864
+		object
+			sprite planet/desert4
+			distance 468
+			period 43.2556
+	object
+		sprite planet/gas4
+		distance 1509.07
+		period 318.336
+	object
+		sprite planet/gas0
+		distance 2528.08
+		period 690.253
+		object
+			sprite planet/rock3
+			distance 284
+			period 14.026
+		object
+			sprite planet/io
+			distance 414
+			period 24.6864
+		object
+			sprite planet/lava0
+			distance 524
+			period 35.1523
+	object
+		sprite planet/gas16
+		distance 3770.57
+		period 1257.29
+		object "Esperaktu Station"
+			sprite planet/station1k
+			distance 265.206
+			period 22.7339
+
+system Ferukistek
+	pos 307.431 -515.812
+	government "Kor Sestor"
+	habitable 486.68
+	link Eneremprukt
+	link Silikatakfar
+	asteroids "small rock" 1 1.072
+	asteroids "medium rock" 30 1.024
+	asteroids "large rock" 1 1.616
+	asteroids "small metal" 12 2.144
+	asteroids "medium metal" 114 1.312
+	asteroids "large metal" 81 0.864
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock3
+		distance 169.29
+		period 39.9379
+	object "Keneska Fek"
+		sprite planet/rock12
+		distance 420.5
+		period 156.346
+	object
+		sprite planet/desert9
+		distance 903.74
+		period 492.61
+	object
+		sprite planet/gas11
+		distance 1704.99
+		period 1276.5
+		object
+			sprite planet/dust5
+			distance 258
+			period 13.6681
+
 system Fingol
 	pos -482 113
 	government Republic
@@ -5133,6 +5788,104 @@ system Fomalhaut
 			sprite planet/rock0
 			distance 320
 			period 28.2155
+
+system Fornarep
+	pos 79.4305 -309.812
+	government Uninhabited
+	habitable 320
+	link Skeruto
+	link Meftarkata
+	link Kaliptari
+	link Mekislepti
+	asteroids "small rock" 15 2.9904
+	asteroids "medium rock" 4 1.8144
+	asteroids "large rock" 5 3.528
+	asteroids "small metal" 7 2.8224
+	asteroids "medium metal" 11 3.2928
+	asteroids "large metal" 13 4.5024
+	object
+		sprite star/m0
+		period 10
+	object "Sek Alarfarat"
+		sprite planet/rock4
+		distance 338.809
+		period 139.45
+		object
+			sprite planet/station1kd
+			distance 182.94
+			period 22.5265
+	object
+		sprite planet/gas9
+		distance 985.84
+		period 692.141
+		offset 296.234
+	object
+		sprite planet/rock5
+		distance 1479.93
+		period 1273.05
+		offset 94.342
+	object
+		sprite planet/gas17
+		distance 2002.34
+		period 2003.51
+		offset 41.653
+		object
+			sprite planet/rock0
+			distance 240
+			period 15.8851
+		object
+			sprite planet/miranda
+			distance 371
+			period 30.5305
+
+system Furmeliki
+	pos -35.5695 -281.812
+	government Uninhabited
+	habitable 486.68
+	link Dokdobaru
+	link Chikatip
+	link Kashikt
+	link Skeruto
+	asteroids "large metal" 1 3.5511
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock5
+		distance 133.64
+		period 28.0119
+	object
+		sprite planet/lava6
+		distance 356.61
+		period 122.104
+	object "Elek Kartanu"
+		sprite planet/cloud4
+		distance 694.699
+		period 331.996
+		object
+			sprite planet/station2kd
+			distance 202.089
+			period 27.0214
+	object
+		sprite planet/gas16
+		distance 1754.68
+		period 1332.71
+		object
+			sprite planet/oberon
+			distance 217
+			period 16.8262
+		object
+			sprite planet/rock7
+			distance 311
+			period 28.8694
+		object
+			sprite planet/lava0
+			distance 419
+			period 45.1459
+		object
+			sprite planet/ice8
+			distance 590
+			period 75.4354
 
 system Gacrux
 	pos -713 184
@@ -5942,6 +6695,61 @@ system "Heia Due"
 			distance 395
 			period 41.3231
 
+system Hesselpost
+	pos -30.5695 -187.812
+	government Uninhabited
+	habitable 486.68
+	link Dokdobaru
+	asteroids "small rock" 34 1.4872
+	asteroids "medium rock" 6 1.859
+	asteroids "large rock" 2 1.5548
+	asteroids "small metal" 83 2.366
+	asteroids "medium metal" 93 1.0985
+	asteroids "large metal" 89 1.7407
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/venus
+		distance 202
+		period 52.0553
+	object "Sarisa Fentra"
+		sprite planet/cloud0
+		distance 409.44
+		period 150.219
+	object
+		sprite planet/rock17
+		distance 659.48
+		period 307.072
+	object
+		sprite planet/lava4
+		distance 1118.12
+		period 677.905
+		object
+			sprite planet/station3kd
+			distance 157.941
+			period 25.4596
+	object
+		sprite planet/gas2
+		distance 2053.35
+		period 1687.07
+		object
+			sprite planet/rock3
+			distance 203
+			period 17.525
+		object
+			sprite planet/tethys
+			distance 336
+			period 37.3184
+		object
+			sprite planet/oberon
+			distance 402
+			period 48.8375
+		object
+			sprite planet/rock7
+			distance 504
+			period 68.5584
+
 system "Hevru Hai"
 	pos -189 -310
 	government Quarg
@@ -6211,6 +7019,43 @@ system Holeb
 		sprite planet/jupiter
 		distance 3958.09
 		period 2405.23
+
+system Host
+	pos 384.431 -543.812
+	government Uninhabited
+	habitable 486.68
+	asteroids "large metal" 1 0.732
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/cloud8
+		distance 157.84
+		period 35.9554
+	object Avalon
+		sprite planet/forest0
+		distance 478.33
+		period 189.684
+		object
+			sprite planet/dust0
+			distance 147
+			period 15.2326
+	object
+		sprite planet/rock16
+		distance 1139.14
+		period 697.114
+	object
+		sprite planet/gas2
+		distance 1885.15
+		period 1484.08
+		object
+			sprite planet/ice7
+			distance 213
+			period 18.8358
+		object
+			sprite planet/rock3
+			distance 360
+			period 41.3874
 
 system Ik'kara'ka
 	pos 56.2159 -888.296
@@ -6803,6 +7648,64 @@ system Ka'pru
 			distance 508
 			period 37.7636
 
+system Kaliptari
+	pos 85.4305 -402.812
+	government Uninhabited
+	habitable 320
+	link Skeruto
+	link Fornarep
+	link Mekislepti
+	link Solifar
+	link Sepriaptu
+	link Sabriset
+	asteroids "small rock" 8 4.2282
+	asteroids "medium rock" 11 6.9498
+	asteroids "large rock" 25 5.4918
+	asteroids "large metal" 1 3.2562
+	object
+		sprite star/m0
+		period 10
+	object "Spera Anatrusk"
+		sprite planet/mars
+		distance 316.61
+		period 125.971
+		object
+			sprite planet/io
+			distance 145
+			period 23.335
+	object
+		sprite planet/dust2
+		distance 602.61
+		period 330.78
+	object
+		sprite planet/uranus
+		distance 1207.17
+		period 937.859
+		object
+			sprite planet/callisto
+			distance 221
+			period 14.0366
+		object
+			sprite planet/dust5
+			distance 358
+			period 28.94
+		object
+			sprite planet/dust3
+			distance 464
+			period 42.7022
+	object
+		sprite planet/gas10
+		distance 3109.42
+		period 3877.07
+		object
+			sprite planet/lava0
+			distance 192
+			period 14.0039
+		object
+			sprite planet/rhea
+			distance 316
+			period 29.5684
+
 system "Kappa Centauri"
 	pos -867 480
 	government Republic
@@ -6861,6 +7764,82 @@ system "Kappa Centauri"
 			sprite planet/rock17
 			distance 365
 			period 28.1328
+
+system Kashikt
+	pos -73.5695 -219.812
+	government "Kor Efret"
+	habitable 1715
+	link Dokdobaru
+	link Furmeliki
+	link Sumprast
+	link Sevrelect
+	asteroids "small rock" 15 4.1055
+	asteroids "medium rock" 39 6.5688
+	asteroids "large rock" 12 2.9463
+	asteroids "small metal" 22 3.1878
+	asteroids "medium metal" 44 6.0858
+	asteroids "large metal" 13 4.2021
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock1
+		distance 266.49
+		period 42.0193
+		object
+			sprite planet/desert4
+			distance 130
+			period 17.2357
+	object
+		sprite planet/cloud4
+		distance 693.7
+		period 176.476
+	object "Laki Nemparu"
+		sprite planet/venus
+		distance 1319.31
+		period 462.858
+		object "Tefkar Ret"
+			sprite planet/station2k
+			distance 127
+			period 16.3315
+	object
+		sprite planet/gas2
+		distance 1983.2
+		period 853.056
+	object
+		sprite planet/gas6
+		distance 2650.49
+		period 1318.01
+		object
+			sprite planet/ice7
+			distance 297
+			period 13.0737
+
+system Kasikfar
+	pos 10.4305 -127.812
+	government Uninhabited
+	habitable 100
+	asteroids "small rock" 4 3.8019
+	asteroids "medium rock" 3 4.4689
+	asteroids "large rock" 1 4.002
+	asteroids "small metal" 3 6.7367
+	asteroids "medium metal" 47 4.1354
+	asteroids "large metal" 3 5.0025
+	object
+		sprite star/nova
+		period 1000
+	object
+		sprite planet/rock13
+		distance 947.181
+		period 528.552
+	object
+		sprite planet/miranda
+		distance 1115.2
+		period 675.257
+	object
+		sprite planet/callisto
+		distance 1339.26
+		period 888.661
 
 system "Kaus Australis"
 	pos -284 395
@@ -7192,20 +8171,20 @@ system "Kor En'lakfar"
 		period 10
 	object
 		sprite planet/desert1
-		distance 184.41
-		period 30.4807
+		distance 286.027
+		period 58.8789
 	object
 		sprite planet/ocean2
-		distance 571.85
-		period 166.445
-		object
-			sprite planet/europa
-			distance 163
-			period 16.9917
+		distance 866.215
+		period 310.304
+		object "Kessel Sepret"
+			sprite planet/station3k
+			distance 205.008
+			period 25.4803
 	object
 		sprite planet/gas8
-		distance 1724.74
-		period 871.834
+		distance 1769.36
+		period 905.882
 		object
 			sprite planet/mercury
 			distance 239
@@ -7225,12 +8204,12 @@ system "Kor Fel'tar"
 	habitable 455.625
 	link "Kor En'lakfar"
 	link "Kor Men"
-	asteroids "small rock" 17 3.4713
-	asteroids "medium rock" 14 5.586
-	asteroids "large rock" 24 5.7456
-	asteroids "small metal" 6 2.0748
-	asteroids "medium metal" 63 3.192
-	asteroids "large metal" 3 4.5486
+	asteroids "small rock" 2 2.079
+	asteroids "medium rock" 18 2.5872
+	asteroids "large rock" 7 1.6632
+	asteroids "small metal" 38 2.6334
+	asteroids "medium metal" 155 2.2407
+	asteroids "large metal" 5 1.9173
 	fleet "Korath Raid" 1600
 	fleet "Korath Home" 900
 	object
@@ -7242,16 +8221,16 @@ system "Kor Fel'tar"
 		period 73.923
 	object
 		sprite planet/cloud8
-		distance 673.9
-		period 327.831
-		object
-			sprite planet/lava2
-			distance 163
-			period 23.7466
+		distance 603.472
+		period 277.806
+		object "Septar Lorku"
+			sprite planet/station1k
+			distance 166.029
+			period 25.8519
 	object
 		sprite planet/gas2
-		distance 1786.9
-		period 1415.49
+		distance 1750.5
+		period 1372.46
 		object
 			sprite planet/io
 			distance 277
@@ -7305,12 +8284,16 @@ system "Kor Men"
 		period 370.858
 	object
 		sprite planet/ocean6
-		distance 1630.96
-		period 544.651
+		distance 2075.77
+		period 782.023
+		object "Gresku Fodar"
+			sprite planet/station2k
+			distance 200.046
+			period 22.7597
 	object
 		sprite planet/rhea
-		distance 2382.65
-		period 961.708
+		distance 2981.5
+		period 1346.18
 
 system "Kor Nor'peli"
 	pos 52 160
@@ -7344,16 +8327,20 @@ system "Kor Nor'peli"
 		period 239.045
 	object
 		sprite planet/gas10
-		distance 1069.16
-		period 575.401
+		distance 1192.96
+		period 678.175
+		object "Safaresk Enlai"
+			sprite planet/station2k
+			distance 230
+			period 18.3607
 	object
 		sprite planet/dust4
-		distance 1871.6
-		period 1332.68
+		distance 2146.4
+		period 1636.7
 	object
 		sprite planet/gas9
-		distance 2761.21
-		period 2388.11
+		distance 3036.01
+		period 2753.33
 		object
 			sprite planet/tethys
 			distance 235
@@ -7365,7 +8352,12 @@ system "Kor Tar'bei"
 	habitable 214.375
 	link "Kor Nor'peli"
 	link "Kor Zena'i"
-	asteroids "large metal" 1 3.036
+	asteroids "small rock" 11 3.576
+	asteroids "medium rock" 16 2.16
+	asteroids "large rock" 73 3.096
+	asteroids "small metal" 16 2.28
+	asteroids "medium metal" 169 1.992
+	asteroids "large metal" 76 3.216
 	fleet "Korath Raid" 1200
 	fleet "Korath Home" 600
 	object
@@ -7373,28 +8365,28 @@ system "Kor Tar'bei"
 		period 10
 	object
 		sprite planet/ocean6
-		distance 265.91
-		period 118.461
-		object
-			sprite planet/dust7
-			distance 150
-			period 13.9414
+		distance 389.134
+		period 209.711
+		object "Sessiliki Far"
+			sprite planet/station1k
+			distance 190.355
+			period 21.1261
 	object
 		sprite planet/fog0
-		distance 995.92
-		period 858.637
+		distance 1250.5
+		period 1208.09
 		object
 			sprite planet/rhea
 			distance 198
 			period 18.4461
 	object
 		sprite planet/ice0
-		distance 1628.08
-		period 1794.68
+		distance 1882.66
+		period 2231.67
 	object
 		sprite planet/gas15
-		distance 2310.97
-		period 3035.04
+		distance 2565.55
+		period 3550.12
 
 system "Kor Zena'i"
 	pos -2 83
@@ -7429,12 +8421,12 @@ system "Kor Zena'i"
 		period 463.764
 	object
 		sprite planet/gas16
-		distance 1900.67
-		period 1249.98
-		object
-			sprite planet/dust1
-			distance 185
-			period 12.4028
+		distance 2043.67
+		period 1393.67
+		object "Separa Tiklar"
+			sprite planet/station3k
+			distance 282.71
+			period 25.0213
 
 system Kornephoros
 	pos -612 424
@@ -7510,6 +8502,52 @@ system Kornephoros
 			sprite planet/dust1
 			distance 602
 			period 72.8043
+
+system Korsmanath
+	pos 97.4305 -185.812
+	government Uninhabited
+	habitable 486.68
+	link Feroteri
+	link Farbutero
+	asteroids "small rock" 2 2.4123
+	asteroids "medium rock" 1 2.5993
+	asteroids "large rock" 4 1.3277
+	asteroids "large metal" 2 1.6456
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock8
+		distance 175.21
+		period 42.051
+	object "Kasichara Fet"
+		sprite planet/desert3
+		distance 469.3
+		period 184.338
+	object
+		sprite planet/gas0
+		distance 1202.55
+		period 756.124
+		object
+			sprite planet/dust7
+			distance 268
+			period 12.8576
+		object
+			sprite planet/ice7
+			distance 419
+			period 25.1349
+	object
+		sprite planet/gas5
+		distance 2739.24
+		period 2599.46
+		object
+			sprite planet/lava0
+			distance 275
+			period 15.1651
+		object
+			sprite planet/dust3
+			distance 422
+			period 28.8281
 
 system Kraz
 	pos -876 204
@@ -7938,6 +8976,65 @@ system Lurata
 		distance 2068.68
 		period 1763.18
 
+system Makferuti
+	pos 288.431 -628.812
+	government "Kor Sestor"
+	habitable 621.68
+	link Asikafarnut
+	asteroids "small rock" 18 5.2706
+	asteroids "medium rock" 250 3.3212
+	asteroids "large rock" 32 2.5631
+	asteroids "large metal" 1 4.5847
+	object
+		sprite star/k0
+		distance 18.2409
+		period 12.3508
+		offset 180
+	object
+		sprite star/m8
+		distance 65.7591
+		period 12.3508
+	object
+		sprite planet/desert3
+		distance 259.319
+		period 66.9928
+	object "Drekag Firask"
+		sprite planet/ocean9
+		distance 690.569
+		period 291.13
+	object
+		sprite planet/dust6
+		distance 1108.57
+		period 592.135
+	object
+		sprite planet/rock6
+		distance 1441.13
+		period 877.669
+		object
+			sprite planet/rock17
+			distance 154
+			period 24.0239
+	object
+		sprite planet/gas3
+		distance 2858.22
+		period 2451.43
+		object
+			sprite planet/callisto
+			distance 315
+			period 14.2801
+		object
+			sprite planet/dust4
+			distance 456
+			period 24.8721
+		object
+			sprite planet/europa
+			distance 615
+			period 38.9563
+		object
+			sprite planet/tethys
+			distance 769
+			period 54.4696
+
 system Markab
 	pos -241 168
 	government Syndicate
@@ -8198,6 +9295,53 @@ system Mebsuta
 			distance 300
 			period 25.612
 
+system Meftarkata
+	pos 52.4305 -276.812
+	government Uninhabited
+	habitable 2201.68
+	link Skeruto
+	link Dokdobaru
+	link Fornarep
+	link Farbutero
+	asteroids "small rock" 6 1.8096
+	asteroids "medium rock" 4 1.716
+	asteroids "large rock" 14 0.8892
+	asteroids "medium metal" 4 1.5288
+	asteroids "large metal" 1 1.9344
+	object
+		sprite star/f5
+		distance 21.8839
+		period 8.39722
+		offset 180
+	object
+		sprite star/k0
+		distance 77.1161
+		period 8.39722
+	object
+		sprite planet/ice5
+		distance 312.076
+		period 46.9974
+	object
+		sprite planet/desert9
+		distance 698.326
+		period 157.315
+	object
+		sprite planet/rock17
+		distance 998.576
+		period 269.001
+	object
+		sprite planet/gas10
+		distance 2327.58
+		period 957.279
+		object
+			sprite planet/europa
+			distance 217
+			period 16.8262
+		object
+			sprite planet/io
+			distance 315
+			period 29.4282
+
 system "Mei Yohn"
 	pos -106.757 -581.698
 	government Hai
@@ -8259,6 +9403,51 @@ system "Mei Yohn"
 			sprite planet/dust4
 			distance 312
 			period 29.0088
+
+system Mekislepti
+	pos 137.431 -335.812
+	government "Kor Mereti"
+	habitable 1705
+	link Fornarep
+	link Kaliptari
+	link Chimitarp
+	link Eshkoshtar
+	link Similisti
+	asteroids "small rock" 63 1.3552
+	asteroids "medium rock" 126 1.2826
+	asteroids "large rock" 19 1.3068
+	asteroids "small metal" 5 3.0976
+	asteroids "medium metal" 23 3.63
+	asteroids "large metal" 5 3.2186
+	object
+		sprite star/g0
+		distance 38.4897
+		period 10.4227
+	object
+		sprite star/g5
+		distance 66.5103
+		period 10.4227
+		offset 180
+	object
+		sprite planet/mars
+		distance 305.67
+		period 51.7699
+	object
+		sprite planet/cloud0
+		distance 556.96
+		period 127.331
+	object "Aresepru Nat"
+		sprite planet/water1
+		distance 1697.45
+		period 677.476
+	object
+		sprite planet/neptune
+		distance 2600.81
+		period 1284.88
+		object "Merask Fortuno"
+			sprite planet/station1k
+			distance 334.445
+			period 30.4733
 
 system Men
 	pos -888 361
@@ -8561,6 +9750,59 @@ system Merak
 		sprite planet/luna
 		distance 2504.4
 		period 1525.03
+
+system Mesuket
+	pos 220.431 -409.812
+	government Uninhabited
+	habitable 425.92
+	link Eshkoshtar
+	link Silikatakfar
+	link Eneremprukt
+	link Salipastart
+	asteroids "large metal" 1 1.6758
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/mercury
+		distance 125.36
+		period 27.2041
+	object
+		sprite planet/rock13
+		distance 569.491
+		period 263.406
+		object
+			sprite planet/station1kd
+			distance 159.426
+			period 25.3047
+	object
+		sprite planet/gas17
+		distance 1378.34
+		period 991.812
+		object
+			sprite planet/station3kd
+			distance 341.722
+			period 26.9888
+	object
+		sprite planet/gas4
+		distance 3615.31
+		period 4213.22
+		object
+			sprite planet/ice7
+			distance 264
+			period 15.1288
+		object
+			sprite planet/dust1
+			distance 416
+			period 29.9252
+		object
+			sprite planet/dust4
+			distance 550
+			period 45.4927
+		object
+			sprite planet/io
+			distance 706
+			period 66.1613
 
 system Miaplacidus
 	pos -524 -69
@@ -9736,6 +10978,33 @@ system Peacock
 			distance 498
 			period 49.3926
 
+system Peresedersi
+	pos 81.4305 -154.812
+	government Uninhabited
+	habitable 100
+	asteroids "small rock" 49 1.403
+	asteroids "medium rock" 5 2.185
+	asteroids "large rock" 11 1.541
+	asteroids "small metal" 39 2.438
+	asteroids "medium metal" 4 3.197
+	asteroids "large metal" 5 3.22
+	object
+		sprite star/nova
+		period 1000
+		offset 190
+	object
+		sprite planet/lava5
+		distance 1567.08
+		period 755.066
+	object
+		sprite planet/lava1
+		distance 1761.08
+		period 899.532
+	object
+		sprite planet/lava7
+		distance 2248.08
+		period 1297.38
+
 system Persian
 	pos -203 331
 	government Syndicate
@@ -9796,6 +11065,27 @@ system Persian
 		sprite planet/dust1
 		distance 2414.12
 		period 1018.37
+
+system Persitar
+	pos 297.431 -395.812
+	government Uninhabited
+	habitable 100
+	asteroids "small rock" 72 3.348
+	asteroids "medium rock" 2 4.482
+	asteroids "large rock" 3 4.86
+	asteroids "large metal" 2 7.344
+	object
+		sprite star/nova
+		period 1000
+		offset 260
+	object
+		sprite planet/lava1
+		distance 480.258
+		period 190.831
+	object
+		sprite planet/lava5
+		distance 825.017
+		period 429.667
 
 system Phact
 	pos -375 -191
@@ -11003,6 +12293,44 @@ system Sabik
 		distance 2061.55
 		period 1497.65
 
+system Sabriset
+	pos 151.724 -426.518
+	habitable 1566.68
+	link Sepriaptu
+	link Kaliptari
+	asteroids "small rock" 3 3.9285
+	asteroids "medium rock" 6 2.6325
+	asteroids "large rock" 5 4.779
+	asteroids "small metal" 21 4.374
+	asteroids "medium metal" 4 5.1435
+	asteroids "large metal" 7 4.3335
+	object
+		sprite star/g0
+		distance 35.1028
+		period 12.1391
+	object
+		sprite star/k0
+		distance 77.8972
+		period 12.1391
+		offset 180
+	object
+		sprite planet/desert1
+		distance 279.387
+		period 47.1932
+	object
+		sprite planet/lava7
+		distance 738.015
+		period 202.613
+		offset 212.423
+	object
+		sprite planet/desert2
+		distance 1012.78
+		period 325.718
+	object
+		sprite planet/rock5
+		distance 1367.84
+		period 511.237
+
 system Sadalmelik
 	pos -145 472
 	government Quarg
@@ -11225,6 +12553,54 @@ system Saiph
 		distance 3121.39
 		period 3899.48
 
+system Salipastart
+	pos 250.431 -370.812
+	government "Kor Mereti"
+	habitable 486.68
+	link Similisti
+	link Faronektu
+	link Mesuket
+	asteroids "small rock" 2 6.7116
+	asteroids "medium rock" 9 4.3792
+	asteroids "large rock" 9 5.95
+	asteroids "medium metal" 8 4.9504
+	asteroids "large metal" 1 2.4276
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/titan
+		distance 161.81
+		period 37.3204
+	object
+		sprite planet/rhea
+		distance 475.22
+		period 187.837
+	object
+		sprite planet/gas2
+		distance 953.154
+		period 533.56
+		object
+			sprite planet/station3kd
+			distance 209.245
+			period 18.3399
+	object
+		sprite planet/europa
+		distance 1444.09
+		period 995.014
+	object
+		sprite planet/uranus
+		distance 2249.1
+		period 1933.98
+		object
+			sprite planet/tethys
+			distance 198
+			period 11.9034
+		object
+			sprite planet/ice8
+			distance 291
+			period 21.2086
+
 system Sargas
 	pos -542 445
 	government Republic
@@ -11321,6 +12697,46 @@ system Sarin
 		sprite planet/dust4
 		distance 3371.1
 		period 2382.35
+
+system Sayaiban
+	pos 250.431 -274.812
+	government Drak
+	habitable 2035
+	asteroids "small rock" 13 2.106
+	asteroids "medium rock" 61 1.836
+	asteroids "large rock" 39 2.754
+	asteroids "small metal" 1 2.754
+	asteroids "medium metal" 175 1.377
+	asteroids "large metal" 1 1.62
+	fleet Nanobots 100
+	object
+		sprite star/f5
+		distance 19.1843
+		period 11.9486
+	object
+		sprite star/m0
+		distance 102.816
+		period 11.9486
+	object
+		sprite planet/lava6
+		distance 371.702
+		period 63.5434
+	object
+		sprite planet/desert8
+		distance 791.208
+		period 197.339
+		object
+			sprite planet/rock7
+			distance 128
+			period 18.5747
+	object
+		sprite planet/lava3
+		distance 1550.01
+		period 541.102
+	object
+		sprite planet/rock6
+		distance 1890.51
+		period 728.865
 
 system Scheat
 	pos -205 233
@@ -11501,6 +12917,162 @@ system Seginus
 			sprite planet/lava2
 			distance 416
 			period 37.7101
+
+system Seketra
+	pos -24.5695 -356.812
+	government Uninhabited
+	habitable 425.92
+	link Skeruto
+	link Chikatip
+	asteroids "large metal" 1 1.7556
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/rock8
+		distance 235.01
+		period 69.8273
+	object "Seleptra Nak"
+		sprite planet/rock1
+		distance 433.85
+		period 175.148
+	object
+		sprite planet/ice2
+		distance 1126.26
+		period 732.578
+	object
+		sprite planet/gas3
+		distance 2033.62
+		period 1777.46
+		object
+			sprite planet/dust7
+			distance 300
+			period 13.2723
+		object
+			sprite planet/desert4
+			distance 445
+			period 23.9775
+		object
+			sprite planet/rock0
+			distance 538
+			period 31.8741
+
+system Sepetrosk
+	pos 192.431 -243.812
+	government "Kor Mereti"
+	habitable 486.68
+	link Chimitarp
+	link Feroteri
+	link Similisti
+	asteroids "small rock" 60 1.4
+	asteroids "medium rock" 152 2.744
+	asteroids "large rock" 30 3.164
+	asteroids "small metal" 8 1.596
+	asteroids "medium metal" 15 1.652
+	asteroids "large metal" 56 2.94
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/rock10
+		distance 267.04
+		period 79.123
+	object "Fek Rembatu"
+		sprite planet/desert6
+		distance 550.45
+		period 234.161
+	object
+		sprite planet/dust2
+		distance 738.14
+		period 363.619
+	object
+		sprite planet/gas15
+		distance 1532.58
+		period 1087.86
+		object "Esek Stovar"
+			sprite planet/station2k
+			distance 257.436
+			period 21.742
+	object
+		sprite planet/uranus
+		distance 2511.66
+		period 2282.33
+		object
+			sprite planet/lava0
+			distance 254
+			period 17.2951
+
+system Sepriaptu
+	pos 139.431 -448.812
+	government Uninhabited
+	habitable 2035
+	link Kaliptari
+	link Sabriset
+	asteroids "small rock" 127 4.34
+	asteroids "medium rock" 23 4.41
+	asteroids "large rock" 63 4.13
+	asteroids "small metal" 4 10.5
+	asteroids "medium metal" 53 6.23
+	asteroids "large metal" 1 9.24
+	object
+		sprite star/f5
+		distance 16.1966
+		period 9.26902
+	object
+		sprite star/m0
+		distance 86.8034
+		period 9.26902
+	object
+		sprite planet/desert7
+		distance 362.451
+		period 61.1859
+	object
+		sprite planet/rock4
+		distance 1644.91
+		period 591.547
+		object
+			sprite planet/station3kd
+			distance 273.55
+			period 41.1893
+	object
+		sprite planet/rock17
+		distance 2309.96
+		period 984.431
+
+system Sevrelect
+	pos -114.569 -239.812
+	government "Kor Efret"
+	habitable 320
+	link Sumprast
+	link Kashikt
+	asteroids "large metal" 1 2.97
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/dust2
+		distance 168.61
+		period 48.9565
+	object "Setar Fort"
+		sprite planet/forest4
+		distance 364.42
+		period 155.557
+	object
+		sprite planet/rock2
+		distance 1157.59
+		period 880.683
+	object
+		sprite planet/ice7
+		distance 1568.89
+		period 1389.55
+	object
+		sprite planet/gas12
+		distance 2345.33
+		period 2539.75
+		object
+			sprite planet/station3kd
+			distance 326
+			period 15.4601
 
 system Shaula
 	pos -460 527
@@ -11748,6 +13320,93 @@ system Sich'ka'ara
 		period 1115.12
 		offset 337.352
 
+system Silikatakfar
+	pos 248.431 -481.812
+	government "Kor Sestor"
+	habitable 425.92
+	link Mesuket
+	link Eneremprukt
+	link Asikafarnut
+	link Ferukistek
+	asteroids "small rock" 2 1.9936
+	asteroids "medium rock" 1 1.2544
+	asteroids "large rock" 1 2.128
+	asteroids "large metal" 1 2.128
+	object
+		sprite star/k5
+		period 10
+	object
+		sprite planet/miranda
+		distance 155.41
+		period 37.5504
+	object "Sasirka Gatru"
+		sprite planet/rock6
+		distance 445.293
+		period 182.123
+		offset 99.2705
+		object
+			sprite planet/dust7
+			distance 140
+			period 20.8235
+	object
+		sprite planet/gas2
+		distance 1189.91
+		period 795.554
+		offset 328.062
+		object "Sebra Skira"
+			sprite planet/station3k
+			distance 293.717
+			period 30.5006
+			offset 276.215
+
+system Similisti
+	pos 210.431 -313.812
+	government "Kor Mereti"
+	habitable 1080
+	link Chimitarp
+	link Mekislepti
+	link Eshkoshtar
+	link Sepetrosk
+	link Faronektu
+	link Salipastart
+	asteroids "small rock" 3 3.015
+	asteroids "medium rock" 2 6.345
+	asteroids "large rock" 21 4.23
+	asteroids "small metal" 20 2.79
+	asteroids "medium metal" 25 3.105
+	asteroids "large metal" 40 4.005
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/cloud6
+		distance 175
+		period 28.1777
+	object
+		sprite planet/rock15
+		distance 541.24
+		period 153.261
+	object
+		sprite planet/cloud5
+		distance 813.65
+		period 282.491
+	object "Sapira Mereti"
+		sprite planet/rock13
+		distance 1088.29
+		period 436.984
+	object
+		sprite planet/gas15
+		distance 1960.01
+		period 1056.18
+		object
+			sprite planet/europa
+			distance 197
+			period 14.5545
+		object "Mereti Station"
+			sprite planet/station3k
+			distance 329.088
+			period 31.4243
+
 system Sirius
 	pos -378 44
 	government Republic
@@ -11805,6 +13464,44 @@ system Sirius
 		distance 2162.3
 		period 949.79
 
+system Skeruto
+	pos 28.4305 -339.812
+	government Uninhabited
+	habitable 320
+	link Furmeliki
+	link Meftarkata
+	link Fornarep
+	link Kaliptari
+	link Seketra
+	asteroids "large metal" 1 1.5554
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/lava0
+		distance 188.56
+		period 57.8974
+	object "Sabira Eseskrai"
+		sprite planet/desert8
+		distance 395.37
+		period 175.789
+	object
+		sprite planet/desert10
+		distance 913.509
+		period 617.383
+		object
+			sprite planet/station1kd
+			distance 197.726
+			period 28.4644
+	object
+		sprite planet/gas11
+		distance 1806.49
+		period 1716.87
+		object
+			sprite planet/ice8
+			distance 236
+			period 11.9576
+
 system Sko'karak
 	pos -304.43 -930.688
 	government Wanderer
@@ -11853,10 +13550,54 @@ system Sko'karak
 			sprite planet/rock3
 			distance 406
 			period 28.8527
+
+system Sobarati
+	pos 277.431 -557.812
+	government "Kor Sestor"
+	habitable 3780
+	link Asikafarnut
+	asteroids "large metal" 1 3.705
 	object
-		sprite planet/gas11
-		distance 2331.95
-		period 2518.05
+		sprite star/a5
+		distance 4.57143
+		period 9.4217
+		offset 180
+	object
+		sprite star/m8
+		distance 123.429
+		period 9.4217
+	object
+		sprite planet/rock7
+		distance 247.469
+		period 25.3276
+	object
+		sprite planet/gas14
+		distance 1008.08
+		period 208.236
+		object
+			sprite planet/io
+			distance 232
+			period 14.391
+		object
+			sprite planet/oberon
+			distance 349
+			period 26.552
+		object
+			sprite planet/dust4
+			distance 463
+			period 40.5724
+		object
+			sprite planet/dust3
+			distance 576
+			period 56.2979
+	object
+		sprite planet/gas0
+		distance 2435.19
+		period 781.833
+		object "Devru Kaska"
+			sprite planet/station1k
+			distance 311.851
+			period 16.139
 
 system Sol
 	pos -400 100
@@ -11931,6 +13672,45 @@ system Sol
 			sprite planet/callisto
 			distance 811.717
 			period 66.76
+
+system Solifar
+	pos 47.4305 -435.812
+	government Uninhabited
+	habitable 320
+	link Kaliptari
+	asteroids "small rock" 7 7.772
+	asteroids "medium rock" 21 4.176
+	asteroids "large rock" 5 3.654
+	asteroids "small metal" 2 7.134
+	asteroids "medium metal" 80 7.946
+	asteroids "large metal" 26 7.076
+	object
+		sprite star/m0
+		period 10
+	object "Desi Seledrak"
+		sprite planet/cloud5
+		distance 270.64
+		period 99.5573
+	object
+		sprite planet/gas14
+		distance 974.08
+		period 679.793
+		object
+			sprite planet/luna
+			distance 219
+			period 13.1985
+		object
+			sprite planet/rock17
+			distance 345
+			period 26.0968
+		object
+			sprite planet/rock7
+			distance 504
+			period 46.0792
+	object
+		sprite planet/gas7
+		distance 2068.97
+		period 2104.34
 
 system Sospi
 	pos -317 -161
@@ -12157,6 +13937,53 @@ system Sumar
 			sprite planet/dust2
 			distance 575
 			period 67.9617
+
+system Sumprast
+	pos -101.569 -262.812
+	government "Kor Efret"
+	habitable 486.68
+	link Kashikt
+	link Sevrelect
+	asteroids "medium rock" 8 1.0608
+	asteroids "large rock" 4 2.6624
+	asteroids "small metal" 3 2.9744
+	asteroids "medium metal" 15 2.4336
+	asteroids "large metal" 7 2.4336
+	object
+		sprite star/k0
+		period 10
+	object
+		sprite planet/desert7
+		distance 158.16
+		period 36.0648
+	object "Karek Fornati"
+		sprite planet/desert0
+		distance 478.16
+		period 189.582
+		object
+			sprite planet/dust5
+			distance 159
+			period 25.2033
+	object
+		sprite planet/callisto
+		distance 1256.4
+		period 807.477
+	object
+		sprite planet/gas0
+		distance 2549.84
+		period 2334.57
+		object
+			sprite planet/dust1
+			distance 253
+			period 11.7934
+		object
+			sprite planet/miranda
+			distance 340
+			period 18.3728
+		object
+			sprite planet/rock14
+			distance 464
+			period 29.291
 
 system Tais
 	pos -346 381
@@ -14120,7 +15947,7 @@ planet Alexandria
 	spaceport `The station's cavernous visitor center is by far the quietest spaceport you have ever been in. Many people are bustling back and forth, wheeling carts of old books or carrying data pads, but they are entirely silent except for the occasional startled outburst when a scholar, walking deep in thought or immersed in reading, accidentally collides with someone.`
 	spaceport `	From here, passageways lead off into the wings of the library in a veritable labyrinth of hallways, stairs, and library stacks. A few particularly heavy doors require key cards to enter, and others have no opening controls of any sort that you can see.`
 	"required reputation" 100
-	bribe .1
+	bribe 0.1
 	tribute 1000
 		threshold 8000
 		fleet "Large Republic" 7
@@ -14201,6 +16028,11 @@ planet "Arachne Station"
 		threshold 3000
 		fleet "Large Militia" 14
 
+planet "Aresepru Nat"
+	attributes korath
+	landscape land/beach1
+	description `Now that the Korath are gone, the oceans on this planet have begun to teem with fish and other living creatures once again, and the levels of dissolved oxygen and carbon dioxide are slowly swinging back into balance. Species of algae and bacteria that are able to metabolize the plastics and chemicals that the Korath left behind have spread throughout the oceans.`
+
 planet Asgard
 	attributes deep factory urban rich
 	landscape land/city1
@@ -14219,6 +16051,11 @@ planet Asgard
 	tribute 4000
 		threshold 7000
 		fleet "Large Deep" 39
+
+planet Avalon
+	landscape land/sea9
+	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
+	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -14564,6 +16401,29 @@ planet Delve
 		threshold 4500
 		fleet "Large Syndicate" 9
 
+planet "Desi Seledrak"
+	attributes korath
+	landscape land/hills3
+	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
+
+planet "Devru Kaska"
+	attributes korath station
+	landscape land/space4
+	description `The Kor Sestor prefer to develop planets rather than planting stations in space, but this is a necessary exception: a deuterium refinery that harvests hydrogen both from the gas giant it orbits, and from the strong solar wind from this system's primary star.`
+	spaceport `As the station's orbit carries it in and out of the gas giant's shadow, the station cools by a considerable amount, and the metal of the hull creaks and groans in protest. When the station is not in shadow, the temperatures here are almost too hot for human survival.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Drekag Firask"
+	attributes korath
+	landscape land/sea5
+	description `Much of the surface of this world is covered in water. Ships the size of small cities float in the oceans, carried by the tides. The ships are designed to incubate algae and other microorganisms that once provided the Korath both with food and with a source of mixed hydrocarbons similar to petroleum. With the Korath gone and the food no longer needed, many of the ships have fallen into disrepair, or have drifted into the polar regions and been crushed against icebergs.`
+	spaceport `This is one of the few city-ships still in operation, probably because it was designed to produce oils and petroleum rather than raw food stuff. But even this ship is in poor repair, drifting low enough in the water that when storms arise, the waves break over the outer walls of the city and flood the streets where the Korath inhabitants once lived.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet Dune
 	attributes rim mining
 	landscape land/dune2
@@ -14610,10 +16470,50 @@ planet Echo
 	bribe 0
 	security 0.9
 
+planet "Elek Kartanu"
+	attributes korath
+	landscape land/mountain2
+	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent path, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
+
+planet "Esayaku Fen"
+	attributes korath
+	landscape land/badlands5
+	description `The Kor Mereti robots seem to prefer to build their factories and refineries in space rather than on planets, harvesting their raw materials from asteroids so that they do not have to deal with gravity, or atmosphere, or rain, or sandstorms. They have left this desert world unoccupied.`
+	description `	The deserts here are home to an unusual number of plant species, which have adapted to survive the occasional catastrophic flash floods.`
+
+planet "Esek Stovar"
+	attributes korath station
+	landscape land/space4
+	description `This Kor Merati outpost is far enough from the front in their war with the Kor Sestor that it has fallen somewhat into disuse. The largest docking bays are still kept open for refueling and repairs, but the sections of the station that used to be living quarters have been sealed off.`
+	spaceport `Because this station is only in use now by autonomous vehicles, there is no atmosphere, and no need for airlocks or containment fields. The hangar bay doors have all been left wide open, so ships can come and go as they please.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Eskar Kortuka"
+	attributes korath
+	landscape land/snow2
+	description `This is a barely habitable frozen world. The Korath built nothing here except for a few small mining facilities, now abandoned. There is no sign that the occupants were forced to leave by violence. Rather, it seems that they simply packed up their things one day and moved out. The buildings they left behind are now half-covered by snowdrifts.`
+
+planet "Esperaktu Station"
+	attributes korath station
+	landscape land/station0
+	description `This small space station has plenty of blast marks on its outer hull, but they have all been patched and the interior still holds atmosphere. But although still intact, the station is entirely abandoned.`
+	description `	For food, the Korath set up vats of photosynthetic yeast and bacteria in some rooms on the outer shell of the station. In their absence, the bacterial soup has worked its way through the ventilation system into the rest of the station and formed a thin layer of slime on almost every sun-facing wall.`
+
 planet "Far'en Lai"
 	landscape land/dune3
 	description `When the Korath were banished to the Core, they were left with only one living world, a planet they call "Far'en Lai," meaning, "the last candle-flame." Afraid that this planet's biosphere will turn to dust in their hands like all the other worlds they once controlled, they Korath have left Far'en Lai entirely unsettled and unexploited. It is rumored that the terms of their exile dictate that if Far'en Lai withers and dies, the remaining Korath exiles will be exterminated, but that if they can learn to make the planet flourish, their place in the galaxy will be restored.`
 	"required reputation" -1000
+	bribe 0
+	security 0
+
+planet "Fara Skaeruti"
+	attributes korath station
+	landscape land/space4
+	description `This station serves both as a deuterium refinery and as a factory. A large number of small spires protrude from the hull of the station, each carrying fuel pipes, so that ships can simply dock with one of the spires to refuel instead of having to navigate inside a hangar.`
+	spaceport `A swarm of robotic spacecraft flows around this station. The traffic pattern is chaotic, yet efficient, adapting from moment to moment depending on which ships are coming or going. The robots never crash into each other, even though they sometimes pass each other with less than a meter in between, while traveling at high speeds.`
+	"required reputation" 1
 	bribe 0
 	security 0
 
@@ -14661,6 +16561,11 @@ planet Featherweight
 		threshold 4500
 		fleet "Small Republic" 30
 
+planet "Fek Rembatu"
+	attributes korath
+	landscape land/sky3
+	description `Everything on this planet that is made of metal is overgrown with a thick layer of a reddish lichen or fungus. In the cities, the tallest buildings look like they have been melted or half digested by the fungus: tall towers lean at crazy angles, and smaller buildings are entirely buried and indistinct. The air smells like sauerkraut and roses.`
+
 planet "Fenrir Station"
 	attributes deep station
 	landscape land/space5
@@ -14678,6 +16583,11 @@ planet Firelode
 	landscape land/canyon5
 	description `The Unfettered are operating several large strip mines here to collect uranium and plutonium to fuel the generators in their warships. Older, abandoned mining pits are scattered throughout the planet's surface. As a result of the mining activity, the groundwater here has become badly contaminated.`
 	spaceport `The spaceport is in the middle of a large city with typical Hai architecture: raw metal and chamfered corners. However, much of the city appears to have been ruined long ago, probably in a battle. The ruins have not been rebuilt, but instead it appears that most of the ruined buildings have been torn down for scrap metal. Several of the spaceport hangars are in bad repair, as well.`
+
+planet "Firka Tesk"
+	attributes korath
+	landscape land/lava0
+	description `This appears to have once been an inhabited world, and the remnants of a few cities still remain. But the planet's crust has been cracked like an eggshell, releasing rivers of lava and leaving behind unnaturally steep mountains and fault lines. The wind whistles and howls through the rifts and fissures as if the planet itself is screaming in pain. A thick haze of sulfur dioxide and ash hangs over everything.`
 
 planet Flood
 	attributes rim tourism farming
@@ -14905,6 +16815,12 @@ planet Greenwater
 	shipyard "Hai Basics"
 	outfitter "Hai Basics"
 
+planet "Gresku Fodar"
+	attributes korath station
+	landscape land/space4
+	description `Situated an ideal distance from this system's twin suns, this station holds greenhouses where the Korath grow a highly nutritious bacterial sludge that serves the exiles as their main food source. A few of the greenhouses are also growing more traditional crops, but these are clearly a luxury that the Korath cannot afford to waste more of their resources on.`
+	spaceport `The bacterial soup that is being served in the food court has a texture like wet silt and an unpardonably bland flavor. Someone who could supply the Korath with a steady stream of the right sorts of spices could make a killing in trade here.`
+
 planet Hai-home
 	attributes hai
 	landscape land/valley2
@@ -15052,6 +16968,7 @@ planet Hope
 	description `In the year 2994, Hope was a somewhat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable. As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
 	description `	The abandoned villages and towns are now buried deep beneath the snow, and occasional treasure hunters come here to explore them and find items of value that were left behind.`
 	"required reputation" -1000
+	security 0
 
 planet Hopper
 	attributes "dirt belt" mining
@@ -15128,6 +17045,47 @@ planet Ingot
 		threshold 1500
 		fleet "Small Militia" 15
 
+planet "Karek Fornati"
+	attributes korath
+	landscape land/badlands4
+	description `Karek Fornati was once a farming world, before global temperatures began to rise and the overworked farmland slowly deteriorated into deserts. The Korath who remain have dedicated their lives to finding a way to keep the "sand seas" from swallowing up the last of the fertile land, but without much success, and there are regions near the equator where sandstorms rage continually and no living things can survive.`
+	spaceport `The spaceport city is built around an enormous public square, with stalls around its periphery for produce or grain or cattle to be sold and shipped offworld. But only one corner of the square is still active as a market; the rest has fallen into disrepair.`
+	spaceport `	Outside the city, the land is divided up by perfectly straight strips of pine trees laid out perpendicular to the prevailing wind direction. Many of the fields are growing what looks like hay, or clover, or black, nearly leafless shrubs; only a few of the fields are actively being harvested.`
+
+planet "Kasichara Fet"
+	attributes korath
+	landscape land/sky8
+	description `This planet appears to have suffered irradiation when the neighboring star of Peresedersi went nova. The local flora and fauna are alive but still struggling to recover from the loss. Several large Korath cities remain. It seems that they were not able, or not willing, to evacuate the entire population in time to escape the nova's gamma radiation; sun-bleached bones are scattered in the streets of the largest cities.`
+
+planet "Keneska Fek"
+	attributes korath
+	landscape land/canyon6
+	description `The Kor Sestor apparently use this as a mining world, but rather than digging for minerals they have been intentionally crashing metal-rich asteroids into undeveloped sections of the desert where the robots can then break them apart and extract the ore. Predictably, the ecological effects of this sort of mining are devastating.`
+	spaceport `The Kor Sestor refineries are laid out in a grid pattern. Each square of the grid is a few kilometers on each side, and is laid out in exactly the same way: a central power station, surrounded by smelters and repair bays and factories and storehouses laid out like spokes of a wheel. Each square produces and maintains a fleet of worker robots that occasionally collaborate to construct a new square, extending the city farther outward. Lines of harvester robots snake out from the refineries to the downed asteroids like trails of ants.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Kessel Sepret"
+	attributes korath station
+	landscape land/station1
+	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on Human space. Sections of the ships are assembled and tested in pressurized hangars, but the Korath Raider is a large enough ship that the final assembly must be done in space, outside the station.`
+	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
+
+planet "Korati Efreti"
+	attributes station
+	landscape land/loc2
+	description `This small Korath station is positioned at the Lagrangian point in between this system's sun and the planet that the Quarg had been mining for material to build the ringworld. The station is dwarfed by the ringworld, but nonetheless manages to make a statement: re-asserting the territorial rights of the Korath in the face of an alien species that chose to build a settlement in one of their systems.`
+	spaceport `As the Korath civil war became more and more brutal, the safest home for those who wanted to avoid the fighting was right here in the shadow of the Quarg. This small station is still home to well over a thousand Korath, and they are constantly on the move from one section to another, their boots ringing loudly on the metal floors.`
+	spaceport `	The Korath studiously avoid staring at you or even making eye contact, but you get the sense that many of them are quite curious about who you are and what you are doing here.`
+	bribe 0.1
+	security 0.5
+
+planet "Korbatri Eska"
+	attributes korath
+	landscape land/myrabella7
+	description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
+
 planet "Kort Kehai"
 	attributes wanderer
 	landscape land/lava6
@@ -15155,13 +17113,28 @@ planet "Kraken Station"
 		threshold 3500
 		fleet "Small Syndicate" 7
 
+planet "Kuwaru Efreti"
+	attributes quarg station
+	landscape land/station2
+	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
+	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
+	spaceport `	Although the spaceport offers all the usual amenities, including a small merchant's exchange for trading goods, you feel slightly self-conscious about breaking the silence of the station to speak to anyone.`
+	bribe 0
+	security 1
+
 planet Lagrange
-	attributes quarg tourism
+	attributes quarg tourism station
 	landscape land/station2
 	description `The Quarg built this station centuries ago, before they began construction on the ringworld. From the dark side of the station, the ring is visible as a thin bright filament stretching out to either side of the system's sun. The ring itself is closed to human visitors, but tour shuttles depart from here on a regular basis, giving human tourists a closer view of this engineering feat that is so far beyond anything human beings have ever attempted to build.`
 	spaceport `In the docking section are flexible, oddly organic-looking tubes that snaked out to connect to your ship as it approached. Walking through the tube and into the station was a somewhat disconcerting experience. Inside, crowds of human tourists gawk at the tall, thin Quargs, who for the most part seem unfazed by the attention. The station is perfectly clean; every surface shines.`
 	bribe 0
 	security 0.9
+
+planet "Laki Nemparu"
+	attributes korath
+	landscape land/sea2
+	description `This is an old factory world, so shrouded in smog that only tiny glimpses of the land are visible from above. Deep under the oceans of Laki Nemparu are oil reservoirs so vast that centuries of industry have not yet drained them dry. All but the hardiest of the native vegetation and wildlife is now long extinct from lack of direct sunlight or from pollution and chemical exposure.`
+	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
 
 planet "Leviathan Station"
 	attributes deep station
@@ -15330,6 +17303,15 @@ planet Memory
 		threshold 4000
 		fleet "Small Deep" 16
 
+planet "Merask Fortuno"
+	attributes korath station
+	landscape land/space4
+	description `This station was built primarily for harvesting hyperspace fuel. Even when the Korath were still here, the harvesting was almost entirely automated, so the station only has living quarters for a handful of people.`
+	spaceport `Despite their masters being gone, the machines and robots of this station carry out their work just as diligently as before, harvesting fuel that will now be used only by other automata.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet Mere
 	attributes rim fishing
 	landscape land/sea7
@@ -15340,6 +17322,15 @@ planet Mere
 	tribute 900
 		threshold 3000
 		fleet "Large Militia" 14
+
+planet "Mereti Station"
+	attributes korath station
+	landscape land/space7
+	description `This large station serves as the "mission control" for the robotic ships of the Kor Mereti faction. Warships of every shape and design are clustered in its docking bays or flying partol outside.`
+	spaceport `The central core of this station is entirely sealed off, running on its own power generators serviced by self-maintaining repair robots. Inside the core are the advanced computers that direct the Kor Mereti was effort.`
+	"required reputation" 1
+	bribe 0
+	security 0
 
 planet Midgard
 	attributes deep urban factory mining
@@ -15827,6 +17818,15 @@ planet Rand
 		threshold 3000
 		fleet "Large Militia" 8
 
+planet "Rekat Moraski"
+	attributes korath station
+	landscape land/space4
+	description `This station is a refinery where ore from asteroids is processed into metal. Larger asteroids are processed where they are; smaller ones are brought into the refinery itself to be mined.`
+	spaceport `This station has several bays large enough that a small asteroid can be steered inside. Tiny harvester robots then work their way into seams of metal in the asteroid, digging deeper and deeper until the asteroid is honeycombed with small tunnels and all the metal-rich veins have been extracted.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
 planet Relic
 	attributes "near earth"
 	landscape land/valley4
@@ -15874,6 +17874,77 @@ planet Rust
 		threshold 5000
 		fleet "Large Militia" 18
 
+planet "Sabira Eseskrai"
+	attributes korath
+	landscape land/bwerner3
+	description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
+	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growning to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
+
+planet "Safaresk Enlai"
+	attributes korath station
+	landscape land/space7
+	description `It is unclear what the primary purpose of this station is. The station contains numerous greenhouses where a wide variety of plants, and even some small animals, are kept. Other parts of the station are closed off to non-Korath visitors.`
+	spaceport `This spaceport is relatively unpopulated for a station of this size, and the few Korath who are here are wandering about with the sort of deeply absorbed attitude you would expect from a scientist or an academic.`
+	spaceport `	In one corner of the spaceport is a cage housing several large rodents and some small shrubs, lit by a warm sun-lamp. The rodents are quite acrobatic.`
+
+planet "Sapira Mereti"
+	attributes korath
+	landscape land/lava9
+	description `This was the seat of government and last military stronghold of the Kor Mereti faction during the Korath civil war. Here they built the factories and shipyards that churned out autonomous warships to prosecute their war against the Kor Sestri and the other factions. The machines now rule this world alone, and have made it entirely uninhabitable for living creatures as they delve ever deeper into the planet's crust to harvest metal and fuel, and construct more and more factories to build new generations of robotic warships.`
+	spaceport `With no living creatures in sight, the only noises in this refuelling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair robots that attach new layers of hull armor and replace weapons and engines that have been destroyed.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Sarisa Fentra"
+	attributes korath
+	landscape land/sky1
+	description `This planet's atmosphere has dangerously high radiation levels. On several of the continents there are patches, each nearly a hundred kilometers across, where the soil has been melted into glass by a nuclear explosion. Outside these blasted regions the plant life still flourishes, but the only land animals left alive are insects.`
+	description `	In the oceans, bizarre and corrupted creatures frolic.`
+
+planet "Sasirka Gatru"
+	attributes korath
+	landscape land/desert0
+	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
+
+planet "Sebra Skira"
+	attributes korath station
+	landscape land/space4
+	description `This is one of the primary war platforms for the Kor Sestor. Some sections of the station are much newer than others, and the scars are still visible in places where weapons fire has annihilated part of the station. The robots have rebuilt the damaged parts in a seemingly random pattern, like burls of bark growing over damaged parts of a tree.`
+	spaceport `There is no atmosphere inside this station, and indeed it is unlikely the station could hold air even if it were ever recaptured by living beings. In places, the stars shine through small cracks in the hull.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Sek Alarfarat"
+	attributes korath
+	landscape land/bwerner2
+	description `A hideously powerful weapon tore open scars on this planets surface so deep that the molten rock of the mantle bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+
+planet "Selefkar Refinery"
+	attributes korath station
+	landscape land/space6
+	description `This station's hull is pockmarked by weapons fire and torn open by larger explosions. Only one section remains that still contains atmosphere. Inside are the corpses of a few dozen Korath, mummified by exposure to the dry and antiseptic air of the station. It's not a pretty sight.`
+	description `	Before the war put an end to it, this appears to have been a refinery, processing ore harvested from the system's unusually dense population of metallic asteroids.`
+
+planet "Seleptra Nak"
+	attributes korath
+	landscape land/water8
+	description `The most disturbing thing about the empty Korath cities on this planet is how pristine they are: no sign of bombing or of weapons fire. Either everyone who lived here chose to leave, or they were killed by a weapon that did no damage to the buildings they live in.`
+	description `	Outside the cities, plant and animal life has begun to flourish, and some of the smaller villages have already been swallowed up by the growing forests. The climate is temperate, and rainfall is plentiful; aside from the reduction in biodiversity, it will not take this planet long to forget its former owners.`
+
+planet "Separa Tiklar"
+	attributes korath station
+	landscape land/space1
+	description `This station manufactures the weapon systems and other equipment that is used in the Korath stations, war vessels, and world-ships.`
+	spaceport `From the outside this station appears as run down as their other facilities, but the interior is meticulously clean. Also, everything outside the delivery bay is restricted space, under heavy military guard.`
+
+planet "Septar Lorku"
+	attributes korath station
+	landscape land/loc0
+	description `This system has a high concentration of metallic asteroids, which the Korath are harvesting to provide iron ore for their space ships and fissionable materials for their reactor cores. Smelting metal in a high-temperature blast furnace in the interior of a space station is, of course, an incredibly risky proposition.`
+	spaceport `Despite your lack of knowledge of Korath health and anatomy, it is clear that the inhabitants of this station are under-fed and overworked. Also, an alarming number of them are missing fingers, hands, or entire limbs. It is quite possible that the work in the refineries is even more dangerous than the job of the raiders attacking human space.`
+
 planet Serpens
 	attributes north medical research
 	landscape land/desert5
@@ -15883,6 +17954,27 @@ planet Serpens
 	tribute 900
 		threshold 3000
 		fleet "Large Republic" 3
+
+planet "Sessiliki Far"
+	attributes korath station
+	landscape land/loc2
+	description `This is a Korath mining station, where ore extracted from asteroids is refined and processed. The Korath seem to have an aversion to harvesting raw materials from actual planets, preferring to work with lifeless asteroids instead.`
+	spaceport `A smelter is never a safe place to work, and some of the machinery looks very old, but you get the feeling that the Korath on this station are in relatively good spirits nonetheless. The cafe in the spaceport is bustling, and every few hours a bell rings and about a third of the workers leave the factory floor and are replaced by fresh and rested ones.`
+
+planet "Sestor Ikfar"
+	attributes korath
+	landscape land/hills1
+	description `This dry, hot world is home to almost no native life, but is ideal for the Korath automata because of its abundant solar energy. In the places where the Korath cities once were, the Kor Sestor have built massive factories with buildings sometimes close to a kilometer in height. In other places the land remains undeveloped, but the factories are constantly expanding outward.`
+	spaceport `In place of streets, massive tunnels and shafts run through the factory cities, wide enough for two capital ships to pass each other traveling in opposite directions without the risk of collision. The tunnels branch out into smaller and smaller passageways like capillaries branching out from an artery.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Setar Fort"
+	attributes korath
+	landscape land/snow5
+	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
+	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`
 
 planet Shangri-La
 	attributes core rich urban frontier
@@ -16031,6 +18123,25 @@ planet Solace
 		threshold 4000
 		fleet "Large Militia" 15
 
+planet "Solima Skarati"
+	attributes korath
+	landscape land/beach3
+	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
+
+planet "Sopi Lefarkata"
+	attributes korath
+	landscape land/mountain8
+	description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. But, the Kor Sestor robots have begun building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment. Where recent Kor Mereti attacks have collapsed one of the access tunnels, swarms of robots have gathered to dig them out like ants when their hill has been stepped on.`
+	spaceport `The caverns of the Kor Sestor are hidden deep under the mountains, but there are also a handful of refueling stations on the surface. Each one is guarded by towering weapon platforms and swarms of autonomous fighter drones.`
+	"required reputation" 1
+	bribe 0
+	security 0
+
+planet "Spera Anatrusk"
+	attributes korath
+	landscape land/badlands6
+	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+
 planet Splashdown
 	attributes north farming
 	landscape land/water5
@@ -16117,6 +18228,11 @@ planet Sunracer
 	tribute 1700
 		threshold 5000
 		fleet "Large Syndicate" 10
+
+planet "Tefkar Ret"
+	attributes korath station
+	landscape land/station0
+	description `This station is run down and completely abandoned, emptied of atmosphere so that air pressure will not put ongoing stress on the station's structure. Each section is sealed off from the others by heavy blast doors, leaving most of the station inaccessible.`
 
 planet Thrall
 	attributes paradise textiles
@@ -16356,7 +18472,7 @@ planet "Vara Pug"
 	description `Vara Pug is an ocean world, wild and almost unsettled, except for a single Pug city on the coast of one of the major continents. The animals and plants on the land are relatively uninteresting, but the oceans are home to an enormous variety of creatures, including whales the size of a bulk freighter, a highly intelligent species of jellyfish, and other, far stranger creatures that rarely venture up from the sunless ocean depths.`
 	description `	To avoid contact with these marine creatures, when the Pug travel to other parts of the planet they use massive solar-powered airships rather than boats.`
 	spaceport `The Pug here all seem to be busy with various tasks, none of which make any sense to you: rushing from building to building on their long, spindly legs; playing a game involving colored stones on a hexagonal table; constructing what appears to be collaborative holographic artwork.`
-	spaceport `None of them speak to you, but a worker in the spaceport digs around in a closet for a while and comes up with a conversion attachment that allows your fuel tanks to be filled using their style of fuel nozzle.`
+	spaceport `	None of them speak to you, but a worker in the spaceport digs around in a closet for a while and comes up with a conversion attachment that allows your fuel tanks to be filled using their style of fuel nozzle.`
 	bribe 0
 	security 0.9
 

@@ -1228,7 +1228,6 @@ mission "FW Alphas 1.1A"
 		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
 	
 	on offer
-		set "fw alphas done"
 		event "death of nguyen" 35
 		conversation
 			`When you meet up with Nguyen, he still looks very worried. "We think we killed them all," he says, "but we can't be sure. Also, we recovered some instruments for genetic manipulation from the factory. The Alphas can't breed normally, because if their offspring inherit some of the Alpha mutations but not others, the result is rarely viable, and even those that live long enough to be born don't have all the Alpha traits. So, they rely on artificial insemination instead."`
@@ -1258,6 +1257,9 @@ mission "FW Alphas 1.1A"
 				`	"If the Republic would just leave us alone, we wouldn't need to be enemies."`
 			`	"I know," he says. "But for now, I need to return to my fleet. Which means I'll be needing an escort out of your territory, just to make sure no one attacks me. Maybe you could take us by way of New Tibet? I'm sure Commander Nguyen would appreciate one last visit to the Buddhist monasteries there before that world becomes closed off to us completely." You agree, and he begins preparing his ship for takeoff.`
 				accept
+	
+	on complete
+		set "fw alphas done"
 
 
 
@@ -1286,13 +1288,15 @@ mission "FW Alphas 1.2A"
 	
 	on offer
 		event "Poisonwood reverts to Republic"
-		set "fw alphas done"
 		conversation
 			`The ships in orbit are eliminated, but there are still the Alphas and their servants here on the ground to take care of. Your escorts unload the troops, who spread throughout the city and quickly determine that, as far as the locals know, the Alphas are all holed up in a large factory on the outskirts of town. The locals also inform you that the Alphas have taken dozens of prisoners and are holding them in the factory.`
 			`	As you are trying to prepare the Free Worlds troops to storm the building, suddenly one of your escorts, the Starry Warrior, takes off. You radio the captain, who responds, "Sorry, Captain, but I'm following orders. Alondo suspected you wouldn't like this." Then he opens fire on the factory, destroying everything within several blocks with blaster fire and torpedoes. He does not stop firing until there is nothing left but smoldering rubble in that entire section of the city.`
 			`	The Alphas are presumably dead. So are their prisoners, and any of the locals who were unlucky enough to be close to the factory when it was destroyed. The governor of Poisonwood, unable to conceal her anger, asks you to take your troops and your ships and leave her world immediately.`
 			`	You send a message to the Council asking what you should do, and they tell you to leave the planet and join Alondo on <planet>, to help bolster the defenses there. You leave <origin> with a heavy heart, glad that the Alphas are gone but wishing things here on <origin> had ended differently.`
 				launch
+	
+	on complete
+		set "fw alphas done"
 
 
 

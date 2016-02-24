@@ -134,7 +134,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(!planet->HasSpaceport())
+	if(!planet->IsInhabited())
 		return true;
 	
 	const Government *gov = ship.GetGovernment();
@@ -151,7 +151,7 @@ bool Politics::CanLand(const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(!planet->HasSpaceport())
+	if(!planet->IsInhabited())
 		return true;
 	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
 		return true;
