@@ -61,7 +61,7 @@ namespace {
 		else
 			return to_string(index);
 	}
-
+	
 	static void WriteToken(int index, DataWriter &out)
 	{
 		out.BeginChild();
@@ -201,7 +201,7 @@ void Conversation::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int index = TokenIndex(grand.Token(0));
-				
+					
 				if(!index && grand.Size() >= 2)
 					Goto(grand.Token(1), nodes.size() - 1);
 				else if(index < 0)
@@ -214,12 +214,12 @@ void Conversation::Load(const DataNode &node)
 			}
 		}
 	}
-
+	
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
 			node.PrintTrace("Conversation contains unused label \"" + it.first + "\":");
-		
+	
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
 	{
@@ -257,7 +257,7 @@ void Conversation::Save(DataWriter &out) const
 			const Node &node = nodes[i];
 			
 			if(node.scene)
-				out.Write("scene", node.sceneName);
+				out.Write("scene", node.sceneName);	
 			if(!node.conditions.IsEmpty())
 			{
 				if(node.data.size() > 1)
@@ -382,7 +382,7 @@ const ConditionSet &Conversation::Conditions(int node) const
 const string &Conversation::Text(int node, int choice) const
 {
 	static const string empty;
-
+	
 	if(static_cast<unsigned>(node) >= nodes.size()
 			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
 		return empty;
@@ -452,7 +452,7 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 void Conversation::Goto(const string &label, int node, int choice)
 {
 	auto it = labels.find(label);
-
+	
 	if(it == labels.end())
 		unresolved.insert({label, {node, choice}});
 	else
