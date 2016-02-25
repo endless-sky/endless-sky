@@ -127,7 +127,7 @@ private:
 		// Commodity name
 		std::string name;
 
-		void SetBase(int base);
+		void SetBase(double base, const std::string &name);
 		int GetBasePrice();
 		void Update();
 
@@ -136,7 +136,7 @@ private:
 		// defined in commodities.txt. 0 represents the "lowest" price
 		// and 100 represents the "highest" but there is nothing to
 		// stop the value from being set outside of that range.
-		int basePricePercentile = 0;
+		double basePricePercentile = 0;
 
 		// basePrice is used for special commodities that don't 
 		// have "expected prices" defined.

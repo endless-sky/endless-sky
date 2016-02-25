@@ -57,16 +57,16 @@ system Acamar
 	asteroids "small metal" 3 1.9488
 	asteroids "medium metal" 19 2.2848
 	asteroids "large metal" 12 2.352
-	trade Clothing 52
-	trade Electronics 10
-	trade Equipment 62
-	trade Food 58
-	trade "Heavy Metals" 37
-	trade Industrial 43
-	trade "Luxury Goods" 79
-	trade Medical 29
-	trade Metal 14
-	trade Plastic 81
+	trade Clothing 52.33
+	trade Electronics 10.00
+	trade Equipment 62.75
+	trade Food 58.00
+	trade "Heavy Metals" 37.86
+	trade Industrial 43.50
+	trade "Luxury Goods" 79.17
+	trade Medical 29.20
+	trade Metal 14.75
+	trade Plastic 81.00
 	fleet "Large Core Merchants" 3000
 	fleet "Small Core Merchants" 2000
 	fleet "Small Republic" 3600
@@ -109,16 +109,16 @@ system Achernar
 	link Polaris
 	asteroids "medium metal" 27 1.8676
 	asteroids "large metal" 2 4.7334
-	trade Clothing 41
-	trade Electronics 50
-	trade Equipment 72
-	trade Food 32
-	trade "Heavy Metals" 19
-	trade Industrial 47
-	trade "Luxury Goods" 7
-	trade Medical 69
-	trade Metal 24
-	trade Plastic 32
+	trade Clothing 41.00
+	trade Electronics 50.67
+	trade Equipment 72.00
+	trade Food 32.80
+	trade "Heavy Metals" 19.86
+	trade Industrial 47.75
+	trade "Luxury Goods" 7.33
+	trade Medical 69.00
+	trade Metal 24.75
+	trade Plastic 32.33
 	fleet "Large Core Merchants" 400
 	fleet "Large Syndicate" 600
 	fleet "Small Syndicate" 500
@@ -175,16 +175,16 @@ system Acrux
 	asteroids "large rock" 17 4.8139
 	asteroids "medium metal" 44 4.3378
 	asteroids "large metal" 19 4.8139
-	trade Clothing 57
-	trade Electronics 21
-	trade Equipment 62
-	trade Food 12
-	trade "Heavy Metals" 40
-	trade Industrial 68
-	trade "Luxury Goods" 25
-	trade Medical 27
-	trade Metal 66
-	trade Plastic 69
+	trade Clothing 57.67
+	trade Electronics 21.67
+	trade Equipment 62.50
+	trade Food 12.80
+	trade "Heavy Metals" 40.14
+	trade Industrial 68.00
+	trade "Luxury Goods" 25.33
+	trade Medical 27.00
+	trade Metal 66.50
+	trade Plastic 69.33
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Militia" 800
@@ -248,16 +248,16 @@ system Adhara
 	asteroids "large rock" 9 5.3675
 	asteroids "medium metal" 9 7.125
 	asteroids "large metal" 1 4.9875
-	trade Clothing 69
-	trade Electronics 34
-	trade Equipment 27
-	trade Food 88
-	trade "Heavy Metals" 75
-	trade Industrial 26
-	trade "Luxury Goods" 65
-	trade Medical 35
-	trade Metal 5
-	trade Plastic 66
+	trade Clothing 69.67
+	trade Electronics 34.00
+	trade Equipment 27.25
+	trade Food 88.80
+	trade "Heavy Metals" 75.29
+	trade Industrial 26.25
+	trade "Luxury Goods" 65.00
+	trade Medical 35.60
+	trade Metal 5.00
+	trade Plastic 66.67
 	fleet "Small Northern Merchants" 300
 	fleet "Large Northern Merchants" 400
 	fleet "Small Deep" 500
@@ -311,16 +311,16 @@ system "Al Dhanab"
 	asteroids "small metal" 94 2.7324
 	asteroids "medium metal" 36 4.14
 	asteroids "large metal" 116 3.2016
-	trade Clothing 30
-	trade Electronics 73
-	trade Equipment 60
-	trade Food 43
-	trade "Heavy Metals" 9
-	trade Industrial 33
-	trade "Luxury Goods" 14
-	trade Medical 57
-	trade Metal 18
-	trade Plastic 25
+	trade Clothing 30.67
+	trade Electronics 73.00
+	trade Equipment 60.75
+	trade Food 43.60
+	trade "Heavy Metals" 9.14
+	trade Industrial 33.75
+	trade "Luxury Goods" 14.83
+	trade Medical 57.60
+	trade Metal 18.00
+	trade Plastic 25.67
 	fleet "Small Core Merchants" 400
 	fleet "Large Core Merchants" 400
 	fleet "Small Syndicate" 1000
@@ -372,16 +372,16 @@ system Albaldah
 	asteroids "large rock" 9 7.02
 	asteroids "medium metal" 86 3.18
 	asteroids "large metal" 5 4.2
-	trade Clothing 26
-	trade Electronics 60
-	trade Equipment 51
-	trade Food 16
-	trade "Heavy Metals" 54
-	trade Industrial 78
-	trade "Luxury Goods" 59
-	trade Medical 74
-	trade Metal 19
-	trade Plastic 34
+	trade Clothing 26.00
+	trade Electronics 60.67
+	trade Equipment 51.00
+	trade Food 16.00
+	trade "Heavy Metals" 54.14
+	trade Industrial 78.50
+	trade "Luxury Goods" 59.00
+	trade Medical 74.20
+	trade Metal 19.00
+	trade Plastic 34.33
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Southern Pirates" 800
@@ -440,16 +440,16 @@ system Albireo
 	asteroids "large rock" 4 3.1654
 	asteroids "medium metal" 52 1.9992
 	asteroids "large metal" 9 3.5224
-	trade Clothing 40
-	trade Electronics 66
-	trade Equipment 38
-	trade Food 18
-	trade "Heavy Metals" 49
-	trade Industrial 87
-	trade "Luxury Goods" 55
-	trade Medical 82
-	trade Metal 11
-	trade Plastic 49
+	trade Clothing 40.67
+	trade Electronics 66.67
+	trade Equipment 38.25
+	trade Food 18.20
+	trade "Heavy Metals" 49.86
+	trade Industrial 87.25
+	trade "Luxury Goods" 55.17
+	trade Medical 82.80
+	trade Metal 11.75
+	trade Plastic 49.00
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 1200
 	fleet "Small Southern Pirates" 1000
@@ -495,16 +495,16 @@ system Alcyone
 	asteroids "large rock" 16 1.08
 	asteroids "medium metal" 11 2.5272
 	asteroids "large metal" 2 2.0736
-	trade Clothing 60
-	trade Electronics 36
-	trade Equipment 82
-	trade Food 19
-	trade "Heavy Metals" 36
-	trade Industrial 48
-	trade "Luxury Goods" 20
-	trade Medical 55
-	trade Metal 14
-	trade Plastic 66
+	trade Clothing 60.67
+	trade Electronics 36.33
+	trade Equipment 82.00
+	trade Food 19.40
+	trade "Heavy Metals" 36.86
+	trade Industrial 48.50
+	trade "Luxury Goods" 20.33
+	trade Medical 55.00
+	trade Metal 14.75
+	trade Plastic 66.33
 	fleet "Small Southern Pirates" 400
 	fleet "Large Southern Pirates" 600
 	fleet "Large Syndicate" 1200
@@ -555,16 +555,16 @@ system Aldebaran
 	link Elnath
 	link Kursa
 	asteroids "large metal" 1 2.8322
-	trade Clothing 29
-	trade Electronics 15
-	trade Equipment 81
-	trade Food 67
-	trade "Heavy Metals" 49
-	trade Industrial 49
-	trade "Luxury Goods" 84
-	trade Medical 16
-	trade Metal 18
-	trade Plastic 79
+	trade Clothing 29.00
+	trade Electronics 15.67
+	trade Equipment 81.00
+	trade Food 67.20
+	trade "Heavy Metals" 49.29
+	trade Industrial 49.00
+	trade "Luxury Goods" 84.33
+	trade Medical 16.80
+	trade Metal 18.75
+	trade Plastic 79.67
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 600
 	fleet "Small Republic" 800
@@ -601,16 +601,16 @@ system Alderamin
 	asteroids "small metal" 87 9.9684
 	asteroids "medium metal" 31 9.9684
 	asteroids "large metal" 58 7.4412
-	trade Clothing 54
-	trade Electronics 45
-	trade Equipment 17
-	trade Food 94
-	trade "Heavy Metals" 20
-	trade Industrial 37
-	trade "Luxury Goods" 24
-	trade Medical 9
-	trade Metal 11
-	trade Plastic 44
+	trade Clothing 54.00
+	trade Electronics 45.33
+	trade Equipment 17.75
+	trade Food 94.60
+	trade "Heavy Metals" 20.43
+	trade Industrial 37.75
+	trade "Luxury Goods" 24.17
+	trade Medical 9.00
+	trade Metal 11.75
+	trade Plastic 44.33
 	fleet "Small Core Merchants" 2000
 	fleet "Large Core Merchants" 3200
 	fleet "Small Syndicate" 800
@@ -665,16 +665,16 @@ system Aldhibain
 	asteroids "small metal" 39 3.8412
 	asteroids "medium metal" 72 3.8412
 	asteroids "large metal" 3 5.2668
-	trade Clothing 51
-	trade Electronics 48
-	trade Equipment 19
-	trade Food 9
-	trade "Heavy Metals" 78
-	trade Industrial 16
-	trade "Luxury Goods" 20
-	trade Medical 75
-	trade Metal 86
-	trade Plastic 40
+	trade Clothing 51.33
+	trade Electronics 48.67
+	trade Equipment 19.50
+	trade Food 9.20
+	trade "Heavy Metals" 78.29
+	trade Industrial 16.50
+	trade "Luxury Goods" 20.00
+	trade Medical 75.20
+	trade Metal 86.00
+	trade Plastic 40.00
 	fleet "Small Southern Merchants" 400
 	fleet "Large Southern Merchants" 600
 	fleet "Small Militia" 600
@@ -711,16 +711,16 @@ system Algenib
 	habitable 455.625
 	link Gienah
 	asteroids "large metal" 1 6.7392
-	trade Clothing 72
-	trade Electronics 23
-	trade Equipment 14
-	trade Food 87
-	trade "Heavy Metals" 26
-	trade Industrial 21
-	trade "Luxury Goods" 26
-	trade Medical 35
-	trade Metal 25
-	trade Plastic 61
+	trade Clothing 72.33
+	trade Electronics 23.33
+	trade Equipment 14.00
+	trade Food 87.60
+	trade "Heavy Metals" 26.86
+	trade Industrial 21.50
+	trade "Luxury Goods" 26.33
+	trade Medical 35.40
+	trade Metal 25.75
+	trade Plastic 61.00
 	fleet "Small Core Pirates" 300
 	fleet "Large Core Pirates" 500
 	fleet "Large Syndicate" 800
@@ -774,16 +774,16 @@ system Algieba
 	asteroids "small metal" 2 3.564
 	asteroids "medium metal" 5 4.482
 	asteroids "large metal" 2 5.724
-	trade Clothing 64
-	trade Electronics 41
-	trade Equipment 71
-	trade Food 77
-	trade "Heavy Metals" 65
-	trade Industrial 21
-	trade "Luxury Goods" 78
-	trade Medical 38
-	trade Metal 15
-	trade Plastic 78
+	trade Clothing 64.00
+	trade Electronics 41.33
+	trade Equipment 71.50
+	trade Food 77.00
+	trade "Heavy Metals" 65.86
+	trade Industrial 21.75
+	trade "Luxury Goods" 78.67
+	trade Medical 38.20
+	trade Metal 15.25
+	trade Plastic 78.67
 	fleet "Small Republic" 1400
 	fleet "Large Republic" 5000
 	fleet "Small Southern Merchants" 400
@@ -834,16 +834,16 @@ system Algol
 	habitable 534.375
 	link Ruchbah
 	asteroids "large metal" 1 1.35
-	trade Clothing 26
-	trade Electronics 27
-	trade Equipment 78
-	trade Food 30
-	trade "Heavy Metals" 11
-	trade Industrial 87
-	trade "Luxury Goods" 40
-	trade Medical 26
-	trade Metal 33
-	trade Plastic 23
+	trade Clothing 26.33
+	trade Electronics 27.33
+	trade Equipment 78.25
+	trade Food 30.80
+	trade "Heavy Metals" 11.14
+	trade Industrial 87.50
+	trade "Luxury Goods" 40.33
+	trade Medical 26.00
+	trade Metal 33.00
+	trade Plastic 23.00
 	fleet "Small Core Merchants" 1600
 	fleet "Large Core Merchants" 4000
 	fleet "Small Core Pirates" 1800
@@ -901,16 +901,16 @@ system Algorel
 	asteroids "small metal" 7 4.998
 	asteroids "medium metal" 75 3.434
 	asteroids "large metal" 27 3.4
-	trade Clothing 38
-	trade Electronics 77
-	trade Equipment 40
-	trade Food 47
-	trade "Heavy Metals" 27
-	trade Industrial 21
-	trade "Luxury Goods" 29
-	trade Medical 65
-	trade Metal 75
-	trade Plastic 62
+	trade Clothing 38.67
+	trade Electronics 77.00
+	trade Equipment 40.00
+	trade Food 47.20
+	trade "Heavy Metals" 27.00
+	trade Industrial 21.50
+	trade "Luxury Goods" 29.00
+	trade Medical 65.60
+	trade Metal 75.00
+	trade Plastic 62.33
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 900
 	fleet "Small Militia" 2000
@@ -961,16 +961,16 @@ system Alheka
 	asteroids "small metal" 14 8.19
 	asteroids "medium metal" 47 11.466
 	asteroids "large metal" 11 7.566
-	trade Clothing 13
-	trade Electronics 24
-	trade Equipment 91
-	trade Food 81
-	trade "Heavy Metals" 65
-	trade Industrial 24
-	trade "Luxury Goods" 83
-	trade Medical 20
-	trade Metal 49
-	trade Plastic 79
+	trade Clothing 13.67
+	trade Electronics 24.33
+	trade Equipment 91.75
+	trade Food 81.80
+	trade "Heavy Metals" 65.14
+	trade Industrial 24.50
+	trade "Luxury Goods" 83.67
+	trade Medical 20.20
+	trade Metal 49.50
+	trade Plastic 79.00
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 1200
@@ -1012,16 +1012,16 @@ system Alhena
 	asteroids "large rock" 1 6.3986
 	asteroids "medium metal" 6 5.5614
 	asteroids "large metal" 1 6.6976
-	trade Clothing 58
-	trade Electronics 66
-	trade Equipment 81
-	trade Food 71
-	trade "Heavy Metals" 65
-	trade Industrial 68
-	trade "Luxury Goods" 84
-	trade Medical 27
-	trade Metal 30
-	trade Plastic 58
+	trade Clothing 58.33
+	trade Electronics 66.00
+	trade Equipment 81.00
+	trade Food 71.00
+	trade "Heavy Metals" 65.86
+	trade Industrial 68.00
+	trade "Luxury Goods" 84.50
+	trade Medical 27.40
+	trade Metal 30.75
+	trade Plastic 58.33
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 700
 	fleet "Small Republic" 900
@@ -1075,16 +1075,16 @@ system Alioth
 	asteroids "small metal" 5 4.0832
 	asteroids "medium metal" 2 4.048
 	asteroids "large metal" 4 3.7664
-	trade Clothing 51
-	trade Electronics 68
-	trade Equipment 29
-	trade Food 8
-	trade "Heavy Metals" 66
-	trade Industrial 24
-	trade "Luxury Goods" 34
-	trade Medical 72
-	trade Metal 86
-	trade Plastic 72
+	trade Clothing 51.00
+	trade Electronics 68.33
+	trade Equipment 29.00
+	trade Food 8.60
+	trade "Heavy Metals" 66.43
+	trade Industrial 24.50
+	trade "Luxury Goods" 34.33
+	trade Medical 72.20
+	trade Metal 86.75
+	trade Plastic 72.67
 	fleet "Small Southern Merchants" 400
 	fleet "Large Northern Merchants" 600
 	fleet "Small Militia" 900
@@ -1123,16 +1123,16 @@ system Alkaid
 	asteroids "large rock" 3 3.1464
 	asteroids "medium metal" 13 3.9744
 	asteroids "large metal" 2 4.8852
-	trade Clothing 63
-	trade Electronics 43
-	trade Equipment 75
-	trade Food 10
-	trade "Heavy Metals" 59
-	trade Industrial 78
-	trade "Luxury Goods" 32
-	trade Medical 38
-	trade Metal 86
-	trade Plastic 21
+	trade Clothing 63.00
+	trade Electronics 43.33
+	trade Equipment 75.50
+	trade Food 10.80
+	trade "Heavy Metals" 59.00
+	trade Industrial 78.25
+	trade "Luxury Goods" 32.33
+	trade Medical 38.80
+	trade Metal 86.25
+	trade Plastic 21.67
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 2400
@@ -1189,16 +1189,16 @@ system Almaaz
 	asteroids "large rock" 33 4.3659
 	asteroids "small metal" 1 3.6288
 	asteroids "large metal" 1 7.2576
-	trade Clothing 37
-	trade Electronics 83
-	trade Equipment 45
-	trade Food 25
-	trade "Heavy Metals" 76
-	trade Industrial 58
-	trade "Luxury Goods" 25
-	trade Medical 76
-	trade Metal 83
-	trade Plastic 22
+	trade Clothing 37.67
+	trade Electronics 83.67
+	trade Equipment 45.25
+	trade Food 25.20
+	trade "Heavy Metals" 76.00
+	trade Industrial 58.50
+	trade "Luxury Goods" 25.50
+	trade Medical 76.80
+	trade Metal 83.25
+	trade Plastic 22.67
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
 	fleet "Large Republic" 4000
@@ -1229,16 +1229,16 @@ system Almach
 	asteroids "small metal" 20 1.4365
 	asteroids "medium metal" 4 3.0719
 	asteroids "large metal" 5 1.5249
-	trade Clothing 74
-	trade Electronics 24
-	trade Equipment 67
-	trade Food 39
-	trade "Heavy Metals" 39
-	trade Industrial 58
-	trade "Luxury Goods" 7
-	trade Medical 63
-	trade Metal 37
-	trade Plastic 8
+	trade Clothing 74.67
+	trade Electronics 24.67
+	trade Equipment 67.75
+	trade Food 39.60
+	trade "Heavy Metals" 39.86
+	trade Industrial 58.50
+	trade "Luxury Goods" 7.00
+	trade Medical 63.20
+	trade Metal 37.00
+	trade Plastic 8.67
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
@@ -1286,16 +1286,16 @@ system Alnair
 	asteroids "large rock" 19 8.32
 	asteroids "medium metal" 34 6.695
 	asteroids "large metal" 28 5.72
-	trade Clothing 51
-	trade Electronics 40
-	trade Equipment 12
-	trade Food 85
-	trade "Heavy Metals" 36
-	trade Industrial 49
-	trade "Luxury Goods" 18
-	trade Medical 12
-	trade Metal 12
-	trade Plastic 75
+	trade Clothing 51.33
+	trade Electronics 40.33
+	trade Equipment 12.75
+	trade Food 85.80
+	trade "Heavy Metals" 36.57
+	trade Industrial 49.50
+	trade "Luxury Goods" 18.83
+	trade Medical 12.80
+	trade Metal 12.75
+	trade Plastic 75.67
 	fleet "Small Core Merchants" 2000
 	fleet "Small Core Pirates" 3000
 	fleet "Large Core Pirates" 4000
@@ -1350,16 +1350,16 @@ system Alnasl
 	asteroids "small metal" 15 3.2208
 	asteroids "medium metal" 10 3.3528
 	asteroids "large metal" 4 1.7688
-	trade Clothing 52
-	trade Electronics 21
-	trade Equipment 17
-	trade Food 27
-	trade "Heavy Metals" 67
-	trade Industrial 32
-	trade "Luxury Goods" 25
-	trade Medical 62
-	trade Metal 67
-	trade Plastic 73
+	trade Clothing 52.00
+	trade Electronics 21.67
+	trade Equipment 17.00
+	trade Food 27.20
+	trade "Heavy Metals" 67.71
+	trade Industrial 32.50
+	trade "Luxury Goods" 25.50
+	trade Medical 62.00
+	trade Metal 67.50
+	trade Plastic 73.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
@@ -1406,16 +1406,16 @@ system Alnilam
 	asteroids "small metal" 42 1.5675
 	asteroids "medium metal" 15 3.3345
 	asteroids "large metal" 11 3.363
-	trade Clothing 41
-	trade Electronics 39
-	trade Equipment 51
-	trade Food 10
-	trade "Heavy Metals" 88
-	trade Industrial 54
-	trade "Luxury Goods" 4
-	trade Medical 90
-	trade Metal 82
-	trade Plastic 31
+	trade Clothing 41.33
+	trade Electronics 39.00
+	trade Equipment 51.75
+	trade Food 10.80
+	trade "Heavy Metals" 88.71
+	trade Industrial 54.75
+	trade "Luxury Goods" 4.33
+	trade Medical 90.00
+	trade Metal 82.50
+	trade Plastic 31.33
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
 	fleet "Large Republic" 10000
@@ -1480,16 +1480,16 @@ system Alnitak
 	asteroids "small metal" 34 6.5
 	asteroids "medium metal" 42 6.75
 	asteroids "large metal" 12 4
-	trade Clothing 58
-	trade Electronics 71
-	trade Equipment 66
-	trade Food 69
-	trade "Heavy Metals" 82
-	trade Industrial 34
-	trade "Luxury Goods" 44
-	trade Medical 75
-	trade Metal 32
-	trade Plastic 70
+	trade Clothing 58.00
+	trade Electronics 71.67
+	trade Equipment 66.25
+	trade Food 69.00
+	trade "Heavy Metals" 82.29
+	trade Industrial 34.00
+	trade "Luxury Goods" 44.67
+	trade Medical 75.80
+	trade Metal 32.00
+	trade Plastic 70.67
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Small Republic" 2000
@@ -1536,16 +1536,16 @@ system Alniyat
 	asteroids "small metal" 2 9.072
 	asteroids "medium metal" 4 4.941
 	asteroids "large metal" 1 4.455
-	trade Clothing 58
-	trade Electronics 59
-	trade Equipment 20
-	trade Food 14
-	trade "Heavy Metals" 61
-	trade Industrial 35
-	trade "Luxury Goods" 22
-	trade Medical 90
-	trade Metal 69
-	trade Plastic 44
+	trade Clothing 58.00
+	trade Electronics 59.33
+	trade Equipment 20.75
+	trade Food 14.00
+	trade "Heavy Metals" 61.71
+	trade Industrial 35.50
+	trade "Luxury Goods" 22.83
+	trade Medical 90.00
+	trade Metal 69.25
+	trade Plastic 44.00
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 700
 	fleet "Small Southern Pirates" 2000
@@ -1604,16 +1604,16 @@ system "Alpha Arae"
 	asteroids "small metal" 33 2.058
 	asteroids "medium metal" 18 1.68
 	asteroids "large metal" 9 1.932
-	trade Clothing 35
-	trade Electronics 39
-	trade Equipment 38
-	trade Food 39
-	trade "Heavy Metals" 53
-	trade Industrial 58
-	trade "Luxury Goods" 42
-	trade Medical 58
-	trade Metal 51
-	trade Plastic 24
+	trade Clothing 35.00
+	trade Electronics 39.00
+	trade Equipment 38.25
+	trade Food 39.60
+	trade "Heavy Metals" 53.14
+	trade Industrial 58.00
+	trade "Luxury Goods" 42.50
+	trade Medical 58.60
+	trade Metal 51.25
+	trade Plastic 24.67
 	fleet "Small Southern Merchants" 1800
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Militia" 4000
@@ -1668,16 +1668,16 @@ system "Alpha Centauri"
 	asteroids "large rock" 1 1.8
 	asteroids "medium metal" 10 4.428
 	asteroids "large metal" 1 3.168
-	trade Clothing 40
-	trade Electronics 35
-	trade Equipment 48
-	trade Food 90
-	trade "Heavy Metals" 37
-	trade Industrial 36
-	trade "Luxury Goods" 29
-	trade Medical 13
-	trade Metal 50
-	trade Plastic 4
+	trade Clothing 40.67
+	trade Electronics 35.00
+	trade Equipment 48.25
+	trade Food 90.00
+	trade "Heavy Metals" 37.71
+	trade Industrial 36.75
+	trade "Luxury Goods" 29.00
+	trade Medical 13.60
+	trade Metal 50.75
+	trade Plastic 4.33
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Republic" 2000
@@ -1724,16 +1724,16 @@ system "Alpha Hydri"
 	asteroids "medium rock" 1 7.467
 	asteroids "large rock" 1 7.125
 	asteroids "large metal" 1 7.752
-	trade Clothing 70
-	trade Electronics 43
-	trade Equipment 56
-	trade Food 27
-	trade "Heavy Metals" 14
-	trade Industrial 84
-	trade "Luxury Goods" 35
-	trade Medical 20
-	trade Metal 33
-	trade Plastic 50
+	trade Clothing 70.67
+	trade Electronics 43.67
+	trade Equipment 56.25
+	trade Food 27.20
+	trade "Heavy Metals" 14.86
+	trade Industrial 84.75
+	trade "Luxury Goods" 35.33
+	trade Medical 20.20
+	trade Metal 33.50
+	trade Plastic 50.00
 	fleet "Small Core Merchants" 900
 	fleet "Large Core Merchants" 3000
 	fleet "Small Core Pirates" 2000
@@ -1781,16 +1781,16 @@ system Alphard
 	asteroids "small metal" 5 5.3872
 	asteroids "medium metal" 83 10.2648
 	asteroids "large metal" 6 6.9888
-	trade Clothing 62
-	trade Electronics 27
-	trade Equipment 88
-	trade Food 93
-	trade "Heavy Metals" 62
-	trade Industrial 27
-	trade "Luxury Goods" 90
-	trade Medical 47
-	trade Metal 23
-	trade Plastic 85
+	trade Clothing 62.00
+	trade Electronics 27.67
+	trade Equipment 88.00
+	trade Food 93.00
+	trade "Heavy Metals" 62.57
+	trade Industrial 27.25
+	trade "Luxury Goods" 90.17
+	trade Medical 47.00
+	trade Metal 23.50
+	trade Plastic 85.33
 	fleet "Small Northern Merchants" 400
 	fleet "Large Northern Merchants" 700
 	fleet "Small Deep" 3000
@@ -1834,16 +1834,16 @@ system Alphecca
 	link Seginus
 	link Boral
 	asteroids "large metal" 1 4.3296
-	trade Clothing 67
-	trade Electronics 69
-	trade Equipment 17
-	trade Food 14
-	trade "Heavy Metals" 68
-	trade Industrial 15
-	trade "Luxury Goods" 28
-	trade Medical 77
-	trade Metal 88
-	trade Plastic 86
+	trade Clothing 67.67
+	trade Electronics 69.67
+	trade Equipment 17.25
+	trade Food 14.20
+	trade "Heavy Metals" 68.86
+	trade Industrial 15.25
+	trade "Luxury Goods" 28.83
+	trade Medical 77.20
+	trade Metal 88.25
+	trade Plastic 86.00
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Northern Merchants" 3500
 	fleet "Small Southern Pirates" 3000
@@ -1887,16 +1887,16 @@ system Alpheratz
 	asteroids "small metal" 1 2.28
 	asteroids "medium metal" 6 3.88
 	asteroids "large metal" 1 3.8
-	trade Clothing 21
-	trade Electronics 53
-	trade Equipment 59
-	trade Food 28
-	trade "Heavy Metals" 12
-	trade Industrial 59
-	trade "Luxury Goods" 25
-	trade Medical 56
-	trade Metal 37
-	trade Plastic 17
+	trade Clothing 21.67
+	trade Electronics 53.67
+	trade Equipment 59.25
+	trade Food 28.00
+	trade "Heavy Metals" 12.00
+	trade Industrial 59.75
+	trade "Luxury Goods" 25.33
+	trade Medical 56.60
+	trade Metal 37.50
+	trade Plastic 17.67
 	fleet "Small Core Merchants" 600
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 800
@@ -1946,16 +1946,16 @@ system Altair
 	link "Delta Capricorni"
 	link Fomalhaut
 	asteroids "large metal" 1 4.6748
-	trade Clothing 79
-	trade Electronics 72
-	trade Equipment 42
-	trade Food 74
-	trade "Heavy Metals" 24
-	trade Industrial 21
-	trade "Luxury Goods" 21
-	trade Medical 20
-	trade Metal 36
-	trade Plastic 11
+	trade Clothing 79.33
+	trade Electronics 72.00
+	trade Equipment 42.50
+	trade Food 74.40
+	trade "Heavy Metals" 24.43
+	trade Industrial 21.25
+	trade "Luxury Goods" 21.33
+	trade Medical 20.80
+	trade Metal 36.25
+	trade Plastic 11.33
 	fleet "Small Core Merchants" 400
 	fleet "Large Core Merchants" 600
 	fleet "Small Northern Merchants" 1000
@@ -2006,16 +2006,16 @@ system Aludra
 	asteroids "large rock" 7 2.4786
 	asteroids "small metal" 2 7.1442
 	asteroids "large metal" 6 3.402
-	trade Clothing 29
-	trade Electronics 31
-	trade Equipment 31
-	trade Food 57
-	trade "Heavy Metals" 53
-	trade Industrial 67
-	trade "Luxury Goods" 21
-	trade Medical 54
-	trade Metal 50
-	trade Plastic 16
+	trade Clothing 29.00
+	trade Electronics 31.00
+	trade Equipment 31.00
+	trade Food 57.00
+	trade "Heavy Metals" 53.71
+	trade Industrial 67.00
+	trade "Luxury Goods" 21.00
+	trade Medical 54.60
+	trade Metal 50.50
+	trade Plastic 16.33
 	fleet "Small Deep" 600
 	fleet "Large Deep" 1000
 	fleet "Small Northern Merchants" 300
@@ -2064,16 +2064,16 @@ system Ankaa
 	asteroids "small metal" 1 4.352
 	asteroids "medium metal" 7 2.176
 	asteroids "large metal" 1 2.912
-	trade Clothing 52
-	trade Electronics 27
-	trade Equipment 34
-	trade Food 51
-	trade "Heavy Metals" 5
-	trade Industrial 65
-	trade "Luxury Goods" 42
-	trade Medical 33
-	trade Metal 22
-	trade Plastic 37
+	trade Clothing 52.00
+	trade Electronics 27.00
+	trade Equipment 34.25
+	trade Food 51.80
+	trade "Heavy Metals" 5.71
+	trade Industrial 65.75
+	trade "Luxury Goods" 42.67
+	trade Medical 33.20
+	trade Metal 22.00
+	trade Plastic 37.67
 	fleet "Small Core Merchants" 600
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 900
@@ -2113,16 +2113,16 @@ system Antares
 	asteroids "small metal" 1 3.1752
 	asteroids "medium metal" 4 3.0996
 	asteroids "large metal" 3 5.1786
-	trade Clothing 34
-	trade Electronics 71
-	trade Equipment 25
-	trade Food 18
-	trade "Heavy Metals" 60
-	trade Industrial 25
-	trade "Luxury Goods" 23
-	trade Medical 93
-	trade Metal 70
-	trade Plastic 54
+	trade Clothing 34.00
+	trade Electronics 71.33
+	trade Equipment 25.50
+	trade Food 18.00
+	trade "Heavy Metals" 60.57
+	trade Industrial 25.50
+	trade "Luxury Goods" 23.00
+	trade Medical 93.20
+	trade Metal 70.75
+	trade Plastic 54.33
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Large Militia" 5000
@@ -2169,16 +2169,16 @@ system Ap'arak
 	asteroids "large rock" 2 4.485
 	asteroids "medium metal" 1 7.797
 	asteroids "large metal" 3 5.382
-	trade Clothing 93
-	trade Electronics 20
-	trade Equipment 19
-	trade Food 56
-	trade "Heavy Metals" 73
-	trade Industrial 60
-	trade "Luxury Goods" 28
-	trade Medical 41
-	trade Metal 96
-	trade Plastic 70
+	trade Clothing 93.00
+	trade Electronics 20.67
+	trade Equipment 19.00
+	trade Food 56.40
+	trade "Heavy Metals" 73.71
+	trade Industrial 60.75
+	trade "Luxury Goods" 28.33
+	trade Medical 41.20
+	trade Metal 96.75
+	trade Plastic 70.67
 	fleet "Wanderer Freight" 500
 	fleet "Wanderer Drones" 2000
 	fleet "Wanderer Defense" 3000
@@ -2223,16 +2223,16 @@ system Arcturus
 	asteroids "small metal" 4 3.234
 	asteroids "medium metal" 5 1.848
 	asteroids "large metal" 4 1.892
-	trade Clothing 20
-	trade Electronics 81
-	trade Equipment 58
-	trade Food 37
-	trade "Heavy Metals" 44
-	trade Industrial 63
-	trade "Luxury Goods" 51
-	trade Medical 50
-	trade Metal 56
-	trade Plastic 73
+	trade Clothing 20.67
+	trade Electronics 81.00
+	trade Equipment 58.00
+	trade Food 37.80
+	trade "Heavy Metals" 44.00
+	trade Industrial 63.25
+	trade "Luxury Goods" 51.83
+	trade Medical 50.80
+	trade Metal 56.50
+	trade Plastic 73.67
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 10000
@@ -2277,16 +2277,16 @@ system Arneb
 	asteroids "small metal" 2 5.2245
 	asteroids "medium metal" 9 4.7385
 	asteroids "large metal" 1 6.0345
-	trade Clothing 75
-	trade Electronics 70
-	trade Equipment 63
-	trade Food 7
-	trade "Heavy Metals" 85
-	trade Industrial 29
-	trade "Luxury Goods" 15
-	trade Medical 92
-	trade Metal 94
-	trade Plastic 39
+	trade Clothing 75.00
+	trade Electronics 70.00
+	trade Equipment 63.25
+	trade Food 7.00
+	trade "Heavy Metals" 85.71
+	trade Industrial 29.00
+	trade "Luxury Goods" 15.33
+	trade Medical 92.00
+	trade Metal 94.00
+	trade Plastic 39.33
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
 	fleet "Large Republic" 15000
@@ -2329,16 +2329,16 @@ system Ascella
 	asteroids "small metal" 5 2.023
 	asteroids "medium metal" 84 1.19
 	asteroids "large metal" 6 2.6894
-	trade Clothing 65
-	trade Electronics 53
-	trade Equipment 76
-	trade Food 73
-	trade "Heavy Metals" 36
-	trade Industrial 76
-	trade "Luxury Goods" 73
-	trade Medical 79
-	trade Metal 65
-	trade Plastic 18
+	trade Clothing 65.67
+	trade Electronics 53.33
+	trade Equipment 76.50
+	trade Food 73.40
+	trade "Heavy Metals" 36.14
+	trade Industrial 76.50
+	trade "Luxury Goods" 73.83
+	trade Medical 79.40
+	trade Metal 65.00
+	trade Plastic 18.33
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Militia" 4000
@@ -2430,16 +2430,16 @@ system Aspidiske
 	link Regor
 	link "Epsilon Leonis"
 	asteroids "large metal" 1 3.7422
-	trade Clothing 45
-	trade Electronics 17
-	trade Equipment 24
-	trade Food 69
-	trade "Heavy Metals" 54
-	trade Industrial 66
-	trade "Luxury Goods" 47
-	trade Medical 49
-	trade Metal 14
-	trade Plastic 18
+	trade Clothing 45.33
+	trade Electronics 17.33
+	trade Equipment 24.00
+	trade Food 69.20
+	trade "Heavy Metals" 54.57
+	trade Industrial 66.50
+	trade "Luxury Goods" 47.17
+	trade Medical 49.60
+	trade Metal 14.25
+	trade Plastic 18.33
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Deep" 1000
@@ -2489,16 +2489,16 @@ system Atria
 	asteroids "small metal" 1 3.429
 	asteroids "medium metal" 26 2.7
 	asteroids "large metal" 2 1.431
-	trade Clothing 69
-	trade Electronics 53
-	trade Equipment 36
-	trade Food 11
-	trade "Heavy Metals" 51
-	trade Industrial 15
-	trade "Luxury Goods" 23
-	trade Medical 90
-	trade Metal 93
-	trade Plastic 17
+	trade Clothing 69.00
+	trade Electronics 53.00
+	trade Equipment 36.50
+	trade Food 11.80
+	trade "Heavy Metals" 51.14
+	trade Industrial 15.00
+	trade "Luxury Goods" 23.17
+	trade Medical 90.20
+	trade Metal 93.75
+	trade Plastic 17.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 3000
@@ -2547,16 +2547,16 @@ system Avior
 	asteroids "large rock" 1 5.7834
 	asteroids "medium metal" 1 5.8968
 	asteroids "large metal" 1 7.4844
-	trade Clothing 59
-	trade Electronics 22
-	trade Equipment 24
-	trade Food 68
-	trade "Heavy Metals" 36
-	trade Industrial 70
-	trade "Luxury Goods" 43
-	trade Medical 62
-	trade Metal 35
-	trade Plastic 19
+	trade Clothing 59.67
+	trade Electronics 22.33
+	trade Equipment 24.00
+	trade Food 68.00
+	trade "Heavy Metals" 36.57
+	trade Industrial 70.50
+	trade "Luxury Goods" 43.67
+	trade Medical 62.20
+	trade Metal 35.25
+	trade Plastic 19.67
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 1800
 	fleet "Small Deep" 1200
@@ -2610,16 +2610,16 @@ system Aya'k'k
 	asteroids "small metal" 4 2.016
 	asteroids "medium metal" 89 3.78
 	asteroids "large metal" 96 1.5624
-	trade Clothing 63
-	trade Electronics 84
-	trade Equipment 42
-	trade Food 24
-	trade "Heavy Metals" 97
-	trade Industrial 30
-	trade "Luxury Goods" 0
-	trade Medical 70
-	trade Metal 99
-	trade Plastic 4
+	trade Clothing 63.67
+	trade Electronics 84.33
+	trade Equipment 42.75
+	trade Food 24.40
+	trade "Heavy Metals" 97.00
+	trade Industrial 30.00
+	trade "Luxury Goods" 0.67
+	trade Medical 70.20
+	trade Metal 99.25
+	trade Plastic 4.67
 	fleet "Wanderer Freight" 900
 	fleet "Wanderer Drones" 2000
 	fleet "Wanderer Defense" 800
@@ -2667,16 +2667,16 @@ system Bellatrix
 	asteroids "small metal" 6 3.289
 	asteroids "medium metal" 31 8.372
 	asteroids "large metal" 22 7.8338
-	trade Clothing 76
-	trade Electronics 39
-	trade Equipment 82
-	trade Food 13
-	trade "Heavy Metals" 53
-	trade Industrial 81
-	trade "Luxury Goods" 8
-	trade Medical 83
-	trade Metal 58
-	trade Plastic 11
+	trade Clothing 76.33
+	trade Electronics 39.00
+	trade Equipment 82.75
+	trade Food 13.40
+	trade "Heavy Metals" 53.00
+	trade Industrial 81.25
+	trade "Luxury Goods" 8.00
+	trade Medical 83.20
+	trade Metal 58.00
+	trade Plastic 11.33
 	fleet "Small Core Merchants" 800
 	fleet "Large Core Merchants" 1500
 	fleet "Small Syndicate" 1000
@@ -2725,16 +2725,16 @@ system "Beta Lupi"
 	asteroids "small metal" 2 3.6036
 	asteroids "medium metal" 4 2.4332
 	asteroids "large metal" 25 3.4496
-	trade Clothing 61
-	trade Electronics 88
-	trade Equipment 13
-	trade Food 22
-	trade "Heavy Metals" 53
-	trade Industrial 72
-	trade "Luxury Goods" 53
-	trade Medical 90
-	trade Metal 30
-	trade Plastic 19
+	trade Clothing 61.67
+	trade Electronics 88.33
+	trade Equipment 13.25
+	trade Food 22.40
+	trade "Heavy Metals" 53.14
+	trade Industrial 72.75
+	trade "Luxury Goods" 53.67
+	trade Medical 90.60
+	trade Metal 30.00
+	trade Plastic 19.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Small Southern Pirates" 1500
 	fleet "Large Southern Pirates" 2500
@@ -2776,16 +2776,16 @@ system Betelgeuse
 	asteroids "small metal" 78 2.7
 	asteroids "medium metal" 19 3.18
 	asteroids "large metal" 56 4.38
-	trade Clothing 28
-	trade Electronics 19
-	trade Equipment 87
-	trade Food 76
-	trade "Heavy Metals" 75
-	trade Industrial 28
-	trade "Luxury Goods" 70
-	trade Medical 27
-	trade Metal 48
-	trade Plastic 76
+	trade Clothing 28.67
+	trade Electronics 19.00
+	trade Equipment 87.75
+	trade Food 76.40
+	trade "Heavy Metals" 75.71
+	trade Industrial 28.75
+	trade "Luxury Goods" 70.67
+	trade Medical 27.60
+	trade Metal 48.50
+	trade Plastic 76.67
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 800
 	fleet "Small Republic" 2000
@@ -2842,16 +2842,16 @@ system Boral
 	asteroids "small metal" 97 2.3868
 	asteroids "medium metal" 4 5.2156
 	asteroids "large metal" 11 4.5968
-	trade Clothing 37
-	trade Electronics 92
-	trade Equipment 23
-	trade Food 27
-	trade "Heavy Metals" 77
-	trade Industrial 30
-	trade "Luxury Goods" 14
-	trade Medical 92
-	trade Metal 80
-	trade Plastic 98
+	trade Clothing 37.00
+	trade Electronics 92.33
+	trade Equipment 23.50
+	trade Food 27.00
+	trade "Heavy Metals" 77.43
+	trade Industrial 30.00
+	trade "Luxury Goods" 14.83
+	trade Medical 92.60
+	trade Metal 80.25
+	trade Plastic 98.33
 	fleet "Small Southern Merchants" 3000
 	fleet "Large Northern Merchants" 8000
 	fleet "Small Southern Pirates" 1500
@@ -2904,16 +2904,16 @@ system "Bore Fah"
 	asteroids "small metal" 6 4.5885
 	asteroids "medium metal" 25 4.3953
 	asteroids "large metal" 1 4.8783
-	trade Clothing 62
-	trade Electronics 35
-	trade Equipment 27
-	trade Food 95
-	trade "Heavy Metals" 36
-	trade Industrial 52
-	trade "Luxury Goods" 37
-	trade Medical 59
-	trade Metal 42
-	trade Plastic 27
+	trade Clothing 62.67
+	trade Electronics 35.00
+	trade Equipment 27.50
+	trade Food 95.40
+	trade "Heavy Metals" 36.43
+	trade Industrial 52.75
+	trade "Luxury Goods" 37.50
+	trade Medical 59.00
+	trade Metal 42.00
+	trade Plastic 27.33
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 1000
 	fleet "Small Northern Merchants" 12000
@@ -2960,16 +2960,16 @@ system "Bote Asu"
 	asteroids "small metal" 62 4.598
 	asteroids "medium metal" 96 2.2572
 	asteroids "large metal" 5 4.0546
-	trade Clothing 42
-	trade Electronics 25
-	trade Equipment 25
-	trade Food 75
-	trade "Heavy Metals" 37
-	trade Industrial 27
-	trade "Luxury Goods" 19
-	trade Medical 67
-	trade Metal 54
-	trade Plastic 40
+	trade Clothing 42.67
+	trade Electronics 25.00
+	trade Equipment 25.00
+	trade Food 75.40
+	trade "Heavy Metals" 37.86
+	trade Industrial 27.75
+	trade "Luxury Goods" 19.17
+	trade Medical 67.00
+	trade Metal 54.50
+	trade Plastic 40.67
 	fleet "Small Hai" 900
 	fleet "Large Hai" 600
 	fleet "Small Northern Merchants" 8000
@@ -3041,16 +3041,16 @@ system Canopus
 	link Alheka
 	link Phact
 	asteroids "large metal" 1 6.8264
-	trade Clothing 32
-	trade Electronics 49
-	trade Equipment 89
-	trade Food 70
-	trade "Heavy Metals" 51
-	trade Industrial 24
-	trade "Luxury Goods" 74
-	trade Medical 16
-	trade Metal 33
-	trade Plastic 81
+	trade Clothing 32.33
+	trade Electronics 49.33
+	trade Equipment 89.50
+	trade Food 70.60
+	trade "Heavy Metals" 51.14
+	trade Industrial 24.00
+	trade "Luxury Goods" 74.83
+	trade Medical 16.40
+	trade Metal 33.25
+	trade Plastic 81.67
 	fleet "Small Northern Merchants" 900
 	fleet "Large Northern Merchants" 700
 	fleet "Small Republic" 1000
@@ -3088,16 +3088,16 @@ system Capella
 	asteroids "small metal" 10 1.8696
 	asteroids "medium metal" 3 2.9412
 	asteroids "large metal" 15 1.2996
-	trade Clothing 37
-	trade Electronics 38
-	trade Equipment 63
-	trade Food 76
-	trade "Heavy Metals" 65
-	trade Industrial 55
-	trade "Luxury Goods" 84
-	trade Medical 17
-	trade Metal 36
-	trade Plastic 86
+	trade Clothing 37.67
+	trade Electronics 38.33
+	trade Equipment 63.00
+	trade Food 76.20
+	trade "Heavy Metals" 65.29
+	trade Industrial 55.50
+	trade "Luxury Goods" 84.17
+	trade Medical 17.80
+	trade Metal 36.50
+	trade Plastic 86.33
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
 	fleet "Small Republic" 800
@@ -3151,16 +3151,16 @@ system Caph
 	asteroids "small metal" 12 6.03
 	asteroids "medium metal" 49 3.465
 	asteroids "large metal" 72 6.345
-	trade Clothing 62
-	trade Electronics 37
-	trade Equipment 27
-	trade Food 64
-	trade "Heavy Metals" 27
-	trade Industrial 40
-	trade "Luxury Goods" 55
-	trade Medical 20
-	trade Metal 33
-	trade Plastic 19
+	trade Clothing 62.67
+	trade Electronics 37.33
+	trade Equipment 27.50
+	trade Food 64.40
+	trade "Heavy Metals" 27.14
+	trade Industrial 40.50
+	trade "Luxury Goods" 55.50
+	trade Medical 20.40
+	trade Metal 33.25
+	trade Plastic 19.67
 	fleet "Small Core Merchants" 500
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 1600
@@ -3208,16 +3208,16 @@ system Cardax
 	asteroids "large rock" 32 3.1382
 	asteroids "medium metal" 22 3.978
 	asteroids "large metal" 12 6.4532
-	trade Clothing 47
-	trade Electronics 27
-	trade Equipment 68
-	trade Food 53
-	trade "Heavy Metals" 57
-	trade Industrial 66
-	trade "Luxury Goods" 49
-	trade Medical 37
-	trade Metal 30
-	trade Plastic 61
+	trade Clothing 47.00
+	trade Electronics 27.33
+	trade Equipment 68.75
+	trade Food 53.20
+	trade "Heavy Metals" 57.57
+	trade Industrial 66.00
+	trade "Luxury Goods" 49.83
+	trade Medical 37.40
+	trade Metal 30.25
+	trade Plastic 61.33
 	fleet "Small Northern Merchants" 1200
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 1000
@@ -3267,16 +3267,16 @@ system Castor
 	asteroids "small metal" 5 7.6545
 	asteroids "medium metal" 27 6.5205
 	asteroids "large metal" 1 6.4638
-	trade Clothing 27
-	trade Electronics 65
-	trade Equipment 82
-	trade Food 76
-	trade "Heavy Metals" 58
-	trade Industrial 71
-	trade "Luxury Goods" 83
-	trade Medical 49
-	trade Metal 21
-	trade Plastic 75
+	trade Clothing 27.67
+	trade Electronics 65.33
+	trade Equipment 82.25
+	trade Food 76.20
+	trade "Heavy Metals" 58.86
+	trade Industrial 71.75
+	trade "Luxury Goods" 83.83
+	trade Medical 49.40
+	trade Metal 21.25
+	trade Plastic 75.67
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 800
 	fleet "Small Republic" 1000
@@ -3346,16 +3346,16 @@ system Cebalrai
 	asteroids "small metal" 2 4.14
 	asteroids "medium metal" 15 3.87
 	asteroids "large metal" 22 3.15
-	trade Clothing 22
-	trade Electronics 77
-	trade Equipment 63
-	trade Food 63
-	trade "Heavy Metals" 39
-	trade Industrial 75
-	trade "Luxury Goods" 44
-	trade Medical 52
-	trade Metal 81
-	trade Plastic 37
+	trade Clothing 22.67
+	trade Electronics 77.00
+	trade Equipment 63.50
+	trade Food 63.60
+	trade "Heavy Metals" 39.71
+	trade Industrial 75.50
+	trade "Luxury Goods" 44.67
+	trade Medical 52.40
+	trade Metal 81.00
+	trade Plastic 37.00
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 4000
@@ -3537,16 +3537,16 @@ system Chirr'ay'akai
 	asteroids "small metal" 2 2.964
 	asteroids "medium metal" 3 5.548
 	asteroids "large metal" 1 3.154
-	trade Clothing 76
-	trade Electronics 46
-	trade Equipment 38
-	trade Food 36
-	trade "Heavy Metals" 63
-	trade Industrial 80
-	trade "Luxury Goods" 38
-	trade Medical 51
-	trade Metal 67
-	trade Plastic 47
+	trade Clothing 76.67
+	trade Electronics 46.33
+	trade Equipment 38.25
+	trade Food 36.00
+	trade "Heavy Metals" 63.14
+	trade Industrial 80.00
+	trade "Luxury Goods" 38.00
+	trade Medical 51.60
+	trade Metal 67.25
+	trade Plastic 47.00
 	fleet "Wanderer Freight" 800
 	fleet "Wanderer Drones" 600
 	fleet "Wanderer Defense" 2000
@@ -3632,16 +3632,16 @@ system Chy'chra
 	asteroids "large rock" 2 3.0305
 	asteroids "medium metal" 9 6.8875
 	asteroids "large metal" 11 5.1794
-	trade Clothing 19
-	trade Electronics 99
-	trade Equipment 29
-	trade Food 70
-	trade "Heavy Metals" 35
-	trade Industrial 88
-	trade "Luxury Goods" 37
-	trade Medical 82
-	trade Metal 23
-	trade Plastic 89
+	trade Clothing 19.00
+	trade Electronics 99.33
+	trade Equipment 29.75
+	trade Food 70.60
+	trade "Heavy Metals" 35.57
+	trade Industrial 88.00
+	trade "Luxury Goods" 37.50
+	trade Medical 82.40
+	trade Metal 23.75
+	trade Plastic 89.67
 	fleet "Wanderer Freight" 1500
 	fleet "Wanderer Drones" 1000
 	fleet "Wanderer Defense" 300
@@ -3696,16 +3696,16 @@ system "Cor Caroli"
 	asteroids "small metal" 6 2.376
 	asteroids "medium metal" 1 1.5576
 	asteroids "large metal" 8 1.3992
-	trade Clothing 32
-	trade Electronics 65
-	trade Equipment 45
-	trade Food 34
-	trade "Heavy Metals" 34
-	trade Industrial 17
-	trade "Luxury Goods" 25
-	trade Medical 75
-	trade Metal 81
-	trade Plastic 81
+	trade Clothing 32.00
+	trade Electronics 65.00
+	trade Equipment 45.75
+	trade Food 34.00
+	trade "Heavy Metals" 34.71
+	trade Industrial 17.50
+	trade "Luxury Goods" 25.83
+	trade Medical 75.20
+	trade Metal 81.75
+	trade Plastic 81.67
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 1300
 	fleet "Small Southern Pirates" 2000
@@ -3745,16 +3745,16 @@ system "Da Ent"
 	asteroids "large rock" 160 3.4425
 	asteroids "medium metal" 23 3.417
 	asteroids "large metal" 26 1.428
-	trade Clothing 2
-	trade Electronics 21
-	trade Equipment 22
-	trade Food 77
-	trade "Heavy Metals" 65
-	trade Industrial 7
-	trade "Luxury Goods" 17
-	trade Medical 53
-	trade Metal 54
-	trade Plastic 97
+	trade Clothing 2.67
+	trade Electronics 21.67
+	trade Equipment 22.50
+	trade Food 77.40
+	trade "Heavy Metals" 65.00
+	trade Industrial 7.75
+	trade "Luxury Goods" 17.50
+	trade Medical 53.00
+	trade Metal 54.50
+	trade Plastic 97.33
 	fleet "Small Hai" 500
 	fleet "Large Hai" 1200
 	fleet "Small Northern Merchants" 9000
@@ -3802,16 +3802,16 @@ system "Da Lest"
 	asteroids "small metal" 1 3.63
 	asteroids "medium metal" 101 2.04
 	asteroids "large metal" 23 4.44
-	trade Clothing 66
-	trade Electronics 98
-	trade Equipment 50
-	trade Food 55
-	trade "Heavy Metals" 70
-	trade Industrial 42
-	trade "Luxury Goods" 34
-	trade Medical 33
-	trade Metal 44
-	trade Plastic 70
+	trade Clothing 66.00
+	trade Electronics 98.33
+	trade Equipment 50.00
+	trade Food 55.40
+	trade "Heavy Metals" 70.71
+	trade Industrial 42.75
+	trade "Luxury Goods" 34.17
+	trade Medical 33.00
+	trade Metal 44.50
+	trade Plastic 70.67
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1400
 	fleet "Small Northern Merchants" 7000
@@ -3852,16 +3852,16 @@ system Dabih
 	asteroids "medium rock" 9 2.976
 	asteroids "large rock" 1 2.784
 	asteroids "large metal" 4 1.848
-	trade Clothing 30
-	trade Electronics 67
-	trade Equipment 31
-	trade Food 21
-	trade "Heavy Metals" 50
-	trade Industrial 47
-	trade "Luxury Goods" 85
-	trade Medical 93
-	trade Metal 18
-	trade Plastic 24
+	trade Clothing 30.67
+	trade Electronics 67.33
+	trade Equipment 31.00
+	trade Food 21.80
+	trade "Heavy Metals" 50.57
+	trade Industrial 47.25
+	trade "Luxury Goods" 85.33
+	trade Medical 93.60
+	trade Metal 18.50
+	trade Plastic 24.00
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 800
 	fleet Quarg 4000
@@ -3909,16 +3909,16 @@ system Danoa
 	asteroids "small metal" 11 1.875
 	asteroids "medium metal" 17 2.15
 	asteroids "large metal" 13 1.3
-	trade Clothing 53
-	trade Electronics 84
-	trade Equipment 96
-	trade Food 99
-	trade "Heavy Metals" 80
-	trade Industrial 40
-	trade "Luxury Goods" 43
-	trade Medical 76
-	trade Metal 8
-	trade Plastic 52
+	trade Clothing 53.67
+	trade Electronics 84.00
+	trade Equipment 96.00
+	trade Food 99.60
+	trade "Heavy Metals" 80.86
+	trade Industrial 40.50
+	trade "Luxury Goods" 43.17
+	trade Medical 76.40
+	trade Metal 8.25
+	trade Plastic 52.00
 	fleet "Small Northern Merchants" 15000
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 16000
@@ -3968,16 +3968,16 @@ system "Delta Capricorni"
 	asteroids "large rock" 9 10.08
 	asteroids "medium metal" 11 11.76
 	asteroids "large metal" 1 6.636
-	trade Clothing 53
-	trade Electronics 54
-	trade Equipment 28
-	trade Food 86
-	trade "Heavy Metals" 11
-	trade Industrial 21
-	trade "Luxury Goods" 18
-	trade Medical 12
-	trade Metal 19
-	trade Plastic 17
+	trade Clothing 53.33
+	trade Electronics 54.00
+	trade Equipment 28.50
+	trade Food 86.80
+	trade "Heavy Metals" 11.29
+	trade Industrial 21.25
+	trade "Luxury Goods" 18.67
+	trade Medical 12.40
+	trade Metal 19.75
+	trade Plastic 17.33
 	fleet "Small Core Merchants" 700
 	fleet "Large Core Merchants" 800
 	fleet "Small Syndicate" 2000
@@ -4026,16 +4026,16 @@ system "Delta Sagittarii"
 	asteroids "small metal" 43 5.1597
 	asteroids "medium metal" 45 2.1762
 	asteroids "large metal" 16 4.0716
-	trade Clothing 47
-	trade Electronics 47
-	trade Equipment 59
-	trade Food 32
-	trade "Heavy Metals" 57
-	trade Industrial 69
-	trade "Luxury Goods" 57
-	trade Medical 72
-	trade Metal 44
-	trade Plastic 43
+	trade Clothing 47.67
+	trade Electronics 47.00
+	trade Equipment 59.50
+	trade Food 32.80
+	trade "Heavy Metals" 57.43
+	trade Industrial 69.75
+	trade "Luxury Goods" 57.33
+	trade Medical 72.80
+	trade Metal 44.00
+	trade Plastic 43.00
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 3000
@@ -4085,16 +4085,16 @@ system "Delta Velorum"
 	asteroids "small metal" 11 3.6
 	asteroids "medium metal" 54 5.4375
 	asteroids "large metal" 5 3.8625
-	trade Clothing 59
-	trade Electronics 27
-	trade Equipment 34
-	trade Food 21
-	trade "Heavy Metals" 29
-	trade Industrial 31
-	trade "Luxury Goods" 12
-	trade Medical 57
-	trade Metal 89
-	trade Plastic 80
+	trade Clothing 59.00
+	trade Electronics 27.33
+	trade Equipment 34.50
+	trade Food 21.00
+	trade "Heavy Metals" 29.29
+	trade Industrial 31.00
+	trade "Luxury Goods" 12.83
+	trade Medical 57.40
+	trade Metal 89.25
+	trade Plastic 80.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -4134,16 +4134,16 @@ system Deneb
 	asteroids "small metal" 74 11.088
 	asteroids "medium metal" 2 4.536
 	asteroids "large metal" 11 6.972
-	trade Clothing 58
-	trade Electronics 62
-	trade Equipment 64
-	trade Food 76
-	trade "Heavy Metals" 24
-	trade Industrial 46
-	trade "Luxury Goods" 44
-	trade Medical 42
-	trade Metal 53
-	trade Plastic 32
+	trade Clothing 58.00
+	trade Electronics 62.33
+	trade Equipment 64.75
+	trade Food 76.20
+	trade "Heavy Metals" 24.71
+	trade Industrial 46.50
+	trade "Luxury Goods" 44.67
+	trade Medical 42.20
+	trade Metal 53.50
+	trade Plastic 32.00
 	fleet "Small Pug" 400
 	fleet "Large Pug" 1000
 	object
@@ -4186,16 +4186,16 @@ system Denebola
 	asteroids "large rock" 15 4.6926
 	asteroids "medium metal" 13 6.831
 	asteroids "large metal" 1 8.019
-	trade Clothing 43
-	trade Electronics 27
-	trade Equipment 19
-	trade Food 93
-	trade "Heavy Metals" 35
-	trade Industrial 17
-	trade "Luxury Goods" 46
-	trade Medical 9
-	trade Metal 74
-	trade Plastic 4
+	trade Clothing 43.67
+	trade Electronics 27.67
+	trade Equipment 19.75
+	trade Food 93.60
+	trade "Heavy Metals" 35.14
+	trade Industrial 17.50
+	trade "Luxury Goods" 46.83
+	trade Medical 9.40
+	trade Metal 74.75
+	trade Plastic 4.33
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Republic" 1000
@@ -4247,16 +4247,16 @@ system Diphda
 	asteroids "small metal" 34 5.3136
 	asteroids "medium metal" 25 8.2296
 	asteroids "large metal" 38 4.7304
-	trade Clothing 61
-	trade Electronics 17
-	trade Equipment 33
-	trade Food 51
-	trade "Heavy Metals" 21
-	trade Industrial 48
-	trade "Luxury Goods" 60
-	trade Medical 34
-	trade Metal 21
-	trade Plastic 50
+	trade Clothing 61.00
+	trade Electronics 17.33
+	trade Equipment 33.75
+	trade Food 51.80
+	trade "Heavy Metals" 21.86
+	trade Industrial 48.50
+	trade "Luxury Goods" 60.67
+	trade Medical 34.00
+	trade Metal 21.75
+	trade Plastic 50.67
 	fleet "Small Core Merchants" 2000
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 3000
@@ -4387,16 +4387,16 @@ system Dschubba
 	asteroids "small metal" 57 2.075
 	asteroids "medium metal" 51 2.3
 	asteroids "large metal" 68 3.5
-	trade Clothing 73
-	trade Electronics 36
-	trade Equipment 32
-	trade Food 14
-	trade "Heavy Metals" 61
-	trade Industrial 14
-	trade "Luxury Goods" 21
-	trade Medical 87
-	trade Metal 89
-	trade Plastic 28
+	trade Clothing 73.33
+	trade Electronics 36.00
+	trade Equipment 32.75
+	trade Food 14.20
+	trade "Heavy Metals" 61.86
+	trade Industrial 14.75
+	trade "Luxury Goods" 21.50
+	trade Medical 87.20
+	trade Metal 89.00
+	trade Plastic 28.67
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -4451,16 +4451,16 @@ system Dubhe
 	asteroids "small metal" 1 3.9672
 	asteroids "medium metal" 45 1.8792
 	asteroids "large metal" 2 5.0112
-	trade Clothing 82
-	trade Electronics 63
-	trade Equipment 52
-	trade Food 81
-	trade "Heavy Metals" 91
-	trade Industrial 1
-	trade "Luxury Goods" 72
-	trade Medical 18
-	trade Metal 18
-	trade Plastic 83
+	trade Clothing 82.00
+	trade Electronics 63.00
+	trade Equipment 52.75
+	trade Food 81.40
+	trade "Heavy Metals" 91.29
+	trade Industrial 1.50
+	trade "Luxury Goods" 72.83
+	trade Medical 18.20
+	trade Metal 18.00
+	trade Plastic 83.00
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 2500
 	fleet "Small Deep" 4000
@@ -4507,16 +4507,16 @@ system "Due Yoot"
 	asteroids "large rock" 4 4.0635
 	asteroids "medium metal" 2 3.9375
 	asteroids "large metal" 1 3.528
-	trade Clothing 56
-	trade Electronics 58
-	trade Equipment 52
-	trade Food 27
-	trade "Heavy Metals" 69
-	trade Industrial 47
-	trade "Luxury Goods" 35
-	trade Medical 33
-	trade Metal 87
-	trade Plastic 77
+	trade Clothing 56.00
+	trade Electronics 58.33
+	trade Equipment 52.50
+	trade Food 27.40
+	trade "Heavy Metals" 69.29
+	trade Industrial 47.75
+	trade "Luxury Goods" 35.83
+	trade Medical 33.00
+	trade Metal 87.00
+	trade Plastic 77.33
 	fleet "Small Hai" 700
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 3000
@@ -4565,16 +4565,16 @@ system Durax
 	asteroids "small metal" 1 9.1728
 	asteroids "medium metal" 11 7.8624
 	asteroids "large metal" 1 8.6736
-	trade Clothing 80
-	trade Electronics 52
-	trade Equipment 96
-	trade Food 30
-	trade "Heavy Metals" 44
-	trade Industrial 64
-	trade "Luxury Goods" 34
-	trade Medical 72
-	trade Metal 34
-	trade Plastic 44
+	trade Clothing 80.33
+	trade Electronics 52.33
+	trade Equipment 96.00
+	trade Food 30.40
+	trade "Heavy Metals" 44.71
+	trade Industrial 64.25
+	trade "Luxury Goods" 34.67
+	trade Medical 72.20
+	trade Metal 34.75
+	trade Plastic 44.00
 	fleet "Small Southern Pirates" 600
 	fleet "Large Southern Pirates" 900
 	fleet "Large Syndicate" 2500
@@ -4627,16 +4627,16 @@ system Eber
 	asteroids "small metal" 13 3.0744
 	asteroids "medium metal" 1 2.0916
 	asteroids "large metal" 19 2.3436
-	trade Clothing 60
-	trade Electronics 27
-	trade Equipment 31
-	trade Food 34
-	trade "Heavy Metals" 59
-	trade Industrial 45
-	trade "Luxury Goods" 29
-	trade Medical 76
-	trade Metal 55
-	trade Plastic 56
+	trade Clothing 60.33
+	trade Electronics 27.33
+	trade Equipment 31.25
+	trade Food 34.40
+	trade "Heavy Metals" 59.71
+	trade Industrial 45.75
+	trade "Luxury Goods" 29.50
+	trade Medical 76.20
+	trade Metal 55.75
+	trade Plastic 56.00
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 2500
 	fleet "Small Militia" 4000
@@ -4684,16 +4684,16 @@ system "Ehma Ti"
 	asteroids "large rock" 3 3.0576
 	asteroids "medium metal" 3 3.9858
 	asteroids "large metal" 1 3.549
-	trade Clothing 56
-	trade Electronics 68
-	trade Equipment 55
-	trade Food 94
-	trade "Heavy Metals" 25
-	trade Industrial 95
-	trade "Luxury Goods" 39
-	trade Medical 97
-	trade Metal 0
-	trade Plastic 97
+	trade Clothing 56.00
+	trade Electronics 68.33
+	trade Equipment 55.00
+	trade Food 94.00
+	trade "Heavy Metals" 25.00
+	trade Industrial 95.25
+	trade "Luxury Goods" 39.17
+	trade Medical 97.00
+	trade Metal -0.50
+	trade Plastic 97.33
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
 	fleet "Unfettered Raid" 2500
@@ -4750,16 +4750,16 @@ system Ek'kek'ru
 	asteroids "large rock" 50 1.5015
 	asteroids "small metal" 15 2.0625
 	asteroids "large metal" 10 1.0725
-	trade Clothing 61
-	trade Electronics 27
-	trade Equipment 14
-	trade Food 58
-	trade "Heavy Metals" 74
-	trade Industrial 30
-	trade "Luxury Goods" 28
-	trade Medical 23
-	trade Metal 64
-	trade Plastic 62
+	trade Clothing 61.33
+	trade Electronics 27.33
+	trade Equipment 14.00
+	trade Food 58.40
+	trade "Heavy Metals" 74.14
+	trade Industrial 30.25
+	trade "Luxury Goods" 28.50
+	trade Medical 23.80
+	trade Metal 64.00
+	trade Plastic 62.67
 	fleet "Wanderer Freight" 500
 	fleet "Wanderer Drones" 400
 	fleet "Wanderer Defense" 6000
@@ -4804,16 +4804,16 @@ system Elnath
 	asteroids "small metal" 9 7.2912
 	asteroids "medium metal" 11 4.7628
 	asteroids "large metal" 2 4.2924
-	trade Clothing 45
-	trade Electronics 10
-	trade Equipment 74
-	trade Food 55
-	trade "Heavy Metals" 44
-	trade Industrial 51
-	trade "Luxury Goods" 85
-	trade Medical 25
-	trade Metal 13
-	trade Plastic 78
+	trade Clothing 45.67
+	trade Electronics 10.00
+	trade Equipment 74.75
+	trade Food 55.20
+	trade "Heavy Metals" 44.14
+	trade Industrial 51.00
+	trade "Luxury Goods" 85.67
+	trade Medical 25.20
+	trade Metal 13.50
+	trade Plastic 78.67
 	fleet "Small Northern Merchants" 4000
 	fleet "Large Northern Merchants" 9000
 	fleet "Small Republic" 7000
@@ -4864,16 +4864,16 @@ system Eltanin
 	asteroids "large rock" 6 3.298
 	asteroids "medium metal" 7 3.094
 	asteroids "large metal" 2 4.658
-	trade Clothing 23
-	trade Electronics 64
-	trade Equipment 40
-	trade Food 26
-	trade "Heavy Metals" 60
-	trade Industrial 64
-	trade "Luxury Goods" 75
-	trade Medical 85
-	trade Metal 23
-	trade Plastic 31
+	trade Clothing 23.67
+	trade Electronics 64.33
+	trade Equipment 40.25
+	trade Food 26.60
+	trade "Heavy Metals" 60.71
+	trade Industrial 64.50
+	trade "Luxury Goods" 75.00
+	trade Medical 85.80
+	trade Metal 23.50
+	trade Plastic 31.67
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 4000
@@ -4957,16 +4957,16 @@ system Enif
 	asteroids "small metal" 4 4.1412
 	asteroids "medium metal" 11 6.2524
 	asteroids "large metal" 2 8.0388
-	trade Clothing 73
-	trade Electronics 70
-	trade Equipment 38
-	trade Food 47
-	trade "Heavy Metals" 28
-	trade Industrial 79
-	trade "Luxury Goods" 89
-	trade Medical 96
-	trade Metal 26
-	trade Plastic 57
+	trade Clothing 73.67
+	trade Electronics 70.00
+	trade Equipment 38.75
+	trade Food 47.00
+	trade "Heavy Metals" 28.00
+	trade Industrial 79.50
+	trade "Luxury Goods" 89.33
+	trade Medical 96.80
+	trade Metal 26.75
+	trade Plastic 57.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
@@ -5041,16 +5041,16 @@ system "Epsilon Leonis"
 	asteroids "small metal" 13 2.052
 	asteroids "medium metal" 39 3.96
 	asteroids "large metal" 1 3.816
-	trade Clothing 52
-	trade Electronics 20
-	trade Equipment 29
-	trade Food 87
-	trade "Heavy Metals" 68
-	trade Industrial 35
-	trade "Luxury Goods" 64
-	trade Medical 33
-	trade Metal 6
-	trade Plastic 49
+	trade Clothing 52.33
+	trade Electronics 20.00
+	trade Equipment 29.25
+	trade Food 87.80
+	trade "Heavy Metals" 68.57
+	trade Industrial 35.50
+	trade "Luxury Goods" 64.00
+	trade Medical 33.80
+	trade Metal 6.50
+	trade Plastic 49.67
 	fleet "Small Northern Merchants" 400
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Deep" 1000
@@ -5108,16 +5108,16 @@ system Es'sprak'ai
 	asteroids "small metal" 2 1.705
 	asteroids "medium metal" 50 3.9875
 	asteroids "large metal" 21 2.0625
-	trade Clothing 30
-	trade Electronics 93
-	trade Equipment 30
-	trade Food 21
-	trade "Heavy Metals" 82
-	trade Industrial 18
-	trade "Luxury Goods" 2
-	trade Medical 65
-	trade Metal 59
-	trade Plastic 54
+	trade Clothing 30.00
+	trade Electronics 93.33
+	trade Equipment 30.50
+	trade Food 21.20
+	trade "Heavy Metals" 82.57
+	trade Industrial 18.25
+	trade "Luxury Goods" 2.00
+	trade Medical 65.60
+	trade Metal 59.00
+	trade Plastic 54.67
 	fleet "Wanderer Freight" 800
 	fleet "Wanderer Drones" 4000
 	fleet "Wanderer Defense" 2000
@@ -5221,16 +5221,16 @@ system Eteron
 	asteroids "small metal" 35 5.136
 	asteroids "medium metal" 34 6.72
 	asteroids "large metal" 4 6.96
-	trade Clothing 33
-	trade Electronics 60
-	trade Equipment 46
-	trade Food 70
-	trade "Heavy Metals" 38
-	trade Industrial 26
-	trade "Luxury Goods" 47
-	trade Medical 23
-	trade Metal 57
-	trade Plastic 46
+	trade Clothing 33.67
+	trade Electronics 60.67
+	trade Equipment 46.25
+	trade Food 70.20
+	trade "Heavy Metals" 38.29
+	trade Industrial 26.50
+	trade "Luxury Goods" 47.83
+	trade Medical 23.00
+	trade Metal 57.25
+	trade Plastic 46.67
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
@@ -5279,16 +5279,16 @@ system "Fah Root"
 	asteroids "small metal" 115 4.002
 	asteroids "medium metal" 22 3.036
 	asteroids "large metal" 18 2.3115
-	trade Clothing 106
-	trade Electronics 65
-	trade Equipment 55
-	trade Food 17
-	trade "Heavy Metals" 70
-	trade Industrial 50
-	trade "Luxury Goods" 35
-	trade Medical 1
-	trade Metal 87
-	trade Plastic 30
+	trade Clothing 106.00
+	trade Electronics 65.00
+	trade Equipment 55.00
+	trade Food 17.40
+	trade "Heavy Metals" 70.71
+	trade Industrial 50.25
+	trade "Luxury Goods" 35.83
+	trade Medical 1.00
+	trade Metal 87.00
+	trade Plastic 30.67
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 4000
 	fleet "Small Northern Merchants" 15000
@@ -5341,16 +5341,16 @@ system "Fah Soom"
 	asteroids "small metal" 14 2.2176
 	asteroids "medium metal" 16 2.2792
 	asteroids "large metal" 13 1.6016
-	trade Clothing 89
-	trade Electronics 98
-	trade Equipment 100
-	trade Food 27
-	trade "Heavy Metals" 99
-	trade Industrial 97
-	trade "Luxury Goods" 34
-	trade Medical 37
-	trade Metal 44
-	trade Plastic 97
+	trade Clothing 89.33
+	trade Electronics 98.33
+	trade Equipment 100.00
+	trade Food 27.40
+	trade "Heavy Metals" 99.29
+	trade Industrial 97.75
+	trade "Luxury Goods" 34.17
+	trade Medical 37.00
+	trade Metal 44.50
+	trade Plastic 97.33
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
@@ -5396,16 +5396,16 @@ system Fala
 	asteroids "small metal" 6 2.8896
 	asteroids "medium metal" 4 1.1648
 	asteroids "large metal" 16 1.344
-	trade Clothing 87
-	trade Electronics 42
-	trade Equipment 50
-	trade Food 43
-	trade "Heavy Metals" 42
-	trade Industrial 40
-	trade "Luxury Goods" 30
-	trade Medical 63
-	trade Metal 64
-	trade Plastic 67
+	trade Clothing 87.00
+	trade Electronics 42.33
+	trade Equipment 50.50
+	trade Food 43.80
+	trade "Heavy Metals" 42.57
+	trade Industrial 40.50
+	trade "Luxury Goods" 30.83
+	trade Medical 63.40
+	trade Metal 64.50
+	trade Plastic 67.00
 	fleet "Small Northern Merchants" 1600
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 4000
@@ -5688,16 +5688,16 @@ system Fingol
 	asteroids "large rock" 3 1.87
 	asteroids "medium metal" 25 3.468
 	asteroids "large metal" 1 4.828
-	trade Clothing 68
-	trade Electronics 47
-	trade Equipment 39
-	trade Food 82
-	trade "Heavy Metals" 44
-	trade Industrial 32
-	trade "Luxury Goods" 37
-	trade Medical 20
-	trade Metal 56
-	trade Plastic 27
+	trade Clothing 68.67
+	trade Electronics 47.33
+	trade Equipment 39.25
+	trade Food 82.40
+	trade "Heavy Metals" 44.29
+	trade Industrial 32.00
+	trade "Luxury Goods" 37.00
+	trade Medical 20.80
+	trade Metal 56.50
+	trade Plastic 27.00
 	fleet "Small Northern Merchants" 1200
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 2000
@@ -5743,16 +5743,16 @@ system Fomalhaut
 	asteroids "small metal" 16 4.7817
 	asteroids "medium metal" 19 7.0173
 	asteroids "large metal" 2 6.4584
-	trade Clothing 65
-	trade Electronics 48
-	trade Equipment 17
-	trade Food 85
-	trade "Heavy Metals" 14
-	trade Industrial 26
-	trade "Luxury Goods" 21
-	trade Medical 20
-	trade Metal 23
-	trade Plastic 9
+	trade Clothing 65.33
+	trade Electronics 48.33
+	trade Equipment 17.75
+	trade Food 85.40
+	trade "Heavy Metals" 14.71
+	trade Industrial 26.50
+	trade "Luxury Goods" 21.17
+	trade Medical 20.20
+	trade Metal 23.75
+	trade Plastic 9.00
 	fleet "Small Core Merchants" 1000
 	fleet "Large Core Merchants" 1200
 	fleet "Small Syndicate" 5000
@@ -5899,16 +5899,16 @@ system Gacrux
 	asteroids "small metal" 7 2.8336
 	asteroids "medium metal" 143 3.5742
 	asteroids "large metal" 30 4.7656
-	trade Clothing 42
-	trade Electronics 65
-	trade Equipment 50
-	trade Food 28
-	trade "Heavy Metals" 45
-	trade Industrial 37
-	trade "Luxury Goods" 10
-	trade Medical 83
-	trade Metal 88
-	trade Plastic 83
+	trade Clothing 42.00
+	trade Electronics 65.33
+	trade Equipment 50.75
+	trade Food 28.00
+	trade "Heavy Metals" 45.14
+	trade Industrial 37.50
+	trade "Luxury Goods" 10.67
+	trade Medical 83.60
+	trade Metal 88.00
+	trade Plastic 83.67
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 1000
@@ -5963,16 +5963,16 @@ system "Gamma Cassiopeiae"
 	asteroids "small metal" 5 2.9203
 	asteroids "medium metal" 6 6.9977
 	asteroids "large metal" 42 3.4713
-	trade Clothing 37
-	trade Electronics 27
-	trade Equipment 52
-	trade Food 63
-	trade "Heavy Metals" 27
-	trade Industrial 34
-	trade "Luxury Goods" 24
-	trade Medical 52
-	trade Metal 17
-	trade Plastic 14
+	trade Clothing 37.33
+	trade Electronics 27.33
+	trade Equipment 52.50
+	trade Food 63.80
+	trade "Heavy Metals" 27.71
+	trade Industrial 34.50
+	trade "Luxury Goods" 24.67
+	trade Medical 52.80
+	trade Metal 17.75
+	trade Plastic 14.67
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2000
 	fleet "Large Syndicate" 5000
@@ -6015,16 +6015,16 @@ system "Gamma Corvi"
 	asteroids "small metal" 29 1.3248
 	asteroids "medium metal" 48 1.9968
 	asteroids "large metal" 36 1.6704
-	trade Clothing 21
-	trade Electronics 57
-	trade Equipment 9
-	trade Food 25
-	trade "Heavy Metals" 49
-	trade Industrial 51
-	trade "Luxury Goods" 31
-	trade Medical 32
-	trade Metal 70
-	trade Plastic 90
+	trade Clothing 21.00
+	trade Electronics 57.67
+	trade Equipment 9.00
+	trade Food 25.40
+	trade "Heavy Metals" 49.00
+	trade Industrial 51.25
+	trade "Luxury Goods" 31.00
+	trade Medical 32.00
+	trade Metal 70.75
+	trade Plastic 90.00
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Militia" 1000
@@ -6076,16 +6076,16 @@ system Gienah
 	asteroids "small metal" 29 1.89
 	asteroids "medium metal" 203 0.972
 	asteroids "large metal" 37 2.304
-	trade Clothing 60
-	trade Electronics 19
-	trade Equipment 14
-	trade Food 80
-	trade "Heavy Metals" 34
-	trade Industrial 28
-	trade "Luxury Goods" 20
-	trade Medical 34
-	trade Metal 13
-	trade Plastic 73
+	trade Clothing 60.00
+	trade Electronics 19.33
+	trade Equipment 14.25
+	trade Food 80.80
+	trade "Heavy Metals" 34.14
+	trade Industrial 28.00
+	trade "Luxury Goods" 20.50
+	trade Medical 34.00
+	trade Metal 13.75
+	trade Plastic 73.33
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 800
 	fleet "Large Syndicate" 5000
@@ -6134,16 +6134,16 @@ system Girtab
 	asteroids "small metal" 9 3.648
 	asteroids "medium metal" 1 5.7
 	asteroids "large metal" 5 3.876
-	trade Clothing 22
-	trade Electronics 56
-	trade Equipment 41
-	trade Food 11
-	trade "Heavy Metals" 55
-	trade Industrial 55
-	trade "Luxury Goods" 44
-	trade Medical 57
-	trade Metal 44
-	trade Plastic 20
+	trade Clothing 22.00
+	trade Electronics 56.00
+	trade Equipment 41.00
+	trade Food 11.40
+	trade "Heavy Metals" 55.57
+	trade Industrial 55.25
+	trade "Luxury Goods" 44.50
+	trade Medical 57.20
+	trade Metal 44.00
+	trade Plastic 20.33
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 1700
 	fleet "Small Southern Pirates" 2000
@@ -6195,16 +6195,16 @@ system Gomeisa
 	asteroids "medium rock" 13 3.78
 	asteroids "large rock" 1 3.024
 	asteroids "large metal" 3 4.536
-	trade Clothing 68
-	trade Electronics 30
-	trade Equipment 37
-	trade Food 92
-	trade "Heavy Metals" 75
-	trade Industrial 23
-	trade "Luxury Goods" 73
-	trade Medical 31
-	trade Metal 9
-	trade Plastic 70
+	trade Clothing 68.33
+	trade Electronics 30.33
+	trade Equipment 37.50
+	trade Food 92.60
+	trade "Heavy Metals" 75.71
+	trade Industrial 23.00
+	trade "Luxury Goods" 73.50
+	trade Medical 31.00
+	trade Metal 9.50
+	trade Plastic 70.33
 	fleet "Small Northern Merchants" 400
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Deep" 1200
@@ -6258,16 +6258,16 @@ system Gorvi
 	asteroids "large rock" 17 2.7302
 	asteroids "medium metal" 8 1.2155
 	asteroids "large metal" 1 1.5895
-	trade Clothing 63
-	trade Electronics 67
-	trade Equipment 52
-	trade Food 49
-	trade "Heavy Metals" 66
-	trade Industrial 76
-	trade "Luxury Goods" 28
-	trade Medical 90
-	trade Metal 81
-	trade Plastic 71
+	trade Clothing 63.67
+	trade Electronics 67.67
+	trade Equipment 52.25
+	trade Food 49.40
+	trade "Heavy Metals" 66.00
+	trade Industrial 76.25
+	trade "Luxury Goods" 28.50
+	trade Medical 90.40
+	trade Metal 81.00
+	trade Plastic 71.67
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 4000
@@ -6311,16 +6311,16 @@ system Graffias
 	asteroids "small metal" 8 4.257
 	asteroids "medium metal" 24 2.145
 	asteroids "large metal" 4 2.343
-	trade Clothing 58
-	trade Electronics 69
-	trade Equipment 21
-	trade Food 10
-	trade "Heavy Metals" 53
-	trade Industrial 57
-	trade "Luxury Goods" 15
-	trade Medical 78
-	trade Metal 53
-	trade Plastic 62
+	trade Clothing 58.00
+	trade Electronics 69.67
+	trade Equipment 21.50
+	trade Food 10.20
+	trade "Heavy Metals" 53.71
+	trade Industrial 57.00
+	trade "Luxury Goods" 15.67
+	trade Medical 78.80
+	trade Metal 53.50
+	trade Plastic 62.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Southern Pirates" 5000
@@ -6371,16 +6371,16 @@ system Hadar
 	asteroids "large rock" 7 4.9248
 	asteroids "medium metal" 25 4.5144
 	asteroids "large metal" 12 2.1204
-	trade Clothing 66
-	trade Electronics 36
-	trade Equipment 62
-	trade Food 11
-	trade "Heavy Metals" 52
-	trade Industrial 64
-	trade "Luxury Goods" 24
-	trade Medical 38
-	trade Metal 95
-	trade Plastic 22
+	trade Clothing 66.00
+	trade Electronics 36.67
+	trade Equipment 62.25
+	trade Food 11.00
+	trade "Heavy Metals" 52.43
+	trade Industrial 64.75
+	trade "Luxury Goods" 24.67
+	trade Medical 38.80
+	trade Metal 95.50
+	trade Plastic 22.33
 	fleet "Small Southern Merchants" 400
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Militia" 800
@@ -6425,16 +6425,16 @@ system Hamal
 	asteroids "large rock" 1 3.9312
 	asteroids "small metal" 1 2.1504
 	asteroids "large metal" 2 3.2928
-	trade Clothing 73
-	trade Electronics 33
-	trade Equipment 50
-	trade Food 19
-	trade "Heavy Metals" 4
-	trade Industrial 75
-	trade "Luxury Goods" 40
-	trade Medical 40
-	trade Metal 35
-	trade Plastic 54
+	trade Clothing 73.00
+	trade Electronics 33.33
+	trade Equipment 50.75
+	trade Food 19.80
+	trade "Heavy Metals" 4.29
+	trade Industrial 75.25
+	trade "Luxury Goods" 40.33
+	trade Medical 40.60
+	trade Metal 35.50
+	trade Plastic 54.67
 	fleet "Small Core Merchants" 1000
 	fleet "Large Core Merchants" 1000
 	fleet "Small Core Pirates" 3000
@@ -6471,16 +6471,16 @@ system Han
 	link Alniyat
 	link Atria
 	asteroids "large metal" 1 2.85
-	trade Clothing 65
-	trade Electronics 57
-	trade Equipment 19
-	trade Food 11
-	trade "Heavy Metals" 53
-	trade Industrial 18
-	trade "Luxury Goods" 16
-	trade Medical 93
-	trade Metal 87
-	trade Plastic 29
+	trade Clothing 65.67
+	trade Electronics 57.33
+	trade Equipment 19.25
+	trade Food 11.20
+	trade "Heavy Metals" 53.71
+	trade Industrial 18.25
+	trade "Luxury Goods" 16.50
+	trade Medical 93.20
+	trade Metal 87.75
+	trade Plastic 29.67
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 1000
@@ -6535,16 +6535,16 @@ system Hassaleh
 	asteroids "small metal" 9 2.457
 	asteroids "medium metal" 9 5.1597
 	asteroids "large metal" 28 3.5802
-	trade Clothing 66
-	trade Electronics 56
-	trade Equipment 77
-	trade Food 87
-	trade "Heavy Metals" 87
-	trade Industrial 22
-	trade "Luxury Goods" 56
-	trade Medical 58
-	trade Metal 18
-	trade Plastic 74
+	trade Clothing 66.00
+	trade Electronics 56.67
+	trade Equipment 77.75
+	trade Food 87.60
+	trade "Heavy Metals" 87.29
+	trade Industrial 22.00
+	trade "Luxury Goods" 56.33
+	trade Medical 58.20
+	trade Metal 18.75
+	trade Plastic 74.00
 	fleet "Small Northern Merchants" 9000
 	fleet "Small Northern Pirates" 6000
 	fleet "Large Northern Pirates" 20000
@@ -6587,16 +6587,16 @@ system Hatysa
 	asteroids "small metal" 13 1.0153
 	asteroids "medium metal" 102 1.3585
 	asteroids "large metal" 14 1.9448
-	trade Clothing 52
-	trade Electronics 61
-	trade Equipment 55
-	trade Food 11
-	trade "Heavy Metals" 85
-	trade Industrial 45
-	trade "Luxury Goods" 11
-	trade Medical 86
-	trade Metal 89
-	trade Plastic 30
+	trade Clothing 52.67
+	trade Electronics 61.33
+	trade Equipment 55.50
+	trade Food 11.40
+	trade "Heavy Metals" 85.86
+	trade Industrial 45.50
+	trade "Luxury Goods" 11.67
+	trade Medical 86.60
+	trade Metal 89.00
+	trade Plastic 30.00
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
@@ -6643,16 +6643,16 @@ system "Heia Due"
 	asteroids "small metal" 5 4.86
 	asteroids "medium metal" 51 3.9825
 	asteroids "large metal" 104 5.4675
-	trade Clothing 59
-	trade Electronics 81
-	trade Equipment 62
-	trade Food 41
-	trade "Heavy Metals" 56
-	trade Industrial 60
-	trade "Luxury Goods" 45
-	trade Medical 49
-	trade Metal 82
-	trade Plastic 40
+	trade Clothing 59.33
+	trade Electronics 81.67
+	trade Equipment 62.50
+	trade Food 41.40
+	trade "Heavy Metals" 56.43
+	trade Industrial 60.25
+	trade "Luxury Goods" 45.83
+	trade Medical 49.00
+	trade Metal 82.00
+	trade Plastic 40.67
 	fleet "Small Hai" 600
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 2000
@@ -6755,16 +6755,16 @@ system "Hevru Hai"
 	government Quarg
 	habitable 700
 	link "Fah Soom"
-	trade Clothing 74
-	trade Electronics 57
-	trade Equipment 78
-	trade Food 13
-	trade "Heavy Metals" 95
-	trade Industrial 82
-	trade "Luxury Goods" 22
-	trade Medical 15
-	trade Metal 66
-	trade Plastic 87
+	trade Clothing 74.00
+	trade Electronics 57.67
+	trade Equipment 78.50
+	trade Food 13.00
+	trade "Heavy Metals" 95.71
+	trade Industrial 82.00
+	trade "Luxury Goods" 22.50
+	trade Medical 15.80
+	trade Metal 66.75
+	trade Plastic 87.67
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 2500
 	fleet "Small Northern Merchants" 9000
@@ -6874,16 +6874,16 @@ system "Hi Yahr"
 	asteroids "small metal" 34 5.6896
 	asteroids "medium metal" 78 4.4352
 	asteroids "large metal" 5 5.6448
-	trade Clothing 99
-	trade Electronics 5
-	trade Equipment 62
-	trade Food 88
-	trade "Heavy Metals" 26
-	trade Industrial 90
-	trade "Luxury Goods" 72
-	trade Medical 79
-	trade Metal 29
-	trade Plastic 44
+	trade Clothing 99.33
+	trade Electronics 5.00
+	trade Equipment 62.50
+	trade Food 88.00
+	trade "Heavy Metals" 26.43
+	trade Industrial 90.25
+	trade "Luxury Goods" 72.50
+	trade Medical 79.00
+	trade Metal 29.50
+	trade Plastic 44.00
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 500
 	object
@@ -6928,16 +6928,16 @@ system Hintar
 	asteroids "small metal" 37 3.192
 	asteroids "medium metal" 23 1.344
 	asteroids "large metal" 16 1.632
-	trade Clothing 40
-	trade Electronics 64
-	trade Equipment 45
-	trade Food 51
-	trade "Heavy Metals" 44
-	trade Industrial 88
-	trade "Luxury Goods" 32
-	trade Medical 62
-	trade Metal 96
-	trade Plastic 60
+	trade Clothing 40.33
+	trade Electronics 64.67
+	trade Equipment 45.50
+	trade Food 51.60
+	trade "Heavy Metals" 44.71
+	trade Industrial 88.50
+	trade "Luxury Goods" 32.83
+	trade Medical 62.80
+	trade Metal 96.25
+	trade Plastic 60.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
@@ -6982,16 +6982,16 @@ system Holeb
 	link Rutilicus
 	link Arcturus
 	asteroids "large metal" 1 3.5904
-	trade Clothing 43
-	trade Electronics 84
-	trade Equipment 46
-	trade Food 29
-	trade "Heavy Metals" 51
-	trade Industrial 49
-	trade "Luxury Goods" 35
-	trade Medical 52
-	trade Metal 76
-	trade Plastic 65
+	trade Clothing 43.67
+	trade Electronics 84.00
+	trade Equipment 46.25
+	trade Food 29.00
+	trade "Heavy Metals" 51.14
+	trade Industrial 49.00
+	trade "Luxury Goods" 35.33
+	trade Medical 52.40
+	trade Metal 76.50
+	trade Plastic 65.67
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 5000
@@ -7069,16 +7069,16 @@ system Ik'kara'ka
 	asteroids "small metal" 4 4.7502
 	asteroids "medium metal" 64 7.3138
 	asteroids "large metal" 130 3.8454
-	trade Clothing 23
-	trade Electronics 81
-	trade Equipment 10
-	trade Food 54
-	trade "Heavy Metals" 50
-	trade Industrial 73
-	trade "Luxury Goods" 33
-	trade Medical 96
-	trade Metal 29
-	trade Plastic 64
+	trade Clothing 23.00
+	trade Electronics 81.33
+	trade Equipment 10.50
+	trade Food 54.20
+	trade "Heavy Metals" 50.00
+	trade Industrial 73.75
+	trade "Luxury Goods" 33.33
+	trade Medical 96.40
+	trade Metal 29.25
+	trade Plastic 64.00
 	fleet "Wanderer Freight" 600
 	fleet "Wanderer Drones" 700
 	fleet "Wanderer Defense" 600
@@ -7125,16 +7125,16 @@ system Ildaria
 	asteroids "small metal" 9 3.3696
 	asteroids "medium metal" 3 2.691
 	asteroids "large metal" 7 2.9484
-	trade Clothing 96
-	trade Electronics 49
-	trade Equipment 74
-	trade Food 27
-	trade "Heavy Metals" 69
-	trade Industrial 48
-	trade "Luxury Goods" -1
-	trade Medical 36
-	trade Metal 97
-	trade Plastic 48
+	trade Clothing 96.33
+	trade Electronics 49.33
+	trade Equipment 74.00
+	trade Food 27.40
+	trade "Heavy Metals" 69.00
+	trade Industrial 48.50
+	trade "Luxury Goods" -1.50
+	trade Medical 36.40
+	trade Metal 97.50
+	trade Plastic 48.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
@@ -7176,16 +7176,16 @@ system "Imo Dep"
 	asteroids "small metal" 98 4.4156
 	asteroids "medium metal" 124 5.9052
 	asteroids "large metal" 4 2.9792
-	trade Clothing 66
-	trade Electronics 58
-	trade Equipment 55
-	trade Food 75
-	trade "Heavy Metals" 0
-	trade Industrial 2
-	trade "Luxury Goods" 65
-	trade Medical 87
-	trade Metal 2
-	trade Plastic 97
+	trade Clothing 66.00
+	trade Electronics 58.33
+	trade Equipment 55.00
+	trade Food 75.40
+	trade "Heavy Metals" 0.71
+	trade Industrial 2.75
+	trade "Luxury Goods" 65.83
+	trade Medical 87.00
+	trade Metal 2.00
+	trade Plastic 97.33
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 2000
 	fleet "Small Northern Merchants" 10000
@@ -7244,16 +7244,16 @@ system "Io Lowe"
 	asteroids "small metal" 2 3.7125
 	asteroids "medium metal" 161 6.075
 	asteroids "large metal" 4 8.8425
-	trade Clothing 42
-	trade Electronics 61
-	trade Equipment 52
-	trade Food 51
-	trade "Heavy Metals" 40
-	trade Industrial 35
-	trade "Luxury Goods" 34
-	trade Medical 67
-	trade Metal 62
-	trade Plastic 7
+	trade Clothing 42.67
+	trade Electronics 61.67
+	trade Equipment 52.50
+	trade Food 51.40
+	trade "Heavy Metals" 40.71
+	trade Industrial 35.25
+	trade "Luxury Goods" 34.17
+	trade Medical 67.00
+	trade Metal 62.00
+	trade Plastic 7.33
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1200
 	fleet "Small Northern Merchants" 4000
@@ -7298,16 +7298,16 @@ system "Io Mann"
 	asteroids "small metal" 3 3.402
 	asteroids "medium metal" 8 4.5738
 	asteroids "large metal" 1 2.5704
-	trade Clothing 69
-	trade Electronics 88
-	trade Equipment 67
-	trade Food 17
-	trade "Heavy Metals" 80
-	trade Industrial 60
-	trade "Luxury Goods" 50
-	trade Medical 37
-	trade Metal 99
-	trade Plastic 97
+	trade Clothing 69.33
+	trade Electronics 88.33
+	trade Equipment 67.50
+	trade Food 17.40
+	trade "Heavy Metals" 80.71
+	trade Industrial 60.25
+	trade "Luxury Goods" 50.83
+	trade Medical 37.00
+	trade Metal 99.50
+	trade Plastic 97.33
 	fleet "Small Hai" 700
 	fleet "Large Hai" 1800
 	fleet "Small Northern Merchants" 3000
@@ -7361,16 +7361,16 @@ system Ipsing
 	habitable 1400
 	link Mizar
 	asteroids "large metal" 1 1.1424
-	trade Clothing 30
-	trade Electronics 40
-	trade Equipment 46
-	trade Food 45
-	trade "Heavy Metals" 43
-	trade Industrial 44
-	trade "Luxury Goods" 28
-	trade Medical 53
-	trade Metal 49
-	trade Plastic 58
+	trade Clothing 30.33
+	trade Electronics 40.67
+	trade Equipment 46.00
+	trade Food 45.80
+	trade "Heavy Metals" 43.43
+	trade Industrial 44.50
+	trade "Luxury Goods" 28.33
+	trade Medical 53.40
+	trade Metal 49.50
+	trade Plastic 58.67
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Southern Pirates" 3000
@@ -7432,16 +7432,16 @@ system Iyech'yek
 	asteroids "small metal" 6 1.152
 	asteroids "medium metal" 3 2.256
 	asteroids "large metal" 6 2.256
-	trade Clothing 26
-	trade Electronics 50
-	trade Equipment 22
-	trade Food 75
-	trade "Heavy Metals" 66
-	trade Industrial 50
-	trade "Luxury Goods" 20
-	trade Medical 0
-	trade Metal 46
-	trade Plastic 87
+	trade Clothing 26.00
+	trade Electronics 50.33
+	trade Equipment 22.00
+	trade Food 75.20
+	trade "Heavy Metals" 66.43
+	trade Industrial 50.25
+	trade "Luxury Goods" 20.50
+	trade Medical 0.80
+	trade Metal 46.25
+	trade Plastic 87.67
 	fleet "Wanderer Freight" 600
 	fleet "Wanderer Drones" 2000
 	fleet "Wanderer Defense" 5000
@@ -7481,16 +7481,16 @@ system Izar
 	asteroids "small metal" 35 3.822
 	asteroids "medium metal" 97 4.875
 	asteroids "large metal" 27 2.145
-	trade Clothing 69
-	trade Electronics 32
-	trade Equipment 50
-	trade Food 8
-	trade "Heavy Metals" 43
-	trade Industrial 80
-	trade "Luxury Goods" 35
-	trade Medical 41
-	trade Metal 88
-	trade Plastic 39
+	trade Clothing 69.00
+	trade Electronics 32.33
+	trade Equipment 50.25
+	trade Food 8.80
+	trade "Heavy Metals" 43.57
+	trade Industrial 80.50
+	trade "Luxury Goods" 35.67
+	trade Medical 41.60
+	trade Metal 88.00
+	trade Plastic 39.67
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 1800
 	fleet "Small Militia" 800
@@ -7542,16 +7542,16 @@ system Ka'ch'chrai
 	asteroids "small metal" 20 2.916
 	asteroids "medium metal" 86 3.726
 	asteroids "large metal" 1 1.431
-	trade Clothing 96
-	trade Electronics 0
-	trade Equipment 0
-	trade Food 80
-	trade "Heavy Metals" 85
-	trade Industrial 47
-	trade "Luxury Goods" 39
-	trade Medical 22
-	trade Metal 79
-	trade Plastic 97
+	trade Clothing 96.67
+	trade Electronics 0.33
+	trade Equipment 0.25
+	trade Food 80.20
+	trade "Heavy Metals" 85.43
+	trade Industrial 47.25
+	trade "Luxury Goods" 39.67
+	trade Medical 22.40
+	trade Metal 79.50
+	trade Plastic 97.67
 	fleet "Wanderer Freight" 300
 	fleet "Wanderer Drones" 1000
 	fleet "Wanderer Defense" 1000
@@ -7593,16 +7593,16 @@ system Ka'pru
 	asteroids "small metal" 14 2.184
 	asteroids "medium metal" 1 3.6855
 	asteroids "large metal" 3 2.1294
-	trade Clothing 5
-	trade Electronics 99
-	trade Equipment 97
-	trade Food 0
-	trade "Heavy Metals" 87
-	trade Industrial 100
-	trade "Luxury Goods" 20
-	trade Medical 34
-	trade Metal 74
-	trade Plastic 99
+	trade Clothing 5.67
+	trade Electronics 99.00
+	trade Equipment 97.50
+	trade Food 0.60
+	trade "Heavy Metals" 87.71
+	trade Industrial 100.00
+	trade "Luxury Goods" 20.50
+	trade Medical 34.00
+	trade Metal 74.00
+	trade Plastic 99.67
 	fleet "Wanderer Freight" 1500
 	fleet "Wanderer Drones" 800
 	fleet "Wanderer Defense" 5000
@@ -7713,16 +7713,16 @@ system "Kappa Centauri"
 	link Pherkad
 	link "Beta Lupi"
 	asteroids "large metal" 1 3.9349
-	trade Clothing 72
-	trade Electronics 88
-	trade Equipment 12
-	trade Food 21
-	trade "Heavy Metals" 62
-	trade Industrial 66
-	trade "Luxury Goods" 42
-	trade Medical 92
-	trade Metal 25
-	trade Plastic 13
+	trade Clothing 72.00
+	trade Electronics 88.33
+	trade Equipment 12.50
+	trade Food 21.60
+	trade "Heavy Metals" 62.71
+	trade Industrial 66.00
+	trade "Luxury Goods" 42.33
+	trade Medical 92.20
+	trade Metal 25.75
+	trade Plastic 13.67
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -7854,16 +7854,16 @@ system "Kaus Australis"
 	asteroids "small metal" 4 3.1752
 	asteroids "medium metal" 36 4.8006
 	asteroids "large metal" 3 2.7594
-	trade Clothing 46
-	trade Electronics 42
-	trade Equipment 65
-	trade Food 29
-	trade "Heavy Metals" 47
-	trade Industrial 63
-	trade "Luxury Goods" 77
-	trade Medical 83
-	trade Metal 20
-	trade Plastic 42
+	trade Clothing 46.33
+	trade Electronics 42.33
+	trade Equipment 65.25
+	trade Food 29.80
+	trade "Heavy Metals" 47.86
+	trade Industrial 63.75
+	trade "Luxury Goods" 77.83
+	trade Medical 83.80
+	trade Metal 20.00
+	trade Plastic 42.00
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 3000
 	fleet Quarg 10000
@@ -7901,16 +7901,16 @@ system "Kaus Borealis"
 	asteroids "large rock" 4 3.388
 	asteroids "small metal" 2 8.2544
 	asteroids "large metal" 4 4.7432
-	trade Clothing 37
-	trade Electronics 46
-	trade Equipment 34
-	trade Food 50
-	trade "Heavy Metals" 49
-	trade Industrial 56
-	trade "Luxury Goods" 38
-	trade Medical 62
-	trade Metal 61
-	trade Plastic 36
+	trade Clothing 37.00
+	trade Electronics 46.00
+	trade Equipment 34.75
+	trade Food 50.40
+	trade "Heavy Metals" 49.00
+	trade Industrial 56.00
+	trade "Luxury Goods" 38.67
+	trade Medical 62.20
+	trade Metal 61.25
+	trade Plastic 36.67
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 8000
@@ -7961,16 +7961,16 @@ system Kiro'ku
 	asteroids "small metal" 25 10.1331
 	asteroids "medium metal" 29 6.1965
 	asteroids "large metal" 20 6.7797
-	trade Clothing 40
-	trade Electronics 74
-	trade Equipment 67
-	trade Food 16
-	trade "Heavy Metals" 71
-	trade Industrial 97
-	trade "Luxury Goods" 29
-	trade Medical 44
-	trade Metal 92
-	trade Plastic 86
+	trade Clothing 40.33
+	trade Electronics 74.33
+	trade Equipment 67.75
+	trade Food 16.00
+	trade "Heavy Metals" 71.00
+	trade Industrial 97.00
+	trade "Luxury Goods" 29.00
+	trade Medical 44.80
+	trade Metal 92.50
+	trade Plastic 86.00
 	fleet "Wanderer Freight" 800
 	fleet "Wanderer Drones" 3000
 	fleet "Wanderer Defense" 7000
@@ -8031,16 +8031,16 @@ system Kiru'kichi
 	asteroids "small metal" 43 2.38
 	asteroids "medium metal" 138 3.774
 	asteroids "large metal" 19 4.114
-	trade Clothing 1
-	trade Electronics 78
-	trade Equipment 48
-	trade Food 88
-	trade "Heavy Metals" 49
-	trade Industrial 78
-	trade "Luxury Goods" 10
-	trade Medical 18
-	trade Metal 24
-	trade Plastic 95
+	trade Clothing 1.67
+	trade Electronics 78.33
+	trade Equipment 48.50
+	trade Food 88.00
+	trade "Heavy Metals" 49.86
+	trade Industrial 78.25
+	trade "Luxury Goods" 10.67
+	trade Medical 18.40
+	trade Metal 24.50
+	trade Plastic 95.67
 	fleet "Wanderer Freight" 800
 	fleet "Wanderer Drones" 300
 	fleet "Wanderer Defense" 2000
@@ -8081,16 +8081,16 @@ system Kochab
 	link Zubeneschamali
 	link Ildaria
 	asteroids "large metal" 1 6.9552
-	trade Clothing 80
-	trade Electronics 26
-	trade Equipment 79
-	trade Food 13
-	trade "Heavy Metals" 64
-	trade Industrial 68
-	trade "Luxury Goods" 8
-	trade Medical 19
-	trade Metal 84
-	trade Plastic 23
+	trade Clothing 80.67
+	trade Electronics 26.00
+	trade Equipment 79.25
+	trade Food 13.40
+	trade "Heavy Metals" 64.14
+	trade Industrial 68.00
+	trade "Luxury Goods" 8.00
+	trade Medical 19.80
+	trade Metal 84.50
+	trade Plastic 23.00
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 5000
@@ -8442,16 +8442,16 @@ system Kornephoros
 	asteroids "small metal" 4 7.221
 	asteroids "medium metal" 143 8.352
 	asteroids "large metal" 7 11.745
-	trade Clothing 57
-	trade Electronics 69
-	trade Equipment 27
-	trade Food 9
-	trade "Heavy Metals" 81
-	trade Industrial 23
-	trade "Luxury Goods" 9
-	trade Medical 58
-	trade Metal 87
-	trade Plastic 47
+	trade Clothing 57.00
+	trade Electronics 69.00
+	trade Equipment 27.25
+	trade Food 9.20
+	trade "Heavy Metals" 81.29
+	trade Industrial 23.75
+	trade "Luxury Goods" 9.50
+	trade Medical 58.80
+	trade Metal 87.50
+	trade Plastic 47.00
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 1200
 	fleet "Small Southern Pirates" 3000
@@ -8560,16 +8560,16 @@ system Kraz
 	asteroids "small metal" 6 4.1328
 	asteroids "medium metal" 57 3.3264
 	asteroids "large metal" 7 2.9232
-	trade Clothing 38
-	trade Electronics 56
-	trade Equipment 71
-	trade Food 27
-	trade "Heavy Metals" 28
-	trade Industrial 92
-	trade "Luxury Goods" 7
-	trade Medical 15
-	trade Metal 61
-	trade Plastic 22
+	trade Clothing 38.67
+	trade Electronics 56.00
+	trade Equipment 71.75
+	trade Food 27.80
+	trade "Heavy Metals" 28.71
+	trade Industrial 92.50
+	trade "Luxury Goods" 7.83
+	trade Medical 15.40
+	trade Metal 61.50
+	trade Plastic 22.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 800
@@ -8620,16 +8620,16 @@ system Kugel
 	asteroids "large rock" 134 3.2648
 	asteroids "medium metal" 44 2.0328
 	asteroids "large metal" 1 1.848
-	trade Clothing 26
-	trade Electronics -4
-	trade Equipment 80
-	trade Food 45
-	trade "Heavy Metals" 46
-	trade Industrial 57
-	trade "Luxury Goods" 65
-	trade Medical 16
-	trade Metal 36
-	trade Plastic 60
+	trade Clothing 26.33
+	trade Electronics -4.00
+	trade Equipment 80.00
+	trade Food 45.40
+	trade "Heavy Metals" 46.29
+	trade Industrial 57.75
+	trade "Luxury Goods" 65.50
+	trade Medical 16.40
+	trade Metal 36.25
+	trade Plastic 60.33
 	fleet "Large Core Merchants" 4000
 	fleet "Small Core Merchants" 4000
 	fleet "Small Republic" 6000
@@ -8684,16 +8684,16 @@ system Kursa
 	link Aldebaran
 	link Wazn
 	asteroids "large metal" 1 3.87
-	trade Clothing 37
-	trade Electronics 34
-	trade Equipment 72
-	trade Food 71
-	trade "Heavy Metals" 50
-	trade Industrial 55
-	trade "Luxury Goods" 85
-	trade Medical 21
-	trade Metal 23
-	trade Plastic 67
+	trade Clothing 37.67
+	trade Electronics 34.00
+	trade Equipment 72.50
+	trade Food 71.40
+	trade "Heavy Metals" 50.43
+	trade Industrial 55.75
+	trade "Luxury Goods" 85.00
+	trade Medical 21.80
+	trade Metal 23.75
+	trade Plastic 67.00
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 4000
@@ -8740,16 +8740,16 @@ system Lesath
 	asteroids "large rock" 21 7.2
 	asteroids "medium metal" 8 4.3776
 	asteroids "large metal" 1 5.4144
-	trade Clothing 48
-	trade Electronics 56
-	trade Equipment 52
-	trade Food 18
-	trade "Heavy Metals" 57
-	trade Industrial 27
-	trade "Luxury Goods" 25
-	trade Medical 73
-	trade Metal 76
-	trade Plastic 10
+	trade Clothing 48.33
+	trade Electronics 56.33
+	trade Equipment 52.50
+	trade Food 18.00
+	trade "Heavy Metals" 57.29
+	trade Industrial 27.25
+	trade "Luxury Goods" 25.00
+	trade Medical 73.40
+	trade Metal 76.25
+	trade Plastic 10.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 2000
@@ -8798,16 +8798,16 @@ system Lolami
 	asteroids "small metal" 6 2.5662
 	asteroids "medium metal" 30 3.7674
 	asteroids "large metal" 2 3.4398
-	trade Clothing 59
-	trade Electronics 45
-	trade Equipment 56
-	trade Food 58
-	trade "Heavy Metals" 56
-	trade Industrial 41
-	trade "Luxury Goods" 34
-	trade Medical 65
-	trade Metal 62
-	trade Plastic 25
+	trade Clothing 59.33
+	trade Electronics 45.00
+	trade Equipment 56.00
+	trade Food 58.20
+	trade "Heavy Metals" 56.00
+	trade Industrial 41.00
+	trade "Luxury Goods" 34.17
+	trade Medical 65.40
+	trade Metal 62.25
+	trade Plastic 25.33
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 5000
@@ -8862,16 +8862,16 @@ system "Lom Tahr"
 	asteroids "small metal" 5 1.932
 	asteroids "medium metal" 19 2.94
 	asteroids "large metal" 7 2.226
-	trade Clothing 29
-	trade Electronics 91
-	trade Equipment 25
-	trade Food 47
-	trade "Heavy Metals" 55
-	trade Industrial 22
-	trade "Luxury Goods" 17
-	trade Medical 53
-	trade Metal 67
-	trade Plastic 44
+	trade Clothing 29.33
+	trade Electronics 91.67
+	trade Equipment 25.00
+	trade Food 47.40
+	trade "Heavy Metals" 55.00
+	trade Industrial 22.75
+	trade "Luxury Goods" 17.50
+	trade Medical 53.00
+	trade Metal 67.00
+	trade Plastic 44.00
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1600
 	fleet "Small Northern Merchants" 6000
@@ -8929,16 +8929,16 @@ system Lurata
 	asteroids "small metal" 4 6.76
 	asteroids "medium metal" 6 5.33
 	asteroids "large metal" 2 8.71
-	trade Clothing 46
-	trade Electronics 42
-	trade Equipment 23
-	trade Food 28
-	trade "Heavy Metals" 43
-	trade Industrial 68
-	trade "Luxury Goods" 68
-	trade Medical 77
-	trade Metal 34
-	trade Plastic 39
+	trade Clothing 46.00
+	trade Electronics 42.33
+	trade Equipment 23.75
+	trade Food 28.80
+	trade "Heavy Metals" 43.00
+	trade Industrial 68.00
+	trade "Luxury Goods" 68.83
+	trade Medical 77.00
+	trade Metal 34.25
+	trade Plastic 39.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet Quarg 7000
@@ -9049,16 +9049,16 @@ system Markab
 	asteroids "small metal" 2 3.5815
 	asteroids "medium metal" 4 5.0895
 	asteroids "large metal" 2 3.9962
-	trade Clothing 44
-	trade Electronics 38
-	trade Equipment 17
-	trade Food 79
-	trade "Heavy Metals" 6
-	trade Industrial 35
-	trade "Luxury Goods" 26
-	trade Medical 17
-	trade Metal 15
-	trade Plastic 13
+	trade Clothing 44.67
+	trade Electronics 38.00
+	trade Equipment 17.50
+	trade Food 79.60
+	trade "Heavy Metals" 6.57
+	trade Industrial 35.00
+	trade "Luxury Goods" 26.83
+	trade Medical 17.00
+	trade Metal 15.25
+	trade Plastic 13.67
 	fleet "Small Core Merchants" 500
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 600
@@ -9122,16 +9122,16 @@ system Markeb
 	asteroids "small metal" 29 3.159
 	asteroids "medium metal" 10 5.1948
 	asteroids "large metal" 20 4.6332
-	trade Clothing 56
-	trade Electronics 28
-	trade Equipment 34
-	trade Food 81
-	trade "Heavy Metals" 28
-	trade Industrial 72
-	trade "Luxury Goods" 43
-	trade Medical 71
-	trade Metal 49
-	trade Plastic 22
+	trade Clothing 56.00
+	trade Electronics 28.00
+	trade Equipment 34.50
+	trade Food 81.60
+	trade "Heavy Metals" 28.43
+	trade Industrial 72.25
+	trade "Luxury Goods" 43.33
+	trade Medical 71.40
+	trade Metal 49.75
+	trade Plastic 22.00
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Deep" 1500
@@ -9176,16 +9176,16 @@ system Matar
 	link Persian
 	link Scheat
 	asteroids "large metal" 1 3.0888
-	trade Clothing 27
-	trade Electronics 32
-	trade Equipment 25
-	trade Food 70
-	trade "Heavy Metals" 30
-	trade Industrial 22
-	trade "Luxury Goods" 2
-	trade Medical 42
-	trade Metal 4
-	trade Plastic 55
+	trade Clothing 27.67
+	trade Electronics 32.00
+	trade Equipment 25.75
+	trade Food 70.60
+	trade "Heavy Metals" 30.43
+	trade Industrial 22.25
+	trade "Luxury Goods" 2.83
+	trade Medical 42.20
+	trade Metal 4.75
+	trade Plastic 55.67
 	fleet "Small Core Merchants" 2000
 	fleet "Large Core Merchants" 2500
 	fleet "Small Core Pirates" 2000
@@ -9234,16 +9234,16 @@ system Mebsuta
 	asteroids "small metal" 2 2.8101
 	asteroids "medium metal" 17 2.7115
 	asteroids "large metal" 9 4.6342
-	trade Clothing 76
-	trade Electronics 48
-	trade Equipment 86
-	trade Food 54
-	trade "Heavy Metals" 71
-	trade Industrial 24
-	trade "Luxury Goods" 49
-	trade Medical 5
-	trade Metal 48
-	trade Plastic 60
+	trade Clothing 76.33
+	trade Electronics 48.00
+	trade Equipment 86.50
+	trade Food 54.20
+	trade "Heavy Metals" 71.00
+	trade Industrial 24.00
+	trade "Luxury Goods" 49.67
+	trade Medical 5.40
+	trade Metal 48.75
+	trade Plastic 60.00
 	fleet "Small Northern Merchants" 3000
 	fleet "Large Northern Merchants" 5000
 	fleet "Small Northern Pirates" 4000
@@ -9354,16 +9354,16 @@ system "Mei Yohn"
 	asteroids "small metal" 2 4.851
 	asteroids "medium metal" 1 5.9136
 	asteroids "large metal" 8 3.7422
-	trade Clothing 69
-	trade Electronics 65
-	trade Equipment 55
-	trade Food 67
-	trade "Heavy Metals" 25
-	trade Industrial 47
-	trade "Luxury Goods" 34
-	trade Medical 87
-	trade Metal 39
-	trade Plastic 40
+	trade Clothing 69.33
+	trade Electronics 65.00
+	trade Equipment 55.00
+	trade Food 67.40
+	trade "Heavy Metals" 25.00
+	trade Industrial 47.75
+	trade "Luxury Goods" 34.17
+	trade Medical 87.00
+	trade Metal 39.50
+	trade Plastic 40.67
 	fleet "Small Hai" 600
 	fleet "Large Hai" 1000
 	fleet "Small Northern Merchants" 7000
@@ -9460,16 +9460,16 @@ system Men
 	asteroids "small metal" 8 3.648
 	asteroids "medium metal" 7 4.992
 	asteroids "large metal" 27 3.072
-	trade Clothing 53
-	trade Electronics 84
-	trade Equipment 23
-	trade Food 20
-	trade "Heavy Metals" 44
-	trade Industrial 80
-	trade "Luxury Goods" 62
-	trade Medical 91
-	trade Metal 23
-	trade Plastic 20
+	trade Clothing 53.00
+	trade Electronics 84.00
+	trade Equipment 23.75
+	trade Food 20.60
+	trade "Heavy Metals" 44.57
+	trade Industrial 80.25
+	trade "Luxury Goods" 62.33
+	trade Medical 91.00
+	trade Metal 23.75
+	trade Plastic 20.00
 	fleet "Small Southern Pirates" 400
 	fleet "Large Southern Pirates" 600
 	fleet "Small Northern Pirates" 2000
@@ -9523,16 +9523,16 @@ system Menkalinan
 	asteroids "small metal" 33 2.43
 	asteroids "medium metal" 63 2.7216
 	asteroids "large metal" 3 3.2076
-	trade Clothing 48
-	trade Electronics 66
-	trade Equipment 68
-	trade Food 70
-	trade "Heavy Metals" 73
-	trade Industrial 70
-	trade "Luxury Goods" 83
-	trade Medical 34
-	trade Metal 33
-	trade Plastic 77
+	trade Clothing 48.67
+	trade Electronics 66.33
+	trade Equipment 68.75
+	trade Food 70.00
+	trade "Heavy Metals" 73.43
+	trade Industrial 70.50
+	trade "Luxury Goods" 83.00
+	trade Medical 34.40
+	trade Metal 33.50
+	trade Plastic 77.33
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
 	fleet "Small Republic" 700
@@ -9584,16 +9584,16 @@ system Menkar
 	asteroids "small metal" 33 3.2
 	asteroids "medium metal" 57 5.95
 	asteroids "large metal" 25 5.9
-	trade Clothing 62
-	trade Electronics 51
-	trade Equipment 83
-	trade Food 11
-	trade "Heavy Metals" 51
-	trade Industrial 78
-	trade "Luxury Goods" 7
-	trade Medical 67
-	trade Metal 51
-	trade Plastic 15
+	trade Clothing 62.33
+	trade Electronics 51.00
+	trade Equipment 83.00
+	trade Food 11.60
+	trade "Heavy Metals" 51.57
+	trade Industrial 78.25
+	trade "Luxury Goods" 7.17
+	trade Medical 67.80
+	trade Metal 51.50
+	trade Plastic 15.00
 	fleet "Small Core Merchants" 800
 	fleet "Large Core Merchants" 1000
 	fleet "Small Syndicate" 1500
@@ -9641,16 +9641,16 @@ system Menkent
 	asteroids "small metal" 5 1.2688
 	asteroids "medium metal" 3 2.4128
 	asteroids "large metal" 10 2.2256
-	trade Clothing 52
-	trade Electronics 61
-	trade Equipment 59
-	trade Food 51
-	trade "Heavy Metals" 46
-	trade Industrial 59
-	trade "Luxury Goods" 26
-	trade Medical 24
-	trade Metal 63
-	trade Plastic 57
+	trade Clothing 52.00
+	trade Electronics 61.00
+	trade Equipment 59.75
+	trade Food 51.20
+	trade "Heavy Metals" 46.86
+	trade Industrial 59.25
+	trade "Luxury Goods" 26.50
+	trade Medical 24.60
+	trade Metal 63.50
+	trade Plastic 57.33
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Republic" 3000
@@ -9705,16 +9705,16 @@ system Merak
 	asteroids "large rock" 1 4.9764
 	asteroids "medium metal" 10 4.2224
 	asteroids "large metal" 1 2.639
-	trade Clothing 56
-	trade Electronics 33
-	trade Equipment 16
-	trade Food 87
-	trade "Heavy Metals" 45
-	trade Industrial 20
-	trade "Luxury Goods" 41
-	trade Medical 23
-	trade Metal 66
-	trade Plastic 17
+	trade Clothing 56.67
+	trade Electronics 33.00
+	trade Equipment 16.00
+	trade Food 87.60
+	trade "Heavy Metals" 45.86
+	trade Industrial 20.50
+	trade "Luxury Goods" 41.33
+	trade Medical 23.40
+	trade Metal 66.75
+	trade Plastic 17.00
 	fleet "Small Southern Merchants" 600
 	fleet "Small Northern Merchants" 800
 	fleet "Large Southern Merchants" 2000
@@ -9817,16 +9817,16 @@ system Miaplacidus
 	asteroids "small metal" 1 5.5692
 	asteroids "medium metal" 19 5.3788
 	asteroids "large metal" 10 3.8556
-	trade Clothing 47
-	trade Electronics 26
-	trade Equipment 83
-	trade Food 86
-	trade "Heavy Metals" 57
-	trade Industrial 41
-	trade "Luxury Goods" 90
-	trade Medical 44
-	trade Metal 38
-	trade Plastic 83
+	trade Clothing 47.67
+	trade Electronics 26.00
+	trade Equipment 83.50
+	trade Food 86.20
+	trade "Heavy Metals" 57.43
+	trade Industrial 41.00
+	trade "Luxury Goods" 90.17
+	trade Medical 44.60
+	trade Metal 38.50
+	trade Plastic 83.00
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 900
 	fleet "Small Republic" 1500
@@ -9886,16 +9886,16 @@ system Mimosa
 	asteroids "small metal" 2 3.3292
 	asteroids "medium metal" 3 2.7608
 	asteroids "large metal" 1 4.9532
-	trade Clothing 35
-	trade Electronics 50
-	trade Equipment 61
-	trade Food 23
-	trade "Heavy Metals" 32
-	trade Industrial 85
-	trade "Luxury Goods" 8
-	trade Medical 14
-	trade Metal 53
-	trade Plastic 43
+	trade Clothing 35.67
+	trade Electronics 50.00
+	trade Equipment 61.75
+	trade Food 23.60
+	trade "Heavy Metals" 32.71
+	trade Industrial 85.50
+	trade "Luxury Goods" 8.83
+	trade Medical 14.40
+	trade Metal 53.50
+	trade Plastic 43.33
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Militia" 2500
@@ -9933,16 +9933,16 @@ system Minkar
 	asteroids "small metal" 1 4.42
 	asteroids "medium metal" 40 8.385
 	asteroids "large metal" 10 9.295
-	trade Clothing 37
-	trade Electronics 33
-	trade Equipment 48
-	trade Food 13
-	trade "Heavy Metals" 39
-	trade Industrial 69
-	trade "Luxury Goods" 21
-	trade Medical 19
-	trade Metal 44
-	trade Plastic 81
+	trade Clothing 37.67
+	trade Electronics 33.67
+	trade Equipment 48.00
+	trade Food 13.40
+	trade "Heavy Metals" 39.29
+	trade Industrial 69.75
+	trade "Luxury Goods" 21.00
+	trade Medical 19.00
+	trade Metal 44.25
+	trade Plastic 81.67
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 1500
@@ -9995,16 +9995,16 @@ system Mintaka
 	asteroids "large rock" 23 5.985
 	asteroids "small metal" 46 6.6025
 	asteroids "large metal" 5 3.61
-	trade Clothing 41
-	trade Electronics 87
-	trade Equipment 42
-	trade Food 42
-	trade "Heavy Metals" 71
-	trade Industrial 56
-	trade "Luxury Goods" 40
-	trade Medical 79
-	trade Metal 60
-	trade Plastic 43
+	trade Clothing 41.67
+	trade Electronics 87.00
+	trade Equipment 42.75
+	trade Food 42.80
+	trade "Heavy Metals" 71.00
+	trade Industrial 56.75
+	trade "Luxury Goods" 40.67
+	trade Medical 79.20
+	trade Metal 60.50
+	trade Plastic 43.33
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 2000
 	fleet "Large Republic" 5000
@@ -10053,16 +10053,16 @@ system Mirach
 	asteroids "small metal" 2 4.0392
 	asteroids "medium metal" 62 2.2644
 	asteroids "large metal" 7 3.213
-	trade Clothing 52
-	trade Electronics 46
-	trade Equipment 55
-	trade Food 54
-	trade "Heavy Metals" 17
-	trade Industrial 33
-	trade "Luxury Goods" 18
-	trade Medical 51
-	trade Metal 19
-	trade Plastic 19
+	trade Clothing 52.00
+	trade Electronics 46.33
+	trade Equipment 55.50
+	trade Food 54.60
+	trade "Heavy Metals" 17.57
+	trade Industrial 33.75
+	trade "Luxury Goods" 18.17
+	trade Medical 51.20
+	trade Metal 19.25
+	trade Plastic 19.67
 	fleet "Small Core Merchants" 1000
 	fleet "Large Core Merchants" 1200
 	fleet "Small Core Pirates" 4000
@@ -10115,16 +10115,16 @@ system Mirfak
 	asteroids "small metal" 1 3.2604
 	asteroids "medium metal" 9 5.4834
 	asteroids "large metal" 2 6.1256
-	trade Clothing 66
-	trade Electronics 30
-	trade Equipment 80
-	trade Food 16
-	trade "Heavy Metals" 59
-	trade Industrial 76
-	trade "Luxury Goods" 22
-	trade Medical 76
-	trade Metal 65
-	trade Plastic 9
+	trade Clothing 66.33
+	trade Electronics 30.33
+	trade Equipment 80.00
+	trade Food 16.00
+	trade "Heavy Metals" 59.00
+	trade Industrial 76.75
+	trade "Luxury Goods" 22.50
+	trade Medical 76.20
+	trade Metal 65.25
+	trade Plastic 9.00
 	fleet "Small Core Merchants" 500
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 1000
@@ -10165,16 +10165,16 @@ system Mirzam
 	asteroids "large rock" 6 1.6848
 	asteroids "small metal" 17 2.8836
 	asteroids "large metal" 14 4.374
-	trade Clothing 57
-	trade Electronics 38
-	trade Equipment 85
-	trade Food 59
-	trade "Heavy Metals" 67
-	trade Industrial 23
-	trade "Luxury Goods" 62
-	trade Medical 13
-	trade Metal 43
-	trade Plastic 74
+	trade Clothing 57.67
+	trade Electronics 38.67
+	trade Equipment 85.50
+	trade Food 59.20
+	trade "Heavy Metals" 67.00
+	trade Industrial 23.75
+	trade "Luxury Goods" 62.17
+	trade Medical 13.00
+	trade Metal 43.25
+	trade Plastic 74.33
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Republic" 3000
@@ -10218,16 +10218,16 @@ system Mizar
 	link Algorel
 	link Ipsing
 	asteroids "large metal" 1 2.6304
-	trade Clothing 15
-	trade Electronics 64
-	trade Equipment 57
-	trade Food 36
-	trade "Heavy Metals" 35
-	trade Industrial 36
-	trade "Luxury Goods" 39
-	trade Medical 57
-	trade Metal 63
-	trade Plastic 82
+	trade Clothing 15.67
+	trade Electronics 64.67
+	trade Equipment 57.50
+	trade Food 36.40
+	trade "Heavy Metals" 35.57
+	trade Industrial 36.00
+	trade "Luxury Goods" 39.50
+	trade Medical 57.00
+	trade Metal 63.00
+	trade Plastic 82.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
@@ -10272,16 +10272,16 @@ system Moktar
 	asteroids "small metal" 2 4.485
 	asteroids "medium metal" 1 2.875
 	asteroids "large metal" 1 6.9575
-	trade Clothing 70
-	trade Electronics 21
-	trade Equipment 74
-	trade Food 37
-	trade "Heavy Metals" 64
-	trade Industrial 64
-	trade "Luxury Goods" 37
-	trade Medical 56
-	trade Metal 48
-	trade Plastic 35
+	trade Clothing 70.33
+	trade Electronics 21.33
+	trade Equipment 74.25
+	trade Food 37.80
+	trade "Heavy Metals" 64.29
+	trade Industrial 64.25
+	trade "Luxury Goods" 37.50
+	trade Medical 56.80
+	trade Metal 48.00
+	trade Plastic 35.00
 	fleet "Small Core Merchants" 1000
 	fleet "Large Core Merchants" 2000
 	fleet "Small Syndicate" 3000
@@ -10331,16 +10331,16 @@ system Mora
 	asteroids "large rock" 33 1.9877
 	asteroids "medium metal" 3 1.287
 	asteroids "large metal" 37 1.0439
-	trade Clothing 74
-	trade Electronics 44
-	trade Equipment 57
-	trade Food 42
-	trade "Heavy Metals" 39
-	trade Industrial 39
-	trade "Luxury Goods" 27
-	trade Medical 60
-	trade Metal 63
-	trade Plastic 62
+	trade Clothing 74.00
+	trade Electronics 44.67
+	trade Equipment 57.00
+	trade Food 42.00
+	trade "Heavy Metals" 39.57
+	trade Industrial 39.00
+	trade "Luxury Goods" 27.00
+	trade Medical 60.20
+	trade Metal 63.75
+	trade Plastic 62.67
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Southern Pirates" 2000
@@ -10381,16 +10381,16 @@ system Muhlifain
 	link Vindemiatrix
 	link Gacrux
 	asteroids "large metal" 1 2.1186
-	trade Clothing 32
-	trade Electronics 75
-	trade Equipment 59
-	trade Food 11
-	trade "Heavy Metals" 49
-	trade Industrial 52
-	trade "Luxury Goods" 9
-	trade Medical 79
-	trade Metal 83
-	trade Plastic 67
+	trade Clothing 32.00
+	trade Electronics 75.33
+	trade Equipment 59.00
+	trade Food 11.40
+	trade "Heavy Metals" 49.57
+	trade Industrial 52.25
+	trade "Luxury Goods" 9.00
+	trade Medical 79.00
+	trade Metal 83.75
+	trade Plastic 67.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
@@ -10429,16 +10429,16 @@ system Muphrid
 	asteroids "large rock" 8 3.4048
 	asteroids "small metal" 1 7.182
 	asteroids "large metal" 1 5.1072
-	trade Clothing 63
-	trade Electronics 55
-	trade Equipment 55
-	trade Food 67
-	trade "Heavy Metals" 52
-	trade Industrial 52
-	trade "Luxury Goods" 22
-	trade Medical 16
-	trade Metal 72
-	trade Plastic 71
+	trade Clothing 63.33
+	trade Electronics 55.00
+	trade Equipment 55.75
+	trade Food 67.40
+	trade "Heavy Metals" 52.57
+	trade Industrial 52.75
+	trade "Luxury Goods" 22.17
+	trade Medical 16.00
+	trade Metal 72.00
+	trade Plastic 71.67
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
@@ -10484,16 +10484,16 @@ system Naos
 	asteroids "medium rock" 167 3.8976
 	asteroids "large rock" 1 6.3168
 	asteroids "large metal" 1 6.1824
-	trade Clothing 44
-	trade Electronics 34
-	trade Equipment 24
-	trade Food 57
-	trade "Heavy Metals" 49
-	trade Industrial 63
-	trade "Luxury Goods" 26
-	trade Medical 64
-	trade Metal 37
-	trade Plastic 19
+	trade Clothing 44.00
+	trade Electronics 34.67
+	trade Equipment 24.25
+	trade Food 57.20
+	trade "Heavy Metals" 49.71
+	trade Industrial 63.50
+	trade "Luxury Goods" 26.50
+	trade Medical 64.00
+	trade Metal 37.25
+	trade Plastic 19.00
 	fleet "Small Northern Merchants" 400
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Deep" 1000
@@ -10549,16 +10549,16 @@ system Naper
 	asteroids "small metal" 5 2.6367
 	asteroids "medium metal" 55 2.7863
 	asteroids "large metal" 14 1.4212
-	trade Clothing 76
-	trade Electronics 43
-	trade Equipment 69
-	trade Food 59
-	trade "Heavy Metals" 29
-	trade Industrial 70
-	trade "Luxury Goods" 60
-	trade Medical 70
-	trade Metal 56
-	trade Plastic 28
+	trade Clothing 76.67
+	trade Electronics 43.00
+	trade Equipment 69.25
+	trade Food 59.20
+	trade "Heavy Metals" 29.29
+	trade Industrial 70.75
+	trade "Luxury Goods" 60.33
+	trade Medical 70.20
+	trade Metal 56.00
+	trade Plastic 28.67
 	fleet "Small Southern Merchants" 1500
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 5000
@@ -10608,16 +10608,16 @@ system Nihal
 	asteroids "small metal" 1 1.365
 	asteroids "medium metal" 10 3.1395
 	asteroids "large metal" 37 3.276
-	trade Clothing 38
-	trade Electronics 3
-	trade Equipment 77
-	trade Food 39
-	trade "Heavy Metals" 45
-	trade Industrial 49
-	trade "Luxury Goods" 88
-	trade Medical 18
-	trade Metal 10
-	trade Plastic 80
+	trade Clothing 38.33
+	trade Electronics 3.33
+	trade Equipment 77.75
+	trade Food 39.40
+	trade "Heavy Metals" 45.43
+	trade Industrial 49.25
+	trade "Luxury Goods" 88.67
+	trade Medical 18.40
+	trade Metal 10.50
+	trade Plastic 80.33
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 1200
 	fleet "Small Northern Pirates" 3000
@@ -10673,16 +10673,16 @@ system Nocte
 	asteroids "small metal" 8 1.8326
 	asteroids "medium metal" 77 2.2946
 	asteroids "large metal" 19 1.7094
-	trade Clothing 57
-	trade Electronics 41
-	trade Equipment 46
-	trade Food 57
-	trade "Heavy Metals" 43
-	trade Industrial 24
-	trade "Luxury Goods" 16
-	trade Medical 27
-	trade Metal 23
-	trade Plastic 41
+	trade Clothing 57.00
+	trade Electronics 41.00
+	trade Equipment 46.00
+	trade Food 57.00
+	trade "Heavy Metals" 43.86
+	trade Industrial 24.75
+	trade "Luxury Goods" 16.67
+	trade Medical 27.20
+	trade Metal 23.75
+	trade Plastic 41.00
 	fleet "Small Northern Merchants" 1500
 	fleet "Large Northern Merchants" 5000
 	fleet "Small Republic" 3000
@@ -10735,16 +10735,16 @@ system Nunki
 	asteroids "small metal" 6 3.4272
 	asteroids "medium metal" 1 1.8648
 	asteroids "large metal" 1 1.9152
-	trade Clothing 39
-	trade Electronics 66
-	trade Equipment 73
-	trade Food 22
-	trade "Heavy Metals" 48
-	trade Industrial 80
-	trade "Luxury Goods" 53
-	trade Medical 82
-	trade Metal 12
-	trade Plastic 27
+	trade Clothing 39.67
+	trade Electronics 66.33
+	trade Equipment 73.50
+	trade Food 22.40
+	trade "Heavy Metals" 48.00
+	trade Industrial 80.00
+	trade "Luxury Goods" 53.17
+	trade Medical 82.80
+	trade Metal 12.75
+	trade Plastic 27.00
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
@@ -10801,16 +10801,16 @@ system Oblate
 	asteroids "small metal" 4 2.2176
 	asteroids "medium metal" 10 2.2176
 	asteroids "large metal" 6 2.3856
-	trade Clothing 81
-	trade Electronics 12
-	trade Equipment 71
-	trade Food 29
-	trade "Heavy Metals" 50
-	trade Industrial 57
-	trade "Luxury Goods" 32
-	trade Medical 45
-	trade Metal 34
-	trade Plastic 53
+	trade Clothing 81.67
+	trade Electronics 12.00
+	trade Equipment 71.75
+	trade Food 29.60
+	trade "Heavy Metals" 50.57
+	trade Industrial 57.75
+	trade "Luxury Goods" 32.17
+	trade Medical 45.20
+	trade Metal 34.50
+	trade Plastic 53.00
 	fleet "Small Southern Pirates" 600
 	fleet "Large Southern Pirates" 1000
 	fleet "Large Syndicate" 3000
@@ -10858,16 +10858,16 @@ system Orvala
 	asteroids "large rock" 146 1.7088
 	asteroids "small metal" 139 1.44
 	asteroids "large metal" 27 0.9792
-	trade Clothing 67
-	trade Electronics 64
-	trade Equipment 56
-	trade Food 73
-	trade "Heavy Metals" 35
-	trade Industrial 49
-	trade "Luxury Goods" 58
-	trade Medical 58
-	trade Metal 71
-	trade Plastic 29
+	trade Clothing 67.33
+	trade Electronics 64.33
+	trade Equipment 56.25
+	trade Food 73.40
+	trade "Heavy Metals" 35.57
+	trade Industrial 49.00
+	trade "Luxury Goods" 58.83
+	trade Medical 58.20
+	trade Metal 71.25
+	trade Plastic 29.00
 	fleet "Small Southern Merchants" 3000
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 1000
@@ -10923,16 +10923,16 @@ system Peacock
 	asteroids "small metal" 101 5.004
 	asteroids "medium metal" 72 5.328
 	asteroids "large metal" 2 2.772
-	trade Clothing 64
-	trade Electronics 36
-	trade Equipment 75
-	trade Food 47
-	trade "Heavy Metals" 47
-	trade Industrial 72
-	trade "Luxury Goods" 81
-	trade Medical 74
-	trade Metal 37
-	trade Plastic 24
+	trade Clothing 64.67
+	trade Electronics 36.67
+	trade Equipment 75.75
+	trade Food 47.40
+	trade "Heavy Metals" 47.29
+	trade Industrial 72.25
+	trade "Luxury Goods" 81.50
+	trade Medical 74.80
+	trade Metal 37.00
+	trade Plastic 24.00
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 5000
 	fleet "Small Militia" 8000
@@ -11018,16 +11018,16 @@ system Persian
 	asteroids "small metal" 1 6.4584
 	asteroids "medium metal" 3 6.6976
 	asteroids "large metal" 2 4.1262
-	trade Clothing 40
-	trade Electronics 23
-	trade Equipment 17
-	trade Food 74
-	trade "Heavy Metals" 44
-	trade Industrial 35
-	trade "Luxury Goods" 9
-	trade Medical 30
-	trade Metal 6
-	trade Plastic 87
+	trade Clothing 40.00
+	trade Electronics 23.67
+	trade Equipment 17.50
+	trade Food 74.20
+	trade "Heavy Metals" 44.14
+	trade Industrial 35.25
+	trade "Luxury Goods" 9.50
+	trade Medical 30.40
+	trade Metal 6.50
+	trade Plastic 87.33
 	fleet "Small Syndicate" 800
 	fleet "Large Syndicate" 1200
 	fleet "Small Core Pirates" 600
@@ -11099,16 +11099,16 @@ system Phact
 	asteroids "small metal" 8 1.1999
 	asteroids "medium metal" 56 0.8619
 	asteroids "large metal" 17 1.6393
-	trade Clothing 39
-	trade Electronics 64
-	trade Equipment 89
-	trade Food 72
-	trade "Heavy Metals" 40
-	trade Industrial 35
-	trade "Luxury Goods" 66
-	trade Medical 12
-	trade Metal 15
-	trade Plastic 73
+	trade Clothing 39.33
+	trade Electronics 64.67
+	trade Equipment 89.25
+	trade Food 72.00
+	trade "Heavy Metals" 40.29
+	trade Industrial 35.00
+	trade "Luxury Goods" 66.83
+	trade Medical 12.40
+	trade Metal 15.50
+	trade Plastic 73.33
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Republic" 4000
@@ -11166,16 +11166,16 @@ system Phecda
 	asteroids "small metal" 17 6.85
 	asteroids "medium metal" 40 2.7
 	asteroids "large metal" 5 5.55
-	trade Clothing 69
-	trade Electronics 65
-	trade Equipment 23
-	trade Food 69
-	trade "Heavy Metals" 38
-	trade Industrial 17
-	trade "Luxury Goods" 41
-	trade Medical 50
-	trade Metal 55
-	trade Plastic 28
+	trade Clothing 69.67
+	trade Electronics 65.67
+	trade Equipment 23.25
+	trade Food 69.80
+	trade "Heavy Metals" 38.43
+	trade Industrial 17.25
+	trade "Luxury Goods" 41.50
+	trade Medical 50.80
+	trade Metal 55.75
+	trade Plastic 28.67
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Southern Merchants" 700
@@ -11214,16 +11214,16 @@ system Pherkad
 	link Alniyat
 	link "Yed Prior"
 	asteroids "large metal" 1 2.6884
-	trade Clothing 61
-	trade Electronics 85
-	trade Equipment 12
-	trade Food 24
-	trade "Heavy Metals" 61
-	trade Industrial 59
-	trade "Luxury Goods" 37
-	trade Medical 93
-	trade Metal 40
-	trade Plastic 23
+	trade Clothing 61.67
+	trade Electronics 85.33
+	trade Equipment 12.00
+	trade Food 24.60
+	trade "Heavy Metals" 61.57
+	trade Industrial 59.75
+	trade "Luxury Goods" 37.83
+	trade Medical 93.20
+	trade Metal 40.00
+	trade Plastic 23.67
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1000
 	fleet "Small Militia" 700
@@ -11271,16 +11271,16 @@ system Phurad
 	asteroids "small metal" 2 9.234
 	asteroids "medium metal" 12 11.178
 	asteroids "large metal" 17 5.751
-	trade Clothing 31
-	trade Electronics 68
-	trade Equipment 80
-	trade Food 70
-	trade "Heavy Metals" 43
-	trade Industrial 41
-	trade "Luxury Goods" 76
-	trade Medical 16
-	trade Metal 22
-	trade Plastic 78
+	trade Clothing 31.67
+	trade Electronics 68.33
+	trade Equipment 80.50
+	trade Food 70.60
+	trade "Heavy Metals" 43.00
+	trade Industrial 41.25
+	trade "Luxury Goods" 76.83
+	trade Medical 16.60
+	trade Metal 22.25
+	trade Plastic 78.67
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
@@ -11323,16 +11323,16 @@ system Pik'ro'iyak
 	link Aya'k'k
 	link Es'sprak'ai
 	asteroids "large metal" 1 3.7488
-	trade Clothing 43
-	trade Electronics 56
-	trade Equipment 37
-	trade Food 39
-	trade "Heavy Metals" 90
-	trade Industrial 2
-	trade "Luxury Goods" 11
-	trade Medical 47
-	trade Metal 81
-	trade Plastic 25
+	trade Clothing 43.33
+	trade Electronics 56.67
+	trade Equipment 37.00
+	trade Food 39.60
+	trade "Heavy Metals" 90.71
+	trade Industrial 2.75
+	trade "Luxury Goods" 11.00
+	trade Medical 47.20
+	trade Metal 81.00
+	trade Plastic 25.67
 	fleet "Wanderer Freight" 500
 	fleet "Wanderer Drones" 3000
 	fleet "Wanderer Defense" 4000
@@ -11369,16 +11369,16 @@ system Polaris
 	asteroids "medium rock" 3 7.93
 	asteroids "large rock" 2 4.16
 	asteroids "large metal" 4 3.77
-	trade Clothing 46
-	trade Electronics 38
-	trade Equipment 77
-	trade Food 21
-	trade "Heavy Metals" 22
-	trade Industrial 38
-	trade "Luxury Goods" 3
-	trade Medical 78
-	trade Metal 16
-	trade Plastic 59
+	trade Clothing 46.67
+	trade Electronics 38.33
+	trade Equipment 77.00
+	trade Food 21.80
+	trade "Heavy Metals" 22.71
+	trade Industrial 38.25
+	trade "Luxury Goods" 3.83
+	trade Medical 78.40
+	trade Metal 16.25
+	trade Plastic 59.33
 	fleet "Small Core Merchants" 600
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 1000
@@ -11421,16 +11421,16 @@ system Pollux
 	asteroids "large rock" 1 6.48
 	asteroids "medium metal" 2 8.1
 	asteroids "large metal" 1 7.56
-	trade Clothing 19
-	trade Electronics 52
-	trade Equipment 72
-	trade Food 75
-	trade "Heavy Metals" 52
-	trade Industrial 57
-	trade "Luxury Goods" 86
-	trade Medical 47
-	trade Metal 39
-	trade Plastic 80
+	trade Clothing 19.00
+	trade Electronics 52.33
+	trade Equipment 72.25
+	trade Food 75.00
+	trade "Heavy Metals" 52.43
+	trade Industrial 57.50
+	trade "Luxury Goods" 86.33
+	trade Medical 47.80
+	trade Metal 39.00
+	trade Plastic 80.33
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 800
 	fleet "Small Republic" 1000
@@ -11471,16 +11471,16 @@ system Porrima
 	asteroids "small metal" 1 5.9892
 	asteroids "medium metal" 14 3.4776
 	asteroids "large metal" 6 6.1341
-	trade Clothing 69
-	trade Electronics 42
-	trade Equipment 37
-	trade Food 87
-	trade "Heavy Metals" 49
-	trade Industrial 36
-	trade "Luxury Goods" 29
-	trade Medical 16
-	trade Metal 75
-	trade Plastic 47
+	trade Clothing 69.33
+	trade Electronics 42.00
+	trade Equipment 37.25
+	trade Food 87.40
+	trade "Heavy Metals" 49.29
+	trade Industrial 36.50
+	trade "Luxury Goods" 29.00
+	trade Medical 16.00
+	trade Metal 75.00
+	trade Plastic 47.00
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Republic" 8000
@@ -11533,16 +11533,16 @@ system Prakacha'a
 	asteroids "small metal" 18 1.75
 	asteroids "medium metal" 186 1.638
 	asteroids "large metal" 24 1.092
-	trade Clothing 39
-	trade Electronics 70
-	trade Equipment 24
-	trade Food 52
-	trade "Heavy Metals" 47
-	trade Industrial 98
-	trade "Luxury Goods" 46
-	trade Medical 74
-	trade Metal 45
-	trade Plastic 76
+	trade Clothing 39.33
+	trade Electronics 70.67
+	trade Equipment 24.00
+	trade Food 52.40
+	trade "Heavy Metals" 47.43
+	trade Industrial 98.75
+	trade "Luxury Goods" 46.17
+	trade Medical 74.80
+	trade Metal 45.50
+	trade Plastic 76.67
 	fleet "Wanderer Freight" 400
 	fleet "Wanderer Drones" 400
 	fleet "Wanderer Defense" 400
@@ -11606,16 +11606,16 @@ system Procyon
 	asteroids "small metal" 11 2.9862
 	asteroids "medium metal" 126 2.6838
 	asteroids "large metal" 5 4.347
-	trade Clothing 19
-	trade Electronics 33
-	trade Equipment 42
-	trade Food 77
-	trade "Heavy Metals" 59
-	trade Industrial 36
-	trade "Luxury Goods" 80
-	trade Medical 22
-	trade Metal 59
-	trade Plastic 77
+	trade Clothing 19.00
+	trade Electronics 33.67
+	trade Equipment 42.50
+	trade Food 77.40
+	trade "Heavy Metals" 59.00
+	trade Industrial 36.00
+	trade "Luxury Goods" 80.67
+	trade Medical 22.00
+	trade Metal 59.75
+	trade Plastic 77.33
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1200
 	fleet "Small Republic" 1500
@@ -11654,16 +11654,16 @@ system "Pug Iyik"
 	asteroids "small metal" 8 7.7112
 	asteroids "medium metal" 179 8.5428
 	asteroids "large metal" 34 10.962
-	trade Clothing 44
-	trade Electronics 36
-	trade Equipment 25
-	trade Food 70
-	trade "Heavy Metals" 83
-	trade Industrial 40
-	trade "Luxury Goods" 16
-	trade Medical 24
-	trade Metal 56
-	trade Plastic 56
+	trade Clothing 44.67
+	trade Electronics 36.67
+	trade Equipment 25.00
+	trade Food 70.20
+	trade "Heavy Metals" 83.57
+	trade Industrial 40.50
+	trade "Luxury Goods" 16.67
+	trade Medical 24.40
+	trade Metal 56.00
+	trade Plastic 56.33
 	fleet "Small Pug" 600
 	fleet "Large Pug" 1200
 	object
@@ -11710,16 +11710,16 @@ system Rajak
 	asteroids "large rock" 14 4.1536
 	asteroids "medium metal" 2 4.1888
 	asteroids "large metal" 3 1.8304
-	trade Clothing 53
-	trade Electronics 41
-	trade Equipment 69
-	trade Food 77
-	trade "Heavy Metals" 78
-	trade Industrial 36
-	trade "Luxury Goods" 43
-	trade Medical 48
-	trade Metal 37
-	trade Plastic 58
+	trade Clothing 53.67
+	trade Electronics 41.00
+	trade Equipment 69.00
+	trade Food 77.60
+	trade "Heavy Metals" 78.43
+	trade Industrial 36.50
+	trade "Luxury Goods" 43.83
+	trade Medical 48.40
+	trade Metal 37.75
+	trade Plastic 58.33
 	fleet "Small Northern Pirates" 4000
 	fleet "Large Northern Pirates" 10000
 	object
@@ -11775,16 +11775,16 @@ system Rasalhague
 	asteroids "small metal" 10 2.204
 	asteroids "medium metal" 8 2.698
 	asteroids "large metal" 2 2.489
-	trade Clothing 39
-	trade Electronics 64
-	trade Equipment 81
-	trade Food 81
-	trade "Heavy Metals" 26
-	trade Industrial 76
-	trade "Luxury Goods" 63
-	trade Medical 70
-	trade Metal 81
-	trade Plastic 30
+	trade Clothing 39.33
+	trade Electronics 64.33
+	trade Equipment 81.75
+	trade Food 81.00
+	trade "Heavy Metals" 26.29
+	trade Industrial 76.50
+	trade "Luxury Goods" 63.83
+	trade Medical 70.40
+	trade Metal 81.50
+	trade Plastic 30.67
 	fleet "Small Southern Merchants" 1500
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 4000
@@ -11830,16 +11830,16 @@ system Rastaban
 	asteroids "large rock" 3 6.9888
 	asteroids "medium metal" 6 4.095
 	asteroids "large metal" 2 7.371
-	trade Clothing 38
-	trade Electronics 53
-	trade Equipment 40
-	trade Food 25
-	trade "Heavy Metals" 56
-	trade Industrial 57
-	trade "Luxury Goods" 41
-	trade Medical 59
-	trade Metal 55
-	trade Plastic 24
+	trade Clothing 38.33
+	trade Electronics 53.33
+	trade Equipment 40.75
+	trade Food 25.80
+	trade "Heavy Metals" 56.57
+	trade Industrial 57.50
+	trade "Luxury Goods" 41.33
+	trade Medical 59.60
+	trade Metal 55.50
+	trade Plastic 24.67
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 1600
 	fleet "Small Southern Pirates" 3000
@@ -11883,16 +11883,16 @@ system "Rati Cal"
 	asteroids "small metal" 28 2.438
 	asteroids "medium metal" 1 3.266
 	asteroids "large metal" 23 3.105
-	trade Clothing 66
-	trade Electronics 61
-	trade Equipment 32
-	trade Food 39
-	trade "Heavy Metals" 70
-	trade Industrial 45
-	trade "Luxury Goods" 32
-	trade Medical 47
-	trade Metal 64
-	trade Plastic 50
+	trade Clothing 66.00
+	trade Electronics 61.67
+	trade Equipment 32.50
+	trade Food 39.40
+	trade "Heavy Metals" 70.71
+	trade Industrial 45.25
+	trade "Luxury Goods" 32.50
+	trade Medical 47.00
+	trade Metal 64.50
+	trade Plastic 50.67
 	fleet "Small Hai" 900
 	fleet "Large Hai" 1700
 	fleet "Small Northern Merchants" 8000
@@ -11929,16 +11929,16 @@ system Regor
 	link Naos
 	link Suhail
 	asteroids "large metal" 1 2.2968
-	trade Clothing 30
-	trade Electronics 43
-	trade Equipment 28
-	trade Food 59
-	trade "Heavy Metals" 62
-	trade Industrial 75
-	trade "Luxury Goods" 24
-	trade Medical 64
-	trade Metal 16
-	trade Plastic 12
+	trade Clothing 30.67
+	trade Electronics 43.33
+	trade Equipment 28.75
+	trade Food 59.00
+	trade "Heavy Metals" 62.14
+	trade Industrial 75.00
+	trade "Luxury Goods" 24.33
+	trade Medical 64.60
+	trade Metal 16.25
+	trade Plastic 12.33
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Deep" 2000
@@ -11990,16 +11990,16 @@ system Regulus
 	asteroids "small metal" 3 1.573
 	asteroids "medium metal" 27 2.3166
 	asteroids "large metal" 15 4.0898
-	trade Clothing 36
-	trade Electronics 37
-	trade Equipment 21
-	trade Food 80
-	trade "Heavy Metals" 56
-	trade Industrial 23
-	trade "Luxury Goods" 44
-	trade Medical 21
-	trade Metal 54
-	trade Plastic 26
+	trade Clothing 36.33
+	trade Electronics 37.67
+	trade Equipment 21.75
+	trade Food 80.20
+	trade "Heavy Metals" 56.71
+	trade Industrial 23.75
+	trade "Luxury Goods" 44.50
+	trade Medical 21.40
+	trade Metal 54.00
+	trade Plastic 26.00
 	fleet "Small Southern Merchants" 4000
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 8000
@@ -12058,16 +12058,16 @@ system Rigel
 	asteroids "small metal" 88 5.382
 	asteroids "medium metal" 28 6.63
 	asteroids "large metal" 32 11.7
-	trade Clothing 57
-	trade Electronics 47
-	trade Equipment 83
-	trade Food 85
-	trade "Heavy Metals" 88
-	trade Industrial 26
-	trade "Luxury Goods" 53
-	trade Medical 58
-	trade Metal 28
-	trade Plastic 77
+	trade Clothing 57.00
+	trade Electronics 47.33
+	trade Equipment 83.75
+	trade Food 85.60
+	trade "Heavy Metals" 88.57
+	trade Industrial 26.75
+	trade "Luxury Goods" 53.83
+	trade Medical 58.20
+	trade Metal 28.00
+	trade Plastic 77.33
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 4000
 	fleet "Small Republic" 3000
@@ -12130,16 +12130,16 @@ system Ruchbah
 	asteroids "small metal" 1 3.6036
 	asteroids "medium metal" 13 2.0384
 	asteroids "large metal" 27 4.914
-	trade Clothing 51
-	trade Electronics 38
-	trade Equipment 61
-	trade Food 26
-	trade "Heavy Metals" 9
-	trade Industrial 82
-	trade "Luxury Goods" 39
-	trade Medical 33
-	trade Metal 36
-	trade Plastic 37
+	trade Clothing 51.00
+	trade Electronics 38.67
+	trade Equipment 61.50
+	trade Food 26.40
+	trade "Heavy Metals" 9.29
+	trade Industrial 82.00
+	trade "Luxury Goods" 39.17
+	trade Medical 33.40
+	trade Metal 36.00
+	trade Plastic 37.67
 	fleet "Small Core Merchants" 500
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 1000
@@ -12196,16 +12196,16 @@ system Rutilicus
 	asteroids "small metal" 13 1.4742
 	asteroids "medium metal" 50 1.2168
 	asteroids "large metal" 1 2.2932
-	trade Clothing 28
-	trade Electronics 82
-	trade Equipment 57
-	trade Food 47
-	trade "Heavy Metals" 43
-	trade Industrial 68
-	trade "Luxury Goods" 41
-	trade Medical 32
-	trade Metal 69
-	trade Plastic 58
+	trade Clothing 28.00
+	trade Electronics 82.67
+	trade Equipment 57.50
+	trade Food 47.00
+	trade "Heavy Metals" 43.71
+	trade Industrial 68.00
+	trade "Luxury Goods" 41.83
+	trade Medical 32.00
+	trade Metal 69.50
+	trade Plastic 58.33
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 6000
@@ -12259,16 +12259,16 @@ system Sabik
 	asteroids "small metal" 7 5.0344
 	asteroids "medium metal" 29 5.481
 	asteroids "large metal" 2 2.233
-	trade Clothing 57
-	trade Electronics 65
-	trade Equipment 13
-	trade Food 14
-	trade "Heavy Metals" 85
-	trade Industrial 21
-	trade "Luxury Goods" 12
-	trade Medical 53
-	trade Metal 80
-	trade Plastic 20
+	trade Clothing 57.33
+	trade Electronics 65.67
+	trade Equipment 13.25
+	trade Food 14.00
+	trade "Heavy Metals" 85.29
+	trade Industrial 21.75
+	trade "Luxury Goods" 12.33
+	trade Medical 53.40
+	trade Metal 80.50
+	trade Plastic 20.00
 	fleet "Small Southern Merchants" 400
 	fleet "Large Southern Merchants" 900
 	fleet "Small Militia" 1200
@@ -12342,16 +12342,16 @@ system Sadalmelik
 	asteroids "large rock" 1 2.9744
 	asteroids "medium metal" 3 3.4138
 	asteroids "large metal" 1 5.07
-	trade Clothing 78
-	trade Electronics 87
-	trade Equipment 59
-	trade Food 57
-	trade "Heavy Metals" 27
-	trade Industrial 73
-	trade "Luxury Goods" 91
-	trade Medical 97
-	trade Metal 26
-	trade Plastic 71
+	trade Clothing 78.33
+	trade Electronics 87.33
+	trade Equipment 59.75
+	trade Food 57.00
+	trade "Heavy Metals" 27.29
+	trade Industrial 73.00
+	trade "Luxury Goods" 91.33
+	trade Medical 97.00
+	trade Metal 26.75
+	trade Plastic 71.33
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 1200
 	fleet Quarg 2000
@@ -12392,16 +12392,16 @@ system Sadalsuud
 	asteroids "small rock" 1 4.116
 	asteroids "large rock" 3 1.5876
 	asteroids "large metal" 1 3.1458
-	trade Clothing 71
-	trade Electronics 86
-	trade Equipment 57
-	trade Food 57
-	trade "Heavy Metals" 30
-	trade Industrial 69
-	trade "Luxury Goods" 94
-	trade Medical 96
-	trade Metal 32
-	trade Plastic 69
+	trade Clothing 71.00
+	trade Electronics 86.33
+	trade Equipment 57.75
+	trade Food 57.60
+	trade "Heavy Metals" 30.57
+	trade Industrial 69.00
+	trade "Luxury Goods" 94.00
+	trade Medical 96.20
+	trade Metal 32.50
+	trade Plastic 69.00
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 1500
 	fleet Quarg 1000
@@ -12454,16 +12454,16 @@ system Sadr
 	asteroids "small metal" 9 3.3516
 	asteroids "medium metal" 9 3.1464
 	asteroids "large metal" 57 2.5308
-	trade Clothing 30
-	trade Electronics 74
-	trade Equipment 53
-	trade Food 21
-	trade "Heavy Metals" 53
-	trade Industrial 91
-	trade "Luxury Goods" 46
-	trade Medical 85
-	trade Metal 4
-	trade Plastic 72
+	trade Clothing 30.33
+	trade Electronics 74.00
+	trade Equipment 53.25
+	trade Food 21.40
+	trade "Heavy Metals" 53.71
+	trade Industrial 91.25
+	trade "Luxury Goods" 46.00
+	trade Medical 85.20
+	trade Metal 4.50
+	trade Plastic 72.67
 	fleet "Small Southern Merchants" 4000
 	fleet Quarg 9000
 	fleet "Small Southern Pirates" 5000
@@ -12513,16 +12513,16 @@ system Saiph
 	asteroids "large rock" 13 3.003
 	asteroids "small metal" 5 6.9342
 	asteroids "large metal" 3 3.9858
-	trade Clothing 61
-	trade Electronics 70
-	trade Equipment 77
-	trade Food 86
-	trade "Heavy Metals" 85
-	trade Industrial 22
-	trade "Luxury Goods" 42
-	trade Medical 71
-	trade Metal 22
-	trade Plastic 77
+	trade Clothing 61.00
+	trade Electronics 70.67
+	trade Equipment 77.50
+	trade Food 86.00
+	trade "Heavy Metals" 85.71
+	trade Industrial 22.75
+	trade "Luxury Goods" 42.17
+	trade Medical 71.20
+	trade Metal 22.75
+	trade Plastic 77.67
 	fleet "Small Northern Merchants" 1200
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Northern Pirates" 2000
@@ -12608,16 +12608,16 @@ system Sargas
 	link Kornephoros
 	link Lesath
 	asteroids "large metal" 1 2.6656
-	trade Clothing 50
-	trade Electronics 72
-	trade Equipment 41
-	trade Food 21
-	trade "Heavy Metals" 72
-	trade Industrial 23
-	trade "Luxury Goods" 7
-	trade Medical 64
-	trade Metal 82
-	trade Plastic 19
+	trade Clothing 50.00
+	trade Electronics 72.33
+	trade Equipment 41.00
+	trade Food 21.20
+	trade "Heavy Metals" 72.29
+	trade Industrial 23.75
+	trade "Luxury Goods" 7.00
+	trade Medical 64.60
+	trade Metal 82.00
+	trade Plastic 19.33
 	fleet "Small Southern Merchants" 700
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -12656,16 +12656,16 @@ system Sarin
 	habitable 1080
 	link Vindemiatrix
 	asteroids "large metal" 1 1.74
-	trade Clothing 55
-	trade Electronics 72
-	trade Equipment 26
-	trade Food 11
-	trade "Heavy Metals" 47
-	trade Industrial 28
-	trade "Luxury Goods" 26
-	trade Medical 78
-	trade Metal 85
-	trade Plastic 36
+	trade Clothing 55.00
+	trade Electronics 72.67
+	trade Equipment 26.75
+	trade Food 11.60
+	trade "Heavy Metals" 47.00
+	trade Industrial 28.75
+	trade "Luxury Goods" 26.17
+	trade Medical 78.80
+	trade Metal 85.25
+	trade Plastic 36.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -12748,16 +12748,16 @@ system Scheat
 	link Mirach
 	link Matar
 	asteroids "large metal" 1 5.0547
-	trade Clothing 46
-	trade Electronics 55
-	trade Equipment 36
-	trade Food 66
-	trade "Heavy Metals" 24
-	trade Industrial 25
-	trade "Luxury Goods" 19
-	trade Medical 28
-	trade Metal 17
-	trade Plastic 24
+	trade Clothing 46.33
+	trade Electronics 55.67
+	trade Equipment 36.00
+	trade Food 66.80
+	trade "Heavy Metals" 24.29
+	trade Industrial 25.75
+	trade "Luxury Goods" 19.33
+	trade Medical 28.60
+	trade Metal 17.25
+	trade Plastic 24.00
 	fleet "Small Core Merchants" 500
 	fleet "Large Core Merchants" 600
 	fleet "Small Syndicate" 1000
@@ -12805,16 +12805,16 @@ system Schedar
 	asteroids "small metal" 5 1.96
 	asteroids "medium metal" 1 0.966
 	asteroids "large metal" 12 1.12
-	trade Clothing 68
-	trade Electronics 34
-	trade Equipment 71
-	trade Food 44
-	trade "Heavy Metals" 29
-	trade Industrial 55
-	trade "Luxury Goods" 7
-	trade Medical 62
-	trade Metal 33
-	trade Plastic 13
+	trade Clothing 68.00
+	trade Electronics 34.67
+	trade Equipment 71.50
+	trade Food 44.80
+	trade "Heavy Metals" 29.43
+	trade Industrial 55.75
+	trade "Luxury Goods" 7.50
+	trade Medical 62.60
+	trade Metal 33.75
+	trade Plastic 13.00
 	fleet "Small Core Merchants" 900
 	fleet "Large Core Merchants" 1000
 	fleet "Small Syndicate" 3000
@@ -12868,16 +12868,16 @@ system Seginus
 	asteroids "medium rock" 3 6.2748
 	asteroids "large rock" 1 4.6116
 	asteroids "large metal" 1 8.7696
-	trade Clothing 63
-	trade Electronics 40
-	trade Equipment 10
-	trade Food 18
-	trade "Heavy Metals" 76
-	trade Industrial 20
-	trade "Luxury Goods" 21
-	trade Medical 69
-	trade Metal 85
-	trade Plastic 87
+	trade Clothing 63.33
+	trade Electronics 40.67
+	trade Equipment 10.25
+	trade Food 18.60
+	trade "Heavy Metals" 76.57
+	trade Industrial 20.75
+	trade "Luxury Goods" 21.17
+	trade Medical 69.20
+	trade Metal 85.50
+	trade Plastic 87.67
 	fleet "Small Southern Merchants" 900
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
@@ -13085,16 +13085,16 @@ system Shaula
 	asteroids "small metal" 47 4.9764
 	asteroids "medium metal" 208 4.002
 	asteroids "large metal" 45 4.4196
-	trade Clothing 30
-	trade Electronics 45
-	trade Equipment 69
-	trade Food 19
-	trade "Heavy Metals" 54
-	trade Industrial 15
-	trade "Luxury Goods" 19
-	trade Medical 72
-	trade Metal 85
-	trade Plastic 3
+	trade Clothing 30.67
+	trade Electronics 45.67
+	trade Equipment 69.00
+	trade Food 19.20
+	trade "Heavy Metals" 54.43
+	trade Industrial 15.50
+	trade "Luxury Goods" 19.83
+	trade Medical 72.60
+	trade Metal 85.75
+	trade Plastic 3.00
 	fleet "Small Southern Pirates" 500
 	fleet "Large Southern Pirates" 800
 	fleet "Small Core Pirates" 4000
@@ -13146,16 +13146,16 @@ system Sheratan
 	link Zaurak
 	asteroids "large rock" 1 1.358
 	asteroids "large metal" 2 1.218
-	trade Clothing 54
-	trade Electronics 56
-	trade Equipment 80
-	trade Food 15
-	trade "Heavy Metals" 20
-	trade Industrial 74
-	trade "Luxury Goods" 29
-	trade Medical 33
-	trade Metal 29
-	trade Plastic 38
+	trade Clothing 54.67
+	trade Electronics 56.33
+	trade Equipment 80.75
+	trade Food 15.80
+	trade "Heavy Metals" 20.71
+	trade Industrial 74.00
+	trade "Luxury Goods" 29.33
+	trade Medical 33.20
+	trade Metal 29.00
+	trade Plastic 38.33
 	fleet "Small Core Merchants" 1500
 	fleet "Large Core Merchants" 1800
 	fleet "Small Core Pirates" 3000
@@ -13207,16 +13207,16 @@ system Si'yak'ku
 	asteroids "small metal" 23 3.708
 	asteroids "medium metal" 24 4.356
 	asteroids "large metal" 1 4.968
-	trade Clothing 73
-	trade Electronics 58
-	trade Equipment 9
-	trade Food 46
-	trade "Heavy Metals" 77
-	trade Industrial 17
-	trade "Luxury Goods" 23
-	trade Medical 42
-	trade Metal 70
-	trade Plastic 49
+	trade Clothing 73.33
+	trade Electronics 58.33
+	trade Equipment 9.50
+	trade Food 46.80
+	trade "Heavy Metals" 77.71
+	trade Industrial 17.50
+	trade "Luxury Goods" 23.33
+	trade Medical 42.20
+	trade Metal 70.00
+	trade Plastic 49.33
 	fleet "Wanderer Freight" 1300
 	fleet "Wanderer Drones" 700
 	fleet "Wanderer Defense" 9000
@@ -13278,16 +13278,16 @@ system Sich'ka'ara
 	link Ap'arak
 	link Kiro'ku
 	asteroids "large metal" 1 2.3738
-	trade Clothing 62
-	trade Electronics 51
-	trade Equipment 45
-	trade Food 32
-	trade "Heavy Metals" 60
-	trade Industrial 84
-	trade "Luxury Goods" 34
-	trade Medical 54
-	trade Metal 72
-	trade Plastic 61
+	trade Clothing 62.33
+	trade Electronics 51.67
+	trade Equipment 45.50
+	trade Food 32.80
+	trade "Heavy Metals" 60.86
+	trade Industrial 84.75
+	trade "Luxury Goods" 34.00
+	trade Medical 54.60
+	trade Metal 72.50
+	trade Plastic 61.00
 	fleet "Wanderer Freight" 600
 	fleet "Wanderer Drones" 3000
 	fleet "Wanderer Defense" 2000
@@ -13420,16 +13420,16 @@ system Sirius
 	asteroids "small metal" 34 8.085
 	asteroids "medium metal" 3 4.565
 	asteroids "large metal" 51 7.535
-	trade Clothing 15
-	trade Electronics 36
-	trade Equipment 23
-	trade Food 79
-	trade "Heavy Metals" 47
-	trade Industrial 20
-	trade "Luxury Goods" 62
-	trade Medical 9
-	trade Metal 72
-	trade Plastic 42
+	trade Clothing 15.33
+	trade Electronics 36.33
+	trade Equipment 23.50
+	trade Food 79.40
+	trade "Heavy Metals" 47.14
+	trade Industrial 20.50
+	trade "Luxury Goods" 62.83
+	trade Medical 9.40
+	trade Metal 72.50
+	trade Plastic 42.00
 	fleet "Small Northern Merchants" 500
 	fleet "Large Northern Merchants" 700
 	fleet "Small Republic" 1000
@@ -13512,16 +13512,16 @@ system Sko'karak
 	asteroids "small metal" 40 5.175
 	asteroids "medium metal" 59 2.4495
 	asteroids "large metal" 12 5.1405
-	trade Clothing 70
-	trade Electronics 20
-	trade Equipment 16
-	trade Food 94
-	trade "Heavy Metals" 95
-	trade Industrial 63
-	trade "Luxury Goods" 30
-	trade Medical 3
-	trade Metal 80
-	trade Plastic 72
+	trade Clothing 70.33
+	trade Electronics 20.00
+	trade Equipment 16.75
+	trade Food 94.20
+	trade "Heavy Metals" 95.00
+	trade Industrial 63.50
+	trade "Luxury Goods" 30.83
+	trade Medical 3.60
+	trade Metal 80.75
+	trade Plastic 72.67
 	fleet "Wanderer Defense" 4000
 	object
 		sprite star/m0
@@ -13613,16 +13613,16 @@ system Sol
 	asteroids "large rock" 50 5.0508
 	asteroids "medium metal" 4 2.8566
 	asteroids "large metal" 1 2.2356
-	trade Clothing 47
-	trade Electronics 51
-	trade Equipment 40
-	trade Food 81
-	trade "Heavy Metals" 34
-	trade Industrial 28
-	trade "Luxury Goods" 39
-	trade Medical 10
-	trade Metal 53
-	trade Plastic 10
+	trade Clothing 47.33
+	trade Electronics 51.67
+	trade Equipment 40.25
+	trade Food 81.00
+	trade "Heavy Metals" 34.14
+	trade Industrial 28.75
+	trade "Luxury Goods" 39.83
+	trade Medical 10.00
+	trade Metal 53.00
+	trade Plastic 10.67
 	fleet "Small Northern Merchants" 300
 	fleet "Large Northern Merchants" 500
 	fleet "Small Republic" 600
@@ -13723,16 +13723,16 @@ system Sospi
 	asteroids "small metal" 6 3.1625
 	asteroids "medium metal" 7 1.5433
 	asteroids "large metal" 6 2.783
-	trade Clothing 63
-	trade Electronics 24
-	trade Equipment 65
-	trade Food 47
-	trade "Heavy Metals" 55
-	trade Industrial 42
-	trade "Luxury Goods" 73
-	trade Medical 36
-	trade Metal 30
-	trade Plastic 58
+	trade Clothing 63.67
+	trade Electronics 24.00
+	trade Equipment 65.75
+	trade Food 47.20
+	trade "Heavy Metals" 55.29
+	trade Industrial 42.25
+	trade "Luxury Goods" 73.33
+	trade Medical 36.80
+	trade Metal 30.25
+	trade Plastic 58.00
 	fleet "Small Northern Merchants" 1500
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 1000
@@ -13782,16 +13782,16 @@ system Spica
 	asteroids "small metal" 7 1.533
 	asteroids "medium metal" 5 3.129
 	asteroids "large metal" 5 1.953
-	trade Clothing 29
-	trade Electronics 48
-	trade Equipment 20
-	trade Food 18
-	trade "Heavy Metals" 46
-	trade Industrial 56
-	trade "Luxury Goods" 29
-	trade Medical 28
-	trade Metal 56
-	trade Plastic 92
+	trade Clothing 29.33
+	trade Electronics 48.33
+	trade Equipment 20.50
+	trade Food 18.20
+	trade "Heavy Metals" 46.86
+	trade Industrial 56.75
+	trade "Luxury Goods" 29.83
+	trade Medical 28.80
+	trade Metal 56.75
+	trade Plastic 92.67
 	fleet "Small Southern Merchants" 1600
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Militia" 2000
@@ -13837,16 +13837,16 @@ system Suhail
 	asteroids "small metal" 5 5.7344
 	asteroids "medium metal" 3 3.4944
 	asteroids "large metal" 17 4.5696
-	trade Clothing 31
-	trade Electronics 55
-	trade Equipment 28
-	trade Food 62
-	trade "Heavy Metals" 63
-	trade Industrial 74
-	trade "Luxury Goods" 11
-	trade Medical 68
-	trade Metal 17
-	trade Plastic 12
+	trade Clothing 31.33
+	trade Electronics 55.00
+	trade Equipment 28.00
+	trade Food 62.60
+	trade "Heavy Metals" 63.71
+	trade Industrial 74.75
+	trade "Luxury Goods" 11.00
+	trade Medical 68.80
+	trade Metal 17.25
+	trade Plastic 12.33
 	fleet "Small Northern Merchants" 2000
 	fleet "Large Northern Merchants" 5000
 	fleet "Small Deep" 4000
@@ -13889,16 +13889,16 @@ system Sumar
 	link Danoa
 	link Rajak
 	asteroids "large metal" 1 2.2176
-	trade Clothing 58
-	trade Electronics 52
-	trade Equipment 72
-	trade Food 80
-	trade "Heavy Metals" 73
-	trade Industrial 58
-	trade "Luxury Goods" 50
-	trade Medical 56
-	trade Metal 29
-	trade Plastic 56
+	trade Clothing 58.67
+	trade Electronics 52.67
+	trade Equipment 72.25
+	trade Food 80.00
+	trade "Heavy Metals" 73.57
+	trade Industrial 58.25
+	trade "Luxury Goods" 50.17
+	trade Medical 56.60
+	trade Metal 29.00
+	trade Plastic 56.00
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 6000
 	fleet "Large Republic" 30000
@@ -13998,16 +13998,16 @@ system Tais
 	asteroids "small metal" 1 10.15
 	asteroids "medium metal" 7 10.43
 	asteroids "large metal" 2 9.94
-	trade Clothing 68
-	trade Electronics 37
-	trade Equipment 80
-	trade Food 48
-	trade "Heavy Metals" 46
-	trade Industrial 79
-	trade "Luxury Goods" 73
-	trade Medical 85
-	trade Metal 43
-	trade Plastic 33
+	trade Clothing 68.67
+	trade Electronics 37.67
+	trade Equipment 80.75
+	trade Food 48.00
+	trade "Heavy Metals" 46.43
+	trade Industrial 79.50
+	trade "Luxury Goods" 73.50
+	trade Medical 85.20
+	trade Metal 43.00
+	trade Plastic 33.00
 	fleet "Small Southern Merchants" 1500
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Militia" 9000
@@ -14052,16 +14052,16 @@ system Talita
 	asteroids "small metal" 12 1.624
 	asteroids "medium metal" 65 1.596
 	asteroids "large metal" 33 1.512
-	trade Clothing 39
-	trade Electronics 42
-	trade Equipment 87
-	trade Food 90
-	trade "Heavy Metals" 51
-	trade Industrial 52
-	trade "Luxury Goods" 88
-	trade Medical 57
-	trade Metal 25
-	trade Plastic 76
+	trade Clothing 39.33
+	trade Electronics 42.33
+	trade Equipment 87.00
+	trade Food 90.40
+	trade "Heavy Metals" 51.00
+	trade Industrial 52.50
+	trade "Luxury Goods" 88.50
+	trade Medical 57.60
+	trade Metal 25.00
+	trade Plastic 76.33
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 900
 	fleet "Small Republic" 1000
@@ -14109,16 +14109,16 @@ system "Tania Australis"
 	asteroids "large rock" 13 5.2704
 	asteroids "medium metal" 1 2.5488
 	asteroids "large metal" 7 5.9616
-	trade Clothing 69
-	trade Electronics 61
-	trade Equipment 42
-	trade Food 64
-	trade "Heavy Metals" 52
-	trade Industrial 26
-	trade "Luxury Goods" 44
-	trade Medical 49
-	trade Metal 40
-	trade Plastic 50
+	trade Clothing 69.33
+	trade Electronics 61.33
+	trade Equipment 42.75
+	trade Food 64.20
+	trade "Heavy Metals" 52.00
+	trade Industrial 26.25
+	trade "Luxury Goods" 44.00
+	trade Medical 49.40
+	trade Metal 40.25
+	trade Plastic 50.00
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Republic" 3000
@@ -14177,16 +14177,16 @@ system Tarazed
 	asteroids "large rock" 8 1.0692
 	asteroids "small metal" 1 1.8216
 	asteroids "large metal" 5 1.6632
-	trade Clothing 55
-	trade Electronics 57
-	trade Equipment 16
-	trade Food 27
-	trade "Heavy Metals" 38
-	trade Industrial 68
-	trade "Luxury Goods" 76
-	trade Medical 92
-	trade Metal 21
-	trade Plastic 25
+	trade Clothing 55.00
+	trade Electronics 57.00
+	trade Equipment 16.25
+	trade Food 27.60
+	trade "Heavy Metals" 38.71
+	trade Industrial 68.75
+	trade "Luxury Goods" 76.17
+	trade Medical 92.20
+	trade Metal 21.50
+	trade Plastic 25.00
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1200
 	fleet Quarg 7000
@@ -14237,16 +14237,16 @@ system Tejat
 	asteroids "small metal" 11 3.741
 	asteroids "medium metal" 49 4.263
 	asteroids "large metal" 22 4.5675
-	trade Clothing 41
-	trade Electronics 43
-	trade Equipment 71
-	trade Food 69
-	trade "Heavy Metals" 50
-	trade Industrial 47
-	trade "Luxury Goods" 83
-	trade Medical 26
-	trade Metal 38
-	trade Plastic 84
+	trade Clothing 41.33
+	trade Electronics 43.67
+	trade Equipment 71.00
+	trade Food 69.60
+	trade "Heavy Metals" 50.86
+	trade Industrial 47.25
+	trade "Luxury Goods" 83.33
+	trade Medical 26.20
+	trade Metal 38.75
+	trade Plastic 84.00
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
@@ -14308,16 +14308,16 @@ system Tortor
 	asteroids "large rock" 7 3.874
 	asteroids "medium metal" 6 3.536
 	asteroids "large metal" 7 3.614
-	trade Clothing 50
-	trade Electronics 74
-	trade Equipment 48
-	trade Food 45
-	trade "Heavy Metals" 68
-	trade Industrial 62
-	trade "Luxury Goods" 31
-	trade Medical 83
-	trade Metal 75
-	trade Plastic 63
+	trade Clothing 50.33
+	trade Electronics 74.67
+	trade Equipment 48.75
+	trade Food 45.40
+	trade "Heavy Metals" 68.29
+	trade Industrial 62.50
+	trade "Luxury Goods" 31.00
+	trade Medical 83.00
+	trade Metal 75.75
+	trade Plastic 63.67
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 6000
@@ -14371,16 +14371,16 @@ system Turais
 	asteroids "small metal" 1 2.775
 	asteroids "medium metal" 25 4.65
 	asteroids "large metal" 6 3.4125
-	trade Clothing 50
-	trade Electronics 52
-	trade Equipment 38
-	trade Food 32
-	trade "Heavy Metals" 35
-	trade Industrial 35
-	trade "Luxury Goods" 8
-	trade Medical 70
-	trade Metal 92
-	trade Plastic 77
+	trade Clothing 50.00
+	trade Electronics 52.00
+	trade Equipment 38.00
+	trade Food 32.60
+	trade "Heavy Metals" 35.00
+	trade Industrial 35.75
+	trade "Luxury Goods" 8.00
+	trade Medical 70.20
+	trade Metal 92.25
+	trade Plastic 77.67
 	fleet "Small Southern Merchants" 2000
 	fleet "Large Southern Merchants" 6000
 	fleet "Small Southern Pirates" 3000
@@ -14423,16 +14423,16 @@ system "Ula Mon"
 	asteroids "small metal" 1 3.2319
 	asteroids "medium metal" 5 3.99
 	asteroids "large metal" 2 2.793
-	trade Clothing 46
-	trade Electronics 28
-	trade Equipment 27
-	trade Food 63
-	trade "Heavy Metals" 37
-	trade Industrial 22
-	trade "Luxury Goods" 15
-	trade Medical 85
-	trade Metal 47
-	trade Plastic 44
+	trade Clothing 46.00
+	trade Electronics 28.33
+	trade Equipment 27.50
+	trade Food 63.40
+	trade "Heavy Metals" 37.86
+	trade Industrial 22.75
+	trade "Luxury Goods" 15.83
+	trade Medical 85.00
+	trade Metal 47.00
+	trade Plastic 44.00
 	fleet "Small Hai" 400
 	fleet "Large Hai" 900
 	fleet "Small Northern Merchants" 6000
@@ -14490,16 +14490,16 @@ system "Ultima Thule"
 	asteroids "small metal" 63 4.788
 	asteroids "medium metal" 15 4.2066
 	asteroids "large metal" 1 4.2408
-	trade Clothing 79
-	trade Electronics 25
-	trade Equipment 62
-	trade Food 61
-	trade "Heavy Metals" 62
-	trade Industrial 20
-	trade "Luxury Goods" 54
-	trade Medical 60
-	trade Metal 56
-	trade Plastic 40
+	trade Clothing 79.33
+	trade Electronics 25.00
+	trade Equipment 62.50
+	trade Food 61.40
+	trade "Heavy Metals" 62.14
+	trade Industrial 20.25
+	trade "Luxury Goods" 54.17
+	trade Medical 60.40
+	trade Metal 56.75
+	trade Plastic 40.00
 	object
 		sprite star/f0
 		period 10
@@ -14538,16 +14538,16 @@ system Umbral
 	asteroids "large rock" 42 7.5075
 	asteroids "medium metal" 13 3.2025
 	asteroids "large metal" 1 6.8775
-	trade Clothing 75
-	trade Electronics 42
-	trade Equipment 32
-	trade Food 42
-	trade "Heavy Metals" 48
-	trade Industrial 78
-	trade "Luxury Goods" 62
-	trade Medical 98
-	trade Metal 36
-	trade Plastic 42
+	trade Clothing 75.00
+	trade Electronics 42.33
+	trade Equipment 32.25
+	trade Food 42.00
+	trade "Heavy Metals" 48.14
+	trade Industrial 78.75
+	trade "Luxury Goods" 62.17
+	trade Medical 98.20
+	trade Metal 36.00
+	trade Plastic 42.00
 	fleet "Small Southern Merchants" 4000
 	fleet "Large Southern Merchants" 5000
 	fleet Quarg 15000
@@ -14611,16 +14611,16 @@ system Unagi
 	asteroids "small metal" 2 2.772
 	asteroids "medium metal" 1 3.267
 	asteroids "large metal" 1 2.805
-	trade Clothing 25
-	trade Electronics 75
-	trade Equipment 39
-	trade Food 33
-	trade "Heavy Metals" 70
-	trade Industrial 47
-	trade "Luxury Goods" 15
-	trade Medical 73
-	trade Metal 72
-	trade Plastic 41
+	trade Clothing 25.00
+	trade Electronics 75.33
+	trade Equipment 39.25
+	trade Food 33.00
+	trade "Heavy Metals" 70.29
+	trade Industrial 47.75
+	trade "Luxury Goods" 15.67
+	trade Medical 73.40
+	trade Metal 72.25
+	trade Plastic 41.33
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
 	object
@@ -14663,16 +14663,16 @@ system Unukalhai
 	asteroids "small metal" 42 1.8564
 	asteroids "medium metal" 190 4.55
 	asteroids "large metal" 25 2.0748
-	trade Clothing 58
-	trade Electronics 56
-	trade Equipment 11
-	trade Food 23
-	trade "Heavy Metals" 87
-	trade Industrial 24
-	trade "Luxury Goods" 11
-	trade Medical 47
-	trade Metal 67
-	trade Plastic 12
+	trade Clothing 58.33
+	trade Electronics 56.00
+	trade Equipment 11.50
+	trade Food 23.60
+	trade "Heavy Metals" 87.29
+	trade Industrial 24.75
+	trade "Luxury Goods" 11.17
+	trade Medical 47.00
+	trade Metal 67.00
+	trade Plastic 12.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet "Small Southern Pirates" 3000
@@ -14717,16 +14717,16 @@ system "Uwa Fahn"
 	asteroids "small metal" 2 3.1046
 	asteroids "medium metal" 3 3.8266
 	asteroids "large metal" 4 3.4656
-	trade Clothing 16
-	trade Electronics 91
-	trade Equipment 20
-	trade Food 87
-	trade "Heavy Metals" 66
-	trade Industrial 25
-	trade "Luxury Goods" 0
-	trade Medical 93
-	trade Metal 52
-	trade Plastic 44
+	trade Clothing 16.00
+	trade Electronics 91.67
+	trade Equipment 20.00
+	trade Food 87.40
+	trade "Heavy Metals" 66.43
+	trade Industrial 25.25
+	trade "Luxury Goods" 0.83
+	trade Medical 93.00
+	trade Metal 52.00
+	trade Plastic 44.00
 	fleet "Small Hai" 700
 	fleet "Large Hai" 700
 	fleet "Small Northern Merchants" 11000
@@ -14773,16 +14773,16 @@ system Vega
 	asteroids "small metal" 3 3.332
 	asteroids "medium metal" 51 6.8068
 	asteroids "large metal" 3 6.426
-	trade Clothing 78
-	trade Electronics 69
-	trade Equipment 60
-	trade Food 62
-	trade "Heavy Metals" 35
-	trade Industrial 38
-	trade "Luxury Goods" 23
-	trade Medical 13
-	trade Metal 41
-	trade Plastic 25
+	trade Clothing 78.33
+	trade Electronics 69.00
+	trade Equipment 60.25
+	trade Food 62.80
+	trade "Heavy Metals" 35.43
+	trade Industrial 38.50
+	trade "Luxury Goods" 23.00
+	trade Medical 13.20
+	trade Metal 41.50
+	trade Plastic 25.00
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Republic" 1600
@@ -14831,16 +14831,16 @@ system Vindemiatrix
 	asteroids "small metal" 8 3.1356
 	asteroids "medium metal" 1 5.4288
 	asteroids "large metal" 2 6.2712
-	trade Clothing 41
-	trade Electronics 69
-	trade Equipment 41
-	trade Food 12
-	trade "Heavy Metals" 50
-	trade Industrial 33
-	trade "Luxury Goods" 23
-	trade Medical 78
-	trade Metal 86
-	trade Plastic 56
+	trade Clothing 41.00
+	trade Electronics 69.33
+	trade Equipment 41.00
+	trade Food 12.00
+	trade "Heavy Metals" 50.29
+	trade Industrial 33.75
+	trade "Luxury Goods" 23.33
+	trade Medical 78.80
+	trade Metal 86.25
+	trade Plastic 56.00
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -14873,16 +14873,16 @@ system Volax
 	link Nihal
 	link Sospi
 	asteroids "large metal" 1 1.7688
-	trade Clothing 48
-	trade Electronics 12
-	trade Equipment 69
-	trade Food 43
-	trade "Heavy Metals" 51
-	trade Industrial 46
-	trade "Luxury Goods" 77
-	trade Medical 29
-	trade Metal 17
-	trade Plastic 61
+	trade Clothing 48.33
+	trade Electronics 12.33
+	trade Equipment 69.50
+	trade Food 43.80
+	trade "Heavy Metals" 51.71
+	trade Industrial 46.00
+	trade "Luxury Goods" 77.67
+	trade Medical 29.60
+	trade Metal 17.50
+	trade Plastic 61.00
 	fleet "Small Northern Merchants" 1500
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 1000
@@ -14930,16 +14930,16 @@ system "Wah Ki"
 	asteroids "large rock" 24 2.4024
 	asteroids "small metal" 17 4.7586
 	asteroids "large metal" 22 2.772
-	trade Clothing 79
-	trade Electronics 1
-	trade Equipment 7
-	trade Food 95
-	trade "Heavy Metals" 22
-	trade Industrial 47
-	trade "Luxury Goods" 35
-	trade Medical 81
-	trade Metal 37
-	trade Plastic 64
+	trade Clothing 79.33
+	trade Electronics 1.67
+	trade Equipment 7.50
+	trade Food 95.40
+	trade "Heavy Metals" 22.14
+	trade Industrial 47.75
+	trade "Luxury Goods" 35.83
+	trade Medical 81.00
+	trade Metal 37.00
+	trade Plastic 64.00
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 500
 	fleet "Large Unfettered" 800
@@ -14995,16 +14995,16 @@ system "Wah Oh"
 	asteroids "small metal" 91 2.214
 	asteroids "medium metal" 13 2.538
 	asteroids "large metal" 86 2.403
-	trade Clothing 79
-	trade Electronics 81
-	trade Equipment 77
-	trade Food 15
-	trade "Heavy Metals" 83
-	trade Industrial 72
-	trade "Luxury Goods" 52
-	trade Medical 19
-	trade Metal 72
-	trade Plastic 64
+	trade Clothing 79.33
+	trade Electronics 81.67
+	trade Equipment 77.50
+	trade Food 15.40
+	trade "Heavy Metals" 83.57
+	trade Industrial 72.75
+	trade "Luxury Goods" 52.50
+	trade Medical 19.00
+	trade Metal 72.00
+	trade Plastic 64.00
 	fleet "Small Hai" 500
 	fleet "Large Hai" 1500
 	fleet "Small Northern Merchants" 6000
@@ -15066,16 +15066,16 @@ system "Wah Yoot"
 	asteroids "small metal" 1 4.4352
 	asteroids "medium metal" 10 2.2968
 	asteroids "large metal" 2 5.6628
-	trade Clothing 92
-	trade Electronics 35
-	trade Equipment 35
-	trade Food 99
-	trade "Heavy Metals" 13
-	trade Industrial 72
-	trade "Luxury Goods" 54
-	trade Medical 99
-	trade Metal 14
-	trade Plastic 77
+	trade Clothing 92.67
+	trade Electronics 35.00
+	trade Equipment 35.00
+	trade Food 99.60
+	trade "Heavy Metals" 13.57
+	trade Industrial 72.75
+	trade "Luxury Goods" 54.17
+	trade Medical 99.00
+	trade Metal 14.50
+	trade Plastic 77.33
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
 	object
@@ -15125,16 +15125,16 @@ system Waypoint
 	asteroids "small metal" 1 1.9712
 	asteroids "medium metal" 6 4.0656
 	asteroids "large metal" 2 1.9404
-	trade Clothing 79
-	trade Electronics 58
-	trade Equipment 62
-	trade Food 51
-	trade "Heavy Metals" 57
-	trade Industrial 42
-	trade "Luxury Goods" 45
-	trade Medical 63
-	trade Metal 72
-	trade Plastic 70
+	trade Clothing 79.33
+	trade Electronics 58.33
+	trade Equipment 62.50
+	trade Food 51.40
+	trade "Heavy Metals" 57.86
+	trade Industrial 42.75
+	trade "Luxury Goods" 45.83
+	trade Medical 63.00
+	trade Metal 72.00
+	trade Plastic 70.67
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 2500
 	fleet "Small Northern Merchants" 18000
@@ -15178,16 +15178,16 @@ system Wazn
 	asteroids "small metal" 9 2.6048
 	asteroids "medium metal" 3 4.4704
 	asteroids "large metal" 9 1.9008
-	trade Clothing 48
-	trade Electronics 70
-	trade Equipment 83
-	trade Food 75
-	trade "Heavy Metals" 47
-	trade Industrial 54
-	trade "Luxury Goods" 78
-	trade Medical 15
-	trade Metal 14
-	trade Plastic 64
+	trade Clothing 48.67
+	trade Electronics 70.00
+	trade Equipment 83.00
+	trade Food 75.80
+	trade "Heavy Metals" 47.29
+	trade Industrial 54.00
+	trade "Luxury Goods" 78.00
+	trade Medical 15.20
+	trade Metal 14.00
+	trade Plastic 64.33
 	fleet "Small Northern Merchants" 700
 	fleet "Large Northern Merchants" 1500
 	fleet "Small Republic" 2000
@@ -15235,16 +15235,16 @@ system Wei
 	link Kornephoros
 	link Alioth
 	asteroids "large metal" 1 3.1824
-	trade Clothing 59
-	trade Electronics 42
-	trade Equipment 15
-	trade Food 12
-	trade "Heavy Metals" 75
-	trade Industrial 24
-	trade "Luxury Goods" 25
-	trade Medical 60
-	trade Metal 81
-	trade Plastic 82
+	trade Clothing 59.67
+	trade Electronics 42.67
+	trade Equipment 15.25
+	trade Food 12.40
+	trade "Heavy Metals" 75.71
+	trade Industrial 24.75
+	trade "Luxury Goods" 25.67
+	trade Medical 60.20
+	trade Metal 81.50
+	trade Plastic 82.00
 	fleet "Small Southern Merchants" 600
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Southern Pirates" 4000
@@ -15293,16 +15293,16 @@ system Wezen
 	asteroids "small metal" 3 2.5228
 	asteroids "medium metal" 6 1.9992
 	asteroids "large metal" 4 2.7132
-	trade Clothing 56
-	trade Electronics 36
-	trade Equipment 17
-	trade Food 62
-	trade "Heavy Metals" 44
-	trade Industrial 47
-	trade "Luxury Goods" 18
-	trade Medical 73
-	trade Metal 43
-	trade Plastic 22
+	trade Clothing 56.67
+	trade Electronics 36.67
+	trade Equipment 17.00
+	trade Food 62.80
+	trade "Heavy Metals" 44.43
+	trade Industrial 47.50
+	trade "Luxury Goods" 18.83
+	trade Medical 73.20
+	trade Metal 43.75
+	trade Plastic 22.00
 	fleet "Small Northern Merchants" 1000
 	fleet "Large Northern Merchants" 2000
 	fleet "Small Deep" 1500
@@ -15372,16 +15372,16 @@ system "Ya Hai"
 	asteroids "small metal" 17 1.1928
 	asteroids "medium metal" 6 1.176
 	asteroids "large metal" 5 1.5792
-	trade Clothing 9
-	trade Electronics 58
-	trade Equipment 0
-	trade Food 67
-	trade "Heavy Metals" 53
-	trade Industrial 10
-	trade "Luxury Goods" 0
-	trade Medical 73
-	trade Metal 74
-	trade Plastic 77
+	trade Clothing 9.33
+	trade Electronics 58.33
+	trade Equipment 0.00
+	trade Food 67.40
+	trade "Heavy Metals" 53.57
+	trade Industrial 10.25
+	trade "Luxury Goods" 0.83
+	trade Medical 73.00
+	trade Metal 74.50
+	trade Plastic 77.33
 	fleet "Small Hai" 400
 	fleet "Large Hai" 500
 	fleet "Small Northern Merchants" 12000
@@ -15438,16 +15438,16 @@ system "Yed Prior"
 	asteroids "small metal" 2 5.1888
 	asteroids "medium metal" 55 1.84
 	asteroids "large metal" 6 5.0416
-	trade Clothing 47
-	trade Electronics 91
-	trade Equipment 9
-	trade Food 21
-	trade "Heavy Metals" 59
-	trade Industrial 64
-	trade "Luxury Goods" 33
-	trade Medical 94
-	trade Metal 35
-	trade Plastic 22
+	trade Clothing 47.67
+	trade Electronics 91.33
+	trade Equipment 9.50
+	trade Food 21.00
+	trade "Heavy Metals" 59.57
+	trade Industrial 64.25
+	trade "Luxury Goods" 33.17
+	trade Medical 94.40
+	trade Metal 35.75
+	trade Plastic 22.33
 	fleet "Small Northern Merchants" 800
 	fleet "Large Northern Merchants" 1600
 	fleet "Small Southern Pirates" 2000
@@ -15491,16 +15491,16 @@ system Zaurak
 	asteroids "small metal" 4 4.6228
 	asteroids "medium metal" 199 2.4024
 	asteroids "large metal" 46 4.4044
-	trade Clothing 56
-	trade Electronics 53
-	trade Equipment 85
-	trade Food 14
-	trade "Heavy Metals" 35
-	trade Industrial 63
-	trade "Luxury Goods" 15
-	trade Medical 48
-	trade Metal 25
-	trade Plastic 45
+	trade Clothing 56.67
+	trade Electronics 53.33
+	trade Equipment 85.75
+	trade Food 14.80
+	trade "Heavy Metals" 35.71
+	trade Industrial 63.50
+	trade "Luxury Goods" 15.50
+	trade Medical 48.20
+	trade Metal 25.50
+	trade Plastic 45.33
 	fleet "Small Core Merchants" 800
 	fleet "Large Core Merchants" 1000
 	fleet "Small Syndicate" 1600
@@ -15542,16 +15542,16 @@ system "Zeta Aquilae"
 	asteroids "medium rock" 11 4.536
 	asteroids "large rock" 2 10.611
 	asteroids "large metal" 1 10.125
-	trade Clothing 55
-	trade Electronics 55
-	trade Equipment 77
-	trade Food 86
-	trade "Heavy Metals" 25
-	trade Industrial 66
-	trade "Luxury Goods" 71
-	trade Medical 72
-	trade Metal 80
-	trade Plastic 40
+	trade Clothing 55.33
+	trade Electronics 55.00
+	trade Equipment 77.25
+	trade Food 86.60
+	trade "Heavy Metals" 25.14
+	trade Industrial 66.75
+	trade "Luxury Goods" 71.83
+	trade Medical 72.00
+	trade Metal 80.00
+	trade Plastic 40.33
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 2000
@@ -15610,16 +15610,16 @@ system "Zeta Centauri"
 	link Hadar
 	asteroids "large rock" 1 1.13
 	asteroids "large metal" 5 0.66
-	trade Clothing 62
-	trade Electronics 29
-	trade Equipment 68
-	trade Food 19
-	trade "Heavy Metals" 45
-	trade Industrial 48
-	trade "Luxury Goods" 14
-	trade Medical 31
-	trade Metal 88
-	trade Plastic 48
+	trade Clothing 62.67
+	trade Electronics 29.33
+	trade Equipment 68.50
+	trade Food 19.60
+	trade "Heavy Metals" 45.86
+	trade Industrial 48.75
+	trade "Luxury Goods" 14.67
+	trade Medical 31.00
+	trade Metal 88.00
+	trade Plastic 48.67
 	fleet "Small Southern Merchants" 800
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 1500
@@ -15668,16 +15668,16 @@ system Zosma
 	asteroids "small metal" 5 4.0625
 	asteroids "medium metal" 14 3.8025
 	asteroids "large metal" 9 3.2175
-	trade Clothing 73
-	trade Electronics 45
-	trade Equipment 64
-	trade Food 87
-	trade "Heavy Metals" 79
-	trade Industrial 10
-	trade "Luxury Goods" 80
-	trade Medical 27
-	trade Metal 20
-	trade Plastic 86
+	trade Clothing 73.33
+	trade Electronics 45.33
+	trade Equipment 64.75
+	trade Food 87.40
+	trade "Heavy Metals" 79.43
+	trade Industrial 10.25
+	trade "Luxury Goods" 80.67
+	trade Medical 27.40
+	trade Metal 20.25
+	trade Plastic 86.00
 	fleet "Small Northern Merchants" 600
 	fleet "Large Northern Merchants" 1000
 	fleet "Small Deep" 2000
@@ -15725,16 +15725,16 @@ system "Zuba Zub"
 	asteroids "small metal" 4 1.776
 	asteroids "medium metal" 3 1.944
 	asteroids "large metal" 1 2.928
-	trade Clothing 96
-	trade Electronics 35
-	trade Equipment 32
-	trade Food 89
-	trade "Heavy Metals" 9
-	trade Industrial 20
-	trade "Luxury Goods" 50
-	trade Medical 99
-	trade Metal 12
-	trade Plastic 70
+	trade Clothing 96.00
+	trade Electronics 35.00
+	trade Equipment 32.50
+	trade Food 89.40
+	trade "Heavy Metals" 9.29
+	trade Industrial 20.25
+	trade "Luxury Goods" 50.83
+	trade Medical 99.00
+	trade Metal 12.00
+	trade Plastic 70.67
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 800
 	fleet "Small Northern Merchants" 10000
@@ -15787,16 +15787,16 @@ system Zubenelgenubi
 	asteroids "small metal" 10 4.9104
 	asteroids "medium metal" 39 5.7816
 	asteroids "large metal" 6 5.5836
-	trade Clothing 78
-	trade Electronics 45
-	trade Equipment 31
-	trade Food 16
-	trade "Heavy Metals" 80
-	trade Industrial 38
-	trade "Luxury Goods" 12
-	trade Medical 37
-	trade Metal 79
-	trade Plastic 21
+	trade Clothing 78.33
+	trade Electronics 45.00
+	trade Equipment 31.25
+	trade Food 16.40
+	trade "Heavy Metals" 80.00
+	trade Industrial 38.25
+	trade "Luxury Goods" 12.67
+	trade Medical 37.00
+	trade Metal 79.00
+	trade Plastic 21.00
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Militia" 2000
@@ -15851,16 +15851,16 @@ system Zubeneschamali
 	asteroids "small metal" 29 2.964
 	asteroids "medium metal" 41 3.0576
 	asteroids "large metal" 72 3.7752
-	trade Clothing 78
-	trade Electronics 27
-	trade Equipment 65
-	trade Food 9
-	trade "Heavy Metals" 63
-	trade Industrial 58
-	trade "Luxury Goods" 12
-	trade Medical 27
-	trade Metal 91
-	trade Plastic 21
+	trade Clothing 78.67
+	trade Electronics 27.67
+	trade Equipment 65.50
+	trade Food 9.20
+	trade "Heavy Metals" 63.71
+	trade Industrial 58.75
+	trade "Luxury Goods" 12.33
+	trade Medical 27.40
+	trade Metal 91.00
+	trade Plastic 21.00
 	fleet "Small Southern Merchants" 500
 	fleet "Large Southern Merchants" 1500
 	fleet "Small Militia" 3000

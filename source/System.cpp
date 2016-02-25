@@ -135,7 +135,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
 		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
-			trade[child.Token(1)].SetBase(child.Value(2));
+			trade[child.Token(1)].SetBase(child.Value(2), child.Token(1));
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -499,9 +499,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::Price::SetBase(int base)
+void System::Price::SetBase(double base, const std::string &name)
 {
-	this->basePricePercentile = base;
+	this->name = name;
+	this->basePricePercentile = base / 100;
 	this->basePrice = 0;
 	this->price = GetBasePrice();
 	if (this->price == 0)
@@ -520,7 +521,7 @@ int System::Price::GetBasePrice()
 	{
 		if (it.name == this->name)
 		{
-			return it.low + (((it.high - it.low) * this->basePricePercentile) / 100);
+			return static_cast<int>(it.low + ((it.high - it.low) * this->basePricePercentile));
 		}
 	}
 	return basePrice;
@@ -532,6 +533,5 @@ void System::Price::Update()
 	exports = EXPORT * supply;
 	supply *= KEEP;
 	supply += Random::Normal() * VOLUME;
-
 	price = GetBasePrice() + static_cast<int>(MAX_PRICE_SWING * erf(supply / LIMIT));
 }
