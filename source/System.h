@@ -127,7 +127,7 @@ private:
 		// Commodity name
 		std::string name;
 
-		void SetBase(double base, const std::string &name);
+		void SetBase(double base, const std::string &name, bool usePricePercentile);
 		int GetBasePrice();
 		void Update();
 

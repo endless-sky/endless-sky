@@ -36,6 +36,8 @@ namespace {
 	static const double LIMIT = 20000.;
 	// The largest value by which price can deviate from the system's base price.
 	static const double MAX_PRICE_SWING = 100.;
+	// The lowest price any commodity can actually sell for.
+	static const int MIN_FINAL_PRICE = 1.;
 }
 
 const double System::NEIGHBOR_DISTANCE = 100.;
@@ -135,7 +137,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				asteroids.emplace_back(child.Token(1), child.Value(2), child.Value(3));
 		}
 		else if(child.Token(0) == "trade" && child.Size() >= 3)
-			trade[child.Token(1)].SetBase(child.Value(2), child.Token(1));
+		{
+			if (child.Token(2) == "percentile" && child.Size() >= 4 )
+				trade[child.Token(1)].SetBase(child.Value(3), child.Token(1), true);
+			else
+				trade[child.Token(1)].SetBase(child.Value(2), "", false);
+		}
 		else if(child.Token(0) == "fleet")
 		{
 			if(resetFleets)
@@ -499,17 +506,18 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::Price::SetBase(double base, const std::string &name)
+void System::Price::SetBase(double base, const std::string &name, bool usePricePercentile)
 {
-	this->name = name;
-	this->basePricePercentile = base / 100;
-	this->basePrice = 0;
-	this->price = GetBasePrice();
-	if (this->price == 0)
+	if (!usePricePercentile)
 	{
-		// GetBasePrice failed to find this commodity.
 		this->basePrice = base;
 		this->price = base;
+	}
+	else 
+	{
+		this->name = name;
+		this->basePricePercentile = base / 100;
+		this->price = GetBasePrice();
 	}
 }
 
@@ -530,8 +538,12 @@ int System::Price::GetBasePrice()
 
 void System::Price::Update()
 {
+	
 	exports = EXPORT * supply;
 	supply *= KEEP;
 	supply += Random::Normal() * VOLUME;
+	
 	price = GetBasePrice() + static_cast<int>(MAX_PRICE_SWING * erf(supply / LIMIT));
+	if (price < MIN_FINAL_PRICE)
+		price = MIN_FINAL_PRICE;
 }
