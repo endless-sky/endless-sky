@@ -29,8 +29,10 @@ void Trade::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "commodity" && child.Size() >= 2)
 		{
-			bool isSpecial = (child.Size() < 4);
+			// Not defining a low and high price point makes a commodity "special".
+			bool isSpecial = (child.Size() < 4);  
 			vector<Commodity> &list = (isSpecial ? specialCommodities : commodities);
+			
 			auto it = list.begin();
 			for( ; it != list.end(); ++it)
 				if(it->name == child.Token(1))

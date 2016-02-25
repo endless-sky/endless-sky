@@ -34,6 +34,8 @@ namespace {
 	static const double VOLUME = 2000.;
 	// Above this supply amount, price differences taper off:
 	static const double LIMIT = 20000.;
+	// The largest value by which price can deviate from the system's base price.
+	static const double MAX_PRICE_SWING = 100.;
 }
 
 const double System::NEIGHBOR_DISTANCE = 100.;
@@ -417,9 +419,6 @@ void System::StepEconomy()
 {
 	for(auto &it : trade)
 	{
-		it.second.exports = EXPORT * it.second.supply;
-		it.second.supply *= KEEP;
-		it.second.supply += Random::Normal() * VOLUME;
 		it.second.Update();
 	}
 }
@@ -502,13 +501,37 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 void System::Price::SetBase(int base)
 {
-	this->base = base;
-	this->price = base;
+	this->basePricePercentile = base;
+	this->basePrice = 0;
+	this->price = GetBasePrice();
+	if (this->price == 0)
+	{
+		// GetBasePrice failed to find this commodity.
+		this->basePrice = base;
+		this->price = base;
+	}
 }
 
 
 
+int System::Price::GetBasePrice()
+{
+	for(auto &it : GameData::Commodities())
+	{
+		if (it.name == this->name)
+		{
+			return it.low + (((it.high - it.low) * this->basePricePercentile) / 100);
+		}
+	}
+	return basePrice;
+}
+
+
 void System::Price::Update()
 {
-	price = base + static_cast<int>(-100. * erf(supply / LIMIT));
+	exports = EXPORT * supply;
+	supply *= KEEP;
+	supply += Random::Normal() * VOLUME;
+
+	price = GetBasePrice() + static_cast<int>(MAX_PRICE_SWING * erf(supply / LIMIT));
 }
