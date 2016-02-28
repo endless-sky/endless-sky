@@ -313,7 +313,10 @@ bool InfoPanel::Click(int x, int y)
 	return true;
 }
 
-bool InfoPanel::Hover(double x, double y) {
+
+
+bool InfoPanel::Hover(double x, double y)
+{
 	hoverPoint = Point(x, y);
 	
 	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
@@ -325,6 +328,8 @@ bool InfoPanel::Hover(double x, double y) {
 	
 	return true;
 }
+
+
 
 bool InfoPanel::Hover(int x, int y)
 {
