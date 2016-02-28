@@ -76,12 +76,14 @@ void ShopPanel::Draw() const
 
 
 
-void ShopPanel::Step() {
-	// perform autoscroll to bring item details into view.
-	if (scrollDetailsIntoView && selectedBottomY > 0)
+void ShopPanel::Step()
+{
+	// Perform autoscroll to bring item details into view.
+	if(scrollDetailsIntoView && selectedBottomY > 0)
 	{
-		if (selectedBottomY > Screen::Bottom())
-			DoScroll(-30.);
+		int offY = Screen::Bottom() - selectedBottomY;
+		if(offY < 0)
+			DoScroll(max(-30, offY));
 		else
 			scrollDetailsIntoView = false;
 	}
