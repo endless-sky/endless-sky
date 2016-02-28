@@ -38,8 +38,8 @@ public:
 	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command);
 	bool Click(int x, int y);
 	bool Hover(int x, int y);
-	bool Drag(int dx, int dy);
-	bool Scroll(int dx, int dy);
+	bool Drag(double dx, double dy);
+	bool Scroll(double dx, double dy);
 	double SystemValue(const System *system) const;
 	
 	
@@ -78,8 +78,8 @@ protected:
 	
 	
 protected:
-	int scroll = 0;
-	mutable int maxScroll = 0;
+	double scroll = 0.;
+	mutable double maxScroll = 0.;
 
 	const std::vector<std::string> &categories;
 	
