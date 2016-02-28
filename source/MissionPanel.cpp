@@ -654,7 +654,8 @@ void MissionPanel::DrawMissionInfo() const
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled() && !ship->IsParked())
 		{
 			cargoFree += ship->Attributes().Get("cargo space") - ship->Cargo().Used();
-			bunksFree += ship->Attributes().Get("bunks") - ship->Crew() - ship->Cargo().Passengers();
+			int crew = (ship.get() == player.Flagship()) ? ship->Crew() : ship->RequiredCrew();
+			bunksFree += ship->Attributes().Get("bunks") - crew - ship->Cargo().Passengers();
 		}
 	info.SetString("cargo free", to_string(cargoFree) + " tons");
 	info.SetString("bunks free", to_string(bunksFree) + " bunks");
