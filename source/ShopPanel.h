@@ -36,7 +36,7 @@ public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
 	virtual void Draw() const override;
-	
+	virtual void Step() override;
 	
 protected:
 	void DrawSidebar() const;
@@ -120,6 +120,8 @@ protected:
 	bool dragMain = true;
 	mutable int mainDetailHeight = 0;
 	mutable int sideDetailHeight = 0;
+	bool scrollDetailsIntoView = false;
+	mutable int selectedBottomY = 0;
 	
 	mutable std::vector<ClickZone> zones;
 	
