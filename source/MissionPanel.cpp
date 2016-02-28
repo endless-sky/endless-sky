@@ -310,7 +310,7 @@ bool MissionPanel::Click(int x, int y)
 	
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
-		unsigned index = max(0, (y + availableScroll - 36 - Screen::Top()) / 20);
+		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
 			availableIt = available.begin();
@@ -325,7 +325,7 @@ bool MissionPanel::Click(int x, int y)
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
-		int index = max(0, (y + acceptedScroll - 36 - Screen::Top()) / 20);
+		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
 			acceptedIt = accepted.begin();
@@ -404,18 +404,18 @@ bool MissionPanel::Click(int x, int y)
 
 
 
-bool MissionPanel::Drag(int dx, int dy)
+bool MissionPanel::Drag(double dx, double dy)
 {
 	if(dragSide < 0)
 	{
-		availableScroll = max(0,
-			min(static_cast<int>(available.size() * 20 + 190 - Screen::Height()),
+		availableScroll = max(0.,
+			min(available.size() * 20. + 190. - Screen::Height(),
 				availableScroll - dy));
 	}
 	else if(dragSide > 0)
 	{
-		acceptedScroll = max(0,
-			min(static_cast<int>(accepted.size() * 20 + 160 - Screen::Height()),
+		acceptedScroll = max(0.,
+			min(accepted.size() * 20. + 160. - Screen::Height(),
 				acceptedScroll - dy));
 	}
 	else
@@ -429,7 +429,7 @@ bool MissionPanel::Drag(int dx, int dy)
 bool MissionPanel::Hover(int x, int y)
 {
 	dragSide = 0;
-	unsigned index = max(0, (y + availableScroll - 36 - Screen::Top()) / 20);
+	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
 		if(index < available.size())
@@ -445,10 +445,10 @@ bool MissionPanel::Hover(int x, int y)
 
 
 
-bool MissionPanel::Scroll(int dx, int dy)
+bool MissionPanel::Scroll(double dx, double dy)
 {
 	if(dragSide)
-		return Drag(0, dy * 50);
+		return Drag(0., dy * 50.);
 	
 	return MapPanel::Scroll(dx, dy);
 }

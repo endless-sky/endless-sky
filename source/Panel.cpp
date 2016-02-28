@@ -98,14 +98,14 @@ bool Panel::Hover(int x, int y)
 
 
 
-bool Panel::Drag(int dx, int dy)
+bool Panel::Drag(double dx, double dy)
 {
 	return false;
 }
 
 
 
-bool Panel::Scroll(int dx, int dy)
+bool Panel::Scroll(double dx, double dy)
 {
 	return false;
 }
