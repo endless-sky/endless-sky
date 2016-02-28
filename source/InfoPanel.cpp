@@ -131,7 +131,8 @@ void InfoPanel::Draw() const
 	if(showShip)
 	{
 		interfaceInfo.SetCondition("ship tab");
-		if(canEdit && ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
+		if(canEdit && (shipIt != player.Ships().end())
+					&& ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		else if(!canEdit)
 			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");
@@ -317,6 +318,9 @@ bool InfoPanel::Click(int x, int y)
 
 bool InfoPanel::Hover(double x, double y)
 {
+	if(shipIt == player.Ships().end())
+		return true;
+
 	hoverPoint = Point(x, y);
 	
 	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
