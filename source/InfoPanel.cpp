@@ -131,7 +131,8 @@ void InfoPanel::Draw() const
 	if(showShip)
 	{
 		interfaceInfo.SetCondition("ship tab");
-		if(canEdit && ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
+		if(canEdit && (shipIt != player.Ships().end())
+					&& ((shipIt->get() != player.Flagship() && !(*shipIt)->IsDisabled()) || (*shipIt)->IsParked()))
 			interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		else if(!canEdit)
 			interfaceInfo.SetCondition(CanDump() ? "enable dump" : "show dump");
@@ -315,8 +316,11 @@ bool InfoPanel::Click(int x, int y)
 
 
 
-bool InfoPanel::Hover(int x, int y)
+bool InfoPanel::Hover(double x, double y)
 {
+	if(shipIt == player.Ships().end())
+		return true;
+
 	hoverPoint = Point(x, y);
 	
 	const vector<Armament::Weapon> &weapons = (**shipIt).Weapons();
@@ -331,7 +335,14 @@ bool InfoPanel::Hover(int x, int y)
 
 
 
-bool InfoPanel::Drag(int dx, int dy)
+bool InfoPanel::Hover(int x, int y)
+{
+	return Hover(static_cast<double>(x), static_cast<double>(y));
+}
+
+
+
+bool InfoPanel::Drag(double dx, double dy)
 {
 	Hover(hoverPoint.X() + dx, hoverPoint.Y() + dy);
 	if(hoverPoint.Distance(dragStart) > 10.)
@@ -374,10 +385,10 @@ bool InfoPanel::Release(int x, int y)
 
 
 
-bool InfoPanel::Scroll(int dx, int dy)
+bool InfoPanel::Scroll(double dx, double dy)
 {
 	if(!showShip)
-		scroll = max(0, min(static_cast<int>(player.Ships().size() - 25), scroll - 4 * dy));
+		scroll = max(0., min(player.Ships().size() - 25., scroll - 4. * dy));
 	return true;
 }
 

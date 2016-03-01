@@ -894,3 +894,70 @@ phrase "friendly wanderer"
 		"lands."
 		"ecosystems."
 		"biospheres."
+
+
+event "wanderers: the eye opens"
+	system Sabriset
+		object
+			sprite star/g0
+			distance 35.1028
+			period 12.1391
+		object
+			sprite star/k0
+			distance 77.8972
+			period 12.1391
+			offset 180
+		object
+			sprite planet/desert1
+			distance 279.387
+			period 47.1932
+		object
+			sprite planet/lava7
+			distance 738.015
+			period 202.613
+			offset 212.423
+		object
+			sprite planet/desert2
+			distance 1012.78
+			period 325.718
+		object
+			sprite planet/rock5
+			distance 1367.84
+			period 511.237
+		object "The Eye"
+			sprite planet/wormhole
+			distance 2022.87
+			period 919.438
+	system Sko'karak
+		fleet "Wanderer Defense" 500
+		object
+			sprite star/m0
+			period 10
+		object
+			sprite planet/rock8
+			distance 154.36
+			period 42.8832
+		object
+			sprite planet/rock18
+			distance 384.05
+			period 168.293
+		object
+			sprite planet/desert1
+			distance 617.3
+			period 342.949
+		object
+			sprite planet/gas4
+			distance 1227.46
+			period 961.603
+			object
+				sprite planet/callisto
+				distance 272
+				period 15.8216
+			object
+				sprite planet/rock3
+				distance 406
+				period 28.8527
+		object "The Eye"
+			sprite planet/wormhole
+			distance 2331.95
+			period 2518.05

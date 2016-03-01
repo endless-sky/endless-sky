@@ -52,9 +52,9 @@ protected:
 	virtual bool Click(int x, int y);
 	virtual bool RClick(int x, int y);
 	virtual bool Hover(int x, int y);
-	virtual bool Drag(int dx, int dy);
+	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y);
-	virtual bool Scroll(int dx, int dy);
+	virtual bool Scroll(double dx, double dy);
 	
 	void SetIsFullScreen(bool set);
 	void SetTrapAllEvents(bool set);
