@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class Government;
 class Outfit;
+class OutfitGroup;
 class Person;
 class Planet;
 class Ship;
@@ -184,7 +185,7 @@ public:
 	
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
-	std::map<const Outfit *, int> &SoldOutfits();
+	OutfitGroup &SoldOutfits();
 	
 	
 private:
@@ -237,7 +238,7 @@ private:
 	
 	const Outfit *selectedWeapon = nullptr;
 	
-	std::map<const Outfit *, int> soldOutfits;
+	OutfitGroup soldOutfits;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

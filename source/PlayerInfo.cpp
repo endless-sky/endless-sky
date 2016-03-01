@@ -453,8 +453,13 @@ void PlayerInfo::IncrementDate()
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = 0;
-	for(const shared_ptr<Ship> &ship : ships)
+	for(const shared_ptr<Ship> &ship : ships) 
+	{
+		// Increment the age of the ship and its outfits.
+		ship->IncrementDate();
+		// Add the ship's value and the value of any cargo to net worth.
 		assets += ship->Cost() + ship->Cargo().Value(system);
+	}
 	
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
@@ -1504,7 +1509,7 @@ void PlayerInfo::SelectNext()
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
-map<const Outfit *, int> &PlayerInfo::SoldOutfits()
+OutfitGroup &PlayerInfo::SoldOutfits()
 {
 	return soldOutfits;
 }

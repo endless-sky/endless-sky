@@ -58,6 +58,7 @@ public:
 	MissionAction Instantiate(std::map<std::string, std::string> &subs, int jumps, int payload) const;
 	
 	
+	
 private:
 	std::string trigger;
 	std::string system;
@@ -68,7 +69,7 @@ private:
 	Conversation conversation;
 	
 	std::map<std::string, int> events;
-	std::map<const Outfit *, int> gifts;
+	OutfitGroup gifts;
 	int payment = 0;
 	int paymentMultiplier = 0;
 	

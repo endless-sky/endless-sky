@@ -13,6 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef CARGO_HOLD_H_
 #define CARGO_HOLD_H_
 
+#include "OutfitGroup.h"
+
 #include <map>
 #include <string>
 
@@ -66,7 +68,7 @@ public:
 	int GetPassengers(const Mission *mission) const;
 	
 	const std::map<std::string, int> &Commodities() const;
-	const std::map<const Outfit *, int> &Outfits() const;
+	const OutfitGroup &Outfits() const;
 	// Note: some missions may have cargo that takes up 0 space, but should
 	// still show up on the cargo listing.
 	const std::map<const Mission *, int> &MissionCargo() const;
@@ -99,7 +101,7 @@ private:
 	int size = -1;
 	int bunks = -1;
 	std::map<std::string, int> commodities;
-	std::map<const Outfit *, int> outfits;
+	OutfitGroup outfits;
 	std::map<const Mission *, int> missionCargo;
 	std::map<const Mission *, int> passengers;
 };

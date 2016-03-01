@@ -1975,7 +1975,6 @@ const Outfit &Ship::Attributes() const
 
 
 
-
 const Outfit &Ship::BaseAttributes() const
 {
 	return baseAttributes;
@@ -1984,7 +1983,7 @@ const Outfit &Ship::BaseAttributes() const
 
 
 // Get outfit information.
-const map<const Outfit *, int> &Ship::Outfits() const
+const OutfitGroup &Ship::Outfits() const
 {
 	return outfits;
 }
@@ -2177,6 +2176,23 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+void Ship::IncrementDate()
+{
+	// Ships don't depreciate while parked.
+	if (IsParked())
+		return;
+	// Increment the age of the base ship and each outfit.
+	baseAttributes.IncrementDate();
+	for (auto it : this->outfits)
+    {
+        it.first->IncrementDate();
+    }
+    // Update the new total attributes. 
+    
 }
 
 

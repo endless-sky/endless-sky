@@ -30,6 +30,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class DataNode;
 class DataWriter;
 class Government;
+class OutfitGroup;
 class Phrase;
 class Planet;
 class Projectile;
@@ -240,7 +241,7 @@ public:
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
-	const std::map<const Outfit *, int> &Outfits() const;
+	const OutfitGroup &Outfits() const;
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
@@ -278,6 +279,9 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
 	
+	// Increment the age of this ship and its outfits for the purpose 
+	// of used parts value calculations. 
+	void IncrementDate();
 	
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -337,6 +341,7 @@ private:
 	
 	Command commands;
 	
+	
 	Personality personality;
 	const Phrase *hail = nullptr;
 	
@@ -344,7 +349,7 @@ private:
 	Outfit attributes;
 	Outfit baseAttributes;
 	const Outfit *explosionWeapon = nullptr;
-	std::map<const Outfit *, int> outfits;
+	OutfitGroup outfits;
 	CargoHold cargo;
 	
 	std::vector<Bay> droneBays;
@@ -354,7 +359,7 @@ private:
 	Armament armament;
 	// While loading, keep track of which outfits already have been equipped.
 	// (That is, they were specified as linked to a given gun or turret point.)
-	std::map<const Outfit *, int> equipped;
+	OutfitGroup equipped;
 	
 	// Various energy levels:
 	double shields = 0.;
