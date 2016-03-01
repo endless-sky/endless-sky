@@ -60,8 +60,8 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool Click(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);

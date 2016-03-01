@@ -44,8 +44,8 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			if(event.motion.state & SDL_BUTTON(1))
 				handled = (*it)->Drag(
-					event.motion.xrel * 100 / Screen::Zoom(),
-					event.motion.yrel * 100 / Screen::Zoom());
+					event.motion.xrel * 100. / Screen::Zoom(),
+					event.motion.yrel * 100. / Screen::Zoom());
 			else
 				handled = (*it)->Hover(
 					Screen::Left() + event.motion.x * 100 / Screen::Zoom(),

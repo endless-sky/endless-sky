@@ -277,9 +277,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(
-		-60. * (attributes.Get("thrusting energy") + attributes.Get("turning energy"))));
+		-60. * (attributes.Get("thrusting energy")
+			+ attributes.Get("reverse thrusting energy")
+			+ attributes.Get("turning energy"))));
 	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("thrusting heat") + attributes.Get("turning heat"))));
+		60. * (attributes.Get("thrusting heat")
+			+ attributes.Get("reverse thrusting heat")
+			+ attributes.Get("turning heat"))));
 	attributesHeight += 20;
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
