@@ -20,30 +20,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
-// Operators that form allow use with a range-based for loop
-bool OutfitGroup::iterator::operator!= (const OutfitGroup::iterator& other) const
-{
-	return position != other.position;
-}
 
-int OutfitGroup::iterator::operator* () const
+void OutfitGroup::Clear()
 {
-	return myGroup->get();
-}
-
-const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
-{
-	if (innerIter == )
-	return *this;
+	outfits.clear();
 }
 
 
 
-
-
-void OutfitGroup::Save(DataWriter &out) const
+bool OutfitGroup::Enpty() const
 {
-	
+	return outfits.empty();
+}
+
+
+
+std::map<int64_t, int> OutfitGroup::Find(const Outfit *outfit) const
+{
+	return outfits.find(outfit);
 }
 
 
@@ -51,6 +45,26 @@ void OutfitGroup::Save(DataWriter &out) const
 int64_t OutfitGroup::GetTotalCost() const
 {
 	
+}
+
+
+
+int64_t OutfitGroup::GetTotalCost(const Outfit *outfit) const
+{
+	
+}
+
+
+
+int OutfitGroup::GetTotalCount(const Outfit *outfit) const
+{
+	int count = 0;
+	map<int64_t, int> matchingOutfits = outfits.Find(outfit);
+	if (matchingOutfits == outfits.End())
+		return 0;
+	for (auto it : matchingOutfits.second)
+		count += it.second;
+	return count;
 }
 
 
@@ -88,3 +102,53 @@ void OutfitGroup::IncrementDate()
 	
 }
 
+
+
+// Operators that form allow use with a range-based for loop
+bool OutfitGroup::iterator::operator!= (const OutfitGroup::iterator& other) const
+{
+	return position != other.position;
+}
+
+
+
+ OutfitGroup::iterator::operator* () const
+{
+	return 0;
+}
+
+
+
+const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
+{
+	if (innerIter == currentOutfit.end())
+	{
+		outerIter++;
+		innerIter = outerIter.second().begin();
+	}
+	else
+		innerIter++;
+	
+	return *this;
+}
+
+
+
+const Outfit* OutfitGroup::iterator::GetOutfit() const
+{
+	return outerIter.first();
+}
+
+
+
+int64_t OutfitGroup::iterator::GetAge() const
+{
+	return innerIter.first();
+}
+
+
+
+int OutfitGroup::iterator::GetQuantity() const
+{
+	return innerIter.second();
+}

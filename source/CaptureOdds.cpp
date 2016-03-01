@@ -148,19 +148,18 @@ void CaptureOdds::Make(vector<double> *power, const Ship *ship, bool isDefender)
 	double automatedPower = ship->BaseAttributes().Get(automatedAttribute);
 	for(const auto &it : ship->Outfits())
 	{
-		double value = it.first->Get(automatedAttribute);
-		// value is the power of each outfit, it.second is the number that you have.
-		if(value > 0. && it.second > 0) 
-			automatedPower += it.second * value;
+		double value = it.GetOutfit()->Get(automatedAttribute);
+		if(value > 0. && it.GetQuantity() > 0) 
+			automatedPower += it.GetQuantity() * value;
 	}
 
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
 	for(const auto &it : ship->Outfits())
 	{
-		double value = it.first->Get(weaponAttribute);
-		if(value > 0. && it.second > 0)
-			power->insert(power->end(), it.second, value);
+		double value = it.GetOutfit()->Get(weaponAttribute);
+		if(value > 0. && it.GetQuantity() > 0)
+			power->insert(power->end(), it.GetQuantity(), value);
 	}
 	// Use the best weapons first.
 	sort(power->begin(), power->end(), greater<double>());

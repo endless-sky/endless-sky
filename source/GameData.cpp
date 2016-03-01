@@ -758,11 +758,11 @@ void GameData::PrintShipTable()
 		double heat = attributes.Get("heat generation") - attributes.Get("cooling")
 			+ attributes.Get("thrusting heat") + attributes.Get("turning heat");
 		for(const auto &oit : ship.Outfits())
-			if(oit.first->IsWeapon() && oit.first->Reload())
+			if(oit.GetOutfit()->IsWeapon() && oit.GetOutfit()->Reload())
 			{
-				double reload = oit.first->Reload();
-				energy += oit.second * oit.first->FiringEnergy() / reload;
-				heat += oit.second * oit.first->FiringHeat() / reload;
+				double reload = oit.GetOutfit()->Reload();
+				energy += oit.GetQuantity() * oit.GetOutfit()->FiringEnergy() / reload;
+				heat += oit.GetQuantity() * oit.GetOutfit()->FiringHeat() / reload;
 			}
 		cout << 60. * attributes.Get("energy generation") << '\t';
 		cout << 60. * energy << '\t';

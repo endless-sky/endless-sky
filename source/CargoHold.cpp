@@ -31,7 +31,7 @@ void CargoHold::Clear()
 	size = 0;
 	bunks = 0;
 	commodities.clear();
-	outfits.clear();
+	outfits.Clear();
 	missionCargo.clear();
 	passengers.clear();
 }
@@ -59,7 +59,8 @@ void CargoHold::Load(const DataNode &node)
 			{
 				const Outfit *outfit = GameData::Outfits().Get(grand.Token(0));
 				int count = (grand.Size() < 2) ? 1 : grand.Value(1);
-				outfits[outfit] += count;
+				int age = (grand.Size() < 3) ? 0 : grand.Value(2);
+				outfits.AddOutfit(outfit, count, age);
 			}
 		}
 	}
@@ -90,7 +91,7 @@ void CargoHold::Save(DataWriter &out) const
 	
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
-		if(it.second && !it.first->Name().empty())
+		if(it.GetQuantity() && !it.GetOutfit()->Name().empty())
 		{
 			// It is possible this cargo hold contained no commodities, meaning
 			// we must print the opening tag now.
@@ -109,7 +110,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			firstOutfit = false;
 			
-			out.Write(it.first->Name(), it.second);
+			out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetAge());
 		}
 	if(!firstOutfit)
 		out.EndChild();
@@ -150,7 +151,7 @@ int CargoHold::Used() const
 	for(const auto &it : commodities)
 		used += it.second;
 	for(const auto &it : outfits)
-		used += it.second * it.first->Get("mass");
+		used += it.GetQuantity() * it.GetOutfit()->Get("mass");
 	for(const auto &it : missionCargo)
 		used += it.second;
 	
@@ -173,7 +174,7 @@ int CargoHold::OutfitsSize() const
 {
 	int size = 0;
 	for(const auto &it : outfits)
-		size += it.second * it.first->Get("mass");
+		size += it.GetQuantity() * it.GetOutfit()->Get("mass");
 	return size;
 }
 
@@ -182,7 +183,7 @@ int CargoHold::OutfitsSize() const
 bool CargoHold::HasOutfits() const
 {
 	for(const auto &it : outfits)
-		if(it.second)
+		if(it.GetQuantity())
 			return true;
 	return false;
 }
@@ -208,7 +209,7 @@ bool CargoHold::HasMissionCargo() const
 
 bool CargoHold::IsEmpty() const
 {
-	return commodities.empty() && outfits.empty() && missionCargo.empty() && passengers.empty();
+	return commodities.empty() && outfits.Empty() && missionCargo.empty() && passengers.empty();
 }
 
 
@@ -248,10 +249,9 @@ int CargoHold::Get(const string &commodity) const
 
 
 // Spare outfits:
-int CargoHold::Get(const Outfit *outfit) const
+int CargoHold::GetOutfitCount(const Outfit *outfit) const
 {
-	map<const Outfit *, int>::const_iterator it = outfits.find(outfit);
-	return (it == outfits.end() ? 0 : it->second);
+	return outfits.GetTotalCount(outfit);
 }
 
 
@@ -280,7 +280,7 @@ const map<string, int> &CargoHold::Commodities() const
 
 
 
-const map<const Outfit *, int> &CargoHold::Outfits() const
+const OutfitGroup &CargoHold::Outfits() const
 {
 	return outfits;
 }
@@ -328,25 +328,24 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 
 
 
-int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
-{
-	int mass = outfit->Get("mass");
-	
-	amount = min(amount, Get(outfit));
+int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool oldestFirst)
+{	
+	// Determine the amount that can be transfered.
+	int mass = outfit->Get("mass");	
+	amount = min(amount, GetOutfitCount(outfit));
 	if(size >= 0 && mass)
 		amount = max(amount, -max(Free(), 0) / mass);
 	if(to)
 	{
-		amount = max(amount, -to->Get(outfit));
+		amount = max(amount, -to->GetOutfitCount(outfit));
 		if(to->size >= 0 && mass)
 			amount = min(amount, max(to->Free(), 0) / mass);
 	}
 	if(!amount)
 		return 0;
 	
-	outfits[outfit] -= amount;
-	if(to)
-		to->outfits[outfit] += amount;
+	// Perform transfer
+	outfits.TransferOutfits(outfit, amount, to ? &(to->outfits) : nullptr, oldestFirst);
 	
 	return amount;
 }
@@ -414,7 +413,7 @@ void CargoHold::TransferAll(CargoHold *to)
 	if(!to)
 	{
 		commodities.clear();
-		outfits.clear();
+		outfits.Clear();
 		missionCargo.clear();
 		return;
 	}
@@ -434,7 +433,7 @@ void CargoHold::TransferAll(CargoHold *to)
 			++mit;
 	}
 	for(const auto &it : outfits)
-		Transfer(it.first, it.second, to);
+		Transfer(it.GetOutfit(), it.GetQuantity(), to);
 	for(const auto &it : commodities)
 		Transfer(it.first, it.second, to);
 }
@@ -473,8 +472,7 @@ int CargoHold::Value(const System *system) const
 	int value = 0;
 	for(const auto &it : commodities)
 		value += system->Trade(it.first) * it.second;
-	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second;
+	value += outfits.GetTotalCost();
 	return value;
 }
 
@@ -489,7 +487,7 @@ int CargoHold::IllegalCargoFine() const
 	// Carrying an illegal outfit is only half as bad as having it equipped.
 	for(const auto &it : outfits)
 	{
-		int fine = it.first->Get("illegal");
+		int fine = it.GetOutfit()->Get("illegal");
 		if(fine < 0)
 			return fine;
 		worst = max(worst, fine / 2);

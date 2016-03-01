@@ -62,7 +62,7 @@ public:
 	// Normal cargo:
 	int Get(const std::string &commodity) const;
 	// Spare outfits:
-	int Get(const Outfit *outfit) const;
+	int GetOutfitCount(const Outfit *outfit) const;
 	// Mission cargo:
 	int Get(const Mission *mission) const;
 	int GetPassengers(const Mission *mission) const;
@@ -78,7 +78,7 @@ public:
 	// the commodity to "disappear" or, if the "amount" is negative, to have an
 	// unlimited supply. The return value is the actual number transferred.
 	int Transfer(const std::string &commodity, int amount, CargoHold *to = nullptr);
-	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr);
+	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr, bool oldestFirst = true);
 	int Transfer(const Mission *mission, int amount, CargoHold *to = nullptr);
 	int TransferPassengers(const Mission *mission, int amount, CargoHold *to = nullptr);
 	// Transfer as much as the given cargo hold has capacity for. The priority is

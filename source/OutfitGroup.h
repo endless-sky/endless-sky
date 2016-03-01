@@ -38,11 +38,18 @@ class OutfitGroup;
 // Replaces std::map<const Outfit *, int> in many places.
 class OutfitGroup {
 public:
+	// Clear all data.
+	void Clear();
+	bool Empty() const;
+	std::map<int64_t, int> Find(const Outfit *outfit) const;
 	
-	// Save a full description of this outfitGroup and what it currently contains.
-	void Save(DataWriter &out) const;
-	
+	// Cost of all outfits in group.
 	int64_t GetTotalCost() const;
+	// Cost of all outfits of a given type.
+	int64_t GetTotalCost(const Outfit *outfit) const;
+	// How many outfits of a given type.
+	int GetTotalCount(const Outfit *outfit) const;
+	// Cost of given number of outfits of a given type, either oldest or newest. 
 	int64_t GetCost(const Outfit* outfit, int count, bool oldestFirst) const;
 	
 	// Add outfits.
@@ -51,7 +58,7 @@ public:
 	// Remove outfits, either oldest first or newest first.
 	void RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst);
 	
-	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to);
+	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst);
 	
 	void IncrementDate();
 	
@@ -62,21 +69,27 @@ public:
 		iterator (const OutfitGroup* group)
 		: myGroup(group)
 		{ }
-
+		
+		// Iteration operators
 		bool operator!= (const OutfitGroup::iterator& other) const;
-		int operator* () const;
+		iterator operator* () const;
 		const OutfitGroup::iterator& operator++ ();
+		
+		// Getters 
+		const Outfit* GetOutfit() const;
+		int64_t GetAge() const;
+		int GetQuantity() const;
 		
 	private:
 		const OutfitGroup *myGroup;
 		std::map<const Outfit*, std::map<int64_t, int>>::iterator outerIter;
-		const std::map<int64_t, int> *currentOutfit;
+		const std::map<int64_t, int> *currentOutfitList;
 		std::map<int64_t, int>::iterator innerIter;
 	};
 
 	// Enable use in for loops.
-	OutfitGroup::iterator begin();
-	OutfitGroup::iterator end();
+	OutfitGroup::iterator begin() const;
+	OutfitGroup::iterator end() const;
 	
 private:
 	

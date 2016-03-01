@@ -309,21 +309,21 @@ void Engine::Step(bool isActive)
 	if(flagship)
 		for(const auto &it : flagship->Outfits())
 		{
-			if(!it.first->Icon())
+			if(!it.GetOutfit()->Icon())
 				continue;
 			
-			if(it.first->Ammo())
-				ammo.emplace_back(it.first,
-					flagship->OutfitCount(it.first->Ammo()));
-			else if(it.first->FiringFuel())
+			if(it.GetOutfit()->Ammo())
+				ammo.emplace_back(it.GetOutfit(),
+					flagship->OutfitCount(it.GetOutfit()->Ammo()));
+			else if(it.GetOutfit()->FiringFuel())
 			{
 				double remaining = flagship->Fuel()
 					* flagship->Attributes().Get("fuel capacity");
-				ammo.emplace_back(it.first,
-					remaining / it.first->FiringFuel());
+				ammo.emplace_back(it.GetOutfit(),
+					remaining / it.GetOutfit()->FiringFuel());
 			}
 			else
-				ammo.emplace_back(it.first, -1);
+				ammo.emplace_back(it.GetOutfit(), -1);
 		}
 	
 	// Display escort information for all ships of the "Escort" government,

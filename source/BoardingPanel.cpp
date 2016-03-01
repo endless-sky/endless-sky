@@ -64,8 +64,8 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship.
 	for(const auto &it : victim->Outfits())
-		if(it.first->Category() != "Hand to Hand")
-			plunder.emplace_back(it.first, it.second);
+		if(it.GetOutfit()->Category() != "Hand to Hand")
+			plunder.emplace_back(it.GetOutfit(), it.GetQuantity());
 	
 	sort(plunder.begin(), plunder.end());
 }
@@ -194,7 +194,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			// it to refill your ammo rather than putting it in cargo.
 			int taken = 0;
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->Ammo() == outfit)
+				if(it.GetOutfit() != outfit && it.GetOutfit()->Ammo() == outfit)
 				{
 					for( ; taken < count && you->Attributes().CanAdd(*outfit); ++taken)
 					{

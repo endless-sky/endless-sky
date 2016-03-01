@@ -217,7 +217,7 @@ bool InfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(CanDump())
 		{
 			int amount = (*shipIt)->Cargo().Get(selectedCommodity);
-			int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
+			int plunderAmount = (*shipIt)->Cargo().GetOutfitCount(selectedPlunder);
 			if(amount)
 			{
 				GetUI()->Push(new Dialog(this, &InfoPanel::Dump,
@@ -406,7 +406,7 @@ void InfoPanel::UpdateInfo()
 	
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
-		outfits[it.first->Category()].push_back(it.first);
+		outfits[it.GetOutfit()->Category()].push_back(it.GetOutfit());
 }
 
 
@@ -610,17 +610,17 @@ void InfoPanel::DrawShip() const
 	{
 		for(const auto &it : cargo.Outfits())
 		{
-			if(!it.second)
+			if(!it.GetQuantity())
 				continue;
 			
 			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
-			plunderZones.emplace_back(center, size, it.first);
-			if(it.first == selectedPlunder)
+			plunderZones.emplace_back(center, size, it.GetOutfit());
+			if(it.GetOutfit() == selectedPlunder)
 				FillShader::Fill(center, size + Point(10., 0.), backColor);
 			
-			string number = to_string(it.second);
+			string number = to_string(it.GetQuantity());
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.first->Name(), pos, dim);
+			font.Draw(it.GetOutfit()->Name(), pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			
@@ -747,7 +747,7 @@ bool InfoPanel::CanDump() const
 		return false;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
-	return (selectedPlunder && cargo.Get(selectedPlunder) > 0) || cargo.CommoditiesSize();
+	return (selectedPlunder && cargo.GetOutfitCount(selectedPlunder) > 0) || cargo.CommoditiesSize();
 }
 
 
@@ -760,7 +760,7 @@ void InfoPanel::Dump()
 	CargoHold &cargo = (*shipIt)->Cargo();
 	int originalCargo = cargo.Used();
 	int amount = cargo.Get(selectedCommodity);
-	int plunderAmount = cargo.Get(selectedPlunder);
+	int plunderAmount = cargo.GetOutfitCount(selectedPlunder);
 	int64_t loss = 0;
 	if(amount)
 	{
@@ -797,7 +797,7 @@ void InfoPanel::DumpPlunder(int count)
 {
 	CargoHold &cargo = (*shipIt)->Cargo();
 	int originalCargo = cargo.Used();
-	count = min(count, cargo.Get(selectedPlunder));
+	count = min(count, cargo.GetOutfitCount(selectedPlunder));
 	if(count > 0)
 	{
 		cargo.Transfer(selectedPlunder, count);
