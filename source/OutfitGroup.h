@@ -41,7 +41,7 @@ public:
 	// Clear all data.
 	void Clear();
 	bool Empty() const;
-	std::map<int64_t, int> Find(const Outfit *outfit) const;
+	const std::map<int, int> *Find(const Outfit *outfit) const;
 	
 	// Cost of all outfits in group.
 	int64_t GetTotalCost() const;
@@ -58,7 +58,7 @@ public:
 	// Remove outfits, either oldest first or newest first.
 	void RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst);
 	
-	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst);
+	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge);
 	
 	void IncrementDate();
 	
@@ -77,7 +77,7 @@ public:
 		
 		// Getters 
 		const Outfit* GetOutfit() const;
-		int64_t GetAge() const;
+		int GetAge() const;
 		int GetQuantity() const;
 		
 	private:
@@ -92,9 +92,11 @@ public:
 	OutfitGroup::iterator end() const;
 	
 private:
-	
+	typedef std::map<int, int> InnerMap;
+	typedef std::map<const Outfit*, InnerMap> OuterMap;
+
 	// Map of outfit to map of ages to outfits of that type of that age.
-	std::map<const Outfit*, std::map<int64_t, int>> outfits;
+	OuterMap outfits;
 
 };
 

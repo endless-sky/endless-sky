@@ -245,7 +245,7 @@ public:
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
-	void AddOutfit(const Outfit *outfit, int count);
+	void AddOutfit(const Outfit *outfit, int count, int ageToAdd, bool removeOldestFirst=true);
 	
 	// Get the list of weapons.
 	Armament &GetArmament();

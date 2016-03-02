@@ -328,7 +328,7 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 
 
 
-int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool oldestFirst)
+int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool oldestFirst, int defaultAge)
 {	
 	// Determine the amount that can be transfered.
 	int mass = outfit->Get("mass");	
@@ -345,7 +345,7 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool ol
 		return 0;
 	
 	// Perform transfer
-	outfits.TransferOutfits(outfit, amount, to ? &(to->outfits) : nullptr, oldestFirst);
+	outfits.TransferOutfits(outfit, amount, to ? &(to->outfits) : nullptr, oldestFirst, defaultAge);
 	
 	return amount;
 }

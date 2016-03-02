@@ -28,16 +28,19 @@ void OutfitGroup::Clear()
 
 
 
-bool OutfitGroup::Enpty() const
+bool OutfitGroup::Empty() const
 {
 	return outfits.empty();
 }
 
 
 
-std::map<int64_t, int> OutfitGroup::Find(const Outfit *outfit) const
+const std::map<int, int> *OutfitGroup::Find(const Outfit *outfit) const
 {
-	return outfits.find(outfit);
+	auto iter = outfits.find(outfit);
+	if (iter != outfits.end())
+		return &iter->second;
+	return nullptr;
 }
 
 
@@ -59,10 +62,10 @@ int64_t OutfitGroup::GetTotalCost(const Outfit *outfit) const
 int OutfitGroup::GetTotalCount(const Outfit *outfit) const
 {
 	int count = 0;
-	map<int64_t, int> matchingOutfits = outfits.Find(outfit);
-	if (matchingOutfits == outfits.End())
+	auto matchingOutfits = outfits.find(outfit);
+	if (matchingOutfits == outfits.end())
 		return 0;
-	for (auto it : matchingOutfits.second)
+	for (auto it : matchingOutfits->second)
 		count += it.second;
 	return count;
 }
@@ -90,7 +93,7 @@ void OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst
 
 
 
-void OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to)
+void OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge)
 {
 	
 }
@@ -107,24 +110,25 @@ void OutfitGroup::IncrementDate()
 // Operators that form allow use with a range-based for loop
 bool OutfitGroup::iterator::operator!= (const OutfitGroup::iterator& other) const
 {
-	return position != other.position;
+	return outerIter != other.outerIter || innerIter != other.innerIter;
 }
 
 
 
- OutfitGroup::iterator::operator* () const
+OutfitGroup::iterator OutfitGroup::iterator::operator* () const
 {
-	return 0;
+	return *this;
 }
 
 
 
 const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
 {
-	if (innerIter == currentOutfit.end())
+	
+	if (innerIter == outerIter->second.end())
 	{
 		outerIter++;
-		innerIter = outerIter.second().begin();
+		innerIter = outerIter->second.begin();
 	}
 	else
 		innerIter++;
@@ -136,19 +140,19 @@ const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
 
 const Outfit* OutfitGroup::iterator::GetOutfit() const
 {
-	return outerIter.first();
+	return outerIter->first;
 }
 
 
 
-int64_t OutfitGroup::iterator::GetAge() const
+int OutfitGroup::iterator::GetAge() const
 {
-	return innerIter.first();
+	return innerIter->first;
 }
 
 
 
 int OutfitGroup::iterator::GetQuantity() const
 {
-	return innerIter.second();
+	return innerIter->second;
 }

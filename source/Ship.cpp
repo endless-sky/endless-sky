@@ -1999,7 +1999,7 @@ int Ship::OutfitCount(const Outfit *outfit) const
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::AddOutfit(const Outfit *outfit, int count)
+void Ship::AddOutfit(const Outfit *outfit, int count, int age)
 {
 	if(outfit && count)
 	{

@@ -106,7 +106,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	bool hasOutfit = (outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit));
+	bool hasOutfit = (outfitter.Has(outfit) || available.Find(outfit) || player.Cargo().GetOutfitCount(outfit));
 	if(!hasOutfit)
 		for(const Ship *ship : playerShips)
 			if(ship->OutfitCount(outfit))
@@ -159,15 +159,15 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			font.Draw(label, labelPos, bright);
 		}
 	}
-	if(player.Cargo().Get(outfit))
+	if(player.Cargo().GetOutfitCount(outfit))
 	{
-		string count = "in cargo: " + to_string(player.Cargo().Get(outfit));
+		string count = "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));
 		Point pos = point + Point(
 			OUTFIT_SIZE / 2 - 20 - font.Width(count),
 			OUTFIT_SIZE / 2 - 24);
 		font.Draw(count, pos, bright);
 	}
-	else if(!outfitter.Has(outfit) && !available[outfit])
+	else if(!outfitter.Has(outfit) && !available.Find(outfit))
 	{
 		static const string message = "(not sold here)";
 		Point pos = point + Point(
@@ -215,10 +215,10 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	// If you have this in your cargo hold, installing it is free.
-	if(player.Cargo().Get(selectedOutfit))
+	if(player.Cargo().GetOutfitCount(selectedOutfit))
 		return true;
 	
-	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit]))
+	if(!(outfitter.Has(selectedOutfit) || available.Find(selectedOutfit)))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -295,14 +295,15 @@ void OutfitterPanel::Buy()
 			if(!CanBuy())
 				return;
 		
-			if(player.Cargo().Get(selectedOutfit))
+			if(player.Cargo().GetOutfitCount(selectedOutfit))
 				player.Cargo().Transfer(selectedOutfit, 1);
-			else if(!available[selectedOutfit] && !outfitter.Has(selectedOutfit))
+			else if(!available.Find(selectedOutfit) && !outfitter.Has(selectedOutfit))
 				break;
 			else
 			{
+				// Sell highest price outfits first.
 				player.Accounts().AddCredits(-selectedOutfit->Cost());
-				--available[selectedOutfit];
+				--available(selectedOutfit);
 			}
 			ship->AddOutfit(selectedOutfit, 1);
 			int required = selectedOutfit->Get("required crew");

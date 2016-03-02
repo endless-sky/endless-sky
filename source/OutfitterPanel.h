@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "OutfitGroup.h"
 #include "Sale.h"
 
 #include <map>
