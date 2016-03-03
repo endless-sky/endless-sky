@@ -38,6 +38,8 @@ class OutfitGroup;
 // Replaces std::map<const Outfit *, int> in many places.
 class OutfitGroup {
 public:
+	static int64_t CostFunction(int64_t baseValue, int age, double minValue = 0.5, double lossPerDay = 0.005);
+
 	// Clear all data.
 	void Clear();
 	bool Empty() const;
@@ -58,7 +60,7 @@ public:
 	// Remove outfits, either oldest first or newest first.
 	void RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst);
 	
-	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge);
+	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge = 0);
 	
 	void IncrementDate();
 	
@@ -66,12 +68,12 @@ public:
 	// it was a map<const Outfit *, int>.  
 	class iterator {
 	public:
-		iterator (const OutfitGroup* group)
-		: myGroup(group)
-		{ }
+		iterator (const OutfitGroup* group, bool begin);
+		iterator (const OutfitGroup* group, const Outfit* outfit);
 		
 		// Iteration operators
 		bool operator!= (const OutfitGroup::iterator& other) const;
+		bool operator== (const OutfitGroup::iterator& other) const;
 		iterator operator* () const;
 		const OutfitGroup::iterator& operator++ ();
 		
@@ -87,9 +89,12 @@ public:
 		std::map<int64_t, int>::iterator innerIter;
 	};
 
+	
 	// Enable use in for loops.
 	OutfitGroup::iterator begin() const;
 	OutfitGroup::iterator end() const;
+	OutfitGroup::iterator find(const Outfit *outfit) const;
+	
 	
 private:
 	typedef std::map<int, int> InnerMap;

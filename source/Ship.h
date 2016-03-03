@@ -241,7 +241,9 @@ public:
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
-	const OutfitGroup &Outfits() const;
+	const OutfitGroup &Outfits() const ;
+	// Get OutfitGroup pointer for transfer operations (shop).
+	OutfitGroup *OutfitTransfer();
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
@@ -351,6 +353,7 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	OutfitGroup outfits;
 	CargoHold cargo;
+	int age;
 	
 	std::vector<Bay> droneBays;
 	std::vector<Bay> fighterBays;

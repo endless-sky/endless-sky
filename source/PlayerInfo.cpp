@@ -628,11 +628,12 @@ void PlayerInfo::SellShip(const Ship *selected)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
-		{
-			for(const auto &it : selected->Outfits())
-				soldOutfits[it.first] += it.second;
-			
+		{			
 			accounts.AddCredits(selected->Cost());
+			
+			for(const auto &it : selected->Outfits())
+				soldOutfits.AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetAge());
+
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -874,7 +875,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	availableJobs.clear();
 	availableMissions.clear();
 	doneMissions.clear();
-	soldOutfits.clear();
+	soldOutfits.Clear();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1485,8 +1486,10 @@ const Outfit *PlayerInfo::SelectedWeapon() const
 // Cycle through all available secondary weapons.
 void PlayerInfo::SelectNext()
 {
-	if(!flagship || flagship->Outfits().empty())
+	if(!flagship || flagship->Outfits().Empty())
 		return;
+	
+	// TODO: Need to group weapons by type, not type/age.
 	
 	// Start with the currently selected weapon, if any.
 	auto it = flagship->Outfits().find(selectedWeapon);
@@ -1497,9 +1500,9 @@ void PlayerInfo::SelectNext()
 	
 	// Find the next secondary weapon.
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+		if(it.GetOutfit() != selectedWeapon && it.GetOutfit()->Icon())
 		{
-			selectedWeapon = it->first;
+			selectedWeapon = it.GetOutfit();
 			return;
 		}
 	selectedWeapon = nullptr;

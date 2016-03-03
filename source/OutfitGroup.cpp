@@ -74,15 +74,47 @@ int OutfitGroup::GetTotalCount(const Outfit *outfit) const
 
 int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) const
 {
-	
+	int64_t cost = 0;
+	auto matchingOutfits = outfits.find(outfit);
+	if (matchingOutfits == outfits.end())
+		return 0;
+	if (oldestFirst)
+	{
+		auto it = matchingOutfits->second.rbegin();
+		for (; it != matchingOutfits->second.rend(); ++it)
+		{
+			cost += CostFunction(outfit->Cost(), it->first);	
+			if (--count <= 0)
+				break;
+		}
+	}
+	else 
+	{ // newest first
+		auto it = matchingOutfits->second.begin();
+		for (; it != matchingOutfits->second.end(); ++it)
+		{
+			cost += CostFunction(outfit->Cost(), it->first);	
+			if (--count <= 0)
+				break;
+		}		
+	}
+	return cost;
 }
 
 
 
 void OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
-{
-	
-}
+{/*
+	auto it = outfits.find(outfit);
+	if(it == outfits.end())
+		outfits[outfit] = count;
+	else
+	{
+		it->second += count;
+		if(!it->second)
+			outfits.erase(it);
+	}
+*/}
 
 
 
@@ -111,6 +143,13 @@ void OutfitGroup::IncrementDate()
 bool OutfitGroup::iterator::operator!= (const OutfitGroup::iterator& other) const
 {
 	return outerIter != other.outerIter || innerIter != other.innerIter;
+}
+
+
+
+bool OutfitGroup::iterator::operator== (const OutfitGroup::iterator& other) const
+{
+	return outerIter == other.outerIter && innerIter == other.innerIter;
 }
 
 

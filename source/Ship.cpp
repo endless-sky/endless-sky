@@ -55,7 +55,7 @@ void Ship::Load(const DataNode &node)
 		base = GameData::Ships().Get(modelName);
 	
 	government = GameData::PlayerGovernment();
-	equipped.clear();
+	equipped.Clear();
 	
 	// Note: I do not clear the attributes list here so that it is permissible
 	// to override one ship definition with another.
@@ -104,7 +104,7 @@ void Ship::Load(const DataNode &node)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
 			if(outfit)
-				++equipped[outfit];
+				equipped.AddOutfit(outfit, 1, 0); // Don't need accurate age in "equipped" group.
 			if(child.Token(0) == "gun")
 				armament.AddGunPort(hardpoint, outfit);
 			else
@@ -149,13 +149,14 @@ void Ship::Load(const DataNode &node)
 		{
 			if(!hasOutfits)
 			{
-				outfits.clear();
+				outfits.Clear();
 				hasOutfits = true;
 			}
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				int age = (grand.Size() >= 3) ? grand.Value(2) : 0;
+				outfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, age);
 			}
 		}
 		else if(child.Token(0) == "cargo")
@@ -230,7 +231,7 @@ void Ship::FinishLoading()
 			explosionEffects = base->explosionEffects;
 			explosionTotal = base->explosionTotal;
 		}
-		if(outfits.empty())
+		if(outfits.Empty())
 			outfits = base->outfits;
 		if(description.empty())
 			description = base->description;
@@ -280,25 +281,25 @@ void Ship::FinishLoading()
 	attributes = baseAttributes;
 	for(const auto &it : outfits)
 	{
-		if(it.first->Name().empty())
+		if(it.GetOutfit()->Name().empty())
 		{
 			cerr << "Unrecognized outfit in " << modelName << " \"" << name << "\"" << endl;
 			continue;
 		}
-		attributes.Add(*it.first, it.second);
-		if(it.first->IsWeapon())
+		attributes.Add(*it.GetOutfit(), it.GetQuantity());
+		if(it.GetOutfit()->IsWeapon())
 		{
-			int count = it.second;
-			auto eit = equipped.find(it.first);
+			int count = it.GetQuantity();
+			auto eit = equipped.find(it.GetOutfit());
 			if(eit != equipped.end())
-				count -= eit->second;
+				count -= eit.GetQuantity();
 			
 			if(count)
-				armament.Add(it.first, count);
+				armament.Add(it.GetOutfit(), count);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
-	equipped.clear();
+	equipped.Clear();
 	armament.FinishLoading();
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
@@ -338,12 +339,12 @@ void Ship::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			for(const auto &it : outfits)
-				if(it.first && it.second)
+				if(it.GetOutfit() && it.GetQuantity())
 				{
-					if(it.second == 1)
-						out.Write(it.first->Name());
+					if(it.GetQuantity() == 1 && !it.GetAge())
+						out.Write(it.GetOutfit()->Name());
 					else
-						out.Write(it.first->Name(), it.second);
+						out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetAge());
 				}
 		}
 		out.EndChild();
@@ -1990,28 +1991,31 @@ const OutfitGroup &Ship::Outfits() const
 
 
 
+// Get outfitGroup pointer for transfer operations.
+OutfitGroup *Ship::OutfitTransfer()
+{
+	return &outfits;
+}
+
+
+
 int Ship::OutfitCount(const Outfit *outfit) const
 {
-	auto it = outfits.find(outfit);
-	return (it == outfits.end()) ? 0 : it->second;
+	return outfits.GetTotalCount(outfit);
 }
 
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::AddOutfit(const Outfit *outfit, int count, int age)
+void Ship::AddOutfit(const Outfit *outfit, int count, int ageToAdd, bool removeOldestFirst)
 {
 	if(outfit && count)
 	{
-		auto it = outfits.find(outfit);
-		if(it == outfits.end())
-			outfits[outfit] = count;
-		else
-		{
-			it->second += count;
-			if(!it->second)
-				outfits.erase(it);
-		}
+		if (count > 0)
+			outfits.AddOutfit(outfit, count, ageToAdd);
+		else 
+			outfits.RemoveOutfit(outfit, count, removeOldestFirst);
+		
 		attributes.Add(*outfit, count);
 		if(outfit->IsWeapon())
 			armament.Add(outfit, count);
@@ -2049,8 +2053,7 @@ bool Ship::CanFire(const Outfit *outfit) const
 	
 	if(outfit->Ammo())
 	{
-		auto it = outfits.find(outfit->Ammo());
-		if(it == outfits.end() || it->second <= 0)
+		if (!outfits.GetTotalCount(outfit->Ammo()))
 			return false;
 	}
 	
@@ -2071,7 +2074,7 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	if(!outfit)
 		return;
 	if(outfit->Ammo())
-		AddOutfit(outfit->Ammo(), -1);
+		AddOutfit(outfit->Ammo(), -1, 0, true);
 	
 	energy -= outfit->FiringEnergy();
 	fuel -= outfit->FiringFuel();
@@ -2186,13 +2189,8 @@ void Ship::IncrementDate()
 	if (IsParked())
 		return;
 	// Increment the age of the base ship and each outfit.
-	baseAttributes.IncrementDate();
-	for (auto it : this->outfits)
-    {
-        it.first->IncrementDate();
-    }
-    // Update the new total attributes. 
-    
+	age++;
+	outfits.IncrementDate();    
 }
 
 

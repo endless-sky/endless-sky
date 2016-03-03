@@ -328,24 +328,41 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 
 
 
-int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool oldestFirst, int defaultAge)
-{	
-	// Determine the amount that can be transfered.
-	int mass = outfit->Get("mass");	
-	amount = min(amount, GetOutfitCount(outfit));
-	if(size >= 0 && mass)
-		amount = max(amount, -max(Free(), 0) / mass);
+int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool oldestFirst)
+{
+	if (amount < 0 && to)
+		// Transfer a positive amount the other direction.
+		return to->Transfer(outfit, -amount, this, oldestFirst);
+	
+	// Check room in receiving cargo hold.
 	if(to)
 	{
+		int mass = outfit->Get("mass");	
 		amount = max(amount, -to->GetOutfitCount(outfit));
 		if(to->size >= 0 && mass)
 			amount = min(amount, max(to->Free(), 0) / mass);
 	}
+	if (!amount)
+		return 0;
+	return Transfer(outfit, amount, to ? &(to->outfits) : nullptr, oldestFirst, 0);
+}
+
+
+
+int CargoHold::Transfer(const Outfit *outfit, int amount, OutfitGroup *to, bool oldestFirst, int defaultAge)
+{
+	// Determine the amount that can be transfered. 
+	// The other outfit group has already been vetted as able to 
+	// perform this transfer. 
+	int mass = outfit->Get("mass");	
+	amount = min(amount, GetOutfitCount(outfit));
+	if(size >= 0 && mass)
+		amount = max(amount, -max(Free(), 0) / mass);
 	if(!amount)
 		return 0;
 	
 	// Perform transfer
-	outfits.TransferOutfits(outfit, amount, to ? &(to->outfits) : nullptr, oldestFirst, defaultAge);
+	outfits.TransferOutfits(outfit, amount, to, oldestFirst, defaultAge);
 	
 	return amount;
 }
