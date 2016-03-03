@@ -45,7 +45,12 @@ public:
 	// Draw all the items in this list. The shader object may be shared between
 	// multiple DrawLists, so pass it in here.
 	void Draw() const;
-	
+
+	// Sets the width and height of the drawable screen region (centered on the
+	// screen). Items outside of this region are just ignored but no real
+	// clipping occurs.
+	// If set to (0, 0), it falls back to Screen::Width() and Screen::height().
+	void SetDrawableSize(int width, int height);
 	
 private:
 	class Item {
@@ -87,6 +92,7 @@ private:
 private:
 	int step;
 	std::vector<Item> items;
+	Point drawableSize;
 };
 
 

@@ -240,6 +240,14 @@ bool MainPanel::Click(int x, int y)
 
 
 
+bool MainPanel::Scroll(double, double dy)
+{
+	engine.Zoom(dy < 0 ? -10 : 10);
+	return true;
+}
+
+
+
 void MainPanel::ShowScanDialog(const ShipEvent &event)
 {
 	shared_ptr<Ship> target = event.Target();

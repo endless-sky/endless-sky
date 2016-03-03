@@ -495,6 +495,9 @@ const list<ShipEvent> &Engine::Events() const
 // Draw a frame.
 void Engine::Draw() const
 {
+	auto uiZoom = Screen::Zoom();
+	Screen::SetZoom(zoom);
+
 	GameData::Background().Draw(position, velocity);
 	draw[drawTickTock].Draw();
 	
@@ -516,6 +519,22 @@ void Engine::Draw() const
 	if(flash)
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
+	// Draw crosshairs around anything that is targeted.
+	for(const Target &target : targets)
+	{
+		Angle a = target.angle;
+		Angle da(90.);
+
+		for(int i = 0; i < 4; ++i)
+		{
+			PointerShader::Draw(target.center, a.Unit(), 10., 10., -target.radius,
+				Radar::GetColor(target.type));
+			a += da;
+		}
+	}
+
+	Screen::SetZoom(uiZoom);
+
 	// Draw messages.
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
@@ -536,20 +555,6 @@ void Engine::Draw() const
 		Color color(alpha, 0.);
 		font.Draw(it->message, messagePoint, color);
 		messagePoint.Y() += 20.;
-	}
-	
-	// Draw crosshairs around anything that is targeted.
-	for(const Target &target : targets)
-	{
-		Angle a = target.angle;
-		Angle da(90.);
-		
-		for(int i = 0; i < 4; ++i)
-		{
-			PointerShader::Draw(target.center, a.Unit(), 10., 10., -target.radius,
-				Radar::GetColor(target.type));
-			a += da;
-		}
 	}
 	
 	const Interface *interfaces[2] = {
@@ -620,6 +625,15 @@ void Engine::Click(const Point &point)
 {
 	doClick = true;
 	clickPoint = point;
+}
+
+
+
+void Engine::Zoom(int increment)
+{
+	zoom = max(50, min(200, zoom + increment));
+	string msg = "Zoom " + to_string(zoom) + "%";
+	Messages::Add(msg);
 }
 
 
@@ -719,6 +733,9 @@ void Engine::ThreadEntryPoint()
 		
 			if(terminate)
 				break;
+
+			// change this while we hold the lock
+			draw[calcTickTock].SetDrawableSize(Screen::RawWidth() * 100 / zoom, Screen::RawHeight() * 100 / zoom);
 		}
 		
 		// Do all the calculations.

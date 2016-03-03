@@ -55,11 +55,21 @@ bool DrawList::Add(const Animation &animation, Point pos, Point unit, Point blur
 		.5 * (fabs(unit.X() * animation.Width()) + fabs(unit.Y() * animation.Height()) + fabs(blur.Y())));
 	Point topLeft = pos - size;
 	Point bottomRight = pos + size;
-	if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
-		return false;
-	if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
-		return false;
-		
+	if(drawableSize.X())
+	{
+		if(bottomRight.X() < -drawableSize.X() || bottomRight.Y() < -drawableSize.Y())
+			return false;
+		if(topLeft.X() > drawableSize.X() || topLeft.Y() > drawableSize.Y())
+			return false;
+	}
+	else
+	{
+		if(bottomRight.X() < Screen::Left() || bottomRight.Y() < Screen::Top())
+			return false;
+		if(topLeft.X() > Screen::Right() || topLeft.Y() > Screen::Bottom())
+			return false;
+	}
+
 	items.emplace_back(animation, pos, unit, blur, clip, step);
 	return true;
 }
@@ -97,6 +107,20 @@ void DrawList::Draw() const
 			item.Swizzle(), item.Clip(), item.Fade(), showBlur ? item.Blur() : nullptr);
 
 	SpriteShader::Unbind();
+}
+
+
+
+// Sets the width and height of the drawable screen region.
+void DrawList::SetDrawableSize(int width, int height)
+{
+	if(width == 0 || height == 0)
+		// Will get Screen::Width() and Screen::Height() when needed.
+		drawableSize = Point(0, 0);
+	else
+		// the drawable area is actually (width/-2, height/-2) - (width/2, height/2)
+		// so we just keep the precomputed half.
+		drawableSize = Point(width/2, height/2);
 }
 
 
