@@ -37,8 +37,12 @@ class OutfitGroup;
 // it is easy to buy lowest price first or sell highest price first.  
 // Replaces std::map<const Outfit *, int> in many places.
 class OutfitGroup {
+private:
+	typedef std::map<int, int> InnerMap;
+	typedef std::map<const Outfit*, InnerMap> OuterMap;
+	
 public:
-	static int64_t CostFunction(int64_t baseValue, int age, double minValue = 0.5, double lossPerDay = 0.005);
+	static int64_t CostFunction(const Outfit *outfit, int age, double minValue = 0.5, double lossPerDay = 0.005);
 
 	// Clear all data.
 	void Clear();
@@ -81,12 +85,13 @@ public:
 		const Outfit* GetOutfit() const;
 		int GetAge() const;
 		int GetQuantity() const;
+		int64_t GetTotalCost() const;
+		int64_t GetCostPerOutfit() const;
 		
 	private:
 		const OutfitGroup *myGroup;
-		std::map<const Outfit*, std::map<int64_t, int>>::iterator outerIter;
-		const std::map<int64_t, int> *currentOutfitList;
-		std::map<int64_t, int>::iterator innerIter;
+		OuterMap::const_iterator outerIter;
+		InnerMap::const_iterator innerIter;
 	};
 
 	
@@ -97,9 +102,6 @@ public:
 	
 	
 private:
-	typedef std::map<int, int> InnerMap;
-	typedef std::map<const Outfit*, InnerMap> OuterMap;
-
 	// Map of outfit to map of ages to outfits of that type of that age.
 	OuterMap outfits;
 

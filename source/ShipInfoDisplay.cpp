@@ -238,7 +238,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		chassis[names[i]] = attributes.Get(names[i]);
 	for(const auto &it : ship.Outfits())
 		for(auto &cit : chassis)
-			cit.second -= it.second * it.first->Get(cit.first);
+			cit.second -= it.GetQuantity() * it.GetOutfit()->Get(cit.first);
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -288,10 +288,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
-		if(it.first->IsWeapon() && it.first->Reload())
+		if(it.GetOutfit()->IsWeapon() && it.GetOutfit()->Reload())
 		{
-			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
-			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+			firingEnergy += it.GetQuantity() * it.GetOutfit()->FiringEnergy() / it.GetOutfit()->Reload();
+			firingHeat += it.GetQuantity() * it.GetOutfit()->FiringHeat() / it.GetOutfit()->Reload();
 		}
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
@@ -311,13 +311,12 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	outfitLabels.clear();
 	outfitValues.clear();
 	outfitsHeight = 20;
-	int outfitsValue = 0;
+	int outfitsValue = ship.Outfits().GetTotalCost();
 	
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
 	{
-		listing[it.first->Category()][it.first->Name()] += it.second;
-		outfitsValue += it.first->Cost() * it.second;
+		listing[it.GetOutfit()->Category()][it.GetOutfit()->Name()] += it.GetQuantity();
 	}
 	
 	for(const auto &cit : listing)

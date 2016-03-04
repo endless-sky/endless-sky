@@ -20,6 +20,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 
+int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age, double minValue, double lossPerDay)
+{
+	return static_cast<int64_t>(outfit->Cost() * std::max(minValue, 1. - (lossPerDay * age)));
+}
+
+
 
 void OutfitGroup::Clear()
 {
@@ -47,14 +53,21 @@ const std::map<int, int> *OutfitGroup::Find(const Outfit *outfit) const
 
 int64_t OutfitGroup::GetTotalCost() const
 {
-	
+	// Get the total cost of every outfit. 
+	int64_t cost = 0;
+	for (auto it = begin(); it != end(); ++it)
+		cost += it.GetTotalCost();
+	return cost;
 }
 
 
 
 int64_t OutfitGroup::GetTotalCost(const Outfit *outfit) const
 {
-	
+	int64_t cost = 0;
+	for (auto it = find(outfit); it.GetOutfit() == outfit; ++it)
+		cost += it.GetTotalCost();
+	return cost;
 }
 
 
@@ -83,7 +96,7 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 		auto it = matchingOutfits->second.rbegin();
 		for (; it != matchingOutfits->second.rend(); ++it)
 		{
-			cost += CostFunction(outfit->Cost(), it->first);	
+			cost += CostFunction(outfit, it->first);	
 			if (--count <= 0)
 				break;
 		}
@@ -93,7 +106,7 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 		auto it = matchingOutfits->second.begin();
 		for (; it != matchingOutfits->second.end(); ++it)
 		{
-			cost += CostFunction(outfit->Cost(), it->first);	
+			cost += CostFunction(outfit, it->first);	
 			if (--count <= 0)
 				break;
 		}		
@@ -135,6 +148,31 @@ void OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* 
 void OutfitGroup::IncrementDate()
 {
 	
+}
+
+
+
+OutfitGroup::iterator::iterator (const OutfitGroup* group, bool begin)
+{
+	myGroup = group;
+	if (begin)
+	{
+		outerIter = myGroup->outfits.begin();
+		innerIter = outerIter->second.begin();
+	}
+	else
+	{
+		outerIter = myGroup->outfits.end();
+		innerIter = outerIter->second.end();
+	}
+}
+
+
+
+OutfitGroup::iterator::iterator (const OutfitGroup* group, const Outfit* outfit) : myGroup(group)
+{
+	outerIter = myGroup->outfits.find(outfit);
+	innerIter = outerIter->second.begin();
 }
 
 
@@ -194,4 +232,40 @@ int OutfitGroup::iterator::GetAge() const
 int OutfitGroup::iterator::GetQuantity() const
 {
 	return innerIter->second;
+}
+
+
+
+int64_t OutfitGroup::iterator::GetTotalCost() const
+{
+	return OutfitGroup::CostFunction(GetOutfit(), GetAge()) * GetQuantity();
+}
+
+
+
+int64_t OutfitGroup::iterator::GetCostPerOutfit() const
+{
+	return CostFunction(GetOutfit(), GetAge());
+}
+
+
+
+// OutfitGroup functions that return iterators.
+OutfitGroup::iterator OutfitGroup::begin() const
+{
+	return iterator(this, true);
+}
+
+
+
+OutfitGroup::iterator OutfitGroup::end() const
+{
+	return iterator(this, false);
+}
+
+
+
+OutfitGroup::iterator OutfitGroup::find(const Outfit *outfit) const
+{
+	return iterator(this, outfit);
 }

@@ -203,7 +203,7 @@ void ShopPanel::DrawButtons() const
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	string BUY = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
+	string BUY = (selectedOutfit && player.Cargo().GetOutfitCount(selectedOutfit)) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? bright : dim);

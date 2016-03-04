@@ -234,12 +234,12 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		}
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			profit += it.second * it.first->Cost();
-			tonsSold += it.second * static_cast<int>(it.first->Get("mass"));
+			profit += it.GetTotalCost();
+			tonsSold += it.GetQuantity() * static_cast<int>(it.GetOutfit()->Get("mass"));
 			
-			player.SoldOutfits()[it.first] += it.second;
-			player.Accounts().AddCredits(it.second * it.first->Cost());
-			player.Cargo().Transfer(it.first, it.second);
+			player.SoldOutfits().AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetAge());
+			player.Accounts().AddCredits(it.GetTotalCost());
+			player.Cargo().Transfer(it.GetOutfit(), it.GetQuantity(), nullptr, true);
 		}
 	}
 	else if(command.Has(Command::MAP))
