@@ -1,0 +1,291 @@
+# Copyright (c) 2016 by Iaz Poolar
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+mission "nerve gas seizure a"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -1
+		payment -1000000
+		set ngcarried += 1
+		conversation
+			`	As the <ship>'s skids touch down, Navy transports and Artillery pour out of hangars all over the spaceport.  Three hangar doors open to reveal heavy artillery pieces aimed at your landing pad.`
+			`	Your comm system springs to life, but you can hear the announcement through the hull of the ship - someone must have attached a hull resonator as you landed;`
+			branch not1sttime
+				has "nerve gas seizure a: offered" > 1
+			`	"This is not your first offense - your actions are not going unnoticed."`
+			`	"You have been found to be in possession of Nerve Gas, and under the articles outlined under Republic Law, you will surrender your supply, and you will be fined accordingly.  Please instruct any crew you have aboard to exit the ship unarmed, single file, five seconds apart, with their hands behind their heads.  You have 10 minutes to comply.`
+			`	Before you can even touch the internal comm button, an indicator light turns on "Airlock Open", and the first of your crew approaching the Navy barricade, hands behind their head can be seen out the bridge window.  You quickly realize that resistance would be futile, and would certainly result in your death.`
+			branch dangerousoffender
+				or
+					has "nerve gas seizure a: offered" > 2
+					has ngcarried > 128
+			`	"You have been deemed a 'Dangerous Person'.  Your license have been flagged, and your ships will be searched for Nerve Gas every time you land on a civilized planet."`
+				decline
+
+
+mission "nerve gas seizure b"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -2048
+		payment -2048000000
+		set ngcarried += 2048
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+mission "nerve gas seizure c"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -1024
+		payment -1024000000
+		set ngcarried += 1024
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure d"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -512
+		payment -512000000
+		set ngcarried += 512
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure e"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -256
+		payment -256000000
+		set ngcarried += 256
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure f"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -128
+		payment -128000000
+		set ngcarried += 128
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure g"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -64
+		payment -64000000
+		set ngcarried += 64
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure h"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -32
+		payment -32000000
+		set ngcarried += 32
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure i"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -16
+		payment -16000000
+		set ngcarried += 16
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure j"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -8
+		payment -8000000
+		set ngcarried += 8
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure k"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -4
+		payment -4000000
+		set ngcarried += 4
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure l"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -2
+		payment -2000000
+		set ngcarried += 2
+	npc board
+		fleet "npcboardfailer"
+		system Sol
+
+
+mission "nerve gas seizure m"
+	invisible
+	landing
+	repeat
+	source
+		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+	destination Earth
+	to offer
+		or
+			has random > 78
+			has ngcarried > 128
+			has "nerve gas seizure a: offered" > 2
+	on offer
+		outfit "Nerve Gas" -1
+		payment -1000000
+		set ngcarried += 1
+	npc board
+		fleet "npcboardfailer"
+		system Sol
