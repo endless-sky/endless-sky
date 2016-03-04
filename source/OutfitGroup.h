@@ -44,7 +44,9 @@ private:
 public:
 	static int64_t CostFunction(const Outfit *outfit, int age, double minValue = 0.5, double lossPerDay = 0.005);
 
-	// Clear all data.
+public:
+	OutfitGroup() { outfits.empty(); };
+	
 	void Clear();
 	bool Empty() const;
 	const std::map<int, int> *Find(const Outfit *outfit) const;
@@ -61,8 +63,8 @@ public:
 	// Add outfits.
 	void AddOutfit(const Outfit* outfit, int count, int age);
 	
-	// Remove outfits, either oldest first or newest first.
-	void RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst);
+	// Remove outfits, either oldest first or newest first. Return number removed.
+	int RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst, OutfitGroup* to = nullptr);
 	
 	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge = 0);
 	
@@ -80,7 +82,7 @@ public:
 		bool operator== (const OutfitGroup::iterator& other) const;
 		iterator operator* () const;
 		const OutfitGroup::iterator& operator++ ();
-		
+				
 		// Getters 
 		const Outfit* GetOutfit() const;
 		int GetAge() const;
@@ -92,6 +94,7 @@ public:
 		const OutfitGroup *myGroup;
 		OuterMap::const_iterator outerIter;
 		InnerMap::const_iterator innerIter;
+		bool isEnd;
 	};
 
 	

@@ -116,63 +116,158 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 
 
 
+// Can be used to remove outfits, but will only remove outfits of the specified age.
 void OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
-{/*
-	auto it = outfits.find(outfit);
-	if(it == outfits.end())
-		outfits[outfit] = count;
+{
+	auto oit = outfits.find(outfit);
+	if(oit == outfits.end()) 
+	{
+		outfits[outfit] = InnerMap();
+		outfits[outfit][age] = count;
+	}
 	else
 	{
-		it->second += count;
-		if(!it->second)
-			outfits.erase(it);
+		auto iit = oit->second.find(age);
+		if (iit == oit->second.end())
+			oit->second[age] = count;
+		else 
+		{
+			iit->second += count;
+			if(!iit->second)
+				oit->second.erase(iit);
+		}
+		if (oit->second.empty())
+			outfits.erase(oit);
 	}
-*/}
-
-
-
-void OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst)
-{
-	
 }
 
 
 
+// Remove outfits of a given type, either oldest or newest first.
+// Used for making transfers as well.  
+int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst, OutfitGroup* to)
+{
+	auto oit = outfits.find(outfit);
+	if(oit == outfits.end()) 
+		return 0;
+
+	int removed = 0;
+	if (oldestFirst)
+	{
+		auto iit = oit->second.rbegin();
+		while(count > removed && iit != oit->second.rend()) 
+		{
+			int toRemove = std::min(iit->second, count - removed);
+			removed += toRemove;
+			iit->second -= toRemove;
+			if (to)
+				to->AddOutfit(outfit, toRemove, iit->first);
+			if (!iit->second) 
+			{	
+				auto temp = iit;
+				++temp; // This is necessary because of how reverse_iterator.base() works.
+				oit->second.erase(temp.base());
+			}
+			++iit;
+		}
+	}
+	else 
+	{
+		auto iit = oit->second.begin();
+		while(count > removed && iit != oit->second.end()) 
+		{
+			int toRemove = std::min(iit->second, count - removed);
+			removed += toRemove;
+			iit->second -= toRemove;
+			if (to)
+				to->AddOutfit(outfit, toRemove, iit->first);
+			if (!iit->second)
+				oit->second.erase(iit++);
+			else
+				++iit;
+
+		}
+	}
+	if (oit->second.empty())
+		outfits.erase(oit);
+	
+	return removed;
+}
+
+
+
+// Needs to support all kinds of operations either on a group or between groups.
 void OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge)
 {
-	
+	// Invalid inputs.
+	if(!count || !outfit)
+		return;
+	// Use add/remove if there's no destination.
+	if (!to)
+	{
+		if (count > 0)
+			RemoveOutfit(outfit, count, oldestFirst); // Transfer to nowhere = remove.
+		else 
+			AddOutfit(outfit, -count, defaultAge); // Transfer from nowhere = add.
+		return;
+	}
+	// If count is negative but *to is valid, just turn the whole thing around.  
+	if(count < 0)
+	{
+		to->TransferOutfits(outfit, -count, this, oldestFirst, defaultAge);
+		return;
+	}
+	// Transferring a positive number of outfits to a valid destination.
+	// Use the remove function for this.
+	RemoveOutfit(outfit, count, oldestFirst, to);
 }
 
 
 
+// Go through the whole group and increment all the ages. 
 void OutfitGroup::IncrementDate()
 {
+	// TODO: Implement.
+	// Because age is the inner-map key value...you basically have 
+	// to remove and then add again every single element in every inner map.
 	
 }
 
 
 
+// 
 OutfitGroup::iterator::iterator (const OutfitGroup* group, bool begin)
 {
-	myGroup = group;
-	if (begin)
+	myGroup = group;	
+	if (begin && !myGroup->outfits.empty())
 	{
 		outerIter = myGroup->outfits.begin();
 		innerIter = outerIter->second.begin();
+		//outerIter->first->Name();//debug
+		isEnd = false;
 	}
 	else
 	{
 		outerIter = myGroup->outfits.end();
+		outerIter--;
 		innerIter = outerIter->second.end();
+		isEnd = true;
 	}
 }
 
 
 
-OutfitGroup::iterator::iterator (const OutfitGroup* group, const Outfit* outfit) : myGroup(group)
+OutfitGroup::iterator::iterator (const OutfitGroup* group, const Outfit* outfit)
 {
+	myGroup = group;
+	isEnd = false;
 	outerIter = myGroup->outfits.find(outfit);
+	if (outerIter == myGroup->outfits.end())
+		isEnd = true;
 	innerIter = outerIter->second.begin();
+	if (innerIter == outerIter->second.end())
+		isEnd = true;
+
 }
 
 
@@ -180,7 +275,9 @@ OutfitGroup::iterator::iterator (const OutfitGroup* group, const Outfit* outfit)
 // Operators that form allow use with a range-based for loop
 bool OutfitGroup::iterator::operator!= (const OutfitGroup::iterator& other) const
 {
-	return outerIter != other.outerIter || innerIter != other.innerIter;
+	if (isEnd && other.isEnd)
+		return false;
+	return myGroup != other.myGroup || outerIter != other.outerIter || innerIter != other.innerIter;
 }
 
 
@@ -201,22 +298,27 @@ OutfitGroup::iterator OutfitGroup::iterator::operator* () const
 
 const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
 {
-	
 	if (innerIter == outerIter->second.end())
 	{
 		outerIter++;
 		innerIter = outerIter->second.begin();
 	}
 	else
-		innerIter++;
-	
+		innerIter++;	
 	return *this;
 }
 
 
 
 const Outfit* OutfitGroup::iterator::GetOutfit() const
-{
+{	
+	if (outerIter == myGroup->outfits.end())
+		outerIter->first->Name();
+	if (!outerIter->first)
+		outerIter->first->Cost();
+	else 
+		outerIter->first->Get("mass");
+	
 	return outerIter->first;
 }
 
