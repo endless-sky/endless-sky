@@ -17,7 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 
 #include <cmath>
-
+#include <vector>
 
 
 int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age, double minValue, double lossPerDay)
@@ -154,9 +154,10 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 	int removed = 0;
 	if (oldestFirst)
 	{
-		auto iit = oit->second.rbegin();
-		while(count > removed && iit != oit->second.rend()) 
-		{
+		auto iit = oit->second.end();
+		std::vector<InnerMap::iterator> toErase;
+		do {
+			--iit;
 			int toRemove = std::min(iit->second, count - removed);
 			removed += toRemove;
 			iit->second -= toRemove;
@@ -164,12 +165,12 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 				to->AddOutfit(outfit, toRemove, iit->first);
 			if (!iit->second) 
 			{	
-				auto temp = iit;
-				++temp; // This is necessary because of how reverse_iterator.base() works.
-				oit->second.erase(temp.base());
+				toErase.push_back(iit);
 			}
-			++iit;
-		}
+		} while(count > removed && iit != oit->second.begin());
+		
+		for (auto it : toErase)
+			oit->second.erase(it);
 	}
 	else 
 	{
