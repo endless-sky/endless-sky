@@ -449,8 +449,14 @@ void CargoHold::TransferAll(CargoHold *to)
 		else
 			++mit;
 	}
-	for(const auto &it : outfits)
-		Transfer(it.GetOutfit(), it.GetQuantity(), to);
+	auto it = this->outfits.begin();
+	while(it != this->outfits.end())
+	{
+		if (Transfer(it.GetOutfit(), it.GetQuantity(), to))
+			it = this->outfits.begin();// Transfer could invalidate the iterator.
+		else
+			++it;
+	}
 	for(const auto &it : commodities)
 		Transfer(it.first, it.second, to);
 }
