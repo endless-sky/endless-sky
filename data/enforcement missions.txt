@@ -13,7 +13,7 @@ mission "nerve gas seizure a"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -45,7 +45,7 @@ mission "nerve gas seizure b"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -65,7 +65,7 @@ mission "nerve gas seizure c"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -86,7 +86,7 @@ mission "nerve gas seizure d"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -107,7 +107,7 @@ mission "nerve gas seizure e"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -128,7 +128,7 @@ mission "nerve gas seizure f"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -149,7 +149,7 @@ mission "nerve gas seizure g"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -170,7 +170,7 @@ mission "nerve gas seizure h"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -191,7 +191,7 @@ mission "nerve gas seizure i"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -212,7 +212,7 @@ mission "nerve gas seizure j"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -233,7 +233,7 @@ mission "nerve gas seizure k"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -254,7 +254,7 @@ mission "nerve gas seizure l"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
@@ -275,7 +275,7 @@ mission "nerve gas seizure m"
 	landing
 	repeat
 	source
-		not government "Pirate" "Hai" "Hai (Unfettered)" "Wanderer" "Uninhabited" "Independent"
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	destination Earth
 	to offer
 		or
