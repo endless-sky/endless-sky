@@ -232,14 +232,18 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
-		for(const auto &it : player.Cargo().Outfits())
+		
+		for(auto it = player.Cargo().Outfits().begin(); it != player.Cargo().Outfits().end();)
 		{
 			profit += it.GetTotalCost();
 			tonsSold += it.GetQuantity() * static_cast<int>(it.GetOutfit()->Get("mass"));
 			
 			player.SoldOutfits().AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetAge());
 			player.Accounts().AddCredits(it.GetTotalCost());
-			player.Cargo().Transfer(it.GetOutfit(), it.GetQuantity(), nullptr, true);
+			if (player.Cargo().Transfer(it.GetOutfit(), it.GetQuantity(), nullptr, true))
+				it = player.Cargo().Outfits().begin();
+			else 
+				++it;
 		}
 	}
 	else if(command.Has(Command::MAP))
