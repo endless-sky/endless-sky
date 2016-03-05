@@ -299,3 +299,123 @@ mission "nerve gas seizure m"
 	npc board
 		fleet "npcboardfailer"
 		system Sol
+
+
+mission "merchant bounty a"
+	invisible
+	landing
+	repeat
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination "Varu K'prai"
+	to offer
+		random < 24
+	npc save
+		"never disabled"
+		personality nemesis waiting
+		government "Bounty Hunter"
+		distance 1 3
+		fleet "Small Northern Pirates"
+	to fail
+		"reputation: Merchant" > 0
+
+
+mission "merchant bounty b"
+	invisible
+	landing
+	repeat
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination "Varu K'prai"
+	to offer
+		random < 38
+		"merchant bounty a: offered" > 2
+	npc save
+		"never disabled"
+		personality nemesis waiting
+		government "Bounty Hunter"
+		distance 1 3
+		fleet "Small Northern Pirates"
+	to fail
+		"reputation: Merchant" > -10
+
+mission "merchant bounty c"
+	invisible
+	landing
+	repeat
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination "Varu K'prai"
+	to offer
+		random < 44
+		"merchant bounty b: offered" > 2
+	npc save
+		"never disabled"
+		personality nemesis waiting
+		government "Bounty Hunter"
+		distance 1 3
+		fleet "Small Northern Pirates"
+	to fail
+		"reputation: Merchant" > -25
+
+
+mission "merchant bounty d"
+	invisible
+	landing
+	repeat
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination "Varu K'prai"
+	to offer
+		random < 48
+		"merchant bounty c: offered" > 2
+	npc save
+		"never disabled"
+		personality nemesis waiting
+		government "Bounty Hunter"
+		distance 1 3
+		fleet "Large Northern Pirates"
+	to fail
+		"reputation: Merchant" > -50
+
+mission "merchant bounty e"
+	invisible
+	landing
+	repeat
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination "Varu K'prai"
+	to offer
+		random < 58
+		"merchant bounty d: offered" > 2
+	npc save
+		"never disabled"
+		personality nemesis waiting
+		government "Bounty Hunter"
+		distance 1 3
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+	to fail
+		"reputation: Merchant" > -75
+
+
+mission "merchant bounty f"
+	invisible
+	landing
+	repeat
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+	destination "Varu K'prai"
+	to offer
+		random < 68
+		"merchant bounty e: offered" > 2
+	npc save
+		"never disabled"
+		personality nemesis waiting
+		government "Bounty Hunter"
+		distance 1 3
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+	to fail
+		"reputation: Merchant" > -100
