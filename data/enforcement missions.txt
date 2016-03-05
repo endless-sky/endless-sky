@@ -8,6 +8,16 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+fleet "npcboardfailer"
+	government "Pirate"
+	"never disabled"
+	personality
+		waiting fleeing 
+	variant
+		ship "Hawk (Speedy)" "runaway"
+	
+
+
 mission "nerve gas seizure a"
 	invisible
 	landing
