@@ -243,14 +243,10 @@ OutfitGroup::iterator::iterator (const OutfitGroup* group, bool begin)
 	{
 		outerIter = myGroup->outfits.begin();
 		innerIter = outerIter->second.begin();
-		//outerIter->first->Name();//debug
 		isEnd = false;
 	}
 	else
 	{
-		outerIter = myGroup->outfits.end();
-		outerIter--;
-		innerIter = outerIter->second.end();
 		isEnd = true;
 	}
 }
@@ -298,27 +294,22 @@ OutfitGroup::iterator OutfitGroup::iterator::operator* () const
 
 const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
 {
-	if (innerIter == outerIter->second.end())
+	if (++innerIter == outerIter->second.end())
 	{
-		outerIter++;
-		innerIter = outerIter->second.begin();
+		if (++outerIter == myGroup->outfits.end())
+			isEnd = true;
+		else 
+			innerIter = outerIter->second.begin();
 	}
 	else
-		innerIter++;	
+		++innerIter;
 	return *this;
 }
 
 
 
 const Outfit* OutfitGroup::iterator::GetOutfit() const
-{	
-	if (outerIter == myGroup->outfits.end())
-		outerIter->first->Name();
-	if (!outerIter->first)
-		outerIter->first->Cost();
-	else 
-		outerIter->first->Get("mass");
-	
+{
 	return outerIter->first;
 }
 
