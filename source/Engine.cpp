@@ -635,6 +635,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	
+	doEnter = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
 	Messages::Add("Entering the " + system->Name() + " system on "
@@ -805,7 +806,6 @@ void Engine::CalculateStep()
 					player.Visit(it.GetPlanet());
 		
 		doFlash = true;
-		doEnter = true;
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}
