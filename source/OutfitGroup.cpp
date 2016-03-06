@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "DataNode.h"
 #include "GameData.h"
+#include "Random.h"
 
 #include <cmath>
 #include <vector>
@@ -23,6 +24,26 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age, double minValue, double lossPerDay)
 {
 	return static_cast<int64_t>(outfit->Cost() * std::max(minValue, 1. - (lossPerDay * age)));
+}
+
+
+
+int OutfitGroup::UsedAge(double minValue, double lossPerDay)
+{	// Random between 30% and 90% depreciated.
+	double fullDepreciationAge = (1. - minValue) / lossPerDay;
+	int min = static_cast<int>(fullDepreciationAge * 0.2);
+	int max = static_cast<int>(fullDepreciationAge * 0.9);
+	return Random::Int(max-min) + min;
+}
+
+
+
+int OutfitGroup::PlunderAge(double minValue, double lossPerDay)
+{	// Random between 90% and 100% depreciated.
+	double fullDepreciationAge = (1. - minValue) / lossPerDay;
+	int min = static_cast<int>(fullDepreciationAge * 0.9);
+	int max = static_cast<int>(fullDepreciationAge);
+	return Random::Int(max-min) + min;
 }
 
 

@@ -65,7 +65,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// crew's quarters, not mounted on the exterior of the ship.
 	for(const auto &it : victim->Outfits())
 		if(it.GetOutfit()->Category() != "Hand to Hand")
-			plunder.emplace_back(it.GetOutfit(), it.GetQuantity());
+			plunder.emplace_back(it.GetOutfit(), it.GetQuantity(), it.GetAge());
 	
 	sort(plunder.begin(), plunder.end());
 }
@@ -466,8 +466,8 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 
-BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost())
+BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, int age)
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(OutfitGroup::CostFunction(outfit, 1, age))
 {
 	UpdateStrings();
 }

@@ -43,6 +43,8 @@ private:
 	
 public:
 	static int64_t CostFunction(const Outfit *outfit, int age, double minValue = 0.5, double lossPerDay = 0.005);
+	static int UsedAge(double minValue = 0.5, double lossPerDay = 0.005);
+	static int PlunderAge(double minValue = 0.5, double lossPerDay = 0.005);
 
 public:
 	OutfitGroup() { outfits.empty(); };

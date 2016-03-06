@@ -62,7 +62,7 @@ private:
 	class Plunder {
 	public:
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const Outfit *outfit, int count, int age);
 		
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
