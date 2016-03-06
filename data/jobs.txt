@@ -1940,6 +1940,8 @@ mission "Marauder Hunted"
 	landing
 	repeat
 	destination Earth
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 8103
 		random > 96
