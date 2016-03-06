@@ -111,9 +111,9 @@ private:
 	std::mutex swapMutex;
 	
 	Point center;
-	bool calcTickTock;
-	bool drawTickTock;
-	bool terminate;
+	bool calcTickTock = false;
+	bool drawTickTock = false;
+	bool terminate = false;
 	bool wasActive = false;
 	DrawList draw[2];
 	Radar radar[2];
@@ -129,7 +129,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	
-	int step;
+	int step = 0;
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
@@ -144,17 +144,17 @@ private:
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
 	
 	AsteroidField asteroids;
-	double flash;
-	bool doFlash;
-	bool wasLeavingHyperspace;
+	double flash = 0.;
+	bool doFlash = false;
+	bool doEnter = false;
 	
 	bool doClick = false;
 	Command clickCommands;
 	Point clickPoint;
 	
-	double load;
-	int loadCount;
-	double loadSum;
+	double load = 0.;
+	int loadCount = 0;
+	double loadSum = 0.;
 };
 
 
