@@ -38,10 +38,10 @@ namespace {
 			return Conversation::DEPART;
 		if(token == "die")
 			return Conversation::DIE;
-
+		
 		return 0;
 	}
-
+	
 	static string TokenName(int index)
 	{
 		if(index == Conversation::ACCEPT)
@@ -61,7 +61,7 @@ namespace {
 		else
 			return to_string(index);
 	}
-
+	
 	static void WriteToken(int index, DataWriter &out)
 	{
 		out.BeginChild();
@@ -91,10 +91,10 @@ void Conversation::Load(const DataNode &node)
 		return;
 	if(node.Size() >= 2)
 		identifier = node.Token(1);
-
+	
 	// Free any previously loaded data.
 	nodes.clear();
-
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "scene" && child.Size() >= 2)
@@ -102,7 +102,7 @@ void Conversation::Load(const DataNode &node)
 			nodes.emplace_back();
 			int next = nodes.size();
 			nodes.back().data.emplace_back("", next);
-
+			
 			nodes.back().scene = SpriteSet::Get(child.Token(1));
 			nodes.back().sceneName = child.Token(1);
 		}
@@ -123,19 +123,19 @@ void Conversation::Load(const DataNode &node)
 				// just bring you to the next node in the script.
 				nodes.back().data.emplace_back(grand.Token(0), nodes.size());
 				nodes.back().data.back().first += '\n';
-
+				
 				// If this choice contains a goto, record it.
 				for(const DataNode &great : grand)
 				{
 					int index = TokenIndex(great.Token(0));
-
+					
 					if(!index && great.Size() >= 2)
 						Goto(great.Token(1), nodes.size() - 1, nodes.back().data.size() - 1);
 					else if(index < 0)
 						nodes.back().data.back().second = index;
 					else
 						continue;
-
+					
 					break;
 				}
 			}
@@ -193,22 +193,22 @@ void Conversation::Load(const DataNode &node)
 				int next = nodes.size();
 				nodes.back().data.emplace_back("", next);
 			}
-
+			
 			nodes.back().data.back().first += child.Token(0);
 			nodes.back().data.back().first += '\n';
-
+			
 			// Check if this node contains a "goto".
 			for(const DataNode &grand : child)
 			{
 				int index = TokenIndex(grand.Token(0));
-
+				
 				if(!index && grand.Size() >= 2)
 					Goto(grand.Token(1), nodes.size() - 1);
 				else if(index < 0)
 					nodes.back().data.back().second = index;
 				else
 					continue;
-
+				
 				nodes.back().canMergeOnto = false;
 				break;
 			}
@@ -219,7 +219,7 @@ void Conversation::Load(const DataNode &node)
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
 			node.PrintTrace("Conversation contains unused label \"" + it.first + "\":");
-
+		
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
 	{
@@ -235,7 +235,7 @@ void Conversation::Load(const DataNode &node)
 			}
 		}
 	}
-
+	
 	// Free the working buffers that we no longer need.
 	labels.clear();
 	unresolved.clear();
@@ -255,7 +255,7 @@ void Conversation::Save(DataWriter &out) const
 		{
 			out.Write("label", i);
 			const Node &node = nodes[i];
-
+			
 			if(node.scene)
 				out.Write("scene", node.sceneName);
 			if(!node.conditions.IsEmpty())
@@ -264,7 +264,7 @@ void Conversation::Save(DataWriter &out) const
 					out.Write("branch", TokenName(node.data[0].second), TokenName(node.data[1].second));
 				else
 					out.Write("apply", TokenName(node.data[0].second));
-
+				
 				out.BeginChild();
 				{
 					node.conditions.Save(out);
@@ -294,7 +294,7 @@ void Conversation::Save(DataWriter &out) const
 				int index = it.second;
 				if(index > 0 && static_cast<unsigned>(index) >= nodes.size())
 					index = -1;
-
+				
 				WriteToken(index, out);
 			}
 			if(node.isChoice)
@@ -329,7 +329,7 @@ bool Conversation::IsChoice(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
-
+	
 	return nodes[node].isChoice;
 }
 
@@ -341,7 +341,7 @@ int Conversation::Choices(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return 0;
-
+	
 	return nodes[node].isChoice ? nodes[node].data.size() : 0;
 }
 
@@ -351,7 +351,7 @@ bool Conversation::IsBranch(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
-
+	
 	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() > 1;
 }
 
@@ -362,7 +362,7 @@ bool Conversation::IsApply(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return false;
-
+	
 	return !nodes[node].conditions.IsEmpty() && nodes[node].data.size() == 1;
 }
 
@@ -373,7 +373,7 @@ const ConditionSet &Conversation::Conditions(int node) const
 	static ConditionSet empty;
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return empty;
-
+	
 	return nodes[node].conditions;
 }
 
@@ -382,11 +382,11 @@ const ConditionSet &Conversation::Conditions(int node) const
 const string &Conversation::Text(int node, int choice) const
 {
 	static const string empty;
-
+	
 	if(static_cast<unsigned>(node) >= nodes.size()
 			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
 		return empty;
-
+	
 	return nodes[node].data[choice].first;
 }
 
@@ -396,7 +396,7 @@ const Sprite *Conversation::Scene(int node) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size())
 		return nullptr;
-
+	
 	return nodes[node].scene;
 }
 
@@ -407,7 +407,7 @@ int Conversation::NextNode(int node, int choice) const
 	if(static_cast<unsigned>(node) >= nodes.size()
 			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
 		return -2;
-
+	
 	return nodes[node].data[choice].second;
 }
 
@@ -431,16 +431,16 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 		node.PrintTrace("Conversation: label \"" + label + "\" is used more than once:");
 		return;
 	}
-
+	
 	// If there are any unresolved references to this label, we can now set
 	// their indices correctly.
 	auto range = unresolved.equal_range(label);
-
+	
 	for(auto it = range.first; it != range.second; ++it)
 		nodes[it->second.first].data[it->second.second].second = nodes.size();
-
+	
 	unresolved.erase(range.first, range.second);
-
+	
 	// Remember what index this label points to.
 	labels[label] = nodes.size();
 }
@@ -452,7 +452,7 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 void Conversation::Goto(const string &label, int node, int choice)
 {
 	auto it = labels.find(label);
-
+	
 	if(it == labels.end())
 		unresolved.insert({label, {node, choice}});
 	else
