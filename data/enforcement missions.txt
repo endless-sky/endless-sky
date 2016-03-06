@@ -307,7 +307,7 @@ mission "merchant bounty a"
 	repeat
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	destination "Varu K'prai"
+	destination Earth
 	to offer
 		random < 24
 	npc save
@@ -318,6 +318,8 @@ mission "merchant bounty a"
 		fleet "Small Northern Pirates"
 	to fail
 		"reputation: Merchant" > 0
+	to complete
+		never
 
 
 mission "merchant bounty b"
@@ -326,7 +328,7 @@ mission "merchant bounty b"
 	repeat
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	destination "Varu K'prai"
+	destination Earth
 	to offer
 		random < 38
 		"merchant bounty a: offered" > 2
@@ -338,6 +340,8 @@ mission "merchant bounty b"
 		fleet "Small Northern Pirates"
 	to fail
 		"reputation: Merchant" > -10
+	to complete
+		never
 
 mission "merchant bounty c"
 	invisible
@@ -345,7 +349,7 @@ mission "merchant bounty c"
 	repeat
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	destination "Varu K'prai"
+	destination Earth
 	to offer
 		random < 44
 		"merchant bounty b: offered" > 2
@@ -357,6 +361,8 @@ mission "merchant bounty c"
 		fleet "Small Northern Pirates"
 	to fail
 		"reputation: Merchant" > -25
+	to complete
+		never
 
 
 mission "merchant bounty d"
@@ -365,7 +371,7 @@ mission "merchant bounty d"
 	repeat
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	destination "Varu K'prai"
+	destination Earth
 	to offer
 		random < 48
 		"merchant bounty c: offered" > 2
@@ -377,6 +383,9 @@ mission "merchant bounty d"
 		fleet "Large Northern Pirates"
 	to fail
 		"reputation: Merchant" > -50
+	to complete
+		never
+
 
 mission "merchant bounty e"
 	invisible
@@ -384,7 +393,7 @@ mission "merchant bounty e"
 	repeat
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	destination "Varu K'prai"
+	destination Earth
 	to offer
 		random < 58
 		"merchant bounty d: offered" > 2
@@ -397,6 +406,8 @@ mission "merchant bounty e"
 		fleet "Large Northern Pirates"
 	to fail
 		"reputation: Merchant" > -75
+	to complete
+		never
 
 
 mission "merchant bounty f"
@@ -405,7 +416,7 @@ mission "merchant bounty f"
 	repeat
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-	destination "Varu K'prai"
+	destination Earth
 	to offer
 		random < 68
 		"merchant bounty e: offered" > 2
@@ -419,3 +430,5 @@ mission "merchant bounty f"
 		fleet "Large Northern Pirates"
 	to fail
 		"reputation: Merchant" > -100
+	to complete
+		never

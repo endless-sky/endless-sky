@@ -1763,15 +1763,17 @@ mission "VIP transport"
 		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
-# next four missions are the limited availability of the new ships
-# player must capture to acquire
+
+
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down <npc>"
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
-		"combat rating" > 2980
+		"combat rating" > 2000
 		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1814,19 +1816,20 @@ mission "Bounty Hunting (Marauder I)"
 				"Firebird (Plasma)"
 				"Firebird (Missile)"
 
-		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 10000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
 
-#increased c.r., lower chance to avail, higher chance of upper tier variants
+
+
 mission "Bounty Hunting (Marauder II)"
 	name "Hunt down <npc>"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
-		"combat rating" > 8103
+		"combat rating" > 3000
 		random < 15
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1868,12 +1871,13 @@ mission "Bounty Hunting (Marauder II)"
 				"Firebird"
 				"Firebird (Plasma)"
 				"Firebird (Missile)"
-		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 10000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
 
-#increased c.r., lower chance to avail, higher chance of upper tier variants
+
+
 mission "Bounty Hunting (Marauder III)"
 	name "Hunt down <npc>"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
@@ -1881,7 +1885,7 @@ mission "Bounty Hunting (Marauder III)"
 	job
 
 	to offer
-		"combat rating" > 22026
+		"combat rating" > 4000
 		random < 10
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1923,20 +1927,23 @@ mission "Bounty Hunting (Marauder III)"
 				"Firebird"
 				"Firebird (Plasma)"
 				"Firebird (Missile)"
-		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 10000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet."
 
-#player cannot land at destination/complete/abort mission - must destroy hunters and land to fail
+
+#must destroy hunters and land to fail
 mission "Marauder Hunted"
 	invisible
 	landing
 	repeat
-	destination "Varu K'prai"
+	destination Earth
 	to offer
-		"combat rating" > 59874
+		"combat rating" > 8103
 		random > 96
+	to complete
+		never
 	npc save
 		personality heroic nemesis plunders
 		government "Bounty Hunter"
