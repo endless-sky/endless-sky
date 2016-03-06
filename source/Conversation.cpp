@@ -201,7 +201,7 @@ void Conversation::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int index = TokenIndex(grand.Token(0));
-				
+					
 				if(!index && grand.Size() >= 2)
 					Goto(grand.Token(1), nodes.size() - 1);
 				else if(index < 0)
@@ -214,12 +214,12 @@ void Conversation::Load(const DataNode &node)
 			}
 		}
 	}
-
+	
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
 			node.PrintTrace("Conversation contains unused label \"" + it.first + "\":");
-		
+	
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
 	{
@@ -257,7 +257,7 @@ void Conversation::Save(DataWriter &out) const
 			const Node &node = nodes[i];
 			
 			if(node.scene)
-				out.Write("scene", node.sceneName);
+				out.Write("scene", node.sceneName);	
 			if(!node.conditions.IsEmpty())
 			{
 				if(node.data.size() > 1)
