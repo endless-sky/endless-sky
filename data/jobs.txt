@@ -1770,6 +1770,8 @@ mission "Bounty Hunting (Marauder I)"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 2980
 		random < 20
@@ -1825,8 +1827,10 @@ mission "Bounty Hunting (Marauder II)"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
-		"combat rating" > 8103
+		"combat rating" > 4000
 		random < 15
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1879,9 +1883,11 @@ mission "Bounty Hunting (Marauder III)"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 
 	to offer
-		"combat rating" > 22026
+		"combat rating" > 6000
 		random < 10
 	source
 		government Republic "Free Worlds" Syndicate Neutral
@@ -1928,15 +1934,17 @@ mission "Bounty Hunting (Marauder III)"
 		payment 10000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet."
 
-#player cannot land at destination/complete/abort mission - must destroy hunters and land to fail
+#must destroy hunters and land to fail
 mission "Marauder Hunted"
 	invisible
 	landing
 	repeat
-	destination "Varu K'prai"
+	destination Earth
 	to offer
-		"combat rating" > 59874
+		"combat rating" > 8103
 		random > 96
+	to complete
+		never
 	npc save
 		personality heroic nemesis plunders
 		government "Bounty Hunter"
