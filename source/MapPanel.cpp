@@ -130,7 +130,7 @@ bool MapPanel::Click(int x, int y)
 
 
 
-bool MapPanel::Drag(int dx, int dy)
+bool MapPanel::Drag(double dx, double dy)
 {
 	center += Point(dx, dy) / Zoom();
 	return true;
@@ -138,12 +138,12 @@ bool MapPanel::Drag(int dx, int dy)
 
 
 
-bool MapPanel::Scroll(int dx, int dy)
+bool MapPanel::Scroll(double dx, double dy)
 {
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
-	if(dy > 0)
+	if(dy > 0.)
 		ZoomMap();
 	else
 		UnzoomMap();

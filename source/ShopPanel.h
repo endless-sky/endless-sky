@@ -36,7 +36,7 @@ public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
 	virtual void Draw() const override;
-	
+	virtual void Step() override;
 	
 protected:
 	void DrawSidebar() const;
@@ -65,16 +65,16 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
 	virtual bool Hover(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 protected:
 	class ClickZone {
 	public:
-		ClickZone(int x, int y, int rx, int ry, const Ship *ship, int scrollY = 0);
-		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, int scrollY = 0);
+		ClickZone(int x, int y, int rx, int ry, const Ship *ship, double scrollY = 0.);
+		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, double scrollY = 0.);
 		
 		bool Contains(int x, int y) const;
 		const Ship *GetShip() const;
@@ -82,14 +82,14 @@ protected:
 		
 		int CenterX() const;
 		int CenterY() const;
-		int ScrollY() const;
+		double ScrollY() const;
 		
 	private:
 		int left;
 		int top;
 		int right;
 		int bottom;
-		int scrollY;
+		double scrollY;
 		
 		const Ship *ship;
 		const Outfit *outfit;
@@ -113,13 +113,15 @@ protected:
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
 	
-	int mainScroll = 0;
-	int sideScroll = 0;
+	double mainScroll = 0;
+	double sideScroll = 0;
 	mutable int maxMainScroll = 0;
 	mutable int maxSideScroll = 0;
 	bool dragMain = true;
 	mutable int mainDetailHeight = 0;
 	mutable int sideDetailHeight = 0;
+	bool scrollDetailsIntoView = false;
+	mutable double selectedBottomY = 0.;
 	
 	mutable std::vector<ClickZone> zones;
 	
@@ -128,7 +130,7 @@ protected:
 	
 	
 private:
-	bool DoScroll(int dy);
+	bool DoScroll(double dy);
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
 	void MainLeft();

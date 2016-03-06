@@ -51,8 +51,8 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;
 	virtual bool Click(int x, int y) override;
-	virtual bool Drag(int dx, int dy) override;
-	virtual bool Scroll(int dx, int dy) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Scroll(double dx, double dy) override;
 	
 	
 private:
@@ -82,7 +82,7 @@ private:
 	int node;
 	std::function<void(int)> callback = nullptr;
 	
-	int scroll;
+	double scroll;
 	
 	std::list<Paragraph> text;
 	std::list<Paragraph> choices;
@@ -93,6 +93,7 @@ private:
 	std::map<std::string, std::string> subs;
 	
 	mutable std::vector<ClickZone<int>> zones;
+	mutable int maxScroll = 0.;
 	
 	const System *system;
 };

@@ -1617,6 +1617,7 @@ fleet "Bounty Hunters"
 fleet "Korath Raid"
 	government "Korath"
 	names "korath"
+	fighters "korath"
 	cargo 3
 	personality
 		plunders
@@ -1627,6 +1628,7 @@ fleet "Korath Raid"
 fleet "Korath Home"
 	government "Korath"
 	names "korath"
+	fighters "korath"
 	cargo 3
 	personality
 		timid

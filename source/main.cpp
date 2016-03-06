@@ -191,15 +191,18 @@ int main(int argc, char *argv[])
 		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
+		GameData::LoadShaders();
+		
 		{
 			// Check whether this is a high-DPI window.
 			int width = 0;
 			int height = 0;
 			SDL_GL_GetDrawableSize(window, &width, &height);
 			Screen::SetHighDPI(width > Screen::RawWidth() && height > Screen::RawHeight());
+			
+			// Fix a possible race condition leading to the wrong window dimensions.
+			glViewport(0, 0, width, height);
 		}
-		
-		GameData::LoadShaders();
 		
 		
 		UI gamePanels;

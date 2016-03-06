@@ -26,17 +26,17 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Government *systemGovernment)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship)
 {
-	Update(ship, systemGovernment);
+	Update(ship);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship, const Government *systemGovernment)
+void ShipInfoDisplay::Update(const Ship &ship)
 {
-	UpdateDescription(ship, systemGovernment);
+	UpdateDescription(ship);
 	UpdateAttributes(ship);
 	UpdateOutfits(ship);
 	
@@ -103,7 +103,7 @@ void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *systemGovernment)
+void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 {
 	const vector<string> &licenses = ship.Licenses();
 	if(licenses.empty())
@@ -277,9 +277,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 20;
 	tableLabels.push_back("moving:");
 	energyTable.push_back(Format::Number(
-		-60. * (attributes.Get("thrusting energy") + attributes.Get("turning energy"))));
+		-60. * (attributes.Get("thrusting energy")
+			+ attributes.Get("reverse thrusting energy")
+			+ attributes.Get("turning energy"))));
 	heatTable.push_back(Format::Number(
-		60. * (attributes.Get("thrusting heat") + attributes.Get("turning heat"))));
+		60. * (attributes.Get("thrusting heat")
+			+ attributes.Get("reverse thrusting heat")
+			+ attributes.Get("turning heat"))));
 	attributesHeight += 20;
 	double firingEnergy = 0.;
 	double firingHeat = 0.;

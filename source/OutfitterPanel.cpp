@@ -81,6 +81,7 @@ void OutfitterPanel::Step()
 			"\tAs in the trading panel, you can hold down Shift or Control "
 			"to buy 5 or 20 of an outfit at once, or both keys to buy 100."));
 	}
+	ShopPanel::Step();
 }
 
 

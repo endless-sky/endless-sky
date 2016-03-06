@@ -44,7 +44,7 @@ namespace {
 
 
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation, const System *system)
-	: player(player), conversation(conversation), scroll(0), system(system)
+	: player(player), conversation(conversation), scroll(0.), system(system)
 {
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
@@ -64,7 +64,7 @@ void ConversationPanel::Draw() const
 	Color back(0.125, 1.);
 	FillShader::Fill(
 		Point(Screen::Width() * -.5 + WIDTH * .5 + 15., 0.),
-		Point(WIDTH + 30., Screen::Height()), 
+		Point(WIDTH + 30., Screen::Height()),
 		back);
 	
 	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
@@ -95,11 +95,13 @@ void ConversationPanel::Draw() const
 	{
 		static const string done = "[done]";
 		int width = font.Width(done);
+		int height = font.Height();
 		Point off(Screen::Left() + 20 + WIDTH - width, point.Y());
 		font.Draw(done, off, bright);
 		
-		Point size(width, font.Height());
+		Point size(width, height);
 		zones.emplace_back(off + .5 * size, size);
+		maxScroll = min(0, Screen::Top() - static_cast<int>(point.Y() - scroll) + height / 2);
 		return;
 	}
 	if(choices.empty())
@@ -108,6 +110,7 @@ void ConversationPanel::Draw() const
 		Point size(150, 20);
 		FillShader::Fill(center, size, selectionColor);
 		int width = font.Width(choice ? lastName : firstName);
+		int height = font.Height();
 		center.X() += width - 67;
 		FillShader::Fill(center, Point(1., 16.), dim);
 		
@@ -121,9 +124,10 @@ void ConversationPanel::Draw() const
 		width = font.Width(ok);
 		Point off(Screen::Left() + 20 + WIDTH - width, point.Y());
 		font.Draw(ok, off, bright);
-		size = Point(width, font.Height());
+		size = Point(width, height);
 		zones.emplace_back(off + .5 * size, size);
-		
+		maxScroll = min(0, Screen::Top() - static_cast<int>(point.Y() - scroll) + height / 2);
+
 		return;
 	}
 	
@@ -142,6 +146,7 @@ void ConversationPanel::Draw() const
 		font.Draw(label, point + Point(-15, 0), dim);
 		it.Draw(point, bright);
 	}
+	maxScroll = min(0, Screen::Top() - static_cast<int>(point.Y() - scroll) + font.Height() + 15);
 }
 
 
@@ -248,18 +253,18 @@ bool ConversationPanel::Click(int x, int y)
 
 
 
-bool ConversationPanel::Drag(int dx, int dy)
+bool ConversationPanel::Drag(double dx, double dy)
 {
-	scroll = min(0, scroll + dy);
+	scroll = min(0., max(static_cast<double>(maxScroll), scroll + dy));
 	
 	return true;
 }
 
 
 
-bool ConversationPanel::Scroll(int dx, int dy)
+bool ConversationPanel::Scroll(double dx, double dy)
 {
-	return Drag(50 * dx, 50 * dy);
+	return Drag(50. * dx, 50. * dy);
 }
 
 
