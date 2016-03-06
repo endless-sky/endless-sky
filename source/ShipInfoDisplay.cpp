@@ -26,17 +26,17 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const Government *systemGovernment)
+ShipInfoDisplay::ShipInfoDisplay(const Ship &ship)
 {
-	Update(ship, systemGovernment);
+	Update(ship);
 }
 
 
 
 // Call this every time the ship changes.
-void ShipInfoDisplay::Update(const Ship &ship, const Government *systemGovernment)
+void ShipInfoDisplay::Update(const Ship &ship)
 {
-	UpdateDescription(ship, systemGovernment);
+	UpdateDescription(ship);
 	UpdateAttributes(ship);
 	UpdateOutfits(ship);
 	
@@ -103,7 +103,7 @@ void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateDescription(const Ship &ship, const Government *systemGovernment)
+void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 {
 	const vector<string> &licenses = ship.Licenses();
 	if(licenses.empty())
