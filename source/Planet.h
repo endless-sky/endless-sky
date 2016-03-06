@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class Fleet;
+class Government;
 class Outfit;
 class PlayerInfo;
 class Ship;
@@ -74,6 +75,8 @@ public:
 	// Get the list of outfits available from the outfitter.
 	const Sale<Outfit> &Outfitter() const;
 	
+	// Get this planet's government. If not set, returns the system's government.
+	const Government *GetGovernment() const;
 	// You need this good a reputation with this system's government to land here.
 	double RequiredReputation() const;
 	// This is what fraction of your fleet's value you must pay as a bribe in
@@ -124,6 +127,7 @@ private:
 	mutable Sale<Ship> shipyard;
 	mutable Sale<Outfit> outfitter;
 	
+	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
 	double security = .25;
