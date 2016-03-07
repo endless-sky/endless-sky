@@ -47,7 +47,9 @@ class System;
 class Ship : public std::enable_shared_from_this<Ship> {
 public:
 	// These are all the possible category strings for ships.
-	static const std::vector<std::string> CATEGORIES;
+	static const std::vector<std::string> CATEGORIES;	
+	// A constructor that sets the initial age.
+	static Ship* MakeShip(Ship* ship, int age);
 	
 public:
 	// Load data for a type of ship:
@@ -288,7 +290,7 @@ public:
 	
 	// Increment the age of this ship and its outfits for the purpose 
 	// of used parts value calculations. 
-	void IncrementDate();
+	void IncrementDate(int days = 1);
 	
 private:
 	// Update attributes, cargo space, hull after adding or removing an outfit. 

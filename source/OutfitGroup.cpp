@@ -111,14 +111,16 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 	int64_t cost = 0;
 	auto matchingOutfits = outfits.find(outfit);
 	if (matchingOutfits == outfits.end())
-		return 0;
+		return 0; // Don't have any.
 	if (oldestFirst)
 	{
 		auto it = matchingOutfits->second.rbegin();
 		for (; it != matchingOutfits->second.rend(); ++it)
 		{
-			cost += CostFunction(outfit, it->first);	
-			if (--count <= 0)
+			int matched = std::min(it->second, count);
+			cost += CostFunction(outfit, it->first) * matched;	
+			count -= matched;
+			if (count <= 0)
 				break;
 		}
 	}
@@ -127,8 +129,10 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 		auto it = matchingOutfits->second.begin();
 		for (; it != matchingOutfits->second.end(); ++it)
 		{
-			cost += CostFunction(outfit, it->first);	
-			if (--count <= 0)
+			int matched = std::min(it->second, count);
+			cost += CostFunction(outfit, it->first) * matched;	
+			count -= matched;
+			if (count <= 0)
 				break;
 		}		
 	}
@@ -244,17 +248,25 @@ int OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* t
 
 
 // Go through the whole group and increment all the ages. 
-void OutfitGroup::IncrementDate()
+void OutfitGroup::IncrementDate(int days)
 {
-	// TODO: Implement.
-	// Because age is the inner-map key value...you basically have 
-	// to remove and then add again every single element in every inner map.
+	for (auto oit : outfits)
+	{
+		//make a copy
+		InnerMap temp;
+		temp.insert(oit.second.begin(), oit.second.end());
+		// clear
+		outfits[oit.first].clear();
+		// re-insert with incremented age keys
+		for (auto iit : temp)
+			outfits[oit.first][iit.first + days] = iit.second;
+	}
 	
+
 }
 
 
 
-// 
 OutfitGroup::iterator::iterator (const OutfitGroup* group, bool begin)
 {
 	myGroup = group;	

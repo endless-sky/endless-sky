@@ -453,7 +453,7 @@ void PlayerInfo::IncrementDate()
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = 0;
-	for(const shared_ptr<Ship> &ship : ships) 
+	for(auto ship : ships)
 	{
 		// Increment the age of the ship and its outfits.
 		ship->IncrementDate();

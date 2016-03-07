@@ -47,6 +47,15 @@ const vector<string> Ship::CATEGORIES = {
 
 
 
+Ship* Ship::MakeShip(Ship *ship, int age)
+{
+	Ship* newShip = new Ship(*ship);
+	newShip->IncrementDate(age);
+	return newShip;
+}
+
+
+
 void Ship::Load(const DataNode &node)
 {
 	assert(node.Size() >= 2 && node.Token(0) == "ship");
@@ -2193,14 +2202,15 @@ const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
 
 
 
-void Ship::IncrementDate()
+void Ship::IncrementDate(int days)
 {
 	// Ships don't depreciate while parked.
 	if (IsParked())
 		return;
 	// Increment the age of the base ship and each outfit.
-	age++;
-	outfits.IncrementDate();    
+	age += days;
+	outfits.IncrementDate(days);
+	// Outfits in cargo don't age.
 }
 
 
