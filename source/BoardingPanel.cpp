@@ -66,7 +66,6 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	for(const auto &it : victim->Outfits())
 		if(it.GetOutfit()->Category() != "Hand to Hand")
 			plunder.emplace_back(it.GetOutfit(), it.GetQuantity(), it.GetAge());
-	
 	sort(plunder.begin(), plunder.end());
 }
 

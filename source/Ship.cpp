@@ -2093,7 +2093,7 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	if(!outfit)
 		return;
 	if(outfit->Ammo())
-		TransferOutfit(outfit->Ammo(), -1, nullptr, true, 0);
+		TransferOutfit(outfit->Ammo(), 1, nullptr, true, 0);
 	
 	energy -= outfit->FiringEnergy();
 	fuel -= outfit->FiringFuel();
