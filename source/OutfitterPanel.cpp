@@ -296,13 +296,13 @@ void OutfitterPanel::Buy()
 				return;
 		
 			if(player.Cargo().GetOutfitCount(selectedOutfit))
-				player.Cargo().Transfer(selectedOutfit, 1, ship->OutfitTransfer(), true, 0);
+				ship->TransferOutfitToCargo(selectedOutfit, -1, player.Cargo(), true, 0);
 			else if(!available.Find(selectedOutfit) && !outfitter.Has(selectedOutfit))
 				break;
 			else if (available.Find(selectedOutfit))
 			{	// Buy lowest price used outfits first.
 				player.Accounts().AddCredits(-available.GetCost(selectedOutfit, 1, true));
-				available.TransferOutfits(selectedOutfit, 1, ship->OutfitTransfer(), true);
+				ship->TransferOutfit(selectedOutfit, -1, &available, true, 0);
 			}
 			else
 			{	// Buy new
@@ -482,7 +482,7 @@ void OutfitterPanel::Sell()
 		{
 			// sell newest first; transfer from ship to available.
 			int64_t cost = ship->Outfits().GetCost(selectedOutfit, 1, false);
-			ship->OutfitTransfer()->TransferOutfits(selectedOutfit, 1, &available, false);
+			ship->TransferOutfit(selectedOutfit, 1, &available, false, 0);
 			player.Accounts().AddCredits(cost);
 			
 			if(selectedOutfit->Get("required crew"))
@@ -501,7 +501,7 @@ void OutfitterPanel::Sell()
 				if(mustSell)
 				{
 					int64_t cost = ship->Outfits().GetCost(ammo, mustSell, false);
-					ship->OutfitTransfer()->TransferOutfits(ammo, mustSell, &available, false);
+					ship->TransferOutfit(ammo, mustSell, &available, false, 0);
 					player.Accounts().AddCredits(cost);
 				}
 			}
@@ -752,10 +752,10 @@ void OutfitterPanel::Refill()
 					player.Cargo().Transfer(outfit, 1);
 				else if(!available.GetTotalCount(outfit) && !outfitter.Has(outfit))
 					break;
-				else if (available.Find(outfit))
+				else if (available.GetTotalCount(outfit))
 				{	// Buy lowest price used outfits first.
 					player.Accounts().AddCredits(-available.GetCost(outfit, 1, true));
-					available.TransferOutfits(outfit, 1, ship->OutfitTransfer(), true);
+					ship->TransferOutfit(outfit, -1, &available, true, 0);
 				}
 				else
 				{	// Buy new

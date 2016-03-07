@@ -243,11 +243,16 @@ public:
 	// Get the list of all outfits installed in this ship.
 	const OutfitGroup &Outfits() const ;
 	// Get OutfitGroup pointer for transfer operations (shop).
-	OutfitGroup *OutfitTransfer();
+//	OutfitGroup *OutfitTransfer();
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
-	// Add or remove outfits. (To remove, pass a negative number.)
-	void AddOutfit(const Outfit *outfit, int count, int ageToAdd, bool removeOldestFirst=true);
+
+	// Add or remove outfits. (To add, pass a negative number.)
+	void AddOutfit(const Outfit *outfit, int count, int age);
+	void TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeOldestFirst, int ageToAdd);
+	void TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeOldestFirst, int ageToAdd);
+	void TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeOldestFirst, int ageToAdd);
+	
 	
 	// Get the list of weapons.
 	Armament &GetArmament();
@@ -286,6 +291,9 @@ public:
 	void IncrementDate();
 	
 private:
+	// Update attributes, cargo space, hull after adding or removing an outfit. 
+	void FinishAddingOutfit(const Outfit *outfit, int count);
+	
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(const Ship &ship);
 	void RemoveEscort(const Ship &ship);

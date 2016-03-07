@@ -198,13 +198,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				{
 					for( ; taken < count && you->Attributes().CanAdd(*outfit); ++taken)
 					{
-						you->AddOutfit(outfit, 1, 365, false);
-						victim->AddOutfit(outfit, -1, 365, false);
+						victim->TransferOutfitToShip(outfit, 1, *you, false, 365);
 					}
 					break;
 				}
-			cargo.Transfer(outfit, -(count - taken), nullptr, false, 365);
-			victim->AddOutfit(outfit, -(count - taken), 365, false);
+			victim->TransferOutfitToCargo(outfit, (count - taken), you->Cargo(), false, 365);
 		}
 		else
 			victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);

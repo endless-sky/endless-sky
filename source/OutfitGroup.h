@@ -63,12 +63,12 @@ public:
 	int64_t GetCost(const Outfit* outfit, int count, bool oldestFirst) const;
 	
 	// Add outfits.
-	void AddOutfit(const Outfit* outfit, int count, int age);
+	int AddOutfit(const Outfit* outfit, int count, int age);
 	
 	// Remove outfits, either oldest first or newest first. Return number removed.
 	int RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst, OutfitGroup* to = nullptr);
 	
-	void TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge = 0);
+	int TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge = 0);
 	
 	void IncrementDate();
 	

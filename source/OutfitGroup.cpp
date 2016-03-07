@@ -138,7 +138,7 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 
 
 // Can be used to remove outfits, but will only remove outfits of the specified age.
-void OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
+int OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
 {
 	auto oit = outfits.find(outfit);
 	if(oit == outfits.end()) 
@@ -160,6 +160,7 @@ void OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
 		if (oit->second.empty())
 			outfits.erase(oit);
 	}
+	return count;
 }
 
 
@@ -219,29 +220,25 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 
 
 // Needs to support all kinds of operations either on a group or between groups.
-void OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge)
+int OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge)
 {
 	// Invalid inputs.
 	if(!count || !outfit)
-		return;
+		return 0;
 	// Use add/remove if there's no destination.
 	if (!to)
 	{
 		if (count > 0)
-			RemoveOutfit(outfit, count, oldestFirst); // Transfer to nowhere = remove.
+			return RemoveOutfit(outfit, count, oldestFirst); // Transfer to nowhere = remove.
 		else 
-			AddOutfit(outfit, -count, defaultAge); // Transfer from nowhere = add.
-		return;
+			return -AddOutfit(outfit, -count, defaultAge); // Transfer from nowhere = add.
 	}
 	// If count is negative but *to is valid, just turn the whole thing around.  
 	if(count < 0)
-	{
-		to->TransferOutfits(outfit, -count, this, oldestFirst, defaultAge);
-		return;
-	}
+		return -(to->TransferOutfits(outfit, -count, this, oldestFirst, defaultAge));
 	// Transferring a positive number of outfits to a valid destination.
 	// Use the remove function for this.
-	RemoveOutfit(outfit, count, oldestFirst, to);
+	return RemoveOutfit(outfit, count, oldestFirst, to);
 }
 
 

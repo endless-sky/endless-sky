@@ -1991,14 +1991,6 @@ const OutfitGroup &Ship::Outfits() const
 
 
 
-// Get outfitGroup pointer for transfer operations.
-OutfitGroup *Ship::OutfitTransfer()
-{
-	return &outfits;
-}
-
-
-
 int Ship::OutfitCount(const Outfit *outfit) const
 {
 	return outfits.GetTotalCount(outfit);
@@ -2007,24 +1999,42 @@ int Ship::OutfitCount(const Outfit *outfit) const
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::AddOutfit(const Outfit *outfit, int count, int ageToAdd, bool removeOldestFirst)
+void Ship::AddOutfit(const Outfit *outfit, int count, int age)
+{
+	TransferOutfit(outfit, -count, nullptr, true, age);
+}
+
+
+
+void Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeOldestFirst, int ageToAdd)
 {
 	if(outfit && count)
 	{
-		if (count > 0)
-			outfits.AddOutfit(outfit, count, ageToAdd);
-		else 
-			outfits.RemoveOutfit(outfit, count, removeOldestFirst);
-		
-		attributes.Add(*outfit, count);
-		if(outfit->IsWeapon())
-			armament.Add(outfit, count);
-		
-		if(outfit->Get("cargo space"))
-			cargo.SetSize(attributes.Get("cargo space"));
-		if(outfit->Get("hull"))
-			hull += outfit->Get("hull") * count;
+		int transfered = outfits.TransferOutfits(outfit, count, to, removeOldestFirst, ageToAdd);
+		FinishAddingOutfit(outfit, -transfered);
 	}
+}
+
+
+
+// Add or remove outfits. (To remove, pass a negative number.)
+void Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeOldestFirst, int ageToAdd)
+{
+	// Need to perform attribute updates on both ships. 
+	int transfered = outfits.TransferOutfits(outfit, count, &(to.outfits), removeOldestFirst, ageToAdd);
+	FinishAddingOutfit(outfit, -transfered);
+	to.FinishAddingOutfit(outfit, transfered);
+}
+
+
+
+// Add or remove outfits. (To remove, pass a negative number.)
+void Ship::TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeOldestFirst, int ageToAdd)
+{
+	// Need to perform attribute updates on both ships. 
+	count = min(count, outfits.GetTotalCount(outfit));
+	int transfered = -(to.Transfer(outfit, -count, &outfits, removeOldestFirst, ageToAdd));
+	FinishAddingOutfit(outfit, -transfered);
 }
 
 
@@ -2074,7 +2084,7 @@ void Ship::ExpendAmmo(const Outfit *outfit)
 	if(!outfit)
 		return;
 	if(outfit->Ammo())
-		AddOutfit(outfit->Ammo(), -1, 0, true);
+		TransferOutfit(outfit->Ammo(), -1, nullptr, true, 0);
 	
 	energy -= outfit->FiringEnergy();
 	fuel -= outfit->FiringFuel();
@@ -2191,6 +2201,20 @@ void Ship::IncrementDate()
 	// Increment the age of the base ship and each outfit.
 	age++;
 	outfits.IncrementDate();    
+}
+
+
+
+void Ship::FinishAddingOutfit(const Outfit *outfit, int count)
+{
+	attributes.Add(*outfit, count);
+	if(outfit->IsWeapon())
+		armament.Add(outfit, count);
+	
+	if(outfit->Get("cargo space"))
+		cargo.SetSize(attributes.Get("cargo space"));
+	if(outfit->Get("hull"))
+		hull += outfit->Get("hull") * count;
 }
 
 
