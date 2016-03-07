@@ -47,9 +47,9 @@ const vector<string> Ship::CATEGORIES = {
 
 
 
-Ship* Ship::MakeShip(Ship *ship, int age)
+Ship* Ship::MakeShip(const Ship &ship, int age)
 {
-	Ship* newShip = new Ship(*ship);
+	Ship* newShip = new Ship(ship);
 	newShip->IncrementDate(age);
 	return newShip;
 }
@@ -2208,7 +2208,10 @@ void Ship::IncrementDate(int days)
 	if (IsParked())
 		return;
 	// Increment the age of the base ship and each outfit.
+	attributes.Add("cost", -OutfitGroup::CostFunction(&baseAttributes, age));
 	age += days;
+	attributes.Add("cost", OutfitGroup::CostFunction(&baseAttributes, age));
+	
 	outfits.IncrementDate(days);
 	// Outfits in cargo don't age.
 }

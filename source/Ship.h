@@ -49,7 +49,7 @@ public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;	
 	// A constructor that sets the initial age.
-	static Ship* MakeShip(Ship* ship, int age);
+	static Ship* MakeShip(const Ship& ship, int age);
 	
 public:
 	// Load data for a type of ship:

@@ -32,7 +32,7 @@ int OutfitGroup::UsedAge(double minValue, double lossPerDay)
 {	// Random between 30% and 90% depreciated.
 	double fullDepreciationAge = (1. - minValue) / lossPerDay;
 	int min = static_cast<int>(fullDepreciationAge * 0.2);
-	int max = static_cast<int>(fullDepreciationAge * 0.9);
+	int max = static_cast<int>(fullDepreciationAge * 0.8);
 	return Random::Int(max-min) + min;
 }
 
@@ -41,7 +41,7 @@ int OutfitGroup::UsedAge(double minValue, double lossPerDay)
 int OutfitGroup::PlunderAge(double minValue, double lossPerDay)
 {	// Random between 90% and 100% depreciated.
 	double fullDepreciationAge = (1. - minValue) / lossPerDay;
-	int min = static_cast<int>(fullDepreciationAge * 0.9);
+	int min = static_cast<int>(fullDepreciationAge * 0.8);
 	int max = static_cast<int>(fullDepreciationAge);
 	return Random::Int(max-min) + min;
 }
@@ -261,8 +261,6 @@ void OutfitGroup::IncrementDate(int days)
 		for (auto iit : temp)
 			outfits[oit.first][iit.first + days] = iit.second;
 	}
-	
-
 }
 
 

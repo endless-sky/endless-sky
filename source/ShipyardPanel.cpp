@@ -257,9 +257,9 @@ void ShipyardPanel::BuyShip(const string &name)
 	for(int i = 1; i <= modifier; ++i)
 	{
 		if(modifier > 1)
-			player.BuyShip(selectedShip, shipName + to_string(i));
+			player.BuyShip(selectedShip, shipName + to_string(i), 0);
 		else
-			player.BuyShip(selectedShip, shipName);
+			player.BuyShip(selectedShip, shipName, 0);
 	}
 	
 	playerShip = &*player.Ships().back();

@@ -453,7 +453,7 @@ void PlayerInfo::IncrementDate()
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = 0;
-	for(auto ship : ships)
+	for(const shared_ptr<Ship> &ship : ships) 
 	{
 		// Increment the age of the ship and its outfits.
 		ship->IncrementDate();
@@ -604,11 +604,12 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 
 
 // Buy a ship of the given model, and give it the given name.
-void PlayerInfo::BuyShip(const Ship *model, const string &name)
+void PlayerInfo::BuyShip(const Ship *model, const string &name, int age)
 {
 	if(model && accounts.Credits() >= model->Cost())
 	{
-		ships.push_back(shared_ptr<Ship>(new Ship(*model)));
+		auto newShip = Ship::MakeShip(*model, age);
+		ships.push_back(shared_ptr<Ship>(newShip));
 		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
 		ships.back()->SetPlanet(planet);
@@ -616,7 +617,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		
-		accounts.AddCredits(-model->Cost());
+		accounts.AddCredits(-newShip->Cost());
 		flagship.reset();
 	}
 }
