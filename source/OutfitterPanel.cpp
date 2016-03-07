@@ -135,6 +135,9 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	{
 		int minCount = numeric_limits<int>::max();
 		int maxCount = 0;
+		int64_t minPrice = 0;
+		int64_t maxPrice = 0;
+
 		if(isLicense)
 			minCount = maxCount = player.GetCondition(LicenseName(name));
 		else if(mapSize)
@@ -144,37 +147,55 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			for(const Ship *ship : playerShips)
 			{
 				int count = ship->OutfitCount(outfit);
+				int64_t highprice = ship->Outfits().GetCost(outfit, 1, false);
+				int64_t lowprice = ship->Outfits().GetCost(outfit, 1, true);
+				
 				minCount = min(minCount, count);
 				maxCount = max(maxCount, count);
+				minPrice = minPrice > 0 ? min(minPrice, lowprice) : lowprice;
+				maxPrice = max(maxPrice, highprice);
 			}
 		}
 		
 		if(maxCount)
 		{
+			// Installed label.
 			string label = "installed: " + to_string(minCount);
 			if(maxCount > minCount)
 				label += " - " + to_string(maxCount);
 		
-			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
+			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 66);
 			font.Draw(label, labelPos, bright);
+
+			// Sell price label. (TODO: Does not include cargo prices!)
+			string sellLabel =  "sell value: " + Format::Number(minPrice) + "-" + Format::Number(maxPrice);
+			Point pos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
+			font.Draw(sellLabel, pos, bright);
 		}
 	}
+	
 	if(player.Cargo().GetOutfitCount(outfit))
 	{
-		string count = "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));
+		string label =  "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));		
 		Point pos = point + Point(
-			OUTFIT_SIZE / 2 - 20 - font.Width(count),
-			OUTFIT_SIZE / 2 - 24);
-		font.Draw(count, pos, bright);
+			-OUTFIT_SIZE / 2 + 20,
+			OUTFIT_SIZE / 2 - 52);
+		font.Draw(label, pos, bright);
 	}
-	else if(!outfitter.Has(outfit) && !available.Find(outfit))
-	{
-		static const string message = "(not sold here)";
-		Point pos = point + Point(
-			OUTFIT_SIZE / 2 - 20 - font.Width(message),
-			OUTFIT_SIZE / 2 - 24);
-		font.Draw(message, pos, bright);
-	}
+
+	// Buy price label.
+	string buyLabel;
+	if (available.GetTotalCount(outfit))
+		buyLabel =  + "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(available.GetCost(outfit, 1, true));
+	else if (outfitter.Has(outfit))
+		buyLabel = "buy new: " + Format::Number(outfit->Cost());
+	else 
+		buyLabel = "(not sold here)";
+	
+	Point pos = point + Point(
+		-OUTFIT_SIZE / 2 + 20,
+		OUTFIT_SIZE / 2 - 24);
+	font.Draw(buyLabel, pos, bright);
 	
 	return true;
 }
