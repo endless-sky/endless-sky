@@ -194,7 +194,6 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
 		Point pos = point + Point(-font.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 30);
 		font.Draw(saleLabel, pos, bright);
-		
 	}
 	else if (outfitter.Has(outfit))
 		buyLabel = "buy new: " + Format::Number(outfit->Cost());
@@ -483,8 +482,9 @@ void OutfitterPanel::Sell()
 	{
 		// Sell the newest (most valuable) first.
 		int64_t cost = player.Cargo().Outfits().GetCost(selectedOutfit, 1, false);
+		bool makeAvailable = (!outfitter.Has(selectedOutfit) || cost < selectedOutfit->Cost());
 		player.Accounts().AddCredits(cost);
-		player.Cargo().Transfer(selectedOutfit, 1, &available, false, 0);
+		player.Cargo().Transfer(selectedOutfit, 1, makeAvailable ? &available : nullptr, false, 0);
 	}
 	else
 	{
@@ -510,7 +510,8 @@ void OutfitterPanel::Sell()
 		{
 			// sell newest first; transfer from ship to available.
 			int64_t cost = ship->Outfits().GetCost(selectedOutfit, 1, false);
-			ship->TransferOutfit(selectedOutfit, 1, &available, false, 0);
+			bool makeAvailable = (!outfitter.Has(selectedOutfit) || cost < selectedOutfit->Cost());
+			ship->TransferOutfit(selectedOutfit, 1, makeAvailable ? &available : nullptr, false, 0);
 			player.Accounts().AddCredits(cost);
 			
 			if(selectedOutfit->Get("required crew"))
@@ -529,7 +530,8 @@ void OutfitterPanel::Sell()
 				if(mustSell)
 				{
 					int64_t cost = ship->Outfits().GetCost(ammo, mustSell, false);
-					ship->TransferOutfit(ammo, mustSell, &available, false, 0);
+					bool makeAvailable = (!outfitter.Has(selectedOutfit) || cost < selectedOutfit->Cost());
+					ship->TransferOutfit(ammo, mustSell, makeAvailable ? &available : nullptr, false, 0);
 					player.Accounts().AddCredits(cost);
 				}
 			}
