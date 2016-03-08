@@ -26,6 +26,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <set>
 #include <vector>
 #include <string>
+#include <future>
 
 class DataNode;
 class Government;
@@ -62,7 +63,9 @@ public:
 	void LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
-	
+	// Number of save backups to keep
+	static std::size_t SaveBackups();
+	static void SetSaveBackups(std::size_t count);
 	// Get the root filename used for this player's saved game files. (If there
 	// are multiple pilots with the same name it may have a digit appended.)
 	std::string Identifier() const;
@@ -249,6 +252,10 @@ private:
 	std::list<GameEvent> gameEvents;
 	
 	bool freshlyLoaded = true;
+	// Keeps track of the std::async call performing save backups.
+	// When destroyed, it will automatically wait for the thread to finish,
+	// so declaring it as mutable is safe in this use case.
+	mutable std::shared_future<void> saveBackupDone;
 };
 
 

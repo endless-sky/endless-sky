@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Files.h"
 #include "Screen.h"
+#include "PlayerInfo.h"
 
 #include <map>
 
@@ -45,6 +46,8 @@ void Preferences::Load()
 			Screen::SetZoom(node.Value(1));
 		else if(node.Token(0) == "volume" && node.Size() >= 2)
 			Audio::SetVolume(node.Value(1));
+		else if(node.Token(0) == "save backups" && node.Size() >= 2)
+			PlayerInfo::SetSaveBackups(node.Value(1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -56,6 +59,7 @@ void Preferences::Save()
 {
 	DataWriter out(Files::Config() + "preferences.txt");
 	
+	out.Write("save backups", PlayerInfo::SaveBackups());
 	out.Write("volume", Audio::Volume());
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::Zoom());
