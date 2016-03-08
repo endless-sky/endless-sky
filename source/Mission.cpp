@@ -175,9 +175,12 @@ void Mission::Load(const DataNode &node)
 			npcs.push_back(NPC());
 			npcs.back().Load(child);
 		}
-		else if(child.Token(0) == "on" && child.Size() >= 3 && child.Token(1) == "enter")
+		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
-			MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
+			const System *system = nullptr;
+			if(child.Size() >= 3)
+				system = GameData::Systems().Get(child.Token(2));
+			MissionAction &action = onEnter[system];
 			action.Load(child, name);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
@@ -742,6 +745,13 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			waypoints.erase(it);
 		
 		auto eit = onEnter.find(system);
+		if(eit != onEnter.end())
+		{
+			eit->second.Do(player, ui);
+			onEnter.erase(eit);
+		}
+		// Allow special "on enter" conditions that match any system.
+		eit = onEnter.find(nullptr);
 		if(eit != onEnter.end())
 		{
 			eit->second.Do(player, ui);

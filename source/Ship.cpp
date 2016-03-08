@@ -695,64 +695,6 @@ bool Ship::Move(list<Effect> &effects)
 		heat += attributes.Get("heat generation");
 		heat -= attributes.Get("cooling");
 		heat = max(0., heat);
-		
-		// Hull repair.
-		double oldHull = hull;
-		double hullGeneration = attributes.Get("hull repair rate");
-		hull = min(hull + hullGeneration, maxHull);
-		static const double HULL_EXCHANGE_RATE = 1. +
-			(hullGeneration ? attributes.Get("hull energy") / hullGeneration : 0.);
-		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
-		
-		// Recharge shields, but only up to the max. If there is extra shield
-		// energy, use it to recharge fighters and drones.
-		double shieldGeneration = attributes.Get("shield generation");
-		shields += shieldGeneration;
-		double SHIELD_EXCHANGE_RATE = 1. +
-			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
-		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
-		double excessShields = max(0., shields - maxShields);
-		shields -= excessShields;
-		
-		for(Bay &bay : fighterBays)
-		{
-			if(!bay.ship)
-				continue;
-			
-			double myGen = bay.ship->Attributes().Get("shield generation");
-			double myMax = bay.ship->Attributes().Get("shields");
-			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
-			if(excessShields > 0. && bay.ship->shields < myMax)
-			{
-				double extra = min(myMax - bay.ship->shields, excessShields);
-				bay.ship->shields += extra;
-				excessShields -= extra;
-			}
-		}
-		for(Bay &bay : droneBays)
-		{
-			if(!bay.ship)
-				continue;
-			
-			double myGen = bay.ship->Attributes().Get("shield generation");
-			double myMax = bay.ship->Attributes().Get("shields");
-			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
-			if(excessShields > 0. && bay.ship->shields < myMax)
-			{
-				double extra = min(myMax - bay.ship->shields, excessShields);
-				bay.ship->shields += extra;
-				excessShields -= extra;
-			}
-		}
-		// If you do not need the shield generation, apply the extra back to
-		// your energy. On the other hand, if recharging shields drives your
-		// energy negative, undo that part of the recharge.
-		energy += SHIELD_EXCHANGE_RATE * excessShields;
-		if(energy < 0.)
-		{
-			shields += energy / SHIELD_EXCHANGE_RATE;
-			energy = 0.;
-		}
 	}
 	
 	
@@ -1127,6 +1069,69 @@ bool Ship::Move(list<Effect> &effects)
 				else
 					hasBoarded = true;
 			}
+		}
+	}
+	
+	// Shield and hull recharge. This comes after movement so that engines take
+	// priority over shield recharge.
+	if(!isDisabled)
+	{
+		// Hull repair.
+		double oldHull = hull;
+		double hullGeneration = attributes.Get("hull repair rate");
+		hull = min(hull + hullGeneration, maxHull);
+		static const double HULL_EXCHANGE_RATE = 1. +
+			(hullGeneration ? attributes.Get("hull energy") / hullGeneration : 0.);
+		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
+		
+		// Recharge shields, but only up to the max. If there is extra shield
+		// energy, use it to recharge fighters and drones.
+		double shieldGeneration = attributes.Get("shield generation");
+		shields += shieldGeneration;
+		double SHIELD_EXCHANGE_RATE = 1. +
+			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
+		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
+		double excessShields = max(0., shields - maxShields);
+		shields -= excessShields;
+		
+		for(Bay &bay : fighterBays)
+		{
+			if(!bay.ship)
+				continue;
+			
+			double myGen = bay.ship->Attributes().Get("shield generation");
+			double myMax = bay.ship->Attributes().Get("shields");
+			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+			if(excessShields > 0. && bay.ship->shields < myMax)
+			{
+				double extra = min(myMax - bay.ship->shields, excessShields);
+				bay.ship->shields += extra;
+				excessShields -= extra;
+			}
+		}
+		for(Bay &bay : droneBays)
+		{
+			if(!bay.ship)
+				continue;
+			
+			double myGen = bay.ship->Attributes().Get("shield generation");
+			double myMax = bay.ship->Attributes().Get("shields");
+			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+			if(excessShields > 0. && bay.ship->shields < myMax)
+			{
+				double extra = min(myMax - bay.ship->shields, excessShields);
+				bay.ship->shields += extra;
+				excessShields -= extra;
+			}
+		}
+		// If you do not need the shield generation, apply the extra back to
+		// your energy. On the other hand, if recharging shields drives your
+		// energy negative, undo that part of the recharge.
+		energy += SHIELD_EXCHANGE_RATE * excessShields;
+		if(energy < 0.)
+		{
+			shields += energy / SHIELD_EXCHANGE_RATE;
+			energy = 0.;
 		}
 	}
 	

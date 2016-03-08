@@ -45,10 +45,7 @@ using namespace std;
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player),
-	calcTickTock(false), drawTickTock(false), terminate(false), step(0),
-	flash(0.), doFlash(false), wasLeavingHyperspace(false),
-	load(0.), loadCount(0), loadSum(0.)
+	: player(player)
 {
 	// Start the thread for doing calculations.
 	calcThread = thread(&Engine::ThreadEntryPoint, this);
@@ -270,13 +267,11 @@ void Engine::Step(bool isActive)
 	{
 		position = flagship->Position();
 		velocity = flagship->Velocity();
-		bool isLeavingHyperspace = flagship->IsHyperspacing();
-		if(!isLeavingHyperspace && wasLeavingHyperspace)
+		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
-			int type = ShipEvent::JUMP;
-			events.emplace_back(flagship, flagship, type);
+			doEnter = false;
+			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		wasLeavingHyperspace = isLeavingHyperspace;
 	}
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
@@ -640,6 +635,7 @@ void Engine::EnterSystem()
 	
 	const System *system = flagship->GetSystem();
 	
+	doEnter = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
 	Messages::Add("Entering the " + system->Name() + " system on "
