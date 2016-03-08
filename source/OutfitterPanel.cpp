@@ -191,9 +191,12 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		int64_t cost = available.GetCost(outfit, 1, true);
 		buyLabel =  + "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(cost);
 		
-		std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
-		Point pos = point + Point(-font.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 30);
-		font.Draw(saleLabel, pos, bright);
+		if (95 * outfit->Cost() >= 100 * cost)
+		{
+			std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
+			Point pos = point + Point(-font.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 30);
+			font.Draw(saleLabel, pos, bright);
+		}
 	}
 	else if (outfitter.Has(outfit))
 		buyLabel = "buy new: " + Format::Number(outfit->Cost());
