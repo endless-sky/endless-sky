@@ -163,12 +163,13 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			string label = "installed: " + to_string(minCount);
 			if(maxCount > minCount)
 				label += " - " + to_string(maxCount);
-		
-			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 66);
+			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 52);
 			font.Draw(label, labelPos, bright);
 
 			// Sell price label. (TODO: Does not include cargo prices!)
-			string sellLabel =  "sell value: " + Format::Number(minPrice) + "-" + Format::Number(maxPrice);
+			string sellLabel =  "sell value: " + Format::Percent(minPrice, outfit->Cost());
+			if (minPrice != maxPrice)
+				sellLabel += "-" + Format::Percent(maxPrice, outfit->Cost());
 			Point pos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
 			font.Draw(sellLabel, pos, bright);
 		}
@@ -179,22 +180,28 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		string label =  "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));		
 		Point pos = point + Point(
 			-OUTFIT_SIZE / 2 + 20,
-			OUTFIT_SIZE / 2 - 52);
+			OUTFIT_SIZE / 2 - 66);
 		font.Draw(label, pos, bright);
 	}
 
 	// Buy price label.
 	string buyLabel;
 	if (available.GetTotalCount(outfit))
-		buyLabel =  + "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(available.GetCost(outfit, 1, true));
+	{
+		int64_t cost = available.GetCost(outfit, 1, true);
+		buyLabel =  + "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(cost);
+		
+		std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
+		Point pos = point + Point(-font.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 30);
+		font.Draw(saleLabel, pos, bright);
+		
+	}
 	else if (outfitter.Has(outfit))
 		buyLabel = "buy new: " + Format::Number(outfit->Cost());
 	else 
 		buyLabel = "(not sold here)";
 	
-	Point pos = point + Point(
-		-OUTFIT_SIZE / 2 + 20,
-		OUTFIT_SIZE / 2 - 24);
+	Point pos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 24);
 	font.Draw(buyLabel, pos, bright);
 	
 	return true;
