@@ -855,6 +855,22 @@ void PlayerInfo::Land(UI *ui)
 			ui->Push(new Dialog(message));
 	}
 	
+	// Add some random used outfits to the outfitter if there is one.
+	if(GetPlanet()->HasOutfitter())
+		for(const Outfit *outfit : GetPlanet()->Outfitter())
+		{
+			// Ammo is never on sale.
+			if (outfit->Category() == "Ammunition")
+				continue;
+			int added = 0;
+			while (Random::Int(100) < 50) //TODO: Variable used part generation chance and max.
+			{
+				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedAge());
+				if(++added >= 3)
+					break;
+			}
+		}
+	
 	freshlyLoaded = false;
 	flagship.reset();
 }
