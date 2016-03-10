@@ -168,6 +168,8 @@ void Ship::Load(const DataNode &node)
 				outfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, age);
 			}
 		}
+		else if(child.Token(0) == "age")
+			age = child.Value(1);
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "crew" && child.Size() >= 2)
@@ -318,6 +320,9 @@ void Ship::FinishLoading()
 		shared_ptr<const Ship> parent = GetParent();
 		Recharge(!parent || currentSystem == parent->currentSystem);
 	}
+	
+	// Update the cost, based on age of hull and all outfits.
+	UpdateCost();
 }
 
 
@@ -359,6 +364,7 @@ void Ship::Save(DataWriter &out) const
 		out.EndChild();
 		
 		cargo.Save(out);
+		out.Write("age", age);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
@@ -450,6 +456,19 @@ const string &Ship::Description() const
 int64_t Ship::Cost() const
 {
 	return attributes.Cost();
+}
+
+
+
+// Get this ship's cost.
+int64_t Ship::UpdateCost()
+{
+	int64_t totalCost = OutfitGroup::CostFunction(&baseAttributes, age);
+	
+	for (auto it : outfits)
+		totalCost += it.GetTotalCost();
+	attributes.Reset("cost", totalCost);
+	return totalCost;
 }
 
 
@@ -2213,12 +2232,10 @@ void Ship::IncrementDate(int days)
 	if (IsParked())
 		return;
 	// Increment the age of the base ship and each outfit.
-	attributes.Add("cost", -OutfitGroup::CostFunction(&baseAttributes, age));
-	age += days;
-	attributes.Add("cost", OutfitGroup::CostFunction(&baseAttributes, age));
-	
+	age += days;	
 	outfits.IncrementDate(days);
 	// Outfits in cargo don't age.
+	UpdateCost();
 }
 
 
