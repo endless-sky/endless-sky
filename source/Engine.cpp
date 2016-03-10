@@ -624,7 +624,7 @@ void Engine::Draw() const
 void Engine::Click(const Point &point)
 {
 	doClick = true;
-	clickPoint = point;
+	clickPoint = point * 100 / zoom;
 }
 
 
