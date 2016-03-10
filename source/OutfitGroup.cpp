@@ -157,8 +157,8 @@ int OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
 			oit->second[age] = count;
 		else 
 		{
-			iit->second += count;
-			if(!iit->second)
+			oit->second[age] += count;
+			if(!oit->second[age])
 				oit->second.erase(iit);
 		}
 		if (oit->second.empty())
@@ -184,12 +184,13 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 		std::vector<InnerMap::iterator> toErase;
 		do {
 			--iit;
+			int age = iit->first;
 			int toRemove = std::min(iit->second, count - removed);
 			removed += toRemove;
-			iit->second -= toRemove;
+			oit->second[age] -= toRemove;
 			if (to)
-				to->AddOutfit(outfit, toRemove, iit->first);
-			if (!iit->second) 
+				to->AddOutfit(outfit, toRemove, age);
+			if (!oit->second[age]) 
 			{	
 				toErase.push_back(iit);
 			}
@@ -203,16 +204,15 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 		auto iit = oit->second.begin();
 		while(count > removed && iit != oit->second.end()) 
 		{
+			int age = iit->first;
 			int toRemove = std::min(iit->second, count - removed);
 			removed += toRemove;
-			iit->second -= toRemove;
+			oit->second[age] -= toRemove;
 			if (to)
-				to->AddOutfit(outfit, toRemove, iit->first);
-			if (!iit->second)
-				oit->second.erase(iit++);
-			else
-				++iit;
-
+				to->AddOutfit(outfit, toRemove, age);
+			if (!oit->second[age])
+				oit->second.erase(iit);
+			++iit;
 		}
 	}
 	if (oit->second.empty())
@@ -330,8 +330,6 @@ const OutfitGroup::iterator& OutfitGroup::iterator::operator++ ()
 		else 
 			innerIter = outerIter->second.begin();
 	}
-	else
-		++innerIter;
 	return *this;
 }
 
