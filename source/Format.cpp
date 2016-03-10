@@ -162,7 +162,7 @@ double Format::Parse(const string &str)
 string Format::Percent(int64_t number, int64_t base)
 {
 	double ratio = static_cast<double>(100 * number) / static_cast<double>(base);
-	std::string str = to_string(ratio);
+	std::string str = to_string(round(ratio));
 	return str.substr(0, str.find(".")) + "%";
 }
 
