@@ -257,41 +257,56 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
 
-	Save(filePath);
+	// basename for incremental saves
+	string baseName = filePath.substr(0, filePath.length() - 4) + "~autosave-";
 
 	// stop here if not keeping any backups
-	if(saveBackups == 0)
+	if(saveBackups)
+	{
+		Files::Copy(filePath, baseName);
+		Save(filePath);
+	}
+	else
+	{
+		Save(filePath);
 		return;
+	}
 
 	// backup savegames
 	auto done = async(launch::async,
-		[](string path, int year, int month, int day, size_t savesToKeep)
+		[](string path, string baseName, size_t savesToKeep)
 		{
-			string baseName = path.substr(0, path.length() - 4) + "~autosave-";
-			string extension = "0000-00-00.txt";
-			extension[0] += (year / 1000) % 10;
-			extension[1] += (year / 100) % 10;
-			extension[2] += (year / 10) % 10;
-			extension[3] += year % 10;
-			extension[5] += (month / 10) % 10;
-			extension[6] += month % 10;
-			extension[8] += (day / 10) % 10;
-			extension[9] += day % 10;
-
-			// Backup last save
-			Files::Copy(path, baseName + extension);
+			// Get date from temp save and rename it accordingly
+			DataFile file(baseName);
+			for(const DataNode &node : file)
+				if(node.Token(0) == "date")
+				{
+					int year = node.Value(3);
+					int month = node.Value(2);
+					int day = node.Value(1);
+					string extension = "0000-00-00.txt";
+					extension[0] += (year / 1000) % 10;
+					extension[1] += (year / 100) % 10;
+					extension[2] += (year / 10) % 10;
+					extension[3] += year % 10;
+					extension[5] += (month / 10) % 10;
+					extension[6] += month % 10;
+					extension[8] += (day / 10) % 10;
+					extension[9] += day % 10;
+					Files::Copy(baseName, baseName + extension);
+				}
+			Files::Delete(baseName);
 
 			// delete older backups
 			auto saves = Files::List(Files::Saves());
 			auto last = remove_if(saves.begin(), saves.end(),
 				[&baseName](const string& item){ return item.find(baseName) != 0; });
-			// saves.erase(last, saves.end());
 			sort(saves.begin(), last);
-			size_t count = distance(saves.begin(), last) ;
+			size_t count = distance(saves.begin(), last);
 			for (auto it = saves.begin(); count > savesToKeep && it != last; it++, count--)
 				Files::Delete(*it);
 		},
-		filePath, date.Year(), date.Month(), date.Day(), saveBackups);
+		filePath, move(baseName), saveBackups);
 	saveBackupDone = done.share();
 }
 
