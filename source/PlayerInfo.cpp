@@ -859,8 +859,8 @@ void PlayerInfo::Land(UI *ui)
 	if(GetPlanet()->HasOutfitter())
 		for(const Outfit *outfit : GetPlanet()->Outfitter())
 		{
-			// Ammo is never on sale.
-			if (outfit->Category() == "Ammunition")
+			// Ammo/Maps/Licenses are never on sale.
+			if (outfit->Category() == "Ammunition" || outfit->Category() == "Special")
 				continue;
 			int added = 0;
 			while (Random::Int(100) < 50) //TODO: Variable used part generation chance and max.
