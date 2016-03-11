@@ -300,7 +300,7 @@ void PlayerInfo::Save() const
 			// delete older backups
 			auto saves = Files::List(Files::Saves());
 			auto last = remove_if(saves.begin(), saves.end(),
-				[&baseName](const string& item){ return item.find(baseName) != 0; });
+				[&baseName](const string& item){ return item.compare(0, baseName.length(), baseName); });
 			sort(saves.begin(), last);
 			size_t count = distance(saves.begin(), last);
 			for (auto it = saves.begin(); count > savesToKeep && it != last; it++, count--)
