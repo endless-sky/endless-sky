@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age, double minValue, double lossPerDay)
 {
+	if (outfit->Get("ageless"))
+		return outfit->Cost();
 	return static_cast<int64_t>(outfit->Cost() * std::max(minValue, 1. - (lossPerDay * age)));
 }
 

@@ -11,6 +11,7 @@
 outfit "Nanotech Battery"
 	category "Power"
 	cost 3000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 50
 	"outfit space" -50
@@ -19,15 +20,17 @@ outfit "Nanotech Battery"
 outfit "Antimatter Core"
 	category "Power"
 	cost 100000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 80
 	"outfit space" -80
 	"energy generation" 80
 	"heat generation" 20
-
+	
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 60
 	"outfit space" -60
@@ -52,6 +55,7 @@ outfit "Quarg Skylance"
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 40
 	"outfit space" -40
@@ -67,13 +71,16 @@ outfit "Quarg Anti-Missile"
 
 outfit "Intrusion Countermeasures"
 	category "Hand to Hand"
+	cost 100000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"capture defense" 60
-	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
+	description "Quarg ships are outfitted with special systems for repelling boarders."
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
-	"cost" 20000000
+	cost 20000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 70
 	"outfit space" -70
@@ -85,7 +92,8 @@ outfit "Medium Graviton Thruster"
 
 outfit "Medium Graviton Steering"
 	category "Engines"
-	"cost" 16000000
+	cost 16000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 50
 	"outfit space" -50
@@ -97,6 +105,7 @@ outfit "Medium Graviton Steering"
 outfit "Quantum Shield Generator"
 	category "Systems"
 	cost 30000000
+	ageless 1
 	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -120
@@ -105,6 +114,7 @@ outfit "Quantum Shield Generator"
 outfit "Jump Drive"
 	category "Systems"
 	cost 1000000
+	ageless 1
 	thumbnail "outfit/jump drive"
 	"mass" 20
 	"outfit space" -20
