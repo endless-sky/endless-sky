@@ -880,7 +880,7 @@ void PlayerInfo::Land(UI *ui)
 			if (outfit->Category() == "Ammunition" || outfit->Category() == "Special")
 				continue;
 			int added = 0;
-			while (Random::Int(100) < 45) //TODO: Variable used part generation chance and max.
+			while (Random::Int(100) < 40) //TODO: Variable used part generation chance and max.
 			{
 				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedAge());
 				if(++added >= 3)
@@ -892,7 +892,7 @@ void PlayerInfo::Land(UI *ui)
 	{
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
-			if (Random::Int(100) < 30) //TODO: Variable used ship generation chance.
+			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
 				usedShips[ship] = OutfitGroup::UsedAge();
 		}
 		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.

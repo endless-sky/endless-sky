@@ -195,7 +195,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		{
 			Font saleFont = FontSet::Get(18);
 			std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
-			Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 32);
+			Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 26);
 			saleFont.Draw(saleLabel, pos, bright);
 		}
 	}

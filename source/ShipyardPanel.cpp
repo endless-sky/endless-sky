@@ -80,7 +80,7 @@ bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 		Font saleFont = FontSet::Get(18);
 		const Color &bright = *GameData::Colors().Get("bright");
 		std::string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(age))+" OFF!]";
-		Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 32);
+		Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 );
 		saleFont.Draw(saleLabel, pos, bright);
 	}
 	
