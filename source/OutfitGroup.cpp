@@ -28,11 +28,18 @@ int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age, double minValue
 
 
 
+double OutfitGroup::CostFunction(int age, double minValue, double lossPerDay)
+{
+	return std::max(minValue, 1. - (lossPerDay * age));
+}
+
+
+
 int OutfitGroup::UsedAge(double minValue, double lossPerDay)
 {	// Random between 30% and 90% depreciated.
 	double fullDepreciationAge = (1. - minValue) / lossPerDay;
 	int min = static_cast<int>(fullDepreciationAge * 0.2);
-	int max = static_cast<int>(fullDepreciationAge * 0.8);
+	int max = static_cast<int>(fullDepreciationAge * 0.7);
 	return Random::Int(max-min) + min;
 }
 

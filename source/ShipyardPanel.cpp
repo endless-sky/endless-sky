@@ -12,7 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShipyardPanel.h"
 
+#include "Color.h"
 #include "Dialog.h"
+#include "Font.h"
+#include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Planet.h"
@@ -29,7 +32,7 @@ using namespace std;
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, Ship::CATEGORIES)
+	: ShopPanel(player, Ship::CATEGORIES), available(player.UsedShips())
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
@@ -60,7 +63,7 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	if(!shipyard.Has(ship))
+	if(!shipyard.Has(ship) && available.find(ship) == available.end())
 		return false;
 	
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
@@ -68,6 +71,18 @@ bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 		return true;
 	
 	DrawShip(*ship, point, ship == selectedShip);
+	
+	// If there's a used ship available, show the sale label.
+	auto it = available.find(ship);
+	if (it != available.end())
+	{
+		int age = it->second;
+		Font saleFont = FontSet::Get(18);
+		const Color &bright = *GameData::Colors().Get("bright");
+		std::string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(age))+" OFF!]";
+		Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 32);
+		saleFont.Draw(saleLabel, pos, bright);
+	}
 	
 	return true;
 }
@@ -85,7 +100,6 @@ int ShipyardPanel::DetailWidth() const
 {
 	return 3 * ShipInfoDisplay::PanelWidth();
 }
-
 
 
 
@@ -256,10 +270,17 @@ void ShipyardPanel::BuyShip(const string &name)
 	
 	for(int i = 1; i <= modifier; ++i)
 	{
+		int age = 0;
+		auto it = available.find(selectedShip);
+		if (it != available.end())
+		{
+			age = available.find(selectedShip)->second;
+			available.erase(it);			
+		}
 		if(modifier > 1)
-			player.BuyShip(selectedShip, shipName + to_string(i), 0);
+			player.BuyShip(selectedShip, shipName + to_string(i), age);
 		else
-			player.BuyShip(selectedShip, shipName, 0);
+			player.BuyShip(selectedShip, shipName, age);
 	}
 	
 	playerShip = &*player.Ships().back();

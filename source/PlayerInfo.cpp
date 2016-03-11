@@ -863,12 +863,19 @@ void PlayerInfo::Land(UI *ui)
 			if (outfit->Category() == "Ammunition" || outfit->Category() == "Special")
 				continue;
 			int added = 0;
-			while (Random::Int(100) < 50) //TODO: Variable used part generation chance and max.
+			while (Random::Int(100) < 45) //TODO: Variable used part generation chance and max.
 			{
 				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedAge());
 				if(++added >= 3)
 					break;
 			}
+		}
+	// Add a few random used ships for sale. 
+	if(GetPlanet()->HasShipyard())
+		for(const Ship *ship : GetPlanet()->Shipyard())
+		{
+			if (Random::Int(100) < 30) //TODO: Variable used ship generation chance.
+				usedShips[ship] = OutfitGroup::UsedAge();
 		}
 	
 	freshlyLoaded = false;
@@ -893,6 +900,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	availableMissions.clear();
 	doneMissions.clear();
 	soldOutfits.Clear();
+	usedShips.clear();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1532,6 +1540,14 @@ void PlayerInfo::SelectNext()
 OutfitGroup &PlayerInfo::SoldOutfits()
 {
 	return soldOutfits;
+}
+
+
+
+// Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
+PlayerInfo::UsedShipMap &PlayerInfo::UsedShips()
+{
+	return usedShips;
 }
 
 

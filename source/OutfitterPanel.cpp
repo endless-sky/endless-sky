@@ -193,9 +193,10 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		
 		if (95 * outfit->Cost() >= 100 * cost)
 		{
+			Font saleFont = FontSet::Get(18);
 			std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
-			Point pos = point + Point(-font.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 30);
-			font.Draw(saleLabel, pos, bright);
+			Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 32);
+			saleFont.Draw(saleLabel, pos, bright);
 		}
 	}
 	else if (outfitter.Has(outfit))

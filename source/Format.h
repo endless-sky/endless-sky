@@ -31,6 +31,7 @@ public:
 	// Get a string with the ratio of one number to another in percent.
 	// Used for prices, i.e. "I'll pay 80% of list price" or "this is 15% off"
 	static std::string Percent(int64_t number, int64_t base);
+	static std::string Percent(double ratio);
 	// Replace a set of "keys," which must be strings in the form "<name>", with
 	// a new set of strings, and return the result.
 	static std::string Replace(const std::string &source, const std::map<std::string, std::string> keys);

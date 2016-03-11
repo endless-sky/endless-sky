@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "PlayerInfo.h"
 #include "Sale.h"
 
 #include <string>
@@ -61,6 +62,7 @@ private:
 	int modifier;
 	
 	Sale<Ship> shipyard;
+	PlayerInfo::UsedShipMap &available;
 };
 
 
