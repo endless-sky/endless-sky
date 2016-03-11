@@ -227,7 +227,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
 				strength += it->Cost();
 		}
-	}		
+	}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1025,11 +1025,30 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 {
-	// This is not the behavior I want, but it's reasonable.
 	Point direction = target.Position() - ship.Position();
-	command.SetTurn(TurnToward(ship, direction));
-	if(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.)
-		command |= Command::FORWARD;
+	if(direction.Length() > 200.)
+	{
+		// get closer
+		command.SetTurn(TurnToward(ship, direction));
+		if(ship.Facing().Unit().Dot(direction) >= 0.)
+			command |= Command::FORWARD;
+	}
+	else
+	{
+		// try to match course
+		Point delta = target.Velocity() - ship.Velocity();
+		// We want to cancel out that delta. From testing, geting to 0 is not
+		// possible, but most ships should be able to get within .05 quite quickly
+		if(delta.Length() > .05)
+		{
+			command.SetTurn(TurnToward(ship, delta));
+			// wait for the angle to be a little less than 45 degrees
+			// otherwise the ships will keep turning around.
+			if(ship.Facing().Unit().Dot(delta.Unit()) > .8)
+				command |= Command::FORWARD;
+		}
+	}
+		
 }
 
 
