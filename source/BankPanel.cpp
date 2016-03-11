@@ -239,7 +239,8 @@ bool BankPanel::Click(int x, int y)
 			return DoKey(key);
 	}
 	
-	int maxY = FIRST_Y + 25 + 20 * player.Accounts().Mortgages().size();
+	int maxY = FIRST_Y + 25 + 20 * min(7 + static_cast<size_t>(!player.Salaries()),
+		player.Accounts().Mortgages().size());
 	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
 	{
 		selectedRow = (y - FIRST_Y - 25) / 20;
