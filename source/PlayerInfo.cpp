@@ -151,6 +151,23 @@ void PlayerInfo::Load(const string &path)
 			availableMissions.push_back(Mission());
 			availableMissions.back().Load(child);
 		}
+		else if (child.Token(0) == "used outfits")
+		{
+			for(const DataNode &grand : child)
+			{
+				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
+				int age = (grand.Size() >= 3) ? grand.Value(2) : OutfitGroup::UsedAge();
+				soldOutfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, age);
+			}
+		}
+		else if (child.Token(0) == "used ships")
+		{
+			for(const DataNode &grand : child)
+			{
+				int age = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedAge();
+				usedShips[GameData::Ships().Get(grand.Token(0))] = age;
+			}
+		}
 		else if(child.Token(0) == "conditions")
 		{
 			for(const DataNode &grand : child)
@@ -856,7 +873,7 @@ void PlayerInfo::Land(UI *ui)
 	}
 	
 	// Add some random used outfits to the outfitter if there is one.
-	if(GetPlanet()->HasOutfitter())
+	if(GetPlanet()->HasOutfitter() && soldOutfits.Empty())
 		for(const Outfit *outfit : GetPlanet()->Outfitter())
 		{
 			// Ammo/Maps/Licenses are never on sale.
@@ -871,12 +888,16 @@ void PlayerInfo::Land(UI *ui)
 			}
 		}
 	// Add a few random used ships for sale. 
-	if(GetPlanet()->HasShipyard())
+	if(GetPlanet()->HasShipyard() && usedShips.empty())
+	{
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
 			if (Random::Int(100) < 30) //TODO: Variable used ship generation chance.
 				usedShips[ship] = OutfitGroup::UsedAge();
 		}
+		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.
+			usedShips[nullptr] = 0; 
+	}
 	
 	freshlyLoaded = false;
 	flagship.reset();
@@ -1713,6 +1734,30 @@ void PlayerInfo::Save(const string &path) const
 		mission.Save(out, "available job");
 	for(const Mission &mission : availableMissions)
 		mission.Save(out, "available mission");
+	
+	// Save which used outfits are currently available.
+	out.Write("used outfits");
+	out.BeginChild();
+	{
+		for(const auto &it : soldOutfits)
+			if(it.GetOutfit() && it.GetQuantity())
+			{
+				if(it.GetQuantity() == 1 && !it.GetAge())
+					out.Write(it.GetOutfit()->Name());
+				else
+					out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetAge());
+			}
+	}
+	out.EndChild();
+	// Save which used ships are currently available.
+	out.Write("used ships");
+	out.BeginChild();
+	{
+		for(const auto &it : usedShips)
+			if(it.first && it.second > 0)
+				out.Write(it.first->ModelName(), it.second);
+	}
+	out.EndChild();
 	
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())
