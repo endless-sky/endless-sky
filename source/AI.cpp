@@ -1041,17 +1041,21 @@ void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 		// possible, but most ships should be able to get within .03 quite quickly
 		if(delta.Length() > .03)
 		{
-			auto dot = ship.Facing().Unit().Dot(delta.Unit());
+			double dot = ship.Facing().Unit().Dot(delta.Unit());
+
 			// don't turn if close enough
 			if(dot < .99)
 				command.SetTurn(TurnToward(ship, delta));
-			// wait for the angle to be a little less than 45 degrees before
-			// thrusting, otherwise the ships will keep turning around.
-			if(dot >= .8)
+
+			// wait for the angle to be around 30 degrees before thrusting,
+			// otherwise the ships will keep turning around.
+			if(dot > .866)
 				command |= Command::FORWARD;
 		}
+		else
+			// we've matched course, now match heading
+			command.SetTurn(TurnToward(ship, target.Facing().Unit()));
 	}
-		
 }
 
 
