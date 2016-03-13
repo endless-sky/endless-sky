@@ -567,7 +567,8 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried() && !it->IsDisabled())
+			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried()
+					&& it->RequiredCrew() && !it->IsDisabled())
 			{
 				flagship = it;
 				break;
@@ -821,7 +822,7 @@ void PlayerInfo::Land(UI *ui)
 		cargo.RemoveMissionCargo(mission);
 	
 	// Check if the player is doing anything illegal.
-	const Government *gov = GetSystem()->GetGovernment();
+	const Government *gov = GetPlanet()->GetGovernment();
 	string message;
 	if(!freshlyLoaded && !GameData::GetPolitics().HasDominated(GetPlanet()))
 		message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
@@ -1030,15 +1031,17 @@ void PlayerInfo::TakeOff(UI *ui)
 	for(const auto &it : cargo.MissionCargo())
 		if(it.second)
 		{
-			Messages::Add("Mission \"" + it.first->Name()
-				+ "\" failed because you do not have space for the cargo.");
+			if(it.first->IsVisible())
+				Messages::Add("Mission \"" + it.first->Name()
+					+ "\" failed because you do not have space for the cargo.");
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
-			Messages::Add("Mission \"" + it.first->Name()
-				+ "\" failed because you do not have enough passenger bunks free.");
+			if(it.first->IsVisible())
+				Messages::Add("Mission \"" + it.first->Name()
+					+ "\" failed because you do not have enough passenger bunks free.");
 			missionsToRemove.push_back(it.first);
 			
 		}

@@ -212,7 +212,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 // Handle the given ShipEvent.
-void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
+void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 {
 	bool hasSucceeded = HasSucceeded(player.GetSystem());
 	bool hasFailed = HasFailed();
@@ -236,7 +236,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 			break;
 		}
 	
-	if(HasFailed() && !hasFailed)
+	if(HasFailed() && !hasFailed && isVisible)
 		Messages::Add("Mission failed.");
 	else if(ui && HasSucceeded(player.GetSystem()) && !hasSucceeded)
 	{

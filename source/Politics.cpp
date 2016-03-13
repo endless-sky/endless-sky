@@ -138,7 +138,7 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 		return true;
 	
 	const Government *gov = ship.GetGovernment();
-	const Government *systemGov = planet->GetSystem()->GetGovernment();
+	const Government *systemGov = planet->GetGovernment();
 	if(!gov->IsPlayer())
 		return !IsEnemy(gov, systemGov);
 	
@@ -155,12 +155,12 @@ bool Politics::CanLand(const Planet *planet) const
 		return true;
 	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
 		return true;
-	if(provoked.find(planet->GetSystem()->GetGovernment()) != provoked.end())
+	if(provoked.find(planet->GetGovernment()) != provoked.end())
 		return false;
 	if(bribedPlanets.find(planet) != bribedPlanets.end())
 		return true;
 	
-	return Reputation(planet->GetSystem()->GetGovernment()) >= planet->RequiredReputation();
+	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
 
 
@@ -176,7 +176,7 @@ bool Politics::CanUseServices(const Planet *planet) const
 	if(it != bribedPlanets.end())
 		return it->second;
 	
-	return Reputation(planet->GetSystem()->GetGovernment()) >= planet->RequiredReputation();
+	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
 }
 
 

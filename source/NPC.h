@@ -48,7 +48,7 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 	
 	// Handle the given ShipEvent.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
 	bool HasSucceeded(const System *playerSystem) const;
 	// Check if the NPC is supposed to be accompanied and is not.
 	bool IsLeftBehind(const System *playerSystem) const;
