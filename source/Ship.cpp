@@ -300,7 +300,7 @@ void Ship::FinishLoading()
 		attributes.Add(*it.GetOutfit(), it.GetQuantity());
 		if(it.GetOutfit()->IsWeapon())
 		{
-			int count = it.GetQuantity();
+			int count = outfits.GetTotalCount(it.GetOutfit());
 			auto eit = equipped.find(it.GetOutfit());
 			if(eit != equipped.end())
 				count -= eit.GetQuantity();
