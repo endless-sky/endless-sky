@@ -1818,7 +1818,7 @@ mission "Bounty Hunting (Marauder I)"
 
 		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 10000
+		payment 500000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
 
 #increased c.r., lower chance to avail, higher chance of upper tier variants
@@ -1874,7 +1874,7 @@ mission "Bounty Hunting (Marauder II)"
 				"Firebird (Missile)"
 		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 10000
+		payment 550000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc>."
 
 #increased c.r., lower chance to avail, higher chance of upper tier variants
@@ -1931,7 +1931,7 @@ mission "Bounty Hunting (Marauder III)"
 				"Firebird (Missile)"
 		dialog "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 10000
+		payment 600000
 		dialog "The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet."
 
 #must destroy hunters and land to fail
