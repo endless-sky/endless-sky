@@ -567,7 +567,8 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried() && !it->IsDisabled())
+			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried()
+					&& it->RequiredCrew() && !it->IsDisabled())
 			{
 				flagship = it;
 				break;
