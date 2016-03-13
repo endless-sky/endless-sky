@@ -1031,15 +1031,17 @@ void PlayerInfo::TakeOff(UI *ui)
 	for(const auto &it : cargo.MissionCargo())
 		if(it.second)
 		{
-			Messages::Add("Mission \"" + it.first->Name()
-				+ "\" failed because you do not have space for the cargo.");
+			if(it.first->IsVisible())
+				Messages::Add("Mission \"" + it.first->Name()
+					+ "\" failed because you do not have space for the cargo.");
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
-			Messages::Add("Mission \"" + it.first->Name()
-				+ "\" failed because you do not have enough passenger bunks free.");
+			if(it.first->IsVisible())
+				Messages::Add("Mission \"" + it.first->Name()
+					+ "\" failed because you do not have enough passenger bunks free.");
 			missionsToRemove.push_back(it.first);
 			
 		}
