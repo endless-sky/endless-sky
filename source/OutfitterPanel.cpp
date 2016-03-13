@@ -163,7 +163,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	{
 		string count = "in cargo: " + to_string(player.Cargo().Get(outfit));
 		if(player.Cargo().GetDamaged(outfit))
-			count += " (" + to_string(player.Cargo().GetDamaged(outfit)) + " damaged)";
+			count += " (" + to_string(player.Cargo().GetDamaged(outfit)) + " dam.)";
 		Point pos = point + Point(
 			OUTFIT_SIZE / 2 - 20 - font.Width(count),
 			OUTFIT_SIZE / 2 - 24);

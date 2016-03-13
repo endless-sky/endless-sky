@@ -89,9 +89,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 
 	requirementLabels.push_back("cost:");
 	requirementValues.push_back(Format::Number(outfit.Cost()));
-	requirementLabels.push_back("cost(damaged):");
+	requirementLabels.push_back("cost if damaged:");
 	requirementValues.push_back(Format::Number(outfit.CostDamaged()));
-	requirementLabels.push_back("cost(repair):");
+	requirementLabels.push_back("cost to repair:");
 	requirementValues.push_back(Format::Number(outfit.CostRepair()));
 	requirementsHeight += 20;
 
