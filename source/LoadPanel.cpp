@@ -312,7 +312,7 @@ bool LoadPanel::Click(int x, int y)
 		return DoKey(key);
 	
 	// The first row of each panel is y = -160 to -140.
-	if(y < -160)
+	if(y < -160 || y >= (-160+14*20))
 		return false;
 	
 	if(x >= -470 && x < -250)
