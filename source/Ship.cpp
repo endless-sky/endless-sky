@@ -1742,9 +1742,11 @@ int Ship::Crew() const
 
 int Ship::RequiredCrew() const
 {
+	if(attributes.Get("automaton"))
+		return 0;
+	
 	// Drones do not need crew, but all other ships need at least one.
-	return max(attributes.Get("automaton") ? 0 : 1,
-		static_cast<int>(attributes.Get("required crew")));
+	return max(1, static_cast<int>(attributes.Get("required crew")));
 }
 
 

@@ -760,7 +760,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	}
 	
 	for(NPC &npc : npcs)
-		npc.Do(event, player, ui);
+		npc.Do(event, player, ui, isVisible);
 }
 
 
