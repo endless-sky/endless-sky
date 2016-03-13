@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #define CARGO_HOLD_H_
 
 #include <map>
+#include <set>
 #include <string>
 
 class DataNode;
@@ -33,13 +34,13 @@ class System;
 class CargoHold {
 public:
 	void Clear();
-	
+
 	// Load the cargo manifest from a DataFile. This must be done after the
 	// GameData is loaded, so that the sizes of any outfits are known.
 	void Load(const DataNode &node);
 	// Save the cargo manifest to a file.
 	void Save(DataWriter &out) const;
-	
+
 	// Set the capacity of this cargo hold.
 	void SetSize(int tons);
 	int Size() const;
@@ -51,55 +52,65 @@ public:
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;
 	bool IsEmpty() const;
-	
+
 	// Set the number of free bunks for passengers.
 	void SetBunks(int count);
 	int Bunks() const;
 	int Passengers() const;
-	
+
 	// Normal cargo:
 	int Get(const std::string &commodity) const;
 	// Spare outfits:
 	int Get(const Outfit *outfit) const;
+	int GetDamaged(const Outfit *outfit) const;
+	int GetUndamaged(const Outfit *outfit) const;
+	const std::multiset<double> &GetConditions(const Outfit *outfit) const;
 	// Mission cargo:
 	int Get(const Mission *mission) const;
 	int GetPassengers(const Mission *mission) const;
-	
+
 	const std::map<std::string, int> &Commodities() const;
 	const std::map<const Outfit *, int> &Outfits() const;
+	const std::map<const Outfit *, int> &DamagedOutfits() const;
 	// Note: some missions may have cargo that takes up 0 space, but should
 	// still show up on the cargo listing.
 	const std::map<const Mission *, int> &MissionCargo() const;
 	const std::map<const Mission *, int> &PassengerList() const;
-	
+
 	// For all the transfer functions, the "other" can be null if you simply want
 	// the commodity to "disappear" or, if the "amount" is negative, to have an
 	// unlimited supply. The return value is the actual number transferred.
 	int Transfer(const std::string &commodity, int amount, CargoHold *to = nullptr);
-	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr);
+	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr, bool damagedFirst = true);
+	int TransferDamaged(const Outfit *outfit, int amount, CargoHold *to = nullptr);
+	int TransferUndamaged(const Outfit *outfit, int amount, CargoHold *to = nullptr);
 	int Transfer(const Mission *mission, int amount, CargoHold *to = nullptr);
 	int TransferPassengers(const Mission *mission, int amount, CargoHold *to = nullptr);
 	// Transfer as much as the given cargo hold has capacity for. The priority is
 	// first mission cargo, then spare outfits, then ordinary commodities.
 	void TransferAll(CargoHold *to);
-	
+
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);
-	
+
 	// Get the total value of all this cargo, in the given system.
 	int Value(const System *system) const;
-	
+
+	// Get the value of the outfit with the lowest condition, in the given system.
+	int Value(const Outfit *outfit, const System *system) const;
+
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged. If the returned value is negative, you are carrying something
 	// so bad that it warrants a death sentence.
 	int IllegalCargoFine() const;
-	
-	
+
+
 private:
 	int size = -1;
 	int bunks = -1;
 	std::map<std::string, int> commodities;
 	std::map<const Outfit *, int> outfits;
+	std::map<const Outfit *, int> damagedOutfits;
 	std::map<const Mission *, int> missionCargo;
 	std::map<const Mission *, int> passengers;
 };

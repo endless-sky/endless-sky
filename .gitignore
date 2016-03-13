@@ -1,9 +1,12 @@
 /endless-sky
+/bin/
 /build/
 /.sconsign.dblite
 .DS_Store
 /EndlessSky.xcodeproj/project.xcworkspace/
 /EndlessSky.xcodeproj/xcuserdata/
-/obj/Debug/
-/obj/Release/
-
+/obj/
+cscope.*
+*.cscope_file_list
+*.depend
+*.layout

@@ -38,22 +38,24 @@ class Outfit : public Weapon {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
-	
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
-	
+
 	const std::string &Name() const;
 	const std::string &Category() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
+	int64_t CostDamaged() const;
+	int64_t CostRepair() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
-	
+
 	double Get(const std::string &attribute) const;
 	const std::map<std::string, double> &Attributes() const;
-	
+
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
 	// not, return the maximum number that can be added.
@@ -64,22 +66,22 @@ public:
 	// Modify this outfit's attributes.
 	void Add(const std::string &attribute, double value = 1.);
 	void Reset(const std::string &attribute, double value = 0.);
-	
+
 	// Get this outfit's engine flare sprite, if any.
 	const std::vector<std::pair<Animation, int>> &FlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
-	
-	
+
+
 private:
 	std::string name;
 	std::string category;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
-	
+
 	std::map<std::string, double> attributes;
-	
+
 	std::vector<std::pair<Animation, int>> flareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
