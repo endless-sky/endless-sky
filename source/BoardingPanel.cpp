@@ -43,7 +43,7 @@ namespace {
 		string result = to_string(integer / 10);
 		result += ".0";
 		result.back() += integer % 10;
-		
+
 		return result;
 	}
 }
@@ -56,26 +56,26 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	initialCrew(you->Crew())
 {
 	SetInterruptible(false);
-	
+
 	const System &system = *player.GetSystem();
 	for(const auto &it : victim->Cargo().Commodities())
 		plunder.emplace_back(it.first, it.second, system.Trade(it.first));
-	
+
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship.
 	for(const auto &it : victim->Outfits())
 		if(it.first->Category() != "Hand to Hand")
 			plunder.emplace_back(it.first, it.second);
-	
+
 	sort(plunder.begin(), plunder.end());
 }
 
 
-	
+
 void BoardingPanel::Draw() const
 {
 	DrawBackdrop();
-	
+
 	// Draw the list of plunder.
 	Color opaque(.1, 1.);
 	Color back = *GameData::Colors().Get("faint");
@@ -83,33 +83,33 @@ void BoardingPanel::Draw() const
 	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
-	
+
 	int index = (scroll - 10) / 20;
 	int y = -170 - scroll + 20 * index;
 	int endY = 60;
-	
+
 	const Font &font = FontSet::Get(14);
 	double fontOff = .5 * (20 - font.Height());
 	int freeSpace = you->Cargo().Free();
 	for( ; y < endY && static_cast<unsigned>(index) < plunder.size(); y += 20, ++index)
 	{
 		const Plunder &item = plunder[index];
-		
+
 		bool isSelected = (index == selected);
 		if(isSelected)
 			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
-		
+
 		const Color &color = item.CanTake(freeSpace) ? isSelected ? bright : medium : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
-		
+
 		Point valuePos(pos.X() + 260. - font.Width(item.Value()), pos.Y());
 		font.Draw(item.Value(), valuePos, color);
-		
+
 		Point sizePos(pos.X() + 330. - font.Width(item.Size()), pos.Y());
 		font.Draw(item.Size(), sizePos, color);
 	}
-	
+
 	Information info;
 	if(CanExit())
 		info.SetCondition("can exit");
@@ -121,7 +121,7 @@ void BoardingPanel::Draw() const
 		info.SetCondition("can attack");
 	if(CanAttack())
 		info.SetCondition("can defend");
-	
+
 	// This should always be true, but double check.
 	int crew = 0;
 	if(you)
@@ -141,7 +141,7 @@ void BoardingPanel::Draw() const
 		Round(defenseOdds.AttackerPower(vCrew)));
 	info.SetString("enemy defense",
 		Round(attackOdds.DefenderPower(vCrew)));
-	
+
 	info.SetString("attack odds",
 		Round(100. * attackOdds.Odds(crew, vCrew)) + "%");
 	info.SetString("attack casualties",
@@ -150,10 +150,10 @@ void BoardingPanel::Draw() const
 		Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
 	info.SetString("defense casualties",
 		Round(defenseOdds.DefenderCasualties(vCrew, crew)));
-	
+
 	const Interface *interface = GameData::Interfaces().Get("boarding");
 	interface->Draw(info);
-	
+
 	Point messagePos(50., 55.);
 	for(const string &message : messages)
 	{
@@ -186,7 +186,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		CargoHold &cargo = you->Cargo();
 		int count = plunder[selected].CanTake(cargo.Free());
-		
+
 		const Outfit *outfit = plunder[selected].GetOutfit();
 		if(outfit)
 		{
@@ -203,12 +203,15 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					}
 					break;
 				}
-			cargo.Transfer(outfit, -(count - taken));
+			if(outfit->CanDamage())
+				cargo.TransferDamaged(outfit, -(count - taken));
+			else
+				cargo.TransferUndamaged(outfit, -(count - taken));
 			victim->AddOutfit(outfit, -(count - taken));
 		}
 		else
 			victim->Cargo().Transfer(plunder[selected].Name(), count, &cargo);
-		
+
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
@@ -227,7 +230,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				--selected;
 			else if(key == SDLK_DOWN && selected < static_cast<int>(plunder.size() - 1))
 				++selected;
-			
+
 			// Scroll down at least far enough to view the current item.
 			double minimumScroll = max(0., 20. * selected - 200.);
 			double maximumScroll = 20. * selected;
@@ -251,11 +254,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	{
 		int yourStartCrew = you->Crew();
 		int enemyStartCrew = victim->Crew();
-		
+
 		// Figure out what action the other ship will take.
 		bool youAttack = (key == 'a' && yourStartCrew > 1);
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
-		
+
 		if(!youAttack && !enemyAttacks)
 		{
 			messages.push_back("You retreat to your ships. Combat ends.");
@@ -267,7 +270,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				messages.push_back("You attack. ");
 			else if(enemyAttacks)
 				messages.push_back("You defend. ");
-			
+
 			int rounds = max(1, yourStartCrew / 5);
 			for(int round = 0; round < rounds; ++round)
 			{
@@ -275,22 +278,22 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				int enemyCrew = victim->Crew();
 				if(!yourCrew || !enemyCrew)
 					break;
-				
+
 				unsigned yourPower = static_cast<unsigned>(1000. * (youAttack ?
 					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew)));
 				unsigned enemyPower = static_cast<unsigned>(1000. * (enemyAttacks ?
 					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew)));
-				
+
 				unsigned total = yourPower + enemyPower;
 				if(!total)
 					break;
-				
+
 				if(Random::Int(total) >= yourPower)
 					you->AddCrew(-1);
 				else
 					victim->AddCrew(-1);
 			}
-			
+
 			int yourCasualties = yourStartCrew - you->Crew();
 			int enemyCasualties = enemyStartCrew - victim->Crew();
 			if(yourCasualties && enemyCasualties)
@@ -300,7 +303,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 				messages.back() += "You lose " + to_string(yourCasualties) + " crew.";
 			else if(enemyCasualties)
 				messages.back() += "They lose " + to_string(enemyCasualties) + " crew.";
-			
+
 			if(!you->Crew())
 			{
 				messages.push_back("You have been killed. Your ship is lost.");
@@ -327,10 +330,10 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 							break;
 						}
 				isCapturing = false;
-				
+
 				int64_t bonus = (victim->Cost() * casualties) / (casualties + 2);
 				crewBonus += bonus;
-				
+
 				ShipEvent event(you, victim, ShipEvent::CAPTURE);
 				player.HandleEvent(event, GetUI());
 			}
@@ -338,11 +341,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(command.Has(Command::INFO))
 		GetUI()->Push(new InfoPanel(player, true));
-	
+
 	// Trim the list of status messages.
 	while(messages.size() > 5)
 		messages.erase(messages.begin());
-	
+
 	return true;
 }
 
@@ -358,7 +361,7 @@ bool BoardingPanel::Click(int x, int y)
 			selected = index;
 		return true;
 	}
-	
+
 	// Handle clicks on the interface buttons.
 	const Interface *interface = GameData::Interfaces().Get("boarding");
 	if(interface)
@@ -367,7 +370,7 @@ bool BoardingPanel::Click(int x, int y)
 		if(key != '\0')
 			return DoKey(key);
 	}
-	
+
 	return true;
 }
 
@@ -379,7 +382,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 	// and the bottom, so:
 	double maximumScroll = max(0., 20. * plunder.size() - 220.);
 	scroll = max(0., min(maximumScroll, scroll - dy));
-	
+
 	return true;
 }
 
@@ -408,12 +411,12 @@ bool BoardingPanel::CanTake(int index) const
 		return false;
 	if(isCapturing || playerDied)
 		return false;
-	
+
 	if(index < 0)
 		index = selected;
 	if(static_cast<unsigned>(index) >= plunder.size())
 		return false;
-	
+
 	return plunder[index].CanTake(you->Cargo().Free());
 }
 
@@ -424,28 +427,28 @@ bool BoardingPanel::CanCapture() const
 	// You can't click the "capture" button if you're already in combat mode.
 	if(isCapturing || playerDied)
 		return false;
-	
+
 	// If your ship or the other ship has been captured:
 	if(!you->GetGovernment()->IsPlayer())
 		return false;
 	if(victim->GetGovernment()->IsPlayer())
 		return false;
-	
+
 	if(victim->CanBeCarried())
 	{
 		// If this is an unpiloted drone, you don't need any crew to capture it.
 		// If it is a fighter you must have one crew member other than yourself.
 		if(you->Crew() < (victim->RequiredCrew() ? 2 : 1))
 			return false;
-		
+
 		// Check if any ship in your fleet can carry this ship.
 		for(const shared_ptr<Ship> &ship : player.Ships())
 			if(ship->CanHoldFighter(*victim))
 				return true;
-		
+
 		return false;
 	}
-	
+
 	return (you->Crew() > 1);
 }
 
@@ -467,7 +470,9 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(outfit->Cost())
+	: name(outfit->CanDamage() ? outfit->Name() + " (dam.)" : outfit->Name()),
+	outfit(outfit), count(count),
+	unitValue(outfit->CanDamage() ? outfit->CostDamaged() : outfit->Cost())
 {
 	UpdateStrings();
 }
@@ -543,7 +548,7 @@ int BoardingPanel::Plunder::CanTake(int freeSpace) const
 		return count;
 	if(freeSpace <= 0)
 		return 0;
-	
+
 	return min(count, static_cast<int>(freeSpace / mass));
 }
 
@@ -567,7 +572,7 @@ void BoardingPanel::Plunder::UpdateStrings()
 		size = to_string(mass);
 	else
 		size = to_string(count) + " x " + to_string(mass);
-	
+
 	value = Format::Number(unitValue * count);
 }
 

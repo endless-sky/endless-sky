@@ -119,6 +119,13 @@ int64_t Outfit::CostRepair() const
 
 
 
+bool Outfit::CanDamage() const
+{
+	return category != "Ammunition";
+}
+
+
+
 // Get the image to display in the outfitter when buying this item.
 const Sprite *Outfit::Thumbnail() const
 {

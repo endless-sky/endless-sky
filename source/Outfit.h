@@ -50,6 +50,7 @@ public:
 	int64_t Cost() const;
 	int64_t CostDamaged() const;
 	int64_t CostRepair() const;
+	bool CanDamage() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 

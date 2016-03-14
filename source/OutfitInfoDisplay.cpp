@@ -89,10 +89,13 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 
 	requirementLabels.push_back("cost:");
 	requirementValues.push_back(Format::Number(outfit.Cost()));
-	requirementLabels.push_back("cost if damaged:");
-	requirementValues.push_back(Format::Number(outfit.CostDamaged()));
-	requirementLabels.push_back("cost to repair:");
-	requirementValues.push_back(Format::Number(outfit.CostRepair()));
+	if(outfit.CanDamage())
+	{
+		requirementLabels.push_back("cost if damaged:");
+		requirementValues.push_back(Format::Number(outfit.CostDamaged()));
+		requirementLabels.push_back("cost to repair:");
+		requirementValues.push_back(Format::Number(outfit.CostRepair()));
+	}
 	requirementsHeight += 20;
 
 	static const string names[] = {
