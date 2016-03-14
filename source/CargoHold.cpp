@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -31,6 +32,7 @@ void CargoHold::Clear()
 	bunks = 0;
 	commodities.clear();
 	outfits.clear();
+	damagedOutfits.clear();
 	missionCargo.clear();
 	passengers.clear();
 }
@@ -59,6 +61,8 @@ void CargoHold::Load(const DataNode &node)
 				const Outfit *outfit = GameData::Outfits().Get(grand.Token(0));
 				int count = (grand.Size() < 2) ? 1 : grand.Value(1);
 				outfits[outfit] += count;
+				int damagedCount = (grand.Size() < 3) ? 0 : grand.Value(2);
+				damagedOutfits[outfit] += damagedCount;
 			}
 		}
 	}
@@ -81,12 +85,12 @@ void CargoHold::Save(DataWriter &out) const
 				out.BeginChild();
 			}
 			first = false;
-			
+
 			out.Write(it.first, it.second);
 		}
 	if(!first)
 		out.EndChild();
-	
+
 	bool firstOutfit = true;
 	for(const auto &it : outfits)
 		if(it.second && !it.first->Name().empty())
@@ -99,7 +103,7 @@ void CargoHold::Save(DataWriter &out) const
 				out.BeginChild();
 			}
 			first = false;
-			
+
 			// If this is the first outfit to be written, print the opening tag.
 			if(firstOutfit)
 			{
@@ -107,14 +111,22 @@ void CargoHold::Save(DataWriter &out) const
 				out.BeginChild();
 			}
 			firstOutfit = false;
-			
-			out.Write(it.first->Name(), it.second);
+
+			auto it2 = damagedOutfits.find(it.first);
+			if(it2 == damagedOutfits.end())
+			{
+				out.Write(it.first->Name(), it.second);
+			}
+			else
+			{
+				out.Write(it.first->Name(), it.second, it2->second);
+			}
 		}
 	if(!firstOutfit)
 		out.EndChild();
 	if(!first)
 		out.EndChild();
-	
+
 	// Mission cargo is not saved because it is repopulated when the missions
 	// are read rather than when the cargo is read.
 }
@@ -152,7 +164,7 @@ int CargoHold::Used() const
 		used += it.second * it.first->Get("mass");
 	for(const auto &it : missionCargo)
 		used += it.second;
-	
+
 	return used;
 }
 
@@ -255,6 +267,23 @@ int CargoHold::Get(const Outfit *outfit) const
 
 
 
+// Spare damaged outfits:
+int CargoHold::GetDamaged(const Outfit *outfit) const
+{
+	map<const Outfit *, int>::const_iterator it = damagedOutfits.find(outfit);
+	return (it == outfits.end() ? 0 : it->second);
+}
+
+
+
+// Spare undamaged outfits:
+int CargoHold::GetUndamaged(const Outfit *outfit) const
+{
+	return Get(outfit) - GetDamaged(outfit);
+}
+
+
+
 // Mission cargo:
 int CargoHold::Get(const Mission *mission) const
 {
@@ -283,6 +312,14 @@ const map<const Outfit *, int> &CargoHold::Outfits() const
 {
 	return outfits;
 }
+
+
+
+const std::map<const Outfit *, int> &CargoHold::DamagedOutfits() const
+{
+	return damagedOutfits;
+}
+
 
 
 
@@ -317,20 +354,20 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 	}
 	if(!amount)
 		return 0;
-	
+
 	commodities[commodity] -= amount;
 	if(to)
 		to->commodities[commodity] += amount;
-	
+
 	return amount;
 }
 
 
 
-int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
+int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool damagedFirst)
 {
 	int mass = outfit->Get("mass");
-	
+
 	amount = min(amount, Get(outfit));
 	if(size >= 0 && mass)
 		amount = max(amount, -max(Free(), 0) / mass);
@@ -342,11 +379,87 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to)
 	}
 	if(!amount)
 		return 0;
-	
+
+	int amountDamaged = 0;
+	if(damagedFirst)
+	{
+		if(amount > 0)
+			amountDamaged = min(amount, GetDamaged(outfit));
+		else if(to)
+			amountDamaged = max(amount, -to->GetDamaged(outfit));
+	}
+	else
+	{
+		if(amount > 0)
+			amountDamaged = max(0, amount - GetUndamaged(outfit));
+		else if(to)
+			amountDamaged = min(0, amount + to->GetUndamaged(outfit));
+	}
+
+	outfits[outfit] -= amount;
+	damagedOutfits[outfit] -= amount;
+	if(to)
+	{
+		to->outfits[outfit] += amount;
+		to->damagedOutfits[outfit] += amountDamaged;
+	}
+
+	return amount;
+}
+
+
+
+int CargoHold::TransferDamaged(const Outfit *outfit, int amount, CargoHold *to)
+{
+	int mass = outfit->Get("mass");
+
+	amount = min(amount, GetDamaged(outfit));
+	if(size >= 0 && mass)
+		amount = max(amount, -max(Free(), 0) / mass);
+	if(to)
+	{
+		amount = max(amount, -to->GetDamaged(outfit));
+		if(to->size >= 0 && mass)
+			amount = min(amount, max(to->Free(), 0) / mass);
+	}
+	if(!amount)
+		return 0;
+
+	outfits[outfit] -= amount;
+	damagedOutfits[outfit] -= amount;
+	if(to)
+	{
+		to->outfits[outfit] += amount;
+		to->damagedOutfits[outfit] += amount;
+	}
+
+	return amount;
+}
+
+
+
+int CargoHold::TransferUndamaged(const Outfit *outfit, int amount, CargoHold *to)
+{
+	int mass = outfit->Get("mass");
+
+	amount = min(amount, GetUndamaged(outfit));
+	if(size >= 0 && mass)
+		amount = max(amount, -max(Free(), 0) / mass);
+	if(to)
+	{
+		amount = max(amount, -to->GetUndamaged(outfit));
+		if(to->size >= 0 && mass)
+			amount = min(amount, max(to->Free(), 0) / mass);
+	}
+	if(!amount)
+		return 0;
+
 	outfits[outfit] -= amount;
 	if(to)
+	{
 		to->outfits[outfit] += amount;
-	
+	}
+
 	return amount;
 }
 
@@ -371,11 +484,11 @@ int CargoHold::Transfer(const Mission *mission, int amount, CargoHold *to)
 		if(!amount)
 			return 0;
 	}
-	
+
 	missionCargo[mission] -= amount;
 	if(to)
 		to->missionCargo[mission] += amount;
-	
+
 	return amount;
 }
 
@@ -395,11 +508,11 @@ int CargoHold::TransferPassengers(const Mission *mission, int amount, CargoHold 
 	}
 	if(!amount)
 		return 0;
-	
+
 	passengers[mission] -= amount;
 	if(to)
 		to->passengers[mission] += amount;
-	
+
 	return amount;
 }
 
@@ -417,7 +530,7 @@ void CargoHold::TransferAll(CargoHold *to)
 		missionCargo.clear();
 		return;
 	}
-	
+
 	for(const auto &it : passengers)
 		TransferPassengers(it.first, it.second, to);
 	// Handle zero-size mission cargo correctly. For mission cargo, having an
@@ -458,14 +571,14 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 	auto it = missionCargo.find(mission);
 	if(it != missionCargo.end())
 		missionCargo.erase(it);
-	
+
 	auto pit = passengers.find(mission);
 	if(pit != passengers.end())
 		passengers.erase(pit);
 }
 
 
-	
+
 // Get the total value of all this cargo, in the given system.
 int CargoHold::Value(const System *system) const
 {
@@ -478,7 +591,7 @@ int CargoHold::Value(const System *system) const
 }
 
 
-	
+
 // If anything you are carrying is illegal, return the maximum fine you can
 // be charged. If the returned value is negative, you are carrying something
 // so bad that it warrants a death sentence.
@@ -493,7 +606,7 @@ int CargoHold::IllegalCargoFine() const
 			return fine;
 		worst = max(worst, fine / 2);
 	}
-	
+
 	for(const auto &it : missionCargo)
 	{
 		int fine = it.first->IllegalCargoFine();

@@ -61,7 +61,7 @@ void OutfitInfoDisplay::Update(const Outfit &outfit)
 	UpdateDescription(outfit.Description());
 	UpdateRequirements(outfit);
 	UpdateAttributes(outfit);
-	
+
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
 }
 
@@ -86,11 +86,18 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
-	
+
 	requirementLabels.push_back("cost:");
 	requirementValues.push_back(Format::Number(outfit.Cost()));
+	if(outfit.CanDamage())
+	{
+		requirementLabels.push_back("cost if damaged:");
+		requirementValues.push_back(Format::Number(outfit.CostDamaged()));
+		requirementLabels.push_back("cost to repair:");
+		requirementValues.push_back(Format::Number(outfit.CostRepair()));
+	}
 	requirementsHeight += 20;
-	
+
 	static const string names[] = {
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
@@ -105,7 +112,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 			requirementLabels.push_back(string());
 			requirementValues.push_back(string());
 			requirementsHeight += 10;
-		
+
 			requirementLabels.push_back(names[i]);
 			requirementValues.push_back(Format::Number(-outfit.Get(names[i + 1])));
 			requirementsHeight += 20;
@@ -119,7 +126,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeLabels.clear();
 	attributeValues.clear();
 	attributesHeight = 20;
-	
+
 	map<string, map<string, int>> listing;
 	for(const auto &it : outfit.Attributes())
 	{
@@ -127,86 +134,86 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				|| it.first == "weapon capacity" || it.first == "engine capacity"
 				|| it.first == "gun ports" || it.first == "turret mounts")
 			continue;
-		
+
 		string value;
 		double scale = 1.;
 		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
 			scale = 60. * 60.;
 		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
 			scale = 60.;
-		
+
 		attributeLabels.push_back(it.first + ':');
 		attributeValues.push_back(Format::Number(it.second * scale));
 		attributesHeight += 20;
 	}
-	
+
 	if(!outfit.IsWeapon())
 		return;
-	
+
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	
+
 	if(outfit.Ammo())
 	{
 		attributeLabels.push_back("ammo:");
 		attributeValues.push_back(outfit.Ammo()->Name());
 		attributesHeight += 20;
 	}
-	
+
 	attributeLabels.push_back("range:");
 	attributeValues.push_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
-	
+
 	if(outfit.ShieldDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("shield damage / second:");
 		attributeValues.push_back(Format::Number(60. * outfit.ShieldDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	if(outfit.HullDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("hull damage / second:");
 		attributeValues.push_back(Format::Number(60. * outfit.HullDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	if(outfit.HeatDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("heat damage / second:");
 		attributeValues.push_back(Format::Number(60. * outfit.HeatDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	if(outfit.IonDamage() && outfit.Reload())
 	{
 		attributeLabels.push_back("ion damage / second:");
 		attributeValues.push_back(Format::Number(6000. * outfit.IonDamage() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	if(outfit.FiringEnergy() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing energy / second:");
 		attributeValues.push_back(Format::Number(60. * outfit.FiringEnergy() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	if(outfit.FiringHeat() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing heat / second:");
 		attributeValues.push_back(Format::Number(60. * outfit.FiringHeat() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	if(outfit.FiringFuel() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing fuel / second:");
 		attributeValues.push_back(Format::Number(60. * outfit.FiringFuel() / outfit.Reload()));
 		attributesHeight += 20;
 	}
-	
+
 	bool isContinuous = (outfit.Reload() <= 1);
 	attributeLabels.push_back("shots / second:");
 	if(isContinuous)
@@ -214,7 +221,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	else
 		attributeValues.push_back(Format::Number(60. / outfit.Reload()));
 	attributesHeight += 20;
-	
+
 	int homing = outfit.Homing();
 	if(homing)
 	{
@@ -229,11 +236,11 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(skill[max(0, min(4, homing))]);
 		attributesHeight += 20;
 	}
-	
+
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	
+
 	static const string names[] = {
 		"shield damage / shot: ",
 		"hull damage / shot: ",

@@ -56,14 +56,14 @@ ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
 void ShopPanel::Draw() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	// Clear the list of clickable zones.
 	zones.clear();
-	
+
 	DrawSidebar();
 	DrawButtons();
 	DrawMain();
-	
+
 	if(dragShip)
 	{
 		static const Color selected(.8, 1.);
@@ -96,7 +96,7 @@ void ShopPanel::DrawSidebar() const
 	const Font &font = FontSet::Get(14);
 	Color bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
-	
+
 	// Fill in the background.
 	FillShader::Fill(
 		Point(Screen::Right() - SIDE_WIDTH / 2, 0.),
@@ -106,23 +106,23 @@ void ShopPanel::DrawSidebar() const
 		Point(Screen::Right() - SIDE_WIDTH, 0.),
 		Point(1, Screen::Height()),
 		Color(.2, 1.));
-	
+
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(
 		Screen::Right() - SIDE_WIDTH / 2 - font.Width(YOURS) / 2,
 		Screen::Top() + 10 - sideScroll);
 	font.Draw(YOURS, yoursPoint, bright);
-	
+
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
 		Screen::Right() - SIDE_WIDTH / 2 - 93,
 		Screen::Top() + SIDE_WIDTH / 2 - sideScroll + 40 - 93);
-	
+
 	int shipsHere = 0;
 	for(shared_ptr<Ship> ship : player.Ships())
 		shipsHere += !(ship->GetSystem() != player.GetSystem() || ship->IsDisabled());
-	
+
 	if(shipsHere > 1)
 	{
 		static const Color selected(.8, 1.);
@@ -132,42 +132,42 @@ void ShopPanel::DrawSidebar() const
 			// Skip any ships that are "absent" for whatever reason.
 			if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
 				continue;
-		
+
 			if(point.X() > Screen::Right())
 			{
 				point.X() -= ICON_TILE * ICON_COLS;
 				point.Y() += ICON_TILE;
 			}
-			
+
 			bool isSelected = (playerShips.find(ship.get()) != playerShips.end());
 			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 			SpriteShader::Draw(background, point);
-			
+
 			const Sprite *sprite = ship->GetSprite().GetSprite();
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
-		
+
 			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
-		
+
 			point.X() += ICON_TILE;
 		}
 		point.Y() += ICON_TILE;
 	}
 	point.Y() += SHIP_SIZE / 2;
-	
+
 	if(playerShip)
 	{
 		point.X() = Screen::Right() - SIDE_WIDTH / 2;
 		DrawShip(*playerShip, point, true);
-		
+
 		Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += sideDetailHeight + SHIP_SIZE;
 	}
 	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70 - SHIP_SIZE / 2;
 	maxSideScroll = max(0, maxSideScroll);
-	
+
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
@@ -185,43 +185,44 @@ void ShopPanel::DrawButtons() const
 	FillShader::Fill(
 		Point(Screen::Right() - SIDE_WIDTH / 2, Screen::Bottom() - 70),
 		Point(SIDE_WIDTH, 1), Color(.3, 1.));
-	
+
 	const Font &font = FontSet::Get(14);
 	Color bright = *GameData::Colors().Get("bright");
 	Color dim = *GameData::Colors().Get("medium");
-	
+
 	Point point(
 		Screen::Right() - SIDE_WIDTH + 10,
 		Screen::Bottom() - 65);
 	font.Draw("You have:", point, dim);
-	
+
 	string credits = Format::Number(player.Accounts().Credits()) + " credits";
 	point.X() += (SIDE_WIDTH - 20) - font.Width(credits);
 	font.Draw(credits, point, bright);
-	
+
 	const Font &bigFont = FontSet::Get(18);
-	
+
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	string BUY = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
+	string BUY = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ?
+		(player.Cargo().GetUndamaged(selectedOutfit) ? "_Install" : "_Repair") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? bright : dim);
-	
+
 	Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
 	static const string SELL = "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? bright : dim);
-	
+
 	Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	FillShader::Fill(leaveCenter, Point(70, 30), Color(.1, 1.));
 	static const string LEAVE = "_Leave";
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		bright);
-	
+
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
@@ -229,7 +230,7 @@ void ShopPanel::DrawButtons() const
 		int modWidth = font.Width(mod);
 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
 		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);	
+			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
 	}
 }
 
@@ -240,14 +241,14 @@ void ShopPanel::DrawMain() const
 	const Font &bigFont = FontSet::Get(18);
 	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
-	
+
 	// Draw all the available ships.
 	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
 	int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
 	int columns = mainWidth / TILE_SIZE;
 	int columnWidth = mainWidth / columns;
-	
+
 	Point begin(
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
@@ -260,39 +261,39 @@ void ShopPanel::DrawMain() const
 		map<string, set<string>>::const_iterator it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
-		
+
 		// This should never happen, but bail out if we don't know what planet
 		// we are on (meaning there's no way to know what ships are for sale).
 		if(!planet)
 			break;
-		
+
 		Point side(Screen::Left() + 10., point.Y() - TILE_SIZE / 2 + 10);
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
-		
+
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
 			if(!DrawItem(name, point, scrollY))
 				continue;
 			isEmpty = false;
-			
+
 			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
 				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
-			
+
 			if(isSelected)
 			{
 				Color color(.2, 0.);
 				int dy = DividerOffset();
-				
+
 				float before = point.X() - TILE_SIZE / 2 - Screen::Left();
 				FillShader::Fill(Point(Screen::Left() + .5 * before, point.Y() + dy),
 					Point(before, 1.), color);
-				
+
 				float after = endX - (point.X() + TILE_SIZE / 2);
 				FillShader::Fill(Point(endX - .5 * after, point.Y() + dy),
 					Point(after, 1.), color);
-				
+
 				// The center of the display needs to be between these two values:
 				int panelAndAHalf = DetailWidth() / 2;
 				double minX = Screen::Left() + panelAndAHalf;
@@ -300,12 +301,12 @@ void ShopPanel::DrawMain() const
 				Point center(
 					max(minX, min(maxX, point.X())),
 					point.Y() + TILE_SIZE / 2);
-				
+
 				mainDetailHeight = DrawDetails(center);
 				nextY += mainDetailHeight;
 				selectedBottomY = nextY - TILE_SIZE / 2;
 			}
-			
+
 			point.X() += columnWidth;
 			if(point.X() >= endX)
 			{
@@ -315,11 +316,11 @@ void ShopPanel::DrawMain() const
 				scrollY = -mainDetailHeight;
 			}
 		}
-		
+
 		if(!isEmpty)
 		{
 			bigFont.Draw(category, side, bright);
-			
+
 			if(point.X() != begin.X())
 			{
 				point.X() = begin.X();
@@ -338,12 +339,12 @@ void ShopPanel::DrawMain() const
 	}
 	// This is how much Y space was actually used.
 	nextY -= 40 + TILE_SIZE;
-	
+
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen?
 	maxMainScroll = nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2;
 	maxMainScroll = max(0, maxMainScroll);
-	
+
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
@@ -359,19 +360,19 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	SpriteShader::Draw(back, center);
 	// Make sure the ship sprite leaves 10 pixels padding all around.
 	float zoomSize = SHIP_SIZE - 60.f;
-	
+
 	// Draw the ship name.
 	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
 	const Font &font = FontSet::Get(14);
 	Point offset(-.5f * font.Width(name), -.5f * SHIP_SIZE + 10.f);
 	font.Draw(name, center + offset, *GameData::Colors().Get("bright"));
-	
+
 	const Sprite *sprite = ship.GetSprite().GetSprite();
 	if(sprite)
 	{
 		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
 		int swizzle = GameData::PlayerGovernment()->GetSwizzle();
-		
+
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
 }
@@ -400,7 +401,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || key == 'i')
+	else if(key == 'b' || key == 'i' || key == 'r')
 	{
 		if(!CanBuy())
 			FailBuy();
@@ -456,7 +457,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return DoScroll(Screen::Top());
 	else
 		return false;
-	
+
 	return true;
 }
 
@@ -475,10 +476,10 @@ bool ShopPanel::Click(int x, int y)
 			DoKey(SDLK_s);
 		else
 			DoKey(SDLK_l);
-		
+
 		return true;
 	}
-	
+
 	// Check for clicks in the scroll arrows.
 	if(x >= Screen::Right() - 20)
 	{
@@ -494,7 +495,7 @@ bool ShopPanel::Click(int x, int y)
 		if(y >= Screen::Bottom() - 20)
 			return Scroll(0, -4);
 	}
-	
+
 	// Handle clicks anywhere else by checking if they fell into any of the
 	// active click zones (main panel or side panel).
 	for(const ClickZone &zone : zones)
@@ -511,12 +512,12 @@ bool ShopPanel::Click(int x, int y)
 						SideSelect(dragShip);
 						return true;
 					}
-				
+
 				selectedShip = zone.GetShip();
 			}
 			else
 				selectedOutfit = zone.GetOutfit();
-			
+
 			scrollDetailsIntoView = true;
 			// Reset selectedBottomY so that Step() waits for it to be updated
 			// with the proper value computed in Draw().
@@ -524,7 +525,7 @@ bool ShopPanel::Click(int x, int y)
 			mainScroll = max(0., mainScroll + zone.ScrollY());
 			return true;
 		}
-		
+
 	return true;
 }
 
@@ -566,7 +567,7 @@ bool ShopPanel::Drag(double dx, double dy)
 		scrollDetailsIntoView = false;
 		DoScroll(dy);
 	}
-	
+
 	return true;
 }
 
@@ -650,9 +651,9 @@ bool ShopPanel::DoScroll(double dy)
 {
 	double &scroll = dragMain ? mainScroll : sideScroll;
 	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
-	
+
 	scroll = max(0., min(static_cast<double>(maximum), scroll - dy));
-	
+
 	return true;
 }
 
@@ -665,7 +666,7 @@ void ShopPanel::SideSelect(int count)
 	for( ; it != player.Ships().end(); ++it)
 		if((*it).get() == playerShip)
 			break;
-	
+
 	// Bail out if there are no ships to choose from.
 	if(it == player.Ships().end())
 	{
@@ -673,11 +674,11 @@ void ShopPanel::SideSelect(int count)
 		playerShip = player.Flagship();
 		if(playerShip)
 			playerShips.insert(playerShip);
-		
+
 		return;
 	}
-	
-	
+
+
 	if(count < 0)
 	{
 		while(count)
@@ -685,7 +686,7 @@ void ShopPanel::SideSelect(int count)
 			if(it == player.Ships().begin())
 				it = player.Ships().end();
 			--it;
-			
+
 			if((*it)->GetSystem() == player.GetSystem())
 				++count;
 		}
@@ -697,7 +698,7 @@ void ShopPanel::SideSelect(int count)
 			++it;
 			if(it == player.Ships().end())
 				it = player.Ships().begin();
-			
+
 			if((*it)->GetSystem() == player.GetSystem())
 				--count;
 		}
@@ -711,7 +712,7 @@ void ShopPanel::SideSelect(Ship *ship)
 {
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
-	
+
 	if(shift)
 	{
 		bool on = false;
@@ -720,16 +721,16 @@ void ShopPanel::SideSelect(Ship *ship)
 			// Skip any ships that are "absent" for whatever reason.
 			if(other->GetSystem() != player.GetSystem())
 				continue;
-			
+
 			if(other.get() == ship || other.get() == playerShip)
 				on = !on;
 			else if(on)
 				playerShips.insert(other.get());
 		}
-	}	
+	}
 	else if(!control)
 		playerShips.clear();
-	
+
 	playerShip = ship;
 	playerShips.insert(playerShip);
 }
@@ -741,7 +742,7 @@ void ShopPanel::MainLeft()
 	vector<ClickZone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
-	
+
 	vector<ClickZone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Go to the last item.
 	if(it == zones.end())
@@ -752,7 +753,7 @@ void ShopPanel::MainLeft()
 		selectedOutfit = it->GetOutfit();
 		return;
 	}
-	
+
 	if(it == start)
 	{
 		mainScroll = 0;
@@ -778,7 +779,7 @@ void ShopPanel::MainRight()
 	vector<ClickZone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
-	
+
 	vector<ClickZone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
@@ -787,7 +788,7 @@ void ShopPanel::MainRight()
 		selectedOutfit = start->GetOutfit();
 		return;
 	}
-	
+
 	int previousY = it->CenterY();
 	++it;
 	if(it == zones.end())
@@ -812,7 +813,7 @@ void ShopPanel::MainUp()
 	vector<ClickZone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
-	
+
 	vector<ClickZone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Go to the last item.
 	if(it == zones.end())
@@ -823,14 +824,14 @@ void ShopPanel::MainUp()
 		selectedOutfit = it->GetOutfit();
 		return;
 	}
-	
+
 	int previousX = it->CenterX();
 	int previousY = it->CenterY();
 	while(it != start && it->CenterY() == previousY)
 		--it;
 	while(it != start && it->CenterX() > previousX)
 		--it;
-	
+
 	if(it == start && it->CenterY() == previousY)
 	{
 		mainScroll = 0;
@@ -854,7 +855,7 @@ void ShopPanel::MainDown()
 	vector<ClickZone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
-	
+
 	vector<ClickZone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
@@ -863,7 +864,7 @@ void ShopPanel::MainDown()
 		selectedOutfit = start->GetOutfit();
 		return;
 	}
-	
+
 	int previousX = it->CenterX();
 	int previousY = it->CenterY();
 	while(it != zones.end() && it->CenterY() == previousY)
@@ -875,12 +876,12 @@ void ShopPanel::MainDown()
 		selectedOutfit = nullptr;
 		return;
 	}
-	
+
 	int newY = it->CenterY();
 	while(it != zones.end() && it->CenterX() <= previousX && it->CenterY() == newY)
 		++it;
 	--it;
-	
+
 	mainScroll += it->CenterY() - previousY - mainDetailHeight;
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
@@ -895,7 +896,7 @@ vector<ShopPanel::ClickZone>::const_iterator ShopPanel::Selected() const
 	for( ; it != zones.end(); ++it)
 		if(it->GetShip() == selectedShip && it->GetOutfit() == selectedOutfit)
 			break;
-	
+
 	return it;
 }
 
@@ -908,6 +909,6 @@ vector<ShopPanel::ClickZone>::const_iterator ShopPanel::MainStart() const
 	vector<ClickZone>::const_iterator start = zones.begin();
 	while(start != zones.end() && start->CenterX() > margin)
 		++start;
-	
+
 	return start;
 }

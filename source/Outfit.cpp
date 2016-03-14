@@ -24,6 +24,7 @@ using namespace std;
 
 namespace {
 	static const double EPS = 0.0000000001;
+	static const double DAMAGE_MOD = 0.1;
 }
 
 const vector<string> Outfit::CATEGORIES = {
@@ -44,7 +45,7 @@ void Outfit::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		name = node.Token(1);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "category" && child.Size() >= 2)
@@ -104,6 +105,27 @@ int64_t Outfit::Cost() const
 
 
 
+int64_t Outfit::CostDamaged() const
+{
+	return (int)round(DAMAGE_MOD * Cost());
+}
+
+
+
+int64_t Outfit::CostRepair() const
+{
+	return Cost() - CostDamaged();
+}
+
+
+
+bool Outfit::CanDamage() const
+{
+	return category != "Ammunition";
+}
+
+
+
 // Get the image to display in the outfitter when buying this item.
 const Sprite *Outfit::Thumbnail() const
 {
@@ -139,7 +161,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 		if(value + at.second * count < -EPS)
 			count = value / -at.second + EPS;
 	}
-	
+
 	return count;
 }
 
@@ -155,14 +177,14 @@ void Outfit::Add(const Outfit &other, int count)
 		if(fabs(attributes[at.first]) < EPS)
 			attributes[at.first] = 0.;
 	}
-	
+
 	for(const auto &it : other.flareSprites)
 	{
 		auto oit = flareSprites.begin();
 		for( ; oit != flareSprites.end(); ++oit)
 			if(oit->first.GetSprite() == it.first.GetSprite())
 				break;
-		
+
 		if(oit == flareSprites.end())
 			flareSprites.emplace_back(it.first, count * it.second);
 		else
@@ -193,7 +215,7 @@ void Outfit::Reset(const string &attribute, double value)
 }
 
 
-	
+
 // Get this outfit's engine flare sprite, if any.
 const vector<pair<Animation, int>> &Outfit::FlareSprites() const
 {
