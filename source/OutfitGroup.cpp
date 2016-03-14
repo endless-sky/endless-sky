@@ -220,8 +220,9 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 			if (to)
 				to->AddOutfit(outfit, toRemove, age);
 			if (!oit->second[age])
-				oit->second.erase(iit);
-			++iit;
+				oit->second.erase(iit++); // erase current and iterate.
+			else 
+				++iit; // just iterate.
 		}
 	}
 	if (oit->second.empty())
