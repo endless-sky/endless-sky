@@ -620,7 +620,7 @@ void InfoPanel::DrawShip() const
 			
 			string number = to_string(it.GetQuantity());
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.GetOutfit()->Name(), pos, dim);
+			font.Draw(it.GetOutfit()->Name() + "(" + Format::Percent(it.GetCostRatio()) + ")", pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			

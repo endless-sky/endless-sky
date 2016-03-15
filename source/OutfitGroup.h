@@ -91,7 +91,7 @@ public:
 		int GetAge() const;
 		int GetQuantity() const;
 		int64_t GetTotalCost() const;
-		int64_t GetCostPerOutfit() const;
+		double GetCostRatio()const;
 		
 	private:
 		const OutfitGroup *myGroup;

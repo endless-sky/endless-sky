@@ -373,9 +373,9 @@ int64_t OutfitGroup::iterator::GetTotalCost() const
 
 
 
-int64_t OutfitGroup::iterator::GetCostPerOutfit() const
+double OutfitGroup::iterator::GetCostRatio() const
 {
-	return CostFunction(GetOutfit(), GetAge());
+	return CostFunction(GetAge());
 }
 
 
