@@ -1710,7 +1710,7 @@ ship "Marauder Arrow"
 
 
 
-ship "Marauder Arrow" "Marauder Arrow (Engines)"
+ship "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
 	attributes
 		category "Interceptor"
@@ -1757,7 +1757,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 
 
 
-ship "Marauder Arrow" "Marauder Arrow (Weapons)"
+ship "Marauder Arrow (Weapons)"
 	sprite "ship/marroww"
 	attributes
 		category "Interceptor"
@@ -1856,7 +1856,7 @@ ship "Marauder Bounder"
 
 
 
-ship "Marauder Bounder" "Marauder Bounder (Engines)"
+ship "Marauder Bounder (Engines)"
 	sprite "ship/mboundere"
 	attributes
 		category "Interceptor"
@@ -1902,7 +1902,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 
 
 
-ship "Marauder Bounder" "Marauder Bounder (Weapons)"
+ship "Marauder Bounder (Weapons)"
 	sprite "ship/mbounderw"
 	attributes
 		category "Interceptor"
@@ -2000,7 +2000,7 @@ ship "Marauder Falcon"
 
 
 
-ship "Marauder Falcon" "Marauder Falcon (Engines)"
+ship "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
 	attributes
 		category "Heavy Warship"
@@ -2055,7 +2055,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 
 
 
-ship "Marauder Falcon" "Marauder Falcon (Weapons)"
+ship "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
 	attributes
 		category "Heavy Warship"
@@ -2160,7 +2160,7 @@ ship "Marauder Firebird"
 
 
 
-ship "Marauder Firebird" "Marauder Firebird (Engines)"
+ship "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
 	attributes
 		category "Medium Warship"
@@ -2212,7 +2212,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 
 
 
-ship "Marauder Firebird" "Marauder Firebird (Weapons)"
+ship "Marauder Firebird (Weapons)"
 	sprite "ship/mfirebirdw"
 	attributes
 		category "Medium Warship"
@@ -2365,7 +2365,7 @@ ship "Marauder Leviathan"
 
 
 
-ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
+ship "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
 	attributes
 		category "Heavy Warship"
@@ -2418,7 +2418,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 
 
 
-ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
+ship "Marauder Leviathan (Weapons)"
 	sprite "ship/mleviathanw"
 	attributes
 		category "Heavy Warship"
@@ -2523,7 +2523,7 @@ ship "Marauder Manta"
 
 
 
-ship "Marauder Manta" "Marauder Manta (Engines)"
+ship "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
 	attributes
 		category "Medium Warship"
@@ -2576,7 +2576,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 
 
 
-ship "Marauder Manta" "Marauder Manta (Weapons)"
+ship "Marauder Manta (Weapons)"
 	sprite "ship/mmantaw"
 	attributes
 		category "Medium Warship"
@@ -2672,7 +2672,7 @@ ship "Marauder Quicksilver"
 
 
 
-ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
+ship "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
 	attributes
 		category "Light Warship"
@@ -2718,7 +2718,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 
 
 
-ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
+ship "Marauder Quicksilver (Weapons)"
 	sprite "ship/mquicksilverw"
 	attributes
 		category "Light Warship"
@@ -2811,7 +2811,7 @@ ship "Marauder Raven"
 
 
 
-ship "Marauder Raven" "Marauder Raven (Engines)"
+ship "Marauder Raven (Engines)"
 	sprite "ship/mravene"
 	attributes
 		category "Light Warship"
@@ -2860,7 +2860,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 
 
 
-ship "Marauder Raven" "Marauder Raven (Weapons)"
+ship "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
 	attributes
 		category "Light Warship"
@@ -2958,7 +2958,7 @@ ship "Marauder Splinter"
 
 
 
-ship "Marauder Splinter" "Marauder Splinter (Engine)"
+ship "Marauder Splinter (Engine)"
 	sprite "ship/msplintere"
 	attributes
 		category "Medium Warship"
@@ -3009,7 +3009,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engine)"
 
 
 
-ship "Marauder Splinter" "Marauder Splinter (Weapons)"
+ship "Marauder Splinter (Weapons)"
 	sprite "ship/msplinterw"
 	attributes
 		category "Medium Warship"
