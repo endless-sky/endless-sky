@@ -237,6 +237,7 @@ outfitter "Deep Sky Advanced"
 
 outfitter "Lovelace Basics"
 	"Anti-Missile Turret"
+		
 	"Sidewinder Missile"
 	"Sidewinder Missile Launcher"
 	"D23-QP Shield Generator"

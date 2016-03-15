@@ -436,7 +436,6 @@ void System::SetSupply(const string &commodity, double tons)
 {
 	auto &it = trade[commodity];
 	it.supply = tons;
-	it.Update();
 }
 
 
@@ -538,12 +537,11 @@ int System::Price::GetBasePrice()
 
 void System::Price::Update()
 {
-	
 	exports = EXPORT * supply;
 	supply *= KEEP;
 	supply += Random::Normal() * VOLUME;
 	
-	price = GetBasePrice() + static_cast<int>(MAX_PRICE_SWING * erf(supply / LIMIT));
+	price = GetBasePrice() + static_cast<int>(-MAX_PRICE_SWING * erf(supply / LIMIT));
 	if (price < MIN_FINAL_PRICE)
 		price = MIN_FINAL_PRICE;
 }
