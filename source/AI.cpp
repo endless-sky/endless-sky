@@ -33,6 +33,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <limits>
 #include <set>
+#include <iostream>
 
 using namespace std;
 
@@ -1025,37 +1026,34 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 {
+	const double radius = 200.;
 	Point direction = target.Position() - ship.Position();
-	if(direction.Length() > 200.)
+	Point dV = target.Velocity() - ship.Velocity();
+	double distance = direction.Length();
+
+	// adjust dV in order to get closer to target if needed.
+	if(distance > radius)
+		dV += direction.Unit() * (distance/radius);
+
+	// We want to match dV until it cancels out. From testing, geting to 0
+	// is not possible, but most ships should be able to get within .03
+	// quite quickly.
+	if(dV.Length() > .03)
 	{
-		// get closer
-		command.SetTurn(TurnToward(ship, direction));
-		if(ship.Facing().Unit().Dot(direction) >= 0.)
+		double dot = ship.Facing().Unit().Dot(dV.Unit());
+
+		// turn if far away or angle significant enough (limit wriggle)
+		if(distance > radius || dot <= .996)
+			command.SetTurn(TurnToward(ship, dV));
+
+		// wait for the angle to be around 30 degrees before thrusting,
+		// otherwise the ships will keep turning around.
+		if(dot > .866)
 			command |= Command::FORWARD;
 	}
-	else
-	{
-		// try to match course
-		Point delta = target.Velocity() - ship.Velocity();
-		// We want to cancel out that delta. From testing, geting to 0 is not
-		// possible, but most ships should be able to get within .03 quite quickly
-		if(delta.Length() > .03)
-		{
-			double dot = ship.Facing().Unit().Dot(delta.Unit());
-
-			// don't turn if close enough
-			if(dot < .99)
-				command.SetTurn(TurnToward(ship, delta));
-
-			// wait for the angle to be around 30 degrees before thrusting,
-			// otherwise the ships will keep turning around.
-			if(dot > .866)
-				command |= Command::FORWARD;
-		}
-		else
-			// we've matched course, now match heading
-			command.SetTurn(TurnToward(ship, target.Facing().Unit()));
-	}
+	else if(target.Facing() != ship.Facing())
+		// we've matched course, now match heading
+		command.SetTurn(TurnToward(ship, target.Facing().Unit()));
 }
 
 
