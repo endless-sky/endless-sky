@@ -131,7 +131,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
-	if(playerShip || isLicense || mapSize)
+	if(playerShip || isLicense || mapSize || player.Cargo().GetOutfitCount(outfit))
 	{
 		int minCount = numeric_limits<int>::max();
 		int maxCount = 0;
@@ -156,6 +156,20 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 				maxPrice = max(maxPrice, highprice);
 			}
 		}
+				
+		if(player.Cargo().GetOutfitCount(outfit))
+		{
+			int64_t highprice = player.Cargo().Outfits().GetCost(outfit, 1, false);
+			int64_t lowprice = player.Cargo().Outfits().GetCost(outfit, 1, true);
+			minPrice = minPrice > 0 ? min(minPrice, lowprice) : lowprice;
+			maxPrice = max(maxPrice, highprice);
+			
+			string label =  "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));		
+			Point pos = point + Point(
+				-OUTFIT_SIZE / 2 + 20,
+				OUTFIT_SIZE / 2 - 66);
+			font.Draw(label, pos, bright);
+		}
 		
 		if(maxCount)
 		{
@@ -165,8 +179,11 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 				label += " - " + to_string(maxCount);
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 52);
 			font.Draw(label, labelPos, bright);
-
-			// Sell price label. (TODO: Does not include cargo prices!)
+		}
+		
+		if (maxPrice)
+		{
+			// Sell price label (includes cargo prices)
 			string sellLabel =  "sell value: " + Format::Percent(minPrice, outfit->Cost());
 			if (minPrice != maxPrice)
 				sellLabel += "-" + Format::Percent(maxPrice, outfit->Cost());
@@ -175,14 +192,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		}
 	}
 	
-	if(player.Cargo().GetOutfitCount(outfit))
-	{
-		string label =  "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));		
-		Point pos = point + Point(
-			-OUTFIT_SIZE / 2 + 20,
-			OUTFIT_SIZE / 2 - 66);
-		font.Draw(label, pos, bright);
-	}
+
 
 	// Buy price label.
 	string buyLabel;
