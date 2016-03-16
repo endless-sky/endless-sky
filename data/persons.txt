@@ -172,9 +172,9 @@ person "Marauding Max K"
 			"fought "
 			"run away from "
 		word
-			"one of "
-			"any of "
-			"some of "
+			"one of those "
+			"any of those "
+			"some of those "
 		word
 			"modified "
 			"Marauder "
