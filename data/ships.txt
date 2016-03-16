@@ -2208,7 +2208,7 @@ ship "Marauder Firebird (Engines)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it’s heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield generators."
+	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield generators."
 
 
 
@@ -2525,7 +2525,7 @@ ship "Marauder Manta"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield generators, and rearranged some of the internals, yielding a little more outfit space.  It almost makes it to 'Heavy Warship’, but dry tonnage keeps it into the 'Medium Warship' category."
+	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield generators, and rearranged some of the internals, yielding a little more outfit space.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the 'Medium Warship' category."
 
 
 
@@ -2579,7 +2579,7 @@ ship "Marauder Manta (Engines)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield generators in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship’, but dry tonnage keeps it into the Medium Warship category."
+	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield generators in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the Medium Warship category."
 
 
 
