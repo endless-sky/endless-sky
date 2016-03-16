@@ -255,11 +255,9 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit || !playerShip)
 		return false;
 	
-	// If you have this in your cargo hold, installing it is free.
-	if(player.Cargo().GetOutfitCount(selectedOutfit))
-		return true;
-	
-	if(!(outfitter.Has(selectedOutfit) || available.Find(selectedOutfit)))
+	if(!(outfitter.Has(selectedOutfit) 
+		|| available.Find(selectedOutfit)
+		|| player.Cargo().GetOutfitCount(selectedOutfit)))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -269,7 +267,9 @@ bool OutfitterPanel::CanBuy() const
 	if(HasLicense(selectedOutfit->Name()))
 		return false;
 	
-	if(selectedOutfit->Cost() > player.Accounts().Credits())
+	// If you have this in your cargo hold, installing it is free.
+	if(selectedOutfit->Cost() > player.Accounts().Credits() 
+		&& !player.Cargo().GetOutfitCount(selectedOutfit))
 		return false;
 	
 	for(const Ship *ship : playerShips)
@@ -361,7 +361,7 @@ void OutfitterPanel::Buy()
 
 
 
-void OutfitterPanel::FailBuy() const
+void OutfitterPanel::FailBuy()
 {
 	if(!selectedOutfit || !playerShip)
 		return;
@@ -390,9 +390,9 @@ void OutfitterPanel::FailBuy() const
 	if(outfitNeeded > outfitSpace)
 	{
 		string need =  to_string(outfitNeeded) + (outfitNeeded != 1. ? "tons" : "ton");
-		GetUI()->Push(new Dialog("You cannot install this outfit, because it takes up "
+		BuyAsCargoPrompt("You cannot install this outfit, because it takes up "
 			+ Tons(outfitNeeded) + " of outfit space, and this ship has "
-			+ Tons(outfitSpace) + " free."));
+			+ Tons(outfitSpace) + " free.");
 		return;
 	}
 	
@@ -400,10 +400,10 @@ void OutfitterPanel::FailBuy() const
 	double weaponSpace = playerShip->Attributes().Get("weapon capacity");
 	if(weaponNeeded > weaponSpace)
 	{
-		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for weapons. "
+		BuyAsCargoPrompt("Only part of your ship's outfit capacity is usable for weapons. "
 			"You cannot install this outfit, because it takes up "
 			+ Tons(weaponNeeded) + " of weapon space, and this ship has "
-			+ Tons(weaponSpace) + " free."));
+			+ Tons(weaponSpace) + " free.");
 		return;
 	}
 	
@@ -411,15 +411,16 @@ void OutfitterPanel::FailBuy() const
 	double engineSpace = playerShip->Attributes().Get("engine capacity");
 	if(engineNeeded > engineSpace)
 	{
-		GetUI()->Push(new Dialog("Only part of your ship's outfit capacity is usable for engines. "
+		BuyAsCargoPrompt("Only part of your ship's outfit capacity is usable for engines. "
 			"You cannot install this outfit, because it takes up "
 			+ Tons(engineNeeded) + " of engine space, and this ship has "
-			+ Tons(engineSpace) + " free."));
+			+ Tons(engineSpace) + " free.");
 		return;
 	}
 	
 	if(selectedOutfit->Category() == "Ammunition")
 	{
+		// Since ammunition has zero mass, don't allow buying it as cargo.
 		if(!playerShip->OutfitCount(selectedOutfit))
 			GetUI()->Push(new Dialog("This outfit is ammunition for a weapon. "
 				"You cannot install it without first installing the appropriate weapon."));
@@ -433,8 +434,8 @@ void OutfitterPanel::FailBuy() const
 	int mountsFree = playerShip->Attributes().Get("turret mounts");
 	if(mountsNeeded && !mountsFree)
 	{
-		GetUI()->Push(new Dialog("This weapon is designed to be installed on a turret mount, "
-			"but your ship does not have any unused turret mounts available."));
+		BuyAsCargoPrompt("This weapon is designed to be installed on a turret mount, "
+			"but your ship does not have any unused turret mounts available.");
 		return;
 	}
 	
@@ -442,17 +443,17 @@ void OutfitterPanel::FailBuy() const
 	int gunsFree = playerShip->Attributes().Get("gun ports");
 	if(gunsNeeded && !gunsFree)
 	{
-		GetUI()->Push(new Dialog("This weapon is designed to be installed in a gun port, "
-			"but your ship does not have any unused gun ports available."));
+		BuyAsCargoPrompt("This weapon is designed to be installed in a gun port, "
+			"but your ship does not have any unused gun ports available.");
 		return;
 	}
 	
 	if(!playerShip->Attributes().CanAdd(*selectedOutfit, 1))
 	{
-		GetUI()->Push(new Dialog("You cannot install this outfit in your ship, "
+		BuyAsCargoPrompt("You cannot install this outfit in your ship, "
 			"because it would reduce one of your ship's attributes to a negative amount. "
 			"For example, perhaps it uses up more cargo space than you have left, "
-			"or has a constant energy draw greater than what your ship produces."));
+			"or has a constant energy draw greater than what your ship produces.");
 		return;
 	}
 	
@@ -807,5 +808,49 @@ void OutfitterPanel::Refill()
 					ship->AddOutfit(outfit, 1, 0);				
 				}
 			}
+	}
+}
+
+
+
+// If the player tried to buy an outfit that cannot be installed ask whether he'd 
+// like to buy it and put it in his flagship's cargo hold. 
+void OutfitterPanel::BuyAsCargoPrompt(std::string message)
+{
+	 // Don't allow anything with zero/negative mass in cargo.
+	int mass = selectedOutfit->Get("mass");
+	if (mass > 0 && player.Cargo().Free() > mass 
+		&& (outfitter.Has(selectedOutfit) || available.GetTotalCount(selectedOutfit)))
+	{
+		GetUI()->Push(new Dialog(this, &OutfitterPanel::BuyAsCargoCallback, message +
+			"\n\nHowever, you do have some room in your cargo hold! Would you like to buy this outfit and place it in cargo?"));
+	}
+	else 
+	{
+		GetUI()->Push(new Dialog(message));
+	}
+}
+
+
+
+void OutfitterPanel::BuyAsCargoCallback()
+{
+	// Buy the selected outfit and put it in cargo.
+	int modifier = Modifier();
+	for(int i = 0; i < modifier && player.Cargo().Free() > selectedOutfit->Get("mass"); ++i)
+	{
+		if(!available.Find(selectedOutfit) && !outfitter.Has(selectedOutfit))
+			break;
+		else if (available.Find(selectedOutfit))
+		{	// Buy lowest price used outfits first.
+			player.Accounts().AddCredits(-available.GetCost(selectedOutfit, 1, true));
+			player.Cargo().Transfer(selectedOutfit, -1, &available, true, 0);
+		}
+		else
+		{	// Buy new
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			player.Cargo().Transfer(selectedOutfit, -1, nullptr, true, 0);				
+		}
+
 	}
 }

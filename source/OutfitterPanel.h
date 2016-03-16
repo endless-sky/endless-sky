@@ -50,12 +50,11 @@ protected:
 	virtual int DrawDetails(const Point &center) const override;
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
-	virtual void FailBuy() const override;
+	virtual void FailBuy() override;
 	virtual bool CanSell() const override;
 	virtual void Sell() override;
 	virtual void FailSell() const override;
 	virtual bool FlightCheck() override;
-	
 	
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
@@ -67,6 +66,8 @@ private:
 	std::string LicenseName(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
+	void BuyAsCargoPrompt(std::string message);
+	void BuyAsCargoCallback();
 	
 	
 private:

@@ -82,6 +82,17 @@ const std::map<int, int> *OutfitGroup::Find(const Outfit *outfit) const
 
 
 
+double OutfitGroup::GetTotalAttribute(std::string attribute) const
+{
+	// Get the total value of an attribute (such as mass) over every outfit. 
+	double value = 0;
+	for (auto it = begin(); it != end(); ++it)
+		value += it.GetOutfit()->Get(attribute) * it.GetQuantity();
+	return value;
+}
+
+
+
 int64_t OutfitGroup::GetTotalCost() const
 {
 	// Get the total cost of every outfit. 

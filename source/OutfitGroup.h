@@ -54,6 +54,8 @@ public:
 	bool Empty() const;
 	const std::map<int, int> *Find(const Outfit *outfit) const;
 	
+	// Given attribute summed over all outfits in group.
+	double GetTotalAttribute(std::string attribute) const;
 	// Cost of all outfits in group.
 	int64_t GetTotalCost() const;
 	// Cost of all outfits of a given type.
