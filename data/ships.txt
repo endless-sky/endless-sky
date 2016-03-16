@@ -2327,62 +2327,6 @@ ship "Marauder Fury"
 
 
 
-ship "Marauder Falcon"
-	sprite "ship/mfalcons"
-	attributes
-		category "Heavy Warship"
-		"cost" 13900000
-		"shields" 14100
-		"hull" 4100
-		"required crew" 43
-		"bunks" 80
-		"mass" 560
-		"drag" 6.7
-		"heat dissipation" .8
-		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
-		"engine capacity" 165
-		weapon
-			"blast radius" 170
-			"shield damage" 1750
-			"hull damage" 900
-			"hit force" 2750
-	outfits
-		"Plasma Cannon" 4
-		"Modified Blaster Turret" 4
-
-		"Fusion Reactor"
-		"LP288a Battery Pack"
-		"D67-TM Shield Generator"
-		"Liquid Helium Cooler"
-		"Mass Expansion" 3
-
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
-		Hyperdrive
-
-		"Laser Rifle" 80
-
-	engine -16 143
-	engine 16 143
-	gun -16 -89 "Plasma Cannon"
-	gun 16 -89 "Plasma Cannon"
-	gun -16 -89 "Plasma Cannon"
-	gun 16 -89 "Plasma Cannon"
-	turret -57 32.5 "Modified Blaster Turret"
-	turret 57 32.5 "Modified Blaster Turret"
-	turret -16 -25 "Modified Blaster Turret"
-	turret 16 -25 "Modified Blaster Turret"
-	explode "tiny explosion" 40
-	explode "small explosion" 55
-	explode "medium explosion" 60
-	explode "big explosion" 40
-	description "This Tarazed Falcon has been heavily modified by some very dedicated craftsmen - the hull is riddled with extra shield modulators and expanded equipment bays. The process has added some extra weight and most definitely voided the warranty."
-
-
-
 ship "Marauder Leviathan"
 	sprite "ship/mleviathans"
 	attributes
