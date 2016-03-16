@@ -196,7 +196,14 @@ person "Marauding Max K"
 #not sure about implying there is a shop that people can have this done to their ships, but it’s fun banter…
 	phrase
 		word
-			"If you can find my shop, I'll turn that "
+			"If you can find my "
+		word
+			"shop, "
+			"site, "
+			"brainstorm palace, "
+			"forum thread, "
+		word
+			"I'll turn that "
 		word
 			"trash heap "
 			"rust bucket "
