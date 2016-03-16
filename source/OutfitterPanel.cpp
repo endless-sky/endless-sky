@@ -819,7 +819,7 @@ void OutfitterPanel::BuyAsCargoPrompt(std::string message)
 {
 	 // Don't allow anything with zero/negative mass in cargo.
 	int mass = selectedOutfit->Get("mass");
-	if (mass > 0 && player.Cargo().Free() > mass 
+	if (mass > 0 && player.Cargo().Free() >= mass 
 		&& (outfitter.Has(selectedOutfit) || available.GetTotalCount(selectedOutfit)))
 	{
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::BuyAsCargoCallback, message +
@@ -827,7 +827,12 @@ void OutfitterPanel::BuyAsCargoPrompt(std::string message)
 	}
 	else 
 	{
-		GetUI()->Push(new Dialog(message));
+		if (mass <= 0)
+			GetUI()->Push(new Dialog(message + "\n\nSince this item has no mass, it also can't be kept in your cargo hold."));
+		else if (player.Cargo().Free() < mass)
+			GetUI()->Push(new Dialog(message + "\n\nYou also don't have enough free cargo space to buy this outfit as cargo." ));
+		else if (!(outfitter.Has(selectedOutfit) || available.GetTotalCount(selectedOutfit)))
+			GetUI()->Push(new Dialog(message + "\n\nYou also can't buy this outfit as cargo because there are none available for sale here." ));
 	}
 }
 
@@ -837,7 +842,7 @@ void OutfitterPanel::BuyAsCargoCallback()
 {
 	// Buy the selected outfit and put it in cargo.
 	int modifier = Modifier();
-	for(int i = 0; i < modifier && player.Cargo().Free() > selectedOutfit->Get("mass"); ++i)
+	for(int i = 0; i < modifier && player.Cargo().Free() >= selectedOutfit->Get("mass"); ++i)
 	{
 		if(!available.Find(selectedOutfit) && !outfitter.Has(selectedOutfit))
 			break;
