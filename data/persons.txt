@@ -127,3 +127,87 @@ person "Cap'n Pester"
 			"Medium Graviton Thruster"
 			"Medium Graviton Steering"
 			"Scram Drive"
+
+
+
+person "Marauding Max K"
+	government "Author"
+	frequency 300
+	personality
+		surveillance
+	phrase
+		word
+			"This game "
+			"Endless Sky "
+		word
+			"is open source. You can "
+		word
+			"help out "
+			"improve the game "
+			"get involved "
+			"help make it a better game "
+			"assist us "
+			"make your mark on the universe "
+			"give back to the community "
+		word
+			"by contributing "
+		word
+			"bug reports."
+			"typo fixes."
+			"constructive feedback."
+			"ideas for improvements."
+			"landscape photos."
+			"artwork."
+			"new ships of your own design."
+			"plugins."
+			"new special missions."
+			"new weapons or other outfits."
+			"improved planet descriptions."
+			"more varied hail messages."
+	phrase
+		word
+			"Have you "
+		word
+			"seen "
+			"fought "
+			"run away from "
+		word
+			"one of "
+			"any of "
+			"some of "
+		word
+			"modified "
+			"Marauder "
+		word
+			"ships "
+			"Leviathans " 			"Falcons "
+			"Ravens "
+			"Quicksilvers "
+			"Splinters "
+			"Mantas "
+			"Arrows "
+			"Bounders "
+			"Firebirds "
+		word
+			"lately?"
+			"recently?"
+			"in the past couple of days?"
+#not sure about implying there is a shop that people can have this done to their ships, but it’s fun banter…
+	phrase
+		word
+			"If you can find my shop, I'll turn that "
+		word
+			"trash heap "
+			"rust bucket "
+			"jalopy "
+			"bucket of bolts "
+			"flying toaster "
+			"garbage scow "
+		word
+			"of yours "
+			"you're flying "
+			"you're piloting "
+			"that you call a ship "
+		word
+			"into a REAL marauding warship!"
+	ship "Marauder Fury" "Mad Quest"
