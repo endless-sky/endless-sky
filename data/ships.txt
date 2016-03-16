@@ -3161,6 +3161,56 @@ ship "Marauder Splinter (Weapons)"
 
 
 
+ship "Modified Argosy"
+	sprite "ship/modified argosy"
+	attributes
+		category "Light Warship"
+		"cost" 1960000
+		"shields" 4800
+		"hull" 1900
+		"required crew" 5
+		"bunks" 12
+		"mass" 250
+		"drag" 6.2
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 60
+		"outfit space" 340
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -16 82
+	engine 16 82
+	gun -22 -37 "Heavy Laser"
+	gun 22 -37 "Heavy Laser"
+	gun -23 -37 "Heavy Laser"
+	gun 23 -37 "Heavy Laser"
+	turret 0 -8 "Heavy Laser Turret"
+	turret 0 12 "Heavy Laser Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "big explosion" 15
+	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
+
+
+
 ship "Mule"
 	sprite "ship/mule"
 	attributes
