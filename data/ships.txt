@@ -1686,17 +1686,16 @@ ship "Marauder Arrow"
 			"hull damage" 135
 			"hit force" 400
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Anti-Missile Turret"
-		
+		"Heavy Laser" 2
+		"Quad Blaster Turret"
+		"LP072a Battery Pack"
+		"Cooling Ducts"
 		"Dwarf Core"
-		"Supercapacitor"
 		"D14-RN Shield Generator"
-		
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Hyperdrive"
+		Hyperdrive
+		"Laser Rifle" 5
 		
 	engine -8 57
 	engine 8 57
@@ -1733,17 +1732,15 @@ ship "Marauder Arrow (Engines)"
 			"hull damage" 135
 			"hit force" 400
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
+		"Heavy Laser" 2
 		"Anti-Missile Turret"
-		
 		"Dwarf Core"
-		"Supercapacitor"
+		Supercapacitor
 		"D14-RN Shield Generator"
-		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
+		"Laser Rifle" 5
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
 	engine -10 57
 	engine 10 57
@@ -1779,30 +1776,24 @@ ship "Marauder Arrow (Weapons)"
 			"shield damage" 265
 			"hull damage" 135
 			"hit force" 400
-		weapon
-			"blast radius" 24
-			"shield damage" 240
-			"hull damage" 120
-			"hit force" 360
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 100
-		"Anti-Missile Turret"
-		
+		"Energy Blaster" 4
+		"LP036a Battery Pack"
 		"Dwarf Core"
-		"Supercapacitor"
+		"Heavy Laser Turret"
+		"Water Coolant System"
 		"D14-RN Shield Generator"
-		
+		"Laser Rifle" 5
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
-		"Hyperdrive"
+		Hyperdrive
 		
 	engine -8 57
 	engine 8 57
-	gun -6 -36
-	gun 6 -36
-	gun -8 -34 "Sidewinder Missile Launcher"
-	gun 8 -34 "Sidewinder Missile Launcher"
+	gun -6 -36 "Energy Blaster"
+	gun 6 -36 "Energy Blaster"
+	gun -7 -34 "Energy Blaster"
+	gun 7 -34 "Energy Blaster"
 	turret 0 15 "Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
@@ -1834,21 +1825,25 @@ ship "Marauder Bounder"
 			"hull damage" 175
 			"hit force" 500
 	outfits
-		"Blaster Turret" 2
+		"Particle Cannon"
+		"Quad Blaster Turret" 2
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Dwarf Core"
+		"Mass Expansion"
+		"Water Coolant System"
+		"Laser Rifle" 18
+		"Security Station"
+		Afterburner
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		Hyperdrive
 		
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-		
-	gun 0 -44
 	engine -12 44
 	engine 12 44
-	turret -37 4 "Blaster Turret"
-	turret 37 4 "Blaster Turret"
+	gun 0 -85 "Particle Cannon"
+	turret -38 7 "Blaster Turret"
+	turret 38 7 "Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -1879,22 +1874,24 @@ ship "Marauder Bounder (Engines)"
 			"hull damage" 175
 			"hit force" 500
 	outfits
-		"Blaster Turret" 2
+		"Heavy Laser"
+		"Quad Blaster Turret" 2
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Dwarf Core"
+		"Mass Expansion"
+		"Water Coolant System"
+		"Laser Rifle" 20
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-		
-	gun 0 -44
-	engine -12 44
-	engine 0 42
-	engine 12 44
-	turret -37 4 "Blaster Turret"
-	turret 37 4 "Blaster Turret"
+	engine -12 58
+	engine 0 51
+	engine 12 58
+	gun 0 -85 "Heavy Laser"
+	turret -38 7 "Blaster Turret"
+	turret 38 7 "Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -1925,20 +1922,23 @@ ship "Marauder Bounder (Weapons)"
 			"hull damage" 175
 			"hit force" 500
 	outfits
-		"Blaster Turret" 2
+		"Modified Blaster" 2
+		"Heavy Laser Turret" 2
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Dwarf Core"
+		"Mass Expansion"
+		"Water Coolant System"
+		"Laser Rifle" 18
+		"Security Station"
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		Hyperdrive
 		
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-		
-	gun 8 -42
-	gun -8 -42
-	engine -12 44
-	engine 12 44
+	engine -15 44
+	engine 15 44
+	gun 7 -77 "Modified Blaster"
+	gun -7 -77 "Modified Blaster"
 	turret -37 4 "Blaster Turret"
 	turret 37 4 "Blaster Turret"
 	explode "tiny explosion" 10
@@ -2093,8 +2093,8 @@ ship "Marauder Falcon (Weapons)"
 	engine 16 142
 	gun -18.5 -88 "Plasma Cannon"
 	gun 18.5 -88 "Plasma Cannon"
-	gun -21.5 -77 "Plasma Cannon"
-	gun 21.5 -77 "Plasma Cannon"
+	gun -21.5 -76 "Plasma Cannon"
+	gun 21.5 -76 "Plasma Cannon"
 	gun -18.5 -88 "Plasma Cannon"
 	gun 18.5 -88 "Plasma Cannon"
 	turret -57 32.5 "Quad Blaster Turret"
@@ -2208,7 +2208,7 @@ ship "Marauder Firebird (Engines)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield generators."
+	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it’s heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield generators."
 
 
 
@@ -2286,25 +2286,28 @@ ship "Marauder Fury"
 			"hull damage" 180
 			"hit force" 520
 	outfits
-		"Energy Blaster" 4
-		
-		"nGVF-CC Fuel Cell"
-		"LP036a Battery Pack"
-		"D14-RN Shield Generator"
-		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"Hyperdrive"
+		"Beam Laser" 4
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 100
+		"LP072a Battery Pack"
+		"S-270 Regenerator"
+		"Dwarf Core"
+		Supercapacitor 2
+		"Water Coolant System"
+		"Security Station" 3
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
 	engine -21 42
 	engine 0 48
 	engine 21 42
-	gun -12 -33
-	gun 12 -33
-	gun -20 -25
-	gun 20 -25
-	gun -43.5 2
-	gun 43.5 2
+	gun -12 -33 "Beam Laser"
+	gun 12 -33 "Beam Laser"
+	gun -20 -25 "Beam Laser"
+	gun 20 -25 "Beam Laser"
+	gun -43.5 2 "Sidewinder Missile Launcher"
+	gun 43.5 2 "Sidewinder Missile Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	description "This The Southbound Fury under all the extra modifications, is one man's insane quest to make the most powerful single pilot warship ever.  Upon inspection, you're inclined to believe he may have succeeded."
@@ -2495,17 +2498,20 @@ ship "Marauder Manta"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Particle Cannon" 4
+		"Plasma Cannon" 2
+		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
+		"Quad Blaster Turret"
 		"Meteor Missile" 70
-		
-		"RT-I Radiothermal"
+		"Dwarf Core"
 		"LP144a Battery Pack"
+		"Liquid Nitrogen Cooler"
 		"D14-RN Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Laser Rifle" 8
+		"Security Station" 3
+		"A250 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
 		
 	engine -33 38
 	engine 33 38
@@ -2515,11 +2521,11 @@ ship "Marauder Manta"
 	gun 27 -30 "Particle Cannon"
 	gun -66 -30 "Meteor Missile Launcher"
 	gun 66 -30 "Meteor Missile Launcher"
-	turret 0 -29
+	turret 0 -29 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield generators, and rearranged some of the internals, yielding a little more outfit space.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the 'Medium Warship' category."
+	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield generators, and rearranged some of the internals, yielding a little more outfit space.  It almost makes it to 'Heavy Warship’, but dry tonnage keeps it into the 'Medium Warship' category."
 
 
 
@@ -2546,33 +2552,34 @@ ship "Marauder Manta (Engines)"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Particle Cannon" 4
 		"Meteor Missile Launcher" 2
+		"Plasma Cannon" 4
+		"Quad Blaster Turret"
 		"Meteor Missile" 70
-		
-		"RT-I Radiothermal"
+		"Dwarf Core"
 		"LP144a Battery Pack"
+		"Liquid Nitrogen Cooler"
 		"D14-RN Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Laser Rifle" 11
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
 		
 
 	engine -33.5 38
 	engine 0 76
 	engine 33.5 38
-	gun -20 -30 "Particle Cannon"
-	gun 20 -30 "Particle Cannon"
-	gun -27 -30 "Particle Cannon"
-	gun 27 -30 "Particle Cannon"
+	gun -20 -30 "Plasma Cannon"
+	gun 20 -30 "Plasma Cannon"
+	gun -27 -30 "Plasma Cannon"
+	gun 27 -30 "Plasma Cannon"
 	gun -66 -30 "Meteor Missile Launcher"
 	gun 66 -30 "Meteor Missile Launcher"
-	turret 0 -29
+	turret 0 -29 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield generators in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the Medium Warship category."
+	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield generators in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship’, but dry tonnage keeps it into the Medium Warship category."
 
 
 
@@ -2650,22 +2657,23 @@ ship "Marauder Quicksilver"
 			"hull damage" 225
 			"hit force" 650
 	outfits
-		"Particle Cannon" 2
-		
-		"RT-I Radiothermal"
+		"Heavy Laser" 2
+		"Heavy Anti-Missile Turret"
+		"Fission Reactor"
+		"S-270 Regenerator"
 		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle"
+		"Security Station" 3
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
 	engine -16 52
 	engine 16 52
-	gun -7 -39 "Particle Cannon"
-	gun 7 -39 "Particle Cannon"
-	turret 0 15
+	gun -7 -39 "Heavy Laser"
+	gun 7 -39 "Heavy Laser"
+	turret 0 15 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield generation, hull plating and an extra bunk.  This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter.  The shop that built this ship is sure to see more customers."
@@ -2695,23 +2703,24 @@ ship "Marauder Quicksilver (Engines)"
 			"hull damage" 225
 			"hit force" 650
 	outfits
-		"Particle Cannon" 2
-		
-		"RT-I Radiothermal"
+		"Pulse Cannon" 2
+		"Anti-Missile Turret"
+		"Fission Reactor"
+		"S-270 Regenerator"
 		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 5
+		"Security Station" 2
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
 	engine -16 52
 	engine 0 52
 	engine 16 52
-	gun -7 -39 "Particle Cannon"
-	gun 7 -39 "Particle Cannon"
-	turret 0 15
+	gun -7 -39 "Pulse Cannon"
+	gun 7 -39 "Pulse Cannon"
+	turret 0 15 "Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	description "This Quicksilver has even more space available for engine use.  It's got a few extra shield generators, some hull plating and another bunk.  This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter.  Whoever modified this ship wanted to chase their prey down with vicious speed."
@@ -2741,22 +2750,24 @@ ship "Marauder Quicksilver (Weapons)"
 			"hull damage" 225
 			"hit force" 650
 	outfits
-		"Particle Cannon" 2
-		
-		"RT-I Radiothermal"
+		"Heavy Laser" 2
+		"Heavy Laser Turret"
+		"Fission Reactor"
+		"S-270 Regenerator"
 		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Hyperdrive"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle"
+		"Security Station" 4
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		Hyperdrive
 		
 	engine -17 54
 	engine 17 54
 	turret 0 15
-	gun -7 -39 "Particle Cannon"
-	gun 7 -39 "Particle Cannon"
+	gun -7 -39 "Heavy Laser"
+	gun 7 -39 "Heavy Laser"
+	turret 0 15 "Heavy Laser Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	description "This Quicksilver has even bigger gun ports.  It's got a few extra shield generators, some hull plating and a couple of bunks - almost pushing it to a Medium Warship.  This aftermarket model could even be outfitted to be a little faster than a stock model, bringing a couple of cannons - and a turret to the fight, to mimic Lionheart's Headhunter perhaps a little more menacingly."
@@ -2787,27 +2798,29 @@ ship "Marauder Raven"
 			"hit force" 1000
 	outfits
 		"Heavy Laser" 4
-		
-		"RT-I Radiothermal"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-		
+		"Heavy Laser Turret"
+		"Breeder Reactor"
+		"S-270 Regenerator"
+		"Mass Expansion"
+		Supercapacitor 3
+		"Liquid Nitrogen Cooler"
+		Afterburner
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+
 	engine -12 45
 	engine 12 45
 	gun -10 -33 "Heavy Laser"
 	gun 10 -33 "Heavy Laser"
 	gun -16 -28 "Heavy Laser"
 	gun 16 -28 "Heavy Laser"
-	turret 0 -19
+	turret 0 -19 "Heavy Laser Turret"
 	explode "medium explosion" 24
 	explode "big explosion" 16
 	explode "tiny explosion" 28
 	explode "small explosion" 40
-	description "The modifier of this Raven has taken a popular warship - an agile and elegant vessel - and given it even more heft.  They've added a turret and some apparently flimsy bulkheads over extra shield generators and outfit space.  If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that expect has made an already deadly warship even more so."
+	description "The modifier of this Raven has taken a popular warship - an agile and elegant vessel - and given it even more heft.  They've added a turret and some apparently flimsy bulkheads over extra shield generators and outfit space.  If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that you expect has made an already deadly warship even more so."
 
 
 
@@ -2835,14 +2848,15 @@ ship "Marauder Raven (Engines)"
 			"hit force" 1000
 	outfits
 		"Heavy Laser" 4
-		
-		"RT-I Radiothermal"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Heavy Laser Turret"
+		"Breeder Reactor"
+		"S-270 Regenerator"
+		"Mass Expansion"
+		Supercapacitor
+		"Liquid Nitrogen Cooler"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
 	engine -12 45
 	engine 0 43
@@ -2851,7 +2865,7 @@ ship "Marauder Raven (Engines)"
 	gun 10 -33 "Heavy Laser"
 	gun -16 -28 "Heavy Laser"
 	gun 16 -28 "Heavy Laser"
-	turret 0 -19
+	turret 0 -19 "Heavy Laser Turret"
 	explode "medium explosion" 24
 	explode "big explosion" 16
 	explode "tiny explosion" 28
@@ -2864,7 +2878,7 @@ ship "Marauder Raven (Weapons)"
 	sprite "ship/mravenw"
 	attributes
 		category "Light Warship"
-		"cost" 2250000
+		"cost" 2500000
 		"shields" 5200
 		"hull" 1600
 		"required crew" 7
@@ -2883,23 +2897,25 @@ ship "Marauder Raven (Weapons)"
 			"hull damage" 350
 			"hit force" 1000
 	outfits
-		"Heavy Laser" 4
-		
-		"RT-I Radiothermal"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Plasma Cannon" 2
+		"Pulse Cannon" 2
+		"Heavy Laser Turret"
+		"Breeder Reactor"
+		"S-270 Regenerator"
+		"Mass Expansion"
+		Supercapacitor 2
+		"Liquid Nitrogen Cooler"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
 		
 	engine -12 45
 	engine 12 45
-	gun -11 -33 "Heavy Laser"
-	gun 11 -33 "Heavy Laser"
-	gun -17 -28 "Heavy Laser"
-	gun 17 -28 "Heavy Laser"
-	turret 0 -19
+	gun -11 -33 "Plasma Cannon"
+	gun 11 -33 "Plasma Cannon"
+	gun -17 -28 "Pulse Cannon"
+	gun 17 -28 "Pulse Cannon"
+	turret 0 -19 "Heavy Laser Turret"
 	explode "medium explosion" 24
 	explode "big explosion" 16
 	explode "tiny explosion" 28
@@ -2931,25 +2947,25 @@ ship "Marauder Splinter"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Proton Gun" 2
-		"Blaster Turret" 3
-		
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
+		"Plasma Cannon" 2
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret"
+		"LP036a Battery Pack"
+		"Fusion Reactor"
+		"Liquid Nitrogen Cooler"
 		"D67-TM Shield Generator"
-		"Water Coolant System"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Laser Rifle" 22
+		"A250 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
 		
 	engine -14 112
 	engine 14 112
-	gun -15 -82
-	gun 15 -82 "Proton Gun"
-	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Blaster Turret"
-	turret 17 -28 "Blaster Turret"
+	gun -15 -82 "Plasma Cannon"
+	gun 15 -82 "Plasma Cannon"
+	turret -17 -28 "Heavy Laser Turret"
+	turret 0 -28 "Heavy Anti-Missile Turret"
+	turret 17 -28 "Heavy Laser Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -2958,7 +2974,7 @@ ship "Marauder Splinter"
 
 
 
-ship "Marauder Splinter (Engine)"
+ship "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
 	attributes
 		category "Medium Warship"
@@ -2981,26 +2997,28 @@ ship "Marauder Splinter (Engine)"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Proton Gun" 2
-		"Blaster Turret" 3
-		
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
-		"D67-TM Shield Generator"
+		"Plasma Cannon" 2
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		"LP036a Battery Pack"
+		"Fusion Reactor"
+		"Liquid Nitrogen Cooler"
 		"Water Coolant System"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"D67-TM Shield Generator"
+		"Laser Rifle" 21
+		"Security Station"
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
 		
 	engine -15 114
 	engine 0 118
 	engine 15 114
-	gun -15 -82 "Proton Gun"
-	gun 15 -82 "Proton Gun"
-	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Blaster Turret"
-	turret 17 -28 "Blaster Turret"
+	gun -15 -82 "Plasma Cannon"
+	gun 15 -82 "Plasma Cannon"
+	turret -17 -28 "Quad Blaster Turret"
+	turret 0 -28 "Heavy Anti-Missile Turret"
+	turret 17 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -3032,82 +3050,33 @@ ship "Marauder Splinter (Weapons)"
 			"hull damage" 300
 			"hit force" 900
 	outfits
-		"Proton Gun" 2
-		"Blaster Turret" 3
-		
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
-		"D67-TM Shield Generator"
-		"Water Coolant System"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Plasma Cannon" 4
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		"LP036a Battery Pack"
+		"Fusion Reactor"
+		"Liquid Nitrogen Cooler"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 20
+		"Security Station" 2
+		"A250 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
 		
 	engine -14 112
 	engine 14 112
-	gun -15 -82
-	gun 15 -82
-	gun -7.5 -98 "Proton Gun"
-	gun 7.5 -98 "Proton Gun"
-	turret -17 -28 "Blaster Turret"
-	turret 0 -28 "Blaster Turret"
-	turret 17 -28 "Blaster Turret"
+	gun -15 -82 "Plasma Cannon"
+	gun 15 -82 "Plasma Cannon"
+	gun -7.5 -98 "Plasma Cannon"
+	gun 7.5 -98 "Plasma Cannon"
+	turret -17 -28 "Quad Blaster Turret"
+	turret 0 -28 "Heavy Anti-Missile Turret"
+	turret 17 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "This Splinter has had extensive modification to it's weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield generators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems, makes the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
-
-
-
-ship "Modified Argosy"
-	sprite "ship/modified argosy"
-	attributes
-		category "Light Warship"
-		"cost" 1960000
-		"shields" 4800
-		"hull" 1900
-		"required crew" 5
-		"bunks" 12
-		"mass" 250
-		"drag" 6.2
-		"heat dissipation" .6
-		"fuel capacity" 400
-		"cargo space" 60
-		"outfit space" 340
-		"weapon capacity" 140
-		"engine capacity" 80
-		weapon
-			"blast radius" 80
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
-	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
-		
-		"NT-200 Nucleovoltaic"
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		
-		"Greyhound Plasma Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
-		
-	engine -16 82
-	engine 16 82
-	gun -22 -37 "Heavy Laser"
-	gun 22 -37 "Heavy Laser"
-	gun -23 -37 "Heavy Laser"
-	gun 23 -37 "Heavy Laser"
-	turret 0 -8 "Heavy Laser Turret"
-	turret 0 12 "Heavy Laser Turret"
-	explode "tiny explosion" 10
-	explode "small explosion" 25
-	explode "medium explosion" 30
-	explode "big explosion" 15
-	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
+	description "This Splinter has had extensive modification to it's weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield generators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
 
 
 
