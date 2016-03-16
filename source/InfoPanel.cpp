@@ -556,13 +556,19 @@ void InfoPanel::DrawShip() const
 	Point pos(-240., -270.);
 	for(const auto &it : outfits)
 	{
+		
 		int height = 20 * (it.second.size() + 1);
 		if(pos.X() == -240. && pos.Y() + height > 20.)
 			pos = Point(pos.X() + 250., -270.);
 		
 		font.Draw(it.first, pos, bright);
+		const Outfit* lastOutfit = nullptr; //Condense same-type outfits in list.
 		for(const Outfit *outfit : it.second)
 		{
+			if (outfit == lastOutfit)
+				continue;
+			lastOutfit = outfit;
+
 			pos.Y() += 20.;
 			font.Draw(outfit->Name(), pos, dim);
 			string number = to_string(ship.OutfitCount(outfit));
@@ -608,19 +614,21 @@ void InfoPanel::DrawShip() const
 	}
 	if(cargo.HasOutfits() && pos.Y() < 220.)
 	{
+		const Outfit* lastOutfit = nullptr; //Condense same-type outfits in list.
 		for(const auto &it : cargo.Outfits())
 		{
-			if(!it.GetQuantity())
+			if(!it.GetQuantity() || it.GetOutfit() == lastOutfit)
 				continue;
+			lastOutfit = it.GetOutfit();
 			
 			Point center = pos + .5 * size - Point(0., (20 - font.Height()) * .5);
 			plunderZones.emplace_back(center, size, it.GetOutfit());
 			if(it.GetOutfit() == selectedPlunder)
 				FillShader::Fill(center, size + Point(10., 0.), backColor);
 			
-			string number = to_string(it.GetQuantity());
+			string number = to_string(cargo.Outfits().GetTotalCount(it.GetOutfit()));
 			Point numberPos(pos.X() + size.X() - font.Width(number), pos.Y());
-			font.Draw(it.GetOutfit()->Name() + "(" + Format::Percent(it.GetCostRatio()) + ")", pos, dim);
+			font.Draw(it.GetOutfit()->Name() + "(" + it.GetCostRatioString() + ")", pos, dim);
 			font.Draw(number, numberPos, bright);
 			pos.Y() += size.Y();
 			

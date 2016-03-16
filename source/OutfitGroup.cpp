@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Outfit.h"
 #include "DataNode.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Random.h"
 
@@ -378,6 +379,17 @@ double OutfitGroup::iterator::GetCostRatio() const
 	return CostFunction(GetAge());
 }
 
+
+
+std::string OutfitGroup::iterator::GetCostRatioString() const
+{
+	int64_t maxCost = myGroup->GetCost(GetOutfit(), 1, false);
+	int64_t minCost = myGroup->GetCost(GetOutfit(), 1, true);
+	int64_t baseCost = GetOutfit()->Cost();
+	if (minCost == maxCost)
+		return Format::Percent(minCost, baseCost);
+	return Format::Percent(minCost, baseCost) + "-" + Format::Percent(maxCost, baseCost);
+}
 
 
 // OutfitGroup functions that return iterators.

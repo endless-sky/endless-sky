@@ -92,6 +92,8 @@ public:
 		int GetQuantity() const;
 		int64_t GetTotalCost() const;
 		double GetCostRatio()const;
+		std::string GetCostRatioString() const;
+
 		
 	private:
 		const OutfitGroup *myGroup;
