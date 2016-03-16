@@ -1105,6 +1105,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	int64_t income = 0;
 	int64_t totalBasis = 0;
 	if(sold)
+	{
 		for(const auto &commodity : cargo.Commodities())
 		{
 			if(!commodity.second)
@@ -1126,6 +1127,10 @@ void PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
+		// Also sell any outfits that had to be left behind because they didn't fit.
+		income += cargo.Outfits().GetTotalCost();
+	}
+		
 	accounts.AddCredits(income);
 	cargo.Clear();
 	if(sold)
