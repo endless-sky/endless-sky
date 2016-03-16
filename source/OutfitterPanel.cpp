@@ -579,6 +579,10 @@ void OutfitterPanel::FailSell() const
 		{
 			for(const Ship *ship : playerShips)
 				for(const auto &it : selectedOutfit->Attributes())
+				{
+					// Don't worry about negative cost; it won't happen.
+					if (it.first == "cost")  
+						continue; 
 					if(ship->Attributes().Get(it.first) < it.second)
 					{
 						for(const auto &sit : ship->Outfits())
@@ -596,6 +600,7 @@ void OutfitterPanel::FailSell() const
 							"\" value to be reduced to less than zero."));
 						return;
 					}
+				}
 			GetUI()->Push(new Dialog("You cannot sell this outfit, "
 				"because something else in your ship depends on it."));
 		}
