@@ -1737,10 +1737,10 @@ ship "Marauder Arrow (Engines)"
 		"Dwarf Core"
 		Supercapacitor
 		"D14-RN Shield Generator"
-		"Laser Rifle" 5
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 5
 		
 	engine -10 57
 	engine 10 57
@@ -1783,10 +1783,10 @@ ship "Marauder Arrow (Weapons)"
 		"Heavy Laser Turret"
 		"Water Coolant System"
 		"D14-RN Shield Generator"
-		"Laser Rifle" 5
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 5
 		
 	engine -8 57
 	engine 8 57
@@ -1832,12 +1832,12 @@ ship "Marauder Bounder"
 		"Dwarf Core"
 		"Mass Expansion"
 		"Water Coolant System"
-		"Laser Rifle" 18
 		"Security Station"
 		Afterburner
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 18
 		
 	engine -12 44
 	engine 12 44
@@ -1881,10 +1881,10 @@ ship "Marauder Bounder (Engines)"
 		"Dwarf Core"
 		"Mass Expansion"
 		"Water Coolant System"
-		"Laser Rifle" 20
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 18
 		
 	engine -12 58
 	engine 0 51
@@ -1929,11 +1929,11 @@ ship "Marauder Bounder (Weapons)"
 		"Dwarf Core"
 		"Mass Expansion"
 		"Water Coolant System"
-		"Laser Rifle" 18
 		"Security Station"
 		"A250 Atomic Thruster"
 		"A255 Atomic Steering"
 		Hyperdrive
+		"Laser Rifle" 18
 		
 	engine -15 44
 	engine 15 44
@@ -2063,7 +2063,6 @@ ship "Marauder Falcon (Engines)"
 
 
 
-
 ship "Marauder Falcon (Weapons)"
 	sprite "ship/mfalconw"
 	attributes
@@ -2145,26 +2144,27 @@ ship "Marauder Firebird"
 			"hull damage" 550
 			"hit force" 1650
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
-		
-		"RT-I Radiothermal"
-		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Plasma Cannon" 4
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		"S-970 Regenerator"
+		"Fusion Reactor"
+		"Mass Expansion"
+		Supercapacitor
+		"Liquid Helium Cooler"
+		"A250 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
+		"Laser Rifle" 25
 		
 	engine -32 62
 	engine 32 62
-	gun -38 -18 "Heavy Laser"
-	gun 38 -18 "Heavy Laser"
-	gun -27 -32 "Heavy Laser"
-	gun 27 -32 "Heavy Laser"
+	gun -38 -18 "Plasma Cannon"
+	gun 38 -18 "Plasma Cannon"
+	gun -27 -32 "Plasma Cannon"
+	gun 27 -32 "Plasma Cannon"
 	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Laser Turret"
+	turret 5 3 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -2196,27 +2196,30 @@ ship "Marauder Firebird (Engines)"
 			"hull damage" 550
 			"hit force" 1650
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
-		
-		"RT-I Radiothermal"
-		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Plasma Cannon" 4
+		"Quad Blaster Turret"
+		"Anti-Missile Turret"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Fusion Reactor"
+		"Mass Expansion"
+		Supercapacitor
+		"Liquid Helium Cooler"
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
+		"Security Station"
+		"Laser Rifle" 24
 		
 	engine -34 62
 	engine 0 74
 	engine 34 62
-	gun -38 -18 "Heavy Laser"
-	gun 38 -18 "Heavy Laser"
-	gun -26.5 -33 "Heavy Laser"
-	gun 26.5 -33 "Heavy Laser"
-	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Laser Turret"
+	gun -38 -18 "Plasma Cannon"
+	gun 38 -18 "Plasma Cannon"
+	gun -26.5 -33 "Plasma Cannon"
+	gun 26.5 -33 "Plasma Cannon"
+	turret -5 3 "Quad Blaster Turret"
+	turret 5 3 "Anti-Missile Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -2248,26 +2251,27 @@ ship "Marauder Firebird (Weapons)"
 			"hull damage" 550
 			"hit force" 1650
 	outfits
-		"Heavy Laser" 4
-		"Heavy Laser Turret" 2
-		
-		"RT-I Radiothermal"
-		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Particle Cannon" 4
+		"Quad Blaster Turret" 2
+		"S-970 Regenerator"
+		"Fusion Reactor"
+		"Mass Expansion"
+		Supercapacitor
+		"Liquid Helium Cooler"
+		"A250 Atomic Thruster"
+		"A525 Atomic Steering"
+		Hyperdrive
+		"Security Station"
+		"Laser Rifle" 24
 		
 	engine -32 62
 	engine 32 62
-	gun -38 -18 "Heavy Laser"
-	gun 38 -18 "Heavy Laser"
-	gun -27 -32 "Heavy Laser"
-	gun 27 -32 "Heavy Laser"
-	turret -5 3 "Heavy Laser Turret"
-	turret 5 3 "Heavy Laser Turret"
+	gun -38 -18 "Particle Cannon"
+	gun 38 -18 "Particle Cannon"
+	gun -27 -32 "Particle Cannon"
+	gun 27 -32 "Particle Cannon"
+	turret -5 3 "Quad Blaster Turret"
+	turret 5 3 "Quad Blaster Turret"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
