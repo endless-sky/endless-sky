@@ -1750,7 +1750,7 @@ ship "Marauder Arrow (Engines)"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
-	description "This Arrow has a third engine mount that makes this Arrow more like a Missile.  The previous owner of this ship apparently tried to make the fastest ship.  Ever.  Even so, a little extra outfit capacity, shield emitters, and hull plating make this a very competent Interceptor."
+	description "This Arrow has a third engine mount that makes this Arrow more like a Missile.  The previous owner of this ship apparently tried to make the fastest ship.  Ever.  Even so, a little extra outfit capacity, extra shield emitters, and hull plating make this a very competent Interceptor."
 
 
 
@@ -2169,7 +2169,7 @@ ship "Marauder Firebird"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "You suspect that this ship contains no original parts, and are sure that there are extra shield generators, hull plating and outfit space by the looks of the modification that have taken place.  This half-millenium young design is finding new life in heavy modification."
+	description "You suspect that this ship contains no original parts, and are sure that there are extra shield modulators, hull plating and outfit space by the looks of the modification that have taken place.  This half-millenium young design is finding new life in heavy modification."
 
 
 
@@ -2224,7 +2224,7 @@ ship "Marauder Firebird (Engines)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield generators."
+	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield modulators."
 
 
 
@@ -2276,7 +2276,7 @@ ship "Marauder Firebird (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "The Medium Warship with one of the heaviest armaments possible, just got heavier.  More outfit space, giant gun ports, extra hull plating and shield generators - this blast from the past will make it's targets history."
+	description "The Medium Warship with one of the heaviest armaments possible, just got heavier.  More outfit space, giant gun ports, extra hull plating and shield emitters - this blast from the past will make it's targets history."
 
 
 
@@ -2327,7 +2327,7 @@ ship "Marauder Fury"
 	gun 43.5 2 "Sidewinder Missile Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
-	description "This The Southbound Fury under all the extra modifications, is one man's insane quest to make the most powerful single pilot warship ever.  Upon inspection, you're inclined to believe he may have succeeded."
+	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever.  Upon closer inspection, you're inclined to believe he may have succeeded."
 
 
 
@@ -2554,7 +2554,7 @@ ship "Marauder Manta"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield generators, and rearranged some of the internals, yielding a little more outfit space.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the 'Medium Warship' category."
+	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield modulators, and rearranged some of the internals yielding a little more outfit space.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the 'Medium Warship' category."
 
 
 
@@ -2608,7 +2608,7 @@ ship "Marauder Manta (Engines)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield generators in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the Medium Warship category."
+	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield projectors in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the Medium Warship category."
 
 
 
@@ -2659,7 +2659,7 @@ ship "Marauder Manta (Weapons)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "This Manta has undergone extensive modification, adding enormous gun ports, extra hull plating, and extra shield generators.  You wonder where the modifier intended the power systems to go, but you're sure you'll find space for them somewhere.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it into the 'Medium Warship' category."
+	description "This Manta has undergone extensive modification, adding enormous gun ports, extra hull plating, and extra shield modulators.  You wonder where the modifier intended the power systems to go, but you're sure you'll find space for them somewhere.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the 'Medium Warship' category."
 
 
 
@@ -2705,7 +2705,7 @@ ship "Marauder Quicksilver"
 	turret 0 15 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
-	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield generation, hull plating and an extra bunk.  This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter.  The shop that built this ship is sure to see more customers."
+	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield projectors, hull plating and an extra bunk.  This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter.  The shop that built this ship is sure to see more customers."
 
 
 
@@ -2752,7 +2752,7 @@ ship "Marauder Quicksilver (Engines)"
 	turret 0 15 "Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
-	description "This Quicksilver has even more space available for engine use.  It's got a few extra shield generators, some hull plating and another bunk.  This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter.  Whoever modified this ship wanted to chase their prey down with vicious speed."
+	description "This Quicksilver has even more space available for engine use - and even another thruster port!  It's got a few extra shield projectors, some hull plating and another bunk.  This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter.  Whoever modified this ship wanted to chase their prey down with vicious speed."
 
 
 
@@ -2799,7 +2799,7 @@ ship "Marauder Quicksilver (Weapons)"
 	turret 0 15 "Heavy Laser Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
-	description "This Quicksilver has even bigger gun ports.  It's got a few extra shield generators, some hull plating and a couple of bunks - almost pushing it to a Medium Warship.  This aftermarket model could even be outfitted to be a little faster than a stock model, bringing a couple of cannons - and a turret to the fight, to mimic Lionheart's Headhunter perhaps a little more menacingly."
+	description "This Quicksilver has even bigger gun ports.  It's got a few extra shield modulators, some hull plating and an extra bunk.  This aftermarket model could even be outfitted to be a little faster than a stock model, bringing a couple of cannons - and a turret to the fight, to mimic Lionheart's Headhunter perhaps a little more menacingly."
 
 
 
@@ -2849,7 +2849,7 @@ ship "Marauder Raven"
 	explode "big explosion" 16
 	explode "tiny explosion" 28
 	explode "small explosion" 40
-	description "The modifier of this Raven has taken a popular warship - an agile and elegant vessel - and given it even more heft.  They've added a turret and some apparently flimsy bulkheads over extra shield generators and outfit space.  If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that you expect has made an already deadly warship even more so."
+	description "The modifier of this Raven has taken a popular warship - an agile and elegant vessel - and given it even more heft.  They've added a turret and some apparently flimsy bulkheads over extra shield modulators and outfit space.  If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that you expect has made an already deadly warship even more so."
 
 
 
@@ -2999,7 +2999,7 @@ ship "Marauder Splinter"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "The Splinter is the largest warship produced by Megaparsec. Apparently someone wanted a bit more out of it, and has covered large sections of the hull with extra shield generators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make this light Medium Warship an agile and flexible war machine."
+	description "The Splinter is the largest warship produced by Megaparsec. Apparently someone wanted a bit more out of it, and has covered large sections of the hull with extra shield emitters, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make this light Medium Warship an agile and flexible war machine."
 
 
 
@@ -3052,7 +3052,7 @@ ship "Marauder Splinter (Engines)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "In a sub-kiloton warship, you're not likely to find one faster or more deadly than this one.  Large sections of the hull have been covered with extra hull plating, shield generators and foils.  Much of the cargo space has been converted to outfit space - a great deal of which is at the rear of the ship, including a new engine port."
+	description "In a sub-kiloton warship, you're not likely to find one faster or more deadly than this one.  Large sections of the hull have been covered with extra hull plating, shield emitters and foils.  Much of the cargo space has been converted to outfit space - a great deal of which is at the rear of the ship, including a new engine port."
 
 
 
@@ -3105,7 +3105,7 @@ ship "Marauder Splinter (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "This Splinter has had extensive modification to it's weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield generators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
+	description "This Splinter has had extensive modification to it's weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield modulators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
 
 
 
