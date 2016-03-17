@@ -298,6 +298,8 @@ OutfitGroup::iterator::iterator (const OutfitGroup* group, bool begin)
 	}
 	else
 	{
+		outerIter = myGroup->outfits.end();
+		innerIter = outerIter->second.begin();
 		isEnd = true;
 	}
 }
