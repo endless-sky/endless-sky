@@ -894,11 +894,11 @@ ship "Falcon"
 		"cost" 10900000
 		"shields" 12800
 		"hull" 3700
-		"required crew" 52
+		"required crew" 38
 		"bunks" 75
 		"mass" 510
 		"drag" 6.7
-		"heat dissipation" .7
+		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 90
 		"outfit space" 540
@@ -921,7 +921,7 @@ ship "Falcon"
 		"Liquid Nitrogen Cooler"
 		
 		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"Orca Plasma Steering"
 		"Hyperdrive"
 		
 	engine -17 143
@@ -1564,12 +1564,12 @@ ship "Leviathan"
 	sprite "ship/leviathan"
 	attributes
 		category "Heavy Warship"
-		"cost" 9800000
+		"cost" 9100000
 		"shields" 14400
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 480
+		"mass" 580
 		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
@@ -1626,7 +1626,7 @@ ship "Manta"
 		"drag" 4.7
 		"heat dissipation" .8
 		"fuel capacity" 400
-		"cargo space" 20
+		"cargo space" 40
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 100
@@ -2065,7 +2065,7 @@ ship "Mule"
 	attributes
 		category "Medium Warship"
 		"cost" 2580000
-		"shields" 5400
+		"shields" 4400
 		"hull" 4400
 		"required crew" 6
 		"bunks" 43
@@ -2168,18 +2168,18 @@ ship "Protector"
 	sprite "ship/protector"
 	attributes
 		category "Heavy Warship"
-		"cost" 5500000
-		"shields" 9500
+		"cost" 6800000
+		"shields" 11500
 		"hull" 6500
 		"required crew" 30
 		"bunks" 69
-		"mass" 500
-		"drag" 10.3
-		"heat dissipation" .6
+		"mass" 520
+		"drag" 11
+		"heat dissipation" .5
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 570
-		"weapon capacity" 220
+		"outfit space" 590
+		"weapon capacity" 240
 		"engine capacity" 100
 		weapon
 			"blast radius" 160
@@ -2222,19 +2222,19 @@ ship "Vanguard"
 	sprite "ship/vanguard"
 	attributes
 		category "Heavy Warship"
-		"cost" 7200000
-		"shields" 9800
+		"cost" 7000000
+		"shields" 11000
 		"hull" 6000
 		"required crew" 23
 		"bunks" 45
 		"mass" 500
-		"drag" 8
-		"heat dissipation" .6
+		"drag" 7
+		"heat dissipation" .5
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 560
-		"weapon capacity" 220
-		"engine capacity" 120
+		"weapon capacity" 230
+		"engine capacity" 130
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -2253,8 +2253,8 @@ ship "Vanguard"
 		"X4200 Ion Steering"
 		"Hyperdrive"
 	
-	engine -15 145
-	engine 15 145
+	engine -15 141
+	engine 15 141
 	gun 0 -140 "Proton Gun"
 	gun -18 -140 "Proton Gun"
 	gun 18 -140 "Proton Gun"
