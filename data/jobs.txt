@@ -1763,8 +1763,6 @@ mission "VIP transport"
 		government "Bounty Hunter"
 		fleet "Bounty Hunters"
 
-
-#Marauder fleets are described as pirates in fleets.txt, so these missions would need the personality, government and system tags, but the rest could go.
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down <npc>"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
@@ -1772,51 +1770,16 @@ mission "Bounty Hunting (Marauder I)"
 	job
 	to offer
 		"combat rating" > 600
-		random < 55
-		random > 20
+		random < 35
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet I"
+		fleet "Marauder fleet I"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 9
-				"Marauder Quicksilver"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 9
-				"Marauder Quicksilver"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 1
-				"Marauder Quicksilver (Engines)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 1
-				"Marauder Quicksilver (Weapons)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 9
-				"Marauder Raven"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 9
-				"Marauder Raven"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 1
-				"Marauder Raven (Engines)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 1
-				"Marauder Raven (Weapons)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 300000
@@ -1829,51 +1792,17 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	to offer
 		"combat rating" > 750
-		random < 50
-		random > 20
+		random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet II"
+		fleet "Marauder fleet II"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 4
-				"Marauder Quicksilver"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 4
-				"Marauder Quicksilver"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 1
-				"Marauder Quicksilver (Engines)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 1
-				"Marauder Quicksilver (Weapons)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 4
-				"Marauder Raven"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 4
-				"Marauder Raven"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 1
-				"Marauder Raven (Engines)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 1
-				"Marauder Raven (Weapons)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
+
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 350000
@@ -1886,51 +1815,16 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	to offer
 		"combat rating" > 1097
-		random < 45
-		random > 20
+		random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
+		fleet "Marauder fleet III"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-#		fleet "Marauder fleet III"
-			names "pirate"
-			variant 3
-				"Marauder Quicksilver"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 3
-				"Marauder Quicksilver"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 1
-				"Marauder Quicksilver (Engines)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 1
-				"Marauder Quicksilver (Weapons)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 3
-				"Marauder Raven"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 3
-				"Marauder Raven"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 1
-				"Marauder Raven (Engines)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
-			variant 1
-				"Marauder Raven (Weapons)"
-				"Marauder Arrow" 2
-				"Marauder Bounder" 2
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 400000
@@ -1943,55 +1837,16 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	to offer
 		"combat rating" > 1550
-		random > 40
-		random < 65
+		random < 30
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet IV"
+		fleet "Marauder fleet IV"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 8
-				"Marauder Firebird"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 1
-				"Marauder Firebird (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 1
-				"Marauder Firebird (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 16
-				"Marauder Manta"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Manta (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Manta (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 16
-				"Marauder Splinter"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Splinter (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Splinter (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 425000
@@ -2004,55 +1859,16 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	to offer
 		"combat rating" > 2000
-		random > 40
-		random < 60
+		random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet V"
+		fleet "Marauder fleet V"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 4
-				"Marauder Firebird"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 1
-				"Marauder Firebird (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 1
-				"Marauder Firebird (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 8
-				"Marauder Manta"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Manta (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Manta (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 8
-				"Marauder Splinter"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Splinter (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Splinter (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 450000
@@ -2066,55 +1882,16 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	to offer
 		"combat rating" > 2500
-		random > 40
-		random < 55
+		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet VI"
+		fleet "Marauder fleet VI"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 2
-				"Marauder Firebird"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 1
-				"Marauder Firebird (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 1
-				"Marauder Firebird (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 4
-				"Marauder Manta"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Manta (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Manta (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 4
-				"Marauder Splinter"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Splinter (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-			variant 2
-				"Marauder Splinter (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 475000
@@ -2129,48 +1906,16 @@ mission "Bounty Hunting (Marauder VII)"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 2980
-		random < 20
+		random < 25
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet VII"
+		fleet "Marauder fleet VII"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 18
-				"Marauder Falcon"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 1
-				"Marauder Falcon (Weapons)"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 1
-				"Marauder Falcon (Engines)"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 18
-				"Marauder Leviathan"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
-			variant 1
-				"Marauder Leviathan (Engines)"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
-			variant 1
-				"Marauder Leviathan (Weapons)"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
 
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
@@ -2187,48 +1932,16 @@ mission "Bounty Hunting (Marauder VIII)"
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 4000
-		random < 15
+		random < 20
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet VIII"
+		fleet "Marauder fleet VIII"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 8
-				"Marauder Falcon"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 1
-				"Marauder Falcon (Weapons)"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 1
-				"Marauder Falcon (Engines)"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 8
-				"Marauder Leviathan"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
-			variant 1
-				"Marauder Leviathan (Engines)"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
-			variant 1
-				"Marauder Leviathan (Weapons)"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 550000
@@ -2245,48 +1958,16 @@ mission "Bounty Hunting (Marauder IX)"
 
 	to offer
 		"combat rating" > 6000
-		random < 10
+		random < 15
 	source
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes rim south north "dirt belt" core frontier
 	npc kill
-#		fleet "Marauder fleet IX"
+		fleet "Marauder fleet IX"
 		personality heroic staying nemesis
 		government Bounty
 		system
 			distance 1 3
-		fleet
-			names "pirate"
-			variant 3
-				"Marauder Falcon"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 1
-				"Marauder Falcon (Weapons)"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 1
-				"Marauder Falcon (Engines)"
-				"Osprey"
-				"Osprey (Missile)"
-				"Osprey (Laser)"
-			variant 3
-				"Marauder Leviathan"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
-			variant 1
-				"Marauder Leviathan (Engines)"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
-			variant 1
-				"Marauder Leviathan (Weapons)"
-				"Firebird"
-				"Firebird (Plasma)"
-				"Firebird (Missile)"
 		dialog "The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
 		payment 600000
@@ -2306,67 +1987,9 @@ mission "Marauder Hunted"
 	to complete
 		never
 	npc save
-#		fleet "Marauder fleet X"
+		fleet "Marauder fleet X"
 		personality heroic nemesis plunders
 		government "Bounty Hunter"
 		system
 			distance 5 5
-		fleet
-			names "pirate"
-			variant 3
-				"Marauder Falcon"
-				"Marauder Firebird"
-				"Marauder Raven (Weapons)"
-				"Marauder Quicksilver (Engines)"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 3
-				"Marauder Falcon"
-				"Marauder Firebird"
-				"Marauder Raven (Engines)"
-				"Marauder Quicksilver (Weapons)"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 2
-				"Marauder Falcon (Weapons)"
-				"Marauder Firebird (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-				"Marauder Arrow"
-				"Marauder Bounder"
-			variant 2
-				"Marauder Falcon (Engines)"
-				"Marauder Firebird (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-				"Marauder Arrow"
-				"Marauder Bounder"
-			variant 3
-				"Marauder Leviathan"
-				"Marauder Firebird"
-				"Marauder Raven (Engines)"
-				"Marauder Quicksilver (Weapons)"
-				"Marauder Arrow (Engines)"
-				"Marauder Bounder (Weapons)"
-			variant 3
-				"Marauder Leviathan"
-				"Marauder Firebird"
-				"Marauder Raven (Weapons)"
-				"Marauder Quicksilver (Engines)"
-				"Marauder Arrow (Weapons)"
-				"Marauder Bounder (Engines)"
-			variant 2
-				"Marauder Leviathan (Engines)"
-				"Marauder Firebird (Weapons)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-				"Marauder Arrow"
-				"Marauder Bounder"
-			variant 2
-				"Marauder Leviathan (Weapons)"
-				"Marauder Firebird (Engines)"
-				"Marauder Raven"
-				"Marauder Quicksilver"
-				"Marauder Arrow"
-				"Marauder Bounder"
 
