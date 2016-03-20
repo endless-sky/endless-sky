@@ -432,7 +432,7 @@ outfit "Thunderhead Missile"
 	cost 1800
 	thumbnail "outfit/thunderhead"
 	"thunderhead capacity" -1
-	description "Thunderhead cluster munitions are long-range Wanderer missiles that splits into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
+	description "Thunderhead cluster munitions are long-range Wanderer missiles that split into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
 
 outfit "Thunderhead Launcher"
 	category "Secondary Weapons"
