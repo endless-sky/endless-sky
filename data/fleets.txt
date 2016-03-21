@@ -1156,7 +1156,7 @@ fleet "Large Southern Pirates"
 	variant 1
 		"Modified Argosy (Heavy)"
 	variant 1
-		"Modified Argosy (Laser)"
+		"Modified Argosy (Blaster)"
 	variant 1
 		"Modified Argosy (Missile)"
 	variant 4
@@ -1196,7 +1196,7 @@ fleet "Large Southern Pirates"
 		"Modified Argosy (Heavy)"
 		"Sparrow" 2
 	variant 1
-		"Modified Argosy (Laser)"
+		"Modified Argosy (Blaster)"
 		"Sparrow" 2
 	variant 1
 		"Modified Argosy (Missile)" 2

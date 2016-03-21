@@ -733,7 +733,7 @@ ship "Modified Argosy" "Modified Argosy (Heavy)"
 
 
 
-ship "Modified Argosy" "Modified Argosy (Laser)"
+ship "Modified Argosy" "Modified Argosy (Blaster)"
 	outfits
 		"Modified Blaster" 4
 		"Quad Blaster Turret" 2
