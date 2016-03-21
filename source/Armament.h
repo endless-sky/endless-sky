@@ -57,6 +57,10 @@ public:
 		// Check if this weapon is ready to fire.
 		bool IsReady() const;
 		bool IsMidBurst() const;
+		// Determine whether if burst weapon has stopped bursting before.
+		bool IsBurstCut() const;
+		// Reduce the streamreload time for next burst weapon.
+		int ReloadAdjustment();
 		// Perform one step (i.e. decrement the reload count).
 		void Step();
 		
@@ -84,6 +88,7 @@ public:
 		int reload = 0;
 		int burstReload = 0;
 		int burstCount = 0;
+		int lastReload = 0;
 		bool isTurret = false;
 	};
 	
