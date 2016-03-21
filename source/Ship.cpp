@@ -677,7 +677,9 @@ bool Ship::Move(list<Effect> &effects)
 	shields = min(shields, maxShields);
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
-	isDisabled = isOverheated || IsDisabled();
+	
+	int requiredCrew = RequiredCrew();
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && requiredCrew);
 	
 	// Update ship supply levels.
 	if(!isDisabled)
@@ -917,7 +919,6 @@ bool Ship::Move(list<Effect> &effects)
 	else
 		cloak = 0.;
 	
-	int requiredCrew = RequiredCrew();
 	if(pilotError)
 		--pilotError;
 	else if(pilotOkay)
@@ -1352,6 +1353,9 @@ bool Ship::IsOverheated() const
 
 bool Ship::IsDisabled() const
 {
+	if(!isDisabled)
+		return false;
+	
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
 	return (hull < minimumHull || (!crew && needsCrew));
