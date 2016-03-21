@@ -1700,8 +1700,6 @@ fleet "Marauder fleet I"
 	cargo 1
 	personality
 		plunders
-	fleet
-		names "pirate"
 	variant 9
 		"Marauder Quicksilver"
 		"Marauder Arrow (Weapons)"
