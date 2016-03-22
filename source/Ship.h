@@ -205,6 +205,10 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+
+	bool WasAttacked(int lastFrames) const;
+	bool EscortsWereAttacked(int lastFrames) const;
+	void UpdateEscortsWereAttacked(int frames);
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;
@@ -321,6 +325,9 @@ private:
 	std::vector<std::string> licenses;
 	
 	int forget = 0;
+	// Number of frames passed since ship last got attacked.
+	int wasAttacked = 0;
+	int escortsWereAttacked = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.

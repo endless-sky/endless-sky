@@ -63,6 +63,10 @@ namespace {
 	}
 	
 	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	// Values for stances.
+	static const int AGGRESSIVE = 0;
+	static const int DEFENSIVE = 1;
+	static const int EVASIVE = 2;
 }
 
 
@@ -144,6 +148,24 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		moveToMe = !moveToMe;
 		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
 			: "Your fleet is no longer gathering around your flagship.");
+	}
+	if(keyDown.Has(Command::STANCE_AGGRESSIVE))
+	{
+		sharedTarget.reset();
+		Messages::Add(stance != AGGRESSIVE ? "Your escorts are now in default (aggressive) stance." : "Your escorts are still default (aggressive) stance.");
+		stance = AGGRESSIVE;
+	}
+	if(keyDown.Has(Command::STANCE_DEFENSIVE))
+	{
+		sharedTarget.reset();
+		Messages::Add(stance != DEFENSIVE ? "Your escorts are now in defensive stance, attacking only when fleet is attacked." : "Your escorts are still defensive stance.");
+		stance = DEFENSIVE;
+	}
+	if(keyDown.Has(Command::STANCE_EVASIVE))
+	{
+		sharedTarget.reset();
+		Messages::Add(stance != EVASIVE ? "Your escorts are now evasive stance, evading any close threats." : "Your escorts are still in evasive stance.");
+		stance = EVASIVE;
 	}
 	if(sharedTarget.lock() && sharedTarget.lock()->IsDisabled())
 		if(!killDisabledSharedTarget || sharedTarget.lock()->IsDestroyed())
@@ -227,7 +249,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
 				strength += it->Cost();
 		}
-	}		
+	}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -442,6 +464,11 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// if you're usually more timid than that.
 		else if(isPlayerEscort && sharedTarget.lock())
 			MoveIndependent(*it, command);
+		// If player ordered to evade, move away from near enemies.
+		else if (isPlayerEscort && stance == EVASIVE)
+			DoEvade(*it, command, ships);
+		else if (isPlayerEscort && stance == DEFENSIVE && (parent->Position().Distance(it->Position()) > 500. || !flagship->EscortsWereAttacked(300)))
+			MoveEscort(*it, command);
 		// Timid ships always stay near their parent.
 		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
@@ -685,6 +712,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 	
+	// If this ship has a parent (for now player ship) and is told to behave evasive
+	// if(ship.GetParent() && stance == EVASIVE) {
+	// 	DoEvade();
+	// }
+	
 	if(!ship.GetTargetSystem() && !ship.GetTargetPlanet() && !ship.GetPersonality().IsStaying())
 	{
 		int jumps = ship.JumpsRemaining();
@@ -893,6 +925,46 @@ double AI::TurnToward(const Ship &ship, const Point &vector)
 }
 
 
+// similiar to DoScatter() but check dangerousness of (opponent) ships in relation to //their distance to the ship.
+void AI::DoEvade(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
+{
+	int closeEnemyCount = 0;
+	Point target;
+	for(const shared_ptr<Ship> &other : ships)
+	{
+		if(other.get() == &ship)
+			continue;
+	
+		// Only evade from enemies.
+		if(other->GetGovernment()->IsEnemy(ship.GetGovernment()) == false)
+			continue;
+
+		const Personality &person = ship.GetPersonality();
+		// Check for opponent ships that are close to the ship.
+		Point distance = ship.Position() - other->Position();
+		auto strengthIt = shipStrength.find(other.get());
+		
+		double maxStrength = strengthIt->second;
+		if(!person.IsHeroic() && strengthIt != shipStrength.end())
+			maxStrength *= 2;
+		
+		if(distance.Length() > 2000.)
+			continue;
+			
+		closeEnemyCount++;
+		// The stronger and the closer the enemy, the bigger the impact on the evade/target vector if there are multiple enemy ships that may be a threat.
+		target += (distance.Unit() * maxStrength * (1/distance.Length()));
+	}
+	
+	if(closeEnemyCount == 0) return MoveEscort(ship, command);
+	
+	target /= closeEnemyCount;
+	
+	// Now normalize target, multiply and add it to current position.
+	target = ship.Position() + (target.Unit() * 2000);
+	MoveTo(ship, command, target, 200, 0.6);
+	return;
+}
 
 bool AI::MoveToPlanet(Ship &ship, Command &command)
 {
@@ -1339,7 +1411,9 @@ Point AI::TargetAim(const Ship &ship)
 Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool secondary) const
 {
 	Command command;
-	if(ship.GetPersonality().IsPacifist())
+	// Don't fire when pacifist or player set to defensive escort stance and escorts were
+	// not attacked recently (last 300 frames).
+	if(ship.GetPersonality().IsPacifist() || (stance == DEFENSIVE && ship.IsYours() && (!ship.GetParent()->EscortsWereAttacked(300) && !sharedTarget.lock())) )
 		return command;
 	int index = -1;
 	

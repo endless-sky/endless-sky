@@ -57,6 +57,9 @@ const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
 const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
 const Command Command::WAIT(1uL << 24, "");
+const Command Command::STANCE_AGGRESSIVE(1uL << 25, "Fleet: Aggressive stance");
+const Command Command::STANCE_DEFENSIVE(1uL << 26, "Fleet: Defensive stance");
+const Command Command::STANCE_EVASIVE(1uL << 27, "Fleet: Evasive stance");
 
 
 
