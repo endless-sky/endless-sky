@@ -120,7 +120,10 @@ void PreferencesPanel::Draw() const
 		Command::DEPLOY,
 		Command::FIGHT,
 		Command::GATHER,
-		Command::HOLD
+		Command::HOLD,
+		Command::STANCE_AGGRESSIVE,
+		Command::STANCE_DEFENSIVE,
+		Command::STANCE_EVASIVE
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)

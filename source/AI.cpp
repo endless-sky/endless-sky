@@ -63,6 +63,10 @@ namespace {
 	}
 	
 	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
+	// Values for stances.
+	static const int AGGRESSIVE = 0;
+	static const int DEFENSIVE = 1;
+	static const int EVASIVE = 2;
 }
 
 
@@ -144,6 +148,24 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		moveToMe = !moveToMe;
 		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
 			: "Your fleet is no longer gathering around your flagship.");
+	}
+	if(keyDown.Has(Command::STANCE_AGGRESSIVE))
+	{
+		sharedTarget.reset();
+		Messages::Add(stance != AGGRESSIVE ? "Your escorts are now in default (aggressive) stance." : "Your escorts are still default (aggressive) stance.");
+		stance = 0;
+	}
+	if(keyDown.Has(Command::STANCE_DEFENSIVE))
+	{
+		sharedTarget.reset();
+		Messages::Add(stance != DEFENSIVE ? "Your escorts are now in defensive stance, attacking only when fleet is attacked." : "Your escorts are still defensive stance.");
+		stance = DEFENSIVE;
+	}
+	if(keyDown.Has(Command::STANCE_EVASIVE))
+	{
+		sharedTarget.reset();
+		Messages::Add(stance != EVASIVE ? "Your escorts are now evasive stance, evading any close threats." : "Your escorts are still in evasive stance.");
+		stance = EVASIVE;
 	}
 	if(sharedTarget.lock() && sharedTarget.lock()->IsDisabled())
 		if(!killDisabledSharedTarget || sharedTarget.lock()->IsDestroyed())
@@ -227,7 +249,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
 				strength += it->Cost();
 		}
-	}		
+	}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -444,6 +466,11 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// if you're usually more timid than that.
 		else if(isPlayerEscort && sharedTarget.lock())
 			MoveIndependent(*it, command);
+		else if (isPlayerEscort && stance == EVASIVE && target) {
+				// nothing here yet
+			}
+		else if (isPlayerEscort && stance == DEFENSIVE && (parent->Position().Distance(it->Position()) > 500. || !flagship->WasAttacked(300)))
+			MoveEscort(*it, command);
 		// Timid ships always stay near their parent.
 		else if(personality.IsTimid() && parent->Position().Distance(it->Position()) > 500.)
 			MoveEscort(*it, command);
@@ -1341,7 +1368,9 @@ Point AI::TargetAim(const Ship &ship)
 Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool secondary) const
 {
 	Command command;
-	if(ship.GetPersonality().IsPacifist())
+	// Don't fire when pacifist or player set to defensive escort stance and escorts were
+	// not attacked recently (last 300 frames).
+	if(ship.GetPersonality().IsPacifist() || (stance == DEFENSIVE && ship.IsYours() && (!ship.GetParent()->WasAttacked(300))) )
 		return command;
 	int index = -1;
 	

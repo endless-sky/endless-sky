@@ -87,7 +87,8 @@ private:
 	bool isLaunching = false;
 	bool isCloaking = false;
 	bool shift = false;
-	
+
+	int stance = 0;
 	bool holdPosition = false;
 	bool moveToMe = false;
 	bool killDisabledSharedTarget = false;

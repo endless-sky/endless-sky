@@ -481,6 +481,9 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
 	forget = 1;
+	// Reset counter for last hit.
+	wasAttacked = 0;
+	escortsWereAttacked = 0;
 	targetShip.reset();
 	shipToAssist.reset();
 	if(government)
@@ -624,6 +627,9 @@ bool Ship::Move(list<Effect> &effects)
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
 	forget += !isInSystem;
+	// If ship got attacked in the past, increment counter.
+	if(wasAttacked) wasAttacked++;
+	if(escortsWereAttacked) escortsWereAttacked++;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 		return false;
 	isInSystem = false;
@@ -847,6 +853,9 @@ bool Ship::Move(list<Effect> &effects)
 				hyperspaceOffset *= 1000. / length;
 		}
 		
+		// Reset counter for last hit.
+		wasAttacked = 0;
+		escortsWereAttacked = 0;
 		return true;
 	}
 	else if(landingPlanet || zoom < 1.)
@@ -1710,7 +1719,7 @@ double Ship::JumpFuel() const
 	if(type)
 		return type;
 	return attributes.Get("jump drive") ? 200. :
-		attributes.Get("scram drive") ? 150. : 
+		attributes.Get("scram drive") ? 150. :
 		attributes.Get("hyperdrive") ? 100. : 0.;
 }
 
@@ -1719,6 +1728,22 @@ double Ship::JumpFuel() const
 int Ship::Crew() const
 {
 	return crew;
+}
+
+
+
+int Ship::WasAttacked(int lastFrames = 1) const
+{
+	// Return true value if ship was attacked in lastFrames.
+	return  lastFrames - wasAttacked + 1 > 0 && wasAttacked != 0;
+}
+
+
+
+int Ship::EscortsWereAttacked(int lastFrames) const
+{
+	// Return true value if this ships escorts were attacked in lastFrames.
+	return escortsWereAttacked == 0 || lastFrames - escortsWereAttacked + 1 < 0;
 }
 
 
@@ -1793,6 +1818,15 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double ionDamage = weapon.IonDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
+	
+	wasAttacked = 1;
+	// Also Update flagship/parent about taken damage.
+	if(GetParent())
+		GetParent()->SetEscortsWereAttacked(wasAttacked);
+	// If ship itself is a flagship/parent (eg. players ship) update escort stats
+	// with own taken damage, as flagship is considered part of the fleet.
+	else if(!escorts.empty())
+		SetEscortsWereAttacked(wasAttacked);
 	
 	double shieldFraction = 1. - weapon.Piercing();
 	if(shieldDamage > shields)
@@ -2281,4 +2315,9 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 			return;
 		}
 	}
+}
+
+void Ship::SetEscortsWereAttacked(int frames) {
+	if(escorts.empty() != true)
+		escortsWereAttacked = frames;
 }
