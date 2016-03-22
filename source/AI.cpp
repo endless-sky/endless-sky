@@ -1370,7 +1370,7 @@ Command AI::AutoFire(const Ship &ship, const list<shared_ptr<Ship>> &ships, bool
 	Command command;
 	// Don't fire when pacifist or player set to defensive escort stance and escorts were
 	// not attacked recently (last 300 frames).
-	if(ship.GetPersonality().IsPacifist() || (stance == DEFENSIVE && ship.IsYours() && (!ship.GetParent()->WasAttacked(300))) )
+	if(ship.GetPersonality().IsPacifist() || (stance == DEFENSIVE && ship.IsYours() && (!ship.GetParent()->WasAttacked(300) && !sharedTarget.lock())) )
 		return command;
 	int index = -1;
 	

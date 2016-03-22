@@ -193,9 +193,9 @@ public:
 	int RequiredCrew() const;
 	void AddCrew(int count);
 
-	int WasAttacked(int lastFrames) const;
-	int EscortsWereAttacked(int lastFrames) const;
-	void SetEscortsWereAttacked(int frames);
+	bool WasAttacked(int lastFrames) const;
+	bool EscortsWereAttacked(int lastFrames) const;
+	void UpdateEscortsWereAttacked(int frames);
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;

@@ -1732,7 +1732,7 @@ int Ship::Crew() const
 
 
 
-int Ship::WasAttacked(int lastFrames = 1) const
+bool Ship::WasAttacked(int lastFrames = 1) const
 {
 	// Return true value if ship was attacked in lastFrames.
 	return  lastFrames - wasAttacked + 1 > 0 && wasAttacked != 0;
@@ -1740,7 +1740,7 @@ int Ship::WasAttacked(int lastFrames = 1) const
 
 
 
-int Ship::EscortsWereAttacked(int lastFrames) const
+bool Ship::EscortsWereAttacked(int lastFrames) const
 {
 	// Return true value if this ships escorts were attacked in lastFrames.
 	return escortsWereAttacked == 0 || lastFrames - escortsWereAttacked + 1 < 0;
@@ -1822,11 +1822,11 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	wasAttacked = 1;
 	// Also Update flagship/parent about taken damage.
 	if(GetParent())
-		GetParent()->SetEscortsWereAttacked(wasAttacked);
+		GetParent()->UpdateEscortsWereAttacked(wasAttacked);
 	// If ship itself is a flagship/parent (eg. players ship) update escort stats
 	// with own taken damage, as flagship is considered part of the fleet.
 	else if(!escorts.empty())
-		SetEscortsWereAttacked(wasAttacked);
+		UpdateEscortsWereAttacked(wasAttacked);
 	
 	double shieldFraction = 1. - weapon.Piercing();
 	if(shieldDamage > shields)
@@ -2317,7 +2317,7 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 	}
 }
 
-void Ship::SetEscortsWereAttacked(int frames) {
+void Ship::UpdateEscortsWereAttacked(int frames) {
 	if(escorts.empty() != true)
 		escortsWereAttacked = frames;
 }
