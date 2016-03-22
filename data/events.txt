@@ -1885,6 +1885,7 @@ event "battle of algenib"
 			"Syndicate (Extremist)" -.1
 	system Algenib
 		fleet "Small Syndicate" 5000
+	"reputation: Syndicate (Extremist)" <?= -1000
 
 
 

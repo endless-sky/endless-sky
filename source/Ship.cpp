@@ -235,35 +235,43 @@ void Ship::FinishLoading()
 		if(description.empty())
 			description = base->description;
 		
-		// Check if any hardpoint locations were not specified.
-		auto bit = base->Weapons().begin();
-		auto bend = base->Weapons().end();
-		auto nextGun = armament.Get().begin();
-		auto nextTurret = armament.Get().begin();
-		auto end = armament.Get().end();
-		Armament merged;
-		for( ; bit != bend; ++bit)
+		bool hasHardpoints = false;
+		for(const Armament::Weapon &weapon : armament.Get())
+			if(weapon.GetPoint())
+				hasHardpoints = true;
+		
+		if(!hasHardpoints)
 		{
-			if(!bit->IsTurret())
+			// Check if any hardpoint locations were not specified.
+			auto bit = base->Weapons().begin();
+			auto bend = base->Weapons().end();
+			auto nextGun = armament.Get().begin();
+			auto nextTurret = armament.Get().begin();
+			auto end = armament.Get().end();
+			Armament merged;
+			for( ; bit != bend; ++bit)
 			{
-				while(nextGun != end && nextGun->IsTurret())
-					++nextGun;
-				merged.AddGunPort(bit->GetPoint() * 2.,
-					(nextGun == end) ? nullptr : nextGun->GetOutfit());
-				if(nextGun != end)
-					++nextGun;
+				if(!bit->IsTurret())
+				{
+					while(nextGun != end && nextGun->IsTurret())
+						++nextGun;
+					merged.AddGunPort(bit->GetPoint() * 2.,
+						(nextGun == end) ? nullptr : nextGun->GetOutfit());
+					if(nextGun != end)
+						++nextGun;
+				}
+				else
+				{
+					while(nextTurret != end && !nextTurret->IsTurret())
+						++nextTurret;
+					merged.AddTurret(bit->GetPoint() * 2.,
+						(nextTurret == end) ? nullptr : nextTurret->GetOutfit());
+					if(nextTurret != end)
+						++nextTurret;
+				}
 			}
-			else
-			{
-				while(nextTurret != end && !nextTurret->IsTurret())
-					++nextTurret;
-				merged.AddTurret(bit->GetPoint() * 2.,
-					(nextTurret == end) ? nullptr : nextTurret->GetOutfit());
-				if(nextTurret != end)
-					++nextTurret;
-			}
+			armament = merged;
 		}
-		armament = merged;
 	}
 	
 	// Different ships dissipate heat at different rates.
@@ -669,7 +677,9 @@ bool Ship::Move(list<Effect> &effects)
 	shields = min(shields, maxShields);
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
-	isDisabled = isOverheated || IsDisabled();
+	
+	int requiredCrew = RequiredCrew();
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && requiredCrew);
 	
 	// Update ship supply levels.
 	if(!isDisabled)
@@ -909,7 +919,6 @@ bool Ship::Move(list<Effect> &effects)
 	else
 		cloak = 0.;
 	
-	int requiredCrew = RequiredCrew();
 	if(pilotError)
 		--pilotError;
 	else if(pilotOkay)
@@ -1344,6 +1353,9 @@ bool Ship::IsOverheated() const
 
 bool Ship::IsDisabled() const
 {
+	if(!isDisabled)
+		return false;
+	
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
 	return (hull < minimumHull || (!crew && needsCrew));
