@@ -1699,9 +1699,9 @@ ship "Marauder Arrow"
 		
 	engine -8 57
 	engine 8 57
-	gun -6 -36 "Sidewinder Missile Launcher"
-	gun 6 -36 "Sidewinder Missile Launcher"
-	turret 0 15 "Anti-Missile Turret"
+	gun -6 -36 "Heavy Laser"
+	gun 6 -36 "Heavy Laser"
+	turret 0 15 "Quad Blaster Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
@@ -1744,8 +1744,8 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		
 	engine -10 57
 	engine 10 57
-	gun -6 -36 "Sidewinder Missile Launcher"
-	gun 6 -36 "Sidewinder Missile Launcher"
+	gun -6 -36 "Heavy Laser"
+	gun 6 -36 "Heavy Laser"
 	turret 0 15 "Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
@@ -1794,7 +1794,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	gun 6 -36 "Energy Blaster"
 	gun -7 -34 "Energy Blaster"
 	gun 7 -34 "Energy Blaster"
-	turret 0 15 "Anti-Missile Turret"
+	turret 0 15
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
@@ -1842,8 +1842,8 @@ ship "Marauder Bounder"
 	engine -12 44
 	engine 12 44
 	gun 0 -85 "Particle Cannon"
-	turret -38 7 "Blaster Turret"
-	turret 38 7 "Blaster Turret"
+	turret -38 7 "Quad Blaster Turret"
+	turret 38 7 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -1890,8 +1890,8 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	engine 0 51
 	engine 12 58
 	gun 0 -85 "Heavy Laser"
-	turret -38 7 "Blaster Turret"
-	turret 38 7 "Blaster Turret"
+	turret -38 7 "Quad Blaster Turret"
+	turret 38 7 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -1939,8 +1939,8 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	engine 15 44
 	gun 7 -77 "Modified Blaster"
 	gun -7 -77 "Modified Blaster"
-	turret -37 4 "Blaster Turret"
-	turret 37 4 "Blaster Turret"
+	turret -37 4 "Heavy Laser Turret"
+	turret 37 4 "Heavy Laser Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -2277,7 +2277,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "The Medium Warship with one of the heaviest armaments possible, just got heavier.  More outfit space, giant gun ports, extra hull plating and shield emitters - this blast from the past will make it's targets history."
+	description "The Medium Warship with one of the heaviest armaments possible, just got heavier.  More outfit space, giant gun ports, extra hull plating and shield emitters - this blast from the past will make its targets history."
 
 
 
@@ -2431,10 +2431,10 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 
 	engine -27 125
 	engine 27 125
-	gun -50 -23 "Particle Cannon"
-	gun 50 -23 "Particle Cannon"
-	gun -38 -34 "Particle Cannon"
-	gun 38 -34 "Particle Cannon"
+	gun -50 -23 "Electron Beam"
+	gun 50 -23 "Electron Beam"
+	gun -38 -34 "Electron Beam"
+	gun 38 -34 "Electron Beam"
 	turret -16 -48 "Quad Blaster Turret"
 	turret 16 -48 "Quad Blaster Turret"
 	turret -25 10 "Quad Blaster Turret"
@@ -2636,27 +2636,33 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Particle Cannon" 4
+		"Particle Cannon" 2
 		"Meteor Missile Launcher" 2
+		"Proton Gun" 2
+		"Heavy Anti-Missile Turret"
 		"Meteor Missile" 70
-		
-		"RT-I Radiothermal"
-		"LP144a Battery Pack"
+
+		Supercapacitor
+		"Liquid Nitrogen Cooler"
 		"D14-RN Shield Generator"
-		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"Hyperdrive"
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
+
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		Hyperdrive
+		"Laser Rifle" 11
 		
 	engine -33.5 38
 	engine 33.5 38
 	gun -20 -35 "Particle Cannon"
 	gun 20 -35 "Particle Cannon"
-	gun -27 -35 "Particle Cannon"
-	gun 27 -35 "Particle Cannon"
+	gun -27 -35 "Proton Gun"
+	gun 27 -35 "Proton Gun"
 	gun -66 -34 "Meteor Missile Launcher"
 	gun 66 -34 "Meteor Missile Launcher"
-	turret 0 -29
+	turret 0 -29 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -3106,7 +3112,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "This Splinter has had extensive modification to it's weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield modulators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
+	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield modulators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
 
 
 
