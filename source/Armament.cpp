@@ -87,14 +87,21 @@ bool Armament::Weapon::IsAntiMissile() const
 // Check if this weapon is ready to fire.
 bool Armament::Weapon::IsReady() const
 {
-	return outfit && burstReload <= 0 && (reload <= 0 || IsMidBurst());
+	return outfit && burstReload <= 0. && burstCount;
 }
 
 
 
-bool Armament::Weapon::IsMidBurst() const
+bool Armament::Weapon::WasFiring() const
 {
-	return (outfit && burstCount && burstCount < outfit->BurstCount());
+	return wasFiring;
+}
+
+
+
+int Armament::Weapon::BurstRemaining() const
+{
+	return burstCount;
 }
 
 
@@ -102,11 +109,16 @@ bool Armament::Weapon::IsMidBurst() const
 // Perform one step (i.e. decrement the reload count).
 void Armament::Weapon::Step()
 {
-	if(reload)
+	if(!outfit)
+		return;
+	
+	wasFiring = isFiring;
+	isFiring = false;
+	if(reload > 0.)
 		--reload;
-	if(!reload)
-		burstCount = 0;
-	if(burstReload)
+	if(reload <= 0.)
+		burstCount = outfit->BurstCount();
+	if(burstReload > 0.)
 		--burstReload;
 }
 
@@ -210,9 +222,9 @@ void Armament::Weapon::Install(const Outfit *outfit)
 	else if(!outfit->Get("turret mounts") || isTurret)
 	{
 		this->outfit = outfit;
-		reload = 0;
-		burstReload = 0;
-		burstCount = 0;
+		reload = 0.;
+		burstReload = 0.;
+		burstCount = outfit->BurstCount();
 		
 		// Find the point of convergence of shots fired from this gun.
 		double d = outfit->Range();
@@ -236,7 +248,8 @@ void Armament::Weapon::Fire(Ship &ship)
 	// Reset the reload count.
 	reload += outfit->Reload();
 	burstReload += outfit->BurstReload();
-	++burstCount;
+	--burstCount;
+	isFiring = true;
 	
 	// Expend any ammo that this weapon uses.
 	ship.ExpendAmmo(outfit);
@@ -376,14 +389,14 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 		return;
 	
 	// A weapon that has already started a burst ignores stream timing.
-	if(!weapons[index].IsMidBurst())
+	if(!weapons[index].WasFiring())
 	{
 		auto it = streamReload.find(weapons[index].GetOutfit());
 		if(it != streamReload.end())
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * it->first->BurstCount();
+			it->second += it->first->Reload() * weapons[index].BurstRemaining();
 		}
 	}
 	weapons[index].Fire(ship, projectiles, effects);

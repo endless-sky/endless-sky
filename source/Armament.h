@@ -56,7 +56,8 @@ public:
 		
 		// Check if this weapon is ready to fire.
 		bool IsReady() const;
-		bool IsMidBurst() const;
+		bool WasFiring() const;
+		int BurstRemaining() const;
 		// Perform one step (i.e. decrement the reload count).
 		void Step();
 		
@@ -81,10 +82,12 @@ public:
 		Point point;
 		// Angle adjustment for convergence.
 		Angle angle;
-		int reload = 0;
-		int burstReload = 0;
+		double reload = 0.;
+		double burstReload = 0.;
 		int burstCount = 0;
 		bool isTurret = false;
+		bool isFiring = false;
+		bool wasFiring = false;
 	};
 	
 	
