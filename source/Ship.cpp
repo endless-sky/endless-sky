@@ -688,7 +688,11 @@ bool Ship::Move(list<Effect> &effects)
 		// a little less than a minute - enough to be an inconvenience without
 		// being totally aggravating.
 		if(attributes.Get("ramscoop"))
-			TransferFuel(-.03 * sqrt(attributes.Get("ramscoop")), nullptr);
+		{
+			// Ramscoops work much better when close to the system center.
+			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+			TransferFuel(-.03 * scale * sqrt(attributes.Get("ramscoop")), nullptr);
+		}
 		
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);
