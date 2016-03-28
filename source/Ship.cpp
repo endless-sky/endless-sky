@@ -1339,7 +1339,7 @@ const Planet *Ship::GetPlanet() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull > 0. && !sprite.IsEmpty());
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && !sprite.IsEmpty());
 }
 
 
