@@ -38,9 +38,9 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere)
+void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping)
 {
-	icons.emplace_back(ship, isHere);
+	icons.emplace_back(ship, isHere, fleetIsJumping);
 }
 
 
@@ -58,6 +58,7 @@ void EscortDisplay::Draw() const
 	static const Color hereColor(.8, 1.);
 	static const Color elsewhereColor(.4, .4, .6, 1.);
 	static const Color readyToJumpColor(.2, .8, .2, 1.);
+	static const Color cannotJumpColor(.9, .2, 0., 1.);
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -75,6 +76,8 @@ void EscortDisplay::Draw() const
 		Color color;
 		if(!escort.isHere)
 			color = elsewhereColor;
+		else if(escort.cannotJump)
+			color = cannotJumpColor;
 		else if(escort.isReadyToJump)
 			color = readyToJumpColor;
 		else
@@ -137,10 +140,11 @@ void EscortDisplay::Draw() const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere)
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
 	: sprite(ship.GetSprite().GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
 	isReadyToJump(ship.CheckHyperspace()),
+	cannotJump(fleetIsJumping && !ship.JumpsRemaining()),
 	stackSize(1),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),

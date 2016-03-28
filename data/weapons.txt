@@ -378,7 +378,7 @@ outfit "Plasma Cannon"
 		"shield damage" 63
 		"hull damage" 37
 		"heat damage" 340
-	description "The Plasma Cannon fires busts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
+	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
 outfit "Pulse Cannon"
 	category "Guns"
