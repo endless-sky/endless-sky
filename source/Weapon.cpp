@@ -71,19 +71,19 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(child.Size() >= 2)
 		{
 			if(child.Token(0) == "lifetime")
-				lifetime = child.Value(1);
+				lifetime = max(0., child.Value(1));
 			else if(child.Token(0) == "reload")
-				reload = child.Value(1);
+				reload = max(1., child.Value(1));
 			else if(child.Token(0) == "burst reload")
-				burstReload = child.Value(1);
+				burstReload = max(1., child.Value(1));
 			else if(child.Token(0) == "burst count")
-				burstCount = child.Value(1);
+				burstCount = max(1., child.Value(1));
 			else if(child.Token(0) == "homing")
 				homing = child.Value(1);
 			else if(child.Token(0) == "missile strength")
-				missileStrength = child.Value(1);
+				missileStrength = max(0., child.Value(1));
 			else if(child.Token(0) == "anti-missile")
-				antiMissile = child.Value(1);
+				antiMissile = max(0., child.Value(1));
 			else if(child.Token(0) == "velocity")
 				velocity = child.Value(1);
 			else if(child.Token(0) == "acceleration")
@@ -119,13 +119,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
 			else if(child.Token(0) == "piercing")
-				piercing = child.Value(1);
+				piercing = max(0., min(1., child.Value(1)));
 			else
 				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	// Sanity check:
+	if(burstReload > reload)
+		burstReload = reload;
 	
 	// Weapons of the same type will alternate firing (streaming) rather than
 	// firing all at once (clustering) if the weapon is not an anti-missile and
