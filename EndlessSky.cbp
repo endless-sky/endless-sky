@@ -32,12 +32,11 @@
 				<Option output="bin/Win32/EndlessSky" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Win32/" />
 				<Option type="0" />
-				<Option compiler="gnu_gcc_compiler_win32" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Option projectIncludeDirsRelation="1" />
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-g" />
 					<Add directory="C:/dev32/include" />
 				</Compiler>
 				<Linker>
@@ -202,6 +201,8 @@
 		<Unit filename="source/NPC.h" />
 		<Unit filename="source/Outfit.cpp" />
 		<Unit filename="source/Outfit.h" />
+		<Unit filename="source/OutfitGroup.cpp" />
+		<Unit filename="source/OutfitGroup.h" />
 		<Unit filename="source/OutfitInfoDisplay.cpp" />
 		<Unit filename="source/OutfitInfoDisplay.h" />
 		<Unit filename="source/OutfitterPanel.cpp" />

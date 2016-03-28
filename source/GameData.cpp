@@ -410,7 +410,8 @@ void GameData::StepEconomy()
 
 void GameData::AddPurchase(const System &system, const string &commodity, int tons)
 {
-	purchases[&system][commodity] += tons;
+	if(tons < 0)
+		purchases[&system][commodity] += tons;
 }
 
 

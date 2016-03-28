@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Win32" />
+	<File name="source\BoardingPanel.cpp" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1879" topLine="50" />
+		</Cursor>
+	</File>
+	<File name="source\MainPanel.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8222" topLine="260" />
+		</Cursor>
+	</File>
+	<File name="source\TradingPanel.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7051" topLine="214" />
+		</Cursor>
+	</File>
+	<File name="source\CaptureOdds.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4026" topLine="140" />
+		</Cursor>
+	</File>
+	<File name="source\ShopPanel.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5601" topLine="164" />
+		</Cursor>
+	</File>
+	<File name="source\ConversationPanel.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1786" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="source\Conversation.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2072" topLine="51" />
+		</Cursor>
+	</File>
+	<File name="source\Format.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3417" topLine="141" />
+		</Cursor>
+	</File>
+	<File name="source\Outfit.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3121" topLine="57" />
+		</Cursor>
+	</File>
+	<File name="source\ShipyardPanel.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2236" topLine="52" />
+		</Cursor>
+	</File>
+	<File name="source\System.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4028" topLine="143" />
+		</Cursor>
+	</File>
+	<File name="source\Engine.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9451" topLine="317" />
+		</Cursor>
+	</File>
+	<File name="source\CaptureOdds.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="source\PlanetPanel.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4224" topLine="141" />
+		</Cursor>
+	</File>
+	<File name="source\ConversationPanel.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1440" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="source\StellarObject.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1679" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="source\ShipInfoDisplay.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10917" topLine="328" />
+		</Cursor>
+	</File>
+	<File name="source\PlayerInfo.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7414" topLine="178" />
+		</Cursor>
+	</File>
+	<File name="source\Ship.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11930" topLine="403" />
+		</Cursor>
+	</File>
+	<File name="source\NPC.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="878" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="source\CargoHold.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3713" topLine="162" />
+		</Cursor>
+	</File>
+	<File name="source\Trade.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1137" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="source\Dialog.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2461" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="source\MissionAction.cpp" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7273" topLine="244" />
+		</Cursor>
+	</File>
+	<File name="source\PlayerInfo.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="35961" topLine="1265" />
+		</Cursor>
+	</File>
+	<File name="source\Outfit.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2644" topLine="93" />
+		</Cursor>
+	</File>
+	<File name="source\Ship.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2606" topLine="64" />
+		</Cursor>
+	</File>
+	<File name="source\ShipyardPanel.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2102" topLine="41" />
+		</Cursor>
+	</File>
+	<File name="source\InfoPanel.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17686" topLine="606" />
+		</Cursor>
+	</File>
+	<File name="source\LoadPanel.cpp" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6125" topLine="181" />
+		</Cursor>
+	</File>
+	<File name="source\OutfitterPanel.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1929" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="source\CargoHold.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1663" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="source\BoardingPanel.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3444" topLine="82" />
+		</Cursor>
+	</File>
+	<File name="source\Fleet.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7128" topLine="219" />
+		</Cursor>
+	</File>
+	<File name="source\FontSet.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="671" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="source\AI.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1765" topLine="36" />
+		</Cursor>
+	</File>
+	<File name="source\Format.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1381" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="source\Mission.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5155" topLine="97" />
+		</Cursor>
+	</File>
+	<File name="source\GameData.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10482" topLine="378" />
+		</Cursor>
+	</File>
+	<File name="source\Politics.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6348" topLine="210" />
+		</Cursor>
+	</File>
+	<File name="source\MissionAction.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="682" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="source\Dialog.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2020" topLine="40" />
+		</Cursor>
+	</File>
+	<File name="source\Mission.cpp" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17577" topLine="650" />
+		</Cursor>
+	</File>
+	<File name="source\System.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12652" topLine="460" />
+		</Cursor>
+	</File>
+	<File name="source\OutfitterPanel.cpp" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="21899" topLine="664" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

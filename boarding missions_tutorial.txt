@@ -1,0 +1,140 @@
+# Copyright (c) 2015 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+
+mission "Boarding Tutorial"
+	boarding
+	source 
+		government Pirate
+
+	on offer 
+		conversation 
+			`	As you move your ship into position and lock your docking clamps onto the disabled ship you feel a thrill of anticipation. This is your first time boarding a hostile ship, but you try not to let it show.`
+			`	Now...what will you do next? Just strip the ship of whatever equipment is accessible from the outside? Or blast open the airlock and engage in crew-to-crew combat, trying to capture the whole ship intact?`
+			choice 
+				"	(Yeah, I know what I'm doing.)"
+					decline
+				"	(I'd like to know more about the ins and outs of boarding and capturing ships!)"
+					goto tutorial
+			label tutorial
+			`	(When you board a disabled hostile ship, you can choose to steal outfits (which are transferred to your cargo bay), or attempt to capture the ship by pitting your crew against theirs in combat. 
+			`	Looting outfits is generally a good idea and profitable if you have free cargo space.  But BE CAREFUL when capturing ships!  
+			`	Before trying to capture a ship, you must always remember THREE THINGS...`
+			choice 
+				"	(Why do I need to be careful? It's a free ship, right?)"
+			
+			`	No! It's not a free ship! 
+			`	Point number one is that if any of your crew are killed while boarding a ship for you, you will owe their families "DEATH BENEFITS" equal to one share each in the total value of the captured ship. 
+			`	As captain, you get two shares, so if you captured a ship worth 500,000 credits and lost three crew members in the process, the value of the ship would be divided into five equal shares: two for you and one for each bereaved family. You would automatically be assigned a loan for the value of all shares beyond your two, so, in this case, a 300,000 credit "DEATH BENEFITS" loan would appear on your account, which you would have to pay - probably by selling the ship.`
+			choice 
+				"	(Death Benefits. Got it. But I still always get two shares, so that's something. What are the other two things I need to remember?)"
+			
+			`	Point number two is BE AWARE OF YOUR SURROUNDINGS. 
+			`	If you capture a ship, it immediately becomes your escort and any nearby ships which are hostile to you will attack it. And since the ship was just disabled it will have ZERO SHIELDS and very little health! 
+			`	If you capture a ship in the middle of a pitched battle battle it is almost guaranteed to be IMMEDAITELY DESTROYED. And guess what? The bereaved families of the men who died capturing it are still expecting their DEATH BENEFITS in full, which you must make good out of your own pocket despite having no ship to sell. Don't let this happen to you! Make sure the coast is clear before trying to capture ships! 
+			choice 
+				"	(Got it. Make sure I can safely land with the captured ship to sell it...what's point number three?)"
+
+			`	Point number three is to make sure you have enough EXTRA CREW to actually FLY both ships back to port! 
+			`	When you capture a ship you automatically transfer some of your crew members to the captured ship to pilot it, and if there aren't enough crew for both ships to meet their "required crew" level, then both ships will become sluggish and unresponsive, making it much harder to get to a safe port with your prize. 
+			`	So if you plan on capturing ships, make sure you have plenty of EXTRA CREW first!`
+			choice 
+				"	(Death Benefits, Don't Cap in Combat, and Bring Extra Crew. I think I got it. Thanks for your help!)"
+					decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth
+
+	
+mission "First Quarg Boarding Action"
+	boarding
+	source 
+		government Quarg
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+	on offer 
+		conversation 
+			`	You've been waiting for this moment for a long time. As far as you know no human, not even the craziest pirate lord, has ever disabled and boarded a Quarg ship. Even after the unfathomable amount of punishment that was unleashed on it you keep expecting the alien vessel to spring to life and destroy you or vanish in a shimmer of blue light...but it seems even the Quarg have their limits. The ship is drifting, apparently wihout power.
+			`	You lock your docking clamps into position and inspect the hull through your instruments, keeping one eye on long-range scanners for any sign of more Quarg. Considering the way their ships can just materialize out of hyperspace, you don't expect a lot of warning. From the outside you can identify the alien craft's armaments: fearsome twin beam weapons and powerful missile defense turrets. Of course they aren't fitted onto the standard turret-mounts you're used to seeing on human ships...so removing them without damage may be a challenge. And that's assuming no part of this alien ship explodes in your face.  It looks like the primary beams are at least 60 tons each...you have enough cargo space for those, right?`
+			`	A pit forms in your stomach...maybe this was a bad idea.` 
+			choice 
+				`	(There's no going back now. Keep scanning...look for the best way to slice open the hull.)`
+					goto hull
+				`	(Maybe it would be easier to capture the ship than rip it apart. Try scanning the inside of the ship for defensive measures.`
+					goto capture
+				`	(Abandon this insane project. No alien technology is worth your life.)`
+					# defer mission and ship is destroyed to prevent re-bording.
+					goto selfdestruct 
+
+			label capture
+			`	You tune your sensors to inspect the living areas of the enemy ship, starting at what you're fairly certain is their airlock. It doesn't take long for your heart to sink at what you're seeing. There are literally hundreds of tiny, independant power sources distributed over the ships internal surfaces. They appear to power some kind of intrusion countermeasures. Maybe with 1000 marines you would have a prayer of capturing this ship. Maybe.`
+			choice 
+				`	(Ok, keep scanning. Look for a way to open the hull.)`
+					goto hull
+			
+			label hull
+			`	You begin to scanning the Quarg ship's hull, looking for the best place to cut it open. There's already significant weapon damage - disabling the ship wasn't easy. You identify a few components: engines, what you think is the shield generator, and some kind of...battery? You activate your salvage cutter and open up some access holes, but the components are locked in place with strong energy anchors and you can't figure out how to cut their power. 
+			`	Suddenly your thoughts are interrupted by a flashing light on your ship's comm. It looks like the Quarg want to talk.`
+			choice
+				`	(Ignore the comm and focus on taking this ship apart.)`
+					goto end
+				`	(Lets hear what they have to say.`
+					goto listen
+
+			label listen
+			`	You see the image of a Quarg on your view screen. You have no idea of its emotions - it's manerisms seem the same as every other Quarg you've seen. You can only assume this is the captain of the ship.`
+			`	"Human," it adresses you in a measured tone, "I warn you that you are makeing a serious error. This one understands that it is only natural for a creature such as you to test itself in battle. We Quarg have strong ships and so you have attacked this one to prove your strength. However, for one such as you to posses Quarg tools or the Drak's gift is taboo. It can only lead to destruction. Your power has already been shown. Withdraw now and leave this system. Then peace will remain between us."`
+			choice 
+				`	(Ignore him. You've come too far to stop now. The very fact that the alien is talking to you means salvaging its technology must be possible.)`
+					goto end
+				`	(Agree and disengage your boarding clamps.)`
+					goto peace
+
+			label peace
+			`	"You have made a wise choice today, Human. Leave this system and the Quarg will remain at peace with you unless you test us again."`
+				
+				goto selfdestruct
+
+			label selfdestruct
+			`	As you disengage your boarding clamps and begin to boost away you see multiple escape pods jetisoning from the Quarg ship.`
+				# defer the mission and boarded ship is destroyed to prevent re-bording.
+				depart
+
+			label end
+			`	As the Quarg talks you run the crosshairs of your salvage cutter over its hull, praying for some inspiration. Then it hits you...the comm signal! It's not coming from anywhere near where you'd expect the bridge to be, but when you look closer you see that the residual energy patterns in the hull subtley shift around that location. You take aim and pull the trigger. As a new hull breach opens up, you see several Quarg bodies being sucked into the vaccuum of space.  The comm signal dies...and so do the energy anchors protecting the ship's components.`
+			`	Mission accomplished! Your regular salvage equipment can take it from here. It's time to grab everything you can carry and get the heck out of dodge. You've heard that a Quarg can live for hundreds of years...hopefully they don't hold grudges.`
+				# proceed to boarding and this mission will not happen again.
+				accept
+
+	on defer
+		"reputation: Quarg" = 1
+	on accept 
+		"reputation: Quarg" = -1000
+		set "has quarg technology"
+	# A mission with no destination will not be offered, so give it one. 
+	# What the destination is doesn't matter, because you never 'accept' this.
+	destination Earth
+	
+	
+mission "First Korath Boarding Action"
+	boarding
+	source 
+		government Korath 
+	on offer 
+		conversation 
+			`	As you move your ship into position and lock docking clamps onto the disabled Pirate ship you feel a thrill of anticipation. Finally, a chance to give these parasites a taste of their own medicine. `
+			`	Now...what will it be? Just strip the ship of whatever equipment is accessible from the outside? Or blast open the airlock and take the pirates on in crew to crew combat, trying to take the whole ship intact?`
+				decline
+	# A mission with no destination will not be offered, so give it one.
+	# What the destination is doesn't matter, because you always 'decline' this.
+	destination Earth
+	

@@ -1,0 +1,2299 @@
+# depslib dependency file v1.0
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\account.cpp
+	"Account.h"
+	"DataNode.h"
+	"DataWriter.h"
+	<algorithm>
+	<sstream>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\account.h
+	"Mortgage.h"
+	<cstdint>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\mortgage.h
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\datanode.h
+	<list>
+	<string>
+	<vector>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\datawriter.h
+	<string>
+	<sstream>
+
+1458966036 source:c:\users\jan\documents\github\endless-sky\source\ai.cpp
+	"AI.h"
+	"Armament.h"
+	"Command.h"
+	"DistanceMap.h"
+	"Government.h"
+	"Mask.h"
+	"Messages.h"
+	"pi.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Preferences.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"System.h"
+	<SDL2/SDL.h>
+	<cmath>
+	<limits>
+	<set>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\ai.h
+	"Command.h"
+	<cstdint>
+	<list>
+	<map>
+	<memory>
+
+1458966036 c:\users\jan\documents\github\endless-sky\source\command.h
+	<cstdint>
+	<string>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\armament.h
+	"Angle.h"
+	"Point.h"
+	<map>
+	<list>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\angle.h
+	"Point.h"
+	<cstdint>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\point.h
+	<pmmintrin.h>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\distancemap.h
+	<map>
+	<queue>
+	<utility>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\government.h
+	"Color.h"
+	<map>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\color.h
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\mask.h
+	"Angle.h"
+	"Point.h"
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\messages.h
+	<string>
+	<vector>
+
+1455684891 c:\users\jan\documents\github\endless-sky\source\pi.h
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\planet.h
+	"Sale.h"
+	<list>
+	<memory>
+	<set>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\sale.h
+	"DataNode.h"
+	"Set.h"
+	<algorithm>
+	<set>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\set.h
+	<map>
+	<string>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\playerinfo.h
+	"Account.h"
+	"CargoHold.h"
+	"Date.h"
+	"GameEvent.h"
+	"Mission.h"
+	"Planet.h"
+	<list>
+	<map>
+	<memory>
+	<set>
+	<vector>
+	<string>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\cargohold.h
+	"OutfitGroup.h"
+	<map>
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\date.h
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\gameevent.h
+	"ConditionSet.h"
+	"Date.h"
+	<list>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\conditionset.h
+	<map>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\mission.h
+	"ConditionSet.h"
+	"Date.h"
+	"LocationFilter.h"
+	"MissionAction.h"
+	"NPC.h"
+	<list>
+	<map>
+	<string>
+	<set>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\locationfilter.h
+	<list>
+	<set>
+	<string>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\missionaction.h
+	"ConditionSet.h"
+	"Conversation.h"
+	"OutfitGroup.h"
+	<map>
+	<set>
+	<string>
+
+1458228648 c:\users\jan\documents\github\endless-sky\source\conversation.h
+	"ConditionSet.h"
+	<map>
+	<string>
+	<utility>
+	<vector>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\npc.h
+	"Conversation.h"
+	"Fleet.h"
+	"LocationFilter.h"
+	"Personality.h"
+	<string>
+	<list>
+	<map>
+	<memory>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\fleet.h
+	"Personality.h"
+	<list>
+	<memory>
+	<vector>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\personality.h
+	"Point.h"
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\preferences.h
+	<string>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\random.h
+	<cstdint>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\ship.h
+	"Angle.h"
+	"Animation.h"
+	"Armament.h"
+	"CargoHold.h"
+	"Command.h"
+	"Outfit.h"
+	"Personality.h"
+	"Point.h"
+	<map>
+	<memory>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\animation.h
+	<cstdint>
+	<string>
+
+1456525921 c:\users\jan\documents\github\endless-sky\source\outfit.h
+	"Animation.h"
+	"Weapon.h"
+	<map>
+	<string>
+	<utility>
+	<vector>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\weapon.h
+	"Animation.h"
+	<map>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\shipevent.h
+	<memory>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\system.h
+	"Point.h"
+	"Set.h"
+	"StellarObject.h"
+	"Trade.h"
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\stellarobject.h
+	"Animation.h"
+	"Point.h"
+
+1454696423 c:\dev32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\begin_code.h
+
+1454696423 c:\dev32\include\sdl2\close_code.h
+
+1454696423 c:\dev32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696425 c:\dev32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696425 c:\dev32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696425 c:\dev32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696423 c:\dev32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696424 c:\dev32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696425 c:\dev32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454696425 c:\dev32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\angle.cpp
+	"Angle.h"
+	"pi.h"
+	"Random.h"
+	<algorithm>
+	<cmath>
+	<cstdlib>
+	<vector>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\animation.cpp
+	"Animation.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Random.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	<algorithm>
+	<cmath>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\sprite.h
+	"Mask.h"
+	"Point.h"
+	<cstdint>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\spriteset.h
+	<string>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\armament.cpp
+	"Armament.h"
+	"Audio.h"
+	"Effect.h"
+	"Outfit.h"
+	"pi.h"
+	"Projectile.h"
+	"Random.h"
+	"Ship.h"
+	<cmath>
+	<limits>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\audio.h
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\effect.h
+	"Angle.h"
+	"Animation.h"
+	"Point.h"
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\projectile.h
+	"Angle.h"
+	"Animation.h"
+	"Point.h"
+	<list>
+	<memory>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\asteroidfield.cpp
+	"AsteroidField.h"
+	"SpriteSet.h"
+	"DrawList.h"
+	"Mask.h"
+	"Projectile.h"
+	"Random.h"
+	<cmath>
+	<cstdlib>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\asteroidfield.h
+	"Angle.h"
+	"Animation.h"
+	"Point.h"
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\drawlist.h
+	"Point.h"
+	<cstdint>
+	<vector>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\audio.cpp
+	"Audio.h"
+	"Files.h"
+	"Point.h"
+	"Random.h"
+	"Sound.h"
+	<AL/al.h>
+	<AL/alc.h>
+	<OpenAL/al.h>
+	<OpenAL/alc.h>
+	<algorithm>
+	<cmath>
+	<map>
+	<mutex>
+	<set>
+	<stdexcept>
+	<thread>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\files.h
+	<cstdio>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\sound.h
+	<string>
+
+1454696422 c:\dev32\include\al\al.h
+
+1454696422 c:\dev32\include\al\alc.h
+
+1458228636 source:c:\users\jan\documents\github\endless-sky\source\bankpanel.cpp
+	"BankPanel.h"
+	"Color.h"
+	"Dialog.h"
+	"Format.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Preferences.h"
+	"Table.h"
+	"UI.h"
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\bankpanel.h
+	"Panel.h"
+	<string>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\panel.h
+	<SDL2/SDL.h>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\dialog.h
+	"Panel.h"
+	"Point.h"
+	"WrappedText.h"
+	<functional>
+	<string>
+
+1455684891 c:\users\jan\documents\github\endless-sky\source\wrappedtext.h
+	"Point.h"
+	<string>
+	<vector>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\format.h
+	<map>
+	<string>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\gamedata.h
+	"Set.h"
+	"Trade.h"
+	<map>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\trade.h
+	<vector>
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\information.h
+	"Color.h"
+	"Point.h"
+	<map>
+	<set>
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\interface.h
+	"Color.h"
+	"Point.h"
+	<map>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\table.h
+	"Color.h"
+	"Point.h"
+	<string>
+	<vector>
+
+1455684891 c:\users\jan\documents\github\endless-sky\source\ui.h
+	"Point.h"
+	<memory>
+	<vector>
+	<SDL2/SDL_events.h>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\boardingpanel.cpp
+	"BoardingPanel.h"
+	"CargoHold.h"
+	"Dialog.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"InfoPanel.h"
+	"Information.h"
+	"Interface.h"
+	"Messages.h"
+	"PlayerInfo.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"System.h"
+	"UI.h"
+	<algorithm>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\boardingpanel.h
+	"Panel.h"
+	"CaptureOdds.h"
+	<memory>
+	<string>
+	<vector>
+
+1457415274 c:\users\jan\documents\github\endless-sky\source\captureodds.h
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\fillshader.h
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\font.h
+	"Shader.h"
+	"gl_header.h"
+	<string>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\shader.h
+	"gl_header.h"
+
+1455684891 c:\users\jan\documents\github\endless-sky\source\gl_header.h
+	<OpenGL/GL3.h>
+	<GL/glew.h>
+
+1454696423 c:\dev32\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<Availability.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\fontset.h
+	<string>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\infopanel.h
+	"Panel.h"
+	"ClickZone.h"
+	"ShipInfoDisplay.h"
+	<map>
+	<memory>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\clickzone.h
+	"Point.h"
+	<cmath>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\shipinfodisplay.h
+	"ItemInfoDisplay.h"
+	<vector>
+	<string>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\iteminfodisplay.h
+	"WrappedText.h"
+	<vector>
+	<string>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\captureodds.cpp
+	"CaptureOdds.h"
+	"Outfit.h"
+	"Ship.h"
+	<algorithm>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\cargohold.cpp
+	"CargoHold.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"GameData.h"
+	"Mission.h"
+	"Outfit.h"
+	"OutfitGroup.h"
+	"System.h"
+	<algorithm>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\color.cpp
+	"Color.h"
+
+1458966036 source:c:\users\jan\documents\github\endless-sky\source\command.cpp
+	"Command.h"
+	"DataFile.h"
+	"DataNode.h"
+	"DataWriter.h"
+	<SDL2/SDL.h>
+	<algorithm>
+	<map>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\datafile.h
+	"DataNode.h"
+	<istream>
+	<list>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\conditionset.cpp
+	"ConditionSet.h"
+	"DataNode.h"
+	"DataWriter.h"
+	<cmath>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\conversation.cpp
+	"Conversation.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Format.h"
+	"SpriteSet.h"
+
+1458052270 source:c:\users\jan\documents\github\endless-sky\source\conversationpanel.cpp
+	"ConversationPanel.h"
+	"BoardingPanel.h"
+	"Color.h"
+	"Command.h"
+	"Conversation.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"MapDetailPanel.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Screen.h"
+	"shift.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"UI.h"
+	<iterator>
+
+1458178077 c:\users\jan\documents\github\endless-sky\source\conversationpanel.h
+	"Panel.h"
+	"ClickZone.h"
+	"WrappedText.h"
+	<functional>
+	<list>
+	<map>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\mapdetailpanel.h
+	"MapPanel.h"
+	"Point.h"
+	<map>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\mappanel.h
+	"Panel.h"
+	"Color.h"
+	"DistanceMap.h"
+	"Point.h"
+	<map>
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\screen.h
+	"Point.h"
+
+1455684891 c:\users\jan\documents\github\endless-sky\source\shift.h
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\spriteshader.h
+	<cstdint>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\datafile.cpp
+	"DataFile.h"
+	"Files.h"
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\datanode.cpp
+	"DataNode.h"
+	"Files.h"
+	<algorithm>
+	<cctype>
+	<cmath>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\datawriter.cpp
+	"DataWriter.h"
+	"DataNode.h"
+	"Files.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\date.cpp
+	"Date.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\dialog.cpp
+	"Dialog.h"
+	"Color.h"
+	"Command.h"
+	"Conversation.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"GameData.h"
+	"MapDetailPanel.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"shift.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"UI.h"
+	<cmath>
+	<functional>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\distancemap.cpp
+	"DistanceMap.h"
+	"Outfit.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Ship.h"
+	"System.h"
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\drawlist.cpp
+	"DrawList.h"
+	"Animation.h"
+	"Preferences.h"
+	"Screen.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	<cmath>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\effect.cpp
+	"Effect.h"
+	"Audio.h"
+	"DataNode.h"
+	"Random.h"
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\engine.cpp
+	"Engine.h"
+	"Audio.h"
+	"Effect.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"FrameTimer.h"
+	"GameData.h"
+	"Government.h"
+	"Interface.h"
+	"Mask.h"
+	"Messages.h"
+	"Person.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Politics.h"
+	"PointerShader.h"
+	"Preferences.h"
+	"Random.h"
+	"RingShader.h"
+	"Screen.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"StarField.h"
+	"System.h"
+	<cmath>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\engine.h
+	"AI.h"
+	"AsteroidField.h"
+	"DrawList.h"
+	"EscortDisplay.h"
+	"Information.h"
+	"Point.h"
+	"Projectile.h"
+	"Radar.h"
+	"Ship.h"
+	"ShipEvent.h"
+	<condition_variable>
+	<list>
+	<map>
+	<memory>
+	<thread>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\escortdisplay.h
+	<cstdint>
+	<list>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\radar.h
+	"Color.h"
+	"Point.h"
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\frametimer.h
+	<chrono>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\person.h
+	"LocationFilter.h"
+	"Personality.h"
+	"Phrase.h"
+	<memory>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\phrase.h
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\politics.h
+	<map>
+	<set>
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\pointershader.h
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\ringshader.h
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\starfield.h
+	"Shader.h"
+	"gl_header.h"
+	<vector>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\escortdisplay.cpp
+	"EscortDisplay.h"
+	"Color.h"
+	"Font.h"
+	"FontSet.h"
+	"LineShader.h"
+	"Point.h"
+	"OutlineShader.h"
+	"Screen.h"
+	"Ship.h"
+	"Sprite.h"
+	"System.h"
+	<algorithm>
+	<set>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\lineshader.h
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\outlineshader.h
+	"Point.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\file.cpp
+	"File.h"
+	"Files.h"
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\file.h
+	<cstdio>
+	<string>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\files.cpp
+	"Files.h"
+	"File.h"
+	<SDL2/SDL.h>
+	<windows.h>
+	<sys/stat.h>
+	<dirent.h>
+	<unistd.h>
+	<cstdlib>
+	<fstream>
+	<iostream>
+	<mutex>
+	<stdexcept>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\fillshader.cpp
+	"FillShader.h"
+	"Color.h"
+	"Point.h"
+	"Screen.h"
+	"Shader.h"
+	<stdexcept>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\fleet.cpp
+	"Fleet.h"
+	"DataNode.h"
+	"GameData.h"
+	"Government.h"
+	"OutfitGroup.h"
+	"Phrase.h"
+	"pi.h"
+	"Planet.h"
+	"Random.h"
+	"Ship.h"
+	"StellarObject.h"
+	"System.h"
+	<algorithm>
+	<cmath>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\font.cpp
+	"Font.h"
+	"Color.h"
+	"ImageBuffer.h"
+	"Point.h"
+	"Screen.h"
+	<cmath>
+	<cstring>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\imagebuffer.h
+	<string>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\fontset.cpp
+	"FontSet.h"
+	"Font.h"
+	<map>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\format.cpp
+	"Format.h"
+	<algorithm>
+	<cctype>
+	<cmath>
+	<sstream>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\frametimer.cpp
+	"FrameTimer.h"
+	<thread>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\galaxy.cpp
+	"Galaxy.h"
+	"DataNode.h"
+	"SpriteSet.h"
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\galaxy.h
+	"Point.h"
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\gamedata.cpp
+	"GameData.h"
+	"Audio.h"
+	"Color.h"
+	"Command.h"
+	"Conversation.h"
+	"DataFile.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Effect.h"
+	"Files.h"
+	"FillShader.h"
+	"Fleet.h"
+	"FontSet.h"
+	"Galaxy.h"
+	"GameEvent.h"
+	"Government.h"
+	"Interface.h"
+	"LineShader.h"
+	"Mission.h"
+	"Outfit.h"
+	"OutlineShader.h"
+	"Person.h"
+	"Phrase.h"
+	"Planet.h"
+	"PointerShader.h"
+	"Politics.h"
+	"RingShader.h"
+	"Sale.h"
+	"Set.h"
+	"Ship.h"
+	"SpriteQueue.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"StarField.h"
+	"StartConditions.h"
+	"System.h"
+	<algorithm>
+	<iostream>
+	<map>
+	<tuple>
+	<utility>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\spritequeue.h
+	<condition_variable>
+	<map>
+	<mutex>
+	<queue>
+	<string>
+	<thread>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\startconditions.h
+	"Account.h"
+	"ConditionSet.h"
+	"Date.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\gameevent.cpp
+	"GameEvent.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"GameData.h"
+	"Government.h"
+	"PlayerInfo.h"
+	"System.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\government.cpp
+	"Government.h"
+	"Conversation.h"
+	"DataNode.h"
+	"Fleet.h"
+	"GameData.h"
+	"Phrase.h"
+	"Politics.h"
+	"ShipEvent.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\hailpanel.cpp
+	"HailPanel.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"Information.h"
+	"Interface.h"
+	"Messages.h"
+	"Phrase.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteShader.h"
+	"System.h"
+	"UI.h"
+	"WrappedText.h"
+	<algorithm>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\hailpanel.h
+	"Panel.h"
+	"Point.h"
+	<memory>
+	<string>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\hiringpanel.cpp
+	"HiringPanel.h"
+	"Dialog.h"
+	"FillShader.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"PlayerInfo.h"
+	"Preferences.h"
+	"Ship.h"
+	"UI.h"
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\hiringpanel.h
+	"Panel.h"
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\imagebuffer.cpp
+	"ImageBuffer.h"
+	"File.h"
+	<png.h>
+	<jpeglib.h>
+	<cstdio>
+	<vector>
+
+1454696422 c:\dev32\include\png.h
+	"zlib.h"
+	"pngconf.h"
+	<crtdbg.h>
+
+1454696422 c:\dev32\include\pngconf.h
+	"pngusr.h"
+	"config.h"
+	<windows.h>
+	<stdio.h>
+	<stdio.h>
+	<sys/types.h>
+	<setjmp.h>
+	<strings.h>
+	<string.h>
+	<stdlib.h>
+	<fp.h>
+	<math.h>
+	<m68881.h>
+	<mem.h>
+	<alloc.h>
+	<malloc.h>
+	<time.h>
+	<dos.h>
+
+1454696422 c:\dev32\include\jpeglib.h
+	"jconfig.h"
+	"jmorecfg.h"
+	"jpegint.h"
+	"jerror.h"
+
+1454696422 c:\dev32\include\jconfig.h
+
+1454696422 c:\dev32\include\jmorecfg.h
+
+1454696422 c:\dev32\include\jerror.h
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\infopanel.cpp
+	"InfoPanel.h"
+	"Armament.h"
+	"Color.h"
+	"Dialog.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"LineShader.h"
+	"Messages.h"
+	"MissionPanel.h"
+	"PlayerInfo.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteShader.h"
+	"System.h"
+	"Table.h"
+	"UI.h"
+	<algorithm>
+
+1458965859 c:\users\jan\documents\github\endless-sky\source\missionpanel.h
+	"MapPanel.h"
+	"WrappedText.h"
+	<list>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\information.cpp
+	"Information.h"
+	"Sprite.h"
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\interface.cpp
+	"Interface.h"
+	"DataNode.h"
+	"Font.h"
+	"FontSet.h"
+	"GameData.h"
+	"Information.h"
+	"LineShader.h"
+	"OutlineShader.h"
+	"RingShader.h"
+	"Screen.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	<algorithm>
+	<cmath>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\iteminfodisplay.cpp
+	"ItemInfoDisplay.h"
+	"Color.h"
+	"FontSet.h"
+	"GameData.h"
+	"Table.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\lineshader.cpp
+	"LineShader.h"
+	"Color.h"
+	"Point.h"
+	"Screen.h"
+	"Shader.h"
+	<stdexcept>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\loadpanel.cpp
+	"LoadPanel.h"
+	"Color.h"
+	"Command.h"
+	"ConversationPanel.h"
+	"DataFile.h"
+	"Dialog.h"
+	"Files.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"MainPanel.h"
+	"Messages.h"
+	"PlayerInfo.h"
+	"ShipyardPanel.h"
+	"StarField.h"
+	"UI.h"
+	<algorithm>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\loadpanel.h
+	"Panel.h"
+	"SavedGame.h"
+	<map>
+	<string>
+	<vector>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\savedgame.h
+	<string>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\mainpanel.h
+	"Panel.h"
+	"Command.h"
+	"Engine.h"
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\shipyardpanel.h
+	"ShopPanel.h"
+	"PlayerInfo.h"
+	"Sale.h"
+	<string>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\shoppanel.h
+	"Panel.h"
+	"Point.h"
+	<map>
+	<set>
+	<string>
+	<vector>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\locationfilter.cpp
+	"LocationFilter.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"DistanceMap.h"
+	"GameData.h"
+	"Government.h"
+	"Planet.h"
+	"Ship.h"
+	"System.h"
+	<mutex>
+
+1458052270 source:c:\users\jan\documents\github\endless-sky\source\main.cpp
+	"Audio.h"
+	"Command.h"
+	"Conversation.h"
+	"ConversationPanel.h"
+	"DataFile.h"
+	"DataNode.h"
+	"Dialog.h"
+	"Font.h"
+	"FrameTimer.h"
+	"GameData.h"
+	"MenuPanel.h"
+	"Panel.h"
+	"PlayerInfo.h"
+	"Preferences.h"
+	"Screen.h"
+	"UI.h"
+	"gl_header.h"
+	<SDL2/SDL.h>
+	<cstring>
+	<iostream>
+	<map>
+	<sstream>
+	<stdexcept>
+	<string>
+	<windows.h>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\menupanel.h
+	"Panel.h"
+	<string>
+	<vector>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\mapdetailpanel.cpp
+	"MapDetailPanel.h"
+	"Color.h"
+	"Command.h"
+	"Dialog.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"Information.h"
+	"Interface.h"
+	"MapOutfitterPanel.h"
+	"MapShipyardPanel.h"
+	"MissionPanel.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"PointerShader.h"
+	"Politics.h"
+	"RingShader.h"
+	"Screen.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"System.h"
+	"Trade.h"
+	"UI.h"
+	"WrappedText.h"
+	<algorithm>
+	<set>
+	<sstream>
+	<vector>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\mapoutfitterpanel.h
+	"MapSalesPanel.h"
+	"OutfitInfoDisplay.h"
+	<vector>
+
+1458052270 c:\users\jan\documents\github\endless-sky\source\mapsalespanel.h
+	"MapPanel.h"
+	"ClickZone.h"
+	<map>
+	<string>
+	<vector>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\outfitinfodisplay.h
+	"ItemInfoDisplay.h"
+	<vector>
+	<string>
+
+1455685494 c:\users\jan\documents\github\endless-sky\source\mapshipyardpanel.h
+	"MapSalesPanel.h"
+	"ShipInfoDisplay.h"
+	<vector>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\mapoutfitterpanel.cpp
+	"MapOutfitterPanel.h"
+	"Format.h"
+	"GameData.h"
+	"Outfit.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Screen.h"
+	"Sprite.h"
+	"StellarObject.h"
+	"System.h"
+	<algorithm>
+	<cmath>
+	<set>
+
+1458052270 source:c:\users\jan\documents\github\endless-sky\source\mappanel.cpp
+	"MapPanel.h"
+	"Angle.h"
+	"Font.h"
+	"FontSet.h"
+	"Galaxy.h"
+	"GameData.h"
+	"Government.h"
+	"LineShader.h"
+	"Mission.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"PointerShader.h"
+	"Politics.h"
+	"RingShader.h"
+	"Screen.h"
+	"Ship.h"
+	"SpriteShader.h"
+	"StellarObject.h"
+	"System.h"
+	"Trade.h"
+	"UI.h"
+	<algorithm>
+	<cctype>
+
+1458052270 source:c:\users\jan\documents\github\endless-sky\source\mapsalespanel.cpp
+	"MapSalesPanel.h"
+	"Command.h"
+	"Dialog.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"GameData.h"
+	"Government.h"
+	"Information.h"
+	"Interface.h"
+	"ItemInfoDisplay.h"
+	"MapDetailPanel.h"
+	"MapOutfitterPanel.h"
+	"MapShipyardPanel.h"
+	"MissionPanel.h"
+	"Outfit.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"RingShader.h"
+	"Screen.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"StellarObject.h"
+	"System.h"
+	"UI.h"
+	<algorithm>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\mapshipyardpanel.cpp
+	"MapShipyardPanel.h"
+	"Format.h"
+	"GameData.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Screen.h"
+	"Ship.h"
+	"Sprite.h"
+	"StellarObject.h"
+	"System.h"
+	<algorithm>
+	<set>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\mask.cpp
+	"Mask.h"
+	"ImageBuffer.h"
+	<algorithm>
+	<cmath>
+	<limits>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\menupanel.cpp
+	"MenuPanel.h"
+	"Command.h"
+	"ConversationPanel.h"
+	"Files.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Interface.h"
+	"Information.h"
+	"LoadPanel.h"
+	"MainPanel.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"PointerShader.h"
+	"PreferencesPanel.h"
+	"ShipyardPanel.h"
+	"Sprite.h"
+	"SpriteShader.h"
+	"StarField.h"
+	"System.h"
+	"UI.h"
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\preferencespanel.h
+	"Panel.h"
+	"ClickZone.h"
+	"Command.h"
+	<string>
+	<vector>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\messages.cpp
+	"Messages.h"
+	<mutex>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\mission.cpp
+	"Mission.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Dialog.h"
+	"DistanceMap.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"Messages.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"System.h"
+	"UI.h"
+	<cmath>
+	<sstream>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\missionaction.cpp
+	"MissionAction.h"
+	"ConversationPanel.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Dialog.h"
+	"Format.h"
+	"GameData.h"
+	"Messages.h"
+	"Outfit.h"
+	"PlayerInfo.h"
+	"Ship.h"
+	"UI.h"
+	<vector>
+
+1458965859 source:c:\users\jan\documents\github\endless-sky\source\missionpanel.cpp
+	"MissionPanel.h"
+	"Command.h"
+	"Dialog.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"LineShader.h"
+	"MapDetailPanel.h"
+	"MapOutfitterPanel.h"
+	"MapShipyardPanel.h"
+	"Mission.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"PointerShader.h"
+	"Preferences.h"
+	"RingShader.h"
+	"Screen.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"System.h"
+	"UI.h"
+	<sstream>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\mortgage.cpp
+	"Mortgage.h"
+	"DataNode.h"
+	"DataWriter.h"
+	<algorithm>
+	<cmath>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\npc.cpp
+	"NPC.h"
+	"ConversationPanel.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Dialog.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"Messages.h"
+	"PlayerInfo.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"System.h"
+	"UI.h"
+	<vector>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\outfit.cpp
+	"Outfit.h"
+	"Audio.h"
+	"DataNode.h"
+	"Effect.h"
+	"GameData.h"
+	"SpriteSet.h"
+	<cmath>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\outfitinfodisplay.cpp
+	"OutfitInfoDisplay.h"
+	"Color.h"
+	"Format.h"
+	"Outfit.h"
+	<algorithm>
+	<map>
+	<set>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\outfitterpanel.cpp
+	"OutfitterPanel.h"
+	"Color.h"
+	"ConversationPanel.h"
+	"Dialog.h"
+	"DistanceMap.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Outfit.h"
+	"OutfitInfoDisplay.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Preferences.h"
+	"Screen.h"
+	"Ship.h"
+	"ShipInfoDisplay.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"UI.h"
+	<limits>
+
+1458228637 c:\users\jan\documents\github\endless-sky\source\outfitterpanel.h
+	"ShopPanel.h"
+	"OutfitGroup.h"
+	"Sale.h"
+	<map>
+	<string>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\outlineshader.cpp
+	"OutlineShader.h"
+	"Color.h"
+	"Point.h"
+	"Screen.h"
+	"Shader.h"
+	"Sprite.h"
+
+1458052270 source:c:\users\jan\documents\github\endless-sky\source\panel.cpp
+	"Panel.h"
+	"Color.h"
+	"Command.h"
+	"FillShader.h"
+	"Screen.h"
+	"UI.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\person.cpp
+	"Person.h"
+	"DataNode.h"
+	"GameData.h"
+	"Government.h"
+	"Ship.h"
+	<iostream>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\personality.cpp
+	"Personality.h"
+	"Angle.h"
+	"DataNode.h"
+	"DataWriter.h"
+	<map>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\phrase.cpp
+	"Phrase.h"
+	"DataNode.h"
+	"Random.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\planet.cpp
+	"Planet.h"
+	"DataNode.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"PlayerInfo.h"
+	"Politics.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"SpriteSet.h"
+	"System.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\planetpanel.cpp
+	"PlanetPanel.h"
+	"Information.h"
+	"BankPanel.h"
+	"Command.h"
+	"GameData.h"
+	"FontSet.h"
+	"HiringPanel.h"
+	"InfoPanel.h"
+	"Interface.h"
+	"MapDetailPanel.h"
+	"MissionPanel.h"
+	"OutfitterPanel.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Ship.h"
+	"ShipyardPanel.h"
+	"SpaceportPanel.h"
+	"TradingPanel.h"
+	"UI.h"
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\planetpanel.h
+	"Panel.h"
+	"WrappedText.h"
+	<functional>
+	<memory>
+
+1455684890 c:\users\jan\documents\github\endless-sky\source\spaceportpanel.h
+	"Panel.h"
+	"WrappedText.h"
+
+1455684891 c:\users\jan\documents\github\endless-sky\source\tradingpanel.h
+	"Panel.h"
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\playerinfo.cpp
+	"PlayerInfo.h"
+	"Audio.h"
+	"ConversationPanel.h"
+	"DataFile.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Dialog.h"
+	"Files.h"
+	"GameData.h"
+	"Government.h"
+	"Messages.h"
+	"Mission.h"
+	"Outfit.h"
+	"Person.h"
+	"Planet.h"
+	"Politics.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"StartConditions.h"
+	"System.h"
+	"UI.h"
+	<ctime>
+	<sstream>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\point.cpp
+	"Point.h"
+	<cmath>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\pointershader.cpp
+	"PointerShader.h"
+	"Color.h"
+	"Point.h"
+	"Screen.h"
+	"Shader.h"
+	<stdexcept>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\politics.cpp
+	"Politics.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Random.h"
+	"Ship.h"
+	"ShipEvent.h"
+	"System.h"
+	<algorithm>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\preferences.cpp
+	"Preferences.h"
+	"Audio.h"
+	"DataFile.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Files.h"
+	"Screen.h"
+	<map>
+
+1458966036 source:c:\users\jan\documents\github\endless-sky\source\preferencespanel.cpp
+	"PreferencesPanel.h"
+	"Audio.h"
+	"Color.h"
+	"Files.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"Preferences.h"
+	"Screen.h"
+	"StarField.h"
+	"Table.h"
+	"UI.h"
+	"gl_header.h"
+	<SDL2/SDL.h>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\projectile.cpp
+	"Projectile.h"
+	"Effect.h"
+	"Mask.h"
+	"Outfit.h"
+	"pi.h"
+	"Random.h"
+	"Ship.h"
+	"Sprite.h"
+	<cmath>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\radar.cpp
+	"Radar.h"
+	"PointerShader.h"
+	"RingShader.h"
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\random.cpp
+	"Random.h"
+	<random>
+	<mutex>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\ringshader.cpp
+	"RingShader.h"
+	"Color.h"
+	"pi.h"
+	"Point.h"
+	"Screen.h"
+	"Shader.h"
+	<stdexcept>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\savedgame.cpp
+	"SavedGame.h"
+	"DataFile.h"
+	"DataNode.h"
+	"Date.h"
+	"Format.h"
+	"SpriteSet.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\screen.cpp
+	"Screen.h"
+	<algorithm>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\shader.cpp
+	"Shader.h"
+	<cctype>
+	<cstring>
+	<iostream>
+	<stdexcept>
+	<vector>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\ship.cpp
+	"Ship.h"
+	"DataNode.h"
+	"DataWriter.h"
+	"Effect.h"
+	"GameData.h"
+	"Government.h"
+	"Mask.h"
+	"Messages.h"
+	"Phrase.h"
+	"Planet.h"
+	"Projectile.h"
+	"Random.h"
+	"ShipEvent.h"
+	"System.h"
+	<algorithm>
+	<cassert>
+	<cmath>
+	<iostream>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\shipevent.cpp
+	"ShipEvent.h"
+	"Ship.h"
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\shipinfodisplay.cpp
+	"ShipInfoDisplay.h"
+	"Color.h"
+	"Format.h"
+	"GameData.h"
+	"Outfit.h"
+	"Ship.h"
+	"Table.h"
+	<algorithm>
+	<map>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\shipyardpanel.cpp
+	"ShipyardPanel.h"
+	"Color.h"
+	"Dialog.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"Screen.h"
+	"Ship.h"
+	"ShipInfoDisplay.h"
+	"System.h"
+	"UI.h"
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\shoppanel.cpp
+	"ShopPanel.h"
+	"Color.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Government.h"
+	"OutlineShader.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"PointerShader.h"
+	"Screen.h"
+	"Ship.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	"SpriteShader.h"
+	"UI.h"
+	<SDL2/SDL.h>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\sound.cpp
+	"Sound.h"
+	"Files.h"
+	"File.h"
+	<AL/al.h>
+	<OpenAL/al.h>
+	<cstdio>
+	<vector>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\spaceportpanel.cpp
+	"SpaceportPanel.h"
+	"Color.h"
+	"FontSet.h"
+	"GameData.h"
+	"Planet.h"
+	"PlayerInfo.h"
+	"Point.h"
+	"UI.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\sprite.cpp
+	"Sprite.h"
+	"ImageBuffer.h"
+	"Screen.h"
+	"gl_header.h"
+	<SDL2/SDL.h>
+	<algorithm>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\spritequeue.cpp
+	"SpriteQueue.h"
+	"ImageBuffer.h"
+	"Mask.h"
+	"Sprite.h"
+	"SpriteSet.h"
+	<functional>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\spriteset.cpp
+	"SpriteSet.h"
+	"Sprite.h"
+	<map>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\spriteshader.cpp
+	"SpriteShader.h"
+	"Point.h"
+	"Screen.h"
+	"Shader.h"
+	"Sprite.h"
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\starfield.cpp
+	"StarField.h"
+	"pi.h"
+	"Point.h"
+	"Random.h"
+	"Screen.h"
+	<cassert>
+	<cmath>
+	<numeric>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\startconditions.cpp
+	"StartConditions.h"
+	"DataNode.h"
+	"GameData.h"
+	"Planet.h"
+	"System.h"
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\stellarobject.cpp
+	"StellarObject.h"
+	"Planet.h"
+	<algorithm>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\system.cpp
+	"System.h"
+	"Angle.h"
+	"DataNode.h"
+	"Date.h"
+	"Fleet.h"
+	"GameData.h"
+	"Government.h"
+	"Planet.h"
+	"Random.h"
+	<cmath>
+
+1455684890 source:c:\users\jan\documents\github\endless-sky\source\table.cpp
+	"Table.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\trade.cpp
+	"Trade.h"
+	"DataNode.h"
+	<algorithm>
+	<cassert>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\tradingpanel.cpp
+	"TradingPanel.h"
+	"Color.h"
+	"Command.h"
+	"Dialog.h"
+	"FillShader.h"
+	"Font.h"
+	"FontSet.h"
+	"Format.h"
+	"GameData.h"
+	"Information.h"
+	"Interface.h"
+	"MapDetailPanel.h"
+	"Messages.h"
+	"Outfit.h"
+	"PlayerInfo.h"
+	"Preferences.h"
+	"System.h"
+	"UI.h"
+	<string>
+
+1458052270 source:c:\users\jan\documents\github\endless-sky\source\ui.cpp
+	"UI.h"
+	"Command.h"
+	"Panel.h"
+	"Screen.h"
+	<SDL2/SDL.h>
+
+1455685494 source:c:\users\jan\documents\github\endless-sky\source\weapon.cpp
+	"Weapon.h"
+	"Audio.h"
+	"DataNode.h"
+	"Effect.h"
+	"GameData.h"
+	"Outfit.h"
+	"SpriteSet.h"
+
+1455684891 source:c:\users\jan\documents\github\endless-sky\source\wrappedtext.cpp
+	"WrappedText.h"
+	"Font.h"
+	"Point.h"
+	<cassert>
+	<cstring>
+
+1458228637 source:c:\users\jan\documents\github\endless-sky\source\mainpanel.cpp
+	"MainPanel.h"
+	"BoardingPanel.h"
+	"Command.h"
+	"Dialog.h"
+	"Font.h"
+	"FontSet.h"
+	"FrameTimer.h"
+	"GameData.h"
+	"Government.h"
+	"HailPanel.h"
+	"InfoPanel.h"
+	"MapDetailPanel.h"
+	"Messages.h"
+	"Planet.h"
+	"PlanetPanel.h"
+	"PlayerInfo.h"
+	"Preferences.h"
+	"Screen.h"
+	"StellarObject.h"
+	"System.h"
+	"UI.h"
+	<sstream>
+	<string>
+
+1458965871 c:\users\jan\documents\github\endless-sky\source\outfitgroup.h
+	"Outfit.h"
+	<map>
+	<set>
+	<string>
+	<utility>
+	<vector>
+
+1458965871 source:c:\users\jan\documents\github\endless-sky\source\outfitgroup.cpp
+	"OutfitGroup.h"
+	"Outfit.h"
+	"DataNode.h"
+	"Format.h"
+	"GameData.h"
+	"Random.h"
+	<cmath>
+	<vector>
+
