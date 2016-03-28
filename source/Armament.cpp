@@ -383,7 +383,7 @@ void Armament::Fire(int index, Ship &ship, list<Projectile> &projectiles, list<E
 		{
 			if(it->second > 0)
 				return;
-			it->second += it->first->Reload() * max(1, it->first->BurstCount());
+			it->second += it->first->Reload() * it->first->BurstCount();
 		}
 	}
 	weapons[index].Fire(ship, projectiles, effects);

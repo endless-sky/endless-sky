@@ -112,13 +112,13 @@ private:
 	
 	// Attributes.
 	int lifetime = 0;
-	int reload = 0;
-	int burstReload = 0;
-	int burstCount = 0;
+	int reload = 1;
+	int burstReload = 1;
+	int burstCount = 1;
 	int homing = 0;
 	
-	int missileStrength = 0.;
-	int antiMissile = 0.;
+	int missileStrength = 0;
+	int antiMissile = 0;
 	
 	double velocity = 0.;
 	double acceleration = 0.;
