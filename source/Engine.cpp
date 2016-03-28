@@ -325,13 +325,14 @@ void Engine::Step(bool isActive)
 	// and all ships with the "escort" personality, except for fighters that
 	// are not owned by the player.
 	escorts.Clear();
+	bool fleetIsJumping = (flagship && flagship->Commands().Has(Command::JUMP));
 	for(const auto &it : ships)
 		if(it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 			if(!it->IsYours() && !it->CanBeCarried())
-				escorts.Add(*it, it->GetSystem() == currentSystem);
+				escorts.Add(*it, it->GetSystem() == currentSystem, fleetIsJumping);
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship)
-			escorts.Add(*escort, escort->GetSystem() == currentSystem);
+			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping);
 	
 	// Create the status overlays.
 	statuses.clear();
