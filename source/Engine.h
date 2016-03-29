@@ -100,6 +100,16 @@ private:
 		bool isEnemy;
 	};
 	
+	class Label {
+	public:
+		Label(const Point &position, double radius, const std::string &name, const Color &color);
+		
+		Point position;
+		double radius;
+		std::string name;
+		Color color;
+	};
+	
 	
 private:
 	PlayerInfo &player;
@@ -127,6 +137,7 @@ private:
 	Point targetUnit;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
+	std::vector<Label> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	
 	int step = 0;
