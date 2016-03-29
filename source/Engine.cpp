@@ -151,12 +151,12 @@ void Engine::Place()
 				if(ship->IsDestroyed() || ship->IsDisabled())
 					continue;
 				
-				if(ship->DroneBaysFree())
-					droneCarriers[&*ship] = ship->DroneBaysFree();
-				if(ship->FighterBaysFree())
-					fighterCarriers[&*ship] = ship->FighterBaysFree();
+				if(ship->BaysFree(false))
+					droneCarriers[&*ship] = ship->BaysFree(false);
+				if(ship->BaysFree(true))
+					fighterCarriers[&*ship] = ship->BaysFree(true);
 				// Redo the loading up of fighters.
-				ship->UnloadFighters();
+				ship->UnloadBays();
 			}
 			
 			for(const shared_ptr<Ship> &ship : npc.Ships())
@@ -174,9 +174,8 @@ void Engine::Place()
 					map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
 						droneCarriers : fighterCarriers;
 					for(auto &it : carriers)
-						if(it.second)
+						if(it.second && it.first->Carry(ship))
 						{
-							it.first->AddFighter(ship);
 							--it.second;
 							docked = true;
 							break;
@@ -1265,6 +1264,13 @@ void Engine::CalculateStep()
 
 void Engine::AddSprites(const Ship &ship, const Point &position, const Point &velocity)
 {
+	AddSprites(ship, position, velocity, ship.Unit(), ship.Cloaking());
+}
+
+
+
+void Engine::AddSprites(const Ship &ship, const Point &position, const Point &velocity, const Point &unit, double cloak)
+{
 	if(ship.IsThrusting())
 		for(const Point &point : ship.EnginePoints())
 		{
@@ -1272,27 +1278,33 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 			for(const auto &it : ship.Attributes().FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 				{
-					if(ship.Cloaking())
+					if(cloak)
 					{
 						draw[calcTickTock].Add(
 							it.first.GetSprite(),
 							pos,
-							ship.Unit(),
+							unit,
 							velocity,
-							ship.Cloaking());
+							cloak);
 					}
 					else
 					{
 						draw[calcTickTock].Add(
 							it.first,
 							pos,
-							ship.Unit(),
+							unit,
 							velocity);
 					}
 				}
 		}
 	
-	if(ship.Cloaking())
+	for(const Ship::Bay &bay : ship.Bays())
+		if(bay.isUnder && bay.ship)
+		{
+			Point pos = position + ship.Facing().Rotate(bay.point) * ship.Zoom();
+			AddSprites(*bay.ship, pos, velocity, unit, cloak);
+		}
+	if(cloak)
 	{
 		if(ship.GetGovernment()->IsPlayer())
 		{
@@ -1301,15 +1313,15 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 			draw[calcTickTock].Add(
 				animation,
 				position,
-				ship.Unit(),
+				unit,
 				velocity);
 		}
 		draw[calcTickTock].Add(
 			ship.GetSprite().GetSprite(),
 			position,
-			ship.Unit(),
+			unit,
 			velocity,
-			ship.Cloaking(),
+			cloak,
 			ship.GetSprite().GetSwizzle());
 	}
 	else
@@ -1317,9 +1329,15 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 		draw[calcTickTock].Add(
 			ship.GetSprite(),
 			position,
-			ship.Unit(),
+			unit,
 			velocity);
 	}
+	for(const Ship::Bay &bay : ship.Bays())
+		if(bay.isOver && bay.ship)
+		{
+			Point pos = position + ship.Facing().Rotate(bay.point) * ship.Zoom();
+			AddSprites(*bay.ship, pos, velocity, unit, cloak);
+		}
 }
 
 

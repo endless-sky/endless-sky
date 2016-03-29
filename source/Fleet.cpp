@@ -162,7 +162,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			fighter->SetName((fighterNames ? fighterNames : names)->Get());
 			fighter->SetPersonality(personality);
 			for(const shared_ptr<Ship> &parent : placed)
-				if(parent->AddFighter(fighter))
+				if(parent->Carry(fighter))
 					break;
 			continue;
 		}
@@ -239,7 +239,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 			fighter->SetName((fighterNames ? fighterNames : names)->Get());
 			fighter->SetPersonality(personality);
 			for(const shared_ptr<Ship> &parent : placed)
-				if(parent->AddFighter(fighter))
+				if(parent->Carry(fighter))
 					break;
 			continue;
 		}

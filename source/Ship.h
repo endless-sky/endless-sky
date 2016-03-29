@@ -48,6 +48,19 @@ public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;
 	
+	class Bay {
+	public:
+		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
+		// Copying a bay does not copy the ship inside it.
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), isOver(b.isOver), isUnder(b.isUnder) {}
+		
+		Point point;
+		std::shared_ptr<Ship> ship;
+		bool isFighter = false;
+		bool isOver = false;
+		bool isUnder = false;
+	};
+	
 public:
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
@@ -213,21 +226,20 @@ public:
 	bool HasBays() const;
 	// Check how many fighter and drone bays are not occupied at present. This
 	// does not check whether one of your escorts plans to use that bay.
-	int FighterBaysFree() const;
-	int DroneBaysFree() const;
+	int BaysFree(bool isFighter) const;
 	// Check if this ship has a bay free for the given fighter, and the bay is
 	// not reserved for one of its existing escorts.
-	bool CanHoldFighter(const Ship &ship) const;
+	bool CanCarry(const Ship &ship) const;
 	// Check if this is a ship of a type that can be carried (fighter or drone).
 	bool CanBeCarried() const;
 	// Move the given ship into one of the fighter or drone bays, if possible.
-	bool AddFighter(const std::shared_ptr<Ship> &ship);
+	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Empty the fighter bays. If the fighters are not special ships that are
 	// saved in the player data, they will be deleted. Otherwise, they become
 	// visible as ships landed on the same planet as their parent.
-	void UnloadFighters();
+	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
-	std::vector<std::shared_ptr<Ship>> CarriedShips() const;
+	const std::vector<Bay> &Bays() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -296,18 +308,6 @@ private:
 	
 	
 private:
-	class Bay {
-	public:
-		Bay() = default;
-		Bay(double x, double y) : point(x * .5, y * .5) {}
-		Bay(const Point &point) : point(point) {}
-		
-		Point point;
-		std::shared_ptr<Ship> ship;
-	};
-	
-	
-private:
 	// Characteristics of the chassis:
 	const Ship *base = nullptr;
 	std::string modelName;
@@ -347,8 +347,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	
-	std::vector<Bay> droneBays;
-	std::vector<Bay> fighterBays;
+	std::vector<Bay> bays;
 	
 	std::vector<Point> enginePoints;
 	Armament armament;
