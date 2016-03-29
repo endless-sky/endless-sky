@@ -389,6 +389,7 @@ private:
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;
 	unsigned explosionTotal = 0;
+	std::map<const Effect *, int> finalExplosions;
 	
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;

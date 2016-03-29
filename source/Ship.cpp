@@ -64,6 +64,7 @@ void Ship::Load(const DataNode &node)
 	bool hasLicenses = false;
 	bool hasBays = false;
 	bool hasExplode = false;
+	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
 	for(const DataNode &child : node)
@@ -144,6 +145,16 @@ void Ship::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
+		}
+		else if(child.Token(0) == "final explode" && child.Size() >= 2)
+		{
+			if(!hasFinalExplode)
+			{
+				finalExplosions.clear();
+				hasFinalExplode = true;
+			}
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else if(child.Token(0) == "outfits")
 		{
@@ -230,6 +241,8 @@ void Ship::FinishLoading()
 			explosionEffects = base->explosionEffects;
 			explosionTotal = base->explosionTotal;
 		}
+		if(finalExplosions.empty())
+			finalExplosions = base->finalExplosions;
 		if(outfits.empty())
 			outfits = base->outfits;
 		if(description.empty())
@@ -381,6 +394,9 @@ void Ship::Save(DataWriter &out) const
 		for(const auto &it : explosionEffects)
 			if(it.first && it.second)
 				out.Write("explode", it.first->Name(), it.second);
+		for(const auto &it : finalExplosions)
+			if(it.first && it.second)
+				out.Write("final explode", it.first->Name(), it.second);
 		
 		if(currentSystem)
 			out.Write("system", currentSystem->Name());
@@ -725,6 +741,11 @@ bool Ship::Move(list<Effect> &effects)
 					
 				for(unsigned i = 0; i < explosionTotal / 2; ++i)
 					CreateExplosion(effects, true);
+				for(const auto &it : finalExplosions)
+				{
+					effects.push_back(*it.first);
+					effects.back().Place(position, velocity, angle);
+				}
 			}
 			energy = 0.;
 			heat = 0.;
