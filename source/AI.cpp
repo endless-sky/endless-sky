@@ -467,7 +467,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		else if(isPlayerEscort && sharedTarget.lock())
 			MoveIndependent(*it, command);
 		// If player ordered to evade, move away from near enemies.
-		else if (isPlayerEscort && stance == EVASIVE && target)
+		else if (isPlayerEscort && stance == EVASIVE)
 			DoEvade(*it, command, ships);
 		else if (isPlayerEscort && stance == DEFENSIVE && (parent->Position().Distance(it->Position()) > 500. || !flagship->WasAttacked(300)))
 			MoveEscort(*it, command);
