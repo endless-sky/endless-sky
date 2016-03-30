@@ -623,6 +623,7 @@ const Command &Ship::Commands() const
 // should be deleted.
 bool Ship::Move(list<Effect> &effects)
 {
+
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
@@ -1743,7 +1744,7 @@ bool Ship::WasAttacked(int lastFrames = 1) const
 bool Ship::EscortsWereAttacked(int lastFrames) const
 {
 	// Return true value if this ships escorts were attacked in lastFrames.
-	return escortsWereAttacked == 0 || lastFrames - escortsWereAttacked + 1 < 0;
+	return escortsWereAttacked != 0 && lastFrames - escortsWereAttacked + 1 > 0;
 }
 
 
