@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Animation.h"
 #include "Point.h"
 
+class Color;
 class Planet;
 
 
@@ -49,6 +50,8 @@ public:
 	// explaining why (e.g. too hot, too cold, etc.).
 	const std::string &LandingMessage() const;
 	
+	// Get the color to be used for displaying this object.
+	const Color &TargetColor() const;
 	// Check if this is a star.
 	bool IsStar() const;
 	// Check if this is a station.

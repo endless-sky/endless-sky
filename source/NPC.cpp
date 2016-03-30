@@ -220,9 +220,9 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		if(ship == event.Target())
 		{
 			actions[ship.get()] |= event.Type();
-			vector<shared_ptr<Ship>> carried = ship->CarriedShips();
-			for(const shared_ptr<Ship> &fighter : carried)
-				actions[fighter.get()] |= event.Type();
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.ship)
+					actions[bay.ship.get()] |= event.Type();
 			
 			// If a mission ship is captured, let it live on under its new
 			// ownership but mark our copy of it as destroyed.

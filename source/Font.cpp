@@ -102,6 +102,13 @@ void Font::Load(const string &imagePath)
 
 void Font::Draw(const string &str, const Point &point, const Color &color) const
 {
+	DrawAliased(str, round(point.X()), round(point.Y()), color);
+}
+
+
+
+void Font::DrawAliased(const std::string &str, double x, double y, const Color &color) const
+{
 	glUseProgram(shader.Object());
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -119,8 +126,8 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 	}
 	
 	GLfloat textPos[2] = {
-		static_cast<float>(round(point.X() - 1.)),
-		static_cast<float>(round(point.Y()))};
+		static_cast<float>(x - 1.),
+		static_cast<float>(y)};
 	int previous = 0;
 	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));

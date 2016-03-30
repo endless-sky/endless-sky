@@ -764,7 +764,7 @@ void PlayerInfo::Land(UI *ui)
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsDisabled())
-			ship->UnloadFighters();
+			ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
@@ -945,79 +945,51 @@ void PlayerInfo::TakeOff(UI *ui)
 	
 	// For each fighter and drone you own, try to find a ship that has a bay to
 	// carry it in. Any excess ships will need to be sold.
-	vector<shared_ptr<Ship>> fighters;
-	vector<shared_ptr<Ship>> drones;
-	for(shared_ptr<Ship> &ship : ships)
+	int shipsSold[2] = {0, 0};
+	int64_t income = 0;
+	for(auto it = ships.begin(); it != ships.end(); )
 	{
+		shared_ptr<Ship> &ship = *it;
 		if(ship->IsParked() || ship->IsDisabled())
 			continue;
 		
-		bool fit = false;
+		bool fit = true;
 		const string &category = ship->Attributes().Category();
-		if(category == "Fighter")
+		bool isFighter = (category == "Fighter");
+		if(isFighter || category == "Drone")
 		{
+			fit = false;
 			for(shared_ptr<Ship> &parent : ships)
 				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
-						&& !parent->IsDisabled() && parent->FighterBaysFree())
+						&& !parent->IsDisabled() && parent->Carry(ship))
 				{
-					parent->AddFighter(ship);
 					fit = true;
 					break;
 				}
-			if(!fit)
-				fighters.push_back(ship);
 		}
-		else if(category == "Drone")
+		if(!fit)
 		{
-			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
-						&& !parent->IsDisabled() && parent->DroneBaysFree())
-				{
-					parent->AddFighter(ship);
-					fit = true;
-					break;
-				}
-			if(!fit)
-				drones.push_back(ship);
+			++shipsSold[isFighter];
+			income += ship->Cost();
+			it = ships.erase(it);
 		}
+		else
+			++it;
 	}
-	if(!drones.empty() || !fighters.empty())
+	if(shipsSold[0] || shipsSold[1])
 	{
 		// If your fleet contains more fighters or drones than you can carry,
 		// some of them must be sold.
 		ostringstream out;
 		out << "Because none of your ships can carry them, you sold ";
-		if(!fighters.empty() && !drones.empty())
-			out << fighters.size()
-				<< (fighters.size() == 1 ? " fighter and " : " fighters and ")
-				<< drones.size()
-				<< (drones.size() == 1 ? " drone" : " drones");
-		else if(fighters.size())
-			out << fighters.size()
-				<< (fighters.size() == 1 ? " fighter" : " fighters");
-		else
-			out << drones.size()
-				<< (drones.size() == 1 ? " drone" : " drones");
-		
-		int64_t income = 0;
-		for(const shared_ptr<Ship> &ship : fighters)
-		{
-			auto it = find(ships.begin(), ships.end(), ship);
-			if(it != ships.end())
-			{
-				income += ship->Cost();
-				ships.erase(it);
-			}
-		}
-		for(const shared_ptr<Ship> &ship : drones)
-		{
-			auto it = find(ships.begin(), ships.end(), ship);
-			if(it != ships.end())
-			{
-				income += ship->Cost();
-				ships.erase(it);
-			}
-		}
+		if(shipsSold[1])
+			out << shipsSold[1]
+				<< (shipsSold[1] == 1 ? " fighter" : " fighters");
+		if(shipsSold[0] && shipsSold[1])
+			out << " and ";
+		if(shipsSold[0])
+			out << shipsSold[0]
+				<< (shipsSold[0] == 1 ? " drone" : " drones");
 		
 		out << ", earning " << income << " credits.";
 		accounts.AddCredits(income);
@@ -1050,7 +1022,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
-	int64_t income = 0;
+	income = 0;
 	int64_t totalBasis = 0;
 	if(sold)
 		for(const auto &commodity : cargo.Commodities())
