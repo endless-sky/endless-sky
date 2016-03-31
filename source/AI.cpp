@@ -40,8 +40,10 @@ namespace {
 	const Command &AutopilotCancelKeys()
 	{
 		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
-			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
-		
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
+			| Command::AUTOSTEER
+			);
+
 		return keys;
 	}
 	
@@ -1752,7 +1754,24 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			else
 				command.SetTurn(TurnBackward(ship));
 		}
-		
+		else if(keyHeld.Has(Command::AUTOSTEER))
+		{
+			// Point at our target ship, planet, or system.
+			shared_ptr<const Ship> target = ship.GetTargetShip();
+			if (target && (ship.GetSystem() == target->GetSystem())) {
+				Point direction = target->Position() - ship.Position();
+				// Only compute aiming if the ship is in front of us
+				if(direction.Unit().Dot(ship.Facing().Unit()) >= .8)
+					direction = TargetAim(ship);
+				command.SetTurn(TurnToward(ship, direction));
+			} else if (ship.GetTargetPlanet()) {
+				Point direction = ship.GetTargetPlanet()->Position() - ship.Position();
+				command.SetTurn(TurnToward(ship, direction));
+			} else if (ship.GetTargetSystem()) {
+				Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
+				command.SetTurn(TurnToward(ship, direction));
+			}
+		}
 		if(keyHeld.Has(Command::FORWARD))
 			command |= Command::FORWARD;
 		if(keyHeld.Has(Command::PRIMARY))

@@ -48,7 +48,8 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command WAIT;
-	
+	static const Command AUTOSTEER;
+
 public:
 	Command() = default;
 	// Assume SDL_Keycode is a signed int, so I don't need to include SDL.h.

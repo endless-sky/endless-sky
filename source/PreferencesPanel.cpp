@@ -111,6 +111,7 @@ void PreferencesPanel::Draw() const
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::AUTOSTEER,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
