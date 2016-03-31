@@ -316,6 +316,19 @@ void Ship::FinishLoading()
 	cargo.SetSize(attributes.Get("cargo space"));
 	equipped.clear();
 	armament.FinishLoading();
+
+	// Drones do not need crew, but all other ships need at least one.
+	if (attributes.Get("automaton"))
+		requiredCrew = 0;
+	else
+		requiredCrew = max(1, static_cast<int>(attributes.Get("required crew")));
+
+	if(!neverDisabled) {
+		double maximumHull = attributes.Get("hull");
+		minimumHull = max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	}
+
+	mass = attributes.Get("mass");
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
 	// Do not recharge if this ship's starting state was saved.
@@ -1725,11 +1738,7 @@ int Ship::Crew() const
 
 int Ship::RequiredCrew() const
 {
-	if(attributes.Get("automaton"))
-		return 0;
-	
-	// Drones do not need crew, but all other ships need at least one.
-	return max(1, static_cast<int>(attributes.Get("required crew")));
+	return requiredCrew;
 }
 
 
@@ -1747,7 +1756,7 @@ double Ship::Mass() const
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			carried += bay.ship->Mass();
-	return carried + cargo.Used() + attributes.Get("mass");
+	return carried + cargo.Used() + mass;
 }
 
 
@@ -2195,11 +2204,7 @@ bool Ship::CannotAct() const
 
 double Ship::MinimumHull() const
 {
-	if(neverDisabled)
-		return 0.;
-	
-	double maximumHull = attributes.Get("hull");
-	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	return minimumHull;
 }
 
 

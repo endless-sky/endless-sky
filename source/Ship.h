@@ -358,13 +358,16 @@ private:
 	// Various energy levels:
 	double shields = 0.;
 	double hull = 0.;
+	double minimumHull = 0.;
 	double fuel = 0.;
 	double energy = 0.;
 	double heat = 0.;
 	double heatDissipation = .999;
 	double ionization = 0.;
+	double mass = 0.;
 	
 	int crew = 0;
+	int requiredCrew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;
 	

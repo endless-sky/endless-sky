@@ -67,6 +67,8 @@ void Outfit::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(child.Token(0) == "cost")
+			cost = child.Value(1);
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -99,7 +101,7 @@ const string &Outfit::Description() const
 
 int64_t Outfit::Cost() const
 {
-	return Get("cost");
+	return cost;
 }
 
 
