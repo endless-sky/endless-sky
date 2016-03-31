@@ -225,7 +225,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				continue;
 			
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
-				strength += it->Cost();
+				strength += oit->Cost();
 		}
 	}		
 	
