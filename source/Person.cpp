@@ -53,7 +53,7 @@ void Person::Load(const DataNode &node)
 // person is dead or already active, this will return zero.
 int Person::Frequency(const System *system) const
 {
-	if(!system || !ship || ship->IsDestroyed() || ship->GetSystem())
+	if(!system || !ship || IsDestroyed() || ship->GetSystem())
 		return 0;
 	
 	return (location.IsEmpty() || location.Matches(system)) ? frequency : 0;
@@ -87,4 +87,11 @@ const Personality &Person::GetPersonality() const
 const Phrase &Person::GetHail() const
 {
 	return hail;
+}
+
+
+
+bool Person::IsDestroyed() const
+{
+	return (ship->IsDestroyed() || (ship->GetSystem() && ship->GetGovernment() != government));
 }

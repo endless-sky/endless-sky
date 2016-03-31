@@ -251,16 +251,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributesHeight += 20;
 	}
 	
-	if(ship.DroneBaysFree())
+	if(ship.BaysFree(false))
 	{
 		attributeLabels.push_back("drone bays:");
-		attributeValues.push_back(to_string(ship.DroneBaysFree()));
+		attributeValues.push_back(to_string(ship.BaysFree(false)));
 		attributesHeight += 20;
 	}
-	if(ship.FighterBaysFree())
+	if(ship.BaysFree(true))
 	{
 		attributeLabels.push_back("fighter bays:");
-		attributeValues.push_back(to_string(ship.FighterBaysFree()));
+		attributeValues.push_back(to_string(ship.BaysFree(true)));
 		attributesHeight += 20;
 	}
 	

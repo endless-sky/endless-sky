@@ -37,6 +37,7 @@ public:
 	void Load(const std::string &imagePath);
 	
 	void Draw(const std::string &str, const Point &point, const Color &color) const;
+	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	
 	int Width(const std::string &str, char after = ' ') const;
 	int Width(const char *str, char after = ' ') const;

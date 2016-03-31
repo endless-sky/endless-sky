@@ -12,7 +12,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StellarObject.h"
 
+#include "Color.h"
+#include "GameData.h"
 #include "Planet.h"
+#include "Politics.h"
 
 #include <algorithm>
 
@@ -103,6 +106,32 @@ const string &StellarObject::LandingMessage() const
 	}
 	static const string EMPTY;
 	return (message) ? *message : EMPTY;
+}
+
+
+
+// Get the color to be used for displaying this object.
+const Color &StellarObject::TargetColor() const
+{
+	static const Color planetColor[6] = {
+		Color(1., 1., 1., 1.),
+		Color(.3, .3, .3, 1.),
+		Color(0., .8, 1., 1.),
+		Color(.8, .4, .2, 1.),
+		Color(.8, .3, 1., 1.),
+		Color(0., .8, 0., 1.)
+	};
+	int index = !IsStar() + (GetPlanet() != nullptr);
+	if(GetPlanet())
+	{
+		if(!GetPlanet()->CanLand())
+			index = 3;
+		if(GetPlanet()->IsWormhole())
+			index = 4;
+		if(GameData::GetPolitics().HasDominated(GetPlanet()))
+			index = 5;
+	}
+	return planetColor[index];
 }
 
 

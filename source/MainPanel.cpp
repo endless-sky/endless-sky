@@ -273,14 +273,13 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << " (" << it.GetQuantity() << ")";
 				out << "\n";
 			}
-		vector<shared_ptr<Ship>> carried = target->CarriedShips();
-		if(!carried.empty())
+		map<string, int> count;
+		for(const Ship::Bay &bay : target->Bays())
+			if(bay.ship)
+				++count[bay.ship->ModelName()];
+		if(!count.empty())
 		{
 			out << "This ship is carrying:\n";
-			map<string, int> count;
-			for(const shared_ptr<Ship> &fighter : carried)
-				++count[fighter->ModelName()];
-			
 			for(const auto &it : count)
 				out << "\t" << it.second << " " << it.first << (it.second == 1 ? "\n" : "s\n");
 		}

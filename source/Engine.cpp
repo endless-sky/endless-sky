@@ -22,9 +22,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
+#include "LineShader.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -149,12 +151,12 @@ void Engine::Place()
 				if(ship->IsDestroyed() || ship->IsDisabled())
 					continue;
 				
-				if(ship->DroneBaysFree())
-					droneCarriers[&*ship] = ship->DroneBaysFree();
-				if(ship->FighterBaysFree())
-					fighterCarriers[&*ship] = ship->FighterBaysFree();
+				if(ship->BaysFree(false))
+					droneCarriers[&*ship] = ship->BaysFree(false);
+				if(ship->BaysFree(true))
+					fighterCarriers[&*ship] = ship->BaysFree(true);
 				// Redo the loading up of fighters.
-				ship->UnloadFighters();
+				ship->UnloadBays();
 			}
 			
 			for(const shared_ptr<Ship> &ship : npc.Ships())
@@ -172,9 +174,8 @@ void Engine::Place()
 					map<Ship *, int> &carriers = (ship->Attributes().Category() == "Drone") ?
 						droneCarriers : fighterCarriers;
 					for(auto &it : carriers)
-						if(it.second)
+						if(it.second && it.first->Carry(ship))
 						{
-							it.first->AddFighter(ship);
 							--it.second;
 							docked = true;
 							break;
@@ -351,6 +352,21 @@ void Engine::Step(bool isActive)
 			}
 		}
 	
+	// Create the planet labels.
+	labels.clear();
+	if(currentSystem)
+	{
+		for(const StellarObject &object : currentSystem->Objects())
+		{
+			if(!object.GetPlanet())
+				continue;
+			
+			Point pos = object.Position() - position;
+			if(pos.Length() < 500.)
+				labels.emplace_back(pos, object.Radius(), object.GetPlanet()->Name(), object.TargetColor());
+		}
+	}
+	
 	if(flagship && flagship->IsOverheated())
 		Messages::Add("Your ship has overheated.");
 	
@@ -497,6 +513,34 @@ const list<ShipEvent> &Engine::Events() const
 void Engine::Draw() const
 {
 	GameData::Background().Draw(position, velocity);
+	
+	// Draw any active planet labels.
+	const Font &bigFont = FontSet::Get(18);
+	for(const Label &label : labels)
+	{
+		// The angle of the outer ring should be reduced by just enough that the
+		// circumference is reduced by 6 pixels.
+		static const double INNER_SPACE = 10.;
+		static const double GAP = 6.;
+		static const double INNER_ANGLE = 60.;
+		double OUTER_ANGLE = INNER_ANGLE - 360. * GAP / (2. * PI * label.radius);
+		static const Angle ANGLE(INNER_ANGLE);
+		RingShader::Draw(
+			label.position, label.radius + INNER_SPACE,
+			2.3, .9, label.color, 0., INNER_ANGLE);
+		RingShader::Draw(
+			label.position, label.radius + INNER_SPACE + GAP,
+			1.3, .6, label.color, 0., OUTER_ANGLE);
+		
+		if(!label.name.empty())
+		{
+			Point from = label.position + (label.radius + INNER_SPACE + 1.7) * ANGLE.Unit();
+			Point to = from + 60. * ANGLE.Unit();
+			LineShader::Draw(from, to, 1.3, label.color);
+			bigFont.DrawAliased(label.name, to.X(), to.Y() - .5 * bigFont.Height(), label.color);
+		}
+	}
+	
 	draw[drawTickTock].Draw();
 	
 	for(const auto &it : statuses)
@@ -1220,6 +1264,13 @@ void Engine::CalculateStep()
 
 void Engine::AddSprites(const Ship &ship, const Point &position, const Point &velocity)
 {
+	AddSprites(ship, position, velocity, ship.Unit(), ship.Cloaking());
+}
+
+
+
+void Engine::AddSprites(const Ship &ship, const Point &position, const Point &velocity, const Point &unit, double cloak)
+{
 	if(ship.IsThrusting())
 		for(const Point &point : ship.EnginePoints())
 		{
@@ -1227,27 +1278,33 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 			for(const auto &it : ship.Attributes().FlareSprites())
 				for(int i = 0; i < it.second; ++i)
 				{
-					if(ship.Cloaking())
+					if(cloak)
 					{
 						draw[calcTickTock].Add(
 							it.first.GetSprite(),
 							pos,
-							ship.Unit(),
+							unit,
 							velocity,
-							ship.Cloaking());
+							cloak);
 					}
 					else
 					{
 						draw[calcTickTock].Add(
 							it.first,
 							pos,
-							ship.Unit(),
+							unit,
 							velocity);
 					}
 				}
 		}
 	
-	if(ship.Cloaking())
+	for(const Ship::Bay &bay : ship.Bays())
+		if(bay.isUnder && bay.ship)
+		{
+			Point pos = position + ship.Facing().Rotate(bay.point) * ship.Zoom();
+			AddSprites(*bay.ship, pos, velocity, unit, cloak);
+		}
+	if(cloak)
 	{
 		if(ship.GetGovernment()->IsPlayer())
 		{
@@ -1256,15 +1313,15 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 			draw[calcTickTock].Add(
 				animation,
 				position,
-				ship.Unit(),
+				unit,
 				velocity);
 		}
 		draw[calcTickTock].Add(
 			ship.GetSprite().GetSprite(),
 			position,
-			ship.Unit(),
+			unit,
 			velocity,
-			ship.Cloaking(),
+			cloak,
 			ship.GetSprite().GetSwizzle());
 	}
 	else
@@ -1272,9 +1329,15 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 		draw[calcTickTock].Add(
 			ship.GetSprite(),
 			position,
-			ship.Unit(),
+			unit,
 			velocity);
 	}
+	for(const Ship::Bay &bay : ship.Bays())
+		if(bay.isOver && bay.ship)
+		{
+			Point pos = position + ship.Facing().Rotate(bay.point) * ship.Zoom();
+			AddSprites(*bay.ship, pos, velocity, unit, cloak);
+		}
 }
 
 
@@ -1358,4 +1421,13 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 Engine::Status::Status(const Point &position, double shields, double hull, double radius, bool isEnemy)
 	: position(position), shields(shields), hull(hull), radius(radius), isEnemy(isEnemy)
 {
+}
+
+
+
+Engine::Label::Label(const Point &position, double radius, const string &name, const Color &color)
+	: position(position), radius(radius), name(name)
+{
+	double alpha = min(.5, max(0., .6 - position.Length() * .001));
+	this->color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 }

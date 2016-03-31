@@ -51,6 +51,19 @@ public:
 	// A constructor that sets the initial age.
 	static Ship* MakeShip(const Ship& ship, int age);
 	
+	class Bay {
+	public:
+		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
+		// Copying a bay does not copy the ship inside it.
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), isOver(b.isOver), isUnder(b.isUnder) {}
+		
+		Point point;
+		std::shared_ptr<Ship> ship;
+		bool isFighter = false;
+		bool isOver = false;
+		bool isUnder = false;
+	};
+	
 public:
 	// Load data for a type of ship:
 	void Load(const DataNode &node);
@@ -218,21 +231,20 @@ public:
 	bool HasBays() const;
 	// Check how many fighter and drone bays are not occupied at present. This
 	// does not check whether one of your escorts plans to use that bay.
-	int FighterBaysFree() const;
-	int DroneBaysFree() const;
+	int BaysFree(bool isFighter) const;
 	// Check if this ship has a bay free for the given fighter, and the bay is
 	// not reserved for one of its existing escorts.
-	bool CanHoldFighter(const Ship &ship) const;
+	bool CanCarry(const Ship &ship) const;
 	// Check if this is a ship of a type that can be carried (fighter or drone).
 	bool CanBeCarried() const;
 	// Move the given ship into one of the fighter or drone bays, if possible.
-	bool AddFighter(const std::shared_ptr<Ship> &ship);
+	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Empty the fighter bays. If the fighters are not special ships that are
 	// saved in the player data, they will be deleted. Otherwise, they become
 	// visible as ships landed on the same planet as their parent.
-	void UnloadFighters();
+	void UnloadBays();
 	// Get a list of any ships this ship is carrying.
-	std::vector<std::shared_ptr<Ship>> CarriedShips() const;
+	const std::vector<Bay> &Bays() const;
 	
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -311,18 +323,8 @@ private:
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
-	
-	
-private:
-	class Bay {
-	public:
-		Bay() = default;
-		Bay(double x, double y) : point(x * .5, y * .5) {}
-		Bay(const Point &point) : point(point) {}
-		
-		Point point;
-		std::shared_ptr<Ship> ship;
-	};
+	// Place a "spark" effect, like ionization or disruption.
+	void CreateSparks(std::list<Effect> &effects, const std::string &name, double amount);
 	
 	
 private:
@@ -367,8 +369,7 @@ private:
 	CargoHold cargo;
 	int age;
 	
-	std::vector<Bay> droneBays;
-	std::vector<Bay> fighterBays;
+	std::vector<Bay> bays;
 	
 	std::vector<Point> enginePoints;
 	Armament armament;
@@ -384,6 +385,8 @@ private:
 	double heat = 0.;
 	double heatDissipation = .999;
 	double ionization = 0.;
+	double disruption = 0.;
+	double slowness = 0.;
 	
 	int crew = 0;
 	int pilotError = 0;
@@ -409,6 +412,7 @@ private:
 	unsigned explosionRate = 0;
 	unsigned explosionCount = 0;
 	unsigned explosionTotal = 0;
+	std::map<const Effect *, int> finalExplosions;
 	
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;

@@ -318,7 +318,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 					victim->SetParent(you);
 				else
 					for(const shared_ptr<Ship> &ship : player.Ships())
-						if(ship->CanHoldFighter(*victim))
+						if(ship->CanCarry(*victim))
 						{
 							victim->SetParent(ship);
 							break;
@@ -437,7 +437,7 @@ bool BoardingPanel::CanCapture() const
 		
 		// Check if any ship in your fleet can carry this ship.
 		for(const shared_ptr<Ship> &ship : player.Ships())
-			if(ship->CanHoldFighter(*victim))
+			if(ship->CanCarry(*victim))
 				return true;
 		
 		return false;
