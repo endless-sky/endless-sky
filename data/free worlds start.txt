@@ -1595,7 +1595,7 @@ mission "FW Pirates 4.1"
 				`	"Yes."`
 					goto reason
 				`	"No, I was led to believe that I was following the Senate's orders."`
-			`	"Interesting," sys Arianna. "That's not what Tomek told us. And JJ and Freya both said that you were well aware of the Senate's wishes."`
+			`	"Interesting," says Arianna. "That's not what Tomek told us. And JJ and Freya both said that you were well aware of the Senate's wishes."`
 			label reason
 			`	One of the other Senators, an older man, asks, "Why did you choose to take part in the attack?"`
 			choice
