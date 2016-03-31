@@ -356,14 +356,15 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
 				// Handle orphaned fighters and drones.
+				it->SetParent(shared_ptr<Ship>());
 				for(const auto &other : ships)
 					if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
-							&& other->GetSystem() == it->GetSystem())
+							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
+					{
+						it->SetParent(other);
 						if(other->BaysFree(isFighter))
-						{
-							it->SetParent(other);
 							break;
-						}
+					}
 			}
 			else if(parent && !(it->IsYours() ? isLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
@@ -760,7 +761,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetPlanet())
 	{
 		MoveToPlanet(ship, command);
-		if(!ship.GetPersonality().IsStaying())
+		if(!ship.GetPersonality().IsStaying() && ship.Attributes().Get("fuel capacity"))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetPlanet()->Position()) < 100.)
 			ship.SetTargetPlanet(nullptr);
@@ -777,10 +778,11 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 void AI::MoveEscort(Ship &ship, Command &command)
 {
 	const Ship &parent = *ship.GetParent();
-	bool isStaying = ship.GetPersonality().IsStaying();
+	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
+	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining() && ship.GetSystem()->IsInhabited())
+	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->IsInhabited())
 		Refuel(ship, command);
 	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
