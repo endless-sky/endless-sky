@@ -48,6 +48,9 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command WAIT;
+	static const Command STANCE_AGGRESSIVE;
+	static const Command STANCE_DEFENSIVE;
+	static const Command STANCE_EVASIVE;
 	
 public:
 	Command() = default;
