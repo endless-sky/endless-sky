@@ -875,7 +875,8 @@ void PlayerInfo::TakeOff(UI *ui)
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
 	for(const auto &it : GameData::Persons())
-		it.second.GetShip()->SetSystem(nullptr);
+		if(!it.second.IsDestroyed())
+			it.second.GetShip()->SetSystem(nullptr);
 	
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
@@ -951,7 +952,10 @@ void PlayerInfo::TakeOff(UI *ui)
 	{
 		shared_ptr<Ship> &ship = *it;
 		if(ship->IsParked() || ship->IsDisabled())
+		{
+			++it;
 			continue;
+		}
 		
 		bool fit = true;
 		const string &category = ship->Attributes().Category();
@@ -1685,8 +1689,9 @@ void PlayerInfo::Save(const string &path) const
 	}
 	GameData::WriteEconomy(out);
 	
+	// Check which persons have been captured or destroyed.
 	for(const auto &it : GameData::Persons())
-		if(it.second.GetShip()->IsDestroyed())
+		if(it.second.IsDestroyed())
 			out.Write("destroyed", it.first);
 	
 	// Save a list of systems the player has visited.

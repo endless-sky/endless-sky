@@ -305,6 +305,8 @@ private:
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
+	// Place a "spark" effect, like ionization or disruption.
+	void CreateSparks(std::list<Effect> &effects, const std::string &name, double amount);
 	
 	
 private:
@@ -364,6 +366,8 @@ private:
 	double heat = 0.;
 	double heatDissipation = .999;
 	double ionization = 0.;
+	double disruption = 0.;
+	double slowness = 0.;
 	double mass = 0.;
 	
 	int crew = 0;
