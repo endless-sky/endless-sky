@@ -763,7 +763,7 @@ bool Ship::Move(list<Effect> &effects)
 	}
 	else if(hyperspaceSystem || hyperspaceCount)
 	{
-		fuel -= (hyperspaceSystem != nullptr);
+		fuel -= (hyperspaceSystem != nullptr) * hyperspaceType * .01;
 		
 		// Enter hyperspace.
 		int direction = (hyperspaceSystem != nullptr) - (hyperspaceSystem == nullptr);
@@ -797,8 +797,6 @@ bool Ship::Move(list<Effect> &effects)
 		if(hyperspaceCount == HYPER_C)
 		{
 			currentSystem = hyperspaceSystem;
-			// If the jump fuel is higher than 100, expend extra fuel now.
-			fuel -= hyperspaceType - HYPER_C;
 			hyperspaceSystem = nullptr;
 			SetTargetSystem(nullptr);
 			SetTargetPlanet(nullptr);
