@@ -2231,6 +2231,8 @@ void Ship::FinishAddingOutfit(const Outfit *outfit, int count)
 		cargo.SetSize(attributes.Get("cargo space"));
 	if(outfit->Get("hull"))
 		hull += outfit->Get("hull") * count;
+	
+	UpdateCost();
 }
 
 
