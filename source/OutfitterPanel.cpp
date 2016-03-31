@@ -677,7 +677,6 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 		attributes.Add(*ammo, -ship->OutfitCount(ammo));
 		return attributes.CanAdd(*outfit, -1);
 	}
-	
 	// Now, check whether this ship can sell this outfit.
 	return ship->Attributes().CanAdd(*outfit, -1);
 }

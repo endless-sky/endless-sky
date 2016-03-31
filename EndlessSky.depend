@@ -24,7 +24,7 @@
 	<string>
 	<sstream>
 
-1458966036 source:c:\users\jan\documents\github\endless-sky\source\ai.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\ai.cpp
 	"AI.h"
 	"Armament.h"
 	"Command.h"
@@ -53,11 +53,11 @@
 	<map>
 	<memory>
 
-1458966036 c:\users\jan\documents\github\endless-sky\source\command.h
+1459171987 c:\users\jan\documents\github\endless-sky\source\command.h
 	<cstdint>
 	<string>
 
-1455685494 c:\users\jan\documents\github\endless-sky\source\armament.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\armament.h
 	"Angle.h"
 	"Point.h"
 	<map>
@@ -114,7 +114,7 @@
 	<map>
 	<string>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\playerinfo.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\playerinfo.h
 	"Account.h"
 	"CargoHold.h"
 	"Date.h"
@@ -128,7 +128,7 @@
 	<vector>
 	<string>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\cargohold.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\cargohold.h
 	"OutfitGroup.h"
 	<map>
 	<string>
@@ -163,7 +163,7 @@
 	<set>
 	<string>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\missionaction.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\missionaction.h
 	"ConditionSet.h"
 	"Conversation.h"
 	"OutfitGroup.h"
@@ -171,14 +171,14 @@
 	<set>
 	<string>
 
-1458228648 c:\users\jan\documents\github\endless-sky\source\conversation.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\conversation.h
 	"ConditionSet.h"
 	<map>
 	<string>
 	<utility>
 	<vector>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\npc.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\npc.h
 	"Conversation.h"
 	"Fleet.h"
 	"LocationFilter.h"
@@ -204,7 +204,7 @@
 1455685494 c:\users\jan\documents\github\endless-sky\source\random.h
 	<cstdint>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\ship.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\ship.h
 	"Angle.h"
 	"Animation.h"
 	"Armament.h"
@@ -230,14 +230,14 @@
 	<utility>
 	<vector>
 
-1455685494 c:\users\jan\documents\github\endless-sky\source\weapon.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\weapon.h
 	"Animation.h"
 	<map>
 
 1455684890 c:\users\jan\documents\github\endless-sky\source\shipevent.h
 	<memory>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\system.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\system.h
 	"Point.h"
 	"Set.h"
 	"StellarObject.h"
@@ -245,7 +245,7 @@
 	<string>
 	<vector>
 
-1455684890 c:\users\jan\documents\github\endless-sky\source\stellarobject.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\stellarobject.h
 	"Animation.h"
 	"Point.h"
 
@@ -594,7 +594,7 @@
 1455684890 c:\users\jan\documents\github\endless-sky\source\spriteset.h
 	<string>
 
-1455685494 source:c:\users\jan\documents\github\endless-sky\source\armament.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\armament.cpp
 	"Armament.h"
 	"Audio.h"
 	"Effect.h"
@@ -676,7 +676,7 @@
 
 1454696422 c:\dev32\include\al\alc.h
 
-1458228636 source:c:\users\jan\documents\github\endless-sky\source\bankpanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\bankpanel.cpp
 	"BankPanel.h"
 	"Color.h"
 	"Dialog.h"
@@ -695,7 +695,7 @@
 	"Panel.h"
 	<string>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\panel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\panel.h
 	<SDL2/SDL.h>
 
 1455684890 c:\users\jan\documents\github\endless-sky\source\dialog.h
@@ -710,7 +710,7 @@
 	<string>
 	<vector>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\format.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\format.h
 	<map>
 	<string>
 
@@ -751,7 +751,7 @@
 	<vector>
 	<SDL2/SDL_events.h>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\boardingpanel.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\boardingpanel.cpp
 	"BoardingPanel.h"
 	"CargoHold.h"
 	"Dialog.h"
@@ -773,7 +773,7 @@
 	"UI.h"
 	<algorithm>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\boardingpanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\boardingpanel.h
 	"Panel.h"
 	"CaptureOdds.h"
 	<memory>
@@ -785,7 +785,7 @@
 
 1455684890 c:\users\jan\documents\github\endless-sky\source\fillshader.h
 
-1455684890 c:\users\jan\documents\github\endless-sky\source\font.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\font.h
 	"Shader.h"
 	"gl_header.h"
 	<string>
@@ -809,7 +809,7 @@
 1455684890 c:\users\jan\documents\github\endless-sky\source\fontset.h
 	<string>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\infopanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\infopanel.h
 	"Panel.h"
 	"ClickZone.h"
 	"ShipInfoDisplay.h"
@@ -822,7 +822,7 @@
 	"Point.h"
 	<cmath>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\shipinfodisplay.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\shipinfodisplay.h
 	"ItemInfoDisplay.h"
 	<vector>
 	<string>
@@ -832,13 +832,13 @@
 	<vector>
 	<string>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\captureodds.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\captureodds.cpp
 	"CaptureOdds.h"
 	"Outfit.h"
 	"Ship.h"
 	<algorithm>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\cargohold.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\cargohold.cpp
 	"CargoHold.h"
 	"DataNode.h"
 	"DataWriter.h"
@@ -852,7 +852,7 @@
 1455685494 source:c:\users\jan\documents\github\endless-sky\source\color.cpp
 	"Color.h"
 
-1458966036 source:c:\users\jan\documents\github\endless-sky\source\command.cpp
+1459171987 source:c:\users\jan\documents\github\endless-sky\source\command.cpp
 	"Command.h"
 	"DataFile.h"
 	"DataNode.h"
@@ -872,14 +872,14 @@
 	"DataWriter.h"
 	<cmath>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\conversation.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\conversation.cpp
 	"Conversation.h"
 	"DataNode.h"
 	"DataWriter.h"
 	"Format.h"
 	"SpriteSet.h"
 
-1458052270 source:c:\users\jan\documents\github\endless-sky\source\conversationpanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\conversationpanel.cpp
 	"ConversationPanel.h"
 	"BoardingPanel.h"
 	"Color.h"
@@ -903,7 +903,7 @@
 	"UI.h"
 	<iterator>
 
-1458178077 c:\users\jan\documents\github\endless-sky\source\conversationpanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\conversationpanel.h
 	"Panel.h"
 	"ClickZone.h"
 	"WrappedText.h"
@@ -918,7 +918,7 @@
 	"Point.h"
 	<map>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\mappanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\mappanel.h
 	"Panel.h"
 	"Color.h"
 	"DistanceMap.h"
@@ -997,7 +997,7 @@
 	"DataNode.h"
 	"Random.h"
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\engine.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\engine.cpp
 	"Engine.h"
 	"Audio.h"
 	"Effect.h"
@@ -1009,9 +1009,11 @@
 	"GameData.h"
 	"Government.h"
 	"Interface.h"
+	"LineShader.h"
 	"Mask.h"
 	"Messages.h"
 	"Person.h"
+	"pi.h"
 	"Planet.h"
 	"PlayerInfo.h"
 	"Politics.h"
@@ -1026,7 +1028,7 @@
 	"System.h"
 	<cmath>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\engine.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\engine.h
 	"AI.h"
 	"AsteroidField.h"
 	"DrawList.h"
@@ -1044,7 +1046,7 @@
 	<thread>
 	<vector>
 
-1455684890 c:\users\jan\documents\github\endless-sky\source\escortdisplay.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\escortdisplay.h
 	<cstdint>
 	<list>
 	<string>
@@ -1058,7 +1060,7 @@
 1455684890 c:\users\jan\documents\github\endless-sky\source\frametimer.h
 	<chrono>
 
-1455684890 c:\users\jan\documents\github\endless-sky\source\person.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\person.h
 	"LocationFilter.h"
 	"Personality.h"
 	"Phrase.h"
@@ -1075,14 +1077,14 @@
 
 1455684890 c:\users\jan\documents\github\endless-sky\source\pointershader.h
 
-1455685494 c:\users\jan\documents\github\endless-sky\source\ringshader.h
+1459465674 c:\users\jan\documents\github\endless-sky\source\ringshader.h
 
 1455684890 c:\users\jan\documents\github\endless-sky\source\starfield.h
 	"Shader.h"
 	"gl_header.h"
 	<vector>
 
-1455685494 source:c:\users\jan\documents\github\endless-sky\source\escortdisplay.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\escortdisplay.cpp
 	"EscortDisplay.h"
 	"Color.h"
 	"Font.h"
@@ -1132,7 +1134,7 @@
 	"Shader.h"
 	<stdexcept>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\fleet.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\fleet.cpp
 	"Fleet.h"
 	"DataNode.h"
 	"GameData.h"
@@ -1148,7 +1150,7 @@
 	<algorithm>
 	<cmath>
 
-1455684890 source:c:\users\jan\documents\github\endless-sky\source\font.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\font.cpp
 	"Font.h"
 	"Color.h"
 	"ImageBuffer.h"
@@ -1165,7 +1167,7 @@
 	"Font.h"
 	<map>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\format.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\format.cpp
 	"Format.h"
 	<algorithm>
 	<cctype>
@@ -1184,7 +1186,7 @@
 1455684890 c:\users\jan\documents\github\endless-sky\source\galaxy.h
 	"Point.h"
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\gamedata.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\gamedata.cpp
 	"GameData.h"
 	"Audio.h"
 	"Color.h"
@@ -1347,7 +1349,7 @@
 
 1454696422 c:\dev32\include\jerror.h
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\infopanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\infopanel.cpp
 	"InfoPanel.h"
 	"Armament.h"
 	"Color.h"
@@ -1371,7 +1373,7 @@
 	"UI.h"
 	<algorithm>
 
-1458965859 c:\users\jan\documents\github\endless-sky\source\missionpanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\missionpanel.h
 	"MapPanel.h"
 	"WrappedText.h"
 	<list>
@@ -1412,7 +1414,7 @@
 	"Shader.h"
 	<stdexcept>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\loadpanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\loadpanel.cpp
 	"LoadPanel.h"
 	"Color.h"
 	"Command.h"
@@ -1435,7 +1437,7 @@
 	"UI.h"
 	<algorithm>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\loadpanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\loadpanel.h
 	"Panel.h"
 	"SavedGame.h"
 	<map>
@@ -1450,13 +1452,13 @@
 	"Command.h"
 	"Engine.h"
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\shipyardpanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\shipyardpanel.h
 	"ShopPanel.h"
 	"PlayerInfo.h"
 	"Sale.h"
 	<string>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\shoppanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\shoppanel.h
 	"Panel.h"
 	"Point.h"
 	<map>
@@ -1476,7 +1478,7 @@
 	"System.h"
 	<mutex>
 
-1458052270 source:c:\users\jan\documents\github\endless-sky\source\main.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\main.cpp
 	"Audio.h"
 	"Command.h"
 	"Conversation.h"
@@ -1508,7 +1510,7 @@
 	<string>
 	<vector>
 
-1455685494 source:c:\users\jan\documents\github\endless-sky\source\mapdetailpanel.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\mapdetailpanel.cpp
 	"MapDetailPanel.h"
 	"Color.h"
 	"Command.h"
@@ -1547,7 +1549,7 @@
 	"OutfitInfoDisplay.h"
 	<vector>
 
-1458052270 c:\users\jan\documents\github\endless-sky\source\mapsalespanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\mapsalespanel.h
 	"MapPanel.h"
 	"ClickZone.h"
 	<map>
@@ -1580,7 +1582,7 @@
 	<cmath>
 	<set>
 
-1458052270 source:c:\users\jan\documents\github\endless-sky\source\mappanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\mappanel.cpp
 	"MapPanel.h"
 	"Angle.h"
 	"Font.h"
@@ -1605,7 +1607,7 @@
 	<algorithm>
 	<cctype>
 
-1458052270 source:c:\users\jan\documents\github\endless-sky\source\mapsalespanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\mapsalespanel.cpp
 	"MapSalesPanel.h"
 	"Command.h"
 	"Dialog.h"
@@ -1693,7 +1695,7 @@
 	"Messages.h"
 	<mutex>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\mission.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\mission.cpp
 	"Mission.h"
 	"DataNode.h"
 	"DataWriter.h"
@@ -1713,7 +1715,7 @@
 	<cmath>
 	<sstream>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\missionaction.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\missionaction.cpp
 	"MissionAction.h"
 	"ConversationPanel.h"
 	"DataNode.h"
@@ -1728,7 +1730,7 @@
 	"UI.h"
 	<vector>
 
-1458965859 source:c:\users\jan\documents\github\endless-sky\source\missionpanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\missionpanel.cpp
 	"MissionPanel.h"
 	"Command.h"
 	"Dialog.h"
@@ -1764,7 +1766,7 @@
 	<algorithm>
 	<cmath>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\npc.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\npc.cpp
 	"NPC.h"
 	"ConversationPanel.h"
 	"DataNode.h"
@@ -1782,7 +1784,7 @@
 	"UI.h"
 	<vector>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\outfit.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\outfit.cpp
 	"Outfit.h"
 	"Audio.h"
 	"DataNode.h"
@@ -1800,7 +1802,7 @@
 	<map>
 	<set>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\outfitterpanel.cpp
+1459466222 source:c:\users\jan\documents\github\endless-sky\source\outfitterpanel.cpp
 	"OutfitterPanel.h"
 	"Color.h"
 	"ConversationPanel.h"
@@ -1825,7 +1827,7 @@
 	"UI.h"
 	<limits>
 
-1458228637 c:\users\jan\documents\github\endless-sky\source\outfitterpanel.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\outfitterpanel.h
 	"ShopPanel.h"
 	"OutfitGroup.h"
 	"Sale.h"
@@ -1840,7 +1842,7 @@
 	"Shader.h"
 	"Sprite.h"
 
-1458052270 source:c:\users\jan\documents\github\endless-sky\source\panel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\panel.cpp
 	"Panel.h"
 	"Color.h"
 	"Command.h"
@@ -1848,7 +1850,7 @@
 	"Screen.h"
 	"UI.h"
 
-1455684890 source:c:\users\jan\documents\github\endless-sky\source\person.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\person.cpp
 	"Person.h"
 	"DataNode.h"
 	"GameData.h"
@@ -1916,7 +1918,7 @@
 1455684891 c:\users\jan\documents\github\endless-sky\source\tradingpanel.h
 	"Panel.h"
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\playerinfo.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\playerinfo.cpp
 	"PlayerInfo.h"
 	"Audio.h"
 	"ConversationPanel.h"
@@ -1954,7 +1956,7 @@
 	"Shader.h"
 	<stdexcept>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\politics.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\politics.cpp
 	"Politics.h"
 	"Format.h"
 	"GameData.h"
@@ -1977,7 +1979,7 @@
 	"Screen.h"
 	<map>
 
-1458966036 source:c:\users\jan\documents\github\endless-sky\source\preferencespanel.cpp
+1459171987 source:c:\users\jan\documents\github\endless-sky\source\preferencespanel.cpp
 	"PreferencesPanel.h"
 	"Audio.h"
 	"Color.h"
@@ -2014,7 +2016,7 @@
 	<random>
 	<mutex>
 
-1455685494 source:c:\users\jan\documents\github\endless-sky\source\ringshader.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\ringshader.cpp
 	"RingShader.h"
 	"Color.h"
 	"pi.h"
@@ -2043,7 +2045,7 @@
 	<stdexcept>
 	<vector>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\ship.cpp
+1459467599 source:c:\users\jan\documents\github\endless-sky\source\ship.cpp
 	"Ship.h"
 	"DataNode.h"
 	"DataWriter.h"
@@ -2067,7 +2069,7 @@
 	"ShipEvent.h"
 	"Ship.h"
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\shipinfodisplay.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\shipinfodisplay.cpp
 	"ShipInfoDisplay.h"
 	"Color.h"
 	"Format.h"
@@ -2078,7 +2080,7 @@
 	<algorithm>
 	<map>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\shipyardpanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\shipyardpanel.cpp
 	"ShipyardPanel.h"
 	"Color.h"
 	"Dialog.h"
@@ -2095,7 +2097,7 @@
 	"System.h"
 	"UI.h"
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\shoppanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\shoppanel.cpp
 	"ShopPanel.h"
 	"Color.h"
 	"FillShader.h"
@@ -2180,12 +2182,15 @@
 	"Planet.h"
 	"System.h"
 
-1455685494 source:c:\users\jan\documents\github\endless-sky\source\stellarobject.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\stellarobject.cpp
 	"StellarObject.h"
+	"Color.h"
+	"GameData.h"
 	"Planet.h"
+	"Politics.h"
 	<algorithm>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\system.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\system.cpp
 	"System.h"
 	"Angle.h"
 	"DataNode.h"
@@ -2204,13 +2209,13 @@
 	"FontSet.h"
 	"Format.h"
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\trade.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\trade.cpp
 	"Trade.h"
 	"DataNode.h"
 	<algorithm>
 	<cassert>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\tradingpanel.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\tradingpanel.cpp
 	"TradingPanel.h"
 	"Color.h"
 	"Command.h"
@@ -2231,14 +2236,14 @@
 	"UI.h"
 	<string>
 
-1458052270 source:c:\users\jan\documents\github\endless-sky\source\ui.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\ui.cpp
 	"UI.h"
 	"Command.h"
 	"Panel.h"
 	"Screen.h"
 	<SDL2/SDL.h>
 
-1455685494 source:c:\users\jan\documents\github\endless-sky\source\weapon.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\weapon.cpp
 	"Weapon.h"
 	"Audio.h"
 	"DataNode.h"
@@ -2254,7 +2259,7 @@
 	<cassert>
 	<cstring>
 
-1458228637 source:c:\users\jan\documents\github\endless-sky\source\mainpanel.cpp
+1459465674 source:c:\users\jan\documents\github\endless-sky\source\mainpanel.cpp
 	"MainPanel.h"
 	"BoardingPanel.h"
 	"Command.h"
@@ -2279,7 +2284,7 @@
 	<sstream>
 	<string>
 
-1458965871 c:\users\jan\documents\github\endless-sky\source\outfitgroup.h
+1459465663 c:\users\jan\documents\github\endless-sky\source\outfitgroup.h
 	"Outfit.h"
 	<map>
 	<set>
@@ -2287,7 +2292,7 @@
 	<utility>
 	<vector>
 
-1458965871 source:c:\users\jan\documents\github\endless-sky\source\outfitgroup.cpp
+1459465663 source:c:\users\jan\documents\github\endless-sky\source\outfitgroup.cpp
 	"OutfitGroup.h"
 	"Outfit.h"
 	"DataNode.h"

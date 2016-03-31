@@ -138,9 +138,9 @@ void TradingPanel::Draw() const
 	{
 		string str = to_string(outfits + missionCargo);
 		if(outfits && missionCargo)
-			str += " tons of outfits and mission cargo.";
+			str += " tons of mission cargo and outfits worth " + Format::Number(player.Cargo().Outfits().GetTotalCost()) + ".";
 		else if(outfits)
-			str += " tons of plundered outfits.";
+			str += " tons of outfits worth " + Format::Number(player.Cargo().Outfits().GetTotalCost()) + ".";
 		else
 			str += " tons of mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
