@@ -85,11 +85,17 @@ public:
 	double HullDamage() const;
 	double HeatDamage() const;
 	double IonDamage() const;
+	double DisruptionDamage() const;
+	double SlowingDamage() const;
 	
 	double Piercing() const;
 	
 	double TotalLifetime() const;
 	double Range() const;
+	
+	
+private:
+	double TotalDamage(int index) const;
 	
 	
 private:
@@ -135,20 +141,20 @@ private:
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
-	
-	double shieldDamage = 0.;
-	double hullDamage = 0.;
-	double heatDamage = 0.;
-	double ionDamage = 0.;
 	double hitForce = 0.;
+	
+	static const int SHIELD_DAMAGE = 0;
+	static const int HULL_DAMAGE = 1;
+	static const int HEAT_DAMAGE = 2;
+	static const int ION_DAMAGE = 3;
+	static const int DISRUPTION_DAMAGE = 4;
+	static const int SLOWING_DAMAGE = 5;
+	mutable double damage[6] = {0., 0., 0., 0., 0., 0.};
 	
 	double piercing = 0.;
 	
 	// Cache the calculation of these values, for faster access.
-	mutable double totalShieldDamage = -1.;
-	mutable double totalHullDamage = -1.;
-	mutable double totalHeatDamage = -1.;
-	mutable double totalIonDamage = -1.;
+	mutable bool calculatedDamage[6] = {false, false, false, false, false, false};
 	mutable double totalLifetime = -1.;
 };
 
@@ -183,6 +189,13 @@ inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::HitForce() const { return hitForce; }
+
+inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
+inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
+inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
+inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
+inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
+inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
 
 
 

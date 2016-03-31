@@ -336,6 +336,24 @@ effect "ion spark"
 	"random spin" 10
 	"random velocity" 1
 
+effect "disruption spark"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
+effect "slowing spark"
+	sprite "effect/slowing"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 17
+	"random angle" 360
+	"random spin" 30
+	"random velocity" .1
+
 effect "box"
 	sprite "effect/box"
 		"frame rate" 6

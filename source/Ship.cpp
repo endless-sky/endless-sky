@@ -493,6 +493,8 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	// Make sure various special status values are reset.
 	heat = IdleHeat();
 	ionization = 0.;
+	disruption = 0.;
+	slowness = 0.;
 	cloak = 0.;
 	jettisoned = 0;
 	hyperspaceCount = 0;
@@ -647,28 +649,23 @@ bool Ship::Move(list<Effect> &effects)
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
 		hyperspaceSystem = nullptr;
 	
-	// Handle ionization effects.
+	// Handle ionization effects, etc.
 	if(ionization)
 	{
 		ionization *= .99;
-		
-		const Effect *effect = GameData::Effects().Get("ion spark");
-		double ion = ionization * .1;
-		while(!forget)
-		{
-			ion -= Random::Real();
-			if(ion <= 0.)
-				break;
-			
-			Point point((Random::Real() - .5) * .5 * sprite.Width(),
-				(Random::Real() - .5) * .5 * sprite.Height());
-			if(sprite.GetMask(0).Contains(point, Angle()))
-			{
-				effects.push_back(*effect);
-				effects.back().Place(angle.Rotate(point) + position, velocity, angle);
-			}
-		}
+		CreateSparks(effects, "ion spark", ionization * .1);
 	}
+	if(disruption)
+	{
+		disruption *= .99;
+		CreateSparks(effects, "disruption spark", disruption * .1);
+	}
+	if(slowness)
+	{
+		slowness *= .99;
+		CreateSparks(effects, "slowing spark", slowness * .1);
+	}
+	double slowMultiplier = 1. / (1. + slowness * .05);
 	// Jettisoned cargo effects.
 	static const int JETTISON_BOX = 5;
 	if(jettisoned >= JETTISON_BOX)
@@ -1018,6 +1015,7 @@ bool Ship::Move(list<Effect> &effects)
 		}
 		if(acceleration)
 		{
+			acceleration *= slowMultiplier;
 			Point dragAcceleration = acceleration - velocity * (attributes.Get("drag") / mass);
 			// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 			if(dragAcceleration)
@@ -1038,7 +1036,7 @@ bool Ship::Move(list<Effect> &effects)
 			{
 				energy -= cost;
 				heat += attributes.Get("turning heat");
-				angle += commands.Turn() * TurnRate();
+				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
 	}
@@ -1591,6 +1589,8 @@ void Ship::Recharge(bool atSpaceport)
 	}
 	heat = IdleHeat();
 	ionization = 0.;
+	disruption = 0.;
+	slowness = 0.;
 }
 
 
@@ -1786,16 +1786,21 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	double hitForce = weapon.HitForce();
 	double heatDamage = weapon.HeatDamage();
 	double ionDamage = weapon.IonDamage();
+	double disruptionDamage = weapon.DisruptionDamage();
+	double slowingDamage = weapon.SlowingDamage();
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 	
 	double shieldFraction = 1. - weapon.Piercing();
+	shieldFraction *= 1. / (1. + disruption * .01);
 	if(shieldDamage > shields)
 	    shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	hull -= hullDamage * (1. - shieldFraction);
 	heat += heatDamage * (1. - .5 * shieldFraction);
 	ionization += ionDamage * (1. - .5 * shieldFraction);
+	disruption += disruptionDamage * (1. - .5 * shieldFraction);
+	slowness += slowingDamage * (1. - .5 * shieldFraction);
 	
 	if(hitForce && !IsHyperspacing())
 	{
@@ -2241,6 +2246,31 @@ void Ship::CreateExplosion(list<Effect> &effects, bool spread)
 			effects.back().Place(angle.Rotate(point) + position, effectVelocity, angle);
 			++explosionCount;
 			return;
+		}
+	}
+}
+
+
+
+// Place a "spark" effect, like ionization or disruption.
+void Ship::CreateSparks(std::list<Effect> &effects, const string &name, double amount)
+{
+	if(forget)
+		return;
+
+	const Effect *effect = GameData::Effects().Get(name);
+	while(true)
+	{
+		amount -= Random::Real();
+		if(amount <= 0.)
+			break;
+		
+		Point point((Random::Real() - .5) * .5 * sprite.Width(),
+			(Random::Real() - .5) * .5 * sprite.Height());
+		if(sprite.GetMask(0).Contains(point, Angle()))
+		{
+			effects.push_back(*effect);
+			effects.back().Place(angle.Rotate(point) + position, velocity, angle);
 		}
 	}
 }

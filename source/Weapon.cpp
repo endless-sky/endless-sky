@@ -109,13 +109,17 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(child.Token(0) == "blast radius")
 				blastRadius = child.Value(1);
 			else if(child.Token(0) == "shield damage")
-				shieldDamage = child.Value(1);
+				damage[SHIELD_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "hull damage")
-				hullDamage = child.Value(1);
+				damage[HULL_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "heat damage")
-				heatDamage = child.Value(1);
+				damage[HEAT_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "ion damage")
-				ionDamage = child.Value(1);
+				damage[ION_DAMAGE] = child.Value(1);
+			else if(child.Token(0) == "disruption damage")
+				damage[DISRUPTION_DAMAGE] = child.Value(1);
+			else if(child.Token(0) == "slowing damage")
+				damage[SLOWING_DAMAGE] = child.Value(1);
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
 			else if(child.Token(0) == "piercing")
@@ -226,60 +230,6 @@ const map<const Outfit *, int> &Weapon::Submunitions() const
 
 
 
-// These accessors cache the results of recursive calculations:
-double Weapon::ShieldDamage() const
-{
-	if(totalShieldDamage < 0.)
-	{
-		totalShieldDamage = shieldDamage;
-		for(const auto &it : submunitions)
-			totalShieldDamage += it.first->ShieldDamage() * it.second;
-	}
-	return totalShieldDamage;
-}
-
-
-
-double Weapon::HullDamage() const
-{
-	if(totalHullDamage < 0.)
-	{
-		totalHullDamage = hullDamage;
-		for(const auto &it : submunitions)
-			totalHullDamage += it.first->HullDamage() * it.second;
-	}
-	return totalHullDamage;
-}
-
-
-
-double Weapon::HeatDamage() const
-{
-	if(totalHeatDamage < 0.)
-	{
-		totalHeatDamage = heatDamage;
-		for(const auto &it : submunitions)
-			totalHeatDamage += it.first->HeatDamage() * it.second;
-	}
-	return totalHeatDamage;
-}
-
-
-
-
-double Weapon::IonDamage() const
-{
-	if(totalIonDamage < 0.)
-	{
-		totalIonDamage = ionDamage;
-		for(const auto &it : submunitions)
-			totalIonDamage += it.first->IonDamage() * it.second;
-	}
-	return totalIonDamage;
-}
-
-
-
 double Weapon::TotalLifetime() const
 {
 	if(totalLifetime < 0.)
@@ -297,4 +247,17 @@ double Weapon::TotalLifetime() const
 double Weapon::Range() const
 {
 	return Velocity() * TotalLifetime();
+}
+
+
+
+double Weapon::TotalDamage(int index) const
+{
+	if(!calculatedDamage[index])
+	{
+		calculatedDamage[index] = true;
+		for(const auto &it : submunitions)
+			damage[index] += it.first->TotalDamage(index) * it.second;
+	}
+	return damage[index];
 }
