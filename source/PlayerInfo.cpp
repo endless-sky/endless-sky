@@ -952,7 +952,10 @@ void PlayerInfo::TakeOff(UI *ui)
 	{
 		shared_ptr<Ship> &ship = *it;
 		if(ship->IsParked() || ship->IsDisabled())
+		{
+			++it;
 			continue;
+		}
 		
 		bool fit = true;
 		const string &category = ship->Attributes().Category();
