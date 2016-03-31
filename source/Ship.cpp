@@ -1403,6 +1403,35 @@ bool Ship::CanLand() const
 
 
 
+bool Ship::HasCloak() const
+{
+	return Attributes().Get("cloak");
+}
+
+
+bool Ship::CanCloak() const
+{
+	if(!HasCloak())
+		return false;
+
+	// Never cloak if it means we can't jump anymore.
+	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+	{
+		double fuel = Fuel() * attributes.Get("fuel capacity");
+		fuel -= attributes.Get("cloaking fuel");
+		if(fuel < JumpFuel())
+			return false;
+	}
+
+	// Cloak is free!
+	if(!attributes.Get("cloaking fuel"))
+		return true;
+
+	return false;
+}
+
+
+
 double Ship::Cloaking() const
 {
 	return sprite.IsEmpty() ? 1. : cloak;

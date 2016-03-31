@@ -267,7 +267,11 @@ public:
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates. Assume that CanFire() is true.
 	void ExpendAmmo(const Outfit *outfit);
-	
+
+	// Check if this ship can cloak.
+	bool HasCloak() const;
+	bool CanCloak() const;
+
 	// Each ship can have a target system (to travel to), a target planet (to
 	// land on) and a target ship (to move to, and attack if hostile).
 	std::shared_ptr<Ship> GetTargetShip() const;
