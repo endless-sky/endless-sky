@@ -132,7 +132,6 @@ person "Cap'n Pester"
 
 person "Marauding Max K"
 	government "Author"
-	frequency 300
 	personality
 		surveillance
 	phrase
