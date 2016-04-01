@@ -649,6 +649,9 @@ bool Ship::Move(list<Effect> &effects)
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
 		hyperspaceSystem = nullptr;
 	
+	// Adjust the error in the pilot's targeting.
+	personality.UpdateConfusion();
+	
 	// Handle ionization effects, etc.
 	if(ionization)
 	{

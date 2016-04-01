@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef PERSONALITY_H_
 #define PERSONALITY_H_
 
+#include "Angle.h"
 #include "Point.h"
 
 #include <string>
@@ -53,6 +54,7 @@ public:
 	bool IsVindictive() const;
 	
 	const Point &Confusion() const;
+	void UpdateConfusion();
 	
 	static Personality Defender();
 	
@@ -64,7 +66,8 @@ private:
 private:
 	int flags;
 	double confusionMultiplier;
-	mutable Point confusion;
+	Point confusion;
+	Angle confusionAngle;
 };
 
 
