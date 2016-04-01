@@ -363,7 +363,7 @@ void Engine::Step(bool isActive)
 			
 			Point pos = object.Position() - position;
 			if(pos.Length() < 500.)
-				labels.emplace_back(pos, object.Radius(), object.GetPlanet()->Name(), object.TargetColor());
+				labels.emplace_back(pos, object);
 		}
 	}
 	
@@ -515,6 +515,7 @@ void Engine::Draw() const
 	GameData::Background().Draw(position, velocity);
 	
 	// Draw any active planet labels.
+	const Font &font = FontSet::Get(14);
 	const Font &bigFont = FontSet::Get(18);
 	for(const Label &label : labels)
 	{
@@ -538,6 +539,7 @@ void Engine::Draw() const
 			Point to = from + 60. * ANGLE.Unit();
 			LineShader::Draw(from, to, 1.3, label.color);
 			bigFont.DrawAliased(label.name, to.X(), to.Y() - .5 * bigFont.Height(), label.color);
+			font.DrawAliased(label.government, to.X() - 2., to.Y() + .5 * bigFont.Height() + 1., label.color);
 		}
 	}
 	
@@ -562,7 +564,6 @@ void Engine::Draw() const
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
 	// Draw messages.
-	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Point messagePoint(
 		Screen::Left() + 120.,
@@ -1425,9 +1426,26 @@ Engine::Status::Status(const Point &position, double shields, double hull, doubl
 
 
 
-Engine::Label::Label(const Point &position, double radius, const string &name, const Color &color)
-	: position(position), radius(radius), name(name)
+Engine::Label::Label(const Point &position, const StellarObject &object)
+	: position(position), radius(object.Radius())
 {
+	const Planet &planet = *object.GetPlanet();
+	color = object.TargetColor();
+	if(!planet.IsWormhole())
+	{
+		name = planet.Name();
+		if(planet.GetGovernment())
+		{
+			government = "(" + planet.GetGovernment()->GetName() + ")";
+			if(planet.CanLand())
+			{
+				color = planet.GetGovernment()->GetColor();
+				color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
+			}
+		}
+		else
+			government = "(No government)";
+	}
 	double alpha = min(.5, max(0., .6 - position.Length() * .001));
-	this->color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
+	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 }

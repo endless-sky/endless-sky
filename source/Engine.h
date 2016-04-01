@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Government;
 class Outfit;
 class PlayerInfo;
+class StellarObject;
 
 
 
@@ -103,11 +104,12 @@ private:
 	
 	class Label {
 	public:
-		Label(const Point &position, double radius, const std::string &name, const Color &color);
+		Label(const Point &position, const StellarObject &object);
 		
 		Point position;
 		double radius;
 		std::string name;
+		std::string government;
 		Color color;
 	};
 	
