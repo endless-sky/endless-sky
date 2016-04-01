@@ -237,6 +237,13 @@ outfit "Small Bunk Room"
 	"outfit space" -12
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
+outfit "NDR-114 Android"
+	category "Systems"
+	cost 30000
+	thumbnail "outfit/android"
+	"required crew" -1
+	description "For the price of nearly a year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
+
 outfit "Fuel Pod"
 	category "Systems"
 	cost 20000
