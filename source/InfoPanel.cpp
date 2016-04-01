@@ -388,7 +388,7 @@ bool InfoPanel::Release(int x, int y)
 bool InfoPanel::Scroll(double dx, double dy)
 {
 	if(!showShip)
-		scroll = max(0., min(player.Ships().size() - 25., scroll - 4. * dy));
+		scroll = max(0., min(player.Ships().size() - 26., scroll - 4. * dy));
 	return true;
 }
 
@@ -424,7 +424,7 @@ void InfoPanel::DrawInfo() const
 	table.AddColumn(0, Table::LEFT);
 	table.AddColumn(230, Table::RIGHT);
 	table.SetUnderline(0, 230);
-	table.DrawAt(Point(-490., -265.));
+	table.DrawAt(Point(-490., -282.));
 	
 	table.Draw("player:", dim);
 	table.Draw(player.FirstName() + " " + player.LastName(), bright);
@@ -460,7 +460,7 @@ void InfoPanel::DrawInfo() const
 	DrawList(licenses, table, "licenses:", maxRows, false);
 	
 	// Fleet listing.
-	Point pos = Point(-240., -270.);
+	Point pos = Point(-240., -280.);
 	font.Draw("ship", pos + Point(0., 0.), bright);
 	font.Draw("model", pos + Point(220., 0.), bright);
 	font.Draw("system", pos + Point(350., 0.), bright);
@@ -482,7 +482,7 @@ void InfoPanel::DrawInfo() const
 	{
 		const shared_ptr<Ship> &ship = *sit;
 		pos.Y() += 20.;
-		if(pos.Y() >= 250.)
+		if(pos.Y() >= 260.)
 			break;
 		
 		bool isElsewhere = (ship->GetSystem() != player.GetSystem());
@@ -515,7 +515,7 @@ void InfoPanel::DrawInfo() const
 			zones.emplace_back(pos + Point(365, font.Height() / 2), Point(730, 20), index);
 		else
 		{
-			int height = 270. - pos.Y();
+			int height = 280. - pos.Y();
 			zones.emplace_back(pos + Point(365, height / 2), Point(730, height), index);
 		}
 		++index;
@@ -544,21 +544,21 @@ void InfoPanel::DrawShip() const
 	const Ship &ship = **shipIt;
 	
 	// Left column: basic ship attributes.
-	font.Draw("ship:", Point(-490., -270.), dim);
-	Point shipNamePos(-260 - font.Width(ship.Name()), -270.);
+	font.Draw("ship:", Point(-490., -280.), dim);
+	Point shipNamePos(-260 - font.Width(ship.Name()), -280.);
 	font.Draw(ship.Name(), shipNamePos, bright);
-	font.Draw("model:", Point(-490., -250.), dim);
-	Point modelNamePos(-260 - font.Width(ship.ModelName()), -250.);
+	font.Draw("model:", Point(-490., -260.), dim);
+	Point modelNamePos(-260 - font.Width(ship.ModelName()), -260.);
 	font.Draw(ship.ModelName(), modelNamePos, bright);
-	info.DrawAttributes(Point(-500., -240.));
+	info.DrawAttributes(Point(-500., -250.));
 	
 	// Outfits list.
-	Point pos(-240., -270.);
+	Point pos(-240., -280.);
 	for(const auto &it : outfits)
 	{
 		int height = 20 * (it.second.size() + 1);
-		if(pos.X() == -240. && pos.Y() + height > 20.)
-			pos = Point(pos.X() + 250., -270.);
+		if(pos.X() == -240. && pos.Y() + height > 30.)
+			pos = Point(pos.X() + 250., -280.);
 		
 		font.Draw(it.first, pos, bright);
 		for(const Outfit *outfit : it.second)
@@ -574,7 +574,7 @@ void InfoPanel::DrawShip() const
 	
 	// Cargo list.
 	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
-	pos = Point(260., -270.);
+	pos = Point(260., -280.);
 	static const Point size(230., 20.);
 	Color backColor = *GameData::Colors().Get("faint");
 	if(cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize())
@@ -601,12 +601,12 @@ void InfoPanel::DrawShip() const
 			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 220.)
+			if(pos.Y() >= 230.)
 				break;
 		}
 		pos.Y() += 10.;
 	}
-	if(cargo.HasOutfits() && pos.Y() < 220.)
+	if(cargo.HasOutfits() && pos.Y() < 230.)
 	{
 		for(const auto &it : cargo.Outfits())
 		{
@@ -625,12 +625,12 @@ void InfoPanel::DrawShip() const
 			pos.Y() += size.Y();
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 220.)
+			if(pos.Y() >= 230.)
 				break;
 		}
 		pos.Y() += 10.;
 	}
-	if(cargo.HasMissionCargo() && pos.Y() < 220.)
+	if(cargo.HasMissionCargo() && pos.Y() < 230.)
 	{
 		for(const auto &it : cargo.MissionCargo())
 		{
@@ -644,14 +644,14 @@ void InfoPanel::DrawShip() const
 			pos.Y() += 20.;
 			
 			// Truncate the list if there is not enough space.
-			if(pos.Y() >= 220.)
+			if(pos.Y() >= 230.)
 				break;
 		}
 		pos.Y() += 10.;
 	}
 	if(cargo.Passengers())
 	{
-		pos = Point(pos.X(), 250.);
+		pos = Point(pos.X(), 260.);
 		string number = to_string(cargo.Passengers());
 		Point numberPos(pos.X() + 230. - font.Width(number), pos.Y());
 		font.Draw("passengers:", pos, dim);
@@ -661,11 +661,11 @@ void InfoPanel::DrawShip() const
 	// Weapon positions.
 	const Sprite *sprite = ship.GetSprite().GetSprite();
 	double scale = min(240. / sprite->Width(), 240. / sprite->Height());
-	Point shipCenter(-125., 145.);
+	Point shipCenter(-125., 155.);
 	SpriteShader::Draw(sprite, shipCenter, scale, 8);
 	
 	Color black(0., 1.);
-	pos = Point(10., 250.);
+	pos = Point(10., 260.);
 	for(unsigned i = 0; i < ship.Weapons().size(); ++i)
 	{
 		const Armament::Weapon &weapon = ship.Weapons()[i];
@@ -675,7 +675,7 @@ void InfoPanel::DrawShip() const
 			pos.Y() -= 20.;
 		}
 	}
-	if(pos.Y() != 250.)
+	if(pos.Y() != 260.)
 		pos.Y() -= 10.;
 	for(unsigned i = 0; i < ship.Weapons().size(); ++i)
 	{
