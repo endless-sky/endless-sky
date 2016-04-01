@@ -401,7 +401,7 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
-    double SHENCHECK = playerShip->Attributes().Get("shield energy");
+    double SHENCHECK = selectedOutfit->Get("shield energy");
     if((!playerShip->Attributes().CanAdd(*selectedOutfit, 1)) and not (SHENCHECK < 0))
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit in your ship, "
