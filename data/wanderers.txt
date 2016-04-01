@@ -654,7 +654,7 @@ outfit "Bright Cloud Shielding"
 	"mass" 19
 	"outfit space" -19
 	"shield generation" 1.2
-	"shield energy" 1.8
+	"shield energy" 1.5
 	description "This small Wanderer shield generator is able to recharge a ship's shields at a considerable rate, but it also consumes more energy than some other shield generators do."
 
 outfit "Dark Storm Shielding"
@@ -664,7 +664,7 @@ outfit "Dark Storm Shielding"
 	"mass" 41
 	"outfit space" -41
 	"shield generation" 2.8
-	"shield energy" 4.2
+	"shield energy" 2.5
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
 
 
