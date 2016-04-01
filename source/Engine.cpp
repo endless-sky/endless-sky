@@ -541,6 +541,12 @@ void Engine::Draw() const
 			bigFont.DrawAliased(label.name, to.X(), to.Y() - .5 * bigFont.Height(), label.color);
 			font.DrawAliased(label.government, to.X() - 2., to.Y() + .5 * bigFont.Height() + 1., label.color);
 		}
+		Angle barbAngle(96.);
+		for(int i = 0; i < label.hostility; ++i)
+		{
+			barbAngle += Angle(800. / (label.radius + 25.));
+			PointerShader::Draw(label.position, barbAngle.Unit(), 15., 15., label.radius + 25., label.color);
+		}
 	}
 	
 	draw[drawTickTock].Draw();
@@ -1431,9 +1437,9 @@ Engine::Label::Label(const Point &position, const StellarObject &object)
 {
 	const Planet &planet = *object.GetPlanet();
 	color = object.TargetColor();
+	name = planet.Name();
 	if(!planet.IsWormhole())
 	{
-		name = planet.Name();
 		if(planet.GetGovernment())
 		{
 			government = "(" + planet.GetGovernment()->GetName() + ")";
@@ -1442,6 +1448,8 @@ Engine::Label::Label(const Point &position, const StellarObject &object)
 				color = planet.GetGovernment()->GetColor();
 				color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
 			}
+			else
+				hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
 		}
 		else
 			government = "(No government)";

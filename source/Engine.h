@@ -111,6 +111,7 @@ private:
 		std::string name;
 		std::string government;
 		Color color;
+		int hostility = 0;
 	};
 	
 	
