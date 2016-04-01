@@ -1109,9 +1109,8 @@ bool Ship::Move(list<Effect> &effects)
 		// energy, use it to recharge fighters and drones.
 		double shieldGeneration = attributes.Get("shield generation");
 		shields += shieldGeneration;
-		double SHIELD_EXCHANGE_RATE = 1. +
-			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
-		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
+		double SHIELD_EFFICIENCY = attributes.Get("shield energy");
+		energy -= SHIELD_EFFICIENCY * shieldGeneration;
 		double excessShields = max(0., shields - maxShields);
 		shields -= excessShields;
 		
@@ -1133,10 +1132,10 @@ bool Ship::Move(list<Effect> &effects)
 		// If you do not need the shield generation, apply the extra back to
 		// your energy. On the other hand, if recharging shields drives your
 		// energy negative, undo that part of the recharge.
-		energy += SHIELD_EXCHANGE_RATE * excessShields;
+		energy += SHIELD_EFFICIENCY * excessShields;
 		if(energy < 0.)
 		{
-			shields += energy / SHIELD_EXCHANGE_RATE;
+			shields += energy / SHIELD_EFFICIENCY;
 			energy = 0.;
 		}
 	}
