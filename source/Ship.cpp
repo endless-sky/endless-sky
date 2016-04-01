@@ -282,6 +282,12 @@ void Ship::FinishLoading()
 		}
 	}
 	
+	// Mark any drone that has no "automaton" value as an automaton, to
+	// grandfather in the drones from before that attribute existed.
+	if(baseAttributes.Category() == "Drone"
+			&& baseAttributes.Attributes().find("automaton") == baseAttributes.Attributes().end())
+		baseAttributes.Add("automaton", 1.);
+	
 	// Different ships dissipate heat at different rates.
 	heatDissipation = baseAttributes.Get("heat dissipation");
 	if(!heatDissipation)
