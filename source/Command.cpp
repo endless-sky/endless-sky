@@ -57,6 +57,7 @@ const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
 const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
 const Command Command::WAIT(1uL << 24, "");
+const Command Command::AUTOSTEER(1uL << 25, "Face selected ship");
 
 
 
@@ -291,6 +292,26 @@ Command &Command::operator|=(const Command &command)
 {
 	state |= command.state;
 	if(command.turn)
+		turn = command.turn;
+	return *this;
+}
+
+
+
+// Get the commands that are set in both of these commands.
+Command Command::operator&(const Command &command) const
+{
+	Command result = *this;
+	result &= command;
+	return result;
+}
+
+
+
+Command &Command::operator&=(const Command &command)
+{
+	state &= command.state;
+	if(turn && command.turn)
 		turn = command.turn;
 	return *this;
 }

@@ -37,11 +37,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	const Command &AutosteerCancelKeys()
+	{
+		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
+				| Command::BACK | Command::LEFT | Command::RIGHT
+				);
+
+		return keys;
+	}
+
 	const Command &AutopilotCancelKeys()
 	{
 		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
-			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
-		
+			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
+			| Command::AUTOSTEER
+			);
+
 		return keys;
 	}
 	
@@ -76,8 +87,15 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	keyHeld |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
-	if(keyHeld.Has(AutopilotCancelKeys()))
-		keyStuck.Clear();
+	if(keyHeld.Has(AutopilotCancelKeys())) {
+		// Accelerating shouldn't cancel autosteering
+		if (!keyStuck.Has(Command::AUTOSTEER) || keyHeld.Has(AutosteerCancelKeys())) {
+			keyStuck.Clear();
+		} else {
+			keyStuck.Clear();
+			keyStuck |= Command::AUTOSTEER;
+		}
+	}
 	if(keyStuck.Has(Command::JUMP) && !player.HasTravelPlan())
 		keyStuck.Clear(Command::JUMP);
 	
@@ -1752,7 +1770,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			else
 				command.SetTurn(TurnBackward(ship));
 		}
-		
 		if(keyHeld.Has(Command::FORWARD))
 			command |= Command::FORWARD;
 		if(keyHeld.Has(Command::PRIMARY))
@@ -1783,8 +1800,13 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(keyHeld.Has(Command::AFTERBURNER))
 			command |= Command::AFTERBURNER;
 		
-		if(keyHeld.Has(AutopilotCancelKeys()))
-			keyStuck = keyHeld;
+		if(keyHeld.Has(AutopilotCancelKeys())){
+			if (!keyStuck.Has(Command::AUTOSTEER) || keyHeld.Has(AutosteerCancelKeys())) {
+				keyStuck = keyHeld;
+			} else {
+				keyStuck = keyHeld | Command::AUTOSTEER;
+			}
+		}
 	}
 	if(hasGuns && Preferences::Has("Automatic aiming") && !command.Turn()
 			&& ship.GetTargetShip() && ship.GetTargetShip()->GetSystem() == ship.GetSystem()
@@ -1844,7 +1866,25 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			command |= Command::BOARD;
 		}
 	}
-	
+	else if(keyStuck.Has(Command::AUTOSTEER))
+	{
+		// Point at our target ship, planet, or system.
+		shared_ptr<const Ship> target = ship.GetTargetShip();
+		if (target && (ship.GetSystem() == target->GetSystem())) {
+			Point direction = target->Position() - ship.Position();
+			// Only compute aiming if the ship is in front of us
+			if(direction.Unit().Dot(ship.Facing().Unit()) >= .8)
+				direction = TargetAim(ship);
+			command.SetTurn(TurnToward(ship, direction));
+		} else if (ship.GetTargetPlanet()) {
+			Point direction = ship.GetTargetPlanet()->Position() - ship.Position();
+			command.SetTurn(TurnToward(ship, direction));
+		} else if (ship.GetTargetSystem()) {
+			Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
+			command.SetTurn(TurnToward(ship, direction));
+		}
+	}
+
 	if(isLaunching)
 		command |= Command::DEPLOY;
 	if(isCloaking)

@@ -48,7 +48,8 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command WAIT;
-	
+	static const Command AUTOSTEER;
+
 public:
 	Command() = default;
 	// Assume SDL_Keycode is a signed int, so I don't need to include SDL.h.
@@ -94,6 +95,9 @@ public:
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
 	
+	// Get the commands that are set in both of these commands.
+	Command operator&(const Command &command) const;
+	Command &operator&=(const Command &command);
 	
 private:
 	Command(uint64_t state);
