@@ -704,6 +704,7 @@ outfitter "Wanderer Basics"
 	"Fuel Pod"
 	"Cargo Expansion"
 	"Mass Expansion"
+	"Outfit Expansion"
 	"Local Map"
 
 outfitter "Wanderer Advanced"
@@ -728,6 +729,7 @@ outfitter "Wanderer Advanced"
 	"Fuel Pod"
 	"Cargo Expansion"
 	"Mass Expansion"
+	"Outfit Expansion"
 	"Local Map"
 
 
