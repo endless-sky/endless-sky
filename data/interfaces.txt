@@ -338,6 +338,15 @@ interface "planet"
 	sprite "ui/planet dialog" -60 0
 	button l -60 -141
 		size 720 360
+
+	if "can leave"
+	sprite "ui/dialog cancel" -260 355
+	button l -260 355
+		size 80 40
+	label "_Leave" -260 348
+		size 14
+		color bright
+		align center
 	
 	if "has shipyard"
 	sprite "ui/planet dialog button" 280 90
