@@ -1511,7 +1511,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			{
 				isWormhole = true;
 				ship.SetTargetPlanet(&object);
-				keyStuck |= Command::LAND;
+				if(keyStuck.Has(Command::JUMP))
+					keyStuck |= Command::LAND;
 				break;
 			}
 		if(!isWormhole)
