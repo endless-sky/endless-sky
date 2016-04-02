@@ -1,0 +1,143 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Korath Grab-Strike"
+	category "Turrets"
+	cost 820000
+	thumbnail "outfit/unknown"
+	"mass" 52
+	"outfit space" -52
+	"weapon capacity" -52
+	"energy capacity" 50
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/grab-strike"
+			"frame rate" 25
+			"random start frame"
+		sound "grab-strike"
+		"hit effect" "grab-strike impact"
+		"die effect" "grab-strike impact"
+		"inaccuracy" 1
+		"velocity" 10
+		"lifetime" 100
+		"reload" 20
+		"firing energy" 50
+		"firing heat" 150
+		"acceleration" 1
+		"drag" .1
+		"turn" .2
+		"homing" 4
+		"shield damage" 90
+		"hull damage" 27
+		"hit force" -120
+	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
+
+effect "grab-strike impact"
+	sprite "effect/grab-strike impact"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 15
+	"random angle" 360
+	"velocity scale" -.1
+
+
+outfit "Korath Banisher"
+	category "Turrets"
+	cost 480000
+	thumbnail "outfit/unknown"
+	"mass" 41
+	"outfit space" -41
+	"weapon capacity" -41
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/banisher"
+			"frame rate" 60
+		sound "banisher"
+		"hit effect" "banisher impact"
+		"inaccuracy" .4
+		"velocity" 590
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.8
+		"firing heat" 4.9
+		"shield damage" 2.8
+		"hull damage" .9
+		"hit force" 40
+	description "The Korath like to keep their enemies close... but not too close."
+
+effect "banisher impact"
+	sprite "effect/banisher impact"
+		"random start frame"
+		"frame rate" 60
+	"lifetime" 2
+	"velocity scale" 0.
+
+
+outfit "Korath Warder"
+	category "Turrets"
+	cost 250000
+	thumbnail "outfit/unknown"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"energy capacity" 20
+	"turret mounts" -1
+	weapon
+		"hit effect" "korath warder"
+		"anti-missile" 10
+		"velocity" 350
+		"lifetime" 1
+		"reload" 5
+		"firing energy" 20
+		"firing heat" 10
+	description "This anti-missile system helps defend Korath warships from long-range attacks."
+
+effect "korath warder"
+	sprite "effect/warder"
+		"no repeat"
+		"frame rate" 6
+	sound "warder"
+	"lifetime" 11
+	"velocity scale" 1
+
+
+outfit "Korath Fire-Lance"
+	category "Guns"
+	cost 600000
+	thumbnail "outfit/unknown"
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
+	"gun ports" -1
+	weapon
+		sprite "projectile/fire-lance"
+			"frame rate" 12
+			"random start frame"
+		sound "fire-lance"
+		"hit effect" "fire-lance impact"
+		"inaccuracy" .4
+		"velocity" 350
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 2.1
+		"firing heat" 1.7
+		"shield damage" 3.5
+		"hull damage" 1.5
+	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
+
+effect "fire-lance impact"
+	sprite "effect/fire-lance impact"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 10
+	"random angle" 360
+	"velocity scale" 0.

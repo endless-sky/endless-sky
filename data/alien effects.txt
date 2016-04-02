@@ -31,35 +31,3 @@ effect "jump drive"
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
-
-effect "banisher impact"
-	sprite "effect/banisher impact"
-		"random start frame"
-		"frame rate" 60
-	"lifetime" 2
-	"velocity scale" 0.
-
-effect "grab-strike impact"
-	sprite "effect/grab-strike impact"
-		"no repeat"
-		"frame rate" 20
-	"lifetime" 15
-	"random angle" 360
-	"velocity scale" -.1
-
-effect "korath warder"
-	sprite "effect/warder"
-		"no repeat"
-		"frame rate" 6
-	sound "warder"
-	"lifetime" 11
-	"velocity scale" 1
-
-effect "fire-lance impact"
-	sprite "effect/fire-lance impact"
-		"no repeat"
-		"frame rate" 20
-	"lifetime" 10
-	"random angle" 360
-	"velocity scale" 0.
-
