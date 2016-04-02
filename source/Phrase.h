@@ -29,7 +29,15 @@ public:
 	
 	
 private:
-	std::vector<std::vector<std::vector<std::string>>> words;
+	bool ReferencesPhrase(const std::string& name) const;
+	
+	std::string _name;
+	
+	struct Part {
+		std::vector<std::string> words;
+		const Phrase *phrase;
+	};
+	std::vector<std::vector<Part>> parts;
 };
 
 

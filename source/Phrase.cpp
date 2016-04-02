@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Phrase.h"
 
 #include "DataNode.h"
+#include "GameData.h"
 #include "Random.h"
 
 using namespace std;
@@ -23,15 +24,28 @@ void Phrase::Load(const DataNode &node)
 {
 	if(node.Token(0) != "phrase")
 		return;
+	if(node.Size() > 1)
+		_name = node.Token(1);
 	
-	words.push_back(vector<vector<string>>());
+	parts.emplace_back();
 	for(const DataNode &child : node)
 	{
+		parts.back().emplace_back();
+		Part &part = parts.back().back();
+		part.phrase = nullptr;
+		
 		if(child.Token(0) == "word")
 		{
-			words.back().push_back(vector<string>());
 			for(const DataNode &grand : child)
-				words.back().back().push_back(grand.Token(0));
+				part.words.push_back(grand.Token(0));
+		}
+		else if(child.Token(0) == "phrase")
+		{
+			const Phrase* subphrase = GameData::Phrases().Get(child.Token(1));
+			if(subphrase->ReferencesPhrase(_name))
+				child.PrintTrace("Found recursive phrase reference:");
+			else
+				part.phrase = subphrase;
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -43,11 +57,28 @@ void Phrase::Load(const DataNode &node)
 string Phrase::Get() const
 {
 	string result;
-	if(words.empty())
+	if(parts.empty())
 		return result;
 	
-	for(const vector<string> &v : words[Random::Int(words.size())])
-		result += v[Random::Int(v.size())];
+	for(const Part &part : parts[Random::Int(parts.size())])
+	{
+		if(part.phrase)
+			result += part.phrase->Get();
+		else if(!part.words.empty())
+			result += part.words[Random::Int(part.words.size())];
+	}
 	
 	return result;
+}
+
+
+bool Phrase::ReferencesPhrase(const std::string& name) const
+{
+	if(_name == name)
+		return true;
+	for(const vector<Part> &p : parts)
+		for(const Part &part : p)
+			if(part.phrase)
+				return part.phrase->ReferencesPhrase(name);
+	return false;
 }
