@@ -218,7 +218,7 @@ outfit "Korath Fire-Lance"
 outfit "Korath Tek'far Reactor"
 	category "Power"
 	cost 1200000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small korath generator"
 	"mass" 25
 	"outfit space" -25
 	"energy generation" 3.9
@@ -228,7 +228,7 @@ outfit "Korath Tek'far Reactor"
 outfit "Korath Tek'nel Reactor"
 	category "Power"
 	cost 14000000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large korath generator"
 	"mass" 140
 	"outfit space" -140
 	"energy generation" 27.1
@@ -259,7 +259,7 @@ outfit "Korath Heat Shunt"
 outfit "Korath Ark'torbal Thruster"
 	category "Engines"
 	"cost" 40000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/tiny korath thruster"
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
@@ -274,7 +274,7 @@ outfit "Korath Ark'torbal Thruster"
 outfit "Korath Ark'parat Steering"
 	category "Engines"
 	"cost" 36000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/tiny korath steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -286,7 +286,7 @@ outfit "Korath Ark'parat Steering"
 outfit "Korath Jak'torbal Thruster"
 	category "Engines"
 	"cost" 317000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large korath thruster"
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
@@ -301,7 +301,7 @@ outfit "Korath Jak'torbal Thruster"
 outfit "Korath Jak'parat Steering"
 	category "Engines"
 	"cost" 2740000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large korath steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
