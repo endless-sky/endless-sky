@@ -191,8 +191,10 @@ void Mission::Load(const DataNode &node)
 				{"accept", ACCEPT},
 				{"decline", DECLINE},
 				{"fail", FAIL},
+				{"defer", DEFER},
 				{"visit", VISIT},
-				{"stopover", STOPOVER}};
+				{"stopover", STOPOVER}
+			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child, name);

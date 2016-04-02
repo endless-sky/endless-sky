@@ -26,17 +26,19 @@ namespace {
 	{
 		if(token == "accept")
 			return Conversation::ACCEPT;
-		if(token == "decline")
-			return Conversation::DECLINE;
-		if(token == "die")
-			return Conversation::DIE;
-		if(token == "defer")
-			return Conversation::DEFER;
 		if(token == "launch")
 			return Conversation::LAUNCH;
+		if(token == "decline")
+			return Conversation::DECLINE;
 		if(token == "flee")
 			return Conversation::FLEE;
-	
+		if(token == "defer")
+			return Conversation::DEFER;
+		if(token == "depart")
+			return Conversation::DEPART;
+		if(token == "die")
+			return Conversation::DIE;
+		
 		return 0;
 	}
 	
@@ -44,16 +46,18 @@ namespace {
 	{
 		if(index == Conversation::ACCEPT)
 			return "accept";
-		else if(index == Conversation::DECLINE)
-			return "decline";
-		else if(index == Conversation::DIE)
-			return "die";
-		else if(index == Conversation::DEFER)
-			return "defer";
 		else if(index == Conversation::LAUNCH)
 			return "launch";
+		else if(index == Conversation::DECLINE)
+			return "decline";
 		else if(index == Conversation::FLEE)
 			return "flee";
+		else if(index == Conversation::DEFER)
+			return "defer";
+		else if(index == Conversation::DEPART)
+			return "depart";
+		else if(index == Conversation::DIE)
+			return "die";
 		else
 			return to_string(index);
 	}
@@ -69,6 +73,14 @@ namespace {
 		}
 		out.EndChild();
 	}
+}
+
+
+
+// Public utility function
+bool Conversation::LeaveImmediately(int outcome)
+{
+	return outcome == LAUNCH || outcome == FLEE || outcome == DEPART;
 }
 
 
