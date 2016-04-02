@@ -406,7 +406,7 @@ int Conversation::NextNode(int node, int choice) const
 {
 	if(static_cast<unsigned>(node) >= nodes.size()
 			|| static_cast<unsigned>(choice) >= nodes[node].data.size())
-		return -2;
+		return DECLINE;
 	
 	return nodes[node].data[choice].second;
 }
