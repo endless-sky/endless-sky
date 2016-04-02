@@ -46,7 +46,7 @@ outfit "Quarg Skylance"
 		"firing energy" 30
 		"firing heat" 10
 		"shield damage" 50
-		"hull damage" 60
+		"hull damage" 40
 		"ion damage" .1
 
 outfit "Quarg Anti-Missile"
@@ -142,7 +142,7 @@ outfit "Korath Grab-Strike"
 		"turn" .2
 		"homing" 4
 		"shield damage" 90
-		"hull damage" 40
+		"hull damage" 27
 		"hit force" -120
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
@@ -167,7 +167,7 @@ outfit "Korath Banisher"
 		"firing energy" 2.8
 		"firing heat" 4.9
 		"shield damage" 2.8
-		"hull damage" 1.3
+		"hull damage" .9
 		"hit force" 40
 	description "The Korath like to keep their enemies close... but not too close."
 
@@ -211,7 +211,7 @@ outfit "Korath Fire-Lance"
 		"firing energy" 2.1
 		"firing heat" 1.7
 		"shield damage" 3.5
-		"hull damage" 2.2
+		"hull damage" 1.5
 	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
 
 
