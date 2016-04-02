@@ -101,6 +101,7 @@ outfit "Quantum Shield Generator"
 	"mass" 120
 	"outfit space" -120
 	"shield generation" 10
+	"shield energy" 10
 
 outfit "Jump Drive"
 	category "Systems"
@@ -242,6 +243,7 @@ outfit "Korath Shield Generator"
 	"mass" 52
 	"outfit space" -52
 	"shield generation" 2.4
+	"shield energy" 2.4
 	description "Korath fighters are not able to recharge their shields, but their larger ships are equipped with one of these."
 
 outfit "Korath Heat Shunt"

@@ -933,116 +933,116 @@ interface "map buttons"
 interface "info panel"
 	sprite "ui/info panel" 0 -5
 	if "four buttons"
-	sprite "ui/four info buttons" 0 295
+	sprite "ui/four info buttons" 0 305
 	endif
 	if "two buttons"
-	sprite "ui/two info buttons" 0 295
+	sprite "ui/two info buttons" 0 305
 	endif
 	
-	button R -375 -260
+	button R -375 -270
 		size 250 30
 	
 	if "ship tab"
-	sprite "ui/ship tab" 0 -300
-	label "_Ship Info" -300 -303
+	sprite "ui/ship tab" 0 -310
+	label "_Ship Info" -300 -313
 		size 14
 		color bright
 		align center
-	label "_Player Info" -420 -303
+	label "_Player Info" -420 -313
 		size 14
 		color medium
 		align center
-	button i -420 -295
+	button i -420 -305
 		size 120 30
 	endif
 	
 	if "player tab"
-	sprite "ui/player tab" 0 -300
-	label "_Ship Info" -300 -303
+	sprite "ui/player tab" 0 -310
+	label "_Ship Info" -300 -313
 		size 14
 		color medium
 		align center
-	label "_Player Info" -420 -303
+	label "_Player Info" -420 -313
 		size 14
 		color bright
 		align center
-	button s -300 -295
+	button s -300 -305
 		size 120 30
 	endif
 	
-	label "_Done" 455 287
+	label "_Done" 455 297
 		size 14
 		color bright
 		align center
-	button d 455 295
+	button d 455 305
 		size 90 30
 	
-	label "_Missions..." 355 287
+	label "_Missions..." 355 297
 		size 14
 		color bright
 		align center
-	button m 355 295
+	button m 355 305
 		size 90 30
 	
 	if "four buttons"
-	label "_Next" 250 287
+	label "_Next" 250 297
 		size 14
 		color bright
 		align center
-	button n 250 295
+	button n 250 305
 		size 90 30
-	label "_Previous" 150 287
+	label "_Previous" 150 297
 		size 14
 		color bright
 		align center
-	button p 150 295
+	button p 150 305
 		size 90 30
 	endif
 	
-	button P 55 295
+	button P 55 305
 		size 70 30
 	if "show park"
-	sprite "ui/dialog cancel" 55 295
-	label "Park" 55 287
+	sprite "ui/dialog cancel" 55 305
+	label "Park" 55 297
 		size 14
 		color bright
 		align center
 	endif
 	if "show unpark"
-	sprite "ui/dialog cancel" 55 295
-	label "Unpark" 55 287
+	sprite "ui/dialog cancel" 55 305
+	label "Unpark" 55 297
 		size 14
 		color bright
 		align center
 	endif
 	
-	button c 10 295
+	button c 10 305
 		size 20 30
 	if "enable dump"
-	sprite "ui/wide button" 45 295
-	label "Dump _Cargo" 45 287
+	sprite "ui/wide button" 45 305
+	label "Dump _Cargo" 45 297
 		size 14
 		color bright
 		align center
 	endif
 	if "show dump"
-	sprite "ui/wide button" 45 295
-	label "Dump _Cargo" 45 287
+	sprite "ui/wide button" 45 305
+	label "Dump _Cargo" 45 297
 		size 14
 		color dim
 		align center
 	endif
 	
 	if "show park all"
-	sprite "ui/wide button" 250 295
-	label "Park All" 250 287
+	sprite "ui/wide button" 250 305
+	label "Park All" 250 297
 		size 14
 		color bright
 		align center
 	endif
 	if "show unpark all"
-	sprite "ui/wide button" 250 295
-	label "Unpark All" 250 287
+	sprite "ui/wide button" 250 305
+	label "Unpark All" 250 297
 		size 14
 		color bright
 		align center

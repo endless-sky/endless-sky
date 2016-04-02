@@ -282,6 +282,12 @@ void Ship::FinishLoading()
 		}
 	}
 	
+	// Mark any drone that has no "automaton" value as an automaton, to
+	// grandfather in the drones from before that attribute existed.
+	if(baseAttributes.Category() == "Drone"
+			&& baseAttributes.Attributes().find("automaton") == baseAttributes.Attributes().end())
+		baseAttributes.Add("automaton", 1.);
+	
 	// Different ships dissipate heat at different rates.
 	heatDissipation = baseAttributes.Get("heat dissipation");
 	if(!heatDissipation)
@@ -648,6 +654,9 @@ bool Ship::Move(list<Effect> &effects)
 	isInSystem = false;
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
 		hyperspaceSystem = nullptr;
+	
+	// Adjust the error in the pilot's targeting.
+	personality.UpdateConfusion();
 	
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -1101,7 +1110,7 @@ bool Ship::Move(list<Effect> &effects)
 		double oldHull = hull;
 		double hullGeneration = attributes.Get("hull repair rate");
 		hull = min(hull + hullGeneration, maxHull);
-		static const double HULL_EXCHANGE_RATE = 1. +
+		static const double HULL_EXCHANGE_RATE =
 			(hullGeneration ? attributes.Get("hull energy") / hullGeneration : 0.);
 		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
 		
@@ -1109,7 +1118,7 @@ bool Ship::Move(list<Effect> &effects)
 		// energy, use it to recharge fighters and drones.
 		double shieldGeneration = attributes.Get("shield generation");
 		shields += shieldGeneration;
-		double SHIELD_EXCHANGE_RATE = 1. +
+		double SHIELD_EXCHANGE_RATE =
 			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
 		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
 		double excessShields = max(0., shields - maxShields);
