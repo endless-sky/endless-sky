@@ -749,11 +749,12 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		PrepareForHyperspace(ship, command);
 		bool mustWait = false;
-		for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
-		{
-			shared_ptr<const Ship> locked = escort.lock();
-			mustWait = locked && locked->CanBeCarried();
-		}
+		if(ship.BaysFree(false) || ship.BaysFree(true))
+			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
+			{
+				shared_ptr<const Ship> locked = escort.lock();
+				mustWait |= locked && locked->CanBeCarried();
+			}
 		
 		if(!mustWait)
 			command |= Command::JUMP;
