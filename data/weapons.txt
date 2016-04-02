@@ -366,6 +366,7 @@ outfit "Plasma Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/plasma"
+			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
@@ -435,6 +436,7 @@ outfit "Ion Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion bolt"
+			frame rate "5"
 		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1
@@ -461,6 +463,7 @@ outfit "Plasma Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/plasma"
+			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
