@@ -214,8 +214,8 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit || !playerShip)
 		return false;
 	
-	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit] ||
-	     player.Cargo().Get(selectedOutfit)))
+	bool isInCargo = player.Cargo().Get(selectedOutfit);
+	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -223,8 +223,7 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	// If you have this in your cargo hold, installing it is free.
-	if(selectedOutfit->Cost() > player.Accounts().Credits() &&
-	   !player.Cargo().Get(selectedOutfit))
+	if(selectedOutfit->Cost() > player.Accounts().Credits() && !isInCargo)
 		return false;
 	
 	if(HasLicense(selectedOutfit->Name()))
