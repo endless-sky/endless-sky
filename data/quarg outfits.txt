@@ -25,6 +25,7 @@ outfit "Antimatter Core"
 	"energy generation" 80
 	"heat generation" 20
 
+
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
@@ -49,6 +50,15 @@ outfit "Quarg Skylance"
 		"hull damage" 40
 		"ion damage" .1
 
+effect "skylance impact"
+	sprite "effect/skylance impact"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 10
+	"random angle" 180
+	"velocity scale" 0.
+
+
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
@@ -64,6 +74,15 @@ outfit "Quarg Anti-Missile"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
+
+effect "quarg anti-missile"
+	sprite "effect/quarg anti missile"
+		"no repeat"
+		"frame rate" 3
+	sound "quarg anti-missile"
+	"lifetime" 21
+	"velocity scale" 1
+
 
 outfit "Intrusion Countermeasures"
 	category "Hand to Hand"
@@ -102,13 +121,3 @@ outfit "Quantum Shield Generator"
 	"outfit space" -120
 	"shield generation" 10
 	"shield energy" 10
-
-outfit "Jump Drive"
-	category "Systems"
-	cost 1000000
-	thumbnail "outfit/jump drive"
-	"mass" 20
-	"outfit space" -20
-	"jump speed" .3
-	"jump drive" 1
-	description "The workings of the Jump Drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
