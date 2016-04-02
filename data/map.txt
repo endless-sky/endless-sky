@@ -12295,6 +12295,7 @@ system Sabik
 
 system Sabriset
 	pos 151.724 -426.518
+	government Uninhabited
 	habitable 1566.68
 	link Sepriaptu
 	link Kaliptari
