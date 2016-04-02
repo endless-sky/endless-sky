@@ -29,14 +29,19 @@ public:
 	
 	
 private:
-	bool ReferencesPhrase(const std::string& name) const;
+	bool ReferencesPhrase(const std::string &name) const;
 	
-	std::string _name;
 	
-	struct Part {
+private:
+	class Part {
+	public:
 		std::vector<std::string> words;
-		const Phrase *phrase;
+		const Phrase *phrase = nullptr;
 	};
+	
+	
+private:
+	std::string name;
 	std::vector<std::vector<Part>> parts;
 };
 

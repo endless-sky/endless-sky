@@ -25,14 +25,13 @@ void Phrase::Load(const DataNode &node)
 	if(node.Token(0) != "phrase")
 		return;
 	if(node.Size() > 1)
-		_name = node.Token(1);
+		name = node.Token(1);
 	
 	parts.emplace_back();
 	for(const DataNode &child : node)
 	{
 		parts.back().emplace_back();
 		Part &part = parts.back().back();
-		part.phrase = nullptr;
 		
 		if(child.Token(0) == "word")
 		{
@@ -41,8 +40,8 @@ void Phrase::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "phrase")
 		{
-			const Phrase* subphrase = GameData::Phrases().Get(child.Token(1));
-			if(subphrase->ReferencesPhrase(_name))
+			const Phrase *subphrase = GameData::Phrases().Get(child.Token(1));
+			if(subphrase->ReferencesPhrase(name))
 				child.PrintTrace("Found recursive phrase reference:");
 			else
 				part.phrase = subphrase;
@@ -72,13 +71,16 @@ string Phrase::Get() const
 }
 
 
+
 bool Phrase::ReferencesPhrase(const std::string& name) const
 {
-	if(_name == name)
+	if(name == this->name)
 		return true;
-	for(const vector<Part> &p : parts)
-		for(const Part &part : p)
-			if(part.phrase)
-				return part.phrase->ReferencesPhrase(name);
+	
+	for(const vector<Part> &alternative : parts)
+		for(const Part &part : alternative)
+			if(part.phrase && part.phrase->ReferencesPhrase(name))
+				return true;
+	
 	return false;
 }
