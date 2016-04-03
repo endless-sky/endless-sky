@@ -255,8 +255,8 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit || !playerShip)
 		return false;
 	
-	bool isInCargo = player.Cargo().GetOutfitCount(selectedOutfit)
-	int cost = available.Find(selectedOutfit) ? available.GetCost(selectedOutfit, 1, true) : selectedOutfit.Cost();
+	bool isInCargo = player.Cargo().GetOutfitCount(selectedOutfit);
+	int cost = available.Find(selectedOutfit) ? available.GetCost(selectedOutfit, 1, true) : selectedOutfit->Cost();
 	if(!(outfitter.Has(selectedOutfit) || available.Find(selectedOutfit) || isInCargo))
 		return false;
 	
