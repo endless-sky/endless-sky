@@ -158,9 +158,9 @@ phrase "encrypted signal 2"
 ship "Drone (Anonymous)"
 	sprite "ship/surveillance drone"
 	attributes
-		category "Drone"
+		category "Interceptor"
 		"cost" 15000
-		"hull" 1000
+		"hull" 600
 		"mass" 15
 		"drag" .53
 		"heat dissipation" .9
