@@ -324,7 +324,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		}
 		
 		if(parent && personality.IsCoward() && it->Shields() + it->Hull() < 1.)
-			it->SetParent(shared_ptr<Ship>());
+		{
+			parent.reset();
+			it->SetParent(parent);
+		}
 		
 		// Fire any weapons that will hit the target. Only ships that are in
 		// the current system can fire.
@@ -356,11 +359,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
 				// Handle orphaned fighters and drones.
-				it->SetParent(shared_ptr<Ship>());
+				parent.reset();
+				it->SetParent(parent);
 				for(const auto &other : ships)
 					if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
 							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
+						parent = other;
 						it->SetParent(other);
 						if(other->BaysFree(isFighter))
 							break;
