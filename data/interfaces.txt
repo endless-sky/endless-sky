@@ -1065,6 +1065,11 @@ interface "hail panel"
 		size 14
 		color dim
 		align center
+	if "can relinquish"
+	label "_Relinquish Planet" -20 108
+		size 14
+		color bright
+		align center
 	if "can assist"
 	label "Ask For _Help" -20 108
 		size 14

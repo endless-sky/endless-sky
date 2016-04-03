@@ -52,6 +52,7 @@ public:
 	void BribePlanet(const Planet *planet, bool fullAccess);
 	void DominatePlanet(const Planet *planet);
 	bool HasDominated(const Planet *planet) const;
+	void RelinquishPlanet(const Planet *planet);
 	
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.

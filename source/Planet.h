@@ -108,6 +108,7 @@ public:
 	
 	// Demand tribute, and get the planet's response.
 	std::string DemandTribute(PlayerInfo &player) const;
+	std::string RelinquishTribute(PlayerInfo &player) const;
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
 	
