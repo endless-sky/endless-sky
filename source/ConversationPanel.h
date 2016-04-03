@@ -57,6 +57,7 @@ protected:
 	
 private:
 	void Goto(int index, int choice = -1);
+	void SelectNode();
 	
 	
 private:

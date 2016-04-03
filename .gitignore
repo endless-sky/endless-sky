@@ -6,4 +6,6 @@
 /EndlessSky.xcodeproj/xcuserdata/
 /obj/Debug/
 /obj/Release/
+/obj/Win32/
+/bin/
 

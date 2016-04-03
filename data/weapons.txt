@@ -27,7 +27,7 @@ outfit "Energy Blaster"
 		"firing energy" 10
 		"firing heat" 35
 		"shield damage" 9
-		"hull damage" 9
+		"hull damage" 6
 	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
 
 outfit "Modified Blaster"
@@ -49,7 +49,7 @@ outfit "Modified Blaster"
 		"firing energy" 16
 		"firing heat" 55
 		"shield damage" 12
-		"hull damage" 12
+		"hull damage" 8
 	description "This is an Energy Blaster that has been tampered with to increase its power and range slightly, at the cost of a significant increase in its energy requirements. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
 
 outfit "Blaster Turret"
@@ -72,7 +72,7 @@ outfit "Blaster Turret"
 		"firing energy" 10
 		"firing heat" 35
 		"shield damage" 9
-		"hull damage" 9
+		"hull damage" 6
 	description "A Blaster Turret is a pair of Energy Blasters mounted on a rotating platform, allowing it to fire in any direction. Sophisticated software algorithms allow the turret to correct for a target's motion, making the Blaster Turret effective even against small, quickly moving fighters. Because it needs a special mounting point with a 360 degree field of view, not all ships are capable of being equipped with a turret."
 
 outfit "Modified Blaster Turret"
@@ -95,7 +95,7 @@ outfit "Modified Blaster Turret"
 		"firing energy" 16
 		"firing heat" 55
 		"shield damage" 12
-		"hull damage" 12
+		"hull damage" 8
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
 outfit "Quad Blaster Turret"
@@ -118,7 +118,7 @@ outfit "Quad Blaster Turret"
 		"firing energy" 10
 		"firing heat" 35
 		"shield damage" 9
-		"hull damage" 9
+		"hull damage" 6
 	description "A Quad Blaster Turret carries four guns on a single turret mount, doubling the firepower of an ordinary Blaster Turret for ships with enough space to install one and energy to drive it."
 
 outfit "Beam Laser"
@@ -141,7 +141,7 @@ outfit "Beam Laser"
 		"firing energy" .5
 		"firing heat" 1.2
 		"shield damage" 1
-		"hull damage" 2
+		"hull damage" 1.3
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere. A Beam Laser has a slightly shorter range than an Energy Blaster, but is also much more energy-efficient and does a comparable amount of damage."
 
 outfit "Heavy Laser"
@@ -164,7 +164,7 @@ outfit "Heavy Laser"
 		"firing energy" 1
 		"firing heat" 2.2
 		"shield damage" 1.8
-		"hull damage" 3.7
+		"hull damage" 2.4
 	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
 
 outfit "Electron Beam"
@@ -187,7 +187,7 @@ outfit "Electron Beam"
 		"firing energy" 1.5
 		"firing heat" 2.6
 		"shield damage" 2.9
-		"hull damage" 5.9
+		"hull damage" 3.9
 	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
 
 outfit "Laser Turret"
@@ -211,7 +211,7 @@ outfit "Laser Turret"
 		"firing energy" 1
 		"firing heat" 2.4
 		"shield damage" 2
-		"hull damage" 4
+		"hull damage" 2.6
 	description "Laser Turrets are hated by fighter pilots because it is entirely impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
 
 outfit "Heavy Laser Turret"
@@ -235,7 +235,7 @@ outfit "Heavy Laser Turret"
 		"firing energy" 2
 		"firing heat" 4.4
 		"shield damage" 3.6
-		"hull damage" 7.4
+		"hull damage" 4.8
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
 
 outfit "Electron Turret"
@@ -259,7 +259,7 @@ outfit "Electron Turret"
 		"firing energy" 3.0
 		"firing heat" 5.2
 		"shield damage" 5.8
-		"hull damage" 11.8
+		"hull damage" 7.8
 	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed accuracy and power for shooting down fast-moving targets."
 
 outfit "Anti-Missile Turret"
@@ -319,7 +319,7 @@ outfit "Particle Cannon"
 		"firing heat" 120
 		"hit force" 80
 		"shield damage" 54
-		"hull damage" 78
+		"hull damage" 52
 	description "The Particle Cannon works by accelerating a short burst of particles to near-relativistic speeds. When mounted on a ship that can turn fast enough to keep it trained on approaching ships, it becomes a nearly unbeatable weapon, capable of destroying smaller ships before they can even approach close enough for their comparatively short-ranged weapons to be effective."
 
 outfit "Proton Gun"
@@ -354,7 +354,7 @@ outfit "Proton Fragment"
 		"lifetime" 20
 		"hit force" 6
 		"shield damage" 8
-		"hull damage" 10
+		"hull damage" 6.6
 
 outfit "Plasma Cannon"
 	category "Guns"
@@ -366,6 +366,7 @@ outfit "Plasma Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/plasma"
+			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
@@ -376,7 +377,7 @@ outfit "Plasma Cannon"
 		"firing heat" 180
 		"hit force" 30
 		"shield damage" 63
-		"hull damage" 37
+		"hull damage" 25
 		"heat damage" 340
 	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
@@ -399,7 +400,7 @@ outfit "Pulse Cannon"
 		"firing energy" 24
 		"firing heat" 70
 		"shield damage" 45
-		"hull damage" 41
+		"hull damage" 34
 	description "Like most examples of Hai engineering that you have seen, the Pulse Cannon does not stand out as a particularly advanced or elegant technology, but it has a reputation for being efficient, reliable, and well-balanced."
 
 outfit "Pulse Turret"
@@ -422,7 +423,7 @@ outfit "Pulse Turret"
 		"firing energy" 24
 		"firing heat" 70
 		"shield damage" 45
-		"hull damage" 41
+		"hull damage" 34
 	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
 
 outfit "Ion Cannon"
@@ -435,6 +436,7 @@ outfit "Ion Cannon"
 	"gun ports" -1
 	weapon
 		sprite "projectile/ion bolt"
+			frame rate "5"
 		sound "ion"
 		"hit effect" "ion impact" 2
 		"inaccuracy" 1
@@ -446,7 +448,7 @@ outfit "Ion Cannon"
 		"firing heat" 150
 		"hit force" 120
 		"shield damage" 168
-		"hull damage" 90
+		"hull damage" 60
 		"ion damage" 5
 	description "Ion cannons do not do as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizeable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
 
@@ -461,6 +463,7 @@ outfit "Plasma Turret"
 	"required crew" 1
 	weapon
 		sprite "projectile/plasma"
+			"frame rate" 3
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
@@ -471,7 +474,7 @@ outfit "Plasma Turret"
 		"firing heat" 180
 		"hit force" 30
 		"shield damage" 63
-		"hull damage" 37
+		"hull damage" 25
 		"heat damage" 340
 	description "The Plasma Turret is a pair of plasma cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires."
 
@@ -510,7 +513,7 @@ outfit "Flamethrower Projectile"
 		"inaccuracy" 20
 		"lifetime" 22
 		"shield damage" .8
-		"hull damage" 1.1
+		"hull damage" .7
 		"heat damage" 200
 
 outfit "Meteor Missile"

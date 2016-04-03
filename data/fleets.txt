@@ -74,7 +74,7 @@ fleet "Large Southern Merchants"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 20
+		confusion 30
 		timid frugal
 	variant 20
 		"Freighter"
@@ -217,7 +217,7 @@ fleet "Large Core Merchants"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 10
+		confusion 20
 		timid frugal
 	variant 30
 		"Freighter" 2
@@ -348,7 +348,7 @@ fleet "Large Northern Merchants"
 	names "civilian"
 	cargo 4
 	personality
-		confusion 20
+		confusion 30
 		timid frugal
 	variant 20
 		"Freighter" 2
@@ -618,6 +618,7 @@ fleet "Small Militia"
 	cargo 1
 	personality
 		heroic frugal
+		confusion 20
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -663,6 +664,7 @@ fleet "Large Militia"
 	cargo 1
 	personality
 		heroic frugal
+		confusion 20
 	variant 10
 		"Bastion"
 	variant 5
@@ -1081,6 +1083,7 @@ fleet "Small Southern Pirates"
 	cargo 1
 	personality
 		plunders
+		confusion 20
 	variant 8
 		"Sparrow"
 	variant 3
@@ -1219,6 +1222,7 @@ fleet "Small Independent"
 	cargo 1
 	personality
 		plunders
+		confusion 20
 	variant 8
 		"Sparrow"
 	variant 3
@@ -1336,6 +1340,7 @@ fleet "Small Core Pirates"
 	cargo 1
 	personality
 		plunders
+		confusion 20
 	variant 4
 		"Quicksilver (Proton)"
 	variant 2
@@ -1402,6 +1407,7 @@ fleet "Small Northern Pirates"
 	cargo 1
 	personality
 		plunders
+		confusion 20
 	variant 5
 		"Sparrow"
 	variant 3
@@ -1516,6 +1522,7 @@ fleet "pirate raid"
 	personality
 		plunders
 		nemesis
+		confusion 20
 	variant 10
 		Sparrow 3
 	variant 10

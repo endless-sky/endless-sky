@@ -36,12 +36,14 @@ public:
 	// The possible outcomes of a conversation:
 	static const int ACCEPT = -1;
 	static const int DECLINE = -2;
-	static const int DIE = -3;
-	static const int DEFER = -4;
-	static const int LAUNCH = -5;
-	static const int FLEE = -6;
-	
-	
+	static const int DEFER = -3;
+	static const int LAUNCH = -4; // Accept + leave immediately.
+	static const int FLEE = -5; // Decline + leave immediately. 
+	static const int DEPART = -6; // Defer + leave immediately. 
+	static const int DIE = -7;
+
+	static bool LeaveImmediately(int outcome);
+
 public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;

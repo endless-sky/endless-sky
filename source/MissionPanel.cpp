@@ -60,13 +60,29 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 	
-	// Center the system slightly above the center of the screen because the
-	// lower panel is taking up more space than the upper one.
-	center = Point(0., -80.) - selectedSystem->Position();
-	
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
+
+	// Select the first available or accepted mission in the currently selected
+	// system, or along the travel plan.
+	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
+	{
+		auto& tp = player.TravelPlan();
+		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
+			if(FindMissionForSystem(*it))
+				break;
+	}
+
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+		selectedSystem = availableIt->Destination()->GetSystem();
+	else if(acceptedIt != accepted.end())
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+
+	// Center the system slightly above the center of the screen because the
+	// lower panel is taking up more space than the upper one.
+	center = Point(0., -80.) - selectedSystem->Position();
 }
 
 
@@ -89,6 +105,18 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	wrap.SetWrapWidth(380);
 	wrap.SetFont(FontSet::Get(14));
 	wrap.SetAlignment(WrappedText::JUSTIFIED);
+
+	// Select the first available or accepted mission in the currently selected
+	// system, or along the travel plan.
+	if(!FindMissionForSystem(selectedSystem)
+		&& !(player.GetSystem() != selectedSystem && FindMissionForSystem(player.GetSystem()))
+		&& player.HasTravelPlan())
+	{
+		auto& tp = player.TravelPlan();
+		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
+			if(FindMissionForSystem(*it))
+				break;
+	}
 }
 
 
@@ -221,6 +249,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == SDLK_UP)
 	{
+		SelectAnyMission();
 		if(availableIt != available.end())
 		{
 			if(availableIt == available.begin())
@@ -236,7 +265,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			} while(!acceptedIt->IsVisible());
 		}
 	}
-	else if(key == SDLK_DOWN)
+	else if(key == SDLK_DOWN && !SelectAnyMission())
 	{
 		if(availableIt != available.end())
 		{
@@ -517,7 +546,7 @@ void MissionPanel::DrawSelectedSystem() const
 		text = "Selected system: none";
 	else if(!player.KnowsName(selectedSystem))
 		text = "Selected system: unexplored system";
-	else	
+	else
 		text = "Selected system: " + selectedSystem->Name();
 	
 	int jumps = 0;
@@ -784,4 +813,42 @@ int MissionPanel::AcceptedVisible() const
 	for(const Mission &mission : accepted)
 		count += mission.IsVisible();
 	return count;
+}
+
+
+
+bool MissionPanel::FindMissionForSystem(const System* system)
+{
+	if(!system)
+		return false;
+
+	acceptedIt = accepted.end();
+
+	for(availableIt = available.begin(); availableIt != available.end(); ++availableIt)
+		if(availableIt->Destination()->GetSystem() == system)
+			return true;
+	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
+		if(acceptedIt->IsVisible() && acceptedIt->Destination()->GetSystem() == system)
+			return true;
+
+	return false;
+}
+
+
+
+bool MissionPanel::SelectAnyMission()
+{
+	if(availableIt == available.end() && acceptedIt == accepted.end()) {
+		// no previous selection, reset
+		if(!available.empty())
+			availableIt = available.begin();
+		else
+		{
+			acceptedIt = accepted.begin();
+			while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+				++acceptedIt;
+		}
+		return availableIt != available.end() || acceptedIt != accepted.end();
+	}
+	return false;
 }

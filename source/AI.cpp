@@ -39,7 +39,7 @@ using namespace std;
 namespace {
 	const Command &AutopilotCancelKeys()
 	{
-		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
+		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
 			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
 		
 		return keys;
@@ -749,11 +749,12 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		PrepareForHyperspace(ship, command);
 		bool mustWait = false;
-		for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
-		{
-			shared_ptr<const Ship> locked = escort.lock();
-			mustWait = locked && locked->CanBeCarried();
-		}
+		if(ship.BaysFree(false) || ship.BaysFree(true))
+			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
+			{
+				shared_ptr<const Ship> locked = escort.lock();
+				mustWait |= locked && locked->CanBeCarried();
+			}
 		
 		if(!mustWait)
 			command |= Command::JUMP;
@@ -1502,7 +1503,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			{
 				isWormhole = true;
 				ship.SetTargetPlanet(&object);
-				keyStuck |= Command::LAND;
+				if(keyStuck.Has(Command::JUMP))
+					keyStuck |= Command::LAND;
 				break;
 			}
 		if(!isWormhole)

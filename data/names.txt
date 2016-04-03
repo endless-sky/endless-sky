@@ -8,6 +8,63 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+phrase "digit"
+	word
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+
+phrase "letter"
+	word
+		A
+		B
+		C
+		D
+		E
+		F
+		G
+		H
+		I
+		J
+		K
+		L
+		M
+		N
+		O
+		P
+		Q
+		R
+		S
+		T
+		U
+		V
+		W
+		X
+		Y
+		Z
+
+phrase "one to twelve"
+	word
+		"One"
+		"Two"
+		"Three"
+		"Four"
+		"Five"
+		"Six"
+		"Seven"
+		"Eight"
+		"Nine"
+		"Ten"
+		"Eleven"
+		"Twelve"
+
 phrase "civilian"
 	word
 		"Horizon"
@@ -897,66 +954,10 @@ phrase "free worlds small"
 phrase "syndicate small"
 	word
 		"S-"
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
-	word
-		A
-		B
-		C
-		D
-		E
-		F
-		G
-		H
-		I
-		J
-		K
-		L
-		M
-		N
-		O
-		P
-		Q
-		R
-		S
-		T
-		U
-		V
-		W
-		X
-		Y
-		Z
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
+	phrase "digit"
+	phrase "digit"
+	phrase "letter"
+	phrase "digit"
 
 phrase "republic fighter"
 	word
@@ -968,19 +969,7 @@ phrase "republic fighter"
 		"Gamma "
 		"Delta "
 		"Epsilon "
-	word
-		"One"
-		"Two"
-		"Three"
-		"Four"
-		"Five"
-		"Six"
-		"Seven"
-		"Eight"
-		"Nine"
-		"Ten"
-		"Eleven"
-		"Twelve"
+	phrase "one to twelve"
 
 phrase "deep fighter"
 	word
@@ -989,75 +978,21 @@ phrase "deep fighter"
 		"Gamma "
 		"Delta "
 		"Epsilon "
-	word
-		"One"
-		"Two"
-		"Three"
-		"Four"
-		"Five"
-		"Six"
-		"Seven"
-		"Eight"
-		"Nine"
-		"Ten"
-		"Eleven"
-		"Twelve"
+	phrase "one to twelve"
 
 phrase "free worlds fighter"
 	word
 		"Wolf "
 		"Hound "
 		"Fox "
-	word
-		"One"
-		"Two"
-		"Three"
-		"Four"
-		"Five"
-		"Six"
-		"Seven"
-		"Eight"
-		"Nine"
-		"Ten"
-		"Eleven"
-		"Twelve"
+	phrase "one to twelve"
 
 phrase "syndicate fighter"
 	word
 		"F-"
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
 
 phrase "pirate"
 	word

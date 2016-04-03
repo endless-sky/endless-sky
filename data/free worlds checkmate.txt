@@ -1055,6 +1055,7 @@ mission "FWC Checkmate Escorts"
 mission "FWC Pug 1"
 	name "Defend <planet>"
 	description "<planet> is under attack by ships of an unknown type. Drive them off, and then return to the planet to figure out what to do next."
+	source "Silver"
 	to offer
 		has "FWC Checkmate 1C: done"
 	on fail
