@@ -164,7 +164,7 @@ ship "Drone (Anonymous)"
 		"mass" 15
 		"drag" .53
 		"heat dissipation" .9
-		"outfit space" 60
+		"outfit space" 30
 		"weapon capacity" 0
 		"engine capacity" 28
 		"fuel capacity" 1000
@@ -172,13 +172,13 @@ ship "Drone (Anonymous)"
 		"jump drive" 1
 		"hyperdrive" 1
 		"automaton" 1
+		"energy generation" 1
 		weapon
 			"blast radius" 3
 			"shield damage" 30
 			"hull damage" 15
 			"hit force" 45
 	outfits
-		"nGVF-AA Fuel Cell"
 		"Outfit Scanner"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
@@ -195,6 +195,7 @@ mission "Quarg Observers 1"
 	invisible
 	to offer 
 		has "taken quarg technology"
+		random < 50
 	npc board
 		government "Unknown Watchers"
 		ship  "Drone (Anonymous)"
