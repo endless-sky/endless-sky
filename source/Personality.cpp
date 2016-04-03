@@ -61,14 +61,14 @@ namespace {
 		{"vindictive", VINDICTIVE}
 	};
 	
-	double DEFAULT_CONFUSION = 10. * .001;
+	double DEFAULT_CONFUSION = 10.;
 }
 
 
 
 // Default settings for player's ships.
 Personality::Personality()
-	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION)
+	: flags(DISABLES), confusionMultiplier(DEFAULT_CONFUSION), confusionAngle(Angle::Random())
 {
 }
 
@@ -83,7 +83,7 @@ void Personality::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion" && child.Size() >= 2)
-			confusionMultiplier = child.Value(1) * .001;
+			confusionMultiplier = child.Value(1);
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
@@ -99,7 +99,7 @@ void Personality::Save(DataWriter &out) const
 	out.Write("personality");
 	out.BeginChild();
 	{
-		out.Write("confusion", confusionMultiplier * 1000.);
+		out.Write("confusion", confusionMultiplier);
 		for(const auto &it : TOKEN)
 			if(flags & it.second)
 				out.Write(it.first);
@@ -237,9 +237,16 @@ bool Personality::IsVindictive() const
 
 const Point &Personality::Confusion() const
 {
-	confusion += Angle::Random().Unit() * confusionMultiplier;
-	confusion *= .999;
 	return confusion;
+}
+
+
+
+void Personality::UpdateConfusion()
+{
+	confusionAngle += Angle::Random(10) - Angle::Random(10);
+	confusion += (.1 * confusionMultiplier) * confusionAngle.Unit();
+	confusion *= .9;
 }
 
 

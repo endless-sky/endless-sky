@@ -294,6 +294,12 @@ void Ship::FinishLoading()
 		}
 	}
 	
+	// Mark any drone that has no "automaton" value as an automaton, to
+	// grandfather in the drones from before that attribute existed.
+	if(baseAttributes.Category() == "Drone"
+			&& baseAttributes.Attributes().find("automaton") == baseAttributes.Attributes().end())
+		baseAttributes.Add("automaton", 1.);
+	
 	// Different ships dissipate heat at different rates.
 	heatDissipation = baseAttributes.Get("heat dissipation");
 	if(!heatDissipation)
@@ -678,6 +684,9 @@ bool Ship::Move(list<Effect> &effects)
 	if(!fuel || !(attributes.Get("hyperdrive") || attributes.Get("jump drive")))
 		hyperspaceSystem = nullptr;
 	
+	// Adjust the error in the pilot's targeting.
+	personality.UpdateConfusion();
+	
 	// Handle ionization effects, etc.
 	if(ionization)
 	{
@@ -727,15 +736,12 @@ bool Ship::Move(list<Effect> &effects)
 	// Update ship supply levels.
 	if(!isDisabled)
 	{
-		// If you have a ramscoop, you recharge enough fuel to make one jump in
-		// a little less than a minute - enough to be an inconvenience without
-		// being totally aggravating.
-		if(attributes.Get("ramscoop"))
-		{
-			// Ramscoops work much better when close to the system center.
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			TransferFuel(-.03 * scale * sqrt(attributes.Get("ramscoop")), nullptr);
-		}
+		// Ramscoops work much better when close to the system center. Even if a
+		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
+		// close to the star.
+		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop") + .05 * scale));
+		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);
@@ -1130,7 +1136,7 @@ bool Ship::Move(list<Effect> &effects)
 		double oldHull = hull;
 		double hullGeneration = attributes.Get("hull repair rate");
 		hull = min(hull + hullGeneration, maxHull);
-		static const double HULL_EXCHANGE_RATE = 1. +
+		static const double HULL_EXCHANGE_RATE =
 			(hullGeneration ? attributes.Get("hull energy") / hullGeneration : 0.);
 		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
 		
@@ -1138,7 +1144,7 @@ bool Ship::Move(list<Effect> &effects)
 		// energy, use it to recharge fighters and drones.
 		double shieldGeneration = attributes.Get("shield generation");
 		shields += shieldGeneration;
-		double SHIELD_EXCHANGE_RATE = 1. +
+		double SHIELD_EXCHANGE_RATE =
 			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
 		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
 		double excessShields = max(0., shields - maxShields);

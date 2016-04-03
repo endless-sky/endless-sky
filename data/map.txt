@@ -3443,6 +3443,7 @@ system Chikatip
 	asteroids "small metal" 18 2.5415
 	asteroids "medium metal" 89 2.6979
 	asteroids "large metal" 22 4.0664
+	fleet "Quarg" 2000
 	object
 		sprite star/k5
 		period 10
@@ -3585,6 +3586,7 @@ system Chornifath
 	asteroids "small metal" 5 6.0368
 	asteroids "medium metal" 2 9.4864
 	asteroids "large metal" 4 5.0176
+	fleet "Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -4301,6 +4303,7 @@ system Dokdobaru
 	asteroids "small metal" 1 4.05
 	asteroids "medium metal" 2 4.05
 	asteroids "large metal" 3 2.0655
+	fleet "Quarg" 500
 	object
 		sprite star/g5
 		period 10
@@ -5453,6 +5456,7 @@ system Farbutero
 	asteroids "small metal" 2 4.4689
 	asteroids "medium metal" 1 6.7367
 	asteroids "large metal" 1 6.8701
+	fleet "Quarg" 2000
 	object
 		sprite star/g5
 		period 10
@@ -5588,6 +5592,7 @@ system Feroteri
 	asteroids "small metal" 3 3.081
 	asteroids "medium metal" 12 5.265
 	asteroids "large metal" 11 4.758
+	fleet "Quarg" 3000
 	object
 		sprite star/a0
 		distance 9.18418
@@ -5803,6 +5808,7 @@ system Fornarep
 	asteroids "small metal" 7 2.8224
 	asteroids "medium metal" 11 3.2928
 	asteroids "large metal" 13 4.5024
+	fleet "Quarg" 2000
 	object
 		sprite star/m0
 		period 10
@@ -5847,6 +5853,7 @@ system Furmeliki
 	link Kashikt
 	link Skeruto
 	asteroids "large metal" 1 3.5511
+	fleet "Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -6706,6 +6713,7 @@ system Hesselpost
 	asteroids "small metal" 83 2.366
 	asteroids "medium metal" 93 1.0985
 	asteroids "large metal" 89 1.7407
+	fleet "Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -7025,6 +7033,7 @@ system Host
 	government Uninhabited
 	habitable 486.68
 	asteroids "large metal" 1 0.732
+	fleet "Quarg" 10000
 	object
 		sprite star/k0
 		period 10
@@ -7662,6 +7671,7 @@ system Kaliptari
 	asteroids "medium rock" 11 6.9498
 	asteroids "large rock" 25 5.4918
 	asteroids "large metal" 1 3.2562
+	fleet "Quarg" 3000
 	object
 		sprite star/m0
 		period 10
@@ -7779,6 +7789,7 @@ system Kashikt
 	asteroids "small metal" 22 3.1878
 	asteroids "medium metal" 44 6.0858
 	asteroids "large metal" 13 4.2021
+	fleet "Quarg" 1000
 	object
 		sprite star/f5
 		period 10
@@ -8123,7 +8134,6 @@ system "Kor Ak'Mari"
 	asteroids "medium metal" 99 3.0744
 	asteroids "large metal" 32 1.5624
 	fleet "Korath Raid" 2800
-	fleet "Korath Home" 2000
 	object
 		sprite star/wr
 		period 100
@@ -8513,6 +8523,7 @@ system Korsmanath
 	asteroids "medium rock" 1 2.5993
 	asteroids "large rock" 4 1.3277
 	asteroids "large metal" 2 1.6456
+	fleet "Quarg" 3000
 	object
 		sprite star/k0
 		period 10
@@ -9308,6 +9319,7 @@ system Meftarkata
 	asteroids "large rock" 14 0.8892
 	asteroids "medium metal" 4 1.5288
 	asteroids "large metal" 1 1.9344
+	fleet "Quarg" 1000
 	object
 		sprite star/f5
 		distance 21.8839
@@ -12295,6 +12307,7 @@ system Sabik
 
 system Sabriset
 	pos 151.724 -426.518
+	government Uninhabited
 	habitable 1566.68
 	link Sepriaptu
 	link Kaliptari
@@ -12304,6 +12317,7 @@ system Sabriset
 	asteroids "small metal" 21 4.374
 	asteroids "medium metal" 4 5.1435
 	asteroids "large metal" 7 4.3335
+	fleet "Quarg" 4000
 	object
 		sprite star/g0
 		distance 35.1028
@@ -12925,6 +12939,7 @@ system Seketra
 	link Skeruto
 	link Chikatip
 	asteroids "large metal" 1 1.7556
+	fleet "Quarg" 3000
 	object
 		sprite star/k5
 		period 10
@@ -13014,6 +13029,7 @@ system Sepriaptu
 	asteroids "small metal" 4 10.5
 	asteroids "medium metal" 53 6.23
 	asteroids "large metal" 1 9.24
+	fleet "Quarg" 4000
 	object
 		sprite star/f5
 		distance 16.1966
@@ -13046,6 +13062,7 @@ system Sevrelect
 	link Sumprast
 	link Kashikt
 	asteroids "large metal" 1 2.97
+	fleet "Quarg" 1000
 	object
 		sprite star/m0
 		period 10
@@ -13474,6 +13491,7 @@ system Skeruto
 	link Kaliptari
 	link Seketra
 	asteroids "large metal" 1 1.5554
+	fleet "Quarg" 2000
 	object
 		sprite star/m0
 		period 10
@@ -13684,6 +13702,7 @@ system Solifar
 	asteroids "small metal" 2 7.134
 	asteroids "medium metal" 80 7.946
 	asteroids "large metal" 26 7.076
+	fleet "Quarg" 4000
 	object
 		sprite star/m0
 		period 10
@@ -13949,6 +13968,7 @@ system Sumprast
 	asteroids "small metal" 3 2.9744
 	asteroids "medium metal" 15 2.4336
 	asteroids "large metal" 7 2.4336
+	fleet "Quarg" 1000
 	object
 		sprite star/k0
 		period 10
@@ -16473,7 +16493,7 @@ planet Echo
 planet "Elek Kartanu"
 	attributes korath
 	landscape land/mountain2
-	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent path, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
+	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 
 planet "Esayaku Fen"
 	attributes korath
@@ -17078,6 +17098,7 @@ planet "Korati Efreti"
 	description `This small Korath station is positioned at the Lagrangian point in between this system's sun and the planet that the Quarg had been mining for material to build the ringworld. The station is dwarfed by the ringworld, but nonetheless manages to make a statement: re-asserting the territorial rights of the Korath in the face of an alien species that chose to build a settlement in one of their systems.`
 	spaceport `As the Korath civil war became more and more brutal, the safest home for those who wanted to avoid the fighting was right here in the shadow of the Quarg. This small station is still home to well over a thousand Korath, and they are constantly on the move from one section to another, their boots ringing loudly on the metal floors.`
 	spaceport `	The Korath studiously avoid staring at you or even making eye contact, but you get the sense that many of them are quite curious about who you are and what you are doing here.`
+	government "Kor Efret"
 	bribe 0.1
 	security 0.5
 

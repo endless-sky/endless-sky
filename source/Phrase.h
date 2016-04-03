@@ -29,7 +29,20 @@ public:
 	
 	
 private:
-	std::vector<std::vector<std::vector<std::string>>> words;
+	bool ReferencesPhrase(const std::string &name) const;
+	
+	
+private:
+	class Part {
+	public:
+		std::vector<std::string> words;
+		const Phrase *phrase = nullptr;
+	};
+	
+	
+private:
+	std::string name;
+	std::vector<std::vector<Part>> parts;
 };
 
 

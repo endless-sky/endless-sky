@@ -297,6 +297,11 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
 	attributesHeight += 20;
+	tableLabels.push_back("repairing:");
+	double repairEnergy = attributes.Get("shield energy") + attributes.Get("hull energy");
+	energyTable.push_back(Format::Number(-60. * repairEnergy));
+	heatTable.push_back("0");
+	attributesHeight += 20;
 	tableLabels.push_back("max:");
 	energyTable.push_back(Format::Number(attributes.Get("energy capacity")));
 	heatTable.push_back(Format::Number(60. * emptyMass * .1 * attributes.Get("heat dissipation")));
