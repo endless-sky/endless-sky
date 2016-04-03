@@ -77,7 +77,6 @@ mission "First Quarg Boarding Action"
 		government Quarg
 	on offer 
 		conversation 
-			`	You've been waiting for this moment for a long time. As far as you know, no human-not even the craziest pirate lord-has ever disabled and boarded a Quarg ship. Even after the unfathomable amount of punishment that you unleashed upon it, you keep expecting the alien vessel to spring to life and either destroy you or vanish in a shimmer of blue light...but it seems even the Quarg have their limits. The ship is drifting, apparently without power.`
 			`	You lock your ship's boarding clamps into position and inspect the Quarg hull through your instruments, keeping one eye on your long-range scanners for any sign of more Quarg (though considering the way their ships can just materialize out of hyperspace, you don't expect a lot of warning). You identify the alien craft's armaments: fearsome twin beam weapons and powerful missile defense turrets. Of course they aren't fitted onto the standard turret-mounts you're used to seeing on human ships...so removing them without damage may be a challenge. And that's assuming no part of this alien ship explodes in your face.  It looks like the primary beams are at least 60 tons each...you have enough cargo space for those, right?`
 			`	A pit forms in your stomach...maybe this was a bad idea.` 
 			choice 
