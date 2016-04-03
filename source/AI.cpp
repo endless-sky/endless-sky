@@ -39,7 +39,7 @@ using namespace std;
 namespace {
 	const Command &AutopilotCancelKeys()
 	{
-		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
+		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
 			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
 		
 		return keys;
