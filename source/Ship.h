@@ -372,7 +372,10 @@ private:
 	double ionization = 0.;
 	double disruption = 0.;
 	double slowness = 0.;
+
 	double mass = 0.;
+	double turnRate = 0.;
+	double thrust = 0.;
 	
 	int crew = 0;
 	int requiredCrew = 0;

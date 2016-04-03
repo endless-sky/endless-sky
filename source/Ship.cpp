@@ -329,6 +329,8 @@ void Ship::FinishLoading()
 	}
 
 	mass = attributes.Get("mass");
+	turnRate = attributes.Get("turn");
+	thrust = attributes.Get("thrust");
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
 	// Do not recharge if this ship's starting state was saved.
@@ -1790,14 +1792,14 @@ double Ship::Mass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / Mass();
+	return turnRate / Mass();
 }
 
 
 
 double Ship::Acceleration() const
 {
-	return attributes.Get("thrust") / Mass();
+	return thrust / Mass();
 }
 
 
@@ -1807,7 +1809,7 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	return attributes.Get("thrust") / attributes.Get("drag");
+	return thrust / attributes.Get("drag");
 }
 
 
@@ -2047,6 +2049,10 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			hull += outfit->Get("hull") * count;
 		if(outfit->Get("mass"))
 			mass += outfit->Get("mass") * count;
+		if(outfit->Get("turn"))
+			turnRate += outfit->Get("turn") * count;
+		if(outfit->Get("thrust"))
+			thrust += outfit->Get("thrust") * count;
 	}
 }
 
