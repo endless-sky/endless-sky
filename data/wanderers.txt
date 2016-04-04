@@ -423,7 +423,7 @@ outfit "Sunbeam"
 		"firing energy" 4.3
 		"firing heat" 6.2
 		"shield damage" 7.2
-		"hull damage" 4.5
+		"hull damage" 3.0
 		"heat damage" 12.1
 	description "The Wanderers do not devote much time to developing weapon technology, preferring to focus their attention on more constructive endeavors. However, the few weapons they have created are efficient and deadly."
 

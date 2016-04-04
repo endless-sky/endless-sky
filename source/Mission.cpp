@@ -90,7 +90,7 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 2)
 				deadlineBase += child.Value(1);
 			if(child.Size() >= 3)
-				deadlineMultiplier += child.Value(3);
+				deadlineMultiplier += child.Value(2);
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{
@@ -191,8 +191,10 @@ void Mission::Load(const DataNode &node)
 				{"accept", ACCEPT},
 				{"decline", DECLINE},
 				{"fail", FAIL},
+				{"defer", DEFER},
 				{"visit", VISIT},
-				{"stopover", STOPOVER}};
+				{"stopover", STOPOVER}
+			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
 				actions[it->second].Load(child, name);
@@ -305,7 +307,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const auto &it : actions)
 			it.second.Save(out);
 		for(const auto &it : onEnter)
-			it.second.Save(out);
+			if(!didEnter.count(it.first))
+				it.second.Save(out);
 	}
 	out.EndChild();
 }
@@ -742,19 +745,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		if(it != waypoints.end())
 			waypoints.erase(it);
 		
-		auto eit = onEnter.find(system);
-		if(eit != onEnter.end())
-		{
-			eit->second.Do(player, ui);
-			onEnter.erase(eit);
-		}
+		Enter(system, player, ui);
 		// Allow special "on enter" conditions that match any system.
-		eit = onEnter.find(nullptr);
-		if(eit != onEnter.end())
-		{
-			eit->second.Do(player, ui);
-			onEnter.erase(eit);
-		}
+		Enter(nullptr, player, ui);
 	}
 	
 	for(NPC &npc : npcs)
@@ -951,6 +944,18 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	result.hasFailed = false;
 	return result;
+}
+
+
+
+void Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
+{
+	auto eit = onEnter.find(system);
+	if(eit != onEnter.end() && !didEnter.count(eit->first))
+	{
+		eit->second.Do(player, ui);
+		didEnter.insert(eit->first);
+	}
 }
 
 

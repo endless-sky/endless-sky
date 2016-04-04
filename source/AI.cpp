@@ -39,7 +39,7 @@ using namespace std;
 namespace {
 	const Command &AutopilotCancelKeys()
 	{
-		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD
+		static const Command keys(Command::LAND | Command::JUMP | Command::BOARD | Command::AFTERBURNER
 			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT);
 		
 		return keys;
@@ -324,7 +324,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		}
 		
 		if(parent && personality.IsCoward() && it->Shields() + it->Hull() < 1.)
-			it->SetParent(shared_ptr<Ship>());
+		{
+			parent.reset();
+			it->SetParent(parent);
+		}
 		
 		// Fire any weapons that will hit the target. Only ships that are in
 		// the current system can fire.
@@ -356,11 +359,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
 				// Handle orphaned fighters and drones.
-				it->SetParent(shared_ptr<Ship>());
+				parent.reset();
+				it->SetParent(parent);
 				for(const auto &other : ships)
 					if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
 							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
+						parent = other;
 						it->SetParent(other);
 						if(other->BaysFree(isFighter))
 							break;
@@ -749,11 +754,12 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		PrepareForHyperspace(ship, command);
 		bool mustWait = false;
-		for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
-		{
-			shared_ptr<const Ship> locked = escort.lock();
-			mustWait = locked && locked->CanBeCarried();
-		}
+		if(ship.BaysFree(false) || ship.BaysFree(true))
+			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
+			{
+				shared_ptr<const Ship> locked = escort.lock();
+				mustWait |= locked && locked->CanBeCarried();
+			}
 		
 		if(!mustWait)
 			command |= Command::JUMP;
@@ -1511,7 +1517,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			{
 				isWormhole = true;
 				ship.SetTargetPlanet(&object);
-				keyStuck |= Command::LAND;
+				if(keyStuck.Has(Command::JUMP))
+					keyStuck |= Command::LAND;
 				break;
 			}
 		if(!isWormhole)

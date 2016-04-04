@@ -707,15 +707,12 @@ bool Ship::Move(list<Effect> &effects)
 	// Update ship supply levels.
 	if(!isDisabled)
 	{
-		// If you have a ramscoop, you recharge enough fuel to make one jump in
-		// a little less than a minute - enough to be an inconvenience without
-		// being totally aggravating.
-		if(attributes.Get("ramscoop"))
-		{
-			// Ramscoops work much better when close to the system center.
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			TransferFuel(-.03 * scale * sqrt(attributes.Get("ramscoop")), nullptr);
-		}
+		// Ramscoops work much better when close to the system center. Even if a
+		// ship has no ramscoop, it can harvest a tiny bit of fuel by flying
+		// close to the star.
+		double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop") + .05 * scale));
+		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);

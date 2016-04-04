@@ -6,14 +6,14 @@ Linux:
 
 Use your favorite package manager to install the following (version numbers may vary depending on your distribution):
 
-  * g++
-  * scons
-  * libsdl2-dev
-  * libpng12-dev
-  * libjpeg-turbo8-dev
-  * libgl1-mesa-dev (or some other equivalent)
-  * libglew-dev
-  * libopenal-dev
+   g++ \
+   scons \
+   libsdl2-dev \
+   libpng12-dev \
+   libjpeg-turbo8-dev \
+   libgl1-mesa-dev \
+   libglew-dev \
+   libopenal-dev
 
 You can then just navigate to the source code folder in a terminal and type:
 

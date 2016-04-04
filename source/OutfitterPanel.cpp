@@ -214,21 +214,19 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit || !playerShip)
 		return false;
 	
-	// If you have this in your cargo hold, installing it is free.
-	if(player.Cargo().Get(selectedOutfit))
-		return true;
-	
-	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit]))
+	bool isInCargo = player.Cargo().Get(selectedOutfit);
+	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize > 0 && HasMapped(mapSize))
 		return false;
 	
-	if(HasLicense(selectedOutfit->Name()))
+	// If you have this in your cargo hold, installing it is free.
+	if(selectedOutfit->Cost() > player.Accounts().Credits() && !isInCargo)
 		return false;
 	
-	if(selectedOutfit->Cost() > player.Accounts().Credits())
+	if(HasLicense(selectedOutfit->Name()))
 		return false;
 	
 	for(const Ship *ship : playerShips)

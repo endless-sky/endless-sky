@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Michael Zahniser
+# Copyright (c) 2014-2016 by Michael Zahniser
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -7,96 +7,6 @@
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-ship "Quarg Skylark"
-	sprite "ship/skylark"
-	attributes
-		category "Heavy Warship"
-		"cost" 5900000
-		"shields" 120000
-		"hull" 12000
-		"required crew" 120
-		"bunks" 210
-		"mass" 460
-		"drag" 12.3
-		"heat dissipation" .7
-		"fuel capacity" 1000
-		"cargo space" 200
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"energy generation" 80
-		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
-	outfits
-		"Quarg Skylance" 2
-		"Quarg Anti-Missile" 2
-		"Nanotech Battery"
-		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
-		"Jump Drive"
-	engine -15 117
-	engine 15 117
-	turret -12 -80 "Quarg Skylance"
-	turret 12 -80 "Quarg Skylance"
-	turret -12 -80 "Quarg Anti-Missile"
-	turret 12 -80 "Quarg Anti-Missile"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
-	explode "medium explosion" 30
-	explode "big explosion" 40
-	explode "huge explosion" 20
-	description "The Skylark is used by the Quarg as a freighter and warship."
-
-ship "Quarg Wardragon"
-	sprite "ship/wardragon"
-	attributes
-		category "Heavy Warship"
-		"cost" 5900000
-		"shields" 160000
-		"hull" 8000
-		"required crew" 160
-		"bunks" 185
-		"mass" 360
-		"drag" 9.3
-		"heat dissipation" .5
-		"fuel capacity" 800
-		"cargo space" 50
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"energy generation" 80
-		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
-	outfits
-		"Quarg Skylance" 2
-		"Quarg Anti-Missile" 2
-		"Nanotech Battery"
-		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 160
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
-		"Jump Drive"
-	engine -14 47
-	engine 14 47
-	turret -29 6 "Quarg Skylance"
-	turret 29 6 "Quarg Skylance"
-	turret -29 6 "Quarg Anti-Missile"
-	turret 29 6 "Quarg Anti-Missile"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
-	explode "medium explosion" 30
-	explode "big explosion" 40
-	explode "huge explosion" 20
-	description "The Wardragon is used by the Quarg as a light warship."
 
 ship "Korath Raider"
 	sprite "ship/raider"
@@ -149,6 +59,8 @@ ship "Korath Raider"
 	explode "huge explosion" 10
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
 
+
+
 ship "Korath Chaser"
 	sprite "ship/chaser"
 	attributes
@@ -179,6 +91,8 @@ ship "Korath Chaser"
 	gun 0 -28 "Korath Fire-Lance"
 	explode "tiny explosion" 20
 	description "The Korath Chaser is a fighter carried by most of their capital ships."
+
+
 
 ship "Korath World-Ship"
 	sprite "ship/world-ship a"
@@ -235,6 +149,8 @@ ship "Korath World-Ship"
 	explode "huge explosion" 50
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
+
+
 ship "Korath World-Ship" "Korath World-Ship B"
 	sprite "ship/world-ship b"
 	turret -76 -219 "Korath Grab-Strike"
@@ -245,6 +161,8 @@ ship "Korath World-Ship" "Korath World-Ship B"
 	turret -83 165 "Korath Warder"
 	turret 83 165 "Korath Warder"
 	turret 0 277 "Korath Banisher"
+
+
 
 ship "Korath World-Ship" "Korath World-Ship C"
 	sprite "ship/world-ship c"
