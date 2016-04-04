@@ -66,7 +66,7 @@ outfit "LP576a Battery Pack"
 outfit "KP-6 Photovoltaic Panel"
 	category "Power"
 	cost 10000
-	thumbnail "outfit/small photovoltaic"
+	thumbnail "outfit/tiny photovoltaic"
 	"mass" 3
 	"outfit space" -3
 	"solar collection" .1
