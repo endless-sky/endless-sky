@@ -193,22 +193,16 @@ mission "Quarg Observers 1"
 	landing
 	repeat
 	invisible
-	to offer 
+	to offer
+		random < 51
 		has "taken quarg technology"
-		random < 50
 	npc board
 		government "Unknown Watchers"
 		ship  "Drone (Anonymous)"
-		dialog "You board one of the drones that's been following you and inspect it, but you're not able to determine its origin. It is made from generic technology and it has been broadcasting on an encrypted frequency.  You have no idea who sent it, but you suspect your acquisition of Quarg technology may have drawn attention from any number of different parties."
+		dialog "You board one of the drones that's been following you and inspect it, but you are not able to determine its origin. It is made from generic technology and it has been broadcasting on an encrypted frequency.  You have no idea who sent it, but you suspect your acquisition of Quarg technology may have drawn attention from any number of different parties."
 	to fail
-		# Checking "> 1" means the player will accumulate a max of 2 annoying drones at a time.  
-		"Quarg Observers 1: offered" > 1
-	on fail
-		#dialog "MISSION DEBUG: Failed!"
-		"Quarg Observers 1: offered" --
-	on complete
-		#dialog "MISSION DEBUG: Complete!"
-		"Quarg Observers 1: offered" --
+		# Checking "> 1" means the player will accumulate a max of 2 annoying drones at a time.
+		"Quarg Observers 1: active" > 1
 	# The destination doesn't matter, since this is invisible and probably never "completed".
 	destination Earth
 	
