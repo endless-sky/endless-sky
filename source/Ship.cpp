@@ -714,6 +714,8 @@ bool Ship::Move(list<Effect> &effects)
 		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop") + .05 * scale));
 		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
+		energy += scale * attributes.Get("solar collection");
+		
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
