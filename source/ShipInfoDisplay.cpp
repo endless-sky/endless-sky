@@ -195,9 +195,6 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
 			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
-	attributeLabels.push_back("solar collection:");
-	attributeValues.push_back(Format::Number(attributes.Get("solar collection")));
-	attributesHeight += 20;
 	
 	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
 	isGeneric &= (fullMass != emptyMass);
@@ -274,7 +271,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 30;
 	
 	tableLabels.push_back("idle:");
-	energyTable.push_back(Format::Number(60. * attributes.Get("energy generation")));
+	energyTable.push_back(Format::Number(
+		60. * (attributes.Get("energy generation")
+			+ attributes.Get("solar collection"))));
 	heatTable.push_back(Format::Number(
 		60. * (attributes.Get("heat generation") - attributes.Get("cooling"))));
 	attributesHeight += 20;
@@ -369,3 +368,4 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleValues.push_back(Format::Number(totalValue) + " credits");
 	saleHeight += 20;
 }
+
