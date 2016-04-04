@@ -195,6 +195,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		attributeValues.push_back(Format::Number(ship.Fuel() * fuelCapacity)
 			+ " / " + Format::Number(fuelCapacity));
 	attributesHeight += 20;
+	attributeLabels.push_back("solar collection:");
+	attributeValues.push_back(Format::Number(attributes.Get("solar collection")));
+	attributesHeight += 20;
 	
 	double fullMass = emptyMass + (isGeneric ? attributes.Get("cargo space") : ship.Cargo().Used());
 	isGeneric &= (fullMass != emptyMass);
