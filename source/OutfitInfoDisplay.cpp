@@ -44,6 +44,10 @@ namespace {
 		"turning energy",
 		"turning heat"
 	};
+	
+	static const set<string> BOOLEAN_ATTRIBUTES = {
+		"unplunderable"
+	};
 }
 
 
@@ -135,9 +139,18 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
 			scale = 60.;
 		
-		attributeLabels.push_back(it.first + ':');
-		attributeValues.push_back(Format::Number(it.second * scale));
-		attributesHeight += 20;
+		if (BOOLEAN_ATTRIBUTES.find(it.first) != BOOLEAN_ATTRIBUTES.end()) 
+		{
+			attributeLabels.push_back("This outfit is " + it.first + ".");
+			attributeValues.push_back("");
+			attributesHeight += 20;
+		}
+		else
+		{
+			attributeLabels.push_back(it.first + ':');
+			attributeValues.push_back(Format::Number(it.second * scale));
+			attributesHeight += 20;
+		}
 	}
 	
 	if(!outfit.IsWeapon())
