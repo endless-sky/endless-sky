@@ -63,6 +63,24 @@ outfit "LP576a Battery Pack"
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
 
+outfit "KP-6 Photovoltaic Panel"
+	category "Power"
+	cost 10000
+	thumbnail "outfit/tiny photovoltaic"
+	"mass" 3
+	"outfit space" -3
+	"solar collection" .1
+	description "This early commercial photovoltaic system was the driving force behind humanity's first interplanetary trade network. Rugged and modular, it can be bolted to the hull of any ship and has seen even the most remote parts of human space."
+
+outfit "KP-6 Photovoltaic Array"
+	category "Power"
+	cost 90000
+	thumbnail "outfit/small photovoltaic"
+	"mass" 24
+	"outfit space" -24
+	"solar collection" 1.1
+	description "The compact modularity of the KP-6 lent itself well to the creation of larger solar collection arrays.  This original Korunak Photovoltaics model is equipped with a solar tracker, allowing it to make better use of available light."
+
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
 	cost 40000
