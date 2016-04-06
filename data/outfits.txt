@@ -219,6 +219,7 @@ outfit "Mass Expansion"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
+	unplunderable 1
 	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
 	
 outfit "Cargo Expansion"
