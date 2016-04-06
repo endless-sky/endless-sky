@@ -273,6 +273,7 @@ person "Uncle Brewtus"
 			"tea."
 			"cola."
 			"water."
+			"literuhcola."
 	ship "Coffee Cruiser" "The Grind"
 
 ship "Coffee Cruiser"
