@@ -1587,6 +1587,10 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		if(selectNext)
 			ship.SetTargetShip(shared_ptr<Ship>());
 	}
+	else if(keyDown.Has(Command::CLEAR))
+	{
+		ship.SetTargetShip(shared_ptr<Ship>());
+	}
 	else if(keyDown.Has(Command::BOARD))
 	{
 		shared_ptr<const Ship> target = ship.GetTargetShip();

@@ -57,6 +57,7 @@ const Command Command::FIGHT(1uL << 21, "Fleet: Fight my target");
 const Command Command::GATHER(1uL << 22, "Fleet: Gather around me");
 const Command Command::HOLD(1uL << 23, "Fleet: Hold position");
 const Command Command::WAIT(1uL << 24, "");
+const Command Command::CLEAR(1uL << 25, "Clear selection");
 
 
 
@@ -166,8 +167,13 @@ const string &Command::Description() const
 const string &Command::KeyName() const
 {
 	static const string empty = "";
+	static const string backspace = "Bkspc";
 	auto it = keyName.find(*this);
-	return (it == keyName.end() ? empty : it->second);
+	if (it == keyName.end())
+		return empty;
+	if (it->second == "Backspace")
+		return backspace;
+	return it->second;
 }
 
 

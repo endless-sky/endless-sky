@@ -111,6 +111,7 @@ void PreferencesPanel::Draw() const
 		Command::HAIL,
 		Command::BOARD,
 		Command::SCAN,
+		Command::CLEAR,
 		Command::NONE,
 		Command::MENU,
 		Command::MAP,
@@ -134,7 +135,7 @@ void PreferencesPanel::Draw() const
 		
 		if(!command)
 		{
-			table.DrawGap(10);
+			table.DrawGap(7);
 			table.DrawUnderline(medium);
 			if(category != end(CATEGORIES))
 				table.Draw(*category++, bright);
