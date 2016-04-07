@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
+		625BE5EF1CADE72B00605387 /* OutfitGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */; };
+		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
-		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
-		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
+		A93931FE1988136E00C2A87B /* libturbojpeg.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A93931FF1988136F00C2A87B /* libpng14.14.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A94408A51982F3E600610427 /* endless-sky.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A94408A41982F3E600610427 /* endless-sky.iconset */; };
 		A966A5AB1B964E6300DFF69C /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A966A5A91B964E6300DFF69C /* Person.cpp */; };
 		A96863A01AE6FD0E004FE1FE /* Account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A96862CD1AE6FD0A004FE1FE /* Account.cpp */; };
@@ -149,6 +150,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OutfitGroup.cpp; path = source/OutfitGroup.cpp; sourceTree = "<group>"; };
+		625BE5EE1CADE72B00605387 /* OutfitGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OutfitGroup.h; path = source/OutfitGroup.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 				A96863471AE6FD0C004FE1FE /* Outfit.h */,
 				A96863481AE6FD0C004FE1FE /* OutfitInfoDisplay.cpp */,
 				A96863491AE6FD0C004FE1FE /* OutfitInfoDisplay.h */,
+				625BE5ED1CADE72B00605387 /* OutfitGroup.cpp */,
+				625BE5EE1CADE72B00605387 /* OutfitGroup.h */,
 				A968634A1AE6FD0C004FE1FE /* OutfitterPanel.cpp */,
 				A968634B1AE6FD0C004FE1FE /* OutfitterPanel.h */,
 				A968634C1AE6FD0C004FE1FE /* OutlineShader.cpp */,
@@ -725,7 +730,7 @@
 		A9CC52611950C9F6004E4E22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0640;
 			};
 			buildConfigurationList = A9CC52641950C9F6004E4E22 /* Build configuration list for PBXProject "EndlessSky" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -804,6 +809,7 @@
 				A96863C31AE6FD0E004FE1FE /* Galaxy.cpp in Sources */,
 				A97C24EA1B17BE35007DDFA1 /* MapOutfitterPanel.cpp in Sources */,
 				A96864061AE6FD0E004FE1FE /* WrappedText.cpp in Sources */,
+				625BE5EF1CADE72B00605387 /* OutfitGroup.cpp in Sources */,
 				A96863D91AE6FD0E004FE1FE /* MissionPanel.cpp in Sources */,
 				A96863DB1AE6FD0E004FE1FE /* NPC.cpp in Sources */,
 				A96863F81AE6FD0E004FE1FE /* SpaceportPanel.cpp in Sources */,
