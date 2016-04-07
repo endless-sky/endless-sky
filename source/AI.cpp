@@ -941,14 +941,14 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &target, double radius
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double slow)
+bool AI::Stop(Ship &ship, Command &command, double stop)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
 	
 	double speed = velocity.Length();
-	
-	if(speed <= slow)
+        
+	if(speed <= stop)
 		return true;
 	
 	if(ship.Attributes().Get("reverse thrust"))

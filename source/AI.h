@@ -53,8 +53,8 @@ private:
 	static double TurnBackward(const Ship &ship);
 	static double TurnToward(const Ship &ship, const Point &vector);
 	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow);
-	static bool Stop(Ship &ship, Command &command, double slow = .2);
+	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow = 0.2);
+	static bool Stop(Ship &ship, Command &command, double stop = 0);
 	static void PrepareForHyperspace(Ship &ship, Command &command);
 	static void CircleAround(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
