@@ -48,6 +48,7 @@ public:
 	static const Command GATHER;
 	static const Command HOLD;
 	static const Command WAIT;
+	static const Command STOP;
 	
 public:
 	Command() = default;

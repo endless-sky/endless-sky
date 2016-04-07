@@ -105,6 +105,12 @@ Files: images/land/*-sfiera*
 Copyright: Chris Pickel (sfiera.net)
 License: CC-BY-SA-4.0
 
+Files: images/outfits/* photovoltaic.png
+Copyright: Nick Barry (github.com/itsnickbarry)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
+ David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
+
 Files:
  images/land/beach0*
  images/land/beach2*

@@ -324,7 +324,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		}
 		
 		if(parent && personality.IsCoward() && it->Shields() + it->Hull() < 1.)
-			it->SetParent(shared_ptr<Ship>());
+		{
+			parent.reset();
+			it->SetParent(parent);
+		}
 		
 		// Fire any weapons that will hit the target. Only ships that are in
 		// the current system can fire.
@@ -356,11 +359,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(!hasSpace || parent->IsDestroyed() || parent->GetSystem() != it->GetSystem())
 			{
 				// Handle orphaned fighters and drones.
-				it->SetParent(shared_ptr<Ship>());
+				parent.reset();
+				it->SetParent(parent);
 				for(const auto &other : ships)
 					if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
 							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
+						parent = other;
 						it->SetParent(other);
 						if(other->BaysFree(isFighter))
 							break;
@@ -408,8 +413,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		bool isPlayerEscort = it->IsYours();
 		if((isPlayerEscort && holdPosition) || mustRecall || isStranded)
 		{
-			if(it->Velocity().Length() > .2 || !target)
-				Stop(*it, command);
+			if(it->Velocity().Length() > .001 || !target)
+				Stop(*it, command, .001);
 			else
 				command.SetTurn(TurnToward(*it, TargetAim(*it)));
 		}
@@ -946,12 +951,22 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 	if(speed <= slow)
 		return true;
 	
+	// If you're moving slow enough that one frame of acceleration could bring
+	// you to a stop, make sure you're pointed perfectly in the right direction.
+	// This is a fudge factor for how straight you must be facing: it increases
+	// from 0.8 when it will take many frames to stop, to nearly 1 when it will
+	// take less than 1 frame to stop.
+	double stopTime = speed / ship.Acceleration();
+	double limit = .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
+	
+	// If you have a reverse thruster, figure out whether using it is faster
+	// than turning around and using your main thruster.
 	if(ship.Attributes().Get("reverse thrust"))
 	{
 		// Figure out your stopping time using your main engine:
 		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
 		double forwardTime = degreesToTurn / ship.TurnRate();
-		forwardTime += speed / ship.Acceleration();
+		forwardTime += stopTime;
 		
 		// Figure out your reverse thruster stopping time:
 		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.Mass();
@@ -961,14 +976,15 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 		if(reverseTime < forwardTime)
 		{
 			command.SetTurn(TurnToward(ship, velocity));
-			if(velocity.Unit().Dot(angle.Unit()) > .8)
+			if(velocity.Unit().Dot(angle.Unit()) > limit)
 				command |= Command::BACK;
 			return false;
 		}
 	}
 	
+	command |= Command::STOP;
 	command.SetTurn(TurnBackward(ship));
-	if(velocity.Unit().Dot(angle.Unit()) < -.8)
+	if(velocity.Unit().Dot(angle.Unit()) < -limit)
 		command |= Command::FORWARD;
 	
 	return false;

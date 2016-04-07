@@ -65,7 +65,7 @@ mission "Drak guarding Sayaiban"
 					goto end
 				`	"Wait, I have more questions."`
 			`	"Yes?"`
-			`	You ask, "Why don't you just destroy the swarm, if if is so dangerous?"`
+			`	You ask, "Why don't you just destroy the swarm, if it is so dangerous?"`
 			`	The voice says, "Because if the Korath manage to drive themselves extinct, this intelligence will be their last and greatest surviving creation, and we will preserve it as a living memorial to them. Please do not interfere here." When the voice speaks the phrase, "drive themselves extinct," the words are accompanied by an emotion that you cannot put a name to.`
 			`	Also, the empty space around your ship is beginning to light up with small sparks, like an angry swarm of fireflies.`
 			choice

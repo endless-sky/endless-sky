@@ -1306,7 +1306,7 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 		}
 	
 	for(const Ship::Bay &bay : ship.Bays())
-		if(bay.isUnder && bay.ship)
+		if(bay.direction == Ship::Bay::UNDER && bay.ship)
 		{
 			Point pos = position + ship.Facing().Rotate(bay.point) * ship.Zoom();
 			AddSprites(*bay.ship, pos, velocity, unit, cloak);
@@ -1340,7 +1340,7 @@ void Engine::AddSprites(const Ship &ship, const Point &position, const Point &ve
 			velocity);
 	}
 	for(const Ship::Bay &bay : ship.Bays())
-		if(bay.isOver && bay.ship)
+		if(bay.direction == Ship::Bay::OVER && bay.ship)
 		{
 			Point pos = position + ship.Facing().Rotate(bay.point) * ship.Zoom();
 			AddSprites(*bay.ship, pos, velocity, unit, cloak);
