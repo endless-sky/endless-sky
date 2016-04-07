@@ -357,7 +357,7 @@ interface "planet"
 	button o 280 150
 		size 140 40
 	
-	if "is inhabited"
+	if "has jobs"
 	sprite "ui/planet dialog button" -400 150
 	label "_Job Board" -460 142
 		size 18
@@ -366,6 +366,7 @@ interface "planet"
 	button j -400 150
 		size 140 40
 	
+	if "has trading"
 	sprite "ui/planet dialog button" -400 90
 	label "_Trading" -460 82
 		size 18
@@ -374,6 +375,7 @@ interface "planet"
 	button t -400 90
 		size 140 40
 	
+	if "has hiring"
 	sprite "ui/planet dialog button" 280 210
 	label "_Hire Crew" 340 202
 		size 18
@@ -382,7 +384,7 @@ interface "planet"
 	button h 280 210
 		size 140 40
 	
-	if "has bank"
+	if "has banking"
 	sprite "ui/planet dialog button" -400 210
 	label "_Bank" -460 202
 		size 18
