@@ -1034,6 +1034,16 @@ bool Ship::Move(list<Effect> &effects)
 				// What direction will the net acceleration be if this drag is applied?
 				// If the net acceleration will be opposite the thrust, do not apply drag.
 				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				
+				if(commands.Has(Command::STOP))
+				{
+					// How much acceleration would it take to come to a stop in the
+					// direction normal to the ship's current facing?
+					double vNormal = velocity.Dot(angle.Unit());
+					double aNormal = dragAcceleration.Dot(angle.Unit());
+					if(aNormal > -vNormal)
+						dragAcceleration = -vNormal * angle.Unit();
+				}
 				velocity += dragAcceleration;
 			}
 		}
