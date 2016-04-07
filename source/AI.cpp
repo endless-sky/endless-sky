@@ -950,6 +950,8 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 	
 	if(speed <= slow)
 		return true;
+
+	command |= Command::STOP;
 	
 	// If you're moving slow enough that one frame of acceleration could bring
 	// you to a stop, make sure you're pointed perfectly in the right direction.
@@ -982,7 +984,6 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 		}
 	}
 	
-	command |= Command::STOP;
 	command.SetTurn(TurnBackward(ship));
 	if(velocity.Unit().Dot(angle.Unit()) < -limit)
 		command |= Command::FORWARD;

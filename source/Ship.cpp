@@ -1041,7 +1041,7 @@ bool Ship::Move(list<Effect> &effects)
 					// direction normal to the ship's current facing?
 					double vNormal = velocity.Dot(angle.Unit());
 					double aNormal = dragAcceleration.Dot(angle.Unit());
-					if(aNormal > -vNormal)
+					if((aNormal < 0.) ^ (aNormal > -vNormal))
 						dragAcceleration = -vNormal * angle.Unit();
 				}
 				velocity += dragAcceleration;
