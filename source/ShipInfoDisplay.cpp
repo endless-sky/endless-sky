@@ -271,7 +271,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	attributesHeight += 30;
 	
 	tableLabels.push_back("idle:");
-	energyTable.push_back(Format::Number(60. * attributes.Get("energy generation")));
+	energyTable.push_back(Format::Number(
+		60. * (attributes.Get("energy generation")
+			+ attributes.Get("solar collection"))));
 	heatTable.push_back(Format::Number(
 		60. * (attributes.Get("heat generation") - attributes.Get("cooling"))));
 	attributesHeight += 20;
@@ -366,3 +368,4 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleValues.push_back(Format::Number(totalValue) + " credits");
 	saleHeight += 20;
 }
+

@@ -219,6 +219,7 @@ outfit "Mass Expansion"
 	"mass" 5
 	"outfit space" 15
 	"cargo space" -20
+	unplunderable 1
 	description "A mass expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space unfortunately."
 	
 outfit "Cargo Expansion"
@@ -280,6 +281,7 @@ outfit "Laser Rifle"
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
 	"capture defense" .8
+	"unplunderable" 1
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
 outfit "Fragmentation Grenades"
@@ -288,6 +290,7 @@ outfit "Fragmentation Grenades"
 	thumbnail "outfit/fragmentation grenades"
 	"capture attack" 1.3
 	"capture defense" .3
+	"unplunderable" 1
 	description "Fragmentation grenades are an only marginally legal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. They are much less useful as a defensive weapon, but still better than nothing."
 
 outfit "Security Station"
@@ -297,6 +300,7 @@ outfit "Security Station"
 	"mass" 2
 	"outfit space" -2
 	"capture defense" 3.4
+	"unplunderable" 1
 	description "This is a specially designed barricade, which can be installed in the hallways of your ship as a powerful defense against anyone who boards you in an attempt to take over your ship."
 
 outfit "Nerve Gas"
@@ -306,6 +310,7 @@ outfit "Nerve Gas"
 	"capture attack" 2.8
 	"capture defense" .8
 	"illegal" 1000000
+	"unplunderable" 1
 	description "This is a highly illegal weapon for hand to hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
 

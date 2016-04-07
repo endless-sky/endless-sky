@@ -590,6 +590,66 @@ ship "Carrier"
 
 
 
+ship "Class C Freighter"
+	sprite "ship/bulk freighter"
+	attributes
+		category "Heavy Warship"
+		"cost" 11400000
+		"shields" 13500
+		"hull" 7600
+		"required crew" 18
+		"bunks" 43
+		"mass" 810
+		"drag" 16.4
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 20
+		"outfit space" 400
+		"weapon capacity" 140
+		"engine capacity" 85
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Heavy Laser Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fission Reactor"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator"
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Scram Drive"
+		
+	engine -22 198
+	engine 22 198
+	turret -12 -155 "Heavy Laser Turret"
+	turret 30 175 "Heavy Laser Turret"
+	turret 12 -155 "Heavy Anti-Missile Turret"
+	turret -30 175 "Heavy Anti-Missile Turret"
+	drone -66 -115 left
+	drone -66 -65 left
+	drone -66 -15 left
+	drone -66 35 left
+	drone -66 85 left
+	drone -66 135 left
+	drone 66 -115 right
+	drone 66 -65 right
+	drone 66 -15 right
+	drone 66 35 right
+	drone 66 85 right
+	drone 66 135 right
+	explode "small explosion" 15
+	explode "medium explosion" 25
+	explode "big explosion" 35
+	explode "huge explosion" 20
+	description `The Class C "Freighter" is a stealth warship designed by the Syndicate for baiting pirates with the offer of a seemingly helpless, ordinary bulk freighter. Inside, its cargo space has all been converted into drone bays, allowing it to carry a dozen combat drones.`
+
+
+
 ship "Clipper"
 	sprite "ship/clipper"
 	attributes
