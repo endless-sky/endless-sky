@@ -64,7 +64,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// You cannot plunder hand to hand weapons, because they are kept in the
 	// crew's quarters, not mounted on the exterior of the ship.
 	for(const auto &it : victim->Outfits())
-		if(it.first->Category() != "Hand to Hand")
+		if(!it.first->Get("unplunderable"))
 			plunder.emplace_back(it.first, it.second);
 	
 	sort(plunder.begin(), plunder.end());

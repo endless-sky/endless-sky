@@ -52,13 +52,17 @@ public:
 	public:
 		Bay(double x, double y, bool isFighter) : point(x * .5, y * .5), isFighter(isFighter) {}
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), isOver(b.isOver), isUnder(b.isUnder) {}
+		Bay(const Bay &b) : point(b.point), isFighter(b.isFighter), direction(b.direction) {}
 		
 		Point point;
 		std::shared_ptr<Ship> ship;
 		bool isFighter = false;
-		bool isOver = false;
-		bool isUnder = false;
+		uint8_t direction = 0;
+		
+		static const char OVER = 1;
+		static const char UNDER = 2;
+		static const char LEFT = 3;
+		static const char RIGHT = 4;
 	};
 	
 public:

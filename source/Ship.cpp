@@ -45,6 +45,11 @@ const vector<string> Ship::CATEGORIES = {
 	"Drone"
 };
 
+namespace {
+	const string BAY_TYPE[2] = {"drone", "fighter"};
+	const string BAY_DIRECTION[5] = {"none", "over", "under", "left", "right"};
+}
+
 
 
 void Ship::Load(const DataNode &node)
@@ -132,10 +137,9 @@ void Ship::Load(const DataNode &node)
 			}
 			bays.emplace_back(child.Value(1), child.Value(2), child.Token(0) == "fighter");
 			if(child.Size() >= 4)
-			{
-				bays.back().isOver = (child.Token(3) == "over");
-				bays.back().isUnder = (child.Token(3) == "under");
-			}
+				for(unsigned i = 1; i < sizeof(BAY_DIRECTION) / sizeof(BAY_DIRECTION[0]); ++i)
+					if(child.Token(3) == BAY_DIRECTION[i])
+						bays.back().direction = i;
 		}
 		else if(child.Token(0) == "explode" && child.Size() >= 2)
 		{
@@ -390,13 +394,12 @@ void Ship::Save(DataWriter &out) const
 		}
 		for(const Bay &bay : bays)
 		{
-			const string TYPE[2] = {"drone", "fighter"};
 			double x = 2. * bay.point.X();
 			double y = 2. * bay.point.Y();
-			if(bay.isOver || bay.isUnder)
-				out.Write(TYPE[bay.isFighter], x, y, bay.isOver ? "over" : "under");
+			if(bay.direction)
+				out.Write(BAY_TYPE[bay.isFighter], x, y, BAY_DIRECTION[bay.direction]);
 			else
-				out.Write(TYPE[bay.isFighter], x, y);
+				out.Write(BAY_TYPE[bay.isFighter], x, y);
 		}
 		for(const auto &it : explosionEffects)
 			if(it.first && it.second)
@@ -714,6 +717,8 @@ bool Ship::Move(list<Effect> &effects)
 		fuel += .03 * scale * (sqrt(attributes.Get("ramscoop") + .05 * scale));
 		fuel = min(fuel, attributes.Get("fuel capacity"));
 		
+		energy += scale * attributes.Get("solar collection");
+		
 		energy += attributes.Get("energy generation") - ionization;
 		energy = max(0., energy);
 		heat += attributes.Get("heat generation");
@@ -1029,6 +1034,16 @@ bool Ship::Move(list<Effect> &effects)
 				// What direction will the net acceleration be if this drag is applied?
 				// If the net acceleration will be opposite the thrust, do not apply drag.
 				dragAcceleration *= .5 * (acceleration.Unit().Dot(dragAcceleration.Unit()) + 1.);
+				
+				if(commands.Has(Command::STOP))
+				{
+					// How much acceleration would it take to come to a stop in the
+					// direction normal to the ship's current facing?
+					double vNormal = velocity.Dot(angle.Unit());
+					double aNormal = dragAcceleration.Dot(angle.Unit());
+					if(aNormal > -vNormal)
+						dragAcceleration = -vNormal * angle.Unit();
+				}
 				velocity += dragAcceleration;
 			}
 		}
@@ -1171,8 +1186,10 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships)
 		{
 			ships.push_back(bay.ship);
 			double maxV = bay.ship->MaxVelocity();
-			Point v = velocity + (.3 * maxV) * angle.Unit() + (.2 * maxV) * Angle::Random().Unit();
-			bay.ship->Place(position + angle.Rotate(bay.point), v, angle);
+			Angle launchAngle = angle;
+			launchAngle += Angle(90. * ((bay.direction == Bay::RIGHT) - (bay.direction == Bay::LEFT)));
+			Point v = velocity + (.3 * maxV) * launchAngle.Unit() + (.2 * maxV) * Angle::Random().Unit();
+			bay.ship->Place(position + angle.Rotate(bay.point), v, launchAngle);
 			bay.ship->SetSystem(currentSystem);
 			bay.ship->SetParent(shared_from_this());
 			bay.ship.reset();
