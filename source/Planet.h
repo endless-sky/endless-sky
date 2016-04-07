@@ -140,6 +140,9 @@ private:
 	mutable bool isDefending = false;
 	mutable std::list<std::shared_ptr<Ship>> defenders;
 	
+	// Special attributes to give this planet and the conditions under which they apply.
+	std::map<std::string, ConditionSet> specialAttributeConditions;
+	
 	std::vector<const System *> systems;
 };
 
