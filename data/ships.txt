@@ -1002,6 +1002,46 @@ ship "Falcon"
 
 
 
+ship "Finch"
+	sprite "ship/finch"
+	attributes
+		category "Fighter"
+		"cost" 149000
+		"shields" 1100
+		"hull" 300
+		"required crew" 1
+		"bunks" 1
+		"mass" 35
+		"drag" .73
+		"heat dissipation" .85
+		"outfit space" 110
+		"weapon capacity" 20
+		"engine capacity" 40
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Beam Laser" 2
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		
+	engine -15 30
+	engine 15 30
+	gun -14 -10 "Beam Laser"
+	gun 14 -10 "Beam Laser"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "When the Free Worlds started requesting a Carrier solution from it's local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to fit in a fighter bay, the Finch bears strong resemblance to it's Hyperspace faring cousin."
+
+
+
 ship "Firebird"
 	sprite "ship/firebird"
 	attributes
