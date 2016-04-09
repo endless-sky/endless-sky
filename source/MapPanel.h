@@ -86,7 +86,7 @@ protected:
 	bool IsSatisfied(const Mission &mission) const;
 	
 	// Function for the "find" dialogs:
-	static bool Contains(const std::string &str, const std::string &sub);
+	static int Search(const std::string &str, const std::string &sub);
 	
 	
 protected:
