@@ -1621,31 +1621,6 @@ fleet "Bounty Hunters"
 		"Splinter"
 		"Fury (Missile)"
 
-fleet "Korath Raid"
-	government "Korath"
-	names "korath"
-	fighters "korath"
-	cargo 3
-	personality
-		plunders
-	variant
-		"Korath Raider"
-		"Korath Chaser" 2
-
-fleet "Korath Home"
-	government "Korath"
-	names "korath"
-	fighters "korath"
-	cargo 3
-	personality
-		timid
-	variant
-		"Korath World-Ship"
-	variant
-		"Korath World-Ship B"
-	variant
-		"Korath World-Ship C"
-
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
