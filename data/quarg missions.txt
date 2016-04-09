@@ -64,8 +64,6 @@ mission "First Contact: Quarg"
 			`	"I hope so too, human." The Quarg stands up, towering over you once again. "As long as you are a seeker of peace, you are most welcome on our worlds at any time." It bows to you. You are not sure if that is a Quarg gesture too, or if it is simply imitating a human custom, but you bow in return, and the Quarg walks quietly away.`
 				decline
 
-
-
 # The first time the player boards a disabled quarg ship, they will trigger this mission.
 # The Quarg give them the chance to remain on "friendly" terms if they do not take any technology.
 # If the player chooses to loot the ship, their Quarg reputation is set to -1000, and the 
@@ -137,73 +135,3 @@ mission "First Quarg Boarding Action"
 		set "taken quarg technology"
 	# The destination doesn't matter - this mission is always deferred or declined. 
 	destination Earth
-
-# Once the player has taken quarg technology, they will be watched wherever they go.  
-government "Unknown Watchers"
-	swizzle 0
-	color .88 .77 0
-	"player reputation" 1
-	"friendly hail" "encrypted signal"
-	"hostile hail" "encrypted signal 2"
-
-phrase "encrypted signal"
-	word
-		"[0100010110101101011010100101]"
-		"[white noise]"
-phrase "encrypted signal 2"
-	word
-		"[00000010000001100000111000011110001001]"
-		"[static]"
-
-ship "Drone (Anonymous)"
-	sprite "ship/surveillance drone"
-	attributes
-		category "Interceptor"
-		"cost" 15000
-		"hull" 600
-		"mass" 15
-		"drag" .53
-		"heat dissipation" .9
-		"outfit space" 30
-		"weapon capacity" 0
-		"engine capacity" 28
-		"fuel capacity" 1000
-		"jump speed" .3
-		"jump drive" 1
-		"hyperdrive" 1
-		"automaton" 1
-		"energy generation" 1
-		weapon
-			"blast radius" 3
-			"shield damage" 30
-			"hull damage" 15
-			"hit force" 45
-	outfits
-		"Outfit Scanner"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-	engine -5 29
-	engine 5 29
-	explode "tiny explosion" 15
-	description "This unmarked drone is equipped with outfit scanners and a hyperdrive."
-
-# You have a 50% chance to collect a new observer every time you land.
-# Whenever a new one appears the oldest one "fails" and disappears (if you haven't destroyed it already).
-mission "Quarg Observers 1"
-	landing
-	repeat
-	invisible
-	to offer
-		random < 51
-		has "taken quarg technology"
-	npc board
-		government "Unknown Watchers"
-		ship  "Drone (Anonymous)"
-		dialog "You board one of the drones that's been following you and inspect it, but you are not able to determine its origin. It is made from generic technology and it has been broadcasting on an encrypted frequency.  You have no idea who sent it, but you suspect your acquisition of Quarg technology may have drawn attention from any number of different parties."
-	to fail
-		# Checking "> 1" means the player will accumulate a max of 2 annoying drones at a time.
-		"Quarg Observers 1: active" > 1
-	# The destination doesn't matter, since this is invisible and probably never "completed".
-	destination Earth
-	
-
