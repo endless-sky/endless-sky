@@ -1008,11 +1008,11 @@ ship "Finch"
 		category "Fighter"
 		"cost" 149000
 		"shields" 1100
-		"hull" 300
+		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 35
-		"drag" .73
+		"mass" 45
+		"drag" .83
 		"heat dissipation" .85
 		"outfit space" 110
 		"weapon capacity" 20
@@ -1038,7 +1038,7 @@ ship "Finch"
 	gun 14 -10 "Beam Laser"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description "When the Free Worlds started requesting a Carrier solution from it's local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to fit in a fighter bay, the Finch bears strong resemblance to it's Hyperspace faring cousin."
+	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to fit in a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
 
 
 
