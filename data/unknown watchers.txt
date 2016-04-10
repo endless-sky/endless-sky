@@ -68,15 +68,23 @@ ship "Drone (Anonymous)"
 
 ship "Drone (Anonymous)" "Drone (2450)"
 	sprite "ship/2450Drone"
+	engine 0 27
 
 ship "Drone (Anonymous)" "Drone (Adamas)"
 	sprite "ship/AdamasDrone"
+	engine -9 21.5
+	engine 9 21.5
 
 ship "Drone (Anonymous)" "Drone (Enigma)"
 	sprite "ship/EnigmaDrone"
+	engine -4 25
+	engine 4 25
 
 ship "Drone (Anonymous)" "Drone (UrsaPolaris)"
 	sprite "ship/UrsaPolarisDrone"
+	engine -3 33
+	engine 3 33
+	engine 0 33
 
 fleet "Unknown Watcher"
 	government "Unknown Watchers"
