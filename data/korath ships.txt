@@ -213,10 +213,11 @@ ship "Far Lek 14"
 		"Thruster (Asteroid Class)"
 		"Steering (Asteroid Class)"
 		
-	engine -9 29
-	engine 9 29
-	gun 0 -29
-	explode "tiny explosion" 15
+	engine -2 28
+	engine 8 28
+	gun 0 -30
+	explode "tiny explosion" 20
+	explode "small explosion" 10
 	description "At the peak of their recent civil war, the Kor Sestor faction developed these automated attack drones, easy to manufacture and encased in an ultra-dense hull that can absorb a significant amount of damage."
 
 

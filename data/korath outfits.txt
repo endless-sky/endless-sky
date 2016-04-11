@@ -140,8 +140,8 @@ outfit "Thruster (Asteroid Class)"
 	"thrust" 11.2
 	"thrusting energy" 1.5
 	"thrusting heat" 3.4
-	"flare sprite" "effect/plasma flare/tiny"
-		"frame rate" 5
+	"flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
 	"flare sound" "plasma tiny"
 	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
@@ -156,8 +156,8 @@ outfit "Thruster (Comet Class)"
 	"thrust" 21.8
 	"thrusting energy" 2.8
 	"thrusting heat" 6.5
-	"flare sprite" "effect/plasma flare/small"
-		"frame rate" 6
+	"flare sprite" "effect/korath flare/small"
+		"frame rate" 7.5
 	"flare sound" "plasma small"
 	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
@@ -172,7 +172,7 @@ outfit "Thruster (Lunar Class)"
 	"thrust" 41.2
 	"thrusting energy" 4.9
 	"thrusting heat" 11.9
-	"flare sprite" "effect/plasma flare/medium"
+	"flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
 	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
@@ -188,8 +188,8 @@ outfit "Thruster (Planetary Class)"
 	"thrust" 80.0
 	"thrusting energy" 8.9
 	"thrusting heat" 22.7
-	"flare sprite" "effect/plasma flare/big"
-		"frame rate" 8
+	"flare sprite" "effect/korath flare/large"
+		"frame rate" 6.5
 	"flare sound" "plasma large"
 	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
@@ -204,8 +204,8 @@ outfit "Thruster (Stellar Class)"
 	"thrust" 153.4
 	"thrusting energy" 15.8
 	"thrusting heat" 42.6
-	"flare sprite" "effect/plasma flare/huge"
-		"frame rate" 9
+	"flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
 	"flare sound" "plasma huge"
 	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
 	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
