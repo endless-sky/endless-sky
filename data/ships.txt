@@ -374,6 +374,60 @@ ship "Berserker"
 
 
 
+ship "Birdfeeder"
+	sprite "ship/birdfeeder”
+	attributes
+		category "Medium Warship"
+		"cost" 2500000
+		"shields" 2500
+		"hull" 3700
+		"required crew" 5
+		"bunks" 14
+		"mass" 250
+		"drag" 10.5
+		"heat dissipation" .67
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 400
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 122
+	engine 45 122
+	gun -15 -91
+	gun 15 -91
+	turret -26 -49 "Quad Blaster Turret"
+	turret 26 -49 "Heavy Anti-Missile Turret"
+	turret -19 77 "Heavy Anti-Missile Turret"
+	turret 19 77 "Quad Blaster Turret"
+	"fighter bay" -45 30
+	"fighter bay" 45 30
+	explode "tiny explosion" 20
+	explode "small explosion" 35
+	explode "medium explosion" 20
+	explode "big explosion" 5
+	description "Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds call for a carrier quickly by building modified cargo containers for them, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is Hauler I: Type F, Southbound assembly workers started calling the single container variant Birdfeeder as a jab at Tarazed Shipyards, and the name stuck."
+
+
+
 ship "Blackbird"
 	sprite "ship/blackbird"
 	attributes
@@ -1038,7 +1092,7 @@ ship "Finch"
 	gun 14 -10 "Beam Laser"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to fit in a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
+	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
 
 
 
