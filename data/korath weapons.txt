@@ -132,6 +132,7 @@ outfit "Korath Fire-Lance"
 		"firing heat" 1.7
 		"shield damage" 3.5
 		"hull damage" 1.5
+		"heat damage" 12
 	description "The Korath Fire-Lance is a medium-range beam weapon designed to be used by their fighters."
 
 effect "fire-lance impact"
@@ -141,3 +142,71 @@ effect "fire-lance impact"
 	"lifetime" 10
 	"random angle" 360
 	"velocity scale" 0.
+
+
+outfit "Korath Repeater"
+	category "Guns"
+	cost 230000
+	thumbnail "outfit/repeater"
+	"mass" 11
+	"outfit space" -11
+	"weapon capacity" -11
+	"energy capacity" 60
+	"gun ports" -1
+	weapon
+		sprite "projectile/repeater"
+			"frame rate" 5
+		sound "pulse"
+		"hit effect" "repeater impact"
+		"inaccuracy" 4
+		"velocity" 13
+		"lifetime" 40
+		"reload" 10
+		"burst reload" 4
+		"burst count" 3
+		"cluster"
+		"firing energy" 20
+		"firing heat" 128
+		"shield damage" 23
+		"hull damage" 19
+		"heat damage" 33
+	description "This is the smallest and simplest Korath projectile weapon, designed mostly for use on fighters and drones. As with most Korath technology, it generates a large amount of heat, enough that the gun must pause briefly after every few shots to cool down."
+
+effect "repeater impact"
+	sprite "effect/repeater impact"
+		"no repeat"
+		"frame rate" 12
+	"lifetime" 21
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 100
+	"velocity scale" -.1
+
+outfit "Korath Repeater Turret"
+	category "Turrets"
+	cost 570000
+	thumbnail "outfit/repeater turret"
+	"mass" 29
+	"outfit space" -29
+	"weapon capacity" -29
+	"energy capacity" 150
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/repeater"
+			"frame rate" 5
+		sound "pulse"
+		"hit effect" "repeater impact"
+		"inaccuracy" 3
+		"velocity" 13
+		"lifetime" 40
+		"reload" 5
+		"burst reload" 2
+		"burst count" 6
+		"cluster"
+		"firing energy" 20
+		"firing heat" 128
+		"shield damage" 23
+		"hull damage" 19
+		"heat damage" 33
+	description "Korath repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
