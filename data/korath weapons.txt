@@ -190,6 +190,7 @@ outfit "Korath Repeater Turret"
 	"outfit space" -29
 	"weapon capacity" -29
 	"energy capacity" 150
+	"required crew" 1
 	"turret mounts" -1
 	weapon
 		sprite "projectile/repeater"
