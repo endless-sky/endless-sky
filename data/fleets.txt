@@ -540,6 +540,9 @@ fleet "Small Free Worlds"
 	variant 2
 		"Hawk (Speedy)"
 		"Sparrow" 2
+	variant 1
+		"Birdfeeder"
+		"Finch" 2
 
 fleet "Large Free Worlds"
 	government "Free Worlds"
@@ -620,6 +623,12 @@ fleet "Large Free Worlds"
 		"Falcon (Laser)"
 		"Bastion (Laser)"
 		"Hawk (Speedy)"
+	variant 2
+		"Birdsnest"
+		"Finch" 4
+	variant 2
+		"Birdhouse"
+		"Finch" 6
 
 fleet "Small Militia"
 	government "Militia"
