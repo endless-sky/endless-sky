@@ -1068,7 +1068,10 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			isArmed = true;
 			if(!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()))
 				hasAmmo = true;
-			shortestRange = min(outfit->Range(), shortestRange);
+			// The missile boat AI should be applied at 1000 pixels range if
+			// all weapons are homing or turrets, and at 2000 if not.
+			double multiplier = (weapon.IsHoming() || weapon.IsTurret()) ? 1. : .5;
+			shortestRange = min(multiplier * outfit->Range(), shortestRange);
 		}
 	}
 	// If this ship was using the missile boat AI to run away and bombard its
