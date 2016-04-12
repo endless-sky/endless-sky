@@ -433,8 +433,8 @@ ship "Birdhouse"
 	licenses
 		"Militia Carrier"
 	attributes
-		category "Heavy Warship"
-		"cost" 4500000
+		category "Medium Warship"
+		"cost" 3500000
 		"shields" 3300
 		"hull" 6700
 		"required crew" 7
@@ -491,8 +491,8 @@ ship "Birdhouse"
 ship "Birdsnest"
 	sprite "ship/birdsnest"
 	attributes
-		category "Heavy Warship"
-		"cost" 3500000
+		category "Medium Warship"
+		"cost" 3000000
 		"shields" 2900
 		"hull" 5200
 		"required crew" 7
@@ -540,7 +540,7 @@ ship "Birdsnest"
 	explode "small explosion" 25
 	explode "medium explosion" 30
 	explode "big explosion" 15
-	description "Centuries ago, various Hauler models made up nearly half of the merchant vessels in service.  Perhaps partly in response to their declining freighter market share, Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design.  Four external fighter bays make this the biggest civilian carrier on the market.  After Southbound assembly workers successfully named the 'Birdfeeder', 'Hauler II: Type F' was quickly dubbed 'Birdsnest' to continue the theme."
+	description "Centuries ago, various Hauler models made up nearly half of the merchant vessels in service.  Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design.  Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship.  After Southbound assembly workers successfully named the 'Birdfeeder', 'Hauler II: Type F' was quickly dubbed 'Birdsnest' to continue the theme."
 
 
 
