@@ -152,3 +152,27 @@ fleet "Korath Home"
 		"Korath World-Ship B"
 	variant
 		"Korath World-Ship C"
+
+fleet "Kor Efret Home"
+	government "Kor Efret"
+	names "korath"
+	cargo 3
+	personality
+		timid
+	variant
+		"Korath World-Ship"
+	variant
+		"Korath World-Ship B"
+	variant
+		"Korath World-Ship C"
+
+
+outfitter "Korath Basics"
+	"Command Center"
+	"Small Bunk Room"
+	"Large Bunk Room"
+	"Fuel Pod"
+	"Ramscoop"
+	"Mass Expansion"
+	"Cargo Expansion"
+	"Local Map"
