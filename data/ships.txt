@@ -375,7 +375,7 @@ ship "Berserker"
 
 
 ship "Birdfeeder"
-	sprite "ship/birdfeeder”
+	sprite "ship/birdfeeder"
 	attributes
 		category "Medium Warship"
 		"cost" 2500000
@@ -404,7 +404,7 @@ ship "Birdfeeder"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
+		"D94-YV Shield Generator"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -418,13 +418,129 @@ ship "Birdfeeder"
 	turret 26 -49 "Heavy Anti-Missile Turret"
 	turret -19 77 "Heavy Anti-Missile Turret"
 	turret 19 77 "Quad Blaster Turret"
-	"fighter bay" -45 30
-	"fighter bay" 45 30
+	fighter -47 30
+	fighter 47 30
 	explode "tiny explosion" 20
 	explode "small explosion" 35
 	explode "medium explosion" 20
 	explode "big explosion" 5
-	description "Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds call for a carrier quickly by building modified cargo containers for them, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is Hauler I: Type F, Southbound assembly workers started calling the single container variant Birdfeeder as a jab at Tarazed Shipyards, and the name stuck."
+	description "Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is Hauler I: Type F, Southbound assembly workers started calling the single container variant Birdfeeder as a jab at Tarazed Shipyards, and the name stuck."
+
+
+
+ship "Birdhouse"
+	sprite "ship/birdhouse"
+	licenses
+		"Militia Carrier"
+	attributes
+		category "Heavy Warship"
+		"cost" 4500000
+		"shields" 3300
+		"hull" 6700
+		"required crew" 7
+		"bunks" 18
+		"mass" 470
+		"drag" 12.5
+		"heat dissipation" .71
+		"fuel capacity" 700
+		"cargo space" 120
+		"outfit space" 500
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator" 3
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 196
+	engine 45 196
+	gun -15 -165
+	gun 15 -165
+	turret -26 -122 "Quad Blaster Turret"
+	turret 26 -122 "Heavy Anti-Missile Turret"
+	turret -19 151 "Heavy Anti-Missile Turret"
+	turret 19 151 "Quad Blaster Turret"
+	fighter -47 -60
+	fighter 47 -60
+	fighter -47 15
+	fighter 47 15
+	fighter -47 90
+	fighter 47 90
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "big explosion" 20
+	explode "huge explosion" 5
+	description "Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods.  When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers.  Given this fact, the Free Worlds has asked Southbound to restrict sale of the 'Hauler III: Type F 'Birdhouse'' to its Militia only."
+
+
+
+ship "Birdsnest"
+	sprite "ship/birdsnest"
+	attributes
+		category "Heavy Warship"
+		"cost" 3500000
+		"shields" 2900
+		"hull" 5200
+		"required crew" 7
+		"bunks" 16
+		"mass" 360
+		"drag" 11.5
+		"heat dissipation" .67
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 450
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D94-YV Shield Generator" 2
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 160
+	engine 45 160
+	gun -15 -128
+	gun 15 -128
+	turret -26 -85 "Quad Blaster Turret"
+	turret 26 -85 "Heavy Anti-Missile Turret"
+	turret -19 115 "Heavy Anti-Missile Turret"
+	turret 19 115 "Quad Blaster Turret"
+	fighter -47 -20
+	fighter 47 -20
+	fighter -47 55
+	fighter 47 55
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "big explosion" 15
+	description "Centuries ago, various Hauler models made up nearly half of the merchant vessels in service.  Perhaps partly in response to their declining freighter market share, Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design.  Four external fighter bays make this the biggest civilian carrier on the market.  After Southbound assembly workers successfully named the 'Birdfeeder', 'Hauler II: Type F' was quickly dubbed 'Birdsnest' to continue the theme."
 
 
 
@@ -1065,7 +1181,7 @@ ship "Finch"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 45
+		"mass" 40
 		"drag" .83
 		"heat dissipation" .85
 		"outfit space" 110
