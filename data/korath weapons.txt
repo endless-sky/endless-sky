@@ -210,3 +210,80 @@ outfit "Korath Repeater Turret"
 		"hull damage" 19
 		"heat damage" 33
 	description "Korath repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
+
+
+outfit "Korath Piercer"
+	category "Ammunition"
+	cost 3500
+	thumbnail "outfit/piercer"
+	"piercer capacity" -1
+	description "This missile is fired from a Korath Piercer Launcher."
+
+outfit "Korath Piercer Launcher"
+	category "Secondary Weapons"
+	cost 293000
+	thumbnail "outfit/piercer launcher"
+	"mass" 27
+	"outfit space" -27
+	"weapon capacity" -27
+	"gun ports" -1
+	"piercer capacity" 31
+	weapon
+		sprite "projectile/piercer"
+			"frame rate" 5
+			"random start frame"
+		sound "tracker"
+		ammo "Korath Piercer"
+		icon "icon/piercer"
+		"fire effect" "piercer fire"
+		"hit effect" "piercer impact"
+		"hit effect" "piercer explosion"
+		"die effect" "piercer explosion"
+		"inaccuracy" 3
+		"velocity" 18
+		"lifetime" 200
+		"reload" 72
+		"firing energy" 24
+		"firing heat" 144
+		"acceleration" .54
+		"drag" .03
+		"turn" 1.6
+		"homing" 4
+		"shield damage" 240
+		"hull damage" 360
+		"piercing" .2
+		"hit force" 30
+		"missile strength" 73
+		"stream"
+	description "Korath Piercer missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+
+effect "piercer fire"
+	sprite "effect/piercer fire"
+		"no repeat"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 5
+	"random spin" 10
+	"random velocity" .5
+	"velocity scale" 1.2
+
+effect "piercer impact"
+	sprite "effect/piercer impact"
+		"no repeat"
+		"frame rate" 8
+	sound "explosion tiny"
+	"lifetime" 31
+	"random angle" 360
+	"random velocity" .1
+	"random spin" 60
+	"velocity scale" .001
+
+effect "piercer explosion"
+	sprite "effect/piercer explosion"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .1
+	"random spin" 60
+	"velocity scale" .08
