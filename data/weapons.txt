@@ -525,7 +525,7 @@ outfit "Flamethrower Turret"
 		"firing energy" .2
 		"firing fuel" .5
 		"firing heat" 1.5
-	description "A Flamethrower Turrets is a pair of flamethrowers, mounted on a turret so they can eaisly hit fighters, which often do not have the cooling to deal with them."
+	description "A Flamethrower Turrets is a pair of flamethrowers mounted on a turret, designed to hit nearby fighters. While its fuel usage is significant, most fighters are unable to handle the heat."
 
 
 outfit "Flamethrower Projectile"
