@@ -144,6 +144,25 @@ mission "event: war begins"
 			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
 				decline
 
+mission "FW Carriers"
+	landing
+	invisible
+	to offer
+		has "event: initial deployment 4"
+	on offer
+		shipyard "Tarazed Basics"
+			"Finch"
+		shipyard "Southbound Basics"
+			"Finch"
+		shipyard "Tarazed Advanced"
+			"Birdfeeder"
+			"Birdhouse"
+			"Birdsnest"
+		shipyard "Southbound Advanced"
+			"Birdfeeder"
+			"Birdhouse"
+			"Birdsnest"
+
 event "initial deployment 1"
 	date 24 7 3014
 	system "Spica"

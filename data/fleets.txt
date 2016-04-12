@@ -153,6 +153,15 @@ fleet "Large Southern Merchants"
 	variant 6
 		"Hauler III"
 		"Berserker" 2
+	variant 10
+		"Hauler III" 2
+		"Birdsnest"
+		"Finch" 4
+	variant 15
+		"Argosy"
+		"Hauler II"
+		"Birdfeeder"
+		"Finch" 2
 
 fleet "Small Core Merchants"
 	government "Merchant"
