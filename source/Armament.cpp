@@ -113,13 +113,14 @@ void Armament::Weapon::Step()
 		return;
 	
 	wasFiring = isFiring;
-	isFiring = false;
 	if(reload > 0.)
 		--reload;
 	if(reload <= 0.)
 		burstCount = outfit->BurstCount();
 	if(burstReload > 0.)
 		--burstReload;
+	if(burstReload <= 0.)
+		isFiring = false;
 }
 
 
