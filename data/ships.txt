@@ -418,8 +418,8 @@ ship "Birdfeeder"
 	turret 26 -49 "Heavy Anti-Missile Turret"
 	turret -19 77 "Heavy Anti-Missile Turret"
 	turret 19 77 "Quad Blaster Turret"
-	fighter -47 30
-	fighter 47 30
+	fighter -47 15 under
+	fighter 47 15 under
 	explode "tiny explosion" 20
 	explode "small explosion" 35
 	explode "medium explosion" 20
@@ -474,12 +474,12 @@ ship "Birdhouse"
 	turret 26 -122 "Heavy Anti-Missile Turret"
 	turret -19 151 "Heavy Anti-Missile Turret"
 	turret 19 151 "Quad Blaster Turret"
-	fighter -47 -60
-	fighter 47 -60
-	fighter -47 15
-	fighter 47 15
-	fighter -47 90
-	fighter 47 90
+	fighter -47 -57 under
+	fighter 47 -57 under
+	fighter -47 19 under
+	fighter 47 19 under
+	fighter -47 93 under
+	fighter 47 93 under
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
@@ -528,14 +528,14 @@ ship "Birdsnest"
 	engine 45 160
 	gun -15 -128
 	gun 15 -128
-	turret -26 -85 "Quad Blaster Turret"
-	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -19 115 "Heavy Anti-Missile Turret"
-	turret 19 115 "Quad Blaster Turret"
-	fighter -47 -20
-	fighter 47 -20
-	fighter -47 55
-	fighter 47 55
+	turret -26 -82 "Quad Blaster Turret"
+	turret 26 -82 "Heavy Anti-Missile Turret"
+	turret -19 117 "Heavy Anti-Missile Turret"
+	turret 19 117 "Quad Blaster Turret"
+	fighter -47 -20 under
+	fighter 47 -20 under
+	fighter -47 53 under
+	fighter 47 53 under
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
