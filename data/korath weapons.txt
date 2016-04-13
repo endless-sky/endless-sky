@@ -226,6 +226,7 @@ outfit "Korath Piercer Launcher"
 	"mass" 27
 	"outfit space" -27
 	"weapon capacity" -27
+	"energy capacity" 50
 	"gun ports" -1
 	"piercer capacity" 31
 	weapon
@@ -287,3 +288,65 @@ effect "piercer explosion"
 	"random velocity" .1
 	"random spin" 60
 	"velocity scale" .08
+
+
+outfit "Korath Detainer"
+	category "Guns"
+	cost 1340000
+	thumbnail "outfit/unknown"
+	"mass" 76
+	"outfit space" -76
+	"weapon capacity" -76
+	"energy capacity" 1600
+	"gun ports" -1
+	weapon
+		sprite "projectile/detainer"
+			"frame rate" 2.5
+		sound "particle"
+		"hit effect" "detainer impact" 3
+		"hit effect" "detainer smoke" 5
+		"live effect" "detainer sparks" 50
+		"inaccuracy" .5
+		"velocity" 14
+		"lifetime" 140
+		"reload" 60
+		"burst reload" 10
+		"burst count" 2
+		"firing energy" 800
+		"firing force" 40
+		"firing heat" 400
+		"hit force" 80
+		"shield damage" 240
+		"hull damage" 120
+		"slowing damage" 40
+		"blast radius" 20
+	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes."
+
+effect "detainer sparks"
+	sprite "effect/detainer sparks"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 37
+	"random velocity" .1
+	"random spin" 2
+	"velocity scale" .5
+
+effect "detainer impact"
+	sprite "effect/detainer impact"
+		"no repeat"
+		"frame rate" 40
+	"lifetime" 13
+	"random velocity" .5
+	"random spin" 10
+	"velocity scale" -.01
+
+effect "detainer smoke"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" -.01
