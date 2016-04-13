@@ -404,7 +404,7 @@ ship "Birdfeeder"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D94-YV Shield Generator"
+		"D41-HY Shield Generator"
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -460,7 +460,7 @@ ship "Birdhouse"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D94-YV Shield Generator" 3
+		"D67-TM Shield Generator" 4
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
@@ -518,7 +518,7 @@ ship "Birdsnest"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D94-YV Shield Generator" 2
+		"D41-HY Shield Generator" 4
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
