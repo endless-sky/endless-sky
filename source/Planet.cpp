@@ -219,7 +219,7 @@ bool Planet::IsInhabited() const
 
 
 
-// Check if this planet has a bank (i.e. is inhabited and does not have "no trading" attribute)
+// Check if this planet has trading (i.e. is inhabited and does not have "no trading" attribute)
 bool Planet::HasTrading() const
 {
 	return IsInhabited() && (attributes.find("no trading") == attributes.end());
