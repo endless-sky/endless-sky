@@ -1166,7 +1166,7 @@ mission "FW Flamethrower Turret 2"
 				`	"I was able to neutralize it without much effort."`
 					goto bad
 			label good
-			`	"Glad to hear it."
+			`	"Glad to hear it."`
 			`	He glances at the figures displayed on his monitor.`
 			`	"Yes, the data we've collected remotely seem to meet our expectations."`
 				goto end
