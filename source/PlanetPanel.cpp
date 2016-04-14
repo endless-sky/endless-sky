@@ -209,28 +209,32 @@ bool PlanetPanel::ShowDepart() const
 
 bool PlanetPanel::ShowTrading() const
 {
-	return planet.HasTrading() && planet.CanUseServices();
+	return planet.HasTrading()
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
 }
 
 
 
 bool PlanetPanel::ShowJobs() const
 {
-	return player.Flagship() && planet.HasJobs() && planet.CanUseServices();
+	return player.Flagship() && planet.HasJobs() 
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
 }
 
 
 
 bool PlanetPanel::ShowBanking() const
 {
-	return planet.HasBanking() && planet.CanUseServices();
+	return planet.HasBanking()
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
 }
 
 
 
 bool PlanetPanel::ShowHiring() const
 {
-	return planet.HasHiring() && planet.CanUseServices();
+	return planet.HasHiring()
+		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
 }
 
 

@@ -60,6 +60,12 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 			for(int i = 1; i < child.Size(); ++i)
 				attributes.insert(child.Token(i));
 		}
+		else if(child.Token(0) == "language" && child.Size() >= 2)
+		{
+			if(child.Token(1) == "clear")
+				language.clear();
+			language = child.Token(1);
+		}
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			if(resetDescription)
@@ -395,6 +401,15 @@ bool Planet::CanLand(const Ship &ship) const
 bool Planet::CanLand() const
 {
 	return GameData::GetPolitics().CanLand(this);
+}
+
+
+
+bool Planet::CanSpeakLanguage(const PlayerInfo &player) const
+{
+	if (language.empty())
+		return true; // No language requirement.
+	return player.GetCondition("language: " + language) > 0;
 }
 
 

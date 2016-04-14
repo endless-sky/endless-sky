@@ -113,6 +113,7 @@ public:
 	// but do so with a less convoluted syntax:
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
+	bool CanSpeakLanguage(const PlayerInfo &player) const;
 	bool CanUseServices() const;
 	void Bribe(bool fullAccess = true) const;
 	
@@ -129,6 +130,7 @@ private:
 	const Sprite *landscape = nullptr;
 	
 	std::set<std::string> attributes;
+	std::string language;
 	
 	std::vector<const Sale<Ship> *> shipSales;
 	std::vector<const Sale<Outfit> *> outfitSales;
