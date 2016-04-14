@@ -43,7 +43,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 	
-	velocity += this->angle.Unit() * weapon->Velocity();
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 }
 
 
@@ -66,7 +66,7 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
 		}
 	}
-	velocity += this->angle.Unit() * weapon->Velocity();
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 }
 
 
