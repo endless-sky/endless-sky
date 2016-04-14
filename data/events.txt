@@ -144,7 +144,6 @@ mission "event: war begins"
 			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
 				decline
 
-
 event "initial deployment 1"
 	date 24 7 3014
 	system "Spica"
