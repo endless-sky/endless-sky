@@ -90,7 +90,7 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 2)
 				deadlineBase += child.Value(1);
 			if(child.Size() >= 3)
-				deadlineMultiplier += child.Value(3);
+				deadlineMultiplier += child.Value(2);
 		}
 		else if(child.Token(0) == "cargo" && child.Size() >= 3)
 		{

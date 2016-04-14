@@ -1,0 +1,287 @@
+# Copyright (c) 2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+outfit "Generator (Candle Class)"
+	category "Power"
+	cost 223000
+	thumbnail "outfit/small korath generator"
+	"mass" 23
+	"outfit space" -23
+	"energy generation" 2.6
+	"heat generation" 7.0
+	description "This tiny generator produces a significant amount of energy using the heat produced by the radioactive decay of some particularly unstable nuclear isotopes."
+
+outfit "Generator (Furnace Class)"
+	category "Power"
+	cost 425000
+	thumbnail "outfit/medium korath generator"
+	"mass" 39
+	"outfit space" -39
+	"energy generation" 4.6
+	"heat generation" 13.0
+	description "Because Korath equipment is so power-hungry, they use radiothermal generators even in their fighters and interceptors, rather than relying on fuel cells or other comparable technology."
+
+outfit "Generator (Inferno Class)"
+	category "Power"
+	cost 907000
+	thumbnail "outfit/large korath generator"
+	"mass" 71
+	"outfit space" -71
+	"energy generation" 8.7
+	"heat generation" 27.0
+	description "With their typical disregard for the environmental impacts of their technology, the Korath put some rather alarming isotopes into this radiothermal generator. Its considerable energy output is offset by the heat it produces."
+
+outfit "Plasma Core"
+	category "Power"
+	cost 2688000
+	thumbnail "outfit/unknown"
+	"mass" 54
+	"outfit space" -54
+	"energy generation" 9.9
+	"heat generation" 36.0
+	description "This compact fusion reactor is an ancient Korath design, and served as the mainstay of their war fleets until larger ships and more powerful weapons created a need for even more powerful generators."
+
+outfit "Double Plasma Core"
+	category "Power"
+	cost 5321000
+	thumbnail "outfit/unknown"
+	"mass" 93
+	"outfit space" -93
+	"energy generation" 18.4
+	"heat generation" 72.0
+	description "This reactor core combines a pair of the ancient and robust Korath plasma cores into a single package."
+
+outfit "Triple Plasma Core"
+	category "Power"
+	cost 11460000
+	thumbnail "outfit/unknown"
+	"mass" 169
+	"outfit space" -169
+	"energy generation" 36.3
+	"heat generation" 154.0
+	description "For the largest of their capital ships, the Korath designed a fusion reactor far more powerful than any comparable human technology."
+
+
+
+outfit "Small Heat Shunt"
+	category "Systems"
+	cost 180000
+	thumbnail "outfit/unknown"
+	"mass" 7
+	"outfit space" -7
+	"cooling" 15
+	description "For ships with extreme cooling needs, liquid nitrogen is the answer. One of these coolers will dissipate the heat produced by anything but the heaviest of armaments."
+
+outfit "Large Heat Shunt"
+	category "Systems"
+	cost 790000
+	thumbnail "outfit/unknown"
+	"mass" 24
+	"outfit space" -24
+	"cooling" 60
+	description "For ships with extreme cooling needs, liquid nitrogen is the answer. One of these coolers will dissipate the heat produced by anything but the heaviest of armaments."
+
+
+outfit "Systems Core (Small)"
+	category "Systems"
+	cost 1452000
+	thumbnail "outfit/unknown"
+	"mass" 31
+	"outfit space" -31
+	"shield generation" 1.6
+	"shield energy" 2.4
+	"hull repair rate" 0.2
+	"hull energy" 0.2
+	"energy capacity" 1300
+	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small number of "hull-walking" welding robots that can make minor repairs to the ship's outer armor while in flight.`
+
+outfit "Systems Core (Medium)"
+	category "Systems"
+	cost 3630000
+	thumbnail "outfit/unknown"
+	"mass" 53
+	"outfit space" -53
+	"shield generation" 3.1
+	"shield energy" 4.6
+	"hull repair rate" 0.4
+	"hull energy" 0.4
+	"energy capacity" 2600
+	description `This "systems core" houses a powerful computer, shield generators, and a control center for small repair robots that can walk across a ship's exterior on magnetic feet and slowly repair damage to the hull.`
+
+outfit "Systems Core (Large)"
+	category "Systems"
+	cost 9075000
+	thumbnail "outfit/unknown"
+	"mass" 91
+	"outfit space" -91
+	"shield generation" 6.0
+	"shield energy" 8.8
+	"hull repair rate" 0.8
+	"hull energy" 0.8
+	"energy capacity" 5200
+	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
+
+outfit "Command Center"
+	category "Systems"
+	cost 437000
+	thumbnail "outfit/unknown"
+	"mass" 8
+	"outfit space" -24
+	"bunks" 1
+	"required crew" 1
+	"automaton" -1
+	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan command center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The command center only provides a single bunk for the captain, so more may be necessary if the ship has turrets or other systems that require crew."
+
+
+
+outfit "Thruster (Asteroid Class)"
+	category "Engines"
+	"cost" 113000
+	thumbnail "outfit/tiny korath thruster"
+	"mass" 14
+	"outfit space" -14
+	"engine capacity" -14
+	"thrust" 11.2
+	"thrusting energy" 1.5
+	"thrusting heat" 3.4
+	"flare sprite" "effect/korath flare/tiny"
+		"frame rate" 8
+	"flare sound" "plasma tiny"
+	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Thruster (Comet Class)"
+	category "Engines"
+	"cost" 249000
+	thumbnail "outfit/small korath thruster"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"thrust" 21.8
+	"thrusting energy" 2.8
+	"thrusting heat" 6.5
+	"flare sprite" "effect/korath flare/small"
+		"frame rate" 7.5
+	"flare sound" "plasma small"
+	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Thruster (Lunar Class)"
+	category "Engines"
+	"cost" 539000
+	thumbnail "outfit/medium korath thruster"
+	"mass" 40
+	"outfit space" -40
+	"engine capacity" -40
+	"thrust" 41.2
+	"thrusting energy" 4.9
+	"thrusting heat" 11.9
+	"flare sprite" "effect/korath flare/medium"
+		"frame rate" 7
+	"flare sound" "plasma medium"
+	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Thruster (Planetary Class)"
+	category "Engines"
+	"cost" 1216000
+	thumbnail "outfit/large korath thruster"
+	"mass" 69
+	"outfit space" -69
+	"engine capacity" -69
+	"thrust" 80.0
+	"thrusting energy" 8.9
+	"thrusting heat" 22.7
+	"flare sprite" "effect/korath flare/large"
+		"frame rate" 6.5
+	"flare sound" "plasma large"
+	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Thruster (Stellar Class)"
+	category "Engines"
+	"cost" 2733000
+	thumbnail "outfit/huge korath thruster"
+	"mass" 118
+	"outfit space" -118
+	"engine capacity" -118
+	"thrust" 153.4
+	"thrusting energy" 15.8
+	"thrusting heat" 42.6
+	"flare sprite" "effect/korath flare/huge"
+		"frame rate" 6
+	"flare sound" "plasma huge"
+	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Steering (Asteroid Class)"
+	category "Engines"
+	"cost" 95000
+	thumbnail "outfit/tiny korath steering"
+	"mass" 10
+	"outfit space" -10
+	"engine capacity" -10
+	"turn" 280.0
+	"turning energy" 0.7
+	"turning heat" 2.1
+	description "This is the smallest plasma steering system that Delta V produces. The packaging features a cartoon of what appears to be a very highly caffeinated rodent."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Steering (Comet Class)"
+	category "Engines"
+	"cost" 221000
+	thumbnail "outfit/small korath steering"
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"turn" 568.8
+	"turning energy" 2.8
+	"turning heat" 6.5
+	description "The Greyhound class plasma propulsion systems are Delta V's most popular product, suitable for a wide range of small starships."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Steering (Lunar Class)"
+	category "Engines"
+	"cost" 473000
+	thumbnail "outfit/medium korath steering"
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 1056.0
+	"turning energy" 2.5
+	"turning heat" 7.4
+	description "Impala class plasma steering systems are suitable for most freighters and all but the largest warships, and are also considerably more compact than the ion propulsion systems produced by the Syndicate."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Steering (Planetary Class)"
+	category "Engines"
+	"cost" 1077000
+	thumbnail "outfit/large korath steering"
+	"mass" 52
+	"outfit space" -52
+	"engine capacity" -52
+	"turn" 2069.6
+	"turning energy" 4.6
+	"turning heat" 14.2
+	description "An Orca class steering system will allow any mid-sized ship to turn as quickly as a fighter, and is powerful enough to serve even the largest of warships."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+
+outfit "Steering (Stellar Class)"
+	category "Engines"
+	"cost" 2435000
+	thumbnail "outfit/huge korath steering"
+	"mass" 89
+	"outfit space" -89
+	"engine capacity" -89
+	"turn" 4005.0
+	"turning energy" 8.2
+	"turning heat" 26.7
+	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships can make use of it."
+	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."

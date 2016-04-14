@@ -1,0 +1,178 @@
+# Copyright (c) 2014-2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+# Ship names:
+phrase "korath"
+	word
+		"Sesk"
+		"Tek"
+		"Grak"
+		"Set"
+		"Prat"
+		"Pask"
+		"Sork"
+		"Met"
+		"Chik"
+		"Sker"
+		"Fer"
+		"Sob"
+		"Ber"
+		"Lek"
+		"Skor"
+		"Mak"
+		"Asik"
+		"Bek"
+		"Lem"
+		"Bar"
+		"Bask"
+		"Esk"
+		"Art"
+		"At"
+		"Erat"
+		"Urk"
+		"Uk"
+		"Um"
+		"Om"
+		"Op"
+		"Ad"
+		"Ask"
+		"Awk"
+		"Ent"
+		"Esk"
+		"Er"
+		"Ed"
+		"Isk"
+		"Iket"
+		"Iper"
+	word
+		"erat"
+		"efar"
+		"eskat"
+		"etak"
+		"et"
+		"op"
+		"uk"
+		"suk"
+		"sper"
+		"chata"
+		"chask"
+		"esk"
+		"oper"
+		"oder"
+		"orm"
+		"urik"
+		"ip"
+		"ork"
+		"frek"
+		"war"
+		"wask"
+		"went"
+		"far"
+		"par"
+		"pruk"
+		"urm"
+		"otor"
+		"istin"
+		" Ertak"
+		" Stak"
+		" Skar"
+		" Prat"
+		" Mark"
+		" Per"
+		" Terch"
+		" Grat"
+	word
+		"eskar"
+		"iki"
+		"istek"
+		"akfar"
+		"uket"
+		"tari"
+		"uto"
+		"atip"
+		"ast"
+		"ask"
+		"elect"
+		"ikt"
+		"ipta"
+		"oshtar"
+		"osk"
+		"ari"
+		"arati"
+		"orim"
+		"etar"
+		"eldar"
+		"waru"
+		"wasi"
+		"e"
+		"i"
+		"o"
+		"u"
+		"a"
+		"at"
+		"ak"
+		"sas"
+		"as"
+		"os"
+		"us"
+		"ap"
+		"or"
+		"ar"
+		"far"
+
+
+fleet "Korath Raid"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		plunders
+	variant
+		"Korath Raider"
+		"Korath Chaser" 2
+
+fleet "Korath Home"
+	government "Korath"
+	names "korath"
+	fighters "korath"
+	cargo 3
+	personality
+		timid
+	variant
+		"Korath World-Ship"
+	variant
+		"Korath World-Ship B"
+	variant
+		"Korath World-Ship C"
+
+fleet "Kor Efret Home"
+	government "Kor Efret"
+	names "korath"
+	cargo 3
+	personality
+		timid
+	variant
+		"Korath World-Ship"
+	variant
+		"Korath World-Ship B"
+	variant
+		"Korath World-Ship C"
+
+
+outfitter "Korath Basics"
+	"Command Center"
+	"Small Bunk Room"
+	"Large Bunk Room"
+	"Fuel Pod"
+	"Ramscoop"
+	"Mass Expansion"
+	"Cargo Expansion"
+	"Local Map"

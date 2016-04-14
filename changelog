@@ -1,3 +1,109 @@
+Version 0.9.0:
+  * Bug fixes:
+    * Proper error message is now shown if you cannot install an outfit from cargo. (@thomasballinger)
+    * Fixed a bug if you clicked "done" instead of pressing "enter" in boarding conversations. (@jmhorjus)
+    * Scrolling now works properly when at 150% zoom level. (@dh47h)
+    * Fixed a crash in the info panel. (@reizbar)
+    * Fixed a screen resizing bug on Ubuntu Linux where the scale ends up slightly off. (@db47h)
+    * Fixed AI confusion when a ship's "target" system is set, but set to the current system.
+    * Clearing your travel plan now also clears your flagship's destination system.
+    * "Uninhabited" worlds with spaceports are no longer shown as "dominated" in the map.
+    * Fixed merging of icons of escorts that are not in the current system.
+    * Fixed a possible bug in the Free Worlds missions following the Alpha attack on Poisonwood.
+    * "Bunks free" in the mission panel no longer counts extra "remembered" crew on escorts.
+    * Mission "enter system" messages now also work if you enter via wormhole.
+    * "Mission failed" messages are no longer shown when NPCs from invisible missions die.
+    * The Syndicate Extremists will now always be hostile when you receive the mission to fight them.
+    * Fixed ships with exactly zero hull being counted as un-targetable but not destroyed.
+    * Capturing a special "person" now counts as destroying them.
+    * Orphaned fighters no longer get stuck in a landing loop.
+    * Fixed a Free Worlds mission that could be offered anywhere because it defined no "source."
+    * Autopilot is no longer locked on if you have a travel plan through a wormhole selected.
+    * Fixed a crash when conversations are displayed from an "on enter" mission event.
+    * Deadline "multipliers" for missions are now handled correctly.
+  * Game content:
+    * Added the former Korath territory to the map.
+    * Korath with no jump drives no longer appear in one uninhabited system. (@thenerdfreak)
+    * Fixed typos, grammar, and unclear text. (@Wrzlprnft, @lehgogh, @thomasballinger, @plague006)
+    * More typo fixes. (@macfreek, @toilethinges, @jafdy)
+    * Navy "generals" are now given the more proper title of "admiral." (@thomasballinger)
+    * The "Neutral" government now stands up for merchants. (@jmhorjus)
+    * Added 33 new landscape images. (@sfiera)
+    * Added "Marauder" variants of many of the stock ships. (@LocalGod79 and @Wrzlprnft)
+    * New commodity names for cargo missions. (@lehgogh)
+    * Added two sizes of solar panels. (@ItsNickBarry)
+    * Added a Drak Archon ship, along with the weapons it uses.
+    * Killing an Oathkeeper now angers the Republic (but not the other way around).
+    * Added a star image for a supernova remnant.
+    * Added three types of Korath space stations, each with full and "damaged" variants.
+    * Added three new factions of Korath.
+    * Added an "android" outfit that reduces a ship's crew requirements.
+    * Fixed a place where both branches of a Free Worlds mission could be offered.
+    * Added a new Wanderer ship and several new Wanderer weapons (to be unlocked by missions).
+  * Game mechanics:
+    * The economy is now dynamic - randomly fluctuating, influenced by large sales by the player.
+    * All weapons now do 1/3 less hull damage (so, ships don't die as fast once shields are down).
+    * Ramscoops now work at double efficiency if you are close to the star(s) in the system center.
+    * All ships now have a tiny amount of ramscoop capability built in (to avoid stranded saved games).
+    * Ships are now able to stop (almost) completely in response to the "hold position" command.
+    * Weapons can have fractional "piercing" to damage hull even when shields are up. (@lehgogh)
+    * Planets can now have a government different than the system they're in. (@jmhorjus)
+    * Phrases (for hails or ship names) can now reference other phrases. (@sfiera)
+    * Added a "depart" conversation option, meaning defer + flee. (@jmhorjus)
+    * Added a "solar collection" outfit attribute, depending on distance to the star. (@ItsNickBarry)
+    * Made it possible to mark outfits as "unplunderable." (@jmhorjus)
+    * Added "burst" weapons that must recharge longer after firing a given number of shots.
+    * Added projectile effects that are created while it is in flight ("live effects").
+    * Weapon outfits can now specify whether they should fire in a stream or clustered.
+    * Ships now make noise when entering or leaving hyperspace near you.
+    * Ships can now be marked as an "automaton" to indicate that they require no crew.
+    * JPEG images can now use additive blending mode.
+    * Ships that define no sprite are now never shown on radar (but can still act).
+    * Added a "vindictive" personality, which keeps shooting at you even after you're dead.
+    * The "self destruct" attribute now defines a ship's chance of destructing when boarded.
+    * Landing permission is now automatic if a planet is not inhabited (even if it has a spaceport).
+    * Mission "on enter" conditions with no specified system now trigger as soon as you take off.
+    * Engines now take higher priority than shield recharge, so you always have energy to get away.
+    * Ship "variants" can now override the gun and turret hardpoints from the base ship.
+    * Reload times can now be fractional, to allow better control over burst timing.
+    * Ships can now define a "final explode" effect shown only in their final explosion.
+    * Added support for fighter bays where the carried fighter is visible when in the bay.
+    * Added support for fighter bays that launch fighters to one side instead of straight forward.
+    * Two new damage types - slowing, and disruption (which makes shields partially porous).
+    * The "confusion" effect (ships with imperfect aim) now looks less jittery and more organic.
+    * Outfits that repair hull or shields must now specify how much energy they use.
+    * AI ships no longer "wait" to collect fighters that they have no space for.
+    * The afterburner key now cancels autopilot, the same as the other movement keys.
+  * User interface:
+    * The shop panels now auto-scroll if the item details are not visible. (@db47h)
+    * Any mission on your current travel plan now starts out selected in the job panel. (@db47h)
+    * Improved the appearance of the ship outlines (in the targeting view, etc.).
+    * Click to expand or collapse categories in the map of shipyards and outfitters.
+    * Added a find function in the shipyards and outfitters map panels.
+    * Stars with a cloud around them are no longer drawn with a huge radius on your radar.
+    * Disabled ships can no longer be "parked."
+    * The movement energy and heat info display now includes your reverse thrusters.
+    * Escort icons now turn red if you are about to strand them by jumping to a different system.
+    * Labels are now shown next to planets you can land on when you fly close to them.
+    * The fuel bar now drops smoothly even when using a scram drive or jump drive.
+    * Added a line to the ship info display showing energy use when recharging shields and hull.
+  * Under the hood:
+    * Made the Linux dependency list easier to copy-paste to the command line. (@anarcat)
+    * Merged DotShader and RingShader, and merged SpriteShader and BlurShader.
+    * DataWriter now has functions for writing variable numbers of tokens in one line.
+    * Added a function to Random for getting normally distributed random numbers.
+    * Simplified the ship and outfit info display code by merging the common elements.
+    * Merged the common code from the outfitter and shipyard map panels into a new class.
+    * The distance that counts as two systems being "neighbors" is now a public constant.
+    * ShipInfoDisplay no longer needs to know what star system you're in.
+    * Optimized the IsDisabled() check, because it gets called tons of times.
+    * Added sanity checks for some weapon attributes that must be within certain ranges.
+    * Moved the code for determining the "target color" of a planet into Planet itself.
+    * Moved the data for the Korath and the Wanderers into separate files.
+    * Deleted the very outdated) "extra" directory.
+    * Code cleanup in various other places.
+
+
 Version 0.8.11:
   * Bug fixes:
     * The new Pug mission is now offered on the proper planet.
