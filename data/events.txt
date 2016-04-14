@@ -498,7 +498,7 @@ mission "FW Carriers"
 	to offer
 		has "event: initial deployment 3"
 	on offer
-		event "FWCarriers"
+		event "FWCarriers" 90
 
 event "FWCarriers"
 	shipyard "Tarazed Basics"
