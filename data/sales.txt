@@ -459,6 +459,8 @@ outfitter "Special Outfits"
 	"Korath Fire-Lance"
 	"Korath Warder"
 	"Korath Banisher"
+	"Korath Minelayer"
+	"Korath Mine"
 
 shipyard "Alien Ships"
 	"Pug Zibruka"
