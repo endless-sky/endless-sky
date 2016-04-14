@@ -64,6 +64,7 @@ public:
 	bool IsStreamed() const;
 	
 	double Velocity() const;
+	double RandomVelocity() const;
 	double Acceleration() const;
 	double Drag() const;
 	
@@ -127,6 +128,7 @@ private:
 	int antiMissile = 0;
 	
 	double velocity = 0.;
+	double randomVelocity = 0.;
 	double acceleration = 0.;
 	double drag = 0.;
 	
@@ -172,6 +174,7 @@ inline int Weapon::AntiMissile() const { return antiMissile; }
 inline bool Weapon::IsStreamed() const { return isStreamed; }
 
 inline double Weapon::Velocity() const { return velocity; }
+inline double Weapon::RandomVelocity() const { return randomVelocity; }
 inline double Weapon::Acceleration() const { return acceleration; }
 inline double Weapon::Drag() const { return drag; }
 
