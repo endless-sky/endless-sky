@@ -410,8 +410,8 @@ ship "Birdfeeder"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 122
-	engine 45 122
+	engine -45 121
+	engine 45 121
 	gun -15 -91
 	gun 15 -91
 	turret -19 -50 "Quad Blaster Turret"
@@ -466,8 +466,8 @@ ship "Birdhouse"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 196
-	engine 45 196
+	engine -45 195
+	engine 45 195
 	gun -15 -165
 	gun 15 -165
 	turret -26 -123 "Quad Blaster Turret"
@@ -524,8 +524,8 @@ ship "Birdsnest"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 160
-	engine 45 160
+	engine -45 157
+	engine 45 157
 	gun -15 -128
 	gun 15 -128
 	turret -26 -85 "Quad Blaster Turret"
@@ -1202,10 +1202,10 @@ ship "Finch"
 		"Chipmunk Plasma Thruster"
 		"Chipmunk Plasma Steering"
 		
-	engine -15 30
-	engine 15 30
-	gun -14 -10 "Beam Laser"
-	gun 14 -10 "Beam Laser"
+	engine -5 32
+	engine 5 32
+	gun -7 -14 "Beam Laser"
+	gun 7 -14 "Beam Laser"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
