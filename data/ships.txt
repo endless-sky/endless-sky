@@ -404,7 +404,7 @@ ship "Birdfeeder"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D41-HY Shield Generator"
+		"D41-HY Shield Generator" 2
 		
 		"Greyhound Plasma Thruster"
 		"Impala Plasma Steering"
