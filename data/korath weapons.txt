@@ -226,6 +226,7 @@ outfit "Korath Piercer Launcher"
 	"mass" 27
 	"outfit space" -27
 	"weapon capacity" -27
+	"energy capacity" 50
 	"gun ports" -1
 	"piercer capacity" 31
 	weapon
@@ -287,3 +288,149 @@ effect "piercer explosion"
 	"random velocity" .1
 	"random spin" 60
 	"velocity scale" .08
+
+
+outfit "Korath Detainer"
+	category "Guns"
+	cost 1340000
+	thumbnail "outfit/unknown"
+	"mass" 76
+	"outfit space" -76
+	"weapon capacity" -76
+	"energy capacity" 1600
+	"gun ports" -1
+	weapon
+		sprite "projectile/detainer"
+			"frame rate" 2.5
+		sound "particle"
+		"hit effect" "detainer impact" 3
+		"hit effect" "detainer smoke" 5
+		"live effect" "detainer sparks" 50
+		"inaccuracy" .5
+		"velocity" 14
+		"lifetime" 140
+		"reload" 60
+		"burst reload" 10
+		"burst count" 2
+		"firing energy" 800
+		"firing force" 40
+		"firing heat" 400
+		"hit force" 80
+		"shield damage" 240
+		"hull damage" 120
+		"slowing damage" 40
+		"blast radius" 20
+	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes."
+
+effect "detainer sparks"
+	sprite "effect/detainer sparks"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 37
+	"random velocity" .1
+	"random spin" 2
+	"velocity scale" .5
+
+effect "detainer impact"
+	sprite "effect/detainer impact"
+		"no repeat"
+		"frame rate" 40
+	"lifetime" 13
+	"random velocity" .5
+	"random spin" 10
+	"velocity scale" -.01
+
+effect "detainer smoke"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 60
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" -.01
+
+
+outfit "Korath Mine"
+	category "Ammunition"
+	cost 3500
+	thumbnail "outfit/korath mine"
+	"minelayer capacity" -1
+	description "This is ammunition for a Korath Minelayer. Each mine splits into eleven submunitions after it is deployed."
+
+outfit "Korath Minelayer"
+	category "Secondary Weapons"
+	cost 293000
+	thumbnail "outfit/korath minelayer"
+	"mass" 53
+	"outfit space" -53
+	"weapon capacity" -53
+	"energy capacity" 50
+	"gun ports" -1
+	"minelayer capacity" 17
+	weapon
+		sprite "projectile/korath minelayer"
+			"frame rate" .6
+			"no repeat"
+		sound "tracker"
+		ammo "Korath Mine"
+		icon "icon/minelayer"
+		"fire effect" "minelayer fire"
+		"hit effect" "huge explosion"
+		"die effect" "minelayer split" 5
+		"submunition" "Korath Mine Submunition" 11
+		"inaccuracy" 10
+		"velocity" 3
+		"lifetime" 100
+		"reload" 180
+		"firing energy" 24
+		"firing heat" 36
+		"acceleration" .16
+		"drag" .04
+		"turn" 2
+		"homing" 4
+		"missile strength" 35
+		"shield damage" -3200
+		"hull damage" -2400
+		"hit force" 150
+		"stream"
+	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
+
+outfit "Korath Mine Submunition"
+	weapon
+		sprite "projectile/korath mine"
+			"frame rate" 1
+			"no repeat"
+		"hit effect" "big explosion"
+		"die effect" "tiny explosion"
+		"inaccuracy" 360
+		"lifetime" 1800
+		"acceleration" .00001
+		"velocity" 2
+		"random velocity" 5
+		"drag" .05
+		"shield damage" 400
+		"hull damage" 320
+		"hit force" 50
+		"missile strength" 22
+
+effect "minelayer fire"
+	sprite "effect/minelayer split"
+		"no repeat"
+		"frame rate" 3
+	"lifetime" 61
+	"random angle" 5
+	"random spin" 10
+	"random velocity" .5
+	"velocity scale" 1.2
+
+effect "minelayer split"
+	sprite "effect/minelayer split"
+		"no repeat"
+		"frame rate" 6
+	"lifetime" 31
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 2.5
+	"velocity scale" .8
