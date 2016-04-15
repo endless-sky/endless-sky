@@ -507,8 +507,8 @@ outfit "Flamethrower Turret"
 	cost 500000
 	thumbnail "outfit/flamethrower turret"
 	"mass" 26
-	"outfit space" -24
-	"weapon capacity" -24
+	"outfit space" -26
+	"weapon capacity" -26
 	"turret mounts" -1
 	"required crew" 1
 	"fuel capacity" 100
