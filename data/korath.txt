@@ -177,6 +177,12 @@ fleet "Small Kor Sestor"
 	variant 3
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 10
+	variant 2
+		"Tek Far 78 - Osk"
+		"Far Osk 27" 12
+	variant 1
+		"Tek Far 78 - Osk (Close Quarters)"
+		"Far Osk 27" 12
 
 
 outfitter "Korath Basics"

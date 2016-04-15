@@ -271,6 +271,93 @@ ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	turret "Korath Repeater Turret"
 
 
+ship "Tek Far 78 - Osk"
+	sprite "ship/tek far 78 osk"
+	attributes
+		category "Medium Warship"
+		"cost" 22870000
+		"shields" 27600
+		"hull" 34100
+		"automaton" 1
+		"mass" 690
+		"drag" 10.2
+		"heat dissipation" .55
+		"fuel capacity" 400
+		"cargo space" 43
+		"outfit space" 611
+		"weapon capacity" 272
+		"engine capacity" 117
+		weapon
+			"blast radius" 340
+			"shield damage" 4400
+			"hull damage" 2200
+			"hit force" 6600
+	outfits
+		"Korath Detainer"
+		"Korath Piercer Launcher" 3
+		"Korath Piercer" 93
+		"Korath Banisher"
+		"Korath Warder" 2
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	engine -9 245
+	engine 9 245
+	gun 0 -239 "Korath Detainer"
+	gun 0 -239 "Korath Piercer Launcher"
+	gun -9 -220 "Korath Piercer Launcher"
+	gun -9 -220 "Korath Piercer Launcher"
+	turret 17 -133 "Korath Warder"
+	turret 19 -110
+	turret 21 -87
+	turret 23 -64 "Korath Banisher"
+	turret 38 145 "Korath Warder"
+	fighter -16.5 -174 over
+	fighter -11 -122 over
+	fighter -37 -73.5 over
+	fighter -15 -58 over
+	fighter -26.5 13 over
+	fighter -13 67 over
+	fighter -53 75 over
+	fighter -24 113 over
+	fighter -23.5 -113.5 under
+	fighter -37 55.5 under
+	fighter -43 120 under
+	fighter -12.5 130.5 under
+	explode "tiny explosion" 90
+	explode "small explosion" 50
+	explode "medium explosion" 55
+	explode "big explosion" 45
+	explode "huge explosion" 12
+
+ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Korath Warder" 2
+		"Korath Repeater Turret" 3
+		
+		"Triple Plasma Core"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Mass Expansion"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Korath Warder"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Warder"
+
 
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
