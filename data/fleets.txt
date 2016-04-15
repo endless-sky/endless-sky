@@ -155,12 +155,12 @@ fleet "Large Southern Merchants"
 		"Berserker" 2
 	variant 10
 		"Hauler III" 2
-		"Birdsnest"
+		"Roost"
 		"Finch" 4
 	variant 15
 		"Argosy"
 		"Hauler II"
-		"Birdfeeder"
+		"Nest"
 		"Finch" 2
 
 fleet "Small Core Merchants"
@@ -541,7 +541,7 @@ fleet "Small Free Worlds"
 		"Hawk (Speedy)"
 		"Sparrow" 2
 	variant 1
-		"Birdfeeder"
+		"Nest"
 		"Finch" 2
 
 fleet "Large Free Worlds"
@@ -624,10 +624,10 @@ fleet "Large Free Worlds"
 		"Bastion (Laser)"
 		"Hawk (Speedy)"
 	variant 2
-		"Birdsnest"
+		"Roost"
 		"Finch" 4
 	variant 2
-		"Birdhouse"
+		"Skein"
 		"Finch" 6
 
 fleet "Small Militia"
