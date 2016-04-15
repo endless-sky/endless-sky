@@ -201,6 +201,7 @@ ship "Tek Far 71 - Lek"
 		"outfit space" 533
 		"weapon capacity" 235
 		"engine capacity" 102
+		"self destruct" .7
 		weapon
 			"blast radius" 320
 			"shield damage" 4000
@@ -275,7 +276,7 @@ ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	attributes
 		category "Medium Warship"
-		"cost" 22870000
+		"cost" 25630000
 		"shields" 27600
 		"hull" 34100
 		"automaton" 1
@@ -287,6 +288,7 @@ ship "Tek Far 78 - Osk"
 		"outfit space" 611
 		"weapon capacity" 272
 		"engine capacity" 117
+		"self destruct" .7
 		weapon
 			"blast radius" 340
 			"shield damage" 4400
@@ -373,6 +375,7 @@ ship "Far Lek 14"
 		"outfit space" 65
 		"weapon capacity" 11
 		"engine capacity" 24
+		"self destruct" .6
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -410,6 +413,7 @@ ship "Far Osk 27"
 		"outfit space" 99
 		"weapon capacity" 22
 		"engine capacity" 24
+		"self destruct" .6
 		weapon
 			"blast radius" 12
 			"shield damage" 120
