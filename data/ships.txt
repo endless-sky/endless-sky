@@ -3406,14 +3406,14 @@ ship "Nest"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 121
-	engine 45 121
+	engine -45 122
+	engine 45 122
 	gun -15 -91
 	gun 15 -91
-	turret -19 -50 "Quad Blaster Turret"
-	turret 19 -50 "Heavy Anti-Missile Turret"
-	turret -16 75 "Heavy Anti-Missile Turret"
-	turret 16 75 "Quad Blaster Turret"
+	turret -26 -50 "Quad Blaster Turret"
+	turret 26 -50 "Heavy Anti-Missile Turret"
+	turret -18 75 "Heavy Anti-Missile Turret"
+	turret 18 75 "Quad Blaster Turret"
 	fighter -47 12 under
 	fighter 47 12 under
 	explode "tiny explosion" 20
@@ -3712,16 +3712,16 @@ ship "Roost"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 157
-	engine 45 157
+	engine -45 159
+	engine 45 159
 	gun -15 -128
 	gun 15 -128
 	turret -26 -85 "Quad Blaster Turret"
 	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -29 114 "Heavy Anti-Missile Turret"
-	turret 28 114 "Quad Blaster Turret"
-	fighter -47 -23 under
-	fighter 47 -23 under
+	turret -18 114 "Heavy Anti-Missile Turret"
+	turret 18 114 "Quad Blaster Turret"
+	fighter -47 -24 under
+	fighter 47 -24 under
 	fighter -47 50 under
 	fighter 47 50 under
 	explode "tiny explosion" 10
@@ -3858,8 +3858,8 @@ ship "Skein"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 		
-	engine -45 195
-	engine 45 195
+	engine -45 197
+	engine 45 197
 	gun -15 -165
 	gun 15 -165
 	turret -26 -123 "Quad Blaster Turret"
