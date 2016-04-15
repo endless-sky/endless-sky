@@ -26,7 +26,7 @@ ship "Korath Raider"
 		"weapon capacity" 284
 		"engine capacity" 159
 		weapon
-			"blast radius" 540
+			"blast radius" 250
 			"shield damage" 3600
 			"hull damage" 1800
 			"hit force" 5400
@@ -120,7 +120,7 @@ ship "Korath World-Ship"
 		"weapon capacity" 314
 		"engine capacity" 165
 		weapon
-			"blast radius" 800
+			"blast radius" 400
 			"shield damage" 8000
 			"hull damage" 4000
 			"hit force" 12000
@@ -185,6 +185,93 @@ ship "Korath World-Ship" "Korath World-Ship C"
 
 
 
+ship "Tek Far 71 - Lek"
+	sprite "ship/tek far 71 lek"
+	attributes
+		category "Medium Warship"
+		"cost" 22870000
+		"shields" 25400
+		"hull" 29500
+		"automaton" 1
+		"mass" 610
+		"drag" 9.6
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 36
+		"outfit space" 533
+		"weapon capacity" 235
+		"engine capacity" 102
+		weapon
+			"blast radius" 320
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 6000
+	outfits
+		"Korath Detainer"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Korath Banisher"
+		"Korath Warder" 2
+		
+		"Double Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Lunar Class)"
+		"Hyperdrive"
+	
+	engine -9 219
+	engine 9 219
+	gun 10 -180 "Korath Detainer"
+	gun 10 -180 "Korath Piercer Launcher"
+	gun 10 -180 "Korath Piercer Launcher"
+	turret -10 -85 "Korath Warder"
+	turret -13 -61
+	turret -14 -38 "Korath Banisher"
+	turret 14 177 "Korath Warder"
+	drone 20.5 -65 over
+	drone 44.5 -40 over
+	drone 30 67 over
+	drone 61.5 83 over
+	drone 43 137 over
+	drone 18 171.5 over
+	drone 30 -106 under
+	drone 24 -8 under
+	drone 42 55 under
+	drone 34 172 under
+	explode "tiny explosion" 80
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 10
+
+ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
+	outfits
+		"Korath Detainer"
+		"Korath Repeater" 2
+		"Korath Repeater Turret" 3
+		"Korath Warder"
+		
+		"Double Plasma Core"
+		"Generator (Furnace Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt"
+		"Mass Expansion"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Lunar Class)"
+		"Hyperdrive"
+	
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Warder"
+	turret "Korath Repeater Turret"
+
+
+
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	attributes
@@ -192,13 +279,13 @@ ship "Far Lek 14"
 		"cost" 573000
 		"shields" 900
 		"hull" 1600
+		"automaton" 1
 		"mass" 26
 		"drag" .8
 		"heat dissipation" 1.1
 		"outfit space" 65
 		"weapon capacity" 11
 		"engine capacity" 24
-		"automaton" 1
 		weapon
 			"blast radius" 5
 			"shield damage" 50

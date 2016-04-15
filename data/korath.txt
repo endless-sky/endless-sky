@@ -166,6 +166,18 @@ fleet "Kor Efret Home"
 	variant
 		"Korath World-Ship C"
 
+fleet "Small Kor Sestor"
+	government "Kor Sestor"
+	names "korath"
+	personality
+		heroic
+	variant 5
+		"Tek Far 71 - Lek"
+		"Far Lek 14" 10
+	variant 3
+		"Tek Far 71 - Lek (Close Quarters)"
+		"Far Lek 14" 10
+
 
 outfitter "Korath Basics"
 	"Command Center"
