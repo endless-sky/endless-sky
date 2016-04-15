@@ -3413,9 +3413,9 @@ ship "Nest"
 	turret -19 -50 "Quad Blaster Turret"
 	turret 19 -50 "Heavy Anti-Missile Turret"
 	turret -16 75 "Heavy Anti-Missile Turret"
-	turret 16 -75 "Quad Blaster Turret"
-	fighter -47 15 under
-	fighter 47 15 under
+	turret 16 75 "Quad Blaster Turret"
+	fighter -47 12 under
+	fighter 47 12 under
 	explode "tiny explosion" 20
 	explode "small explosion" 35
 	explode "medium explosion" 20
@@ -3720,10 +3720,10 @@ ship "Roost"
 	turret 26 -85 "Heavy Anti-Missile Turret"
 	turret -29 114 "Heavy Anti-Missile Turret"
 	turret 28 114 "Quad Blaster Turret"
-	fighter -47 -20 under
-	fighter 47 -20 under
-	fighter -47 53 under
-	fighter 47 53 under
+	fighter -47 -23 under
+	fighter 47 -23 under
+	fighter -47 50 under
+	fighter 47 50 under
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 30
@@ -3864,14 +3864,14 @@ ship "Skein"
 	gun 15 -165
 	turret -26 -123 "Quad Blaster Turret"
 	turret 26 -123 "Heavy Anti-Missile Turret"
-	turret -18.5 166 "Heavy Anti-Missile Turret"
-	turret 18.5 166 "Quad Blaster Turret"
-	fighter -47 -57 under
-	fighter 47 -57 under
-	fighter -47 19 under
-	fighter 47 19 under
-	fighter -47 93 under
-	fighter 47 93 under
+	turret -18.5 154 "Heavy Anti-Missile Turret"
+	turret 18.5 154 "Quad Blaster Turret"
+	fighter -47 -61 under
+	fighter 47 -61 under
+	fighter -47 14 under
+	fighter 47 14 under
+	fighter -47 88 under
+	fighter 47 88 under
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
