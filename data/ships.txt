@@ -3420,7 +3420,7 @@ ship "Nest"
 	explode "small explosion" 35
 	explode "medium explosion" 20
 	explode "big explosion" 5
-	description "Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is Hauler I: Type F, Southbound assembly workers started calling the single container variant 'Nest' as a jab at Tarazed Shipyards, and the name stuck."
+	description `Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" as a jab at Tarazed Shipyards, and the name stuck.`
 
 
 
@@ -3876,7 +3876,7 @@ ship "Skein"
 	explode "medium explosion" 30
 	explode "big explosion" 20
 	explode "huge explosion" 5
-	description "Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods.  When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers.  Given this fact, the Free Worlds has asked Southbound to restrict sale of the Hauler III: Type F "Skein" to its Militia only."`
+	description `Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods.  When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers.  Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
 
 
 

@@ -495,6 +495,11 @@ fleet "Large Northern Merchants"
 		"Hauler III"
 		"Hauler II"
 		"Headhunter" 3
+	variant 4
+		"Hauler III"
+		"Hauler II"
+		"Roost"
+		"Dagger" 4
 
 fleet "Small Free Worlds"
 	government "Free Worlds"
@@ -1153,6 +1158,9 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
+	variant 1
+		"Nest"
+		"Finch" 2
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -1233,6 +1241,9 @@ fleet "Large Southern Pirates"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 2
+		"Roost"
+		"Finch" 4
 
 fleet "Small Independent"
 	government "Independent"
@@ -1290,6 +1301,9 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
+	variant 1
+		"Nest"
+		"Finch" 2
 
 fleet "Large Independent"
 	government "Independent"
@@ -1351,6 +1365,9 @@ fleet "Large Independent"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 2
+		"Roost"
+		"Finch" 4
 
 fleet "Small Core Pirates"
 	government "Pirate"
@@ -1458,6 +1475,9 @@ fleet "Small Northern Pirates"
 		"Corvette (Missile)"
 	variant 1
 		"Corvette (Speedy)"
+	variant 1
+		"Nest"
+		"Dagger" 2
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -1532,6 +1552,9 @@ fleet "Large Northern Pirates"
 		"Berserker" 2
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 2
+		"Roost"
+		"Dagger" 4
 
 fleet "pirate raid"
 	government "Pirate"
@@ -1572,6 +1595,9 @@ fleet "pirate raid"
 		Leviathan
 	variant 1
 		Falcon
+	variant 1
+		"Nest"
+		"Dagger" 2
 
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
@@ -1638,6 +1664,9 @@ fleet "Bounty Hunters"
 	variant 1
 		"Splinter"
 		"Fury (Missile)"
+	variant 1
+		"Nest"
+		"Finch" 2
 
 fleet "Quarg"
 	government "Quarg"
