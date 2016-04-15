@@ -374,176 +374,6 @@ ship "Berserker"
 
 
 
-ship "Birdfeeder"
-	sprite "ship/birdfeeder"
-	attributes
-		category "Medium Warship"
-		"cost" 2500000
-		"shields" 2500
-		"hull" 3700
-		"required crew" 5
-		"bunks" 14
-		"mass" 250
-		"drag" 10.5
-		"heat dissipation" .67
-		"fuel capacity" 500
-		"cargo space" 40
-		"outfit space" 400
-		"weapon capacity" 140
-		"engine capacity" 80
-		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator" 2
-		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-		
-	engine -45 121
-	engine 45 121
-	gun -15 -91
-	gun 15 -91
-	turret -19 -50 "Quad Blaster Turret"
-	turret 19 -50 "Heavy Anti-Missile Turret"
-	turret -16 75 "Heavy Anti-Missile Turret"
-	turret 16 -75 "Quad Blaster Turret"
-	fighter -47 15 under
-	fighter 47 15 under
-	explode "tiny explosion" 20
-	explode "small explosion" 35
-	explode "medium explosion" 20
-	explode "big explosion" 5
-	description "Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is Hauler I: Type F, Southbound assembly workers started calling the single container variant Birdfeeder as a jab at Tarazed Shipyards, and the name stuck."
-
-
-
-ship "Birdhouse"
-	sprite "ship/birdhouse"
-	licenses
-		"Militia Carrier"
-	attributes
-		category "Medium Warship"
-		"cost" 3500000
-		"shields" 3300
-		"hull" 6700
-		"required crew" 7
-		"bunks" 18
-		"mass" 470
-		"drag" 12.5
-		"heat dissipation" .71
-		"fuel capacity" 700
-		"cargo space" 120
-		"outfit space" 500
-		"weapon capacity" 140
-		"engine capacity" 80
-		weapon
-			"blast radius" 100
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"D67-TM Shield Generator" 4
-		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-		
-	engine -45 195
-	engine 45 195
-	gun -15 -165
-	gun 15 -165
-	turret -26 -123 "Quad Blaster Turret"
-	turret 26 -123 "Heavy Anti-Missile Turret"
-	turret -18.5 166 "Heavy Anti-Missile Turret"
-	turret 18.5 166 "Quad Blaster Turret"
-	fighter -47 -57 under
-	fighter 47 -57 under
-	fighter -47 19 under
-	fighter 47 19 under
-	fighter -47 93 under
-	fighter 47 93 under
-	explode "small explosion" 15
-	explode "medium explosion" 30
-	explode "big explosion" 20
-	explode "huge explosion" 5
-	description "Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods.  When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers.  Given this fact, the Free Worlds has asked Southbound to restrict sale of the 'Hauler III: Type F 'Birdhouse'' to its Militia only."
-
-
-
-ship "Birdsnest"
-	sprite "ship/birdsnest"
-	attributes
-		category "Medium Warship"
-		"cost" 3000000
-		"shields" 2900
-		"hull" 5200
-		"required crew" 7
-		"bunks" 16
-		"mass" 360
-		"drag" 11.5
-		"heat dissipation" .67
-		"fuel capacity" 600
-		"cargo space" 80
-		"outfit space" 450
-		"weapon capacity" 140
-		"engine capacity" 80
-		weapon
-			"blast radius" 80
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
-	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 70
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
-		
-		"S3 Thermionic"
-		"LP072a Battery Pack"
-		"D41-HY Shield Generator" 4
-		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-		
-	engine -45 157
-	engine 45 157
-	gun -15 -128
-	gun 15 -128
-	turret -26 -85 "Quad Blaster Turret"
-	turret 26 -85 "Heavy Anti-Missile Turret"
-	turret -29 114 "Heavy Anti-Missile Turret"
-	turret 28 114 "Quad Blaster Turret"
-	fighter -47 -20 under
-	fighter 47 -20 under
-	fighter -47 53 under
-	fighter 47 53 under
-	explode "tiny explosion" 10
-	explode "small explosion" 25
-	explode "medium explosion" 30
-	explode "big explosion" 15
-	description "Centuries ago, various Hauler models made up nearly half of the merchant vessels in service.  Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design.  Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship.  After Southbound assembly workers successfully named the 'Birdfeeder', 'Hauler II: Type F' was quickly dubbed 'Birdsnest' to continue the theme."
-
-
-
 ship "Blackbird"
 	sprite "ship/blackbird"
 	attributes
@@ -3540,6 +3370,60 @@ ship "Osprey"
 
 
 
+ship "Nest"
+	sprite "ship/nest"
+	attributes
+		category "Medium Warship"
+		"cost" 2500000
+		"shields" 2500
+		"hull" 3700
+		"required crew" 5
+		"bunks" 14
+		"mass" 250
+		"drag" 10.5
+		"heat dissipation" .67
+		"fuel capacity" 500
+		"cargo space" 40
+		"outfit space" 400
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator" 2
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 121
+	engine 45 121
+	gun -15 -91
+	gun 15 -91
+	turret -19 -50 "Quad Blaster Turret"
+	turret 19 -50 "Heavy Anti-Missile Turret"
+	turret -16 75 "Heavy Anti-Missile Turret"
+	turret 16 -75 "Quad Blaster Turret"
+	fighter -47 15 under
+	fighter 47 15 under
+	explode "tiny explosion" 20
+	explode "small explosion" 35
+	explode "medium explosion" 20
+	explode "big explosion" 5
+	description "Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is Hauler I: Type F, Southbound assembly workers started calling the single container variant 'Nest' as a jab at Tarazed Shipyards, and the name stuck."
+
+
+
 ship "Protector"
 	sprite "ship/protector"
 	attributes
@@ -3792,6 +3676,62 @@ ship "Raven"
 
 
 
+ship "Roost"
+	sprite "ship/roost"
+	attributes
+		category "Medium Warship"
+		"cost" 3000000
+		"shields" 2900
+		"hull" 5200
+		"required crew" 7
+		"bunks" 16
+		"mass" 360
+		"drag" 11.5
+		"heat dissipation" .67
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 450
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator" 4
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 157
+	engine 45 157
+	gun -15 -128
+	gun 15 -128
+	turret -26 -85 "Quad Blaster Turret"
+	turret 26 -85 "Heavy Anti-Missile Turret"
+	turret -29 114 "Heavy Anti-Missile Turret"
+	turret 28 114 "Quad Blaster Turret"
+	fighter -47 -20 under
+	fighter 47 -20 under
+	fighter -47 53 under
+	fighter 47 53 under
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "big explosion" 15
+	description `Centuries ago, various Hauler models made up nearly half of the merchant vessels in service.  Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design.  Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship.  After Southbound assembly workers successfully named the "Nest", "Hauler II: Type F" was quickly dubbed "Roost" to continue the theme.`
+
+
+
 ship "Scout"
 	sprite "ship/scout"
 	attributes
@@ -3877,6 +3817,66 @@ ship "Shuttle"
 	explode "small explosion" 5
 	description "Although Betelgeuse Shipyards produces other ship models as well, the majority of their profits come from sales of the Shuttle. This versatile ship serves equally well as a passenger transport or a cargo courier. It also happens to be the cheapest ship you can buy which is capable of hyperspace travel."
 	description `	Shuttles are not designed to withstand combat of any sort, but they are fast and maneuverable enough to get out of harm's way if attacked by a larger, slower ship. Although they are typically unarmed, they have enough space for one weapon, which is the origin of the popular phrase, "as useless as a blaster cannon on a shuttlecraft."`
+
+
+
+ship "Skein"
+	sprite "ship/skein"
+	licenses
+		"Militia Carrier"
+	attributes
+		category "Medium Warship"
+		"cost" 3500000
+		"shields" 3300
+		"hull" 6700
+		"required crew" 7
+		"bunks" 18
+		"mass" 470
+		"drag" 12.5
+		"heat dissipation" .71
+		"fuel capacity" 700
+		"cargo space" 120
+		"outfit space" 500
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator" 4
+		
+		"Greyhound Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+		
+	engine -45 195
+	engine 45 195
+	gun -15 -165
+	gun 15 -165
+	turret -26 -123 "Quad Blaster Turret"
+	turret 26 -123 "Heavy Anti-Missile Turret"
+	turret -18.5 166 "Heavy Anti-Missile Turret"
+	turret 18.5 166 "Quad Blaster Turret"
+	fighter -47 -57 under
+	fighter 47 -57 under
+	fighter -47 19 under
+	fighter 47 19 under
+	fighter -47 93 under
+	fighter 47 93 under
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "big explosion" 20
+	explode "huge explosion" 5
+	description "Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods.  When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers.  Given this fact, the Free Worlds has asked Southbound to restrict sale of the Hauler III: Type F "Skein" to its Militia only."`
 
 
 
