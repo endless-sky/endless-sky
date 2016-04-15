@@ -4304,6 +4304,7 @@ system Dokdobaru
 	asteroids "medium metal" 2 4.05
 	asteroids "large metal" 3 2.0655
 	fleet "Quarg" 500
+	fleet "Kor Efret Home" 1500
 	object
 		sprite star/g5
 		period 10
@@ -7790,6 +7791,7 @@ system Kashikt
 	asteroids "medium metal" 44 6.0858
 	asteroids "large metal" 13 4.2021
 	fleet "Quarg" 1000
+	fleet "Kor Efret Home" 1000
 	object
 		sprite star/f5
 		period 10
@@ -13063,6 +13065,7 @@ system Sevrelect
 	link Kashikt
 	asteroids "large metal" 1 2.97
 	fleet "Quarg" 1000
+	fleet "Kor Efret Home" 1000
 	object
 		sprite star/m0
 		period 10
@@ -13969,6 +13972,7 @@ system Sumprast
 	asteroids "medium metal" 15 2.4336
 	asteroids "large metal" 7 2.4336
 	fleet "Quarg" 1000
+	fleet "Kor Efret Home" 1000
 	object
 		sprite star/k0
 		period 10
@@ -17156,6 +17160,7 @@ planet "Laki Nemparu"
 	landscape land/sea2
 	description `This is an old factory world, so shrouded in smog that only tiny glimpses of the land are visible from above. Deep under the oceans of Laki Nemparu are oil reservoirs so vast that centuries of industry have not yet drained them dry. All but the hardiest of the native vegetation and wildlife is now long extinct from lack of direct sunlight or from pollution and chemical exposure.`
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
+	outfitter "Korath Basics"
 
 planet "Leviathan Station"
 	attributes deep station
@@ -17996,6 +18001,7 @@ planet "Setar Fort"
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
 	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`
+	outfitter "Korath Basics"
 
 planet Shangri-La
 	attributes core rich urban frontier

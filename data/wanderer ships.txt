@@ -1,0 +1,346 @@
+# Copyright (c) 2015-2016 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+ship "Earth Shaper"
+	sprite "ship/earth shaper"
+	licenses
+		Wanderer
+	attributes
+		category "Light Freighter"
+		"cost" 500000
+		"hull" 3300
+		"mass" 30
+		"drag" .5
+		"heat dissipation" .9
+		"fuel capacity" 300
+		"cargo space" 27
+		"outfit space" 59
+		"engine capacity" 26
+		"atmosphere scan" 100
+		"automaton" 1
+		weapon
+			"blast radius" 10
+			"shield damage" 100
+			"hull damage" 150
+			"hit force" 250
+	outfits
+		"Small Biochemical Cell"
+		
+		"Type 1 Radiant Thruster"
+		"Type 1 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -9 30
+	engine 9 30
+	explode "tiny explosion" 20
+	explode "small explosion" 10
+	description "The Earth Shaper is a robotic drone that the Wanderers use for mining, exploring, surveying, and terraforming."
+
+ship "Summer Leaf"
+	sprite "ship/summer leaf"
+	licenses
+		Wanderer
+	attributes
+		category "Light Warship"
+		"cost" 9500000
+		"shields" 14400
+		"hull" 6700
+		"required crew" 6
+		"bunks" 15
+		"mass" 110
+		"drag" 2.6
+		"heat dissipation" .8
+		"fuel capacity" 800
+		"cargo space" 41
+		"outfit space" 320
+		"weapon capacity" 84
+		"engine capacity" 103
+		weapon
+			"blast radius" 70
+			"shield damage" 700
+			"hull damage" 350
+			"hit force" 1050
+	outfits
+		"Sunbeam" 2
+		
+		"Yellow Sun Reactor"
+		"Bright Cloud Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -18 64
+	engine 18 64
+	gun -29 -9
+	gun 29 -9
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	description "The Summer Leaf is mostly used by the Wanderers as a light transport, but it is also quite effective in combat."
+
+ship "Autumn Leaf"
+	sprite "ship/autumn leaf"
+	licenses
+		Wanderer
+	attributes
+		category "Light Warship"
+		"cost" 12500000
+		"shields" 18700
+		"hull" 7400
+		"required crew" 8
+		"bunks" 16
+		"mass" 130
+		"drag" 2.9
+		"heat dissipation" .8
+		"fuel capacity" 1000
+		"cargo space" 45
+		"outfit space" 361
+		"weapon capacity" 103
+		"engine capacity" 117
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Sunbeam" 2
+		"Wanderer Anti-Missile"
+		
+		"White Sun Reactor"
+		"Bright Cloud Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -18 64
+	engine 18 64
+	gun -25 -22
+	gun 25 -22
+	turret 0 28
+	explode "tiny explosion" 50
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	description "The Autumn Leaf is based on the Wanderer Summer Leaf light warship, but slightly larger and better equipped for combat. Unlike Wanderer peacetime ships, it is equipped with a turret mount in addition to the ports for fixed guns."
+
+ship "Strong Wind"
+	sprite "ship/strong wind"
+	licenses
+		"Wanderer Military"
+	attributes
+		category "Medium Warship"
+		"cost" 16100000
+		"shields" 28500
+		"hull" 19600
+		"required crew" 17
+		"bunks" 39
+		"mass" 260
+		"drag" 4.7
+		"heat dissipation" .7
+		"fuel capacity" 400
+		"cargo space" 68
+		"outfit space" 493
+		"weapon capacity" 198
+		"engine capacity" 114
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Sunbeam" 4
+		"Thunderhead Launcher" 2
+		"Thunderhead Missile" 80
+		
+		"White Sun Reactor"
+		"Dark Storm Shielding"
+		
+		"Type 3 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
+	engine -30 127
+	engine 30 127
+	gun -64 13 "Sunbeam"
+	gun 64 13 "Sunbeam"
+	gun -57 21 "Sunbeam"
+	gun 57 21 "Sunbeam"
+	gun -32 57 "Thunderhead Launcher"
+	gun 32 57 "Thunderhead Launcher"
+	explode "small explosion" 60
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
+
+ship "Deep River"
+	sprite "ship/deep river"
+	licenses
+		Wanderer
+	attributes
+		category "Heavy Freighter"
+		"cost" 18300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 750
+		"drag" 9.4
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 760
+		"outfit space" 363
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+	outfits
+		"Thunderhead Launcher" 6
+		"Thunderhead Missile" 240
+		
+		"Large Biochemical Cell"
+		"Bright Cloud Shielding"
+		
+		"Type 2 Radiant Thruster"
+		"Type 3 Radiant Steering"
+		"Hyperdrive"
+		
+	engine 53 345
+	engine 0 345
+	engine -53 345
+	gun -56 -217
+	gun -40 -217
+	gun -18 -217
+	gun 18 -217
+	gun 40 -217
+	gun 56 -217
+	explode "small explosion" 80
+	explode "medium explosion" 60
+	explode "large explosion" 30
+	explode "huge explosion" 20
+	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
+
+ship "Deep River" "Deep River 0"
+	sprite "ship/deep river 0"
+	attributes
+		category "Heavy Freighter"
+		"cost" 8300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 350
+		"drag" 7.4
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 0
+		"outfit space" 363
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 1"
+	sprite "ship/deep river 1"
+	attributes
+		category "Heavy Freighter"
+		"cost" 10300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 430
+		"drag" 7.8
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 152
+		"outfit space" 363
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 2"
+	sprite "ship/deep river 2"
+	attributes
+		category "Heavy Freighter"
+		"cost" 12300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 510
+		"drag" 8.2
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 304
+		"outfit space" 363
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 3"
+	sprite "ship/deep river 3"
+	attributes
+		category "Heavy Freighter"
+		"cost" 14300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 590
+		"drag" 8.6
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 456
+		"outfit space" 363
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200
+
+ship "Deep River" "Deep River 4"
+	sprite "ship/deep river 4"
+	attributes
+		category "Heavy Freighter"
+		"cost" 16300000
+		"shields" 17600
+		"hull" 47500
+		"required crew" 13
+		"bunks" 22
+		"mass" 670
+		"drag" 9.0
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 608
+		"outfit space" 363
+		"weapon capacity" 177
+		"engine capacity" 83
+		weapon
+			"blast radius" 280
+			"shield damage" 2800
+			"hull damage" 1400
+			"hit force" 4200

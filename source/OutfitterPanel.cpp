@@ -191,8 +191,6 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			font.Draw(sellLabel, pos, bright);
 		}
 	}
-	
-
 
 	// Buy price label.
 	string buyLabel;

@@ -950,6 +950,8 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 	
 	if(speed <= slow)
 		return true;
+
+	command |= Command::STOP;
 	
 	// If you're moving slow enough that one frame of acceleration could bring
 	// you to a stop, make sure you're pointed perfectly in the right direction.
@@ -982,7 +984,6 @@ bool AI::Stop(Ship &ship, Command &command, double slow)
 		}
 	}
 	
-	command |= Command::STOP;
 	command.SetTurn(TurnBackward(ship));
 	if(velocity.Unit().Dot(angle.Unit()) < -limit)
 		command |= Command::FORWARD;
@@ -1067,7 +1068,10 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			isArmed = true;
 			if(!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()))
 				hasAmmo = true;
-			shortestRange = min(outfit->Range(), shortestRange);
+			// The missile boat AI should be applied at 1000 pixels range if
+			// all weapons are homing or turrets, and at 2000 if not.
+			double multiplier = (weapon.IsHoming() || weapon.IsTurret()) ? 1. : .5;
+			shortestRange = min(multiplier * outfit->Range(), shortestRange);
 		}
 	}
 	// If this ship was using the missile boat AI to run away and bombard its

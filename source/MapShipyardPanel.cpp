@@ -116,10 +116,20 @@ bool MapShipyardPanel::HasThis(const Planet *planet) const
 
 int MapShipyardPanel::FindItem(const std::string &text) const
 {
+	int bestIndex = 9999;
+	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
-		if(Contains(list[i]->ModelName(), text))
-			return i;
-	return -1;
+	{
+		int index = Search(list[i]->ModelName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }
 
 

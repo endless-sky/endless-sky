@@ -1003,7 +1003,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled())
+		if(ship->IsParked() || ship->IsDisabled() || ship->GetSystem() != system)
 		{
 			++it;
 			continue;
