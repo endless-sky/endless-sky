@@ -1133,19 +1133,19 @@ mission "FW Flamethrower Turret 2"
 				`	(Yes.)`
 				`	(No.)`
 					defer
-			`	The Kraz Cybernetics receptionist points you in a familiar direction, towards the hangar where Barmy Edward does his work. You do not find him there; instead, you are greeted by one of his colleagues: "Good afternoon. Captain <last>, is it? I'm Dr. Chris Cardona. I work with Barmy on the occasional project, including this latest prototype. We had some - uh - technical difficulties with the fuel injection component, and Barmy is on temporary medical leave. Not to worry, he left me with clear instructions regarding your assignment."`
-			`	He seems utterly resigned to this state of affairs.`
-			`	Just as before, you are to engage our test ship in combat in orbit above <planet> and attempt to disable it without causing permanent damage to its hull. In this case, it is an upgraded Argosy, the Doombat II."`
+			`	The Kraz Cybernetics receptionist points you in a familiar direction, towards the hangar where Barmy Edward does his work. You do not find him there; instead, you are greeted by one of his colleagues: "Good afternoon. Captain <last>, is it? I'm Dr. Chris Cardona. I work with Mr. Edward on the occasional project, including this latest prototype. We had some - uh - technical difficulties with the fuel injection component, and Mr. Edward is on temporary medical leave. Not to worry, he left me with clear instructions regarding your assignment."`
+			`	He seems unfazed by this state of affairs.`
+			`	Just as before, you are to engage our test ship in combat in orbit above <planet> and attempt to disable it without causing permanent damage to its hull. In this case, it is a salvaged Argosy, the Redhammer."`
 			choice
 				`	"Technical difficulties?"`
 				`	"Medical leave?"`
-			`	"Yes, the fuel injector came loose and doused the hangar with hyperspace fuel. It didn't ignite, but Edward inhaled enough of the vapours to put him out of action for a few weeks. Thankfully, the lab was not damaged, and production of test units is still on schedule."`
+			`	"Yes, the fuel injector came loose and doused the hangar with hyperspace fuel. It didn't ignite, but Mr. Edward inhaled enough of the vapours to put him out of action for a few weeks. Thankfully, the lab was not damaged, and production of test units is still on schedule."`
 			choice
 				`	"For science!"`
 					accept
-				`	"For Barmy!"`
+				`	"For Edward!"`
 					accept
-				`	"Sorry, I'd rather not end up like Barmy. I don't want to be involved."`
+				`	"Sorry, I'd rather not end up like Edward. I don't want to be involved."`
 					decline
 	
 	npc save disable
@@ -1176,7 +1176,7 @@ mission "FW Flamethrower Turret 2"
 				`	"Indeed."`
 				`	"Don't call me Shirley."`
 			label end
-			`	"You should be able to find production models at our distributors within one to two months. On behalf of Kraz Cybernetics, I thank you for your assistance. Barmy Edward will be pleased to hear of our success." You bid Dr. Cardona farewell, and return to your ship.`
+			`	"You should be able to find production models at our distributors within one to two months. On behalf of Kraz Cybernetics, I thank you for your assistance. Mr. Edward will be pleased to hear of our success." You bid Dr. Cardona farewell, and return to your ship.`
 
 
 
