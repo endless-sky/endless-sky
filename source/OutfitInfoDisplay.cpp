@@ -142,7 +142,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(BOOLEAN_ATTRIBUTES.find(it.first) != BOOLEAN_ATTRIBUTES.end()) 
 		{
 			attributeLabels.push_back("This outfit is " + it.first + ".");
-			attributeValues.push_back("");
+			attributeValues.push_back(" ");
 			attributesHeight += 20;
 		}
 		else
