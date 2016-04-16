@@ -461,6 +461,7 @@ outfitter "Special Outfits"
 	"Korath Banisher"
 	"Korath Minelayer"
 	"Korath Mine"
+	"Tier 3 Anti-Missile"
 
 shipyard "Alien Ships"
 	"Pug Zibruka"

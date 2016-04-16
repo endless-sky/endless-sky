@@ -336,7 +336,7 @@ ship "Tek Far 78 - Osk"
 	explode "medium explosion" 55
 	explode "big explosion" 45
 	explode "huge explosion" 12
-	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotoc fighters, it is a formidable opponent."
+	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
 
 ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	outfits
@@ -424,7 +424,7 @@ ship "Tek Far 109"
 	explode "medium explosion" 45
 	explode "big explosion" 30
 	explode "huge explosion" 8
-	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters drones through hyperspace. Without its protective screen of drones, the ship itself is relatively helpless."
+	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
 ship "Far Lek 14"
