@@ -95,7 +95,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(keyDown.Has(Command::CLOAK))
 		for(const auto &it : player.Ships())
-			if(it->Attributes().Get("cloak"))
+			if(it->CanCloak())
 			{
 				isCloaking = !isCloaking;
 				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device.");
@@ -1218,33 +1218,24 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 
 void AI::DoCloak(Ship &ship, Command &command, const list<shared_ptr<Ship>> &ships)
 {
-	if(ship.Attributes().Get("cloak"))
-	{
-		// Never cloak if it will cause you to be stranded.
-		if(ship.Attributes().Get("cloaking fuel") && !ship.Attributes().Get("ramscoop"))
-		{
-			double fuel = ship.Fuel() * ship.Attributes().Get("fuel capacity");
-			fuel -= ship.Attributes().Get("cloaking fuel");
-			if(fuel < ship.JumpFuel())
-				return;
-		}
-		// Otherwise, always cloak if you are in imminent danger.
-		static const double MAX_RANGE = 10000.;
-		double nearestEnemy = MAX_RANGE;
-		for(const auto &other : ships)
-			if(other->GetSystem() == ship.GetSystem() && other->IsTargetable() &&
+	if(!ship.CanCloak())
+		return;
+
+	// Cloak if we are in imminent danger.
+	static const double MAX_RANGE = 10000.;
+	double nearestEnemy = MAX_RANGE;
+	for(const auto &other : ships)
+		if(other->GetSystem() == ship.GetSystem() && other->IsTargetable() &&
 					other->GetGovernment()->IsEnemy(ship.GetGovernment()))
-				nearestEnemy = min(nearestEnemy,
-					ship.Position().Distance(other->Position()));
-		
-		if(ship.Hull() + ship.Shields() < 1. && nearestEnemy < 2000.)
-			command |= Command::CLOAK;
-		
-		// Also cloak if there are no enemies nearby and cloaking does
-		// not cost you fuel.
-		if(nearestEnemy == MAX_RANGE && !ship.Attributes().Get("cloaking fuel"))
-			command |= Command::CLOAK;
-	}
+			nearestEnemy = min(nearestEnemy,
+							   ship.Position().Distance(other->Position()));
+
+	if(ship.Hull() + ship.Shields() < 1. && nearestEnemy < 2000.)
+		command |= Command::CLOAK;
+
+	// Also cloak if there are no enemies nearby.
+	if(nearestEnemy == MAX_RANGE)
+		command |= Command::CLOAK;
 }
 
 

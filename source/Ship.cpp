@@ -326,6 +326,21 @@ void Ship::FinishLoading()
 	cargo.SetSize(attributes.Get("cargo space"));
 	equipped.clear();
 	armament.FinishLoading();
+
+	// Drones do not need crew, but all other ships need at least one.
+	if (attributes.Get("automaton"))
+		requiredCrew = 0;
+	else
+		requiredCrew = max(1, static_cast<int>(attributes.Get("required crew")));
+
+	if(!neverDisabled) {
+		double maximumHull = attributes.Get("hull");
+		minimumHull = max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	}
+
+	mass = attributes.Get("mass");
+	turnRate = attributes.Get("turn");
+	thrust = attributes.Get("thrust");
 	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
 	// Do not recharge if this ship's starting state was saved.
@@ -1413,6 +1428,35 @@ bool Ship::CanLand() const
 
 
 
+bool Ship::HasCloak() const
+{
+	return Attributes().Get("cloak");
+}
+
+
+bool Ship::CanCloak() const
+{
+	if(!HasCloak())
+		return false;
+
+	// Never cloak if it means we can't jump anymore.
+	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+	{
+		double fuel = Fuel() * attributes.Get("fuel capacity");
+		fuel -= attributes.Get("cloaking fuel");
+		if(fuel < JumpFuel())
+			return false;
+	}
+
+	// Cloak is free!
+	if(!attributes.Get("cloaking fuel"))
+		return true;
+
+	return false;
+}
+
+
+
 double Ship::Cloaking() const
 {
 	return sprite.IsEmpty() ? 1. : cloak;
@@ -1746,11 +1790,7 @@ int Ship::Crew() const
 
 int Ship::RequiredCrew() const
 {
-	if(attributes.Get("automaton"))
-		return 0;
-	
-	// Drones do not need crew, but all other ships need at least one.
-	return max(1, static_cast<int>(attributes.Get("required crew")));
+	return requiredCrew;
 }
 
 
@@ -1768,21 +1808,21 @@ double Ship::Mass() const
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			carried += bay.ship->Mass();
-	return carried + cargo.Used() + attributes.Get("mass");
+	return carried + cargo.Used() + mass;
 }
 
 
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / Mass();
+	return turnRate / Mass();
 }
 
 
 
 double Ship::Acceleration() const
 {
-	return attributes.Get("thrust") / Mass();
+	return thrust / Mass();
 }
 
 
@@ -1792,7 +1832,7 @@ double Ship::MaxVelocity() const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	return attributes.Get("thrust") / attributes.Get("drag");
+	return thrust / attributes.Get("drag");
 }
 
 
@@ -2031,6 +2071,12 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			cargo.SetSize(attributes.Get("cargo space"));
 		if(outfit->Get("hull"))
 			hull += outfit->Get("hull") * count;
+		if(outfit->Get("mass"))
+			mass += outfit->Get("mass") * count;
+		if(outfit->Get("turn"))
+			turnRate += outfit->Get("turn") * count;
+		if(outfit->Get("thrust"))
+			thrust += outfit->Get("thrust") * count;
 	}
 }
 
@@ -2222,11 +2268,7 @@ bool Ship::CannotAct() const
 
 double Ship::MinimumHull() const
 {
-	if(neverDisabled)
-		return 0.;
-	
-	double maximumHull = attributes.Get("hull");
-	return max(.20 * maximumHull, min(.50 * maximumHull, 400.));
+	return minimumHull;
 }
 
 

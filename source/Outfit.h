@@ -76,6 +76,7 @@ private:
 	std::string name;
 	std::string category;
 	std::string description;
+	int cost = 0;
 	const Sprite *thumbnail = nullptr;
 	
 	std::map<std::string, double> attributes;
