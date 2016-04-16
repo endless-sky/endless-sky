@@ -171,18 +171,48 @@ fleet "Small Kor Sestor"
 	names "korath"
 	personality
 		heroic
-	variant 5
+	variant 8
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 10
-	variant 3
+	variant 5
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 10
-	variant 2
+	variant
+		"Tek Far 71 - Lek"
+		"Far Lek 14" 6
+	variant
+		"Tek Far 71 - Lek (Close Quarters)"
+		"Far Lek 14" 4
+	variant
+		"Tek Far 71 - Lek (Close Quarters)"
+		"Far Lek 14" 2
+	variant 6
 		"Tek Far 78 - Osk"
-		"Far Osk 27" 12
-	variant 1
+		"Far Osk 27" 9
+	variant 4
 		"Tek Far 78 - Osk (Close Quarters)"
-		"Far Osk 27" 12
+		"Far Osk 27" 9
+	variant
+		"Tek Far 78 - Osk"
+		"Far Osk 27" 7
+	variant
+		"Tek Far 78 - Osk (Close Quarters)"
+		"Far Osk 27" 5
+	variant
+		"Tek Far 78 - Osk"
+		"Far Osk 27" 2
+	variant 3
+		"Tek Far 109"
+		"Far Lek 14" 9
+		"Far Osk 27" 7
+	variant
+		"Tek Far 109"
+		"Far Lek 14" 6
+		"Far Osk 27" 3
+	variant
+		"Tek Far 109"
+		"Far Lek 14" 3
+		"Far Osk 27" 2
 
 
 outfitter "Korath Basics"

@@ -247,6 +247,7 @@ ship "Tek Far 71 - Lek"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
+	description "The Kor Sestor war fleets rely heavily on small, powerful fighters and drones. This ship can carry up to ten of their drones, clamped to the exterior of its hull."
 
 ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
 	outfits
@@ -321,23 +322,21 @@ ship "Tek Far 78 - Osk"
 	turret 21 -87
 	turret 23 -64 "Korath Banisher"
 	turret 38 145 "Korath Warder"
-	fighter -16.5 -174 over
-	fighter -11 -122 over
-	fighter -37 -73.5 over
-	fighter -15 -58 over
-	fighter -26.5 13 over
-	fighter -13 67 over
-	fighter -53 75 over
-	fighter -24 113 over
-	fighter -23.5 -113.5 under
-	fighter -37 55.5 under
-	fighter -43 120 under
-	fighter -12.5 130.5 under
+	fighter -18.5 -163 over
+	fighter -43.5 -103.5 over
+	fighter -16.5 -32.5 over
+	fighter -30 57 over
+	fighter -55.5 96.5 over
+	fighter -21.5 150.5 over
+	fighter -32.5 -76.5 under
+	fighter -14.5 43.5 under
+	fighter -42.5 193.5 under
 	explode "tiny explosion" 90
 	explode "small explosion" 50
 	explode "medium explosion" 55
 	explode "big explosion" 45
 	explode "huge explosion" 12
+	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotoc fighters, it is a formidable opponent."
 
 ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	outfits
@@ -359,6 +358,73 @@ ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Warder"
+
+
+ship "Tek Far 109"
+	sprite "ship/tek far 109"
+	attributes
+		category "Medium Warship"
+		"cost" 18290000
+		"shields" 17900
+		"hull" 15800
+		"automaton" 1
+		"mass" 540
+		"drag" 9.1
+		"heat dissipation" .65
+		"fuel capacity" 400
+		"cargo space" 31
+		"outfit space" 491
+		"weapon capacity" 217
+		"engine capacity" 98
+		"self destruct" .7
+		weapon
+			"blast radius" 280
+			"shield damage" 3200
+			"hull damage" 1600
+			"hit force" 4800
+	outfits
+		"Korath Detainer"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Korath Banisher" 2
+		
+		"Double Plasma Core"
+		"Systems Core (Medium)"
+		"Small Heat Shunt" 2
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	engine -9 205
+	engine 9 205
+	gun 0 -214 "Korath Detainer"
+	gun -14 -206 "Korath Piercer Launcher"
+	gun 14 -206 "Korath Piercer Launcher"
+	turret -89 32
+	turret 89 32
+	drone 38.5 -115.5 over
+	drone 25 -50.5 over
+	drone 59 28 over
+	drone 28 79 over
+	drone 19.5 145.5 over
+	drone 57.5 -56.5 under
+	drone 40 19 under
+	drone 60 58.5 under
+	drone 45.5 135 under
+	fighter -36.5 -130.5 over
+	fighter -61.5 -68 over
+	fighter -29.5 -17 over
+	fighter -54.5 55 over
+	fighter -62 24 under
+	fighter -35 136.5 under
+	fighter -22 -82 under
+	explode "tiny explosion" 70
+	explode "small explosion" 40
+	explode "medium explosion" 45
+	explode "big explosion" 30
+	explode "huge explosion" 8
+	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters drones through hyperspace. Without its protective screen of drones, the ship itself is relatively helpless."
 
 
 ship "Far Lek 14"
