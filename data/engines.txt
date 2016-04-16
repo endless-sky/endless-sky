@@ -33,7 +33,7 @@ outfit "Ionic Afterburner"
 	"afterburner energy" 5.1
 	"afterburner heat" 12.0
 	"afterburner effect" "ionic afterburner"
-	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ships batteries to achieve the same effect."
+	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
 
 
 outfit "X1700 Ion Thruster"
