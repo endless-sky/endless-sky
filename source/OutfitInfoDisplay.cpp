@@ -199,6 +199,20 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributesHeight += 20;
 	}
 	
+	if(outfit.SlowingDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("slowing damage / second:");
+		attributeValues.push_back(Format::Number(6000. * outfit.SlowingDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
+	if(outfit.DisruptionDamage() && outfit.Reload())
+	{
+		attributeLabels.push_back("disruption damage / second:");
+		attributeValues.push_back(Format::Number(6000. * outfit.DisruptionDamage() / outfit.Reload()));
+		attributesHeight += 20;
+	}
+	
 	if(outfit.FiringEnergy() && outfit.Reload())
 	{
 		attributeLabels.push_back("firing energy / second:");
@@ -242,6 +256,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(skill[max(0, min(4, homing))]);
 		attributesHeight += 20;
 	}
+	if(outfit.Piercing())
+	{
+		int piercing = 100. * outfit.Piercing() + .5;
+		attributeLabels.push_back("shield piercing:");
+		attributeValues.push_back(Format::Number(piercing) + "%");
+		attributesHeight += 20;
+	}
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -252,6 +273,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"hull damage / shot: ",
 		"heat damage / shot: ",
 		"ion damage / shot: ",
+		"slowing damage / shot: ",
+		"disruption damage / shot: ",
 		"firing energy / shot:",
 		"firing heat / shot:",
 		"firing fuel / shot:",
@@ -265,6 +288,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.HullDamage(),
 		outfit.HeatDamage(),
 		outfit.IonDamage() * 100.,
+		outfit.SlowingDamage() * 100.,
+		outfit.DisruptionDamage() * 100.,
 		outfit.FiringEnergy(),
 		outfit.FiringHeat(),
 		outfit.FiringFuel(),
