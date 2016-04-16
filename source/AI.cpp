@@ -183,6 +183,7 @@ void AI::Clean()
 	actions.clear();
 	governmentActions.clear();
 	playerActions.clear();
+	shipStrength.clear();
 }
 
 
@@ -211,12 +212,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					}
 			}
 	}
-	shipStrength.clear();
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
-		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled())
+		// Only have ships update their strength estimate once per second on average.
+		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled() || Random::Int(60))
 			continue;
+		
 		int64_t &strength = shipStrength[it.get()];
 		for(const auto &oit : ships)
 		{

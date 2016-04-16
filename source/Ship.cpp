@@ -354,6 +354,7 @@ void Ship::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			out.Write("category", baseAttributes.Category());
+			out.Write("cost", baseAttributes.Cost());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
