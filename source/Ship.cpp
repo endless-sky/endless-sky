@@ -1834,7 +1834,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 			ApplyForce((hitForce / distance) * d);
 	}
 	
-	if(!wasDisabled && IsDisabled())
+	// Recalculate the disabled ship check.
+	isDisabled = true;
+	isDisabled = IsDisabled();
+	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
