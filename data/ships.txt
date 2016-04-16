@@ -705,7 +705,7 @@ ship "Combat Drone"
 	attributes
 		category "Drone"
 		"cost" 83000
-		"hull" 500
+		"hull" 700
 		"mass" 20
 		"drag" .59
 		"heat dissipation" .9
@@ -731,7 +731,7 @@ ship "Combat Drone"
 	engine 9 29
 	gun 0 -29 "Beam Laser"
 	explode "tiny explosion" 15
-	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers."
+	description "Combat drones are pilotless attack ships used primarily by the Republic Navy. Although very weak and easy to destroy, they can be very effective in large numbers. Because drones do not need a cockpit, they can be filled entirely with equipment and solid metal, which makes their hulls stronger than other small ships."
 
 
 
@@ -856,7 +856,7 @@ ship "Dagger"
 	attributes
 		category "Fighter"
 		"cost" 129000
-		"shields" 900
+		"shields" 1000
 		"hull" 300
 		"required crew" 1
 		"bunks" 1
@@ -1585,7 +1585,7 @@ ship "Lance"
 	attributes
 		category "Fighter"
 		"cost" 93000
-		"shields" 700
+		"shields" 800
 		"hull" 400
 		"required crew" 1
 		"bunks" 1
