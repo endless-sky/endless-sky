@@ -167,9 +167,10 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			OUTFIT_SIZE / 2 - 24);
 		font.Draw(count, pos, bright);
 	}
-	else if(!outfitter.Has(outfit) && !available[outfit])
+	else if(!outfitter.Has(outfit))
 	{
-		static const string message = "(not sold here)";
+		string message = (available[outfit] ?
+			"in stock: " + to_string(available[outfit]) : "(not sold here)");
 		Point pos = point + Point(
 			OUTFIT_SIZE / 2 - 20 - font.Width(message),
 			OUTFIT_SIZE / 2 - 24);

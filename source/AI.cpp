@@ -183,6 +183,7 @@ void AI::Clean()
 	actions.clear();
 	governmentActions.clear();
 	playerActions.clear();
+	shipStrength.clear();
 }
 
 
@@ -211,12 +212,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					}
 			}
 	}
-	shipStrength.clear();
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
-		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled())
+		// Only have ships update their strength estimate once per second on average.
+		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled() || Random::Int(60))
 			continue;
+		
 		int64_t &strength = shipStrength[it.get()];
 		for(const auto &oit : ships)
 		{
@@ -1068,7 +1070,10 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 			isArmed = true;
 			if(!outfit->Ammo() || ship.OutfitCount(outfit->Ammo()))
 				hasAmmo = true;
-			shortestRange = min(outfit->Range(), shortestRange);
+			// The missile boat AI should be applied at 1000 pixels range if
+			// all weapons are homing or turrets, and at 2000 if not.
+			double multiplier = (weapon.IsHoming() || weapon.IsTurret()) ? 1. : .5;
+			shortestRange = min(multiplier * outfit->Range(), shortestRange);
 		}
 	}
 	// If this ship was using the missile boat AI to run away and bombard its
