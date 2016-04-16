@@ -185,6 +185,163 @@ ship "Korath World-Ship" "Korath World-Ship C"
 
 
 
+ship "Kar Ik Vot 349"
+	sprite "ship/kar ik vot 349"
+	attributes
+		category "Heavy Warship"
+		"cost" 41280000
+		"shields" 57200
+		"hull" 65400
+		"automaton" 1
+		"mass" 1350
+		"drag" 16.8
+		"heat dissipation" .5
+		"fuel capacity" 400
+		"cargo space" 87
+		"outfit space" 1154
+		"weapon capacity" 547
+		"engine capacity" 173
+		"self destruct" .8
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Korath Detainer" 2
+		"Korath Piercer Launcher" 4
+		"Korath Piercer" 124
+		"Korath Warder" 4
+		"Korath Repeater Turret" 6
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 4
+		"Small Heat Shunt" 2
+		
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	engine -33 316
+	engine 33 316
+	gun -11 -284 "Korath Detainer"
+	gun 11 -284 "Korath Detainer"
+	gun -22 -212 "Korath Piercer Launcher"
+	gun -22 -212 "Korath Piercer Launcher"
+	gun 22 -212 "Korath Piercer Launcher"
+	gun 22 -212 "Korath Piercer Launcher"
+	turret -49 -199 "Korath Repeater Turret"
+	turret 49 -199 "Korath Repeater Turret"
+	turret -51 -176 "Korath Repeater Turret"
+	turret 51 -176 "Korath Repeater Turret"
+	turret -53 -149 "Korath Repeater Turret"
+	turret 53 -149 "Korath Repeater Turret"
+	turret -55 -120 "Korath Warder"
+	turret 55 -120 "Korath Warder"
+	turret -136 250 "Korath Warder"
+	turret 136 250 "Korath Warder"
+	explode "tiny explosion" 120
+	explode "small explosion" 60
+	explode "medium explosion" 70
+	explode "big explosion" 50
+	explode "huge explosion" 15
+	description "The largest and deadliest of the Kor Sestor robotic warships, a single one of these battlecruisers can hold its own against an entire fleet of lesser ships."
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
+	outfits
+		"Korath Piercer Launcher" 6
+		"Korath Piercer" 186
+		"Korath Repeater Turret" 8
+		"Korath Grab-Strike" 2
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 6
+		
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Repeater Turret"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
+	outfits
+		"Korath Piercer Launcher" 5
+		"Korath Piercer" 155
+		"Korath Warder" 4
+		"Korath Grab-Strike" 4
+		"Korath Banisher" 2
+		
+		"Triple Plasma Core"
+		"Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Mass Expansion"
+		
+		"Thruster (Stellar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	turret "Korath Warder"
+	turret "Korath Warder"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret "Korath Warder"
+	turret "Korath Warder"
+
+ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
+	outfits
+		"Korath Detainer" 2
+		"Korath Grab-Strike" 6
+		"Korath Banisher" 2
+		
+		"Triple Plasma Core"
+		"Double Plasma Core"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		"Small Heat Shunt"
+		"Mass Expansion" 4
+		
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		Hyperdrive
+	
+	gun "Korath Detainer"
+	gun "Korath Detainer"
+	gun
+	gun
+	gun
+	gun
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Grab-Strike"
+	turret "Korath Banisher"
+	turret "Korath Banisher"
+	turret
+	turret
+
+
 ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	attributes
