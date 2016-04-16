@@ -77,6 +77,7 @@ private:
 	std::string category;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
+	int64_t cost = 0;
 	
 	std::map<std::string, double> attributes;
 	
@@ -84,6 +85,11 @@ private:
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
 };
+
+
+
+// This gets called a lot, so inline it for speed.
+inline int64_t Outfit::Cost() const { return cost; }
 
 
 

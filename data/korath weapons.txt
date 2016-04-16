@@ -316,8 +316,8 @@ outfit "Korath Detainer"
 		"firing force" 40
 		"firing heat" 400
 		"hit force" 80
-		"shield damage" 240
-		"hull damage" 120
+		"shield damage" 320
+		"hull damage" 240
 		"slowing damage" 40
 		"blast radius" 20
 	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes."
