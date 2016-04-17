@@ -1006,7 +1006,7 @@ ship "Finch"
 	sprite "ship/finch"
 	attributes
 		category "Fighter"
-		"cost" 149000
+		"cost" 126000
 		"shields" 1100
 		"hull" 200
 		"required crew" 1
