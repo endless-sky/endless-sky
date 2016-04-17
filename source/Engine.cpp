@@ -439,7 +439,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem())
+		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite().GetSprite(), targetUnit);
 		info.SetString("target name", target->Name());
@@ -1109,7 +1109,7 @@ void Engine::CalculateStep()
 				// Even friendly ships can be hit by the blast.
 				for(shared_ptr<Ship> &ship : ships)
 					if(ship->GetSystem() == player.GetSystem() && ship->Zoom() == 1.)
-						if(projectile.InBlastRadius(*ship, step))
+						if(projectile.InBlastRadius(*ship, step, closestHit))
 						{
 							int eventType = ship->TakeDamage(projectile, ship != hit);
 							if(eventType)

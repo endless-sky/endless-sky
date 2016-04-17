@@ -486,7 +486,7 @@ void InfoPanel::DrawInfo() const
 			break;
 		
 		bool isElsewhere = (ship->GetSystem() != player.GetSystem());
-		isElsewhere |= (ship->CanBeCarried() && player.GetSystem());
+		isElsewhere |= (ship->CanBeCarried() && player.GetPlanet());
 		bool isDead = ship->IsDestroyed() || ship->IsDisabled();
 		bool isHovered = (index == hover);
 		const Color &color = isDead ? dead : isElsewhere ? elsewhere : isHovered ? bright : dim;
@@ -674,26 +674,26 @@ void InfoPanel::DrawShip() const
 	
 	Color black(0., 1.);
 	pos = Point(10., 260.);
-	for(unsigned i = 0; i < ship.Weapons().size(); ++i)
+	Point hoverPos;
+	for(int isTurret = true; isTurret >= 0; --isTurret)
 	{
-		const Armament::Weapon &weapon = ship.Weapons()[i];
-		if(weapon.IsTurret())
+		for(unsigned i = 0; i < ship.Weapons().size(); ++i)
 		{
-			DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
-			pos.Y() -= 20.;
+			const Armament::Weapon &weapon = ship.Weapons()[i];
+			if(weapon.IsTurret() == isTurret)
+			{
+				if(static_cast<int>(i) == hover)
+					hoverPos = pos;
+				else
+					DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
+				pos.Y() -= 20.;
+			}
 		}
+		if(pos.Y() != 260.)
+			pos.Y() -= 10.;
 	}
-	if(pos.Y() != 260.)
-		pos.Y() -= 10.;
-	for(unsigned i = 0; i < ship.Weapons().size(); ++i)
-	{
-		const Armament::Weapon &weapon = ship.Weapons()[i];
-		if(!weapon.IsTurret())
-		{
-			DrawWeapon(i, pos, shipCenter + (2. * scale) * weapon.GetPoint());
-			pos.Y() -= 20.;
-		}
-	}
+	if(hover >= 0 && hover <= static_cast<int>(ship.Weapons().size()))
+		DrawWeapon(hover, hoverPos, shipCenter + (2. * scale) * ship.Weapons()[hover].GetPoint());
 	
 	// Re-positioning weapons.
 	if(selected >= 0)

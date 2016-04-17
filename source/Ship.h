@@ -355,6 +355,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool isThrusting = false;
 	bool neverDisabled = false;
 	double cloak = 0.;
 	int jettisoned = 0;

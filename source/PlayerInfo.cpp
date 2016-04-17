@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Messages.h"
@@ -1047,7 +1048,7 @@ void PlayerInfo::TakeOff(UI *ui)
 			out << shipsSold[0]
 				<< (shipsSold[0] == 1 ? " drone" : " drones");
 		
-		out << ", earning " << income << " credits.";
+		out << ", earning " << Format::Number(income) << " credits.";
 		accounts.AddCredits(income);
 		Messages::Add(out.str());
 	}
@@ -1113,7 +1114,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
 		ostringstream out;
-		out << "You sold " << sold << " tons of excess cargo for " << income << " credits";
+		out << "You sold " << sold << " tons of excess cargo for " << Format::Number(income) << " credits";
 		if(totalBasis && totalBasis != income)
 			out << " (for a profit of " << (income - totalBasis) << " credits).";
 		else
