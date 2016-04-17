@@ -99,8 +99,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
 		"engine capacity needed:", "engine capacity",
-		"guns ports needed:", "gun ports",
-		"turret mounts needed:", "turrent mounts"
+		"gun ports needed:", "gun ports",
+		"turret mounts needed:", "turret mounts"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
 	for(int i = 0; i + 1 < NAMES; i += 2)
