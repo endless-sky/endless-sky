@@ -102,8 +102,8 @@ mission "FWC Attack Kaus Borealis"
 			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -653,8 +653,8 @@ mission "FWC Checkmate 1"
 			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 				"Fury (Flamethrower)" 4
 		fleet
 			names "free worlds capital"
@@ -821,8 +821,8 @@ mission "FWC Checkmate 1"
 			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -915,8 +915,8 @@ mission "FWC Checkmate 1B"
 			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -1043,8 +1043,8 @@ mission "FWC Checkmate Escorts"
 			names "free worlds capital"
 			fighters "free worlds fighters"
 			variant
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 				"Dreadnought"
 				"Falcon (Plasma)"
 		fleet
@@ -1114,8 +1114,8 @@ mission "FWC Pug 1"
 			names "free worlds small"
 			fighters "free worlds fighters"
 			variant
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
@@ -1628,8 +1628,8 @@ mission "FWC Pug 3B"
 			names "free worlds capital"
 			fighters "free worlds fighters"
 			variant
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 				"Argosy (Blaster)"
 				"Argosy (Laser)"
 				"Argosy (Turret)"
@@ -1788,8 +1788,8 @@ mission "FWC Pug 3D: Reinforcements"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Skein" 2
-				"Finch" 12
+				"Skein" 
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
@@ -2524,8 +2524,8 @@ mission "FWC Pug 6"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Skein" 2
-				"Finch" 12
+				"Skein"
+				"Finch" 6
 		fleet
 			names "free worlds capital"
 			variant
