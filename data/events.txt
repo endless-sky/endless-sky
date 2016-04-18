@@ -533,7 +533,7 @@ event "FWCarriers"
 		variant 4
 			"Hauler III"
 			"Hauler II"
-			"Roost"
+			"Roost (Sidewinder)"
 			"Dagger" 4
 	fleet "Small Free Worlds"
 		fighters "free worlds fighters"
