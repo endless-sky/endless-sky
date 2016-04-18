@@ -34,7 +34,7 @@ Animation::Frame::Frame()
 
 // Default constructor.
 Animation::Animation()
-	: sprite(nullptr), swizzle(0), frameRate(1.), frameOffset(0),
+	: sprite(nullptr), swizzle(0), frameRate(2. / 60.), frameOffset(0),
 	startAtZero(false), randomize(false), repeat(true), rewind(false)
 {
 }
@@ -97,7 +97,7 @@ void Animation::Save(DataWriter &out) const
 	out.Write("sprite", spriteName);
 	out.BeginChild();
 	{
-		if(frameRate != 1.)
+		if(frameRate != static_cast<float>(2. / 60.))
 			out.Write("frame rate", frameRate * 60.);
 		if(rewind)
 			out.Write("rewind");
