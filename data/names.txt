@@ -980,7 +980,6 @@ phrase "deep fighter"
 		"Epsilon "
 	phrase "one to twelve"
 
-
 phrase "free worlds fighter"
 	word
 		"Wolf "
