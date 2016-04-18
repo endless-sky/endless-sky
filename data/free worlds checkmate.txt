@@ -99,9 +99,11 @@ mission "FWC Attack Kaus Borealis"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
@@ -648,9 +650,11 @@ mission "FWC Checkmate 1"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 				"Fury (Flamethrower)" 4
 		fleet
 			names "free worlds capital"
@@ -814,9 +818,11 @@ mission "FWC Checkmate 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
@@ -906,9 +912,11 @@ mission "FWC Checkmate 1B"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
@@ -1033,10 +1041,12 @@ mission "FWC Checkmate Escorts"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
+				"Skein" 2
+				"Finch" 12
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -1102,8 +1112,10 @@ mission "FWC Pug 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
@@ -1614,8 +1626,10 @@ mission "FWC Pug 3B"
 		personality heroic
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 				"Argosy (Blaster)"
 				"Argosy (Laser)"
 				"Argosy (Turret)"
@@ -1770,10 +1784,12 @@ mission "FWC Pug 3D: Reinforcements"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
@@ -2504,10 +2520,12 @@ mission "FWC Pug 6"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Bastion (Heavy)"
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant

@@ -514,6 +514,7 @@ event "FWCarriers"
 		"Roost"
 		"Skein"
 	fleet "Large Southern Merchants"
+		fighters "free worlds fighter"
 		variant 15
 			"Hauler III"
 			"Nest"
@@ -528,16 +529,19 @@ event "FWCarriers"
 			"Roost"
 			"Finch" 4
 	fleet "Large Northern Merchants"
+		fighters "free worlds fighter"
 		variant 4
 			"Hauler III"
 			"Hauler II"
 			"Roost"
 			"Dagger" 4
 	fleet "Small Free Worlds"
+		fighters "free worlds fighters"
 		variant 1
 			"Nest"
 			"Finch" 2
 	fleet "Large Free Worlds"
+		fighters "free worlds fighters"
 		variant 2
 			"Roost"
 			"Finch" 4
@@ -553,10 +557,12 @@ event "FWCarriers"
 			"Roost"
 			"Finch" 4
 	fleet "Small Independent"
+		fighters "free worlds fighter"
 		variant 1
 			"Nest"
 			"Finch" 2
 	fleet "Large Independent"
+		fighters "free worlds fighter"
 		variant 2
 			"Roost"
 			"Finch" 4
@@ -568,7 +574,7 @@ event "FWCarriers"
 		variant 2
 			"Roost"
 			"Lance" 4
-	fleet "pirate raid”
+	fleet "pirate raid"
 		variant 1
 			"Roost"
 			"Lance" 4
