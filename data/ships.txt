@@ -3384,9 +3384,6 @@ ship "Protector"
 
 
 
-
-
-
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
