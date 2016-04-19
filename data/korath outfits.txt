@@ -77,7 +77,7 @@ outfit "Small Heat Shunt"
 	"mass" 7
 	"outfit space" -7
 	"cooling" 15
-	description "For ships with extreme cooling needs, liquid nitrogen is the answer. One of these coolers will dissipate the heat produced by anything but the heaviest of armaments."
+	description "The sheer inefficiency of most Korath equipment has forced them to become exceptionally good at one thing: dealing with large amounts of waste heat."
 
 outfit "Large Heat Shunt"
 	category "Systems"
@@ -86,7 +86,7 @@ outfit "Large Heat Shunt"
 	"mass" 24
 	"outfit space" -24
 	"cooling" 60
-	description "For ships with extreme cooling needs, liquid nitrogen is the answer. One of these coolers will dissipate the heat produced by anything but the heaviest of armaments."
+	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
 
 
 outfit "Systems Core (Small)"
