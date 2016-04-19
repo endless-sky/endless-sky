@@ -810,9 +810,9 @@ mission "FW Katya 3"
 			label yes
 			`	"Are you being sarcastic?" she asks.
 			choice
-				`	"Yes"
+				`	"Yes"`
 					goto no
-				`	"No"
+				`	"No"`
 
 			`	"Well then," she says, "you'll probably agree that legally speaking, Navy surveillance drones count as abandoned goods the moment their owners have left the system."`
 				goto response
