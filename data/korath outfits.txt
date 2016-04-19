@@ -73,7 +73,7 @@ outfit "Triple Plasma Core"
 outfit "Small Heat Shunt"
 	category "Systems"
 	cost 180000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small heat shunt"
 	"mass" 7
 	"outfit space" -7
 	"cooling" 15
@@ -82,7 +82,7 @@ outfit "Small Heat Shunt"
 outfit "Large Heat Shunt"
 	category "Systems"
 	cost 790000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large heat shunt"
 	"mass" 24
 	"outfit space" -24
 	"cooling" 60
