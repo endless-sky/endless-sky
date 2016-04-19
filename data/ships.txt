@@ -222,6 +222,55 @@ ship "Bactrian"
 
 
 
+ship "Barb"
+	sprite "ship/barb"
+	attributes
+		category "Fighter"
+		"cost" 70000
+		"shields" 800
+		"hull" 200
+		"required crew" 1
+		"bunks" 2
+		"mass" 35
+		"drag" .8
+		"heat dissipation" .78
+		"outfit space" 75
+		"weapon capacity" 28
+		"engine capacity" 16
+
+		"turn" 110
+		"turning energy" .25
+		"turning heat" .5
+
+		"thrust" 4.0
+		"thrusting energy" .4
+		"thrusting heat" .6
+		"flare sprite" "effect/ion flare/tiny"
+			"frame rate" 1.2
+		"flare sound" "ion tiny"
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Energy Blaster"
+		"Blaster Turret"
+		
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+	engine -8 28
+	engine 8 28
+	gun -8 -29 "Energy Blaster"
+	turret 7 6 "Blaster Turret"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `While the Syndicate doesn't build Fighter carriers, they are not above producing a cheap and flexible fighter solution for emerging markets.  The design philosophy of the Barb seems to have been 'uglier than the Protector', and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go (and how the pilot is supposed to fly it effectively in combat, with so much of their field of view obstructed).  The Syndicate integrated new, even smaller, ion engines specifically designed for the Barb, but left some space to add a thruster, if the prospective owner chooses.  It's certainly an awkward ship, but it seems flexible enough to become a dangerous addition to your fleet.`
+
+
+
 ship "Bastion"
 	sprite "ship/bastion"
 	attributes
