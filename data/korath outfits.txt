@@ -154,8 +154,7 @@ outfit "Thruster (Asteroid Class)"
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
-	description "This is the smallest of the plasma propulsion systems produced by Delta V Corporation, suitable for very light fighters and interceptors. Plasma thrusters are more compact than ion drives, but also use more energy and generate more heat."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
 
 outfit "Thruster (Comet Class)"
 	category "Engines"
@@ -170,8 +169,7 @@ outfit "Thruster (Comet Class)"
 	"flare sprite" "effect/korath flare/small"
 		"frame rate" 7.5
 	"flare sound" "plasma small"
-	description "This thruster is intended for small ships and for freighters. It comes in a crate decorated with a stylized cartoon of a running greyhound."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "Like most Korath technology, this thruster's power is offset by its energy requirements and heat output."
 
 outfit "Thruster (Lunar Class)"
 	category "Engines"
@@ -186,8 +184,7 @@ outfit "Thruster (Lunar Class)"
 	"flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
-	description "Impala class thrusters produce a significant amount of force, and are suitable for smaller capital ships. But, your ship may need extra cooling systems in order to handle them."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "The Korath have the dubious distinction of relying on propulsion systems that produce more waste heat than the weapon systems of most other species."
 
 outfit "Thruster (Planetary Class)"
 	category "Engines"
@@ -202,8 +199,7 @@ outfit "Thruster (Planetary Class)"
 	"flare sprite" "effect/korath flare/large"
 		"frame rate" 6.5
 	"flare sound" "plasma large"
-	description "This engine draws enough power that a ship with anything short of a full-fledged nuclear reactor is unlikely to be able to use it, but the thrust it generates is impressive."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "The Quarg, who do all things efficiently, view the Korath propulsion systems with particular distaste."
 
 outfit "Thruster (Stellar Class)"
 	category "Engines"
@@ -218,8 +214,7 @@ outfit "Thruster (Stellar Class)"
 	"flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
 	"flare sound" "plasma huge"
-	description "The enormous crate that this thruster is sold in comes decorated with a picture of a grinning Tyrannosaurus Rex with an improbable number of teeth. Only a handful of ships are large enough to require an engine of this size... or to have the capacity for one."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
 
 outfit "Steering (Asteroid Class)"
 	category "Engines"
@@ -231,8 +226,7 @@ outfit "Steering (Asteroid Class)"
 	"turn" 280.0
 	"turning energy" 0.7
 	"turning heat" 2.1
-	description "This is the smallest plasma steering system that Delta V produces. The packaging features a cartoon of what appears to be a very highly caffeinated rodent."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "The Korath use these steering systems only in the very smallest of their ships."
 
 outfit "Steering (Comet Class)"
 	category "Engines"
@@ -244,8 +238,7 @@ outfit "Steering (Comet Class)"
 	"turn" 568.8
 	"turning energy" 2.8
 	"turning heat" 6.5
-	description "The Greyhound class plasma propulsion systems are Delta V's most popular product, suitable for a wide range of small starships."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 outfit "Steering (Lunar Class)"
 	category "Engines"
@@ -257,8 +250,7 @@ outfit "Steering (Lunar Class)"
 	"turn" 1056.0
 	"turning energy" 2.5
 	"turning heat" 7.4
-	description "Impala class plasma steering systems are suitable for most freighters and all but the largest warships, and are also considerably more compact than the ion propulsion systems produced by the Syndicate."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
 
 outfit "Steering (Planetary Class)"
 	category "Engines"
@@ -270,8 +262,7 @@ outfit "Steering (Planetary Class)"
 	"turn" 2069.6
 	"turning energy" 4.6
 	"turning heat" 14.2
-	description "An Orca class steering system will allow any mid-sized ship to turn as quickly as a fighter, and is powerful enough to serve even the largest of warships."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 outfit "Steering (Stellar Class)"
 	category "Engines"
@@ -283,5 +274,4 @@ outfit "Steering (Stellar Class)"
 	"turn" 4005.0
 	"turning energy" 8.2
 	"turning heat" 26.7
-	description "As with the corresponding thruster, the Tyrant class steering system is so large and powerful that very few ships can make use of it."
-	description "	Plasma engines are a bit more powerful than ion engines of the same size, but they are less energy efficient and produce more heat."
+	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
