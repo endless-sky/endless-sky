@@ -503,6 +503,8 @@ mission "FW Carriers"
 		event "FWCarriers" 90
 
 event "FWCarriers"
+	shipyard "Syndicate Basics"
+		"Barb"
 	shipyard "Tarazed Basics"
 		"Finch"
 		"Barb"
