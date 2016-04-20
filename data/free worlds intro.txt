@@ -1934,8 +1934,8 @@ mission "Defend Sabik"
 mission "FWCarrier License"
 	invisible
 	landing
-	destination Deep
 	to offer
 		has "event: joined the free worlds"
 	on offer
 		set "license: Militia Carrier"
+		fail

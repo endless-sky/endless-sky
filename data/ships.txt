@@ -226,28 +226,17 @@ ship "Barb"
 	sprite "ship/barb"
 	attributes
 		category "Fighter"
-		"cost" 70000
+		"cost" 50000
 		"shields" 800
 		"hull" 200
 		"required crew" 1
 		"bunks" 2
-		"mass" 35
+		"mass" 20
 		"drag" .8
 		"heat dissipation" .78
-		"outfit space" 75
-		"weapon capacity" 28
-		"engine capacity" 16
-
-		"turn" 110
-		"turning energy" .25
-		"turning heat" .5
-
-		"thrust" 4.0
-		"thrusting energy" .4
-		"thrusting heat" .6
-		"flare sprite" "effect/ion flare/tiny"
-			"frame rate" 1.2
-		"flare sound" "ion tiny"
+		"outfit space" 85
+		"weapon capacity" 24
+		"engine capacity" 22
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -260,6 +249,8 @@ ship "Barb"
 		"nGVF-AA Fuel Cell"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
 		
 	engine -8 28
 	engine 8 28
@@ -267,7 +258,7 @@ ship "Barb"
 	turret 7 6 "Blaster Turret"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `While the Syndicate doesn't build Fighter carriers, they are not above producing a cheap and flexible fighter solution for emerging markets.  The design philosophy of the Barb seems to have been 'uglier than the Protector', and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go (and how the pilot is supposed to fly it effectively in combat, with so much of their field of view obstructed).  The Syndicate integrated new, even smaller, ion engines specifically designed for the Barb, but left some space to add a thruster, if the prospective owner chooses.  It's certainly an awkward ship, but it seems flexible enough to become a dangerous addition to your fleet.`
+	description `While the Syndicate doesn't build Fighter carriers, they are not above producing a cheap and flexible fighter solution for emerging markets. The design philosophy of the Barb seems to have been 'uglier than the Protector', and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go (and how the pilot is supposed to fly it effectively in combat, with so much of their field of view obstructed). The Syndicate integrated new, even smaller, ion engines specifically designed for the Barb (and made the engine capacity too small to fit any other options). It's certainly an awkward ship, but it seems flexible enough to become a dangerous addition to any fleet with carriers.`
 
 
 
@@ -1087,7 +1078,7 @@ ship "Finch"
 	gun 7 -14 "Beam Laser"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter.  Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
+	description "When the Free Worlds started requesting a Carrier solution from its local shipyards, Tarazed Shipyards quickly saw that a few modifications could make their entry level interceptor into a top tier fighter. Over 85% of the parts that make up the Finch are shared with the Sparrow assembly line, so it's no surprise that even trimmed down to (barely) fit into a fighter bay, the Finch bears strong resemblance to its hyperspace-faring cousin."
 
 
 
@@ -1854,7 +1845,7 @@ ship "Marauder Arrow"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
-	description "The Arrow is a light transport.  This Arrow has had numerous modifications to its hull and internal systems to make more room for outfits - mostly with combat in mind.  More shields, weapons, engines and outfit space - in addition to a turret mount nearly push this ship into the Light Warship category, and definitely make it one of the heaviest Interceptors you're likely to find."
+	description "The Arrow is a light transport. This Arrow has had numerous modifications to its hull and internal systems to make more room for outfits - mostly with combat in mind. More shields, weapons, engines and outfit space - in addition to a turret mount nearly push this ship into the Light Warship category, and definitely make it one of the heaviest Interceptors you're likely to find."
 
 
 
@@ -1899,7 +1890,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
 	explode "medium explosion" 6
-	description "This Arrow has a third engine mount that makes this Arrow more like a Missile.  The previous owner of this ship apparently tried to make the fastest ship.  Ever.  Even so, a little extra outfit capacity, extra shield emitters, and hull plating make this a very competent Interceptor."
+	description "This Arrow has a third engine mount that makes this Arrow more like a Missile. The previous owner of this ship apparently tried to make the fastest ship. Ever. Even so, a little extra outfit capacity, extra shield emitters, and hull plating make this a very competent Interceptor."
 
 
 
@@ -1996,7 +1987,7 @@ ship "Marauder Bounder"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "This Megaparsec Bounder has been modified from a courier-scout into a heavy escort Interceptor - currently the largest in the class.  A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and a few shielding emitters bring this former Transport into combat with fearsome speed and armament."
+	description "This Megaparsec Bounder has been modified from a courier-scout into a heavy escort Interceptor - currently the largest in the class. A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and a few shielding emitters bring this former Transport into combat with fearsome speed and armament."
 
 
 
@@ -2044,7 +2035,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "A previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort Interceptor - currently the largest in the class.  A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and a few shielding emitters bring this former Transport into combat with fearsome speed and armament."
+	description "A previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort Interceptor - currently the largest in the class. A little extra outfit space, reinforced turret mounts, a new gun port in front of the pilot, and a few shielding emitters bring this former Transport into combat with fearsome speed and armament."
 
 
 
@@ -2093,7 +2084,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "Simultaneously the scariest and most graceful Interceptor in the galaxy, this once Bounder courier-scout has been modified into a heavy escort Interceptor - currently the largest in the class.  A little extra outfit space, reinforced turret mounts, a pair of gun ports in front of the pilot, and a few shielding emitters bring this former Transport into combat with fearsome speed and armament."
+	description "Simultaneously the scariest and most graceful Interceptor in the galaxy, this once Bounder courier-scout has been modified into a heavy escort Interceptor - currently the largest in the class. A little extra outfit space, reinforced turret mounts, a pair of gun ports in front of the pilot, and a few shielding emitters bring this former Transport into combat with fearsome speed and armament."
 
 
 
@@ -2319,7 +2310,7 @@ ship "Marauder Firebird"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "You suspect that this ship contains no original parts, and are sure that there are extra shield modulators, hull plating and outfit space by the looks of the modification that have taken place.  This half-millenium young design is finding new life in heavy modification."
+	description "You suspect that this ship contains no original parts, and are sure that there are extra shield modulators, hull plating and outfit space by the looks of the modification that have taken place. This half-millenium young design is finding new life in heavy modification."
 
 
 
@@ -2374,7 +2365,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow.  A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield modulators."
+	description "One of the biggest complaints about Betelgeuse's venerable classic from younger pilots is that it's heavy and slow. A previous owner of this ship also believed so, and has fitted another engine port, in addition to setting aside more space for engines, other outfits and giving the old ship some new hull plating and shield modulators."
 
 
 
@@ -2426,7 +2417,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "The Medium Warship with one of the heaviest armaments possible, just got heavier.  More outfit space, giant gun ports, extra hull plating and shield emitters - this blast from the past will make its targets history."
+	description "The Medium Warship with one of the heaviest armaments possible, just got heavier. More outfit space, giant gun ports, extra hull plating and shield emitters - this blast from the past will make its targets history."
 
 
 
@@ -2477,7 +2468,7 @@ ship "Marauder Fury"
 	gun 43.5 2 "Sidewinder Missile Launcher"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
-	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever.  Upon closer inspection, you're inclined to believe he may have succeeded."
+	description "You're sure there's a Southbound Fury under all the extra modifications. This ship appears to be one man's insane quest to make the most powerful single pilot warship ever. Upon closer inspection, you're inclined to believe he may have succeeded."
 
 
 
@@ -2535,7 +2526,7 @@ ship "Marauder Leviathan"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "The Betelgeuse Shipyards Leviathan has been in service for a long time, and captains have had some very interesting ideas about how to modify them for optimum performance.  This one has had the hull surface completely stripped off and replaced with a surface containing more shield projectors per square meter."
+	description "The Betelgeuse Shipyards Leviathan has been in service for a long time, and captains have had some very interesting ideas about how to modify them for optimum performance. This one has had the hull surface completely stripped off and replaced with a surface containing more shield projectors per square meter."
 
 
 
@@ -2650,7 +2641,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "This Leviathan once belonged to an infamous pirate captain whose name has been lost to the ages.  It's had so much custom work done to it that can hardly even be considered the same ship.  The weapons capacity, in particular has been massively increased."
+	description "This Leviathan once belonged to an infamous pirate captain whose name has been lost to the ages. It's had so much custom work done to it that can hardly even be considered the same ship. The weapons capacity, in particular has been massively increased."
 
 
 
@@ -2704,7 +2695,7 @@ ship "Marauder Manta"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems.  The owner of this Manta rectified that, added some extra armour plating and shield modulators, and rearranged some of the internals yielding a little more outfit space.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the 'Medium Warship' category."
+	description "After the Syndicate released their Vanguard Heavy Warship, the Manta fell somewhat out of favour, lacking the ability to mount any anti-missile systems. The owner of this Manta rectified that, added some extra armour plating and shield modulators, and rearranged some of the internals yielding a little more outfit space. It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the 'Medium Warship' category."
 
 
 
@@ -2758,7 +2749,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships.  Style was not lost on that captain, and a forked tail yielded a little more space for shield projectors in an area that would have been destabilized by engine exhaust.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the Medium Warship category."
+	description "A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships. Style was not lost on that captain, and a forked tail yielded a little more space for shield projectors in an area that would have been destabilized by engine exhaust. It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the Medium Warship category."
 
 
 
@@ -2815,7 +2806,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
-	description "This Manta has undergone extensive modification, adding enormous gun ports, extra hull plating, and extra shield modulators.  You wonder where the modifier intended the power systems to go, but you're sure you'll find space for them somewhere.  It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the 'Medium Warship' category."
+	description "This Manta has undergone extensive modification, adding enormous gun ports, extra hull plating, and extra shield modulators. You wonder where the modifier intended the power systems to go, but you're sure you'll find space for them somewhere. It almost makes it to 'Heavy Warship', but dry tonnage keeps it in the 'Medium Warship' category."
 
 
 
@@ -2861,7 +2852,7 @@ ship "Marauder Quicksilver"
 	turret 0 15 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
-	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield projectors, hull plating and an extra bunk.  This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter.  The shop that built this ship is sure to see more customers."
+	description "This Megaparsec Quicksilver is a bit of a Hotrod, being a little faster, with extra shield projectors, hull plating and an extra bunk. This aftermarket model also features a turret mount,  perhaps in an answer to Lionheart's Headhunter. The shop that built this ship is sure to see more customers."
 
 
 
@@ -2908,7 +2899,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	turret 0 15 "Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
-	description "This Quicksilver has even more space available for engine use - and even another thruster port!  It's got a few extra shield projectors, some hull plating and another bunk.  This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter.  Whoever modified this ship wanted to chase their prey down with vicious speed."
+	description "This Quicksilver has even more space available for engine use - and even another thruster port!  It's got a few extra shield projectors, some hull plating and another bunk. This aftermarket model also features a turret mount, perhaps in response to Lionheart's Headhunter. Whoever modified this ship wanted to chase their prey down with vicious speed."
 
 
 
@@ -2955,7 +2946,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 	turret 0 15 "Heavy Laser Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
-	description "This Quicksilver has even bigger gun ports.  It's got a few extra shield modulators, some hull plating and an extra bunk.  This aftermarket model could even be outfitted to be a little faster than a stock model, bringing a couple of cannons - and a turret to the fight, to mimic Lionheart's Headhunter perhaps a little more menacingly."
+	description "This Quicksilver has even bigger gun ports. It's got a few extra shield modulators, some hull plating and an extra bunk. This aftermarket model could even be outfitted to be a little faster than a stock model, bringing a couple of cannons - and a turret to the fight, to mimic Lionheart's Headhunter perhaps a little more menacingly."
 
 
 
@@ -3005,7 +2996,7 @@ ship "Marauder Raven"
 	explode "big explosion" 16
 	explode "tiny explosion" 28
 	explode "small explosion" 40
-	description "The modifier of this Raven has taken a popular warship - an agile and elegant vessel - and given it even more heft.  They've added a turret and some apparently flimsy bulkheads over extra shield modulators and outfit space.  If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that you expect has made an already deadly warship even more so."
+	description "The modifier of this Raven has taken a popular warship - an agile and elegant vessel - and given it even more heft. They've added a turret and some apparently flimsy bulkheads over extra shield modulators and outfit space. If it weren't for the wingtips, you would barely recognize Lionheart's ship under the patchwork that you expect has made an already deadly warship even more so."
 
 
 
@@ -3055,7 +3046,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	explode "big explosion" 16
 	explode "tiny explosion" 28
 	explode "small explosion" 40
-	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility - this one appears to have been modified to be even more of the latter, at the expense of the former.  This Raven has been modified so heavily you only recognize it by the wingtips.  A third engine bay, more outfit space, shield emitters and a turret make this already deadly warship appear even more frightening."
+	description "Lionheart's elegant Raven has gained popularity with pirates because of its agility - this one appears to have been modified to be even more of the latter, at the expense of the former. This Raven has been modified so heavily you only recognize it by the wingtips. A third engine bay, more outfit space, shield emitters and a turret make this already deadly warship appear even more frightening."
 
 
 
@@ -3105,7 +3096,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 	explode "big explosion" 16
 	explode "tiny explosion" 28
 	explode "small explosion" 40
-	description "A former owner of this ship apparently didn't like the lithe Raven, and has added so much weapons, shield, and outfit capacity to it, that you only recognize it by the wingtips.  Besides adding a turret, this ship has enormous gun ports, making you wonder how much more deadly you could make a Light Warship."
+	description "A former owner of this ship apparently didn't like the lithe Raven, and has added so much weapons, shield, and outfit capacity to it, that you only recognize it by the wingtips. Besides adding a turret, this ship has enormous gun ports, making you wonder how much more deadly you could make a Light Warship."
 
 
 
@@ -3155,7 +3146,7 @@ ship "Marauder Splinter"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "The Splinter is the largest warship produced by Megaparsec. Apparently someone wanted a bit more out of it, and has covered large sections of the hull with extra shield emitters, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make this light Medium Warship an agile and flexible war machine."
+	description "The Splinter is the largest warship produced by Megaparsec. Apparently someone wanted a bit more out of it, and has covered large sections of the hull with extra shield emitters, hull plating and foils. Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make this light Medium Warship an agile and flexible war machine."
 
 
 
@@ -3208,7 +3199,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "In a sub-kiloton warship, you're not likely to find one faster or more deadly than this one.  Large sections of the hull have been covered with extra hull plating, shield emitters and foils.  Much of the cargo space has been converted to outfit space - a great deal of which is at the rear of the ship, including a new engine port."
+	description "In a sub-kiloton warship, you're not likely to find one faster or more deadly than this one. Large sections of the hull have been covered with extra hull plating, shield emitters and foils. Much of the cargo space has been converted to outfit space - a great deal of which is at the rear of the ship, including a new engine port."
 
 
 
@@ -3261,7 +3252,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
-	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge.  The previous owner has covered large sections of the hull with extra shield modulators, hull plating and foils.  Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
+	description "This Splinter has had extensive modification to its weapons space, with two new forward hard points on either side of the bridge. The previous owner has covered large sections of the hull with extra shield modulators, hull plating and foils. Much of the stock cargo space has been converted to outfit, weapons and engines space, coupled with streamlining of existing internal systems make the prospect of meeting this flexible war machine in an uninhabited system seem pretty unappealing."
 
 
 
@@ -3469,7 +3460,7 @@ ship "Nest"
 	explode "small explosion" 35
 	explode "medium explosion" 20
 	explode "big explosion" 5
-	description `Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container.  Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks.  Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight.  While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" as a jab at Tarazed Shipyards, and the name stuck.`
+	description `Several centuries ago, in the early days of the Republic, Haulers were created simply by bolting a cockpit and engine block onto a cargo container. Southbound Shipyards answered the Free Worlds' call for a carrier quickly by building modified cargo containers for Haulers, adding a pair of Fighter docking arms, some additional outfit space, and even a couple of bunks. Access to the fighters from within the ship is so inconvenient (especially the Dagger), most pilots opt to just stay aboard their fighters when in flight. While the technical name for this ship is "Hauler I: Type F", Southbound assembly workers started calling the single container variant the "Nest" as a jab at Tarazed Shipyards, and the name stuck.`
 
 
 
@@ -3724,7 +3715,7 @@ ship "Roost"
 	explode "small explosion" 25
 	explode "medium explosion" 30
 	explode "big explosion" 15
-	description `Centuries ago, various Hauler models made up nearly half of the merchant vessels in service.  Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design.  Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship.  After Southbound assembly workers successfully named the "Nest", "Hauler II: Type F" was quickly dubbed "Roost" to continue the theme.`
+	description `Centuries ago, various Hauler models made up nearly half of the merchant vessels in service. Southbound Shipyards new fighter-carrying containers have created a new use for what many considered an outdated design. Four external fighter bays make this the biggest civilian carrier on the market, if a little awkward as a warship. After Southbound assembly workers successfully named the "Nest", "Hauler II: Type F" was quickly dubbed "Roost" to continue the theme.`
 
 
 
@@ -3872,7 +3863,7 @@ ship "Skein"
 	explode "medium explosion" 30
 	explode "big explosion" 20
 	explode "huge explosion" 5
-	description `Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods.  When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers.  Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
+	description `Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
 
 
 

@@ -496,11 +496,11 @@ event "initial deployment 3"
 mission "FW Carriers"
 	landing
 	invisible
-	destination Wayfarer
 	to offer
 		has "event: initial deployment 3"
 	on offer
 		event "FWCarriers" 90
+		fail
 
 event "FWCarriers"
 	shipyard "Syndicate Basics"
