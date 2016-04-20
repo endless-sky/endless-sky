@@ -502,7 +502,7 @@ int64_t Ship::UpdateCost()
 	
 	for (auto it : outfits)
 		totalCost += it.GetTotalCost();
-	attributes.Reset("cost", totalCost);
+	attributes.ResetCost(totalCost);
 	return totalCost;
 }
 
@@ -2241,7 +2241,7 @@ void Ship::IncrementDate(int days)
 	if (IsParked())
 		return;
 	// Increment the age of the base ship and each outfit.
-	age += days;	
+	age += days;
 	outfits.IncrementDate(days);
 	// Outfits in cargo don't age.
 	UpdateCost();

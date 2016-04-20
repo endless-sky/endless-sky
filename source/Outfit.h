@@ -65,6 +65,9 @@ public:
 	void Add(const std::string &attribute, double value = 1.);
 	void Reset(const std::string &attribute, double value = 0.);
 	
+	// Modify this outfit's cost (which is no longer an attribute).
+	void ResetCost(double value)
+
 	// Get this outfit's engine flare sprite, if any.
 	const std::vector<std::pair<Animation, int>> &FlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
