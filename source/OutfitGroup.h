@@ -42,8 +42,8 @@ private:
 	typedef std::map<const Outfit*, InnerMap> OuterMap;
 	
 public:
-	static int64_t CostFunction(const Outfit *outfit, int age, double minValue = 0.5, double lossPerDay = 0.0025);
-	static double CostFunction(int age, double minValue = 0.5, double lossPerDay = 0.0025);
+	static int64_t CostFunction(const Outfit *outfit, int age);
+	static double CostFunction(int age, double minValue = 0.5, double maxValue = 0.95, double lossPerDay = 0.0025);
 	static int UsedAge(double minValue = 0.5, double lossPerDay = 0.0025);
 	static int PlunderAge(double minValue = 0.5, double lossPerDay = 0.0025);
 

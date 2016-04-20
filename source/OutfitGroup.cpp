@@ -22,18 +22,19 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 
-int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age, double minValue, double lossPerDay)
+// The cost function returns base-cost for age = 0 and scales value from maxValue to minValue for age > 0.   
+int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age)
 {
-	if (outfit->Get("ageless") || outfit->Category() == "Ammunition")
+	if (outfit->Get("ageless") || outfit->Category() == "Ammunition" || age == 0)
 		return outfit->Cost();
-	return static_cast<int64_t>(outfit->Cost() * std::max(minValue, 1. - (lossPerDay * age)));
+	return static_cast<int64_t>(outfit->Cost() * CostFunction(age));
 }
 
 
 
-double OutfitGroup::CostFunction(int age, double minValue, double lossPerDay)
+double OutfitGroup::CostFunction(int age, double minValue, double maxValue, double lossPerDay)
 {
-	return std::max(minValue, 1. - (lossPerDay * age));
+	return std::max(minValue, maxValue - (lossPerDay * (age - 1)));
 }
 
 
