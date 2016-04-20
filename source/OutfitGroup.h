@@ -43,9 +43,11 @@ private:
 	
 public:
 	static int64_t CostFunction(const Outfit *outfit, int age);
-	static double CostFunction(int age, double minValue = 0.5, double maxValue = 0.95, double lossPerDay = 0.0025);
-	static int UsedAge(double minValue = 0.5, double lossPerDay = 0.0025);
-	static int PlunderAge(double minValue = 0.5, double lossPerDay = 0.0025);
+	static double CostFunction(int age);
+	static double CostFunction(int age, double minValue, double maxValue, double lossPerDay);
+	static int UsedAge();
+	static int PlunderAge();
+	static int GetRandomAge(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay);
 
 public:
 	OutfitGroup() { outfits.empty(); };
@@ -62,6 +64,9 @@ public:
 	int64_t GetTotalCost(const Outfit *outfit) const;
 	// How many outfits of a given type.
 	int GetTotalCount(const Outfit *outfit) const;
+	int GetMinAge(const Outfit* outfit) const;
+	int GetMaxAge(const Outfit* outfit) const;
+
 	// Cost of given number of outfits of a given type, either oldest or newest. 
 	int64_t GetCost(const Outfit* outfit, int count, bool oldestFirst) const;
 	
@@ -93,6 +98,7 @@ public:
 		int GetAge() const;
 		int GetQuantity() const;
 		int64_t GetTotalCost() const;
+		int64_t GetTotalBaseCost() const;
 		double GetCostRatio()const;
 		std::string GetCostRatioString() const;
 

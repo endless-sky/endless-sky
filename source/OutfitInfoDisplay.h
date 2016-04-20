@@ -29,10 +29,10 @@ class Outfit;
 class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
 	OutfitInfoDisplay() = default;
-	OutfitInfoDisplay(const Outfit &outfit);
+	OutfitInfoDisplay(const Outfit &outfit, int availableAge, int sellAge);
 	
 	// Call this every time the ship changes.
-	void Update(const Outfit &outfit);
+	void Update(const Outfit &outfit, int availableAge, int sellAge);
 	
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -48,7 +48,8 @@ public:
 	
 	
 private:
-	void UpdateRequirements(const Outfit &outfit);
+	void UpdateRequirements(const Outfit &outfit, int availableAge, int sellAge);
+	
 	void UpdateAttributes(const Outfit &outfit);
 	
 	

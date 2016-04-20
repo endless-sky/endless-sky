@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Format.h"
 #include "Outfit.h"
+#include "OutfitGroup.h"
+
 
 #include <algorithm>
 #include <map>
@@ -52,18 +54,18 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, int availableAge, int sellAge)
 {
-	Update(outfit);
+	Update(outfit, availableAge, sellAge);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit)
+void OutfitInfoDisplay::Update(const Outfit &outfit, int availableAge, int sellAge)
 {
 	UpdateDescription(outfit.Description());
-	UpdateRequirements(outfit);
+	UpdateRequirements(outfit, availableAge, sellAge);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -85,15 +87,28 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, int availableAge, int sellAge)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 	
-	requirementLabels.push_back("cost:");
+	requirementLabels.push_back("cost new:");
 	requirementValues.push_back(Format::Number(outfit.Cost()));
 	requirementsHeight += 20;
+	
+	if (availableAge > 0)
+	{
+		requirementLabels.push_back("cost to buy:");
+		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, availableAge)));
+		requirementsHeight += 20;
+	}
+	if (sellAge > 0)
+	{
+		requirementLabels.push_back("sell price:");
+		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, sellAge)));
+		requirementsHeight += 20;
+	}
 	
 	static const string names[] = {
 		"outfit space needed:", "outfit space",

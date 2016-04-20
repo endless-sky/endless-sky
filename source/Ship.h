@@ -92,7 +92,9 @@ public:
 	const std::string &Description() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
-	// Re-calculate the ship's cost.
+	// Get the ship's base cost (AI's strength estimate)
+	int64_t BaseCost() const;
+	// Re-calculate the ship's cost and baseCost.
 	int64_t UpdateCost();
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
@@ -373,6 +375,9 @@ private:
 	OutfitGroup outfits;
 	CargoHold cargo;
 	int age;
+	
+	// Base cost used for AI strength estimate. Stored for fast access.
+	int64_t baseCost;
 	
 	std::vector<Bay> bays;
 	

@@ -22,43 +22,74 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 
-// The cost function returns base-cost for age = 0 and scales value from maxValue to minValue for age > 0.   
+namespace {
+	static const double DEFAULT_MIN_VALUE = 0.50;
+	static const double DEFAULT_MAX_VALUE = 0.95;
+	static const double DEFAULT_LOSS_PER_DAY = 0.0025;
+}
+
+
+
+//
+// Static Functions:
+//
 int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age)
 {
-	if (outfit->Get("ageless") || outfit->Category() == "Ammunition" || age == 0)
-		return outfit->Cost();
+	if (outfit->Get("ageless") || outfit->Category() == "Ammunition")
+		age = 0;
 	return static_cast<int64_t>(outfit->Cost() * CostFunction(age));
 }
 
 
 
+double OutfitGroup::CostFunction(int age)
+{
+	return CostFunction(age, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, DEFAULT_LOSS_PER_DAY);
+}
+
+
+
+// The cost function returns base-cost for age = 0 and scales value from 
+// (base-cost * maxValue) to (base-cost * minValue) for age > 0.
 double OutfitGroup::CostFunction(int age, double minValue, double maxValue, double lossPerDay)
 {
+	if (age == 0)
+		return 1.;
 	return std::max(minValue, maxValue - (lossPerDay * (age - 1)));
 }
 
 
 
-int OutfitGroup::UsedAge(double minValue, double lossPerDay)
-{	// Random between 30% and 90% depreciated.
-	double fullDepreciationAge = (1. - minValue) / lossPerDay;
-	int min = static_cast<int>(fullDepreciationAge * 0.2);
-	int max = static_cast<int>(fullDepreciationAge * 0.7);
+// Returns a random between 20% and 70% depreciated.
+int OutfitGroup::UsedAge()
+{
+	return GetRandomAge(0.2, 0.7, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, DEFAULT_LOSS_PER_DAY);
+}
+
+
+
+// Returns a random between 80% and 100% depreciated.
+int OutfitGroup::PlunderAge()
+{
+	return GetRandomAge(0.8, 1.0, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, DEFAULT_LOSS_PER_DAY);
+}
+
+
+
+// Return a random amount of wear within a given range, based on the cost function parameters. 
+int OutfitGroup::GetRandomAge(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay)
+{
+	double fullDepreciationAge = ((maxValue - minValue) / lossPerDay) + 1;
+	int min = static_cast<int>(fullDepreciationAge * minDeprecationPercent);
+	int max = static_cast<int>(fullDepreciationAge * maxDeprecationPercent);
 	return Random::Int(max-min) + min;
 }
 
 
 
-int OutfitGroup::PlunderAge(double minValue, double lossPerDay)
-{	// Random between 90% and 100% depreciated.
-	double fullDepreciationAge = (1. - minValue) / lossPerDay;
-	int min = static_cast<int>(fullDepreciationAge * 0.8);
-	int max = static_cast<int>(fullDepreciationAge);
-	return Random::Int(max-min) + min;
-}
-
-
-
+//
+// Member functions:
+//
 void OutfitGroup::Clear()
 {
 	outfits.clear();
@@ -128,6 +159,27 @@ int OutfitGroup::GetTotalCount(const Outfit *outfit) const
 
 
 
+int OutfitGroup::GetMinAge(const Outfit* outfit) const
+{
+	auto matchingOutfits = Find(outfit);
+	if (!matchingOutfits || matchingOutfits->empty())
+		return -1;
+	return matchingOutfits->begin()->first;
+
+}
+
+
+
+int OutfitGroup::GetMaxAge(const Outfit* outfit) const
+{
+	auto matchingOutfits = Find(outfit);
+	if (!matchingOutfits || matchingOutfits->empty())
+		return -1;
+	return matchingOutfits->rbegin()->first;
+}
+
+
+
 int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) const
 {
 	int64_t cost = 0;
@@ -140,7 +192,7 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 		for (; it != matchingOutfits->second.rend(); ++it)
 		{
 			int matched = std::min(it->second, count);
-			cost += CostFunction(outfit, it->first) * matched;	
+			cost += CostFunction(outfit, it->first) * matched;
 			count -= matched;
 			if (count <= 0)
 				break;
@@ -152,11 +204,11 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) 
 		for (; it != matchingOutfits->second.end(); ++it)
 		{
 			int matched = std::min(it->second, count);
-			cost += CostFunction(outfit, it->first) * matched;	
+			cost += CostFunction(outfit, it->first) * matched;
 			count -= matched;
 			if (count <= 0)
 				break;
-		}		
+		}
 	}
 	return cost;
 }
@@ -377,6 +429,13 @@ int OutfitGroup::iterator::GetAge() const
 int OutfitGroup::iterator::GetQuantity() const
 {
 	return innerIter->second;
+}
+
+
+
+int64_t OutfitGroup::iterator::GetTotalBaseCost() const
+{
+	return GetOutfit()->Cost() * GetQuantity();
 }
 
 

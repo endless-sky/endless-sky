@@ -487,7 +487,7 @@ const string &Ship::Description() const
 
 
 
-// Get this ship's cost.
+// Get this ship's actual current cost.
 int64_t Ship::Cost() const
 {
 	return attributes.Cost();
@@ -495,13 +495,29 @@ int64_t Ship::Cost() const
 
 
 
-// Get this ship's cost.
+// The ship's base cost, not considering wear, is used by the AI to estimate strength.
+// This function is called quite a lot and should be efficient.
+int64_t Ship::BaseCost() const
+{
+	return baseCost;
+}
+
+
+
+// Update this ship's cost.
+// Only called when loading the ship, changing outfits, or adding wear.
 int64_t Ship::UpdateCost()
 {
+	// Update base cost.
+	int64_t totalBaseCost = baseAttributes.Cost();
+	// Update actual Cost.
 	int64_t totalCost = OutfitGroup::CostFunction(&baseAttributes, age);
-	
 	for (auto it : outfits)
+	{
+		totalBaseCost += it.GetTotalBaseCost();
 		totalCost += it.GetTotalCost();
+	}
+	baseCost = totalBaseCost;
 	attributes.ResetCost(totalCost);
 	return totalCost;
 }

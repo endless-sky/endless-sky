@@ -141,9 +141,16 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	
 	const Outfit &attributes = ship.Attributes();
 	
-	attributeLabels.push_back("cost:");
-	attributeValues.push_back(Format::Number(ship.Cost()));
+	attributeLabels.push_back("cost new:");
+	attributeValues.push_back(Format::Number(ship.BaseCost()));// + "(" + Format::Percent(OutfitGroup::CostFunction()) + ")" );
 	attributesHeight += 20;
+		
+	if (ship.Cost() != ship.BaseCost())
+	{
+		attributesHeight += 20;
+		attributeLabels.push_back("actual cost:");
+		attributeValues.push_back(Format::Number(ship.Cost()));
+	}
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());

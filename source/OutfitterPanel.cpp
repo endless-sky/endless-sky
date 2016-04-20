@@ -236,7 +236,18 @@ int OutfitterPanel::DetailWidth() const
 
 int OutfitterPanel::DrawDetails(const Point &center) const
 {
-	OutfitInfoDisplay info(*selectedOutfit);
+	int maxAvailableAge = available.GetMaxAge(selectedOutfit);
+	int minSellAge = player.Cargo().Outfits().GetMinAge(selectedOutfit);
+	for(const Ship *ship : playerShips)
+	{
+		int shipMinAge = ship->Outfits().GetMinAge(selectedOutfit);
+		if (minSellAge <= 0)
+			minSellAge = shipMinAge;
+		else if (shipMinAge >= 0)
+			minSellAge = min(minSellAge, shipMinAge);
+	}
+		
+	OutfitInfoDisplay info(*selectedOutfit, maxAvailableAge, minSellAge);
 	Point offset(info.PanelWidth(), 0.);
 	
 	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
@@ -345,7 +356,7 @@ void OutfitterPanel::Buy()
 			else
 			{	// Buy new
 				player.Accounts().AddCredits(-selectedOutfit->Cost());
-				ship->AddOutfit(selectedOutfit, 1, 0);				
+				ship->AddOutfit(selectedOutfit, 1, 0);
 			}
 			
 			int required = selectedOutfit->Get("required crew");
