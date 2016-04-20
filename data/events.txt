@@ -245,6 +245,8 @@ event "initial deployment 1"
 		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
 	shipyard "Syndicate Basics"
 		"Barb"
+	outfitter "Syndicate Basics"
+		"X1050 Ion Engines"
 
 event "initial deployment 2"
 	date 14 8 3014
