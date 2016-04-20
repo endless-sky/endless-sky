@@ -262,6 +262,44 @@ ship "Barb"
 
 
 
+ship "Barb" "Barb (Proton)"
+	sprite "ship/barbp"
+	attributes
+		category "Fighter"
+		"cost" 50000
+		"shields" 800
+		"hull" 200
+		"required crew" 1
+		"bunks" 2
+		"mass" 20
+		"drag" .8
+		"heat dissipation" .78
+		"outfit space" 85
+		"weapon capacity" 28
+		"engine capacity" 22
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Proton Gun"
+		
+		"nGVF-AA Fuel Cell"
+		Supercapacitor
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+		
+	engine -10 28
+	engine 9 28
+	gun -9 -29 "Proton Gun"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `While the Syndicate doesn't build Fighter carriers, they are not above producing a cheap and flexible fighter solution for emerging markets. When demand for a Proton Gun equipped variant became apparent, the Syndicate removed the turret mounting hardware, shifting some space around to make it possible.`
+
+
+
 ship "Bastion"
 	sprite "ship/bastion"
 	attributes

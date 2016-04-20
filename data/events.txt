@@ -494,6 +494,8 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+	shipyard "Syndicate Basics"
+		"Barb (Proton)"
 
 mission "FW Carriers"
 	landing
@@ -507,6 +509,7 @@ mission "FW Carriers"
 event "FWCarriers"
 	shipyard "Syndicate Basics"
 		"Barb"
+		"Barb (Proton)"
 	shipyard "Tarazed Basics"
 		"Finch"
 		"Barb"
