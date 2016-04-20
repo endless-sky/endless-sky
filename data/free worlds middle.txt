@@ -103,7 +103,7 @@ mission "FW Diplomacy 1C"
 		conversation
 			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those three worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
-				`	"So, the Senate won't give up those worlds without a fight?"`
+				`	"So, Parliament won't give up those worlds without a fight?"`
 					goto fight
 				`	"Maybe they're afraid of the precedent it would set if they give in to us."`
 					goto precedent
@@ -140,7 +140,7 @@ mission "FW Diplomacy 1D"
 		conversation
 			`When you land on <origin>, Alondo says, "You should join me for this meeting. You may find it eye-opening."`
 			`	Four of the Navy admirals who are stationed here have agreed to meet with you. You discover that one of them is from the Dirt Belt. Another grew up in the Rim, and admits to you that if he were not serving the Navy, he would be fighting for the Free Worlds. All four of them seem sympathetic to your cause, and express genuine regret not just for the Navy lives that have been lost, but for the Free Worlds losses as well.`
-			`	And all four of them state, without any hesitation or equivocation, that if the Senate orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
+			`	And all four of them state, without any hesitation or equivocation, that if Parliament orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
 			`	Alondo thanks them for their time and their honesty, and you return to your ship. "Well, it was worth a try. Now we just have to get home safely," he says.`
 				accept
 	

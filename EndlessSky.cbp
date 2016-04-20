@@ -219,6 +219,8 @@
 		<Unit filename="source/Phrase.h" />
 		<Unit filename="source/Planet.cpp" />
 		<Unit filename="source/Planet.h" />
+		<Unit filename="source/PlanetLabel.cpp" />
+		<Unit filename="source/PlanetLabel.h" />
 		<Unit filename="source/PlanetPanel.cpp" />
 		<Unit filename="source/PlanetPanel.h" />
 		<Unit filename="source/PlayerInfo.cpp" />

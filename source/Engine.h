@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "PlanetLabel.h"
 #include "Point.h"
 #include "Projectile.h"
 #include "Radar.h"
@@ -34,7 +35,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class Government;
 class Outfit;
 class PlayerInfo;
-class StellarObject;
 
 
 
@@ -102,18 +102,6 @@ private:
 		bool isEnemy;
 	};
 	
-	class Label {
-	public:
-		Label(const Point &position, const StellarObject &object);
-		
-		Point position;
-		double radius;
-		std::string name;
-		std::string government;
-		Color color;
-		int hostility = 0;
-	};
-	
 	
 private:
 	PlayerInfo &player;
@@ -141,7 +129,7 @@ private:
 	Point targetUnit;
 	EscortDisplay escorts;
 	std::vector<Status> statuses;
-	std::vector<Label> labels;
+	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	
 	int step = 0;
