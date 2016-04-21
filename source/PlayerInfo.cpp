@@ -166,7 +166,8 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 			{
 				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
-				usedShips[GameData::Ships().Get(grand.Token(0))] = wear;
+				const Ship *model = GameData::Ships().Get(grand.Token(0));
+				usedShips[model] = Ship::MakeShip(*model, wear);
 			}
 		}
 		else if(child.Token(0) == "conditions")
@@ -895,10 +896,10 @@ void PlayerInfo::Land(UI *ui)
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
 			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
-				usedShips[ship] = OutfitGroup::UsedWear();
+				usedShips[ship] = Ship::MakeShip(*ship, OutfitGroup::UsedWear());
 		}
 		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.
-			usedShips[nullptr] = 0; 
+			usedShips[nullptr] = nullptr; 
 	}
 	
 	freshlyLoaded = false;
@@ -1739,8 +1740,8 @@ void PlayerInfo::Save(const string &path) const
 	out.BeginChild();
 	{
 		for(const auto &it : usedShips)
-			if(it.first && it.second > 0)
-				out.Write(it.first->ModelName(), it.second);
+			if(it.first && it.second->GetWear() > 0)
+				out.Write(it.first->ModelName(), it.second->GetWear());
 	}
 	out.EndChild();
 	

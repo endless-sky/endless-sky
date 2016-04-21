@@ -479,10 +479,16 @@ const string &Ship::ModelName() const
 
 
 
-// Get this ship's description.
+// Get this ship's description. 
+// Player ships are not saved with copies of their descriptions, 
+// so a ship with no description will look up it's model's description
+// in GameData::Ships().
 const string &Ship::Description() const
 {
-	return description;
+	if(!description.empty())
+		return description;
+	else
+		return GameData::Ships().Get(modelName)->description;
 }
 
 
@@ -520,6 +526,13 @@ int64_t Ship::UpdateCost()
 	baseCost = totalBaseCost;
 	attributes.ResetCost(totalCost);
 	return totalCost;
+}
+
+
+
+int Ship::GetWear()
+{
+	return wear;
 }
 
 

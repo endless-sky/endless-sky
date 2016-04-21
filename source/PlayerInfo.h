@@ -48,7 +48,7 @@ class UI;
 // and what their current travel plan is, if any.
 class PlayerInfo {
 public:
-	typedef std::map<const Ship*, int> UsedShipMap;
+	typedef std::map<const Ship*, Ship*> UsedShipMap;
 	
 public:
 	PlayerInfo() = default;

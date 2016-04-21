@@ -96,8 +96,11 @@ public:
 	int64_t BaseCost() const;
 	// Re-calculate the ship's cost and baseCost.
 	int64_t UpdateCost();
+	// The wear on the base hull of the ship.
+	int GetWear();
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
+	
 	
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle());
@@ -264,8 +267,6 @@ public:
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
 	const OutfitGroup &Outfits() const ;
-	// Get OutfitGroup pointer for transfer operations (shop).
-//	OutfitGroup *OutfitTransfer();
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 

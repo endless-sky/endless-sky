@@ -53,9 +53,11 @@ int ShipyardPanel::TileSize() const
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
 	ShipInfoDisplay info(*playerShip);
+
 	info.DrawSale(point);
+	info.DrawDescription(point + Point(0, info.SaleHeight()));
 	
-	return info.SaleHeight();
+	return info.SaleHeight() + info.DescriptionHeight();
 }
 
 
@@ -76,7 +78,7 @@ bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 	auto it = available.find(ship);
 	if (it != available.end())
 	{
-		int wear = it->second;
+		int wear = it->second->GetWear();
 		Font saleFont = FontSet::Get(18);
 		const Color &bright = *GameData::Colors().Get("bright");
 		std::string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(wear))+" OFF!]";
@@ -105,9 +107,10 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	ShipInfoDisplay info(*selectedShip);
-	Point offset(info.PanelWidth(), 0.);
+	auto it = available.find(selectedShip);
+	ShipInfoDisplay info(it != available.end() ? (const Ship)*(it->second) : *selectedShip);
 	
+	Point offset(info.PanelWidth(), 0.);
 	info.DrawDescription(center - offset * 1.5);
 	info.DrawAttributes(center - offset * .5);
 	info.DrawOutfits(center + offset * .5);
@@ -270,17 +273,17 @@ void ShipyardPanel::BuyShip(const string &name)
 	
 	for(int i = 1; i <= modifier; ++i)
 	{
-		int wear = 0;
+		const Ship* shipToBuy = selectedShip;
 		auto it = available.find(selectedShip);
 		if (it != available.end())
 		{
-			wear = available.find(selectedShip)->second;
+			shipToBuy = it->second;
 			available.erase(it);			
 		}
 		if(modifier > 1)
-			player.BuyShip(selectedShip, shipName + to_string(i), wear);
+			player.BuyShip(shipToBuy, shipName + to_string(i), 0);
 		else
-			player.BuyShip(selectedShip, shipName, wear);
+			player.BuyShip(shipToBuy, shipName, 0);
 	}
 	
 	playerShip = &*player.Ships().back();
