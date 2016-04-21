@@ -731,6 +731,9 @@ bool Ship::Move(list<Effect> &effects)
 	
 	if(IsDestroyed())
 	{
+		// Make sure the shields are zero, as well as the hull.
+		shields = 0.;
+		
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
 		{
