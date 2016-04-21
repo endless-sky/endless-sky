@@ -236,18 +236,19 @@ int OutfitterPanel::DetailWidth() const
 
 int OutfitterPanel::DrawDetails(const Point &center) const
 {
-	int maxAvailableAge = available.GetMaxAge(selectedOutfit);
-	int minSellAge = player.Cargo().Outfits().GetMinAge(selectedOutfit);
+	int maxAvailableWear = available.GetMaxWear(selectedOutfit);
+	int minSellWear = player.Cargo().Outfits().GetMinWear(selectedOutfit);
+
 	for(const Ship *ship : playerShips)
 	{
-		int shipMinAge = ship->Outfits().GetMinAge(selectedOutfit);
-		if (minSellAge <= 0)
-			minSellAge = shipMinAge;
-		else if (shipMinAge >= 0)
-			minSellAge = min(minSellAge, shipMinAge);
+		int shipMinWear = ship->Outfits().GetMinWear(selectedOutfit);
+		if (minSellWear <= 0)
+			minSellWear = shipMinWear;
+		else if (shipMinWear >= 0)
+			minSellWear = min(minSellWear, shipMinWear);
 	}
 		
-	OutfitInfoDisplay info(*selectedOutfit, maxAvailableAge, minSellAge);
+	OutfitInfoDisplay info(*selectedOutfit, maxAvailableWear, minSellWear);
 	Point offset(info.PanelWidth(), 0.);
 	
 	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));

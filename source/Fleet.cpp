@@ -158,7 +158,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	{
 		if(ship->CanBeCarried())
 		{
-			shared_ptr<Ship> fighter(Ship::MakeShip(*ship, OutfitGroup::PlunderAge()));
+			shared_ptr<Ship> fighter(Ship::MakeShip(*ship, OutfitGroup::PlunderWear()));
 			fighter->SetGovernment(government);
 			fighter->SetName((fighterNames ? fighterNames : names)->Get());
 			fighter->SetPersonality(personality);
@@ -170,7 +170,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		Angle angle = Angle::Random(360.);
 		Point pos = position + angle.Unit() * (Random::Int(radius + 1));
 		
-		ships.push_front(shared_ptr<Ship>(Ship::MakeShip(*ship, OutfitGroup::PlunderAge())));
+		ships.push_front(shared_ptr<Ship>(Ship::MakeShip(*ship, OutfitGroup::PlunderWear())));
 		ships.front()->SetSystem(source);
 		ships.front()->SetPlanet(planet);
 		if(source == &system)
@@ -235,7 +235,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	{
 		if(carried && ship->CanBeCarried())
 		{
-			shared_ptr<Ship> fighter( Ship::MakeShip(*ship, OutfitGroup::PlunderAge()) );
+			shared_ptr<Ship> fighter( Ship::MakeShip(*ship, OutfitGroup::PlunderWear()) );
 			fighter->SetGovernment(government);
 			fighter->SetName((fighterNames ? fighterNames : names)->Get());
 			fighter->SetPersonality(personality);
@@ -249,7 +249,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		
 		double velocity = Random::Real() * ship->MaxVelocity();
 		
-		ships.push_front(shared_ptr<Ship>( Ship::MakeShip(*ship, OutfitGroup::PlunderAge()) ));
+		ships.push_front(shared_ptr<Ship>( Ship::MakeShip(*ship, OutfitGroup::PlunderWear()) ));
 		ships.front()->SetSystem(&system);
 		ships.front()->Place(pos, velocity * angle.Unit(), angle);
 		ships.front()->SetGovernment(government);

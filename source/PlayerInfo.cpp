@@ -157,7 +157,7 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				int age = (grand.Size() >= 3) ? grand.Value(2) : OutfitGroup::UsedAge();
+				int age = (grand.Size() >= 3) ? grand.Value(2) : OutfitGroup::UsedWear();
 				soldOutfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, age);
 			}
 		}
@@ -165,7 +165,7 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 			{
-				int age = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedAge();
+				int age = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
 				usedShips[GameData::Ships().Get(grand.Token(0))] = age;
 			}
 		}
@@ -652,7 +652,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 			accounts.AddCredits(selected->Cost());
 			
 			for(const auto &it : selected->Outfits())
-				soldOutfits.AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetAge());
+				soldOutfits.AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetWear());
 
 			ships.erase(it);
 			flagship.reset();
@@ -884,7 +884,7 @@ void PlayerInfo::Land(UI *ui)
 			int added = 0;
 			while (Random::Int(100) < 40) //TODO: Variable used part generation chance and max.
 			{
-				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedAge());
+				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedWear());
 				if(++added >= 3)
 					break;
 			}
@@ -895,7 +895,7 @@ void PlayerInfo::Land(UI *ui)
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
 			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
-				usedShips[ship] = OutfitGroup::UsedAge();
+				usedShips[ship] = OutfitGroup::UsedWear();
 		}
 		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.
 			usedShips[nullptr] = 0; 
@@ -1727,10 +1727,10 @@ void PlayerInfo::Save(const string &path) const
 		for(const auto &it : soldOutfits)
 			if(it.GetOutfit() && it.GetQuantity())
 			{
-				if(it.GetQuantity() == 1 && !it.GetAge())
+				if(it.GetQuantity() == 1 && !it.GetWear())
 					out.Write(it.GetOutfit()->Name());
 				else
-					out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetAge());
+					out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetWear());
 			}
 	}
 	out.EndChild();

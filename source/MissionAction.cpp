@@ -283,10 +283,10 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	// adding any new ones.
 	for(const auto &it : gifts)
 		if(it.GetQuantity() < 0)
-			DoGift(player, it.GetOutfit(), it.GetQuantity(), it.GetAge(), ui);
+			DoGift(player, it.GetOutfit(), it.GetQuantity(), it.GetWear(), ui);
 	for(const auto &it : gifts)
 		if(it.GetQuantity() > 0)
-			DoGift(player, it.GetOutfit(), it.GetQuantity(), it.GetAge(), ui);
+			DoGift(player, it.GetOutfit(), it.GetQuantity(), it.GetWear(), ui);
 	
 	if(payment)
 		player.Accounts().AddCredits(payment);

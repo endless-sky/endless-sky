@@ -45,9 +45,9 @@ public:
 	static int64_t CostFunction(const Outfit *outfit, int age);
 	static double CostFunction(int age);
 	static double CostFunction(int age, double minValue, double maxValue, double lossPerDay);
-	static int UsedAge();
-	static int PlunderAge();
-	static int GetRandomAge(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay);
+	static int UsedWear();
+	static int PlunderWear();
+	static int GetRandomWear(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay);
 
 public:
 	OutfitGroup() { outfits.empty(); };
@@ -64,19 +64,19 @@ public:
 	int64_t GetTotalCost(const Outfit *outfit) const;
 	// How many outfits of a given type.
 	int GetTotalCount(const Outfit *outfit) const;
-	int GetMinAge(const Outfit* outfit) const;
-	int GetMaxAge(const Outfit* outfit) const;
+	int GetMinWear(const Outfit* outfit) const;
+	int GetMaxWear(const Outfit* outfit) const;
 
 	// Cost of given number of outfits of a given type, either oldest or newest. 
-	int64_t GetCost(const Outfit* outfit, int count, bool oldestFirst) const;
+	int64_t GetCost(const Outfit* outfit, int count, bool mostWornFirst) const;
 	
 	// Add outfits.
 	int AddOutfit(const Outfit* outfit, int count, int age);
 	
 	// Remove outfits, either oldest first or newest first. Return number removed.
-	int RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst, OutfitGroup* to = nullptr);
+	int RemoveOutfit(const Outfit* outfit, int count, bool mostWornFirst, OutfitGroup* to = nullptr);
 	
-	int TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge = 0);
+	int TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool mostWornFirst, int defaultWear = 0);
 	
 	void IncrementDate(int days = 1);
 	
@@ -95,7 +95,7 @@ public:
 				
 		// Getters 
 		const Outfit* GetOutfit() const;
-		int GetAge() const;
+		int GetWear() const;
 		int GetQuantity() const;
 		int64_t GetTotalCost() const;
 		int64_t GetTotalBaseCost() const;

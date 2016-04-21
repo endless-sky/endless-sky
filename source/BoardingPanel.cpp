@@ -65,7 +65,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// crew's quarters, not mounted on the exterior of the ship.
 	for(const auto &it : victim->Outfits())
 		if(!it.GetOutfit()->Get("unplunderable"))
-			plunder.emplace_back(it.GetOutfit(), it.GetQuantity(), it.GetAge());
+			plunder.emplace_back(it.GetOutfit(), it.GetQuantity(), it.GetWear());
 	
 	sort(plunder.begin(), plunder.end());
 }

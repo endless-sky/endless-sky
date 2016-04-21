@@ -238,7 +238,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			profit += it.GetTotalCost();
 			tonsSold += it.GetQuantity() * static_cast<int>(it.GetOutfit()->Get("mass"));
 			
-			player.SoldOutfits().AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetAge());
+			player.SoldOutfits().AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetWear());
 			player.Accounts().AddCredits(it.GetTotalCost());
 			if (player.Cargo().Transfer(it.GetOutfit(), it.GetQuantity(), nullptr, true))
 				it = player.Cargo().Outfits().begin();

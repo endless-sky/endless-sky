@@ -48,24 +48,25 @@ namespace {
 	};
 	
 	static const set<string> BOOLEAN_ATTRIBUTES = {
-		"unplunderable"
+		"unplunderable",
+		"ageless"
 	};
 }
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, int availableAge, int sellAge)
+OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, int maxAvailableWear, int minSellWear)
 {
-	Update(outfit, availableAge, sellAge);
+	Update(outfit, maxAvailableWear, minSellWear);
 }
 
 
 
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, int availableAge, int sellAge)
+void OutfitInfoDisplay::Update(const Outfit &outfit, int maxAvailableWear, int minSellWear)
 {
 	UpdateDescription(outfit.Description());
-	UpdateRequirements(outfit, availableAge, sellAge);
+	UpdateRequirements(outfit, maxAvailableWear, minSellWear);
 	UpdateAttributes(outfit);
 	
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -87,7 +88,7 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 
-void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, int availableAge, int sellAge)
+void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, int maxAvailableWear, int minSellWear)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
@@ -97,16 +98,16 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, int availableAg
 	requirementValues.push_back(Format::Number(outfit.Cost()));
 	requirementsHeight += 20;
 	
-	if (availableAge > 0)
+	if (maxAvailableWear > 0)
 	{
 		requirementLabels.push_back("cost to buy:");
-		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, availableAge)));
+		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, maxAvailableWear)));
 		requirementsHeight += 20;
 	}
-	if (sellAge > 0)
+	if (minSellWear >= 0)
 	{
 		requirementLabels.push_back("sell price:");
-		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, sellAge)));
+		requirementValues.push_back(Format::Number(OutfitGroup::CostFunction(&outfit, minSellWear)));
 		requirementsHeight += 20;
 	}
 	

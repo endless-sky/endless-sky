@@ -382,10 +382,10 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : outfits)
 				if(it.GetOutfit() && it.GetQuantity())
 				{
-					if(it.GetQuantity() == 1 && !it.GetAge())
+					if(it.GetQuantity() == 1 && !it.GetWear())
 						out.Write(it.GetOutfit()->Name());
 					else
-						out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetAge());
+						out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetWear());
 				}
 		}
 		out.EndChild();
@@ -2064,11 +2064,11 @@ void Ship::AddOutfit(const Outfit *outfit, int count, int age)
 
 
 
-void Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeOldestFirst, int ageToAdd)
+void Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd)
 {
 	if(outfit && count)
 	{
-		int transfered = outfits.TransferOutfits(outfit, count, to, removeOldestFirst, ageToAdd);
+		int transfered = outfits.TransferOutfits(outfit, count, to, removeMostWornFirst, wearToAdd);
 		FinishAddingOutfit(outfit, -transfered);
 	}
 }
@@ -2076,10 +2076,10 @@ void Ship::TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeOldestFirst, int ageToAdd)
+void Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd)
 {
 	// Need to perform attribute updates on both ships. 
-	int transfered = outfits.TransferOutfits(outfit, count, &(to.outfits), removeOldestFirst, ageToAdd);
+	int transfered = outfits.TransferOutfits(outfit, count, &(to.outfits), removeMostWornFirst, wearToAdd);
 	FinishAddingOutfit(outfit, -transfered);
 	to.FinishAddingOutfit(outfit, transfered);
 }
@@ -2087,11 +2087,11 @@ void Ship::TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool 
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeOldestFirst, int ageToAdd)
+void Ship::TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd)
 {
 	// Need to perform attribute updates on both ships. 
 	count = min(count, outfits.GetTotalCount(outfit));
-	int transfered = -(to.Transfer(outfit, -count, &outfits, removeOldestFirst, ageToAdd));
+	int transfered = -(to.Transfer(outfit, -count, &outfits, removeMostWornFirst, wearToAdd));
 	FinishAddingOutfit(outfit, -transfered);
 }
 

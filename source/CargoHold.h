@@ -78,8 +78,8 @@ public:
 	// the commodity to "disappear" or, if the "amount" is negative, to have an
 	// unlimited supply. The return value is the actual number transferred.
 	int Transfer(const std::string &commodity, int amount, CargoHold *to = nullptr);
-	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr, bool oldestFirst = true);
-	int Transfer(const Outfit *outfit, int amount, OutfitGroup *to, bool oldestFirst, int defaultAge);
+	int Transfer(const Outfit *outfit, int amount, CargoHold *to = nullptr, bool mostWornFirst = true);
+	int Transfer(const Outfit *outfit, int amount, OutfitGroup *to, bool mostWornFirst, int defaultWear);
 	int Transfer(const Mission *mission, int amount, CargoHold *to = nullptr);
 	int TransferPassengers(const Mission *mission, int amount, CargoHold *to = nullptr);
 	// Transfer as much as the given cargo hold has capacity for. The priority is

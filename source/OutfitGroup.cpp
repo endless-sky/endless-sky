@@ -23,9 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 namespace {
-	static const double DEFAULT_MIN_VALUE = 0.50;
-	static const double DEFAULT_MAX_VALUE = 0.95;
-	static const double DEFAULT_LOSS_PER_DAY = 0.0025;
+	static const double DEFAULT_MIN_PRICE = 0.50;
+	static const double DEFAULT_MAX_PRICE = 0.95;
+	static const double DEFAULT_DEPRECIATION_RATE = 0.0025;
 }
 
 
@@ -44,7 +44,7 @@ int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age)
 
 double OutfitGroup::CostFunction(int age)
 {
-	return CostFunction(age, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, DEFAULT_LOSS_PER_DAY);
+	return CostFunction(age, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 
@@ -61,27 +61,27 @@ double OutfitGroup::CostFunction(int age, double minValue, double maxValue, doub
 
 
 // Returns a random between 20% and 70% depreciated.
-int OutfitGroup::UsedAge()
+int OutfitGroup::UsedWear()
 {
-	return GetRandomAge(0.2, 0.7, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, DEFAULT_LOSS_PER_DAY);
+	return GetRandomWear(0.2, 0.7, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 
 
 // Returns a random between 80% and 100% depreciated.
-int OutfitGroup::PlunderAge()
+int OutfitGroup::PlunderWear()
 {
-	return GetRandomAge(0.8, 1.0, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, DEFAULT_LOSS_PER_DAY);
+	return GetRandomWear(0.8, 1.0, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 
 
 // Return a random amount of wear within a given range, based on the cost function parameters. 
-int OutfitGroup::GetRandomAge(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay)
+int OutfitGroup::GetRandomWear(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay)
 {
-	double fullDepreciationAge = ((maxValue - minValue) / lossPerDay) + 1;
-	int min = static_cast<int>(fullDepreciationAge * minDeprecationPercent);
-	int max = static_cast<int>(fullDepreciationAge * maxDeprecationPercent);
+	double fullDepreciationWear = ((maxValue - minValue) / lossPerDay) + 1;
+	int min = static_cast<int>(fullDepreciationWear * minDeprecationPercent);
+	int max = static_cast<int>(fullDepreciationWear * maxDeprecationPercent);
 	return Random::Int(max-min) + min;
 }
 
@@ -159,7 +159,7 @@ int OutfitGroup::GetTotalCount(const Outfit *outfit) const
 
 
 
-int OutfitGroup::GetMinAge(const Outfit* outfit) const
+int OutfitGroup::GetMinWear(const Outfit* outfit) const
 {
 	auto matchingOutfits = Find(outfit);
 	if (!matchingOutfits || matchingOutfits->empty())
@@ -170,7 +170,7 @@ int OutfitGroup::GetMinAge(const Outfit* outfit) const
 
 
 
-int OutfitGroup::GetMaxAge(const Outfit* outfit) const
+int OutfitGroup::GetMaxWear(const Outfit* outfit) const
 {
 	auto matchingOutfits = Find(outfit);
 	if (!matchingOutfits || matchingOutfits->empty())
@@ -180,13 +180,13 @@ int OutfitGroup::GetMaxAge(const Outfit* outfit) const
 
 
 
-int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool oldestFirst) const
+int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool mostWornFirst) const
 {
 	int64_t cost = 0;
 	auto matchingOutfits = outfits.find(outfit);
 	if (matchingOutfits == outfits.end())
 		return 0; // Don't have any.
-	if (oldestFirst)
+	if (mostWornFirst)
 	{
 		auto it = matchingOutfits->second.rbegin();
 		for (; it != matchingOutfits->second.rend(); ++it)
@@ -245,14 +245,14 @@ int OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
 
 // Remove outfits of a given type, either oldest or newest first.
 // Used for making transfers as well.  
-int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst, OutfitGroup* to)
+int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool mostWornFirst, OutfitGroup* to)
 {
 	auto oit = outfits.find(outfit);
 	if(oit == outfits.end()) 
 		return 0;
 
 	int removed = 0;
-	if (oldestFirst)
+	if (mostWornFirst)
 	{
 		auto iit = oit->second.end();
 		std::vector<InnerMap::iterator> toErase;
@@ -299,7 +299,7 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool oldestFirst,
 
 
 // Needs to support all kinds of operations either on a group or between groups.
-int OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool oldestFirst, int defaultAge)
+int OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool mostWornFirst, int defaultWear)
 {
 	// Invalid inputs.
 	if(!count || !outfit)
@@ -308,16 +308,16 @@ int OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* t
 	if (!to)
 	{
 		if (count > 0)
-			return RemoveOutfit(outfit, count, oldestFirst); // Transfer to nowhere = remove.
+			return RemoveOutfit(outfit, count, mostWornFirst); // Transfer to nowhere = remove.
 		else 
-			return -AddOutfit(outfit, -count, defaultAge); // Transfer from nowhere = add.
+			return -AddOutfit(outfit, -count, defaultWear); // Transfer from nowhere = add.
 	}
 	// If count is negative but *to is valid, just turn the whole thing around.  
 	if(count < 0)
-		return -(to->TransferOutfits(outfit, -count, this, oldestFirst, defaultAge));
+		return -(to->TransferOutfits(outfit, -count, this, mostWornFirst, defaultWear));
 	// Transferring a positive number of outfits to a valid destination.
 	// Use the remove function for this.
-	return RemoveOutfit(outfit, count, oldestFirst, to);
+	return RemoveOutfit(outfit, count, mostWornFirst, to);
 }
 
 
@@ -419,7 +419,7 @@ const Outfit* OutfitGroup::iterator::GetOutfit() const
 
 
 
-int OutfitGroup::iterator::GetAge() const
+int OutfitGroup::iterator::GetWear() const
 {
 	return innerIter->first;
 }
@@ -442,14 +442,14 @@ int64_t OutfitGroup::iterator::GetTotalBaseCost() const
 
 int64_t OutfitGroup::iterator::GetTotalCost() const
 {
-	return OutfitGroup::CostFunction(GetOutfit(), GetAge()) * GetQuantity();
+	return OutfitGroup::CostFunction(GetOutfit(), GetWear()) * GetQuantity();
 }
 
 
 
 double OutfitGroup::iterator::GetCostRatio() const
 {
-	return CostFunction(GetAge());
+	return CostFunction(GetWear());
 }
 
 

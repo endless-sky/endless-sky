@@ -110,7 +110,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			firstOutfit = false;
 			
-			out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetAge());
+			out.Write(it.GetOutfit()->Name(), it.GetQuantity(), it.GetWear());
 		}
 	if(!firstOutfit)
 		out.EndChild();
@@ -328,11 +328,11 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold *to)
 
 
 
-int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool oldestFirst)
+int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool mostWornFirst)
 {
 	if (amount < 0 && to)
 		// Transfer a positive amount the other direction.
-		return to->Transfer(outfit, -amount, this, oldestFirst);
+		return to->Transfer(outfit, -amount, this, mostWornFirst);
 	
 	// Check room in receiving cargo hold.
 	if(to)
@@ -344,12 +344,12 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold *to, bool ol
 	}
 	if (!amount)
 		return 0;
-	return Transfer(outfit, amount, to ? &(to->outfits) : nullptr, oldestFirst, 0);
+	return Transfer(outfit, amount, to ? &(to->outfits) : nullptr, mostWornFirst, 0);
 }
 
 
 
-int CargoHold::Transfer(const Outfit *outfit, int amount, OutfitGroup *to, bool oldestFirst, int defaultAge)
+int CargoHold::Transfer(const Outfit *outfit, int amount, OutfitGroup *to, bool mostWornFirst, int defaultWear)
 {
 	// Determine the amount that can be transfered. 
 	// The other outfit group has already been vetted as able to 
@@ -362,7 +362,7 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, OutfitGroup *to, bool 
 		return 0;
 	
 	// Perform transfer
-	outfits.TransferOutfits(outfit, amount, to, oldestFirst, defaultAge);
+	outfits.TransferOutfits(outfit, amount, to, mostWornFirst, defaultWear);
 	
 	return amount;
 }

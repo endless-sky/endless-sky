@@ -271,9 +271,9 @@ public:
 
 	// Add or remove outfits. (To add, pass a negative number.)
 	void AddOutfit(const Outfit *outfit, int count, int age);
-	void TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeOldestFirst, int ageToAdd);
-	void TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeOldestFirst, int ageToAdd);
-	void TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeOldestFirst, int ageToAdd);
+	void TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd);
+	void TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd);
+	void TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd);
 	
 	
 	// Get the list of weapons.
