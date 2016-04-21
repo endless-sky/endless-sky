@@ -463,6 +463,7 @@ outfitter "Special Outfits"
 	"Korath Mine"
 	"Command Center"
 	"Korath Disruptor"
+	"Korath Slicer"
 	"Tier 3 Anti-Missile"
 
 shipyard "Alien Ships"
