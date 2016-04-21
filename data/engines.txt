@@ -51,7 +51,7 @@ outfit "X1050 Ion Engines"
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 1.2
 	"flare sound" "ion tiny"
-	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only 'adequate' in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
+	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
 
 
 outfit "X1700 Ion Thruster"

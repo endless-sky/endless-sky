@@ -3901,7 +3901,7 @@ ship "Skein"
 	explode "medium explosion" 30
 	explode "big explosion" 20
 	explode "huge explosion" 5
-	description `Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new 'Type F' cargo pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
+	description `Considered by many to be outdated, there are nonetheless many Haulers still in service. This particular cockpit and engine set has found itself attached to three of Southbound Shipyards new "Type F" cargo pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even Navy Carriers. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F", "Skein" to its Militia only.`
 
 
 
