@@ -462,6 +462,7 @@ outfitter "Special Outfits"
 	"Korath Minelayer"
 	"Korath Mine"
 	"Command Center"
+	"Korath Disruptor"
 	"Tier 3 Anti-Missile"
 
 shipyard "Alien Ships"
