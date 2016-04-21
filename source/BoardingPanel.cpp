@@ -464,8 +464,8 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 
 
 
-BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, int age)
-	: name(outfit->Name()), outfit(outfit), count(count), unitValue(OutfitGroup::CostFunction(outfit, age))
+BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, int wear)
+	: name(outfit->Name()), outfit(outfit), count(count), unitValue(OutfitGroup::CostFunction(outfit, wear))
 {
 	UpdateStrings();
 }

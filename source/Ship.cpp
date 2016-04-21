@@ -52,10 +52,10 @@ namespace {
 
 
 
-Ship* Ship::MakeShip(const Ship &ship, int age)
+Ship* Ship::MakeShip(const Ship &ship, int wear)
 {
 	Ship* newShip = new Ship(ship);
-	newShip->IncrementDate(age);
+	newShip->IncrementDate(wear);
 	return newShip;
 }
 
@@ -119,7 +119,7 @@ void Ship::Load(const DataNode &node)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
 			if(outfit)
-				equipped.AddOutfit(outfit, 1, 0); // Don't need accurate age in "equipped" group.
+				equipped.AddOutfit(outfit, 1, 0); // Don't need accurate wear in "equipped" group.
 			if(child.Token(0) == "gun")
 				armament.AddGunPort(hardpoint, outfit);
 			else
@@ -182,12 +182,12 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				int age = (grand.Size() >= 3) ? grand.Value(2) : 0;
-				outfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, age);
+				int wear = (grand.Size() >= 3) ? grand.Value(2) : 0;
+				outfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, wear);
 			}
 		}
-		else if(child.Token(0) == "age")
-			age = child.Value(1);
+		else if(child.Token(0) == "wear")
+			wear = child.Value(1);
 		else if(child.Token(0) == "cargo")
 			cargo.Load(child);
 		else if(child.Token(0) == "crew" && child.Size() >= 2)
@@ -347,7 +347,7 @@ void Ship::FinishLoading()
 		Recharge(!parent || currentSystem == parent->currentSystem);
 	}
 	
-	// Update the cost, based on age of hull and all outfits.
+	// Update the cost, based on wear of hull and all outfits.
 	UpdateCost();
 }
 
@@ -391,7 +391,7 @@ void Ship::Save(DataWriter &out) const
 		out.EndChild();
 		
 		cargo.Save(out);
-		out.Write("age", age);
+		out.Write("wear", wear);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
@@ -511,7 +511,7 @@ int64_t Ship::UpdateCost()
 	// Update base cost.
 	int64_t totalBaseCost = baseAttributes.Cost();
 	// Update actual Cost.
-	int64_t totalCost = OutfitGroup::CostFunction(&baseAttributes, age);
+	int64_t totalCost = OutfitGroup::CostFunction(&baseAttributes, wear);
 	for (auto it : outfits)
 	{
 		totalBaseCost += it.GetTotalBaseCost();
@@ -2057,9 +2057,9 @@ int Ship::OutfitCount(const Outfit *outfit) const
 
 
 // Add or remove outfits. (To remove, pass a negative number.)
-void Ship::AddOutfit(const Outfit *outfit, int count, int age)
+void Ship::AddOutfit(const Outfit *outfit, int count, int wear)
 {
-	TransferOutfit(outfit, -count, nullptr, true, age);
+	TransferOutfit(outfit, -count, nullptr, true, wear);
 }
 
 
@@ -2256,10 +2256,10 @@ void Ship::IncrementDate(int days)
 	// Ships don't depreciate while parked.
 	if (IsParked())
 		return;
-	// Increment the age of the base ship and each outfit.
-	age += days;
+	// Increment the wear of the base ship and each outfit.
+	wear += days;
 	outfits.IncrementDate(days);
-	// Outfits in cargo don't age.
+	// Outfits in cargo don't wear.
 	UpdateCost();
 }
 

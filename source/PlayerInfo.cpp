@@ -157,16 +157,16 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				int age = (grand.Size() >= 3) ? grand.Value(2) : OutfitGroup::UsedWear();
-				soldOutfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, age);
+				int wear = (grand.Size() >= 3) ? grand.Value(2) : OutfitGroup::UsedWear();
+				soldOutfits.AddOutfit(GameData::Outfits().Get(grand.Token(0)), count, wear);
 			}
 		}
 		else if (child.Token(0) == "used ships")
 		{
 			for(const DataNode &grand : child)
 			{
-				int age = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
-				usedShips[GameData::Ships().Get(grand.Token(0))] = age;
+				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
+				usedShips[GameData::Ships().Get(grand.Token(0))] = wear;
 			}
 		}
 		else if(child.Token(0) == "conditions")
@@ -473,7 +473,7 @@ void PlayerInfo::IncrementDate()
 	int64_t assets = 0;
 	for(const shared_ptr<Ship> &ship : ships) 
 	{
-		// Increment the age of the ship and its outfits.
+		// Increment the wear of the ship and its outfits.
 		ship->IncrementDate();
 		// Add the ship's value and the value of any cargo to net worth.
 		assets += ship->Cost() + ship->Cargo().Value(system);
@@ -623,11 +623,11 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 
 
 // Buy a ship of the given model, and give it the given name.
-void PlayerInfo::BuyShip(const Ship *model, const string &name, int age)
+void PlayerInfo::BuyShip(const Ship *model, const string &name, int wear)
 {
 	if(model && accounts.Credits() >= model->Cost())
 	{
-		auto newShip = Ship::MakeShip(*model, age);
+		auto newShip = Ship::MakeShip(*model, wear);
 		ships.push_back(shared_ptr<Ship>(newShip));
 		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
@@ -1520,7 +1520,7 @@ void PlayerInfo::SelectNext()
 	if(!flagship || flagship->Outfits().Empty())
 		return;
 	
-	// TODO: Need to group weapons by type, not type/age.
+	// TODO: Need to group weapons by type, not type/wear.
 	
 	// Start with the currently selected weapon, if any.
 	auto it = flagship->Outfits().find(selectedWeapon);

@@ -76,10 +76,10 @@ bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 	auto it = available.find(ship);
 	if (it != available.end())
 	{
-		int age = it->second;
+		int wear = it->second;
 		Font saleFont = FontSet::Get(18);
 		const Color &bright = *GameData::Colors().Get("bright");
-		std::string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(age))+" OFF!]";
+		std::string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(wear))+" OFF!]";
 		Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 );
 		saleFont.Draw(saleLabel, pos, bright);
 	}
@@ -270,17 +270,17 @@ void ShipyardPanel::BuyShip(const string &name)
 	
 	for(int i = 1; i <= modifier; ++i)
 	{
-		int age = 0;
+		int wear = 0;
 		auto it = available.find(selectedShip);
 		if (it != available.end())
 		{
-			age = available.find(selectedShip)->second;
+			wear = available.find(selectedShip)->second;
 			available.erase(it);			
 		}
 		if(modifier > 1)
-			player.BuyShip(selectedShip, shipName + to_string(i), age);
+			player.BuyShip(selectedShip, shipName + to_string(i), wear);
 		else
-			player.BuyShip(selectedShip, shipName, age);
+			player.BuyShip(selectedShip, shipName, wear);
 	}
 	
 	playerShip = &*player.Ships().back();

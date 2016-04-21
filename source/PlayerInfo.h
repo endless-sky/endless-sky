@@ -119,7 +119,7 @@ public:
 	// Add a captured ship to your fleet.
 	void AddShip(std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
-	void BuyShip(const Ship *model, const std::string &name, int age);
+	void BuyShip(const Ship *model, const std::string &name, int wear);
 	void SellShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);

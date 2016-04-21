@@ -30,10 +30,10 @@ class OutfitGroup;
 
 // Class representing a group of outfits that is installed in a ship 
 // or available in a shop. It encapsulates and manages a map of sets which 
-// represents not only which outfits are in the group and the age of each 
+// represents not only which outfits are in the group and the wear of each 
 // outfit in the group for purpose of depreciation. 
 // The Map is keyed by pointer to the outfit in question and the list 
-// contains the number of outfits of each age, sorted by age, so that 
+// contains the number of outfits of each wear, sorted by wear, so that 
 // it is easy to buy lowest price first or sell highest price first.  
 // Replaces std::map<const Outfit *, int> in many places.
 class OutfitGroup {
@@ -42,9 +42,9 @@ private:
 	typedef std::map<const Outfit*, InnerMap> OuterMap;
 	
 public:
-	static int64_t CostFunction(const Outfit *outfit, int age);
-	static double CostFunction(int age);
-	static double CostFunction(int age, double minValue, double maxValue, double lossPerDay);
+	static int64_t CostFunction(const Outfit *outfit, int wear);
+	static double CostFunction(int wear);
+	static double CostFunction(int wear, double minValue, double maxValue, double lossPerDay);
 	static int UsedWear();
 	static int PlunderWear();
 	static int GetRandomWear(double minDeprecationPercent, double maxDeprecationPercent,double minValue, double maxValue, double lossPerDay);
@@ -71,7 +71,7 @@ public:
 	int64_t GetCost(const Outfit* outfit, int count, bool mostWornFirst) const;
 	
 	// Add outfits.
-	int AddOutfit(const Outfit* outfit, int count, int age);
+	int AddOutfit(const Outfit* outfit, int count, int wear);
 	
 	// Remove outfits, either oldest first or newest first. Return number removed.
 	int RemoveOutfit(const Outfit* outfit, int count, bool mostWornFirst, OutfitGroup* to = nullptr);
@@ -118,7 +118,7 @@ public:
 	
 	
 private:
-	// Map of outfit to map of ages to outfits of that type of that age.
+	// Map of outfit to map of ages to outfits of that type of that wear.
 	OuterMap outfits;
 
 };

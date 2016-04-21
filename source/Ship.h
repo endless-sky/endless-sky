@@ -48,8 +48,8 @@ class Ship : public std::enable_shared_from_this<Ship> {
 public:
 	// These are all the possible category strings for ships.
 	static const std::vector<std::string> CATEGORIES;	
-	// A constructor that sets the initial age.
-	static Ship* MakeShip(const Ship& ship, int age);
+	// A constructor that sets the initial wear.
+	static Ship* MakeShip(const Ship& ship, int wear);
 	
 	class Bay {
 	public:
@@ -270,7 +270,7 @@ public:
 	int OutfitCount(const Outfit *outfit) const;
 
 	// Add or remove outfits. (To add, pass a negative number.)
-	void AddOutfit(const Outfit *outfit, int count, int age);
+	void AddOutfit(const Outfit *outfit, int count, int wear);
 	void TransferOutfit(const Outfit *outfit, int count, OutfitGroup *to, bool removeMostWornFirst, int wearToAdd);
 	void TransferOutfitToShip(const Outfit *outfit, int count, Ship &to, bool removeMostWornFirst, int wearToAdd);
 	void TransferOutfitToCargo(const Outfit *outfit, int count, CargoHold &to, bool removeMostWornFirst, int wearToAdd);
@@ -308,7 +308,7 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<const Ship>> &GetEscorts() const;
 	
-	// Increment the age of this ship and its outfits for the purpose 
+	// Increment the wear of this ship and its outfits for the purpose 
 	// of used parts value calculations. 
 	void IncrementDate(int days = 1);
 	
@@ -374,7 +374,7 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	OutfitGroup outfits;
 	CargoHold cargo;
-	int age;
+	int wear;
 	
 	// Base cost used for AI strength estimate. Stored for fast access.
 	int64_t baseCost;

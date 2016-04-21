@@ -59,8 +59,8 @@ void CargoHold::Load(const DataNode &node)
 			{
 				const Outfit *outfit = GameData::Outfits().Get(grand.Token(0));
 				int count = (grand.Size() < 2) ? 1 : grand.Value(1);
-				int age = (grand.Size() < 3) ? 0 : grand.Value(2);
-				outfits.AddOutfit(outfit, count, age);
+				int wear = (grand.Size() < 3) ? 0 : grand.Value(2);
+				outfits.AddOutfit(outfit, count, wear);
 			}
 		}
 	}

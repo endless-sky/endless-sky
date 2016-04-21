@@ -142,7 +142,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 	const Outfit &attributes = ship.Attributes();
 	
 	attributeLabels.push_back("cost new:");
-	attributeValues.push_back(Format::Number(ship.BaseCost()));// + "(" + Format::Percent(OutfitGroup::CostFunction()) + ")" );
+	attributeValues.push_back(Format::Number(ship.BaseCost()));
 	attributesHeight += 20;
 		
 	if (ship.Cost() != ship.BaseCost())
@@ -361,7 +361,18 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleHeight = 20;
 	int totalValue = ship.Attributes().Cost();
 	
-	saleLabels.push_back("This ship will sell for:");
+	saleLabels.push_back("cost new:");
+	saleValues.push_back(Format::Number(ship.BaseCost()));
+	saleHeight += 20;
+		
+	if (ship.Cost() != ship.BaseCost())
+	{
+		saleLabels.push_back("sell price:");
+		saleValues.push_back(Format::Number(ship.Cost()));
+		saleHeight += 20;
+	}
+	
+	saleLabels.push_back("Sell Price Breakdown:");
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");

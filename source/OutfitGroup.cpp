@@ -33,29 +33,29 @@ namespace {
 //
 // Static Functions:
 //
-int64_t OutfitGroup::CostFunction(const Outfit *outfit, int age)
+int64_t OutfitGroup::CostFunction(const Outfit *outfit, int wear)
 {
 	if (outfit->Get("ageless") || outfit->Category() == "Ammunition")
-		age = 0;
-	return static_cast<int64_t>(outfit->Cost() * CostFunction(age));
+		wear = 0;
+	return static_cast<int64_t>(outfit->Cost() * CostFunction(wear));
 }
 
 
 
-double OutfitGroup::CostFunction(int age)
+double OutfitGroup::CostFunction(int wear)
 {
-	return CostFunction(age, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
+	return CostFunction(wear, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 
 
-// The cost function returns base-cost for age = 0 and scales value from 
-// (base-cost * maxValue) to (base-cost * minValue) for age > 0.
-double OutfitGroup::CostFunction(int age, double minValue, double maxValue, double lossPerDay)
+// The cost function returns base-cost for wear = 0 and scales value from 
+// (base-cost * maxValue) to (base-cost * minValue) for wear > 0.
+double OutfitGroup::CostFunction(int wear, double minValue, double maxValue, double lossPerDay)
 {
-	if (age == 0)
+	if (wear == 0)
 		return 1.;
-	return std::max(minValue, maxValue - (lossPerDay * (age - 1)));
+	return std::max(minValue, maxValue - (lossPerDay * (wear - 1)));
 }
 
 
@@ -215,24 +215,24 @@ int64_t OutfitGroup::GetCost(const Outfit* outfit, int count, bool mostWornFirst
 
 
 
-// Can be used to remove outfits, but will only remove outfits of the specified age.
-int OutfitGroup::AddOutfit(const Outfit* outfit, int count, int age)
+// Can be used to remove outfits, but will only remove outfits of the specified wear.
+int OutfitGroup::AddOutfit(const Outfit* outfit, int count, int wear)
 {
 	auto oit = outfits.find(outfit);
 	if(oit == outfits.end()) 
 	{
 		outfits[outfit] = InnerMap();
-		outfits[outfit][age] = count;
+		outfits[outfit][wear] = count;
 	}
 	else
 	{
-		auto iit = oit->second.find(age);
+		auto iit = oit->second.find(wear);
 		if (iit == oit->second.end())
-			oit->second[age] = count;
+			oit->second[wear] = count;
 		else 
 		{
-			oit->second[age] += count;
-			if(!oit->second[age])
+			oit->second[wear] += count;
+			if(!oit->second[wear])
 				oit->second.erase(iit);
 		}
 		if (oit->second.empty())
@@ -258,13 +258,13 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool mostWornFirs
 		std::vector<InnerMap::iterator> toErase;
 		do {
 			--iit;
-			int age = iit->first;
+			int wear = iit->first;
 			int toRemove = std::min(iit->second, count - removed);
 			removed += toRemove;
-			oit->second[age] -= toRemove;
+			oit->second[wear] -= toRemove;
 			if (to)
-				to->AddOutfit(outfit, toRemove, age);
-			if (!oit->second[age]) 
+				to->AddOutfit(outfit, toRemove, wear);
+			if (!oit->second[wear]) 
 			{	
 				toErase.push_back(iit);
 			}
@@ -278,13 +278,13 @@ int OutfitGroup::RemoveOutfit(const Outfit* outfit, int count, bool mostWornFirs
 		auto iit = oit->second.begin();
 		while(count > removed && iit != oit->second.end()) 
 		{
-			int age = iit->first;
+			int wear = iit->first;
 			int toRemove = std::min(iit->second, count - removed);
 			removed += toRemove;
-			oit->second[age] -= toRemove;
+			oit->second[wear] -= toRemove;
 			if (to)
-				to->AddOutfit(outfit, toRemove, age);
-			if (!oit->second[age])
+				to->AddOutfit(outfit, toRemove, wear);
+			if (!oit->second[wear])
 				oit->second.erase(iit++); // erase current and iterate.
 			else 
 				++iit; // just iterate.
@@ -332,7 +332,7 @@ void OutfitGroup::IncrementDate(int days)
 		temp.insert(oit.second.begin(), oit.second.end());
 		// clear
 		outfits[oit.first].clear();
-		// re-insert with incremented age keys
+		// re-insert with incremented wear keys
 		for (auto iit : temp)
 			outfits[oit.first][iit.first + days] = iit.second;
 	}

@@ -29,7 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
-	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, int age, UI *ui)
+	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, int wear, UI *ui)
 	{
 		Ship *flagship = player.Flagship();
 		string name = outfit->Name();
@@ -66,7 +66,7 @@ namespace {
 			int moved = (count > 0) ? 1 : -1;
 			if(flagship->Attributes().CanAdd(*outfit, moved))
 			{
-				flagship->AddOutfit(outfit, moved, age);
+				flagship->AddOutfit(outfit, moved, wear);
 				didShip = true;
 			}
 			else
@@ -135,8 +135,8 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(child.Token(0) == "outfit" && child.Size() >= 2)
 		{
 			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			int age = (child.Size() < 4 ? 0 : static_cast<int>(child.Value(3)));
-			gifts.AddOutfit(GameData::Outfits().Get(child.Token(1)), count, age); 
+			int wear = (child.Size() < 4 ? 0 : static_cast<int>(child.Value(3)));
+			gifts.AddOutfit(GameData::Outfits().Get(child.Token(1)), count, wear); 
 		}
 		else if(child.Token(0) == "require" && child.Size() >= 2)
 			// Saves a "requirement" as a "gift of zero". 
