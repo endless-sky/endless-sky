@@ -24,7 +24,7 @@ mission "FW Conservatory 1"
 			branch "met andersons"
 				has "FW Katya 1: done"
 
-			`When you meet Ijs in the spaceport, he has a couple, which he introduces as Lynn and Henry Anderson, with him. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
+			`When you meet Ijs in the spaceport, he has a man and a woman with him which he introduces as Lynn and Henry Anderson. Ijs is beaming - his meeting must have gone really well. "Guess what, Captain?" he says. "We've got a location for the Conservatory! The government of Winter has offered a community center for our use."`
 				goto continue
 
  			label "met andersons"
