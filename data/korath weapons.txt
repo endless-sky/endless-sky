@@ -434,3 +434,39 @@ effect "minelayer split"
 	"random spin" 5
 	"random velocity" 2.5
 	"velocity scale" .8
+
+
+outfit "Korath Disruptor"
+	category "Turrets"
+	cost 570000
+	thumbnail "outfit/unknown"
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/disruptor"
+			"frame rate" 15
+		sound "banisher"
+		"hit effect" "disruptor impact"
+		"inaccuracy" 1
+		"velocity" 480
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 6.7
+		"firing heat" 2.7
+		"shield damage" 4.3
+		"hull damage" .5
+		"disruption damage" .24
+	description "Korath Disruptors interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
+
+effect "disruptor impact"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 13
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 5
+	"velocity scale" -.004
