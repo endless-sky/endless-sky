@@ -255,7 +255,7 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	for(const Ship *ship : playerShips)
 	{
 		int shipMinWear = ship->Outfits().GetMinWear(selectedOutfit);
-		if (minSellWear <= 0)
+		if (minSellWear < 0)
 			minSellWear = shipMinWear;
 		else if (shipMinWear >= 0)
 			minSellWear = min(minSellWear, shipMinWear);
