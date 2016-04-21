@@ -44,7 +44,7 @@ effect "sunbeam impact"
 	"velocity scale" -.0001
 
 outfit "Sunbeam Turret"
-	category "Guns"
+	category "Turrets"
 	cost 3260000
 	thumbnail "outfit/sunbeam turret"
 	"mass" 46
@@ -70,7 +70,7 @@ outfit "Sunbeam Turret"
 	description "As the Wanderers slowly cope with the transition from peacetime to the growing conflict with the Unfettered Hai, they have begun building ships that are capable of carrying turret-mounted weapons. Because of the sheer size of the Sunbeam, this turret only carries one of them."
 
 outfit "Dual Sunbeam Turret"
-	category "Guns"
+	category "Turrets"
 	cost 5170000
 	thumbnail "outfit/dual sunbeam turret"
 	"mass" 83

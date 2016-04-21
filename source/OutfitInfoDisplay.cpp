@@ -315,7 +315,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.AntiMissile())
 	};
 	static const int NAMES = sizeof(names) / sizeof(names[0]);
-	for(int i = (isContinuous ? 7 : 0); i < NAMES; ++i)
+	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
 		if(values[i])
 		{
 			attributeLabels.push_back(names[i]);

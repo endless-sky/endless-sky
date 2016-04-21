@@ -584,6 +584,90 @@ ship "Tek Far 109"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
+ship "Met Par Tek 53"
+	sprite "ship/met par tek 53"
+	attributes
+		category "Light Warship"
+		"cost" 14480000
+		"shields" 15100
+		"hull" 22200
+		"automaton" 1
+		"mass" 420
+		"drag" 5.7
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 26
+		"outfit space" 610
+		"weapon capacity" 213
+		"engine capacity" 110
+		"self destruct" .65
+		weapon
+			"blast radius" 250
+			"shield damage" 3200
+			"hull damage" 1600
+			"hit force" 4800
+	outfits
+		"Korath Repeater" 3
+		"Korath Repeater Turret" 6
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 3
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		Hyperdrive
+	
+	engine -24 132
+	engine 24 132
+	gun 0 -92 "Korath Repeater"
+	gun -10 -65 "Korath Repeater"
+	gun 10 -65 "Korath Repeater"
+	turret -36 -45 "Korath Repeater Turret"
+	turret 36 -45 "Korath Repeater Turret"
+	turret -38 -28 "Korath Repeater Turret"
+	turret 38 -28 "Korath Repeater Turret"
+	turret -40 -8 "Korath Repeater Turret"
+	turret 40 -8 "Korath Repeater Turret"
+	
+	explode "tiny explosion" 60
+	explode "small explosion" 30
+	explode "medium explosion" 35
+	explode "big explosion" 20
+	explode "huge explosion" 6
+	description "Although this is the smallest Kor Sestor ship other than their fighters, it is larger than most human capital ships and considerably more powerful."
+
+ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
+	outfits
+		"Korath Detainer"
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Korath Grab-Strike"
+		"Korath Warder"
+		
+		"Double Plasma Core"
+		"Generator (Inferno Class)"
+		"Generator (Candle Class)"
+		"Systems Core (Medium)"
+		"Large Heat Shunt"
+		
+		"Thruster (Lunar Class)"
+		"Steering (Planetary Class)"
+		"Steering (Comet Class)"
+		Hyperdrive
+	
+	gun "Korath Detainer"
+	gun "Korath Piercer Launcher"
+	gun "Korath Piercer Launcher"
+	turret "Korath Grab-Strike"
+	turret "Korath Warder"
+	turret
+	turret
+	turret
+	turret
+
+
 ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	attributes
