@@ -171,6 +171,16 @@ fleet "Small Kor Sestor"
 	names "korath"
 	personality
 		heroic
+	variant 5
+		"Met Par Tek 53" 3
+	variant 5
+		"Met Par Tek 53" 2
+		"Met Par Tek 53 (Sniper)"
+	variant 5
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)" 2
+	variant 5
+		"Met Par Tek 53 (Sniper)" 3
 	variant 8
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 10
@@ -223,34 +233,44 @@ fleet "Large Kor Sestor"
 		"Kar Ik Vot 349"
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 10
+		"Met Par Tek 53" 2
 	variant 4
 		"Kar Ik Vot 349 (Defense)"
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 8
+		"Met Par Tek 53 (Sniper)" 2
 	variant 4
 		"Kar Ik Vot 349 (Offense)"
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 9
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349 (Trapper)"
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 7
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)"
 	variant 8
 		"Kar Ik Vot 349"
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 9
+		"Met Par Tek 53"
 	variant 4
 		"Kar Ik Vot 349 (Defense)"
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 7
+		"Met Par Tek 53"
 	variant 4
 		"Kar Ik Vot 349 (Offense)"
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 8
+		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349 (Trapper)"
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 6
+		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349"
 		"Tek Far 71 - Lek"
@@ -283,6 +303,20 @@ fleet "Large Kor Sestor"
 		"Kar Ik Vot 349 (Offense)"
 	variant 1
 		"Kar Ik Vot 349 (Trapper)"
+	variant 2
+		"Kar Ik Vot 349"
+		"Met Par Tek 53" 3
+	variant 1
+		"Kar Ik Vot 349 (Defense)"
+		"Met Par Tek 53" 2
+		"Met Par Tek 53 (Sniper)"
+	variant 1
+		"Kar Ik Vot 349 (Offense)"
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)" 2
+	variant 1
+		"Kar Ik Vot 349 (Trapper)"
+		"Met Par Tek 53 (Sniper)" 3
 
 
 outfitter "Korath Basics"
