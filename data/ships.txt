@@ -270,7 +270,7 @@ ship "Barb" "Barb (Proton)"
 		"shields" 800
 		"hull" 200
 		"required crew" 1
-		"bunks" 2
+		"bunks" 1
 		"mass" 20
 		"drag" .8
 		"heat dissipation" .78
