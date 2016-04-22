@@ -47,7 +47,7 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->IsInhabited()
+		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship)
 			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
@@ -270,6 +270,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					hasEnemy = true;
 					break;
 				}
+				if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
+					continue;
 				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
 					continue;
 				
@@ -790,7 +792,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->IsInhabited())
+	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
 		Refuel(ship, command);
 	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
@@ -811,7 +813,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		else
 		{
 			ship.SetTargetSystem(to);
-			if(!to || (from->IsInhabited() && !to->IsInhabited() && ship.JumpsRemaining() == 1))
+			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
 				Refuel(ship, command);
 			else
 			{
@@ -834,7 +836,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
-		if(!dest || (ship.GetSystem()->IsInhabited() && !dest->IsInhabited() && ship.JumpsRemaining() == 1))
+		if(!dest || (ship.GetSystem()->HasFuelFor(ship) && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
 			Refuel(ship, command);
 		else
 		{

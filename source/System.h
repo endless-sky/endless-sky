@@ -26,6 +26,7 @@ class Date;
 class Fleet;
 class Government;
 class Planet;
+class Ship;
 
 
 
@@ -97,6 +98,8 @@ public:
 	double HabitableZone() const;
 	// Check if this system is inhabited.
 	bool IsInhabited() const;
+	// Check if ships of the given government can refuel in this system.
+	bool HasFuelFor(const Ship &ship) const;
 	// Check whether you can buy or sell ships in this system.
 	bool HasShipyard() const;
 	// Check whether you can buy or sell ship outfits in this system.
