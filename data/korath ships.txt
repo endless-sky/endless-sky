@@ -198,8 +198,8 @@ ship "Kar Ik Vot 349"
 		"heat dissipation" .5
 		"fuel capacity" 400
 		"cargo space" 87
-		"outfit space" 1154
-		"weapon capacity" 547
+		"outfit space" 1054
+		"weapon capacity" 447
 		"engine capacity" 173
 		"self destruct" .8
 		weapon
@@ -209,9 +209,9 @@ ship "Kar Ik Vot 349"
 			"hit force" 9600
 	outfits
 		"Korath Detainer" 2
-		"Korath Piercer Launcher" 4
-		"Korath Piercer" 124
-		"Korath Warder" 4
+		"Korath Piercer Launcher" 2
+		"Korath Piercer" 62
+		"Korath Warder" 2
 		"Korath Repeater Turret" 6
 		
 		"Triple Plasma Core"
@@ -224,24 +224,20 @@ ship "Kar Ik Vot 349"
 		"Steering (Stellar Class)"
 		Hyperdrive
 	
-	engine -33 316
-	engine 33 316
-	gun -11 -284 "Korath Detainer"
-	gun 11 -284 "Korath Detainer"
-	gun -22 -212 "Korath Piercer Launcher"
-	gun -22 -212 "Korath Piercer Launcher"
-	gun 22 -212 "Korath Piercer Launcher"
-	gun 22 -212 "Korath Piercer Launcher"
-	turret -49 -199 "Korath Repeater Turret"
-	turret 49 -199 "Korath Repeater Turret"
-	turret -51 -176 "Korath Repeater Turret"
-	turret 51 -176 "Korath Repeater Turret"
-	turret -53 -149 "Korath Repeater Turret"
-	turret 53 -149 "Korath Repeater Turret"
-	turret -55 -120 "Korath Warder"
-	turret 55 -120 "Korath Warder"
-	turret -136 250 "Korath Warder"
-	turret 136 250 "Korath Warder"
+	engine -24 237
+	engine 24 237
+	gun -8 -212 "Korath Detainer"
+	gun 8 -212 "Korath Detainer"
+	gun -16 -158 "Korath Piercer Launcher"
+	gun 16 -158 "Korath Piercer Launcher"
+	turret -37 -150 "Korath Repeater Turret"
+	turret 37 -150 "Korath Repeater Turret"
+	turret -38 -132 "Korath Repeater Turret"
+	turret 38 -132 "Korath Repeater Turret"
+	turret -40 -111 "Korath Repeater Turret"
+	turret 40 -111 "Korath Repeater Turret"
+	turret -102 188 "Korath Warder"
+	turret 102 188 "Korath Warder"
 	explode "tiny explosion" 120
 	explode "small explosion" 60
 	explode "medium explosion" 70
@@ -251,22 +247,23 @@ ship "Kar Ik Vot 349"
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 	outfits
-		"Korath Piercer Launcher" 6
-		"Korath Piercer" 186
-		"Korath Repeater Turret" 8
+		"Korath Piercer Launcher" 4
+		"Korath Piercer" 124
+		"Korath Repeater Turret" 6
 		"Korath Grab-Strike" 2
 		
 		"Triple Plasma Core"
 		"Plasma Core"
 		"Systems Core (Large)"
-		"Large Heat Shunt" 6
+		"Systems Core (Medium)"
+		"Large Heat Shunt" 5
+		"Mass Expansion"
 		
 		"Thruster (Planetary Class)"
+		"Thruster (Asteroid Class)"
 		"Steering (Stellar Class)"
 		Hyperdrive
 	
-	turret "Korath Repeater Turret"
-	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
 	turret "Korath Repeater Turret"
@@ -278,10 +275,10 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 	outfits
-		"Korath Piercer Launcher" 5
-		"Korath Piercer" 155
-		"Korath Warder" 4
-		"Korath Grab-Strike" 4
+		"Korath Piercer Launcher" 4
+		"Korath Piercer" 124
+		"Korath Warder" 3
+		"Korath Grab-Strike" 3
 		"Korath Banisher" 2
 		
 		"Triple Plasma Core"
@@ -296,8 +293,6 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 		Hyperdrive
 	
 	turret "Korath Warder"
-	turret "Korath Warder"
-	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
@@ -309,7 +304,7 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Defense)"
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	outfits
 		"Korath Detainer" 2
-		"Korath Grab-Strike" 6
+		"Korath Grab-Strike" 4
 		"Korath Banisher" 2
 		
 		"Triple Plasma Core"
@@ -328,10 +323,6 @@ ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Trapper)"
 	gun "Korath Detainer"
 	gun
 	gun
-	gun
-	gun
-	turret "Korath Grab-Strike"
-	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
 	turret "Korath Grab-Strike"
