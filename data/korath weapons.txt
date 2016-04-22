@@ -312,7 +312,7 @@ outfit "Korath Detainer"
 		"reload" 60
 		"burst reload" 10
 		"burst count" 2
-		"firing energy" 800
+		"firing energy" 630
 		"firing force" 40
 		"firing heat" 400
 		"hit force" 80
