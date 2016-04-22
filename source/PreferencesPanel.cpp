@@ -48,6 +48,7 @@ namespace {
 		"Automatic aiming",
 		"",
 		"Show status overlays",
+		"Outfit price labels"
 	};
 }
 

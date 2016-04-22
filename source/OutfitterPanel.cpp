@@ -45,7 +45,6 @@ namespace {
 	{
 		return to_string(tons) + (tons == 1 ? " ton" : " tons");
 	}
-	const static bool ENABLE_BUY_PRICE_LABEL = false;
 }
 
 
@@ -140,11 +139,15 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	
 	// Draw buy price or "not sold" label.
 	string buyLabel = "";
+	bool enableBuyPriceLabel = Preferences::Has("Outfit price labels");
 	if (available.GetTotalCount(outfit))
 	{
 		int64_t cost = available.GetCost(outfit, 1, true);
-		if (ENABLE_BUY_PRICE_LABEL)
-			buyLabel =  + "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(cost);
+		if (enableBuyPriceLabel)
+			buyLabel = "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(cost);
+		else if (!outfitter.Has(outfit))
+			buyLabel = "in stock: " + to_string(available.GetTotalCount(outfit));
+			
 		if (95 * outfit->Cost() >= 100 * cost)
 		{
 			Font saleFont = FontSet::Get(18);
@@ -155,12 +158,12 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	}
 	else if (outfitter.Has(outfit))
 	{
-		if (ENABLE_BUY_PRICE_LABEL)
+		if (enableBuyPriceLabel)
 			buyLabel = "buy new: " + Format::Number(outfit->Cost());
 	}
 	else
 		buyLabel = "(not sold here)";
-	Point pos = point + Point(ENABLE_BUY_PRICE_LABEL ? leftJustify : rightJustify - font.Width(buyLabel) , bottomOffset);
+	Point pos = point + Point(enableBuyPriceLabel ? leftJustify : rightJustify - font.Width(buyLabel) , bottomOffset);
 	font.Draw(buyLabel, pos, bright);
 	bottomOffset -= fontSize; // Subtract font size to move up.
 	
@@ -171,7 +174,8 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 		int maxCount = 0;
 		int64_t minPrice = 0;
 		int64_t maxPrice = 0;
-
+		int inCargoCount = player.Cargo().GetOutfitCount(outfit);
+		
 		if(isLicense)
 			minCount = maxCount = player.GetCondition(LicenseName(name));
 		else if(mapSize)
@@ -181,11 +185,18 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			for(const Ship *ship : playerShips)
 			{
 				int count = ship->OutfitCount(outfit);
-				int64_t highprice = ship->Outfits().GetCost(outfit, 1, false);
 				int64_t lowprice = ship->Outfits().GetCost(outfit, 1, true);
+				int64_t highprice = ship->Outfits().GetCost(outfit, 1, false);
 				
 				minCount = min(minCount, count);
 				maxCount = max(maxCount, count);
+				minPrice = minPrice > 0 ? min(minPrice, lowprice) : lowprice;
+				maxPrice = max(maxPrice, highprice);
+			}
+			if(inCargoCount)
+			{
+				int64_t highprice = player.Cargo().Outfits().GetCost(outfit, 1, false);
+				int64_t lowprice = player.Cargo().Outfits().GetCost(outfit, 1, true);
 				minPrice = minPrice > 0 ? min(minPrice, lowprice) : lowprice;
 				maxPrice = max(maxPrice, highprice);
 			}
@@ -213,14 +224,9 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			bottomOffset -= fontSize; // Subtract font size to move up.
 		}
 		
-		if(player.Cargo().GetOutfitCount(outfit))
+		if(inCargoCount)
 		{
-			int64_t highprice = player.Cargo().Outfits().GetCost(outfit, 1, false);
-			int64_t lowprice = player.Cargo().Outfits().GetCost(outfit, 1, true);
-			minPrice = minPrice > 0 ? min(minPrice, lowprice) : lowprice;
-			maxPrice = max(maxPrice, highprice);
-			
-			string label =  "in cargo: " + to_string(player.Cargo().GetOutfitCount(outfit));
+			string label =  "in cargo: " + to_string(inCargoCount);
 			Point pos = point + Point(leftJustify, bottomOffset);
 			font.Draw(label, pos, bright);
 			bottomOffset -= fontSize; // Subtract font size to move up.
