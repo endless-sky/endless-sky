@@ -311,7 +311,7 @@ public:
 	
 	// Increment the wear of this ship and its outfits for the purpose 
 	// of used parts value calculations. 
-	void IncrementDate(int days = 1);
+	void IncrementWear(int days = 1);
 	
 private:
 	// Update attributes, cargo space, hull after adding or removing an outfit. 

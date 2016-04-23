@@ -23,9 +23,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 namespace {
-	static const double DEFAULT_MIN_PRICE = 0.50;
-	static const double DEFAULT_MAX_PRICE = 0.95;
-	static const double DEFAULT_DEPRECIATION_RATE = 0.0025;
+	static const double DEFAULT_MIN_PRICE = 0.40;
+	static const double DEFAULT_MAX_PRICE = 0.90;
+	static const double DEFAULT_DEPRECIATION_RATE = 0.0020;
 }
 
 
@@ -68,7 +68,7 @@ int OutfitGroup::UsedWear()
 
 
 
-// Returns a random between 80% and 100% depreciated.
+// Returns a random between 70% and 100% depreciated.
 int OutfitGroup::PlunderWear()
 {
 	return GetRandomWear(0.8, 1.0, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
@@ -165,7 +165,6 @@ int OutfitGroup::GetMinWear(const Outfit* outfit) const
 	if (!matchingOutfits || matchingOutfits->empty())
 		return -1;
 	return matchingOutfits->begin()->first;
-
 }
 
 
@@ -323,7 +322,7 @@ int OutfitGroup::TransferOutfits(const Outfit *outfit, int count, OutfitGroup* t
 
 
 // Go through the whole group and increment all the ages. 
-void OutfitGroup::IncrementDate(int days)
+void OutfitGroup::IncrementWear(int value)
 {
 	for (auto oit : outfits)
 	{
@@ -334,7 +333,7 @@ void OutfitGroup::IncrementDate(int days)
 		outfits[oit.first].clear();
 		// re-insert with incremented wear keys
 		for (auto iit : temp)
-			outfits[oit.first][iit.first + days] = iit.second;
+			outfits[oit.first][iit.first + value] = iit.second;
 	}
 }
 

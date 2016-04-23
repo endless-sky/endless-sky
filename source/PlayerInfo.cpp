@@ -41,6 +41,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 
+namespace {
+	static const int WEAR_PER_DAY_OF_USE = 1;
+	static const int WEAR_WHEN_DISABLED = 16;
+}
+
 
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
@@ -475,7 +480,7 @@ void PlayerInfo::IncrementDate()
 	for(const shared_ptr<Ship> &ship : ships) 
 	{
 		// Increment the wear of the ship and its outfits.
-		ship->IncrementDate();
+		ship->IncrementWear(WEAR_PER_DAY_OF_USE);
 		// Add the ship's value and the value of any cargo to net worth.
 		assets += ship->Cost() + ship->Cargo().Value(system);
 	}
@@ -1329,13 +1334,18 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 // Update mission status based on an event.
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
-	// Combat rating increases when you disable an enemy ship.
-	if(event.ActorGovernment()->IsPlayer())
-		if((event.Type() & ShipEvent::DISABLE) && event.Target())
+	if((event.Type() & ShipEvent::DISABLE) && event.Target())
+	{
+		// Combat rating increases when you disable an enemy ship.
+		if(event.ActorGovernment()->IsPlayer())
 			conditions["combat rating"] += event.Target()->RequiredCrew();
-	
+		// If a ship is disabled, it takes some wear.  
+		event.Target()->IncrementWear(WEAR_WHEN_DISABLED);
+	}
+	// Missions have a chance to respond to events.
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
+	
 	
 	// If the player's flagship was destroyed, the player is dead.
 	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())

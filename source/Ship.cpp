@@ -55,7 +55,7 @@ namespace {
 Ship* Ship::MakeShip(const Ship &ship, int wear)
 {
 	Ship* newShip = new Ship(ship);
-	newShip->IncrementDate(wear);
+	newShip->IncrementWear(wear);
 	return newShip;
 }
 
@@ -2267,14 +2267,14 @@ const vector<weak_ptr<const Ship>> &Ship::GetEscorts() const
 
 
 
-void Ship::IncrementDate(int days)
+void Ship::IncrementWear(int value)
 {
 	// Ships don't depreciate while parked.
 	if (IsParked())
 		return;
 	// Increment the wear of the base ship and each outfit.
-	wear += days;
-	outfits.IncrementDate(days);
+	wear += value;
+	outfits.IncrementWear(value);
 	// Outfits in cargo don't wear.
 	UpdateCost();
 }

@@ -78,7 +78,7 @@ public:
 	
 	int TransferOutfits(const Outfit *outfit, int count, OutfitGroup* to, bool mostWornFirst, int defaultWear = 0);
 	
-	void IncrementDate(int days = 1);
+	void IncrementWear(int value = 1);
 	
 	// Iterator used to let OutfitGroup be used in for loops just like 
 	// it was a map<const Outfit *, int>.  
