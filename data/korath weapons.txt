@@ -29,7 +29,7 @@ outfit "Korath Grab-Strike"
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
-		"firing energy" 50
+		"firing energy" 60
 		"firing heat" 150
 		"acceleration" 1
 		"drag" .1
@@ -67,7 +67,7 @@ outfit "Korath Banisher"
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2.8
+		"firing energy" 3.3
 		"firing heat" 4.9
 		"shield damage" 2.8
 		"hull damage" .9
@@ -97,7 +97,7 @@ outfit "Korath Warder"
 		"velocity" 350
 		"lifetime" 1
 		"reload" 5
-		"firing energy" 20
+		"firing energy" 24
 		"firing heat" 10
 	description "This anti-missile system helps defend Korath warships from long-range attacks."
 
@@ -128,7 +128,7 @@ outfit "Korath Fire-Lance"
 		"velocity" 350
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 2.1
+		"firing energy" 2.5
 		"firing heat" 1.7
 		"shield damage" 3.5
 		"hull damage" 1.5
@@ -165,7 +165,7 @@ outfit "Korath Repeater"
 		"burst reload" 4
 		"burst count" 3
 		"cluster"
-		"firing energy" 20
+		"firing energy" 24
 		"firing heat" 128
 		"shield damage" 23
 		"hull damage" 19
@@ -204,7 +204,7 @@ outfit "Korath Repeater Turret"
 		"burst reload" 2
 		"burst count" 6
 		"cluster"
-		"firing energy" 20
+		"firing energy" 24
 		"firing heat" 128
 		"shield damage" 23
 		"hull damage" 19
@@ -244,7 +244,7 @@ outfit "Korath Piercer Launcher"
 		"velocity" 18
 		"lifetime" 200
 		"reload" 72
-		"firing energy" 24
+		"firing energy" 29
 		"firing heat" 144
 		"acceleration" .54
 		"drag" .03
@@ -312,7 +312,7 @@ outfit "Korath Detainer"
 		"reload" 60
 		"burst reload" 10
 		"burst count" 2
-		"firing energy" 630
+		"firing energy" 756
 		"firing force" 40
 		"firing heat" 400
 		"hit force" 80
@@ -384,7 +384,7 @@ outfit "Korath Minelayer"
 		"velocity" 3
 		"lifetime" 100
 		"reload" 180
-		"firing energy" 24
+		"firing energy" 36
 		"firing heat" 36
 		"acceleration" .16
 		"drag" .04
@@ -454,7 +454,7 @@ outfit "Korath Disruptor"
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 6.7
+		"firing energy" 8.0
 		"firing heat" 2.7
 		"shield damage" 4.3
 		"hull damage" .5
@@ -492,7 +492,7 @@ outfit "Korath Slicer"
 		"reload" 1.62
 		"burst reload" 1
 		"burst count" 17
-		"firing energy" 4.7
+		"firing energy" 5.6
 		"firing heat" 17.8
 		"shield damage" 6.3
 		"hull damage" 18.6
