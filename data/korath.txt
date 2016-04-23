@@ -402,9 +402,9 @@ fleet "Large Kor Mereti"
 		"Model 512"
 		"Model 32"
 		"Model 16" 2
-	variant 1
+	variant 4
 		"Model 512"
-	variant 16
+	variant 2
 		"Model 512"
 		"Model 256"
 		"Model 128"
@@ -414,37 +414,51 @@ fleet "Large Kor Mereti"
 	variant 4
 		"Model 512"
 		"Model 256" 2
-	variant 5
+	variant 3
 		"Model 512"
 		"Model 128" 2
 		"Model 64"
 		"Model 32" 2
-	variant 2
+	variant 5
 		"Model 512"
 		"Model 32" 5
 		"Model 16" 8
-	variant 3
+	variant 4
 		"Model 256"
 		"Model 128" 2
 		"Model 64" 3
 		"Model 32" 5
 		"Model 16" 8
-	variant 4
+	variant 5
 		"Model 256" 2
 		"Model 64"
 		"Model 32" 3
 		"Model 16" 2
-	variant 2
+	variant 9
 		"Model 256"
 		"Model 64" 4
-	variant 1
+	variant 3
 		"Model 256" 3
+	variant 8
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 7
+		"Model 256" 2
+		"Model 128"
+	variant 14
+		"Model 256"
+		"Model 64" 2
+	variant 5
+		"Model 128" 3
 
 
 outfitter "Korath Basics"
 	"Command Center"
 	"Small Bunk Room"
-	"Large Bunk Room"
+	"Bunk Room"
 	"Fuel Pod"
 	"Ramscoop"
 	"Mass Expansion"
