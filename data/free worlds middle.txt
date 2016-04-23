@@ -363,8 +363,10 @@ mission "FW Southern Battle 2"
 				"Bastion" 2
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)" 2
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
@@ -1730,7 +1732,13 @@ mission "FW Rand 1"
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
 		ship "Falcon (Heavy)" "F.S. Bismark"
-		ship "Osprey" "F.S. Lapwing"
+		ship "Skein" "F.S. Lapwing"
+		ship "Finch" "Bravo 8-4"
+		ship "Finch" "Bravo 0-9"
+		ship "Finch" "Bravo 6-2"
+		ship "Finch" "Bravo 3-1"
+		ship "Finch" "Bravo 1-5"
+		ship "Finch" "Bravo 9-1"
 		ship "Hawk (Rocket)" "F.S. Echo"
 		ship "Hawk" "F.S. Shadow"
 	npc
@@ -1802,8 +1810,20 @@ mission "FW Rand 1B"
 		system Tarazed
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
-		ship "Osprey" "F.S. Larkspur"
-		ship "Bastion (Heavy)" "F.S. Ironwood"
+		ship "Skein" "F.S. Larkspur"
+		ship "Finch" "Charlie 6-2"
+		ship "Finch" "Charlie 0-9"
+		ship "Finch" "Charlie 3-1"
+		ship "Finch" "Charlie 9-1"
+		ship "Finch" "Charlie 1-5"
+		ship "Finch" "Charlie 8-4"
+		ship "Skein" "F.S. Ironwood"
+		ship "Finch" "Echo 5-3"
+		ship "Finch" "Echo 4-1"
+		ship "Finch" "Echo 2-3"
+		ship "Finch" "Echo 5-8"
+		ship "Finch" "Echo 2-4"
+		ship "Finch" "Echo 6-9"
 		ship "Argosy" "F.S. Nightingale"
 
 
@@ -1931,8 +1951,20 @@ mission "FW Defend New Tibet"
 		personality heroic disables
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
-		ship "Osprey" "F.S. Larkspur"
-		ship "Bastion (Heavy)" "F.S. Ironwood"
+		ship "Skein" "F.S. Larkspur"
+		ship "Finch" "Charlie 6-2"
+		ship "Finch" "Charlie 0-9"
+		ship "Finch" "Charlie 3-1"
+		ship "Finch" "Charlie 9-1"
+		ship "Finch" "Charlie 1-5"
+		ship "Finch" "Charlie 8-4"
+		ship "Skein" "F.S. Ironwood"
+		ship "Finch" "Echo 5-3"
+		ship "Finch" "Echo 4-1"
+		ship "Finch" "Echo 2-3"
+		ship "Finch" "Echo 5-8"
+		ship "Finch" "Echo 2-4"
+		ship "Finch" "Echo 6-9"
 		ship "Argosy" "F.S. Nightingale"
 	
 	on complete
@@ -2050,8 +2082,10 @@ mission "FW Liberate Delta Sagittarii"
 				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
+			fighters "free worlds fighters"
 			variant
-				"Bastion (Heavy)" 2
+				"Skein" 2
+				"Finch" 12
 		fleet
 			names "free worlds capital"
 			variant
