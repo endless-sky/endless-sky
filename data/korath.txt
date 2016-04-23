@@ -127,6 +127,48 @@ phrase "korath"
 		"ar"
 		"far"
 
+phrase "kor sestor"
+	phrase "digit"
+	phrase "digit"
+	word
+		"-"
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
+	word
+		"."
+	phrase "digit"
+
+phrase "kor sestor fighter"
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
+	word
+		" "
+	phrase "digit"
+	word
+		"-"
+	phrase "digit"
+	phrase "digit"
+	word
+		"."
+	phrase "digit"
+
+phrase "kor mereti"
+	phrase "digit"
+	phrase "digit"
+	word
+		":"
+	phrase "digit"
+	phrase "digit"
+	word
+		":"
+	phrase "digit"
+	phrase "digit"
+	word
+		":"
+	phrase "digit"
+
 
 fleet "Korath Raid"
 	government "Korath"
@@ -153,9 +195,11 @@ fleet "Korath Home"
 	variant
 		"Korath World-Ship C"
 
+
 fleet "Kor Efret Home"
 	government "Kor Efret"
 	names "korath"
+	fighters "korath"
 	cargo 3
 	personality
 		timid
@@ -166,9 +210,11 @@ fleet "Kor Efret Home"
 	variant
 		"Korath World-Ship C"
 
+
 fleet "Small Kor Sestor"
 	government "Kor Sestor"
-	names "korath"
+	names "kor sestor"
+	fighters "kor sestor fighter"
 	personality
 		heroic
 	variant 5
@@ -226,7 +272,8 @@ fleet "Small Kor Sestor"
 
 fleet "Large Kor Sestor"
 	government "Kor Sestor"
-	names "korath"
+	names "kor sestor"
+	fighters "kor sestor fighter"
 	personality
 		heroic
 	variant 8
@@ -319,10 +366,99 @@ fleet "Large Kor Sestor"
 		"Met Par Tek 53 (Sniper)" 3
 
 
+fleet "Small Kor Mereti"
+	government "Kor Mereti"
+	names "kor mereti"
+	fighters "kor mereti"
+	personality
+		heroic
+	variant 8
+		"Model 64"
+		"Model 32"
+		"Model 16" 2
+	variant 6
+		"Model 64"
+		"Model 32" 2
+	variant 4
+		"Model 128"
+	variant 5
+		"Model 64"
+		"Model 32" 2
+		"Model 16" 1
+	variant 2
+		"Model 32"
+		"Model 16" 5
+	variant 3
+		"Model 32" 2
+		"Model 16" 3
+
+fleet "Large Kor Mereti"
+	government "Kor Mereti"
+	names "kor mereti"
+	fighters "kor mereti"
+	personality
+		heroic
+	variant 8
+		"Model 512"
+		"Model 32"
+		"Model 16" 2
+	variant 4
+		"Model 512"
+	variant 2
+		"Model 512"
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 4
+		"Model 512"
+		"Model 256" 2
+	variant 3
+		"Model 512"
+		"Model 128" 2
+		"Model 64"
+		"Model 32" 2
+	variant 5
+		"Model 512"
+		"Model 32" 5
+		"Model 16" 8
+	variant 4
+		"Model 256"
+		"Model 128" 2
+		"Model 64" 3
+		"Model 32" 5
+		"Model 16" 8
+	variant 5
+		"Model 256" 2
+		"Model 64"
+		"Model 32" 3
+		"Model 16" 2
+	variant 9
+		"Model 256"
+		"Model 64" 4
+	variant 3
+		"Model 256" 3
+	variant 8
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 7
+		"Model 256" 2
+		"Model 128"
+	variant 14
+		"Model 256"
+		"Model 64" 2
+	variant 5
+		"Model 128" 3
+
+
 outfitter "Korath Basics"
 	"Command Center"
 	"Small Bunk Room"
-	"Large Bunk Room"
+	"Bunk Room"
 	"Fuel Pod"
 	"Ramscoop"
 	"Mass Expansion"
