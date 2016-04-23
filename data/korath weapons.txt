@@ -10,7 +10,7 @@
 
 outfit "Korath Grab-Strike"
 	category "Turrets"
-	cost 820000
+	cost 821000
 	thumbnail "outfit/unknown"
 	"mass" 52
 	"outfit space" -52
@@ -51,7 +51,7 @@ effect "grab-strike impact"
 
 outfit "Korath Banisher"
 	category "Turrets"
-	cost 480000
+	cost 943000
 	thumbnail "outfit/unknown"
 	"mass" 41
 	"outfit space" -41
@@ -84,7 +84,7 @@ effect "banisher impact"
 
 outfit "Korath Warder"
 	category "Turrets"
-	cost 250000
+	cost 845000
 	thumbnail "outfit/unknown"
 	"mass" 28
 	"outfit space" -28
@@ -112,7 +112,7 @@ effect "korath warder"
 
 outfit "Korath Fire-Lance"
 	category "Guns"
-	cost 600000
+	cost 697000
 	thumbnail "outfit/unknown"
 	"mass" 22
 	"outfit space" -22
@@ -146,7 +146,7 @@ effect "fire-lance impact"
 
 outfit "Korath Repeater"
 	category "Guns"
-	cost 230000
+	cost 306000
 	thumbnail "outfit/repeater"
 	"mass" 11
 	"outfit space" -11
@@ -184,7 +184,7 @@ effect "repeater impact"
 
 outfit "Korath Repeater Turret"
 	category "Turrets"
-	cost 570000
+	cost 874000
 	thumbnail "outfit/repeater turret"
 	"mass" 29
 	"outfit space" -29
@@ -221,7 +221,7 @@ outfit "Korath Piercer"
 
 outfit "Korath Piercer Launcher"
 	category "Secondary Weapons"
-	cost 293000
+	cost 593000
 	thumbnail "outfit/piercer launcher"
 	"mass" 27
 	"outfit space" -27
@@ -361,11 +361,11 @@ outfit "Korath Mine"
 
 outfit "Korath Minelayer"
 	category "Secondary Weapons"
-	cost 293000
+	cost 1073000
 	thumbnail "outfit/korath minelayer"
-	"mass" 53
-	"outfit space" -53
-	"weapon capacity" -53
+	"mass" 48
+	"outfit space" -48
+	"weapon capacity" -48
 	"energy capacity" 50
 	"gun ports" -1
 	"minelayer capacity" 17
@@ -410,8 +410,8 @@ outfit "Korath Mine Submunition"
 		"velocity" 2
 		"random velocity" 5
 		"drag" .05
-		"shield damage" 400
-		"hull damage" 320
+		"shield damage" 350
+		"hull damage" 280
 		"hit force" 50
 		"missile strength" 22
 
@@ -438,7 +438,7 @@ effect "minelayer split"
 
 outfit "Korath Disruptor"
 	category "Turrets"
-	cost 570000
+	cost 983000
 	thumbnail "outfit/unknown"
 	"mass" 35
 	"outfit space" -35
@@ -474,7 +474,7 @@ effect "disruptor impact"
 
 outfit "Korath Slicer"
 	category "Turrets"
-	cost 682000
+	cost 1473000
 	thumbnail "outfit/unknown"
 	"mass" 59
 	"outfit space" -59
