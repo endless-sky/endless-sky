@@ -446,8 +446,11 @@ void System::StepEconomy()
 
 void System::SetSupply(const string &commodity, double tons)
 {
-	auto &it = trade[commodity];
-	it.supply = tons;
+	auto it = trade.find(commodity);
+	if(it == trade.end())
+		return;
+	
+	it->second.supply = tons;
 }
 
 

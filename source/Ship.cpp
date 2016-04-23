@@ -1134,7 +1134,7 @@ bool Ship::Move(list<Effect> &effects)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
+		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD) && !cloak);
 		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
