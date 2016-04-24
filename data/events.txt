@@ -243,6 +243,10 @@ event "initial deployment 1"
 	planet "New Austria"
 		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry.`
 		description `The Navy has recently requisitioned one of the abandoned mining towns and begun refurbishing it for a secure military base, with the mining tunnels used as deep underground bunkers.`
+	shipyard "Syndicate Basics"
+		"Barb"
+	outfitter "Syndicate Basics"
+		"X1050 Ion Engines"
 
 event "initial deployment 2"
 	date 14 8 3014
@@ -490,6 +494,106 @@ event "initial deployment 3"
 		fleet "Small Republic" 1100
 		fleet "Large Republic" 800
 		fleet "Navy Surveillance" 1200
+	shipyard "Syndicate Basics"
+		"Barb (Proton)"
+
+mission "FW Carriers"
+	landing
+	invisible
+	to offer
+		has "event: initial deployment 3"
+	on offer
+		event "FWCarriers" 90
+		fail
+
+event "FWCarriers"
+	shipyard "Syndicate Basics"
+		"Barb"
+		"Barb (Proton)"
+	shipyard "Tarazed Basics"
+		"Finch"
+		"Barb"
+	shipyard "Southbound Basics"
+		"Finch"
+	shipyard "Tarazed Advanced"
+		"Nest"
+		"Roost"
+		"Skein"
+	shipyard "Southbound Advanced"
+		"Nest"
+		"Roost"
+		"Skein"
+	fleet "Large Southern Merchants"
+		fighters "free worlds fighter"
+		variant 15
+			"Hauler III"
+			"Nest"
+			"Finch" 2
+		variant 15
+			"Argosy"
+			"Hauler II"
+			"Nest"
+			"Finch" 2
+		variant 5
+			"Hauler III" 3
+			"Roost"
+			"Finch" 4
+	fleet "Large Northern Merchants"
+		fighters "free worlds fighter"
+		variant 4
+			"Hauler III"
+			"Hauler II"
+			"Roost (Sidewinder)"
+			"Dagger" 2
+			"Lance" 2
+	fleet "Small Free Worlds"
+		fighters "free worlds fighters"
+		variant 1
+			"Nest"
+			"Finch" 2
+	fleet "Large Free Worlds"
+		fighters "free worlds fighters"
+		variant 2
+			"Roost"
+			"Finch" 4
+		variant 2
+			"Skein"
+			"Finch" 6
+	fleet "Small Southern Pirates"
+		variant 1
+			"Nest"
+			"Barb" 2
+	fleet "Large Southern Pirates"
+		variant 2
+			"Roost"
+			"Barb" 4
+	fleet "Small Independent"
+		fighters "free worlds fighter"
+		variant 1
+			"Nest"
+			"Barb" 2
+	fleet "Large Independent"
+		fighters "free worlds fighter"
+		variant 2
+			"Roost"
+			"Barb" 4
+	fleet "Small Northern Pirates"
+		variant 1
+			"Nest"
+			"Lance" 2
+	fleet "Large Northern Pirates"
+		variant 2
+			"Roost"
+			"Lance" 4
+	fleet "pirate raid"
+		variant 1
+			"Roost"
+			"Lance" 2
+			"Barb" 2
+	fleet "Bounty Hunters"
+		variant 1
+			"Roost"
+			"Barb" 4
 
 event "initial deployment 4"
 	date 17 9 3014

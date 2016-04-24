@@ -99,8 +99,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit)
 		"outfit space needed:", "outfit space",
 		"weapon capacity needed:", "weapon capacity",
 		"engine capacity needed:", "engine capacity",
-		"guns ports needed:", "gun ports",
-		"turret mounts needed:", "turrent mounts"
+		"gun ports needed:", "gun ports",
+		"turret mounts needed:", "turret mounts"
 	};
 	static const int NAMES =  sizeof(names) / sizeof(names[0]);
 	for(int i = 0; i + 1 < NAMES; i += 2)
@@ -299,7 +299,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		static_cast<double>(outfit.AntiMissile())
 	};
 	static const int NAMES = sizeof(names) / sizeof(names[0]);
-	for(int i = (isContinuous ? 7 : 0); i < NAMES; ++i)
+	for(int i = (isContinuous ? 9 : 0); i < NAMES; ++i)
 		if(values[i])
 		{
 			attributeLabels.push_back(names[i]);

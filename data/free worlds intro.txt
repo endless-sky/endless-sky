@@ -228,6 +228,7 @@ mission "Pact Questioning"
 mission "FW Recon 0"
 	name "Transport Militia Officer"
 	description "This militia officer asked if you could transport him to <destination>."
+	minor
 	source
 		government "Free Worlds"
 		near Aldhibain 1 10
@@ -443,6 +444,7 @@ mission "FW Recon 3B"
 mission "FW Katya 1"
 	name "Assist the Free Worlds"
 	description "Stop by <destination>, pick up two passengers and some cargo, and distract the Republic from a more important cargo exchange going on simultaneously."
+	minor
 	to offer
 		random < 30
 	to fail
@@ -639,6 +641,7 @@ mission "FW Katya 1C"
 mission "FW Katya Alt 2"
 	name "Transport Mr. Eyes"
 	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
+	minor
 	source
 		government "Free Worlds"
 	destination Foundry
@@ -1193,6 +1196,7 @@ mission "FW Katya 7C"
 mission "FW Escort 1"
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
+	minor
 	autosave
 	source
 		government "Free Worlds"
@@ -1511,6 +1515,7 @@ mission "FW Escort 3"
 mission "FW Escort Second Chance"
 	name "Second Chance"
 	description "Return to <destination>, to meet up with Tomek Voigt and see if he will forgive you for failing the escort mission he gave you."
+	minor
 	source
 		near Sabik 1 1000
 		government "Free Worlds"
@@ -1561,6 +1566,7 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	name "Free Worlds Bounty Hunting"
 	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny." They were last seen attacking freighters in the Seginus system.`
+	minor
 	source
 		government "Free Worlds"
 	to offer
@@ -1666,6 +1672,7 @@ mission "FW Commitment"
 	landing
 	name "Join the Free Worlds"
 	description "If you want to join the Free Worlds, report to their headquarters on <destination>."
+	minor
 	source
 		government "Free Worlds"
 	destination "Bourne"
@@ -1930,3 +1937,12 @@ mission "Defend Sabik"
 	
 	on complete
 		dialog `The Navy has been driven off, but at a great cost. You should probably visit the spaceport and see if Tomek is there, or someone else who can tell you what to do next.`
+
+mission "FWCarrier License"
+	invisible
+	landing
+	to offer
+		has "event: joined the free worlds"
+	on offer
+		set "license: Militia Carrier"
+		fail
