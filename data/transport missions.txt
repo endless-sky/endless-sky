@@ -119,7 +119,7 @@ mission "Smuggler's Den, Part 1"
 				decline
 			
 			label meet
-			`	You decide to wait and see what they want from you. They sit down at your table, and turn out to be a boy and a girl, perhaps thirteen or fourteen year old. The bundle in her arms is a baby. "Are you a captain?" he asks.`
+			`	You decide to wait and see what they want from you. They sit down at your table, and turn out to be a boy and a girl, perhaps thirteen or fourteen years old. The bundle in her arms is a baby. "Are you a captain?" he asks.`
 			`	"Yes," you say.`
 			`	"We're looking for passage off-world," he says. "My cousin works in the refineries on Arabia, and I'm hoping he can get me a job there."`
 			choice
@@ -1064,6 +1064,7 @@ mission "Humanitarian 2"
 mission "Terraforming 1"
 	name "Terraforming Rand"
 	description "Bring a delegation from Rand to the Academy of Planetary Sciences on Glory."
+	minor
 	source Rand
 	destination Glory
 	passengers 2
