@@ -131,7 +131,7 @@ outfit "Systems Core (Large)"
 outfit "Command Center"
 	category "Systems"
 	cost 437000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/command center"
 	"mass" 8
 	"outfit space" -24
 	"bunks" 1

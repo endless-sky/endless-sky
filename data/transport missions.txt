@@ -1064,6 +1064,7 @@ mission "Humanitarian 2"
 mission "Terraforming 1"
 	name "Terraforming Rand"
 	description "Bring a delegation from Rand to the Academy of Planetary Sciences on Glory."
+	minor
 	source Rand
 	destination Glory
 	passengers 2
