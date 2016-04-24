@@ -15,7 +15,7 @@ outfit "Korath Grab-Strike"
 	"mass" 52
 	"outfit space" -52
 	"weapon capacity" -52
-	"energy capacity" 50
+	"energy capacity" 100
 	"turret mounts" -1
 	"required crew" 1
 	weapon
@@ -89,7 +89,7 @@ outfit "Korath Warder"
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
-	"energy capacity" 20
+	"energy capacity" 50
 	"turret mounts" -1
 	weapon
 		"hit effect" "korath warder"
@@ -151,7 +151,7 @@ outfit "Korath Repeater"
 	"mass" 11
 	"outfit space" -11
 	"weapon capacity" -11
-	"energy capacity" 60
+	"energy capacity" 100
 	"gun ports" -1
 	weapon
 		sprite "projectile/repeater"
@@ -189,7 +189,7 @@ outfit "Korath Repeater Turret"
 	"mass" 29
 	"outfit space" -29
 	"weapon capacity" -29
-	"energy capacity" 150
+	"energy capacity" 200
 	"required crew" 1
 	"turret mounts" -1
 	weapon
