@@ -541,6 +541,42 @@ ship "Bounder"
 
 
 
+ship "Boxwing"
+	sprite "ship/boxwing"
+	attributes
+		category "Fighter"
+		cost 450000
+		"shields" 400
+		"hull" 1000
+		"required crew" 1
+		"bunks" 1
+		"mass" 60
+		"drag" .6
+		"heat dissipation" .6
+		"outfit space" 55
+		"engine capacity" 28
+		"cargo space" 80
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"nGVF-AA Fuel Cell"
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+
+	engine 28 -2
+	engine -28 -2
+	engine 23 35
+	engine -23 35
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked.  Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead.  Coupled with "Hauler: Type F" carriers, the Boxwing enables finer adjustment between the cargo and combat capabilities of your fleet than has ever been available before.  While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds, eventually.`
+
+
+
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 	attributes
