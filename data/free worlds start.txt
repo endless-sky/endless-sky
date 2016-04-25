@@ -969,7 +969,7 @@ mission "FW Senate 1"
 
 
 
-mission "FW Senate 1B: Hyperdrive"
+mission "FW Senate 1B"
 	landing
 	name "Senator Huygens"
 	description "Transport Senator Arianna Huygens to <destination>."
@@ -983,7 +983,6 @@ mission "FW Senate 1B: Hyperdrive"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		outfit "Hyperdrive" -1
 		conversation
 			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
 			`	You take one of her suitcases and lead her into your ship to her room. Once you get there, she says, "I'm glad the Council relented and agreed to convene the Senate. I had begun to worry that the democracy we signed up for had become an oligarchy instead."`
@@ -997,143 +996,19 @@ mission "FW Senate 1B: Hyperdrive"
 				`	"I have no idea."`
 				`	"Ummm... they both involve momentous decisions that have serious consequences?"`
 				`	"They both require someone skilled and decisive to be in command?"`
+			branch "has jumpdrive"
+				"Jump drive" >=1
 
 			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast, but decide against it.`
 				accept
 
-	on accept
-		outfit "Hyperdrive" 1
-
-	on complete
-		set "FW Senate 1B: done"
-		conversation
-			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
-			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
-			choice
-				`	"You too. What brings you to Bourne?"`
-					goto bourne
-				`	"You too. Did you hear what happened to Katya?"`
-					goto katya
-			label bourne
-			`	"I guess I'm sort of a lobbyist," he says, "here to make Katya's dream a reality."`
-				goto dream
-			label katya
-			`	"Yes, that's why I'm here," he says, "to make sure her dream becomes a reality."`
-			label dream
-			`	"Which dream?" you ask.`
-			`	"Terraforming for the masses. A publicly funded university and research center. Are you familiar with the Free Worlds taxation model?"`
-			`	"Not really," you say.`
-			`	"It's brilliant. And probably totally unsustainable. Each world that joins us negotiates a certain yearly tax amount based on their population and resources. In return they gain access to our defense fleet and other shared resources. Twenty percent of each planet's tax payments are 'unrestricted,' money the Free Worlds can use for whatever we think is most important. But the rest of the taxes can be earmarked for whatever projects that world thinks are most important. Those taxes can also be an in kind donation, such as supplying ships or crews for the common militia..."`
-			`	He continues talking for quite some time. You stop even trying to follow what he is saying. Finally he sees the blank expression on your face and stops babbling. "The point is," he says, "if we can convince enough worlds to pool their money, the Conservatory will become a reality. Our own public university."`
-			choice
-				`	"So you're here to talk to the Senators?"`
-				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
-			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
-
-
-
-mission "FW Senate 1B: Scram Drive"
-	landing
-	name "Senator Huygens"
-	description "Transport Senator Arianna Huygens to <destination>."
-	source Mere
-	destination Bourne
-	to offer
-		has "FW Senate 1: done"
-	passengers 1
-	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	on offer
-		outfit "Scram Drive" -1
-		conversation
-			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
-			`	You take one of her suitcases and lead her into your ship to her room. Once you get there, she says, "I'm glad the Council relented and agreed to convene the Senate. I had begun to worry that the democracy we signed up for had become an oligarchy instead."`
-			`	"What do you mean?" you ask.`
-			`	"Don't play dumb. I mean the Council, deciding everything."`
-			choice
-				`	"Don't worry, it was never their intention to hold on to power once each world had had sufficient time to elect their own representatives."`
-				`	"Hey, the Council has provided great leadership at a time when no one else was ready to take charge. Give them some respect."`
-			`	She looks angry for a minute, then her expression softens. "Oh, pardon me," she says. "I was treating you like another scheming politician, but now I realize you're way too clueless for that. Tell me, Captain, do you know what makes politics similar to piloting a ship?"`
-			choice
-				`	"I have no idea."`
-				`	"Ummm... they both involve momentous decisions that have serious consequences?"`
-				`	"They both require someone skilled and decisive to be in command?"`
-
-			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast, but decide against it.`
-				accept
-
-	on accept
-		outfit "Scram Drive" 1
-
-	on complete
-		set "FW Senate 1B: done"
-		conversation
-			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
-			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
-			choice
-				`	"You too. What brings you to Bourne?"`
-					goto bourne
-				`	"You too. Did you hear what happened to Katya?"`
-					goto katya
-			label bourne
-			`	"I guess I'm sort of a lobbyist," he says, "here to make Katya's dream a reality."`
-				goto dream
-			label katya
-			`	"Yes, that's why I'm here," he says, "to make sure her dream becomes a reality."`
-			label dream
-			`	"Which dream?" you ask.`
-			`	"Terraforming for the masses. A publicly funded university and research center. Are you familiar with the Free Worlds taxation model?"`
-			`	"Not really," you say.`
-			`	"It's brilliant. And probably totally unsustainable. Each world that joins us negotiates a certain yearly tax amount based on their population and resources. In return they gain access to our defense fleet and other shared resources. Twenty percent of each planet's tax payments are 'unrestricted,' money the Free Worlds can use for whatever we think is most important. But the rest of the taxes can be earmarked for whatever projects that world thinks are most important. Those taxes can also be an in kind donation, such as supplying ships or crews for the common militia..."`
-			`	He continues talking for quite some time. You stop even trying to follow what he is saying. Finally he sees the blank expression on your face and stops babbling. "The point is," he says, "if we can convince enough worlds to pool their money, the Conservatory will become a reality. Our own public university."`
-			choice
-				`	"So you're here to talk to the Senators?"`
-				`	"Sounds like that could be a great public relations move for convincing more worlds to join us."`
-			`	"Indeed," he says. "Anyway, I'm off to a meeting, but meet me later in the spaceport if you've got room for some passengers."`
-
-
-
-mission "FW Senate 1B: Jump Drive"
-	landing
-	name "Senator Huygens"
-	description "Transport Senator Arianna Huygens to <destination>."
-	source Mere
-	destination Bourne
-	to offer
-		has "FW Senate 1: done"
-	passengers 1
-	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	on offer
-		outfit "Jump Drive" -1
-		conversation
-			`Senator Huygens turns out to be an attractive woman in her mid-fifties, with a dour expression on her face. "About time you showed up," is all she says when you introduce yourself.`
-			`	You take one of her suitcases and lead her into your ship to her room. Once you get there, she says, "I'm glad the Council relented and agreed to convene the Senate. I had begun to worry that the democracy we signed up for had become an oligarchy instead."`
-			`	"What do you mean?" you ask.`
-			`	"Don't play dumb. I mean the Council, deciding everything."`
-			choice
-				`	"Don't worry, it was never their intention to hold on to power once each world had had sufficient time to elect their own representatives."`
-				`	"Hey, the Council has provided great leadership at a time when no one else was ready to take charge. Give them some respect."`
-			`	She looks angry for a minute, then her expression softens. "Oh, pardon me," she says. "I was treating you like another scheming politician, but now I realize you're way too clueless for that. Tell me, Captain, do you know what makes politics similar to piloting a ship?"`
-			choice
-				`	"I have no idea."`
-				`	"Ummm... they both involve momentous decisions that have serious consequences?"`
-				`	"They both require someone skilled and decisive to be in command?"`
-
+			label "has jumpdrive"
 			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider telling how lucky she is to be on your ship, but decide against it.`
 				accept
 
-	on accept
-		outfit "Jump Drive" 1
-
 	on complete
-		set "FW Senate 1B: done"
 		conversation
-			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "Not bad I suppose." She hurries off.`
+			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
 			`	A few minutes later, someone shouts, "Hello there, Captain <last>!" It's Ijs Springborn. "I'm glad to see you again," he says.`
 			choice
 				`	"You too. What brings you to Bourne?"`
