@@ -573,7 +573,7 @@ ship "Boxwing"
 	engine -23 35
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked.  Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead.  Coupled with "Hauler: Type F" carriers, the Boxwing enables finer adjustment between the cargo and combat capabilities of your fleet than has ever been available before.  While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds, eventually.`
+	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked.  Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead.  While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds, eventually.  That this fighter cannot carry any weapons is only part of the reason jocks hate it - the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most.  The panoramic window is the only thing keeping claustrophobic episodes from being a major problem.`
 
 
 
