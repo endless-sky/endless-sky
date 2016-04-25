@@ -545,14 +545,14 @@ ship "Boxwing"
 	sprite "ship/boxwing"
 	attributes
 		category "Fighter"
-		cost 450000
-		"shields" 400
+		cost 369000
+		"shields" 500
 		"hull" 1000
 		"required crew" 1
 		"bunks" 1
-		"mass" 60
-		"drag" .6
-		"heat dissipation" .6
+		"mass" 95
+		"drag" .59
+		"heat dissipation" .2
 		"outfit space" 55
 		"engine capacity" 28
 		"cargo space" 80
@@ -567,10 +567,10 @@ ship "Boxwing"
 
 		"X1050 Ion Engines"
 
-	engine 28 -2
-	engine -28 -2
-	engine 23 35
-	engine -23 35
+	engine 21.5 -1
+	engine -21.5 -1
+	engine 19 23
+	engine -19 23
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked.  Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead.  While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds, eventually.  That this fighter cannot carry any weapons is only part of the reason jocks hate it - the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most.  The panoramic window is the only thing keeping claustrophobic episodes from being a major problem.`
