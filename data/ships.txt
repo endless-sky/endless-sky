@@ -573,7 +573,7 @@ ship "Boxwing"
 	engine -19 23
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked.  Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead.  While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds (eventually).  That this sluggish fighter cannot carry any weapons is only part of the reason 'jocks hate it enough to call it "Flying Coffin" amongst themselves; besides the ship somewhat resembling one, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most pilots.  The panoramic window is the only thing keeping claustrophobic episodes from becoming a major problem.`
+	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds (eventually).  That this sluggish fighter cannot carry any weapons is only part of the reason 'jocks hate it enough to call it "Flying Coffin" amongst themselves; besides the ship somewhat resembling one, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most pilots. The panoramic window is the only thing keeping claustrophobic episodes from becoming a major problem.`
 
 
 
