@@ -11,7 +11,7 @@
 outfit "Korath Grab-Strike"
 	category "Turrets"
 	cost 821000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/grab-strike"
 	"mass" 52
 	"outfit space" -52
 	"weapon capacity" -52
@@ -85,7 +85,7 @@ effect "banisher impact"
 outfit "Korath Warder"
 	category "Turrets"
 	cost 845000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/warder"
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
@@ -293,7 +293,7 @@ effect "piercer explosion"
 outfit "Korath Detainer"
 	category "Guns"
 	cost 1340000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/detainer"
 	"mass" 76
 	"outfit space" -76
 	"weapon capacity" -76
