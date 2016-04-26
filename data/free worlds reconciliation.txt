@@ -988,10 +988,10 @@ mission "FW Pug 1 Rand"
 				goto end
 		
 			label end
-			`	"Where did they come from originally?" you ask.`
+			`	"Where did they come from originally?" you ask."`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
-			`	"Do you know how the Pug cut you off?`
-			`	"Look I'm no scientist, I have no idea how Hyperspace links work. Maybe someone on the other end can help you.`
+			`	"Do you know how the Pug cut you off?"`
+			`	"Look, I'm no scientist, and I have no idea how Hyperspace links work. Maybe someone on the other end can help you."`
 				decline
 
 
