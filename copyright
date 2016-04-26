@@ -26,15 +26,16 @@ Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 
 Files:
- images/outfit/tiny ion engines*
+ images/outfit/tiny ion engines*†
  images/ship/barb*
- images/ship/finch*
- images/ship/nest*
- images/ship/roost*
- images/ship/skein*
+ images/ship/boxwing*
+ images/ship/finch*†
+ images/ship/nest*†
+ images/ship/roost*†
+ images/ship/skein*†
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: † - Derived from works by Michael Zahniser (under the same license).
 
 Files: images/ship/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
