@@ -751,7 +751,7 @@ outfit "Advanced Mining Laser"
 		"firing heat" 6.2
 		"shield damage" 5
 		"hull damage" .01
-	description "Given that advanced mining lasers are much more expensive than normal mining lasers, no miners were willing to possibly waste their advanced mining lasers creating turrets. In response, Syndicate decided to create their own turrets fit with dual advanced mining lasers for maximum production."
+	description "As the Syndicate mined away the asteroid fields in some systems, they started running into bigger and tougher asteroids. It began taking hours for a single mining laser to reveal enough minerals on an asteroid to make profit. In response, the Syndicate developed the advanced mining laser, which outputs more energy than the normal mining laser and is able to reveal ten times the material in the same amount of time."
 	
 outfit "Advanced Mining Turret"
 	category "Turrets"
@@ -775,7 +775,7 @@ outfit "Advanced Mining Turret"
 		"firing heat" 12.4
 		"shield damage" 10
 		"hull damage" .02
-	description "As the Syndicate mined away the asteroid fields in some systems, they started running into bigger and tougher asteroids. It began taking hours for a single mining laser to reveal enough minerals on an asteroid to make profit. In response, the Syndicate developed the advanced mining laser, which outputs more energy than the normal mining laser and is able to reveal ten times the material in the same amount of time."
+	description "Given that advanced mining lasers are much more expensive than normal mining lasers, no miners were willing to possibly waste their advanced mining lasers creating turrets. In response, Syndicate decided to create their own turrets fit with dual advanced mining lasers for maximum production."
 	
 outfitter "Syndicate Basics"
 	"Mining Laser"
