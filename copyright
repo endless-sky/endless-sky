@@ -12,6 +12,28 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/copper*
+ images/outfit/gemstones*
+ images/outfit/silver*
+ images/outfit/titanium*
+ images/outfit/umaterial*
+Copyright: Photobucket
+License: public-domain
+ Taken from photobucket.com, a collection of photographs that have been donated
+ and placed in the public domain.
+ 
+Files: images/outfit/gold*
+Copyright: pngimg
+License: public-domain
+ Taken from pngimg.com, a collection of photographs that have been donated
+ and placed in the public domain.
+ 
+Files: images/outfit/iron*
+Copyright: Robert Lavinsky (commons.wikimedia.org/wiki/Commons:Robert_Lavinsky)
+License: CC-BY-SA-3.0
+Comment: Taken from Wikimedia commons. Cropped and edited.
+
+Files:
  images/ship/marrow*
  images/ship/mbounder*
  images/ship/mfalcon*
