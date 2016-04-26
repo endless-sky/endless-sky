@@ -546,16 +546,16 @@ ship "Boxwing"
 	attributes
 		category "Fighter"
 		cost 369000
-		"shields" 500
+		"shields" 600
 		"hull" 1000
 		"required crew" 1
 		"bunks" 1
-		"mass" 95
+		"mass" 90
 		"drag" .59
 		"heat dissipation" .2
 		"outfit space" 55
 		"engine capacity" 28
-		"cargo space" 80
+		"cargo space" 90
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -573,7 +573,7 @@ ship "Boxwing"
 	engine -19 29
 	explode "tiny explosion" 15
 	explode "small explosion" 5
-	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question nobody asked. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds (eventually).  That this sluggish fighter cannot carry any weapons is only part of the reason 'jocks hate it enough to call it "Flying Coffin" amongst themselves; besides the ship somewhat resembling one, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most pilots. The panoramic window is the only thing keeping claustrophobic episodes from becoming a major problem.`
+	description `After introducing the "Type F" cargo pod for the Hauler, somebody at Southbound Shipyards started working on a solution to a question that nobody asked. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. While somewhat sluggish, the Boxwing's quad-engine layout makes it capable of impressive top speeds (eventually). That this sluggish fighter cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
 
 
 
