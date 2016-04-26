@@ -123,7 +123,7 @@ outfit "Titanium"
 	thumbnail "outfit/titanium"
 	cost 783
 	"mass" 1
-	description "Titanium is one of the main materials use in creating the hulls of ships. Flexible, durable, and strong, titanium is sure to go for a high price anywhere on the market."
+	description "Titanium is one of the main materials used in creating the alloys for the hulls of ships. Flexible, light, and strong, titanium is sure to go for a high price anywhere on the market."
 
 outfit "Gold"
 	category "Special"
@@ -151,7 +151,7 @@ outfit "Unknown Material"
 	thumbnail "outfit/umaterial"
 	cost 0
 	"mass" 1
-	description "This unknown material was mined from an asteroid near Syndicate space. It gives off a faint humming sound and glows a low red color when placed in the dark. You aren't exactly sure what it is, but you aren't willing to mess around it to find it. Better return this to the scientists who sent you out to mine it."
+	description "This unknown material was mined from an asteroid near Syndicate space. It gives off a faint humming sound and glows a low red color when placed in the dark. You aren't exactly sure what it is, but you aren't willing to mess around with it to find it. Better return this to the scientists who sent you out to mine it."
 
 ship "Tough Asteroid" "Strange Asteroid"
 	outfits
@@ -702,7 +702,7 @@ outfit "Mining Laser"
 		"firing heat" 1.2
 		"shield damage" 1
 		"hull damage" .001
-	description "During the early 22nd century, asteroid mining was a common practice among humanity. Resources were plentiful and the labor was cheap. But during the vast expansion of humanity, asteroid mining was left behind for better mining operation on newly found planets."
+	description "During the early 22nd century, asteroid mining was a common practice among humanity. Resources were plentiful and the labor was cheap. But during the vast expansion of humanity, asteroid mining was left behind for better mining operations on newly found planets."
 	description "The Syndicate saw this old practice as a perfect way to open up a new market. Thus the mining laser was created, a low power laser intended for the use of bursting away the outer layers of asteroids to reveal the precious minerals beneath the crust without destroying the asteroid itself."
 
 outfit "Mining Turret"
@@ -727,7 +727,7 @@ outfit "Mining Turret"
 		"firing heat" 2.4
 		"shield damage" 2
 		"hull damage" .002
-	description "When mining ships began to grow bigger and bigger in order to hold more ore, their speeds began to get slower and slower. This made mining asteroids a real pain due to the long amounts of time spent turning the ship to keep in aligned with the asteroids. As a result, miners began strapping their lasers to old blaster turret platforms to get more control out of their lasers."
+	description "When mining ships began to grow bigger and bigger in order to hold more ore, their speeds began to get slower and slower. This made mining asteroids a real pain due to the long amounts of time spent turning the ship to keep it aligned with the asteroids. As a result, miners began strapping their lasers to old blaster turret platforms to get more control out of their lasers."
 	
 outfit "Advanced Mining Laser"
 	category "Guns"
@@ -775,7 +775,7 @@ outfit "Advanced Mining Turret"
 		"firing heat" 12.4
 		"shield damage" 10
 		"hull damage" .02
-	description "As the Syndicate started to mine away the asteroid fields in some systems, they began running into bigger and tougher asteroids. It began taking hours for a single mining laser to reveal enough minerals on an asteroid to make profit. In response, the Syndicate developed the advanced mining laser, which outputs more energy than the normal mining laser and is able to reveal ten times the material in the same amount of time."
+	description "As the Syndicate mined away the asteroid fields in some systems, they started running into bigger and tougher asteroids. It began taking hours for a single mining laser to reveal enough minerals on an asteroid to make profit. In response, the Syndicate developed the advanced mining laser, which outputs more energy than the normal mining laser and is able to reveal ten times the material in the same amount of time."
 	
 outfitter "Syndicate Basics"
 	"Mining Laser"
