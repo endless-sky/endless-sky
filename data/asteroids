@@ -1,0 +1,786 @@
+government "Mineable Asteroid"
+	"player reputation" -1000
+
+government "Claimed Asteroid"
+	"player reputation" 1000
+
+government "Research Asteroid"
+	"player reputation" 1000
+	
+government "Bounty Hunter"
+	swizzle 6
+	color .78 0 0
+
+	"player reputation" -1000
+	"attitude toward"
+		"Claimed Asteroid" -.1
+		"Research Asteroid" -.1
+		"Mineable Asteroid" -.1
+	"bribe" .2
+	"fine" 0
+	"hostile hail" "hostile bounty hunter"
+
+ship "Small Asteroid"
+	sprite "asteroid/small metal/spin"
+		"frame rate" 20
+	attributes
+		"cost" 0
+		"shields" 0
+		"hull" 1
+		"required crew" 0
+		"bunks" 0
+		automaton 1
+		"mass" 910
+		"drag" 17.7
+		"cargo space" 75
+	description "A rock floating through space."
+
+ship "Medium Asteroid"
+	sprite "asteroid/medium metal/spin"
+		"frame rate" 20
+	attributes
+		"cost" 0
+		"shields" 0
+		"hull" 5
+		"required crew" 0
+		"bunks" 0
+		automaton 1
+		"mass" 910
+		"drag" 17.7
+		"cargo space" 125
+	description "A rock floating through space."
+
+ship "Big Asteroid"
+	sprite "asteroid/big metal/spin"
+		"frame rate" 20
+	attributes
+		"cost" 0
+		"shields" 0
+		"hull" 10
+		"required crew" 0
+		"bunks" 0
+		automaton 1
+		"mass" 910
+		"drag" 17.7
+		"cargo space" 250
+	description "A rock floating through space."
+
+ship "Tough Asteroid"
+	sprite "asteroid/medium rock/spin"
+		"frame rate" 20
+	attributes
+		"cost" 0
+		"shields" 0
+		"hull" 50
+		"required crew" 0
+		"bunks" 0
+		automaton 1
+		"mass" 910
+		"drag" 17.7
+		"cargo space" 250
+	description "A rock floating through space."
+	
+ship "Super Tough Asteroid"
+	sprite "asteroid/big rock/spin"
+		"frame rate" 20
+	attributes
+		"cost" 0
+		"shields" 0
+		"hull" 10000
+		"required crew" 0
+		"bunks" 0
+		automaton 1
+		"mass" 910
+		"drag" 17.7
+		"cargo space" 250
+	outfits
+		"Uranium" 250
+	description "A rock floating through space."
+	
+outfit "Copper"
+	category "Special"
+	thumbnail "outfit/copper"
+	cost 340
+	"mass" 1
+	description "Copper is a common metal found in almost every asteroid in small amounts. Even so, it still goes for a fair price given its high demand for use in electrical wiring."
+
+outfit "Iron"
+	category "Special"
+	thumbnail "outfit/iron"
+	cost 464
+	"mass" 1
+	description "Iron is not as common as copper in asteroids, but is just as highly demanded. Iron is used in the creation of steel, an important material for building planetary infrastructure and many of the parts and outfits for ships."
+
+outfit "Silver"
+	category "Special"
+	thumbnail "outfit/silver"
+	cost 628
+	"mass" 1
+	description "Due to silver's spectacular properties, it is used for a wide number of things, such as more expensive electrical wiring in larger ships, as a key material in photovoltaic panels, and perhaps most importantly, as a cheap way of purifying water while in the depths of space."
+
+outfit "Titanium"
+	category "Special"
+	thumbnail "outfit/titanium"
+	cost 783
+	"mass" 1
+	description "Titanium is one of the main materials use in creating the hulls of ships. Flexible, durable, and strong, titanium is sure to go for a high price anywhere on the market."
+
+outfit "Gold"
+	category "Special"
+	thumbnail "outfit/gold"
+	cost 942
+	"mass" 1
+	description "Although gold has lost some value over the years due to planetary and asteroid mining making it much more common than in the early days of humanity's expansion, it is still a highly sought after mineral due to its beauty and demand in jewelry."
+
+outfit "Gemstones"
+	category "Special"
+	thumbnail "outfit/gemstones"
+	cost 1235
+	"mass" 1
+	description "Gemstones are little more than a vanity item, having little use in the creation of ship parts. Even so, there are a number of citizens in the Paradise Worlds willing to pay big money for some genuine space gemstones."
+
+outfit "Uranium"
+	category "Special"
+	thumbnail "outfit/uranium"
+	cost 1581
+	"mass" 1
+	description "Uranium is an important element used in the creation of some reactors. Much of the uranium mined from asteroids and sold on the market is usually bought up by the Syndicate, but why that is is not exactly known."
+
+outfit "Unknown Material"
+	category "Special"
+	thumbnail "outfit/umaterial"
+	cost 0
+	"mass" 1
+	description "This unknown material was mined from an asteroid near Syndicate space. It gives off a faint humming sound and glows a low red color when placed in the dark. You aren't exactly sure what it is, but you aren't willing to mess around it to find it. Better return this to the scientists who sent you out to mine it."
+
+ship "Tough Asteroid" "Strange Asteroid"
+	outfits
+		"Unknown Material" 1
+
+ship "Small Asteroid" "Small Ast A"
+	outfits
+		"Copper" 17
+		"Iron" 12
+
+ship "Small Asteroid" "Small Ast B"
+	outfits
+		"Copper" 13
+		"Iron" 16
+		"Silver" 12
+
+ship "Small Asteroid" "Small Ast C"
+	outfits
+		"Iron" 15
+		"Silver" 18
+		"Titanium" 14
+
+ship "Small Asteroid" "Small Ast D"
+	outfits
+		"Silver" 14
+		"Titanium" 20
+		"Gold" 15
+
+ship "Medium Asteroid" "Med Ast A"
+	outfits
+		"Copper" 16
+		"Iron" 14
+		"Silver" 11
+
+ship "Medium Asteroid" "Med Ast B"
+	outfits
+		"Iron" 25
+		"Silver" 36
+
+ship "Medium Asteroid" "Med Ast C"
+	outfits
+		"Silver" 18
+		"Titanium" 42
+		"Gold" 8
+
+ship "Medium Asteroid" "Med Ast D"
+	outfits
+		"Gold" 14
+		"Gemstones" 32
+		"Uranium" 9
+
+ship "Big Asteroid" "Big Ast A"
+	outfits
+		"Iron" 43
+		"Silver" 74
+
+ship "Big Asteroid" "Big Ast B"
+	outfits
+		"Silver" 35
+		"Titanium" 64
+		"Gold" 19
+
+ship "Big Asteroid" "Big Ast C"
+	outfits
+		"Titanium" 21
+		"Gold" 63
+		"Gemstones" 16
+
+ship "Big Asteroid" "Big Ast D"
+	outfits
+		"Gold" 27
+		"Gemstones" 45
+		"Uranium" 16
+
+fleet "Claimed Asteroid Field"
+	names "Asteroid"
+	cargo 0
+	variant
+		"Super Tough Asteroid" 2
+		
+phrase "asteroid"
+	word
+		"A"
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
+	word
+		"-"
+	phrase "letter"
+	phrase "letter"
+	
+phrase "signature"
+	word
+		"Unkown Signature "
+	phrase "letter"
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
+
+fleet "Random Asteroid Field"
+	names "asteroid"
+	cargo 0
+	variant 50
+		"Small Ast A" 5
+	variant 40
+		"Small Ast A" 10
+	variant 40
+		"Small Ast A" 5
+		"Med Ast A" 3
+	variant 30
+		"Small Ast B" 4
+		"Med Ast B" 5
+	variant 25
+		"Small Ast D" 6
+		"Med Ast C" 4
+	variant 20
+		"Small Ast C" 8
+		"Small Ast D" 2
+		"Med Ast A" 3
+	variant 15
+		"Small Ast C" 6
+		"Med Ast B" 4
+	variant 10
+		"Small Ast A" 6
+		"Small Ast B" 4
+		"Med Ast C" 2
+		"Med Ast D" 1
+	variant 10
+		"Small Ast A" 5
+		"Small Ast C" 2
+		"Med Ast B" 4
+		"Big Ast A" 1
+		"Big Ast C" 1
+	variant 8
+		"Small Ast D" 3
+		"Med Ast A" 5
+		"Med Ast C" 3
+		"Big Ast D" 1
+	variant 4
+		"Small Ast D" 3
+		"Med Ast C" 5
+		"Big Ast B" 2
+	variant 2
+		"Big Ast D" 3
+	variant 1
+		"Small Ast B" 7
+		"Med Ast D" 4
+		"Big Ast C" 3
+		"Big Ast D" 1
+
+mission "Asteroid Field Trigger"
+	landing
+	deadline 2
+	repeat
+	invisible
+	npc
+		government "Random Mineable Asteroid"
+		personality waiting
+		names "asteroid"
+		system
+			distance 1 2
+		fleet "Asteroid Field"
+
+mission "Asteroid Mining (Small)"
+	name "Mine asteroid near <system>"
+	description "Scientists have just discovered an asteroid with a strange signature near <system>. Find it and return the samples to <planet> while making sure to keep it out of the hands of pirates for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		random < 40
+	source
+		government Syndicate
+	npc board save
+		personality waiting
+		government "Mineable Asteroid"
+		names "signature"
+		system
+			distance 1 2
+		ship "Strange Asteroid"
+	npc
+		personality heroic
+		government "Bounty Hunter"
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+	on visit
+		dialog "You land on <planet>, but realize you don't have the sample! Return to the asteroid and bring the sample back to <planet>."
+	on complete
+		payment 100000
+		outfit "Unknown Material" -1
+		dialog "The scientists thank you for retrieving the samples and pay you <payment>."
+
+mission "Asteroid Mining (Medium)"
+	name "Mine asteroid near <system>"
+	description "Scientists have just discovered an asteroid with a strange signature near <system>. Find it and return the samples to <planet> while making sure to keep it out of the hands of pirates for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 400
+		random < 30
+	source
+		government Syndicate
+	npc board save
+		personality waiting
+		government "Mineable Asteroid"
+		names "signature"
+		system
+			distance 1 2
+		ship "Strange Asteroid"
+	npc
+		personality heroic
+		government "Bounty Hunter"
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Laser)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+	on visit
+		dialog "You land on <planet>, but realize you don't have the sample! Return to the asteroid and bring the sample back to <planet>."
+	on complete
+		payment 150000
+		outfit "Unknown Material" -1
+		dialog "The scientists thank you for retrieving the samples and pay you <payment>."
+
+mission "Asteroid Mining (Big)"
+	name "Mine asteroid near <system>"
+	description "Scientists have just discovered an asteroid with a strange signature near <system>. Find it and return the samples to <planet> while making sure to keep it out of the hands of pirates for payment (<payment>)."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		random < 20
+	source
+		government Syndicate
+	npc board save
+		personality waiting
+		government "Mineable Asteroid"
+		names "signature"
+		system
+			distance 1 2
+		ship "Strange Asteroid"
+	npc
+		personality heroic
+		government "Bounty Hunter"
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+	on visit
+		dialog "You land on <planet>, but realize you don't have the sample! Return to the asteroid and bring the sample back to <planet>."
+	on complete
+		payment 200000
+		outfit "Unknown Material" -1
+		dialog "The scientists thank you for retrieving the samples and pay you <payment>."
+
+mission "Asteroid Claim Defense (Small)"
+	name "Defend asteroids in <system>"
+	description "A local corporation has staked a claim on an asteroid field in <system>, and wants only the best of the best to defend their claim from oncoming pirates for <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 2000
+		random < 40
+	source 
+		government Syndicate
+	npc save
+		personality waiting escort
+		government "Claimed Asteroid"
+		names "asteroid"
+		fleet "Claimed Asteroid Field"
+	npc kill
+		government "Bounty Hunter"
+		personality waiting heroic plunders
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Firebird" 3
+			variant
+				"Firebird (Missile)" 3
+			variant
+				"Splinter" 3
+			variant
+				"Splinter (Laser)" 3
+			variant
+				"Osprey" 2
+			variant
+				"Osprey (Laser)" 2
+			variant
+				"Bastion" 2
+			variant
+				"Manta" 3
+			variant
+				"Manta (Proton)" 3
+		dialog "All attacking pirates have been eliminated. Return to <destination> for your payment."
+	on complete
+		payment 250000
+		dialog "The local corporation thanks you for defending their asteroids and pays you <payment>."
+
+mission "Asteroid Claim Defense (Medium)"
+	name "Defend asteroids in <system>"
+	description "A local corporation has staked a claim on an asteroid field in <system>, and wants only the best of the best to defend their claim from oncoming pirates for <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 4000
+		random < 30
+	source 
+		government Syndicate
+	npc save
+		personality waiting escort
+		government "Claimed Asteroid"
+		names "asteroid"
+		fleet "Claimed Asteroid Field"
+	npc kill
+		government "Bounty Hunter"
+		personality waiting heroic plunders
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Protector" 2
+			variant
+				"Protector (Laser)" 2
+			variant
+				"Osprey (Missile)" 3
+			variant
+				"Bastion (Heavy)" 3
+			variant
+				"Bastion (Laser)" 3
+			variant
+				"Firebird (Plasma)" 5
+		dialog "All attacking pirates have been eliminated. Return to <destination> for your payment."
+	on complete
+		payment 500000
+		dialog "The local corporation thanks you for defending their asteroids and pays you <payment>."
+
+mission "Asteroid Claim Defense (Big)"
+	name "Defend asteroids in <system>"
+	description "A local corporation has staked a claim on an asteroid field in <system>, and wants only the best of the best to defend their claim from oncoming pirates for <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 6000
+		random < 20
+	source 
+		government Syndicate
+	npc save
+		personality waiting escort
+		government "Claimed Asteroid"
+		names "asteroid"
+		fleet "Claimed Asteroid Field"
+	npc kill
+		government "Bounty Hunter"
+		personality waiting heroic plunders
+		system
+			distance 1 2
+		fleet
+			names "pirate"
+			variant
+				"Leviathan (Heavy)" 3
+			variant
+				"Leviathan (Laser)" 3
+			variant
+				"Falcon" 3
+			variant
+				"Falcon (Heavy)" 3
+			variant
+				"Falcon (Laser)" 3
+			variant
+				"Vanguard" 3
+		dialog "All attacking pirates have been eliminated. Return to <destination> for your payment."
+	on complete
+		payment 1000000
+		dialog "The local corporation thanks you for defending their asteroids and pays you <payment>."
+
+mission "Asteroid Research Escort (Small)"
+	name "Escort researchers to <planet>"
+	description "A group of researchers need to be escorted to <stopovers> in order to pick up some asteroid samples. Take them there and then return them to <destination> for <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 300
+		random < 40
+	source 
+		government Syndicate
+	stopover
+		distance 2 3
+	destination
+		distance 1 1
+	npc accompany save
+		government Syndicate
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	npc
+		government "Pirate"
+		personality heroic waiting
+		fleet "Small Core Pirates"
+	on stopover
+		dialog "The researchers pick up the asteroids samples and load them onto their ships in boxes labeled with radioactivity symbols. They inform you that everything is ready and loaded up. Return to <planet> for your payment of <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		dialog "You bid goodbye to the researchers of the <npc> and accept your payment of <payment>."
+		payment 50000
+
+mission "Asteroid Research Escort (Medium)"
+	name "Escort researchers to <planet>"
+	description "A group of researchers need to be escorted to <stopovers> in order to pick up some asteroid samples. Take them there and then return them to <destination> for <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 500
+		random < 30
+	source 
+		government Syndicate
+	stopover
+		distance 3 4
+	destination
+		distance 1 1
+	npc accompany save
+		government Syndicate
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	npc
+		government "Pirate"
+		personality heroic waiting
+		fleet "Large Core Pirates"
+	on stopover
+		dialog "The researchers pick up the asteroids samples and load them onto their ships in boxes labeled with radioactivity symbols. They inform you that everything is ready and loaded up. Return to <planet> for your payment of <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		dialog "You bid goodbye to the researchers of the <npc> and accept your payment of <payment>."
+		payment 100000
+
+mission "Asteroid Research Escort (Big)"
+	name "Escort researchers to <planet>"
+	description "A group of researchers need to be escorted to <stopovers> in order to pick up some asteroid samples. Take them there and then return them to <destination> for <payment>."
+	repeat
+	job
+	to offer
+		"combat rating" > 700
+		random < 20
+	source
+		government Syndicate
+	stopover
+		distance 4 5
+	destination
+		distance 1 1
+	npc accompany save
+		government Syndicate
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	npc
+		government "Pirate"
+		personality heroic waiting
+		fleet "Large Core Pirates"
+	npc
+		government "Pirate"
+		personality heroic waiting
+		fleet "Large Core Pirates"
+	on stopover
+		dialog "The researchers pick up the asteroids samples and load them onto their ships in boxes labeled with radioactivity symbols. They inform you that everything is ready and loaded up. Return to <planet> for your payment of <payment>."
+	on visit
+		dialog "You have reached <planet>, but you left the <npc> behind! Better depart and wait for them to arrive in this star system."
+	on complete
+		dialog "You bid goodbye to the researchers of the <npc> and accept your payment of <payment>."
+		payment 150000
+
+outfit "Mining Laser"
+	category "Guns"
+	cost 59000
+	thumbnail "outfit/laser"
+	"mass" 8
+	"outfit space" -8
+	"weapon capacity" -8
+	"gun ports" -1
+	weapon
+		sprite "projectile/laser"
+			"frame rate" 1
+		sound "laser"
+		icon "icon/meteor"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .5
+		"velocity" 300
+		"lifetime" 1
+		"reload" 1
+		"firing energy" .5
+		"firing heat" 1.2
+		"shield damage" 1
+		"hull damage" .001
+	description "During the early 22nd century, asteroid mining was a common practice among humanity. Resources were plentiful and the labor was cheap. But during the vast expansion of humanity, asteroid mining was left behind for better mining operation on newly found planets."
+	description "The Syndicate saw this old practice as a perfect way to open up a new market. Thus the mining laser was created, a low power laser intended for the use of bursting away the outer layers of asteroids to reveal the precious minerals beneath the crust without destroying the asteroid itself."
+
+outfit "Mining Turret"
+	category "Turrets"
+	cost 123000
+	thumbnail "outfit/laser"
+	"mass" 20
+	"outfit space" -20
+	"weapon capacity" -20
+	"turret mounts" -1
+	weapon
+		sprite "projectile/2x laser"
+			"frame rate" 1
+		sound "laser"
+		icon "icon/meteor"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .5
+		"velocity" 300
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 1
+		"firing heat" 2.4
+		"shield damage" 2
+		"hull damage" .002
+	description "When mining ships began to grow bigger and bigger in order to hold more ore, their speeds began to get slower and slower. This made mining asteroids a real pain due to the long amounts of time spent turning the ship to keep in aligned with the asteroids. As a result, miners began strapping their lasers to old blaster turret platforms to get more control out of their lasers."
+	
+outfit "Advanced Mining Laser"
+	category "Guns"
+	cost 98000
+	thumbnail "outfit/laser"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sprite "projectile/laser"
+			"frame rate" 1
+		sound "laser"
+		icon "icon/meteor"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .5
+		"velocity" 300
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4
+		"firing heat" 6.2
+		"shield damage" 5
+		"hull damage" .01
+	description "Given that advanced mining lasers are much more expensive than normal mining lasers, no miners were willing to possibly waste their advanced mining lasers creating turrets. In response, Syndicate decided to create their own turrets fit with dual advanced mining lasers for maximum production."
+	
+outfit "Advanced Mining Turret"
+	category "Turrets"
+	cost 217000
+	thumbnail "outfit/laser"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"turret mounts" -1
+	weapon
+		sprite "projectile/2x laser"
+			"frame rate" 1
+		sound "laser"
+		icon "icon/meteor"
+		"hit effect" "beam laser impact"
+		"inaccuracy" .5
+		"velocity" 300
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 8
+		"firing heat" 12.4
+		"shield damage" 10
+		"hull damage" .02
+	description "As the Syndicate started to mine away the asteroid fields in some systems, they began running into bigger and tougher asteroids. It began taking hours for a single mining laser to reveal enough minerals on an asteroid to make profit. In response, the Syndicate developed the advanced mining laser, which outputs more energy than the normal mining laser and is able to reveal ten times the material in the same amount of time."
+	
+outfitter "Syndicate Basics"
+	"Mining Laser"
+	"Mining Turret"
+
+outfitter "Syndicate Advanced""
+	"Advanced Mining Laser"
+	"Advanced Mining Turret"
