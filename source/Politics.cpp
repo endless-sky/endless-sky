@@ -82,15 +82,6 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	if(gov->IsPlayer())
 		return;
 	
-	// If you bribe a government but then attack it, the effect of your bribe is
-	// cancelled out.
-	if(eventType & ShipEvent::PROVOKE)
-	{
-		auto it = bribed.find(gov);
-		if(it != bribed.end())
-			bribed.erase(it);
-	}
-	
 	for(const auto &it : GameData::Governments())
 	{
 		const Government *other = &it.second;
@@ -101,7 +92,12 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 		if(eventType & ShipEvent::PROVOKE)
 		{
 			if(weight > 0.)
+			{
+				// If you bribe a government but then attack it, the effect of
+				// your bribe is cancelled out.
+				bribed.erase(other);
 				provoked.insert(other);
+			}
 		}
 		else if(count * weight)
 		{
@@ -120,11 +116,8 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 void Politics::Bribe(const Government *gov)
 {
 	bribed.insert(gov);
+	provoked.erase(gov);
 	fined.insert(gov);
-	
-	auto it = provoked.find(gov);
-	if(it != provoked.end())
-		provoked.erase(it);
 }
 
 
