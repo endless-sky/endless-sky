@@ -4,11 +4,11 @@ Upstream-Contact: Michael Zahniser <mzahniser@gmail.com>
 Source: https://github.com/endless-sky/endless-sky
 
 Files: *
-Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: GPL-3+
 
 Files: images/*
-Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
@@ -24,6 +24,27 @@ Files:
  images/ship/msplinter*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/tiny ion engines*
+ images/ship/barb*
+ images/ship/finch*
+ images/ship/nest*
+ images/ship/roost*
+ images/ship/skein*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files: images/ship/vanguard*
+Copyright: Nate Graham <pointedstick@zoho.com>
+License: CC-BY-SA-4.0
+
+Files: images/outfit/*photovoltaic*
+Copyright: Nick Barry (github.com/itsnickbarry)
+License: CC-BY-SA-3.0
+Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
+ David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
 
 Files:
  images/ui/galaxy*
@@ -105,12 +126,6 @@ Files: images/land/*-sfiera*
 Copyright: Chris Pickel (sfiera.net)
 License: CC-BY-SA-4.0
 
-Files: images/outfits/* photovoltaic.png
-Copyright: Nick Barry (github.com/itsnickbarry)
-License: CC-BY-SA-3.0
-Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com> and
- David Monniaux (commons.wikimedia.org/wiki/User:David.Monniaux)
-
 Files:
  images/land/beach0*
  images/land/beach2*
@@ -179,17 +194,13 @@ Files:
  images/land/lava1*
  images/land/lava5*
  images/land/lava6*
-Copyright: Copyright Michael Zahniser <mzahniser@gmail.com>
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files: sounds/*
 Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
-
-Files: images/ship/vanguard*
-Copyright: Copyright Nate Graham <pointedstick@zoho.com>
-License: CC-BY-SA-4.0
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
