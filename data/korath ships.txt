@@ -115,7 +115,7 @@ ship "Korath World-Ship"
 		"drag" 21
 		"heat dissipation" .4
 		"fuel capacity" 600
-		"cargo space" 734
+		"cargo space" 264
 		"outfit space" 778
 		"weapon capacity" 314
 		"engine capacity" 165
