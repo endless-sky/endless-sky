@@ -682,8 +682,8 @@ mission "Asteroid Research Escort (Big)"
 
 outfit "Mining Laser"
 	category "Guns"
-	cost 59000
-	thumbnail "outfit/laser"
+	cost 35000
+	thumbnail "outfit/unkown"
 	"mass" 8
 	"outfit space" -8
 	"weapon capacity" -8
@@ -700,15 +700,15 @@ outfit "Mining Laser"
 		"reload" 1
 		"firing energy" .5
 		"firing heat" 1.2
-		"shield damage" 1
+		"shield damage" .002
 		"hull damage" .001
 	description "During the early 22nd century, asteroid mining was a common practice among humanity. Resources were plentiful and the labor was cheap. But during the vast expansion of humanity, asteroid mining was left behind for better mining operations on newly found planets."
 	description "The Syndicate saw this old practice as a perfect way to open up a new market. Thus the mining laser was created, a low power laser intended for the use of bursting away the outer layers of asteroids to reveal the precious minerals beneath the crust without destroying the asteroid itself."
 
 outfit "Mining Turret"
 	category "Turrets"
-	cost 123000
-	thumbnail "outfit/laser"
+	cost 82000
+	thumbnail "outfit/unkown"
 	"mass" 20
 	"outfit space" -20
 	"weapon capacity" -20
@@ -720,19 +720,19 @@ outfit "Mining Turret"
 		icon "icon/meteor"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"velocity" 300
+		"velocity" 350
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1
 		"firing heat" 2.4
-		"shield damage" 2
+		"shield damage" .004
 		"hull damage" .002
 	description "When mining ships began to grow bigger and bigger in order to hold more ore, their speeds began to get slower and slower. This made mining asteroids a real pain due to the long amounts of time spent turning the ship to keep it aligned with the asteroids. As a result, miners began strapping their lasers to old blaster turret platforms to get more control out of their lasers."
 	
 outfit "Advanced Mining Laser"
 	category "Guns"
-	cost 98000
-	thumbnail "outfit/laser"
+	cost 123000
+	thumbnail "outfit/unkown"
 	"mass" 12
 	"outfit space" -12
 	"weapon capacity" -12
@@ -744,19 +744,19 @@ outfit "Advanced Mining Laser"
 		icon "icon/meteor"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"velocity" 300
+		"velocity" 350
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4
-		"firing heat" 6.2
-		"shield damage" 5
+		"firing energy" 3.0
+		"firing heat" 5.2
+		"shield damage" .02
 		"hull damage" .01
 	description "As the Syndicate mined away the asteroid fields in some systems, they started running into bigger and tougher asteroids. It began taking hours for a single mining laser to reveal enough minerals on an asteroid to make profit. In response, the Syndicate developed the advanced mining laser, which outputs more energy than the normal mining laser and is able to reveal ten times the material in the same amount of time."
 	
 outfit "Advanced Mining Turret"
 	category "Turrets"
-	cost 217000
-	thumbnail "outfit/laser"
+	cost 287000
+	thumbnail "outfit/unknown"
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
@@ -771,9 +771,9 @@ outfit "Advanced Mining Turret"
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 8
-		"firing heat" 12.4
-		"shield damage" 10
+		"firing energy" 6
+		"firing heat" 10.4
+		"shield damage" .04
 		"hull damage" .02
 	description "Given that advanced mining lasers are much more expensive than normal mining lasers, no miners were willing to possibly waste their advanced mining lasers creating turrets. In response, Syndicate decided to create their own turrets fit with dual advanced mining lasers for maximum production."
 	
