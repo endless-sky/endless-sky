@@ -92,7 +92,7 @@ outfit "Large Heat Shunt"
 outfit "Systems Core (Small)"
 	category "Systems"
 	cost 1452000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/small systems core"
 	"mass" 31
 	"outfit space" -31
 	"shield generation" 1.6
@@ -105,7 +105,7 @@ outfit "Systems Core (Small)"
 outfit "Systems Core (Medium)"
 	category "Systems"
 	cost 3630000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/medium systems core"
 	"mass" 53
 	"outfit space" -53
 	"shield generation" 3.1
@@ -118,7 +118,7 @@ outfit "Systems Core (Medium)"
 outfit "Systems Core (Large)"
 	category "Systems"
 	cost 9075000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/large systems core"
 	"mass" 91
 	"outfit space" -91
 	"shield generation" 6.0
