@@ -72,7 +72,6 @@ void Ship::Load(const DataNode &node)
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
-	bool isCapturable = true;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
