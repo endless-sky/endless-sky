@@ -67,6 +67,8 @@ void Outfit::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(child.Token(0) == "cost" && child.Size() >= 2)
+			cost = child.Value(1);
 		else if(child.Size() >= 2)
 			attributes[child.Token(0)] = child.Value(1);
 		else
@@ -93,13 +95,6 @@ const string &Outfit::Category() const
 const string &Outfit::Description() const
 {
 	return description;
-}
-
-
-
-int64_t Outfit::Cost() const
-{
-	return Get("cost");
 }
 
 
@@ -149,6 +144,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 // instances of the given outfit to this outfit.
 void Outfit::Add(const Outfit &other, int count)
 {
+	cost += other.cost * count;
 	for(const auto &at : other.attributes)
 	{
 		attributes[at.first] += at.second * count;

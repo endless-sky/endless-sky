@@ -288,5 +288,8 @@ government "Wanderer"
 	color .70 .91 .12
 	"player reputation" 1
 	language "Wanderer"
+	"attitude toward"
+		"Kor Sestor" -.1
+		"Kor Mereti" -.1
 	"friendly hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"

@@ -22,11 +22,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
-#include "LineShader.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Person.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -363,7 +361,7 @@ void Engine::Step(bool isActive)
 			
 			Point pos = object.Position() - position;
 			if(pos.Length() < 500.)
-				labels.emplace_back(pos, object);
+				labels.emplace_back(pos, object, currentSystem);
 		}
 	}
 	
@@ -439,7 +437,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem())
+		if(target->GetSystem() == player.GetSystem() && target->Cloaking() < 1.)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite().GetSprite(), targetUnit);
 		info.SetString("target name", target->Name());
@@ -515,39 +513,8 @@ void Engine::Draw() const
 	GameData::Background().Draw(position, velocity);
 	
 	// Draw any active planet labels.
-	const Font &font = FontSet::Get(14);
-	const Font &bigFont = FontSet::Get(18);
-	for(const Label &label : labels)
-	{
-		// The angle of the outer ring should be reduced by just enough that the
-		// circumference is reduced by 6 pixels.
-		static const double INNER_SPACE = 10.;
-		static const double GAP = 6.;
-		static const double INNER_ANGLE = 60.;
-		double OUTER_ANGLE = INNER_ANGLE - 360. * GAP / (2. * PI * label.radius);
-		static const Angle ANGLE(INNER_ANGLE);
-		RingShader::Draw(
-			label.position, label.radius + INNER_SPACE,
-			2.3, .9, label.color, 0., INNER_ANGLE);
-		RingShader::Draw(
-			label.position, label.radius + INNER_SPACE + GAP,
-			1.3, .6, label.color, 0., OUTER_ANGLE);
-		
-		if(!label.name.empty())
-		{
-			Point from = label.position + (label.radius + INNER_SPACE + 1.7) * ANGLE.Unit();
-			Point to = from + 60. * ANGLE.Unit();
-			LineShader::Draw(from, to, 1.3, label.color);
-			bigFont.DrawAliased(label.name, to.X(), to.Y() - .5 * bigFont.Height(), label.color);
-			font.DrawAliased(label.government, to.X() - 2., to.Y() + .5 * bigFont.Height() + 1., label.color);
-		}
-		Angle barbAngle(96.);
-		for(int i = 0; i < label.hostility; ++i)
-		{
-			barbAngle += Angle(800. / (label.radius + 25.));
-			PointerShader::Draw(label.position, barbAngle.Unit(), 15., 15., label.radius + 25., label.color);
-		}
-	}
+	for(const PlanetLabel &label : labels)
+		label.Draw();
 	
 	draw[drawTickTock].Draw();
 	
@@ -570,6 +537,7 @@ void Engine::Draw() const
 		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
 	
 	// Draw messages.
+	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Point messagePoint(
 		Screen::Left() + 120.,
@@ -1109,7 +1077,7 @@ void Engine::CalculateStep()
 				// Even friendly ships can be hit by the blast.
 				for(shared_ptr<Ship> &ship : ships)
 					if(ship->GetSystem() == player.GetSystem() && ship->Zoom() == 1.)
-						if(projectile.InBlastRadius(*ship, step))
+						if(projectile.InBlastRadius(*ship, step, closestHit))
 						{
 							int eventType = ship->TakeDamage(projectile, ship != hit);
 							if(eventType)
@@ -1428,32 +1396,4 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 Engine::Status::Status(const Point &position, double shields, double hull, double radius, bool isEnemy)
 	: position(position), shields(shields), hull(hull), radius(radius), isEnemy(isEnemy)
 {
-}
-
-
-
-Engine::Label::Label(const Point &position, const StellarObject &object)
-	: position(position), radius(object.Radius())
-{
-	const Planet &planet = *object.GetPlanet();
-	color = object.TargetColor();
-	name = planet.Name();
-	if(!planet.IsWormhole())
-	{
-		if(planet.GetGovernment())
-		{
-			government = "(" + planet.GetGovernment()->GetName() + ")";
-			if(planet.CanLand())
-			{
-				color = planet.GetGovernment()->GetColor();
-				color = Color(color.Get()[0] * .5 + .3, color.Get()[1] * .5 + .3, color.Get()[2] * .5 + .3);
-			}
-			else
-				hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
-		}
-		else
-			government = "(No government)";
-	}
-	double alpha = min(.5, max(0., .6 - position.Length() * .001));
-	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 }

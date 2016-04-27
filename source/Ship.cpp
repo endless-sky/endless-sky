@@ -354,6 +354,7 @@ void Ship::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			out.Write("category", baseAttributes.Category());
+			out.Write("cost", baseAttributes.Cost());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -652,6 +653,7 @@ bool Ship::Move(list<Effect> &effects)
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay.
 	forget += !isInSystem;
+	isThrusting = false;
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 		return false;
 	isInSystem = false;
@@ -729,6 +731,9 @@ bool Ship::Move(list<Effect> &effects)
 	
 	if(IsDestroyed())
 	{
+		// Make sure the shields are zero, as well as the hull.
+		shields = 0.;
+		
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
 		{
@@ -983,15 +988,14 @@ bool Ship::Move(list<Effect> &effects)
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
-				double thrust = attributes.Get((thrustCommand > 0.) ?
-					"thrust" : "reverse thrust");
+				isThrusting = (thrustCommand > 0.);
+				double thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 				if(!thrust)
 					thrustCommand = 0.;
 				else
 				{
 					energy -= cost;
-					heat += attributes.Get((thrustCommand > 0.) ?
-						"thrusting heat" : "reverse thrusting heat");
+					heat += attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
 					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
 				}
 			}
@@ -1072,7 +1076,7 @@ bool Ship::Move(list<Effect> &effects)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
+		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD) && !cloak);
 		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
@@ -1516,7 +1520,7 @@ int Ship::HyperspaceType() const
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
-	return (commands.Has(Command::FORWARD) && !isDisabled);
+	return isThrusting;
 }
 
 
@@ -1833,7 +1837,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 			ApplyForce((hitForce / distance) * d);
 	}
 	
-	if(!wasDisabled && IsDisabled())
+	// Recalculate the disabled ship check.
+	isDisabled = true;
+	isDisabled = IsDisabled();
+	if(!wasDisabled && isDisabled)
 		type |= ShipEvent::DISABLE;
 	if(!wasDestroyed && IsDestroyed())
 		type |= ShipEvent::DESTROY;
@@ -1927,6 +1934,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
 			ship->SetParent(shared_ptr<Ship>());
+			ship->isThrusting = false;
 			return true;
 		}
 	return false;

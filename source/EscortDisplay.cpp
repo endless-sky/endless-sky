@@ -144,7 +144,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
 	: sprite(ship.GetSprite().GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
 	isReadyToJump(ship.CheckHyperspace()),
-	cannotJump(fleetIsJumping && !ship.JumpsRemaining()),
+	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	stackSize(1),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),

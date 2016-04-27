@@ -26,7 +26,7 @@ outfit "Sunbeam"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4.3
+		"firing energy" 5.2
 		"firing heat" 6.2
 		"shield damage" 7.2
 		"hull damage" 3.0
@@ -44,7 +44,7 @@ effect "sunbeam impact"
 	"velocity scale" -.0001
 
 outfit "Sunbeam Turret"
-	category "Guns"
+	category "Turrets"
 	cost 3260000
 	thumbnail "outfit/sunbeam turret"
 	"mass" 46
@@ -62,7 +62,7 @@ outfit "Sunbeam Turret"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4.3
+		"firing energy" 5.2
 		"firing heat" 6.2
 		"shield damage" 7.2
 		"hull damage" 3.0
@@ -70,7 +70,7 @@ outfit "Sunbeam Turret"
 	description "As the Wanderers slowly cope with the transition from peacetime to the growing conflict with the Unfettered Hai, they have begun building ships that are capable of carrying turret-mounted weapons. Because of the sheer size of the Sunbeam, this turret only carries one of them."
 
 outfit "Dual Sunbeam Turret"
-	category "Guns"
+	category "Turrets"
 	cost 5170000
 	thumbnail "outfit/dual sunbeam turret"
 	"mass" 83
@@ -88,7 +88,7 @@ outfit "Dual Sunbeam Turret"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 8.6
+		"firing energy" 10.4
 		"firing heat" 12.4
 		"shield damage" 14.4
 		"hull damage" 6.0
@@ -184,44 +184,44 @@ outfit "Thunderhead"
 
 outfit "Small Biochemical Cell"
 	category "Power"
-	cost 60000
+	cost 230000
 	thumbnail "outfit/small biochemical"
 	"mass" 17
 	"outfit space" -17
-	"energy generation" 1.3
+	"energy generation" 1.6
 	"heat generation" 3
 	"energy capacity" 300
 	description "This tiny generator draws energy from the metabolic byproducts of a collection of microorganisms that have been engineered by the Wanderers specifically for this purpose."
 
 outfit "Large Biochemical Cell"
 	category "Power"
-	cost 270000
+	cost 940000
 	thumbnail "outfit/large biochemical"
 	"mass" 63
 	"outfit space" -63
-	"energy generation" 5.2
+	"energy generation" 6.2
 	"heat generation" 11
 	"energy capacity" 700
 	description "The Wanderers are masters of unusual and efficient technology. This bioreactor is fueled by a culture of microorganisms that produce a small electric charge."
 
 outfit "Yellow Sun Reactor"
 	category "Power"
-	cost 6500000
+	cost 8500000
 	thumbnail "outfit/yellow sun"
 	"mass" 82
 	"outfit space" -82
-	"energy generation" 12.7
+	"energy generation" 15.2
 	"heat generation" 21
 	"energy capacity" 2600
 	description "This is a compact nuclear reactor designed by the Wanderers. In addition to generating power, it is able to store a small amount of energy."
 
 outfit "White Sun Reactor"
 	category "Power"
-	cost 9000000
+	cost 16000000
 	thumbnail "outfit/white sun"
 	"mass" 127
 	"outfit space" -127
-	"energy generation" 20.4
+	"energy generation" 24.8
 	"heat generation" 32
 	"energy capacity" 6700
 	description "The White Sun is a large nuclear reactor that the Wanderers use for powering their Strong Wind warships."

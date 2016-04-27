@@ -47,7 +47,7 @@ namespace {
 	
 	bool IsStranded(const Ship &ship)
 	{
-		return ship.GetSystem() && !ship.GetSystem()->IsInhabited()
+		return ship.GetSystem() && !ship.GetSystem()->HasFuelFor(ship)
 			&& ship.Attributes().Get("fuel capacity") && !ship.JumpsRemaining();
 	}
 	
@@ -171,6 +171,9 @@ void AI::UpdateEvents(const list<ShipEvent> &events)
 			int &bitmap = playerActions[event.Target()];
 			int newActions = event.Type() - (event.Type() & bitmap);
 			bitmap |= event.Type();
+			// If you provoke the same ship twice, it should have an effect both times.
+			if(event.Type() & ShipEvent::PROVOKE)
+				newActions |= ShipEvent::PROVOKE;
 			event.TargetGovernment()->Offend(newActions, event.Target()->RequiredCrew());
 		}
 	}
@@ -183,6 +186,7 @@ void AI::Clean()
 	actions.clear();
 	governmentActions.clear();
 	playerActions.clear();
+	shipStrength.clear();
 }
 
 
@@ -211,12 +215,13 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					}
 			}
 	}
-	shipStrength.clear();
 	for(const auto &it : ships)
 	{
 		const Government *gov = it->GetGovernment();
-		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled())
+		// Only have ships update their strength estimate once per second on average.
+		if(!gov || it->GetSystem() != player.GetSystem() || it->IsDisabled() || Random::Int(60))
 			continue;
+		
 		int64_t &strength = shipStrength[it.get()];
 		for(const auto &oit : ships)
 		{
@@ -268,6 +273,8 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					hasEnemy = true;
 					break;
 				}
+				if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
+					continue;
 				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
 					continue;
 				
@@ -520,7 +527,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
 	shared_ptr<Ship> parentTarget;
-	if(ship.GetParent())
+	bool parentIsEnemy = (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
+	if(ship.GetParent() && !parentIsEnemy)
 		parentTarget = ship.GetParent()->GetTargetShip();
 	if(parentTarget && !parentTarget->IsTargetable())
 		parentTarget.reset();
@@ -609,7 +617,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 	}
 	
 	// Run away if your target is not disabled and you are badly damaged.
-	if(!isDisabled && (person.IsFleeing() || (ship.Shields() + ship.Hull() < 1. && !person.IsHeroic())))
+	if(!isDisabled && target && (person.IsFleeing() || 
+			(ship.Shields() + ship.Hull() < 1. && !person.IsHeroic() && !parentIsEnemy)))
 	{
 		// Make sure the ship has somewhere to flee to.
 		const System *system = ship.GetSystem();
@@ -788,7 +797,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	// If an escort is out of fuel, they should refuel without waiting for the
 	// "parent" to land (because the parent may not be planning on landing).
-	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->IsInhabited())
+	if(hasFuelCapacity && !ship.JumpsRemaining() && ship.GetSystem()->HasFuelFor(ship))
 		Refuel(ship, command);
 	else if(ship.GetSystem() != parent.GetSystem() && !isStaying)
 	{
@@ -809,7 +818,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		else
 		{
 			ship.SetTargetSystem(to);
-			if(!to || (from->IsInhabited() && !to->IsInhabited() && ship.JumpsRemaining() == 1))
+			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
 				Refuel(ship, command);
 			else
 			{
@@ -832,7 +841,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		DistanceMap distance(ship, parent.GetTargetSystem());
 		const System *dest = distance.Route(ship.GetSystem());
 		ship.SetTargetSystem(dest);
-		if(!dest || (ship.GetSystem()->IsInhabited() && !dest->IsInhabited() && ship.JumpsRemaining() == 1))
+		if(!dest || (ship.GetSystem()->HasFuelFor(ship) && !dest->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
 			Refuel(ship, command);
 		else
 		{

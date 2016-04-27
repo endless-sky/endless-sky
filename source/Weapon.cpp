@@ -86,6 +86,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				antiMissile = max(0., child.Value(1));
 			else if(child.Token(0) == "velocity")
 				velocity = child.Value(1);
+			else if(child.Token(0) == "random velocity")
+				randomVelocity = child.Value(1);
 			else if(child.Token(0) == "acceleration")
 				acceleration = child.Value(1);
 			else if(child.Token(0) == "drag")

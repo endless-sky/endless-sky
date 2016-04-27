@@ -52,7 +52,7 @@ public:
 	bool HasBlastRadius() const;
 	// Check if the given ship is within this projectile's blast radius. (The
 	// projectile will not explode unless it is also within the trigger radius.)
-	bool InBlastRadius(const Ship &ship, int step) const;
+	bool InBlastRadius(const Ship &ship, int step, double closestHit) const;
 	// This projectile hit something. Create the explosion, if any. This also
 	// marks the projectile as needing deletion.
 	void Explode(std::list<Effect> &effects, double intersection, Point hitVelocity = Point());

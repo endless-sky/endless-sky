@@ -196,15 +196,31 @@ bool Armament::Weapon::FireAntiMissile(Ship &ship, const Projectile &projectile,
 	if(offset.Length() > range)
 		return false;
 	
+	// Firing effects are displayed at the anti-missile that just fired.
+	Angle aim = TO_DEG * atan2(offset.X(), -offset.Y());
+	for(const auto &eit : outfit->FireEffects())
+		for(int i = 0; i < eit.second; ++i)
+		{
+			effects.push_back(*eit.first);
+			effects.back().Place(start, ship.Velocity(), aim);
+		}
+	
 	// Figure out where the effect should be placed. Anti-missiles do not create
 	// projectiles; they just create a blast animation.
 	start += (.5 * range) * offset.Unit();
-	Angle aim = TO_DEG * atan2(offset.X(), -offset.Y());
 	for(const auto &eit : outfit->HitEffects())
 		for(int i = 0; i < eit.second; ++i)
 		{
 			effects.push_back(*eit.first);
 			effects.back().Place(start, ship.Velocity(), aim);
+		}
+	
+	// Die effects are displayed at the projectile, whether or not it actually "dies."
+	for(const auto &eit : outfit->DieEffects())
+		for(int i = 0; i < eit.second; ++i)
+		{
+			effects.push_back(*eit.first);
+			effects.back().Place(projectile.Position(), projectile.Velocity(), aim);
 		}
 	
 	Fire(ship);

@@ -43,7 +43,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 	if(inaccuracy)
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 	
-	velocity += this->angle.Unit() * weapon->Velocity();
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 }
 
 
@@ -66,7 +66,7 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 			velocity += (this->angle.Unit() - parent.angle.Unit()) * parentVelocity;
 		}
 	}
-	velocity += this->angle.Unit() * weapon->Velocity();
+	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
 }
 
 
@@ -224,10 +224,11 @@ bool Projectile::HasBlastRadius() const
 
 // Check if the given ship is within this projectile's blast radius. (The
 // projectile will not explode unless it is also within the trigger radius.)
-bool Projectile::InBlastRadius(const Ship &ship, int step) const
+bool Projectile::InBlastRadius(const Ship &ship, int step, double closestHit) const
 {
 	const Mask &mask = ship.GetSprite().GetMask(step);
-	return mask.WithinRange(position - ship.Position(), ship.Facing(), weapon->BlastRadius());
+	return mask.WithinRange(position + closestHit * velocity - ship.Position(),
+		ship.Facing(), weapon->BlastRadius());
 }
 
 

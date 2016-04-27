@@ -116,6 +116,88 @@ outfit "Pug Anti-Missile"
 		"firing heat" 2
 	description "This anti-missile system designed by the Pug draws a lot of energy, but its fast firing rate makes it twice as effective as anything that Lovelace Labs has been able to come up with. A ship with one of these turrets will be very difficult to hit with missiles."
 
+outfit "Tier 3 Anti-Missile"
+	category "Turrets"
+	cost 12000000
+	thumbnail "outfit/unknown"
+	"mass" 67
+	"outfit space" -67
+	"weapon capacity" -67
+	"turret mounts" -1
+	weapon
+		"fire effect" "tier 3 anti-missile fire"
+		"die effect" "tier 3 anti-missile die" 2
+		"anti-missile" 100
+		"velocity" 570
+		"lifetime" 1
+		"reload" 6
+		"firing energy" 80
+		"firing heat" 10
+
+effect "tier 3 anti-missile fire"
+	sprite "effect/anti-missile 3 fire"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 3
+	"random angle" 360
+	"velocity scale" 1
+
+effect "tier 3 anti-missile die"
+	sprite "effect/anti-missile 3 die"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 31
+	"random angle" 360
+	"velocity scale" .4
+
+outfit "Pug Gridfire Turret"
+	category "Turrets"
+	cost 24000000
+	thumbnail "outfit/unknown"
+	"mass" 83
+	"outfit space" -83
+	"weapon capacity" -83
+	"turret mounts" -1
+	weapon
+		"fire effect" "gridfire fire"
+		"hit effect" "gridfire hit" 2
+		"hit effect" "gridfire cloud"
+		"velocity" 1440
+		"lifetime" 1
+		"reload" 20
+		"firing energy" 800
+		"firing heat" 400
+		"shield damage" 600
+		"hull damage" 600
+		"blast radius" 40
+		"piercing" .3
+
+effect "gridfire fire"
+	sprite "effect/gridfire fire"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 7
+	"random angle" 360
+	"random spin" 20
+	"velocity scale" 1
+
+effect "gridfire hit"
+	sprite "effect/gridfire hit"
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 25
+	"random angle" 360
+	"velocity scale" .00001
+
+effect "gridfire cloud"
+	sprite "effect/gridfire cloud"
+		"no repeat"
+		"frame rate" 1
+	"lifetime" 121
+	"random angle" 360
+	"random spin" 20
+	"velocity scale" .00001
+
 
 outfit "Pug Akfar Thruster"
 	category "Engines"
@@ -349,6 +431,61 @@ ship "Pug Maboro"
 	explode "huge explosion" 5
 	description "This is the largest Pug warship."
 
+ship "Pug Arfecta"
+	sprite "ship/pug arfecta"
+	attributes
+		category "Medium Warship"
+		"cost" 90000000
+		"shields" 98000
+		"hull" 80000
+		"required crew" 36
+		"bunks" 46
+		"mass" 670
+		"drag" 7.5
+		"heat dissipation" .8
+		"fuel capacity" 1200
+		"cargo space" 64
+		"outfit space" 640
+		"weapon capacity" 390
+		"engine capacity" 220
+		"energy generation" 200
+		"shield generation" 32
+		"shield energy" 32
+		"hull repair rate" 5
+		"hull energy" 5
+		"heat generation" 10
+		"energy capacity" 10000
+		"cloaking fuel" -.2
+		weapon
+			"blast radius" 320
+			"shield damage" 9000
+			"hull damage" 4500
+			"hit force" 7000
+	outfits
+		"Tier 3 Anti-Missile" 2
+		"Pug Gridfire Turret" 3
+		
+		"Cloaking Device"
+		"Pug Biodefenses" 12
+		
+		"Pug Lohmar Thruster"
+		"Pug Lohmar Steering"
+		"Pug Lohmar Steering"
+		"Jump Drive"
+	
+	engine -15 164
+	engine 15 164
+	turret -50 -29 "Tier 3 Anti-Missile"
+	turret 50 -29 "Tier 3 Anti-Missile"
+	turret 0 40 "Pug Gridfire Turret"
+	turret -73 84 "Pug Gridfire Turret"
+	turret 73 84 "Pug Gridfire Turret"
+	explode "tiny explosion" 100
+	explode "small explosion" 60
+	explode "medium explosion" 30
+	explode "big explosion" 10
+	description `This is a Pug "tier 3" warship, intended for use in combat against either a species on par with the Quarg, or a lesser species that has decided to be particularly meddlesome.`
+
 
 
 galaxy "pug empty galaxy"
@@ -545,3 +682,17 @@ mission "Pug in Wanderer Space"
 			label ship
 			`	You decide to play it safe and return to your ship. The Pug remain as enigmatic as ever.`
 				decline
+
+mission "Pug Angry at Being Farmed"
+	landing
+	invisible
+	to offer
+		or
+			has "Pug Cease Hostilities: offered"
+			not "chosen sides"
+		"reputation: Pug" < -100
+	npc kill
+		government Pug
+		personality nemesis heroic staying
+		system "Pug Iyik"
+		ship "Pug Arfecta" "Ayee Eee Eek"
