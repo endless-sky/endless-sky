@@ -762,7 +762,7 @@ ship "Model 16"
 		"Korath Minelayer"
 		"Korath Mine" 17
 		"Korath Disruptor"
-		"Korath Slicer"
+		"Korath Slicer Turret"
 		
 		"Plasma Core"
 		"Generator (Inferno Class)"
@@ -777,7 +777,7 @@ ship "Model 16"
 	engine 10 99
 	gun 0 -99 "Korath Minelayer"
 	turret -18 -31 "Korath Disruptor"
-	turret 19 49 "Korath Slicer"
+	turret 19 49 "Korath Slicer Turret"
 	explode "tiny explosion" 60
 	explode "small explosion" 40
 	explode "medium explosion" 30
@@ -811,7 +811,7 @@ ship "Model 32"
 		"Korath Minelayer"
 		"Korath Mine" 17
 		"Korath Disruptor"
-		"Korath Slicer" 2
+		"Korath Slicer Turret" 2
 		
 		"Double Plasma Core"
 		"Generator (Candle Class)"
@@ -826,8 +826,8 @@ ship "Model 32"
 	engine 10 128
 	gun 0 -129 "Korath Minelayer"
 	turret 32 -24 "Korath Disruptor"
-	turret -31 -9 "Korath Slicer"
-	turret 24 19 "Korath Slicer"
+	turret -31 -9 "Korath Slicer Turret"
+	turret 24 19 "Korath Slicer Turret"
 	explode "tiny explosion" 80
 	explode "small explosion" 55
 	explode "medium explosion" 40
@@ -861,7 +861,7 @@ ship "Model 64"
 		"Korath Minelayer"
 		"Korath Mine" 17
 		"Korath Disruptor" 2
-		"Korath Slicer" 2
+		"Korath Slicer Turret" 2
 		
 		"Double Plasma Core"
 		"Generator (Furnace Class)"
@@ -876,9 +876,9 @@ ship "Model 64"
 	engine 19 159
 	gun 0 -159 "Korath Minelayer"
 	turret -35 -69 "Korath Disruptor"
-	turret 20 -74 "Korath Slicer"
+	turret 20 -74 "Korath Slicer Turret"
 	turret 34 77 "Korath Disruptor"
-	turret -29 71 "Korath Slicer"
+	turret -29 71 "Korath Slicer Turret"
 	explode "tiny explosion" 100
 	explode "small explosion" 70
 	explode "medium explosion" 50
@@ -912,7 +912,7 @@ ship "Model 128"
 		"Korath Minelayer" 2
 		"Korath Mine" 34
 		"Korath Disruptor" 2
-		"Korath Slicer" 3
+		"Korath Slicer Turret" 3
 		
 		"Double Plasma Core"
 		"Generator (Inferno Class)"
@@ -927,11 +927,11 @@ ship "Model 128"
 	engine 14 178
 	gun -11 -166 "Korath Minelayer"
 	gun 11 -166 "Korath Minelayer"
-	turret 29 -83 "Korath Slicer"
+	turret 29 -83 "Korath Slicer Turret"
 	turret -26 -53 "Korath Disruptor"
-	turret 56 35 "Korath Slicer"
+	turret 56 35 "Korath Slicer Turret"
 	turret 50 84 "Korath Disruptor"
-	turret -24 115 "Korath Slicer"
+	turret -24 115 "Korath Slicer Turret"
 	explode "tiny explosion" 120
 	explode "small explosion" 85
 	explode "medium explosion" 60
@@ -965,7 +965,7 @@ ship "Model 256"
 		"Korath Minelayer" 2
 		"Korath Mine" 34
 		"Korath Disruptor" 3
-		"Korath Slicer" 3
+		"Korath Slicer Turret" 3
 		
 		"Triple Plasma Core"
 		"Systems Core (Large)"
@@ -981,10 +981,10 @@ ship "Model 256"
 	gun -22 -148 "Korath Minelayer"
 	gun 22 -148 "Korath Minelayer"
 	turret 36 -85 "Korath Disruptor"
-	turret -56 -45 "Korath Slicer"
+	turret -56 -45 "Korath Slicer Turret"
 	turret 69 3 "Korath Disruptor"
-	turret -73 38 "Korath Slicer"
-	turret 66 64 "Korath Slicer"
+	turret -73 38 "Korath Slicer Turret"
+	turret 66 64 "Korath Slicer Turret"
 	turret -56 101 "Korath Disruptor"
 	explode "tiny explosion" 140
 	explode "small explosion" 100
@@ -1019,7 +1019,7 @@ ship "Model 512"
 		"Korath Minelayer" 2
 		"Korath Mine" 34
 		"Korath Disruptor" 3
-		"Korath Slicer" 4
+		"Korath Slicer Turret" 4
 		
 		"Triple Plasma Core"
 		"Plasma Core"
@@ -1035,12 +1035,12 @@ ship "Model 512"
 	engine 145 97
 	gun -22 -143 "Korath Minelayer"
 	gun 22 -143 "Korath Minelayer"
-	turret -23 -134 "Korath Slicer"
+	turret -23 -134 "Korath Slicer Turret"
 	turret 91 -102 "Korath Disruptor"
-	turret 124 -57 "Korath Slicer"
+	turret 124 -57 "Korath Slicer Turret"
 	turret -130 -33 "Korath Disruptor"
-	turret 138 20 "Korath Slicer"
-	turret -121 86 "Korath Slicer"
+	turret 138 20 "Korath Slicer Turret"
+	turret -121 86 "Korath Slicer Turret"
 	turret 54 138 "Korath Disruptor"
 	explode "tiny explosion" 160
 	explode "small explosion" 115
