@@ -62,7 +62,52 @@ outfit "LP576a Battery Pack"
 	"energy capacity" 23000
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
+outfit "LP036a Battery Pack (Hai)"
+	category "Power"
+	cost 12000
+	thumbnail "outfit/tiny battery hai"
+	"mass" 10
+	"outfit space" -10
+	"energy capacity" 1000
+	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
+outfit "LP072a Battery Pack (Hai)"
+	category "Power"
+	cost 30000
+	thumbnail "outfit/small battery hai"
+	"mass" 20
+	"outfit space" -20
+	"energy capacity" 2200
+	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
+
+outfit "LP144a Battery Pack (Hai)"
+	category "Power"
+	cost 67000
+	thumbnail "outfit/medium battery hai"
+	"mass" 40
+	"outfit space" -40
+	"energy capacity" 4800
+	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
+
+outfit "LP288a Battery Pack(Hai)"
+	category "Power"
+	cost 150000
+	thumbnail "outfit/large battery hai"
+	"mass" 80
+	"outfit space" -80
+	"energy capacity" 10400
+	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
+
+outfit "LP576a Battery Pack (Hai)"
+	category "Power"
+	cost 380000
+	thumbnail "outfit/huge battery hai"
+	"mass" 160
+	"outfit space" -160
+	"energy capacity" 23000
+	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
+
+	
 outfit "KP-6 Photovoltaic Panel"
 	category "Power"
 	cost 10000
@@ -174,10 +219,30 @@ outfit "Dwarf Core"
 	"heat generation" 14
 	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. It was designed by Deep Sky to be paired with their power-hungry atomic engines."
 
+outfit "Dwarf Core (Hai)"
+	category "Power"
+	cost 900000
+	thumbnail "outfit/dwarf core hai"
+	"mass" 36
+	"outfit space" -36
+	"energy generation" 4.8
+	"heat generation" 14
+	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. It was designed by Deep Sky to be paired with their power-hungry atomic engines."
+
 outfit "Fission Reactor"
 	category "Power"
 	cost 1500000
 	thumbnail "outfit/fission"
+	"mass" 65
+	"outfit space" -65
+	"energy generation" 9.4
+	"heat generation" 25
+	description "Fission reactors have been a mainstay of large military vessels since even before the dawn of the space era. Today's models are very safe and efficient, but some pilots still find them disconcerting."
+
+outfit "Fission Reactor (Hai)"
+	category "Power"
+	cost 1500000
+	thumbnail "outfit/fission hai"
 	"mass" 65
 	"outfit space" -65
 	"energy generation" 9.4
@@ -204,6 +269,16 @@ outfit "Fusion Reactor"
 	"heat generation" 40
 	description "The invention of practical fusion power near the end of the twenty-first century spurred a new era of prosperity and plenty. Centuries later, the generators have been reduced in size, but are still generally only used in capital warships."
 
+outfit "Fusion Reactor (Hai)"
+	category "Power"
+	cost 5000000
+	thumbnail "outfit/fusion hai"
+	"mass" 100
+	"outfit space" -100
+	"energy generation" 18.2
+	"heat generation" 40
+	description "The invention of practical fusion power near the end of the twenty-first century spurred a new era of prosperity and plenty. Centuries later, the generators have been reduced in size, but are still generally only used in capital warships."
+	
 outfit "Armageddon Core"
 	category "Power"
 	cost 9000000

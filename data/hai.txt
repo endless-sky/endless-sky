@@ -168,13 +168,13 @@ ship "Lightning Bug"
 			"hit force" 1260
 	outfits
 		"Ion Cannon"
-		"Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP072a Battery Pack"
+		"Anti-Missile Turret (Hai)" 2
+		"Fission Reactor (Hai)"
+		"LP072a Battery Pack (Hai)"
 		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A375 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A250 Atomic Thruster (Hai)"
+		"A375 Atomic Steering (Hai)"
 		"Hyperdrive"
 	engine -40 22
 	engine 40 22
@@ -192,12 +192,12 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker Pod"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
-		"Fission Reactor"
-		"LP036a Battery Pack"
+		"Fission Reactor (Hai)"
+		"LP036a Battery Pack (Hai)"
 		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A370 Atomic Thruster"
-		"A255 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A370 Atomic Thruster (Hai)"
+		"A255 Atomic Steering (Hai)"
 		"Hyperdrive"
 
 ship "Aphid"
@@ -224,12 +224,12 @@ ship "Aphid"
 			"hit force" 450
 	outfits
 		"Pulse Turret"
-		"Dwarf Core"
-		"LP036a Battery Pack"
+		"Dwarf Core (Hai)"
+		"LP036a Battery Pack (Hai)"
 		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A120 Atomic Thruster"
-		"A125 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A120 Atomic Thruster (Hai)"
+		"A125 Atomic Steering (Hai)"
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
@@ -241,13 +241,13 @@ ship "Aphid"
 
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
-		"Heavy Anti-Missile Turret"
-		"Dwarf Core"
-		"LP036a Battery Pack"
+		"Heavy Anti-Missile Turret (Hai)"
+		"Dwarf Core (Hai)"
+		"LP036a Battery Pack (Hai)"
 		"S-270 Regenerator"
-		"Cooling Ducts"
-		"A120 Atomic Thruster"
-		"A255 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A120 Atomic Thruster (Hai)"
+		"A255 Atomic Steering (Hai)"
 		"Hyperdrive"
 
 ship "Water Bug"
@@ -276,21 +276,21 @@ ship "Water Bug"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Pulse Turret"
-		"Heavy Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP144a Battery Pack"
+		"Heavy Anti-Missile Turret (Hai)" 2
+		"Fission Reactor (Hai)"
+		"LP144a Battery Pack (Hai)"
 		"S-970 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A250 Atomic Thruster (Hai)"
+		"A255 Atomic Steering (Hai)"
 		"Hyperdrive"
 	engine -50 33
 	engine 50 33
 	gun -24 -53 "Hai Tracker Pod"
 	gun 24 -53 "Hai Tracker Pod"
 	turret 0 -10 "Pulse Turret"
-	turret -17 17 "Heavy Anti-Missile Turret"
-	turret 17 17 "Heavy Anti-Missile Turret"
+	turret -17 17 "Heavy Anti-Missile Turret (Hai)"
+	turret 17 17 "Heavy Anti-Missile Turret (Hai)"
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
@@ -302,12 +302,12 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Pulse Turret" 3
-		"Fission Reactor"
-		"LP144a Battery Pack"
+		"Fission Reactor (Hai)"
+		"LP144a Battery Pack (Hai)"
 		"S-970 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A250 Atomic Thruster (Hai)"
+		"A255 Atomic Steering (Hai)"
 		"Hyperdrive"
 
 ship "Water Bug" "Water Bug (Jump)"
@@ -315,13 +315,13 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Pulse Turret"
-		"Heavy Anti-Missile Turret" 2
-		"Fission Reactor"
-		"LP144a Battery Pack"
+		"Heavy Anti-Missile Turret (Hai)" 2
+		"Fission Reactor (Hai)"
+		"LP144a Battery Pack (Hai)"
 		"S-970 Regenerator"
-		"Cooling Ducts"
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
+		"Cooling Ducts (Hai)"
+		"A250 Atomic Thruster (Hai)"
+		"A255 Atomic Steering (Hai)"
 		"Jump Drive"
 
 ship "Shield Beetle"
@@ -350,14 +350,14 @@ ship "Shield Beetle"
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
+		"Heavy Anti-Missile Turret (Hai)" 2
+		"Fusion Reactor (Hai)"
+		"Fission Reactor (Hai)"
+		"LP288a Battery Pack (Hai)"
 		"S-970 Regenerator"
-		"Cooling Ducts" 4
-		"A370 Atomic Thruster"
-		"A865 Atomic Steering"
+		"Cooling Ducts(Hai)" 4
+		"A370 Atomic Thruster (Hai)"
+		"A865 Atomic Steering (Hai)"
 		"Hyperdrive"
 	engine -44 133
 	engine 44 133
@@ -369,8 +369,8 @@ ship "Shield Beetle"
 	gun 34 -68 "Hai Tracker Pod"
 	gun -61 -14 "Hai Tracker Pod"
 	gun 61 -14 "Hai Tracker Pod"
-	turret -57 75 "Heavy Anti-Missile Turret"
-	turret 57 75 "Heavy Anti-Missile Turret"
+	turret -57 75 "Heavy Anti-Missile Turret (Hai)"
+	turret 57 75 "Heavy Anti-Missile Turret (Hai)"
 	turret -39 48
 	turret 39 48
 	explode "tiny explosion" 50
@@ -385,13 +385,13 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Tracker Pod" 8
 		"Hai Tracker" 448
 		"Pulse Turret" 4
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
+		"Fusion Reactor (Hai)"
+		"Fission Reactor (Hai)"
+		"LP288a Battery Pack (Hai)"
 		"S-970 Regenerator"
-		"Cooling Ducts" 4
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
+		"Cooling Ducts (Hai)" 4
+		"A520 Atomic Thruster (Hai)"
+		"A525 Atomic Steering (Hai)"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
@@ -399,16 +399,16 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Heavy Anti-Missile Turret" 2
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
+		"Heavy Anti-Missile Turret (Hai)" 2
+		"Fusion Reactor (Hai)"
+		"Fission Reactor (Hai)"
+		"LP288a Battery Pack (Hai)"
 		"Mass Expansion" 4
 		"S-970 Regenerator" 2
 		"Fuel Pod" 3
-		"Cooling Ducts" 4
-		"A370 Atomic Thruster"
-		"A865 Atomic Steering"
+		"Cooling Ducts (Hai)" 4
+		"A370 Atomic Thruster (Hai)"
+		"A865 Atomic Steering (Hai)"
 		"Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
@@ -418,23 +418,23 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 	gun "Hai Tracker Pod"
 	gun "Hai Tracker Pod"
 	gun "Hai Tracker Pod"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret (Hai)"
+	turret "Heavy Anti-Missile Turret (Hai)"
 
 ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 	outfits
 		"Hai Tracker Pod" 8
 		"Hai Tracker" 448
 		"Pulse Turret" 4
-		"Fusion Reactor"
-		"Fission Reactor"
-		"LP288a Battery Pack"
+		"Fusion Reactor (Hai)"
+		"Fission Reactor (Hai)"
+		"LP288a Battery Pack (Hai)"
 		"Mass Expansion" 1
 		"S-970 Regenerator" 2
 		"Fuel Pod" 3
-		"Cooling Ducts" 4
-		"A520 Atomic Thruster"
-		"A525 Atomic Steering"
+		"Cooling Ducts (Hai)" 4
+		"A520 Atomic Thruster (Hai)"
+		"A525 Atomic Steering (Hai)"
 		"Jump Drive"
 
 shipyard "Hai Basics"
@@ -455,17 +455,17 @@ shipyard "Hai Advanced"
 outfitter "Hai Basics"
 	"Pulse Cannon"
 	"Hai Tracker"
-	"Anti-Missile Turret"
-	"Fission Reactor"
-	"Cooling Ducts"
+	"Anti-Missile Turret (Hai)"
+	"Fission Reactor (Hai)"
+	"Cooling Ducts (Hai)"
 	"Hyperdrive"
-	"LP036a Battery Pack"
-	"LP072a Battery Pack"
+	"LP036a Battery Pack (Hai)"
+	"LP072a Battery Pack (Hai)"
 	"Supercapacitor"
 	"Cargo Expansion"
 	"S-270 Regenerator"
-	"A120 Atomic Thruster"
-	"A125 Atomic Steering"
+	"A120 Atomic Thruster (Hai)"
+	"A125 Atomic Steering (Hai)"
 	"Local Map"
 
 outfitter "Hai Intermediate"
@@ -473,25 +473,25 @@ outfitter "Hai Intermediate"
 	"Pulse Turret"
 	"Hai Tracker"
 	"Hai Tracker Pod"
-	"Anti-Missile Turret"
-	"Heavy Anti-Missile Turret"
-	"Dwarf Core"
-	"Fission Reactor"
-	"Cooling Ducts"
+	"Anti-Missile Turret (Hai)"
+	"Heavy Anti-Missile Turret (Hai)"
+	"Dwarf Core (Hai)"
+	"Fission Reactor (Hai)"
+	"Cooling Ducts (Hai)"
 	"Hyperdrive"
-	"LP036a Battery Pack"
-	"LP072a Battery Pack"
-	"LP144a Battery Pack"
+	"LP036a Battery Pack (Hai)"
+	"LP072a Battery Pack (Hai)"
+	"LP144a Battery Pack (Hai)"
 	"Supercapacitor"
 	"Mass Expansion"
 	"Cargo Expansion"
 	"S-270 Regenerator"
-	"A120 Atomic Thruster"
-	"A125 Atomic Steering"
-	"A250 Atomic Thruster"
-	"A255 Atomic Steering"
-	"A370 Atomic Thruster"
-	"A375 Atomic Steering"
+	"A120 Atomic Thruster (Hai)"
+	"A125 Atomic Steering (Hai)"
+	"A250 Atomic Thruster (Hai)"
+	"A255 Atomic Steering (Hai)"
+	"A370 Atomic Thruster (Hai)"
+	"A375 Atomic Steering (Hai)"
 	"Local Map"
 
 outfitter "Hai Advanced"
@@ -500,33 +500,33 @@ outfitter "Hai Advanced"
 	"Pulse Turret"
 	"Hai Tracker"
 	"Hai Tracker Pod"
-	"Anti-Missile Turret"
-	"Heavy Anti-Missile Turret"
-	"Dwarf Core"
-	"Fission Reactor"
-	"Fusion Reactor"
-	"Cooling Ducts"
+	"Anti-Missile Turret (Hai)"
+	"Heavy Anti-Missile Turret (Hai)"
+	"Dwarf Core (Hai)"
+	"Fission Reactor (Hai)"
+	"Fusion Reactor (Hai)"
+	"Cooling Ducts (Hai)"
 	"Hyperdrive"
-	"LP036a Battery Pack"
-	"LP072a Battery Pack"
-	"LP144a Battery Pack"
-	"LP288a Battery Pack"
-	"LP576a Battery Pack"
+	"LP036a Battery Pack (Hai)"
+	"LP072a Battery Pack (Hai)"
+	"LP144a Battery Pack (Hai)"
+	"LP288a Battery Pack (Hai)"
+	"LP576a Battery Pack (Hai)"
 	"Supercapacitor"
 	"Mass Expansion"
 	"Cargo Expansion"
 	"S-270 Regenerator"
 	"S-970 Regenerator"
-	"A120 Atomic Thruster"
-	"A125 Atomic Steering"
-	"A250 Atomic Thruster"
-	"A255 Atomic Steering"
-	"A370 Atomic Thruster"
-	"A375 Atomic Steering"
-	"A520 Atomic Thruster"
-	"A525 Atomic Steering"
-	"A860 Atomic Thruster"
-	"A865 Atomic Steering"
+	"A120 Atomic Thruster (Hai)"
+	"A125 Atomic Steering (Hai)"
+	"A250 Atomic Thruster (Hai)"
+	"A255 Atomic Steering (Hai)"
+	"A370 Atomic Thruster (Hai)"
+	"A375 Atomic Steering (Hai)"
+	"A520 Atomic Thruster (Hai)"
+	"A525 Atomic Steering (Hai)"
+	"A860 Atomic Thruster (Hai)"
+	"A865 Atomic Steering (Hai)"
 	"Local Map"
 
 phrase "hai"
