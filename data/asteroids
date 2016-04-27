@@ -3,9 +3,6 @@ government "Mineable Asteroid"
 
 government "Claimed Asteroid"
 	"player reputation" 1000
-
-government "Research Asteroid"
-	"player reputation" 1000
 	
 government "Bounty Hunter"
 	swizzle 6
@@ -14,7 +11,6 @@ government "Bounty Hunter"
 	"player reputation" -1000
 	"attitude toward"
 		"Claimed Asteroid" -.1
-		"Research Asteroid" -.1
 		"Mineable Asteroid" -.1
 	"bribe" .2
 	"fine" 0
@@ -225,12 +221,6 @@ ship "Big Asteroid" "Big Ast D"
 		"Gold" 27
 		"Gemstones" 45
 		"Uranium" 16
-
-fleet "Claimed Asteroid Field"
-	names "Asteroid"
-	cargo 0
-	variant
-		"Super Tough Asteroid" 2
 		
 phrase "asteroid"
 	word
@@ -251,6 +241,12 @@ phrase "signature"
 	phrase "digit"
 	phrase "digit"
 
+fleet "Claimed Asteroid Field"
+	names "asteroid"
+	cargo 0
+	variant
+		"Super Tough Asteroid" 2
+	
 fleet "Random Asteroid Field"
 	names "asteroid"
 	cargo 0
@@ -304,16 +300,23 @@ fleet "Random Asteroid Field"
 
 mission "Asteroid Field Trigger"
 	landing
-	deadline 2
+	deadline 1
 	repeat
 	invisible
 	npc
-		government "Random Mineable Asteroid"
+		government "Mineable Asteroid"
 		personality waiting
 		names "asteroid"
 		system
 			distance 1 2
-		fleet "Asteroid Field"
+		fleet "Random Asteroid Field"
+	npc
+		government "Mineable Asteroid"
+		personality waiting
+		names "asteroid"
+		system
+			distance 1 2
+		fleet "Random Asteroid Field"
 
 mission "Asteroid Mining (Small)"
 	name "Mine asteroid near <system>"
@@ -324,7 +327,8 @@ mission "Asteroid Mining (Small)"
 		"combat rating" > 300
 		random < 40
 	source
-		government Syndicate
+		government Republic "Free Worlds" Syndicate
+		attributes research
 	npc board save
 		personality waiting
 		government "Mineable Asteroid"
@@ -373,7 +377,8 @@ mission "Asteroid Mining (Medium)"
 		"combat rating" > 400
 		random < 30
 	source
-		government Syndicate
+		government Republic "Free Worlds" Syndicate
+		attributes research
 	npc board save
 		personality waiting
 		government "Mineable Asteroid"
@@ -416,7 +421,8 @@ mission "Asteroid Mining (Big)"
 		"combat rating" > 500
 		random < 20
 	source
-		government Syndicate
+		government Republic "Free Worlds" Syndicate
+		attributes research
 	npc board save
 		personality waiting
 		government "Mineable Asteroid"
@@ -463,7 +469,8 @@ mission "Asteroid Claim Defense (Small)"
 		"combat rating" > 2000
 		random < 40
 	source 
-		government Syndicate
+		government Republic "Free Worlds" Syndicate
+		attributes factory
 	npc save
 		personality waiting escort
 		government "Claimed Asteroid"
@@ -508,7 +515,8 @@ mission "Asteroid Claim Defense (Medium)"
 		"combat rating" > 4000
 		random < 30
 	source 
-		government Syndicate
+		government Republic "Free Worlds" Syndicate
+		attributes factory
 	npc save
 		personality waiting escort
 		government "Claimed Asteroid"
@@ -547,7 +555,8 @@ mission "Asteroid Claim Defense (Big)"
 		"combat rating" > 6000
 		random < 20
 	source 
-		government Syndicate
+		government Republic "Free Worlds" Syndicate
+		attributes factory
 	npc save
 		personality waiting escort
 		government "Claimed Asteroid"
@@ -586,13 +595,13 @@ mission "Asteroid Research Escort (Small)"
 		"combat rating" > 300
 		random < 40
 	source 
-		government Syndicate
+		attributes research
 	stopover
 		distance 2 3
 	destination
 		distance 1 1
 	npc accompany save
-		government Syndicate
+		government Merchant
 		personality escort timid
 		fleet
 			names "civilian"
@@ -618,14 +627,14 @@ mission "Asteroid Research Escort (Medium)"
 	to offer
 		"combat rating" > 500
 		random < 30
-	source 
-		government Syndicate
+	source
+		attributes research
 	stopover
 		distance 3 4
 	destination
 		distance 1 1
 	npc accompany save
-		government Syndicate
+		government Merchant
 		personality escort timid
 		fleet
 			names "civilian"
@@ -652,13 +661,13 @@ mission "Asteroid Research Escort (Big)"
 		"combat rating" > 700
 		random < 20
 	source
-		government Syndicate
+		attributes research
 	stopover
 		distance 4 5
 	destination
 		distance 1 1
 	npc accompany save
-		government Syndicate
+		government Merchant
 		personality escort timid
 		fleet
 			names "civilian"
@@ -768,7 +777,7 @@ outfit "Advanced Mining Turret"
 		icon "icon/meteor"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"velocity" 300
+		"velocity" 350
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 6
