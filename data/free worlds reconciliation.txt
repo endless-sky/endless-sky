@@ -1056,9 +1056,9 @@ mission "FW Pug 2"
 
 			label "know about pug"
 			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why."`
-			`	"I know why." you interrupt. The silence this statment leaves behind is deafning.`
+			`	"I know why." you interrupt. The silence this statment leaves behind is deafening.`
 			`	Evetuly Katya asks "<first>, is it the Syndicate?"`
-			`	"No, it is an alien race called the pug. Thay say thay are there to promote peace but I don't know their true intentions."`
+			`	"No, it is an alien race called the pug. Thay say thay are there to promote peace, but I don't know their true intentions."`
 			`	JJ says, "The Senate had agreed that we must put our differences with the Republic aside, and meet with Parliament to deal with this crisis. But that was before you told us what has really happend."`
 			`	"We don't want to incriminate ourselves by accident," says Alondo, "I think we should act as if we don't have this infomation." `
 			`	Katya, Freya and JJ nod in agreement at this. Alondo continues, "So we go to Earth and offer to help the Republic any way we can without letting on that the Syndicate is not behind it"`
