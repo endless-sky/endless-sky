@@ -68,6 +68,8 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	isOutfitters(isOutfitters)
 {
 	SetCommodity(SHOW_SPECIAL);
+	if(!isOutfitters)
+		swizzle = GameData::PlayerGovernment()->GetSwizzle();
 }
 
 

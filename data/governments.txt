@@ -108,7 +108,7 @@ government "Korath"
 
 government "Kor Efret"
 	swizzle 4
-	color .19 .54 .42
+	color .55 .17 .52
 	language "Korath"
 	
 	"attitude toward"
@@ -118,8 +118,8 @@ government "Kor Efret"
 	"player reputation" 1
 
 government "Kor Mereti"
-	swizzle 1
-	color .73 .36 .48
+	swizzle 5
+	color .31 .29 .69
 	language "Korath"
 	
 	"attitude toward"
@@ -128,8 +128,8 @@ government "Kor Mereti"
 	"player reputation" -1000
 
 government "Kor Sestor"
-	swizzle 3
-	color .26 .40 .68
+	swizzle 0
+	color .71 .40 .13
 	language "Korath"
 	
 	"attitude toward"
@@ -288,5 +288,8 @@ government "Wanderer"
 	color .70 .91 .12
 	"player reputation" 1
 	language "Wanderer"
+	"attitude toward"
+		"Kor Sestor" -.1
+		"Kor Mereti" -.1
 	"friendly hail" "wanderer untranslated"
 	"hostile hail" "wanderer untranslated"
