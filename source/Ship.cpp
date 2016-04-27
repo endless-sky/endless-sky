@@ -72,6 +72,7 @@ void Ship::Load(const DataNode &node)
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
+	bool isCapturable = true;
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "sprite")
@@ -186,6 +187,8 @@ void Ship::Load(const DataNode &node)
 			shields = child.Value(1);
 		else if(child.Token(0) == "hull" && child.Size() >= 2)
 			hull = child.Value(1);
+		else if(child.Token(0) == "uncapturable")
+			isCapturable = false;
 		else if(child.Token(0) == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
 		else if(child.Token(0) == "system" && child.Size() >= 2)
@@ -591,6 +594,11 @@ void Ship::SetIsParked(bool parked)
 bool Ship::IsParked() const
 {
 	return isParked;
+}
+
+bool Ship::IsCapturable() const
+{
+	return isCapturable;
 }
 
 
