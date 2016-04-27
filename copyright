@@ -12,7 +12,6 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
- images/outfit/copper*
  images/outfit/gemstones*
  images/outfit/silver*
  images/outfit/titanium*
@@ -32,6 +31,12 @@ Files: images/outfit/iron*
 Copyright: Robert Lavinsky (commons.wikimedia.org/wiki/Commons:Robert_Lavinsky)
 License: CC-BY-SA-3.0
 Comment: Taken from Wikimedia commons. Cropped and edited.
+
+Files:
+ images/outfit/copper*
+ images/outfit/uranium*
+Copyright: images-of-elements.com
+License: CC-BY-SA-3.0
 
 Files:
  images/ship/marrow*
