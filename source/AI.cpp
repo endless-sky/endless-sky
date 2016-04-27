@@ -55,7 +55,7 @@ namespace {
 	{
 		if(&ship == &target)
 			return false;
-		if(target.IsDestroyed() || !target.IsTargetable() || target.IsCapturable() || target.GetSystem() != ship.GetSystem())
+		if(target.IsDestroyed() || !target.IsTargetable() || target.GetSystem() != ship.GetSystem())
 			return false;
 		if(IsStranded(target) && !ship.GetGovernment()->IsEnemy(target.GetGovernment()))
 			return true;
