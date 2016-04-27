@@ -103,7 +103,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+int OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	bool hasOutfit = (outfitter.Has(outfit) || available.Find(outfit) || player.Cargo().GetOutfitCount(outfit));
@@ -115,11 +115,11 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 				break;
 			}
 	if(!hasOutfit)
-		return false;
+		return NOT_DRAWN;
 	
 	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);
 	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
-		return true;
+		return (selectedOutfit && outfit == selectedOutfit) ? SELECTED : DRAWN;
 	
 	bool isSelected = (outfit == selectedOutfit);
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
@@ -231,10 +231,9 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			font.Draw(label, pos, bright);
 			bottomOffset -= fontSize; // Subtract font size to move up.
 		}
-		
 	}
 
-	return true;
+	return (selectedOutfit && outfit == selectedOutfit) ? SELECTED : DRAWN;;
 }
 
 

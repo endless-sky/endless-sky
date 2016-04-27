@@ -46,10 +46,14 @@ class System;
 // limits of what the AI knows how to command them to do.
 class Ship : public std::enable_shared_from_this<Ship> {
 public:
-	// These are all the possible category strings for ships.
-	static const std::vector<std::string> CATEGORIES;	
+	// These constants are used in the shipyard.
+	static const std::vector<std::string> CATEGORIES;
+	static const std::string JUNKYARD_CATEGORY_NAME;
+	static const std::string JUNKYARD_SHIP_SUFFIX;
+
 	// A constructor that sets the initial wear.
-	static Ship* MakeShip(const Ship& ship, int wear);
+	static Ship* MakeShip(const Ship& ship, int addedWear);
+	static Ship* MakeEmptyShip(const Ship& ship, int addedWear);
 	
 	class Bay {
 	public:

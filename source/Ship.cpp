@@ -33,6 +33,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+
+const string Ship::JUNKYARD_CATEGORY_NAME = "Junkyard Deals";
+const string Ship::JUNKYARD_SHIP_SUFFIX = " (Empty Hull)";
+
+// Categories that can appear in the shipyard.
 const vector<string> Ship::CATEGORIES = {
 	"Transport",
 	"Light Freighter",
@@ -42,7 +47,8 @@ const vector<string> Ship::CATEGORIES = {
 	"Medium Warship",
 	"Heavy Warship",
 	"Fighter",
-	"Drone"
+	"Drone",
+	JUNKYARD_CATEGORY_NAME
 };
 
 namespace {
@@ -52,10 +58,20 @@ namespace {
 
 
 
-Ship* Ship::MakeShip(const Ship &ship, int wear)
+Ship* Ship::MakeShip(const Ship &ship, int addedWear)
 {
 	Ship* newShip = new Ship(ship);
-	newShip->IncrementWear(wear);
+	newShip->IncrementWear(addedWear);
+	return newShip;
+}
+
+
+
+Ship* Ship::MakeEmptyShip(const Ship &ship, int addedWear)
+{
+	Ship* newShip = new Ship(ship);
+	newShip->outfits.Clear();
+	newShip->IncrementWear(addedWear);
 	return newShip;
 }
 

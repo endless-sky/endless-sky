@@ -29,13 +29,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
-
+namespace {
+	string JUNKYARD_SHIP_SUFFIX = " (Empty Hull)";
+}
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, Ship::CATEGORIES), available(player.UsedShips())
-{
+	: ShopPanel(player, Ship::CATEGORIES), used(player.UsedShips()), junkyard(player.JunkyardShips())
+{	
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
+	
+	// Put in the junkyard category at the bottom.
+	for(auto it : player.JunkyardShips())
+		if (it)
+			catalog[Ship::JUNKYARD_CATEGORY_NAME].insert(it->ModelName() + JUNKYARD_SHIP_SUFFIX);
 	
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
@@ -62,31 +69,46 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
-	const Ship *ship = GameData::Ships().Get(name);
-	if(!shipyard.Has(ship) && available.find(ship) == available.end())
-		return false;
+	// Does the name end with JUNKYARD_SHIP_SUFFIX?
+	string modelName = name;
+	bool isJunkyard = false;
+	if (name.size() > Ship::JUNKYARD_SHIP_SUFFIX.size() && 
+		name.substr(name.size() - Ship::JUNKYARD_SHIP_SUFFIX.size(), Ship::JUNKYARD_SHIP_SUFFIX.size()) == Ship::JUNKYARD_SHIP_SUFFIX)
+	{
+		modelName = name.substr(0, name.size() - Ship::JUNKYARD_SHIP_SUFFIX.size());
+		isJunkyard = true;
+	}
+	const Ship *newShip = GameData::Ships().Get(modelName);
+	Ship* usedShip = MostUsedModel(isJunkyard ? junkyard : used, modelName);
 	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
+	if(!shipyard.Has(newShip) && !usedShip)
+		return NOT_DRAWN;
+	
+	int retVal = (selectedShip && newShip == selectedShip) ? SELECTED : DRAWN;
+	
+	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, newShip, scrollY);
+	
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
-		return true;
-	
-	DrawShip(*ship, point, ship == selectedShip);
+		return retVal;
 	
 	// If there's a used ship available, show the sale label.
-	auto it = available.find(ship);
-	if (it != available.end())
+	if (!usedShip)
 	{
-		int wear = it->second->GetWear();
+		DrawShip(*newShip, point, retVal == SELECTED);
+	}
+	else
+	{
+		DrawShip(*usedShip, point, retVal == SELECTED);
 		Font saleFont = FontSet::Get(18);
 		const Color &bright = *GameData::Colors().Get("bright");
-		std::string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(wear))+" OFF!]";
+		string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(usedShip->GetWear()))+" OFF!]";
 		Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 );
 		saleFont.Draw(saleLabel, pos, bright);
 	}
 	
-	return true;
+	return retVal;
 }
 
 
@@ -107,8 +129,8 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	auto it = available.find(selectedShip);
-	ShipInfoDisplay info(it != available.end() ? (const Ship)*(it->second) : *selectedShip);
+	auto usedShip = MostUsedModel(used, selectedShip->ModelName());
+	ShipInfoDisplay info(usedShip ? (const Ship)*usedShip : *selectedShip);
 	
 	Point offset(info.PanelWidth(), 0.);
 	info.DrawDescription(center - offset * 1.5);
@@ -274,11 +296,11 @@ void ShipyardPanel::BuyShip(const string &name)
 	for(int i = 1; i <= modifier; ++i)
 	{
 		const Ship* shipToBuy = selectedShip;
-		auto it = available.find(selectedShip);
-		if (it != available.end())
+		auto usedShip = MostUsedModel(used, selectedShip->ModelName());
+		if (usedShip)
 		{
-			shipToBuy = it->second;
-			available.erase(it);			
+			shipToBuy = usedShip;
+			used.remove(usedShip);			
 		}
 		if(modifier > 1)
 			player.BuyShip(shipToBuy, shipName + to_string(i), 0);
@@ -323,4 +345,31 @@ int64_t ShipyardPanel::LicenseCost() const
 			cost += outfit->Cost();
 		}
 	return cost;
+}
+
+
+
+int ShipyardPanel::ModelCount(std::list<Ship*> listToSearch, const string& modelName) const 
+{
+	int retVal = 0;
+	for (auto it : listToSearch)
+	{
+		if(it && it->ModelName() == modelName)
+			retVal += 1;
+	}
+	return retVal;
+}
+
+
+
+Ship* ShipyardPanel::MostUsedModel(std::list<Ship*> listToSearch, const string& modelName) const 
+{
+	Ship* retVal = nullptr;
+	for (auto it : listToSearch)
+	{
+		if(it && it->ModelName() == modelName && (!retVal || it->GetWear() > retVal->GetWear()))
+			retVal = it;
+	}
+	
+	return retVal;
 }

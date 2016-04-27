@@ -44,7 +44,7 @@ public:
 protected:
 	virtual int TileSize() const override;
 	virtual int DrawPlayerShipInfo(const Point &point) const override;
-	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const override;
+	virtual int DrawItem(const std::string &name, const Point &point, int scrollY) const override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) const override;

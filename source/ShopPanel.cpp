@@ -273,14 +273,12 @@ void ShopPanel::DrawMain() const
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
-			if(!DrawItem(name, point, scrollY))
+			int drawResult = DrawItem(name, point, scrollY);
+			if(drawResult == NOT_DRAWN)
 				continue;
 			isEmpty = false;
 			
-			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
-				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
-			
-			if(isSelected)
+			if(drawResult == SELECTED)
 			{
 				Color color(.2, 0.);
 				int dy = DividerOffset();

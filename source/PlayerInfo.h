@@ -48,9 +48,6 @@ class UI;
 // and what their current travel plan is, if any.
 class PlayerInfo {
 public:
-	typedef std::map<const Ship*, Ship*> UsedShipMap;
-	
-public:
 	PlayerInfo() = default;
 	
 	// Reset the player to an "empty" state, i.e. no player is loaded.
@@ -190,7 +187,8 @@ public:
 	// available to buy back until you take off.
 	OutfitGroup &SoldOutfits();
 	// Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
-	UsedShipMap &UsedShips();
+	std::list<Ship*> &UsedShips();
+	std::list<Ship*> &JunkyardShips();
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
@@ -243,7 +241,8 @@ private:
 	const Outfit *selectedWeapon = nullptr;
 	
 	OutfitGroup soldOutfits;
-	UsedShipMap usedShips;
+	std::list<Ship*> usedShips;
+	std::list<Ship*> junkyardShips;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

@@ -172,8 +172,19 @@ void PlayerInfo::Load(const string &path)
 			{
 				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
 				const Ship *model = GameData::Ships().Get(grand.Token(0));
-				usedShips[model] = Ship::MakeShip(*model, wear);
+				usedShips.push_back(Ship::MakeShip(*model, wear));
 			}
+			usedShips.push_back(nullptr);
+		}
+		else if (child.Token(0) == "junkyard ships")
+		{
+			for(const DataNode &grand : child)
+			{
+				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
+				const Ship *model = GameData::Ships().Get(grand.Token(0));
+				junkyardShips.push_back(Ship::MakeEmptyShip(*model, wear));
+			}
+			junkyardShips.push_back(nullptr);
 		}
 		else if(child.Token(0) == "conditions")
 		{
@@ -654,12 +665,18 @@ void PlayerInfo::SellShip(const Ship *selected)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
-		{			
+		{
+			// Add the price from the sale.
 			accounts.AddCredits(selected->Cost());
 			
+			// Add the ship's outfits to the outfits available at the outfitter.
 			for(const auto &it : selected->Outfits())
 				soldOutfits.AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetWear());
 
+			// Add the ship's hull to the junkyard.
+			
+			
+			// Delete the ship from player's list of ships.
 			ships.erase(it);
 			flagship.reset();
 			return;
@@ -901,12 +918,24 @@ void PlayerInfo::Land(UI *ui)
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
 			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
-				usedShips[ship] = Ship::MakeShip(*ship, OutfitGroup::UsedWear());
+				usedShips.push_back(Ship::MakeShip(*ship, OutfitGroup::UsedWear()));
 		}
 		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.
-			usedShips[nullptr] = nullptr; 
+			usedShips.push_back(nullptr); 
 	}
-	
+	// Add a few random used ship hulls to the junkyard. 
+	if(GetPlanet()->HasShipyard() && junkyardShips.empty())
+	{
+		for(const Ship *ship : GetPlanet()->Shipyard())
+		{
+			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
+				junkyardShips.push_back(Ship::MakeEmptyShip(*ship, OutfitGroup::UsedWear()));
+		}
+		if(junkyardShips.empty()) // If no used ships are available, put in something so the map won't be empty.
+			junkyardShips.push_back(nullptr); 
+	}
+
+
 	freshlyLoaded = false;
 	flagship.reset();
 }
@@ -930,6 +959,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	doneMissions.clear();
 	soldOutfits.Clear();
 	usedShips.clear();
+	junkyardShips.clear();
 	
 	// Special persons who appeared last time you left the planet, can appear
 	// again.
@@ -1562,9 +1592,16 @@ OutfitGroup &PlayerInfo::SoldOutfits()
 
 
 // Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
-PlayerInfo::UsedShipMap &PlayerInfo::UsedShips()
+list<Ship*> &PlayerInfo::UsedShips()
 {
 	return usedShips;
+}
+
+
+
+list<Ship*> &PlayerInfo::JunkyardShips()
+{
+	return junkyardShips;
 }
 
 
@@ -1750,10 +1787,21 @@ void PlayerInfo::Save(const string &path) const
 	out.BeginChild();
 	{
 		for(const auto &it : usedShips)
-			if(it.first && it.second->GetWear() > 0)
-				out.Write(it.first->ModelName(), it.second->GetWear());
+			if(it && it->GetWear() > 0)
+				out.Write(it->ModelName(), it->GetWear());
 	}
 	out.EndChild();
+
+	// Save which junkyard hulls are currently available.
+	out.Write("junkyard ships");
+	out.BeginChild();
+	{
+		for(const auto &it : junkyardShips)
+			if(it && it->GetWear() > 0)
+				out.Write(it->ModelName(), it->GetWear());
+	}
+	out.EndChild();
+
 	
 	// Save any "condition" flags that are set.
 	if(!conditions.empty())

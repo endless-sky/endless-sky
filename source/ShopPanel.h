@@ -33,6 +33,14 @@ class Outfit;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
+	// The possible outcomes of a DrawItem call:
+	enum {
+		NOT_DRAWN = 0,
+		DRAWN = 1,
+		SELECTED = 2
+	};
+
+public:
 	ShopPanel(PlayerInfo &player, const std::vector<std::string> &categories);
 	
 	virtual void Draw() const override;
@@ -48,7 +56,7 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int DrawPlayerShipInfo(const Point &point) const = 0;
-	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
+	virtual int DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) const = 0;
