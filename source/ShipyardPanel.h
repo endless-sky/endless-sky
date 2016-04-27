@@ -57,7 +57,6 @@ private:
 	void SellShip();
 	int64_t LicenseCost() const;
 	
-	int ModelCount(std::list<Ship*> listToSearch, const std::string& modelName) const;
 	Ship* MostUsedModel(std::list<Ship*> listToSearch, const std::string& modelName) const;
 	
 private:

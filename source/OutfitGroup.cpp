@@ -60,18 +60,18 @@ double OutfitGroup::CostFunction(int wear, double minValue, double maxValue, dou
 
 
 
-// Returns a random between 20% and 70% depreciated.
+// Returns a random between 20% and 50% depreciated.
 int OutfitGroup::UsedWear()
 {
-	return GetRandomWear(0.2, 0.7, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
+	return GetRandomWear(0.2, 0.5, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 
 
-// Returns a random between 70% and 100% depreciated.
+// Returns a random between 70% and 90% depreciated. (disabling adds yet more wear)
 int OutfitGroup::PlunderWear()
 {
-	return GetRandomWear(0.8, 1.0, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
+	return GetRandomWear(0.7, 0.9, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_DEPRECIATION_RATE);
 }
 
 

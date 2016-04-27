@@ -180,7 +180,7 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 			{
-				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::UsedWear();
+				int wear = (grand.Size() >= 2) ? grand.Value(1) : OutfitGroup::PlunderWear();
 				const Ship *model = GameData::Ships().Get(grand.Token(0));
 				junkyardShips.push_back(Ship::MakeEmptyShip(*model, wear));
 			}
@@ -905,7 +905,7 @@ void PlayerInfo::Land(UI *ui)
 			if (outfit->Category() == "Ammunition" || outfit->Category() == "Special")
 				continue;
 			int added = 0;
-			while (Random::Int(100) < 40) //TODO: Variable used part generation chance and max.
+			while (Random::Int(100) < 35) //TODO: Variable used part generation chance and max.
 			{
 				soldOutfits.AddOutfit(outfit, 1, OutfitGroup::UsedWear());
 				if(++added >= 3)
@@ -917,7 +917,7 @@ void PlayerInfo::Land(UI *ui)
 	{
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
-			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
+			if (Random::Int(100) < 20) //TODO: Variable used ship generation chance.
 				usedShips.push_back(Ship::MakeShip(*ship, OutfitGroup::UsedWear()));
 		}
 		if(usedShips.empty()) // If no used ships are available, put in something so the map won't be empty.
@@ -928,8 +928,8 @@ void PlayerInfo::Land(UI *ui)
 	{
 		for(const Ship *ship : GetPlanet()->Shipyard())
 		{
-			if (Random::Int(100) < 25) //TODO: Variable used ship generation chance.
-				junkyardShips.push_back(Ship::MakeEmptyShip(*ship, OutfitGroup::UsedWear()));
+			if (Random::Int(100) < 20) //TODO: Variable used ship generation chance.
+				junkyardShips.push_back(Ship::MakeEmptyShip(*ship, OutfitGroup::PlunderWear()));
 		}
 		if(junkyardShips.empty()) // If no used ships are available, put in something so the map won't be empty.
 			junkyardShips.push_back(nullptr); 

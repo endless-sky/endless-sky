@@ -81,29 +81,28 @@ int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
 		isJunkyard = true;
 	}
 	const Ship *newShip = GameData::Ships().Get(modelName);
-	Ship* usedShip = MostUsedModel(isJunkyard ? junkyard : used, modelName);
+	Ship *usedShip = MostUsedModel(isJunkyard ? junkyard : used, modelName);
+	const Ship *shipToDraw = usedShip ? usedShip : newShip;
 	
 	if(!shipyard.Has(newShip) && !usedShip)
 		return NOT_DRAWN;
 	
-	int retVal = (selectedShip && newShip == selectedShip) ? SELECTED : DRAWN;
-	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, newShip, scrollY);
+	// The ship we put into "zones" will become the "selectedShip" when this zone is clicked.
+	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, shipToDraw, scrollY);
+	// If it's the same as "selectedShip" then this tile is selected.
+	int retVal = (selectedShip && shipToDraw == selectedShip) ? SELECTED : DRAWN;
 	
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
 		return retVal;
 	
-	// If there's a used ship available, show the sale label.
-	if (!usedShip)
+	DrawShip(*shipToDraw, point, retVal == SELECTED);
+	
+	// If we're drawing a used ship, draw the sale tag.
+	if (usedShip)
 	{
-		DrawShip(*newShip, point, retVal == SELECTED);
-	}
-	else
-	{
-		DrawShip(*usedShip, point, retVal == SELECTED);
 		Font saleFont = FontSet::Get(18);
 		const Color &bright = *GameData::Colors().Get("bright");
-		string saleLabel = "[SALE! "+Format::Percent(1 - OutfitGroup::CostFunction(usedShip->GetWear()))+" OFF!]";
+		string saleLabel = (isJunkyard?"[EMPTY HULL! ":"[SALE! ") + Format::Percent(1 - OutfitGroup::CostFunction(usedShip->GetWear())) + " OFF!]";
 		Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 );
 		saleFont.Draw(saleLabel, pos, bright);
 	}
@@ -129,8 +128,7 @@ int ShipyardPanel::DetailWidth() const
 
 int ShipyardPanel::DrawDetails(const Point &center) const
 {
-	auto usedShip = MostUsedModel(used, selectedShip->ModelName());
-	ShipInfoDisplay info(usedShip ? (const Ship)*usedShip : *selectedShip);
+	ShipInfoDisplay info(*selectedShip);
 	
 	Point offset(info.PanelWidth(), 0.);
 	info.DrawDescription(center - offset * 1.5);
@@ -173,7 +171,7 @@ void ShipyardPanel::Buy()
 			+ " credits for the licenses required to operate this ship, in addition to its cost."
 			" If that is okay with you, go ahead and enter a name for your brand new ";
 	else
-		message = "Enter a name for your brand new ";
+		message = "Enter a name for your brand new "; //TODO: Don't call it "brand new" if it's not.
 	message += selectedShip->ModelName() + "!";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::BuyShip, message));
 }
@@ -345,19 +343,6 @@ int64_t ShipyardPanel::LicenseCost() const
 			cost += outfit->Cost();
 		}
 	return cost;
-}
-
-
-
-int ShipyardPanel::ModelCount(std::list<Ship*> listToSearch, const string& modelName) const 
-{
-	int retVal = 0;
-	for (auto it : listToSearch)
-	{
-		if(it && it->ModelName() == modelName)
-			retVal += 1;
-	}
-	return retVal;
 }
 
 
