@@ -210,7 +210,7 @@ bool PlanetPanel::ShowDepart() const
 bool PlanetPanel::ShowTrading() const
 {
 	return planet.HasTrading()
-		&& planet.CanSpeakLanguage(player) && planet.CanUseServices();
+		&& planet.CanUseServices();
 }
 
 
