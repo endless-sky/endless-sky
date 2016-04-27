@@ -70,7 +70,14 @@ Ship* Ship::MakeShip(const Ship &ship, int addedWear)
 Ship* Ship::MakeEmptyShip(const Ship &ship, int addedWear)
 {
 	Ship* newShip = new Ship(ship);
-	newShip->outfits.Clear();
+	// Remove outfits one at a time, updating stats.
+	while (newShip->outfits.begin() != newShip->outfits.end()) 
+	{
+		auto it = newShip->outfits.begin();
+		auto outfit = it.GetOutfit();
+		int quantity = it.GetQuantity();
+		newShip->AddOutfit(outfit, -quantity, 0);
+	}
 	newShip->IncrementWear(addedWear);
 	return newShip;
 }
