@@ -40,6 +40,8 @@ public:
 	Angle &operator-=(const Angle &other);
 	Angle operator-() const;
 	
+	double Difference(const Angle &other) const;
+	
 	Point Unit() const;
 	
 	// Return a point rotated by this angle around (0, 0).
