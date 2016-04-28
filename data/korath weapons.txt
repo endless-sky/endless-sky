@@ -52,7 +52,7 @@ effect "grab-strike impact"
 outfit "Korath Banisher"
 	category "Turrets"
 	cost 943000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/banisher"
 	"mass" 41
 	"outfit space" -41
 	"weapon capacity" -41
@@ -113,7 +113,7 @@ effect "korath warder"
 outfit "Korath Fire-Lance"
 	category "Guns"
 	cost 697000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/fire-lance"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
@@ -439,7 +439,7 @@ effect "minelayer split"
 outfit "Korath Disruptor"
 	category "Turrets"
 	cost 983000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/disruptor"
 	"mass" 35
 	"outfit space" -35
 	"weapon capacity" -35
