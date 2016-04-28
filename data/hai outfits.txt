@@ -125,134 +125,134 @@ outfit "Hai Tracker Pod"
 
 outfit "Anti-Missile Turret (Hai)"
 	category "Turrets"
-	cost 60000
+	cost 80000
 	thumbnail "outfit/anti-missile hai"
-	"mass" 16
-	"outfit space" -16
-	"weapon capacity" -16
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"
-		"anti-missile" 5
+		"anti-missile" 7
 		"velocity" 150
 		"lifetime" 1
-		"reload" 8
-		"firing energy" 5
-		"firing heat" 3
-	description "Centuries ago, space battles were fought mostly with missiles, with the outcome dependent only on which ship had more shielding or ammunition. Lovelace Labs was originally founded to remedy that situation by developing a protective system that could shoot missiles out of the air, defending freighter convoys from pirates who could otherwise simply bombard them into submission without ever venturing within range of their guns."
+		"reload" 6
+		"firing energy" 6
+		"firing heat" 4 		"stream"
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them.  In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
 
 outfit "Heavy Anti-Missile Turret (Hai)"
 	category "Turrets"
 	cost 150000
 	thumbnail "outfit/heavy anti-missile hai"
-	"mass" 30
-	"outfit space" -30
-	"weapon capacity" -30
+	"mass" 32
+	"outfit space" -28
+	"weapon capacity" -28
 	"turret mounts" -1
 	weapon
 		"hit effect" "large anti-missile"
-		"anti-missile" 8
+		"anti-missile" 10
 		"velocity" 200
 		"lifetime" 1
-		"reload" 6
-		"firing energy" 10
-		"firing heat" 5
-	description "The Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than its smaller sibling. The only way to overcome it is by firing missiles in a cluster so that while one is being targeted, the others can get through, and as a result all missile systems on the market now default to firing in clusters if multiple copies of the same launcher are installed, rather than staggering their fire as ordinary guns do."
+		"reload" 5
+		"firing energy" 11
+		"firing heat" 5.2
+	description "The Hai Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than older incarnations. The system is less vulnerable to large clusters of incoming missiles, especially when many turrets are installed."
 
 outfit "Cooling Ducts (Hai)"
 	category "Systems"
-	cost 10000
+	cost 15000
 	thumbnail "outfit/cooling ducts hai"
-	"mass" 5
-	"outfit space" -5
-	"cooling" 5
-	description "When trying to cram as many high-powered outfits as possible into a ship, occasionally you reach the point where it is sporadically overheating and shutting down. In that case, you may need to install one of these."
+	"mass" 7
+	"outfit space" -7
+	"cooling" 8.3
+	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these."
 
 outfit "LP036a Battery Pack (Hai)"
 	category "Power"
-	cost 12000
+	cost 8000
 	thumbnail "outfit/tiny battery hai"
-	"mass" 10
-	"outfit space" -10
-	"energy capacity" 1000
+	"mass" 5
+	"outfit space" -5
+	"energy capacity" 750
 	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
 outfit "LP072a Battery Pack (Hai)"
 	category "Power"
-	cost 30000
+	cost 25000
 	thumbnail "outfit/small battery hai"
-	"mass" 20
-	"outfit space" -20
-	"energy capacity" 2200
+	"mass" 15
+	"outfit space" -15
+	"energy capacity" 1800
 	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
 outfit "LP144a Battery Pack (Hai)"
 	category "Power"
-	cost 67000
+	cost 52000
 	thumbnail "outfit/medium battery hai"
-	"mass" 40
-	"outfit space" -40
-	"energy capacity" 4800
+	"mass" 30
+	"outfit space" -30
+	"energy capacity" 3750
 	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
 outfit "LP288a Battery Pack (Hai)"
 	category "Power"
-	cost 150000
+	cost 120000
 	thumbnail "outfit/large battery hai"
-	"mass" 80
-	"outfit space" -80
-	"energy capacity" 10400
+	"mass" 60
+	"outfit space" -60
+	"energy capacity" 8250
 	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
 outfit "LP576a Battery Pack (Hai)"
 	category "Power"
-	cost 380000
+	cost 300000
 	thumbnail "outfit/huge battery hai"
-	"mass" 160
-	"outfit space" -160
-	"energy capacity" 23000
+	"mass" 120
+	"outfit space" -120
+	"energy capacity" 18250
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
 outfit "Dwarf Core (Hai)"
 	category "Power"
-	cost 900000
+	cost 1050000
 	thumbnail "outfit/dwarf core hai"
-	"mass" 36
-	"outfit space" -36
-	"energy generation" 4.8
-	"heat generation" 14
-	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. It was designed by Deep Sky to be paired with their power-hungry atomic engines."
+	"mass" 32
+	"outfit space" -32
+	"energy generation" 4.5
+	"heat generation" 11.9
+	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
 outfit "Fission Reactor (Hai)"
 	category "Power"
-	cost 1500000
+	cost 1750000
 	thumbnail "outfit/fission hai"
-	"mass" 65
-	"outfit space" -65
-	"energy generation" 9.4
-	"heat generation" 25
-	description "Fission reactors have been a mainstay of large military vessels since even before the dawn of the space era. Today's models are very safe and efficient, but some pilots still find them disconcerting."
+	"mass" 58
+	"outfit space" -58
+	"energy generation" 8.9
+	"heat generation" 21.2
+	description "Fission reactors are considered a rudimentary technology among interstellar species.  Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
 
 outfit "Fusion Reactor (Hai)"
 	category "Power"
-	cost 5000000
+	cost 5750000
 	thumbnail "outfit/fusion hai"
-	"mass" 100
-	"outfit space" -100
-	"energy generation" 18.2
-	"heat generation" 40
-	description "The invention of practical fusion power near the end of the twenty-first century spurred a new era of prosperity and plenty. Centuries later, the generators have been reduced in size, but are still generally only used in capital warships."
+	"mass" 90
+	"outfit space" -90
+	"energy generation" 17.3
+	"heat generation" 34
+	description "The Hai built Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
 outfit "A120 Atomic Thruster (Hai)"
 	category "Engines"
-	"cost" 140000
+	"cost" 95000
 	thumbnail "outfit/tiny atomic thruster hai"
-	"mass" 22
-	"outfit space" -22
-	"engine capacity" -22
-	"thrust" 15.4
-	"thrusting energy" 1.8
-	"thrusting heat" 3.5
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"thrust" 14.4
+	"thrusting energy" 1.5
+	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -260,77 +260,91 @@ outfit "A120 Atomic Thruster (Hai)"
 
 outfit "A250 Atomic Thruster (Hai)"
 	category "Engines"
-	"cost" 280000
+	"cost" 210000
+	thumbnail "outfit/tiny atomic thruster hai"
+	"mass" 28
+	"outfit space" -28
+	"engine capacity" -28
+	"thrust" 21.6
+	"thrusting energy" 2.3
+	"thrusting heat" 4.4
+	"flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"flare sound" "atomic tiny"
+	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
+
+outfit "A370 Atomic Thruster (Hai)"
+	category "Engines"
+	"cost" 420000
 	thumbnail "outfit/small atomic thruster hai"
-	"mass" 34
-	"outfit space" -34
-	"engine capacity" -34
-	"thrust" 27.3
-	"thrusting energy" 3.1
-	"thrusting heat" 6.1
+	"mass" 44
+	"outfit space" -44
+	"engine capacity" -44
+	"thrust" 38.2
+	"thrusting energy" 4
+	"thrusting heat" 7.6
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
 	description "Deep Sky's atomic thrusters have been in production for centuries, but remain a niche product due to their high prices and high energy requirements."
 
-outfit "A370 Atomic Thruster (Hai)"
+
+outfit "A520 Atomic Thruster (Hai)"
 	category "Engines"
-	"cost" 560000
+	"cost" 780000
 	thumbnail "outfit/medium atomic thruster hai"
-	"mass" 53
-	"outfit space" -53
-	"engine capacity" -53
-	"thrust" 47.6
-	"thrusting energy" 5.1
-	"thrusting heat" 10.3
+	"mass" 63
+	"outfit space" -63
+	"engine capacity" -63
+	"thrust" 61.9
+	"thrusting energy" 6.1
+	"thrusting heat" 11.8
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
 	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
 
-outfit "A520 Atomic Thruster (Hai)"
+outfit "A860 Atomic Thruster (Hai)"
 	category "Engines"
-	"cost" 1120000
+	"cost" 1680000
 	thumbnail "outfit/large atomic thruster hai"
-	"mass" 82
-	"outfit space" -82
-	"engine capacity" -82
-	"thrust" 81.9
-	"thrusting energy" 8.3
-	"thrusting heat" 17.4
+	"mass" 104
+	"outfit space" -104
+	"engine capacity" -104
+	"thrust" 114.7
+	"thrusting energy" 10.8
+	"thrusting heat" 21.8
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
 	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."
 
-outfit "A860 Atomic Thruster (Hai)"
-	category "Engines"
-	"cost" 2240000
-	thumbnail "outfit/huge atomic thruster hai"
-	"mass" 127
-	"outfit space" -127
-	"engine capacity" -127
-	"thrust" 139.7
-	"thrusting energy" 13.3
-	"thrusting heat" 29.1
-	"flare sprite" "effect/atomic flare/huge hai"
-		"frame rate" 10
-	"flare sound" "atomic huge"
-	description "The A860 atomic thruster is the most powerful engine sold in human space, and is much more compact than any of the alternatives. But, you may need to upgrade your ship's power and cooling systems to handle it."
 
 outfit "A125 Atomic Steering (Hai)"
 	category "Engines"
-	"cost" 120000
+	"cost" 90000
 	thumbnail "outfit/tiny atomic steering hai"
-	"mass" 16
-	"outfit space" -16
-	"engine capacity" -16
-	"turn" 392
-	"turning energy" 0.9
-	"turning heat" 2.2
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"turn" 247
+	"turning energy" .65
+	"turning heat" 1.3
 	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
 
 outfit "A255 Atomic Steering (Hai)"
+	category "Engines"
+	"cost" 180000
+	thumbnail "outfit/tiny atomic steering hai"
+	"mass" 20
+	"outfit space" -20
+	"engine capacity" -20
+	"turn" 548.8
+	"turning energy" 1.2
+	"turning heat" 2.2
+	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
+
+outfit "A375 Atomic Steering (Hai)"
 	category "Engines"
 	"cost" 240000
 	thumbnail "outfit/small atomic steering hai"
@@ -339,53 +353,42 @@ outfit "A255 Atomic Steering (Hai)"
 	"engine capacity" -25
 	"turn" 687
 	"turning energy" 1.5
-	"turning heat" 3.7
+	"turning heat" 4.4
 	description "If you have exhausted all your other options for making your ship more maneuverable, it may be time to invest in a set of atomic engines."
-
-outfit "A375 Atomic Steering (Hai)"
-	category "Engines"
-	"cost" 480000
-	thumbnail "outfit/medium atomic steering hai"
-	"mass" 38
-	"outfit space" -38
-	"engine capacity" -38
-	"turn" 1192
-	"turning energy" 2.5
-	"turning heat" 6.3
-	description "Bounty hunters and other captains who need to gain a speed advantage over the ships they are pursuing often dream of being able to save up enough money for a set of atomic engines."
 
 outfit "A525 Atomic Steering (Hai)"
 	category "Engines"
-	"cost" 960000
-	thumbnail "outfit/large atomic steering hai"
-	"mass" 60
-	"outfit space" -60
-	"engine capacity" -60
-	"turn" 2050
-	"turning energy" 4.1
-	"turning heat" 10.5
-	description "This set of maneuvering thrusters from Deep Sky will allow small warships to turn as fast as a fighter. For larger ships, swapping the existing engines with a set of atomics can free up a considerable amount of space for other outfits or weapons."
+	"cost" 720000
+	thumbnail "outfit/medium atomic steering hai"
+	"mass" 49
+	"outfit space" -49
+	"engine capacity" -49
+	"turn" 1668.8
+	"turning energy" 3.2
+	"turning heat" 7.7
+	description "Bounty hunters and other captains who need to gain a speed advantage over the ships they are pursuing often dream of being able to save up enough money for a set of atomic engines."
 
 outfit "A865 Atomic Steering (Hai)"
 	category "Engines"
-	"cost" 1920000
-	thumbnail "outfit/huge atomic steering hai"
-	"mass" 92
-	"outfit space" -92
-	"engine capacity" -92
-	"turn" 3509
-	"turning energy" 6.6
-	"turning heat" 17.5
-	description "Atomic engines are considered by many to be Deep Sky's crowning achievement. Although they are so expensive that relatively few of them are in use, there are few captains who do not dream of one day installing a set of them."
+	"cost" 1440000
+	thumbnail "outfit/large atomic steering hai"
+	"mass" 76
+	"outfit space" -76
+	"engine capacity" -76
+	"turn" 2870
+	"turning energy" 5.3
+	"turning heat" 12.6
+	description "This set of maneuvering thrusters from Deep Sky will allow small warships to turn as fast as a fighter. For larger ships, swapping the existing engines with a set of atomics can free up a considerable amount of space for other outfits or weapons."
+
 
 outfit "AR120 Reverse Thruster (Hai)"
 	category "Engines"
-	"cost" 140000
+	"cost" 95000
 	thumbnail "outfit/reverse thruster hai"
-	"mass" 22
-	"outfit space" -22
-	"weapon capacity" -22
-	"reverse thrust" 15.4
-	"reverse thrusting energy" 1.8
-	"reverse thrusting heat" 3.5
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"reverse thrust" 14.4
+	"reverse thrusting energy" 1.5
+	"reverse thrusting heat" 2.8
 	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
