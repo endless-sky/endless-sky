@@ -112,7 +112,7 @@ Angle Angle::operator-() const
 
 double Angle::Difference(const Angle &other) const
 {
-	return remainder((angle - other.angle) / DEG_TO_STEP, TO_DEG * PI * 2);
+	return (angle - other.angle) / DEG_TO_STEP;
 }
 
 

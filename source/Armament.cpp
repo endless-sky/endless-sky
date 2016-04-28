@@ -165,9 +165,7 @@ void Armament::Weapon::Step(const Ship &ship)
 		
 		double difference = aimOffset.Difference(targetAimOffset);
 		
-		// This is a magic value which determines rotation speed, measured in
-		// degrees per frame.
-		double n = 1;
+		double n = outfit->Get("rotation speed");
 		
 		if (abs(difference - 0) < n)
 		{
