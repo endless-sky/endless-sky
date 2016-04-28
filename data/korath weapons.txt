@@ -17,6 +17,7 @@ outfit "Korath Grab-Strike"
 	"weapon capacity" -52
 	"energy capacity" 100
 	"turret mounts" -1
+	"rotation speed" 3
 	"required crew" 1
 	weapon
 		sprite "projectile/grab-strike"
@@ -58,6 +59,7 @@ outfit "Korath Banisher"
 	"weapon capacity" -41
 	"turret mounts" -1
 	"required crew" 1
+	"rotation speed" 3
 	weapon
 		sprite "projectile/banisher"
 			"frame rate" 60
@@ -191,6 +193,7 @@ outfit "Korath Repeater Turret"
 	"weapon capacity" -29
 	"energy capacity" 200
 	"required crew" 1
+	"rotation speed" 3
 	"turret mounts" -1
 	weapon
 		sprite "projectile/repeater"
@@ -445,6 +448,7 @@ outfit "Korath Disruptor"
 	"weapon capacity" -35
 	"turret mounts" -1
 	"required crew" 1
+	"rotation speed" 3
 	weapon
 		sprite "projectile/disruptor"
 			"frame rate" 15
@@ -481,6 +485,7 @@ outfit "Korath Slicer"
 	"weapon capacity" -59
 	"turret mounts" -1
 	"required crew" 1
+	"rotation speed" 3
 	weapon
 		sprite "projectile/slicer"
 			"frame rate" 6

@@ -51,6 +51,7 @@ outfit "Pug Zapper Turret"
 	"weapon capacity" -66
 	"turret mounts" -1
 	"required crew" 1
+	"rotation speed" 3
 	weapon
 		sprite "projectile/lightning"
 			"frame rate" 60
@@ -158,6 +159,7 @@ outfit "Pug Gridfire Turret"
 	"outfit space" -83
 	"weapon capacity" -83
 	"turret mounts" -1
+	"rotation speed" 3
 	weapon
 		"fire effect" "gridfire fire"
 		"hit effect" "gridfire hit" 2

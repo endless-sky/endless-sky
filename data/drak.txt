@@ -16,6 +16,7 @@ outfit "Drak Distancer"
 	"outfit space" -64
 	"weapon capacity" -64
 	"turret mounts" -1
+	"rotation speed" 3
 	weapon
 		"fire effect" "distancer flare"
 		"velocity" 2000
@@ -40,6 +41,7 @@ outfit "Drak Draining Field"
 	"outfit space" -84
 	"weapon capacity" -84
 	"turret mounts" -1
+	"rotation speed" 3
 	weapon
 		"velocity" 400
 		"lifetime" 1
@@ -77,6 +79,7 @@ outfit "Drak Turret"
 	"outfit space" -48
 	"weapon capacity" -48
 	"turret mounts" -1
+	"rotation speed" 3
 	weapon
 		sprite "projectile/drak bolt"
 			"frame rate" 13.318

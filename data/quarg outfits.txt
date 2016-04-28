@@ -35,6 +35,7 @@ outfit "Quarg Skylance"
 	"weapon capacity" -60
 	"turret mounts" -1
 	"required crew" 1
+	"rotation speed" 3
 	weapon
 		sprite "projectile/skylance"
 			"frame rate" 1
