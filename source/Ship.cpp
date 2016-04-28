@@ -968,7 +968,10 @@ bool Ship::Move(list<Effect> &effects)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
+		if(parent.lock() || !government->IsPlayer())
+			Messages::Add(name + " is moving erratically because there are not enough crew to pilot it.");
+		else
+			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
 	}
 	else
 		pilotOkay = 30;
@@ -1614,7 +1617,7 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(atSpaceport)
 	{
-		crew = max(crew, RequiredCrew());
+		crew = min(max(crew, RequiredCrew()), static_cast<int>(attributes.Get("bunks")));
 		fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
@@ -1773,7 +1776,7 @@ int Ship::RequiredCrew() const
 
 void Ship::AddCrew(int count)
 {
-	crew += count;
+	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
 }
 
 
