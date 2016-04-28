@@ -1058,10 +1058,22 @@ mission "FW Pug 2"
 			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why."`
 			`	"I know why." you interrupt. The silence this statment leaves behind is deafening.`
 			`	Evetuly Katya asks "<first>, is it the Syndicate?"`
-			`	"No, it is an alien race called the pug. Thay say thay are there to promote peace, but I don't know their true intentions."`
-			`	JJ says, "The Senate had agreed that we must put our differences with the Republic aside, and meet with Parliament to deal with this crisis. But that was before you told us what has really happend."`
-			`	"We don't want to incriminate ourselves by accident," says Alondo, "I think we should act as if we don't have this infomation." `
-			`	Katya, Freya and JJ nod in agreement at this. Alondo continues, "So we go to Earth and offer to help the Republic any way we can without letting on that the Syndicate is not behind it"`
+			`	"No, it is an alien race called the Pug. Thay say thay are there to promote peace, but I don't know their true intentions."`
+			`	JJ says, "The Senate had agreed that we must put our differences with the Republic aside, and meet with Parliament to deal with this crisis. But that was before you told us what has really happened."`
+			`	"Where did the Pug come from? And are they attacking Human ships?" Katya asks starting to sound worried.`
+			`	"They came from a system called Deneb, the star out beyond Zeta Aquilae. They didn't attack my ship when I arrived and nothing on the ground looked like it had been damaged." At this Katya looks relived. "There are some people who are resisting the Pug but there wasn't a single Free Worlds ship in orbit or on the ground so they were probably destroyed when the Pug invaded."`
+			`	Alondo contemplates this before speaking up "We can easily stop are own people panicking but we can't use the Net to tell the republic, they just won't believe it."`
+			choice
+				`	We should go and warn parliament about the Pug.`
+					goto talk
+				`	We should ready a battle fleet to defend against the pug.`
+					goto fleet
+
+			label fleet
+			`	"No." JJ shakes his head, "We don't know how powerful Pug ships are and we shouldn't risk a large portion of our fleet being cut off without reinforcements. We need to talk to parliament and get the help of the navy."`
+
+			label talk
+			`	Alondo agrees "We can't fight the Pug on our own. JJ, Freya and Katya can get our people ready to fight whilst <first> and I go talk to parliament, hopefully we will be able to sort this mess out."`
 				accept
 	
 
