@@ -128,6 +128,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "never disabled")
 			neverDisabled = true;
+		else if(child.Token(0) == "uncapturable")
+			isCapturable = false;
 		else if((child.Token(0) == "fighter" || child.Token(0) == "drone") && child.Size() >= 3)
 		{
 			if(!hasBays)
@@ -225,6 +227,7 @@ void Ship::FinishLoading()
 		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
 	
 	// If this ship has a base class, copy any attributes not defined here.
+	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
 		if(!sprite.GetSprite())
@@ -349,6 +352,8 @@ void Ship::Save(DataWriter &out) const
 		
 		if(neverDisabled)
 			out.Write("never disabled");
+		if(!isCapturable)
+			out.Write("uncapturable");
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -1356,6 +1361,13 @@ const System *Ship::GetSystem() const
 const Planet *Ship::GetPlanet() const
 {
 	return zoom ? nullptr : landingPlanet;
+}
+
+
+
+bool Ship::IsCapturable() const
+{
+	return isCapturable;
 }
 
 
