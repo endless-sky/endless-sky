@@ -18,6 +18,7 @@ ship "Small Asteroid"
 		"required crew" 0
 		"bunks" 0
 		automaton 1
+		"uncapturable"
 		"mass" 910
 		"drag" 17.7
 		"cargo space" 75
@@ -33,6 +34,7 @@ ship "Medium Asteroid"
 		"required crew" 0
 		"bunks" 0
 		automaton 1
+		"uncapturable"
 		"mass" 910
 		"drag" 17.7
 		"cargo space" 125
@@ -48,6 +50,7 @@ ship "Big Asteroid"
 		"required crew" 0
 		"bunks" 0
 		automaton 1
+		"uncapturable"
 		"mass" 910
 		"drag" 17.7
 		"cargo space" 250
@@ -63,6 +66,7 @@ ship "Tough Asteroid"
 		"required crew" 0
 		"bunks" 0
 		automaton 1
+		"uncapturable"
 		"mass" 910
 		"drag" 17.7
 		"cargo space" 250
@@ -78,6 +82,7 @@ ship "Super Tough Asteroid"
 		"required crew" 0
 		"bunks" 0
 		automaton 1
+		"uncapturable"
 		"mass" 910
 		"drag" 17.7
 		"cargo space" 250
