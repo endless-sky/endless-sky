@@ -553,7 +553,7 @@ int64_t Ship::UpdateCost()
 
 
 
-int Ship::GetWear()
+int Ship::GetWear() const
 {
 	return wear;
 }
@@ -2300,6 +2300,32 @@ void Ship::IncrementWear(int value)
 	outfits.IncrementWear(value);
 	// Outfits in cargo don't wear.
 	UpdateCost();
+}
+
+
+
+bool Ship::PassesFlightCheck() const
+{
+	return FlightCheckStatus() == "pass";
+}
+
+
+
+std::string Ship::FlightCheckStatus() const 
+{
+	double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
+	if(!attributes.Get("thrust"))
+		return "flight check: no thrusters";
+	if(attributes.Get("thrusting energy") > energy)
+		return "flight check: no thruster energy";
+	if(!attributes.Get("turn"))
+		return "flight check: no steering";
+	if(attributes.Get("turning energy") > energy)
+		return "flight check: no steering energy";
+	double maxHeat = .1 * Mass() * attributes.Get("heat dissipation");
+	if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
+		return "flight check: overheating";
+	return "pass";
 }
 
 

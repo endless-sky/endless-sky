@@ -116,7 +116,7 @@ public:
 	// Add a captured ship to your fleet.
 	void AddShip(std::shared_ptr<Ship> &ship);
 	// Buy or sell a ship.
-	void BuyShip(const Ship *model, const std::string &name, int wear);
+	void BuyShip(const Ship *model, const std::string &name);
 	void SellShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);
@@ -187,8 +187,8 @@ public:
 	// available to buy back until you take off.
 	OutfitGroup &SoldOutfits();
 	// Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
-	std::list<Ship*> &UsedShips();
-	std::list<Ship*> &JunkyardShips();
+	std::list<const Ship*> &UsedShips();
+	std::list<const Ship*> &JunkyardShips();
 	
 private:
 	// Don't anyone else to copy this class, because pointers won't get
@@ -241,8 +241,8 @@ private:
 	const Outfit *selectedWeapon = nullptr;
 	
 	OutfitGroup soldOutfits;
-	std::list<Ship*> usedShips;
-	std::list<Ship*> junkyardShips;
+	std::list<const Ship*> usedShips;
+	std::list<const Ship*> junkyardShips;
 	
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;

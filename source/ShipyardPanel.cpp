@@ -74,14 +74,13 @@ int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
 	// Does the name end with JUNKYARD_SHIP_SUFFIX?
 	string modelName = name;
 	bool isJunkyard = false;
-	if (name.size() > Ship::JUNKYARD_SHIP_SUFFIX.size() && 
-		name.substr(name.size() - Ship::JUNKYARD_SHIP_SUFFIX.size(), Ship::JUNKYARD_SHIP_SUFFIX.size()) == Ship::JUNKYARD_SHIP_SUFFIX)
+	if (Format::EndsWith(name, Ship::JUNKYARD_SHIP_SUFFIX))
 	{
 		modelName = name.substr(0, name.size() - Ship::JUNKYARD_SHIP_SUFFIX.size());
 		isJunkyard = true;
 	}
 	const Ship *newShip = GameData::Ships().Get(modelName);
-	Ship *usedShip = MostUsedModel(isJunkyard ? junkyard : used, modelName);
+	const Ship *usedShip = MostUsedModel(isJunkyard ? junkyard : used, modelName);
 	const Ship *shipToDraw = usedShip ? usedShip : newShip;
 	
 	if(!shipyard.Has(newShip) && !usedShip)
@@ -291,24 +290,37 @@ void ShipyardPanel::BuyShip(const string &name)
 	if(modifier > 1)
 		shipName += ' ';
 	
+	string modelName = selectedShip->ModelName();
+	bool isJunkyard = MostUsedModel(junkyard, modelName) != nullptr;
+	bool parkedShipMessage = false;
 	for(int i = 1; i <= modifier; ++i)
 	{
-		const Ship* shipToBuy = selectedShip;
-		auto usedShip = MostUsedModel(used, selectedShip->ModelName());
-		if (usedShip)
-		{
-			shipToBuy = usedShip;
-			used.remove(usedShip);			
-		}
+		auto shipToBuy = MostUsedModel(isJunkyard ? junkyard : used, modelName);
+		if (!shipToBuy && isJunkyard)
+			break; // No more empty hulls of this type available.
+		if (!shipToBuy)
+			shipToBuy = GameData::Ships().Get(modelName); // No more used available - buy new.
+			
 		if(modifier > 1)
-			player.BuyShip(shipToBuy, shipName + to_string(i), 0);
+			player.BuyShip(shipToBuy, shipName + to_string(i));
 		else
-			player.BuyShip(shipToBuy, shipName, 0);
+			player.BuyShip(shipToBuy, shipName);
+		
+		if(!shipToBuy->PassesFlightCheck())
+			parkedShipMessage = true;
+		
+		used.remove(shipToBuy);			
+		junkyard.remove(shipToBuy);
 	}
+	
+	UpdateJunkyardCatalog();
 	
 	playerShip = &*player.Ships().back();
 	playerShips.clear();
 	playerShips.insert(playerShip);
+	
+	if (parkedShipMessage)
+		GetUI()->Push(new Dialog("The \"ship\" you just bought doesn't even have the hardware it needs to pass a basic flight check. You decide to park it until you can give it some attention at the outfitter."));
 }
 
 
@@ -317,6 +329,7 @@ void ShipyardPanel::SellShip()
 {
 	for(Ship *ship : playerShips)
 		player.SellShip(ship);
+
 	playerShips.clear();
 	playerShip = nullptr;
 	for(shared_ptr<Ship> ship : player.Ships())
@@ -327,6 +340,8 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+		
+	UpdateJunkyardCatalog();
 }
 
 
@@ -347,14 +362,24 @@ int64_t ShipyardPanel::LicenseCost() const
 
 
 
-Ship* ShipyardPanel::MostUsedModel(std::list<Ship*> listToSearch, const string& modelName) const 
+const Ship* ShipyardPanel::MostUsedModel(std::list<const Ship*> listToSearch, const string& modelName) const 
 {
-	Ship* retVal = nullptr;
+	const Ship* retVal = nullptr;
 	for (auto it : listToSearch)
 	{
 		if(it && it->ModelName() == modelName && (!retVal || it->GetWear() > retVal->GetWear()))
 			retVal = it;
 	}
-	
 	return retVal;
+}
+
+
+
+void ShipyardPanel::UpdateJunkyardCatalog() 
+{
+	// Put in the junkyard category at the bottom.
+	catalog[Ship::JUNKYARD_CATEGORY_NAME].clear();
+	for(auto it : junkyard)
+		if (it)
+			catalog[Ship::JUNKYARD_CATEGORY_NAME].insert(it->ModelName() + JUNKYARD_SHIP_SUFFIX);	
 }

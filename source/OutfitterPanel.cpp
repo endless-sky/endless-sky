@@ -640,41 +640,13 @@ bool OutfitterPanel::FlightCheck()
 {
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
-		// Skip any ships that are "absent" for whatever reason.
-		if(ship->GetSystem() != player.GetSystem())
-			continue;
-		
-		const Outfit &attributes = ship->Attributes();
-		double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
-		if(!attributes.Get("thrust"))
+		// Skip any ships that are "absent" for whatever reason or parked.
+		if (!ship->IsParked()
+			&& ship->GetSystem() == player.GetSystem() 
+			&& !ship->PassesFlightCheck())
 		{
 			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no thrusters")));
-			return false;
-		}
-		if(attributes.Get("thrusting energy") > energy)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no thruster energy")));
-			return false;
-		}
-		if(!attributes.Get("turn"))
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no steering")));
-			return false;
-		}
-		if(attributes.Get("turning energy") > energy)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: no steering energy")));
-			return false;
-		}
-		double maxHeat = .1 * ship->Mass() * attributes.Get("heat dissipation");
-		if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
-		{
-			GetUI()->Push(new ConversationPanel(player,
-				*GameData::Conversations().Get("flight check: overheating")));
+				*GameData::Conversations().Get(ship->FlightCheckStatus())));
 			return false;
 		}
 	}

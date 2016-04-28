@@ -126,7 +126,10 @@ void ShopPanel::DrawSidebar() const
 	if(shipsHere > 1)
 	{
 		static const Color selected(.8, 1.);
-		static const Color unselected(.4, 1.);
+		static const Color unselected(.6, 1.);
+		static const Color parked(.2, 1.);
+		static const Color red(1.0, 0., 0., 0.);
+
 		for(shared_ptr<Ship> ship : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
@@ -141,12 +144,15 @@ void ShopPanel::DrawSidebar() const
 			
 			bool isSelected = (playerShips.find(ship.get()) != playerShips.end());
 			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
+			
 			SpriteShader::Draw(background, point);
 			
 			const Sprite *sprite = ship->GetSprite().GetSprite();
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+			
+			
+			OutlineShader::Draw(sprite, point, size, ship->IsParked() ? parked : (ship->PassesFlightCheck() ? (isSelected ? selected : unselected) : red));
 		
 			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
 		
@@ -389,6 +395,23 @@ bool ShopPanel::CanSellMultiple() const
 
 
 
+void ShopPanel::ToggleParked() const 
+{
+	bool park = false;
+	// If at least one selected ship is not already parked, park all selected ships.
+	// Otherwise unpark them all.
+	for(auto it : playerShips)
+		if (!it->IsParked())
+		{
+			park = true;
+			break;
+		}
+	for(auto it : playerShips)
+		it->SetIsParked(park);
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 {
@@ -452,6 +475,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		return DoScroll(Screen::Bottom());
 	else if(key == SDLK_PAGEDOWN)
 		return DoScroll(Screen::Top());
+	else if(key == 'p')
+		ToggleParked();
 	else
 		return false;
 	

@@ -640,11 +640,11 @@ void PlayerInfo::AddShip(shared_ptr<Ship> &ship)
 
 
 // Buy a ship of the given model, and give it the given name.
-void PlayerInfo::BuyShip(const Ship *model, const string &name, int wear)
+void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(model && accounts.Credits() >= model->Cost())
 	{
-		auto newShip = Ship::MakeShip(*model, wear);
+		auto newShip = Ship::MakeShip(*model, 0);
 		ships.push_back(shared_ptr<Ship>(newShip));
 		ships.back()->SetName(name);
 		ships.back()->SetSystem(system);
@@ -654,6 +654,11 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, int wear)
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 		
 		accounts.AddCredits(-newShip->Cost());
+		
+		// If you buy a ship that fails flight-check, park it. 
+		if(!ships.back()->PassesFlightCheck())
+			ships.back()->SetIsParked();
+		
 		flagship.reset();
 	}
 }
@@ -674,7 +679,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 				soldOutfits.AddOutfit(it.GetOutfit(), it.GetQuantity(), it.GetWear());
 
 			// Add the ship's hull to the junkyard.
-			
+			junkyardShips.push_back(Ship::MakeEmptyShip(*selected, 0));
 			
 			// Delete the ship from player's list of ships.
 			ships.erase(it);
@@ -1592,14 +1597,14 @@ OutfitGroup &PlayerInfo::SoldOutfits()
 
 
 // Keep track of used ships available today on this planet, so it doesn't change until after you take off again.
-list<Ship*> &PlayerInfo::UsedShips()
+list<const Ship*> &PlayerInfo::UsedShips()
 {
 	return usedShips;
 }
 
 
 
-list<Ship*> &PlayerInfo::JunkyardShips()
+list<const Ship*> &PlayerInfo::JunkyardShips()
 {
 	return junkyardShips;
 }

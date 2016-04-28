@@ -68,6 +68,7 @@ protected:
 	virtual void FailSell() const;
 	virtual bool FlightCheck() = 0;
 	virtual bool CanSellMultiple() const;
+	virtual void ToggleParked() const;
 	
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command) override;

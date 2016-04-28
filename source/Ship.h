@@ -101,7 +101,7 @@ public:
 	// Re-calculate the ship's cost and baseCost.
 	int64_t UpdateCost();
 	// The wear on the base hull of the ship.
-	int GetWear();
+	int GetWear() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
 	
@@ -316,6 +316,12 @@ public:
 	// Increment the wear of this ship and its outfits for the purpose 
 	// of used parts value calculations. 
 	void IncrementWear(int days = 1);
+	
+	// Is this ship able to take off and function?
+	bool PassesFlightCheck() const;
+	// Returns a string corresponding to a conversation 
+	// which describes any flight check problem. 
+	std::string FlightCheckStatus() const;
 	
 private:
 	// Update attributes, cargo space, hull after adding or removing an outfit. 

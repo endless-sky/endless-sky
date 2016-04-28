@@ -57,14 +57,15 @@ private:
 	void SellShip();
 	int64_t LicenseCost() const;
 	
-	Ship* MostUsedModel(std::list<Ship*> listToSearch, const std::string& modelName) const;
+	const Ship* MostUsedModel(std::list<const Ship*> listToSearch, const std::string& modelName) const;
+	void UpdateJunkyardCatalog();
 	
 private:
 	int modifier;
 	
 	Sale<Ship> shipyard;
-	std::list<Ship*> &used;
-	std::list<Ship*> &junkyard;
+	std::list<const Ship*> &used;
+	std::list<const Ship*> &junkyard;
 };
 
 

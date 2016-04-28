@@ -243,3 +243,10 @@ string Format::LowerCase(const string &str)
 		c = tolower(c);
 	return result;
 }
+
+
+
+bool Format::EndsWith(const string &str, const string &suffix)
+{
+	return str.size() >= suffix.size() && str.substr(str.size() - suffix.size(), suffix.size()) == suffix;
+}

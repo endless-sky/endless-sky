@@ -39,6 +39,9 @@ public:
 	// Convert a string to title caps or to lower case.
 	static std::string Capitalize(const std::string &str);
 	static std::string LowerCase(const std::string &str);
+	
+	// Does a string end with a certain suffix?
+	static bool EndsWith(const std::string &str, const std::string &suffix);
 };
 
 
