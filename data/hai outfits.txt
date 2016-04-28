@@ -389,7 +389,7 @@ outfit "Butterfly Reverse Thruster"
 	thumbnail "outfit/reverse thruster hai"
 	"mass" 18
 	"outfit space" -18
-	"engine capacity" -18
+	"weapon capacity" -18
 	"reverse thrust" 14.4
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 2.8
