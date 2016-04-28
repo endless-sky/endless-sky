@@ -122,7 +122,7 @@ int Armament::Weapon::BurstRemaining() const
 
 
 // Perform one step (i.e. decrement the reload count).
-void Armament::Weapon::Step()
+void Armament::Weapon::Step(const Ship &ship)
 {
 	if(!outfit)
 		return;
@@ -136,12 +136,7 @@ void Armament::Weapon::Step()
 		--burstReload;
 	if(burstReload <= 0.)
 		isFiring = false;
-}
 
-
-
-void Armament::Weapon::StepAngle(const Ship &ship)
-{
 	if (isTurret)
 	{
 		Angle shipFacing = ship.Facing();
@@ -512,8 +507,7 @@ void Armament::Step(const Ship &ship)
 {
 	for(Weapon &weapon : weapons)
 	{
-		weapon.Step();
-		weapon.StepAngle(ship);
+		weapon.Step(ship);
 	}
 	
 	for(auto &it : streamReload)

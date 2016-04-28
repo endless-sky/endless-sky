@@ -63,8 +63,7 @@ public:
 		int BurstRemaining() const;
 		// Perform one step (i.e. decrement the reload count, aim turrets towards
 	  // target or default position).
-		void Step();
-		void StepAngle(const Ship &ship);
+		void Step(const Ship &ship);
 		
 		// Fire this weapon. If it is a turret, it will not fire unless it has the
 		// appropriate aimOffset. If the weapon requires ammunition, it will be
