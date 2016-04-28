@@ -257,7 +257,8 @@ outfit "Butterfly Thruster"
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
-	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
+	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engines for many millennia. Hai atomic engines are still much more energy hungry than other engines, but are more efficient than their human counterparts."
+
 
 outfit "Cleg Atomic Thruster"
 	category "Engines"
@@ -272,7 +273,7 @@ outfit "Cleg Atomic Thruster"
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
-	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
+	description "Unlike human space where atomic engines are a rare sight to see and a luxury to have, many years of being confined to a relatively small pocket of the Galaxy has allowed all Hai ships to be outfitted with atomic engines."
 
 outfit "Hawksmoth Thruster"
 	category "Engines"
@@ -287,7 +288,7 @@ outfit "Hawksmoth Thruster"
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
-	description "Deep Sky's atomic thrusters have been in production for centuries, but remain a niche product due to their high prices and high energy requirements."
+	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 
 outfit "Brown Planthopper Thruster"
@@ -303,7 +304,7 @@ outfit "Brown Planthopper Thruster"
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
-	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
+	description "While Deep Sky was busy developing the combat atomic engines, the Hai were working on making theirs even better. Because of this. Hai atomic engines are highly efficient compared to their human variants, requiring less energy to fire and producing less heat in the process."
 
 outfit "Horsefly Thruster"
 	category "Engines"
@@ -318,7 +319,7 @@ outfit "Horsefly Thruster"
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
-	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."
+	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters"
 
 
 outfit "Butterfly Atomic Steering"
@@ -331,7 +332,7 @@ outfit "Butterfly Atomic Steering"
 	"turn" 247
 	"turning energy" .65
 	"turning heat" 1.3
-	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
+	description "Hai atomic engines are too expensive to buy for most humans. Even the smallest of the engines are worth more than many of the most common ships flown in human space."
 
 outfit "Cleg Steering"
 	category "Engines"
@@ -343,7 +344,7 @@ outfit "Cleg Steering"
 	"turn" 548.8
 	"turning energy" 1.2
 	"turning heat" 2.2
-	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
+	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines, usually astound others in human space with the efficiency of their ship."
 
 outfit "Hawksmoth Steering"
 	category "Engines"
@@ -355,7 +356,7 @@ outfit "Hawksmoth Steering"
 	"turn" 687
 	"turning energy" 1.5
 	"turning heat" 4.4
-	description "If you have exhausted all your other options for making your ship more maneuverable, it may be time to invest in a set of atomic engines."
+	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit "Brown Planthopper Steering"
 	category "Engines"
@@ -367,7 +368,7 @@ outfit "Brown Planthopper Steering"
 	"turn" 1668.8
 	"turning energy" 3.2
 	"turning heat" 7.7
-	description "Bounty hunters and other captains who need to gain a speed advantage over the ships they are pursuing often dream of being able to save up enough money for a set of atomic engines."
+	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
 
 outfit "Horsefly  Steering"
 	category "Engines"
@@ -379,7 +380,7 @@ outfit "Horsefly  Steering"
 	"turn" 2870
 	"turning energy" 5.3
 	"turning heat" 12.6
-	description "This set of maneuvering thrusters from Deep Sky will allow small warships to turn as fast as a fighter. For larger ships, swapping the existing engines with a set of atomics can free up a considerable amount of space for other outfits or weapons."
+	description "Nine out of every ten human captains interviewed in Hai space as to who's atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
 
 
 outfit "Butterfly Reverse Thruster"
@@ -392,4 +393,4 @@ outfit "Butterfly Reverse Thruster"
 	"reverse thrust" 14.4
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 2.8
-	description "For pilots who want to be able to pull fancy tricks that most ships are not capable of emulating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+	description "Although rarely used, reverse thrusters are still developed for the few that they appeal to. These reverse thrusters allow for a pilot to do some crazy maneuvers, such as backing away from your target while still shooting them with your forward facing weapons. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
