@@ -34,11 +34,12 @@ ship "Lightning Bug"
 		"Ion Cannon"
 		"Anti-Missile Turret (Hai)" 2
 		"Fission Reactor (Hai)"
-		"LP072a Battery Pack (Hai)"
+		"HP054a Battery Pack"
+		"HP018a Battery Pack"
 		"S-270 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A250 Atomic Thruster (Hai)"
-		"A375 Atomic Steering (Hai)"
+		"Cleg Atomic Thruster"
+		"Cleg Atomic Steering"
 		"Hyperdrive"
 	engine -40 22
 	engine 40 22
@@ -57,11 +58,11 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
 		"Fission Reactor (Hai)"
-		"LP036a Battery Pack (Hai)"
+		"HP018a Battery Pack" 2
 		"S-270 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A370 Atomic Thruster (Hai)"
-		"A255 Atomic Steering (Hai)"
+		"Hawksmoth Atomic Thruster"
+		"Cleg Atomic Steering"
 		"Hyperdrive"
 
 ship "Aphid"
@@ -88,12 +89,12 @@ ship "Aphid"
 			"hit force" 450
 	outfits
 		"Pulse Turret"
-		"Dwarf Core (Hai)"
-		"LP036a Battery Pack (Hai)"
+		"Pup Core"
+		"HP018a Battery Pack" 2
 		"S-270 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A120 Atomic Thruster (Hai)"
-		"A125 Atomic Steering (Hai)"
+		"Butterfly Atomic Thruster"
+		"Butterfly Atomic Steering"
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
@@ -106,12 +107,12 @@ ship "Aphid"
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
 		"Heavy Anti-Missile Turret (Hai)"
-		"Dwarf Core (Hai)"
-		"LP036a Battery Pack (Hai)"
+		"Pup Core"
+		"HP018a Battery Pack" 2
 		"S-270 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A120 Atomic Thruster (Hai)"
-		"A255 Atomic Steering (Hai)"
+		"Butterfly Atomic Thruster"
+		"Cleg Atomic Steering"
 		"Hyperdrive"
 
 ship "Water Bug"
@@ -142,11 +143,12 @@ ship "Water Bug"
 		"Pulse Turret"
 		"Heavy Anti-Missile Turret (Hai)" 2
 		"Fission Reactor (Hai)"
-		"LP144a Battery Pack (Hai)"
+		"HP108a Battery Pack"
+		"HP018a Battery Pack"
 		"S-970 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A250 Atomic Thruster (Hai)"
-		"A255 Atomic Steering (Hai)"
+		"Cleg Atomic Thruster"
+		"Cleg Atomic Steering"
 		"Hyperdrive"
 	engine -50 33
 	engine 50 33
@@ -167,11 +169,12 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Tracker" 112
 		"Pulse Turret" 3
 		"Fission Reactor (Hai)"
-		"LP144a Battery Pack (Hai)"
+		"HP108a Battery Pack"
+		"HP018a Battery Pack"
 		"S-970 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A250 Atomic Thruster (Hai)"
-		"A255 Atomic Steering (Hai)"
+		"Cleg Atomic Thruster"
+		"Cleg Atomic Steering"
 		"Hyperdrive"
 
 ship "Water Bug" "Water Bug (Jump)"
@@ -181,11 +184,12 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Pulse Turret"
 		"Heavy Anti-Missile Turret (Hai)" 2
 		"Fission Reactor (Hai)"
-		"LP144a Battery Pack (Hai)"
+		"HP108a Battery Pack"
+		"HP018a Battery Pack"
 		"S-970 Regenerator"
 		"Cooling Ducts (Hai)"
-		"A250 Atomic Thruster (Hai)"
-		"A255 Atomic Steering (Hai)"
+		"Cleg Atomic Thruster"
+		"Cleg Atomic Steering"
 		"Jump Drive"
 
 ship "Shield Beetle"
@@ -220,8 +224,8 @@ ship "Shield Beetle"
 		"LP288a Battery Pack (Hai)"
 		"S-970 Regenerator"
 		"Cooling Ducts(Hai)" 4
-		"A370 Atomic Thruster (Hai)"
-		"A865 Atomic Steering (Hai)"
+		"Hawksmoth Atomic Thruster"
+		"Horsefly Atomic Steering"
 		"Hyperdrive"
 	engine -44 133
 	engine 44 133
@@ -254,8 +258,8 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"LP288a Battery Pack (Hai)"
 		"S-970 Regenerator"
 		"Cooling Ducts (Hai)" 4
-		"A520 Atomic Thruster (Hai)"
-		"A525 Atomic Steering (Hai)"
+		"Brown Planthopper Atomic Thruster"
+		"Brown Planthopper Atomic Steering"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
@@ -266,13 +270,15 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Heavy Anti-Missile Turret (Hai)" 2
 		"Fusion Reactor (Hai)"
 		"Fission Reactor (Hai)"
-		"LP288a Battery Pack (Hai)"
+		"HP151a Battery Pack"
+		"HP054a Battery Pack"
+		"HP018a Battery Pack"
 		"Mass Expansion" 4
 		"S-970 Regenerator" 2
 		"Fuel Pod" 3
 		"Cooling Ducts (Hai)" 4
-		"A370 Atomic Thruster (Hai)"
-		"A865 Atomic Steering (Hai)"
+		"Hawksmoth Atomic Thruster"
+		"Horsefly Atomic Steering"
 		"Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
@@ -292,11 +298,13 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Pulse Turret" 4
 		"Fusion Reactor (Hai)"
 		"Fission Reactor (Hai)"
-		"LP288a Battery Pack (Hai)"
+		"HP151a Battery Pack"
+		"HP054a Battery Pack"
+		"HP018a Battery Pack"
 		"Mass Expansion" 1
 		"S-970 Regenerator" 2
 		"Fuel Pod" 3
 		"Cooling Ducts (Hai)" 4
-		"A520 Atomic Thruster (Hai)"
-		"A525 Atomic Steering (Hai)"
+		"Brown Planthopper Atomic Thruster"
+		"Brown Planthopper Atomic Steering"
 		"Jump Drive"
