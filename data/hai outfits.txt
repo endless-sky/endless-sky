@@ -138,7 +138,8 @@ outfit "Anti-Missile Turret (Hai)"
 		"lifetime" 1
 		"reload" 6
 		"firing energy" 6
-		"firing heat" 4 		"stream"
+		"firing heat" 4
+		"stream"
 	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them.  In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
 
 outfit "Heavy Anti-Missile Turret (Hai)"
@@ -168,7 +169,7 @@ outfit "Cooling Ducts (Hai)"
 	"cooling" 8.3
 	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these."
 
-outfit "LP036a Battery Pack (Hai)"
+outfit "HP018a Battery Pack"
 	category "Power"
 	cost 8000
 	thumbnail "outfit/tiny battery hai"
@@ -177,7 +178,7 @@ outfit "LP036a Battery Pack (Hai)"
 	"energy capacity" 750
 	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
-outfit "LP072a Battery Pack (Hai)"
+outfit "HP054a Battery Pack"
 	category "Power"
 	cost 25000
 	thumbnail "outfit/small battery hai"
@@ -186,7 +187,7 @@ outfit "LP072a Battery Pack (Hai)"
 	"energy capacity" 1800
 	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
-outfit "LP144a Battery Pack (Hai)"
+outfit "HP108a Battery Pack"
 	category "Power"
 	cost 52000
 	thumbnail "outfit/medium battery hai"
@@ -195,7 +196,7 @@ outfit "LP144a Battery Pack (Hai)"
 	"energy capacity" 3750
 	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
-outfit "LP288a Battery Pack (Hai)"
+outfit "HP151a Battery Pack"
 	category "Power"
 	cost 120000
 	thumbnail "outfit/large battery hai"
@@ -204,7 +205,7 @@ outfit "LP288a Battery Pack (Hai)"
 	"energy capacity" 8250
 	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
-outfit "LP576a Battery Pack (Hai)"
+outfit "HP432a Battery Pack"
 	category "Power"
 	cost 300000
 	thumbnail "outfit/huge battery hai"
@@ -213,7 +214,7 @@ outfit "LP576a Battery Pack (Hai)"
 	"energy capacity" 18250
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
-outfit "Dwarf Core (Hai)"
+outfit "Pup Core"
 	category "Power"
 	cost 1050000
 	thumbnail "outfit/dwarf core hai"
@@ -221,7 +222,7 @@ outfit "Dwarf Core (Hai)"
 	"outfit space" -32
 	"energy generation" 4.5
 	"heat generation" 11.9
-	description "A Dwarf Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
+	description "A Pup Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
 outfit "Fission Reactor (Hai)"
 	category "Power"
@@ -243,7 +244,7 @@ outfit "Fusion Reactor (Hai)"
 	"heat generation" 34
 	description "The Hai built Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
-outfit "A120 Atomic Thruster (Hai)"
+outfit "Butterfly Thruster"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/tiny atomic thruster hai"
@@ -258,7 +259,7 @@ outfit "A120 Atomic Thruster (Hai)"
 	"flare sound" "atomic tiny"
 	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
 
-outfit "A250 Atomic Thruster (Hai)"
+outfit "Cleg Atomic Thruster"
 	category "Engines"
 	"cost" 210000
 	thumbnail "outfit/tiny atomic thruster hai"
@@ -273,7 +274,7 @@ outfit "A250 Atomic Thruster (Hai)"
 	"flare sound" "atomic tiny"
 	description "If you're looking for the most powerful engine that will fit into your ship, and have plenty of money to burn, Deep Sky's atomic thrusters are your answer. Of course, the extra energy and cooling they require can easily offset the benefit of their small size."
 
-outfit "A370 Atomic Thruster (Hai)"
+outfit "Hawksmoth Thruster"
 	category "Engines"
 	"cost" 420000
 	thumbnail "outfit/small atomic thruster hai"
@@ -289,7 +290,7 @@ outfit "A370 Atomic Thruster (Hai)"
 	description "Deep Sky's atomic thrusters have been in production for centuries, but remain a niche product due to their high prices and high energy requirements."
 
 
-outfit "A520 Atomic Thruster (Hai)"
+outfit "Brown Planthopper Thruster"
 	category "Engines"
 	"cost" 780000
 	thumbnail "outfit/medium atomic thruster hai"
@@ -304,7 +305,7 @@ outfit "A520 Atomic Thruster (Hai)"
 	"flare sound" "atomic medium"
 	description "This thruster is small enough to fit in a light warship or freighter, but powerful enough to move any but the largest of ships. Naturally, such performance comes at an exorbitant price."
 
-outfit "A860 Atomic Thruster (Hai)"
+outfit "Horsefly Thruster"
 	category "Engines"
 	"cost" 1680000
 	thumbnail "outfit/large atomic thruster hai"
@@ -320,7 +321,7 @@ outfit "A860 Atomic Thruster (Hai)"
 	description "If your ship is sporting a set of Deep Sky's atomic engines, you will be the envy of every pilot in the galaxy. No other form of propulsion that humanity has discovered produces so much thrust from such a small engine."
 
 
-outfit "A125 Atomic Steering (Hai)"
+outfit "Butterfly Atomic Steering"
 	category "Engines"
 	"cost" 90000
 	thumbnail "outfit/tiny atomic steering hai"
@@ -332,7 +333,7 @@ outfit "A125 Atomic Steering (Hai)"
 	"turning heat" 1.3
 	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
 
-outfit "A255 Atomic Steering (Hai)"
+outfit "Cleg Steering"
 	category "Engines"
 	"cost" 180000
 	thumbnail "outfit/tiny atomic steering hai"
@@ -344,7 +345,7 @@ outfit "A255 Atomic Steering (Hai)"
 	"turning heat" 2.2
 	description "Deep Sky's atomic thrusters are a popular choice for high-end starships. It is not uncommon for a set of atomic engines to cost more than the ship they are installed in."
 
-outfit "A375 Atomic Steering (Hai)"
+outfit "Hawksmoth Steering"
 	category "Engines"
 	"cost" 240000
 	thumbnail "outfit/small atomic steering hai"
@@ -356,7 +357,7 @@ outfit "A375 Atomic Steering (Hai)"
 	"turning heat" 4.4
 	description "If you have exhausted all your other options for making your ship more maneuverable, it may be time to invest in a set of atomic engines."
 
-outfit "A525 Atomic Steering (Hai)"
+outfit "Brown Planthopper Steering"
 	category "Engines"
 	"cost" 720000
 	thumbnail "outfit/medium atomic steering hai"
@@ -368,7 +369,7 @@ outfit "A525 Atomic Steering (Hai)"
 	"turning heat" 7.7
 	description "Bounty hunters and other captains who need to gain a speed advantage over the ships they are pursuing often dream of being able to save up enough money for a set of atomic engines."
 
-outfit "A865 Atomic Steering (Hai)"
+outfit "Horsefly  Steering"
 	category "Engines"
 	"cost" 1440000
 	thumbnail "outfit/large atomic steering hai"
@@ -381,7 +382,7 @@ outfit "A865 Atomic Steering (Hai)"
 	description "This set of maneuvering thrusters from Deep Sky will allow small warships to turn as fast as a fighter. For larger ships, swapping the existing engines with a set of atomics can free up a considerable amount of space for other outfits or weapons."
 
 
-outfit "AR120 Reverse Thruster (Hai)"
+outfit "Butterfly Reverse Thruster"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/reverse thruster hai"
