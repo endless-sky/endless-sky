@@ -108,6 +108,9 @@ public:
 	void SetIsParked(bool parked = true);
 	bool IsParked() const;
 	
+	// If a ship can be captured.
+	bool IsCapturable() const;
+	
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);

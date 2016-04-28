@@ -439,6 +439,10 @@ bool BoardingPanel::CanCapture() const
 	if(!victim->IsCapturable())
 		return false;
 	
+	// If the ship is uncapturable
+	if(victim->!IsCapturable())
+		return false;
+	
 	if(victim->CanBeCarried())
 	{
 		// If this is an unpiloted drone, you don't need any crew to capture it.
