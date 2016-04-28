@@ -127,7 +127,8 @@ void ShopPanel::DrawSidebar() const
 	{
 		static const Color selected(.8, 1.);
 		static const Color unselected(.6, 1.);
-		static const Color parked(.2, 1.);
+		static const Color parked(.25, 1.);
+		static const Color orange(1.0, 0.5, 0.3, 0.);
 		static const Color red(1.0, 0., 0., 0.);
 
 		for(shared_ptr<Ship> ship : player.Ships())
@@ -152,7 +153,11 @@ void ShopPanel::DrawSidebar() const
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			
 			
-			OutlineShader::Draw(sprite, point, size, ship->IsParked() ? parked : (ship->PassesFlightCheck() ? (isSelected ? selected : unselected) : red));
+			OutlineShader::Draw(sprite, point, size, 
+				ship->IsParked() ? parked : 
+					(!ship->PassesFlightCheck() ? red : 
+						((!ship->HasHyperdrive() && !ship->CanBeCarried()) ? orange : 
+							(isSelected ? selected : unselected))));
 		
 			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
 		
@@ -407,7 +412,8 @@ void ShopPanel::ToggleParked() const
 			break;
 		}
 	for(auto it : playerShips)
-		it->SetIsParked(park);
+		if (it != player.Flagship())
+			it->SetIsParked(park);
 }
 
 

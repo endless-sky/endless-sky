@@ -322,6 +322,8 @@ public:
 	// Returns a string corresponding to a conversation 
 	// which describes any flight check problem. 
 	std::string FlightCheckStatus() const;
+	// True if the ship is capable of hyperspace travel. 
+	bool HasHyperdrive() const;
 	
 private:
 	// Update attributes, cargo space, hull after adding or removing an outfit. 

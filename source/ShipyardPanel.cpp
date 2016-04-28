@@ -291,7 +291,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		shipName += ' ';
 	
 	string modelName = selectedShip->ModelName();
-	bool isJunkyard = MostUsedModel(junkyard, modelName) != nullptr;
+	bool isJunkyard = selectedShip == MostUsedModel(junkyard, modelName);
 	bool parkedShipMessage = false;
 	for(int i = 1; i <= modifier; ++i)
 	{

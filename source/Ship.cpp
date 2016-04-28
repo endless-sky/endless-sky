@@ -1592,7 +1592,6 @@ int Ship::HyperspaceType() const
 		for(const System *link : currentSystem->Neighbors())
 			if(link == destination)
 				return 200;
-	
 	return 0;
 }
 
@@ -2326,6 +2325,15 @@ std::string Ship::FlightCheckStatus() const
 	if(attributes.Get("heat generation") - attributes.Get("cooling") > maxHeat)
 		return "flight check: overheating";
 	return "pass";
+}
+
+
+
+bool Ship::HasHyperdrive() const
+{
+	return attributes.Get("hyperdrive")
+		|| attributes.Get("scram drive")
+		|| attributes.Get("jump drive");
 }
 
 
