@@ -400,6 +400,12 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
+	if(selectedOutfit->Get("installable") < 0.)
+	{
+		GetUI()->Push(new Dialog("This item is not an outfit that can be installed in a ship."));
+		return;
+	}
+	
 	if(!playerShip->Attributes().CanAdd(*selectedOutfit, 1))
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit in your ship, "
