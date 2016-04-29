@@ -23,9 +23,15 @@ government "Bounty Hunter"
 	color .78 0 0
 
 	"player reputation" -1000
+	"attitude toward"
+		"Claimed Asteroid" -.1
+		"Mineable Asteroid" -.1
 	"bribe" .2
 	"fine" 0
 	"hostile hail" "hostile bounty hunter"
+	
+government "Claimed Asteroid"
+	"player reputation" 1000
 
 government "Deep"
 	swizzle 0
@@ -159,6 +165,9 @@ government "Militia"
 		"Pirate" -.4
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
+
+government "Mineable Asteroid"
+	"player reputation" -1000
 
 government "Navy Intelligence"
 	swizzle 0
