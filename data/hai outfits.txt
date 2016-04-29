@@ -123,7 +123,7 @@ outfit "Hai Tracker Pod"
 		"missile strength" 16
 	description "Trackers are a fast, powerful, and accurate homing weapon. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
-outfit "Anti-Missile Turret (Hai)"
+outfit "Bullfrog Anti-Missile Turret"
 	category "Turrets"
 	cost 80000
 	thumbnail "outfit/anti-missile hai"
@@ -142,7 +142,7 @@ outfit "Anti-Missile Turret (Hai)"
 		"stream"
 	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them.  In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
 
-outfit "Heavy Anti-Missile Turret (Hai)"
+outfit "Chameleon Anti-Missile Turret"
 	category "Turrets"
 	cost 150000
 	thumbnail "outfit/heavy anti-missile hai"
@@ -158,9 +158,9 @@ outfit "Heavy Anti-Missile Turret (Hai)"
 		"reload" 5
 		"firing energy" 11
 		"firing heat" 5.2
-	description "The Hai Heavy Anti-Missile turret has a longer range, higher power, and shorter reload time than older incarnations. The system is less vulnerable to large clusters of incoming missiles, especially when many turrets are installed."
+	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog. The system is less vulnerable to large clusters of incoming missiles, especially when many turrets are installed."
 
-outfit "Cooling Ducts (Hai)"
+outfit "Hai Williwaw Cooling"
 	category "Systems"
 	cost 15000
 	thumbnail "outfit/cooling ducts hai"
@@ -169,7 +169,7 @@ outfit "Cooling Ducts (Hai)"
 	"cooling" 8.3
 	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these."
 
-outfit "HP018a Battery Pack"
+outfit "Hai Chasm Batteries"
 	category "Power"
 	cost 8000
 	thumbnail "outfit/tiny battery hai"
@@ -178,7 +178,7 @@ outfit "HP018a Battery Pack"
 	"energy capacity" 750
 	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
 
-outfit "HP054a Battery Pack"
+outfit "Hai Fissure Batteries"
 	category "Power"
 	cost 25000
 	thumbnail "outfit/small battery hai"
@@ -187,7 +187,7 @@ outfit "HP054a Battery Pack"
 	"energy capacity" 1800
 	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
 
-outfit "HP108a Battery Pack"
+outfit "Hai Gorge Batteries"
 	category "Power"
 	cost 52000
 	thumbnail "outfit/medium battery hai"
@@ -196,7 +196,7 @@ outfit "HP108a Battery Pack"
 	"energy capacity" 3750
 	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
 
-outfit "HP151a Battery Pack"
+outfit "Hai Ravine Batteries"
 	category "Power"
 	cost 120000
 	thumbnail "outfit/large battery hai"
@@ -205,7 +205,7 @@ outfit "HP151a Battery Pack"
 	"energy capacity" 8250
 	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
 
-outfit "HP432a Battery Pack"
+outfit "Hai Valley Batteries"
 	category "Power"
 	cost 300000
 	thumbnail "outfit/huge battery hai"
@@ -214,7 +214,7 @@ outfit "HP432a Battery Pack"
 	"energy capacity" 18250
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
-outfit "Pup Core"
+outfit "Hai Pebble Core"
 	category "Power"
 	cost 1050000
 	thumbnail "outfit/dwarf core hai"
@@ -222,9 +222,9 @@ outfit "Pup Core"
 	"outfit space" -32
 	"energy generation" 4.5
 	"heat generation" 11.9
-	description "A Pup Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
+	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
-outfit "Fission Reactor (Hai)"
+outfit "Hai Geode Reactor"
 	category "Power"
 	cost 1750000
 	thumbnail "outfit/fission hai"
@@ -234,7 +234,7 @@ outfit "Fission Reactor (Hai)"
 	"heat generation" 21.2
 	description "Fission reactors are considered a rudimentary technology among interstellar species.  Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
 
-outfit "Fusion Reactor (Hai)"
+outfit "Hai Boulder Reactor"
 	category "Power"
 	cost 5750000
 	thumbnail "outfit/fusion hai"
@@ -242,9 +242,9 @@ outfit "Fusion Reactor (Hai)"
 	"outfit space" -90
 	"energy generation" 17.3
 	"heat generation" 34
-	description "The Hai built Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
+	description "The Hai built spacefaring Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
-outfit "Butterfly Atomic Thruster"
+outfit "A1 Butterfly Thruster"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/tiny atomic thruster hai"
@@ -260,7 +260,7 @@ outfit "Butterfly Atomic Thruster"
 	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engines for many millennia. Hai atomic engines are still much more energy hungry than other engines, but are more efficient than their human counterparts."
 
 
-outfit "Cleg Atomic Thruster"
+outfit "A2 Cleg Thruster"
 	category "Engines"
 	"cost" 210000
 	thumbnail "outfit/tiny atomic thruster hai"
@@ -275,7 +275,7 @@ outfit "Cleg Atomic Thruster"
 	"flare sound" "atomic tiny"
 	description "Unlike human space where atomic engines are a rare sight to see and a luxury to have, many years of being confined to a relatively small pocket of the Galaxy has allowed all Hai ships to be outfitted with atomic engines."
 
-outfit "Hawksmoth Atomic Thruster"
+outfit "A3 Hawksmoth Thruster"
 	category "Engines"
 	"cost" 420000
 	thumbnail "outfit/small atomic thruster hai"
@@ -291,7 +291,7 @@ outfit "Hawksmoth Atomic Thruster"
 	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 
-outfit "Brown Planthopper Atomic Thruster"
+outfit "A5 Brown Planthopper Thruster"
 	category "Engines"
 	"cost" 780000
 	thumbnail "outfit/medium atomic thruster hai"
@@ -304,9 +304,9 @@ outfit "Brown Planthopper Atomic Thruster"
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
-	description "While Deep Sky was busy developing the combat atomic engines, the Hai were working on making theirs even better. Because of this. Hai atomic engines are highly efficient compared to their human variants, requiring less energy to fire and producing less heat in the process."
+	description "While Deep Sky was busy developing the combat atomic engines, the Hai were working on making theirs even better. Because of this, Hai atomic engines are highly efficient compared to their human variants, requiring less energy to fire and producing less heat in the process."
 
-outfit "Horsefly Atomic Thruster"
+outfit "A8 Horsefly Thruster"
 	category "Engines"
 	"cost" 1680000
 	thumbnail "outfit/large atomic thruster hai"
@@ -319,10 +319,10 @@ outfit "Horsefly Atomic Thruster"
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
-	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters"
+	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
 
 
-outfit "Butterfly Atomic Steering"
+outfit "A1 Butterfly Steering"
 	category "Engines"
 	"cost" 90000
 	thumbnail "outfit/tiny atomic steering hai"
@@ -334,7 +334,7 @@ outfit "Butterfly Atomic Steering"
 	"turning heat" 1.3
 	description "Hai atomic engines are too expensive to buy for most humans. Even the smallest of the engines are worth more than many of the most common ships flown in human space."
 
-outfit "Cleg Atomic Steering"
+outfit "A2 Cleg Steering"
 	category "Engines"
 	"cost" 180000
 	thumbnail "outfit/tiny atomic steering hai"
@@ -346,7 +346,7 @@ outfit "Cleg Atomic Steering"
 	"turning heat" 2.2
 	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines, usually astound others in human space with the efficiency of their ship."
 
-outfit "Hawksmoth Atomic Steering"
+outfit "A3 Hawksmoth Steering"
 	category "Engines"
 	"cost" 240000
 	thumbnail "outfit/small atomic steering hai"
@@ -358,7 +358,7 @@ outfit "Hawksmoth Atomic Steering"
 	"turning heat" 4.4
 	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
-outfit "Brown Planthopper Atomic Steering"
+outfit "A5 Brown Planthopper Steering"
 	category "Engines"
 	"cost" 720000
 	thumbnail "outfit/medium atomic steering hai"
@@ -370,7 +370,7 @@ outfit "Brown Planthopper Atomic Steering"
 	"turning heat" 7.7
 	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
 
-outfit "Horsefly Atomic Steering"
+outfit "A8 Horsefly Steering"
 	category "Engines"
 	"cost" 1440000
 	thumbnail "outfit/large atomic steering hai"
@@ -383,7 +383,7 @@ outfit "Horsefly Atomic Steering"
 	description "Nine out of every ten human captains interviewed in Hai space as to who's atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
 
 
-outfit "Butterfly Reverse Thruster"
+outfit "A1 Butterfly Reverse Thruster"
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/reverse thruster hai"
