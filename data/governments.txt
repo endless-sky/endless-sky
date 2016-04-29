@@ -108,7 +108,7 @@ government "Korath"
 
 government "Kor Efret"
 	swizzle 4
-	color .55 .17 .52
+	color .49 .33 .69
 	language "Korath"
 	
 	"attitude toward"
@@ -119,7 +119,7 @@ government "Kor Efret"
 
 government "Kor Mereti"
 	swizzle 5
-	color .31 .29 .69
+	color .32 .36 .65
 	language "Korath"
 	
 	"attitude toward"
@@ -129,7 +129,7 @@ government "Kor Mereti"
 
 government "Kor Sestor"
 	swizzle 0
-	color .71 .40 .13
+	color .75 .27 .37
 	language "Korath"
 	
 	"attitude toward"

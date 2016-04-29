@@ -128,6 +128,8 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "never disabled")
 			neverDisabled = true;
+		else if(child.Token(0) == "uncapturable")
+			isCapturable = false;
 		else if((child.Token(0) == "fighter" || child.Token(0) == "drone") && child.Size() >= 3)
 		{
 			if(!hasBays)
@@ -225,6 +227,7 @@ void Ship::FinishLoading()
 		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
 	
 	// If this ship has a base class, copy any attributes not defined here.
+	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
 		if(!sprite.GetSprite())
@@ -349,6 +352,8 @@ void Ship::Save(DataWriter &out) const
 		
 		if(neverDisabled)
 			out.Write("never disabled");
+		if(!isCapturable)
+			out.Write("uncapturable");
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -963,7 +968,10 @@ bool Ship::Move(list<Effect> &effects)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
+		if(parent.lock() || !government->IsPlayer())
+			Messages::Add(name + " is moving erratically because there are not enough crew to pilot it.");
+		else
+			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
 	}
 	else
 		pilotOkay = 30;
@@ -1360,6 +1368,13 @@ const Planet *Ship::GetPlanet() const
 
 
 
+bool Ship::IsCapturable() const
+{
+	return isCapturable;
+}
+
+
+
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && !sprite.IsEmpty());
@@ -1602,7 +1617,7 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(atSpaceport)
 	{
-		crew = max(crew, RequiredCrew());
+		crew = min(max(crew, RequiredCrew()), static_cast<int>(attributes.Get("bunks")));
 		fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
@@ -1761,7 +1776,7 @@ int Ship::RequiredCrew() const
 
 void Ship::AddCrew(int count)
 {
-	crew += count;
+	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
 }
 
 
