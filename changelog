@@ -29,6 +29,8 @@ Version 0.9.0:
     * Blast radius is now properly calculated from where a projectile strikes, not its start location.
     * It's no longer possible to hail or board ships while cloaked.
     * Modified how stranded ships request help so they don't wait on a ship that is not coming.
+    * Attacking a friendly ship, bribing it, then attacking again now makes it hostile again.
+    * Fixed handling of player escorts with fewer bunks than required crew.
   * Game content:
     * Added the former Korath territory to the map.
     * Korath with no jump drives no longer appear in one uninhabited system. (@thenerdfreak)
@@ -95,6 +97,8 @@ Version 0.9.0:
     * Animations now default to 2 FPS (a reasonable rate for running lights) instead of 60 FPS.
     * Anti-missile systems can now create "fire effects" and "die effects" in addition to the beams.
     * If a ship is destroyed (by piercing) while it still has shields, its shields now drop to zero.
+    * Added an "uncapturable" ship attribute (for ships you can plunder but not capture).
+    * Outfits can now set "installable" to less than 0 to mark outfits you can plunder but not install.
   * User interface:
     * The shop panels now auto-scroll if the item details are not visible. (@db47h)
     * Any mission on your current travel plan now starts out selected in the job panel. (@db47h)
@@ -111,6 +115,8 @@ Version 0.9.0:
     * Added a line to the ship info display showing energy use when recharging shields and hull.
     * The find function in the map panels now prefers strings that start with the given text.
     * In the ship info, the line to whatever weapon you hover over is now always drawn on top.
+    * Added Shift+B and Shift+S as shortcuts for "buy all" and "sell all" in the trade panel.
+    * The commodity price maps now grey out systems where a given commodity is not sold.
   * Under the hood:
     * Made the Linux dependency list easier to copy-paste to the command line. (@anarcat)
     * Merged DotShader and RingShader, and merged SpriteShader and BlurShader.
