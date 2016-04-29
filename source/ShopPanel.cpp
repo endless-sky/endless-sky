@@ -719,7 +719,7 @@ void ShopPanel::SideSelect(int count)
 				it = player.Ships().end();
 			--it;
 			
-			if((*it)->GetSystem() == player.GetSystem())
+			if((*it)->GetSystem() == player.GetSystem() && !(*it)->IsDisabled())
 				++count;
 		}
 	}
@@ -731,7 +731,7 @@ void ShopPanel::SideSelect(int count)
 			if(it == player.Ships().end())
 				it = player.Ships().begin();
 			
-			if((*it)->GetSystem() == player.GetSystem())
+			if((*it)->GetSystem() == player.GetSystem() && !(*it)->IsDisabled())
 				--count;
 		}
 	}

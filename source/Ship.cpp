@@ -372,6 +372,12 @@ void Ship::FinishLoading()
 		shared_ptr<const Ship> parent = GetParent();
 		Recharge(!parent || currentSystem == parent->currentSystem);
 	}
+	else
+	{
+		// For a saved ship, recalculate whether this ship is disabled.
+		isDisabled = true;
+		isDisabled = IsDisabled();
+	}
 	
 	// Update the cost, based on wear of hull and all outfits.
 	UpdateCost();
