@@ -23,6 +23,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PointerShader.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -49,6 +50,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, const vector<string> &categories)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+	detailsInWithMain = Preferences::Has("Details with tiles in shop");
 }
 
 
@@ -73,7 +75,7 @@ void ShopPanel::Draw() const
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
 	}
 }
-
+ 
 
 
 void ShopPanel::Step()
@@ -251,11 +253,12 @@ void ShopPanel::DrawMain() const
 	const Font &bigFont = FontSet::Get(18);
 	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
+	int sideWidth = SIDE_WIDTH + DetailsWidth();
 	
 	// Draw all the available ships.
 	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
-	int mainWidth = (Screen::Width() - SIDE_WIDTH - 1);
+	int mainWidth = (Screen::Width() - sideWidth - 1);
 	int columns = mainWidth / TILE_SIZE;
 	int columnWidth = mainWidth / columns;
 	
@@ -263,7 +266,7 @@ void ShopPanel::DrawMain() const
 		(Screen::Width() - columnWidth) / -2,
 		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
 	Point point = begin;
-	float endX = Screen::Right() - (SIDE_WIDTH + 1);
+	float endX = Screen::Right() - (sideWidth + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
 	for(const string &category : categories)
@@ -353,9 +356,9 @@ void ShopPanel::DrawMain() const
 	maxMainScroll = nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2;
 	maxMainScroll = max(0, maxMainScroll);
 	
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
+	PointerShader::Draw(Point(Screen::Right() - 10 - sideWidth, Screen::Top() + 10),
 		Point(0., -1.), 10., 10., 5., Color(mainScroll > 0 ? .8 : .2, 0.));
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
+	PointerShader::Draw(Point(Screen::Right() - 10 - sideWidth, Screen::Bottom() - 10),
 		Point(0., 1.), 10., 10., 5., Color(mainScroll < maxMainScroll ? .8 : .2, 0.));
 }
 
@@ -516,7 +519,8 @@ bool ShopPanel::Click(int x, int y)
 		if(y < Screen::Bottom() - 70 && y >= Screen::Bottom() - 90)
 			return Scroll(0, -4);
 	}
-	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
+	else if( (x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH) 
+		|| (x >= Screen::Right() - SIDE_WIDTH - DetailsWidth() - 20 && x < Screen::Right() - SIDE_WIDTH - DetailsWidth()))
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
@@ -540,7 +544,6 @@ bool ShopPanel::Click(int x, int y)
 						SideSelect(dragShip);
 						return true;
 					}
-				
 				selectedShip = zone.GetShip();
 			}
 			else
@@ -561,7 +564,8 @@ bool ShopPanel::Click(int x, int y)
 
 bool ShopPanel::Hover(int x, int y)
 {
-	dragMain = (x < Screen::Right() - SIDE_WIDTH);
+	dragMain = (x < Screen::Right() - SIDE_WIDTH - DetailsWidth());
+	dragDetails = !dragMain && (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }
 
@@ -677,8 +681,8 @@ double ShopPanel::ClickZone::ScrollY() const
 
 bool ShopPanel::DoScroll(double dy)
 {
-	double &scroll = dragMain ? mainScroll : sideScroll;
-	const int &maximum = dragMain ? maxMainScroll : maxSideScroll;
+	double &scroll = dragMain ? mainScroll : dragDetails ? detailsScroll : sideScroll;
+	const int &maximum = dragMain ? maxMainScroll : dragDetails ? detailsScroll : maxSideScroll;
 	
 	scroll = max(0., min(static_cast<double>(maximum), scroll - dy));
 	
@@ -939,4 +943,11 @@ vector<ShopPanel::ClickZone>::const_iterator ShopPanel::MainStart() const
 		++start;
 	
 	return start;
+}
+
+
+
+int ShopPanel::DetailsWidth() const
+{
+	return detailsInWithMain ? 0 : DETAILS_WIDTH;
 }

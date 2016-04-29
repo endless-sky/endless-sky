@@ -104,12 +104,13 @@ protected:
 		const Outfit *outfit;
 	};
 	
+	int DetailsWidth() const;
 	
 protected:
 	static const int SIDE_WIDTH = 250;
+	static const int DETAILS_WIDTH = 250;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 180;
-	
 	
 protected:
 	PlayerInfo &player;
@@ -124,12 +125,18 @@ protected:
 	
 	double mainScroll = 0;
 	double sideScroll = 0;
+	double detailsScroll = 0;
+	
 	mutable int maxMainScroll = 0;
 	mutable int maxSideScroll = 0;
+	mutable int maxDetailsScroll = 0;
+	
 	bool dragMain = true;
+	bool dragDetails = true;
 	mutable int mainDetailHeight = 0;
 	mutable int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
+	bool detailsInWithMain = false;
 	mutable double selectedBottomY = 0.;
 	
 	mutable std::vector<ClickZone> zones;

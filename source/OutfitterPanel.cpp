@@ -60,7 +60,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 }
 
 
-	
+
 void OutfitterPanel::Step()
 {
 	CheckRefill();
@@ -267,13 +267,24 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	}
 		
 	OutfitInfoDisplay info(*selectedOutfit, maxAvailableWear, minSellWear);
-	Point offset(info.PanelWidth(), 0.);
+
+	if (detailsInWithMain)
+	{
+		Point offset(info.PanelWidth(), 0.);
+		info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+		info.DrawRequirements(center - offset * .5 - Point(0., 10.));
+		info.DrawAttributes(center + offset * .5 - Point(0., 10.));
+	}
+	else 
+	{
+		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10.);
+		
+		info.DrawRequirements(drawPoint);
+		info.DrawAttributes(drawPoint + Point(0, info.RequirementsHeight() + 10));
+		info.DrawDescription(drawPoint + Point(0, info.RequirementsHeight() + info.AttributesHeight() + 20));
+	}
 	
-	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
-	info.DrawRequirements(center - offset * .5 - Point(0., 10.));
-	info.DrawAttributes(center + offset * .5 - Point(0., 10.));
-	
-	return info.MaximumHeight();
+	return detailsInWithMain ? info.MaximumHeight() : 0;
 }
 
 
