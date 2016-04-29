@@ -11,7 +11,7 @@
 outfit "Korath Grab-Strike"
 	category "Turrets"
 	cost 821000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/grab-strike"
 	"mass" 52
 	"outfit space" -52
 	"weapon capacity" -52
@@ -52,7 +52,7 @@ effect "grab-strike impact"
 outfit "Korath Banisher"
 	category "Turrets"
 	cost 943000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/banisher"
 	"mass" 41
 	"outfit space" -41
 	"weapon capacity" -41
@@ -85,7 +85,7 @@ effect "banisher impact"
 outfit "Korath Warder"
 	category "Turrets"
 	cost 845000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/warder"
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
@@ -113,7 +113,7 @@ effect "korath warder"
 outfit "Korath Fire-Lance"
 	category "Guns"
 	cost 697000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/fire-lance"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
@@ -156,7 +156,7 @@ outfit "Korath Repeater"
 	weapon
 		sprite "projectile/repeater"
 			"frame rate" 5
-		sound "pulse"
+		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 4
 		"velocity" 13
@@ -195,7 +195,7 @@ outfit "Korath Repeater Turret"
 	weapon
 		sprite "projectile/repeater"
 			"frame rate" 5
-		sound "pulse"
+		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 3
 		"velocity" 13
@@ -233,7 +233,7 @@ outfit "Korath Piercer Launcher"
 		sprite "projectile/piercer"
 			"frame rate" 5
 			"random start frame"
-		sound "tracker"
+		sound "piercer"
 		ammo "Korath Piercer"
 		icon "icon/piercer"
 		"fire effect" "piercer fire"
@@ -293,7 +293,7 @@ effect "piercer explosion"
 outfit "Korath Detainer"
 	category "Guns"
 	cost 1340000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/detainer"
 	"mass" 76
 	"outfit space" -76
 	"weapon capacity" -76
@@ -302,7 +302,7 @@ outfit "Korath Detainer"
 	weapon
 		sprite "projectile/detainer"
 			"frame rate" 2.5
-		sound "particle"
+		sound "detainer"
 		"hit effect" "detainer impact" 3
 		"hit effect" "detainer smoke" 5
 		"live effect" "detainer sparks" 50
@@ -373,7 +373,7 @@ outfit "Korath Minelayer"
 		sprite "projectile/korath minelayer"
 			"frame rate" .6
 			"no repeat"
-		sound "tracker"
+		sound "minelayer"
 		ammo "Korath Mine"
 		icon "icon/minelayer"
 		"fire effect" "minelayer fire"
@@ -429,6 +429,7 @@ effect "minelayer split"
 	sprite "effect/minelayer split"
 		"no repeat"
 		"frame rate" 6
+	sound "mine deploy"
 	"lifetime" 31
 	"random angle" 360
 	"random spin" 5
@@ -439,7 +440,7 @@ effect "minelayer split"
 outfit "Korath Disruptor"
 	category "Turrets"
 	cost 983000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/disruptor"
 	"mass" 35
 	"outfit space" -35
 	"weapon capacity" -35
@@ -448,7 +449,7 @@ outfit "Korath Disruptor"
 	weapon
 		sprite "projectile/disruptor"
 			"frame rate" 15
-		sound "banisher"
+		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
 		"velocity" 480
@@ -473,9 +474,35 @@ effect "disruptor impact"
 
 
 outfit "Korath Slicer"
+	category "Guns"
+	cost 832000
+	thumbnail "outfit/slicer"
+	"mass" 46
+	"outfit space" -46
+	"weapon capacity" -46
+	"gun ports" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/slicer"
+			"frame rate" 6
+		sound "slicer"
+		"hit effect" "slicer impact"
+		"inaccuracy" 0
+		"velocity" 520
+		"lifetime" 1
+		"reload" 1.62
+		"burst reload" 1
+		"burst count" 17
+		"firing energy" 5.6
+		"firing heat" 17.8
+		"shield damage" 6.3
+		"hull damage" 18.6
+	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
+
+outfit "Korath Slicer Turret"
 	category "Turrets"
 	cost 1473000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/slicer turret"
 	"mass" 59
 	"outfit space" -59
 	"weapon capacity" -59
@@ -484,7 +511,7 @@ outfit "Korath Slicer"
 	weapon
 		sprite "projectile/slicer"
 			"frame rate" 6
-		sound "banisher"
+		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
 		"velocity" 520
