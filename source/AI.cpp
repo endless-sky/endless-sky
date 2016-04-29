@@ -208,7 +208,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			{
 				enemyStrength[it.first] += eit.second;
 				for(const auto &ait : strength)
-					if(ait.first->IsEnemy(eit.first) && allies.find(ait.first) == allies.end())
+					if(ait.first->IsEnemy(eit.first) && !allies.count(ait.first))
 					{
 						allyStrength[it.first] += ait.second;
 						allies.insert(ait.first);

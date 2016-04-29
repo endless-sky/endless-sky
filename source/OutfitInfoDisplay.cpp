@@ -136,10 +136,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		double scale = 1.;
 		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
 			scale = 60. * 60.;
-		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
+		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		
-		if(BOOLEAN_ATTRIBUTES.find(it.first) != BOOLEAN_ATTRIBUTES.end()) 
+		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
 		{
 			attributeLabels.push_back("This outfit is " + it.first + ".");
 			attributeValues.push_back(" ");

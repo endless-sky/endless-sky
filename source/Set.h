@@ -29,7 +29,7 @@ public:
 	Type *Get(const std::string &name) { return &data[name]; }
 	const Type *Get(const std::string &name) const { return &data[name]; }
 	
-	bool Has(const std::string &name) const { return (data.find(name) != data.end()); }
+	bool Has(const std::string &name) const { return data.count(name); }
 	
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }

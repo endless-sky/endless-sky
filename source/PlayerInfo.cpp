@@ -815,10 +815,10 @@ void PlayerInfo::Land(UI *ui)
 	
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
-		if(active.find(it.first) == active.end())
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
-		if(active.find(it.first) == active.end())
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
@@ -1316,7 +1316,7 @@ const map<string, int> &PlayerInfo::Conditions() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System *system) const
 {
-	return (seen.find(system) != seen.end() || KnowsName(system));
+	return (seen.count(system) || KnowsName(system));
 }
 
 
@@ -1326,7 +1326,7 @@ bool PlayerInfo::HasVisited(const System *system) const
 {
 	if(!system)
 		return false;
-	return (visitedSystems.find(system) != visitedSystems.end());
+	return visitedSystems.count(system);
 }
 
 
@@ -1336,7 +1336,7 @@ bool PlayerInfo::HasVisited(const Planet *planet) const
 {
 	if(!planet)
 		return false;
-	return (visitedPlanets.find(planet) != visitedPlanets.end());
+	return visitedPlanets.count(planet);
 }
 
 
