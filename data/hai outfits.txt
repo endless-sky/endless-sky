@@ -263,7 +263,7 @@ outfit "A1 Butterfly Thruster"
 outfit "A2 Cleg Thruster"
 	category "Engines"
 	"cost" 210000
-	thumbnail "outfit/tiny atomic thruster hai"
+	thumbnail "outfit/small atomic thruster hai"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
@@ -278,7 +278,7 @@ outfit "A2 Cleg Thruster"
 outfit "A3 Hawksmoth Thruster"
 	category "Engines"
 	"cost" 420000
-	thumbnail "outfit/small atomic thruster hai"
+	thumbnail "outfit/medium atomic thruster hai"
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
@@ -294,7 +294,7 @@ outfit "A3 Hawksmoth Thruster"
 outfit "A5 Planthopper Thruster"
 	category "Engines"
 	"cost" 780000
-	thumbnail "outfit/medium atomic thruster hai"
+	thumbnail "outfit/large atomic thruster hai"
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
@@ -309,7 +309,7 @@ outfit "A5 Planthopper Thruster"
 outfit "A8 Horsefly Thruster"
 	category "Engines"
 	"cost" 1680000
-	thumbnail "outfit/large atomic thruster hai"
+	thumbnail "outfit/huge atomic thruster hai"
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
@@ -337,7 +337,7 @@ outfit "A1 Butterfly Steering"
 outfit "A2 Cleg Steering"
 	category "Engines"
 	"cost" 180000
-	thumbnail "outfit/tiny atomic steering hai"
+	thumbnail "outfit/small atomic steering hai"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -349,7 +349,7 @@ outfit "A2 Cleg Steering"
 outfit "A3 Hawksmoth Steering"
 	category "Engines"
 	"cost" 240000
-	thumbnail "outfit/small atomic steering hai"
+	thumbnail "outfit/medium atomic steering hai"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
@@ -361,7 +361,7 @@ outfit "A3 Hawksmoth Steering"
 outfit "A5 Planthopper Steering"
 	category "Engines"
 	"cost" 720000
-	thumbnail "outfit/medium atomic steering hai"
+	thumbnail "outfit/large atomic steering hai"
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
@@ -373,7 +373,7 @@ outfit "A5 Planthopper Steering"
 outfit "A8 Horsefly Steering"
 	category "Engines"
 	"cost" 1440000
-	thumbnail "outfit/large atomic steering hai"
+	thumbnail "outfit/huge atomic steering hai"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
