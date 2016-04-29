@@ -139,9 +139,9 @@ void TradingPanel::Draw() const
 		bool hasPlunder = false;
 		bool hasItems = false;
 		for(const auto &it : player.Cargo().Outfits())
-			if(it.second)
+			if(it.GetQuantity())
 			{
-				bool isItem = (it.first->Get("installable") < 0.);
+				bool isItem = (it.GetOutfit()->Get("installable") < 0.);
 				(isItem ? hasItems : hasPlunder) = true;
 			}
 		
