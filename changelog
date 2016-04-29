@@ -2,7 +2,7 @@ Version 0.9.0:
   * Bug fixes:
     * Proper error message is now shown if you cannot install an outfit from cargo. (@thomasballinger)
     * Fixed a bug if you clicked "done" instead of pressing "enter" in boarding conversations. (@jmhorjus)
-    * Scrolling now works properly when at 150% zoom level. (@dh47h)
+    * Scrolling now works properly when at 150% zoom level. (@db47h)
     * Fixed a crash in the info panel. (@reizbar)
     * Fixed a screen resizing bug on Ubuntu Linux where the scale ends up slightly off. (@db47h)
     * The outfitter now properly displays the "turret mounts needed" line. (@ItsNickBarry).
