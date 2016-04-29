@@ -571,11 +571,13 @@ void MapPanel::DrawSystems() const
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
+				bool showUninhabited = false;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					value = (2. * (system.Trade(com.name) - com.low))
-						/ (com.high - com.low) - 1.;
+					double price = system.Trade(com.name);
+					showUninhabited = !price;
+					value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
 				}
 				else if(commodity == SHOW_SHIPYARD)
 				{
@@ -609,7 +611,7 @@ void MapPanel::DrawSystems() const
 				else
 					value = SystemValue(&system);
 				
-				color = MapColor(value);
+				color = (showUninhabited ? UninhabitedColor() : MapColor(value));
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{

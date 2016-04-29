@@ -366,7 +366,7 @@ namespace {
 	Source::Source(const Sound *sound, unsigned source)
 		: sound(sound), source(source)
 	{
-		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .1);
+		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .04);
 		alSourcef(source, AL_GAIN, 1.);
 		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
 		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
