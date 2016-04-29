@@ -175,8 +175,8 @@ outfit "Hai Chasm Batteries"
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
 	"outfit space" -5
-	"energy capacity" 750
-	description "A ship can run without batteries if its generator's instantaneous power output is higher than the total energy consumption of its systems, but batteries make it possible to store up energy when it is not needed and thus to use a much smaller and cheaper generator."
+	"energy capacity" 550
+	description "Power storage technology is thousands of years old.  This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
 	category "Power"
@@ -185,7 +185,7 @@ outfit "Hai Fissure Batteries"
 	"mass" 15
 	"outfit space" -15
 	"energy capacity" 1800
-	description "This battery pack has more than twice the energy capacity of the most basic model, allowing your ship to engage in combat for longer periods of time before running out of energy. Some pilots have even been known to install these in lieu of any generator at all, trusting that they can reach their destination planet and recharge before running out of battery power, but that is a risky proposition."
+	description "This battery pack has more than three times the energy capacity of the the Hai Chasm Batteries, allowing their ships to engage in combat for longer periods of time before running out of energy."
 
 outfit "Hai Gorge Batteries"
 	category "Power"
@@ -194,7 +194,7 @@ outfit "Hai Gorge Batteries"
 	"mass" 30
 	"outfit space" -30
 	"energy capacity" 3750
-	description "This medium-sized battery pack is intended for ships that need to fire the occasional salvo of high-powered weaponry without running out of energy. As with all battery packs, relying on batteries is risky if combat lasts long enough for them to become depleted."
+	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ships heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
 	category "Power"
@@ -203,7 +203,7 @@ outfit "Hai Ravine Batteries"
 	"mass" 60
 	"outfit space" -60
 	"energy capacity" 8250
-	description "This is a large battery pack designed for ships that may occasionally have high power needs but do not want the expense or the heat associated with a more powerful ship's generator."
+	description "This large battery pack boasts higher energy density than smaller models, and helps keep ships fighting in spite of sustaining several Ion Cannon impacts."
 
 outfit "Hai Valley Batteries"
 	category "Power"
@@ -211,8 +211,8 @@ outfit "Hai Valley Batteries"
 	thumbnail "outfit/huge battery hai"
 	"mass" 120
 	"outfit space" -120
-	"energy capacity" 18250
-	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
+	"energy capacity" 20000
+	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and in a fight against Ion Cannon equipped opponents through to victory."
 
 outfit "Hai Pebble Core"
 	category "Power"
