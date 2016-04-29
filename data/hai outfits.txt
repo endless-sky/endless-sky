@@ -194,7 +194,7 @@ outfit "Hai Gorge Batteries"
 	"mass" 30
 	"outfit space" -30
 	"energy capacity" 3750
-	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ships heat footprint low with a small power generator and oversized engines."
+	description "This medium-sized battery pack is ideal for most of the Hai power needs, allowing for medium length combat engagements, but could also be used keep a ship's heat footprint low with a small power generator and oversized engines."
 
 outfit "Hai Ravine Batteries"
 	category "Power"
@@ -291,7 +291,7 @@ outfit "A3 Hawksmoth Thruster"
 	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 
-outfit "A5 Brown Planthopper Thruster"
+outfit "A5 Planthopper Thruster"
 	category "Engines"
 	"cost" 780000
 	thumbnail "outfit/medium atomic thruster hai"
@@ -358,7 +358,7 @@ outfit "A3 Hawksmoth Steering"
 	"turning heat" 4.4
 	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
-outfit "A5 Brown Planthopper Steering"
+outfit "A5 Planthopper Steering"
 	category "Engines"
 	"cost" 720000
 	thumbnail "outfit/medium atomic steering hai"

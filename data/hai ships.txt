@@ -34,8 +34,7 @@ ship "Lightning Bug"
 		"Ion Cannon"
 		"Bullfrog Anti-Missile Turret" 2
 		"Hai Geode Reactor"
-		"Hai Fissure Batteries"
-		"Hai Chasm Batteries"
+		"Hai Gorge Batteries"
 		"S-270 Regenerator"
 		"Hai Williwaw Cooling"
 		"A2 Cleg Thruster"
@@ -58,6 +57,7 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
 		"Hai Geode Reactor"
+		"Hai Gorge Batteries"
 		"Hai Chasm Batteries" 2
 		"S-270 Regenerator"
 		"Hai Williwaw Cooling"
@@ -90,7 +90,7 @@ ship "Aphid"
 	outfits
 		"Pulse Turret"
 		"Hai Pebble Core"
-		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
 		"S-270 Regenerator"
 		"Hai Williwaw Cooling"
 		"A1 Butterfly Thruster"
@@ -108,10 +108,10 @@ ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
 		"Chameleon Anti-Missile Turret"
 		"Hai Pebble Core"
-		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
 		"S-270 Regenerator"
 		"Hai Williwaw Cooling"
-		"A1 Butterfly Thruster"
+		"A2 Cleg Thruster"
 		"A2 Cleg Steering"
 		"Hyperdrive"
 
@@ -221,9 +221,7 @@ ship "Shield Beetle"
 		"Chameleon Anti-Missile Turret" 2
 		"Hai Boulder Reactor"
 		"Hai Geode Reactor"
-		"Hai Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
+		"Hai Valley Batteries"
 		"S-970 Regenerator"
 		"Hai Williwaw Cooling" 4
 		"A3 Hawksmoth Thruster"
@@ -257,13 +255,11 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Pulse Turret" 4
 		"Hai Boulder Reactor"
 		"Hai Geode Reactor"
-		"Hai Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
+		"Hai Valley Batteries"
 		"S-970 Regenerator"
 		"Hai Williwaw Cooling" 4
-		"A5 Butterfly Steering"
-		"A5 Brown Planthopper Steering"
+		"A5 Planthopper Steering"
+		"A8 Horsefly Steering"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
@@ -274,9 +270,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Chameleon Anti-Missile Turret" 2
 		"Hai Boulder Reactor"
 		"Hai Geode Reactor"
-		"Hai Ravine Batteries"
-		"Hai Fissure Batteries"
-		"Hai Chasm Batteries"
+		"Hai Valley Batteries"
 		"Mass Expansion" 4
 		"S-970 Regenerator" 2
 		"Fuel Pod" 3
@@ -302,13 +296,11 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Pulse Turret" 4
 		"Hai Boulder Reactor"
 		"Hai Geode Reactor"
-		"Hai Ravine Batteries"
-		"Hai Fissure Batteries"
-		"Hai Chasm Batteries"
+		"Hai Valley Batteries"
 		"Mass Expansion" 1
 		"S-970 Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
-		"A5 Butterfly Steering"
-		"A5 Brown Planthopper Steering"
+		"A5 Planthopper Steering"
+		"A8 Horsefly Steering"
 		"Jump Drive"
