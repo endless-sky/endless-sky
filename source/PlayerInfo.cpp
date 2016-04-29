@@ -294,7 +294,8 @@ void PlayerInfo::ApplyChanges()
 	// Check if any special persons have been destroyed.
 	while(!destroyedPersons.empty())
 	{
-		destroyedPersons.back()->GetShip()->Destroy();
+		if(destroyedPersons.back()->GetShip())
+			destroyedPersons.back()->GetShip()->Destroy();
 		destroyedPersons.pop_back();
 	}
 	
