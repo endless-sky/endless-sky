@@ -924,77 +924,6 @@ mission "FW Pug 1 Arabia"
 
 
 
-mission "FW Pug 1 Rand"
-	landing
-	source Rand
-	to offer
-		has "FW Pug 1: active"
-	
-	on offer
-		set "fw know about pug"
-		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens. Each one is holding a metal staff: probably some sort of weapon.`
-			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of the aliens look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
-			choice
-				`	(Stay around and talk to him.)`
-				`	(Take off before I draw the aliens's attention.)`
-					flee
-		
-			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
-			`	"What's going on here?" you ask. "Who are these aliens?"`
-			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist
-				`	"What do you think their intentions are?"`
-					goto intentions
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut
-		
-			label resist
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-			choice
-				`	"What do you think their intentions are?"`
-					goto intentions2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
-			label intentions
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
-			label cut
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"What do you think their intentions are?"`
-					goto intentions2
-		
-			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-				goto end
-		
-			label intentions2
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-				goto end
-		
-			label cut2
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-				goto end
-		
-			label end
-			`	"Where did they come from originally?" you ask."`
-			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
-			`	"Do you know how the Pug cut you off?"`
-			`	"Look, I'm no scientist, and I have no idea how Hyperspace links work. Maybe someone on the other end can help you."`
-				decline
-
-
 mission "FW Pug 1 Return"
 	landing
 	to offer
@@ -1011,7 +940,7 @@ mission "FW Pug 1 Return"
 mission "FW Pug 2"
 	landing
 	name "Meet with Parliament"
-	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the threat seems."
+	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the Syndicate threat seems."
 	autosave
 	source "New Tibet"
 	destination "Earth"
@@ -1024,9 +953,6 @@ mission "FW Pug 2"
 	
 	on offer
 		conversation
-			branch "know about pug"
-				has "fw know about pug"
-
 			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why. Then, more recently, the Syndicate fleet that had been occupying the Sol system retreated to Syndicate space - and the moment the last of their ships left, the hyperspace link disappeared behind them. We think the Syndicate has found a way to alter hyperspace links and is using it to wall themselves in, to escape retribution from the rest of humanity now that their guilt is so conclusively proven."`
 			choice
 				`	"Why don't we just let them go, then?"`
@@ -1053,30 +979,6 @@ mission "FW Pug 2"
 			
 			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing - it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
 				accept
-
-			label "know about pug"
-			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why."`
-			`	"I know why." you interrupt. The silence this statment leaves behind is deafening.`
-			`	Evetuly Katya asks "<first>, is it the Syndicate?"`
-			`	"No, it is an alien race called the Pug. Thay say thay are there to promote peace, but I don't know their true intentions."`
-			`	JJ says, "The Senate had agreed that we must put our differences with the Republic aside, and meet with Parliament to deal with this crisis. But that was before you told us what has really happened."`
-			`	"Where did the Pug come from? And are they attacking Human ships?" Katya asks starting to sound worried.`
-			`	"They came from a system called Deneb, the star out beyond Zeta Aquilae. They didn't attack my ship when I arrived and nothing on the ground looked like it had been damaged." At this Katya looks relived. "There are some people who are resisting the Pug but there wasn't a single Free Worlds ship in orbit or on the ground so they were probably destroyed when the Pug invaded."`
-			`	Alondo contemplates this before speaking up "We can easily stop are own people panicking but we can't use the Net to tell the republic, they just won't believe it."`
-			choice
-				`	We should go and warn parliament about the Pug.`
-					goto talk
-				`	We should ready a battle fleet to defend against the pug.`
-					goto fleet
-
-			label fleet
-			`	"No." JJ shakes his head, "We don't know how powerful Pug ships are and we shouldn't risk a large portion of our fleet being cut off without reinforcements. We need to talk to parliament and get the help of the navy."`
-
-			label talk
-			`	Alondo agrees "We can't fight the Pug on our own. JJ, Freya and Katya can get our people ready to fight whilst <first> and I go talk to parliament, hopefully we will be able to sort this mess out."`
-				accept
-	
-
 	
 	npc
 		system "Sol"
@@ -1106,7 +1008,6 @@ mission "FW Pug 2A"
 	passengers 1
 	to offer
 		has "FW Pug 2: done"
-		not "fw know about pug"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1155,7 +1056,6 @@ mission "FW Pug 2A"
 		fleet "Small Republic"
 		fleet "Small Republic"
 		fleet "Small Republic"
-
 
 
 
@@ -1331,7 +1231,6 @@ mission "FW Pug 2C: Side"
 	to offer
 		has "fw given jump drive"
 		not "FW Pug 3: offered"
-		not "fw know about pug" 
 	
 	on offer
 		conversation
@@ -1652,133 +1551,6 @@ mission "FW Pug 3C"
 	
 	on visit
 		dialog "You have reached <planet>, but part of your fleet is not here yet. Better depart and wait for them to arrive in this star system."
-
-
-
-mission "FW Pug 2 Know A"
-	landing
-	name "Investigate the Pug"
-	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
-	source Earth
-	destination Pugglemug
-	passengers 1
-	to offer
-		has "FW Pug 2: done"
-		has "fw know about pug"
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
-	on offer
-		conversation
-			`A palpable sense of fear and near-panic hangs over the spaceport on Earth. At any minute, this system that serves as the very hub of human government could disappear into the same unknown abyss that has swallowed up its neighbors.`
-			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber telling the members of Parliament what you already know and asking questions about the disappearance of the Syndicate fleet, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they had feared that the one remaining link will disappear at any time.`
-			`	Inevitably the conversation swings round to how you got into the cut off systems and Alondo is forced to allow Parliament to question you directly. One of the members of Parliament, you think he’s from one of the paradise worlds, asks “You say you used a ‘Jump Drive’ to enter the Zeta Aquilae system but Jump Drives are only used by the Quarg. So where did you get your jump drive?"`
-			choice
-				`	"I am not telling you where I got my Jump Drive."`
-					goto refuse
-				`	"An alien species called the Korath."`
-					goto true
-				`	"A species to the north of Syndicate space called the Korath."`
-					goto true
-
-			label refuse
-			`	Alondo says, quietly "Captain <last>, if we are to get anywhere we need them to believe us, and if you refuse to tell them where you got your Jump Drive we won't get anywhere."`
-			choice
-				`	"An alien species called the Korath."`
-				`	"A species to the north of Syndicate space called the Korath."`
-
-			label true
-			`	"It's true." A representative from Shangri-La has stood up. "My system has been raided by the Korath. They have powerful ships but they can be defeated and they can be disabled. It's not inconceivable that Captain <last> took one of their Jump Drives." Murmurs sweep round the chamber before the Speaker asks you to leave while Parliament decides what should be done.`
-			`	Outside Alondo looks stressed, "Even when they have all the facts they still can't decide things quiclky. Well I surpose our Senate is not much better."`
-			choice
-				`	"Politicians always decide things slowly, and these ones are running scared."`
-				`	"It can be tiring sometimes but we can't run everything."`
-
-			`	At that point Parliament calls you back in. The Speaker stands up and requests on behalf of the republic that you use your Jump Drive to visit the Pug and try to get Human systems returned, and if the Pug refuse to cooperate, to continue into Syndicate space and find out if they have Jump Drives and if they will use them to help defeat the Pug.`
-			choice
-				`	"We would be honered to accept this mission."`
-					goto yes
-				`	"Sorry, makeing demands of aliens that can alter Hyperspace links is to dangarus."`
-					goto no
-			
-			label no
-			`	Alondo says, quietly but firmly, "Captain <last>, only you have a Jump Drive so unless you serender it you must go. I know the risk is great, but you swore to serve the Free Worlds, and the Free Worlds are now commanding you to take this mission."`
-			`	"Very well," you say, "I accept. But I'm afraid of what will happen when we reach Deneb."`
-			
-			label yes
-			`	Parliament thanks you for your willingness to serve, and you and Alondo hurry back to your ship.`
-				accept
-	
-	npc
-		system "Sol"
-		personality heroic uninterested staying
-		government "Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Large Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-		fleet "Small Republic"
-
-
-
-mission "FW Pug 2 Know A: Pugglequat"
-	landing
-	source Pugglequat
-	to offer
-		has "FW Pug 2 Know A: active"
-
-	on offer
-		conversation
-			`This planet is clearly one of the native Pug worlds, and not a human world that has been occupied. The architecture is entirely alien, and you see no human ships or people here, only the aliens. But, it appears to be mostly a world for mining and factories; all the aliens are busy with their work, and none seem to speak your language or have any interest in talking with you; instead they gesture towards the sky, perhaps as a way of indicating that you should visit the other Pug planet in this system.`
-				decline
-
-
-
-mission "FW Pug 2 Know B"
-	name "Negotiate with the Syndicate"
-	description "Now that you have met with the Pug, travel to Foundry and explain the situation to the Syndicate CEO, and try to get access to any Jump Drives they have."
-	autosave
-	landing
-	source Pugglemug
-	destination Foundry
-	to offer
-		has "FW Pug 2 Know A: done"
-	passengers 1
-	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	on offer
-		event "fw syndicate welcoming" 3
-		conversation
-			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
-			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You came from outside," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
-			choice
-				`	"No, we are here to find out why you attacked us, and to demand that you leave us alone."`
-				`	"We are willing to make peace, but only if you give us back control of our star systems."`
-			`	"We have no wish to harm you," says the alien. "In time you will come to recognize that. We intervened in your war only to bring peace and to keep your species from doing great harm to itself. And we must maintain control of these systems until we are certain that you will not continue fighting if the links are restored."`
-			choice
-				`	"If you wish us no harm, why did you slaughter the Syndicate fleet?"`
-				`	"You have no business invading our space and interfering in our affairs, regardless of your intentions."`
-					goto interfere
-		
-			`	"The fleet that was carrying nuclear weapons, weapons of genocide? The fleet that, when we demanded their surrender, instead attacked us with those weapons? We offered them a place in the Protectorate, but they chose violence instead, and so they perished by violence. That is justice."`
-			`	Alondo says, "I still don't understand what makes you think you have the right to interfere in human affairs."`
-		
-			label interfere
-			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefited. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
-			choice
-				`	"What do you want from us in return?"`
-				`	"What are you planning to do with these systems you have occupied?"`
-			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
-			`	"By 'spreading peace,' do you mean occupying more systems?" asks Alondo.`
-			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. And so we will send you back to your people now, to tell them that they have nothing to fear, and that they should await our peace and our protection."`
-			`	The aliens appear to think the conversation is over; they walk away and leave you puzzling over what they said. "That was not them giving our worlds back," says Alondo. "This situation is far beyond what we can handle alone, now we need to talk to the Syndicate."`
-				accept
 
 
 
