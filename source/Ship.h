@@ -146,6 +146,7 @@ public:
 	const Planet *GetPlanet() const;
 	
 	// Check the status of this ship.
+	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
 	bool IsDisabled() const;
@@ -339,6 +340,7 @@ private:
 	bool hasBoarded = false;
 	bool isThrusting = false;
 	bool neverDisabled = false;
+	bool isCapturable = true;
 	double cloak = 0.;
 	int jettisoned = 0;
 	
