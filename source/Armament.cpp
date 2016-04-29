@@ -121,7 +121,7 @@ int Armament::Weapon::BurstRemaining() const
 
 
 
-// Perform one step (i.e. decrement the reload count).
+// Perform one step (i.e. decrement the reload count, adjust turret angle).
 void Armament::Weapon::Step(const Ship &ship)
 {
 	if(!outfit)
@@ -139,14 +139,11 @@ void Armament::Weapon::Step(const Ship &ship)
 
 	if (isTurret)
 	{
-		Angle shipFacing = ship.Facing();
-		Angle restingAim = shipFacing + angle;
 		Angle targetAimOffset;
-		
 		shared_ptr<const Ship> target = ship.GetTargetShip();
 		
 		if (target && target->GetSystem() == ship.GetSystem()) {
-			Point start = ship.Position() + shipFacing.Rotate(point) - .5 * ship.Velocity();
+			Point start = ship.Position() + ship.Facing().Rotate(point) - .5 * ship.Velocity();
 			Point p = target->Position() - start + ship.GetPersonality().Confusion();
 			Point v = target->Velocity() - ship.Velocity();
 			double steps = RendezvousTime(p, v, outfit->Velocity());
@@ -158,27 +155,20 @@ void Armament::Weapon::Step(const Ship &ship)
 			
 			p += steps * v;
 			
-			targetAimOffset = Angle(TO_DEG * atan2(p.X(), -p.Y())) - restingAim;
+			targetAimOffset = Angle(TO_DEG * atan2(p.X(), -p.Y())) - ship.Facing() - angle;
 		}
 		else
 			targetAimOffset = Angle(TO_DEG * 0);
 		
 		double difference = aimOffset.Difference(targetAimOffset);
-		
 		double n = outfit->Get("rotation speed");
 		
 		if (abs(difference - 0) < n)
-		{
 			SetAimOffset(targetAimOffset);
-		}
 		else if (difference < 0)
-		{
 			SetAimOffset(aimOffset + Angle(n));
-		}
 		else if (difference > 0)
-		{
 			SetAimOffset(aimOffset - Angle(n));
-		}
 	}
 }
 
