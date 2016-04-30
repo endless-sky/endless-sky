@@ -1782,6 +1782,296 @@ mission "FW Pug 2 Know B"
 
 
 
+mission "FW Pug 3 Know"
+	landing
+	name "Return to Earth"
+	description "Now that you have met with the Pug and the Syndicate, travel to Earth and explain the situation to Parliament, and send word to the Free Worlds as well, so you can decide how to respond."
+	autosave
+	source Foundry
+	destination Earth
+	to offer
+		has "FW Pug 2 Know B: done"
+	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
+			`	"Yes," says Alondo to a startled Alastair, "Do you have Jump Drives?"
+			`	Alastair recovers and says, "We have only seven jump drives, so whatever fleet attacks the Pug can only contain seven ships, eaght if you have one. Unless the Quarg or someone else will give you more drives, I suppose. So those ships must be stronger than any ship we have here in Syndicate space, because the Pug are very strong. They obliterated our fleet that had been occupying the Sol system, even though that fleet was armed with the majority of our nuclear arsenal."`
+			choice
+				`	"You're saying you'll provide the jump drives, and we'll provide the ships? Sounds fair enough."`
+					goto deal
+				`	"Wait, you're saying that your fleet that was in orbit around Earth... was armed with nuclear weapons? Are you genocidal?"`
+			
+			`	Alastair seems like the kind of person who seldom admits he is wrong, but your question definitely flusters him. "Okay, okay, I admit, we've been making one bad decision after another ever since... well, since that first bad decision. It just got out of control. We thought the Navy was going to raid us and put us all behind bars. We thought we needed a deterrent. It was stupid. I admit it, okay? Now please, let's just move on. We need your capital ships, and you need our jump drives."`
+			
+			label deal
+			`	"We know you're telling the truth," says Alondo, "so we will work together until this threat is dealt with... and once it is dealt with, we will return our attention to bringing every member of the Syndicate who had a hand in those terrorist attacks to justice. That is our best and final offer." You nod in agreement.`
+			`	It's clear that Alastair is none too happy about that deal, but he accepts it. "The jump drives are all being kept on Hephaestus," he says. "Our Systems division was trying to discover the secret behind them, with little success. take your fleet there, I'll tell them to get ready to install them.`
+				accept
+
+
+
+mission "FW Pug 3: Deep"
+	landing
+	name "Visit the Deep (optional)"
+	description "The Pug hinted that they have helped the people of the Deep in the past. Talk to Edrick, the governor of Valhalla, to see what he knows about the Pug. (This mission is optional.)"
+	source Earth
+	destination Valhalla
+	to offer
+		has "FW Pug 3 Know: done"
+	to fail
+		has "FW Pug 3 Know A: done"
+	
+	on complete
+		conversation
+			`As you are coming in for a landing, you contact Edrick Flint and see if he's available to talk. A few minutes later, you and Alondo are sitting with him in his office in the government center. "I assume you've heard about the alien invasion?" says Alondo. Edrick nods. "The aliens claimed that they had had dealings with the Deep in the past. Do you know anything about that?"`
+			`	Edrick says, "Can you describe what these aliens look like?"`
+			`	"Pale skin, delicate physique, most of them a little under two meters tall," says Alondo. "Long legs, short torsos. And they probably have blue blood."`
+			`	Edrick pauses for several seconds, then says, "Yes, we had contact with a species that matches that description, back during the Alpha War. Some of the folk traditions about 'elves' that still persist here in the Deep are a result of those encounters."`
+			choice
+				`	"Do you know what they wanted from humanity, back then?"`
+				`	"What strengths and weaknesses do their ships have?"`
+					goto strengths
+			
+			`	"If the stories are true, all they wanted was to help us win the war against the Alphas," says Edrick. "They never asked for any payment, except that they borrowed some of our ships, packed them full of alien technology, and fought alongside our ships, masquerading as human ships. They also gave us beam weapon technology; five centuries later, we've only just reached the point where we understand that technology well enough to improve on it."`
+			`	"What do you know about their warships?" asks Alondo.`
+			
+			label strengths
+			`	"I know that they had a technology that allowed their shields to recharge very quickly," says Edrick. "So to destroy one of their ships would require a considerable amount of concentrated firepower. But are you sure we need to fight them? My people have believed for generations that the 'elven folk' were a friendly species, not a hostile one."`
+			choice
+				`	"They seem intent on taking over all of human space and forcing us to submit to their authority. So we must fight them."`
+				`	"It's possible that they think they are helping us right now, by interrupting our civil war, but all the same we must fight back."`
+			`	Edrick looks disappointed at that. "I understand. I believe that they honestly think they are doing what is best for us, but clearly we cannot tolerate this invasion. Good luck, Captain." He dismisses you.`
+
+
+
+mission "FW Pug 3 Know: Quarg"
+	landing
+	name "Visit the Quarg (optional)"
+	description "Visit the Quarg on <planet> to see if they know anything about the Pug or are willing to help you fight them. (This mission is optional.)"
+	source Earth
+	destination Lagrange
+	to offer
+		has "FW Pug 3 Know: done"
+	to fail
+		has "FW Pug 3 Know A: done"
+	
+	on complete
+		conversation
+			`When you land on the station, Alondo says, "From what I understand of Quarg diplomacy, we're just supposed to ask any one of them to direct us to someone who can answer our questions." He walks up to a Quarg who is standing near your docking bay and says, "Excuse me, can you lead us to someone we can talk to?"`
+			`	It nods and gestures for you to follow, and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Were you led to this individual because this is the governor of the station, or just because this is one who speaks human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			choice
+				`	"Can you help us to fight the Pug?"`
+				`	"Can you give us information about the Pug?"`
+					goto info
+			
+			`	"No," it says. Several stripes of skin on its grey face turn a dull red; you have heard that this might indicate sadness, or embarrassment, or possibly anger - one more thing about the Quarg that no one understands well. "Long ago we tried to resist the Pug," it says. "In retribution, they broke one of our rings." It points out the window of the station at the half-finished ringworld. "This ring is half complete, and it has taken a thousand of your years to build. The rings are our most precious creations, nearly impossible to destroy, but the Pug know how to twist and cut the fabric of space itself."`
+			`	"So you've encountered the Pug before?" asks Alondo.`
+			
+			label info
+			`	The Quarg is silent for a long moment. "The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They claim to be acting on a special knowledge of future events, but we do not know if that knowledge is genuine or only an excuse to play tricks on other species."`
+			choice
+				`	"If they're so advanced, do we have any chance of defeating them?"`
+					goto defeat
+				`	"Do you think the Drak would join us in fighting them?"`
+					goto drak
+			
+			label defeat
+			`	"Yes," it says. "In battle the Pug always respond with just enough force that their opponent has a fair chance at victory."`
+			`	Alondo is confused. "What do you mean?" he asks.`
+				goto balance
+			
+			label drak
+			`	"No," it says. "The Drak do not interfere in a war unless their rules are broken. And, it would not help you anyway; the Pug always adjust the strength of their fleet to give their opponent what they consider to be fair odds."`
+			`	"Wait," says Alondo, "you're saying they would intentionally attack us with a weaker force instead of using all their strength and guaranteeing victory?"`
+				goto balance
+			
+			label balance
+			`	"War is a game to the Pug," the Quarg says. "They are a strange species. Even if they start a war, their goal may not be to win it, but to lose in a certain way. We have seen them lose battles against species far less advanced than your own, even though they had weapons that would have guaranteed them victory. If they want war, you must play their game, and if you play their game, they may allow you to win."`
+			`	"That makes no sense," says Freya. "They would die for the sake of a game?"`
+			`	The Quarg pauses for a moment as if struggling for words. "I am myself, and also I am Quarg. You are yourselves, and also you are human. But we think perhaps a Pug is Pug first, and then also itself."`
+			`	"Their identity is communal, rather than individual?" says Freya.`
+			`	"Indeed. And because they are so deeply connected, they perceive all things as being connected to them. At least, that is the best understanding we have been able to gain of their species."`
+			choice
+				`	"Thank you for your time."`
+					decline
+				`	"Is there any chance you could give us some jump drives, so we can bring a bigger fleet against the Pug?"`
+			
+			`	"No, I apologize," it says. "We see that you have somehow gained access to a jump drive, and we will not take it away from you, but we also cannot give your species more of them."`
+				decline
+
+
+
+mission "FW Pug 3 Know A"
+	landing
+	name "Gather the fleet"
+	description "Travel to <destination>, and requisition three Free Worlds Dreadnoughts to join in the battle against the Pug. (But if you want to visit the Quarg or the Deep, do that first.)"
+	autosave
+	source Earth
+	destination Zug
+	to offer
+		has "FW Pug 3 Know: done"
+	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`	You report to Parliament that the Syndicate has offered to supply jump drives for an attack fleet if the Republic and the Free Worlds will supply the ships. You also report that the aliens' intention is to spread out to occupy more of human space and to demand a fraction of the resource production of all human planets, supposedly in the name of bringing "peace."`
+			`	One of the Senators asks, "Do you think we have any chance of defeating the aliens?"`
+			choice
+				`	"It's possible. They all live in a single star system, so we outnumber them."`
+					goto questions
+				`	"It's unlikely. If we have any options other than fighting them, we should explore those options."`
+			`	"I think we have no choice," says one of the older members. "Even if it is a losing battle, we can't let the human race be enslaved without a fight."`
+			label questions
+			`	They have many other questions after that; you answer them as best you can, and leave them with full copies of your sensor logs of the alien ships and planets. Parliament agrees that the next step is for you to convince the Free Worlds to contribute three Dreadnoughts to the attack fleet. "Also," one of the members of Parliament says, "maybe you could talk to those aliens who live down in your part of space, see if they can help us out in any way. It sure would be handy if the Pug turn out to be an enemy of theirs."`
+			`	During the hearing, you refrained from mentioning that the Pug claimed to have assisted the Deep in the past, but once you are back in your ship Alondo says, "Maybe we should also visit Valhalla and see if Governor Flint has any information for us."`
+				accept
+
+
+mission "FW Pug 3 Know B"
+	landing
+	name "Escort to <planet>"
+	description "Travel to <planet> with two Free Worlds Dreadnoughts that will be joining the fight against the Pug."
+	autosave
+	source Zug
+	destination Geminus
+	clearance
+	to offer
+		has "FW Pug 3 Know A: done"
+	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		"salary: Free Worlds" = 6000
+		conversation
+			`Freya meets you soon after you land. "I've heard the news," she says. "I talked to the Senate, and they think that I should travel with you during your assault on the Pug, in case I can help figure out their technology, maybe even how to restore the hyperspace links. And they say they need Alondo back here to do diplomatic visits and help keep people from panicking."`
+			`	"I guess that makes sense," says Alondo.`
+			`	"Also," says Freya, "the Senate approved a raise for you, <first>. Your new salary will be six thousand credits a day. I hope that means you'll be able to go into battle against the Pug with the strongest ship possible, because I suspect we'll need all the firepower we can get."`
+			`	Alondo wishes you the best of luck and leaves to catch a transport to Bourne, while Freya takes you to the spaceport and introduces you to the captains of the three Dreadnoughts that have volunteered to fight the Pug. She also asks you all sorts of technical questions: what sort of propulsion and energy sources the Pug seem to use, what their weapon capabilities are, and whether you saw any sign of the technology that was used to destroy the hyperspace links. You have a hard time answering her, but are glad that she will be with you this time to see the aliens firsthand.`
+				accept
+	
+	npc accompany save
+		personality escort disables
+		ship "Dreadnought" "F.S. Independence"
+		ship "Dreadnought" "F.S. Freedom"
+		ship "Dreadnought" "F.S. Liberty"
+	
+	on visit
+		dialog "You have reached <planet>, but the dreadnoughts are lagging behind you because they are using ordinary hyperdrives. Better depart and wait for them to arrive in this star system."
+
+
+
+mission "FW Pug 3 Know C"
+	landing
+	name "Escort to Hephaestus"
+	description "Escort the combined Free Worlds and Navy fleet to <destination>, where the Syndicate will fit all the ships with jump drives."
+	autosave
+	source Geminus
+	destination Hephaestus
+	to offer
+		has "FW Pug 3 Know B: done"
+	passengers 1
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
+			choice
+				`	"Um, we're right in the middle of resisting an alien invasion, here."`
+				`	"Sorry, we aren't authorized to share military secrets with you."`
+				`	"Sure, I'm sure we could arrange something."`
+					goto yes
+			
+			`	Freya laughs. "Give him a break, <first>. He's just thinking like an engineer, rather than a tactician. I mean, I'd certainly jump at the chance to tour a Cruiser even at a time like this."`
+			
+			label yes
+			`	The supervisor seems irked that his engineers are more interested in exploring nifty new ship technology than in the task at hand, but he grudgingly offers to give you a tour of the Navy Yard in exchange for letting his engineers take a closer look at the Dreadnoughts. Freya whispers to you, "Just think of this as another step toward peace and reconciliation."`
+			`	The new shipyard is some distance away from the old one, which is still in ruins, a radioactive crater a few miles away from the spaceport. "The attack happened at night," says the supervisor. "Three hundred and forty-seven people were killed. If the attack had been during working hours, that number would have been in the thousands. We're recovering some metal from the old shipyard, but other than that it's a total loss. The radiation is slowly dying down, though."`
+			`	There is deep anger in his voice as he speaks. You are glad that the Free Worlds have been proved innocent of involvement in the attack, but you suspect that on the worlds that were bombed, most people will not accept peace with the Syndicate on any terms except the full surrender of all the Syndicate personnel who were responsible.`
+			`	When they're done giving you the tour, you return to the spaceport. The supervisor and the team of engineers wish you the best of luck, and depart.`
+				accept
+	
+	npc accompany save
+		personality escort
+		ship "Dreadnought" "F.S. Independence"
+		ship "Dreadnought" "F.S. Freedom"
+		ship "Dreadnought" "F.S. Liberty"
+	npc accompany save
+		personality escort
+		government "Republic"
+		ship "Cruiser (Mark II)" "R.N.S. Everest"
+		ship "Cruiser (Mark II)" "R.N.S. Denali"
+		ship "Carrier (Mark II)" "R.N.S. Vesuvius"
+		ship "Carrier (Mark II)" "R.N.S. Haleakala"
+	
+	on visit
+		dialog "You have reached <planet>, but part of your fleet is not here yet. Better depart and wait for them to arrive in this star system."
+
+
+
+mission "FW Pug 4 Know: Escorts"
+	landing
+	invisible
+	source Hephaestus
+	to offer
+		has "FW Pug 3 Know C: done"
+	
+	to fail
+		has "FW Pug 6: done"
+
+	on offer
+		set "fw jump fleet ready"
+	
+	npc kill
+		personality escort heroic disables
+		ship "Dreadnought (Jump)" "F.S. Independence"
+		ship "Dreadnought (Jump)" "F.S. Freedom"
+		ship "Dreadnought (Jump)" "F.S. Liberty"
+	npc kill
+		personality escort heroic disables
+		government "Republic"
+		ship "Cruiser (Jump)" "R.N.S. Everest"
+		ship "Cruiser (Jump)" "R.N.S. Denali"
+		ship "Carrier (Jump)" "R.N.S. Vesuvius"
+		ship "Carrier (Jump)" "R.N.S. Haleakala"
+		ship "Dagger" "Red One"
+		ship "Dagger" "Red Two"
+		ship "Dagger" "Red Three"
+		ship "Dagger" "Red Four"
+		ship "Dagger" "Red Five"
+		ship "Dagger" "Red Six"
+		ship "Dagger" "Red Seven"
+		ship "Dagger" "Red Eight"
+		ship "Combat Drone" "Orange One"
+		ship "Combat Drone" "Orange Two"
+		ship "Combat Drone" "Orange Three"
+		ship "Combat Drone" "Orange Four"
+		ship "Combat Drone" "Orange Five"
+		ship "Combat Drone" "Orange Six"
+		ship "Combat Drone" "Orange Seven"
+		ship "Combat Drone" "Orange Eight"
+		ship "Combat Drone" "Yellow One"
+		ship "Combat Drone" "Yellow Two"
+		ship "Combat Drone" "Yellow Three"
+		ship "Combat Drone" "Yellow Four"
+		ship "Combat Drone" "Yellow Five"
+		ship "Combat Drone" "Yellow Six"
+		ship "Combat Drone" "Yellow Seven"
+		ship "Combat Drone" "Yellow Eight"
+		ship "Combat Drone" "Yellow Nine"
+		ship "Combat Drone" "Yellow Ten"
+		ship "Combat Drone" "Yellow Eleven"
+		ship "Combat Drone" "Yellow Twelve"
+
+
+
 mission "FW Pug 4: Escorts"
 	landing
 	invisible
@@ -1792,6 +2082,9 @@ mission "FW Pug 4: Escorts"
 	to fail
 		has "FW Pug 6: done"
 	
+	on offer
+		set "fw jump fleet ready"
+
 	npc kill
 		personality escort heroic disables
 		ship "Dreadnought (Jump)" "F.S. Independence"
@@ -1843,7 +2136,7 @@ mission "FW Pug 4"
 	destination Maker
 	clearance
 	to offer
-		has "FW Pug 3C: done"
+		has "fw jump fleet ready"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
