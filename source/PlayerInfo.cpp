@@ -410,6 +410,9 @@ const Date &PlayerInfo::GetDate() const
 void PlayerInfo::IncrementDate()
 {
 	++date;
+	conditions["day"] = date.Day();
+	conditions["month"] = date.Month();
+	conditions["year"] = date.Year();
 	
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
