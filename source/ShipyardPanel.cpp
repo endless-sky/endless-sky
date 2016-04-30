@@ -120,7 +120,7 @@ int ShipyardPanel::DividerOffset() const
 
 int ShipyardPanel::DetailWidth() const
 {
-	return 3 * ShipInfoDisplay::PanelWidth();
+	return (detailsInWithMain ? 3 : 1) * ShipInfoDisplay::PanelWidth();
 }
 
 
@@ -130,11 +130,24 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 	ShipInfoDisplay info(*selectedShip);
 	
 	Point offset(info.PanelWidth(), 0.);
-	info.DrawDescription(center - offset * 1.5);
-	info.DrawAttributes(center - offset * .5);
-	info.DrawOutfits(center + offset * .5);
+
+	if (detailsInWithMain)
+	{
+		Point offset(info.PanelWidth(), 0.);
+		info.DrawDescription(center - offset * 1.5);
+		info.DrawAttributes(center - offset * .5);
+		info.DrawOutfits(center + offset * .5);
+	}
+	else
+	{
+		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10.);
+		
+		info.DrawAttributes(drawPoint);
+		info.DrawOutfits(drawPoint + Point(0, info.AttributesHeight() + 10));
+		info.DrawDescription(drawPoint + Point(0, info.AttributesHeight() + info.OutfitsHeight() + 20));
+	}
 	
-	return info.MaximumHeight();
+	return detailsInWithMain ? info.MaximumHeight() : 0;
 }
 
 

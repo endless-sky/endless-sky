@@ -63,8 +63,8 @@ void ShopPanel::Draw() const
 	zones.clear();
 	
 	DrawSidebar();
-	DrawButtons();
 	DrawMain();
+	DrawButtons();
 	
 	if(dragShip)
 	{
@@ -104,6 +104,7 @@ void ShopPanel::DrawSidebar() const
 		Point(Screen::Right() - SIDE_WIDTH / 2, 0.),
 		Point(SIDE_WIDTH, Screen::Height()),
 		Color(.1, 1.));
+	// A bright line separating the side and main panels.
 	FillShader::Fill(
 		Point(Screen::Right() - SIDE_WIDTH, 0.),
 		Point(1, Screen::Height()),
@@ -185,6 +186,28 @@ void ShopPanel::DrawSidebar() const
 		Point(0., -1.), 10., 10., 5., Color(sideScroll > 0 ? .8 : .2, 0.));
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
 		Point(0., 1.), 10., 10., 5., Color(sideScroll < maxSideScroll ? .8 : .2, 0.));
+
+	// If the details panel is also on the side, we'll draw the background area and 
+	// the scroll buttons for that here. 
+	if (!detailsInWithMain)
+	{
+		//Background
+		FillShader::Fill( 
+			Point(Screen::Right() - SIDE_WIDTH - DetailsWidth() / 2, 0.),
+			Point(DetailsWidth() - 2, Screen::Height()),
+			Color(.1, 1.));
+		//Thin dividing line.
+		FillShader::Fill(
+			Point(Screen::Right() - SIDE_WIDTH - DetailsWidth(), 0.),
+			Point(1, Screen::Height()),
+			Color(.2, 1.));
+		// Top scroll arrow
+		PointerShader::Draw(Point(Screen::Right() - SIDE_WIDTH - 10, Screen::Top() + 10),
+			Point(0., -1.), 10., 10., 5., Color(detailsScroll > 0 ? .8 : .2, 0.));
+		// Bottom scroll arrow
+		PointerShader::Draw(Point(Screen::Right() - SIDE_WIDTH - 10, Screen::Bottom() - 10),
+			Point(0., 1.), 10., 10., 5., Color(detailsScroll < maxDetailsScroll ? .8 : .2, 0.));
+	}
 }
 
 
