@@ -12,6 +12,13 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/* battery hai*
+ images/outfit/anti-missile hai*
+ images/outfit/cooling ducts hai*
+ images/outfit/dwarf core hai*
+ images/outfit/fission hai*
+ images/outfit/fusion hai*
+ images/outfit/heavy anti-missile hai*
  images/ship/marrow*
  images/ship/mbounder*
  images/ship/mfalcon*
@@ -22,12 +29,12 @@ Files:
  images/ship/mquicksilver*
  images/ship/mraven*
  images/ship/msplinter*
- images/outfit/* hai*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/outfit/* battery hai*††
  images/outfit/tiny ion engines*
  images/ship/barb*
  images/ship/finch*
@@ -36,7 +43,7 @@ Files:
  images/ship/skein*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: Derived from works by Michael Zahniser (under the same license). †† - Collaboration featuring input from Maximilian Korber.
 
 Files: images/ship/vanguard*
 Copyright: Nate Graham <pointedstick@zoho.com>
