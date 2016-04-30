@@ -152,6 +152,8 @@ outfit "Thunderhead Launcher"
 		"drag" .1
 		"turn" 2
 		"homing" 4
+		"infrared tracking" .9
+		"radar tracking" .6
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
@@ -176,8 +178,10 @@ outfit "Thunderhead"
 		"drag" .1
 		"turn" 3
 		"homing" 4
-		"shield damage" 80
-		"hull damage" 60
+		"optical tracking" .9
+		"radar tracking" .6
+		"shield damage" 110
+		"hull damage" 80
 		"hit force" 20
 		"missile strength" 3
 

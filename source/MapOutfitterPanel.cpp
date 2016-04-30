@@ -192,7 +192,7 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
-				if(seen.find(outfit) == seen.end())
+				if(!seen.count(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);

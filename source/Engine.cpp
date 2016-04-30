@@ -285,7 +285,7 @@ void Engine::Step(bool isActive)
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
 	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.AddTravel(flagship->GetTargetSystem());
+		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)
@@ -1334,7 +1334,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
-	if(grudge.find(attacker) != grudge.end())
+	if(grudge.count(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		if(!previous || (previous->GetSystem() == player.GetSystem() && !previous->IsDisabled()))
