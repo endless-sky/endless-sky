@@ -96,6 +96,14 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = child.Value(1);
 			else if(child.Token(0) == "inaccuracy")
 				inaccuracy = child.Value(1);
+			else if(child.Token(0) == "tracking")
+				tracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "optical tracking")
+				opticalTracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "infrared tracking")
+				infraredTracking = max(0., min(1., child.Value(1)));
+			else if(child.Token(0) == "radar tracking")
+				radarTracking = max(0., min(1., child.Value(1)));
 			else if(child.Token(0) == "firing energy")
 				firingEnergy = child.Value(1);
 			else if(child.Token(0) == "firing force")
@@ -141,6 +149,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	// is not vulnerable to anti-missile, or has the "stream" attribute.
 	isStreamed |= !(MissileStrength() || AntiMissile());
 	isStreamed &= !isClustered;
+	
+	// Support legacy missiles with no tracking type defined:
+	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+		tracking = 1.;
 	
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.

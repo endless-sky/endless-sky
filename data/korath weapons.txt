@@ -35,9 +35,10 @@ outfit "Korath Grab-Strike"
 		"drag" .1
 		"turn" .2
 		"homing" 4
-		"shield damage" 90
-		"hull damage" 27
-		"hit force" -120
+		"tracking" .7
+		"shield damage" 108
+		"hull damage" 32
+		"hit force" -160
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
 effect "grab-strike impact"
@@ -250,8 +251,9 @@ outfit "Korath Piercer Launcher"
 		"drag" .03
 		"turn" 1.6
 		"homing" 4
-		"shield damage" 240
-		"hull damage" 360
+		"infrared tracking" .9
+		"shield damage" 290
+		"hull damage" 440
 		"piercing" .2
 		"hit force" 30
 		"missile strength" 73
@@ -390,6 +392,7 @@ outfit "Korath Minelayer"
 		"drag" .04
 		"turn" 2
 		"homing" 4
+		"infrared tracking" .9
 		"missile strength" 35
 		"shield damage" -3200
 		"hull damage" -2400

@@ -92,6 +92,7 @@ outfit "Pug Seeker"
 		"drag" .1
 		"turn" 4
 		"homing" 5
+		"tracking" .5
 		"shield damage" 24
 		"hull damage" 13
 		"hit force" 2
