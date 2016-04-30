@@ -224,6 +224,8 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+	// Check if this is a ship that can be used as a flagship.
+	bool CanBeFlagship() const;
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;

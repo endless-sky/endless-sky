@@ -328,7 +328,8 @@ void PlayerInfo::ApplyChanges()
 	// Check if any special persons have been destroyed.
 	while(!destroyedPersons.empty())
 	{
-		destroyedPersons.back()->GetShip()->Destroy();
+		if(destroyedPersons.back()->GetShip())
+			destroyedPersons.back()->GetShip()->Destroy();
 		destroyedPersons.pop_back();
 	}
 	
@@ -443,6 +444,9 @@ const Date &PlayerInfo::GetDate() const
 void PlayerInfo::IncrementDate()
 {
 	++date;
+	conditions["day"] = date.Day();
+	conditions["month"] = date.Month();
+	conditions["year"] = date.Year();
 	
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
@@ -607,8 +611,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried()
-					&& it->RequiredCrew() && !it->IsDisabled())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
 			{
 				flagship = it;
 				break;
@@ -866,10 +869,10 @@ void PlayerInfo::Land(UI *ui)
 	
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
-		if(active.find(it.first) == active.end())
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
-		if(active.find(it.first) == active.end())
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
@@ -949,13 +952,18 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-void PlayerInfo::TakeOff(UI *ui)
+bool PlayerInfo::TakeOff(UI *ui)
 {
-	shouldLaunch = false;
 	// This can only be done while landed.
 	if(!system || !planet)
-		return;
+		return false;
 	
+	flagship.reset();
+	flagship = FlagshipPtr();
+	if(!flagship)
+		return false;
+	
+	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
 	
 	// Jobs are only available when you are landed.
@@ -975,10 +983,6 @@ void PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
-	flagship.reset();
-	flagship = FlagshipPtr();
-	if(!flagship)
-		return;
 	// Move the flagship to the start of your list of ships. It does not make
 	// sense that the flagship would change if you are reunited with a different
 	// ship that was higher up the list.
@@ -1162,6 +1166,8 @@ void PlayerInfo::TakeOff(UI *ui)
 			out << ".";
 		Messages::Add(out.str());
 	}
+	
+	return true;
 }
 
 
@@ -1418,7 +1424,7 @@ const map<string, int> &PlayerInfo::Conditions() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System *system) const
 {
-	return (seen.find(system) != seen.end() || KnowsName(system));
+	return (seen.count(system) || KnowsName(system));
 }
 
 
@@ -1428,7 +1434,7 @@ bool PlayerInfo::HasVisited(const System *system) const
 {
 	if(!system)
 		return false;
-	return (visitedSystems.find(system) != visitedSystems.end());
+	return visitedSystems.count(system);
 }
 
 
@@ -1438,7 +1444,7 @@ bool PlayerInfo::HasVisited(const Planet *planet) const
 {
 	if(!planet)
 		return false;
-	return (visitedPlanets.find(planet) != visitedPlanets.end());
+	return visitedPlanets.count(planet);
 }
 
 
@@ -1521,20 +1527,9 @@ const vector<const System *> &PlayerInfo::TravelPlan() const
 
 
 
-// Clear the player's travel plan.
-void PlayerInfo::ClearTravel()
+vector<const System *> &PlayerInfo::TravelPlan()
 {
-	travelPlan.clear();
-	if(Flagship())
-		Flagship()->SetTargetSystem(nullptr);
-}
-
-
-
-// Add to the travel plan, starting with the last system in the journey.
-void PlayerInfo::AddTravel(const System *system)
-{
-	travelPlan.push_back(system);
+	return travelPlan;
 }
 
 
