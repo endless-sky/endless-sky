@@ -285,7 +285,7 @@ void Engine::Step(bool isActive)
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
 	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.AddTravel(flagship->GetTargetSystem());
+		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)

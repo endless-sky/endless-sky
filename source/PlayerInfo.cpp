@@ -1421,20 +1421,9 @@ const vector<const System *> &PlayerInfo::TravelPlan() const
 
 
 
-// Clear the player's travel plan.
-void PlayerInfo::ClearTravel()
+vector<const System *> &PlayerInfo::TravelPlan()
 {
-	travelPlan.clear();
-	if(Flagship())
-		Flagship()->SetTargetSystem(nullptr);
-}
-
-
-
-// Add to the travel plan, starting with the last system in the journey.
-void PlayerInfo::AddTravel(const System *system)
-{
-	travelPlan.push_back(system);
+	return travelPlan;
 }
 
 

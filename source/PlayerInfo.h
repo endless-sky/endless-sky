@@ -172,10 +172,8 @@ public:
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
 	const std::vector<const System *> &TravelPlan() const;
-	void ClearTravel();
-	// Add to the travel plan, starting with the last system in the journey.
-	void AddTravel(const System *system);
-	// Remove the first system from the travel plan.
+	std::vector<const System *> &TravelPlan();
+	// Remove the first or last system from the travel plan.
 	void PopTravel();
 	
 	// Toggle which secondary weapon the player has selected.
