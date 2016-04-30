@@ -20,7 +20,7 @@ effect "seeker impact"
 
 outfit "Pug Zapper"
 	category "Guns"
-	cost 170000
+	cost 290000
 	thumbnail "outfit/unknown"
 	"mass" 25
 	"outfit space" -25
@@ -44,7 +44,7 @@ outfit "Pug Zapper"
 
 outfit "Pug Zapper Turret"
 	category "Turrets"
-	cost 420000
+	cost 860000
 	thumbnail "outfit/unknown"
 	"mass" 66
 	"outfit space" -66

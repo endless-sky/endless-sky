@@ -192,7 +192,7 @@ outfit "Electron Beam"
 
 outfit "Laser Turret"
 	category "Turrets"
-	cost 80000
+	cost 140000
 	thumbnail "outfit/laser turret"
 	"mass" 22
 	"outfit space" -22
@@ -216,7 +216,7 @@ outfit "Laser Turret"
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
-	cost 180000
+	cost 320000
 	thumbnail "outfit/heavy laser turret"
 	"mass" 40
 	"outfit space" -40
@@ -240,7 +240,7 @@ outfit "Heavy Laser Turret"
 
 outfit "Electron Turret"
 	category "Turrets"
-	cost 550000
+	cost 720000
 	thumbnail "outfit/electron turret"
 	"mass" 54
 	"outfit space" -54
@@ -405,7 +405,7 @@ outfit "Pulse Cannon"
 
 outfit "Pulse Turret"
 	category "Turrets"
-	cost 320000
+	cost 390000
 	thumbnail "outfit/pulse turret"
 	"mass" 34
 	"outfit space" -34
@@ -454,7 +454,7 @@ outfit "Ion Cannon"
 
 outfit "Plasma Turret"
 	category "Turrets"
-	cost 560000
+	cost 520000
 	thumbnail "outfit/plasma turret"
 	"mass" 60
 	"outfit space" -60
@@ -646,7 +646,7 @@ outfit "Hai Tracker"
 
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
-	cost 150000
+	cost 250000
 	thumbnail "outfit/hai tracker pod"
 	"mass" 19
 	"outfit space" -19
