@@ -944,6 +944,7 @@ void Engine::CalculateStep()
 		previousTarget = &*player.Flagship()->GetTargetShip();
 	
 	bool showFlagship = false;
+	bool hasHostiles = false;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -1006,13 +1007,14 @@ void Engine::CalculateStep()
 			}
 			
 			auto target = ship->GetTargetShip();
+			bool isHostile = ship->GetGovernment()->IsEnemy() && target && target->GetGovernment()->IsPlayer();
+			hasHostiles |= isHostile;
 			radar[calcTickTock].Add(
 				(flagship && ship == flagship->GetTargetShip()) ? Radar::SPECIAL :
 					(isPlayer || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
 					!ship->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
-					(target && target->GetGovernment()->IsPlayer()) ?
-						Radar::HOSTILE : Radar::UNFRIENDLY,
+					isHostile ? Radar::HOSTILE : Radar::UNFRIENDLY,
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
@@ -1028,6 +1030,9 @@ void Engine::CalculateStep()
 	}
 	if(clickTarget && clickTarget == previousTarget)
 		clickCommands |= Command::BOARD;
+	if(hasHostiles && !hadHostiles)
+		Audio::Play(Audio::Get("alarm"));
+	hadHostiles = hasHostiles;
 	
 	// Collision detection:
 	for(Projectile &projectile : projectiles)

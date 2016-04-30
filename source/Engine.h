@@ -150,6 +150,7 @@ private:
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnter = false;
+	bool hadHostiles = false;
 	
 	bool doClick = false;
 	Command clickCommands;
