@@ -2406,18 +2406,7 @@ mission "FW Pug 5"
 	on offer
 		event "battle for altair"
 		conversation
-			branch seven
-				has "fw know about pug"
-
-			label six
-			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and six other ships, victory seemed unlikely."`
-				goto continue
-
-			label seven
-			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and seven other ships, victory seemed unlikely."`
-				goto continue
-
-			label continue
+			`Freya is overjoyed that she has found a way to reverse the Pug technology and restore a hyperspace connection to human space. "Now we actually have a chance," she says. "Before, with just you and a few other ships, victory seemed unlikely."`
 			choice
 				`	"What should we do next?"`
 					goto next
