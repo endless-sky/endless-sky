@@ -569,8 +569,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried()
-					&& it->RequiredCrew() && !it->IsDisabled())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
 			{
 				flagship = it;
 				break;
@@ -859,13 +858,18 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-void PlayerInfo::TakeOff(UI *ui)
+bool PlayerInfo::TakeOff(UI *ui)
 {
-	shouldLaunch = false;
 	// This can only be done while landed.
 	if(!system || !planet)
-		return;
+		return false;
 	
+	flagship.reset();
+	flagship = FlagshipPtr();
+	if(!flagship)
+		return false;
+	
+	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
 	
 	// Jobs are only available when you are landed.
@@ -883,10 +887,6 @@ void PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
-	flagship.reset();
-	flagship = FlagshipPtr();
-	if(!flagship)
-		return;
 	// Move the flagship to the start of your list of ships. It does not make
 	// sense that the flagship would change if you are reunited with a different
 	// ship that was higher up the list.
@@ -1065,6 +1065,8 @@ void PlayerInfo::TakeOff(UI *ui)
 			out << ".";
 		Messages::Add(out.str());
 	}
+	
+	return true;
 }
 
 

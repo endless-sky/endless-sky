@@ -1780,6 +1780,14 @@ void Ship::AddCrew(int count)
 
 
 
+// Check if this is a ship that can be used as a flagship.
+bool Ship::CanBeFlagship() const
+{
+	return !CanBeCarried() && RequiredCrew() && Crew() && !IsDisabled();
+}
+
+
+
 double Ship::Mass() const
 {
 	double carried = 0.;
