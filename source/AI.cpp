@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AI.h"
 
 #include "Armament.h"
+#include "Audio.h"
 #include "Command.h"
 #include "DistanceMap.h"
 #include "Government.h"
@@ -1654,6 +1655,9 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				if(distance < object.Radius())
 					message = object.LandingMessage();
 			}
+		if(!message.empty())
+			Audio::Play(Audio::Get("fail"));
+		
 		const StellarObject *target = ship.GetTargetPlanet();
 		if(target && ship.Position().Distance(target->Position()) < target->Radius())
 		{
@@ -1690,8 +1694,11 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			ship.SetTargetPlanet(next);
 			
 			if(next->GetPlanet() && !next->GetPlanet()->CanLand())
+			{
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
+				Audio::Play(Audio::Get("fail"));
+			}
 			else if(count > 1)
 				message = "Switching landing targets. Now landing on " + next->Name() + ".";
 		}
@@ -1720,10 +1727,16 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				}
 			const StellarObject *target = ship.GetTargetPlanet();
 			if(!target)
+			{
 				message = "There are no planets in this system that you can land on.";
+				Audio::Play(Audio::Get("fail"));
+			}
 			else if(!target->GetPlanet()->CanLand())
+			{
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
+				Audio::Play(Audio::Get("fail"));
+			}
 			else if(count > 1)
 			{
 				message = "You can land on more than one ";
@@ -1845,16 +1858,19 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 		{
 			Messages::Add("You do not have a hyperdrive installed.");
 			keyStuck.Clear();
+			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.HyperspaceType())
 		{
 			Messages::Add("You cannot jump to the selected system.");
 			keyStuck.Clear();
+			Audio::Play(Audio::Get("fail"));
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.");
 			keyStuck.Clear();
+			Audio::Play(Audio::Get("fail"));
 		}
 		else
 		{
