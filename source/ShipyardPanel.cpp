@@ -140,7 +140,8 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 	}
 	else
 	{
-		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10.);
+		maxDetailsScroll = max(0, info.OutfitsHeight() + info.AttributesHeight() + info.DescriptionHeight() + 20);
+		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
 		info.DrawAttributes(drawPoint);
 		info.DrawOutfits(drawPoint + Point(0, info.AttributesHeight() + 10));

@@ -705,7 +705,7 @@ double ShopPanel::ClickZone::ScrollY() const
 bool ShopPanel::DoScroll(double dy)
 {
 	double &scroll = dragMain ? mainScroll : dragDetails ? detailsScroll : sideScroll;
-	const int &maximum = dragMain ? maxMainScroll : dragDetails ? detailsScroll : maxSideScroll;
+	const int &maximum = dragMain ? maxMainScroll : dragDetails ? maxDetailsScroll : maxSideScroll;
 	
 	scroll = max(0., min(static_cast<double>(maximum), scroll - dy));
 	
