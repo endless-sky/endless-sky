@@ -1165,6 +1165,7 @@ mission "Terraforming 3"
 				"drag" 10
 				"heat dissipation" .1
 				"required crew" 0
+				"automaton" 1
 				"bunks" 0
 				"thrust" 10
 				"turn" 100

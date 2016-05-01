@@ -71,6 +71,11 @@ public:
 	double Turn() const;
 	double Inaccuracy() const;
 	
+	double Tracking() const;
+	double OpticalTracking() const;
+	double InfraredTracking() const;
+	double RadarTracking() const;
+	
 	double FiringEnergy() const;
 	double FiringForce() const;
 	double FiringFuel() const;
@@ -135,6 +140,11 @@ private:
 	double turn = 0.;
 	double inaccuracy = 0.;
 	
+	double tracking = 0.;
+	double opticalTracking = 0.;
+	double infraredTracking = 0.;
+	double radarTracking = 0.;
+	
 	double firingEnergy = 0.;
 	double firingForce = 0.;
 	double firingFuel = 0.;
@@ -180,6 +190,11 @@ inline double Weapon::Drag() const { return drag; }
 
 inline double Weapon::Turn() const { return turn; }
 inline double Weapon::Inaccuracy() const { return inaccuracy; }
+
+inline double Weapon::Tracking() const { return tracking; }
+inline double Weapon::OpticalTracking() const { return opticalTracking; }
+inline double Weapon::InfraredTracking() const { return infraredTracking; }
+inline double Weapon::RadarTracking() const { return radarTracking; }
 
 inline double Weapon::FiringEnergy() const { return firingEnergy; }
 inline double Weapon::FiringForce() const { return firingForce; }
