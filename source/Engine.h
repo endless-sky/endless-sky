@@ -70,6 +70,7 @@ public:
 	// Select the object the player clicked on.
 	void Click(const Point &point);
 	
+	void Zoom(int increment);
 	
 private:
 	void EnterSystem();
@@ -122,6 +123,7 @@ private:
 	// Viewport position and velocity.
 	Point position;
 	Point velocity;
+	int zoom { 100 };
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
