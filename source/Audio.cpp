@@ -423,7 +423,7 @@ namespace {
 			
 			// Unlock the mutex for the time-intensive part of the loop.
 			string name = Name(path);
-			if(!name.empty() && loaded.find(name) == loaded.end())
+			if(!name.empty() && !loaded.count(name))
 			{
 				loaded.insert(name);
 				sounds[name].Load(path);

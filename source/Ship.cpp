@@ -291,8 +291,7 @@ void Ship::FinishLoading()
 	
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
-	if(baseAttributes.Category() == "Drone"
-			&& baseAttributes.Attributes().find("automaton") == baseAttributes.Attributes().end())
+	if(baseAttributes.Category() == "Drone" && !baseAttributes.Attributes().count("automaton"))
 		baseAttributes.Add("automaton", 1.);
 	
 	// Different ships dissipate heat at different rates.
@@ -1777,6 +1776,14 @@ int Ship::RequiredCrew() const
 void Ship::AddCrew(int count)
 {
 	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
+}
+
+
+
+// Check if this is a ship that can be used as a flagship.
+bool Ship::CanBeFlagship() const
+{
+	return !CanBeCarried() && RequiredCrew() && Crew() && !IsDisabled();
 }
 
 

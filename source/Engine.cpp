@@ -285,7 +285,7 @@ void Engine::Step(bool isActive)
 	const System *currentSystem = player.GetSystem();
 	// Update this here, for thread safety.
 	if(!player.HasTravelPlan() && flagship && flagship->GetTargetSystem())
-		player.AddTravel(flagship->GetTargetSystem());
+		player.TravelPlan().push_back(flagship->GetTargetSystem());
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
 	if(doFlash)
@@ -360,7 +360,7 @@ void Engine::Step(bool isActive)
 				continue;
 			
 			Point pos = object.Position() - position;
-			if(pos.Length() < 500.)
+			if(pos.Length() < 600. + object.Radius())
 				labels.emplace_back(pos, object, currentSystem);
 		}
 	}
@@ -944,6 +944,7 @@ void Engine::CalculateStep()
 		previousTarget = &*player.Flagship()->GetTargetShip();
 	
 	bool showFlagship = false;
+	bool hasHostiles = false;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == player.GetSystem())
 		{
@@ -1006,13 +1007,14 @@ void Engine::CalculateStep()
 			}
 			
 			auto target = ship->GetTargetShip();
+			bool isHostile = ship->GetGovernment()->IsEnemy() && target && target->GetGovernment()->IsPlayer();
+			hasHostiles |= isHostile;
 			radar[calcTickTock].Add(
 				(flagship && ship == flagship->GetTargetShip()) ? Radar::SPECIAL :
 					(isPlayer || ship->GetPersonality().IsEscort()) ? Radar::PLAYER :
 					(ship->IsDisabled() || ship->IsOverheated()) ? Radar::INACTIVE :
 					!ship->GetGovernment()->IsEnemy() ? Radar::FRIENDLY :
-					(target && target->GetGovernment()->IsPlayer()) ?
-						Radar::HOSTILE : Radar::UNFRIENDLY,
+					isHostile ? Radar::HOSTILE : Radar::UNFRIENDLY,
 				position,
 				sqrt(ship->GetSprite().Width() + ship->GetSprite().Height()) * .1 + .5);
 		}
@@ -1028,6 +1030,9 @@ void Engine::CalculateStep()
 	}
 	if(clickTarget && clickTarget == previousTarget)
 		clickCommands |= Command::BOARD;
+	if(hasHostiles && !hadHostiles)
+		Audio::Play(Audio::Get("alarm"));
+	hadHostiles = hasHostiles;
 	
 	// Collision detection:
 	for(Projectile &projectile : projectiles)
@@ -1334,7 +1339,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 	
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
-	if(grudge.find(attacker) != grudge.end())
+	if(grudge.count(attacker))
 	{
 		shared_ptr<const Ship> previous = grudge[attacker].lock();
 		if(!previous || (previous->GetSystem() == player.GetSystem() && !previous->IsDisabled()))

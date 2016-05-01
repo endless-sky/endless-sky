@@ -213,8 +213,7 @@ const string &Planet::SpaceportDescription() const
 // have the "uninhabited" attribute).
 bool Planet::IsInhabited() const
 {
-	return (HasSpaceport() || requiredReputation || defenseFleet)
-		&& attributes.find("uninhabited") == attributes.end();
+	return (HasSpaceport() || requiredReputation || defenseFleet) && !attributes.count("uninhabited");
 }
 
 
