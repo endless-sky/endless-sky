@@ -1169,7 +1169,7 @@ void Engine::CalculateStep()
 			
 			fleet.Get()->Enter(*player.GetSystem(), ships);
 		}
-	if(!Random::Int(36000))
+	if(!Random::Int(36000) && !player.GetSystem()->Links().empty())
 	{
 		// Loop through all persons once to see if there are any who can enter
 		// this system.
