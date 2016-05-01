@@ -313,9 +313,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			&& keyStuck.Has(Command::BOARD));
 		
 		Command command;
+		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
 		if(it->IsYours())
 		{
-			if(isLaunching)
+			if(thisIsLaunching)
 				command |= Command::DEPLOY;
 			if(isCloaking)
 				command |= Command::CLOAK;
@@ -379,7 +380,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 							break;
 					}
 			}
-			else if(parent && !(it->IsYours() ? isLaunching : parent->Commands().Has(Command::DEPLOY)))
+			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), 40., .8);
@@ -389,7 +390,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			}
 		}
 		bool mustRecall = false;
-		if(it->HasBays() && !(it->IsYours() ? isLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
+		if(it->HasBays() && !(it->IsYours() ? thisIsLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
 			for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
@@ -768,7 +769,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
 			{
 				shared_ptr<const Ship> locked = escort.lock();
-				mustWait |= locked && locked->CanBeCarried();
+				mustWait |= locked && locked->CanBeCarried() && !locked->IsDisabled();
 			}
 		
 		if(!mustWait)
