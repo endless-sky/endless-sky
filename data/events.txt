@@ -512,14 +512,6 @@ event "southern carriers 1"
 		"Barb"
 	shipyard "Southbound Basics"
 		"Finch"
-<<<<<<< HEAD
-		"Boxwing"
-	shipyard "Tarazed Advanced"
-		"Nest"
-		"Roost"
-		"Skein"
-=======
->>>>>>> endless-sky/master
 	shipyard "Southbound Advanced"
 		"Nest"
 	outfitter "Syndicate Advanced"
@@ -668,27 +660,7 @@ event "southern carriers 2"
 			"Hauler III" 3
 			"Roost"
 			"Finch" 4
-<<<<<<< HEAD
-		variant 5
-			"Roost" 3
-			"Finch" 6
-			"Boxwing" 6
-	fleet "Large Northern Merchants"
-		fighters "free worlds fighter"
-		variant 4
-			"Hauler III"
-			"Hauler II"
-			"Roost (Sidewinder)"
-			"Dagger" 2
-			"Lance" 2
-		variant 4
-			"Roost" 3
-			"Dagger" 4
-			"Lance" 4
-			"Boxwing" 4
-	fleet "Small Free Worlds"
-		fighters "free worlds fighters"
-=======
+
 	fleet "Small Independent"
 		fighters "free worlds fighter"
 		variant 8
@@ -740,7 +712,6 @@ event "southern carriers 2"
 			"Clipper (Heavy)"
 		variant 1
 			"Clipper (Speedy)"
->>>>>>> endless-sky/master
 		variant 1
 			"Nest"
 			"Barb" 2
@@ -842,6 +813,7 @@ event "southern carriers 3"
 			"Skein" 2
 			"Finch" 8
 			"Boxwing" 4
+
 	fleet "Small Southern Pirates"
 		variant 8
 			"Sparrow"
@@ -1120,18 +1092,7 @@ event "southern carriers 4"
 		variant 2
 			"Roost"
 			"Barb" 4
-<<<<<<< HEAD
-	fleet "Small Independent"
-		fighters "free worlds fighter"
-		variant 1
-			"Nest"
-			"Barb" 2
-		variant 1
-			"Nest"
-			"Barb"
-			"Boxwing"
-=======
->>>>>>> endless-sky/master
+
 	fleet "Large Independent"
 		fighters "free worlds fighter"
 		variant 3
