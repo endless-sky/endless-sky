@@ -58,23 +58,12 @@ Engine::Engine(PlayerInfo &player)
 		if(object.GetPlanet())
 			GameData::Preload(object.GetPlanet()->Landscape());
 	
+	// Figure out what planet the player is landed on, if any.
+	const StellarObject *object = player.GetStellarObject();
+	if(object)
+		center = object->Position();
+	
 	// Now we know the player's current position. Draw the planets.
-	Point center;
-	if(player.GetPlanet())
-	{
-		double closest = numeric_limits<double>::infinity();
-		for(const StellarObject &object : player.GetSystem()->Objects())
-			if(object.GetPlanet() == player.GetPlanet())
-			{
-				double distance = !player.Flagship() ? 0. :
-					player.Flagship()->Position().Distance(object.Position());
-				if(distance < closest)
-				{
-					closest = distance;
-					center = object.Position();
-				}
-			}
-	}
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(!object.GetSprite().IsEmpty())
 		{
@@ -191,20 +180,11 @@ void Engine::Place()
 	// Get the coordinates of the planet the player is leaving.
 	Point planetPos;
 	double planetRadius = 0.;
-	if(player.GetPlanet())
+	const StellarObject *object = player.GetStellarObject();
+	if(object)
 	{
-		double closest = numeric_limits<double>::infinity();
-		for(const StellarObject &object : player.GetSystem()->Objects())
-			if(object.GetPlanet() == player.GetPlanet())
-			{
-				double distance = flagship->Position().Distance(object.Position());
-				if(distance < closest)
-				{
-					closest = distance;
-					planetPos = object.Position();
-					planetRadius = object.Radius();
-				}
-			}
+		planetPos = object->Position();
+		planetRadius = object->Radius();
 	}
 	
 	// Give each ship a random heading and position. The iterator points to the
@@ -262,10 +242,16 @@ void Engine::Step(bool isActive)
 	
 	// The calculation thread is now paused, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
-	if(flagship)
+	const StellarObject *object = player.GetStellarObject();
+	if(object)
 	{
-		position = flagship->Position();
-		velocity = flagship->Velocity();
+		center = object->Position();
+		centerVelocity = Point();
+	}
+	else if(flagship)
+	{
+		center = flagship->Position();
+		centerVelocity = flagship->Velocity();
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;
@@ -275,7 +261,7 @@ void Engine::Step(bool isActive)
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
 	wasActive = isActive;
-	Audio::Update(position);
+	Audio::Update(center);
 	
 	// Any of the player's ships that are in system are assumed to have
 	// landed along with the player.
@@ -345,7 +331,7 @@ void Engine::Step(bool isActive)
 			if(isEnemy || it->GetGovernment()->IsPlayer() || it->GetPersonality().IsEscort())
 			{
 				double width = min(it->GetSprite().Width(), it->GetSprite().Height());
-				statuses.emplace_back(it->Position() - position, it->Shields(), it->Hull(),
+				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
 					it->Zoom() * max(20., width * .25), isEnemy);
 			}
 		}
@@ -359,7 +345,7 @@ void Engine::Step(bool isActive)
 			if(!object.GetPlanet())
 				continue;
 			
-			Point pos = object.Position() - position;
+			Point pos = object.Position() - center;
 			if(pos.Length() < 600. + object.Radius())
 				labels.emplace_back(pos, object, currentSystem);
 		}
@@ -402,7 +388,7 @@ void Engine::Step(bool isActive)
 		info.SetString("destination", name);
 		
 		targets.push_back({
-			object->Position() - flagship->Position(),
+			object->Position() - center,
 			Angle(45.),
 			object->Radius(),
 			object->GetPlanet()->CanLand() ? Radar::FRIENDLY : Radar::HOSTILE});
@@ -464,13 +450,13 @@ void Engine::Step(bool isActive)
 			const Animation &anim = target->GetSprite();
 			double size = target->Zoom() * (anim.Width() + anim.Height()) * .175;
 			targets.push_back({
-				target->Position() - flagship->Position(),
+				target->Position() - center,
 				Angle(45.) + target->Facing(),
 				size,
 				targetType});
 			
 			// Don't show the angle to the target if it is very close.
-			targetAngle = target->Position() - flagship->Position();
+			targetAngle = target->Position() - center;
 			double length = targetAngle.Length();
 			if(length > 20.)
 				targetAngle /= length;
@@ -510,7 +496,7 @@ const list<ShipEvent> &Engine::Events() const
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(position, velocity);
+	GameData::Background().Draw(center, centerVelocity);
 	
 	// Draw any active planet labels.
 	for(const PlanetLabel &label : labels)
@@ -830,28 +816,15 @@ void Engine::CalculateStep()
 		EnterSystem();
 	}
 	
-	// Now we know the player's current position. Draw the planets.
-	Point centerVelocity;
+	// Draw the planets.
+	Point newCenter = center;
+	Point newCenterVelocity;
 	if(flagship)
 	{
-		center = flagship->Position();
-		centerVelocity = flagship->Velocity();
+		newCenter = flagship->Position();
+		newCenterVelocity = flagship->Velocity();
 	}
-	else if(player.GetPlanet())
-	{
-		double closest = numeric_limits<double>::infinity();
-		for(const StellarObject &object : player.GetSystem()->Objects())
-			if(object.GetPlanet() == player.GetPlanet())
-			{
-				double distance = flagship->Position().Distance(object.Position());
-				if(distance < closest)
-				{
-					closest = distance;
-					center = object.Position();
-				}
-			}
-	}
-	if(!flagship)
+	else
 		doClick = false;
 	
 	for(const StellarObject &object : player.GetSystem()->Objects())
@@ -859,7 +832,7 @@ void Engine::CalculateStep()
 		{
 			Point position = object.Position();
 			Point unit = object.Unit();
-			position -= center;
+			position -= newCenter;
 			
 			int type = object.IsStar() ? Radar::SPECIAL :
 				!object.GetPlanet() ? Radar::INACTIVE :
@@ -870,7 +843,7 @@ void Engine::CalculateStep()
 			
 			// Don't apply motion blur to very large planets and stars.
 			bool isBig = (object.GetSprite().Width() >= 280);
-			draw[calcTickTock].Add(object.GetSprite(), position, unit, isBig ? Point() : -centerVelocity);
+			draw[calcTickTock].Add(object.GetSprite(), position, unit, isBig ? Point() : -newCenterVelocity);
 			radar[calcTickTock].Add(type, position, r, r - 1.);
 			
 			if(object.GetPlanet())
@@ -907,7 +880,7 @@ void Engine::CalculateStep()
 	// of them. This could be done later, as long as it is done before the
 	// collision detection.
 	asteroids.Step();
-	asteroids.Draw(draw[calcTickTock], center, centerVelocity);
+	asteroids.Draw(draw[calcTickTock], newCenter, newCenterVelocity);
 	
 	// Move existing projectiles. Do this before ships fire, which will create
 	// new projectiles, since those should just stay where they are created for
@@ -969,11 +942,11 @@ void Engine::CalculateStep()
 			if(ship->GetSprite().IsEmpty())
 				continue;
 			
-			Point position = ship->Position() - center;
+			Point position = ship->Position() - newCenter;
 			// Draw the flagship separately, on top of everything else.
 			if(ship.get() != flagship)
 			{
-				AddSprites(*ship, position, ship->Velocity() - centerVelocity);
+				AddSprites(*ship, position, ship->Velocity() - newCenterVelocity);
 				if(ship->IsThrusting())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
@@ -1105,7 +1078,7 @@ void Engine::CalculateStep()
 		{
 			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
 			radar[calcTickTock].Add(
-				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position() - center, 1.);
+				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position() - newCenter, 1.);
 			
 			// If the projectile did not hit anything, give the anti-missile
 			// systems a chance to shoot it down.
@@ -1121,16 +1094,16 @@ void Engine::CalculateStep()
 		}
 		else if(projectile.HasBlastRadius())
 			radar[calcTickTock].Add(
-				Radar::SPECIAL, projectile.Position() - center, 1.8);
+				Radar::SPECIAL, projectile.Position() - newCenter, 1.8);
 		
 		// Now, we can draw the projectile. The motion blur should be reduced
 		// depending on how much motion blur is in the sprite itself:
 		double innateVelocity = 2. * projectile.GetWeapon().Velocity();
-		Point relativeVelocity = projectile.Velocity() - centerVelocity
+		Point relativeVelocity = projectile.Velocity() - newCenterVelocity
 			- projectile.Unit() * innateVelocity;
 		draw[calcTickTock].Add(
 			projectile.GetSprite(),
-			projectile.Position() - center + .5 * projectile.Velocity(),
+			projectile.Position() - newCenter + .5 * projectile.Velocity(),
 			projectile.Unit(),
 			relativeVelocity,
 			closestHit);
@@ -1143,7 +1116,7 @@ void Engine::CalculateStep()
 	{
 		draw[calcTickTock].Add(
 			it->GetSprite(),
-			it->Position() - center,
+			it->Position() - newCenter,
 			it->Unit());
 		
 		if(!it->Move())
