@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
 
@@ -499,6 +500,32 @@ void PlayerInfo::SetPlanet(const Planet *planet)
 const Planet *PlayerInfo::GetPlanet() const
 {
 	return planet;
+}
+
+
+
+// If the player is landed, return the stellar object they are on.
+const StellarObject *PlayerInfo::GetStellarObject() const
+{
+	if(!system || !planet)
+		return nullptr;
+	
+	double closestDistance = numeric_limits<double>::infinity();
+	const StellarObject *closestObject = nullptr;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet() == planet)
+		{
+			if(!Flagship())
+				return &object;
+			
+			double distance = Flagship()->Position().Distance(object.Position());
+			if(distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestObject = &object;
+			}
+		}
+	return closestObject;
 }
 
 
