@@ -279,10 +279,19 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	{
 		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
+		DrawOutfit(*selectedOutfit, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true, false);
+		drawPoint += Point(0, TileSize());
+		
 		info.DrawRequirements(drawPoint);
-		info.DrawAttributes(drawPoint + Point(0, info.RequirementsHeight() + 10));
-		info.DrawDescription(drawPoint + Point(0, info.RequirementsHeight() + info.AttributesHeight() + 20));
-		maxDetailsScroll = max(0, info.RequirementsHeight() + info.AttributesHeight() + info.DescriptionHeight() + 30 - Screen::Height());
+		drawPoint += Point(0, info.RequirementsHeight() + 10);
+		
+		info.DrawAttributes(drawPoint);
+		drawPoint += Point(0, info.AttributesHeight() + 10);
+
+		info.DrawDescription(drawPoint);
+		drawPoint += Point(0, info.DescriptionHeight() + 10);
+
+		maxDetailsScroll = max(0, TileSize() + info.RequirementsHeight() + info.AttributesHeight() + info.DescriptionHeight() + 30 - Screen::Height());
 	}
 	
 	return detailsInWithMain ? info.MaximumHeight() : 0;

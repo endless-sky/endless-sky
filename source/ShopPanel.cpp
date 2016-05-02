@@ -148,7 +148,6 @@ void ShopPanel::DrawSidebar() const
 			
 			bool isSelected = playerShips.count(ship.get());
 			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
-			
 			SpriteShader::Draw(background, point);
 			
 			const Sprite *sprite = ship->GetSprite().GetSprite();

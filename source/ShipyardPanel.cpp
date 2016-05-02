@@ -62,9 +62,11 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 	ShipInfoDisplay info(*playerShip);
 
 	info.DrawSale(point);
-	info.DrawDescription(point + Point(0, info.SaleHeight()));
+	info.DrawOutfits(point + Point(0, info.SaleHeight()));
+	info.DrawDescription(point + Point(0, info.SaleHeight()+ info.OutfitsHeight()));
+
 	
-	return info.SaleHeight() + info.DescriptionHeight();
+	return info.SaleHeight() + info.OutfitsHeight() + info.DescriptionHeight();
 }
 
 
@@ -142,12 +144,19 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 	{
 		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
+		DrawShip(*selectedShip, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true);
+		drawPoint += Point(0, TileSize());
 		
 		info.DrawAttributes(drawPoint);
-		info.DrawOutfits(drawPoint + Point(0, info.AttributesHeight() + 10));
-		info.DrawDescription(drawPoint + Point(0, info.AttributesHeight() + info.OutfitsHeight() + 20));
-		maxDetailsScroll = max(0, info.AttributesHeight() + info.DescriptionHeight() + info.OutfitsHeight() + 30 - Screen::Height());
-
+		drawPoint += Point(0, info.AttributesHeight() + 10);
+		
+		info.DrawOutfits(drawPoint);
+		drawPoint += Point(0, info.OutfitsHeight() + 10);
+		
+		info.DrawDescription(drawPoint);
+		drawPoint += Point(0, info.DescriptionHeight() + 10);
+		
+		maxDetailsScroll = max(0, TileSize() + info.AttributesHeight() + info.OutfitsHeight() + info.DescriptionHeight() + 30 - Screen::Height());
 	}
 	
 	return detailsInWithMain ? info.MaximumHeight() : 0;
