@@ -34,6 +34,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <cmath>
 #include <limits>
 #include <set>
+#include <iostream>
 
 using namespace std;
 
@@ -233,7 +234,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			if(ogov->AttitudeToward(gov) > 0. && oit->Position().Distance(it->Position()) < 2000.)
 				strength += oit->Cost();
 		}
-	}		
+	}
 	
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
@@ -1054,11 +1055,34 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
 {
-	// This is not the behavior I want, but it's reasonable.
+	const double radius = 200.;
 	Point direction = target.Position() - ship.Position();
-	command.SetTurn(TurnToward(ship, direction));
-	if(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.)
-		command |= Command::FORWARD;
+	Point dV = target.Velocity() - ship.Velocity();
+	double distance = direction.Length();
+
+	// adjust dV in order to get closer to target if needed.
+	if(distance > radius)
+		dV += direction.Unit() * (distance/radius);
+
+	// We want to match dV until it cancels out. From testing, geting to 0
+	// is not possible, but most ships should be able to get within .03
+	// quite quickly.
+	if(dV.Length() > .03)
+	{
+		double dot = ship.Facing().Unit().Dot(dV.Unit());
+
+		// turn if far away or angle significant enough (limit wriggle)
+		if(distance > radius || dot <= .996)
+			command.SetTurn(TurnToward(ship, dV));
+
+		// wait for the angle to be around 30 degrees before thrusting,
+		// otherwise the ships will keep turning around.
+		if(dot > .866)
+			command |= Command::FORWARD;
+	}
+	else if(target.Facing() != ship.Facing())
+		// we've matched course, now match heading
+		command.SetTurn(TurnToward(ship, target.Facing().Unit()));
 }
 
 
