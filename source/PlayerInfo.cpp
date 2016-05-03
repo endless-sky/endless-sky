@@ -794,7 +794,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDisabled())
+		if(ship->GetSystem() == system && !ship->IsDisabled())
 			ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
