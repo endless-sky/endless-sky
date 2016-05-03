@@ -28,7 +28,7 @@ mission "Assisting Hai"
 	assisting
 	repeat
 	to offer
-		random < 30
+		random < 20
 	source
 		government Hai
 	on offer
