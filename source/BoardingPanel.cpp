@@ -391,7 +391,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 
 bool BoardingPanel::Scroll(double dx, double dy)
 {
-	return Drag(dx, dy * -50.);
+	return Drag(dx, dy * 50.);
 }
 
 

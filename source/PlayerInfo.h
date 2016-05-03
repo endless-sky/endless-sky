@@ -35,6 +35,7 @@ class Person;
 class Planet;
 class Ship;
 class ShipEvent;
+class StellarObject;
 class System;
 class UI;
 
@@ -96,6 +97,8 @@ public:
 	// Set what planet the player is on.
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	// If the player is landed, return the stellar object they are on.
+	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;

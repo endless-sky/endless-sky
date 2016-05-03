@@ -63,6 +63,12 @@ namespace {
 		return target.IsDisabled();
 	}
 	
+	double AngleDiff(double a, double b)
+	{
+		a = abs(a - b);
+		return min(a, 360. - a);
+	}
+	
 	static const double MAX_DISTANCE_FROM_CENTER = 10000.;
 }
 
@@ -313,9 +319,10 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			&& keyStuck.Has(Command::BOARD));
 		
 		Command command;
+		bool thisIsLaunching = (isLaunching && it->GetSystem() == player.GetSystem());
 		if(it->IsYours())
 		{
-			if(isLaunching)
+			if(thisIsLaunching)
 				command |= Command::DEPLOY;
 			if(isCloaking)
 				command |= Command::CLOAK;
@@ -379,7 +386,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 							break;
 					}
 			}
-			else if(parent && !(it->IsYours() ? isLaunching : parent->Commands().Has(Command::DEPLOY)))
+			else if(parent && !(it->IsYours() ? thisIsLaunching : parent->Commands().Has(Command::DEPLOY)))
 			{
 				it->SetTargetShip(parent);
 				MoveTo(*it, command, parent->Position(), 40., .8);
@@ -389,7 +396,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			}
 		}
 		bool mustRecall = false;
-		if(it->HasBays() && !(it->IsYours() ? isLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
+		if(it->HasBays() && !(it->IsYours() ? thisIsLaunching : it->Commands().Has(Command::DEPLOY)) && !target)
 			for(const weak_ptr<const Ship> &ptr : it->GetEscorts())
 			{
 				shared_ptr<const Ship> escort = ptr.lock();
@@ -685,7 +692,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			target.reset();
 		else
 		{
-			CircleAround(ship, command, *target);
+			Swarm(ship, command, *target);
 			if(!ship.GetGovernment()->IsPlayer())
 				command |= Command::SCAN;
 		}
@@ -768,7 +775,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			for(const weak_ptr<const Ship> &escort : ship.GetEscorts())
 			{
 				shared_ptr<const Ship> locked = escort.lock();
-				mustWait |= locked && locked->CanBeCarried();
+				mustWait |= locked && locked->CanBeCarried() && !locked->IsDisabled();
 			}
 		
 		if(!mustWait)
@@ -852,7 +859,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		}
 	}
 	else
-		CircleAround(ship, command, parent);
+		KeepStation(ship, command, parent);
 }
 
 
@@ -1050,13 +1057,102 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 }
 
 
-
-void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
+	
+void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 {
 	// This is not the behavior I want, but it's reasonable.
 	Point direction = target.Position() - ship.Position();
+	double rendezvousTime = Armament::RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
+	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
+		rendezvousTime = 600.;
+	direction += rendezvousTime * target.Velocity();
 	command.SetTurn(TurnToward(ship, direction));
 	if(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.)
+		command |= Command::FORWARD;
+}
+
+
+
+void AI::KeepStation(Ship &ship, Command &command, const Ship &target)
+{
+	// Constants:
+	static const double MAX_TIME = 600.;
+	static const double LEAD_TIME = 500.;
+	static const double POSITION_DEADBAND = 200.;
+	static const double VELOCITY_DEADBAND = 1.5;
+	static const double TIME_DEADBAND = 120.;
+	static const double THRUST_DEADBAND = .5;
+	
+	// Current properties of the two ships:
+	double maxV = ship.MaxVelocity();
+	double accel = ship.Acceleration();
+	double turn = ship.TurnRate();
+	double mass = ship.Mass();
+	Point unit = ship.Facing().Unit();
+	double currentAngle = TO_DEG * atan2(ship.Unit().X(), -ship.Unit().Y());
+	// This is where we want to be relative to where we are now:
+	Point velocityDelta = target.Velocity() - ship.Velocity();
+	Point positionDelta = target.Position() + LEAD_TIME * velocityDelta - ship.Position();
+	double positionSize = positionDelta.Length();
+	double positionWeight = positionSize / (positionSize + POSITION_DEADBAND);
+	// This is how fast we want to be going relative to how fast we're going now:
+	velocityDelta -= unit * VELOCITY_DEADBAND;
+	double velocitySize = velocityDelta.Length();
+	double velocityWeight = velocitySize / (velocitySize + VELOCITY_DEADBAND);
+	
+	// Time it will take (roughly) to move to the target ship:
+	double positionTime = Armament::RendezvousTime(positionDelta, target.Velocity(), maxV);
+	if(positionTime != positionTime || positionTime > MAX_TIME)
+		positionTime = MAX_TIME;
+	Point rendezvous = positionDelta + target.Velocity() * positionTime;
+	double positionAngle = TO_DEG * atan2(rendezvous.X(), -rendezvous.Y());
+	positionTime += AngleDiff(currentAngle, positionAngle) / turn;
+	positionTime += (rendezvous.Unit() * maxV - ship.Velocity()).Length() / accel;
+	// If you are very close,stop trying to adjust:
+	positionTime *= positionWeight * positionWeight;
+	
+	// Time it will take (roughly) to adjust your velocity to match the target:
+	double velocityTime = velocityDelta.Length() / accel;
+	double velocityAngle = TO_DEG * atan2(velocityDelta.X(), -velocityDelta.Y());
+	velocityTime += AngleDiff(currentAngle, velocityAngle) / turn;
+	// If you are very close,stop trying to adjust:
+	velocityTime *= velocityWeight * velocityWeight;
+	
+	// Focus on matching position or velocity depending on which will take longer.
+	double totalTime = positionTime + velocityTime + TIME_DEADBAND;
+	positionWeight = positionTime / totalTime;
+	velocityWeight = velocityTime / totalTime;
+	double facingWeight = TIME_DEADBAND / totalTime;
+	
+	// Determine the angle we want to face, interpolating smoothly between three options.
+	Point facingGoal = rendezvous.Unit() * positionWeight
+		+ velocityDelta.Unit() * velocityWeight
+		+ target.Facing().Unit() * facingWeight;
+	double targetAngle = TO_DEG * atan2(facingGoal.X(), -facingGoal.Y()) - currentAngle;
+	if(abs(targetAngle) > 180.)
+		targetAngle += (targetAngle < 0. ? 360. : -360.);
+	if(abs(targetAngle) < turn)
+		command.SetTurn(targetAngle / turn);
+	else
+		command.SetTurn(targetAngle < 0. ? -1. : 1.);
+	
+	// Determine whether to apply thrust.
+	Point drag = ship.Velocity() * (ship.Attributes().Get("drag") / mass);
+	if(ship.Attributes().Get("reverse thrust"))
+	{
+		Point a = (unit * (-ship.Attributes().Get("reverse thrust") / mass) - drag).Unit();
+		double direction = positionWeight * positionDelta.Dot(a) / POSITION_DEADBAND
+			+ velocityWeight * velocityDelta.Dot(a) / VELOCITY_DEADBAND;
+		if(direction > THRUST_DEADBAND)
+		{
+			command |= Command::BACK;
+			return;
+		}
+	}
+	Point a = (unit * accel - drag).Unit();
+	double direction = positionWeight * positionDelta.Dot(a) / POSITION_DEADBAND
+		+ velocityWeight * velocityDelta.Dot(a) / VELOCITY_DEADBAND;
+	if(direction > THRUST_DEADBAND)
 		command |= Command::FORWARD;
 }
 
@@ -1165,7 +1261,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
-			CircleAround(ship, command, *target);
+			Swarm(ship, command, *target);
 			command |= Command::SCAN;
 		}
 	}
