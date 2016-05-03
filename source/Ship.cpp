@@ -336,6 +336,11 @@ void Ship::FinishLoading()
 		shared_ptr<const Ship> parent = GetParent();
 		Recharge(!parent || currentSystem == parent->currentSystem);
 	}
+	else
+	{
+		isDisabled = true;
+		isDisabled = IsDisabled();
+	}
 }
 
 

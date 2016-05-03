@@ -62,7 +62,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		else
 			government = "(No government)";
 	}
-	double alpha = min(.5, max(0., .6 - position.Length() * .001));
+	double alpha = min(.5, max(0., .6 - (position.Length() - radius) * .001));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 	
 	if(!system)

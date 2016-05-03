@@ -260,8 +260,17 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	// it, disabling it is sufficient (you do not have to kill it).
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
-			if((ship->GetSystem() == playerSystem && !ship->IsDisabled()) ^ mustAccompany)
+		{
+			// Special case: if a ship has been captured, it counts as having
+			// been evaded.
+			auto it = actions.find(ship.get());
+			bool isCapturedOrDisabled = ship->IsDisabled();
+			if(it != actions.end())
+				isCapturedOrDisabled |= (it->second & ShipEvent::CAPTURE);
+			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
+			if((isHere && !isCapturedOrDisabled) ^ mustAccompany)
 				return false;
+		}
 	
 	if(!succeedIf)
 		return true;
