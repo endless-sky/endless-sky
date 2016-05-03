@@ -142,13 +142,20 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 	}
 	else
 	{
-		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		int playerShipWidth = PlayerShipWidth();
+		Point drawPoint = Point(Screen::Right() - SideWidth() - playerShipWidth - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		
+		const Font &font = FontSet::Get(14);
+		Color bright = *GameData::Colors().Get("bright");
+		static const string label = "Details:";
+		font.Draw(label, drawPoint + Point(playerShipWidth/2 - font.Width(label)/2 ,0) , bright);
+		drawPoint.Y() += 30;
 		
 		DrawShip(*selectedShip, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true);
-		drawPoint += Point(0, TileSize());
+		drawPoint.Y() += TileSize();
 		
 		info.DrawAttributes(drawPoint);
-		drawPoint += Point(0, info.AttributesHeight() + 10);
+		drawPoint.Y() += info.AttributesHeight() + 10;
 		
 		info.DrawOutfits(drawPoint);
 		drawPoint += Point(0, info.OutfitsHeight() + 10);

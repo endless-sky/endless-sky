@@ -277,7 +277,7 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 	}
 	else 
 	{
-		Point drawPoint = Point(Screen::Right() - SIDE_WIDTH - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
 		DrawOutfit(*selectedOutfit, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true, false);
 		drawPoint += Point(0, TileSize());

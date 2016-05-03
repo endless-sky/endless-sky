@@ -104,13 +104,21 @@ protected:
 		const Outfit *outfit;
 	};
 	
+	int ShipsHere() const;
+	
+	// These can change based on configuration or resolution.
 	int DetailsWidth() const;
+	int PlayerShipWidth() const;
+	int SideWidth() const;
+	int IconCols() const;
 	
 protected:
-	static const int SIDE_WIDTH = 250;
-	static const int DETAILS_WIDTH = 250;
 	static const int SHIP_SIZE = 250;
+	static const int DETAILS_WIDTH = 250;
 	static const int OUTFIT_SIZE = 180;
+
+	static const int ICON_TILE = 62;
+	static const int ICON_SIZE = ICON_TILE - 8;
 	
 protected:
 	PlayerInfo &player;
@@ -125,14 +133,17 @@ protected:
 	
 	double mainScroll = 0;
 	double sideScroll = 0;
+	double playerShipScroll = 0;
 	double detailsScroll = 0;
 	
 	mutable int maxMainScroll = 0;
 	mutable int maxSideScroll = 0;
+	mutable int maxPlayerShipScroll = 0;
 	mutable int maxDetailsScroll = 0;
 	
 	bool dragMain = true;
 	bool dragDetails = true;
+	bool dragPlayerShip = true;
 	mutable int mainDetailHeight = 0;
 	mutable int sideDetailHeight = 0;
 	bool scrollDetailsIntoView = false;
