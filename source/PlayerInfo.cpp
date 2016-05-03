@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
 
@@ -503,6 +504,32 @@ const Planet *PlayerInfo::GetPlanet() const
 
 
 
+// If the player is landed, return the stellar object they are on.
+const StellarObject *PlayerInfo::GetStellarObject() const
+{
+	if(!system || !planet)
+		return nullptr;
+	
+	double closestDistance = numeric_limits<double>::infinity();
+	const StellarObject *closestObject = nullptr;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet() == planet)
+		{
+			if(!Flagship())
+				return &object;
+			
+			double distance = Flagship()->Position().Distance(object.Position());
+			if(distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestObject = &object;
+			}
+		}
+	return closestObject;
+}
+
+
+
 // Check if the player must take off immediately.
 bool PlayerInfo::ShouldLaunch() const
 {
@@ -767,8 +794,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDisabled())
-			ship->UnloadBays();
+		ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
@@ -956,7 +982,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled() || ship->GetSystem() != system)
+		if(ship->IsParked() || ship->IsDisabled())
 		{
 			++it;
 			continue;
