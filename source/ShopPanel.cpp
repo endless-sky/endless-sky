@@ -594,9 +594,9 @@ bool ShopPanel::Click(int x, int y)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
-	if(x >= Screen::Right() - SideWidth() && y >= Screen::Bottom() - 70)
+	if(x >= Screen::Right() - DETAILS_WIDTH && y >= Screen::Bottom() - 70)
 	{
-		x -= Screen::Right() - SideWidth();
+		x -= Screen::Right() - DETAILS_WIDTH;
 		if(x < 80)
 			DoKey(SDLK_b);
 		else if(x < 160)
