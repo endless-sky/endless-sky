@@ -573,13 +573,13 @@ void MapDetailPanel::DrawOrbits() const
 		scale *= 120. / maxDistance;
 	
 	static const Color habitColor[7] = {
-		Color(.4, 0., 0., 0.),
-		Color(.3, .3, 0., 0.),
-		Color(0., .4, 0., 0.),
-		Color(0., .3, .4, 0.),
-		Color(0., 0., .5, 0.),
-		Color(.2, .2, .2, 0.),
-		Color(1., 1., 1., 0.)
+		Color(.4, .2, .2, 1.),
+		Color(.3, .3, 0., 1.),
+		Color(0., .4, 0., 1.),
+		Color(0., .3, .4, 1.),
+		Color(.1, .2, .5, 1.),
+		Color(.2, .2, .2, 1.),
+		Color(1., 1., 1., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
