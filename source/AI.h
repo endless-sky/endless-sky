@@ -56,7 +56,8 @@ private:
 	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double slow = .2);
 	static void PrepareForHyperspace(Ship &ship, Command &command);
-	static void CircleAround(Ship &ship, Command &command, const Ship &target);
+	static void Swarm(Ship &ship, Command &command, const Ship &target);
+	static void KeepStation(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
 	void DoSurveillance(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships) const;
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
