@@ -114,11 +114,13 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// it is one step before the end.
 		vector<const System *> &plan = player.TravelPlan();
 		const System *source = plan.empty() ? player.GetSystem() : plan.front();
+		const System *next = nullptr;
 		Point previousUnit = Point(0., -1.);
 		if(!plan.empty() && !(mod & KMOD_SHIFT))
 		{
 			previousUnit = plan.front()->Position();
 			plan.erase(plan.begin());
+			next = source;
 			source = plan.empty() ? player.GetSystem() : plan.front();
 			previousUnit = (previousUnit - source->Position()).Unit();
 		}
@@ -129,11 +131,12 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
 		const vector<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
 		
-		const System *next = nullptr;
 		double bestAngle = 2. * PI;
 		for(const System *it : links)
 		{
 			if(!player.HasSeen(it))
+				continue;
+			if(!(hasJumpDrive || player.HasVisited(it) || player.HasVisited(source)))
 				continue;
 			
 			Point unit = (it->Position() - here).Unit();

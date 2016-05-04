@@ -1928,7 +1928,9 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double shieldFraction = 1. - weapon.Piercing();
 	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shieldDamage > shields)
+	if(shields <= 0.)
+		shieldFraction = 0.;
+	else if(shieldDamage > shields)
 	    shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	hull -= hullDamage * (1. - shieldFraction);
