@@ -1246,3 +1246,62 @@ mission "Terraforming 5"
 			`	Amy says, "It will take a year or two for things to begin to settle down. Then we can figure out what our next steps should be."`
 			`	"I just hope we haven't made things worse than they were," says Alaric. He hands you your payment of <payment>. "Anyway, thanks for your help, <first>. It sounds like there's nothing more to be done here for the time being."`
 		event "terraforming Rand"
+
+ "Building Skytower [1]"
+	name "Building Skytower"
+	description "Escort a convoy of freighters to <destination>, where they will pick up materials for an new skytower on Earth."
+	minor
+	source earth
+	destination alphard
+	to offer
+		random < 10
+                reputation republic: 1<
+                has "event: war ends: done"
+	passengers 2
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, you notice people gathered by windows facing East. You walk to one of the less crowded windows and notice a tall black tower jutting out of the ground. This is no small feat of engineering, as the building dwarfes the others around it. It is a skytower`
+                        `As you are gasing out of the window, a man in a navy uniform walks up next to you. "Magnificent, isn't it?" He asks"`
+			choice
+				`	"Yes, indeed."`
+				`	"Is this a skytower?"`
+				
+			`	"It is," he says, "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, this planet is turning into a city world. On top of that, the emmisions from the billions of people on this world are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster."`
+			choice
+				`	"This is scary stuff. Is there any way I can help?"`
+                                `.      "Wow. What can we do?"`
+                       `        "There is somthing you can do. We need some cargo ships escorted to Alphard to pick up some super-strong materials we will use to build this." He gestures toward the tower. "I also need you to bring some scientists there as well. Are you up to the challange?"`
+                        choice
+                                `       "Yes I am"`
+                                accept
+				`       "Sorry, but I have somthing urgent to do"` 
+                                decline	
+			
+	
+	on complete
+		payment 200000
+
+
+
+mission "Expedition to Hope 2"
+	landing
+	name "Expedition to Hope"
+	description "Transport the team of scientists home to <destination>."
+	source
+		Hope
+	destination
+		distance 2 5
+	to offer
+		has "Expedition to Hope 1: done"
+	passengers 4
+	
+	on offer
+		conversation
+			`You fly around the planet to several different sites that the scientists have identified as good places for their equipment. They also make some deep radar scans of the glaciers. "That's my old house, down there," says one of the scientists, pointing to the radar picture of one of the buried villages. "Under thirty meters of ice, now."`
+			`	The lead scientist hands you forty thousand credits, and says, "Here's the first part of your payment. Now we need to get home to <planet>. I'll pay you the rest once we get there."`
+				accept
+	
+	on complete
+		payment 40000
+		dialog `You drop the team of scientists off on <planet>. They thank you for helping them out, and pay you <payment>.`
