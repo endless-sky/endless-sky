@@ -1247,8 +1247,8 @@ mission "Terraforming 5"
 			`	"I just hope we haven't made things worse than they were," says Alaric. He hands you your payment of <payment>. "Anyway, thanks for your help, <first>. It sounds like there's nothing more to be done here for the time being."`
 		event "terraforming Rand"
 
- "Building Skytower [1]"
-	name "Building Skytower"
+ "Building Skytower 1"
+	name "Building Skytower [1]"
 	description "Escort a convoy of freighters to <destination>, where they will pick up materials for an new skytower on Earth."
 	minor
 	source earth
@@ -1284,24 +1284,24 @@ mission "Terraforming 5"
 
 
 
-mission "Expedition to Hope 2"
+mission "Building Skytower 2"
 	landing
-	name "Expedition to Hope"
+	name "building skytower [2]"
 	description "Transport the team of scientists home to <destination>."
 	source
-		Hope
+		alphard
 	destination
-		distance 2 5
+		earth
 	to offer
-		has "Expedition to Hope 1: done"
+		has "building skytower 1: done"
 	passengers 4
 	
 	on offer
 		conversation
-			`You fly around the planet to several different sites that the scientists have identified as good places for their equipment. They also make some deep radar scans of the glaciers. "That's my old house, down there," says one of the scientists, pointing to the radar picture of one of the buried villages. "Under thirty meters of ice, now."`
-			`	The lead scientist hands you forty thousand credits, and says, "Here's the first part of your payment. Now we need to get home to <planet>. I'll pay you the rest once we get there."`
+			``
+			``
 				accept
 	
 	on complete
-		payment 40000
-		dialog `You drop the team of scientists off on <planet>. They thank you for helping them out, and pay you <payment>.`
+		payment 400000
+		dialog ``
