@@ -615,8 +615,9 @@ bool ShopPanel::Click(int x, int y)
 		if(y < Screen::Bottom() - 70 && y >= Screen::Bottom() - 90)
 			return Scroll(0, -4);
 	}
-	else if( (x >= Screen::Right() - SideWidth() - 20 && x < Screen::Right() - SideWidth()) 
-		|| (x >= Screen::Right() - SideWidth() - DetailsWidth() - 20 && x < Screen::Right() - SideWidth() - DetailsWidth()))
+	else if((x >= Screen::Right() - SideWidth() - 20 && x < Screen::Right() - SideWidth()) 
+		||  (x >= Screen::Right() - SideWidth() - DetailsWidth() - 20 && x < Screen::Right() - SideWidth() - DetailsWidth()) 
+		||  (x >= Screen::Right() - SideWidth() - DetailsWidth() - PlayerShipWidth() - 20 && x < Screen::Right() - SideWidth() - DetailsWidth() - PlayerShipWidth()))
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
