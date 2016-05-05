@@ -41,7 +41,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t curren
 
 // Create a new mortgage of the given amount.
 Mortgage::Mortgage(int64_t principal, int creditScore, int term)
-	: type(creditScore < 0 ? "Fine" : creditScore > 800 ? "Death Benefits" : "Mortgage"),
+	: type(creditScore <= 0 ? "Fine" : creditScore > 800 ? "Death Benefits" : "Mortgage"),
 	principal(principal),
 	interest((600 - creditScore / 2) * .00001),
 	interestString("0." + to_string(600 - creditScore / 2) + "%"),

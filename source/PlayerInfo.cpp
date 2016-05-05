@@ -1450,6 +1450,26 @@ const map<string, int> &PlayerInfo::Conditions() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System *system) const
 {
+	for(const Mission &mission : availableJobs)
+	{
+		if(mission.Waypoints().count(system))
+			return true;
+		for(const Planet *planet : mission.Stopovers())
+			if(planet->GetSystem() == system)
+				return true;
+	}
+	
+	for(const Mission &mission : missions)
+	{
+		if(!mission.IsVisible())
+			continue;
+		if(mission.Waypoints().count(system))
+			return true;
+		for(const Planet *planet : mission.Stopovers())
+			if(planet->GetSystem() == system)
+				return true;
+	}
+	
 	return (seen.count(system) || KnowsName(system));
 }
 
@@ -1487,7 +1507,7 @@ bool PlayerInfo::KnowsName(const System *system) const
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
 			return true;
 	
 	return false;
