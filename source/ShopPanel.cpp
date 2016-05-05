@@ -565,7 +565,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(dragMain)
 			MainUp();
 		else
-			SideSelect(-4);
+			SideSelect(-IconCols());
 		return true;
 	}
 	else if(key == SDLK_DOWN)
@@ -573,7 +573,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(dragMain)
 			MainDown();
 		else
-			SideSelect(4);
+			SideSelect(IconCols());
 		return true;
 	}
 	else if(key == SDLK_PAGEUP)
