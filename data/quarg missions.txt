@@ -156,7 +156,7 @@ mission "Quarg reverts fleet"
 	on offer
 		event "quarg fleet normal"
 
-ission "Quarg buffs fleet"
+mission "Quarg buffs fleet"
 	landing
 	invisible
 	repeat
