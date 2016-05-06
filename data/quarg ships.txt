@@ -104,7 +104,7 @@ ship "Quarg Elderdragon"
 		category "Heavy Warship"
 		"cost" 5900000
 		"shields" 1200000
-		"hull" 10000
+		"hull" 120000
 		"required crew" 200
 		"bunks" 235
 		"mass" 400
