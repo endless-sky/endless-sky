@@ -115,7 +115,6 @@ mission "First Contact: Kuwaru Efreti"
 mission "Quarg react to being farmed"
 	landing
 	invisible
-	repeat
 	to offer
 		"reputation: Quarg" < -100
 	on offer
@@ -156,7 +155,49 @@ mission "Quarg reverts fleet"
 		"reputation: Quarg" > 5
 	on offer
 		event "quarg fleet normal"
-		
+
+ission "Quarg buffs fleet"
+	landing
+	invisible
+	repeat
+	to offer
+		has "Quarg react to being farmed: offered"
+		"reputation: Quarg" > -100
+	on offer
+		event "quarg fleet buff"
+
+mission "quarg repopulation" #They come back once more, killing them now means they are gone forever unless their fleets weren't reverted
+	landing
+	invisible
+	to offer
+		has "Quarg react to being farmed: done"
+		"reputation: Quarg" < -100
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Enif
+		ship "Quarg Elderdragon" "Protector of Saai Far"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalmelik
+		ship "Quarg Elderdragon" "Demonic Spider"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalsuud
+		ship "Quarg Elderdragon" "Herald of Entropy"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system "Hevru Hai"
+		ship "Quarg Elderdragon" "Lance of Eden"
+	npc kill
+		government Quarg
+		personality nemesis heroic staying
+		system "Dokdobaru"
+		ship "Quarg Elderdragon" "Keeper of Purity"
+
 mission "quarg bounty"
 	landing
 	repeat
