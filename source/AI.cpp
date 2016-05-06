@@ -194,6 +194,7 @@ void AI::Clean()
 	governmentActions.clear();
 	playerActions.clear();
 	shipStrength.clear();
+	swarmCount.clear();
 }
 
 
@@ -256,6 +257,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			continue;
 		}
 		
+		const Government *gov = it->GetGovernment();
 		bool isPresent = (it->GetSystem() == player.GetSystem());
 		bool isStranded = IsStranded(*it);
 		if(isStranded || it->IsDisabled())
@@ -267,7 +269,6 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 			Ship *firstAlly = nullptr;
 			bool selectNext = false;
 			Ship *nextAlly = nullptr;
-			const Government *gov = it->GetGovernment();
 			for(const auto &ship : ships)
 			{
 				if(ship->IsDisabled() || !ship->IsTargetable() || ship->GetSystem() != it->GetSystem())
@@ -330,7 +331,46 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		
 		const Personality &personality = it->GetPersonality();
 		shared_ptr<Ship> parent = it->GetParent();
+		shared_ptr<const Ship> target = it->GetTargetShip();
 		
+		if(isPresent && personality.IsSwarming())
+		{
+			parent.reset();
+			it->SetParent(parent);
+			if(!target || target->IsHyperspacing() || !target->IsTargetable()
+					|| target->GetSystem() != it->GetSystem() || !Random::Int(600))
+			{
+				if(target)
+				{
+					auto sit = swarmCount.find(target.get());
+					if(sit != swarmCount.end() && sit->second > 0)
+						--sit->second;
+					it->SetTargetShip(shared_ptr<Ship>());
+				}
+				int lowestCount = 7;
+				for(const shared_ptr<Ship> &other : ships)
+					if(!other->GetPersonality().IsSwarming() && !other->GetGovernment()->IsEnemy(gov)
+							&& other->GetSystem() == it->GetSystem() && other->IsTargetable()
+							&& !other->IsHyperspacing())
+					{
+						int count = swarmCount[other.get()] + Random::Int(4);
+						if(count < lowestCount)
+						{
+							it->SetTargetShip(other);
+							lowestCount = count;
+						}
+					}
+				target = it->GetTargetShip();
+				if(target)
+					++swarmCount[target.get()];
+			}
+			if(target)
+				Swarm(*it, command, *target);
+			else if(it->Zoom() == 1.)
+				Refuel(*it, command);
+			it->SetCommands(command);
+			continue;
+		}
 		if(isPresent && personality.IsSurveillance())
 		{
 			DoSurveillance(*it, command, ships);
@@ -346,7 +386,6 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		
 		// Fire any weapons that will hit the target. Only ships that are in
 		// the current system can fire.
-		shared_ptr<const Ship> target = it->GetTargetShip();
 		if(isPresent)
 		{
 			command |= AutoFire(*it, ships);
@@ -377,7 +416,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 				parent.reset();
 				it->SetParent(parent);
 				for(const auto &other : ships)
-					if(other->GetGovernment() == it->GetGovernment() && !other->IsDisabled()
+					if(other->GetGovernment() == gov && !other->IsDisabled()
 							&& other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
 					{
 						parent = other;
@@ -450,7 +489,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// From here down, we're only dealing with ships that have a "parent"
 		// which is in the same system as them. If you're an enemy of your
 		// "parent," you don't take orders from them.
-		else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(it->GetGovernment()))
+		else if(personality.IsStaying() || parent->GetGovernment()->IsEnemy(gov))
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
@@ -692,7 +731,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			target.reset();
 		else
 		{
-			Swarm(ship, command, *target);
+			CircleAround(ship, command, *target);
 			if(!ship.GetGovernment()->IsPlayer())
 				command |= Command::SCAN;
 		}
@@ -1058,17 +1097,24 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 
 	
+void AI::CircleAround(Ship &ship, Command &command, const Ship &target)
+{
+	Point direction = target.Position() - ship.Position();
+	command.SetTurn(TurnToward(ship, direction));
+	if(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.)
+		command |= Command::FORWARD;
+}
+
+
+	
 void AI::Swarm(Ship &ship, Command &command, const Ship &target)
 {
-	// This is not the behavior I want, but it's reasonable.
 	Point direction = target.Position() - ship.Position();
 	double rendezvousTime = Armament::RendezvousTime(direction, target.Velocity(), ship.MaxVelocity());
 	if(rendezvousTime != rendezvousTime || rendezvousTime > 600.)
 		rendezvousTime = 600.;
 	direction += rendezvousTime * target.Velocity();
-	command.SetTurn(TurnToward(ship, direction));
-	if(ship.Facing().Unit().Dot(direction) >= 0. && direction.Length() > 200.)
-		command |= Command::FORWARD;
+	MoveTo(ship, command, target.Position() + direction, 50., 2.);
 }
 
 
@@ -1261,7 +1307,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, const list<shared_ptr<Ship
 			ship.SetTargetShip(shared_ptr<Ship>());
 		else
 		{
-			Swarm(ship, command, *target);
+			CircleAround(ship, command, *target);
 			command |= Command::SCAN;
 		}
 	}
