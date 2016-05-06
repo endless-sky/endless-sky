@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Point.h"
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -104,7 +105,7 @@ protected:
 		const Outfit *outfit;
 	};
 	
-	int ShipsHere() const;
+	bool ShipIsHere(std::shared_ptr<Ship> ship) const;
 	
 	// These can change based on configuration or resolution.
 	int DetailsWidth() const;
@@ -127,7 +128,11 @@ protected:
 	Ship *playerShip = nullptr;
 	Ship *dragShip = nullptr;
 	Point dragPoint;
-	std::set<Ship *> playerShips;
+	// Selected ships in side panel
+	std::set<Ship *> playerShips; 
+	// Total number of player ships in the shop
+	mutable int shipsHere = 0; 
+	// Selected ship or outfit in the main panel
 	const Ship *selectedShip = nullptr;
 	const Outfit *selectedOutfit = nullptr;
 	

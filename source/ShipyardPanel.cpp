@@ -142,13 +142,12 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 	}
 	else
 	{
-		int playerShipWidth = PlayerShipWidth();
-		Point drawPoint = Point(Screen::Right() - SideWidth() - playerShipWidth - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
+		Point drawPoint = Point(Screen::Right() - SideWidth() - PlayerShipWidth() - info.PanelWidth(), Screen::Top() + 10. - detailsScroll);
 		
 		const Font &font = FontSet::Get(14);
 		Color bright = *GameData::Colors().Get("bright");
 		static const string label = "Details:";
-		font.Draw(label, drawPoint + Point(playerShipWidth/2 - font.Width(label)/2 ,0) , bright);
+		font.Draw(label, drawPoint + Point(DetailWidth()/2 - font.Width(label)/2 ,0) , bright);
 		drawPoint.Y() += 30;
 		
 		DrawShip(*selectedShip, drawPoint + Point(DetailsWidth()/2, TileSize()/2), true);
@@ -365,7 +364,7 @@ void ShipyardPanel::SellShip()
 	playerShips.clear();
 	playerShip = nullptr;
 	for(shared_ptr<Ship> ship : player.Ships())
-		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+		if(ShipIsHere(ship))
 		{
 			playerShip = ship.get();
 			break;

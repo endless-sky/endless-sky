@@ -776,7 +776,7 @@ void OutfitterPanel::CheckRefill()
 	int count = 0;
 	for(const auto &ship : player.Ships())
 	{
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+		if(!ShipIsHere(ship))
 			continue;
 		
 		++count;
