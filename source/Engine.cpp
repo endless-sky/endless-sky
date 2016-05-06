@@ -552,7 +552,7 @@ void Engine::Draw() const
 		
 		for(int i = 0; i < 4; ++i)
 		{
-			PointerShader::Draw(target.center, a.Unit(), 10., 10., -target.radius,
+			PointerShader::Draw(target.center, a.Unit(), 12., 14., -target.radius,
 				Radar::GetColor(target.type));
 			a += da;
 		}
