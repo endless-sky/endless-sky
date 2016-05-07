@@ -1014,7 +1014,7 @@ void Engine::CalculateStep()
 	{
 		// The asteroids can collide with projectiles, the same as any other
 		// object. If the asteroid turns out to be closer than the ship, it
-		// shields the ship (unless the projectile has  blast radius).
+		// shields the ship (unless the projectile has a blast radius).
 		Point hitVelocity;
 		double closestHit = 0.;
 		shared_ptr<Ship> hit;
