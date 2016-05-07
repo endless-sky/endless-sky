@@ -24,7 +24,7 @@ mission "FWC Scouting 1"
 	
 	on offer
 		conversation
-			`It was a close battle, and could have gone very differently if it were not for the Wolf Pack strike that happened before you arrived and that disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
+			`It was a close battle, and could have gone very differently if not for the Wolf Pack strike that happened before you arrived and disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
 			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon, before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
 			choice
 				`	"No problem."`
@@ -32,7 +32,7 @@ mission "FWC Scouting 1"
 				`	"Sure, but first, can you tell me how the Wolf Pack was able to do so much damage to the Navy?"`
 			`	"As I said," says JJ, "they've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
 			label freya
-			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Rand system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
+			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from Rand. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
 				accept
 	
 	npc
@@ -63,7 +63,7 @@ mission "FWC Attack Kaus Borealis"
 	on offer
 		event "fwc attack kaus borealis"
 		conversation
-			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut out territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
+			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut our territory in half, a lot of these ships were cut off from their chain of command and just went and took shelter wherever they could. It took a bit of doing to gather them all together, and unless can manage another stirring victory, they'll begin to scatter again."`
 			choice
 				`	"Are you saying we risk having members of our militia desert?"`
 					goto desert
@@ -193,7 +193,7 @@ mission "FWC Cebalrai 1"
 			`As you bring your ship in for a landing, it occurs to you that this is the first time that you have fought a battle for a star system that had not voluntarily decided to join the Free Worlds, and you are not sure what to do next. Fortunately, soon more Free Worlds ships begin arriving, and one of them is carrying Alondo. Tomek is with him. "Hi there, <first>," says Tomek. "Bet you didn't expect to see me again, huh?"`
 			`	Alondo says, "<first>, I'll leave you and Tomek to catch up. I should go talk to the governor immediately. There's no way the locals will have failed to notice the nuclear explosions happening in space right over their heads."`
 			choice
-				`	"What? We weren't using nukes, just conventional weapons."`
+				`	"What? We weren't using nukes, just conventional weapons... right?"`
 					goto conventional
 				`	"Wait, is that what the Wolf Pack was using?"`
 					goto wolf
@@ -208,7 +208,7 @@ mission "FWC Cebalrai 1"
 			choice
 				`	"Weren't you under house arrest?"`
 				`	"So, does the fact that you're here mean the Senate pardoned you?"`
-			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear you're on the Council now too."`
 			choice
 				`	"So, what's our next step?"`
 					goto end
@@ -338,10 +338,10 @@ mission "FWC Nuke Supply 1"
 				`	"Do you think we have any chance at a peace settlement?"`
 					goto peace
 			label destroy
-			`	"That would be an awful precedent," says Alondo, "perhaps worse than the fact we're using nukes. If civilian populations become a legitimate target, any of our worlds could be attacked at any time. And it's not like there's any way to defend a world from orbital bombardment. No one would ever be able to feel safe in their own homes again."`
+			`	"That would be an awful precedent," says Alondo, "perhaps worse than the fact we're using nukes. If civilian populations become a legitimate target, any of our worlds could be attacked at any time. And it's not like there's any way to defend a world from orbital bombardment. No one would ever be able to feel safe in their own homes again. Most importantly, none of our captains would be willing to ever to that, barraging the very cities they swore to defend 'till death."`
 				goto next
 			label peace
-			`	"I hope so," says Alondo. "We'll let them keep shooting at us for a while, to vent their anger and let them prove their point. Then once they see the Navy isn't going to rescue them, we'll negotiate. That's really our only alternative. I do not want to be the person who authorizes the first attack on civilian targets since the dawn of the Republic."`
+			`	"I hope so," says Alondo. "We'll let them keep shooting at us for a while, to vent their anger and let them prove their point. Then once they see the Navy isn't going to rescue them, we'll negotiate. That's really our only alternative. I do not want to be the  who authorizes the first attack on civilian targets since the dawn of the Republic, and isn't a pirate."`
 				goto next
 			label next
 			`	You wait for about an hour. Meanwhile, more Free Worlds ships continue to enter the system, one of which is carrying Tomek. He radios you and says, "I think we've got things under control here, which means there's a new mission for you. You probably aren't going to like this, but we need you to escort a freighter from Oblivion. Part of our ongoing deal with the Devil: a shipment of uranium headed for Greenrock."`
@@ -401,7 +401,7 @@ mission "FWC Nuke Supply 1B"
 	
 	on offer
 		conversation
-			`You land on <origin> and meet up with the grim-faced captain of a Bulk Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on Council know what you're doing."`
+			`You land on <origin> and meet up with the grim-faced captain of a Bulk Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on the Council know what you're doing."`
 				accept
 	
 	npc accompany save
@@ -427,7 +427,7 @@ mission "FWC Nuke Supply 1C"
 	
 	on offer
 		conversation
-			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
+			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and then reload it with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
 				accept
 	
 	npc accompany save
@@ -463,7 +463,7 @@ mission "FWC Diplomacy 1"
 			`	He laughs. "I'm afraid that's not possible. Unlike most missile systems, we haven't yet developed any sort of feed system that would let you fire multiple missiles from the same gun port. So, it's a weapon you can only fire once from a given port. But on the plus side, two of them are enough to bring down the shields on even the largest Navy vessel."`
 				goto next
 			label no
-			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no holds barred struggle for survival."`
+			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no-holds-barred struggle for survival."`
 				goto next
 			label fifi
 			`	"Yes," he says, "Fifi is the leader of the Wolf Pack. And she is an absolutely ferocious individual. I assure you that you do not want to be responsible for crossing her. Not that you'll ever have to, of course, because we're all on the same side here." He grins.`
@@ -493,7 +493,7 @@ mission "FWC Diplomacy 1B"
 		event "fw safe passage starts"
 		event "fw safe passage ends" 7
 		conversation
-			`When you meet up with Alondo, he seems excited and optimistic. "The Republic has agreed to one week of safe passage," he says, "just enough time to get us to Earth and back. And what's more, I told them that one of our terms would be a mutual release of all prisoners of war, including Katya, and they agreed."`
+			`When you meet up with Alondo, he seems excited and optimistic. "The Republic has agreed to one week of safe passage for your fleet," he says, "just enough time to get us to Earth and back. And what's more, I told them that one of our terms would be a mutual release of all prisoners of war, including Katya, and they agreed."`
 			choice
 				`	"That's great news! Let's get going!"`
 					goto escort
@@ -537,7 +537,7 @@ mission "FWC Diplomacy 1C"
 		event "fw safe passage ends" 1
 		conversation
 			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
-			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
+			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
 			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds are prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
 			`	Xao gestures to the guards, and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn-out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
 			choice
@@ -845,8 +845,8 @@ mission "FWC Checkmate 1"
 		"salary: Free Worlds" = 6000
 		conversation
 			`Tomek and Alondo meet you when you land. Tomek says, "Good work aiding in the defense. Now we need to move before the Navy has time to regroup. And the Senate has decided that you will be in charge of the fleet that makes our counterattack."`
-			`	Alondo says, "They have also approved a salary increase for you, to six thousand credits per diem. I know that's probably still not enough, but we are running a bit low on cash."`
-			`	"One other thing," says Tomek. "I don't know how you'll feel about this, but I received word from Solace that they have nukes for sale if you want any. I'd advise against it, but it's up to you. Also, since you will be the flagship of our assault, you should make any improvements you feel are necessary to your ship. Then meet us back here, in the spaceport. Of course, if you're ready to go immediately that's fine, too."`
+			`	Alondo says, "They have also approved a salary increase for you, to six thousand credits per diem. I know that's probably still not enough, but we're running a bit low on cash."`
+			`	"One other thing," says Tomek. "I don't know how you'll feel about this, but I received word from Solace that they have nukes for sale if you want any. I'd advise against it, but it's up to you. Also, since you will be the flagship of our assault, you should make any improvements you feel are necessary to your ship. Then meet us back here, in the spaceport. Of course, if you're ready to go immediately, that's fine too."`
 
 
 
@@ -1010,7 +1010,7 @@ mission "FWC Checkmate 1C"
 				`	"Understood. We will depart immediately."`
 					accept
 				`	"Are we really sure we want to attack Earth?"`
-			`	"Have they given us any other choice?" asks Tomek. "We tried diplomacy. And we cannot hope to defeat the entire Navy. So, unless we wish to surrender and all be put on trial as war criminals, we need to press on and gain the upper hand in the only way we can. The Senate and the Council are agreed on this." You have no choice but to follow his orders and to begin getting your fleet ready for the next attack.`
+			`	"Have they given us any other choice?" asks Tomek. "We tried diplomacy. And we cannot hope to defeat the entire Navy. So, unless we wish to surrender and all be put on trial as war criminals, we need to press on and gain the upper hand in the only way we can. The Senate and the rest of the Council are all agreed on this." You have no choice but to follow his orders and to begin getting your fleet ready for the next attack.`
 			``
 			`[Take good care of this fleet, because it will have to last you for the rest of this campaign: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
 				accept
