@@ -29,6 +29,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	static const int DEFAULT_PAYMENT_MULTIPLIER = 450; // Original value: 150;
+	
+	
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, int wear, UI *ui)
 	{
 		Ship *flagship = player.Flagship();
@@ -146,7 +149,7 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		else if(child.Token(0) == "payment")
 		{
 			if(child.Size() == 1)
-				paymentMultiplier += 150;
+				paymentMultiplier += DEFAULT_PAYMENT_MULTIPLIER;
 			if(child.Size() >= 2)
 				payment += child.Value(1);
 			if(child.Size() >= 3)

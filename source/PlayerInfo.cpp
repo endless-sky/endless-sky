@@ -1405,7 +1405,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	{
 		// Combat rating increases when you disable an enemy ship.
 		if(event.ActorGovernment()->IsPlayer())
-			conditions["combat rating"] += event.Target()->RequiredCrew();
+			conditions["combat rating"] += (event.Target()->BaseCost() + 250000) / 500000;
 		// If a ship is disabled, it takes some wear.  
 		event.Target()->IncrementWear(WEAR_WHEN_DISABLED);
 	}

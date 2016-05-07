@@ -226,10 +226,6 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 					center = object.Position();
 	}
 	
-	// Move out a random distance from that object, facing toward it or away.
-	Angle angle = Angle::Random();
-	center += angle.Unit() * (Random::Real() * 2. - 1.);
-	
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
@@ -239,10 +235,15 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 			fighter->SetGovernment(government);
 			fighter->SetName((fighterNames ? fighterNames : names)->Get());
 			fighter->SetPersonality(personality);
+			bool isCarried = false;
 			for(const shared_ptr<Ship> &parent : placed)
 				if(parent->Carry(fighter))
+				{
+					isCarried = true;
 					break;
-			continue;
+				}
+			if(isCarried)
+				continue;
 		}
 		Angle angle = Angle::Random();
 		Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
@@ -307,7 +308,6 @@ void Fleet::Place(const System &system, Ship &ship)
 	}
 	
 	// Move out a random distance from that object, facing toward it or away.
-	center += Angle::Random().Unit() * (Random::Real() * 2. - 1.);
 	Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
 	
 	double velocity = Random::Real() * ship.MaxVelocity();

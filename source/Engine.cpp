@@ -196,6 +196,7 @@ void Engine::Place()
 		
 		Point pos;
 		Angle angle = Angle::Random(360.);
+		Point velocity = angle.Unit();
 		// Any ships in the same system as the player should be either
 		// taking off from the player's planet or nearby.
 		bool isHere = (ship->GetSystem() == player.GetSystem());
@@ -213,10 +214,11 @@ void Engine::Place()
 		else
 		{
 			ship->SetPlanet(nullptr);
-			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+			pos = planetPos + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * planetRadius);
+			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, angle.Unit(), angle);
+		ship->Place(pos, velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);
@@ -552,7 +554,7 @@ void Engine::Draw() const
 		
 		for(int i = 0; i < 4; ++i)
 		{
-			PointerShader::Draw(target.center, a.Unit(), 10., 10., -target.radius,
+			PointerShader::Draw(target.center, a.Unit(), 12., 14., -target.radius,
 				Radar::GetColor(target.type));
 			a += da;
 		}
@@ -1012,7 +1014,7 @@ void Engine::CalculateStep()
 	{
 		// The asteroids can collide with projectiles, the same as any other
 		// object. If the asteroid turns out to be closer than the ship, it
-		// shields the ship (unless the projectile has  blast radius).
+		// shields the ship (unless the projectile has a blast radius).
 		Point hitVelocity;
 		double closestHit = 0.;
 		shared_ptr<Ship> hit;

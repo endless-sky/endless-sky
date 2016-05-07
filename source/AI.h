@@ -56,6 +56,7 @@ private:
 	static bool MoveTo(Ship &ship, Command &command, const Point &target, double radius, double slow);
 	static bool Stop(Ship &ship, Command &command, double slow = .2);
 	static void PrepareForHyperspace(Ship &ship, Command &command);
+	static void CircleAround(Ship &ship, Command &command, const Ship &target);
 	static void Swarm(Ship &ship, Command &command, const Ship &target);
 	static void KeepStation(Ship &ship, Command &command, const Ship &target);
 	static void Attack(Ship &ship, Command &command, const Ship &target);
@@ -102,6 +103,7 @@ private:
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
 	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
+	std::map<const Ship *, int> swarmCount;
 	
 	std::map<const Ship *, int64_t> shipStrength;
 	
