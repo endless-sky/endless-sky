@@ -505,7 +505,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	if(landingPlanet)
 	{
 		landingPlanet = nullptr;
-		zoom = parent.lock() ? -1. : 0.;
+		zoom = parent.lock() ? (-.2 + -.8 * Random::Real()) : 0.;
 	}
 	else
 		zoom = 1.;
@@ -937,7 +937,8 @@ bool Ship::Move(list<Effect> &effects)
 		
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
-		position += velocity * zoom;
+		if(zoom > 0.)
+			position += velocity * zoom;
 		
 		return true;
 	}

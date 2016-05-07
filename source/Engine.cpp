@@ -196,6 +196,7 @@ void Engine::Place()
 		
 		Point pos;
 		Angle angle = Angle::Random(360.);
+		Point velocity = angle.Unit();
 		// Any ships in the same system as the player should be either
 		// taking off from the player's planet or nearby.
 		bool isHere = (ship->GetSystem() == player.GetSystem());
@@ -213,10 +214,11 @@ void Engine::Place()
 		else
 		{
 			ship->SetPlanet(nullptr);
-			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+			pos = planetPos + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * planetRadius);
+			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, angle.Unit(), angle);
+		ship->Place(pos, velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);
