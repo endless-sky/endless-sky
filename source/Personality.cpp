@@ -40,6 +40,7 @@ namespace {
 	static const int COWARD = (1 << 16);
 	static const int VINDICTIVE = (1 << 17);
 	static const int SWARMING = (1 << 18);
+	static const int UNCONSTRAINED = (1 << 19);
 	
 	static const map<string, int> TOKEN = {
 		{"pacifist", PACIFIST},
@@ -60,7 +61,8 @@ namespace {
 		{"frugal", FRUGAL},
 		{"coward", COWARD},
 		{"vindictive", VINDICTIVE},
-		{"swarming", SWARMING}
+		{"swarming", SWARMING},
+		{"unconstrained", UNCONSTRAINED}
 	};
 	
 	double DEFAULT_CONFUSION = 10.;
@@ -240,6 +242,14 @@ bool Personality::IsVindictive() const
 bool Personality::IsSwarming() const
 {
 	return flags & SWARMING;
+}
+
+
+
+
+bool Personality::IsUnconstrained() const
+{
+	return flags & UNCONSTRAINED;
 }
 
 

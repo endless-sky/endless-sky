@@ -53,6 +53,7 @@ public:
 	bool IsCoward() const;
 	bool IsVindictive() const;
 	bool IsSwarming() const;
+	bool IsUnconstrained() const;
 	
 	const Point &Confusion() const;
 	void UpdateConfusion();

@@ -695,7 +695,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship, const list<shared_ptr<Ship>> &
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	shared_ptr<const Ship> target = ship.GetTargetShip();
-	if(target && !ship.IsYours())
+	if(target && !ship.IsYours() && !ship.GetPersonality().IsUnconstrained())
 	{
 		Point extrapolated = target->Position() + 120. * (target->Velocity() - ship.Velocity());
 		if(extrapolated.Length() >= MAX_DISTANCE_FROM_CENTER)
