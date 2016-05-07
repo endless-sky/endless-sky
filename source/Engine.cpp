@@ -771,7 +771,7 @@ void Engine::CalculateStep()
 		// create explosions. Eventually ships might create other effects too.
 		// Note that engine flares are handled separately, so that they will be
 		// drawn immediately under the ship.
-		if(!(*it)->Move(effects))
+		if(!(*it)->Move(effects, flotsam))
 			it = ships.erase(it);
 		else
 		{
@@ -902,6 +902,47 @@ void Engine::CalculateStep()
 			++it;
 	}
 	projectiles.splice(projectiles.end(), newProjectiles);
+	
+	// Move the flotsam, which should be drawn underneath the ships.
+	for(auto it = flotsam.begin(); it != flotsam.end(); )
+	{
+		if(!it->Move(effects))
+		{
+			it = flotsam.erase(it);
+			continue;
+		}
+		
+		Ship *collector = nullptr;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
+				continue;
+			
+			const Mask &mask = ship->GetSprite().GetMask(step);
+			if(mask.Contains(it->Position() - ship->Position(), ship->Facing()))
+			{
+				collector = ship.get();
+				break;
+			}
+		}
+		if(collector)
+		{
+			if(it->OutfitType())
+				collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+			else
+				collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+			it = flotsam.erase(it);
+			continue;
+		}
+		
+		// Draw this flotsam.
+		draw[calcTickTock].Add(
+			it->GetSprite(),
+			it->Position() - newCenter,
+			.5 * it->Facing().Unit(),
+			it->Velocity() - newCenterVelocity);
+		++it;
+	}
 	
 	// Keep track of the relative strength of each government in this system. Do
 	// not add more ships to make a winning team even stronger. This is mostly

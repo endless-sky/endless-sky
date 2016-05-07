@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
+#include "Flotsam.h"
 #include "Information.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -135,6 +136,7 @@ private:
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
+	std::list<Flotsam> flotsam;
 	std::list<Effect> effects;
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.
