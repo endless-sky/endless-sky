@@ -76,6 +76,10 @@ License: public-domain
  Taken from morguefile.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
+Files: images/scene/geoscan*
+Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+
 Files: images/scene/loc*
 Copyright: Library of Congress
 License: public-domain
