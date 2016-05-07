@@ -136,13 +136,13 @@ mission "First Quarg Boarding Action"
 					goto selfdestruct 
 
 			label capture
-			`	You tune your sensors to inspect the living areas of the enemy ship, starting at what you're fairly certain is the airlock. It doesn't take long for your heart to sink at what you're seeing. There are literally hundreds of tiny, independent power sources distributed over the ships' internal surfaces. They appear to power some kind of intrusion countermeasures. Maybe with 1000 marines you would have a prayer of capturing this ship. Maybe.`
+			`	You tune your sensors to inspect the living areas of the enemy ship, starting at what you're fairly certain is the airlock. It doesn't take long for your heart to sink at what you're seeing. There are literally hundreds of tiny, independent power sources distributed over the ships' internal surfaces. They appear to power some kind of intrusion countermeasures. Maybe with a thousand marines you would have a prayer of capturing this ship. Maybe.`
 			choice 
 				`	(Ok, keep scanning. Look for a way to open the hull.)`
 					goto hull
 			
 			label hull
-			`	You continue scanning the Quarg ship's hull, looking for the best place to cut it open. There's already significant weapon damage - disabling the ship wasn't easy. You identify a few components: engines, what you think is the shield generator, and some kind of...battery? You activate your salvage cutter and open up some access holes, but the components are locked in place with strong energy anchors, and you can't figure out how to cut their power.`
+			`	You continue scanning the Quarg ship's hull, looking for the best place to cut it open. There's already significant weapon damage - disabling the ship wasn't easy. You identify a few components: engines, what you think is the shield generator, and some kind of...battery? You activate your salvage cutter. It takes an agonizingly long time; the material is like nothing you've ever tried cutting through before.  You eventually succeed in opening some access holes, only to find that the components are locked in place with some king of energy anchors.  You can't figure out how to cut their power.`
 			`	Suddenly your thoughts are interrupted by a flashing light on your ship's comm. It looks like the Quarg want to talk.`
 			choice
 				`	(Ignore the comm and focus on taking this ship apart.)`
