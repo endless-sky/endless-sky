@@ -1784,7 +1784,7 @@ mission "FW Pug 2 Know A"
 					goto true
 				`	"A species to the north of Syndicate space called the Korath."`
 					goto true
-				`	"The Quarg."
+				`	"The Quarg."`
 					goto "quarg drive"
 
 			label "quarg drive"
@@ -1918,7 +1918,7 @@ mission "FW Pug 3 Know"
 	on offer
 		conversation
 			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
-			`	"Yes," says Alondo to a startled Alastair, "Do you have Jump Drives?"
+			`	"Yes," says Alondo to a startled Alastair, "Do you have Jump Drives?"`
 			`	Alastair recovers and says, "We have only seven jump drives, so whatever fleet attacks the Pug can only contain seven ships, eight if you have one. Unless the Quarg or someone else will give you more drives, I suppose. So those ships must be stronger than any ship we have here in Syndicate space, because the Pug are very strong. They obliterated our fleet that had been occupying the Sol system, even though that fleet was armed with the majority of our nuclear arsenal."`
 			choice
 				`	"You're saying you'll provide the jump drives, and we'll provide the ships? Sounds fair enough."`
