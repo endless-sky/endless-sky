@@ -52,7 +52,7 @@ ship "Quarg Skylark"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
-	description "The Skylark is used by the Quarg as a freighter and warship. Although inferior to any true Quarg warvessel the Skylark is more than capable of defending its cargo from attack, and often defends against attacks by less advanced civilizations."
+	description "The Skylark is used by the Quarg as a freighter and warship. Although inferior to any true Quarg warship, the Skylark is more than capable of defending its cargo from attack, and often defends against attacks by less advanced civilizations."
 
 ship "Quarg Wardragon"
 	sprite "ship/wardragon"
@@ -266,7 +266,7 @@ ship "Quarg Battledrake"
 	explode "tiny explosion" 15
 	explode "small explosion" 30
 	explode "medium explosion" 15
-	description "The Battledrake is used by the Quarg as a multi-role fightercraft. Their heavy use of hybrid and integrated systems make them an anomaly among Quarg craft. The Quarg, normally masters of hyper efficient specialization, were forced to build both reactors and capacitors directly into the engine assembly. This unconventional decision seems to have paid off, a single Battledrake is superior to any human warship."
+	description "The Battledrake is used by the Quarg as a multi-role fightercraft. Their heavy use of hybrid and integrated systems make them an anomaly among Quarg craft. The Quarg, normally masters of hyper efficient specialization, were forced to build both reactors and capacitors directly into the engine assembly. This unconventional decision seems to have paid off; a single Battledrake is superior to any human warship."
 
 ship "Quarg Azure Ark"
 	sprite "ship/azureark"
