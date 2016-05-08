@@ -77,7 +77,7 @@ outfit "Quarg Anti-Missile"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
-	description "The standard Quarg anti-missile system is so ubiquitous it lacks a name. Literally called “The Anti-Missile”, “The Anti-Missile System”, or “The Anti-Missile Turret” the Quarg have never seen a need for another missile defense system. Some have hypothesized that the focus on damage over fire rate may give some insight into the Quarg missile technology of the distant past."
+	description "The standard Quarg anti-missile system is so ubiquitous it lacks a name. Literally called “The Anti-Missile”, “The Anti-Missile System”, or “The Anti-Missile Turret”, the Quarg have never seen a need for another missile defense system. Some have hypothesized that the focus on damage over fire rate may give some insight into the Quarg missile technology of the distant past."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
@@ -182,7 +182,7 @@ outfit "Small Graviton Thruster"
 	"reverse thrusting energy" 4
 	"reverse thrusting heat" 2.5
 	"flare sprite" "effect/medium graviton flare"
-	description "These hybrid thrusters were designed to require as few additional outfits for proper functionality as possible. An integrated generator provides on slightly less energy than consumed by the thruster, with a capacitor array to make up the difference."
+	description "These hybrid thrusters were designed to require as few additional outfits for proper functionality as possible. An integrated generator provides slightly less energy than consumed by the thruster, with a capacitor array covering the gap."
 
 outfit "Small Graviton Steering"
 	category "Engines"
@@ -278,4 +278,4 @@ outfit "Quantum-Thermal Shield Charger"
 	"shield generation" 2.25
 	"shield energy" 1.125
 	"cooling" 4.5
-	description "When the Wardrake’s small frame proved unable to handle to thermal output of the newly designed hybrid propulsion systems, the Quarg were forced to innovate further. The result was an energy efficient shield generator powered in part by the vessel’s waste heat"
+	description "When the Wardrake’s small frame proved unable to handle to thermal output of the newly designed hybrid propulsion systems, the Quarg were forced to innovate further. The result was an energy efficient shield generator powered in part by the vessel’s waste heat."
