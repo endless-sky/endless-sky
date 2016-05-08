@@ -927,10 +927,28 @@ void Engine::CalculateStep()
 		}
 		if(collector)
 		{
+			string name;
+			if(collector->IsYours())
+			{
+				if(collector->GetParent())
+					name = "Your ship \"" + collector->Name() + "\" picked up ";
+				else
+					name = "You picked up ";
+			}
 			if(it->OutfitType())
-				collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+			{
+				int amount = -collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+				if(!name.empty())
+					Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
+						+ (amount == 1 ? "." : "s."));
+			}
 			else
-				collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+			{
+				int amount = -collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+				if(!name.empty())
+					Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+						+ " of " + it->CommodityType() + ".");
+			}
 			it = flotsam.erase(it);
 			continue;
 		}
