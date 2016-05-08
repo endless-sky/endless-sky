@@ -10,6 +10,18 @@
 
 phrase "friendly civilian"
 	word
+		"Have you ever heard the song "
+	word
+		"Sad Archie "
+		"Gluttony "
+	word
+		"by 'There Might Be Riots'? "
+	word
+		"I love it!"
+		"It is stuck in my ear... again!"
+
+phrase "friendly civilian"
+	word
 		"May "
 		"Let "
 	word
