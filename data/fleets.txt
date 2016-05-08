@@ -1631,6 +1631,65 @@ fleet "Quarg"
 		"Quarg Skylark"
 	variant
 		"Quarg Wardragon"
+	
+fleet "Quarg Heavy Patrol"
+	government "Quarg"
+	names "quarg"
+	cargo 3
+	personality
+		forbearing heroic
+	variant
+		"Quarg Wardragon"
+		"Quarg Wardragon"
+		"Quarg Wardragon"
+	variant
+		"Quarg Wardragon"
+		"Quarg Wardragon"
+		"Quarg Empyrealdragon"
+		
+fleet "Quarg Battlefleet"
+	government "Quarg"
+	names "quarg"
+	cargo 3
+	personality
+		nemesis heroic forbearing
+	variant #Standard
+		"Quarg Elderdragon"
+		"Quarg Azure Ark" 2
+		"Quarg Battledrake" 10
+		"Quarg Empyrealdragon" 4
+		"Quarg Wardragon" 12
+	variant #Carrier
+		"Quarg Azure Ark" 4
+		"Quarg Battledrake" 20
+		"Quarg Empyrealdragon" 4
+		"Quarg Wardragon" 12
+	variant #Heavy
+		"Quarg Elderdragon"
+		"Quarg Azure Ark" 2
+		"Quarg Battledrake" 10
+		"Quarg Empyrealdragon" 8
+	variant #Light
+		"Quarg Azure Ark" 2
+		"Quarg Battledrake" 10
+		"Quarg Empyrealdragon" 6
+		"Quarg Wardragon" 18
+		
+fleet "Quarg Carrier Patrol"
+	government "Quarg"
+	names "quarg"
+	cargo 3
+	personality
+		heroic forbearing
+	variant #Escorts
+		"Quarg Azure Ark"
+		"Quarg Battledrake" 5
+		"Quarg Empyrealdragon" 1
+		"Quarg Wardragon" 4
+	variant #Fighters
+		"Quarg Azure Ark" 2
+		"Quarg Battledrake" 10
+		"Quarg Wardragon" 4
 
 fleet "Small Pug"
 	government "Pug"
