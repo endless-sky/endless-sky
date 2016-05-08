@@ -871,6 +871,9 @@ mission "FW Pug 1"
 	waypoint "Ascella"
 	to offer
 		has "FW Syndicate Capture 1C: done"
+		or
+			require Hyperdrive
+			require "Scram Drive"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -924,77 +927,6 @@ mission "FW Pug 1 Arabia"
 
 
 
-mission "FW Pug 1 Rand"
-	landing
-	source Rand
-	to offer
-		has "FW Pug 1: active"
-	
-	on offer
-		set "fw know about pug"
-		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens. Each one is holding a metal staff: probably some sort of weapon.`
-			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of the aliens look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
-			choice
-				`	(Stay around and talk to him.)`
-				`	(Take off before I draw the alien's attention.)`
-					flee
-		
-			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
-			`	"What's going on here?" you ask. "Who are these aliens?"`
-			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist
-				`	"What do you think their intentions are?"`
-					goto intentions
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut
-		
-			label resist
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-			choice
-				`	"What do you think their intentions are?"`
-					goto intentions2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
-			label intentions
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
-			label cut
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"What do you think their intentions are?"`
-					goto intentions2
-		
-			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-				goto end
-		
-			label intentions2
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-				goto end
-		
-			label cut2
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-				goto end
-		
-			label end
-			`	"Where did they come from originally?" you ask."`
-			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
-			`	"Do you know how the Pug cut you off?"`
-			`	"Look, I'm no scientist, and I have no idea how Hyperspace links work. Maybe someone on the other end can help you."`
-				decline
-
-
 mission "FW Pug 1 Return"
 	landing
 	to offer
@@ -1024,9 +956,6 @@ mission "FW Pug 2"
 	
 	on offer
 		conversation
-			branch "know about pug"
-				has "fw know about pug"
-
 			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why. Then, more recently, the Syndicate fleet that had been occupying the Sol system retreated to Syndicate space - and the moment the last of their ships left, the hyperspace link disappeared behind them. We think the Syndicate has found a way to alter hyperspace links and is using it to wall themselves in, to escape retribution from the rest of humanity now that their guilt is so conclusively proven."`
 			choice
 				`	"Why don't we just let them go, then?"`
@@ -1052,28 +981,6 @@ mission "FW Pug 2"
 				`	"How do we know the Syndicate is really behind this?"`
 			
 			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing - it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
-				accept
-
-			label "know about pug"
-			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why."`
-			`	"I know why." you interrupt. The silence this statment leaves behind is deafening.`
-			`	Evetuly Katya asks "<first>, is it the Syndicate?"`
-			`	"No, it is an alien race called the Pug. Thay say thay are there to promote peace, but I don't know their true intentions."`
-			`	JJ says, "The Senate had agreed that we must put our differences with the Republic aside, and meet with Parliament to deal with this crisis. But that was before you told us what has really happened."`
-			`	"Where did the Pug come from? And are they attacking Human ships?" Katya asks starting to sound worried.`
-			`	"They came from a system called Deneb, the star out beyond Zeta Aquilae. They didn't attack my ship when I arrived and nothing on the ground looked like it had been damaged." At this Katya looks relived. "There are some people who are resisting the Pug but there wasn't a single Free Worlds ship in orbit or on the ground so they were probably destroyed when the Pug invaded."`
-			`	Alondo contemplates this before speaking up "We can easily stop are own people panicking but we can't use the Net to tell the Republic, they just won't believe it."`
-			choice
-				`	"We should go and warn parliament about the Pug."`
-					goto talk
-				`	"We should ready a battle fleet to defend against the pug."`
-					goto fleet
-
-			label fleet
-			`	"No." JJ shakes his head, "We don't know how powerful Pug ships are and we shouldn't risk a large portion of our fleet being cut off without reinforcements. We need to talk to parliament and get the help of the navy."`
-
-			label talk
-			`	Alondo agrees "We can't fight the Pug on our own. JJ, Freya and Katya can get our people ready to fight whilst <first> and I go talk to Parliament, hopefully we will be able to sort this mess out."`
 				accept
 	
 
@@ -1106,7 +1013,6 @@ mission "FW Pug 2A"
 	passengers 1
 	to offer
 		has "FW Pug 2: done"
-		not "fw know about pug"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1621,7 +1527,6 @@ mission "FW Pug 3C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		set "fw jump fleet ready"
 		conversation
 			`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
 			choice
@@ -1656,6 +1561,180 @@ mission "FW Pug 3C"
 
 
 
+mission "FW Pug 1 Know"
+	landing
+	name "What happened to Rand?"
+	description "Try to determine why communications with the Rand system were cut off. If you cannot reach Rand, at least look for anything odd in the neighboring systems."
+	autosave
+	source "New Tibet"
+	waypoint rand
+	to offer
+		has "FW Syndicate Capture 1C: done"
+		require "Jump Drive"
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		event "pug invasion"
+		event "pug invasion 2" 6
+		event "pug invasion 3" 10
+		event "pug invasion 4" 14
+		conversation
+			`As soon as you land on <origin>, JJ comes running up to your ship. "<first>," he says, "we have serious trouble. A few minutes ago I received a distress call from Rand, then their transmission was cut off. I'm afraid the Syndicate may be expanding into our space."`
+			choice
+				`	"Is our fleet ready to respond?"`
+				`	"What should we do?"`
+			`	"Our fleet is still scattered throughout this quadrant," he says, "and I'll need Katya to command a part of it. Right now I just need you to travel to Rand, if possible, and find out what's going on. It could just be a communications malfunction, but I seriously doubt it. Meanwhile, Katya and Ijs can help me with organizing the fleet."`
+				accept
+	
+	on enter Cebalrai
+		dialog
+			`Based on your previous maps of this sector, there should be a hyperspace link from here to the Rasalhague system. But your sensors show nothing. Something has severed the link.`
+	on enter Ascella
+		dialog
+			`The Ascella system used to be linked to Rasalhague and Delta Capricorni, but no longer. Either the Syndicate has discovered the ability to alter hyperspace links, and is using it to block the Free Worlds from interfering with them, or you have a much stranger problem on your hands...`
+
+
+
+mission "FW Pug 1 Rand"
+	landing
+	source Rand
+	to offer
+		has "FW Pug 1 Know: active"
+	
+	on offer
+		conversation
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens. Each one is holding a metal staff: probably some sort of weapon.`
+			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of the aliens look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
+			choice
+				`	(Stay around and talk to him.)`
+				`	(Take off before I draw the alien's attention.)`
+					flee
+		
+			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
+			`	"What's going on here?" you ask. "Who are these aliens?"`
+			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist
+				`	"What do you think their intentions are?"`
+					goto intentions
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut
+		
+			label resist
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			choice
+				`	"What do you think their intentions are?"`
+					goto intentions2
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut2
+		
+			label intentions
+			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist2
+				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					goto cut2
+		
+			label cut
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+			choice
+				`	"Did anyone try to resist them?"`
+					goto resist2
+				`	"What do you think their intentions are?"`
+					goto intentions2
+		
+			label resist2
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+				goto end
+		
+			label intentions2
+			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
+				goto end
+		
+			label cut2
+			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
+				goto end
+		
+			label end
+			`	"Where did they come from originally?" you ask."`
+			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
+			`	"Do you know how the Pug cut you off?"`
+			`	"Look, I'm no scientist, and I have no idea how Hyperspace links work. Maybe someone on the other end can help you."`
+				decline
+
+
+mission "FW Pug 1 Know Return"
+	landing
+	to offer
+		has "FW Pug 1 Know: active"
+		has "event: pug invasion 4"
+	
+	on offer
+		conversation
+			`You receive an urgent message from JJ: "Captain <last>, return to New Tibet at once! We've received word that the Syndicate is somehow severing their hyperspace connections to the rest of human space. We're calling an emergency council meeting, to convene as soon as you arrive here."`
+				decline
+
+
+
+mission "FW Pug 2 Know"
+	landing
+	name "Meet with Parliament"
+	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the threat seems."
+	autosave
+	source "New Tibet"
+	destination "Earth"
+	to offer
+		has "FW Pug 1 Know: done"
+	passengers 1
+	blocked `As you are landing, Alondo contacts you and says, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
+	on fail
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+	
+	on offer
+		conversation
+			`By the time you arrive, Alondo and Freya have joined JJ and Katya on New Tibet; the entire Council is present. "Here's the story," says JJ. "A few weeks ago, hyperspace links on the edge of Syndicate space began collapsing. We weren't sure why."`
+			`	"I know why." you interrupt. The silence this statment leaves behind is deafening.`
+			`	Evetuly Katya asks "<first>, is it the Syndicate?"`
+			`	"No, it is an alien race called the Pug. Thay say thay are there to promote peace, but I don't know their true intentions."`
+			`	JJ says, "The Senate had agreed that we must put our differences with the Republic aside, and meet with Parliament to deal with this crisis. But that was before you told us what has really happened."`
+			`	"Where did the Pug come from? And are they attacking Human ships?" Katya asks starting to sound worried.`
+			`	"They came from a system called Deneb, the star out beyond Zeta Aquilae. They didn't attack my ship when I arrived and nothing on the ground looked like it had been damaged." At this Katya looks relived. "There are some people who are resisting the Pug but there wasn't a single Free Worlds ship in orbit or on the ground so they were probably destroyed when the Pug invaded."`
+			`	Alondo contemplates this before speaking up "We can easily stop are own people panicking but we can't use the Net to tell the Republic, they just won't believe it."`
+			choice
+				`	"We should go and warn parliament about the Pug."`
+					goto talk
+				`	"We should ready a battle fleet to defend against the pug."`
+					goto fleet
+
+			label fleet
+			`	"No." JJ shakes his head, "We don't know how powerful Pug ships are and we shouldn't risk a large portion of our fleet being cut off without reinforcements. We need to talk to parliament and get the help of the navy."`
+
+			label talk
+			`	Alondo agrees "We can't fight the Pug on our own. JJ, Freya and Katya can get our people ready to fight whilst <first> and I go talk to Parliament, hopefully we will be able to sort this mess out."`
+				accept
+	
+
+	
+	npc
+		system "Sol"
+		personality heroic uninterested staying
+		government "Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Large Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+		fleet "Small Republic"
+
+
+
 mission "FW Pug 2 Know A"
 	landing
 	name "Investigate the Pug"
@@ -1664,8 +1743,7 @@ mission "FW Pug 2 Know A"
 	destination Pugglemug
 	passengers 1
 	to offer
-		has "FW Pug 2: done"
-		has "fw know about pug"
+		has "FW Pug 2 Know: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
@@ -1982,7 +2060,6 @@ mission "FW Pug 3 Know C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		set "fw jump fleet ready"
 		conversation
 			`You land at the Republic Navy Yard on Geminus escorting the two Dreadnoughts that are the Free Worlds contribution to the war against the Pug. You are met by the shipyard supervisor and a team of engineers who are preparing the Navy ships to join you. "So, these are your Dreadnoughts," one of them says. "I'm glad to finally have the chance to see one up close. I don't suppose one of the captains would be willing to give me a tour."`
 			choice
@@ -2133,7 +2210,9 @@ mission "FW Pug 4"
 	destination Maker
 	clearance
 	to offer
-		has "fw jump fleet ready"
+		or
+			has "FW pug 3C: done"
+			has "FW pug 3 Know C: done"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -2203,9 +2282,9 @@ mission "FW Pug 4A"
 	on offer
 		conversation
 			branch lost
-				has "FW Pug 4: Escorts: done"
-			branch lost
-				has "FW Pug 4 Know: Escorts: done"
+				or
+					has "FW Pug 4: Escorts: done"
+					has "FW Pug 4 Know: Escorts: done"
 			`Along with the remaining ships from the combined attack fleet, you land at the main spaceport on <origin>. The other ships are carrying trained soldiers and equipment for planetary defense: ground-based laser turrets, surface to air missiles, and tracking radar for incoming ships. The soldiers have come armed and ready to fight the Pug on the ground if necessary, but it turns out that all the Pug who were here took off in one of the ships that were trying to repulse your attack.`
 				goto generator
 			
