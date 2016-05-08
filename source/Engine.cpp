@@ -196,6 +196,7 @@ void Engine::Place()
 		
 		Point pos;
 		Angle angle = Angle::Random(360.);
+		Point velocity = angle.Unit();
 		// Any ships in the same system as the player should be either
 		// taking off from the player's planet or nearby.
 		bool isHere = (ship->GetSystem() == player.GetSystem());
@@ -213,10 +214,11 @@ void Engine::Place()
 		else
 		{
 			ship->SetPlanet(nullptr);
-			pos = Angle::Random().Unit() * ((Random::Real() + 1.) * 600.);
+			pos = planetPos + Angle::Random().Unit() * ((Random::Real() + 1.) * 400. + 2. * planetRadius);
+			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, angle.Unit(), angle);
+		ship->Place(pos, velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);
@@ -552,7 +554,7 @@ void Engine::Draw() const
 		
 		for(int i = 0; i < 4; ++i)
 		{
-			PointerShader::Draw(target.center, a.Unit(), 10., 10., -target.radius,
+			PointerShader::Draw(target.center, a.Unit(), 12., 14., -target.radius,
 				Radar::GetColor(target.type));
 			a += da;
 		}
@@ -769,7 +771,7 @@ void Engine::CalculateStep()
 		// create explosions. Eventually ships might create other effects too.
 		// Note that engine flares are handled separately, so that they will be
 		// drawn immediately under the ship.
-		if(!(*it)->Move(effects))
+		if(!(*it)->Move(effects, flotsam))
 			it = ships.erase(it);
 		else
 		{
@@ -901,6 +903,65 @@ void Engine::CalculateStep()
 	}
 	projectiles.splice(projectiles.end(), newProjectiles);
 	
+	// Move the flotsam, which should be drawn underneath the ships.
+	for(auto it = flotsam.begin(); it != flotsam.end(); )
+	{
+		if(!it->Move(effects))
+		{
+			it = flotsam.erase(it);
+			continue;
+		}
+		
+		Ship *collector = nullptr;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
+				continue;
+			
+			const Mask &mask = ship->GetSprite().GetMask(step);
+			if(mask.Contains(it->Position() - ship->Position(), ship->Facing()))
+			{
+				collector = ship.get();
+				break;
+			}
+		}
+		if(collector)
+		{
+			string name;
+			if(collector->IsYours())
+			{
+				if(collector->GetParent())
+					name = "Your ship \"" + collector->Name() + "\" picked up ";
+				else
+					name = "You picked up ";
+			}
+			if(it->OutfitType())
+			{
+				int amount = -collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+				if(!name.empty())
+					Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
+						+ (amount == 1 ? "." : "s."));
+			}
+			else
+			{
+				int amount = -collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+				if(!name.empty())
+					Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+						+ " of " + it->CommodityType() + ".");
+			}
+			it = flotsam.erase(it);
+			continue;
+		}
+		
+		// Draw this flotsam.
+		draw[calcTickTock].Add(
+			it->GetSprite(),
+			it->Position() - newCenter,
+			.5 * it->Facing().Unit(),
+			it->Velocity() - newCenterVelocity);
+		++it;
+	}
+	
 	// Keep track of the relative strength of each government in this system. Do
 	// not add more ships to make a winning team even stronger. This is mostly
 	// to avoid having the player get mobbed by pirates, say, if they hang out
@@ -1012,7 +1073,7 @@ void Engine::CalculateStep()
 	{
 		// The asteroids can collide with projectiles, the same as any other
 		// object. If the asteroid turns out to be closer than the ship, it
-		// shields the ship (unless the projectile has  blast radius).
+		// shields the ship (unless the projectile has a blast radius).
 		Point hitVelocity;
 		double closestHit = 0.;
 		shared_ptr<Ship> hit;

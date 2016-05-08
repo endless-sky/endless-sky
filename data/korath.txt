@@ -372,25 +372,49 @@ fleet "Small Kor Mereti"
 	fighters "kor mereti"
 	personality
 		heroic
-	variant 8
+	variant 1
 		"Model 64"
 		"Model 32"
 		"Model 16" 2
-	variant 6
+	variant 2
 		"Model 64"
 		"Model 32" 2
-	variant 4
+	variant 3
 		"Model 128"
-	variant 5
+	variant 3
 		"Model 64"
 		"Model 32" 2
 		"Model 16" 1
-	variant 2
+	variant 1
 		"Model 32"
 		"Model 16" 5
 	variant 3
 		"Model 32" 2
 		"Model 16" 3
+	variant 6
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 4
+		"Model 64"
+		"Model 32"
+	variant 3
+		"Model 32"
+		"Model 16" 4
+	variant 4
+		"Model 32"
+		"Model 16" 3
+	variant 5
+		"Model 32"
+		"Model 16" 2
+	variant 6
+		"Model 16" 3
+	variant 4
+		"Model 16" 2
+	variant 3
+		"Model 32"
+	variant 5
+		"Model 64"
 
 fleet "Large Kor Mereti"
 	government "Kor Mereti"
@@ -398,7 +422,7 @@ fleet "Large Kor Mereti"
 	fighters "kor mereti"
 	personality
 		heroic
-	variant 8
+	variant 5
 		"Model 512"
 		"Model 32"
 		"Model 16" 2
@@ -411,30 +435,30 @@ fleet "Large Kor Mereti"
 		"Model 64"
 		"Model 32"
 		"Model 16"
-	variant 4
+	variant 3
 		"Model 512"
 		"Model 256" 2
-	variant 3
+	variant 1
 		"Model 512"
 		"Model 128" 2
 		"Model 64"
 		"Model 32" 2
-	variant 5
+	variant 1
 		"Model 512"
 		"Model 32" 5
 		"Model 16" 8
-	variant 4
+	variant 2
 		"Model 256"
 		"Model 128" 2
 		"Model 64" 3
 		"Model 32" 5
 		"Model 16" 8
-	variant 5
+	variant 3
 		"Model 256" 2
 		"Model 64"
 		"Model 32" 3
 		"Model 16" 2
-	variant 9
+	variant 6
 		"Model 256"
 		"Model 64" 4
 	variant 3
@@ -453,6 +477,46 @@ fleet "Large Kor Mereti"
 		"Model 64" 2
 	variant 5
 		"Model 128" 3
+	variant 2
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 4
+		"Model 256" 2
+	variant 3
+		"Model 128" 2
+		"Model 64"
+		"Model 32" 2
+	variant 4
+		"Model 128" 2
+		"Model 64" 3
+		"Model 32" 5
+		"Model 16" 8
+	variant 5
+		"Model 256"
+		"Model 64"
+		"Model 32" 3
+		"Model 16" 2
+	variant 9
+		"Model 256"
+		"Model 64" 2
+	variant 3
+		"Model 256" 2
+	variant 8
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 7
+		"Model 256"
+		"Model 128"
+	variant 14
+		"Model 256"
+		"Model 64"
+	variant 5
+		"Model 128" 2
 
 
 outfitter "Korath Basics"
