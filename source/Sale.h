@@ -61,7 +61,7 @@ void Sale<Item>::Add(const Sale<Item> &other)
 template <class Item>
 bool Sale<Item>::Has(const Item *item) const
 {
-	return this->find(item) != this->end();
+	return this->count(item);
 }
 
 

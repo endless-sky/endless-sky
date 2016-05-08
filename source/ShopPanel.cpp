@@ -139,7 +139,7 @@ void ShopPanel::DrawSidebar() const
 				point.Y() += ICON_TILE;
 			}
 			
-			bool isSelected = (playerShips.find(ship.get()) != playerShips.end());
+			bool isSelected = playerShips.count(ship.get());
 			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 			SpriteShader::Draw(background, point);
 			

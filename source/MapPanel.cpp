@@ -239,34 +239,34 @@ void MapPanel::Select(const System *system)
 	if(!system)
 		return;
 	selectedSystem = system;
+	vector<const System *> &plan = player.TravelPlan();
+	if(!plan.empty() && system == plan.front())
+		return;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
+	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
 	if(system == playerSystem && !shift)
-		player.ClearTravel();
+		plan.clear();
 	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
 		if(shift)
 		{
-			vector<const System *> oldPath = player.TravelPlan();
-			DistanceMap localDistance(player, oldPath.front());
+			DistanceMap localDistance(player, plan.front());
 			if(localDistance.Distance(system) <= 0)
 				return;
-			player.ClearTravel();
 			
-			while(system != oldPath.front())
+			auto it = plan.begin();
+			while(system != *it)
 			{
-				player.AddTravel(system);
+				it = ++plan.insert(it, system);
 				system = localDistance.Route(system);
 			}
-			for(const System *it : oldPath)
-				player.AddTravel(it);
 		}
 		else if(playerSystem)
 		{
-			player.ClearTravel();
+			plan.clear();
 			while(system != playerSystem)
 			{
-				player.AddTravel(system);
+				plan.push_back(system);
 				system = distance.Route(system);
 			}
 		}
@@ -459,7 +459,7 @@ void MapPanel::DrawTravelPlan() const
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
-        
+		
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;

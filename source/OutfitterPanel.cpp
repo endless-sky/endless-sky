@@ -566,7 +566,8 @@ bool OutfitterPanel::FlightCheck()
 		
 		const Outfit &attributes = ship->Attributes();
 		double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
-		if(!attributes.Get("thrust"))
+		if(!attributes.Get("thrust") && !attributes.Get("reverse thrust")
+				&& !attributes.Get("afterburner thrust"))
 		{
 			GetUI()->Push(new ConversationPanel(player,
 				*GameData::Conversations().Get("flight check: no thrusters")));
