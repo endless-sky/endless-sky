@@ -248,7 +248,7 @@ outfit "Large Graviton Steering"
 	"outfit space" -200
 	"engine capacity" -200
 	"turn" 12000
-	"turning energy" 60
+	"turning energy" 50
 	"turning heat" 25
 	description "Where the Medium Graviton Steering falls short the Large excels. Energy consumption is still massive, but the steering assembly now has enough power to allow even the largest of Quarg ships to make effective use of fixed position guns and non-reversible thrusters."
 
