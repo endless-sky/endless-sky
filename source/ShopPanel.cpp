@@ -878,8 +878,20 @@ void ShopPanel::SideSelect(Ship *ship)
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	
+	// Set selected ship
 	playerShip = ship;
-	
+	// Make sure selected ship is in view.
+	int selectedIndex = 0;
+	for(shared_ptr<Ship> ship : player.Ships())
+	{
+		if(ship.get() == playerShip)
+			break;
+		++selectedIndex;
+	}
+	int selectedCol = selectedIndex / IconCols();
+	sideScroll = min((int)sideScroll, 40 + (ICON_TILE*selectedCol));
+	sideScroll = max((int)sideScroll, 40 + 140 + (ICON_TILE*selectedCol) - Screen::Height());	
+		
 	if (!control)
 		playerShips.clear();
 	
