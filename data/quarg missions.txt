@@ -145,25 +145,25 @@ mission "Quarg Very Angry at Being Farmed"
 				"Quarg Very Angry at Being Farmed: done" > 25
 	on offer
 		conversation
-			`Shortly after you land on the planet a Quarg Battlefleet jumps into the system and broadcasts a message. It would appear that you’ve caught the attention of someone important; an “admiral” is asking to speak with you.`
+			`Shortly after you land on the planet a Quarg Battlefleet jumps into the system and broadcasts a message. It would appear that you’ve caught the attention of someone important; an "admiral" is asking to speak with you.`
 			choice
-				`”Open a communications channel.”`
+				`"Open a communications channel."`
 					goto talk
-				`”Ignore him.”`
+				`"Ignore him."`
 					goto ignore
-				`”All weapons hot, prep for launch.”`
+				`"All weapons hot, prep for launch."`
 					launch
 			label talk
-			`A Quarg in what seems to be some sort of military uniform appears on your communication system. It immediately starts talking, saying “I regret to inform you that we are left with no choice but to destroy you, even at the cost of civilian lives. If you do not leave this planet and allow yourself to be destroyed we will commence an orbital bombardment of your position.`
+			`A Quarg in what seems to be some sort of military uniform appears on your communication system. It immediately starts talking, saying "I regret to inform you that we are left with no choice but to destroy you, even at the cost of civilian lives. If you do not leave this planet and allow yourself to be destroyed we will commence an orbital bombardment of your position."`
 			choice
-				`”Why are you doing this?”`
+				`"Why are you doing this?"`
 					goto converse
-				`”Alright, I will lift off in a moment.” (Lie)`
+				`"Alright, I will lift off in a moment." (Lie)`
 					goto flee
-				`”Alright, I will lift off in a moment.”`
+				`"Alright, I will lift off in a moment."`
 					launch
-				`”No, I refuse. I don’t believe you will attack the city.”`
-					’”That is regrettable.”`
+				`"No, I refuse. I don’t believe you will attack the city."`
+					’"That is regrettable."`
 					goto flee
 			label ignore
 			`You disregard the increasingly urgent messages. A few minutes later a skylance fires and you are vaporized, along with a large chunk of the spaceport.`
@@ -172,14 +172,14 @@ mission "Quarg Very Angry at Being Farmed"
 			`You flee towards the most densely populated areas of the planet. A few minutes later a burst of Quarg weapons fire annihilates both yourself and the surrounding area.`
 				die
 			label converse
-			`”Why do you attack us? We can no longer tolerate your behavior, whatever the causes, and must destroy you. What is your decision?”`
+			`"Why do you attack us? We can no longer tolerate your behavior, whatever the causes, and must destroy you. What is your decision?"`
 			choice
-				`”Alright, I will lift off in a moment” (Lie)`
+				`"Alright, I will lift off in a moment" (Lie)`
 					goto flee
-				`”Alright, I will lift off in a moment”`
+				`"Alright, I will lift off in a moment"`
 					launch
-				`”No, I refuse. I don’t believe you’ll attack the city.”`
-					’”That is regrettable”`
+				`"No, I refuse. I don’t believe you’ll attack the city."`
+					’"That is regrettable"`
 					goto flee
 		
 	npc disable
@@ -327,7 +327,7 @@ mission "Quarg react to being farmed"
 		personality nemesis heroic staying
 		system "Hevru Hai"
 		ship "Quarg Elderdragon" "Lance of Eden"
-		ship "Quarg Empyrealdragon" "Lance of Longinus”
+		ship "Quarg Empyrealdragon" "Lance of Longinus"
 		ship "Quarg Empyrealdragon" "Vlad’s Impaler"
 		ship "Quarg Empyrealdragon" "Pointy Stick"
 		ship "Quarg Empyrealdragon" "Keep Out of Reach of Children"
