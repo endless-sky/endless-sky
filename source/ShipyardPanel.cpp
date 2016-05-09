@@ -59,14 +59,23 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
+	Point drawPoint = point;
 	ShipInfoDisplay info(*playerShip);
 
-	info.DrawSale(point);
-	info.DrawOutfits(point + Point(0, info.SaleHeight()));
-	info.DrawDescription(point + Point(0, info.SaleHeight()+ info.OutfitsHeight()));
+	// This should look good in a side-by-side comparison with a ship from the shipyard.
+	info.DrawSale(drawPoint);
+	drawPoint.Y() += info.SaleHeight();
 
+	info.DrawAttributes(drawPoint);
+	drawPoint.Y() += info.AttributesHeight();
 	
-	return info.SaleHeight() + info.OutfitsHeight() + info.DescriptionHeight();
+	info.DrawOutfits(drawPoint);
+	drawPoint.Y() += info.OutfitsHeight();
+	
+	info.DrawDescription(drawPoint);
+	drawPoint.Y() += info.DescriptionHeight();
+	
+	return drawPoint.Y() - point.Y();
 }
 
 

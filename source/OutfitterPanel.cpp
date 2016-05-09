@@ -95,10 +95,16 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 {
+	Point drawPoint = point;
 	ShipInfoDisplay info(*playerShip);
-	info.DrawAttributes(point);
 	
-	return info.AttributesHeight();
+	info.DrawAttributes(drawPoint);
+	drawPoint.Y() += info.AttributesHeight();
+	
+	info.DrawDescription(drawPoint);
+	drawPoint.Y() += info.DescriptionHeight();
+	
+	return drawPoint.Y() - point.Y();
 }
 
 

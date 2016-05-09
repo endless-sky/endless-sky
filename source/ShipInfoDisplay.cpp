@@ -105,12 +105,12 @@ void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 
 void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 {
+	string text = "Hull Model: " + ship.ModelName() + "\n" + ship.Description();
+
 	const vector<string> &licenses = ship.Licenses();
-	if(licenses.empty())
-		ItemInfoDisplay::UpdateDescription(ship.Description());
-	else
+	if(!licenses.empty())
 	{
-		string text = ship.Description() + "\tTo purchase this ship you must have ";
+		text += "\tTo purchase this ship you must have ";
 		for(unsigned i = 0; i < licenses.size(); ++i)
 		{
 			if(i)
@@ -125,8 +125,9 @@ void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 			text += "a " + licenses[i] + " License";
 		}
 		text += ".";
-		ItemInfoDisplay::UpdateDescription(text);
 	}
+	
+	ItemInfoDisplay::UpdateDescription(text);
 }
 
 
