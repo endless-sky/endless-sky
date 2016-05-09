@@ -154,7 +154,7 @@ ship "Quarg Empyrealdragon"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
-	description "The Empyrealdragon is used by the Quarg as a medium warship. Although the Wardragon patrol craft is usually more than capable of dealing with any threat Empyrealdragons are still occasionally deployed."
+	description "The Empyrealdragon is used by the Quarg as a medium warship. Although the Wardragon patrol craft is usually more than capable of dealing with any threat, Empyrealdragons are still occasionally deployed."
 	
 ship "Quarg Elderdragon"
 	sprite "ship/elderdragonsmall"
@@ -165,7 +165,7 @@ ship "Quarg Elderdragon"
 		"hull" 1500000
 		"required crew" 500
 		"bunks" 1000
-		"mass" 3500
+		"mass" 4000
 		"drag" 40
 		"heat dissipation" .9
 		"fuel capacity" 1600
