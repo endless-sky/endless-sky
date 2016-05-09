@@ -77,7 +77,7 @@ outfit "Quarg Anti-Missile"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
-	description "The standard Quarg anti-missile system is so ubiquitous it lacks a name. Literally called “The Anti-Missile”, “The Anti-Missile System”, or “The Anti-Missile Turret”, the Quarg have never seen a need for another missile defense system. Some have hypothesized that the focus on damage over fire rate may give some insight into the Quarg missile technology of the distant past."
+	description "The standard Quarg anti-missile system is so ubiquitous it lacks a name. Literally called `The Anti-Missile`, `The Anti-Missile System`, or `The Anti-Missile Turret`, the Quarg have never seen a need for another missile defense system. Some have hypothesized that the focus on damage over fire rate may give some insight into the Quarg missile technology of the distant past."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
