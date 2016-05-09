@@ -889,8 +889,8 @@ void ShopPanel::SideSelect(Ship *ship)
 		++selectedIndex;
 	}
 	int selectedCol = selectedIndex / IconCols();
-	sideScroll = min((int)sideScroll, 40 + (ICON_TILE*selectedCol));
-	sideScroll = max((int)sideScroll, 40 + 140 + (ICON_TILE*selectedCol) - Screen::Height());	
+	sideScroll = min((int)sideScroll, 40 + ICON_TILE*selectedCol);
+	sideScroll = max((int)sideScroll, 40 + 70 + ICON_TILE*(selectedCol+1) - Screen::Height());	
 		
 	if (!control)
 		playerShips.clear();
