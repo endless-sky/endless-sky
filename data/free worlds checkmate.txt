@@ -32,7 +32,7 @@ mission "FWC Scouting 1"
 				`	"Sure, but first, can you tell me how the Wolf Pack was able to do so much damage to the Navy?"`
 			`	"As I said," says JJ, "they've gathered a surprising number of bounty hunters and others who operate on the fringes of society, and who are sympathetic to our cause."`
 			label freya
-			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Rand system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
+			`	"One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from Rand. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
 				accept
 	
 	npc
@@ -63,7 +63,7 @@ mission "FWC Attack Kaus Borealis"
 	on offer
 		event "fwc attack kaus borealis"
 		conversation
-			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut out territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
+			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut our territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
 			choice
 				`	"Are you saying we risk having members of our militia desert?"`
 					goto desert
@@ -208,7 +208,7 @@ mission "FWC Cebalrai 1"
 			choice
 				`	"Weren't you under house arrest?"`
 				`	"So, does the fact that you're here mean the Senate pardoned you?"`
-			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear you're on the Council now too."`
 			choice
 				`	"So, what's our next step?"`
 					goto end
@@ -401,7 +401,7 @@ mission "FWC Nuke Supply 1B"
 	
 	on offer
 		conversation
-			`You land on <origin> and meet up with the grim-faced captain of a Bulk Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on Council know what you're doing."`
+			`You land on <origin> and meet up with the grim-faced captain of a Bulk Freighter named the Blue Yonder. "The cargo is already loaded up," he says, "and I'm ready to go. The sooner we get this stuff out of my cargo hold and I can get back to shipping food and medicine, the better. I really hope you folks on the Council know what you're doing."`
 				accept
 	
 	npc accompany save
@@ -463,7 +463,7 @@ mission "FWC Diplomacy 1"
 			`	He laughs. "I'm afraid that's not possible. Unlike most missile systems, we haven't yet developed any sort of feed system that would let you fire multiple missiles from the same gun port. So, it's a weapon you can only fire once from a given port. But on the plus side, two of them are enough to bring down the shields on even the largest Navy vessel."`
 				goto next
 			label no
-			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no holds barred struggle for survival."`
+			`	"That's understandable," he says. "And also foolish and shortsighted. But, I can understand why some people want to cling to the belief that war is some sort of noble endeavor rather than a no-holds-barred struggle for survival."`
 				goto next
 			label fifi
 			`	"Yes," he says, "Fifi is the leader of the Wolf Pack. And she is an absolutely ferocious individual. I assure you that you do not want to be responsible for crossing her. Not that you'll ever have to, of course, because we're all on the same side here." He grins.`
@@ -537,7 +537,7 @@ mission "FWC Diplomacy 1C"
 		event "fw safe passage ends" 1
 		conversation
 			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
-			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
+			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
 			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds are prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
 			`	Xao gestures to the guards, and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn-out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
 			choice
