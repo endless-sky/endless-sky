@@ -56,7 +56,7 @@ void ShopPanel::Draw() const
 	// Clear the list of clickable zones.
 	zones.clear();
 	
-	DrawSidebar();
+	DrawSidebars();
 	DrawMain();
 	DrawButtons();
 	
@@ -69,7 +69,7 @@ void ShopPanel::Draw() const
 		OutlineShader::Draw(sprite, dragPoint, size, selected);
 	}
 }
- 
+
 
 
 void ShopPanel::Step()
@@ -87,7 +87,7 @@ void ShopPanel::Step()
 
 
 
-void ShopPanel::DrawSidebar() const
+void ShopPanel::DrawSidebars() const
 {
 	const Font &font = FontSet::Get(14);
 	Color bright = *GameData::Colors().Get("bright");
@@ -132,6 +132,7 @@ void ShopPanel::DrawSidebar() const
 		bool anyFailingFlightCheck= false;
 		bool anyMissingHyperdrive = false;
 		
+		// Draw tiles for all the player's ships.
 		for(shared_ptr<Ship> ship : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
@@ -173,12 +174,33 @@ void ShopPanel::DrawSidebar() const
 			
 			// Draw the ship's outline
 			OutlineShader::Draw(sprite, point, size, shipStatusColor);
+			// Mark the "primary selected ship" playerShip with some small framing lines.
+			if (ship.get() == playerShip)
+			{
+				FillShader::Fill(point - Point(ICON_TILE / 2 - 8 , ICON_TILE / 2 - 3), 
+					Point(10,1), bright);
+				FillShader::Fill(point - Point(ICON_TILE / 2 - 3 , ICON_TILE / 2 - 8), 
+					Point(1,10), bright);
+				FillShader::Fill(point + Point(ICON_TILE / 2 - 8 , ICON_TILE / 2 - 3), 
+					Point(10,1), bright);
+				FillShader::Fill(point + Point(ICON_TILE / 2 - 3 , ICON_TILE / 2 - 8), 
+					Point(1,10), bright);
+				FillShader::Fill(point - Point(-(ICON_TILE / 2 - 8) , ICON_TILE / 2 - 3), 
+					Point(10,1), bright);
+				FillShader::Fill(point - Point(-(ICON_TILE / 2 - 3) , ICON_TILE / 2 - 8), 
+					Point(1,10), bright);
+				FillShader::Fill(point + Point(-(ICON_TILE / 2 - 8) , ICON_TILE / 2 - 3), 
+					Point(10,1), bright);
+				FillShader::Fill(point + Point(-(ICON_TILE / 2 - 3) , ICON_TILE / 2 - 8), 
+					Point(1,10), bright);
+			}
 			// Make the click-zone
 			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
 		
 			point.X() += ICON_TILE;
 		}
-		point.Y() += ICON_TILE/2;		
+		point.Y() += ICON_TILE/2;
+		
 		static const string str = "park/unpark ships with 'P'";
 		font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), parked);
 		point.Y() += 20;
@@ -196,7 +218,7 @@ void ShopPanel::DrawSidebar() const
 			font.Draw(str, Point(Screen::Right() - SideWidth()/2 - font.Width(str)/2, point.Y()), orange);
 			point.Y() += 20;
 		}
-		point.Y() += ICON_TILE/2;				
+		point.Y() += ICON_TILE/2;
 	}
 	
 
@@ -824,7 +846,7 @@ void ShopPanel::SideSelect(int count)
 		while(count)
 		{
 			if(it == player.Ships().begin())
-				it = player.Ships().end();
+				break; // Don't loop around.
 			--it;
 			
 			if(ShipIsHere(*it))
@@ -837,7 +859,10 @@ void ShopPanel::SideSelect(int count)
 		{
 			++it;
 			if(it == player.Ships().end())
-				it = player.Ships().begin();
+			{
+				--it;
+				break; // Don't loop around.
+			}
 			
 			if(ShipIsHere(*it))
 				--count;
@@ -853,26 +878,32 @@ void ShopPanel::SideSelect(Ship *ship)
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 	
-	if(shift)
+	playerShip = ship;
+	
+	if (!control)
+		playerShips.clear();
+	
+	if(shift && playerShip != shiftSelectAnchorShip)
 	{
+		// Select playerShip, shiftSelectAnchorShip, and everything between them. 
 		bool on = false;
 		for(shared_ptr<Ship> other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
 			if(!ShipIsHere(other))
 				continue;
-			
-			if(other.get() == ship || other.get() == playerShip)
+			bool isEndpoint = other.get() == playerShip || other.get() == shiftSelectAnchorShip;
+			if(isEndpoint)
 				on = !on;
-			else if(on)
+			if(on || isEndpoint)
 				playerShips.insert(other.get());
 		}
-	}	
-	else if(!control)
-		playerShips.clear();
+	}
 	
-	playerShip = ship;
-	if (control && playerShips.find(playerShip) != playerShips.end())
+	if(!shift)
+		shiftSelectAnchorShip = playerShip;
+	
+	if (!shift && control && playerShips.find(playerShip) != playerShips.end())
 		playerShips.erase(playerShip);
 	else
 		playerShips.insert(playerShip);
@@ -1076,7 +1107,7 @@ int ShopPanel::DetailsWidth() const
 // Zero if the player does not have a large fleet or the screen is to small. 
 int ShopPanel::PlayerShipWidth() const
 {
-	if(shipsHere > 24 && (Screen::Width() > DETAILS_WIDTH * 5))
+	if(shipsHere > 16 && (Screen::Width() > DETAILS_WIDTH * 5))
 		return DETAILS_WIDTH;
 	return 0;
 }

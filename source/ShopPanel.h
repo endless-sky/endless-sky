@@ -48,7 +48,7 @@ public:
 	virtual void Step() override;
 	
 protected:
-	void DrawSidebar() const;
+	void DrawSidebars() const;
 	void DrawButtons() const;
 	void DrawMain() const;
 	
@@ -125,7 +125,11 @@ protected:
 	PlayerInfo &player;
 	const Planet *planet = nullptr;
 	
+	// The selected player ship
 	Ship *playerShip = nullptr;
+	// Used when holding shift to select multiple ships.
+	Ship *shiftSelectAnchorShip = nullptr;
+	
 	Ship *dragShip = nullptr;
 	Point dragPoint;
 	// Selected ships in side panel
