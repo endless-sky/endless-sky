@@ -165,8 +165,8 @@ ship "Quarg Elderdragon"
 		"hull" 1500000
 		"required crew" 500
 		"bunks" 1000
-		"mass" 3200
-		"drag" 60
+		"mass" 3500
+		"drag" 40
 		"heat dissipation" .9
 		"fuel capacity" 1600
 		"cargo space" 600
