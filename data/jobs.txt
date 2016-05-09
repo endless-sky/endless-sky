@@ -1991,7 +1991,7 @@ mission "Marauder Hunted"
 			distance 5 5
 
 mission "Relocation [0]"
-	name "Displaced persons to <planet>"
+	name "Jobless persons to <planet>"
 	job
 	repeat
 	description "These <bunks> people need to be relocated to <destination>. The Republic will pay you <payment> to take them there."
@@ -2009,10 +2009,10 @@ mission "Relocation [0]"
 	on complete
 		payment
 		payment 8000
-		dialog "You wish the displaced persons luck as they depart your ship. After they leave, the Republic gives you <payment>."
+		dialog "You wish your passengers luck as they depart your ship. After they leave, the Republic gives you <payment>."
 
 mission "Relocation [1]"
-	name "Displaced persons to <planet>"
+	name "Jobless persons to <planet>"
 	job
 	repeat
 	description "These <bunks> people need to be relocated to <destination>. The Republic will pay you <payment> to take them there."
@@ -2030,4 +2030,4 @@ mission "Relocation [1]"
 	on complete
 		payment
 		payment 10000
-		dialog "You wish the displaced persons luck as they depart your ship. After they leave, the Republic gives you <payment>."
+		dialog "You wish your passengers luck as they depart your ship. After they leave, the Republic gives you <payment>."
