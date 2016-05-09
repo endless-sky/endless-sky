@@ -225,6 +225,7 @@ outfit "Medium Graviton Steering"
 	"turn" 1600
 	"turning energy" 10
 	"turning heat" 5
+	description "The Quarg's Medium Graviton Steering is strangely ineffective for such a technologically advanced engine. The Quarg's focus on reversible thrusters and beam turrets has led to a peculair situation. The turning speed of most vessels is considered mostly irrelevant."
 
 outfit "Large Graviton Thruster"
 	category "Engines"
@@ -237,7 +238,7 @@ outfit "Large Graviton Thruster"
 	"thrusting energy" 100
 	"thrusting heat" 50
 	"flare sprite" "effect/medium graviton flare"
-	description "This massive graviton thruster, used only on the Quarg’s largest ships, sacrifices the signature reversible thruster technology for a massive increase in efficiency, allowing Quarg capitals to attain speeds that many would consider impressive in an interceptor."
+	description "This massive graviton thruster, used only on the Quarg’s largest ships, sacrifices the signature reversible thruster technology for a massive increase in efficiency, allowing Quarg capitals to attain speeds that many would consider impressive in a ship half the size."
 
 outfit "Large Graviton Steering"
 	category "Engines"
@@ -246,9 +247,10 @@ outfit "Large Graviton Steering"
 	"mass" 200
 	"outfit space" -200
 	"engine capacity" -200
-	"turn" 10000
-	"turning energy" 50
+	"turn" 12000
+	"turning energy" 60
 	"turning heat" 25
+	description "Where the Medium Graviton Steering falls short the Large excels. Energy consumption is still massive, but the steering assembly now has enough power to allow even the largest of Quarg ships to make effective use of fixed position guns and non-reversible thrusters."
 
 outfit "Quarg Blue Box"
 	category "Systems"
