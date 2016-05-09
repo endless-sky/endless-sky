@@ -73,6 +73,7 @@ public:
 	
 	
 private:
+	void DrawMiniMap() const;
 	void EnterSystem();
 	
 	void ThreadEntryPoint();
@@ -131,6 +132,8 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
+	int jumpCount = 0;
+	const System *jumpInProgress[2] = {nullptr, nullptr};
 	
 	int step = 0;
 	
