@@ -255,7 +255,7 @@ outfit "Quarg Blue Box"
 	cost 5000000
 	thumbnail "outfit/unknown"
 	mass 1
-	drag 0.015
+	drag 0.03
 	"outfit space" 5
 	"unplunderable" 1
 	description "Bigger on the inside."
