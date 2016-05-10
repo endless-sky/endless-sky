@@ -47,7 +47,6 @@ public:
 	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;
 	void DrawOutfits(const Point &topLeft) const;
-	void DrawSale(const Point &topLeft) const;
 	
 	
 private:
@@ -65,9 +64,6 @@ private:
 	std::vector<std::string> outfitValues;
 	int outfitsHeight = 0;
 	
-	std::vector<std::string> saleLabels;
-	std::vector<std::string> saleValues;
-	int saleHeight = 0;
 };
 
 

@@ -96,13 +96,6 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::DrawSale(const Point &topLeft) const
-{
-	Draw(topLeft, saleLabels, saleValues);
-}
-
-
-
 void ShipInfoDisplay::UpdateDescription(const Ship &ship)
 {
 	string text = "Hull Model: " + ship.ModelName() + "\n" + ship.Description();
@@ -148,10 +141,15 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship)
 		
 	if (ship.Cost() != ship.BaseCost())
 	{
-		attributesHeight += 20;
 		attributeLabels.push_back("actual cost:");
 		attributeValues.push_back(Format::Number(ship.Cost()));
+		attributesHeight += 20;
 	}
+	
+	attributeLabels.push_back("hull/outfit cost:");
+	attributeValues.push_back(Format::Number(ship.Cost()-ship.Outfits().GetTotalCost()) + "/" +
+		Format::Number(ship.Outfits().GetTotalCost()));
+	attributesHeight += 20;
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -328,7 +326,6 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	outfitLabels.clear();
 	outfitValues.clear();
 	outfitsHeight = 20;
-	int outfitsValue = ship.Outfits().GetTotalCost();
 	
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
@@ -357,35 +354,5 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 			outfitsHeight += 20;
 		}
 	}
-	
-	
-	saleLabels.clear();
-	saleValues.clear();
-	saleHeight = 20;
-	int totalValue = ship.Attributes().Cost();
-	
-	saleLabels.push_back("cost new:");
-	saleValues.push_back(Format::Number(ship.BaseCost()));
-	saleHeight += 20;
-		
-	if (ship.Cost() != ship.BaseCost())
-	{
-		saleLabels.push_back("sell price:");
-		saleValues.push_back(Format::Number(ship.Cost()));
-		saleHeight += 20;
-	}
-	
-	saleLabels.push_back("Sell Price Breakdown:");
-	saleValues.push_back(string());
-	saleHeight += 20;
-	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(totalValue - outfitsValue) + " credits");
-	saleHeight += 20;
-	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(outfitsValue) + " credits");
-	saleHeight += 20;
-	saleLabels.push_back("= total:");
-	saleValues.push_back(Format::Number(totalValue) + " credits");
-	saleHeight += 20;
 }
 

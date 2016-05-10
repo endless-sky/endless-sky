@@ -63,9 +63,6 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 	ShipInfoDisplay info(*playerShip);
 
 	// This should look good in a side-by-side comparison with a ship from the shipyard.
-	info.DrawSale(drawPoint);
-	drawPoint.Y() += info.SaleHeight();
-
 	info.DrawAttributes(drawPoint);
 	drawPoint.Y() += info.AttributesHeight();
 	
