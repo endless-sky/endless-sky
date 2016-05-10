@@ -854,7 +854,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 				for(const auto &it : cargo.Commodities())
 					Jettison(it.first, Random::Binomial(it.second, .25));
 				for(const auto &it : cargo.Outfits())
-					Jettison(it.first, Random::Binomial(it.second, .25));
+					Jettison(it.GetOutfit(), Random::Binomial(it.GetQuantity(), .25));
 				for(Flotsam &it : jettisoned)
 					it.Place(*this);
 				flotsam.splice(flotsam.end(), jettisoned);

@@ -803,7 +803,7 @@ void InfoPanel::Dump()
 
 void InfoPanel::DumpPlunder(int count)
 {
-	count = min(count, (*shipIt)->Cargo().Get(selectedPlunder));
+	count = min(count, (*shipIt)->Cargo().GetOutfitCount(selectedPlunder));
 	if(count > 0)
 	{
 		(*shipIt)->Jettison(selectedPlunder, count);
