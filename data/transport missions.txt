@@ -1267,12 +1267,12 @@ mission "Terraforming 5"
 				`	"Yes, indeed."`
 				`	"Is this a skytower?"`
 				
-			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, this planet is turning into a city world. On top of that, the emmisions from the billions of people on this world are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster."`
+			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, this planet is turning into a city world. On top of that, the greenhouse gas emmisions from the billions of people on this world are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster."`
 			choice
 				`	"This is scary stuff. Is there any way I can help?"`
                                 `       "Wow. What can we do?"`
 
-                       `        "There is somthing you can do. We need some cargo ships escorted to Alphard to pick up some super-strong materials we will use to build this." He gestures toward the tower. "I also need you to bring some scientists there as well. Are you up to the challange?"`
+                       `        "There is somthing you can do. We need some cargo ships escorted to Alphard to pick up some super-strong nanotube buckyballs that hopefully should help strengthen this." He gestures toward the tower. "I also need you to bring some scientists back as well. Are you up to the challange?"`
                         choice
                                 `       "Yes I am"`
 				`       "Sorry, but I have somthing urgent to do"` 
@@ -1295,12 +1295,14 @@ mission "Building Skytower 2"
 	to offer
 		has "building skytower 1: done"
 	passengers 4
+       
+        on complete
         set licence: navy
 	
 	on offer
-		conversation
+		diolouge
 			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this planet. `
-			`You pick up the scientests and let the cargo ships pick up the materials. You prepare for the flight back to Earth.`
+			`You pick up the scientests and watch the cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
 				accept
 	
 	on complete
