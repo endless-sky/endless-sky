@@ -891,7 +891,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	int selectedCol = selectedIndex / IconCols();
 	sideScroll = min((int)sideScroll, 40 + ICON_TILE*selectedCol);
 	sideScroll = max((int)sideScroll, 40 + 70 + ICON_TILE*(selectedCol+1) - Screen::Height());	
-		
+	
 	if (!control)
 		playerShips.clear();
 	
@@ -1091,7 +1091,7 @@ vector<ShopPanel::ClickZone>::const_iterator ShopPanel::Selected() const
 vector<ShopPanel::ClickZone>::const_iterator ShopPanel::MainStart() const
 {
 	// Find the first non-player-ship click zone.
-	int margin = Screen::Right() - SHIP_SIZE;
+	int margin = Screen::Right() - SideWidth();
 	vector<ClickZone>::const_iterator start = zones.begin();
 	while(start != zones.end() && start->CenterX() > margin)
 		++start;
