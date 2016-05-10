@@ -164,9 +164,9 @@ outfit "Hai Williwaw Cooling"
 	category "Systems"
 	cost 15000
 	thumbnail "outfit/cooling ducts hai"
-	"mass" 7
-	"outfit space" -7
-	"cooling" 8.3
+	"mass" 8
+	"outfit space" -8
+	"cooling" 9.5
 	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these."
 
 outfit "Hai Chasm Batteries"
