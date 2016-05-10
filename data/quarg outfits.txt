@@ -225,7 +225,7 @@ outfit "Medium Graviton Steering"
 	"turn" 1600
 	"turning energy" 10
 	"turning heat" 5
-	description "The Quarg's Medium Graviton Steering is strangely ineffective for such a technologically advanced engine. The Quarg's focus on reversible thrusters and beam turrets has led to a peculair situation. The turning speed of most vessels is considered mostly irrelevant."
+	description "The Quarg's Medium Graviton Steering is strangely ineffective for such a technologically advanced engine. The Quarg's focus on reversible thrusters and beam turrets has led to a peculiar situation. The turning speed of most vessels is considered mostly irrelevant."
 
 outfit "Large Graviton Thruster"
 	category "Engines"
