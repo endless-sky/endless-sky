@@ -41,8 +41,7 @@ public:
 	// int DescriptionHeight() const;
 	// int AttributesHeight() const;
 	int OutfitsHeight() const;
-	int SaleHeight() const;
-	
+
 	// Provided by ItemInfoDisplay:
 	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;

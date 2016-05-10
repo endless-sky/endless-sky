@@ -52,13 +52,6 @@ int ShipInfoDisplay::OutfitsHeight() const
 
 
 
-int ShipInfoDisplay::SaleHeight() const
-{
-	return saleHeight;
-}
-
-
-
 // Draw each of the panels.
 void ShipInfoDisplay::DrawAttributes(const Point &topLeft) const
 {
