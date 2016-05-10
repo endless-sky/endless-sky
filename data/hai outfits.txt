@@ -140,7 +140,7 @@ outfit "Bullfrog Anti-Missile Turret"
 		"firing energy" 6
 		"firing heat" 4
 		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them.  In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
 
 outfit "Chameleon Anti-Missile Turret"
 	category "Turrets"
@@ -176,7 +176,7 @@ outfit "Hai Chasm Batteries"
 	"mass" 5
 	"outfit space" -5
 	"energy capacity" 550
-	description "Power storage technology is thousands of years old.  This is the smallest Hai battery pack."
+	description "Power storage technology is thousands of years old. This is the smallest Hai battery pack."
 
 outfit "Hai Fissure Batteries"
 	category "Power"
@@ -232,7 +232,7 @@ outfit "Hai Geode Reactor"
 	"outfit space" -58
 	"energy generation" 8.9
 	"heat generation" 21.2
-	description "Fission reactors are considered a rudimentary technology among interstellar species.  Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
+	description "Fission reactors are considered a rudimentary technology among interstellar species. Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
 
 outfit "Hai Boulder Reactor"
 	category "Power"
