@@ -459,7 +459,7 @@ void MapPanel::DrawTravelPlan() const
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
-        
+		
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;
@@ -657,7 +657,8 @@ void MapPanel::DrawSystems() const
 void MapPanel::DrawNames() const
 {
 	// Don't draw if too small.
-	if (Zoom() <= 0.5) return;
+	if(Zoom() <= 0.5)
+		return;
 	
 	// Draw names for all systems you have visited.
 	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);

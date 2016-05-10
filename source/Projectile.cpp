@@ -237,9 +237,13 @@ bool Projectile::HasBlastRadius() const
 // projectile will not explode unless it is also within the trigger radius.)
 bool Projectile::InBlastRadius(const Ship &ship, int step, double closestHit) const
 {
+	// "Invisible" ships can be killed by weapons with blast radii.
+	Point offset = position + closestHit * velocity - ship.Position();
+	if(offset.Length() <= weapon->BlastRadius())
+		return true;
+	
 	const Mask &mask = ship.GetSprite().GetMask(step);
-	return mask.WithinRange(position + closestHit * velocity - ship.Position(),
-		ship.Facing(), weapon->BlastRadius());
+	return mask.WithinRange(offset, ship.Facing(), weapon->BlastRadius());
 }
 
 

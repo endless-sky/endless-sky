@@ -791,6 +791,13 @@ void PlayerInfo::Land(UI *ui)
 		else
 			++it; 
 	}
+	// Check for NPCs that have been destroyed without their destruction being
+	// registered, e.g. by self-destruct:
+	for(Mission &mission : missions)
+		for(const NPC &npc : mission.NPCs())
+			for(const shared_ptr<Ship> &ship : npc.Ships())
+				if(ship->IsDestroyed())
+					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -1306,7 +1313,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
-			conditions["combat rating"] += event.Target()->RequiredCrew();
+			conditions["combat rating"] += (event.Target()->Cost() + 250000) / 500000;
 	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
@@ -1347,6 +1354,26 @@ const map<string, int> &PlayerInfo::Conditions() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System *system) const
 {
+	for(const Mission &mission : availableJobs)
+	{
+		if(mission.Waypoints().count(system))
+			return true;
+		for(const Planet *planet : mission.Stopovers())
+			if(planet->GetSystem() == system)
+				return true;
+	}
+	
+	for(const Mission &mission : missions)
+	{
+		if(!mission.IsVisible())
+			continue;
+		if(mission.Waypoints().count(system))
+			return true;
+		for(const Planet *planet : mission.Stopovers())
+			if(planet->GetSystem() == system)
+				return true;
+	}
+	
 	return (seen.count(system) || KnowsName(system));
 }
 
@@ -1384,7 +1411,7 @@ bool PlayerInfo::KnowsName(const System *system) const
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
 			return true;
 	
 	return false;
