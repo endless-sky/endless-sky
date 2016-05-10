@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
+#include "Flotsam.h"
 #include "Information.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -72,6 +73,7 @@ public:
 	
 	
 private:
+	void DrawMiniMap() const;
 	void EnterSystem();
 	
 	void ThreadEntryPoint();
@@ -130,11 +132,14 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
+	int jumpCount = 0;
+	const System *jumpInProgress[2] = {nullptr, nullptr};
 	
 	int step = 0;
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
+	std::list<Flotsam> flotsam;
 	std::list<Effect> effects;
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.

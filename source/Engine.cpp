@@ -22,6 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
+#include "LineShader.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Person.h"
@@ -259,6 +260,14 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
+		if(flagship->IsEnteringHyperspace())
+		{
+			++jumpCount;
+			jumpInProgress[0] = flagship->GetSystem();
+			jumpInProgress[1] = flagship->GetTargetSystem();
+		}
+		else if(jumpCount > 0)
+			--jumpCount;
 	}
 	ai.UpdateEvents(events);
 	ai.UpdateKeys(player, clickCommands, isActive && wasActive);
@@ -582,6 +591,7 @@ void Engine::Draw() const
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}
+	DrawMiniMap();
 	
 	// Draw ammo status.
 	Point pos(Screen::Right() - 80, Screen::Bottom());
@@ -628,6 +638,56 @@ void Engine::Click(const Point &point)
 {
 	doClick = true;
 	clickPoint = point;
+}
+
+
+
+void Engine::DrawMiniMap() const
+{
+	if(!jumpCount || !jumpInProgress[0] || !jumpInProgress[1])
+		return;
+	
+	const Font &font = FontSet::Get(14);
+	double alpha = .5 * min(1., jumpCount / 30.);
+	Color lineColor(alpha, 0.);
+	Point center = .5 * (jumpInProgress[0]->Position() + jumpInProgress[1]->Position());
+	Point drawPos(0., Screen::Top() + 100.);
+	for(int i = 0; i < 2; ++i)
+	{
+		const System *system = jumpInProgress[i];
+		const Government *gov = system->GetGovernment();
+		bool isKnown = player.KnowsName(system);
+		Point from = system->Position() - center + drawPos;
+		string name = isKnown ? system->Name() : "Unexplored System";
+		font.Draw(name, from + Point(6., -.5 * font.Height()), lineColor);
+		
+		Color color = Color(.3 * alpha, 0.);
+		if(player.HasVisited(system) && system->IsInhabited() && gov)
+			color = Color(
+				alpha * gov->GetColor().Get()[0],
+				alpha * gov->GetColor().Get()[1],
+				alpha * gov->GetColor().Get()[2], 0.);
+		RingShader::Draw(from, 6., 3.5, color);
+		
+		for(const System *link : system->Links())
+		{
+			if(!player.HasVisited(system) && !player.HasVisited(link))
+				continue;
+			
+			Point to = link->Position() - center + drawPos;
+			Point unit = (from - to).Unit() * 7.;
+			LineShader::Draw(from - unit, to + unit, 1.2, lineColor);
+			
+			gov = link->GetGovernment();
+			Color color = Color(.3 * alpha, 0.);
+			if(player.HasVisited(link) && link->IsInhabited() && gov)
+				color = Color(
+					alpha * gov->GetColor().Get()[0],
+					alpha * gov->GetColor().Get()[1],
+					alpha * gov->GetColor().Get()[2], 0.);
+			RingShader::Draw(to, 6., 3.5, color);
+		}
+	}
 }
 
 
@@ -771,7 +831,7 @@ void Engine::CalculateStep()
 		// create explosions. Eventually ships might create other effects too.
 		// Note that engine flares are handled separately, so that they will be
 		// drawn immediately under the ship.
-		if(!(*it)->Move(effects))
+		if(!(*it)->Move(effects, flotsam))
 			it = ships.erase(it);
 		else
 		{
@@ -902,6 +962,65 @@ void Engine::CalculateStep()
 			++it;
 	}
 	projectiles.splice(projectiles.end(), newProjectiles);
+	
+	// Move the flotsam, which should be drawn underneath the ships.
+	for(auto it = flotsam.begin(); it != flotsam.end(); )
+	{
+		if(!it->Move(effects))
+		{
+			it = flotsam.erase(it);
+			continue;
+		}
+		
+		Ship *collector = nullptr;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
+				continue;
+			
+			const Mask &mask = ship->GetSprite().GetMask(step);
+			if(mask.Contains(it->Position() - ship->Position(), ship->Facing()))
+			{
+				collector = ship.get();
+				break;
+			}
+		}
+		if(collector)
+		{
+			string name;
+			if(collector->IsYours())
+			{
+				if(collector->GetParent())
+					name = "Your ship \"" + collector->Name() + "\" picked up ";
+				else
+					name = "You picked up ";
+			}
+			if(it->OutfitType())
+			{
+				int amount = -collector->Cargo().Transfer(it->OutfitType(), -it->Count());
+				if(!name.empty())
+					Messages::Add(name + Format::Number(amount) + " " + it->OutfitType()->Name()
+						+ (amount == 1 ? "." : "s."));
+			}
+			else
+			{
+				int amount = -collector->Cargo().Transfer(it->CommodityType(), -it->Count());
+				if(!name.empty())
+					Messages::Add(name + (amount == 1 ? "a ton" : Format::Number(amount) + " tons")
+						+ " of " + it->CommodityType() + ".");
+			}
+			it = flotsam.erase(it);
+			continue;
+		}
+		
+		// Draw this flotsam.
+		draw[calcTickTock].Add(
+			it->GetSprite(),
+			it->Position() - newCenter,
+			.5 * it->Facing().Unit(),
+			it->Velocity() - newCenterVelocity);
+		++it;
+	}
 	
 	// Keep track of the relative strength of each government in this system. Do
 	// not add more ships to make a winning team even stronger. This is mostly

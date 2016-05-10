@@ -18,10 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Flotsam.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
 
+#include <list>
 #include <map>
 #include <memory>
 #include <string>
@@ -136,7 +138,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects);
+	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -266,7 +268,8 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(int tons);
+	void Jettison(const std::string &commodity, int tons);
+	void Jettison(const Outfit *outfit, int count);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
@@ -377,7 +380,6 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	double cloak = 0.;
-	int jettisoned = 0;
 	
 	Command commands;
 	
@@ -391,6 +393,7 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	OutfitGroup outfits;
 	CargoHold cargo;
+	std::list<Flotsam> jettisoned;
 	int wear;
 	
 	// Base cost used for AI strength estimate. Stored for fast access.
