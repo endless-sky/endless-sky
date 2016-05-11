@@ -121,27 +121,27 @@ mission "Quarg Very Angry at Being Farmed"
 		or
 			"Quarg Very Angry at Being Farmed: done" == 0
 			and
-				random < 50
+				random < 35
 				"Quarg Very Angry at Being Farmed: done" > 0
 				"Quarg Very Angry at Being Farmed: done" <= 5
 			and
-				random < 40
+				random < 30
 				"Quarg Very Angry at Being Farmed: done" > 5
 				"Quarg Very Angry at Being Farmed: done" <= 10
 			and
-				random < 30
+				random < 25
 				"Quarg Very Angry at Being Farmed: done" > 10
 				"Quarg Very Angry at Being Farmed: done" <= 15
 			and
-				random < 25
+				random < 20
 				"Quarg Very Angry at Being Farmed: done" > 15
 				"Quarg Very Angry at Being Farmed: done" <= 20
 			and
-				random < 20
+				random < 15
 				"Quarg Very Angry at Being Farmed: done" > 20
 				"Quarg Very Angry at Being Farmed: done" <= 25
 			and
-				random < 15
+				random < 10
 				"Quarg Very Angry at Being Farmed: done" > 25
 	on offer
 		conversation
@@ -174,12 +174,12 @@ mission "Quarg Very Angry at Being Farmed"
 			label converse
 			`"Why do you attack us? We can no longer tolerate your behavior, whatever the causes, and must destroy you. What is your decision?"`
 			choice
-				`"Alright, I will lift off in a moment" (Lie)`
+				`"Alright, I will lift off in a moment." (Lie)`
 					goto flee
-				`"Alright, I will lift off in a moment"`
+				`"Alright, I will lift off in a moment."`
 					launch
 				`"No, I refuse. I don’t believe you’ll attack the city."`
-					’"That is regrettable"`
+					’"That is regrettable."`
 					goto flee
 		
 	npc disable
