@@ -260,9 +260,10 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		if(flagship->IsEnteringHyperspace())
+		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::WAIT))
 		{
-			++jumpCount;
+			if(jumpCount < 100)
+				++jumpCount;
 			jumpInProgress[0] = flagship->GetSystem();
 			jumpInProgress[1] = flagship->GetTargetSystem();
 		}
