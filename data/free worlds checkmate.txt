@@ -537,7 +537,7 @@ mission "FWC Diplomacy 1C"
 		event "fw safe passage ends" 1
 		conversation
 			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
-			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
+			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
 			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds are prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
 			`	Xao gestures to the guards, and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn-out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
 			choice
