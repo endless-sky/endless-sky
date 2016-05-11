@@ -290,6 +290,13 @@ void ShipyardPanel::Sell()
 		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
 	}
 	message += "?";
+	
+	double totalCost = 0;
+	for (auto it : playerShips)
+		totalCost += it->Cost();
+	
+	message += "\nYou will receive " + Format::Number(totalCost) + " credits.";
+	
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 
