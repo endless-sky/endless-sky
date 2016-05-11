@@ -1330,7 +1330,7 @@ mission "Building Skytower 2"
 	source Alphard
 	destination Earth
 	to offer 
-                has "building skytower 1: done"
+               has "building skytower 1: done"
 	passengers 4
        
         on complete
@@ -1338,7 +1338,7 @@ mission "Building Skytower 2"
 	
 	on offer
 		diolouge
-			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this and many other planets. `
+			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this and many other worlds. `
 			`You pick up the scientests and watch the cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
 				accept
 	
