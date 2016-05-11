@@ -1251,8 +1251,8 @@ mission "Terraforming 5"
 	name "Building Skytower [1]"
 	description "Escort a convoy of freighters to <destination>, where they will pick up materials for an new skytower on Earth."
 	minor
-	source earth
-	destination alphard
+	source Earth
+	destination Alphard
 	to offer
 		random < 10
                 reputation republic: 1<
@@ -1281,19 +1281,17 @@ mission "Terraforming 5"
 	
 	on complete
 		payment 200000
-
+ 
+               #Fleet of freighter ships is needed here before merge
 
 
 mission "Building Skytower 2"
 	landing
 	name "building skytower [2]"
 	description "Transport the team of scientists home to <destination>."
-	source
-		alphard
-	destination
-		earth
-	to offer
-		has "building skytower 1: done"
+	source Alphard
+	destination Earth
+	to offer has "building skytower 1: done"
 	passengers 4
        
         on complete
