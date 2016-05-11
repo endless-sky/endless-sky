@@ -1261,13 +1261,13 @@ mission "Terraforming 5"
 	
 	on offer
 		conversation
-			`As you are walking through the spaceport, you notice people gathered by windows facing East. You walk to one of the less crowded windows and notice a tall black tower jutting out of the ground. This is no small feat of engineering, as the building dwarfes the others around it. It is a skytower`
-                        `As you are gasing out of the window, a man in a navy uniform walks up next to you. "Magnificent, isn't it?" He asks"
+			`As you are walking through the spaceport, you notice people crowding around windows. You walk to one of the less crowded windows and notice a tall black tower jutting out of the ground. This is no small feat of engineering, as even in it's incomplete state the building still dwarfes the others around it. It is quite apparently skytower`
+                        `As you are staring out the window, a man in a navy uniform walks up next to you. "Magnificent, isn't it?" He asks.`
 			choice
 				`	"Yes, indeed."`
 				`	"Is this a skytower?"`
 				
-			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, this planet is turning into a city world. On top of that, the greenhouse gas emmisions from the billions of people on this world are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster."`
+			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, this planet is turning into an urban world. On top of that, the greenhouse gas emmisions from the billions of people that call this world home are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster."`
 			choice
 				`	"This is scary stuff. Is there any way I can help?"`
                                 `       "Wow. What can we do?"`
@@ -1291,25 +1291,26 @@ mission "Building Skytower 2"
 	description "Transport the team of scientists home to <destination>."
 	source Alphard
 	destination Earth
-	to offer has "building skytower 1: done"
+	to offer 
+                has "building skytower 1: done"
 	passengers 4
        
         on complete
-        set licence: navy
+        set licence navy
 	
 	on offer
 		diolouge
-			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this planet. `
+			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this and many other planets. `
 			`You pick up the scientests and watch the cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
 				accept
 	
 	on complete
 		payment 400000
-		conversation `Michel thanks you for escorting the ships, and pays you <payment>. As you are walking away, he calls "Wait!" You turn around and he jogs to you. "Because of your help, I think I can give you a little somthing." He pulls out a slip of paper and writes on it. "Here." He says. He hands you an navy licence."`
+		conversation `Michel thanks you for escorting the ships, and gratefully hands you <payment>. Before you walk away, he clasps your shoulder and says: "You know, we're very grateful for the help you gave us, so I think we can give you a little somthing other than just a payment." He pulls out a slip of paper and writes on it. "<firt> <last>, right?" "Yes," you say. "Here," He hands you an Navy licence, "It won't buy you a cruiser, but it's the most I can give you."`
                         
                         choice
                                `Wow! Thanks!`
                                `Really? Thanks!`
-                        `"No problem!" He says "It was nice getting to know you, <first>." He walks away.`
+                        `"No problem!" He flashes you a grin, "It was nice getting to know you, <first>." He walks away.`
 
 
