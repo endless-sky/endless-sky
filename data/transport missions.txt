@@ -725,7 +725,7 @@ mission "There Might Be Riots part 2"
 				`	"Sorry, I really don't want to work with you guys anymore."`
 					decline
 			label okay
-			`	"You'll see," he says. "You should park your ship right behind us in case the natives get restless and we need to skeedaddle."`
+			`	"You'll see," he says. "You should park your ship right behind us in case the natives get restless and we need to skedaddle."`
 			`	With some trepidation, you sit by the hatchway of your ship and watch as the band sets up directly outside it and the concert begins. Nothing seems out of the ordinary until the band introduces a song called "Gluttony," and you can feel a sudden tension fill the air. The Syndicate security guards, who until now have been standing at the periphery of the landing pad, begin to disperse themselves throughout the crowd.`
 			`	It's a song about a man who will die if he ever stops eating, so he eats more and more and grows bigger and bigger. A second after you realize that the whole thing is a thinly veiled critique of the Syndicate, a group up front unrolls a banner that reads "End Wage Slavery!" and begins shouting and chanting slogans. As the band plays on, there is some sort of scuffle at the back of the crowd, and then you see stun guns begin to flash, and rising plumes of what you would guess is tear gas.`
 			`	As the demonstrators are driven away, a group of guards approach you. "What is your connection to these musicians?" they ask.`
@@ -999,6 +999,236 @@ mission "Rim Archaeology 1"
 			`	When the scan reaches about thirty meters below the surface, suddenly many air pockets appear, laid out in regular lines. "Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city."`
 			scene "scene/geoscan"
 			`	You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
+
+
+
+mission "Rim Archaeology 2A"
+	name "Archaeological Equipment"
+	description "Fetch some excavation equipment from <destination>, and return with it to the dig site on Zug."
+	source "Zug"
+	destination "Crossroads"
+	to offer
+		has "Rim Archaeology 1: done"
+	
+	on offer
+		conversation
+			`When you meet up with Foster, he tells you, "This is going to be tricky. We're going to have to dig through a twenty meter thick slab of solid basalt to get at those ruins. We have to work fast, or my competitors will catch wind of what we're doing and beat us to the punch. But we have to work delicately, too, or we'll damage what's underneath. Blasting won't work. I think some of the Syndicate's strip mining equipment could do the job, though. Would you be able to pick up maybe twenty or thirty tons of heavy machinery from <planet>?"`
+			choice
+				`	"Sure."`
+					accept
+				`	"Sorry, I don't have time to help out anymore."`
+			`	He seems incredulous. "No time to participate in what could be one of the biggest discoveries of the last hundred years? You'll be well paid for your services too, if that's what's holding you back."`
+			choice
+				`	"Okay, I'll pick up your equipment from <planet>."`
+					accept
+				`	"Sorry, I'm just not interested."`
+					decline
+
+
+
+mission "Rim Archaeology 2B"
+	landing
+	name "Archaeological Equipment"
+	description "Deliver this excavation equipment to <destination>."
+	source "Crossroads"
+	destination "Zug"
+	to offer
+		has "Rim Archaeology 2A: done"
+	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 28 tons of space free."
+	
+	on offer
+		conversation
+			`When you arrive on <origin>, the excavation machines requested by Albert Foster are already waiting for you at the spaceport. They are some of the largest terrestrial vehicles you have ever seen: a truck with enormous toothed grinding wheels for cutting through stone, and a front-end loader for carrying the loose stone away. You are barely able to fit them through the entrance of your cargo bay.`
+				accept
+	
+	on complete
+		payment 300000
+
+
+
+mission "Rim Archaeology 3A"
+	landing
+	name "Archaeological Equipment"
+	description "Fetch some excavation equipment from <destination>, and return with it to the dig site on Zug."
+	source "Zug"
+	destination "Asgard"
+	to offer
+		has "Rim Archaeology 2B: done"
+	
+	on offer
+		conversation
+			`You drop off the excavation machines at the dig site on Zug, and receive your payment of three hundred thousand credits. Foster has already marked out lines of where he wants to dig and has completed a much more detailed geological scan. "We'll be starting with a narrow trench," he tells you, "and expanding out from there. It'll need to be wide enough to include a ramp for the vehicles, of course, so we'll still need to move a lot of rock. And when we get within the last five meters or so, I'm worried that the vibration from the grinders may be too destructive. So, I need some laser excavation equipment from <planet>, next."`
+			`	You agree to fetch the equipment, and he begins directing the work crews to get the digging started.`
+				accept
+
+
+
+mission "Rim Archaeology 3B"
+	landing
+	name "Archaeological Equipment"
+	description `Deliver this excavation equipment to <destination>. Be sure that the ship "Oxyrhynchus" is not in the system when you land.`
+	source "Asgard"
+	destination "Zug"
+	to offer
+		has "Rim Archaeology 3A: done"
+	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 17 tons of space free."
+	
+	on offer
+		conversation
+			`Once again, the equipment that Foster needs is waiting for you when you land. It's a truck carrying a power generator and an articulated arm with a laser cannon mounted on the end. You can't help imagining what would happen if it malfunctioned and began firing while inside your cargo bay, but the engineer who delivers it assures you that it has many redundant safeties in place.`
+			`	Also waiting for you is an encrypted message from Foster: "Hi there, <first>. I've been told that one of my competitors, Sibyl Greythatch, has been asking around trying to figure out where my dig site is. She's an antiquities thief - robs archaeological sites and sells the artifacts on the black market. I think my equipment purchase on <origin> may have caught her attention. If so, her ship, the Oxyrhynchus, will be following you. Don't return to the dig site until you're certain you've shaken her."`
+				accept
+	
+	npc evade
+		government Independent
+		personality waiting
+		ship "Marauder Falcon (Engines)" "Oxyrhynchus"
+	
+	on visit
+		dialog
+			`As you are approaching Zug, you notice on your radar that the ship Foster warned you about has been following you: the Oxyrhynchus. You land in the main spaceport to avoid leading her to the dig site. You will need to shake her pursuit before delivering the equipment.`
+	
+	on complete
+		payment 300000
+
+
+
+mission "Rim Archaeology 4A"
+	landing
+	name "Transport a Xenobiologist"
+	description "Travel to the Quarg station <destination>, and meet a xenobiologist who will help interpret the findings at Albert Foster's dig site."
+	source "Zug"
+	destination "Lagrange"
+	to offer
+		has "Rim Archaeology 3B: done"
+	
+	on offer
+		conversation
+			`When you return to the dig, Foster's trench is already almost ten meters deep. You tell him that you saw the Oxyrhynchus on your scanners, but you were able to evade it. "Good job," he says. "Now, we need a xenobiologist who can help us make sense of what we find. A friend of mine, Amelia Lee, has been living on the Quarg ringworld for the last decade or so, and she agreed to come visit the dig, and also to see what the Quarg can tell us about this old alien civilization. Also, here's your pay for transporting the laser cutter." He hands you another three hundred thousand credits.`
+			`	You agree to pick her up, and he returns to supervising the excavation.`
+				accept
+
+
+
+mission "Rim Archaeology 4B"
+	landing
+	name "Transport a Xenobiologist"
+	description `Transport the xenobiologist Amelia Lee and her Quarg friend Yarthis to the dig site on Zug.`
+	source "Lagrange"
+	destination "Zug"
+	to offer
+		has "Rim Archaeology 4A: done"
+	blocked "You will need two bunks free to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
+	
+	on offer
+		conversation
+			`Amelia Lee meets you at the spaceport, along with a Quarg who is a bit shorter than normal, but still tall enough to tower over you. "Captain <last>?" she says. "Let me introduce my friend Yarthis Amorthee Dek-Farsook Nai," she says. "Yarthis will be accompanying us to the site."`
+			choice
+				`	"No problem. Welcome aboard!"`
+					goto welcome
+				`	"Do we really need to get the Quarg involved directly in this?"`
+			`	To your human eyes, unused to reading their expressions, the Quarg almost always seem grim and serious. But Yarthis seems particularly grave as it says, "You are digging in a graveyard, Captain. Someone must be present to see that the dead are given their due respect."`
+			label welcome
+			`	As both of them board your ship, Amelia chats enthusiastically with you. "One ringworld can sustain a population in excess of a trillion," she says, "so the Quarg need long names in order to unambiguously identify themselves." She goes on to ask questions about the progress of the dig, using so much technical jargon that at times it almost sounds like she is speaking the Quarg language rather than your own. Clearly she is very knowledgeable about the study of alien societies, and you are surprised to learn that she was actually born in Hai space, as the granddaughter of some of the first humans who settled there.`
+				accept
+	
+	npc
+		government Merchant
+		personality waiting
+		system Dabih
+		ship "Marauder Arrow (Engines)" "Naukratis"
+	
+	on complete
+		payment 200000
+
+
+
+mission "Rim Archaeology 5A"
+	landing
+	name "Defend Zug"
+	description "Drive off the pirates who are attacking Zug, or at least distract them for long enough for reinforcements to arrive."
+	source "Zug"
+	to offer
+		has "Rim Archaeology 4B: done"
+	
+	on offer
+		conversation
+			`Foster greets Amelia enthusiastically when you land, but seems less enthusiastic about having Yarthis here as well. The dig has nearly reached the target depth, and at the deepest part of the trench they are now slicing out blocks of stone with the laser and hoisting them out of the pit rather than just grinding through the rock. "Thanks again, Captain," he says, as he hands you a chip worth two hundred thousand credits.`
+			`	As Foster is showing the three of you around the dig, one of the workers runs up. "Mister Foster," he says, "there's a ton of traffic on the emergency militia channel. I think the planet is under attack."`
+			`	Foster swears and looks up at the sky as if expecting pirates to swoop down and steal his precious artifacts at any moment. "Captain <last>," he says, "We have to keep those pirates away from the dig at all costs, or they could destroy priceless information. Can you assist in defending the planet?"`
+			choice
+				`	"Of course."`
+					goto end
+				`	"My ship is not a warship."`
+			`	"Then just get up there and lead them around in circles until reinforcements arrive," he says. "I don't care how you do it, just keep whoever is up there occupied."`
+			label end
+			`	As you run for your ship, you see Yarthis pull out some sort of communication device and speak into it. Perhaps the Quarg will be joining in this fight as well...`
+				launch
+	
+	npc evade
+		government Pirate
+		personality heroic waiting
+		ship "Marauder Falcon (Weapons)" "Akhetaten"
+		ship "Marauder Splinter (Weapons)" "Itjtawy"
+		ship "Marauder Firebird (Weapons)" "Tanis"
+		ship "Marauder Leviathan (Weapons)" "Buhen"
+		ship "Marauder Manta (Weapons)" "Athribis"
+		ship "Marauder Quicksilver (Weapons)" "Philae"
+		ship "Marauder Raven (Weapons)" "Esna"
+		dialog `The last of the pirate raiders have been driven off. Time to land and check if any damage was done to the dig.`
+	
+	npc
+		government Quarg
+		system "Gamma Corvi"
+		personality heroic
+		ship "Quarg Wardragon" "Gloref Esa Kurayi"
+	
+	on visit
+		dialog
+			`You try to land near the dig, but pirate ships are still circling nearby. Better deal with them before returning to check in on Foster.`
+	
+	on complete
+		payment 400000
+		event "rim archaeology results" 97
+		conversation
+			`A plume of smoke is rising from the dig site. Fearing the worst, you land and find out that a missile fired by one of the pirates destroyed one of the huts where the workers were living, but fortunately no one was inside it at the time. Foster is shaken but still committed to finishing the work. "It will be months before we've excavated enough to be able to publish any findings," he says, "but Yarthis has told me that the Quarg will be stationing a Wardragon here for the remainder of the project, to prevent any further foul play." Foster gives you one last payment: four hundred thousand credits for your help driving off the pirates. "And I'll be sure to give you credit for your help when the news goes public," he says.`
+
+
+
+mission "Rim Archaeology 5B"
+	landing
+	invisible
+	source Zug
+	to offer
+		has "Rim Archaeology 5A: done"
+	npc kill
+		government Quarg
+		personality heroic staying uninterested
+		ship "Quarg Wardragon" "Gloref Esa Kurayi"
+
+
+
+event "rim archaeology results"
+	planet Zug
+		attributes rim farming factory tourism
+		description `Zug is a pleasant world of rolling hills, fertile fields, and a few small oceans. Hundreds of millions of people live here, with more immigrants arriving every day, almost faster than the construction industry can keep up with them. In addition to the larger cities, many people live in smaller farming villages, making this one of the few worlds in the region that is truly self-sufficient both in industry and in agriculture.`
+		description `	The largest industry on Zug is Southbound Shipyards. However, in the wake of some extraordinary archaeological discoveries of a lost civilization, Zug has suddenly also become a popular destination for tourists.`
+
+
+
+mission "Rim Archaeology 6"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+	to offer
+		has "event: rim archaeology results"
+	on offer
+		conversation
+			`When you give your name to the spaceport traffic controller, he says, "Wait, you're Captain <first> <last>? You're all over the news right now!"`
+			`	You land and find that Albert Foster has published an initial report on the dig on Zug. The ruins under the lava flow did indeed turn out to be an alien city. The houses are built on a gargantuan scale, with most of the doorways at least ten meters tall. What's more, some of the buildings have no exterior doors on the street level, just doors facing balconies or inner courtyards, which supports the theory that the inhabitants were capable of flight. Most of the artifacts left behind are just everyday items, and in fact the technology seems less advanced than present human society, but scientists are studying the artifacts eagerly to glean hints about how these aliens lived.`
+			`	The Quarg, who at other times seem quite willing to share their knowledge with human beings, are being surprisingly reticent with information about this lost civilization. Aside from telling Foster that the aliens were known as the Sheragi, their only comments have been vague warnings that if human beings persist in developing weapons of war, they will end up like the Sheragi. From this, Foster has surmised that the alien civilization was most likely destroyed by a civil war, not by natural disaster or an attack by another species.`
+			`	It may not yield any great advances in human technology, but the dig will be providing clues to the history of the galaxy for years to come, and you can be proud to have played a part in that.`
+				decline
 
 
 
