@@ -1309,8 +1309,8 @@ mission "Building Skytower 2"
 		conversation `Michel thanks you for escorting the ships, and gratefully hands you <payment>. Before you walk away, he clasps your shoulder and says: "You know, we're very grateful for the help you gave us, so I think we can give you a little somthing other than just a payment." He pulls out a slip of paper and writes on it. "<firt> <last>, right?" "Yes," you say. "Here," He hands you an Navy licence, "It won't buy you a cruiser, but it's the most I can give you."`
                         
                         choice
-                               `Wow! Thanks!`
-                               `Really? Thanks!`
-                        `"No problem!" He flashes you a grin, "It was nice getting to know you, <first>." He walks away.`
+                               `       Wow! Thanks!`
+                               `       Really? Thanks!`
+                        `"No problem!" He flashes you a grin, "It was nice getting to know you, <first>." He bids you goodbye and walks away.`
 
 
