@@ -1282,7 +1282,45 @@ mission "Terraforming 5"
 	on complete
 		payment 200000
  
-               #Fleet of freighter ships is needed here before merge
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Aber"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Newfield"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greenlock"
+			variant
+				"Behemoth"
+	on visit
+                `"You have reached <destination>, but you have left at least one of your escorts behind! Better leave this planet and wait for them to arrive."`
 
 
 mission "Building Skytower 2"
@@ -1312,5 +1350,4 @@ mission "Building Skytower 2"
                                `       Wow! Thanks!`
                                `       Really? Thanks!`
                         `"No problem!" He flashes you a grin, "It was nice getting to know you, <first>." He bids you goodbye and walks away.`
-
 
