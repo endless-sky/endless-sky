@@ -262,7 +262,7 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		bool isStranded = IsStranded(*it);
 		if(isStranded || it->IsDisabled())
 		{
-			if(it->IsDestroyed() || (it->IsDisabled() && it->IsYours()) || it->GetPersonality().IsDerelict())
+			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
 				continue;
 			
 			bool hasEnemy = false;
@@ -281,9 +281,14 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 					hasEnemy = true;
 					break;
 				}
+				// Don't ask for help from a ship that is already helping someone.
 				if(ship->GetShipToAssist() && ship->GetShipToAssist().get() != it.get())
 					continue;
+				// Your escorts only help other escorts, and your flagship never helps.
 				if((otherGov->IsPlayer() && !gov->IsPlayer()) || ship.get() == flagship)
+					continue;
+				// Your escorts should not help each other if already under orders.
+				if(otherGov->IsPlayer() && gov->IsPlayer() && (moveToMe || holdPosition))
 					continue;
 				
 				if(it->IsDisabled() ? (otherGov == gov) : (!otherGov->IsEnemy(gov)))
