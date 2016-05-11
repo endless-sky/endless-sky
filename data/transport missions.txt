@@ -1267,17 +1267,17 @@ mission "Terraforming 5"
 				`	"Yes, indeed."`
 				`	"Is this a skytower?"`
 				
-			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, this planet is turning into an urban world. On top of that, the greenhouse gas emmisions from the billions of people that call this world home are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster."`
+			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, our Earth is turning into an urban world. On top of that, the greenhouse gas emmisions from the billions of people that call this world home are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster!" He sounds very stressed, and you can tell this really stresses him out.`
 			choice
 				`	"This is scary stuff. Is there any way I can help?"`
                                 `       "Wow. What can we do?"`
 
-                       `        "There is somthing you can do. We need some cargo ships escorted to Alphard to pick up some super-strong nanotube buckyballs that hopefully should help strengthen this." He gestures toward the tower. "I also need you to bring some scientists back as well. Are you up to the challange?"`
+                       `        "There is somthing you can do. We need some cargo ships escorted to Alphard to pick up some super-strong graphine nanotubes that hopefully should help strengthen this." He gestures toward the incomplete tower. "I also need you to bring some scientists back as well. Are you up to the challange?"`
                         choice
-                                `       "Yes I am"`
+                                `       "Yes I am!"`
 				`       "Sorry, but I have somthing urgent to do"` 
                                 decline	
-			`       "Thanks!" He says, "By the way, I'm admrial Michel Farford." "<first> <last>." you say. You shake hands, and you show Michel to his bunk."`
+			`       "Thanks!" He says, "By the way, I'm admrial Michel Farford." "<first> <last>," you say. You shake hands, and you show Michel to his bunk."`
 	
 	on complete
 		payment 200000
@@ -1344,7 +1344,9 @@ mission "Building Skytower 2"
 	
 	on complete
 		payment 400000
-		conversation `Michel thanks you for escorting the ships, and gratefully hands you <payment>. Before you walk away, he clasps your shoulder and says: "You know, we're very grateful for the help you gave us, so I think we can give you a little somthing other than just a payment." He pulls out a slip of paper and writes on it. "<firt> <last>, right?" "Yes," you say. "Here," He hands you an Navy licence, "It won't buy you a cruiser, but it's the most I can give you."`
+		conversation `Michel thanks you for escorting the ships, and gratefully hands you <payment>. Before you walk away, he clasps your shoulder and says: "You know, we're very grateful for the help you gave us, so I think we can give you a little somthing other than just a payment." He pulls out a slip of paper and writes on it. "<firt> <last>, right?"`
+                             `"Yes," you say.`
+                             `"Here," He hands you an Navy licence, "It won't buy you a cruiser, but it's the most I can give you."`
                         
                         choice
                                `       Wow! Thanks!`
