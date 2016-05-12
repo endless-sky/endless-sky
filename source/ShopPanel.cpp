@@ -886,7 +886,8 @@ void ShopPanel::SideSelect(Ship *ship)
 	{
 		if(ship.get() == playerShip)
 			break;
-		++selectedIndex;
+		if (ShipIsHere(ship))
+			++selectedIndex;
 	}
 	int selectedCol = selectedIndex / IconCols();
 	sideScroll = min((int)sideScroll, 40 + ICON_TILE*selectedCol);
