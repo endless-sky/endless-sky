@@ -260,9 +260,10 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		if(flagship->IsEnteringHyperspace())
+		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::WAIT))
 		{
-			++jumpCount;
+			if(jumpCount < 100)
+				++jumpCount;
 			jumpInProgress[0] = flagship->GetSystem();
 			jumpInProgress[1] = flagship->GetTargetSystem();
 		}
@@ -652,6 +653,8 @@ void Engine::DrawMiniMap() const
 	Color lineColor(alpha, 0.);
 	Point center = .5 * (jumpInProgress[0]->Position() + jumpInProgress[1]->Position());
 	Point drawPos(0., Screen::Top() + 100.);
+	set<const System *> seen;
+	bool isLink = false;
 	for(int i = 0; i < 2; ++i)
 	{
 		const System *system = jumpInProgress[i];
@@ -661,7 +664,7 @@ void Engine::DrawMiniMap() const
 		string name = isKnown ? system->Name() : "Unexplored System";
 		font.Draw(name, from + Point(6., -.5 * font.Height()), lineColor);
 		
-		Color color = Color(.3 * alpha, 0.);
+		Color color = Color(.5 * alpha, 0.);
 		if(player.HasVisited(system) && system->IsInhabited() && gov)
 			color = Color(
 				alpha * gov->GetColor().Get()[0],
@@ -678,8 +681,13 @@ void Engine::DrawMiniMap() const
 			Point unit = (from - to).Unit() * 7.;
 			LineShader::Draw(from - unit, to + unit, 1.2, lineColor);
 			
+			isLink |= (link == jumpInProgress[!i]);
+			if(seen.count(link) || link == jumpInProgress[!i])
+				continue;
+			seen.insert(link);
+			
 			gov = link->GetGovernment();
-			Color color = Color(.3 * alpha, 0.);
+			Color color = Color(.5 * alpha, 0.);
 			if(player.HasVisited(link) && link->IsInhabited() && gov)
 				color = Color(
 					alpha * gov->GetColor().Get()[0],
@@ -688,6 +696,25 @@ void Engine::DrawMiniMap() const
 			RingShader::Draw(to, 6., 3.5, color);
 		}
 	}
+	
+	Point from = jumpInProgress[0]->Position() - center + drawPos;
+	Point to = jumpInProgress[1]->Position() - center + drawPos;
+	Point unit = (to - from).Unit();
+	from += 7. * unit;
+	to -= 7. * unit;
+	Color bright(2. * alpha, 0.);
+	if(!isLink)
+	{
+		double length = (to - from).Length();
+		int segments = static_cast<int>(length / 15.);
+		for(int i = 0; i < segments; ++i)
+			LineShader::Draw(
+				from + unit * ((i * length) / segments + 2.),
+				from + unit * (((i + 1) * length) / segments - 2.),
+				1.2, bright);
+	}
+	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., 1.2, bright);
+	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10, 1.2, bright);
 }
 
 
