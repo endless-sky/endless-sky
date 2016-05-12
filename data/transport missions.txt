@@ -1341,6 +1341,31 @@ mission "Building Skytower 2"
 			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this and many other worlds. `
 			`You pick up the scientests and watch the cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
 				accept
+
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Aber"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Newfield"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greenlock"
+			variant
+				"Behemoth"
+	on visit
+                `"You have reached <destination>, but you have left at least one of your escorts behind! Better leave this planet and wait for them to arrive."`
+
 	
 	on complete
 		payment 400000
