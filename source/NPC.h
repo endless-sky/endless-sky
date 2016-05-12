@@ -56,7 +56,7 @@ public:
 	
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
 	
 	
 private:
@@ -67,6 +67,7 @@ private:
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
+	bool isAtDestination = false;
 	
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;

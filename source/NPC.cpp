@@ -64,7 +64,12 @@ void NPC::Load(const DataNode &node)
 		if(child.Token(0) == "system")
 		{
 			if(child.Size() >= 2)
-				system = GameData::Systems().Get(child.Token(1));
+			{
+				if(child.Token(1) == "destination")
+					isAtDestination = true;
+				else
+					system = GameData::Systems().Get(child.Token(1));
+			}
 			else
 				location.Load(child);
 		}
@@ -317,7 +322,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
 {
 	NPC result;
 	result.government = government;
@@ -347,7 +352,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 			result.system = options[Random::Int(options.size())];
 	}
 	if(!result.system)
-		result.system = origin;
+		result.system = (isAtDestination && destination) ? destination : origin;
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)
