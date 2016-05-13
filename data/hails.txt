@@ -15,6 +15,10 @@ phrase "friendly civilian"
 	word
 		"I love it!"
 		"It is stuck in my head...again!"
+		"It's pure genius!"
+		"It's my favourite!"
+		"I can't get enough of it!"
+		"I'm playing it full blast, throughout my ship!"
 
 phrase "band"
 	word
@@ -43,7 +47,7 @@ phrase "Queen"
 		"Under Pressure "
 		"Fat Bottomed Girls "
 	word
-		"by 'Queen’?"
+		"by 'Queen'?"
 
 phrase "Mother Mother"
 	word
@@ -51,7 +55,6 @@ phrase "Mother Mother"
 		"Let's Fall in Love "
 	word
 		"by 'Mother Mother'?"
-
 
 phrase "friendly civilian"
 	word
