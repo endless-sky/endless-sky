@@ -1801,6 +1801,7 @@ mission "FW Pug 2 Know A"
 
 			label true
 			`	"It's true." A representative from Shangri-La has stood up. "My system has been raided by the Korath. They have powerful ships but they can be defeated and they can be disabled. It's not inconceivable that Captain <last> took one of their Jump Drives."`
+			`	Murmurs sweep round the chamber before one of the Paradise planet representatives says, "You now have two aliens in your story, this is getting less believable by the minute!" This raises a "Hear, Hear." from the other Paradise planet reps."`
 
 			label last
 			`	Alondo sighs before stepping forward and raising his voice so as to be heard, "The Pug are occupying systems that used to be only a single jump from here. We need to act now, as a united species, as one Human race. Now is not the time to fight each other, we need the Navy and you need our Jump Drive. Every moment we are not acting is another moment longer our worlds are subjugated."`
@@ -1820,6 +1821,7 @@ mission "FW Pug 2 Know A"
 			`	At that moment a Navy admiral hurries past looking stressed. "Your right there," chuckles Alondo, "and if we did run everything we could never retire comfortably."`
 
 			label ask
+			`	When the admiral comes out he walks over to you to tell you that Parliament wants to see you again.`
 			`	Back inside the Speaker stands up and requests on behalf of the Republic that you use your Jump Drive to visit the Pug and try to get Human systems returned, and if the Pug refuse to cooperate, to continue into Syndicate space and find out if they have Jump Drives and if they will use them to help defeat the Pug.`
 			choice
 				`	"We would be honoured to accept this mission."`
