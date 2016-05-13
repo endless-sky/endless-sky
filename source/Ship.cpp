@@ -1551,7 +1551,8 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is currently able to enter hyperspace to it target.
 int Ship::CheckHyperspace() const
 {
-	if(commands.Has(Command::WAIT))
+	// You can't jump if you're waiting for someone else or are already jumping.
+	if(commands.Has(Command::WAIT) || hyperspaceCount)
 		return 0;
 	
 	// Find out where we're going and how we're getting there,

@@ -925,7 +925,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem(), result.destination->GetSystem()));
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
