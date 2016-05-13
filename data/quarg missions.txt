@@ -179,7 +179,7 @@ mission "Quarg Very Angry at Being Farmed"
 				`"Alright, I will lift off in a moment."`
 					launch
 				`"No, I refuse. I don’t believe you’ll attack the city."`
-					’"That is regrettable."`
+					`"That is regrettable."`
 					goto flee
 		
 	npc disable
