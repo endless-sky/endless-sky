@@ -11,7 +11,11 @@
 phrase "friendly civilian"
 	word
 		"Have you ever heard the song "
-	phrase "band"
+	word
+		phrase "There Might Be Riots"
+		phrase "Led Zeppelin"
+		phrase "Queen"
+		phrase "Mother Mother"
 	word
 		" I love it!"
 		" It is stuck in my head...again!"
@@ -19,13 +23,6 @@ phrase "friendly civilian"
 		" It's my favourite!"
 		" I can't get enough of it!"
 		" I'm playing it full blast, throughout my ship!"
-
-phrase "band"
-	word
-		phrase "There Might Be Riots"
-		phrase "Led Zeppelin"
-		phrase "Queen"
-		phrase "Mother Mother"
 
 phrase "There Might Be Riots"
 	word
