@@ -12,10 +12,10 @@ phrase "friendly civilian"
 	word
 		"Have you ever heard the song "
 	word
-		phrase "There Might Be Riots"
 		phrase "Led Zeppelin"
-		phrase "Queen"
 		phrase "Mother Mother"
+		phrase "Queen"
+		phrase "There Might Be Riots"
 	word
 		" I love it!"
 		" It is stuck in my head...again!"
