@@ -632,16 +632,21 @@ void MapPanel::DrawSystems() const
 			{
 				double reputation = system.GetGovernment()->Reputation();
 				
+				// A system should show up as dominated if it contains at least
+				// one inhabited planet and all inhabited planets have been
+				// dominated. It should show up as restricted if you cannot land
+				// on any of the planets that have spaceports.
 				bool hasDominated = true;
 				bool isInhabited = false;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
-					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
+					if(object.GetPlanet())
 					{
-						canLand |= object.GetPlanet()->CanLand();
-						isInhabited |= object.GetPlanet()->IsInhabited();
-						hasDominated &= (!object.GetPlanet()->IsInhabited()
-							|| GameData::GetPolitics().HasDominated(object.GetPlanet()));
+						const Planet *planet = object.GetPlanet();
+						canLand |= planet->CanLand() && planet->HasSpaceport();
+						isInhabited |= planet->IsInhabited();
+						hasDominated &= (!planet->IsInhabited()
+							|| GameData::GetPolitics().HasDominated(planet));
 					}
 				hasDominated &= isInhabited;
 				color = ReputationColor(reputation, canLand, canLand && hasDominated);
@@ -657,7 +662,8 @@ void MapPanel::DrawSystems() const
 void MapPanel::DrawNames() const
 {
 	// Don't draw if too small.
-	if (Zoom() <= 0.5) return;
+	if(Zoom() <= 0.5)
+		return;
 	
 	// Draw names for all systems you have visited.
 	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);
