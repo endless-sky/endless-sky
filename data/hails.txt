@@ -24,13 +24,6 @@ phrase "friendly civilian"
 		" I can't get enough of it!"
 		" I'm playing it full blast, throughout my ship!"
 
-phrase "There Might Be Riots"
-	word
-		"Sad Archie "
-		"Gluttony "
-	word
-		"by 'There Might Be Riots'?"
-
 phrase "Led Zeppelin"
 	word
 		"Stairway to Heaven "
@@ -39,6 +32,13 @@ phrase "Led Zeppelin"
 	word
 		"by 'Led Zeppelin'?"
 
+phrase "Mother Mother"
+	word
+		"Hay Loft "
+		"Let's Fall in Love "
+	word
+		"by 'Mother Mother'?"
+
 phrase "Queen"
 	word
 		"Under Pressure "
@@ -46,12 +46,12 @@ phrase "Queen"
 	word
 		"by 'Queen'?"
 
-phrase "Mother Mother"
+phrase "There Might Be Riots"
 	word
-		"Hay Loft "
-		"Let's Fall in Love "
+		"Sad Archie "
+		"Gluttony "
 	word
-		"by 'Mother Mother'?"
+		"by 'There Might Be Riots'?"
 
 phrase "friendly civilian"
 	word
