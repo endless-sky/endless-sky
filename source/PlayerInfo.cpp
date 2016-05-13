@@ -32,6 +32,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
+#include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
 
@@ -294,7 +295,8 @@ void PlayerInfo::ApplyChanges()
 	// Check if any special persons have been destroyed.
 	while(!destroyedPersons.empty())
 	{
-		destroyedPersons.back()->GetShip()->Destroy();
+		if(destroyedPersons.back()->GetShip())
+			destroyedPersons.back()->GetShip()->Destroy();
 		destroyedPersons.pop_back();
 	}
 	
@@ -409,6 +411,9 @@ const Date &PlayerInfo::GetDate() const
 void PlayerInfo::IncrementDate()
 {
 	++date;
+	conditions["day"] = date.Day();
+	conditions["month"] = date.Month();
+	conditions["year"] = date.Year();
 	
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
@@ -499,6 +504,32 @@ const Planet *PlayerInfo::GetPlanet() const
 
 
 
+// If the player is landed, return the stellar object they are on.
+const StellarObject *PlayerInfo::GetStellarObject() const
+{
+	if(!system || !planet)
+		return nullptr;
+	
+	double closestDistance = numeric_limits<double>::infinity();
+	const StellarObject *closestObject = nullptr;
+	for(const StellarObject &object : system->Objects())
+		if(object.GetPlanet() == planet)
+		{
+			if(!Flagship())
+				return &object;
+			
+			double distance = Flagship()->Position().Distance(object.Position());
+			if(distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestObject = &object;
+			}
+		}
+	return closestObject;
+}
+
+
+
 // Check if the player must take off immediately.
 bool PlayerInfo::ShouldLaunch() const
 {
@@ -568,8 +599,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(!flagship)
 	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried()
-					&& it->RequiredCrew() && !it->IsDisabled())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
 			{
 				flagship = it;
 				break;
@@ -761,11 +791,17 @@ void PlayerInfo::Land(UI *ui)
 		else
 			++it; 
 	}
+	// Check for NPCs that have been destroyed without their destruction being
+	// registered, e.g. by self-destruct:
+	for(Mission &mission : missions)
+		for(const NPC &npc : mission.NPCs())
+			for(const shared_ptr<Ship> &ship : npc.Ships())
+				if(ship->IsDestroyed())
+					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsDisabled())
-			ship->UnloadBays();
+		ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
@@ -814,10 +850,10 @@ void PlayerInfo::Land(UI *ui)
 	
 	vector<const Mission *> missionsToRemove;
 	for(const auto &it : cargo.MissionCargo())
-		if(active.find(it.first) == active.end())
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const auto &it : cargo.PassengerList())
-		if(active.find(it.first) == active.end())
+		if(!active.count(it.first))
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
@@ -858,13 +894,18 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-void PlayerInfo::TakeOff(UI *ui)
+bool PlayerInfo::TakeOff(UI *ui)
 {
-	shouldLaunch = false;
 	// This can only be done while landed.
 	if(!system || !planet)
-		return;
+		return false;
 	
+	flagship.reset();
+	flagship = FlagshipPtr();
+	if(!flagship)
+		return false;
+	
+	shouldLaunch = false;
 	Audio::Play(Audio::Get("takeoff"));
 	
 	// Jobs are only available when you are landed.
@@ -882,10 +923,6 @@ void PlayerInfo::TakeOff(UI *ui)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
-	flagship.reset();
-	flagship = FlagshipPtr();
-	if(!flagship)
-		return;
 	// Move the flagship to the start of your list of ships. It does not make
 	// sense that the flagship would change if you are reunited with a different
 	// ship that was higher up the list.
@@ -952,7 +989,7 @@ void PlayerInfo::TakeOff(UI *ui)
 	for(auto it = ships.begin(); it != ships.end(); )
 	{
 		shared_ptr<Ship> &ship = *it;
-		if(ship->IsParked() || ship->IsDisabled() || ship->GetSystem() != system)
+		if(ship->IsParked() || ship->IsDisabled())
 		{
 			++it;
 			continue;
@@ -1064,6 +1101,8 @@ void PlayerInfo::TakeOff(UI *ui)
 			out << ".";
 		Messages::Add(out.str());
 	}
+	
+	return true;
 }
 
 
@@ -1274,7 +1313,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment()->IsPlayer())
 		if((event.Type() & ShipEvent::DISABLE) && event.Target())
-			conditions["combat rating"] += event.Target()->RequiredCrew();
+			conditions["combat rating"] += (event.Target()->Cost() + 250000) / 500000;
 	
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
@@ -1315,7 +1354,27 @@ const map<string, int> &PlayerInfo::Conditions() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System *system) const
 {
-	return (seen.find(system) != seen.end() || KnowsName(system));
+	for(const Mission &mission : availableJobs)
+	{
+		if(mission.Waypoints().count(system))
+			return true;
+		for(const Planet *planet : mission.Stopovers())
+			if(planet->GetSystem() == system)
+				return true;
+	}
+	
+	for(const Mission &mission : missions)
+	{
+		if(!mission.IsVisible())
+			continue;
+		if(mission.Waypoints().count(system))
+			return true;
+		for(const Planet *planet : mission.Stopovers())
+			if(planet->GetSystem() == system)
+				return true;
+	}
+	
+	return (seen.count(system) || KnowsName(system));
 }
 
 
@@ -1325,7 +1384,7 @@ bool PlayerInfo::HasVisited(const System *system) const
 {
 	if(!system)
 		return false;
-	return (visitedSystems.find(system) != visitedSystems.end());
+	return visitedSystems.count(system);
 }
 
 
@@ -1335,7 +1394,7 @@ bool PlayerInfo::HasVisited(const Planet *planet) const
 {
 	if(!planet)
 		return false;
-	return (visitedPlanets.find(planet) != visitedPlanets.end());
+	return visitedPlanets.count(planet);
 }
 
 
@@ -1352,7 +1411,7 @@ bool PlayerInfo::KnowsName(const System *system) const
 			return true;
 	
 	for(const Mission &mission : missions)
-		if(mission.Destination()->GetSystem() == system)
+		if(mission.IsVisible() && mission.Destination()->GetSystem() == system)
 			return true;
 	
 	return false;
@@ -1418,20 +1477,9 @@ const vector<const System *> &PlayerInfo::TravelPlan() const
 
 
 
-// Clear the player's travel plan.
-void PlayerInfo::ClearTravel()
+vector<const System *> &PlayerInfo::TravelPlan()
 {
-	travelPlan.clear();
-	if(Flagship())
-		Flagship()->SetTargetSystem(nullptr);
-}
-
-
-
-// Add to the travel plan, starting with the last system in the journey.
-void PlayerInfo::AddTravel(const System *system)
-{
-	travelPlan.push_back(system);
+	return travelPlan;
 }
 
 

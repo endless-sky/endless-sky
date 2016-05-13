@@ -4310,6 +4310,16 @@ system Dokdobaru
 	asteroids "small metal" 1 4.05
 	asteroids "medium metal" 2 4.05
 	asteroids "large metal" 3 2.0655
+	trade Clothing 320
+	trade Electronics 645
+	trade Equipment 570
+	trade Food 304
+	trade "Heavy Metals" 1150
+	trade Industrial 621
+	trade "Luxury Goods" 1347
+	trade Medical 750
+	trade Metal 385
+	trade Plastic 379
 	fleet Quarg 500
 	fleet "Kor Efret Home" 1500
 	object
@@ -7817,6 +7827,16 @@ system Kashikt
 	asteroids "small metal" 22 3.1878
 	asteroids "medium metal" 44 6.0858
 	asteroids "large metal" 13 4.2021
+	trade Clothing 409
+	trade Electronics 732
+	trade Equipment 643
+	trade Food 540
+	trade "Heavy Metals" 1230
+	trade Industrial 576
+	trade "Luxury Goods" 1387
+	trade Medical 834
+	trade Metal 315
+	trade Plastic 438
 	fleet Quarg 1000
 	fleet "Kor Efret Home" 1000
 	object
@@ -13104,6 +13124,16 @@ system Sevrelect
 	link Sumprast
 	link Kashikt
 	asteroids "large metal" 1 2.97
+	trade Clothing 340
+	trade Electronics 820
+	trade Equipment 632
+	trade Food 524
+	trade "Heavy Metals" 1309
+	trade Industrial 624
+	trade "Luxury Goods" 1409
+	trade Medical 920
+	trade Metal 207
+	trade Plastic 534
 	fleet Quarg 1000
 	fleet "Kor Efret Home" 1000
 	object
@@ -14019,6 +14049,16 @@ system Sumprast
 	asteroids "small metal" 3 2.9744
 	asteroids "medium metal" 15 2.4336
 	asteroids "large metal" 7 2.4336
+	trade Clothing 421
+	trade Electronics 740
+	trade Equipment 721
+	trade Food 593
+	trade "Heavy Metals" 1292
+	trade Industrial 540
+	trade "Luxury Goods" 1324
+	trade Medical 913
+	trade Metal 236
+	trade Plastic 500
 	fleet Quarg 1000
 	fleet "Kor Efret Home" 1000
 	object
@@ -16104,6 +16144,7 @@ planet "Aresepru Nat"
 	attributes korath
 	landscape land/beach1
 	description `Now that the Korath are gone, the oceans on this planet have begun to teem with fish and other living creatures once again, and the levels of dissolved oxygen and carbon dioxide are slowly swinging back into balance. Species of algae and bacteria that are able to metabolize the plastics and chemicals that the Korath left behind have spread throughout the oceans.`
+	security 0
 
 planet Asgard
 	attributes deep factory urban rich
@@ -16128,6 +16169,7 @@ planet Avalon
 	landscape land/sea9
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
+	security 0
 
 planet "Big Sky"
 	attributes "dirt belt" farming
@@ -16301,7 +16343,7 @@ planet Chiron
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
 	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader of the higher education industry, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
 	spaceport `There are two spaceports on Chiron. The Old Port was built back when it was first settled, and was placed in a desert region, far from where people would want to live, so that they would not be as affected by the fallout from the nuclear propulsion that was used in the first, pre-hyperspace starships.`
-	spaceport `	The New Port, on the other hand, is in the center of New Sidney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous.`
+	spaceport `	The New Port, on the other hand, is in the center of New Sydney, one of Chiron's largest cities. Its soaring architecture and gleaming mirrored glass is intended to make a clear statement, that Chiron is everything Earth is not: clean, modern, prosperous.`
 	shipyard "Basic Ships"
 	shipyard "Betelgeuse Basics"
 	shipyard "Betelgeuse Advanced"
@@ -16477,6 +16519,7 @@ planet "Desi Seledrak"
 	attributes korath
 	landscape land/hills3
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
+	security 0
 
 planet "Devru Kaska"
 	attributes korath station
@@ -16546,12 +16589,14 @@ planet "Elek Kartanu"
 	attributes korath
 	landscape land/mountain2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
+	security 0
 
 planet "Esayaku Fen"
 	attributes korath
 	landscape land/badlands5
 	description `The Kor Mereti robots seem to prefer to build their factories and refineries in space rather than on planets, harvesting their raw materials from asteroids so that they do not have to deal with gravity, or atmosphere, or rain, or sandstorms. They have left this desert world unoccupied.`
 	description `	The deserts here are home to an unusual number of plant species, which have adapted to survive the occasional catastrophic flash floods.`
+	security 0
 
 planet "Esek Stovar"
 	attributes korath station
@@ -16566,12 +16611,14 @@ planet "Eskar Kortuka"
 	attributes korath
 	landscape land/snow2
 	description `This is a barely habitable frozen world. The Korath built nothing here except for a few small mining facilities, now abandoned. There is no sign that the occupants were forced to leave by violence. Rather, it seems that they simply packed up their things one day and moved out. The buildings they left behind are now half-covered by snowdrifts.`
+	security 0
 
 planet "Esperaktu Station"
 	attributes korath station
 	landscape land/station0
 	description `This small space station has plenty of blast marks on its outer hull, but they have all been patched and the interior still holds atmosphere. But although still intact, the station is entirely abandoned.`
 	description `	For food, the Korath set up vats of photosynthetic yeast and bacteria in some rooms on the outer shell of the station. In their absence, the bacterial soup has worked its way through the ventilation system into the rest of the station and formed a thin layer of slime on almost every sun-facing wall.`
+	security 0
 
 planet "Far'en Lai"
 	landscape land/dune3
@@ -16637,6 +16684,7 @@ planet "Fek Rembatu"
 	attributes korath
 	landscape land/sky3
 	description `Everything on this planet that is made of metal is overgrown with a thick layer of a reddish lichen or fungus. In the cities, the tallest buildings look like they have been melted or half digested by the fungus: tall towers lean at crazy angles, and smaller buildings are entirely buried and indistinct. The air smells like sauerkraut and roses.`
+	security 0
 
 planet "Fenrir Station"
 	attributes deep station
@@ -16660,6 +16708,7 @@ planet "Firka Tesk"
 	attributes korath
 	landscape land/lava0
 	description `This appears to have once been an inhabited world, and the remnants of a few cities still remain. But the planet's crust has been cracked like an eggshell, releasing rivers of lava and leaving behind unnaturally steep mountains and fault lines. The wind whistles and howls through the rifts and fissures as if the planet itself is screaming in pain. A thick haze of sulfur dioxide and ash hangs over everything.`
+	security 0
 
 planet Flood
 	attributes rim tourism farming
@@ -16675,7 +16724,7 @@ planet Flood
 planet Follower
 	attributes paradise factory
 	landscape land/city10
-	description `Follower is on the edge of the "paradise planets" region of space; not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy in considered very stable.`
+	description `Follower is on the edge of the "paradise planets" region of space; not really one of them yet, but aspiring to be. It is prosperous, but from manufacturing rather than law or finance or venture capitalism. A significant fraction of the local taxes collected here are being spent on terraforming, raising global temperatures and reducing seasonal fluctuations. The goods produced here always have a ready market to purchase them, so Follower's job economy is considered very stable.`
 	description `	As one of the few planets still actively engaged in terraforming, Follower has been the location of several experiments with new technology, trying to leapfrog the centuries-slow process that other worlds have gone through. Unfortunately most of these experiments have failed, sometimes spectacularly.`
 	spaceport `The spaceport is a single skyscraper, fifty floors tall and as wide as it is high, with the floors twisting around each other in a helical patterns so that on each level, the landing bays are approached from a slightly different angle. The whole structure is built of steel and gleaming glass. Inside, the soaring ceilings give you more of a sense of opulence than of comfort.`
 	shipyard "Betelgeuse Basics"
@@ -17128,6 +17177,7 @@ planet "Kasichara Fet"
 	attributes korath
 	landscape land/sky8
 	description `This planet appears to have suffered irradiation when the neighboring star of Peresedersi went nova. The local flora and fauna are alive but still struggling to recover from the loss. Several large Korath cities remain. It seems that they were not able, or not willing, to evacuate the entire population in time to escape the nova's gamma radiation; sun-bleached bones are scattered in the streets of the largest cities.`
+	security 0
 
 planet "Keneska Fek"
 	attributes korath
@@ -17158,6 +17208,7 @@ planet "Korbatri Eska"
 	attributes korath
 	landscape land/myrabella7
 	description `The cities on this world have been hit by an astonishing variety of weapons. Some were leveled by massive explosions, while others show signs of strafing by low-flying ships or of orbital bombardment. Outside the cities, the land is fruitful and varied: forests, mountains, oceans, desert, and tundra.`
+	security 0
 
 planet "Kort Kehai"
 	attributes wanderer
@@ -17953,6 +18004,7 @@ planet "Sabira Eseskrai"
 	landscape land/bwerner3
 	description `Long ago, this planet was home to several Korath oil mining settlements, but now all that remains visible are the tops of a few dozen of the tallest buildings. Everything else has been buried by sandstorms.`
 	description `	Due to a recent shift in climate the deserts have begun shrinking once more, with local vegetation growning to cover more and more land each year, but the Korath are no longer here to benefit from the change.`
+	security 0
 
 planet "Safaresk Enlai"
 	attributes korath station
@@ -17963,7 +18015,7 @@ planet "Safaresk Enlai"
 
 planet "Sapira Mereti"
 	attributes korath
-	landscape land/lava9
+	landscape land/lava6
 	description `This was the seat of government and last military stronghold of the Kor Mereti faction during the Korath civil war. Here they built the factories and shipyards that churned out autonomous warships to prosecute their war against the Kor Sestri and the other factions. The machines now rule this world alone, and have made it entirely uninhabitable for living creatures as they delve ever deeper into the planet's crust to harvest metal and fuel, and construct more and more factories to build new generations of robotic warships.`
 	spaceport `With no living creatures in sight, the only noises in this refuelling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair robots that attach new layers of hull armor and replace weapons and engines that have been destroyed.`
 	"required reputation" 1
@@ -17975,11 +18027,13 @@ planet "Sarisa Fentra"
 	landscape land/sky1
 	description `This planet's atmosphere has dangerously high radiation levels. On several of the continents there are patches, each nearly a hundred kilometers across, where the soil has been melted into glass by a nuclear explosion. Outside these blasted regions the plant life still flourishes, but the only land animals left alive are insects.`
 	description `	In the oceans, bizarre and corrupted creatures frolic.`
+	security 0
 
 planet "Sasirka Gatru"
 	attributes korath
 	landscape land/desert0
 	description `This was probably a habitable world at one point. It is no longer. Nothing lives or grows here, and the atmosphere is full of toxic chemicals.`
+	security 0
 
 planet "Sebra Skira"
 	attributes korath station
@@ -17994,18 +18048,21 @@ planet "Sek Alarfarat"
 	attributes korath
 	landscape land/bwerner2
 	description `A hideously powerful weapon tore open scars on this planets surface so deep that the molten rock of the mantle bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+	security 0
 
 planet "Selefkar Refinery"
 	attributes korath station
 	landscape land/space6
 	description `This station's hull is pockmarked by weapons fire and torn open by larger explosions. Only one section remains that still contains atmosphere. Inside are the corpses of a few dozen Korath, mummified by exposure to the dry and antiseptic air of the station. It's not a pretty sight.`
 	description `	Before the war put an end to it, this appears to have been a refinery, processing ore harvested from the system's unusually dense population of metallic asteroids.`
+	security 0
 
 planet "Seleptra Nak"
 	attributes korath
 	landscape land/water8
 	description `The most disturbing thing about the empty Korath cities on this planet is how pristine they are: no sign of bombing or of weapons fire. Either everyone who lived here chose to leave, or they were killed by a weapon that did no damage to the buildings they live in.`
 	description `	Outside the cities, plant and animal life has begun to flourish, and some of the smaller villages have already been swallowed up by the growing forests. The climate is temperate, and rainfall is plentiful; aside from the reduction in biodiversity, it will not take this planet long to forget its former owners.`
+	security 0
 
 planet "Separa Tiklar"
 	attributes korath station
@@ -18202,6 +18259,7 @@ planet "Solima Skarati"
 	attributes korath
 	landscape land/beach3
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
+	security 0
 
 planet "Sopi Lefarkata"
 	attributes korath
@@ -18216,6 +18274,7 @@ planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands6
 	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+	security 0
 
 planet Splashdown
 	attributes north farming

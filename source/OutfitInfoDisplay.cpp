@@ -136,10 +136,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		double scale = 1.;
 		if(it.first == "thrust" || it.first == "reverse thrust" || it.first == "afterburner thrust")
 			scale = 60. * 60.;
-		else if(ATTRIBUTES_TO_SCALE.find(it.first) != ATTRIBUTES_TO_SCALE.end())
+		else if(ATTRIBUTES_TO_SCALE.count(it.first))
 			scale = 60.;
 		
-		if(BOOLEAN_ATTRIBUTES.find(it.first) != BOOLEAN_ATTRIBUTES.end()) 
+		if(BOOLEAN_ATTRIBUTES.count(it.first)) 
 		{
 			attributeLabels.push_back("This outfit is " + it.first + ".");
 			attributeValues.push_back(" ");
@@ -256,25 +256,40 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.push_back(skill[max(0, min(4, homing))]);
 		attributesHeight += 20;
 	}
-	if(outfit.Piercing())
-	{
-		int piercing = 100. * outfit.Piercing() + .5;
-		attributeLabels.push_back("shield piercing:");
-		attributeValues.push_back(Format::Number(piercing) + "%");
-		attributesHeight += 20;
-	}
+	static const string percentNames[] = {
+		"tracking:",
+		"optical tracking:",
+		"infrared tracking:",
+		"radar tracking:",
+		"piercing:"
+	};
+	double percentValues[] = {
+		outfit.Tracking(),
+		outfit.OpticalTracking(),
+		outfit.InfraredTracking(),
+		outfit.RadarTracking(),
+		outfit.Piercing()
+	};
+	for(unsigned i = 0; i < sizeof(percentValues) / sizeof(percentValues[0]); ++i)
+		if(percentValues[i])
+		{
+			int percent = 100. * percentValues[i] + .5;
+			attributeLabels.push_back(percentNames[i]);
+			attributeValues.push_back(Format::Number(percent) + "%");
+			attributesHeight += 20;
+		}
 	
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
 	
 	static const string names[] = {
-		"shield damage / shot: ",
-		"hull damage / shot: ",
-		"heat damage / shot: ",
-		"ion damage / shot: ",
-		"slowing damage / shot: ",
-		"disruption damage / shot: ",
+		"shield damage / shot:",
+		"hull damage / shot:",
+		"heat damage / shot:",
+		"ion damage / shot:",
+		"slowing damage / shot:",
+		"disruption damage / shot:",
 		"firing energy / shot:",
 		"firing heat / shot:",
 		"firing fuel / shot:",

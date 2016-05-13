@@ -291,8 +291,7 @@ void Ship::FinishLoading()
 	
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
-	if(baseAttributes.Category() == "Drone"
-			&& baseAttributes.Attributes().find("automaton") == baseAttributes.Attributes().end())
+	if(baseAttributes.Category() == "Drone" && !baseAttributes.Attributes().count("automaton"))
 		baseAttributes.Add("automaton", 1.);
 	
 	// Different ships dissipate heat at different rates.
@@ -336,6 +335,11 @@ void Ship::FinishLoading()
 	{
 		shared_ptr<const Ship> parent = GetParent();
 		Recharge(!parent || currentSystem == parent->currentSystem);
+	}
+	else
+	{
+		isDisabled = true;
+		isDisabled = IsDisabled();
 	}
 }
 
@@ -501,7 +505,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	if(landingPlanet)
 	{
 		landingPlanet = nullptr;
-		zoom = parent.lock() ? -1. : 0.;
+		zoom = parent.lock() ? (-.2 + -.8 * Random::Real()) : 0.;
 	}
 	else
 		zoom = 1.;
@@ -511,7 +515,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	disruption = 0.;
 	slowness = 0.;
 	cloak = 0.;
-	jettisoned = 0;
+	jettisoned.clear();
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
 	forget = 1;
@@ -652,7 +656,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(list<Effect> &effects)
+bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -685,13 +689,11 @@ bool Ship::Move(list<Effect> &effects)
 		CreateSparks(effects, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
-	// Jettisoned cargo effects.
-	static const int JETTISON_BOX = 5;
-	if(jettisoned >= JETTISON_BOX)
+	// Jettisoned cargo effects (only for ships in the current system).
+	if(!jettisoned.empty() && !forget)
 	{
-		jettisoned -= JETTISON_BOX;
-		effects.push_back(*GameData::Effects().Get("box"));
-		effects.back().Place(position, velocity, angle);
+		jettisoned.front().Place(*this);
+		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
 	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
@@ -765,6 +767,15 @@ bool Ship::Move(list<Effect> &effects)
 					effects.push_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
+				// For everything in this ship's cargo hold there is a 25% chance
+				// that it will survive as flotsam.
+				for(const auto &it : cargo.Commodities())
+					Jettison(it.first, Random::Binomial(it.second, .25));
+				for(const auto &it : cargo.Outfits())
+					Jettison(it.first, Random::Binomial(it.second, .25));
+				for(Flotsam &it : jettisoned)
+					it.Place(*this);
+				flotsam.splice(flotsam.end(), jettisoned);
 			}
 			energy = 0.;
 			heat = 0.;
@@ -893,6 +904,11 @@ bool Ship::Move(list<Effect> &effects)
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
+		// If a ship was disabled at the very moment it began landing, do not
+		// allow it to continue landing.
+		if(isDisabled)
+			landingPlanet = nullptr;
+		
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -933,7 +949,8 @@ bool Ship::Move(list<Effect> &effects)
 		
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
-		position += velocity * zoom;
+		if(zoom > 0.)
+			position += velocity * zoom;
 		
 		return true;
 	}
@@ -1457,7 +1474,8 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is currently able to enter hyperspace to it target.
 int Ship::CheckHyperspace() const
 {
-	if(commands.Has(Command::WAIT))
+	// You can't jump if you're waiting for someone else or are already jumping.
+	if(commands.Has(Command::WAIT) || hyperspaceCount)
 		return 0;
 	
 	// Find out where we're going and how we're getting there,
@@ -1781,6 +1799,14 @@ void Ship::AddCrew(int count)
 
 
 
+// Check if this is a ship that can be used as a flagship.
+bool Ship::CanBeFlagship() const
+{
+	return !CanBeCarried() && RequiredCrew() && Crew() && !IsDisabled();
+}
+
+
+
 double Ship::Mass() const
 {
 	double carried = 0.;
@@ -1835,8 +1861,10 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double shieldFraction = 1. - weapon.Piercing();
 	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shieldDamage > shields)
-	    shieldFraction = min(shieldFraction, shields / shieldDamage);
+	if(shields <= 0.)
+		shieldFraction = 0.;
+	else if(shieldDamage > shields)
+		shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	hull -= hullDamage * (1. - shieldFraction);
 	heat += heatDamage * (1. - .5 * shieldFraction);
@@ -1993,9 +2021,25 @@ const CargoHold &Ship::Cargo() const
 
 
 // Display box effects from jettisoning this much cargo.
-void Ship::Jettison(int tons)
+void Ship::Jettison(const std::string &commodity, int tons)
 {
-	jettisoned += tons;
+	cargo.Transfer(commodity, tons);
+	
+	static const int perBox = 5;
+	for( ; tons >= perBox; tons -= perBox)
+		jettisoned.emplace_back(commodity, perBox);
+}
+
+
+
+void Ship::Jettison(const Outfit *outfit, int count)
+{
+	cargo.Transfer(outfit, count);
+	
+	double mass = outfit->Get("mass");
+	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
+	for( ; count >= perBox; count -= perBox)
+		jettisoned.emplace_back(outfit, perBox);
 }
 
 

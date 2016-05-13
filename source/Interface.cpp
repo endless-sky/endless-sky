@@ -316,7 +316,7 @@ char Interface::OnClick(const Point &point) const
 
 bool Interface::HasPoint(const string &name) const
 {
-	return points.find(name) != points.end();
+	return points.count(name);
 }
 
 

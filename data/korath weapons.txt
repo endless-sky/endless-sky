@@ -35,9 +35,10 @@ outfit "Korath Grab-Strike"
 		"drag" .1
 		"turn" .2
 		"homing" 4
-		"shield damage" 90
-		"hull damage" 27
-		"hit force" -120
+		"tracking" .7
+		"shield damage" 108
+		"hull damage" 32
+		"hit force" -160
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
 effect "grab-strike impact"
@@ -250,8 +251,9 @@ outfit "Korath Piercer Launcher"
 		"drag" .03
 		"turn" 1.6
 		"homing" 4
-		"shield damage" 240
-		"hull damage" 360
+		"infrared tracking" .9
+		"shield damage" 290
+		"hull damage" 440
 		"piercing" .2
 		"hit force" 30
 		"missile strength" 73
@@ -390,6 +392,7 @@ outfit "Korath Minelayer"
 		"drag" .04
 		"turn" 2
 		"homing" 4
+		"infrared tracking" .9
 		"missile strength" 35
 		"shield damage" -3200
 		"hull damage" -2400
@@ -457,7 +460,7 @@ outfit "Korath Disruptor"
 		"reload" 1
 		"firing energy" 8.0
 		"firing heat" 2.7
-		"shield damage" 4.3
+		"shield damage" 3.8
 		"hull damage" .5
 		"disruption damage" .24
 	description "Korath Disruptors interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
@@ -496,7 +499,7 @@ outfit "Korath Slicer"
 		"firing energy" 5.6
 		"firing heat" 17.8
 		"shield damage" 6.3
-		"hull damage" 18.6
+		"hull damage" 16.7
 	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
 
 outfit "Korath Slicer Turret"
@@ -522,7 +525,7 @@ outfit "Korath Slicer Turret"
 		"firing energy" 5.6
 		"firing heat" 17.8
 		"shield damage" 6.3
-		"hull damage" 18.6
+		"hull damage" 16.7
 	description "This turret fires a tightly focused energy beam that is particularly effective against hull armor. When paired with a disruptor turret, it is a deadly combination."
 
 effect "slicer impact"

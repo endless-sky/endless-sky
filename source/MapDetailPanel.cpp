@@ -25,6 +25,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "MissionPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
@@ -41,6 +42,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "WrappedText.h"
 
 #include <algorithm>
+#include <cmath>
 #include <set>
 #include <sstream>
 #include <vector>
@@ -107,26 +109,58 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
-		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
-		const vector<const System *> &links =
-			hasJumpDrive ? player.GetSystem()->Neighbors() : player.GetSystem()->Links();
-		
-		if(!player.HasTravelPlan() && !links.empty())
-			Select(links.front());
-		else if(player.TravelPlan().size() == 1 && !links.empty())
+		// Toggle to the next link connected to the "source" system. If the
+		// shift key is down, the source is the end of the travel plan; otherwise
+		// it is one step before the end.
+		vector<const System *> &plan = player.TravelPlan();
+		const System *source = plan.empty() ? player.GetSystem() : plan.front();
+		const System *next = nullptr;
+		Point previousUnit = Point(0., -1.);
+		if(!plan.empty() && !(mod & KMOD_SHIFT))
 		{
-			auto it = links.begin();
-			for( ; it != links.end(); ++it)
-				if(*it == player.TravelPlan().front())
-					break;
-			
-			if(it != links.end())
-				++it;
-			if(it == links.end())
-				it = links.begin();
-			
-			Select(*it);
+			previousUnit = plan.front()->Position();
+			plan.erase(plan.begin());
+			next = source;
+			source = plan.empty() ? player.GetSystem() : plan.front();
+			previousUnit = (previousUnit - source->Position()).Unit();
 		}
+		Point here = source->Position();
+		
+		// Depending on whether the flagship has a jump drive, the possible links
+		// we can travel along are different:
+		bool hasJumpDrive = player.Flagship()->Attributes().Get("jump drive");
+		const vector<const System *> &links = hasJumpDrive ? source->Neighbors() : source->Links();
+		
+		double bestAngle = 2. * PI;
+		for(const System *it : links)
+		{
+			if(!player.HasSeen(it))
+				continue;
+			if(!(hasJumpDrive || player.HasVisited(it) || player.HasVisited(source)))
+				continue;
+			
+			Point unit = (it->Position() - here).Unit();
+			double angle = acos(unit.Dot(previousUnit));
+			if(unit.Cross(previousUnit) >= 0.)
+				angle = 2. * PI - angle;
+			
+			if(angle <= bestAngle)
+			{
+				next = it;
+				bestAngle = angle;
+			}
+		}
+		if(next)
+		{
+			plan.insert(plan.begin(), next);
+			Select(next);
+		}
+	}
+	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && player.HasTravelPlan())
+	{
+		vector<const System *> &plan = player.TravelPlan();
+		plan.erase(plan.begin());
+		Select(plan.empty() ? player.GetSystem() : plan.front());
 	}
 	else if(key == SDLK_DOWN)
 	{
@@ -542,13 +576,13 @@ void MapDetailPanel::DrawOrbits() const
 		scale *= 120. / maxDistance;
 	
 	static const Color habitColor[7] = {
-		Color(.4, 0., 0., 0.),
-		Color(.3, .3, 0., 0.),
-		Color(0., .4, 0., 0.),
-		Color(0., .3, .4, 0.),
-		Color(0., 0., .5, 0.),
-		Color(.2, .2, .2, 0.),
-		Color(1., 1., 1., 0.)
+		Color(.4, .2, .2, 1.),
+		Color(.3, .3, 0., 1.),
+		Color(0., .4, 0., 1.),
+		Color(0., .3, .4, 1.),
+		Color(.1, .2, .5, 1.),
+		Color(.2, .2, .2, 1.),
+		Color(1., 1., 1., 1.)
 	};
 	for(const StellarObject &object : selectedSystem->Objects())
 	{

@@ -24,6 +24,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// Given the probability of losing a lock in five tries, check randomly
+	// whether it should be lost on this try.
+	inline bool Check(double probability, double base)
+	{
+		return (Random::Real() < base * pow(probability, .2));
+	}
+}
+
 
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Outfit *weapon)
@@ -118,7 +127,9 @@ bool Projectile::Move(list<Effect> &effects)
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
 	int homing = weapon->Homing();
-	if(target && homing)
+	if(target && homing && !Random::Int(60))
+		CheckLock(*target);
+	if(target && homing && hasLock)
 	{
 		Point d = position - target->Position();
 		double drag = weapon->Drag();
@@ -226,9 +237,13 @@ bool Projectile::HasBlastRadius() const
 // projectile will not explode unless it is also within the trigger radius.)
 bool Projectile::InBlastRadius(const Ship &ship, int step, double closestHit) const
 {
+	// "Invisible" ships can be killed by weapons with blast radii.
+	Point offset = position + closestHit * velocity - ship.Position();
+	if(offset.Length() <= weapon->BlastRadius())
+		return true;
+	
 	const Mask &mask = ship.GetSprite().GetMask(step);
-	return mask.WithinRange(position + closestHit * velocity - ship.Position(),
-		ship.Facing(), weapon->BlastRadius());
+	return mask.WithinRange(offset, ship.Facing(), weapon->BlastRadius());
 }
 
 
@@ -323,4 +338,41 @@ const Ship *Projectile::Target() const
 const Government *Projectile::GetGovernment() const
 {
 	return government;
+}
+
+
+
+void Projectile::CheckLock(const Ship &target)
+{
+	double base = hasLock ? 1. : .5;
+	hasLock = false;
+	
+	// For each tracking type, calculate the probability that a lock will be
+	// lost in a given five-second period. Then, since this check is done every
+	// second, test against the fifth root of that probability.
+	if(weapon->Tracking())
+		hasLock |= Check(weapon->Tracking(), base);
+	
+	// Optical tracking is about 15% for interceptors and 75% for medium warships.
+	if(weapon->OpticalTracking())
+	{
+		double weight = target.Mass() * target.Mass();
+		double probability = weapon->OpticalTracking() * weight / (200000. + weight);
+		hasLock |= Check(probability, base);
+	}
+	
+	// Infrared tracking is 10% when heat is zero and 100% when heat is full.
+	if(weapon->InfraredTracking())
+	{
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() + .1);
+		hasLock |= Check(probability, base);
+	}
+	
+	// Radar tracking depends on whether the target ship has jamming capabilities.
+	// Jamming of 1 is enough to increase your chance of dodging to 50%.
+	if(weapon->RadarTracking())
+	{
+		double probability = weapon->RadarTracking() / (1. + target.Attributes().Get("radar jamming"));
+		hasLock |= Check(probability, base);
+	}
 }
