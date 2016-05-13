@@ -13,12 +13,12 @@ phrase "friendly civilian"
 		"Have you ever heard the song "
 	phrase "band"
 	word
-		"I love it!"
-		"It is stuck in my head...again!"
-		"It's pure genius!"
-		"It's my favourite!"
-		"I can't get enough of it!"
-		"I'm playing it full blast, throughout my ship!"
+		" I love it!"
+		" It is stuck in my head...again!"
+		" It's pure genius!"
+		" It's my favourite!"
+		" I can't get enough of it!"
+		" I'm playing it full blast, throughout my ship!"
 
 phrase "band"
 	word
@@ -32,7 +32,7 @@ phrase "There Might Be Riots"
 		"Sad Archie "
 		"Gluttony "
 	word
-		"by 'There Might Be Riots'? "
+		"by 'There Might Be Riots'?"
 
 phrase "Led Zeppelin"
 	word
