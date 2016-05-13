@@ -960,6 +960,7 @@ mission "Rim Archaeology 1"
 	description "Bring the famous archaeologist Albert Foster to <destination>, to look for signs of an ancient alien civilization."
 	source "Vinci"
 	destination "Zug"
+	passengers 1
 	to offer
 		has "Sad Archie: done"
 	
@@ -1032,6 +1033,7 @@ mission "Rim Archaeology 2B"
 	description "Deliver this excavation equipment to <destination>."
 	source "Crossroads"
 	destination "Zug"
+	cargo "Excavation equipment" 28
 	to offer
 		has "Rim Archaeology 2A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 28 tons of space free."
@@ -1069,6 +1071,7 @@ mission "Rim Archaeology 3B"
 	description `Deliver this excavation equipment to <destination>. Be sure that the ship "Oxyrhynchus" is not in the system when you land.`
 	source "Asgard"
 	destination "Zug"
+	cargo "Laser excavation equipment" 17
 	to offer
 		has "Rim Archaeology 3A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 17 tons of space free."
@@ -1116,6 +1119,7 @@ mission "Rim Archaeology 4B"
 	description `Transport the xenobiologist Amelia Lee and her Quarg friend Yarthis to the dig site on Zug.`
 	source "Lagrange"
 	destination "Zug"
+	passengers 2
 	to offer
 		has "Rim Archaeology 4A: done"
 	blocked "You will need two bunks free to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
