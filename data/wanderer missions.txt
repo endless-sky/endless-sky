@@ -466,7 +466,7 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 		has "Wanderers: Unfettered Diplomacy 1: done"
 	on offer
 		conversation
-			`Once you arrive on <origin>, Iktat Rek explains, "We have [captured, salvaged] a few jump drives from the Unfettered, and installed one in a freighter. To avoid [provoking, threatening] the Unfettered, the freighter is unarmed. It would be a bad start to our [diplomacy, peacemaking] to strike the Unfettered with Wanderer weapons."`
+			`Once you arrive on <origin>, Iktat Rek explains, "We have [captured, salvaged] a few Jump Drives from the Unfettered, and installed one in a freighter. To avoid [provoking, threatening] the Unfettered, the freighter is unarmed. It would be a bad start to our [diplomacy, peacemaking] to strike the Unfettered with Wanderer weapons."`
 			choice
 				`	"Does that mean I should not fire on them either?"`
 				`	"What should we do if they attack us, then?"`
@@ -555,5 +555,5 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		set "license: Wanderer"
 		conversation
 			`When you return to <planet>, Iktat Rek meets with ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our ships, all but the [ship of war, battleship]."`
-			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
-			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
+			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few Jump Drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
+			`	In the meantime, the only way to defuse the situation would be to get all the Jump Drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
