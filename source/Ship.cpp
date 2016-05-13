@@ -904,6 +904,11 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
+		// If a ship was disabled at the very moment it began landing, do not
+		// allow it to continue landing.
+		if(isDisabled)
+			landingPlanet = nullptr;
+		
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
