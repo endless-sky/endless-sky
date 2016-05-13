@@ -11,14 +11,47 @@
 phrase "friendly civilian"
 	word
 		"Have you ever heard the song "
+	phrase "band"
+	word
+		"I love it!"
+		"It is stuck in my head...again!"
+
+phrase "band"
+	word
+		phrase "There Might Be Riots"
+		phrase "Led Zeppelin"
+		phrase "Queen"
+		phrase "Mother Mother"
+
+phrase "There Might Be Riots"
 	word
 		"Sad Archie "
 		"Gluttony "
 	word
 		"by 'There Might Be Riots'? "
+
+phrase "Led Zeppelin"
 	word
-		"I love it!"
-		"It is stuck in my ear... again!"
+		"Stairway to Heaven "
+		"Kashmir "
+		"Immigrant Song "
+	word
+		"by 'Led Zeppelin'?"
+
+phrase "Queen"
+	word
+		"Under Pressure "
+		"Fat Bottomed Girls "
+	word
+		"by 'Queen’?"
+
+phrase "Mother Mother"
+	word
+		"Hay Loft "
+		"Let's Fall in Love "
+	word
+		"by 'Mother Mother'?"
+
 
 phrase "friendly civilian"
 	word
