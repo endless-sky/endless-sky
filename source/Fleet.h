@@ -51,6 +51,8 @@ public:
 	static void Enter(const System &system, Ship &ship);
 	static void Place(const System &system, Ship &ship);
 	
+	int64_t Strength() const;
+	
 	
 private:
 	void SetCargo(Ship *ship) const;
