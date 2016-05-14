@@ -68,7 +68,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
 	{
-		auto& tp = player.TravelPlan();
+		const auto &tp = player.TravelPlan();
 		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
 			if(FindMissionForSystem(*it))
 				break;
@@ -112,7 +112,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 		&& !(player.GetSystem() != selectedSystem && FindMissionForSystem(player.GetSystem()))
 		&& player.HasTravelPlan())
 	{
-		auto& tp = player.TravelPlan();
+		const auto &tp = player.TravelPlan();
 		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
 			if(FindMissionForSystem(*it))
 				break;
@@ -817,7 +817,7 @@ int MissionPanel::AcceptedVisible() const
 
 
 
-bool MissionPanel::FindMissionForSystem(const System* system)
+bool MissionPanel::FindMissionForSystem(const System *system)
 {
 	if(!system)
 		return false;

@@ -986,6 +986,11 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
+		// If a ship was disabled at the very moment it began landing, do not
+		// allow it to continue landing.
+		if(isDisabled)
+			landingPlanet = nullptr;
+		
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -1224,47 +1229,26 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	// priority over shield recharge.
 	if(!isDisabled)
 	{
-		// Hull repair.
-		double oldHull = hull;
-		double hullGeneration = attributes.Get("hull repair rate");
-		hull = min(hull + hullGeneration, maxHull);
-		static const double HULL_EXCHANGE_RATE =
-			(hullGeneration ? attributes.Get("hull energy") / hullGeneration : 0.);
-		energy -= HULL_EXCHANGE_RATE * (hull - oldHull);
-		
-		// Recharge shields, but only up to the max. If there is extra shield
-		// energy, use it to recharge fighters and drones.
-		double shieldGeneration = attributes.Get("shield generation");
-		shields += shieldGeneration;
-		double SHIELD_EXCHANGE_RATE =
-			(shieldGeneration ? attributes.Get("shield energy") / shieldGeneration : 0.);
-		energy -= SHIELD_EXCHANGE_RATE * shieldGeneration;
-		double excessShields = max(0., shields - maxShields);
-		shields -= excessShields;
-		
-		for(Bay &bay : bays)
+		// Recharge is limited by available energy. Extra recharge capacity can
+		// be used on fighters this ship is carrying.
+		double hullRate = attributes.Get("hull repair rate");
+		if(hullRate > 0.)
 		{
-			if(!bay.ship)
-				continue;
-			
-			double myGen = bay.ship->Attributes().Get("shield generation");
-			double myMax = bay.ship->Attributes().Get("shields");
-			bay.ship->shields = min(myMax, bay.ship->shields + myGen);
-			if(excessShields > 0. && bay.ship->shields < myMax)
-			{
-				double extra = min(myMax - bay.ship->shields, excessShields);
-				bay.ship->shields += extra;
-				excessShields -= extra;
-			}
+			double hullEnergy = attributes.Get("hull energy");
+			double hullHeat = attributes.Get("hull heat");
+			double hullAdded = AddHull(hullRate * min(1., hullEnergy ? energy / hullEnergy : 1.));
+			energy -= hullEnergy * hullAdded / hullRate;
+			heat += hullHeat * hullAdded / hullRate;
 		}
-		// If you do not need the shield generation, apply the extra back to
-		// your energy. On the other hand, if recharging shields drives your
-		// energy negative, undo that part of the recharge.
-		energy += SHIELD_EXCHANGE_RATE * excessShields;
-		if(energy < 0.)
+		
+		double shieldRate = attributes.Get("shield generation");
+		if(shieldRate > 0.)
 		{
-			shields += energy / SHIELD_EXCHANGE_RATE;
-			energy = 0.;
+			double shieldEnergy = attributes.Get("shield energy");
+			double shieldHeat = attributes.Get("shield heat");
+			double shieldsAdded = AddShields(shieldRate * min(1., shieldEnergy ? energy / shieldEnergy : 1.));
+			energy -= shieldEnergy * shieldsAdded / shieldRate;
+			heat += shieldHeat * shieldsAdded / shieldRate;
 		}
 	}
 	
@@ -2455,6 +2439,62 @@ double Ship::MinimumHull() const
 double Ship::IdleHeat() const
 {
 	return max(0., attributes.Get("heat generation") - attributes.Get("cooling")) / (1. - heatDissipation);
+}
+
+
+
+// Add to this ship's hull or shields, and return the amount added. If the
+// ship is carrying fighters, add to them as well.
+double Ship::AddHull(double rate)
+{
+	double added = min(rate, attributes.Get("hull") - hull);
+	hull += added;
+	rate -= added;
+	
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		double myGen = bay.ship->Attributes().Get("hull repair rate");
+		double myMax = bay.ship->Attributes().Get("hull");
+		bay.ship->hull = min(myMax, bay.ship->hull + myGen);
+		if(rate > 0. && bay.ship->hull < myMax)
+		{
+			double extra = min(myMax - bay.ship->hull, rate);
+			bay.ship->hull += extra;
+			rate -= extra;
+			added += extra;
+		}
+	}
+	return added;
+}
+
+
+
+double Ship::AddShields(double rate)
+{
+	double added = min(rate, attributes.Get("shields") - shields);
+	shields += added;
+	rate -= added;
+	
+	for(Bay &bay : bays)
+	{
+		if(!bay.ship)
+			continue;
+		
+		double myGen = bay.ship->Attributes().Get("shield generation");
+		double myMax = bay.ship->Attributes().Get("shields");
+		bay.ship->shields = min(myMax, bay.ship->shields + myGen);
+		if(rate > 0. && bay.ship->shields < myMax)
+		{
+			double extra = min(myMax - bay.ship->shields, rate);
+			bay.ship->shields += extra;
+			rate -= extra;
+			added += extra;
+		}
+	}
+	return added;
 }
 
 

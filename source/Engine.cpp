@@ -1156,6 +1156,8 @@ void Engine::CalculateStep()
 	hadHostiles = hasHostiles;
 	
 	// Collision detection:
+	if(grudgeTime)
+		--grudgeTime;
 	for(Projectile &projectile : projectiles)
 	{
 		// The asteroids can collide with projectiles, the same as any other
@@ -1457,6 +1459,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		}
 		return;
 	}
+	if(grudgeTime)
+		return;
 	
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
@@ -1497,6 +1501,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		return;
 	
 	grudge[attacker] = target;
+	grudgeTime = 120;
 	string message = target->GetGovernment()->GetName() + " ship \"" + target->Name() + "\": ";
 	if(target->GetPersonality().IsHeroic())
 	{

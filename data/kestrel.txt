@@ -258,6 +258,7 @@ ship "Unknown Ship Type"
 	explode "medium explosion" 35
 	explode "big explosion" 45
 	explode "huge explosion" 30
+	"final explode" "final explosion large"
 
 ship "Kestrel"
 	sprite ship/kestrel
@@ -309,6 +310,7 @@ ship "Kestrel"
 	explode "medium explosion" 35
 	explode "big explosion" 45
 	explode "huge explosion" 30
+	"final explode" "final explosion large"
 
 
 

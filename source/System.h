@@ -118,6 +118,9 @@ public:
 	
 	// Get the probabilities of various fleets entering this system.
 	const std::vector<FleetProbability> &Fleets() const;
+	// Check how dangerous this system is (credits worth of enemy ships jumping
+	// in per frame).
+	double Danger() const;
 	
 	
 private:

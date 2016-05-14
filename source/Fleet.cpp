@@ -318,6 +318,21 @@ void Fleet::Place(const System &system, Ship &ship)
 }
 
 
+	
+int64_t Fleet::Strength() const
+{
+	int64_t sum = 0;
+	for(const Variant &variant : variants)
+	{
+		int64_t thisSum = 0;
+		for(const Ship *ship : variant.ships)
+			thisSum += ship->Cost();
+		sum += thisSum * variant.weight;
+	}
+	return sum / total;
+}
+
+
 
 void Fleet::SetCargo(Ship *ship) const
 {

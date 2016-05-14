@@ -223,3 +223,4 @@ ship Archon
 	turret -55 16 "Drak Distancer"
 	turret 55 16 "Drak Distancer"
 	explode "nuke explosion" 3
+	"final explode" "final explosion large"

@@ -345,6 +345,10 @@ private:
 	double MinimumHull() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Add to this ship's hull or shields, and return the amount added. If the
+	// ship is carrying fighters, add to them as well.
+	double AddHull(double rate);
+	double AddShields(double rate);
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
