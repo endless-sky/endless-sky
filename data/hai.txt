@@ -185,6 +185,7 @@ ship "Lightning Bug"
 	explode "small explosion" 36
 	explode "medium explosion" 24
 	explode "big explosion" 8
+	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
@@ -295,6 +296,7 @@ ship "Water Bug"
 	explode "medium explosion" 30
 	explode "big explosion" 20
 	explode "huge explosion" 5
+	"final explode" "final explosion medium"
 	description "The Water Bug is the primary freight ship used by the Hai."
 
 ship "Water Bug" "Water Bug (Pulse)"
@@ -378,6 +380,7 @@ ship "Shield Beetle"
 	explode "medium explosion" 50
 	explode "big explosion" 50
 	explode "huge explosion" 20
+	"final explode" "final explosion large"
 	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
