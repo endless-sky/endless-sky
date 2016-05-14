@@ -1564,7 +1564,7 @@ ship "Hauler III"
 		"drag" 12.5
 		"heat dissipation" .6
 		"fuel capacity" 400
-		"cargo space" 360
+		"cargo space" 390
 		"outfit space" 350
 		"weapon capacity" 140
 		"engine capacity" 80
