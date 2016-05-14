@@ -1780,7 +1780,7 @@ mission "FW Pug 2 Know A"
 			choice
 				`	"An alien species called the Korath."`
 					goto true
-				`	"A species to the north of Syndicate space called the Korath."`
+				`	"A species to the north-east of Syndicate space called the Korath."`
 					goto true
 				`	"The Quarg."`
 					goto "quarg drive"
@@ -1796,7 +1796,7 @@ mission "FW Pug 2 Know A"
 			`	Alondo says, quietly "Captain <last>, if we are to get anywhere we need them to believe us, and if you refuse to tell them where you got your Jump Drive we won't get anywhere."`
 			choice
 				`	"An alien species called the Korath."`
-				`	"A species to the north of Syndicate space called the Korath."`
+				`	"A species to the north-east of Syndicate space called the Korath."`
 
 			label true
 			`	"It's true." A representative from Shangri-La has stood up. "My system has been raided by the Korath. They have powerful ships but they can be defeated and they can be disabled. It's not inconceivable that Captain <last> took one of their Jump Drives."`
