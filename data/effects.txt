@@ -238,6 +238,15 @@ effect "huge explosion"
 	"random frame rate" 5
 	"velocity scale" .4
 
+effect "final explosion small"
+	sound "final explosion small"
+
+effect "final explosion medium"
+	sound "final explosion medium"
+
+effect "final explosion large"
+	sound "final explosion large"
+
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"
