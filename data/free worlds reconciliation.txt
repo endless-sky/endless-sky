@@ -1788,7 +1788,7 @@ mission "FW Pug 2 Know A"
 			label "quarg drive"
 			`	Instantly uproar brakes out. The speaker spends several moments shouting at everyone to be quite before they can continue.`
 			`	One of the Dirt Belt representative gets up, "We had heard rumours but we never believed that it could be done."`
-			`	A representative from Shangri-La stands saying "Another species with Jump Drives, called the Korath, has been raiding our planet, maybe Captain <last> has got Karath tech instead."`
+			`	A representative from Shangri-La stands saying "Another species with Jump Drives, called the Korath, has been raiding our planet, maybe Captain <last> has got Korath tech instead."`
 			`	Now a Paradise planet representative, "Implying that you have defeated the Quarg is just an attempt to scare us into compliance!" This raises a "Hear, Hear." from the other Paradise planet reps.`
 				goto last
 
@@ -1813,11 +1813,11 @@ mission "FW Pug 2 Know A"
 					goto run
 
 			label scared
-			`	At that moment a Navy admiral hurries past looking stressed. "Your right there," says Alondo, "must be all that public exposure they get making them far to careful."`
+			`	At that moment a Navy admiral hurries past looking stressed. "You're right there," says Alondo, "must be all that public exposure they get making them far to careful."`
 				goto ask
 
 			label run
-			`	At that moment a Navy admiral hurries past looking stressed. "Your right there," chuckles Alondo, "and if we did run everything we could never retire comfortably."`
+			`	At that moment a Navy admiral hurries past looking stressed. "You're right there," chuckles Alondo, "and if we did run everything we could never retire comfortably."`
 
 			label ask
 			`	When the admiral comes out he walks over to you to tell you that Parliament wants to see you again.`
