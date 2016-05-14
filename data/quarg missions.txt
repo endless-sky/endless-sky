@@ -111,3 +111,288 @@ mission "First Contact: Kuwaru Efreti"
 			label destroy
 			`	It clicks its teeth together, which might be the Quarg equivalent of laughter. "It was hoped that one faction of robots would destroy the other, and leave less work for us to do, but they are sadly too evenly matched. We instead merely restrain them from expanding, as one isolates a fire one cannot extinguish and waits for it to burn out." You thank it for its time, and the crowd of Quarg that has been gawking at you slowly disperses.`
 				decline
+
+mission "Quarg Very Angry at Being Farmed"
+	landing
+	invisible
+	repeat
+	to offer	
+		"reputation: Quarg" < -10000
+		or
+			"Quarg Very Angry at Being Farmed: done" == 0
+			and
+				random < 35
+				"Quarg Very Angry at Being Farmed: done" > 0
+				"Quarg Very Angry at Being Farmed: done" <= 5
+			and
+				random < 30
+				"Quarg Very Angry at Being Farmed: done" > 5
+				"Quarg Very Angry at Being Farmed: done" <= 10
+			and
+				random < 25
+				"Quarg Very Angry at Being Farmed: done" > 10
+				"Quarg Very Angry at Being Farmed: done" <= 15
+			and
+				random < 20
+				"Quarg Very Angry at Being Farmed: done" > 15
+				"Quarg Very Angry at Being Farmed: done" <= 20
+			and
+				random < 15
+				"Quarg Very Angry at Being Farmed: done" > 20
+				"Quarg Very Angry at Being Farmed: done" <= 25
+			and
+				random < 10
+				"Quarg Very Angry at Being Farmed: done" > 25
+	on offer
+		conversation
+			`Shortly after you land on the planet a Quarg Battlefleet jumps into the system and broadcasts a message. It would appear that you’ve caught the attention of someone important; an "admiral" is asking to speak with you.`
+			choice
+				`"Open a communications channel."`
+					goto talk
+				`"Ignore him."`
+					goto ignore
+				`"All weapons hot, prep for launch."`
+					launch
+			label talk
+			`A Quarg in what seems to be some sort of military uniform appears on your communication system. It immediately starts talking, saying "I regret to inform you that we are left with no choice but to destroy you, even at the cost of civilian lives. If you do not leave this planet and allow yourself to be destroyed we will commence an orbital bombardment of your position."`
+			choice
+				`"Why are you doing this?"`
+					goto converse
+				`"Alright, I will lift off in a moment." (Lie)`
+					goto flee
+				`"Alright, I will lift off in a moment."`
+					launch
+				`"No, I refuse. I don’t believe you will attack the city."`
+					’"That is regrettable."`
+					goto flee
+			label ignore
+			`You disregard the increasingly urgent messages. A few minutes later a skylance fires and you are vaporized, along with a large chunk of the spaceport.`
+				die
+			label flee
+			`You flee towards the most densely populated areas of the planet. A few minutes later a burst of Quarg weapons fire annihilates both yourself and the surrounding area.`
+				die
+			label converse
+			`"Why do you attack us? We can no longer tolerate your behavior, whatever the causes, and must destroy you. What is your decision?"`
+			choice
+				`"Alright, I will lift off in a moment." (Lie)`
+					goto flee
+				`"Alright, I will lift off in a moment."`
+					launch
+				`"No, I refuse. I don’t believe you’ll attack the city."`
+					`"That is regrettable."`
+					goto flee
+		
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system
+			distance 0 0
+		ship "Quarg Wardragon" "Quarg Scout"
+	npc disable
+		government Quarg
+		personality nemesis heroic entering
+		system
+			distance 0 1
+		fleet "Quarg Battlefleet"
+
+mission "Quarg Angry at Being Farmed"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" < -2500
+		or
+			"Quarg Angry at Being Farmed: done" == 0
+			and
+				random < 50
+				"Quarg Angry at Being Farmed: done" > 0
+				"Quarg Angry at Being Farmed: done" <= 5
+			and
+				random < 40
+				"Quarg Angry at Being Farmed: done" > 5
+				"Quarg Angry at Being Farmed: done" <= 10
+			and
+				random < 30
+				"Quarg Angry at Being Farmed: done" > 10
+				"Quarg Angry at Being Farmed: done" <= 15
+			and
+				random < 25
+				"Quarg Angry at Being Farmed: done" > 15
+				"Quarg Angry at Being Farmed: done" <= 20
+			and
+				random < 20
+				"Quarg Angry at Being Farmed: done" > 20
+				"Quarg Angry at Being Farmed: done" <= 25
+			and
+				random < 15
+				"Quarg Angry at Being Farmed: done" > 25
+	on offer
+		conversation
+			`	Shortly after you land on the planet a Quarg Dreadnought jumps into the system and broadcasts a message. It would appear that your attacks against the Quarg have caught up to you; they intend to destroy you the moment you leave the planet.`
+				accept
+		
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system
+			distance 0 0
+		ship "Quarg Elderdragon" "Elite Quarg Military Vessel"
+
+mission "Quarg Retaliation"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" < -1000
+		or
+			"Quarg Retaliation: done" == 0
+			and
+				random < 50
+				"Quarg Retaliation: done" > 0
+				"Quarg Retaliation: done" <= 5
+			and
+				random < 40
+				"Quarg Retaliation: done" > 5
+				"Quarg Retaliation: done" <= 10
+			and
+				random < 30
+				"Quarg Retaliation: done" > 10
+				"Quarg Retaliation: done" <= 15
+			and
+				random < 25
+				"Quarg Retaliation: done" > 15
+				"Quarg Retaliation: done" <= 20
+			and
+				random < 20
+				"Quarg Retaliation: done" > 20
+				"Quarg Retaliation: done" <= 25
+			and
+				random < 15
+				"Quarg Retaliation: done" > 25
+	on offer
+		conversation
+			`	Shortly after you land on the planet a pair of Quarg warships jump into the system and broadcast a message. It would appear that your attacks against the Quarg have been noticed; they intend to destroy you the moment you leave the planet.`
+				accept
+		
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system
+			distance 0 0
+		ship "Quarg Empyrealdragon" "Quarg Military Vessel"
+		ship "Quarg Empyrealdragon" "Quarg Military Vessel"
+
+mission "Quarg react to being farmed"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" < -500
+		not "Quarg react to being farmed: active"
+	on offer
+		event "Heavier Quarg Patrols"
+		conversation
+			`	It seems the Quarg have taken steps to prevent further attacks. Military defense fleets have been stationed in all Quarg systems, and patrols have been intensified. Continued attacks may lead the Quarg to take a more proactive stance against your raiding.`
+				accept
+
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system Enif
+		ship "Quarg Elderdragon" "Protector of Saai Far"
+		ship "Quarg Empyrealdragon" "Protector of the Weak"
+		ship "Quarg Empyrealdragon" "Protector of the Mighty"
+		ship "Quarg Empyrealdragon" "Protector of the Innocent"
+		ship "Quarg Empyrealdragon" "Protector of the Guilty"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalmelik
+		ship "Quarg Elderdragon" "Demonic Spider"
+		ship "Quarg Empyrealdragon" "God-dammed Bat"
+		ship "Quarg Empyrealdragon" "Thrice-dammed Bat"
+		ship "Quarg Empyrealdragon" "Batman"
+		ship "Quarg Empyrealdragon" "Baseball Bat"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalsuud
+		ship "Quarg Elderdragon" "Herald of Entropy"
+		ship "Quarg Empyrealdragon" "Herald of Death"
+		ship "Quarg Empyrealdragon" "Herald of The End"
+		ship "Quarg Empyrealdragon" "Herald of the Epitaph"
+		ship "Quarg Empyrealdragon" "Herald of the Graveyard"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system "Hevru Hai"
+		ship "Quarg Elderdragon" "Lance of Eden"
+		ship "Quarg Empyrealdragon" "Lance of Longinus"
+		ship "Quarg Empyrealdragon" "Vlad’s Impaler"
+		ship "Quarg Empyrealdragon" "Pointy Stick"
+		ship "Quarg Empyrealdragon" "Keep Out of Reach of Children"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system "Dokdobaru"
+		ship "Quarg Elderdragon" "Keeper of Purity"
+		ship "Quarg Empyrealdragon" "Keeper of Grace"
+		ship "Quarg Empyrealdragon" "Keeper of Valor"
+		ship "Quarg Empyrealdragon" "Keeper of Money"
+		ship "Quarg Empyrealdragon" "Keeper of Discretion"
+
+mission "Quarg react to being farmed further"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" < -7500
+		not "Quarg react to being farmed further: active"
+	on offer
+		conversation
+			`	You hear rumors that the Quarg have further militarized their nearby worlds, deploying entire battlefleets. One rumor has it that the Quarg have deployed carriers for the first time in human history. There is a great deal of concern that the Quarg will start deploying entire battlefleets outside of their own systems, as opposed to small groups of hunter-killers.`
+				accept
+
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system Enif
+		fleet "Quarg Battlefleet"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalmelik
+		fleet "Quarg Battlefleet"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system Sadalsuud
+		fleet "Quarg Battlefleet"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system "Hevru Hai"
+		fleet "Quarg Battlefleet"
+	npc disable
+		government Quarg
+		personality nemesis heroic staying
+		system "Dokdobaru"
+		fleet "Quarg Battlefleet"
+
+mission "Quarg forgive farming"
+	landing
+	invisible
+	repeat
+	to offer
+		"reputation: Quarg" > 5
+		#"Quarg react to being farmed: active" > 0
+		or
+			"Quarg react to being farmed: active" > 0
+			"Quarg react to being farmed further: active" > 0
+	on offer
+		event "Lighter Quarg Patrols"
+		fail "Quarg react to being farmed"
+		fail "Quarg react to being farmed further"
+		conversation
+			`	In light of a reduction in raiding the Quarg have demobilized their military. You need fear Quarg retaliation no longer.`
+				agree

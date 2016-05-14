@@ -3139,3 +3139,31 @@ event "syndicate tech available"
 		"Ionic Afterburner"
 		"S-270 Regenerator"
 		"S-970 Regenerator"
+
+event "Lighter Quarg Patrols"
+	system "Dokdobaru"
+		fleet "Quarg Heavy Patrol" 2000
+	system "Enif"
+		fleet "Quarg Heavy Patrol" 2000
+	system "Hevru Hai"
+		fleet "Quarg Heavy Patrol" 1000
+	system "Sadalmelik"
+		fleet "Quarg Heavy Patrol" 2000
+	system "Sadalsuud"
+		fleet "Quarg Heavy Patrol" 2000
+	system "Tarazed"
+		fleet "Quarg Heavy Patrol" 4000
+
+event "Heavier Quarg Patrols"
+	system "Dokdobaru"
+		fleet "Quarg Heavy Patrol" 400
+	system "Enif"
+		fleet "Quarg Heavy Patrol" 400
+	system "Hevru Hai"
+		fleet "Quarg Heavy Patrol" 200
+	system "Sadalmelik"
+		fleet "Quarg Heavy Patrol" 400
+	system "Sadalsuud"
+		fleet "Quarg Heavy Patrol" 400
+	system "Tarazed"
+		fleet "Quarg Heavy Patrol" 800

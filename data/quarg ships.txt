@@ -21,17 +21,18 @@ ship "Quarg Skylark"
 		"drag" 12.3
 		"heat dissipation" .7
 		"fuel capacity" 1000
-		"cargo space" 200
+		"cargo space" 400
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
-		"energy generation" 80
+		"energy generation" 20
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
 			"hit force" 1500
 	outfits
+		"Antimatter Core"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 		"Nanotech Battery"
@@ -51,7 +52,7 @@ ship "Quarg Skylark"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
-	description "The Skylark is used by the Quarg as a freighter and warship."
+	description "The Skylark is used by the Quarg as a freighter and warship. Although inferior to any true Quarg warship, the Skylark is more than capable of defending its cargo from attack, and often defends against attacks by less advanced civilizations."
 
 ship "Quarg Wardragon"
 	sprite "ship/wardragon"
@@ -70,13 +71,14 @@ ship "Quarg Wardragon"
 		"outfit space" 600
 		"weapon capacity" 200
 		"engine capacity" 120
-		"energy generation" 80
+		"energy generation" 20
 		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
 			"hit force" 1500
 	outfits
+		"Antimatter Core"
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
 		"Nanotech Battery"
@@ -96,4 +98,227 @@ ship "Quarg Wardragon"
 	explode "medium explosion" 30
 	explode "big explosion" 40
 	explode "huge explosion" 20
-	description "The Wardragon is used by the Quarg as a light warship."
+	description "The Wardragon is used by the Quarg as a light warship. Despite its small size and lack of more advanced military equipment the Wardragon rarely has difficulty maintaining the peace."
+
+ship "Quarg Empyrealdragon"
+	sprite "ship/empyrealdragon"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 750000
+		"hull" 250000
+		"required crew" 200
+		"bunks" 250
+		"mass" 400
+		"drag" 9.5
+		"heat dissipation" .7
+		"fuel capacity" 900
+		"cargo space" 75
+		"outfit space" 950
+		"weapon capacity" 450
+		"engine capacity" 200
+		"self destruct" .2
+		"energy generation" 50
+		weapon
+			"blast radius" 250
+			"shield damage" 1200
+			"hull damage" 700
+			"hit force" 1600
+	outfits
+		"Quarg Blue Box" 20
+		"Antimatter Core" 2
+		"Quarg Etherbolt"
+		"Quarg Skylance" 4
+		"Quarg Anti-Missile" 4
+		"Nanotech Battery" 2
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 250
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Jump Drive"
+	gun 0 -95 "Quarg Etherbolt"
+	turret -23 23 "Quarg Skylance"
+	turret 27 23 "Quarg Skylance"
+	turret -14 -1 "Quarg Skylance"
+	turret 17.5 -1.5 "Quarg Skylance"
+	turret -6 8.5 "Quarg Anti-Missile" 
+	turret 9 9 "Quarg Anti-Missile" 
+	turret -4 -10 "Quarg Anti-Missile" 
+	turret 8.5 -10.5 "Quarg Anti-Missile" 
+	engine -14 66
+	engine 19.5 65.5
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "big explosion" 40
+	explode "huge explosion" 20
+	description "The Empyrealdragon is used by the Quarg as a medium warship. Although the Wardragon patrol craft is usually more than capable of dealing with any threat, Empyrealdragons are still occasionally deployed."
+	
+ship "Quarg Elderdragon"
+	sprite "ship/elderdragonsmall"
+	attributes
+		category "Heavy Warship"
+		"cost" 250000000
+		"shields" 3000000
+		"hull" 1500000
+		"required crew" 500
+		"bunks" 1000
+		"mass" 4000
+		"drag" 40
+		"heat dissipation" .9
+		"fuel capacity" 1600
+		"cargo space" 600
+		"outfit space" 2100
+		"weapon capacity" 1300
+		"engine capacity" 500
+		"self destruct" .3
+		"energy generation" 80
+		weapon
+			"blast radius" 2500
+			"shield damage" 10000
+			"hull damage" 5000
+			"hit force" 15000
+	outfits
+		"Quarg Etherbolt" 2
+		"Quarg Heavy Skylance" 2
+		"Quarg Heavy Anti-Missile" 2
+		"Quarg Skylance" 8
+		"Quarg Anti-Missile" 8
+		"Quarg Blue Box" 200
+		"Antimatter Core" 6
+		"Nanotech Battery" 4
+		"Quantum Shield Generator" 5
+		"Intrusion Countermeasures" 1000
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
+		"Jump Drive"
+	engine 30 155
+	engine -30 155
+	engine 40 175
+	engine -40 175
+	gun -57 -40 "Quarg Etherbolt"
+	gun 57 -40 "Quarg Etherbolt"
+	#Bow Turrets
+	turret 40 0 "Quarg Skylance"
+	turret -40 0 "Quarg Skylance"
+	turret 40 0 "Quarg Anti-Missile"
+	turret -40 0 "Quarg Anti-Missile"
+	#Main Turrets
+	#Rear
+	turret 20 31 "Quarg Skylance"
+	turret -20 31 "Quarg Skylance"
+	turret 20 31 "Quarg Anti-Missile"
+	turret -20 31 "Quarg Anti-Missile"
+	#Mid
+	turret 15 0 "Quarg Skylance"
+	turret -15 0 "Quarg Skylance"
+	turret 15 0 "Quarg Anti-Missile"
+	turret -15 0 "Quarg Anti-Missile"
+	#Front
+	turret 15 -20 "Quarg Skylance"
+	turret -15 -20 "Quarg Skylance"
+	turret 15 -20 "Quarg Anti-Missile"
+	turret -15 -20 "Quarg Anti-Missile"
+	#Heavy (Rear) Turrets
+	turret 62 65 "Quarg Heavy Skylance"
+	turret -62 65 "Quarg Heavy Skylance"
+	turret 62 65 "Quarg Heavy Anti-Missile"
+	turret -62 65 "Quarg Heavy Anti-Missile"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "big explosion" 40
+	explode "huge explosion" 30
+	description "The Elderdragon is used by the Quarg as a heavy warship. It is rarely deployed as the Quarg’s smaller vessels are normally more than sufficient to resolve any conflict."
+
+ship "Quarg Battledrake"
+	sprite "ship/battledrake"
+	attributes
+		category "Fighter"
+		"cost" 5000000
+		"shields" 25000
+		"hull" 5000
+		"required crew" 1
+		"bunks" 1
+		"mass" 65
+		"drag" 1.2
+		"heat dissipation" 1.1
+		"cargo space" 0
+		"outfit space" 160
+		"weapon capacity" 50
+		"engine capacity" 80
+		"energy generation" 10
+		weapon
+			"blast radius" 30
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 500
+	outfits
+		"Quarg Etherbolt" 1
+		"Quantum-Thermal Shield Charger"
+		"Intrusion Countermeasures" 3
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+	engine 4 23
+	gun 0 -35
+	explode "tiny explosion" 15
+	explode "small explosion" 30
+	explode "medium explosion" 15
+	description "The Battledrake is used by the Quarg as a multi-role fightercraft. Their heavy use of hybrid and integrated systems make them an anomaly among Quarg craft. The Quarg, normally masters of hyper efficient specialization, were forced to build both reactors and capacitors directly into the engine assembly. This unconventional decision seems to have paid off; a single Battledrake is superior to any human warship."
+
+ship "Quarg Azure Ark"
+	sprite "ship/azureark"
+	attributes
+		category "Heavy Warship"
+		"cost" 50000000
+		"shields" 200000
+		"hull" 75000
+		"required crew" 250
+		"bunks" 300
+		"mass" 800
+		"drag" 24.1
+		"heat dissipation" .8
+		"fuel capacity" 1600
+		"cargo space" 100
+		"outfit space" 750
+		"weapon capacity" 200
+		"engine capacity" 200
+		"self destruct" .1
+		"energy generation" 40
+		weapon
+			"blast radius" 450
+			"shield damage" 1500
+			"hull damage" 750
+			"hit force" 2500
+	outfits
+		"Antimatter Core"
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+		"Nanotech Battery" 2
+		"Quantum Shield Generator"
+		"Quantum-Thermal Shield Charger"
+		"Intrusion Countermeasures" 300
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Jump Drive" 
+	engine -17 175
+	engine 27 175
+	turret -18 -120 "Quarg Skylance"
+	turret 18 -120 "Quarg Skylance"
+	turret -18 -120 "Quarg Anti-Missile"
+	turret 18 -120 "Quarg Anti-Missile"
+	fighter 0 0
+	fighter 45 -85 under
+	fighter -45 -85 under
+	fighter 95 -40 under
+	fighter -95 -40 under
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "big explosion" 40
+	explode "huge explosion" 20
+	description "The Azure Ark is used by the Quarg as a carrier."
