@@ -564,10 +564,10 @@ ship "Boxwing"
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
-		"mass" 50
+		"mass" 45
 		"drag" .59
 		"heat dissipation" .27
-		"outfit space" 40
+		"outfit space" 45
 		"engine capacity" 28
 		"cargo space" 80
 		weapon
