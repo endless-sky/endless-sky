@@ -12,9 +12,10 @@ phrase "friendly civilian"
 	word
 		"Have you ever heard the song "
 	word
-		phrase "Led Zeppelin"
-		phrase "Mother Mother"
-		phrase "Queen"
+		phrase "Medium Confidence"
+		phrase "Confined Brain Of The Liberal Dork"
+		phrase "Catastrophe Aftermath"
+		phrase "Swift Of The Sponge"
 		phrase "There Might Be Riots"
 	word
 		" I love it!"
@@ -24,27 +25,45 @@ phrase "friendly civilian"
 		" I can't get enough of it!"
 		" I'm playing it full blast, throughout my ship!"
 
-phrase "Led Zeppelin"
+phrase "Medium Confidence"
 	word
-		"Stairway to Heaven "
-		"Kashmir "
-		"Immigrant Song "
+		"Regret Ride "
+		"My Wooden Mojo "
+		"Blue Illusion "
+		"Foreign Beauty "
+		"Introvert Day "
 	word
-		"by 'Led Zeppelin'?"
+		"by 'Medium Confidence'?"
 
-phrase "Mother Mother"
+phrase "Confined Brain Of The Liberal Dork"
 	word
-		"Hay Loft "
-		"Let's Fall in Love "
+		"Dude, Where's My Bible?"
+		"Re-Inventing Rythmn "
+		"Abstraction Is the Answer "
+		"Outrageous Activism "
+		"Cheap Entertainment "
 	word
-		"by 'Mother Mother'?"
+		"by 'Confined Brain Of The Liberal Dork'?"
 
-phrase "Queen"
+phrase "Catastrophe Aftermath"
 	word
-		"Under Pressure "
-		"Fat Bottomed Girls "
+		"The Devil's Car "
+		"Selfish Thunder "
+		"Revenge Makes You Cry "
+		"Nature Of The Revolt "
+		"Instant Devastation "
 	word
-		"by 'Queen'?"
+		"by 'Catastrophe Aftermath'?"
+
+phrase "Swift Of The Sponge"
+	word
+		"Weakness And All That "
+		"Trouble Will Return "
+		"Golden Smart Mouth "
+		"Burning Pain "
+		"Wisdom In Another World "
+	word
+		"by 'Swift Of The Sponge'?"
 
 phrase "There Might Be Riots"
 	word
