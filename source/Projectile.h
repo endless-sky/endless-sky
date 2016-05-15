@@ -81,6 +81,10 @@ public:
 	
 	
 private:
+	void CheckLock(const Ship &target);
+	
+	
+private:
 	const Outfit *weapon = nullptr;
 	Animation animation;
 	
@@ -94,6 +98,7 @@ private:
 	const Government *targetGovernment = nullptr;
 	
 	int lifetime = 0;
+	bool hasLock = true;
 };
 
 

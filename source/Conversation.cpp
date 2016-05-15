@@ -426,7 +426,7 @@ Conversation::Node::Node(bool isChoice)
 // Add a label, pointing to whatever node is created next.
 void Conversation::AddLabel(const string &label, const DataNode &node)
 {
-	if(labels.find(label) != labels.end())
+	if(labels.count(label))
 	{
 		node.PrintTrace("Conversation: label \"" + label + "\" is used more than once:");
 		return;

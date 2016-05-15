@@ -154,6 +154,8 @@ outfit "Thunderhead Launcher"
 		"drag" .1
 		"turn" 2
 		"homing" 4
+		"infrared tracking" .9
+		"radar tracking" .6
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
@@ -178,8 +180,10 @@ outfit "Thunderhead"
 		"drag" .1
 		"turn" 3
 		"homing" 4
-		"shield damage" 80
-		"hull damage" 60
+		"optical tracking" .9
+		"radar tracking" .6
+		"shield damage" 110
+		"hull damage" 80
 		"hit force" 20
 		"missile strength" 3
 
@@ -248,6 +252,15 @@ outfit "Dark Storm Shielding"
 	"shield generation" 2.8
 	"shield energy" 7.0
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
+
+outfit "Wanderer Ramscoop"
+	category "Systems"
+	cost 460000
+	thumbnail "outfit/wanderer ramscoop"
+	"mass" 7
+	"outfit space" -7
+	"ramscoop" 4
+	description "Wanderer ships are designed to be self-sufficient even when traveling through uninhabited space, and their compact and efficient ramscoops are a key part of that self-sufficiency."
 
 
 outfit "Type 1 Radiant Thruster"

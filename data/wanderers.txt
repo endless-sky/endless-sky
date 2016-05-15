@@ -109,6 +109,21 @@ fleet "Wanderer Defense"
 	variant
 		"Strong Wind" 3
 
+fleet "Wanderer Flycatchers"
+	government "Wanderer"
+	names "wanderer"
+	personality
+		swarming
+		heroic
+	variant
+		"Flycatcher" 5
+	variant
+		"Flycatcher" 4
+	variant
+		"Flycatcher" 3
+	variant
+		"Flycatcher" 2
+
 
 shipyard "Wanderer Basics"
 	"Earth Shaper"
@@ -133,6 +148,7 @@ outfitter "Wanderer Basics"
 	"Type 3 Radiant Steering"
 	"Bright Cloud Shielding"
 	"Fuel Pod"
+	"Wanderer Ramscoop"
 	"Cargo Expansion"
 	"Mass Expansion"
 	"Local Map"
@@ -157,6 +173,7 @@ outfitter "Wanderer Advanced"
 	"Bright Cloud Shielding"
 	"Dark Storm Shielding"
 	"Fuel Pod"
+	"Wanderer Ramscoop"
 	"Cargo Expansion"
 	"Mass Expansion"
 	"Local Map"

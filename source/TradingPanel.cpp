@@ -136,11 +136,26 @@ void TradingPanel::Draw() const
 	int missionCargo = player.Cargo().MissionCargoSize();
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
+		bool hasPlunder = false;
+		bool hasItems = false;
+		for(const auto &it : player.Cargo().Outfits())
+			if(it.second)
+			{
+				bool isItem = (it.first->Get("installable") < 0.);
+				(isItem ? hasItems : hasPlunder) = true;
+			}
+		
 		string str = to_string(outfits + missionCargo);
-		if(outfits && missionCargo)
-			str += " tons of outfits and mission cargo.";
-		else if(outfits)
+		if(hasItems && missionCargo)
+			str += " tons of mission cargo and other items.";
+		else if(hasPlunder && missionCargo)
+			str += " tons of plunder and mission cargo.";
+		else if(hasPlunder && hasItems)
+			str += " tons of plunder and harvested materials.";
+		else if(hasPlunder)
 			str += " tons of plundered outfits.";
+		else if(hasItems)
+			str += " tons of harvested materials.";
 		else
 			str += " tons of mission cargo.";
 		font.Draw(str, Point(NAME_X, lastY), unselected);
@@ -212,9 +227,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		Buy(1);
 	else if(key == '-' || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'B')
+	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'S')
+	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
 		for(const auto &it : GameData::Commodities())
 		{

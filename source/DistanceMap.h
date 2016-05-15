@@ -66,11 +66,11 @@ private:
 	// source system or the maximum count is reached.
 	void Init(const System *center, const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
-	bool Propagate(const System *system, bool useJump, int steps);
+	bool Propagate(const System *system, bool useJump, int steps, double danger);
 	// Check if we already have a better path to the given system.
 	bool HasBetter(const System *to, int steps);
 	// Add the given path to the record.
-	void Add(const System *from, const System *to, int steps);
+	void Add(const System *from, const System *to, int steps, double danger);
 	// Check whether the given link is mappable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
@@ -82,7 +82,7 @@ private:
 	std::map<const System *, const System *> route;
 	
 	// Variables only used during construction:
-	std::priority_queue<std::pair<int, const System *>> edge;
+	std::priority_queue<std::tuple<int, double, const System *>> edge;
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
 	int maxCount = -1;

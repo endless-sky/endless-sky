@@ -400,6 +400,12 @@ void OutfitterPanel::FailBuy() const
 		return;
 	}
 	
+	if(selectedOutfit->Get("installable") < 0.)
+	{
+		GetUI()->Push(new Dialog("This item is not an outfit that can be installed in a ship."));
+		return;
+	}
+	
 	if(!playerShip->Attributes().CanAdd(*selectedOutfit, 1))
 	{
 		GetUI()->Push(new Dialog("You cannot install this outfit in your ship, "
@@ -560,7 +566,8 @@ bool OutfitterPanel::FlightCheck()
 		
 		const Outfit &attributes = ship->Attributes();
 		double energy = attributes.Get("energy generation") + attributes.Get("energy capacity");
-		if(!attributes.Get("thrust"))
+		if(!attributes.Get("thrust") && !attributes.Get("reverse thrust")
+				&& !attributes.Get("afterburner thrust"))
 		{
 			GetUI()->Push(new ConversationPanel(player,
 				*GameData::Conversations().Get("flight check: no thrusters")));
