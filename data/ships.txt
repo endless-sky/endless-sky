@@ -560,16 +560,16 @@ ship "Boxwing"
 	attributes
 		category "Fighter"
 		cost 369000
-		"shields" 600
-		"hull" 1000
+		"shields" 400
+		"hull" 800
 		"required crew" 1
 		"bunks" 1
-		"mass" 90
+		"mass" 50
 		"drag" .59
-		"heat dissipation" .2
-		"outfit space" 55
+		"heat dissipation" .27
+		"outfit space" 40
 		"engine capacity" 28
-		"cargo space" 90
+		"cargo space" 80
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -577,7 +577,6 @@ ship "Boxwing"
 			"hit force" 180
 	outfits
 		"nGVF-AA Fuel Cell"
-		"D14-RN Shield Generator"
 
 		"X1050 Ion Engines"
 
