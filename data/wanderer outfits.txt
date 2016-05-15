@@ -251,6 +251,15 @@ outfit "Dark Storm Shielding"
 	"shield energy" 7.0
 	description "This Wanderer shield generator can restore a ship's shield strength more quickly than any human shielding technology, but while recharging shields it also draws a much larger amount of power."
 
+outfit "Wanderer Ramscoop"
+	category "Systems"
+	cost 460000
+	thumbnail "outfit/wanderer ramscoop"
+	"mass" 7
+	"outfit space" -7
+	"ramscoop" 4
+	description "Wanderer ships are designed to be self-sufficient even when traveling through uninhabited space, and their compact and efficient ramscoops are a key part of that self-sufficiency."
+
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
