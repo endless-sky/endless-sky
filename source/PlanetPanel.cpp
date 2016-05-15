@@ -91,14 +91,7 @@ void PlanetPanel::Draw() const
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 	bool hasAccess = planet.CanUseServices();
-	bool hasShip = false;
-	for(const auto &it : player.Ships())
-		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-		{
-			hasShip = true;
-			break;
-		}
-	if(flagship && flagship->CanBeFlagship())
+	if(flagship && !flagship->CanBeCarried())
 		info.SetCondition("has ship");
 	if(planet.IsInhabited() && hasAccess)
 		info.SetCondition("has bank");
@@ -108,7 +101,7 @@ void PlanetPanel::Draw() const
 		info.SetCondition("has spaceport");
 	if(planet.HasShipyard() && hasAccess)
 		info.SetCondition("has shipyard");
-	if(hasShip && planet.HasOutfitter() && hasAccess)
+	if(flagship && planet.HasOutfitter() && hasAccess)
 		info.SetCondition("has outfitter");
 	
 	ui.Draw(info);
@@ -126,15 +119,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	const Ship *flagship = player.Flagship();
 	
 	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship && flagship->CanBeFlagship())
+	if(key == 'd' && flagship && !flagship->CanBeCarried())
 	{
 		player.Save();
-		if(player.TakeOff(GetUI()))
-		{
-			if(callback)
-				callback();
-			GetUI()->Pop(this);
-		}
+		player.TakeOff(GetUI());
+		if(callback)
+			callback();
+		GetUI()->Pop(this);
 	}
 	else if(key == 'l')
 	{
@@ -160,17 +151,9 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && planet.HasOutfitter() && hasAccess)
+	else if(key == 'o' && flagship && planet.HasOutfitter() && hasAccess)
 	{
-		bool hasShip = false;
-		for(const auto &it : player.Ships())
-			if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
-			{
-				hasShip = true;
-				break;
-			}
-		if(hasShip)
-			GetUI()->Push(new OutfitterPanel(player));
+		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
 	else if(key == 'j' && flagship && planet.IsInhabited() && hasAccess)

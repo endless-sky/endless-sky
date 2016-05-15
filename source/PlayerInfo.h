@@ -34,7 +34,6 @@ class Person;
 class Planet;
 class Ship;
 class ShipEvent;
-class StellarObject;
 class System;
 class UI;
 
@@ -96,8 +95,6 @@ public:
 	// Set what planet the player is on.
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
-	// If the player is landed, return the stellar object they are on.
-	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
@@ -136,7 +133,7 @@ public:
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
-	bool TakeOff(UI *ui);
+	void TakeOff(UI *ui);
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -175,8 +172,10 @@ public:
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
 	const std::vector<const System *> &TravelPlan() const;
-	std::vector<const System *> &TravelPlan();
-	// Remove the first or last system from the travel plan.
+	void ClearTravel();
+	// Add to the travel plan, starting with the last system in the journey.
+	void AddTravel(const System *system);
+	// Remove the first system from the travel plan.
 	void PopTravel();
 	
 	// Toggle which secondary weapon the player has selected.

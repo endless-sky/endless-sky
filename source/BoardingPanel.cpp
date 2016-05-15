@@ -67,9 +67,6 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 		if(!it.first->Get("unplunderable"))
 			plunder.emplace_back(it.first, it.second);
 	
-	if(!victim->IsCapturable())
-		messages.emplace_back("This is not a ship that you can capture.");
-	
 	sort(plunder.begin(), plunder.end());
 }
 
@@ -138,24 +135,21 @@ void BoardingPanel::Draw() const
 		info.SetString("your defense",
 			Round(defenseOdds.DefenderPower(crew)));
 	}
-	if(victim->IsCapturable())
-	{
-		int vCrew = victim->Crew();
-		info.SetString("enemy crew", to_string(vCrew));
-		info.SetString("enemy attack",
-			Round(defenseOdds.AttackerPower(vCrew)));
-		info.SetString("enemy defense",
-			Round(attackOdds.DefenderPower(vCrew)));
+	int vCrew = victim->Crew();
+	info.SetString("enemy crew", to_string(vCrew));
+	info.SetString("enemy attack",
+		Round(defenseOdds.AttackerPower(vCrew)));
+	info.SetString("enemy defense",
+		Round(attackOdds.DefenderPower(vCrew)));
 	
-		info.SetString("attack odds",
-			Round(100. * attackOdds.Odds(crew, vCrew)) + "%");
-		info.SetString("attack casualties",
-			Round(attackOdds.AttackerCasualties(crew, vCrew)));
-		info.SetString("defense odds",
-			Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
-		info.SetString("defense casualties",
-			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
-	}
+	info.SetString("attack odds",
+		Round(100. * attackOdds.Odds(crew, vCrew)) + "%");
+	info.SetString("attack casualties",
+		Round(attackOdds.AttackerCasualties(crew, vCrew)));
+	info.SetString("defense odds",
+		Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+	info.SetString("defense casualties",
+		Round(defenseOdds.DefenderCasualties(vCrew, crew)));
 	
 	const Interface *interface = GameData::Interfaces().Get("boarding");
 	interface->Draw(info);
@@ -393,7 +387,7 @@ bool BoardingPanel::Drag(double dx, double dy)
 
 bool BoardingPanel::Scroll(double dx, double dy)
 {
-	return Drag(dx, dy * 50.);
+	return Drag(dx, dy * -50.);
 }
 
 
@@ -435,8 +429,6 @@ bool BoardingPanel::CanCapture() const
 	if(!you->GetGovernment()->IsPlayer())
 		return false;
 	if(victim->GetGovernment()->IsPlayer())
-		return false;
-	if(!victim->IsCapturable())
 		return false;
 	
 	if(victim->CanBeCarried())

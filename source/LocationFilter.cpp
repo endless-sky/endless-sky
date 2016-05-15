@@ -207,7 +207,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 	if(!planet)
 		return false;
 	
-	if(!planets.empty() && !planets.count(planet))
+	if(!planets.empty() && planets.find(planet) == planets.end())
 		return false;
 	for(const set<string> &attr : attributes)
 		if(!SetsIntersect(attr, planet->Attributes()))
@@ -222,9 +222,9 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 {
 	if(!system)
 		return false;
-	if(!systems.empty() && !systems.count(system))
+	if(!systems.empty() && systems.find(system) == systems.end())
 		return false;
-	if(!governments.empty() && !governments.count(system->GetGovernment()))
+	if(!governments.empty() && governments.find(system->GetGovernment()) == governments.end())
 		return false;
 	
 	if(center)
@@ -249,9 +249,9 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 
 bool LocationFilter::Matches(const Ship &ship) const
 {
-	if(!systems.empty() && !systems.count(ship.GetSystem()))
+	if(!systems.empty() && systems.find(ship.GetSystem()) == systems.end())
 		return false;
-	if(!governments.empty() && !governments.count(ship.GetGovernment()))
+	if(!governments.empty() && governments.find(ship.GetGovernment()) == governments.end())
 		return false;
 	
 	if(center)

@@ -758,6 +758,7 @@ void InfoPanel::Dump()
 		return;
 	
 	CargoHold &cargo = (*shipIt)->Cargo();
+	int originalCargo = cargo.Used();
 	int amount = cargo.Get(selectedCommodity);
 	int plunderAmount = cargo.Get(selectedPlunder);
 	int64_t loss = 0;
@@ -766,12 +767,12 @@ void InfoPanel::Dump()
 		int64_t basis = player.GetBasis(selectedCommodity, amount);
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
-		(*shipIt)->Jettison(selectedCommodity, amount);
+		cargo.Transfer(selectedCommodity, amount);
 	}
 	else if(plunderAmount > 0)
 	{
+		cargo.Transfer(selectedPlunder, plunderAmount);
 		loss += plunderAmount * selectedPlunder->Cost();
-		(*shipIt)->Jettison(selectedPlunder, plunderAmount);
 	}
 	else
 	{
@@ -780,13 +781,12 @@ void InfoPanel::Dump()
 			int64_t basis = player.GetBasis(it.first, it.second);
 			loss += basis;
 			player.AdjustBasis(it.first, -basis);
-			(*shipIt)->Jettison(it.first, it.second);
+			cargo.Transfer(it.first, it.second);
 		}
 	}
 	selectedCommodity.clear();
-	selectedPlunder = nullptr;
-	
 	info.Update(**shipIt);
+	(*shipIt)->Jettison(originalCargo - cargo.Used());
 	if(loss)
 		Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 }
@@ -795,10 +795,13 @@ void InfoPanel::Dump()
 
 void InfoPanel::DumpPlunder(int count)
 {
-	count = min(count, (*shipIt)->Cargo().Get(selectedPlunder));
+	CargoHold &cargo = (*shipIt)->Cargo();
+	int originalCargo = cargo.Used();
+	count = min(count, cargo.Get(selectedPlunder));
 	if(count > 0)
 	{
-		(*shipIt)->Jettison(selectedPlunder, count);
+		cargo.Transfer(selectedPlunder, count);
 		info.Update(**shipIt);
+		(*shipIt)->Jettison(originalCargo - cargo.Used());
 	}
 }

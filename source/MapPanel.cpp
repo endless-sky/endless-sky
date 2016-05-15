@@ -239,34 +239,34 @@ void MapPanel::Select(const System *system)
 	if(!system)
 		return;
 	selectedSystem = system;
-	vector<const System *> &plan = player.TravelPlan();
-	if(!plan.empty() && system == plan.front())
-		return;
 	
-	bool shift = (SDL_GetModState() & KMOD_SHIFT) && !plan.empty();
+	bool shift = (SDL_GetModState() & KMOD_SHIFT) && player.HasTravelPlan();
 	if(system == playerSystem && !shift)
-		plan.clear();
+		player.ClearTravel();
 	else if((distance.Distance(system) > 0 || shift) && player.Flagship())
 	{
 		if(shift)
 		{
-			DistanceMap localDistance(player, plan.front());
+			vector<const System *> oldPath = player.TravelPlan();
+			DistanceMap localDistance(player, oldPath.front());
 			if(localDistance.Distance(system) <= 0)
 				return;
+			player.ClearTravel();
 			
-			auto it = plan.begin();
-			while(system != *it)
+			while(system != oldPath.front())
 			{
-				it = ++plan.insert(it, system);
+				player.AddTravel(system);
 				system = localDistance.Route(system);
 			}
+			for(const System *it : oldPath)
+				player.AddTravel(it);
 		}
 		else if(playerSystem)
 		{
-			plan.clear();
+			player.ClearTravel();
 			while(system != playerSystem)
 			{
-				plan.push_back(system);
+				player.AddTravel(system);
 				system = distance.Route(system);
 			}
 		}
@@ -459,7 +459,7 @@ void MapPanel::DrawTravelPlan() const
 			drawColor = withinFleetFuelRangeColor;
 		else if(flagshipCapacity >= 0. || escortCapacity >= 0.)
 			drawColor = defaultColor;
-		
+        
 		LineShader::Draw(from, to, 3., drawColor);
 		
 		previous = next;
@@ -571,13 +571,11 @@ void MapPanel::DrawSystems() const
 			if(commodity >= SHOW_SPECIAL)
 			{
 				double value = 0.;
-				bool showUninhabited = false;
 				if(commodity >= 0)
 				{
 					const Trade::Commodity &com = GameData::Commodities()[commodity];
-					double price = system.Trade(com.name);
-					showUninhabited = !price;
-					value = (2. * (price - com.low)) / (com.high - com.low) - 1.;
+					value = (2. * (system.Trade(com.name) - com.low))
+						/ (com.high - com.low) - 1.;
 				}
 				else if(commodity == SHOW_SHIPYARD)
 				{
@@ -611,7 +609,7 @@ void MapPanel::DrawSystems() const
 				else
 					value = SystemValue(&system);
 				
-				color = (showUninhabited ? UninhabitedColor() : MapColor(value));
+				color = MapColor(value);
 			}
 			else if(commodity == SHOW_GOVERNMENT)
 			{
@@ -632,21 +630,16 @@ void MapPanel::DrawSystems() const
 			{
 				double reputation = system.GetGovernment()->Reputation();
 				
-				// A system should show up as dominated if it contains at least
-				// one inhabited planet and all inhabited planets have been
-				// dominated. It should show up as restricted if you cannot land
-				// on any of the planets that have spaceports.
 				bool hasDominated = true;
 				bool isInhabited = false;
 				bool canLand = false;
 				for(const StellarObject &object : system.Objects())
-					if(object.GetPlanet())
+					if(object.GetPlanet() && object.GetPlanet()->HasSpaceport())
 					{
-						const Planet *planet = object.GetPlanet();
-						canLand |= planet->CanLand() && planet->HasSpaceport();
-						isInhabited |= planet->IsInhabited();
-						hasDominated &= (!planet->IsInhabited()
-							|| GameData::GetPolitics().HasDominated(planet));
+						canLand |= object.GetPlanet()->CanLand();
+						isInhabited |= object.GetPlanet()->IsInhabited();
+						hasDominated &= (!object.GetPlanet()->IsInhabited()
+							|| GameData::GetPolitics().HasDominated(object.GetPlanet()));
 					}
 				hasDominated &= isInhabited;
 				color = ReputationColor(reputation, canLand, canLand && hasDominated);
@@ -662,8 +655,7 @@ void MapPanel::DrawSystems() const
 void MapPanel::DrawNames() const
 {
 	// Don't draw if too small.
-	if(Zoom() <= 0.5)
-		return;
+	if (Zoom() <= 0.5) return;
 	
 	// Draw names for all systems you have visited.
 	const Font &font = FontSet::Get((Zoom() > 2.0) ? 18 : 14);

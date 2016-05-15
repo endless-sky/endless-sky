@@ -371,18 +371,6 @@ bool System::IsInhabited() const
 
 
 
-// Check if ships of the given government can refuel in this system.
-bool System::HasFuelFor(const Ship &ship) const
-{
-	for(const StellarObject &object : objects)
-		if(object.GetPlanet() && object.GetPlanet()->HasSpaceport() && object.GetPlanet()->CanLand(ship))
-			return true;
-	
-	return false;
-}
-
-
-
 // Check whether you can buy or sell ships in this system.
 bool System::HasShipyard() const
 {
@@ -440,12 +428,9 @@ void System::StepEconomy()
 
 void System::SetSupply(const string &commodity, double tons)
 {
-	auto it = trade.find(commodity);
-	if(it == trade.end())
-		return;
-	
-	it->second.supply = tons;
-	it->second.Update();
+	auto &it = trade[commodity];
+	it.supply = tons;
+	it.Update();
 }
 
 

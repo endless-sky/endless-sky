@@ -2,11 +2,9 @@ Version 0.9.0:
   * Bug fixes:
     * Proper error message is now shown if you cannot install an outfit from cargo. (@thomasballinger)
     * Fixed a bug if you clicked "done" instead of pressing "enter" in boarding conversations. (@jmhorjus)
-    * Scrolling now works properly when at 150% zoom level. (@db47h)
+    * Scrolling now works properly when at 150% zoom level. (@dh47h)
     * Fixed a crash in the info panel. (@reizbar)
     * Fixed a screen resizing bug on Ubuntu Linux where the scale ends up slightly off. (@db47h)
-    * The outfitter now properly displays the "turret mounts needed" line. (@ItsNickBarry).
-    * Fixed places where Parliament is referred to as the "Senate." (@jafdy, @ItsNickBarry)
     * Fixed AI confusion when a ship's "target" system is set, but set to the current system.
     * Clearing your travel plan now also clears your flagship's destination system.
     * "Uninhabited" worlds with spaceports are no longer shown as "dominated" in the map.
@@ -23,41 +21,25 @@ Version 0.9.0:
     * Autopilot is no longer locked on if you have a travel plan through a wormhole selected.
     * Fixed a crash when conversations are displayed from an "on enter" mission event.
     * Deadline "multipliers" for missions are now handled correctly.
-    * Fighters in a different system are no longer auto-sold when you take off.
-    * Ships no longer show engine flares if the command is set but they don't have energy to thrust.
-    * Fixed formatting of large numbers of credits in the ship sell-off message when you take off.
-    * Blast radius is now properly calculated from where a projectile strikes, not its start location.
-    * It's no longer possible to hail or board ships while cloaked.
-    * Modified how stranded ships request help so they don't wait on a ship that is not coming.
-    * Attacking a friendly ship, bribing it, then attacking again now makes it hostile again.
-    * Fixed handling of player escorts with fewer bunks than required crew.
   * Game content:
     * Added the former Korath territory to the map.
     * Korath with no jump drives no longer appear in one uninhabited system. (@thenerdfreak)
     * Fixed typos, grammar, and unclear text. (@Wrzlprnft, @lehgogh, @thomasballinger, @plague006)
-    * More typo fixes. (@macfreek, @toilethinges, @jafdy, @allixu211, @tstanke)
+    * More typo fixes. (@macfreek, @toilethinges, @jafdy)
     * Navy "generals" are now given the more proper title of "admiral." (@thomasballinger)
     * The "Neutral" government now stands up for merchants. (@jmhorjus)
     * Added 33 new landscape images. (@sfiera)
     * Added "Marauder" variants of many of the stock ships. (@LocalGod79 and @Wrzlprnft)
-    * Added two new human fighters and three carrier types. (@LocalGod79, @DingusShingleton)
     * New commodity names for cargo missions. (@lehgogh)
     * Added two sizes of solar panels. (@ItsNickBarry)
-    * New tiny engine, the X1050 combined thruster and steering. (@LocalGod79)
     * Added a Drak Archon ship, along with the weapons it uses.
     * Killing an Oathkeeper now angers the Republic (but not the other way around).
     * Added a star image for a supernova remnant.
     * Added three types of Korath space stations, each with full and "damaged" variants.
-    * Added three new factions of Korath, each with their own ships and weapons.
-    * Made fuel cells much more heat efficient, to make them a bit less useless.
+    * Added three new factions of Korath.
     * Added an "android" outfit that reduces a ship's crew requirements.
-    * Added a "command center" outfit that converts an automaton into a pilotable ship.
     * Fixed a place where both branches of a Free Worlds mission could be offered.
     * Added a new Wanderer ship and several new Wanderer weapons (to be unlocked by missions).
-    * Slightly boosted the strength of human fighters and combat drones.
-    * The Pug in Wanderer space will now (eventually) respond to being farmed.
-    * Boosted the energy output, energy requirements, and cost of the Wanderer and Korath outfits.
-    * Fixed some missions that could interrupt other mission strings.
   * Game mechanics:
     * The economy is now dynamic - randomly fluctuating, influenced by large sales by the player.
     * All weapons now do 1/3 less hull damage (so, ships don't die as fast once shields are down).
@@ -92,17 +74,9 @@ Version 0.9.0:
     * Outfits that repair hull or shields must now specify how much energy they use.
     * AI ships no longer "wait" to collect fighters that they have no space for.
     * The afterburner key now cancels autopilot, the same as the other movement keys.
-    * Adjusted the missile boat AI so that for fixed guns, it only applies if their range is above 2000.
-    * Projectiles can now have a "random velocity" added to their base velocity.
-    * Animations now default to 2 FPS (a reasonable rate for running lights) instead of 60 FPS.
-    * Anti-missile systems can now create "fire effects" and "die effects" in addition to the beams.
-    * If a ship is destroyed (by piercing) while it still has shields, its shields now drop to zero.
-    * Added an "uncapturable" ship attribute (for ships you can plunder but not capture).
-    * Outfits can now set "installable" to less than 0 to mark outfits you can plunder but not install.
   * User interface:
     * The shop panels now auto-scroll if the item details are not visible. (@db47h)
     * Any mission on your current travel plan now starts out selected in the job panel. (@db47h)
-    * Outfitters now show how many outfits are in stock when stock is limited. (@ItsNickBarry)
     * Improved the appearance of the ship outlines (in the targeting view, etc.).
     * Click to expand or collapse categories in the map of shipyards and outfitters.
     * Added a find function in the shipyards and outfitters map panels.
@@ -113,10 +87,6 @@ Version 0.9.0:
     * Labels are now shown next to planets you can land on when you fly close to them.
     * The fuel bar now drops smoothly even when using a scram drive or jump drive.
     * Added a line to the ship info display showing energy use when recharging shields and hull.
-    * The find function in the map panels now prefers strings that start with the given text.
-    * In the ship info, the line to whatever weapon you hover over is now always drawn on top.
-    * Added Shift+B and Shift+S as shortcuts for "buy all" and "sell all" in the trade panel.
-    * The commodity price maps now grey out systems where a given commodity is not sold.
   * Under the hood:
     * Made the Linux dependency list easier to copy-paste to the command line. (@anarcat)
     * Merged DotShader and RingShader, and merged SpriteShader and BlurShader.

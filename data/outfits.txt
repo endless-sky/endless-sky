@@ -229,7 +229,6 @@ outfit "Cargo Expansion"
 	"mass" 5
 	"cargo space" 15
 	"outfit space" -20
-	unplunderable 1
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
 	
 outfit "Bunk Room"
@@ -239,7 +238,6 @@ outfit "Bunk Room"
 	"mass" 5
 	"bunks" 4
 	"outfit space" -20
-	unplunderable 1
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
 	
 outfit "Small Bunk Room"
@@ -249,16 +247,14 @@ outfit "Small Bunk Room"
 	"mass" 3
 	"bunks" 2
 	"outfit space" -12
-	unplunderable 1
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
 outfit "NDR-114 Android"
 	category "Systems"
-	cost 80000
+	cost 30000
 	thumbnail "outfit/android"
 	"required crew" -1
-	unplunderable 1
-	description "For the price of more than two year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
+	description "For the price of nearly a year's salary, you can replace one of your crew members with a robotic counterpart. Androids possess sufficient intelligence to perform most work, but each ship still needs a human captain. And, due to long-standing convention, robots are not allowed to take part in hand to hand combat."
 
 outfit "Fuel Pod"
 	category "Systems"

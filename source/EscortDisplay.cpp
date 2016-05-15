@@ -144,7 +144,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping)
 	: sprite(ship.GetSprite().GetSprite()),
 	isHere(isHere && !ship.IsDisabled()),
 	isReadyToJump(ship.CheckHyperspace()),
-	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
+	cannotJump(fleetIsJumping && !ship.JumpsRemaining()),
 	stackSize(1),
 	cost(ship.Cost()),
 	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
@@ -201,7 +201,7 @@ void EscortDisplay::MergeStacks() const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
+			if(unstackable.find(icon.sprite) == unstackable.end() && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 			
 			height += icon.Height();

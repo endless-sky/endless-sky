@@ -128,8 +128,6 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "never disabled")
 			neverDisabled = true;
-		else if(child.Token(0) == "uncapturable")
-			isCapturable = false;
 		else if((child.Token(0) == "fighter" || child.Token(0) == "drone") && child.Size() >= 3)
 		{
 			if(!hasBays)
@@ -227,7 +225,6 @@ void Ship::FinishLoading()
 		explosionWeapon = &GameData::Ships().Get(modelName)->BaseAttributes();
 	
 	// If this ship has a base class, copy any attributes not defined here.
-	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
 	{
 		if(!sprite.GetSprite())
@@ -291,7 +288,8 @@ void Ship::FinishLoading()
 	
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
-	if(baseAttributes.Category() == "Drone" && !baseAttributes.Attributes().count("automaton"))
+	if(baseAttributes.Category() == "Drone"
+			&& baseAttributes.Attributes().find("automaton") == baseAttributes.Attributes().end())
 		baseAttributes.Add("automaton", 1.);
 	
 	// Different ships dissipate heat at different rates.
@@ -336,11 +334,6 @@ void Ship::FinishLoading()
 		shared_ptr<const Ship> parent = GetParent();
 		Recharge(!parent || currentSystem == parent->currentSystem);
 	}
-	else
-	{
-		isDisabled = true;
-		isDisabled = IsDisabled();
-	}
 }
 
 
@@ -356,8 +349,6 @@ void Ship::Save(DataWriter &out) const
 		
 		if(neverDisabled)
 			out.Write("never disabled");
-		if(!isCapturable)
-			out.Write("uncapturable");
 		
 		out.Write("attributes");
 		out.BeginChild();
@@ -505,7 +496,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	if(landingPlanet)
 	{
 		landingPlanet = nullptr;
-		zoom = parent.lock() ? (-.2 + -.8 * Random::Real()) : 0.;
+		zoom = parent.lock() ? -1. : 0.;
 	}
 	else
 		zoom = 1.;
@@ -515,7 +506,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	disruption = 0.;
 	slowness = 0.;
 	cloak = 0.;
-	jettisoned.clear();
+	jettisoned = 0;
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
 	forget = 1;
@@ -656,7 +647,7 @@ const Command &Ship::Commands() const
 // Move this ship. A ship may create effects as it moves, in particular if
 // it is in the process of blowing up. If this returns false, the ship
 // should be deleted.
-bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
+bool Ship::Move(list<Effect> &effects)
 {
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
@@ -689,11 +680,13 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		CreateSparks(effects, "slowing spark", slowness * .1);
 	}
 	double slowMultiplier = 1. / (1. + slowness * .05);
-	// Jettisoned cargo effects (only for ships in the current system).
-	if(!jettisoned.empty() && !forget)
+	// Jettisoned cargo effects.
+	static const int JETTISON_BOX = 5;
+	if(jettisoned >= JETTISON_BOX)
 	{
-		jettisoned.front().Place(*this);
-		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
+		jettisoned -= JETTISON_BOX;
+		effects.push_back(*GameData::Effects().Get("box"));
+		effects.back().Place(position, velocity, angle);
 	}
 	
 	// When ships recharge, what actually happens is that they can exceed their
@@ -738,9 +731,6 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	
 	if(IsDestroyed())
 	{
-		// Make sure the shields are zero, as well as the hull.
-		shields = 0.;
-		
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
 		{
@@ -767,15 +757,6 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 					effects.push_back(*it.first);
 					effects.back().Place(position, velocity, angle);
 				}
-				// For everything in this ship's cargo hold there is a 25% chance
-				// that it will survive as flotsam.
-				for(const auto &it : cargo.Commodities())
-					Jettison(it.first, Random::Binomial(it.second, .25));
-				for(const auto &it : cargo.Outfits())
-					Jettison(it.first, Random::Binomial(it.second, .25));
-				for(Flotsam &it : jettisoned)
-					it.Place(*this);
-				flotsam.splice(flotsam.end(), jettisoned);
 			}
 			energy = 0.;
 			heat = 0.;
@@ -904,11 +885,6 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	}
 	else if(landingPlanet || zoom < 1.)
 	{
-		// If a ship was disabled at the very moment it began landing, do not
-		// allow it to continue landing.
-		if(isDisabled)
-			landingPlanet = nullptr;
-		
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -949,8 +925,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		
 		// Move the ship at the velocity it had when it began landing, but
 		// scaled based on how small it is now.
-		if(zoom > 0.)
-			position += velocity * zoom;
+		position += velocity * zoom;
 		
 		return true;
 	}
@@ -985,10 +960,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(parent.lock() || !government->IsPlayer())
-			Messages::Add(name + " is moving erratically because there are not enough crew to pilot it.");
-		else
-			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
+		Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it.");
 	}
 	else
 		pilotOkay = 30;
@@ -1101,7 +1073,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		double distance = dp.Length();
 		Point dv = (target->velocity - velocity);
 		double speed = dv.Length();
-		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD) && !cloak);
+		isBoarding |= (distance < 50. && speed < 1. && commands.Has(Command::BOARD));
 		if(isBoarding && !CanBeCarried())
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
@@ -1385,13 +1357,6 @@ const Planet *Ship::GetPlanet() const
 
 
 
-bool Ship::IsCapturable() const
-{
-	return isCapturable;
-}
-
-
-
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && !sprite.IsEmpty());
@@ -1474,8 +1439,7 @@ bool Ship::IsHyperspacing() const
 // Check if this ship is currently able to enter hyperspace to it target.
 int Ship::CheckHyperspace() const
 {
-	// You can't jump if you're waiting for someone else or are already jumping.
-	if(commands.Has(Command::WAIT) || hyperspaceCount)
+	if(commands.Has(Command::WAIT))
 		return 0;
 	
 	// Find out where we're going and how we're getting there,
@@ -1635,7 +1599,7 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(atSpaceport)
 	{
-		crew = min(max(crew, RequiredCrew()), static_cast<int>(attributes.Get("bunks")));
+		crew = max(crew, RequiredCrew());
 		fuel = attributes.Get("fuel capacity");
 	}
 	pilotError = 0;
@@ -1794,15 +1758,7 @@ int Ship::RequiredCrew() const
 
 void Ship::AddCrew(int count)
 {
-	crew = min(crew + count, static_cast<int>(attributes.Get("bunks")));
-}
-
-
-
-// Check if this is a ship that can be used as a flagship.
-bool Ship::CanBeFlagship() const
-{
-	return !CanBeCarried() && RequiredCrew() && Crew() && !IsDisabled();
+	crew += count;
 }
 
 
@@ -1861,10 +1817,8 @@ int Ship::TakeDamage(const Projectile &projectile, bool isBlast)
 	
 	double shieldFraction = 1. - weapon.Piercing();
 	shieldFraction *= 1. / (1. + disruption * .01);
-	if(shields <= 0.)
-		shieldFraction = 0.;
-	else if(shieldDamage > shields)
-		shieldFraction = min(shieldFraction, shields / shieldDamage);
+	if(shieldDamage > shields)
+	    shieldFraction = min(shieldFraction, shields / shieldDamage);
 	shields -= shieldDamage * shieldFraction;
 	hull -= hullDamage * (1. - shieldFraction);
 	heat += heatDamage * (1. - .5 * shieldFraction);
@@ -2021,25 +1975,9 @@ const CargoHold &Ship::Cargo() const
 
 
 // Display box effects from jettisoning this much cargo.
-void Ship::Jettison(const std::string &commodity, int tons)
+void Ship::Jettison(int tons)
 {
-	cargo.Transfer(commodity, tons);
-	
-	static const int perBox = 5;
-	for( ; tons >= perBox; tons -= perBox)
-		jettisoned.emplace_back(commodity, perBox);
-}
-
-
-
-void Ship::Jettison(const Outfit *outfit, int count)
-{
-	cargo.Transfer(outfit, count);
-	
-	double mass = outfit->Get("mass");
-	static const int perBox = (mass <= 0.) ? count : (mass > 5.) ? 1 : static_cast<int>(5. / mass);
-	for( ; count >= perBox; count -= perBox)
-		jettisoned.emplace_back(outfit, perBox);
+	jettisoned += tons;
 }
 
 

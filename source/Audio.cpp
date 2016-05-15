@@ -366,7 +366,7 @@ namespace {
 	Source::Source(const Sound *sound, unsigned source)
 		: sound(sound), source(source)
 	{
-		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .04);
+		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .1);
 		alSourcef(source, AL_GAIN, 1.);
 		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
 		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
@@ -423,7 +423,7 @@ namespace {
 			
 			// Unlock the mutex for the time-intensive part of the loop.
 			string name = Name(path);
-			if(!name.empty() && !loaded.count(name))
+			if(!name.empty() && loaded.find(name) == loaded.end())
 			{
 				loaded.insert(name);
 				sounds[name].Load(path);

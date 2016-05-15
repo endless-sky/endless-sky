@@ -64,12 +64,7 @@ void NPC::Load(const DataNode &node)
 		if(child.Token(0) == "system")
 		{
 			if(child.Size() >= 2)
-			{
-				if(child.Token(1) == "destination")
-					isAtDestination = true;
-				else
-					system = GameData::Systems().Get(child.Token(1));
-			}
+				system = GameData::Systems().Get(child.Token(1));
 			else
 				location.Load(child);
 		}
@@ -265,17 +260,8 @@ bool NPC::HasSucceeded(const System *playerSystem) const
 	// it, disabling it is sufficient (you do not have to kill it).
 	if(mustEvade || mustAccompany)
 		for(const shared_ptr<Ship> &ship : ships)
-		{
-			// Special case: if a ship has been captured, it counts as having
-			// been evaded.
-			auto it = actions.find(ship.get());
-			bool isCapturedOrDisabled = ship->IsDisabled();
-			if(it != actions.end())
-				isCapturedOrDisabled |= (it->second & ShipEvent::CAPTURE);
-			bool isHere = (!ship->GetSystem() || ship->GetSystem() == playerSystem);
-			if((isHere && !isCapturedOrDisabled) ^ mustAccompany)
+			if((ship->GetSystem() == playerSystem && !ship->IsDisabled()) ^ mustAccompany)
 				return false;
-		}
 	
 	if(!succeedIf)
 		return true;
@@ -322,7 +308,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination) const
+NPC NPC::Instantiate(map<string, string> &subs, const System *origin) const
 {
 	NPC result;
 	result.government = government;
@@ -352,7 +338,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 			result.system = options[Random::Int(options.size())];
 	}
 	if(!result.system)
-		result.system = (isAtDestination && destination) ? destination : origin;
+		result.system = origin;
 	
 	// Convert fleets into instances of ships.
 	for(const shared_ptr<Ship> &ship : ships)

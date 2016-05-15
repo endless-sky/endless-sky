@@ -109,21 +109,6 @@ fleet "Wanderer Defense"
 	variant
 		"Strong Wind" 3
 
-fleet "Wanderer Flycatchers"
-	government "Wanderer"
-	names "wanderer"
-	personality
-		swarming
-		heroic
-	variant
-		"Flycatcher" 5
-	variant
-		"Flycatcher" 4
-	variant
-		"Flycatcher" 3
-	variant
-		"Flycatcher" 2
-
 
 shipyard "Wanderer Basics"
 	"Earth Shaper"
