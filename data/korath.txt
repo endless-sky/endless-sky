@@ -127,6 +127,48 @@ phrase "korath"
 		"ar"
 		"far"
 
+phrase "kor sestor"
+	phrase "digit"
+	phrase "digit"
+	word
+		"-"
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
+	word
+		"."
+	phrase "digit"
+
+phrase "kor sestor fighter"
+	phrase "digit"
+	phrase "digit"
+	phrase "digit"
+	word
+		" "
+	phrase "digit"
+	word
+		"-"
+	phrase "digit"
+	phrase "digit"
+	word
+		"."
+	phrase "digit"
+
+phrase "kor mereti"
+	phrase "digit"
+	phrase "digit"
+	word
+		":"
+	phrase "digit"
+	phrase "digit"
+	word
+		":"
+	phrase "digit"
+	phrase "digit"
+	word
+		":"
+	phrase "digit"
+
 
 fleet "Korath Raid"
 	government "Korath"
@@ -153,9 +195,11 @@ fleet "Korath Home"
 	variant
 		"Korath World-Ship C"
 
+
 fleet "Kor Efret Home"
 	government "Kor Efret"
 	names "korath"
+	fighters "korath"
 	cargo 3
 	personality
 		timid
@@ -166,11 +210,23 @@ fleet "Kor Efret Home"
 	variant
 		"Korath World-Ship C"
 
+
 fleet "Small Kor Sestor"
 	government "Kor Sestor"
-	names "korath"
+	names "kor sestor"
+	fighters "kor sestor fighter"
 	personality
 		heroic
+	variant 5
+		"Met Par Tek 53" 3
+	variant 5
+		"Met Par Tek 53" 2
+		"Met Par Tek 53 (Sniper)"
+	variant 5
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)" 2
+	variant 5
+		"Met Par Tek 53 (Sniper)" 3
 	variant 8
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 10
@@ -216,41 +272,52 @@ fleet "Small Kor Sestor"
 
 fleet "Large Kor Sestor"
 	government "Kor Sestor"
-	names "korath"
+	names "kor sestor"
+	fighters "kor sestor fighter"
 	personality
 		heroic
 	variant 8
 		"Kar Ik Vot 349"
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 10
+		"Met Par Tek 53" 2
 	variant 4
 		"Kar Ik Vot 349 (Defense)"
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 8
+		"Met Par Tek 53 (Sniper)" 2
 	variant 4
 		"Kar Ik Vot 349 (Offense)"
 		"Tek Far 71 - Lek"
 		"Far Lek 14" 9
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349 (Trapper)"
 		"Tek Far 71 - Lek (Close Quarters)"
 		"Far Lek 14" 7
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)"
 	variant 8
 		"Kar Ik Vot 349"
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 9
+		"Met Par Tek 53"
 	variant 4
 		"Kar Ik Vot 349 (Defense)"
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 7
+		"Met Par Tek 53"
 	variant 4
 		"Kar Ik Vot 349 (Offense)"
 		"Tek Far 78 - Osk"
 		"Far Osk 27" 8
+		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349 (Trapper)"
 		"Tek Far 78 - Osk (Close Quarters)"
 		"Far Osk 27" 6
+		"Met Par Tek 53 (Sniper)"
 	variant 4
 		"Kar Ik Vot 349"
 		"Tek Far 71 - Lek"
@@ -283,12 +350,179 @@ fleet "Large Kor Sestor"
 		"Kar Ik Vot 349 (Offense)"
 	variant 1
 		"Kar Ik Vot 349 (Trapper)"
+	variant 2
+		"Kar Ik Vot 349"
+		"Met Par Tek 53" 3
+	variant 1
+		"Kar Ik Vot 349 (Defense)"
+		"Met Par Tek 53" 2
+		"Met Par Tek 53 (Sniper)"
+	variant 1
+		"Kar Ik Vot 349 (Offense)"
+		"Met Par Tek 53"
+		"Met Par Tek 53 (Sniper)" 2
+	variant 1
+		"Kar Ik Vot 349 (Trapper)"
+		"Met Par Tek 53 (Sniper)" 3
+
+
+fleet "Small Kor Mereti"
+	government "Kor Mereti"
+	names "kor mereti"
+	fighters "kor mereti"
+	personality
+		heroic
+	variant 1
+		"Model 64"
+		"Model 32"
+		"Model 16" 2
+	variant 2
+		"Model 64"
+		"Model 32" 2
+	variant 3
+		"Model 128"
+	variant 3
+		"Model 64"
+		"Model 32" 2
+		"Model 16" 1
+	variant 1
+		"Model 32"
+		"Model 16" 5
+	variant 3
+		"Model 32" 2
+		"Model 16" 3
+	variant 6
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 4
+		"Model 64"
+		"Model 32"
+	variant 3
+		"Model 32"
+		"Model 16" 4
+	variant 4
+		"Model 32"
+		"Model 16" 3
+	variant 5
+		"Model 32"
+		"Model 16" 2
+	variant 6
+		"Model 16" 3
+	variant 4
+		"Model 16" 2
+	variant 3
+		"Model 32"
+	variant 5
+		"Model 64"
+
+fleet "Large Kor Mereti"
+	government "Kor Mereti"
+	names "kor mereti"
+	fighters "kor mereti"
+	personality
+		heroic
+	variant 5
+		"Model 512"
+		"Model 32"
+		"Model 16" 2
+	variant 4
+		"Model 512"
+	variant 2
+		"Model 512"
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 3
+		"Model 512"
+		"Model 256" 2
+	variant 1
+		"Model 512"
+		"Model 128" 2
+		"Model 64"
+		"Model 32" 2
+	variant 1
+		"Model 512"
+		"Model 32" 5
+		"Model 16" 8
+	variant 2
+		"Model 256"
+		"Model 128" 2
+		"Model 64" 3
+		"Model 32" 5
+		"Model 16" 8
+	variant 3
+		"Model 256" 2
+		"Model 64"
+		"Model 32" 3
+		"Model 16" 2
+	variant 6
+		"Model 256"
+		"Model 64" 4
+	variant 3
+		"Model 256" 3
+	variant 8
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 7
+		"Model 256" 2
+		"Model 128"
+	variant 14
+		"Model 256"
+		"Model 64" 2
+	variant 5
+		"Model 128" 3
+	variant 2
+		"Model 256"
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 4
+		"Model 256" 2
+	variant 3
+		"Model 128" 2
+		"Model 64"
+		"Model 32" 2
+	variant 4
+		"Model 128" 2
+		"Model 64" 3
+		"Model 32" 5
+		"Model 16" 8
+	variant 5
+		"Model 256"
+		"Model 64"
+		"Model 32" 3
+		"Model 16" 2
+	variant 9
+		"Model 256"
+		"Model 64" 2
+	variant 3
+		"Model 256" 2
+	variant 8
+		"Model 128"
+		"Model 64"
+		"Model 32"
+		"Model 16"
+	variant 7
+		"Model 256"
+		"Model 128"
+	variant 14
+		"Model 256"
+		"Model 64"
+	variant 5
+		"Model 128" 2
 
 
 outfitter "Korath Basics"
 	"Command Center"
 	"Small Bunk Room"
-	"Large Bunk Room"
+	"Bunk Room"
 	"Fuel Pod"
 	"Ramscoop"
 	"Mass Expansion"

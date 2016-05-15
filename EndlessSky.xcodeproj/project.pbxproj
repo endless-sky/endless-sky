@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */; };
+		62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62C311181CE172D000409D91 /* Flotsam.cpp */; };
 		A93931F019880EFC00C2A87B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9CC52A01950CA16004E4E22 /* SDL2.framework */; };
 		A93931FB1988135200C2A87B /* libturbojpeg.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */; };
 		A93931FD1988136B00C2A87B /* libpng14.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A93931FC1988136B00C2A87B /* libpng14.14.dylib */; };
@@ -149,6 +151,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlanetLabel.cpp; path = source/PlanetLabel.cpp; sourceTree = "<group>"; };
+		628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlanetLabel.h; path = source/PlanetLabel.h; sourceTree = "<group>"; };
+		62C311181CE172D000409D91 /* Flotsam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flotsam.cpp; path = source/Flotsam.cpp; sourceTree = "<group>"; };
+		62C311191CE172D000409D91 /* Flotsam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flotsam.h; path = source/Flotsam.h; sourceTree = "<group>"; };
 		A93931FA1988135200C2A87B /* libturbojpeg.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.0.dylib; path = "/opt/libjpeg-turbo/lib/libturbojpeg.0.dylib"; sourceTree = "<absolute>"; };
 		A93931FC1988136B00C2A87B /* libpng14.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng14.14.dylib; path = /usr/local/lib/libpng14.14.dylib; sourceTree = "<absolute>"; };
 		A94408A41982F3E600610427 /* endless-sky.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "endless-sky.iconset"; sourceTree = "<group>"; };
@@ -470,6 +476,8 @@
 				A96863091AE6FD0B004FE1FE /* FillShader.h */,
 				A968630A1AE6FD0B004FE1FE /* Fleet.cpp */,
 				A968630B1AE6FD0B004FE1FE /* Fleet.h */,
+				62C311181CE172D000409D91 /* Flotsam.cpp */,
+				62C311191CE172D000409D91 /* Flotsam.h */,
 				A968630C1AE6FD0B004FE1FE /* Font.cpp */,
 				A968630D1AE6FD0B004FE1FE /* Font.h */,
 				A968630E1AE6FD0B004FE1FE /* FontSet.cpp */,
@@ -555,6 +563,8 @@
 				A96863541AE6FD0C004FE1FE /* pi.h */,
 				A96863551AE6FD0C004FE1FE /* Planet.cpp */,
 				A96863561AE6FD0C004FE1FE /* Planet.h */,
+				628BDAED1CC5DC950062BCD2 /* PlanetLabel.cpp */,
+				628BDAEE1CC5DC950062BCD2 /* PlanetLabel.h */,
 				A96863571AE6FD0C004FE1FE /* PlanetPanel.cpp */,
 				A96863581AE6FD0C004FE1FE /* PlanetPanel.h */,
 				A96863591AE6FD0C004FE1FE /* PlayerInfo.cpp */,
@@ -788,6 +798,7 @@
 				A96863D41AE6FD0E004FE1FE /* Mask.cpp in Sources */,
 				A96863E61AE6FD0E004FE1FE /* Point.cpp in Sources */,
 				A96863DE1AE6FD0E004FE1FE /* OutfitterPanel.cpp in Sources */,
+				62C3111A1CE172D000409D91 /* Flotsam.cpp in Sources */,
 				A96863B91AE6FD0E004FE1FE /* Effect.cpp in Sources */,
 				A96863AE1AE6FD0E004FE1FE /* ConditionSet.cpp in Sources */,
 				A96863DC1AE6FD0E004FE1FE /* Outfit.cpp in Sources */,
@@ -828,6 +839,7 @@
 				A96863D81AE6FD0E004FE1FE /* MissionAction.cpp in Sources */,
 				A96863FA1AE6FD0E004FE1FE /* SpriteQueue.cpp in Sources */,
 				A96863E21AE6FD0E004FE1FE /* Phrase.cpp in Sources */,
+				628BDAEF1CC5DC950062BCD2 /* PlanetLabel.cpp in Sources */,
 				A96863C01AE6FD0E004FE1FE /* FontSet.cpp in Sources */,
 				A96863CA1AE6FD0E004FE1FE /* InfoPanel.cpp in Sources */,
 				A96863D61AE6FD0E004FE1FE /* Messages.cpp in Sources */,
