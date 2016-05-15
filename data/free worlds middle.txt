@@ -129,7 +129,7 @@ mission "FW Diplomacy 1D"
 	name "Free Worlds Diplomacy"
 	description "Bring Alondo back to <destination>. Take as direct a route as possible, because your safe passage expires soon."
 	source "New Wales"
-	destination Longjump
+	destination Bourne
 	to offer
 		has "FW Diplomacy 1C: done"
 	passengers 1
@@ -154,13 +154,12 @@ mission "FW Southern Recon 1"
 	name "Reconnaissance"
 	description "Fly through Rastaban, Delta Sagittarii, and Albaldah to get a sense of the Navy's strength in those systems, then report to <destination>."
 	autosave
-	source Longjump
+	source Bourne
 	waypoint Rastaban
 	waypoint "Delta Sagittarii"
 	waypoint Albaldah
 	destination Trinket
 	to offer
-		has "event: fw safe passage ends"
 		has "FW Diplomacy 1D: done"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
