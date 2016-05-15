@@ -161,7 +161,7 @@ void Armament::Weapon::Step(const Ship &ship)
 			targetAimOffset = Angle(TO_DEG * 0);
 		
 		double difference = aimOffset.Difference(targetAimOffset);
-		double n = outfit->Get("rotation speed");
+		double n = outfit->RotationSpeed();
 		
 		if (abs(difference - 0) < n)
 			SetAimOffset(targetAimOffset);
