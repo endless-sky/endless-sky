@@ -100,7 +100,7 @@ void LoadPanel::Draw() const
 		point += Point(0., 20.);
 	}
 	
-	if(!selectedPilot.empty() && files.count(selectedPilot))
+	if(!selectedPilot.empty() && files.find(selectedPilot) != files.end())
 	{
 		point = Point(-110., -157. - centerScroll);
 		for(const string &file : files.find(selectedPilot)->second)

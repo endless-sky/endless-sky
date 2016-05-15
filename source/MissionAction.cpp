@@ -298,7 +298,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		// begin to remove items from it.
 		vector<const Mission *> failedMissions;
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.find(mission.Identifier()) != fail.end())
 				failedMissions.push_back(&mission);
 		for(const Mission *mission : failedMissions)
 			player.RemoveMission(Mission::FAIL, *mission, ui);

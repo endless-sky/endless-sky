@@ -6,8 +6,6 @@ if 'CCFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CCFLAGS'])
 if 'CXXFLAGS' in os.environ:
 	env.Append(CCFLAGS = os.environ['CXXFLAGS'])
-if 'CPPFLAGS' in os.environ:
-	env.Append(CPPFLAGS = os.environ['CPPFLAGS'])
 if 'LDFLAGS' in os.environ:
 	env.Append(LINKFLAGS = os.environ['LDFLAGS'])
 # The Steam runtime has an out-of-date libstdc++, so link it in statically:

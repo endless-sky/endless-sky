@@ -35,24 +35,6 @@ outfit "Ionic Afterburner"
 	"afterburner effect" "ionic afterburner"
 	description "The ionic afterburner was designed by the Syndicate to compensate for the primary weakness of an ordinary afterburner: namely, that it consumes hyperspace fuel at a prodigious rate. Ionic afterburners instead use a small amount of fuel combined with a large burst of energy from your ship's batteries to achieve the same effect."
 
-outfit "X1050 Ion Engines"
-	category "Engines"
-	"cost" 20000
-	thumbnail "outfit/tiny ion engines"
-	"mass" 20
-	"outfit space" -20
-	"engine capacity" -20
-	"turn" 110
-	"turning energy" .25
-	"turning heat" .5
-	"thrust" 4.0
-	"thrusting energy" .4
-	"thrusting heat" .6
-	"flare sprite" "effect/ion flare/tiny"
-		"frame rate" 1.2
-	"flare sound" "ion tiny"
-	description `When designing the Barb, the Syndicate took the opportunity to integrate their smallest thruster models to create a more compact steering and thrusting engine. The result is not very useful on anything but a fighter, and is only "adequate" in that role. Still, if engine space is at a premium, this is the smallest set of engines that will still get you there (eventually).`
-
 
 outfit "X1700 Ion Thruster"
 	category "Engines"

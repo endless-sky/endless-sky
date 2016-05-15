@@ -184,7 +184,7 @@ void MapShipyardPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				if(!seen.count(ship))
+				if(seen.find(ship) == seen.end())
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);

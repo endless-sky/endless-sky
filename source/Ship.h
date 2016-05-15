@@ -18,12 +18,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
-#include "Flotsam.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
 
-#include <list>
 #include <map>
 #include <memory>
 #include <string>
@@ -124,7 +122,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
+	bool Move(std::list<Effect> &effects);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -148,7 +146,6 @@ public:
 	const Planet *GetPlanet() const;
 	
 	// Check the status of this ship.
-	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
 	bool IsDisabled() const;
@@ -212,8 +209,6 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
-	// Check if this is a ship that can be used as a flagship.
-	bool CanBeFlagship() const;
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;
@@ -254,8 +249,7 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(const std::string &commodity, int tons);
-	void Jettison(const Outfit *outfit, int count);
+	void Jettison(int tons);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
@@ -345,8 +339,8 @@ private:
 	bool hasBoarded = false;
 	bool isThrusting = false;
 	bool neverDisabled = false;
-	bool isCapturable = true;
 	double cloak = 0.;
+	int jettisoned = 0;
 	
 	Command commands;
 	
@@ -359,7 +353,6 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
-	std::list<Flotsam> jettisoned;
 	
 	std::vector<Bay> bays;
 	

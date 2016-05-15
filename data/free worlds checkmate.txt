@@ -99,11 +99,9 @@ mission "FWC Attack Kaus Borealis"
 		personality heroic
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -650,11 +648,9 @@ mission "FWC Checkmate 1"
 		personality heroic
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 				"Fury (Flamethrower)" 4
 		fleet
 			names "free worlds capital"
@@ -818,11 +814,9 @@ mission "FWC Checkmate 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -912,11 +906,9 @@ mission "FWC Checkmate 1B"
 		personality heroic
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -1041,12 +1033,10 @@ mission "FWC Checkmate Escorts"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
-				"Skein"
-				"Finch" 6
 				"Dreadnought"
 				"Falcon (Plasma)"
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -1112,10 +1102,8 @@ mission "FWC Pug 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
-			fighters "free worlds fighters"
 			variant
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 				"Clipper"
 				"Clipper (Heavy)"
 				"Clipper (Speedy)"
@@ -1270,7 +1258,7 @@ mission "FWC Pug 2"
 	
 	on offer
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
+			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like sort of weapon, but none of them move to attack you.`
 			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
@@ -1626,10 +1614,8 @@ mission "FWC Pug 3B"
 		personality heroic
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 				"Argosy (Blaster)"
 				"Argosy (Laser)"
 				"Argosy (Turret)"
@@ -1784,12 +1770,10 @@ mission "FWC Pug 3D: Reinforcements"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Skein" 
-				"Finch" 6
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant
@@ -2035,7 +2019,7 @@ mission "FWC Pug 4B: Quarg"
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
-			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories that this is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
 			choice
 				`	"Can you help us to fight the Pug?"`
 				`	"Can you give us information about the Pug?"`
@@ -2520,12 +2504,10 @@ mission "FWC Pug 6"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
-				"Skein"
-				"Finch" 6
+				"Bastion (Heavy)"
 		fleet
 			names "free worlds capital"
 			variant

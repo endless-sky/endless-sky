@@ -103,7 +103,7 @@ mission "FW Diplomacy 1C"
 		conversation
 			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those three worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
-				`	"So, Parliament won't give up those worlds without a fight?"`
+				`	"So, the Senate won't give up those worlds without a fight?"`
 					goto fight
 				`	"Maybe they're afraid of the precedent it would set if they give in to us."`
 					goto precedent
@@ -140,7 +140,7 @@ mission "FW Diplomacy 1D"
 		conversation
 			`When you land on <origin>, Alondo says, "You should join me for this meeting. You may find it eye-opening."`
 			`	Four of the Navy admirals who are stationed here have agreed to meet with you. You discover that one of them is from the Dirt Belt. Another grew up in the Rim, and admits to you that if he were not serving the Navy, he would be fighting for the Free Worlds. All four of them seem sympathetic to your cause, and express genuine regret not just for the Navy lives that have been lost, but for the Free Worlds losses as well.`
-			`	And all four of them state, without any hesitation or equivocation, that if Parliament orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
+			`	And all four of them state, without any hesitation or equivocation, that if the Senate orders them to continue to fight the Free Worlds, they will fight until all possibility of victory is gone.`
 			`	Alondo thanks them for their time and their honesty, and you return to your ship. "Well, it was worth a try. Now we just have to get home safely," he says.`
 				accept
 	
@@ -363,10 +363,8 @@ mission "FW Southern Battle 2"
 				"Bastion" 2
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
-				"Skein" 2
-				"Finch" 12
+				"Bastion (Heavy)" 2
 		fleet
 			names "free worlds capital"
 			variant
@@ -1732,13 +1730,7 @@ mission "FW Rand 1"
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
 		ship "Falcon (Heavy)" "F.S. Bismark"
-		ship "Skein" "F.S. Lapwing"
-		ship "Finch" "Bravo 8-4"
-		ship "Finch" "Bravo 0-9"
-		ship "Finch" "Bravo 6-2"
-		ship "Finch" "Bravo 3-1"
-		ship "Finch" "Bravo 1-5"
-		ship "Finch" "Bravo 9-1"
+		ship "Osprey" "F.S. Lapwing"
 		ship "Hawk (Rocket)" "F.S. Echo"
 		ship "Hawk" "F.S. Shadow"
 	npc
@@ -1810,20 +1802,8 @@ mission "FW Rand 1B"
 		system Tarazed
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
-		ship "Skein" "F.S. Larkspur"
-		ship "Finch" "Charlie 6-2"
-		ship "Finch" "Charlie 0-9"
-		ship "Finch" "Charlie 3-1"
-		ship "Finch" "Charlie 9-1"
-		ship "Finch" "Charlie 1-5"
-		ship "Finch" "Charlie 8-4"
-		ship "Skein" "F.S. Ironwood"
-		ship "Finch" "Echo 5-3"
-		ship "Finch" "Echo 4-1"
-		ship "Finch" "Echo 2-3"
-		ship "Finch" "Echo 5-8"
-		ship "Finch" "Echo 2-4"
-		ship "Finch" "Echo 6-9"
+		ship "Osprey" "F.S. Larkspur"
+		ship "Bastion (Heavy)" "F.S. Ironwood"
 		ship "Argosy" "F.S. Nightingale"
 
 
@@ -1951,20 +1931,8 @@ mission "FW Defend New Tibet"
 		personality heroic disables
 		ship "Dreadnought" "F.S. Holly"
 		ship "Falcon (Plasma)" "F.S. Nebula"
-		ship "Skein" "F.S. Larkspur"
-		ship "Finch" "Charlie 6-2"
-		ship "Finch" "Charlie 0-9"
-		ship "Finch" "Charlie 3-1"
-		ship "Finch" "Charlie 9-1"
-		ship "Finch" "Charlie 1-5"
-		ship "Finch" "Charlie 8-4"
-		ship "Skein" "F.S. Ironwood"
-		ship "Finch" "Echo 5-3"
-		ship "Finch" "Echo 4-1"
-		ship "Finch" "Echo 2-3"
-		ship "Finch" "Echo 5-8"
-		ship "Finch" "Echo 2-4"
-		ship "Finch" "Echo 6-9"
+		ship "Osprey" "F.S. Larkspur"
+		ship "Bastion (Heavy)" "F.S. Ironwood"
 		ship "Argosy" "F.S. Nightingale"
 	
 	on complete
@@ -2082,10 +2050,8 @@ mission "FW Liberate Delta Sagittarii"
 				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
 			variant
-				"Skein" 2
-				"Finch" 12
+				"Bastion (Heavy)" 2
 		fleet
 			names "free worlds capital"
 			variant

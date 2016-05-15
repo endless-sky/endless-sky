@@ -57,9 +57,9 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 		swap(first, second);
 	if(first->IsPlayer())
 	{
-		if(bribed.count(second))
+		if(bribed.find(second) != bribed.end())
 			return false;
-		if(provoked.count(second))
+		if(provoked.find(second) != provoked.end())
 			return true;
 		
 		auto it = reputationWith.find(second);
@@ -82,6 +82,15 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	if(gov->IsPlayer())
 		return;
 	
+	// If you bribe a government but then attack it, the effect of your bribe is
+	// cancelled out.
+	if(eventType & ShipEvent::PROVOKE)
+	{
+		auto it = bribed.find(gov);
+		if(it != bribed.end())
+			bribed.erase(it);
+	}
+	
 	for(const auto &it : GameData::Governments())
 	{
 		const Government *other = &it.second;
@@ -92,12 +101,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 		if(eventType & ShipEvent::PROVOKE)
 		{
 			if(weight > 0.)
-			{
-				// If you bribe a government but then attack it, the effect of
-				// your bribe is cancelled out.
-				bribed.erase(other);
 				provoked.insert(other);
-			}
 		}
 		else if(count * weight)
 		{
@@ -116,8 +120,11 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 void Politics::Bribe(const Government *gov)
 {
 	bribed.insert(gov);
-	provoked.erase(gov);
 	fined.insert(gov);
+	
+	auto it = provoked.find(gov);
+	if(it != provoked.end())
+		provoked.erase(it);
 }
 
 
@@ -146,11 +153,11 @@ bool Politics::CanLand(const Planet *planet) const
 		return false;
 	if(!planet->IsInhabited())
 		return true;
-	if(dominatedPlanets.count(planet))
+	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
 		return true;
-	if(provoked.count(planet->GetGovernment()))
+	if(provoked.find(planet->GetGovernment()) != provoked.end())
 		return false;
-	if(bribedPlanets.count(planet))
+	if(bribedPlanets.find(planet) != bribedPlanets.end())
 		return true;
 	
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
@@ -162,7 +169,7 @@ bool Politics::CanUseServices(const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(dominatedPlanets.count(planet))
+	if(dominatedPlanets.find(planet) != dominatedPlanets.end())
 		return true;
 	
 	auto it = bribedPlanets.find(planet);
@@ -191,7 +198,7 @@ void Politics::DominatePlanet(const Planet *planet)
 
 bool Politics::HasDominated(const Planet *planet) const
 {
-	return dominatedPlanets.count(planet);
+	return (dominatedPlanets.find(planet) != dominatedPlanets.end());
 }
 
 
