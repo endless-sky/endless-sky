@@ -555,6 +555,40 @@ ship "Bounder"
 
 
 
+ship "Boxwing"
+	sprite "ship/boxwing"
+	attributes
+		category "Fighter"
+		cost 369000
+		"shields" 400
+		"hull" 800
+		"required crew" 1
+		"bunks" 1
+		"mass" 45
+		"drag" .59
+		"heat dissipation" .27
+		"outfit space" 45
+		"engine capacity" 28
+		"cargo space" 80
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"nGVF-AA Fuel Cell"
+
+		"X1050 Ion Engines"
+
+	engine 23 -1
+	engine -23 -1
+	engine 19 29
+	engine -19 29
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description `After introducing the "Type F" cargo pod for the Hauler, it became apparent to merchant captains that the new carriers could offer more flexibility within their fleet, if there were a cargo box they could attach to the fighter arms. Enter the "F6-C: Boxwing", the Fighter that doesn't fight, but carries cargo instead. Cargo preservation equipment gives the Boxwing much more mass and very poor heat dissipation characteristics compared to other fighters. That it cannot carry any weapons is only part of the reason jocks call it "Flying Coffin" amongst themselves; besides the ship resembling one and being very sluggish, the pilot "seat" doubles as a bunk, and is cramped beyond the comfort level of most. The interactive panoramic window H.U.D. is the only thing that keeps claustrophobic episodes from becoming a major problem.`
+
+
 ship "Bulk Freighter"
 	sprite "ship/bulk freighter"
 	attributes
