@@ -107,16 +107,16 @@ mission "First Contact: Unfettered"
 					decline
 				`	"Is there anything I can do to help you?"`
 			
-			`	"If you are ever willing to sell us a jump drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
+			`	"If you are ever willing to sell us a Jump Drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own Jump Drives and escape from this prison, bring it to us and you will live as a god among us."`
 			choice
-				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
-				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
+				`	"I'm sorry, I don't know the secret of the Jump Drive. No human being does."`
+				`	"If I ever have an extra Jump Drive to sell, I will bring it to you."`
 					goto sell
 			`	"Then leave us alone," it says, and it walks off.`
 				decline
 			
 			label sell
-			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
+			`	"Bring us a Jump Drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
 
 
@@ -182,18 +182,18 @@ mission "Unfettered Jump Drive 1"
 		attributes "unfettered"
 	on offer
 		conversation
-			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
+			`The Unfettered have clearly noticed that you have a Jump Drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your Jump Drive?`
 			choice
 				`	(No.)`
 					defer
 				`	(Yes.)`
-			`	As soon as you approach the crowd, one of them steps forward and says, "Five million credits, and the friendship of the true Hai people. This is our offer, for the jump drive."`
+			`	As soon as you approach the crowd, one of them steps forward and says, "Five million credits, and the friendship of the true Hai people. This is our offer, for the Jump Drive."`
 			choice
 				`	"Sure, I will accept that deal."`
 					goto end
 				`	"Can you offer me more than that?"`
 					goto more
-				`	"How will my ship leave here without my jump drive?"`
+				`	"How will my ship leave here without my Jump Drive?"`
 			
 			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
 			choice
