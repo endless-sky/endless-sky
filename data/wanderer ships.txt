@@ -107,6 +107,7 @@ ship "Summer Leaf"
 		
 		"Yellow Sun Reactor"
 		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
 		"Type 3 Radiant Steering"
@@ -152,6 +153,7 @@ ship "Autumn Leaf"
 		
 		"White Sun Reactor"
 		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -199,6 +201,7 @@ ship "Strong Wind"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -248,6 +251,7 @@ ship "Deep River"
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 2 Radiant Thruster"
 		"Type 3 Radiant Steering"
