@@ -129,7 +129,7 @@ mission "FW Diplomacy 1D"
 	name "Free Worlds Diplomacy"
 	description "Bring Alondo back to <destination>. Take as direct a route as possible, because your safe passage expires soon."
 	source "New Wales"
-	destination Bourne
+	destination Longjump
 	to offer
 		has "FW Diplomacy 1C: done"
 	passengers 1
@@ -154,7 +154,7 @@ mission "FW Southern Recon 1"
 	name "Reconnaissance"
 	description "Fly through Rastaban, Delta Sagittarii, and Albaldah to get a sense of the Navy's strength in those systems, then report to <destination>."
 	autosave
-	source Bourne
+	source Longjump
 	waypoint Rastaban
 	waypoint "Delta Sagittarii"
 	waypoint Albaldah
@@ -165,6 +165,7 @@ mission "FW Southern Recon 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "fw safe passage ends"
 		conversation
 			`Alondo and JJ are in a somber mood when you meet up with them in the bar. You can't help remembering that Tomek always used to be a part of these gatherings, before he turned against the Senate. And now it looks like your next major battle will be fought without Tomek's expert guidance.`
 			`	JJ says, "We've done all we can. Sooner or later we will have to fight the Navy for those star systems. So to start with, <first>, we'd like you to scout them out and report back to us on the Navy's presence there. Freya is on Trinket, gathering a fleet. Report to her there when you're done."`
