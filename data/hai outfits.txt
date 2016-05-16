@@ -160,7 +160,7 @@ outfit "Chameleon Anti-Missile Turret"
 		"firing heat" 5.2
 	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog. The system is less vulnerable to large clusters of incoming missiles, especially when many turrets are installed."
 
-"outfit "Hai Corundum Regenerator"
+outfit "Hai Corundum Regenerator"
 	category "Systems"
 	cost 300000
 	thumbnail "outfit/small regenerator hai"
@@ -191,7 +191,7 @@ outfit "Hai Williwaw Cooling"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
-	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these.
+	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these."
 
 outfit "Hai Chasm Batteries"
 	category "Power"

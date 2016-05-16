@@ -111,7 +111,6 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries" 2
 		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
 		"A3 Hawksmoth Thruster"
 		"A2 Cleg Steering"
 		"Hyperdrive"
@@ -147,7 +146,7 @@ ship "Shield Beetle"
 		"Hai Geode Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling" 2
 		"A3 Hawksmoth Thruster"
 		"A8 Horsefly Steering"
 		"Hyperdrive"
@@ -182,7 +181,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Geode Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling" 2
 		"A5 Planthopper Steering"
 		"A8 Horsefly Steering"
 		"Hyperdrive"
@@ -199,7 +198,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling"
 		"A3 Hawksmoth Thruster"
 		"A8 Horsefly Steering"
 		"Jump Drive"
@@ -222,10 +221,10 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Boulder Reactor"
 		"Hai Geode Reactor"
 		"Hai Valley Batteries"
-		"Mass Expansion" 1
+		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling"
 		"A5 Planthopper Steering"
 		"A8 Horsefly Steering"
 		"Jump Drive"
