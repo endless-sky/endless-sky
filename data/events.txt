@@ -561,6 +561,8 @@ event "southern carriers 1"
 			"Finch" 2
 
 event "southern carriers 2"
+	shipyard "Southbound Basics"
+		"Boxwing"
 	shipyard "Southbound Advanced"
 		"Roost"
 		"Skein"
@@ -660,6 +662,11 @@ event "southern carriers 2"
 			"Hauler III" 3
 			"Roost"
 			"Finch" 4
+		variant 5
+			"Roost" 3
+			"Finch" 6
+			"Boxwing" 6
+
 	fleet "Small Independent"
 		fighters "free worlds fighter"
 		variant 8
@@ -714,6 +721,10 @@ event "southern carriers 2"
 		variant 1
 			"Nest"
 			"Barb" 2
+		variant 1
+			"Nest"
+			"Barb"
+			"Boxwing"
 
 event "southern carriers 3"
 	shipyard "Tarazed Basics"
@@ -804,6 +815,15 @@ event "southern carriers 3"
 		variant 2
 			"Skein"
 			"Finch" 6
+		variant 1
+			"Roost" 2
+			"Finch" 6
+			"Boxwing" 2
+		variant 1
+			"Skein" 2
+			"Finch" 8
+			"Boxwing" 4
+
 	fleet "Small Southern Pirates"
 		variant 8
 			"Sparrow"
@@ -1005,6 +1025,11 @@ event "southern carriers 4"
 			"Roost (Sidewinder)"
 			"Dagger" 2
 			"Lance" 2
+		variant 4
+			"Roost" 3
+			"Dagger" 4
+			"Lance" 4
+			"Boxwing" 4
 	fleet "Large Southern Pirates"
 		variant 3
 			"Sparrow" 4
@@ -1141,6 +1166,10 @@ event "southern carriers 4"
 		variant 2
 			"Roost"
 			"Barb" 4
+		variant 2
+			"Roost"
+			"Barb" 2
+			"Boxwing" 2
 	fleet "Small Northern Pirates"
 		variant 5
 			"Sparrow"
