@@ -195,7 +195,7 @@ phrase "Headache Of The Hacker"
 	word
 		"The song "
 	word
-		"'Explosive Party' "
+		"'Ravening Hordes Of Steam Users' "
 		"'Got Any Synchronisation' "
 		"'My Wooden PC' "
 		"'Lightning Is Better Than Floods' "
