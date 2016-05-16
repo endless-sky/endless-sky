@@ -10,7 +10,7 @@
 
 phrase "friendly civilian"
 	word
-		"Have you ever heard the song "
+		"I just heard "
 	word
 		phrase "Medium Confidence"
 		phrase "Confined Brain Of The Liberal Dork"
@@ -18,59 +18,90 @@ phrase "friendly civilian"
 		phrase "Swift Of The Sponge"
 		phrase "There Might Be Riots"
 	word
-		" I love it!"
-		" It is stuck in my head...again!"
-		" It's pure genius!"
-		" It's my favourite!"
-		" I can't get enough of it!"
-		" I'm playing it full blast, throughout my ship!"
+		" is now my favourite song!"
+		" is stuck in my head...again!"
+		" is pure genius!"
+		" was awesome!"
+		" plays in my bunk on repeat!"
+		" is playing full blast - throughout my ship!"
+
+phrase "musical venue"
+	word
+		"playing a concert "
+		"doing a show "
+		"in concert "
+		"at their concert "
+		"playing a benefit concert "
+		"live "
+		"on tour "
+		"at a live concert "
+		"playing a gig "
+		"live in concert "
+	word
+		"at Tarazed stadium! "
+		"at the amphitheater on Skymoot! "
+		"at a concert hall in New Sydney! "
+		"in a night club on Splashdown! "
+		"at the Syndicated Systems Velodrome! "
+		"at Betelgeuse Stadium! "
+		"on Hestia! "
+		"at Lionheart Arena! "
+		"at the Grange on Heartland! "
+		"at a resort on Vail! "
+		"at Canyonland Park! "
 
 phrase "Medium Confidence"
+	word
+		"Medium Confidence "
+	phrase "musical venue"
 	word
 		"Regret Ride "
 		"My Wooden Mojo "
 		"Blue Illusion "
 		"Foreign Beauty "
 		"Introvert Day "
-	word
-		"by 'Medium Confidence'?"
+
 
 phrase "Confined Brain Of The Liberal Dork"
+	word
+		"Confined Brain Of The Liberal Dork "
+	phrase "musical venue"
 	word
 		"Dude, Where's My Bible?"
 		"Re-Inventing Rythmn "
 		"Abstraction Is the Answer "
 		"Outrageous Activism "
 		"Cheap Entertainment "
-	word
-		"by 'Confined Brain Of The Liberal Dork'?"
 
 phrase "Catastrophe Aftermath"
+	word
+		"Catastrophe Aftermath "
+	phrase "musical venue"
 	word
 		"The Devil's Car "
 		"Selfish Thunder "
 		"Revenge Makes You Cry "
 		"Nature Of The Revolt "
 		"Instant Devastation "
-	word
-		"by 'Catastrophe Aftermath'?"
 
 phrase "Swift Of The Sponge"
+	word
+		"Swift Of The Sponge "
+	phrase "musical venue"
 	word
 		"Weakness And All That "
 		"Trouble Will Return "
 		"Golden Smart Mouth "
 		"Burning Pain "
 		"Wisdom In Another World "
-	word
-		"by 'Swift Of The Sponge'?"
 
 phrase "There Might Be Riots"
 	word
+		"There Might Be Riots "
+	phrase "musical venue"
+	word
 		"Sad Archie "
 		"Gluttony "
-	word
-		"by 'There Might Be Riots'?"
 
 phrase "friendly civilian"
 	word
