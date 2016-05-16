@@ -216,13 +216,13 @@ phrase "Diffusion Four"
 
 phrase "There Might Be Riots"
 	word
-		"There Might Be Riots "
+		"'There Might Be Riots' "
 	phrase "musical venue"
 	word
 		"The song "
 	word
-		"Sad Archie "
-		"Gluttony "
+		"'Sad Archie' "
+		"'Gluttony' "
 
 phrase "friendly civilian"
 	word
