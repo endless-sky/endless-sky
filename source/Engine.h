@@ -149,6 +149,7 @@ private:
 	std::list<ShipEvent> events;
 	// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
+	int grudgeTime = 0;
 	
 	AsteroidField asteroids;
 	double flash = 0.;

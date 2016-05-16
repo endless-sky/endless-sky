@@ -107,6 +107,7 @@ ship "Summer Leaf"
 		
 		"Yellow Sun Reactor"
 		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
 		"Type 3 Radiant Steering"
@@ -119,6 +120,7 @@ ship "Summer Leaf"
 	explode "tiny explosion" 40
 	explode "small explosion" 20
 	explode "medium explosion" 10
+	"final explode" "final explosion small"
 	description "The Summer Leaf is mostly used by the Wanderers as a light transport, but it is also quite effective in combat."
 
 ship "Autumn Leaf"
@@ -151,6 +153,7 @@ ship "Autumn Leaf"
 		
 		"White Sun Reactor"
 		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -164,6 +167,7 @@ ship "Autumn Leaf"
 	explode "tiny explosion" 50
 	explode "small explosion" 30
 	explode "medium explosion" 20
+	"final explode" "final explosion small"
 	description "The Autumn Leaf is based on the Wanderer Summer Leaf light warship, but slightly larger and better equipped for combat. Unlike Wanderer peacetime ships, it is equipped with a turret mount in addition to the ports for fixed guns."
 
 ship "Strong Wind"
@@ -197,6 +201,7 @@ ship "Strong Wind"
 		
 		"White Sun Reactor"
 		"Dark Storm Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
 		"Type 4 Radiant Steering"
@@ -213,6 +218,7 @@ ship "Strong Wind"
 	explode "small explosion" 60
 	explode "medium explosion" 40
 	explode "large explosion" 20
+	"final explode" "final explosion medium"
 	description "The Strong Wind is a Wanderer warship, an ancient design that they make use of only on the rare occasions when they find it necessary to defend themselves."
 
 ship "Deep River"
@@ -245,6 +251,7 @@ ship "Deep River"
 		
 		"Large Biochemical Cell"
 		"Bright Cloud Shielding"
+		"Wanderer Ramscoop"
 		
 		"Type 2 Radiant Thruster"
 		"Type 3 Radiant Steering"
@@ -263,6 +270,7 @@ ship "Deep River"
 	explode "medium explosion" 60
 	explode "large explosion" 30
 	explode "huge explosion" 20
+	"final explode" "final explosion large"
 	description "The Deep River is a bulk freighter, designed to carry cargo in detachable pods."
 
 ship "Deep River" "Deep River 0"

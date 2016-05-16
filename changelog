@@ -1,3 +1,66 @@
+Version 0.9.1:
+  * Bug fixes:
+    * Typo fixes. (@Alkallid)
+    * No longer crashes if a saved game references a nonexistent "person."
+    * Fixed a crash if the player tricks the game into letting them depart in an automaton.
+    * The "southern carriers" no longer take over the entire fleets when they appear.
+    * Special persons no longer "enter" systems with no links to them.
+    * Fixed incorrectly placed planet labels when you first enter your ship.
+    * Fixed the direction the plunder list scrolls when using the scroll wheel.
+    * Weapons with zero shield damage (e.g. Drak Distancer) no longer cause divide by zero errors.
+    * Mission NPCs that self-destruct are now properly counted as destroyed.
+    * Icons for escorts with scram or jump drives no longer remain green while jumping.
+    * Ships disabled in the act of landing now stop landing.
+  * Game content:
+    * New human side missions that give hints about different alien species near human space.
+    * Adjusted the Kor Mereti weapons and fleets to balance them better against the Kor Sestor.
+    * Adjusted some weapon prices for better balance.
+    * Increased the price of the Android so it will take two years to break even.
+    * For all escort missions, added pirates camping the destination system.
+    * Added radar jamming outfits, and a Wanderer ramscoop.
+    * Boosted the Quarg hull amounts so they are not so vulnerable to shield piercing.
+    * All Korath worlds now have security of 0 (i.e. no fines).
+    * All Korath automata now have integrated ramscoops (making it easier to move captured ships).
+    * New shuttle sprite with a subtle running light animation.
+    * New Wanderer ship, the Flycatcher (an autonomous anti-missile drone).
+    * You can now ask the ordinary Hai for their side of the story about the Unfettered.
+    * Made some softer and hopefully less annoying sounds for the plasma and atomic thrusters.
+    * Fixed the coloring of dominated systems that contain planets with no spaceports.
+    * Fixed the Hauler III's cargo space, which was less than I intended it to be.
+  * Game mechanics:
+    * Missiles can now have tracking modes relying on target temperature, size, or radar jamming.
+    * Escorts now match your speed and heading instead of just swarming around you.
+    * A carrier's hull repair rate can now be used to repair fighters it is carrying.
+    * Ships now dump cargo when they die, and others can pick it up.
+    * Escorts will now repair each other if not under orders or threatened by enemies.
+    * Combat rating is now based on the cost of ships you destroy, not the crew count.
+    * NPCs can now specify that they start out in the mission's destination system.
+    * Outfits may now specify "shield heat" and "hull heat" generated while repairing.
+    * Weapons with blast radii now affect invisible ships (like the nanobots).
+    * Added "day", "month", and "year" condition variables to support recurring missions / holidays.
+    * Capturing an NPC now counts as "evading" it for mission purposes.
+    * Added a "swarming" personality type that hovers near friendly ships.
+    * Added an "unconstrained" personality type that will fly beyond the "invisible fence."
+    * You can now leave the outfitter with no thrusters, just reverse thrusters or afterburners.
+    * Fleets taking off from a planet now stagger their departure a bit, to look more organic.
+  * User interface:
+    * Added a pop-up mini map that is displayed when your ship is jumping.
+    * Route finding now prefers less dangerous systems if multiple paths have equal length.
+    * Added a warning siren when hostile ships (actively targeting the player) first appear.
+    * Added a "fail" sound for when you can't jump or land.
+    * Added "final explosion" sounds for all but the smallest ships.
+    * In the map you can now plan an entire route using J and Shift+J rather than the mouse.
+    * Adjusted the planet label fade-out to be based on distance to the planet edge, not the center.
+    * The "deploy" command no only applies to escorts in the same system as your flagship.
+    * Tweaked the orbit display in the map to avoid bright spots where orbits intersect.
+    * "Unseen" systems are now shown in the map if they have a waypoint or stopover pointer.
+    * Fines now correctly display as "Fine" rather than "Mortgage" in the bank.
+    * Made the targeting pointers a tiny bit bigger so they're easier to see.
+    * Changed the "repairing" ship info line to "charging shields" unless you have hull repair too.
+    * Put a limit on how often other ships broadcast requests for help.
+  * Under the hood:
+    * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
+
 Version 0.9.0:
   * Bug fixes:
     * Proper error message is now shown if you cannot install an outfit from cargo. (@thomasballinger)

@@ -143,16 +143,21 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 	// hyperdrive. The Ship class still won't let it jump, though.
 	hasHyper |= !(hasHyper | hasJump);
 	
-	edge.emplace(0, center);
+	// Find the route with lowest fuel use. If multiple routes use the same fuel,
+	// choose the one with the fewest jumps (i.e. using jump drive rather than
+	// hyperdrive). If multiple routes have the same fuel and the same number of
+	// jumps, break the tie by using how "dangerous" the route is.
+	edge.emplace(0, 0., center);
 	while(maxCount && !edge.empty())
 	{
-		pair<int, const System *> top = edge.top();
+		tuple<int, double, const System *> top = edge.top();
 		edge.pop();
 		
-		int steps = -top.first;
-		const System *system = top.second;
+		const System *system = get<2>(top);
 		if(system == source)
 			break;
+		int steps = -get<0>(top);
+		double danger = get<1>(top) - system->Danger();
 		
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in maps or mission itineraries.
@@ -171,12 +176,12 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					if(player && !player->HasVisited(object.GetPlanet()))
 						continue;
 					
-					Add(system, link, steps);
+					Add(system, link, steps, danger + link->Danger());
 				}
 		
-		if(hasHyper && !Propagate(system, false, steps))
+		if(hasHyper && !Propagate(system, false, steps, danger))
 			break;
-		if(hasJump && !Propagate(system, true, steps))
+		if(hasJump && !Propagate(system, true, steps, danger))
 			break;
 	}
 }
@@ -184,7 +189,7 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 
 
 // Add the given links to the map. Return false if an end condition is hit.
-bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
+bool DistanceMap::Propagate(const System *system, bool useJump, int steps, double danger)
 {
 	// The "length" of this link is 2 if using a jump drive.
 	steps += 1 + useJump;
@@ -196,7 +201,7 @@ bool DistanceMap::Propagate(const System *system, bool useJump, int steps)
 		if(HasBetter(link, steps) || !CheckLink(system, link, useJump))
 			continue;
 		
-		Add(system, link, steps);
+		Add(system, link, steps, danger);
 		if(!--maxCount)
 			return false;
 	}
@@ -215,14 +220,14 @@ bool DistanceMap::HasBetter(const System *to, int steps)
 
 
 // Add the given path to the record.
-void DistanceMap::Add(const System *from, const System *to, int steps)
+void DistanceMap::Add(const System *from, const System *to, int steps, double danger)
 {
 	// This is the best path we have found so far to this system, but it is
 	// conceivable that a better one will be found.
 	distance[to] = steps;
 	route[to] = from;
 	if(maxDistance < 0 || steps < maxDistance)
-		edge.emplace(-steps, to);
+		edge.emplace(-steps, danger, to);
 }
 
 
