@@ -219,7 +219,7 @@ void Engine::Place()
 			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, velocity, angle);
+		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);

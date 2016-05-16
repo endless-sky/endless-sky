@@ -8,6 +8,11 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+government "Alpha"
+	"player reputation" -1000
+	swizzle 1
+	"bribe" 0
+
 government "Author"
 	"player reputation" 1
 	"bribe" 0
@@ -273,7 +278,7 @@ government "Syndicate (Extremist)"
 		"Syndicate" -.1
 		"Republic" -.1
 		"Free Worlds" -.1
-	"bribe" .08
+	"bribe" 0
 	"hostile hail" "hostile syndicate"
 
 government "Test Dummy"
