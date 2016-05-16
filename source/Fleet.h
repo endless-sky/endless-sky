@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <list>
 #include <memory>
+#include <string>
 #include <vector>
 
 class DataNode;
@@ -69,6 +70,7 @@ private:
 	
 	
 private:
+	std::string fleetName;
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;

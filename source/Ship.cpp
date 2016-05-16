@@ -1186,7 +1186,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships)
 {
-	if(!commands.Has(Command::DEPLOY) || CannotAct())
+	if(!IsDestroyed() && (!commands.Has(Command::DEPLOY) || CannotAct()))
 		return;
 	
 	for(Bay &bay : bays)
@@ -1373,7 +1373,8 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && !sprite.IsEmpty());
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0.
+		&& !sprite.IsEmpty() && hyperspaceCount < 70);
 }
 
 
@@ -1955,7 +1956,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
-			ship->SetParent(shared_ptr<Ship>());
+			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			return true;
 		}

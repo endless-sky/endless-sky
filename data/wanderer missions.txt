@@ -557,3 +557,452 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 			`When you return to <planet>, Iktat Rek meets with ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our ships, all but the [ship of war, battleship]."`
 			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
 			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
+
+
+
+mission "Wanderers: Truce Timer"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Unfettered Diplomacy 1C: done"
+	on offer
+		event "wanderers: truce timer" 40
+		fail
+
+event "wanderers: truce timer"
+
+mission "Wanderers: Truce Check"
+	landing
+	name "Check with Iktat Rek?"
+	description "Meet up with Iktat Rek on <planet> to see if there is anything more you can do to help the Wanderers now that they have established a ceasefire with the Unfettered."
+	to offer
+		has "event: wanderers: truce timer"
+		not "Wanderers: Jump Drive Source: offered"
+	source
+		government "Wanderer"
+		near "Ka'ch'chrai" 1 10
+	destination "Vara K'chrai"
+	on offer
+		conversation
+			`It has been a while since you negotiated the ceasefire between the Wanderers and the Unfettered, and so far the truce seems to be holding. Now that the immediate crisis is under control, maybe it's time to meet up with Iktat Rek to talk about finding a more permanent response to the Unfettered incursion.`
+				accept
+
+
+
+mission "Wanderers: Jump Drive Source"
+	landing
+	name "Jump drive source?"
+	description "Iktat Rek asked you to acquire a spare jump drive and sell it to the Unfettered in exchange for information on where they are getting jump drives from. Then, return to <destination>."
+	source "Vara K'chrai"
+	to offer
+		has "event: wanderers: truce timer"
+	on offer
+		conversation
+			`When you arrive on <origin>, Iktat Rek greets you warmly. "Human," he says, "it is a [relief, delight] to have [peace, safety] within our territory. But the Unfettered will not be [placated, satisfied] forever. I have spoken with ambassador Sayari about this and we are agreed that we must know what [allies, accomplices] the Unfettered have, what their [strength, capability] is, and how they have acquired jump drives."`
+			branch naughty
+				has "Unfettered Jump Drive 3: offered"
+			choice
+				`	"Agreed. How can I help you?"`
+					goto help
+			label naughty
+			choice
+				`	"Agreed. How can I help you?"`
+					goto help
+				`	"Umm... they may actually have gotten some of those jump drives from me."`
+			`	Rek seems startled, but finally says, "I see. It is [understandable, forgivable] that you would want to placate them. So I will not [fault, censure] you for that. In fact it may help us that you have done so. What we [ask, desire] of you is to sell them another drive, but this time find a [pretense, excuse] to ask who else supplies them with jump drives. Since you have [helped, abetted] them, they may trust you with that information."`
+				goto end
+			label help
+			`	Rek says, "What we [ask, desire] of you is to acquire a jump drive and sell it to them, to [earn, curry] more favor with them. Then find a [pretense, excuse] to ask who else supplies them with jump drives. Because you [brokered, negotiated] the ceasefire, they may trust you with that information."`
+			label end
+			choice
+				`	"Sure, I can do that."`
+					accept
+				`	"But, won't it hurt you in the long run for the Unfettered to have another jump drive?"`
+			`	Rek says, "Over a hundred of their ships have [raided, violated] our space in the past few years. Someone is [equipping, supplying] them with many jump drives, and one more will make little difference. We must [cut off, eliminate] the source."`
+			`	You promise to do your best to cajole information from the Unfettered, and he wishes you luck in doing so.`
+				accept
+	
+	to complete
+		has "Unfettered: Jump Drive Source: offered"
+	on complete
+		conversation
+			`You report to Iktat Rek. "Most [intriguing, disturbing]," he says. "If what you say of these Alpha humans is [correct, unbiased], they are a dangerous foe. And in exchange for so many jump drives, no doubt the Unfettered have [supplied, furnished] them with many weapons." He pauses to think for a minute, then says, "You must track them. There is a Wanderer [device, technology] that can help you. But I must ask our [elders, government] for permission before giving you access to it. I will meet you back in the spaceport soon."`
+
+
+mission "Unfettered: Jump Drive Source"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Wanderers: Jump Drive Source: active"
+	on offer
+		conversation
+			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+						defer
+			`	You eventually find one of the Unfettered who speaks your language. She directs you to the office of the "governor" (or perhaps warlord) in charge of the spaceport. The governor says, "I offer you same terms as to the other humans. Five million credits, and we give you hyperdrive in place of jump drive. Is this acceptable?"`
+			choice
+				`	"Yes."`
+				`	"Sorry, let me come back when I have a jump drive to spare."`
+					defer
+			`	Carefully, almost reverently, the Unfettered technicians remove the jump drive from your ship. The governor pays you and then stands by to watch them work. Perhaps you can get more information from him.`
+			choice
+				`	"If I want to find more jump drives to give you, where should I look?"`
+				`	"You said that 'other humans' have been selling you jump drives as well?"`
+					goto others
+			`	He says, "The unfettered humans will not tell us their source, but we suspect they steal from our old foe, the Korathi invaders. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
+				goto prometheus
+			label others
+			`	"Yes," he says, "the unfettered humans. They sell us many jump drives. They say it is their calling to help us. The unfettered human leader told a story I did not understand, that Prometheus was punished for stealing from the gods, but no one is punished for stealing from Prometheus. Was Prometheus a human hero?"`
+			label prometheus
+			`	You explain the myth to him as best you can, then ask, "What do you mean, 'unfettered humans'?"`
+			`	He seems surprised that you do not know what he is talking about. "The green ones," he says.`
+			choice
+				`	"Alphas? You shouldn't trade with the Alphas! They're dangerous, uncontrollable criminals!"`
+				`	"Oh, of course. The green humans are held in as high esteem as Prometheus himself. Can you tell me where to find them, so I can give them the honor they deserve?"`
+					goto honor
+			`	"That is what the altered Hai say about we the Unfettered," he says. "They say that because they are weak and afraid. Perhaps you are weak and afraid also, and I was wrong to deal with you."`
+				goto end
+			label honor
+			`	He is silent and looks at you with a wary, calculating expression. "They did not say where they come from," he says, "and they said others would come seeking to ensnare them. Perhaps I was wrong to trust you."`
+			label end
+			`	You are able to get no further information from him, but what you already know is quite valuable. You should report back to Iktat Rek and see what he says.`
+				accept
+	on accept
+		outfit "Jump Drive" -1
+		outfit "Hyperdrive" 1
+		payment 5000000
+		"reputation: Hai (Unfettered)" >?= 10
+		fail
+
+
+
+mission "Wanderers: Alpha Surveillance A"
+	name "Alpha Surveillance"
+	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination>, to see if the Hai government knows anything about an Alpha enclave nearby."
+	source "Vara K'chrai"
+	destination "Hai-home"
+	to offer
+		has "Wanderers: Jump Drive Source: done"
+	
+	waypoint "Ehma Ti"
+	on enter "Ehma Ti"
+		dialog "You cycle the airlock and dump a handful of the tiny Wanderer surveillance cubes into space. By the time they've drifted a few meters away, your ship's sensors are unable to detect them."
+	waypoint "Wah Yoot"
+	on enter "Wah Yoot"
+		dialog "You cycle the airlock and dump a handful of the tiny Wanderer surveillance cubes into space. By the time they've drifted a few meters away, your ship's sensors are unable to detect them."
+	waypoint "Hi Yahr"
+	on enter "Hi Yahr"
+		dialog "You cycle the airlock and dump a handful of the tiny Wanderer surveillance cubes into space. By the time they've drifted a few meters away, your ship's sensors are unable to detect them."
+	
+	on offer
+		conversation
+			`When you meet Iktat Rek, he hands you a small box containing several small, charcoal black cubes, about two centimeters wide. "These are the [eyes, sensors] of our [communications? surveillance? information?] network," he says. "Until they receive the [request, query] command they generate no [signal, electromagnetic radiation] and almost no heat. But they watch, and [record, remember]. [Sow, scatter, deploy] several of these in each Unfettered system. Then return [weeks] later and [retrieve, download] the information. We will [discuss, decide] what to do next."`
+			`	You bring the surveillance devices back to your ship. It looks like Rek gave you extra, presumably so that you can deploy enough in each system to have redundancy if some of them fail. It probably wouldn't make a difference to the success of the mission if you kept one for yourself, and based on what Rek said this technology might be very valuable.`
+			choice
+				`	(Use all of them for the mission, as instructed.)`
+				`	(Steal one of the devices to keep for myself.)`
+					goto steal
+			`	You split the devices up into three groups to launch out your airlock in each of the three Unfettered systems. Hopefully the Unfettered will not notice what you are doing.`
+				accept
+			label steal
+			apply
+				set "stole a wanderer micro-sat"
+			`	You split the devices up into three piles, one for each of the Unfettered systems, and keep one of them for yourself, well hidden in a safe place on your ship.`
+				accept
+	
+	on complete
+		event "wanderers: alpha surveillance done" 30
+		conversation
+			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			choice
+				`	"Thank you." (Explain about the Alphas.)`
+			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
+			choice
+				`	"Is it possible that they have a hidden base on one of your worlds?"`
+				`	"Do you know where they when when you banned them from your space?"`
+					goto where
+			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
+			`	"Then where could they have gone?" you ask.`
+			label where
+			`	"We do not know," he says. "It is not our business to track the doings of other species, outside our territory. And during the time of the Korath raids, we would not have had the capacity to track them, anyway."`
+			`	You thank him for his time. Now you just have to wait long enough for the surveillance cubes to collect their data, and hope they record something useful.`
+
+event "wanderers: alpha surveillance done"
+
+
+
+mission "Wanderers: Alpha Surveillance B"
+	landing
+	name "Alpha Surveillance"
+	description "Travel through the three Unfettered systems to retrieve the surveillance recordings, then report back to Iktat Rek on <destination>."
+	destination "Vara K'chrai"
+	to offer
+		has "event: wanderers: alpha surveillance done"
+	
+	waypoint "Ehma Ti"
+	on enter "Ehma Ti"
+		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
+		"reputation: Hai (Unfettered)" <?= -1
+	waypoint "Wah Yoot"
+	on enter "Wah Yoot"
+		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
+		"reputation: Hai (Unfettered)" <?= -1
+	waypoint "Hi Yahr"
+	on enter "Hi Yahr"
+		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
+		"reputation: Hai (Unfettered)" <?= -1
+	
+	on offer
+		conversation
+			`It has been a month since you deployed the surveillance devices in the Unfettered home systems. It's time for you to go back and retrieve whatever recordings they made. You'll then be able to bring the recordings back to Iktat Rek on <planet> to decrypt and analyze them.`
+			`	Hopefully you will be able to collect the data without the Unfettered intercepting the transmissions and realizing they have been spied on.`
+				accept
+	
+	on complete
+		conversation
+			`When you arrive at the spaceport, you contact Iktat Rek and send him a copy of the encrypted recordings. You also mention to him that the Unfettered attacked you after you send out the data retrieval signal. "That is [unfortunate, regrettable]," says Rek. "I hope they will [cool off, calm down] in time. I suspect you could buy their [friendship, favor] back with another jump drive, or just ignore their [attacks, antagonism] for now."`
+			`	You ask what you should do next, and Rek says, "We need some time to [analyze, inspect] the sensor logs. Meet me in the spaceport in an hour."`
+
+
+
+mission "Wanderers: Alpha Surveillance C"
+	name "Alpha Surveillance"
+	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	source "Vara K'chrai"
+	destination "Alta Hai"
+	to offer
+		has "Wanderers: Alpha Surveillance B: done"
+		not "stole a wanderer micro-sat"
+	on offer
+		conversation
+			`When you meet up with Iktat Rek, he shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via jump drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
+			choice
+				`	"It's possible, but it could also be a stolen ship. I wouldn't expect the Navy to side with the Unfettered."`
+					goto no
+				`	"I wouldn't put it past them. It could be some sort of hidden program to gain access to alien technology."`
+			`	Iktat Rek says, "I see. So either your [leadership, government] knows about this secret, or it is a [private, separate] military conspiracy. Either way, that worries me."`
+			`	"What should we do about it?" you ask.`
+				goto end
+			label no
+			`	"I hope you are right," says Rek. "I do not wish our [conflict, tension] with the Unfettered to place us at war with humans. We must [investigate, explore] this matter further."`
+			`	"How can we do that?" you ask.`
+			label end
+			`	"You must track this ship," says Rek. "A jump drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] jump drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
+			`	You agree to make a visit to the Quarg ringworld in Hai space, and he wishes you luck on your journey.`
+				accept
+	
+	on complete
+		conversation
+			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the jump drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Return to the spaceport in an hour and one will meet you to hear your petition."`
+
+
+
+mission "Wanderers: Alpha Surveillance C (Naughty)"
+	name "Alpha Surveillance"
+	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	source "Vara K'chrai"
+	destination "Alta Hai"
+	to offer
+		has "Wanderers: Alpha Surveillance B: done"
+		has "stole a wanderer micro-sat"
+	on offer
+		conversation
+			`Iktat Rek arrives carrying a handheld device with two long antennas. "You must [pardon, forgive] me," he says. "It appears you have [dropped, misplaced] one of the tracking devices. Fortunately I have the [means, capability] to determine where on your ship it is [located, concealed]. Shall I assist you in finding it?"`
+			choice
+				`	"No, umm... I bet it just fell out of the box in my cargo hold. I'll look around and see if I can find it."`
+				`	"I'm sorry, I kept one of them to try to figure out how it works. I'll go get it and give it back to you."`
+					goto apologized
+				`	(Get back in my ship and flee.)`
+					goto fail
+			`	"I see," says Rek. You wish you were able to read Wanderer facial expressions; you are not sure if he believes you. You go into your ship, wait long enough to make it appear that you needed to search, then return and give the device back to him.`
+				goto carrier
+			label apologized
+			apply
+				clear "stole a wanderer micro-sat"
+			`	"I am glad you [admitted, confessed] that," says Rek. "Please be more [honest, obedient] in the future." You retrieve the hidden surveillance device and return it to him.`
+			label carrier
+			`	"Thank you," says Rek. "Now, here is what we discovered." He shows you a picture of a Navy Carrier. "The sensors [observed, detected] this ship entering the Hi Yahr system via jump drive," he says. You tell him that it is a human military vessel. "Do you think your military could be [assisting, abetting] the Unfettered?" he asks.`
+			choice
+				`	"It's possible, but it could also be a stolen ship. I wouldn't expect the Navy to side with the Unfettered."`
+					goto no
+				`	"I wouldn't put it past them. It could be some sort of hidden program to gain access to alien technology."`
+			`	Iktat Rek says, "I see. So either your [leadership, government] knows about this secret, or it is a [private, separate] military conspiracy. Either way, that worries me."`
+			`	"What should we do about it?" you ask.`
+				goto end
+			label no
+			`	"I hope you are right," says Rek. "I do not wish our [conflict, tension] with the Unfettered to place us at war with humans. We must [investigate, explore] this matter further."`
+			`	"How can we do that?" you ask.`
+			label end
+			`	"You must track this ship," says Rek. "A jump drive creates a temporary [portal? identity? oneness?] between two [locations, regions] in space. A species that [creates, manufactures] jump drives may be able to [track, detect] the residue of those links. Sayari tells me that such a species [lives in, borders on] Hai space. Perhaps they will aid you."`
+			`	You agree to make a visit to the Quarg ringworld in Hai space, and he wishes you luck on your journey.`
+				accept
+			label fail
+			`	As your ship is leaving the atmosphere, the surveillance cube suddenly glows red hot and collapses in on itself, melting down into a tiny pile of slag. Not only have you betrayed the Wanderers, but you are left with nothing to show for it.`
+				flee
+	on decline
+		event "robbed the wanderers"
+	
+	on complete
+		conversation
+			`As always, it is impossible to tell which of the Quarg is in charge here or might be able to help you. The first few you ask seem none too eager to give any technology related to the jump drive to a human, but finally one of them listens to your story and says, "I know of the Alphas. And of the Unfettered. There is one who may be willing to assist you." After a brief conversation in the Quarg language via a communication device, the Quarg says, "Go to the spaceport, and one will meet you to hear your petition."`
+
+event "robbed the wanderers"
+	"reputation: Wanderer" = 1
+	planet "Vara K'chrai"
+		"required reputation" 5
+
+
+
+mission "Wanderers: Alpha Surveillance C (Pug)"
+	landing
+	source "Vara Pug"
+	to offer
+		or
+			has "Wanderers: Alpha Surveillance C: active"
+			has "Wanderers: Alpha Surveillance C (Naughty): active"
+	on offer
+		conversation
+			`You recall hearing hints that the Pug assisted the humans of the Deep in battle against the Alphas, so the Pug might be natural allies in your current mission. Would you like to see if any of them here will help you?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					decline
+			`	You try to get several of the Pug to talk to you, but most of them pointedly ignore you. Eventually, probably because you've made it clear that you are not going away, one of them approaches you carrying a small black box. It speaks to the box in its language, and the box says, "Hello you are a human you are from planet earth are you not." It seems that the box is a rudimentary translation device.`
+			`	You say, "Yes, that's correct."`
+			`	The box appears to translate your words, and the Pug responds to it. The box says, "Humans are not our responsibility why have you come to our planet."`
+			choice
+				`	"The Alphas are causing trouble again, and I've heard that you helped us fight them in the past."`
+				`	"The Alphas have sided with the ones who are invading the Wanderers. Can you help us track them down?"`
+			`	The Pug speaks again. "Who are the alphas that name is not known to us."`
+			`	You do your best to explain. Perhaps the humans of the Deep were wrong that the Pug knew about the Alphas? The Pug responds, "We can defend the Wanderers but the Hai and humans are beyond our jurisdiction we will not enter their space."`
+			choice
+				`	(Give up and leave.)`
+					decline
+				`	(Try to convince them to help.)`
+			`	You do your best, but the Pug here are clearly not interested in helping you. Eventually you give up and return to your ship.`
+				decline
+
+
+ship "Carrier" "Carrier (Alpha)"
+	outfits
+		"Ion Cannon" 2
+		"Korath Fire-Lance" 2
+		"Pulse Cannon" 3
+		"Korath Disruptor" 2
+		"Korath Slicer Turret" 2
+		
+		"Triple Plasma Core"
+		"Systems Core (Large)"
+		"Large Heat Shunt" 2
+		"Small Heat Shunt" 2
+		"Wanderer Ramscoop"
+		"Fuel Pod"
+		"Mass Expansion" 4
+		"Laser Rifle" 120
+		
+		"Thruster (Planetary Class)"
+		"Steering (Stellar Class)"
+		"Jump Drive"
+	
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	gun "Korath Fire-Lance"
+	gun "Korath Fire-Lance"
+	gun "Pulse Cannon"
+	gun
+	gun "Ion Cannon"
+	gun "Ion Cannon"
+	turret "Korath Slicer Turret"
+	turret "Korath Disruptor"
+	turret "Korath Slicer Turret"
+	turret "Korath Disruptor"
+
+mission "Wanderers: Alpha Surveillance D"
+	name "Find the Alphas"
+	description "With the help of Elias Hanover and his tracker device, locate the Alpha Base and then return to the Quarg ringworld of <planet>."
+	source "Alta Hai"
+	to offer
+		or
+			has "Wanderers: Alpha Surveillance C: done"
+			has "Wanderers: Alpha Surveillance C (Naughty): done"
+	passengers 1
+	blocked "You need a bunk free in order to take on this mission."
+	
+	on offer
+		conversation
+			`You are met in the spaceport by a bearded, middle-aged human man and a Quarg with exceptionally wrinkly skin. The Quarg says, "I hear that you need help against the Alphas. My friend Elias here has lived among us for a long time, and has told me much about the Alphas, their wars and their depredations."`
+			`	The human shakes hands with you and introduces himself as Elias Hanover. He says, "The Quarg are very hesitant to take sides in what they view as an internal human conflict. And they are equally hesitant to entrust their technology to a stranger like you. But if the Alphas are gathering strength and amassing alien technology, they must be stopped."`
+			`	The Quarg says, "Elias is a trusted friend of ours. We have given him a device for tracking a ship traveling by jump drive, and programmed it with the parameters of a human carrier ship. Do not try to take the device from him. He will lead you to find your quarry, and then you must return the device to us immediately."`
+			`	Elias asks, "If we find them, are you prepared to take on a Carrier by yourself?"`
+			choice
+				`	"Yes, my ship is stronger than anything in human space."`
+					goto end
+				`	"I don't think so. Are you sure that will be necessary?"`
+			`	"You think the Alphas are likely to surrender without a fight?" he asks. "Maybe you should invest in a Hai warship before we begin chasing them down."`
+			label end
+			`	You thank the Quarg for being willing to help you, and you and Elias return to your ship.`
+				accept
+	
+	on enter "Hi Yahr"
+		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
+	on enter "Celeborim"
+		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
+	on enter "Asikafarnut"
+		dialog `Elias checks the tracker. "Still due southeast," he says. "And I hope those Korath ships aren't on the same side as the Alphas."`
+	on enter "Sobarati"
+		dialog `Elias fiddles with his tracking device for a while, and then gives up. "Sorry, I'm not reading any signals here. Maybe they jumped right over this system?"`
+	on enter "Ferukistek"
+		dialog `Elias says, "Found their trail. They've turned and headed east again, and maybe a little bit north."`
+	on enter "Makferuti"
+		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
+	on enter "Host"
+		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
+	
+	npc
+		government "Kor Sestor"
+		system "Celeborim"
+		personality heroic nemesis staying vindictive
+		fleet
+			names "kor sestor"
+			variant
+				"Kar Ik Vot 349 (Trapper)"
+				"Met Par Tek 53"
+				"Met Par Tek 53 (Sniper)"
+	npc kill
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive
+		ship "Carrier (Alpha)" "Giftbringer"
+		dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
+	npc
+		government "Alpha"
+		system "Host"
+		personality heroic nemesis staying vindictive
+		ship "Far Osk 27" "Dasher"
+		ship "Far Osk 27" "Dancer"
+		ship "Far Osk 27" "Prancer"
+		ship "Far Osk 27" "Vixen"
+		ship "Far Lek 14" "Cupid"
+		ship "Far Lek 14" "Comet"
+		ship "Far Lek 14" "Donner"
+		ship "Far Lek 14" "Blitzen"
+		ship "Far Lek 14" "Rudolph"
+		ship "Far Lek 14" "Ralph"
+	
+	on complete
+		conversation
+			`When you land back on <planet>, Elias says that he should go and immediately return the tracking device to his Quarg friend. "After that," he says, "we'll need to figure out who can help us to locate and bust open the Alpha base. Meet me in the spaceport when you're ready."`
+
+mission "Wanderers: Alpha Surveillance D (Avalon)"
+	landing
+	source Avalon
+	to offer
+		has "Wanderers: Alpha Surveillance D: active"
+	on offer
+		conversation
+			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, but your sensors are not able to locate it, and even if you could you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
+				decline
