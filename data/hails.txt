@@ -16,6 +16,14 @@ phrase "friendly civilian"
 		phrase "Confined Brain Of The Liberal Dork"
 		phrase "Catastrophe Aftermath"
 		phrase "Swift Of The Sponge"
+		phrase "Shrapnel Vacuum"
+		phrase "Daniel Suburbia"
+		phrase "Volume Maneuver"
+		phrase "Love Nugget"
+		phrase "Under-paid Bandit"
+		phrase "Galactic Grouch And The Greed"
+		phrase "Headache Of The Hacker"
+		phrase "Diffusion Four"
 		phrase "There Might Be Riots"
 	word
 		"is now my favourite song!"
@@ -52,53 +60,166 @@ phrase "musical venue"
 
 phrase "Medium Confidence"
 	word
-		"Medium Confidence "
+		"'Medium Confidence' "
 	phrase "musical venue"
 	word
-		"Regret Ride "
-		"My Wooden Mojo "
-		"Blue Illusion "
-		"Foreign Beauty "
-		"Introvert Day "
-
+		"The song "
+	word
+		"'Regret Ride' "
+		"'My Wooden Mojo' "
+		"'Blue Illusion' "
+		"'Foreign Beauty' "
+		"'Introvert Day' "
 
 phrase "Confined Brain Of The Liberal Dork"
 	word
-		"Confined Brain Of The Liberal Dork "
+		"'Confined Brain Of The Liberal Dork' "
 	phrase "musical venue"
 	word
-		"Dude, Where's My Bible?"
-		"Re-Inventing Rythmn "
-		"Abstraction Is the Answer "
-		"Outrageous Activism "
-		"Cheap Entertainment "
+		"The song "
+	word
+		"'Dude, Where's My Bible?' "
+		"'Re-Inventing Rythmn' "
+		"'Abstraction Is the Answer' "
+		"'Outrageous Activism' "
+		"'Cheap Entertainment' "
 
 phrase "Catastrophe Aftermath"
 	word
-		"Catastrophe Aftermath "
+		"'Catastrophe Aftermath' "
 	phrase "musical venue"
 	word
-		"The Devil's Car "
-		"Selfish Thunder "
-		"Revenge Makes You Cry "
-		"Nature Of The Revolt "
-		"Instant Devastation "
+		"The song "
+	word
+		"'The Devil's Car' "
+		"'Selfish Thunder' "
+		"'Revenge Makes You Cry' "
+		"'Nature Of The Revolt' "
+		"'Instant Devastation' "
 
 phrase "Swift Of The Sponge"
 	word
-		"Swift Of The Sponge "
+		"'Swift Of The Sponge' "
 	phrase "musical venue"
 	word
-		"Weakness And All That "
-		"Trouble Will Return "
-		"Golden Smart Mouth "
-		"Burning Pain "
-		"Wisdom In Another World "
+		"The song "
+	word
+		"'Weakness And All That' "
+		"'Trouble Will Return' "
+		"'Golden Smart Mouth' "
+		"'Burning Pain' "
+		"'Wisdom In Another World' "
+
+phrase "Shrapnel Vacuum"
+	word
+		"'Shrapnel Vacuum' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Fast Destiny' "
+		"'Fury Of My Ruggedness' "
+		"'Expensive Massacre' "
+		"'Fear Machine' "
+		"'Prisoner Of Indifference' "
+
+phrase "Daniel Suburbia"
+	word
+		"'Daniel Suburbia' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Nothing To Do With War' "
+		"'Loyalty Saved Me' "
+		"'Heaven All Over You' "
+		"'Nature Of The Heart' "
+		"'Holy Adventure' "
+
+phrase "Volume Maneuver"
+	word
+		"'Volume Maneuver' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Loose Parade' "
+		"'The Average Girl' "
+		"'Foreign Doubt' "
+		"'Freedom Unlocked' "
+		"'Waiting For Kindness' "
+
+phrase "Love Nugget"
+	word
+		"'Love Nugget' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Jet Fueled Woman' "
+		"'Sin Heals A Broken Heart' "
+		"'Talent Of The Backseat' "
+		"'Beat Orgy' "
+		"'Fairground Sinner' "
+
+phrase "Under-paid Bandit"
+	word
+		"'Under-paid Bandit' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Eternal Madman' "
+		"'Lovely Loneliness' "
+		"'Check The Time' "
+		"'Guilty Culture' "
+		"'Modern Cop' "
+
+phrase "Galactic Grouch And The Greed"
+	word
+		"'Galactic Grouch And The Greed' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Everybody Needs At Least One Shadow' "
+		"'So Much For The Showroom' "
+		"'Realism Wont Stop Me' "
+		"'Creativity Is Right Here' "
+		"'Quality ... Ain't It Cool?' "
+
+phrase "Headache Of The Hacker"
+	word
+		"'Headache Of The Hacker' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Explosive Party' "
+		"'Got Any Synchronisation' "
+		"'My Wooden PC' "
+		"'Lightning Is Better Than Floods' "
+		"'Persistance Of The Sun' "
+
+phrase "Diffusion Four"
+	word
+		"'Diffusion Four' "
+	phrase "musical venue"
+	word
+		"The song "
+	word
+		"'Friendship Was Just The Start' "
+		"'Box Of Warmth' "
+		"'Vortex Of Optimism' "
+		"'Golden Rainbow' "
+		"'Mercy Is The Best' "
 
 phrase "There Might Be Riots"
 	word
 		"There Might Be Riots "
 	phrase "musical venue"
+	word
+		"The song "
 	word
 		"Sad Archie "
 		"Gluttony "
