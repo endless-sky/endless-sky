@@ -1528,7 +1528,17 @@ mission "FW Bloodsea 1.2A"
 			`	A while later, you receive new orders from Alondo. "I've got some good news for you," he says. "Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
 				accept
 
-
+mission "ijs catches another ride"
+	landing
+	to offer
+		has "fw bloodsea done"
+		has "FW Conservatory 1: active"
+	on offer
+		payment 20000
+		conversation
+			`	Ijs approaches you with his duffel as you're stepping off the <ship>.`
+			`	"Thanks for getting me this close, but I really need to get to Winter as soon as possible.  I hope you don't take offense that I've booked passage on another transport.  Here's <payment> for getting me here, anyway.  I hope to see you again soon, Captain <last>."`
+		fail
 
 
 mission "FW Dreadnoughts Ready"

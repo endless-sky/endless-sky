@@ -44,7 +44,8 @@ mission "FW Conservatory 1"
 					accept
 				`	"Sorry, I'm just not interested."`
 					decline
-	
+	to fail
+		has "ijs catches another ride: offered"
 	on complete
 		payment 50000
 		dialog `Ijs thanks you for the lift and gives you a credit chip for <payment>. He says, "Next we need to pick up some equipment from Tarazed Corporation. Meet me in the spaceport if you're willing to help out as an escort."`
