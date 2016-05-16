@@ -8,63 +8,6 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-ship "Lightning Bug"
-	sprite "ship/hai lightning bug"
-	attributes
-		category "Light Warship"
-		"cost" 3200000
-		"shields" 6700
-		"hull" 1700
-		"required crew" 4
-		"bunks" 10
-		"mass" 220
-		"drag" 3.8
-		"heat dissipation" .85
-		"fuel capacity" 600
-		"cargo space" 73
-		"outfit space" 278
-		"weapon capacity" 87
-		"engine capacity" 93
-		weapon
-			"blast radius" 84
-			"shield damage" 840
-			"hull damage" 420
-			"hit force" 1260
-	outfits
-		"Ion Cannon"
-		"Bullfrog Anti-Missile Turret" 2
-		"Hai Geode Reactor"
-		"Hai Gorge Batteries"
-		"S-270 Regenerator"
-		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
-		"Hyperdrive"
-	engine -40 22
-	engine 40 22
-	gun 0 -40
-	turret -47 18
-	turret 47 18
-	explode "tiny explosion" 18
-	explode "small explosion" 36
-	explode "medium explosion" 24
-	explode "big explosion" 8
-	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
-
-ship "Lightning Bug" "Lightning Bug (Pulse)"
-	outfits
-		"Hai Tracker Pod"
-		"Hai Tracker" 56
-		"Pulse Turret" 2
-		"Hai Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Chasm Batteries" 2
-		"S-270 Regenerator"
-		"Hai Williwaw Cooling"
-		"A3 Hawksmoth Thruster"
-		"A2 Cleg Steering"
-		"Hyperdrive"
-
 ship "Aphid"
 	sprite "ship/hai aphid"
 	attributes
@@ -115,82 +58,63 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		"A2 Cleg Steering"
 		"Hyperdrive"
 
-ship "Water Bug"
-	sprite "ship/hai water bug"
+ship "Lightning Bug"
+	sprite "ship/hai lightning bug"
 	attributes
-		category "Heavy Freighter"
-		"cost" 6500000
-		"shields" 7900
-		"hull" 4500
-		"required crew" 5
-		"bunks" 29
-		"mass" 270
-		"drag" 5.9
-		"heat dissipation" .75
+		category "Light Warship"
+		"cost" 3200000
+		"shields" 6700
+		"hull" 1700
+		"required crew" 4
+		"bunks" 10
+		"mass" 220
+		"drag" 3.8
+		"heat dissipation" .85
 		"fuel capacity" 600
-		"cargo space" 197
-		"outfit space" 368
-		"weapon capacity" 145
-		"engine capacity" 64
+		"cargo space" 73
+		"outfit space" 278
+		"weapon capacity" 87
+		"engine capacity" 93
 		weapon
-			"blast radius" 124
-			"shield damage" 1240
-			"hull damage" 620
-			"hit force" 1860
+			"blast radius" 84
+			"shield damage" 840
+			"hull damage" 420
+			"hit force" 1260
 	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret"
-		"Chameleon Anti-Missile Turret" 2
+		"Ion Cannon"
+		"Bullfrog Anti-Missile Turret" 2
 		"Hai Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
-		"S-970 Regenerator"
+		"S-270 Regenerator"
 		"Hai Williwaw Cooling"
 		"A2 Cleg Thruster"
 		"A2 Cleg Steering"
 		"Hyperdrive"
-	engine -50 33
-	engine 50 33
-	gun -24 -53 "Hai Tracker Pod"
-	gun 24 -53 "Hai Tracker Pod"
-	turret 0 -10 "Pulse Turret"
-	turret -17 17 "Chameleon Anti-Missile Turret"
-	turret 17 17 "Chameleon Anti-Missile Turret"
-	explode "small explosion" 15
-	explode "medium explosion" 30
-	explode "big explosion" 20
-	explode "huge explosion" 5
-	description "The Water Bug is the primary freight ship used by the Hai."
+	engine -40 22
+	engine 40 22
+	gun 0 -40
+	turret -47 18
+	turret 47 18
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+	"final explode" "final explosion small"
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. In its stock configuration, its only offensive weapon is a single ion cannon."
 
-ship "Water Bug" "Water Bug (Pulse)"
+ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret" 3
+		"Hai Tracker Pod"
+		"Hai Tracker" 56
+		"Pulse Turret" 2
 		"Hai Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
-		"S-970 Regenerator"
+		"Hai Chasm Batteries" 2
+		"S-270 Regenerator"
 		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
+		"A3 Hawksmoth Thruster"
 		"A2 Cleg Steering"
 		"Hyperdrive"
-
-ship "Water Bug" "Water Bug (Jump)"
-	outfits
-		"Hai Tracker Pod" 2
-		"Hai Tracker" 112
-		"Pulse Turret"
-		"Chameleon Anti-Missile Turret" 2
-		"Hai Geode Reactor"
-		"Hai Gorge Batteries"
-		"Hai Chasm Batteries"
-		"S-970 Regenerator"
-		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
-		"Jump Drive"
 
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
@@ -246,6 +170,7 @@ ship "Shield Beetle"
 	explode "medium explosion" 50
 	explode "big explosion" 50
 	explode "huge explosion" 20
+	"final explode" "final explosion large"
 	description "The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys."
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
@@ -304,3 +229,83 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"A5 Planthopper Steering"
 		"A8 Horsefly Steering"
 		"Jump Drive"
+
+
+ship "Water Bug"
+	sprite "ship/hai water bug"
+	attributes
+		category "Heavy Freighter"
+		"cost" 6500000
+		"shields" 7900
+		"hull" 4500
+		"required crew" 5
+		"bunks" 29
+		"mass" 270
+		"drag" 5.9
+		"heat dissipation" .75
+		"fuel capacity" 600
+		"cargo space" 197
+		"outfit space" 368
+		"weapon capacity" 145
+		"engine capacity" 64
+		weapon
+			"blast radius" 124
+			"shield damage" 1240
+			"hull damage" 620
+			"hit force" 1860
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret"
+		"Chameleon Anti-Missile Turret" 2
+		"Hai Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"S-970 Regenerator"
+		"Hai Williwaw Cooling"
+		"A2 Cleg Thruster"
+		"A2 Cleg Steering"
+		"Hyperdrive"
+	engine -50 33
+	engine 50 33
+	gun -24 -53 "Hai Tracker Pod"
+	gun 24 -53 "Hai Tracker Pod"
+	turret 0 -10 "Pulse Turret"
+	turret -17 17 "Chameleon Anti-Missile Turret"
+	turret 17 17 "Chameleon Anti-Missile Turret"
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "big explosion" 20
+	explode "huge explosion" 5
+	"final explode" "final explosion medium"
+	description "The Water Bug is the primary freight ship used by the Hai."
+
+ship "Water Bug" "Water Bug (Pulse)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret" 3
+		"Hai Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"S-970 Regenerator"
+		"Hai Williwaw Cooling"
+		"A2 Cleg Thruster"
+		"A2 Cleg Steering"
+		"Hyperdrive"
+
+ship "Water Bug" "Water Bug (Jump)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Pulse Turret"
+		"Chameleon Anti-Missile Turret" 2
+		"Hai Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Chasm Batteries"
+		"S-970 Regenerator"
+		"Hai Williwaw Cooling"
+		"A2 Cleg Thruster"
+		"A2 Cleg Steering"
+		"Jump Drive"
+
