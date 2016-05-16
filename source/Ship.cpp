@@ -1956,7 +1956,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			bay.ship = ship;
 			ship->SetSystem(nullptr);
 			ship->SetPlanet(nullptr);
-			ship->SetParent(shared_ptr<Ship>());
+			ship->SetParent(shared_from_this());
 			ship->isThrusting = false;
 			return true;
 		}
