@@ -18,12 +18,12 @@ phrase "friendly civilian"
 		phrase "Swift Of The Sponge"
 		phrase "There Might Be Riots"
 	word
-		" is now my favourite song!"
-		" is stuck in my head...again!"
-		" is pure genius!"
-		" was awesome!"
-		" plays in my bunk on repeat!"
-		" is playing full blast - throughout my ship!"
+		"is now my favourite song!"
+		"is stuck in my head...again!"
+		"is pure genius!"
+		"was awesome!"
+		"plays in my bunk on repeat!"
+		"is playing full blast - throughout my ship!"
 
 phrase "musical venue"
 	word
