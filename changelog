@@ -46,9 +46,6 @@ Version 0.9.1:
     * Added an "unconstrained" personality type that will fly beyond the "invisible fence."
     * You can now leave the outfitter with no thrusters, just reverse thrusters or afterburners.
     * Fleets taking off from a planet now stagger their departure a bit, to look more organic.
-    * Escorts now assist other disabled escorts when not holding position, gathering, or engaging hostiles.
-    * Exploding ships now drop flotsam.
-    * Player ship and escorts now pick up flotsam by crashing into it.
   * User interface:
     * Added a pop-up mini map that is displayed when your ship is jumping.
     * Route finding now prefers less dangerous systems if multiple paths have equal length.
