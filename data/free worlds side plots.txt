@@ -18,7 +18,7 @@ mission "FW Conservatory 1"
 	to offer
 		has "FW Senate 1B: done"
 		not "fw conservatory founded"
-	
+		not "FW Reconciliation 1: active"
 	on offer
 		conversation
 			branch "not met andersons"
