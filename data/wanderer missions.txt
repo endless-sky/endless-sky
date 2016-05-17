@@ -1028,7 +1028,7 @@ mission "Wanderers: Alpha Surveillance E"
 			`	"Can you think of any other option?" he says.`
 			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy who we can trust, it's them."`
 			label danforth
-			`	"Danforth?" says Elias. "William Danforth? THe Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
+			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
 			`	He comes back aboard your ship, and you prepare to travel to Danforth's base on <destination>.`
 				accept
 	
