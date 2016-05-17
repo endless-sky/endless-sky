@@ -1534,12 +1534,13 @@ mission "ijs catches another ride"
 		has "fw bloodsea done"
 		has "FW Conservatory 1: active"
 	on offer
-		payment 20000
+		payment 10000
 		event "fw conservatory founded" 30
 		conversation
-			`	Ijs approaches you with his duffel as you're stepping off the <ship>.`
-			`	"Thanks for getting me this close, but I really need to get to Winter as soon as possible.  I hope you don't take offense that I've booked passage on another transport.  Here's <payment> for getting me here, anyway.  I hope to see you again soon, Captain <last>."`
-		fail
+			`Ijs approaches you with his duffel as you're stepping off the <ship>.`
+			`	"Thanks for getting me this close, but I really need to get to Winter as soon as possible. I hope you don't take offense that I've booked passage on another transport. Here's <payment> for getting me this far, anyway. I hope to see you again soon, Captain <last>."`
+				decline
+		fail "FW Conservatory 1"
 
 
 mission "FW Dreadnoughts Ready"
