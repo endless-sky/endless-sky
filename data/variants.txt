@@ -1021,8 +1021,12 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Heavy Anti-Missile Turret"
 		"Armageddon Core"
 		"LP144a Battery Pack"
+		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
+		"Fuel Pod" 2
+		"Ramscoop"
+		"Mass Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
@@ -1051,7 +1055,9 @@ ship "Carrier" "Carrier (Jump)"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
 		"Liquid Helium Cooler"
-		"Mass Expansion" 3
+		"Water Coolant System"
+		"Fuel Pod"
+		"Mass Expansion" 4
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
