@@ -236,7 +236,7 @@ outfit "Hai Valley Batteries"
 	"mass" 120
 	"outfit space" -120
 	"energy capacity" 20000
-	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and in a fight against Ion Cannon equipped opponents through to victory."
+	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and in a fight against opponents carrying Ion Cannons longer."
 
 outfit "Hai Pebble Core"
 	category "Power"
