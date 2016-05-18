@@ -7069,7 +7069,6 @@ system Host
 	government Uninhabited
 	habitable 486.68
 	asteroids "large metal" 1 0.732
-	fleet Quarg 10000
 	object
 		sprite star/k0
 		period 10

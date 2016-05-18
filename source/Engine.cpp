@@ -219,7 +219,7 @@ void Engine::Place()
 			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, velocity, angle);
+		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);
@@ -1151,9 +1151,16 @@ void Engine::CalculateStep()
 	}
 	if(clickTarget && clickTarget == previousTarget)
 		clickCommands |= Command::BOARD;
-	if(hasHostiles && !hadHostiles)
+	if(alarmTime)
+		--alarmTime;
+	else if(hasHostiles && !hadHostiles)
+	{
 		Audio::Play(Audio::Get("alarm"));
-	hadHostiles = hasHostiles;
+		alarmTime = 180;
+		hadHostiles = true;
+	}
+	else if(!hasHostiles)
+		hadHostiles = false;
 	
 	// Collision detection:
 	if(grudgeTime)
