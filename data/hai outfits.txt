@@ -182,7 +182,7 @@ outfit "Hai Diamond Regenerator"
 	"shield energy" 2.5
 	"shield heat" 9
 	"energy generation" -.9
-	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix also result in pretty intense heat build up in the regenerator, when your shields are charging.  The Hai usually employ Williwaw Cooling when they use this regenerator."
+	description "The Hai Diamond Shield Regenerator is an advanced type of shield recharging technology. Unfortunately, its power needs are quite high, and the shifts it makes to your shield matrix causes intense heat at the regenerator when your shields are charging.  The Hai usually employ Williwaw Cooling when they use this regenerator."
 
 outfit "Hai Williwaw Cooling"
 	category "Systems"
@@ -191,7 +191,7 @@ outfit "Hai Williwaw Cooling"
 	"mass" 8
 	"outfit space" -8
 	"cooling" 9.5
-	description "While Hai technology is fairly heat efficient, occasionally they reach the point where their ship sporadically overheats and shuts down. When that happens, they install these."
+	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Hai Chasm Batteries"
 	category "Power"
