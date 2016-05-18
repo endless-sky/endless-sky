@@ -723,7 +723,7 @@ mission "Wanderers: Alpha Surveillance A"
 			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
 			choice
 				`	"Is it possible that they have a hidden base on one of your worlds?"`
-				`	"Do you know where they when when you banned them from your space?"`
+				`	"Do you know where they went when you banned them from your space?"`
 					goto where
 			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
 			`	"Then where could they have gone?" you ask.`
@@ -1006,3 +1006,132 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 		conversation
 			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, but your sensors are not able to locate it, and even if you could you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`
 				decline
+
+
+
+mission "Wanderers: Alpha Surveillance E"
+	name "Visit Danforth"
+	description "Visit Admiral Danforth on <planet> and see if he is able to supply you with an attack force to locate and destroy the Alpha base."
+	source "Alta Hai"
+	destination "Farpoint"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance D: done"
+	
+	on offer
+		conversation
+			`When you meet up with Elias Hanover in the spaceport, he says, "I can't think of any way to go about it: we need to involve the Navy in this. No one else has the capability to launch a ground attack."`
+			choice
+				`	"Are you sure we can trust them? The Alphas were in a Navy ship, after all."`
+				`	"We could go to Admiral Danforth. He's a Navy officer who I trust to be on the right side."`
+					goto danforth
+			`	"Can you think of any other option?" he says.`
+			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy who we can trust, it's them."`
+			label danforth
+			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
+			`	He comes back aboard your ship, and you prepare to travel to Danforth's base on <destination>.`
+				accept
+	
+	on complete
+		conversation
+			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come. When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
+
+
+
+mission "Wanderers: Alpha Surveillance F"
+	name "Invade Avalon"
+	description "Escort Admiral Danforth's Navy Cruiser to <destination>, and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	source "Farpoint"
+	destination "Avalon"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance E: done"
+	
+	on offer
+		conversation
+			`Danforth welcomes you into his private office and uses a device to sweep the room for bugs. "Please forgive my caution," he says when he is done. "Now, show me where this planet is."`
+			`	You show him the planet on your map. "That's a long way out from human space," says Danforth. "All the way on the other side of Hai territory. Are the Hai rebels still occupying these systems?" He points to the three systems where the Unfettered live.`
+			choice
+				`	"Yes."`
+					goto jump
+				`	"Wait, you know about the Hai?"`
+			`	Danforth looks bemused. "Living on their doorstep? Of course I do. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
+			label jump
+			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
+			`	"As do I," says Danforth, a bit smugly. When he sees your surprised expressions he elaborates. "Recovered it from the Pug. Accidentally forgot to file the paperwork reporting it. You know how it is. Old men like me can be absent-minded." He smiles. "My engineers are installing it in my flagship even as we speak."`
+			choice
+				`	"So you're willing to come with us?"`
+				`	"Are you sure you want to take the risk of traveling with us?"`
+			`	"Wouldn't miss it for the world," he says. "With a mission like this, if I want it done right, I need to be there in person. Now, let's get going before the rumors start to fly. It's hard for three squadrons to prep for a secret mission without anyone else noticing."`
+				accept
+	
+	on visit
+		dialog "You have reached <planet>, but you left Danforth's ship behind. Wait for him to arrive (or go back and refuel him, if necessary) and then return here."
+	
+	npc accompany save
+		government "Navy (Oathkeeper)"
+		personality escort heroic
+		ship "Cruiser (Jump)" "N.S. Peacemaker"
+
+
+
+mission "Wanderers: Alpha Surveillance G"
+	landing
+	name "Return to <planet>"
+	description "Escort Admiral Danforth's ship safely back to <destination>."
+	source "Avalon"
+	destination "Farpoint"
+	passengers 1
+	to offer
+		has "Wanderers: Alpha Surveillance F: done"
+	
+	on offer
+		conversation
+			`It does not take long for Danforth's team to locate the Alpha base, buried deep underground in a network of limestone caves. You and Danforth hover your ships above the site to catch anyone who tries to take off and escape. Danforth keeps you updated on the progress of the troops. "Breached the perimeter. Dealing with some booby traps. Explosives, poison gas. Nasty stuff. No sign of inhabitants, but they were here recently. Place looks cleaned out. Extensive base. Hangars, labs, supply rooms. Probably took them a century to build."`
+			`	His troops spend a while exploring the base and eventually conclude that the Alphas packed up and left soon after you destroyed the carrier. Once the place has been thoroughly explored and they are sure there are no more clues to be found, Danforth tells them, "Okay, blow the place. No sense in leaving them a base to return to."`
+			choice
+				`	"So this was all for nothing?"`
+				`	"I wish we had been able to catch them."`
+			`	"Don't feel so bad," says Danforth. "At least you took out their Carrier. If you had come for me without engaging them, chances are they would still have figured their cover was blown and fled. And now they're on the run, which is going to limit their ability to make mischief."`
+			`	Danforth's ship collects his troops and takes off. A few seconds later he hails you. "Captain, we have incoming ships from the far side of the planet," he says. "My ship is no match for them. Let's get out of here." It looks like this world is not completely uninhabited, after all...`
+				launch
+	
+	npc accompany save
+		government "Navy (Oathkeeper)"
+		personality escort heroic
+		ship "Cruiser (Jump)" "N.S. Peacemaker"
+	npc
+		government "Alpha"
+		personality heroic staying vindictive
+		fleet
+			names "kor sestor"
+			variant
+				"Kar Ik Vot 349 (Offense)"
+				"Met Par Tek 53 (Sniper)" 2
+	
+	on visit
+		dialog "You have reached <planet>, but you left Danforth's ship behind. Wait for him to arrive (or go back and refuel him, if necessary) and then return here."
+	
+	on complete
+		conversation
+			`You and Elias return to Danforth's private office to debrief, but a few minutes after you arrive there is a knock on the door. Danforth pulls up a video monitor to check who it is, swears, takes a brief glance around the room as if to check that he hasn't left anything incriminating out in plain sight, then opens the door. An officer in an unmarked uniform walks in along with several armed guards. "Admiral Danforth," says the officer, "I trust your expedition went well?"`
+			`	Danforth mumbles something in reply. "And you, Captain <last>," says the officer, "Always in the thick of things, eh?"`
+			choice
+				`	"I suppose so."`
+				`	"Only when the galaxy needs saving."`
+				`	"Just trying to do what's right."`
+			`	The officer turns to Elias. "And Mister Hanover," he says, "I want to thank you personally for assisting us in the fight against the Alphas, once again."`
+			`	"You're welcome," says Hanover, warily.`
+			`	"You're very camera shy," says the officer. "You didn't stick around long enough to receive our thanks after helping to liberate those worlds in the Dirt Belt back in 2894 AD. Of course, you went by 'Jeremy Hanover' back then." He hands Hanover a photo of some Navy officers talking with a man who looks very much like Hanover himself.`
+			`	"That was my grandfather," says Hanover.`
+			`	"I see," says the officer. "Of course, what you deserve even more thanks for is your assistance during the Second Alpha War. Here's a photo of you from 2461 AD." He displays another photo, again apparently of Hanover himself, with some men in archaic pre-Republic uniforms. The guards standing behind you raise their weapons and point them at you and Elias.`
+			choice
+				`	(Stay where I am.)`
+					goto stay
+				`	(Try to fight.)`
+				`	(Try to run away.)`
+			`	You jump up from your seat. The guards fire, and everything goes black.`
+				accept
+			label stay
+			`	You raise your hands in surrender. The guards fire, and everything goes black.`
+				accept
