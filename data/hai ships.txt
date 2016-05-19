@@ -192,13 +192,12 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
 		"Chameleon Anti-Missile Turret" 2
-		"Hai Boulder Reactor"
-		"Hai Geode Reactor"
-		"Hai Valley Batteries"
+		"Hai Boulder Reactor" 2
+		"Hai Ravine Batteries"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
-		"Hai Williwaw Cooling"
+		"Hai Williwaw Cooling" 4
 		"A3 Hawksmoth Thruster"
 		"A8 Horsefly Steering"
 		"Jump Drive"
@@ -218,13 +217,12 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Tracker Pod" 8
 		"Hai Tracker" 448
 		"Pulse Turret" 4
-		"Hai Boulder Reactor"
-		"Hai Geode Reactor"
-		"Hai Valley Batteries"
+		"Hai Boulder Reactor" 2
+		"Hai Ravine Batteries"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
-		"Hai Williwaw Cooling"
+		"Hai Williwaw Cooling" 4
 		"A5 Planthopper Steering"
 		"A8 Horsefly Steering"
 		"Jump Drive"
