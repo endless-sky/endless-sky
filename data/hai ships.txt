@@ -32,7 +32,7 @@ ship "Aphid"
 			"hit force" 450
 	outfits
 		"Pulse Turret"
-		"Hai Pebble Core"
+		"Pebble Core"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
@@ -50,7 +50,7 @@ ship "Aphid"
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
 		"Chameleon Anti-Missile Turret"
-		"Hai Pebble Core"
+		"Pebble Core"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
@@ -83,7 +83,7 @@ ship "Lightning Bug"
 	outfits
 		"Ion Cannon"
 		"Bullfrog Anti-Missile Turret" 2
-		"Hai Geode Reactor"
+		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
@@ -107,7 +107,7 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Tracker Pod"
 		"Hai Tracker" 56
 		"Pulse Turret" 2
-		"Hai Geode Reactor"
+		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries" 2
 		"Hai Corundum Regenerator"
@@ -142,8 +142,8 @@ ship "Shield Beetle"
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
 		"Chameleon Anti-Missile Turret" 2
-		"Hai Boulder Reactor"
-		"Hai Geode Reactor"
+		"Boulder Reactor"
+		"Geode Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
@@ -177,8 +177,8 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Tracker Pod" 8
 		"Hai Tracker" 448
 		"Pulse Turret" 4
-		"Hai Boulder Reactor"
-		"Hai Geode Reactor"
+		"Boulder Reactor"
+		"Geode Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
@@ -192,7 +192,7 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
 		"Chameleon Anti-Missile Turret" 2
-		"Hai Boulder Reactor" 2
+		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
@@ -217,7 +217,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Tracker Pod" 8
 		"Hai Tracker" 448
 		"Pulse Turret" 4
-		"Hai Boulder Reactor" 2
+		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
@@ -255,7 +255,7 @@ ship "Water Bug"
 		"Hai Tracker" 112
 		"Pulse Turret"
 		"Chameleon Anti-Missile Turret" 2
-		"Hai Geode Reactor"
+		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
@@ -282,7 +282,7 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Pulse Turret" 3
-		"Hai Geode Reactor"
+		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
@@ -297,7 +297,7 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Hai Tracker" 112
 		"Pulse Turret"
 		"Chameleon Anti-Missile Turret" 2
-		"Hai Geode Reactor"
+		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"

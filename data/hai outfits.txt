@@ -238,7 +238,7 @@ outfit "Hai Valley Batteries"
 	"energy capacity" 20000
 	description "While most Hai ships do not employ their largest battery model, a few very powerful warships are occasionally equipped with one, keeping their heat footprint low, and in a fight against opponents carrying Ion Cannons longer."
 
-outfit "Hai Pebble Core"
+outfit "Pebble Core"
 	category "Power"
 	cost 1050000
 	thumbnail "outfit/dwarf core hai"
@@ -248,7 +248,7 @@ outfit "Hai Pebble Core"
 	"heat generation" 11.9
 	description "A Pebble Core is a miniaturized nuclear reactor, small enough to be installed in any ship larger than a fighter. The Hai developed this model for their smaller ships."
 
-outfit "Hai Geode Reactor"
+outfit "Geode Reactor"
 	category "Power"
 	cost 1750000
 	thumbnail "outfit/fission hai"
@@ -258,7 +258,7 @@ outfit "Hai Geode Reactor"
 	"heat generation" 21.2
 	description "Fission reactors are considered a rudimentary technology among interstellar species. Nonetheless, it remains a proven and safe technology that even the Hai use fairly regularly."
 
-outfit "Hai Boulder Reactor"
+outfit "Boulder Reactor"
 	category "Power"
 	cost 5750000
 	thumbnail "outfit/fusion hai"
