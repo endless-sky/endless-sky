@@ -145,6 +145,7 @@ mission "FW Epilogue: Danforth"
 	source Farpoint
 	to offer
 		has "free worlds plot completed"
+		not "Wanderers: Alpha Surveillance E: offered"
 	
 	on offer
 		conversation
