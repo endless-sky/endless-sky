@@ -27,6 +27,8 @@ Version 0.9.1:
     * Made some softer and hopefully less annoying sounds for the plasma and atomic thrusters.
     * Fixed the coloring of dominated systems that contain planets with no spaceports.
     * Fixed the Hauler III's cargo space, which was less than I intended it to be.
+    * New human ship: "Boxwing", cargo fighter. (@LocalGod79, @pootthedestroyer)
+    * Updated "Southern Carriers" sprites. (@LocalGod79)
   * Game mechanics:
     * Missiles can now have tracking modes relying on target temperature, size, or radar jamming.
     * Escorts now match your speed and heading instead of just swarming around you.
@@ -43,6 +45,7 @@ Version 0.9.1:
     * Added an "unconstrained" personality type that will fly beyond the "invisible fence."
     * You can now leave the outfitter with no thrusters, just reverse thrusters or afterburners.
     * Fleets taking off from a planet now stagger their departure a bit, to look more organic.
+    * Marauder ships now have "self destruct" attribute (to balance bounties somewhat). (@LocalGod79)
   * User interface:
     * Added a pop-up mini map that is displayed when your ship is jumping.
     * Route finding now prefers less dangerous systems if multiple paths have equal length.
