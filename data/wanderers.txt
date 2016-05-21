@@ -152,6 +152,7 @@ outfitter "Wanderer Basics"
 	"Cargo Expansion"
 	"Mass Expansion"
 	"Local Map"
+	"Hyperdrive"
 
 outfitter "Wanderer Advanced"
 	"Sunbeam"
@@ -177,6 +178,7 @@ outfitter "Wanderer Advanced"
 	"Cargo Expansion"
 	"Mass Expansion"
 	"Local Map"
+	"Hyperdrive"
 
 
 # Hails:
@@ -344,6 +346,112 @@ phrase "friendly wanderer"
 		"ecosystems."
 		"biospheres."
 
+
+
+event "wanderers: first tech increase"
+	system "Ik'kara'ka"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 700
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatchers" 400
+	system "Chy'chra"
+		fleet "Wanderer Freight" 1500
+		fleet "Wanderer Drones" 1000
+		fleet "Wanderer Defense" 300
+		fleet "Wanderer Flycatchers" 300
+	system "Prakacha'a"
+		fleet "Wanderer Freight" 400
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Defense" 400
+		fleet "Wanderer Flycatchers" 500
+	system "Sich'ka'ara"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 3000
+		fleet "Wanderer Defense" 2000
+		fleet "Wanderer Flycatchers" 600
+	system "Chirr'ay'akai"
+		fleet "Wanderer Freight" 800
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Defense" 2000
+		fleet "Wanderer Flycatchers" 800
+	system "Kiro'ku"
+		fleet "Wanderer Freight" 800
+		fleet "Wanderer Drones" 3000
+		fleet "Wanderer Defense" 7000
+		fleet "Wanderer Flycatchers" 1000
+	system "Ap'arak"
+		fleet "Wanderer Freight" 500
+		fleet "Wanderer Drones" 2000
+		fleet "Wanderer Defense" 3000
+		fleet "Wanderer Flycatchers" 1200
+	fleet "Wanderer Defense"
+		government "Wanderer"
+		names "wanderer"
+		personality
+			heroic
+		variant 3
+			"Strong Wind"
+			"Summer Leaf" 2
+		variant
+			"Summer Leaf" 5
+		variant 2
+			"Strong Wind" 2
+		variant 2
+			"Strong Wind"
+			"Summer Leaf"
+		variant
+			"Strong Wind"
+			"Summer Leaf" 3
+		variant
+			"Strong Wind" 3
+		variant 2
+			"Autumn Leaf" 2
+		variant 2
+			"Strong Wind"
+			"Autumn Leaf" 2
+		variant
+			"Strong Wind"
+			"Autumn Leaf"
+			"Summer Leaf"
+		variant
+			"Autumn Leaf"
+			"Summer Leaf" 2
+		variant 2
+			"Autumn Leaf"
+			"Summer Leaf"
+	shipyard "Wanderer Basics"
+		"Flycatcher"
+	shipyard "Wanderer Advanced"
+		"Autumn Leaf"
+	outfitter "Wanderer Basics"
+		"Wanderer Anit-Missile"
+	outfitter "Wanderer Advanced"
+		"Sunbeam Turret"
+		"Dual Sunbeam Turret"
+
+event "wanderers: unfettered invasion"
+	system "Ik'kara'ka"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 700
+		fleet "Wanderer Defense" 600
+		fleet "Wanderer Flycatcher" 400
+	system "Chy'chra"
+		fleet "Wanderer Freight" 1500
+		fleet "Wanderer Drones" 1000
+		fleet "Wanderer Defense" 300
+		fleet "Wanderer Flycatcher" 300
+		fleet "Unfettered Tribute" 2000
+	system "Prakacha'a"
+		fleet "Wanderer Freight" 400
+		fleet "Wanderer Drones" 400
+		fleet "Wanderer Defense" 400
+		fleet "Wanderer Flycatcher" 500
+	"reputation: Hai (Unfettered)" <?= -100
+	government "Hai (Unfettered)"
+		"attitude toward"
+			"Hai" -.1
+			"Wanderer" -.1
+			"Pug" -.1
 
 event "wanderers: the eye opens"
 	system Sabriset
