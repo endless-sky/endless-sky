@@ -62,7 +62,7 @@ outfit "LP576a Battery Pack"
 	"energy capacity" 23000
 	description "For most ships that require this much power, a larger generator makes more sense than a battery this size. However, battery packs have the advantage that they generate no heat, so some captains use them instead of powerful generators if they do not expect to be in combat frequently or for extended periods of time."
 
-	
+
 outfit "KP-6 Photovoltaic Panel"
 	category "Power"
 	cost 10000
