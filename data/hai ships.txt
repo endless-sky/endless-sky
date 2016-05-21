@@ -222,7 +222,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
-		"Hai Williwaw Cooling" 4
+		"Hai Williwaw Cooling" 5
 		"A5 Planthopper Steering"
 		"A8 Horsefly Steering"
 		"Jump Drive"
