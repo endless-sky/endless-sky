@@ -1,0 +1,50 @@
+mission "Synd Intro 1"
+	name "Transport Mr. Clark to <destination>"
+	description "Transport Mr. Clark, a Syndicate businessman, and his friend to <destination>"
+	minor
+    blocked "You need 2 free bunks to accept this mission."
+	to offer
+		random < 65
+		has "FW Katya 1: offered"
+		not "FW Katya 1: done"
+		not "FW Katya 1: active"
+	to fail
+		has "FW Katya 1: done"
+	source
+		government "Syndicate"
+	destination Hephaestus
+    passengers 2
+    deadline
+	on offer
+		conversation
+			`While walking through the spaceport looking for a good place to eat something that isn't ship rations a man wearing a very fancy suit and another man in casual clothes walk up to.`
+            `"Greetings, my name is Hirosho Clark and this is my friend Vladimir Fitzgerald," the man in the suit says.`
+            choice
+                `   "Is there something you need me for?"`
+                    goto direct
+                `   "I'm <first> <last>, nice to meet you."`
+            `Hirosho takes his image projector and shows a planet to you.`
+            `"I need you to take me and my friend there, I need to attend a meeting and my friend needs to get off-world."`
+            `   "Can't you find someone else for the job?" you ask.`
+            `"We've been trying to find someone but so far we've been rejected each time."`
+            `"Always busy with something and transporting other people..."`
+            
+            label direct
+                `"Look, I need you to take me and Vlad to <destination>, no questions asked. I'll pay you <payment>. Does that sound good?"`
+                choice
+                    `(Accept)`
+                        accept
+                    `   "Sorry, find someone else."`
+            `"We've heard this far too many times today, it's just us two, how can that be too much?"`
+            `"Look, I'll ask you one more time, I need you to take us to <destination> and I'll pay you <payment>."`
+            choice
+                `   "Fine, get on."`
+                `   "Sorry, I still don't feel like getting you to <destination>."`
+                    decline
+    on complete
+        payment 250000
+        conversation
+            `When you land try to land on <destination> the spaceport security first denies you entry upon seeing Mr. Clark.`
+            `When Hirosho pays them a few hundred thousand, they let you, Hirosho and Vladimir through.`
+            `"Thanks, captain <last>, I'm sure Vladimir will like this place far better than <origin>. If you want to work for me a bit more, meet me in spaceport in a few hours after the meeting is done." Hirosho says.`
+            `He transfers <payment> to your bank account.`
