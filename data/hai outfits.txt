@@ -275,9 +275,9 @@ outfit "A1 Butterfly Thruster"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 14.4
-	"thrusting energy" 1.5
-	"thrusting heat" 2.8
+	"thrust" 12.1
+	"thrusting energy" 1.3
+	"thrusting heat" 2.5
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -291,9 +291,9 @@ outfit "A2 Cleg Thruster"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 21.6
-	"thrusting energy" 2.3
-	"thrusting heat" 4.4
+	"thrust" 19.5
+	"thrusting energy" 2.4
+	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"flare sound" "atomic tiny"
@@ -308,7 +308,7 @@ outfit "A3 Hawksmoth Thruster"
 	"engine capacity" -44
 	"thrust" 38.2
 	"thrusting energy" 4
-	"thrusting heat" 7.6
+	"thrusting heat" 7.7
 	"flare sprite" "effect/atomic flare/small"
 		"frame rate" 13
 	"flare sound" "atomic small"
@@ -322,9 +322,9 @@ outfit "A5 Planthopper Thruster"
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
-	"thrust" 61.9
-	"thrusting energy" 6.1
-	"thrusting heat" 11.8
+	"thrust" 59.4
+	"thrusting energy" 6.5
+	"thrusting heat" 13.7
 	"flare sprite" "effect/atomic flare/medium"
 		"frame rate" 12
 	"flare sound" "atomic medium"
@@ -337,9 +337,9 @@ outfit "A8 Horsefly Thruster"
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 114.7
-	"thrusting energy" 10.8
-	"thrusting heat" 21.8
+	"thrust" 113
+	"thrusting energy" 10.6
+	"thrusting heat" 22.1
 	"flare sprite" "effect/atomic flare/large"
 		"frame rate" 11
 	"flare sound" "atomic large"
@@ -353,9 +353,9 @@ outfit "A1 Butterfly Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 247
-	"turning energy" .65
-	"turning heat" 1.3
+	"turn" 312
+	"turning energy" .7
+	"turning heat" 1.7
 	description "Hai atomic engines are too expensive to buy for most humans. Even the smallest of the engines are worth more than many of the most common ships flown in human space."
 
 outfit "A2 Cleg Steering"
@@ -365,21 +365,21 @@ outfit "A2 Cleg Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 548.8
+	"turn" 492.4
 	"turning energy" 1.2
-	"turning heat" 2.2
+	"turning heat" 2.9
 	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines, usually astound others in human space with the efficiency of their ship."
 
 outfit "A3 Hawksmoth Steering"
 	category "Engines"
-	"cost" 240000
+	"cost" 360000
 	thumbnail "outfit/medium atomic steering hai"
-	"mass" 25
-	"outfit space" -25
-	"engine capacity" -25
-	"turn" 687
-	"turning energy" 1.5
-	"turning heat" 4.4
+	"mass" 32
+	"outfit space" -32
+	"engine capacity" -32
+	"turn" 958.5
+	"turning energy" 1.9
+	"turning heat" 4.8
 	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
 outfit "A5 Planthopper Steering"
@@ -389,9 +389,9 @@ outfit "A5 Planthopper Steering"
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1668.8
+	"turn" 1482.4
 	"turning energy" 3.2
-	"turning heat" 7.7
+	"turning heat" 8.3
 	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
 
 outfit "A8 Horsefly Steering"
@@ -401,20 +401,7 @@ outfit "A8 Horsefly Steering"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 2870
-	"turning energy" 5.3
-	"turning heat" 12.6
+	"turn" 2835
+	"turning energy" 5.2
+	"turning heat" 13.3
 	description "Nine out of every ten human captains interviewed in Hai space as to who's atomic engines they prefer say that they would choose Hai atomic engines over those of Deep Sky any day; that is if they could afford such expensive engines."
-
-
-outfit "A1 Butterfly Reverse Thruster"
-	category "Engines"
-	"cost" 95000
-	thumbnail "outfit/reverse thruster hai"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
-	"reverse thrust" 14.4
-	"reverse thrusting energy" 1.5
-	"reverse thrusting heat" 2.8
-	description "Although rarely used, reverse thrusters are still developed for the few that they appeal to. These reverse thrusters allow for a pilot to do some crazy maneuvers, such as backing away from your target while still shooting them with your forward facing weapons. Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
