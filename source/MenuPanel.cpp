@@ -77,7 +77,13 @@ void MenuPanel::Step()
 	if(progress == 60 && !isReady)
 	{
 		if(gamePanels.IsEmpty())
+		{
 			gamePanels.Push(new MainPanel(player));
+			// It takes one step to figure out the planet panel should be created, and
+			// another step to actually place it. So, take two steps to avoid a flicker.
+			gamePanels.StepAll();
+			gamePanels.StepAll();
+		}
 		isReady = true;
 	}
 }
@@ -161,11 +167,11 @@ void MenuPanel::OnCallback(int)
 {
 	GetUI()->Pop(this);
 	gamePanels.Reset();
-	Panel *panel = new MainPanel(player);
-	gamePanels.Push(panel);
+	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	panel->Step();
+	gamePanels.StepAll();
 	gamePanels.Push(new ShipyardPanel(player));
+	gamePanels.StepAll();
 }
 
 
