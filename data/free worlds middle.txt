@@ -541,8 +541,8 @@ mission "FW Southern Prisoners - Release"
 		event "fw safe passage ends" 7
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
 		ship "Blackbird" "F.S. Stoutheart"
@@ -606,8 +606,8 @@ mission "FW Southern Prisoners - Released"
 				launch
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Free Worlds"
+		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
 		ship "Blackbird" "F.S. Stoutheart"
@@ -1104,8 +1104,8 @@ mission "FW Alphas 1.1"
 		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
@@ -1193,8 +1193,8 @@ mission "FW Alphas 1.2"
 				accept
 	
 	npc accompany save
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "F.S. Oak"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
