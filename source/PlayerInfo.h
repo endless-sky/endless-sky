@@ -162,6 +162,10 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
+	// Set and check the reputation conditions, which missions can use to modify
+	// the player's reputation.
+	void SetReputationConditions();
+	void CheckReputationConditions();
 	
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System *system) const;

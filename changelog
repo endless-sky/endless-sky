@@ -1,6 +1,6 @@
 Version 0.9.1:
   * Bug fixes:
-    * Typo fixes. (@Alkallid)
+    * Typo fixes. (@Alkallid, @Wrzlprnft)
     * No longer crashes if a saved game references a nonexistent "person."
     * Fixed a crash if the player tricks the game into letting them depart in an automaton.
     * The "southern carriers" no longer take over the entire fleets when they appear.
@@ -11,7 +11,17 @@ Version 0.9.1:
     * Mission NPCs that self-destruct are now properly counted as destroyed.
     * Icons for escorts with scram or jump drives no longer remain green while jumping.
     * Ships disabled in the act of landing now stop landing.
+    * Reputation changes in "on enter" actions are now applied correctly.
+    * Disabled NPCs now start always out at zero velocity.
+    * You can no longer plan a jump drive jump between two systems you don't know are linked.
+    * Fixed the planet panel flicker when you first enter your ship.
   * Game content:
+    * New human ship, the "Boxwing" cargo fighter. (@LocalGod79, @pootthedestroyer)
+    * Updated "Southern Carriers" sprites. (@LocalGod79)
+    * New civilian hail messages, referencing fictitious futuristic bands. (@Wrzlprnft)
+    * Fixed an armistice that lasts too long if the player has a jump drive. (@LocalGod79)
+    * In the Free Worlds plot, Ijs can no longer be in two places at once. (@LocalGod79)
+    * New Wanderer missions, giving you access to new ships and technology.
     * New human side missions that give hints about different alien species near human space.
     * Adjusted the Kor Mereti weapons and fleets to balance them better against the Kor Sestor.
     * Adjusted some weapon prices for better balance.
@@ -27,7 +37,10 @@ Version 0.9.1:
     * Made some softer and hopefully less annoying sounds for the plasma and atomic thrusters.
     * Fixed the coloring of dominated systems that contain planets with no spaceports.
     * Fixed the Hauler III's cargo space, which was less than I intended it to be.
+    * Tweaked the generator prices, and made Wanderer biochemicals run very cool.
+    * Fixed some places where mission escorts were assigned to the player's government.
   * Game mechanics:
+    * Marauder ships now have "self destruct" attribute (to balance bounties somewhat). (@LocalGod79)
     * Missiles can now have tracking modes relying on target temperature, size, or radar jamming.
     * Escorts now match your speed and heading instead of just swarming around you.
     * A carrier's hull repair rate can now be used to repair fighters it is carrying.
@@ -43,6 +56,8 @@ Version 0.9.1:
     * Added an "unconstrained" personality type that will fly beyond the "invisible fence."
     * You can now leave the outfitter with no thrusters, just reverse thrusters or afterburners.
     * Fleets taking off from a planet now stagger their departure a bit, to look more organic.
+    * Ships are now non-targetable for half a second after leaving hyperspace.
+    * Dying carriers now release any fighters they are still carrying.
   * User interface:
     * Added a pop-up mini map that is displayed when your ship is jumping.
     * Route finding now prefers less dangerous systems if multiple paths have equal length.
@@ -58,8 +73,10 @@ Version 0.9.1:
     * Made the targeting pointers a tiny bit bigger so they're easier to see.
     * Changed the "repairing" ship info line to "charging shields" unless you have hull repair too.
     * Put a limit on how often other ships broadcast requests for help.
+    * The 'D' key now works as a shortcut for "leave" in the shop panels.
   * Under the hood:
     * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
+    * Added an error message if a fleet definition references a nonexistent ship type.
 
 Version 0.9.0:
   * Bug fixes:

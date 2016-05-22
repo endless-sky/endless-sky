@@ -124,11 +124,11 @@ void LoadPanel::OnCallback(int)
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
 	gamePanels.Reset();
-	Panel *panel = new MainPanel(player);
-	gamePanels.Push(panel);
+	gamePanels.Push(new MainPanel(player));
 	// Tell the main panel to re-draw itself (and pop up the planet panel).
-	panel->Step();
+	gamePanels.StepAll();
 	gamePanels.Push(new ShipyardPanel(player));
+	gamePanels.StepAll();
 }
 
 
@@ -192,6 +192,10 @@ void LoadPanel::LoadCallback()
 	GetUI()->Pop(this);
 	GetUI()->Pop(GetUI()->Root().get());
 	gamePanels.Push(new MainPanel(player));
+	// It takes one step to figure out the planet panel should be created, and
+	// another step to actually place it. So, take two steps to avoid a flicker.
+	gamePanels.StepAll();
+	gamePanels.StepAll();
 }
 
 

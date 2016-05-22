@@ -684,23 +684,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	if(!it->second.CanBeDone(player))
 		return false;
 	
-	// Set the "reputation" conditions so we can check if this action changed
-	// any of them.
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		player.Conditions()["reputation: " + it.first] = rep;
-	}
+	// Perform any actions tied to this event.
 	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
 	
-	// Check if any reputation conditions were updated.
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		int newRep = player.Conditions()["reputation: " + it.first];
-		if(newRep != rep)
-			it.second.AddReputation(newRep - rep);
-	}
 	return true;
 }
 

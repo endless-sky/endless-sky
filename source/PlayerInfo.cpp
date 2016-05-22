@@ -1453,6 +1453,32 @@ const map<string, int> &PlayerInfo::Conditions() const
 
 
 
+// Set and check the reputation conditions, which missions can use to modify
+// the player's reputation.
+void PlayerInfo::SetReputationConditions()
+{
+	for(const auto &it : GameData::Governments())
+	{
+		int rep = it.second.Reputation();
+		conditions["reputation: " + it.first] = rep;
+	}
+}
+
+
+
+void PlayerInfo::CheckReputationConditions()
+{
+	for(const auto &it : GameData::Governments())
+	{
+		int rep = it.second.Reputation();
+		int newRep = conditions["reputation: " + it.first];
+		if(newRep != rep)
+			it.second.AddReputation(newRep - rep);
+	}
+}
+
+
+
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System *system) const
@@ -1665,13 +1691,7 @@ void PlayerInfo::UpdateAutoConditions()
 	// Set a condition for the player's net worth. Limit it to the range of a 32-bit int.
 	static const int64_t limit = 2000000000;
 	conditions["net worth"] = min(limit, max(-limit, accounts.NetWorth()));
-	// Set the player's reputation with each government. This must also be set
-	// by Mission whenever an action is performed, in case it is modified.
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		conditions["reputation: " + it.first] = rep;
-	}
+	SetReputationConditions();
 	// Clear any existing ships: conditions. (Note: '!' = ' ' + 1.)
 	auto first = conditions.lower_bound("ships: ");
 	auto last = conditions.lower_bound("ships:!");

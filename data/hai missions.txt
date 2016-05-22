@@ -176,6 +176,8 @@ mission "Unfettered Jump Drive 1"
 	landing
 	to offer
 		has "First Contact: Unfettered: offered"
+		not "Wanderers: Jump Drive Source: active"
+		not "event: wanderers: unfettered invasion"
 	to complete
 		has "Unfettered Jump Drive 2: offered"
 	source
@@ -233,6 +235,8 @@ mission "Unfettered Jump Drive 2"
 	landing
 	to offer
 		has "Unfettered Jump Drive 1: offered"
+		not "Wanderers: Jump Drive Source: active"
+		not "event: wanderers: unfettered invasion"
 	to complete
 		has "Unfettered Jump Drive 3: offered"
 	source
@@ -342,6 +346,8 @@ mission "Unfettered Jump Drive 3"
 	landing
 	to offer
 		has "Unfettered Jump Drive 2: offered"
+		not "Wanderers: Jump Drive Source: active"
+		not "event: wanderers: unfettered invasion"
 	to complete
 		has "Unfettered Jump Drive 4: offered"
 	source
@@ -401,6 +407,8 @@ mission "Unfettered Jump Drive 4"
 	minor
 	to offer
 		has "Unfettered Jump Drive 3: offered"
+		not "Wanderers: Jump Drive Source: active"
+		not "event: wanderers: unfettered invasion"
 	to complete
 		never
 	source

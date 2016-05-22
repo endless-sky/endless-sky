@@ -166,7 +166,7 @@ outfit "NT-200 Nucleovoltaic"
 
 outfit "Dwarf Core"
 	category "Power"
-	cost 900000
+	cost 800000
 	thumbnail "outfit/dwarf core"
 	"mass" 36
 	"outfit space" -36

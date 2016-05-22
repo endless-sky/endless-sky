@@ -170,6 +170,9 @@ public:
 	bool IsLanding() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// Check if some condition is keeping this ship from acting. (That is, it is
+	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
+	bool CannotAct() const;
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
@@ -338,9 +341,6 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(const Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Get the heat level at idle.

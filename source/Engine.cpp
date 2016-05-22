@@ -219,7 +219,7 @@ void Engine::Place()
 			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, velocity, angle);
+		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);
@@ -783,6 +783,7 @@ void Engine::EnterSystem()
 	
 	projectiles.clear();
 	effects.clear();
+	flotsam.clear();
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1002,6 +1003,8 @@ void Engine::CalculateStep()
 		Ship *collector = nullptr;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
+			if(ship->GetSystem() != player.GetSystem() || ship->CannotAct())
+				continue;
 			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
 				continue;
 			
@@ -1151,9 +1154,16 @@ void Engine::CalculateStep()
 	}
 	if(clickTarget && clickTarget == previousTarget)
 		clickCommands |= Command::BOARD;
-	if(hasHostiles && !hadHostiles)
+	if(alarmTime)
+		--alarmTime;
+	else if(hasHostiles && !hadHostiles)
+	{
 		Audio::Play(Audio::Get("alarm"));
-	hadHostiles = hasHostiles;
+		alarmTime = 180;
+		hadHostiles = true;
+	}
+	else if(!hasHostiles)
+		hadHostiles = false;
 	
 	// Collision detection:
 	if(grudgeTime)

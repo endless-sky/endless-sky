@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Government.h"
 #include "OutfitGroup.h"
@@ -42,6 +43,9 @@ Fleet::Fleet()
 
 void Fleet::Load(const DataNode &node)
 {
+	if(node.Size() >= 2)
+		fleetName = node.Token(1);
+	
 	// If Load() has already been called once on this fleet, any subsequent
 	// calls will replace the variants instead of adding to them.
 	bool resetVariants = !variants.empty();
@@ -156,6 +160,11 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
+		if(ship->ModelName().empty())
+		{
+			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
+			continue;
+		}
 		if(ship->CanBeCarried())
 		{
 			shared_ptr<Ship> fighter(Ship::MakeShip(*ship, OutfitGroup::PlunderWear()));
@@ -229,6 +238,11 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
+		if(ship->ModelName().empty())
+		{
+			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
+			continue;
+		}
 		if(carried && ship->CanBeCarried())
 		{
 			shared_ptr<Ship> fighter( Ship::MakeShip(*ship, OutfitGroup::PlunderWear()) );
