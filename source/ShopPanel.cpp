@@ -97,12 +97,12 @@ void ShopPanel::DrawSidebars() const
 	FillShader::Fill(
 		Point(Screen::Right() - SideWidth() / 2, 0.),
 		Point(SideWidth(), Screen::Height()),
-		Color(.1, 1.));
+		COLOR_DETAILS_BG);
 	// A bright line separating the side and main panels.
 	FillShader::Fill(
 		Point(Screen::Right() - SideWidth(), 0.),
 		Point(1, Screen::Height()),
-		Color(.2, 1.));
+		COLOR_DIVIDERS);
 	
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
@@ -229,12 +229,12 @@ void ShopPanel::DrawSidebars() const
 		FillShader::Fill( 
 			Point(Screen::Right() - SideWidth() - DetailsWidth() / 2, 0.),
 			Point(DetailsWidth() - 2, Screen::Height()),
-			Color(.1, 1.));
+			COLOR_DETAILS_BG);
 		//Thin dividing line.
 		FillShader::Fill(
 			Point(Screen::Right() - SideWidth() - DetailsWidth(), 0.),
 			Point(1, Screen::Height()),
-			Color(.2, 1.));
+			COLOR_DIVIDERS);
 		// Top scroll arrow
 		PointerShader::Draw(Point(Screen::Right() - SideWidth() - 10, Screen::Top() + 10),
 			Point(0., -1.), 10., 10., 5., Color(playerShipScroll > 0 ? .8 : .2, 0.));
@@ -315,10 +315,10 @@ void ShopPanel::DrawButtons() const
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	FillShader::Fill(
 		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - 35),
-		Point(SideWidth(), 70), Color(.2, 1.));
+		Point(SideWidth(), 70), COLOR_DIVIDERS);
 	FillShader::Fill(
 		Point(Screen::Right() - SideWidth() / 2, Screen::Bottom() - 70),
-		Point(SideWidth(), 1), Color(.3, 1.));
+		Point(SideWidth(), 1), COLOR_BUTTONS_BG);
 	
 	const Font &font = FontSet::Get(14);
 	Color bright = *GameData::Colors().Get("bright");
@@ -336,21 +336,21 @@ void ShopPanel::DrawButtons() const
 	const Font &bigFont = FontSet::Get(18);
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
+	FillShader::Fill(buyCenter, Point(60, 30), COLOR_DETAILS_BG);
 	string BUY = (selectedOutfit && player.Cargo().GetOutfitCount(selectedOutfit)) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? bright : dim);
 	
 	Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), Color(.1, 1.));
+	FillShader::Fill(sellCenter, Point(60, 30), COLOR_DETAILS_BG);
 	static const string SELL = "_Sell";
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? bright : dim);
 	
 	Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), Color(.1, 1.));
+	FillShader::Fill(leaveCenter, Point(70, 30), COLOR_DETAILS_BG);
 	static const string LEAVE = "_Leave";
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),

@@ -13,8 +13,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #ifndef SHOP_PANEL_H_
 #define SHOP_PANEL_H_
 
+#include "Color.h"
 #include "Panel.h"
-
 #include "Point.h"
 
 #include <map>
@@ -120,6 +120,10 @@ protected:
 
 	static const int ICON_TILE = 62;
 	static const int ICON_SIZE = ICON_TILE - 8;
+	
+	const Color COLOR_DETAILS_BG = Color(.1, 1.);
+	const Color COLOR_DIVIDERS = Color(.2, 1.);
+	const Color COLOR_BUTTONS_BG = Color(.3, 1.);
 	
 protected:
 	PlayerInfo &player;

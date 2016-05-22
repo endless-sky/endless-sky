@@ -101,6 +101,8 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 	info.DrawAttributes(drawPoint);
 	drawPoint.Y() += info.AttributesHeight();
 	
+	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);	
+	
 	info.DrawDescription(drawPoint);
 	drawPoint.Y() += info.DescriptionHeight();
 	

@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Dialog.h"
+#include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
@@ -66,8 +67,12 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 	info.DrawAttributes(drawPoint);
 	drawPoint.Y() += info.AttributesHeight();
 	
+	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
+	
 	info.DrawOutfits(drawPoint);
 	drawPoint.Y() += info.OutfitsHeight();
+
+	FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
 	
 	info.DrawDescription(drawPoint);
 	drawPoint.Y() += info.DescriptionHeight();
@@ -162,8 +167,12 @@ int ShipyardPanel::DrawDetails(const Point &center) const
 		info.DrawAttributes(drawPoint);
 		drawPoint.Y() += info.AttributesHeight() + 10;
 		
+		FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);		
+		
 		info.DrawOutfits(drawPoint);
 		drawPoint += Point(0, info.OutfitsHeight() + 10);
+		
+		FillShader::Fill(drawPoint + Point(DETAILS_WIDTH/2,0), Point(DETAILS_WIDTH, 1), COLOR_DIVIDERS);
 		
 		info.DrawDescription(drawPoint);
 		drawPoint += Point(0, info.DescriptionHeight() + 10);
