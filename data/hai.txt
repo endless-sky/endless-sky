@@ -171,8 +171,8 @@ outfitter "Hai Basics"
 	"Supercapacitor"
 	"Cargo Expansion"
 	"Hai Corundum Regenerator"
-	"A1 Butterfly Thruster"
-	"A1 Butterfly Steering"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
 	"Local Map"
 
 outfitter "Hai Intermediate"
@@ -193,12 +193,12 @@ outfitter "Hai Intermediate"
 	"Mass Expansion"
 	"Cargo Expansion"
 	"Hai Corundum Regenerator"
-	"A1 Butterfly Thruster"
-	"A1 Butterfly Steering"
-	"A2 Cleg Thruster"
-	"A2 Cleg Steering"
-	"A3 Hawksmoth Thruster"
-	"A3 Hawksmoth Steering"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
 	"Local Map"
 
 outfitter "Hai Advanced"
@@ -224,16 +224,16 @@ outfitter "Hai Advanced"
 	"Cargo Expansion"
 	"Hai Corundum Regenerator"
 	"Hai Diamond Regenerator"
-	"A1 Butterfly Thruster"
-	"A1 Butterfly Steering"
-	"A2 Cleg Thruster"
-	"A2 Cleg Steering"
-	"A3 Hawksmoth Thruster"
-	"A3 Hawksmoth Steering"
-	"A5 Planthopper Thruster"
-	"A5 Planthopper Steering"
-	"A8 Horsefly Thruster"
-	"A8 Horsefly Steering"
+	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic Steering`
+	`"Benga" Atomic Thruster`
+	`"Benga" Atomic Steering`
+	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic Steering`
+	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic Steering`
+	`"Bufaer" Atomic Thruster`
+	`"Bufaer" Atomic Steering`
 	"Local Map"
 
 phrase "hai"

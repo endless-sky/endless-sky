@@ -36,8 +36,8 @@ ship "Aphid"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
-		"A1 Butterfly Thruster"
-		"A1 Butterfly Steering"
+		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic Steering`
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
@@ -54,8 +54,8 @@ ship "Aphid" "Aphid (Anti-Missile)"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
 ship "Lightning Bug"
@@ -87,8 +87,8 @@ ship "Lightning Bug"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	engine -40 22
 	engine 40 22
@@ -111,8 +111,8 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries" 2
 		"Hai Corundum Regenerator"
-		"A3 Hawksmoth Thruster"
-		"A2 Cleg Steering"
+		`"Biroo" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
 ship "Shield Beetle"
@@ -147,8 +147,8 @@ ship "Shield Beetle"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
-		"A3 Hawksmoth Thruster"
-		"A8 Horsefly Steering"
+		`"Biroo" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	engine -44 133
 	engine 44 133
@@ -182,8 +182,8 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
-		"A5 Planthopper Steering"
-		"A8 Horsefly Steering"
+		`"Bondir" Atomic Steering`
+		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
@@ -198,8 +198,8 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
-		"A3 Hawksmoth Thruster"
-		"A8 Horsefly Steering"
+		`"Biroo" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
@@ -223,8 +223,8 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 5
-		"A5 Planthopper Steering"
-		"A8 Horsefly Steering"
+		`"Bondir" Atomic Steering`
+		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 
 
@@ -260,8 +260,8 @@ ship "Water Bug"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	engine -50 33
 	engine 50 33
@@ -287,8 +287,8 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
 ship "Water Bug" "Water Bug (Jump)"
@@ -302,7 +302,7 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Hai Chasm Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
-		"A2 Cleg Thruster"
-		"A2 Cleg Steering"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
 		"Jump Drive"
 
