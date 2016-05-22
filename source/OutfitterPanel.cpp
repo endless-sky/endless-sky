@@ -160,11 +160,11 @@ int OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY
 			buyLabel = "buy used("+to_string(available.GetTotalCount(outfit))+"): " + Format::Number(cost);
 		else if (!outfitter.Has(outfit))
 			buyLabel = "in stock: " + to_string(available.GetTotalCount(outfit));
-			
+				
 		if (95 * outfit->Cost() >= 100 * cost)
 		{
 			Font saleFont = FontSet::Get(18);
-			std::string saleLabel = "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]";
+			std::string saleLabel = cost ? "[SALE! "+Format::Percent(outfit->Cost()-cost, outfit->Cost())+" OFF!]" : "[FREE! PLEASE TAKE!]";
 			Point pos = point + Point(-saleFont.Width(saleLabel) / 2, -OUTFIT_SIZE / 2 + 26);
 			saleFont.Draw(saleLabel, pos, bright);
 		}
