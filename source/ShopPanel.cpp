@@ -1121,7 +1121,7 @@ int ShopPanel::DetailsWidth() const
 // Zero if the player does not have a large fleet or the screen is to small. 
 int ShopPanel::PlayerShipWidth() const
 {
-	if(shipsHere > 16 && (Screen::Width() > DETAILS_WIDTH * 5))
+	if(shipsHere > 12 && (Screen::Width() > DETAILS_WIDTH * 5))
 		return DETAILS_WIDTH;
 	return 0;
 }
