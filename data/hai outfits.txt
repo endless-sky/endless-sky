@@ -268,7 +268,7 @@ outfit "Boulder Reactor"
 	"heat generation" 34
 	description "The Hai built spacefaring Fusion Generators centuries ago, but they never really required anything more powerful, so their design remained relatively unchanged after it was miniaturized enough for their capital warships."
 
-outfit "A1 Butterfly Thruster"
+outfit `"Basrem" Atomic Thruster`
 	category "Engines"
 	"cost" 95000
 	thumbnail "outfit/tiny atomic thruster hai"
@@ -284,7 +284,7 @@ outfit "A1 Butterfly Thruster"
 	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engines for many millennia. Hai atomic engines are still much more energy hungry than other engines, but are more efficient than their human counterparts."
 
 
-outfit "A2 Cleg Thruster"
+outfit `"Benga" Atomic Thruster`
 	category "Engines"
 	"cost" 210000
 	thumbnail "outfit/small atomic thruster hai"
@@ -299,7 +299,7 @@ outfit "A2 Cleg Thruster"
 	"flare sound" "atomic tiny"
 	description "Unlike human space where atomic engines are a rare sight to see and a luxury to have, many years of being confined to a relatively small pocket of the Galaxy has allowed all Hai ships to be outfitted with atomic engines."
 
-outfit "A3 Hawksmoth Thruster"
+outfit `"Biroo" Atomic Thruster`
 	category "Engines"
 	"cost" 420000
 	thumbnail "outfit/medium atomic thruster hai"
@@ -315,7 +315,7 @@ outfit "A3 Hawksmoth Thruster"
 	description "This thruster is the standard thruster on most Hai light warships, providing enough thrust to make them useable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
 
 
-outfit "A5 Planthopper Thruster"
+outfit `"Bondir" Atomic Thruster`
 	category "Engines"
 	"cost" 780000
 	thumbnail "outfit/large atomic thruster hai"
@@ -330,7 +330,7 @@ outfit "A5 Planthopper Thruster"
 	"flare sound" "atomic medium"
 	description "While Deep Sky was busy developing the combat atomic engines, the Hai were working on making theirs even better. Because of this, Hai atomic engines are highly efficient compared to their human variants, requiring less energy to fire and producing less heat in the process."
 
-outfit "A8 Horsefly Thruster"
+outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
 	"cost" 1680000
 	thumbnail "outfit/huge atomic thruster hai"
@@ -346,7 +346,7 @@ outfit "A8 Horsefly Thruster"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
 
 
-outfit "A1 Butterfly Steering"
+outfit `"Basrem" Atomic Steering`
 	category "Engines"
 	"cost" 90000
 	thumbnail "outfit/tiny atomic steering hai"
@@ -358,7 +358,7 @@ outfit "A1 Butterfly Steering"
 	"turning heat" 1.7
 	description "Hai atomic engines are too expensive to buy for most humans. Even the smallest of the engines are worth more than many of the most common ships flown in human space."
 
-outfit "A2 Cleg Steering"
+outfit `"Benga" Atomic Steering`
 	category "Engines"
 	"cost" 180000
 	thumbnail "outfit/small atomic steering hai"
@@ -370,7 +370,7 @@ outfit "A2 Cleg Steering"
 	"turning heat" 2.9
 	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines, usually astound others in human space with the efficiency of their ship."
 
-outfit "A3 Hawksmoth Steering"
+outfit `"Biroo" Atomic Steering`
 	category "Engines"
 	"cost" 360000
 	thumbnail "outfit/medium atomic steering hai"
@@ -382,7 +382,7 @@ outfit "A3 Hawksmoth Steering"
 	"turning heat" 4.8
 	description  "Having such powerful engines is a double edged sword for the Hai, as the Unfettered Hai too own these powerful wonders. These engines allow most Hai ships to turn at amazing speeds, making them extremely deadly in combat."
 
-outfit "A5 Planthopper Steering"
+outfit `"Bondir" Atomic Steering`
 	category "Engines"
 	"cost" 720000
 	thumbnail "outfit/large atomic steering hai"
@@ -394,7 +394,7 @@ outfit "A5 Planthopper Steering"
 	"turning heat" 8.3
 	description "Reserved for special use on only a small number of Hai ships, these engines are one of the most expensive outfits that one could buy. Considerably more efficient than any other engine of the same size, Hai atomic engines are a go to choice for anyone in need of a high turn speed."
 
-outfit "A8 Horsefly Steering"
+outfit `"Bufaer" Atomic Steering`
 	category "Engines"
 	"cost" 1440000
 	thumbnail "outfit/huge atomic steering hai"
