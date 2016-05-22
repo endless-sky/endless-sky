@@ -298,9 +298,15 @@ void Engine::Step(bool isActive)
 	
 	// Update the player's ammo amounts.
 	ammo.clear();
+	const Outfit* lastOutfit = nullptr;
 	if(flagship)
 		for(const auto &it : flagship->Outfits())
 		{
+			// List each secondary weapon type only once. 
+			if(it.GetOutfit() == lastOutfit)
+				continue;
+			lastOutfit = it.GetOutfit();
+			
 			if(!it.GetOutfit()->Icon())
 				continue;
 			
