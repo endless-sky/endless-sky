@@ -1298,14 +1298,31 @@ mission "Terraforming 5"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
-	npc accompany save
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	
+        npc accompany save
 		government Republic
 		personality escort timid
 		fleet
 			name "RNS Aber"
 			variant
 				"Behemoth"
-        npc accompany save
+        T accompany save
 		government Republic
 		personality escort timid
 		fleet
@@ -1319,14 +1336,28 @@ mission "Terraforming 5"
 			name "RNS Greenlock"
 			variant
 				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greyhound"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Lestor"
+			variant
+				"Behemoth"
 	on visit
-                `"You have reached <destination>, but you have left at least one of your escorts behind! Better leave this planet and wait for them to arrive."`
+                `"You have reached <destination>, but at one or more of your escorts are in another system. Better leave this planet and wait for them to arrive."`
 
 
 mission "Building Skytower 2"
 	landing
 	name "building skytower [2]"
-	description "Transport the team of scientists home to <destination>."
+	description "Escort some freighters and ferry a team scientists to <destination>."
 	source Alphard
 	destination Earth
 	to offer 
@@ -1339,8 +1370,24 @@ mission "Building Skytower 2"
 	on offer
 		diolouge
 			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this and many other worlds. `
-			`You pick up the scientests and watch the cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
+			`You pick up the scientists and watch your cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
 				accept
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
 
         npc accompany save
 		government Republic
@@ -1363,13 +1410,27 @@ mission "Building Skytower 2"
 			name "RNS Greenlock"
 			variant
 				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greyhound"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Lestor"
+			variant
+				"Behemoth"
 	on visit
-                `"You have reached <destination>, but you have left at least one of your escorts behind! Better leave this planet and wait for them to arrive."`
+                `"You have reached <destination>, but one or more of your escorts are not in this system. Better leave this planet and wait for them to arrive."`
 
 	
 	on complete
 		payment 400000
-		conversation `Michel thanks you for escorting the ships, and gratefully hands you <payment>. Before you walk away, he clasps your shoulder and says: "You know, we're very grateful for the help you gave us, so I think we can give you a little somthing other than just a payment." He pulls out a slip of paper and writes on it. "<firt> <last>, right?"`
+		conversation `Michel thanks you for escorting the ships and transporting the scientists, and gratefully hands you <payment>. Before you walk away, he clasps you on the shoulder and says "You know, I'm very grateful that you chose to help us. This is an ambitious project, but I really beleive that this could save our planet. For all your help, I think I can give you a token of my appreciation." He pulls out a slip of paper and writes on it. "<first> <last>, right?"`
                              `"Yes," you say.`
                              `"Here," He hands you an Navy licence, "It won't buy you a cruiser, but it's the most I can give you."`
                         
@@ -1377,4 +1438,3 @@ mission "Building Skytower 2"
                                `       Wow! Thanks!`
                                `       Really? Thanks!`
                         `"No problem!" He flashes you a grin, "It was nice getting to know you, <first>." He bids you goodbye and walks away.`
-
