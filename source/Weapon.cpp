@@ -80,6 +80,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				burstCount = max(1., child.Value(1));
 			else if(child.Token(0) == "homing")
 				homing = child.Value(1);
+			else if(child.Token(0) == "rotation speed")
+				rotationSpeed = child.Value(1);
 			else if(child.Token(0) == "missile strength")
 				missileStrength = max(0., child.Value(1));
 			else if(child.Token(0) == "anti-missile")

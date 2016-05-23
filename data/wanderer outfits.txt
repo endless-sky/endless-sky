@@ -62,6 +62,7 @@ outfit "Sunbeam Turret"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 5.2
 		"firing heat" 6.2
 		"shield damage" 7.2
@@ -88,6 +89,7 @@ outfit "Dual Sunbeam Turret"
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 10.4
 		"firing heat" 12.4
 		"shield damage" 14.4

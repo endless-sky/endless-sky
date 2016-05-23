@@ -61,6 +61,7 @@ outfit "Pug Zapper Turret"
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 5.4
 		"firing heat" 2.9
 		"shield damage" 7.4
@@ -166,6 +167,7 @@ outfit "Pug Gridfire Turret"
 		"velocity" 1440
 		"lifetime" 1
 		"reload" 20
+		"rotation speed" 3
 		"firing energy" 800
 		"firing heat" 400
 		"shield damage" 600
@@ -468,15 +470,15 @@ ship "Pug Arfecta"
 	outfits
 		"Tier 3 Anti-Missile" 2
 		"Pug Gridfire Turret" 3
-		
+
 		"Cloaking Device"
 		"Pug Biodefenses" 12
-		
+
 		"Pug Lohmar Thruster"
 		"Pug Lohmar Steering"
 		"Pug Lohmar Steering"
 		"Jump Drive"
-	
+
 	engine -15 164
 	engine 15 164
 	turret -50 -29 "Tier 3 Anti-Missile"
@@ -641,7 +643,7 @@ planet Ruin
 mission "Ruin: Landing"
 	landing
 	source Ruin
-	
+
 	on offer
 		conversation
 			`You scan this planet's surface and pick up only a single, faint energy source. Cautiously, you approach it, and find an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of the tanks must be cryogenic, because they are covered in ice. A few slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems.`
@@ -683,7 +685,7 @@ mission "Pug in Wanderer Space"
 			`	The moment you reach for your gun, one of the armed Pug fires a burst of light from its staff, and a warm, pleasant feeling washes over you - the most wonderful feeling you have ever experienced. In a daze, you begin to wander back to your ship, stopping occasionally to marvel at the things around you that you had not noticed before: the glittering of sunlight on the water, the sparkling drops of ocean spray hanging from the tips of sea marsh grass, the sky that has the bluest blueness of all the blues you have ever seen. It is all so beautiful that you start to cry. Once you reach your ship, you sit in the cockpit fascinated by the blinking lights on the control panel and unable to remember what any of them are for.`
 			`	A few hours later, the wonderful feeling is replaced by a wave of nausea and a pounding headache.`
 				decline
-			
+
 			label ship
 			`	You decide to play it safe and return to your ship. The Pug remain as enigmatic as ever.`
 				decline

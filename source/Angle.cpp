@@ -110,6 +110,13 @@ Angle Angle::operator-() const
 
 
 
+double Angle::Difference(const Angle &other) const
+{
+	return (angle - other.angle) / DEG_TO_STEP;
+}
+
+
+
 Point Angle::Unit() const
 {
 	static vector<Point> cache;

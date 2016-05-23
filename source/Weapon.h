@@ -55,6 +55,8 @@ public:
 	double BurstReload() const;
 	int BurstCount() const;
 	int Homing() const;
+
+	double RotationSpeed() const;
 	
 	int MissileStrength() const;
 	int AntiMissile() const;
@@ -128,6 +130,8 @@ private:
 	double burstReload = 1.;
 	int burstCount = 1;
 	int homing = 0;
+
+	double rotationSpeed = 3.;
 	
 	int missileStrength = 0;
 	int antiMissile = 0;
@@ -178,6 +182,8 @@ inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
 inline int Weapon::Homing() const { return homing; }
+
+inline double Weapon::RotationSpeed() const { return rotationSpeed; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }

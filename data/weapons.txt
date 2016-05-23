@@ -69,6 +69,7 @@ outfit "Blaster Turret"
 		"velocity" 7
 		"lifetime" 60
 		"reload" 6
+		"rotation speed" 3
 		"firing energy" 10
 		"firing heat" 35
 		"shield damage" 9
@@ -92,6 +93,7 @@ outfit "Modified Blaster Turret"
 		"velocity" 7.5
 		"lifetime" 60
 		"reload" 6
+		"rotation speed" 3
 		"firing energy" 16
 		"firing heat" 55
 		"shield damage" 12
@@ -115,6 +117,7 @@ outfit "Quad Blaster Turret"
 		"velocity" 7
 		"lifetime" 60
 		"reload" 3
+		"rotation speed" 3
 		"firing energy" 10
 		"firing heat" 35
 		"shield damage" 9
@@ -208,6 +211,7 @@ outfit "Laser Turret"
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 1
 		"firing heat" 2.4
 		"shield damage" 2
@@ -232,6 +236,7 @@ outfit "Heavy Laser Turret"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 2
 		"firing heat" 4.4
 		"shield damage" 3.6
@@ -256,6 +261,7 @@ outfit "Electron Turret"
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 3.0
 		"firing heat" 5.2
 		"shield damage" 5.8
@@ -420,6 +426,7 @@ outfit "Pulse Turret"
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10
+		"rotation speed" 3
 		"firing energy" 24
 		"firing heat" 70
 		"shield damage" 45
@@ -470,6 +477,7 @@ outfit "Plasma Turret"
 		"velocity" 12
 		"lifetime" 40
 		"reload" 9
+		"rotation speed" 3
 		"firing energy" 30
 		"firing heat" 180
 		"hit force" 30

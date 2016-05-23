@@ -49,6 +49,9 @@ public:
 		const Point &GetPoint() const;
 		// Get the convergence angle adjustment of this weapon.
 		const Angle &GetAngle() const;
+		// Get the angle of aim of this weapon relative to the ship.
+		const Angle &GetAimOffset() const;
+		void SetAimOffset(const Angle &angle);
 		// Shortcuts for querying weapon characteristics.
 		bool IsTurret() const;
 		bool IsHoming() const;
@@ -58,12 +61,13 @@ public:
 		bool IsReady() const;
 		bool WasFiring() const;
 		int BurstRemaining() const;
-		// Perform one step (i.e. decrement the reload count).
-		void Step();
+		// Perform one step (i.e. decrement the reload count, aim turrets towards
+	  // target or default position).
+		void Step(const Ship &ship);
 		
-		// Fire this weapon. If it is a turret, it automatically points toward
-		// the given ship's target. If the weapon requires ammunition, it will
-		// be subtracted from the given ship.
+		// Fire this weapon. If it is a turret, it will not fire unless it has the
+		// appropriate aimOffset. If the weapon requires ammunition, it will be
+		// subtracted from the given ship.
 		void Fire(Ship &ship, std::list<Projectile> &projectiles, std::list<Effect> &effects);
 		// Fire an anti-missile. Returns true if the missile should be killed.
 		bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::list<Effect> &effects);
@@ -82,6 +86,7 @@ public:
 		Point point;
 		// Angle adjustment for convergence.
 		Angle angle;
+		Angle aimOffset = Angle(0.);
 		double reload = 0.;
 		double burstReload = 0.;
 		int burstCount = 0;

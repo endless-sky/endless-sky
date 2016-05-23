@@ -44,6 +44,7 @@ outfit "Quarg Skylance"
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 30
 		"firing heat" 10
 		"shield damage" 50

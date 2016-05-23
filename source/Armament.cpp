@@ -62,6 +62,21 @@ const Angle &Armament::Weapon::GetAngle() const
 
 
 
+// Get the angle of aim of this weapon relative to the ship.
+const Angle &Armament::Weapon::GetAimOffset() const
+{
+	return aimOffset;
+}
+
+
+
+void Armament::Weapon::SetAimOffset(const Angle &angle)
+{
+	aimOffset = angle;
+}
+
+
+
 // Shortcuts for querying weapon characteristics.
 bool Armament::Weapon::IsTurret() const
 {
@@ -106,8 +121,8 @@ int Armament::Weapon::BurstRemaining() const
 
 
 
-// Perform one step (i.e. decrement the reload count).
-void Armament::Weapon::Step()
+// Perform one step (i.e. decrement the reload count, adjust turret angle).
+void Armament::Weapon::Step(const Ship &ship)
 {
 	if(!outfit)
 		return;
@@ -121,11 +136,44 @@ void Armament::Weapon::Step()
 		--burstReload;
 	if(burstReload <= 0.)
 		isFiring = false;
+
+	if (isTurret)
+	{
+		Angle targetAimOffset;
+		shared_ptr<const Ship> target = ship.GetTargetShip();
+		
+		if (target && target->GetSystem() == ship.GetSystem()) {
+			Point start = ship.Position() + ship.Facing().Rotate(point) - .5 * ship.Velocity();
+			Point p = target->Position() - start + ship.GetPersonality().Confusion();
+			Point v = target->Velocity() - ship.Velocity();
+			double steps = RendezvousTime(p, v, outfit->Velocity());
+			
+			// Special case: RendezvousTime() may return NaN. But in that case, this
+			// comparison will return false.
+			if(!(steps < outfit->TotalLifetime()))
+				steps = outfit->TotalLifetime();
+			
+			p += steps * v;
+			
+			targetAimOffset = Angle(TO_DEG * atan2(p.X(), -p.Y())) - ship.Facing() - angle;
+		}
+		else
+			targetAimOffset = Angle(TO_DEG * 0);
+		
+		double difference = aimOffset.Difference(targetAimOffset);
+		double n = outfit->RotationSpeed();
+		
+		if (abs(difference - 0) < n)
+			SetAimOffset(targetAimOffset);
+		else if (difference < 0)
+			SetAimOffset(aimOffset + Angle(n));
+		else if (difference > 0)
+			SetAimOffset(aimOffset - Angle(n));
+	}
 }
 
 
-
-// Fire this weapon. If it is a turret, it automatically points toward
+// Fire this weapon. If it is a turret, it will only fire if pointed toward
 // the given ship's target. If the weapon requires ammunition, it will
 // be subtracted from the given ship.
 void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effect> &effects)
@@ -144,8 +192,12 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 	if(ship.IsBoarding() || ship.Commands().Has(Command::BOARD))
 		target.reset();
 	
-	if(!isTurret || !target || target->GetSystem() != ship.GetSystem())
+	if (!isTurret)
 		aim += angle;
+	else if(!target || target->GetSystem() != ship.GetSystem())
+	{
+		aim += aimOffset;
+	}
 	else
 	{
 		Point p = target->Position() - start + ship.GetPersonality().Confusion();
@@ -159,7 +211,14 @@ void Armament::Weapon::Fire(Ship &ship, list<Projectile> &projectiles, list<Effe
 		
 		p += steps * v;
 		
-		aim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
+		Angle targetAim = Angle(TO_DEG * atan2(p.X(), -p.Y()));
+		Angle targetAimOffset = targetAim - angle - ship.Facing();
+		
+		// Do not fire turret if the angle is off by too much.
+		if (abs(aimOffset.Difference(targetAimOffset)) > 10)
+			return;
+		
+		aim += aimOffset;
 	}
 	
 	projectiles.emplace_back(ship, start, aim, outfit);
@@ -431,11 +490,13 @@ bool Armament::FireAntiMissile(int index, Ship &ship, const Projectile &projecti
 
 
 
-// Update the reload counters.
+// Update the reload counters and turret angles.
 void Armament::Step(const Ship &ship)
 {
 	for(Weapon &weapon : weapons)
-		weapon.Step();
+	{
+		weapon.Step(ship);
+	}
 	
 	for(auto &it : streamReload)
 	{

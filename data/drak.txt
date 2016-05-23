@@ -21,6 +21,7 @@ outfit "Drak Distancer"
 		"velocity" 2000
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 15
 		"firing heat" 10
 		"firing force" 60
@@ -44,6 +45,7 @@ outfit "Drak Draining Field"
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
+		"rotation speed" 3
 		"firing energy" 20
 		"firing heat" 5
 		"firing force" 30
@@ -86,6 +88,7 @@ outfit "Drak Turret"
 		"velocity" 36
 		"lifetime" 30
 		"reload" 16
+		"rotation speed" 3
 		"firing energy" 160
 		"firing heat" 160
 		"shield damage" 256
@@ -199,12 +202,12 @@ ship Archon
 		"Drak Draining Field"
 		"Drak Distancer" 2
 		"Drak Turret" 3
-		
+
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Hyperdrive"
 		"Jump Drive"
-	
+
 	engine -17 92
 	engine 17 92
 	gun 0 -74 "Drak Antimatter Cannon"
