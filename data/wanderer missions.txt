@@ -1135,3 +1135,137 @@ mission "Wanderers: Alpha Surveillance G"
 			label stay
 			`	You raise your hands in surrender. The guards fire, and everything goes black.`
 				accept
+
+
+
+mission "Wanderers: Alpha Surveillance H"
+	name "Meet up with Danforth"
+	description "Meet Admiral Danforth in the spaceport on Farpoint, and talk about what to do next about the Alphas."
+	landing
+	source "Farpoint"
+	to offer
+		has "Wanderers: Alpha Surveillance G: done"
+	
+	on offer
+		conversation
+			`You wake up with a pounding headache and the groggy, hung-over feeling of having been shot with a military grade stun gun. You are strapped into a metal chair with at least a dozen electrodes connected to your head and body. Elias is in a similar chair facing you. A technician stands behind a bank of computer displays in one corner, with the nameless officer looking on.`
+			choice
+				`	"What's going on?"`
+					goto what
+				`	"I demand that you let me go!"`
+					goto demand
+				`	(Say nothing.)`
+			`	Seeing that you are both awake, the officer walks over and looks at you for a second with a cool, appraising expression. Then without warning, he punches you in the face.`
+				goto punched
+			label what
+			`	"Standard operating procedure," says the officer, walking over to you. Then, without warning, he punches you in the face.`
+				goto punched
+			label demand
+			`	The officer walks over to you. "Sorry, I can't let you go just yet," he says. Then, without warning, he punches you in the face.`
+			label punched
+			`	While you are still reeling from the blow, the officer walks over to Elias and punches him, as well. He pauses to adjust one of the electrodes that was loosened by the blow, then walks back to you and punches you again. The technician stares down at the computer screens with an intense frown on his face as the officer hits Elias again and then walks back to you.`
+			choice
+				`	"What the hell are you doing?"`
+					goto question
+				`	"Please just tell me what you want."`
+					goto question
+				`	(Spit in his face.)`
+					goto spit
+				`	(Do nothing.)`
+			`	The officer glances over at the technician, who says, "<last> appears to be well within human parameters, sir."`
+				goto human
+			label question
+			`	He ignores your question and glances over at the technician, who says, "<last> appears to be well within human parameters, sir."`
+				goto human
+			label spit
+			`	"Interesting," he says, as he wipes the spittle off his face with his sleeve. Then he glances over at the technician. "Did you get a read on that?"`
+			`	"<last> is well within human parameters, sir," says the technician.`
+			label human
+			`	The officer nods in acknowledgement, then unclips your arm restraints. "It seems I owe you an apology, Captain," he says. "Would you like to hit me back?" He leans in toward you to put his face within striking range.`
+			choice
+				`	"No thanks."`
+				`	(Punch him back.)`
+					goto retaliate
+			`	"How kind of you," he says. Then he asks the technician, "What about Hanover?"`
+			`	The technician says, "Hanover isn't human. Or Alpha. I've never seen readings like this before, except maybe from an empath."`
+				goto hanover
+			label retaliate
+			`	You punch him. He staggers back, then looks over at the technician, who reports, "Hanover felt that, sir. Empathetic response."`
+			label hanover
+			`	"What?" says the officer. He walks over and studies the monitors for a minute, then says, "Mister Hanover, you have the skin of a human. You have the physique of an Alpha. But you registered more sympathetic pain from watching someone else get struck in the face than you did when you yourself were punched, which makes your brain the complete opposite of an Alpha's. So, what the hell are you? Who made you, and why?"`
+			`	Elias says nothing.`
+			`	"Sir," says the technician, "could the stories be true?" The look in his eyes is something approaching awe.`
+			`	"Yes, there are the old legends," says the officer thoughtfully. "A secret weapon against the Alphas. Made in government labs with forbidden technology. Like the Alphas in some ways, but designed to serve, not to master all. Is that what you are? Are you a Beta?" Elias says nothing.`
+			choice
+				`	"If he's not an Alpha, you have no right to imprison us."`
+				`	"If you're convinced that neither of us is an Alpha, will you please let us go?"`
+			`	"I suppose so," says the officer. As they release you from the chairs, he says to Elias, "If you are what I believe you are, we can help you to complete your work at last. Gather your siblings. Join us. Together we can put an end to the Alphas." Still, Elias says nothing.`
+			`	They lead you out into the hallway and you realize you are on board a Navy Cruiser. As you leave the ship, the officer tells Elias, "Think about what I said."`
+			`	Elias remains quiet while you are in earshot of the ship, then says, "Let's meet up with Danforth back in the spaceport and see what he thinks we should do next."`
+				accept
+
+
+
+mission "Wanderers: Alpha Surveillance I"
+	name "Return Elias to <planet>"
+	description "Bring Elias Hanover back to <destination>, where he will hopefully be safe from Alpha retaliation for driving them out of their base on Avalon."
+	source "Farpoint"
+	destination "Alta Hai"
+	to offer
+		has "Wanderers: Alpha Surveillance G: done"
+	passengers 1
+	blocked "You don't have enough passenger space to take on this mission. Return here when you have a bunk free."
+	
+	on offer
+		fail "Wanderers: Alpha Surveillance H"
+		conversation
+			`Danforth looks relieved to see you both alive. "Damned Republic Intelligence Agency," he says. "They think they're above the law. And after all that they decided you both are clean?" He looks intently at Elias.`
+			choice
+				`	"Yes, in fact now they're trying to get us to work together with them against the Alphas."`
+				`	"Yes and they think Elias can help them against the Alphas."`
+			`	"I see," says Danforth. "I wish I could tell you that they can be trusted. I wish I could tell you that there is no safer place for an enemy of the Alphas than here with me."`
+			branch know
+				has "event: death of nguyen"
+			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a man you do not recognize, but Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
+				goto leave
+			label know
+			`	He pauses to pull out a data pad from his desk and call up a file on it. "Recently," says Danforth, "an officer of mine assisted in taking down an Alpha enclave, like you have done." He's looking specifically at Elias as he says that. "A month later he was somehow assassinated, right here in my Naval base. Here's a photo of him." Danforth slides the data pad across the desk. It's showing a photo of Commander Nguyen, and to your surprise Elias stifles a cry of dismay when he sees who it is. Danforth says, "I can't pretend you would be safe here. I think the safest thing for both of you would be to leave human space for a while."`
+				goto leave
+			label leave
+			`	You agree that you will take Elias back to Alta Hai. Whatever Elias is, whoever might wish him harm, you can only hope that a Quarg ringworld is the safest place for him right now.`
+				accept
+
+
+
+mission "Wanderers: Alpha Surveillance J"
+	landing
+	source "Alta Hai"
+	destination "Vara K'chrai"
+	to offer
+		has "Wanderers: Alpha Surveillance I: done"
+	
+	on offer
+		event "wanderers: first tech increase"
+		conversation
+			`Your drop Elias off on <origin>. "Don't worry about me," he says, "The Quarg have kept me safe here for a long time. Thanks for being willing to risk your life against the Alphas."`
+			choice
+				`	"Wait, won't you tell me whether anything that officer said about you was true?"`
+				`	(Let him go without pressing him for more information.)`
+					goto end
+			`	He says, "It is true that I am six centuries old. It is true that I am not strictly human. It is true that I oppose the Alphas. More than that, I will not share, both for my own safety and for yours."`
+			label end
+			`	You wish Elias the best of luck and tell him that you hope to meet again one day. Now you should probably return to Wanderer space and check in with Iktat Rek.`
+				accept
+	
+	on complete
+		"reputation: Wanderer" >?= 30
+		event "wanderers: unfettered invasion" 64
+		conversation
+			`It's hard to be certain, but the activity around the spaceport seems more hectic that usual, and the Wanderers seem to have put some new ship models into production as well. When you ask Iktat Rek about it, he says, "When the Unfettered first [invaded, occupied] our territory, we had almost no weapons of [war, defense]. Since then we have retrieved old [designs, instructions] and begun preparing for what is to come, [unpleasant, unfortunate] though it may be."`
+			`	As you describe your mixed success at dealing with the Alphas, he shakes his wings and ruffles out his feathers in what seems to be a nervous, agitated gesture. "These Alpha [beings, creatures] sound more [dangerous, unreasonable, ruthless] than the Unfettered," he says. "Any [social, gregarious] species that evolves naturally develops certain [limits, checks, restraints] that an [artificial, constructed] species may not possess. How can we best [respond to, deal with] them?"`
+			choice
+				`	"It may be wisest to leave them alone."`
+				`	"I think the only answer is to be strong enough that they leave you alone."`
+				`	"Sooner or later we will have to hunt them down and destroy them."`
+			`	"You are probably right," he says, uncertainly. He stares absently up into the sky and scratches at his wing with one talon. A few feathers fall out. "If only the Eye would open," he says. "I feel the air is [charged, tense] like the moment before a storm. Like we are [waiting, anticipating] something that ought to be here and is not. Though it may bring [catastrophe, upheaval, transition] I wish the wait would end."`
+			`	You talk for a while longer, but it seems that for now there is nothing more the Wanderers need from you. Iktat Rek mentions that you should stop by the outfitter before you leave and see "our [grim, regrettable] new devices," then thanks you once more and departs.`

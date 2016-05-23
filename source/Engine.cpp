@@ -783,6 +783,7 @@ void Engine::EnterSystem()
 	
 	projectiles.clear();
 	effects.clear();
+	flotsam.clear();
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1002,6 +1003,8 @@ void Engine::CalculateStep()
 		Ship *collector = nullptr;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
+			if(ship->GetSystem() != player.GetSystem() || ship->CannotAct())
+				continue;
 			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
 				continue;
 			
@@ -1486,6 +1489,9 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		return;
 	if(target->GetGovernment()->IsEnemy())
 		return;
+	if(!target->GetGovernment().Language().empty())
+		if(!player.GetCondition("language: " + target->GetGovernment().Language()))
+			return;
 	
 	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
