@@ -737,6 +737,7 @@ phrase "friendly navy"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
                "Uncle Sam needs YOU for the Navy!
+               "We want YOU for the Navy!
 
 phrase "friendly militia"
 	word
