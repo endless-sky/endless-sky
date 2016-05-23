@@ -21,6 +21,7 @@ Version 0.9.1:
     * New civilian hail messages, referencing fictitious futuristic bands. (@Wrzlprnft)
     * Fixed an armistice that lasts too long if the player has a jump drive. (@LocalGod79)
     * In the Free Worlds plot, Ijs can no longer be in two places at once. (@LocalGod79)
+    * New Hai outfits to replace human placeholders (@Wrzlprnft, @LocalGod79, @Amazinite)
     * New Wanderer missions, giving you access to new ships and technology.
     * New human side missions that give hints about different alien species near human space.
     * Adjusted the Kor Mereti weapons and fleets to balance them better against the Kor Sestor.
