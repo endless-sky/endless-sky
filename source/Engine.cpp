@@ -1489,8 +1489,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		return;
 	if(target->GetGovernment()->IsEnemy())
 		return;
-	if(!target->GetGovernment().Language().empty())
-		if(!player.GetCondition("language: " + target->GetGovernment().Language()))
+	if(!target->GetGovernment()->Language().empty())
+		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))
 			return;
 	
 	// No active ship has a grudge already against this government.
