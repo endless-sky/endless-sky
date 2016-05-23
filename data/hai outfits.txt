@@ -368,7 +368,7 @@ outfit `"Benga" Atomic Steering`
 	"turn" 492.4
 	"turning energy" 1.2
 	"turning heat" 2.9
-	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines, usually astound others in human space with the efficiency of their ship."
+	description "Hai atomic engines allow for some of the most customizable ships in known space due to their size and efficiency. The few humans that are able to save up enough money to buy a set of Hai engines usually astound others in human space with the efficiency of their ship."
 
 outfit `"Biroo" Atomic Steering`
 	category "Engines"
