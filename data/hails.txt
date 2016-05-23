@@ -703,7 +703,7 @@ phrase "friendly navy"
 		" the galaxy!"
 		" the Republic!"
 		" the world!"
-                " our worlds!"
+               " our worlds!"
 
 phrase "friendly navy"
 	word
@@ -727,7 +727,7 @@ phrase "friendly navy"
 	word
 		" in the galaxy!"
 		" in the Republic!"
-                " ever!"
+               " ever!"
 
 phrase "friendly navy"
 	word
@@ -736,7 +736,7 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
-                "Uncle Sam needs YOU for the Navy!
+               "Uncle Sam needs YOU for the Navy!
 
 phrase "friendly militia"
 	word
