@@ -1000,8 +1000,8 @@ phrase "friendly pug"
 
 phrase "friendly quarg"
         word 
-                "We "
-                "The Quarg "
+               "We "
+               "The Quarg "
 		"Our mission is to "
 		"The Drak have asked us to "
 		"Our species will "
@@ -1029,7 +1029,7 @@ phrase "friendly quarg"
 		"an end to hate"
 		"an end to violence"
 		"an end to warfare"
-                "peace in this part of our galaxy"
+               "peace in this part of our galaxy"
         word
                 "."
 
