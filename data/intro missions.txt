@@ -309,8 +309,8 @@ mission "Intro [1 Interceptor]"
 		not "Intro [1 Transport]: offered"
 		not "Intro [1 Freighter]: offered"
 	npc save
-		government Escort
-		personality timid
+		government Merchant
+		personality timid escort
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Morning Light"
 	npc

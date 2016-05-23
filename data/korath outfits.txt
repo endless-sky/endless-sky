@@ -10,7 +10,7 @@
 
 outfit "Generator (Candle Class)"
 	category "Power"
-	cost 323000
+	cost 493000
 	thumbnail "outfit/small korath generator"
 	"mass" 23
 	"outfit space" -23
@@ -20,7 +20,7 @@ outfit "Generator (Candle Class)"
 
 outfit "Generator (Furnace Class)"
 	category "Power"
-	cost 625000
+	cost 925000
 	thumbnail "outfit/medium korath generator"
 	"mass" 39
 	"outfit space" -39
@@ -30,7 +30,7 @@ outfit "Generator (Furnace Class)"
 
 outfit "Generator (Inferno Class)"
 	category "Power"
-	cost 1307000
+	cost 1877000
 	thumbnail "outfit/large korath generator"
 	"mass" 71
 	"outfit space" -71

@@ -996,10 +996,16 @@ mission "Rim Archaeology 1"
 	
 	on complete
 		conversation
-			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, random white spots appear on the screen. "Air pockets," he says, "some of them filled in with ground water. Nothing out of the ordinary."`
-			`	When the scan reaches about thirty meters below the surface, suddenly many air pockets appear, laid out in regular lines. "Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city."`
+			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, a few irregular white spots appear on the screen.`
+			choice
+				`	"What are those?"`
+				`	(Be quiet and let him focus.)`
+					goto scan
+			`	"Air pockets," he says, "some of them filled in with ground water. Nothing out of the ordinary."`
+			label scan
+			`	When the scan reaches about thirty meters below the surface, suddenly the view changes...`
 			scene "scene/geoscan"
-			`	You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
+			`	"Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city." You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
 
 
 

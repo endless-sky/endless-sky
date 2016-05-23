@@ -1429,6 +1429,13 @@ bool Ship::CanLand() const
 
 
 
+bool Ship::CannotAct() const
+{
+	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
+}
+
+
+
 double Ship::Cloaking() const
 {
 	return sprite.IsEmpty() ? 1. : cloak;
@@ -2255,13 +2262,6 @@ void Ship::RemoveEscort(const Ship &ship)
 			escorts.erase(it);
 			return;
 		}
-}
-
-
-
-bool Ship::CannotAct() const
-{
-	return (zoom != 1. || isDisabled || hyperspaceCount || pilotError || cloak);
 }
 
 
