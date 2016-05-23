@@ -59,6 +59,8 @@ fleet "Large Hai"
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
+		"Arachnid"
+		"Mite" 7
 	variant 2
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
@@ -70,6 +72,8 @@ fleet "Large Hai"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug"
 		"Aphid (Anti-Missile)" 4
+		"Arachnid"
+		"Mite" 7
 	variant 3
 		"Shield Beetle"
 		"Lightning Bug (Pulse)"
@@ -86,6 +90,8 @@ fleet "Large Hai"
 	variant 3
 		"Shield Beetle (Tracker)"
 		"Water Bug" 3
+		"Arachnid"
+		"Mite" 7
 
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
@@ -122,11 +128,14 @@ fleet "Large Unfettered"
 		"Lightning Bug"
 	variant 3
 		"Shield Beetle (Tracker)"
-		"Shield Beetle"
+		"Arachnid"
+		"Mite" 7
 	variant 1
 		"Shield Beetle (Tracker)" 2
 	variant 1
-		"Shield Beetle" 2
+		"Shield Beetle"
+		"Arachnid"
+		"Mite" 7
 	variant 1
 		"Lightning Bug" 5
 
@@ -396,6 +405,108 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		
+ship "Mite"
+	sprite "ship/hai mite"
+	attributes
+		category "Fighter"
+		"cost" 29000
+		"shields" 1200
+		"hull" 200
+		"required crew" 1
+		"bunks" 1
+		"mass" 45
+		"drag" 2.13
+		"heat dissipation" .9
+		"outfit space" 137
+		"weapon capacity" 26
+		"engine capacity" 38
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Water Coolant System"
+		"Pulse Cannon" 2
+		"RT-I Radiothermal"
+		"Supercapacitor" 3
+		"S-270 Regenerator"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		
+	engine -15 30
+	engine 15 30
+	gun -14 -10 "Pulse Cannon"
+	gun 14 -10 "Pulse Cannon"
+	explode "tiny explosion" 15
+	explode "small explosion" 5
+	description "The Mite is a point defense fighter developed by the Hai for protecting convoys and large warships."
+
+ship "Arachnid"
+	sprite "ship/hai arachnid"
+	attributes
+		category "Heavy Warship"
+		"cost" 15200000
+		"shields" 33400
+		"hull" 7300
+		"required crew" 151
+		"bunks" 238
+		"mass" 1110
+		"drag" 21
+		"heat dissipation" .4
+		"fuel capacity" 700
+		"cargo space" 150
+		"outfit space" 720
+		"weapon capacity" 250
+		"engine capacity" 160
+		weapon
+			"blast radius" 400
+			"shield damage" 3500
+			"hull damage" 1800
+			"hit force" 5000
+	outfits
+		"Pulse Cannon" 2
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		"Pulse Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"Fission Reactor"
+		"LP288a Battery Pack"
+		"S-970 Regenerator"
+		"Cooling Ducts" 4
+		
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+		
+	engine -44 125
+	engine 44 125
+	gun -16 -176 "Pulse Cannon"
+	gun 16 -176 "Pulse Cannon"
+	gun -25 -166 "Hai Tracker Pod"
+	gun 25 -166 "Hai Tracker Pod"
+	gun -16 -176 "Hai Tracker Pod"
+	gun 16 -176 "Hai Tracker Pod"
+	turret 0 15 "Pulse Turret"
+	turret 0 -114 "Pulse Turret"
+	turret 0 157 "Heavy Anti-Missile Turret"
+	turret 0 103 "Heavy Anti-Missile Turret"
+	fighter -37 -65
+	fighter 37 -65
+	fighter -46 40
+	fighter 46 40
+	fighter -72 -46
+	fighter 72 -46
+	fighter -101 57
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "big explosion" 40
+	explode "huge explosion" 15
+	description "The Arachnid is a Hai Carrier designed to keep Hai freighter convoys protected from massed small ship attacks that would ordinarily overwhelm the slower or smaller Hai vessels.
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
@@ -443,17 +554,21 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 shipyard "Hai Basics"
 	"Aphid"
 	"Lightning Bug"
+	"Mite"
 
 shipyard "Hai Intermediate"
+	"Mite"
 	"Aphid"
 	"Lightning Bug"
 	"Water Bug"
 
 shipyard "Hai Advanced"
+	"Mite"
 	"Aphid"
 	"Lightning Bug"
 	"Water Bug"
 	"Shield Beetle"
+	"Arachnid"
 
 outfitter "Hai Basics"
 	"Pulse Cannon"
