@@ -221,7 +221,7 @@ mission "FW Southern Battle 1"
 	
 	on offer
 		conversation
-			`Because this world is a tourist destination, there are innumerable small cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
+			`Because this world is a tourist destination, there are innumerable fancy cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
 			choice
 				`	"Do you have any tactical advice on fighting ships with one of those installed?"`
 					goto advice
