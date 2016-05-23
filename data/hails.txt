@@ -699,11 +699,11 @@ phrase "friendly navy"
 		"Defend"
 		"Protect"
 		"Travel"
-		"View"
 	word
 		" the galaxy!"
 		" the Republic!"
 		" the world!"
+                " our worlds!"
 
 phrase "friendly navy"
 	word
@@ -727,6 +727,7 @@ phrase "friendly navy"
 	word
 		" in the galaxy!"
 		" in the Republic!"
+                " ever!"
 
 phrase "friendly navy"
 	word
@@ -735,7 +736,7 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
-		"We need YOU for the Navy!"
+                "Uncle Sam needs YOU for the Navy!
 
 phrase "friendly militia"
 	word
@@ -996,7 +997,40 @@ phrase "friendly pug"
 		" through-out the universe."
 		" among all sentient beings."
 
-
+phrase "friendly quarg"
+        word 
+                "We "
+                "The Quarg "
+		"Our mission is to "
+		"The Drak have asked us to "
+		"Our species will "
+		"Our job is to "
+		"We wish to "
+	word
+		"bring "
+		"promote "
+		"advance "
+		"ensure "
+		"create "
+		"maintain "
+		"stimulate "
+		"support "
+		"uphold "
+		"enforce "
+		"aid the cause of "
+		"work for "
+		"bring about "
+	word
+		"peace"
+		"healing"
+		"tranqulity"
+		"freedom"
+		"an end to hate"
+		"an end to violence"
+		"an end to warfare"
+                "peace in this part of our galaxy"
+        word
+                "."
 
 # Shakespearean insults.
 phrase "hostile disabled"
