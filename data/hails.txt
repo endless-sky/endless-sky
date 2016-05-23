@@ -699,11 +699,11 @@ phrase "friendly navy"
 		"Defend"
 		"Protect"
 		"Travel"
-		"View"
 	word
 		" the galaxy!"
 		" the Republic!"
 		" the world!"
+                " our worlds!"
 
 phrase "friendly navy"
 	word
@@ -736,6 +736,9 @@ phrase "friendly navy"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
 		"We need YOU for the Navy!"
+                "Uncle Joe wants YOU for the Republic Navy"
+
+#uncle Joe is a spinnoff of uncle Sam
 
 phrase "friendly militia"
 	word
