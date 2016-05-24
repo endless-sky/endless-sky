@@ -56,6 +56,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() const override;
 	
+	static void DrawMiniMap(const PlayerInfo &player, double alpha, const System *const jump[2], int step);
+	
 	
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -84,6 +86,7 @@ protected:
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.
 	bool IsSatisfied(const Mission &mission) const;
+	static bool IsSatisfied(const PlayerInfo &player, const Mission &mission);
 	
 	// Function for the "find" dialogs:
 	static int Search(const std::string &str, const std::string &sub);
@@ -116,6 +119,7 @@ private:
 	void DrawNames() const;
 	void DrawMissions() const;
 	void DrawPointer(const System *system, Angle &angle, const Color &color) const;
+	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true);
 };
 
 
