@@ -3990,6 +3990,8 @@ ship "Scout"
 
 ship "Shuttle"
 	sprite "ship/shuttle"
+		"frame time" 4
+		"delay" 14
 	attributes
 		category "Transport"
 		"cost" 180000
