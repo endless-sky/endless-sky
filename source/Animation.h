@@ -32,17 +32,15 @@ class Animation {
 public:
 	class Frame {
 	public:
-		Frame();
-		
-		uint32_t first;
-		uint32_t second;
-		float fade;
+		uint32_t first = 0;
+		uint32_t second = 0;
+		float fade = 0.f;
 	};
 	
 	
 public:
 	// Default constructor.
-	Animation();
+	Animation() = default;
 	Animation(const Sprite *sprite, float frameRate);
 	
 	// Load the animation.
@@ -78,17 +76,18 @@ private:
 	
 	
 private:
-	const Sprite *sprite;
+	const Sprite *sprite = nullptr;
 	std::string spriteName;
-	int swizzle;
+	int swizzle = 0;
 	
-	float frameRate;
+	float frameRate = 2.f / 60.f;
+	int delay = 0;
 	// The chosen frame will be (step * frameRate) + frameOffset.
-	mutable float frameOffset;
-	mutable bool startAtZero;
-	mutable bool randomize;
-	bool repeat;
-	bool rewind;
+	mutable float frameOffset = 0;
+	mutable bool startAtZero = false;
+	mutable bool randomize = false;
+	bool repeat = true;
+	bool rewind = false;
 };
 
 
