@@ -78,6 +78,7 @@ Version 0.9.1:
     * Changed the "repairing" ship info line to "charging shields" unless you have hull repair too.
     * Put a limit on how often other ships broadcast requests for help.
     * The 'D' key now works as a shortcut for "leave" in the shop panels.
+    * You can now cancel "capture ship" without fighting by clicking "defend" as your first action.
   * Under the hood:
     * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
     * Added an error message if a fleet definition references a nonexistent ship type.
