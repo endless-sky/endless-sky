@@ -702,7 +702,7 @@ phrase "friendly navy"
 	word
 		" the galaxy!"
 		" the Republic!"
-		" the world!"
+		" the Earth!"
                " our worlds!"
 
 phrase "friendly navy"
