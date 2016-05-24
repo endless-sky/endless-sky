@@ -83,10 +83,14 @@ void Animation::Save(DataWriter &out) const
 	{
 		if(frameRate != static_cast<float>(2. / 60.))
 			out.Write("frame rate", frameRate * 60.);
-		if(rewind)
-			out.Write("rewind");
 		if(delay)
 			out.Write("delay", delay);
+		if(randomize)
+			out.Write("random start frame");
+		if(!repeat)
+			out.Write("no repeat");
+		if(rewind)
+			out.Write("rewind");
 	}
 	out.EndChild();
 }
@@ -267,7 +271,7 @@ void Animation::DoFirst(int step) const
 	{
 		randomize = false;
 		if(sprite && sprite->Frames())
-			frameOffset += Random::Int(sprite->Frames());
+			frameOffset += Random::Int(sprite->Frames() + delay);
 	}
 	else if(startAtZero)
 	{

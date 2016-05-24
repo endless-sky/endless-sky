@@ -1,6 +1,6 @@
 Version 0.9.1:
   * Bug fixes:
-    * Typo fixes. (@Alkallid, @Wrzlprnft)
+    * Typo fixes. (@Alkallid, @Wrzlprnft, @toilethinges)
     * No longer crashes if a saved game references a nonexistent "person."
     * Fixed a crash if the player tricks the game into letting them depart in an automaton.
     * The "southern carriers" no longer take over the entire fleets when they appear.
@@ -15,6 +15,7 @@ Version 0.9.1:
     * Disabled NPCs now start always out at zero velocity.
     * You can no longer plan a jump drive jump between two systems you don't know are linked.
     * Fixed the planet panel flicker when you first enter your ship.
+    * Ships no longer ask you for help if they do not speak your language.
   * Game content:
     * New human ship, the "Boxwing" cargo fighter. (@LocalGod79, @pootthedestroyer)
     * Updated "Southern Carriers" sprites. (@LocalGod79)
@@ -59,6 +60,8 @@ Version 0.9.1:
     * Fleets taking off from a planet now stagger their departure a bit, to look more organic.
     * Ships are now non-targetable for half a second after leaving hyperspace.
     * Dying carriers now release any fighters they are still carrying.
+    * You can now specify animation speed as "frame time" (game frames per animation frame).
+    * A looping animation can now have a "delay" in between cycles.
   * User interface:
     * Added a pop-up mini map that is displayed when your ship is jumping.
     * Route finding now prefers less dangerous systems if multiple paths have equal length.
