@@ -741,7 +741,7 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
-                "We need YOU for the Navy!
+               "We want YOU for the Navy!
 
 phrase "friendly militia"
 	word
