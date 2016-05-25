@@ -703,12 +703,12 @@ phrase "friendly navy"
 	word
 		" the galaxy!"
 		" the Republic!"
-	       " the Paradise Worlds!"
- 	       " the Core!"
- 	       " the Rim!"
- 	       " the South!"
- 	       " the Dirt Belt!"
- 	       " the Deep!"
+	        " the Paradise Worlds!"
+ 	        " the Core!"
+ 	        " the Rim!"
+ 	        " the South!"
+ 	        " the Dirt Belt!"
+ 	        " the Deep!"
 
 
 phrase "friendly navy"
@@ -741,7 +741,7 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
-               "We want YOU for the Navy!
+               "We want YOU for the Navy!"
 
 phrase "friendly militia"
 	word
@@ -996,6 +996,11 @@ phrase "friendly pug"
 		"friendship"
 		"unity"
 		"the end of violence"
+        word
+ 		"."
+ 		" in the galaxy."
+ 		" through-out the universe."
+ 		" among all sentient beings."
 
 # Shakespearean insults.
 phrase "hostile disabled"
