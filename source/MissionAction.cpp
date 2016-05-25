@@ -298,13 +298,16 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 		// begin to remove items from it.
 		vector<const Mission *> failedMissions;
 		for(const Mission &mission : player.Missions())
-			if(fail.find(mission.Identifier()) != fail.end())
+			if(fail.count(mission.Identifier()))
 				failedMissions.push_back(&mission);
 		for(const Mission *mission : failedMissions)
 			player.RemoveMission(Mission::FAIL, *mission, ui);
 	}
 	
+	// Check if applying the conditions changes the player's reputations.
+	player.SetReputationConditions();
 	conditions.Apply(player.Conditions());
+	player.CheckReputationConditions();
 }
 
 

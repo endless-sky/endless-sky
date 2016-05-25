@@ -61,6 +61,7 @@ ship "Korath Raider"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
+	"final explode" "final explosion large"
 	description "The Korath Raider is their warship of choice for plundering neighboring species."
 
 
@@ -155,6 +156,7 @@ ship "Korath World-Ship"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 50
+	"final explode" "final explosion large"
 	description "Korath World-Ships are massive nomadic habitats that hold all that is left of their people."
 
 
@@ -202,6 +204,7 @@ ship "Kar Ik Vot 349"
 		"weapon capacity" 447
 		"engine capacity" 173
 		"self destruct" .8
+		"ramscoop" 3
 		weapon
 			"blast radius" 450
 			"shield damage" 6400
@@ -243,6 +246,7 @@ ship "Kar Ik Vot 349"
 	explode "medium explosion" 70
 	explode "big explosion" 50
 	explode "huge explosion" 15
+	"final explode" "final explosion large"
 	description "The largest and deadliest of the Kor Sestor robotic warships, a single one of these battlecruisers can hold its own against an entire fleet of lesser ships."
 
 ship "Kar Ik Vot 349" "Kar Ik Vot 349 (Offense)"
@@ -350,6 +354,7 @@ ship "Tek Far 71 - Lek"
 		"weapon capacity" 235
 		"engine capacity" 102
 		"self destruct" .7
+		"ramscoop" 3
 		weapon
 			"blast radius" 320
 			"shield damage" 4000
@@ -395,6 +400,7 @@ ship "Tek Far 71 - Lek"
 	explode "medium explosion" 50
 	explode "big explosion" 40
 	explode "huge explosion" 10
+	"final explode" "final explosion large"
 	description "The Kor Sestor war fleets rely heavily on small, powerful fighters and drones. This ship can carry up to ten of their drones, clamped to the exterior of its hull."
 
 ship "Tek Far 71 - Lek" "Tek Far 71 - Lek (Close Quarters)"
@@ -438,6 +444,7 @@ ship "Tek Far 78 - Osk"
 		"weapon capacity" 272
 		"engine capacity" 117
 		"self destruct" .7
+		"ramscoop" 3
 		weapon
 			"blast radius" 340
 			"shield damage" 4400
@@ -484,6 +491,7 @@ ship "Tek Far 78 - Osk"
 	explode "medium explosion" 55
 	explode "big explosion" 45
 	explode "huge explosion" 12
+	"final explode" "final explosion large"
 	description "This carrier is equipped with docking clamps for up to nine fighters. When loaded with a full complement of the powerful Kor Sestor robotic fighters, it is a formidable opponent."
 
 ship "Tek Far 78 - Osk" "Tek Far 78 - Osk (Close Quarters)"
@@ -525,6 +533,7 @@ ship "Tek Far 109"
 		"weapon capacity" 217
 		"engine capacity" 98
 		"self destruct" .7
+		"ramscoop" 3
 		weapon
 			"blast radius" 280
 			"shield damage" 3200
@@ -572,6 +581,7 @@ ship "Tek Far 109"
 	explode "medium explosion" 45
 	explode "big explosion" 30
 	explode "huge explosion" 8
+	"final explode" "final explosion medium"
 	description "The TF109 is designed almost solely for the purpose of carrying a fleet of Kor Sestor fighters and drones. Without them to serve as a protective screen, the ship itself is relatively helpless."
 
 
@@ -592,6 +602,7 @@ ship "Met Par Tek 53"
 		"weapon capacity" 213
 		"engine capacity" 110
 		"self destruct" .65
+		"ramscoop" 3
 		weapon
 			"blast radius" 250
 			"shield damage" 3200
@@ -627,6 +638,7 @@ ship "Met Par Tek 53"
 	explode "medium explosion" 35
 	explode "big explosion" 20
 	explode "huge explosion" 6
+	"final explode" "final explosion medium"
 	description "Although this is the smallest Kor Sestor ship other than their fighters, it is larger than most human capital ships and considerably more powerful."
 
 ship "Met Par Tek 53" "Met Par Tek 53 (Sniper)"
@@ -674,6 +686,7 @@ ship "Far Lek 14"
 		"weapon capacity" 11
 		"engine capacity" 24
 		"self destruct" .6
+		"ramscoop" 3
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -712,6 +725,7 @@ ship "Far Osk 27"
 		"weapon capacity" 22
 		"engine capacity" 24
 		"self destruct" .6
+		"ramscoop" 3
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -753,6 +767,7 @@ ship "Model 16"
 		"weapon capacity" 149
 		"engine capacity" 107
 		"self destruct" .65
+		"ramscoop" 3
 		weapon
 			"blast radius" 200
 			"shield damage" 2200
@@ -782,6 +797,7 @@ ship "Model 16"
 	explode "small explosion" 40
 	explode "medium explosion" 30
 	explode "big explosion" 10
+	"final explode" "final explosion small"
 	description "The Kor Mereti war drones are constructed in a modular fashion, which allows them to grow over time as more materials become available. This one is recently built, and relatively small."
 
 
@@ -802,6 +818,7 @@ ship "Model 32"
 		"weapon capacity" 205
 		"engine capacity" 110
 		"self destruct" .70
+		"ramscoop" 3
 		weapon
 			"blast radius" 240
 			"shield damage" 3200
@@ -832,6 +849,7 @@ ship "Model 32"
 	explode "small explosion" 55
 	explode "medium explosion" 40
 	explode "big explosion" 15
+	"final explode" "final explosion medium"
 	description "The Kor Mereti built their drones to mimic life: capable of growth and development throughout their life cycles. Their automated factories can convert the drones from one configuration to another by adding or removing modules."
 
 
@@ -852,6 +870,7 @@ ship "Model 64"
 		"weapon capacity" 263
 		"engine capacity" 114
 		"self destruct" .74
+		"ramscoop" 3
 		weapon
 			"blast radius" 280
 			"shield damage" 4000
@@ -883,6 +902,7 @@ ship "Model 64"
 	explode "small explosion" 70
 	explode "medium explosion" 50
 	explode "big explosion" 20
+	"final explode" "final explosion medium"
 	description "This medium-sized drone serves the Kor Mereti fleets in much the same way as a human Frigate, but in terms of total firepower it is far beyond anything humans have constructed."
 
 
@@ -903,6 +923,7 @@ ship "Model 128"
 		"weapon capacity" 344
 		"engine capacity" 132
 		"self destruct" .77
+		"ramscoop" 3
 		weapon
 			"blast radius" 320
 			"shield damage" 4600
@@ -936,6 +957,7 @@ ship "Model 128"
 	explode "small explosion" 85
 	explode "medium explosion" 60
 	explode "big explosion" 25
+	"final explode" "final explosion large"
 	description "As Kor Mereti drones continue to grow and develop into their final form, they split down the middle. At the same time, their shielding and weaponry continue to become stronger."
 
 
@@ -956,6 +978,7 @@ ship "Model 256"
 		"weapon capacity" 393
 		"engine capacity" 145
 		"self destruct" .79
+		"ramscoop" 3
 		weapon
 			"blast radius" 340
 			"shield damage" 5200
@@ -990,6 +1013,7 @@ ship "Model 256"
 	explode "small explosion" 100
 	explode "medium explosion" 70
 	explode "big explosion" 30
+	"final explode" "final explosion large"
 	description "There is a saying among the Quarg that every species which insists on studying war will eventually construct a weapon that outlives its creators. For the Korath, their war drones have very nearly done so."
 
 
@@ -1010,6 +1034,7 @@ ship "Model 512"
 		"weapon capacity" 440
 		"engine capacity" 161
 		"self destruct" .80
+		"ramscoop" 3
 		weapon
 			"blast radius" 380
 			"shield damage" 5600
@@ -1046,4 +1071,5 @@ ship "Model 512"
 	explode "small explosion" 115
 	explode "medium explosion" 80
 	explode "big explosion" 35
+	"final explode" "final explosion large"
 	description "This is the final state in the evolution of a Kor Mereti war drone: a perfect ring, with incredibly powerful shields and turrets firing in every direction."

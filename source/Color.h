@@ -29,6 +29,8 @@ public:
 	const float *Get() const;
 	
 	Color Opaque() const;
+	Color Transparent(float alpha) const;
+	Color Additive(float alpha) const;
 	
 	
 private:

@@ -10,7 +10,7 @@
 
 outfit "Generator (Candle Class)"
 	category "Power"
-	cost 323000
+	cost 493000
 	thumbnail "outfit/small korath generator"
 	"mass" 23
 	"outfit space" -23
@@ -20,7 +20,7 @@ outfit "Generator (Candle Class)"
 
 outfit "Generator (Furnace Class)"
 	category "Power"
-	cost 625000
+	cost 925000
 	thumbnail "outfit/medium korath generator"
 	"mass" 39
 	"outfit space" -39
@@ -30,7 +30,7 @@ outfit "Generator (Furnace Class)"
 
 outfit "Generator (Inferno Class)"
 	category "Power"
-	cost 1307000
+	cost 1877000
 	thumbnail "outfit/large korath generator"
 	"mass" 71
 	"outfit space" -71
@@ -99,6 +99,7 @@ outfit "Systems Core (Small)"
 	"shield energy" 2.4
 	"hull repair rate" 0.2
 	"hull energy" 0.2
+	"hull heat" 0.3
 	"energy capacity" 1300
 	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, and a small number of "hull-walking" welding robots that can make minor repairs to the ship's outer armor while in flight.`
 
@@ -112,6 +113,7 @@ outfit "Systems Core (Medium)"
 	"shield energy" 4.6
 	"hull repair rate" 0.4
 	"hull energy" 0.4
+	"hull heat" 0.6
 	"energy capacity" 2600
 	description `This "systems core" houses a powerful computer, shield generators, and a control center for small repair robots that can walk across a ship's exterior on magnetic feet and slowly repair damage to the hull.`
 
@@ -125,6 +127,7 @@ outfit "Systems Core (Large)"
 	"shield energy" 8.8
 	"hull repair rate" 0.8
 	"hull energy" 0.8
+	"hull heat" 1.2
 	"energy capacity" 5200
 	description `This massive bank of computers, shield generators, and repair stations holds everything needed to keep the very largest of Korath ships in working condition.`
 

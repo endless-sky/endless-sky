@@ -114,6 +114,7 @@ private:
 	
 	bool playerDied = false;
 	bool isCapturing = false;
+	bool isFirstCaptureAction = true;
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	std::vector<std::string> messages;

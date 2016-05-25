@@ -18,10 +18,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Flotsam.h"
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
 
+#include <list>
 #include <map>
 #include <memory>
 #include <string>
@@ -122,7 +124,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up. If this returns false, the ship
 	// should be deleted.
-	bool Move(std::list<Effect> &effects);
+	bool Move(std::list<Effect> &effects, std::list<Flotsam> &flotsam);
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -146,6 +148,7 @@ public:
 	const Planet *GetPlanet() const;
 	
 	// Check the status of this ship.
+	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
 	bool IsDisabled() const;
@@ -153,6 +156,9 @@ public:
 	bool IsLanding() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// Check if some condition is keeping this ship from acting. (That is, it is
+	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
+	bool CannotAct() const;
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
@@ -209,6 +215,8 @@ public:
 	int Crew() const;
 	int RequiredCrew() const;
 	void AddCrew(int count);
+	// Check if this is a ship that can be used as a flagship.
+	bool CanBeFlagship() const;
 	
 	// Get this ship's movement characteristics.
 	double Mass() const;
@@ -249,7 +257,8 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning this much cargo.
-	void Jettison(int tons);
+	void Jettison(const std::string &commodity, int tons);
+	void Jettison(const Outfit *outfit, int count);
 	
 	// Get the current attributes of this ship.
 	const Outfit &Attributes() const;
@@ -299,13 +308,14 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(const Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Add to this ship's hull or shields, and return the amount added. If the
+	// ship is carrying fighters, add to them as well.
+	double AddHull(double rate);
+	double AddShields(double rate);
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);
@@ -339,8 +349,8 @@ private:
 	bool hasBoarded = false;
 	bool isThrusting = false;
 	bool neverDisabled = false;
+	bool isCapturable = true;
 	double cloak = 0.;
-	int jettisoned = 0;
 	
 	Command commands;
 	
@@ -353,6 +363,7 @@ private:
 	const Outfit *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
+	std::list<Flotsam> jettisoned;
 	
 	std::vector<Bay> bays;
 	

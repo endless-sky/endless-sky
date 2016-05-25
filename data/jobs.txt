@@ -63,6 +63,11 @@ mission "Escort (Small, Northern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -100,6 +105,16 @@ mission "Escort (Medium, Northern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -133,6 +148,11 @@ mission "Escort (Large, Northern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Large Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Northern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -164,6 +184,16 @@ mission "Escort (Extra Large, Northern)"
 		distance 3 4
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Northern Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Large Northern Pirates"
 	npc
@@ -240,6 +270,11 @@ mission "Escort (Small, Core)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -277,6 +312,16 @@ mission "Escort (Medium, Core)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Core Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -308,6 +353,11 @@ mission "Escort (Large, Core)"
 		distance 3 4
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Large Core Pirates"
 	npc accompany save
@@ -345,6 +395,16 @@ mission "Escort (Extra Large, Core)"
 		fleet "Large Core Pirates"
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Small Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Core Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Small Core Pirates"
 	npc accompany save
@@ -417,6 +477,11 @@ mission "Escort (Small, Southern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Southern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -454,6 +519,16 @@ mission "Escort (Medium, Southern)"
 		personality nemesis waiting
 		government Pirate
 		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Small Southern Pirates"
 	npc accompany save
 		government Merchant
 		personality escort timid
@@ -485,6 +560,11 @@ mission "Escort (Large, Southern)"
 		distance 3 4
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Large Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Large Southern Pirates"
 	npc accompany save
@@ -522,6 +602,16 @@ mission "Escort (Extra Large, Southern)"
 		fleet "Large Southern Pirates"
 	npc
 		personality nemesis waiting
+		government Pirate
+		fleet "Small Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
+		government Pirate
+		fleet "Large Southern Pirates"
+	npc
+		system destination
+		personality nemesis staying
 		government Pirate
 		fleet "Small Southern Pirates"
 	npc accompany save

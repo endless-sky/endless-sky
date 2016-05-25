@@ -34,6 +34,7 @@ class Person;
 class Planet;
 class Ship;
 class ShipEvent;
+class StellarObject;
 class System;
 class UI;
 
@@ -95,6 +96,8 @@ public:
 	// Set what planet the player is on.
 	void SetPlanet(const Planet *planet);
 	const Planet *GetPlanet() const;
+	// If the player is landed, return the stellar object they are on.
+	const StellarObject *GetStellarObject() const;
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
@@ -133,7 +136,7 @@ public:
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
 	// Load the cargo back into your ships. This may require selling excess.
-	void TakeOff(UI *ui);
+	bool TakeOff(UI *ui);
 	
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
@@ -158,6 +161,10 @@ public:
 	int GetCondition(const std::string &name) const;
 	std::map<std::string, int> &Conditions();
 	const std::map<std::string, int> &Conditions() const;
+	// Set and check the reputation conditions, which missions can use to modify
+	// the player's reputation.
+	void SetReputationConditions();
+	void CheckReputationConditions();
 	
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System *system) const;
@@ -172,10 +179,8 @@ public:
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;
 	const std::vector<const System *> &TravelPlan() const;
-	void ClearTravel();
-	// Add to the travel plan, starting with the last system in the journey.
-	void AddTravel(const System *system);
-	// Remove the first system from the travel plan.
+	std::vector<const System *> &TravelPlan();
+	// Remove the first or last system from the travel plan.
 	void PopTravel();
 	
 	// Toggle which secondary weapon the player has selected.

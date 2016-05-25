@@ -17,6 +17,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "AsteroidField.h"
 #include "DrawList.h"
 #include "EscortDisplay.h"
+#include "Flotsam.h"
 #include "Information.h"
 #include "PlanetLabel.h"
 #include "Point.h"
@@ -112,7 +113,6 @@ private:
 	std::condition_variable condition;
 	std::mutex swapMutex;
 	
-	Point center;
 	bool calcTickTock = false;
 	bool drawTickTock = false;
 	bool terminate = false;
@@ -120,8 +120,8 @@ private:
 	DrawList draw[2];
 	Radar radar[2];
 	// Viewport position and velocity.
-	Point position;
-	Point velocity;
+	Point center;
+	Point centerVelocity;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
@@ -131,11 +131,14 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
+	int jumpCount = 0;
+	const System *jumpInProgress[2] = {nullptr, nullptr};
 	
 	int step = 0;
 	
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<Projectile> projectiles;
+	std::list<Flotsam> flotsam;
 	std::list<Effect> effects;
 	// Keep track of which ships we have not seen for long enough that it is
 	// time to stop tracking their movements.
@@ -145,11 +148,15 @@ private:
 	std::list<ShipEvent> events;
 	// Keep track of who has asked for help in fighting whom.
 	std::map<const Government *, std::weak_ptr<const Ship>> grudge;
+	int grudgeTime = 0;
 	
 	AsteroidField asteroids;
+	
+	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
 	bool doEnter = false;
+	bool hadHostiles = false;
 	
 	bool doClick = false;
 	Command clickCommands;

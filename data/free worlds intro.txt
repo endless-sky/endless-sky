@@ -87,7 +87,7 @@ mission "Pact Recon 1"
 	on complete
 		payment 35000
 		dialog
-			`You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when if need your services again."`
+			`You transfer your sensor logs to Officer Winters. She thanks you for your work, and pays you <payment>. She says, "I'll let you know when we need your services again."`
 
 
 

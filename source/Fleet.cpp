@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "Files.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Phrase.h"
@@ -41,6 +42,9 @@ Fleet::Fleet()
 
 void Fleet::Load(const DataNode &node)
 {
+	if(node.Size() >= 2)
+		fleetName = node.Token(1);
+	
 	// If Load() has already been called once on this fleet, any subsequent
 	// calls will replace the variants instead of adding to them.
 	bool resetVariants = !variants.empty();
@@ -155,6 +159,11 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
+		if(ship->ModelName().empty())
+		{
+			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
+			continue;
+		}
 		if(ship->CanBeCarried())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
@@ -225,23 +234,29 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 					center = object.Position();
 	}
 	
-	// Move out a random distance from that object, facing toward it or away.
-	Angle angle = Angle::Random();
-	center += angle.Unit() * (Random::Real() * 2. - 1.);
-	
 	vector<shared_ptr<Ship>> placed;
 	for(const Ship *ship : variants[index].ships)
 	{
+		if(ship->ModelName().empty())
+		{
+			Files::LogError("Skipping unknown ship in fleet \"" + fleetName + "\".");
+			continue;
+		}
 		if(carried && ship->CanBeCarried())
 		{
 			shared_ptr<Ship> fighter(new Ship(*ship));
 			fighter->SetGovernment(government);
 			fighter->SetName((fighterNames ? fighterNames : names)->Get());
 			fighter->SetPersonality(personality);
+			bool isCarried = false;
 			for(const shared_ptr<Ship> &parent : placed)
 				if(parent->Carry(fighter))
+				{
+					isCarried = true;
 					break;
-			continue;
+				}
+			if(isCarried)
+				continue;
 		}
 		Angle angle = Angle::Random();
 		Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
@@ -306,7 +321,6 @@ void Fleet::Place(const System &system, Ship &ship)
 	}
 	
 	// Move out a random distance from that object, facing toward it or away.
-	center += Angle::Random().Unit() * (Random::Real() * 2. - 1.);
 	Point pos = center + Angle::Random().Unit() * Random::Real() * 400.;
 	
 	double velocity = Random::Real() * ship.MaxVelocity();
@@ -314,6 +328,21 @@ void Fleet::Place(const System &system, Ship &ship)
 	ship.SetSystem(&system);
 	Angle angle = Angle::Random();
 	ship.Place(pos, velocity * angle.Unit(), angle);
+}
+
+
+	
+int64_t Fleet::Strength() const
+{
+	int64_t sum = 0;
+	for(const Variant &variant : variants)
+	{
+		int64_t thisSum = 0;
+		for(const Ship *ship : variant.ships)
+			thisSum += ship->Cost();
+		sum += thisSum * variant.weight;
+	}
+	return sum / total;
 }
 
 

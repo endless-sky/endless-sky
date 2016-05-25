@@ -122,10 +122,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	if(key == 'd' && ShowDepart())
 	{
 		player.Save();
-		player.TakeOff(GetUI());
-		if(callback)
-			callback();
-		GetUI()->Pop(this);
+		if(player.TakeOff(GetUI()))
+		{
+			if(callback)
+				callback();
+			GetUI()->Pop(this);
+		}
 	}
 	else if(key == 'l')
 	{
@@ -202,7 +204,7 @@ bool PlanetPanel::Click(int x, int y)
 
 bool PlanetPanel::ShowDepart() const
 {
-	return player.Flagship() && !player.Flagship()->CanBeCarried();
+	return player.Flagship() && player.Flagship()->CanBeFlagship();
 }
 
 
@@ -255,5 +257,13 @@ bool PlanetPanel::ShowShipyard() const
 
 bool PlanetPanel::ShowOutfitter() const
 {
-	return player.Flagship() && planet.HasOutfitter() && planet.CanUseServices();
+	bool hasShip = false;
+	for(const auto &it : player.Ships())
+		if(it->GetSystem() == player.GetSystem() && !it->IsDisabled())
+		{
+			hasShip = true;
+			break;
+		}
+
+	return hasShip && planet.HasOutfitter() && planet.CanUseServices();
 }

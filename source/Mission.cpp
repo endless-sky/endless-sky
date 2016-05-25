@@ -442,7 +442,7 @@ bool Mission::HasClearance(const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
-	if(planet == destination || stopovers.find(planet) != stopovers.end())
+	if(planet == destination || stopovers.count(planet))
 		return true;
 	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
@@ -684,23 +684,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui)
 	if(!it->second.CanBeDone(player))
 		return false;
 	
-	// Set the "reputation" conditions so we can check if this action changed
-	// any of them.
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		player.Conditions()["reputation: " + it.first] = rep;
-	}
+	// Perform any actions tied to this event.
 	it->second.Do(player, ui, destination ? destination->GetSystem() : nullptr);
 	
-	// Check if any reputation conditions were updated.
-	for(const auto &it : GameData::Governments())
-	{
-		int rep = it.second.Reputation();
-		int newRep = player.Conditions()["reputation: " + it.first];
-		if(newRep != rep)
-			it.second.AddReputation(newRep - rep);
-	}
 	return true;
 }
 
@@ -925,7 +911,7 @@ Mission Mission::Instantiate(const PlayerInfo &player) const
 	
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem()));
+		result.npcs.push_back(npc.Instantiate(subs, player.GetSystem(), result.destination->GetSystem()));
 	
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
