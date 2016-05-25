@@ -15,6 +15,7 @@ outfit "Nanotech Battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 30000
+        description "The design of this battery is so efficient that most ships with this installed can usualy run without a generator.
 
 outfit "Antimatter Core"
 	category "Power"
@@ -24,6 +25,7 @@ outfit "Antimatter Core"
 	"outfit space" -80
 	"energy generation" 80
 	"heat generation" 20
+        description "This core emitts an eerie greenish glow. You're pretty sure you don't want to be anywhere near this thing."
 
 
 outfit "Quarg Skylance"
@@ -49,6 +51,7 @@ outfit "Quarg Skylance"
 		"shield damage" 50
 		"hull damage" 40
 		"ion damage" .1
+        description "The Quarg skylance is an ancient Quarg design. It is so effective that it is still the primary Quarg weapon today. However, it requires tremendous ammounts of energy and it takes up more space than most other weapons."
 
 effect "skylance impact"
 	sprite "effect/skylance impact"
@@ -74,6 +77,7 @@ outfit "Quarg Anti-Missile"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 50
+        description "The Quarg anti-missile is regarded as one of the best missile systems in the galaxy. However, its one drawback is how slow it shoots." 
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
@@ -102,6 +106,7 @@ outfit "Medium Graviton Thruster"
 	"thrusting energy" 20
 	"thrusting heat" 10
 	"flare sprite" "effect/medium graviton flare"
+        description "This thruster somehow manipulates gravatons and turns it into a very efficent thrusting system. The workings of this thruster are so complex that even most Quarg are clueless on its inner workings."
 
 outfit "Medium Graviton Steering"
 	category "Engines"
@@ -113,6 +118,7 @@ outfit "Medium Graviton Steering"
 	"turn" 1600
 	"turning energy" 10
 	"turning heat" 5
+        description "This is the steering form of the medium gravaton steering. It is still no less perplexing though.
 
 outfit "Quantum Shield Generator"
 	category "Systems"
@@ -122,3 +128,4 @@ outfit "Quantum Shield Generator"
 	"outfit space" -120
 	"shield generation" 10
 	"shield energy" 10
+        description "This shield generator is many times more powerful than any Human generator. However, it requires a lot more space and energy than any other generator."
