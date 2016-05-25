@@ -73,7 +73,6 @@ public:
 	
 	
 private:
-	void DrawMiniMap() const;
 	void EnterSystem();
 	
 	void ThreadEntryPoint();

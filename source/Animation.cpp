@@ -25,25 +25,8 @@ using namespace std;
 
 
 
-Animation::Frame::Frame()
-	: first(0), second(0), fade(0.f)
-{
-}
-
-
-
-// Default constructor.
-Animation::Animation()
-	: sprite(nullptr), swizzle(0), frameRate(2. / 60.), frameOffset(0),
-	startAtZero(false), randomize(false), repeat(true), rewind(false)
-{
-}
-
-
-
 Animation::Animation(const Sprite *sprite, float frameRate)
-	: sprite(sprite), swizzle(0), frameRate(frameRate / 60.), frameOffset(0),
-	startAtZero(false), randomize(true), repeat(true), rewind(false)
+	: sprite(sprite), frameRate(frameRate / 60.), randomize(true)
 {
 }
 
@@ -63,13 +46,12 @@ void Animation::Load(const DataNode &node)
 	// to do that unless it is repeating endlessly.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "frame rate" && child.Size() >= 2)
-		{
-			if(child.Value(1) <= 0.)
-				frameRate = 0.;
-			else
-				frameRate = child.Value(1) / 60.;
-		}
+		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) > 0.)
+			frameRate = child.Value(1) / 60.;
+		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
+			frameRate = 1. / child.Value(1);
+		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
+			delay = child.Value(1);
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += child.Value(1);
@@ -84,6 +66,8 @@ void Animation::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "rewind")
 			rewind = true;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -99,6 +83,12 @@ void Animation::Save(DataWriter &out) const
 	{
 		if(frameRate != static_cast<float>(2. / 60.))
 			out.Write("frame rate", frameRate * 60.);
+		if(delay)
+			out.Write("delay", delay);
+		if(randomize)
+			out.Write("random start frame");
+		if(!repeat)
+			out.Write("no repeat");
 		if(rewind)
 			out.Write("rewind");
 	}
@@ -182,14 +172,21 @@ Animation::Frame Animation::Get(int step) const
 		if(!repeat && step >= frames - 1)
 		{
 			frame.first = sprite->Texture(frames - 1);
-			frame.second = 0;
 			frame.fade = 0.f;
 		}
 		else
 		{
-			step %= frames;
-			frame.first = sprite->Texture(step);
-			frame.second = sprite->Texture(step + 1);
+			step %= (frames + delay);
+			if(step >= frames)
+			{
+				frame.first = sprite->Texture(0);
+				frame.fade = 0.f;
+			}
+			else
+			{
+				frame.first = sprite->Texture(step);
+				frame.second = sprite->Texture(step + 1);
+			}
 		}
 	}
 	else
@@ -197,22 +194,26 @@ Animation::Frame Animation::Get(int step) const
 		if(!repeat && step >= 2 * (frames - 1))
 		{
 			frame.first = sprite->Texture(0);
-			frame.second = 0;
 			frame.fade = 0.f;
 		}
 		else
 		{
-			step %= 2 * (frames - 1);
+			step %= 2 * (frames - 1) + delay;
 			if(step < frames - 1)
 			{
 				frame.first = sprite->Texture(step);
 				frame.second = sprite->Texture(step + 1);
 			}
-			else
+			else if(step < 2 * (frames - 1))
 			{
 				step = 2 * (frames - 1) - step;
 				frame.first = sprite->Texture(step);
 				frame.second = sprite->Texture(step - 1);
+			}
+			else
+			{
+				frame.first = sprite->Texture(0);
+				frame.fade = 0.f;
 			}
 		}
 	}
@@ -270,7 +271,7 @@ void Animation::DoFirst(int step) const
 	{
 		randomize = false;
 		if(sprite && sprite->Frames())
-			frameOffset += Random::Int(sprite->Frames());
+			frameOffset += Random::Int(sprite->Frames() + delay);
 	}
 	else if(startAtZero)
 	{

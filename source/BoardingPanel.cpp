@@ -259,6 +259,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		// Figure out what action the other ship will take.
 		bool youAttack = (key == 'a' && yourStartCrew > 1);
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
+		if(isFirstCaptureAction && !youAttack)
+			enemyAttacks = false;
+		isFirstCaptureAction = false;
 		
 		if(!youAttack && !enemyAttacks)
 		{

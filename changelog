@@ -1,6 +1,6 @@
 Version 0.9.1:
   * Bug fixes:
-    * Typo fixes. (@Alkallid, @Wrzlprnft)
+    * Typo fixes. (@Alkallid, @Wrzlprnft, @toilethinges)
     * No longer crashes if a saved game references a nonexistent "person."
     * Fixed a crash if the player tricks the game into letting them depart in an automaton.
     * The "southern carriers" no longer take over the entire fleets when they appear.
@@ -15,12 +15,14 @@ Version 0.9.1:
     * Disabled NPCs now start always out at zero velocity.
     * You can no longer plan a jump drive jump between two systems you don't know are linked.
     * Fixed the planet panel flicker when you first enter your ship.
+    * Ships no longer ask you for help if they do not speak your language.
   * Game content:
     * New human ship, the "Boxwing" cargo fighter. (@LocalGod79, @pootthedestroyer)
     * Updated "Southern Carriers" sprites. (@LocalGod79)
     * New civilian hail messages, referencing fictitious futuristic bands. (@Wrzlprnft)
     * Fixed an armistice that lasts too long if the player has a jump drive. (@LocalGod79)
     * In the Free Worlds plot, Ijs can no longer be in two places at once. (@LocalGod79)
+    * New Hai outfits to replace human placeholders (@Wrzlprnft, @LocalGod79, @Amazinite)
     * New Wanderer missions, giving you access to new ships and technology.
     * New human side missions that give hints about different alien species near human space.
     * Adjusted the Kor Mereti weapons and fleets to balance them better against the Kor Sestor.
@@ -58,6 +60,8 @@ Version 0.9.1:
     * Fleets taking off from a planet now stagger their departure a bit, to look more organic.
     * Ships are now non-targetable for half a second after leaving hyperspace.
     * Dying carriers now release any fighters they are still carrying.
+    * You can now specify animation speed as "frame time" (game frames per animation frame).
+    * A looping animation can now have a "delay" in between cycles.
   * User interface:
     * Added a pop-up mini map that is displayed when your ship is jumping.
     * Route finding now prefers less dangerous systems if multiple paths have equal length.
@@ -74,6 +78,7 @@ Version 0.9.1:
     * Changed the "repairing" ship info line to "charging shields" unless you have hull repair too.
     * Put a limit on how often other ships broadcast requests for help.
     * The 'D' key now works as a shortcut for "leave" in the shop panels.
+    * You can now cancel "capture ship" without fighting by clicking "defend" as your first action.
   * Under the hood:
     * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
     * Added an error message if a fleet definition references a nonexistent ship type.
