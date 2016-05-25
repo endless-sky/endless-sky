@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
+#include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Outfit.h"
@@ -99,6 +100,9 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 void ShipInfoDisplay::DrawSale(const Point &topLeft) const
 {
 	Draw(topLeft, saleLabels, saleValues);
+	
+	Color color = *GameData::Colors().Get("medium");
+	FillShader::Fill(topLeft + Point(.5 * WIDTH, saleHeight + 8.), Point(WIDTH - 20., 1.), color);
 }
 
 
@@ -363,13 +367,10 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship)
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Number(totalValue - outfitsValue) + " credits");
+	saleValues.push_back(Format::Number(totalValue - outfitsValue));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Number(outfitsValue) + " credits");
-	saleHeight += 20;
-	saleLabels.push_back("= total:");
-	saleValues.push_back(Format::Number(totalValue) + " credits");
-	saleHeight += 20;
+	saleValues.push_back(Format::Number(outfitsValue));
+	saleHeight += 5;
 }
 
