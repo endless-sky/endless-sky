@@ -691,18 +691,25 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"Join the navy. "
+		"Join the Navy. "
 	word
 		"See"
 		"Tour"
 		"Explore"
 		"Defend"
 		"Protect"
-		"view"
+               "Travel"
+		"View"
 	word
 		" the galaxy!"
 		" the Republic!"
-		" the Worlds!"
+	       " the Paradise Worlds!"
+ 	       " the Core!"
+ 	       " the Rim!"
+ 	       " the South!"
+ 	       " the Dirt Belt!"
+ 	       " the Deep!"
+
 
 phrase "friendly navy"
 	word
@@ -989,46 +996,6 @@ phrase "friendly pug"
 		"friendship"
 		"unity"
 		"the end of violence"
-	word
-		"."
-		" in the galaxy."
-		" through-out the universe."
-		" among all sentient beings."
-
-phrase "friendly quarg"
-        word 
-               "We "
-               "The Quarg "
-		"Our mission is to "
-		"The Drak have asked us to "
-		"Our species will "
-		"Our job is to "
-		"We wish to "
-	word
-		"bring "
-		"promote "
-		"advance "
-		"ensure "
-		"create "
-		"maintain "
-		"stimulate "
-		"support "
-		"uphold "
-		"enforce "
-		"aid the cause of "
-		"work for "
-		"bring about "
-	word
-		"peace"
-		"healing"
-		"tranqulity"
-		"freedom"
-		"an end to hate"
-		"an end to violence"
-		"an end to warfare"
-               "peace in this part of our galaxy"
-        word
-                "."
 
 # Shakespearean insults.
 phrase "hostile disabled"
