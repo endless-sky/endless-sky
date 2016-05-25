@@ -691,7 +691,7 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"Join the navy. "
+		"Join the Navy. "
 	word
 		"See"
 		"Tour"
