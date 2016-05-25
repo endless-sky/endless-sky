@@ -406,9 +406,14 @@ bool Planet::CanLand() const
 
 bool Planet::CanSpeakLanguage(const PlayerInfo &player) const
 {
-	if (language.empty())
-		return true; // No language requirement.
-	return player.GetCondition("language: " + language) > 0;
+	string planetLanguage = language; 
+	if (planetLanguage.empty())
+	{
+		planetLanguage = GetGovernment()->Language(); // Default to the language of this planet's government, if any. 
+		if (planetLanguage.empty())
+			return true; // No language requirement.
+	}
+	return player.GetCondition("language: " + planetLanguage) > 0;
 }
 
 
