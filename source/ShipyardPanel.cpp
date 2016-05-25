@@ -51,8 +51,9 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
 	ShipInfoDisplay info(*playerShip);
 	info.DrawSale(point);
+	info.DrawAttributes(point + Point(0, info.SaleHeight()));
 	
-	return info.SaleHeight();
+	return info.SaleHeight() + info.AttributesHeight();
 }
 
 
