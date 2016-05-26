@@ -82,6 +82,7 @@ Version 0.9.1:
     * You can now cancel "capture ship" without fighting by clicking "defend" as your first action.
     * The shipyard now shows full stats for the player's ship.
     * Categories in the shipyard and outfitter are now "collapsable."
+    * You can now buy outfits directly into cargo by deselecting all your ships (control + click).
   * Under the hood:
     * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
     * Added an error message if a fleet definition references a nonexistent ship type.

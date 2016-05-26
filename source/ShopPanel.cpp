@@ -95,6 +95,7 @@ void ShopPanel::Step()
 void ShopPanel::DrawSidebar() const
 {
 	const Font &font = FontSet::Get(14);
+	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
 	
@@ -155,18 +156,28 @@ void ShopPanel::DrawSidebar() const
 		}
 		point.Y() += ICON_TILE;
 	}
-	point.Y() += SHIP_SIZE / 2;
 	
 	if(playerShip)
 	{
+		point.Y() += SHIP_SIZE / 2;
 		point.X() = Screen::Right() - SIDE_WIDTH / 2;
 		DrawShip(*playerShip, point, true);
 		
 		Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
-		point.Y() += sideDetailHeight + SHIP_SIZE;
+		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
-	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70 - SHIP_SIZE / 2;
+	else if(player.Cargo().Size())
+	{
+		point.X() = Screen::Right() - SIDE_WIDTH + 10;
+		font.Draw("cargo space:", point, medium);
+		
+		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+		Point right(Screen::Right() - font.Width(space), point.Y());
+		font.Draw(space, right, bright);
+		point.Y() += 20.;
+	}
+	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70;
 	maxSideScroll = max(0, maxSideScroll);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
@@ -204,7 +215,7 @@ void ShopPanel::DrawButtons() const
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	string BUY = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
+	string BUY = (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? bright : dim);
@@ -736,6 +747,12 @@ void ShopPanel::SideSelect(Ship *ship)
 	}	
 	else if(!control)
 		playerShips.clear();
+	else if(playerShip == ship)
+	{
+		playerShips.erase(playerShips.find(ship));
+		playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+		return;
+	}
 	
 	playerShip = ship;
 	playerShips.insert(playerShip);
