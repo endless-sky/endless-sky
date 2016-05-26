@@ -624,12 +624,12 @@ mission "Language: Wanderer break"
 			label assembly
 			`	When you reach the Assembly building, you notice large numbers of Wanderers flying into it to through an open roof. You can't help but notice that there are no visible doors on the side of the building.`
 			`	Eruk sighs and goes to sit down on a nearby wall while you start to walk around the edge of the building looking for a door.`
-			`	After going nearly the entire way round the building you find Iktat Ret and another slightly smaller Wanderer standings by the only door you've seen so far. Eruk is also with them but he doesn't seem to be any happier than before.`
-			`	"<first>, this is my child Iktat Kri. [They?, He?, She?] will be able to [understand, interpret] for you."`
-			`	You realise that you've never seen a female Wanderer but maybe Wanderer society does not differentiate between male and female in the same way Hai and Human societies do, and the opposite of what is done in the Syndicate.`
+			`	After going nearly the entire way round the building you find Iktat Ret and another slightly smaller Wanderer standing by the only door you've seen thus far. Eruk is also with them, but he doesn't seem to be any happier than before.`
+			`	"<first>, this is my child Iktat Kri. [He?, She?] will be able to [understand, interpret] for you."`
+			`	You realise that you've never seen a female Wanderer, but maybe Wanderer society does not differentiate between male and female in the same way Hai and Human societies do, and the quite opposite of what is done in the Syndicate.`
 			`	Iktat Ret wishes Eruk luck before indicating that you should follow Iktat Kri inside.`
-			`	Inside the building looks even more like a bird's nest with hundreds of balconies scattered chaotically around the inside of the large bowl-shaped structure. All of the balconies are full apart from a few at the very top of the bowl but even these are filled quickly as the last Wanderers fly in.`
-			`	The half-dozen or so lowest balconies are filled with some very old looking Wanderers, this must be the actual Wanderer government as you can't help but feel that any debate between the number of Wanderer that are currently occupying the building would take so long that it would be completely pointless.`
+			`	Inside the building looks even more like a bird's nest, with hundreds of balconies scattered chaotically around the inside of the large bowl-shaped structure. All of the balconies are full apart from a few at the very top of the bowl, but even these are filled quickly as the last couple of Wanderers fly in.`
+			`	The half-dozen or so lowest balconies are filled with some very old looking Wanderers, that must be the actual Wanderer government officials as you can't help but feel that any debate between the number of Wanderer that are currently occupying the building would take so long that it would be completely pointless.`
 			`	Once all the Wanderers have settled down and the last rustling of wings has ceased, one of the old Wanderers sitting in front of you leans forward and asks Eruk, with Iktat Kri translating, to tell them about his proposition.`
 			`	Eruk once again explains what he wants to do and how he needs the Wanderers help to do it.`
 			`	When he's finished the wanderer turns to you and asks "<first>, what is your [thought, opinion] on this?"`
@@ -639,14 +639,14 @@ mission "Language: Wanderer break"
 				`	"I do not feel that I am qualified to make a judgement.`
 
 			`	"A [exceptional, excellent] point. Thank you <first>."`
-			`	The old Wanderers occupying the lowest balconies start talking in their own language in what appears to be a debate, whatever it is it seems much more organised than what you had to deal with on your landing pad.`
-			`	Iktat Kri explains that the debate is held in public so as to allow any Wanderer who is interested to listen and in some cases to raise points of their own.`
-			` Eruk pulls you away from Iktat Kri slightly and says quietly to you,"I this goes through I'll need to stay in Wanderer space for a year or so to collect the data that I need. Would you be able to come back afterwards to pick me up and take me back to Greenwater?"`
+			`	The Wanderer officials occupying the lowest balconies start talking in their own language in what appears to be a debate, but whatever it is it seems much more organised than what you had to deal with on your landing pad.`
+			`	Iktat Kri explains that the debate is held in public so as to allow any Wanderer who is interested to listen, and in some cases, to raise points of their own.`
+			` Eruk pulls you away from Iktat Kri slightly and says quietly to you,"I this goes through, I'll need to stay in Wanderer space for a year or so to collect the data that I need. Would you be able to come back afterwards to pick me up and take me back to Greenwater?"`
 			choice
 				`	"I will do if I can."`
 
-			`	Just as Eruk thanks you the Wanderers quieten down again as if they have come to a decision. The same Wanderer as before speaks to Eruk, "We have decided to [assist, help] to improve your" he hesitates, "speaking machine. We will offer you any [reasonable, necessary] help that you need. You can stay with ambassador Sayari, you will not be guarded and a interpreter will be [enforced, assigned] to you." The speech over, the Wanderers start flocking into the air ready to continue their day-to-day business.`
-			`	Eruk turns to you now a picture of happiness, he hands you a 200,000 credit chip and thanks you excitedly before Iktat Ret lands near you, before setting off on foot with Iktat Kri and Eruk who is now talking enthusiastically about how he wants to start the next day. With the excitement over you decide to head back to your ship.`
+			`	Just as Eruk thanks you, the Wanderers quieten down again as if they have come to a decision. The same Wanderer as before speaks to Eruk, "We have decided to [assist, help] to improve your..." he hesitates, "speaking machine. We will offer you any [required, necessary] help that you need. You can stay with ambassador Sayari, you will not be guarded, and a interpreter will be [listed, assigned] to you." The speech over, the Wanderers start flocking into the air r to continue their day-to-day business.`
+			`	Eruk turns to you now a much happier Hai, and hands you a 200,000 credit chip. He thanks you excitedly before Iktat Ret lands near you, before setting off on foot with Iktat Kri and Eruk who is now talking enthusiastically about how he wants to start the next day. With the excitement over you decide to head back to your ship.`
 				decline
 
 
@@ -667,9 +667,9 @@ mission "Language: Wanderer break: visit"
 					defer
 
 			label yes
-			`	You head over to the Hai Embassy to see if he is in.`
-			`	As you are coming up to it Eruk comes out to meet you. He seems very content with his work as he invites you inside and offers you a cup of tea.`
-			`	As you settle down to drink your tea Eruk asks, "So what brings you here <first>?"`
+			`	You head over to the Hai Embassy to see if he is avalible.`
+			`	As you are walking up to it, Eruk comes out to meet you. He seems very content with his work as he invites you inside and offers you a cup of tea.`
+			`	As you settle down to drink your tea, Eruk asks, "So what brings you here, <first>?"`
 			choice
 				`	"I wanted to find out how your work was getting on."`
 					goto work
@@ -677,8 +677,8 @@ mission "Language: Wanderer break: visit"
 					goto wanderers
 
 			label work
-			`	"It's going very well, thank you. Everything is going to plan I should finish on time, the Wanderers have been so helpful, they've given me everything I need and even gave me transport to other planets. Iktat Kri has stayed on as my interpreter.`
-			`	"The strangest thing about the Wanderer language is their complete lack of any gender specific words. Their language doesn't contain any words for 'son' or 'daughter' or 'father' or 'mother' instead they referred to 'children' and 'parents' at all times. They don't even have 'he' and 'she', but other than that their language is actually quite straightforward, much easier to sort out then your own."`
+			`	"It's going very well, thank you. Everything is going to plan. I should hopefully finish on time, because the Wanderers have been so helpful, they've given me everything I need and even transported me to other planets. Iktat Kri has stayed on as my interpreter."`
+			`	"The strangest thing about the Wanderer language is their complete lack of any gender specific words. Their language doesn't contain any words for 'son' or 'daughter' or 'father' or 'mother' instead, they refer to others as 'children' and 'parents' at all times. They don't even have 'he' and 'she', but other than that their language is actually quite straightforward, much easier to sort out then your own."`
 			choice
 				`	"How are you liking living with the Wanderers?"`
 					goto "wanderers 2"
@@ -686,8 +686,8 @@ mission "Language: Wanderer break: visit"
 					goto end
 
 			label wanderers
-			`	"It can get slightly frustrating how they built all their cities for flying in when you can't fly. And Sayari likes to keep an eye on me, I think she's worried I'll cause another diplomatic incident."`
-			`	"I have had some fairly funny moments when my speaking machine didn't quite translate between Hai and Wanderer correctly and accidentally said some very strange things. They seem to be taking it in their stride though, for which I am grateful for."`
+			`	"It can get slightly frustrating how they built all their cities for flying in when you can't fly. And Sayari likes to keep an eye on me, I think she's worried that I'll cause another diplomatic incident."`
+			`	"I have had some fairly funny moments when my speaking machine didn't quite translate between Hai and Wanderer correctly and accidentally said some very... strange things. They seem to be taking it in their stride though, for which I am grateful for."`
 				choice
 				`	"I wanted to find out how your work was getting on."`
 					goto "work 2"
@@ -695,14 +695,14 @@ mission "Language: Wanderer break: visit"
 					goto end
 
 			label "work 2"
-			`	"It's going very well, thank you. Everything is going to plan I should finish on time, the Wanderers have been so helpful, they've given me everything I need and even gave me transport to other planets. Iktat Kri has stayed on as my interpreter.`
-			`	"The strangest thing about the Wanderer language is their complete lack of any gender specific words. Their language doesn't contain any words for 'son' or 'daughter' or 'father' or 'mother' instead they referred to 'children' and 'parents' at all times. They don't even have 'he' and 'she', but other than that their language is actually quite straightforward, much easier to sort out then your own."`
+			`	"It's going very well, thank you. Everything is going to plan. I should finish on time, because the Wanderers have been so helpful, they've given me everything I need and even transported me to other planets. Iktat Kri has stayed on as my interpreter.`
+			`	"The strangest thing about the Wanderer language is their complete lack of any gender specific words. Their language doesn't contain any words for 'son' or 'daughter' or 'father' or 'mother' instead they refer to others as 'children' and 'parents' at all times. They don't even have 'he' and 'she', but other than that their language is actually quite straightforward, much easier to sort out then your own."`
 			`	"Thank you for the tea, it's been nice seeing you."`
 				goto end
 
 			label "wanderers 2"
-			`	"It can get slightly frustrating how they built all their cities for flying in when you can't fly. And Sayari likes to keep an eye on me, I think she's worried I'll cause another diplomatic incident."`
-			`	"I have had some fairly funny moments when my speaking machine didn't quite translate between Hai and Wanderer correctly and accidentally said some very strange things. They seem to be taking it in their stride though, for which I am grateful for."`
+			`	"It can get slightly frustrating how they built all their cities for flying in when you can't fly. And Sayari likes to keep an eye on me, I think she's worried that I'll cause another diplomatic incident."`
+			`	"I have had some fairly funny moments when my speaking machine didn't quite translate between Hai and Wanderer correctly and accidentally said some very... strange things. They seem to be taking it in their stride though, for which I am grateful for."`
 			`	"Thank you for the tea, it's been nice seeing you."`
 				goto end
 
@@ -772,7 +772,7 @@ ship "Korath Raider" "Korath Raider (Overclocked)"
 mission "Language: Wanderer 2A"
 	landing
 	name "Go back to see Eruk on Vara K'chrai"
-	description "It's been more than a year since you left Eruk on <destination>, go back and see how he's getting on."
+	description "It's been more than a year since you left Eruk on <destination>,so you should go back and see how he's getting on."
 	destination "Vara K'chrai"
 	to offer
 		has "event: eruk collects wanderer data" 
@@ -783,7 +783,7 @@ mission "Language: Wanderer 2A"
 
 	on complete
 		dialog
-			`As you are coming in to land you notice the "Redacted" is in orbit as well, the ship that has been following you recently. It identifies as an independent vessel but a Korath Raider is not a typical ship in most of the galaxy leaving you wandering what it is doing following you around.`
+			`As you are coming in to land you notice the "Redacted" is in orbit as well, the ship that has been following you recently. It identifies as an independent vessel but a Korath Raider is not a typical ship in most of the galaxy, leaving you wondering what it is doing following you around.`
 
 	npc
 		personality timid unconstrained entering
@@ -807,8 +807,8 @@ mission "Language: Wanderer 2B"
 	on offer
 		"reputation: Unidentified" = -1000
 		conversation
-			`Coming out of your ship you notice that the "Redacted" is not a few pads over like the last few times you have landed. You put it out of your mind as you head over to the Hai embassy, where Eruk has been staying over the past year.`
-			`	Outside the embassy there is a pair of that Wanderer trucks being loaded up though you can't see any sign of Eruk. At the front door you stand aside to let a pair of Wanderers carrying what appears to be a large crate of data drives come out followed by Eruk carrying a large clipboard.`
+			`Coming out of your ship you notice that the "Redacted" is not a few pads over like the last few times you have landed. You shove it to the back of your mind as you head over to the Hai embassy, where Eruk has been staying over the past year.`
+			`	Outside the embassy there is a pair of that Wanderer trucks being loaded up, though you can't see any sign of Eruk. At the front door you stand aside to let a pair of Wanderers carrying what appears to be a large crate of data drives stride out followed by Eruk carrying a large clipboard.`
 			`	"Ah, <first>, I assume you are prepared to transport me back to Greenwater."`
 			choice
 				`	"yes, of course."`
@@ -862,7 +862,7 @@ mission "Language: Wanderer 2B"
 	on complete
 		payment 1000000
 		conversation
-			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, I'll send a message telling you how to update it when I have. Also here's a bonus for keeping me alive." he says handing you a 1 million credit chip.`
+			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do I'll send a message telling you how to update. Also, here's a bonus for keeping me alive." he gives you a wink and hands you a 1 million credit chip.`
 		event "language: Wanderer direct" 60
 
 
