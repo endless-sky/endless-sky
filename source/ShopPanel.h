@@ -49,7 +49,8 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int DrawPlayerShipInfo(const Point &point) const = 0;
-	virtual bool DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
+	virtual bool HasItem(const std::string &name) const = 0;
+	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) const = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) const = 0;
@@ -116,9 +117,11 @@ protected:
 	mutable double selectedBottomY = 0.;
 	
 	mutable std::vector<Zone> zones;
+	mutable std::vector<ClickZone<std::string>> categoryZones;
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
+	std::set<std::string> collapsed;
 	
 	
 private:

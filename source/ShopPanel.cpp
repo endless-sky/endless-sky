@@ -59,6 +59,7 @@ void ShopPanel::Draw() const
 	
 	// Clear the list of clickable zones.
 	zones.clear();
+	categoryZones.clear();
 	
 	DrawSidebar();
 	DrawButtons();
@@ -238,6 +239,7 @@ void ShopPanel::DrawButtons() const
 void ShopPanel::DrawMain() const
 {
 	const Font &bigFont = FontSet::Get(18);
+	Color dim = *GameData::Colors().Get("dim");
 	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
 	
@@ -270,12 +272,17 @@ void ShopPanel::DrawMain() const
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
+		bool isCollapsed = collapsed.count(category);
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
-			if(!DrawItem(name, point, scrollY))
+			if(!HasItem(name))
 				continue;
 			isEmpty = false;
+			if(isCollapsed)
+				break;
+			
+			DrawItem(name, point, scrollY);
 			
 			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
 				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
@@ -318,7 +325,9 @@ void ShopPanel::DrawMain() const
 		
 		if(!isEmpty)
 		{
-			bigFont.Draw(category, side, bright);
+			Point size(bigFont.Width(category), bigFont.Height());
+			categoryZones.emplace_back(Point(Screen::Left(), side.Y()) + .5 * size, size, category);
+			bigFont.Draw(category, side, isCollapsed ? dim : bright);
 			
 			if(point.X() != begin.X())
 			{
@@ -496,10 +505,30 @@ bool ShopPanel::Click(int x, int y)
 			return Scroll(0, -4);
 	}
 	
+	Point point(x, y);
+	
+	// Check for clicks in the category labels.
+	for(const ClickZone<string> &zone : categoryZones)
+		if(zone.Contains(point))
+		{
+			auto it = collapsed.find(zone.Value());
+			if(it == collapsed.end())
+			{
+				collapsed.insert(zone.Value());
+				if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
+					selectedShip = nullptr;
+				if(selectedOutfit && selectedOutfit->Category() == zone.Value())
+					selectedOutfit = nullptr;
+			}
+			else
+				collapsed.erase(it);
+			return true;
+		}
+	
 	// Handle clicks anywhere else by checking if they fell into any of the
 	// active click zones (main panel or side panel).
 	for(const Zone &zone : zones)
-		if(zone.Contains(Point(x, y)))
+		if(zone.Contains(point))
 		{
 			if(zone.GetShip())
 			{

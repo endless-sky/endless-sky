@@ -103,23 +103,27 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+bool OutfitterPanel::HasItem(const std::string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	bool hasOutfit = (outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit));
-	if(!hasOutfit)
-		for(const Ship *ship : playerShips)
-			if(ship->OutfitCount(outfit))
-			{
-				hasOutfit = true;
-				break;
-			}
-	if(!hasOutfit)
-		return false;
+	if(outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit))
+		return true;
 	
+	for(const Ship *ship : playerShips)
+		if(ship->OutfitCount(outfit))
+			return true;
+	
+	return false;
+}
+
+
+
+void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+{
+	const Outfit *outfit = GameData::Outfits().Get(name);
 	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
 	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
-		return true;
+		return;
 	
 	bool isSelected = (outfit == selectedOutfit);
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
@@ -176,8 +180,6 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			OUTFIT_SIZE / 2 - 24);
 		font.Draw(message, pos, bright);
 	}
-	
-	return true;
 }
 
 
