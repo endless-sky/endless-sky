@@ -509,7 +509,7 @@ mission "Language: Wanderer 1B"
 		has "Language: Wanderer 1A: done"
 	on offer
 		conversation
-			`As soon as you open the hatch you get knocked over as Eruk rushes into your ship. He seems to want to get going as soon as posable. You also notice he hasn't got any luggage.`
+			`As soon as you open the hatch you get knocked over as Eruk rushes into your ship. He seems to want to get going as soon as posible. You also notice he hasn't got any luggage.`
 			choice
 				`	"Ow, my head."`
 					goto hit
@@ -527,7 +527,7 @@ mission "Language: Wanderer 1B"
 				goto return
 
 			label remind
-			`	"Yes, I have," he says turning around and nearly hitting again as he rushes out.`
+			`	"Yes, I have," he says turning around and nearly hitting you again as he rushes out.`
 				goto return
 
 			label return
@@ -585,7 +585,7 @@ mission "Language: Wanderer break"
 					goto wait
 				`	"Can't you make the decision?"`
 
-			`	"No, I only have [authority, command] concerning Human [visiters, travelers]. They came to deal with any Hai so they make the decision." It looks like you have no choice but to wait for them to finish.`
+			`	"No, I only have [authority, command] concerning Human [visitors, travelers]. They came to deal with any Hai so they make the decision." It looks like you have no choice but to wait for them to finish.`
 
 			label wait
 			`	When the hubub has quieted down a little one of the unarmed Wanderers steps out of the croud and proclames (rather grandly) "Hai Eruk and Human <first>, you are to go before the Assembly to determine the validity of Hai Eruk's request of the Wanderers. Hai Eruk you will be kept under guard until such time it is deemed unnecessary." And with that most of the Wanderers fly off leaving just Ret, the two armed guards, Sayari and Eruk on your ship's landing pad.`
