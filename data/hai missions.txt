@@ -815,7 +815,7 @@ mission "Language: Wanderer 2B"
 					goto yes
 				`	"Sorry, I don't think I can at the moment."`
 			`	"Don't worry about it <first>, the Wanderers have already said they would lend me one of their ships with a Jump Drive to get me back to Hai space."`
-			`	Back at your ship you notice that Eruk's equipment being loaded onto one of the Wanderers Strong Windcwarships.`
+			`	Back at your ship you notice that Eruk's equipment being loaded onto one of the Wanderers Strong Wind warships.`
 				decline
 
 			label yes
@@ -877,7 +877,7 @@ mission "Language: Wanderer 2B attacked"
 			branch with
 				has "Language: Wanderer 2B: active"
 
-			`The ship carrying Eruk, the Kach'cha takes off immediately before you. Coming out of the planets atmosphere you see it getting ready to jump, you also see the Redacted coming up fast behind it. At close range it opens fire with weapons much more powerful then a ship it size has any right to possess, the Kach'cha is disabled almost immediately. The "Redacted" then does something you have never seen any ship do before, it proceeds to ram the Kach'cha, utterly destroying both ships in the process.`
+			`The ship carrying Eruk, the Kach'cha takes off immediately before you. Coming out of the planets atmosphere you see it getting ready to jump, you also see the Redacted coming up fast behind it. At close range it opens fire with weapons much more powerful then a ship it size has any right to possess, the Kach'cha is disabled almost immediately. The Redacted then does something you have never seen any ship do before, it proceeds to ram the Kach'cha, utterly destroying both ships in the process.`
 				decline
 
 			label with
