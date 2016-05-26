@@ -68,6 +68,7 @@ Version 0.9.1:
     * Route finding now prefers less dangerous systems if multiple paths have equal length.
     * Added a warning siren when hostile ships (actively targeting the player) first appear.
     * Added a "fail" sound for when you can't jump or land.
+    * Straight quotation marks are now replaced with curly ones when rendering text.
     * Added "final explosion" sounds for all but the smallest ships.
     * In the map you can now plan an entire route using J and Shift+J rather than the mouse.
     * Adjusted the planet label fade-out to be based on distance to the planet edge, not the center.
