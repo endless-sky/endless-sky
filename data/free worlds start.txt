@@ -177,7 +177,7 @@ mission "FW Prisoner Parole"
 	
 	npc accompany save
 		government "Escort"
-		personality timid
+		personality timid escort
 		ship "Falcon (Heavy)" "F.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
@@ -217,7 +217,7 @@ mission "FW Prisoner Parole 2"
 	
 	npc accompany save
 		government "Escort"
-		personality timid
+		personality timid escort
 		ship "Falcon (Heavy)" "R.N.S. Starry Warrior"
 		ship "Blackbird" "Flight of Fancy"
 		ship "Blackbird" "Southern Luxury"
@@ -670,8 +670,8 @@ mission "FW Plasma Testing 1B"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	npc accompany save
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "Walloping Window-Blind"
 	npc kill
 		government "Pirate"
@@ -1343,8 +1343,8 @@ mission "FW Pirates 3.2A"
 		set "fw pirates: disobeyed senate"
 	
 	npc
-		personality heroic
-		government "Escort"
+		personality heroic escort
+		government "Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"
 		fleet "Small Free Worlds"

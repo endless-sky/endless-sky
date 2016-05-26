@@ -156,6 +156,9 @@ public:
 	bool IsLanding() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// Check if some condition is keeping this ship from acting. (That is, it is
+	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
+	bool CannotAct() const;
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
@@ -305,13 +308,14 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(const Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
+	// Add to this ship's hull or shields, and return the amount added. If the
+	// ship is carrying fighters, add to them as well.
+	double AddHull(double rate);
+	double AddShields(double rate);
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::list<Effect> &effects, bool spread = false);

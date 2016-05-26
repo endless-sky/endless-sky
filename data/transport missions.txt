@@ -960,6 +960,7 @@ mission "Rim Archaeology 1"
 	description "Bring the famous archaeologist Albert Foster to <destination>, to look for signs of an ancient alien civilization."
 	source "Vinci"
 	destination "Zug"
+	passengers 1
 	to offer
 		has "Sad Archie: done"
 	
@@ -995,10 +996,16 @@ mission "Rim Archaeology 1"
 	
 	on complete
 		conversation
-			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, random white spots appear on the screen. "Air pockets," he says, "some of them filled in with ground water. Nothing out of the ordinary."`
-			`	When the scan reaches about thirty meters below the surface, suddenly many air pockets appear, laid out in regular lines. "Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city."`
+			`You land your ship on the lava flow, and Albert Foster fires up his surveying equipment. "This will show me a density profile of different layers of rock beneath us," he says. As he gradually dials the instrument down to deeper and deeper layers, a few irregular white spots appear on the screen.`
+			choice
+				`	"What are those?"`
+				`	(Be quiet and let him focus.)`
+					goto scan
+			`	"Air pockets," he says, "some of them filled in with ground water. Nothing out of the ordinary."`
+			label scan
+			`	When the scan reaches about thirty meters below the surface, suddenly the view changes...`
 			scene "scene/geoscan"
-			`	You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
+			`	"Great burning suns!" says Foster. "There is something down there! Roads in a triangular grid. That ain't no human city." You both stare at the monitor for a minute, then Foster says, "I'm going to need to pull some permits. Meet me in the spaceport in an hour if you're willing to help pick up some of the other stuff we'll need."`
 
 
 
@@ -1032,6 +1039,7 @@ mission "Rim Archaeology 2B"
 	description "Deliver this excavation equipment to <destination>."
 	source "Crossroads"
 	destination "Zug"
+	cargo "Excavation equipment" 28
 	to offer
 		has "Rim Archaeology 2A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 28 tons of space free."
@@ -1069,6 +1077,7 @@ mission "Rim Archaeology 3B"
 	description `Deliver this excavation equipment to <destination>. Be sure that the ship "Oxyrhynchus" is not in the system when you land.`
 	source "Asgard"
 	destination "Zug"
+	cargo "Laser excavation equipment" 17
 	to offer
 		has "Rim Archaeology 3A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 17 tons of space free."
@@ -1116,6 +1125,7 @@ mission "Rim Archaeology 4B"
 	description `Transport the xenobiologist Amelia Lee and her Quarg friend Yarthis to the dig site on Zug.`
 	source "Lagrange"
 	destination "Zug"
+	passengers 2
 	to offer
 		has "Rim Archaeology 4A: done"
 	blocked "You will need two bunks free to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."

@@ -10,6 +10,231 @@
 
 phrase "friendly civilian"
 	word
+		"You should watch the video of "
+		"Just watched the video of "
+		"I'm listening to "
+		"I just got tickets to see "
+		"I just heard "
+	phrase "band"
+	word
+		"is now my favourite song!"
+		"is stuck in my head... again!"
+		"is pure genius!"
+		"was awesome!"
+		"plays in my bunk on repeat!"
+		"is playing full blast throughout my ship!"
+
+phrase "musical venue"
+	word
+		"playing a concert "
+		"doing a show "
+		"in concert "
+		"at their concert "
+		"playing a benefit concert "
+		"live "
+		"on tour "
+		"at a live concert "
+		"playing a gig "
+		"live in concert "
+	word
+		"at Tarazed stadium! "
+		"at the amphitheater on Skymoot! "
+		"at a concert hall in New Sydney! "
+		"in a night club on Splashdown! "
+		"at the Syndicated Systems Velodrome! "
+		"at Betelgeuse Stadium! "
+		"on Hestia! "
+		"at Lionheart Arena! "
+		"at the Grange on Heartland! "
+		"at a resort on Vail! "
+		"at Canyonland Park! "
+
+phrase "band"
+	word
+		`"Medium Confidence" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Regret Ride" `
+		`"My Wooden Mojo" `
+		`"Blue Illusion" `
+		`"Foreign Beauty" `
+		`"Introvert Day" `
+
+phrase "band"
+	word
+		`"Confined Brain Of The Liberal Dork" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Dude, Where's My Bible?" `
+		`"Re-Inventing Rythmn" `
+		`"Abstraction Is the Answer" `
+		`"Outrageous Activism" `
+		`"Cheap Entertainment" `
+
+phrase "band"
+	word
+		`"Catastrophe Aftermath" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"The Devil's Car" `
+		`"Selfish Thunder" `
+		`"Revenge Makes You Cry" `
+		`"Nature Of The Revolt" `
+		`"Instant Devastation" `
+
+phrase "band"
+	word
+		`"Swift Of The Sponge" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Weakness And All That" `
+		`"Trouble Will Return" `
+		`"Golden Smart Mouth" `
+		`"Burning Pain" `
+		`"Wisdom In Another World" `
+
+phrase "band"
+	word
+		`"Shrapnel Vacuum" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Fast Destiny" `
+		`"Fury Of My Ruggedness" `
+		`"Expensive Massacre" `
+		`"Fear Machine" `
+		`"Prisoner Of Indifference" `
+
+phrase "band"
+	word
+		`"Daniel Suburbia" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Nothing To Do With War" `
+		`"Loyalty Saved Me" `
+		`"Heaven All Over You" `
+		`"Nature Of The Heart" `
+		`"Holy Adventure" `
+
+phrase "band"
+	word
+		`"Volume Maneuver" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Loose Parade" `
+		`"The Average Girl" `
+		`"Foreign Doubt" `
+		`"Freedom Unlocked" `
+		`"Waiting For Kindness" `
+
+phrase "band"
+	word
+		`"Love Nugget" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Jet Fueled Woman" `
+		`"Sin Heals A Broken Heart" `
+		`"Talent Of The Backseat" `
+		`"Beat Orgy" `
+		`"Fairground Sinner" `
+
+phrase "band"
+	word
+		`"Under-paid Bandit" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Eternal Madman" `
+		`"Lovely Loneliness" `
+		`"Check The Time" `
+		`"Guilty Culture" `
+		`"Modern Cop" `
+
+phrase "band"
+	word
+		`"Galactic Grouch And The Greed" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Everybody Needs At Least One Shadow" `
+		`"So Much For The Showroom" `
+		`"Realism Wont Stop Me" `
+		`"Creativity Is Right Here" `
+		`"Quality... Ain't It Cool?" `
+
+phrase "band"
+	word
+		`"Headache Of The Hacker" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Ravening Hordes Of Steam Users" `
+		`"Got Any Synchronisation" `
+		`"My Wooden PC" `
+		`"Lightning Is Better Than Floods" `
+		`"Persistance Of The Sun" `
+
+phrase "band"
+	word
+		`"Diffusion Four" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Friendship Was Just The Start" `
+		`"Box Of Warmth" `
+		`"Vortex Of Optimism" `
+		`"Golden Rainbow" `
+		`"Mercy Is The Best" `
+
+phrase "band"
+	word
+		`"There Might Be Riots" `
+	phrase "musical venue"
+	word
+		"The song "
+		"Their song "
+	word
+		`"Sad Archie" `
+		`"Gluttony" `
+		`"Save The Nanobots" `
+		`"Blinded By Science" `
+		`"Let's Play War" `
+		`"World Of Silence" `
+		`"Indiscriminate" `
+
+phrase "friendly civilian"
+	word
 		"May "
 		"Let "
 	word
@@ -466,7 +691,7 @@ phrase "friendly navy"
 
 phrase "friendly navy"
 	word
-		"Join the navy. "
+		"Join the Navy. "
 	word
 		"See"
 		"Tour"
@@ -478,7 +703,12 @@ phrase "friendly navy"
 	word
 		" the galaxy!"
 		" the Republic!"
-		" the world!"
+		" the Paradise Worlds!"
+		" the Core!"
+		" the Rim!"
+		" the South!"
+		" the Dirt Belt!"
+		" the Deep!"
 
 phrase "friendly navy"
 	word
@@ -510,7 +740,7 @@ phrase "friendly navy"
 		"For honor! For glory!"
 		"Answer the call of duty! Join the Navy!"
 		"If you have courage, if you have honor, join the Navy!"
-		"We need YOU for the Navy!"
+		"We want YOU for the Navy!"
 
 phrase "friendly militia"
 	word

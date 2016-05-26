@@ -165,6 +165,7 @@ mission "FW Southern Recon 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "fw safe passage ends"
 		conversation
 			`Alondo and JJ are in a somber mood when you meet up with them in the bar. You can't help remembering that Tomek always used to be a part of these gatherings, before he turned against the Senate. And now it looks like your next major battle will be fought without Tomek's expert guidance.`
 			`	JJ says, "We've done all we can. Sooner or later we will have to fight the Navy for those star systems. So to start with, <first>, we'd like you to scout them out and report back to us on the Navy's presence there. Freya is on Trinket, gathering a fleet. Report to her there when you're done."`
@@ -220,7 +221,7 @@ mission "FW Southern Battle 1"
 	
 	on offer
 		conversation
-			`Because this world is a tourist destination, there are innumerable small cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
+			`Because this world is a tourist destination, there are innumerable fancy cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
 			choice
 				`	"Do you have any tactical advice on fighting ships with one of those installed?"`
 					goto advice
@@ -540,8 +541,8 @@ mission "FW Southern Prisoners - Release"
 		event "fw safe passage ends" 7
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
 		ship "Blackbird" "F.S. Stoutheart"
@@ -605,8 +606,8 @@ mission "FW Southern Prisoners - Released"
 				launch
 	
 	npc accompany save
-		government Escort
-		personality timid
+		government "Escort"
+		personality timid escort
 		ship "Blackbird" "F.S. Charity"
 		ship "Blackbird" "F.S. Good Hope"
 		ship "Blackbird" "F.S. Stoutheart"
@@ -1103,8 +1104,8 @@ mission "FW Alphas 1.1"
 		personality escort heroic
 		ship "Cruiser (Mark II)" "N.S. Peacemaker"
 	npc
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
 	npc kill
@@ -1192,8 +1193,8 @@ mission "FW Alphas 1.2"
 				accept
 	
 	npc accompany save
-		government "Escort"
-		personality heroic
+		government "Free Worlds"
+		personality heroic escort
 		ship "Falcon (Plasma)" "F.S. Oak"
 		ship "Falcon (Plasma)" "F.S. Alder"
 		ship "Falcon" "F.S. Starry Warrior"
@@ -1456,6 +1457,22 @@ mission "FW Bloodsea 1.1B"
 			`A few of the locals on Bloodsea appear surprised that you actually brought the supplies for a new spaceport, and that you arrived with all the supplies intact. But after meeting up with Alondo, they agree to hold their side of the bargain: from now on, Bloodsea will be a part of the Free Worlds, with all the rights and responsibilities that implies. And that means that they will refuse to knowingly harbor any pirate fleets or other known criminals.`
 			`	Alondo tells you that he will catch a ride back with the freighters when they return. "But, you'll probably want to head out sooner," he says, "because I've got some good news for you. Freya just contacted me, to say that they're now ready to start selling Dreadnoughts to certain select members of the Free Worlds, including you. That also means she's done with her work on Zug, so she'll need you to give her a lift from there."`
 				accept
+
+
+
+mission "Ijs catches another ride"
+	landing
+	to offer
+		has "fw bloodsea done"
+		has "FW Conservatory 1: active"
+	on offer
+		payment 10000
+		event "fw conservatory founded" 30
+		conversation
+			`Ijs approaches you with his duffel as you're stepping off the <ship>.`
+			`	"Thanks for getting me this close, but I really need to get to Winter as soon as possible. I hope you don't take offense that I've booked passage on another transport. Here's <payment> for getting me this far, anyway. I hope to see you again soon, Captain <last>."`
+				decline
+		fail "FW Conservatory 1"
 
 
 

@@ -381,77 +381,6 @@ outfit "Plasma Cannon"
 		"heat damage" 340
 	description "The Plasma Cannon fires bursts of superheated plasma. In addition to damaging your target, these plasma bursts impart a significant amount of heat, especially to a target whose shields are down."
 
-outfit "Pulse Cannon"
-	category "Guns"
-	cost 110000
-	thumbnail "outfit/pulse cannon"
-	"mass" 13
-	"outfit space" -13
-	"weapon capacity" -13
-	"gun ports" -1
-	weapon
-		sprite "projectile/pulse"
-		sound "pulse"
-		"hit effect" "pulse impact"
-		"inaccuracy" 1
-		"velocity" 15
-		"lifetime" 30
-		"reload" 20
-		"firing energy" 24
-		"firing heat" 70
-		"shield damage" 45
-		"hull damage" 34
-	description "Like most examples of Hai engineering that you have seen, the Pulse Cannon does not stand out as a particularly advanced or elegant technology, but it has a reputation for being efficient, reliable, and well-balanced."
-
-outfit "Pulse Turret"
-	category "Turrets"
-	cost 390000
-	thumbnail "outfit/pulse turret"
-	"mass" 34
-	"outfit space" -34
-	"weapon capacity" -34
-	"turret mounts" -1
-	"required crew" 1
-	weapon
-		sprite "projectile/pulse"
-		sound "pulse"
-		"hit effect" "pulse impact"
-		"inaccuracy" 1
-		"velocity" 15
-		"lifetime" 30
-		"reload" 10
-		"firing energy" 24
-		"firing heat" 70
-		"shield damage" 45
-		"hull damage" 34
-	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
-
-outfit "Ion Cannon"
-	category "Guns"
-	cost 490000
-	thumbnail "outfit/ion cannon"
-	"mass" 47
-	"outfit space" -47
-	"weapon capacity" -47
-	"gun ports" -1
-	weapon
-		sprite "projectile/ion bolt"
-			frame rate "5"
-		sound "ion"
-		"hit effect" "ion impact" 2
-		"inaccuracy" 1
-		"velocity" 16
-		"lifetime" 50
-		"reload" 60
-		"firing energy" 120
-		"firing force" 10
-		"firing heat" 150
-		"hit force" 120
-		"shield damage" 168
-		"hull damage" 60
-		"ion damage" 5
-	description "Ion cannons do not do as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy. If a ship has sizeable battery reserves, this may not have any effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers."
-
 outfit "Plasma Turret"
 	category "Turrets"
 	cost 520000
@@ -636,51 +565,6 @@ outfit "Javelin Pod"
 		"hit force" 5
 		"missile strength" 2
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has fired off all its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles. As a result, they are very popular with pirates as a way to quickly disable a small target."
-
-outfit "Hai Tracker"
-	category "Ammunition"
-	cost 1000
-	thumbnail "outfit/hai tracker"
-	"tracker capacity" -1
-	description "This is ammunition for a Tracker Pod."
-
-outfit "Hai Tracker Pod"
-	category "Secondary Weapons"
-	cost 250000
-	thumbnail "outfit/hai tracker pod"
-	"mass" 19
-	"outfit space" -19
-	"weapon capacity" -19
-	"gun ports" -1
-	"tracker capacity" 56
-	weapon
-		sprite "projectile/tracker"
-			"frame rate" 10
-			"random start frame"
-		sound "tracker"
-		ammo "Hai Tracker"
-		icon "icon/tracker"
-		"fire effect" "tracker fire"
-		"hit effect" "tracker impact"
-		"hit effect" "tracker cloud" 3
-		"die effect" "tracker impact"
-		"inaccuracy" 20
-		"velocity" 14
-		"lifetime" 600
-		"reload" 60
-		"firing energy" 45
-		"firing heat" 5
-		"acceleration" .7
-		"drag" .05
-		"turn" 1.2
-		"homing" 4
-		"optical tracking" .7
-		"infrared tracking" .7
-		"shield damage" 250
-		"hull damage" 190
-		"hit force" 50
-		"missile strength" 16
-	description "Trackers are a fast, powerful, and accurate homing weapon. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 
 outfit "Torpedo"
 	category "Ammunition"

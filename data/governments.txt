@@ -8,6 +8,14 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
+government "Alpha"
+	swizzle 1
+	"player reputation" -1000
+	"attitude toward"
+		"Republic" -.1
+		"Navy (Oathkeeper)" -.1
+	"bribe" 0
+
 government "Author"
 	"player reputation" 1
 	"bribe" 0
@@ -174,6 +182,8 @@ government "Navy (Oathkeeper)"
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
+		"Kor Sestor" -.1
+		"Kor Mereti" -.1
 	"friendly hail" "friendly navy"
 	"hostile hail" "hostile navy"
 
@@ -273,7 +283,7 @@ government "Syndicate (Extremist)"
 		"Syndicate" -.1
 		"Republic" -.1
 		"Free Worlds" -.1
-	"bribe" .08
+	"bribe" 0
 	"hostile hail" "hostile syndicate"
 
 government "Test Dummy"

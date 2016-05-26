@@ -22,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "MapPanel.h"
 #include "Mask.h"
 #include "Messages.h"
 #include "Person.h"
@@ -219,7 +219,7 @@ void Engine::Place()
 			velocity *= Random::Real() * ship->MaxVelocity();
 		}
 		
-		ship->Place(pos, velocity, angle);
+		ship->Place(pos, ship->IsDisabled() ? Point() : velocity, angle);
 	}
 	
 	player.SetPlanet(nullptr);
@@ -592,7 +592,8 @@ void Engine::Draw() const
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}
-	DrawMiniMap();
+	if(jumpCount)
+		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
 	Point pos(Screen::Right() - 80, Screen::Bottom());
@@ -639,82 +640,6 @@ void Engine::Click(const Point &point)
 {
 	doClick = true;
 	clickPoint = point;
-}
-
-
-
-void Engine::DrawMiniMap() const
-{
-	if(!jumpCount || !jumpInProgress[0] || !jumpInProgress[1])
-		return;
-	
-	const Font &font = FontSet::Get(14);
-	double alpha = .5 * min(1., jumpCount / 30.);
-	Color lineColor(alpha, 0.);
-	Point center = .5 * (jumpInProgress[0]->Position() + jumpInProgress[1]->Position());
-	Point drawPos(0., Screen::Top() + 100.);
-	set<const System *> seen;
-	bool isLink = false;
-	for(int i = 0; i < 2; ++i)
-	{
-		const System *system = jumpInProgress[i];
-		const Government *gov = system->GetGovernment();
-		bool isKnown = player.KnowsName(system);
-		Point from = system->Position() - center + drawPos;
-		string name = isKnown ? system->Name() : "Unexplored System";
-		font.Draw(name, from + Point(6., -.5 * font.Height()), lineColor);
-		
-		Color color = Color(.5 * alpha, 0.);
-		if(player.HasVisited(system) && system->IsInhabited() && gov)
-			color = Color(
-				alpha * gov->GetColor().Get()[0],
-				alpha * gov->GetColor().Get()[1],
-				alpha * gov->GetColor().Get()[2], 0.);
-		RingShader::Draw(from, 6., 3.5, color);
-		
-		for(const System *link : system->Links())
-		{
-			if(!player.HasVisited(system) && !player.HasVisited(link))
-				continue;
-			
-			Point to = link->Position() - center + drawPos;
-			Point unit = (from - to).Unit() * 7.;
-			LineShader::Draw(from - unit, to + unit, 1.2, lineColor);
-			
-			isLink |= (link == jumpInProgress[!i]);
-			if(seen.count(link) || link == jumpInProgress[!i])
-				continue;
-			seen.insert(link);
-			
-			gov = link->GetGovernment();
-			Color color = Color(.5 * alpha, 0.);
-			if(player.HasVisited(link) && link->IsInhabited() && gov)
-				color = Color(
-					alpha * gov->GetColor().Get()[0],
-					alpha * gov->GetColor().Get()[1],
-					alpha * gov->GetColor().Get()[2], 0.);
-			RingShader::Draw(to, 6., 3.5, color);
-		}
-	}
-	
-	Point from = jumpInProgress[0]->Position() - center + drawPos;
-	Point to = jumpInProgress[1]->Position() - center + drawPos;
-	Point unit = (to - from).Unit();
-	from += 7. * unit;
-	to -= 7. * unit;
-	Color bright(2. * alpha, 0.);
-	if(!isLink)
-	{
-		double length = (to - from).Length();
-		int segments = static_cast<int>(length / 15.);
-		for(int i = 0; i < segments; ++i)
-			LineShader::Draw(
-				from + unit * ((i * length) / segments + 2.),
-				from + unit * (((i + 1) * length) / segments - 2.),
-				1.2, bright);
-	}
-	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., 1.2, bright);
-	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10, 1.2, bright);
 }
 
 
@@ -783,6 +708,7 @@ void Engine::EnterSystem()
 	
 	projectiles.clear();
 	effects.clear();
+	flotsam.clear();
 	
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1002,6 +928,8 @@ void Engine::CalculateStep()
 		Ship *collector = nullptr;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
+			if(ship->GetSystem() != player.GetSystem() || ship->CannotAct())
+				continue;
 			if(ship.get() == it->Source() || ship->Cargo().Free() < it->UnitSize())
 				continue;
 			
@@ -1151,11 +1079,20 @@ void Engine::CalculateStep()
 	}
 	if(clickTarget && clickTarget == previousTarget)
 		clickCommands |= Command::BOARD;
-	if(hasHostiles && !hadHostiles)
+	if(alarmTime)
+		--alarmTime;
+	else if(hasHostiles && !hadHostiles)
+	{
 		Audio::Play(Audio::Get("alarm"));
-	hadHostiles = hasHostiles;
+		alarmTime = 180;
+		hadHostiles = true;
+	}
+	else if(!hasHostiles)
+		hadHostiles = false;
 	
 	// Collision detection:
+	if(grudgeTime)
+		--grudgeTime;
 	for(Projectile &projectile : projectiles)
 	{
 		// The asteroids can collide with projectiles, the same as any other
@@ -1457,6 +1394,8 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		}
 		return;
 	}
+	if(grudgeTime)
+		return;
 	
 	// Check who currently has a grudge against this government. Also check if
 	// someone has already said "thank you" today.
@@ -1475,6 +1414,9 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		return;
 	if(target->GetGovernment()->IsEnemy())
 		return;
+	if(!target->GetGovernment()->Language().empty())
+		if(!player.GetCondition("language: " + target->GetGovernment()->Language()))
+			return;
 	
 	// No active ship has a grudge already against this government.
 	// Check the relative strength of this ship and its attackers.
@@ -1497,6 +1439,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		return;
 	
 	grudge[attacker] = target;
+	grudgeTime = 120;
 	string message = target->GetGovernment()->GetName() + " ship \"" + target->Name() + "\": ";
 	if(target->GetPersonality().IsHeroic())
 	{
