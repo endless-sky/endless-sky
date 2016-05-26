@@ -747,10 +747,11 @@ void ShopPanel::SideSelect(Ship *ship)
 	}	
 	else if(!control)
 		playerShips.clear();
-	else if(playerShip == ship)
+	else if(playerShips.count(ship))
 	{
 		playerShips.erase(playerShips.find(ship));
-		playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+		if(playerShip == ship)
+			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		return;
 	}
 	
