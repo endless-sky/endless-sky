@@ -509,7 +509,7 @@ mission "Language: Wanderer 1B"
 		has "Language: Wanderer 1A: done"
 	on offer
 		conversation
-			`As soon as you open the hatch you get knocked over as Eruk rushes into your ship. He seems to want to get going as soon as posible. You also notice he hasn't got any luggage.`
+			`As soon as you open the hatch you get knocked over as Eruk rushes into your ship. He seems to want to get going as soon as possible. You also notice he hasn't got any luggage.`
 			choice
 				`	"Ow, my head."`
 					goto hit
