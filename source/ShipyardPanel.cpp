@@ -64,7 +64,7 @@ bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 	if(!shipyard.Has(ship))
 		return false;
 	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
+	zones.emplace_back(point, .5 * Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
 		return true;
 	

@@ -15,6 +15,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Panel.h"
 
+#include "ClickZone.h"
 #include "Point.h"
 
 #include <map>
@@ -71,28 +72,19 @@ protected:
 	
 	
 protected:
-	class ClickZone {
+	class Zone : public ClickZone<const Ship *> {
 	public:
-		ClickZone(int x, int y, int rx, int ry, const Ship *ship, double scrollY = 0.);
-		ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, double scrollY = 0.);
+		Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
+		Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
 		
-		bool Contains(int x, int y) const;
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 		
-		int CenterX() const;
-		int CenterY() const;
 		double ScrollY() const;
 		
 	private:
-		int left;
-		int top;
-		int right;
-		int bottom;
-		double scrollY;
-		
-		const Ship *ship;
-		const Outfit *outfit;
+		double scrollY = 0.;
+		const Outfit *outfit = nullptr;
 	};
 	
 	
@@ -123,7 +115,7 @@ protected:
 	bool scrollDetailsIntoView = false;
 	mutable double selectedBottomY = 0.;
 	
-	mutable std::vector<ClickZone> zones;
+	mutable std::vector<Zone> zones;
 	
 	std::map<std::string, std::set<std::string>> catalog;
 	const std::vector<std::string> &categories;
@@ -137,8 +129,8 @@ private:
 	void MainRight();
 	void MainUp();
 	void MainDown();
-	std::vector<ClickZone>::const_iterator Selected() const;
-	std::vector<ClickZone>::const_iterator MainStart() const;
+	std::vector<Zone>::const_iterator Selected() const;
+	std::vector<Zone>::const_iterator MainStart() const;
 };
 
 

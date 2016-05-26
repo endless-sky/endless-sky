@@ -117,7 +117,7 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 	if(!hasOutfit)
 		return false;
 	
-	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);
+	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
 	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
 		return true;
 	
