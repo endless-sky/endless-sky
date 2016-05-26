@@ -569,7 +569,7 @@ mission "Language: Wanderer break"
 		event "eruk collects wanderer data" 366
 		conversation
 			`When you are coming into landing on Vara K'chrai, you radio ahead and ask Sayari, the Hai ambassador, and Iktat Ret, the Wanderer envoy, to meet you when you land.`
-			`	When you step out of your ship you find a larger group of Wanderers, some armed, than you where you expecting. Ret comes hurrying up behind them. "Sorry <first>, one of the ships in orbit detectid a Hai [stowaway, passenger} on-board your ship. We..." Ret stops talking when Eruk appears behind you.`
+			`	When you step out of your ship you find a larger group of Wanderers, some armed, than you where you expecting. Ret comes hurrying up behind them. "Sorry <first>, one of the ships in orbit detectid a Hai [stowaway, passenger] on-board your ship. We..." Ret stops talking when Eruk appears behind you.`
 			choice
 				`	(Let Eruk explain)`
 					goto explain
