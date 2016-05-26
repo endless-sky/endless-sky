@@ -641,12 +641,12 @@ mission "Language: Wanderer break"
 			`	"A [exceptional, excellent] point. Thank you <first>."`
 			`	The Wanderer officials occupying the lowest balconies start talking in their own language in what appears to be a debate, but whatever it is it seems much more organised than what you had to deal with on your landing pad.`
 			`	Iktat Kri explains that the debate is held in public so as to allow any Wanderer who is interested to listen, and in some cases, to raise points of their own.`
-			` Eruk pulls you away from Iktat Kri slightly and says quietly to you,"I this goes through, I'll need to stay in Wanderer space for a year or so to collect the data that I need. Would you be able to come back afterwards to pick me up and take me back to Greenwater?"`
+			` Eruk pulls you away from Iktat Kri slightly and says quietly to you,"If this goes through, I'll need to stay in Wanderer space for a year or so to collect the data that I need. Would you be able to come back afterwards to pick me up and take me back to Greenwater?"`
 			choice
 				`	"I will do if I can."`
 
 			`	Just as Eruk thanks you, the Wanderers quieten down again as if they have come to a decision. The same Wanderer as before speaks to Eruk, "We have decided to [assist, help] to improve your..." he hesitates, "speaking machine. We will offer you any [required, necessary] help that you need. You can stay with ambassador Sayari, you will not be guarded, and a interpreter will be [listed, assigned] to you." The speech over, the Wanderers start flocking into the air r to continue their day-to-day business.`
-			`	Eruk turns to you now a much happier Hai, and hands you a 200,000 credit chip. He thanks you excitedly before Iktat Ret lands near you, before setting off on foot with Iktat Kri and Eruk who is now talking enthusiastically about how he wants to start the next day. With the excitement over you decide to head back to your ship.`
+			`	Eruk turns to you now a much happier Hai, and hands you a 200,000 credit chip. He thanks you excitedly as Iktat Ret lands near you, before setting off on foot with Iktat Kri and Eruk who is now talking enthusiastically about how he wants to start the next day. With the excitement over you decide to head back to your ship.`
 				decline
 
 
@@ -862,7 +862,7 @@ mission "Language: Wanderer 2B"
 	on complete
 		payment 1000000
 		conversation
-			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do I'll send a message telling you how to update. Also, here's a bonus for keeping me alive." he gives you a wink and hands you a 1 million credit chip.`
+			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do I'll send a message telling you how to update. Also, here's a bonus for keeping me alive." he hands you a 1 million credit chip.`
 		event "language: Wanderer direct" 60
 
 
