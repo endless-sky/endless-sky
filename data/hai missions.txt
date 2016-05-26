@@ -489,9 +489,9 @@ mission "Language: Wanderer 1A"
 	on offer 
 		conversation
 			`Just after you land, while you are inspecting your ship's hull for damage, your communicator bleeps to inform you of a message. After spotting a bit of carbon scouring from an interceptor that passed too close you head back into your ship to read the message.`
-			`	It's from Eruk, the Hai technologist that gave you a speaking machine. "Captain <last>, could you come and meet me on <destination> at some point? I have an idea but I need to get over to Wanderer space, and I would rather not have to go on an Unfettered transport."`
+			`	It's from Eruk, the Hai technologist that gave you your translation machine. "Captain <last>, could you come and meet me on <destination> at some point? I have an idea, but I need to get over to Wanderer space, and I would rather not have to go on an Unfettered transport."`
 			`	"Sayari thinks that if I come with you they may at least hear me out before throwing me off the planet. It will also help build up trust with the Wanderers in the long run, I hope."`
-			`	It's a short message but Eruk seams excited about something so you should probably visit him when you're passing that way.`
+			`	It's a short message, but Eruk seams excited about something so you should probably visit him when you're passing that way.`
 				accept
 
 
@@ -527,12 +527,12 @@ mission "Language: Wanderer 1B"
 				goto return
 
 			label remind
-			`	"Yes, I have" he says turning around and nearly hitting again as he rushes out.`
+			`	"Yes, I have," he says turning around and nearly hitting again as he rushes out.`
 				goto return
 
 			label return
 			`	A short time later Eruk returns driving a small flatbed truck piled high with boxes, you wonder what kind of suspension the Hai use that can withstand that load. He seems to have calmed down a bit as he manages to avoid running anyone down.`
-			`	"<first> do you have space for me and some equipment?"`
+			`	"<first>, do you have space for me and some equipment?"`
 			choice
 				`	"How much is 'some' equipment?"`
 					goto yes
@@ -545,7 +545,7 @@ mission "Language: Wanderer 1B"
 
 			label yes
 			`	"Only about ten tons. I think." You wave some dockworkers over and ask them to start loading it onto your ship.`
-			`	Eruk seems a bit lost so you start guiding him towards his cabin. "Captain, I should explain." He sounds tired. "Right now, for a Wanderer to talk to you, they need to be able to speak in our language and the speaking machine has to translate it for you to understand. It's roundabout and rather prone to mistakes, so I was thinking, if I had a full translation between the Hai and Wanderer language and if it was well defined I could extrapolate it to translate into your language too." He's perked up a little. "What do you think?"`
+			`	Eruk seems a bit lost, so you start guiding him towards his cabin. "Captain, I should explain." He sounds tired. "Right now, for a Wanderer to talk to you, they need to be able to speak in our language and the speaking machine has to translate it for you to understand. It's roundabout and rather prone to mistakes, so I was thinking, if I had a full translation between the Hai and Wanderer language and if it was well defined I could extrapolate it to translate into your language too." He's perked up a little. "What do you think?"`
 			choice
 				`	"I think it's a great idea!"`
 					accept
@@ -578,19 +578,19 @@ mission "Language: Wanderer break"
 			`	"Eruk had an idea, he wants to improve his speaking machine to handle your language." Eruk stops you and starts explaining himself.`
 
 			label explain
-			`	He tells the Wanderers everything he told you and more. It seems he has thought of everything from data sets to time frames and processing power to memory space. When he finishes the wanderers start to talk among themselves in their own chirping, clicking language getting louder and faster all the time.`
-			`	Ret moves towards you, Sayari and Eruk. "They can't [approve, agree] what to do, some think we should [stop, block] his request and send him back to Hai space and others think we should [support?, care?, help?] him outright, the rest have every view inbetween."`
+			`	He tells the Wanderers everything he told you and more. It seems he has thought of everything from data sets to time frames and processing power to memory space. When he finishes, the wanderers start to talk among themselves in their own chirping, clicking language getting louder and faster all the time.`
+			`	Ret moves towards you, Sayari and Eruk. "They can't [decide, agree] what to do, some think we should [stop, decline] his request and send him back to Hai space and others think we should [support?, care?, help?] him outright, the rest have every view inbetween."`
 			choice
 				`	(Wait it out)`
 					goto wait
 				`	"Can't you make the decision?"`
 
-			`	"No, I only have [authority, command] concerning Human [visiters, raiders]. They came to deal with any Hai so they make the decision." It looks like you have no choice but to wait for them to finish.`
+			`	"No, I only have [authority, command] concerning Human [visiters, travelers]. They came to deal with any Hai so they make the decision." It looks like you have no choice but to wait for them to finish.`
 
 			label wait
 			`	When the hubub has quieted down a little one of the unarmed Wanderers steps out of the croud and proclames (rather grandly) "Hai Eruk and Human <first>, you are to go before the Assembly to determine the validity of Hai Eruk's request of the Wanderers. Hai Eruk you will be kept under guard until such time it is deemed unnecessary." And with that most of the Wanderers fly off leaving just Ret, the two armed guards, Sayari and Eruk on your ship's landing pad.`
-			`	"What where you thinking!" Sayari says rounding on Eruk.`
-			`	"I needed someone to get me here and I  knew you woulden't agree to it so I asked Captian <last> to bring me here."`
+			`	"What where you thinking?!" Sayari says, rounding on Eruk.`
+			`	"I needed someone to get me here, and I  knew you woulden't agree to it so I asked Captian <last> to bring me here."`
 			choice
 				`	(keep out of it)`
 					goto "keeping out"
@@ -605,24 +605,24 @@ mission "Language: Wanderer break"
 			`	"Eruk said you agreed to it."`
 
 			label sayari
-			`	"Did he now? Well I hope he's proud of the diplomatic incident he caused." Sayari says storming off.`
+			`	"Did he now? Well I hope he's proud of the diplomatic incident he caused." Sayari says, storming off.`
 				goto ret
 
 			label eruk
-			`	Eruk looks appolgetic and is about to speak before Sayari interupts. "You lied for your own gain? I thought you where brought up better than this!" Sayari says storming off.`
+			`	Eruk looks appolgetic and is about to speak before Sayari interupts. "You lied for your own gain? I thought you where brought up better than this!" Sayari says, storming off.`
 
 			label ret
-			`	Ret looks surprised but recovers quickly "You should head over to the Assembly building," he says pointing at a building that looks vaguely like a giant birds nest, "I won't be [allowed, permitted] to stay so I need to find you an interpreter." Ret flies off as well.`
+			`	Ret looks surprised but recovers quickly "You should head over to the Assembly building," he says pointing at a building that looks vaguely like a giant birds nest, "I won't be [allowed, permitted] to stay, so I need to find you an interpreter." Ret flies off as well.`
 			`	Eruk starts walking away from your ship and towards the Assembly building with the Wanderer guards following close behind.`
 			choice
 				`	(follow him)`
 					goto assembly
 				`	(try to comfort him)`
 
-			`	You hurry after him but when you catch up he simply angrily waves you away. You resign yourself to simply having to follow him.`
+			`	You hurry after him, but when you catch up he simply angrily waves you away. You resign yourself to simply following him.`
 
 			label assembly
-			`	When you reach the Assembly building you notice large numbers of Wanderers flying into it to through an open roof but you can't help but notice that there are no visible doors on the side of the building.`
+			`	When you reach the Assembly building, you notice large numbers of Wanderers flying into it to through an open roof. You can't help but notice that there are no visible doors on the side of the building.`
 			`	Eruk sighs and goes to sit down on a nearby wall while you start to walk around the edge of the building looking for a door.`
 			`	After going nearly the entire way round the building you find Iktat Ret and another slightly smaller Wanderer standings by the only door you've seen so far. Eruk is also with them but he doesn't seem to be any happier than before.`
 			`	"<first>, this is my child Iktat Kri. [They?, He?, She?] will be able to [understand, interpret] for you."`
