@@ -58,19 +58,22 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+bool ShipyardPanel::HasItem(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	if(!shipyard.Has(ship))
-		return false;
-	
-	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
+	return shipyard.Has(ship);
+}
+
+
+
+void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+{
+	const Ship *ship = GameData::Ships().Get(name);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
-		return true;
+		return;
 	
 	DrawShip(*ship, point, ship == selectedShip);
-	
-	return true;
 }
 
 
