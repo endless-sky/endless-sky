@@ -783,7 +783,7 @@ mission "Language: Wanderer 2A"
 
 	on complete
 		dialog
-			`As you are coming in to land you notice the "Redacted" is in orbit as well, the ship that has been following you recently. It identifies as an independent vessel but a Korath Raider is not a typical ship in most of the galaxy, leaving you wondering what it is doing following you around.`
+			`As you are coming in to land you notice the Redacted is in orbit as well, the ship that has been following you recently. It identifies as an independent vessel, but a Korath Raider is not a typical ship in most of the galaxy, leaving you wondering what it is doing following you around.`
 
 	npc
 		personality timid unconstrained entering
@@ -807,7 +807,7 @@ mission "Language: Wanderer 2B"
 	on offer
 		"reputation: Unidentified" = -1000
 		conversation
-			`Coming out of your ship you notice that the "Redacted" is not a few pads over like the last few times you have landed. You shove it to the back of your mind as you head over to the Hai embassy, where Eruk has been staying over the past year.`
+			`Coming out of your ship you notice that the Redacted is not a few pads over like the last few times you have landed. You shove it to the back of your mind as you head over to the Hai embassy, where Eruk has been staying over the past year.`
 			`	Outside the embassy there is a pair of that Wanderer trucks being loaded up, though you can't see any sign of Eruk. At the front door you stand aside to let a pair of Wanderers carrying what appears to be a large crate of data drives stride out followed by Eruk carrying a large clipboard.`
 			`	"Ah, <first>, I assume you are prepared to transport me back to Greenwater."`
 			choice
@@ -815,7 +815,7 @@ mission "Language: Wanderer 2B"
 					goto yes
 				`	"Sorry, I don't think I can at the moment."`
 			`	"Don't worry about it <first>, the Wanderers have already said they would lend me one of their ships with a Jump Drive to get me back to Hai space."`
-			`	Back at your ship you notice that Eruk's equipment being loaded onto one of the Wanderers 'Strong Wind' warships.`
+			`	Back at your ship you notice that Eruk's equipment being loaded onto one of the Wanderers Strong Windcwarships.`
 				decline
 
 			label yes
@@ -862,7 +862,7 @@ mission "Language: Wanderer 2B"
 	on complete
 		payment 1000000
 		conversation
-			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do I'll send a message telling you how to update. Also, here's a bonus for keeping me alive." he hands you a 1 million credit chip.`
+			`Eruk seems to be a bit rattled from the attacks you had on your way here. "I can't think who would want me dead for the work I've been doing. Hopefully they won't be able to find me, now you've got me safely here." He looks very worried. "I should have this software sorted in a couple of months, so when I do I'll send a message telling you how to update. Also, here's a bit of a bonus for keeping me alive." he hands you a 1 million credit chip. "If I ever need you again, I'll give you a call." and with that, he walks off.'`
 		event "language: Wanderer direct" 60
 
 
@@ -877,11 +877,11 @@ mission "Language: Wanderer 2B attacked"
 			branch with
 				has "Language: Wanderer 2B: active"
 
-			`The ship carrying Eruk, the "Kach'cha" takes off immediately before you. Coming out of the planets atmosphere you see it getting ready to jump, you also see the "Redacted" coming up fast behind it. At close range it opens fire with weapons much more powerful then a ship it size has any right to possess, the "Kach'cha" is disabled almost immediately. The "Redacted" then does something you have never seen any ship do before, it proceeds to ram the "Kach'cha" utterly destroying both ships in the process.`
+			`The ship carrying Eruk, the Kach'cha takes off immediately before you. Coming out of the planets atmosphere you see it getting ready to jump, you also see the Redacted coming up fast behind it. At close range it opens fire with weapons much more powerful then a ship it size has any right to possess, the Kach'cha is disabled almost immediately. The "Redacted" then does something you have never seen any ship do before, it proceeds to ram the Kach'cha, utterly destroying both ships in the process.`
 				decline
 
 			label with
-			`As you're leaving the atmosphere your sensors pick up the "Redacted" rushing towards you at high speed as if it intends to ram you. Unfortunately for it, it collides with a "Deep River" that was coming out of the atmosphere alongside you heavily damaging both ships in the process. The "Redacted" seems to have some kind of internal self-destruct set as it very quickly explodes turning the two ships into nothing more than an expanding cloud of debris.`
+			`As you're leaving the atmosphere your sensors pick up the Redacted rushing towards you at high speed as if it intends to ram you. Unfortunately for it, it collides with a Deep River that was coming out of the atmosphere alongside you heavily damaging both ships in the process. The Redacted seems to have some kind of internal self-destruct set as it very quickly explodes turning the two ships into nothing more than an expanding cloud of debris.`
 			`	As if that wasn't enough you can see another ship entering the system bearing the same name but not using any identifier that you are aware of. Based on the suicidal attack of the last ship it seems like a very good idea to get to Greenwater as fast as possible.`
 				decline
 
