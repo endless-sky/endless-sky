@@ -590,7 +590,7 @@ mission "Language: Wanderer break"
 			label wait
 			`	When the hubub has quieted down a little one of the unarmed Wanderers steps out of the croud and proclames (rather grandly) "Hai Eruk and Human <first>, you are to go before the Assembly to determine the validity of Hai Eruk's request of the Wanderers. Hai Eruk you will be kept under guard until such time it is deemed unnecessary." And with that most of the Wanderers fly off leaving just Ret, the two armed guards, Sayari and Eruk on your ship's landing pad.`
 			`	"What where you thinking!" Sayari says rounding on Eruk.`
-			`	"I needed someone to get me here and I  knew you woulden't agree to it so I asked Captin <last> to bring me here."`
+			`	"I needed someone to get me here and I  knew you woulden't agree to it so I asked Captian <last> to bring me here."`
 			choice
 				`	(keep out of it)`
 					goto "keeping out"
@@ -629,10 +629,10 @@ mission "Language: Wanderer break"
 			`	You realise that you've never seen a female Wanderer but maybe Wanderer society does not differentiate between male and female in the same way Hai and Human societies do, and the opposite of what is done in the Syndicate.`
 			`	Iktat Ret wishes Eruk luck before indicating that you should follow Iktat Kri inside.`
 			`	Inside the building looks even more like a bird's nest with hundreds of balconies scattered chaotically around the inside of the large bowl-shaped structure. All of the balconies are full apart from a few at the very top of the bowl but even these are filled quickly as the last Wanderers fly in.`
-			`	The half-dozen or so lowest balconies are filled with some very old looking Wanderers, this1 must be the actual Wanderer government as you can't help but feel that any debate between the number of Wanderer that are currently occupying the building would take so long that it would be completely pointless.`
+			`	The half-dozen or so lowest balconies are filled with some very old looking Wanderers, this must be the actual Wanderer government as you can't help but feel that any debate between the number of Wanderer that are currently occupying the building would take so long that it would be completely pointless.`
 			`	Once all the Wanderers have settled down and the last rustling of wings has ceased, one of the old Wanderers sitting in front of you leans forward and asks Eruk, with Iktat Kri translating, to tell them about his proposition.`
 			`	Eruk once again explains what he wants to do and how he needs the Wanderers help to do it.`
-			`	When he's finished the wanderer turns to you and asks "<first>, what is your [thought, opinion] on this."`
+			`	When he's finished the wanderer turns to you and asks "<first>, what is your [thought, opinion] on this?"`
 			choice
 				`	"I think this would facilitate better trade and relationship between your species and our two species."`
 				`	"This would be an excellent first step towards interspecies communication and peace."`
