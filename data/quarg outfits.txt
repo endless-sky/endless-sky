@@ -25,7 +25,7 @@ outfit "Antimatter Core"
 	"outfit space" -80
 	"energy generation" 80
 	"heat generation" 20
-        description "This core emitts an eerie greenish glow. You're pretty sure you don't want to be anywhere near this thing."
+        description "This core emits an eerie greenish glow. You're pretty sure you don't want to be anywhere near this thing."
 
 
 outfit "Quarg Skylance"
