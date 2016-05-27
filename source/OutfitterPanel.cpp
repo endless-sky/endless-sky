@@ -103,23 +103,27 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+bool OutfitterPanel::HasItem(const std::string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	bool hasOutfit = (outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit));
-	if(!hasOutfit)
-		for(const Ship *ship : playerShips)
-			if(ship->OutfitCount(outfit))
-			{
-				hasOutfit = true;
-				break;
-			}
-	if(!hasOutfit)
-		return false;
-	
-	zones.emplace_back(point.X(), point.Y(), OUTFIT_SIZE / 2, OUTFIT_SIZE / 2, outfit, scrollY);
-	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
+	if(outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit))
 		return true;
+	
+	for(const Ship *ship : playerShips)
+		if(ship->OutfitCount(outfit))
+			return true;
+	
+	return false;
+}
+
+
+
+void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+{
+	const Outfit *outfit = GameData::Outfits().Get(name);
+	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
+	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
+		return;
 	
 	bool isSelected = (outfit == selectedOutfit);
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
@@ -176,8 +180,6 @@ bool OutfitterPanel::DrawItem(const string &name, const Point &point, int scroll
 			OUTFIT_SIZE / 2 - 24);
 		font.Draw(message, pos, bright);
 	}
-	
-	return true;
 }
 
 
@@ -212,10 +214,10 @@ int OutfitterPanel::DrawDetails(const Point &center) const
 
 bool OutfitterPanel::CanBuy() const
 {
-	if(!planet || !selectedOutfit || !playerShip)
+	if(!planet || !selectedOutfit)
 		return false;
 	
-	bool isInCargo = player.Cargo().Get(selectedOutfit);
+	bool isInCargo = player.Cargo().Get(selectedOutfit) && playerShip;
 	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
 		return false;
 	
@@ -229,6 +231,9 @@ bool OutfitterPanel::CanBuy() const
 	
 	if(HasLicense(selectedOutfit->Name()))
 		return false;
+	
+	if(!playerShip)
+		return true;
 	
 	for(const Ship *ship : playerShips)
 		if(ShipCanBuy(ship, selectedOutfit))
@@ -258,7 +263,7 @@ void OutfitterPanel::Buy()
 			}
 			return;
 		}
-	
+		
 		// Special case: licenses.
 		if(IsLicense(selectedOutfit->Name()))
 		{
@@ -270,7 +275,15 @@ void OutfitterPanel::Buy()
 			}
 			return;
 		}
-	
+		
+		if(!playerShip)
+		{
+			player.Cargo().Transfer(selectedOutfit, -1);
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			--available[selectedOutfit];
+			continue;
+		}
+		
 		// Find the ships with the fewest number of these outfits.
 		vector<Ship *> shipsToOutfit;
 		int fewest = numeric_limits<int>::max();

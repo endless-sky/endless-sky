@@ -50,6 +50,7 @@ public:
 	
 	
 private:
+	static int Glyph(char c, bool isAfterSpace);
 	void LoadTexture(ImageBuffer *image);
 	void CalculateAdvances(ImageBuffer *image);
 	void SetUpShader(float glyphW, float glyphH);
@@ -72,7 +73,7 @@ private:
 	mutable int screenWidth;
 	mutable int screenHeight;
 	
-	static const int GLYPHS = 96;
+	static const int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS];
 };
 

@@ -59,6 +59,7 @@ void ShopPanel::Draw() const
 	
 	// Clear the list of clickable zones.
 	zones.clear();
+	categoryZones.clear();
 	
 	DrawSidebar();
 	DrawButtons();
@@ -94,6 +95,7 @@ void ShopPanel::Step()
 void ShopPanel::DrawSidebar() const
 {
 	const Font &font = FontSet::Get(14);
+	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
 	
@@ -148,24 +150,34 @@ void ShopPanel::DrawSidebar() const
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
 		
-			zones.emplace_back(point.X(), point.Y(), ICON_TILE / 2, ICON_TILE / 2, ship.get());
+			zones.emplace_back(point, .5 * Point(ICON_TILE, ICON_TILE), ship.get());
 		
 			point.X() += ICON_TILE;
 		}
 		point.Y() += ICON_TILE;
 	}
-	point.Y() += SHIP_SIZE / 2;
 	
 	if(playerShip)
 	{
+		point.Y() += SHIP_SIZE / 2;
 		point.X() = Screen::Right() - SIDE_WIDTH / 2;
 		DrawShip(*playerShip, point, true);
 		
 		Point offset(SIDE_WIDTH / -2, SHIP_SIZE / 2);
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
-		point.Y() += sideDetailHeight + SHIP_SIZE;
+		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
-	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70 - SHIP_SIZE / 2;
+	else if(player.Cargo().Size())
+	{
+		point.X() = Screen::Right() - SIDE_WIDTH + 10;
+		font.Draw("cargo space:", point, medium);
+		
+		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+		Point right(Screen::Right() - font.Width(space), point.Y());
+		font.Draw(space, right, bright);
+		point.Y() += 20.;
+	}
+	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70;
 	maxSideScroll = max(0, maxSideScroll);
 	
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
@@ -203,7 +215,7 @@ void ShopPanel::DrawButtons() const
 	
 	Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), Color(.1, 1.));
-	string BUY = (selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
+	string BUY = (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit)) ? "_Install" : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		CanBuy() ? bright : dim);
@@ -238,6 +250,7 @@ void ShopPanel::DrawButtons() const
 void ShopPanel::DrawMain() const
 {
 	const Font &bigFont = FontSet::Get(18);
+	Color dim = *GameData::Colors().Get("dim");
 	Color bright = *GameData::Colors().Get("bright");
 	mainDetailHeight = 0;
 	
@@ -270,12 +283,17 @@ void ShopPanel::DrawMain() const
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 		
+		bool isCollapsed = collapsed.count(category);
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
-			if(!DrawItem(name, point, scrollY))
+			if(!HasItem(name))
 				continue;
 			isEmpty = false;
+			if(isCollapsed)
+				break;
+			
+			DrawItem(name, point, scrollY);
 			
 			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
 				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
@@ -318,7 +336,9 @@ void ShopPanel::DrawMain() const
 		
 		if(!isEmpty)
 		{
-			bigFont.Draw(category, side, bright);
+			Point size(bigFont.Width(category), bigFont.Height());
+			categoryZones.emplace_back(Point(Screen::Left(), side.Y()) + .5 * size, size, category);
+			bigFont.Draw(category, side, isCollapsed ? dim : bright);
 			
 			if(point.X() != begin.X())
 			{
@@ -496,10 +516,30 @@ bool ShopPanel::Click(int x, int y)
 			return Scroll(0, -4);
 	}
 	
+	Point point(x, y);
+	
+	// Check for clicks in the category labels.
+	for(const ClickZone<string> &zone : categoryZones)
+		if(zone.Contains(point))
+		{
+			auto it = collapsed.find(zone.Value());
+			if(it == collapsed.end())
+			{
+				collapsed.insert(zone.Value());
+				if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
+					selectedShip = nullptr;
+				if(selectedOutfit && selectedOutfit->Category() == zone.Value())
+					selectedOutfit = nullptr;
+			}
+			else
+				collapsed.erase(it);
+			return true;
+		}
+	
 	// Handle clicks anywhere else by checking if they fell into any of the
 	// active click zones (main panel or side panel).
-	for(const ClickZone &zone : zones)
-		if(zone.Contains(x, y))
+	for(const Zone &zone : zones)
+		if(zone.Contains(point))
 		{
 			if(zone.GetShip())
 			{
@@ -544,8 +584,8 @@ bool ShopPanel::Drag(double dx, double dy)
 	if(dragShip)
 	{
 		dragPoint += Point(dx, dy);
-		for(const ClickZone &zone : zones)
-			if(zone.Contains(dragPoint.X(), dragPoint.Y()))
+		for(const Zone &zone : zones)
+			if(zone.Contains(dragPoint))
 				if(zone.GetShip() && zone.GetShip()->IsYours() && zone.GetShip() != dragShip)
 				{
 					int dragIndex = -1;
@@ -589,58 +629,35 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
-ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Ship *ship, double scrollY)
-	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), scrollY(scrollY),
-	ship(ship), outfit(nullptr)
+ShopPanel::Zone::Zone(Point center, Point size, const Ship *ship, double scrollY)
+	: ClickZone(center, size, ship), scrollY(scrollY)
 {
 }
 
 
 
-ShopPanel::ClickZone::ClickZone(int x, int y, int rx, int ry, const Outfit *outfit, double scrollY)
-	: left(x - rx), top(y - ry), right(x + rx), bottom(y + ry), scrollY(scrollY),
-	ship(nullptr), outfit(outfit)
+ShopPanel::Zone::Zone(Point center, Point size, const Outfit *outfit, double scrollY)
+	: ClickZone(center, size, nullptr), scrollY(scrollY), outfit(outfit)
 {
 }
 
 
 
-bool ShopPanel::ClickZone::Contains(int x, int y) const
+const Ship *ShopPanel::Zone::GetShip() const
 {
-	return (x >= left && x < right && y >= top && y < bottom);
+	return Value();
 }
 
 
 
-const Ship *ShopPanel::ClickZone::GetShip() const
-{
-	return ship;
-}
-
-
-
-const Outfit *ShopPanel::ClickZone::GetOutfit() const
+const Outfit *ShopPanel::Zone::GetOutfit() const
 {
 	return outfit;
 }
 
 
 
-int ShopPanel::ClickZone::CenterX() const
-{
-	return (left + right) / 2;
-}
-
-
-
-int ShopPanel::ClickZone::CenterY() const
-{
-	return (top + bottom) / 2;
-}
-
-
-
-double ShopPanel::ClickZone::ScrollY() const
+double ShopPanel::Zone::ScrollY() const
 {
 	return scrollY;
 }
@@ -730,6 +747,13 @@ void ShopPanel::SideSelect(Ship *ship)
 	}	
 	else if(!control)
 		playerShips.clear();
+	else if(playerShips.count(ship))
+	{
+		playerShips.erase(playerShips.find(ship));
+		if(playerShip == ship)
+			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+		return;
+	}
 	
 	playerShip = ship;
 	playerShips.insert(playerShip);
@@ -739,16 +763,16 @@ void ShopPanel::SideSelect(Ship *ship)
 
 void ShopPanel::MainLeft()
 {
-	vector<ClickZone>::const_iterator start = MainStart();
+	vector<Zone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
 	
-	vector<ClickZone>::const_iterator it = Selected();
+	vector<Zone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Go to the last item.
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll += it->CenterY() - start->CenterY();
+		mainScroll += it->Center().Y() - start->Center().Y();
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
@@ -762,9 +786,9 @@ void ShopPanel::MainLeft()
 	}
 	else
 	{
-		int previousY = it->CenterY();
+		int previousY = it->Center().Y();
 		--it;
-		mainScroll += it->CenterY() - previousY;
+		mainScroll += it->Center().Y() - previousY;
 		if(mainScroll < 0)
 			mainScroll = 0;
 		selectedShip = it->GetShip();
@@ -776,11 +800,11 @@ void ShopPanel::MainLeft()
 
 void ShopPanel::MainRight()
 {
-	vector<ClickZone>::const_iterator start = MainStart();
+	vector<Zone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
 	
-	vector<ClickZone>::const_iterator it = Selected();
+	vector<Zone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
@@ -789,7 +813,7 @@ void ShopPanel::MainRight()
 		return;
 	}
 	
-	int previousY = it->CenterY();
+	int previousY = it->Center().Y();
 	++it;
 	if(it == zones.end())
 	{
@@ -799,8 +823,8 @@ void ShopPanel::MainRight()
 	}
 	else
 	{
-		if(it->CenterY() != previousY)
-			mainScroll += it->CenterY() - previousY - mainDetailHeight;
+		if(it->Center().Y() != previousY)
+			mainScroll += it->Center().Y() - previousY - mainDetailHeight;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 	}
@@ -810,29 +834,29 @@ void ShopPanel::MainRight()
 
 void ShopPanel::MainUp()
 {
-	vector<ClickZone>::const_iterator start = MainStart();
+	vector<Zone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
 	
-	vector<ClickZone>::const_iterator it = Selected();
+	vector<Zone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Go to the last item.
 	if(it == zones.end())
 	{
 		--it;
-		mainScroll += it->CenterY() - start->CenterY();
+		mainScroll += it->Center().Y() - start->Center().Y();
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
 	}
 	
-	int previousX = it->CenterX();
-	int previousY = it->CenterY();
-	while(it != start && it->CenterY() == previousY)
+	int previousX = it->Center().X();
+	int previousY = it->Center().Y();
+	while(it != start && it->Center().Y() == previousY)
 		--it;
-	while(it != start && it->CenterX() > previousX)
+	while(it != start && it->Center().X() > previousX)
 		--it;
 	
-	if(it == start && it->CenterY() == previousY)
+	if(it == start && it->Center().Y() == previousY)
 	{
 		mainScroll = 0;
 		selectedShip = nullptr;
@@ -840,7 +864,7 @@ void ShopPanel::MainUp()
 	}
 	else
 	{
-		mainScroll += it->CenterY() - previousY;
+		mainScroll += it->Center().Y() - previousY;
 		if(mainScroll < 0)
 			mainScroll = 0;
 		selectedShip = it->GetShip();
@@ -852,11 +876,11 @@ void ShopPanel::MainUp()
 
 void ShopPanel::MainDown()
 {
-	vector<ClickZone>::const_iterator start = MainStart();
+	vector<Zone>::const_iterator start = MainStart();
 	if(start == zones.end())
 		return;
 	
-	vector<ClickZone>::const_iterator it = Selected();
+	vector<Zone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Select the first item.
 	if(it == zones.end())
 	{
@@ -865,9 +889,9 @@ void ShopPanel::MainDown()
 		return;
 	}
 	
-	int previousX = it->CenterX();
-	int previousY = it->CenterY();
-	while(it != zones.end() && it->CenterY() == previousY)
+	int previousX = it->Center().X();
+	int previousY = it->Center().Y();
+	while(it != zones.end() && it->Center().Y() == previousY)
 		++it;
 	if(it == zones.end())
 	{
@@ -877,22 +901,22 @@ void ShopPanel::MainDown()
 		return;
 	}
 	
-	int newY = it->CenterY();
-	while(it != zones.end() && it->CenterX() <= previousX && it->CenterY() == newY)
+	int newY = it->Center().Y();
+	while(it != zones.end() && it->Center().X() <= previousX && it->Center().Y() == newY)
 		++it;
 	--it;
 	
-	mainScroll += it->CenterY() - previousY - mainDetailHeight;
+	mainScroll += it->Center().Y() - previousY - mainDetailHeight;
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
 
 
 
-vector<ShopPanel::ClickZone>::const_iterator ShopPanel::Selected() const
+vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 {
 	// Find the object that was clicked on.
-	vector<ClickZone>::const_iterator it = MainStart();
+	vector<Zone>::const_iterator it = MainStart();
 	for( ; it != zones.end(); ++it)
 		if(it->GetShip() == selectedShip && it->GetOutfit() == selectedOutfit)
 			break;
@@ -902,12 +926,12 @@ vector<ShopPanel::ClickZone>::const_iterator ShopPanel::Selected() const
 
 
 
-vector<ShopPanel::ClickZone>::const_iterator ShopPanel::MainStart() const
+vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
 {
 	// Find the first non-player-ship click zone.
 	int margin = Screen::Right() - SHIP_SIZE;
-	vector<ClickZone>::const_iterator start = zones.begin();
-	while(start != zones.end() && start->CenterX() > margin)
+	vector<Zone>::const_iterator start = zones.begin();
+	while(start != zones.end() && start->Center().X() > margin)
 		++start;
 	
 	return start;
