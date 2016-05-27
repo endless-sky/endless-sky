@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "InfoPanel.h"
 #include "Outfit.h"
 #include "OutfitInfoDisplay.h"
 #include "Planet.h"
@@ -110,6 +111,17 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 	info.DrawOutfits(drawPoint);
 	drawPoint.Y() += info.OutfitsHeight();	
+	
+	return drawPoint.Y() - point.Y();
+}
+
+
+
+int OutfitterPanel::DrawCargoHoldInfo(const Point &point) const
+{
+	Point drawPoint = point + Point(10,0);
+	
+	drawPoint.Y() += InfoPanel::DrawCargoHold(player.Cargo(), drawPoint , Point(DETAILS_WIDTH - 20, 20), 0, nullptr);	
 	
 	return drawPoint.Y() - point.Y();
 }

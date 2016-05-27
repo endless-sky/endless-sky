@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "FontSet.h"
 #include "Format.h"
 #include "GameData.h"
+#include "InfoPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -76,6 +77,17 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 	
 	info.DrawDescription(drawPoint);
 	drawPoint.Y() += info.DescriptionHeight();
+	
+	return drawPoint.Y() - point.Y();
+}
+
+
+
+int ShipyardPanel::DrawCargoHoldInfo(const Point &point) const
+{
+	Point drawPoint = point + Point(10,0);
+	
+	drawPoint.Y() += InfoPanel::DrawCargoHold(player.Cargo(), drawPoint , Point(DETAILS_WIDTH - 20, 20), 0, nullptr);	
 	
 	return drawPoint.Y() - point.Y();
 }

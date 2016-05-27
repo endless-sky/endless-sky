@@ -91,7 +91,6 @@ void ShopPanel::Step()
 void ShopPanel::DrawSidebars() const
 {
 	const Font &font = FontSet::Get(14);
-	Color medium = *GameData::Colors().Get("medium");
 	Color bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
 	
@@ -107,7 +106,7 @@ void ShopPanel::DrawSidebars() const
 		COLOR_DIVIDERS);
 	
 	// Draw this string, centered in the side panel:
-	static const string YOURS = "Your Ships:";
+	static const string YOURS = "Your Fleet:";
 	Point yoursPoint(
 		Screen::Right() - SideWidth() / 2 - font.Width(YOURS) / 2,
 		Screen::Top() + 10 - sideScroll);
@@ -245,7 +244,7 @@ void ShopPanel::DrawSidebars() const
 			Point(0., 1.), 10., 10., 5., Color(playerShipScroll < maxPlayerShipScroll ? .8 : .2, 0.));
 		
 		// A label "Selected Ship: "
-		static const string label = "Selected Ship:";
+		string label = playerShip ? "Selected Ship:" : "Your Fleet's Cargo:";
 		Point labelPoint(
 			Screen::Right() - SideWidth() - PlayerShipWidth() / 2 -  font.Width(label) / 2,
 			Screen::Top() + 10 - playerShipScroll);
@@ -255,28 +254,35 @@ void ShopPanel::DrawSidebars() const
 	
 	// Draw the player's flagship image.  
 	// The details drawn below this image are up to the subclass.
-	if(playerShip)
+	if (!PlayerShipWidth())
 	{
-		if (!PlayerShipWidth())
+		point.X() = Screen::Right() - SideWidth() / 2;
+		if (playerShip)
 		{
 			point.Y() += SHIP_SIZE / 2;
-			point.X() = Screen::Right() - SideWidth() / 2;
 			DrawShip(*playerShip, point, true);
-			
 			Point offset(SideWidth() / -2, SHIP_SIZE / 2);
-			sideDetailHeight = DrawPlayerShipInfo(point + offset);
-			point.Y() += sideDetailHeight + SHIP_SIZE / 2;			
+			sideDetailHeight = DrawPlayerShipInfo(point + offset);	
+		}
+		else
+			sideDetailHeight = DrawCargoHoldInfo(point + Point(SideWidth()/ -2, 0));
+		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
+	}
+	else 
+	{
+		Point playerShipPoint(Screen::Right() - SideWidth() - PlayerShipWidth() / 2, Screen::Top() + SHIP_SIZE / 2 + 40 - playerShipScroll);
+		int playerShipDetailsHeight;
+		if (playerShip) 
+		{
+			DrawShip(*playerShip, playerShipPoint, true);
+			playerShipDetailsHeight = DrawPlayerShipInfo(playerShipPoint + Point(PlayerShipWidth() / -2, SHIP_SIZE / 2));			
 		}
 		else 
-		{
-			Point playerShipPoint(Screen::Right() - SideWidth() - PlayerShipWidth() / 2, Screen::Top() + SHIP_SIZE / 2 + 40 - playerShipScroll);
-			DrawShip(*playerShip, playerShipPoint, true);
-			int playerShipDetailsHeight = DrawPlayerShipInfo(playerShipPoint + Point(PlayerShipWidth() / -2, SHIP_SIZE / 2));
-			// Update max scroll for this panel.
-			maxPlayerShipScroll = max(0, 40 + SHIP_SIZE + playerShipDetailsHeight - Screen::Height());
-		}
+			playerShipDetailsHeight = DrawCargoHoldInfo(playerShipPoint + Point(PlayerShipWidth() / -2, SHIP_SIZE / -2));
+		// Update max scroll for this panel.
+		maxPlayerShipScroll = max(0, 40 + SHIP_SIZE + playerShipDetailsHeight - Screen::Height());
 	}
-	
+
 	
 	maxSideScroll = point.Y() + sideScroll - Screen::Bottom() + 70;
 	maxSideScroll = max(0, maxSideScroll);
@@ -924,7 +930,11 @@ void ShopPanel::SideSelect(Ship *ship)
 		shiftSelectAnchorShip = playerShip;
 	
 	if (!shift && control && playerShips.find(playerShip) != playerShips.end())
+	{
 		playerShips.erase(playerShip);
+		if (playerShips.empty())
+			playerShip = nullptr; // Clearing playerShip allows buying / selling from cargo directly. (TODO: would be better if cargo were a selectable tile.)
+	}
 	else
 		playerShips.insert(playerShip);
 }
