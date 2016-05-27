@@ -62,6 +62,7 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 {
 	Point drawPoint = point;
 	ShipInfoDisplay info(*playerShip);
+<<<<<<< HEAD
 
 	// This should look good in a side-by-side comparison with a ship from the shipyard.
 	info.DrawAttributes(drawPoint);
@@ -78,31 +79,20 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 	drawPoint.Y() += info.DescriptionHeight();
 	
 	return drawPoint.Y() - point.Y();
-}
-
-
-
-bool ShipyardPanel::HasItem(const string &name) const
-{
-	string modelName = name;
-	bool isJunkyard = false;
-	if (Format::EndsWith(name, Ship::JUNKYARD_SHIP_SUFFIX))
-	{
-		modelName = name.substr(0, name.size() - Ship::JUNKYARD_SHIP_SUFFIX.size());
-		isJunkyard = true;
-	}
-	const Ship *newShip = GameData::Ships().Get(modelName);
-	const Ship *usedShip = MostUsedModel(isJunkyard ? junkyard : used, modelName);
+=======
+	info.DrawSale(point);
+	info.DrawAttributes(point + Point(0, info.SaleHeight()));
 	
-	if(!shipyard.Has(newShip) && !usedShip)
-		return false;
-	return true;
+	return info.SaleHeight() + info.AttributesHeight();
+>>>>>>> 1f4b653028417b787805ed925d5a1686407575ed
 }
 
 
 
+<<<<<<< HEAD
 int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
+	// Does the name end with JUNKYARD_SHIP_SUFFIX?
 	string modelName = name;
 	bool isJunkyard = false;
 	if (Format::EndsWith(name, Ship::JUNKYARD_SHIP_SUFFIX))
@@ -118,7 +108,7 @@ int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
 		return NOT_DRAWN;
 	
 	// The ship we put into "zones" will become the "selectedShip" when this zone is clicked.
-	zones.emplace_back(point, Point(SHIP_SIZE-2, SHIP_SIZE-2), shipToDraw, scrollY);
+	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, shipToDraw, scrollY);
 	// If it's the same as "selectedShip" then this tile is selected.
 	int retVal = (selectedShip && shipToDraw == selectedShip) ? SELECTED : DRAWN;
 	
@@ -138,6 +128,24 @@ int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
 	}
 	
 	return retVal;
+=======
+bool ShipyardPanel::HasItem(const string &name) const
+{
+	const Ship *ship = GameData::Ships().Get(name);
+	return shipyard.Has(ship);
+}
+
+
+
+void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+{
+	const Ship *ship = GameData::Ships().Get(name);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
+	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
+		return;
+	
+	DrawShip(*ship, point, ship == selectedShip);
+>>>>>>> 1f4b653028417b787805ed925d5a1686407575ed
 }
 
 

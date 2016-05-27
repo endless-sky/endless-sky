@@ -116,11 +116,27 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
+<<<<<<< HEAD
+int OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+{
+	const Outfit *outfit = GameData::Outfits().Get(name);
+	bool hasOutfit = (outfitter.Has(outfit) || available.Find(outfit) || player.Cargo().GetOutfitCount(outfit));
+	if(!hasOutfit)
+		for(const Ship *ship : playerShips)
+			if(ship->OutfitCount(outfit))
+			{
+				hasOutfit = true;
+				break;
+			}
+	if(!hasOutfit)
+		return NOT_DRAWN;
+=======
 bool OutfitterPanel::HasItem(const std::string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if(outfitter.Has(outfit) || available.Find(outfit) || player.Cargo().GetOutfitCount(outfit))
+	if(outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit))
 		return true;
+>>>>>>> 1f4b653028417b787805ed925d5a1686407575ed
 	
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
@@ -131,16 +147,16 @@ bool OutfitterPanel::HasItem(const std::string &name) const
 
 
 
-int OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
+void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
-	if(!HasItem(name))
-		return NOT_DRAWN;
-		
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	
-	zones.emplace_back(point, Point(OUTFIT_SIZE-2, OUTFIT_SIZE-2), outfit, scrollY);
+	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
 	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
+<<<<<<< HEAD
 		return (selectedOutfit && outfit == selectedOutfit) ? SELECTED : DRAWN;
+=======
+		return;
+>>>>>>> 1f4b653028417b787805ed925d5a1686407575ed
 	
 	bool isSelected = (outfit == selectedOutfit);
 	bool isOwned = playerShip && playerShip->OutfitCount(outfit);
@@ -253,8 +269,28 @@ int OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY
 			bottomOffset -= fontSize; // Subtract font size to move up.
 		}
 	}
+<<<<<<< HEAD
 
 	return (selectedOutfit && outfit == selectedOutfit) ? SELECTED : DRAWN;;
+=======
+	if(player.Cargo().Get(outfit))
+	{
+		string count = "in cargo: " + to_string(player.Cargo().Get(outfit));
+		Point pos = point + Point(
+			OUTFIT_SIZE / 2 - 20 - font.Width(count),
+			OUTFIT_SIZE / 2 - 24);
+		font.Draw(count, pos, bright);
+	}
+	else if(!outfitter.Has(outfit))
+	{
+		string message = (available[outfit] ?
+			"in stock: " + to_string(available[outfit]) : "(not sold here)");
+		Point pos = point + Point(
+			OUTFIT_SIZE / 2 - 20 - font.Width(message),
+			OUTFIT_SIZE / 2 - 24);
+		font.Draw(message, pos, bright);
+	}
+>>>>>>> 1f4b653028417b787805ed925d5a1686407575ed
 }
 
 
@@ -325,9 +361,14 @@ bool OutfitterPanel::CanBuy() const
 	if(!planet || !selectedOutfit)
 		return false;
 	
+<<<<<<< HEAD
 	bool isInCargo = player.Cargo().GetOutfitCount(selectedOutfit);
 	int cost = available.Find(selectedOutfit) ? available.GetCost(selectedOutfit, 1, true) : selectedOutfit->Cost();
 	if(!(outfitter.Has(selectedOutfit) || available.Find(selectedOutfit) || isInCargo))
+=======
+	bool isInCargo = player.Cargo().Get(selectedOutfit) && playerShip;
+	if(!(outfitter.Has(selectedOutfit) || available[selectedOutfit] || isInCargo))
+>>>>>>> 1f4b653028417b787805ed925d5a1686407575ed
 		return false;
 	
 	int mapSize = selectedOutfit->Get("map");
@@ -385,10 +426,11 @@ void OutfitterPanel::Buy()
 			return;
 		}
 		
-		// If no ships are selected, buy the outfit and put it in cargo.
 		if(!playerShip)
 		{
-			BuyAsCargo();
+			player.Cargo().Transfer(selectedOutfit, -1);
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			--available[selectedOutfit];
 			continue;
 		}
 		
@@ -905,25 +947,18 @@ void OutfitterPanel::BuyAsCargoCallback()
 	int modifier = Modifier();
 	for(int i = 0; i < modifier && player.Cargo().Free() >= selectedOutfit->Get("mass"); ++i)
 	{
-		if(!BuyAsCargo())
+		if(!available.Find(selectedOutfit) && !outfitter.Has(selectedOutfit))
 			break;
+		else if (available.Find(selectedOutfit))
+		{	// Buy lowest price used outfits first.
+			player.Accounts().AddCredits(-available.GetCost(selectedOutfit, 1, true));
+			player.Cargo().Transfer(selectedOutfit, -1, &available, true, 0);
+		}
+		else
+		{	// Buy new
+			player.Accounts().AddCredits(-selectedOutfit->Cost());
+			player.Cargo().Transfer(selectedOutfit, -1, nullptr, true, 0);				
+		}
+
 	}
-}
-
-
-
-// Return false if the outfit was not available or not enough credits.
-bool OutfitterPanel::BuyAsCargo()
-{
-	bool isAvailable = available.Find(selectedOutfit);
-	int64_t cost = isAvailable ? available.GetCost(selectedOutfit, 1, true) : selectedOutfit->Cost();
-	if((!isAvailable && !outfitter.Has(selectedOutfit)) 
-		|| cost > player.Accounts().Credits())
-		return false;
-	else
-	{	// Buy lowest price used outfits first, otherwise buy new. 
-		player.Accounts().AddCredits(-cost);
-		player.Cargo().Transfer(selectedOutfit, -1, isAvailable ? &available : nullptr, true, 0);
-	}
-	return true;
 }
