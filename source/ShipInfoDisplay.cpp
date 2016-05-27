@@ -13,6 +13,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ShipInfoDisplay.h"
 
 #include "Color.h"
+#include "FillShader.h"
 #include "Format.h"
 #include "GameData.h"
 #include "Outfit.h"

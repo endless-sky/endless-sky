@@ -82,6 +82,14 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
+bool ShipyardPanel::HasItem(const string &name) const
+{
+	const Ship *ship = GameData::Ships().Get(name);
+	return shipyard.Has(ship);
+}
+
+
+
 int ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	// Does the name end with JUNKYARD_SHIP_SUFFIX?
