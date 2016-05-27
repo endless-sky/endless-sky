@@ -871,9 +871,7 @@ mission "FW Pug 1"
 	waypoint "Ascella"
 	to offer
 		has "FW Syndicate Capture 1C: done"
-		or
-			require Hyperdrive
-			require "Scram Drive"
+		not "FW Pug 1 know: offered"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -943,7 +941,7 @@ mission "FW Pug 1 Return"
 mission "FW Pug 2"
 	landing
 	name "Meet with Parliament"
-	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the Syndicate threat seems."
+	description "Travel with Alondo to Earth to meet with Parliament. They are now much more willing to meet with you given how real the threat seems."
 	autosave
 	source "New Tibet"
 	destination "Earth"
@@ -982,6 +980,8 @@ mission "FW Pug 2"
 			
 			`	"We don't," says JJ, "but this all certainly plays out very well for them; their section of the galaxy has suddenly become a very defensible enclave. And the timing of that fleet leaving, and then the link closing - it's too much to be a coincidence. But we can't learn anything for sure by staying here talking; you must go to Earth."`
 				accept
+	
+
 	
 	npc
 		system "Sol"
@@ -1059,6 +1059,7 @@ mission "FW Pug 2A"
 		fleet "Small Republic"
 		fleet "Small Republic"
 		fleet "Small Republic"
+
 
 
 
@@ -1233,6 +1234,7 @@ mission "FW Pug 2C: Side"
 	to offer
 		has "fw given jump drive"
 		not "FW Pug 3: offered"
+		not "fw know about pug" 
 	
 	on offer
 		conversation
@@ -1748,7 +1750,7 @@ mission "FW Pug 2 Know A"
 			`	Parliament is eager now to meet with you and to receive whatever assistance you may be able to offer. As Alondo stands in front of the chamber telling the members of Parliament what you already know and asking questions about the disappearance of the Syndicate fleet, they answer him with respect and deference, far different from how you have been treated here in the past. You learn that although one link remains open to Syndicate space, no one has dared to travel through it. Given the pace at which the other links were cut, they had feared that the one remaining link will disappear at any time.`
 
 			branch quarg
-				require "Quarg Skylance"
+				never
 
 			`	Inevitably the conversation swings round to how you got into the cut off systems and Alondo is forced to allow Parliament to question you directly. One of the members of Parliament, you think he's from one of the paradise worlds, asks "You say you used a "Jump Drive" to enter the Zeta Aquilae system but Jump Drives are only used by the Quarg. So where did you get your Jump Drive?"`
 			choice
@@ -2199,7 +2201,7 @@ mission "FW Pug 4: Escorts"
 	source Hephaestus
 	to offer
 		has "FW Pug 3C: done"
-	
+
 	to fail
 		has "FW Pug 6: done"
 	
