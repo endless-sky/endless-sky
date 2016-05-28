@@ -133,7 +133,7 @@ outfit "Bullfrog Anti-Missile"
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"
-		"anti-missile" 5
+		"anti-missile" 7
 		"velocity" 150
 		"lifetime" 1
 		"reload" 8
@@ -418,7 +418,7 @@ outfit "Bullfrog Anti-Missile Turret"
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"
-		"anti-missile" 5
+		"anti-missile" 7
 		"velocity" 150
 		"lifetime" 1
 		"reload" 8
