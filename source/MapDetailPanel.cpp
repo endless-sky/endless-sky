@@ -195,7 +195,7 @@ bool MapDetailPanel::Click(int x, int y)
 {
 	{
 		const Interface *interface = GameData::Interfaces().Get("map buttons");
-		char key = interface->OnClick(Point(x + 250, y));
+		char key = interface->OnClick(Point(x, y));
 		// In the mission panel, the "Done" button in the button bar should be
 		// ignored (and is not shown).
 		if(key)
@@ -236,7 +236,7 @@ bool MapDetailPanel::Click(int x, int y)
 				}
 		}
 	}
-	else if(x >= Screen::Right() - 240 && y >= Screen::Bottom() - 240)
+	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 280 && y <= Screen::Top() + 520)
 	{
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
@@ -545,7 +545,7 @@ void MapDetailPanel::DrawInfo() const
 	if(ZoomIsMin())
 		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
-	interface->Draw(info, Point(-250., 0.));
+	interface->Draw(info);
 }
 
 
@@ -554,9 +554,8 @@ void MapDetailPanel::DrawOrbits() const
 {
 	// Draw the planet orbits in the currently selected system.
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits");
-	Point orbitCenter(Screen::Right() - 130, Screen::Bottom() - 140);
-	SpriteShader::Draw(orbitSprite, orbitCenter);
-	orbitCenter.Y() += 10.;
+	Point orbitCenter(Screen::Right() - 120, Screen::Top() + 430);
+	SpriteShader::Draw(orbitSprite, orbitCenter - Point(5., 0.));
 	
 	if(!selectedSystem || !player.HasVisited(selectedSystem))
 		return;
@@ -572,8 +571,8 @@ void MapDetailPanel::DrawOrbits() const
 	double scale = .03;
 	maxDistance *= scale;
 	
-	if(maxDistance > 120.)
-		scale *= 120. / maxDistance;
+	if(maxDistance > 115.)
+		scale *= 115. / maxDistance;
 	
 	static const Color habitColor[7] = {
 		Color(.4, .2, .2, 1.),
@@ -627,7 +626,7 @@ void MapDetailPanel::DrawOrbits() const
 	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
 	int width = font.Width(name);
 	width = (width / 2) + 65;
-	Point namePos(Screen::Right() - width - 5., Screen::Bottom() - 267.);
+	Point namePos(Screen::Right() - width - 5., Screen::Top() + 293.);
 	Color nameColor(.6, .6);
 	font.Draw(name, namePos, nameColor);
 }

@@ -334,9 +334,9 @@ interface "targets"
 		width 1.5
 
 interface "planet"
-	sprite "land" -60 -141 dynamic
+	sprite "land" -60 -140 dynamic
 	sprite "ui/planet dialog" -60 0
-	button l -60 -141
+	button l -60 -140
 		size 720 360
 	
 	if "has shipyard"
@@ -794,20 +794,8 @@ interface "mission"
 		color bright
 		align center
 	endif
-	if "can abort"
-	label "_Abort Mission" -45 -33
-		size 14
-		color bright
-		align center
-	endif
-	if "cannot accept"
+	if "!can accept"
 	label "_Accept Mission" -45 -33
-		size 14
-		color dim
-		align center
-	endif
-	if "cannot abort"
-	label "_Abort Mission" -45 -33
 		size 14
 		color dim
 		align center
@@ -815,11 +803,19 @@ interface "mission"
 	button a -45 -10
 		size 130 30
 	
-	label "_Done" 70 -33
+	if "can abort"
+	label "Abort" 70 -33
 		size 14
 		color bright
 		align center
-	button d 70 -10
+	endif
+	if "!can abort"
+	label "Abort" 70 -33
+		size 14
+		color dim
+		align center
+	endif
+	button A 70 -10
 		size 80 30
 
 interface "map buttons"
@@ -920,13 +916,11 @@ interface "map buttons"
 	button s -270 -10
 		size 90 30
 	
-	if "!is missions"
 	sprite "ui/dialog cancel" -370 0
 	label "_Done" -415 -33
 		size 14
 		color bright
 		align center
-	endif
 	button d -380 -10
 		size 70 30
 
