@@ -209,15 +209,16 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 		return true;
 	}
-	else if(key == 'a')
+	else if(key == 'a' && CanAccept())
 	{
-		if(CanAccept())
-			Accept();
-		else if(acceptedIt != accepted.end())
-		{
+		Accept();
+		return true;
+	}
+	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
+	{
+		if(acceptedIt != accepted.end())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
-		}
 		return true;
 	}
 	else if(key == 'p' || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -298,7 +299,6 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		ZoomMap();
 	else if(key == '-')
 		UnzoomMap();
-
 	else
 		return false;
 	
@@ -328,9 +328,7 @@ bool MissionPanel::Click(int x, int y)
 	{
 		const Interface *interface = GameData::Interfaces().Get("map buttons");
 		char key = interface->OnClick(Point(x, y));
-		// In the mission panel, the "Done" button in the button bar should be
-		// ignored (and is not shown).
-		if(key && key != 'd')
+		if(key)
 			return DoKey(key);
 	}
 	
@@ -672,10 +670,6 @@ void MissionPanel::DrawMissionInfo() const
 		info.SetCondition("can accept");
 	else if(acceptedIt != accepted.end())
 		info.SetCondition("can abort");
-	else if(available.size())
-		info.SetCondition("cannot accept");
-	else
-		info.SetCondition("cannot abort");
 	
 	int cargoFree = -player.Cargo().Used();
 	int bunksFree = -player.Cargo().Passengers();

@@ -440,22 +440,7 @@ bool BoardingPanel::CanCapture() const
 	if(!victim->IsCapturable())
 		return false;
 	
-	if(victim->CanBeCarried())
-	{
-		// If this is an unpiloted drone, you don't need any crew to capture it.
-		// If it is a fighter you must have one crew member other than yourself.
-		if(you->Crew() < (victim->RequiredCrew() ? 2 : 1))
-			return false;
-		
-		// Check if any ship in your fleet can carry this ship.
-		for(const shared_ptr<Ship> &ship : player.Ships())
-			if(ship->CanCarry(*victim))
-				return true;
-		
-		return false;
-	}
-	
-	return (you->Crew() > 1);
+	return (!victim->RequiredCrew() || you->Crew() > 1);
 }
 
 

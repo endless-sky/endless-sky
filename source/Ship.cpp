@@ -752,7 +752,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		hyperspaceSystem = nullptr;
 	
 	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion();
+	personality.UpdateConfusion(commands.IsFiring());
 	
 	// Handle ionization effects, etc.
 	if(ionization)
