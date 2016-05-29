@@ -82,8 +82,10 @@ public:
 	void SetTurn(double amount);
 	double Turn() const;
 	// Get or set the fire commands.
-	bool HasFire(int index);
+	bool HasFire(int index) const;
 	void SetFire(int index);
+	// Check if any weapons are firing.
+	bool IsFiring() const;
 	
 	// Check if any bits are set in this command (including a nonzero turn).
 	explicit operator bool() const;
