@@ -233,7 +233,7 @@ bool OutfitterPanel::CanBuy() const
 		return false;
 	
 	if(!playerShip)
-		return true;
+		return (player.Cargo().Free() >= selectedOutfit->Get("mass"));
 	
 	for(const Ship *ship : playerShips)
 		if(ShipCanBuy(ship, selectedOutfit))
