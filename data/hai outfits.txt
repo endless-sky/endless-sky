@@ -133,11 +133,11 @@ outfit "Bullfrog Anti-Missile"
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"
-		"anti-missile" 18
+		"anti-missile" 15
 		"velocity" 150
 		"lifetime" 1
 		"reload" 30
-		"firing energy" 20
+		"firing energy" 16
 		"firing heat" 7
 		"stream"
 	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
