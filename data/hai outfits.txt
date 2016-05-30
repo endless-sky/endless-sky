@@ -125,41 +125,41 @@ outfit "Hai Tracker Pod"
 
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
-	cost 100000
+	cost 35000
 	thumbnail "outfit/anti-missile hai"
-	"mass" 18
-	"outfit space" -18
-	"weapon capacity" -18
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
 	"turret mounts" -1
 	weapon
 		"hit effect" "small anti-missile"
-		"anti-missile" 7
+		"anti-missile" 18
 		"velocity" 150
 		"lifetime" 1
-		"reload" 8
-		"firing energy" 6
-		"firing heat" 4
+		"reload" 30
+		"firing energy" 20
+		"firing heat" 7
 		"stream"
-	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still occasionally effective against their latest Missile weapons."
+	description "Centuries ago, the Hai fought with more rudimentary versions of the Tracker, and this was the primary defence against them. In spite of the dated design, it is still effective against small numbers of their latest Missile weapons."
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
-	cost 250000
+	cost 130000
 	thumbnail "outfit/heavy anti-missile hai"
-	"mass" 28
-	"outfit space" -28
-	"weapon capacity" -28
+	"mass" 22
+	"outfit space" -22
+	"weapon capacity" -22
 	"turret mounts" -1
 	weapon
 		"hit effect" "large anti-missile"
-		"anti-missile" 11
+		"anti-missile" 16
 		"velocity" 200
 		"lifetime" 1
-		"reload" 4
-		"firing energy" 22
+		"reload" 15
+		"firing energy" 23
 		"firing heat" 6
 		"stream"
-	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog. The system is less vulnerable to large clusters of incoming missiles, especially when many turrets are installed."
+	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
 
 outfit "Hai Corundum Regenerator"
 	category "Systems"
