@@ -23,17 +23,17 @@ for line in fin:
         if line.startswith("\ttrade"):
                 # Get the commodity and the price, convert the price, write the line back with a modified value.
                 split = line.split()
-                price = split[-1]
-                commodity = ""
-                for word in split[1:-1]:
-                        commodity += word + " "
-                
-                
-                lowBar, highBar = originalPrices[commodity.strip()]
-                priceRating = ((float(price) - lowBar)*100.0) / (highBar - lowBar)
-                #print ("low=" + str(lowBar) + " high=" + str(highBar) + " price=" + price)
-                newLine = "\ttrade %spercentile %.2f\n" % (commodity, priceRating)
-                #print(newLine)
+                if (split[-2] != "percentile"):
+                        price = split[-1]
+                        commodity = ""
+                        for word in split[1:-1]:
+                                commodity += word + " "
+                        
+                        lowBar, highBar = originalPrices[commodity.strip()]
+                        priceRating = ((float(price) - lowBar)*100.0) / (highBar - lowBar)
+                        #print ("low=" + str(lowBar) + " high=" + str(highBar) + " price=" + price)
+                        newLine = "\ttrade %spercentile %.2f\n" % (commodity, priceRating)
+                        #print(newLine)
         fout.write(newLine) 
 
 fin.close()

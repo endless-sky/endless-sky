@@ -4310,16 +4310,16 @@ system Dokdobaru
 	asteroids "small metal" 1 4.05
 	asteroids "medium metal" 2 4.05
 	asteroids "large metal" 3 2.0655
-	trade Clothing 320
-	trade Electronics 645
-	trade Equipment 570
-	trade Food 304
-	trade "Heavy Metals" 1150
-	trade Industrial 621
-	trade "Luxury Goods" 1347
-	trade Medical 750
-	trade Metal 385
-	trade Plastic 379
+	trade Clothing percentile 60.00
+	trade Electronics percentile 18.33
+	trade Equipment percentile 60.00
+	trade Food percentile 40.80
+	trade "Heavy Metals" percentile 77.14
+	trade Industrial percentile 25.25
+	trade "Luxury Goods" percentile 71.17
+	trade Medical percentile 64.00
+	trade Metal percentile 48.75
+	trade Plastic percentile 46.33
 	fleet Quarg 500
 	fleet "Kor Efret Home" 1500
 	object
@@ -7826,16 +7826,16 @@ system Kashikt
 	asteroids "small metal" 22 3.1878
 	asteroids "medium metal" 44 6.0858
 	asteroids "large metal" 13 4.2021
-	trade Clothing 409
-	trade Electronics 732
-	trade Equipment 643
-	trade Food 540
-	trade "Heavy Metals" 1230
-	trade Industrial 576
-	trade "Luxury Goods" 1387
-	trade Medical 834
-	trade Metal 315
-	trade Plastic 438
+	trade Clothing percentile 89.67
+	trade Electronics percentile 47.33
+	trade Equipment percentile 78.25
+	trade Food percentile 88.00
+	trade "Heavy Metals" percentile 88.57
+	trade Industrial percentile 14.00
+	trade "Luxury Goods" percentile 77.83
+	trade Medical percentile 80.80
+	trade Metal percentile 31.25
+	trade Plastic percentile 66.00
 	fleet Quarg 1000
 	fleet "Kor Efret Home" 1000
 	object
@@ -13123,16 +13123,16 @@ system Sevrelect
 	link Sumprast
 	link Kashikt
 	asteroids "large metal" 1 2.97
-	trade Clothing 340
-	trade Electronics 820
-	trade Equipment 632
-	trade Food 524
-	trade "Heavy Metals" 1309
-	trade Industrial 624
-	trade "Luxury Goods" 1409
-	trade Medical 920
-	trade Metal 207
-	trade Plastic 534
+	trade Clothing percentile 66.67
+	trade Electronics percentile 76.67
+	trade Equipment percentile 75.50
+	trade Food percentile 84.80
+	trade "Heavy Metals" percentile 99.86
+	trade Industrial percentile 26.00
+	trade "Luxury Goods" percentile 81.50
+	trade Medical percentile 98.00
+	trade Metal percentile 4.25
+	trade Plastic percentile 98.00
 	fleet Quarg 1000
 	fleet "Kor Efret Home" 1000
 	object
@@ -14048,16 +14048,16 @@ system Sumprast
 	asteroids "small metal" 3 2.9744
 	asteroids "medium metal" 15 2.4336
 	asteroids "large metal" 7 2.4336
-	trade Clothing 421
-	trade Electronics 740
-	trade Equipment 721
-	trade Food 593
-	trade "Heavy Metals" 1292
-	trade Industrial 540
-	trade "Luxury Goods" 1324
-	trade Medical 913
-	trade Metal 236
-	trade Plastic 500
+	trade Clothing percentile 93.67
+	trade Electronics percentile 50.00
+	trade Equipment percentile 97.75
+	trade Food percentile 98.60
+	trade "Heavy Metals" percentile 97.43
+	trade Industrial percentile 5.00
+	trade "Luxury Goods" percentile 67.33
+	trade Medical percentile 96.60
+	trade Metal percentile 11.50
+	trade Plastic percentile 86.67
 	fleet Quarg 1000
 	fleet "Kor Efret Home" 1000
 	object
