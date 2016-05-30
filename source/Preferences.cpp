@@ -38,6 +38,7 @@ void Preferences::Load()
 	settings["Warning siren"] = true;
 	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
+	settings["Show hyperspace flash"] = true;
 	
 	DataFile prefs(Files::Config() + "preferences.txt");
 	for(const DataNode &node : prefs)
