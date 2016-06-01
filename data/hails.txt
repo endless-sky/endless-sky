@@ -1002,6 +1002,8 @@ phrase "friendly pug"
  		" through-out the universe."
  		" among all sentient beings."
 
+
+
 # Shakespearean insults.
 phrase "hostile disabled"
 	word
