@@ -47,7 +47,7 @@ private:
 	std::shared_ptr<Ship> FindTarget(const Ship &ship, const std::list<std::shared_ptr<Ship>> &ships) const;
 	
 	void MoveIndependent(Ship &ship, Command &command) const;
-	static void MoveEscort(Ship &ship, Command &command);
+	void MoveEscort(Ship &ship, Command &command) const;
 	static void Refuel(Ship &ship, Command &command);
 	
 	static double TurnBackward(const Ship &ship);

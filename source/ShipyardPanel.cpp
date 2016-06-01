@@ -287,6 +287,7 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+	player.UpdateCargoCapacities();
 }
 
 

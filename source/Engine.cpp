@@ -832,7 +832,7 @@ void Engine::CalculateStep()
 						it.GetPlanet()->WormholeDestination(player.GetSystem()) == flagship->GetSystem())
 					player.Visit(it.GetPlanet());
 		
-		doFlash = true;
+		doFlash = Preferences::Has("Show hyperspace flash");
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}

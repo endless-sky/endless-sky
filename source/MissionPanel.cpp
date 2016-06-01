@@ -216,7 +216,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
-		if(acceptedIt != accepted.end())
+		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		return true;
@@ -241,7 +241,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		acceptedIt = accepted.end();
 		availableIt = available.begin();
 	}
-	else if(key == SDLK_RIGHT && acceptedIt == accepted.end())
+	else if(key == SDLK_RIGHT && acceptedIt == accepted.end() && AcceptedVisible())
 	{
 		availableIt = available.end();
 		acceptedIt = accepted.begin();
@@ -832,7 +832,8 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 
 bool MissionPanel::SelectAnyMission()
 {
-	if(availableIt == available.end() && acceptedIt == accepted.end()) {
+	if(availableIt == available.end() && acceptedIt == accepted.end())
+	{
 		// no previous selection, reset
 		if(!available.empty())
 			availableIt = available.begin();
