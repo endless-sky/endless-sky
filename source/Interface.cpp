@@ -360,7 +360,7 @@ Interface::StringSpec::StringSpec(const string &str, const Point &position)
 
 
 Interface::BarSpec::BarSpec(const string &name, const Point &position)
-	: name(name), position(position)
+	: name(name), position(position), width(0.0)
 {
 }
 
