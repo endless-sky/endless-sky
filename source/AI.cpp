@@ -842,7 +842,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
-void AI::MoveEscort(Ship &ship, Command &command)
+void AI::MoveEscort(Ship &ship, Command &command) const
 {
 	const Ship &parent = *ship.GetParent();
 	bool hasFuelCapacity = ship.Attributes().Get("fuel capacity");
@@ -902,6 +902,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 				command |= Command::JUMP;
 		}
 	}
+	else if(ship.IsYours() && moveToMe)
+		CircleAround(ship, command, parent);
 	else
 		KeepStation(ship, command, parent);
 }
