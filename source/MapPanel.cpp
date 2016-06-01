@@ -68,7 +68,7 @@ void MapPanel::SetCommodity(int index)
 
 void MapPanel::Step()
 {
-	if(tradeCommodity && commodity > 0)
+	if(tradeCommodity && commodity >= 0)
 		*tradeCommodity = commodity;
 }
 

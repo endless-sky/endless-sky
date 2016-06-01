@@ -572,7 +572,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		if(!CanBuy())
 			FailBuy();
 		else
+		{
 			Buy();
+			player.UpdateCargoCapacities();
+		}
 	}
 	else if(key == 's')
 	{
@@ -583,6 +586,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			int modifier = CanSellMultiple() ? Modifier() : 1;
 			for(int i = 0; i < modifier && CanSell(); ++i)
 				Sell();
+			player.UpdateCargoCapacities();
 		}
 	}
 	else if(key == SDLK_LEFT)

@@ -36,7 +36,7 @@ namespace {
 }
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, Ship::CATEGORIES), used(player.UsedShips()), junkyard(player.JunkyardShips())
+	: ShopPanel(player, Ship::CATEGORIES), used(player.UsedShips()), junkyard(player.JunkyardShips()), modifier(0)
 {	
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
@@ -425,6 +425,7 @@ void ShipyardPanel::SellShip()
 		playerShips.insert(playerShip);
 		
 	UpdateJunkyardCatalog();
+	player.UpdateCargoCapacities();
 }
 
 
