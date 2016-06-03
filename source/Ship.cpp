@@ -514,7 +514,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
-	cloak = 0.;
+	cloak = sprite.IsEmpty();
 	jettisoned.clear();
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
@@ -963,20 +963,25 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			hyperspaceSystem = GetTargetSystem();
 	}
 	
-	double cloakingSpeed = attributes.Get("cloak");
-	bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
-		&& fuel >= attributes.Get("cloaking fuel")
-		&& energy >= attributes.Get("cloaking energy"));
-	if(commands.Has(Command::CLOAK) && canCloak)
-	{
-		cloak = min(1., cloak + cloakingSpeed);
-		fuel -= attributes.Get("cloaking fuel");
-		energy -= attributes.Get("cloaking energy");
-	}
-	else if(cloakingSpeed)
-		cloak = max(0., cloak - cloakingSpeed);
+	if(sprite.IsEmpty())
+		cloak = 1.;
 	else
-		cloak = 0.;
+	{
+		double cloakingSpeed = attributes.Get("cloak");
+		bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
+			&& fuel >= attributes.Get("cloaking fuel")
+			&& energy >= attributes.Get("cloaking energy"));
+		if(commands.Has(Command::CLOAK) && canCloak)
+		{
+			cloak = min(1., cloak + cloakingSpeed);
+			fuel -= attributes.Get("cloaking fuel");
+			energy -= attributes.Get("cloaking energy");
+		}
+		else if(cloakingSpeed)
+			cloak = max(0., cloak - cloakingSpeed);
+		else
+			cloak = 0.;
+	}
 	
 	if(pilotError)
 		--pilotError;
@@ -1373,8 +1378,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0.
-		&& !sprite.IsEmpty() && hyperspaceCount < 70);
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -1438,7 +1442,7 @@ bool Ship::CannotAct() const
 
 double Ship::Cloaking() const
 {
-	return sprite.IsEmpty() ? 1. : cloak;
+	return cloak;
 }
 
 
