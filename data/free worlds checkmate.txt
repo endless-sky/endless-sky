@@ -20,12 +20,12 @@ mission "FWC Scouting 1"
 	to offer
 		has "FW Liberate Delta Sagittarii: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
 			`It was a close battle, and could have gone very differently if it were not for the Wolf Pack strike that happened before you arrived and that disabled or destroyed the majority of the Navy fleet. You can't help but wonder how the Wolf Pack managed to assemble a large enough fleet to do that sort of damage.`
-			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon, before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
+			`	"Well," says JJ, "the die is cast. It's too late now to wonder what that business with the Syndicate was about; now we're in a fight to the finish with the Republic. And that means we must strike soon before they have time to bring in more reinforcements. Captain <last>, I'd like you to perform a scouting mission while I'm working on gathering a new fleet. Our next target has to be the Navy base on New Iceland. If we can drive them out of that system, our position will be much better. So, I'd like you to fly through Kaus Borealis and return here to report on their fleet strength. Understood?"`
 			choice
 				`	"No problem."`
 					goto freya
@@ -58,12 +58,12 @@ mission "FWC Attack Kaus Borealis"
 	to offer
 		has "FWC Scouting 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack kaus borealis"
 		conversation
-			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut out territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
+			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut out territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory or they'll begin to scatter again."`
 			choice
 				`	"Are you saying we risk having members of our militia desert?"`
 					goto desert
@@ -186,7 +186,7 @@ mission "FWC Cebalrai 1"
 	to offer
 		has "FWC Attack Kaus Borealis: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -208,7 +208,7 @@ mission "FWC Cebalrai 1"
 			choice
 				`	"Weren't you under house arrest?"`
 				`	"So, does the fact that you're here mean the Senate pardoned you?"`
-			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear you're on Council now too."`
 			choice
 				`	"So, what's our next step?"`
 					goto end
@@ -250,7 +250,7 @@ mission "FWC Cebalrai 1B"
 	to offer
 		has "FWC Cebalrai 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack cebalrai"
@@ -326,7 +326,7 @@ mission "FWC Nuke Supply 1"
 	to offer
 		has "FWC Cebalrai 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -338,7 +338,7 @@ mission "FWC Nuke Supply 1"
 				`	"Do you think we have any chance at a peace settlement?"`
 					goto peace
 			label destroy
-			`	"That would be an awful precedent," says Alondo, "perhaps worse than the fact we're using nukes. If civilian populations become a legitimate target, any of our worlds could be attacked at any time. And it's not like there's any way to defend a world from orbital bombardment. No one would ever be able to feel safe in their own homes again."`
+			`	"That would be an awful precedent," says Alondo, "perhaps worse than the fact we're using nukes. If civilian populations become a legitimate target, any of our worlds could be attacked at any time. And it's not like there's any way to defend the world from orbital bombardment. No one would ever be able to feel safe in their own homes again."`
 				goto next
 			label peace
 			`	"I hope so," says Alondo. "We'll let them keep shooting at us for a while, to vent their anger and let them prove their point. Then once they see the Navy isn't going to rescue them, we'll negotiate. That's really our only alternative. I do not want to be the person who authorizes the first attack on civilian targets since the dawn of the Republic."`
@@ -397,7 +397,7 @@ mission "FWC Nuke Supply 1B"
 	to offer
 		has "FWC Nuke Supply 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -423,11 +423,11 @@ mission "FWC Nuke Supply 1C"
 	to offer
 		has "FWC Nuke Supply 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
-			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder, and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
+			`You land at one of the many private fortresses on Greenrock owned by various competing warlords. Some workers unload the cargo from the Blue Yonder and load it up with some lead-lined, well-padded crates that must contain nuclear warheads. You're not sure you like being a part of this, but it may be true that this is the only way you will stand a chance against the Navy.`
 				accept
 	
 	npc accompany save
@@ -440,14 +440,14 @@ mission "FWC Nuke Supply 1C"
 mission "FWC Diplomacy 1"
 	landing
 	name "Let's Try Diplomacy"
-	description "Return to Tundra to meet up with Alondo and take him on another visit to Parliament. Maybe this time they will be willing to negotiate a truce."
+	description "Return to Tundra to meet up with Alondo and take him on another visit to Parliament. Maybe, this time, they will be willing to negotiate a truce."
 	autosave
 	source Solace
 	destination Tundra
 	to offer
 		has "FWC Nuke Supply 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -485,9 +485,9 @@ mission "FWC Diplomacy 1B"
 	to offer
 		has "FWC Diplomacy 1: done"
 	passengers 2
-	blocked "You have reached <origin>, but you don't have a bunk free for Alondo! You should return to <origin> once you have freed one up."
+	blocked "You have reached <origin>, but you don't have a free bunk for Alondo! You should return to <origin> once you have freed one up."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fw safe passage starts"
@@ -531,18 +531,18 @@ mission "FWC Diplomacy 1C"
 		has "FWC Diplomacy 1B: done"
 	passengers 2
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fw safe passage ends" 1
 		conversation
 			`When you land on Earth, the Big Brother flies down to the spaceport with you to see that you arrive safely, then takes off immediately. You and Alondo are escorted to the House of Parliament. As you wait to be called in to speak to Parliament, Alondo seems very nervous, pacing back and forth and fiddling with his watch every few minutes.`
-			`	Finally you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
+			`	Finally, you are invited into the Parliament chambers, and Douglas Xao, the Speaker, says, "Representatives of the Free Worlds, we are prepared to hear your demands."`
 			`	Alondo says, "We're not here to make demands. We're here to work together to negotiate a peace settlement. The Free Worlds are prepared to return all our prisoners of war, to cede control of the Cebalrai and Kaus Borealis systems back to the Republic, and to promise not to expand our territory north into the so-called 'breadbasket' worlds, even if those worlds want to join us. All we ask in return is autonomy, and peace, and a return of the prisoners you have taken, including Katya Reynolds."`
-			`	Xao gestures to the guards, and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn-out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
+			`	Xao gestures to the guards and they escort in a third person to stand beside the two of you. It takes you a moment to realize that it's Katya, looking rather worn out and bedraggled. She whispers to you, "So, you're using nukes now? Whose damn fool idea was that?"`
 			choice
 				`	"It was the only way we could resist the Navy."`
-				`	"I didn't find out that's what they were doing until afterwards. I don't like it any more than you do."`
+				`	"I didn't find out that's what they were doing until afterward. I don't like it any more than you do."`
 			`	"Fair enough," she says, "but I hope it doesn't wreck our chances at negotiation."`
 			`	Xao addresses the three of you. "We have heard your demands," he says, "and now, here is our response. Katerina Reynolds, Alondo Gruyere, and <first> <last>, you are hereby charged with treason and insurrection. Your trial will begin immediately."`
 			choice
@@ -631,7 +631,7 @@ mission "FWC Checkmate 1"
 	to offer
 		has "FWC Diplomacy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc defend cebalrai"
@@ -890,12 +890,12 @@ mission "FWC Checkmate 1B"
 	passengers 1
 	blocked "You have returned to <origin>, but you do not have a bunk free for Katya. You should return here once you have a bunk free."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack menkent"
 		conversation
-			`You meet up with Tomek in the spaceport. He is talking with the captain of one of a group of four Clippers that have landed next to each other some distance away from the rest of the Free Worlds fleet. The Clippers appear to have unusually large engines and afterburners, and in place of guns they are each carrying four missiles. Tomek sees you approaching and says, "And here's Captain <last>. Captain, are you ready to lead the attack?"`
+			`You meet up with Tomek in the spaceport. He is talking with the captain of one of a group of four Clippers that have landed next to each other some distance away from the rest of the Free Worlds fleet. The Clippers appear to have unusually large engines and afterburners, and in place of guns, they are each carrying four missiles. Tomek sees you approaching and says, "And here's Captain <last>. Captain, are you ready to lead the attack?"`
 			choice
 				`	"Yes, I'm ready."`
 					goto ready
@@ -1000,7 +1000,7 @@ mission "FWC Checkmate 1C"
 		has "FWC Checkmate 1B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc attack vega"
@@ -1069,13 +1069,13 @@ mission "FWC Pug 1"
 	to offer
 		has "FWC Checkmate 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc pug invasion"
 		conversation
 			`Once you have gathered in the spaceport with the captains in charge of your fleet, Katya contacts Tomek and asks for instructions. He says, "A Wolf Pack fleet should arrive there shortly. They're carrying all the nukes we had left. They will go in first and--"`
-			`	Abruptly, his voice cuts off in a burst of static. "What the hell?" says Katya. She tries to reestablish a connection to Tomek, but is unable to. Confused, she says, "What's going on? Is the Navy destroying the hyperspace communications relays, now? Or jamming them somehow?"`
+			`	Abruptly, his voice cuts off in a burst of static. "What the hell?" says Katya. She tries to reestablish a connection to Tomek but is unable to. Confused, she says, "What's going on? Is the Navy destroying the hyperspace communications relays, now? Or jamming them somehow?"`
 			`	One of the communications technicians says, "They must've taken out the relays. I can't get a signal from Earth, or Tundra, or Bourne, or, well, anywhere else, for that matter, except the Altair system, right next to this one."`
 			choice
 				`	"How do the hyperspace relays work? Is there any way around them?"`
@@ -1084,7 +1084,7 @@ mission "FWC Pug 1"
 					goto jam
 			
 			label around
-			`	"Only if you want to communicate at the speed of light," says the technician, "and in that case you'd need to wait a few years to get a message out to Tomek. So no, there is not any way around the relays. They're essential to the galactic communications network, which is why even at the worst parts of this war we've never seriously considered destroying them."`
+			`	"Only if you want to communicate at the speed of light," says the technician, "and in that case, you'd need to wait a few years to get a message out to Tomek. So no, there is not any way around the relays. They're essential to the galactic communications network, which is why even at the worst parts of this war we've never seriously considered destroying them."`
 				goto attack
 			
 			label jam
@@ -1230,12 +1230,12 @@ mission "FWC Pug 1B"
 	to offer
 		has "FWC Pug 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc pug peaceful"
 		conversation
-			`The spaceport is in chaos. You eventually find Katya and report that the alien invasion fleet has been destroyed, but at a steep cost. "I'm sure we'll come to regret those losses deeply," she says. "The Wolf Pack nukes were all spent to repel that assault. And based on what we've found out here, we aren't going to be receiving reinforcements any time soon. We've somehow been cut off from the rest of human space."`
+			`The spaceport is in chaos. You eventually find Katya and report that the alien invasion fleet has been destroyed, but at a steep cost. "I'm sure we'll come to regret those losses deeply," she says. "The Wolf Pack nukes were all spent to repel that assault. And based on what we've found out here, we aren't going to be receiving reinforcements anytime soon. We've somehow been cut off from the rest of human space."`
 			choice
 				`	"How is that possible?"`
 					goto possible
@@ -1266,12 +1266,12 @@ mission "FWC Pug 2"
 	to offer
 		has "FWC Pug 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
-			`When you land at the spaceport on <origin>, you find no evidence of violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
-			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug look in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
+			`When you land at the spaceport on <origin>, you find no evidence of a violent struggle; merchant captains are walking around freely, haggling for commodities, and conversing with each other just like in any other spaceport you have visited. However, the spaceport is also being patrolled by small groups of slender, bipedal, pale-skinned aliens who you assume are the Pug. Each one is holding a metal staff that looks like some sort of weapon, but none of them move to attack you.`
+			`	Soon after you land, you spot a man making his way towards your ship, ducking behind other ships and crates every time a group of Pug looks in his direction. If he is some sort of fugitive from them, it might be unwise to throw your lot in with him. On the other hand, he could have valuable information for you.`
 			choice
 				`	(Stay around and talk to him.)`
 					goto board
@@ -1280,7 +1280,7 @@ mission "FWC Pug 2"
 			`	You start to get ready to take off, but he gestures urgently to you. Reluctantly, you decide to wait and hear what he has to say.`
 			label board
 			`	You open your ship's hatch and allow him to come on board. "What's going on here?" you ask. "Who are these aliens?"`
-			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate and that we must refrain from violence and give them a portion of the goods our world produces."`
 			choice
 				`	"Did anyone try to resist them?"`
 					goto resist
@@ -1290,7 +1290,7 @@ mission "FWC Pug 2"
 					goto cut
 			
 			label resist
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
 			choice
 				`	"What do you think their intentions are?"`
 					goto intentions2
@@ -1314,7 +1314,7 @@ mission "FWC Pug 2"
 					goto intentions2
 			
 			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
+			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
 				goto end
 			
 			label intentions2
@@ -1326,7 +1326,7 @@ mission "FWC Pug 2"
 				goto end
 			
 			label end
-			`	You thank him for the information, and prepare to return to the <system> system to talk with Katya. Perhaps the fact that the aliens are no longer attacking you means you can negotiate some sort of truce.`
+			`	You thank him for the information and prepare to return to the <system> system to talk with Katya. Perhaps the fact that the aliens are no longer attacking you means you can negotiate some sort of truce.`
 				accept
 
 
@@ -1341,13 +1341,13 @@ mission "FWC Pug 2B"
 	to offer
 		has "FWC Pug 2: done"
 	passengers 1
-	blocked "You need to have a bunk free for Katya to continue with the next mission. Complete or abort whatever mission is using up all your passenger space, then return here to <origin>."
+	blocked "You need to have a bunk free for Katya to continue with the next mission. Complete or abort whatever mission is using up all your passenger space, then returns here to <origin>."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
-			`You report to Katya that the alien ships did not attack you on your trip to Shiver and back, and that the locals there seem to have consented to be governed by the aliens in exchange for peace. "We haven't had any further attacks here," she says. "Do you think it's safe to try to visit the alien home world?"`
+			`You report to Katya that the alien ships did not attack you on your trip to Shiver and back and that the locals there seem to have consented to be governed by the aliens in exchange for peace. "We haven't had any further attacks here," she says. "Do you think it's safe to try to visit the alien home world?"`
 			choice
 				`	"I think as long as we don't attack them, they won't attack us."`
 					goto yes
@@ -1355,7 +1355,7 @@ mission "FWC Pug 2B"
 					goto no
 			
 			label yes
-			`	"I'm not so sure," she says. "After all, they did attack us once before. And from what I hear from the Wolf Pack captains, the aliens were the ones who fired first. On the other hand, I don't think we have much choice, unless we want to settle down and spend the rest of our lives as alien vassals, cut off from all our friends in the rest of the galaxy."`
+			`	"I'm not so sure," she says. "After all, they did attack us once before. And from what I hear from the Wolf Pack captains, the aliens were the ones who fired first. On the other hand, I don't think we have much choice unless we want to settle down and spend the rest of our lives as alien vassals, cut off from all our friends in the rest of the galaxy."`
 				goto end
 			
 			label no
@@ -1377,7 +1377,7 @@ mission "FWC Pug 2B: Pugglequat"
 	
 	on offer
 		conversation
-			`This planet is clearly one of the native Pug worlds, and not a human world that has been occupied. The architecture is entirely alien, and you see no human ships or people here, only the aliens. But, it appears to be mostly a world for mining and factories; all the aliens are busy with their work, and none seem to speak your language or have any interest in talking with you; instead they gesture towards the sky, perhaps as a way of indicating that you should visit the other Pug planet in this system.`
+			`This planet is clearly one of the native Pug worlds and not a human world that has been occupied. The architecture is entirely alien, and you see no human ships or people here, only the aliens. But, it appears to be mostly the world for mining and factories; all the aliens are busy with their work, and none seem to speak your language or have any interest in talking to you; instead they gesture towards the sky, perhaps as a way of indicating that you should visit the other Pug planet in this system.`
 				decline
 
 
@@ -1392,16 +1392,16 @@ mission "FWC Pug 2C"
 		has "FWC Pug 2B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
-			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that is landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
+			`This is an entirely alien world. The buildings have strangely flowing, tapered shapes not unlike the Pug starships, and from orbit you count dozens of large cities covering a large portion of the land mass. If this were a human world, you would estimate its population at over a billion. You follow one of the Pug ships that are landing, and discover a large spaceport where a surprising number of human merchant ships are parked, in addition to the aliens.`
 			`	Elsewhere they have mostly ignored you, but here your ship is quickly approached by a small group of the pale-skinned, delicate aliens. The Pug are oddly proportioned, with long arms and legs but short, barrel-shaped torsos and large heads, and although they only have two legs, their gait is vaguely insectoid. "You are the ones who resisted us," one of them says. "You are not pledged to the Protectorate. Do you wish to make your vow of loyalty and peacefulness at this time?"`
 			choice
 				`	"No, we are here to find out why you attacked us, and to demand that you leave us alone."`
 				`	"We are willing to make peace, but only if you give us back control of our star systems."`
-			`	"We have no wish to harm you," says the alien. "In time you will come to recognize that. We intervened in your war only to bring peace and to keep your species from doing great harm to itself. And we must maintain control of these systems until we are certain that you will not continue fighting if the links are restored."`
+			`	"We have no wish to harm you," says the alien. "In time, you will come to recognize that. We intervened in your war only to bring peace and to keep your species from doing great harm to itself. And we must maintain control of these systems until we are certain that you will not continue fighting if the links are restored."`
 			choice
 				`	"If you wish us no harm, why did you slaughter our fleet?"`
 				`	"You have no business invading our space and interfering in our affairs, regardless of your intentions."`
@@ -1415,9 +1415,9 @@ mission "FWC Pug 2C"
 			choice
 				`	"What do you want from us in return?"`
 				`	"What are you planning to do with these systems you have occupied?"`
-			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your worlds produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
+			`	"We have brought peace to this region," says the alien, "and we will continue to spread peace until violence has come to an end throughout human space. That is our only desire. All that we ask in return is a portion of the goods your world's produce, to help offset the cost of watching over and protecting so many human worlds. And after some time, we will again allow human beings autonomous control of certain parts of your territory, when you show yourselves capable of living peacefully."`
 			`	"By 'spreading peace,' do you mean occupying more systems?" asks Katya.`
-			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy, because we are the bringers of peace, and whoever attacks us is not on the side of peace. Now, are you prepared to pledge your loyalty?"`
+			`	"We mean bringing an end to your war and your divisions," the alien says. "Those of your worlds and your people who have shown themselves unable to live peacefully, we must govern, to teach them peace. Any who attack us, we must destroy because we are the bringers of peace, and whoever attacks us is not on the side of peace. Now, are you prepared to pledge your loyalty?"`
 			choice
 				`	"I'm sorry, but you have no right to govern us."`
 					goto no
@@ -1429,7 +1429,7 @@ mission "FWC Pug 2C"
 				goto end
 			
 			label yes
-			`	"I am pleased to hear that," it says. "In time you will come to be thankful that you were present at the beginning of this new era of peace and prosperity for your species. And do not fear for your friends in other parts of human space who are, for a time, cut off from you. You will be reunited soon, under our protection." It makes an odd gesture similar to a bow, and walks off.`
+			`	"I am pleased to hear that," it says. "In time, you will come to be thankful that you were present at the beginning of this new era of peace and prosperity for your species. And do not fear for your friends in other parts of human space who are, for a time, cut off from you. You will be reunited soon, under our protection." It makes an odd gesture similar to a bow, and walks off.`
 				goto end
 			
 			label end
@@ -1450,13 +1450,13 @@ mission "FWC Pug 2D"
 		has "FWC Pug 2C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc navy retakes cebalrai"
 		conversation
 			`Just like Shiver, the spaceport on Oblivion is being patrolled by the Pug, and the locals seem to be resigned to their fate. Not surprisingly, you find that there are not many supplies left from when the main Free Worlds fleet was located here for a few days. But, at least the spaceport has a working repair shop and outfitter.`
-			`	While you are exploring the spaceport, a group of men in one of the local pubs see you walking past and gesture to you. "Hey, get in here," whispers one of them. They recognize you as a Council member, and tell you that they are leaders of a local resistance movement, biding their time and waiting for the right moment to strike back against the Pug. "Do you have a plan?" they ask.`
+			`	While you are exploring the spaceport, a group of men in one of the local pubs see you walking past and gesture to you. "Hey, get in here," whispers one of them. They recognize you as a Council member and tell you that they are leaders of a local resistance movement, biding their time and waiting for the right moment to strike back against the Pug. "Do you have a plan?" they ask.`
 			choice
 				`	"Sorry, not yet."`
 				`	"We'll let you know when it's time."`
@@ -1482,7 +1482,7 @@ mission "FWC Pug 3"
 		has "FWC Pug 2D: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc peace with the navy"
@@ -1525,7 +1525,7 @@ mission "FWC Pug 3"
 				goto end
 			
 			label end
-			`	You and Katya return to your ship and prepare to make a visit to <planet>. Hopefully Freya will still be there, and the Navy will let you talk to her.`
+			`	You and Katya return to your ship and prepare to make a visit to <planet>. Hopefully, Freya will still be there, and the Navy will let you talk to her.`
 				accept
 
 
@@ -1541,7 +1541,7 @@ mission "FWC Pug 3A"
 		has "FWC Pug 3: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1565,7 +1565,7 @@ mission "FWC Pug 3A"
 			label hands
 			`	Reluctantly, you take her hands, and she begins asking you questions about the aliens. You answer as truthfully as you can. Holding hands with a total stranger while she stares unblinkingly into your eyes and questions you is an uncomfortably invasive and intimate experience, heightened by your suspicion that if you tell a lie, she will somehow know. By the time she is done questioning you, you are soaked in sweat and your hands are shaking. Raven turns to Danforth and says, "They're telling the truth."`
 			`	You and Katya both breath a sign of relief, and Danforth says, "Very well. Let's take them to see Miss Winters."`
-			`	He leads you back out of his ship and to a warehouse where people in overalls and lab coats are busy working on one of the strangest machines you have ever seen. Freya is one of them. "Katya!" she says. "<first>! Glad you could join us."`
+			`	He leads you back out of his ship and to a warehouse where people in overalls and lab coats are busy working on one of the strangest machines you have ever seen. Freya is one of them. "Katya!" she says. "<first>! Glad, you could join us."`
 			choice
 				`	"Are you working for the Navy now?"`
 				`	"We heard you might have a way to reopen the hyperspace links."`
@@ -1600,7 +1600,7 @@ mission "FWC Pug 3B"
 	to offer
 		has "FWC Pug 3A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		"reputation: Pug" = -10
@@ -1616,7 +1616,7 @@ mission "FWC Pug 3B"
 			label end
 			branch alone
 				has "FWC Checkmate Escorts: done"
-			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are leftover from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
+			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully, the ships that are leftover from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
 				launch
 			label alone
 			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines, wishing that you had managed to keep some of the ships from your attack fleet alive, and hoping you will be able to hold off the Pug until Freya finishes her work down here...`
@@ -1648,7 +1648,7 @@ mission "FWC Pug 3B"
 			variant
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		dialog `You receive a message from Freya: "Captain, we need you back down here. I think I discovered a way to restore the link, but we're going to have to go back to New Austria to do it, and quickly before the Pug have time to send more ships to this system. And, I hope you have space in your cargo bay for a bunch of equipment."`
+		dialog `You receive a message from Freya: "Captain, we need you back down here. I think I discovered a way to restore the link, but we're going to have to go back to New Austria to do it, and quickly before the Pug has time to send more ships to this system. And, I hope you have space in your cargo bay for a bunch of equipment."`
 
 
 
@@ -1667,21 +1667,21 @@ mission "FWC Pug 3C"
 	cargo "graviton reflector" 10
 	blocked `As you are landing, Freya contacts you and says, "You're going to need ten tons of cargo space for this next mission, and a bunk for me, as well." That means you have to free up <capacity>.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
-			`You land near the alien facility, and Freya meets you outside, with a large piece of alien machinery loaded onto a flatbed truck. "I hope you have room for this in your cargo hold," she says. You notice that the ground no longer seems to be rocking irregularly like before, but you still feel slightly dizzy, like the horizon will not quite stay level.`
+			`You land near the alien facility, and Freya meets you outside, with a large piece of alien machinery loaded onto a flatbed truck. "I hope you have room for this in your cargo hold," she says. You notice that the ground no longer seems to be rocking irregularly like before, but you still feel slightly dizzy like the horizon will not quite stay level.`
 			choice
 				`	"What did you figure out?"`
 				`	"Is the link restored yet?"`
 			
-			`	She says, "I couldn't figure out exactly how this technology works, but it's some sort of graviton transmitter. I was able to switch it from sending a chaotic signal, to a coherent one. In theory, that will slowly strengthen the link. But it could take years for it to reopen, and we probably only have a few days before the Pug learn what happened here and overrun this system. So, we need to go back to <planet>, the other end of the link, and set up this thing. I think it's some sort of graviton reflector." She points to the alien equipment on the truck. "With it in place, we can set up a harmonic resonance between this star system and <system>, and in theory the link will regenerate much more quickly."`
+			`	She says, "I couldn't figure out exactly how this technology works, but it's some sort of graviton transmitter. I was able to switch it from sending a chaotic signal, to a coherent one. In theory, that will slowly strengthen the link. But it could take years for it to reopen, and we probably only have a few days before the Pug learn what happened here and overrun this system. So, we need to go back to <planet>, the other end of the link, and set up this thing. I think it's some sort of graviton reflector." She points to the alien equipment on the truck. "With it in place, we can set up a harmonic resonance between this star system and <system>, and in theory, the link will regenerate much more quickly."`
 			choice
 				`	"Okay, let's give it a try!"`
 					accept
 				`	"Do you actually have any idea what you're doing?"`
-			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for nought. But let's give it a try, okay?"`
+			`	"None whatsoever," she says. "I'm just making this up as I go along, based on what I know of hyperspace physics. And for all, I know the Pug ships carry the same hyperspace disruption capabilities as this facility, and this is all for naught. But let's give it a try, okay?"`
 				accept
 
 
@@ -1697,13 +1697,13 @@ mission "FWC Pug 3D"
 		has "FWC Pug 3C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc battle for rasalhague"
 		conversation
 			`Although <origin> is now back under Navy control, they gladly allow your ship to land. You help Freya to set up the alien equipment and power it on. Once again you begin to feel dizzy, and the feeling slowly builds in intensity as Freya adjusts the controls. "It's working," she says. "I've got a positive feedback loop. See if you can contact Oblivion."`
-			`	You try to establish a communications link to the resistance fighters, and brief snatches of conversation come through, interspersed with static. After a few minutes the static begins to die down, and you can hear their voices more clearly. "It's working!" says Freya.`
+			`	You try to establish a communications link to the resistance fighters, and brief snatches of conversation come through, interspersed with static. After a few minuts, the static begins to die down, and you can hear their voices more clearly. "It's working!" says Freya.`
 			`	Meanwhile, Navy and Free Worlds ships have begun pouring into the system. You suspect that the battle ahead will be a fierce one, but with a Navy war fleet on your side, it no longer feels like a hopeless cause. "The link should be strong enough for us to travel through it soon," says Freya. "Time to get back to <system>."`
 				accept
 	
@@ -1810,7 +1810,7 @@ mission "FWC Pug 4"
 		has "FWC Pug 3D: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1942,7 +1942,7 @@ mission "FWC Pug 4A"
 		has "FWC Pug 4: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -1963,7 +1963,7 @@ mission "FWC Pug 4A"
 			
 			label plan
 			`	You meet up with Danforth, and he says, "Well, we have a beachhead now, but it's a fragile one. Miss Winters, do you think you can open up more of the hyperspace links?"`
-			`	Freya says, "Sure, if we retrieve the equipment from Tundra. But, the transmitter station wasn't exactly portable, so if we want to open up other systems not linked to this one, we'll have to find transmitters already installed there, too."`
+			`	Freya says, "Sure if we retrieve the equipment from Tundra. But, the transmitter station wasn't exactly portable, so if we want to open up other systems not linked to this one, we'll have to find transmitters already installed there, too."`
 			`	Danforth says, "Let's start by trying to reestablish the connection from here to the Ascella system. If that works, I'll send part of my fleet to take Zeta Aquilae and see if they can secure another transmitter station. That would give us two routes into Pug space instead of the single bottleneck we have now. Captain <last>, would you be willing to travel back with Freya to <planet>?"`
 			choice
 				`	"Sure, we can leave immediately."`
@@ -1994,7 +1994,7 @@ mission "FWC Pug 4B"
 	passengers 1
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -2014,7 +2014,7 @@ mission "FWC Pug 4B"
 			`	"Well," she says, "you're the captain, I'll leave that choice up to you."`
 				accept
 			label detour
-			`	"Trust me," she says, "it's worth it, if we can get some real answers."`
+			`	"Trust me," she says, "it's worth it if we can get some real answers."`
 			`	"Straight answers from the Quarg?" you say. "Not likely, but it can't hurt to try."`
 				accept
 
@@ -2023,7 +2023,7 @@ mission "FWC Pug 4B"
 mission "FWC Pug 4B: Quarg"
 	landing
 	name "Visit the Quarg"
-	description "If you want, visit the Quarg to see what they can tell you about the Pug, before you continue fighting them."
+	description "If you want, visit the Quarg to see what they can tell you about the Pug before you continue fighting them."
 	source Tundra
 	destination Lagrange
 	to offer
@@ -2035,7 +2035,7 @@ mission "FWC Pug 4B: Quarg"
 		conversation
 			`You land on the Quarg station, but neither of you knows what to do next. How do you locate a Quarg diplomat? Do they even have such a thing? As you and Freya stand in the hangar looking somewhat lost, one of the Quarg approaches you and says, "These ones have questions?"`
 			`	Freya says, "We've been attacked by aliens who call themselves the Pug. We're wondering what you know about them."`
-			`	Quarg skin is normally entirely grey, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories that this is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
+			`	Quarg skin is normally entirely gray, as is their clothing, but several patches of skin on the Quarg's face turn red at the word "Pug." You've heard theories that this is a sign of emotion in the Quarg, but no one knows what emotion precisely. Anger? Embarrassment? The Quarg you are speaking with simply says, "Come," and leads you to a nook in one of the main hallways, where another Quarg stands behind a desk. You are struck by how little you know about this species: are you speaking to a tour guide, or to a diplomat? Is this the governor of the station, or just an expert in human languages? The Quarg behind the desk says, "Do you have questions for me?"`
 			choice
 				`	"Can you help us to fight the Pug?"`
 				`	"Can you give us information about the Pug?"`
@@ -2045,7 +2045,7 @@ mission "FWC Pug 4B: Quarg"
 			`	"So you've encountered the Pug before?" asks Freya. "You know about them?"`
 			
 			label info
-			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They are either entirely illogical, or operating on a logic so far above ours that it appears as nonsense to us. They claim it is the latter: that they operate on some special knowledge of time and future."`
+			`	"The Pug have meddled with the affairs of many species in this galaxy," it says, "but they are not native to it. They came here through artificial wormholes: a technology that not even the Drak possess. Their actions are unpredictable. They are either entirely illogical or operating on a logic so far above ours that it appears as nonsense to us. They claim it is the latter: that they operate on some special knowledge of time and future."`
 			choice
 				`	"If they're so advanced, do we have any chance of defeating them?"`
 					goto defeat
@@ -2053,12 +2053,12 @@ mission "FWC Pug 4B: Quarg"
 					goto drak
 			
 			label defeat
-			`	"Yes," it says. "In battle the Pug always respond with just enough force that their opponent has a fair chance at victory."`
+			`	"Yes," it says. "In battle, the Pug always respond with just enough force that their opponent has a fair chance at victory."`
 			`	Freya is confused. "What do you mean?" she says.`
 				goto balance
 			
 			label drak
-			`	"No," it says. "The Drak do not interfere in a war unless their rules are broken. And, it would not help you anyway; the Pug always adjust the strength of their fleet to give their opponent what they consider to be fair odds."`
+			`	"No," it says. "The Drak do not interfere in a war unless their rules are broken. And, it would not help you anyway; the Pug always adjust the strength of their fleet to give their opponent what they consider being fair odds."`
 			`	"Wait," says Freya, "you're saying they would intentionally attack us with a weaker force instead of using all their strength and guaranteeing victory?"`
 				goto balance
 			
@@ -2084,7 +2084,7 @@ mission "FWC Pug 4C"
 		has "FWC Pug 4B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc reconnect ascella"
@@ -2188,7 +2188,7 @@ mission "FWC Pug 5"
 		has "FWC Pug 4C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -2198,11 +2198,11 @@ mission "FWC Pug 5"
 				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
 			`	Danforth says, "During the battle, we managed to salvage jump drives from a few of the Pug ships. We've installed them in three of our cruisers. Hopefully, with your help, that will be enough to overcome any resistance in the Vega system. Then Miss Winters can work her magic with the hyperlinks again, and we'll be able to bring a massive reinforcement fleet from Sol."`
 			`	"Sounds good to me," says Freya. "I wish more of our own ships had jump drives, so we could assist you."`
-			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing, so that they will be more amenable to a compromise between us."`
+			`	"Indeed," says Danforth. "That's why it's so important for Captain <last>'s ship to be part of this battle. When it's all over, I want to be able to tell Parliament that this war was won by the Free Worlds and the Navy fighting side by side every step of the way. And I hope you will be able to tell your Senate the same thing so that they will be more amenable to a compromise between us."`
 			choice
 				`	"I'm glad to hear you say that. Your fleet is so much stronger than ours that you could easily take all the credit."`
 					goto navy
-				`	"We were the ones who discovered the aliens and the way to restore the hyperpace links. The Free Worlds deserve the real credit here."`
+				`	"We were the ones who discovered the aliens and the way to restore the hyperspace links. The Free Worlds deserve the real credit here."`
 					goto free
 			label navy
 			`	"I don't want the credit," he says, "I want peace." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
@@ -2279,7 +2279,7 @@ mission "FWC Pug 5B"
 	cargo "graviton reflector" 10
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		conversation
@@ -2349,7 +2349,7 @@ mission "FWC Pug 5C"
 	to offer
 		has "FWC Pug 5B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "fwc reconnect vega"
@@ -2413,12 +2413,12 @@ mission "FWC Pug 6"
 	to offer
 		has "FWC Pug 5C: done"
 	passengers 1
-	blocked "You need at least one bunk free for Freya in order to continue this mission."
+	blocked "You need at least one free bunk for Freya in order to continue this mission."
 	on enter Deneb
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		event "pug flee"
@@ -2427,11 +2427,11 @@ mission "FWC Pug 6"
 			`	Everyone prepares for death in different ways. The spaceport's pub is packed, with the crowd spilling out into the hallway and loud music blasting. The chapel is equally full, and the sound of whispered prayers and chanting clashes with the dance music from the pub. Through the doorway of the chapel you see some people sitting cross-legged on the floor and others kneeling on prayer rugs, as the various cultures that make up the Republic do their best to share the space.`
 			`	You find Freya sitting in a secluded nook on the upper floor of the spaceport building, watching the stars and the drifting sand out the window. "Ready for the last battle, Captain?" she asks.`
 			choice
-				`	"Sure, with the Navy at our backs I think we've got a good chance."`
+				`	"Sure, with the Navy at our backs, I think we've got a good chance."`
 				`	"As ready as I'll ever be, I guess."`
 			`	She laughs. "I suppose that's the best we can hope for. Do you mind if I ride in your ship tomorrow, rather than one of the others? If this is the end, I'd rather face it with people I know." You agree. She turns back to look out the window.`
-			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
-			`	Eventually morning comes, and you prepare your ship for the assault on the Pug homeworld...`
+			`	Since Freya seems to want to be alone, you return downstairs and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
+			`	Eventually, morning comes, and you prepare your ship for the assault on the Pug homeworld...`
 				accept
 	
 	npc
@@ -2545,13 +2545,13 @@ mission "FWC Pug 6"
 		event "fwc link restoration 2" 18
 		event "fwc link restoration 3" 29
 		conversation
-			`As you bring your fleet in for a landing, you find that the main Pug spaceport is surprisingly empty. However, a group of Pug children are gathered in a loose circle on one of the landing pads. They appear to be playing some sort of game; they ignore your fleet overhead.`
+			`As you bring your fleet in for a landing, you find that the main Pug spaceport is surprisingly empty. However, a group of Pug children is gathered in a loose circle on one of the landing pads. They appear to be playing some sort of game; they ignore your fleet overhead.`
 			choice
 				`	(Attack them.)`
 				`	(Avoid harming them and land.)`
 					goto avoid
 			
-			`	You fire a single shot into the center of the circle, leaving a dark scar on the landing pad and sending a plume of dust and smoke into the air. The children continue their game, as if nothing has happened.`
+			`	You fire a single shot into the center of the circle, leaving a dark scar on the landing pad and sending a plume of dust and smoke into the air. The children continue their game as if nothing has happened.`
 			label avoid
 			`	You land your ship near the circle of Pug children. They are bouncing a ball back and forth between them, and studiously ignoring your presence. Aside from the sound of the ball striking the pavement, the entire city is eerily quiet. "This is really weird," says Freya.`
 			choice
@@ -2562,11 +2562,11 @@ mission "FWC Pug 6"
 			
 			label join
 			`	You step into the circle and make a grab for the ball, but it passes straight through your fingers. Freya reaches out to touch one of the children, and her hand, too, passes through them. "Some sort of holographic projection," she says.`
-			`	The Navy ships are beginning to land and send crew out to explore. You and Freya walk into the city, passing by a pair of adult Pug who sit at a table outside what looks like some sort of cafe, playing a board game with black and white stones on a hexagonal grid. You check and find that they, too, are a holographic illusion.`
+			`	The Navy ships are beginning to land and send a crew out to explore. You and Freya walk into the city, passing by a pair of adult Pug who sit at a table outside what looks like some sort of cafe, playing a board game with black and white stones on a hexagonal grid. You check and find that they, too, are a holographic illusion.`
 				goto house
 			
 			label city
-			`	The Navy ships are beginning to land and send crew out to explore. You and Freya walk into the city. The streets are mostly deserted, but on one of them you pass by a pair of adult Pug who sit at a table outside what looks like some sort of cafe, playing a board game with black and white stones on a hexagonal grid.`
+			`	The Navy ships are beginning to land and send a crew out to explore. You and Freya walk into the city. The streets are mostly deserted, but on one of them you pass by a pair of adult Pug who sit at a table outside what looks like some sort of cafe, playing a board game with black and white stones on a hexagonal grid.`
 			choice
 				`	(Attack them.)`
 					goto attack
@@ -2594,14 +2594,14 @@ mission "FWC Pug 6"
 
 mission "FWC End"
 	name "Talk to Parliament"
-	description "Travel to Earth for another meeting with Parliament. Alondo and Katya will meet you there. (Hopefully it will go better than your last visit.)"
+	description "Travel to Earth for another meeting with Parliament. Alondo and Katya will meet you there. (Hopefully, it will go better than your last visit.)"
 	autosave
 	source Pugglemug
 	destination Earth
 	to offer
 		has "FWC Pug 6: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog `You have failed an essential Free Worlds mission. If you want to complete the storyline, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
 		"reputation: Republic" += 20
@@ -2628,7 +2628,7 @@ mission "FWC End"
 		set "free worlds plot completed"
 		conversation
 			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya. "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
-			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`
+			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limit our territory to its current size, and to a minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`
 			`	"Also," says Katya, "as their own expression of gratitude, the Syndicate members of Parliament have offered to make some of their new technology, developed during the war, available to us at an affordable price."`
 			choice
 				`	"That's very generous of them."`
@@ -2638,4 +2638,4 @@ mission "FWC End"
 				`	"Build a merchant fleet and live a safe, quiet life."`
 				`	"See if folks in the fringe worlds need any help against the pirates."`
 				`	"Use my jump drive to explore beyond human space."`
-			`	"Well, we all wish you the best of luck," says Freya. "We would never have won this war without you. Be sure to stay in touch." You hug each of them goodbye, and return to your ship. What you do next is up to you...`
+			`	"Well, we all wish you the best of luck," says Freya. "We would never have won this war without you. Be sure to stay in touch." You hug each of them goodbye and return to your ship. What you do next is up to you...`

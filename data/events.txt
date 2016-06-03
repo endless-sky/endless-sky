@@ -117,13 +117,13 @@ event "war begins"
 		fleet "Large Republic" 1300
 	planet "Geminus"
 		description `Until recently, Geminus was home to the Republic Navy Yard, the largest shipyard in human space. Now, there is nothing left of the shipyard but a gaping crater in the ground, from the recent terrorist bombing.`
-		spaceport `Fortunately, the spaceport and residential areas survived the bombing, which was focused only on the Navy yard and happened early in the morning, when very few people were at work.`
+		spaceport `Fortunately, the spaceport and residential areas survived the bombing, which was focused only on the Navy yard and happened early in the morning when very few people were at work.`
 		spaceport `The Navy officers who are in charge here have no time for anyone who is not enlisted in the Navy and participating in the ongoing investigation.`
 		shipyard clear
 		outfitter clear
 		"required reputation" 100
 	planet "Martini"
-		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
+		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here before a terrorist attack destroyed them and a large portion of the capital city as well.`
 		"required reputation" 100
 		security .9
 	planet "Bourne"
@@ -204,7 +204,7 @@ event "initial deployment 1"
 		fleet "Large Southern Pirates" 8000
 		fleet "Navy Surveillance" 2000
 	planet "New Wales"
-		description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
+		description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gasses and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
 		description `The Republic Navy has planted a base on New Wales: so far, just a densely packed cluster of prefabricated barracks and infirmary buildings on the outskirts of one of the mining colonies.`
 	system "Porrima"
 		fleet "Small Southern Merchants" 1400
@@ -1404,7 +1404,7 @@ event "capture of Kornephoros"
 		description `The mining outpost is swarming with Navy guards; they seem to have turned this moon into a temporary base of operations. The mine has been shut down, and no one is being allowed in or out of the mining outpost. It is not clear whether the miners are prisoners, or merely under a very tight watch.`
 		security 1
 	planet "Deep"
-		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor, several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 		spaceport `	There are hundreds of Navy officers patrolling this small spaceport, looking for any signs of local resistance.`
 		security 1
 
@@ -1450,10 +1450,10 @@ event "recapture of Kornephoros"
 		fleet "Large Free Worlds" 1700
 	planet "Clink"
 		description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
-		description `The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
+		description `The miners who work here are a tight-knit group since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
 		security .5
 	planet "Deep"
-		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
+		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor, several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
 		security .5
 	fleet "Small Republic"
 		government "Republic"
@@ -1613,7 +1613,7 @@ event "fw conservatory founded"
 		fleet "Small Free Worlds" 1000
 		fleet "Large Free Worlds" 1500
 	planet Winter
-		description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
+		description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gasses would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
 		description `	Winter is home to the Free Worlds Conservatory, a new university that is focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
 		security .4
 
@@ -1633,8 +1633,8 @@ event "Thule becomes independent"
 		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so.`
 		description `	Until recently, Thule was a well-known den of pirate activity, but the major tribal authorities have now forsworn piracy in the interest of keeping the Free Worlds from further meddling in their affairs. However, it is likely that all manner of illegal activity is still going on in secret here.`
 	planet "Smuggler's Den"
-		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates, and became a haven for all manner of smugglers and privateers. Now, at least in theory it is an independent station, no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
-		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
+		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates and became a haven for all manner of smugglers and privateers. Now, at least in theory, it is an independent station, no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
+		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard, you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 		spaceport `It is a strange but indisputable fact that anarchists smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
 
 
@@ -1725,7 +1725,7 @@ event "fw gets catalytic ramscoop"
 
 event "terraforming Rand"
 	planet Rand
-		description `Rand is a desert world, too dry for much farming and with gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
+		description `Rand is a desert world, too dry for much farming and with a gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
 		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
 
 
@@ -2057,7 +2057,7 @@ event "dreadnought deployment"
 event "bloodsea joins free worlds"
 	planet Bloodsea
 		description `Bloodsea is nearly uninhabited, except for a few small outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
-		description `	Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds is building a new spaceport here, but that will take months, and in the meantime the old spaceport is still in use.`
+		description `	Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds is building a new spaceport here, but that will take months, and in the meantime, the old spaceport is still in use.`
 	system Antares
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 700
@@ -2895,7 +2895,7 @@ event "fwc capture menkent"
 		fleet "Large Free Worlds" 400
 		fleet "Large Republic" 2000
 	planet "New Austria"
-		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
+		description `New Austria is a rugged mountain world, full of snow-capped peaks and valleys so deep and so steep that they rarely see sunlight. The few settlements that have been built here were developed for mining sapphires and rubies; the sapphires found in New Austria range from blue to yellow to black to clear in color, and are used both for industrial abrasives and for jewelry. For centuries, the locals have been trying to find a deposit of diamonds, which would sell for much higher prices than sapphires, and local folklore revolves around the prosperity that would come to this world if diamonds were ever discovered.`
 
 
 
