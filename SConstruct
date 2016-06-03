@@ -14,9 +14,26 @@ if 'LDFLAGS' in os.environ:
 if 'SCHROOT_CHROOT_NAME' in os.environ and 'steamrt' in os.environ['SCHROOT_CHROOT_NAME']:
 	env.Append(LINKFLAGS = ["-static-libstdc++"])
 
+opts = Variables()
+opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", PathVariable.PathIsDirCreate))
+opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
+opts.Add(EnumVariable("mode", "Compilation mode", "release", allowed_values=("release", "debug", "profile")))
+opts.Update(env)
+
+Help(opts.GenerateHelpText(env))
+
+flags = ["-std=c++11", "-Wall"]
+if env["mode"] != "debug":
+	flags += ["-O3"]
+if env["mode"] == "debug":
+	flags += ["-g"]
+if env["mode"] == "profile":
+	flags += ["-pg"]
+	env.Append(LINKFLAGS = ["-pg"])
+
 # Required build flags. If you want to use SSE optimization, you can turn on
 # -msse3 or (if just building for your own computer) -march=native.
-env.Append(CCFLAGS = ["-std=c++0x", "-O3", "-Wall"])
+env.Append(CCFLAGS = flags)
 env.Append(LIBS = [
 	"SDL2",
 	"png",
@@ -32,16 +49,9 @@ env["CC"] = os.getenv("CC") or env["CC"]
 env["CXX"] = os.getenv("CXX") or env["CXX"]
 env["ENV"].update(x for x in os.environ.items() if x[0].startswith("CCC_"))
 
-opts = Variables()
-opts.Add(PathVariable("PREFIX", "Directory to install under", "/usr/local", PathVariable.PathIsDirCreate))
-opts.Add(PathVariable("DESTDIR", "Destination root directory", "", PathVariable.PathAccept))
-opts.Update(env)
+VariantDir("build/" + env["mode"], "source", duplicate = 0)
 
-Help(opts.GenerateHelpText(env))
-
-VariantDir("build", "source", duplicate = 0)
-
-sky = env.Program("endless-sky", Glob("build/*.cpp"))
+sky = env.Program("endless-sky", Glob("build/" + env["mode"] + "/*.cpp"))
 
 
 # Install the binary:
