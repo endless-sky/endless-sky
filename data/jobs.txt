@@ -2079,4 +2079,47 @@ mission "Marauder Hunted"
 		government "Bounty Hunter"
 		system
 			distance 5 5
+	
+mission "Relocation [0]"
+	name "Relocate persons to <planet>"
+	job
+	repeat
+	description "The Republic is attempting to transport people off of overpopulated planets and needs additional help. These <bunks> people need to be relocated to <destination>. The Republic will pay you <payment> to take them there."
+	passengers 20 4 .1
+	to offer
+		has "event: population relocation"
+		random < 50
+		"passenger space" > 40
+	source
+		government "Republic"
+		attributes "urban" "near earth"
+	destination
+		government "Republic" "Syndicate" "Quarg" "Neutral" "Hai"
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		distance 2 20
+	on complete
+		payment
+		payment 10000
+		dialog "The passengers depart your ship and make their way over to the immigration desk. After they have all left, the Republic pays you <payment>."
 
+mission "Relocation [1]"
+	name "Relocate persons to <planet>"
+	job
+	repeat
+	description "The Republic is attempting to transport people off of overpopulated planets and needs additional help. These <bunks> people need to be relocated to <destination>. The Republic will pay you <payment> to take them there."
+	passengers 20 4 .1
+	to offer
+		has "event: population relocation"
+		random < 20
+		"passenger space" > 40
+	source
+		government "Republic"
+		attributes "urban" "near earth"
+	destination
+		government "Republic" "Syndicate" "Quarg" "Neutral" "Hai"
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		distance 4 30
+	on complete
+		payment
+		payment 12000
+		dialog "The passengers depart your ship and make their way over to the immigration desk. After they have all left, the Republic pays you <payment>."

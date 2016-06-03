@@ -248,6 +248,50 @@ event "initial deployment 1"
 	outfitter "Syndicate Basics"
 		"X1050 Ion Engines"
 
+event "population relocation"
+	date 4 8 3014
+	system "Sol"
+		fleet "Small Northern Merchants" 300
+		fleet "Large Northern Merchants" 500
+		fleet "Small Republic" 600
+		fleet "Large Republic" 900
+		fleet "Small Core Merchants" 1000
+		fleet "Large Core Merchants" 2000
+		fleet "Small Deep" 1200
+		fleet "Large Deep" 2400
+	system "Alpha Centauri"
+		fleet "Small Northern Merchants" 800
+		fleet "Large Northern Merchants" 1000
+		fleet "Small Republic" 2000
+		fleet "Large Republic" 6000
+		fleet "Small Deep" 4000
+		fleet "Large Deep" 8000
+	system "Merak"
+		fleet "Small Southern Merchants" 600
+		fleet "Small Northern Merchants" 800
+		fleet "Large Southern Merchants" 2000
+		fleet "Large Northern Merchants" 1500
+		fleet "Small Republic" 2000
+		fleet "Large Republic" 4000
+		fleet "Small Deep" 4000
+		fleet "Large Deep" 8000
+
+mission "Relocation Jobs"
+	landing
+	source
+		government "Republic" "Syndicate" "Free Worlds" 
+	to offer
+		has "event: population relocation"
+	on offer
+		conversation
+			`As you step off of your ship, you notice a larger than normal group of people huddled around a video screen at the space port's bar.`
+			`	On the screen the head of Parliament is giving a speech about the events of the Geminus and Martini bombings.`
+			`	"People of the Republic. Due to recent events, Parliament has come to the decision that some of the most overpopulated worlds can not be save in these uncertain times. It may be any second now that our aggressors decide to drop a WMD on a city of billions."`
+			`	"As such, the Navy is now acting to relocate the populations of some of the most congested planets to safer areas as to reduce any impact that another attack may have. But the men and women in the Navy can not take on this task alone."`
+			`	"We ask of you, fellow people of the Republic, to assist us in our cause. If there is anyone out there who is capable and willing to save the lives of many, please refer to the job board on highly populated urban planets. We will see to it that you are paid well for your assistance of the Navy."`
+			`	The camera on the video screen then pans to view the crowd clapping and cheering as the head of Parliament steps down from the podium.`
+				decline
+
 event "initial deployment 2"
 	date 14 8 3014
 	planet "Martini"
