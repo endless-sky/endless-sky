@@ -152,9 +152,11 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 		Messages::Add(moveToMe ? "Your fleet is gathering around your flagship."
 			: "Your fleet is no longer gathering around your flagship.");
 	}
-	if(sharedTarget.lock() && sharedTarget.lock()->IsDisabled())
-		if(!killDisabledSharedTarget || sharedTarget.lock()->IsDestroyed())
-			sharedTarget.reset();
+	target = sharedTarget.lock();
+	if(target && target->IsDisabled() && (!killDisabledSharedTarget || target->IsDestroyed()))
+		sharedTarget.reset();
+	if(target && (target->GetSystem() != flagship->GetSystem() || !target->IsTargetable()))
+		sharedTarget.reset();
 }
 
 
