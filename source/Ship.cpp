@@ -329,6 +329,11 @@ void Ship::FinishLoading()
 	equipped.clear();
 	armament.FinishLoading();
 	
+	// Figure out how far from center the farthest weapon it.
+	weaponRadius = 0.;
+	for(const Armament::Weapon &weapon : armament.Get())
+		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
+	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
 	// Do not recharge if this ship's starting state was saved.
 	if(!hull)
@@ -1313,7 +1318,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 	if(CannotAct())
 		return false;
 	
-	bool hasAntiMissile = false;
+	antiMissileRange = 0.;
 	
 	const vector<Armament::Weapon> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
@@ -1322,7 +1327,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 		if(outfit && CanFire(outfit))
 		{
 			if(outfit->AntiMissile())
-				hasAntiMissile = true;
+				antiMissileRange = max(antiMissileRange, outfit->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles, effects);
 		}
@@ -1330,7 +1335,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 	
 	armament.Step(*this);
 	
-	return hasAntiMissile;
+	return antiMissileRange;
 }
 
 
@@ -1338,6 +1343,8 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 // Fire an anti-missile.
 bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
 {
+	if(projectile.Position().Distance(position) > antiMissileRange)
+		return false;
 	if(CannotAct())
 		return false;
 	
