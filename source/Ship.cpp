@@ -1175,7 +1175,8 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		}
 	}
 	
-	// Clear your target if it is destroyed.
+	// Clear your target if it is destroyed. This is only important for NPCs,
+	// because ordinary ships cease to exist once they are destroyed.
 	target = targetShip.lock();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();

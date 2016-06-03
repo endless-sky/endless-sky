@@ -393,14 +393,14 @@ void AI::Step(const list<shared_ptr<Ship>> &ships, const PlayerInfo &player)
 		// the current system can fire.
 		if(isPresent)
 		{
-			command |= AutoFire(*it, ships);
-			
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || !target->IsTargetable()
+			if(targetTurn == step || !target || !target->IsTargetable() || target->IsDestroyed()
 					|| (target->IsDisabled() && personality.Disables()))
 				it->SetTargetShip(FindTarget(*it, ships));
+			
+			command |= AutoFire(*it, ships);
 		}
 		
 		double targetDistance = numeric_limits<double>::infinity();
