@@ -170,13 +170,13 @@ void DistanceMap::Init(const System *center, const Ship *ship)
 					const System *link = source ?
 						object.GetPlanet()->WormholeSource(system) :
 						object.GetPlanet()->WormholeDestination(system);
-					if(HasBetter(link, steps))
+					if(HasBetter(link, steps + 1))
 						continue;
 					
 					if(player && !player->HasVisited(object.GetPlanet()))
 						continue;
 					
-					Add(system, link, steps, danger + link->Danger());
+					Add(system, link, steps + 1, danger + link->Danger());
 				}
 		
 		if(hasHyper && !Propagate(system, false, steps, danger))
