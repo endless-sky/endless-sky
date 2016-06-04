@@ -363,7 +363,6 @@ event "wanderers: first tech increase"
 		fleet "Wanderer Freight" 400
 		fleet "Wanderer Drones" 400
 		fleet "Wanderer Defense" 400
-		fleet "Wanderer Flycatchers" 500
 	system "Sich'ka'ara"
 		fleet "Wanderer Freight" 600
 		fleet "Wanderer Drones" 3000
@@ -431,29 +430,46 @@ event "wanderers: first tech increase"
 		"Sunbeam Turret"
 		"Dual Sunbeam Turret"
 
-event "wanderers: unfettered invasion"
+event "wanderers: unfettered invasion starts"
 	system "Ik'kara'ka"
-		fleet "Wanderer Freight" 600
-		fleet "Wanderer Drones" 700
-		fleet "Wanderer Defense" 600
-		fleet "Wanderer Flycatcher" 400
+		fleet "Wanderer Freight" 1200
+		fleet "Wanderer Drones" 900
+		fleet "Wanderer Defense" 200
+		fleet "Wanderer Flycatchers" 200
+		fleet "Small Unfettered" 1200
+		fleet "Large Unfettered" 500
 	system "Chy'chra"
-		fleet "Wanderer Freight" 1500
-		fleet "Wanderer Drones" 1000
-		fleet "Wanderer Defense" 300
-		fleet "Wanderer Flycatcher" 300
-		fleet "Unfettered Tribute" 2000
+		government "Hai (Unfettered)"
+		fleet "Wanderer Defense" 3000
+		fleet "Unfettered Raid" 1000
+		fleet "Small Unfettered" 400
+		fleet "Large Unfettered" 400
 	system "Prakacha'a"
-		fleet "Wanderer Freight" 400
-		fleet "Wanderer Drones" 400
+		fleet "Wanderer Freight" 900
+		fleet "Wanderer Drones" 800
+		fleet "Wanderer Defense" 200
+		fleet "Small Unfettered" 1800
+		fleet "Large Unfettered" 800
+	system "Sich'ka'ara"
+		fleet "Wanderer Freight" 600
+		fleet "Wanderer Drones" 3000
 		fleet "Wanderer Defense" 400
-		fleet "Wanderer Flycatcher" 500
+		fleet "Wanderer Flycatchers" 300
+		fleet "Large Unfettered" 1200
+	system "Chirr'ay'akai"
+		fleet "Wanderer Freight" 800
+		fleet "Wanderer Drones" 600
+		fleet "Wanderer Defense" 400
+		fleet "Wanderer Flycatchers" 300
+		fleet "Large Unfettered" 1200
 	"reputation: Hai (Unfettered)" <?= -100
 	government "Hai (Unfettered)"
 		"attitude toward"
 			"Hai" -.1
 			"Wanderer" -.1
 			"Pug" -.1
+	outfitter "Wanderer Advanced"
+		"Wanderer Anti-Missile"
 
 event "wanderers: the eye opens"
 	system Sabriset

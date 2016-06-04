@@ -364,6 +364,11 @@ void Ship::FinishLoading()
 	equipped.Clear();
 	armament.FinishLoading();
 	
+	// Figure out how far from center the farthest weapon it.
+	weaponRadius = 0.;
+	for(const Armament::Weapon &weapon : armament.Get())
+		weaponRadius = max(weaponRadius, weapon.GetPoint().Length());
+	
 	// Recharge, but don't recharge crew or fuel if not in the parent's system.
 	// Do not recharge if this ship's starting state was saved.
 	if(!hull)
@@ -596,7 +601,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
-	cloak = 0.;
+	cloak = sprite.IsEmpty();
 	jettisoned.clear();
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
@@ -1045,20 +1050,25 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			hyperspaceSystem = GetTargetSystem();
 	}
 	
-	double cloakingSpeed = attributes.Get("cloak");
-	bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
-		&& fuel >= attributes.Get("cloaking fuel")
-		&& energy >= attributes.Get("cloaking energy"));
-	if(commands.Has(Command::CLOAK) && canCloak)
-	{
-		cloak = min(1., cloak + cloakingSpeed);
-		fuel -= attributes.Get("cloaking fuel");
-		energy -= attributes.Get("cloaking energy");
-	}
-	else if(cloakingSpeed)
-		cloak = max(0., cloak - cloakingSpeed);
+	if(sprite.IsEmpty())
+		cloak = 1.;
 	else
-		cloak = 0.;
+	{
+		double cloakingSpeed = attributes.Get("cloak");
+		bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
+			&& fuel >= attributes.Get("cloaking fuel")
+			&& energy >= attributes.Get("cloaking energy"));
+		if(commands.Has(Command::CLOAK) && canCloak)
+		{
+			cloak = min(1., cloak + cloakingSpeed);
+			fuel -= attributes.Get("cloaking fuel");
+			energy -= attributes.Get("cloaking energy");
+		}
+		else if(cloakingSpeed)
+			cloak = max(0., cloak - cloakingSpeed);
+		else
+			cloak = 0.;
+	}
 	
 	if(pilotError)
 		--pilotError;
@@ -1252,7 +1262,8 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		}
 	}
 	
-	// Clear your target if it is destroyed.
+	// Clear your target if it is destroyed. This is only important for NPCs,
+	// because ordinary ships cease to exist once they are destroyed.
 	target = targetShip.lock();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
@@ -1389,7 +1400,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 	if(CannotAct())
 		return false;
 	
-	bool hasAntiMissile = false;
+	antiMissileRange = 0.;
 	
 	const vector<Armament::Weapon> &weapons = armament.Get();
 	for(unsigned i = 0; i < weapons.size(); ++i)
@@ -1398,7 +1409,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 		if(outfit && CanFire(outfit))
 		{
 			if(outfit->AntiMissile())
-				hasAntiMissile = true;
+				antiMissileRange = max(antiMissileRange, outfit->Velocity() + weaponRadius);
 			else if(commands.HasFire(i))
 				armament.Fire(i, *this, projectiles, effects);
 		}
@@ -1406,7 +1417,7 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 	
 	armament.Step(*this);
 	
-	return hasAntiMissile;
+	return antiMissileRange;
 }
 
 
@@ -1414,6 +1425,8 @@ bool Ship::Fire(list<Projectile> &projectiles, list<Effect> &effects)
 // Fire an anti-missile.
 bool Ship::FireAntiMissile(const Projectile &projectile, list<Effect> &effects)
 {
+	if(projectile.Position().Distance(position) > antiMissileRange)
+		return false;
 	if(CannotAct())
 		return false;
 	
@@ -1455,8 +1468,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0.
-		&& !sprite.IsEmpty() && hyperspaceCount < 70);
+	return (zoom == 1. && !explosionRate && !forget && cloak < 1. && hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -1520,7 +1532,7 @@ bool Ship::CannotAct() const
 
 double Ship::Cloaking() const
 {
-	return sprite.IsEmpty() ? 1. : cloak;
+	return cloak;
 }
 
 

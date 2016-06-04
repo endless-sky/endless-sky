@@ -384,6 +384,9 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	double cloak = 0.;
+	// Cached values for figuring out when anti-missile is in range.
+	double antiMissileRange = 0.;
+	double weaponRadius = 0.;
 	
 	Command commands;
 	

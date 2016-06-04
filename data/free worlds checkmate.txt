@@ -208,7 +208,7 @@ mission "FWC Cebalrai 1"
 			choice
 				`	"Weren't you under house arrest?"`
 				`	"So, does the fact that you're here mean the Senate pardoned you?"`
-			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear your on Council now too."`
+			`	"Yes," he says. "After that incident with the Alphas on Poisonwood, some folks in the Senate started thinking that I was right to view the pirates as a threat. And when the Navy went on the offensive, they decided I was needed for the war effort. So I've been reinstated. Glad to hear you're on Council now too."`
 			choice
 				`	"So, what's our next step?"`
 					goto end
@@ -2202,7 +2202,7 @@ mission "FWC Pug 5"
 			choice
 				`	"I'm glad to hear you say that. Your fleet is so much stronger than ours that you could easily take all the credit."`
 					goto navy
-				`	"We were the ones who discovered the aliens and the way to restore the hyperpace links. The Free Worlds deserve the real credit here."`
+				`	"We were the ones who discovered the aliens and the way to restore the hyperspace links. The Free Worlds deserve the real credit here."`
 					goto free
 			label navy
 			`	"I don't want the credit," he says, "I want peace." He wishes you the best of luck in your attack on Vega, and says to contact him as soon as the link is restored and the reinforcements are ready.`
