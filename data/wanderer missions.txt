@@ -68,7 +68,7 @@ mission "Wanderers: Hai Diplomat"
 	landing
 	source
 		near "Ya Hai" 1 100
-		government Hai
+		attributes "hai"
 	destination "Hai-home"
 	clearance
 	to offer
