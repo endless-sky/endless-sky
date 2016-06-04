@@ -22,9 +22,9 @@ mission "remembrance day"
 	on offer
 		conversation
 			`Today, throughout human space, is Remembrance Day, the anniversary of the beginning of the Alpha Wars more than five centuries ago. The Alphas were genetically engineered soldiers, with superhuman agility and intelligence, and a complete lack of compassion or empathy. At the height of the War, dozens of planets had been enslaved by the Alphas.`
-			`    Remembrance Day commemorates the beginning of the war, rather than its end, as a perpetual reminder that the war is not over: although the Alphas were defeated, some of them escaped and remained in hiding, and they and their offspring are presumed to still be present in the galaxy today.`
-			`    Since the Alpha War, genetic resequencing technology has been very tightly controlled. Because the Alphas were the product of experimental genetic manipulation rather than natural evolution, it is believed that their genes are less robust than true human beings, and they are almost unable to have viable offspring without access to special technology. Therefore, most Alpha enclaves that have been discovered since the War have had very small populations, no more than a few dozen.`
-			`    In these days when the Navy ensures peace throughout much of the galaxy, on many worlds the Alphas are treated as nothing more than a bogeyman story to frighten children. Because the most striking physical feature of the Alphas was their photosynthetic skin, on some worlds kids even run around wearing green face paint on Remembrance Day, trying to frighten people. But on other worlds, especially on the fringes of space where the Navy seldom patrols, the Alphas are still spoken of with fear.`
+			`	Remembrance Day commemorates the beginning of the war, rather than its end, as a perpetual reminder that the war is not over: although the Alphas were defeated, some of them escaped and remained in hiding, and they and their offspring are presumed to still be present in the galaxy today.`
+			`	Since the Alpha War, genetic resequencing technology has been very tightly controlled. Because the Alphas were the product of experimental genetic manipulation rather than natural evolution, it is believed that their genes are less robust than true human beings, and they are almost unable to have viable offspring without access to special technology. Therefore, most Alpha enclaves that have been discovered since the War have had very small populations, no more than a few dozen.`
+			`	In these days when the Navy ensures peace throughout much of the galaxy, on many worlds the Alphas are treated as nothing more than a bogeyman story to frighten children. Because the most striking physical feature of the Alphas was their photosynthetic skin, on some worlds kids even run around wearing green face paint on Remembrance Day, trying to frighten people. But on other worlds, especially on the fringes of space where the Navy seldom patrols, the Alphas are still spoken of with fear.`
 
 
 
@@ -139,9 +139,9 @@ mission "event: war begins"
 	on offer
 		conversation
 			`The moment you step off your ship you realize something is very wrong. The spaceport is eerily quiet, and a large crowd of people is gathered around a video screen in the local bar.`
-			`    You ask what is happening, and someone explains. Recently, a collection of local governments in the southern galactic arm sent the Republic Parliament what amounted to an ultimatum: a refusal to pay taxes until certain reforms were made in trade tariffs, ship licensing, and election of planetary representatives. The coalition calls themselves the "Free Worlds." Parliament outright refused to consider their demands.`
-			`    Then, in the early morning, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
-			`    Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
+			`	You ask what is happening, and someone explains. Recently, a collection of local governments in the southern galactic arm sent the Republic Parliament what amounted to an ultimatum: a refusal to pay taxes until certain reforms were made in trade tariffs, ship licensing, and election of planetary representatives. The coalition calls themselves the "Free Worlds." Parliament outright refused to consider their demands.`
+			`	Then, in the early morning, nuclear explosions on Geminus and Martini destroyed the Republic Navy Yard and the Galactic Stock Exchange, crippling the military and economic center of the Republic. The "Free Worlds" disclaim any responsibility for the attacks, despite the timing and the fact that the attacks serve their purposes very well.`
+			`	Unless the terrorists can be found or turn themselves in, civil war is imminent. It has been less than a year since you bought your ship, and already the galaxy is falling apart on you.`
 				decline
 
 event "initial deployment 1"
@@ -1405,7 +1405,7 @@ event "capture of Kornephoros"
 		security 1
 	planet "Deep"
 		spaceport `The spaceport is built on a large island, a now-extinct volcano with an elevation of several kilometers at its center. Most of the large-scale fishing here is done by a single company, Poseidon Industries, who also built and maintain the spaceport. Steep winding roads and sturdy cement homes and warehouses line the mountain slopes, and below you in the harbor, several massive trawling vessels are moored. On the outskirts of the spaceport are the ramshackle houses and open-air marketplace used by the smaller, independent fishing families.`
-		spaceport `    There are hundreds of Navy officers patrolling this small spaceport, looking for any signs of local resistance.`
+		spaceport `	There are hundreds of Navy officers patrolling this small spaceport, looking for any signs of local resistance.`
 		security 1
 
 
@@ -1551,7 +1551,7 @@ event "oathkeepers founded"
 		fleet "Small Northern Merchants" 6000
 	planet Farpoint
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
-		description `    Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
+		description `	Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
 
 
 
@@ -1614,7 +1614,7 @@ event "fw conservatory founded"
 		fleet "Large Free Worlds" 1500
 	planet Winter
 		description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gasses would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
-		description `    Winter is home to the Free Worlds Conservatory, a new university that is focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
+		description `	Winter is home to the Free Worlds Conservatory, a new university that is focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
 		security .4
 
 
@@ -1631,7 +1631,7 @@ event "Thule becomes independent"
 		fleet "Large Free Worlds" 1500
 	planet Thule
 		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so.`
-		description `    Until recently, Thule was a well-known den of pirate activity, but the major tribal authorities have now forsworn piracy in the interest of keeping the Free Worlds from further meddling in their affairs. However, it is likely that all manner of illegal activity is still going on in secret here.`
+		description `	Until recently, Thule was a well-known den of pirate activity, but the major tribal authorities have now forsworn piracy in the interest of keeping the Free Worlds from further meddling in their affairs. However, it is likely that all manner of illegal activity is still going on in secret here.`
 	planet "Smuggler's Den"
 		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates and became a haven for all manner of smugglers and privateers. Now, at least in theory, it is an independent station, no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
 		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard, you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
@@ -1726,7 +1726,7 @@ event "fw gets catalytic ramscoop"
 event "terraforming Rand"
 	planet Rand
 		description `Rand is a desert world, too dry for much farming and with a gravity low enough to be uncomfortable for most human beings. It is, however, the best source of heavy metals in the galactic south. Aside from the managers of the mining companies, nearly all the people here are migrant workers from elsewhere in the Dirt Belt, who have come to spend a season working for the relatively high wages that uranium mining offers, either to send money off-world or to save it up in order to build a better life for themselves.`
-		description `    Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
+		description `	Recent terraforming experiments have caused an increase in precipitation. Flash floods have scoured the landscape in some areas, but sandstorms are also less frequent, and the locals say the heat is a bit less oppressive than it used to be.`
 
 
 
@@ -1915,7 +1915,7 @@ event "fw southern expansion"
 		fleet "Large Republic" 500
 	planet "New Iceland"
 		description `New Iceland is a perpetually hazy volcanic world, with a slightly caustic atmosphere but enough reserves of metal and petrochemicals to draw a large number of settlers. Some of those settlers also make a living as farmers, and a few well-developed factory towns produce goods for export to other worlds.`
-		description `    In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
+		description `	In the wake of their defeat in the south, the Navy has begun to set up a massive new base here on New Iceland, in order to allow them to continue to have a strong presence in this sector.`
 
 
 
@@ -2057,7 +2057,7 @@ event "dreadnought deployment"
 event "bloodsea joins free worlds"
 	planet Bloodsea
 		description `Bloodsea is nearly uninhabited, except for a few small outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
-		description `    Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds is building a new spaceport here, but that will take months, and in the meantime, the old spaceport is still in use.`
+		description `	Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds is building a new spaceport here, but that will take months, and in the meantime, the old spaceport is still in use.`
 	system Antares
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 700
@@ -2072,9 +2072,9 @@ event "bloodsea joins free worlds"
 event "bloodsea spaceport completed"
 	planet Bloodsea
 		description `Bloodsea is nearly uninhabited, except for a few small outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
-		description `    Recently, with the help of the Free Worlds, a new spaceport was completed here. Bloodsea was formerly a pirate world, but the new spaceport has given it an air of respectability, and already a small number of settlers and curious tourists have begun flowing in.`
+		description `	Recently, with the help of the Free Worlds, a new spaceport was completed here. Bloodsea was formerly a pirate world, but the new spaceport has given it an air of respectability, and already a small number of settlers and curious tourists have begun flowing in.`
 		spaceport `The new spaceport is impressively well designed, with seawalls and landing pads of crisp, newly-set concrete, still unmarked by weather or mildew. It is also several times larger than necessary for the number of people and ships that are here, and aside from a lively market, it feels strangely empty.`
-		spaceport `    Some things remain unchanged from back in the pirate days. The local slang incorporates threats of extreme violence as a seemingly meaningless verbal tic. "Hey, I'm gonna cut off your fingers one by one until you buy a meat patty!" a vendor calls out cheerfully as you pass. "First one's free, and I'll tie a knot in your spine if you don't like it."`
+		spaceport `	Some things remain unchanged from back in the pirate days. The local slang incorporates threats of extreme violence as a seemingly meaningless verbal tic. "Hey, I'm gonna cut off your fingers one by one until you buy a meat patty!" a vendor calls out cheerfully as you pass. "First one's free, and I'll tie a knot in your spine if you don't like it."`
 
 
 
@@ -2097,14 +2097,14 @@ event "bloodsea independent"
 		fleet "Large Free Worlds" 1500
 	planet Bloodsea
 		description `Bloodsea is nearly uninhabited, except for a few small outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
-		description `    Until recently, this was a pirate world, but they are now officially "independent," forswearing support for piracy and other criminal activity as a result of being dominated by the Free Worlds militia. You get the feeling that most of the locals are not too fond of the Free Worlds, however.`
+		description `	Until recently, this was a pirate world, but they are now officially "independent," forswearing support for piracy and other criminal activity as a result of being dominated by the Free Worlds militia. You get the feeling that most of the locals are not too fond of the Free Worlds, however.`
 
 
 
 event "albatross joins free worlds"
 	planet Albatross
 		description `Albatross is a cold ocean world orbiting a small, cold sun. The first settlers on Albatross were anarchists who believed that in a society free from unnatural laws and constraints, everyone would happily and freely work for the common good. The next settlers were pirates who believed that a planet free from laws and constraints would be a great base of operations.`
-		description `    Recently, the Free Worlds has liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
+		description `	Recently, the Free Worlds has liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
 	system Nunki
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 700
