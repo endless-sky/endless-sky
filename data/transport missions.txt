@@ -1900,7 +1900,7 @@ mission "Space Elevator 1"
 				decline
 
 			label end
-			`	"Thanks!" He says, "By the way, I'm admrial Michel Farford."`
+			`	"Thanks!" He says, "By the way, I'm Admiral Michel Farford."`
 			`	"<first> <last>," you say. You shake hands and say your goodbyes as you make your way to your ship.`
 				accept
 
@@ -1989,7 +1989,7 @@ mission "Space Elevator 2"
 		event "space elevator" 45
 		event "license expires" 30
 		conversation 
-			`Upon landing back on Earth, Admiral Michel approaches your fleet. He escorts the scientists off your ship and another Navy officer brings them to the construction zone. The Admiral turns back to your and reaches into his pocket.`
+			`Upon landing back on Earth, Admiral Farford approaches your fleet. He escorts the scientists off your ship and another Navy officer brings them to the construction zone. The admiral turns back to your and reaches into his pocket.`
 			`	"Thanks for the help, <first>." He pulls out some credit chips from his pocket and hands them to you. You count them up and find that it's <payment>.`
 			choice
 				`	"Thank you, sir."`
@@ -2005,7 +2005,7 @@ mission "Space Elevator 2"
 			`	"No, I really should. It's the least I could do for you."`
 			
 			label end
-			`	"You know what, there's actually one more thing." The Admiral reaches into his pocket once again, this time pulling out a card of some sorts. He hand it to you. You look at it, and to your disbelief it's a Navy license.`
+			`	"You know what, there's actually one more thing." The admiral reaches into his pocket once again, this time pulling out a card of some sorts. He hand it to you. You look at it, and to your disbelief it's a Navy license.`
 			`	"Don't go to crazy over it, it's only temporary. It won't buy you a cruiser, but it's at least something. All you should need to do is talk to the Navy at the shipyard and show them this. They'll verify it and let you buy one of the smaller ships."`
 			`	"You know, we could use more people like you in the Navy. But until next time."`
 			`	He bids you farewell and walks toward the direction of the construction site.`
