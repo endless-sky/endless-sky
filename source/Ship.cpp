@@ -519,7 +519,7 @@ void Ship::Place(Point position, Point velocity, Angle angle)
 	ionization = 0.;
 	disruption = 0.;
 	slowness = 0.;
-	cloak = sprite.IsEmpty();
+	isInvisible = sprite.IsEmpty();
 	jettisoned.clear();
 	hyperspaceCount = 0;
 	hyperspaceType = 0;
@@ -968,9 +968,7 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 			hyperspaceSystem = GetTargetSystem();
 	}
 	
-	if(sprite.IsEmpty())
-		cloak = 1.;
-	else
+	if(!isInvisible)
 	{
 		double cloakingSpeed = attributes.Get("cloak");
 		bool canCloak = (zoom == 1. && !isDisabled && !hyperspaceCount && cloakingSpeed
@@ -1450,7 +1448,7 @@ bool Ship::CannotAct() const
 
 double Ship::Cloaking() const
 {
-	return cloak;
+	return isInvisible ? 1. : cloak;
 }
 
 
