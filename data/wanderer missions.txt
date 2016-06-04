@@ -576,6 +576,7 @@ mission "Wanderers: Truce Check"
 	name "Check with Iktat Rek?"
 	description "Meet up with Iktat Rek on <planet> to see if there is anything more you can do to help the Wanderers now that they have established a ceasefire with the Unfettered."
 	to offer
+		has "main plot completed"
 		has "event: wanderers: truce timer"
 		not "Wanderers: Jump Drive Source: offered"
 	source
@@ -595,6 +596,7 @@ mission "Wanderers: Jump Drive Source"
 	description "Iktat Rek asked you to acquire a spare jump drive and sell it to the Unfettered in exchange for information on where they are getting jump drives from. Then, return to <destination>."
 	source "Vara K'chrai"
 	to offer
+		has "main plot completed"
 		has "event: wanderers: truce timer"
 	on offer
 		conversation
