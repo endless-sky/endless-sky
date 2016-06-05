@@ -80,7 +80,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive)
 	
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
-	keyHeld |= clickCommands;
+	keyStuck |= clickCommands;
 	clickCommands.Clear();
 	keyDown = keyHeld.AndNot(oldHeld);
 	if(keyHeld.Has(AutopilotCancelKeys()))
@@ -1859,31 +1859,34 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 			double closest = numeric_limits<double>::infinity();
 			int count = 0;
 			set<string> types;
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				if(object.GetPlanet())
-				{
-					++count;
-					types.insert(object.GetPlanet()->Noun());
-					double distance = ship.Position().Distance(object.Position());
-					const Planet *planet = object.GetPlanet();
-					if(planet == ship.GetDestination())
-						distance = 0.;
-					else if(!planet->HasSpaceport() && !planet->IsWormhole())
-						distance += 10000.;
-					
-					if(distance < closest)
+			if(!target)
+			{
+				for(const StellarObject &object : ship.GetSystem()->Objects())
+					if(object.GetPlanet())
 					{
-						ship.SetTargetPlanet(&object);
-						closest = distance;
+						++count;
+						types.insert(object.GetPlanet()->Noun());
+						double distance = ship.Position().Distance(object.Position());
+						const Planet *planet = object.GetPlanet();
+						if(planet == ship.GetDestination())
+							distance = 0.;
+						else if((!planet->CanLand() || !planet->HasSpaceport()) && !planet->IsWormhole())
+							distance += 10000.;
+					
+						if(distance < closest)
+						{
+							ship.SetTargetPlanet(&object);
+							closest = distance;
+						}
 					}
-				}
-			const StellarObject *target = ship.GetTargetPlanet();
+				target = ship.GetTargetPlanet();
+			}
 			if(!target)
 			{
 				message = "There are no planets in this system that you can land on.";
 				Audio::Play(Audio::Get("fail"));
 			}
-			else if(!target->GetPlanet()->CanLand())
+			if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
@@ -1905,6 +1908,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				}
 				message += " in this system. Landing on " + target->Name() + ".";
 			}
+			else
+				message = "Landing on " + target->Name() + ".";
 		}
 		if(!message.empty())
 			Messages::Add(message);
