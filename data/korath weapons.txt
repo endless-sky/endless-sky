@@ -408,7 +408,8 @@ outfit "Korath Mine Submunition"
 		"hit effect" "big explosion"
 		"die effect" "tiny explosion"
 		"inaccuracy" 360
-		"lifetime" 1800
+		"lifetime" 1000
+		"random lifetime" 60
 		"acceleration" .00001
 		"velocity" 2
 		"random velocity" 5
