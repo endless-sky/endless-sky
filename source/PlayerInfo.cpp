@@ -41,6 +41,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	// how many savegame backups to keep.
+	// 0 = feature disabled, but no existing backups will be deleted.
+	std::size_t saveBackups = 0;
+}
+
 
 
 // Completely clear all loaded information, to prepare for loading a file or
@@ -242,14 +248,82 @@ void PlayerInfo::LoadRecent()
 // Save this player. The file name is based on the player's name.
 void PlayerInfo::Save() const
 {
-	// Don't save dead players.
-	if(isDead)
+	// Don't save dead or invalid players.
+	if(isDead || !planet || !system || filePath.length() < 4)
 		return;
-	
+
+	// Wait for the previous backup thread to finish if any.
+	if(saveBackupDone.valid())
+		saveBackupDone.get();
+
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
-	
-	Save(filePath);
+
+	// basename for incremental saves
+	string baseName = filePath.substr(0, filePath.length() - 4) + "~autosave-";
+
+	// stop here if not keeping any backups
+	if(saveBackups)
+	{
+		Files::Copy(filePath, baseName);
+		Save(filePath);
+	}
+	else
+	{
+		Save(filePath);
+		return;
+	}
+
+	// backup savegames
+	auto done = async(launch::async,
+		[](string path, string baseName, size_t savesToKeep)
+		{
+			// Get date from temp save and rename it accordingly
+			DataFile file(baseName);
+			for(const DataNode &node : file)
+				if(node.Token(0) == "date")
+				{
+					int year = node.Value(3);
+					int month = node.Value(2);
+					int day = node.Value(1);
+					string extension = "0000-00-00.txt";
+					extension[0] += (year / 1000) % 10;
+					extension[1] += (year / 100) % 10;
+					extension[2] += (year / 10) % 10;
+					extension[3] += year % 10;
+					extension[5] += (month / 10) % 10;
+					extension[6] += month % 10;
+					extension[8] += (day / 10) % 10;
+					extension[9] += day % 10;
+					Files::Copy(baseName, baseName + extension);
+				}
+			Files::Delete(baseName);
+
+			// delete older backups
+			auto saves = Files::List(Files::Saves());
+			auto last = remove_if(saves.begin(), saves.end(),
+				[&baseName](const string& item){ return item.compare(0, baseName.length(), baseName); });
+			sort(saves.begin(), last);
+			size_t count = distance(saves.begin(), last);
+			for (auto it = saves.begin(); count > savesToKeep && it != last; it++, count--)
+				Files::Delete(*it);
+		},
+		filePath, move(baseName), saveBackups);
+	saveBackupDone = done.share();
+}
+
+
+
+size_t PlayerInfo::SaveBackups()
+{
+	return saveBackups;
+}
+
+
+
+void PlayerInfo::SetSaveBackups(size_t count)
+{
+	saveBackups = count;
 }
 
 
@@ -789,7 +863,7 @@ void PlayerInfo::Land(UI *ui)
 			it = ships.erase(it);
 		}
 		else
-			++it; 
+			++it;
 	}
 	// Check for NPCs that have been destroyed without their destruction being
 	// registered, e.g. by self-destruct:
@@ -1753,7 +1827,7 @@ void PlayerInfo::Save(const string &path) const
 		{
 			for(const DataNode &node : dataChanges)
 				out.Write(node);
-		}	
+		}
 		out.EndChild();
 	}
 	GameData::WriteEconomy(out);
