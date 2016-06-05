@@ -182,7 +182,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
-		`"Bondir" Atomic Steering`
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
@@ -245,7 +245,7 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 5
-		`"Bondir" Atomic Steering`
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 
