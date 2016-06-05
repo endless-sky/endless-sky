@@ -46,6 +46,9 @@ private:
 	int tileCols;
 	std::vector<int> tileIndex;
 	
+	std::vector<Point> hazePos;
+	std::vector<Point> hazeUnit;
+	
 	Shader shader;
 	GLuint vao;
 	GLuint vbo;
