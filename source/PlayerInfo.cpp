@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Random.h"
+#include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
@@ -249,6 +250,25 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
 	
+	if(filePath.rfind(".txt") == filePath.length() - 4)
+	{
+		// Only update the backups if this save will have a newer date.
+		SavedGame saved(filePath);
+		if(saved.GetDate() != date.ToString())
+		{
+			string root = filePath.substr(0, filePath.length() - 4);
+			string files[4] = {
+				root + "~~previous-3.txt",
+				root + "~~previous-2.txt",
+				root + "~~previous-1.txt",
+				filePath
+			};
+			for(int i = 0; i < 3; ++i)
+				if(Files::Exists(files[i + 1]))
+					Files::Copy(files[i + 1], files[i]);
+		}
+	}
+		
 	Save(filePath);
 }
 
