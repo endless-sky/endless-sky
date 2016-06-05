@@ -2393,6 +2393,9 @@ void Ship::CreateSparks(std::list<Effect> &effects, const string &name, double a
 {
 	if(forget)
 		return;
+	
+	// Limit the number of sparks, depending on the size of the sprite.
+	amount = min(amount, sprite.Width() * sprite.Height() * .0001);
 
 	const Effect *effect = GameData::Effects().Get(name);
 	while(true)
