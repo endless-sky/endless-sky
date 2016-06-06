@@ -38,7 +38,7 @@ mission "Drak guarding Sayaiban"
 	on enter Sayaiban
 		conversation
 			`A voice says, "This system is off limits. You should leave."`
-			`	After a second, you realize that the voice did not come from your communications equipment. In fact, now that you think about it, you're not sure if it was an audible voice, or just something in your head.`
+			`	After a second, you realize that the voice did not come from your communications equipment. In fact, now that you think about it, you're not sure if it was an audible voice or just something in your head.`
 			choice
 				`	(Ignore it.)`
 				`	"Why should I leave?"`
@@ -56,7 +56,7 @@ mission "Drak guarding Sayaiban"
 				`	"What do you mean, 'digested'?"`
 				`	"What is a 'swarm intelligence'?"`
 					goto swarm
-			`	"I mean that your ship will be broken down into its component parts." You notice, as the voice says this, that your shields are registering small energy bursts, as if they are being struck by invisible weapons.`
+			`	"I mean that your ship will be broken down into its component parts." You notice, as the voice says this, that your shields are registering small energy bursts as if they are being struck by invisible weapons.`
 			`	"What is this swarm?" you ask.`
 			label swarm
 			`	"Self-replicating miniature robots," the voice replies. "A weapon created by the Korath, the last of their great abominations. If you wish to feed your ship to the swarm, I will not stop you, but they already possess enough raw material here without your assistance." The voice's tone, inasmuch as a disembodied imaginary voice can be said to have a tone, is sardonic.`
@@ -65,7 +65,7 @@ mission "Drak guarding Sayaiban"
 					goto end
 				`	"Wait, I have more questions."`
 			`	"Yes?"`
-			`	You ask, "Why don't you just destroy the swarm, if it is so dangerous?"`
+			`	You ask, "Why don't you just destroy the swarm if it is so dangerous?"`
 			`	The voice says, "Because if the Korath manage to drive themselves extinct, this intelligence will be their last and greatest surviving creation, and we will preserve it as a living memorial to them. Please do not interfere here." When the voice speaks the phrase, "drive themselves extinct," the words are accompanied by an emotion that you cannot put a name to.`
 			`	Also, the empty space around your ship is beginning to light up with small sparks, like an angry swarm of fireflies.`
 			choice
