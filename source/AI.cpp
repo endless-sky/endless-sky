@@ -1885,7 +1885,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, const list<shared_ptr<
 				message = "There are no planets in this system that you can land on.";
 				Audio::Play(Audio::Get("fail"));
 			}
-			if(!target->GetPlanet()->CanLand())
+			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + ship.GetTargetPlanet()->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
