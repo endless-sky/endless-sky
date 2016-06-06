@@ -1992,8 +1992,6 @@ mission "Bounty Hunting (Marauder VII)"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 2980
 		random < 20
@@ -2038,8 +2036,6 @@ mission "Bounty Hunting (Marauder IX)"
 	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 
 	to offer
 		"combat rating" > 6000
