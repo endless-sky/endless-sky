@@ -859,18 +859,17 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		DistanceMap distance(ship, parent.GetSystem());
 		const System *from = ship.GetSystem();
 		const System *to = distance.Route(from);
-		if(!distance.Cost(from))
-		{
-			for(const StellarObject &object : from->Objects())
-				if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
-				{
-					ship.SetTargetPlanet(&object);
-					MoveToPlanet(ship, command);
-					command |= Command::LAND;
-					break;
-				}
-		}
-		else
+		bool hasWormhole = false;
+		for(const StellarObject &object : from->Objects())
+			if(object.GetPlanet() && object.GetPlanet()->WormholeDestination(from) == to)
+			{
+				ship.SetTargetPlanet(&object);
+				MoveToPlanet(ship, command);
+				command |= Command::LAND;
+				hasWormhole = true;
+				break;
+			}
+		if(!hasWormhole)
 		{
 			ship.SetTargetSystem(to);
 			if(!to || (from->HasFuelFor(ship) && !to->HasFuelFor(ship) && ship.JumpsRemaining() == 1))
