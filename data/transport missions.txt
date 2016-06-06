@@ -1839,3 +1839,195 @@ mission "Terraforming 5"
 			`	Amy says, "It will take a year or two for things to begin to settle down. Then we can figure out what our next steps should be."`
 			`	"I just hope we haven't made things worse than they were," says Alaric. He hands you your payment of <payment>. "Anyway, thanks for your help, <first>. It sounds like there's nothing more to be done here for the time being."`
 		event "terraforming Rand"
+
+ "Building Skytower 1"
+	name "Building Skytower [1]"
+	description "Escort a convoy of freighters to <destination>, where they will pick up materials for an new skytower on Earth."
+	minor
+	source Earth
+	destination Alphard
+	to offer
+		random < 10
+                reputation republic: 1<
+                has "event: war ends: done"
+	passengers 1
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, you notice people crowding around windows. You walk to one of the less crowded windows and notice a tall black tower jutting out of the ground. This is no small feat of engineering, as even in it's incomplete state the building still dwarfes the others around it. It is quite apparently skytower`
+                        `As you are staring out the window, a man in a navy uniform walks up next to you. "Magnificent, isn't it?" He asks.`
+			choice
+				`	"Yes, indeed."`
+				`	"Is this a skytower?"`
+				
+			`	"It is," he says. "Now, I know what you're thinking. 'Wern't skytowers prohibited when the one in 2235 fell?' They were. But, with the ever growing population, our Earth is turning into an urban world. On top of that, the greenhouse gas emmisions from the billions of people that call this world home are destroying the atmosphere, and the oceans are rising steadily. We need to get lots of people off the planet, and fast too if we want to save our homeworld from becoming a ecological disaster!" He sounds very stressed, and you can tell this really stresses him out.`
+			choice
+				`	"This is scary stuff. Is there any way I can help?"`
+                                `       "Wow. What can we do?"`
+
+                       `        "There is somthing you can do. We need some cargo ships escorted to Alphard to pick up some super-strong graphine nanotubes that hopefully should help strengthen this." He gestures toward the incomplete tower. "I also need you to bring some scientists back as well. Are you up to the challange?"`
+                        choice
+                                `       "Yes I am!"`
+				`       "Sorry, but I have somthing urgent to do"` 
+                                decline	
+			`       "Thanks!" He says, "By the way, I'm admrial Michel Farford." "<first> <last>," you say. You shake hands, and you show Michel to his bunk."`
+	
+	on complete
+		payment 200000
+ 
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Aber"
+			variant
+				"Behemoth"
+        T accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Newfield"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greenlock"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greyhound"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Lestor"
+			variant
+				"Behemoth"
+	on visit
+                `"You have reached <destination>, but at one or more of your escorts are in another system. Better leave this planet and wait for them to arrive."`
+
+
+mission "Building Skytower 2"
+	landing
+	name "building skytower [2]"
+	description "Escort some freighters and ferry a team scientists to <destination>."
+	source Alphard
+	destination Earth
+	to offer 
+               has "building skytower 1: done"
+	passengers 4
+       
+        on complete
+        set licence navy
+	
+	on offer
+		diolouge
+			`As you are landing, you can see many Republic ships lofting materials to and from the surface. This project has a huge imprint on this and many other worlds. `
+			`You pick up the scientists and watch your cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
+				accept
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+        npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Large Northern Pirates"
+	npc
+		personality nemesis waiting
+		government Pirate
+		fleet "Small Northern Pirates"
+
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Aber"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Newfield"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greenlock"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Greyhound"
+			variant
+				"Behemoth"
+        npc accompany save
+		government Republic
+		personality escort timid
+		fleet
+			name "RNS Lestor"
+			variant
+				"Behemoth"
+	on visit
+                `"You have reached <destination>, but one or more of your escorts are not in this system. Better leave this planet and wait for them to arrive."`
+
+	
+	on complete
+		payment 400000
+		conversation `Michel thanks you for escorting the ships and transporting the scientists, and gratefully hands you <payment>. Before you walk away, he clasps you on the shoulder and says "You know, I'm very grateful that you chose to help us. This is an ambitious project, but I really beleive that this could save our planet. For all your help, I think I can give you a token of my appreciation." He pulls out a slip of paper and writes on it. "<first> <last>, right?"`
+                             `"Yes," you say.`
+                             `"Here," He hands you an Navy licence, "It won't buy you a cruiser, but it's the most I can give you."`
+                        
+                        choice
+                               `       Wow! Thanks!`
+                               `       Really? Thanks!`
+                        `"No problem!" He flashes you a grin, "It was nice getting to know you, <first>." He bids you goodbye and walks away.`
