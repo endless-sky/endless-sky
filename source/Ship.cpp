@@ -990,6 +990,10 @@ bool Ship::Move(list<Effect> &effects, list<Flotsam> &flotsam)
 		--pilotError;
 	else if(pilotOkay)
 		--pilotOkay;
+	else if(isDisabled)
+	{
+		// If the ship is disabled, don't show a warning message due to missing crew.
+	}
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
