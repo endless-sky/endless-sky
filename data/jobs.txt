@@ -2092,7 +2092,7 @@ mission "hired mercenaries (small syndicate)"
 		government Syndicate
 	to offer
 		random < 60
-	on offer
+	on accept
 		payment -400000
 	npc save kill
 		personality vindictive
@@ -2110,7 +2110,7 @@ mission "hired mercenaries (medium syndicate)"
 		government Syndicate
 	to offer
 		random < 40
-	on offer
+	on accept
 		payment -675000
 	npc save kill
 		personality vindictive
@@ -2128,7 +2128,7 @@ mission "hired mercenaries (large syndicate)"
 		government Syndicate
 	to offer
 		random < 15
-	on offer
+	on accept
 		payment -1000000
 	npc save kill
 		personality vindictive
@@ -2146,7 +2146,7 @@ mission "hired mercenaries (swarm syndicate)"
 		government Syndicate
 	to offer
 		random < 15
-	on offer
+	on accept
 		payment -1000000
 	npc save kill
 		personality vindictive
@@ -2164,7 +2164,7 @@ mission "hired mercenaries (small north)"
 		attributes north paradise deep
 	to offer
 		random < 60
-	on offer
+	on accept
 		payment -200000
 	npc save kill
 		personality vindictive
@@ -2182,7 +2182,7 @@ mission "hired mercenaries (medium north)"
 		attributes north paradise deep
 	to offer
 		random < 40
-	on offer
+	on accept
 		payment -450000
 	npc save kill
 		personality vindictive
@@ -2200,7 +2200,7 @@ mission "hired mercenaries (large north)"
 		attributes north paradise deep
 	to offer
 		random < 30
-	on offer
+	on accept
 		payment -1000000
 	npc save kill
 		personality vindictive
@@ -2218,7 +2218,7 @@ mission "hired mercenaries (small south)"
 		attributes south rim "dirt belt"
 	to offer
 		random < 60
-	on offer
+	on accept
 		payment -400000
 	npc save kill
 		personality vindictive
@@ -2236,7 +2236,7 @@ mission "hired mercenaries (medium south)"
 		attributes south rim "dirt belt"
 	to offer
 		random < 40
-	on offer
+	on accept
 		payment -750000
 	npc save kill
 		personality vindictive
@@ -2254,7 +2254,7 @@ mission "hired mercenaries (large south)"
 		attributes south rim "dirt belt"
 	to offer
 		random < 15
-	on offer
+	on accept
 		payment -1000000
 	npc save kill
 		personality vindictive
@@ -2272,7 +2272,7 @@ mission "hired mercenaries (swarm south)"
 		attributes south rim "dirt belt"
 	to offer
 		random < 15
-	on offer
+	on accept
 		payment -1M
 	npc save kill
 		personality vindictive
