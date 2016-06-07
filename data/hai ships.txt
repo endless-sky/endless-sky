@@ -219,8 +219,6 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 3
 		`"Bondir" Atomic Thruster`
-=======
->>>>>>> endless-sky/master
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	gun "Ion Cannon"
