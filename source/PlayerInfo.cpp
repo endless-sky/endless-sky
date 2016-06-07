@@ -824,14 +824,12 @@ void PlayerInfo::Land(UI *ui)
 		ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
-	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
+	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
-			if(canRecharge)
-				ship->Recharge();
-			
+			ship->Recharge(hasSpaceport);
 			ship->Cargo().TransferAll(&cargo);
 			ship->SetPlanet(planet);
 		}
@@ -959,12 +957,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 			ship->SetParent(flagship);
 	
 	// Recharge any ships that can be recharged.
-	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
+	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
 		{
-			if(canRecharge)
-				ship->Recharge();
+			ship->Recharge(hasSpaceport);
 			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());

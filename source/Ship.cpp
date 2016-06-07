@@ -1644,9 +1644,12 @@ void Ship::Recharge(bool atSpaceport)
 	
 	if(!personality.IsDerelict())
 	{
-		shields = attributes.Get("shields");
-		hull = attributes.Get("hull");
-		energy = attributes.Get("energy capacity");
+		if(atSpaceport || attributes.Get("shield generation"))
+			shields = attributes.Get("shields");
+		if(atSpaceport || attributes.Get("hull repair rate"))
+			hull = attributes.Get("hull");
+		if(atSpaceport || attributes.Get("energy generation"))
+			energy = attributes.Get("energy capacity");
 	}
 	heat = IdleHeat();
 	ionization = 0.;
