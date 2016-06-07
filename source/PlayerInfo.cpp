@@ -1082,8 +1082,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
 	income = 0;
+	int64_t commodityIncome = 0;
+	int64_t outfitIncome = 0;
 	int64_t totalBasis = 0;
 	if(sold)
+	{
 		for(const auto &commodity : cargo.Commodities())
 		{
 			if(!commodity.second)
@@ -1091,7 +1094,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			
 			// Figure out how much income you get for selling this cargo.
 			int64_t value = commodity.second * system->Trade(commodity.first);
-			income += value;
+			commodityIncome += value;
 			
 			int original = originalTotals[commodity.first];
 			auto it = costBasis.find(commodity.first);
@@ -1105,11 +1108,21 @@ bool PlayerInfo::TakeOff(UI *ui)
 			it->second -= basis;
 			totalBasis += basis;
 		}
-	accounts.AddCredits(income);
+		for(const auto &outfit : cargo.Outfits())
+		{
+			// Compute the total value for each type of excess outfit.
+			if(!outfit.second)
+				continue;
+			outfitIncome += outfit.first->Cost() * outfit.second;
+		}
+	}
+	accounts.AddCredits(commodityIncome);
+	accounts.AddCredits(outfitIncome);
 	cargo.Clear();
 	if(sold)
 	{
 		// Report how much excess cargo was sold, and what profit you earned.
+		income = commodityIncome + outfitIncome;
 		ostringstream out;
 		out << "You sold " << sold << " tons of excess cargo for " << Format::Number(income) << " credits";
 		if(totalBasis && totalBasis != income)
