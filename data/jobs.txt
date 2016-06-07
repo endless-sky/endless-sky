@@ -2102,7 +2102,7 @@ mission "hired mercenaries (small syndicate)"
 
 mission "hired mercenaries (medium syndicate)"
 	name "Hired Mercenaries"
-	description "For a fee of 900000 credits, a fleet of Syndicate light warships are willing to escort you until <date>"
+	description "For a fee of 675000 credits, a fleet of Syndicate light warships are willing to escort you until <date>"
 	deadline 14
 	job
 	repeat
@@ -2111,7 +2111,7 @@ mission "hired mercenaries (medium syndicate)"
 	to offer
 		random < 40
 	on offer
-		payment -900000
+		payment -675000
 	npc save kill
 		personality vindictive
 		fleet "Medium Mercenary Syndicate"
@@ -2120,7 +2120,7 @@ mission "hired mercenaries (medium syndicate)"
 
 mission "hired mercenaries (large syndicate)"
 	name "Hired Mercenaries"
-	description "For a fee of 2M credits, a Syndicate fleet containing several large ships are willing to escort you until <date>"
+	description "For a fee of 1M credits, a Syndicate fleet containing several large ships are willing to escort you until <date>"
 	deadline 14
 	job
 	repeat
@@ -2129,7 +2129,7 @@ mission "hired mercenaries (large syndicate)"
 	to offer
 		random < 40
 	on offer
-		payment -2000000
+		payment -1000000
 	npc save kill
 		personality vindictive
 		fleet "Large Mercenary Syndicate"
@@ -2138,7 +2138,7 @@ mission "hired mercenaries (large syndicate)"
 
 mission "hired mercenaries (swarm syndicate)"
 	name "Hired Mercenaries"
-	description "For a fee of 2M credits, a large fleet of Syndicate interceptors are willing to escort you until <date>"
+	description "For a fee of 1M credits, a large fleet of Syndicate interceptors are willing to escort you until <date>"
 	deadline 14
 	job
 	repeat
@@ -2147,7 +2147,7 @@ mission "hired mercenaries (swarm syndicate)"
 	to offer
 		random < 40
 	on offer
-		payment -2M
+		payment -1000000
 	npc save kill
 		personality vindictive
 		fleet "Swarm Mercenary Syndicate"
@@ -2174,7 +2174,7 @@ mission "hired mercenaries (small north)"
 
 mission "hired mercenaries (medium north)"
 	name "Hired Mercenaries"
-	description "For a fee of 600000 credits, a fleet of mercenary light warships are willing to escort you until <date>"
+	description "For a fee of 450000 credits, a fleet of mercenary light warships are willing to escort you until <date>"
 	deadline 14
 	job
 	repeat
@@ -2183,7 +2183,7 @@ mission "hired mercenaries (medium north)"
 	to offer
 		random < 40
 	on offer
-		payment -600000
+		payment -450000
 	npc save kill
 		personality vindictive
 		fleet "Medium Mercenary North"
@@ -2192,7 +2192,7 @@ mission "hired mercenaries (medium north)"
 
 mission "hired mercenaries (large north)"
 	name "Hired Mercenaries"
-	description "For a fee of 2M credits, a mercenary company owning several large warships are willing to give you an escort until <date>"
+	description "For a fee of 1M credits, a mercenary company owning several large warships are willing to give you an escort until <date>"
 	deadline 14
 	job
 	repeat
@@ -2201,7 +2201,7 @@ mission "hired mercenaries (large north)"
 	to offer
 		random < 40
 	on offer
-		payment -2000000
+		payment -1000000
 	npc save kill
 		personality vindictive
 		fleet "Large Mercenary North"
@@ -2228,7 +2228,25 @@ mission "hired mercenaries (small south)"
 
 mission "hired mercenaries (medium south)"
 	name "Hired Mercenaries"
-	description "For a fee of 1M credits, a fleet of Medium warships are willing to escort you until <date>"
+	description "For a fee of 750000 credits, a fleet of Medium warships are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes south rim "dirt belt"
+	to offer
+		random < 40
+	on offer
+		payment -750000
+	npc save kill
+		personality vindictive
+		fleet "Medium Mercenary South"
+
+
+
+mission "hired mercenaries (large south)"
+	name "Hired Mercenaries"
+	description "For a fee of 1M credits, a mercenary fleet with several large ships are willing to provide you with an escort until <date>"
 	deadline 14
 	job
 	repeat
@@ -2240,31 +2258,13 @@ mission "hired mercenaries (medium south)"
 		payment -1000000
 	npc save kill
 		personality vindictive
-		fleet "Medium Mercenary South"
-
-
-
-mission "hired mercenaries (large south)"
-	name "Hired Mercenaries"
-	description "For a fee of 2M credits, a mercenary fleet with several large ships are willing to provide you with an escort until <date>"
-	deadline 14
-	job
-	repeat
-	source
-		attributes south rim "dirt belt"
-	to offer
-		random < 40
-	on offer
-		payment -2000000
-	npc save kill
-		personality vindictive
 		fleet "Large Mercenary South"
 
 
 
 mission "hired mercenaries (swarm south)"
 	name "Hired Mercenaries"
-	description "For a fee of 2M credits, a mercenary fleet owning a huge number interceptors are willing to escort you until <date>"
+	description "For a fee of 1M credits, a mercenary fleet owning a huge number interceptors are willing to escort you until <date>"
 	deadline 14
 	job
 	repeat
@@ -2273,7 +2273,7 @@ mission "hired mercenaries (swarm south)"
 	to offer
 		random < 40
 	on offer
-		payment -2M
+		payment -1M
 	npc save kill
 		personality vindictive
 		fleet "Swarm Mercenary South"
