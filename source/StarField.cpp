@@ -12,10 +12,15 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "StarField.h"
 
+#include "Angle.h"
+#include "DrawList.h"
 #include "pi.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
 
 #include <cassert>
 #include <cmath>
@@ -25,6 +30,15 @@ using namespace std;
 
 namespace {
 	static const int TILE_SIZE = 256;
+	// The star field tiles in 4000 pixel increments. Have the tiling of the haze
+	// field be as different from that as possible. (Note: this may need adjusting
+	// in the future if monitors larger than this width ever become commonplace.)
+	static const double HAZE_WRAP = 6627.;
+	// Don't let two haze patches be closer to each other than this distance. This
+	// avoids having very bright haze where several patches overlap.
+	static const double HAZE_DISTANCE = 1200.;
+	// This is how many haze fields should be drawn.
+	static const size_t HAZE_COUNT = 16;
 }
 
 
@@ -33,6 +47,29 @@ void StarField::Init(int stars, int width)
 {
 	SetUpGraphics();
 	MakeStars(stars, width);
+	
+	for(size_t i = 0; i < HAZE_COUNT; ++i)
+	{
+		Point next;
+		bool overlaps = true;
+		while(overlaps)
+		{
+			next = Point(Random::Real() * HAZE_WRAP, Random::Real() * HAZE_WRAP);
+			overlaps = false;
+			for(const Point &previous : hazePos)
+			{
+				double dx = remainder(previous.X() - next.X(), HAZE_WRAP);
+				double dy = remainder(previous.Y() - next.Y(), HAZE_WRAP);
+				if(dx * dx + dy * dy < HAZE_DISTANCE * HAZE_DISTANCE)
+				{
+					overlaps = true;
+					break;
+				}
+			}
+		}
+		hazePos.emplace_back(next);
+		hazeUnit.emplace_back(4. * Angle::Random().Unit());
+	}
 }
 
 
@@ -85,6 +122,20 @@ void StarField::Draw(const Point &pos, const Point &vel) const
 	
 	glBindVertexArray(0);
 	glUseProgram(0);
+	
+	if(!Preferences::Has("Draw background haze"))
+		return;
+	
+	DrawList drawList;
+	const Sprite *haze = SpriteSet::Get("_menu/haze");
+	for(size_t i = 0; i < hazePos.size(); ++i)
+	{
+		Point offset(
+			remainder(hazePos[i].X() - pos.X(), HAZE_WRAP),
+			remainder(hazePos[i].Y() - pos.Y(), HAZE_WRAP));
+		drawList.Add(haze, offset, hazeUnit[i]);
+	}
+	drawList.Draw();
 }
 
 

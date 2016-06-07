@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
 				}
 				else if(event.type == SDL_KEYDOWN
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-						|| (event.key.keysym.sym == SDLK_RETURN && event.key.keysym.mod & KMOD_ALT)))
+						|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 				{
 					if(restoreWidth)
 					{

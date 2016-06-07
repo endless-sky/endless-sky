@@ -1855,7 +1855,7 @@ mission "VIP transport"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1877,7 +1877,7 @@ mission "Bounty Hunting (Marauder I)"
 
 mission "Bounty Hunting (Marauder II)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1900,7 +1900,7 @@ mission "Bounty Hunting (Marauder II)"
 
 mission "Bounty Hunting (Marauder III)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1922,7 +1922,7 @@ mission "Bounty Hunting (Marauder III)"
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1944,7 +1944,7 @@ mission "Bounty Hunting (Marauder IV)"
 
 mission "Bounty Hunting (Marauder V)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1967,7 +1967,7 @@ mission "Bounty Hunting (Marauder V)"
 
 mission "Bounty Hunting (Marauder VI)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
 	to offer
@@ -1989,11 +1989,9 @@ mission "Bounty Hunting (Marauder VI)"
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 2980
 		random < 20
@@ -2013,11 +2011,9 @@ mission "Bounty Hunting (Marauder VII)"
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 	to offer
 		"combat rating" > 4000
 		random < 15
@@ -2037,12 +2033,9 @@ mission "Bounty Hunting (Marauder VIII)"
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Hunt down <npc>"
-	description "A Marauder vessel, leading a small fleet, named <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder vessel named <npc>, leading a small fleet, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
 	repeat
 	job
-	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
-
 	to offer
 		"combat rating" > 6000
 		random < 10

@@ -356,7 +356,7 @@ void Engine::Step(bool isActive)
 	
 	// Create the planet labels.
 	labels.clear();
-	if(currentSystem)
+	if(currentSystem && Preferences::Has("Show planet labels"))
 	{
 		for(const StellarObject &object : currentSystem->Objects())
 		{
@@ -598,7 +598,7 @@ void Engine::Draw() const
 			PointerShader::Draw(center, targetAngle, 10., 10., radius, Color(1.));
 		}
 	}
-	if(jumpCount)
+	if(jumpCount && Preferences::Has("Show mini-map"))
 		MapPanel::DrawMiniMap(player, .5 * min(1., jumpCount / 30.), jumpInProgress, step);
 	
 	// Draw ammo status.
@@ -832,7 +832,7 @@ void Engine::CalculateStep()
 						it.GetPlanet()->WormholeDestination(player.GetSystem()) == flagship->GetSystem())
 					player.Visit(it.GetPlanet());
 		
-		doFlash = true;
+		doFlash = Preferences::Has("Show hyperspace flash");
 		player.SetSystem(flagship->GetSystem());
 		EnterSystem();
 	}
@@ -1089,7 +1089,8 @@ void Engine::CalculateStep()
 		--alarmTime;
 	else if(hasHostiles && !hadHostiles)
 	{
-		Audio::Play(Audio::Get("alarm"));
+		if(Preferences::Has("Warning siren"))
+			Audio::Play(Audio::Get("alarm"));
 		alarmTime = 180;
 		hadHostiles = true;
 	}
@@ -1255,7 +1256,7 @@ void Engine::CalculateStep()
 				if(sum < 0)
 				{
 					shared_ptr<Ship> ship = person.GetShip();
-					ship->Recharge(true);
+					ship->Recharge();
 					ship->SetName(it.first);
 					ship->SetGovernment(person.GetGovernment());
 					ship->SetPersonality(person.GetPersonality());

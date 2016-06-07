@@ -241,7 +241,7 @@ double Command::Turn() const
 
 
 // Get or set the fire commands.
-bool Command::HasFire(int index)
+bool Command::HasFire(int index) const
 {
 	return state & ((1ull << 32) << index);
 }
@@ -251,6 +251,14 @@ bool Command::HasFire(int index)
 void Command::SetFire(int index)
 {
 	state |= ((1ull << 32) << index);
+}
+
+
+
+// Check if any weapons are firing.
+bool Command::IsFiring() const
+{
+	return (state & 0xFFFFFFFF00000000ull);
 }
 
 

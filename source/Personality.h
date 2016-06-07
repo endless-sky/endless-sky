@@ -56,7 +56,7 @@ public:
 	bool IsUnconstrained() const;
 	
 	const Point &Confusion() const;
-	void UpdateConfusion();
+	void UpdateConfusion(bool isFiring);
 	
 	static Personality Defender();
 	
@@ -68,6 +68,7 @@ private:
 private:
 	int flags;
 	double confusionMultiplier;
+	double aimMultiplier;
 	Point confusion;
 	Angle confusionAngle;
 };
