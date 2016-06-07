@@ -2080,3 +2080,189 @@ mission "Marauder Hunted"
 		system
 			distance 5 5
 
+
+
+mission "hired mercenaries (small syndicate)"
+	name "Hired Mercenaries"
+	description "For a fee of 400000 credits, a small fleet of Syndicate mercenaries are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		government Syndicate
+	to offer
+		random < 40
+	on offer
+		payment -400000
+	npc save kill
+		fleet "Small Mercenary Syndicate"
+
+
+
+mission "hired mercenaries (medium syndicate)"
+	name "Hired Mercenaries"
+	description "For a fee of 900000 credits, a fleet of Syndicate light warships are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		government Syndicate
+	to offer
+		random < 40
+	on offer
+		payment -900000
+	npc save kill
+		fleet "Medium Mercenary Syndicate"
+
+
+
+mission "hired mercenaries (large syndicate)"
+	name "Hired Mercenaries"
+	description "For a fee of 2M credits, a Syndicate fleet containing several large ships are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		government Syndicate
+	to offer
+		random < 40
+	on offer
+		payment -2000000
+	npc save kill
+		fleet "Large Mercenary Syndicate"
+
+
+
+mission "hired mercenaries (swarm syndicate)"
+	name "Hired Mercenaries"
+	description "For a fee of 2M credits, a large fleet of Syndicate interceptors are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		government Syndicate
+	to offer
+		random < 40
+	on offer
+		payment -2M
+	npc save kill
+		fleet "Swarm Mercenary Syndicate"
+
+
+
+mission "hired mercenaries (small north)"
+	name "Hired Mercenaries"
+	description "For a fee of 200000 credits, a small fleet of mercenary interceptors are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes north paradise deep
+	to offer
+		random < 40
+	on offer
+		payment -200000
+	npc save kill
+		fleet "Small Mercenary North"
+
+
+
+mission "hired mercenaries (medium north)"
+	name "Hired Mercenaries"
+	description "For a fee of 600000 credits, a fleet of mercenary light warships are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes north paradise deep
+	to offer
+		random < 40
+	on offer
+		payment -600000
+	npc save kill
+		fleet "Medium Mercenary North"
+
+
+
+mission "hired mercenaries (large north)"
+	name "Hired Mercenaries"
+	description "For a fee of 2M credits, a mercenary company owning several large warships are willing to give you an escort until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes north paradise deep
+	to offer
+		random < 40
+	on offer
+		payment -2000000
+	npc save kill
+		fleet "Large Mercenary North"
+
+
+
+mission "hired mercenaries (small south)"
+	name "Hired Mercenaries"
+	description "For a fee of 400000 credits, a small fleet of mercenary interceptors are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes south rim "dirt belt"
+	to offer
+		random < 40
+	on offer
+		payment -400000
+	npc save kill
+		fleet "Small Mercenary South"
+
+
+
+mission "hired mercenaries (medium south)"
+	name "Hired Mercenaries"
+	description "For a fee of 1M credits, a fleet of Medium warships are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes south rim "dirt belt"
+	to offer
+		random < 40
+	on offer
+		payment -1000000
+	npc save kill
+		fleet "Medium Mercenary South"
+
+
+
+mission "hired mercenaries (large south)"
+	name "Hired Mercenaries"
+	description "For a fee of 2M credits, a mercenary fleet with several large ships are willing to provide you with an escort until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes south rim "dirt belt"
+	to offer
+		random < 40
+	on offer
+		payment -2000000
+	npc save kill
+		fleet "Large Mercenary South"
+
+
+
+mission "hired mercenaries (swarm south)"
+	name "Hired Mercenaries"
+	description "For a fee of 2M credits, a mercenary fleet owning a huge number interceptors are willing to escort you until <date>"
+	deadline 14
+	job
+	repeat
+	source
+		attributes south rim "dirt belt"
+	to offer
+		random < 40
+	on offer
+		payment -2M
+	npc save kill
+		fleet "Swarm Mercenary South"
