@@ -1926,11 +1926,11 @@ mission "Space Elevator 1"
 	npc accompany save
 		government Republic
 		personality escort timid
-		ship "Behemoth" "RNS Aber"
-		ship "Behemoth" "RNS Newfield"
-		ship "Behemoth" "RNS Greenlock"
-		ship "Behemoth" "RNS Greyhound"
-		ship "Behemoth" "RNS Lestor"
+		ship "Behemoth" "R.N.S. Aber"
+		ship "Behemoth" "R.N.S. Newfield"
+		ship "Behemoth" "R.N.S. Greenlock"
+		ship "Behemoth" "R.N.S. Greyhound"
+		ship "Behemoth" "R.N.S. Lestor"
 
 	on visit
 		dialog
@@ -1973,11 +1973,11 @@ mission "Space Elevator 2"
 	npc accompany save
 		government Republic
 		personality escort timid
-		ship "Behemoth" "RNS Aber"
-		ship "Behemoth" "RNS Newfield"
-		ship "Behemoth" "RNS Greenlock"
-		ship "Behemoth" "RNS Greyhound"
-		ship "Behemoth" "RNS Lestor"
+		ship "Behemoth" "R.N.S. Aber"
+		ship "Behemoth" "R.N.S. Newfield"
+		ship "Behemoth" "R.N.S. Greenlock"
+		ship "Behemoth" "R.N.S. Greyhound"
+		ship "Behemoth" "R.N.S. Lestor"
 
 	on visit
 		dialog
