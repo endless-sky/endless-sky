@@ -149,9 +149,9 @@ void ShopPanel::DrawSidebar() const
 			double scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			Point size(sprite->Width() * scale, sprite->Height() * scale);
 			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
-		
-			zones.emplace_back(point, .5 * Point(ICON_TILE, ICON_TILE), ship.get());
-		
+			
+			zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+			
 			point.X() += ICON_TILE;
 		}
 		point.Y() += ICON_TILE;
