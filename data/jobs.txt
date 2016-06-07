@@ -2091,7 +2091,7 @@ mission "hired mercenaries (small syndicate)"
 	source
 		government Syndicate
 	to offer
-		random < 40
+		random < 60
 	on offer
 		payment -400000
 	npc save kill
@@ -2127,7 +2127,7 @@ mission "hired mercenaries (large syndicate)"
 	source
 		government Syndicate
 	to offer
-		random < 40
+		random < 15
 	on offer
 		payment -1000000
 	npc save kill
@@ -2145,7 +2145,7 @@ mission "hired mercenaries (swarm syndicate)"
 	source
 		government Syndicate
 	to offer
-		random < 40
+		random < 15
 	on offer
 		payment -1000000
 	npc save kill
@@ -2163,7 +2163,7 @@ mission "hired mercenaries (small north)"
 	source
 		attributes north paradise deep
 	to offer
-		random < 40
+		random < 60
 	on offer
 		payment -200000
 	npc save kill
@@ -2199,7 +2199,7 @@ mission "hired mercenaries (large north)"
 	source
 		attributes north paradise deep
 	to offer
-		random < 40
+		random < 30
 	on offer
 		payment -1000000
 	npc save kill
@@ -2217,7 +2217,7 @@ mission "hired mercenaries (small south)"
 	source
 		attributes south rim "dirt belt"
 	to offer
-		random < 40
+		random < 60
 	on offer
 		payment -400000
 	npc save kill
@@ -2253,7 +2253,7 @@ mission "hired mercenaries (large south)"
 	source
 		attributes south rim "dirt belt"
 	to offer
-		random < 40
+		random < 15
 	on offer
 		payment -1000000
 	npc save kill
@@ -2271,7 +2271,7 @@ mission "hired mercenaries (swarm south)"
 	source
 		attributes south rim "dirt belt"
 	to offer
-		random < 40
+		random < 15
 	on offer
 		payment -1M
 	npc save kill
