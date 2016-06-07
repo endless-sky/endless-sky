@@ -2095,6 +2095,7 @@ mission "hired mercenaries (small syndicate)"
 	on offer
 		payment -400000
 	npc save kill
+		personality vindictive
 		fleet "Small Mercenary Syndicate"
 
 
@@ -2112,6 +2113,7 @@ mission "hired mercenaries (medium syndicate)"
 	on offer
 		payment -900000
 	npc save kill
+		personality vindictive
 		fleet "Medium Mercenary Syndicate"
 
 
@@ -2129,6 +2131,7 @@ mission "hired mercenaries (large syndicate)"
 	on offer
 		payment -2000000
 	npc save kill
+		personality vindictive
 		fleet "Large Mercenary Syndicate"
 
 
@@ -2146,6 +2149,7 @@ mission "hired mercenaries (swarm syndicate)"
 	on offer
 		payment -2M
 	npc save kill
+		personality vindictive
 		fleet "Swarm Mercenary Syndicate"
 
 
@@ -2163,6 +2167,7 @@ mission "hired mercenaries (small north)"
 	on offer
 		payment -200000
 	npc save kill
+		personality vindictive
 		fleet "Small Mercenary North"
 
 
@@ -2180,6 +2185,7 @@ mission "hired mercenaries (medium north)"
 	on offer
 		payment -600000
 	npc save kill
+		personality vindictive
 		fleet "Medium Mercenary North"
 
 
@@ -2197,6 +2203,7 @@ mission "hired mercenaries (large north)"
 	on offer
 		payment -2000000
 	npc save kill
+		personality vindictive
 		fleet "Large Mercenary North"
 
 
@@ -2214,6 +2221,7 @@ mission "hired mercenaries (small south)"
 	on offer
 		payment -400000
 	npc save kill
+		personality vindictive
 		fleet "Small Mercenary South"
 
 
@@ -2231,6 +2239,7 @@ mission "hired mercenaries (medium south)"
 	on offer
 		payment -1000000
 	npc save kill
+		personality vindictive
 		fleet "Medium Mercenary South"
 
 
@@ -2248,6 +2257,7 @@ mission "hired mercenaries (large south)"
 	on offer
 		payment -2000000
 	npc save kill
+		personality vindictive
 		fleet "Large Mercenary South"
 
 
@@ -2265,4 +2275,5 @@ mission "hired mercenaries (swarm south)"
 	on offer
 		payment -2M
 	npc save kill
+		personality vindictive
 		fleet "Swarm Mercenary South"
