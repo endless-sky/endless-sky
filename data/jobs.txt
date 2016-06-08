@@ -2095,7 +2095,7 @@ mission "hired mercenaries (small syndicate)"
 	on accept
 		payment -400000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Small Mercenary Syndicate"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2116,7 +2116,7 @@ mission "hired mercenaries (medium syndicate)"
 	on accept
 		payment -675000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Medium Mercenary Syndicate"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2137,7 +2137,7 @@ mission "hired mercenaries (large syndicate)"
 	on accept
 		payment -1000000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Large Mercenary Syndicate"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2158,7 +2158,7 @@ mission "hired mercenaries (swarm syndicate)"
 	on accept
 		payment -1000000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Swarm Mercenary Syndicate"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2179,7 +2179,7 @@ mission "hired mercenaries (small north)"
 	on accept
 		payment -200000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Small Mercenary North"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2200,7 +2200,7 @@ mission "hired mercenaries (medium north)"
 	on accept
 		payment -450000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Medium Mercenary North"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2221,7 +2221,7 @@ mission "hired mercenaries (large north)"
 	on accept
 		payment -1000000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Large Mercenary North"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2242,7 +2242,7 @@ mission "hired mercenaries (small south)"
 	on accept
 		payment -400000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Small Mercenary South"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2263,7 +2263,7 @@ mission "hired mercenaries (medium south)"
 	on accept
 		payment -750000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Medium Mercenary South"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2284,7 +2284,7 @@ mission "hired mercenaries (large south)"
 	on accept
 		payment -1000000
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Large Mercenary South"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
@@ -2305,7 +2305,7 @@ mission "hired mercenaries (swarm south)"
 	on accept
 		payment -1M
 	npc kill
-		personality vindictive
+		personality vindictive heroic
 		fleet "Swarm Mercenary South"
 		dialog
 			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
