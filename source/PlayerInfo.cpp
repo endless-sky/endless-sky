@@ -228,9 +228,9 @@ void PlayerInfo::Load(const string &path)
 void PlayerInfo::LoadRecent()
 {
 	string recentPath = Files::Read(Files::Config() + "recent.txt");
-	size_t pos = recentPath.find('\n');
-	if(pos != string::npos)
-		recentPath.erase(pos);
+	// Trim trailing whitespace (including newlines) from the path.
+	while(!recentPath.empty() && recentPath.back() <= ' ')
+		recentPath.pop_back();
 	
 	if(recentPath.empty())
 		Clear();
