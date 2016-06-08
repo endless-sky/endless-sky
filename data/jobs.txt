@@ -2094,9 +2094,12 @@ mission "hired mercenaries (small syndicate)"
 		random < 60
 	on accept
 		payment -400000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Small Mercenary Syndicate"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2112,9 +2115,12 @@ mission "hired mercenaries (medium syndicate)"
 		random < 40
 	on accept
 		payment -675000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Medium Mercenary Syndicate"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2130,9 +2136,12 @@ mission "hired mercenaries (large syndicate)"
 		random < 15
 	on accept
 		payment -1000000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Large Mercenary Syndicate"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2148,9 +2157,12 @@ mission "hired mercenaries (swarm syndicate)"
 		random < 15
 	on accept
 		payment -1000000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Swarm Mercenary Syndicate"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2166,9 +2178,12 @@ mission "hired mercenaries (small north)"
 		random < 60
 	on accept
 		payment -200000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Small Mercenary North"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2184,9 +2199,12 @@ mission "hired mercenaries (medium north)"
 		random < 40
 	on accept
 		payment -450000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Medium Mercenary North"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2202,9 +2220,12 @@ mission "hired mercenaries (large north)"
 		random < 30
 	on accept
 		payment -1000000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Large Mercenary North"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2220,9 +2241,12 @@ mission "hired mercenaries (small south)"
 		random < 60
 	on accept
 		payment -400000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Small Mercenary South"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2238,9 +2262,12 @@ mission "hired mercenaries (medium south)"
 		random < 40
 	on accept
 		payment -750000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Medium Mercenary South"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2256,9 +2283,12 @@ mission "hired mercenaries (large south)"
 		random < 15
 	on accept
 		payment -1000000
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Large Mercenary South"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
 
 
 
@@ -2274,6 +2304,9 @@ mission "hired mercenaries (swarm south)"
 		random < 15
 	on accept
 		payment -1M
-	npc save kill
+	npc kill
 		personality vindictive
 		fleet "Swarm Mercenary South"
+		dialog
+			`Unfortunately the mercenaries have been wiped out. Well, they did sign up for it.`
+				fail
