@@ -2099,7 +2099,7 @@ fleet "Marauder fleet X"
 #aprox 4M
 fleet "Small Mercenary Syndicate"
 	government Escort
-	names "Syndicate Small"
+	names "syndicate small"
 	variant 4
 		Wasp 3
 		"Wasp (Proton)" 3
@@ -2127,7 +2127,7 @@ fleet "Small Mercenary Syndicate"
 #aprox 9M
 fleet "Medium Mercenary Syndicate"
 	government Escort
-	names "Syndicate Small"
+	names "syndicate small"
 	variant 3
 		Splinter 2
 	variant 2
@@ -2157,7 +2157,7 @@ fleet "Medium Mercenary Syndicate"
 #aprox 20M
 fleet "Large Mercenary Syndicate"
 	government Escort
-	names "Syndicate Capital"
+	names "syndicate capital"
 	variant 1
 		Vanguard 2
 	variant 1
@@ -2187,7 +2187,7 @@ fleet "Large Mercenary Syndicate"
 #aprox 20M
 fleet "Swarm Mercenary Syndicate"
 	government Escort
-	names "Syndicate Small"
+	names "syndicate small"
 	variant 10
 		Wasp 30
 	variant 7
@@ -2209,7 +2209,7 @@ fleet "Swarm Mercenary Syndicate"
 #aprox 2M
 fleet "Small Mercenary North"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 3
 		Berserker 2
 	variant 5
@@ -2226,7 +2226,7 @@ fleet "Small Mercenary North"
 #aprox 6M
 fleet "Medium Mercenary North"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 6
 		Headhunter 2
 	variant 5
@@ -2257,7 +2257,7 @@ fleet "Medium Mercenary North"
 #aprox 20M
 fleet "Large Mercenary North"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 4
 		"Leviathan (Laser)" 1
 	variant 4
@@ -2286,7 +2286,7 @@ fleet "Large Mercenary North"
 #aprox 4M
 fleet "Small Mercenary South"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 6
 		Fury 5
 	variant 4
@@ -2310,7 +2310,7 @@ fleet "Small Mercenary South"
 #aprox 10M
 fleet "Medium Mercenary South"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 3
 		"Bastion (Laser)" 1
 	variant 6
@@ -2327,7 +2327,7 @@ fleet "Medium Mercenary South"
 #aprox 20M
 fleet "Large Mercenary South"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 8
 		"Falcon (Heavy)" 1
 	variant 1
@@ -2355,7 +2355,7 @@ fleet "Large Mercenary South"
 #aprox 20M
 fleet "Swarm Mercenary South"
 	government Escort
-	names "Bounty Hunter"
+	names "bounty hunter"
 	variant 6
 		"Fury (Laser)" 18
 	variant 7
