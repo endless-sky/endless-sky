@@ -72,6 +72,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 		{
 			if(child.Token(0) == "lifetime")
 				lifetime = max(0., child.Value(1));
+			else if(child.Token(0) == "random lifetime")
+				randomLifetime = max(0., child.Value(1));
 			else if(child.Token(0) == "reload")
 				reload = max(1., child.Value(1));
 			else if(child.Token(0) == "burst reload")

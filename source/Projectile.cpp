@@ -53,6 +53,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Ou
 		this->angle += Angle::Random(inaccuracy) - Angle::Random(inaccuracy);
 	
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	
+	// If a random lifetime is specified, add a random amount up to that amount.
+	if(weapon->RandomLifetime())
+		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 }
 
 
@@ -76,6 +80,10 @@ Projectile::Projectile(const Projectile &parent, const Outfit *weapon)
 		}
 	}
 	velocity += this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
+	
+	// If a random lifetime is specified, add a random amount up to that amount.
+	if(weapon->RandomLifetime())
+		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 }
 
 

@@ -831,7 +831,7 @@ void MapPanel::DrawMissions() const
 				blink = (step % (10 * days) > 5 * days);
 		}
 		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor);
+		DrawPointer(system, angle[system], blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 		
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, angle[waypoint], waypointColor);
@@ -850,19 +850,19 @@ void MapPanel::DrawMissions() const
 
 
 
-void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color) const
+void MapPanel::DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger) const
 {
-	DrawPointer(Zoom() * (system->Position() + center), angle, color);
+	DrawPointer(Zoom() * (system->Position() + center), angle, color, true, bigger);
 }
 
 
 
-void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack)
+void MapPanel::DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack, bool bigger)
 {
 	static const Color black(0., 1.);
 	
 	angle += Angle(30.);
 	if(drawBack)
-		PointerShader::Draw(position, angle.Unit(), 14., 19., -4., black);
-	PointerShader::Draw(position, angle.Unit(), 8., 15., -6., color);
+		PointerShader::Draw(position, angle.Unit(), 14. + bigger, 19. + 2 * bigger, -4., black);
+	PointerShader::Draw(position, angle.Unit(), 8. + bigger, 15. + 2 * bigger, -6., color);
 }

@@ -1256,7 +1256,7 @@ void Engine::CalculateStep()
 				if(sum < 0)
 				{
 					shared_ptr<Ship> ship = person.GetShip();
-					ship->Recharge(true);
+					ship->Recharge();
 					ship->SetName(it.first);
 					ship->SetGovernment(person.GetGovernment());
 					ship->SetPersonality(person.GetPersonality());
