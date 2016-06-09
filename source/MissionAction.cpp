@@ -219,12 +219,9 @@ int MissionAction::Payment() const
 
 
 // Check if this action can be completed right now. It cannot be completed
-// if it takes away money or outfits that the player does not have.
+// if it takes away outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player) const
 {
-	//if(player.Accounts().Credits() < -payment)
-		//return false;
-	
 	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
 	{
@@ -288,16 +285,11 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 	{
 		if (payment < 0 && (player.Accounts().Credits() < -payment))
 		{
-			// We want mortgage rates but not mortgage credits
 			player.Accounts().AddMortgage(-payment);
-			player.Accounts().AddCredits(payment);
 			
-			string message;
-			message = "You were unable to afford fees for this mission and they have been deferred to your Bank.";
-			Messages::Add(message);
+			Messages::Add("You were unable to afford fees for this mission and they have been deferred to your Bank.");
 		}
-		else
-			player.Accounts().AddCredits(payment);
+		player.Accounts().AddCredits(payment);
 	}
 	
 	for(const auto &it : events)
