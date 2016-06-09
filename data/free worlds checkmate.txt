@@ -1616,7 +1616,7 @@ mission "FWC Pug 3B"
 			label end
 			branch alone
 				has "FWC Checkmate Escorts: done"
-			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are leftover from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
+			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines. Hopefully the ships that are left over from your attack fleet will be enough to hold off the Pug until Freya finishes her work down here...`
 				launch
 			label alone
 			`	The resistance fighters tell you their own fleet will be launching shortly. You return to your ship and fire up the engines, wishing that you had managed to keep some of the ships from your attack fleet alive, and hoping you will be able to hold off the Pug until Freya finishes her work down here...`
