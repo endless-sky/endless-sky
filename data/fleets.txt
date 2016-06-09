@@ -2096,6 +2096,31 @@ fleet "Marauder fleet X"
 		"Marauder Arrow"
 		"Marauder Bounder"
 
+#very aprox 1M
+fleet "Very Small Mercenary"
+	government Escort
+	names "bounty hunter"
+	variant 1
+		Sparrow
+	variant 4
+		Wasp
+	variant 3
+		"Wasp (Proton)"
+	variant 8
+		Fury
+	variant 6
+		"Fury (Missile)"
+	variant 7
+		Berserker
+	variant 6
+		"Berserker (Afterburner)"
+	variant 9
+		Hawk
+	variant 5
+		"Fury (Laser)"
+	variant 2
+		"Hawk (Rocket)"
+
 #aprox 4M
 fleet "Small Mercenary Syndicate"
 	government Escort

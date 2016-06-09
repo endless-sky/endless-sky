@@ -2082,6 +2082,27 @@ mission "Marauder Hunted"
 
 
 
+mission "hired mercenaries (very small)"
+	name "Hired Mercenaries"
+	description "An independent pilot with a single interceptor has offered to escort you until <date> for 75000 credits."
+	deadline 7
+	job
+	repeat
+	source
+		government Syndicate Republic "Free Worlds" Independent Neutral
+	to offer
+		random < 90
+	on accept
+		payment -75000
+	npc kill
+		personality vindictive heroic
+		fleet "Very Small Mercenary"
+		dialog
+			`Unfortunately the independent pilot has been killed. You try not to feel to bad about it.`
+				fail
+
+
+
 mission "hired mercenaries (small syndicate)"
 	name "Hired Mercenaries"
 	description "For a fee of 200000 credits, a small fleet of Syndicate mercenaries are willing to escort you until <date>"
