@@ -222,8 +222,8 @@ int MissionAction::Payment() const
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player) const
 {
-	if(player.Accounts().Credits() < -payment)
-		return false;
+	//if(player.Accounts().Credits() < -payment)
+		//return false;
 	
 	const Ship *flagship = player.Flagship();
 	for(const auto &it : gifts)
@@ -285,7 +285,20 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 			DoGift(player, it.first, it.second, ui);
 	
 	if(payment)
-		player.Accounts().AddCredits(payment);
+	{
+		if (payment < 0 && (player.Accounts().Credits() < -payment))
+		{
+			// We want mortgage rates but not mortgage credits
+			player.Accounts().AddMortgage(-payment);
+			player.Accounts().AddCredits(payment);
+			
+			string message;
+			message = "You were unable to afford fees for this mission and they have been deferred to your Bank.";
+			Messages::Add(message);
+		}
+		else
+			player.Accounts().AddCredits(payment);
+	}
 	
 	for(const auto &it : events)
 		player.AddEvent(*GameData::Events().Get(it.first), player.GetDate() + it.second);
