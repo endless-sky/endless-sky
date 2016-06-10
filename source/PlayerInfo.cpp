@@ -138,6 +138,12 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
+		else if(child.Token(0) == "stock")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					soldOutfits[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
+		}
 		else if(child.Token(0) == "mission")
 		{
 			missions.push_back(Mission());
@@ -1647,7 +1653,7 @@ void PlayerInfo::CreateMissions()
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().HasFailed(*this))
 				missions.pop_back();
-			else
+			else if(!it.second.IsAtLocation(Mission::JOB))
 				hasPriorityMissions |= missions.back().HasPriority();
 		}
 	}
@@ -1742,6 +1748,18 @@ void PlayerInfo::Save(const string &path) const
 		out.EndChild();
 	}
 	accounts.Save(out);
+	
+	if(!soldOutfits.empty())
+	{
+		out.Write("stock");
+		out.BeginChild();
+		{
+			for(const auto &it : soldOutfits)
+				if(it.second)
+					out.Write(it.first->Name(), it.second);
+		}
+		out.EndChild();
+	}
 	
 	// Save all missions (accepted or available).
 	for(const Mission &mission : missions)
