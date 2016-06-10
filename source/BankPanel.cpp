@@ -266,19 +266,22 @@ bool BankPanel::Click(int x, int y)
 void BankPanel::PayExtra(const string &str)
 {
 	int64_t amount = static_cast<int64_t>(Format::Parse(str));
-	int64_t i = 0;
-	// Pay the mortgage, if it's from Other pay it again until done
+	int64_t payment = 0;
+	bool isOther = selectedRow == 6 + !player.Salaries();
+
+	// Pay the mortgage, if it's from Other pay it again until done.
+	// You cannot pay more than you have or more than the mortgage principal.
 	do {
-		// You cannot pay more than you have or more than the mortgage principal.
-		i = min(amount, min(player.Accounts().Credits(),
+		payment = min(amount, min(player.Accounts().Credits(),
 			player.Accounts().Mortgages()[selectedRow].Principal()));
-		if (i < 1)
+		if (payment < 1)
 			break;
 	
-		player.Accounts().PayExtra(selectedRow, i);
-		amount -= i;
-		
-	} while (selectedRow == 6 + !player.Salaries()); //row Other check
+		player.Accounts().PayExtra(selectedRow, payment);
+		amount -= payment;
+
+	} while (isOther && static_cast<unsigned>(selectedRow) <
+			player.Accounts().Mortgages().size());
 	
 	qualify = player.Accounts().Prequalify();
 }
