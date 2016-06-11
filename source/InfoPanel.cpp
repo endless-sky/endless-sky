@@ -842,10 +842,15 @@ void InfoPanel::Dump()
 
 void InfoPanel::DumpPlunder(int count)
 {
+	int64_t loss = 0;
 	count = min(count, (*shipIt)->Cargo().Get(selectedPlunder));
 	if(count > 0)
 	{
+		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
 		info.Update(**shipIt);
+		
+		if(loss)
+			Messages::Add("You jettisoned " + Format::Number(loss) + " credits worth of cargo.");
 	}
 }
