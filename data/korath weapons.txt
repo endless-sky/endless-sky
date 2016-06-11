@@ -358,6 +358,7 @@ outfit "Korath Mine"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/korath mine"
+	"mass" .7
 	"minelayer capacity" -1
 	description "This is ammunition for a Korath Minelayer. Each mine splits into eleven submunitions after it is deployed."
 
@@ -365,7 +366,7 @@ outfit "Korath Minelayer"
 	category "Secondary Weapons"
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
-	"mass" 48
+	"mass" 36
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 50
