@@ -101,7 +101,7 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 
 
 
-bool OutfitterPanel::HasItem(const std::string &name) const
+bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
 	if(outfitter.Has(outfit) || available[outfit] || player.Cargo().Get(outfit))

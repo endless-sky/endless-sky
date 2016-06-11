@@ -108,7 +108,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 
 
 
-void Font::DrawAliased(const std::string &str, double x, double y, const Color &color) const
+void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
 	glUseProgram(shader.Object());
 	glActiveTexture(GL_TEXTURE0);
