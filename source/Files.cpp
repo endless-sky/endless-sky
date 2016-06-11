@@ -448,7 +448,7 @@ string Files::Name(const string &path)
 FILE *Files::Open(const string &path, bool write)
 {
 #if defined _WIN32
-	return _wfopen(ToUTF16(path).c_str(), write ? L"wb" : L"rb");
+	return _wfopen(ToUTF16(path).c_str(), write ? L"w" : L"rb");
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
 #endif

@@ -41,7 +41,7 @@ ship "Aphid"
 		"Hyperdrive"
 	engine -8 40
 	engine 8 40
-	turret 0 24
+	turret 0 24 "Pulse Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -49,7 +49,7 @@ ship "Aphid"
 
 ship "Aphid" "Aphid (Anti-Missile)"
 	outfits
-		"Chameleon Anti-Missile Turret"
+		"Chameleon Anti-Missile"
 		"Pebble Core"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
@@ -82,19 +82,19 @@ ship "Lightning Bug"
 			"hit force" 1260
 	outfits
 		"Ion Cannon"
-		"Bullfrog Anti-Missile Turret" 2
+		"Bullfrog Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		`"Benga" Atomic Thruster`
-		`"Benga" Atomic Steering`
+		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 	engine -40 22
 	engine 40 22
-	gun 0 -40
-	turret -47 18
-	turret 47 18
+	gun 0 -40 "Ion Cannon"
+	turret -47 18 "Bullfrog Anti-Missile"
+	turret 47 18 "Bullfrog Anti-Missile"
 	explode "tiny explosion" 18
 	explode "small explosion" 36
 	explode "medium explosion" 24
@@ -109,7 +109,6 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Pulse Turret" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
-		"Hai Chasm Batteries" 2
 		"Hai Corundum Regenerator"
 		`"Biroo" Atomic Thruster`
 		`"Benga" Atomic Steering`
@@ -141,13 +140,14 @@ ship "Shield Beetle"
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Chameleon Anti-Missile Turret" 2
+		"Chameleon Anti-Missile" 2
 		"Boulder Reactor"
 		"Geode Reactor"
-		"Hai Valley Batteries"
+		"Hai Gorge Batteries"
+		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
-		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	engine -44 133
@@ -160,8 +160,8 @@ ship "Shield Beetle"
 	gun 34 -68 "Hai Tracker Pod"
 	gun -61 -14 "Hai Tracker Pod"
 	gun 61 -14 "Hai Tracker Pod"
-	turret -57 75 "Chameleon Anti-Missile Turret"
-	turret 57 75 "Chameleon Anti-Missile Turret"
+	turret -57 75 "Chameleon Anti-Missile"
+	turret 57 75 "Chameleon Anti-Missile"
 	turret -39 48
 	turret 39 48
 	explode "tiny explosion" 50
@@ -182,7 +182,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
-		`"Bondir" Atomic Steering`
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
@@ -213,14 +213,16 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Ion Cannon" 4
 		"Hai Tracker Pod" 4
 		"Hai Tracker" 224
-		"Chameleon Anti-Missile Turret" 2
+		"Chameleon Anti-Missile" 2
 		"Boulder Reactor" 2
-		"Hai Ravine Batteries"
+		"Hai Chasm Batteries" 2
+		"Hai Fissure Batteries"
+		"Hai Gorge Batteries"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Hai Williwaw Cooling" 4
-		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 	gun "Ion Cannon"
@@ -231,8 +233,8 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 	gun "Hai Tracker Pod"
 	gun "Hai Tracker Pod"
 	gun "Hai Tracker Pod"
-	turret "Chameleon Anti-Missile Turret"
-	turret "Chameleon Anti-Missile Turret"
+	turret "Chameleon Anti-Missile"
+	turret "Chameleon Anti-Missile"
 
 ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 	outfits
@@ -244,8 +246,8 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Mass Expansion" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
-		"Hai Williwaw Cooling" 5
-		`"Bondir" Atomic Steering`
+		"Hai Williwaw Cooling" 6
+		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 
@@ -276,7 +278,7 @@ ship "Water Bug"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Pulse Turret"
-		"Chameleon Anti-Missile Turret" 2
+		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"
@@ -290,8 +292,8 @@ ship "Water Bug"
 	gun -24 -53 "Hai Tracker Pod"
 	gun 24 -53 "Hai Tracker Pod"
 	turret 0 -10 "Pulse Turret"
-	turret -17 17 "Chameleon Anti-Missile Turret"
-	turret 17 17 "Chameleon Anti-Missile Turret"
+	turret -17 17 "Chameleon Anti-Missile"
+	turret 17 17 "Chameleon Anti-Missile"
 	explode "small explosion" 15
 	explode "medium explosion" 30
 	explode "big explosion" 20
@@ -318,7 +320,7 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
 		"Pulse Turret"
-		"Chameleon Anti-Missile Turret" 2
+		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
 		"Hai Gorge Batteries"
 		"Hai Chasm Batteries"

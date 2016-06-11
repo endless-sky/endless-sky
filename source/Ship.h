@@ -383,6 +383,7 @@ private:
 	bool isThrusting = false;
 	bool neverDisabled = false;
 	bool isCapturable = true;
+	bool isInvisible = false;
 	double cloak = 0.;
 	// Cached values for figuring out when anti-missile is in range.
 	double antiMissileRange = 0.;

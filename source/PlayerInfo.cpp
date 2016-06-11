@@ -29,6 +29,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "Politics.h"
 #include "Random.h"
+#include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StartConditions.h"
@@ -141,6 +142,12 @@ void PlayerInfo::Load(const string &path)
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
+		}
+		else if(child.Token(0) == "stock")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					soldOutfits[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
 		else if(child.Token(0) == "mission")
 		{
@@ -261,9 +268,9 @@ void PlayerInfo::Load(const string &path)
 void PlayerInfo::LoadRecent()
 {
 	string recentPath = Files::Read(Files::Config() + "recent.txt");
-	size_t pos = recentPath.find('\n');
-	if(pos != string::npos)
-		recentPath.erase(pos);
+	// Trim trailing whitespace (including newlines) from the path.
+	while(!recentPath.empty() && recentPath.back() <= ' ')
+		recentPath.pop_back();
 	
 	if(recentPath.empty())
 		Clear();
@@ -283,6 +290,25 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
 	
+	if(filePath.rfind(".txt") == filePath.length() - 4)
+	{
+		// Only update the backups if this save will have a newer date.
+		SavedGame saved(filePath);
+		if(saved.GetDate() != date.ToString())
+		{
+			string root = filePath.substr(0, filePath.length() - 4);
+			string files[4] = {
+				root + "~~previous-3.txt",
+				root + "~~previous-2.txt",
+				root + "~~previous-1.txt",
+				filePath
+			};
+			for(int i = 0; i < 3; ++i)
+				if(Files::Exists(files[i + 1]))
+					Files::Copy(files[i + 1], files[i]);
+		}
+	}
+		
 	Save(filePath);
 }
 
@@ -856,14 +882,12 @@ void PlayerInfo::Land(UI *ui)
 		ship->UnloadBays();
 	
 	// Recharge any ships that are landed with you on the planet.
-	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
+	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
-			if(canRecharge)
-				ship->Recharge();
-			
+			ship->Recharge(hasSpaceport);
 			ship->Cargo().TransferAll(&cargo);
 			ship->SetPlanet(planet);
 		}
@@ -1032,12 +1056,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 			ship->SetParent(flagship);
 	
 	// Recharge any ships that can be recharged.
-	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
+	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
 		{
-			if(canRecharge)
-				ship->Recharge();
+			ship->Recharge(hasSpaceport);
 			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
@@ -1158,6 +1181,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
 	income = 0;
+	int64_t commodityIncome = 0;
+	int64_t outfitIncome = 0;
 	int64_t totalBasis = 0;
 	if(sold)
 	{
@@ -1168,7 +1193,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 			
 			// Figure out how much income you get for selling this cargo.
 			int64_t value = commodity.second * system->Trade(commodity.first);
-			income += value;
+			commodityIncome += value;
 			
 			int original = originalTotals[commodity.first];
 			auto it = costBasis.find(commodity.first);
@@ -1737,7 +1762,7 @@ void PlayerInfo::CreateMissions()
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().HasFailed(*this))
 				missions.pop_back();
-			else
+			else if(!it.second.IsAtLocation(Mission::JOB))
 				hasPriorityMissions |= missions.back().HasPriority();
 		}
 	}
@@ -1832,6 +1857,18 @@ void PlayerInfo::Save(const string &path) const
 		out.EndChild();
 	}
 	accounts.Save(out);
+	
+	if(!soldOutfits.empty())
+	{
+		out.Write("stock");
+		out.BeginChild();
+		{
+			for(const auto &it : soldOutfits)
+				if(it.second)
+					out.Write(it.first->Name(), it.second);
+		}
+		out.EndChild();
+	}
 	
 	// Save all missions (accepted or available).
 	for(const Mission &mission : missions)

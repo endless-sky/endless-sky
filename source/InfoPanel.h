@@ -20,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -74,14 +75,16 @@ private:
 	mutable std::vector<ClickZone<int>> zones;
 	mutable std::vector<ClickZone<std::string>> commodityZones;
 	mutable std::vector<ClickZone<const Outfit *>> plunderZones;
-	int selected;
-	int hover;
+	int selected = -1;
+	int previousSelected = -1;
+	std::set<int> allSelected;
+	int hover = -1;
 	double scroll = 0.;
 	Point hoverPoint;
 	Point dragStart;
-	bool showShip;
-	bool canEdit;
-	bool didDrag;
+	bool showShip = false;
+	bool canEdit = false;
+	bool didDrag = false;
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;
 };

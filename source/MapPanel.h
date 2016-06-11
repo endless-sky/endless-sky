@@ -118,8 +118,8 @@ private:
 	void DrawSystems() const;
 	void DrawNames() const;
 	void DrawMissions() const;
-	void DrawPointer(const System *system, Angle &angle, const Color &color) const;
-	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true);
+	void DrawPointer(const System *system, Angle &angle, const Color &color, bool bigger = false) const;
+	static void DrawPointer(Point position, Angle &angle, const Color &color, bool drawBack = true, bool bigger = false);
 };
 
 

@@ -445,7 +445,7 @@ void OutfitterPanel::Buy()
 			int required = selectedOutfit->Get("required crew");
 			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 				ship->AddCrew(required);
-			ship->Recharge(true);
+			ship->Recharge();
 		}
 	}
 }

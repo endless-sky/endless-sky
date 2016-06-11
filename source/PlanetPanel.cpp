@@ -16,6 +16,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "BankPanel.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "GameData.h"
 #include "FontSet.h"
 #include "HiringPanel.h"
@@ -31,6 +32,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "SpaceportPanel.h"
 #include "TradingPanel.h"
 #include "UI.h"
+
+#include <sstream>
 
 using namespace std;
 
@@ -128,12 +131,54 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
-		player.Save();
-		if(player.TakeOff(GetUI()))
+		// Check whether the player should be warned before taking off.
+		if(player.ShouldLaunch())
+			TakeOff();
+		else
 		{
-			if(callback)
-				callback();
-			GetUI()->Pop(this);
+			// Will you have to sell something other than regular cargo?
+			int cargoToSell = -(player.Cargo().Free() + player.Cargo().CommoditiesSize());
+			int droneCount = 0;
+			int fighterCount = 0;
+			for(const auto &it : player.Ships())
+				if(!it->IsParked() && !it->IsDisabled() && it->GetSystem() == player.GetSystem())
+				{
+					const string &category = it->Attributes().Category();
+					droneCount += (category == "Drone") - it->BaysFree(false);
+					fighterCount += (category == "Fighter") - it->BaysFree(true);
+				}
+			
+			if(fighterCount > 0 || droneCount > 0 || cargoToSell > 0)
+			{
+				ostringstream out;
+				out << "If you take off now you will have to sell ";
+				bool triple = (fighterCount > 0 && droneCount > 0 && cargoToSell > 0);
+			
+				if(fighterCount == 1)
+					out << "a fighter";
+				else if(fighterCount > 0)
+					out << fighterCount << " fighters";
+				if(fighterCount > 0 && (droneCount > 0 || cargoToSell > 0))
+					out << (triple ? ", " : " and ");
+			
+				if(droneCount == 1)
+					out << "a drone";
+				else if(droneCount > 0)
+					out << droneCount << " drones";
+				if(droneCount > 0 && cargoToSell > 0)
+					out << (triple ? ", and " : " and ");
+			
+				if(cargoToSell == 1)
+					out << "a ton of cargo";
+				else if(cargoToSell > 0)
+					out << cargoToSell << " tons of cargo";
+				out << " that you do not have space for. Are you sure you want to continue?";
+				
+				GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+				return true;
+			}
+			else
+				TakeOff();
 		}
 	}
 	else if(key == 'l')
@@ -213,4 +258,17 @@ bool PlanetPanel::Click(int x, int y)
 		return DoKey(key);
 	
 	return true;
+}
+
+
+
+void PlanetPanel::TakeOff()
+{
+	player.Save();
+	if(player.TakeOff(GetUI()))
+	{
+		if(callback)
+			callback();
+		GetUI()->Pop(this);
+	}
 }
