@@ -706,8 +706,8 @@ void OutfitterPanel::CheckRefill()
 		return;
 	checkedRefill = true;
 	
-	int64_t cost = 0;
 	int count = 0;
+	map<const Outfit *, int> needed;
 	for(const auto &ship : player.Ships())
 	{
 		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
@@ -721,19 +721,27 @@ void OutfitterPanel::CheckRefill()
 		
 		for(const Outfit *outfit : toRefill)
 		{
-			int needed = ship->Attributes().CanAdd(*outfit, 1000000);
-			if(!outfitter.Has(outfit))
-				needed = min(needed, player.Cargo().Get(outfit) + available[selectedOutfit]);
-			cost += needed * outfit->Cost();
+			int amount = ship->Attributes().CanAdd(*outfit, 1000000);
+			if(amount)
+				needed[outfit] += amount;
 		}
 	}
 	
-	if(cost && cost < player.Accounts().Credits())
+	int64_t cost = 0;
+	for(auto &it : needed)
 	{
-		string message = (count == 1) ?
-			"Do you want to reload all the ammunition for your ship? It will cost " :
-			"Do you want to reload all the ammunition for your ships? It will cost ";
-		message += Format::Number(cost) + " credits.";
+		// Don't count cost of anything installed from cargo.
+		it.second = max(0, it.second - player.Cargo().Get(it.first));
+		if(!outfitter.Has(it.first))
+			it.second = min(it.second, available[it.first]);
+		cost += it.second * it.first->Cost();
+	}
+	if(!needed.empty() && cost < player.Accounts().Credits())
+	{
+		string message = "Do you want to reload all the ammunition for your ship";
+		message += (count == 1) ? "?" : "s?";
+		if(cost)
+			message += " It will cost " + Format::Number(cost) + " credits.";
 		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
 	}
 }
