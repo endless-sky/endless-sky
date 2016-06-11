@@ -388,6 +388,7 @@ bool InfoPanel::Hover(double x, double y)
 
 bool InfoPanel::Hover(int x, int y)
 {
+	info.Hover(Point(x, y));
 	return Hover(static_cast<double>(x), static_cast<double>(y));
 }
 
@@ -733,6 +734,8 @@ void InfoPanel::DrawShip() const
 	}
 	if(hover >= 0 && hover <= static_cast<int>(ship.Weapons().size()))
 		DrawWeapon(hover, hoverPos, shipCenter + (2. * scale) * ship.Weapons()[hover].GetPoint());
+	
+	info.DrawTooltips();
 	
 	// Re-positioning weapons.
 	if(selected >= 0)

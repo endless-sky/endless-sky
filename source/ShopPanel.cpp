@@ -65,6 +65,9 @@ void ShopPanel::Draw() const
 	DrawButtons();
 	DrawMain();
 	
+	shipInfo.DrawTooltips();
+	outfitInfo.DrawTooltips();
+	
 	if(dragShip)
 	{
 		static const Color selected(.8, 1.);
@@ -576,6 +579,10 @@ bool ShopPanel::Click(int x, int y)
 
 bool ShopPanel::Hover(int x, int y)
 {
+	Point point(x, y);
+	shipInfo.Hover(point);
+	outfitInfo.Hover(point);
+	
 	dragMain = (x < Screen::Right() - SIDE_WIDTH);
 	return true;
 }

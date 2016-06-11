@@ -22,14 +22,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "OutfitInfoDisplay.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "ShipInfoDisplay.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
@@ -95,10 +93,10 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::DrawPlayerShipInfo(const Point &point) const
 {
-	ShipInfoDisplay info(*playerShip);
-	info.DrawAttributes(point);
+	shipInfo.Update(*playerShip);
+	shipInfo.DrawAttributes(point);
 	
-	return info.AttributesHeight();
+	return shipInfo.AttributesHeight();
 }
 
 
@@ -193,21 +191,21 @@ int OutfitterPanel::DividerOffset() const
 
 int OutfitterPanel::DetailWidth() const
 {
-	return 3 * OutfitInfoDisplay::PanelWidth();
+	return 3 * outfitInfo.PanelWidth();
 }
 
 
 
 int OutfitterPanel::DrawDetails(const Point &center) const
 {
-	OutfitInfoDisplay info(*selectedOutfit);
-	Point offset(info.PanelWidth(), 0.);
+	outfitInfo.Update(*selectedOutfit);
+	Point offset(outfitInfo.PanelWidth(), 0.);
 	
-	info.DrawDescription(center - offset * 1.5 - Point(0., 10.));
-	info.DrawRequirements(center - offset * .5 - Point(0., 10.));
-	info.DrawAttributes(center + offset * .5 - Point(0., 10.));
+	outfitInfo.DrawDescription(center - offset * 1.5 - Point(0., 10.));
+	outfitInfo.DrawRequirements(center - offset * .5 - Point(0., 10.));
+	outfitInfo.DrawAttributes(center + offset * .5 - Point(0., 10.));
 	
-	return info.MaximumHeight();
+	return outfitInfo.MaximumHeight();
 }
 
 
