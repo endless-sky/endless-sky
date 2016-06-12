@@ -217,6 +217,7 @@ outfit "Korath Piercer"
 	category "Ammunition"
 	cost 3500
 	thumbnail "outfit/piercer"
+	"mass" .3
 	"piercer capacity" -1
 	description "This missile is fired from a Korath Piercer Launcher."
 
@@ -224,7 +225,7 @@ outfit "Korath Piercer Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 27
+	"mass" 18
 	"outfit space" -27
 	"weapon capacity" -27
 	"energy capacity" 50
