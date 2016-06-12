@@ -63,7 +63,7 @@ tip "engine capacity needed:"
 	`Tons of engine space this outfit takes up.`
 
 tip "    engine capacity:"
-	`How many tons of engines this ship can hold. (To install an engine, you must also have enough total outfits space available.)`
+	`How many tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
 
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
@@ -225,7 +225,7 @@ tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`
 
 tip "    weapon capacity:"
-	`How many tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfits space available.)`
+	`How many tons of weapons this ship can hold. (To install a weapon, you must also have enough total outfit space available.)`
 
 
 
