@@ -16081,7 +16081,7 @@ planet Alfheim
 planet Allhome
 	attributes hai
 	landscape land/dmottl0
-	description `This earthlike planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
+	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
 	outfitter "Hai Basics"
 
@@ -16108,7 +16108,7 @@ planet Amazon
 planet Antipode
 	attributes core mining frontier
 	landscape land/snow5
-	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare Earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off. As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
 	security 0.1
@@ -16373,7 +16373,7 @@ planet Clark
 planet Clink
 	attributes mining moon
 	landscape land/desert3
-	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
+	description `About a decade ago, a mining corporation from Zug planted a colony on Clink for harvesting some rare Earth minerals that are present in this moon's crust due to its unusually high rate of asteroid impacts. The atmosphere here is too thin to breathe without a respirator, and because of the low gravity, the dust raised by the mining operations hangs perpetually in the air.`
 	description `	The miners who work here are a tight-knit group, since most of them were part of the original colonization team. They are not particularly open to outsiders, and the facilities here are so rudimentary that they do not even stock fuel for visiting ships.`
 	tribute 200
 		threshold 1500
@@ -17093,7 +17093,7 @@ planet Hope
 planet Hopper
 	attributes "dirt belt" mining
 	landscape land/myrabella1
-	description `Hopper is a temperate world of oceans, mountains, and plains, but with unfortunately high levels of sulfuric acid in its atmosphere. Metal and stone that are exposed to the atmosphere corrode quickly, requiring frequent maintenance. As a result, Hopper has only a few small settlements on it, and most of the industry is focused on underground mining. The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; earth fish could not be introduced successfully here.`
+	description `Hopper is a temperate world of oceans, mountains, and plains, but with unfortunately high levels of sulfuric acid in its atmosphere. Metal and stone that are exposed to the atmosphere corrode quickly, requiring frequent maintenance. As a result, Hopper has only a few small settlements on it, and most of the industry is focused on underground mining. The oceans are populated only by a few indigenous life forms that have adapted to their high acidity; Earth fish could not be introduced successfully here.`
 	spaceport `The spaceport consists mostly of a cluster of steel-framed warehouses with tin roofs, surrounded by concrete slabs for ships to land on. Scattered among the warehouses are a few smaller wooden buildings, housing a pub, a restaurant, and a small inn. Some of the warehouses are relatively new, with metal that still gleams; others are covered in rust, and a few stand in ruins, with large holes worn through their roofs and rusted girders poking through like dead trees.`
 	outfitter "Ammo South"
 	security 0.05
@@ -17708,7 +17708,7 @@ planet "New Tibet"
 planet "New Wales"
 	attributes "dirt belt" mining
 	landscape land/mountain7
-	description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
+	description `New Wales is home to a few mining outposts which extract and refine rare Earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals. Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
 	spaceport `The warehouses at the spaceport are kept under continuous guard due to the high value of the refined metals they contain. There are several missile silos and laser turrets as well; New Wales has survived several pirate attacks in the last decade. Within the spaceport cafeteria, however, the locals are quite friendly and excited to connect with visitors and hear news of the outside world. The cafeteria is cooking lamb stew, and the smell of it pervades the whole building.`
 	outfitter "Ammo South"
 	outfitter "Basic Outfits"
@@ -18138,7 +18138,7 @@ planet Shiver
 planet Shorebreak
 	attributes rim research medical
 	landscape land/beach1
-	description `Shorebreak is an ocean world which is home to a stunning profusion of alien life, some of which is not too dissimilar from life on earth. The first settlement, centuries ago, was built as a marine biology laboratory, and from there the planet gradually grew into a regional center for bioengineering, where local life forms are tested for possible use in human medicine.`
+	description `Shorebreak is an ocean world which is home to a stunning profusion of alien life, some of which is not too dissimilar from life on Earth. The first settlement, centuries ago, was built as a marine biology laboratory, and from there the planet gradually grew into a regional center for bioengineering, where local life forms are tested for possible use in human medicine.`
 	description `	Outside the laboratories, much of the planet's land mass remains in its natural state, but the planet is currently struggling with a large increase in immigration.`
 	spaceport `The spaceport on Shorebreak is built on its own separate island, perhaps as a way to keep any contamination isolated from the main continents. The hangar where you were directed to land your ship was hermetically sealed before you were allowed to land, and the customs officer informs you that any cargo you wish to trade must first be screened for "rats, mice, invasive insects, or wild pigs."`
 	"required reputation" 2
