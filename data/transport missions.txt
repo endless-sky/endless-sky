@@ -1839,3 +1839,299 @@ mission "Terraforming 5"
 			`	Amy says, "It will take a year or two for things to begin to settle down. Then we can figure out what our next steps should be."`
 			`	"I just hope we haven't made things worse than they were," says Alaric. He hands you your payment of <payment>. "Anyway, thanks for your help, <first>. It sounds like there's nothing more to be done here for the time being."`
 		event "terraforming Rand"
+
+mission "Space Elevator 1"
+	minor
+	name "Building a Space Elevator"
+	description "Escort a convoy of freighters to <destination>, where they will pick up materials for the space elevator project on Earth."
+	source Earth
+	destination Asgard
+	to offer
+		random < 100
+		"reputation: Republic" >= 1
+		has "event: war begins"
+	to fail
+		has "chosen sides"
+	
+	on offer
+		conversation
+			`As you are walking through the spaceport, you notice people crowding around windows. You find the nearest available window and notice a large structure located just outside the spaceport that dwarfs the many skyscrapers around it. It appears to be incomplete, and there is a cable of some sorts jutting out the top of the building into space for what seems like forever. Judging by its size, this is no small feat of engineering.`
+			`	You continue to marvel the size of the structure when a man in a Navy uniform walks up next to you. "Magnificent, isn't it?" He asks.`
+			choice
+				`	"Yes, indeed."`
+				`	"What is it?"`
+				
+			`	"It's a space elevator. The first of its kind in centuries. Ever since the last great space elevator in 2235 fell, there haven't been any since, but Parliament thought that it would be needed in times like these."`
+			choice
+				`	"What do you mean by 'times like these?'"`
+					goto times
+				`	"When do you believe it will be finished?"`
+			
+			`	"It should be completed in about a month or two, depending on if we finally get the last of the materials. There has been a sharp increase in piracy around Sol as of late, likely just a bunch of junkies trying to take advantage of the confusion of the whole Free Worlds situation."`
+				
+			label times
+			`	"Earth, along with many other planets, has been overpopulated for years. The only reason it hasn't fallen apart is because of the many planets in the south providing the planet with food. The situation with these new 'Free Worlds' seceding from the Republic, along with the bombings at Geminus and Martini, was a wake-up call for Parliament. Earth is a big target, so a single bombing could take out millions to even billions, as well as the fact that if these new Free Worlds go as far as to cut off our food supply here on Earth, there would be mass starvation."`
+			`	"That isn't even mentioning the rapidly deteriorating environment. I'm surprised the air is even still breathable with all these decades of punishment from emissions of all sorts. It's just overall better to try and get people off the planet."`
+			choice
+				`	"Why don't you just use transport ships to get people off the planet instead of building such a massive structure?"`
+				`	"This is scary stuff. Is there any way I can help?"`
+					goto help
+				`	"That's rather interesting. I'd help, but I have places to be. I wish you good luck in building it."`
+					goto leave
+
+			`	"That was the original plan, but after further calculations were done it was deemed too inefficient. There were a number of problems with it, such as the size of the current spaceport being unable to accomodate a sufficient number of transport ships to make any real progress, and if we did decide to use the spaceport then there would be no place for haulers to land and drop off the food that is keeping everyone alive. In the end, it was decided that taking up a small amount of space on the ground to connect the planet to a large spaceport in the sky would yield greater results than anything else that could be done."`
+			choice
+				`	"This is scary stuff. Is there any way I can help?"`
+					goto help
+				`	"That's rather interesting. I'd help, but I have places to be. I wish you good luck in building it."`
+			
+			label leave
+			`	"Thank you. Have a nice day."`
+				decline
+				
+			label help
+			`	"There is something you could do. We are currently in need of some additional helping hands to escort a convoy of cargo ships to <destination> and back to pick up the last of the materials: super-strong graphine nanotubes that will be used to strengthen the main tether and support the building on the ground. This spike in pirate activity has spread us thin, meaning you will have to be able to defend that convoy on your own, and that may be difficult. And if you were to help, there are a few scientists that I need transported here as well, so you'll need enough extra passenger space for about five people."`
+			choice
+				`	"Sounds like something I can handle. I'll get right to it, sir."`
+					goto end
+				`	"Sorry, but I'm in no position to be fighting any pirates."` 
+
+			`	"That's too bad to hear. Well, have a nice day."`
+				decline
+
+			label end
+			`	"Thanks!" He says, "By the way, I'm Admiral Michel Farford."`
+			`	"<first> <last>," you say. You shake hands and say your goodbyes as you make your way to your ship.`
+				accept
+
+	npc
+		personality entering plunders
+		government Pirate
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+
+	npc
+		system destination
+		personality waiting plunders
+		government Pirate
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+
+	npc accompany save
+		government Republic
+		personality escort timid
+		ship "Behemoth" "R.N.S. Aber"
+		ship "Behemoth" "R.N.S. Newfield"
+		ship "Behemoth" "R.N.S. Greenlock"
+		ship "Behemoth" "R.N.S. Greyhound"
+		ship "Behemoth" "R.N.S. Lestor"
+
+	on visit
+		dialog
+			`You have reached <destination>, but one or more of your escorts are not in this system. Better leave this planet and wait for them to arrive.`
+
+	on complete
+		dialog
+			`As you land, you can see many Republic ships lofting materials to and from the surface. This project will have a huge impact on this and many other worlds. `
+			`	You pick up the scientists and watch the cargo ships pick up the nanotubes. You prepare for the flight back to Earth.`
+
+mission "Space Elevator 2"
+	landing
+	name "Building a Space Elevator"
+	description "Escort some freighters and ferry a team scientists to <destination>."
+	source Asgard
+	destination Earth
+	to offer 
+		has "Space Elevator 1: done"
+	passengers 5
+
+	npc
+		personality entering plunders
+		government Pirate
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+
+	npc
+		system destination
+		personality waiting plunders
+		government Pirate
+		fleet "Large Northern Pirates"
+		fleet "Large Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+		fleet "Small Northern Pirates"
+		
+	npc accompany save
+		government Republic
+		personality escort timid
+		ship "Behemoth" "R.N.S. Aber"
+		ship "Behemoth" "R.N.S. Newfield"
+		ship "Behemoth" "R.N.S. Greenlock"
+		ship "Behemoth" "R.N.S. Greyhound"
+		ship "Behemoth" "R.N.S. Lestor"
+
+	on visit
+		dialog
+			`You have reached <destination>, but one or more of your escorts are not in this system. Better leave this planet and wait for them to arrive.`
+
+	on complete
+		payment 600000
+		set "licence: Navy"
+		event "space elevator" 45
+		event "license expires" 30
+		conversation 
+			`Upon landing back on Earth, Admiral Farford approaches your fleet. He escorts the scientists off your ship and another Navy officer brings them to the construction zone. The admiral turns back to your and reaches into his pocket.`
+			`	"Thanks for the help, <first>." He pulls out some credit chips from his pocket and hands them to you. You count them up and find that it's <payment>.`
+			choice
+				`	"Thank you, sir."`
+					goto thanks
+				`	"You really shouldn't."`
+					goto keep
+			
+			label thanks
+			`	"No problem at all. And there's no need to call me sir."`
+				goto end
+			
+			label keep
+			`	"No, I really should. It's the least I could do for you."`
+			
+			label end
+			`	"You know what, there's actually one more thing." The admiral reaches into his pocket once again, this time pulling out a card of some sorts. He hand it to you. You look at it, and to your disbelief it's a Navy license.`
+			`	"Don't go to crazy over it, it's only temporary. It won't buy you a cruiser, but it's at least something. All you should need to do is talk to the Navy at the shipyard and show them this. They'll verify it and let you buy one of the smaller ships."`
+			`	"You know, we could use more people like you in the Navy. But until next time."`
+			`	He bids you farewell and walks toward the direction of the construction site.`
+			
+event "license expires"		
+		
+mission "Navy License Expires"
+	landing
+	destination "Kessel Sepret"
+	to offer
+		has "event: license expires"
+		not "event: joined the navy"
+
+	on offer
+		clear "license: Navy"
+		dialog `When you land, you recieve a message. "Captain <last>. Your Navy license has expired. Please renew it at the nearest Navy center with your proof of Navy ID."`
+			decline
+		
+event "space elevator"
+	system Sol
+		object
+			sprite star/g0
+			period 25.38
+		object
+			sprite planet/mercury
+			distance 289.647
+			period 60
+		object
+			sprite planet/venus
+			distance 533.534
+			period 150
+		object Earth
+			sprite planet/earthse
+			distance 965.669
+			period 365.25
+			object Luna
+				sprite planet/luna
+				distance 201.24
+				period 27.3
+		object Mars
+			sprite planet/mars
+			distance 1471.43
+			period 687
+		object
+			sprite planet/jupiter
+			distance 3000
+			period 2000
+			object
+				sprite planet/io
+				distance 238.221
+				period 10.614
+			object
+				sprite planet/europa
+				distance 379.078
+				period 21.306
+			object
+				sprite planet/ganymede
+				distance 604.739
+				period 42.93
+			object
+				sprite planet/callisto
+				distance 811.717
+				period 66.76
+				
+	planet Earth
+		spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
+		spaceport `	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras.`
+		spaceport ` Thanks to your efforts in helping the Navy, the space elevator has been built. Thousands upon thousands of civilians are transported off the planet into the space elevator's spaceport every day, slowly but surely helping to reduce the overpopulated cities of Earth.`
+		
+mission "Space Elevator Alt"
+	landing
+	invisible
+	to offer
+		has "chosen sides"
+	on offer
+		event "space elevator alt"
+		fail
+		
+event "space elevator alt"
+	system Sol
+		object
+			sprite star/g0
+			period 25.38
+		object
+			sprite planet/mercury
+			distance 289.647
+			period 60
+		object
+			sprite planet/venus
+			distance 533.534
+			period 150
+		object Earth
+			sprite planet/earthse
+			distance 965.669
+			period 365.25
+			object Luna
+				sprite planet/luna
+				distance 201.24
+				period 27.3
+		object Mars
+			sprite planet/mars
+			distance 1471.43
+			period 687
+		object
+			sprite planet/jupiter
+			distance 3000
+			period 2000
+			object
+				sprite planet/io
+				distance 238.221
+				period 10.614
+			object
+				sprite planet/europa
+				distance 379.078
+				period 21.306
+			object
+				sprite planet/ganymede
+				distance 604.739
+				period 42.93
+			object
+				sprite planet/callisto
+				distance 811.717
+				period 66.76
+				
+	planet Earth
+		spaceport `Earth's spaceport is a series of massive buildings; the gaps between them form narrow concrete canyons a hundred stories deep. From a distance it has the appearance of a bustling termite mound.`
+		spaceport `	Inside the towers is a warren of dim hallways and dingy shops. Hitchhikers sleep in the corners of unused docking bays under old army blankets, a few uniformed cleaners try to keep the litter and dust in check, and rich tourists from other stars cling tightly to their expensive cameras.`
+		spaceport ` Thanks to the efforts of the Navy, a space elevator has been built on Earth. The purpose of the evelator is to assist in transporting people off the planet in order to reduce the long overcongested population. Thousands upon thousands of civilians are transported off the planet into the space elevator's spaceport every day, slowly but surely helping to reduce the overpopulated cities of Earth.`
+		
